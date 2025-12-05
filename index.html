@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MagicPaper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap&subset=latin,latin-ext,cyrillic,arabic');
+      
+      body {
+        font-family: 'Nunito', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Fredoka', sans-serif;
+      }
+
+      /* Custom Font Classes */
+      .font-lora {
+        font-family: 'Lora', serif;
+      }
+      .font-arabic {
+        font-family: 'Noto Naskh Arabic', serif;
+      }
+      
+      /* Book Flip Animation Classes */
+      .book-page {
+        backface-visibility: hidden;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+      
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "jspdf": "https://esm.run/jspdf",
+    "html2canvas": "https://esm.run/html2canvas"
+  }
+}
+</script>
+</head>
+  <body class="bg-amber-50 text-slate-800">
+    <div id="root"></div>
+  </body>
+</html>
