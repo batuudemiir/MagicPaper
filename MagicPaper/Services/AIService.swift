@@ -3,13 +3,22 @@ import Foundation
 class AIService: ObservableObject {
     static let shared = AIService()
     
-    // ✅ API Key artık Info.plist'ten okunuyor (güvenli)
+    // 🔐 Vibe coding tarzı güvenli API key yönetimi
     private let apiKey: String = {
-        guard let key = Bundle.main.object(forInfoDictionaryKey: "GEMINI_API_KEY") as? String,
-              !key.isEmpty else {
-            fatalError("❌ GEMINI_API_KEY bulunamadı! Secrets.xcconfig dosyasını oluşturun ve Xcode'da projeye ekleyin.")
+        // 1. Önce Xcode Cloud ortam değişkenlerine bak
+        if let cloudKey = ProcessInfo.processInfo.environment["GEMINI_API_KEY"], !cloudKey.isEmpty {
+            print("🌥️ API Key Xcode Cloud'dan alındı")
+            return cloudKey
         }
-        return key
+        
+        // 2. Eğer bulutta değilsek Info.plist/xcconfig'den oku
+        if let localKey = Bundle.main.object(forInfoDictionaryKey: "GEMINI_API_KEY") as? String, !localKey.isEmpty {
+            print("💻 API Key local Info.plist'ten alındı")
+            return localKey
+        }
+        
+        // 3. Hiçbiri yoksa hata ver
+        fatalError("❌ GEMINI_API_KEY bulunamadı! Secrets.xcconfig dosyasını oluşturun veya Xcode Cloud'da environment variable ekleyin.")
     }()
     
     // ✅ GEMINI 2.5 FLASH - En yeni ve en hızlı model (Haziran 2025)

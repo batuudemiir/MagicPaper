@@ -47,10 +47,21 @@ MagicPaper.xcodeproj/project.pbxproj.xcode_cloud_backup
    - Minimum: Xcode 15.0
    - Önerilen: Xcode 15.2 veya üzeri
 
-2. **Environment Variables**
+2. **Environment Variables** ⚠️ ÖNEMLİ
+   
+   Xcode Cloud'da şu environment variable'ı ekleyin:
+   
    ```
-   GEMINI_API_KEY = [Your API Key]
+   GEMINI_API_KEY = AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc
    ```
+   
+   **Nasıl Eklenir:**
+   - App Store Connect → Xcode Cloud → Workflow Settings
+   - Environment Variables bölümüne gidin
+   - "+" butonuna tıklayın
+   - Name: `GEMINI_API_KEY`
+   - Value: `[Your API Key]`
+   - Save edin
 
 3. **Build Scheme**
    - Scheme: MagicPaper
