@@ -59,12 +59,10 @@ struct TextOnlyStoryViewerView: View {
                         Button(action: shareStory) {
                             Label("Hikayeyi Paylaş", systemImage: "square.and.arrow.up")
                         }
-                        .disabled(!subscriptionManager.isPremium)
                         
                         Button(action: downloadAsText) {
                             Label("Metin Olarak İndir", systemImage: "arrow.down.doc")
                         }
-                        .disabled(!subscriptionManager.isPremium)
                         
                         if !subscriptionManager.isPremium {
                             Divider()
@@ -329,11 +327,6 @@ struct TextOnlyStoryViewerView: View {
     }
     
     private func shareStory() {
-        guard subscriptionManager.isPremium else {
-            showingPremiumAlert = true
-            return
-        }
-        
         var storyText = """
         📚 \(story.title)
         
@@ -354,11 +347,6 @@ struct TextOnlyStoryViewerView: View {
     }
     
     private func downloadAsText() {
-        guard subscriptionManager.isPremium else {
-            showingPremiumAlert = true
-            return
-        }
-        
         var storyText = """
         \(story.title)
         

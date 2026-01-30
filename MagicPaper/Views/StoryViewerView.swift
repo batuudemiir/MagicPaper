@@ -105,12 +105,10 @@ struct StoryViewerView: View {
                     Button(action: shareStory) {
                         Label("Hikayeyi Paylaş", systemImage: "square.and.arrow.up")
                     }
-                    .disabled(!subscriptionManager.isPremium)
                     
                     Button(action: downloadStory) {
                         Label("Telefona İndir", systemImage: "arrow.down.circle")
                     }
-                    .disabled(!subscriptionManager.isPremium)
                     
                     Button(action: exportPDF) {
                         Label("PDF Olarak Dışa Aktar", systemImage: "doc.text")
@@ -281,11 +279,6 @@ struct StoryViewerView: View {
     }
     
     private func shareStory() {
-        guard subscriptionManager.isPremium else {
-            showingPremiumAlert = true
-            return
-        }
-        
         // Hikaye metnini oluştur
         var shareText = """
         📚 \(currentStory.title)
@@ -318,11 +311,6 @@ struct StoryViewerView: View {
     }
     
     private func downloadStory() {
-        guard subscriptionManager.isPremium else {
-            showingPremiumAlert = true
-            return
-        }
-        
         // Tüm görselleri fotoğraf galerisine kaydet
         var savedCount = 0
         
