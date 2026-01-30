@@ -44,6 +44,10 @@
 		A10000010000000000000067 /* TextOnlyStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000068 /* TextOnlyStoryView.swift */; };
 		A10000010000000000000069 /* TextOnlyStoryViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006A /* TextOnlyStoryViewerView.swift */; };
 		A1000001000000000000006B /* TextOnlyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006C /* TextOnlyStory.swift */; };
+		A1000001000000000000006D /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006E /* SubscriptionManager.swift */; };
+		A1000001000000000000006F /* TextStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000070 /* TextStory.swift */; };
+		A10000010000000000000071 /* TextStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000072 /* TextStoryManager.swift */; };
+		A10000010000000000000075 /* SimpleSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000076 /* SimpleSubscriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +87,10 @@
 		A10000010000000000000068 /* TextOnlyStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyStoryView.swift; sourceTree = "<group>"; };
 		A1000001000000000000006A /* TextOnlyStoryViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyStoryViewerView.swift; sourceTree = "<group>"; };
 		A1000001000000000000006C /* TextOnlyStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyStory.swift; sourceTree = "<group>"; };
+		A1000001000000000000006E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		A10000010000000000000070 /* TextStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStory.swift; sourceTree = "<group>"; };
+		A10000010000000000000072 /* TextStoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStoryManager.swift; sourceTree = "<group>"; };
+		A10000010000000000000076 /* SimpleSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSubscriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,7 @@
 				A1000001000000000000004D /* LocalImageView.swift */,
 				2D6C522B2F2CB2670087A82F /* PremiumView.swift */,
 				A1000001000000000000005E /* DailyStoriesView.swift */,
+				A10000010000000000000076 /* SimpleSubscriptionView.swift */,
 				A1000001000000000000005F /* ProfileSetupView.swift */,
 				A10000010000000000000061 /* DailyStoryCreationView.swift */,
 				A10000010000000000000068 /* TextOnlyStoryView.swift */,
@@ -160,6 +169,7 @@
 				A10000010000000000000014 /* Story.swift */,
 				A1000001000000000000005A /* DailyStory.swift */,
 				A1000001000000000000006C /* TextOnlyStory.swift */,
+				A10000010000000000000070 /* TextStory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000010000000000000049 /* StoryGenerationManager.swift */,
+				A1000001000000000000006E /* SubscriptionManager.swift */,
 				A10000010000000000000018 /* AIService.swift */,
 				A10000010000000000000057 /* FalImageService.swift */,
 				2D6C52292F2CABA60087A82F /* PermissionManager.swift */,
@@ -177,6 +188,7 @@
 				A1000001000000000000004F /* LocalNotificationManager.swift */,
 				A1000001000000000000005C /* DailyStoryManager.swift */,
 				A10000010000000000000064 /* AdMobManager.swift */,
+				A10000010000000000000072 /* TextStoryManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -279,6 +291,7 @@
 				A1000001000000000000004C /* LocalImageView.swift in Sources */,
 				A10000010000000000000013 /* Story.swift in Sources */,
 				A10000010000000000000048 /* StoryGenerationManager.swift in Sources */,
+				A1000001000000000000006D /* SubscriptionManager.swift in Sources */,
 				A1000001000000000000004A /* FileManagerService.swift in Sources */,
 				A1000001000000000000004E /* LocalNotificationManager.swift in Sources */,
 				A10000010000000000000017 /* AIService.swift in Sources */,
@@ -300,6 +313,9 @@
 				A10000010000000000000069 /* TextOnlyStoryViewerView.swift in Sources */,
 				2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */,
 				A1000001000000000000006B /* TextOnlyStory.swift in Sources */,
+				A1000001000000000000006F /* TextStory.swift in Sources */,
+				A10000010000000000000071 /* TextStoryManager.swift in Sources */,
+				A10000010000000000000075 /* SimpleSubscriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +458,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MagicPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4L7QU56YY;
 				ENABLE_PREVIEWS = YES;
-				GEMINI_API_KEY = "AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc";
 				INFOPLIST_FILE = MagicPaper/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Bu uygulama hikaye karakterleri için fotoğraf çekmek amacıyla kameraya erişim gerektirir.";
@@ -480,7 +495,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MagicPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4L7QU56YY;
 				ENABLE_PREVIEWS = YES;
-				GEMINI_API_KEY = "AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc";
 				INFOPLIST_FILE = MagicPaper/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Bu uygulama hikaye karakterleri için fotoğraf çekmek amacıyla kameraya erişim gerektirir.";

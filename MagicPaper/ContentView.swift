@@ -307,31 +307,31 @@ struct CreateStoryTypeSelectionView: View {
                                 modernStoryCard(
                                     icon: "photo.on.rectangle.angled",
                                     title: "Görselli Hikaye",
-                                    description: "Fotoğrafla kişiselleştirilmiş",
+                                    description: "Fotoğrafla özel hikaye",
                                     gradient: [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)],
                                     badge: "Popüler"
                                 )
                             }
                             
-                            NavigationLink(destination: TextOnlyStoryView()) {
-                                modernStoryCard(
-                                    icon: "text.book.closed",
-                                    title: "Metin Hikaye",
-                                    description: "Hayal gücünü harekete geçir",
-                                    gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
-                                    badge: nil
-                                )
-                            }
-                            
-                            NavigationLink(destination: DailyStoryCreationView(category: .bedtime)) {
-                                modernStoryCard(
-                                    icon: "calendar.badge.plus",
-                                    title: "Günlük Hikaye",
-                                    description: "Her gün yeni bir macera",
-                                    gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)],
-                                    badge: "Yeni"
-                                )
-                            }
+                    NavigationLink(destination: TextOnlyStoryView()) {
+                        modernStoryCard(
+                            icon: "text.book.closed",
+                            title: "Metin Hikaye",
+                            description: "Hayal gücünü harekete geçir",
+                            gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
+                            badge: nil
+                        )
+                    }
+                    
+                    NavigationLink(destination: DailyStoryCreationView(category: .bedtime)) {
+                        modernStoryCard(
+                            icon: "calendar.badge.plus",
+                            title: "Günlük Hikaye",
+                            description: "Kategori bazlı hikayeler",
+                            gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)],
+                            badge: nil
+                        )
+                    }
                         }
                         .padding(.horizontal, 20)
                     }

@@ -74,7 +74,7 @@ struct CreateStoryView: View {
             Text(alertMessage)
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumView()
+            SimpleSubscriptionView()
         }
         .overlay(
             loadingOverlay
@@ -478,10 +478,8 @@ struct CreateStoryView: View {
     
     private var generateButton: some View {
         VStack(spacing: 16) {
-            // Limit uyarısı (ücretsiz kullanıcılar için)
-            if !subscriptionManager.isPremium {
-                limitWarningBanner
-            }
+            // Abonelik durumu bilgisi
+            subscriptionStatusBanner
             
             Button(action: generateStory) {
                 HStack {
@@ -546,74 +544,100 @@ struct CreateStoryView: View {
         .padding(.top, 8)
     }
     
-    private var limitWarningBanner: some View {
+    private var subscriptionStatusBanner: some View {
         VStack(spacing: 12) {
             HStack(spacing: 12) {
+                // Durum ikonu
                 ZStack {
                     Circle()
-                        .fill(Color.orange.opacity(0.2))
-                        .frame(width: 40, height: 40)
+                        .fill(subscriptionManager.isPremium ? Color.yellow.opacity(0.2) : 
+                              subscriptionManager.freeTrialCount > 0 ? Color.green.opacity(0.2) : 
+                              Color.purple.opacity(0.2))
+                        .frame(width: 44, height: 44)
                     
-                    Text(subscriptionManager.canCreateNewStory() ? "1" : "0")
-                        .font(.headline.bold())
-                        .foregroundColor(.orange)
+                    Text(subscriptionManager.isPremium ? "👑" : 
+                         subscriptionManager.freeTrialCount > 0 ? "🎁" : "✨")
+                        .font(.title3)
                 }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(subscriptionManager.canCreateNewStory() ? "Ücretsiz Hikaye Hakkınız" : "Hikaye Hakkınız Bitti")
-                        .font(.subheadline.bold())
-                        .foregroundColor(.primary)
-                    
-                    Text(subscriptionManager.canCreateNewStory() ? "1 ücretsiz hikaye oluşturabilirsiniz" : "Daha fazla hikaye için premium'a geçin")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    if subscriptionManager.isPremium {
+                        Text(subscriptionManager.subscriptionTier.displayName)
+                            .font(.caption.bold())
+                            .foregroundColor(.secondary)
+                        
+                        HStack(spacing: 6) {
+                            Text("\(subscriptionManager.remainingImageStories)")
+                                .font(.title2.bold())
+                                .foregroundColor(.indigo)
+                            
+                            Text("görselli hikaye kaldı")
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                    } else if subscriptionManager.freeTrialCount > 0 {
+                        Text("Ücretsiz Deneme")
+                            .font(.caption.bold())
+                            .foregroundColor(.secondary)
+                        
+                        HStack(spacing: 6) {
+                            Text("\(subscriptionManager.freeTrialCount)")
+                                .font(.title2.bold())
+                                .foregroundColor(.green)
+                            
+                            Text("deneme kaldı")
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                    } else {
+                        Text("Abonelik Gerekli")
+                            .font(.caption.bold())
+                            .foregroundColor(.secondary)
+                        
+                        Text("☕️ Günde 3₺")
+                            .font(.title2.bold())
+                            .foregroundColor(.orange)
+                    }
                 }
                 
                 Spacer()
-                
-                Button(action: {
-                    showingPremiumSheet = true
-                }) {
-                    HStack(spacing: 4) {
-                        Text("👑")
-                            .font(.caption)
-                        Text("Premium")
-                            .font(.caption.bold())
-                    }
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.orange, Color.yellow],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .cornerRadius(8)
-                }
             }
             
-            // İlerleme çubuğu
-            if !subscriptionManager.isPremium {
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(height: 6)
-                        
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(
-                                LinearGradient(
-                                    colors: subscriptionManager.canCreateNewStory() ? [Color.green, Color.blue] : [Color.red, Color.orange],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
+            // Abonelik gerekiyorsa uyarı
+            if !subscriptionManager.canCreateStory(type: .image) {
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.orange)
+                    
+                    Text("Görselli hikaye oluşturmak için abonelik gerekiyor.")
+                        .font(.caption)
+                        .foregroundColor(.orange)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showingPremiumSheet = true
+                    }) {
+                        HStack(spacing: 4) {
+                            Text("☕️")
+                                .font(.caption2)
+                            Text("Abone Ol")
+                                .font(.caption.bold())
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(
+                            LinearGradient(
+                                colors: [Color.orange, Color.yellow],
+                                startPoint: .leading,
+                                endPoint: .trailing
                             )
-                            .frame(width: subscriptionManager.canCreateNewStory() ? geometry.size.width : 0, height: 6)
+                        )
+                        .cornerRadius(8)
                     }
                 }
-                .frame(height: 6)
+                .padding(.top, 4)
             }
         }
         .padding()
@@ -667,19 +691,10 @@ struct CreateStoryView: View {
             return
         }
         
-        // Premium tema kontrolü
-        if selectedTheme.isPremium && !subscriptionManager.isPremium {
-            alertTitle = "👑 Premium Tema"
-            alertMessage = "\(selectedTheme.displayName) teması premium üyelere özeldir. Premium'a geçerek bu temayı kullanabilirsiniz."
-            showingAlert = true
-            showingPremiumSheet = true
-            return
-        }
-        
-        // Limit kontrolü
-        if !subscriptionManager.canCreateNewStory() {
-            alertTitle = "🔒 Hikaye Limiti"
-            alertMessage = "Ücretsiz hesabınızla 1 hikaye oluşturma hakkınızı kullandınız. Sınırsız hikaye oluşturmak için Premium'a geçin!"
+        // Abonelik kontrolü
+        if !subscriptionManager.canCreateStory(type: .image) {
+            alertTitle = "⚠️ Abonelik Gerekli"
+            alertMessage = "Görselli hikaye oluşturmak için abonelik gerekiyor.\n\n☕️ Günde sadece 3₺ ile sınırsız hikaye!"
             showingAlert = true
             showingPremiumSheet = true
             return
@@ -688,6 +703,14 @@ struct CreateStoryView: View {
         guard let photo = selectedPhoto else {
             alertTitle = "⚠️ Fotoğraf Gerekli"
             alertMessage = "Lütfen bir fotoğraf seçin."
+            showingAlert = true
+            return
+        }
+        
+        // Abonelik/deneme hakkını kullan
+        guard subscriptionManager.useStory(type: .image) else {
+            alertTitle = "⚠️ Abonelik Gerekli"
+            alertMessage = "Görselli hikaye oluşturmak için abonelik gerekiyor."
             showingAlert = true
             return
         }

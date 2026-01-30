@@ -64,7 +64,7 @@ struct TextOnlyStoryView: View {
             Text(alertMessage)
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumView()
+            SimpleSubscriptionView()
         }
         .sheet(isPresented: $showingStoryViewer) {
             if let story = generatedStory {
@@ -394,8 +394,9 @@ struct TextOnlyStoryView: View {
     
     private var generateButton: some View {
         VStack(spacing: 16) {
-            if !subscriptionManager.isPremium {
-                limitWarningBanner
+            // Ücretsiz kullanıcı için 12 saatlik bilgi
+            if !subscriptionManager.isPremium && subscriptionManager.freeTrialCount == 0 {
+                freeStoryInfoBanner
             }
             
             Button(action: generateStory) {
@@ -460,81 +461,8 @@ struct TextOnlyStoryView: View {
         .padding(.top, 8)
     }
     
-    private var limitWarningBanner: some View {
-        VStack(spacing: 12) {
-            HStack(spacing: 12) {
-                ZStack {
-                    Circle()
-                        .fill(Color.orange.opacity(0.2))
-                        .frame(width: 40, height: 40)
-                    
-                    Text(subscriptionManager.canCreateNewStory() ? "1" : "0")
-                        .font(.headline.bold())
-                        .foregroundColor(.orange)
-                }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(subscriptionManager.canCreateNewStory() ? "Ücretsiz Hikaye Hakkınız" : "Hikaye Hakkınız Bitti")
-                        .font(.subheadline.bold())
-                        .foregroundColor(.primary)
-                    
-                    Text(subscriptionManager.canCreateNewStory() ? "1 ücretsiz hikaye oluşturabilirsiniz" : "Daha fazla hikaye için premium'a geçin")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    showingPremiumSheet = true
-                }) {
-                    HStack(spacing: 4) {
-                        Text("👑")
-                            .font(.caption)
-                        Text("Premium")
-                            .font(.caption.bold())
-                    }
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.orange, Color.yellow],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .cornerRadius(8)
-                }
-            }
-            
-            if !subscriptionManager.isPremium {
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(height: 6)
-                        
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(
-                                LinearGradient(
-                                    colors: subscriptionManager.canCreateNewStory() ? [Color.green, Color.blue] : [Color.red, Color.orange],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .frame(width: subscriptionManager.canCreateNewStory() ? geometry.size.width : 0, height: 6)
-                    }
-                }
-                .frame(height: 6)
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
-        )
+    private var creditCostBanner: some View {
+        EmptyView()
     }
     
     private var loadingOverlay: some View {
@@ -567,6 +495,59 @@ struct TextOnlyStoryView: View {
         !childName.isEmpty
     }
     
+    // MARK: - Free Story Info Banner
+    
+    private var freeStoryInfoBanner: some View {
+        HStack(spacing: 12) {
+            Image(systemName: subscriptionManager.canCreateFreeTextStory ? "checkmark.circle.fill" : "clock.fill")
+                .font(.title2)
+                .foregroundColor(subscriptionManager.canCreateFreeTextStory ? .green : .orange)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                if subscriptionManager.canCreateFreeTextStory {
+                    Text("Ücretsiz Hikaye Hazır!")
+                        .font(.subheadline.bold())
+                        .foregroundColor(.green)
+                    Text("12 saatte 1 ücretsiz metin hikaye hakkınız var")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                } else {
+                    Text("\(subscriptionManager.hoursUntilNextFreeStory) saat sonra")
+                        .font(.subheadline.bold())
+                        .foregroundColor(.orange)
+                    Text("Sınırsız hikaye için abone olun - Günde 3₺")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Spacer()
+            
+            if !subscriptionManager.canCreateFreeTextStory {
+                Button(action: {
+                    showingPremiumSheet = true
+                }) {
+                    Text("Abone Ol")
+                        .font(.caption.bold())
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(Color.orange)
+                        .cornerRadius(8)
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(subscriptionManager.canCreateFreeTextStory ? Color.green.opacity(0.1) : Color.orange.opacity(0.1))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(subscriptionManager.canCreateFreeTextStory ? Color.green.opacity(0.3) : Color.orange.opacity(0.3), lineWidth: 1)
+                )
+        )
+    }
+    
     // MARK: - Generate Story
     
     private func generateStory() {
@@ -585,11 +566,27 @@ struct TextOnlyStoryView: View {
             return
         }
         
-        if !subscriptionManager.canCreateNewStory() {
-            alertTitle = "🔒 Hikaye Limiti"
-            alertMessage = "Ücretsiz hesabınızla 1 hikaye oluşturma hakkınızı kullandınız. Sınırsız hikaye için Premium'a geçin!"
+        if !subscriptionManager.canCreateStory(type: .text) {
+            if subscriptionManager.freeTrialCount > 0 {
+                alertTitle = "🎁 Ücretsiz Deneme"
+                alertMessage = "\(subscriptionManager.freeTrialCount) ücretsiz deneme hakkınız kaldı!"
+            } else if subscriptionManager.canCreateFreeTextStory {
+                alertTitle = "✨ Ücretsiz Hikaye"
+                alertMessage = "12 saatte 1 ücretsiz metin hikaye hakkınız var!"
+            } else {
+                alertTitle = "⏰ Bekleme Süresi"
+                alertMessage = "Bir sonraki ücretsiz hikaye için \(subscriptionManager.hoursUntilNextFreeStory) saat beklemeniz gerekiyor.\n\nSınırsız hikaye için günde 3₺ ile abone olun!"
+                showingAlert = true
+                showingPremiumSheet = true
+                return
+            }
+        }
+        
+        // Hikaye kullanımını kaydet
+        guard subscriptionManager.useStory(type: .text) else {
+            alertTitle = "❌ Hata"
+            alertMessage = "Hikaye oluşturma işlemi başarısız oldu."
             showingAlert = true
-            showingPremiumSheet = true
             return
         }
         

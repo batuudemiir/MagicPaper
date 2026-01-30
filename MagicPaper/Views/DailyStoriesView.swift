@@ -72,15 +72,19 @@ struct DailyStoriesView: View {
             }
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumView()
+            SimpleSubscriptionView()
         }
-        .alert("Günlük Limit Doldu", isPresented: $showingLimitAlert) {
+        .alert("Abonelik Gerekli", isPresented: $showingLimitAlert) {
             Button("Tamam", role: .cancel) { }
-            Button("Premium'a Geç") {
+            Button("Abone Ol") {
                 showingPremiumSheet = true
             }
         } message: {
-            Text("Bugün için günlük hikaye oluşturma hakkınız doldu. Yarın tekrar deneyebilir veya Premium'a geçerek sınırsız hikaye oluşturabilirsiniz.")
+            if subscriptionManager.freeTrialCount > 0 {
+                Text("Ücretsiz deneme hakkınız bitti. Sınırsız hikaye için abone olun!")
+            } else {
+                Text("Günlük hikaye oluşturmak için abonelik gerekiyor. Günde 3₺ ile sınırsız hikaye!")
+            }
         }
     }
     
@@ -88,9 +92,9 @@ struct DailyStoriesView: View {
     
     private var dailyQuotaSection: some View {
         HStack(spacing: 12) {
-            Image(systemName: subscriptionManager.isPremium ? "crown.fill" : "calendar")
+            Image(systemName: subscriptionManager.isPremium ? "crown.fill" : "gift.fill")
                 .font(.title2)
-                .foregroundColor(subscriptionManager.isPremium ? .yellow : .indigo)
+                .foregroundColor(subscriptionManager.isPremium ? .yellow : .green)
             
             VStack(alignment: .leading, spacing: 4) {
                 if subscriptionManager.isPremium {
@@ -100,14 +104,20 @@ struct DailyStoriesView: View {
                     Text("Sınırsız günlük hikaye oluşturabilirsiniz")
                         .font(.caption)
                         .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.5))
-                } else {
-                    Text("Günlük Hikaye Hakkı")
+                } else if subscriptionManager.freeTrialCount > 0 {
+                    Text("Ücretsiz Deneme")
                         .font(.headline)
                         .foregroundColor(.black)
-                    let remaining = subscriptionManager.remainingDailyStories()
-                    Text("Bugün \(remaining) hikaye oluşturabilirsiniz")
+                    Text("\(subscriptionManager.freeTrialCount) hikaye hakkınız kaldı")
                         .font(.caption)
-                        .foregroundColor(remaining > 0 ? .green : .red)
+                        .foregroundColor(.green)
+                } else {
+                    Text("Abonelik Gerekli")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    Text("☕️ Kahveden ucuz - Günde 3₺")
+                        .font(.caption)
+                        .foregroundColor(.orange)
                 }
             }
             
@@ -117,22 +127,26 @@ struct DailyStoriesView: View {
                 Button(action: {
                     showingPremiumSheet = true
                 }) {
-                    Text("Premium")
-                        .font(.caption.bold())
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.58, green: 0.29, blue: 0.98), // Mor
-                                    Color(red: 0.85, green: 0.35, blue: 0.85)  // Pembe
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
+                    HStack(spacing: 4) {
+                        Text("✨")
+                            .font(.caption)
+                        Text("Abone Ol")
+                            .font(.caption.bold())
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.58, green: 0.29, blue: 0.98), // Mor
+                                Color(red: 0.85, green: 0.35, blue: 0.85)  // Pembe
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
-                        .cornerRadius(8)
+                    )
+                    .cornerRadius(8)
                 }
             }
         }
@@ -153,7 +167,7 @@ struct DailyStoriesView: View {
                     Text("Çocuğunuza Özel Hikaye Oluşturun ✨")
                         .font(.title3.bold())
                         .foregroundColor(.black)
-                    Text("Kategoriye göre çocuğunuzun fotoğrafıyla hikaye oluşturun")
+                    Text("Kategoriye göre çocuğunuza özel metin hikayeler oluşturun")
                         .font(.subheadline)
                         .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                 }
@@ -178,7 +192,7 @@ struct DailyStoriesView: View {
     
     private func createCategoryCard(_ category: DailyStoryCategory) -> some View {
         Button(action: {
-            if subscriptionManager.canCreateDailyStory() {
+            if subscriptionManager.canCreateStory(type: .daily) {
                 selectedCategoryForCreation = category
                 showingCreateStory = true
             } else {

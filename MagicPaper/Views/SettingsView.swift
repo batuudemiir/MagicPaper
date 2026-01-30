@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @StateObject private var subscriptionManager = SubscriptionManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
     @State private var selectedLanguage = StoryLanguage.turkish
     @State private var notificationsEnabled = true
     @State private var autoSaveEnabled = true
     @State private var highQualityImages = true
     @State private var showingUpgradeSheet = false
+    @State private var showingCreditSheet = false
     @State private var showingClearDataAlert = false
     @State private var showingAboutSheet = false
     @State private var showingProfileEdit = false
@@ -21,10 +22,8 @@ struct SettingsView: View {
                     // Profil Bölümü
                     profileSection
                     
-                    // Premium Bölümü
-                    if !subscriptionManager.isPremium {
-                        premiumSection
-                    }
+                    // Abonelik Bölümü
+                    subscriptionSection
                     
                     // Hikaye Ayarları
                     storySettingsSection
@@ -60,7 +59,10 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.large)
         }
         .sheet(isPresented: $showingUpgradeSheet) {
-            PremiumView()
+            SimpleSubscriptionView()
+        }
+        .sheet(isPresented: $showingCreditSheet) {
+            SimpleSubscriptionView()
         }
         .sheet(isPresented: $showingAboutSheet) {
             AboutView()
@@ -127,30 +129,43 @@ struct SettingsView: View {
                         .font(.title3.bold())
                         .foregroundColor(.primary)
                     
-                    HStack(spacing: 6) {
-                        if subscriptionManager.isPremium {
-                            HStack(spacing: 4) {
-                                Text("👑")
-                                    .font(.caption)
-                                Text("Premium Üye")
-                                    .font(.caption.bold())
-                            }
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(
-                                LinearGradient(
-                                    colors: [.orange, .yellow],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .cornerRadius(8)
-                        } else {
-                            Text("Ücretsiz Hesap")
+                    // Abonelik durumu
+                    if subscriptionManager.isPremium {
+                        HStack(spacing: 4) {
+                            Text("👑")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                            Text(subscriptionManager.subscriptionTier.displayName)
+                                .font(.caption.bold())
                         }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            LinearGradient(
+                                colors: [.orange, .yellow],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(8)
+                    } else if subscriptionManager.freeTrialCount > 0 {
+                        HStack(spacing: 4) {
+                            Text("🎁")
+                                .font(.caption)
+                            Text("\(subscriptionManager.freeTrialCount) deneme kaldı")
+                                .font(.caption.bold())
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            LinearGradient(
+                                colors: [.green, .blue],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(8)
                     }
                     
                     Text("\(StoryGenerationManager.shared.stories.count) Hikaye")
@@ -174,7 +189,7 @@ struct SettingsView: View {
         )
     }
     
-    private var premiumSection: some View {
+    private var subscriptionSection: some View {
         Button(action: {
             showingUpgradeSheet = true
         }) {
@@ -183,7 +198,9 @@ struct SettingsView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(
                             LinearGradient(
-                                colors: [Color.orange, Color.yellow],
+                                colors: subscriptionManager.isPremium ? 
+                                    [Color.yellow, Color.orange] :
+                                    [Color.purple, Color.pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -191,25 +208,45 @@ struct SettingsView: View {
                         .frame(width: 56, height: 56)
                         .shadow(color: .orange.opacity(0.3), radius: 12, x: 0, y: 6)
                     
-                    Text("👑")
+                    Text(subscriptionManager.isPremium ? "👑" : "✨")
                         .font(.system(size: 28))
                 }
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Premium'a Yükselt")
-                        .font(.title3.bold())
-                        .foregroundColor(.primary)
+                    HStack(spacing: 8) {
+                        Text(subscriptionManager.isPremium ? "Premium Üye" : "Abone Olun")
+                            .font(.title3.bold())
+                            .foregroundColor(.primary)
+                        
+                        if !subscriptionManager.isPremium {
+                            Text("☕️ Kahveden ucuz!")
+                                .font(.caption.bold())
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(
+                                    Capsule()
+                                        .fill(Color.green)
+                                )
+                        }
+                    }
                     
-                    Text("Sınırsız hikaye ve özel temalar")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    if subscriptionManager.isPremium {
+                        Text("\(subscriptionManager.remainingImageStories) görselli hikaye kaldı")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    } else {
+                        Text("Günde 3₺ ile sınırsız hikaye")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 
                 Spacer()
                 
                 Image(systemName: "arrow.right.circle.fill")
                     .font(.title2)
-                    .foregroundColor(Color.orange)
+                    .foregroundColor(subscriptionManager.isPremium ? Color.yellow : Color.purple)
             }
             .padding(20)
         }
@@ -221,7 +258,9 @@ struct SettingsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(
                             LinearGradient(
-                                colors: [Color.orange.opacity(0.3), Color.yellow.opacity(0.3)],
+                                colors: subscriptionManager.isPremium ?
+                                    [Color.yellow.opacity(0.3), Color.orange.opacity(0.3)] :
+                                    [Color.purple.opacity(0.3), Color.pink.opacity(0.3)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -511,19 +550,15 @@ struct SettingsView: View {
                 .padding(.horizontal, 20)
             
             VStack(spacing: 12) {
-                // Test butonu - Premium durumunu değiştir
+                // Test butonu - Abonelik toggle
                 Button(action: {
-                    if subscriptionManager.isPremium {
-                        subscriptionManager.downgradeToPremium()
-                    } else {
-                        subscriptionManager.upgradeToPremium()
-                    }
+                    subscriptionManager.toggleSubscription()
                 }) {
                     HStack {
-                        settingIcon("crown.fill", color: .orange)
-                        Text(subscriptionManager.isPremium ? "🧪 Premium'u Kaldır (Test)" : "🧪 Premium Yap (Test)")
+                        settingIcon(subscriptionManager.isPremium ? "crown.fill" : "crown", color: subscriptionManager.isPremium ? .yellow : .gray)
+                        Text(subscriptionManager.isPremium ? "🧪 Abonelik İptal (Test)" : "🧪 Abonelik Aktif Et (Test)")
                             .font(.subheadline)
-                            .foregroundColor(.orange)
+                            .foregroundColor(subscriptionManager.isPremium ? .orange : .blue)
                         Spacer()
                     }
                     .padding(16)

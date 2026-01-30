@@ -1,20 +1,16 @@
 import SwiftUI
-import PhotosUI
 
 struct DailyStoryCreationView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @StateObject private var textStoryManager = TextStoryManager.shared
     
     let category: DailyStoryCategory
     
     @State private var childName: String = ""
     @State private var childAge: Int = 5
     @State private var childGender: Gender = .other
-    @State private var selectedImage: UIImage?
-    @State private var photoData: Data?
-    @State private var showingImagePicker = false
     @State private var showingSuccessAlert = false
     @State private var isGenerating = false
     
@@ -26,10 +22,6 @@ struct DailyStoryCreationView: View {
                     categoryHeader
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
-                    
-                    // Fotoğraf Seçimi
-                    photoSection
-                        .padding(.horizontal, 20)
                     
                     // Çocuk Bilgileri
                     childInfoSection
@@ -63,15 +55,12 @@ struct DailyStoryCreationView: View {
                 }
             }
         }
-        .sheet(isPresented: $showingImagePicker) {
-            ImagePicker(selectedImage: $selectedImage, photoData: $photoData)
-        }
         .alert("✨ Hikaye Oluşturuluyor", isPresented: $showingSuccessAlert) {
             Button("Tamam") {
                 dismiss()
             }
         } message: {
-            Text("Hikayeniz oluşturuluyor! Uygulamayı kapatmayın. Kütüphaneden ilerlemeyi takip edebilirsiniz.")
+            Text("Hikayeniz oluşturuluyor! Metin Hikayeler kütüphanesinden ilerlemeyi takip edebilirsiniz.")
         }
         .onAppear {
             // Profil bilgilerini otomatik doldur
@@ -112,67 +101,6 @@ struct DailyStoryCreationView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 4)
-        )
-    }
-    
-    // MARK: - Photo Section
-    
-    private var photoSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Çocuğunuzun Fotoğrafı")
-                .font(.headline)
-                .foregroundColor(.black)
-            
-            Button(action: {
-                showingImagePicker = true
-            }) {
-                if let image = selectedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 200)
-                        .frame(maxWidth: .infinity)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(category.color, lineWidth: 3)
-                        )
-                } else {
-                    VStack(spacing: 12) {
-                        Image(systemName: "photo.badge.plus")
-                            .font(.system(size: 50))
-                            .foregroundColor(category.color)
-                        
-                        Text("Fotoğraf Seç")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        
-                        Text("Çocuğunuzun net bir fotoğrafını seçin")
-                            .font(.caption)
-                            .foregroundColor(Color(red: 0.5, green: 0.5, blue: 0.5))
-                    }
-                    .frame(height: 200)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(category.color.opacity(0.1))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .strokeBorder(
-                                        style: StrokeStyle(lineWidth: 2, dash: [10])
-                                    )
-                                    .foregroundColor(category.color)
-                            )
-                    )
-                }
-            }
-            .buttonStyle(PlainButtonStyle())
-        }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
@@ -292,29 +220,33 @@ struct DailyStoryCreationView: View {
     }
     
     private var canCreate: Bool {
-        !childName.isEmpty && selectedImage != nil && !isGenerating
+        !childName.isEmpty && !isGenerating && subscriptionManager.canCreateStory(type: .daily)
     }
     
     // MARK: - Create Story
     
     private func createStory() {
-        guard let image = selectedImage else { return }
+        // Abonelik kontrolü
+        if !subscriptionManager.canCreateStory(type: .daily) {
+            return
+        }
+        
+        // Hikaye kullanımını kaydet
+        guard subscriptionManager.useStory(type: .daily) else {
+            return
+        }
         
         isGenerating = true
         
         Task {
-            // Kategoriye özel hikaye oluştur
-            _ = await storyManager.createCategoryBasedStory(
+            // Kategoriye özel metin hikaye oluştur (görselsiz)
+            _ = await textStoryManager.createCategoryTextStory(
                 childName: childName,
                 age: childAge,
                 gender: childGender,
-                category: category,
-                language: .turkish,
-                image: image
+                category: category.rawValue,
+                language: StoryLanguage.turkish
             )
-            
-            // Günlük kullanımı artır
-            subscriptionManager.incrementDailyStoryUsage()
             
             await MainActor.run {
                 isGenerating = false

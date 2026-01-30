@@ -927,6 +927,18 @@ class StoryGenerationManager: ObservableObject {
         print("✅ Story deleted: \(id)")
     }
     
+    // Kütüphaneye hikaye ekle (metin/günlük hikayeler için)
+    func addStoryToLibrary(_ story: Story) {
+        // Aynı ID'ye sahip hikaye varsa güncelle, yoksa ekle
+        if let index = stories.firstIndex(where: { $0.id == story.id }) {
+            stories[index] = story
+        } else {
+            stories.insert(story, at: 0)
+        }
+        saveStories()
+        print("✅ Story added to library: \(story.title)")
+    }
+    
     func updateLastReadPage(storyId: UUID, page: Int) {
         guard let index = stories.firstIndex(where: { $0.id == storyId }) else {
             return

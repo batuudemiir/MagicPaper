@@ -139,11 +139,11 @@ struct PremiumView: View {
             }
             
             VStack(spacing: 8) {
-                Text("Kredi Paketi Seç")
+                Text("Kredi Satın Al")
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.black)
                 
-                Text("İstediğin zaman kullan, esnek ol!")
+                Text("İstediğin kadar al, istediğin zaman kullan!")
                     .font(.system(size: 16))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)

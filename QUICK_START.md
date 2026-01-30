@@ -2,13 +2,27 @@
 
 ## 🚀 2 Dakikada Çalıştır
 
-### 1️⃣ Xcode Cloud Environment Variable (ZORUNLU)
+### 1️⃣ API Anahtarlarını Ayarla (ZORUNLU)
+
+**Gemini API:**
+1. [Google AI Studio](https://aistudio.google.com/app/apikey) → Yeni API anahtarı oluştur
+2. `Secrets.xcconfig` dosyasını aç
+3. `YOUR_NEW_API_KEY_HERE` yerine anahtarını yaz
+
+**Firebase:**
+1. [Firebase Console](https://console.firebase.google.com/) → Projenizi seçin
+2. `GoogleService-Info.plist` dosyasını indirin
+3. `MagicPaper/` klasörüne kopyalayın
+
+**Xcode Cloud Environment Variable:**
 ```
 App Store Connect → Xcode Cloud → Settings → Environment Variables
 
 Name:  GEMINI_API_KEY
-Value: AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc
+Value: [YENİ API ANAHTARINIZ]
 ```
+
+⚠️ **ÖNEMLİ:** Bu dosyalar `.gitignore`'da - GitHub'a gönderilmeyecek!
 
 ### 2️⃣ Dosyaları Xcode'a Ekle
 ```bash

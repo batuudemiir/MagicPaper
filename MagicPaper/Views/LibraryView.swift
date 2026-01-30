@@ -12,8 +12,18 @@ struct LibraryView: View {
     
     enum FilterOption: String, CaseIterable {
         case all = "Tümü"
-        case completed = "Tamamlanan"
-        case generating = "Oluşturuluyor"
+        case image = "Görselli"
+        case text = "Metin"
+        case daily = "Günlük"
+        
+        var icon: String {
+            switch self {
+            case .all: return "books.vertical.fill"
+            case .image: return "photo.fill"
+            case .text: return "text.book.closed.fill"
+            case .daily: return "calendar"
+            }
+        }
     }
     
     var filteredStories: [Story] {
@@ -27,14 +37,31 @@ struct LibraryView: View {
             }
         }
         
-        // Durum filtresi
+        // Tip filtresi
         switch filterOption {
         case .all:
             break
-        case .completed:
-            stories = stories.filter { $0.status == .completed }
-        case .generating:
-            stories = stories.filter { $0.status != .completed }
+        case .image:
+            // Görselli hikayeler - pages içinde imageUrl olan
+            stories = stories.filter { story in
+                story.pages.contains(where: { page in
+                    page.imageUrl != nil && !page.imageUrl!.isEmpty
+                })
+            }
+        case .text:
+            // Metin hikayeler - pages içinde imageUrl olmayan
+            stories = stories.filter { story in
+                story.pages.allSatisfy { page in
+                    page.imageUrl == nil || page.imageUrl!.isEmpty
+                }
+            }
+        case .daily:
+            // Günlük hikayeler - metin hikayeler gibi
+            stories = stories.filter { story in
+                story.pages.allSatisfy { page in
+                    page.imageUrl == nil || page.imageUrl!.isEmpty
+                }
+            }
         }
         
         return stories.sorted { $0.createdAt > $1.createdAt }
@@ -48,8 +75,20 @@ struct LibraryView: View {
         generationManager.stories.filter { $0.status == .completed }.count
     }
     
-    var generatingStoryCount: Int {
-        generationManager.stories.filter { $0.status != .completed && $0.status != .failed }.count
+    var imageStoryCount: Int {
+        generationManager.stories.filter { story in
+            story.pages.contains(where: { page in
+                page.imageUrl != nil && !page.imageUrl!.isEmpty
+            })
+        }.count
+    }
+    
+    var textStoryCount: Int {
+        generationManager.stories.filter { story in
+            story.pages.allSatisfy { page in
+                page.imageUrl == nil || page.imageUrl!.isEmpty
+            }
+        }.count
     }
     
     var body: some View {
@@ -63,7 +102,7 @@ struct LibraryView: View {
                         statsView
                             .padding()
                         
-                        // Durum filtresi
+                        // Tip filtresi
                         filterView
                             .padding(.horizontal)
                             .padding(.bottom, 8)
@@ -113,16 +152,23 @@ struct LibraryView: View {
             )
             
             statCard(
-                icon: "checkmark.circle.fill",
-                value: "\(completedStoryCount)",
-                label: "Tamamlanan",
+                icon: "photo.fill",
+                value: "\(imageStoryCount)",
+                label: "Görselli",
+                color: .purple
+            )
+            
+            statCard(
+                icon: "text.book.closed.fill",
+                value: "\(textStoryCount)",
+                label: "Metin",
                 color: .green
             )
             
             statCard(
-                icon: "clock.fill",
-                value: "\(generatingStoryCount)",
-                label: "Devam Eden",
+                icon: "checkmark.circle.fill",
+                value: "\(completedStoryCount)",
+                label: "Okunan",
                 color: .orange
             )
         }
@@ -162,15 +208,19 @@ struct LibraryView: View {
                             filterOption = option
                         }
                     }) {
-                        Text(option.rawValue)
-                            .font(.subheadline.weight(filterOption == option ? .semibold : .regular))
-                            .foregroundColor(filterOption == option ? .white : .primary)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(
-                                Capsule()
-                                    .fill(filterOption == option ? Color.indigo : Color(.systemGray5))
-                            )
+                        HStack(spacing: 6) {
+                            Image(systemName: option.icon)
+                                .font(.caption)
+                            Text(option.rawValue)
+                                .font(.subheadline.weight(filterOption == option ? .semibold : .regular))
+                        }
+                        .foregroundColor(filterOption == option ? .white : .primary)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(
+                            Capsule()
+                                .fill(filterOption == option ? Color.indigo : Color(.systemGray5))
+                        )
                     }
                 }
             }
@@ -344,7 +394,7 @@ struct LibraryView: View {
                     }
                 }
                 
-                // 3 nokta menü
+                // Menü butonu
                 Menu {
                     Button(action: {
                         selectedStory = story
@@ -367,10 +417,16 @@ struct LibraryView: View {
                         Label("Sil", systemImage: "trash")
                     }
                 } label: {
-                    Image(systemName: "ellipsis.circle.fill")
-                        .font(.title3)
-                        .foregroundColor(.gray)
-                        .padding(8)
+                    VStack(spacing: 2) {
+                        Image(systemName: "ellipsis.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.indigo)
+                        
+                        Text("Menü")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(8)
                 }
             }
             .padding(12)

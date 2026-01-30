@@ -4,7 +4,7 @@ struct StoryViewerView: View {
     let story: Story
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var generationManager = StoryGenerationManager.shared
-    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @StateObject private var subscriptionManager = SubscriptionManager.shared
     
     @State private var currentPage = 0
     @State private var showingFullscreenImage = false
