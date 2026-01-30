@@ -6,6 +6,10 @@ struct ContentView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
+            // Sabit beyaz arka plan
+            Color.white
+                .ignoresSafeArea()
+            
             // Main Content - Her view ayrı ayrı gösterilir
             Group {
                 switch selectedTab {
@@ -33,6 +37,7 @@ struct ContentView: View {
             customTabBar
         }
         .ignoresSafeArea(.keyboard)
+        .preferredColorScheme(.light) // Sabit aydınlık mod
         .sheet(isPresented: $showingCreateSheet) {
             CreateStoryTypeSelectionView()
         }
@@ -130,7 +135,11 @@ struct CreateStoryTypeSelectionView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Modern gradient background
+                // Sabit beyaz arka plan
+                Color.white
+                    .ignoresSafeArea()
+                
+                // Modern gradient overlay
                 LinearGradient(
                     colors: [
                         Color(red: 0.98, green: 0.98, blue: 1.0),
@@ -139,6 +148,7 @@ struct CreateStoryTypeSelectionView: View {
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
+                .opacity(0.5)
                 .ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
@@ -213,6 +223,7 @@ struct CreateStoryTypeSelectionView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .preferredColorScheme(.light) // Sabit aydınlık mod
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {

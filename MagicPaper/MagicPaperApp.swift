@@ -37,14 +37,20 @@ struct MagicPaperApp: App {
   var body: some Scene {
     WindowGroup {
       Group {
-        if profileManager.hasProfile() {
+        if !profileManager.hasCompletedOnboarding {
+          // İlk açılış - Onboarding göster
+          OnboardingView(isOnboardingComplete: $profileManager.hasCompletedOnboarding)
+        } else if profileManager.hasProfile() {
+          // Profil var - Ana ekrana git
           ContentView()
         } else {
+          // Onboarding tamamlandı ama profil yok - Profil oluştur
           ProfileSetupView()
         }
       }
       .onAppear {
         print("🎯 WindowGroup appeared")
+        print("📱 Onboarding tamamlandı mı: \(profileManager.hasCompletedOnboarding)")
         print("📱 Profile var mı: \(profileManager.hasProfile())")
       }
     }

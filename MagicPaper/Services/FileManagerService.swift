@@ -255,6 +255,7 @@ class ProfileManager: ObservableObject {
     static let shared = ProfileManager()
     
     @Published var profile: UserProfile
+    @AppStorage("hasCompletedOnboarding") var hasCompletedOnboarding: Bool = false
     
     private let userDefaults = UserDefaults.standard
     private let profileKey = "userProfile"

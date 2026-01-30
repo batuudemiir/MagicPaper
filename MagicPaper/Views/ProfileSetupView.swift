@@ -12,17 +12,23 @@ struct ProfileSetupView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ZStack {
+                // Sabit beyaz arka plan
+                Color.white
+                    .ignoresSafeArea()
+                
+                ScrollView {
                 VStack(spacing: 32) {
                     // Header
                     VStack(spacing: 12) {
                         Text(isEditing ? "Profili Düzenle" : "Hoş Geldiniz!")
                             .font(.title.bold())
+                            .foregroundColor(.black)
                         
                         if !isEditing {
                             Text("Başlamak için profilinizi oluşturun")
                                 .font(.subheadline)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.gray)
                         }
                     }
                     .padding(.top, 32)
@@ -121,14 +127,14 @@ struct ProfileSetupView: View {
                         
                         Text("Profil Fotoğrafı")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.gray)
                     }
                     
                     // Name Input
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Adınız")
                             .font(.headline)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.black)
                         
                         TextField("Adınızı girin", text: $userName)
                             .textFieldStyle(.plain)
@@ -202,12 +208,13 @@ struct ProfileSetupView: View {
                         Button("İptal") {
                             dismiss()
                         }
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.gray)
                     }
                 }
                 .padding(.bottom, 32)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .preferredColorScheme(.light) // Sabit aydınlık mod
             .toolbar {
                 if isEditing {
                     ToolbarItem(placement: .navigationBarTrailing) {
