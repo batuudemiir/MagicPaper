@@ -1,6 +1,7 @@
 import Foundation
 import GoogleMobileAds
 import UIKit
+import AppTrackingTransparency
 
 class AdMobManager: NSObject, ObservableObject {
     static let shared = AdMobManager()
@@ -17,10 +18,31 @@ class AdMobManager: NSObject, ObservableObject {
     
     // Google Mobile Ads SDK'yı başlat
     func initializeSDK() {
+        // Tracking iznini kontrol et
+        checkTrackingAuthorization()
+        
         GADMobileAds.sharedInstance().start { status in
             print("✅ AdMob SDK başlatıldı")
+            print("📊 Tracking Status: \(ATTrackingManager.trackingAuthorizationStatus.rawValue)")
             // İlk reklamı yükle
             self.loadInterstitialAd()
+        }
+    }
+    
+    // Tracking iznini kontrol et
+    private func checkTrackingAuthorization() {
+        let status = ATTrackingManager.trackingAuthorizationStatus
+        switch status {
+        case .authorized:
+            print("✅ Tracking izni verildi - Kişiselleştirilmiş reklamlar gösterilebilir")
+        case .denied:
+            print("⚠️ Tracking izni reddedildi - Genel reklamlar gösterilecek")
+        case .restricted:
+            print("⚠️ Tracking kısıtlı - Genel reklamlar gösterilecek")
+        case .notDetermined:
+            print("⏳ Tracking izni henüz istenmedi")
+        @unknown default:
+            print("❓ Bilinmeyen tracking durumu")
         }
     }
     

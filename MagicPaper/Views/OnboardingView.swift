@@ -3,6 +3,8 @@ import SwiftUI
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
     @State private var currentPage = 0
+    @StateObject private var permissionManager = PermissionManager.shared
+    @State private var isRequestingPermissions = false
     
     private let pages: [OnboardingPage] = [
         OnboardingPage(
@@ -115,16 +117,28 @@ struct OnboardingView: View {
                                 currentPage += 1
                             }
                         } else {
-                            withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
-                                isOnboardingComplete = true
+                            // Son sayfada - İzinleri iste
+                            Task {
+                                isRequestingPermissions = true
+                                await permissionManager.requestAllPermissions()
+                                isRequestingPermissions = false
+                                
+                                withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                                    isOnboardingComplete = true
+                                }
                             }
                         }
                     }) {
                         HStack(spacing: 8) {
-                            Text(currentPage < pages.count - 1 ? "İleri" : "Başla")
-                                .font(.system(size: 17, weight: .bold))
-                            Image(systemName: currentPage < pages.count - 1 ? "arrow.right" : "checkmark")
-                                .font(.system(size: 16, weight: .bold))
+                            if isRequestingPermissions {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text(currentPage < pages.count - 1 ? "İleri" : "Başla")
+                                    .font(.system(size: 17, weight: .bold))
+                                Image(systemName: currentPage < pages.count - 1 ? "arrow.right" : "checkmark")
+                                    .font(.system(size: 16, weight: .bold))
+                            }
                         }
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -141,6 +155,7 @@ struct OnboardingView: View {
                                 .shadow(color: pages[currentPage].gradient[0].opacity(0.3), radius: 12, x: 0, y: 6)
                         )
                     }
+                    .disabled(isRequestingPermissions)
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
