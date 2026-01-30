@@ -213,6 +213,7 @@ struct ProfileSetupView: View {
                 }
                 .padding(.bottom, 32)
             }
+            }
             .navigationBarTitleDisplayMode(.inline)
             .preferredColorScheme(.light) // Sabit aydınlık mod
             .toolbar {
