@@ -12,7 +12,9 @@ class PermissionManager: ObservableObject {
     
     private init() {
         checkTrackingStatus()
-        checkNotificationStatus()
+        Task {
+            await checkNotificationStatus()
+        }
     }
     
     // MARK: - App Tracking Transparency (ATT)
@@ -31,11 +33,9 @@ class PermissionManager: ObservableObject {
     
     // MARK: - Notifications
     
-    func checkNotificationStatus() {
-        Task {
-            let settings = await UNUserNotificationCenter.current().notificationSettings()
-            notificationStatus = settings.authorizationStatus
-        }
+    func checkNotificationStatus() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        notificationStatus = settings.authorizationStatus
     }
     
     func requestNotificationPermission() async -> Bool {
