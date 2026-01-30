@@ -53,11 +53,29 @@ struct ContentView: View {
             tabBarButton(icon: "house.fill", title: "Ana Sayfa", tag: 0)
             tabBarButton(icon: "books.vertical.fill", title: "Kütüphane", tag: 1)
             
-            // Center Create Button
+            // Center Create Button - Daha büyük ve çekici
             Button(action: {
-                showingCreateSheet = true
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                    showingCreateSheet = true
+                }
             }) {
                 ZStack {
+                    // Outer glow
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3),
+                                    Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.3)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 68, height: 68)
+                        .blur(radius: 8)
+                    
+                    // Main button
                     Circle()
                         .fill(
                             LinearGradient(
@@ -69,38 +87,75 @@ struct ContentView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .frame(width: 56, height: 56)
-                        .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3), radius: 12, x: 0, y: 4)
+                        .frame(width: 60, height: 60)
+                        .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.4), radius: 16, x: 0, y: 6)
                     
+                    // Inner highlight
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color.white.opacity(0.3),
+                                    Color.clear
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 60, height: 60)
+                    
+                    // Plus icon
                     Image(systemName: "plus")
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(.system(size: 26, weight: .bold))
                         .foregroundColor(.white)
                 }
             }
-            .offset(y: -8)
+            .offset(y: -12)
             .frame(maxWidth: .infinity)
             
             tabBarButton(icon: "calendar", title: "Günlük", tag: 3)
             tabBarButton(icon: "gearshape.fill", title: "Ayarlar", tag: 4)
         }
-        .padding(.horizontal, 8)
-        .padding(.top, 12)
-        .padding(.bottom, 8) // SafeArea için padding azaltıldı (20'den 8'e)
+        .padding(.horizontal, 12)
+        .padding(.top, 16)
+        .padding(.bottom, 12)
         .background(
             ZStack {
-                // Glassmorphism effect
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                // Main background with blur
+                RoundedRectangle(cornerRadius: 28, style: .continuous)
                     .fill(.ultraThinMaterial)
                 
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color.white.opacity(0.7))
+                // White overlay
+                RoundedRectangle(cornerRadius: 28, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(0.9),
+                                Color.white.opacity(0.7)
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
                 
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                // Border
+                RoundedRectangle(cornerRadius: 28, style: .continuous)
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(0.8),
+                                Color.gray.opacity(0.1)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1.5
+                    )
             }
-            .shadow(color: .black.opacity(0.08), radius: 20, x: 0, y: -5)
+            .shadow(color: .black.opacity(0.1), radius: 24, x: 0, y: -8)
         )
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 4)
     }
     
     private func tabBarButton(icon: String, title: String, tag: Int) -> some View {
@@ -109,25 +164,82 @@ struct ContentView: View {
                 selectedTab = tag
             }
         }) {
-            VStack(spacing: 4) {
-                Image(systemName: icon)
-                    .font(.system(size: selectedTab == tag ? 20 : 18, weight: .medium))
-                    .foregroundColor(selectedTab == tag ? Color(red: 0.58, green: 0.29, blue: 0.98) : .gray)
-                    .frame(height: 24)
+            VStack(spacing: 6) {
+                ZStack {
+                    // Background indicator
+                    if selectedTab == tag {
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.15),
+                                        Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.15)
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 48, height: 48)
+                            .transition(.scale.combined(with: .opacity))
+                    }
+                    
+                    // Icon
+                    Image(systemName: icon)
+                        .font(.system(size: selectedTab == tag ? 22 : 20, weight: selectedTab == tag ? .semibold : .medium))
+                        .foregroundStyle(
+                            selectedTab == tag ?
+                            LinearGradient(
+                                colors: [
+                                    Color(red: 0.58, green: 0.29, blue: 0.98),
+                                    Color(red: 0.85, green: 0.35, blue: 0.85)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ) :
+                            LinearGradient(
+                                colors: [Color.gray, Color.gray],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(height: 28)
+                        .scaleEffect(selectedTab == tag ? 1.1 : 1.0)
+                }
                 
+                // Title
                 Text(title)
-                    .font(.system(size: 10, weight: selectedTab == tag ? .semibold : .regular))
-                    .foregroundColor(selectedTab == tag ? Color(red: 0.58, green: 0.29, blue: 0.98) : .gray)
+                    .font(.system(size: selectedTab == tag ? 11 : 10, weight: selectedTab == tag ? .bold : .medium))
+                    .foregroundStyle(
+                        selectedTab == tag ?
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.58, green: 0.29, blue: 0.98),
+                                Color(red: 0.85, green: 0.35, blue: 0.85)
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ) :
+                        LinearGradient(
+                            colors: [Color.gray, Color.gray],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
-            .background(
-                selectedTab == tag ?
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.1))
-                    : nil
-            )
         }
+        .buttonStyle(TabButtonStyle())
+    }
+}
+
+// MARK: - Tab Button Style
+
+struct TabButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 

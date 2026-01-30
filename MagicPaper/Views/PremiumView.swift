@@ -3,68 +3,74 @@ import SwiftUI
 struct PremiumView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var subscriptionManager = SubscriptionManager.shared
-    @State private var selectedTab: PricingTab = .subscription
-    @State private var selectedPlan: SubscriptionPlan = .yearly
+    @State private var selectedPackage: CreditPackage = .standard
     
-    enum PricingTab {
-        case oneTime
-        case subscription
+    enum CreditPackage: CaseIterable {
+        case starter
+        case standard
+        case plus
+        case premium
         
-        var title: String {
+        var icon: String {
             switch self {
-            case .oneTime: return "Tek Seferlik"
-            case .subscription: return "Abonelik"
+            case .starter: return "💰"
+            case .standard: return "📦"
+            case .plus: return "🎁"
+            case .premium: return "👑"
             }
         }
-    }
-    
-    enum SubscriptionPlan {
-        case monthly
-        case yearly
         
         var title: String {
             switch self {
-            case .monthly: return "Aylık Premium"
-            case .yearly: return "Yıllık Premium"
+            case .starter: return "Başlangıç"
+            case .standard: return "Standart"
+            case .plus: return "Artı"
+            case .premium: return "Premium"
             }
         }
         
         var price: String {
             switch self {
-            case .monthly: return "₺149"
-            case .yearly: return "₺1.199"
+            case .starter: return "₺79"
+            case .standard: return "₺149"
+            case .plus: return "₺249"
+            case .premium: return "₺399"
             }
         }
         
-        var period: String {
+        var credits: Int {
             switch self {
-            case .monthly: return "/ay"
-            case .yearly: return "/yıl"
+            case .starter: return 10
+            case .standard: return 25
+            case .plus: return 50
+            case .premium: return 100
             }
         }
         
-        var savings: String? {
+        var visualStories: Int {
+            return credits / 3
+        }
+        
+        var badge: String? {
             switch self {
-            case .monthly: return nil
-            case .yearly: return "%33 İndirim"
+            case .starter: return nil
+            case .standard: return "ÖNERİLEN"
+            case .plus: return nil
+            case .premium: return "EN AVANTAJLI"
             }
         }
         
-        var monthlyEquivalent: String? {
+        var gradient: [Color] {
             switch self {
-            case .monthly: return nil
-            case .yearly: return "Ayda sadece ₺99.9"
+            case .starter:
+                return [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)]
+            case .standard:
+                return [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)]
+            case .plus:
+                return [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)]
+            case .premium:
+                return [Color.orange, Color.yellow]
             }
-        }
-        
-        var features: [String] {
-            return [
-                "10 görselli hikaye/ay",
-                "Sınırsız metin hikaye",
-                "Reklamsız deneyim",
-                "Öncelikli destek",
-                "Ekstra görselli: ₺19/adet"
-            ]
         }
     }
     
@@ -80,18 +86,17 @@ struct PremiumView: View {
                         // Header
                         headerSection
                         
-                        // Tab Selector
-                        tabSelector
+                        // Credit Info
+                        creditInfoSection
                         
-                        // Content based on selected tab
-                        if selectedTab == .oneTime {
-                            oneTimePurchaseSection
-                        } else {
-                            subscriptionSection
-                        }
+                        // Packages
+                        packagesSection
                         
-                        // Terms
-                        termsSection
+                        // How it works
+                        howItWorksSection
+                        
+                        // Benefits
+                        benefitsSection
                     }
                     .padding(.bottom, 32)
                 }
@@ -120,8 +125,8 @@ struct PremiumView: View {
                     .fill(
                         LinearGradient(
                             colors: [
-                                Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.15),
-                                Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.15)
+                                Color.yellow.opacity(0.2),
+                                Color.orange.opacity(0.2)
                             ],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
@@ -129,26 +134,16 @@ struct PremiumView: View {
                     )
                     .frame(width: 100, height: 100)
                 
-                Image(systemName: "crown.fill")
-                    .font(.system(size: 48, weight: .bold))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.58, green: 0.29, blue: 0.98),
-                                Color(red: 0.85, green: 0.35, blue: 0.85)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                Text("⭐")
+                    .font(.system(size: 56))
             }
             
             VStack(spacing: 8) {
-                Text("MagicPaper Premium")
+                Text("Kredi Paketi Seç")
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.black)
                 
-                Text("Sınırsız hikaye, premium özellikler")
+                Text("İstediğin zaman kullan, esnek ol!")
                     .font(.system(size: 16))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
@@ -158,233 +153,304 @@ struct PremiumView: View {
         .padding(.horizontal, 20)
     }
     
-    // MARK: - Tab Selector
+    // MARK: - Credit Info Section
     
-    private var tabSelector: some View {
-        HStack(spacing: 0) {
-            ForEach([PricingTab.oneTime, PricingTab.subscription], id: \.self) { tab in
-                Button(action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        selectedTab = tab
-                    }
-                }) {
-                    Text(tab.title)
-                        .font(.system(size: 16, weight: selectedTab == tab ? .bold : .medium))
-                        .foregroundColor(selectedTab == tab ? .white : .gray)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(
-                            selectedTab == tab ?
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.58, green: 0.29, blue: 0.98),
-                                    Color(red: 0.85, green: 0.35, blue: 0.85)
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            ) : nil
-                        )
-                        .cornerRadius(12)
-                }
+    private var creditInfoSection: some View {
+        VStack(spacing: 16) {
+            HStack(spacing: 24) {
+                creditUsageCard(
+                    icon: "📝",
+                    title: "Metin Hikaye",
+                    credits: "1 kredi",
+                    color: Color(red: 0.85, green: 0.35, blue: 0.85)
+                )
+                
+                creditUsageCard(
+                    icon: "🎨",
+                    title: "Görselli Hikaye",
+                    credits: "3 kredi",
+                    color: Color(red: 0.58, green: 0.29, blue: 0.98)
+                )
+            }
+            .padding(.horizontal, 20)
+        }
+    }
+    
+    private func creditUsageCard(icon: String, title: String, credits: String, color: Color) -> some View {
+        VStack(spacing: 12) {
+            Text(icon)
+                .font(.system(size: 40))
+            
+            Text(title)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+            
+            HStack(spacing: 4) {
+                Image(systemName: "star.fill")
+                    .font(.system(size: 12))
+                    .foregroundColor(color)
+                
+                Text(credits)
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundColor(color)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(
+                Capsule()
+                    .fill(color.opacity(0.15))
+            )
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.white)
+                .shadow(color: color.opacity(0.15), radius: 12, x: 0, y: 4)
+        )
+    }
+    
+    // MARK: - Packages Section
+    
+    private var packagesSection: some View {
+        VStack(spacing: 16) {
+            ForEach(CreditPackage.allCases, id: \.self) { package in
+                packageCard(package: package)
             }
         }
-        .padding(4)
-        .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(Color(.systemGray6))
-        )
         .padding(.horizontal, 20)
     }
     
-    // MARK: - One Time Purchase Section
-    
-    private var oneTimePurchaseSection: some View {
-        VStack(spacing: 16) {
-            // Single Story Cards
-            oneTimeCard(
-                icon: "photo.on.rectangle.angled",
-                title: "Görselli Hikaye",
-                description: "7 sayfa, kişiselleştirilmiş görseller",
-                price: "₺29",
-                gradient: [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)],
-                badge: "Popüler"
-            )
-            
-            oneTimeCard(
-                icon: "text.book.closed",
-                title: "Metin Hikaye",
-                description: "7 sayfa, sadece metin",
-                price: "₺9",
-                gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
-                badge: nil
-            )
-            
-            // Bundle Cards
-            Divider()
-                .padding(.vertical, 8)
-            
-            Text("Paket Teklifleri")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(.black)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            bundleCard(
-                title: "5'li Karma Paket",
-                description: "5 hikaye (görselli veya metin)",
-                originalPrice: "₺145",
-                price: "₺119",
-                discount: "%18 İndirim"
-            )
-            
-            bundleCard(
-                title: "10'lu Karma Paket",
-                description: "10 hikaye (görselli veya metin)",
-                originalPrice: "₺290",
-                price: "₺199",
-                discount: "%31 İndirim"
-            )
-        }
-        .padding(.horizontal, 20)
-    }
-    
-    private func oneTimeCard(icon: String, title: String, description: String, price: String, gradient: [Color], badge: String?) -> some View {
+    private func packageCard(package: CreditPackage) -> some View {
         Button(action: {
-            purchaseOneTime(type: title)
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                selectedPackage = package
+            }
         }) {
-            HStack(spacing: 16) {
-                // Icon
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(
-                            LinearGradient(
-                                colors: gradient,
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
+            VStack(spacing: 0) {
+                // Badge
+                if let badge = package.badge {
+                    HStack {
+                        Spacer()
+                        Text(badge)
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(
+                                Capsule()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: package.gradient,
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
                             )
-                        )
-                        .frame(width: 56, height: 56)
-                    
-                    Image(systemName: icon)
-                        .font(.system(size: 24, weight: .semibold))
-                        .foregroundColor(.white)
+                            .offset(y: -12)
+                        Spacer()
+                    }
                 }
                 
-                // Content
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 8) {
-                        Text(title)
-                            .font(.system(size: 16, weight: .bold))
+                HStack(spacing: 20) {
+                    // Icon
+                    Text(package.icon)
+                        .font(.system(size: 48))
+                    
+                    // Info
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(package.title)
+                            .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.black)
                         
-                        if let badge = badge {
-                            Text(badge)
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(
-                                    Capsule()
-                                        .fill(
-                                            LinearGradient(
-                                                colors: gradient,
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )
-                                        )
+                        HStack(spacing: 6) {
+                            Image(systemName: "star.fill")
+                                .font(.system(size: 16))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: package.gradient,
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                            
+                            Text("\(package.credits) kredi")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: package.gradient,
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
                                 )
                         }
-                    }
-                    
-                    Text(description)
-                        .font(.system(size: 13))
-                        .foregroundColor(.gray)
-                }
-                
-                Spacer()
-                
-                // Price
-                Text(price)
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.black)
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.white)
-                    .shadow(color: gradient[0].opacity(0.15), radius: 12, x: 0, y: 4)
-            )
-        }
-    }
-    
-    private func bundleCard(title: String, description: String, originalPrice: String, price: String, discount: String) -> some View {
-        Button(action: {
-            purchaseBundle(type: title)
-        }) {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(title)
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.black)
                         
-                        Text(description)
+                        Text("~\(package.visualStories) görselli hikaye")
                             .font(.system(size: 13))
                             .foregroundColor(.gray)
                     }
                     
                     Spacer()
                     
-                    Text(discount)
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            Capsule()
-                                .fill(Color.orange)
-                        )
+                    // Price
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text(package.price)
+                            .font(.system(size: 28, weight: .heavy))
+                            .foregroundColor(.black)
+                        
+                        // Radio button
+                        ZStack {
+                            Circle()
+                                .stroke(
+                                    LinearGradient(
+                                        colors: package.gradient,
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 2
+                                )
+                                .frame(width: 24, height: 24)
+                            
+                            if selectedPackage == package {
+                                Circle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: package.gradient,
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 14, height: 14)
+                            }
+                        }
+                    }
                 }
-                
-                HStack(alignment: .firstTextBaseline, spacing: 8) {
-                    Text(originalPrice)
-                        .font(.system(size: 14))
-                        .foregroundColor(.gray)
-                        .strikethrough()
-                    
-                    Text(price)
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(Color(red: 0.58, green: 0.29, blue: 0.98))
-                }
+                .padding(24)
             }
-            .padding(16)
             .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.05))
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(selectedPackage == package ? Color(red: 0.98, green: 0.98, blue: 1.0) : .white)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.2), lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(
+                                selectedPackage == package ?
+                                LinearGradient(
+                                    colors: package.gradient,
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ) :
+                                LinearGradient(
+                                    colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                lineWidth: selectedPackage == package ? 2 : 1
+                            )
+                    )
+                    .shadow(
+                        color: selectedPackage == package ? package.gradient[0].opacity(0.2) : .black.opacity(0.05),
+                        radius: selectedPackage == package ? 16 : 8,
+                        x: 0,
+                        y: selectedPackage == package ? 8 : 4
                     )
             )
         }
+        .buttonStyle(PlainButtonStyle())
     }
     
-    // MARK: - Subscription Section
+    // MARK: - How It Works Section
     
-    private var subscriptionSection: some View {
-        VStack(spacing: 16) {
-            // Plan Cards
-            subscriptionPlanCard(plan: .yearly)
-            subscriptionPlanCard(plan: .monthly)
+    private var howItWorksSection: some View {
+        VStack(spacing: 20) {
+            Text("Nasıl Çalışır?")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            // Subscribe Button
+            VStack(spacing: 16) {
+                howItWorksStep(
+                    number: "1",
+                    title: "Kredi Paketi Al",
+                    description: "İhtiyacına göre paket seç",
+                    color: Color(red: 0.58, green: 0.29, blue: 0.98)
+                )
+                
+                howItWorksStep(
+                    number: "2",
+                    title: "İstediğin Zaman Kullan",
+                    description: "Metin veya görselli hikaye oluştur",
+                    color: Color(red: 0.85, green: 0.35, blue: 0.85)
+                )
+                
+                howItWorksStep(
+                    number: "3",
+                    title: "Kredi Bitince Yenile",
+                    description: "Dilediğin zaman yeni paket al",
+                    color: Color(red: 1.0, green: 0.45, blue: 0.55)
+                )
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    private func howItWorksStep(number: String, title: String, description: String, color: Color) -> some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [color, color.opacity(0.7)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 48, height: 48)
+                
+                Text(number)
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.black)
+                
+                Text(description)
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+            }
+            
+            Spacer()
+        }
+    }
+    
+    // MARK: - Benefits Section
+    
+    private var benefitsSection: some View {
+        VStack(spacing: 20) {
+            Text("Neden Kredi Sistemi?")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            VStack(spacing: 12) {
+                benefitRow(icon: "checkmark.circle.fill", text: "Esnek kullanım - istediğin zaman", color: .green)
+                benefitRow(icon: "checkmark.circle.fill", text: "Param boşa gitmiyor", color: .green)
+                benefitRow(icon: "checkmark.circle.fill", text: "Metin mi görselli mi sen karar ver", color: .green)
+                benefitRow(icon: "checkmark.circle.fill", text: "Abonelik yok, bağlayıcı değil", color: .green)
+            }
+            
+            // Purchase Button
             Button(action: {
-                subscribeToPremium()
+                purchasePackage(selectedPackage)
             }) {
                 HStack(spacing: 12) {
-                    Image(systemName: "crown.fill")
+                    Image(systemName: "star.fill")
                         .font(.system(size: 20, weight: .bold))
                     
-                    Text("Premium'a Geç")
+                    Text("\(selectedPackage.credits) Kredi Al - \(selectedPackage.price)")
                         .font(.system(size: 18, weight: .bold))
                 }
                 .foregroundColor(.white)
@@ -392,199 +458,43 @@ struct PremiumView: View {
                 .padding(.vertical, 18)
                 .background(
                     LinearGradient(
-                        colors: [
-                            Color(red: 0.58, green: 0.29, blue: 0.98),
-                            Color(red: 0.85, green: 0.35, blue: 0.85)
-                        ],
+                        colors: selectedPackage.gradient,
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3), radius: 12, x: 0, y: 6)
+                .shadow(color: selectedPackage.gradient[0].opacity(0.3), radius: 12, x: 0, y: 6)
             }
-            
-            // Features
-            VStack(spacing: 12) {
-                Text("Premium Özellikler")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                ForEach(SubscriptionPlan.yearly.features, id: \.self) { feature in
-                    featureRow(text: feature)
-                }
-            }
+            .padding(.top, 8)
         }
         .padding(.horizontal, 20)
     }
     
-    private func subscriptionPlanCard(plan: SubscriptionPlan) -> some View {
-        Button(action: {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                selectedPlan = plan
-            }
-        }) {
-            HStack(spacing: 16) {
-                // Radio button
-                ZStack {
-                    Circle()
-                        .stroke(Color(red: 0.58, green: 0.29, blue: 0.98), lineWidth: 2)
-                        .frame(width: 24, height: 24)
-                    
-                    if selectedPlan == plan {
-                        Circle()
-                            .fill(Color(red: 0.58, green: 0.29, blue: 0.98))
-                            .frame(width: 14, height: 14)
-                    }
-                }
-                
-                // Plan info
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 8) {
-                        Text(plan.title)
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.black)
-                        
-                        if let savings = plan.savings {
-                            Text(savings)
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical: 2)
-                                .background(
-                                    Capsule()
-                                        .fill(Color.orange)
-                                )
-                        }
-                    }
-                    
-                    if let monthly = plan.monthlyEquivalent {
-                        Text(monthly)
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                    }
-                }
-                
-                Spacer()
-                
-                // Price
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text(plan.price)
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.black)
-                    
-                    Text(plan.period)
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                }
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(selectedPlan == plan ? Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.1) : Color(.systemGray6))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(selectedPlan == plan ? Color(red: 0.58, green: 0.29, blue: 0.98) : Color.clear, lineWidth: 2)
-                    )
-            )
-        }
-    }
-    
-    private func featureRow(text: String) -> some View {
+    private func benefitRow(icon: String, text: String, color: Color) -> some View {
         HStack(spacing: 12) {
-            Image(systemName: "checkmark.circle.fill")
+            Image(systemName: icon)
                 .font(.system(size: 20))
-                .foregroundColor(Color(red: 0.58, green: 0.29, blue: 0.98))
+                .foregroundColor(color)
             
             Text(text)
-                .font(.system(size: 14))
+                .font(.system(size: 15))
                 .foregroundColor(.black)
             
             Spacer()
         }
     }
     
-    // MARK: - Terms Section
-    
-    private var termsSection: some View {
-        VStack(spacing: 12) {
-            if selectedTab == .subscription {
-                Text("7 gün ücretsiz deneme")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Color(red: 0.58, green: 0.29, blue: 0.98))
-            }
-            
-            Text("İstediğiniz zaman iptal edebilirsiniz")
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            
-            Button(action: {
-                // Restore purchases
-            }) {
-                Text("Satın Alımları Geri Yükle")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(Color(red: 0.58, green: 0.29, blue: 0.98))
-                    .underline()
-            }
-        }
-        .padding(.horizontal, 20)
-    }
-    
     // MARK: - Actions
     
-    private func purchaseOneTime(type: String) {
-        print("💳 Tek seferlik satın alma: \(type)")
+    private func purchasePackage(_ package: CreditPackage) {
+        print("💳 Paket satın alma: \(package.title) - \(package.credits) kredi")
         // TODO: StoreKit implementation
         
         // Simüle et
         let alert = UIAlertController(
-            title: "✅ Satın Alındı",
-            message: "\(type) başarıyla satın alındı!",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default) { _ in
-            dismiss()
-        })
-        
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first,
-           let rootVC = window.rootViewController {
-            rootVC.present(alert, animated: true)
-        }
-    }
-    
-    private func purchaseBundle(type: String) {
-        print("💳 Paket satın alma: \(type)")
-        // TODO: StoreKit implementation
-        
-        // Simüle et
-        let alert = UIAlertController(
-            title: "✅ Satın Alındı",
-            message: "\(type) başarıyla satın alındı!",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default) { _ in
-            dismiss()
-        })
-        
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first,
-           let rootVC = window.rootViewController {
-            rootVC.present(alert, animated: true)
-        }
-    }
-    
-    private func subscribeToPremium() {
-        print("💳 Premium abonelik: \(selectedPlan.title)")
-        // TODO: StoreKit implementation
-        
-        // Simüle et
-        subscriptionManager.isPremium = true
-        
-        let alert = UIAlertController(
-            title: "🎉 Hoş Geldiniz!",
-            message: "Premium üyeliğiniz başarıyla aktif edildi!",
+            title: "✅ Satın Alındı!",
+            message: "\(package.credits) kredi hesabınıza eklendi!",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "Harika!", style: .default) { _ in

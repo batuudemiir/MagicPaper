@@ -76,7 +76,7 @@ struct CreateTextStoryView: View {
             Text(alertMessage)
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumUpgradeView()
+            PremiumView()
         }
         .sheet(isPresented: $showingStoryViewer) {
             if let story = generatedStory {

@@ -72,7 +72,7 @@ struct DailyStoriesView: View {
             }
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumUpgradeView()
+            PremiumView()
         }
         .alert("Günlük Limit Doldu", isPresented: $showingLimitAlert) {
             Button("Tamam", role: .cancel) { }

@@ -74,7 +74,7 @@ struct CreateStoryView: View {
             Text(alertMessage)
         }
         .sheet(isPresented: $showingPremiumSheet) {
-            PremiumUpgradeView()
+            PremiumView()
         }
         .overlay(
             loadingOverlay
