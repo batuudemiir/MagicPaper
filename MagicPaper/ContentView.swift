@@ -31,7 +31,7 @@ struct ContentView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.bottom, 90) // Tab bar için alan bırak
+            .padding(.bottom, 80) // Tab bar için alan bırak (90'dan 80'e düşürdük)
             .animation(.easeInOut(duration: 0.2), value: selectedTab)
             
             // Custom Tab Bar - SafeArea'nın altına sabitlendi
@@ -85,7 +85,7 @@ struct ContentView: View {
         }
         .padding(.horizontal, 8)
         .padding(.top, 12)
-        .padding(.bottom, 20) // SafeArea için daha fazla padding
+        .padding(.bottom, 8) // SafeArea için padding azaltıldı (20'den 8'e)
         .background(
             ZStack {
                 // Glassmorphism effect
