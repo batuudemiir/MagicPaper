@@ -113,7 +113,6 @@ struct StoryViewerView: View {
                     Button(action: exportPDF) {
                         Label("PDF Olarak Dışa Aktar", systemImage: "doc.text")
                     }
-                    .disabled(!subscriptionManager.isPremium)
                     
                     if !subscriptionManager.isPremium {
                         Divider()
@@ -345,24 +344,183 @@ struct StoryViewerView: View {
     }
     
     private func exportPDF() {
-        guard subscriptionManager.isPremium else {
-            showingPremiumAlert = true
+        // PDF oluştur
+        let pdfData = createPDF()
+        
+        guard let pdfData = pdfData else {
+            // Hata mesajı
+            let alert = UIAlertController(
+                title: "❌ Hata",
+                message: "PDF oluşturulamadı. Lütfen tekrar deneyin.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first,
+               let rootVC = window.rootViewController {
+                rootVC.present(alert, animated: true)
+            }
             return
         }
         
-        // PDF oluşturma özelliği - gelecekte implement edilecek
-        let alert = UIAlertController(
-            title: "🚧 Yakında",
-            message: "PDF dışa aktarma özelliği yakında eklenecek!",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        // PDF'i kaydet ve paylaş
+        let fileName = "\(currentStory.title.replacingOccurrences(of: " ", with: "_")).pdf"
         
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first,
-           let rootVC = window.rootViewController {
-            rootVC.present(alert, animated: true)
+        if let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsPath.appendingPathComponent(fileName)
+            
+            do {
+                try pdfData.write(to: fileURL)
+                
+                // Haptic feedback
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                
+                // PDF'i paylaş
+                let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+                
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = windowScene.windows.first,
+                   let rootVC = window.rootViewController {
+                    
+                    // iPad için popover ayarı
+                    if let popover = activityVC.popoverPresentationController {
+                        popover.sourceView = window
+                        popover.sourceRect = CGRect(x: window.bounds.midX, y: window.bounds.midY, width: 0, height: 0)
+                        popover.permittedArrowDirections = []
+                    }
+                    
+                    rootVC.present(activityVC, animated: true)
+                }
+                
+            } catch {
+                print("❌ PDF kaydetme hatası: \(error)")
+            }
         }
+    }
+    
+    private func createPDF() -> Data? {
+        let pdfMetaData = [
+            kCGPDFContextCreator: "MagicPaper",
+            kCGPDFContextAuthor: currentStory.childName,
+            kCGPDFContextTitle: currentStory.title
+        ]
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+        
+        // A4 boyutu
+        let pageWidth = 8.5 * 72.0
+        let pageHeight = 11.0 * 72.0
+        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = renderer.pdfData { (context) in
+            // Kapak sayfası
+            context.beginPage()
+            
+            // Başlık
+            let titleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 32),
+                .foregroundColor: UIColor.black
+            ]
+            let titleString = currentStory.title
+            let titleSize = titleString.size(withAttributes: titleAttributes)
+            let titleRect = CGRect(x: (pageWidth - titleSize.width) / 2,
+                                   y: 100,
+                                   width: titleSize.width,
+                                   height: titleSize.height)
+            titleString.draw(in: titleRect, withAttributes: titleAttributes)
+            
+            // Alt başlık
+            let subtitleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 18),
+                .foregroundColor: UIColor.gray
+            ]
+            let subtitleString = "\(currentStory.childName)'in Hikayesi"
+            let subtitleSize = subtitleString.size(withAttributes: subtitleAttributes)
+            let subtitleRect = CGRect(x: (pageWidth - subtitleSize.width) / 2,
+                                      y: 150,
+                                      width: subtitleSize.width,
+                                      height: subtitleSize.height)
+            subtitleString.draw(in: subtitleRect, withAttributes: subtitleAttributes)
+            
+            // Tema
+            let themeAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 14),
+                .foregroundColor: UIColor.darkGray
+            ]
+            let themeString = "Tema: \(currentStory.theme.displayName)"
+            let themeSize = themeString.size(withAttributes: themeAttributes)
+            let themeRect = CGRect(x: (pageWidth - themeSize.width) / 2,
+                                   y: 180,
+                                   width: themeSize.width,
+                                   height: themeSize.height)
+            themeString.draw(in: themeRect, withAttributes: themeAttributes)
+            
+            // Her sayfa için
+            for (index, page) in currentStory.pages.enumerated() {
+                context.beginPage()
+                
+                var yPosition: CGFloat = 50
+                
+                // Sayfa numarası
+                let pageNumberAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12),
+                    .foregroundColor: UIColor.gray
+                ]
+                let pageNumberString = "Sayfa \(index + 1) / \(currentStory.pages.count)"
+                pageNumberString.draw(at: CGPoint(x: 50, y: yPosition), withAttributes: pageNumberAttributes)
+                
+                yPosition += 40
+                
+                // Sayfa başlığı
+                if !page.title.isEmpty {
+                    let pageTitleAttributes: [NSAttributedString.Key: Any] = [
+                        .font: UIFont.boldSystemFont(ofSize: 24),
+                        .foregroundColor: UIColor.black
+                    ]
+                    let pageTitleRect = CGRect(x: 50, y: yPosition, width: pageWidth - 100, height: 100)
+                    page.title.draw(in: pageTitleRect, withAttributes: pageTitleAttributes)
+                    yPosition += 60
+                }
+                
+                // Görsel
+                if let imageFileName = page.imageUrl,
+                   let image = FileManagerService.shared.loadImage(fileName: imageFileName) {
+                    let imageHeight: CGFloat = 250
+                    let imageWidth = pageWidth - 100
+                    let imageRect = CGRect(x: 50, y: yPosition, width: imageWidth, height: imageHeight)
+                    image.draw(in: imageRect)
+                    yPosition += imageHeight + 20
+                }
+                
+                // Metin
+                let textAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 14),
+                    .foregroundColor: UIColor.black
+                ]
+                let textRect = CGRect(x: 50, y: yPosition, width: pageWidth - 100, height: pageHeight - yPosition - 50)
+                page.text.draw(in: textRect, withAttributes: textAttributes)
+            }
+            
+            // Son sayfa - MagicPaper logosu
+            context.beginPage()
+            let footerAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 16),
+                .foregroundColor: UIColor.gray
+            ]
+            let footerString = "✨ MagicPaper ile oluşturuldu\n\(currentStory.createdAt.formatted(date: .long, time: .shortened))"
+            let footerSize = footerString.size(withAttributes: footerAttributes)
+            let footerRect = CGRect(x: (pageWidth - footerSize.width) / 2,
+                                    y: (pageHeight - footerSize.height) / 2,
+                                    width: footerSize.width,
+                                    height: footerSize.height)
+            footerString.draw(in: footerRect, withAttributes: footerAttributes)
+        }
+        
+        return data
     }
     
     private func getCurrentPageImage() -> UIImage? {

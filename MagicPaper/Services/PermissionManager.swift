@@ -53,6 +53,10 @@ class PermissionManager: ObservableObject {
     // MARK: - Request All Permissions
     
     func requestAllPermissions() async {
+        // iOS 14.5+ için tracking izni bir gecikme sonra istenmeli
+        // Uygulama tam olarak yüklendikten sonra
+        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 saniye bekle
+        
         // 1. Tracking izni (AdMob için)
         await requestTrackingPermission()
         
