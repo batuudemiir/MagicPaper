@@ -31,10 +31,15 @@ struct ContentView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.bottom, 90) // Tab bar için alan bırak
             .animation(.easeInOut(duration: 0.2), value: selectedTab)
             
-            // Custom Tab Bar
-            customTabBar
+            // Custom Tab Bar - SafeArea'nın altına sabitlendi
+            VStack(spacing: 0) {
+                Spacer()
+                customTabBar
+            }
+            .ignoresSafeArea(.all, edges: .bottom)
         }
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.light) // Sabit aydınlık mod
@@ -80,23 +85,22 @@ struct ContentView: View {
         }
         .padding(.horizontal, 8)
         .padding(.top, 12)
-        .padding(.bottom, 8)
+        .padding(.bottom, 20) // SafeArea için daha fazla padding
         .background(
             ZStack {
                 // Glassmorphism effect
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(.ultraThinMaterial)
                 
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(Color.white.opacity(0.7))
                 
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .stroke(Color.white.opacity(0.5), lineWidth: 1)
             }
             .shadow(color: .black.opacity(0.08), radius: 20, x: 0, y: -5)
         )
         .padding(.horizontal, 16)
-        .padding(.bottom, 8)
     }
     
     private func tabBarButton(icon: String, title: String, tag: Int) -> some View {
