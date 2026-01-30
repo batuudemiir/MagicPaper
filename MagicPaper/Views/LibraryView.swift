@@ -40,10 +40,22 @@ struct LibraryView: View {
         return stories.sorted { $0.createdAt > $1.createdAt }
     }
     
+    var totalStoryCount: Int {
+        generationManager.stories.count
+    }
+    
+    var completedStoryCount: Int {
+        generationManager.stories.filter { $0.status == .completed }.count
+    }
+    
+    var generatingStoryCount: Int {
+        generationManager.stories.filter { $0.status != .completed && $0.status != .failed }.count
+    }
+    
     var body: some View {
         NavigationView {
             Group {
-                if generationManager.stories.isEmpty {
+                if totalStoryCount == 0 {
                     emptyStateView
                 } else {
                     VStack(spacing: 0) {
@@ -51,7 +63,7 @@ struct LibraryView: View {
                         statsView
                             .padding()
                         
-                        // Filtre
+                        // Durum filtresi
                         filterView
                             .padding(.horizontal)
                             .padding(.bottom, 8)
@@ -95,21 +107,21 @@ struct LibraryView: View {
         HStack(spacing: 12) {
             statCard(
                 icon: "book.fill",
-                value: "\(generationManager.stories.count)",
+                value: "\(totalStoryCount)",
                 label: "Toplam",
                 color: .indigo
             )
             
             statCard(
                 icon: "checkmark.circle.fill",
-                value: "\(generationManager.stories.filter { $0.status == .completed }.count)",
+                value: "\(completedStoryCount)",
                 label: "Tamamlanan",
                 color: .green
             )
             
             statCard(
                 icon: "clock.fill",
-                value: "\(generationManager.stories.filter { $0.status != .completed && $0.status != .failed }.count)",
+                value: "\(generatingStoryCount)",
                 label: "Devam Eden",
                 color: .orange
             )

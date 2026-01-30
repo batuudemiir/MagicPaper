@@ -64,19 +64,22 @@ class TextStoryManager: ObservableObject {
         let story = textStories[index]
         
         // Gemini ile hikaye oluştur
-        let prompt = createStoryPrompt(
-            childName: story.childName,
-            gender: story.gender,
-            theme: story.theme,
-            language: story.language,
-            customTitle: story.title
-        )
-        
         do {
-            let content = try await aiService.generateText(prompt: prompt)
+            let storyResponse = try await aiService.generateTextOnlyStory(
+                childName: story.childName,
+                gender: story.gender,
+                theme: story.theme.displayName,
+                language: story.language.rawValue,
+                customTitle: story.theme == .custom ? story.title : nil
+            )
+            
+            // Sayfaları birleştir
+            let fullContent = storyResponse.pages.map { page in
+                "\(page.title)\n\n\(page.text)"
+            }.joined(separator: "\n\n---\n\n")
             
             // Hikayeyi güncelle
-            textStories[index].content = content
+            textStories[index].content = fullContent
             textStories[index].status = .completed
             saveStories()
             
@@ -89,101 +92,6 @@ class TextStoryManager: ObservableObject {
             saveStories()
             return false
         }
-    }
-    
-    private func createStoryPrompt(
-        childName: String,
-        gender: Gender,
-        theme: StoryTheme,
-        language: StoryLanguage,
-        customTitle: String
-    ) -> String {
-        
-        let genderPronoun: String
-        let genderAdjective: String
-        
-        switch gender {
-        case .boy:
-            genderPronoun = "o"
-            genderAdjective = "cesur"
-        case .girl:
-            genderPronoun = "o"
-            genderAdjective = "cesur"
-        case .other:
-            genderPronoun = "o"
-            genderAdjective = "cesur"
-        }
-        
-        let themeContext: String
-        switch theme {
-        case .fantasy:
-            themeContext = "sihirli bir krallıkta, ejderhalar ve perilerle dolu bir dünyada"
-        case .space:
-            themeContext = "uzayda, yıldızlar arasında, yeni gezegenler keşfederken"
-        case .jungle:
-            themeContext = "vahşi bir ormanda, egzotik hayvanlar ve gizli hazinelerle dolu"
-        case .hero:
-            themeContext = "bir süper kahraman olarak, dünyayı kötülüklerden korurken"
-        case .underwater:
-            themeContext = "okyanusun derinliklerinde, deniz yaratıkları ve kayıp şehirlerle"
-        case .custom:
-            themeContext = "benzersiz bir macerada"
-        }
-        
-        let languageInstruction: String
-        switch language {
-        case .turkish:
-            languageInstruction = "Hikayeyi Türkçe yaz."
-        case .english:
-            languageInstruction = "Write the story in English."
-        case .spanish:
-            languageInstruction = "Escribe la historia en español."
-        case .french:
-            languageInstruction = "Écris l'histoire en français."
-        case .german:
-            languageInstruction = "Schreibe die Geschichte auf Deutsch."
-        case .italian:
-            languageInstruction = "Scrivi la storia in italiano."
-        case .russian:
-            languageInstruction = "Напиши историю на русском языке."
-        case .arabic:
-            languageInstruction = "اكتب القصة بالعربية."
-        }
-        
-        return """
-        Sen profesyonel bir çocuk kitabı yazarısın. Görevin, çocuklar için eğitici, eğlenceli ve duygusal olarak zengin bir hikaye yazmak.
-        
-        KARAKTER BİLGİLERİ:
-        - İsim: \(childName)
-        - Cinsiyet: \(gender.displayName)
-        - Karakter özellikleri: \(genderAdjective), meraklı, nazik, zeki
-        
-        HİKAYE AYARLARI:
-        - Tema: \(theme.displayName)
-        - Ortam: \(themeContext)
-        - Başlık: \(customTitle)
-        
-        HİKAYE GEREKSİNİMLERİ:
-        1. Hikaye 1500-2000 kelime uzunluğunda olmalı
-        2. \(childName) hikayenin ana kahramanı olmalı
-        3. Hikaye 5-8 yaş arası çocuklar için uygun olmalı
-        4. Eğitici bir mesaj içermeli (dostluk, cesaret, dürüstlük, vb.)
-        5. Macera dolu ve heyecan verici olmalı
-        6. Pozitif ve mutlu bir sonla bitmeli
-        7. Çocuğun hayal gücünü geliştirmeli
-        8. Duygusal bağ kurulabilir karakterler içermeli
-        
-        YAZIM TARZI:
-        - Basit ve anlaşılır cümleler kullan
-        - Canlı ve renkli betimlemeler yap
-        - Diyaloglar ekle
-        - Duygusal anlar oluştur
-        - Çocuğun kendini kahramanla özdeşleştirmesini sağla
-        
-        DİL: \(languageInstruction)
-        
-        Hikayeyi şimdi yaz. Sadece hikaye metnini yaz, başka açıklama ekleme.
-        """
     }
     
     // MARK: - Storage

@@ -1,0 +1,100 @@
+name: iOS Build and Deploy
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build iOS App
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/Library/Developer/Xcode/DerivedData
+          ~/.swiftpm
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Install Dependencies
+      run: |
+        xcodebuild -resolvePackageDependencies -project MagicPaper.xcodeproj -scheme MagicPaper
+        
+    - name: Build for Testing
+      run: |
+        xcodebuild clean build-for-testing \
+          -project MagicPaper.xcodeproj \
+          -scheme MagicPaper \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
+          
+    - name: Build for Archive (Release)
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      run: |
+        xcodebuild clean archive \
+          -project MagicPaper.xcodeproj \
+          -scheme MagicPaper \
+          -configuration Release \
+          -destination 'generic/platform=iOS' \
+          -archivePath ${{ runner.temp }}/MagicPaper.xcarchive \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          ONLY_ACTIVE_ARCH=NO
+          
+    - name: Upload Build Artifacts
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v3
+      with:
+        name: MagicPaper-Archive
+        path: ${{ runner.temp }}/MagicPaper.xcarchive
+        retention-days: 30
+
+  # App Store Connect yükleme işi (opsiyonel)
+  deploy:
+    name: Deploy to App Store Connect
+    runs-on: macos-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: MagicPaper-Archive
+        path: ${{ runner.temp }}
+        
+    # Bu adımlar için App Store Connect API Key gerekli
+    # Şimdilik yorum satırında bırakıyorum
+    # - name: Export IPA
+    #   run: |
+    #     xcodebuild -exportArchive \
+    #       -archivePath ${{ runner.temp }}/MagicPaper.xcarchive \
+    #       -exportPath ${{ runner.temp }}/export \
+    #       -exportOptionsPlist ExportOptions.plist
+    #       
+    # - name: Upload to App Store Connect
+    #   run: |
+    #     xcrun altool --upload-app \
+    #       --type ios \
+    #       --file ${{ runner.temp }}/export/MagicPaper.ipa \
+    #       --username ${{ secrets.APPLE_ID }} \
+    #       --password ${{ secrets.APP_SPECIFIC_PASSWORD }}

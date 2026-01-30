@@ -4,10 +4,14 @@ struct StoryViewerView: View {
     let story: Story
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var generationManager = StoryGenerationManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     
     @State private var currentPage = 0
     @State private var showingFullscreenImage = false
     @State private var selectedImage: UIImage?
+    @State private var showingPremiumAlert = false
+    @State private var showingShareSheet = false
+    @State private var shareItems: [Any] = []
     
     // Güncel story'yi al
     private var currentStory: Story {
@@ -66,6 +70,14 @@ struct StoryViewerView: View {
         .fullScreenCover(isPresented: $showingFullscreenImage) {
             fullscreenImageView
         }
+        .sheet(isPresented: $showingShareSheet) {
+            ShareSheet(items: shareItems)
+        }
+        .alert("👑 Premium Özellik", isPresented: $showingPremiumAlert) {
+            Button("Tamam", role: .cancel) { }
+        } message: {
+            Text("Hikaye paylaşma ve indirme özellikleri Premium üyelere özeldir. Premium'a geçerek sınırsız hikaye oluşturabilir ve tüm özelliklere erişebilirsiniz.")
+        }
     }
     
     private func headerView(for story: Story) -> some View {
@@ -93,12 +105,30 @@ struct StoryViewerView: View {
                     Button(action: shareStory) {
                         Label("Hikayeyi Paylaş", systemImage: "square.and.arrow.up")
                     }
+                    .disabled(!subscriptionManager.isPremium)
+                    
+                    Button(action: downloadStory) {
+                        Label("Telefona İndir", systemImage: "arrow.down.circle")
+                    }
+                    .disabled(!subscriptionManager.isPremium)
                     
                     Button(action: exportPDF) {
                         Label("PDF Olarak Dışa Aktar", systemImage: "doc.text")
                     }
+                    .disabled(!subscriptionManager.isPremium)
+                    
+                    if !subscriptionManager.isPremium {
+                        Divider()
+                        
+                        Button(action: {
+                            showingPremiumAlert = true
+                        }) {
+                            Label("Premium'a Geç", systemImage: "crown.fill")
+                        }
+                    }
                 } label: {
                     Image(systemName: "ellipsis.circle")
+                        .font(.title3)
                 }
             }
             .padding()
@@ -246,12 +276,115 @@ struct StoryViewerView: View {
     }
     
     private func updateReadingProgress(_ page: Int) {
+        // İlerlemeyi kaydet
+        generationManager.updateLastReadPage(storyId: story.id, page: page)
     }
     
     private func shareStory() {
+        guard subscriptionManager.isPremium else {
+            showingPremiumAlert = true
+            return
+        }
+        
+        // Hikaye metnini oluştur
+        var shareText = """
+        📚 \(currentStory.title)
+        
+        \(currentStory.childName)'in sihirli hikayesi! ✨
+        
+        Tema: \(currentStory.theme.displayName)
+        Sayfa Sayısı: \(currentStory.pages.count)
+        
+        """
+        
+        // İlk sayfayı ekle
+        if let firstPage = currentStory.pages.first {
+            shareText += "\n\(firstPage.title)\n\n"
+            shareText += firstPage.text.prefix(200) + "...\n\n"
+        }
+        
+        shareText += "MagicPaper ile oluşturuldu 🎨"
+        
+        // Görselleri ekle
+        var itemsToShare: [Any] = [shareText]
+        
+        // Mevcut sayfanın görselini ekle
+        if let currentPageImage = getCurrentPageImage() {
+            itemsToShare.append(currentPageImage)
+        }
+        
+        shareItems = itemsToShare
+        showingShareSheet = true
+    }
+    
+    private func downloadStory() {
+        guard subscriptionManager.isPremium else {
+            showingPremiumAlert = true
+            return
+        }
+        
+        // Tüm görselleri fotoğraf galerisine kaydet
+        var savedCount = 0
+        
+        for page in currentStory.pages {
+            if let imageFileName = page.imageUrl,
+               let image = FileManagerService.shared.loadImage(fileName: imageFileName) {
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                savedCount += 1
+            }
+        }
+        
+        // Başarı mesajı göster
+        if savedCount > 0 {
+            // Haptic feedback
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            // Alert göster
+            let alert = UIAlertController(
+                title: "✅ İndirildi",
+                message: "\(savedCount) görsel fotoğraf galerinize kaydedildi.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first,
+               let rootVC = window.rootViewController {
+                rootVC.present(alert, animated: true)
+            }
+        }
     }
     
     private func exportPDF() {
+        guard subscriptionManager.isPremium else {
+            showingPremiumAlert = true
+            return
+        }
+        
+        // PDF oluşturma özelliği - gelecekte implement edilecek
+        let alert = UIAlertController(
+            title: "🚧 Yakında",
+            message: "PDF dışa aktarma özelliği yakında eklenecek!",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first,
+           let rootVC = window.rootViewController {
+            rootVC.present(alert, animated: true)
+        }
+    }
+    
+    private func getCurrentPageImage() -> UIImage? {
+        guard currentPage < currentStory.pages.count else { return nil }
+        let page = currentStory.pages[currentPage]
+        
+        if let imageFileName = page.imageUrl {
+            return FileManagerService.shared.loadImage(fileName: imageFileName)
+        }
+        return nil
     }
     
     private func placeholderView(message: String, story: Story) -> some View {

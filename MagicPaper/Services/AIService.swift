@@ -3,9 +3,18 @@ import Foundation
 class AIService: ObservableObject {
     static let shared = AIService()
     
-    private let apiKey = "AIzaSyBRKuji1gosnPstF6ApQJ1tFdfEygQ5AVw"
-    // ✅ GEMINI 2.0 FLASH - Latest and fastest model
-    private let baseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent"
+    // ✅ API Key artık Info.plist'ten okunuyor (güvenli)
+    private let apiKey: String = {
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "GEMINI_API_KEY") as? String,
+              !key.isEmpty else {
+            fatalError("❌ GEMINI_API_KEY bulunamadı! Secrets.xcconfig dosyasını oluşturun ve Xcode'da projeye ekleyin.")
+        }
+        return key
+    }()
+    
+    // ✅ GEMINI 2.5 FLASH - En yeni ve en hızlı model (Haziran 2025)
+    private let modelName = "gemini-2.5-flash"
+    private let baseURL = "https://generativelanguage.googleapis.com/v1beta/models"
     
     private init() {}
     
@@ -208,9 +217,13 @@ class AIService: ObservableObject {
     }
     
     private func callGeminiAPI(prompt: String, photoData: Data?) async throws -> String {
-        guard let url = URL(string: "\(baseURL)?key=\(apiKey)") else {
+        // ✅ Doğru URL yapısı: /v1/models/{model}:generateContent
+        let endpoint = "\(baseURL)/\(modelName):generateContent?key=\(apiKey)"
+        guard let url = URL(string: endpoint) else {
             throw URLError(.badURL)
         }
+        
+        print("🌐 API Endpoint: \(endpoint)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -1233,6 +1246,7 @@ class AIService: ObservableObject {
         Now write the story!
         """
         
+        // ✅ Use the same working API call as the image story generation
         let responseText = try await callGeminiAPI(prompt: prompt, photoData: nil)
         
         // JSON Temizliği

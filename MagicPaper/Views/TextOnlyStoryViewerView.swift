@@ -3,8 +3,13 @@ import SwiftUI
 struct TextOnlyStoryViewerView: View {
     let story: TextOnlyStory
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    
     @State private var currentPage = 0
     @State private var dragOffset: CGFloat = 0
+    @State private var showingPremiumAlert = false
+    @State private var showingShareSheet = false
+    @State private var shareItems: [Any] = []
     
     var body: some View {
         NavigationView {
@@ -50,9 +55,40 @@ struct TextOnlyStoryViewerView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    shareButton
+                    Menu {
+                        Button(action: shareStory) {
+                            Label("Hikayeyi Paylaş", systemImage: "square.and.arrow.up")
+                        }
+                        .disabled(!subscriptionManager.isPremium)
+                        
+                        Button(action: downloadAsText) {
+                            Label("Metin Olarak İndir", systemImage: "arrow.down.doc")
+                        }
+                        .disabled(!subscriptionManager.isPremium)
+                        
+                        if !subscriptionManager.isPremium {
+                            Divider()
+                            
+                            Button(action: {
+                                showingPremiumAlert = true
+                            }) {
+                                Label("Premium'a Geç", systemImage: "crown.fill")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .font(.title3)
+                    }
                 }
             }
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            ShareSheet(items: shareItems)
+        }
+        .alert("👑 Premium Özellik", isPresented: $showingPremiumAlert) {
+            Button("Tamam", role: .cancel) { }
+        } message: {
+            Text("Hikaye paylaşma ve indirme özellikleri Premium üyelere özeldir. Premium'a geçerek sınırsız hikaye oluşturabilir ve tüm özelliklere erişebilirsiniz.")
         }
     }
     
@@ -272,15 +308,6 @@ struct TextOnlyStoryViewerView: View {
         )
     }
     
-    // MARK: - Share Button
-    
-    private var shareButton: some View {
-        Button(action: shareStory) {
-            Image(systemName: "square.and.arrow.up")
-                .foregroundColor(.primary)
-        }
-    }
-    
     // MARK: - Actions
     
     private func previousPage() {
@@ -302,29 +329,75 @@ struct TextOnlyStoryViewerView: View {
     }
     
     private func shareStory() {
-        var storyText = "\(story.title)\n\n"
-        storyText += "Kahraman: \(story.childName)\n"
-        storyText += "Tema: \(story.theme.displayName)\n\n"
-        
-        for (index, page) in story.pages.enumerated() {
-            storyText += "--- Sayfa \(index + 1): \(page.title) ---\n\n"
-            storyText += "\(page.text)\n\n"
+        guard subscriptionManager.isPremium else {
+            showingPremiumAlert = true
+            return
         }
         
-        storyText += "\n✨ MagicPaper ile oluşturuldu"
+        var storyText = """
+        📚 \(story.title)
         
-        let activityVC = UIActivityViewController(
-            activityItems: [storyText],
-            applicationActivities: nil
-        )
+        Kahraman: \(story.childName)
+        Tema: \(story.theme.displayName)
         
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first,
-           let rootVC = window.rootViewController {
-            activityVC.popoverPresentationController?.sourceView = window
-            activityVC.popoverPresentationController?.sourceRect = CGRect(x: window.bounds.midX, y: window.bounds.midY, width: 0, height: 0)
-            activityVC.popoverPresentationController?.permittedArrowDirections = []
-            rootVC.present(activityVC, animated: true)
+        """
+        
+        for (index, page) in story.pages.enumerated() {
+            storyText += "\n--- Sayfa \(index + 1): \(page.title) ---\n\n"
+            storyText += "\(page.text)\n"
+        }
+        
+        storyText += "\n\n✨ MagicPaper ile oluşturuldu"
+        
+        shareItems = [storyText]
+        showingShareSheet = true
+    }
+    
+    private func downloadAsText() {
+        guard subscriptionManager.isPremium else {
+            showingPremiumAlert = true
+            return
+        }
+        
+        var storyText = """
+        \(story.title)
+        
+        Kahraman: \(story.childName)
+        Tema: \(story.theme.displayName)
+        Dil: \(story.language.displayName)
+        
+        """
+        
+        for (index, page) in story.pages.enumerated() {
+            storyText += "\n\n═══════════════════════════════════════\n"
+            storyText += "Sayfa \(index + 1): \(page.title)\n"
+            storyText += "═══════════════════════════════════════\n\n"
+            storyText += "\(page.text)\n"
+        }
+        
+        storyText += "\n\n✨ MagicPaper ile oluşturuldu\n"
+        storyText += "Oluşturulma Tarihi: \(story.createdAt.formatted(date: .long, time: .shortened))"
+        
+        // Dosyayı kaydet
+        let fileName = "\(story.title.replacingOccurrences(of: " ", with: "_")).txt"
+        
+        if let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsPath.appendingPathComponent(fileName)
+            
+            do {
+                try storyText.write(to: fileURL, atomically: true, encoding: .utf8)
+                
+                // Dosyayı paylaş
+                shareItems = [fileURL]
+                showingShareSheet = true
+                
+                // Haptic feedback
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                
+            } catch {
+                print("❌ Dosya kaydetme hatası: \(error)")
+            }
         }
     }
 }

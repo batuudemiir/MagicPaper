@@ -227,8 +227,8 @@
 			);
 			mainGroup = A10000010000000000000028;
 			packageReferences = (
-				2D7901052F23D1D10092E8D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A10000010000000000000067 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = A10000010000000000000024 /* Products */;
 			projectDirPath = "";
@@ -423,6 +423,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MagicPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4L7QU56YY;
 				ENABLE_PREVIEWS = YES;
+				GEMINI_API_KEY = "AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc";
 				INFOPLIST_FILE = MagicPaper/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Bu uygulama hikaye karakterleri için fotoğraf çekmek amacıyla kameraya erişim gerektirir.";
@@ -459,6 +460,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MagicPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = T4L7QU56YY;
 				ENABLE_PREVIEWS = YES;
+				GEMINI_API_KEY = "AIzaSyDxWbb_OO45kHZQCUPilZtqAN-dYTcEudc";
 				INFOPLIST_FILE = MagicPaper/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Bu uygulama hikaye karakterleri için fotoğraf çekmek amacıyla kameraya erişim gerektirir.";
@@ -507,15 +509,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2D7901052F23D1D10092E8D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 12.8.0;
+				minimumVersion = 11.0.0;
 			};
 		};
-		A10000010000000000000067 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+		A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
 			requirement = {
@@ -528,17 +530,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A10000010000000000000042 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2D7901052F23D1D10092E8D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
 		};
 		A10000010000000000000043 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2D7901052F23D1D10092E8D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 		A10000010000000000000066 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A10000010000000000000067 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			package = A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */

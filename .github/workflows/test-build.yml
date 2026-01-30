@@ -1,0 +1,33 @@
+name: Quick Test Build
+
+on:
+  push:
+    branches: [ develop, feature/* ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-build:
+    name: Test Build (Simulator Only)
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Build for Simulator
+      run: |
+        xcodebuild clean build \
+          -project MagicPaper.xcodeproj \
+          -scheme MagicPaper \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
+          
+    - name: Check Build Status
+      run: echo "✅ Build completed successfully!"

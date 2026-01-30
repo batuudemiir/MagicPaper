@@ -927,6 +927,17 @@ class StoryGenerationManager: ObservableObject {
         print("✅ Story deleted: \(id)")
     }
     
+    func updateLastReadPage(storyId: UUID, page: Int) {
+        guard let index = stories.firstIndex(where: { $0.id == storyId }) else {
+            return
+        }
+        
+        stories[index].lastReadPage = page
+        saveStories()
+        
+        print("📖 Updated reading progress for story \(storyId): page \(page)")
+    }
+    
     func getStory(id: UUID) -> Story? {
         return stories.first { $0.id == id }
     }

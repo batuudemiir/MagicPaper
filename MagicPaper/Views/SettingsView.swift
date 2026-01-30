@@ -16,30 +16,46 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                // Profil Bölümü
-                profileSection
-                
-                // Premium Bölümü
-                if !subscriptionManager.isPremium {
-                    premiumSection
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
+                    // Profil Bölümü
+                    profileSection
+                    
+                    // Premium Bölümü
+                    if !subscriptionManager.isPremium {
+                        premiumSection
+                    }
+                    
+                    // Hikaye Ayarları
+                    storySettingsSection
+                    
+                    // Uygulama Ayarları
+                    appSettingsSection
+                    
+                    // Hızlı İşlemler
+                    quickActionsSection
+                    
+                    // Hakkında ve Destek
+                    aboutSection
+                    
+                    // Tehlike Bölgesi
+                    dangerZoneSection
                 }
-                
-                // Hikaye Ayarları
-                storySettingsSection
-                
-                // Uygulama Ayarları
-                appSettingsSection
-                
-                // Hızlı İşlemler
-                quickActionsSection
-                
-                // Hakkında ve Destek
-                aboutSection
-                
-                // Tehlike Bölgesi
-                dangerZoneSection
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
+                .padding(.bottom, 32)
             }
+            .background(
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.98, green: 0.98, blue: 1.0),
+                        Color(red: 0.95, green: 0.96, blue: 0.98)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            )
             .navigationTitle("Ayarlar")
             .navigationBarTitleDisplayMode(.large)
         }
@@ -63,304 +79,494 @@ struct SettingsView: View {
     }
     
     private var profileSection: some View {
-        Section {
-            Button(action: {
-                showingProfileEdit = true
-            }) {
-                HStack(spacing: 16) {
-                    // Avatar
-                    ZStack {
-                        if let profileImage = profileManager.getProfileImage() {
-                            Image(uiImage: profileImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 60, height: 60)
-                                .clipShape(Circle())
-                        } else {
-                            Circle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [
-                                            Color(red: 0.58, green: 0.29, blue: 0.98),
-                                            Color(red: 0.85, green: 0.35, blue: 0.85),
-                                            Color(red: 1.0, green: 0.45, blue: 0.55)
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .frame(width: 60, height: 60)
-                            
-                            Text(profileManager.profile.name.isEmpty ? "👤" : String(profileManager.profile.name.prefix(1)).uppercased())
-                                .font(.title2.bold())
-                                .foregroundColor(.white)
-                        }
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(profileManager.profile.name.isEmpty ? "Profil Oluştur" : profileManager.profile.name)
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        
-                        HStack(spacing: 4) {
-                            if subscriptionManager.isPremium {
-                                Text("👑 Premium Üye")
-                                    .font(.caption)
-                                    .foregroundColor(.orange)
-                            } else {
-                                Text("Ücretsiz Hesap")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        
-                        Text("\(StoryGenerationManager.shared.stories.count) Hikaye")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.gray)
-                }
-                .padding(.vertical, 8)
-            }
-            .buttonStyle(PlainButtonStyle())
-        }
-    }
-    
-    private var premiumSection: some View {
-        Section {
-            Button(action: {
-                showingUpgradeSheet = true
-            }) {
-                HStack(spacing: 12) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
+        Button(action: {
+            showingProfileEdit = true
+        }) {
+            HStack(spacing: 16) {
+                // Avatar
+                ZStack {
+                    if let profileImage = profileManager.getProfileImage() {
+                        Image(uiImage: profileImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 3)
+                            )
+                            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+                    } else {
+                        Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [Color.orange, Color.yellow],
+                                    colors: [
+                                        Color(red: 0.58, green: 0.29, blue: 0.98),
+                                        Color(red: 0.85, green: 0.35, blue: 0.85),
+                                        Color(red: 1.0, green: 0.45, blue: 0.55)
+                                    ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .frame(width: 44, height: 44)
+                            .frame(width: 70, height: 70)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 3)
+                            )
+                            .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3), radius: 12, x: 0, y: 6)
                         
-                        Text("👑")
-                            .font(.system(size: 24))
+                        Text(profileManager.profile.name.isEmpty ? "👤" : String(profileManager.profile.name.prefix(1)).uppercased())
+                            .font(.title.bold())
+                            .foregroundColor(.white)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(profileManager.profile.name.isEmpty ? "Profil Oluştur" : profileManager.profile.name)
+                        .font(.title3.bold())
+                        .foregroundColor(.primary)
+                    
+                    HStack(spacing: 6) {
+                        if subscriptionManager.isPremium {
+                            HStack(spacing: 4) {
+                                Text("👑")
+                                    .font(.caption)
+                                Text("Premium Üye")
+                                    .font(.caption.bold())
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(
+                                LinearGradient(
+                                    colors: [.orange, .yellow],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(8)
+                        } else {
+                            Text("Ücretsiz Hesap")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Premium'a Yükselt")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        
-                        Text("Sınırsız hikaye ve özel temalar")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-                .padding(.vertical, 4)
-            }
-        }
-    }
-    
-    private var storySettingsSection: some View {
-        Section("Hikaye Ayarları") {
-            // Varsayılan Dil
-            HStack {
-                settingIcon("globe", color: .blue)
-                Text("Varsayılan Dil")
-                Spacer()
-                Picker("", selection: $selectedLanguage) {
-                    Text("🇹🇷 Türkçe").tag(StoryLanguage.turkish)
-                    Text("🇬🇧 English").tag(StoryLanguage.english)
-                }
-                .pickerStyle(.menu)
-            }
-            
-            // Varsayılan Yaş Aralığı
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    settingIcon("person.fill", color: .green)
-                    Text("Varsayılan Yaş")
-                    Spacer()
-                    Text("\(defaultAgeRange) yaş")
+                    Text("\(StoryGenerationManager.shared.stories.count) Hikaye")
+                        .font(.caption)
                         .foregroundColor(.secondary)
                 }
                 
-                Slider(value: Binding(
-                    get: { Double(defaultAgeRange) },
-                    set: { defaultAgeRange = Int($0) }
-                ), in: 3...12, step: 1)
-                .tint(.green)
-            }
-            
-            // Görsel Kalitesi
-            HStack {
-                settingIcon("photo.fill", color: .purple)
-                Text("Yüksek Kalite Görseller")
                 Spacer()
-                Toggle("", isOn: $highQualityImages)
-                    .tint(.purple)
+                
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.gray.opacity(0.4))
             }
+            .padding(20)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.white)
+                .shadow(color: .black.opacity(0.06), radius: 16, x: 0, y: 4)
+        )
+    }
+    
+    private var premiumSection: some View {
+        Button(action: {
+            showingUpgradeSheet = true
+        }) {
+            HStack(spacing: 16) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.orange, Color.yellow],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 56, height: 56)
+                        .shadow(color: .orange.opacity(0.3), radius: 12, x: 0, y: 6)
+                    
+                    Text("👑")
+                        .font(.system(size: 28))
+                }
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Premium'a Yükselt")
+                        .font(.title3.bold())
+                        .foregroundColor(.primary)
+                    
+                    Text("Sınırsız hikaye ve özel temalar")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "arrow.right.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(Color.orange)
+            }
+            .padding(20)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(
+                            LinearGradient(
+                                colors: [Color.orange.opacity(0.3), Color.yellow.opacity(0.3)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 2
+                        )
+                )
+                .shadow(color: .orange.opacity(0.15), radius: 16, x: 0, y: 4)
+        )
+    }
+    
+    private var storySettingsSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Hikaye Ayarları")
+                .font(.title3.bold())
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
+            
+            VStack(spacing: 12) {
+                // Varsayılan Dil
+                HStack {
+                    settingIcon("globe", color: .blue)
+                    Text("Varsayılan Dil")
+                        .font(.subheadline)
+                    Spacer()
+                    Picker("", selection: $selectedLanguage) {
+                        Text("🇹🇷 Türkçe").tag(StoryLanguage.turkish)
+                        Text("🇬🇧 English").tag(StoryLanguage.english)
+                    }
+                    .pickerStyle(.menu)
+                }
+                .padding(16)
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                // Varsayılan Yaş Aralığı
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        settingIcon("person.fill", color: .green)
+                        Text("Varsayılan Yaş")
+                            .font(.subheadline)
+                        Spacer()
+                        Text("\(defaultAgeRange) yaş")
+                            .font(.subheadline.bold())
+                            .foregroundColor(.green)
+                    }
+                    
+                    Slider(value: Binding(
+                        get: { Double(defaultAgeRange) },
+                        set: { defaultAgeRange = Int($0) }
+                    ), in: 3...12, step: 1)
+                    .tint(.green)
+                }
+                .padding(16)
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                // Görsel Kalitesi
+                HStack {
+                    settingIcon("photo.fill", color: .purple)
+                    Text("Yüksek Kalite Görseller")
+                        .font(.subheadline)
+                    Spacer()
+                    Toggle("", isOn: $highQualityImages)
+                        .tint(.purple)
+                }
+                .padding(16)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white)
+                    .shadow(color: .black.opacity(0.06), radius: 16, x: 0, y: 4)
+            )
         }
     }
     
     private var appSettingsSection: some View {
-        Section("Uygulama Ayarları") {
-            HStack {
-                settingIcon("bell.fill", color: .orange)
-                Text("Bildirimler")
-                Spacer()
-                Toggle("", isOn: $notificationsEnabled)
-                    .tint(.orange)
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Uygulama Ayarları")
+                .font(.title3.bold())
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
             
-            HStack {
-                settingIcon("square.and.arrow.down.fill", color: .cyan)
-                Text("Otomatik Kaydet")
-                Spacer()
-                Toggle("", isOn: $autoSaveEnabled)
-                    .tint(.cyan)
+            VStack(spacing: 12) {
+                HStack {
+                    settingIcon("bell.fill", color: .orange)
+                    Text("Bildirimler")
+                        .font(.subheadline)
+                    Spacer()
+                    Toggle("", isOn: $notificationsEnabled)
+                        .tint(.orange)
+                }
+                .padding(16)
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                HStack {
+                    settingIcon("square.and.arrow.down.fill", color: .cyan)
+                    Text("Otomatik Kaydet")
+                        .font(.subheadline)
+                    Spacer()
+                    Toggle("", isOn: $autoSaveEnabled)
+                        .tint(.cyan)
+                }
+                .padding(16)
             }
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white)
+                    .shadow(color: .black.opacity(0.06), radius: 16, x: 0, y: 4)
+            )
         }
     }
     
     private var quickActionsSection: some View {
-        Section("Hızlı İşlemler") {
-            NavigationLink(destination: CreateStoryView()) {
-                HStack {
-                    settingIcon("plus.circle.fill", color: .indigo)
-                    Text("Yeni Hikaye Oluştur")
-                }
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Hızlı İşlemler")
+                .font(.title3.bold())
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
             
-            NavigationLink(destination: LibraryView()) {
-                HStack {
-                    settingIcon("books.vertical.fill", color: .green)
-                    Text("Hikaye Kütüphanem")
-                    Spacer()
-                    Text("\(StoryGenerationManager.shared.stories.count)")
-                        .foregroundColor(.secondary)
-                        .font(.subheadline)
+            VStack(spacing: 12) {
+                NavigationLink(destination: CreateStoryView()) {
+                    HStack {
+                        settingIcon("plus.circle.fill", color: .indigo)
+                        Text("Yeni Hikaye Oluştur")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                NavigationLink(destination: LibraryView()) {
+                    HStack {
+                        settingIcon("books.vertical.fill", color: .green)
+                        Text("Hikaye Kütüphanem")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Text("\(StoryGenerationManager.shared.stories.count)")
+                            .font(.subheadline.bold())
+                            .foregroundColor(.green)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: shareApp) {
+                    HStack {
+                        settingIcon("square.and.arrow.up.fill", color: .blue)
+                        Text("Uygulamayı Paylaş")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
                 }
             }
-            
-            Button(action: shareApp) {
-                HStack {
-                    settingIcon("square.and.arrow.up.fill", color: .blue)
-                    Text("Uygulamayı Paylaş")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-            }
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white)
+                    .shadow(color: .black.opacity(0.06), radius: 16, x: 0, y: 4)
+            )
         }
     }
     
     private var aboutSection: some View {
-        Section("Hakkında ve Destek") {
-            Button(action: { showingAboutSheet = true }) {
-                HStack {
-                    settingIcon("info.circle.fill", color: .blue)
-                    Text("Uygulama Hakkında")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Hakkında ve Destek")
+                .font(.title3.bold())
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
             
-            Button(action: rateApp) {
-                HStack {
-                    settingIcon("star.fill", color: .yellow)
-                    Text("Uygulamayı Değerlendir")
-                    Spacer()
-                    Image(systemName: "arrow.up.right.square")
-                        .foregroundColor(.gray)
+            VStack(spacing: 12) {
+                Button(action: { showingAboutSheet = true }) {
+                    HStack {
+                        settingIcon("info.circle.fill", color: .blue)
+                        Text("Uygulama Hakkında")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: rateApp) {
+                    HStack {
+                        settingIcon("star.fill", color: .yellow)
+                        Text("Uygulamayı Değerlendir")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: contactSupport) {
+                    HStack {
+                        settingIcon("envelope.fill", color: .cyan)
+                        Text("Destek İletişim")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: openPrivacyPolicy) {
+                    HStack {
+                        settingIcon("shield.checkered", color: .green)
+                        Text("Gizlilik Politikası")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: openTermsOfService) {
+                    HStack {
+                        settingIcon("doc.text.fill", color: .gray)
+                        Text("Kullanım Şartları")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
                 }
             }
-            
-            Button(action: contactSupport) {
-                HStack {
-                    settingIcon("envelope.fill", color: .cyan)
-                    Text("Destek İletişim")
-                    Spacer()
-                    Image(systemName: "arrow.up.right.square")
-                        .foregroundColor(.gray)
-                }
-            }
-            
-            Button(action: openPrivacyPolicy) {
-                HStack {
-                    settingIcon("shield.checkered", color: .green)
-                    Text("Gizlilik Politikası")
-                    Spacer()
-                    Image(systemName: "arrow.up.right.square")
-                        .foregroundColor(.gray)
-                }
-            }
-            
-            Button(action: openTermsOfService) {
-                HStack {
-                    settingIcon("doc.text.fill", color: .gray)
-                    Text("Kullanım Şartları")
-                    Spacer()
-                    Image(systemName: "arrow.up.right.square")
-                        .foregroundColor(.gray)
-                }
-            }
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white)
+                    .shadow(color: .black.opacity(0.06), radius: 16, x: 0, y: 4)
+            )
         }
     }
     
     private var dangerZoneSection: some View {
-        Section("Tehlike Bölgesi") {
-            // Test butonu - Premium durumunu değiştir
-            Button(action: {
-                if subscriptionManager.isPremium {
-                    subscriptionManager.downgradeToPremium()
-                } else {
-                    subscriptionManager.upgradeToPremium()
-                }
-            }) {
-                HStack {
-                    settingIcon("crown.fill", color: .orange)
-                    Text(subscriptionManager.isPremium ? "🧪 Premium'u Kaldır (Test)" : "🧪 Premium Yap (Test)")
-                        .foregroundColor(.orange)
-                }
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Tehlike Bölgesi")
+                .font(.title3.bold())
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
             
-            Button(action: {
-                showingClearDataAlert = true
-            }) {
-                HStack {
-                    settingIcon("trash.fill", color: .red)
-                    Text("Tüm Verileri Temizle")
-                        .foregroundColor(.red)
+            VStack(spacing: 12) {
+                // Test butonu - Premium durumunu değiştir
+                Button(action: {
+                    if subscriptionManager.isPremium {
+                        subscriptionManager.downgradeToPremium()
+                    } else {
+                        subscriptionManager.upgradeToPremium()
+                    }
+                }) {
+                    HStack {
+                        settingIcon("crown.fill", color: .orange)
+                        Text(subscriptionManager.isPremium ? "🧪 Premium'u Kaldır (Test)" : "🧪 Premium Yap (Test)")
+                            .font(.subheadline)
+                            .foregroundColor(.orange)
+                        Spacer()
+                    }
+                    .padding(16)
+                }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: {
+                    showingClearDataAlert = true
+                }) {
+                    HStack {
+                        settingIcon("trash.fill", color: .red)
+                        Text("Tüm Verileri Temizle")
+                            .font(.subheadline)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    .padding(16)
                 }
             }
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.red.opacity(0.2), lineWidth: 2)
+                    )
+                    .shadow(color: .red.opacity(0.1), radius: 16, x: 0, y: 4)
+            )
         }
     }
     
     private func settingIcon(_ systemName: String, color: Color) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 6)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(color.opacity(0.15))
-                .frame(width: 28, height: 28)
+                .frame(width: 36, height: 36)
             
             Image(systemName: systemName)
                 .foregroundColor(color)
-                .font(.system(size: 14, weight: .semibold))
+                .font(.system(size: 16, weight: .semibold))
+                .symbolRenderingMode(.hierarchical)
         }
     }
     
