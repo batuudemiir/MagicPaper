@@ -5,11 +5,13 @@ struct CreateStoryView: View {
     @StateObject private var aiService = AIService.shared
     @StateObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var adManager = AdMobManager.shared
+    @StateObject private var localizationManager = LocalizationManager.shared
     
     @State private var childName = ""
     @State private var age = ""
     @State private var selectedGender = Gender.other
     @State private var selectedTheme = StoryTheme.fantasy
+    @AppStorage("defaultLanguage") private var defaultLanguageRaw = "tr"
     @State private var selectedLanguage = StoryLanguage.turkish
     @State private var customTitle = ""
     @State private var selectedPhoto: UIImage?
@@ -36,15 +38,15 @@ struct CreateStoryView: View {
                         photoSection
                         basicInfoSection
                         themeSection
-                        languageSection
                         generateButton
                             .padding(.bottom, 20)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, DeviceHelper.horizontalPadding)
                     .padding(.top)
                     .padding(.bottom, max(geometry.safeAreaInsets.bottom + 20, 40))
                     .frame(minHeight: geometry.size.height)
                 }
+                .frame(maxWidth: .infinity)
                 .background(
                     ZStack {
                         // İkon renklerine uygun gradient
@@ -65,8 +67,13 @@ struct CreateStoryView: View {
                     .ignoresSafeArea()
                 )
             }
-            .navigationTitle("Hikaye Oluştur")
+            .navigationTitle(localizationManager.localized(.createStory))
             .navigationBarTitleDisplayMode(.large)
+        }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
+        .onAppear {
+            // Varsayılan dili yükle
+            selectedLanguage = StoryLanguage(rawValue: defaultLanguageRaw) ?? .turkish
         }
         .alert(alertTitle, isPresented: $showingAlert) {
             Button("Tamam") { }
@@ -83,11 +90,11 @@ struct CreateStoryView: View {
     
     private var photoSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Çocuğun Fotoğrafı")
+            Text(localizationManager.localized(.childPhoto))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
             
-            Text("Hikayenin kahramanı için bir fotoğraf seçin")
+            Text(localizationManager.localized(.photoDescription))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
@@ -156,11 +163,11 @@ struct CreateStoryView: View {
                             .foregroundColor(.indigo)
                         
                         VStack(spacing: 4) {
-                            Text("Fotoğraf Ekle")
+                            Text(localizationManager.localized(.addPhoto))
                                 .font(.headline)
                                 .foregroundColor(.primary)
                             
-                            Text("Çocuğun yüzünün net göründüğü bir fotoğraf seçin")
+                            Text(localizationManager.localized(.photoDescription))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
@@ -194,18 +201,18 @@ struct CreateStoryView: View {
     
     private var basicInfoSection: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Temel Bilgiler")
+            Text(localizationManager.localized(.basicInfo))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
             
             VStack(spacing: 16) {
                 // İsim
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("İsim")
+                    Text(localizationManager.localized(.name))
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
-                    TextField("Çocuğun ismi", text: $childName)
+                    TextField(localizationManager.localized(.childName), text: $childName)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(
@@ -216,11 +223,11 @@ struct CreateStoryView: View {
                 
                 // Yaş
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Yaş")
+                    Text(localizationManager.localized(.age))
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
-                    TextField("Yaş (1-12)", text: $age)
+                    TextField(localizationManager.localized(.age) + " (1-12)", text: $age)
                         .keyboardType(.numberPad)
                         .textFieldStyle(.plain)
                         .padding()
@@ -232,7 +239,7 @@ struct CreateStoryView: View {
                 
                 // Cinsiyet - Modern Segmented Control
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Cinsiyet")
+                    Text(localizationManager.localized(.gender))
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
@@ -287,17 +294,17 @@ struct CreateStoryView: View {
     
     private var themeSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Hikaye Teması")
+            Text(localizationManager.localized(.storyTheme))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
             
-            Text("Maceranın türünü seçin")
+            Text(localizationManager.localized(.selectAdventure))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
             // Ücretsiz Temalar
             VStack(alignment: .leading, spacing: 12) {
-                Text("Ücretsiz Temalar")
+                Text(localizationManager.localized(.freeThemes))
                     .font(.caption.bold())
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
@@ -312,7 +319,7 @@ struct CreateStoryView: View {
             // Premium Temalar
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("Premium Temalar")
+                    Text(localizationManager.localized(.premiumThemes))
                         .font(.caption.bold())
                         .foregroundColor(.secondary)
                         .textCase(.uppercase)
@@ -330,11 +337,11 @@ struct CreateStoryView: View {
             
             if selectedTheme == .custom {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Özel Hikaye Konusu")
+                    Text(localizationManager.localized(.customStoryTopic))
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
-                    TextField("Örn: Dinozorlarla macera", text: $customTitle)
+                    TextField(localizationManager.currentLanguage == .turkish ? "Örn: Dinozorlarla macera" : "e.g: Adventure with dinosaurs", text: $customTitle)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(
@@ -411,74 +418,10 @@ struct CreateStoryView: View {
         .opacity(theme.isPremium && !subscriptionManager.isPremium ? 0.7 : 1.0)
     }
     
-    private var languageSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Hikaye Dili")
-                .font(.title3.bold())
-                .foregroundColor(.primary)
-            
-            Text("Hikayenin hangi dilde yazılmasını istersiniz?")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(StoryLanguage.allCases, id: \.self) { language in
-                        languageButton(language: language)
-                    }
-                }
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
-        )
-    }
-    
-    private func languageButton(language: StoryLanguage) -> some View {
-        Button(action: {
-            withAnimation(.spring(response: 0.3)) {
-                selectedLanguage = language
-            }
-        }) {
-            VStack(spacing: 8) {
-                Text(language.flag)
-                    .font(.system(size: 32))
-                
-                Text(language.displayName)
-                    .font(.caption.bold())
-                    .foregroundColor(selectedLanguage == language ? .white : .primary)
-            }
-            .frame(width: 80)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(selectedLanguage == language ? 
-                          LinearGradient(
-                            colors: [
-                                Color(red: 0.58, green: 0.29, blue: 0.98),
-                                Color(red: 0.85, green: 0.35, blue: 0.85)
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                          ) : 
-                          LinearGradient(
-                            colors: [Color(.systemGray6), Color(.systemGray6)],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                          )
-                    )
-                    .shadow(color: selectedLanguage == language ? Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3) : .clear, radius: 4, x: 0, y: 2)
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
     
     private var generateButton: some View {
         VStack(spacing: 16) {
-            // Abonelik durumu bilgisi
+            // Hikaye Kulübü durumu bilgisi
             subscriptionStatusBanner
             
             Button(action: generateStory) {
@@ -491,7 +434,7 @@ struct CreateStoryView: View {
                         Image(systemName: "sparkles")
                     }
                     
-                    Text(isGenerating ? generationProgress : "Hikaye Oluştur")
+                    Text(isGenerating ? generationProgress : localizationManager.localized(.generateStory))
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -529,7 +472,7 @@ struct CreateStoryView: View {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
-                    Text("Lütfen tüm alanları doldurun ve fotoğraf ekleyin")
+                    Text(localizationManager.localized(.fillAllFields))
                         .font(.caption)
                         .foregroundColor(.orange)
                 }
@@ -590,7 +533,7 @@ struct CreateStoryView: View {
                                 .foregroundColor(.primary)
                         }
                     } else {
-                        Text("Abonelik Gerekli")
+                        Text("Kulüp Üyeliği Gerekli")
                             .font(.caption.bold())
                             .foregroundColor(.secondary)
                         
@@ -603,13 +546,13 @@ struct CreateStoryView: View {
                 Spacer()
             }
             
-            // Abonelik gerekiyorsa uyarı
+            // Hikaye Kulübü gerekiyorsa uyarı
             if !subscriptionManager.canCreateStory(type: .image) {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
                     
-                    Text("Görselli hikaye oluşturmak için abonelik gerekiyor.")
+                    Text("Görselli hikaye oluşturmak için kulüp üyeliği gerekiyor.")
                         .font(.caption)
                         .foregroundColor(.orange)
                     
@@ -621,7 +564,7 @@ struct CreateStoryView: View {
                         HStack(spacing: 4) {
                             Text("☕️")
                                 .font(.caption2)
-                            Text("Abone Ol")
+                            Text("Kulübe Katıl")
                                 .font(.caption.bold())
                         }
                         .foregroundColor(.white)
@@ -685,32 +628,36 @@ struct CreateStoryView: View {
     
     private func generateStory() {
         guard isFormValid else {
-            alertTitle = "⚠️ Eksik Bilgi"
-            alertMessage = "Lütfen tüm gerekli alanları doldurun ve bir fotoğraf ekleyin."
+            alertTitle = "⚠️ \(localizationManager.localized(.missingInfo))"
+            alertMessage = localizationManager.localized(.fillAllFields)
             showingAlert = true
             return
         }
         
-        // Abonelik kontrolü
+        // Hikaye Kulübü kontrolü
         if !subscriptionManager.canCreateStory(type: .image) {
-            alertTitle = "⚠️ Abonelik Gerekli"
-            alertMessage = "Görselli hikaye oluşturmak için abonelik gerekiyor.\n\n☕️ Günde sadece 3₺ ile sınırsız hikaye!"
+            alertTitle = "⚠️ \(localizationManager.localized(.clubMembershipRequired))"
+            alertMessage = localizationManager.currentLanguage == .turkish ? 
+                "Görselli hikaye oluşturmak için kulüp üyeliği gerekiyor.\n\n☕️ Günde sadece 3₺ ile sınırsız hikaye!" :
+                "Club membership required to create illustrated stories.\n\n☕️ Only $1/day for unlimited stories!"
             showingAlert = true
             showingPremiumSheet = true
             return
         }
         
         guard let photo = selectedPhoto else {
-            alertTitle = "⚠️ Fotoğraf Gerekli"
-            alertMessage = "Lütfen bir fotoğraf seçin."
+            alertTitle = "⚠️ \(localizationManager.localized(.photoRequired))"
+            alertMessage = localizationManager.localized(.selectPhotoFirst)
             showingAlert = true
             return
         }
         
-        // Abonelik/deneme hakkını kullan
+        // Üyelik/deneme hakkını kullan
         guard subscriptionManager.useStory(type: .image) else {
-            alertTitle = "⚠️ Abonelik Gerekli"
-            alertMessage = "Görselli hikaye oluşturmak için abonelik gerekiyor."
+            alertTitle = "⚠️ \(localizationManager.localized(.clubMembershipRequired))"
+            alertMessage = localizationManager.currentLanguage == .turkish ?
+                "Görselli hikaye oluşturmak için kulüp üyeliği gerekiyor." :
+                "Club membership required to create illustrated stories."
             showingAlert = true
             return
         }
@@ -741,8 +688,8 @@ struct CreateStoryView: View {
                 }
                 
                 // Başarı mesajı
-                self.alertTitle = "✨ Hikaye Oluşturuluyor"
-                self.alertMessage = "Hikayeniz oluşturuluyor!\n\nHikayenin tamamlanabilmesi için lütfen uygulamadan çıkmayınız. İlerlemeyi Kütüphane sekmesinden takip edebilirsiniz."
+                self.alertTitle = "✨ \(localizationManager.localized(.storyGenerating))"
+                self.alertMessage = localizationManager.localized(.storyGeneratingMessage)
                 self.showingAlert = true
                 
                 // Formu temizle

@@ -4,6 +4,7 @@ struct HomeView: View {
     @StateObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var dailyStoryManager = DailyStoryManager.shared
     @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @StateObject private var localizationManager = LocalizationManager.shared
     @State private var selectedStory: Story?
     @State private var selectedDailyStory: DailyStory?
     @State private var showingSubscriptionSheet = false
@@ -15,16 +16,14 @@ struct HomeView: View {
                 VStack(spacing: 20) {
                     // Hero Section - Tanıtıcı
                     heroSection
-                        .padding(.horizontal, 20)
-                        .padding(.top, 8)
                     
-                    // Header - Abonelik ve Hızlı Aksiyonlar
+                    // Header - Hikaye Kulübü ve Hızlı Aksiyonlar
                     headerSection
-                        .padding(.horizontal, 20)
                     
                     // Günlük Hikayeler Feed - Instagram tarzı
                     dailyStoriesFeed
                 }
+                .padding(.horizontal, DeviceHelper.horizontalPadding)
             }
             .background(Color(.systemGroupedBackground).ignoresSafeArea())
             .navigationBarTitleDisplayMode(.inline)
@@ -32,11 +31,11 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
                         NavigationLink(destination: SettingsView()) {
-                            Label("Ayarlar", systemImage: "gearshape.fill")
+                            Label(localizationManager.localized(.settings), systemImage: "gearshape.fill")
                         }
                         
                         NavigationLink(destination: LibraryView()) {
-                            Label("Kütüphanem", systemImage: "books.vertical.fill")
+                            Label(localizationManager.localized(.myLibrary), systemImage: "books.vertical.fill")
                         }
                         
                         Divider()
@@ -44,39 +43,143 @@ struct HomeView: View {
                         Button(action: {
                             showingSubscriptionSheet = true
                         }) {
-                            Label("Abonelik", systemImage: "crown.fill")
+                            Label(localizationManager.localized(.storyClub), systemImage: "crown.fill")
                         }
                         
                         Divider()
                         
                         NavigationLink(destination: DailyStoriesView()) {
-                            Label("Günlük Hikayeler", systemImage: "calendar")
+                            Label(localizationManager.localized(.dailyStories), systemImage: "calendar")
                         }
                     } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .font(.title3)
-                            .foregroundColor(.primary)
+                        ZStack {
+                            Circle()
+                                .fill(Color(.systemGray6))
+                                .frame(width: 36, height: 36)
+                            
+                            Image(systemName: "line.3.horizontal")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(.primary)
+                        }
                     }
                 }
                 
                 ToolbarItem(placement: .principal) {
-                    Text("MagicPaper")
-                        .font(.title2.bold())
-                        .foregroundColor(.primary)
+                    HStack(spacing: 6) {
+                        Text("✨")
+                            .font(.title3)
+                        Text("MagicPaper")
+                            .font(.title3.bold())
+                            .foregroundColor(.primary)
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingSubscriptionSheet = true
                     }) {
-                        Image(systemName: subscriptionManager.isPremium ? "crown.fill" : "plus.circle.fill")
-                            .foregroundColor(subscriptionManager.isPremium ? .yellow : .orange)
-                            .font(.title3)
+                        if subscriptionManager.isPremium {
+                            // Premium kullanıcı - Parlayan taç
+                            ZStack {
+                                // Dış halka - parlama efekti
+                                Circle()
+                                    .fill(
+                                        RadialGradient(
+                                            colors: [Color.yellow.opacity(0.3), Color.clear],
+                                            center: .center,
+                                            startRadius: 0,
+                                            endRadius: 25
+                                        )
+                                    )
+                                    .frame(width: 50, height: 50)
+                                
+                                // İç daire
+                                Circle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [Color.yellow.opacity(0.3), Color.orange.opacity(0.3)],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 40, height: 40)
+                                
+                                // Taç emoji
+                                Text("👑")
+                                    .font(.system(size: 22))
+                            }
+                        } else if subscriptionManager.freeTrialCount > 0 {
+                            // Deneme kullanıcısı - Hediye paketi
+                            ZStack {
+                                // Arka plan
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [Color.green.opacity(0.2), Color.blue.opacity(0.2)],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 100, height: 40)
+                                
+                                HStack(spacing: 6) {
+                                    Text("🎁")
+                                        .font(.system(size: 18))
+                                    
+                                    VStack(spacing: 0) {
+                                        Text("\(subscriptionManager.freeTrialCount)")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundColor(.green)
+                                        Text("kaldı")
+                                            .font(.system(size: 8, weight: .medium))
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                            }
+                        } else {
+                            // Ücretsiz kullanıcı - Sihirli buton
+                            ZStack {
+                                // Animasyonlu arka plan
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [
+                                                Color(red: 0.58, green: 0.29, blue: 0.98), // Mor
+                                                Color(red: 0.85, green: 0.35, blue: 0.85), // Pembe
+                                                Color(red: 1.0, green: 0.45, blue: 0.55)   // Kırmızı-pembe
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 110, height: 40)
+                                    .shadow(color: Color.purple.opacity(0.3), radius: 8, x: 0, y: 4)
+                                
+                                // İçerik
+                                HStack(spacing: 6) {
+                                    Text("✨")
+                                        .font(.system(size: 16))
+                                    
+                                    VStack(spacing: 0) {
+                                        Text("Sihir")
+                                            .font(.system(size: 13, weight: .bold))
+                                            .foregroundColor(.white)
+                                        Text("Aç")
+                                            .font(.system(size: 10, weight: .semibold))
+                                            .foregroundColor(.white.opacity(0.9))
+                                    }
+                                    
+                                    Text("🌟")
+                                        .font(.system(size: 14))
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        .sheet(item: $selectedStory) { story in
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
+        .fullScreenCover(item: $selectedStory) { story in
             StoryViewerView(story: story)
         }
         .sheet(isPresented: $showingDailyStoryReader) {
@@ -228,7 +331,7 @@ struct HomeView: View {
     
     private var headerSection: some View {
         VStack(spacing: 16) {
-            // Abonelik durumu kartı
+            // Hikaye Kulübü durumu
             subscriptionStatusCard
             
             // Hızlı aksiyonlar
@@ -241,7 +344,7 @@ struct HomeView: View {
             showingSubscriptionSheet = true
         }) {
             HStack(spacing: 12) {
-                // İkon
+                // İkon - Daha büyük ve eğlenceli
                 ZStack {
                     Circle()
                         .fill(
@@ -255,53 +358,109 @@ struct HomeView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .frame(width: 48, height: 48)
+                        .frame(width: 56, height: 56)
+                    
+                    // Dış halka efekti
+                    Circle()
+                        .stroke(
+                            subscriptionManager.isPremium ? Color.yellow.opacity(0.3) :
+                            subscriptionManager.freeTrialCount > 0 ? Color.green.opacity(0.3) :
+                            Color.purple.opacity(0.3),
+                            lineWidth: 2
+                        )
+                        .frame(width: 64, height: 64)
                     
                     Text(subscriptionManager.isPremium ? "👑" : subscriptionManager.freeTrialCount > 0 ? "🎁" : "✨")
-                        .font(.system(size: 24))
+                        .font(.system(size: 28))
                 }
                 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 6) {
                     if subscriptionManager.isPremium {
-                        Text(subscriptionManager.subscriptionTier.displayName)
-                            .font(.subheadline.bold())
-                            .foregroundColor(.primary)
+                        HStack(spacing: 6) {
+                            Text(subscriptionManager.subscriptionTier.displayName)
+                                .font(.subheadline.bold())
+                                .foregroundColor(.primary)
+                            
+                            // Parlama efekti
+                            Text("✨")
+                                .font(.caption)
+                        }
                         
-                        Text("\(subscriptionManager.remainingImageStories) görselli kaldı")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                        HStack(spacing: 4) {
+                            Text("\(subscriptionManager.remainingImageStories)")
+                                .font(.title3.bold())
+                                .foregroundColor(.orange)
+                            Text("görselli kaldı")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     } else if subscriptionManager.freeTrialCount > 0 {
-                        Text("🎁 \(subscriptionManager.freeTrialCount) Deneme Kaldı")
-                            .font(.subheadline.bold())
-                            .foregroundColor(.green)
+                        HStack(spacing: 6) {
+                            Text("🎁 Deneme Aktif")
+                                .font(.subheadline.bold())
+                                .foregroundColor(.green)
+                        }
                         
-                        Text("Ücretsiz hikayelerinizi kullanın")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                        HStack(spacing: 4) {
+                            Text("\(subscriptionManager.freeTrialCount)")
+                                .font(.title3.bold())
+                                .foregroundColor(.green)
+                            Text("hikaye hakkın var!")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     } else {
-                        Text("☕️ Kahveden Ucuz!")
-                            .font(.subheadline.bold())
-                            .foregroundColor(.orange)
+                        // Ücretsiz Paket - Daha eğlenceli
+                        HStack(spacing: 6) {
+                            Text("📦 Ücretsiz Paket")
+                                .font(.subheadline.bold())
+                                .foregroundColor(.primary)
+                        }
                         
-                        Text("Günde 3₺ ile sınırsız hikaye")
+                        Text("Sihri aç, sınırsız hikaye!")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.purple)
+                            .fontWeight(.medium)
                     }
                 }
                 
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.gray.opacity(0.4))
-                    .font(.caption)
+                // Sağ taraf - Eğlenceli CTA
+                if !subscriptionManager.isPremium {
+                    VStack(spacing: 4) {
+                        ZStack {
+                            Circle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [Color.purple, Color.pink],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .frame(width: 44, height: 44)
+                            
+                            Text("🚀")
+                                .font(.system(size: 20))
+                        }
+                        
+                        Text("Yükselt")
+                            .font(.caption2.bold())
+                            .foregroundColor(.purple)
+                    }
+                } else {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.gray.opacity(0.4))
+                        .font(.caption)
+                }
             }
-            .padding(12)
+            .padding(16)
         }
         .buttonStyle(PlainButtonStyle())
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 20)
                 .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+                .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 4)
         )
     }
     
@@ -363,7 +522,6 @@ struct HomeView: View {
                     .padding(.top, 20)
             }
         }
-        .padding(.horizontal, 20)
         .padding(.top, 8)
         .padding(.bottom, 32)
     }

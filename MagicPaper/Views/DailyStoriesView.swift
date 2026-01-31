@@ -5,8 +5,6 @@ struct DailyStoriesView: View {
     @StateObject private var subscriptionManager = SubscriptionManager.shared
     @State private var selectedCategory: DailyStoryCategory? = nil
     @State private var selectedStory: DailyStory? = nil
-    @State private var showingStoryReader = false
-    @State private var showingCreateStory = false
     @State private var selectedCategoryForCreation: DailyStoryCategory? = nil
     @State private var showingLimitAlert = false
     @State private var showingPremiumSheet = false
@@ -61,29 +59,25 @@ struct DailyStoriesView: View {
         .navigationTitle("Günlük Hikayeler")
         .navigationBarTitleDisplayMode(.large)
         .preferredColorScheme(.light)
-        .sheet(isPresented: $showingStoryReader) {
-            if let story = selectedStory {
-                DailyStoryReaderView(story: story)
-            }
+        .sheet(item: $selectedStory) { story in
+            DailyStoryReaderView(story: story)
         }
-        .sheet(isPresented: $showingCreateStory) {
-            if let category = selectedCategoryForCreation {
-                DailyStoryCreationView(category: category)
-            }
+        .sheet(item: $selectedCategoryForCreation) { category in
+            DailyStoryCreationView(category: category)
         }
         .sheet(isPresented: $showingPremiumSheet) {
             SimpleSubscriptionView()
         }
-        .alert("Abonelik Gerekli", isPresented: $showingLimitAlert) {
+        .alert("Hikaye Kulübü Gerekli", isPresented: $showingLimitAlert) {
             Button("Tamam", role: .cancel) { }
-            Button("Abone Ol") {
+            Button("Kulübe Katıl") {
                 showingPremiumSheet = true
             }
         } message: {
             if subscriptionManager.freeTrialCount > 0 {
-                Text("Ücretsiz deneme hakkınız bitti. Sınırsız hikaye için abone olun!")
+                Text("Ücretsiz deneme hakkınız bitti. Sınırsız hikaye için kulübe katıl!")
             } else {
-                Text("Günlük hikaye oluşturmak için abonelik gerekiyor. Günde 3₺ ile sınırsız hikaye!")
+                Text("Günlük hikaye oluşturmak için kulüp üyeliği gerekiyor. Günde 3₺ ile sınırsız hikaye!")
             }
         }
     }
@@ -112,7 +106,7 @@ struct DailyStoriesView: View {
                         .font(.caption)
                         .foregroundColor(.green)
                 } else {
-                    Text("Abonelik Gerekli")
+                    Text("Kulüp Üyeliği Gerekli")
                         .font(.headline)
                         .foregroundColor(.black)
                     Text("☕️ Kahveden ucuz - Günde 3₺")
@@ -130,7 +124,7 @@ struct DailyStoriesView: View {
                     HStack(spacing: 4) {
                         Text("✨")
                             .font(.caption)
-                        Text("Abone Ol")
+                        Text("Kulübe Katıl")
                             .font(.caption.bold())
                     }
                     .foregroundColor(.white)
@@ -194,7 +188,6 @@ struct DailyStoriesView: View {
         Button(action: {
             if subscriptionManager.canCreateStory(type: .daily) {
                 selectedCategoryForCreation = category
-                showingCreateStory = true
             } else {
                 showingLimitAlert = true
             }
@@ -271,7 +264,6 @@ struct DailyStoriesView: View {
             
             Button(action: {
                 selectedStory = story
-                showingStoryReader = true
             }) {
                 ZStack(alignment: .topLeading) {
                     // Arka plan gradient
@@ -407,7 +399,6 @@ struct DailyStoriesView: View {
     private func storyCard(_ story: DailyStory) -> some View {
         Button(action: {
             selectedStory = story
-            showingStoryReader = true
         }) {
             HStack(spacing: 16) {
                 // Emoji icon

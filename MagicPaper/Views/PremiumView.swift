@@ -439,7 +439,7 @@ struct PremiumView: View {
                 benefitRow(icon: "checkmark.circle.fill", text: "Esnek kullanım - istediğin zaman", color: .green)
                 benefitRow(icon: "checkmark.circle.fill", text: "Param boşa gitmiyor", color: .green)
                 benefitRow(icon: "checkmark.circle.fill", text: "Metin mi görselli mi sen karar ver", color: .green)
-                benefitRow(icon: "checkmark.circle.fill", text: "Abonelik yok, bağlayıcı değil", color: .green)
+                benefitRow(icon: "checkmark.circle.fill", text: "Üyelik yok, bağlayıcı değil", color: .green)
             }
             
             // Purchase Button

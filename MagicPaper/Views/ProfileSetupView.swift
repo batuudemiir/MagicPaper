@@ -21,12 +21,12 @@ struct ProfileSetupView: View {
                 VStack(spacing: 32) {
                     // Header
                     VStack(spacing: 12) {
-                        Text(isEditing ? "Profili Düzenle" : "Hoş Geldiniz!")
+                        Text(isEditing ? L.editProfile : L.welcome)
                             .font(.title.bold())
                             .foregroundColor(.black)
                         
                         if !isEditing {
-                            Text("Başlamak için profilinizi oluşturun")
+                            Text(L.createProfile)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -125,18 +125,18 @@ struct ProfileSetupView: View {
                             }
                         }
                         
-                        Text("Profil Fotoğrafı")
+                        Text(L.profilePhoto)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
                     
                     // Name Input
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Adınız")
+                        Text(L.yourName)
                             .font(.headline)
                             .foregroundColor(.black)
                         
-                        TextField("Adınızı girin", text: $userName)
+                        TextField(L.enterName, text: $userName)
                             .textFieldStyle(.plain)
                             .font(.body)
                             .padding()
@@ -172,7 +172,7 @@ struct ProfileSetupView: View {
                     Button(action: saveProfile) {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                            Text(isEditing ? "Kaydet" : "Başla")
+                            Text(isEditing ? L.save : L.start)
                                 .fontWeight(.semibold)
                         }
                         .foregroundColor(.white)
@@ -205,7 +205,7 @@ struct ProfileSetupView: View {
                     .padding(.top, 16)
                     
                     if isEditing {
-                        Button("İptal") {
+                        Button(L.cancel) {
                             dismiss()
                         }
                         .foregroundColor(.gray)
@@ -219,7 +219,7 @@ struct ProfileSetupView: View {
             .toolbar {
                 if isEditing {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Kapat") {
+                        Button(L.close) {
                             dismiss()
                         }
                     }

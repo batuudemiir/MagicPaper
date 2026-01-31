@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject private var subscriptionManager = SubscriptionManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
-    @State private var selectedLanguage = StoryLanguage.turkish
+    @StateObject private var localizationManager = LocalizationManager.shared
     @State private var notificationsEnabled = true
     @State private var autoSaveEnabled = true
     @State private var highQualityImages = true
@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var showingProfileEdit = false
     @AppStorage("defaultTheme") private var defaultTheme = "fantasy"
     @AppStorage("defaultAgeRange") private var defaultAgeRange = 6
+    @AppStorage("defaultLanguage") private var defaultLanguageRaw = "tr"
     
     var body: some View {
         NavigationView {
@@ -22,7 +23,7 @@ struct SettingsView: View {
                     // Profil Bölümü
                     profileSection
                     
-                    // Abonelik Bölümü
+                    // Hikaye Kulübü Bölümü
                     subscriptionSection
                     
                     // Hikaye Ayarları
@@ -40,7 +41,7 @@ struct SettingsView: View {
                     // Tehlike Bölgesi
                     dangerZoneSection
                 }
-                .padding(.horizontal, 20)
+                .padding(.horizontal, DeviceHelper.horizontalPadding)
                 .padding(.top, 8)
                 .padding(.bottom, 32)
             }
@@ -55,9 +56,10 @@ struct SettingsView: View {
                 )
                 .ignoresSafeArea()
             )
-            .navigationTitle("Ayarlar")
+            .navigationTitle(localizationManager.localized(.settings))
             .navigationBarTitleDisplayMode(.large)
         }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
         .sheet(isPresented: $showingUpgradeSheet) {
             SimpleSubscriptionView()
         }
@@ -70,13 +72,13 @@ struct SettingsView: View {
         .sheet(isPresented: $showingProfileEdit) {
             ProfileSetupView(isEditing: true)
         }
-        .alert("Tüm Verileri Temizle", isPresented: $showingClearDataAlert) {
-            Button("İptal", role: .cancel) { }
-            Button("Verileri Temizle", role: .destructive) {
+        .alert(localizationManager.localized(.clearAllData), isPresented: $showingClearDataAlert) {
+            Button(localizationManager.localized(.cancel), role: .cancel) { }
+            Button(localizationManager.localized(.clearData), role: .destructive) {
                 clearAllData()
             }
         } message: {
-            Text("Bu işlem tüm hikayelerinizi ve ayarlarınızı silecektir. Bu işlem geri alınamaz.")
+            Text(localizationManager.localized(.clearDataWarning))
         }
     }
     
@@ -129,7 +131,7 @@ struct SettingsView: View {
                         .font(.title3.bold())
                         .foregroundColor(.primary)
                     
-                    // Abonelik durumu
+                    // Hikaye Kulübü durumu
                     if subscriptionManager.isPremium {
                         HStack(spacing: 4) {
                             Text("👑")
@@ -190,106 +192,307 @@ struct SettingsView: View {
     }
     
     private var subscriptionSection: some View {
-        Button(action: {
+        let isPremium = subscriptionManager.isPremium
+        let circleGradient = LinearGradient(
+            colors: isPremium ? 
+                [Color.yellow.opacity(0.3), Color.orange.opacity(0.3)] :
+                [Color.purple.opacity(0.2), Color.pink.opacity(0.2)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        let iconGradient = LinearGradient(
+            colors: isPremium ? 
+                [Color.yellow, Color.orange] :
+                [Color.purple, Color.pink],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        
+        return Button(action: {
             showingUpgradeSheet = true
         }) {
-            HStack(spacing: 16) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(
-                            LinearGradient(
-                                colors: subscriptionManager.isPremium ? 
-                                    [Color.yellow, Color.orange] :
-                                    [Color.purple, Color.pink],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 56, height: 56)
-                        .shadow(color: .orange.opacity(0.3), radius: 12, x: 0, y: 6)
+            VStack(spacing: 0) {
+                // Üst kısım - Durum ve Bilgi
+                HStack(spacing: 16) {
+                    // Animasyonlu ikon
+                    subscriptionIcon(circleGradient: circleGradient, iconGradient: iconGradient, isPremium: isPremium)
                     
-                    Text(subscriptionManager.isPremium ? "👑" : "✨")
-                        .font(.system(size: 28))
-                }
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    HStack(spacing: 8) {
-                        Text(subscriptionManager.isPremium ? "Premium Üye" : "Abone Olun")
-                            .font(.title3.bold())
-                            .foregroundColor(.primary)
-                        
-                        if !subscriptionManager.isPremium {
-                            Text("☕️ Kahveden ucuz!")
-                                .font(.caption.bold())
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 3)
-                                .background(
-                                    Capsule()
-                                        .fill(Color.green)
-                                )
-                        }
-                    }
+                    subscriptionTitleSection
                     
-                    if subscriptionManager.isPremium {
-                        Text("\(subscriptionManager.remainingImageStories) görselli hikaye kaldı")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("Günde 3₺ ile sınırsız hikaye")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                    Spacer()
+                    
+                    // Sağ ok
+                    Image(systemName: subscriptionManager.isPremium ? "gearshape.fill" : "arrow.right.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(subscriptionManager.isPremium ? Color.gray.opacity(0.5) : Color.purple)
                 }
+                .padding(20)
                 
-                Spacer()
-                
-                Image(systemName: "arrow.right.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(subscriptionManager.isPremium ? Color.yellow : Color.purple)
+                // Alt kısım - Detaylar
+                subscriptionDetailsSection
             }
-            .padding(20)
         }
         .buttonStyle(PlainButtonStyle())
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(
-                            LinearGradient(
-                                colors: subscriptionManager.isPremium ?
-                                    [Color.yellow.opacity(0.3), Color.orange.opacity(0.3)] :
-                                    [Color.purple.opacity(0.3), Color.pink.opacity(0.3)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 2
-                        )
+        .background(subscriptionBackground)
+    }
+    
+    // Yardımcı view - Başlık bölümü
+    private var subscriptionTitleSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Başlık
+            HStack(spacing: 6) {
+                Text(subscriptionManager.isPremium ? localizationManager.localized(.storyClubMember) : localizationManager.localized(.joinClub))
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.primary)
+                
+                if !subscriptionManager.isPremium {
+                    Text(localizationManager.localized(.newBadge))
+                        .font(.system(size: 9, weight: .black))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Capsule().fill(Color.red))
+                }
+            }
+            
+            // Durum bilgisi
+            if subscriptionManager.isPremium {
+                HStack(spacing: 6) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                    Text(localizationManager.localized(.activeMembers))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            } else {
+                HStack(spacing: 4) {
+                    Text("☕️")
+                        .font(.caption)
+                    Text(localizationManager.localized(.onlyPerDay))
+                        .font(.subheadline.bold())
+                        .foregroundColor(.orange)
+                }
+            }
+        }
+    }
+    
+    // Yardımcı view - Detay bölümü
+    private var subscriptionDetailsSection: some View {
+        Group {
+            if !subscriptionManager.isPremium {
+                nonMemberDetails
+            } else {
+                memberQuotaDetails
+            }
+        }
+    }
+    
+    // Yardımcı view - Üye olmayan detaylar
+    private var nonMemberDetails: some View {
+        Group {
+            Divider()
+                .padding(.horizontal, 20)
+            
+            VStack(spacing: 12) {
+                // Faydalar
+                HStack(spacing: 12) {
+                    benefitBadge(icon: "infinity", text: localizationManager.localized(.unlimited), color: .purple)
+                    benefitBadge(icon: "photo.fill", text: localizationManager.localized(.illustrated), color: .blue)
+                    benefitBadge(icon: "sparkles", text: localizationManager.localized(.premiumBadge), color: .orange)
+                }
+                
+                // CTA
+                HStack(spacing: 8) {
+                    Image(systemName: "star.fill")
+                        .font(.caption)
+                        .foregroundColor(.yellow)
+                    Text(localizationManager.localized(.joinNow))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 16)
+        }
+    }
+    
+    // Yardımcı view - Üye kota detayları
+    private var memberQuotaDetails: some View {
+        let totalStories = subscriptionManager.subscriptionTier.monthlyImageStories
+        
+        return Group {
+            Divider()
+                .padding(.horizontal, 20)
+            
+            HStack(spacing: 16) {
+                // Görselli hikaye kotası
+                quotaCard(
+                    count: subscriptionManager.remainingImageStories,
+                    total: totalStories,
+                    label: localizationManager.localized(.imageStory),
+                    color: .purple
                 )
-                .shadow(color: .orange.opacity(0.15), radius: 16, x: 0, y: 4)
+                
+                // Metin hikaye
+                infiniteQuotaCard(
+                    label: localizationManager.localized(.textStory),
+                    color: .green
+                )
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 16)
+        }
+    }
+    
+    // Yardımcı view - Kota kartı
+    private func quotaCard(count: Int, total: Int, label: String, color: Color) -> some View {
+        VStack(spacing: 4) {
+            HStack(spacing: 4) {
+                Text("\(count)")
+                    .font(.title2.bold())
+                    .foregroundColor(color)
+                Text("/")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Text("\(total)")
+                    .font(.caption.bold())
+                    .foregroundColor(.secondary)
+            }
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(color.opacity(0.1))
         )
+    }
+    
+    // Yardımcı view - Sınırsız kota kartı
+    private func infiniteQuotaCard(label: String, color: Color) -> some View {
+        VStack(spacing: 4) {
+            Image(systemName: "infinity")
+                .font(.title3.bold())
+                .foregroundColor(color)
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(color.opacity(0.1))
+        )
+    }
+    
+    // Yardımcı view - Arka plan
+    private var subscriptionBackground: some View {
+        let borderGradient = LinearGradient(
+            colors: subscriptionManager.isPremium ?
+                [Color.yellow.opacity(0.3), Color.orange.opacity(0.3)] :
+                [Color.purple.opacity(0.5), Color.pink.opacity(0.5)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        
+        return RoundedRectangle(cornerRadius: 20)
+            .fill(.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(borderGradient, lineWidth: subscriptionManager.isPremium ? 2 : 3)
+            )
+            .shadow(
+                color: subscriptionManager.isPremium ? Color.orange.opacity(0.2) : Color.purple.opacity(0.25),
+                radius: 20,
+                x: 0,
+                y: 8
+            )
+    }
+    
+    // Yardımcı fonksiyon - Fayda rozeti
+    private func benefitBadge(icon: String, text: String, color: Color) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 10, weight: .bold))
+            Text(text)
+                .font(.system(size: 11, weight: .semibold))
+        }
+        .foregroundColor(color)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(
+            Capsule()
+                .fill(color.opacity(0.15))
+        )
+    }
+    
+    // Yardımcı fonksiyon - Abonelik ikonu
+    private func subscriptionIcon(circleGradient: LinearGradient, iconGradient: LinearGradient, isPremium: Bool) -> some View {
+        ZStack {
+            Circle()
+                .fill(circleGradient)
+                .frame(width: 70, height: 70)
+            
+            RoundedRectangle(cornerRadius: 18)
+                .fill(iconGradient)
+                .frame(width: 56, height: 56)
+                .shadow(color: isPremium ? Color.orange.opacity(0.4) : Color.purple.opacity(0.4), radius: 12, x: 0, y: 6)
+            
+            Text(isPremium ? "👑" : "✨")
+                .font(.system(size: 32))
+        }
     }
     
     private var storySettingsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Hikaye Ayarları")
+            Text(localizationManager.localized(.storySettings))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
                 .padding(.horizontal, 20)
             
             VStack(spacing: 12) {
                 // Varsayılan Dil
-                HStack {
-                    settingIcon("globe", color: .blue)
-                    Text("Varsayılan Dil")
-                        .font(.subheadline)
-                    Spacer()
-                    Picker("", selection: $selectedLanguage) {
-                        Text("🇹🇷 Türkçe").tag(StoryLanguage.turkish)
-                        Text("🇬🇧 English").tag(StoryLanguage.english)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        settingIcon("globe", color: .blue)
+                        Text(localizationManager.localized(.defaultLanguage))
+                            .font(.subheadline)
+                        Spacer()
+                        Picker("", selection: Binding(
+                            get: { 
+                                if localizationManager.currentLanguage == .turkish {
+                                    return StoryLanguage.turkish
+                                } else {
+                                    return StoryLanguage.english
+                                }
+                            },
+                            set: { newValue in
+                                defaultLanguageRaw = newValue.rawValue
+                                // LocalizationManager'ı da güncelle
+                                if newValue == .turkish {
+                                    localizationManager.changeLanguage(.turkish)
+                                } else {
+                                    localizationManager.changeLanguage(.english)
+                                }
+                            }
+                        )) {
+                            Text("🇹🇷 Türkçe").tag(StoryLanguage.turkish)
+                            Text("🇬🇧 English").tag(StoryLanguage.english)
+                        }
+                        .pickerStyle(.menu)
                     }
-                    .pickerStyle(.menu)
+                    
+                    // Açıklama
+                    Text(localizationManager.currentLanguage == .turkish ? 
+                         "Uygulama dili ve hikaye dili" : 
+                         "App language and story language")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 52)
                 }
                 .padding(16)
                 
@@ -300,10 +503,10 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         settingIcon("person.fill", color: .green)
-                        Text("Varsayılan Yaş")
+                        Text(localizationManager.localized(.defaultAge))
                             .font(.subheadline)
                         Spacer()
-                        Text("\(defaultAgeRange) yaş")
+                        Text("\(defaultAgeRange) \(localizationManager.currentLanguage == .turkish ? "yaş" : "years")")
                             .font(.subheadline.bold())
                             .foregroundColor(.green)
                     }
@@ -322,7 +525,7 @@ struct SettingsView: View {
                 // Görsel Kalitesi
                 HStack {
                     settingIcon("photo.fill", color: .purple)
-                    Text("Yüksek Kalite Görseller")
+                    Text(localizationManager.localized(.highQualityImages))
                         .font(.subheadline)
                     Spacer()
                     Toggle("", isOn: $highQualityImages)
@@ -340,7 +543,7 @@ struct SettingsView: View {
     
     private var appSettingsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Uygulama Ayarları")
+            Text(localizationManager.localized(.appSettings))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
                 .padding(.horizontal, 20)
@@ -348,7 +551,7 @@ struct SettingsView: View {
             VStack(spacing: 12) {
                 HStack {
                     settingIcon("bell.fill", color: .orange)
-                    Text("Bildirimler")
+                    Text(localizationManager.localized(.notifications))
                         .font(.subheadline)
                     Spacer()
                     Toggle("", isOn: $notificationsEnabled)
@@ -361,7 +564,7 @@ struct SettingsView: View {
                 
                 HStack {
                     settingIcon("square.and.arrow.down.fill", color: .cyan)
-                    Text("Otomatik Kaydet")
+                    Text(localizationManager.localized(.autoSave))
                         .font(.subheadline)
                     Spacer()
                     Toggle("", isOn: $autoSaveEnabled)
@@ -379,7 +582,7 @@ struct SettingsView: View {
     
     private var quickActionsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Hızlı İşlemler")
+            Text(localizationManager.localized(.quickActions))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
                 .padding(.horizontal, 20)
@@ -388,7 +591,7 @@ struct SettingsView: View {
                 NavigationLink(destination: CreateStoryView()) {
                     HStack {
                         settingIcon("plus.circle.fill", color: .indigo)
-                        Text("Yeni Hikaye Oluştur")
+                        Text(localizationManager.localized(.createNewStory))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -405,7 +608,7 @@ struct SettingsView: View {
                 NavigationLink(destination: LibraryView()) {
                     HStack {
                         settingIcon("books.vertical.fill", color: .green)
-                        Text("Hikaye Kütüphanem")
+                        Text(localizationManager.localized(.myStoryLibrary))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -425,7 +628,7 @@ struct SettingsView: View {
                 Button(action: shareApp) {
                     HStack {
                         settingIcon("square.and.arrow.up.fill", color: .blue)
-                        Text("Uygulamayı Paylaş")
+                        Text(localizationManager.localized(.shareApp))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -446,7 +649,7 @@ struct SettingsView: View {
     
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Hakkında ve Destek")
+            Text(localizationManager.localized(.aboutAndSupport))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
                 .padding(.horizontal, 20)
@@ -455,7 +658,7 @@ struct SettingsView: View {
                 Button(action: { showingAboutSheet = true }) {
                     HStack {
                         settingIcon("info.circle.fill", color: .blue)
-                        Text("Uygulama Hakkında")
+                        Text(localizationManager.localized(.about))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -472,7 +675,7 @@ struct SettingsView: View {
                 Button(action: rateApp) {
                     HStack {
                         settingIcon("star.fill", color: .yellow)
-                        Text("Uygulamayı Değerlendir")
+                        Text(localizationManager.localized(.rateApp))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -489,7 +692,7 @@ struct SettingsView: View {
                 Button(action: contactSupport) {
                     HStack {
                         settingIcon("envelope.fill", color: .cyan)
-                        Text("Destek İletişim")
+                        Text(localizationManager.localized(.contactSupport))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -506,7 +709,7 @@ struct SettingsView: View {
                 Button(action: openPrivacyPolicy) {
                     HStack {
                         settingIcon("shield.checkered", color: .green)
-                        Text("Gizlilik Politikası")
+                        Text(localizationManager.localized(.privacyPolicy))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -523,7 +726,7 @@ struct SettingsView: View {
                 Button(action: openTermsOfService) {
                     HStack {
                         settingIcon("doc.text.fill", color: .gray)
-                        Text("Kullanım Şartları")
+                        Text(localizationManager.localized(.termsOfService))
                             .font(.subheadline)
                             .foregroundColor(.primary)
                         Spacer()
@@ -544,7 +747,7 @@ struct SettingsView: View {
     
     private var dangerZoneSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Tehlike Bölgesi")
+            Text(localizationManager.localized(.dangerZone))
                 .font(.title3.bold())
                 .foregroundColor(.primary)
                 .padding(.horizontal, 20)
@@ -556,7 +759,9 @@ struct SettingsView: View {
                 }) {
                     HStack {
                         settingIcon(subscriptionManager.isPremium ? "crown.fill" : "crown", color: subscriptionManager.isPremium ? .yellow : .gray)
-                        Text(subscriptionManager.isPremium ? "🧪 Abonelik İptal (Test)" : "🧪 Abonelik Aktif Et (Test)")
+                        Text(subscriptionManager.isPremium ? 
+                             "🧪 \(localizationManager.localized(.cancelMembership))" : 
+                             "🧪 \(localizationManager.localized(.activateMembership))")
                             .font(.subheadline)
                             .foregroundColor(subscriptionManager.isPremium ? .orange : .blue)
                         Spacer()
@@ -572,7 +777,7 @@ struct SettingsView: View {
                 }) {
                     HStack {
                         settingIcon("trash.fill", color: .red)
-                        Text("Tüm Verileri Temizle")
+                        Text(localizationManager.localized(.clearAllData))
                             .font(.subheadline)
                             .foregroundColor(.red)
                         Spacer()
@@ -650,7 +855,7 @@ struct SettingsView: View {
             manager.deleteStory(id: story.id)
         }
         
-        selectedLanguage = .turkish
+        defaultLanguageRaw = "tr"
         notificationsEnabled = true
         autoSaveEnabled = true
         highQualityImages = true

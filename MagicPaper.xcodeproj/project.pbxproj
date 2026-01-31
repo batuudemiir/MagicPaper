@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */; };
 		2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C52272F2CA9A30087A82F /* OnboardingView.swift */; };
 		2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C52292F2CABA60087A82F /* PermissionManager.swift */; };
 		2D6C522C2F2CB2670087A82F /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C522B2F2CB2670087A82F /* PremiumView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		2D6C52272F2CA9A30087A82F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2D6C52292F2CABA60087A82F /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		2D6C522B2F2CB2670087A82F /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,10 @@
 		A10000010000000000000076 /* SimpleSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSubscriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A10000010000000000000021 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -116,6 +122,7 @@
 				A10000010000000000000025 /* Views */,
 				A10000010000000000000026 /* Models */,
 				A10000010000000000000027 /* Services */,
+				2DE729782F2E3D0100CD275E /* Helpers */,
 				A10000010000000000000006 /* Assets.xcassets */,
 				A10000010000000000000020 /* Info.plist */,
 				A1000001000000000000003B /* GoogleService-Info.plist */,
@@ -183,6 +190,7 @@
 				A10000010000000000000057 /* FalImageService.swift */,
 				2D6C52292F2CABA60087A82F /* PermissionManager.swift */,
 				A10000010000000000000055 /* FalAIImageGenerator.swift */,
+				2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */,
 				A10000010000000000000039 /* FirebaseImageUploader.swift */,
 				A1000001000000000000004B /* FileManagerService.swift */,
 				A1000001000000000000004F /* LocalNotificationManager.swift */,
@@ -215,6 +223,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2DE729782F2E3D0100CD275E /* Helpers */,
 			);
 			name = MagicPaper;
 			packageProductDependencies = (
@@ -312,6 +323,7 @@
 				2D6C522C2F2CB2670087A82F /* PremiumView.swift in Sources */,
 				A10000010000000000000069 /* TextOnlyStoryViewerView.swift in Sources */,
 				2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */,
+				2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */,
 				A1000001000000000000006B /* TextOnlyStory.swift in Sources */,
 				A1000001000000000000006F /* TextStory.swift in Sources */,
 				A10000010000000000000071 /* TextStoryManager.swift in Sources */,

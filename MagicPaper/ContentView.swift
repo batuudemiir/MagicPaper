@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var localizationManager = LocalizationManager.shared
     @State private var selectedTab = 0
     @State private var showingCreateSheet = false
     
@@ -31,7 +32,7 @@ struct ContentView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.bottom, 80) // Tab bar için alan bırak (90'dan 80'e düşürdük)
+            .padding(.bottom, DeviceHelper.tabBarBottomPadding)
             .animation(.easeInOut(duration: 0.2), value: selectedTab)
             
             // Custom Tab Bar - SafeArea'nın altına sabitlendi
@@ -50,8 +51,8 @@ struct ContentView: View {
     
     private var customTabBar: some View {
         HStack(spacing: 0) {
-            tabBarButton(icon: "house.fill", title: "Ana Sayfa", tag: 0)
-            tabBarButton(icon: "books.vertical.fill", title: "Kütüphane", tag: 1)
+            tabBarButton(icon: "house.fill", title: localizationManager.currentLanguage == .turkish ? "Ana Sayfa" : "Home", tag: 0)
+            tabBarButton(icon: "books.vertical.fill", title: localizationManager.localized(.library), tag: 1)
             
             // Center Create Button - Daha büyük ve çekici
             Button(action: {
@@ -113,8 +114,8 @@ struct ContentView: View {
             .offset(y: -12)
             .frame(maxWidth: .infinity)
             
-            tabBarButton(icon: "calendar", title: "Günlük", tag: 3)
-            tabBarButton(icon: "gearshape.fill", title: "Ayarlar", tag: 4)
+            tabBarButton(icon: "calendar", title: localizationManager.localized(.daily), tag: 3)
+            tabBarButton(icon: "gearshape.fill", title: localizationManager.localized(.settings), tag: 4)
         }
         .padding(.horizontal, 12)
         .padding(.top, 16)
@@ -291,10 +292,10 @@ struct CreateStoryTypeSelectionView: View {
                             }
                             
                             VStack(spacing: 8) {
-                                Text("Yeni Hikaye")
+                                Text(L.newStory)
                                     .font(.system(size: 32, weight: .bold))
                                 
-                                Text("Hangi tür hikaye oluşturmak istersiniz?")
+                                Text(L.whichStoryType)
                                     .font(.system(size: 15))
                                     .foregroundColor(.secondary)
                             }
@@ -306,34 +307,34 @@ struct CreateStoryTypeSelectionView: View {
                             NavigationLink(destination: CreateStoryView()) {
                                 modernStoryCard(
                                     icon: "photo.on.rectangle.angled",
-                                    title: "Görselli Hikaye",
-                                    description: "Fotoğrafla özel hikaye",
+                                    title: L.illustratedStory,
+                                    description: L.illustratedDesc,
                                     gradient: [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)],
-                                    badge: "Popüler"
+                                    badge: L.popular
                                 )
                             }
                             
-                    NavigationLink(destination: TextOnlyStoryView()) {
-                        modernStoryCard(
-                            icon: "text.book.closed",
-                            title: "Metin Hikaye",
-                            description: "Hayal gücünü harekete geçir",
-                            gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
-                            badge: nil
-                        )
-                    }
-                    
-                    NavigationLink(destination: DailyStoryCreationView(category: .bedtime)) {
-                        modernStoryCard(
-                            icon: "calendar.badge.plus",
-                            title: "Günlük Hikaye",
-                            description: "Kategori bazlı hikayeler",
-                            gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)],
-                            badge: nil
-                        )
-                    }
+                            NavigationLink(destination: TextOnlyStoryView()) {
+                                modernStoryCard(
+                                    icon: "text.book.closed",
+                                    title: L.textStory,
+                                    description: L.textStoryDesc,
+                                    gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
+                                    badge: nil
+                                )
+                            }
+                            
+                            NavigationLink(destination: DailyStoryCreationView(category: .bedtime)) {
+                                modernStoryCard(
+                                    icon: "calendar.badge.plus",
+                                    title: L.dailyStory,
+                                    description: L.dailyStoryDesc,
+                                    gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)],
+                                    badge: nil
+                                )
+                            }
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, DeviceHelper.horizontalPadding)
                     }
                     .padding(.bottom, 32)
                 }
@@ -351,6 +352,7 @@ struct CreateStoryTypeSelectionView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
     }
     
     private func modernStoryCard(icon: String, title: String, description: String, gradient: [Color], badge: String?) -> some View {

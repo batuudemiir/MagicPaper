@@ -42,7 +42,7 @@ struct OnboardingView: View {
                             isOnboardingComplete = true
                         }
                     }) {
-                        Text("Atla")
+                        Text(L.skip)
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.gray)
                             .padding(.horizontal, 20)
@@ -96,7 +96,7 @@ struct OnboardingView: View {
                             HStack(spacing: 8) {
                                 Image(systemName: "arrow.left")
                                     .font(.system(size: 16, weight: .semibold))
-                                Text("Geri")
+                                Text(L.back)
                                     .font(.system(size: 17, weight: .semibold))
                             }
                             .foregroundColor(Color(red: 0.58, green: 0.29, blue: 0.98))
@@ -134,7 +134,7 @@ struct OnboardingView: View {
                                 ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             } else {
-                                Text(currentPage < pages.count - 1 ? "İleri" : "Başla")
+                                Text(currentPage < pages.count - 1 ? L.next : L.getStarted)
                                     .font(.system(size: 17, weight: .bold))
                                 Image(systemName: currentPage < pages.count - 1 ? "arrow.right" : "checkmark")
                                     .font(.system(size: 16, weight: .bold))

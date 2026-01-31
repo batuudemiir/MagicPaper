@@ -2,6 +2,7 @@ import SwiftUI
 
 struct LibraryView: View {
     @ObservedObject private var generationManager = StoryGenerationManager.shared
+    @StateObject private var localizationManager = LocalizationManager.shared
     @State private var selectedStory: Story?
     @State private var showingDeleteAlert = false
     @State private var storyToDelete: Story?
@@ -116,26 +117,29 @@ struct LibraryView: View {
                     }
                 }
             }
-            .navigationTitle("Kütüphanem")
+            .navigationTitle(localizationManager.localized(.myLibrary))
             .navigationBarTitleDisplayMode(.large)
-            .searchable(text: $searchText, prompt: "Hikaye ara...")
+            .searchable(text: $searchText, prompt: localizationManager.currentLanguage == .turkish ? "Hikaye ara..." : "Search stories...")
         }
-        .sheet(item: $selectedStory) { story in
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
+        .fullScreenCover(item: $selectedStory) { story in
             StoryViewerView(story: story)
         }
         .sheet(isPresented: $showingShareSheet) {
             ShareSheet(items: shareItems)
         }
-        .alert("Hikayeyi Sil", isPresented: $showingDeleteAlert) {
-            Button("İptal", role: .cancel) { }
-            Button("Sil", role: .destructive) {
+        .alert(localizationManager.localized(.deleteStory), isPresented: $showingDeleteAlert) {
+            Button(localizationManager.localized(.cancel), role: .cancel) { }
+            Button(localizationManager.localized(.delete), role: .destructive) {
                 if let story = storyToDelete {
                     generationManager.deleteStory(id: story.id)
                 }
             }
         } message: {
             if let story = storyToDelete {
-                Text("\"\(story.title)\" hikayesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")
+                Text(localizationManager.currentLanguage == .turkish ?
+                     "\"\(story.title)\" hikayesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz." :
+                     "Are you sure you want to delete \"\(story.title)\"? This action cannot be undone.")
             }
         }
     }
@@ -248,10 +252,10 @@ struct LibraryView: View {
             }
             
             VStack(spacing: 8) {
-                Text("Henüz Hikaye Yok")
+                Text(localizationManager.localized(.noStoriesInLibrary))
                     .font(.title2.bold())
                 
-                Text("İlk sihirli hikayenizi oluşturun ve çocuğunuzun kahramanı olduğu maceralara başlayın")
+                Text(localizationManager.localized(.createFirstStory))
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -261,7 +265,7 @@ struct LibraryView: View {
             NavigationLink(destination: CreateStoryView()) {
                 HStack(spacing: 8) {
                     Image(systemName: "sparkles")
-                    Text("İlk Hikayeyi Oluştur")
+                    Text(localizationManager.localized(.generateStory))
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -304,7 +308,7 @@ struct LibraryView: View {
     
     private var storyListView: some View {
         ScrollView {
-            LazyVStack(spacing: 12) {
+            LazyVStack(spacing: DeviceHelper.isIPad ? 16 : 12) {
                 ForEach(filteredStories) { story in
                     if story.status == .completed {
                         completedStoryCard(story: story)
@@ -313,17 +317,20 @@ struct LibraryView: View {
                     }
                 }
             }
-            .padding()
+            .padding(DeviceHelper.isIPad ? 20 : 12)
         }
     }
     
     // MARK: - Completed Story Card
     
     private func completedStoryCard(story: Story) -> some View {
-        Button(action: {
+        let imageSize: CGFloat = DeviceHelper.isIPad ? 140 : 90
+        let imageHeight: CGFloat = DeviceHelper.isIPad ? 180 : 120
+        
+        return Button(action: {
             selectedStory = story
         }) {
-            HStack(spacing: 14) {
+            HStack(spacing: DeviceHelper.isIPad ? 20 : 14) {
                 // Kapak resmi
                 Group {
                     if let coverImageFileName = story.coverImageFileName,
@@ -333,7 +340,7 @@ struct LibraryView: View {
                             .aspectRatio(contentMode: .fill)
                     } else {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 12)
+                            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
                                 .fill(
                                     LinearGradient(
                                         colors: [story.theme.color.opacity(0.6), story.theme.color],
@@ -343,54 +350,55 @@ struct LibraryView: View {
                                 )
                             
                             Text(story.theme.emoji)
-                                .font(.system(size: 36))
+                                .font(.system(size: DeviceHelper.isIPad ? 48 : 36))
                         }
                     }
                 }
-                .frame(width: 90, height: 120)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                .frame(width: imageSize, height: imageHeight)
+                .clipShape(RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12))
+                .shadow(color: .black.opacity(0.1), radius: DeviceHelper.isIPad ? 6 : 4, x: 0, y: 2)
                 
                 // Bilgiler
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 12 : 8) {
                     Text(story.title)
-                        .font(.headline)
+                        .font(.system(size: DeviceHelper.isIPad ? 22 : 17, weight: .semibold))
                         .foregroundColor(.primary)
                         .lineLimit(2)
                     
                     Text("\(story.childName)'in Hikayesi")
-                        .font(.subheadline)
+                        .font(.system(size: DeviceHelper.isIPad ? 17 : 15))
                         .foregroundColor(.indigo)
                     
                     HStack(spacing: 8) {
                         Label(story.theme.displayName, systemImage: "sparkles")
-                            .font(.caption)
+                            .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
                             .foregroundColor(.secondary)
                         
                         Spacer()
                         
                         Label("\(story.pages.count) sayfa", systemImage: "book.pages")
-                            .font(.caption)
+                            .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
                             .foregroundColor(.secondary)
                     }
                     
                     // İlerleme
                     if let lastPage = story.lastReadPage {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 6 : 4) {
                             HStack {
                                 Text("Sayfa \(lastPage + 1)/\(story.pages.count)")
-                                    .font(.caption2)
+                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
                                     .foregroundColor(.secondary)
                                 Spacer()
                                 Text("%\(Int((Double(lastPage + 1) / Double(story.pages.count)) * 100))")
-                                    .font(.caption2.bold())
+                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11, weight: .bold))
                                     .foregroundColor(story.theme.color)
                             }
                             
                             ProgressView(value: Double(lastPage + 1), total: Double(story.pages.count))
                                 .progressViewStyle(LinearProgressViewStyle(tint: story.theme.color))
+                                .scaleEffect(y: DeviceHelper.isIPad ? 1.2 : 1.0)
                         }
-                        .padding(.top, 4)
+                        .padding(.top, DeviceHelper.isIPad ? 6 : 4)
                     }
                 }
                 
@@ -419,7 +427,7 @@ struct LibraryView: View {
                 } label: {
                     VStack(spacing: 2) {
                         Image(systemName: "ellipsis.circle.fill")
-                            .font(.title2)
+                            .font(.system(size: DeviceHelper.isIPad ? 32 : 24))
                             .foregroundColor(.indigo)
                         
                         Text("Menü")
@@ -429,11 +437,11 @@ struct LibraryView: View {
                     .padding(8)
                 }
             }
-            .padding(12)
+            .padding(DeviceHelper.isIPad ? 20 : 12)
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16)
                     .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+                    .shadow(color: .black.opacity(0.05), radius: DeviceHelper.isIPad ? 12 : 8, x: 0, y: 2)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -442,7 +450,10 @@ struct LibraryView: View {
     // MARK: - Generating Story Card
     
     private func generatingStoryCard(story: Story) -> some View {
-        HStack(spacing: 14) {
+        let imageSize: CGFloat = DeviceHelper.isIPad ? 140 : 90
+        let imageHeight: CGFloat = DeviceHelper.isIPad ? 180 : 120
+        
+        return HStack(spacing: DeviceHelper.isIPad ? 20 : 14) {
             // Kapak resmi
             ZStack {
                 Group {
@@ -453,55 +464,55 @@ struct LibraryView: View {
                             .aspectRatio(contentMode: .fill)
                     } else {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 12)
+                            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
                                 .fill(story.theme.color.opacity(0.3))
                             
                             Text(story.theme.emoji)
-                                .font(.system(size: 36))
+                                .font(.system(size: DeviceHelper.isIPad ? 48 : 36))
                         }
                     }
                 }
-                .frame(width: 90, height: 120)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .frame(width: imageSize, height: imageHeight)
+                .clipShape(RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12))
                 
                 // Overlay
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
                     .fill(Color.black.opacity(0.6))
-                    .frame(width: 90, height: 120)
+                    .frame(width: imageSize, height: imageHeight)
                     .overlay(
-                        VStack(spacing: 6) {
+                        VStack(spacing: DeviceHelper.isIPad ? 8 : 6) {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(0.9)
+                                .scaleEffect(DeviceHelper.isIPad ? 1.2 : 0.9)
                             
                             Image(systemName: story.status.icon)
-                                .font(.caption)
+                                .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
                                 .foregroundColor(.white)
                         }
                     )
             }
             
             // Bilgiler
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 12 : 8) {
                 Text(story.title)
-                    .font(.headline)
+                    .font(.system(size: DeviceHelper.isIPad ? 22 : 17, weight: .semibold))
                     .foregroundColor(.primary)
                     .lineLimit(2)
                 
                 Text("\(story.childName)'in Hikayesi")
-                    .font(.subheadline)
+                    .font(.system(size: DeviceHelper.isIPad ? 17 : 15))
                     .foregroundColor(.indigo)
                 
                 // Durum badge
                 HStack(spacing: 6) {
                     Image(systemName: story.status.icon)
-                        .font(.caption2)
+                        .font(.system(size: DeviceHelper.isIPad ? 12 : 10))
                     Text(story.status.displayName)
-                        .font(.caption.weight(.medium))
+                        .font(.system(size: DeviceHelper.isIPad ? 14 : 12, weight: .medium))
                 }
                 .foregroundColor(statusColor(for: story.status))
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
+                .padding(.horizontal, DeviceHelper.isIPad ? 14 : 10)
+                .padding(.vertical, DeviceHelper.isIPad ? 7 : 5)
                 .background(
                     Capsule()
                         .fill(statusColor(for: story.status).opacity(0.15))
@@ -512,10 +523,10 @@ struct LibraryView: View {
                     let completedPages = story.pages.filter { $0.imageFileName != nil }.count
                     let totalPages = story.pages.count
                     if totalPages > 0 {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 6 : 4) {
                             HStack {
                                 Text("Görseller oluşturuluyor")
-                                    .font(.caption2)
+                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
                                     .foregroundColor(.secondary)
                                 Spacer()
                                 Text("\(completedPages)/\(totalPages)")
@@ -531,7 +542,7 @@ struct LibraryView: View {
                 
                 if let progress = story.currentProgress {
                     Text(progress)
-                        .font(.caption2)
+                        .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
                         .foregroundColor(.secondary)
                         .lineLimit(2)
                 }
@@ -539,11 +550,11 @@ struct LibraryView: View {
             
             Spacer()
         }
-        .padding(12)
+        .padding(DeviceHelper.isIPad ? 20 : 12)
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16)
                 .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+                .shadow(color: .black.opacity(0.05), radius: DeviceHelper.isIPad ? 12 : 8, x: 0, y: 2)
         )
         .opacity(story.status == .failed ? 0.6 : 1.0)
     }

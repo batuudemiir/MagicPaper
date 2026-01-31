@@ -1,19 +1,20 @@
 import Foundation
 import SwiftUI
 
-// Basit Abonelik Sistemi - Sadece 2 Paket
+// Basit Üyelik Sistemi - Sadece 2 Paket
 class SubscriptionManager: ObservableObject {
     static let shared = SubscriptionManager()
     
     @Published var subscriptionTier: SubscriptionTier = .none
     @Published var remainingImageStories: Int = 0 // Aylık kalan görselli hikaye
     @Published var freeTrialUsed: Bool = false
-    @Published var freeTrialCount: Int = 3 // 3 ücretsiz deneme
+    @Published var freeTrialCount: Int = 3 // 3 ücretsiz deneme (toplam)
+    @Published var freeImageStoryUsed: Bool = false // Ücretsiz görselli hikaye kullanıldı mı?
     @Published var lastFreeTextStoryDate: Date? // Son ücretsiz metin hikaye tarihi
     
     // Ücretsiz kullanıcı için 12 saatte 1 metin hikaye
     var canCreateFreeTextStory: Bool {
-        guard subscriptionTier == .none else { return true } // Aboneler sınırsız
+        guard subscriptionTier == .none else { return true } // Üyeler sınırsız
         
         guard let lastDate = lastFreeTextStoryDate else {
             return true // İlk hikaye
@@ -31,17 +32,19 @@ class SubscriptionManager: ObservableObject {
         return Int(ceil(hoursRemaining))
     }
     
-    // Abonelik paketleri
+    // Hikaye Kulübü paketleri
     enum SubscriptionTier: String, Codable {
         case none = "none"
         case basic = "basic"      // ₺89/ay - 1 görselli
         case premium = "premium"  // ₺149/ay - 5 görselli
+        case ultimate = "ultimate" // ₺349/ay - 10 görselli
         
         var displayName: String {
             switch self {
             case .none: return "Ücretsiz"
-            case .basic: return "Temel Paket"
-            case .premium: return "Premium Paket"
+            case .basic: return "⭐ Yıldız Kaşifi"
+            case .premium: return "👑 Hikaye Kahramanı"
+            case .ultimate: return "🌟 Sihir Ustası"
             }
         }
         
@@ -50,6 +53,7 @@ class SubscriptionManager: ObservableObject {
             case .none: return 0
             case .basic: return 1
             case .premium: return 5
+            case .ultimate: return 10
             }
         }
         
@@ -58,6 +62,7 @@ class SubscriptionManager: ObservableObject {
             case .none: return "₺0"
             case .basic: return "₺89"
             case .premium: return "₺149"
+            case .ultimate: return "₺349"
             }
         }
         
@@ -66,11 +71,12 @@ class SubscriptionManager: ObservableObject {
             case .none: return 0
             case .basic: return 89.0
             case .premium: return 149.0
+            case .ultimate: return 349.0
             }
         }
     }
     
-    // Abonelik paket bilgileri
+    // Hikaye Kulübü paket bilgileri
     struct SubscriptionPackage {
         let tier: SubscriptionTier
         let title: String
@@ -83,7 +89,7 @@ class SubscriptionManager: ObservableObject {
     static let subscriptionPackages: [SubscriptionPackage] = [
         SubscriptionPackage(
             tier: .basic,
-            title: "Temel Paket",
+            title: "⭐ Yıldız Kaşifi",
             price: "₺89",
             priceValue: 89.0,
             features: [
@@ -95,7 +101,7 @@ class SubscriptionManager: ObservableObject {
         ),
         SubscriptionPackage(
             tier: .premium,
-            title: "Premium Paket",
+            title: "👑 Hikaye Kahramanı",
             price: "₺149",
             priceValue: 149.0,
             features: [
@@ -104,11 +110,24 @@ class SubscriptionManager: ObservableObject {
                 "5 görselli hikaye/ay"
             ],
             isPopular: true
+        ),
+        SubscriptionPackage(
+            tier: .ultimate,
+            title: "🌟 Sihir Ustası",
+            price: "₺349",
+            priceValue: 349.0,
+            features: [
+                "Sınırsız metin hikaye",
+                "Sınırsız günlük hikaye",
+                "10 görselli hikaye/ay",
+                "Öncelikli destek"
+            ],
+            isPopular: false
         )
     ]
     
     private init() {
-        // UserDefaults'tan abonelik bilgilerini yükle
+        // UserDefaults'tan üyelik bilgilerini yükle
         if let savedTier = UserDefaults.standard.string(forKey: "subscriptionTier"),
            let tier = SubscriptionTier(rawValue: savedTier) {
             subscriptionTier = tier
@@ -117,6 +136,7 @@ class SubscriptionManager: ObservableObject {
         remainingImageStories = UserDefaults.standard.integer(forKey: "remainingImageStories")
         freeTrialUsed = UserDefaults.standard.bool(forKey: "freeTrialUsed")
         freeTrialCount = UserDefaults.standard.integer(forKey: "freeTrialCount")
+        freeImageStoryUsed = UserDefaults.standard.bool(forKey: "freeImageStoryUsed")
         
         if let savedDate = UserDefaults.standard.object(forKey: "lastFreeTextStoryDate") as? Date {
             lastFreeTextStoryDate = savedDate
@@ -126,7 +146,9 @@ class SubscriptionManager: ObservableObject {
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
             freeTrialCount = 3
             freeTrialUsed = false
+            freeImageStoryUsed = false
             UserDefaults.standard.set(3, forKey: "freeTrialCount")
+            UserDefaults.standard.set(false, forKey: "freeImageStoryUsed")
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
         }
         
@@ -156,7 +178,7 @@ class SubscriptionManager: ObservableObject {
         }
     }
     
-    // Abonelik satın al
+    // Hikaye Kulübü üyeliği satın al
     func purchaseSubscription(tier: SubscriptionTier) {
         subscriptionTier = tier
         remainingImageStories = tier.monthlyImageStories
@@ -166,7 +188,7 @@ class SubscriptionManager: ObservableObject {
         UserDefaults.standard.set(Date(), forKey: "lastQuotaReset")
     }
     
-    // Aboneliği iptal et
+    // Üyeliği iptal et
     func cancelSubscription() {
         subscriptionTier = .none
         remainingImageStories = 0
@@ -179,9 +201,9 @@ class SubscriptionManager: ObservableObject {
     func canCreateStory(type: StoryType) -> Bool {
         switch type {
         case .text:
-            // Metin hikaye: Abonelik VEYA 12 saatte 1 ücretsiz VEYA deneme
+            // Metin hikaye: Üyelik VEYA 12 saatte 1 ücretsiz VEYA deneme
             if subscriptionTier != .none {
-                return true // Aboneler sınırsız
+                return true // Üyeler sınırsız
             }
             if freeTrialCount > 0 {
                 return true // Deneme hakkı var
@@ -189,21 +211,41 @@ class SubscriptionManager: ObservableObject {
             return canCreateFreeTextStory // 12 saatlik kontrol
             
         case .daily:
-            // Günlük hikaye: Abonelik veya ücretsiz deneme
-            return subscriptionTier != .none || freeTrialCount > 0
+            // Günlük hikaye: Üyelik veya ücretsiz deneme
+            if subscriptionTier != .none {
+                return true // Üyeler sınırsız
+            }
+            return freeTrialCount > 0 // Deneme hakkı var
             
         case .image:
-            // Görselli hikaye: Abonelik kotası veya ücretsiz deneme
-            return remainingImageStories > 0 || freeTrialCount > 0
+            // Görselli hikaye: Üyelik kotası VEYA (deneme hakkı var VE görselli henüz kullanılmadı)
+            if subscriptionTier != .none {
+                return remainingImageStories > 0 // Üyeler kota kontrolü
+            }
+            // Ücretsiz kullanıcı: Deneme hakkı var VE görselli hikaye henüz kullanılmadı
+            return freeTrialCount > 0 && !freeImageStoryUsed
         }
     }
     
     // Hikaye oluştur (kotayı düş)
     func useStory(type: StoryType) -> Bool {
         // Önce ücretsiz deneme kontrolü
-        if freeTrialCount > 0 {
+        if freeTrialCount > 0 && subscriptionTier == .none {
+            // Görselli hikaye için özel kontrol
+            if type == .image {
+                if freeImageStoryUsed {
+                    // Görselli hikaye zaten kullanılmış
+                    return false
+                }
+                // Görselli hikaye kullanımını işaretle
+                freeImageStoryUsed = true
+                UserDefaults.standard.set(true, forKey: "freeImageStoryUsed")
+            }
+            
+            // Deneme hakkını düş
             freeTrialCount -= 1
             UserDefaults.standard.set(freeTrialCount, forKey: "freeTrialCount")
+            
             if freeTrialCount == 0 {
                 freeTrialUsed = true
                 UserDefaults.standard.set(true, forKey: "freeTrialUsed")
@@ -211,11 +253,11 @@ class SubscriptionManager: ObservableObject {
             return true
         }
         
-        // Abonelik kontrolü
+        // Hikaye Kulübü kontrolü
         switch type {
         case .text:
             if subscriptionTier != .none {
-                return true // Aboneler sınırsız
+                return true // Üyeler sınırsız
             }
             // Ücretsiz kullanıcı - 12 saatlik kontrol
             if canCreateFreeTextStory {
@@ -243,12 +285,14 @@ class SubscriptionManager: ObservableObject {
         return subscriptionTier != .none
     }
     
-    // Test için abonelik değiştir
+    // Test için üyelik değiştir
     func toggleSubscription() {
         if subscriptionTier == .none {
             purchaseSubscription(tier: .basic)
         } else if subscriptionTier == .basic {
             purchaseSubscription(tier: .premium)
+        } else if subscriptionTier == .premium {
+            purchaseSubscription(tier: .ultimate)
         } else {
             cancelSubscription()
         }

@@ -11,6 +11,9 @@ An iOS app that creates personalized, illustrated children's stories using AI. U
 - **Background Processing**: Stories generate in the background with progress tracking
 - **Local Storage**: Images saved locally for offline access
 - **Push Notifications**: Get notified when your story is ready
+- **Full Accessibility**: Dynamic Type, VoiceOver, High Contrast mode, and WCAG 2.1 AAA compliant
+- **iPad Optimized**: Fullscreen layouts with adaptive sizing for all devices
+- **Reading Customization**: Adjustable text size, themes (Light/Sepia/Night), line spacing, and auto-play mode
 
 ## 🏗️ Architecture
 

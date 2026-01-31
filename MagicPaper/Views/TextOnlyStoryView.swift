@@ -8,6 +8,7 @@ struct TextOnlyStoryView: View {
     @State private var childName = ""
     @State private var selectedGender = Gender.other
     @State private var selectedTheme = StoryTheme.fantasy
+    @AppStorage("defaultLanguage") private var defaultLanguageRaw = "tr"
     @State private var selectedLanguage = StoryLanguage.turkish
     @State private var customTitle = ""
     
@@ -28,7 +29,6 @@ struct TextOnlyStoryView: View {
                         headerSection
                         basicInfoSection
                         themeSection
-                        languageSection
                         generateButton
                             .padding(.bottom, 20)
                     }
@@ -57,6 +57,10 @@ struct TextOnlyStoryView: View {
             }
             .navigationTitle("Metin Hikaye")
             .navigationBarTitleDisplayMode(.large)
+        }
+        .onAppear {
+            // Varsayılan dili yükle
+            selectedLanguage = StoryLanguage(rawValue: defaultLanguageRaw) ?? .turkish
         }
         .alert(alertTitle, isPresented: $showingAlert) {
             Button("Tamam") { }
@@ -325,70 +329,6 @@ struct TextOnlyStoryView: View {
     
     // MARK: - Language Section
     
-    private var languageSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Hikaye Dili")
-                .font(.title3.bold())
-                .foregroundColor(.primary)
-            
-            Text("Hikayenin hangi dilde yazılmasını istersiniz?")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(StoryLanguage.allCases, id: \.self) { language in
-                        languageButton(language: language)
-                    }
-                }
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
-        )
-    }
-    
-    private func languageButton(language: StoryLanguage) -> some View {
-        Button(action: {
-            withAnimation(.spring(response: 0.3)) {
-                selectedLanguage = language
-            }
-        }) {
-            VStack(spacing: 8) {
-                Text(language.flag)
-                    .font(.system(size: 32))
-                
-                Text(language.displayName)
-                    .font(.caption.bold())
-                    .foregroundColor(selectedLanguage == language ? .white : .primary)
-            }
-            .frame(width: 80)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(selectedLanguage == language ? 
-                          LinearGradient(
-                            colors: [
-                                Color(red: 0.2, green: 0.6, blue: 0.86),
-                                Color(red: 0.4, green: 0.8, blue: 0.6)
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                          ) : 
-                          LinearGradient(
-                            colors: [Color(.systemGray6), Color(.systemGray6)],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                          )
-                    )
-                    .shadow(color: selectedLanguage == language ? Color(red: 0.2, green: 0.6, blue: 0.86).opacity(0.3) : .clear, radius: 4, x: 0, y: 2)
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
     
     // MARK: - Generate Button
     
@@ -515,7 +455,7 @@ struct TextOnlyStoryView: View {
                     Text("\(subscriptionManager.hoursUntilNextFreeStory) saat sonra")
                         .font(.subheadline.bold())
                         .foregroundColor(.orange)
-                    Text("Sınırsız hikaye için abone olun - Günde 3₺")
+                    Text("Sınırsız hikaye için kulübe katıl - Günde 3₺")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -527,7 +467,7 @@ struct TextOnlyStoryView: View {
                 Button(action: {
                     showingPremiumSheet = true
                 }) {
-                    Text("Abone Ol")
+                    Text("Kulübe Katıl")
                         .font(.caption.bold())
                         .foregroundColor(.white)
                         .padding(.horizontal, 12)
@@ -575,7 +515,7 @@ struct TextOnlyStoryView: View {
                 alertMessage = "12 saatte 1 ücretsiz metin hikaye hakkınız var!"
             } else {
                 alertTitle = "⏰ Bekleme Süresi"
-                alertMessage = "Bir sonraki ücretsiz hikaye için \(subscriptionManager.hoursUntilNextFreeStory) saat beklemeniz gerekiyor.\n\nSınırsız hikaye için günde 3₺ ile abone olun!"
+                alertMessage = "Bir sonraki ücretsiz hikaye için \(subscriptionManager.hoursUntilNextFreeStory) saat beklemeniz gerekiyor.\n\nSınırsız hikaye için günde 3₺ ile kulübe katıl!"
                 showingAlert = true
                 showingPremiumSheet = true
                 return

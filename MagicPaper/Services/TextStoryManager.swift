@@ -52,7 +52,7 @@ class TextStoryManager: ObservableObject {
         if success {
             // Kütüphaneye de ekle (Story modeline dönüştür)
             if let textStory = textStories.first(where: { $0.id == story.id }) {
-                await addToLibrary(textStory: textStory)
+                addToLibrary(textStory: textStory)
             }
             return textStories.first(where: { $0.id == story.id })
         } else {
@@ -100,7 +100,7 @@ class TextStoryManager: ObservableObject {
         if success {
             // Kütüphaneye de ekle (Story modeline dönüştür)
             if let textStory = textStories.first(where: { $0.id == story.id }) {
-                await addToLibrary(textStory: textStory)
+                addToLibrary(textStory: textStory)
             }
             return textStories.first(where: { $0.id == story.id })
         } else {
@@ -109,7 +109,7 @@ class TextStoryManager: ObservableObject {
     }
     
     // Metin hikayeyi kütüphaneye ekle
-    private func addToLibrary(textStory: TextStory) async {
+    private func addToLibrary(textStory: TextStory) {
         // TextStory'yi Story modeline dönüştür
         let storyPages = textStory.content.components(separatedBy: "\n\n---\n\n").enumerated().map { index, section in
             let parts = section.components(separatedBy: "\n\n")
@@ -135,7 +135,7 @@ class TextStoryManager: ObservableObject {
         )
         
         // StoryGenerationManager'a ekle
-        await StoryGenerationManager.shared.addStoryToLibrary(libraryStory)
+        StoryGenerationManager.shared.addStoryToLibrary(libraryStory)
     }
     
     private func generateStoryContent(for storyId: UUID) async -> Bool {

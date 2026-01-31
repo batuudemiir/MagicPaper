@@ -123,11 +123,17 @@ class FileManagerService {
 
 struct UserProfile: Codable {
     var name: String
+    var age: Int
     var profileImageFileName: String?
     var createdAt: Date
     
-    init(name: String = "", profileImageFileName: String? = nil) {
+    var isEmpty: Bool {
+        return name.isEmpty
+    }
+    
+    init(name: String = "", age: Int = 0, profileImageFileName: String? = nil) {
         self.name = name
+        self.age = age
         self.profileImageFileName = profileImageFileName
         self.createdAt = Date()
     }
@@ -144,16 +150,22 @@ class ProfileManager: ObservableObject {
     private let profileKey = "userProfile"
     
     private init() {
+        print("🎯 ProfileManager başlatılıyor...")
         // Load profile from UserDefaults
         if let data = userDefaults.data(forKey: profileKey),
            let savedProfile = try? JSONDecoder().decode(UserProfile.self, from: data) {
             self.profile = savedProfile
+            print("✅ Profil yüklendi: \(savedProfile.name)")
         } else {
             self.profile = UserProfile()
+            print("ℹ️ Yeni profil oluşturuldu")
         }
+        print("   - Onboarding tamamlandı: \(hasCompletedOnboarding)")
+        print("   - Profil var mı: \(hasProfile())")
     }
     
     func updateProfile(name: String, image: UIImage? = nil) {
+        print("💾 Profil güncelleniyor: \(name)")
         profile.name = name
         
         // Save image if provided
@@ -199,10 +211,23 @@ class ProfileManager: ObservableObject {
     private func saveProfile() {
         if let encoded = try? JSONEncoder().encode(profile) {
             userDefaults.set(encoded, forKey: profileKey)
+            print("✅ Profil kaydedildi")
         }
     }
     
     func hasProfile() -> Bool {
-        return !profile.name.isEmpty
+        let hasProfile = !profile.name.isEmpty
+        print("🔍 Profil kontrolü: \(hasProfile) (ad: '\(profile.name)')")
+        return hasProfile
+    }
+    
+    func resetProfile() {
+        print("🔄 Profil sıfırlanıyor")
+        if let oldFileName = profile.profileImageFileName {
+            deleteProfileImage(fileName: oldFileName)
+        }
+        self.profile = UserProfile()
+        self.hasCompletedOnboarding = false
+        userDefaults.removeObject(forKey: profileKey)
     }
 }

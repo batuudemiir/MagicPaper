@@ -8,6 +8,7 @@ struct DailyStoryCreationView: View {
     
     let category: DailyStoryCategory
     
+    @AppStorage("defaultLanguage") private var defaultLanguageRaw = "tr"
     @State private var childName: String = ""
     @State private var childAge: Int = 5
     @State private var childGender: Gender = .other
@@ -226,7 +227,7 @@ struct DailyStoryCreationView: View {
     // MARK: - Create Story
     
     private func createStory() {
-        // Abonelik kontrolü
+        // Hikaye Kulübü kontrolü
         if !subscriptionManager.canCreateStory(type: .daily) {
             return
         }
@@ -240,12 +241,13 @@ struct DailyStoryCreationView: View {
         
         Task {
             // Kategoriye özel metin hikaye oluştur (görselsiz)
+            let language = StoryLanguage(rawValue: defaultLanguageRaw) ?? .turkish
             _ = await textStoryManager.createCategoryTextStory(
                 childName: childName,
                 age: childAge,
                 gender: childGender,
                 category: category.rawValue,
-                language: StoryLanguage.turkish
+                language: language
             )
             
             await MainActor.run {

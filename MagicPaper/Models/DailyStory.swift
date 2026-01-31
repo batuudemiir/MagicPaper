@@ -43,13 +43,15 @@ struct DailyStory: Identifiable, Codable, Equatable {
     }
 }
 
-enum DailyStoryCategory: String, CaseIterable, Codable {
+enum DailyStoryCategory: String, CaseIterable, Codable, Identifiable {
     case bedtime = "bedtime"
     case morning = "morning"
     case educational = "educational"
     case values = "values"
     case adventure = "adventure"
     case nature = "nature"
+    
+    var id: String { rawValue }
     
     var displayName: String {
         switch self {
