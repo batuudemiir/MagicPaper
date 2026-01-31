@@ -9,6 +9,9 @@ struct HomeView: View {
     @State private var selectedDailyStory: DailyStory?
     @State private var showingSubscriptionSheet = false
     @State private var showingDailyStoryReader = false
+    @State private var showingSettings = false
+    @State private var showingLibrary = false
+    @State private var showingDailyStories = false
     
     var body: some View {
         NavigationView {
@@ -30,11 +33,15 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
-                        NavigationLink(destination: SettingsView()) {
+                        Button(action: {
+                            showingSettings = true
+                        }) {
                             Label(localizationManager.localized(.settings), systemImage: "gearshape.fill")
                         }
                         
-                        NavigationLink(destination: LibraryView()) {
+                        Button(action: {
+                            showingLibrary = true
+                        }) {
                             Label(localizationManager.localized(.myLibrary), systemImage: "books.vertical.fill")
                         }
                         
@@ -48,7 +55,9 @@ struct HomeView: View {
                         
                         Divider()
                         
-                        NavigationLink(destination: DailyStoriesView()) {
+                        Button(action: {
+                            showingDailyStories = true
+                        }) {
                             Label(localizationManager.localized(.dailyStories), systemImage: "calendar")
                         }
                     } label: {
@@ -189,6 +198,15 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showingSubscriptionSheet) {
             SimpleSubscriptionView()
+        }
+        .navigationDestination(isPresented: $showingSettings) {
+            SettingsView()
+        }
+        .navigationDestination(isPresented: $showingLibrary) {
+            LibraryView()
+        }
+        .navigationDestination(isPresented: $showingDailyStories) {
+            DailyStoriesView()
         }
     }
     
