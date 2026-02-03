@@ -18,7 +18,9 @@ struct ProfileSetupView: View {
                     .ignoresSafeArea()
                 
                 ScrollView {
-                VStack(spacing: 32) {
+                    HStack {
+                        Spacer(minLength: 0)
+                        VStack(spacing: 32) {
                     // Header
                     VStack(spacing: 12) {
                         Text(isEditing ? L.editProfile : L.welcome)
@@ -211,7 +213,11 @@ struct ProfileSetupView: View {
                         .foregroundColor(.gray)
                     }
                 }
+                .frame(maxWidth: DeviceHelper.isIPad ? 600 : .infinity) // iPad'de maksimum genişlik
+                .padding(.horizontal, DeviceHelper.horizontalPadding) // Adaptive padding
                 .padding(.bottom, 32)
+                        Spacer(minLength: 0)
+                    }
             }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -226,6 +232,7 @@ struct ProfileSetupView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(selectedImage: $selectedImage, photoData: .constant(nil))
         }

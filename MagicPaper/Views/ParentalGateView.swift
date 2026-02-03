@@ -176,6 +176,7 @@ struct ParentalGateView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
     }
     
     private func checkAnswer() {

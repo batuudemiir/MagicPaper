@@ -83,6 +83,7 @@ struct SimpleSubscriptionView: View {
         } message: {
             Text(alertMessage)
         }
+        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
         .sheet(isPresented: $showingParentalGate) {
             ParentalGateView(onSuccess: {
                 makePurchase()
