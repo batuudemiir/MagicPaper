@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TextOnlyStoryView: View {
     @StateObject private var subscriptionManager = SubscriptionManager.shared
-    @StateObject private var adManager = AdMobManager.shared
     @StateObject private var aiService = AIService.shared
     
     @State private var childName = ""
@@ -561,11 +560,6 @@ struct TextOnlyStoryView: View {
                     self.generatedStory = story
                     self.isGenerating = false
                     self.generationProgress = ""
-                    
-                    // Ücretsiz kullanıcılara reklam göster
-                    if !subscriptionManager.isPremium {
-                        adManager.showInterstitialAd()
-                    }
                     
                     // Hikayeyi göster
                     self.showingStoryViewer = true

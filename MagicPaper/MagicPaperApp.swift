@@ -1,7 +1,6 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseStorage
-import GoogleMobileAds
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -11,9 +10,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     FirebaseApp.configure()
     print("✅ Firebase yapılandırıldı")
     
-    // AdMob SDK'yı başlat
-    AdMobManager.shared.initializeSDK()
-    print("✅ AdMob başlatıldı")
+    // AdMob KALDIRILDI - Kids Category uyumluluğu için
+    // Apple ASIdentifierManager (IDFA) kullanımına izin vermiyor
+    // Gelir modeli: Sadece IAP/Abonelik
     
     // Request notification permission
     LocalNotificationManager.shared.requestPermission()

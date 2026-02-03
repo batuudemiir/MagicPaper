@@ -4,7 +4,6 @@ struct CreateStoryView: View {
     @StateObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var aiService = AIService.shared
     @StateObject private var subscriptionManager = SubscriptionManager.shared
-    @StateObject private var adManager = AdMobManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
     
     @State private var childName = ""
@@ -680,12 +679,6 @@ struct CreateStoryView: View {
             await MainActor.run {
                 self.isGenerating = false
                 self.generationProgress = ""
-                
-                // Ücretsiz kullanıcılara reklam göster
-                if !subscriptionManager.isPremium {
-                    // Reklamı göster
-                    adManager.showInterstitialAd()
-                }
                 
                 // Başarı mesajı
                 self.alertTitle = "✨ \(localizationManager.localized(.storyGenerating))"
