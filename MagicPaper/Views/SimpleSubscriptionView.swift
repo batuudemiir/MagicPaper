@@ -6,6 +6,7 @@ struct SimpleSubscriptionView: View {
     @State private var selectedPackage: SubscriptionManager.SubscriptionPackage?
     @State private var showingPurchaseAlert = false
     @State private var alertMessage = ""
+    @State private var showingParentalGate = false
     
     var body: some View {
         NavigationView {
@@ -81,6 +82,11 @@ struct SimpleSubscriptionView: View {
             }
         } message: {
             Text(alertMessage)
+        }
+        .sheet(isPresented: $showingParentalGate) {
+            ParentalGateView(onSuccess: {
+                makePurchase()
+            })
         }
     }
     
@@ -677,7 +683,10 @@ struct SimpleSubscriptionView: View {
     
     private var purchaseButton: some View {
         VStack(spacing: 12) {
-            Button(action: makePurchase) {
+            Button(action: {
+                // COPPA Compliance: Parental gate before purchase
+                showingParentalGate = true
+            }) {
                 HStack(spacing: 10) {
                     Image(systemName: "crown.fill")
                         .font(.system(size: 18, weight: .bold))

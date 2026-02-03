@@ -12,6 +12,8 @@ struct SettingsView: View {
     @State private var showingClearDataAlert = false
     @State private var showingAboutSheet = false
     @State private var showingProfileEdit = false
+    @State private var showingParentalGate = false
+    @State private var parentalGateAction: (() -> Void)?
     @AppStorage("defaultTheme") private var defaultTheme = "fantasy"
     @AppStorage("defaultAgeRange") private var defaultAgeRange = 6
     @AppStorage("defaultLanguage") private var defaultLanguageRaw = "tr"
@@ -71,6 +73,14 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingProfileEdit) {
             ProfileSetupView(isEditing: true)
+        }
+        .sheet(isPresented: $showingParentalGate) {
+            ParentalGateView(onSuccess: {
+                if let action = parentalGateAction {
+                    action()
+                    parentalGateAction = nil
+                }
+            })
         }
         .alert(localizationManager.localized(.clearAllData), isPresented: $showingClearDataAlert) {
             Button(localizationManager.localized(.cancel), role: .cancel) { }
@@ -625,7 +635,10 @@ struct SettingsView: View {
                 Divider()
                     .padding(.horizontal, 16)
                 
-                Button(action: shareApp) {
+                Button(action: {
+                    parentalGateAction = { shareApp() }
+                    showingParentalGate = true
+                }) {
                     HStack {
                         settingIcon("square.and.arrow.up.fill", color: .blue)
                         Text(localizationManager.localized(.shareApp))
@@ -672,7 +685,10 @@ struct SettingsView: View {
                 Divider()
                     .padding(.horizontal, 16)
                 
-                Button(action: rateApp) {
+                Button(action: {
+                    parentalGateAction = { rateApp() }
+                    showingParentalGate = true
+                }) {
                     HStack {
                         settingIcon("star.fill", color: .yellow)
                         Text(localizationManager.localized(.rateApp))
@@ -689,7 +705,10 @@ struct SettingsView: View {
                 Divider()
                     .padding(.horizontal, 16)
                 
-                Button(action: contactSupport) {
+                Button(action: {
+                    parentalGateAction = { contactSupport() }
+                    showingParentalGate = true
+                }) {
                     HStack {
                         settingIcon("envelope.fill", color: .cyan)
                         Text(localizationManager.localized(.contactSupport))
@@ -706,7 +725,10 @@ struct SettingsView: View {
                 Divider()
                     .padding(.horizontal, 16)
                 
-                Button(action: openPrivacyPolicy) {
+                Button(action: {
+                    parentalGateAction = { openPrivacyPolicy() }
+                    showingParentalGate = true
+                }) {
                     HStack {
                         settingIcon("shield.checkered", color: .green)
                         Text(localizationManager.localized(.privacyPolicy))
@@ -723,7 +745,10 @@ struct SettingsView: View {
                 Divider()
                     .padding(.horizontal, 16)
                 
-                Button(action: openTermsOfService) {
+                Button(action: {
+                    parentalGateAction = { openTermsOfService() }
+                    showingParentalGate = true
+                }) {
                     HStack {
                         settingIcon("doc.text.fill", color: .gray)
                         Text(localizationManager.localized(.termsOfService))

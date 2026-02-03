@@ -50,7 +50,17 @@ class AdMobManager: NSObject, ObservableObject {
     func loadInterstitialAd() {
         let request = GADRequest()
         
-        print("📥 Reklam yükleniyor...")
+        // COPPA UYUMLULUĞU - Çocuk odaklı içerik için tag ekle
+        // Bu, davranışsal reklamları devre dışı bırakır ve çocuklara uygun reklamlar gösterir
+        let extras = GADExtras()
+        extras.additionalParameters = [
+            "tag_for_child_directed_treatment": "1",  // Çocuk odaklı içerik
+            "tag_for_under_age_of_consent": "1",      // Rıza yaşının altındaki kullanıcılar
+            "max_ad_content_rating": "G"               // Genel izleyici (G rating)
+        ]
+        request.register(extras)
+        
+        print("📥 Reklam yükleniyor (COPPA uyumlu)...")
         
         GADInterstitialAd.load(withAdUnitID: adUnitID, request: request) { [weak self] ad, error in
             if let error = error {
@@ -62,7 +72,7 @@ class AdMobManager: NSObject, ObservableObject {
             self?.interstitialAd = ad
             self?.interstitialAd?.fullScreenContentDelegate = self
             self?.isAdReady = true
-            print("✅ Reklam başarıyla yüklendi")
+            print("✅ Reklam başarıyla yüklendi (Çocuk güvenli)")
         }
     }
     
