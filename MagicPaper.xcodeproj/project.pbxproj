@@ -41,7 +41,6 @@
 		A1000001000000000000005D /* DailyStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005E /* DailyStoriesView.swift */; };
 		A10000010000000000000060 /* ProfileSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005F /* ProfileSetupView.swift */; };
 		A10000010000000000000062 /* DailyStoryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000061 /* DailyStoryCreationView.swift */; };
-		A10000010000000000000065 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000066 /* GoogleMobileAds */; };
 		A10000010000000000000067 /* TextOnlyStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000068 /* TextOnlyStoryView.swift */; };
 		A10000010000000000000069 /* TextOnlyStoryViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006A /* TextOnlyStoryViewerView.swift */; };
 		A1000001000000000000006B /* TextOnlyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006C /* TextOnlyStory.swift */; };
@@ -106,7 +105,6 @@
 			files = (
 				A10000010000000000000040 /* FirebaseCore in Frameworks */,
 				A10000010000000000000041 /* FirebaseStorage in Frameworks */,
-				A10000010000000000000065 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +229,6 @@
 			packageProductDependencies = (
 				A10000010000000000000042 /* FirebaseCore */,
 				A10000010000000000000043 /* FirebaseStorage */,
-				A10000010000000000000066 /* GoogleMobileAds */,
 			);
 			productName = MagicPaper;
 			productReference = A1000001000000000000001F /* MagicPaper.app */;
@@ -263,7 +260,6 @@
 			mainGroup = A10000010000000000000028;
 			packageReferences = (
 				A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = A10000010000000000000024 /* Products */;
 			projectDirPath = "";
@@ -565,14 +561,6 @@
 				minimumVersion = 11.0.0;
 			};
 		};
-		A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -585,11 +573,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		A10000010000000000000066 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A10000010000000000000045 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
