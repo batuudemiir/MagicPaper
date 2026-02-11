@@ -1,5 +1,5 @@
 import Foundation
-import AppTrackingTransparency
+// import AppTrackingTransparency // ❌ REMOVED - Not allowed for Kids Category apps
 import UserNotifications
 import UIKit
 
@@ -7,29 +7,32 @@ import UIKit
 class PermissionManager: ObservableObject {
     static let shared = PermissionManager()
     
-    @Published var trackingStatus: ATTrackingManager.AuthorizationStatus = .notDetermined
+    // ❌ REMOVED - Tracking not allowed for Kids Category apps
+    // @Published var trackingStatus: ATTrackingManager.AuthorizationStatus = .notDetermined
     @Published var notificationStatus: UNAuthorizationStatus = .notDetermined
     
     private init() {
-        checkTrackingStatus()
+        // ❌ REMOVED - No tracking for Kids Category apps
+        // checkTrackingStatus()
         Task {
             await checkNotificationStatus()
         }
     }
     
     // MARK: - App Tracking Transparency (ATT)
+    // ❌ REMOVED - Not allowed for Kids Category apps
     
-    func checkTrackingStatus() {
-        trackingStatus = ATTrackingManager.trackingAuthorizationStatus
-    }
+    // func checkTrackingStatus() {
+    //     trackingStatus = ATTrackingManager.trackingAuthorizationStatus
+    // }
     
-    func requestTrackingPermission() async {
-        // iOS 14+ için ATT izni
-        if #available(iOS 14, *) {
-            trackingStatus = await ATTrackingManager.requestTrackingAuthorization()
-            print("📊 Tracking Permission: \(trackingStatus.description)")
-        }
-    }
+    // func requestTrackingPermission() async {
+    //     // iOS 14+ için ATT izni
+    //     if #available(iOS 14, *) {
+    //         trackingStatus = await ATTrackingManager.requestTrackingAuthorization()
+    //         print("📊 Tracking Permission: \(trackingStatus.description)")
+    //     }
+    // }
     
     // MARK: - Notifications
     
@@ -53,47 +56,44 @@ class PermissionManager: ObservableObject {
     // MARK: - Request All Permissions
     
     func requestAllPermissions() async {
-        // iOS 14.5+ için tracking izni bir gecikme sonra istenmeli
-        // Uygulama tam olarak yüklendikten sonra
-        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 saniye bekle
+        // ❌ REMOVED - No tracking for Kids Category apps
+        // Only request notification permission
         
-        // 1. Tracking izni (AdMob için)
-        await requestTrackingPermission()
-        
-        // 2. Bildirim izni
+        // Bildirim izni
         _ = await requestNotificationPermission()
     }
     
     // MARK: - Permission Status Helpers
     
-    var hasTrackingPermission: Bool {
-        trackingStatus == .authorized
-    }
+    // ❌ REMOVED - No tracking for Kids Category apps
+    // var hasTrackingPermission: Bool {
+    //     trackingStatus == .authorized
+    // }
     
     var hasNotificationPermission: Bool {
         notificationStatus == .authorized
     }
     
     var allPermissionsGranted: Bool {
-        hasTrackingPermission && hasNotificationPermission
+        // ✅ Only notification permission for Kids Category apps
+        hasNotificationPermission
     }
 }
 
-// MARK: - ATTrackingManager.AuthorizationStatus Extension
-
-extension ATTrackingManager.AuthorizationStatus {
-    var description: String {
-        switch self {
-        case .notDetermined:
-            return "Not Determined"
-        case .restricted:
-            return "Restricted"
-        case .denied:
-            return "Denied"
-        case .authorized:
-            return "Authorized"
-        @unknown default:
-            return "Unknown"
-        }
-    }
-}
+// ❌ REMOVED - ATTrackingManager extension not needed for Kids Category apps
+// extension ATTrackingManager.AuthorizationStatus {
+//     var description: String {
+//         switch self {
+//         case .notDetermined:
+//             return "Not Determined"
+//         case .restricted:
+//             return "Restricted"
+//         case .denied:
+//             return "Denied"
+//         case .authorized:
+//             return "Authorized"
+//         @unknown default:
+//             return "Unknown"
+//         }
+//     }
+// }
