@@ -237,6 +237,13 @@ class AIService: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Bundle ID'yi header'a ekle (iOS app restriction için)
+        if let bundleId = Bundle.main.bundleIdentifier {
+            request.setValue(bundleId, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+            print("📱 Bundle ID: \(bundleId)")
+        }
+        
         request.timeoutInterval = 90  // Uzun hikaye için daha fazla zaman
         
         var requestBody: [String: Any] = [
