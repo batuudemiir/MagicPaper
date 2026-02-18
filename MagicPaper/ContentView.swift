@@ -314,7 +314,9 @@ struct CreateStoryTypeSelectionView: View {
                                 )
                             }
                             
-                            NavigationLink(destination: TextOnlyStoryView()) {
+                            NavigationLink(destination: TextOnlyStoryView(onNavigateToLibrary: {
+                                selectedTab = 1 // Library tab
+                            })) {
                                 modernStoryCard(
                                     icon: "text.book.closed",
                                     title: L.textStory,

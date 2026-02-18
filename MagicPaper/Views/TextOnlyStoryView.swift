@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TextOnlyStoryView: View {
     @StateObject private var subscriptionManager = SubscriptionManager.shared
-    @StateObject private var aiService = AIService.shared
+    @StateObject private var textStoryManager = TextStoryManager.shared
     
     @State private var childName = ""
     @State private var selectedGender = Gender.other
@@ -17,8 +17,9 @@ struct TextOnlyStoryView: View {
     @State private var alertMessage = ""
     @State private var alertTitle = "Bilgi"
     @State private var showingPremiumSheet = false
-    @State private var generatedStory: TextOnlyStory?
-    @State private var showingStoryViewer = false
+    
+    // Callback for navigation
+    var onNavigateToLibrary: (() -> Void)?
     
     var body: some View {
         NavigationView {
@@ -68,11 +69,6 @@ struct TextOnlyStoryView: View {
         }
         .sheet(isPresented: $showingPremiumSheet) {
             SimpleSubscriptionView()
-        }
-        .sheet(isPresented: $showingStoryViewer) {
-            if let story = generatedStory {
-                TextOnlyStoryViewerView(story: story)
-            }
         }
         .overlay(
             loadingOverlay
@@ -530,47 +526,38 @@ struct TextOnlyStoryView: View {
         }
         
         isGenerating = true
-        generationProgress = "Hikaye yazılıyor..."
+        generationProgress = "Hikaye oluşturuluyor..."
         
         Task {
-            do {
-                let storyResponse = try await aiService.generateTextOnlyStory(
-                    childName: childName,
-                    gender: selectedGender,
-                    theme: selectedTheme.rawValue,
-                    language: selectedLanguage.rawValue,
-                    customTitle: selectedTheme == .custom ? customTitle : nil
-                )
+            // TextStoryManager ile hikaye oluştur (kütüphaneye otomatik ekler)
+            let story = await textStoryManager.createTextStory(
+                childName: childName,
+                gender: selectedGender,
+                theme: selectedTheme,
+                language: selectedLanguage,
+                customTitle: selectedTheme == .custom ? customTitle : nil
+            )
+            
+            await MainActor.run {
+                self.isGenerating = false
+                self.generationProgress = ""
                 
-                await MainActor.run {
-                    let story = TextOnlyStory(
-                        title: storyResponse.title,
-                        childName: childName,
-                        gender: selectedGender,
-                        theme: selectedTheme,
-                        language: selectedLanguage,
-                        pages: storyResponse.pages.map { page in
-                            TextOnlyStoryPage(
-                                title: page.title,
-                                text: page.text
-                            )
-                        }
-                    )
-                    
-                    self.generatedStory = story
-                    self.isGenerating = false
-                    self.generationProgress = ""
-                    
-                    // Hikayeyi göster
-                    self.showingStoryViewer = true
+                if story != nil {
+                    // Başarılı - Alert göster ve kütüphaneye yönlendir
+                    self.alertTitle = "✅ Başarılı"
+                    self.alertMessage = "Hikayeniz kütüphanede yükleniyor!"
+                    self.showingAlert = true
                     
                     // Formu temizle
                     self.childName = ""
-                }
-            } catch {
-                await MainActor.run {
-                    self.isGenerating = false
-                    self.generationProgress = ""
+                    self.customTitle = ""
+                    
+                    // 1 saniye sonra kütüphaneye yönlendir
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        onNavigateToLibrary?()
+                    }
+                } else {
+                    // Hata
                     self.alertTitle = "❌ Hata"
                     self.alertMessage = "Hikaye oluşturulurken bir hata oluştu. Lütfen tekrar deneyin."
                     self.showingAlert = true

@@ -488,7 +488,9 @@ struct HomeView: View {
                 quickActionButton(icon: "photo.fill", title: "Görselli", color: .purple)
             }
             
-            NavigationLink(destination: TextOnlyStoryView()) {
+            NavigationLink(destination: TextOnlyStoryView(onNavigateToLibrary: {
+                onNavigate?(.library)
+            })) {
                 quickActionButton(icon: "text.book.closed.fill", title: "Metin", color: .blue)
             }
             
