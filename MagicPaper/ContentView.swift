@@ -15,7 +15,7 @@ struct ContentView: View {
             Group {
                 switch selectedTab {
                 case 0:
-                    HomeView()
+                    HomeView(onNavigate: handleNavigation)
                         .transition(.opacity)
                 case 1:
                     LibraryView()
@@ -27,7 +27,7 @@ struct ContentView: View {
                     SettingsView()
                         .transition(.opacity)
                 default:
-                    HomeView()
+                    HomeView(onNavigate: handleNavigation)
                         .transition(.opacity)
                 }
             }
@@ -420,6 +420,29 @@ struct CreateStoryTypeSelectionView: View {
                 .shadow(color: gradient[0].opacity(0.15), radius: 20, x: 0, y: 8)
         )
     }
+    
+    // MARK: - Navigation Handling
+    
+    private func handleNavigation(_ request: NavigationRequest) {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            switch request {
+            case .settings:
+                selectedTab = 4
+            case .library:
+                selectedTab = 1
+            case .dailyStories:
+                selectedTab = 3
+            }
+        }
+    }
+}
+
+// MARK: - Navigation Request Enum
+
+enum NavigationRequest {
+    case settings
+    case library
+    case dailyStories
 }
 
 #Preview {

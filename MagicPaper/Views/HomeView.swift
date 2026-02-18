@@ -13,6 +13,9 @@ struct HomeView: View {
     @State private var showingLibrary = false
     @State private var showingDailyStories = false
     
+    // Navigation callback
+    var onNavigate: ((NavigationRequest) -> Void)?
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
