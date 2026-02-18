@@ -106,6 +106,18 @@ enum StoryTheme: String, CaseIterable, Codable {
         }
     }
     
+    // English theme names for API
+    var englishName: String {
+        switch self {
+        case .fantasy: return "Magical Kingdom"
+        case .space: return "Space Adventure"
+        case .jungle: return "Jungle Adventure"
+        case .hero: return "Superhero"
+        case .underwater: return "Ocean Secrets"
+        case .custom: return "Custom Adventure"
+        }
+    }
+    
     var emoji: String {
         switch self {
         case .fantasy: return "🏰"

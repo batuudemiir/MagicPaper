@@ -147,10 +147,13 @@ class TextStoryManager: ObservableObject {
         
         // Gemini ile hikaye oluştur
         do {
+            // Dile göre tema adını seç
+            let themeName = story.language == .turkish ? story.theme.displayName : story.theme.englishName
+            
             let storyResponse = try await aiService.generateTextOnlyStory(
                 childName: story.childName,
                 gender: story.gender,
-                theme: story.theme.displayName,
+                theme: themeName,
                 language: story.language.rawValue,
                 customTitle: story.theme == .custom ? story.title : nil
             )
