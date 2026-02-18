@@ -45,7 +45,24 @@ struct ContentView: View {
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.light) // Sabit aydınlık mod
         .sheet(isPresented: $showingCreateSheet) {
-            CreateStoryTypeSelectionView()
+            CreateStoryTypeSelectionView(onNavigateToLibrary: {
+                selectedTab = 1 // Library tab
+            })
+        }
+    }
+    
+    // MARK: - Navigation Handling
+    
+    private func handleNavigation(_ request: NavigationRequest) {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            switch request {
+            case .settings:
+                selectedTab = 4
+            case .library:
+                selectedTab = 1
+            case .dailyStories:
+                selectedTab = 3
+            }
         }
     }
     
@@ -249,6 +266,9 @@ struct TabButtonStyle: ButtonStyle {
 struct CreateStoryTypeSelectionView: View {
     @Environment(\.dismiss) private var dismiss
     
+    // Callback for navigation to library
+    var onNavigateToLibrary: (() -> Void)?
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -315,7 +335,8 @@ struct CreateStoryTypeSelectionView: View {
                             }
                             
                             NavigationLink(destination: TextOnlyStoryView(onNavigateToLibrary: {
-                                selectedTab = 1 // Library tab
+                                dismiss()
+                                onNavigateToLibrary?()
                             })) {
                                 modernStoryCard(
                                     icon: "text.book.closed",
@@ -419,21 +440,6 @@ struct CreateStoryTypeSelectionView: View {
                 .fill(.white)
                 .shadow(color: gradient[0].opacity(0.15), radius: 20, x: 0, y: 8)
         )
-    }
-    
-    // MARK: - Navigation Handling
-    
-    private func handleNavigation(_ request: NavigationRequest) {
-        withAnimation(.easeInOut(duration: 0.3)) {
-            switch request {
-            case .settings:
-                selectedTab = 4
-            case .library:
-                selectedTab = 1
-            case .dailyStories:
-                selectedTab = 3
-            }
-        }
     }
 }
 
