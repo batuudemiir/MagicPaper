@@ -140,15 +140,24 @@ class TextStoryManager: ObservableObject {
     
     private func generateStoryContent(for storyId: UUID) async -> Bool {
         guard let index = textStories.firstIndex(where: { $0.id == storyId }) else {
+            print("❌ Hikaye bulunamadı: \(storyId)")
             return false
         }
         
         let story = textStories[index]
         
+        print("📝 Hikaye oluşturuluyor...")
+        print("   - ID: \(story.id)")
+        print("   - Başlık: \(story.title)")
+        print("   - Çocuk: \(story.childName)")
+        print("   - Tema: \(story.theme.rawValue)")
+        print("   - Dil: \(story.language.rawValue)")
+        
         // Gemini ile hikaye oluştur
         do {
             // Dile göre tema adını seç
             let themeName = story.language == .turkish ? story.theme.displayName : story.theme.englishName
+            print("   - Tema Adı (API): \(themeName)")
             
             let storyResponse = try await aiService.generateTextOnlyStory(
                 childName: story.childName,
@@ -157,6 +166,10 @@ class TextStoryManager: ObservableObject {
                 language: story.language.rawValue,
                 customTitle: story.theme == .custom ? story.title : nil
             )
+            
+            print("✅ API yanıtı alındı")
+            print("   - Başlık: \(storyResponse.title)")
+            print("   - Sayfa sayısı: \(storyResponse.pages.count)")
             
             // Sayfaları birleştir
             let fullContent = storyResponse.pages.map { page in
@@ -171,8 +184,37 @@ class TextStoryManager: ObservableObject {
             print("✅ Text hikaye başarıyla oluşturuldu: \(story.title)")
             return true
             
+        } catch let error as URLError {
+            print("❌ Network hatası: \(error.localizedDescription)")
+            print("   - Code: \(error.code)")
+            print("   - URL: \(error.failureURLString ?? "N/A")")
+            textStories[index].status = .failed
+            saveStories()
+            return false
+        } catch let error as DecodingError {
+            print("❌ JSON parse hatası: \(error)")
+            switch error {
+            case .keyNotFound(let key, let context):
+                print("   - Missing key: \(key.stringValue)")
+                print("   - Context: \(context.debugDescription)")
+            case .typeMismatch(let type, let context):
+                print("   - Type mismatch: \(type)")
+                print("   - Context: \(context.debugDescription)")
+            case .valueNotFound(let type, let context):
+                print("   - Value not found: \(type)")
+                print("   - Context: \(context.debugDescription)")
+            case .dataCorrupted(let context):
+                print("   - Data corrupted: \(context.debugDescription)")
+            @unknown default:
+                print("   - Unknown decoding error")
+            }
+            textStories[index].status = .failed
+            saveStories()
+            return false
         } catch {
             print("❌ Text hikaye oluşturma hatası: \(error.localizedDescription)")
+            print("   - Error type: \(type(of: error))")
+            print("   - Error: \(error)")
             textStories[index].status = .failed
             saveStories()
             return false
