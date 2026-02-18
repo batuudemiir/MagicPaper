@@ -242,6 +242,30 @@ extension L {
     static var magicStories: String { tr("Sihirli Hikayeler", "Magic Stories") }
     static var unlimitedStoryWorld: String { tr("Sınırsız Hikaye Dünyası", "Unlimited Story World") }
     
+    // MARK: - TextOnlyStoryView
+    static var quickStoryCreate: String { tr("Hızlı Hikaye Oluştur", "Quick Story Create") }
+    static var textOnlyStory: String { tr("Görselsiz, sadece metin tabanlı hikaye", "Text-only story without images") }
+    static var basicInformation: String { tr("Temel Bilgiler", "Basic Information") }
+    static var enterChildName: String { tr("İsim girin", "Enter name") }
+    static var selectAdventureType: String { tr("Maceranın türünü seçin", "Select the type of adventure") }
+    static var customStorySubject: String { tr("Özel Hikaye Konusu", "Custom Story Subject") }
+    static var exampleDinosaurs: String { tr("Örn: Dinozorlarla macera", "e.g: Adventure with dinosaurs") }
+    static var freeStoryReady: String { tr("Ücretsiz Hikaye Hazır!", "Free Story Ready!") }
+    static var freeTextStoryEvery12Hours: String { tr("12 saatte 1 ücretsiz metin hikaye hakkınız var", "You have 1 free text story every 12 hours") }
+    static var unlimitedStoriesJoinClub: String { tr("Sınırsız hikaye için kulübe katıl - Günde 3₺", "Join club for unlimited stories - $1/day") }
+    static var missingInformation: String { tr("⚠️ Eksik Bilgi", "⚠️ Missing Information") }
+    static var pleaseEnterChildName: String { tr("Lütfen çocuğun ismini girin.", "Please enter child's name.") }
+    static var premiumTheme: String { tr("👑 Premium Tema", "👑 Premium Theme") }
+    static var waitingTime: String { tr("⏰ Bekleme Süresi", "⏰ Waiting Time") }
+    static var nextFreeStoryIn: String { tr("Bir sonraki ücretsiz hikaye için", "Next free story in") }
+    static var hoursWait: String { tr("saat beklemeniz gerekiyor.", "hours wait required.") }
+    static var storyCreating: String { tr("Hikaye oluşturuluyor...", "Story creating...") }
+    static var success: String { tr("✅ Başarılı", "✅ Success") }
+    static var storyLoadingInLibrary: String { tr("Hikayeniz kütüphanede yükleniyor!", "Your story is loading in library!") }
+    static var error: String { tr("❌ Hata", "❌ Error") }
+    static var storyCreationError: String { tr("Hikaye oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.", "An error occurred while creating the story. Please try again.") }
+    static var info: String { tr("Bilgi", "Info") }
+    
     // MARK: - Story Status
     static func trialsLeft(_ count: Int) -> String {
         tr("\(count) deneme kaldı", "\(count) trials left")
