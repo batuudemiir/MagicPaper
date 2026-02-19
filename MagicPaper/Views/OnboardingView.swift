@@ -11,26 +11,38 @@ struct OnboardingView: View {
             icon: "photo.on.rectangle.angled",
             title: "Fotoğraf Ekle",
             description: "Çocuğunuzun fotoğrafını yükleyin ve hikayenin kahramanı olsun",
-            gradient: [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)]
+            gradient: [Color(red: 0.58, green: 0.29, blue: 0.98), Color(red: 0.75, green: 0.32, blue: 0.92)],
+            floatingEmojis: ["📸", "🌟", "✨", "💫", "🎭"]
         ),
         OnboardingPage(
             icon: "paintpalette.fill",
             title: "Tema Seç",
             description: "Uzay, orman, denizaltı... Hayal gücünüzü serbest bırakın",
-            gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)]
+            gradient: [Color(red: 0.85, green: 0.35, blue: 0.85), Color(red: 0.95, green: 0.40, blue: 0.75)],
+            floatingEmojis: ["🎨", "🚀", "🦁", "🐬", "🏰"]
         ),
         OnboardingPage(
             icon: "sparkles",
             title: "Sihir Başlasın",
             description: "Yapay zeka ile kişiselleştirilmiş, benzersiz hikayeler oluşturun",
-            gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)]
+            gradient: [Color(red: 1.0, green: 0.45, blue: 0.55), Color(red: 1.0, green: 0.55, blue: 0.45)],
+            floatingEmojis: ["✨", "⭐", "🌈", "🎉", "📖"]
         )
     ]
     
     var body: some View {
         ZStack {
-            // Sabit beyaz arka plan
-            Color.white
+            // Morphing gradient background
+            LinearGradient(
+                colors: pages[currentPage].gradient.map { $0.opacity(0.12) } + [Color.white],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+            .animation(.easeInOut(duration: 0.5), value: currentPage)
+            
+            // White base
+            Color.white.opacity(0.7)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -38,6 +50,7 @@ struct OnboardingView: View {
                 HStack {
                     Spacer()
                     Button(action: {
+                        ProfileManager.shared.completeOnboarding()
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                             isOnboardingComplete = true
                         }
@@ -62,21 +75,22 @@ struct OnboardingView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentPage)
                 
-                // Custom page indicator
+                // Custom page indicator - pill style
                 HStack(spacing: 8) {
                     ForEach(0..<pages.count, id: \.self) { index in
-                        Circle()
-                            .fill(currentPage == index ? 
-                                  LinearGradient(
+                        Capsule()
+                            .fill(
+                                currentPage == index ?
+                                LinearGradient(
                                     colors: pages[index].gradient,
                                     startPoint: .leading,
                                     endPoint: .trailing
-                                  ) : 
-                                  LinearGradient(
+                                ) :
+                                LinearGradient(
                                     colors: [Color.gray.opacity(0.3), Color.gray.opacity(0.3)],
                                     startPoint: .leading,
                                     endPoint: .trailing
-                                  )
+                                )
                             )
                             .frame(width: currentPage == index ? 32 : 8, height: 8)
                             .animation(.spring(response: 0.3, dampingFraction: 0.7), value: currentPage)
@@ -123,6 +137,7 @@ struct OnboardingView: View {
                                 await permissionManager.requestAllPermissions()
                                 isRequestingPermissions = false
                                 
+                                ProfileManager.shared.completeOnboarding()
                                 withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                                     isOnboardingComplete = true
                                 }
@@ -159,6 +174,7 @@ struct OnboardingView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
+                .animation(.spring(response: 0.3, dampingFraction: 0.7), value: currentPage)
             }
         }
         .preferredColorScheme(.light) // Sabit aydınlık mod
@@ -170,17 +186,37 @@ struct OnboardingPage {
     let title: String
     let description: String
     let gradient: [Color]
+    let floatingEmojis: [String]
 }
 
 struct OnboardingPageView: View {
     let page: OnboardingPage
+    @State private var floatOffsets: [CGFloat] = [0, 0, 0, 0, 0]
+    @State private var appeared = false
     
     var body: some View {
         VStack(spacing: 40) {
             Spacer()
             
-            // Icon with gradient background
+            // Icon with gradient background + floating emojis
             ZStack {
+                // Floating emoji decorations
+                ForEach(0..<min(page.floatingEmojis.count, 5), id: \.self) { i in
+                    let angle = Double(i) * (360.0 / Double(min(page.floatingEmojis.count, 5)))
+                    let radius: CGFloat = 110
+                    Text(page.floatingEmojis[i])
+                        .font(.system(size: 22))
+                        .offset(
+                            x: CGFloat(cos(angle * .pi / 180)) * radius,
+                            y: CGFloat(sin(angle * .pi / 180)) * radius + floatOffsets[i]
+                        )
+                        .opacity(appeared ? 0.85 : 0)
+                        .animation(
+                            .easeInOut(duration: Double.random(in: 1.5...2.5)).repeatForever(autoreverses: true).delay(Double(i) * 0.2),
+                            value: floatOffsets[i]
+                        )
+                }
+                
                 Circle()
                     .fill(
                         LinearGradient(
@@ -212,6 +248,18 @@ struct OnboardingPageView: View {
                     )
             }
             .padding(.top, 40)
+            .onAppear {
+                appeared = true
+                for i in 0..<floatOffsets.count {
+                    withAnimation(
+                        .easeInOut(duration: Double.random(in: 1.5...2.5))
+                        .repeatForever(autoreverses: true)
+                        .delay(Double(i) * 0.2)
+                    ) {
+                        floatOffsets[i] = CGFloat.random(in: -12...12)
+                    }
+                }
+            }
             
             // Text content
             VStack(spacing: 16) {

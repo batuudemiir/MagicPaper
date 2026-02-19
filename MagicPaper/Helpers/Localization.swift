@@ -246,7 +246,8 @@ extension L {
     static var quickStoryCreate: String { tr("Hızlı Hikaye Oluştur", "Quick Story Create") }
     static var textOnlyStory: String { tr("Görselsiz, sadece metin tabanlı hikaye", "Text-only story without images") }
     static var basicInformation: String { tr("Temel Bilgiler", "Basic Information") }
-    static var enterChildName: String { tr("İsim girin", "Enter name") }
+    static var childNameLabel: String { tr("Çocuğun İsmi", "Child's Name") }
+    static var enterNamePlaceholder: String { tr("İsim girin", "Enter name") }
     static var selectAdventureType: String { tr("Maceranın türünü seçin", "Select the type of adventure") }
     static var customStorySubject: String { tr("Özel Hikaye Konusu", "Custom Story Subject") }
     static var exampleDinosaurs: String { tr("Örn: Dinozorlarla macera", "e.g: Adventure with dinosaurs") }
@@ -255,6 +256,7 @@ extension L {
     static var unlimitedStoriesJoinClub: String { tr("Sınırsız hikaye için kulübe katıl - Günde 3₺", "Join club for unlimited stories - $1/day") }
     static var missingInformation: String { tr("⚠️ Eksik Bilgi", "⚠️ Missing Information") }
     static var pleaseEnterChildName: String { tr("Lütfen çocuğun ismini girin.", "Please enter child's name.") }
+    static var pleaseEnterChildNameShort: String { tr("Lütfen çocuğun ismini girin", "Please enter child's name") }
     static var premiumTheme: String { tr("👑 Premium Tema", "👑 Premium Theme") }
     static var waitingTime: String { tr("⏰ Bekleme Süresi", "⏰ Waiting Time") }
     static var nextFreeStoryIn: String { tr("Bir sonraki ücretsiz hikaye için", "Next free story in") }
@@ -276,4 +278,87 @@ extension L {
     static func hoursUntilNext(_ hours: Int) -> String {
         tr("\(hours) saat sonra", "in \(hours) hours")
     }
+    
+    // MARK: - Additional UI Strings
+    static var storyClubMember: String { tr("Hikaye Kulübü Üyesi", "Story Club Member") }
+    static var newBadge: String { tr("YENİ", "NEW") }
+    static var activeMembers: String { tr("Aktif üye", "Active member") }
+    static var cancelMembership: String { tr("Üyeliği İptal Et", "Cancel Membership") }
+    static var activateMembership: String { tr("Üyeliği Aktifleştir", "Activate Membership") }
+    static var imageStory: String { tr("Görselli", "Illustrated") }
+    static var illustrated: String { tr("Görselli", "Illustrated") }
+    static var premiumBadge: String { tr("Premium", "Premium") }
+    static var autoSave: String { tr("Otomatik Kaydet", "Auto Save") }
+    static var highQualityImages: String { tr("Yüksek Kalite Görseller", "High Quality Images") }
+    static var createNewStory: String { tr("Yeni Hikaye Oluştur", "Create New Story") }
+    static var myStoryLibrary: String { tr("Hikaye Kütüphanem", "My Story Library") }
+    static var congratulations: String { tr("🎉 Tebrikler!", "🎉 Congratulations!") }
+    static var great: String { tr("Harika!", "Great!") }
+    static var securePayment: String { tr("Güvenli Ödeme", "Secure Payment") }
+    static var dayRefund: String { tr("7 Gün İade", "7 Day Refund") }
+    static var kvkkCompliant: String { tr("KVKK Uyumlu", "GDPR Compliant") }
+    static var happyFamilies: String { tr("mutlu aile", "happy families") }
+    static var perMonthShort: String { tr("ay", "month") }
+    static var remaining: String { tr("kalan", "remaining") }
+    static var illustratedStoryShort: String { tr("görselli hikaye", "illustrated story") }
+    static var textAndDaily: String { tr("Metin & Günlük", "Text & Daily") }
+    static var yourRemainingQuota: String { tr("kalan hakkınız", "remaining quota") }
+    static var readingMinutes: String { tr("dakika", "minutes") }
+    static var ageYears: String { tr("yaş", "years") }
+    static var readAction: String { tr("Oku", "Read") }
+    static var noDailyStoriesYet: String { tr("Henüz Günlük Hikaye Yok", "No Daily Stories Yet") }
+    static var dailyStoriesComingSoon: String { tr("Günlük hikayeler yakında eklenecek!", "Daily stories coming soon!") }
+    static var getStartedNow: String { tr("Hemen Başla", "Get Started Now") }
+    static var photo: String { tr("Fotoğraf", "Photo") }
+    static var theme: String { tr("Tema", "Theme") }
+    static var magic: String { tr("Sihir", "Magic") }
+    static var unlockMagic: String { tr("Sihri aç, sınırsız hikaye!", "Unlock magic, unlimited stories!") }
+    static var illustratedRemaining: String { tr("görselli kaldı", "illustrated remaining") }
+    static var storiesRemaining: String { tr("hikaye hakkın var!", "stories remaining!") }
+    static var text: String { tr("Metin", "Text") }
+    static var description: String { tr("Açıklama", "Description") }
+    static var personalized: String { tr("Kişiselleştirilmiş", "Personalized") }
+    static var withChildPhoto: String { tr("Çocuğunuzun fotoğrafı ile", "With your child's photo") }
+    static var variousThemes: String { tr("Çeşitli Temalar", "Various Themes") }
+    static var adventureSpaceForest: String { tr("Macera, uzay, orman ve daha fazlası", "Adventure, space, forest and more") }
+    static var ageAppropriate: String { tr("Yaş Uygun", "Age Appropriate") }
+    static var ageRangeContent: String { tr("3-12 yaş arası içerik", "Content for ages 3-12") }
+    static var magicIllustrations: String { tr("Sihirli Görseller", "Magic Illustrations") }
+    static var specialIllustrations: String { tr("Her sayfa için özel illüstrasyonlar", "Special illustrations for each page") }
+    static var madeWithLove: String { tr("❤️ ile yapıldı", "Made with ❤️") }
+    static var appLanguageAndStory: String { tr("Uygulama dili ve hikaye dili", "App language and story language") }
+    static var shareAppMessage: String { tr("MagicPaper ile çocuğunuz için kişiselleştirilmiş hikayeler oluşturun! 📚✨", "Create personalized stories for your child with MagicPaper! 📚✨") }
+    static var aboutDescription: String { tr("MagicPaper, çocuğunuz için kişiselleştirilmiş hikayeler oluşturmanıza yardımcı olur. Her hikaye, çocuğunuzun fotoğrafı ve seçtiğiniz tema ile özel olarak hazırlanır.", "MagicPaper helps you create personalized stories for your child. Each story is specially prepared with your child's photo and the theme you choose.") }
+    
+    // MARK: - Profile Management
+    static var profiles: String { tr("Profiller", "Profiles") }
+    static var selectProfile: String { tr("Profil Seç", "Select Profile") }
+    static var addProfile: String { tr("Profil Ekle", "Add Profile") }
+    static var addNewProfile: String { tr("Yeni Profil Ekle", "Add New Profile") }
+    static var switchProfile: String { tr("Profil Değiştir", "Switch Profile") }
+    static var deleteProfile: String { tr("Profili Sil", "Delete Profile") }
+    static var profileType: String { tr("Profil Tipi", "Profile Type") }
+    static var childProfile: String { tr("Çocuk Profili", "Child Profile") }
+    static var parentProfile: String { tr("Ebeveyn Profili", "Parent Profile") }
+    static var childMode: String { tr("Çocuk Modu", "Child Mode") }
+    static var parentMode: String { tr("Ebeveyn Modu", "Parent Mode") }
+    static var childLockActive: String { tr("Çocuk Kilidi Aktif", "Child Lock Active") }
+    static var childLockDesc: String { tr("Ayarlar ve satın alma işlemleri kilitli", "Settings and purchases are locked") }
+    static var switchToParent: String { tr("Ebeveyn Moduna Geç", "Switch to Parent Mode") }
+    static var switchToChild: String { tr("Çocuk Moduna Geç", "Switch to Child Mode") }
+    static var whoIsUsing: String { tr("Kim kullanıyor?", "Who is using?") }
+    static var selectOrCreateProfile: String { tr("Profil seçin veya yeni profil oluşturun", "Select a profile or create a new one") }
+    static var profileName: String { tr("Profil Adı", "Profile Name") }
+    static var enterProfileName: String { tr("Profil adını girin", "Enter profile name") }
+    static var profileAge: String { tr("Yaş", "Age") }
+    static var selectProfileType: String { tr("Profil tipini seçin", "Select profile type") }
+    static var forChildren: String { tr("Çocuklar için", "For children") }
+    static var forParents: String { tr("Ebeveynler için", "For parents") }
+    static var restrictedAccess: String { tr("Kısıtlı erişim", "Restricted access") }
+    static var fullAccess: String { tr("Tam erişim", "Full access") }
+    static var deleteProfileConfirm: String { tr("Bu profili silmek istediğinizden emin misiniz?", "Are you sure you want to delete this profile?") }
+    static var cannotDeleteLastProfile: String { tr("Son profil silinemez", "Cannot delete last profile") }
+    static var profileCreated: String { tr("Profil oluşturuldu", "Profile created") }
+    static var profileUpdated: String { tr("Profil güncellendi", "Profile updated") }
+    static var profileDeleted: String { tr("Profil silindi", "Profile deleted") }
 }

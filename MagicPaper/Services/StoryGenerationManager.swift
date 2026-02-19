@@ -386,12 +386,14 @@ class StoryGenerationManager: ObservableObject {
             print("🎉 STORY GENERATION COMPLETED!")
             print("🎉 Story ID: \(storyId)")
             print("🎉 ========================================\n")
-            updateStoryStatus(storyId: storyId, status: .completed, progress: "Tamamlandı!")
+            updateStoryStatus(storyId: storyId, status: .completed, progress: L.tr("Tamamlandı!", "Completed!"))
             
             // Send local notification
+            let notificationTitle = L.tr("Kitabın Hazır! 📚", "Your Book is Ready! 📚")
+            let notificationBody = L.tr("\(childName)'in hikayesi tamamlandı, şimdi okuyabilirsin!", "\(childName)'s story is complete, you can read it now!")
             LocalNotificationManager.shared.sendNotification(
-                title: "Kitabın Hazır! 📚",
-                body: "\(childName)'in hikayesi tamamlandı, şimdi okuyabilirsin!"
+                title: notificationTitle,
+                body: notificationBody
             )
             
         } catch {
@@ -483,12 +485,14 @@ class StoryGenerationManager: ObservableObject {
             print("🎉 Story ID: \(storyId)")
             print("🎉 Category: \(category.displayName)")
             print("🎉 ========================================\n")
-            updateStoryStatus(storyId: storyId, status: .completed, progress: "Tamamlandı!")
+            updateStoryStatus(storyId: storyId, status: .completed, progress: L.tr("Tamamlandı!", "Completed!"))
             
             // Send local notification
+            let notificationTitle = L.tr("Kitabın Hazır! 📚", "Your Book is Ready! 📚")
+            let notificationBody = L.tr("\(childName)'in \(category.displayName) hikayesi tamamlandı!", "\(childName)'s \(category.displayName) story is complete!")
             LocalNotificationManager.shared.sendNotification(
-                title: "Kitabın Hazır! 📚",
-                body: "\(childName)'in \(category.displayName) hikayesi tamamlandı!"
+                title: notificationTitle,
+                body: notificationBody
             )
             
         } catch {

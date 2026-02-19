@@ -15,7 +15,7 @@ struct TextOnlyStoryView: View {
     @State private var generationProgress = ""
     @State private var showingAlert = false
     @State private var alertMessage = ""
-    @State private var alertTitle = "Bilgi"
+    @State private var alertTitle = L.info
     @State private var showingPremiumSheet = false
     
     // Callback for navigation
@@ -55,7 +55,7 @@ struct TextOnlyStoryView: View {
                     .ignoresSafeArea()
                 )
             }
-            .navigationTitle("Metin Hikaye")
+            .navigationTitle(L.textStory)
             .navigationBarTitleDisplayMode(.large)
         }
         .onAppear {
@@ -99,11 +99,11 @@ struct TextOnlyStoryView: View {
             }
             
             VStack(spacing: 8) {
-                Text("Hızlı Hikaye Oluştur")
+                Text(L.quickStoryCreate)
                     .font(.title2.bold())
                     .foregroundColor(.primary)
                 
-                Text("Görselsiz, sadece metin tabanlı hikaye")
+                Text(L.textOnlyStory)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -121,18 +121,18 @@ struct TextOnlyStoryView: View {
     
     private var basicInfoSection: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Temel Bilgiler")
+            Text(L.basicInformation)
                 .font(.title3.bold())
                 .foregroundColor(.primary)
             
             VStack(spacing: 16) {
                 // İsim
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Çocuğun İsmi")
+                    Text(L.childNameLabel)
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
-                    TextField("İsim girin", text: $childName)
+                    TextField(L.enterNamePlaceholder, text: $childName)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(
@@ -143,7 +143,7 @@ struct TextOnlyStoryView: View {
                 
                 // Cinsiyet - Modern Segmented Control
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Cinsiyet")
+                    Text(L.gender)
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
@@ -200,17 +200,17 @@ struct TextOnlyStoryView: View {
     
     private var themeSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Hikaye Teması")
+            Text(L.storyTheme)
                 .font(.title3.bold())
                 .foregroundColor(.primary)
             
-            Text("Maceranın türünü seçin")
+            Text(L.selectAdventureType)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
             // Ücretsiz Temalar
             VStack(alignment: .leading, spacing: 12) {
-                Text("Ücretsiz Temalar")
+                Text(L.freeThemes)
                     .font(.caption.bold())
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
@@ -225,7 +225,7 @@ struct TextOnlyStoryView: View {
             // Premium Temalar
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("Premium Temalar")
+                    Text(L.premiumThemes)
                         .font(.caption.bold())
                         .foregroundColor(.secondary)
                         .textCase(.uppercase)
@@ -243,11 +243,11 @@ struct TextOnlyStoryView: View {
             
             if selectedTheme == .custom {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Özel Hikaye Konusu")
+                    Text(L.customStorySubject)
                         .font(.subheadline.bold())
                         .foregroundColor(.secondary)
                     
-                    TextField("Örn: Dinozorlarla macera", text: $customTitle)
+                    TextField(L.exampleDinosaurs, text: $customTitle)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(
@@ -344,7 +344,7 @@ struct TextOnlyStoryView: View {
                         Image(systemName: "text.book.closed")
                     }
                     
-                    Text(isGenerating ? generationProgress : "Hikaye Oluştur")
+                    Text(isGenerating ? generationProgress : L.generateStory)
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -381,7 +381,7 @@ struct TextOnlyStoryView: View {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
-                    Text("Lütfen çocuğun ismini girin")
+                    Text(L.pleaseEnterChildNameShort)
                         .font(.caption)
                         .foregroundColor(.orange)
                 }
@@ -440,17 +440,17 @@ struct TextOnlyStoryView: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 if subscriptionManager.canCreateFreeTextStory {
-                    Text("Ücretsiz Hikaye Hazır!")
+                    Text(L.freeStoryReady)
                         .font(.subheadline.bold())
                         .foregroundColor(.green)
-                    Text("12 saatte 1 ücretsiz metin hikaye hakkınız var")
+                    Text(L.freeTextStoryEvery12Hours)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 } else {
-                    Text("\(subscriptionManager.hoursUntilNextFreeStory) saat sonra")
+                    Text(L.tr("\(subscriptionManager.hoursUntilNextFreeStory) saat sonra", "in \(subscriptionManager.hoursUntilNextFreeStory) hours"))
                         .font(.subheadline.bold())
                         .foregroundColor(.orange)
-                    Text("Sınırsız hikaye için kulübe katıl - Günde 3₺")
+                    Text(L.unlimitedStoriesJoinClub)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -462,7 +462,7 @@ struct TextOnlyStoryView: View {
                 Button(action: {
                     showingPremiumSheet = true
                 }) {
-                    Text("Kulübe Katıl")
+                    Text(L.joinClub)
                         .font(.caption.bold())
                         .foregroundColor(.white)
                         .padding(.horizontal, 12)
@@ -526,7 +526,7 @@ struct TextOnlyStoryView: View {
         }
         
         isGenerating = true
-        generationProgress = "Hikaye oluşturuluyor..."
+        generationProgress = L.storyCreating
         
         Task {
             // TextStoryManager ile hikaye oluştur (kütüphaneye otomatik ekler)

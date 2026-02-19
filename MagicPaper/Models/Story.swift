@@ -44,12 +44,13 @@ enum StoryStatus: String, Codable {
     case failed = "failed"
     
     var displayName: String {
+        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .uploading: return "Fotoğraf yükleniyor..."
-        case .writingStory: return "Hikaye yazılıyor..."
-        case .generatingImages: return "İllüstrasyonlar oluşturuluyor..."
-        case .completed: return "Tamamlandı"
-        case .failed: return "Hata oluştu"
+        case .uploading: return isEnglish ? "Uploading photo..." : "Fotoğraf yükleniyor..."
+        case .writingStory: return isEnglish ? "Writing story..." : "Hikaye yazılıyor..."
+        case .generatingImages: return isEnglish ? "Generating illustrations..." : "İllüstrasyonlar oluşturuluyor..."
+        case .completed: return isEnglish ? "Completed" : "Tamamlandı"
+        case .failed: return isEnglish ? "Error occurred" : "Hata oluştu"
         }
     }
     
@@ -96,13 +97,14 @@ enum StoryTheme: String, CaseIterable, Codable {
     case custom = "custom"
     
     var displayName: String {
+        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .fantasy: return "Sihirli Krallık"
-        case .space: return "Uzay Macerası"
-        case .jungle: return "Orman Macerası"
-        case .hero: return "Süper Kahraman"
-        case .underwater: return "Okyanus Sırları"
-        case .custom: return "Özel Macera"
+        case .fantasy: return isEnglish ? "Magical Kingdom" : "Sihirli Krallık"
+        case .space: return isEnglish ? "Space Adventure" : "Uzay Macerası"
+        case .jungle: return isEnglish ? "Jungle Adventure" : "Orman Macerası"
+        case .hero: return isEnglish ? "Superhero" : "Süper Kahraman"
+        case .underwater: return isEnglish ? "Ocean Secrets" : "Okyanus Sırları"
+        case .custom: return isEnglish ? "Custom Adventure" : "Özel Macera"
         }
     }
     
@@ -141,13 +143,14 @@ enum StoryTheme: String, CaseIterable, Codable {
     }
     
     var description: String {
+        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .fantasy: return "Sihirli diyarları keşfedin ve efsanevi yaratıklarla tanışın"
-        case .space: return "Kozmosu keşfedin ve yeni dünyalar keşfedin"
-        case .jungle: return "Vahşi ormanları keşfedin ve harika hayvanlarla tanışın"
-        case .hero: return "Süper kahraman olun ve dünyayı kurtarın"
-        case .underwater: return "Derinlere dalın ve sualtı gizemlerini keşfedin"
-        case .custom: return "Kendi benzersiz maceranızı yaratın"
+        case .fantasy: return isEnglish ? "Explore magical lands and meet legendary creatures" : "Sihirli diyarları keşfedin ve efsanevi yaratıklarla tanışın"
+        case .space: return isEnglish ? "Explore the cosmos and discover new worlds" : "Kozmosu keşfedin ve yeni dünyalar keşfedin"
+        case .jungle: return isEnglish ? "Explore wild forests and meet amazing animals" : "Vahşi ormanları keşfedin ve harika hayvanlarla tanışın"
+        case .hero: return isEnglish ? "Become a superhero and save the world" : "Süper kahraman olun ve dünyayı kurtarın"
+        case .underwater: return isEnglish ? "Dive deep and discover underwater mysteries" : "Derinlere dalın ve sualtı gizemlerini keşfedin"
+        case .custom: return isEnglish ? "Create your own unique adventure" : "Kendi benzersiz maceranızı yaratın"
         }
     }
     
@@ -183,15 +186,16 @@ enum StoryLanguage: String, CaseIterable, Codable {
     case arabic = "ar"
     
     var displayName: String {
+        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .turkish: return "Türkçe"
-        case .english: return "İngilizce"
-        case .spanish: return "İspanyolca"
-        case .french: return "Fransızca"
-        case .german: return "Almanca"
-        case .italian: return "İtalyanca"
-        case .russian: return "Rusça"
-        case .arabic: return "Arapça"
+        case .turkish: return isEnglish ? "Turkish" : "Türkçe"
+        case .english: return isEnglish ? "English" : "İngilizce"
+        case .spanish: return isEnglish ? "Spanish" : "İspanyolca"
+        case .french: return isEnglish ? "French" : "Fransızca"
+        case .german: return isEnglish ? "German" : "Almanca"
+        case .italian: return isEnglish ? "Italian" : "İtalyanca"
+        case .russian: return isEnglish ? "Russian" : "Rusça"
+        case .arabic: return isEnglish ? "Arabic" : "Arapça"
         }
     }
     
@@ -219,10 +223,11 @@ enum Gender: String, CaseIterable, Codable {
     case other = "other"
     
     var displayName: String {
+        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .boy: return "Erkek"
-        case .girl: return "Kız"
-        case .other: return "Diğer"
+        case .boy: return isEnglish ? "Boy" : "Erkek"
+        case .girl: return isEnglish ? "Girl" : "Kız"
+        case .other: return isEnglish ? "Other" : "Diğer"
         }
     }
     

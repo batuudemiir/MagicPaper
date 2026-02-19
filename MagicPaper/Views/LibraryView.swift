@@ -7,6 +7,8 @@ struct LibraryView: View {
     @State private var showingDeleteAlert = false
     @State private var storyToDelete: Story?
     @State private var shareItems: [Any] = []
+    @State private var isGridView = false
+    @Namespace private var filterNamespace
     @State private var showingShareSheet = false
     @State private var searchText = ""
     @State private var filterOption: FilterOption = .all
@@ -194,10 +196,32 @@ struct LibraryView: View {
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
+        .padding(.vertical, 14)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(color.opacity(0.1))
+            ZStack {
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [color.opacity(0.12), color.opacity(0.06)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                
+                // Inner top highlight
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.white.opacity(0.4), Color.clear],
+                            startPoint: .top,
+                            endPoint: .center
+                        )
+                    )
+            }
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(color.opacity(0.15), lineWidth: 1)
         )
     }
     
@@ -208,7 +232,8 @@ struct LibraryView: View {
             HStack(spacing: 8) {
                 ForEach(FilterOption.allCases, id: \.self) { option in
                     Button(action: {
-                        withAnimation {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                             filterOption = option
                         }
                     }) {
@@ -220,14 +245,31 @@ struct LibraryView: View {
                         }
                         .foregroundColor(filterOption == option ? .white : .primary)
                         .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 9)
                         .background(
-                            Capsule()
-                                .fill(filterOption == option ? Color.indigo : Color(.systemGray5))
+                            ZStack {
+                                if filterOption == option {
+                                    Capsule()
+                                        .fill(
+                                            LinearGradient(
+                                                colors: [Color.indigo, Color.purple],
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                        .matchedGeometryEffect(id: "filterPill", in: filterNamespace)
+                                        .shadow(color: Color.indigo.opacity(0.35), radius: 8, x: 0, y: 4)
+                                } else {
+                                    Capsule()
+                                        .fill(Color(.systemGray5))
+                                }
+                            }
                         )
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
+            .padding(.horizontal, 2)
         }
     }
     
@@ -439,12 +481,25 @@ struct LibraryView: View {
             }
             .padding(DeviceHelper.isIPad ? 20 : 12)
             .background(
-                RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.05), radius: DeviceHelper.isIPad ? 12 : 8, x: 0, y: 2)
+                ZStack {
+                    RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
+                        .fill(Color(.systemBackground))
+                    
+                    // Inner top highlight
+                    RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.white.opacity(0.8), Color.clear],
+                                startPoint: .top,
+                                endPoint: .center
+                            )
+                        )
+                }
+                .shadow(color: story.theme.color.opacity(0.12), radius: DeviceHelper.isIPad ? 16 : 12, x: 0, y: 4)
             )
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(SpringPressStyle(scale: 0.97))
+        .appearAnimation()
     }
     
     // MARK: - Generating Story Card

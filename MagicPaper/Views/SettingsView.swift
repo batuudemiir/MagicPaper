@@ -761,6 +761,26 @@ struct SettingsView: View {
                     }
                     .padding(16)
                 }
+                
+                Divider()
+                    .padding(.horizontal, 16)
+                
+                Button(action: {
+                    parentalGateAction = { openAccessibility() }
+                    showingParentalGate = true
+                }) {
+                    HStack {
+                        settingIcon("accessibility", color: .blue)
+                        Text(localizationManager.currentLanguage == .turkish ? "Erişilebilirlik Bildirimi" : "Accessibility Statement")
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right.square")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(16)
+                }
             }
             .background(
                 RoundedRectangle(cornerRadius: 20)
@@ -853,23 +873,25 @@ struct SettingsView: View {
     }
     
     private func contactSupport() {
-        if let url = URL(string: "mailto:destek@magicpaper.app?subject=MagicPaper Destek") {
+        if let url = URL(string: "https://www.magicpaperkids.com/blank-5") {
             UIApplication.shared.open(url)
         }
     }
     
     private func openPrivacyPolicy() {
-        // Geçici olarak GitHub veya başka bir hosting'de yayınlanabilir
-        // Production'da: https://magicpaper.app/gizlilik
-        if let url = URL(string: "https://magicpaper.app/gizlilik") {
+        if let url = URL(string: "https://www.magicpaperkids.com/gizlilik") {
             UIApplication.shared.open(url)
         }
     }
     
     private func openTermsOfService() {
-        // Geçici olarak GitHub veya başka bir hosting'de yayınlanabilir
-        // Production'da: https://magicpaper.app/kullanim-sartlari
-        if let url = URL(string: "https://magicpaper.app/kullanim-sartlari") {
+        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    private func openAccessibility() {
+        if let url = URL(string: "https://www.magicpaperkids.com/erisilebilirlik") {
             UIApplication.shared.open(url)
         }
     }
@@ -955,8 +977,8 @@ struct AboutView: View {
                             .font(.headline)
                         
                         VStack(spacing: 12) {
-                            contactButton(icon: "envelope.fill", text: "destek@magicpaper.app", color: .blue)
-                            contactButton(icon: "globe", text: "magicpaper.app", color: .indigo)
+                            contactButton(icon: "envelope.fill", text: "www.magicpaperkids.com/blank-5", color: .blue)
+                            contactButton(icon: "globe", text: "www.magicpaperkids.com", color: .indigo)
                         }
                     }
                     

@@ -4,28 +4,41 @@ struct ContentView: View {
     @StateObject private var localizationManager = LocalizationManager.shared
     @State private var selectedTab = 0
     @State private var showingCreateSheet = false
+    @State private var createButtonPressed = false
+    @State private var createButtonRotation: Double = 0
+    @Namespace private var tabNamespace
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // Sabit beyaz arka plan
             Color.white
                 .ignoresSafeArea()
             
-            // Main Content - Her view ayrı ayrı gösterilir
             Group {
                 switch selectedTab {
                 case 0:
                     HomeView(onNavigate: handleNavigation)
-                        .transition(.opacity)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .move(edge: .trailing)),
+                            removal: .opacity.combined(with: .move(edge: .leading))
+                        ))
                 case 1:
                     LibraryView()
-                        .transition(.opacity)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .move(edge: .trailing)),
+                            removal: .opacity.combined(with: .move(edge: .leading))
+                        ))
                 case 3:
                     DailyStoriesView()
-                        .transition(.opacity)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .move(edge: .trailing)),
+                            removal: .opacity.combined(with: .move(edge: .leading))
+                        ))
                 case 4:
                     SettingsView()
-                        .transition(.opacity)
+                        .transition(.asymmetric(
+                            insertion: .opacity.combined(with: .move(edge: .trailing)),
+                            removal: .opacity.combined(with: .move(edge: .leading))
+                        ))
                 default:
                     HomeView(onNavigate: handleNavigation)
                         .transition(.opacity)
@@ -33,9 +46,8 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.bottom, DeviceHelper.tabBarBottomPadding)
-            .animation(.easeInOut(duration: 0.2), value: selectedTab)
+            .animation(.spring(response: 0.38, dampingFraction: 0.82), value: selectedTab)
             
-            // Custom Tab Bar - SafeArea'nın altına sabitlendi
             VStack(spacing: 0) {
                 Spacer()
                 customTabBar
@@ -43,11 +55,16 @@ struct ContentView: View {
             .ignoresSafeArea(.all, edges: .bottom)
         }
         .ignoresSafeArea(.keyboard)
-        .preferredColorScheme(.light) // Sabit aydınlık mod
+        .preferredColorScheme(.light)
         .sheet(isPresented: $showingCreateSheet) {
             CreateStoryTypeSelectionView(onNavigateToLibrary: {
-                selectedTab = 1 // Library tab
+                selectedTab = 1
             })
+        }
+        .onAppear {
+            withAnimation(.linear(duration: 8).repeatForever(autoreverses: false)) {
+                createButtonRotation = 360
+            }
         }
     }
     
@@ -71,27 +88,45 @@ struct ContentView: View {
             tabBarButton(icon: "house.fill", title: localizationManager.currentLanguage == .turkish ? "Ana Sayfa" : "Home", tag: 0)
             tabBarButton(icon: "books.vertical.fill", title: localizationManager.localized(.library), tag: 1)
             
-            // Center Create Button - Daha büyük ve çekici
+            // Center Create Button
             Button(action: {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
                     showingCreateSheet = true
                 }
             }) {
                 ZStack {
-                    // Outer glow
+                    // Rotating gradient ring
+                    Circle()
+                        .stroke(
+                            AngularGradient(
+                                colors: [
+                                    Color(red: 0.58, green: 0.29, blue: 0.98),
+                                    Color(red: 0.85, green: 0.35, blue: 0.85),
+                                    Color(red: 1.0, green: 0.45, blue: 0.55),
+                                    Color(red: 0.58, green: 0.29, blue: 0.98)
+                                ],
+                                center: .center
+                            ),
+                            lineWidth: 2.5
+                        )
+                        .frame(width: 70, height: 70)
+                        .rotationEffect(.degrees(createButtonRotation))
+                    
+                    // Glow
                     Circle()
                         .fill(
                             LinearGradient(
                                 colors: [
-                                    Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.3),
-                                    Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.3)
+                                    Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.35),
+                                    Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.35)
                                 ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                         .frame(width: 68, height: 68)
-                        .blur(radius: 8)
+                        .blur(radius: 10)
                     
                     // Main button
                     Circle()
@@ -106,30 +141,41 @@ struct ContentView: View {
                             )
                         )
                         .frame(width: 60, height: 60)
-                        .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.4), radius: 16, x: 0, y: 6)
+                        .shadow(color: Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.5), radius: createButtonPressed ? 8 : 20, x: 0, y: createButtonPressed ? 2 : 8)
                     
                     // Inner highlight
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [
-                                    Color.white.opacity(0.3),
-                                    Color.clear
-                                ],
+                                colors: [Color.white.opacity(0.3), Color.clear],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                         .frame(width: 60, height: 60)
                     
-                    // Plus icon
                     Image(systemName: "plus")
                         .font(.system(size: 26, weight: .bold))
                         .foregroundColor(.white)
+                        .rotationEffect(.degrees(createButtonPressed ? 45 : 0))
                 }
+                .scaleEffect(createButtonPressed ? 0.92 : 1.0)
             }
             .offset(y: -12)
             .frame(maxWidth: .infinity)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in
+                        withAnimation(.spring(response: 0.2, dampingFraction: 0.6)) {
+                            createButtonPressed = true
+                        }
+                    }
+                    .onEnded { _ in
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                            createButtonPressed = false
+                        }
+                    }
+            )
             
             tabBarButton(icon: "calendar", title: localizationManager.localized(.daily), tag: 3)
             tabBarButton(icon: "gearshape.fill", title: localizationManager.localized(.settings), tag: 4)
@@ -139,31 +185,22 @@ struct ContentView: View {
         .padding(.bottom, 12)
         .background(
             ZStack {
-                // Main background with blur
                 RoundedRectangle(cornerRadius: 28, style: .continuous)
                     .fill(.ultraThinMaterial)
                 
-                // White overlay
                 RoundedRectangle(cornerRadius: 28, style: .continuous)
                     .fill(
                         LinearGradient(
-                            colors: [
-                                Color.white.opacity(0.9),
-                                Color.white.opacity(0.7)
-                            ],
+                            colors: [Color.white.opacity(0.9), Color.white.opacity(0.7)],
                             startPoint: .top,
                             endPoint: .bottom
                         )
                     )
                 
-                // Border
                 RoundedRectangle(cornerRadius: 28, style: .continuous)
                     .stroke(
                         LinearGradient(
-                            colors: [
-                                Color.white.opacity(0.8),
-                                Color.gray.opacity(0.1)
-                            ],
+                            colors: [Color.white.opacity(0.8), Color.gray.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
@@ -177,35 +214,36 @@ struct ContentView: View {
     }
     
     private func tabBarButton(icon: String, title: String, tag: Int) -> some View {
-        Button(action: {
+        let isSelected = selectedTab == tag
+        return Button(action: {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 selectedTab = tag
             }
         }) {
             VStack(spacing: 6) {
                 ZStack {
-                    // Background indicator
-                    if selectedTab == tag {
-                        Circle()
+                    // Sliding glass pill (matchedGeometryEffect)
+                    if isSelected {
+                        RoundedRectangle(cornerRadius: 14, style: .continuous)
                             .fill(
                                 LinearGradient(
                                     colors: [
-                                        Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.15),
-                                        Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.15)
+                                        Color(red: 0.58, green: 0.29, blue: 0.98).opacity(0.13),
+                                        Color(red: 0.85, green: 0.35, blue: 0.85).opacity(0.13)
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .frame(width: 48, height: 48)
-                            .transition(.scale.combined(with: .opacity))
+                            .frame(width: 52, height: 40)
+                            .matchedGeometryEffect(id: "tabPill", in: tabNamespace)
                     }
                     
-                    // Icon
                     Image(systemName: icon)
-                        .font(.system(size: selectedTab == tag ? 22 : 20, weight: selectedTab == tag ? .semibold : .medium))
+                        .font(.system(size: isSelected ? 22 : 20, weight: isSelected ? .semibold : .medium))
                         .foregroundStyle(
-                            selectedTab == tag ?
+                            isSelected ?
                             LinearGradient(
                                 colors: [
                                     Color(red: 0.58, green: 0.29, blue: 0.98),
@@ -215,20 +253,20 @@ struct ContentView: View {
                                 endPoint: .bottomTrailing
                             ) :
                             LinearGradient(
-                                colors: [Color.gray, Color.gray],
+                                colors: [Color.gray.opacity(0.6), Color.gray.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                         .frame(height: 28)
-                        .scaleEffect(selectedTab == tag ? 1.1 : 1.0)
+                        .scaleEffect(isSelected ? 1.12 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.55), value: isSelected)
                 }
                 
-                // Title
                 Text(title)
-                    .font(.system(size: selectedTab == tag ? 11 : 10, weight: selectedTab == tag ? .bold : .medium))
+                    .font(.system(size: isSelected ? 11 : 10, weight: isSelected ? .bold : .medium))
                     .foregroundStyle(
-                        selectedTab == tag ?
+                        isSelected ?
                         LinearGradient(
                             colors: [
                                 Color(red: 0.58, green: 0.29, blue: 0.98),
@@ -238,7 +276,7 @@ struct ContentView: View {
                             endPoint: .trailing
                         ) :
                         LinearGradient(
-                            colors: [Color.gray, Color.gray],
+                            colors: [Color.gray.opacity(0.6), Color.gray.opacity(0.6)],
                             startPoint: .leading,
                             endPoint: .trailing
                         )

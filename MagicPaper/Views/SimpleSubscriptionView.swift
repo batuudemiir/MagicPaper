@@ -11,52 +11,87 @@ struct SimpleSubscriptionView: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 28) {
+                VStack(spacing: DeviceHelper.isIPad ? 36 : 28) {
                     // Hero Header
                     heroHeader
-                        .padding(.top, 20)
+                        .padding(.top, DeviceHelper.isIPad ? 32 : 20)
                     
                     // Social Proof
                     socialProofBanner
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     
                     // Mevcut Durum
                     if subscriptionManager.subscriptionTier != .none {
                         currentSubscriptionCard
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     } else if subscriptionManager.freeTrialCount > 0 {
                         freeTrialCard
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     } else {
                         freePackageCard
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     }
                     
                     // Hikaye Kulübü Paketleri
                     subscriptionPackagesSection
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     
                     // Satın Al Butonu
                     if selectedPackage != nil {
                         purchaseButton
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     }
                     
                     // Güven Göstergeleri
                     trustIndicators
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                 }
-                .padding(.bottom, 40)
+                .padding(.bottom, DeviceHelper.isIPad ? 60 : 40)
             }
             .background(
-                LinearGradient(
-                    colors: [
-                        Color(red: 1.0, green: 0.98, blue: 0.94),
-                        Color(red: 0.98, green: 0.95, blue: 1.0)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+                ZStack {
+                    // Premium gradient background
+                    LinearGradient(
+                        colors: [
+                            Color(red: 1.0, green: 0.98, blue: 0.94),
+                            Color(red: 0.98, green: 0.95, blue: 1.0),
+                            Color(red: 1.0, green: 0.96, blue: 0.98)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                    
+                    // Animated mesh overlay
+                    GeometryReader { geometry in
+                        // Top left glow
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.purple.opacity(0.15), Color.clear],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: DeviceHelper.isIPad ? 300 : 200
+                                )
+                            )
+                            .frame(width: DeviceHelper.isIPad ? 400 : 250, height: DeviceHelper.isIPad ? 400 : 250)
+                            .offset(x: -100, y: -100)
+                            .blur(radius: 40)
+                        
+                        // Bottom right glow
+                        Circle()
+                            .fill(
+                                RadialGradient(
+                                    colors: [Color.orange.opacity(0.15), Color.clear],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: DeviceHelper.isIPad ? 300 : 200
+                                )
+                            )
+                            .frame(width: DeviceHelper.isIPad ? 400 : 250, height: DeviceHelper.isIPad ? 400 : 250)
+                            .offset(x: geometry.size.width - 150, y: geometry.size.height - 150)
+                            .blur(radius: 40)
+                    }
+                }
                 .ignoresSafeArea()
             )
             .navigationTitle("")
@@ -66,24 +101,33 @@ struct SimpleSubscriptionView: View {
                     Button(action: { dismiss() }) {
                         ZStack {
                             Circle()
-                                .fill(Color(.systemGray6))
-                                .frame(width: 32, height: 32)
+                                .fill(.ultraThinMaterial)
+                                .frame(width: DeviceHelper.isIPad ? 44 : 36, height: DeviceHelper.isIPad ? 44 : 36)
+                                .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+                            
                             Image(systemName: "xmark")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(.secondary)
+                                .font(.system(size: DeviceHelper.isIPad ? 16 : 14, weight: .bold))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.primary, .secondary],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
                         }
                     }
+                    .buttonStyle(ScaleButtonStyle())
                 }
             }
         }
-        .alert("🎉 Tebrikler!", isPresented: $showingPurchaseAlert) {
-            Button("Harika!") {
+        .alert(L.congratulations, isPresented: $showingPurchaseAlert) {
+            Button(L.great) {
                 dismiss()
             }
         } message: {
             Text(alertMessage)
         }
-        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
+        .navigationViewStyle(.stack)
         .sheet(isPresented: $showingParentalGate) {
             ParentalGateView(onSuccess: {
                 makePurchase()
@@ -94,7 +138,7 @@ struct SimpleSubscriptionView: View {
     // MARK: - Hero Header
     
     private var heroHeader: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: DeviceHelper.isIPad ? 24 : 20) {
             // Animated Icon
             ZStack {
                 Circle()
@@ -105,7 +149,7 @@ struct SimpleSubscriptionView: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                    .frame(width: 110, height: 110)
+                    .frame(width: DeviceHelper.isIPad ? 140 : 110, height: DeviceHelper.isIPad ? 140 : 110)
                 
                 Circle()
                     .fill(
@@ -115,92 +159,92 @@ struct SimpleSubscriptionView: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                    .frame(width: 90, height: 90)
+                    .frame(width: DeviceHelper.isIPad ? 110 : 90, height: DeviceHelper.isIPad ? 110 : 90)
                 
                 Text(subscriptionManager.isPremium ? "👑" : "✨")
-                    .font(.system(size: 50))
+                    .font(.system(size: DeviceHelper.isIPad ? 64 : 50))
             }
             
-            VStack(spacing: 12) {
+            VStack(spacing: DeviceHelper.isIPad ? 16 : 12) {
                 if subscriptionManager.isPremium {
-                    Text("Sınırsız Hikaye Dünyası")
-                        .font(.system(size: 28, weight: .bold))
+                    Text(L.unlimitedStoryWorld)
+                        .font(.system(size: DeviceHelper.isIPad ? 36 : 28, weight: .bold))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
-                    Text("Kulüp üyeliğinizin keyfini çıkarın!")
-                        .font(.subheadline)
+                    Text(L.tr("Kulüp üyeliğinizin keyfini çıkarın!", "Enjoy your club membership!"))
+                        .font(.system(size: DeviceHelper.isIPad ? 18 : 16))
                         .foregroundColor(.secondary)
                 } else {
-                    VStack(spacing: 8) {
-                        Text("Çocuğunuza Okuma")
-                            .font(.system(size: 28, weight: .bold))
+                    VStack(spacing: DeviceHelper.isIPad ? 10 : 8) {
+                        Text(L.tr("Çocuğunuza Okuma", "Build Your Child's Reading"))
+                            .font(.system(size: DeviceHelper.isIPad ? 36 : 28, weight: .bold))
                             .foregroundColor(.primary)
                         
-                        Text("Alışkanlığı Kazandırın 📚")
-                            .font(.system(size: 28, weight: .bold))
+                        Text(L.tr("Alışkanlığı Kazandırın 📚", "Habit 📚"))
+                            .font(.system(size: DeviceHelper.isIPad ? 36 : 28, weight: .bold))
                             .foregroundColor(.orange)
                     }
                     
-                    VStack(spacing: 6) {
-                        HStack(spacing: 6) {
+                    VStack(spacing: DeviceHelper.isIPad ? 8 : 6) {
+                        HStack(spacing: DeviceHelper.isIPad ? 8 : 6) {
                             Text("☕️")
-                                .font(.title3)
-                            Text("Bir kahveden ucuz!")
-                                .font(.headline)
+                                .font(.system(size: DeviceHelper.isIPad ? 24 : 20))
+                            Text(L.cheaperThanCoffee)
+                                .font(.system(size: DeviceHelper.isIPad ? 20 : 17, weight: .semibold))
                                 .foregroundColor(.orange)
                         }
                         
-                        Text("Günde sadece 3₺ ile çocuğunuzun hayal dünyasını zenginleştirin ve okuma sevgisini geliştirin")
-                            .font(.subheadline)
+                        Text(L.tr("Günde sadece 3₺ ile çocuğunuzun hayal dünyasını zenginleştirin ve okuma sevgisini geliştirin", "Enrich your child's imagination and develop reading love for only $1/day"))
+                            .font(.system(size: DeviceHelper.isIPad ? 17 : 15))
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
                     }
-                    .padding(.top, 8)
+                    .padding(.top, DeviceHelper.isIPad ? 12 : 8)
                 }
             }
             
             // Faydalar - Sadece üye değilse göster
             if !subscriptionManager.isPremium {
-                VStack(spacing: 14) {
-                    benefitRow(icon: "book.fill", text: "Okuma sevgisi ve alışkanlığı", color: .blue)
-                    benefitRow(icon: "brain.head.profile", text: "Hayal gücü ve yaratıcılık", color: .purple)
-                    benefitRow(icon: "heart.fill", text: "Özgüven ve mutluluk", color: .pink)
-                    benefitRow(icon: "moon.stars.fill", text: "Huzurlu uyku rutini", color: .indigo)
+                VStack(spacing: DeviceHelper.isIPad ? 18 : 14) {
+                    benefitRow(icon: "book.fill", text: L.tr("Okuma sevgisi ve alışkanlığı", "Reading love and habit"), color: .blue)
+                    benefitRow(icon: "brain.head.profile", text: L.tr("Hayal gücü ve yaratıcılık", "Imagination and creativity"), color: .purple)
+                    benefitRow(icon: "heart.fill", text: L.tr("Özgüven ve mutluluk", "Confidence and happiness"), color: .pink)
+                    benefitRow(icon: "moon.stars.fill", text: L.tr("Huzurlu uyku rutini", "Peaceful sleep routine"), color: .indigo)
                 }
-                .padding(20)
+                .padding(DeviceHelper.isIPad ? 28 : 20)
                 .background(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 28 : 20, style: .continuous)
                         .fill(Color(.systemBackground))
-                        .shadow(color: .black.opacity(0.05), radius: 12, x: 0, y: 4)
+                        .shadow(color: .black.opacity(0.08), radius: DeviceHelper.isIPad ? 16 : 12, x: 0, y: DeviceHelper.isIPad ? 6 : 4)
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, DeviceHelper.isIPad ? 40 : 20)
             }
         }
     }
     
     private func benefitRow(icon: String, text: String, color: Color) -> some View {
-        HStack(spacing: 14) {
+        HStack(spacing: DeviceHelper.isIPad ? 18 : 14) {
             ZStack {
                 Circle()
                     .fill(color.opacity(0.15))
-                    .frame(width: 40, height: 40)
+                    .frame(width: DeviceHelper.isIPad ? 52 : 40, height: DeviceHelper.isIPad ? 52 : 40)
                 
                 Image(systemName: icon)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: DeviceHelper.isIPad ? 22 : 18, weight: .semibold))
                     .foregroundColor(color)
             }
             
             Text(text)
-                .font(.subheadline.weight(.medium))
+                .font(.system(size: DeviceHelper.isIPad ? 17 : 15, weight: .medium))
                 .foregroundColor(.primary)
             
             Spacer()
             
             Image(systemName: "checkmark.circle.fill")
                 .foregroundColor(.green)
-                .font(.system(size: 20))
+                .font(.system(size: DeviceHelper.isIPad ? 24 : 20))
         }
     }
     
@@ -235,7 +279,7 @@ struct SimpleSubscriptionView: View {
                     }
                 }
                 
-                Text("1000+ mutlu aile")
+                Text(L.tr("1000+ mutlu aile", "1000+ happy families"))
                     .font(.caption.bold())
                     .foregroundColor(.primary)
             }
@@ -256,7 +300,7 @@ struct SimpleSubscriptionView: View {
         VStack(spacing: 18) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Aktif Paketiniz")
+                    Text(L.yourActivePackage)
                         .font(.caption.weight(.medium))
                         .foregroundColor(.secondary)
                         .textCase(.uppercase)
@@ -278,7 +322,7 @@ struct SimpleSubscriptionView: View {
             
             HStack(spacing: 20) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Görselli Hikaye")
+                    Text(L.illustratedStory)
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
@@ -291,7 +335,7 @@ struct SimpleSubscriptionView: View {
                             .foregroundColor(.secondary)
                     }
                     
-                    Text("kalan hakkınız")
+                    Text(L.yourRemainingQuota)
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }
@@ -299,7 +343,7 @@ struct SimpleSubscriptionView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 6) {
-                    Text("Metin & Günlük")
+                    Text(L.textAndDaily)
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
@@ -309,7 +353,7 @@ struct SimpleSubscriptionView: View {
                             .foregroundColor(.green)
                     }
                     
-                    Text("sınırsız")
+                    Text(L.unlimited)
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }
@@ -344,7 +388,7 @@ struct SimpleSubscriptionView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Ücretsiz Deneme Aktif")
+                    Text(L.freeTrialActive)
                         .font(.headline.bold())
                         .foregroundColor(.primary)
                     
@@ -352,7 +396,7 @@ struct SimpleSubscriptionView: View {
                         Text("\(subscriptionManager.freeTrialCount)")
                             .font(.title2.bold())
                             .foregroundColor(.green)
-                        Text("hikaye hakkınız kaldı")
+                        Text(L.tr("hikaye hakkınız kaldı", "stories remaining"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -361,7 +405,7 @@ struct SimpleSubscriptionView: View {
                 Spacer()
             }
             
-            Text("Deneme hakkınız bittikten sonra kulübe katılın ve sınırsız hikaye keyfini yaşayın!")
+            Text(L.tr("Deneme hakkınız bittikten sonra kulübe katılın ve sınırsız hikaye keyfini yaşayın!", "After your trial ends, join the club and enjoy unlimited stories!"))
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .padding(12)
@@ -385,7 +429,7 @@ struct SimpleSubscriptionView: View {
         VStack(spacing: 18) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Mevcut Paketiniz")
+                    Text(L.currentPackage)
                         .font(.caption.weight(.medium))
                         .foregroundColor(.secondary)
                         .textCase(.uppercase)
@@ -394,7 +438,7 @@ struct SimpleSubscriptionView: View {
                     HStack(spacing: 8) {
                         Text("📦")
                             .font(.title2)
-                        Text("Ücretsiz Paket")
+                        Text(L.freePackage)
                             .font(.title3.bold())
                             .foregroundColor(.primary)
                     }
@@ -406,10 +450,10 @@ struct SimpleSubscriptionView: View {
             Divider()
             
             VStack(alignment: .leading, spacing: 14) {
-                featureRow(icon: "checkmark.circle.fill", text: "12 saatte 1 metin hikaye", color: .green, isAvailable: true)
-                featureRow(icon: "xmark.circle.fill", text: "Görselli hikaye", color: .red, isAvailable: false)
-                featureRow(icon: "xmark.circle.fill", text: "Günlük hikaye", color: .red, isAvailable: false)
-                featureRow(icon: "xmark.circle.fill", text: "Sınırsız erişim", color: .red, isAvailable: false)
+                featureRow(icon: "checkmark.circle.fill", text: L.textStoryEvery12Hours, color: .green, isAvailable: true)
+                featureRow(icon: "xmark.circle.fill", text: L.illustratedStory, color: .red, isAvailable: false)
+                featureRow(icon: "xmark.circle.fill", text: L.dailyStory, color: .red, isAvailable: false)
+                featureRow(icon: "xmark.circle.fill", text: L.tr("Sınırsız erişim", "Unlimited access"), color: .red, isAvailable: false)
             }
             
             // Yükseltme teşviki
@@ -419,12 +463,12 @@ struct SimpleSubscriptionView: View {
                         .foregroundColor(.purple)
                         .font(.system(size: 18))
                     
-                    Text("Okuma alışkanlığı kazandırın!")
+                    Text(L.buildReadingHabit)
                         .font(.subheadline.bold())
                         .foregroundColor(.purple)
                 }
                 
-                Text("Günde 3₺ ile çocuğunuzun okuma sevgisini geliştirin ve hayal gücünü sınırsız zenginleştirin")
+                Text(L.tr("Günde 3₺ ile çocuğunuzun okuma sevgisini geliştirin ve hayal gücünü sınırsız zenginleştirin", "Develop your child's reading love and enrich imagination for $1/day"))
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -474,7 +518,7 @@ struct SimpleSubscriptionView: View {
                     .font(.title2.bold())
                     .foregroundColor(.primary)
                 
-                Text("Çocuğunuza okuma alışkanlığı kazandırın, hayal dünyasını zenginleştirin!")
+                Text(L.clubDescription)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -484,6 +528,41 @@ struct SimpleSubscriptionView: View {
                     subscriptionCard(package: package)
                 }
             }
+            
+            // Required Subscription Information - Apple Guidelines 3.1.2
+            VStack(alignment: .leading, spacing: 12) {
+                Text("📋 Abonelik Bilgileri")
+                    .font(.subheadline.bold())
+                    .foregroundColor(.primary)
+                    .padding(.top, 8)
+                
+                // Paket Detayları
+                VStack(alignment: .leading, spacing: 8) {
+                    subscriptionInfoRow(title: "⭐ Yıldız Kaşifi", price: "₺89/ay", duration: "Aylık (30 gün)", stories: "1 görselli hikaye/ay")
+                    subscriptionInfoRow(title: "👑 Hikaye Kahramanı", price: "₺149/ay", duration: "Aylık (30 gün)", stories: "5 görselli hikaye/ay")
+                    subscriptionInfoRow(title: "🌟 Sihir Ustası", price: "₺349/ay", duration: "Aylık (30 gün)", stories: "10 görselli hikaye/ay")
+                }
+                .padding(.vertical, 8)
+                
+                Divider()
+                
+                // Genel Bilgiler
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("• Tüm paketlerde sınırsız metin ve günlük hikaye")
+                    Text("• Abonelikler otomatik olarak yenilenir")
+                    Text("• Ödeme iTunes hesabınızdan çekilir")
+                    Text("• Yenileme: Süre bitmeden 24 saat önce otomatik")
+                    Text("• İptal: iOS Ayarlar > Apple ID > Abonelikler")
+                    Text("• İptal edilmezse otomatik yenilenir")
+                }
+                .font(.caption2)
+                .foregroundColor(.secondary)
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.systemGray6))
+            )
         }
     }
     
@@ -601,10 +680,10 @@ struct SimpleSubscriptionView: View {
                                     .font(.system(size: 18))
                                 
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text("Süper Tasarruf!")
+                                    Text(L.superSavings)
                                         .font(.caption.bold())
                                         .foregroundColor(.orange)
-                                    Text("Her görselli hikaye 14₺ değerinde - Ayda 70₺ tasarruf!")
+                                    Text(L.tr("Her görselli hikaye 14₺ değerinde - Ayda 70₺ tasarruf!", "Each illustrated story worth $5 - Save $25/month!"))
                                         .font(.caption2)
                                         .foregroundColor(.secondary)
                                 }
@@ -627,10 +706,10 @@ struct SimpleSubscriptionView: View {
                                     .font(.system(size: 18))
                                 
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text("Maksimum Değer!")
+                                    Text(L.maximumValue)
                                         .font(.caption.bold())
                                         .foregroundColor(.purple)
-                                    Text("Her görselli hikaye 14₺ değerinde - Ayda 140₺ tasarruf!")
+                                    Text(L.tr("Her görselli hikaye 14₺ değerinde - Ayda 140₺ tasarruf!", "Each illustrated story worth $5 - Save $50/month!"))
                                         .font(.caption2)
                                         .foregroundColor(.secondary)
                                 }
@@ -683,41 +762,56 @@ struct SimpleSubscriptionView: View {
     // MARK: - Purchase Button
     
     private var purchaseButton: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: DeviceHelper.isIPad ? 16 : 12) {
             Button(action: {
                 // COPPA Compliance: Parental gate before purchase
+                let impact = UIImpactFeedbackGenerator(style: .heavy)
+                impact.impactOccurred()
                 showingParentalGate = true
             }) {
-                HStack(spacing: 10) {
+                HStack(spacing: DeviceHelper.isIPad ? 14 : 10) {
                     Image(systemName: "crown.fill")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: DeviceHelper.isIPad ? 22 : 18, weight: .bold))
                     
                     if let package = selectedPackage {
-                        Text("Kulübe Katıl - \(package.price)/ay")
-                            .font(.system(size: 18, weight: .bold))
+                        Text(L.tr("Kulübe Katıl - \(package.price)/ay", "Join Club - \(package.price)/month"))
+                            .font(.system(size: DeviceHelper.isIPad ? 22 : 18, weight: .bold))
                     }
                     
                     Image(systemName: "arrow.right.circle.fill")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: DeviceHelper.isIPad ? 22 : 18, weight: .bold))
                 }
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
+                .padding(.vertical, DeviceHelper.isIPad ? 24 : 18)
                 .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.orange, Color.yellow],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                    ZStack {
+                        RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.orange, Color.yellow],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
                             )
-                        )
-                        .shadow(color: .orange.opacity(0.4), radius: 16, x: 0, y: 8)
+                        
+                        // Shine effect
+                        RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.white.opacity(0.3), Color.clear],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                    }
+                    .shadow(color: .orange.opacity(0.5), radius: DeviceHelper.isIPad ? 24 : 16, x: 0, y: DeviceHelper.isIPad ? 12 : 8)
                 )
             }
+            .buttonStyle(ScaleButtonStyle())
             
             Text("İstediğiniz zaman iptal edebilirsiniz")
-                .font(.caption)
+                .font(.system(size: DeviceHelper.isIPad ? 15 : 13))
                 .foregroundColor(.secondary)
         }
     }
@@ -730,16 +824,48 @@ struct SimpleSubscriptionView: View {
                 .padding(.vertical, 8)
             
             HStack(spacing: 20) {
-                trustBadge(icon: "lock.shield.fill", text: "Güvenli Ödeme", color: .green)
-                trustBadge(icon: "arrow.clockwise", text: "7 Gün İade", color: .blue)
-                trustBadge(icon: "checkmark.seal.fill", text: "KVKK Uyumlu", color: .purple)
+                trustBadge(icon: "lock.shield.fill", text: L.securePayment, color: .green)
+                trustBadge(icon: "arrow.clockwise", text: L.dayRefund, color: .blue)
+                trustBadge(icon: "checkmark.seal.fill", text: L.kvkkCompliant, color: .purple)
             }
             
-            Text("Üyeliğinizi istediğiniz zaman iOS ayarlarından iptal edebilirsiniz")
-                .font(.caption2)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
+            VStack(spacing: 8) {
+                Text("Üyeliğinizi istediğiniz zaman iOS ayarlarından iptal edebilirsiniz")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                
+                // Terms of Use and Privacy Policy Links
+                HStack(spacing: 16) {
+                    Button(action: {
+                        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text("Terms of Use")
+                            .font(.caption2)
+                            .foregroundColor(.blue)
+                            .underline()
+                    }
+                    
+                    Text("•")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                    
+                    Button(action: {
+                        if let url = URL(string: "https://www.magicpaperkids.com/gizlilik") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text("Privacy Policy")
+                            .font(.caption2)
+                            .foregroundColor(.blue)
+                            .underline()
+                    }
+                }
+                .padding(.top, 4)
+            }
         }
     }
     
@@ -757,6 +883,27 @@ struct SimpleSubscriptionView: View {
         .frame(maxWidth: .infinity)
     }
     
+    private func subscriptionInfoRow(title: String, price: String, duration: String, stories: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(title)
+                    .font(.caption.bold())
+                    .foregroundColor(.primary)
+                Spacer()
+                Text(price)
+                    .font(.caption.bold())
+                    .foregroundColor(.orange)
+            }
+            Text("Süre: \(duration)")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+            Text("İçerik: \(stories) + Sınırsız metin/günlük")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 4)
+    }
+    
     // MARK: - Purchase
     
     private func makePurchase() {
@@ -767,7 +914,7 @@ struct SimpleSubscriptionView: View {
         
         let dailyCost = Int(package.priceValue / 30)
         
-        alertMessage = """
+        alertMessage = L.tr("""
         \(package.title) başarıyla aktif edildi!
         
         🎨 \(package.tier.monthlyImageStories) görselli hikaye/ay
@@ -777,7 +924,17 @@ struct SimpleSubscriptionView: View {
         Günde sadece \(dailyCost)₺ ile çocuğunuza okuma alışkanlığı kazandırın ve hayal dünyasını zenginleştirin!
         
         Hemen ilk hikayenizi oluşturmaya başlayın! ✨
-        """
+        """, """
+        \(package.title) successfully activated!
+        
+        🎨 \(package.tier.monthlyImageStories) illustrated stories/month
+        📚 Unlimited text stories
+        🌟 Unlimited daily stories
+        
+        Build reading habit and enrich imagination for only $\(dailyCost)/day!
+        
+        Start creating your first story now! ✨
+        """)
         
         showingPurchaseAlert = true
     }

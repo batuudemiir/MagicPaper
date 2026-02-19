@@ -1,87 +1,5 @@
 import SwiftUI
 
-// MARK: - Reading Preferences
-enum TextSize: String, CaseIterable, RawRepresentable {
-    case small = "Küçük"
-    case normal = "Normal"
-    case large = "Büyük"
-    case extraLarge = "Çok Büyük"
-    
-    var multiplier: CGFloat {
-        switch self {
-        case .small: return 0.85
-        case .normal: return 1.0
-        case .large: return 1.2
-        case .extraLarge: return 1.4
-        }
-    }
-    
-    var icon: String {
-        switch self {
-        case .small: return "textformat.size.smaller"
-        case .normal: return "textformat.size"
-        case .large: return "textformat.size.larger"
-        case .extraLarge: return "textformat.size.larger"
-        }
-    }
-}
-
-enum ReadingTheme: String, CaseIterable, RawRepresentable {
-    case light = "Beyaz"
-    case sepia = "Sepia"
-    case dark = "Gece"
-    
-    func backgroundColor(highContrast: Bool) -> Color {
-        switch self {
-        case .light: 
-            return highContrast ? .white : Color(.systemBackground)
-        case .sepia: 
-            return highContrast ? Color(red: 1.0, green: 0.98, blue: 0.92) : Color(red: 0.97, green: 0.94, blue: 0.87)
-        case .dark: 
-            return highContrast ? .black : Color(red: 0.11, green: 0.11, blue: 0.12)
-        }
-    }
-    
-    func textColor(highContrast: Bool) -> Color {
-        switch self {
-        case .light: 
-            return highContrast ? .black : .primary
-        case .sepia: 
-            return highContrast ? Color(red: 0.1, green: 0.05, blue: 0.0) : Color(red: 0.2, green: 0.15, blue: 0.1)
-        case .dark: 
-            return highContrast ? .white : Color(red: 0.9, green: 0.9, blue: 0.9)
-        }
-    }
-    
-    func shadowOpacity(highContrast: Bool) -> Double {
-        return highContrast ? 0.3 : 0.1
-    }
-    
-    var icon: String {
-        switch self {
-        case .light: return "sun.max.fill"
-        case .sepia: return "book.fill"
-        case .dark: return "moon.fill"
-        }
-    }
-}
-
-enum LineSpacingOption: String, CaseIterable, RawRepresentable {
-    case compact = "Sıkı"
-    case normal = "Normal"
-    case relaxed = "Rahat"
-    case loose = "Geniş"
-    
-    var spacing: CGFloat {
-        switch self {
-        case .compact: return 4
-        case .normal: return 8
-        case .relaxed: return 12
-        case .loose: return 16
-        }
-    }
-}
-
 struct StoryViewerView: View {
     let story: Story
     @Environment(\.dismiss) private var dismiss
@@ -142,7 +60,7 @@ struct StoryViewerView: View {
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .onChange(of: currentPage) { newValue in
+                .onChange(of: currentPage) { _, newValue in
                     updateReadingProgress(newValue)
                 }
                 
@@ -184,7 +102,7 @@ struct StoryViewerView: View {
         } message: {
             Text("Hikaye paylaşma ve indirme özellikleri Premium üyelere özeldir. Premium'a geçerek sınırsız hikaye oluşturabilir ve tüm özelliklere erişebilirsiniz.")
         }
-        .onChange(of: autoPlayEnabled) { enabled in
+        .onChange(of: autoPlayEnabled) { _, enabled in
             if enabled {
                 startAutoPlay()
             } else {
@@ -277,6 +195,7 @@ struct StoryViewerView: View {
                 .progressViewStyle(LinearProgressViewStyle(tint: story.theme.color))
                 .scaleEffect(y: DeviceHelper.isIPad ? 1.5 : 1.0)
                 .padding(.horizontal, padding)
+                .animation(.spring(response: 0.5, dampingFraction: 0.75), value: currentPage)
         }
         .background(Color(.systemBackground))
         .shadow(radius: DeviceHelper.isIPad ? 2 : 1)
@@ -392,32 +311,47 @@ struct StoryViewerView: View {
     
     private func navigationControls(for story: Story) -> some View {
         let buttonFontSize: CGFloat = DeviceHelper.isIPad ? 20 : 17
-        let dotSize: CGFloat = DeviceHelper.isIPad ? 12 : 8
+        let dotSize: CGFloat = DeviceHelper.isIPad ? 10 : 7
         let padding: CGFloat = DeviceHelper.isIPad ? 24 : 16
+        let canGoPrev = currentPage > 0
+        let canGoNext = currentPage < story.pages.count - 1
         
         return HStack {
-            Button(action: previousPage) {
+            // Previous button
+            Button(action: {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                previousPage()
+            }) {
                 HStack(spacing: DeviceHelper.isIPad ? 10 : 8) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: DeviceHelper.isIPad ? 18 : 14))
+                    Image(systemName: "chevron.left.circle.fill")
+                        .font(.system(size: DeviceHelper.isIPad ? 22 : 18))
                     Text("Önceki")
-                        .font(.system(size: buttonFontSize))
+                        .font(.system(size: buttonFontSize, weight: .medium))
                 }
-                .foregroundColor(currentPage > 0 ? .primary : .gray)
+                .foregroundColor(canGoPrev ? story.theme.color : .gray.opacity(0.35))
                 .padding(.horizontal, DeviceHelper.isIPad ? 20 : 12)
                 .padding(.vertical, DeviceHelper.isIPad ? 12 : 8)
             }
-            .disabled(currentPage <= 0)
+            .disabled(!canGoPrev)
+            .buttonStyle(SpringPressStyle(scale: 0.92))
             
             Spacer()
             
-            HStack(spacing: DeviceHelper.isIPad ? 12 : 8) {
+            // Page dots
+            HStack(spacing: DeviceHelper.isIPad ? 10 : 7) {
                 ForEach(0..<story.pages.count, id: \.self) { index in
                     Circle()
-                        .fill(index == currentPage ? story.theme.color : Color.gray.opacity(0.3))
-                        .frame(width: dotSize, height: dotSize)
+                        .fill(index == currentPage ? story.theme.color : Color.gray.opacity(0.25))
+                        .frame(
+                            width: index == currentPage ? dotSize + 3 : dotSize,
+                            height: index == currentPage ? dotSize + 3 : dotSize
+                        )
+                        .shadow(color: index == currentPage ? story.theme.color.opacity(0.5) : .clear, radius: 4, x: 0, y: 0)
+                        .scaleEffect(index == currentPage ? 1.2 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: currentPage)
                         .onTapGesture {
-                            withAnimation {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
                                 currentPage = index
                             }
                         }
@@ -426,21 +360,37 @@ struct StoryViewerView: View {
             
             Spacer()
             
-            Button(action: nextPage) {
+            // Next button
+            Button(action: {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                nextPage()
+            }) {
                 HStack(spacing: DeviceHelper.isIPad ? 10 : 8) {
                     Text("Sonraki")
-                        .font(.system(size: buttonFontSize))
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: DeviceHelper.isIPad ? 18 : 14))
+                        .font(.system(size: buttonFontSize, weight: .medium))
+                    Image(systemName: "chevron.right.circle.fill")
+                        .font(.system(size: DeviceHelper.isIPad ? 22 : 18))
                 }
-                .foregroundColor(currentPage < story.pages.count - 1 ? .primary : .gray)
+                .foregroundColor(canGoNext ? story.theme.color : .gray.opacity(0.35))
                 .padding(.horizontal, DeviceHelper.isIPad ? 20 : 12)
                 .padding(.vertical, DeviceHelper.isIPad ? 12 : 8)
             }
-            .disabled(currentPage >= story.pages.count - 1)
+            .disabled(!canGoNext)
+            .buttonStyle(SpringPressStyle(scale: 0.92))
         }
         .padding(padding)
-        .background(Color(.systemBackground))
+        .background(
+            ZStack {
+                Color(.systemBackground)
+                // Subtle top separator
+                VStack {
+                    Rectangle()
+                        .fill(Color.primary.opacity(0.06))
+                        .frame(height: 0.5)
+                    Spacer()
+                }
+            }
+        )
     }
     
     private var fullscreenImageView: some View {
@@ -782,225 +732,6 @@ struct StoryViewerView: View {
     private func stopAutoPlay() {
         autoPlayTimer?.invalidate()
         autoPlayTimer = nil
-    }
-}
-
-// MARK: - Reading Settings View
-
-struct ReadingSettingsView: View {
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorSchemeContrast) var colorSchemeContrast
-    @Binding var textSize: TextSize
-    @Binding var readingTheme: ReadingTheme
-    @Binding var lineSpacing: LineSpacingOption
-    @Binding var autoPlayEnabled: Bool
-    
-    private var isHighContrast: Bool {
-        colorSchemeContrast == .increased
-    }
-    
-    var body: some View {
-        NavigationView {
-            List {
-                // High Contrast Info (if enabled)
-                if isHighContrast {
-                    Section {
-                        HStack(spacing: 12) {
-                            Image(systemName: "eye.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(.blue)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Yüksek Kontrast Aktif")
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                
-                                Text("Daha iyi okunabilirlik için renkler optimize edildi")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .padding(.vertical, 8)
-                    }
-                }
-                
-                // Text Size Section
-                Section {
-                    ForEach(TextSize.allCases, id: \.self) { size in
-                        Button(action: {
-                            textSize = size
-                        }) {
-                            HStack {
-                                Image(systemName: size.icon)
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.purple)
-                                    .frame(width: 32)
-                                
-                                Text(size.rawValue)
-                                    .foregroundColor(.primary)
-                                
-                                Spacer()
-                                
-                                if textSize == size {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.purple)
-                                        .font(.system(size: 16, weight: .semibold))
-                                }
-                            }
-                        }
-                    }
-                } header: {
-                    Text("Yazı Boyutu")
-                } footer: {
-                    Text("Hikaye metninin boyutunu ayarlayın")
-                }
-                
-                // Reading Theme Section
-                Section {
-                    ForEach(ReadingTheme.allCases, id: \.self) { theme in
-                        Button(action: {
-                            readingTheme = theme
-                        }) {
-                            HStack {
-                                ZStack {
-                                    Circle()
-                                        .fill(theme.backgroundColor(highContrast: isHighContrast))
-                                        .frame(width: 32, height: 32)
-                                        .overlay(
-                                            Circle()
-                                                .stroke(Color.gray.opacity(isHighContrast ? 0.5 : 0.3), lineWidth: isHighContrast ? 2 : 1)
-                                        )
-                                    
-                                    Image(systemName: theme.icon)
-                                        .font(.system(size: 14))
-                                        .foregroundColor(theme.textColor(highContrast: isHighContrast))
-                                }
-                                
-                                Text(theme.rawValue)
-                                    .foregroundColor(.primary)
-                                
-                                Spacer()
-                                
-                                if readingTheme == theme {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.purple)
-                                        .font(.system(size: 16, weight: .semibold))
-                                }
-                            }
-                        }
-                    }
-                } header: {
-                    Text("Okuma Teması")
-                } footer: {
-                    Text(isHighContrast ? 
-                         "Gözlerinize uygun arka plan rengini seçin. Yüksek kontrast modu aktif." : 
-                         "Gözlerinize uygun arka plan rengini seçin")
-                }
-                
-                // Line Spacing Section
-                Section {
-                    ForEach(LineSpacingOption.allCases, id: \.self) { spacing in
-                        Button(action: {
-                            lineSpacing = spacing
-                        }) {
-                            HStack {
-                                Image(systemName: "text.alignleft")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.purple)
-                                    .frame(width: 32)
-                                
-                                Text(spacing.rawValue)
-                                    .foregroundColor(.primary)
-                                
-                                Spacer()
-                                
-                                if lineSpacing == spacing {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.purple)
-                                        .font(.system(size: 16, weight: .semibold))
-                                }
-                            }
-                        }
-                    }
-                } header: {
-                    Text("Satır Aralığı")
-                } footer: {
-                    Text("Satırlar arasındaki boşluğu ayarlayın")
-                }
-                
-                // Auto Play Section
-                Section {
-                    Toggle(isOn: $autoPlayEnabled) {
-                        HStack {
-                            Image(systemName: "play.circle.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.orange)
-                                .frame(width: 32)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Otomatik Oynat")
-                                    .foregroundColor(.primary)
-                                
-                                Text("Her 8 saniyede bir sayfa")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    .tint(.orange)
-                } footer: {
-                    Text("Hikaye sayfaları otomatik olarak ilerler")
-                }
-                
-                // Preview Section
-                Section {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Önizleme")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                        
-                        VStack(spacing: lineSpacing.spacing) {
-                            Text("Bir zamanlar uzak bir diyarda,")
-                                .font(.system(size: 17 * textSize.multiplier))
-                            Text("küçük bir kahraman yaşardı.")
-                                .font(.system(size: 17 * textSize.multiplier))
-                            Text("Maceraları efsanelere konu oldu.")
-                                .font(.system(size: 17 * textSize.multiplier))
-                        }
-                        .foregroundColor(readingTheme.textColor(highContrast: isHighContrast))
-                        .multilineTextAlignment(.leading)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(readingTheme.backgroundColor(highContrast: isHighContrast))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(isHighContrast ? Color.primary.opacity(0.2) : Color.clear, lineWidth: 1)
-                                )
-                        )
-                        
-                        if isHighContrast {
-                            Text("✓ Yüksek kontrast ile optimize edildi")
-                                .font(.caption)
-                                .foregroundColor(.blue)
-                        }
-                    }
-                } header: {
-                    Text("Önizleme")
-                }
-            }
-            .navigationTitle("Okuma Ayarları")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Bitti") {
-                        dismiss()
-                    }
-                    .fontWeight(.semibold)
-                }
-            }
-        }
     }
 }
 
