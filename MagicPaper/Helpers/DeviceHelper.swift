@@ -21,7 +21,7 @@ struct DeviceHelper {
     
     // Card spacing
     static var cardSpacing: CGFloat {
-        isIPad ? 24 : 16
+        isIPad ? 24 : 12
     }
     
     // Font scale
@@ -31,7 +31,7 @@ struct DeviceHelper {
     
     // Tab bar bottom padding
     static var tabBarBottomPadding: CGFloat {
-        isIPad ? 90 : 80
+        isIPad ? 90 : 90
     }
     
     // Minimum touch target size (Apple HIG: 44x44pt)

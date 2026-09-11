@@ -1,0 +1,190 @@
+{
+  "beats" : [
+    {
+      "moodKey" : "calm",
+      "ordinal" : 0,
+      "role" : "opening",
+      "settingKey" : "attic",
+      "templateBeatID" : "a",
+      "timeOfDayKey" : "day"
+    },
+    {
+      "moodKey" : "calm",
+      "ordinal" : 1,
+      "role" : "middle",
+      "settingKey" : "attic",
+      "templateBeatID" : "b",
+      "timeOfDayKey" : "day"
+    },
+    {
+      "moodKey" : "calm",
+      "ordinal" : 2,
+      "role" : "middle",
+      "settingKey" : "attic",
+      "templateBeatID" : "b",
+      "timeOfDayKey" : "day"
+    },
+    {
+      "moodKey" : "calm",
+      "ordinal" : 3,
+      "role" : "middle",
+      "settingKey" : "attic",
+      "templateBeatID" : "b",
+      "timeOfDayKey" : "day"
+    },
+    {
+      "moodKey" : "calm",
+      "ordinal" : 4,
+      "role" : "middle",
+      "settingKey" : "attic",
+      "templateBeatID" : "b",
+      "timeOfDayKey" : "day"
+    },
+    {
+      "moodKey" : "calm",
+      "ordinal" : 5,
+      "role" : "closing",
+      "settingKey" : "attic",
+      "templateBeatID" : "c",
+      "timeOfDayKey" : "day"
+    }
+  ],
+  "constraints" : [
+    {
+      "aspectRatio" : "landscape",
+      "compositionClauses" : [
+        "subject positioned on the right third of the frame",
+        "medium shot",
+        "keep the upper left area uncluttered for text",
+        "landscape 4:3 framing",
+        "leave headroom above the character"
+      ],
+      "identityClauses" : [
+        "Deniz, age 6",
+        "Deniz has curly black hair",
+        "Deniz has brown eyes"
+      ],
+      "negativeClauseCount" : 18,
+      "provenance" : [
+        "preset:magic_paper_v1@1.0.0",
+        "illustration:storybook_painted_v1@1.0.0",
+        "palette:paper_warm@1.0.0",
+        "typography:mp_body_v1@1.0.0",
+        "composition:character_right_text_left@1.0.0",
+        "character:CA333237-3963-3631-6531-613039623138@CE613234-3532-3237-6137-346662363131"
+      ],
+      "sceneIndex" : 0
+    }
+  ],
+  "effectivePageCount" : 6,
+  "name" : "scene_reuse_01",
+  "pages" : [
+    {
+      "beatRole" : "opening",
+      "compositionRuleID" : "full_bleed_establishing",
+      "index" : 0,
+      "layout" : "spread",
+      "layoutRuleID" : "layout_opening_spread",
+      "maximumWords" : 90,
+      "minimumWords" : 40,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "a",
+      "typographyPresetID" : "mp_body_v1"
+    },
+    {
+      "beatRole" : "middle",
+      "compositionRuleID" : "character_left_text_right",
+      "index" : 1,
+      "layout" : "imageTopTextBottom",
+      "layoutRuleID" : "layout_alternating_mirror",
+      "maximumWords" : 130,
+      "minimumWords" : 60,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "b",
+      "typographyPresetID" : "mp_body_v1"
+    },
+    {
+      "beatRole" : "middle",
+      "compositionRuleID" : "character_left_text_right",
+      "index" : 2,
+      "layout" : "imageTopTextBottom",
+      "layoutRuleID" : "layout_alternating_mirror",
+      "maximumWords" : 130,
+      "minimumWords" : 60,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "b",
+      "typographyPresetID" : "mp_body_v1"
+    },
+    {
+      "beatRole" : "middle",
+      "compositionRuleID" : "character_left_text_right",
+      "index" : 3,
+      "layout" : "imageTopTextBottom",
+      "layoutRuleID" : "layout_alternating_mirror",
+      "maximumWords" : 130,
+      "minimumWords" : 60,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "b",
+      "typographyPresetID" : "mp_body_v1"
+    },
+    {
+      "beatRole" : "middle",
+      "compositionRuleID" : "character_left_text_right",
+      "index" : 4,
+      "layout" : "imageTopTextBottom",
+      "layoutRuleID" : "layout_alternating_mirror",
+      "maximumWords" : 130,
+      "minimumWords" : 60,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "b",
+      "typographyPresetID" : "mp_body_v1"
+    },
+    {
+      "beatRole" : "closing",
+      "compositionRuleID" : "quiet_closing",
+      "index" : 5,
+      "layout" : "imageTopTextBottom",
+      "layoutRuleID" : "layout_closing_quiet",
+      "maximumWords" : 110,
+      "minimumWords" : 50,
+      "sceneIndex" : 0,
+      "segmentedWordCount" : 0,
+      "templateBeatID" : "c",
+      "typographyPresetID" : "mp_body_v1"
+    }
+  ],
+  "requestedPageCount" : 6,
+  "scenes" : [
+    {
+      "assetFingerprints" : [
+        "62253ea908b353ff"
+      ],
+      "assetSeeds" : [
+        2720698915752951715
+      ],
+      "castNames" : [
+        "Deniz"
+      ],
+      "index" : 0,
+      "moodKey" : "calm",
+      "pageIndices" : [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "settingKey" : "attic",
+      "signatureFingerprint" : "662d31c09ecf415c",
+      "timeOfDayKey" : "day"
+    }
+  ],
+  "templateID" : "one_room",
+  "templateVersion" : "1.0.0"
+}

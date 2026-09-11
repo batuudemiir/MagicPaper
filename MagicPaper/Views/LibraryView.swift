@@ -1,677 +1,111 @@
 import SwiftUI
 
+/// Kütüphane — 03-SCREENS.md §9.
 struct LibraryView: View {
-    @ObservedObject private var generationManager = StoryGenerationManager.shared
-    @StateObject private var localizationManager = LocalizationManager.shared
-    @State private var selectedStory: Story?
-    @State private var showingDeleteAlert = false
-    @State private var storyToDelete: Story?
-    @State private var shareItems: [Any] = []
-    @State private var isGridView = false
-    @Namespace private var filterNamespace
-    @State private var showingShareSheet = false
-    @State private var searchText = ""
-    @State private var filterOption: FilterOption = .all
-    
-    enum FilterOption: String, CaseIterable {
-        case all = "Tümü"
-        case image = "Görselli"
-        case text = "Metin"
-        case daily = "Günlük"
-        
-        var icon: String {
-            switch self {
-            case .all: return "books.vertical.fill"
-            case .image: return "photo.fill"
-            case .text: return "text.book.closed.fill"
-            case .daily: return "calendar"
-            }
-        }
+    @EnvironmentObject private var app: MPAppState
+    @StateObject private var storyManager = StoryGenerationManager.shared
+    @StateObject private var profileManager = ProfileManager.shared
+    @StateObject private var favorites = MPFavorites.shared
+
+    enum Filter: String, CaseIterable {
+        case all = "Tümü", illustrated = "Görselli", favorite = "Favori"
     }
-    
-    var filteredStories: [Story] {
-        var stories = generationManager.stories
-        
-        // Arama filtresi
-        if !searchText.isEmpty {
-            stories = stories.filter { story in
-                story.title.localizedCaseInsensitiveContains(searchText) ||
-                story.childName.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-        
-        // Tip filtresi
-        switch filterOption {
-        case .all:
-            break
-        case .image:
-            // Görselli hikayeler - pages içinde imageUrl olan
-            stories = stories.filter { story in
-                story.pages.contains(where: { page in
-                    page.imageUrl != nil && !page.imageUrl!.isEmpty
-                })
-            }
-        case .text:
-            // Metin hikayeler - pages içinde imageUrl olmayan
-            stories = stories.filter { story in
-                story.pages.allSatisfy { page in
-                    page.imageUrl == nil || page.imageUrl!.isEmpty
-                }
-            }
-        case .daily:
-            // Günlük hikayeler - metin hikayeler gibi
-            stories = stories.filter { story in
-                story.pages.allSatisfy { page in
-                    page.imageUrl == nil || page.imageUrl!.isEmpty
-                }
-            }
-        }
-        
-        return stories.sorted { $0.createdAt > $1.createdAt }
-    }
-    
-    var totalStoryCount: Int {
-        generationManager.stories.count
-    }
-    
-    var completedStoryCount: Int {
-        generationManager.stories.filter { $0.status == .completed }.count
-    }
-    
-    var imageStoryCount: Int {
-        generationManager.stories.filter { story in
-            story.pages.contains(where: { page in
-                page.imageUrl != nil && !page.imageUrl!.isEmpty
-            })
-        }.count
-    }
-    
-    var textStoryCount: Int {
-        generationManager.stories.filter { story in
-            story.pages.allSatisfy { page in
-                page.imageUrl == nil || page.imageUrl!.isEmpty
-            }
-        }.count
-    }
-    
+
+    @State private var query = ""
+    @State private var filter: Filter = .all
+    /// Kapsam: yalnızca aktif çocuk ↔ tüm çocuklar.
+    @State private var allChildren = false
+
     var body: some View {
-        NavigationView {
-            Group {
-                if totalStoryCount == 0 {
-                    emptyStateView
-                } else {
-                    VStack(spacing: 0) {
-                        // İstatistikler
-                        statsView
-                            .padding()
-                        
-                        // Tip filtresi
-                        filterView
-                            .padding(.horizontal)
-                            .padding(.bottom, 8)
-                        
-                        // Hikaye listesi
-                        if filteredStories.isEmpty {
-                            noResultsView
-                        } else {
-                            storyListView
-                        }
-                    }
+        VStack(spacing: 0) {
+            MPNavBar(title: "Kütüphane") {
+                MPIconButton(
+                    symbol: allChildren ? "person.2.circle" : "person.crop.circle",
+                    label: "Kapsam"
+                ) {
+                    withAnimation(MP.M.gated(MP.M.easeOut)) { allChildren.toggle() }
                 }
             }
-            .navigationTitle(localizationManager.localized(.myLibrary))
-            .navigationBarTitleDisplayMode(.large)
-            .searchable(text: $searchText, prompt: localizationManager.currentLanguage == .turkish ? "Hikaye ara..." : "Search stories...")
-        }
-        .navigationViewStyle(.stack) // iPad'de split view'ı devre dışı bırak
-        .fullScreenCover(item: $selectedStory) { story in
-            StoryViewerView(story: story)
-        }
-        .sheet(isPresented: $showingShareSheet) {
-            ShareSheet(items: shareItems)
-        }
-        .alert(localizationManager.localized(.deleteStory), isPresented: $showingDeleteAlert) {
-            Button(localizationManager.localized(.cancel), role: .cancel) { }
-            Button(localizationManager.localized(.delete), role: .destructive) {
-                if let story = storyToDelete {
-                    generationManager.deleteStory(id: story.id)
-                }
-            }
-        } message: {
-            if let story = storyToDelete {
-                Text(localizationManager.currentLanguage == .turkish ?
-                     "\"\(story.title)\" hikayesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz." :
-                     "Are you sure you want to delete \"\(story.title)\"? This action cannot be undone.")
-            }
-        }
-    }
-    
-    // MARK: - Stats View
-    
-    private var statsView: some View {
-        HStack(spacing: 12) {
-            statCard(
-                icon: "book.fill",
-                value: "\(totalStoryCount)",
-                label: "Toplam",
-                color: .indigo
-            )
-            
-            statCard(
-                icon: "photo.fill",
-                value: "\(imageStoryCount)",
-                label: "Görselli",
-                color: .purple
-            )
-            
-            statCard(
-                icon: "text.book.closed.fill",
-                value: "\(textStoryCount)",
-                label: "Metin",
-                color: .green
-            )
-            
-            statCard(
-                icon: "checkmark.circle.fill",
-                value: "\(completedStoryCount)",
-                label: "Okunan",
-                color: .orange
-            )
-        }
-    }
-    
-    private func statCard(icon: String, value: String, label: String, color: Color) -> some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 6) {
-                Image(systemName: icon)
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(color)
-                Text(value)
-                    .font(.title2.bold())
-                    .foregroundColor(.primary)
-            }
-            
-            Text(label)
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 14)
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: [color.opacity(0.12), color.opacity(0.06)],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
-                
-                // Inner top highlight
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.white.opacity(0.4), Color.clear],
-                            startPoint: .top,
-                            endPoint: .center
-                        )
-                    )
-            }
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .strokeBorder(color.opacity(0.15), lineWidth: 1)
-        )
-    }
-    
-    // MARK: - Filter View
-    
-    private var filterView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(FilterOption.allCases, id: \.self) { option in
-                    Button(action: {
-                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                        withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
-                            filterOption = option
-                        }
-                    }) {
-                        HStack(spacing: 6) {
-                            Image(systemName: option.icon)
-                                .font(.caption)
-                            Text(option.rawValue)
-                                .font(.subheadline.weight(filterOption == option ? .semibold : .regular))
-                        }
-                        .foregroundColor(filterOption == option ? .white : .primary)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 9)
-                        .background(
-                            ZStack {
-                                if filterOption == option {
-                                    Capsule()
-                                        .fill(
-                                            LinearGradient(
-                                                colors: [Color.indigo, Color.purple],
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )
-                                        )
-                                        .matchedGeometryEffect(id: "filterPill", in: filterNamespace)
-                                        .shadow(color: Color.indigo.opacity(0.35), radius: 8, x: 0, y: 4)
-                                } else {
-                                    Capsule()
-                                        .fill(Color(.systemGray5))
-                                }
-                            }
-                        )
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-            }
-            .padding(.horizontal, 2)
-        }
-    }
-    
-    // MARK: - Empty State
-    
-    private var emptyStateView: some View {
-        VStack(spacing: 24) {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.indigo.opacity(0.2), Color.purple.opacity(0.2)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 120, height: 120)
-                
-                Image(systemName: "books.vertical")
-                    .font(.system(size: 56))
-                    .foregroundColor(.indigo)
-            }
-            
-            VStack(spacing: 8) {
-                Text(localizationManager.localized(.noStoriesInLibrary))
-                    .font(.title2.bold())
-                
-                Text(localizationManager.localized(.createFirstStory))
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
-            }
-            
-            NavigationLink(destination: CreateStoryView()) {
-                HStack(spacing: 8) {
-                    Image(systemName: "sparkles")
-                    Text(localizationManager.localized(.generateStory))
-                        .fontWeight(.semibold)
-                }
-                .foregroundColor(.white)
-                .padding(.horizontal, 24)
-                .padding(.vertical, 14)
-                .background(
-                    LinearGradient(
-                        colors: [Color.indigo, Color.purple],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .cornerRadius(14)
-            }
-        }
-        .padding()
-    }
-    
-    // MARK: - No Results View
-    
-    private var noResultsView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 48))
-                .foregroundColor(.gray.opacity(0.5))
-            
-            Text("Sonuç Bulunamadı")
-                .font(.headline)
-                .foregroundColor(.secondary)
-            
-            Text("Farklı bir arama terimi deneyin")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-    }
-    
-    // MARK: - Story List
-    
-    private var storyListView: some View {
-        ScrollView {
-            LazyVStack(spacing: DeviceHelper.isIPad ? 16 : 12) {
-                ForEach(filteredStories) { story in
-                    if story.status == .completed {
-                        completedStoryCard(story: story)
-                    } else {
-                        generatingStoryCard(story: story)
-                    }
-                }
-            }
-            .padding(DeviceHelper.isIPad ? 20 : 12)
-        }
-    }
-    
-    // MARK: - Completed Story Card
-    
-    private func completedStoryCard(story: Story) -> some View {
-        let imageSize: CGFloat = DeviceHelper.isIPad ? 140 : 90
-        let imageHeight: CGFloat = DeviceHelper.isIPad ? 180 : 120
-        
-        return Button(action: {
-            selectedStory = story
-        }) {
-            HStack(spacing: DeviceHelper.isIPad ? 20 : 14) {
-                // Kapak resmi
-                Group {
-                    if let coverImageFileName = story.coverImageFileName,
-                       let uiImage = FileManagerService.shared.loadImage(fileName: coverImageFileName) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [story.theme.color.opacity(0.6), story.theme.color],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                            
-                            Text(story.theme.emoji)
-                                .font(.system(size: DeviceHelper.isIPad ? 48 : 36))
-                        }
-                    }
-                }
-                .frame(width: imageSize, height: imageHeight)
-                .clipShape(RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12))
-                .shadow(color: .black.opacity(0.1), radius: DeviceHelper.isIPad ? 6 : 4, x: 0, y: 2)
-                
-                // Bilgiler
-                VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 12 : 8) {
-                    Text(story.title)
-                        .font(.system(size: DeviceHelper.isIPad ? 22 : 17, weight: .semibold))
-                        .foregroundColor(.primary)
-                        .lineLimit(2)
-                    
-                    Text("\(story.childName)'in Hikayesi")
-                        .font(.system(size: DeviceHelper.isIPad ? 17 : 15))
-                        .foregroundColor(.indigo)
-                    
-                    HStack(spacing: 8) {
-                        Label(story.theme.displayName, systemImage: "sparkles")
-                            .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
-                            .foregroundColor(.secondary)
-                        
-                        Spacer()
-                        
-                        Label("\(story.pages.count) sayfa", systemImage: "book.pages")
-                            .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // İlerleme
-                    if let lastPage = story.lastReadPage {
-                        VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 6 : 4) {
-                            HStack {
-                                Text("Sayfa \(lastPage + 1)/\(story.pages.count)")
-                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                                Text("%\(Int((Double(lastPage + 1) / Double(story.pages.count)) * 100))")
-                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11, weight: .bold))
-                                    .foregroundColor(story.theme.color)
-                            }
-                            
-                            ProgressView(value: Double(lastPage + 1), total: Double(story.pages.count))
-                                .progressViewStyle(LinearProgressViewStyle(tint: story.theme.color))
-                                .scaleEffect(y: DeviceHelper.isIPad ? 1.2 : 1.0)
-                        }
-                        .padding(.top, DeviceHelper.isIPad ? 6 : 4)
-                    }
-                }
-                
-                // Menü butonu
-                Menu {
-                    Button(action: {
-                        selectedStory = story
-                    }) {
-                        Label("Hikayeyi Oku", systemImage: "book.fill")
-                    }
-                    
-                    Button(action: {
-                        shareStory(story)
-                    }) {
-                        Label("Paylaş", systemImage: "square.and.arrow.up")
-                    }
-                    
-                    Divider()
-                    
-                    Button(role: .destructive, action: {
-                        storyToDelete = story
-                        showingDeleteAlert = true
-                    }) {
-                        Label("Sil", systemImage: "trash")
-                    }
-                } label: {
-                    VStack(spacing: 2) {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .font(.system(size: DeviceHelper.isIPad ? 32 : 24))
-                            .foregroundColor(.indigo)
-                        
-                        Text("Menü")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(8)
-                }
-            }
-            .padding(DeviceHelper.isIPad ? 20 : 12)
-            .background(
-                ZStack {
-                    RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
-                        .fill(Color(.systemBackground))
-                    
-                    // Inner top highlight
-                    RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16, style: .continuous)
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.white.opacity(0.8), Color.clear],
-                                startPoint: .top,
-                                endPoint: .center
-                            )
-                        )
-                }
-                .shadow(color: story.theme.color.opacity(0.12), radius: DeviceHelper.isIPad ? 16 : 12, x: 0, y: 4)
-            )
-        }
-        .buttonStyle(SpringPressStyle(scale: 0.97))
-        .appearAnimation()
-    }
-    
-    // MARK: - Generating Story Card
-    
-    private func generatingStoryCard(story: Story) -> some View {
-        let imageSize: CGFloat = DeviceHelper.isIPad ? 140 : 90
-        let imageHeight: CGFloat = DeviceHelper.isIPad ? 180 : 120
-        
-        return HStack(spacing: DeviceHelper.isIPad ? 20 : 14) {
-            // Kapak resmi
-            ZStack {
-                Group {
-                    if let coverImageFileName = story.coverImageFileName,
-                       let uiImage = FileManagerService.shared.loadImage(fileName: coverImageFileName) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
-                                .fill(story.theme.color.opacity(0.3))
-                            
-                            Text(story.theme.emoji)
-                                .font(.system(size: DeviceHelper.isIPad ? 48 : 36))
-                        }
-                    }
-                }
-                .frame(width: imageSize, height: imageHeight)
-                .clipShape(RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12))
-                
-                // Overlay
-                RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 16 : 12)
-                    .fill(Color.black.opacity(0.6))
-                    .frame(width: imageSize, height: imageHeight)
-                    .overlay(
-                        VStack(spacing: DeviceHelper.isIPad ? 8 : 6) {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(DeviceHelper.isIPad ? 1.2 : 0.9)
-                            
-                            Image(systemName: story.status.icon)
-                                .font(.system(size: DeviceHelper.isIPad ? 14 : 12))
-                                .foregroundColor(.white)
-                        }
-                    )
-            }
-            
-            // Bilgiler
-            VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 12 : 8) {
-                Text(story.title)
-                    .font(.system(size: DeviceHelper.isIPad ? 22 : 17, weight: .semibold))
-                    .foregroundColor(.primary)
-                    .lineLimit(2)
-                
-                Text("\(story.childName)'in Hikayesi")
-                    .font(.system(size: DeviceHelper.isIPad ? 17 : 15))
-                    .foregroundColor(.indigo)
-                
-                // Durum badge
-                HStack(spacing: 6) {
-                    Image(systemName: story.status.icon)
-                        .font(.system(size: DeviceHelper.isIPad ? 12 : 10))
-                    Text(story.status.displayName)
-                        .font(.system(size: DeviceHelper.isIPad ? 14 : 12, weight: .medium))
-                }
-                .foregroundColor(statusColor(for: story.status))
-                .padding(.horizontal, DeviceHelper.isIPad ? 14 : 10)
-                .padding(.vertical, DeviceHelper.isIPad ? 7 : 5)
-                .background(
-                    Capsule()
-                        .fill(statusColor(for: story.status).opacity(0.15))
-                )
-                
-                // İlerleme
-                if story.status == .generatingImages {
-                    let completedPages = story.pages.filter { $0.imageFileName != nil }.count
-                    let totalPages = story.pages.count
-                    if totalPages > 0 {
-                        VStack(alignment: .leading, spacing: DeviceHelper.isIPad ? 6 : 4) {
-                            HStack {
-                                Text("Görseller oluşturuluyor")
-                                    .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                                Text("\(completedPages)/\(totalPages)")
-                                    .font(.caption2.bold())
-                                    .foregroundColor(.orange)
-                            }
-                            
-                            ProgressView(value: Double(completedPages), total: Double(totalPages))
-                                .progressViewStyle(LinearProgressViewStyle(tint: .orange))
-                        }
-                    }
-                }
-                
-                if let progress = story.currentProgress {
-                    Text(progress)
-                        .font(.system(size: DeviceHelper.isIPad ? 13 : 11))
-                        .foregroundColor(.secondary)
-                        .lineLimit(2)
-                }
-            }
-            
-            Spacer()
-        }
-        .padding(DeviceHelper.isIPad ? 20 : 12)
-        .background(
-            RoundedRectangle(cornerRadius: DeviceHelper.isIPad ? 20 : 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: DeviceHelper.isIPad ? 12 : 8, x: 0, y: 2)
-        )
-        .opacity(story.status == .failed ? 0.6 : 1.0)
-    }
-    
-    // MARK: - Helper Functions
-    
-    private func statusColor(for status: StoryStatus) -> Color {
-        switch status {
-        case .uploading: return .blue
-        case .writingStory: return .purple
-        case .generatingImages: return .orange
-        case .completed: return .green
-        case .failed: return .red
-        }
-    }
-    
-    private func shareStory(_ story: Story) {
-        shareItems = [generateShareText(for: story)]
-        showingShareSheet = true
-    }
-    
-    private func generateShareText(for story: Story) -> String {
-        var text = """
-        📚 \(story.title)
-        
-        \(story.childName)'in sihirli hikayesi! ✨
-        
-        Tema: \(story.theme.displayName)
-        Sayfa Sayısı: \(story.pages.count)
-        
-        """
-        
-        if let firstPage = story.pages.first {
-            text += "\n\(firstPage.title)\n\n"
-            text += firstPage.text.prefix(200) + "...\n\n"
-        }
-        
-        text += "MagicPaper ile oluşturuldu 🎨"
-        
-        return text
-    }
-}
 
-// MARK: - Share Sheet
+            filters
 
-struct ShareSheet: UIViewControllerRepresentable {
-    let items: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        
-        if let popover = controller.popoverPresentationController {
-            popover.sourceView = UIView()
-            popover.permittedArrowDirections = []
+            if visibleStories.isEmpty {
+                ScrollView(showsIndicators: false) {
+                    MPEmptyState(
+                        title: "Burada masal yok",
+                        description: query.isEmpty
+                            ? "İlk masalını yaratınca burada belirecek."
+                            : "Aramanla eşleşen bir masal bulamadık.",
+                        illustration: "AppLogo",
+                        actionLabel: "Masal yarat",
+                        action: { app.startWizard() }
+                    )
+                    .padding(.top, 20)
+                }
+            } else {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 10) {
+                        ForEach(visibleStories) { story in
+                            MPStoryCard(
+                                title: story.title,
+                                meta: story.mpMetaWithChild,
+                                symbol: story.mpSymbol,
+                                accent: story.mpAccent,
+                                badge: story.isIllustrated ? "Görselli" : nil,
+                                progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
+                                layout: .row
+                            ) {
+                                app.sheet = .storyActions(story.id)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, MP.S.screenGutter)
+                    .padding(.bottom, 24)
+                }
+            }
         }
-        
-        return controller
+        .mpScreenBackground()
     }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
 
-#Preview {
-    LibraryView()
+    private var filters: some View {
+        VStack(spacing: 10) {
+            MPInput(placeholder: "Masal ara", text: $query, symbol: "magnifyingglass")
+
+            MPWrapRow(spacing: 10) {
+                ForEach(Filter.allCases, id: \.self) { f in
+                    MPChip(title: f.rawValue, isSelected: filter == f) {
+                        withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, MP.S.screenGutter)
+        .padding(.top, 4)
+        .padding(.bottom, 14)
+    }
+
+    private var visibleStories: [Story] {
+        var list = storyManager.stories
+
+        if !allChildren, let active = profileManager.currentProfile?.name {
+            list = list.filter { $0.childName == active || $0.childName.isEmpty }
+        }
+
+        switch filter {
+        case .all: break
+        case .illustrated: list = list.filter { $0.isIllustrated }
+        case .favorite: list = list.filter { favorites.contains($0.id) }
+        }
+
+        let trimmed = query.trimmingCharacters(in: .whitespaces)
+        if !trimmed.isEmpty {
+            // Türkçe locale ile küçük harfe çevrilir — i/ı ayrımı için zorunlu.
+            let needle = MPText.foldedForSearch(trimmed)
+            list = list.filter {
+                MPText.foldedForSearch($0.title).contains(needle)
+                || MPText.foldedForSearch($0.childName).contains(needle)
+            }
+        }
+        return list
+    }
 }

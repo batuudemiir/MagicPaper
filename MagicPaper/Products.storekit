@@ -1,0 +1,167 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "E8B8F0A5",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "tr",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "TUR",
+    "_storeKitErrors" : [
+      {
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21510260",
+      "localizations" : [
+
+      ],
+      "name" : "MagicPaper_Plans",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "89.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6740001001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Temel özellikler",
+              "displayName" : "Yıldız Kaşifi",
+              "locale" : "tr"
+            }
+          ],
+          "productID" : "com.magicpaper.basic.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Yıldız Kaşifi",
+          "subscriptionGroupID" : "21510260",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "149.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6740001002",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Premium özellikler",
+              "displayName" : "Hikaye Kahramanı",
+              "locale" : "tr"
+            }
+          ],
+          "productID" : "com.magicpaper.premium.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Hikaye Kahramanı",
+          "subscriptionGroupID" : "21510260",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "349.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "6740001003",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Tüm özellikler",
+              "displayName" : "Sihir Ustası",
+              "locale" : "tr"
+            }
+          ],
+          "productID" : "com.magicpaper.ultimate.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Sihir Ustası",
+          "subscriptionGroupID" : "21510260",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

@@ -280,6 +280,33 @@ class SubscriptionManager: ObservableObject {
         }
     }
     
+#if DEBUG
+    // MARK: - Geliştirici yardımcıları
+    //
+    // Yalnızca DEBUG derlemesinde derlenir. Release'te bu kod hiç bulunmaz —
+    // yayınlanan uygulamada satın almayı baypas eden bir yol olmamalı.
+
+    /// Test için yıldız ekler. Ücretsiz kullanıcıda deneme hakkını, üyede
+    /// aylık görselli kotayı büyütür; tek seferlik görselli kilidi de açar.
+    func grantTrialStars(_ count: Int = 5) {
+        if subscriptionTier == .none {
+            freeTrialCount += count
+            freeTrialUsed = false
+            freeImageStoryUsed = false
+            lastFreeTextStoryDate = nil
+
+            UserDefaults.standard.set(freeTrialCount, forKey: "freeTrialCount")
+            UserDefaults.standard.set(false, forKey: "freeTrialUsed")
+            UserDefaults.standard.set(false, forKey: "freeImageStoryUsed")
+            UserDefaults.standard.removeObject(forKey: "lastFreeTextStoryDate")
+        } else {
+            remainingImageStories += count
+            UserDefaults.standard.set(remainingImageStories, forKey: "remainingImageStories")
+        }
+        print("🧪 \(count) deneme yıldızı eklendi")
+    }
+#endif
+
     // Premium mu?
     var isPremium: Bool {
         return subscriptionTier != .none

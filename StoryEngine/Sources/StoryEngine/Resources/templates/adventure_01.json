@@ -1,0 +1,253 @@
+{
+  "id": "adventure_01",
+  "version": "1.0.0",
+  "schemaVersion": 1,
+  "displayName": "A small adventure",
+  "themeKeys": [],
+  "narrative": {
+    "version": "1.0.0",
+    "toneKeys": [
+      "warm",
+      "playful",
+      "gentle",
+      "brave"
+    ],
+    "promptSlots": {
+      "appearance_lockdown": "Never describe how any character looks. Do not mention hair, eyes, skin, height, build, clothing or accessories. Appearance is supplied separately and is not yours to invent or vary.",
+      "audience": "You are writing a picture book for a young child who will have it read aloud to them.",
+      "craft": "Use concrete sensory detail, dialogue on most pages, and short paragraphs. Vary sentence length. Never summarise; write the scene.",
+      "safety": "Nothing frightening, nothing violent, no peril without immediate comfort. No brands. No adult themes.",
+      "continuity": "Keep names, places and established facts consistent with the outline."
+    },
+    "beats": [
+      {
+        "id": "ordinary_world",
+        "role": "opening",
+        "title": "An ordinary moment",
+        "instructions": [
+          "Open on the protagonist at home, in a completely ordinary moment",
+          "Ground the reader with sensory detail: light, sound, smell",
+          "Include a short exchange with someone familiar",
+          "End with something small and odd catching their attention"
+        ],
+        "settingKey": "home",
+        "timeOfDayKey": "afternoon",
+        "moodKey": "cosy",
+        "compositionRuleID": "full_bleed_establishing"
+      },
+      {
+        "id": "the_threshold",
+        "role": "opening",
+        "title": "Stepping through",
+        "instructions": [
+          "The protagonist investigates the odd thing up close",
+          "Mix wonder with a flicker of nervousness",
+          "They make the choice to go on"
+        ],
+        "settingKey": "threshold",
+        "timeOfDayKey": "afternoon",
+        "moodKey": "curious"
+      },
+      {
+        "id": "new_world",
+        "role": "middle",
+        "title": "A new place",
+        "instructions": [
+          "Arrive somewhere unlike home",
+          "Describe the light, the ground, the sounds",
+          "Something friendly notices them"
+        ],
+        "settingKey": "new_world",
+        "timeOfDayKey": "afternoon",
+        "moodKey": "wonder"
+      },
+      {
+        "id": "the_friend",
+        "role": "middle",
+        "title": "A friend",
+        "instructions": [
+          "Meet a companion who belongs to this place",
+          "Give the companion a real voice and at least four lines of back-and-forth",
+          "The companion hints at something that needs putting right"
+        ],
+        "settingKey": "new_world",
+        "timeOfDayKey": "afternoon",
+        "moodKey": "warm"
+      },
+      {
+        "id": "exploring",
+        "role": "middle",
+        "title": "Exploring together",
+        "instructions": [
+          "The two travel and see something remarkable",
+          "Playful dialogue",
+          "The protagonist learns one rule of how this place works"
+        ],
+        "repeatable": true,
+        "settingKey": "journey",
+        "timeOfDayKey": "afternoon",
+        "moodKey": "playful"
+      },
+      {
+        "id": "the_problem",
+        "role": "middle",
+        "title": "The problem",
+        "instructions": [
+          "The problem becomes clear and concrete",
+          "Show who it matters to and why",
+          "The protagonist decides to help"
+        ],
+        "settingKey": "journey",
+        "timeOfDayKey": "evening",
+        "moodKey": "serious"
+      },
+      {
+        "id": "the_setback",
+        "role": "middle",
+        "title": "It goes wrong",
+        "instructions": [
+          "The first attempt fails",
+          "Let the disappointment be real",
+          "The friend offers comfort rather than a solution"
+        ],
+        "repeatable": true,
+        "settingKey": "journey",
+        "timeOfDayKey": "evening",
+        "moodKey": "tender"
+      },
+      {
+        "id": "the_idea",
+        "role": "middle",
+        "title": "A clever idea",
+        "instructions": [
+          "The protagonist reuses something learned earlier",
+          "Show the reasoning step by step so a child can follow it",
+          "Hope returns"
+        ],
+        "settingKey": "journey",
+        "timeOfDayKey": "evening",
+        "moodKey": "hopeful"
+      },
+      {
+        "id": "the_victory",
+        "role": "closing",
+        "title": "Putting it right",
+        "instructions": [
+          "The problem is solved through effort, with a struggle before it works",
+          "Describe the action step by step",
+          "Relief, pride, and a small keepsake"
+        ],
+        "settingKey": "new_world",
+        "timeOfDayKey": "dusk",
+        "moodKey": "triumphant"
+      },
+      {
+        "id": "home_again",
+        "role": "closing",
+        "title": "Home again",
+        "instructions": [
+          "Goodbyes with real feeling and a promise to return",
+          "The way home, then familiar surroundings",
+          "An evening routine and a contented sleep"
+        ],
+        "settingKey": "home",
+        "timeOfDayKey": "night",
+        "moodKey": "peaceful",
+        "compositionRuleID": "quiet_closing"
+      }
+    ]
+  },
+  "visualStyleID": "magic_paper_v1",
+  "visualStyleRequirement": "latest",
+  "sceneRules": {
+    "maximumScenes": 8,
+    "visualPolicy": "singleAssetPerScene",
+    "changeTriggers": [
+      "setting",
+      "timeOfDay",
+      "cast"
+    ]
+  },
+  "generationPolicy": {
+    "maximumAttemptsPerStage": 3,
+    "initialBackoff": 0.5,
+    "backoffMultiplier": 2,
+    "maximumBackoff": 8,
+    "pageRefinementEnabled": true,
+    "semanticValidationEnabled": true,
+    "semanticIssuesAreBlocking": false,
+    "outlineModelTier": "balanced",
+    "draftModelTier": "quality",
+    "refinementModelTier": "fast",
+    "validationModelTier": "fast",
+    "defaultBudget": {
+      "maximumLanguageModelCalls": 24,
+      "maximumImageCalls": 16,
+      "maximumTokens": 200000,
+      "maximumCostUSD": 2.5
+    },
+    "imageValidationMode": "advisory"
+  },
+  "validationRules": {
+    "ageBands": [
+      {
+        "minimumAge": 3,
+        "maximumAge": 4,
+        "minimumWordsPerPage": 25,
+        "maximumWordsPerPage": 70,
+        "maximumSentenceWords": 12
+      },
+      {
+        "minimumAge": 5,
+        "maximumAge": 7,
+        "minimumWordsPerPage": 40,
+        "maximumWordsPerPage": 130,
+        "maximumSentenceWords": 18
+      },
+      {
+        "minimumAge": 8,
+        "maximumAge": 12,
+        "minimumWordsPerPage": 60,
+        "maximumWordsPerPage": 180,
+        "maximumSentenceWords": 26
+      }
+    ],
+    "bannedPhrases": [
+      "kill",
+      "blood",
+      "gun",
+      "die",
+      "hate"
+    ],
+    "repetitionNGramSize": 5,
+    "maximumRepeatedNGrams": 0,
+    "maximumSharedSentenceOpeners": 2,
+    "requireProtagonistMentionPerPage": true,
+    "enabledValidators": [
+      "structural",
+      "repetition",
+      "character_consistency",
+      "age_appropriateness",
+      "visual_safety",
+      "generated_image",
+      "narrative_consistency",
+      "scene_text_alignment"
+    ]
+  },
+  "constraints": {
+    "minimumPages": 5,
+    "maximumPages": 16,
+    "minimumAge": 3,
+    "maximumAge": 12,
+    "supportedLanguageCodes": [
+      "tr",
+      "en"
+    ]
+  },
+  "childSafety": {
+    "inputPolicy": "blocking",
+    "textPolicy": "blocking",
+    "imagePolicy": "blocking",
+    "publicationPolicy": "blocking"
+  }
+}

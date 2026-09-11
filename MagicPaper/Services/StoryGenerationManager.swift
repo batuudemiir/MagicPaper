@@ -45,7 +45,9 @@ class StoryGenerationManager: ObservableObject {
         theme: StoryTheme,
         language: StoryLanguage,
         image: UIImage,
-        customTitle: String? = nil
+        customTitle: String? = nil,
+        pageCount: Int = 7,
+        tone: String? = nil
     ) async -> UUID {
         
         // Create initial story with uploading status
@@ -83,7 +85,9 @@ class StoryGenerationManager: ObservableObject {
                 theme: theme,
                 language: language,
                 image: image,
-                customTitle: customTitle
+                customTitle: customTitle,
+                pageCount: pageCount,
+                tone: tone
             )
         }
         
@@ -325,7 +329,9 @@ class StoryGenerationManager: ObservableObject {
         theme: StoryTheme,
         language: StoryLanguage,
         image: UIImage,
-        customTitle: String?
+        customTitle: String?,
+        pageCount: Int = 7,
+        tone: String? = nil
     ) async {
         
         print("🎬 ========================================")
@@ -362,7 +368,9 @@ class StoryGenerationManager: ObservableObject {
                 theme: theme,
                 language: language,
                 customTitle: customTitle,
-                photoData: image.jpegData(compressionQuality: 0.8)
+                photoData: image.jpegData(compressionQuality: 0.8),
+                pageCount: pageCount,
+                tone: tone
             )
             
             print("✅ Story text generated!")
@@ -514,7 +522,9 @@ class StoryGenerationManager: ObservableObject {
         theme: StoryTheme,
         language: StoryLanguage,
         customTitle: String?,
-        photoData: Data?
+        photoData: Data?,
+        pageCount: Int = 7,
+        tone: String? = nil
     ) async throws -> [StoryPage] {
         
         print("✍️ Generating structured story with Gemini...")
@@ -526,7 +536,9 @@ class StoryGenerationManager: ObservableObject {
                 age: age,
                 theme: theme.rawValue,
                 language: language == .turkish ? "tr" : "en",
-                photoData: photoData
+                photoData: photoData,
+                pageCount: pageCount,
+                tone: tone
             )
             
             print("✅ Structured story generated!")
@@ -542,18 +554,23 @@ class StoryGenerationManager: ObservableObject {
                 )
             }
             
-            // Verify we have exactly 7 pages
-            guard pages.count == 7 else {
-                print("⚠️ Warning: Got \(pages.count) pages instead of 7, using demo mode")
-                return generateDemoPages(childName: childName, theme: theme, language: language)
+            // Sayfa sayısı artık sihirbazdaki seçime bağlı. Model istenenden
+            // sapabilir; boş değilse kabul edilir, fazlası kırpılır.
+            guard !pages.isEmpty else {
+                print("⚠️ Model hiç sayfa döndürmedi, demo moda düşülüyor")
+                return generateDemoPages(childName: childName, theme: theme,
+                                         language: language, pageCount: pageCount)
             }
-            
-            return pages
+            if pages.count != pageCount {
+                print("ℹ️ \(pageCount) sayfa istendi, \(pages.count) geldi")
+            }
+            return Array(pages.prefix(pageCount))
             
         } catch {
             print("❌ Structured story generation failed: \(error)")
             print("⚠️ Falling back to demo mode")
-            return generateDemoPages(childName: childName, theme: theme, language: language)
+            return generateDemoPages(childName: childName, theme: theme,
+                                     language: language, pageCount: pageCount)
         }
     }
     
@@ -646,8 +663,8 @@ class StoryGenerationManager: ObservableObject {
             ))
         }
         
-        // Ensure exactly 7 pages
-        if pages.count != 7 {
+        // Boş sonuç gelirse demo moda düşülür; sayfa sayısı artık serbest.
+        if pages.isEmpty {
             return generateDemoPages(childName: "Child", theme: .fantasy, language: language)
         }
         
@@ -693,10 +710,10 @@ class StoryGenerationManager: ObservableObject {
                 )
             }
             
-            // Verify we have exactly 7 pages
-            guard pages.count == 7 else {
-                print("⚠️ Warning: Got \(pages.count) pages instead of 7")
-                return generateDemoPages(childName: childName, theme: categoryToTheme(category), language: language)
+            guard !pages.isEmpty else {
+                print("⚠️ Model hiç sayfa döndürmedi, demo moda düşülüyor")
+                return generateDemoPages(childName: childName,
+                                         theme: categoryToTheme(category), language: language)
             }
             
             return pages
@@ -709,14 +726,18 @@ class StoryGenerationManager: ObservableObject {
     }
     
     /// Generates demo story pages - LONG VERSION
-    private func generateDemoPages(childName: String, theme: StoryTheme, language: StoryLanguage) -> [StoryPage] {
+    private func generateDemoPages(childName: String, theme: StoryTheme,
+                                   language: StoryLanguage, pageCount: Int = 7) -> [StoryPage] {
         let texts = getDemoTexts(for: theme, language: language, childName: childName)
-        
-        return texts.enumerated().map { index, text in
+        guard !texts.isEmpty else { return [] }
+
+        // Demo metinler 7 bölüm; istenen uzunluğa göre kırpılır ya da döngüyle uzatılır.
+        let wanted = max(pageCount, 1)
+        return (0..<wanted).map { index in
             StoryPage(
                 title: language == .turkish ? "Bölüm \(index + 1)" : "Chapter \(index + 1)",
-                text: text,
-                imagePrompt: text
+                text: texts[index % texts.count],
+                imagePrompt: texts[index % texts.count]
             )
         }
     }
@@ -943,6 +964,29 @@ class StoryGenerationManager: ObservableObject {
         print("✅ Story added to library: \(story.title)")
     }
     
+    /// İlk profil oluşturulduğunda örnek masallar yeni çocuğun adına uyarlanır
+    /// (04-STATE-INTERACTIONS.md, akış 1) — aksi hâlde yeni kullanıcının ana
+    /// sayfası boş görünür.
+    func adoptSampleStories(childName: String) {
+        guard !childName.isEmpty else { return }
+        let samples = ["Zephyr", "Luna"]
+        var changed = false
+        for index in stories.indices where samples.contains(stories[index].childName) {
+            let old = stories[index].childName
+            stories[index].childName = childName
+            stories[index].title = stories[index].title.replacingOccurrences(of: old, with: childName)
+            for pageIndex in stories[index].pages.indices {
+                stories[index].pages[pageIndex].text =
+                    stories[index].pages[pageIndex].text.replacingOccurrences(of: old, with: childName)
+            }
+            changed = true
+        }
+        if changed {
+            saveStories()
+            print("✅ Örnek masallar \(childName) adına uyarlandı")
+        }
+    }
+
     func updateLastReadPage(storyId: UUID, page: Int) {
         guard let index = stories.firstIndex(where: { $0.id == storyId }) else {
             return

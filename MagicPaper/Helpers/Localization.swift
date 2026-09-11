@@ -361,4 +361,9 @@ extension L {
     static var profileCreated: String { tr("Profil oluşturuldu", "Profile created") }
     static var profileUpdated: String { tr("Profil güncellendi", "Profile updated") }
     static var profileDeleted: String { tr("Profil silindi", "Profile deleted") }
+    
+    // MARK: - Legal & Compliance (Apple Guideline 3.1.2)
+    static var termsOfUse: String { tr("Kullanım Şartları", "Terms of Use") }
+    // privacyPolicy already defined in Settings section (line 190)
+    static var termsAndPrivacy: String { tr("Şartlar ve Gizlilik", "Terms & Privacy") }
 }

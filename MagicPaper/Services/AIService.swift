@@ -43,8 +43,14 @@ class AIService: ObservableObject {
         age: Int,
         theme: String,
         language: String,
-        photoData: Data?
+        photoData: Data?,
+        pageCount: Int = 7,
+        tone: String? = nil
     ) async throws -> StoryResponse {
+
+        // Sihirbazdaki "Uzunluk" seçimi buraya düşer. Sınır, hem saçma
+        // isteklere hem de aşırı uzun üretime karşı koruma.
+        let pages = min(max(pageCount, 3), 16)
         
         print("📝 GEMINI FLASH: Hikaye Oluşturuluyor...")
         
@@ -58,7 +64,7 @@ class AIService: ObservableObject {
         
         // 🔥 ULTRA GÜÇLENDİRİLMİŞ PROMPT (ÇOK UZUN HİKAYE İÇİN)
         let prompt = """
-        You are a professional children's book author. Write a 7-page story in \(languageName).
+        You are a professional children's book author. Write a \(pages)-page story in \(languageName).
         
         CHARACTER: \(childName), age \(age)
         THEME: \(theme)
@@ -71,73 +77,10 @@ class AIService: ObservableObject {
         
         I will REJECT the story if any page has less than 150 words!
         
-        STRUCTURE:
-        
-        PAGE 1 (150-200 words): THE BEGINNING
-        - \(childName) wakes up in their room
-        - Describe the room in detail (colors, objects, smells)
-        - Show morning routine (getting dressed, breakfast)
-        - Include dialogue with family members
-        - Something magical catches their attention
-        - Build curiosity and excitement
-        - End with decision to investigate
-        
-        PAGE 2 (150-200 words): THE DISCOVERY
-        - \(childName) finds something magical
-        - Describe the magical object/portal in vivid detail
-        - Show \(childName)'s emotions (surprise, wonder, fear, excitement)
-        - Include inner thoughts ("What is this? Should I touch it?")
-        - Describe sensory details (glowing lights, strange sounds, unusual smells)
-        - \(childName) makes the brave decision to interact
-        - Transition begins to magical world
-        
-        PAGE 3 (150-200 words): THE NEW WORLD
-        - \(childName) enters a completely different world
-        - Describe the landscape in rich detail (colors, sky, plants, buildings)
-        - Show how everything is different from home
-        - Include sounds of this new world (birds, wind, music)
-        - \(childName) explores cautiously
-        - Express feelings of wonder and slight nervousness
-        - Something friendly approaches
-        
-        PAGE 4 (150-200 words): THE FRIEND
-        - \(childName) meets a magical creature or friend
-        - Describe the friend's appearance in detail (size, color, features, clothing)
-        - Include full dialogue conversation (at least 4-5 exchanges)
-        - Show how they become friends
-        - Friend explains the world and its magic
-        - Friend mentions a challenge or quest
-        - They decide to work together
-        
-        PAGE 5 (150-200 words): THE CHALLENGE
-        - A problem or obstacle appears
-        - Describe the challenge in detail (what it looks like, why it's difficult)
-        - Show \(childName)'s initial doubt ("Can I do this?")
-        - Include dialogue with the friend (encouragement, planning)
-        - Describe the environment where challenge takes place
-        - Build tension and excitement
-        - \(childName) gathers courage to try
-        
-        PAGE 6 (150-200 words): THE VICTORY
-        - \(childName) attempts to solve the challenge
-        - Describe the action step-by-step
-        - Show the friend helping
-        - Include moments of struggle and perseverance
-        - The breakthrough moment (detailed description)
-        - Success! Describe the celebration
-        - Show feelings of pride, joy, and accomplishment
-        - Receive a reward or magical gift
-        
-        PAGE 7 (150-200 words): THE RETURN HOME
-        - Time to go back home
-        - \(childName) says goodbye to the friend (emotional dialogue)
-        - Promise to return someday
-        - Journey back through the portal
-        - Arrive home (describe familiar surroundings)
-        - Evening routine (dinner, bath, bedtime)
-        - \(childName) reflects on the adventure while falling asleep
-        - End with warm, cozy, satisfied feeling
-        
+        \(storyStructureGuidance(pageCount: pages, childName: childName))
+
+        \(toneGuidance(tone))
+
         WRITING STYLE:
         - Use descriptive language (colors, sounds, smells, textures)
         - Include dialogue in every page
@@ -203,11 +146,152 @@ class AIService: ObservableObject {
         }
         
         print("📊 TOPLAM: \(totalWords) kelime (\(storyResponse.pages.count) sayfa)")
-        print("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
-        
+        if !storyResponse.pages.isEmpty {
+            print("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
+        }
+
+        // Model bos sayfa listesi dondurduyse cagiran taraf demo moda dussun;
+        // eskiden burada sifira bolme cokmesi olusuyordu.
+        guard !storyResponse.pages.isEmpty else {
+            throw URLError(.cannotParseResponse)
+        }
+
         return storyResponse
     }
     
+    // MARK: - Anlatı yayı (sayfa sayısına göre)
+    //
+    // Eskiden prompt'ta 7 sayfalık sabit bir kurgu vardı; sihirbazdaki
+    // "Kısa / Orta / Uzun" seçimi bu yüzden hiçbir işe yaramıyordu.
+    // Artık yay, istenen sayfa sayısına yayılıyor: açılış ve kapanış her zaman
+    // sabit, ortadaki gelişme bölümü uzunlukla birlikte büyüyor.
+
+    private struct StoryBeat {
+        let title: String
+        let instructions: [String]
+    }
+
+    private func storyStructureGuidance(pageCount: Int, childName: String) -> String {
+        let opening: [StoryBeat] = [
+            StoryBeat(title: "THE BEGINNING", instructions: [
+                "\(childName) is at home, in an ordinary moment",
+                "Describe the room and the day with sensory detail (colors, smells, sounds)",
+                "Include dialogue with a family member",
+                "Something unusual catches \(childName)'s attention",
+                "End with the decision to investigate"
+            ]),
+            StoryBeat(title: "THE DISCOVERY", instructions: [
+                "\(childName) finds the magical thing up close",
+                "Describe it vividly and show \(childName)'s inner thoughts",
+                "Mix wonder with a little fear",
+                "\(childName) makes a brave choice to step forward"
+            ]),
+            StoryBeat(title: "THE NEW WORLD", instructions: [
+                "\(childName) arrives in the story world",
+                "Describe the landscape, sky, sounds and how different it all is",
+                "\(childName) explores carefully",
+                "Something friendly approaches"
+            ])
+        ]
+
+        let middle: [StoryBeat] = [
+            StoryBeat(title: "THE FRIEND", instructions: [
+                "\(childName) meets a companion of this world",
+                "Describe the friend in detail and give them a real voice",
+                "Write at least four lines of back-and-forth dialogue",
+                "The friend hints at a problem that needs solving"
+            ]),
+            StoryBeat(title: "EXPLORING", instructions: [
+                "The two travel together and see a wonder of this world",
+                "Rich description, playful dialogue",
+                "\(childName) learns one rule of how this world works"
+            ]),
+            StoryBeat(title: "THE PROBLEM", instructions: [
+                "The problem is revealed clearly and concretely",
+                "Show why it matters to the people of this world",
+                "\(childName) decides to help"
+            ]),
+            StoryBeat(title: "THE JOURNEY", instructions: [
+                "They set out toward the problem",
+                "Describe the road, the weather, what they carry",
+                "A quiet conversation about being brave"
+            ]),
+            StoryBeat(title: "THE SETBACK", instructions: [
+                "Something goes wrong and the plan fails",
+                "Show \(childName)'s disappointment honestly",
+                "The friend offers comfort, not a solution"
+            ]),
+            StoryBeat(title: "THE CLEVER IDEA", instructions: [
+                "\(childName) thinks of a new approach, using something learned earlier",
+                "Show the reasoning step by step so a child can follow it",
+                "Hope returns"
+            ]),
+            StoryBeat(title: "THE HELPERS", instructions: [
+                "Others of this world join in",
+                "Describe them briefly and give each one line",
+                "Together they prepare for the final try"
+            ])
+        ]
+
+        let closing: [StoryBeat] = [
+            StoryBeat(title: "THE VICTORY", instructions: [
+                "\(childName) faces the problem and solves it",
+                "Describe the action step by step, with struggle before success",
+                "Celebration, pride, and a small gift or keepsake"
+            ]),
+            StoryBeat(title: "THE RETURN HOME", instructions: [
+                "Goodbyes with real emotion and a promise to return",
+                "The way back home, then familiar surroundings",
+                "Evening routine and \(childName) falling asleep content"
+            ])
+        ]
+
+        let closingCount = closing.count
+        let openingCount = pageCount <= 5 ? 2 : opening.count
+        let middleCount = max(pageCount - openingCount - closingCount, 0)
+
+        var beats = Array(opening.prefix(openingCount))
+        for index in 0..<middleCount {
+            beats.append(middle[index % middle.count])
+        }
+        beats.append(contentsOf: closing)
+
+        // Sayfa sayısı beklenenden farklı çıkarsa kırp/doldur — prompt her zaman
+        // tam olarak istenen sayıda sayfa tarif etmeli.
+        if beats.count > pageCount { beats = Array(beats.prefix(pageCount)) }
+        while beats.count < pageCount { beats.insert(middle[beats.count % middle.count], at: max(beats.count - 2, 0)) }
+
+        let body = beats.enumerated().map { index, beat -> String in
+            let lines = beat.instructions.map { "        - \($0)" }.joined(separator: "\n")
+            return "        PAGE \(index + 1): \(beat.title)\n\(lines)"
+        }.joined(separator: "\n\n")
+
+        return """
+                STRUCTURE — the story must have EXACTLY \(pageCount) pages:
+
+        \(body)
+        """
+    }
+
+    /// Sihirbazdaki "Ton" seçimi.
+    private func toneGuidance(_ tone: String?) -> String {
+        guard let tone, !tone.isEmpty else { return "" }
+        let guidance: String
+        switch tone {
+        case "Neşeli":
+            guidance = "Keep the mood bright and funny. Use playful dialogue, small jokes and a bouncy rhythm."
+        case "Sakin":
+            guidance = "Keep the mood calm and soothing — this is a bedtime story. Soft imagery, gentle pacing, no scary moments, and a peaceful ending."
+        case "Maceralı":
+            guidance = "Keep the mood exciting. Real stakes, quick pacing, cliffhanger page endings — but always safe and age-appropriate."
+        case "Öğretici":
+            guidance = "Weave in one clear lesson (curiosity, sharing, persistence). Teach it through what happens, never by lecturing."
+        default:
+            guidance = "Tone: \(tone)."
+        }
+        return "        TONE: \(guidance)"
+    }
+
     // MARK: - Age-Based Word Count
     
     private func getTargetWordCount(age: Int) -> (min: Int, max: Int) {

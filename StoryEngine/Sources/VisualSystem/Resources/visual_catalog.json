@@ -1,0 +1,227 @@
+{
+  "stylePresets": [
+    {
+      "id": "magic_paper_v1",
+      "version": "1.0.0",
+      "displayName": "Magic Paper",
+      "illustrationStyleID": "storybook_painted_v1",
+      "palettePresetID": "paper_warm",
+      "typographyPresetID": "mp_body_v1",
+      "defaultCompositionRuleID": "character_right_text_left",
+      "compositionRuleIDs": [
+        "character_right_text_left",
+        "character_left_text_right",
+        "full_bleed_establishing",
+        "centered_portrait",
+        "quiet_closing"
+      ],
+      "layoutRuleIDs": [
+        "layout_default_interior",
+        "layout_opening_spread",
+        "layout_closing_quiet",
+        "layout_alternating_mirror"
+      ],
+      "globalNegativeClauses": [
+        "photorealistic rendering",
+        "uncanny facial proportions",
+        "adult content",
+        "frightening imagery",
+        "brand logos"
+      ]
+    }
+  ],
+  "illustrationStyles": [
+    {
+      "id": "storybook_painted_v1",
+      "version": "1.0.0",
+      "displayName": "Painted storybook",
+      "mediumClauses": [
+        "hand-painted children's storybook illustration",
+        "soft gouache and coloured pencil texture",
+        "visible paper grain",
+        "gentle rounded shapes"
+      ],
+      "lightingClauses": [
+        "soft diffused light",
+        "warm ambient glow",
+        "low contrast shadows"
+      ],
+      "renderingConstraints": [
+        "clean readable silhouette",
+        "consistent character proportions across pages",
+        "generous negative space"
+      ],
+      "forbiddenClauses": [
+        "text", "lettering", "words", "numbers", "captions", "speech bubbles",
+        "watermark", "signature", "harsh shadows", "distorted anatomy",
+        "extra limbs", "blurry", "low quality"
+      ]
+    }
+  ],
+  "palettes": [
+    {
+      "id": "paper_warm",
+      "version": "1.0.0",
+      "displayName": "Warm paper",
+      "paletteClauses": [
+        "warm cream paper ground",
+        "dusty rose and mustard accents",
+        "muted ink-brown linework"
+      ],
+      "dominantHexes": ["FDF6EE", "C1436B", "E0A32E", "4A3640"]
+    },
+    {
+      "id": "forest_warm",
+      "version": "1.0.0",
+      "displayName": "Warm forest",
+      "paletteClauses": [
+        "deep jade and moss greens",
+        "warm amber light through leaves",
+        "soft cream highlights"
+      ],
+      "dominantHexes": ["2E7D6B", "E0A32E", "FDF6EE", "133731"]
+    },
+    {
+      "id": "night_calm",
+      "version": "1.0.0",
+      "displayName": "Calm night",
+      "paletteClauses": [
+        "deep indigo night sky",
+        "soft moonlit blues",
+        "small warm lamp glow"
+      ],
+      "dominantHexes": ["26385C", "9BAAC6", "E0A32E", "0B1322"]
+    },
+    {
+      "id": "coral_play",
+      "version": "1.0.0",
+      "displayName": "Playful coral",
+      "paletteClauses": [
+        "bright coral and apricot tones",
+        "sunlit warmth",
+        "cream paper ground"
+      ],
+      "dominantHexes": ["E4572E", "F2B49B", "FFFBF6", "6E2211"]
+    }
+  ],
+  "typographyPresets": [
+    {
+      "id": "mp_body_v1",
+      "version": "1.0.0",
+      "fontRole": "body",
+      "pointSize": 18,
+      "lineHeightMultiple": 1.45,
+      "tracking": 0,
+      "maximumLinesByLayout": {
+        "fullBleedImage": 4, "imageTopTextBottom": 8, "imageBottomTextTop": 8,
+        "sideBySide": 10, "spread": 6, "textOnly": 18
+      }
+    },
+    {
+      "id": "mp_body_large_v1",
+      "version": "1.0.0",
+      "fontRole": "body",
+      "pointSize": 21,
+      "lineHeightMultiple": 1.5,
+      "tracking": 0,
+      "maximumLinesByLayout": {
+        "fullBleedImage": 3, "imageTopTextBottom": 6, "imageBottomTextTop": 6,
+        "sideBySide": 8, "spread": 5, "textOnly": 14
+      }
+    }
+  ],
+  "compositionRules": [
+    {
+      "id": "character_right_text_left",
+      "version": "1.0.0",
+      "displayName": "Character right, text left",
+      "subjectAnchor": "right",
+      "textSafeArea": { "x": 0.04, "y": 0.08, "width": 0.42, "height": 0.84 },
+      "cameraDistance": "medium",
+      "aspectRatio": "landscape",
+      "headroomRules": ["leave headroom above the character"]
+    },
+    {
+      "id": "character_left_text_right",
+      "version": "1.0.0",
+      "displayName": "Character left, text right",
+      "subjectAnchor": "left",
+      "textSafeArea": { "x": 0.54, "y": 0.08, "width": 0.42, "height": 0.84 },
+      "cameraDistance": "medium",
+      "aspectRatio": "landscape",
+      "headroomRules": ["leave headroom above the character"]
+    },
+    {
+      "id": "full_bleed_establishing",
+      "version": "1.0.0",
+      "displayName": "Full bleed establishing",
+      "subjectAnchor": "fullBleed",
+      "textSafeArea": { "x": 0.08, "y": 0.68, "width": 0.84, "height": 0.24 },
+      "cameraDistance": "establishing",
+      "aspectRatio": "landscape",
+      "headroomRules": ["show the whole setting", "keep the lower band calm and low contrast"]
+    },
+    {
+      "id": "centered_portrait",
+      "version": "1.0.0",
+      "displayName": "Centered portrait",
+      "subjectAnchor": "center",
+      "textSafeArea": { "x": 0.08, "y": 0.74, "width": 0.84, "height": 0.18 },
+      "cameraDistance": "closeUp",
+      "aspectRatio": "portrait",
+      "headroomRules": ["face clearly visible", "shoulders in frame"]
+    },
+    {
+      "id": "quiet_closing",
+      "version": "1.0.0",
+      "displayName": "Quiet closing",
+      "subjectAnchor": "center",
+      "textSafeArea": { "x": 0.1, "y": 0.7, "width": 0.8, "height": 0.22 },
+      "cameraDistance": "wide",
+      "aspectRatio": "landscape",
+      "headroomRules": ["still, restful framing", "no action in the lower band"]
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "layout_default_interior",
+      "version": "1.0.0",
+      "layout": "imageTopTextBottom",
+      "appliesTo": {},
+      "compositionRuleID": "character_right_text_left",
+      "typographyPresetID": "mp_body_v1",
+      "minimumWords": 60,
+      "maximumWords": 130
+    },
+    {
+      "id": "layout_opening_spread",
+      "version": "1.0.0",
+      "layout": "spread",
+      "appliesTo": { "positions": ["first"] },
+      "compositionRuleID": "full_bleed_establishing",
+      "typographyPresetID": "mp_body_v1",
+      "minimumWords": 40,
+      "maximumWords": 90
+    },
+    {
+      "id": "layout_closing_quiet",
+      "version": "1.0.0",
+      "layout": "imageTopTextBottom",
+      "appliesTo": { "positions": ["last"] },
+      "compositionRuleID": "quiet_closing",
+      "typographyPresetID": "mp_body_v1",
+      "minimumWords": 50,
+      "maximumWords": 110
+    },
+    {
+      "id": "layout_alternating_mirror",
+      "version": "1.0.0",
+      "layout": "imageTopTextBottom",
+      "appliesTo": { "positions": ["odd", "interior"] },
+      "compositionRuleID": "character_left_text_right",
+      "typographyPresetID": "mp_body_v1",
+      "minimumWords": 60,
+      "maximumWords": 130
+    }
+  ]
+}

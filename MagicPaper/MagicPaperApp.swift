@@ -1,6 +1,9 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseStorage
+#if canImport(RevenueCat)
+import RevenueCat
+#endif
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -9,6 +12,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     FirebaseApp.configure()
     print("✅ Firebase yapılandırıldı")
+    
+    // RevenueCat Configuration
+    #if canImport(RevenueCat)
+    configureRevenueCat()
+    #else
+    print("⚠️ RevenueCat modülü bulunamadı - Xcode'da package'ı target'a ekleyin")
+    #endif
     
     // AdMob KALDIRILDI - Kids Category uyumluluğu için
     // Apple ASIdentifierManager (IDFA) kullanımına izin vermiyor
@@ -21,6 +31,47 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     print("✅ AppDelegate: didFinishLaunching tamamlandı")
     return true
   }
+  
+  #if canImport(RevenueCat)
+  private func configureRevenueCat() {
+    // Get API key from Info.plist (configured via Secrets.xcconfig)
+    if let apiKey = Bundle.main.object(forInfoDictionaryKey: "REVENUECAT_API_KEY") as? String,
+       !apiKey.isEmpty && apiKey != "$(REVENUECAT_API_KEY)" {
+      
+      #if DEBUG
+      Purchases.logLevel = .debug
+      print("🔑 RevenueCat: Debug mode enabled")
+      #else
+      Purchases.logLevel = .info
+      #endif
+      
+      // API key validation
+      if apiKey.hasPrefix("sk_") {
+        print("❌ HATA: Secret key (sk_) kullanılamaz! Public key (test_ veya appl_) kullanın.")
+        print("❌ RevenueCat yapılandırılamadı - API key hatası")
+        return
+      }
+      
+      // Test key validation - sadece DEBUG'da kullanılabilir
+      #if !DEBUG
+      if apiKey.hasPrefix("test_") {
+        print("❌ HATA: Test key (test_) Release build'de kullanılamaz!")
+        print("❌ Production key (appl_) kullanın veya Debug build yapın.")
+        print("❌ RevenueCat yapılandırılamadı - Test key hatası")
+        return
+      }
+      #endif
+      
+      Purchases.configure(withAPIKey: apiKey)
+      print("✅ RevenueCat yapılandırıldı: \(apiKey.prefix(10))...")
+      
+    } else {
+      print("⚠️ RevenueCat API key bulunamadı - Info.plist ve Secrets.xcconfig kontrol edin")
+      print("⚠️ Beklenen key: test_ElHyzdqEfyVopUtAWnZlTlOnTmu (Debug) veya appl_... (Release)")
+      print("⚠️ Bulunan key: \(Bundle.main.object(forInfoDictionaryKey: "REVENUECAT_API_KEY") as? String ?? "nil")")
+    }
+  }
+  #endif
 }
 
 @main
@@ -85,151 +136,39 @@ struct MainContentView: View {
 
 // MARK: - Splash Screen View
 
-struct SplashParticle: Identifiable {
-    let id = UUID()
-    var x: CGFloat
-    var y: CGFloat
-    var size: CGFloat
-    var opacity: Double
-    var speed: Double
-    var emoji: String
-}
-
+/// Açılış ekranı. Tasarımda gradyan, arka plan görseli ve emoji yok;
+/// zemin düz sıcak kağıt rengi, marka tipografiyle taşınıyor.
 struct SplashScreenView: View {
     @Binding var isActive: Bool
-    @State private var scale: CGFloat = 0.7
-    @State private var opacity: Double = 0.0
-    @State private var taglineOpacity: Double = 0.0
-    @State private var logoPulse: CGFloat = 1.0
-    @State private var particles: [SplashParticle] = []
-    @State private var particleOffsets: [CGFloat] = []
-    
-    private let emojis = ["⭐", "✨", "🌟", "💫", "⚡", "🎨", "📖", "🦋"]
-    
+    @State private var appeared = false
+
     var body: some View {
-        ZStack {
-            // Gradient background
-            LinearGradient(
-                colors: [
-                    Color(red: 0.58, green: 0.29, blue: 0.98),
-                    Color(red: 0.85, green: 0.35, blue: 0.85),
-                    Color(red: 1.0, green: 0.45, blue: 0.55)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            // Floating particles
-            GeometryReader { geo in
-                ForEach(Array(particles.enumerated()), id: \.element.id) { index, particle in
-                    Text(particle.emoji)
-                        .font(.system(size: particle.size))
-                        .opacity(particle.opacity)
-                        .position(
-                            x: particle.x * geo.size.width,
-                            y: (particle.y * geo.size.height) - (index < particleOffsets.count ? particleOffsets[index] : 0)
-                        )
-                        .animation(
-                            .easeInOut(duration: particle.speed).repeatForever(autoreverses: true),
-                            value: index < particleOffsets.count ? particleOffsets[index] : 0
-                        )
-                }
-            }
-            .ignoresSafeArea()
-            
-            VStack(spacing: 24) {
-                // App Logo with SF Symbol
-                ZStack {
-                    // Outer glow ring
-                    Circle()
-                        .fill(Color.white.opacity(0.1))
-                        .frame(width: 180, height: 180)
-                        .scaleEffect(logoPulse)
-                    
-                    Circle()
-                        .fill(Color.white.opacity(0.2))
-                        .frame(width: 160, height: 160)
-                    
-                    Circle()
-                        .fill(Color.white.opacity(0.3))
-                        .frame(width: 140, height: 140)
-                    
-                    Image(systemName: "book.pages.fill")
-                        .font(.system(size: 70, weight: .bold))
-                        .foregroundColor(.white)
-                }
-                .scaleEffect(scale)
-                .opacity(opacity)
-                
-                // App Name
-                VStack(spacing: 8) {
-                    Text("Magic Paper")
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .opacity(opacity)
-                    
-                    // Tagline
-                    Text("Where stories come alive ✨")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundColor(.white.opacity(0.85))
-                        .opacity(taglineOpacity)
-                }
+        VStack(spacing: 20) {
+            Image("AppLogo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 132, height: 132)
+                .shadow(color: Color(hex: 0x2B1D24, alpha: 0.12), radius: 9, y: 8)
+
+            VStack(spacing: 6) {
+                Text("MagicPaper")
+                    .font(MP.F.displayXL())
+                    .mpTightTracking(40)
+                    .foregroundStyle(MP.C.textTitle)
+
+                Text("Her akşam yeni bir masal")
+                    .font(MP.F.bodyMD())
+                    .foregroundStyle(MP.C.textMuted)
             }
         }
+        .opacity(appeared ? 1 : 0)
+        .scaleEffect(appeared ? 1 : 0.94)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(MP.C.surfaceApp.ignoresSafeArea())
         .onAppear {
-            print("🎬 SplashScreenView appeared")
-            
-            // Generate particles
-            particles = (0..<12).map { i in
-                SplashParticle(
-                    x: CGFloat.random(in: 0.05...0.95),
-                    y: CGFloat.random(in: 0.05...0.95),
-                    size: CGFloat.random(in: 14...28),
-                    opacity: Double.random(in: 0.3...0.7),
-                    speed: Double.random(in: 1.5...3.5),
-                    emoji: emojis[i % emojis.count]
-                )
-            }
-            particleOffsets = Array(repeating: 0, count: particles.count)
-            
-            // Animate particles floating
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                for i in 0..<particles.count {
-                    withAnimation(.easeInOut(duration: particles[i].speed).repeatForever(autoreverses: true)) {
-                        if i < particleOffsets.count {
-                            particleOffsets[i] = CGFloat.random(in: 20...50)
-                        }
-                    }
-                }
-            }
-            
-            // Animate logo appearance
-            withAnimation(.spring(response: 0.7, dampingFraction: 0.6)) {
-                scale = 1.0
-                opacity = 1.0
-            }
-            
-            // Pulse animation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                withAnimation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true)) {
-                    logoPulse = 1.08
-                }
-            }
-            
-            // Tagline fade in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    taglineOpacity = 1.0
-                }
-            }
-            
-            // Transition to main app after delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                print("⏰ Splash timer completed, transitioning to main app")
-                withAnimation(.easeInOut(duration: 0.5)) {
-                    isActive = false
-                }
+            withAnimation(MP.M.spring) { appeared = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+                withAnimation(MP.M.base) { isActive = false }
             }
         }
     }
