@@ -1,15 +1,9 @@
 {
   "schemaVersion": 3,
   "beat": "obstacle_raises",
-  "produces": [
-    "obstacleNamed"
-  ],
-  "requires": [
-    "committed"
-  ],
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Pages 4 and 5. The difficulty stops being vague and becomes a specific thing. 'Bir sorun çıktı' on its own is the failure this beat exists to prevent — the old corpus said 'a big obstacle appeared' and could never overcome it, because it never said what it was. Every variant names something. All seven uses are paired, so all variants are short. The obstacle must be one the COMPANION cannot solve with what it has (catalog §2.3), and must never be dangerous.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 4 and 5. The difficulty stops being vague and becomes a specific thing. 'Bir sorun çıktı' on its own is the failure this beat exists to prevent — the old corpus said 'a big obstacle appeared' and could never overcome it, because it never said what it was. Every variant names something. All seven uses are paired, so all variants are short. The obstacle must be one the COMPANION cannot solve with what it has (catalog §2.3), and must never be dangerous.",
   "lengthClasses": {
     "paired": "10-16 words — always shares its page with commit, first_attempt or take_charge (7 of 7)"
   },

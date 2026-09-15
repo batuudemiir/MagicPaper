@@ -47,8 +47,40 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     public let stateRequirements: [StateFact]
     public let stateChanges: [StateFact]
 
+    // MARK: Selection metadata (v3 corpus)
+
+    /// Whether this line is a whole page or half of one.
+    ///
+    /// A beat that shares its page with a supporting beat needs a short line;
+    /// a beat that has the page to itself needs a full one. Composing without
+    /// this produced pages of wildly uneven length and, on page 4, two
+    /// sentences that both opened with "Ama".
+    public let lengthClass: VariantLengthClass?
+
+    /// A short name for what this variant *does*, narratively.
+    ///
+    /// `sound_before_sight`, `body_notices_first`, `not_my_footprints`. Two
+    /// variants sharing a move are interchangeable; different moves are
+    /// genuinely different. This is the key a diversity gate needs, and without
+    /// it "three variants" can mean three phrasings of one idea.
+    public let move: String?
+
+    /// Beats this line reads well after.
+    ///
+    /// A soft preference, not a requirement: a closing line that refers to what
+    /// was just overcome only works after the beat that overcame it. An unknown
+    /// beat here simply never matches.
+    public let afterBeat: [StoryBeat]
+
+    /// Content this variant assumes. Finer than the blueprint's requirements,
+    /// which bind the whole story: a line about weather uncovering something
+    /// needs a setting with weather even when the blueprint does not.
+    public let settingTraits: Set<SettingTrait>
+    public let discoveryTraits: Set<DiscoveryTrait>
+
     private enum CodingKeys: String, CodingKey {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
+        case lengthClass, move, afterBeat, settingTraits, discoveryTraits
     }
 
     public init(from decoder: Decoder) throws {
@@ -59,10 +91,36 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         requiredSlots = try container.decodeIfPresent([ContentSlot].self, forKey: .requiredSlots) ?? []
         stateRequirements = try container.decodeIfPresent([StateFact].self, forKey: .stateRequirements) ?? []
         stateChanges = try container.decodeIfPresent([StateFact].self, forKey: .stateChanges) ?? []
+        lengthClass = try container.decodeIfPresent(VariantLengthClass.self, forKey: .lengthClass)
+        move = try container.decodeIfPresent(String.self, forKey: .move)
+        // Unknown beats are dropped rather than rejected: `afterBeat` is a
+        // preference, and a corpus should not fail to load because it names a
+        // beat this engine does not model yet.
+        afterBeat = (try container.decodeIfPresent([String].self, forKey: .afterBeat) ?? [])
+            .compactMap(StoryBeat.init(rawValue:))
+        settingTraits = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .settingTraits) ?? []
+        discoveryTraits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .discoveryTraits) ?? []
+    }
+
+    /// Whether this line can be used for the content that was bound.
+    ///
+    /// A variant declaring nothing fits anything, which is what keeps the
+    /// existing corpus working.
+    public func fits(setting: CatalogSetting, discovery: CatalogObject) -> Bool {
+        settingTraits.isSubset(of: setting.traits)
+            && discoveryTraits.isSubset(of: discovery.traits)
     }
 
     /// Slots the text genuinely contains, regardless of what was declared.
     public var actualSlots: [ContentSlot] { ContentSlot.tokens(in: text) }
+}
+
+/// Whether a variant is a whole page or half of one.
+public enum VariantLengthClass: String, Codable, Sendable, Hashable, CaseIterable {
+    /// The beat has the page to itself. Longer.
+    case solo
+    /// The page is shared with a supporting beat. Shorter.
+    case paired
 }
 
 /// A pool of phrasings.
@@ -83,6 +141,20 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
     public let variants: [CatalogVariant]
 
     private enum CodingKeys: String, CodingKey { case id, role, realizesBeat, compatibleThemes, variants }
+
+    public init(
+        id: ContentID,
+        role: PageRole,
+        realizesBeat: StoryBeat?,
+        compatibleThemes: [String] = [],
+        variants: [CatalogVariant]
+    ) {
+        self.id = id
+        self.role = role
+        self.realizesBeat = realizesBeat
+        self.compatibleThemes = compatibleThemes
+        self.variants = variants
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

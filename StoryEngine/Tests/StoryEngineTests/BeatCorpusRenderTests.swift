@@ -23,8 +23,9 @@ final class BeatCorpusRenderTests: XCTestCase {
     }
     private struct BeatFile: Decodable {
         let beat: String
-        let produces: [String]
         let variants: [Variant]
+        // `produces`/`requires` deliberately absent: StoryBeat owns them, and a
+        // copy in the content file can drift from the engine.
     }
 
     /// Read from the source tree: this is authored content under review, not a
@@ -136,7 +137,6 @@ final class BeatCorpusRenderTests: XCTestCase {
     func testCorpusHasFullTieredSupply() throws {
         let corpus = try loadCorpus()
         XCTAssertEqual(corpus.beat, "notice_anomaly")
-        XCTAssertEqual(corpus.produces, ["anomalyKnown"])
         // notice_anomaly appears in all 14 blueprints; the tiered allocation
         // in the QA report puts a 14/14-exposure beat at 16 variants.
         XCTAssertEqual(corpus.variants.count, 16, "tiered supply for a 14/14 beat is 16")

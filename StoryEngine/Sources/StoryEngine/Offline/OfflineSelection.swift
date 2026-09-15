@@ -114,22 +114,107 @@ public struct OfflineContentBinder: Sendable {
         let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
         let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
 
-        let setting = try choose(
+        // Habitat couples the axes, so binding one at a time in order is no
+        // longer enough: a mountain admits no hedgehog, and a blueprint that
+        // needs someone small and vulnerable then has nobody — even though a
+        // garden would have worked. Greedy binding reported that as "no
+        // companion", which is true and useless.
+        //
+        // So the setting is chosen with the rest in mind: candidates are tried
+        // in their seeded order and the first that yields a whole binding wins.
+        // Deterministic, and it degrades to the greedy behaviour whenever the
+        // first candidate already works.
+        var settingFailure: Error?
+        for candidate in try orderedCandidates(
             catalog.settings, requested: intent.settingID, seed: intent.seed, axis: "setting",
             offered: \.traits, required: requires.setting, forbidden: forbids.setting,
             empty: OfflineSelectionError.noSetting
+        ) {
+            do {
+                return try bindRest(
+                    setting: candidate, catalog: catalog, intent: intent,
+                    requires: requires, forbids: forbids)
+            } catch {
+                settingFailure = error
+                continue
+            }
+        }
+        throw settingFailure ?? OfflineSelectionError.noSetting(reasons: [])
+    }
+
+    /// Everything that depends on the setting once one is provisionally chosen.
+    private func bindRest(
+        setting: CatalogSetting,
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        requires: ContentRequirements,
+        forbids: ContentExclusions
+    ) throws -> BoundContent {
+        let unusedSetting = try choose(
+            [setting], requested: nil, seed: intent.seed, axis: "setting",
+            offered: \.traits, required: requires.setting, forbidden: forbids.setting,
+            empty: OfflineSelectionError.noSetting
         )
+        _ = unusedSetting
+        // Habitat is checked after the setting is known and before anything else
+        // is bound: a companion or a discovery that could not plausibly be here
+        // is not a weaker choice, it is a different story. This is the axis that
+        // used to be missing entirely — nothing stopped a dolphin in a forest.
         let companion = try choose(
-            catalog.companions, requested: intent.companionID, seed: intent.seed, axis: "companion",
+            catalog.companions.filter {
+                TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
+            },
+            requested: intent.companionID, seed: intent.seed, axis: "companion",
             offered: \.traits, required: requires.companion, forbidden: forbids.companion,
             empty: OfflineSelectionError.noCompanion
         )
         let discovery = try choose(
-            catalog.objects, requested: intent.discoveryID, seed: intent.seed, axis: "discovery",
+            catalog.objects.filter {
+                TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
+            },
+            requested: intent.discoveryID, seed: intent.seed, axis: "discovery",
             offered: \.traits, required: requires.discovery, forbidden: forbids.discovery,
             empty: OfflineSelectionError.noDiscovery
         )
         return BoundContent(setting: setting, companion: companion, discovery: discovery)
+    }
+
+    /// Admissible records in the order the seed would pick them, so trying them
+    /// in turn is still deterministic and still honours an explicit request.
+    private func orderedCandidates<Record: Identifiable, Trait>(
+        _ records: [Record],
+        requested: ContentID?,
+        seed: String,
+        axis: String,
+        offered: KeyPath<Record, Set<Trait>>,
+        required: TraitRequirement<Trait>,
+        forbidden: Set<Trait>,
+        empty: ([String]) -> OfflineSelectionError
+    ) throws -> [Record] where Record.ID == ContentID {
+        var reasons: [String] = []
+        var admissible: [Record] = []
+        for record in records {
+            if let reason = TraitMatch.rejection(
+                offered: record[keyPath: offered], required: required, forbidden: forbidden
+            ) {
+                reasons.append("  \(record.id.rawValue): \(reason)")
+            } else {
+                admissible.append(record)
+            }
+        }
+
+        if let requested {
+            if let match = admissible.first(where: { $0.id == requested }) { return [match] }
+            let why = records.first(where: { $0.id == requested })
+                .flatMap {
+                    TraitMatch.rejection(offered: $0[keyPath: offered], required: required, forbidden: forbidden)
+                } ?? "no such \(axis)"
+            throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
+        }
+
+        guard !admissible.isEmpty else { throw empty(reasons) }
+        let start = DeterministicPicker.index(count: admissible.count, seed: seed, salt: axis)
+        return Array(admissible[start...] + admissible[..<start])
     }
 
     /// One implementation for all three axes. Written generically on purpose:

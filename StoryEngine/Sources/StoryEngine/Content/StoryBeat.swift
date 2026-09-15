@@ -110,14 +110,19 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
         // read again.
         case .insight:
             return .all([.beliefFormed, .attemptMade, .obstacleNamed])
-        case .cooperativeEffort, .askForHelp, .speakFor, .exchangeViews:
+        case .cooperativeEffort, .askForHelp, .speakFor, .giveUpSomething:
             return .all([.companionPresent, .obstacleNamed, .attemptMade])
-        case .persist, .retrace:
+        // Also needs the belief, or misreading_twosides_002's page-2 belief is
+        // formed and never read.
+        case .exchangeViews:
+            return .all([.companionPresent, .beliefFormed, .obstacleNamed, .attemptMade])
+        case .persist:
             return .all([.attemptMade, .obstacleNamed])
-        case .giveUpSomething:
-            return .all([.committed, .obstacleNamed])
+        case .retrace:
+            return .all([.companionPresent, .obstacleNamed, .attemptMade])
+        // You cannot let go of something you never took charge of.
         case .letGo:
-            return .all([.attemptMade])
+            return .all([.committed, .attemptMade, .needKnown])
         // The companion must be there: a child taking the first small step
         // with nobody beside them is a different story, and page 3 was
         // otherwise deletable.

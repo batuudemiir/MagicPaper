@@ -49,8 +49,11 @@ final class CatalogBundleTests: XCTestCase {
         XCTAssertEqual(catalog.settings.count, 21)
         XCTAssertEqual(catalog.companions.count, 20)
         XCTAssertEqual(catalog.objects.count, 25)
+        // 75 after the corpus replaced the library's scaffolding for its nine
+        // beats; the variant count rose because those nine are four to six
+        // times denser than what they replaced.
         XCTAssertEqual(catalog.templates.count, 75)
-        XCTAssertEqual(catalog.recordCounts["variants"], 225)
+        XCTAssertEqual(catalog.recordCounts["variants"], 330)
     }
 
     func testEveryShippedBlueprintDeclaresTheEightBeatArc() throws {

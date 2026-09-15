@@ -22,6 +22,8 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
     /// ("Karlı Vadi'de" but "Ay Yüzeyi'nde"). Authoring it here is why the
     /// shipped corpus contains both correct and incorrect `'nde` spellings —
     /// the author generalised from the subset that happened to be right.
+    /// Where this belongs. Empty means anywhere.
+    public let habitat: Set<Habitat>
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
@@ -30,7 +32,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case id, name, description, visualKeywords, compatibleGenres, compatibleThemes, tags
         case traits
-    , isProperNoun, hasPossessiveEnding, blocksSoftening}
+    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -42,6 +44,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .traits) ?? []
+        habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -58,6 +61,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
@@ -90,6 +94,8 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     /// ("Karlı Vadi'de" but "Ay Yüzeyi'nde"). Authoring it here is why the
     /// shipped corpus contains both correct and incorrect `'nde` spellings —
     /// the author generalised from the subset that happened to be right.
+    /// Where this belongs. Empty means anywhere.
+    public let habitat: Set<Habitat>
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
@@ -99,7 +105,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
         case traits
-    , isProperNoun, hasPossessiveEnding, blocksSoftening}
+    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -113,6 +119,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .traits) ?? []
+        habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -131,6 +138,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
@@ -162,12 +170,14 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// ("Karlı Vadi'de" but "Ay Yüzeyi'nde"). Authoring it here is why the
     /// shipped corpus contains both correct and incorrect `'nde` spellings —
     /// the author generalised from the subset that happened to be right.
+    /// Where this belongs. Empty means anywhere.
+    public let habitat: Set<Habitat>
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, isProperNoun, hasPossessiveEnding, blocksSoftening }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -178,6 +188,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
         titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
+        habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? false
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -193,6 +204,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
         try container.encode(titleName, forKey: .titleName)
+        if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)

@@ -96,6 +96,9 @@ public struct OfflineStoryComposer: Sendable {
         ])
 
         var pages: [ComposedPage] = []
+        /// The beat immediately before the one being written, so a line that
+        /// refers back to what just happened can ask for it.
+        var previousBeat: StoryBeat?
         for slot in blueprint.pagePlan.sorted(by: { $0.pageNumber < $1.pageNumber }) {
             guard let beat = slot.beat else {
                 throw OfflineSelectionError.blueprintNotBeatAuthored(id: blueprint.id)
@@ -111,6 +114,11 @@ public struct OfflineStoryComposer: Sendable {
             // A supporting beat is a second sentence on the same page, not a
             // second page. That is what lets page 4 both name the reluctance
             // and decide anyway.
+            // A page carrying two beats needs two short lines; a page carrying
+            // one needs a full one. Authors write to that band, so the composer
+            // has to ask for it rather than take whatever comes.
+            let wanted: VariantLengthClass = ordered.count > 1 ? .paired : .solo
+
             for (offset, current) in ordered.enumerated() {
                 let candidates = catalog.templates.filter {
                     $0.realizesBeat == current && !$0.variants.isEmpty
@@ -120,8 +128,14 @@ public struct OfflineStoryComposer: Sendable {
                 }
                 let salt = "p\(slot.pageNumber).\(offset).\(current.rawValue)"
                 let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: salt)
-                let variant = DeterministicPicker.pick(
-                    from: template.variants, seed: storySeed, salt: salt + ".v"
+
+                let variant = Self.chooseVariant(
+                    from: template.variants,
+                    wanting: wanted,
+                    after: previousBeat,
+                    content: content,
+                    seed: storySeed,
+                    salt: salt + ".v"
                 )
 
                 let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
@@ -130,6 +144,7 @@ public struct OfflineStoryComposer: Sendable {
                 variantIDs.append(variant.id)
                 missing += rendered.missingSlots
                 unrecognised += rendered.unrecognisedSuffixes
+                previousBeat = current
             }
 
             pages.append(ComposedPage(
@@ -161,6 +176,41 @@ public struct OfflineStoryComposer: Sendable {
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
             )
         )
+    }
+
+    /// Picks a line for one beat.
+    ///
+    /// Three narrowings, each applied only while it leaves something to choose
+    /// from. That ordering matters more than it looks: a corpus is always
+    /// partly authored, and a filter that empties the pool would turn "no
+    /// variant declares a length yet" into "this story cannot be told". So each
+    /// preference is dropped rather than enforced when honouring it would leave
+    /// nothing, and the selection stays deterministic throughout.
+    static func chooseVariant(
+        from variants: [CatalogVariant],
+        wanting length: VariantLengthClass,
+        after previous: StoryBeat?,
+        content: BoundContent,
+        seed: String,
+        salt: String
+    ) -> CatalogVariant {
+        func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
+            let kept = pool.filter(keep)
+            return kept.isEmpty ? pool : kept
+        }
+
+        var pool = variants
+        // 1. Content the line assumes must actually be there.
+        pool = narrow(pool) { $0.fits(setting: content.setting, discovery: content.discovery) }
+        // 2. The right length for a shared or unshared page.
+        pool = narrow(pool) { $0.lengthClass == nil || $0.lengthClass == length }
+        // 3. A line written to follow a particular beat, when it does.
+        if let previous {
+            pool = narrow(pool) { $0.afterBeat.isEmpty || $0.afterBeat.contains(previous) }
+        } else {
+            pool = narrow(pool) { $0.afterBeat.isEmpty }
+        }
+        return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
     }
 
     /// The slot table, built once per story.

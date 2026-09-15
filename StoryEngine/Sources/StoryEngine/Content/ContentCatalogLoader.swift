@@ -148,11 +148,50 @@ public struct ContentCatalogLoader: Sendable {
             documents.append((extra.lastPathComponent, try Self.read(extra)))
         }
 
-        let catalog = ContentCatalog.merging(documents.map(\.catalog))
+        // The per-beat prose corpus, authored one file per beat. Layered last so
+        // its lines join the pool for the beats it covers; beats it has not
+        // reached yet keep the library's own templates.
+        let corpus = BeatCorpusLoader().load()
+        if !corpus.skipped.isEmpty {
+            print("⚠️ Beat corpus skipped: \(corpus.skipped.joined(separator: "; "))")
+        }
+        if !corpus.drifted.isEmpty {
+            print("⚠️ Beat corpus drift: \(corpus.drifted.joined(separator: "; "))")
+        }
+
+        var catalog = ContentCatalog.merging(documents.map(\.catalog))
+        if !corpus.templates.isEmpty {
+            // The corpus **replaces** rather than joins, for the beats it
+            // covers. The library's own templates were scaffolding written to
+            // get a beat working at all — three variants each, and some of them
+            // phrased for the one blueprint they were written beside. Left in
+            // the pool they leak: a line about crossing to the other side,
+            // written for a Threshold story, turned up as the resolution of a
+            // Misreading one.
+            let covered = Set(corpus.templates.compactMap(\.realizesBeat))
+            let kept = catalog.templates.filter { template in
+                template.realizesBeat.map { !covered.contains($0) } ?? true
+            }
+            catalog = ContentCatalog.merging([
+                ContentCatalog(version: catalog.version, templates: corpus.templates),
+                ContentCatalog(
+                    version: catalog.version,
+                    settings: catalog.settings,
+                    companions: catalog.companions,
+                    objects: catalog.objects,
+                    events: catalog.events,
+                    challenges: catalog.challenges,
+                    endings: catalog.endings,
+                    templates: kept,
+                    blueprints: catalog.blueprints,
+                    storyIdeas: catalog.storyIdeas
+                )
+            ])
+        }
         let integrity = checker.check(catalog)
         let report = CatalogLoadReport(
             source: source,
-            mergedSources: documents.map(\.name),
+            mergedSources: documents.map(\.name) + corpus.files,
             decoded: true,
             integrity: integrity,
             loadedAt: clock.now()

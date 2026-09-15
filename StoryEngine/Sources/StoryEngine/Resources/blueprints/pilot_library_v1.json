@@ -22,7 +22,10 @@
         "discovery"
       ],
       "isProperNoun": true,
-      "hasPossessiveEnding": false
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "forest"
+      ]
     },
     {
       "id": "setting_night_garden_001",
@@ -43,7 +46,10 @@
         "helping_others"
       ],
       "isProperNoun": true,
-      "hasPossessiveEnding": true
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "garden"
+      ]
     },
     {
       "id": "setting_cloud_mountain_001",
@@ -64,7 +70,10 @@
         "discovery"
       ],
       "isProperNoun": true,
-      "hasPossessiveEnding": true
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "mountain"
+      ]
     },
     {
       "id": "setting_coral_sea_001",
@@ -84,7 +93,10 @@
         "discovery"
       ],
       "isProperNoun": true,
-      "hasPossessiveEnding": true
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "sea"
+      ]
     },
     {
       "id": "setting_old_orchard_001",
@@ -105,7 +117,10 @@
         "trying_again"
       ],
       "isProperNoun": true,
-      "hasPossessiveEnding": true
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "garden"
+      ]
     }
   ],
   "companions": [
@@ -130,7 +145,12 @@
         "hasLocalKnowledge",
         "isPlayful"
       ],
-      "isProperNoun": true
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "garden",
+        "mountain"
+      ]
     },
     {
       "id": "companion_hedgehog_pilot_001",
@@ -154,7 +174,11 @@
         "canHesitate",
         "isSmallAndVulnerable"
       ],
-      "isProperNoun": true
+      "isProperNoun": true,
+      "habitat": [
+        "garden",
+        "forest"
+      ]
     },
     {
       "id": "companion_owl_pilot_001",
@@ -178,7 +202,11 @@
         "canReassure",
         "isPatient"
       ],
-      "isProperNoun": true
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "mountain"
+      ]
     },
     {
       "id": "companion_dolphin_pilot_001",
@@ -201,7 +229,10 @@
         "canReassure",
         "isPlayful"
       ],
-      "isProperNoun": true
+      "isProperNoun": true,
+      "habitat": [
+        "sea"
+      ]
     },
     {
       "id": "companion_rabbit_pilot_001",
@@ -225,7 +256,11 @@
         "isSmallAndVulnerable",
         "isLiteralMinded"
       ],
-      "isProperNoun": true
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "garden"
+      ]
     }
   ],
   "objects": [
@@ -241,8 +276,9 @@
         "light"
       ],
       "traits": [
+        "emitsSignal",
         "isUnexplained",
-        "emitsSignal"
+        "isVisible"
       ],
       "isProperNoun": false,
       "titleName": "Titrek Işık"
@@ -278,11 +314,17 @@
       ],
       "traits": [
         "impliesPresence",
-        "isFragmentary"
+        "isFragmentary",
+        "isVisible"
       ],
       "isProperNoun": false,
       "hasPossessiveEnding": true,
-      "titleName": "Ayak İzleri"
+      "titleName": "Ayak İzleri",
+      "habitat": [
+        "forest",
+        "garden",
+        "mountain"
+      ]
     },
     {
       "id": "object_shell_pilot_001",
@@ -296,12 +338,16 @@
         "shell"
       ],
       "traits": [
+        "impliesPresence",
         "isBeautiful",
-        "impliesPresence"
+        "isVisible"
       ],
       "isProperNoun": false,
       "hasPossessiveEnding": true,
-      "titleName": "Deniz Kabuğu"
+      "titleName": "Deniz Kabuğu",
+      "habitat": [
+        "sea"
+      ]
     },
     {
       "id": "object_torn_map_001",
@@ -315,9 +361,10 @@
         "map"
       ],
       "traits": [
-        "isFragmentary",
         "impliesPresence",
-        "isUnexplained"
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
       ],
       "isProperNoun": false,
       "titleName": "Yırtık Harita"

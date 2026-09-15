@@ -1,15 +1,9 @@
 {
   "schemaVersion": 3,
   "beat": "succeed",
-  "produces": [
-    "resolved"
-  ],
-  "requires": [
-    "solutionKnown"
-  ],
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Page 7 in seven blueprints. The resolution must be EARNED — it works because of the specific thing the child did on page 6, and the text must say so. 'Sonunda her şey yoluna girdi' is the exact failure this beat exists to prevent; it is a banned construction. Variants declare `afterBeat`, so a story that resolved by asking does not get a page 7 about working something out. Always solo — page 7 is never shared. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 7 in seven blueprints. The resolution must be EARNED — it works because of the specific thing the child did on page 6, and the text must say so. 'Sonunda her şey yoluna girdi' is the exact failure this beat exists to prevent; it is a banned construction. Variants declare `afterBeat`, so a story that resolved by asking does not get a page 7 about working something out. Always solo — page 7 is never shared. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned.",
   "bannedConstructions": [
     "her şey yoluna girdi",
     "sihirli bir şekilde",

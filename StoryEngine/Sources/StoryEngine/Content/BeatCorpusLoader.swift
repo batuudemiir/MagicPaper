@@ -1,0 +1,124 @@
+import Foundation
+
+/// Reads the per-beat prose corpus.
+///
+/// The corpus is authored one file per beat — `beat_notice_anomaly.json`,
+/// `beat_warm_close.json` — rather than as one document of templates. That is
+/// the right shape for writing: an author works on one beat at a time, across
+/// every story that uses it, and a file per beat is what makes a review a
+/// readable diff instead of a search through a thousand-line array.
+///
+/// The engine's unit is still a template, so each file becomes one:
+/// `realizesBeat` is the file's beat, and the variants are its lines.
+public struct BeatCorpusLoader: Sendable {
+
+    /// One authored beat file.
+    private struct BeatFile: Decodable {
+        let beat: StoryBeat
+        let variants: [CatalogVariant]
+        /// Declared in the file and **not used**: `StoryBeat` is the single
+        /// source for what a beat requires and produces. Decoded only so the
+        /// checker below can say when the two have drifted apart.
+        let produces: [NarrativeStateKey]?
+        let requires: [NarrativeStateKey]?
+    }
+
+    /// What a load found, including what it could not use.
+    public struct Report: Sendable {
+        public let templates: [CatalogTemplate]
+        public let files: [String]
+        /// Files that were present and could not be read, with the reason.
+        public let skipped: [String]
+        /// Beat files whose declared requires/produces disagree with the
+        /// engine's. Reported rather than obeyed — two sources for one fact
+        /// drift, and the engine is the one the validator uses.
+        public let drifted: [String]
+
+        public var isEmpty: Bool { templates.isEmpty }
+    }
+
+    /// A stable id for the template a beat file becomes.
+    static func templateID(for beat: StoryBeat) -> ContentID {
+        ContentID("corpus_" + beat.rawValue)
+    }
+
+    public init() {}
+
+    /// Loads every `beat_*.json` in the package bundle.
+    ///
+    /// A missing corpus is not an error: the library ships its own templates,
+    /// and the corpus is additional prose layered on top.
+    public func load() -> Report { load(in: .module) }
+
+    public func load(in bundle: Bundle) -> Report {
+        guard let urls = bundle.urls(forResourcesWithExtension: "json", subdirectory: nil) else {
+            return Report(templates: [], files: [], skipped: [], drifted: [])
+        }
+        return load(urls: urls.filter { $0.lastPathComponent.hasPrefix("beat_") }
+            .sorted { $0.lastPathComponent < $1.lastPathComponent })
+    }
+
+    func load(urls: [URL]) -> Report {
+        var templates: [CatalogTemplate] = []
+        var files: [String] = []
+        var skipped: [String] = []
+        var drifted: [String] = []
+
+        for url in urls {
+            let name = url.lastPathComponent
+            guard let data = try? Data(contentsOf: url) else {
+                skipped.append("\(name): unreadable")
+                continue
+            }
+            let file: BeatFile
+            do {
+                file = try JSONDecoder().decode(BeatFile.self, from: data)
+            } catch {
+                skipped.append("\(name): \(error)")
+                continue
+            }
+            guard !file.variants.isEmpty else {
+                skipped.append("\(name): no variants")
+                continue
+            }
+
+            if let declared = file.produces, Set(declared) != Set(file.beat.produces) {
+                drifted.append("\(name): declares produces \(declared.map(\.rawValue).sorted()), "
+                               + "engine says \(file.beat.produces.map(\.rawValue).sorted())")
+            }
+
+            templates.append(CatalogTemplate(
+                id: Self.templateID(for: file.beat),
+                role: Self.role(for: file.beat),
+                realizesBeat: file.beat,
+                compatibleThemes: [],
+                variants: file.variants
+            ))
+            files.append(name)
+        }
+
+        return Report(templates: templates, files: files, skipped: skipped, drifted: drifted)
+    }
+
+    /// The page role a beat usually fills.
+    ///
+    /// Layout intent only — role has not driven text selection since the beat
+    /// model landed, and the corpus does not declare one. A beat that can sit
+    /// on more than one kind of page gets the one it most often occupies.
+    static func role(for beat: StoryBeat) -> PageRole {
+        switch beat {
+        case .establishOrdinary, .noticeAnomaly: return .hook
+        case .approach, .examine: return .discovery
+        case .meetCompanion, .companionOffers, .receiveAppeal: return .companion
+        case .commit, .formBelief, .beliefFails, .obstacleRaises, .hesitate, .takeCharge:
+            return .problem
+        case .firstAttempt, .smallStep, .tend, .prepare: return .attempt
+        case .insight, .cooperativeEffort, .askForHelp, .persist, .patientWait,
+             .findOwnCourage, .revealTruth, .speakFor, .giveUpSomething,
+             .retrace, .exchangeViews, .letGo:
+            return .challenge
+        case .succeed, .restore: return .resolution
+        case .selfRecognize, .warmClose, .carryForward: return .emotionalEnding
+        }
+    }
+}

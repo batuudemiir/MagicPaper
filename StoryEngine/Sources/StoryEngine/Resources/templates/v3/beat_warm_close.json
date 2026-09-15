@@ -1,13 +1,9 @@
 {
   "schemaVersion": 3,
   "beat": "warm_close",
-  "produces": [],
-  "requires": [
-    "resolved"
-  ],
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Page 8 of every blueprint. Emotional closure, never 'and they lived happily ever after'. warm_close carries the LANDING only — it must not do the self-recognition or the taking-away, because self_recognize and carry_forward are separate beats that share the page. Seven blueprints arrive here from `succeed` (the child did it) and seven from `restore` (someone else got back); those need different closings, so variants declare which they follow.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 8 of every blueprint. Emotional closure, never 'and they lived happily ever after'. warm_close carries the LANDING only — it must not do the self-recognition or the taking-away, because self_recognize and carry_forward are separate beats that share the page. Seven blueprints arrive here from `succeed` (the child did it) and seven from `restore` (someone else got back); those need different closings, so variants declare which they follow.",
   "lengthClasses": {
     "paired": "12-18 words — page 8 also carries self_recognize or carry_forward (11 of 14 blueprints)",
     "solo": "18-28 words — warm_close is the whole page (I-3, III-1, V-1)"

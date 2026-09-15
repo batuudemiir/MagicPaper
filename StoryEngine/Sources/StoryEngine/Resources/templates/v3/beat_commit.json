@@ -1,17 +1,9 @@
 {
   "schemaVersion": 3,
   "beat": "commit",
-  "produces": [
-    "committed"
-  ],
-  "requires": [
-    "anomalyKnown",
-    "needKnown"
-  ],
-  "requiresAny": true,
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Usually page 4. The child DECIDES. Not drifts, not is swept along — chooses, and the choice is visible. Eight of nine blueprints share this page with obstacle_raises or belief_fails, so most variants are short. A decision nobody witnesses is stronger here than one announced to a companion: this is the beat where the child becomes the author of the story. Never let an adult or the companion decide for them.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 4. The child DECIDES. Not drifts, not is swept along — chooses, and the choice is visible. Eight of nine blueprints share this page with obstacle_raises or belief_fails, so most variants are short. A decision nobody witnesses is stronger here than one announced to a companion: this is the beat where the child becomes the author of the story. Never let an adult or the companion decide for them.",
   "lengthClasses": {
     "paired": "10-16 words — page 4 also carries obstacle_raises or belief_fails (8 of 9)",
     "solo": "18-38 words — commit is the whole page (I-2)"

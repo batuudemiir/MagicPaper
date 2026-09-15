@@ -36,7 +36,28 @@ public enum CompanionTrait: String, Codable, Sendable, Hashable, CaseIterable {
 public enum DiscoveryTrait: String, Codable, Sendable, Hashable, CaseIterable {
     case isUnexplained, emitsSignal, impliesPresence, impliesNeed
     case isFragmentary, isFragile, isBeautiful
+    /// Can be looked at.
+    ///
+    /// The modality axis, and the one this engine got wrong before it existed:
+    /// a light can be seen and a sound cannot, so a line that has the child
+    /// *see* the discovery is only usable for some of them. It was worked
+    /// around by writing every line modality-neutral, which costs the corpus
+    /// its best sentences; declaring it lets a variant say "gördü" and be
+    /// offered only when that is true.
+    case isVisible
 }
+
+/// Where a piece of content belongs.
+///
+/// A separate axis from narrative traits, because it answers a different
+/// question: not *what can this do for a story* but *could it plausibly be
+/// here*. Without it nothing stops a squirrel on a coral reef or a seashell in
+/// a snowy valley — which was the original content audit's complaint, and was
+/// reproduced by the system that replaced it.
+///
+/// Reuses `ContentTag` rather than introducing a fourth vocabulary: the shipped
+/// content already tags settings `forest`, `garden`, `sea`.
+public typealias Habitat = ContentTag
 
 // MARK: - Requirements and exclusions
 
@@ -193,6 +214,15 @@ public struct ContentExclusions: Codable, Sendable, Hashable {
 ///
 /// Stated once, generically, so the three axes cannot drift apart.
 public enum TraitMatch {
+    /// Whether a piece of content could plausibly be where the story is set.
+    ///
+    /// Content declaring no habitat goes anywhere — that is the unmigrated case,
+    /// and habitat is not the axis that should exclude it. Content that names
+    /// its habitats must share one with the setting.
+    public static func sharesHabitat(_ content: Set<Habitat>, setting: Set<Habitat>) -> Bool {
+        content.isEmpty || setting.isEmpty || !content.isDisjoint(with: setting)
+    }
+
     public static func admits<Trait>(
         offered: Set<Trait>,
         required: TraitRequirement<Trait>,
