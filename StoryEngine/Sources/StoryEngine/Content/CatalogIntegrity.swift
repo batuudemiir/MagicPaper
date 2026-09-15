@@ -273,8 +273,13 @@ public struct CatalogIntegrityChecker: Sendable {
                 conflictMechanism: blueprint.family?.conflict
             )
             for issue in result.issues {
+                // The validator now grades its own findings. A structural
+                // violation still blocks loading; a liveness warning is carried
+                // and counted, because an inert page makes a weaker book, not
+                // an incoherent one.
                 issues.append(.init(
-                    severity: .fatal, code: "beat_sequence_\(issue.code)", recordID: blueprint.id,
+                    severity: issue.severity == .fatal ? .fatal : .warning,
+                    code: "beat_sequence_\(issue.code)", recordID: blueprint.id,
                     message: "Blueprint '\(blueprint.id)': \(issue.message)"
                 ))
             }

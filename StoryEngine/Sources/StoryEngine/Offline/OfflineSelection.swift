@@ -115,16 +115,16 @@ public struct OfflineContentBinder: Sendable {
     /// One implementation for all three axes. Written generically on purpose:
     /// three hand-rolled copies is how the old code ended up filtering settings
     /// one way and companions another.
-    private func choose<Record: Identifiable, Trait: Hashable & RawRepresentable>(
+    private func choose<Record: Identifiable, Trait>(
         _ records: [Record],
         requested: ContentID?,
         seed: String,
         axis: String,
         offered: KeyPath<Record, Set<Trait>>,
-        required: Set<Trait>,
+        required: TraitRequirement<Trait>,
         forbidden: Set<Trait>,
         empty: ([String]) -> OfflineSelectionError
-    ) throws -> Record where Record.ID == ContentID, Trait.RawValue == String {
+    ) throws -> Record where Record.ID == ContentID {
         var reasons: [String] = []
         var admissible: [Record] = []
 

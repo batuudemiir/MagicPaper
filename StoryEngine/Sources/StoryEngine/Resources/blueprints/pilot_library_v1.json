@@ -428,7 +428,15 @@
       "requires": {
         "discovery": [
           "isUnexplained"
-        ]
+        ],
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        }
       },
       "forbids": {
         "companion": [

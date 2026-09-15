@@ -153,8 +153,11 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     /// satisfied by anything. Cheap to write by accident, impossible to notice
     /// at runtime — the pool is simply always empty.
     public var contradictoryTraits: [String] {
-        Array(requires.setting.intersection(forbids.setting).map(\.rawValue))
-            + requires.companion.intersection(forbids.companion).map(\.rawValue)
-            + requires.discovery.intersection(forbids.discovery).map(\.rawValue)
+        // `mentioned` covers the choice groups too: forbidding one arm of a
+        // disjunction is legitimate, forbidding every arm is not, and both are
+        // worth surfacing to the author.
+        Array(requires.setting.mentioned.intersection(forbids.setting).map(\.rawValue))
+            + requires.companion.mentioned.intersection(forbids.companion).map(\.rawValue)
+            + requires.discovery.mentioned.intersection(forbids.discovery).map(\.rawValue)
     }
 }

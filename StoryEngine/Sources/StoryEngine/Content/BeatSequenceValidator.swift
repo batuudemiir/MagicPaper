@@ -29,12 +29,30 @@ public struct BeatSlot: Sendable, Hashable {
 }
 
 public struct BeatSequenceIssue: Sendable, Hashable {
+    /// Whether this stops the blueprint shipping.
+    ///
+    /// Everything the validator checked before liveness is structural: an unmet
+    /// precondition or a story that resolves on page 5 is incoherent, not
+    /// merely weak. Liveness is different — an inert page is a *quality*
+    /// failure, and grading it fatal would make every blueprint in the library
+    /// unselectable overnight for a defect whose real fix is in the beat
+    /// vocabulary, not the blueprint.
+    public enum Severity: String, Sendable, Hashable { case fatal, warning }
+
+    public let severity: Severity
     public let pageNumber: Int
     public let beat: StoryBeat
     public let code: String
     public let message: String
 
-    public init(pageNumber: Int, beat: StoryBeat, code: String, message: String) {
+    public init(
+        severity: Severity = .fatal,
+        pageNumber: Int,
+        beat: StoryBeat,
+        code: String,
+        message: String
+    ) {
+        self.severity = severity
         self.pageNumber = pageNumber
         self.beat = beat
         self.code = code
@@ -49,7 +67,12 @@ public struct BeatSequenceResult: Sendable {
     /// State as it stood at the end of each page, for pacing checks.
     public let statesByPage: [Int: DerivedNarrativeState]
 
-    public var isValid: Bool { issues.isEmpty }
+    /// Issues that stop the blueprint shipping.
+    public var fatalIssues: [BeatSequenceIssue] { issues.filter { $0.severity == .fatal } }
+    /// Issues worth an author's attention that do not block.
+    public var warnings: [BeatSequenceIssue] { issues.filter { $0.severity == .warning } }
+
+    public var isValid: Bool { fatalIssues.isEmpty }
 }
 
 /// Walks a blueprint's beats and checks the story actually holds together.
@@ -96,6 +119,7 @@ public struct BeatSequenceValidator: Sendable {
         issues.append(contentsOf: checkResolution(ordered, statesByPage: statesByPage, finalState: state))
         issues.append(contentsOf: checkPacing(ordered, statesByPage: statesByPage, conflictMechanism: conflictMechanism))
         issues.append(contentsOf: checkEmotionalSafety(ordered, intensityCeiling: intensityCeiling))
+        issues.append(contentsOf: checkLiveness(ordered))
 
         return BeatSequenceResult(issues: issues, finalState: state, statesByPage: statesByPage)
     }
@@ -178,6 +202,56 @@ public struct BeatSequenceValidator: Sendable {
         }
 
         return issues
+    }
+
+    /// A page that produces narrative state nothing later reads.
+    ///
+    /// The test is the one that makes the failure concrete: **delete the page,
+    /// and see whether anything downstream notices.** If every remaining beat's
+    /// preconditions still hold and the story still resolves, the engine would
+    /// produce the same book without that page — so whatever the page is doing,
+    /// it is not doing it structurally.
+    ///
+    /// Two exemptions, both principled rather than convenient:
+    ///
+    /// - **The final page.** An ending is not load-bearing by design; it is
+    ///   governed by `non_closing_final_page` and `unsettled_landing` instead.
+    ///   Without this every blueprint ever written fails.
+    /// - **Pages that produce nothing at all.** This rule is about state that
+    ///   goes unread. A page producing no state is not making an unread claim —
+    ///   whether an orientation beat earns its page is a different question, and
+    ///   the beat vocabulary is what would have to answer it.
+    ///
+    /// The usual fix is *not* to delete the page. It is to tighten the beat
+    /// vocabulary so that what the page establishes is genuinely required later.
+    private func checkLiveness(_ slots: [BeatSlot]) -> [BeatSequenceIssue] {
+        guard let last = slots.last, slots.count > 1 else { return [] }
+
+        return slots.compactMap { candidate in
+            guard candidate.pageNumber != last.pageNumber else { return nil }
+
+            let produced = Set(candidate.beats.flatMap(\.produces))
+            guard !produced.isEmpty else { return nil }
+
+            var state = DerivedNarrativeState()
+            for slot in slots where slot.pageNumber != candidate.pageNumber {
+                for beat in slot.beats {
+                    guard beat.requires.isSatisfied(by: state) else { return nil }
+                    state.produce(beat.produces)
+                }
+            }
+            guard state.isResolved else { return nil }
+
+            let names = produced.map(\.rawValue).sorted().joined(separator: ", ")
+            return BeatSequenceIssue(
+                severity: .warning,
+                pageNumber: candidate.pageNumber,
+                beat: candidate.beat,
+                code: "inert_page",
+                message: "Page \(candidate.pageNumber) produces \(names), which nothing later requires; "
+                       + "the story still resolves with this page deleted."
+            )
+        }
     }
 
     private func checkEmotionalSafety(_ slots: [BeatSlot], intensityCeiling: Int) -> [BeatSequenceIssue] {

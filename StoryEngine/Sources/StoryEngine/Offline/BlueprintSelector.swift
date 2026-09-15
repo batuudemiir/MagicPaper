@@ -24,14 +24,14 @@ public struct BlueprintSelector: Sendable {
         for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
             var failures: [String] = []
 
-            func check<Record: Identifiable, Trait: Hashable & RawRepresentable>(
+            func check<Record: Identifiable, Trait>(
                 _ records: [Record],
                 pinned: ContentID?,
                 axis: String,
                 offered: KeyPath<Record, Set<Trait>>,
-                required: Set<Trait>,
+                required: TraitRequirement<Trait>,
                 forbidden: Set<Trait>
-            ) where Record.ID == ContentID, Trait.RawValue == String {
+            ) where Record.ID == ContentID {
                 // A pinned choice must itself fit; otherwise any record may.
                 let pool = pinned.map { id in records.filter { $0.id == id } } ?? records
                 let fits = pool.contains {
@@ -46,7 +46,7 @@ public struct BlueprintSelector: Sendable {
                 } else if pinned != nil {
                     failures.append("\(axis) '\(pinned!.rawValue)' is not in the catalog")
                 } else {
-                    failures.append("no \(axis) offers \(required.map(\.rawValue).sorted().joined(separator: ", "))")
+                    failures.append("no \(axis) offers \(required.unmet(in: []).joined(separator: "; "))")
                 }
             }
 

@@ -268,8 +268,21 @@ final class CatalogBeatMigrationTests: XCTestCase {
         XCTAssertTrue(report.isUsable)
         XCTAssertTrue(report.issues(withCode: "blueprint_without_beats").isEmpty)
         XCTAssertTrue(report.issues(withCode: "beat_without_templates").isEmpty)
-        XCTAssertTrue(report.issues.filter { $0.code.hasPrefix("beat_sequence_") }.isEmpty,
-                      "Pilot arc should satisfy the state rule")
+        // Structurally sound: no precondition, pacing or safety violation.
+        let fatalBeatIssues = report.issues.filter {
+            $0.code.hasPrefix("beat_sequence_") && $0.severity == .fatal
+        }
+        XCTAssertTrue(fatalBeatIssues.isEmpty,
+                      "Pilot arc should satisfy the state rule: \(fatalBeatIssues.map(\.message))")
+
+        // But not beyond criticism. The liveness rule (D9) flags the companion
+        // page: this arc still resolves with page 3 deleted, so whatever the
+        // companion is doing there, it is not structural. Reported, not fatal —
+        // the fix belongs in the beat vocabulary, not in this blueprint.
+        let inert = report.issues(withCode: "beat_sequence_inert_page")
+        XCTAssertEqual(inert.count, 1, "Expected exactly one inert page: \(report.issues.map(\.code))")
+        XCTAssertEqual(inert.first?.severity, .warning)
+        XCTAssertTrue(report.isUsable, "A weak page must not stop the catalog loading.")
     }
 
     func testAnIncoherentBeatAuthoredBlueprintIsFatal() {
