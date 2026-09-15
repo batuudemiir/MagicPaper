@@ -97,6 +97,7 @@
 		A1000001000000000000007A /* ProfileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectorView.swift; sourceTree = "<group>"; };
 		A1000001000000000000007C /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = shared_content_library_v2.json; sourceTree = "<group>"; };
+		7E00000000000000000001 /* MagicPaperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicPaperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -104,9 +105,17 @@
 		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
 		2DDE500000000000000000A2 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
 		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+		7E00000000000000000002 /* MagicPaperTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MagicPaperTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E00000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A10000010000000000000021 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A1000001000000000000001F /* MagicPaper.app */,
+				7E00000000000000000001 /* MagicPaperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,12 +261,31 @@
 			children = (
 				2D2DE9B72F49CCE80012EF4A /* Products.storekit */,
 				A10000010000000000000022 /* MagicPaper */,
+				7E00000000000000000002 /* MagicPaperTests */,
 				2DB76A652F4911DA00DE621B /* Frameworks */,
 				A10000010000000000000024 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXContainerItemProxy section */
+		7E00000000000000000008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000001000000000000002D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10000010000000000000029;
+			remoteInfo = MagicPaper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		7E00000000000000000007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10000010000000000000029 /* MagicPaper */;
+			targetProxy = 7E00000000000000000008 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXNativeTarget section */
 		A10000010000000000000029 /* MagicPaper */ = {
@@ -291,6 +320,29 @@
 			productReference = A1000001000000000000001F /* MagicPaper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7E00000000000000000003 /* MagicPaperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0000000000000000000B /* Build configuration list for PBXNativeTarget "MagicPaperTests" */;
+			buildPhases = (
+				7E00000000000000000004 /* Sources */,
+				7E00000000000000000005 /* Frameworks */,
+				7E00000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E00000000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7E00000000000000000002 /* MagicPaperTests */,
+			);
+			name = MagicPaperTests;
+			packageProductDependencies = (
+			);
+			productName = MagicPaperTests;
+			productReference = 7E00000000000000000001 /* MagicPaperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,6 +355,10 @@
 				TargetAttributes = {
 					A10000010000000000000029 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					7E00000000000000000003 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = A10000010000000000000029;
 					};
 				};
 			};
@@ -325,11 +381,19 @@
 			projectRoot = "";
 			targets = (
 				A10000010000000000000029 /* MagicPaper */,
+				7E00000000000000000003 /* MagicPaperTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E00000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1000001000000000000002C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +409,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E00000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1000001000000000000002B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,6 +660,46 @@
 			};
 			name = Release;
 		};
+		7E00000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagicPaper.app/MagicPaper";
+			};
+			name = Debug;
+		};
+		7E0000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagicPaper.app/MagicPaper";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -606,6 +717,15 @@
 			buildConfigurations = (
 				A1000001000000000000002F /* Debug */,
 				A10000010000000000000030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E0000000000000000000B /* Build configuration list for PBXNativeTarget "MagicPaperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E00000000000000000009 /* Debug */,
+				7E0000000000000000000A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

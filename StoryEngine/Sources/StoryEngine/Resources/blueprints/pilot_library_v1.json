@@ -1340,5 +1340,67 @@
         }
       ]
     }
+  ],
+  "storyIdeas": [
+    {
+      "id": "idea_mysterious_signal_001",
+      "display": "Gizemli bir işaretin peşine düşelim",
+      "supportingText": "Bir şey kendini belli ediyor ama ne olduğu belli değil.",
+      "illustration": "sparkles",
+      "ageRange": "5-6",
+      "requires": {
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "preferredFamilies": [
+        "unexplained",
+        "threshold"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_someone_needs_us_001",
+      "display": "Yardıma ihtiyacı olan birini bulalım",
+      "supportingText": "Yakınlarda birinin bize ihtiyacı var.",
+      "illustration": "heart",
+      "ageRange": "5-6",
+      "requires": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "preferredFamilies": [
+        "appeal"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_follow_the_traces_001",
+      "display": "Geride kalan izleri takip edelim",
+      "supportingText": "Birileri buradan geçmiş. Nereye gittiklerini öğrenelim.",
+      "illustration": "magnifyingglass",
+      "ageRange": "5-6",
+      "requires": {
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "preferredFamilies": [
+        "absence",
+        "misreading"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
+    }
   ]
 }

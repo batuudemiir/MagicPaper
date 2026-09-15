@@ -12,17 +12,41 @@ import Foundation
 public struct BlueprintSelector: Sendable {
     public init() {}
 
+    /// The idea this intent is working from, if any.
+    ///
+    /// A named idea that is not in the catalog is an error, never a silent
+    /// "surprise me": the child chose something, and quietly giving them a
+    /// different story is exactly the substitution this engine exists to stop.
+    public func storyIdea(
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent
+    ) throws -> CatalogStoryIdea? {
+        guard let id = intent.storyIdeaID else { return nil }
+        guard let idea = catalog.storyIdeas.first(where: { $0.id == id }) else {
+            throw OfflineSelectionError.storyIdeaNotFound(id: id)
+        }
+        return idea
+    }
+
     /// Every blueprint that can be satisfied by the catalog under this intent,
     /// plus a line for each that cannot and why.
     public func admissible(
         catalog: ContentCatalog,
-        intent: OfflineStoryIntent
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea? = nil
     ) -> (blueprints: [CatalogBlueprint], rejections: [String]) {
         var admitted: [CatalogBlueprint] = []
         var rejections: [String] = []
 
         for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
             var failures: [String] = []
+
+            // The idea narrows; it never relaxes. Combining rather than
+            // replacing is what keeps a blueprint's own premise intact — an
+            // idea about following traces cannot talk a Threshold blueprint out
+            // of needing a threshold.
+            let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
+            let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
 
             func check<Record: Identifiable, Trait>(
                 _ records: [Record],
@@ -51,14 +75,14 @@ public struct BlueprintSelector: Sendable {
             }
 
             check(catalog.settings, pinned: intent.settingID, axis: "setting",
-                  offered: \.traits, required: blueprint.requires.setting,
-                  forbidden: blueprint.forbids.setting)
+                  offered: \.traits, required: requires.setting,
+                  forbidden: forbids.setting)
             check(catalog.companions, pinned: intent.companionID, axis: "companion",
-                  offered: \.traits, required: blueprint.requires.companion,
-                  forbidden: blueprint.forbids.companion)
+                  offered: \.traits, required: requires.companion,
+                  forbidden: forbids.companion)
             check(catalog.objects, pinned: intent.discoveryID, axis: "discovery",
-                  offered: \.traits, required: blueprint.requires.discovery,
-                  forbidden: blueprint.forbids.discovery)
+                  offered: \.traits, required: requires.discovery,
+                  forbidden: forbids.discovery)
 
             if failures.isEmpty {
                 admitted.append(blueprint)
@@ -77,12 +101,63 @@ public struct BlueprintSelector: Sendable {
         catalog: ContentCatalog,
         intent: OfflineStoryIntent
     ) throws -> CatalogBlueprint {
-        let (candidates, rejections) = admissible(catalog: catalog, intent: intent)
+        let idea = try storyIdea(catalog: catalog, intent: intent)
+        let (candidates, rejections) = admissible(catalog: catalog, intent: intent, idea: idea)
         guard !candidates.isEmpty else {
             throw OfflineSelectionError.noBlueprintForChoices(reasons: rejections)
         }
+
         // Sorted before picking so the choice cannot depend on catalog order.
         let ordered = candidates.sorted { $0.id.rawValue < $1.id.rawValue }
-        return DeterministicPicker.pick(from: ordered, seed: intent.seed, salt: "blueprint")
+
+        // Affinity, applied as preference rather than as a filter (§12). A card
+        // that always resolved to one blueprint would be a preset; a card that
+        // ignored its own promise would be a lie. So: choose among the families
+        // the idea leans toward, and step outside them only when none of them
+        // can be built from what the catalog holds.
+        guard let preferred = idea?.preferredFamilies, !preferred.isEmpty else {
+            return DeterministicPicker.pick(from: ordered, seed: intent.seed, salt: "blueprint")
+        }
+        let leaning = ordered.filter { blueprint in
+            blueprint.family.map(preferred.contains) ?? false
+        }
+        return DeterministicPicker.pick(
+            from: leaning.isEmpty ? ordered : leaning,
+            seed: intent.seed,
+            salt: "blueprint"
+        )
+    }
+
+    /// The companions worth offering for this intent, best first.
+    ///
+    /// Step 2 of the flow asks "who should come with us?", and the answer has to
+    /// depend on step 1 — otherwise the companion is decoration. A companion is
+    /// offered when at least one admissible blueprint would accept it, which is
+    /// why a literal-minded rabbit never appears for a story about misreading
+    /// the evidence: the blueprint that tells that story forbids it.
+    public func companionCandidates(
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea?
+    ) -> [CatalogCompanion] {
+        let (candidates, _) = admissible(catalog: catalog, intent: intent, idea: idea)
+        guard !candidates.isEmpty else { return [] }
+
+        let preferred = Set(idea?.preferredFamilies ?? [])
+        let leaning = candidates.filter { $0.family.map(preferred.contains) ?? false }
+        let pool = leaning.isEmpty ? candidates : leaning
+
+        return catalog.companions.filter { companion in
+            pool.contains { blueprint in
+                let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
+                let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
+                return TraitMatch.admits(
+                    offered: companion.traits,
+                    required: requires.companion,
+                    forbidden: forbids.companion
+                )
+            }
+        }
+        .sorted { $0.id.rawValue < $1.id.rawValue }
     }
 }

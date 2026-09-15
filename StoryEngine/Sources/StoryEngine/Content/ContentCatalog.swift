@@ -20,6 +20,9 @@ public struct ContentCatalog: Decodable, Sendable {
     public let endings: [CatalogEnding]
     public let templates: [CatalogTemplate]
     public let blueprints: [CatalogBlueprint]
+    /// What the child is offered. Empty in the V1 document; authored
+    /// alongside the beat-authored blueprints.
+    public let storyIdeas: [CatalogStoryIdea]
 
     /// How many `resolutions` the file declares.
     ///
@@ -31,6 +34,7 @@ public struct ContentCatalog: Decodable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case version, settings, companions, objects, events, challenges, endings, templates, blueprints
+        case storyIdeas
         case resolutions
     }
 
@@ -45,6 +49,7 @@ public struct ContentCatalog: Decodable, Sendable {
         endings = try container.decodeIfPresent([CatalogEnding].self, forKey: .endings) ?? []
         templates = try container.decodeIfPresent([CatalogTemplate].self, forKey: .templates) ?? []
         blueprints = try container.decodeIfPresent([CatalogBlueprint].self, forKey: .blueprints) ?? []
+        storyIdeas = try container.decodeIfPresent([CatalogStoryIdea].self, forKey: .storyIdeas) ?? []
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -58,6 +63,7 @@ public struct ContentCatalog: Decodable, Sendable {
         endings: [CatalogEnding] = [],
         templates: [CatalogTemplate] = [],
         blueprints: [CatalogBlueprint] = [],
+        storyIdeas: [CatalogStoryIdea] = [],
         declaredResolutionCount: Int = 0
     ) {
         self.version = version
@@ -69,6 +75,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.endings = endings
         self.templates = templates
         self.blueprints = blueprints
+        self.storyIdeas = storyIdeas
         self.declaredResolutionCount = declaredResolutionCount
     }
 
@@ -176,6 +183,7 @@ extension ContentCatalog {
             endings: catalogs.flatMap(\.endings),
             templates: catalogs.flatMap(\.templates),
             blueprints: catalogs.flatMap(\.blueprints),
+            storyIdeas: catalogs.flatMap(\.storyIdeas),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
     }

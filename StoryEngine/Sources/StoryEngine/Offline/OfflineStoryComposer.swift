@@ -63,20 +63,23 @@ public struct OfflineStoryComposer: Sendable {
         try compose(
             blueprint: selector.select(catalog: catalog, intent: intent),
             catalog: catalog,
-            intent: intent
+            intent: intent,
+            idea: selector.storyIdea(catalog: catalog, intent: intent)
         )
     }
 
     public func compose(
         blueprint: CatalogBlueprint,
         catalog: ContentCatalog,
-        intent: OfflineStoryIntent
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea? = nil
     ) throws -> ComposedStory {
         guard blueprint.isBeatAuthored else {
             throw OfflineSelectionError.blueprintNotBeatAuthored(id: blueprint.id)
         }
 
-        let content = try binder.bind(blueprint: blueprint, catalog: catalog, intent: intent)
+        let content = try binder.bind(
+            blueprint: blueprint, catalog: catalog, intent: intent, idea: idea)
         let slots = Self.slots(childName: intent.childName, content: content)
 
         // Variant choice is keyed on the whole story, not on the seed alone.

@@ -10,6 +10,9 @@ import EngineFoundation
 /// everything structural is derived from those.
 public struct OfflineStoryIntent: Sendable, Hashable {
     public let childName: String
+    /// The idea the child picked. Nil means "surprise me" — the engine chooses
+    /// one, and the rest of the flow is unchanged.
+    public let storyIdeaID: ContentID?
     /// Nil means "Surprise Me" — the engine picks from what is admissible.
     public let settingID: ContentID?
     public let companionID: ContentID?
@@ -19,12 +22,14 @@ public struct OfflineStoryIntent: Sendable, Hashable {
 
     public init(
         childName: String,
+        storyIdeaID: ContentID? = nil,
         settingID: ContentID? = nil,
         companionID: ContentID? = nil,
         discoveryID: ContentID? = nil,
         seed: String
     ) {
         self.childName = childName
+        self.storyIdeaID = storyIdeaID
         self.settingID = settingID
         self.companionID = companionID
         self.discoveryID = discoveryID
@@ -43,6 +48,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
 public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noBlueprints
     case noBlueprintForChoices(reasons: [String])
+    case storyIdeaNotFound(id: ContentID)
+    case noStoryIdeas
     case noSetting(reasons: [String])
     case noCompanion(reasons: [String])
     case noDiscovery(reasons: [String])
@@ -56,6 +63,10 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "No beat-authored blueprint exists."
         case .noBlueprintForChoices(let reasons):
             return "No blueprint fits these choices:\n" + reasons.joined(separator: "\n")
+        case .storyIdeaNotFound(let id):
+            return "Story idea '\(id.rawValue)' is not in the catalog."
+        case .noStoryIdeas:
+            return "The catalog offers no story ideas." 
         case .noSetting(let reasons):
             return "No setting fits this blueprint:\n" + reasons.joined(separator: "\n")
         case .noCompanion(let reasons):
@@ -92,21 +103,30 @@ public struct OfflineContentBinder: Sendable {
     public func bind(
         blueprint: CatalogBlueprint,
         catalog: ContentCatalog,
-        intent: OfflineStoryIntent
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea? = nil
     ) throws -> BoundContent {
+        // The idea constrains what may be bound, not only which blueprint is
+        // chosen. Teaching the selector about ideas and not the binder produced
+        // exactly the defect this guards: a card promising something that
+        // signals bound a torn map, because the blueprint alone was happy with
+        // it and nothing else was consulted.
+        let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
+        let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
+
         let setting = try choose(
             catalog.settings, requested: intent.settingID, seed: intent.seed, axis: "setting",
-            offered: \.traits, required: blueprint.requires.setting, forbidden: blueprint.forbids.setting,
+            offered: \.traits, required: requires.setting, forbidden: forbids.setting,
             empty: OfflineSelectionError.noSetting
         )
         let companion = try choose(
             catalog.companions, requested: intent.companionID, seed: intent.seed, axis: "companion",
-            offered: \.traits, required: blueprint.requires.companion, forbidden: blueprint.forbids.companion,
+            offered: \.traits, required: requires.companion, forbidden: forbids.companion,
             empty: OfflineSelectionError.noCompanion
         )
         let discovery = try choose(
             catalog.objects, requested: intent.discoveryID, seed: intent.seed, axis: "discovery",
-            offered: \.traits, required: blueprint.requires.discovery, forbidden: blueprint.forbids.discovery,
+            offered: \.traits, required: requires.discovery, forbidden: forbids.discovery,
             empty: OfflineSelectionError.noDiscovery
         )
         return BoundContent(setting: setting, companion: companion, discovery: discovery)
