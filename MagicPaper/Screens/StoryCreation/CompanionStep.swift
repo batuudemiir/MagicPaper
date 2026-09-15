@@ -1,0 +1,86 @@
+import SwiftUI
+import StoryEngine
+
+/// Step 2 — who comes with us?
+///
+/// The candidates are derived from the idea chosen a moment ago, which is what
+/// makes the companion a role rather than decoration: a companion who would
+/// dissolve the story's premise is not offered. A companion that can fly does
+/// not appear for a story about crossing something on your own, and one that
+/// says exactly what it sees does not appear for a story about misreading the
+/// evidence — not because this screen knows that, but because the blueprints do.
+struct CompanionStep: View {
+
+    let ideaID: String?
+    /// Nil means "surprise me". §16: this keeps the chosen idea; it does not
+    /// start the story over.
+    let onChoose: (String?) -> Void
+
+    private static let shown = 3
+
+    private var candidates: [CatalogCompanion] {
+        Array(OfflineStoryService.shared.companionCandidates(forIdeaID: ideaID).prefix(Self.shown))
+    }
+
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: MP.S.x2) {
+                    Text("Bu macerada kim bizimle olsun?")
+                        .font(MP.F.displayLG())
+                        .mpTightTracking(32)
+                        .foregroundStyle(MP.C.textTitle)
+                }
+                .padding(.top, MP.S.x3)
+                .padding(.bottom, MP.S.x5)
+
+                VStack(spacing: MP.S.stackGap) {
+                    ForEach(candidates) { companion in
+                        MPChoiceTile(
+                            title: companion.name,
+                            description: description(for: companion),
+                            symbol: symbol(for: companion),
+                            accent: MP.C.brand,
+                            layout: .column
+                        ) {
+                            onChoose(companion.id.rawValue)
+                        }
+                        .accessibilityLabel("\(companion.name), \(companion.type)")
+                    }
+
+                    MPChoiceTile(
+                        title: "Bana sürpriz yap",
+                        description: "En uygun arkadaşı biz seçelim.",
+                        symbol: "wand.and.stars",
+                        accent: MP.C.reward,
+                        layout: .column
+                    ) {
+                        onChoose(nil)
+                    }
+                }
+            }
+            .mpGutter()
+            .padding(.bottom, MP.S.x6)
+        }
+    }
+
+    /// The companion's own line if it has one, otherwise what it is. Never the
+    /// trait list — "canReassure" is a selection concept, not something to read.
+    private func description(for companion: CatalogCompanion) -> String {
+        companion.personality.isEmpty
+            ? companion.type.capitalized(with: Locale(identifier: "tr_TR"))
+            : companion.personality
+    }
+
+    /// Content declares no icon, so this maps from the animal. An unknown type
+    /// gets a paw rather than a blank space.
+    private func symbol(for companion: CatalogCompanion) -> String {
+        switch companion.type.lowercased(with: Locale(identifier: "tr_TR")) {
+        case "baykuş", "kuş": return "bird"
+        case "yunus", "balık": return "fish"
+        case "ejderha": return "flame.fill"
+        case "kirpi", "tavşan", "tilki", "ayı": return "pawprint"
+        default: return "pawprint"
+        }
+    }
+}

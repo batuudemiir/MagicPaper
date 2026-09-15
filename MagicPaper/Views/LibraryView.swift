@@ -38,7 +38,7 @@ struct LibraryView: View {
                             : "Aramanla eşleşen bir masal bulamadık.",
                         illustration: "AppLogo",
                         actionLabel: "Masal yarat",
-                        action: { app.startWizard() }
+                        action: { app.startStoryCreation() }
                     )
                     .padding(.top, 20)
                 }

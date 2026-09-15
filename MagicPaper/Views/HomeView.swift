@@ -74,7 +74,7 @@ struct HomeView: View {
     // MARK: - Marka hero kartı
 
     private var heroCard: some View {
-        MPPressableCard(tone: .brand, padding: 22, action: { app.startWizard() }) {
+        MPPressableCard(tone: .brand, padding: 22, action: { app.startStoryCreation() }) {
             HStack(spacing: 16) {
                 MPIcon("wand.and.stars", size: 28, weight: .semibold)
                     .foregroundStyle(MP.C.textOnBrand)
@@ -88,7 +88,7 @@ struct HomeView: View {
                     Text("Yeni bir masal yarat")
                         .font(MP.F.displaySM())
                         .foregroundStyle(MP.C.textOnBrand)
-                    Text("Kim, nerede, nasıl — 3 adımda hazır")
+                    Text("İki seçim yap, gerisini biz yazalım")
                         .font(MP.F.bodySM(.semibold))
                         .foregroundStyle(Color.white.opacity(0.85))
                         .fixedSize(horizontal: false, vertical: true)

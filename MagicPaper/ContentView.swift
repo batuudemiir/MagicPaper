@@ -26,7 +26,7 @@ struct ContentView: View {
                         app.selectTab(next, childModeOn: settings.childMode)
                     }
                 ),
-                onCreate: { app.startWizard() }
+                onCreate: { app.startStoryCreation() }
             )
         }
         .ignoresSafeArea(.keyboard)
@@ -40,6 +40,9 @@ struct ContentView: View {
             }
         }
         .overlay { sheetLayer }
+        .fullScreenCover(isPresented: $app.showStoryCreation) {
+            StoryCreationFlow().environmentObject(app).environmentObject(settings)
+        }
         .fullScreenCover(isPresented: $app.showWizard) {
             StoryWizardView(preset: app.wizardPreset).environmentObject(app).environmentObject(settings)
         }
