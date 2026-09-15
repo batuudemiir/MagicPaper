@@ -1422,42 +1422,6 @@ extension StoryGenerationManager {
         UserDefaults.standard.set(Array(seen.suffix(40)), forKey: key)
     }
 
-    func createOfflineTextStory(childProfile: UserProfile, genre: String, theme: String?, settingId: String?, companionId: String?, length: MPStoryLength, tone: MPStoryTone) async throws -> Story {
-        self.isGenerating = true
-        defer { self.isGenerating = false }
-        
-        let historyKey = "read_history_\(childProfile.id.uuidString)"
-        let readIDs = UserDefaults.standard.stringArray(forKey: historyKey) ?? []
-        
-        let provider = TestOfflineTemplateStoryProvider()
-        let request = TestOfflineStoryRequest(
-            childName: childProfile.name,
-            childAge: childProfile.age,
-            genre: genre,
-            theme: theme,
-            settingId: settingId,
-            companionId: companionId,
-            length: length,
-            tone: tone,
-            language: .turkish,
-            seed: UInt64.random(in: 0...UInt64.max),
-            readBlueprintIDs: readIDs
-        )
-        
-        var (story, blueprintID) = try await provider.generateStory(request: request)
-        // Identity comes from the profile, never from the name the provider
-        // happened to personalise with.
-        story.childProfileID = childProfile.id
-        
-        // Okuma geçmişine ekle
-        var updatedIDs = readIDs
-        updatedIDs.append(blueprintID)
-        UserDefaults.standard.set(updatedIDs, forKey: historyKey)
-        
-        self.stories.insert(story, at: 0)
-        saveStories()
-        return story
-    }
 }
 
 /// Adapter onto `StoryEngine.TurkishTextRenderer`.

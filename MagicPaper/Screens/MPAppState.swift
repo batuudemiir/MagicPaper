@@ -105,7 +105,7 @@ final class MPAppState: ObservableObject {
 
     /// Masal dünyaları — geçici olarak eski sihirbaza gider (görselli masal).
     func startWizard(world: MP.World? = nil) {
-        wizardPreset = MPWizardPreset(world: world, startStep: world == nil ? 0 : 2)
+        wizardPreset = MPWizardPreset(world: world, startStep: world == nil ? 0 : 1)
         showWizard = true
     }
 

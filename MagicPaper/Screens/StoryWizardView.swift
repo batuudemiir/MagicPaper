@@ -2,86 +2,7 @@ import SwiftUI
 
 // MARK: - Enums for V1 Story Experience
 
-enum V1StoryType: String, CaseIterable, Identifiable {
-    case macera = "Macera"
-    case sihir = "Sihirli Dünya"
-    case hayvanlar = "Hayvan Dostlar"
-    case kesif = "Keşif"
-    case arkadaslik = "Arkadaşlık"
-    case uyku = "Uyku Zamanı"
-    case surpriz = "Bana sürpriz yap"
-    
-    var id: String { rawValue }
-    var description: String {
-        switch self {
-        case .macera: return "Yeni bir yer keşfet"
-        case .sihir: return "Hayal edilemeyecek bir yere git"
-        case .hayvanlar: return "Yeni bir arkadaşla tanış"
-        case .kesif: return "Bir şey bul, çöz ve keşfet"
-        case .arkadaslik: return "Birlikte bir şey başaralım"
-        case .uyku: return "Sakin ve sıcak bir hikâye"
-        case .surpriz: return "Motor her şeyi seçsin"
-        }
-    }
-    
-    var symbol: String {
-        switch self {
-        case .macera: return "map"
-        case .sihir: return "sparkles"
-        case .hayvanlar: return "pawprint"
-        case .kesif: return "magnifyingglass"
-        case .arkadaslik: return "person.2.circle"
-        case .uyku: return "moon"
-        case .surpriz: return "wand.and.stars"
-        }
-    }
-}
 
-struct V1StoryDirection: Identifiable, Equatable {
-    let text: String
-    var id: String { text }
-    
-    static func options(for type: V1StoryType) -> [V1StoryDirection] {
-        switch type {
-        case .macera:
-            return [
-                "Biraz cesur olalım",
-                "Bir gizem çözelim",
-                "Kayıp bir şeyi bulalım",
-                "Bir arkadaşımıza yardım edelim",
-                "Yeni bir şey keşfedelim",
-                "Bana sürpriz yap"
-            ].map { V1StoryDirection(text: $0) }
-        case .uyku:
-            return [
-                "Rahatlayalım",
-                "Rüya görelim",
-                "Bir yıldızı takip edelim",
-                "Sevdiğimiz bir yere gidelim",
-                "Sıcacık bir son",
-                "Bana sürpriz yap"
-            ].map { V1StoryDirection(text: $0) }
-        case .hayvanlar:
-            return [
-                "Yeni bir arkadaş",
-                "Kaybolan bir hayvan",
-                "Birlikte keşif",
-                "Bir arkadaşına yardım",
-                "Komik bir macera",
-                "Bana sürpriz yap"
-            ].map { V1StoryDirection(text: $0) }
-        default:
-            return [
-                "Biraz cesur olalım",
-                "Bir gizem çözelim",
-                "Kayıp bir şeyi bulalım",
-                "Bir arkadaşımıza yardım edelim",
-                "Yeni bir şey keşfedelim",
-                "Bana sürpriz yap"
-            ].map { V1StoryDirection(text: $0) }
-        }
-    }
-}
 
 enum V1StoryWorld: String, CaseIterable, Identifiable {
     case orman = "Ormanda"
@@ -154,9 +75,6 @@ struct StoryWizardView: View {
     @State private var step = 0
     @State private var childID: UUID?
     
-    // V1 Selections
-    @State private var storyType: V1StoryType?
-    @State private var storyDirection: V1StoryDirection?
     @State private var storyWorld: V1StoryWorld?
     @State private var storyCompanion: V1StoryCompanion?
     
@@ -216,7 +134,7 @@ struct StoryWizardView: View {
                 if step == 0 { dismiss() } else { withAnimation(MP.M.gated(MP.M.easeOut)) { step -= 1 } }
             }
             Spacer(minLength: 0)
-            MPStepDots(total: 4, current: step, labels: ["Kim", "Tür", "Konu", "Dünya"])
+            MPStepDots(total: 2, current: step, labels: ["Kim", "Dünya"])
             Spacer(minLength: 0)
             Color.clear.frame(width: 44, height: 44)
         }
@@ -242,31 +160,16 @@ struct StoryWizardView: View {
     }
 
     private var stepTitle: String {
-        switch step {
-        case 0: return "Kimin için?"
-        case 1: return "Bugün nasıl bir hikâye yaşayalım?"
-        case 2: return "Bu macerada ne olsun?"
-        default: return "Hikâyemiz nerede geçsin?"
-        }
+        step == 0 ? "Kimin için?" : "Hikâyemiz nerede geçsin?"
     }
 
     private var stepSubtitle: String {
-        switch step {
-        case 0: return "Masalın kahramanı kim olsun?"
-        case 1: return ""
-        case 2: return ""
-        default: return ""
-        }
+        step == 0 ? "Masalın kahramanı kim olsun?" : ""
     }
 
     @ViewBuilder
     private var stepContent: some View {
-        switch step {
-        case 0: whoStep
-        case 1: typeStep
-        case 2: directionStep
-        default: worldCompanionStep
-        }
+        if step == 0 { whoStep } else { worldCompanionStep }
     }
 
     // MARK: - Adım 0 — Kim?
@@ -303,54 +206,7 @@ struct StoryWizardView: View {
         storyManager.stories.filter { $0.belongs(to: profile) }.count
     }
 
-    // MARK: - Adım 1 — Story Type
-
-    private var typeStep: some View {
-        VStack(spacing: MP.S.stackGap) {
-            ForEach(V1StoryType.allCases) { t in
-                MPChoiceTile(
-                    title: t.rawValue,
-                    description: t.description,
-                    symbol: t.symbol,
-                    accent: MP.C.brand,
-                    isSelected: storyType == t,
-                    isLocked: false,
-                    layout: .row
-                ) {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { 
-                        storyType = t
-                        // If surprise, we could potentially auto advance all the way, but we just advance to next step for now
-                        step += 1 
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Adım 2 — Story Direction
-
-    private var directionStep: some View {
-        VStack(spacing: MP.S.stackGap) {
-            let options = V1StoryDirection.options(for: storyType ?? .macera)
-            ForEach(options) { d in
-                MPChoiceTile(
-                    title: d.text,
-                    symbol: d.text == "Bana sürpriz yap" ? "wand.and.stars" : "sparkles",
-                    accent: MP.C.brand,
-                    isSelected: storyDirection == d,
-                    isLocked: false,
-                    layout: .row
-                ) {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { 
-                        storyDirection = d
-                        step += 1
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Adım 3 — World & Companion
+    // MARK: - Adım 1 — Dünya ve arkadaş
 
     private var worldCompanionStep: some View {
         VStack(alignment: .leading, spacing: MP.S.x6) {
@@ -416,18 +272,12 @@ struct StoryWizardView: View {
     }
 
     private var canAdvance: Bool {
-        switch step {
-        case 0: return childID != nil
-        case 1: return storyType != nil
-        case 2: return storyDirection != nil
-        case 3: return storyWorld != nil && storyCompanion != nil
-        default: return true
-        }
+        step == 0 ? childID != nil : (storyWorld != nil && storyCompanion != nil)
     }
 
     private var footer: some View {
         VStack(spacing: MP.S.stackGap) {
-            if step == 3 {
+            if step == 1 {
                 HStack(spacing: MP.S.x2) {
                     MPIcon("star.fill", size: 13, weight: .bold)
                         .foregroundStyle(stars > 0 ? MP.C.reward : MP.C.danger)
@@ -439,7 +289,7 @@ struct StoryWizardView: View {
                 }
             }
 
-            if step < 3 {
+            if step < 1 {
                 MPButton(
                     title: "Devam et",
                     size: .lg,
@@ -449,28 +299,14 @@ struct StoryWizardView: View {
                     withAnimation(MP.M.gated(MP.M.easeOut)) { step += 1 }
                 }
             } else {
-                VStack(spacing: MP.S.x2) {
-                    MPButton(
-                        title: "Görselli masal",
-                        size: .lg,
-                        icon: "wand.and.stars",
-                        fullWidth: true,
-                        isDisabled: !canAdvance
-                    ) {
-                        createStory()
-                    }
-                    
-                    MPButton(
-                        title: "Metin masalı oluştur",
-                        variant: .outline,
-                        tone: .brand,
-                        size: .lg,
-                        icon: "book",
-                        fullWidth: true,
-                        isDisabled: !canAdvance
-                    ) {
-                        createOfflineTextStory()
-                    }
+                MPButton(
+                    title: "Görselli masal",
+                    size: .lg,
+                    icon: "wand.and.stars",
+                    fullWidth: true,
+                    isDisabled: !canAdvance
+                ) {
+                    createStory()
                 }
             }
         }
@@ -520,42 +356,6 @@ struct StoryWizardView: View {
         }
     }
     
-    private func createOfflineTextStory() {
-        guard let profile = selectedProfile, let world = storyWorld else { return }
-        
-        isGenerating = true
-        
-        Task {
-            do {
-                // Pass a generic length/tone for now as per V1 specs which remove technical config.
-                let genre = storyType?.rawValue ?? "adventure"
-                let theme = storyDirection?.text
-                let settingId = (storyWorld == .surpriz) ? nil : "setting_forest_001" // simplistic mapping for V1
-                let companionId = (storyCompanion == .surpriz) ? nil : "companion_fox_001"
-                
-                let story = try await storyManager.createOfflineTextStory(
-                    childProfile: profile,
-                    genre: genre,
-                    theme: theme,
-                    settingId: settingId,
-                    companionId: companionId,
-                    length: .orta,
-                    tone: .neseli
-                )
-                
-                pendingStoryID = story.id
-                
-                await MainActor.run {
-                    dismiss()
-                }
-            } catch {
-                print("Offline story generation failed: \(error)")
-                await MainActor.run {
-                    isGenerating = false
-                }
-            }
-        }
-    }
 }
 
 // MARK: - Satır sarmalayıcı
