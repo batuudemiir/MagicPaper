@@ -133,22 +133,25 @@ struct ProfileCreationView: View {
 
     private func create() {
         let finalName = trimmedName
-        profileManager.createProfile(
+        // Use the returned profile rather than `profiles.last`, which is only
+        // the one just created for as long as creation happens to append.
+        let created = profileManager.createProfile(
             name: finalName,
             age: ageRange.representativeAge,
             profileType: .child
         )
-        if let created = profileManager.profiles.last {
-            UserProfile.storeColorIndex(colorIndex, for: created.id)
-            if mode == .addAnother {
-                profileManager.switchProfile(to: created)
-            }
+        UserProfile.storeColorIndex(colorIndex, for: created.id)
+        if mode == .addAnother {
+            profileManager.switchProfile(to: created)
         }
 
         if mode == .first {
             // Akış 1: örnek masallar yeni ada uyarlanır ve ana sayfada
             // "{Ad} için hazırız" toast'ı gösterilir.
-            StoryGenerationManager.shared.adoptSampleStories(childName: finalName)
+            StoryGenerationManager.shared.adoptSampleStories(
+                childName: finalName,
+                childProfileID: created.id
+            )
             UserDefaults.standard.set(finalName, forKey: MPWelcome.pendingKey)
         }
 

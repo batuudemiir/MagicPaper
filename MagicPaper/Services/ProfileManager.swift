@@ -77,10 +77,10 @@ class ProfileManager: ObservableObject {
                let uuid = UUID(uuidString: currentProfileId),
                let profile = profiles.first(where: { $0.id == uuid }) {
                 self.currentProfile = profile
-                print("✅ Aktif profil: \(profile.name)")
+                print("✅ Aktif profil yüklendi")
             } else if let firstProfile = profiles.first {
                 self.currentProfile = firstProfile
-                print("✅ İlk profil aktif edildi: \(firstProfile.name)")
+                print("✅ İlk profil aktif edildi")
             }
         } else {
             self.profiles = []
@@ -89,9 +89,15 @@ class ProfileManager: ObservableObject {
     }
     
     private func saveProfiles() {
-        if let data = try? JSONEncoder().encode(profiles) {
+        // `try?` here meant a failed encode lost every profile with no trace.
+        // Nothing can be done about it at runtime, but it must not be silent.
+        do {
+            let data = try JSONEncoder().encode(profiles)
             userDefaults.set(data, forKey: profilesKey)
             print("💾 \(profiles.count) profil kaydedildi")
+        } catch {
+            assertionFailure("Profiles could not be encoded: \(error)")
+            print("❌ Profiller kaydedilemedi: \(error)")
         }
     }
     
@@ -102,23 +108,32 @@ class ProfileManager: ObservableObject {
     
     // MARK: - Profile Management
     
-    func createProfile(name: String, age: Int, profileType: ProfileType, image: UIImage? = nil) {
+    /// Creates a profile and returns it.
+    ///
+    /// Returning the profile matters: callers previously recovered it with
+    /// `profiles.last`, which is only correct while this method happens to
+    /// append.
+    @discardableResult
+    func createProfile(name: String, age: Int, profileType: ProfileType, image: UIImage? = nil) -> UserProfile {
         let profile = UserProfile(name: name, age: age, profileType: profileType)
-        
-        // Save image if provided
-        if let image = image {
+
+        // Append BEFORE saving the image. `saveProfileImage` records the file
+        // name on the stored profile by looking it up in `profiles`; called
+        // first, that lookup failed silently and every profile created with a
+        // photo wrote a JPEG to Documents that nothing ever referenced again.
+        profiles.append(profile)
+        if let image {
             saveProfileImage(image, for: profile.id)
         }
-        
-        profiles.append(profile)
         saveProfiles()
-        
-        // Set as current if first profile
+
+        // Set as current if this is the only profile.
         if profiles.count == 1 {
             switchProfile(to: profile)
         }
-        
-        print("✅ Yeni profil oluşturuldu: \(name) (\(profileType.displayName))")
+
+        print("✅ Yeni profil oluşturuldu (\(profileType.displayName))")
+        return profiles.last ?? profile
     }
     
     func updateProfile(_ profile: UserProfile, name: String? = nil, age: Int? = nil, image: UIImage? = nil) {
@@ -143,38 +158,52 @@ class ProfileManager: ObservableObject {
             currentProfile = profiles[index]
         }
         
-        print("✅ Profil güncellendi: \(profiles[index].name)")
+        print("✅ Profil güncellendi")
     }
     
-    func deleteProfile(_ profile: UserProfile) {
-        // Don't allow deleting the last profile
+    /// Why a deletion did not happen, when it did not.
+    enum DeletionRefusal: Error { case lastProfile }
+
+    /// Deletes a profile and everything keyed to it.
+    ///
+    /// Returns a failure instead of silently doing nothing: the caller shows a
+    /// delete button, and a button that sometimes does nothing with no
+    /// explanation is worse than one that is disabled.
+    @discardableResult
+    func deleteProfile(_ profile: UserProfile) -> Result<Void, DeletionRefusal> {
         guard profiles.count > 1 else {
             print("⚠️ Son profil silinemez")
-            return
+            return .failure(.lastProfile)
         }
-        
-        // Delete profile image
+
         deleteProfileImage(for: profile.id)
-        
-        // Remove from array
+        // Side tables keyed by profile id. Left behind, these outlive the
+        // profile and are inherited by the next profile to be given the same
+        // UUID — and the avatar colour was visibly wrong for a recreated child.
+        UserDefaults.standard.removeObject(forKey: "mp_avatarColor_\(profile.id.uuidString)")
+        UserDefaults.standard.removeObject(forKey: "read_history_\(profile.id.uuidString)")
+
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()
-        
-        // Switch to another profile if current was deleted
+
         if currentProfile?.id == profile.id {
             if let firstProfile = profiles.first {
                 switchProfile(to: firstProfile)
+            } else {
+                currentProfile = nil
+                userDefaults.removeObject(forKey: currentProfileKey)
             }
         }
-        
-        print("✅ Profil silindi: \(profile.name)")
+
+        print("✅ Profil silindi")
+        return .success(())
     }
     
     func switchProfile(to profile: UserProfile) {
         currentProfile = profile
         userDefaults.set(profile.id.uuidString, forKey: currentProfileKey)
         
-        print("✅ Profil değiştirildi: \(profile.name) (\(profile.profileType.displayName))")
+        print("✅ Profil değiştirildi (\(profile.profileType.displayName))")
     }
     
     // MARK: - Onboarding
@@ -283,19 +312,18 @@ class ProfileManager: ObservableObject {
             // Clean up old profile data
             userDefaults.removeObject(forKey: legacyProfileKey)
             
-            print("✅ Eski profil yeni sisteme taşındı: \(newProfile.name)")
+            print("✅ Eski profil yeni sisteme taşındı")
         }
     }
     
+    /// The current profile, or a blank one.
+    ///
+    /// Read-only on purpose. It used to be settable, and the setter silently
+    /// discarded the write when there was no current profile, and silently
+    /// dropped every field except name and age when there was. Callers that
+    /// want to change a profile call `updateProfile` and can see what it does.
     var profile: UserProfile {
-        get {
-            currentProfile ?? UserProfile()
-        }
-        set {
-            if let current = currentProfile {
-                updateProfile(current, name: newValue.name, age: newValue.age)
-            }
-        }
+        currentProfile ?? UserProfile()
     }
     
     func updateProfile(name: String, image: UIImage? = nil) {

@@ -140,7 +140,7 @@ struct HomeView: View {
 
     private var recentStories: [Story] {
         storyManager.stories
-            .filter { $0.childName == activeName || $0.childName.isEmpty }
+            .filter { $0.belongs(to: profileManager.currentProfile) }
             .prefix(4)
             .map { $0 }
     }

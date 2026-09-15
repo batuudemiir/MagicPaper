@@ -300,7 +300,7 @@ struct StoryWizardView: View {
     }
 
     private func storyCount(for profile: UserProfile) -> Int {
-        storyManager.stories.filter { $0.childName == profile.name }.count
+        storyManager.stories.filter { $0.belongs(to: profile) }.count
     }
 
     // MARK: - Adım 1 — Story Type
@@ -507,6 +507,7 @@ struct StoryWizardView: View {
         Task {
             pendingStoryID = await storyManager.createCustomStory(
                 childName: profile.name,
+                childProfileID: profile.id,
                 age: profile.age,
                 gender: .other,
                 theme: world.mpWorld.storyTheme,

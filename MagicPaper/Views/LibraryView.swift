@@ -87,8 +87,8 @@ struct LibraryView: View {
     private var visibleStories: [Story] {
         var list = storyManager.stories
 
-        if !allChildren, let active = profileManager.currentProfile?.name {
-            list = list.filter { $0.childName == active || $0.childName.isEmpty }
+        if !allChildren, let active = profileManager.currentProfile {
+            list = list.filter { $0.belongs(to: active) }
         }
 
         switch filter {

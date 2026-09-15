@@ -41,6 +41,9 @@ class StoryGenerationManager: ObservableObject {
     /// - Returns: Story ID for tracking
     func createCustomStory(
         childName: String,
+        /// Whose story this is. Optional only so older call sites keep
+        /// compiling; every real caller passes it.
+        childProfileID: UUID? = nil,
         age: Int,
         gender: Gender,
         theme: StoryTheme,
@@ -66,6 +69,7 @@ class StoryGenerationManager: ObservableObject {
             id: storyId,
             title: initialTitle,
             childName: childName,
+            childProfileID: childProfileID,
             theme: theme,
             language: language,
             status: .uploading,
@@ -106,6 +110,7 @@ class StoryGenerationManager: ObservableObject {
     /// - Returns: Story ID for tracking
     func createCategoryBasedStory(
         childName: String,
+        childProfileID: UUID? = nil,
         age: Int,
         gender: Gender,
         category: DailyStoryCategory,
@@ -131,6 +136,7 @@ class StoryGenerationManager: ObservableObject {
             id: storyId,
             title: initialTitle,
             childName: childName,
+            childProfileID: childProfileID,
             theme: theme,
             language: language,
             status: .uploading,
@@ -968,13 +974,14 @@ class StoryGenerationManager: ObservableObject {
     /// İlk profil oluşturulduğunda örnek masallar yeni çocuğun adına uyarlanır
     /// (04-STATE-INTERACTIONS.md, akış 1) — aksi hâlde yeni kullanıcının ana
     /// sayfası boş görünür.
-    func adoptSampleStories(childName: String) {
+    func adoptSampleStories(childName: String, childProfileID: UUID? = nil) {
         guard !childName.isEmpty else { return }
         let samples = ["Zephyr", "Luna"]
         var changed = false
         for index in stories.indices where samples.contains(stories[index].childName) {
             let old = stories[index].childName
             stories[index].childName = childName
+            stories[index].childProfileID = childProfileID
             stories[index].title = stories[index].title.replacingOccurrences(of: old, with: childName)
             for pageIndex in stories[index].pages.indices {
                 stories[index].pages[pageIndex].text =
@@ -1384,7 +1391,10 @@ extension StoryGenerationManager {
             readBlueprintIDs: readIDs
         )
         
-        let (story, blueprintID) = try await provider.generateStory(request: request)
+        var (story, blueprintID) = try await provider.generateStory(request: request)
+        // Identity comes from the profile, never from the name the provider
+        // happened to personalise with.
+        story.childProfileID = childProfile.id
         
         // Okuma geçmişine ekle
         var updatedIDs = readIDs

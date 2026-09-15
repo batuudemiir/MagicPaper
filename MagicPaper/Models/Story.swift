@@ -4,7 +4,17 @@ import SwiftUI
 struct Story: Identifiable, Codable, Equatable {
     let id: UUID
     var title: String
+    /// The child's name, for display and for personalising the text.
+    ///
+    /// **Not identity.** Use `childProfileID` to decide whose story this is:
+    /// a name changes, and two children can share one.
     var childName: String
+    /// Which profile this story belongs to.
+    ///
+    /// Optional because stories written before this field existed decode with
+    /// `nil`, and are matched by name instead (see `belongs(to:)`). New stories
+    /// always carry it.
+    var childProfileID: UUID?
     var theme: StoryTheme
     var language: StoryLanguage
     var status: StoryStatus
@@ -20,10 +30,11 @@ struct Story: Identifiable, Codable, Equatable {
         lhs.id == rhs.id
     }
     
-    init(id: UUID = UUID(), title: String, childName: String, theme: StoryTheme, language: StoryLanguage, status: StoryStatus = .uploading, pages: [StoryPage] = [], coverImageFileName: String? = nil, coverImageUrl: String? = nil) {
+    init(id: UUID = UUID(), title: String, childName: String, childProfileID: UUID? = nil, theme: StoryTheme, language: StoryLanguage, status: StoryStatus = .uploading, pages: [StoryPage] = [], coverImageFileName: String? = nil, coverImageUrl: String? = nil) {
         self.id = id
         self.title = title
         self.childName = childName
+        self.childProfileID = childProfileID
         self.theme = theme
         self.language = language
         self.status = status
@@ -33,6 +44,29 @@ struct Story: Identifiable, Codable, Equatable {
         self.createdAt = Date()
         self.lastReadPage = nil
         self.currentProgress = nil
+    }
+}
+
+extension Story {
+    /// Whether this story belongs to a profile.
+    ///
+    /// Stated once because it was previously written out at six call sites, in
+    /// two different ways: four compared names, and two also admitted any story
+    /// whose name was empty — which quietly showed one child's story in every
+    /// other child's library.
+    ///
+    /// Prefers the id. Falls back to the name only for stories saved before the
+    /// id existed, and never treats an empty name as a match.
+    func belongs(to profile: UserProfile) -> Bool {
+        if let childProfileID { return childProfileID == profile.id }
+        return !childName.isEmpty && childName == profile.name
+    }
+
+    /// The same test against an optional profile, for the many call sites that
+    /// read `currentProfile`.
+    func belongs(to profile: UserProfile?) -> Bool {
+        guard let profile else { return false }
+        return belongs(to: profile)
     }
 }
 

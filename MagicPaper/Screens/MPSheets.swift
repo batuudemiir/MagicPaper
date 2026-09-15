@@ -38,7 +38,7 @@ struct ProfilePickerSheet: View {
     }
 
     private func count(_ p: UserProfile) -> Int {
-        storyManager.stories.filter { $0.childName == p.name }.count
+        storyManager.stories.filter { $0.belongs(to: p) }.count
     }
 }
 
@@ -224,9 +224,15 @@ struct ProfileEditSheet: View {
 
                 if profileManager.profiles.count > 1 {
                     MPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
-                        profileManager.deleteProfile(profile)
-                        app.sheet = nil
-                        app.showToast("Profil silindi", symbol: "trash", tone: .danger)
+                        // Report what actually happened: the toast used to
+                        // fire even when the deletion was refused.
+                        switch profileManager.deleteProfile(profile) {
+                        case .success:
+                            app.sheet = nil
+                            app.showToast("Profil silindi", symbol: "trash", tone: .danger)
+                        case .failure(.lastProfile):
+                            app.showToast("Son profil silinemez", symbol: "exclamationmark.triangle", tone: .danger)
+                        }
                     }) { EmptyView() }
                 }
             }
