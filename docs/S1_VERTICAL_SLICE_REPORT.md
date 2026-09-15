@@ -13,12 +13,17 @@ diversity gate, no persistence, no UI, no changes to V1 content.
 The key was hard-coded in three files: `FalImageService.swift`,
 `FalImageGenerator.swift`, `FalAIImageGenerator.swift`.
 
-**A correction first.** Every prior report — K5, J7, R6, P5 — says the key is
-"committed to git / in git history". **This is not a git repository.**
-`git rev-parse` fails at every level from the project root upward. That claim was
-inherited from the original audits and never checked, including by me. It is in
-source files, which is bad enough; a git-history exposure is not something I can
-verify and I should not have repeated it.
+**A correction, since retracted.** This report originally claimed the repository
+was not under version control and that the "key is in git history" finding
+(K5/J7/R6/P5) was therefore unverifiable. **That was wrong.** I ran
+`git rev-parse` from `MagicPaperAPP/`, one level *above* the repository, which
+is rooted at `MagicPaperAPP/MagicPaper/`. There are 40 commits.
+
+The original audits were right: the key **is** in history. It was introduced in
+`c435ebc Initial Commit` (2026-01-28); `141f67d` (2026-01-30) removed it from
+some files but not from the three services, where it remained until today.
+Rotation is genuinely urgent, and removing it from the working tree does not
+remove it from history.
 
 ### What changed
 
@@ -198,16 +203,19 @@ error carrying why each candidate was rejected.
 | V1 content unchanged | ⚠️ see below |
 
 **On V1 content (D2).** Structurally unchanged: 12 blueprints with 0 beats, 52
-templates with 0 `realizesBeat`, and the pilot id absent. But
-`shared_content_library_v2.json` carries a modification time of today 18:13 —
-and so does the app's duplicate copy, *to the same minute*, while every other V1
-resource still dates from 09-12/09-13. I did not write either file. Both remain
-byte-identical to each other (`e8251e1bacb214e1a21885032abda56e0146095a`), which
-makes a content edit implausible; the likely explanation is an mtime-only touch
-from `~/Desktop` sync, the same root cause as the `com.apple.macl` xattr problem
-found in I1. **Without git there is no baseline to diff against**, so I am
-recording that sha as one. This is a reason to put the repository under version
-control before more content work.
+templates with 0 `realizesBeat`, and the pilot id absent. Both copies of
+`shared_content_library_v2.json` carry a modification time of today 18:13 — *to
+the same minute*, in two different directories, while every other V1 resource
+still dates from 09-12/09-13. I did not write either. They remain byte-identical
+to each other (`e8251e1bacb214e1a21885032abda56e0146095a`), which makes a content
+edit implausible; the likely explanation is an mtime-only touch from `~/Desktop`
+sync, the same root cause as the `com.apple.macl` xattr problem found in I1.
+
+I originally wrote that git could settle this and did not exist. Git exists —
+and it cannot settle it either, for a different reason: **the catalog was never
+tracked.** `StoryEngine/Sources/.../Resources/templates/` was untracked until it
+was committed today, so there is no earlier revision to diff against. The sha
+above is the baseline from here on.
 
 ---
 
@@ -219,7 +227,7 @@ control before more content work.
 | S1.2 | **Two settings, two companions, two discoveries.** Enough to prove the loop, not enough for variety. Only 2 of the 5 Phase 4 matrix rows are admissible | content authoring |
 | S1.3 | No scoring, novelty, cooldown or diversity gate — variant choice is a seeded pick from all candidates | I3 proper |
 | S1.4 | Nothing persists. `ComposedStory` is returned, not stored, and nothing maps it to `MagicPaper.Story` | I6 |
-| S1.5 | The repository is **not under version control**. No baseline, no history, no way to diff content | **recommended now** |
+| S1.5 | ~~Not under version control~~ — **wrong, see above.** The repo exists (40 commits) and the engine work is now committed. The real gap was that the catalog had never been tracked | resolved |
 | S1.6 | fal.ai key is out of source but still readable in the shipped `.app`. **Rotate it** | you |
 | S1.7 | 49 of 52 V1 templates are duplicate filler. They still ship and still decode | I8 |
 
@@ -236,7 +244,8 @@ Three candidates, in the order I would take them:
    content to score.
 3. **Pilots B and C** — Families I and III, against a loop that is known to work.
 
-And independently: **put this under git.** S1.5 is the reason the V1-content
-question above has an "⚠️" instead of a "✅".
+The V1-content question above keeps its "⚠️": the catalog is tracked from today
+onward, but there is no earlier revision to prove today's mtime change was
+harmless.
 
 **Stopping here.**
