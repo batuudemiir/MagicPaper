@@ -11,11 +11,11 @@
   "variants": [
     {
       "id": "na_neutral_01",
-      "text": "{{child.name}} o sabah {{setting.name}}'a erkenden gitti. Her şey her zamanki gibiydi. Sonra durdu. Tam ilerisinde {{discovery.phrase}} duruyordu.",
+      "text": "{{child.name}} o sabah {{setting.name}}'a erkenden gitti. Her şey her zamanki gibiydi. Sonra durdu. Tam ilerisinde {{discovery.name}} duruyordu.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [],
       "discoveryTraits": [
@@ -25,11 +25,11 @@
     },
     {
       "id": "na_neutral_02",
-      "text": "{{setting.name}}'da o gün hava çok sakindi. {{child.name}} ıslık çala çala yürüyordu. Birden ıslığı kesildi. Az ötede {{discovery.phrase}} bekliyordu.",
+      "text": "{{setting.name}}'da o gün hava çok sakindi. {{child.name}} ıslık çala çala yürüyordu. Birden ıslığı kesildi. Az ötede {{discovery.name}} bekliyordu.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [],
       "discoveryTraits": [
@@ -39,11 +39,11 @@
     },
     {
       "id": "na_neutral_03",
-      "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.phrase}} tam oradaydı, apaçık.",
+      "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.name}} tam oradaydı, apaçık.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [],
       "discoveryTraits": [
@@ -53,11 +53,11 @@
     },
     {
       "id": "na_neutral_04",
-      "text": "Her gün aynı yoldan geçerdi {{child.name}}. Ama bugün {{setting.name}} bambaşkaydı. Yolun tam ortasında {{discovery.phrase}} duruyor, onu bekliyordu.",
+      "text": "Her gün aynı yoldan geçerdi {{child.name}}. Ama bugün {{setting.name}} bambaşkaydı. Yolun tam ortasında {{discovery.name}} duruyor, onu bekliyordu.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [],
       "discoveryTraits": [
@@ -67,11 +67,11 @@
     },
     {
       "id": "na_neutral_05",
-      "text": "{{child.name}} {{setting.name}}'a vardığında içinden bir ses \"dur\" dedi. Sebebini önce anlamadı. Olduğu yerde biraz bekledi. Sonra {{discovery.phrase}} gözüne çarptı.",
+      "text": "{{child.name}} {{setting.name}}'a vardığında içinden bir ses \"dur\" dedi. Sebebini önce anlamadı. Olduğu yerde biraz bekledi. Sonra {{discovery.name}} gözüne çarptı.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [],
       "discoveryTraits": [
@@ -160,11 +160,11 @@
     },
     {
       "id": "na_weather_01",
-      "text": "Yağmur yeni dinmişti. {{child.name}} hemen {{setting.name}}'a koştu, çünkü yağmurdan sonrası en güzeldir. Islak toprakta {{discovery.phrase}} göze çarpıyordu.",
+      "text": "Yağmur yeni dinmişti. {{child.name}} hemen {{setting.name}}'a koştu, çünkü yağmurdan sonrası en güzeldir. Islak toprakta {{discovery.name}} göze çarpıyordu.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [
         "hasWeather"
@@ -176,11 +176,11 @@
     },
     {
       "id": "na_weather_02",
-      "text": "Rüzgar bütün sabah esmişti. Sonunda durdu. {{setting.name}} bambaşka görünüyordu. {{child.name}} yavaşça yaklaştı. Rüzgar {{discovery.phrase}} ortaya çıkarmıştı sanki.",
+      "text": "Rüzgar bütün sabah esmişti. Sonunda durdu. {{setting.name}} bambaşka görünüyordu. {{child.name}} yavaşça yaklaştı. Rüzgar {{discovery.name}} ortaya çıkarmıştı sanki.",
       "requiredSlots": [
         "child.name",
         "setting.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [
         "hasWeather"
@@ -222,10 +222,10 @@
     },
     {
       "id": "na_enclosed_01",
-      "text": "İçerisi dışarıdan serindi. {{child.name}} bir iki adım attı ve gözleri karanlığa alıştı. Tam o sırada {{discovery.phrase}}'i fark etti.",
+      "text": "İçerisi dışarıdan serindi. {{child.name}} bir iki adım attı ve gözleri karanlığa alıştı. Tam o sırada {{discovery.name}}'i fark etti.",
       "requiredSlots": [
         "child.name",
-        "discovery.phrase"
+        "discovery.name"
       ],
       "settingTraits": [
         "isEnclosed"

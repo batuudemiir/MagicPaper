@@ -66,7 +66,7 @@ final class BeatCorpusRenderTests: XCTestCase {
                         let slots: [String: TurkishTextRenderer.Slot] = [
                             "child.name": .init(childName, isProperNoun: true),
                             "setting.name": .init(settingName, isProperNoun: true, hasPossessiveEnding: possessive),
-                            "discovery.phrase": .init("parlayan bir ışık", isProperNoun: false),
+                            "discovery.name": .init("parlayan bir ışık", isProperNoun: false),
                             "companion.name": .init("Kıpır", isProperNoun: true),
                             "companion.type": .init("tilki", isProperNoun: false)
                         ]
@@ -111,7 +111,7 @@ final class BeatCorpusRenderTests: XCTestCase {
                 let r = TurkishTextRenderer.render(variant.text, slots: [
                     "child.name": .init("Yeliz", isProperNoun: true),
                     "setting.name": .init("Fısıldayan Orman", isProperNoun: true),
-                    "discovery.phrase": .init("parlayan bir ışık", isProperNoun: false),
+                    "discovery.name": .init("parlayan bir ışık", isProperNoun: false),
                     "companion.name": .init("Pırıltı", isProperNoun: true),
                     "companion.type": .init("ateşböceği", isProperNoun: false, hasPossessiveEnding: true)
                 ])
@@ -154,7 +154,7 @@ final class BeatCorpusRenderTests: XCTestCase {
                     let slots: [String: TurkishTextRenderer.Slot] = [
                         "child.name": .init(childName, isProperNoun: true),
                         "setting.name": .init(settingName, isProperNoun: true, hasPossessiveEnding: possessive),
-                        "discovery.phrase": .init("parlayan bir ışık", isProperNoun: false)
+                        "discovery.name": .init("parlayan bir ışık", isProperNoun: false)
                     ]
                     let r = TurkishTextRenderer.render(variant.text, slots: slots)
                     XCTAssertTrue(

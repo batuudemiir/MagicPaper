@@ -66,8 +66,18 @@ enum ReferenceArcs {
 
 final class BeatVocabularyTests: XCTestCase {
 
-    func testTheVocabularyIsTwentyEightBeats() {
-        XCTAssertEqual(StoryBeat.allCases.count, 28)
+    /// Twenty-eight in `BLUEPRINT_ARCHITECTURE.md` §3.2, plus the six the
+    /// fourteen-blueprint catalog added in Phase 5 — `speak_for`,
+    /// `give_up_something`, `retrace`, `exchange_views`, `let_go`, `prepare`.
+    /// Each is a sibling of a beat already present, differing in how the way
+    /// forward is found, not in kind. The vocabulary is still closed; it grew
+    /// once, on the record.
+    func testTheVocabularyIsThirtyFourBeats() {
+        XCTAssertEqual(StoryBeat.allCases.count, 34)
+        for added: StoryBeat in [.speakFor, .giveUpSomething, .retrace,
+                                 .exchangeViews, .letGo, .prepare] {
+            XCTAssertFalse(added.produces.isEmpty, "\(added.rawValue) changes nothing.")
+        }
     }
 
     func testEveryStateKeyIsProducedAndConsumed() {
@@ -83,13 +93,22 @@ final class BeatVocabularyTests: XCTestCase {
         }
     }
 
-    func testSevenBeatsResolveAndTheChildIsAlwaysTheAgent() {
+    /// Was seven; the five new resolution variants bring it to twelve. What has
+    /// not changed is the rule that matters: in every one of them the child is
+    /// the agent. The companion may contribute knowledge or hands, never be the
+    /// subject of the beat that resolves the story.
+    func testTwelveBeatsResolveAndTheChildIsAlwaysTheAgent() {
         let resolving = Set(StoryBeat.resolvingBeats)
         XCTAssertEqual(resolving, [
             .insight, .cooperativeEffort, .persist, .askForHelp,
-            .findOwnCourage, .revealTruth, .patientWait
+            .findOwnCourage, .revealTruth, .patientWait,
+            .speakFor, .giveUpSomething, .retrace, .exchangeViews, .letGo
         ])
-        XCTAssertEqual(resolving.count, 7)
+        XCTAssertEqual(resolving.count, 12)
+        // `restore` and `succeed` end a story; they must not also be the beat
+        // that works out how.
+        XCTAssertFalse(resolving.contains(.restore))
+        XCTAssertFalse(resolving.contains(.succeed))
     }
 
     func testTheOnlyDisjunctiveRequirementIsCommit() {

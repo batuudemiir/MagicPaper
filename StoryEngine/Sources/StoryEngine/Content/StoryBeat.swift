@@ -54,13 +54,44 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
     case warmClose = "warm_close"
     case carryForward = "carry_forward"
 
+    // MARK: Resolution variants (Phase 5)
+    //
+    // Six beats the fourteen-blueprint catalog uses that the original
+    // twenty-eight did not contain. They are not new *kinds* of move: each is a
+    // sibling of a beat already here, differing in how the way forward is
+    // found. Their preconditions and products are fixed by where the catalog's
+    // arcs put them, and every one of those arcs is validated in CI — an
+    // invented requirement would show up as a broken arc, not as an opinion.
+
+    /// The child says what someone else cannot. Family III's resolution when
+    /// the companion has no voice of its own.
+    case speakFor = "speak_for"
+    /// The child gives up something of theirs. Family III resolving by cost
+    /// rather than by cooperation.
+    case giveUpSomething = "give_up_something"
+    /// The child goes back over the ground already covered. Family IV's
+    /// alternative to persisting forward.
+    case retrace
+    /// The child listens, and sees the same thing differently. Family V
+    /// resolving through the companion rather than by direct revelation.
+    case exchangeViews = "exchange_views"
+    /// The child releases what they cared for, because that is the good
+    /// outcome. Family VI.
+    case letGo = "let_go"
+    /// The child gets ready before trying. An attempt beat, sibling to
+    /// `small_step`.
+    case prepare
+
     /// What must already be true for this beat to be usable.
     public var requires: BeatRequirement {
         switch self {
         case .establishOrdinary, .noticeAnomaly, .meetCompanion, .hesitate:
             return .none
-        case .approach, .examine, .formBelief, .takeCharge:
+        case .approach, .examine, .formBelief:
             return .all([.anomalyKnown])
+        // Taking charge is taking charge *of* someone.
+        case .takeCharge:
+            return .all([.anomalyKnown, .companionPresent])
         case .companionOffers:
             return .all([.companionPresent])
         case .receiveAppeal:
@@ -68,20 +99,32 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
         // The only disjunction: you can commit to an anomaly or to a stated need.
         case .commit:
             return .any([.anomalyKnown, .needKnown])
-        case .beliefFails, .revealTruth:
+        case .beliefFails:
             return .all([.beliefFormed])
+        case .revealTruth:
+            return .all([.beliefFormed, .attemptMade, .obstacleNamed])
         case .firstAttempt, .obstacleRaises, .tend:
             return .all([.committed])
+        // Family I's insight combines what was observed with what was tried.
+        // Requiring only an obstacle let a belief be formed on page 4 and never
+        // read again.
         case .insight:
-            return .all([.obstacleNamed])
-        case .cooperativeEffort, .askForHelp:
-            return .all([.companionPresent, .obstacleNamed])
-        case .persist:
+            return .all([.beliefFormed, .attemptMade, .obstacleNamed])
+        case .cooperativeEffort, .askForHelp, .speakFor, .exchangeViews:
+            return .all([.companionPresent, .obstacleNamed, .attemptMade])
+        case .persist, .retrace:
             return .all([.attemptMade, .obstacleNamed])
-        case .smallStep:
-            return .all([.hesitationNamed])
+        case .giveUpSomething:
+            return .all([.committed, .obstacleNamed])
+        case .letGo:
+            return .all([.attemptMade])
+        // The companion must be there: a child taking the first small step
+        // with nobody beside them is a different story, and page 3 was
+        // otherwise deletable.
+        case .smallStep, .prepare:
+            return .all([.hesitationNamed, .companionPresent])
         case .findOwnCourage:
-            return .all([.hesitationNamed, .attemptMade])
+            return .all([.hesitationNamed, .attemptMade, .obstacleNamed])
         case .patientWait:
             return .all([.attemptMade])
         case .succeed:
@@ -106,9 +149,10 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
         case .formBelief: return [.beliefFormed]
         case .beliefFails, .obstacleRaises: return [.obstacleNamed]
         case .revealTruth, .insight, .cooperativeEffort, .persist,
-             .askForHelp, .findOwnCourage, .patientWait:
+             .askForHelp, .findOwnCourage, .patientWait,
+             .speakFor, .giveUpSomething, .retrace, .exchangeViews, .letGo:
             return [.solutionKnown]
-        case .firstAttempt, .smallStep, .tend: return [.attemptMade]
+        case .firstAttempt, .smallStep, .tend, .prepare: return [.attemptMade]
         case .hesitate: return [.hesitationNamed, .obstacleNamed]
         case .takeCharge: return [.committed, .needKnown]
         case .succeed, .restore: return [.resolved]

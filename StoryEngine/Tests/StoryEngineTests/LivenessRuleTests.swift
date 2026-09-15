@@ -18,11 +18,20 @@ final class LivenessRuleTests: XCTestCase {
         BeatSlot(pageNumber: n, role: role, beat: beat, supportingBeat: supporting, emotion: emotion)
     }
 
-    /// Family II's reference arc: the companion arrives on page 3 and no beat
-    /// ever requires `companionPresent` again.
-    private var companionNeverUsed: [BeatSlot] {
+    /// An arc with a page whose product nothing reads.
+    ///
+    /// This used to be Family II's reference arc, where the companion arrived on
+    /// page 3 and no beat required `companionPresent` again. **That arc can no
+    /// longer be written**: the blueprint session tightened `small_step` to
+    /// require a companion precisely because of this, and the liveness rule
+    /// stopped flagging page 3 the moment they did — two independent routes to
+    /// the same conclusion.
+    ///
+    /// So the fixture moved to the same failure one page earlier: a belief is
+    /// formed on page 2 and this arc never reads it back.
+    private var beliefNeverUsed: [BeatSlot] {
         [slot(1, .hook, .noticeAnomaly, nil, .curiosity),
-         slot(2, .discovery, .approach, nil, .wonder),
+         slot(2, .discovery, .formBelief, nil, .wonder),
          slot(3, .companion, .meetCompanion, nil, .warmth),
          slot(4, .problem, .hesitate, nil, .hesitation),
          slot(5, .attempt, .smallStep, nil, .effort),
@@ -31,47 +40,55 @@ final class LivenessRuleTests: XCTestCase {
          slot(8, .emotionalEnding, .selfRecognize, .warmClose, .pride)]
     }
 
-    func testAnUnusedCompanionPageIsFlagged() {
-        let result = validate(companionNeverUsed)
+    func testAPageWhoseProductIsNeverReadIsFlagged() {
+        let result = validate(beliefNeverUsed)
         let inert = result.issues.filter { $0.code == "inert_page" }
-        XCTAssertEqual(inert.map(\.pageNumber), [3])
-        XCTAssertTrue(inert[0].message.contains("companionPresent"))
+        XCTAssertEqual(inert.map(\.pageNumber), [2])
+        XCTAssertTrue(inert[0].message.contains("beliefFormed"))
+    }
+
+    /// The fix the blueprint session made, checked from this side: with
+    /// `small_step` requiring a companion, a Family II companion page is
+    /// load-bearing and the rule says so by staying quiet about it.
+    func testTighteningAPreconditionIsWhatMakesAPageLoadBearing() {
+        XCTAssertTrue(
+            StoryBeat.smallStep.requires.keys.contains(.companionPresent),
+            "The tightened precondition was lost.")
+        let result = validate(beliefNeverUsed)
+        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 3 })
     }
 
     /// The point of grading: a weak page is not an incoherent one. Making this
     /// fatal would make every blueprint in the library unselectable overnight,
     /// for a defect whose real fix is in the beat vocabulary.
     func testALivenessWarningDoesNotInvalidateTheBlueprint() {
-        let result = validate(companionNeverUsed)
+        let result = validate(beliefNeverUsed)
         XCTAssertTrue(result.isValid, "An inert page must not block shipping.")
         XCTAssertTrue(result.fatalIssues.isEmpty)
         XCTAssertEqual(result.warnings.map(\.code), ["inert_page"])
     }
 
-    /// Consuming the state **on the same page** does not rescue it, and this is
-    /// the subtlety worth pinning: deleting page 3 deletes `companion_offers`
-    /// along with `meet_companion`, so nothing downstream ever misses
-    /// `companionPresent`. The page as a whole is still removable.
+    /// Consuming the state **on the same page** does not rescue it: deleting the
+    /// page deletes the consumer too, so nothing downstream ever misses it.
     ///
     /// This corrects my own first expectation. The rule is stricter than
-    /// "somebody reads it" and it is right to be: the question is whether the
+    /// "somebody reads it" and is right to be: the question is whether the
     /// *page* earns its place, not whether the state is technically consumed.
     func testSamePageConsumptionDoesNotRescueThePage() {
-        var slots = companionNeverUsed
-        slots[2] = slot(3, .companion, .meetCompanion, .companionOffers, .warmth)
+        var slots = beliefNeverUsed
+        slots[1] = slot(2, .discovery, .formBelief, .beliefFails, .wonder)
         let result = validate(slots)
-        XCTAssertTrue(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 3 },
-                      "Deleting page 3 removes the consumer too, so the story is unchanged.")
+        XCTAssertTrue(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 2 },
+                      "Deleting page 2 removes the consumer too, so the story is unchanged.")
     }
 
-    /// A *later* page consuming it is what makes page 3 load-bearing.
+    /// A *later* page consuming it is what makes page 2 load-bearing.
     func testALaterConsumerMakesThePageLive() {
-        var slots = companionNeverUsed
-        slots[2] = slot(3, .companion, .meetCompanion, .receiveAppeal, .sympathy)
-        slots[6] = slot(7, .resolution, .restore, nil, .relief)
+        var slots = beliefNeverUsed
+        slots[3] = slot(4, .problem, .hesitate, .beliefFails, .hesitation)
         let result = validate(slots)
-        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 3 },
-                       "restore requires needKnown, which only page 3 produces.")
+        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 2 },
+                       "belief_fails requires beliefFormed, which only page 2 produces.")
     }
 
     // MARK: - The two exemptions
@@ -80,7 +97,7 @@ final class LivenessRuleTests: XCTestCase {
     /// `unsettled_landing` govern it instead. Without this exemption every
     /// blueprint ever written fails.
     func testTheFinalPageIsNeverFlagged() {
-        let result = validate(companionNeverUsed)
+        let result = validate(beliefNeverUsed)
         XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 8 })
     }
 
@@ -88,10 +105,12 @@ final class LivenessRuleTests: XCTestCase {
     /// not making an unread claim — whether an orientation beat earns its page
     /// is a different question, and the beat vocabulary would have to answer it.
     func testAPageThatProducesNothingIsNotJudged() {
-        let result = validate(companionNeverUsed)
-        // Page 2 is `approach`, which produces nothing at all.
+        var slots = beliefNeverUsed
+        slots[1] = slot(2, .discovery, .approach, nil, .wonder)
         XCTAssertEqual(StoryBeat.approach.produces, [])
-        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 2 })
+        XCTAssertFalse(validate(slots).issues.contains {
+            $0.code == "inert_page" && $0.pageNumber == 2
+        })
     }
 
     // MARK: - It must not fire on genuinely load-bearing pages
@@ -119,18 +138,18 @@ final class LivenessRuleTests: XCTestCase {
     /// A page whose removal breaks a later precondition is load-bearing by
     /// definition and must never be flagged, whatever it produces.
     func testAPageWhoseRemovalBreaksTheStoryIsNeverFlagged() {
-        let result = validate(companionNeverUsed)
+        let result = validate(beliefNeverUsed)
         // Page 4 is `hesitate`; without it `small_step` and `find_own_courage`
         // both lose `hesitationNamed`.
         XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 4 })
-        // Page 1 is `notice_anomaly`; without it `approach` loses `anomalyKnown`.
-        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 1 })
+        // Page 3 is `meet_companion`; `small_step` now needs it.
+        XCTAssertFalse(result.issues.contains { $0.code == "inert_page" && $0.pageNumber == 3 })
     }
 
     func testAnArcThatNeverResolvesIsNotAlsoReportedAsInert() {
         let slots = [
             slot(1, .hook, .noticeAnomaly, nil, .curiosity),
-            slot(2, .discovery, .approach, nil, .wonder),
+            slot(2, .discovery, .examine, nil, .wonder),
             slot(3, .companion, .meetCompanion, nil, .warmth)
         ]
         let result = validate(slots)
@@ -158,13 +177,27 @@ final class LivenessRuleTests: XCTestCase {
             if !pages.isEmpty { flagged[blueprint.family?.rawValue ?? "?"] = pages.sorted() }
         }
 
-        // Family IV is the only one with nothing inert: its companion states a
-        // need that the resolution reads back.
+        // Measured after adopting the blueprint session's tightened
+        // preconditions. Three of the five became clean without a word of
+        // content changing — `small_step` needing a companion, and
+        // `cooperative_effort` and `insight` needing an attempt, made those
+        // pages load-bearing.
         XCTAssertNil(flagged["absence"], "absence: \(flagged["absence"] ?? [])")
-        XCTAssertEqual(flagged["threshold"], [3])
+        XCTAssertNil(flagged["threshold"], "threshold: \(flagged["threshold"] ?? [])")
+        XCTAssertNil(flagged["appeal"], "appeal: \(flagged["appeal"] ?? [])")
+
+        // The two that remain are genuine content findings, not engine bugs.
+        // In both, the companion arrives and nothing later depends on it:
+        //
+        // - Family I: the catalog's §2.1 gives the companion one ordinary fact
+        //   on page 3 that page 6 combines with the child's observation. The
+        //   beat vocabulary does not encode "supplies a fact", so the
+        //   contribution is real in the prose and invisible to the rule.
+        // - Family V: this pilot resolves with `reveal_truth`, which needs no
+        //   companion. The catalog's own V-2 resolves with `exchange_views`,
+        //   which does — the fix exists, in content we have not ported yet.
         XCTAssertEqual(flagged["unexplained"], [3])
-        XCTAssertEqual(flagged["misreading"], [3, 5])
-        XCTAssertEqual(flagged["appeal"], [5])
+        XCTAssertEqual(flagged["misreading"], [3])
     }
 
     func testAnInertPageStillLoadsTheCatalog() throws {

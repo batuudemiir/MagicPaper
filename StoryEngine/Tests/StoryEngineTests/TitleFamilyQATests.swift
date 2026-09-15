@@ -18,11 +18,11 @@ final class TitleFamilyQATests: XCTestCase {
     }
 
     // The five families from BLUEPRINT_ARCHITECTURE.md §9.
-    private let T1 = "{{child.name}} ve {{discovery.phrase}}"
+    private let T1 = "{{child.name}} ve {{discovery.title}}"
     private let T2 = "{{child.name}}'nin {{setting.name}}'daki Büyük Keşfi"
-    private let T3 = "{{child.name}} ve {{discovery.phrase}}'nin Sırrı"
+    private let T3 = "{{child.name}} ve {{discovery.title}}'nin Sırrı"
     private let T4 = "{{setting.name}}'a Cesur Yolculuk"
-    private let T5 = "{{child.name}} ve {{companion.name}}'nin {{discovery.phrase}}"
+    private let T5 = "{{child.name}} ve {{companion.name}}'nin {{discovery.title}}"
 
     func testT2AcrossEverySettingShape() {
         let cases: [(String, Bool, String)] = [
@@ -72,7 +72,7 @@ final class TitleFamilyQATests: XCTestCase {
             let r = TurkishTextRenderer.render(T5, slots: [
                 "child.name": child("Yeliz"),
                 "companion.name": .init(name, isProperNoun: true),
-                "discovery.phrase": common("Gizemli Işığı")
+                "discovery.title": common("Gizemli Işığı")
             ])
             XCTAssertEqual(r.text, expected, "T5 failed for \(name)")
         }
@@ -81,7 +81,7 @@ final class TitleFamilyQATests: XCTestCase {
     /// T3 inflects a common-noun discovery phrase — no apostrophe.
     func testT3DiscoveryPhraseIsCommonNoun() {
         let r = TurkishTextRenderer.render(T3, slots: [
-            "child.name": child("Yeliz"), "discovery.phrase": common("kayıp harita")
+            "child.name": child("Yeliz"), "discovery.title": common("kayıp harita")
         ])
         XCTAssertEqual(r.text, "Yeliz ve kayıp haritanın Sırrı")
     }
@@ -105,7 +105,7 @@ final class TitleFamilyQATests: XCTestCase {
             "child.name": child("Yeliz"),
             "companion.name": .init("Kıpır", isProperNoun: true),
             "setting.name": setting("Fısıldayan Orman"),
-            "discovery.phrase": common("Gizemli Işığı")
+            "discovery.title": common("Gizemli Işığı")
         ]
         for (name, pattern) in [("T1", T1), ("T2", T2), ("T3", T3), ("T4", T4), ("T5", T5)] {
             let r = TurkishTextRenderer.render(pattern, slots: slots)
