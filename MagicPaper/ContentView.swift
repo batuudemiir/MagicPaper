@@ -5,9 +5,9 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var app = MPAppState()
     @StateObject private var settings = MPSettingsStore.shared
-    @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
 
     var body: some View {
         ZStack(alignment: .bottom) {

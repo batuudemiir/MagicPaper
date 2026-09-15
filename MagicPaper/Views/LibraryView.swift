@@ -3,8 +3,8 @@ import SwiftUI
 /// Kütüphane — 03-SCREENS.md §9.
 struct LibraryView: View {
     @EnvironmentObject private var app: MPAppState
-    @StateObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
     @StateObject private var favorites = MPFavorites.shared
 
     enum Filter: String, CaseIterable {

@@ -3,8 +3,8 @@ import SwiftUI
 /// Profil seçimi — 03-SCREENS.md §8'deki "Kim okuyacak?" listesinin tam ekran hâli.
 /// `MainContentView`, profiller varken hiçbiri seçili değilse buraya düşer.
 struct ProfileSelectorView: View {
-    @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @State private var showAddProfile = false
 
     var body: some View {

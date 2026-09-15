@@ -6,7 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject private var settings: MPSettingsStore
     @Environment(\.dismiss) private var dismiss
 
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @State private var showPrivacy = false
 
     /// Kalan görselli masal hakkı — birim adı her zaman "Yıldız".

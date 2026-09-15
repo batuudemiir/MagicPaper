@@ -9,7 +9,7 @@ struct ProfileCreationView: View {
     var onCreated: ((String) -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
 
     @State private var name = ""
     @State private var colorIndex = 0

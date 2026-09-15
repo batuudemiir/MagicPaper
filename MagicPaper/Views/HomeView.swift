@@ -3,9 +3,9 @@ import SwiftUI
 /// Ana sayfa — 03-SCREENS.md §3.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
-    @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var streak = MPStreak.shared
 
     var body: some View {

@@ -6,7 +6,7 @@ import SwiftUI
 struct PaywallView: View {
     @EnvironmentObject private var app: MPAppState
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
 
     @StateObject private var revenueCat = RevenueCatManager.shared
 

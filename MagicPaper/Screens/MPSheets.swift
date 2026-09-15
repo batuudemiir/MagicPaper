@@ -4,8 +4,8 @@ import SwiftUI
 
 struct ProfilePickerSheet: View {
     @EnvironmentObject private var app: MPAppState
-    @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
 
     var body: some View {
         MPSheet(title: "Kim okuyacak?", onClose: { app.sheet = nil }) {
@@ -48,7 +48,7 @@ struct StoryActionsSheet: View {
     let story: Story
 
     @EnvironmentObject private var app: MPAppState
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var favorites = MPFavorites.shared
 
     @State private var exportFile: MPExportFile?
@@ -206,7 +206,7 @@ struct ProfileEditSheet: View {
     let profile: UserProfile
 
     @EnvironmentObject private var app: MPAppState
-    @StateObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
 
     var body: some View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {

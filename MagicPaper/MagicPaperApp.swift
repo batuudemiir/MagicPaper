@@ -78,7 +78,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct MagicPaperApp: App {
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-  @StateObject private var profileManager = ProfileManager.shared
+  @ObservedObject private var profileManager = ProfileManager.shared
   @State private var showSplash = true
 
   init() {

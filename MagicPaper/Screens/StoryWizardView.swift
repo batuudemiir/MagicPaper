@@ -1,22 +1,165 @@
 import SwiftUI
 
+// MARK: - Enums for V1 Story Experience
+
+enum V1StoryType: String, CaseIterable, Identifiable {
+    case macera = "Macera"
+    case sihir = "Sihirli Dünya"
+    case hayvanlar = "Hayvan Dostlar"
+    case kesif = "Keşif"
+    case arkadaslik = "Arkadaşlık"
+    case uyku = "Uyku Zamanı"
+    case surpriz = "Bana sürpriz yap"
+    
+    var id: String { rawValue }
+    var description: String {
+        switch self {
+        case .macera: return "Yeni bir yer keşfet"
+        case .sihir: return "Hayal edilemeyecek bir yere git"
+        case .hayvanlar: return "Yeni bir arkadaşla tanış"
+        case .kesif: return "Bir şey bul, çöz ve keşfet"
+        case .arkadaslik: return "Birlikte bir şey başaralım"
+        case .uyku: return "Sakin ve sıcak bir hikâye"
+        case .surpriz: return "Motor her şeyi seçsin"
+        }
+    }
+    
+    var symbol: String {
+        switch self {
+        case .macera: return "map"
+        case .sihir: return "sparkles"
+        case .hayvanlar: return "pawprint"
+        case .kesif: return "magnifyingglass"
+        case .arkadaslik: return "person.2.circle"
+        case .uyku: return "moon"
+        case .surpriz: return "wand.and.stars"
+        }
+    }
+}
+
+struct V1StoryDirection: Identifiable, Equatable {
+    let text: String
+    var id: String { text }
+    
+    static func options(for type: V1StoryType) -> [V1StoryDirection] {
+        switch type {
+        case .macera:
+            return [
+                "Biraz cesur olalım",
+                "Bir gizem çözelim",
+                "Kayıp bir şeyi bulalım",
+                "Bir arkadaşımıza yardım edelim",
+                "Yeni bir şey keşfedelim",
+                "Bana sürpriz yap"
+            ].map { V1StoryDirection(text: $0) }
+        case .uyku:
+            return [
+                "Rahatlayalım",
+                "Rüya görelim",
+                "Bir yıldızı takip edelim",
+                "Sevdiğimiz bir yere gidelim",
+                "Sıcacık bir son",
+                "Bana sürpriz yap"
+            ].map { V1StoryDirection(text: $0) }
+        case .hayvanlar:
+            return [
+                "Yeni bir arkadaş",
+                "Kaybolan bir hayvan",
+                "Birlikte keşif",
+                "Bir arkadaşına yardım",
+                "Komik bir macera",
+                "Bana sürpriz yap"
+            ].map { V1StoryDirection(text: $0) }
+        default:
+            return [
+                "Biraz cesur olalım",
+                "Bir gizem çözelim",
+                "Kayıp bir şeyi bulalım",
+                "Bir arkadaşımıza yardım edelim",
+                "Yeni bir şey keşfedelim",
+                "Bana sürpriz yap"
+            ].map { V1StoryDirection(text: $0) }
+        }
+    }
+}
+
+enum V1StoryWorld: String, CaseIterable, Identifiable {
+    case orman = "Ormanda"
+    case dag = "Dağlarda"
+    case deniz = "Denizin altında"
+    case ada = "Gizli bir adada"
+    case gokyuzu = "Bulutların arasında"
+    case gece = "Gece gökyüzünde"
+    case surpriz = "Bana sürpriz yap"
+    
+    var id: String { rawValue }
+    
+    var symbol: String {
+        switch self {
+        case .orman: return "tree"
+        case .dag: return "mountain"
+        case .deniz: return "fish"
+        case .ada: return "sailboat"
+        case .gokyuzu: return "cloud"
+        case .gece: return "moon"
+        case .surpriz: return "wand.and.stars"
+        }
+    }
+    
+    var mpWorld: MP.World {
+        switch self {
+        case .orman: return .orman
+        case .dag: return .dinozor
+        case .deniz: return .deniz
+        case .ada: return .korsan
+        case .gokyuzu: return .uzay
+        case .gece: return .krallik
+        case .surpriz: return MP.World.ordered.randomElement() ?? .krallik
+        }
+    }
+}
+
+enum V1StoryCompanion: String, CaseIterable, Identifiable {
+    case tilki = "Tilki"
+    case tavsan = "Tavşan"
+    case baykus = "Baykuş"
+    case ejderha = "Küçük Ejderha"
+    case ayicik = "Ayıcık"
+    case surpriz = "Bana sürpriz yap"
+    
+    var id: String { rawValue }
+    
+    var symbol: String {
+        switch self {
+        case .tilki, .tavsan, .ayicik: return "pawprint"
+        case .baykus: return "bird"
+        case .ejderha: return "flame.fill"
+        case .surpriz: return "wand.and.stars"
+        }
+    }
+}
+
 /// Masal sihirbazı — 03-SCREENS.md §4 ve üretim ekranı §5.
-/// Üç tam ekran adım, her adımda tek soru. Sistemde dropdown/picker yoktur.
+/// V1 UX - Story Engine Integration
 struct StoryWizardView: View {
     let preset: MPWizardPreset
 
     @EnvironmentObject private var app: MPAppState
     @Environment(\.dismiss) private var dismiss
 
-    @StateObject private var profileManager = ProfileManager.shared
-    @StateObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
 
     @State private var step = 0
     @State private var childID: UUID?
-    @State private var world: MP.World?
-    @State private var length: MPStoryLength = .orta
-    @State private var tone: MPStoryTone = .neseli
+    
+    // V1 Selections
+    @State private var storyType: V1StoryType?
+    @State private var storyDirection: V1StoryDirection?
+    @State private var storyWorld: V1StoryWorld?
+    @State private var storyCompanion: V1StoryCompanion?
+    
     @State private var isGenerating = false
     @State private var pendingStoryID: UUID?
 
@@ -24,7 +167,7 @@ struct StoryWizardView: View {
         Group {
             if isGenerating {
                 StoryGeneratingView(
-                    world: world ?? .krallik,
+                    world: storyWorld?.mpWorld ?? .krallik,
                     storyID: pendingStoryID,
                     onCancel: { isGenerating = false; dismiss() },
                     onFinished: { story in
@@ -43,8 +186,8 @@ struct StoryWizardView: View {
 
     private func applyPreset() {
         if childID == nil { childID = profileManager.currentProfile?.id }
-        if let w = preset.world { world = w }
         step = preset.startStep
+        // In V1, preset.world isn't directly mapped, but we start where needed.
     }
 
     // MARK: - Sihirbaz gövdesi
@@ -57,8 +200,8 @@ struct StoryWizardView: View {
                     titleBlock
                     stepContent
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.bottom, 24)
+                .mpGutter()
+                .padding(.bottom, MP.S.x6)
             }
             footer
         }
@@ -73,42 +216,46 @@ struct StoryWizardView: View {
                 if step == 0 { dismiss() } else { withAnimation(MP.M.gated(MP.M.easeOut)) { step -= 1 } }
             }
             Spacer(minLength: 0)
-            MPStepDots(total: 3, current: step, labels: ["Kim", "Nerede", "Nasıl"])
+            MPStepDots(total: 4, current: step, labels: ["Kim", "Tür", "Konu", "Dünya"])
             Spacer(minLength: 0)
             Color.clear.frame(width: 44, height: 44)
         }
-        .padding(.horizontal, MP.S.screenGutter)
-        .padding(.top, 4)
+        .mpGutter()
+        .padding(.top, MP.S.x1)
     }
 
     private var titleBlock: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: MP.S.x2) {
             Text(stepTitle)
                 .font(MP.F.displayLG())
                 .mpTightTracking(32)
                 .foregroundStyle(MP.C.textTitle)
-            Text(stepSubtitle)
-                .font(MP.F.bodyMD())
-                .foregroundStyle(MP.C.textMuted)
-                .fixedSize(horizontal: false, vertical: true)
+            if !stepSubtitle.isEmpty {
+                Text(stepSubtitle)
+                    .font(MP.F.bodyMD())
+                    .foregroundStyle(MP.C.textMuted)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
-        .padding(.top, 12)
-        .padding(.bottom, 20)
+        .padding(.top, MP.S.x3)
+        .padding(.bottom, MP.S.x5)
     }
 
     private var stepTitle: String {
         switch step {
-        case 0: return "Kim için?"
-        case 1: return "Nerede geçiyor?"
-        default: return "Nasıl bir masal?"
+        case 0: return "Kimin için?"
+        case 1: return "Bugün nasıl bir hikâye yaşayalım?"
+        case 2: return "Bu macerada ne olsun?"
+        default: return "Hikâyemiz nerede geçsin?"
         }
     }
 
     private var stepSubtitle: String {
         switch step {
         case 0: return "Masalın kahramanı kim olsun?"
-        case 1: return "Macera hangi dünyada geçsin?"
-        default: return "Uzunluğu ve tonu seç, hemen yazalım."
+        case 1: return ""
+        case 2: return ""
+        default: return ""
         }
     }
 
@@ -116,15 +263,16 @@ struct StoryWizardView: View {
     private var stepContent: some View {
         switch step {
         case 0: whoStep
-        case 1: whereStep
-        default: howStep
+        case 1: typeStep
+        case 2: directionStep
+        default: worldCompanionStep
         }
     }
 
     // MARK: - Adım 0 — Kim?
 
     private var whoStep: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: MP.S.stackGap) {
             ForEach(profileManager.profiles) { profile in
                 MPChoiceTile(
                     title: profile.name,
@@ -133,7 +281,10 @@ struct StoryWizardView: View {
                     accent: profile.mpColor,
                     isSelected: childID == profile.id
                 ) {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { childID = profile.id }
+                    withAnimation(MP.M.gated(MP.M.easeOut)) { 
+                        childID = profile.id 
+                        step += 1 // Auto advance
+                    }
                 }
             }
 
@@ -152,82 +303,96 @@ struct StoryWizardView: View {
         storyManager.stories.filter { $0.childName == profile.name }.count
     }
 
-    // MARK: - Adım 1 — Nerede?
+    // MARK: - Adım 1 — Story Type
 
-    private var whereStep: some View {
-        LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)],
-                  spacing: 12) {
-            ForEach(MP.World.ordered) { w in
-                let locked = w.isPremium && !subscriptionManager.isPremium
+    private var typeStep: some View {
+        VStack(spacing: MP.S.stackGap) {
+            ForEach(V1StoryType.allCases) { t in
                 MPChoiceTile(
-                    title: w.name,
-                    symbol: w.symbol,
-                    accent: w.accent,
-                    isSelected: world == w,
-                    isLocked: locked,
-                    layout: .column
+                    title: t.rawValue,
+                    description: t.description,
+                    symbol: t.symbol,
+                    accent: MP.C.brand,
+                    isSelected: storyType == t,
+                    isLocked: false,
+                    layout: .row
                 ) {
-                    if locked {
-                        app.openPaywall()
-                    } else {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { world = w }
+                    withAnimation(MP.M.gated(MP.M.easeOut)) { 
+                        storyType = t
+                        // If surprise, we could potentially auto advance all the way, but we just advance to next step for now
+                        step += 1 
                     }
                 }
             }
         }
     }
 
-    // MARK: - Adım 2 — Nasıl?
+    // MARK: - Adım 2 — Story Direction
 
-    private var howStep: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            MPCard(tone: .sunken, padding: 14) {
-                HStack(spacing: 12) {
-                    MPAvatar(name: selectedChildName, color: selectedProfile?.mpColor, size: 38)
-                    Text("\(selectedChildName) · \(world?.name ?? "Dünya seçilmedi")")
-                        .font(MP.F.bodyMD(.bold))
-                        .foregroundStyle(MP.C.textTitle)
-                        .lineLimit(1)
-                    Spacer(minLength: 0)
-                    MPButton(title: "Değiştir", variant: .ghost, size: .sm) {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { step = 0 }
+    private var directionStep: some View {
+        VStack(spacing: MP.S.stackGap) {
+            let options = V1StoryDirection.options(for: storyType ?? .macera)
+            ForEach(options) { d in
+                MPChoiceTile(
+                    title: d.text,
+                    symbol: d.text == "Bana sürpriz yap" ? "wand.and.stars" : "sparkles",
+                    accent: MP.C.brand,
+                    isSelected: storyDirection == d,
+                    isLocked: false,
+                    layout: .row
+                ) {
+                    withAnimation(MP.M.gated(MP.M.easeOut)) { 
+                        storyDirection = d
+                        step += 1
                     }
                 }
             }
+        }
+    }
 
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Uzunluk")
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textTitle)
+    // MARK: - Adım 3 — World & Companion
 
-                ForEach(MPStoryLength.allCases) { option in
-                    let locked = option.isPremium && !subscriptionManager.isPremium
-                    MPChoiceTile(
-                        title: option.title,
-                        description: option.detail,
-                        symbol: option.symbol,
-                        isSelected: length == option,
-                        isLocked: locked
-                    ) {
-                        if locked {
-                            app.openPaywall()
-                        } else {
-                            withAnimation(MP.M.gated(MP.M.easeOut)) { length = option }
+    private var worldCompanionStep: some View {
+        VStack(alignment: .leading, spacing: MP.S.x6) {
+            
+            // World selection
+            VStack(alignment: .leading, spacing: MP.S.stackGap) {
+                MPWrapRow(spacing: MP.S.stackGap) {
+                    ForEach(V1StoryWorld.allCases) { w in
+                        MPChip(title: w.rawValue, symbol: w.symbol, isSelected: storyWorld == w) {
+                            withAnimation(MP.M.gated(MP.M.easeOut)) { storyWorld = w }
                         }
                     }
                 }
             }
-
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Ton")
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textTitle)
-
-                MPWrapRow(spacing: 10) {
-                    ForEach(MPStoryTone.allCases) { t in
-                        MPChip(title: t.title, isSelected: tone == t) {
-                            withAnimation(MP.M.gated(MP.M.easeOut)) { tone = t }
+            
+            // Companion selection
+            VStack(alignment: .leading, spacing: MP.S.stackGap) {
+                MPSectionHeader(title: "Yanında kim olsun?")
+                    
+                MPWrapRow(spacing: MP.S.stackGap) {
+                    ForEach(V1StoryCompanion.allCases) { c in
+                        MPChip(title: c.rawValue, symbol: c.symbol, isSelected: storyCompanion == c) {
+                            withAnimation(MP.M.gated(MP.M.easeOut)) { storyCompanion = c }
                         }
+                    }
+                }
+            }
+            
+            // Selected Summary
+            if let world = storyWorld, let comp = storyCompanion {
+                MPCard(tone: .sunken, padding: MP.S.x4) {
+                    HStack(spacing: MP.S.stackGap) {
+                        MPAvatar(name: selectedChildName, color: selectedProfile?.mpColor, size: 38)
+                        VStack(alignment: .leading, spacing: MP.S.x1) {
+                            Text("\(selectedChildName) için macera hazır!")
+                                .font(MP.F.bodyMD(.bold))
+                                .foregroundStyle(MP.C.textTitle)
+                            Text("\(world.rawValue) · \(comp.rawValue)")
+                                .font(MP.F.labelSM())
+                                .foregroundStyle(MP.C.textMuted)
+                        }
+                        Spacer(minLength: 0)
                     }
                 }
             }
@@ -253,15 +418,17 @@ struct StoryWizardView: View {
     private var canAdvance: Bool {
         switch step {
         case 0: return childID != nil
-        case 1: return world != nil
+        case 1: return storyType != nil
+        case 2: return storyDirection != nil
+        case 3: return storyWorld != nil && storyCompanion != nil
         default: return true
         }
     }
 
     private var footer: some View {
-        VStack(spacing: 12) {
-            if step == 2 {
-                HStack(spacing: 6) {
+        VStack(spacing: MP.S.stackGap) {
+            if step == 3 {
+                HStack(spacing: MP.S.x2) {
                     MPIcon("star.fill", size: 13, weight: .bold)
                         .foregroundStyle(stars > 0 ? MP.C.reward : MP.C.danger)
                     Text(stars > 0
@@ -272,46 +439,61 @@ struct StoryWizardView: View {
                 }
             }
 
-            MPButton(
-                title: step < 2 ? "Devam et" : "Masalı oluştur",
-                size: .lg,
-                icon: step == 2 ? "wand.and.stars" : nil,
-                fullWidth: true,
-                isDisabled: !canAdvance
-            ) {
-                if step < 2 {
+            if step < 3 {
+                MPButton(
+                    title: "Devam et",
+                    size: .lg,
+                    fullWidth: true,
+                    isDisabled: !canAdvance
+                ) {
                     withAnimation(MP.M.gated(MP.M.easeOut)) { step += 1 }
-                } else {
-                    createStory()
+                }
+            } else {
+                VStack(spacing: MP.S.x2) {
+                    MPButton(
+                        title: "Görselli masal",
+                        size: .lg,
+                        icon: "wand.and.stars",
+                        fullWidth: true,
+                        isDisabled: !canAdvance
+                    ) {
+                        createStory()
+                    }
+                    
+                    MPButton(
+                        title: "Metin masalı oluştur",
+                        variant: .outline,
+                        tone: .brand,
+                        size: .lg,
+                        icon: "book",
+                        fullWidth: true,
+                        isDisabled: !canAdvance
+                    ) {
+                        createOfflineTextStory()
+                    }
                 }
             }
         }
-        .padding(.horizontal, MP.S.screenGutter)
-        .padding(.top, 8)
-        .padding(.bottom, 12)
+        .mpGutter()
+        .padding(.top, MP.S.x2)
+        .padding(.bottom, MP.S.x3)
         .background(MP.C.surfaceApp)
     }
 
     // MARK: - Masalı oluştur
 
     private func createStory() {
-        // Yıldız yoksa masal oluşturulmaz, paywall açılır (akış 2).
         guard stars > 0 else {
             app.openPaywall()
             return
         }
-        guard let profile = selectedProfile, let world else { return }
+        guard let profile = selectedProfile, let world = storyWorld else { return }
 
-        // Kotayı gerçekten düş. Eskiden dönüş değeri yok sayılıyordu; ücretsiz
-        // kullanıcı tek görselli hakkını kullandıktan sonra da masal üretiliyor,
-        // yıldız sayacı ile gerçek kilit birbirini tutmuyordu.
         guard subscriptionManager.useStory(type: .image) else {
             app.openPaywall()
             return
         }
 
-        // Tasarım gereği çocuk fotoğrafı toplanmaz; üretim hattına referans
-        // görsel olarak harf madalyonu gönderilir.
         let reference = MPAvatarRenderer.image(
             letter: String(profile.name.prefix(1)).uppercased(with: Locale(identifier: "tr_TR")),
             color: UIColor(profile.mpColor)
@@ -319,17 +501,15 @@ struct StoryWizardView: View {
 
         isGenerating = true
 
-        // Sihirbazın üçüncü adımındaki iki cevap da üretime gider:
-        // uzunluk sayfa sayısına, ton da yazım yönergesine dönüşür.
-        let selectedPageCount = length.pageCount
-        let selectedTone = tone.title
+        let selectedPageCount = MPStoryLength.orta.pageCount
+        let selectedTone = MPStoryTone.neseli.title
 
         Task {
             pendingStoryID = await storyManager.createCustomStory(
                 childName: profile.name,
                 age: profile.age,
                 gender: .other,
-                theme: world.storyTheme,
+                theme: world.mpWorld.storyTheme,
                 language: .turkish,
                 image: reference,
                 customTitle: nil,
@@ -338,16 +518,49 @@ struct StoryWizardView: View {
             )
         }
     }
+    
+    private func createOfflineTextStory() {
+        guard let profile = selectedProfile, let world = storyWorld else { return }
+        
+        isGenerating = true
+        
+        Task {
+            do {
+                // Pass a generic length/tone for now as per V1 specs which remove technical config.
+                let genre = storyType?.rawValue ?? "adventure"
+                let theme = storyDirection?.text
+                let settingId = (storyWorld == .surpriz) ? nil : "setting_forest_001" // simplistic mapping for V1
+                let companionId = (storyCompanion == .surpriz) ? nil : "companion_fox_001"
+                
+                let story = try await storyManager.createOfflineTextStory(
+                    childProfile: profile,
+                    genre: genre,
+                    theme: theme,
+                    settingId: settingId,
+                    companionId: companionId,
+                    length: .orta,
+                    tone: .neseli
+                )
+                
+                pendingStoryID = story.id
+                
+                await MainActor.run {
+                    dismiss()
+                }
+            } catch {
+                print("Offline story generation failed: \(error)")
+                await MainActor.run {
+                    isGenerating = false
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Satır sarmalayıcı
-//
-// Chip şeritleri satıra sığmadığında alt satıra taşar (prototipte "Ton"
-// chip'leri ikinci satıra kayıyor). Düz bir HStack burada chip'leri sıkıştırıp
-// etiketleri iki satıra bölüyordu.
 
 struct MPWrapRow<Content: View>: View {
-    var spacing: CGFloat = 10
+    var spacing: CGFloat = MP.S.stackGap
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -357,9 +570,8 @@ struct MPWrapRow<Content: View>: View {
     }
 }
 
-/// Satıra sığmayanı alta indiren basit akış yerleşimi.
 struct MPFlowLayout: Layout {
-    var spacing: CGFloat = 10
+    var spacing: CGFloat = MP.S.stackGap
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let maxWidth = proposal.width ?? .infinity
@@ -421,7 +633,6 @@ struct MPFlowLayout: Layout {
 
 // MARK: - Avatar → UIImage
 
-/// Harf madalyonunu üretim hattının beklediği referans görsele çevirir.
 enum MPAvatarRenderer {
     static func image(letter: String, color: UIColor, side: CGFloat = 512) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: side, height: side))

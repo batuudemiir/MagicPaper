@@ -10,7 +10,7 @@ struct StoryViewerView: View {
     @EnvironmentObject private var settings: MPSettingsStore
     @Environment(\.dismiss) private var dismiss
 
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var favorites = MPFavorites.shared
     @StateObject private var streak = MPStreak.shared
     @StateObject private var speech = MPSpeech.shared

@@ -8,7 +8,7 @@ import RevenueCatUI
 
 struct SimpleSubscriptionView: View {
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @State private var showingParentalGate = false
     @State private var parentalGateApproved = false
     @State private var showFallback = false

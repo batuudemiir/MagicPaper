@@ -9,7 +9,7 @@ struct StoryGeneratingView: View {
     let onCancel: () -> Void
     let onFinished: (Story) -> Void
 
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @State private var handedOff = false
 
     private struct Stage {

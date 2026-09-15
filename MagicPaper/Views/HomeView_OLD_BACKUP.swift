@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var dailyStoryManager = DailyStoryManager.shared
-    @StateObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
     @State private var selectedStory: Story?
     @State private var selectedDailyStory: DailyStory?

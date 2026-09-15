@@ -4,7 +4,7 @@ import SwiftUI
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
 
-    @StateObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
     @State private var page = 0
     @State private var cycleIndex = 0
     @State private var cycleVisible = true
