@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 3,
+  "beat": "obstacle_raises",
+  "produces": [
+    "obstacleNamed"
+  ],
+  "requires": [
+    "committed"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Pages 4 and 5. The difficulty stops being vague and becomes a specific thing. 'Bir sorun çıktı' on its own is the failure this beat exists to prevent — the old corpus said 'a big obstacle appeared' and could never overcome it, because it never said what it was. Every variant names something. All seven uses are paired, so all variants are short. The obstacle must be one the COMPANION cannot solve with what it has (catalog §2.3), and must never be dangerous.",
+  "lengthClasses": {
+    "paired": "10-16 words — always shares its page with commit, first_attempt or take_charge (7 of 7)"
+  },
+  "variants": [
+    {
+      "id": "ob_think_01",
+      "text": "Ama bir şey uymuyordu. {{child.name}} ne kadar düşünse de çıkaramadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "perceptual"
+      ],
+      "move": "something_does_not_fit"
+    },
+    {
+      "id": "ob_think_02",
+      "text": "Tek sorun şuydu. Nereden bakarsa baksın, hep bir parça eksik kalıyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "perceptual"
+      ],
+      "move": "a_piece_always_missing"
+    },
+    {
+      "id": "ob_think_03",
+      "text": "Fikir güzeldi ama işe yaramadı. Demek bir yerde yanlış düşünmüştü.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "perceptual"
+      ],
+      "move": "good_idea_wrong_somewhere"
+    },
+    {
+      "id": "ob_reach_01",
+      "text": "{{companion.name}} tek başına yapamıyordu. Ne boyu yetiyordu, ne de gücü.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "relational",
+        "duration"
+      ],
+      "move": "too_small_for_it"
+    },
+    {
+      "id": "ob_reach_02",
+      "text": "Sorun belliydi. Oraya ulaşmak için uzanmak gerekiyordu, {{companion.name}} ise uzanamıyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "relational"
+      ],
+      "move": "cannot_reach"
+    },
+    {
+      "id": "ob_reach_03",
+      "text": "{{companion.name}} elinden geleni yapmıştı, gerçekten yapmıştı. Geriye bir tek {{child.name}} kalıyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "relational"
+      ],
+      "move": "only_the_child_left"
+    },
+    {
+      "id": "ob_search_01",
+      "text": "İzler tam burada bitiyordu. Ötesinde ne bir iz vardı, ne bir işaret.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "uncertainty"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "move": "trail_ends_here"
+    },
+    {
+      "id": "ob_search_02",
+      "text": "Aramak göründüğünden zordu. Her yer birbirine benziyor, hiçbiri ipucu vermiyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "uncertainty"
+      ],
+      "move": "everywhere_looks_the_same"
+    },
+    {
+      "id": "ob_gen_01",
+      "text": "Arada duran bir engel vardı. Kendiliğinden kalkacak gibi de görünmüyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "relational",
+        "uncertainty",
+        "perceptual"
+      ],
+      "move": "will_not_move_on_its_own"
+    },
+    {
+      "id": "ob_gen_02",
+      "text": "{{child.name}} olduğu yerde durdu. Önündeki iş düşündüğünden çok daha zordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "relational",
+        "uncertainty",
+        "perceptual"
+      ],
+      "move": "harder_than_expected"
+    },
+    {
+      "id": "ob_gen_03",
+      "text": "İş sandığı gibi değildi. Bunu çözmek için başka bir şey gerekiyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "relational",
+        "uncertainty",
+        "perceptual"
+      ],
+      "move": "needs_something_else"
+    },
+    {
+      "id": "ob_gen_04",
+      "text": "Kolay olacağını sanmıştı {{child.name}}. Hiç de öyle olmadığı şimdi belliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "cognitive",
+        "relational",
+        "uncertainty",
+        "perceptual"
+      ],
+      "move": "thought_it_would_be_easy"
+    }
+  ]
+}

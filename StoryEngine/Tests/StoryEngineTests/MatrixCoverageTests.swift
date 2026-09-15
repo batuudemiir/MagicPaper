@@ -24,7 +24,7 @@ final class MatrixCoverageTests: XCTestCase {
         ("forest+fox+light",        "setting_whispering_forest_001", "companion_fox_pilot_001",      "object_flickering_light_001"),
         ("mountain+owl+footprints", "setting_cloud_mountain_001",    "companion_owl_pilot_001",      "object_footprints_001"),
         ("garden+hedgehog+sound",   "setting_night_garden_001",      "companion_hedgehog_pilot_001", "object_faint_sound_001"),
-        ("sea+dolphin+shell",       "setting_coral_sea_001",         "companion_dolphin_pilot_001",  "object_shell_001"),
+        ("sea+dolphin+shell",       "setting_coral_sea_001",         "companion_dolphin_pilot_001",  "object_shell_pilot_001"),
         ("forest+rabbit+map",       "setting_whispering_forest_001", "companion_rabbit_pilot_001",   "object_torn_map_001"),
     ]
 

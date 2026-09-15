@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 3,
+  "beat": "succeed",
+  "produces": [
+    "resolved"
+  ],
+  "requires": [
+    "solutionKnown"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Page 7 in seven blueprints. The resolution must be EARNED — it works because of the specific thing the child did on page 6, and the text must say so. 'Sonunda her şey yoluna girdi' is the exact failure this beat exists to prevent; it is a banned construction. Variants declare `afterBeat`, so a story that resolved by asking does not get a page 7 about working something out. Always solo — page 7 is never shared. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned.",
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "sihirli bir şekilde",
+    "birden her şey düzeldi"
+  ],
+  "lengthClasses": {
+    "solo": "18-38 words — page 7 is never shared (7 of 7)"
+  },
+  "variants": [
+    {
+      "id": "sc_insight_01",
+      "text": "{{child.name}} aklına geleni denedi ve bu kez oldu. Demek baştan beri doğruymuş. Parçalar birbirine tam oturdu. Kendi bulduğuna inanamıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ],
+      "move": "the_idea_was_right"
+    },
+    {
+      "id": "sc_insight_02",
+      "text": "Düşündüğü şey işe yaradı. {{child.name}} bir an durup baktı, sonra güldü. Meğer ta baştan beri gözünün önündeymiş. Bir daha baktı, yine güldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ],
+      "move": "it_was_in_front_of_them"
+    },
+    {
+      "id": "sc_wait_01",
+      "text": "Beklemek işe yaramıştı. {{child.name}} tam doğru anda oradaydı ve her şeyi gördü. Bu kez hiçbir şeyi kaçırmadı. Beklemeye değmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ],
+      "move": "was_there_at_the_right_moment"
+    },
+    {
+      "id": "sc_wait_02",
+      "text": "Sabretmek kolay değildi ama {{child.name}} sabretti. Sonunda beklediği an geldi. Beklemeye değermiş, şimdi anlıyordu. Gördüğünü hiç ama hiç unutmayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ],
+      "move": "waiting_was_worth_it"
+    },
+    {
+      "id": "sc_ask_01",
+      "text": "Sormak zor gelmişti ama {{child.name}} sordu. Aldığı cevap tam ihtiyacı olan şeydi. Gerisi çok kolay geldi. Bir daha çekinmeyecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ],
+      "move": "asking_was_the_hard_part"
+    },
+    {
+      "id": "sc_ask_02",
+      "text": "Bir soru yetti. {{child.name}} sorduktan sonra önü açıldı. Tek başına asla bulamazdı, bunu kendisi de biliyordu. Sormak da bir şeymiş demek.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ],
+      "move": "one_question_was_enough"
+    },
+    {
+      "id": "sc_courage_01",
+      "text": "{{child.name}} gitti. Kalbi çok hızlı atıyordu ama durmadı. Karşı tarafa vardığında hâlâ inanamıyordu. Bir süre öylece durdu, sonra kendi kendine güldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "find_own_courage"
+      ],
+      "move": "heart_racing_but_went"
+    },
+    {
+      "id": "sc_courage_02",
+      "text": "Adım adım ilerledi {{child.name}}. Bir kez bile geri dönmedi. Sonunda tam istediği yerde duruyordu. Arkasına döndü ve geldiği yola baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "find_own_courage"
+      ],
+      "move": "step_by_step_never_back"
+    },
+    {
+      "id": "sc_retrace_01",
+      "text": "Geriye dönmek doğru karardı. {{child.name}} aradığını tam da daha önce geçtiği yerde buldu. Baştan beri oradaymış. Sadece o zaman görememişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "retrace"
+      ],
+      "move": "it_was_where_they_had_passed"
+    },
+    {
+      "id": "sc_retrace_02",
+      "text": "{{child.name}} kendi izinden geri yürüdü. Ve buldu. Aradığı şey ilk baktığı yerdeydi, sadece o an görememişti. Şimdi apaçık ortadaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "retrace"
+      ],
+      "move": "walked_back_own_trail"
+    },
+    {
+      "id": "sc_reveal_01",
+      "text": "Meğer hiç de düşündüğü gibi değilmiş. {{child.name}} gerçeği görünce rahat bir nefes aldı. Korkacak bir şey yokmuş. Hatta çok güzelmiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ],
+      "move": "nothing_to_fear_after_all"
+    },
+    {
+      "id": "sc_reveal_02",
+      "text": "Anladığı anda her şey değişti. {{child.name}} gülmeye başladı. Bu kadar basit olabileceği hiç aklına gelmemişti. Uzun süre gülmeyi kesemedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ],
+      "move": "laughing_at_how_simple"
+    },
+    {
+      "id": "sc_any_01",
+      "text": "{{child.name}} yaptığı şeyin işe yaradığını gördü. Kolay olmamıştı, hiç kolay olmamıştı. Ama sonunda olmuştu işte, üstelik kendi sayesinde.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "the_thing_they_did_worked"
+    },
+    {
+      "id": "sc_any_02",
+      "text": "Sonunda oldu. {{child.name}} bir adım geri çekilip baktı. Kendi başardığı için ayrı bir güzeldi bu. Uzun uzun seyretti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "stepping_back_to_look"
+    },
+    {
+      "id": "sc_any_03",
+      "text": "{{child.name}} doğru olanı yapmıştı ve şimdi bunu görebiliyordu. Uzun uzun baktı. İçi içine sığmıyordu. Anlatacak çok şeyi vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "could_see_it_now"
+    },
+    {
+      "id": "sc_any_04",
+      "text": "Oldu. {{child.name}} önce inanamadı, sonra iyice baktı ve inandı. Gerçekten olmuştu, hem de kendi eliyle. Bir daha denedi, yine oldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "disbelief_then_belief"
+    },
+    {
+      "id": "sc_any_05",
+      "text": "{{child.name}} epeyce yorulmuştu ama artık önemi yoktu. Karşısındaki şey artık başkaydı. Bunu değiştiren de kendisiydi, başka kimse değil.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "tired_but_changed_it"
+    },
+    {
+      "id": "sc_any_06",
+      "text": "{{child.name}} sonunda istediği yere geldi. Yol uzundu, hiç kolay değildi. Ama şimdi tam burada duruyordu ve bu yeterdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight",
+        "patient_wait",
+        "ask_for_help",
+        "find_own_courage",
+        "retrace",
+        "reveal_truth"
+      ],
+      "move": "arrived_where_they_wanted"
+    }
+  ]
+}

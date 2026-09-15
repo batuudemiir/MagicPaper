@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "produces": [
+    "anomalyKnown"
+  ],
+  "requires": [],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Page 1 of every blueprint. The child is doing something ordinary; something registers as not-normal. Lead with the ordinary so the interruption lands. Never explain the thing — page 1 asks, it does not answer. The child must be the one who notices. A variant that shows the discovery as a seen object must declare discoveryTrait isVisible; sound-only discoveries bind to the sound-led variants instead. Discovery phrases that end in a third-person possessive (\"ayak izleri\") must be declared possessiveStem in content, or the accusative renders as \"izleriyi\" instead of \"izlerini\".",
+  "variants": [
+    {
+      "id": "na_neutral_01",
+      "text": "{{child.name}} o sabah {{setting.name}}'a erkenden gitti. Her şey her zamanki gibiydi. Sonra durdu. Tam ilerisinde {{discovery.phrase}} duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "ordinary_then_interruption"
+    },
+    {
+      "id": "na_neutral_02",
+      "text": "{{setting.name}}'da o gün hava çok sakindi. {{child.name}} ıslık çala çala yürüyordu. Birden ıslığı kesildi. Az ötede {{discovery.phrase}} bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "action_interrupted"
+    },
+    {
+      "id": "na_neutral_03",
+      "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.phrase}} tam oradaydı, apaçık.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "body_notices_first"
+    },
+    {
+      "id": "na_neutral_04",
+      "text": "Her gün aynı yoldan geçerdi {{child.name}}. Ama bugün {{setting.name}} bambaşkaydı. Yolun tam ortasında {{discovery.phrase}} duruyor, onu bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "routine_broken"
+    },
+    {
+      "id": "na_neutral_05",
+      "text": "{{child.name}} {{setting.name}}'a vardığında içinden bir ses \"dur\" dedi. Sebebini önce anlamadı. Olduğu yerde biraz bekledi. Sonra {{discovery.phrase}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "feeling_before_seeing"
+    },
+    {
+      "id": "na_sound_01",
+      "text": "Önce sesi duydu {{child.name}}. İnce, uzun, hiç tanımadığı bir ses. {{setting.name}}'da durup kulak kabarttı. Ses yine geldi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "move": "sound_before_sight"
+    },
+    {
+      "id": "na_sound_02",
+      "text": "{{setting.name}}'da hiçbir şey kıpırdamıyordu. Sonra {{child.name}} bir tıkırtı duydu. Çok hafifti ama oradaydı. Nereden geldiğini bulmak istedi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "move": "stillness_then_small_sound"
+    },
+    {
+      "id": "na_sound_03",
+      "text": "{{child.name}} bir şarkı mırıldanıyordu. Derken şarkısına başka bir ses karıştı. Onun sesi değildi bu. Mırıldanmayı bıraktı ve etrafına bakındı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "move": "own_sound_answered"
+    },
+    {
+      "id": "na_light_01",
+      "text": "Gözünün ucuyla bir parıltı yakaladı {{child.name}}. Döndüğünde kayboldu. Bir adım attı ve parıltı geri geldi. {{setting.name}}'da bir şey ışıldıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isBeautiful",
+        "emitsSignal"
+      ],
+      "move": "glimpse_that_hides"
+    },
+    {
+      "id": "na_light_02",
+      "text": "{{setting.name}}'da gölgeler uzamıştı. {{child.name}} tam eve dönecekti ki küçücük bir ışık gördü. Uzakta bir yerdeydi. Orada olmaması gerekiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isBeautiful",
+        "emitsSignal"
+      ],
+      "move": "last_moment_before_leaving"
+    },
+    {
+      "id": "na_light_03",
+      "text": "{{child.name}} elini gözlerine siper etti. {{setting.name}}'da bir yer pırıl pırıl parlıyordu. Orası hep gölgede kalırdı oysa. Bugün neden başkaydı?",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [],
+      "discoveryTraits": [
+        "isBeautiful"
+      ],
+      "move": "wrong_place_shining"
+    },
+    {
+      "id": "na_weather_01",
+      "text": "Yağmur yeni dinmişti. {{child.name}} hemen {{setting.name}}'a koştu, çünkü yağmurdan sonrası en güzeldir. Islak toprakta {{discovery.phrase}} göze çarpıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [
+        "hasWeather"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "after_the_weather"
+    },
+    {
+      "id": "na_weather_02",
+      "text": "Rüzgar bütün sabah esmişti. Sonunda durdu. {{setting.name}} bambaşka görünüyordu. {{child.name}} yavaşça yaklaştı. Rüzgar {{discovery.phrase}} ortaya çıkarmıştı sanki.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [
+        "hasWeather"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "weather_uncovers"
+    },
+    {
+      "id": "na_traces_01",
+      "text": "{{child.name}} yere baktı ve durdu. Yerde izler vardı. Kendi izleri değildi bunlar. {{setting.name}}'da ondan önce birileri yürümüştü.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "move": "not_my_footprints"
+    },
+    {
+      "id": "na_traces_02",
+      "text": "{{setting.name}}'da toprak yumuşacıktı. {{child.name}} kendi ayak izlerini sayarak yürüyordu. Derken bir tane fazla saydı. Sonra bir tane daha.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "move": "counting_gone_wrong"
+    },
+    {
+      "id": "na_enclosed_01",
+      "text": "İçerisi dışarıdan serindi. {{child.name}} bir iki adım attı ve gözleri karanlığa alıştı. Tam o sırada {{discovery.phrase}}'i fark etti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.phrase"
+      ],
+      "settingTraits": [
+        "isEnclosed"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "move": "eyes_adjusting"
+    }
+  ]
+}

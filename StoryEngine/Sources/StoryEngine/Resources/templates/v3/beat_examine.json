@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "produces": [],
+  "requires": [
+    "anomalyKnown"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Usually page 2. The child looks closely and notices ONE concrete thing — when it happens, which way it points, how many there are. Family I's page 6 builds its insight out of this observation, so it must be specific enough to reason from and never a second clue. 'It was strange' is not an observation. The child examines; the companion has not arrived yet.",
+  "lengthClasses": {
+    "solo": "18-38 words — examine is the whole page (8 of 9 blueprints)",
+    "paired": "10-16 words — page 2 also carries form_belief (V-1)"
+  },
+  "variants": [
+    {
+      "id": "ex_s_light_01",
+      "text": "{{child.name}} yaklaşıp dikkatle baktı. Işık sürekli yanmıyordu. Bir yanıp bir sönüyordu, hep aynı sırayla. Saymaya başladı ve şaşırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "settingTraits": [],
+      "move": "rhythm_not_constant"
+    },
+    {
+      "id": "ex_s_light_02",
+      "text": "{{child.name}} çömelip {{discovery.phrase}} inceledi. Dokunmadı, sadece uzun uzun baktı. Bir tarafı diğerinden çok daha parlaktı. Neden böyle olduğunu çıkaramadı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.phrase"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "settingTraits": [],
+      "move": "one_side_brighter"
+    },
+    {
+      "id": "ex_s_light_03",
+      "text": "Yakından bakınca daha da tuhaftı. {{child.name}} başını yana eğdi. O zaman fark etti, ışık yalnızca gölgede görünüyordu. Gölge kalkınca ışık da gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isBeautiful",
+        "emitsSignal"
+      ],
+      "settingTraits": [],
+      "move": "only_visible_in_shade"
+    },
+    {
+      "id": "ex_s_light_04",
+      "text": "{{child.name}} etrafında bir tur attı. Her yerden aynı görünmüyordu. Bir yerden bakınca kayboluyor, başka yerden bakınca geri geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "settingTraits": [],
+      "move": "changes_with_angle"
+    },
+    {
+      "id": "ex_s_trace_01",
+      "text": "{{child.name}} izlerin yanına diz çöktü. Hepsi aynı yöne gidiyordu. Ama bir tanesi ters dönmüştü, sanki biri durup arkasına bakmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "move": "one_turned_backwards"
+    },
+    {
+      "id": "ex_s_trace_02",
+      "text": "İzler {{child.name}}'in avucundan küçüktü. Aralarında düzenli boşluklar vardı. Kim bıraktıysa hiç acele etmemişti, adım adım yürümüştü. İzler tek tek belliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "move": "unhurried_spacing"
+    },
+    {
+      "id": "ex_s_trace_03",
+      "text": "{{child.name}} izleri saydı, sonra bir daha saydı. Sayı hiç değişmedi. İzler {{setting.name}}'ın içine doğru gidiyor, geri dönmüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "move": "goes_in_never_comes_back"
+    },
+    {
+      "id": "ex_s_sound_01",
+      "text": "{{child.name}} gözlerini kapatıp dinledi. Ses hep aynı aralıkla geliyordu. Önce üç kez, sonra uzunca bir sessizlik. Ardından yine üç kez.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "settingTraits": [],
+      "move": "counted_pattern"
+    },
+    {
+      "id": "ex_s_sound_02",
+      "text": "Ses yaklaşınca kayboluyordu. {{child.name}} birkaç adım geri çekildi ve yine duydu. Demek ki uzaktan duyulan bir sesti. Bu çok garipti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "emitsSignal"
+      ],
+      "settingTraits": [],
+      "move": "louder_further_away"
+    },
+    {
+      "id": "ex_s_need_01",
+      "text": "{{child.name}} elini uzatmadı, önce iyice baktı. Bir yeri zedelenmiş gibiydi. Oradan kendi başına kalkamayacağı belliydi. Yardıma ihtiyacı vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isFragile",
+        "impliesNeed"
+      ],
+      "settingTraits": [],
+      "move": "looks_before_touching"
+    },
+    {
+      "id": "ex_p_01",
+      "text": "{{child.name}} yaklaşıp dikkatle baktı. Bir tarafı ötekinden çok daha parlaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "settingTraits": [],
+      "move": "quick_look_one_detail"
+    },
+    {
+      "id": "ex_p_02",
+      "text": "{{child.name}} çömelip baktı. İzler hep aynı yöne gidiyor, hiçbiri geri dönmüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "discoveryTraits": [
+        "impliesPresence"
+      ],
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "move": "quick_look_direction"
+    }
+  ]
+}

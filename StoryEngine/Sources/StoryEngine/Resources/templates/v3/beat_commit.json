@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "produces": [
+    "committed"
+  ],
+  "requires": [
+    "anomalyKnown",
+    "needKnown"
+  ],
+  "requiresAny": true,
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Usually page 4. The child DECIDES. Not drifts, not is swept along — chooses, and the choice is visible. Eight of nine blueprints share this page with obstacle_raises or belief_fails, so most variants are short. A decision nobody witnesses is stronger here than one announced to a companion: this is the beat where the child becomes the author of the story. Never let an adult or the companion decide for them.",
+  "lengthClasses": {
+    "paired": "10-16 words — page 4 also carries obstacle_raises or belief_fails (8 of 9)",
+    "solo": "18-38 words — commit is the whole page (I-2)"
+  },
+  "variants": [
+    {
+      "id": "cm_p_01",
+      "text": "{{child.name}} kararını çoktan vermişti. Ne olursa olsun bunun peşini bırakmayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "wont_let_it_go"
+    },
+    {
+      "id": "cm_p_02",
+      "text": "\"Ben bunu çözeceğim,\" dedi {{child.name}} kendi kendine. Sonra yürümeye başladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "says_it_to_self"
+    },
+    {
+      "id": "cm_p_03",
+      "text": "{{child.name}} bir an düşündü. Sonra başını salladı. Gidecekti, başka türlüsü yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "nods_and_goes"
+    },
+    {
+      "id": "cm_p_04",
+      "text": "Geri dönebilirdi, kimse bir şey demezdi. {{child.name}} dönmedi, ilk adımı attı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "could_have_turned_back"
+    },
+    {
+      "id": "cm_p_05",
+      "text": "{{child.name}} avuçlarını sıkıca yumdu. Bunu yapacaktı, başka türlüsü olmazdı artık.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "fists_closed"
+    },
+    {
+      "id": "cm_p_06",
+      "text": "Kimse ona söylemedi. {{child.name}} kendi kendine karar verdi ve harekete geçti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "nobody_told_them"
+    },
+    {
+      "id": "cm_p_07",
+      "text": "\"Ben yardım edeceğim,\" dedi {{child.name}}. Sesi hiç ama hiç titremedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterState": [
+        "needKnown"
+      ],
+      "move": "steady_voice"
+    },
+    {
+      "id": "cm_p_08",
+      "text": "{{child.name}} bir kez daha baktı, sonra kararını verdi. Bugün öğrenecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "today_is_the_day"
+    },
+    {
+      "id": "cm_p_09",
+      "text": "{{companion.name}} ne düşünüyor bilmiyordu. Ama {{child.name}} kararını çoktan vermişti bile.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "decides_regardless"
+    },
+    {
+      "id": "cm_p_10",
+      "text": "{{child.name}} kollarını sıvadı ve yerinden doğruldu. Artık başlama vakti gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "rolls_up_sleeves"
+    },
+    {
+      "id": "cm_s_01",
+      "text": "{{child.name}} biraz durup düşündü. Eve dönmek kolaydı, bunu biliyordu. Ama merakı ağır bastı. Bugün buradan öğrenmeden gitmeyecekti. Merakı hep böyleydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "weighs_going_home"
+    },
+    {
+      "id": "cm_s_02",
+      "text": "İçinden bir ses \"boş ver\" der gibiydi. {{child.name}} o sese kulak asmadı. Ne yapacağını artık biliyordu ve tam olarak onu yaptı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "ignores_the_easy_voice"
+    }
+  ]
+}

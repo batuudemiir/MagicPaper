@@ -318,14 +318,28 @@ final class PilotBlueprintTests: XCTestCase {
 
     // MARK: - Isolation
 
-    /// D2: V1 content is preserved until migration is verified. The pilot is a
-    /// separate resource and must not have been merged into the shipped
-    /// catalog.
-    func testPilotIsNotYetMergedIntoTheShippedCatalog() throws {
-        let catalog = try ContentCatalogLoader().load().catalog
+    /// D2: V1 content is preserved until migration is verified.
+    ///
+    /// This originally asserted the pilot was absent from the *loaded* catalog.
+    /// D8 changed that deliberately — the loader now merges the pilot library at
+    /// load time, which is how anything becomes selectable at all. The
+    /// guarantee D2 actually makes is about the **file**: V1's document is not
+    /// rewritten, and the merge happens in memory.
+    func testV1ContentIsUntouchedAndTheMergeHappensAtLoadTime() throws {
+        let v1URL = try XCTUnwrap(
+            Bundle.module.url(forResource: "shared_content_library_v2", withExtension: "json"))
+        let v1 = try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: v1URL))
+
         XCTAssertNil(
-            catalog.blueprints.first { $0.id.rawValue == "blueprint_threshold_crossing_001" },
-            "The pilot was merged into V1 content before its variants exist."
+            v1.blueprints.first { $0.id.rawValue == "blueprint_threshold_crossing_001" },
+            "The pilot was written into the V1 document."
         )
+        XCTAssertTrue(v1.blueprints.allSatisfy { !$0.isBeatAuthored },
+                      "V1 blueprints were edited to carry beats.")
+        XCTAssertEqual(v1.blueprints.count, 12)
+
+        // And the loaded catalog does contain it, because merging is the point.
+        let loaded = try ContentCatalogLoader().load().catalog
+        XCTAssertNotNil(loaded.blueprints.first { $0.id.rawValue == "blueprint_threshold_crossing_001" })
     }
 }

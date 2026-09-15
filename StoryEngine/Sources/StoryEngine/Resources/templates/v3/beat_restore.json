@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "produces": [
+    "resolved"
+  ],
+  "requires": [
+    "solutionKnown",
+    "needKnown"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Page 7 in seven blueprints — the ending that belongs to someone other than the child, which the product has deliberately kept. `restore` is a quieter note than `succeed`: it is about another's relief, not the child's achievement. What is restored is never the companion's body being carried (catalog §2.3) — it is the companion arriving under its own power because of what the child did, or its nest, food or way back put right. Never a reward, never gratitude framed as payment. Always solo. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned.",
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "ödül olarak",
+    "teşekkür borcu"
+  ],
+  "lengthClasses": {
+    "solo": "18-38 words — page 7 is never shared (7 of 7)"
+  },
+  "variants": [
+    {
+      "id": "rs_coop_01",
+      "text": "İkisi birlikte başardı. {{companion.name}} sonunda olması gereken yere ulaştı. {{child.name}} arkasından baktı ve içi rahatladı. İkisi de yorgundu ama mutluydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "move": "together_it_worked"
+    },
+    {
+      "id": "rs_coop_02",
+      "text": "Ne {{child.name}} tek başına yapabilirdi, ne de {{companion.name}}. Ama ikisi birlikte yaptı. Olması gereken neyse o oldu. Birbirlerine baktılar ve güldüler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "move": "neither_alone_could_have"
+    },
+    {
+      "id": "rs_speak_01",
+      "text": "{{child.name}} söyledi ve söylediği duyuldu. {{companion.name}} için bundan sonrası değişti. Artık kimse onu görmezden gelmiyordu. Bunu fark edince şaşırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "speak_for"
+      ],
+      "move": "said_it_and_was_heard"
+    },
+    {
+      "id": "rs_speak_02",
+      "text": "Bir tek cümle yetti. {{companion.name}} istediğine kavuştu, çünkü {{child.name}} onun yerine konuşmuştu. Kendisi söyleyemezdi. Şimdi ikisi de çok rahatlamıştı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "speak_for"
+      ],
+      "move": "one_sentence_was_enough"
+    },
+    {
+      "id": "rs_give_01",
+      "text": "{{child.name}} verdiğine hiç üzülmedi. {{companion.name}} çok sevindi. Artık ihtiyacı olan şey elindeydi ve bu yeterdi. {{child.name}} geri istemeyi hiç düşünmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "give_up_something"
+      ],
+      "move": "gave_without_regret"
+    },
+    {
+      "id": "rs_give_02",
+      "text": "Vermek zor olmadı. {{child.name}} verince {{companion.name}}'in eksiği tamamlandı. İkisi de bundan çok memnundu. Aslında kimse bir şey kaybetmemişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "give_up_something"
+      ],
+      "move": "the_gap_was_filled"
+    },
+    {
+      "id": "rs_persist_01",
+      "text": "{{child.name}} aramaktan vazgeçmedi ve sonunda buldu. {{companion.name}} kaybettiğine yeniden kavuştu. Sevincinden ne yapacağını bilemedi. O gün kimse pes etmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ],
+      "move": "never_gave_up_looking"
+    },
+    {
+      "id": "rs_persist_02",
+      "text": "Uzun sürdü ama oldu. {{child.name}} pes etmedi, aramaya devam etti. {{companion.name}} artık aradığına kavuşmuştu. Aramak uzun sürmüştü ama değmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ],
+      "move": "took_long_but_happened"
+    },
+    {
+      "id": "rs_views_01",
+      "text": "İkisi de haklıymış, sadece başka yerden bakıyorlarmış. Anlaşınca gerisi kolaylaştı ve {{companion.name}} evine döndü. {{child.name}} arkasından uzun uzun baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "exchange_views"
+      ],
+      "move": "both_were_right"
+    },
+    {
+      "id": "rs_views_02",
+      "text": "Yanlış anlaşılma bitince iş kolaydı. {{companion.name}} gitmesi gereken yere gitti. {{child.name}} arkasından gülümsedi. Artık kimsenin kırgınlığı kalmamıştı, hiç kimsenin.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "exchange_views"
+      ],
+      "move": "misunderstanding_cleared"
+    },
+    {
+      "id": "rs_ready_01",
+      "text": "Zamanı gelmişti. {{companion.name}} artık hazırdı ve {{child.name}} bunu görebiliyordu. Yavaşça uzaklaştı. Arkasından bakmak kolay değildi ama doğru olan buydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "it_was_time"
+    },
+    {
+      "id": "rs_ready_02",
+      "text": "{{child.name}} elini açtı. {{companion.name}} bir an durdu, sonra gitti. Gitmesi gerekiyordu ve bu iyi bir şeydi. {{child.name}} elini yavaşça indirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "let_go",
+        "patient_wait"
+      ],
+      "move": "opened_the_hand"
+    },
+    {
+      "id": "rs_any_01",
+      "text": "{{companion.name}} gitmesi gereken yere döndü nihayet. {{child.name}} bunu uzaktan izledi. Onun yardımı olmasaydı bu iş buraya hiç varmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "knew_it_needed_them"
+    },
+    {
+      "id": "rs_any_02",
+      "text": "{{companion.name}} derin bir nefes aldı, {{child.name}} de. Zor kısım artık bitmişti ve ikisi de bunu içten içe hissediyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "both_exhale"
+    },
+    {
+      "id": "rs_any_03",
+      "text": "{{child.name}} sayesinde {{companion.name}} aradığına kavuştu. Bunu kimse yüksek sesle söylemedi. Ama ikisi de gayet iyi biliyordu, ikisi de.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "unspoken_credit"
+    },
+    {
+      "id": "rs_any_04",
+      "text": "İş bitti. {{companion.name}} artık tam olması gerektiği gibiydi. {{child.name}} yavaşça geri çekildi ve uzaktan izledi. Hiçbir şey söylemedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "steps_back_and_watches"
+    },
+    {
+      "id": "rs_any_05",
+      "text": "{{companion.name}} için o gün her şey değişti. Bunu yapan {{child.name}} olmuştu ama hiç övünmedi. Sadece sevindi, o kadar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "changed_everything_no_boast"
+    },
+    {
+      "id": "rs_any_06",
+      "text": "Sonunda oldu. {{companion.name}} tam da ait olduğu yerdeydi artık. {{child.name}} bunu görmekten çok mutlu oldu ve gözlerini ayıramadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort",
+        "speak_for",
+        "give_up_something",
+        "persist",
+        "exchange_views",
+        "patient_wait",
+        "let_go"
+      ],
+      "move": "simply_glad_to_see_it"
+    }
+  ]
+}

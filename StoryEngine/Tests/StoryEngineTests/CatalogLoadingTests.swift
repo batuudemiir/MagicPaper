@@ -29,17 +29,28 @@ final class CatalogBundleTests: XCTestCase {
         }
     }
 
+    /// The shipped catalog is now two documents merged (D8). Both halves are
+    /// pinned: the V1 contribution, so a merge cannot quietly drop it, and the
+    /// total, so a new document cannot appear unnoticed.
     func testTheShippedCatalogHasTheExpectedRecordCounts() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(catalog.blueprints.count, 12)
-        XCTAssertEqual(catalog.settings.count, 16)
-        XCTAssertEqual(catalog.companions.count, 15)
-        XCTAssertEqual(catalog.objects.count, 20)
+
+        // V1 — unchanged, and identifiable by carrying no beats or traits.
+        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 12)
+        XCTAssertEqual(catalog.settings.filter(\.traits.isEmpty).count, 16)
+        XCTAssertEqual(catalog.companions.filter(\.traits.isEmpty).count, 15)
+        XCTAssertEqual(catalog.objects.filter(\.traits.isEmpty).count, 20)
         XCTAssertEqual(catalog.events.count, 20)
         XCTAssertEqual(catalog.challenges.count, 15)
         XCTAssertEqual(catalog.endings.count, 10)
-        XCTAssertEqual(catalog.templates.count, 52)
-        XCTAssertEqual(catalog.recordCounts["variants"], 156)
+
+        // Merged totals.
+        XCTAssertEqual(catalog.blueprints.count, 17)
+        XCTAssertEqual(catalog.settings.count, 21)
+        XCTAssertEqual(catalog.companions.count, 20)
+        XCTAssertEqual(catalog.objects.count, 25)
+        XCTAssertEqual(catalog.templates.count, 75)
+        XCTAssertEqual(catalog.recordCounts["variants"], 225)
     }
 
     func testEveryShippedBlueprintDeclaresTheEightBeatArc() throws {
@@ -220,13 +231,29 @@ final class CatalogBeatMigrationTests: XCTestCase {
         let report = try shippedReport()
         XCTAssertFalse(report.issues(withCode: "blueprint_without_beats").isEmpty)
         XCTAssertFalse(report.issues(withCode: "template_without_beat").isEmpty)
+        // The 12 V1 blueprints; the pilot library's five all declare a family.
         XCTAssertEqual(report.issues(withCode: "blueprint_without_family").count, 12)
     }
 
-    func testNoShippedBlueprintIsSelectableUnderTheBeatModel() throws {
+    /// This test used to assert the opposite — that nothing shipped was
+    /// selectable — which was true and was the problem. D8 makes the loader read
+    /// the pilot library too, so the inversion is the point rather than a
+    /// regression. What still holds is that no *V1* blueprint became selectable
+    /// by accident: the migration is additive, not a rewrite of V1 content.
+    func testTheShippedCatalogIsNowSelectableWithoutChangingV1() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertTrue(catalog.blueprints.allSatisfy { !$0.isBeatAuthored })
-        XCTAssertTrue(catalog.templates.allSatisfy { !$0.isSelectable })
+
+        let selectable = catalog.blueprints.filter(\.isBeatAuthored)
+        XCTAssertFalse(selectable.isEmpty, "D8 did not load the beat-authored library.")
+        XCTAssertFalse(catalog.templates.filter(\.isSelectable).isEmpty)
+
+        // Every selectable blueprint came from the pilot library; not one V1
+        // blueprint acquired beats.
+        XCTAssertTrue(
+            selectable.allSatisfy { $0.family != nil },
+            "A V1 blueprint appears to have become beat-authored."
+        )
+        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 12)
     }
 
     func testABeatAuthoredBlueprintValidatesEndToEnd() throws {

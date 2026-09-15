@@ -139,3 +139,44 @@ struct AnyIgnored: Decodable {
         _ = try decoder.singleValueContainer()
     }
 }
+
+// MARK: - Merging
+
+extension ContentCatalog {
+    /// One catalog assembled from several authored documents.
+    ///
+    /// Content is authored in more than one file on purpose: the V1 library and
+    /// the beat-authored pilot library have different lifetimes, and the corpus
+    /// being written per-beat elsewhere will add more. Requiring one file would
+    /// mean either freezing V1 content into the new library or waiting for a
+    /// migration that is not finished.
+    ///
+    /// Records are concatenated in the order given, and **duplicate ids are not
+    /// resolved here**. `CatalogIntegrityChecker` already reports duplicates,
+    /// and silently dropping one of two records that claim the same id is how a
+    /// content bug becomes a mystery. Lookups take the first match, so the order
+    /// of `catalogs` is the precedence order.
+    ///
+    /// `version` is the first non-empty version, since that is the one a reader
+    /// would call "the catalog version"; `declaredResolutionCount` sums, because
+    /// it is a count of a thing that was never modelled.
+    public static func merging(_ catalogs: [ContentCatalog]) -> ContentCatalog {
+        guard let first = catalogs.first else {
+            return ContentCatalog(version: "0.0.0")
+        }
+        guard catalogs.count > 1 else { return first }
+
+        return ContentCatalog(
+            version: catalogs.first { $0.version != "0.0.0" }?.version ?? first.version,
+            settings: catalogs.flatMap(\.settings),
+            companions: catalogs.flatMap(\.companions),
+            objects: catalogs.flatMap(\.objects),
+            events: catalogs.flatMap(\.events),
+            challenges: catalogs.flatMap(\.challenges),
+            endings: catalogs.flatMap(\.endings),
+            templates: catalogs.flatMap(\.templates),
+            blueprints: catalogs.flatMap(\.blueprints),
+            declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
+        )
+    }
+}

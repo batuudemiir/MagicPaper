@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "produces": [
+    "companionPresent"
+  ],
+  "requires": [],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Page 3 of every blueprint. The companion must arrive with its OWN reason to be here — it lives nearby, it crosses often, it is in trouble, it was passing. 'The fox appeared' is the failure this beat exists to prevent. Variants are cast-specific: a companion cast as needsCare cannot stride in offering help, and one cast as guide cannot be trembling. The need itself is NOT voiced here — receive_appeal does that on page 3 or 4. No body-part assumptions: the roster includes a robot.",
+  "castings": [
+    "guide",
+    "needsCare",
+    "hesitant",
+    "reassuring"
+  ],
+  "variants": [
+    {
+      "id": "mc_guide_01",
+      "text": "Bir dal kımıldadı. Arkasından {{companion.name}} adında bir {{companion.type}} çıktı ortaya. \"Ben buralıyım,\" dedi. \"Sen kimsin? Daha önce hiç görmedim seni.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "emerges_and_claims_the_place"
+    },
+    {
+      "id": "mc_guide_02",
+      "text": "{{companion.name}} her sabah bu yoldan geçerdi. O gün {{child.name}}'i gördü ve durdu. Meraklı gözlerle ona baktı, sonra ileriye baktı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "routine_of_its_own"
+    },
+    {
+      "id": "mc_guide_03",
+      "text": "Yukarıdan bir kanat sesi geldi. {{companion.name}} adlı {{companion.type}} süzülerek indi. Burayı avucunun içi gibi bilirdi. \"Ben sana yardım edebilirim,\" dedi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityRequire": [
+        "canFly"
+      ],
+      "capabilityForbid": [],
+      "move": "arrives_from_above"
+    },
+    {
+      "id": "mc_guide_04",
+      "text": "\"Sen yenisin,\" dedi bir ses. {{child.name}} hemen döndü. Küçük bir {{companion.type}} ona bakıyordu. Adı {{companion.name}}, burada doğup büyümüştü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "speaks_first_from_behind"
+    },
+    {
+      "id": "mc_guide_05",
+      "text": "{{companion.name}} tam oradan geçiyordu. Durdu, önce {{child.name}}'e baktı, sonra ilerideki şeye. \"Onu ben de gördüm,\" dedi yavaşça. \"Hem de ilk kez değil.\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "was_passing_and_saw_it_too"
+    },
+    {
+      "id": "mc_care_01",
+      "text": "Yerde küçük bir kıpırtı vardı. {{child.name}} eğilip baktı. Minicik bir {{companion.type}} oradaydı. Adı {{companion.name}} ve çok yorgun görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type",
+        "companion.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "movement_on_the_ground"
+    },
+    {
+      "id": "mc_care_02",
+      "text": "Ses yine geldi, bu kez çok yakından. {{child.name}} usulca yaklaştı. {{companion.name}} oradaydı, küçücük bir {{companion.type}}, tek başına ve korkmuş.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type",
+        "companion.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "sound_leads_to_someone"
+    },
+    {
+      "id": "mc_care_03",
+      "text": "Bir şey titriyordu, çok hafifçe. {{child.name}} yavaşça yanına gitti. {{companion.name}} adında küçük bir {{companion.type}} kıpırdamadan duruyordu. Sonra başını kaldırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "trembling_stillness"
+    },
+    {
+      "id": "mc_care_04",
+      "text": "{{companion.name}} çok küçüktü ve çok yorgundu. {{child.name}} onu hemen fark etti. Yanına çömeldi ve usulca seslendi. \"Merhaba,\" dedi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "child_crouches_and_greets"
+    },
+    {
+      "id": "mc_care_05",
+      "text": "Orada bir {{companion.type}} vardı, {{child.name}}'den bile küçük. Önce hiç kımıldamadı. Sonra minik bir gözünü açtı ve ona baktı.",
+      "requiredSlots": [
+        "companion.type",
+        "child.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [
+        "isLiteralMinded"
+      ],
+      "move": "one_eye_opens"
+    },
+    {
+      "id": "mc_hesitant_01",
+      "text": "Bir şeyin arkasından iki göz bakıyordu. {{child.name}} hiç kıpırdamadı. Yavaş yavaş {{companion.name}} ortaya çıktı, iki adım attı, sonra yine durdu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "hesitant"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [
+        "isLiteralMinded"
+      ],
+      "move": "watched_before_seen"
+    },
+    {
+      "id": "mc_hesitant_02",
+      "text": "{{companion.name}} da orada durmuş bakıyordu. O da ilerlemek istemiyordu galiba. İkisi göz göze geldi ve birbirlerini hemen anladılar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "castRoles": [
+        "hesitant"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "both_stuck_at_the_same_place"
+    },
+    {
+      "id": "mc_hesitant_03",
+      "text": "\"Ben de hep burada duruyorum,\" dedi ince bir ses. {{child.name}} döndü. {{companion.name}} oradaydı. \"Bir türlü geçemedim,\" diye ekledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "hesitant"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "admits_it_first"
+    },
+    {
+      "id": "mc_calm_01",
+      "text": "{{companion.name}} hiç acele etmiyordu. {{child.name}}'in yanına geldi, yere oturdu ve bekledi. Hiçbir şey söylemedi. Böylece ikisi birlikte beklediler.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "sits_down_and_waits"
+    },
+    {
+      "id": "mc_calm_02",
+      "text": "Yanına biri geldi. {{companion.name}} adında sakin bir {{companion.type}}. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra {{child.name}}'in yanına ilişti.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "no_hurry"
+    },
+    {
+      "id": "mc_calm_03",
+      "text": "{{companion.name}} buraya çok gelirdi. {{child.name}}'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "looks_the_same_way"
+    }
+  ]
+}

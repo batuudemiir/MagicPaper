@@ -20,6 +20,12 @@ public struct CatalogLoadReport: Sendable {
     }
 
     public let source: Source
+    /// Every document that went into this catalog, in precedence order.
+    ///
+    /// `source` names the first one, which is the required document; anything
+    /// after it is optional content layered on top. Kept separate so the
+    /// existing meaning of `source` does not change.
+    public let mergedSources: [String]
     public let decoded: Bool
     public let decodeError: String?
     public let integrity: CatalogIntegrityReport?
@@ -27,12 +33,14 @@ public struct CatalogLoadReport: Sendable {
 
     public init(
         source: Source,
+        mergedSources: [String] = [],
         decoded: Bool,
         decodeError: String? = nil,
         integrity: CatalogIntegrityReport? = nil,
         loadedAt: Date
     ) {
         self.source = source
+        self.mergedSources = mergedSources
         self.decoded = decoded
         self.decodeError = decodeError
         self.integrity = integrity
@@ -46,7 +54,10 @@ public struct CatalogLoadReport: Sendable {
             return "Catalog NOT FOUND. Searched: \(searched.joined(separator: ", "))"
         case .packageBundle(let path), .otherBundle(let path):
             guard decoded else { return "Catalog found at \(path) but failed to decode: \(decodeError ?? "unknown")" }
-            return "Catalog loaded from \(path) — \(integrity?.summary ?? "not checked")"
+            let documents = mergedSources.count > 1
+                ? " (\(mergedSources.joined(separator: " + ")))"
+                : ""
+            return "Catalog loaded from \(path)\(documents) — \(integrity?.summary ?? "not checked")"
         case .memory:
             return "Catalog supplied in memory — \(integrity?.summary ?? "not checked")"
         }
@@ -82,7 +93,20 @@ public enum CatalogLoadError: Error, Sendable, CustomStringConvertible {
 /// fallback, because one of those is what currently makes the prototype work on
 /// a developer's Mac and fail on a device.
 public struct ContentCatalogLoader: Sendable {
+    /// The document that must be present. Absent, there is no catalog at all.
     public static let resourceName = "shared_content_library_v2"
+
+    /// Documents layered on top when they are present, in precedence order.
+    ///
+    /// The pilot library holds the beat-authored blueprints and the content
+    /// carrying traits. Without it nothing in the catalog is selectable under
+    /// the beat model — the V1 document has no beats and no traits — so the app
+    /// could load a catalog and still be unable to build a single story.
+    ///
+    /// Optional rather than required: a host that ships only the V1 document
+    /// keeps working, and says so in the report rather than failing to launch.
+    public static let additionalResourceNames = ["pilot_library_v1"]
+
     public static let resourceExtension = "json"
 
     private let checker: CatalogIntegrityChecker
@@ -102,7 +126,7 @@ public struct ContentCatalogLoader: Sendable {
     public func load() throws -> Result {
         var searched: [String] = []
 
-        guard let url = Self.locate(searched: &searched) else {
+        guard let url = Self.locate(Self.resourceName, searched: &searched) else {
             throw CatalogLoadError.resourceNotFound(searched: searched)
         }
 
@@ -111,14 +135,46 @@ public struct ContentCatalogLoader: Sendable {
             ? .packageBundle(url.lastPathComponent)
             : .otherBundle(url.path)
 
+        var documents: [(name: String, catalog: ContentCatalog)] = [
+            (url.lastPathComponent, try Self.read(url))
+        ]
+
+        // Optional layers. A missing one is recorded by its absence from
+        // `mergedSources`, never by a silent fallback to a catalog that cannot
+        // build anything.
+        for name in Self.additionalResourceNames {
+            var ignored: [String] = []
+            guard let extra = Self.locate(name, searched: &ignored) else { continue }
+            documents.append((extra.lastPathComponent, try Self.read(extra)))
+        }
+
+        let catalog = ContentCatalog.merging(documents.map(\.catalog))
+        let integrity = checker.check(catalog)
+        let report = CatalogLoadReport(
+            source: source,
+            mergedSources: documents.map(\.name),
+            decoded: true,
+            integrity: integrity,
+            loadedAt: clock.now()
+        )
+        guard integrity.isUsable else {
+            throw CatalogLoadError.unusable(report: integrity)
+        }
+        return Result(catalog: catalog, report: report)
+    }
+
+    private static func read(_ url: URL) throws -> ContentCatalog {
         let data: Data
         do {
             data = try Data(contentsOf: url)
         } catch {
             throw CatalogLoadError.unreadable(path: url.path, underlying: String(describing: error))
         }
-
-        return try decode(data, source: source, path: url.path)
+        do {
+            return try JSONDecoder().decode(ContentCatalog.self, from: data)
+        } catch {
+            throw CatalogLoadError.undecodable(path: url.path, underlying: String(describing: error))
+        }
     }
 
     /// Loads from data already in hand. Used by tests and by any host that
@@ -137,7 +193,8 @@ public struct ContentCatalogLoader: Sendable {
 
         let integrity = checker.check(catalog)
         let report = CatalogLoadReport(
-            source: source, decoded: true, integrity: integrity, loadedAt: clock.now()
+            source: source, mergedSources: [path], decoded: true,
+            integrity: integrity, loadedAt: clock.now()
         )
 
         // Fatal means the catalog cannot produce a story at all. Errors and
@@ -152,20 +209,25 @@ public struct ContentCatalogLoader: Sendable {
     }
 
     /// Bundle search order, recorded so a failure names everywhere it looked.
-    static func locate(searched: inout [String]) -> URL? {
+    static func locate(_ name: String, searched: inout [String]) -> URL? {
         searched.append("Bundle.module")
-        if let url = Bundle.module.url(forResource: resourceName, withExtension: resourceExtension) {
+        if let url = Bundle.module.url(forResource: name, withExtension: resourceExtension) {
             return url
         }
 
         for bundle in Bundle.allBundles + Bundle.allFrameworks {
             let label = bundle.bundleIdentifier ?? bundle.bundleURL.lastPathComponent
             searched.append(label)
-            if let url = bundle.url(forResource: resourceName, withExtension: resourceExtension) {
+            if let url = bundle.url(forResource: name, withExtension: resourceExtension) {
                 return url
             }
         }
         return nil
+    }
+
+    /// Kept for callers that only ask about the required document.
+    static func locate(searched: inout [String]) -> URL? {
+        locate(resourceName, searched: &searched)
     }
 }
 

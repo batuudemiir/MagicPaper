@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "produces": [],
+  "requires": [
+    "resolved"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Page 8 of every blueprint. Emotional closure, never 'and they lived happily ever after'. warm_close carries the LANDING only — it must not do the self-recognition or the taking-away, because self_recognize and carry_forward are separate beats that share the page. Seven blueprints arrive here from `succeed` (the child did it) and seven from `restore` (someone else got back); those need different closings, so variants declare which they follow.",
+  "lengthClasses": {
+    "paired": "12-18 words — page 8 also carries self_recognize or carry_forward (11 of 14 blueprints)",
+    "solo": "18-28 words — warm_close is the whole page (I-3, III-1, V-1)"
+  },
+  "variants": [
+    {
+      "id": "wc_p_succeed_01",
+      "text": "Eve dönerken hava kararmaya başlamıştı. {{child.name}} yorgundu ama bu iyi bir yorgunluktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed"
+      ],
+      "move": "good_tiredness"
+    },
+    {
+      "id": "wc_p_succeed_02",
+      "text": "{{setting.name}} yavaş yavaş sessizleşti. {{child.name}} bir kez daha arkasına baktı ve gülümsedi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "one_last_look"
+    },
+    {
+      "id": "wc_p_succeed_03",
+      "text": "{{companion.name}} \"İyi ki buradaydın,\" dedi. {{child.name}} bir şey demedi, sadece kulakları kızardı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed"
+      ],
+      "move": "praise_received_shyly"
+    },
+    {
+      "id": "wc_p_succeed_04",
+      "text": "Akşam oluyordu. {{child.name}} derin bir nefes aldı. Zor kısmı çoktan geride kalmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed"
+      ],
+      "move": "breath_after"
+    },
+    {
+      "id": "wc_p_succeed_05",
+      "text": "{{child.name}} eve doğru yürürken içi kıpır kıpırdı. Kimseye anlatmasa da olurdu aslında.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed"
+      ],
+      "move": "private_gladness"
+    },
+    {
+      "id": "wc_p_restore_01",
+      "text": "{{companion.name}} artık olması gereken yerdeydi. {{child.name}} bunu biraz izledi, sonra sessizce ayrıldı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "watches_then_leaves"
+    },
+    {
+      "id": "wc_p_restore_02",
+      "text": "Uzaktan minik bir ses geldi. {{companion.name}} veda ediyordu. {{child.name}} el salladı, ses duyulmaz olana kadar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "goodbye_from_a_distance"
+    },
+    {
+      "id": "wc_p_restore_03",
+      "text": "{{companion.name}} sonunda evine kavuştu. {{child.name}} arkasından baktı. İçi öyle bir sıcacık oldu ki.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "warmth_watching"
+    },
+    {
+      "id": "wc_p_restore_04",
+      "text": "Her şey yerli yerindeydi artık. {{child.name}} bunu görmenin ne demek olduğunu yeni öğrendi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "everything_in_its_place"
+    },
+    {
+      "id": "wc_p_restore_05",
+      "text": "{{companion.name}} bir kez daha döndü ona baktı. {{child.name}} başını salladı. Konuşmaya gerek yoktu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "understood_without_words"
+    },
+    {
+      "id": "wc_p_both_01",
+      "text": "{{child.name}} ve {{companion.name}} vedalaştılar. Uzun bir veda olmadı, çünkü yarın yine buluşacaklardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "short_goodbye_because_tomorrow"
+    },
+    {
+      "id": "wc_s_both_01",
+      "text": "Dönüş yolu aynı yoldu ama {{child.name}}'e bambaşka geldi. Her şey biraz daha tanıdıktı artık. Adımları hafiflemişti. Eve varana kadar hiç durmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "same_road_different_child"
+    },
+    {
+      "id": "wc_s_both_02",
+      "text": "O gece {{child.name}} yatağına girdiğinde hâlâ gülümsüyordu. Gözlerini kapattı ve bugünü baştan sona bir daha yaşadı. Uyurken de gülümsüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "replaying_it_at_bedtime"
+    },
+    {
+      "id": "wc_s_both_03",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} biraz yavaşladı. Buraya yine gelecekti, bundan emindi. Arkasında çok güzel bir gün bırakmıştı. Yarını merak ediyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "slowing_on_the_way_out"
+    },
+    {
+      "id": "wc_s_both_04",
+      "text": "Gökyüzü turuncuya dönmüştü. {{child.name}} eve doğru yürüdü, {{companion.name}} da kendi yoluna gitti. İkisi de aynı şeyi düşünüyordu. Yarın yine göreceklerdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "two_ways_one_thought"
+    },
+    {
+      "id": "wc_s_both_05",
+      "text": "Ortalık iyice sakinleşti. {{child.name}} bir taşın üstüne oturdu ve biraz soluklandı. Böyle günler her zaman olmazdı, bunu çok iyi biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "move": "sitting_down_to_let_it_settle"
+    }
+  ]
+}

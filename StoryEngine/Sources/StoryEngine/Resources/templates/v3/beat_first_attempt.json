@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "produces": [
+    "attemptMade"
+  ],
+  "requires": [
+    "committed"
+  ],
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Usually page 5. The child acts and it does not fully work — and HOW it fails names what is missing. Fail informatively, never discouragingly: nobody is at fault, nothing is lost, and the child does not feel foolish. This is the page the old corpus left empty, so it carries more weight than its length suggests. The child acts first; a companion may help but may not lead.",
+  "lengthClasses": {
+    "solo": "18-38 words — first_attempt is the whole page (8 of 9 blueprints)",
+    "paired": "10-16 words — page 5 also carries obstacle_raises (I-1)"
+  },
+  "variants": [
+    {
+      "id": "fa_s_01",
+      "text": "{{child.name}} önce en kolay yolu denedi. Elini uzattı, biraz çekti, biraz itti. Hiçbir şey olmadı. Demek ki başka bir yolu vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "easiest_way_first"
+    },
+    {
+      "id": "fa_s_02",
+      "text": "{{child.name}} tam düşündüğü gibi yaptı. Yarısına kadar işe yaradı. Sonra durdu, daha ileri gitmedi. Ne olduğunu anlamak için eğilip baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "works_halfway"
+    },
+    {
+      "id": "fa_s_03",
+      "text": "İlk denemede {{child.name}} çok yaklaştı. Neredeyse olacaktı. Ama son anda elinden kaydı ve baştan başlaması gerekti. Bu sefer daha dikkatliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "almost_had_it"
+    },
+    {
+      "id": "fa_s_04",
+      "text": "{{child.name}} bütün gücüyle denedi. Kolları yoruldu, nefesi kesildi. Yine de olmadı. Güç yetmiyordu, burada akıl gerekiyordu. Oturup düşündü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "strength_is_not_enough"
+    },
+    {
+      "id": "fa_s_05",
+      "text": "{{child.name}} bir yol denedi, olmadı. Başka bir yol denedi, o da olmadı. Ama her denemede yeni bir şey öğrendi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "learns_from_each_try"
+    },
+    {
+      "id": "fa_s_06",
+      "text": "{{companion.name}} ile birlikte denediler. İkisi de ellerinden geleni yaptı. Yine de yetmedi. Durup birbirlerine baktılar, ikisi de aynı şeyi düşünüyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "together_and_still_short"
+    },
+    {
+      "id": "fa_s_07",
+      "text": "{{child.name}} planını adım adım uyguladı. Her şey yolundaydı, ta ki o ana kadar. Sonra hiç beklemediği bir şey oldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "plan_meets_surprise"
+    },
+    {
+      "id": "fa_s_08",
+      "text": "{{child.name}} sabırla denedi. Bir kere, iki kere, üç kere. Üçüncüde bir şey değişti ama yine de yeterli olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "three_tries_small_change"
+    },
+    {
+      "id": "fa_s_09",
+      "text": "Denemek {{child.name}}'e zor gelmedi. Asıl zor olan, işe yaramadığını görmekti. Yine de pes etmeyi aklından geçirmedi. Sadece biraz soluklandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "trying_is_easy_failing_is_not"
+    },
+    {
+      "id": "fa_s_10",
+      "text": "{{child.name}} elindekiyle idare etmeye çalıştı. Bir süre işe yaradı. Sonra o da bitti ve yeniden düşünmek zorunda kaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "makes_do_until_it_runs_out"
+    },
+    {
+      "id": "fa_p_01",
+      "text": "{{child.name}} hemen denedi ama olmadı. Yine de neden olmadığını gördü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sees_why_it_failed"
+    },
+    {
+      "id": "fa_p_02",
+      "text": "{{child.name}} bir kez denedi, sonra bir kez daha. İkisi de yetmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "twice_neither_enough"
+    }
+  ]
+}

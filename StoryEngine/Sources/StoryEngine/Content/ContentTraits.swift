@@ -198,7 +198,9 @@ public enum TraitMatch {
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>
     ) -> Bool {
-        required.isSatisfied(by: offered) && offered.isDisjoint(with: forbidden)
+        !offered.isEmpty
+            && required.isSatisfied(by: offered)
+            && offered.isDisjoint(with: forbidden)
     }
 
     /// Why a candidate was rejected — never a bare "no". An empty candidate
@@ -209,6 +211,17 @@ public enum TraitMatch {
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>
     ) -> String? {
+        // Content that declares no traits has made no claims, so nothing about
+        // it can be checked against a blueprint's premise. An empty requirement
+        // would otherwise admit it — which is how merging the V1 library, whose
+        // records carry no traits at all, put an unclassified bear into a story
+        // that needed a companion able to ask for help.
+        //
+        // This is the §8.4 rule applied to the content side: an unmigrated
+        // record is unavailable to trait-based selection, and says so, rather
+        // than passing silently because nobody asked it anything.
+        guard !offered.isEmpty else { return "declares no traits" }
+
         let missing = required.unmet(in: offered)
         let present = offered.intersection(forbidden)
         if missing.isEmpty && present.isEmpty { return nil }
