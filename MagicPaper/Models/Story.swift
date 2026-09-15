@@ -24,13 +24,22 @@ struct Story: Identifiable, Codable, Equatable {
     var createdAt: Date
     var lastReadPage: Int?
     var currentProgress: String?
+    /// Where an engine-built story came from.
+    ///
+    /// Nil for stories the old pipeline made. Carrying it is what makes
+    /// "the same story again" mean something: every input that determined the
+    /// text is here, so a regeneration can be checked rather than hoped for.
+    /// It is also the only thing that can answer which ideas and companions
+    /// people actually choose, and it answers with ids rather than with
+    /// Turkish display strings.
+    var origin: StoryOrigin?
     
     // Equatable conformance
     static func == (lhs: Story, rhs: Story) -> Bool {
         lhs.id == rhs.id
     }
     
-    init(id: UUID = UUID(), title: String, childName: String, childProfileID: UUID? = nil, theme: StoryTheme, language: StoryLanguage, status: StoryStatus = .uploading, pages: [StoryPage] = [], coverImageFileName: String? = nil, coverImageUrl: String? = nil) {
+    init(id: UUID = UUID(), title: String, childName: String, childProfileID: UUID? = nil, theme: StoryTheme, language: StoryLanguage, status: StoryStatus = .uploading, pages: [StoryPage] = [], coverImageFileName: String? = nil, coverImageUrl: String? = nil, origin: StoryOrigin? = nil) {
         self.id = id
         self.title = title
         self.childName = childName
@@ -44,7 +53,26 @@ struct Story: Identifiable, Codable, Equatable {
         self.createdAt = Date()
         self.lastReadPage = nil
         self.currentProgress = nil
+        self.origin = origin
     }
+}
+
+/// Everything that decided a story's text, kept with the story.
+struct StoryOrigin: Codable, Equatable {
+    /// The seed the story was built from. Same seed and same inputs, same book.
+    var seed: String
+    /// The card the child chose. Nil means they chose "surprise me".
+    var storyIdeaID: String?
+    var blueprintID: String
+    var settingID: String
+    var companionID: String
+    var discoveryID: String
+    /// Stable over the inputs that determine the text, so two builds can be
+    /// compared without diffing prose.
+    var fingerprint: String
+    /// Which catalog produced it. Content grows; without this, "the same seed"
+    /// stops meaning the same story and nobody can tell why.
+    var catalogVersion: String
 }
 
 extension Story {

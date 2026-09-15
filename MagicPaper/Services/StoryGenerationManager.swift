@@ -1369,6 +1369,59 @@ final class TestOfflineTemplateStoryProvider {
 
 extension StoryGenerationManager {
     @MainActor
+    /// Builds a story from the two choices the new creation flow collects, and
+    /// saves it.
+    ///
+    /// Replaces `createOfflineTextStory`, which took a genre string, a theme
+    /// string and hard-coded ids — `setting_forest_001` and
+    /// `companion_fox_001` — so every choice the user made was discarded (B3).
+    /// Here the choices are stable ids, the seed is kept so the story can be
+    /// rebuilt (B5), and a failure is thrown rather than printed (B2).
+    ///
+    /// Returns the saved story. The caller opens it; nothing here navigates.
+    @discardableResult
+    func createStory(
+        for profile: UserProfile,
+        storyIdeaID: String?,
+        companionID: String?,
+        seed: String? = nil
+    ) async throws -> Story {
+        isGenerating = true
+        defer { isGenerating = false }
+
+        let composed = try OfflineStoryService.shared.compose(
+            childName: profile.name,
+            ideaID: storyIdeaID,
+            companionID: companionID,
+            seed: seed
+        )
+
+        let story = OfflineStoryMapper.appStory(
+            from: composed.story,
+            childName: profile.name,
+            childProfileID: profile.id,
+            storyIdeaID: storyIdeaID,
+            catalogVersion: composed.catalogVersion
+        )
+
+        recordBlueprintRead(composed.story.blueprintID.rawValue, for: profile)
+
+        stories.insert(story, at: 0)
+        saveStories()
+        return story
+    }
+
+    /// Feeds the per-child blueprint cooldown, so the next story is less likely
+    /// to repeat this one's shape. It is the only novelty mechanism that exists
+    /// today; proper scoring is still ahead.
+    private func recordBlueprintRead(_ blueprintID: String, for profile: UserProfile) {
+        let key = "read_history_\(profile.id.uuidString)"
+        var seen = UserDefaults.standard.stringArray(forKey: key) ?? []
+        seen.append(blueprintID)
+        // Bounded: this is a cooldown signal, not an archive.
+        UserDefaults.standard.set(Array(seen.suffix(40)), forKey: key)
+    }
+
     func createOfflineTextStory(childProfile: UserProfile, genre: String, theme: String?, settingId: String?, companionId: String?, length: MPStoryLength, tone: MPStoryTone) async throws -> Story {
         self.isGenerating = true
         defer { self.isGenerating = false }
