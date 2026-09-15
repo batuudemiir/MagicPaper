@@ -49,8 +49,23 @@ public struct ComposedStory: Sendable, Hashable {
 public struct OfflineStoryComposer: Sendable {
     private let binder = OfflineContentBinder()
     private let titles = TitleComposer()
+    private let selector = BlueprintSelector()
 
     public init() {}
+
+    /// Compose without naming a blueprint: the three choices select the shape.
+    /// This is the entry point the app uses; the blueprint-explicit overload
+    /// exists for tests and for regenerating a story that already has one.
+    public func compose(
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent
+    ) throws -> ComposedStory {
+        try compose(
+            blueprint: selector.select(catalog: catalog, intent: intent),
+            catalog: catalog,
+            intent: intent
+        )
+    }
 
     public func compose(
         blueprint: CatalogBlueprint,
@@ -63,6 +78,19 @@ public struct OfflineStoryComposer: Sendable {
 
         let content = try binder.bind(blueprint: blueprint, catalog: catalog, intent: intent)
         let slots = Self.slots(childName: intent.childName, content: content)
+
+        // Variant choice is keyed on the whole story, not on the seed alone.
+        // Keyed on the seed alone, two stories built from the same seed but
+        // different content picked the same sentence for every shared beat —
+        // so a fox story and a dolphin story came out near-identical. Every
+        // input that identifies the story is folded in, which keeps a
+        // regenerate reproducible (same inputs, same book) while letting two
+        // different books diverge.
+        let storySeed = StableHash.fingerprint([
+            intent.seed, intent.childName, blueprint.id.rawValue,
+            content.setting.id.rawValue, content.companion.id.rawValue,
+            content.discovery.id.rawValue
+        ])
 
         var pages: [ComposedPage] = []
         for slot in blueprint.pagePlan.sorted(by: { $0.pageNumber < $1.pageNumber }) {
@@ -88,9 +116,9 @@ public struct OfflineStoryComposer: Sendable {
                     throw OfflineSelectionError.noTemplate(beat: current, page: slot.pageNumber)
                 }
                 let salt = "p\(slot.pageNumber).\(offset).\(current.rawValue)"
-                let template = DeterministicPicker.pick(from: candidates, seed: intent.seed, salt: salt)
+                let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: salt)
                 let variant = DeterministicPicker.pick(
-                    from: template.variants, seed: intent.seed, salt: salt + ".v"
+                    from: template.variants, seed: storySeed, salt: salt + ".v"
                 )
 
                 let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
@@ -114,7 +142,7 @@ public struct OfflineStoryComposer: Sendable {
             ))
         }
 
-        let title = titles.compose(blueprint: blueprint, slots: slots, seed: intent.seed)
+        let title = titles.compose(blueprint: blueprint, slots: slots, seed: storySeed)
 
         return ComposedStory(
             title: title,
@@ -154,6 +182,14 @@ public struct OfflineStoryComposer: Sendable {
             // A companion *type* is a common noun: "tilkiye", never "tilki'ye".
             // Emitting an apostrophe here was a visible defect of the prototype.
             "companion.type": .init(content.companion.type, isProperNoun: false),
+            // Two registers of the same thing: `name` reads inside a
+            // sentence, `title` on a cover. Titles use the latter.
+            "discovery.title": .init(
+                content.discovery.titleName,
+                isProperNoun: content.discovery.isProperNoun,
+                hasPossessiveEnding: content.discovery.hasPossessiveEnding,
+                blocksSoftening: content.discovery.blocksSoftening
+            ),
             "discovery.name": .init(
                 content.discovery.name,
                 isProperNoun: content.discovery.isProperNoun,

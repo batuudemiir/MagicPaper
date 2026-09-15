@@ -42,6 +42,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
 /// said nothing at all and shipped a dolphin into a forest.
 public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noBlueprints
+    case noBlueprintForChoices(reasons: [String])
     case noSetting(reasons: [String])
     case noCompanion(reasons: [String])
     case noDiscovery(reasons: [String])
@@ -53,6 +54,8 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
         switch self {
         case .noBlueprints:
             return "No beat-authored blueprint exists."
+        case .noBlueprintForChoices(let reasons):
+            return "No blueprint fits these choices:\n" + reasons.joined(separator: "\n")
         case .noSetting(let reasons):
             return "No setting fits this blueprint:\n" + reasons.joined(separator: "\n")
         case .noCompanion(let reasons):

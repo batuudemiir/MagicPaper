@@ -15,14 +15,16 @@ final class OfflineCompositionTests: XCTestCase {
 
     private func pilotCatalog() throws -> ContentCatalog {
         let url = try XCTUnwrap(
-            Bundle.module.url(forResource: "pilot_threshold_v1", withExtension: "json"),
+            Bundle.module.url(forResource: "pilot_library_v1", withExtension: "json"),
             "Pilot content package missing from the package bundle."
         )
         return try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: url))
     }
 
     private func pilotBlueprint() throws -> CatalogBlueprint {
-        try XCTUnwrap(pilotCatalog().blueprints.first)
+        try XCTUnwrap(pilotCatalog().blueprints.first {
+            $0.id.rawValue == "blueprint_threshold_crossing_001"
+        })
     }
 
     private func compose(

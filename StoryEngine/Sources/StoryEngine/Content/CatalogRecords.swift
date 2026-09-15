@@ -148,6 +148,13 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// What finding this *implies* (§8.1) — the structural half of the child's
     /// most invested choice, and what lets it select a narrative family.
     public let traits: Set<DiscoveryTrait>
+    /// The same thing, named for a title.
+    ///
+    /// "titrek bir ışık" is right in a sentence and wrong on a cover: a title
+    /// does not carry an indefinite article. One field cannot serve both
+    /// registers, and using the prose name produced "Yeliz ve Kayıp yırtık bir
+    /// harita". Falls back to `name` when unset.
+    public let titleName: String
     /// Turkish grammar the renderer cannot infer from spelling.
     ///
     /// `hasPossessiveEnding` is the one that genuinely cannot be guessed:
@@ -160,7 +167,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     public let blocksSoftening: Bool
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, description, compatibleThemes, tags, traits , isProperNoun, hasPossessiveEnding, blocksSoftening}
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, isProperNoun, hasPossessiveEnding, blocksSoftening }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -170,6 +177,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
+        titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? false
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -184,6 +192,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        try container.encode(titleName, forKey: .titleName)
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)

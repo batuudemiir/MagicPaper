@@ -1,0 +1,1336 @@
+{
+  "schemaVersion": 2,
+  "version": "1.0.0",
+  "note": "Phase 3 pilot library. Five blueprints, one per narrative family the Phase 4 matrix needs. Validated by PilotBlueprintTests and OfflineCompositionTests. Deliberately NOT merged into shared_content_library_v2.json: V1 content stays untouched until migration is verified (D2).",
+  "settings": [
+    {
+      "id": "setting_whispering_forest_001",
+      "name": "Fısıldayan Orman",
+      "description": "Ağaçların arasından ince bir aralık geçen, sakin bir orman.",
+      "tags": [
+        "forest",
+        "nature"
+      ],
+      "traits": [
+        "hasThreshold",
+        "canConceal",
+        "isEnclosed",
+        "showsTraces"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false
+    },
+    {
+      "id": "setting_night_garden_001",
+      "name": "Gece Bahçesi",
+      "description": "Alçak bir kapısı olan, geceleri sessizleşen bir bahçe.",
+      "tags": [
+        "garden",
+        "nature"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isTended",
+        "canConceal"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "calm",
+        "helping_others"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true
+    },
+    {
+      "id": "setting_cloud_mountain_001",
+      "name": "Bulut Dağı",
+      "description": "Yolu taşlı, tepesi bulutlara değen bir dağ.",
+      "tags": [
+        "mountain",
+        "nature"
+      ],
+      "traits": [
+        "hasHeight",
+        "hasDistance",
+        "isOpen",
+        "showsTraces"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true
+    },
+    {
+      "id": "setting_coral_sea_001",
+      "name": "Mercan Denizi",
+      "description": "Suyu berrak, dibi mercanla kaplı bir deniz.",
+      "tags": [
+        "sea",
+        "water"
+      ],
+      "traits": [
+        "hasWater",
+        "isOpen",
+        "hasDistance"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true
+    },
+    {
+      "id": "setting_old_orchard_001",
+      "name": "Eski Meyve Bahçesi",
+      "description": "Uzun otları ve alçak duvarı olan, bakımlı ama ıssız bir meyve bahçesi.",
+      "tags": [
+        "garden",
+        "nature"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isTended",
+        "canConceal",
+        "showsTraces"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "trying_again"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true
+    }
+  ],
+  "companions": [
+    {
+      "id": "companion_fox_pilot_001",
+      "name": "Tarçın",
+      "type": "tilki",
+      "personality": "Sakin ve güven veren.",
+      "description": "Ormanı iyi bilen, acele ettirmeyen bir tilki.",
+      "visualDescription": "warm russet fox, calm eyes, soft brush tail",
+      "compatibleSettings": [
+        "forest"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "forest"
+      ],
+      "traits": [
+        "canReassure",
+        "hasLocalKnowledge",
+        "isPlayful"
+      ],
+      "isProperNoun": true
+    },
+    {
+      "id": "companion_hedgehog_pilot_001",
+      "name": "Kestane",
+      "type": "kirpi",
+      "personality": "Ürkek ama cesaretlendirici.",
+      "description": "Kendi de çekingen olduğu için anlayışlı bir kirpi.",
+      "visualDescription": "small round hedgehog, gentle face, soft quills",
+      "compatibleSettings": [
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "helping_others"
+      ],
+      "tags": [
+        "garden"
+      ],
+      "traits": [
+        "canReassure",
+        "canHesitate",
+        "isSmallAndVulnerable"
+      ],
+      "isProperNoun": true
+    },
+    {
+      "id": "companion_owl_pilot_001",
+      "name": "Yıldız",
+      "type": "baykuş",
+      "personality": "Sabırlı, az konuşan.",
+      "description": "Yükseklerden bakan ama acele etmeyen bir baykuş.",
+      "visualDescription": "soft grey owl, round patient eyes",
+      "compatibleSettings": [
+        "mountain",
+        "forest"
+      ],
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "mountain"
+      ],
+      "traits": [
+        "canFly",
+        "canReassure",
+        "isPatient"
+      ],
+      "isProperNoun": true
+    },
+    {
+      "id": "companion_dolphin_pilot_001",
+      "name": "Köpük",
+      "type": "yunus",
+      "personality": "Neşeli ve yardımsever.",
+      "description": "Denizi seven, oyuncu bir yunus.",
+      "visualDescription": "smooth blue-grey dolphin, bright eye",
+      "compatibleSettings": [
+        "sea"
+      ],
+      "compatibleThemes": [
+        "friendship"
+      ],
+      "tags": [
+        "sea"
+      ],
+      "traits": [
+        "canCarry",
+        "canReassure",
+        "isPlayful"
+      ],
+      "isProperNoun": true
+    },
+    {
+      "id": "companion_rabbit_pilot_001",
+      "name": "Pamuk",
+      "type": "tavşan",
+      "personality": "Çekingen ve her şeyi düz anlayan.",
+      "description": "Söyleneni harfiyen anlayan, ürkek bir tavşan.",
+      "visualDescription": "small white rabbit, long attentive ears",
+      "compatibleSettings": [
+        "forest",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "forest"
+      ],
+      "traits": [
+        "canHesitate",
+        "isSmallAndVulnerable",
+        "isLiteralMinded"
+      ],
+      "isProperNoun": true
+    }
+  ],
+  "objects": [
+    {
+      "id": "object_flickering_light_001",
+      "name": "titrek bir ışık",
+      "description": "Nereden geldiği belli olmayan, yumuşak bir ışık.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "light"
+      ],
+      "traits": [
+        "isUnexplained",
+        "emitsSignal"
+      ],
+      "isProperNoun": false,
+      "titleName": "Titrek Işık"
+    },
+    {
+      "id": "object_faint_sound_001",
+      "name": "ince bir ses",
+      "description": "Uzaktan gelen, tekrar eden küçük bir ses.",
+      "compatibleThemes": [
+        "courage",
+        "helping_others"
+      ],
+      "tags": [
+        "sound"
+      ],
+      "traits": [
+        "isUnexplained",
+        "emitsSignal",
+        "impliesNeed"
+      ],
+      "isProperNoun": false,
+      "titleName": "Gizemli Ses"
+    },
+    {
+      "id": "object_footprints_001",
+      "name": "küçük ayak izleri",
+      "description": "Toprakta ilerleyip bir yerde kesilen izler.",
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "traces"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": true,
+      "titleName": "Ayak İzleri"
+    },
+    {
+      "id": "object_shell_001",
+      "name": "parlak bir deniz kabuğu",
+      "description": "Bir başkasına ait olduğu belli, parlak bir kabuk.",
+      "compatibleThemes": [
+        "friendship",
+        "discovery"
+      ],
+      "tags": [
+        "shell"
+      ],
+      "traits": [
+        "isBeautiful",
+        "impliesPresence"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": true,
+      "titleName": "Deniz Kabuğu"
+    },
+    {
+      "id": "object_torn_map_001",
+      "name": "yırtık bir harita",
+      "description": "Yarısı eksik; kalanının ne anlama geldiğini çözmek gerekiyor.",
+      "compatibleThemes": [
+        "discovery",
+        "problem_solving"
+      ],
+      "tags": [
+        "map"
+      ],
+      "traits": [
+        "isFragmentary",
+        "impliesPresence",
+        "isUnexplained"
+      ],
+      "isProperNoun": false,
+      "titleName": "Yırtık Harita"
+    }
+  ],
+  "blueprints": [
+    {
+      "id": "blueprint_threshold_crossing_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "threshold",
+      "editorialName": "Pilot A — The Crossing",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "The child wants to reach something on the far side of a boundary, and the boundary is not what stops them.",
+      "editorialGuidance": "Page 4 names the reluctance as the child's own, never the companion's. Page 6 is interior: nothing outside the child changes.",
+      "requires": {
+        "setting": [
+          "hasThreshold"
+        ],
+        "companion": [
+          "canReassure"
+        ],
+        "discovery": [
+          "isUnexplained",
+          "emitsSignal"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canFly",
+          "canCarry"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki Işık",
+        "{{child.name}}'in {{setting.name}}'daki Cesur Adımı",
+        "{{setting.name}}'na Cesur Yolculuk"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "warmth"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "hesitate",
+          "supportingBeat": "commit",
+          "emotion": "hesitation"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "small_step",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "find_own_courage",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "self_recognize",
+          "supportingBeat": "warm_close",
+          "emotion": "pride"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_unexplained_reading_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "Pilot B — The Reading",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "The child meets something incomplete and has to work out what it means.",
+      "editorialGuidance": "Page 6 is the child's own realisation. The companion may notice, but must not explain.",
+      "requires": {
+        "discovery": [
+          "isUnexplained"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi",
+        "{{discovery.title}}'in Sırrı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "warmth",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "form_belief",
+          "emotion": "wonder",
+          "supportingBeat": "commit"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "insight",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm",
+          "supportingBeat": "carry_forward"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_appeal_together_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "Pilot C — Together",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Someone else cannot manage alone, and says so.",
+      "editorialGuidance": "Page 3 states the need aloud. Page 6 is done by both, and the child's part must be real.",
+      "requires": {
+        "companion": [
+          "isSmallAndVulnerable"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canFly",
+          "canCarry"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}}'in {{setting.name}}'daki Yardımı",
+        "{{setting.name}}'na Cesur Yolculuk"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy",
+          "supportingBeat": "receive_appeal"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_absence_looking_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "Pilot D — The Looking",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Something is missing, and it is not obvious where it went.",
+      "editorialGuidance": "Page 5 does not work. Page 6 is the same effort again, not a cleverer one.",
+      "requires": {
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve Kayıp {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Arayışı",
+        "{{setting.name}}'na Cesur Yolculuk"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy",
+          "supportingBeat": "receive_appeal"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "persist",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "carry_forward"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_misreading_tracks_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "misreading",
+      "editorialName": "Pilot E — The Tracks",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "The child reads the evidence confidently, and reads it wrong.",
+      "editorialGuidance": "The wrong belief must be reasonable, and never frightening. Page 6 is relief, not embarrassment.",
+      "requires": {
+        "setting": [
+          "showsTraces"
+        ],
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi",
+        "{{discovery.title}}'in Sırrı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "puzzlement",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "warmth"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "belief_fails",
+          "emotion": "doubt",
+          "supportingBeat": "commit"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "reveal_truth",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "joy"
+        }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "id": "pilot_t_notice_anomaly",
+      "role": "hook",
+      "realizesBeat": "notice_anomaly",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_notice_anomaly_v1",
+          "text": "Güneşli bir sabah, {{child.name}} {{setting.name}}'nin yakınında dolaşıyordu. Tam dönecekken, orada olmaması gereken bir şey fark etti: {{discovery.name}}.",
+          "visualScene": "child pausing mid-step at the edge of the place, something faint further in"
+        },
+        {
+          "id": "pilot_t_notice_anomaly_v2",
+          "text": "Kuşların şarkı söylediği o gün, {{child.name}} durdu ve dikkatle baktı. {{setting.name}}'nin ilerisinde {{discovery.name}} vardı. Acaba oraya nereden gelmişti?",
+          "visualScene": "child shading their eyes, looking toward something small and unexplained"
+        },
+        {
+          "id": "pilot_t_notice_anomaly_v3",
+          "text": "{{child.name}} her zamanki yoluna gidiyordu ki bir şey onu durdurdu. {{setting.name}}'nin öte yanında {{discovery.name}} vardı ve daha önce hiç orada yoktu.",
+          "visualScene": "an ordinary path, and one thing on it that does not belong"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_approach",
+      "role": "discovery",
+      "realizesBeat": "approach",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_approach_v1",
+          "text": "{{child.name}} bir adım yaklaştı, sonra bir adım daha. Yaklaştıkça {{discovery.name}} daha da belirginleşti.",
+          "visualScene": "child moving closer, the thing clearer now"
+        },
+        {
+          "id": "pilot_t_approach_v2",
+          "text": "Merakına engel olamadı. {{child.name}} yavaşça {{setting.name}}'ne doğru yürüdü ve {{discovery.name}}'i daha yakından fark etti.",
+          "visualScene": "slow approach, warm light"
+        },
+        {
+          "id": "pilot_t_approach_v3",
+          "text": "Ayaklarını sessizce oynatarak yaklaştı {{child.name}}. {{discovery.name}} hâlâ oradaydı, kaybolmamıştı.",
+          "visualScene": "quiet careful steps"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_meet_companion",
+      "role": "companion",
+      "realizesBeat": "meet_companion",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_meet_companion_v1",
+          "text": "Tam o sırada yakınında bir kıpırtı oldu. {{companion.name}} adında bir {{companion.type}} çıkageldi.",
+          "visualScene": "companion arriving, movement unspecified"
+        },
+        {
+          "id": "pilot_t_meet_companion_v2",
+          "text": "Yalnız değilmiş. Az ötede, {{companion.name}} adlı bir {{companion.type}} onu izliyordu.",
+          "visualScene": "companion watching from a little way off"
+        },
+        {
+          "id": "pilot_t_meet_companion_v3",
+          "text": "{{child.name}} yalnız olmadığını fark etti. {{companion.name}} adlı bir {{companion.type}} ona doğru geliyordu.",
+          "visualScene": "companion approaching"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_companion_offers",
+      "role": "companion",
+      "realizesBeat": "companion_offers",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_companion_offers_v1",
+          "text": "\"Ben burayı bilirim,\" dedi {{companion.name}} yumuşak bir sesle. \"İstersen yanında olurum.\"",
+          "visualScene": "companion beside the child, reassuring"
+        },
+        {
+          "id": "pilot_t_companion_offers_v2",
+          "text": "\"Korkacak bir şey yok,\" dedi {{companion.name}}. \"Ben de seninle gelirim.\"",
+          "visualScene": "companion looking up at the child"
+        },
+        {
+          "id": "pilot_t_companion_offers_v3",
+          "text": "{{companion.name}} başını salladı. \"Sen bilirsin,\" dedi. \"Ama ben buradayım.\"",
+          "visualScene": "companion waiting patiently, no pressure"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_hesitate",
+      "role": "problem",
+      "realizesBeat": "hesitate",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_hesitate_v1",
+          "text": "Ama {{child.name}} olduğu yerde durdu. Bir adım daha atmak birden çok zor geldi.",
+          "visualScene": "child stopped at a boundary, feet together"
+        },
+        {
+          "id": "pilot_t_hesitate_v2",
+          "text": "{{child.name}}'in ayakları ilerlemek istemedi. İçinde küçük bir çekingenlik vardı ve bunu saklamadı.",
+          "visualScene": "child looking down at their own feet"
+        },
+        {
+          "id": "pilot_t_hesitate_v3",
+          "text": "\"Biraz duraksadım,\" dedi {{child.name}} usulca. Karşı taraf uzak görünüyordu.",
+          "visualScene": "child at the near side, the far side further than it is"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_commit",
+      "role": "problem",
+      "realizesBeat": "commit",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_commit_v1",
+          "text": "Sonra derin bir nefes aldı. \"Yine de bakacağım,\" dedi.",
+          "visualScene": "child breathing in, decided"
+        },
+        {
+          "id": "pilot_t_commit_v2",
+          "text": "Yine de merakı çekingenliğinden büyüktü. {{child.name}} gitmeye karar verdi.",
+          "visualScene": "resolve settling on the child's face"
+        },
+        {
+          "id": "pilot_t_commit_v3",
+          "text": "\"Tamam,\" dedi {{child.name}} kendi kendine. \"Deneyeceğim.\"",
+          "visualScene": "small private decision"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_small_step",
+      "role": "attempt",
+      "realizesBeat": "small_step",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_small_step_v1",
+          "text": "Önce tek bir adım attı. Sadece bir tane. Sonra durup bekledi.",
+          "visualScene": "one foot forward, the rest of the body still"
+        },
+        {
+          "id": "pilot_t_small_step_v2",
+          "text": "{{child.name}} yavaşça bir adım ilerledi. Kalbi hızlı atıyordu ama geri dönmedi.",
+          "visualScene": "child mid-step, heart visible in posture"
+        },
+        {
+          "id": "pilot_t_small_step_v3",
+          "text": "Küçük bir adım attı {{child.name}}. {{companion.name}} hiçbir şey söylemeden yanında durdu.",
+          "visualScene": "companion alongside, silent, not helping"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_find_own_courage",
+      "role": "challenge",
+      "realizesBeat": "find_own_courage",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_find_own_courage_v1",
+          "text": "O küçük adım aslında yeterliydi. {{child.name}} fark etti ki korktuğu şey, yapabileceğinden çok daha küçükmüş.",
+          "visualScene": "child standing taller, the same place around them"
+        },
+        {
+          "id": "pilot_t_find_own_courage_v2",
+          "text": "Bir şey değişmemişti; değişen {{child.name}}'in kendisiydi. İçindeki o çekingenlik yavaşça yerini başka bir şeye bıraktı.",
+          "visualScene": "same scene, different child"
+        },
+        {
+          "id": "pilot_t_find_own_courage_v3",
+          "text": "{{child.name}} kendi kendine, \"Bir adım attıysam, bir adım daha atabilirim,\" dedi. Ve öyle yaptı.",
+          "visualScene": "the second step, taken alone"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_succeed",
+      "role": "resolution",
+      "realizesBeat": "succeed",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_succeed_v1",
+          "text": "Ve {{child.name}} karşıya geçti. {{discovery.name}} tam oradaydı, beklediği gibi.",
+          "visualScene": "child arrived on the far side, the thing before them"
+        },
+        {
+          "id": "pilot_t_succeed_v2",
+          "text": "Adım adım, {{child.name}} öte yana ulaştı. {{discovery.name}} tam orada, beklediği yerdeydi.",
+          "visualScene": "arrival, close-up of the discovery"
+        },
+        {
+          "id": "pilot_t_succeed_v3",
+          "text": "Sonunda başardı. {{child.name}} {{discovery.name}}'in yanına vardı ve gülümsedi.",
+          "visualScene": "child beside the discovery, smiling"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_self_recognize",
+      "role": "emotional_ending",
+      "realizesBeat": "self_recognize",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_self_recognize_v1",
+          "text": "Dönüş yolunda {{child.name}} bir şeyi biliyordu artık: o adımı kendisi atmıştı.",
+          "visualScene": "walking back, quietly proud"
+        },
+        {
+          "id": "pilot_t_self_recognize_v2",
+          "text": "{{child.name}} o gün kendisi hakkında yeni bir şey öğrendi. Durakladığında bile devam edebiliyordu.",
+          "visualScene": "child in soft evening light"
+        },
+        {
+          "id": "pilot_t_self_recognize_v3",
+          "text": "\"Ben yaptım,\" diye düşündü {{child.name}}. Ve bu düşünce çok güzeldi.",
+          "visualScene": "a small private smile"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_warm_close",
+      "role": "emotional_ending",
+      "realizesBeat": "warm_close",
+      "compatibleThemes": [
+        "courage"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_warm_close_v1",
+          "text": "{{companion.name}} yanında yürüyordu. Hava yavaşça kararıyordu ve her şey yerli yerindeydi.",
+          "visualScene": "the two walking home together at dusk"
+        },
+        {
+          "id": "pilot_t_warm_close_v2",
+          "text": "İkisi birlikte geri döndüler. Gün bitiyordu ve {{child.name}} yorgun ama mutluydu.",
+          "visualScene": "warm end of day"
+        },
+        {
+          "id": "pilot_t_warm_close_v3",
+          "text": "{{child.name}} ve {{companion.name}} sessizce yürüdüler. Söylenecek bir şey kalmamıştı.",
+          "visualScene": "companionable silence, gentle colours"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_examine",
+      "role": "discovery",
+      "realizesBeat": "examine",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_examine_v1",
+          "text": "{{child.name}} eğilip daha dikkatli baktı. {{discovery.name}} sandığından daha tuhaftı.",
+          "visualScene": "child crouched, examining closely"
+        },
+        {
+          "id": "pilot_t_examine_v2",
+          "text": "Bir süre hiç kıpırdamadan inceledi. {{discovery.name}} hakkında anlamadığı bir şey vardı.",
+          "visualScene": "still concentration"
+        },
+        {
+          "id": "pilot_t_examine_v3",
+          "text": "{{child.name}} yavaşça yaklaştı ve {{discovery.name}}'i baştan sona inceledi. Bir şey eksikti.",
+          "visualScene": "careful inspection, something missing"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_form_belief",
+      "role": "problem",
+      "realizesBeat": "form_belief",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_form_belief_v1",
+          "text": "\"Sanırım anladım,\" dedi {{child.name}} kendi kendine. Aklında bir fikir belirmişti.",
+          "visualScene": "child's idea forming, thoughtful"
+        },
+        {
+          "id": "pilot_t_form_belief_v2",
+          "text": "{{child.name}} bir ihtimal düşündü. Belki de {{discovery.name}} bir yere işaret ediyordu.",
+          "visualScene": "child pointing further on"
+        },
+        {
+          "id": "pilot_t_form_belief_v3",
+          "text": "Kafasında her şey birleşti. {{child.name}} ne olduğunu bildiğini sandı.",
+          "visualScene": "confident realisation"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_receive_appeal",
+      "role": "companion",
+      "realizesBeat": "receive_appeal",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_receive_appeal_v1",
+          "text": "\"Bana yardım eder misin?\" diye sordu {{companion.name}}. \"Tek başıma beceremiyorum.\"",
+          "visualScene": "companion asking, small and earnest"
+        },
+        {
+          "id": "pilot_t_receive_appeal_v2",
+          "text": "{{companion.name}} usulca anlattı: bir şeyini kaybetmişti ve nasıl bulacağını bilmiyordu.",
+          "visualScene": "companion explaining, the child listening"
+        },
+        {
+          "id": "pilot_t_receive_appeal_v3",
+          "text": "\"Uzun zamandır arıyorum,\" dedi {{companion.name}}. \"Ama bir türlü olmuyor.\"",
+          "visualScene": "companion tired from trying"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_obstacle_raises",
+      "role": "problem",
+      "realizesBeat": "obstacle_raises",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_obstacle_raises_v1",
+          "text": "Ama iş göründüğü kadar kolay değildi. Aradaki mesafe hiç azalmıyordu.",
+          "visualScene": "the difficulty becoming concrete"
+        },
+        {
+          "id": "pilot_t_obstacle_raises_v2",
+          "text": "Bir sorun vardı: {{discovery.name}} tam olarak istediği yerde durmuyordu.",
+          "visualScene": "an obstacle in the way"
+        },
+        {
+          "id": "pilot_t_obstacle_raises_v3",
+          "text": "İlk bakışta basit görünen şey, yaklaşınca öyle çıkmadı.",
+          "visualScene": "closer view, harder than it looked"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_first_attempt",
+      "role": "attempt",
+      "realizesBeat": "first_attempt",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_first_attempt_v1",
+          "text": "{{child.name}} bildiği yolu denedi. Bir parça ilerledi ama yeterli olmadı.",
+          "visualScene": "first real attempt, partial progress"
+        },
+        {
+          "id": "pilot_t_first_attempt_v2",
+          "text": "Elinden geleni yaptı {{child.name}}. Bir şeyler değişti, ama istediği kadar değil.",
+          "visualScene": "effort with a partial result"
+        },
+        {
+          "id": "pilot_t_first_attempt_v3",
+          "text": "İlk denemesinde {{child.name}} epey yol aldı. Yine de iş bitmemişti.",
+          "visualScene": "halfway, not finished"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_insight",
+      "role": "challenge",
+      "realizesBeat": "insight",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_insight_v1",
+          "text": "Sonra {{child.name}} durdu. Baştan beri yanlış yerden bakıyordu; doğrusu çok daha basitti.",
+          "visualScene": "the moment of understanding"
+        },
+        {
+          "id": "pilot_t_insight_v2",
+          "text": "Birden aklına geldi. {{discovery.name}} bir bilmece değildi; sadece eksik bir yarısı vardı.",
+          "visualScene": "pieces fitting together"
+        },
+        {
+          "id": "pilot_t_insight_v3",
+          "text": "{{child.name}} gözlerini kıstı ve anladı. Cevap zaten oradaydı, bakmayı bilmek gerekiyordu.",
+          "visualScene": "clarity arriving"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_cooperative_effort",
+      "role": "challenge",
+      "realizesBeat": "cooperative_effort",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_cooperative_effort_v1",
+          "text": "Bu sefer birlikte denediler. {{child.name}} bir yanını tuttu, {{companion.name}} öbür yanını.",
+          "visualScene": "the two working together, each doing a real part"
+        },
+        {
+          "id": "pilot_t_cooperative_effort_v2",
+          "text": "{{child.name}} ve {{companion.name}} aynı anda hareket etti. İkisi olmadan olmuyordu.",
+          "visualScene": "coordinated effort"
+        },
+        {
+          "id": "pilot_t_cooperative_effort_v3",
+          "text": "\"Sen oradan, ben buradan,\" dedi {{child.name}}. Ve öyle yaptılar.",
+          "visualScene": "shared plan carried out"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_persist",
+      "role": "challenge",
+      "realizesBeat": "persist",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_persist_v1",
+          "text": "{{child.name}} bir kez daha denedi. Sonra bir kez daha. Vazgeçmedi.",
+          "visualScene": "trying again, and again"
+        },
+        {
+          "id": "pilot_t_persist_v2",
+          "text": "Yorulmuştu ama durmadı. Aynı şeyi sabırla yeniden yaptı.",
+          "visualScene": "tired but continuing"
+        },
+        {
+          "id": "pilot_t_persist_v3",
+          "text": "\"Bir daha,\" dedi {{child.name}}. Bu sefer biraz daha yaklaştı.",
+          "visualScene": "one more time, slightly closer"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_restore",
+      "role": "resolution",
+      "realizesBeat": "restore",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_restore_v1",
+          "text": "Ve sonunda buldular. {{companion.name}}'in aradığı şey yerine geri döndü.",
+          "visualScene": "the thing restored, companion relieved"
+        },
+        {
+          "id": "pilot_t_restore_v2",
+          "text": "{{child.name}} eksik parçayı yerine koydu. Her şey olması gerektiği gibi oldu.",
+          "visualScene": "putting something right"
+        },
+        {
+          "id": "pilot_t_restore_v3",
+          "text": "Aradıkları oradaydı. {{companion.name}} sevinçle {{child.name}}'e baktı.",
+          "visualScene": "found, shared relief"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_belief_fails",
+      "role": "problem",
+      "realizesBeat": "belief_fails",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_belief_fails_v1",
+          "text": "Ama olmadı. {{child.name}}'in düşündüğü şey bir türlü uymuyordu.",
+          "visualScene": "the belief not fitting"
+        },
+        {
+          "id": "pilot_t_belief_fails_v2",
+          "text": "Yaklaşınca anladı ki yanılmıştı. {{discovery.name}} sandığı şey değildi.",
+          "visualScene": "expectation and reality diverging"
+        },
+        {
+          "id": "pilot_t_belief_fails_v3",
+          "text": "\"Olmuyor,\" dedi {{child.name}} şaşkınlıkla. Bir yerde bir hata vardı.",
+          "visualScene": "puzzlement, not fear"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_reveal_truth",
+      "role": "challenge",
+      "realizesBeat": "reveal_truth",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_reveal_truth_v1",
+          "text": "Sonra gerçek ortaya çıktı, ve {{child.name}} güldü. Hiç de korkulacak bir şey değilmiş.",
+          "visualScene": "the harmless truth revealed, child laughing"
+        },
+        {
+          "id": "pilot_t_reveal_truth_v2",
+          "text": "Perde aralanınca {{child.name}} rahatladı. {{discovery.name}} çok daha sade bir şeydi.",
+          "visualScene": "relief as the truth appears"
+        },
+        {
+          "id": "pilot_t_reveal_truth_v3",
+          "text": "Meğer her şey apaçıkmış. {{child.name}} anladığında içi ferahladı.",
+          "visualScene": "an ordinary explanation"
+        }
+      ]
+    },
+    {
+      "id": "pilot_t_carry_forward",
+      "role": "emotional_ending",
+      "realizesBeat": "carry_forward",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "variants": [
+        {
+          "id": "pilot_t_carry_forward_v1",
+          "text": "Yarın yine gelecekti. Bakılacak daha çok şey vardı.",
+          "visualScene": "gentle promise of tomorrow"
+        },
+        {
+          "id": "pilot_t_carry_forward_v2",
+          "text": "{{child.name}} bunu unutmayacaktı. Bir dahaki sefere ne yapacağını artık biliyordu.",
+          "visualScene": "something kept for next time"
+        },
+        {
+          "id": "pilot_t_carry_forward_v3",
+          "text": "Gitmeden bir kez daha döndü baktı. {{setting.name}} yerinde duruyordu, ve yarın da duracaktı.",
+          "visualScene": "one last look back"
+        }
+      ]
+    }
+  ]
+}

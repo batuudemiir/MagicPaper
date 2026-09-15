@@ -19,7 +19,7 @@ final class PilotBlueprintTests: XCTestCase {
     /// as a named failure rather than a missing blueprint.
     private func loadPilots() throws -> [CatalogBlueprint] {
         let url = try XCTUnwrap(
-            Bundle.module.url(forResource: "pilot_threshold_v1", withExtension: "json"),
+            Bundle.module.url(forResource: "pilot_library_v1", withExtension: "json"),
             "Pilot blueprint resource is not in the package bundle."
         )
         struct File: Decodable { let blueprints: [CatalogBlueprint] }
@@ -27,10 +27,14 @@ final class PilotBlueprintTests: XCTestCase {
         return try JSONDecoder().decode(File.self, from: data).blueprints
     }
 
+    /// Pilot A specifically. The library now holds five blueprints, one per
+    /// family the Phase 4 matrix needs; these tests are about the Threshold.
     private func pilot() throws -> CatalogBlueprint {
         let all = try loadPilots()
-        XCTAssertEqual(all.count, 1)
-        return try XCTUnwrap(all.first)
+        return try XCTUnwrap(
+            all.first { $0.id.rawValue == "blueprint_threshold_crossing_001" },
+            "Pilot A is missing from the library."
+        )
     }
 
     func testPilotDecodes() throws {
