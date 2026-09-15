@@ -1,0 +1,210 @@
+import json
+import os
+
+os.makedirs("StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2", exist_ok=True)
+
+settings = [
+    {"id": "setting_forest_001", "name": "Fısıldayan Orman", "description": "Uzun ağaçları, yumuşacık yosunları...", "visualKeywords": ["orman", "ağaç"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage", "discovery"], "tags": ["forest", "nature"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "setting_meadow_001", "name": "Güneşli Çayır", "description": "Rengarenk kır çiçekleri...", "visualKeywords": ["çayır", "güneş"], "compatibleGenres": ["adventure"], "compatibleThemes": ["friendship"], "tags": ["meadow", "open"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_cave_001", "name": "Kristal Mağara", "description": "Parlayan taşlarla dolu derin bir mağara.", "visualKeywords": ["mağara", "kristal", "karanlık"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage"], "tags": ["cave", "dark", "underground"], "cooldownWeight": 1.0, "noveltyWeight": 1.5},
+    {"id": "setting_mountain_001", "name": "Bulutlu Zirve", "description": "Bulutların üzerinde kocaman bir dağ.", "visualKeywords": ["dağ", "bulut"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage", "discovery"], "tags": ["mountain", "high"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_beach_001", "name": "Sakin Kumsal", "description": "Hafif dalgaların vurduğu kumlu bir plaj.", "visualKeywords": ["deniz", "kum", "dalga"], "compatibleGenres": ["adventure"], "compatibleThemes": ["discovery"], "tags": ["water", "beach"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_river_001", "name": "Şırıl Şırıl Nehir", "description": "Temiz ve hızlı akan bir nehir.", "visualKeywords": ["nehir", "su"], "compatibleGenres": ["adventure"], "compatibleThemes": ["friendship"], "tags": ["water", "river"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_garden_001", "name": "Gizli Bahçe", "description": "Büyük duvarların ardında saklı güzel bir bahçe.", "visualKeywords": ["bahçe", "çiçek"], "compatibleGenres": ["adventure"], "compatibleThemes": ["discovery", "friendship"], "tags": ["garden", "nature"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "setting_village_001", "name": "Minik Köy", "description": "Küçük evleri olan şirin bir köy.", "visualKeywords": ["köy", "ev"], "compatibleGenres": ["adventure"], "compatibleThemes": ["helping_others"], "tags": ["village", "civilization"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_castle_001", "name": "Terkedilmiş Şato", "description": "Eski ama dost canlısı bir şato.", "visualKeywords": ["şato", "taş"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage"], "tags": ["castle", "old"], "cooldownWeight": 1.0, "noveltyWeight": 1.3},
+    {"id": "setting_cloud_kingdom_001", "name": "Bulut Krallığı", "description": "Gökyüzünde süzülen pamuk gibi bir yer.", "visualKeywords": ["bulut", "gökyüzü"], "compatibleGenres": ["adventure", "fantasy"], "compatibleThemes": ["discovery"], "tags": ["sky", "magic"], "cooldownWeight": 1.0, "noveltyWeight": 1.4},
+    {"id": "setting_space_station_001", "name": "Yıldız İstasyonu", "description": "Uzayda parlayan bir istasyon.", "visualKeywords": ["uzay", "yıldız"], "compatibleGenres": ["space"], "compatibleThemes": ["discovery"], "tags": ["space", "tech"], "cooldownWeight": 1.0, "noveltyWeight": 1.5},
+    {"id": "setting_moon_surface_001", "name": "Ay Yüzeyi", "description": "Gri kraterlerle dolu ay yüzeyi.", "visualKeywords": ["ay", "krater"], "compatibleGenres": ["space"], "compatibleThemes": ["courage", "discovery"], "tags": ["space", "moon"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "setting_underwater_reef_001", "name": "Mercan Resifi", "description": "Rengarenk balıkların yüzdüğü resif.", "visualKeywords": ["su altı", "mercan"], "compatibleGenres": ["ocean"], "compatibleThemes": ["friendship"], "tags": ["water", "underwater"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "setting_snowy_valley_001", "name": "Karlı Vadi", "description": "Bembeyaz karlarla kaplı soğuk vadi.", "visualKeywords": ["kar", "vadi", "soğuk"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage"], "tags": ["snow", "cold"], "cooldownWeight": 1.0, "noveltyWeight": 1.3},
+    {"id": "setting_island_001", "name": "Güneşli Ada", "description": "Denizin ortasında küçük bir ada.", "visualKeywords": ["ada", "deniz"], "compatibleGenres": ["adventure"], "compatibleThemes": ["discovery"], "tags": ["water", "island"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "setting_bridge_001", "name": "Eski Taş Köprü", "description": "Altından sular akan eski bir köprü.", "visualKeywords": ["köprü", "taş"], "compatibleGenres": ["adventure"], "compatibleThemes": ["courage", "problem_solving"], "tags": ["bridge", "crossing"], "cooldownWeight": 1.0, "noveltyWeight": 1.2}
+]
+
+companions = [
+    {"id": "companion_fox_001", "name": "Kıpır", "type": "tilki", "personality": "oyuncu ve zeki", "description": "Kızıl tüylü küçük bir tilki.", "visualDescription": "kızıl tilki", "compatibleSettings": ["forest", "meadow", "cave"], "compatibleThemes": ["courage", "problem_solving"], "tags": ["animal", "clever"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_rabbit_001", "name": "Yonca", "type": "tavşan", "personality": "nazik ama ürkek", "description": "Beyaz tüylü küçük bir tavşan.", "visualDescription": "beyaz tavşan", "compatibleSettings": ["forest", "meadow", "garden"], "compatibleThemes": ["courage", "friendship"], "tags": ["animal", "shy"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_owl_001", "name": "Bilge", "type": "baykuş", "personality": "akıllı", "description": "Büyük gözlü kahverengi baykuş.", "visualDescription": "kahverengi baykuş", "compatibleSettings": ["forest", "mountain", "night"], "compatibleThemes": ["discovery", "problem_solving"], "tags": ["bird", "wise"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "companion_hedgehog_001", "name": "Dikenli", "type": "kirpi", "personality": "dikkatli", "description": "Minik patili kirpi.", "visualDescription": "küçük kirpi", "compatibleSettings": ["forest", "garden"], "compatibleThemes": ["courage", "trying_again"], "tags": ["animal", "careful"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_dragon_001", "name": "Kıvılcım", "type": "ejderha", "personality": "hevesli ama sakar", "description": "Küçük yeşil ejderha.", "visualDescription": "küçük ejderha", "compatibleSettings": ["mountain", "cave", "castle"], "compatibleThemes": ["courage", "helping_others"], "tags": ["fantasy", "clumsy"], "cooldownWeight": 1.0, "noveltyWeight": 1.5},
+    {"id": "companion_squirrel_001", "name": "Fındık", "type": "sincap", "personality": "enerjik", "description": "Hızlı hareket eden sincap.", "visualDescription": "kızıl sincap", "compatibleSettings": ["forest", "park", "garden"], "compatibleThemes": ["problem_solving"], "tags": ["animal", "energetic"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_bear_001", "name": "Böğürtlen", "type": "ayı", "personality": "sakin ve güçlü", "description": "Kahverengi sevimli ayı.", "visualDescription": "kahverengi ayı", "compatibleSettings": ["forest", "mountain", "cave"], "compatibleThemes": ["friendship", "courage"], "tags": ["animal", "strong"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "companion_penguin_001", "name": "Pofuduk", "type": "penguen", "personality": "meraklı", "description": "Siyah beyaz küçük penguen.", "visualDescription": "küçük penguen", "compatibleSettings": ["snow", "water", "beach"], "compatibleThemes": ["discovery"], "tags": ["animal", "curious"], "cooldownWeight": 1.0, "noveltyWeight": 1.3},
+    {"id": "companion_turtle_001", "name": "Yavaş", "type": "kaplumbağa", "personality": "sabırlı", "description": "Yeşil kabuklu kaplumbağa.", "visualDescription": "yeşil kaplumbağa", "compatibleSettings": ["river", "beach", "pond"], "compatibleThemes": ["trying_again", "problem_solving"], "tags": ["animal", "patient"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_dolphin_001", "name": "Mavi", "type": "yunus", "personality": "neşeli", "description": "Gülümseyen yunus.", "visualDescription": "gri yunus", "compatibleSettings": ["ocean", "water"], "compatibleThemes": ["friendship", "discovery"], "tags": ["animal", "playful"], "cooldownWeight": 1.0, "noveltyWeight": 1.4},
+    {"id": "companion_firefly_001", "name": "Pırıltı", "type": "ateşböceği", "personality": "yardımsever", "description": "Parlayan küçük böcek.", "visualDescription": "parlak ateşböceği", "compatibleSettings": ["night", "forest", "cave"], "compatibleThemes": ["courage", "helping_others"], "tags": ["insect", "light"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "companion_robot_001", "name": "Zip", "type": "robot", "personality": "mantıklı ve şaşkın", "description": "Metalik küçük robot.", "visualDescription": "gümüş robot", "compatibleSettings": ["space", "city"], "compatibleThemes": ["discovery", "problem_solving"], "tags": ["tech", "logical"], "cooldownWeight": 1.0, "noveltyWeight": 1.5},
+    {"id": "companion_frog_001", "name": "Zıpzıp", "type": "kurbağa", "personality": "hareketli", "description": "Yeşil kurbağa.", "visualDescription": "yeşil kurbağa", "compatibleSettings": ["river", "pond", "rain"], "compatibleThemes": ["friendship"], "tags": ["animal", "jumping"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_cat_001", "name": "Pamuk", "type": "kedi", "personality": "meraklı ama tembel", "description": "Beyaz kedi.", "visualDescription": "beyaz kedi", "compatibleSettings": ["village", "house", "garden"], "compatibleThemes": ["discovery"], "tags": ["animal", "domestic"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "companion_dog_001", "name": "Cesur", "type": "köpek", "personality": "sadık ve cesur", "description": "Kahverengi yavru köpek.", "visualDescription": "kahverengi köpek", "compatibleSettings": ["village", "forest", "meadow"], "compatibleThemes": ["courage", "friendship"], "tags": ["animal", "loyal"], "cooldownWeight": 1.0, "noveltyWeight": 1.0}
+]
+
+objects = [
+    {"id": "object_lantern_001", "name": "eski fener", "description": "Etrafı aydınlatan bir fener.", "compatibleThemes": ["courage", "discovery"], "tags": ["light", "tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_map_001", "name": "eski harita", "description": "Yolu gösteren çizimli kağıt.", "compatibleThemes": ["discovery", "problem_solving"], "tags": ["guide", "paper"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_compass_001", "name": "pirinç pusula", "description": "Yönü gösteren alet.", "compatibleThemes": ["discovery"], "tags": ["guide", "tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "object_key_001", "name": "altın anahtar", "description": "Kilitli yerleri açan anahtar.", "compatibleThemes": ["discovery", "problem_solving"], "tags": ["metal", "tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "object_crystal_001", "name": "parlayan kristal", "description": "Mavi renkte parlayan taş.", "compatibleThemes": ["courage", "discovery"], "tags": ["magic", "light"], "cooldownWeight": 1.0, "noveltyWeight": 1.3},
+    {"id": "object_bell_001", "name": "gümüş çan", "description": "Güzel ses çıkaran küçük çan.", "compatibleThemes": ["friendship"], "tags": ["sound", "metal"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_feather_001", "name": "renkli tüy", "description": "Kuşlardan düşmüş yumuşak tüy.", "compatibleThemes": ["discovery"], "tags": ["soft", "nature"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_shell_001", "name": "deniz kabuğu", "description": "İçinden deniz sesi gelen kabuk.", "compatibleThemes": ["discovery", "calm"], "tags": ["water", "nature"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_tiny_book_001", "name": "minik kitap", "description": "İçinde sırlar yazan kitap.", "compatibleThemes": ["problem_solving", "discovery"], "tags": ["paper", "knowledge"], "cooldownWeight": 1.0, "noveltyWeight": 1.2},
+    {"id": "object_star_stone_001", "name": "yıldız taşı", "description": "Yıldız şeklinde parlak taş.", "compatibleThemes": ["courage"], "tags": ["magic", "stone"], "cooldownWeight": 1.0, "noveltyWeight": 1.4},
+    {"id": "object_ribbon_001", "name": "kırmızı kurdele", "description": "İpekten yapılmış uzun kurdele.", "compatibleThemes": ["friendship"], "tags": ["soft", "cloth"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_magnifying_glass_001", "name": "büyüteç", "description": "Küçük şeyleri büyüten cam.", "compatibleThemes": ["discovery"], "tags": ["tool", "glass"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "object_rope_001", "name": "sağlam ip", "description": "Uzun ve kalın bir ip.", "compatibleThemes": ["problem_solving", "courage"], "tags": ["tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_flute_001", "name": "tahta flüt", "description": "Üfleyince güzel ses çıkaran alet.", "compatibleThemes": ["friendship", "calm"], "tags": ["sound", "wood"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "object_seed_001", "name": "sihirli tohum", "description": "Hemen büyüyebilen tohum.", "compatibleThemes": ["discovery", "helping_others"], "tags": ["nature", "magic"], "cooldownWeight": 1.0, "noveltyWeight": 1.3},
+    {"id": "object_coin_001", "name": "eski madeni para", "description": "Üzerinde garip şekiller olan para.", "compatibleThemes": ["discovery"], "tags": ["metal", "old"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_mirror_001", "name": "el aynası", "description": "Işığı yansıtabilen küçük ayna.", "compatibleThemes": ["problem_solving"], "tags": ["glass", "tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.1},
+    {"id": "object_bag_001", "name": "bez çanta", "description": "İçine eşya konulabilen çanta.", "compatibleThemes": ["discovery"], "tags": ["cloth", "tool"], "cooldownWeight": 1.0, "noveltyWeight": 1.0},
+    {"id": "object_stick_001", "name": "parlak asa", "description": "Ucu parlayan tahta çubuk.", "compatibleThemes": ["courage", "discovery"], "tags": ["wood", "magic"], "cooldownWeight": 1.0, "noveltyWeight": 1.4},
+    {"id": "object_goggles_001", "name": "kaşif gözlüğü", "description": "Her şeyi daha net gösteren gözlük.", "compatibleThemes": ["discovery"], "tags": ["tool", "glass"], "cooldownWeight": 1.0, "noveltyWeight": 1.2}
+]
+
+events = [
+    {"id": "event_strange_sound_001", "type": "strange_sound", "description": "Uzaklardan gelen garip bir ses duyulur.", "compatibleSettings": ["forest", "cave", "mountain"], "compatibleThemes": ["courage"], "requiredState": [], "stateChanges": ["heard_sound=true"]},
+    {"id": "event_lost_object_001", "type": "lost_object", "description": "Yolda parlak bir şey bulurlar.", "compatibleSettings": ["forest", "meadow", "beach"], "compatibleThemes": ["discovery"], "requiredState": [], "stateChanges": ["found_item=true"]},
+    {"id": "event_hidden_path_001", "type": "hidden_path", "description": "Çalıların ardında gizli bir yol belirir.", "compatibleSettings": ["forest", "garden", "mountain"], "compatibleThemes": ["discovery", "courage"], "requiredState": [], "stateChanges": ["found_path=true"]},
+    {"id": "event_sudden_rain_001", "type": "sudden_rain", "description": "Aniden yağmur başlar.", "compatibleSettings": ["forest", "meadow", "village"], "compatibleThemes": ["problem_solving"], "requiredState": [], "stateChanges": ["weather=rain"]},
+    {"id": "event_glowing_light_001", "type": "glowing_light", "description": "Karanlıkta bir ışık belirir.", "compatibleSettings": ["cave", "night", "forest"], "compatibleThemes": ["courage", "discovery"], "requiredState": ["problem=darkness"], "stateChanges": ["has_light=true"]},
+    {"id": "event_mysterious_note_001", "type": "mysterious_note", "description": "Yere düşmüş bir kağıt bulurlar.", "compatibleSettings": ["village", "castle", "garden"], "compatibleThemes": ["discovery", "problem_solving"], "requiredState": [], "stateChanges": ["found_clue=true"]},
+    {"id": "event_footprints_001", "type": "footprints", "description": "Yerde garip ayak izleri görürler.", "compatibleSettings": ["forest", "snow", "beach"], "compatibleThemes": ["courage", "discovery"], "requiredState": [], "stateChanges": ["following_tracks=true"]},
+    {"id": "event_locked_door_001", "type": "locked_door", "description": "Önlerine kilitli kocaman bir kapı çıkar.", "compatibleSettings": ["castle", "cave", "village"], "compatibleThemes": ["problem_solving"], "requiredState": [], "stateChanges": ["problem=locked"]},
+    {"id": "event_falling_star_001", "type": "falling_star", "description": "Gökyüzünden bir yıldız kayar.", "compatibleSettings": ["night", "mountain", "space"], "compatibleThemes": ["discovery"], "requiredState": [], "stateChanges": ["made_wish=true"]},
+    {"id": "event_whispering_wind_001", "type": "whispering_wind", "description": "Rüzgar sanki bir şeyler fısıldar.", "compatibleSettings": ["mountain", "forest", "meadow"], "compatibleThemes": ["discovery", "courage"], "requiredState": [], "stateChanges": ["heard_whisper=true"]},
+    {"id": "event_disappearing_bridge_001", "type": "disappearing_bridge", "description": "Önlerindeki köprü bir anda silikleşir.", "compatibleSettings": ["magic", "mountain", "river"], "compatibleThemes": ["courage"], "requiredState": [], "stateChanges": ["problem=crossing"]},
+    {"id": "event_stuck_animal_001", "type": "stuck_animal", "description": "Küçük bir kuş ağlara takılmıştır.", "compatibleSettings": ["forest", "garden", "meadow"], "compatibleThemes": ["helping_others"], "requiredState": [], "stateChanges": ["problem=rescue"]},
+    {"id": "event_broken_wheel_001", "type": "broken_wheel", "description": "Küçük bir arabanın tekerleği kırılmıştır.", "compatibleSettings": ["village", "road", "castle"], "compatibleThemes": ["problem_solving", "helping_others"], "requiredState": [], "stateChanges": ["problem=fix"]},
+    {"id": "event_blocked_path_001", "type": "blocked_path", "description": "Büyük bir kaya yolu kapatmıştır.", "compatibleSettings": ["mountain", "cave", "forest"], "compatibleThemes": ["problem_solving"], "requiredState": [], "stateChanges": ["problem=blocked"]},
+    {"id": "event_floating_bubbles_001", "type": "floating_bubbles", "description": "Havada süzülen renkli baloncuklar belirir.", "compatibleSettings": ["river", "garden", "magic"], "compatibleThemes": ["discovery"], "requiredState": [], "stateChanges": ["saw_magic=true"]},
+    {"id": "event_echo_001", "type": "echo", "description": "Sesleri her yerden yankılanır.", "compatibleSettings": ["cave", "mountain"], "compatibleThemes": ["courage", "discovery"], "requiredState": [], "stateChanges": ["heard_echo=true"]},
+    {"id": "event_sleeping_giant_001", "type": "sleeping_giant", "description": "Kocaman uyuyan bir devin yanından geçmeleri gerekir.", "compatibleSettings": ["mountain", "cave", "forest"], "compatibleThemes": ["courage"], "requiredState": [], "stateChanges": ["problem=stealth"]},
+    {"id": "event_shiny_fruit_001", "type": "shiny_fruit", "description": "Ağaçta parlayan garip bir meyve görürler.", "compatibleSettings": ["forest", "garden", "magic"], "compatibleThemes": ["discovery"], "requiredState": [], "stateChanges": ["found_food=true"]},
+    {"id": "event_moving_shadows_001", "type": "moving_shadows", "description": "Gölgeler kendi kendine hareket eder.", "compatibleSettings": ["cave", "night", "castle"], "compatibleThemes": ["courage"], "requiredState": [], "stateChanges": ["problem=fear"]},
+    {"id": "event_friendly_wave_001", "type": "friendly_wave", "description": "Uzakta biri onlara el sallar.", "compatibleSettings": ["village", "beach", "meadow"], "compatibleThemes": ["friendship"], "requiredState": [], "stateChanges": ["saw_friend=true"]}
+]
+
+challenges = [
+    {"id": "challenge_crossing_001", "description": "Karşıya geçmek", "compatibleThemes": ["courage", "problem_solving"], "compatibleSettings": ["river", "mountain"], "stateRequirements": ["problem=crossing"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_darkness_001", "description": "Karanlık", "compatibleThemes": ["courage"], "compatibleSettings": ["cave", "night"], "stateRequirements": ["problem=darkness"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_helping_001", "description": "Yardım etmek", "compatibleThemes": ["helping_others"], "compatibleSettings": ["forest", "village"], "stateRequirements": ["problem=rescue"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_puzzle_001", "description": "Bulmaca çözmek", "compatibleThemes": ["problem_solving"], "compatibleSettings": ["castle", "cave"], "stateRequirements": ["problem=locked"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_trying_again_001", "description": "Pes etmeden tekrar denemek", "compatibleThemes": ["trying_again", "courage"], "compatibleSettings": ["mountain", "forest"], "stateRequirements": ["failed_attempt=true"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_asking_for_help_001", "description": "Yardım istemek", "compatibleThemes": ["friendship", "courage"], "compatibleSettings": ["village", "garden"], "stateRequirements": ["problem=stuck"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_finding_direction_001", "description": "Yön bulmak", "compatibleThemes": ["discovery", "problem_solving"], "compatibleSettings": ["forest", "ocean", "desert"], "stateRequirements": ["problem=lost"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_fear_001", "description": "Korkuyu yenmek", "compatibleThemes": ["courage"], "compatibleSettings": ["night", "cave"], "stateRequirements": ["problem=fear"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_waiting_001", "description": "Sabırla beklemek", "compatibleThemes": ["problem_solving", "trying_again"], "compatibleSettings": ["garden", "river"], "stateRequirements": ["problem=waiting"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_fixing_001", "description": "Kırık bir şeyi tamir etmek", "compatibleThemes": ["problem_solving", "helping_others"], "compatibleSettings": ["village", "road"], "stateRequirements": ["problem=fix"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_moving_object_001", "description": "Ağır bir şeyi çekmek", "compatibleThemes": ["courage", "problem_solving"], "compatibleSettings": ["mountain", "cave"], "stateRequirements": ["problem=blocked"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_stealth_001", "description": "Sessizce geçmek", "compatibleThemes": ["courage"], "compatibleSettings": ["mountain", "cave"], "stateRequirements": ["problem=stealth"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_climbing_001", "description": "Yükseğe tırmanmak", "compatibleThemes": ["courage"], "compatibleSettings": ["mountain", "castle"], "stateRequirements": ["problem=high"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_swimming_001", "description": "Suya girmek", "compatibleThemes": ["courage"], "compatibleSettings": ["river", "ocean"], "stateRequirements": ["problem=water"], "stateChanges": ["problem_solved=true"]},
+    {"id": "challenge_decipher_001", "description": "Yazıyı okumak", "compatibleThemes": ["discovery", "problem_solving"], "compatibleSettings": ["castle", "cave"], "stateRequirements": ["problem=reading"], "stateChanges": ["problem_solved=true"]}
+]
+
+endings = [
+    {"id": "ending_emotional_001", "type": "emotional", "description": "Kendisiyle gurur duyar.", "compatibleThemes": ["courage"]},
+    {"id": "ending_calm_001", "type": "calm", "description": "Her şey huzura kavuşur.", "compatibleThemes": ["calm", "good_night"]},
+    {"id": "ending_celebratory_001", "type": "celebratory", "description": "Mutlulukla kutlama yaparlar.", "compatibleThemes": ["friendship", "problem_solving"]},
+    {"id": "ending_warm_001", "type": "warm", "description": "Güven ve sıcaklık hisseder.", "compatibleThemes": ["helping_others", "friendship"]},
+    {"id": "ending_reflective_001", "type": "reflective", "description": "Öğrendiklerini düşünür.", "compatibleThemes": ["discovery", "trying_again"]},
+    {"id": "ending_bedtime_001", "type": "bedtime", "description": "Uykuya dalar.", "compatibleThemes": ["good_night"]},
+    {"id": "ending_funny_001", "type": "funny", "description": "Gülerek bitirirler.", "compatibleThemes": ["friendship"]},
+    {"id": "ending_hopeful_001", "type": "hopeful", "description": "Yarın için umutludur.", "compatibleThemes": ["trying_again"]},
+    {"id": "ending_thankful_001", "type": "thankful", "description": "Teşekkür ederek vedalaşırlar.", "compatibleThemes": ["helping_others"]},
+    {"id": "ending_magical_001", "type": "magical", "description": "Sihirli bir anıyla döner.", "compatibleThemes": ["discovery"]}
+]
+
+templates = []
+roles = ["hook", "discovery", "companion", "problem", "attempt", "challenge", "resolution", "emotional_ending", "celebration", "bedtime_transition"]
+
+for role in roles:
+    for i in range(5):
+        variants = []
+        for v in range(3):
+            variants.append({
+                "id": f"template_{role}_{i}_v{v}",
+                "text": f"{{{{child.name}}}} {role} {i} versiyon {v} için yola çıktı. {{{{setting.name}}}} çok güzeldi.",
+                "visualScene": f"{{{{child.name}}}} {role} sahnesi.",
+                "requiredSlots": ["child.name", "setting.name"]
+            })
+            
+        templates.append({
+            "id": f"template_{role}_{i}",
+            "role": role,
+            "compatibleThemes": ["courage", "discovery", "friendship", "problem_solving"],
+            "variants": variants
+        })
+
+templates[0] = {
+    "id": "template_hook_real_001",
+    "role": "hook",
+    "compatibleThemes": ["courage", "discovery"],
+    "variants": [
+        {"id": "h_r_1_v1", "text": "Güneşli bir sabah, {{child.name}} dışarıda dolaşırken kendini {{setting.name}}'nin girişinde buldu. İçeriden hafif bir rüzgar esiyordu.", "visualScene": "{{child.name}} meraklı gözlerle {{setting.name}} girişine bakıyor.", "requiredSlots": ["child.name", "setting.name"]},
+        {"id": "h_r_1_v2", "text": "Yeni yerler keşfetmeyi seven {{child.name}}, adımlarını hızlandırıp {{setting.name}}'ne doğru yürüdü. Etrafta tatlı bir sessizlik vardı.", "visualScene": "{{child.name}} {{setting.name}}'ne doğru yürüyor, etraf sakin.", "requiredSlots": ["child.name", "setting.name"]},
+        {"id": "h_r_1_v3", "text": "Kuşların şarkı söylediği o gün, {{child.name}} heyecanla {{setting.name}}'ni incelemeye karar verdi. Acaba içeride ne vardı?", "visualScene": "{{child.name}} {{setting.name}} girişinde heyecanla bekliyor.", "requiredSlots": ["child.name", "setting.name"]}
+    ]
+}
+
+templates.append({
+    "id": "template_companion_real_001",
+    "role": "companion",
+    "compatibleThemes": ["courage", "friendship"],
+    "variants": [
+        {"id": "c_r_1_v1", "text": "Birden yaprakların arasından {{companion.name}} adında sevimli bir {{companion.type}} belirdi. Bana yardım eder misin, diye sordu.", "visualScene": "Küçük bir {{companion.type}} olan {{companion.name}}, {{child.name}}'e bakıyor.", "requiredSlots": ["companion.name", "companion.type"]},
+        {"id": "c_r_1_v2", "text": "Bir taşın üzerinde oturan {{companion.name}} ile karşılaştılar. Bu tatlı {{companion.type}} yolu kaybetmiş gibiydi.", "visualScene": "{{companion.type}} {{companion.name}} üzgün bir şekilde oturuyor.", "requiredSlots": ["companion.name", "companion.type"]},
+        {"id": "c_r_1_v3", "text": "{{child.name}} etrafına bakınırken, neşeli bir ses duydu. Minik {{companion.type}} {{companion.name}} zıplayarak yanına geldi.", "visualScene": "{{companion.type}} {{companion.name}} sevinçle {{child.name}}'in yanına geliyor.", "requiredSlots": ["companion.name", "companion.type"]}
+    ]
+})
+
+templates.append({
+    "id": "template_problem_real_001",
+    "role": "problem",
+    "compatibleThemes": ["courage"],
+    "variants": [
+        {"id": "p_r_1_v1", "text": "Ama ilerideki yol çok karanlıktı. {{companion.name}} bir adım daha atmaya korkuyordu.", "visualScene": "{{companion.name}} karanlık yola endişeyle bakıyor.", "requiredSlots": ["companion.name"]},
+        {"id": "p_r_1_v2", "text": "Yolun sonu zifiri karanlıktı. {{companion.name}} korkuyla durakladı ve ilerlemek istemedi.", "visualScene": "Karanlık bir geçit, {{companion.name}} gitmek istemiyor.", "requiredSlots": ["companion.name"]},
+        {"id": "p_r_1_v3", "text": "\"Önümüzü göremiyoruz,\" dedi {{companion.name}} üzüntüyle. Karanlık her yeri kaplamıştı.", "visualScene": "{{companion.name}} karanlıktan korkmuş görünüyor.", "requiredSlots": ["companion.name"]}
+    ]
+})
+
+blueprints = []
+for i in range(1, 13):
+    blueprints.append({
+        "id": f"blueprint_adventure_courage_{i:03d}",
+        "genre": "adventure",
+        "theme": "courage",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "pageRoles": [
+            {"pageNumber": 1, "role": "hook"},
+            {"pageNumber": 2, "role": "discovery"},
+            {"pageNumber": 3, "role": "companion"},
+            {"pageNumber": 4, "role": "problem"},
+            {"pageNumber": 5, "role": "attempt"},
+            {"pageNumber": 6, "role": "challenge"},
+            {"pageNumber": 7, "role": "resolution"},
+            {"pageNumber": 8, "role": "emotional_ending"}
+        ]
+    })
+
+shared_content_library_v2 = {
+    "version": "2.0.0",
+    "settings": settings,
+    "companions": companions,
+    "objects": objects,
+    "events": events,
+    "challenges": challenges,
+    "resolutions": [],
+    "endings": endings,
+    "templates": templates,
+    "blueprints": blueprints
+}
+
+with open("StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json", "w", encoding="utf-8") as f:
+    json.dump(shared_content_library_v2, f, ensure_ascii=False, indent=2)
+
+print("Generated V2 prototype successfully!")
