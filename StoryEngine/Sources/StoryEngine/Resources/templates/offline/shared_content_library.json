@@ -1,0 +1,627 @@
+{
+  "contentLibrary": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01",
+    "settings": {
+      "nature": [
+        {
+          "id": "setting_forest_001",
+          "name": "Fısıldayan Orman",
+          "description": "Uzun ağaçları, yumuşacık yosunları, yeşil yaprakların arasından süzülen güneş ışığı ve dalları usulca sallayan hafif rüzgarıyla çok sevimli bir orman.",
+          "allowedGenres": [
+            "adventure",
+            "discovery",
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "uzun ağaçlar",
+            "süzülen güneş ışığı",
+            "yeşil yosun",
+            "orman yolu",
+            "kır çiçekleri"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_meadow_001",
+          "name": "Güneşli Çayır",
+          "description": "Rengarenk kır çiçekleri, kelebekler ve rüzgarda sallanan yumuşacık uzun çimenlerle dolu kocaman, açık bir çayır.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "kır çiçekleri",
+            "kelebekler",
+            "uzun çimenler",
+            "mavi gökyüzü",
+            "güneş ışığı"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_mountain_001",
+          "name": "Yumuşak Dağ",
+          "description": "Kıvrımlı bir yolu olan küçük, yuvarlak bir dağ. Üzerinde rengarenk çiçekler, oturmak için pürüzsüz kayalar var ve aşağısındaki vadi çok güzel görünüyor.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "kıvrımlı yol",
+            "yuvarlak tepe",
+            "kır çiçekleri",
+            "pürüzsüz kayalar",
+            "vadi manzarası"
+          ],
+          "ageSuitability": [
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_beach_001",
+          "name": "Sakin Kumsal",
+          "description": "Hafif dalgaları, pürüzsüz çakıl taşları, minik deniz canlılarıyla dolu küçük su birikintileri ve kıyıya vuran ağaç dalları olan huzurlu, kumlu bir plaj.",
+          "allowedGenres": [
+            "adventure",
+            "discovery",
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "kumlu kıyı",
+            "hafif dalgalar",
+            "su birikintileri",
+            "pürüzsüz çakıl taşları",
+            "kıyıya vuran dallar"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_lake_001",
+          "name": "Kristal Göl",
+          "description": "Sazlıklar ve pürüzsüz taşlarla çevrili, gökyüzünü bir ayna gibi yansıtan, üzerinde yusufçukların dans ettiği durgun, tertemiz bir göl.",
+          "allowedGenres": [
+            "adventure",
+            "discovery",
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "durgun su",
+            "sazlıklar",
+            "pürüzsüz taşlar",
+            "yusufçuklar",
+            "gökyüzü yansıması"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        }
+      ],
+      "fantasy": [
+        {
+          "id": "setting_enchanted_forest_001",
+          "name": "Büyülü Orman",
+          "description": "Mantarların hafifçe parladığı, çiçeklerin usulca şarkı söylediği ve minik ışıkların ateşböcekleri gibi ağaçların arasında süzüldüğü sihirli bir orman.",
+          "allowedGenres": [
+            "adventure",
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "parlayan mantarlar",
+            "uçuşan ışıklar",
+            "yaşlı ağaçlar",
+            "sihirli çiçekler",
+            "hafif sis"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_cloud_kingdom_001",
+          "name": "Bulut Krallığı",
+          "description": "Yumuşacık bulutların üzerine kurulmuş; pamuk bulut köprüleri, gökkuşağı kemerleri ve pencerelerinden ışık saçan minik bulut evleri olan bir krallık.",
+          "allowedGenres": [
+            "adventure",
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "puf puf bulutlar",
+            "gökkuşağı kemerleri",
+            "bulut köprüler",
+            "ışıldayan pencereler",
+            "altın güneş ışığı"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_moon_garden_001",
+          "name": "Ay Bahçesi",
+          "description": "Ay'ın üzerinde, yıldız ışığında açan gümüş renkli çiçekleri, yumuşacık ay toprağı ve gökyüzünde mavi-yeşil parlayan Dünya manzarasıyla çok huzurlu bir bahçe.",
+          "allowedGenres": [
+            "adventure",
+            "bedtime",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "gümüş çiçekler",
+            "yıldız ışığı",
+            "ay toprağı",
+            "gökyüzünde dünya",
+            "hafif parıltı"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_tiny_village_001",
+          "name": "Minik Köy",
+          "description": "Büyük bir meşe ağacının altına saklanmış; palamut şapkasından evleri, yaprak çatılı kulübeleri ve dallardan sarkan minik fenerleri olan küçücük bir köy.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "palamut evler",
+            "yaprak çatılar",
+            "minik fenerler",
+            "meşe ağacı",
+            "yosunlu yollar"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        }
+      ],
+      "space": [
+        {
+          "id": "setting_moon_001",
+          "name": "Ay",
+          "description": "Yumuşak gri kraterleri, zıp zıp zıplatan düşük yerçekimi, yıldızların ve Dünya'nın harika manzarasıyla Ay'ın dost canlısı yüzeyi.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "kraterler",
+            "düşük yerçekimi",
+            "yıldız tarlası",
+            "dünya manzarası",
+            "ay tozu"
+          ],
+          "ageSuitability": [
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_space_station_001",
+          "name": "Sımsıcak Uzay İstasyonu",
+          "description": "Yıldızları gösteren yuvarlak pencereleri, havada süzülen eşyaları, yanıp sönen sevimli ışıkları ve çok rahat bir gözlem köşesi olan küçük, sıcak bir uzay istasyonu.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "yuvarlak pencereler",
+            "süzülen eşyalar",
+            "yanıp sönen ışıklar",
+            "gözlem güvertesi",
+            "dışarıdaki yıldızlar"
+          ],
+          "ageSuitability": [
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_friendly_planet_001",
+          "name": "Dost Gezegen",
+          "description": "Mor çimenleri, turuncu ağaçları, sevimli canlıları ve her yeri sıcacık aydınlatan iki küçük güneşi olan rengarenk bir gezegen.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "mor çimen",
+            "turuncu ağaçlar",
+            "iki güneş",
+            "rengarenk manzara",
+            "sevimli canlılar"
+          ],
+          "ageSuitability": [
+            "5-6",
+            "7-8"
+          ]
+        }
+      ],
+      "home": [
+        {
+          "id": "setting_bedroom_001",
+          "name": "Sımsıcak Yatak Odası",
+          "description": "Yumuşacık battaniyeleri, etrafa hafif gölgeler vuran gece lambası, rafta duran en sevilen oyuncakları ve yıldızları gösteren penceresiyle çok sıcak ve sevimli bir oda.",
+          "allowedGenres": [
+            "bedtime"
+          ],
+          "visualKeywords": [
+            "yumuşak battaniyeler",
+            "gece lambası",
+            "oyuncaklar",
+            "yıldızlı pencere",
+            "sıcak ışık"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_garden_001",
+          "name": "Arka Bahçe",
+          "description": "Sebze köşesi, küçük göleti, adım taşları ve salıncağı olan büyük yaşlı ağacıyla çok dost canlısı bir arka bahçe.",
+          "allowedGenres": [
+            "adventure",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "sebze köşesi",
+            "küçük gölet",
+            "adım taşları",
+            "ağaç salıncağı",
+            "bahçe çiti"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        },
+        {
+          "id": "setting_kitchen_001",
+          "name": "Aile Mutfağı",
+          "description": "Büyük ahşap masası, kurabiye kavanozları, güneş ışığının girdiği kocaman penceresi ve mis gibi taze pişmiş tatlı kokularıyla sıcacık bir aile mutfağı.",
+          "allowedGenres": [
+            "bedtime",
+            "discovery"
+          ],
+          "visualKeywords": [
+            "ahşap masa",
+            "kurabiye kavanozları",
+            "güneşli pencere",
+            "sıcak fırın",
+            "aile fotoğrafları"
+          ],
+          "ageSuitability": [
+            "3-4",
+            "5-6",
+            "7-8"
+          ]
+        }
+      ]
+    },
+    "companions": [
+      {
+        "id": "companion_fox_001",
+        "name": "Kıpır",
+        "type": "fox",
+        "personality": "Zeki ve oyuncu, biraz yaramaz ama her zaman çok nazik. Gizli yolları bulmaya ve yaratıcı fikirlerle sorunları çözmeye bayılır.",
+        "visualDescription": "Ucu beyaz tüylü kabarık kuyruğu, parlak, meraklı gözleri ve sevimli bir gülümsemesi olan küçük, turuncu bir tilki.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_rabbit_001",
+        "name": "Yonca",
+        "type": "rabbit",
+        "personality": "Nazik ve biraz utangaç ama çok sadık bir arkadaş. Çabuk heyecanlanabilir ama bir arkadaşının yardıma ihtiyacı olduğunda hemen cesaretini toplar.",
+        "visualDescription": "Uzun, düşük kulakları, pofuduk beyaz bir kuyruğu ve sıcacık kahverengi gözleri olan yumuşacık kahverengi bir tavşan.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_bear_001",
+        "name": "Böğürtlen",
+        "type": "bear",
+        "personality": "Güçlü ve sakin, tane tane ve düşünerek konuşur. Balı çok sever ve ormanın her köşesini çok iyi bilir.",
+        "visualDescription": "Yumuşacık tüyleri, dost canlısı bir yüzü ve kocaman nazik patileri olan küçük, yuvarlak kahverengi bir ayı.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_dinosaur_001",
+        "name": "Çakıl",
+        "type": "little dinosaur",
+        "personality": "Hep çok coşkulu ve yerinde duramayan biri, keşfetmeye daima hazır! Bazen kendi kuyruğuna takılıp düşer ama asla pes etmez.",
+        "visualDescription": "Minicik kanatları, benekli sırtı, kocaman mutlu gözleri ve sallanan bir kuyruğu olan küçük, yuvarlak ve yeşil bir dinozor.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_owl_001",
+        "name": "Bilge",
+        "type": "owl",
+        "personality": "Çok akıllı ve sabırlı, sakin, yumuşacık bir sesle konuşur. İlginç bilgiler paylaşmayı ve düşündürücü sorular sormayı çok sever.",
+        "visualDescription": "Kocaman yuvarlak kehribar rengi gözleri, yumuşak benekli tüyleri olan ve başını merakla yana yatıran küçük bir baykuş.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_robot_001",
+        "name": "Zip",
+        "type": "friendly robot",
+        "personality": "Neşeli ve yardımsever, çok heyecanlandığında komik 'bip bip' sesleri çıkarır. Arkadaşından doğayı ve duyguları öğreniyor.",
+        "visualDescription": "Parlayan mavi gözleri, minik anten kulakları, kısa bacakları ve göğsünde komik ifadeler gösteren küçük bir ekranı olan yuvarlak bir robot.",
+        "safeForAgeGroups": [
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_dragon_001",
+        "name": "Kıvılcım",
+        "type": "small dragon",
+        "personality": "Çok tatlı ve biraz sakar, cesur olmak için elinden geleni yapıyor. Ateş püskürtmek yerine sadece minik kıvılcımlar çıkarabiliyor. Buna biraz utansa da, arkadaşları bu durumu çok sevimli buluyor.",
+        "visualDescription": "Yumuşak mor pulları, minik kanatları, yuvarlak yeşil gözleri ve kıvrık bir kuyruğu olan, küçük, dost canlısı bir ejderha. Bazen burnunun etrafında minik pırıltılar uçuşur.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      },
+      {
+        "id": "companion_hedgehog_001",
+        "name": "Dikenli",
+        "type": "hedgehog",
+        "personality": "Biraz çekingen ama çok kararlı. Alışması biraz zaman alır ama çok vefalı bir arkadaş olur. Minik, güzel şeyler biriktirmeye bayılır.",
+        "visualDescription": "Yumuşak kahverengi dikenleri, pembe bir burnu, küçücük koyu renk gözleri ve eşyaları özenle tutan minik patileri olan minicik bir kirpi.",
+        "safeForAgeGroups": [
+          "3-4",
+          "5-6",
+          "7-8"
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "id": "object_glowing_stone_001",
+        "name": "parlayan taş",
+        "description": "Sanki içine biraz güneş ışığı saklamış gibi, hafif sıcak bir ışık saçan pürüzsüz, yuvarlak bir taş.",
+        "visualDescription": "Avuç içi kadar, pürüzsüz, içinden yumuşak altın rengi bir ışık saçan ve üzerinde minik pırıltılar olan bir taş.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "dreams"
+        ]
+      },
+      {
+        "id": "object_old_map_001",
+        "name": "eski harita",
+        "description": "Üzerinde elle çizilmiş şekiller, noktalı yollar ve özel bir yeri gösteren solmuş bir X işareti bulunan, çok eski kağıttan bir harita.",
+        "visualDescription": "Kenarları kıvrılmış, üzerinde elle çizilmiş ağaçlar ve dağlar, noktalı patika çizgileri ve soluk kırmızı bir X işareti olan eskitilmiş parşömen harita.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "problem_solving"
+        ]
+      },
+      {
+        "id": "object_tiny_key_001",
+        "name": "minik anahtar",
+        "description": "Hiç beklenmedik bir yerde bulunan, yonca şeklinde sapı olan küçük, süslü altın bir anahtar.",
+        "visualDescription": "Çocuğun avucuna sığacak kadar küçük, yonca yaprağı şeklinde ince işlemeli sapı olan altın rengi minik bir anahtar.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "friendship"
+        ]
+      },
+      {
+        "id": "object_colorful_feather_001",
+        "name": "rengarenk tüy",
+        "description": "Işığa doğru çevrildiğinde bir sürü renkte parlayan uzun, güzel bir tüy.",
+        "visualDescription": "Mavi, yeşil ve altın renkleri arasında değişen, ışığı aldığında yanar döner bir şekilde parlayan uzun bir tüy.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "friendship"
+        ]
+      },
+      {
+        "id": "object_mysterious_shell_001",
+        "name": "gizemli deniz kabuğu",
+        "description": "Kulağa yaklaştırıldığında sanki bir sır fısıldıyormuş gibi hafifçe mırıldanan sarmal şekilli bir deniz kabuğu.",
+        "visualDescription": "İçi inci gibi parlayan, kulağa yaklaştırıldığında içinden minik müzik notaları süzülen çok güzel sarmal bir deniz kabuğu.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "calm"
+        ]
+      },
+      {
+        "id": "object_star_lantern_001",
+        "name": "yıldız fener",
+        "description": "Hiç sönmeyen yumuşacık ve sıcacık bir ışık saçan, yıldız şeklinde küçük bir kağıt fener.",
+        "visualDescription": "İçinden sıcacık kehribar rengi bir ışık yayan, beş köşeli yıldız şeklinde, çok narin bir kağıt fener.",
+        "compatibleThemes": [
+          "courage",
+          "dreams",
+          "good_night"
+        ]
+      },
+      {
+        "id": "object_small_telescope_001",
+        "name": "küçük teleskop",
+        "description": "Küçük ellere tam uygun boyutta, çok uzakları harika bir şekilde yakına getiren pirinç bir teleskop.",
+        "visualDescription": "Gökyüzüne çevrilmiş, parlatılmış merceğiyle küçük bir çocuğun ellerine uygun boyutta pirinç bir teleskop.",
+        "compatibleThemes": [
+          "discovery",
+          "space",
+          "courage"
+        ]
+      },
+      {
+        "id": "object_crystal_001",
+        "name": "minik kristal",
+        "description": "Işığı yakalayıp etraftaki her yere dans eden küçük gökkuşakları saçan minik, şeffaf bir kristal.",
+        "visualDescription": "Bir çocuğun avucunda duran, ışığı kırarak etrafta dans eden minik gökkuşakları yansıtan fasetli küçük bir kristal.",
+        "compatibleThemes": [
+          "courage",
+          "discovery",
+          "friendship"
+        ]
+      },
+      {
+        "id": "object_painted_stone_001",
+        "name": "boyalı taş",
+        "description": "Buraya daha önce gelmiş biri tarafından çok güzel renklerle boyanmış pürüzsüz bir nehir taşı.",
+        "visualDescription": "Üzerinde neşeli bir güneş ve çiçek resmi olan, diğer boyalı taşların arasında duran pürüzsüz, oval bir taş.",
+        "compatibleThemes": [
+          "courage",
+          "friendship",
+          "discovery"
+        ]
+      },
+      {
+        "id": "object_music_box_001",
+        "name": "minik müzik kutusu",
+        "description": "Açıldığında her şeyi daha sakin ve güvende hissettiren yumuşacık, tatlı bir melodi çalan küçük ahşap bir müzik kutusu.",
+        "visualDescription": "İçinde minicik dönen bir figür olan, hafifçe açık, işlemeli küçük ahşap bir kutu, içinden yukarıya müzik notaları uçuşuyor.",
+        "compatibleThemes": [
+          "calm",
+          "dreams",
+          "good_night",
+          "courage"
+        ]
+      }
+    ],
+    "endingPatterns": [
+      {
+        "id": "ending_warm_001",
+        "type": "warm",
+        "description": "Çocuk bu maceradan küçük ama çok anlamlı bir şeyle eve döner. En son hissettiği şey, sıcaklık ve güvendir.",
+        "emotionalState": "content and fulfilled",
+        "compatibleGenres": [
+          "adventure",
+          "discovery"
+        ],
+        "templatePattern": "{{child.name}}, cebine güvenle yerleştirdiği {{object.name}} ile eve yürüdü. {{setting.name}} artık sessizdi, ama {{child.pronoun}} maceranın hep {{child.possessive}} kalbinde kalacağını biliyordu."
+      },
+      {
+        "id": "ending_warm_002",
+        "type": "warm",
+        "description": "Arkadaşı ve çocuk ayrılmadan önce sessiz bir anı paylaşır ve tekrar buluşmaya söz verirler.",
+        "emotionalState": "connected and hopeful",
+        "compatibleGenres": [
+          "adventure"
+        ],
+        "templatePattern": "{{companion.name}} son bir kez sevgiyle {{child.name}}'ye yaklaştı. \"Geri dönecek misin?\" diye sordu {{companion.type}} yavaşça. {{child.name}} gülümsedi. \"Söz veriyorum.\""
+      },
+      {
+        "id": "ending_funny_001",
+        "type": "funny",
+        "description": "Hikaye küçük ve tatlı bir sürprizle ya da komik bir olayla, kıkırdayarak biter.",
+        "emotionalState": "amused and happy",
+        "compatibleGenres": [
+          "adventure",
+          "discovery"
+        ],
+        "templatePattern": "{{child.name}} tam eve ulaştığında, bahçe kapısının arkasından tanıdık bir ses duydu. {{companion.name}} onu eve kadar takip etmişti ve çoktan {{child.possessive}} köşesini rahatça kurmuştu."
+      },
+      {
+        "id": "ending_calm_001",
+        "type": "calm",
+        "description": "Dünya huzura kavuşur. Yumuşacık, tatlı detaylar güvenli ve dinlendirici bir his uyandırır.",
+        "emotionalState": "peaceful and drowsy",
+        "compatibleGenres": [
+          "bedtime",
+          "adventure"
+        ],
+        "templatePattern": "{{setting.name}}'nin üzerinde yıldızlar birer birer belirdi. {{child.name}} kendini sıcacık ve güvende hissederek usulca esnedi. Bu, en güzel günlerden biriydi."
+      },
+      {
+        "id": "ending_emotional_001",
+        "type": "emotional",
+        "description": "Gerçek bir gurur ve büyüme anı. Çocuk bazı şeyleri kendi kendine fark eder.",
+        "emotionalState": "proud and reflective",
+        "compatibleGenres": [
+          "adventure"
+        ],
+        "templatePattern": "{{child.name}} tepeden {{setting.name}}'ye dönüp baktı. Artık daha az korkutucu görünüyordu. Belki de, diye düşündü {{child.pronoun}}, cesur olmak korkmamak demek değildi. Korksan bile yola devam etmek demekti."
+      },
+      {
+        "id": "ending_celebratory_001",
+        "type": "celebratory",
+        "description": "Arkadaşla birlikte neleri başardıklarını kutladıkları, çok neşeli bir paylaşım anı.",
+        "emotionalState": "joyful and proud",
+        "compatibleGenres": [
+          "adventure",
+          "discovery"
+        ],
+        "templatePattern": "{{companion.name}} sevinçle zıpladı ve {{child.name}} güldü. Bunu birlikte başarmışlardı. Güneş ışıkları ağaçların arasından dans ederken, {{setting.name}} de onlarla kutlama yapıyor gibiydi."
+      },
+      {
+        "id": "ending_bedtime_001",
+        "type": "bedtime",
+        "description": "Maceradan uykuya yumuşacık bir geçiş. Çocuk güvenle yatağındadır ve macera artık bir rüyaya dönüşmektedir.",
+        "emotionalState": "drowsy, safe, and content",
+        "compatibleGenres": [
+          "bedtime"
+        ],
+        "templatePattern": "{{child.name}} sıcacık battaniyesinin altına sokuldu. Pencerenin dışında ay usulca gülümsüyordu. Uzaklarda bir yerlerde, {{companion.name}} de uykuya dalıyordu. İyi geceler, küçük maceracı."
+      },
+      {
+        "id": "ending_bedtime_002",
+        "type": "bedtime",
+        "description": "Çocuk uykuya dalarken macera da bir rüyaya dönüşür ama yarın devam edeceği hissi vardır.",
+        "emotionalState": "peaceful and anticipatory",
+        "compatibleGenres": [
+          "bedtime",
+          "adventure"
+        ],
+        "templatePattern": "{{child.name}}'nin gözleri ağırlaştı. {{setting.name}} usulca bir rüyaya dönüştü. Yarın keşfedilecek daha çok şey vardı. Ama şimdilik, artık uyku vakti gelmişti."
+      }
+    ]
+  }
+}

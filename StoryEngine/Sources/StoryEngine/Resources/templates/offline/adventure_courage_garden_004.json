@@ -1,0 +1,360 @@
+{
+  "blueprint": {
+    "id": "adventure_courage_garden_004",
+    "genre": "adventure",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "gentle and nurturing",
+    "visualStyle": "warm_watercolor",
+    "safetyMetadata": {
+      "contentRating": "safe",
+      "conflictType": "helping_nature",
+      "resolution": "positive",
+      "scarinessLevel": "none"
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Gizli Bahçe",
+      "{{child.name}}'nin Gizli Bahçesi",
+      "{{child.name}}'nin Küçük Kirpi Arkadaşı",
+      "Duvarın Arkasındaki Bahçe"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "narrativePurpose": "Child notices colorful petals scattered on a path behind an old stone wall",
+        "variants": [
+          {
+            "id": "garden_004_p1_v1",
+            "text": "Güneşli bir sabah, {{child.name}} yürüyüşe çıktı ve çok güzel bir şey gördü. Yola dağılmış, {{child.favoriteColor}} renginde parlak çiçek yaprakları vardı. Yapraklar eski, yosunlu bir taş duvara doğru gidiyordu.",
+            "visualScene": "Eski bir taş duvarın yanındaki yolda yürüyen ve yerdeki renkli çiçek yapraklarına bakan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p1_v2",
+            "text": "{{child.name}}, rüzgarda uçuşan güzel çiçek yapraklarından oluşan bir iz gördü. Yerde yuvarlanıyor, küçük mücevherler gibi parlıyorlardı. İz, yüksek bir taş duvarın tam dibinde bitiyordu.",
+            "visualScene": "Yüksek bir taş duvarın yanında rüzgarda uçuşan renkli yaprakları izleyen bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p1_v3",
+            "text": "Dışarıda oynarken, {{child.name}} yolda renkli bir sürpriz buldu. Minik, parlak yapraklar eski bir taş duvara kadar uzanan bir yol yapmıştı. {{child.name}} bunların nereden geldiğini merak etti.",
+            "visualScene": "Taş bir duvara doğru uzanan parlak yapraklara bakan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "discovery",
+        "narrativePurpose": "Climbs through a gap in the wall and finds a forgotten, overgrown garden",
+        "variants": [
+          {
+            "id": "garden_004_p2_v1",
+            "text": "{{child.name}} taşların arasındaki bir boşluktan içeri baktı ve tırmanarak içeri girdi. Vay canına! Burası uzun otlar ve yabani sarmaşıklarla dolu gizli bir bahçeydi. Sanki çok uzun zamandır buraya kimse gelmemiş gibi görünüyordu.",
+            "visualScene": "Taş bir duvardaki boşluktan, uzun otlarla kaplı bir bahçeye bakan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p2_v2",
+            "text": "Duvarda eksik bir taş bulan {{child.name}}, dikkatlice oradan süzüldü. Diğer tarafta gizli bir bahçe vardı! Karışık ve otlarla kaplıydı ama çok büyülü hissettiriyordu.",
+            "visualScene": "Taş bir duvardaki delikten geçerek otlarla kaplı bir bahçeyi keşfeden bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p2_v3",
+            "text": "Duvarda tam {{child.name}}'nin sığabileceği kadar küçük bir açıklık vardı. Sarmaşıkları iterek geçince unutulmuş bir bahçe ortaya çıktı. Bitkiler karışıktı, onlarla ilgilenecek birini bekliyorlardı.",
+            "visualScene": "Taş duvardaki bir açıklıktan sarmaşıkların arasından geçen ve karışık bitkilere bakan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "companion",
+        "narrativePurpose": "Meets a shy hedgehog who has been trying to care for the garden alone",
+        "variants": [
+          {
+            "id": "garden_004_p3_v1",
+            "text": "Aniden, bir yaprağın altından minik bir burun belirdi. Bu, {{companion.name}} adında utangaç küçük bir kirpiydi! Tatlı {{companion.type}}, tek başına bu büyük bahçeye bakmaya çalışıyordu.",
+            "visualScene": "Büyük bir yaprağın altından burnunu çıkaran ve çocuğa bakan utangaç bir kirpi.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p3_v2",
+            "text": "{{child.name}} bir hışırtı duydu ve sevimli, dikenli bir arkadaş gördü. Bu nazik bir {{companion.type}} olan {{companion.name}}'ydi. Küçük hayvan tek başına yabani otları yolmaktan yorulmuş görünüyordu.",
+            "visualScene": "Otların arasında küçük, dikenli bir kirpiye gülümseyen bir çocuk.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p3_v3",
+            "text": "Bir çalının yanında {{companion.type}} {{companion.name}} saklanıyordu. Küçük arkadaş sessizce ses çıkardı ve karışık bitkilere baktı. Belli ki {{companion.name}}'nin bahçede bir yardımcıya ihtiyacı vardı.",
+            "visualScene": "Bir çalının yanında saklanan ve üzgün bir şekilde karışık bitkilere bakan küçük bir kirpi.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "narrativePurpose": "The garden's water source is blocked by fallen branches and tangled roots",
+        "variants": [
+          {
+            "id": "garden_004_p4_v1",
+            "text": "{{companion.name}}, {{child.name}}'ye en büyük sorunu gösterdi. Küçük derenin önü kapanmıştı! Ağır dallar ve birbirine dolanmış kökler, suyun susamış bitkilere ulaşmasını engelliyordu.",
+            "visualScene": "Bir çocuğa dallar ve köklerle kapanmış bir dereyi gösteren bir kirpi.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p4_v2",
+            "text": "Zavallı çiçekler susamıştı çünkü suları sıkışıp kalmıştı. Toprağa büyük, düşmüş dallar saplanmıştı. {{companion.name}} çok endişeli bir şekilde bu karmaşayı işaret etti.",
+            "visualScene": "Çiçeklere giden suyu engelleyen büyük dalları işaret eden endişeli bir kirpi.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p4_v3",
+            "text": "{{child.name}} bahçenin neden kuru olduğunu anladı. Bir çubuk yığını ve kalın kökler suyun üzerinde bir baraj oluşturmuştu. Tatlı {{companion.type}} bu ağır yığını tek başına hareket ettiremiyordu.",
+            "visualScene": "Küçük bir dereyi tıkayan çubuk ve kök yığınına bakan bir çocuk ve yanında bir kirpi.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "attempt",
+        "narrativePurpose": "They try to pull the branches away but they're too heavy for the hedgehog alone",
+        "variants": [
+          {
+            "id": "garden_004_p5_v1",
+            "text": "Birlikte en büyük dalı çekmeye çalıştılar. Küçük {{companion.type}} var gücüyle çekti, ama dal çok ağırdı! Suyun akmasını sağlamak için daha iyi bir fikre ihtiyaçları vardı.",
+            "visualScene": "Birlikte ağır bir dalı çekerken zorlanan bir çocuk ve bir kirpi.",
+            "requiredSlots": [
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p5_v2",
+            "text": "{{companion.name}} çubukları iterken, {{child.name}} de kökleri çekti. 'Bir, iki, üç, ittir!' Ama yığın yerinden bile kımıldamadı. Dallar onların hareket ettirebileceğinden çok daha büyüktü.",
+            "visualScene": "Kökleri çeken bir çocuk ve çubukları iten bir kirpi, bir tıkanıklığı açmaya çalışıyorlar.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p5_v3",
+            "text": "Dağınık odun yığınını itip çektiler. Cesur {{companion.type}} büyük bir güçle itti, ama ikisi de çok küçüktü. Su dalların arkasında sıkışıp kalmaya devam etti.",
+            "visualScene": "Arkasına su sıkışmış bir odun yığınını sertçe iten bir kirpi.",
+            "requiredSlots": [
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "challenge",
+        "narrativePurpose": "Child thinks of using a large leaf as a scoop to redirect water from a nearby puddle",
+        "variants": [
+          {
+            "id": "garden_004_p6_v1",
+            "text": "Sonra, {{child.name}}'nin aklına harika bir fikir geldi! Kocaman, yeşil bir yaprak bulup onu bir kepçe gibi kıvırdı. Yaprağı, bir su birikintisinden susamış çiçeklere su taşımak için kullandı.",
+            "visualScene": "Kepçe gibi katlanmış büyük yeşil bir yaprakla su taşıyan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p6_v2",
+            "text": "Etrafına bakınan {{child.name}}, düşmüş dev bir yaprak gördü. Yapraktan mükemmel bir küçük bardak oldu! Su birikintisinden su alıp, büyük bir gülümsemeyle onu kuru bitkilere taşıdı.",
+            "visualScene": "Bardak gibi büyük bir yaprak kullanarak su birikintisinden su alan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p6_v3",
+            "text": "'Ne yapacağımı biliyorum!' dedi {{child.name}}. Geniş bir yaprak alarak zekice bir kepçe yaptı. Yakından aldığı taze su damlalarını taşıyıp tam köklerin üzerine döktü.",
+            "visualScene": "Büyük bir yapraktan yapılmış kepçeyle bitki köklerine su döken bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "narrativePurpose": "Water flows again, flowers begin to open, garden comes alive with color",
+        "variants": [
+          {
+            "id": "garden_004_p7_v1",
+            "text": "Susamış bitkiler serin suyu içti. Aniden, çok güzel {{child.favoriteColor}} çiçekler açtı! Bütün bahçe parlak, mutlu renklerle canlandı ve dere dalların etrafından akmaya başladı.",
+            "visualScene": "Bahçede su köklerin etrafında akarken açan parlak renkli çiçekler.",
+            "requiredSlots": [],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p7_v2",
+            "text": "Su toprağa karıştıkça sihir gerçekleşti. Küçük tomurcuklar açılarak güzel çiçeklere dönüştü. Bahçe artık dağınık değildi—parlak, renkli bir harikalar diyarıydı!",
+            "visualScene": "Parlak ve mutlu bir bahçede renkli çiçeklere dönüşen küçük tomurcuklar.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p7_v3",
+            "text": "Hafif bir su sesiyle, kökler taze suyu içti. Kısa süre sonra, her yerde parlak çiçek yaprakları açmaya başladı. Güzel bahçe uyanırken {{companion.name}} sevinçle dans etti.",
+            "visualScene": "Bir bahçede açan parlak çiçeklerin arasında dans eden mutlu bir kirpi.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "emotional_ending",
+        "narrativePurpose": "They plant a new seed together and promise to visit the garden again",
+        "variants": [
+          {
+            "id": "garden_004_p8_v1",
+            "text": "Kutlamak için, {{child.name}} ve {{companion.name}} birlikte özel bir {{object.name}} tohumu ektiler. Her gün geri geleceklerine söz verdiler. Gizli bahçe artık onların dünyadaki en sevdikleri yerdi.",
+            "visualScene": "Güzel bir bahçede birlikte mutlulukla tohum eken bir çocuk ve bir kirpi.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p8_v2",
+            "text": "Cesur arkadaşlar yumuşak toprağa minik bir {{object.name}} tohumu koydular. {{companion.type}} {{companion.name}}, {{child.name}}'yi mutlulukla dürttü. Gizli bahçelerine her zaman bakacaklarını biliyorlardı.",
+            "visualScene": "Yumuşak toprağa nazikçe minik bir tohum yerleştiren bir çocuk ve bir kirpi.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "companion.type",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "garden_004_p8_v3",
+            "text": "Eve gitmeden önce, güneş ışığına son bir {{object.name}} tohumu ektiler. {{child.name}} veda etmek için küçük {{companion.type}}'ye sarıldı. Gizli bahçe artık sonsuza kadar güzel ve güvende olacaktı.",
+            "visualScene": "Güneşli, çiçek açmış bir bahçede vedalaşmak için bir kirpiye sarılan bir çocuk.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

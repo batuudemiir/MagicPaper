@@ -8,10 +8,10 @@ import StoryEngine
 /// warning past a megabyte, and an engine story carries an outline, a full
 /// narrative draft, prompt snapshots and a usage ledger — several times larger.
 /// These are JSON files under Documents, and the app's own store is untouched.
-public struct StoryEngineStorage {
-    public static let directoryName = "StoryEngine"
+struct StoryEngineStorage {
+    static let directoryName = "StoryEngine"
 
-    public static func directory(_ subdirectory: String) -> URL? {
+    static func directory(_ subdirectory: String) -> URL? {
         guard let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
@@ -39,32 +39,32 @@ public struct StoryEngineStorage {
 }
 
 /// One JSON file per record, so a corrupt story cannot take the library with it.
-public actor FileBackedStore<Value: Codable & Sendable> {
+actor FileBackedStore<Value: Codable & Sendable> {
     private let directory: URL?
     private let encoder = StoryEngineStorage.makeEncoder()
     private let decoder = StoryEngineStorage.makeDecoder()
 
-    public init(subdirectory: String) {
+    init(subdirectory: String) {
         self.directory = StoryEngineStorage.directory(subdirectory)
     }
 
-    public func load(id: UUID) -> Value? {
+    func load(id: UUID) -> Value? {
         guard let url = directory?.appendingPathComponent("\(id.uuidString).json") else { return nil }
         guard let data = try? Data(contentsOf: url) else { return nil }
         return try? decoder.decode(Value.self, from: data)
     }
 
-    public func save(_ value: Value, id: UUID) throws {
+    func save(_ value: Value, id: UUID) throws {
         guard let url = directory?.appendingPathComponent("\(id.uuidString).json") else { return }
         try encoder.encode(value).write(to: url, options: .atomic)
     }
 
-    public func delete(id: UUID) {
+    func delete(id: UUID) {
         guard let url = directory?.appendingPathComponent("\(id.uuidString).json") else { return }
         try? FileManager.default.removeItem(at: url)
     }
 
-    public func loadAll() -> [Value] {
+    func loadAll() -> [Value] {
         guard let directory,
               let files = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
         else { return [] }
@@ -78,59 +78,68 @@ public actor FileBackedStore<Value: Codable & Sendable> {
 }
 
 /// `StoryRepository` backed by files under `Documents/StoryEngine/Stories`.
-public struct FileStoryRepository: StoryRepository {
-    private let store: FileBackedStore<Story>
+///
+/// `Story` is qualified throughout: the app module declares its own `Story`,
+/// and unqualified lookup inside the app prefers it over the engine's.
+struct FileStoryRepository: StoryRepository {
+    private let store: FileBackedStore<StoryEngine.Story>
 
-    public init() { self.store = FileBackedStore(subdirectory: "Stories") }
+    init() { self.store = FileBackedStore(subdirectory: "Stories") }
 
-    public func story(id: UUID) async throws -> Story? { await store.load(id: id) }
-    public func save(_ story: Story) async throws { try await store.save(story, id: story.id) }
-    public func delete(id: UUID) async throws { await store.delete(id: id) }
+    func story(id: UUID) async throws -> StoryEngine.Story? { await store.load(id: id) }
+    func save(_ story: StoryEngine.Story) async throws { try await store.save(story, id: story.id) }
+    func delete(id: UUID) async throws { await store.delete(id: id) }
 
-    public func allStories() async throws -> [Story] {
+    func allStories() async throws -> [StoryEngine.Story] {
         await store.loadAll().sorted { $0.createdAt > $1.createdAt }
     }
 }
 
 /// `JobStore` backed by files, so an interrupted generation survives a relaunch.
-public struct FileJobStore: JobStore {
+struct FileJobStore: JobStore {
     private let jobs: FileBackedStore<StoryGenerationJob>
     private let requests: FileBackedStore<StoryRequest>
 
-    public init() {
+    init() {
         self.jobs = FileBackedStore(subdirectory: "Jobs")
         self.requests = FileBackedStore(subdirectory: "Requests")
     }
 
-    public func job(id: UUID) async throws -> StoryGenerationJob? { await jobs.load(id: id) }
-    public func save(_ job: StoryGenerationJob) async throws { try await jobs.save(job, id: job.id) }
-    public func request(id: UUID) async throws -> StoryRequest? { await requests.load(id: id) }
-    public func saveRequest(_ request: StoryRequest) async throws { try await requests.save(request, id: request.id) }
+    func job(id: UUID) async throws -> StoryGenerationJob? { await jobs.load(id: id) }
+    func save(_ job: StoryGenerationJob) async throws { try await jobs.save(job, id: job.id) }
+    func request(id: UUID) async throws -> StoryRequest? { await requests.load(id: id) }
+    func saveRequest(_ request: StoryRequest) async throws { try await requests.save(request, id: request.id) }
 
-    public func resumableJobs() async throws -> [StoryGenerationJob] {
+    func resumableJobs() async throws -> [StoryGenerationJob] {
         await jobs.loadAll()
             .filter { $0.state.isResumable }
             .sorted { $0.createdAt < $1.createdAt }
     }
+
+    func delete(jobID: UUID) async throws { await jobs.delete(id: jobID) }
+
+    func deleteRequest(id: UUID) async throws { await requests.delete(id: id) }
 }
 
 /// Character profiles on disk, keyed by the app's own profile id.
-public struct FileCharacterStore: CharacterStore {
+struct FileCharacterStore: CharacterStore {
     private let store: FileBackedStore<CharacterProfile>
 
-    public init() { self.store = FileBackedStore(subdirectory: "Characters") }
+    init() { self.store = FileBackedStore(subdirectory: "Characters") }
 
-    public func profile(id: CharacterID) async throws -> CharacterProfile? {
+    func profile(id: CharacterID) async throws -> CharacterProfile? {
         await store.load(id: id.rawValue)
     }
 
-    public func save(_ profile: CharacterProfile) async throws {
+    func save(_ profile: CharacterProfile) async throws {
         try await store.save(profile, id: profile.id.rawValue)
     }
 
-    public func allProfiles(ownedBy ownerProfileID: UUID) async throws -> [CharacterProfile] {
+    func allProfiles(ownedBy ownerProfileID: UUID) async throws -> [CharacterProfile] {
         await store.loadAll()
             .filter { $0.ownerProfileID == ownerProfileID }
             .sorted { $0.createdAt < $1.createdAt }
     }
+
+    func delete(id: CharacterID) async throws { await store.delete(id: id.rawValue) }
 }

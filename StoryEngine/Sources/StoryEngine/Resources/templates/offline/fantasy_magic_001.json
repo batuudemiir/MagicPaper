@@ -1,0 +1,287 @@
+{
+  "blueprint": {
+    "id": "fantasy_magic_001",
+    "genre": "fantasy",
+    "theme": "magic",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "magical and calm",
+    "visualStyle": "watercolor",
+    "safetyMetadata": {
+      "containsViolence": false,
+      "containsScaryThemes": false,
+      "contentWarnings": []
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Sihirli Krallık",
+      "{{child.name}}'nin Büyülü Günü"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "fantasy_p1_v1",
+            "text": "Bir gün {{child.name}}, odasında parıl parıl parlayan sihirli bir kapı buldu.",
+            "visualScene": "A cozy child's bedroom done in gentle watercolors. In the center, a glowing, magical door with sparkling lights around its frame.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p1_v2",
+            "text": "{{child.name}} odasında oynarken, aniden rengarenk ışıklar saçan bir kapı belirdi.",
+            "visualScene": "Watercolor illustration of a child's bedroom with toys scattered. A magically appearing door with rainbow light rays emanating from it.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p1_v3",
+            "text": "{{child.name}}'nin yatağının hemen yanında, onu içeri davet eden minik, ışıltılı bir kapı açıldı.",
+            "visualScene": "A child's bed in a gentle, warm bedroom setting, watercolor style. Next to the bed, a small glowing door is cracked open, revealing a soft, magical light.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "exploration",
+        "variants": [
+          {
+            "id": "fantasy_p2_v1",
+            "text": "{{child.name}} kapıyı yavaşça açtı ve dev, renkli mantarlarla dolu bir dünyaya adım attı.",
+            "visualScene": "A lush, magical forest painted in watercolors with giant, colorful mushrooms. Soft glowing fireflies fill the air.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p2_v2",
+            "text": "Kapının arkasında, ağaçların {{child.name}}'ye neşeli şarkılar fısıldadığı büyülü bir orman vardı.",
+            "visualScene": "A dense, whimsical forest with large, friendly-looking trees in watercolor style. Golden hour lighting shining through the leaves.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p2_v3",
+            "text": "{{child.name}} kapıdan geçti ve gökkuşağı suyundan oluşan, parıldayan bir nehir gördü.",
+            "visualScene": "A sparkling river flowing with rainbow-colored water through a grassy meadow. Watercolor style, gentle and dreamlike.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "meeting_companion",
+        "variants": [
+          {
+            "id": "fantasy_p3_v1",
+            "text": "Aniden, {{companion.name}} adında sevimli ve pofuduk bir yaratık zıplayarak merhaba demeye geldi!",
+            "visualScene": "A small, fluffy, cute imaginary creature hopping cheerfully in a meadow. Watercolor style, soft pastel colors.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p3_v2",
+            "text": "Bir çalının arkasından çıkan {{companion.name}} adındaki tatlı hayvan, {{child.name}}'ye gülümsedi.",
+            "visualScene": "A cute magical animal peeking out from behind a blooming bush, smiling warmly. Watercolor painting with bright green and floral tones.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p3_v3",
+            "text": "{{child.name}}, kocaman ve iyi kalpli gözleri olan {{companion.name}} adında harika bir yeni arkadaşla tanıştı.",
+            "visualScene": "Close-up of a gentle, big-eyed fantastical creature looking friendly and warm. Soft watercolor wash background.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "finding_object",
+        "variants": [
+          {
+            "id": "fantasy_p4_v1",
+            "text": "Birlikte etrafı keşfederken, yumuşak bir yaprağın üzerinde parlayan kayıp bir {{object.name}} buldular.",
+            "visualScene": "A glowing magical object resting delicately on a large, soft green leaf. Watercolor texture with a subtle magical aura around the object.",
+            "requiredSlots": ["object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p4_v2",
+            "text": "{{companion.name}} yeri işaret etti, orada çok güzel bir {{object.name}} ışıl ışıl parlıyordu.",
+            "visualScene": "A fluffy creature pointing a small paw toward the ground where a beautiful, shimmering object lies. Watercolor, warm and inviting.",
+            "requiredSlots": ["companion.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p4_v3",
+            "text": "Işıltılı bir kayanın altında, {{child.name}} düşürülmüş sihirli bir {{object.name}} keşfetti.",
+            "visualScene": "A glowing, magical object tucked slightly underneath a large, shimmering rock covered in moss. Soft watercolor shading.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "journey",
+        "variants": [
+          {
+            "id": "fantasy_p5_v1",
+            "text": "{{companion.name}}, \"Olamaz! Bunu Peri Kraliçesi kaybetti,\" dedi. Böylece yüksek kristal şatoya doğru yürümeye başladılar.",
+            "visualScene": "A distant view of a tall, glittering crystal castle against a pastel sky. A winding path leads toward it. Watercolor painting.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p5_v2",
+            "text": "{{object.name}}'i Peri Kraliçesi'ne geri götürmeye karar verdiler ve yıldız tozundan yapılmış bir yolda yürüdüler.",
+            "visualScene": "A winding path made of glowing, golden stardust snaking through a magical forest. Watercolor style.",
+            "requiredSlots": ["object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p5_v3",
+            "text": "El ele tutuşan {{child.name}} ve {{companion.name}}, değerli {{object.name}}'i geri vermek için peri sarayına doğru zıplayarak ilerlediler.",
+            "visualScene": "A whimsical scene of a child and a magical creature walking hand in hand towards a distant palace. Dreamy watercolor colors.",
+            "requiredSlots": ["child.name", "companion.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "returning_object",
+        "variants": [
+          {
+            "id": "fantasy_p6_v1",
+            "text": "Güzel Peri Kraliçesi'ne ulaştılar ve {{child.name}}, {{object.name}}'i nazikçe ona verdi.",
+            "visualScene": "A beautiful fairy queen in a flowing gown, receiving a glowing object from a child. Gentle watercolor strokes, elegant and kind.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p6_v2",
+            "text": "Peri Kraliçesi bahçesinde beklerken, {{child.name}} kayıp {{object.name}}'i ona geri verdi.",
+            "visualScene": "A majestic garden full of blooming magical flowers. A fairy queen gently takes a glowing object from a child. Watercolor style.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p6_v3",
+            "text": "{{child.name}} kocaman bir gülümsemeyle, {{object.name}}'i çok şaşıran Peri Kraliçesi'ne sundu.",
+            "visualScene": "Close up of a child presenting a magical glowing object to an astonished, beautiful fairy queen. Warm, expressive watercolor.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "celebration",
+        "variants": [
+          {
+            "id": "fantasy_p7_v1",
+            "text": "Kraliçe çok mutlu oldu! Asasını salladı ve etraflarında nazik parıltılardan oluşan güzel bir yağmur yarattı.",
+            "visualScene": "The fairy queen waving a delicate wand, creating a gentle shower of golden magical sparkles falling around. Watercolor magic.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p7_v2",
+            "text": "\"Teşekkür ederim cesur {{child.name}}!\" dedi Kraliçe ve onlara lezzetli, sihirli bir kek ikram etti.",
+            "visualScene": "The fairy queen offering a beautifully decorated, glowing cupcake on a crystal plate. Joyful watercolor painting.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p7_v3",
+            "text": "Bütün küçük periler, bu kadar iyi yardımcılar oldukları için {{child.name}} ve {{companion.name}}'i alkışladılar.",
+            "visualScene": "A group of tiny, colorful fairies fluttering in the air, cheering and clapping happily. Soft, joyful watercolor illustration.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "returning_home",
+        "variants": [
+          {
+            "id": "fantasy_p8_v1",
+            "text": "Gitme vakti gelmişti. {{child.name}} el sallayarak veda etti ve kapıdan güvenli, sıcacık odasına geri döndü.",
+            "visualScene": "A child walking back through a glowing magical door into a cozy, normal bedroom. Watercolor style, warm and calming.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p8_v2",
+            "text": "Parlayan kapı tekrar belirdi. {{child.name}}, {{companion.name}}'e sarıldı ve çok mutlu bir şekilde evine döndü.",
+            "visualScene": "A heartfelt hug between a child and a fluffy magical creature in front of a glowing door. Soft watercolor, emotional and sweet.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_p8_v3",
+            "text": "Harika yeni anılarla, {{child.name}} tatlı ve huzurlu bir uykuya hazır bir şekilde odasına geri yürüdü.",
+            "visualScene": "A cozy bedroom with a child sitting on the bed, looking happily at a fading glowing door. Evening light, gentle watercolor wash.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

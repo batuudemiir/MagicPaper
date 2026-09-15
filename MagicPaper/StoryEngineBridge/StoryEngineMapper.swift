@@ -7,13 +7,13 @@ import StoryEngine
 /// `LibraryView`, `StoryViewerView` and the PDF export keep reading the type
 /// they already read; when the app eventually switches over, the change is at
 /// this one seam rather than across every screen.
-public enum StoryEngineMapper {
+enum StoryEngineMapper {
 
     /// Maps an engine story onto the app model.
     ///
     /// - Parameter themeKey: the theme the request was made with, mapped back
     ///   onto the app's enum for display. The engine itself has no theme type.
-    public static func appStory(
+    static func appStory(
         from story: StoryEngine.Story,
         themeKey: String,
         languageCode: String,
@@ -79,7 +79,7 @@ public enum StoryEngineMapper {
     }
 
     /// The theme key to send for one of the app's existing themes.
-    public static func themeKey(for theme: StoryTheme) -> String { theme.rawValue }
+    static func themeKey(for theme: StoryTheme) -> String { theme.rawValue }
 
-    public static func languageCode(for language: StoryLanguage) -> String { language.rawValue }
+    static func languageCode(for language: StoryLanguage) -> String { language.rawValue }
 }

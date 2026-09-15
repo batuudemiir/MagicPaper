@@ -1,0 +1,334 @@
+{
+  "blueprint": {
+    "id": "fantasy_magic_002",
+    "genre": "fantasy",
+    "theme": "magic",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "encouraging",
+    "visualStyle": "watercolor",
+    "safetyMetadata": {
+      "contentRating": "G",
+      "containsScaryElements": false,
+      "themes": [
+        "courage",
+        "friendship",
+        "encouragement"
+      ]
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Uçan Ejderha",
+      "{{child.name}}'nin Cesur Dostu"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "fantasy_002_p1_v1",
+            "text": "{{child.name}}, pırıl pırıl parlayan sihirli bir ormanda yürüyordu. Ağaçların yaprakları mor ve altın rengindeydi.",
+            "visualScene": "A child walking in a glowing magical forest with purple and gold leaves on trees, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p1_v2",
+            "text": "Güneşli bir sabah, {{child.name}} dev mantarların olduğu büyülü bir ormanı keşfe çıktı.",
+            "visualScene": "A child exploring a magical forest with giant mushrooms on a sunny morning, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p1_v3",
+            "text": "{{child.name}}, kuşların şarkı söylediği gökkuşağı renkli ağaçların arasında neşeyle zıplıyordu.",
+            "visualScene": "A child skipping happily among rainbow-colored trees with singing birds, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "inciting_incident",
+        "variants": [
+          {
+            "id": "fantasy_002_p2_v1",
+            "text": "Birden, çalıların arkasından küçük bir ses duydu. Bu sevimli bir yavru ejderha olan {{companion.name}} idi!",
+            "visualScene": "A child discovering a cute baby dragon hiding behind bushes, watercolor style.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p2_v2",
+            "text": "Büyük bir kayanın arkasında minik bir gölge gördü. Yaklaşınca bunun {{companion.name}} adında tatlı bir yavru ejderha olduğunu anladı.",
+            "visualScene": "A child finding a sweet baby dragon behind a large rock, watercolor style.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p2_v3",
+            "text": "Şelalenin yanında, parıl parıl pulları olan yavru ejderha {{companion.name}} üzgün görünüyordu.",
+            "visualScene": "A baby dragon with shiny scales looking sad next to a waterfall, approached by a child, watercolor style.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "development",
+        "variants": [
+          {
+            "id": "fantasy_002_p3_v1",
+            "text": "Ejderha gökyüzüne bakıp iç çekti. Uçmak istiyor ama çok korkuyordu.",
+            "visualScene": "A baby dragon looking up at the sky sadly, afraid to fly, watercolor style.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p3_v2",
+            "text": "Minik ejderhanın kanatları titriyordu. Arkadaşları gibi gökyüzünde uçmak istiyordu ama cesareti yoktu.",
+            "visualScene": "A small dragon with trembling wings, looking at other flying birds in the sky, watercolor style.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p3_v3",
+            "text": "{{child.name}} ejderhanın neden üzgün olduğunu sordu. O, yüksekten korkan bir ejderhaydı.",
+            "visualScene": "A child talking to a sad baby dragon, comforting it, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "action",
+        "variants": [
+          {
+            "id": "fantasy_002_p4_v1",
+            "text": "{{child.name}} ona yardım etmek istedi. Yerde parlayan sihirli bir {{object.name}} buldu.",
+            "visualScene": "A child finding a glowing magical object on the forest floor, watercolor style.",
+            "requiredSlots": [
+              "child.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p4_v2",
+            "text": "Ormanın perileri, cesaret vermesi için onlara sihirli bir {{object.name}} hediye etti.",
+            "visualScene": "Forest fairies giving a magical glowing object to a child and a baby dragon, watercolor style.",
+            "requiredSlots": [
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p4_v3",
+            "text": "Ağacın dalından yumuşacık, parlayan bir {{object.name}} düştü. {{child.name}} bunu ejderhaya vermek için aldı.",
+            "visualScene": "A soft glowing object falling from a tree branch into a child's hands, watercolor style.",
+            "requiredSlots": [
+              "child.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "climax_part_1",
+        "variants": [
+          {
+            "id": "fantasy_002_p5_v1",
+            "text": "\"Bunu tutarsan hiç korkmazsın,\" dedi {{child.name}} nazikçe. Ejderhaya gülümsedi.",
+            "visualScene": "A child gently giving the magical object to the baby dragon with an encouraging smile, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p5_v2",
+            "text": "{{child.name}}, \"Sen çok cesursun!\" diyerek sihiri arkadaşına uzattı ve ona sıkıca sarıldı.",
+            "visualScene": "A child hugging the baby dragon and handing it the glowing magical object, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p5_v3",
+            "text": "\"İçindeki güce inan,\" dedi {{child.name}}. Parlayan hediyeyi verip onun elini tuttu.",
+            "visualScene": "A child holding the baby dragon's hand and giving it the glowing object, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "climax_part_2",
+        "variants": [
+          {
+            "id": "fantasy_002_p6_v1",
+            "text": "Yavru ejderha derin bir nefes aldı. Kanatlarını çırptı ve yavaşça havalanmaya başladı!",
+            "visualScene": "A baby dragon flapping its wings and slowly lifting off the ground, watercolor style.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p6_v2",
+            "text": "Hediyeyi alan ejderhanın gözleri parladı. Zıpladı ve bir anda kendini gökyüzünde buldu!",
+            "visualScene": "A baby dragon with glowing eyes jumping and suddenly flying in the sky, watercolor style.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p6_v3",
+            "text": "Cesaretini toplayan ejderha, kanatlarını kocaman açtı. Ayakları yerden kesildi ve rüzgarla dans etmeye başladı.",
+            "visualScene": "A brave baby dragon with wide open wings hovering above the ground and dancing with the wind, watercolor style.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "falling_action",
+        "variants": [
+          {
+            "id": "fantasy_002_p7_v1",
+            "text": "{{child.name}} de ejderhanın sırtına bindi. Bulutların arasında birlikte uçtular!",
+            "visualScene": "A child riding on the back of the flying dragon among fluffy clouds, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p7_v2",
+            "text": "Ejderha, {{child.name}}'yi alıp ormanın üzerinde neşeyle süzüldü. Her yer harika görünüyordu.",
+            "visualScene": "A flying dragon carrying a child as they glide joyfully over the magical forest canopy, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p7_v3",
+            "text": "Birlikte ağaçların tepesinden uçtular. Rüzgar yüzlerine çarparken kahkahalarla güldüler.",
+            "visualScene": "A child and dragon flying above treetops, laughing and enjoying the wind, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "resolution",
+        "variants": [
+          {
+            "id": "fantasy_002_p8_v1",
+            "text": "Güneş batarken birbirlerine sarılıp veda ettiler. {{child.name}} yeni arkadaşıyla çok gurur duyuyordu.",
+            "visualScene": "A child and dragon hugging goodbye at sunset, feeling proud, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p8_v2",
+            "text": "Eve dönme vakti gelmişti. \"Harikaydın!\" dedi {{child.name}} ve uçan arkadaşına el salladı.",
+            "visualScene": "A child waving goodbye to the flying dragon in the sky as evening approaches, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "fantasy_002_p8_v3",
+            "text": "Ejderha havada takla atarak teşekkür etti. {{child.name}}, sihirli ormandan mutlu bir kalple ayrıldı.",
+            "visualScene": "A dragon doing a flip in the air while the child walks away happily from the magical forest, watercolor style.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

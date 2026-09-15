@@ -1,0 +1,331 @@
+{
+  "blueprint": {
+    "id": "underwater_friendship_001",
+    "genre": "underwater",
+    "theme": "friendship",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "calm and wondrous",
+    "visualStyle": "soft_blue_ocean",
+    "safetyMetadata": {
+      "contentRating": "G",
+      "hasViolence": false,
+      "hasScaryElements": false
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Okyanus Sırrı",
+      "{{child.name}}'nin Denizaltı Macerası"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "underwater_p1_v1",
+            "text": "Bir gün {{child.name}}, sihirli bir denizaltı buldu. Denizin masmavi sularına dalmaya hazırdı!",
+            "visualScene": "A colorful magical submarine waiting near a bright sandy beach, with gentle waves.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p1_v2",
+            "text": "{{child.name}}, okyanusun derinliklerini keşfetmek için sarı renkli sihirli denizaltısına bindi.",
+            "visualScene": "A smiling child inside a yellow magical submarine, looking through a round window at the ocean.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p1_v3",
+            "text": "Köpüklü dalgaların arasında, {{child.name}}'yi bekleyen harika bir denizaltı macerası başlıyordu.",
+            "visualScene": "A magical submarine slowly descending into clear blue waters, surrounded by tiny friendly fish.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "exposition",
+        "variants": [
+          {
+            "id": "underwater_p2_v1",
+            "text": "Denizaltı aşağı indikçe, etraftaki balıklar ve mercanlar parlamaya başladı.",
+            "visualScene": "Glowing corals and colorful tropical fish illuminating the deeper parts of the ocean.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p2_v2",
+            "text": "Su o kadar berraktı ki, {{child.name}} deniz yıldızlarını ve renkli yosunları çok net görebiliyordu.",
+            "visualScene": "Clear blue water showing bright starfish resting on colourful rocks and gentle seaweed swaying.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p2_v3",
+            "text": "Masmavi okyanus, {{child.name}}'ye kucak açmıştı. Her yer rengarenk deniz canlılarıyla doluydu.",
+            "visualScene": "A beautiful wide shot of the ocean floor bustling with friendly sea life and bright sea anemones.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "inciting_incident",
+        "variants": [
+          {
+            "id": "underwater_p3_v1",
+            "text": "Birden, bir yosunun arkasında saklanan utangaç bir denizatı gördü. Adı {{companion.name}}'ydi.",
+            "visualScene": "A shy seahorse peeking nervously from behind some green seaweed.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p3_v2",
+            "text": "{{child.name}}'nin gözüne küçük, sevimli bir denizatı takıldı. {{companion.name}}, ailesini kaybetmiş gibi görünüyordu.",
+            "visualScene": "A cute small seahorse looking a bit lost, floating alone near a rock.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p3_v3",
+            "text": "Denizaltının yanına yaklaşan sevimli denizatı {{companion.name}}, yolunu şaşırmış gibiydi.",
+            "visualScene": "A friendly seahorse swimming close to the submarine's window, looking confused.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "rising_action",
+        "variants": [
+          {
+            "id": "underwater_p4_v1",
+            "text": "{{child.name}}, ona yardım etmeye karar verdi. Beraber parlayan deniz kabuklarını takip etmeye başladılar.",
+            "visualScene": "A trail of softly glowing seashells resting on the sandy ocean floor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p4_v2",
+            "text": "\"Üzülme {{companion.name}}, sana yardım edeceğim,\" dedi {{child.name}}. Yerdeki ışıklı kabuklar onlara yol gösterecekti.",
+            "visualScene": "The child smiling gently from the submarine, gesturing towards bright glowing shells.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p4_v3",
+            "text": "Birlikte, deniz tabanında parıldayan sihirli kabukları izleyerek güvenli bir yola girdiler.",
+            "visualScene": "The submarine and the seahorse moving together alongside a path of shimmering pink and blue shells.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "complication",
+        "variants": [
+          {
+            "id": "underwater_p5_v1",
+            "text": "Yolda büyük ve uykucu bir yengeç yollarını kapattı. {{child.name}} ona kibarca yol vermesini rica etti.",
+            "visualScene": "A large, sleepy, non-scary crab blocking the path of glowing shells.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p5_v2",
+            "text": "Aniden karşılarına koca kıskaçları olan ama gülümseyen bir yengeç çıktı. Işıklı kabukların tam üzerinde uyuyordu.",
+            "visualScene": "A smiling crab fast asleep on top of some glowing shells, looking very peaceful.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p5_v3",
+            "text": "Parlayan yolda ilerlerken dost canlısı bir deniz kaplumbağası onlara doğru yüzdü ve gülümsedi.",
+            "visualScene": "A friendly sea turtle swimming smoothly past them, waving a flipper.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "climax",
+        "variants": [
+          {
+            "id": "underwater_p6_v1",
+            "text": "Sonunda kocaman, rengarenk bir mercan resifine ulaştılar. Burası {{companion.name}}'nin eviydi!",
+            "visualScene": "A majestic and colourful coral reef glowing with warm light and full of life.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p6_v2",
+            "text": "Işıklar onları harika bir mercan köyüne getirdi. {{companion.name}} neşeyle yüzmeye başladı.",
+            "visualScene": "The seahorse swimming joyfully towards a large, beautiful community of corals.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p6_v3",
+            "text": "{{child.name}} ve {{companion.name}}, okyanusun en güzel ve en büyük mercan ormanını bulmuşlardı.",
+            "visualScene": "A breathtaking underwater coral forest, vividly coloured in reds, oranges, and pinks.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "falling_action",
+        "variants": [
+          {
+            "id": "underwater_p7_v1",
+            "text": "{{companion.name}}'nin ailesi onları sevinçle karşıladı. {{child.name}}'ye yardımları için teşekkür ettiler.",
+            "visualScene": "A family of happy seahorses surrounding the child's submarine in gratitude.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p7_v2",
+            "text": "Diğer denizatları {{companion.name}}'yi görünce çok mutlu oldular. Birlikte kutlama dansı yaptılar.",
+            "visualScene": "Many seahorses dancing around in circles in the water, celebrating.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p7_v3",
+            "text": "{{child.name}}, yeni arkadaşlarının mutluluğunu görünce çok sevindi. Görev başarıyla tamamlanmıştı.",
+            "visualScene": "The child smiling broadly inside the submarine, looking at the happy seahorse family.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "resolution",
+        "variants": [
+          {
+            "id": "underwater_p8_v1",
+            "text": "Artık eve dönme vakti gelmişti. {{child.name}}, sihirli denizaltısıyla yeni maceralara yelken açmak üzere yüzeye çıktı.",
+            "visualScene": "The magical submarine gently rising towards the sparkling ocean surface with the sun shining.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p8_v2",
+            "text": "Okyanus dostlarına veda eden {{child.name}}, yüzeye doğru çıkarken gülümseyerek bu güzel günü düşündü.",
+            "visualScene": "The submarine moving upwards as the child waves goodbye to the seahorses below.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_p8_v3",
+            "text": "Güneş batarken, denizaltı sessizce sudan çıktı. {{child.name}}, okyanusun bu tatlı sırrını hep hatırlayacaktı.",
+            "visualScene": "A beautiful sunset over the calm ocean, with the top of the magical submarine floating peacefully.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

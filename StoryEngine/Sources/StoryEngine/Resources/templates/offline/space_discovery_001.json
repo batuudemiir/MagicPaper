@@ -1,0 +1,286 @@
+{
+  "blueprint": {
+    "id": "space_discovery_001",
+    "genre": "space",
+    "theme": "discovery",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "curious and exciting",
+    "visualStyle": "vibrant_space",
+    "safetyMetadata": {
+      "isChildSafe": true,
+      "contentWarnings": []
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Uzay Keşfi",
+      "{{child.name}}'nin Parlak Gezegeni"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "space_p1_v1",
+            "text": "Bir gece, {{child.name}} kartondan yaptığı pırıl pırıl uzay gemisine bindi. Hedefi yıldızların ötesine uçmaktı!",
+            "visualScene": "A 5 year old child sitting inside a cute cardboard spaceship decorated with crayons and foil stars, looking out the window with excitement. Room in the background with a starry window.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p1_v2",
+            "text": "{{child.name}}, sihirli karton gemisine atladı ve 'Uzay, bekle beni!' diye bağırdı. Macera tam da şimdi başlıyordu.",
+            "visualScene": "A brave 5 year old child wearing a makeshift astronaut helmet, sitting in a cardboard box spaceship, imaginary stars floating around them.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p1_v3",
+            "text": "Karton roketine kurulan {{child.name}}, büyük bir uzay yolculuğuna çıkmaya çoktan hazırdı. Geri sayım başladı: 3, 2, 1!",
+            "visualScene": "A 5 year old child pressing a drawn button on a cardboard control panel inside a cardboard spaceship. Vibrant colors, magical atmosphere.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "inciting_incident",
+        "variants": [
+          {
+            "id": "space_p2_v1",
+            "text": "Uzayda süzülürken sevimli bir {{companion.type}} ile karşılaştı. Adı {{companion.name}} olan bu robot, çok arkadaş canlısıydı.",
+            "visualScene": "The cardboard spaceship floats in colorful outer space. Outside, a cute, friendly little robot floating with little thrusters, waving hello.",
+            "requiredSlots": ["companion.type", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p2_v2",
+            "text": "Yıldızların arasında parlayan bir {{companion.type}} belirdi. {{companion.name}} adındaki bu tatlı robot, hemen {{child.name}}'ye gülümsedi.",
+            "visualScene": "A bright friendly robot meeting the child's cardboard spaceship in outer space. The robot has a smiling digital face.",
+            "requiredSlots": ["child.name", "companion.type", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p2_v3",
+            "text": "Karşısına çıkan kocaman gözlü {{companion.type}}, neşeyle el salladı. 'Merhaba, ben {{companion.name}}!' diyerek gemiye yanaştı.",
+            "visualScene": "A cute robot with big friendly eyes gently touching the window of the cardboard spaceship, waving at the child inside.",
+            "requiredSlots": ["companion.type", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "rising_action_1",
+        "variants": [
+          {
+            "id": "space_p3_v1",
+            "text": "{{child.name}} ve {{companion.name}} birlikte uçmaya başladılar. Yeni bir {{setting.name}} keşfetmek için harita açtılar.",
+            "visualScene": "The child and the friendly robot looking at a glowing, magical star map together inside the cardboard spaceship.",
+            "requiredSlots": ["child.name", "companion.name", "setting.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p3_v2",
+            "text": "İki yeni arkadaş, {{setting.name}} aramaya koyuldular. {{companion.name}}, geminin yolunu gösteren en iyi rehberdi.",
+            "visualScene": "The robot pointing towards a shiny, colorful galaxy while floating in front of the cardboard spaceship. The child looks on with awe.",
+            "requiredSlots": ["companion.name", "setting.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p3_v3",
+            "text": "{{companion.name}}'nin gösterdiği yöne doğru hızla giden {{child.name}}, bambaşka bir {{setting.name}} bulacakları için çok heyecanlıydı.",
+            "visualScene": "Cardboard spaceship zooming past colorful nebulas and stars. The robot flying cheerfully alongside it.",
+            "requiredSlots": ["child.name", "companion.name", "setting.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "rising_action_2",
+        "variants": [
+          {
+            "id": "space_p4_v1",
+            "text": "Birden, pembe ve mor renkli, kocaman bir gezegen gördüler. Bu gezegen tamamen sallanan bir jöleden yapılmıştı!",
+            "visualScene": "A giant, wobbly, shiny pink and purple planet that looks like jelly floating in space. Magical stardust around it.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p4_v2",
+            "text": "Uzakta dev bir şekerleme gibi parlayan jöle gezegenini fark ettiler. Üzeri yumuşacık ve pırıl pırıl görünüyordu.",
+            "visualScene": "A bright jelly-like planet shaped like a giant drop of jelly, reflecting light, surrounded by candy-colored stars.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p4_v3",
+            "text": "'Bak!' diye bağırdı {{child.name}}. Karşılarında sürekli titreyen, devasa bir jöle gezegeni duruyordu.",
+            "visualScene": "The child looking excitedly out of the spaceship window at a huge, translucent, wobbly jelly planet in outer space.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "climax",
+        "variants": [
+          {
+            "id": "space_p5_v1",
+            "text": "Gemi yumuşak bir şekilde gezegene indi. {{child.name}}, en sevdiği {{object.name}}'i yanına alarak dışarı zıpladı.",
+            "visualScene": "The cardboard spaceship safely landed on a bouncy, squishy jelly surface. The child hopping out holding a cute toy.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p5_v2",
+            "text": "Jöle gezegenine ayak bastıklarında, yer trambolin gibi esniyordu! {{child.name}}, {{object.name}} ile oynamaya koyuldu.",
+            "visualScene": "The child laughing and bouncing high on a pink jelly surface, holding their favorite toy, the friendly robot bouncing nearby.",
+            "requiredSlots": ["child.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p5_v3",
+            "text": "{{companion.name}} ve {{child.name}} gezegene atladılar. Zıp zıp zıplarken, yanlarında getirdikleri {{object.name}} bile havaya uçtu!",
+            "visualScene": "Child and robot jumping playfully on a translucent jelly ground. A toy floating up in the air due to the bouncy ground.",
+            "requiredSlots": ["child.name", "companion.name", "object.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "falling_action_1",
+        "variants": [
+          {
+            "id": "space_p6_v1",
+            "text": "Birlikte saatlerce güldüler, yuvarlandılar. Jöle gezegeni dünyanın en eğlenceli oyun parkı gibiydi.",
+            "visualScene": "The child and the friendly robot rolling and laughing on the bouncy jelly ground. Colorful space sky above them.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p6_v2",
+            "text": "Zıplamaktan yorulduklarında jölenin üzerine yumuşacık düştüler. {{companion.name}} komik sesler çıkararak herkesi güldürdü.",
+            "visualScene": "The child and the robot lying comfortably on the soft jelly ground, looking up at the glowing stars in the space sky.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p6_v3",
+            "text": "Oyun oynarken o kadar eğlendiler ki, bütün yıldızlar onlara bakıp parlıyor gibiydi. Bu harika bir maceraydı.",
+            "visualScene": "The child sitting on the squishy ground, smiling happily with the robot, surrounded by magical glowing stars.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "falling_action_2",
+        "variants": [
+          {
+            "id": "space_p7_v1",
+            "text": "Ama artık gözleri kapanıyordu. {{child.name}} çok uykusu geldiğini hissetti. Eve dönme vakti gelmişti.",
+            "visualScene": "The child yawning, rubbing their eyes gently. The friendly robot pointing back towards the cardboard spaceship.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p7_v2",
+            "text": "Uyku perileri uzayda da vardı! Esneyen {{child.name}}, gemisine doğru yavaşça yürümeye başladı.",
+            "visualScene": "A sleepy child walking slowly towards their cardboard spaceship on the jelly planet, holding their toy.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p7_v3",
+            "text": "Güneşin yerini daha karanlık bir gökyüzü aldı. {{companion.name}}, {{child.name}}'yi uykuya hazırlamak için gemiye götürdü.",
+            "visualScene": "The friendly robot gently holding the sleepy child's hand, walking back to the cardboard spaceship under a calm, dark starry sky.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "resolution",
+        "variants": [
+          {
+            "id": "space_p8_v1",
+            "text": "Gemi Dünya'ya, odasına geri döndü. {{child.name}}, yatağına uzanıp yıldızlara fısıldadı: İyi geceler uzay...",
+            "visualScene": "The child sleeping peacefully in their cozy bed, holding a small toy robot. The cardboard spaceship sitting quietly in the corner of the room under moonlight.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p8_v2",
+            "text": "Sıcak yatağına giren {{child.name}}, jöle gezegenini rüyasında görmek üzere gözlerini kapattı. İyi uykular tatlı kaşif.",
+            "visualScene": "The child tucked warmly in bed, smiling in their sleep. A mobile of stars and planets hangs above the bed.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "space_p8_v3",
+            "text": "Karton gemi odanın köşesinde dinlenirken, {{child.name}} çoktan rüyalara dalmıştı. Bir sonraki maceraya kadar, tatlı rüyalar.",
+            "visualScene": "A peaceful bedroom at night. The cardboard spaceship is in the corner. The child is fast asleep in bed, illuminated by gentle moonlight.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

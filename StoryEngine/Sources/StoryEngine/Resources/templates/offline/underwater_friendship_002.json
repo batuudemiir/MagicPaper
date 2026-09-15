@@ -1,0 +1,340 @@
+{
+  "blueprint": {
+    "id": "underwater_friendship_002",
+    "genre": "underwater",
+    "theme": "friendship",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "playful and helpful",
+    "visualStyle": "soft_blue_ocean",
+    "safetyMetadata": {
+      "hasViolence": false,
+      "hasFear": false,
+      "hasInappropriateLanguage": false
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Ahtapot Dostu",
+      "{{child.name}}'nin Kurtarma Operasyonu"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "underwater_002_p1_v1",
+            "text": "Derin ve masmavi okyanusta, {{child.name}} rengarenk mercan resiflerini keşfediyordu.",
+            "visualScene": "{{child.name}} is swimming through a bright, colorful coral reef in clear blue water.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p1_v2",
+            "text": "{{child.name}}, güneş ışınlarının parıldadığı denizin altında yüzerken sihirli mercanları izliyordu.",
+            "visualScene": "Sunlight shining through the ocean onto {{child.name}} looking at magical corals.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p1_v3",
+            "text": "Büyük mavi okyanusun derinliklerinde, {{child.name}} denizyıldızları ve denizatı ile yüzüyordu.",
+            "visualScene": "{{child.name}} swimming with small seastars and a seahorse in the deep blue ocean.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "inciting_incident",
+        "variants": [
+          {
+            "id": "underwater_002_p2_v1",
+            "text": "Birden, eski bir hazine sandığına kolları dolanmış {{companion.name}} adında şirin bir ahtapot gördü.",
+            "visualScene": "A cute octopus named {{companion.name}} with tentacles tangled around a wooden sunken treasure chest.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p2_v2",
+            "text": "Kumların üzerinde ahşap bir sandık vardı ve sevimli ahtapot {{companion.name}} sandığa sıkışıp kalmıştı.",
+            "visualScene": "A cute octopus named {{companion.name}} stuck on a wooden chest sitting on the ocean floor sand.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p2_v3",
+            "text": "Biraz ileride, bacakları kocaman bir hazine sandığına düğümlenmiş küçük ahtapot {{companion.name}} yardım bekliyordu.",
+            "visualScene": "A small octopus named {{companion.name}} waiting for help, legs tied in knots around a giant treasure chest.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "rising_action_1",
+        "variants": [
+          {
+            "id": "underwater_002_p3_v1",
+            "text": "{{child.name}} hemen yüzerek ahtapotun yanına gitti. 'Korkma, sana yardım edeceğim,' dedi gülümseyerek.",
+            "visualScene": "{{child.name}} swims closely to the octopus, smiling and looking reassuring.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p3_v2",
+            "text": "'Endişelenme küçük ahtapot,' diyen {{child.name}}, sandığın yanına yavaşça yaklaştı.",
+            "visualScene": "{{child.name}} gently approaching the treasure chest and the octopus.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p3_v3",
+            "text": "{{child.name}} ahtapota el sallayıp onu sakinleştirdi ve kollarını çözmek için yanına yüzdü.",
+            "visualScene": "{{child.name}} waving to calm the octopus down and swimming next to it to untangle the arms.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "rising_action_2",
+        "variants": [
+          {
+            "id": "underwater_002_p4_v1",
+            "text": "Sabırla ilk düğümü çözdü. Ahtapotun bir kolu serbest kalmıştı!",
+            "visualScene": "{{child.name}} patiently untying the first knot of the octopus tentacle from the chest.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p4_v2",
+            "text": "{{child.name}} dikkatlice ahtapotun bacaklarını sandıktan sıyırmaya başladı. Biri hemen kurtuldu.",
+            "visualScene": "{{child.name}} carefully sliding one of the octopus legs off the chest, freeing it.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p4_v3",
+            "text": "Yavaş yavaş kolları sandıktan ayırdı. Ahtapot artık daha rahat nefes alıyordu.",
+            "visualScene": "{{child.name}} slowly separating the arms from the chest. The octopus looks slightly relieved.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "climax",
+        "variants": [
+          {
+            "id": "underwater_002_p5_v1",
+            "text": "Ve işte son kol! {{child.name}} kocaman bir gayretle onu da kurtardı.",
+            "visualScene": "{{child.name}} pulling the final tentacle free from the chest with effort and a big smile.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p5_v2",
+            "text": "Son bir düğüm kalmıştı. {{child.name}} nazikçe onu da çözdü ve ahtapot tamamen özgürdü!",
+            "visualScene": "{{child.name}} gently untying the very last knot. The octopus is fully free from the chest.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p5_v3",
+            "text": "Geriye sadece sandığın kilidine takılan kol kalmıştı. {{child.name}} onu da kurtarmayı başardı.",
+            "visualScene": "{{child.name}} untangling the last tentacle caught in the lock of the chest.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "falling_action",
+        "variants": [
+          {
+            "id": "underwater_002_p6_v1",
+            "text": "{{companion.name}} sevinçle etrafta yüzmeye ve neşeyle su püskürtmeye başladı.",
+            "visualScene": "The octopus {{companion.name}} swimming around happily and blowing bubbles or a little squirt of water.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p6_v2",
+            "text": "Kurtulan ahtapot {{companion.name}}, kollarını sevinçle sallayarak {{child.name}}'nin etrafında dans etti.",
+            "visualScene": "The freed octopus {{companion.name}} dancing around {{child.name}}, waving its tentacles joyfully.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p6_v3",
+            "text": "Özgürlüğüne kavuşan {{companion.name}}, minnettarlıkla {{child.name}}'ye sarıldı.",
+            "visualScene": "The octopus {{companion.name}} giving {{child.name}} a gentle, thankful hug with its tentacles.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "variants": [
+          {
+            "id": "underwater_002_p7_v1",
+            "text": "Teşekkür etmek için, ahtapot sandıktan parlak bir inci ({{object.name}}) çıkardı ve ona hediye etti.",
+            "visualScene": "The octopus handing a shiny pearl ({{object.name}}) to the child as a gift from the chest.",
+            "requiredSlots": [
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p7_v2",
+            "text": "{{companion.name}}, gizli bir hazine olan pırıl pırıl {{object.name}}'yi {{child.name}}'nin avuçlarına bıraktı.",
+            "visualScene": "{{companion.name}} placing a sparkling {{object.name}} into {{child.name}}'s open hands.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p7_v3",
+            "text": "Ahtapot gülümsedi ve denizin en güzel incisi olan {{object.name}} ile {{child.name}}'ye teşekkür etti.",
+            "visualScene": "The octopus smiling and offering the most beautiful pearl, {{object.name}}, to {{child.name}}.",
+            "requiredSlots": [
+              "child.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "outro",
+        "variants": [
+          {
+            "id": "underwater_002_p8_v1",
+            "text": "{{child.name}} yeni arkadaşına el sallarken, okyanusun dibindeki bu harika macerayı hiç unutmayacaktı.",
+            "visualScene": "{{child.name}} waving goodbye to the octopus friend, holding the pearl, swimming away.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p8_v2",
+            "text": "İkili birbirlerine sevgiyle veda etti. Denizin altında başlayan bu dostluk sonsuza dek sürecekti.",
+            "visualScene": "{{child.name}} and the octopus waving a lovely goodbye to each other in the blue water.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "underwater_002_p8_v3",
+            "text": "Parlak incisiyle yüzeye doğru yüzen {{child.name}}, denizin altındaki yeni dostuna gülümsüyordu.",
+            "visualScene": "{{child.name}} swimming up towards the surface with the bright pearl, smiling back at the octopus.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

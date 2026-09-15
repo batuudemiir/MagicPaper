@@ -1,0 +1,342 @@
+{
+  "blueprint": {
+    "id": "adventure_courage_map_003",
+    "genre": "adventure",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "moderate",
+    "emotionalTone": "curious and rewarding",
+    "visualStyle": "warm_watercolor",
+    "safetyMetadata": {
+      "contentRating": "safe",
+      "conflictType": "solving_puzzle",
+      "resolution": "positive",
+      "scarinessLevel": "none"
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Kayıp Harita",
+      "Kovuk Ağaçtaki Harita",
+      "{{child.name}}'in Orman Bulmacası",
+      "Boyalı Taş Yolu"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "narrativePurpose": "Child explores a woodland trail and finds a hollow tree",
+        "variants": [
+          {
+            "id": "map_003_p1_v1",
+            "text": "Parlak, güneşli bir öğleden sonraydı. {{child.name}}, fısıldayan ormanda kıvrımlı bir yolda yürüyordu. Yolun kenarında, gövdesinde bir kovuk olan yaşlı ve uykulu bir meşe ağacı duruyordu.",
+            "visualScene": "Güneşli bir ormanda toprak yolda yürüyen bir çocuk. Yolun yanında karanlık bir kovuğu olan büyük bir meşe ağacı var.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p1_v2",
+            "text": "Sessiz bir orman yürüyüşünde yapraklar {{child.name}}'in ayakları altında çıtırdıyordu. İleride, devasa bir ağaç sanki bir sır söylemek istiyor gibiydi. Gövdesinin derinliklerinde karanlık, gizemli bir kovuk vardı.",
+            "visualScene": "Ormanda renkli yapraklara basan, kovuğu olan devasa bir ağaca merakla bakan bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p1_v3",
+            "text": "Bahçenin kenarını keşfederken, {{child.name}} ormana giden minik bir yol buldu. Yolu takip ettiğinde, keşfedilmeyi bekleyen içi boş büyük ve yaşlı bir ağaçla karşılaştı.",
+            "visualScene": "Bahçenin yanındaki orman yoluna bakan, kovuklu büyük bir ağacı fark eden bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "discovery",
+        "narrativePurpose": "Inside the tree, discovers a torn, old map with curious symbols",
+        "variants": [
+          {
+            "id": "map_003_p2_v1",
+            "text": "Kovuk ağacın içine uzanan {{child.name}} kağıt gibi bir şey hissetti. Bu, üzerinde tuhaf şekiller olan tozlu, yırtık bir haritaydı! Bazı köşeleri eksikti ama çok önemli görünüyordu.",
+            "visualScene": "Karanlık ağaç kovuğundan yırtık, eski bir kağıt parçasını nazikçe çıkaran bir çocuk. Kağıdın üzerinde solmuş çizimler var.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p2_v2",
+            "text": "Ağaçta ne saklanıyordu? {{child.name}} içeri baktı ve buruşuk, solmuş bir haritayı dikkatlice çıkardı. Üzerinde kelimeler yerine komik küçük kaya çizimleri ve dalgalı çizgiler vardı.",
+            "visualScene": "Kovuk ağacın yanında duran, basit semboller içeren eski, buruşuk bir haritayı yukarı kaldıran bir çocuk.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p2_v3",
+            "text": "Yumuşak odunun içinde iple bağlanmış bir tomar vardı. {{child.name}} onu açtığında, tuhaf semboller ve yırtık kenarlarla dolu eski bir harita ortaya çıktı.",
+            "visualScene": "İple bağlanmış, rulo halinde eski bir kağıt parçasını açan bir çocuk. Kağıt, garip sembolleri olan bir haritayı gösteriyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "companion",
+        "narrativePurpose": "An owl swoops down, curious about the map, offers to help read the symbols",
+        "variants": [
+          {
+            "id": "map_003_p3_v1",
+            "text": "Aniden, {{companion.name}} adında arkadaş canlısı bir baykuş bir daldan aşağı süzüldü. 'Huu, huu! Bir bulmaca!' dedi {{companion.type}}. 'Bu ormanı iyi bilirim. Okumana yardım edebilirim.'",
+            "visualScene": "Alt daldan birine inen, haritayı tutan çocuğa sıcak bir şekilde bakan sevimli bir baykuş.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p3_v2",
+            "text": "'Bu bir hazineye benziyor!' diye seslendi yukarıdan bir ses. O {{companion.type}} {{companion.name}} idi. Tüylerini çırparak yakına konan baykuş, sembollere bakmaya hevesliydi.",
+            "visualScene": "Çocuğa doğru uçan ve kanadıyla çocuğun elindeki haritayı gösteren sevimli bir baykuş.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p3_v3",
+            "text": "Hafif bir yaprak hışırtısı, {{companion.name}}'in gelişini haber verdi. Akıllı {{companion.type}}, büyük ve bilge gözleriyle haritaya baktı. 'Bunu birlikte çözelim!' diye öttü.",
+            "visualScene": "Çocuğun yanında bir kütüğe tünemiş, birlikte yırtık haritaya yakından bakan bir baykuş.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "narrativePurpose": "The map is torn into pieces, some parts are missing, the trail seems unclear",
+        "variants": [
+          {
+            "id": "map_003_p4_v1",
+            "text": "Haritayı incelediler ama bu biraz zordu. Ortasından büyük bir parça kopmuştu! Yol birdenbire kaybolmuş gibi görünüyordu. Yolu nasıl bulacaklardı?",
+            "visualScene": "Kağıdın ortasındaki büyük bir eksik parçayı işaret eden, haritaya kafası karışmış bir şekilde bakan çocuk ve baykuş.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p4_v2",
+            "text": "Olamaz, haritanın tam ortası tamamen eksikti! Dalgalı çizgiler aniden bitiyordu. Bütün ipuçları olmadan bulmacayı çözmek çok zor görünüyordu.",
+            "visualScene": "Çocuğun elleri ve baykuşun kanadının yırtık haritayı tuttuğu, yolun bittiği yerde büyük bir boşluğu gösteren yakın çekim.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p4_v3",
+            "text": "Semboller solmuştu ve büyük bir yırtık haritayı takip etmeyi zorlaştırıyordu. İlerideki yol büyük bir gizemdi ve onlara geri dönmeleri gerekip gerekmediğini düşündürdü.",
+            "visualScene": "Endişeli görünen, büyük bir yırtığı olan haritayı havaya kaldıran çocuk, baykuş ise düşünceli bir şekilde bakıyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "attempt",
+        "narrativePurpose": "They follow the first clue to a mossy rock, but the next symbol is smudged",
+        "variants": [
+          {
+            "id": "map_003_p5_v1",
+            "text": "Yine de denemeye karar verdiler. İlk ipucu onları doğrudan devasa, yosunlu bir kayaya götürdü. Ancak bir sonraki adım için haritaya baktıklarında, çamurlu bir lekenin çizimi kapattığını gördüler.",
+            "visualScene": "Yeşil yosunla kaplı büyük bir kayanın yanında duran çocuk ve baykuş. Çocuk haritadaki çamur lekesini silmeye çalışıyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p5_v2",
+            "text": "Dalgalı bir çizgiyi takip ederek büyük, yeşil ve tüylü bir kaya buldular. 'İlk işareti bulduk!' diye sevindi çocuk. Ama bir sonraki resim koyu bir lekeyle mahvolmuştu.",
+            "visualScene": "Gülümseyen ve tüylü yeşil bir kayayı işaret eden çocuk. Baykuş haritadaki koyu bir lekeye bakıyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p5_v3",
+            "text": "İlk sembol bir tümsek gibi görünüyordu ama devasa yosunlu bir kayaymış! Sevindiler ama sonraki ipucunun zamanla silinip gittiğini gördüler.",
+            "visualScene": "Büyük yosunlu bir kayanın yanında çak yapan (veya kanat tokuşturan) çocuk ve baykuş, ancak yakın çekimde haritanın bir sonraki ipucunun silindiği görülüyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "challenge",
+        "narrativePurpose": "Child decides to trust the owl's knowledge of the woods and follow the landmarks together",
+        "variants": [
+          {
+            "id": "map_003_p6_v1",
+            "text": "{{child.name}} cesurca derin bir nefes aldı. 'Haritanın tamamına ihtiyacımız yok,' dedi. 'Sen ormanı biliyorsun, {{companion.name}}!' Birlikte bir sonraki yolu bulmak için baykuşun keskin gözlerini kullandılar.",
+            "visualScene": "Kararlı görünen ve baykuşa gülümseyen çocuk. Baykuş rehberlik etmeye hazır bir şekilde ormanın ilerisine bakıyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p6_v2",
+            "text": "Kırık bir haritayla bile {{child.name}} kendini cesur hissediyordu. 'Sana güveniyorum, {{companion.name}},' dedi baykuşa. Ekip çalışması ve cesaretle, ormanın derinliklerine doğru kıvrımlı yolu takip ettiler.",
+            "visualScene": "Güven veren bir şekilde elini baykuşun yanına koyan çocuk. Baykuş gururla göğsünü kabartıp ileriye giden yolu işaret ediyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p6_v3",
+            "text": "Leke onları durduramadı! {{child.name}}, {{companion.name}}'in orman bilgeliğine güvenmeye karar verdi. Haritanın ellerinde kalan minik parçalarıyla ormanı karşılaştırarak etrafa dikkatlice baktılar.",
+            "visualScene": "Ormanın etrafına bakan, ağaçları haritada görünen küçük bir parçayla karşılaştıran çocuk ve baykuş.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "narrativePurpose": "They find each landmark and reach a hidden meadow with painted stones left by a previous explorer",
+        "variants": [
+          {
+            "id": "map_003_p7_v1",
+            "text": "Çalıların arasından ve derelerin üzerinden geçtiler ve sonunda ağaçlar seyrekleşti. Çiçeklerle dolu gizli bir çayıra adım attılar. Ortada, güzelce boyanmış bir {{object.name}} çemberi duruyordu!",
+            "visualScene": "Kır çiçekleriyle dolu parlak bir çayır. Ortasında, pürüzsüz ve parlak renklerle boyanmış bir taş çemberi var.",
+            "requiredSlots": [
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p7_v2",
+            "text": "Adım adım her işareti geçtiler. Sonunda gizli, güneşli bir çayıra ulaştılar. Çok eskiden birisi harika bir sürpriz bırakmıştı: parlak renklerle boyanmış kayalardan oluşan bir koleksiyon.",
+            "visualScene": "Karanlık ormandan güneşli bir çayıra çıkan, çimenlerin üzerindeki rengarenk boyalı kayalara hayranlıkla bakan çocuk ve baykuş.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p7_v3",
+            "text": "Cesur ekip çalışmaları işe yaramıştı! Yol, kır çiçekleriyle bezeli büyülü bir çayırda sona erdi. Çimenlerin arasına gizlenmiş özel bir hazine vardı: gülücükler ve yıldızlarla boyanmış renkli taşlar.",
+            "visualScene": "Yeşil çimenler ve kır çiçekleri arasında duran rengarenk boyanmış taşların yakın çekimi. Arka planda çocuk ve baykuş onlara bakıyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "emotional_ending",
+        "narrativePurpose": "Child adds their own painted stone to the collection and leaves the map in the tree for the next adventurer",
+        "variants": [
+          {
+            "id": "map_003_p8_v1",
+            "text": "Bir böğürtlen kullanarak {{child.name}}, düz bir kayayı {{child.favoriteColor}} bir desenle boyadı ve çembere ekledi. Haritayı bir sonraki cesur maceracı için tekrar ağaca bıraktılar.",
+            "visualScene": "Ezilmiş bir böğürtlenle kaya boyayan çocuk. Baykuş mutlulukla izliyor. Bölünmüş bir sahnede harita, kovuk ağacın içine güvenle geri konmuş şekilde görülüyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p8_v2",
+            "text": "Bu harika bir keşifti. {{child.name}} pürüzsüz bir çakıl taşı buldu, biraz çamur ve çiçek yapraklarıyla onu {{child.favoriteColor}} renge boyayıp oraya bıraktı. Gizli harita ağaçtaki evine geri döndü.",
+            "visualScene": "Yeni boyanmış bir kayayı diğerlerinin yanına koyan çocuk. Eski harita, kovuk meşe ağacının içinde duruyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "map_003_p8_v3",
+            "text": "Gizli çayırda kendi izlerini bıraktılar. {{child.name}}, koleksiyona yeni bir {{child.favoriteColor}} taş yerleştirdi. Sonra haritayı başka bir meraklı arkadaşa hediye olarak tekrar sakladılar.",
+            "visualScene": "Çayırdaki çembere boyalı bir taşı nazikçe yerleştiren çocuk. Hafif bir gün batımı başlıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

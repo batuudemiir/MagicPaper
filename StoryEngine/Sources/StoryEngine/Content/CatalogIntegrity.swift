@@ -1,0 +1,319 @@
+import Foundation
+
+/// How serious a catalog problem is.
+///
+/// The distinction earns its keep: the shipped catalog has real referential
+/// faults (companions pointing at setting tags that do not exist, themes with no
+/// templates). Treating those as fatal would make the engine unusable until the
+/// content is rewritten; ignoring them is how a child ends up with a dolphin in
+/// a forest. So they are reported, loudly, and the content work fixes them.
+public enum CatalogIssueSeverity: String, Codable, Sendable, Hashable, Comparable {
+    /// The catalog cannot be used at all.
+    case fatal
+    /// Usable, but this will produce incoherent stories if selection reaches it.
+    case error
+    /// Worth fixing; will not by itself break a story.
+    case warning
+
+    private var rank: Int {
+        switch self {
+        case .warning: return 0
+        case .error: return 1
+        case .fatal: return 2
+        }
+    }
+    public static func < (lhs: Self, rhs: Self) -> Bool { lhs.rank < rhs.rank }
+}
+
+public struct CatalogIssue: Codable, Sendable, Hashable {
+    public let severity: CatalogIssueSeverity
+    public let code: String
+    /// Which record the problem is in, when it is about one.
+    public let recordID: ContentID?
+    public let message: String
+
+    public init(severity: CatalogIssueSeverity, code: String, recordID: ContentID? = nil, message: String) {
+        self.severity = severity
+        self.code = code
+        self.recordID = recordID
+        self.message = message
+    }
+}
+
+/// What checking the catalog found.
+public struct CatalogIntegrityReport: Codable, Sendable, Hashable {
+    public let issues: [CatalogIssue]
+    public let counts: [String: Int]
+
+    public init(issues: [CatalogIssue], counts: [String: Int]) {
+        self.issues = issues
+        self.counts = counts
+    }
+
+    public var fatals: [CatalogIssue] { issues.filter { $0.severity == .fatal } }
+    public var errors: [CatalogIssue] { issues.filter { $0.severity == .error } }
+    public var warnings: [CatalogIssue] { issues.filter { $0.severity == .warning } }
+
+    /// Whether the catalog can be used. Errors and warnings do not block; they
+    /// describe content that needs work.
+    public var isUsable: Bool { fatals.isEmpty }
+
+    public func issues(withCode code: String) -> [CatalogIssue] {
+        issues.filter { $0.code == code }
+    }
+
+    /// One-line summary for logs and the development catalog screen.
+    public var summary: String {
+        "\(counts["blueprints"] ?? 0) blueprints, "
+            + "\(counts["templates"] ?? 0) templates — "
+            + "\(fatals.count) fatal, \(errors.count) error, \(warnings.count) warning"
+    }
+}
+
+/// Checks that a decoded catalog actually hangs together.
+///
+/// Every cross-record reference in this schema is by string. Nothing but an
+/// explicit check stops a typo becoming a silent random substitution at runtime,
+/// which is exactly the failure mode the current prototype has.
+public struct CatalogIntegrityChecker: Sendable {
+    public init() {}
+
+    public func check(_ catalog: ContentCatalog) -> CatalogIntegrityReport {
+        var issues: [CatalogIssue] = []
+
+        issues.append(contentsOf: checkNotEmpty(catalog))
+        issues.append(contentsOf: checkDuplicateIDs(catalog))
+        issues.append(contentsOf: checkSettingTagReferences(catalog))
+        issues.append(contentsOf: checkThemeCoverage(catalog))
+        issues.append(contentsOf: checkBlueprintRoleCoverage(catalog))
+        issues.append(contentsOf: checkUnreachableTemplates(catalog))
+        issues.append(contentsOf: checkVariants(catalog))
+        issues.append(contentsOf: checkBlueprintShape(catalog))
+        issues.append(contentsOf: checkBeatAuthoring(catalog))
+        issues.append(contentsOf: checkBeatSequences(catalog))
+        issues.append(contentsOf: checkBeatCoverage(catalog))
+
+        return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
+    }
+
+    // MARK: - Checks
+
+    private func checkNotEmpty(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        if catalog.blueprints.isEmpty {
+            issues.append(.init(severity: .fatal, code: "no_blueprints",
+                                message: "The catalog contains no blueprints, so no story can be built."))
+        }
+        if catalog.templates.isEmpty {
+            issues.append(.init(severity: .fatal, code: "no_templates",
+                                message: "The catalog contains no page templates, so no page can be written."))
+        }
+        for (name, count) in catalog.recordCounts.sorted(by: { $0.key < $1.key })
+        where count == 0 && !["blueprints", "templates"].contains(name) {
+            issues.append(.init(severity: .warning, code: "empty_collection",
+                                message: "No \(name) in the catalog."))
+        }
+        return issues
+    }
+
+    private func checkDuplicateIDs(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        func duplicates(_ ids: [ContentID], _ kind: String) -> [CatalogIssue] {
+            var seen: Set<ContentID> = []
+            var repeated: [ContentID] = []
+            for id in ids where !seen.insert(id).inserted { repeated.append(id) }
+            return repeated.map {
+                .init(severity: .error, code: "duplicate_id", recordID: $0,
+                      message: "Two \(kind) records share the id '\($0)'.")
+            }
+        }
+        return duplicates(catalog.settings.map(\.id), "setting")
+            + duplicates(catalog.companions.map(\.id), "companion")
+            + duplicates(catalog.objects.map(\.id), "object")
+            + duplicates(catalog.events.map(\.id), "event")
+            + duplicates(catalog.challenges.map(\.id), "challenge")
+            + duplicates(catalog.endings.map(\.id), "ending")
+            + duplicates(catalog.templates.map(\.id), "template")
+            + duplicates(catalog.blueprints.map(\.id), "blueprint")
+    }
+
+    /// Companions, events and challenges point at settings by **tag**. A tag no
+    /// setting carries can never match, so that record is unreachable through
+    /// that route.
+    private func checkSettingTagReferences(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let vocabulary = catalog.settingTagVocabulary
+        var issues: [CatalogIssue] = []
+
+        func check(_ id: ContentID, _ tags: [ContentTag], _ kind: String) {
+            let orphans = tags.filter { !vocabulary.contains($0) }
+            guard !orphans.isEmpty else { return }
+            issues.append(.init(
+                severity: .error, code: "orphan_setting_tag", recordID: id,
+                message: "\(kind) '\(id)' expects setting tag(s) "
+                    + orphans.map(\.rawValue).sorted().joined(separator: ", ")
+                    + " that no setting declares."
+            ))
+        }
+
+        catalog.companions.forEach { check($0.id, $0.compatibleSettingTags, "Companion") }
+        catalog.events.forEach { check($0.id, $0.compatibleSettingTags, "Event") }
+        catalog.challenges.forEach { check($0.id, $0.compatibleSettingTags, "Challenge") }
+        return issues
+    }
+
+    /// A theme components claim but no template can write is a dead end: content
+    /// exists for it, but no page could ever be produced.
+    private func checkThemeCoverage(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let templateThemes = Set(catalog.templates.flatMap(\.compatibleThemes))
+        let uncovered = catalog.themeVocabulary.subtracting(templateThemes).sorted()
+        return uncovered.map {
+            .init(severity: .error, code: "theme_without_templates",
+                  message: "Theme '\($0)' is used by content but no template can write it.")
+        }
+    }
+
+    /// Every role a blueprint asks for must have at least one template.
+    private func checkBlueprintRoleCoverage(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let covered = Set(catalog.templates.map(\.role))
+        return catalog.reachableRoles.subtracting(covered).sorted { $0.rawValue < $1.rawValue }.map {
+            .init(severity: .fatal, code: "role_without_templates",
+                  message: "Blueprints require role '\($0.rawValue)' but no template provides it.")
+        }
+    }
+
+    /// Authored templates no blueprint can reach. Not broken, but it is work
+    /// nobody will ever see.
+    private func checkUnreachableTemplates(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let reachable = catalog.reachableRoles
+        let stranded = Set(catalog.templates.map(\.role)).subtracting(reachable)
+        return stranded.sorted { $0.rawValue < $1.rawValue }.map { role in
+            let count = catalog.templates(for: role).count
+            return .init(severity: .warning, code: "unreachable_template",
+                         message: "\(count) template(s) for role '\(role.rawValue)' are unreachable — no blueprint uses that role.")
+        }
+    }
+
+    private func checkVariants(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for template in catalog.templates {
+            if template.variants.isEmpty {
+                issues.append(.init(severity: .error, code: "template_without_variants", recordID: template.id,
+                                    message: "Template '\(template.id)' has no variants."))
+            }
+            for variant in template.variants {
+                if variant.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    issues.append(.init(severity: .error, code: "empty_variant_text", recordID: variant.id,
+                                        message: "Variant '\(variant.id)' has no text."))
+                }
+                // A slot present in the text but not declared will still be
+                // filled, but the mismatch means the declaration is stale and
+                // cannot be trusted for compatibility checks.
+                let declared = Set(variant.requiredSlots)
+                let actual = Set(variant.actualSlots)
+                let undeclared = actual.subtracting(declared).map(\.rawValue).sorted()
+                if !undeclared.isEmpty {
+                    issues.append(.init(severity: .warning, code: "undeclared_slot", recordID: variant.id,
+                                        message: "Variant '\(variant.id)' uses \(undeclared.joined(separator: ", ")) without declaring it."))
+                }
+                let unused = declared.subtracting(actual).map(\.rawValue).sorted()
+                if !unused.isEmpty {
+                    issues.append(.init(severity: .warning, code: "unused_declared_slot", recordID: variant.id,
+                                        message: "Variant '\(variant.id)' declares \(unused.joined(separator: ", ")) but never uses it."))
+                }
+            }
+        }
+        return issues
+    }
+
+    /// How far the catalog has moved to the beat-driven model.
+    ///
+    /// Reported as errors rather than fatals deliberately: the pre-beat catalog
+    /// must keep loading until authored replacements exist, but nothing about it
+    /// is selectable under the new model, and that must be visible rather than
+    /// discovered later.
+    private func checkBeatAuthoring(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+
+        let unauthored = catalog.blueprints.filter { !$0.isBeatAuthored }
+        if !unauthored.isEmpty {
+            issues.append(.init(
+                severity: .error, code: "blueprint_without_beats",
+                message: "\(unauthored.count) of \(catalog.blueprints.count) blueprints declare no beats "
+                    + "and cannot be selected under the beat-driven model."
+            ))
+        }
+
+        let beatless = catalog.templates.filter { $0.realizesBeat == nil }
+        if !beatless.isEmpty {
+            issues.append(.init(
+                severity: .error, code: "template_without_beat",
+                message: "\(beatless.count) of \(catalog.templates.count) templates declare no realizesBeat "
+                    + "and are unselectable; a variant that realizes no beat has nowhere to live."
+            ))
+        }
+
+        for blueprint in catalog.blueprints where blueprint.family == nil {
+            issues.append(.init(severity: .warning, code: "blueprint_without_family", recordID: blueprint.id,
+                                message: "Blueprint '\(blueprint.id)' declares no narrative family; the diversity gate cannot read it."))
+        }
+
+        return issues
+    }
+
+    /// Runs the state rule over every beat-authored blueprint.
+    ///
+    /// This is what makes "page 7 resolves a conflict page 6 never raised" a
+    /// build failure instead of something a reader notices.
+    private func checkBeatSequences(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let validator = BeatSequenceValidator()
+        var issues: [CatalogIssue] = []
+
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            let result = validator.validate(
+                blueprint.beatSlots,
+                conflictMechanism: blueprint.family?.conflict
+            )
+            for issue in result.issues {
+                issues.append(.init(
+                    severity: .fatal, code: "beat_sequence_\(issue.code)", recordID: blueprint.id,
+                    message: "Blueprint '\(blueprint.id)': \(issue.message)"
+                ))
+            }
+        }
+        return issues
+    }
+
+    /// Every beat a blueprint asks for must have a template that realizes it.
+    /// A slot with no compatible variant is a named load-time error, never a
+    /// silent fallback to "all templates".
+    private func checkBeatCoverage(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let realized = Set(catalog.templates.compactMap(\.realizesBeat))
+        var required = Set<StoryBeat>()
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            required.formUnion(blueprint.beatSlots.flatMap(\.beats))
+        }
+        return required.subtracting(realized).sorted { $0.rawValue < $1.rawValue }.map {
+            .init(severity: .fatal, code: "beat_without_templates",
+                  message: "Blueprints require beat '\($0.rawValue)' but no template realizes it.")
+        }
+    }
+
+    private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for blueprint in catalog.blueprints {
+            if blueprint.pagePlan.count != blueprint.pageCount {
+                issues.append(.init(severity: .error, code: "page_count_mismatch", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' declares \(blueprint.pageCount) pages but plans \(blueprint.pagePlan.count)."))
+            }
+            let numbers = blueprint.pagePlan.map(\.pageNumber).sorted()
+            if numbers != Array(1...max(numbers.count, 1)) && !numbers.isEmpty {
+                issues.append(.init(severity: .error, code: "page_numbers_not_contiguous", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' page numbers are \(numbers), not 1…\(numbers.count)."))
+            }
+            if blueprint.titlePatterns.isEmpty {
+                issues.append(.init(severity: .warning, code: "no_title_patterns", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' has no title patterns, so its titles must be composed generically."))
+            }
+        }
+        return issues
+    }
+}

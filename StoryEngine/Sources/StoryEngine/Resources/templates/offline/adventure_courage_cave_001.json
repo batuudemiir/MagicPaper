@@ -1,0 +1,453 @@
+{
+  "blueprint": {
+    "id": "adventure_courage_cave_001",
+    "genre": "adventure",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "moderate",
+    "emotionalTone": "warm and brave",
+    "visualStyle": "warm_watercolor",
+    "safetyMetadata": {
+      "contentRating": "safe",
+      "conflictType": "overcoming_fear",
+      "resolution": "positive",
+      "scarinessLevel": "minimal"
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Parlayan Mağara",
+      "Kristal Odasına Cesur Yolculuk",
+      "{{child.name}}'nin Mağara Macerası",
+      "Cesaretle Yolu Aydınlatmak"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "narrativePurpose": "Child discovers cave entrance on a hike",
+        "variants": [
+          {
+            "id": "cave_001_p1_v1",
+            "text": "Güneşli bir öğleden sonra, {{child.name}} büyük yeşil bir tepeyi keşfediyordu. Yapraklı çalıların arkasında kayalık bir mağaraya giden gizli bir giriş saklıydı.",
+            "visualScene": "{{child.name}}'nin tepedeki yeşil çalıları aralayarak karanlık, kemerli taş mağara girişini ortaya çıkardığı geniş açı.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": [
+              "location=hillside"
+            ]
+          },
+          {
+            "id": "cave_001_p1_v2",
+            "text": "Hafif bir dağ yolunda yürürken, {{child.name}} özel bir şey fark etti. Keşfedilmeyi bekleyen uzun, taşlı bir mağara kapısıydı.",
+            "visualScene": "{{child.name}} dağ yolunda duruyor, kayaya oyulmuş uzun mağara girişine hayranlıkla bakıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": [
+              "location=hillside"
+            ]
+          },
+          {
+            "id": "cave_001_p1_v3",
+            "text": "Ormanın kenarında, {{child.name}} küçük bir tepe buldu. Tam ortasında dev bir ağza benzeyen büyüleyici bir mağara girişi vardı.",
+            "visualScene": "{{child.name}} ormanın kenarında, çimenli bir tepedeki mağara girişini heyecanla işaret ediyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": [
+              "location=hillside"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "discovery",
+        "narrativePurpose": "Peeks inside, sees faint glow deeper in",
+        "variants": [
+          {
+            "id": "cave_001_p2_v1",
+            "text": "{{child.name}} sessiz gölgelerin arasına baktı. En arkada, karanlıkta yumuşak, sihirli bir ışık parlıyordu.",
+            "visualScene": "{{child.name}} mağara girişinden eğilmiş, ucunda hafif, sihirli bir ışığın parladığı karanlık tünele bakıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=hillside"
+            ],
+            "stateChanges": [
+              "location=cave_entrance"
+            ]
+          },
+          {
+            "id": "cave_001_p2_v2",
+            "text": "Serin kaya duvarlarından içeri adım atan {{child.name}} dikkatlice baktı. Mağaranın derinliklerinde dans eden minik, pırıl pırıl bir ışık vardı.",
+            "visualScene": "{{child.name}} mağaranın hemen içinde, dışarıdaki gün ışığına karşı silüeti belirmiş, daha derindeki minik parlak ışığa bakıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=hillside"
+            ],
+            "stateChanges": [
+              "location=cave_entrance"
+            ]
+          },
+          {
+            "id": "cave_001_p2_v3",
+            "text": "{{child.name}} mağara ağzına doğru cesurca bir adım attı. Derin gölgelerin içinde sevimli bir {{child.favoriteColor}} parıltı ona seslendi.",
+            "visualScene": "{{child.name}} merakla mağaraya bakıyor, uzak derinliklerden soluk bir {{child.favoriteColor}} ışık parlıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [
+              "location=hillside"
+            ],
+            "stateChanges": [
+              "location=cave_entrance"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "companion",
+        "narrativePurpose": "Meets a small fox who is afraid of the dark passages",
+        "variants": [
+          {
+            "id": "cave_001_p3_v1",
+            "text": "Tam o sırada, {{companion.name}} adında küçük bir {{companion.type}} bir kayanın arkasından başını çıkardı. Zavallı şey titriyordu çünkü tünel çok karanlık görünüyordu.",
+            "visualScene": "Girişin yakınındaki bir dikitin arkasından bakan ürkek bir {{companion.type}} ({{companion.name}}), gergin görünüyor.",
+            "requiredSlots": [
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=cave_entrance"
+            ],
+            "stateChanges": [
+              "has_companion=true"
+            ]
+          },
+          {
+            "id": "cave_001_p3_v2",
+            "text": "Tozlu bir taşın üzerinde oturan {{companion.name}}, tüylü bir {{companion.type}}'dı. Işığı görmek istiyordu ama gölgeli yol onu gerginleştiriyordu.",
+            "visualScene": "{{companion.type}} {{companion.name}} mağarada bir kayanın üzerinde oturuyor, karanlık tünele endişeyle bakıyor.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=cave_entrance"
+            ],
+            "stateChanges": [
+              "has_companion=true"
+            ]
+          },
+          {
+            "id": "cave_001_p3_v3",
+            "text": "Aniden, {{child.name}} minik bir ciyaklama duydu. Bu, karanlığa doğru daha fazla gitmekten çok korkan {{companion.name}} adında sevimli bir {{companion.type}}'dı.",
+            "visualScene": "{{child.name}} karanlık geçitten uzaklaşan {{companion.type}} {{companion.name}}'i teselli etmek için eğiliyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=cave_entrance"
+            ],
+            "stateChanges": [
+              "has_companion=true"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "narrativePurpose": "The path forward is too dark for the fox to continue",
+        "variants": [
+          {
+            "id": "cave_001_p4_v1",
+            "text": "\"İlerisi zifiri karanlık,\" diye fısıldadı {{companion.name}}. Tünel önlerinde ışıksız, uzun, gölgeli bir koridor gibi uzanıyordu.",
+            "visualScene": "{{companion.name}} titreyen patisiyle uzun, zifiri karanlık mağara tünelini işaret ediyor.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_companion=true"
+            ],
+            "stateChanges": [
+              "problem=darkness"
+            ]
+          },
+          {
+            "id": "cave_001_p4_v2",
+            "text": "İlerideki yol derin, koyu gölgelerle kapanmıştı. {{companion.type}} {{companion.name}} karanlıkta yürümek istemediği için gözlerini kapattı.",
+            "visualScene": "{{companion.type}} {{companion.name}} patileriyle gözlerini kapatıyor, çok karanlık bir tünel girişinin önünde oturuyor.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_companion=true"
+            ],
+            "stateChanges": [
+              "problem=darkness"
+            ]
+          },
+          {
+            "id": "cave_001_p4_v3",
+            "text": "\"Hiçbir şey göremiyorum!\" dedi {{companion.name}}. Mağaranın daha derin kısmı tamamen karanlıktı ve bir adım daha atamıyordu.",
+            "visualScene": "{{companion.name}} büyük endişeli gözlerle {{child.name}}'e bakıyor, girişten gelen ışığın yerini tamamen karanlığa bıraktığı kenarda duruyor.",
+            "requiredSlots": [
+              "companion.name",
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_companion=true"
+            ],
+            "stateChanges": [
+              "problem=darkness"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "attempt",
+        "narrativePurpose": "They try to use a stick torch but it goes out",
+        "variants": [
+          {
+            "id": "cave_001_p5_v1",
+            "text": "{{child.name}} kuru bir dal buldu ve küçük bir meşale yapmaya çalıştı. Ama serin bir mağara esintisi esti ve 'vuuuf', alev hemen sönüverdi.",
+            "visualScene": "{{child.name}} ucunda bir tutam duman olan küçük bir tahta çubuk tutuyor, rüzgar eserken hayal kırıklığına uğramış görünüyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "problem=darkness"
+            ],
+            "stateChanges": [
+              "failed_attempt=true"
+            ]
+          },
+          {
+            "id": "cave_001_p5_v2",
+            "text": "Işık için bir çubuğun etrafına kuru yapraklar sarmayı denediler. Ne yazık ki, mağaranın içindeki hafif bir rüzgar onu söndürdü.",
+            "visualScene": "{{child.name}} ve {{companion.name}} derme çatma çubuk meşalelerindeki minik alevin sönüşünü üzüntüyle izliyorlar.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "problem=darkness"
+            ],
+            "stateChanges": [
+              "failed_attempt=true"
+            ]
+          },
+          {
+            "id": "cave_001_p5_v3",
+            "text": "Daha iyi görmeyi umarak, {{child.name}} bir dalda küçük bir ateş yaktı. Ama nemli mağara havası küçük alevin cızırdayıp kaybolmasına neden oldu.",
+            "visualScene": "{{child.name}} az önce sönen bir çubuk tutuyor, arka planda ıslak mağara duvarları var.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "problem=darkness"
+            ],
+            "stateChanges": [
+              "failed_attempt=true"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "challenge",
+        "narrativePurpose": "Child remembers seeing glowing mushrooms earlier, goes back to collect them",
+        "variants": [
+          {
+            "id": "cave_001_p6_v1",
+            "text": "Sonra {{child.name}}'nin aklına harika bir fikir geldi! Dışarıda parlak parlayan mantarlar gördüğünü hatırladı ve onları dikkatlice şapkasına toplamak için geri koştu.",
+            "visualScene": "{{child.name}} mağaranın dışında, parlayan mavi mantarları dikkatlice toplayıp şapkasına koyuyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "failed_attempt=true"
+            ],
+            "stateChanges": [
+              "has_light=true"
+            ]
+          },
+          {
+            "id": "cave_001_p6_v2",
+            "text": "\"Burada bekle!\" diye gülümsedi {{child.name}}. Çimenli tepeye geri koştu ve küçük yıldızlar gibi parlayan sihirli, parlak mantarlar topladı.",
+            "visualScene": "{{child.name}} mağara girişinin yanındaki çimenlerden parlayan mantarlar topluyor, ışıl ışıl gülümsüyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "failed_attempt=true"
+            ],
+            "stateChanges": [
+              "has_light=true"
+            ]
+          },
+          {
+            "id": "cave_001_p6_v3",
+            "text": "Kapının yanındaki ışıltılı mantar parçasını hatırlayan {{child.name}}, onları toplamak için acele etti. {{child.favoriteColor}} parlayan mantarlar harika küçük fenerler oldu.",
+            "visualScene": "{{child.name}}, loş girişte yüzünü aydınlatan bir avuç {{child.favoriteColor}} parlayan mantar tutuyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [
+              "failed_attempt=true"
+            ],
+            "stateChanges": [
+              "has_light=true"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "narrativePurpose": "The mushrooms light the way to a crystal chamber",
+        "variants": [
+          {
+            "id": "cave_001_p7_v1",
+            "text": "Mantarlar kayaları aydınlatırken, iki arkadaş tünelde güvenle yürüdüler. En sonunda, gökkuşağı kristalleriyle dolu dev bir oda keşfettiler!",
+            "visualScene": "{{child.name}} ve {{companion.name}}, taşıdıkları mantarlarla aydınlatılan, devasa parlayan kristallerle dolu muhteşem bir mağara odasına yürüyorlar.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_light=true"
+            ],
+            "stateChanges": [
+              "location=crystal_chamber"
+            ]
+          },
+          {
+            "id": "cave_001_p7_v2",
+            "text": "Yumuşak mantar parıltısı korkutucu gölgeleri kovaladı. Çok geçmeden, {{child.name}} ve cesur küçük {{companion.type}} saf, parlayan mücevherlerden yapılmış harika bir salona adım attılar.",
+            "visualScene": "Mantar ışığı, {{child.name}} ve {{companion.type}} büyük bir kristal salona adım atarken güzel mücevher kaplı duvarları ortaya çıkarıyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_light=true"
+            ],
+            "stateChanges": [
+              "location=crystal_chamber"
+            ]
+          },
+          {
+            "id": "cave_001_p7_v3",
+            "text": "Sihirli ışıklarını yukarıda tutarak kıvrımlı yolu kolayca izlediler. Bu onları kristal sütunların tavana değdiği nefes kesici bir mağaraya götürdü.",
+            "visualScene": "{{child.name}} parlayan bir mantarı havaya kaldırıyor, devasa bir yeraltı mağarasında yükselen, renkli kristal sütunları ortaya çıkarıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "has_light=true"
+            ],
+            "stateChanges": [
+              "location=crystal_chamber"
+            ]
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "emotional_ending",
+        "narrativePurpose": "Fox thanks the child, they leave a glowing mushroom at the entrance for future visitors",
+        "variants": [
+          {
+            "id": "cave_001_p8_v1",
+            "text": "\"Bu kadar cesur olduğun için teşekkür ederim,\" dedi {{companion.name}}. Çıkarken, korkabilecek başkalarına rehberlik etmesi için kapının yanına parlayan bir mantar bıraktılar.",
+            "visualScene": "{{companion.name}}, mağara girişinin yakınında {{child.name}}'nin bacağına sarılıyor, orada tek bir parlayan mantar dikkatlice bir kayanın üzerine yerleştirilmiş.",
+            "requiredSlots": [
+              "companion.name",
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=crystal_chamber"
+            ],
+            "stateChanges": [
+              "story_complete=true"
+            ]
+          },
+          {
+            "id": "cave_001_p8_v2",
+            "text": "{{companion.type}} {{companion.name}} artık korkmadan mutlu bir şekilde tezahürat yaptı. Birlikte, mağaranın bir daha asla çok karanlık olmaması için dışarıya parlak bir mantar ektiler.",
+            "visualScene": "{{child.name}} ve {{companion.type}} {{companion.name}} neşeyle mağara girişinin hemen dışındaki toprağa parlayan bir mantar ekiyorlar.",
+            "requiredSlots": [
+              "companion.name",
+              "companion.type",
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=crystal_chamber"
+            ],
+            "stateChanges": [
+              "story_complete=true"
+            ]
+          },
+          {
+            "id": "cave_001_p8_v3",
+            "text": "Dolu kalplerle, arkadaşlar tekrar gün ışığına doğru yola çıktılar. Cesur ışıklarını dünyayla paylaşarak arkalarında minik bir mantar feneri bıraktılar.",
+            "visualScene": "{{child.name}} ve {{companion.name}} güneşli bir tepeye doğru yürüyorlar, mağara ağzındaki bir taşın üzerinde bıraktıkları parlayan mantara dönüp bakıyorlar.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [
+              "location=crystal_chamber"
+            ],
+            "stateChanges": [
+              "story_complete=true"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

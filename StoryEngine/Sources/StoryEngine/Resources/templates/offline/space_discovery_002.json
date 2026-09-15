@@ -1,0 +1,216 @@
+{
+  "blueprint": {
+    "id": "space_discovery_002",
+    "genre": "space",
+    "theme": "discovery",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "helpful and exciting",
+    "visualStyle": "vibrant_space",
+    "safetyMetadata": {
+      "hasConflict": false,
+      "scaryElements": false,
+      "containsMagic": false
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Kayıp Uzaylı",
+      "{{child.name}}'nin Meteor Macerası",
+      "{{child.name}} ve Zıp Zıp Taşlar"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+           { 
+             "id": "space_002_p1_v1", 
+             "text": "Bir varmış bir yokmuş, yıldızların arasında parlayan kocaman bir uzay gemisi varmış. Kaptanı ise cesur {{child.name}} imiş!", 
+             "visualScene": "A brave child wearing a colorful space suit, standing at the control panel of a shiny, toy-like spaceship with stars outside the window.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p1_v2", 
+             "text": "{{child.name}}, sihirli roketiyle gökyüzünün en uzak köşelerine doğru harika bir yolculuğa çıkmış.", 
+             "visualScene": "A child in a bright astronaut suit looking out of a round spaceship window at colorful planets and sparkling stars.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p1_v3", 
+             "text": "Uzayın derinliklerinde süzülen neşeli uzay gemisini {{child.name}} kullanıyormuş. Her yer ışıl ışıl yıldızlarla doluymuş.", 
+             "visualScene": "A wide shot of a cute, cartoonish spaceship zooming through a vibrant, starry galaxy. Inside, we see the child driving happily.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "inciting_incident",
+        "variants": [
+           { 
+             "id": "space_002_p2_v1", 
+             "text": "Birden, küçük peynir rengi bir ayın üzerinde minik bir ses duymuş. Orada sevimli ama hüzünlü küçük uzaylı {{companion.name}} duruyormuş.", 
+             "visualScene": "The child's spaceship landed on a small, cheese-colored moon. Outside, a cute, small alien with big eyes is looking sad.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p2_v2", 
+             "text": "{{child.name}}, parlak bir ayın yanından geçerken ağlayan minik birini görmüş. Bu sevimli uzaylı {{companion.name}} imiş.", 
+             "visualScene": "The spaceship hovering near a bright, glowing moon. Through the window, the child spots a tiny, adorable alien shedding a single sparkling tear.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p2_v3", 
+             "text": "Yolculuk sırasında, minik bir ayda kaybolmuş şirin uzaylı {{companion.name}} ile karşılaşmış. {{companion.name}} çok üzgün görünüyormuş.", 
+             "visualScene": "The child, out of the spaceship in a spacesuit, approaching a small, cute alien sitting on a cratered little moon.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "meeting",
+        "variants": [
+           { 
+             "id": "space_002_p3_v1", 
+             "text": "\"Ağlama, ben sana yardım ederim!\" demiş {{child.name}}. {{companion.name}} evinin yolunu kaybetmiş ve ailesini çok özlemiş.", 
+             "visualScene": "The child comforting the little alien, offering a friendly hand. The alien looks up with a hopeful smile.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p3_v2", 
+             "text": "{{child.name}}, sevimli uzaylıya kocaman sarılmış. \"Korkma {{companion.name}}, evini beraber bulacağız!\" diyerek onu neşelendirmiş.", 
+             "visualScene": "The child giving the small alien a big, warm hug. The alien is holding a drawing of its home planet.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p3_v3", 
+             "text": "Minik uzaylı evini bulamadığı için ağlıyormuş. İyi kalpli {{child.name}}, {{companion.name}}'nin elini tutup ona dostça gülümsemiş.", 
+             "visualScene": "The child holding the alien's hand. The alien is pointing towards a distant part of space. Both look determined and friendly.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "journey_start",
+        "variants": [
+           { 
+             "id": "space_002_p4_v1", 
+             "text": "Birlikte uzay gemisine binmişler. Renkli gezegenlerin arasından hızla geçerken {{companion.name}}'nin evi nerede diye etrafa bakmışlar.", 
+             "visualScene": "The child and the alien sitting side by side in the spaceship cockpit, looking out excitedly at colorful planets.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p4_v2", 
+             "text": "Roketin motorları 'vuuvv' diye çalışmış! {{child.name}} ve {{companion.name}} yeni bir maceraya doğru gökyüzüne fırlamışlar.", 
+             "visualScene": "The spaceship zooming forward with a bright trail of colorful exhaust. Inside, the child and alien are cheering.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p4_v3", 
+             "text": "{{companion.name}}, {{child.name}}'nin yanına, yardımcı pilot koltuğuna oturmuş. Beraber uzayın derinliklerine doğru yelken açmışlar.", 
+             "visualScene": "The little alien wearing a tiny pilot's hat, sitting in the co-pilot seat next to the child, pressing a shiny button.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "challenge",
+        "variants": [
+           { 
+             "id": "space_002_p5_v1", 
+             "text": "Yollarına zıp zıp zıplayan dev uzay taşları çıkmış! {{child.name}}, uzay gemisini ustaca taşların arasından geçirmiş.", 
+             "visualScene": "The spaceship dodging large, round, colorful bouncy meteors. The child is steering the wheel with concentration.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p5_v2", 
+             "text": "Karşılarına devasa bir meteor labirenti çıkmış. Ancak bunlar sert taşlar değil, jöle gibi zıplayan komik meteorlarmış!", 
+             "visualScene": "A field of jelly-like, squishy meteors in various pastel colors. The spaceship is gently bouncing off one of them.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p5_v3", 
+             "text": "{{child.name}} ve {{companion.name}}, zıp zıplayan uzay taşları arasında bir oyun oynar gibi eğlenerek yollarına devam etmişler.", 
+             "visualScene": "The child and alien laughing as the spaceship playfully weaves and bounces through a maze of soft, bouncy space rocks.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "climax",
+        "variants": [
+           { 
+             "id": "space_002_p6_v1", 
+             "text": "Labirentin sonunda, parıl parıl parlayan mor ve pembe renkli kocaman bir gezegen görmüşler. Bu {{companion.name}}'nin eviymiş!", 
+             "visualScene": "A large, beautiful, glowing planet with purple and pink swirls appears in the distance. The alien points at it excitedly.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p6_v2", 
+             "text": "\"İşte orası!\" diye bağırmış {{companion.name}} sevinçle. Karşılarında pırıl pırıl ışık saçan, şeker gibi tatlı ev gezegeni duruyormuş.", 
+             "visualScene": "Close up of the alien's face, looking extremely happy and pointing. In the window's reflection, a shiny candy-colored planet is visible.",
+             "requiredSlots": ["companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p6_v3", 
+             "text": "{{child.name}} sonunda harika bir yer keşfetmiş! Üzerinde kocaman çiçekler olan, ışıl ışıl bir gezegen bulmuşlar.", 
+             "visualScene": "The spaceship approaching a vibrant planet that has giant glowing flowers visible from space. The alien is jumping for joy inside.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "variants": [
+           { 
+             "id": "space_002_p7_v1", 
+             "text": "Gemi yavaşça yere inmiş. {{companion.name}}'nin ailesi koşarak gelmiş ve minik yavrularına sımsıkı sarılmışlar.", 
+             "visualScene": "The spaceship landed on the colorful planet. Larger versions of the alien are running towards the little alien for a big group hug.",
+             "requiredSlots": ["companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p7_v2", 
+             "text": "{{child.name}} kapıyı açar açmaz, büyük uzaylılar onları sevgiyle karşılamış. Herkes {{companion.name}}'nin dönüşünü kutluyormuş.", 
+             "visualScene": "The child stands by the open spaceship door. The alien family is hugging the little alien, and tossing colorful space confetti.",
+             "requiredSlots": ["child.name", "companion.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p7_v3", 
+             "text": "Küçük uzaylı nihayet evindeymiş! Ailesi {{child.name}}'ye yardım ettiği için kocaman bir uzay pastası ikram etmiş.", 
+             "visualScene": "A festive alien picnic. The alien family is handing the child a slice of a glowing, colorful, multi-tiered space cake.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "ending",
+        "variants": [
+           { 
+             "id": "space_002_p8_v1", 
+             "text": "Veda vakti gelmiş. {{child.name}} onlara el sallayarak, yeni maceralar için uzay gemisiyle gökyüzüne doğru havalanmış.", 
+             "visualScene": "The child waving goodbye from the spaceship window. The alien family waves back from the planet's surface as the ship takes off.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p8_v2", 
+             "text": "Yeni bir dost edinmenin mutluluğuyla {{child.name}}, evine dönmek üzere yıldızların arasına doğru keyifli bir yolculuğa çıkmış.", 
+             "visualScene": "The spaceship flying away into the starry sky, leaving a trail of stardust. The child is smiling happily in the cockpit.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           },
+           { 
+             "id": "space_002_p8_v3", 
+             "text": "Uzaylı ailesi tebessümle arkasından bakarken, {{child.name}} en güzel hayallere doğru sonsuz uzayda parlayarak süzülmüş.", 
+             "visualScene": "A beautiful view from the planet looking up at the sky. The child's spaceship looks like a bright shooting star zooming across the galaxy.",
+             "requiredSlots": ["child.name"], "optionalSlots": [], "stateRequirements": [], "stateChanges": []
+           }
+        ]
+      }
+    ]
+  }
+}

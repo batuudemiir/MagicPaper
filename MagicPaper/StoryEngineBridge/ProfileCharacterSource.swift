@@ -7,10 +7,10 @@ import CharacterEngine
 /// vision step, so the identity is whatever a parent entered plus the reference
 /// photo the app already uploads — deliberately sparse rather than guessed.
 /// Every descriptor here is `.parentProvided`; nothing is inferred from a face.
-public struct ProfileCharacterSource {
+struct ProfileCharacterSource {
     private let fileManager: FileManagerService
 
-    public init(fileManager: FileManagerService = .shared) {
+    init(fileManager: FileManagerService = .shared) {
         self.fileManager = fileManager
     }
 
@@ -18,7 +18,7 @@ public struct ProfileCharacterSource {
     ///
     /// `referenceLocator` should be the remote URL the app uploaded the photo
     /// to, because the image provider conditions on it directly.
-    public func makeProfile(
+    func makeProfile(
         from profile: UserProfile,
         referenceLocator: String?,
         pronouns: Pronouns,
@@ -71,7 +71,7 @@ public struct ProfileCharacterSource {
 
     /// Appends a new identity version rather than editing the old one, so books
     /// already generated keep resolving to the child they were drawn with.
-    public func updating(
+    func updating(
         _ profile: CharacterProfile,
         referenceLocator: String?,
         descriptors: [CharacterDescriptor],

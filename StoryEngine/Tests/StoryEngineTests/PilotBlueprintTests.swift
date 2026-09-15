@@ -1,0 +1,327 @@
+import XCTest
+@testable import StoryEngine
+
+/// Phase 3, Pilot A — Family II (The Threshold).
+///
+/// The first blueprint authored against the beat architecture. Until it
+/// existed, every claim the architecture makes about authorability was
+/// unexercised: the reference arcs in `BeatVocabularyTests` are transcriptions
+/// of the design document, checked against rules the same document defines. A
+/// pilot is the first content written *by* the schema rather than *as* the
+/// schema, and the first chance for the two to disagree.
+final class PilotBlueprintTests: XCTestCase {
+
+    // MARK: - Loading
+
+    /// `.process("Resources")` flattens subdirectories, so the authored path
+    /// `Resources/blueprints/…` ships at the bundle root. Verified from the
+    /// built `.app` in I1; asserted here so a change to that behaviour surfaces
+    /// as a named failure rather than a missing blueprint.
+    private func loadPilots() throws -> [CatalogBlueprint] {
+        let url = try XCTUnwrap(
+            Bundle.module.url(forResource: "pilot_threshold_v1", withExtension: "json"),
+            "Pilot blueprint resource is not in the package bundle."
+        )
+        struct File: Decodable { let blueprints: [CatalogBlueprint] }
+        let data = try Data(contentsOf: url)
+        return try JSONDecoder().decode(File.self, from: data).blueprints
+    }
+
+    private func pilot() throws -> CatalogBlueprint {
+        let all = try loadPilots()
+        XCTAssertEqual(all.count, 1)
+        return try XCTUnwrap(all.first)
+    }
+
+    func testPilotDecodes() throws {
+        let blueprint = try pilot()
+        XCTAssertEqual(blueprint.id.rawValue, "blueprint_threshold_crossing_001")
+        XCTAssertEqual(blueprint.family, .threshold)
+        XCTAssertEqual(blueprint.pageCount, 8)
+        XCTAssertEqual(blueprint.pagePlan.count, 8)
+        XCTAssertEqual(blueprint.ageRange.description, "5-6")
+    }
+
+    // MARK: - Structure
+
+    func testEveryPageDeclaresABeatAndAnEmotion() throws {
+        let blueprint = try pilot()
+        XCTAssertTrue(blueprint.isBeatAuthored, "A pilot that is not beat-authored is not selectable.")
+        for slot in blueprint.pagePlan {
+            XCTAssertNotNil(slot.emotion, "Page \(slot.pageNumber) declares no emotion.")
+        }
+        XCTAssertEqual(blueprint.pagePlan.map(\.pageNumber).sorted(), Array(1...8))
+    }
+
+    func testPageRolesFollowTheMvpArc() throws {
+        let blueprint = try pilot()
+        XCTAssertEqual(blueprint.roleSequence, PageRole.mvpArc)
+    }
+
+    /// The whole point of the beat model: this is the only rule that decides
+    /// whether authored content is coherent, and it must pass unaided.
+    func testPilotPassesTheBeatSequenceValidator() throws {
+        let blueprint = try pilot()
+        let result = BeatSequenceValidator().validate(
+            blueprint.beatSlots,
+            conflictMechanism: blueprint.family?.conflict
+        )
+        XCTAssertTrue(
+            result.isValid,
+            "Pilot violates: " + result.issues.map { "p\($0.pageNumber) \($0.code): \($0.message)" }
+                .joined(separator: " | ")
+        )
+        XCTAssertTrue(result.finalState.isResolved)
+    }
+
+    func testResolutionLandsOnPageSeven() throws {
+        let blueprint = try pilot()
+        let result = BeatSequenceValidator().validate(
+            blueprint.beatSlots,
+            conflictMechanism: blueprint.family?.conflict
+        )
+        let resolvedPage = result.statesByPage.filter { $0.value.isResolved }.keys.min()
+        XCTAssertEqual(resolvedPage, 7)
+        XCTAssertFalse(result.statesByPage[6]?.isResolved ?? true, "Page 6 must not have resolved yet.")
+    }
+
+    // MARK: - Family identity
+
+    func testPilotCarriesFamilyTwosMechanismTriple() throws {
+        let family = try XCTUnwrap(pilot().family)
+        XCTAssertEqual(family.curiosity, .barrierWithSomethingBeyond)
+        XCTAssertEqual(family.conflict, .interior)
+        XCTAssertEqual(family.resolution, .incrementalCourage)
+    }
+
+    /// Family II's conflict is the child's own reluctance. If the interior
+    /// beats were dropped the arc would still validate — `hesitate` and
+    /// `find_own_courage` are not structurally mandatory — and the story would
+    /// quietly become a different family. Phase 1 found exactly this failure in
+    /// the shipped corpus, where the fear belongs to the companion.
+    func testTheConflictBelongsToTheChild() throws {
+        let beats = Set(try pilot().beatSlots.flatMap(\.beats))
+        XCTAssertTrue(beats.contains(.hesitate), "Nothing names the child's reluctance.")
+        XCTAssertTrue(beats.contains(.findOwnCourage), "The courage is not the child's own.")
+        XCTAssertFalse(beats.contains(.cooperativeEffort), "Cooperation is Family III's resolution.")
+        XCTAssertFalse(beats.contains(.askForHelp), "Asking transfers the interior work away from the child.")
+    }
+
+    /// A pilot has to be a *blueprint*, not a copy of the document's worked
+    /// example. If it were identical, it would prove only that the fixture
+    /// round-trips.
+    func testPilotIsNotTheReferenceArc() throws {
+        let referenceFamilyTwo: [StoryBeat] = [
+            .noticeAnomaly, .approach, .meetCompanion, .hesitate,
+            .smallStep, .findOwnCourage, .succeed, .selfRecognize, .warmClose
+        ]
+        let pilotBeats = try pilot().beatSlots.flatMap(\.beats)
+        XCTAssertNotEqual(pilotBeats, referenceFamilyTwo)
+        // It differs by the two beats that make it a distinct variant: the
+        // companion offers, and the child commits before the hesitation is
+        // overcome rather than after.
+        XCTAssertTrue(pilotBeats.contains(.companionOffers))
+        XCTAssertTrue(pilotBeats.contains(.commit))
+    }
+
+    // MARK: - Emotional arc
+
+    func testArcStaysWithinTheAgeFiveCeilingAndLandsSettled() throws {
+        let emotions = try pilot().pagePlan
+            .sorted { $0.pageNumber < $1.pageNumber }
+            .compactMap(\.emotion)
+        XCTAssertEqual(emotions.count, 8)
+        for emotion in emotions {
+            XCTAssertLessThanOrEqual(emotion.intensity, 2, "'\(emotion.rawValue)' exceeds the ceiling.")
+        }
+        XCTAssertTrue(try XCTUnwrap(emotions.last).isPermittedLanding)
+    }
+
+    func testTensionNeverRunsForThreeConsecutivePages() throws {
+        let emotions = try pilot().pagePlan
+            .sorted { $0.pageNumber < $1.pageNumber }
+            .compactMap(\.emotion)
+        var run = 0
+        for emotion in emotions {
+            run = emotion.intensity >= 2 ? run + 1 : 0
+            XCTAssertLessThanOrEqual(run, 2, "Three consecutive tense pages in a bedtime story.")
+        }
+    }
+
+    // MARK: - Compatibility (§8)
+
+    func testPilotDeclaresWhatItNeedsAndWhatItCannotHave() throws {
+        let blueprint = try pilot()
+        XCTAssertEqual(blueprint.requires.setting, [.hasThreshold])
+        XCTAssertEqual(blueprint.requires.companion, [.canReassure])
+        XCTAssertEqual(blueprint.requires.discovery, [.isUnexplained, .emitsSignal])
+        XCTAssertEqual(blueprint.forbids.companion, [.canFly, .canCarry])
+        XCTAssertTrue(blueprint.contradictoryTraits.isEmpty)
+    }
+
+    /// The exclusion has to do real work, or it is decoration. A companion that
+    /// can carry the child across the threshold dissolves the premise without
+    /// breaking anything — the story still generates, it is just no longer this
+    /// story.
+    func testACarryingCompanionIsRejected() throws {
+        let blueprint = try pilot()
+        let owl: Set<CompanionTrait> = [.canReassure, .hasLocalKnowledge, .canFly]
+        XCTAssertFalse(TraitMatch.admits(
+            offered: owl,
+            required: blueprint.requires.companion,
+            forbidden: blueprint.forbids.companion
+        ))
+        XCTAssertEqual(
+            TraitMatch.rejection(offered: owl,
+                                 required: blueprint.requires.companion,
+                                 forbidden: blueprint.forbids.companion),
+            "offers forbidden canFly"
+        )
+    }
+
+    func testAReassuringGroundedCompanionIsAccepted() throws {
+        let blueprint = try pilot()
+        let fox: Set<CompanionTrait> = [.canReassure, .hasLocalKnowledge, .isPlayful]
+        XCTAssertTrue(TraitMatch.admits(
+            offered: fox,
+            required: blueprint.requires.companion,
+            forbidden: blueprint.forbids.companion
+        ))
+        XCTAssertNil(TraitMatch.rejection(offered: fox,
+                                          required: blueprint.requires.companion,
+                                          forbidden: blueprint.forbids.companion))
+    }
+
+    /// §16 asks each pilot to be instantiable against the Phase 4 matrix. It is
+    /// admitted by two of the five rows, and the three rejections are each for
+    /// a stated reason — which is the behaviour §8.4 requires in place of a
+    /// silent unfiltered fallback.
+    func testPilotAgainstThePhaseFourMatrix() throws {
+        let blueprint = try pilot()
+        struct Row {
+            let name: String
+            let setting: Set<SettingTrait>
+            let companion: Set<CompanionTrait>
+            let discovery: Set<DiscoveryTrait>
+        }
+        let matrix: [Row] = [
+            .init(name: "forest+fox+light",
+                  setting: [.hasThreshold, .canConceal, .isEnclosed],
+                  companion: [.canReassure, .hasLocalKnowledge, .isPlayful],
+                  discovery: [.isUnexplained, .emitsSignal]),
+            .init(name: "mountain+owl+footprints",
+                  setting: [.hasThreshold, .hasHeight, .hasDistance],
+                  companion: [.canReassure, .hasLocalKnowledge, .canFly],
+                  discovery: [.impliesPresence, .isFragmentary]),
+            .init(name: "garden+hedgehog+sound",
+                  setting: [.hasThreshold, .isTended, .canConceal],
+                  companion: [.canReassure, .canHesitate, .isSmallAndVulnerable],
+                  discovery: [.isUnexplained, .emitsSignal, .impliesNeed]),
+            .init(name: "sea+dolphin+shell",
+                  setting: [.hasWater, .isOpen, .hasDistance],
+                  companion: [.canReassure, .canCarry, .isPlayful],
+                  discovery: [.isBeautiful, .impliesPresence]),
+            .init(name: "forest+rabbit+map",
+                  setting: [.hasThreshold, .canConceal, .isEnclosed],
+                  companion: [.canHesitate, .isSmallAndVulnerable],
+                  discovery: [.isFragmentary, .impliesPresence])
+        ]
+
+        var admitted: [String] = []
+        var rejected: [String: [String]] = [:]
+        for row in matrix {
+            let reasons = [
+                TraitMatch.rejection(offered: row.setting,
+                                     required: blueprint.requires.setting,
+                                     forbidden: blueprint.forbids.setting).map { "setting \($0)" },
+                TraitMatch.rejection(offered: row.companion,
+                                     required: blueprint.requires.companion,
+                                     forbidden: blueprint.forbids.companion).map { "companion \($0)" },
+                TraitMatch.rejection(offered: row.discovery,
+                                     required: blueprint.requires.discovery,
+                                     forbidden: blueprint.forbids.discovery).map { "discovery \($0)" }
+            ].compactMap { $0 }
+            if reasons.isEmpty { admitted.append(row.name) } else { rejected[row.name] = reasons }
+        }
+
+        XCTAssertEqual(admitted, ["forest+fox+light", "garden+hedgehog+sound"])
+        XCTAssertEqual(rejected["mountain+owl+footprints"]?.count, 2)   // flying companion, and a discovery that does not signal
+        XCTAssertEqual(rejected["sea+dolphin+shell"]?.count, 3)         // no threshold, a carrying companion, a silent discovery
+        XCTAssertEqual(rejected["forest+rabbit+map"]?.count, 2)         // nothing reassures, and the map does not signal
+        XCTAssertFalse(admitted.isEmpty, "§8.4: a blueprint no content can satisfy is a build failure.")
+    }
+
+    // MARK: - Titles (§9)
+
+    /// The titles are the reason the resolver had to be finished first.
+    /// `T2_achievement` is built on locative + `-ki`, which until now was
+    /// unrecognised — authoring these against the old resolver would have baked
+    /// "Orman'nde" into the corpus.
+    func testEveryTitlePatternRendersCleanlyForBothKindsOfSettingName() throws {
+        let blueprint = try pilot()
+        XCTAssertFalse(blueprint.titlePatterns.isEmpty, "A pilot with no titles cannot be published.")
+
+        let settings: [(String, TurkishTextRenderer.Slot)] = [
+            ("plain proper noun",
+             .init("Fısıldayan Orman", isProperNoun: true)),
+            ("possessive proper noun",
+             .init("Gece Bahçesi", isProperNoun: true, hasPossessiveEnding: true))
+        ]
+
+        for (label, setting) in settings {
+            for pattern in blueprint.titlePatterns {
+                let result = TurkishTextRenderer.render(pattern, slots: [
+                    "child.name": .init("Yeliz", isProperNoun: true),
+                    "setting.name": setting
+                ])
+                XCTAssertTrue(
+                    result.isClean,
+                    "\(label) / '\(pattern)' → missing \(result.missingSlots), "
+                    + "unrecognised \(result.unrecognisedSuffixes)"
+                )
+                XCTAssertFalse(result.text.contains("{{"), "Unsubstituted token in '\(result.text)'")
+            }
+        }
+    }
+
+    func testTitlesReadCorrectlyForAPlainProperNoun() throws {
+        let blueprint = try pilot()
+        let slots: [String: TurkishTextRenderer.Slot] = [
+            "child.name": .init("Yeliz", isProperNoun: true),
+            "setting.name": .init("Fısıldayan Orman", isProperNoun: true)
+        ]
+        let rendered = blueprint.titlePatterns.map { TurkishTextRenderer.render($0, slots: slots).text }
+        XCTAssertEqual(rendered, [
+            "Yeliz ve Fısıldayan Orman'daki Işık",
+            "Yeliz'in Fısıldayan Orman'daki Cesur Adımı",
+            "Fısıldayan Orman'a Cesur Yolculuk"
+        ])
+    }
+
+    func testTitlesReadCorrectlyForAPossessiveProperNoun() throws {
+        let blueprint = try pilot()
+        let slots: [String: TurkishTextRenderer.Slot] = [
+            "child.name": .init("Demir", isProperNoun: true),
+            "setting.name": .init("Gece Bahçesi", isProperNoun: true, hasPossessiveEnding: true)
+        ]
+        let rendered = blueprint.titlePatterns.map { TurkishTextRenderer.render($0, slots: slots).text }
+        XCTAssertEqual(rendered, [
+            "Demir ve Gece Bahçesi'ndeki Işık",
+            "Demir'in Gece Bahçesi'ndeki Cesur Adımı",
+            "Gece Bahçesi'ne Cesur Yolculuk"
+        ])
+    }
+
+    // MARK: - Isolation
+
+    /// D2: V1 content is preserved until migration is verified. The pilot is a
+    /// separate resource and must not have been merged into the shipped
+    /// catalog.
+    func testPilotIsNotYetMergedIntoTheShippedCatalog() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        XCTAssertNil(
+            catalog.blueprints.first { $0.id.rawValue == "blueprint_threshold_crossing_001" },
+            "The pilot was merged into V1 content before its variants exist."
+        )
+    }
+}

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E00000000000000000005 /* StoryEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 5E00000000000000000002 /* StoryEngine */; };
+		5E00000000000000000006 /* CharacterEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 5E00000000000000000003 /* CharacterEngine */; };
+		5E00000000000000000007 /* VisualSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 5E00000000000000000004 /* VisualSystem */; };
+		2D025C833055D26300BABB08 /* adventure_01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D025C7C3055D26300BABB08 /* adventure_01.json */; };
 		2D17EC672F32095E00DE28F8 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17EC662F32095E00DE28F8 /* ParentalGateView.swift */; };
 		2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */; };
 		2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C52272F2CA9A30087A82F /* OnboardingView.swift */; };
@@ -47,9 +51,11 @@
 		A10000010000000000000077 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000078 /* ProfileManager.swift */; };
 		A10000010000000000000079 /* ProfileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007A /* ProfileSelectorView.swift */; };
 		A1000001000000000000007B /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007C /* ProfileCreationView.swift */; };
+		C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D025C7C3055D26300BABB08 /* adventure_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = adventure_01.json; sourceTree = "<group>"; };
 		2D17EC662F32095E00DE28F8 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		2D2DE9B72F49CCE80012EF4A /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = Products.storekit; path = MagicPaper/Products.storekit; sourceTree = "<group>"; };
 		2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
@@ -90,9 +96,11 @@
 		A10000010000000000000078 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		A1000001000000000000007A /* ProfileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectorView.swift; sourceTree = "<group>"; };
 		A1000001000000000000007C /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
+		B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = shared_content_library_v2.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5E00000000000000000008 /* StoryEngineBridge */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StoryEngineBridge; sourceTree = "<group>"; };
 		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
 		2DDE500000000000000000A2 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
 		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
@@ -103,6 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E00000000000000000005 /* StoryEngine in Frameworks */,
+				5E00000000000000000006 /* CharacterEngine in Frameworks */,
+				5E00000000000000000007 /* VisualSystem in Frameworks */,
 				A10000010000000000000040 /* FirebaseCore in Frameworks */,
 				A10000010000000000000041 /* FirebaseStorage in Frameworks */,
 				2DB76A672F4911DA00DE621B /* RevenueCat in Frameworks */,
@@ -113,6 +124,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20D25BA5457E0E7260E45BA4 /* v2 */ = {
+			isa = PBXGroup;
+			children = (
+				B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */,
+			);
+			path = v2;
+			sourceTree = "<group>";
+		};
+		2D025C7B3055D26300BABB08 /* offline */ = {
+			isa = PBXGroup;
+			children = (
+				20D25BA5457E0E7260E45BA4 /* v2 */,
+			);
+			path = offline;
+			sourceTree = "<group>";
+		};
+		2D025C7D3055D26300BABB08 /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				2D025C7B3055D26300BABB08 /* offline */,
+				2D025C7C3055D26300BABB08 /* adventure_01.json */,
+			);
+			path = templates;
+			sourceTree = "<group>";
+		};
 		2DB76A652F4911DA00DE621B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +168,12 @@
 				2DE729782F2E3D0100CD275E /* Helpers */,
 				2DDE500000000000000000A1 /* DesignSystem */,
 				2DDE500000000000000000A2 /* Screens */,
+				5E00000000000000000008 /* StoryEngineBridge */,
 				A10000010000000000000006 /* Assets.xcassets */,
 				A10000010000000000000020 /* Info.plist */,
 				A1000001000000000000003B /* GoogleService-Info.plist */,
 				A10000010000000000000023 /* Preview Content */,
+				2D025C7D3055D26300BABB08 /* templates */,
 			);
 			path = MagicPaper;
 			sourceTree = "<group>";
@@ -237,10 +275,14 @@
 				2DDE500000000000000000A1 /* DesignSystem */,
 				2DDE500000000000000000A2 /* Screens */,
 				2DE729782F2E3D0100CD275E /* Helpers */,
+				5E00000000000000000008 /* StoryEngineBridge */,
 			);
 			name = MagicPaper;
 			packageProductDependencies = (
 				A10000010000000000000042 /* FirebaseCore */,
+				5E00000000000000000002 /* StoryEngine */,
+				5E00000000000000000003 /* CharacterEngine */,
+				5E00000000000000000004 /* VisualSystem */,
 				A10000010000000000000043 /* FirebaseStorage */,
 				2DB76A662F4911DA00DE621B /* RevenueCat */,
 				2DB76A6A2F49130100DE621B /* RevenueCatUI */,
@@ -274,6 +316,7 @@
 			);
 			mainGroup = A10000010000000000000028;
 			packageReferences = (
+				5E00000000000000000001 /* XCLocalSwiftPackageReference "StoryEngine" */,
 				A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
@@ -292,8 +335,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000010000000000000007 /* Preview Assets.xcassets in Resources */,
+				2D025C833055D26300BABB08 /* adventure_01.json in Resources */,
 				A10000010000000000000005 /* Assets.xcassets in Resources */,
 				A1000001000000000000003A /* GoogleService-Info.plist in Resources */,
+				C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +612,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		5E00000000000000000001 /* XCLocalSwiftPackageReference "StoryEngine" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = StoryEngine;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -587,6 +639,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5E00000000000000000002 /* StoryEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = StoryEngine;
+		};
+		5E00000000000000000003 /* CharacterEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharacterEngine;
+		};
+		5E00000000000000000004 /* VisualSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VisualSystem;
+		};
 		2DB76A662F4911DA00DE621B /* RevenueCat */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;

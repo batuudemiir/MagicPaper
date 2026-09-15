@@ -1,0 +1,360 @@
+{
+  "blueprint": {
+    "id": "adventure_courage_footprints_005",
+    "genre": "adventure",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "moderate",
+    "emotionalTone": "wonder and warmth",
+    "visualStyle": "warm_watercolor",
+    "safetyMetadata": {
+      "contentRating": "safe",
+      "conflictType": "helping_lost_friend",
+      "resolution": "positive",
+      "scarinessLevel": "minimal"
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Işıltılı Ayak İzleri",
+      "Parlayan Kristallerin İzi",
+      "{{child.name}}'nin Ejderha Kurtarması",
+      "Parlak Yolu Takip Ederken"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "narrativePurpose": "Introduce the unusual sparkly footprints after a rain.",
+        "variants": [
+          {
+            "id": "footprints_005_p1_v1",
+            "text": "Yağmur durdu ve geride derin, vıcık vıcık bir çamur bıraktı. Ama tam bir su birikintisinin ortasında, {{child.name}} inanılmaz bir şey gördü. Uzun otlara doğru giden ışıltılı, parlayan ayak izleri vardı!",
+            "visualScene": "Çamurlu bir su birikintisine merakla bakan bir çocuk, uzaklaşan parlayan kristal ayak izleri var.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p1_v2",
+            "text": "Şıp, şap! {{child.name}} yağmurdan sonra su birikintilerinde zıplıyordu. Aniden, garip bir iz gözüne çarptı. Bunlar çamurlu bot izleri değildi, güneş ışığında parlıyor ve ışıl ışıl yanıp sönüyorlardı.",
+            "visualScene": "Yağmur çizmeli bir çocuk su birikintisinin yanında duruyor ve çamurdaki parlayan ayak izlerini işaret ediyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p1_v3",
+            "text": "{{child.name}} büyük bir yağmur fırtınasından sonra keşfe çıkmayı çok severdi. Bugün, çamur harika bir sır saklıyordu. Minik parıltılardan oluşan küçük parlayan izler evden uzağa doğru gidiyordu.",
+            "visualScene": "Evin dışındaki toprakta diz çökmüş bir çocuk, ıslak zemindeki ışıltılı izleri yakından inceliyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "discovery",
+        "narrativePurpose": "The child follows the trail through the tall grass.",
+        "variants": [
+          {
+            "id": "footprints_005_p2_v1",
+            "text": "Parlak yolu takip edip uzun yeşil otların arasına girmek çok heyecan vericiydi! Her bir ayak izi {{child.favoriteColor}} renkte parlıyordu. İzler, fokurdayan küçük bir derenin yanından geçip uzayıp gidiyordu.",
+            "visualScene": "Çok uzun otların arasında yürüyen bir çocuk, küçük bir derenin yanındaki parlayan ayak izlerini takip ediyor.",
+            "requiredSlots": [],
+            "optionalSlots": [
+              "child.favoriteColor"
+            ],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p2_v2",
+            "text": "Ayak izleri nereye gidiyor olabilirdi? Bunu öğrenmenin tek bir yolu vardı! Çayırda parmak uçlarında yürürken, parlak adımlar yeşil yaprakların arasında güzelce parlıyor ve bahçenin derinliklerine doğru ilerliyordu.",
+            "visualScene": "Yemyeşil bir çayırda dikkatlice parmak uçlarında yürüyen bir çocuk, gözlerini önündeki parlayan izlerden ayırmıyor.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p2_v3",
+            "text": "Adım adım, parıldayan işaretler yolu gösterdi. Minik bir derenin üzerinden atlamak ve uzun otların arasından geçmek, parlak renkleri takip etmek bu kadar güzelken çok kolaydı.",
+            "visualScene": "Küçük bir derenin üzerinden atlamakta olan bir çocuk ve uzun sazlıkların arasında yolu gösteren parlayan ayak izleri.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "companion",
+        "narrativePurpose": "Discovering the friendly little dragon making the footprints.",
+        "variants": [
+          {
+            "id": "footprints_005_p3_v1",
+            "text": "Sessiz bir açıklıkta, {{child.name}} cevabı buldu! Bir kayanın üzerinde oturan, {{companion.name}} adında küçük ve sevimli bir {{companion.type}} vardı. Ayaklarını her hareket ettirdiğinde toprakta minik kristaller beliriyordu.",
+            "visualScene": "Bir açıklığa bakan çocuk, kayanın üzerinde oturan küçük, sevimli bir ejderhayı ve ayaklarının altında oluşan kristalleri görüyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p3_v2",
+            "text": "İşte, ağaçların oluşturduğu bir çemberin içinde sürpriz saklıydı. {{companion.name}} adında tatlı küçük bir {{companion.type}} orada dinleniyordu. Ayak parmaklarını oynattığında, yerde küçük ışıltılı kristaller ortaya çıkıyordu!",
+            "visualScene": "Küçük sevimli bir ejderha ayak parmaklarını oynatarak kristal parıltılar bırakıyor ve çocuk hayranlıkla onu izliyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p3_v3",
+            "text": "Parlak iz, yumuşacık bir yosun parçasının yanında sona erdi. Yosunun üzerinde nazik bir {{companion.type}} olan {{companion.name}} oturuyordu. Nereye yürüse güzel kristallerden bir iz bırakan sihirli ayakları vardı.",
+            "visualScene": "Yosunların üzerinde oturan, etrafı minik kristal ayak izleriyle çevrili nazik küçük bir ejderha. Bir çocuk yavaşça yaklaşıyor.",
+            "requiredSlots": [
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "narrativePurpose": "The dragon is lost because the rain washed away its scent trail.",
+        "variants": [
+          {
+            "id": "footprints_005_p4_v1",
+            "text": "Ama {{companion.name}} çok üzgün görünüyordu. Şiddetli yağmur, ejderhaların büyük dağdaki evlerinin yolunu bulmalarına yardım eden tüm o tanıdık kokuları alıp götürmüştü. Şimdi tamamen kaybolmuştu.",
+            "visualScene": "Üzgün ​​görünümlü küçük bir ejderha çaresizce çamurlu yeri işaret ederken, çocuk endişeli bir şekilde bakıyor.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p4_v2",
+            "text": "\"Dağımı bulamıyorum,\" diyerek burnunu çekti {{companion.name}}. \"Yağmur koku izimi yıkayıp götürdü!\" {{child.name}}, yeni arkadaşının ailesine dönmesine yardım etmek istedi.",
+            "visualScene": "Yıkanıp gitmiş çamurlu bir yolun kenarında oturan ağlayan küçük bir ejderha. Çocuk ejderhanın sırtını teselli etmek için okşuyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p4_v3",
+            "text": "Zavallı {{companion.type}} yeri koklamaya çalışıyordu ama yağmur her şeyi temizlemişti. Takip edilecek bir koku olmayınca, {{companion.name}} dağdaki evini bulmak için hangi yöne yürüyeceğini bilmiyordu.",
+            "visualScene": "Küçük bir ejderha şaşkın bir ifadeyle ıslak otları kokluyor, yanında derin derin düşünen bir çocuk var.",
+            "requiredSlots": [
+              "companion.type",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "attempt",
+        "narrativePurpose": "They try to find the mountain by climbing a tree, but clouds block the view.",
+        "variants": [
+          {
+            "id": "footprints_005_p5_v1",
+            "text": "\"Hadi yüksekten bakalım!\" dedi {{child.name}}. Ormanın ötesini görmek için sağlam bir meşe ağacına dikkatlice tırmandılar. Ama kalın, pofuduk bulutlar büyük dağı saklıyordu.",
+            "visualScene": "Büyük bir ağacın dallarından dışarı bakan ve kalın beyaz bulutlardan oluşan bir duvara bakan bir çocuk ve küçük bir ejderha.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p5_v2",
+            "text": "{{child.name}}'nin cesur bir fikri vardı. Dağın zirvesini görüp göremeyeceklerini anlamak için {{companion.name}}'yi uzun bir ağaca çıkardılar. Ne yazık ki gökyüzü çok bulutluydu ve uzaktaki hiçbir şey görünmüyordu.",
+            "visualScene": "Küçük bir ejderhayı nazikçe ağaç gövdesine doğru iten bir çocuk. Tepelerinde gökyüzü yoğun gri bulutlarla dolu.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p5_v3",
+            "text": "Belki büyük çam ağacının tepesinden dağı görebilirlerdi! {{child.name}} ve {{companion.type}} yukarı, daha da yukarı tırmandılar. Ama tek gördükleri, uzakları kaplayan yumuşak, gri bulutlardı.",
+            "visualScene": "Çam ağacının tepesinde, sisli ve bulutlu ufka hayal kırıklığıyla bakan bir çocuk ve ejderha.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "challenge",
+        "narrativePurpose": "Child realizes they can follow the crystal footprints backward.",
+        "variants": [
+          {
+            "id": "footprints_005_p6_v1",
+            "text": "Sonra, {{child.name}}'nin aklına harika bir fikir geldi. Yağmur kokuları alıp götürmüştü ama sihirli kristalleri götürmemişti! Sadece {{companion.name}}'nin eski parlak izlerini geriye doğru takip etmeleri gerekiyordu.",
+            "visualScene": "Bir 'aha!' anında parmağını kaldıran çocuk, aşağıda ejderhanın eski kristal ayak izlerini işaret ediyor.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p6_v2",
+            "text": "\"Bekle!\" diye sevinçle bağırdı {{child.name}}. \"Ayaklarına bak!\" Sihirli kristaller hala çamurun içinde parlıyordu. Kristal yol boyunca geriye doğru yürürlerse, yol onları tam olarak {{companion.name}}'nin yola çıktığı yere götürürdü.",
+            "visualScene": "Pırıl pırıl gülümseyen ve ejderhanın ayaklarını ve ormana doğru giden kristal izini işaret eden bir çocuk.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p6_v3",
+            "text": "Koku gitmişti ama parıltılar yerindeydi! {{child.name}}, en eski kristal izlerinin kayalık tepelere doğru gittiğini gördü. Yolu bulmak için bu parlak izi kullanabilirlerdi.",
+            "visualScene": "Çamurdaki eski ve soluk bir kristal ayak izini inceleyen çocuk, ejderha umutla bakıyor.",
+            "requiredSlots": [
+              "child.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "narrativePurpose": "They follow the trail and find the mountain and the dragon's family.",
+        "variants": [
+          {
+            "id": "footprints_005_p7_v1",
+            "text": "Birlikte, parlayan yol boyunca geriye doğru yürüdüler. Bu çok fazla cesaret gerektirdi ama kısa süre sonra bulutlar dağıldı. İşte büyük dağ oradaydı ve {{companion.name}}'nin ailesi mutlu kükremelerle onları bekliyordu!",
+            "visualScene": "Güneşli bir dağın eteklerine varan ve daha büyük ejderhalar tarafından karşılanan bir çocuk ve ejderha.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p7_v2",
+            "text": "Ormanın dışına çıkana kadar en eski parıltıları cesurca takip ettiler. Aniden, büyük dağ belirdi! {{companion.name}}, büyük ejderha anne ve babasına sarılmak için sevinçle koştu.",
+            "visualScene": "Küçük bir ejderha, dağın yanındaki daha büyük ejderhalara doğru mutlulukla koşuyor, çocuk da onu sevinçle izliyor.",
+            "requiredSlots": [
+              "companion.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p7_v3",
+            "text": "Kristal izlerini takip etmek tıpkı bir haritayı izlemek gibiydi. Kayalık dağın eteklerine ulaşana kadar yolu {{child.name}} gösterdi. {{companion.type}}'nin ailesi onları gördüğüne çok sevinmişti!",
+            "visualScene": "Küçük bir ejderhayı ormandan çıkarıp, yetişkin ejderhaların beklediği kayalık bir dağa doğru götüren bir çocuk.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "emotional_ending",
+        "narrativePurpose": "Dragon gives child a crystal gift, child goes home happy.",
+        "variants": [
+          {
+            "id": "footprints_005_p8_v1",
+            "text": "Veda etmeden önce, {{companion.name}} güzel bir {{object.name}}'yi {{child.name}}'nin eline tutuşturdu. Eve yürürken küçük kristal, cesur bir maceranın mükemmel bir anısı olarak cebinde sıcacık parlıyordu.",
+            "visualScene": "Gün batımında eve yürüyen ve elinde parlak bir şekilde parlayan kristal tutan bir çocuk.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p8_v2",
+            "text": "Teşekkür etmek için minnettar {{companion.type}}, {{child.name}}'ye parlayan özel bir {{object.name}} verdi. Tüm yol boyunca yüzündeki kocaman bir gülümsemeyle, parlak hazine sıcacık ellerde güvende kaldı.",
+            "visualScene": "Gülümseyen bir çocuğa parlayan kristal bir nesne uzatan küçük bir ejderha.",
+            "requiredSlots": [
+              "child.name",
+              "companion.type",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "footprints_005_p8_v3",
+            "text": "{{companion.name}}, {{child.name}}'ye sarıldı ve sihirli bir {{object.name}} uzattı. Bu, kristallerin en parlağıydı! Kendini çok cesur ve çok mutlu hissederek eve dönerken, bu macera sonsuza dek hatırlanacak bir anı oldu.",
+            "visualScene": "Ejderhalara el sallayan bir çocuk, kristal nesnenin saklandığı parlayan bir cebi var.",
+            "requiredSlots": [
+              "child.name",
+              "companion.name",
+              "object.name"
+            ],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

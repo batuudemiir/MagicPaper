@@ -1,0 +1,298 @@
+{
+  "blueprint": {
+    "id": "adventure_courage_bridge_002",
+    "genre": "adventure",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "moderate",
+    "emotionalTone": "tender and encouraging",
+    "visualStyle": "warm_watercolor",
+    "safetyMetadata": {
+      "contentRating": "safe",
+      "conflictType": "helping_friend_overcome_fear",
+      "resolution": "positive",
+      "scarinessLevel": "minimal"
+    },
+    "titlePatterns": [
+      "{{child.name}} ve Mehtaplı Köprü",
+      "{{child.name}} İçin Cesur Geçiş",
+      "{{child.name}}'nin Cesur Adımları",
+      "{{child.name}} ile Mehtaplı Bir Kurtarma"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "narrativePurpose": "Child walks along a stream at twilight, hears a small sound",
+        "variants": [
+          {
+            "id": "bridge_002_p1_v1",
+            "text": "Gökyüzü yumuşak bir {{child.favoriteColor}} rengine dönerken {{child.name}} sakin derenin kenarında yürüyordu. Cırcır böcekleri akşam için sessiz bir şarkı söylüyordu. Aniden suyun yakınından minik bir burun çekme sesi geldi.",
+            "visualScene": "Gökyüzünde {{child.favoriteColor}} tonları olan sakin bir derenin kenarında alacakaranlık manzarası. {{child.name}} dere kenarında yürüyor, meraklı görünüyor.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["child.favoriteColor"],
+            "stateRequirements": [],
+            "stateChanges": ["location=streamside"]
+          },
+          {
+            "id": "bridge_002_p1_v2",
+            "text": "{{child.name}}, şırıldayan derenin kenarında huzurlu bir akşamüstü yürüyüşünün tadını çıkarıyordu. İlk yıldızlar {{child.favoriteColor}} rengi gökyüzünde belirmeye başladı. Hemen ileride, sessizliği bölen yumuşak bir ses duyuldu.",
+            "visualScene": "{{child.name}} alacakaranlıkta şırıldayan bir derenin kenarında geziniyor, ilgiyle ileriye bakıyor. Gökyüzü {{child.favoriteColor}} renginde ve ilk yıldızlar görünür.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["child.favoriteColor"],
+            "stateRequirements": [],
+            "stateChanges": ["location=streamside"]
+          },
+          {
+            "id": "bridge_002_p1_v3",
+            "text": "Gündüz ile gece arasındaki o çok güzel zamandı, {{child.favoriteColor}} tonlarına boyanmıştı. {{child.name}} yavaşça akan suyun yanında dolaşıyordu. İlerideki yoldan küçük, üzgün bir ses yankılandı.",
+            "visualScene": "Yavaşça akan bir su deresinin yanında güzel bir alacakaranlık manzarası. {{child.name}} dolaşıyor ve bir sesi dinlemek için duraklıyor. Gökyüzü {{child.favoriteColor}} renklerinde.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["child.favoriteColor"],
+            "stateRequirements": [],
+            "stateChanges": ["location=streamside"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "discovery",
+        "narrativePurpose": "Finds a narrow old wooden bridge with interesting carvings",
+        "variants": [
+          {
+            "id": "bridge_002_p2_v1",
+            "text": "Sesi takip eden {{child.name}}, suyun üzerinden geçen eski ahşap bir köprü keşfetti. Ahşap kalasları aşınmıştı ve korkuluklarına güzel yıldızlar ile aylar oyulmuştu.",
+            "visualScene": "{{child.name}} derenin üzerinde dar, eski ahşap bir köprü keşfediyor. Köprünün korkuluklarında yıldız ve ay oymaları var.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["location=streamside"],
+            "stateChanges": ["object=old_bridge"]
+          },
+          {
+            "id": "bridge_002_p2_v2",
+            "text": "İşte orada, sakin derenin karşısında, koyu renk ahşaptan yapılmış harika eski bir köprü vardı. {{child.name}} ahşap kenarlarına oyulmuş küçük baykuşlar ve yapraklar gibi eğlenceli şekilleri fark etti.",
+            "visualScene": "{{child.name}} dere üzerindeki koyu renk ahşap köprünün yanında duruyor, köprünün kenarlarındaki baykuş ve yaprak oymalarına bakıyor.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["location=streamside"],
+            "stateChanges": ["object=old_bridge"]
+          },
+          {
+            "id": "bridge_002_p2_v3",
+            "text": "{{child.name}} uzun çimenlerin arasından baktı ve güzel, kıvrımlı ahşap bir köprü gördü. Üzerinde dokunulduğunda pürüzsüz hissedilen sevimli bulut ve güneş oymaları vardı.",
+            "visualScene": "{{child.name}} uzun çimenlerin arasından dere üzerindeki kıvrımlı ahşap köprüye bakıyor, bulut ve güneş oymalarına dokunuyor.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["location=streamside"],
+            "stateChanges": ["object=old_bridge"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "companion",
+        "narrativePurpose": "Meets a small rabbit trembling at the bridge's edge, rabbit explains it needs to cross to get home",
+        "variants": [
+          {
+            "id": "bridge_002_p3_v1",
+            "text": "Köprünün tam kenarında oturan {{companion.name}} adında küçük bir {{companion.type}} vardı. {{companion.name}} biraz titreyerek burnunu çekti, \"Karşı taraftaki ailemin yanına, eve gitmeliyim.\"",
+            "visualScene": "{{companion.name}} adında minik bir {{companion.type}}, eski köprünün kenarında oturuyor, üzgün ve titriyor, {{child.name}} ile konuşuyor.",
+            "requiredSlots": ["companion.type", "companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["object=old_bridge"],
+            "stateChanges": ["character_met=companion", "emotion=nervous"]
+          },
+          {
+            "id": "bridge_002_p3_v2",
+            "text": "{{child.name}}, köprünün yanında gergin bir şekilde bekleyen {{companion.name}} adında pofuduk bir {{companion.type}} gördü. \"Benim sıcacık yuvam hemen şurada, ama nasıl geçeceğimi bilmiyorum,\" dedi {{companion.name}}.",
+            "visualScene": "{{child.name}} sıcak bir şekilde, ahşap köprünün yanında gergin bir şekilde duran {{companion.name}} adında pofuduk bir {{companion.type}}'ye bakıyor.",
+            "requiredSlots": ["companion.type", "companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["object=old_bridge"],
+            "stateChanges": ["character_met=companion", "emotion=nervous"]
+          },
+          {
+            "id": "bridge_002_p3_v3",
+            "text": "Basamakların yakınında titreyen, {{companion.name}} adında küçük bir {{companion.type}} vardı. \"Eve gitmek istiyorum ama suyun karşısı çok uzak,\" diye fısıldadı {{companion.name}}, {{child.name}}'ye.",
+            "visualScene": "Köprünün basamaklarının yakınında titreyen, {{companion.name}} adında küçük bir {{companion.type}}, {{child.name}}'ye fısıldıyor.",
+            "requiredSlots": ["companion.type", "companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["object=old_bridge"],
+            "stateChanges": ["character_met=companion", "emotion=nervous"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "narrativePurpose": "The bridge creaks and sways, rabbit is too frightened to move",
+        "variants": [
+          {
+            "id": "bridge_002_p4_v1",
+            "text": "Rüzgar esti ve eski köprü yüksek bir gıcırtı çıkararak hafifçe sallandı. {{companion.name}} gözlerini sakladı ve ağladı, \"Çok sallanıyor! Çok korkuyorum!\"",
+            "visualScene": "Ahşap köprü rüzgarda hafifçe sallanıyor. {{companion.name}} gözlerini patileriyle saklıyor, korkmuş görünüyor.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["character_met=companion"],
+            "stateChanges": ["obstacle=wobbly_bridge"]
+          },
+          {
+            "id": "bridge_002_p4_v2",
+            "text": "Aşağıda sular sıçrarken, ahşap tahtalar gıcırdadı ve yerinden oynadı. {{companion.name}} korkudan tamamen donakalmış bir halde yere sıkıca oturdu ve tek bir patisini bile kımıldatmayı reddetti.",
+            "visualScene": "Köprünün altında sıçrayan sular. {{companion.name}} kenarda yere sıkıca oturuyor, dehşete düşmüş ve donakalmış görünüyor.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["character_met=companion"],
+            "stateChanges": ["obstacle=wobbly_bridge"]
+          },
+          {
+            "id": "bridge_002_p4_v3",
+            "text": "Köprü, eski bir sallanan sandalye gibi gıcırdayan bir ses çıkardı. Çok uzun ve dar görünüyordu. {{companion.name}} dizlerine sarıldı, ileri adım atamayacak kadar korkmuştu.",
+            "visualScene": "Köprü uzun ve dar görünüyor. {{companion.name}} kenarda dizlerine sarılıyor, korkmuş görünüyor.",
+            "requiredSlots": ["companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["character_met=companion"],
+            "stateChanges": ["obstacle=wobbly_bridge"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "attempt",
+        "narrativePurpose": "Child tries to carry the rabbit across, but the bridge sways more and they return",
+        "variants": [
+          {
+            "id": "bridge_002_p5_v1",
+            "text": "\"Endişelenme, seni taşıyabilirim,\" dedi {{child.name}}, {{companion.name}}'yi kucağına alarak. Ama bir adım attıklarında köprü daha da çok sallandı ve güvenlik için hızla geri adım atmak zorunda kaldılar.",
+            "visualScene": "{{child.name}}, {{companion.name}}'yi kucağına alıp köprüye çıkarmaya çalışıyor ama köprü sallanınca hızla geri adım atıyor.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["obstacle=wobbly_bridge"],
+            "stateChanges": ["action=failed_attempt"]
+          },
+          {
+            "id": "bridge_002_p5_v2",
+            "text": "{{child.name}} nazikçe {{companion.name}}'yi kaldırdı ve karşıya geçmeye başladı. Ancak ekstra ağırlık taşımak eski köprüyü o kadar çok salladı ki, sağlam zemine geri kaçtılar.",
+            "visualScene": "{{child.name}}, {{companion.name}}'yi taşıyor, sallanan köprüden uzaklaşıp sağlam zemine geri kaçıyorlar.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["obstacle=wobbly_bridge"],
+            "stateChanges": ["action=failed_attempt"]
+          },
+          {
+            "id": "bridge_002_p5_v3",
+            "text": "\"Seni sıkıca tutacağım!\" dedi {{child.name}}, {{companion.name}}'yi kendine yakın tutarak. Karşıya geçmeyi denediler ama köprü ileri geri sallandı. Düşünmek için hızla çimenli kıyıya döndüler.",
+            "visualScene": "{{child.name}}, {{companion.name}}'yi yakın tutuyor, sallanan köprüye adım atıyor, sonra aceleyle çimenli kıyıya geri dönüyor.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["obstacle=wobbly_bridge"],
+            "stateChanges": ["action=failed_attempt"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "challenge",
+        "narrativePurpose": "Child gets the idea to sing a counting song with each step to keep the rabbit calm",
+        "variants": [
+          {
+            "id": "bridge_002_p6_v1",
+            "text": "Sonra, {{child.name}}'nin aklına harika bir fikir geldi! \"El ele tutuşup bir sayma şarkısı söylemeye ne dersin?\" diye sordu. \"Birlikte dikkatlice adım atmamıza yardımcı olur.\"",
+            "visualScene": "{{child.name}} harika bir fikir buluyor, gülümsüyor ve el ele tutuşup şarkı söylemek için elini {{companion.name}}'ye uzatıyor.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=failed_attempt"],
+            "stateChanges": ["idea=counting_song"]
+          },
+          {
+            "id": "bridge_002_p6_v2",
+            "text": "\"Nasıl cesur olunacağını biliyorum!\" diye ilan etti {{child.name}}. \"Eğlenceli bir sayma şarkısıyla karşıya doğru uygun adım yürüyebiliriz. Gözlerini benden ayırma ve şarkıya eşlik et.\"",
+            "visualScene": "{{child.name}} cesurca duruyor, sayma şarkısı söyleme planını {{companion.name}}'ye açıklıyor.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=failed_attempt"],
+            "stateChanges": ["idea=counting_song"]
+          },
+          {
+            "id": "bridge_002_p6_v3",
+            "text": "{{child.name}} nazikçe gülümsedi. \"Bazen korktuğumda şarkı söylemek iyi gelir. Marş gibi bir melodiyle adımlarımızı yüksek sesle birlikte sayalım!\"",
+            "visualScene": "{{child.name}} nazikçe gülümsüyor, {{companion.name}}'ye marş gibi bir melodiyle adımları yüksek sesle saymayı öneriyor.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=failed_attempt"],
+            "stateChanges": ["idea=counting_song"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "resolution",
+        "narrativePurpose": "Step by step, singing together, they cross the bridge successfully",
+        "variants": [
+          {
+            "id": "bridge_002_p7_v1",
+            "text": "\"Bir, iki, üç, adım at!\" diye hep birlikte şarkı söylediler, el ele yürüdüler. Şarkı o kadar eğlenceliydi ki {{companion.name}} sallanan köprüyü tamamen unuttu.",
+            "visualScene": "{{child.name}} ve {{companion.name}} el ele köprüyü geçiyor, neşeyle şarkı söylüyorlar. Köprü daha az korkutucu görünüyor.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["idea=counting_song"],
+            "stateChanges": ["action=crossing", "emotion=brave"]
+          },
+          {
+            "id": "bridge_002_p7_v2",
+            "text": "Adım adım yüksek sesle saydılar, \"Dört, beş, altı, yürü!\" Şarkı söylemek mükemmel bir ritimle yürümelerini sağladı ve köprü o kadar da sallanmadı. Neredeyse karşıya geçmişlerdi!",
+            "visualScene": "{{child.name}} ve {{companion.name}} mükemmel bir ritimle köprüde yürüyor, yüksek sesle sayıyorlar.",
+            "requiredSlots": ["child.name", "companion.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["idea=counting_song"],
+            "stateChanges": ["action=crossing", "emotion=brave"]
+          },
+          {
+            "id": "bridge_002_p7_v3",
+            "text": "Ellerini sıkıca tutarak sayılarını ona kadar söylediler. Bu cesur şarkı, {{companion.name}}'ye diğer tarafa kadar gitmesi için cesaret verdi.",
+            "visualScene": "{{child.name}} ve {{companion.name}} sıkıca el ele tutuşuyor, sayılar söylüyor ve köprünün diğer tarafına başarıyla ulaşıyorlar.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["idea=counting_song"],
+            "stateChanges": ["action=crossing", "emotion=brave"]
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "emotional_ending",
+        "narrativePurpose": "Rabbit's family is waiting on the other side, grateful reunion, child walks home feeling proud",
+        "variants": [
+          {
+            "id": "bridge_002_p8_v1",
+            "text": "Uzak kıyıda, {{companion.name}}'nin ailesi sevinçle tezahürat yaptı! {{child.name}}'ye bu kadar harika, cesur bir arkadaş olduğu için teşekkür ettiler. {{child.name}} eve gidene kadar gülümsedi.",
+            "visualScene": "{{companion.name}}'nin ailesi uzak kıyıda sevinçle tezahürat yapıyor. {{child.name}} gülümsüyor, gururlu hissediyor ve vedalaşıyor.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=crossing"],
+            "stateChanges": ["resolution=reunion", "emotion=proud"]
+          },
+          {
+            "id": "bridge_002_p8_v2",
+            "text": "Mutlu bir aile, {{companion.name}}'ye sarılmak için koşarak geldi. \"Başardın!\" diye tezahürat yaptılar. {{child.name}}, cesur macerasından dolayı çok gururlu hissederek el salladı ve veda etti.",
+            "visualScene": "Mutlu bir aile {{companion.name}}'ye sarılmak için koşuyor. {{child.name}} çok gururlu görünerek el sallıyor ve veda ediyor.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=crossing"],
+            "stateChanges": ["resolution=reunion", "emotion=proud"]
+          },
+          {
+            "id": "bridge_002_p8_v3",
+            "text": "{{companion.name}} mutlulukla annesinin onu bekleyen kollarına zıpladı. Sıcacık bir kalp ve gururlu bir adımla, {{child.name}} alacakaranlık yolundan eve doğru geri döndü.",
+            "visualScene": "{{companion.name}} mutlulukla annesinin kollarına zıplıyor. {{child.name}} alacakaranlık yolundan geri yürüyor, sıcacık ve gururlu görünüyor.",
+            "requiredSlots": ["companion.name", "child.name"],
+            "optionalSlots": [],
+            "stateRequirements": ["action=crossing"],
+            "stateChanges": ["resolution=reunion", "emotion=proud"]
+          }
+        ]
+      }
+    ]
+  }
+}

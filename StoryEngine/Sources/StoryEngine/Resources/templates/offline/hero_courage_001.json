@@ -1,0 +1,288 @@
+{
+  "blueprint": {
+    "id": "hero_courage_001",
+    "genre": "hero",
+    "theme": "courage",
+    "ageRange": "5-6",
+    "pageCount": 8,
+    "difficulty": "easy",
+    "emotionalTone": "empowering",
+    "visualStyle": "comic_book_soft",
+    "safetyMetadata": {
+      "violence": "none",
+      "scaryElements": "none",
+      "positiveBehavior": true
+    },
+    "titlePatterns": [
+      "Süper {{child.name}} Görevde",
+      "{{child.name}} Günü Kurtarıyor",
+      "Cesur {{child.name}} ve Uçan Pelerin"
+    ],
+    "pages": [
+      {
+        "pageNumber": 1,
+        "role": "hook",
+        "variants": [
+          {
+            "id": "hero_p1_v1",
+            "text": "Bir sabah {{child.name}} uyandığında yatağının ucunda parlayan kırmızı bir pelerin buldu. Pelerini taktığında kendini çok güçlü hissetti!",
+            "visualScene": "{{child.name}} wearing a shiny red cape in their bedroom, looking happy and strong.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p1_v2",
+            "text": "{{child.name}} bugün çok özel bir gün olduğunu biliyordu. Gizli süper kahraman pelerinini omuzlarına attı ve derin bir nefes aldı.",
+            "visualScene": "{{child.name}} putting on a glowing magical cape, looking confident with a soft smile.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p1_v3",
+            "text": "Sihirli yıldız pelerini parlıyordu! {{child.name}} pelerini giydiğinde macera dolu bir günün başladığını anladı.",
+            "visualScene": "{{child.name}} smiling with a starry glowing cape, ready for an adventure.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 2,
+        "role": "inciting_incident",
+        "variants": [
+          {
+            "id": "hero_p2_v1",
+            "text": "Tam bahçeye çıkmıştı ki, uzaklardan incecik bir ses duydu: 'Miyav, miyav!' Biri yardım istiyordu.",
+            "visualScene": "{{child.name}} in a garden, listening carefully with their hand on their ear.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p2_v2",
+            "text": "Süper kahraman kulakları çok iyi duyardı! Rüzgarın arasında küçük bir 'miyav' sesi yakaladı. Görev zamanıydı!",
+            "visualScene": "{{child.name}} striking a heroic pose, looking alert as they hear a sound.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p2_v3",
+            "text": "Arkadaşı {{companion.name}} ile oyun oynarken, minik bir yardım çağrısı duydular. Bir kedi miyavlıyordu!",
+            "visualScene": "{{child.name}} and {{companion.name}} looking surprised and curious in the park.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["companion.name"],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 3,
+        "role": "discovery",
+        "variants": [
+          {
+            "id": "hero_p3_v1",
+            "text": "Sesin geldiği yöne koştu. Küçük, beyaz bir yavru kedi parktaki ağacın dallarında mahsur kalmıştı.",
+            "visualScene": "A small white kitten looking scared on a low branch of a fluffy tree.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p3_v2",
+            "text": "Ağacın tepesine baktığında minik, turuncu bir kedi gördü. Aşağı inmeye çok korkuyordu.",
+            "visualScene": "A tiny orange kitten sitting on a tree branch, looking down nervously.",
+            "requiredSlots": [],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p3_v3",
+            "text": "{{child.name}} ağacın altında durdu. Yavru kedi dalların arasında saklanmış, titriyordu. Ona yardım etmeliydi.",
+            "visualScene": "{{child.name}} looking up at a tree where a scared kitten is hiding among the leaves.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 4,
+        "role": "problem",
+        "variants": [
+          {
+            "id": "hero_p4_v1",
+            "text": "Ağaç çok yüksek değildi ama yavru kedi için fazla dikti. 'Seni nasıl kurtarabilirim?' diye düşündü {{child.name}}.",
+            "visualScene": "{{child.name}} tapping their chin, looking thoughtfully at the tree and the kitten.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p4_v2",
+            "text": "Süper kahramanlar sorunları zekalarıyla çözerdi. {{child.name}} etrafına bakındı, güvenli bir yol bulması gerekiyordu.",
+            "visualScene": "{{child.name}} looking around the garden, searching for helpful items.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p4_v3",
+            "text": "Kediciğin atlaması gerekiyordu ama yer çok sertti. {{child.name}} kollarını kavuşturdu ve süper beynini çalıştırdı.",
+            "visualScene": "{{child.name}} crossing arms, concentrating hard on finding a solution.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 5,
+        "role": "plan",
+        "variants": [
+          {
+            "id": "hero_p5_v1",
+            "text": "Birden aklına harika bir fikir geldi! Yumuşak minderler bulup ağacın altına dizebilirdi.",
+            "visualScene": "A thought bubble above {{child.name}} showing colorful, soft cushions.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p5_v2",
+            "text": "'Buldum!' dedi {{child.name}} heyecanla. Bir trambolin ya da kocaman bir yastık kulesi yapacaktı.",
+            "visualScene": "{{child.name}} raising a finger with a bright smile, having a great idea.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p5_v3",
+            "text": "Eğer kedicik yumuşak bir yere düşerse hiç canı acımazdı. Hemen işe koyulma vakti gelmişti!",
+            "visualScene": "{{child.name}} looking determined and ready for action.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 6,
+        "role": "action",
+        "variants": [
+          {
+            "id": "hero_p6_v1",
+            "text": "Evden en büyük, en pofuduk yastıkları taşıdı. Ağacın tam altına harika bir iniş yatağı hazırladı.",
+            "visualScene": "{{child.name}} carrying two large, fluffy pillows to the base of the tree.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p6_v2",
+            "text": "{{child.name}} hızlıca koşup kalın battaniyeleri ve minderleri üst üste koydu. Çok güvenli görünüyordu.",
+            "visualScene": "{{child.name}} stacking colorful blankets and cushions under the tree.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p6_v3",
+            "text": "Arkadaşı {{companion.name}} ile birlikte eski minderleri taşıdılar ve ağacın altına kocaman, yumuşacık bir dağ yaptılar.",
+            "visualScene": "{{child.name}} and {{companion.name}} working together to make a pile of soft cushions.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["companion.name"],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 7,
+        "role": "climax",
+        "variants": [
+          {
+            "id": "hero_p7_v1",
+            "text": "'Gel bakalım küçüğüm, atla, burası çok güvenli!' diye seslendi. Kedicik cesaretini toplayıp 'pat' diye yastıklara atladı.",
+            "visualScene": "The kitten mid-air, jumping down towards the soft pile of pillows. {{child.name}} encouraging it.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p7_v2",
+            "text": "Kollarını açıp kediciğe gülümsedi. Minik pati sonunda ağaçtan ayrıldı ve pofuduk mindere yumuşacık bir iniş yaptı.",
+            "visualScene": "{{child.name}} with open arms, as the kitten lands softly on the cushion pile.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p7_v3",
+            "text": "Süper {{child.name}} cesaret verici bir sesle miyavladı. Kedicik ona inandı ve hooop... Güvenle yumuşak dağa kondu!",
+            "visualScene": "{{child.name}} meowing happily, while the kitten bounces slightly on the soft pillows.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      },
+      {
+        "pageNumber": 8,
+        "role": "resolution",
+        "variants": [
+          {
+            "id": "hero_p8_v1",
+            "text": "Kedicik teşekkür eder gibi mırıldandı. {{child.name}} pelerinine sarıldı, birine yardım etmek dünyanın en güzel süper gücüydü!",
+            "visualScene": "{{child.name}} hugging the purring kitten, wearing their superhero cape with pride.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p8_v2",
+            "text": "Bahçedeki herkes alkışladı. {{child.name}} görevini başarıyla tamamlamış, cesur ve sevgi dolu gerçek bir kahraman olmuştu.",
+            "visualScene": "{{child.name}} striking a heroic pose with the kitten safe on their shoulder.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": [],
+            "stateRequirements": [],
+            "stateChanges": []
+          },
+          {
+            "id": "hero_p8_v3",
+            "text": "{{companion.name}} ile birlikte çok mutlu oldular. Pelerini rüzgarda dalgalanırken, {{child.name}} yeni maceralara hazırdı.",
+            "visualScene": "{{child.name}} and {{companion.name}} waving goodbye to the kitten, cape blowing in the wind.",
+            "requiredSlots": ["child.name"],
+            "optionalSlots": ["companion.name"],
+            "stateRequirements": [],
+            "stateChanges": []
+          }
+        ]
+      }
+    ]
+  }
+}

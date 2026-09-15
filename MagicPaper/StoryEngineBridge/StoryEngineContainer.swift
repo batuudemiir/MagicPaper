@@ -13,25 +13,25 @@ import VisualSystem
 /// Nothing in this type runs automatically. The engine ships unwired: existing
 /// story creation still goes through `StoryGenerationManager`, untouched.
 @MainActor
-public final class StoryEngineContainer {
+final class StoryEngineContainer {
 
     /// Why the engine could not be built, when it could not.
-    public enum UnavailableReason: String {
+    enum UnavailableReason: String, Error {
         case missingGeminiKey
         case missingFalKey
     }
 
-    public let orchestrator: StoryOrchestrator
-    public let characterStore: FileCharacterStore
-    public let characterSource: ProfileCharacterSource
-    public let storyRepository: FileStoryRepository
-    public let jobStore: FileJobStore
+    let orchestrator: StoryOrchestrator
+    let characterStore: FileCharacterStore
+    let characterSource: ProfileCharacterSource
+    let storyRepository: FileStoryRepository
+    let jobStore: FileJobStore
 
     /// Builds the engine, or reports why it cannot.
     ///
-    /// Returns `nil` rather than trapping on a missing key: a configuration
+    /// Returns a failure rather than trapping on a missing key: a configuration
     /// problem should surface as a disabled feature, never as a launch crash.
-    public static func make(
+    static func make(
         imageValidationProvider: ImageValidationProvider? = nil,
         concurrency: GenerationConcurrencyPolicy = .conservative
     ) -> Result<StoryEngineContainer, UnavailableReason> {
@@ -47,7 +47,7 @@ public final class StoryEngineContainer {
         )
     }
 
-    public init(
+    init(
         aiProvider: StoryAIProvider,
         imageProvider: ImageProvider,
         imageValidationProvider: ImageValidationProvider? = nil,
@@ -90,7 +90,7 @@ public final class StoryEngineContainer {
     /// Remote assets need a `RemoteAssetDeleting` before they can actually be
     /// removed; until one is wired in, a deletion reports them as unhandled
     /// rather than pretending they are gone.
-    public var dataLifecycle: StoryDataLifecycle {
+    var dataLifecycle: StoryDataLifecycle {
         get async { await orchestrator.lifecycle }
     }
 
@@ -100,7 +100,7 @@ public final class StoryEngineContainer {
     ///
     /// Call this before generating: the engine resolves its cast through the
     /// Character Engine, and will refuse a cast it cannot find.
-    public func ensureCharacter(
+    func ensureCharacter(
         for profile: UserProfile,
         referenceLocator: String?,
         pronouns: Pronouns,
@@ -133,7 +133,7 @@ public final class StoryEngineContainer {
 
     /// Builds a request for one child. The theme is a plain string: the engine
     /// resolves it against template data and has no theme vocabulary of its own.
-    public func makeRequest(
+    func makeRequest(
         characterID: CharacterID,
         templateID: String = "adventure_01",
         themeKey: String,
@@ -157,7 +157,7 @@ public final class StoryEngineContainer {
     }
 
     /// Jobs left mid-flight by a previous launch.
-    public func interruptedJobs() async throws -> [StoryGenerationJob] {
+    func interruptedJobs() async throws -> [StoryGenerationJob] {
         try await jobStore.resumableJobs()
     }
 }
