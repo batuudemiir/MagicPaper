@@ -4,9 +4,9 @@ import UIKit
 class FalImageGenerator: ObservableObject {
     static let shared = FalImageGenerator()
     
-    // BURAYA GÜNCEL API KEYİNİ YAPIŞTIR
+    // Anahtar Secrets.xcconfig -> Info.plist üzerinden gelir; koda yazılmaz.
     // "Key " ön ekini buraya koyma, aşağıda kod otomatik ekliyor.
-    private let apiKey = "f811abd1-cc51-4c25-89df-67b0ba81ba40:8b88b0e64cdc64161bbc6957e71e2788".trimmingCharacters(in: .whitespacesAndNewlines)
+    private let apiKey = (APIKeys.fal ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
     
     // Flux Dev Endpoint
     private let baseURL = "https://queue.fal.run/fal-ai/flux/dev"

@@ -7,7 +7,7 @@ class FalImageService {
     
     static let shared = FalImageService()
     
-    private let apiKey = "f811abd1-cc51-4c25-89df-67b0ba81ba40:8b88b0e64cdc64161bbc6957e71e2788"
+    private let apiKey = APIKeys.fal ?? ""
     private let endpoint = "https://queue.fal.run/fal-ai/flux/schnell"
     
     private init() {}

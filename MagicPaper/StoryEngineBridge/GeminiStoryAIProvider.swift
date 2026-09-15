@@ -10,7 +10,7 @@ import StoryEngine
 ///
 /// The adapter's real job is error classification. `RetryPolicy` has no way to
 /// tell a timeout from a refusal unless the adapter says which it was.
-public struct GeminiStoryAIProvider: StoryAIProvider {
+struct GeminiStoryAIProvider: StoryAIProvider {
     private let apiKey: String
     private let session: URLSession
     private let baseURL: String
@@ -20,7 +20,7 @@ public struct GeminiStoryAIProvider: StoryAIProvider {
 
     /// Resolves the key the same way the rest of the app does, but reports a
     /// missing key as a provider error instead of killing the process.
-    public init?(
+    init?(
         apiKey: String? = nil,
         session: URLSession = .shared,
         baseURL: String = "https://generativelanguage.googleapis.com/v1beta/models",
@@ -41,13 +41,9 @@ public struct GeminiStoryAIProvider: StoryAIProvider {
         self.pricePerMillionOutputTokens = pricePerMillionOutputTokens
     }
 
-    public static func resolveAPIKey() -> String? {
-        if let cloud = ProcessInfo.processInfo.environment["GEMINI_API_KEY"], !cloud.isEmpty { return cloud }
-        if let local = Bundle.main.object(forInfoDictionaryKey: "GEMINI_API_KEY") as? String, !local.isEmpty { return local }
-        return nil
-    }
+    static func resolveAPIKey() -> String? { APIKeys.gemini }
 
-    public func complete(_ request: AICompletionRequest) async throws -> AICompletionResponse {
+    func complete(_ request: AICompletionRequest) async throws -> AICompletionResponse {
         let model = modelsByTier[request.modelTier] ?? "gemini-2.5-flash"
         guard let url = URL(string: "\(baseURL)/\(model):generateContent?key=\(apiKey)") else {
             throw StoryEngineError.providerFailed(

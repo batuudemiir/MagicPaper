@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import StoryEngine
+import VisualSystem
 
 /// fal.ai, behind the engine's `ImageProvider` port.
 ///
@@ -8,14 +9,14 @@ import StoryEngine
 /// result, and stores it through the app's existing `FileManagerService` so
 /// illustrations land exactly where the rest of the app already looks for them.
 /// The engine only ever sees the returned filename.
-public struct FalImageProvider: ImageProvider {
+struct FalImageProvider: ImageProvider {
     private let apiKey: String
     private let endpoint: String
     private let session: URLSession
     private let fileManager: FileManagerService
     private let costPerImageUSD: Double
 
-    public init?(
+    init?(
         apiKey: String? = nil,
         endpoint: String = "https://fal.run/fal-ai/gemini-25-flash-image/edit",
         session: URLSession = .shared,
@@ -32,16 +33,11 @@ public struct FalImageProvider: ImageProvider {
 
     /// Reads the key from configuration rather than from source.
     ///
-    /// Note for whoever wires this up: the existing `FalAIImageGenerator` still
-    /// has a live key hard-coded in it. That key should be rotated and moved
-    /// into `Secrets.xcconfig` alongside this one.
-    public static func resolveAPIKey() -> String? {
-        if let environment = ProcessInfo.processInfo.environment["FAL_API_KEY"], !environment.isEmpty { return environment }
-        if let local = Bundle.main.object(forInfoDictionaryKey: "FAL_API_KEY") as? String, !local.isEmpty { return local }
-        return nil
-    }
+    /// The legacy `FalAIImageGenerator` no longer carries its own copy of the
+    /// key; both paths now read `APIKeys.fal`, so there is one place to rotate.
+    static func resolveAPIKey() -> String? { APIKeys.fal }
 
-    public func generateImage(_ request: ImageGenerationRequest) async throws -> ImageGenerationResponse {
+    func generateImage(_ request: ImageGenerationRequest) async throws -> ImageGenerationResponse {
         let constraints = request.constraints
         guard let url = URL(string: endpoint) else {
             throw StoryEngineError.providerFailed(
