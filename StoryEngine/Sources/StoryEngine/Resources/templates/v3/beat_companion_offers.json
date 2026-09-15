@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3, always beside meet_companion. The companion contributes exactly ONE fact, and it must be ORDINARY. If the companion's fact is the surprising half, the reader credits it with the discovery however the child phrases the conclusion (catalog §2.1). Flat statement, no interpretation, no speculation, no leading. Band is 8-14 because meet_companion is already a long partner and the page budget is 18-38 for the pair. No body-part assumptions: the roster includes a robot.",
+  "lengthClasses": { "paired": "8-14 words — always beside meet_companion (6 of 6)" },
+  "variants": [
+    { "id": "co_p_01", "text": "\"Ben burayı bilirim,\" dedi {{companion.name}}. \"Her gün buradan geçerim.\"",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "i_know_this_place" },
+    { "id": "co_p_02", "text": "{{companion.name}} tek bir şey söyledi. \"Bu, yağmurdan sonra hep olur.\"",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "settingTraits": ["hasWeather"], "move": "happens_after_rain" },
+    { "id": "co_p_03", "text": "\"Sabahları burada kimse olmaz,\" dedi {{companion.name}}. Başka bir şey eklemedi.",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "nobody_comes_here" },
+    { "id": "co_p_04", "text": "\"Dün burada yoktu,\" dedi {{companion.name}}. Bunu kesin olarak biliyordu.",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "it_was_not_here_yesterday" },
+    { "id": "co_p_05", "text": "{{companion.name}} yardım etmeyi teklif etti. \"Ben yolları bilirim,\" dedi sadece.",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "offers_to_help" },
+    { "id": "co_p_06", "text": "\"Ben de merak etmiştim,\" dedi {{companion.name}}. \"Ama hiç anlayamadım.\"",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "wondered_too_never_solved" },
+    { "id": "co_p_07", "text": "{{companion.name}} bir yeri gösterdi. \"Şuraya bak,\" dedi. Başka bir şey demedi.",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "points_without_explaining" },
+    { "id": "co_p_08", "text": "\"Burası akşamları başka olur,\" dedi {{companion.name}}. Sesi çok sakindi.",
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "different_in_the_evening" }
+  ]
+}

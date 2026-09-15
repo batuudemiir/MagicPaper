@@ -151,13 +151,9 @@ public struct ContentCatalogLoader: Sendable {
         // The per-beat prose corpus, authored one file per beat. Layered last so
         // its lines join the pool for the beats it covers; beats it has not
         // reached yet keep the library's own templates.
+        // Judged by the integrity checker, not printed. A warning in a log is
+        // not being told; a fatal issue is.
         let corpus = BeatCorpusLoader().load()
-        if !corpus.skipped.isEmpty {
-            print("⚠️ Beat corpus skipped: \(corpus.skipped.joined(separator: "; "))")
-        }
-        if !corpus.drifted.isEmpty {
-            print("⚠️ Beat corpus drift: \(corpus.drifted.joined(separator: "; "))")
-        }
 
         var catalog = ContentCatalog.merging(documents.map(\.catalog))
         if !corpus.templates.isEmpty {
@@ -188,7 +184,7 @@ public struct ContentCatalogLoader: Sendable {
                 )
             ])
         }
-        let integrity = checker.check(catalog)
+        let integrity = checker.check(catalog, corpus: corpus)
         let report = CatalogLoadReport(
             source: source,
             mergedSources: documents.map(\.name) + corpus.files,

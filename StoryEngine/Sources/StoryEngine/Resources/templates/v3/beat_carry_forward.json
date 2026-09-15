@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 3,
+  "beat": "carry_forward",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 8, always beside warm_close. The child takes something away. The takeaway should be the NOTICING, not the object (catalog I-1 §B.4 p8) — a habit of looking, a question saved for tomorrow, a promise made to nobody. An object is allowed but must carry a meaning, never be a reward or payment for helping.",
+  "lengthClasses": { "paired": "10-16 words — always beside warm_close (5 of 5)" },
+  "variants": [
+    { "id": "cf_p_01", "text": "{{child.name}} cebine küçük bir taş koydu. Bugünü hatırlamak için, hep yanında dursun diye.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "a_stone_in_the_pocket" },
+    { "id": "cf_p_02", "text": "Artık {{child.name}} her yere iki kez bakıyordu. Bir şey kaçırmasın diye.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "looks_twice_now" },
+    { "id": "cf_p_03", "text": "{{child.name}} yarın yine geleceğine söz verdi. Kendi kendine verdiği bir sözdü.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "promise_made_to_nobody" },
+    { "id": "cf_p_04", "text": "Eve giderken {{child.name}} yol boyunca etrafına baktı. Alışkanlık olmuştu bile.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "already_a_habit" },
+    { "id": "cf_p_05", "text": "{{companion.name}} ona küçük bir şey verdi. {{child.name}} onu avucunda sıkıca tuttu.",
+      "requiredSlots": ["companion.name", "child.name"], "lengthClass": "paired", "move": "something_small_given" },
+    { "id": "cf_p_06", "text": "{{child.name}} bundan sonra hep dinleyecekti. Önce dinlemek, sonra bakmak, bunu öğrenmişti.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "listen_first_then_look" },
+    { "id": "cf_p_07", "text": "O günden sonra {{child.name}} hiçbir izin yanından öylece geçip gitmedi.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "never_walks_past_a_trace" },
+    { "id": "cf_p_08", "text": "{{child.name}} eve bir soruyla döndü. Yarın onu da çözecekti, bundan emindi.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "went_home_with_a_question" }
+  ]
+}

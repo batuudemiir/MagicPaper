@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 2. The child closes the distance and the thing stops being far away — it acquires size, sound, temperature, texture. This beat produces no state, so it must earn its page on sensory detail alone. Name ONE physical property the reader can feel; 'it was strange' is not one. The child moves under their own power, never is brought.",
+  "lengthClasses": {
+    "solo": "18-38 words — approach is the whole page (4 of 5)",
+    "paired": "10-16 words — page 2 also carries form_belief (V-2)"
+  },
+  "variants": [
+    {
+      "id": "ap_s_01",
+      "text": "{{child.name}} yavaşça yaklaştı. Her adımda gözünde biraz daha büyüdü. Yakından bakınca sandığından bambaşkaydı. Durup uzun uzun baktı, gözlerini ayıramadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "grows_with_every_step"
+    },
+    {
+      "id": "ap_s_02",
+      "text": "Birkaç adım attı {{child.name}}, sonra durdu. Sonra birkaç adım daha. Artık iyice yakındı ve geri dönmeyi hiç düşünmüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stop_start_stop"
+    },
+    {
+      "id": "ap_s_03",
+      "text": "{{child.name}} soluğunu tuttu ve ilerledi. {{setting.name}} bir anda sessizleşti sanki. Yaklaştıkça kalbi daha hızlı atıyordu, kendisi de duyuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "everything_goes_quiet"
+    },
+    {
+      "id": "ap_s_04",
+      "text": "Yaklaşmak kolay değildi ama {{child.name}} yine de yaklaştı. Durdu, baktı, bir adım daha attı. Şimdi elini uzatsa rahatça dokunabilirdi ona.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "close_enough_to_touch"
+    },
+    {
+      "id": "ap_s_05",
+      "text": "{{child.name}} ağır ağır yürüdü. Acele etmenin bir anlamı yoktu. Yakına varınca yere çömeldi ve öylece baktı, hiç kıpırdamadan.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "no_reason_to_hurry"
+    },
+    {
+      "id": "ap_s_06",
+      "text": "İlk başta uzaktan izledi {{child.name}}. Sonra dayanamadı, kalkıp yanına gitti. Yakından bakmak bambaşka bir şeymiş, işte şimdi anladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "watched_then_could_not_wait"
+    },
+    {
+      "id": "ap_p_01",
+      "text": "{{child.name}} yavaşça yaklaştı, eğilip yakından baktı. Şimdi çok daha iyi görüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "leans_in_close"
+    },
+    {
+      "id": "ap_p_02",
+      "text": "Birkaç adım attı {{child.name}}. Artık yeterince yakındı ve iyice görebiliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "near_enough_to_see"
+    }
+  ]
+}

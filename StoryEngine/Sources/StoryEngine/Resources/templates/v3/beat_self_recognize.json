@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 3,
+  "beat": "self_recognize",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 8, always beside warm_close. The child notices they are someone who can do this. INTERNAL and unwitnessed: nobody tells the child they were brave or clever — the child notices it themselves. That distinction is the difference between a story about approval and a story about self-knowledge (catalog II-1 §A.4 p8). No praise from the companion, no adult, no announcement.",
+  "lengthClasses": { "paired": "10-16 words — always beside warm_close (6 of 6)" },
+  "variants": [
+    { "id": "sr_p_01", "text": "{{child.name}} kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "so_i_can_do_it" },
+    { "id": "sr_p_02", "text": "Eve giderken {{child.name}} bir şey fark etti. Artık biraz farklıydı.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "slightly_different_now" },
+    { "id": "sr_p_03", "text": "{{child.name}} ellerine baktı. Bu eller bugün epeyce iş görmüştü, hem de nasıl.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "looks_at_own_hands" },
+    { "id": "sr_p_04", "text": "İçinden \"ben yaptım\" dedi {{child.name}}. Kimseye söylemedi ama içinde kaldı.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "said_it_only_inside" },
+    { "id": "sr_p_05", "text": "{{child.name}} sabah buraya gelen çocuk değildi artık. Kendisi de biliyordu.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "not_the_same_child" },
+    { "id": "sr_p_06", "text": "Dönerken {{child.name}} bir kez daha düşündü. Zor geleni yapmıştı işte.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "did_the_hard_thing" },
+    { "id": "sr_p_07", "text": "{{child.name}} kendi kendine gülümsedi. Başkasına değil, kendine gülümsüyordu. Hak etmişti.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "smiled_at_self" },
+    { "id": "sr_p_08", "text": "Bundan sonrası daha kolay olacaktı. {{child.name}} bunu içinde bir yerde hissetti.",
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "next_time_will_be_easier" }
+  ]
+}

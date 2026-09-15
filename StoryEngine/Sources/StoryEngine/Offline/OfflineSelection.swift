@@ -55,6 +55,7 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noDiscovery(reasons: [String])
     case requestedContentRejected(id: ContentID, reason: String)
     case noTemplate(beat: StoryBeat, page: Int)
+    case noVariantAfter(beat: StoryBeat?, page: Int)
     case blueprintNotBeatAuthored(id: ContentID)
 
     public var explanation: String {
@@ -77,6 +78,10 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "'\(id.rawValue)' was asked for but cannot be used: \(reason)"
         case .noTemplate(let beat, let page):
             return "Page \(page) needs a template realizing '\(beat.rawValue)'; none exists."
+        case .noVariantAfter(let beat, let page):
+            return "Page \(page) has no line written to follow "
+                + "'\(beat?.rawValue ?? "the opening")'. Authoring gap: every beat that can "
+                + "precede this one needs a line, or one line with no ordering constraint."
         case .blueprintNotBeatAuthored(let id):
             return "Blueprint '\(id.rawValue)' declares no beats and cannot be composed."
         }

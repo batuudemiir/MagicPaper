@@ -12,10 +12,34 @@ import Foundation
 /// `realizesBeat` is the file's beat, and the variants are its lines.
 public struct BeatCorpusLoader: Sendable {
 
+    /// A word budget, as the corpus declares it.
+    public struct WordBand: Sendable, Hashable {
+        public let lower: Int
+        public let upper: Int
+        public func contains(_ count: Int) -> Bool { (lower...upper).contains(count) }
+
+        /// Parses the leading "10-16 words" from a band description.
+        ///
+        /// The rest of the line is the author's note about *why*, which is worth
+        /// keeping in the file and not worth parsing.
+        static func parse(_ text: String) -> WordBand? {
+            guard let match = text.range(of: #"^\s*(\d+)\s*[-–]\s*(\d+)"#, options: .regularExpression)
+            else { return nil }
+            let numbers = text[match].split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) }
+            guard numbers.count == 2 else { return nil }
+            return WordBand(lower: numbers[0], upper: numbers[1])
+        }
+    }
+
     /// One authored beat file.
     private struct BeatFile: Decodable {
         let beat: StoryBeat
         let variants: [CatalogVariant]
+        /// Per-beat word bands. **Not the same for every beat**: `meet_companion`
+        /// is a long partner, so `companion_offers` is banded 8-14 rather than
+        /// the usual 10-16, to keep the shared page inside one budget. Assuming
+        /// a single paired band would pass lines that put the page out of it.
+        let lengthClasses: [String: String]?
         /// Declared in the file and **not used**: `StoryBeat` is the single
         /// source for what a beat requires and produces. Decoded only so the
         /// checker below can say when the two have drifted apart.
@@ -27,6 +51,8 @@ public struct BeatCorpusLoader: Sendable {
     public struct Report: Sendable {
         public let templates: [CatalogTemplate]
         public let files: [String]
+        /// The word band each beat declares, per length class.
+        public let bands: [StoryBeat: [VariantLengthClass: WordBand]]
         /// Files that were present and could not be read, with the reason.
         public let skipped: [String]
         /// Beat files whose declared requires/produces disagree with the
@@ -52,7 +78,7 @@ public struct BeatCorpusLoader: Sendable {
 
     public func load(in bundle: Bundle) -> Report {
         guard let urls = bundle.urls(forResourcesWithExtension: "json", subdirectory: nil) else {
-            return Report(templates: [], files: [], skipped: [], drifted: [])
+            return Report(templates: [], files: [], bands: [:], skipped: [], drifted: [])
         }
         return load(urls: urls.filter { $0.lastPathComponent.hasPrefix("beat_") }
             .sorted { $0.lastPathComponent < $1.lastPathComponent })
@@ -61,6 +87,7 @@ public struct BeatCorpusLoader: Sendable {
     func load(urls: [URL]) -> Report {
         var templates: [CatalogTemplate] = []
         var files: [String] = []
+        var bands: [StoryBeat: [VariantLengthClass: WordBand]] = [:]
         var skipped: [String] = []
         var drifted: [String] = []
 
@@ -87,6 +114,14 @@ public struct BeatCorpusLoader: Sendable {
                                + "engine says \(file.beat.produces.map(\.rawValue).sorted())")
             }
 
+            if let declared = file.lengthClasses {
+                bands[file.beat] = declared.reduce(into: [:]) { result, entry in
+                    guard let kind = VariantLengthClass(rawValue: entry.key),
+                          let band = WordBand.parse(entry.value) else { return }
+                    result[kind] = band
+                }
+            }
+
             templates.append(CatalogTemplate(
                 id: Self.templateID(for: file.beat),
                 role: Self.role(for: file.beat),
@@ -97,7 +132,8 @@ public struct BeatCorpusLoader: Sendable {
             files.append(name)
         }
 
-        return Report(templates: templates, files: files, skipped: skipped, drifted: drifted)
+        return Report(templates: templates, files: files, bands: bands,
+                      skipped: skipped, drifted: drifted)
     }
 
     /// The page role a beat usually fills.

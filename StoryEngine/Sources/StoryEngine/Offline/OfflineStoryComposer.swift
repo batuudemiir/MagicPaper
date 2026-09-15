@@ -129,10 +129,11 @@ public struct OfflineStoryComposer: Sendable {
                 let salt = "p\(slot.pageNumber).\(offset).\(current.rawValue)"
                 let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: salt)
 
-                let variant = Self.chooseVariant(
+                let variant = try Self.chooseVariant(
                     from: template.variants,
                     wanting: wanted,
                     after: previousBeat,
+                    onPage: slot.pageNumber,
                     content: content,
                     seed: storySeed,
                     salt: salt + ".v"
@@ -190,27 +191,45 @@ public struct OfflineStoryComposer: Sendable {
         from variants: [CatalogVariant],
         wanting length: VariantLengthClass,
         after previous: StoryBeat?,
+        onPage page: Int,
         content: BoundContent,
         seed: String,
         salt: String
-    ) -> CatalogVariant {
+    ) throws -> CatalogVariant {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
             return kept.isEmpty ? pool : kept
         }
 
         var pool = variants
-        // 1. Content the line assumes must actually be there.
+        // 1. Content the line assumes must actually be there. Degrades: a
+        //    glowing egg is wrong and a reader forgives it once.
         pool = narrow(pool) { $0.fits(setting: content.setting, discovery: content.discovery) }
-        // 2. The right length for a shared or unshared page.
+        // 2. The right length for a shared or unshared page. Degrades: the page
+        //    runs long or short, which is cosmetic.
         pool = narrow(pool) { $0.lengthClass == nil || $0.lengthClass == length }
-        // 3. A line written to follow a particular beat, when it does.
-        if let previous {
-            pool = narrow(pool) { $0.afterBeat.isEmpty || $0.afterBeat.contains(previous) }
-        } else {
-            pool = narrow(pool) { $0.afterBeat.isEmpty }
+
+        // 3. A line written to follow a particular beat. **Does not degrade.**
+        //
+        //    Dropping this one is different in kind from dropping the other
+        //    two. A page whose closing line refers to overcoming something,
+        //    placed after a beat that overcame nothing, does not read as a
+        //    weaker page — it contradicts the six pages before it. That is the
+        //    defect that put "Ve Yeliz karşıya geçti" at the end of a story
+        //    about misreading the evidence, and quietly re-permitting it under
+        //    pool pressure would undo the fix.
+        //
+        //    An empty pool here is an authoring gap, and the author wants to be
+        //    told about it.
+        let byOrder = pool.filter { variant in
+            guard !variant.afterBeat.isEmpty else { return true }
+            guard let previous else { return false }
+            return variant.afterBeat.contains(previous)
         }
-        return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
+        guard !byOrder.isEmpty else {
+            throw OfflineSelectionError.noVariantAfter(beat: previous, page: page)
+        }
+        return DeterministicPicker.pick(from: byOrder, seed: seed, salt: salt)
     }
 
     /// The slot table, built once per story.

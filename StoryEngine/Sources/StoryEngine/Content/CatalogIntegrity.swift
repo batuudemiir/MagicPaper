@@ -78,8 +78,12 @@ public struct CatalogIntegrityReport: Codable, Sendable, Hashable {
 public struct CatalogIntegrityChecker: Sendable {
     public init() {}
 
-    public func check(_ catalog: ContentCatalog) -> CatalogIntegrityReport {
+    public func check(
+        _ catalog: ContentCatalog,
+        corpus: BeatCorpusLoader.Report? = nil
+    ) -> CatalogIntegrityReport {
         var issues: [CatalogIssue] = []
+        if let corpus { issues.append(contentsOf: checkCorpus(corpus)) }
 
         issues.append(contentsOf: checkNotEmpty(catalog))
         issues.append(contentsOf: checkDuplicateIDs(catalog))
@@ -257,6 +261,31 @@ public struct CatalogIntegrityChecker: Sendable {
         }
 
         return issues
+    }
+
+    /// Beat files that were present and could not be read.
+    ///
+    /// **Fatal.** A corpus file that fails to decode — an unknown trait name is
+    /// enough — used to be skipped with a printed warning, which meant the
+    /// catalog silently got thinner and every story carried on being told from
+    /// whatever was left. That is the same failure mode as the original
+    /// `if validTemplates.isEmpty { validTemplates = roleTemplates }`: content
+    /// disappearing without anyone being told. The corpus is authored and
+    /// shipped, so a file that does not decode is a build defect, and a red
+    /// build is the correct outcome.
+    private func checkCorpus(_ report: BeatCorpusLoader.Report) -> [CatalogIssue] {
+        report.skipped.map { detail in
+            CatalogIssue(
+                severity: .fatal, code: "beat_file_unreadable",
+                message: "A beat corpus file could not be read and its prose is missing: \(detail)"
+            )
+        }
+        + report.drifted.map { detail in
+            CatalogIssue(
+                severity: .error, code: "beat_file_drift",
+                message: "A beat file's declared state disagrees with StoryBeat: \(detail)"
+            )
+        }
     }
 
     /// Runs the state rule over every beat-authored blueprint.
