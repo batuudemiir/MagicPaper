@@ -328,17 +328,39 @@ final class SettingAxisTests: XCTestCase {
     }
 
     /// Their F6, as a load-time report rather than a rule of thumb in a
-    /// document. Not an assertion that the catalog is clean — a vocabulary
-    /// legitimately runs ahead of its content — but that running ahead is
-    /// visible instead of silent.
+    /// document.
+    ///
+    /// Asked of a catalog built for the question, not of the shipped one. The
+    /// first version named `hasWeather` as its example and passed until somebody
+    /// gave a setting weather — a test that fails when the project improves is
+    /// worse than no test, and it would have been "fixed" by picking whichever
+    /// trait was still unexercised that week. What is being checked is the
+    /// checker; whether the shipped catalog currently has gaps is a fact about
+    /// content and belongs in its report, not in an assertion.
     func testAnUnexercisedVocabularyIsReported() throws {
-        let report = CatalogIntegrityChecker().check(try catalog())
-        let unexercised = report.issues(withCode: "unexercised_vocabulary")
-        XCTAssertTrue(
-            unexercised.contains { $0.message.contains("'hasWeather'") },
-            "`hasWeather` is declared and no setting has it; that must be reported, not silent. "
-            + "Got: \(unexercised.map(\.message))")
-        XCTAssertTrue(report.isUsable, "An unexercised axis is a warning, never a blocker.")
+        let declaring = try XCTUnwrap(
+            try catalog().settings.first { $0.traits.contains(.canConceal) })
+        let narrow = ContentCatalog(version: "test", settings: [declaring])
+
+        let unexercised = CatalogIntegrityChecker().check(narrow)
+            .issues(withCode: "unexercised_vocabulary")
+        let named = Set(unexercised.compactMap { issue -> String? in
+            SettingTrait.allCases.map(\.rawValue).first { issue.message.contains("'\($0)'") }
+        })
+        let missing = Set(SettingTrait.allCases.map(\.rawValue))
+            .subtracting(declaring.traits.map(\.rawValue))
+
+        XCTAssertEqual(named, missing,
+                       "Every trait no record declares must be reported, and nothing else.")
+        XCTAssertTrue(named.contains("isHazardous"),
+                      "Sanity: this catalog has one setting and it is not hazardous.")
+    }
+
+    /// An unexercised axis is a warning, never a blocker — a vocabulary may
+    /// legitimately run ahead of the content that will use it. What must not
+    /// happen is that running ahead being silent.
+    func testAnUnexercisedVocabularyNeverBlocksLoading() throws {
+        XCTAssertTrue(CatalogIntegrityChecker().check(try catalog()).isUsable)
     }
 }
 
