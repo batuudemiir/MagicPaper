@@ -40,7 +40,9 @@ enum OfflineStoryMapper {
                 companionID: composed.content.companion.id.rawValue,
                 discoveryID: composed.content.discovery.id.rawValue,
                 fingerprint: composed.fingerprint,
-                catalogVersion: catalogVersion
+                catalogVersion: catalogVersion,
+                worldID: MP.World.from(
+                    settingTags: composed.content.setting.tags.map(\.rawValue))?.rawValue
             )
         )
         story.currentProgress = nil
@@ -72,7 +74,11 @@ enum OfflineStoryMapper {
     /// `.custom` exists for exactly this and is not a failure.
     ///
     /// Nothing in the new flow shows the theme. It is mapped only because the
-    /// app model requires the field.
+    /// app model requires the field — and it is lossy on purpose there, which
+    /// is why the **cover** is no longer derived from it. Forest, garden,
+    /// orchard and meadow all collapse to one theme here; four of the six
+    /// shipped settings were therefore drawn with the same green tree, and a
+    /// shelf of a child's stories looked like one story repeated.
     static func theme(for setting: CatalogSetting) -> StoryTheme {
         let tags = Set(setting.tags.map(\.rawValue))
         if !tags.isDisjoint(with: ["sea", "water", "ocean"]) { return .underwater }

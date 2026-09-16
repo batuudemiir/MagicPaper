@@ -5,7 +5,19 @@ import SwiftUI
 extension Story {
 
     /// Kapak/tile rengini ve ikonunu veren temsili masal dünyası.
-    var mpWorld: MP.World { MP.World.from(theme: theme) }
+    ///
+    /// Masal yazılırken KARARLAŞTIRILIR ve kaydedilir; burada yeniden
+    /// hesaplanmaz. Sebebi tek satırda: kapak, masalın bir özelliğidir, o anki
+    /// katalogun değil. Her çizimde katalogdan mekân aranıyor olsaydı, kapak
+    /// katalog yüklenemediğinde sessizce değişir ve içerik büyüdükçe eski
+    /// masalların kapakları altlarından kayardı.
+    ///
+    /// `worldID` yoksa eski tema haritasına düşer — motor öncesi masallar ve
+    /// bu alan eklenmeden kaydedilmiş olanlar aynen çalışmaya devam eder.
+    var mpWorld: MP.World {
+        if let id = origin?.worldID, let world = MP.World(rawValue: id) { return world }
+        return MP.World.from(theme: theme)
+    }
 
     var mpAccent: Color { mpWorld.accent }
     var mpSymbol: String { mpWorld.symbol }

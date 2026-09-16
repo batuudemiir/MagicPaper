@@ -270,6 +270,24 @@ enum MP {
             default: return false
             }
         }
+
+        /// İçeriğin mekân etiketlerinden kapak dünyası.
+        ///
+        /// Etiketlerden türetilir çünkü etiketler içerikte yazılıdır; id listesi
+        /// tutmak, her yeni mekânda güncellenmesi gereken ikinci bir kaynak
+        /// olurdu. Tanınmayan etiket `nil` döner ve çağıran eski haritaya düşer
+        /// — sessizce yanlış bir kapak vermektense bilinen davranışa dönmek.
+        static func from(settingTags tags: [String]) -> World? {
+            let set = Set(tags)
+            if !set.isDisjoint(with: ["sea", "ocean", "water", "reef"])  { return .deniz }
+            if !set.isDisjoint(with: ["mountain", "snow", "peak"])       { return .kar }
+            if !set.isDisjoint(with: ["meadow", "festival"])             { return .sirk }
+            if !set.isDisjoint(with: ["garden", "orchard", "farm"])      { return .ciftlik }
+            if !set.isDisjoint(with: ["forest", "jungle", "woods"])      { return .orman }
+            if !set.isDisjoint(with: ["space", "sky", "moon"])           { return .uzay }
+            if !set.isDisjoint(with: ["castle", "kingdom"])              { return .krallik }
+            return nil
+        }
     }
 
     // MARK: Tipografi

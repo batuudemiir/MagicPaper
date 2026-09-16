@@ -72,15 +72,37 @@ struct CompanionStep: View {
             : companion.personality
     }
 
-    /// Content declares no icon, so this maps from the animal. An unknown type
-    /// gets a paw rather than a blank space.
-    private func symbol(for companion: CatalogCompanion) -> String {
-        switch companion.type.lowercased(with: Locale(identifier: "tr_TR")) {
-        case "baykuş", "kuş": return "bird"
-        case "yunus", "balık": return "fish"
-        case "ejderha": return "flame.fill"
-        case "kirpi", "tavşan", "tilki", "ayı": return "pawprint"
-        default: return "pawprint"
+    /// Content declares no icon, so this maps from the animal.
+    ///
+    /// Every animal that has a symbol gets its own. The previous version sent
+    /// hedgehog, rabbit, fox and bear all to `pawprint`, so four of the five
+    /// companions in the library were drawn identically — on a screen whose
+    /// entire job is choosing between three of them. A child picking a
+    /// companion by its picture was choosing between three copies of the same
+    /// picture.
+    ///
+    /// The paw stays as the honest fallback for an animal the symbol set has
+    /// nothing for, and `CompanionSymbolTests` fails if two shipped companions
+    /// ever land on it together — which is the point at which a fallback stops
+    /// being a fallback and becomes the collision again.
+    static func symbol(forType type: String) -> String {
+        switch type.lowercased(with: Locale(identifier: "tr_TR")) {
+        case "baykuş", "kuş":   return "bird"
+        case "yunus", "balık":  return "fish"
+        case "ejderha":         return "flame.fill"
+        case "tavşan":          return "hare"
+        case "tilki", "köpek":  return "dog"
+        case "kedi":            return "cat"
+        case "ayı":             return "teddybear"
+        case "kaplumbağa":      return "tortoise"
+        case "kertenkele":      return "lizard"
+        case "robot":           return "cpu"
+        case "kelebek":         return "ladybug"
+        default:                return "pawprint"
         }
+    }
+
+    private func symbol(for companion: CatalogCompanion) -> String {
+        Self.symbol(forType: companion.type)
     }
 }

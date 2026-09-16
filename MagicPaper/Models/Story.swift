@@ -73,6 +73,12 @@ struct StoryOrigin: Codable, Equatable {
     /// Which catalog produced it. Content grows; without this, "the same seed"
     /// stops meaning the same story and nobody can tell why.
     var catalogVersion: String
+    /// The cover this story was given, decided once from where it is set.
+    ///
+    /// Stored rather than derived on demand: a cover is a property of the book,
+    /// not of whatever the catalog happens to hold when a list is drawn. Nil for
+    /// stories written before covers were tied to the setting.
+    var worldID: String?
 }
 
 extension Story {

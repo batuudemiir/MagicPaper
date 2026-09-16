@@ -85,6 +85,12 @@ final class OfflineStoryService {
         return catalog.storyIdeas
     }
 
+    /// The place a story was set in, for anything that needs to show it.
+    func setting(id: String) -> CatalogSetting? {
+        guard let catalog = try? catalog() else { return nil }
+        return catalog.settings.first { $0.id.rawValue == id }
+    }
+
     func storyIdea(id: String) -> CatalogStoryIdea? {
         guard let catalog = try? catalog() else { return nil }
         return catalog.storyIdeas.first { $0.id.rawValue == id }
