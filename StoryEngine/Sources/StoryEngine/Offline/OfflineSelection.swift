@@ -57,6 +57,7 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noTemplate(beat: StoryBeat, page: Int)
     case noVariantAfter(beat: StoryBeat?, page: Int)
     case noVariantForRole(role: CompanionRole?, beat: StoryBeat, page: Int)
+    case noVariantSatisfying(constraint: String, beat: StoryBeat, page: Int)
     case blueprintNotBeatAuthored(id: ContentID)
 
     public var explanation: String {
@@ -87,6 +88,10 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "Page \(page) needs a '\(beat.rawValue)' line for a companion cast as "
                 + "'\(role?.rawValue ?? "nothing")'. Authoring gap: every part a blueprint can "
                 + "cast needs a line for this beat, or one line that names no part."
+        case .noVariantSatisfying(let constraint, let beat, let page):
+            return "Page \(page) has no '\(beat.rawValue)' line for \(constraint). Authoring "
+                + "gap: relaxing it would contradict another page, so it is reported rather "
+                + "than quietly dropped."
         case .blueprintNotBeatAuthored(let id):
             return "Blueprint '\(id.rawValue)' declares no beats and cannot be composed."
         }

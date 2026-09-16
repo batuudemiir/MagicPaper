@@ -3,7 +3,7 @@
   "beat": "obstacle_raises",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 4 and 5. The difficulty stops being vague and becomes a specific thing. 'Bir sorun çıktı' on its own is the failure this beat exists to prevent — the old corpus said 'a big obstacle appeared' and could never overcome it, because it never said what it was. Every variant names something. All seven uses are paired, so all variants are short. The obstacle must be one the COMPANION cannot solve with what it has (catalog §2.3), and must never be dangerous.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 4 and 5. The difficulty stops being vague and becomes a specific thing. 'Bir sorun çıktı' on its own is the failure this beat exists to prevent — the old corpus said 'a big obstacle appeared' and could never overcome it, because it never said what it was. Every variant names something. All seven uses are paired, so all variants are short. The obstacle must be one the COMPANION cannot solve with what it has (catalog §2.3), and must never be dangerous. `conflictKinds` is the second engine-derived partition. The four ob_gen_ variants deliberately exclude `duration`: an obstacle that stands in the way is the wrong shape for a conflict made of time, where nothing blocks the child and the difficulty is that it is not finished yet. That exclusion was correct and left Family VI with ONE variant — every Charge story got the same page 4. The fix is duration-shaped obstacles, never widening the general ones.",
   "lengthClasses": {
     "paired": "10-16 words — always shares its page with commit, first_attempt or take_charge (7 of 7)"
   },
@@ -159,6 +159,38 @@
         "perceptual"
       ],
       "move": "thought_it_would_be_easy"
+    },
+    {
+      "id": "ob_wait_01",
+      "text": "Bir günde olacak iş değildi bu. Beklemek gerekiyordu, hem de epeyce.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "duration"
+      ],
+      "move": "not_a_one_day_job"
+    },
+    {
+      "id": "ob_wait_02",
+      "text": "{{companion.name}} henüz hazır değildi. Acele etmenin hiçbir faydası yoktu, hiç de yoktu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "duration"
+      ],
+      "move": "hurrying_helps_nothing"
+    },
+    {
+      "id": "ob_wait_03",
+      "text": "Zaman geçiyordu ama hiçbir şey değişmiyordu. İşin en zor kısmı buydu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "duration"
+      ],
+      "move": "time_passing_nothing_changing"
     }
   ]
 }

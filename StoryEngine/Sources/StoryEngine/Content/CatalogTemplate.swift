@@ -95,10 +95,52 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// How certain the line sounds, where that is load-bearing.
     public let register: VariantRegister?
 
-    private enum CodingKeys: String, CodingKey {
+    /// Which conflict mechanisms this line is the right *shape* for.
+    ///
+    /// An obstacle that stands in the way is wrong for a conflict made of time,
+    /// where nothing blocks the child and the difficulty is that it is not
+    /// finished yet. Excluding `duration` from the general obstacles was the
+    /// correct editorial call; not writing the duration-shaped ones it implied
+    /// is what turned the exclusion into a pool of one.
+    public let conflictKinds: Set<ConflictMechanism>
+
+    /// The **resolution** this closing line reads well after — not the beat
+    /// immediately before it.
+    ///
+    /// Genuinely different from `afterBeat`, which is why it is a separate
+    /// field and not a synonym. On a page that pairs `self_recognize` with
+    /// `warm_close`, the beat immediately before the closing line is the one
+    /// beside it on the same page; what the closing line actually refers back
+    /// to is how the story ended, two beats earlier. Reading this as `afterBeat`
+    /// would have asked the wrong question and got a plausible wrong answer.
+    public let afterClosing: [StoryBeat]
+
+    /// Narrative state this line takes as already true.
+    ///
+    /// Finer than the beat's own preconditions, which bind every line that
+    /// realizes it: a line that says the child now knew what was needed is only
+    /// usable once something has established that, even where the beat itself
+    /// does not require it.
+    public let afterState: [NarrativeStateKey]
+
+    private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
         case capabilityRequire, capabilityForbid, castRoles, register
+        case conflictKinds, afterClosing, afterState
+    }
+
+    /// Every key this type actually reads.
+    ///
+    /// Derived from `CodingKeys` rather than listed by hand, so it cannot drift
+    /// from the decoder. A guard test compares it against what the corpus
+    /// declares: a key the authors write and the engine ignores is the project's
+    /// most durable failure mode — the content says a thing, the engine cannot
+    /// hear it, and nothing anywhere reports that. `castRoles` sat unread that
+    /// way, and so did `conflictKinds` while a whole family's obstacles were
+    /// being carefully partitioned for an engine that was not listening.
+    public static var decodedKeys: Set<String> {
+        Set(CodingKeys.allCases.map(\.rawValue))
     }
 
     public init(from decoder: Decoder) throws {
@@ -122,6 +164,17 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         capabilityForbid = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityForbid) ?? []
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         register = try container.decodeIfPresent(VariantRegister.self, forKey: .register)
+        conflictKinds = try container.decodeIfPresent(Set<ConflictMechanism>.self, forKey: .conflictKinds) ?? []
+        afterClosing = (try container.decodeIfPresent([String].self, forKey: .afterClosing) ?? [])
+            .compactMap(StoryBeat.init(rawValue:))
+        afterState = try container.decodeIfPresent([NarrativeStateKey].self, forKey: .afterState) ?? []
+    }
+
+    /// Whether this line is the right shape for how the story's conflict works.
+    public func suits(conflict: ConflictMechanism?) -> Bool {
+        guard !conflictKinds.isEmpty else { return true }
+        guard let conflict else { return false }
+        return conflictKinds.contains(conflict)
     }
 
     /// Whether this line can be used for the content that was bound.

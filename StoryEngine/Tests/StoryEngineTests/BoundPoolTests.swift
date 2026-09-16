@@ -91,38 +91,38 @@ final class BoundPoolTests: XCTestCase {
         var worst = Int.max
 
         for cell in try cells(in: catalog) {
-            var previousBeat: StoryBeat?
-            for slot in cell.blueprint.pagePlan.sorted(by: { $0.pageNumber < $1.pageNumber }) {
-                guard let beat = slot.beat else { continue }
-                let ordered = [beat] + (slot.supportingBeat.map { [$0] } ?? [])
-                let wanted: VariantLengthClass = ordered.count > 1 ? .paired : .solo
+            // The page walk comes from the composer, not from a copy of it. The
+            // first version of this test rebuilt the walk and got `closing`
+            // wrong — it answered "how did the story end" with "what came
+            // immediately before", which on a page pairing `self_recognize`
+            // with `warm_close` is a different beat. It reported an authoring
+            // gap that did not exist.
+            for step in try OfflineStoryComposer.plan(cell.blueprint) {
+                let templates = catalog.templates.filter {
+                    $0.realizesBeat == step.beat && !$0.variants.isEmpty
+                }
+                // A beat with no template at all is a different defect, and
+                // `checkBeatCoverage` is where it is reported.
+                guard !templates.isEmpty else { continue }
 
-                for current in ordered {
-                    let templates = catalog.templates.filter {
-                        $0.realizesBeat == current && !$0.variants.isEmpty
-                    }
-                    // A beat with no template at all is a different defect, and
-                    // `checkBeatCoverage` is where it is reported.
-                    guard !templates.isEmpty else { previousBeat = current; continue }
-
-                    var available = 0
-                    for template in templates {
-                        let pool = try OfflineStoryComposer.pool(
-                            from: template.variants, realizing: current, wanting: wanted,
-                            after: previousBeat, onPage: slot.pageNumber,
-                            content: cell.content, register: cell.blueprint.family?.beliefRegister)
-                        available += pool.count
-                    }
-                    worst = min(worst, available)
-                    if available < floor {
-                        thin.append(
-                            "\(cell.blueprint.id.rawValue) p\(slot.pageNumber) "
-                            + "\(current.rawValue) [\(cell.content.setting.id.rawValue)/"
-                            + "\(cell.content.companion.id.rawValue) as "
-                            + "\(cell.content.castRole?.rawValue ?? "-")/"
-                            + "\(cell.content.discovery.id.rawValue)]: \(available)")
-                    }
-                    previousBeat = current
+                var available = 0
+                for template in templates {
+                    let pool = try OfflineStoryComposer.pool(
+                        from: template.variants, realizing: step.beat, wanting: step.wanted,
+                        after: step.previous, closing: step.closing, state: step.state,
+                        onPage: step.pageNumber, content: cell.content,
+                        register: cell.blueprint.family?.beliefRegister,
+                        conflict: cell.blueprint.family?.conflict)
+                    available += pool.count
+                }
+                worst = min(worst, available)
+                if available < floor {
+                    thin.append(
+                        "\(cell.blueprint.id.rawValue) p\(step.pageNumber) "
+                        + "\(step.beat.rawValue) [\(cell.content.setting.id.rawValue)/"
+                        + "\(cell.content.companion.id.rawValue) as "
+                        + "\(cell.content.castRole?.rawValue ?? "-")/"
+                        + "\(cell.content.discovery.id.rawValue)]: \(available)")
                 }
             }
         }

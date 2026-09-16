@@ -3,7 +3,7 @@
   "beat": "form_belief",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 2 and 4. The child puts things together into an idea. Register differs by family and must be declared: Family I voices it as a QUESTION or a maybe, which keeps page 6 available; Family V voices it with CERTAINTY, because the misreading has to be held confidently before it can be gently overturned. A tentative line in a Misreading story has nothing to overturn.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 2 and 4. The child puts things together into an idea. Register differs by family and must be declared: Family I voices it as a QUESTION or a maybe, which keeps page 6 available; Family V voices it with CERTAINTY, because the misreading has to be held confidently before it can be gently overturned. A tentative line in a Misreading story has nothing to overturn. `register` partitions this beat the same way castRoles partitions meet_companion, but the wanted value is DERIVED from the family by the engine, so a validator reading only the corpus cannot know the mapping. It can still count the partition: every declared register must clear the bound-pool floor on its own. At 3 and 3 it did not, and a Misreading story had three ways to voice the belief its whole book overturns.",
   "lengthClasses": {
     "paired": "10-16 words — shares its page with approach, examine or commit (3 of 3)"
   },
@@ -67,6 +67,26 @@
       "lengthClass": "paired",
       "move": "already_solved_it",
       "register": "certain"
+    },
+    {
+      "id": "fb_p_tent_04",
+      "text": "{{child.name}} bir tahminde bulundu. Doğru mu, bilmiyordu. Ama bir yerden başlamak lazımdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "tentative",
+      "move": "a_guess_to_start_from"
+    },
+    {
+      "id": "fb_p_cert_04",
+      "text": "{{child.name}}'in aklında hiç soru kalmamıştı. Ne olduğunu artık gayet iyi biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "certain",
+      "move": "no_questions_left"
     }
   ]
 }

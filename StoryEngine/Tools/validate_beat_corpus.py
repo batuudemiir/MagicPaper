@@ -337,6 +337,50 @@ def check_length_class_coverage(corpus, report) -> None:
     report.note(f"length-class coverage checked against {len(sequences)} blueprints")
 
 
+# Axes the ENGINE computes a wanted value for, rather than the content declaring
+# what it matches. A validator reading only the corpus cannot know the mapping
+# (`register` is derived from the narrative family), so it cannot say which cell
+# a given story lands in — but it can count the cells, which is enough.
+ENGINE_AXES = ("register", "conflictKinds")
+
+
+def check_engine_axis_pools(corpus, report) -> None:
+    """
+    Every value of an engine-derived axis must clear the bound-pool floor alone.
+
+    `check_bound_pools` walks content against content and is structurally blind
+    here: the wanted `register` comes from `NarrativeFamily.beliefRegister`, and
+    the wanted `conflictKinds` from the family's conflict mechanism, so neither
+    is visible in the corpus. Both were found by the engine session's own tests
+    after this file's author had written a table of partitioning axes that
+    omitted them.
+
+    The mapping is not needed. If a beat declares a value at all, some story
+    wants it, and a value carried by fewer than MIN_BOUND_POOL variants is a
+    thin cell whoever lands in it. `form_belief` was 3 certain / 3 tentative, and
+    `obstacle_raises` offered `duration` in exactly one variant.
+    """
+    for beat_file in corpus:
+        values: dict[tuple[str, str], int] = {}
+        for variant in beat_file["variants"]:
+            for axis in ENGINE_AXES:
+                declared = variant.get(axis)
+                if not declared:
+                    continue
+                for value in ([declared] if isinstance(declared, str) else declared):
+                    values[(axis, value)] = values.get((axis, value), 0) + 1
+        for (axis, value), count in sorted(values.items()):
+            if count < MIN_BOUND_POOL:
+                report.fail(
+                    f"{beat_file['beat']}: {axis} `{value}` is offered by {count} variant(s) — "
+                    f"every story the engine derives that value for shares this page "
+                    f"{1 / count:.0%} of the time"
+                )
+        if values:
+            report.note(f"{beat_file['beat']}: engine axes "
+                        + ", ".join(f"{a}/{v}={n}" for (a, v), n in sorted(values.items())))
+
+
 def check_bound_pools(corpus, report) -> None:
     """
     Count supply per CELL, not per beat.
@@ -537,6 +581,7 @@ def main() -> int:
     check_length_class_coverage(corpus, report)
     check_effective_pools(corpus, report)
     check_bound_pools(corpus, report)
+    check_engine_axis_pools(corpus, report)
 
     for note in report.notes:
         print(f"note: {note}")
@@ -547,7 +592,7 @@ def main() -> int:
         return 1
 
     print("\nPASS — word bands, suffixes, declared slots, collisions, moves, "
-          "banned constructions, place welding, length-class coverage, effective pools, bound pools")
+          "banned constructions, place welding, length-class coverage, effective pools, bound pools, engine-axis pools")
     return 0
 
 

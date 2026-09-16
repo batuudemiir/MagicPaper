@@ -96,72 +96,70 @@ public struct OfflineStoryComposer: Sendable {
         ])
 
         var pages: [ComposedPage] = []
-        /// The beat immediately before the one being written, so a line that
-        /// refers back to what just happened can ask for it.
-        var previousBeat: StoryBeat?
-        for slot in blueprint.pagePlan.sorted(by: { $0.pageNumber < $1.pageNumber }) {
-            guard let beat = slot.beat else {
-                throw OfflineSelectionError.blueprintNotBeatAuthored(id: blueprint.id)
-            }
-            let ordered = [beat] + (slot.supportingBeat.map { [$0] } ?? [])
+        var carried: [Int: (beats: [StoryBeat], role: PageRole, emotion: EmotionalState?)] = [:]
+        for step in try Self.plan(blueprint) {
+            carried[step.pageNumber] = (step.beats, step.role, step.emotion)
+        }
 
-            var sentences: [String] = []
-            var scenes: [String] = []
-            var variantIDs: [ContentID] = []
-            var missing: [String] = []
-            var unrecognised: [String] = []
+        var currentPage = 0
+        var sentences: [String] = []
+        var scenes: [String] = []
+        var variantIDs: [ContentID] = []
+        var missing: [String] = []
+        var unrecognised: [String] = []
 
-            // A supporting beat is a second sentence on the same page, not a
-            // second page. That is what lets page 4 both name the reluctance
-            // and decide anyway.
-            // A page carrying two beats needs two short lines; a page carrying
-            // one needs a full one. Authors write to that band, so the composer
-            // has to ask for it rather than take whatever comes.
-            let wanted: VariantLengthClass = ordered.count > 1 ? .paired : .solo
-
-            for (offset, current) in ordered.enumerated() {
-                let candidates = catalog.templates.filter {
-                    $0.realizesBeat == current && !$0.variants.isEmpty
-                }
-                guard !candidates.isEmpty else {
-                    throw OfflineSelectionError.noTemplate(beat: current, page: slot.pageNumber)
-                }
-                let salt = "p\(slot.pageNumber).\(offset).\(current.rawValue)"
-                let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: salt)
-
-                let variant = try Self.chooseVariant(
-                    from: template.variants,
-                    realizing: current,
-                    wanting: wanted,
-                    after: previousBeat,
-                    onPage: slot.pageNumber,
-                    content: content,
-                    register: blueprint.family?.beliefRegister,
-                    seed: storySeed,
-                    salt: salt + ".v"
-                )
-
-                let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
-                sentences.append(rendered.text)
-                if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
-                variantIDs.append(variant.id)
-                missing += rendered.missingSlots
-                unrecognised += rendered.unrecognisedSuffixes
-                previousBeat = current
-            }
-
+        func flush() {
+            guard currentPage != 0, let page = carried[currentPage] else { return }
             pages.append(ComposedPage(
-                pageNumber: slot.pageNumber,
-                role: slot.role,
-                beats: ordered,
-                emotion: slot.emotion,
+                pageNumber: currentPage,
+                role: page.role,
+                beats: page.beats,
+                emotion: page.emotion,
                 text: sentences.joined(separator: " "),
                 visualScene: scenes.joined(separator: "; "),
                 variantIDs: variantIDs,
                 missingSlots: missing,
                 unrecognisedSuffixes: unrecognised
             ))
+            sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
         }
+
+        for step in try Self.plan(blueprint) {
+            if step.pageNumber != currentPage {
+                flush()
+                currentPage = step.pageNumber
+            }
+            let candidates = catalog.templates.filter {
+                $0.realizesBeat == step.beat && !$0.variants.isEmpty
+            }
+            guard !candidates.isEmpty else {
+                throw OfflineSelectionError.noTemplate(beat: step.beat, page: step.pageNumber)
+            }
+            let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: step.salt)
+
+            let variant = try Self.chooseVariant(
+                from: template.variants,
+                realizing: step.beat,
+                wanting: step.wanted,
+                after: step.previous,
+                closing: step.closing,
+                state: step.state,
+                onPage: step.pageNumber,
+                content: content,
+                register: blueprint.family?.beliefRegister,
+                conflict: blueprint.family?.conflict,
+                seed: storySeed,
+                salt: step.salt + ".v"
+            )
+
+            let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
+            sentences.append(rendered.text)
+            if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
+            variantIDs.append(variant.id)
+            missing += rendered.missingSlots
+            unrecognised += rendered.unrecognisedSuffixes
+        }
+        flush()
 
         let title = titles.compose(blueprint: blueprint, slots: slots, seed: storySeed)
 
@@ -181,6 +179,66 @@ public struct OfflineStoryComposer: Sendable {
         )
     }
 
+    /// One beat to be written, with everything the choice depends on.
+    ///
+    /// `previous`, `closing` and `state` are three different questions about
+    /// what has already happened and it is easy to answer one with another:
+    /// on a page pairing `self_recognize` with `warm_close`, the beat
+    /// immediately before the closing line is the one beside it on the same
+    /// page, while the resolution it refers back to is two beats earlier.
+    struct PlanStep {
+        let pageNumber: Int
+        let role: PageRole
+        let emotion: EmotionalState?
+        /// Every beat on this page, for the record the page carries.
+        let beats: [StoryBeat]
+        let beat: StoryBeat
+        let wanted: VariantLengthClass
+        let previous: StoryBeat?
+        let closing: StoryBeat?
+        let state: DerivedNarrativeState
+        let salt: String
+    }
+
+    /// The blueprint's page plan flattened into the order beats are written,
+    /// with the accumulated context each one sees.
+    ///
+    /// Pure, and shared: the composer walks it to write the book and the supply
+    /// tests walk it to measure pools. Keeping one copy is the same rule the
+    /// rest of this merge kept arriving at — a second implementation of a walk
+    /// is free to disagree with the first, and a test that disagrees with the
+    /// code it checks reports defects that are not there.
+    static func plan(_ blueprint: CatalogBlueprint) throws -> [PlanStep] {
+        var steps: [PlanStep] = []
+        var previous: StoryBeat?
+        var closing: StoryBeat?
+        var state = DerivedNarrativeState()
+
+        for slot in blueprint.pagePlan.sorted(by: { $0.pageNumber < $1.pageNumber }) {
+            guard let beat = slot.beat else {
+                throw OfflineSelectionError.blueprintNotBeatAuthored(id: blueprint.id)
+            }
+            // A supporting beat is a second sentence on the same page, not a
+            // second page — that is what lets page 4 both name the reluctance
+            // and decide anyway. A page carrying two beats needs two short
+            // lines; a page carrying one needs a full one.
+            let ordered = [beat] + (slot.supportingBeat.map { [$0] } ?? [])
+            let wanted: VariantLengthClass = ordered.count > 1 ? .paired : .solo
+
+            for (offset, current) in ordered.enumerated() {
+                steps.append(PlanStep(
+                    pageNumber: slot.pageNumber, role: slot.role, emotion: slot.emotion,
+                    beats: ordered, beat: current, wanted: wanted,
+                    previous: previous, closing: closing, state: state,
+                    salt: "p\(slot.pageNumber).\(offset).\(current.rawValue)"))
+                previous = current
+                if current == .succeed || current == .restore { closing = current }
+                state.produce(current.produces)
+            }
+        }
+        return steps
+    }
+
     /// Picks a line for one beat.
     ///
     /// Some narrowings degrade and some do not, and which is which is the whole
@@ -196,15 +254,19 @@ public struct OfflineStoryComposer: Sendable {
         realizing beat: StoryBeat,
         wanting length: VariantLengthClass,
         after previous: StoryBeat?,
+        closing: StoryBeat? = nil,
+        state: DerivedNarrativeState = DerivedNarrativeState(),
         onPage page: Int,
         content: BoundContent,
         register: VariantRegister?,
+        conflict: ConflictMechanism? = nil,
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
         let pool = try self.pool(
             from: variants, realizing: beat, wanting: length, after: previous,
-            onPage: page, content: content, register: register)
+            closing: closing, state: state, onPage: page, content: content,
+            register: register, conflict: conflict)
         return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
     }
 
@@ -228,9 +290,12 @@ public struct OfflineStoryComposer: Sendable {
         realizing beat: StoryBeat,
         wanting length: VariantLengthClass,
         after previous: StoryBeat?,
+        closing: StoryBeat? = nil,
+        state: DerivedNarrativeState = DerivedNarrativeState(),
         onPage page: Int,
         content: BoundContent,
-        register: VariantRegister?
+        register: VariantRegister?,
+        conflict: ConflictMechanism? = nil
     ) throws -> [CatalogVariant] {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
@@ -250,7 +315,47 @@ public struct OfflineStoryComposer: Sendable {
                 role: content.castRole, beat: beat, page: page)
         }
 
-        var pool = byRole
+        // 0b. The shape the conflict actually has. **Does not degrade.**
+        //
+        //     An obstacle that stands in the way is the wrong shape for a
+        //     conflict made of time: nothing is blocking the child, the
+        //     difficulty is that it is not finished yet. A line of the wrong
+        //     shape does not read as a weaker obstacle, it reads as a different
+        //     story's obstacle.
+        let byConflict = byRole.filter { $0.suits(conflict: conflict) }
+        guard !byConflict.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a \(conflict?.rawValue ?? "unstated")-shaped conflict",
+                beat: beat, page: page)
+        }
+
+        // 0c. What the line assumes is already true. **Does not degrade.**
+        let byState = byConflict.filter { variant in
+            variant.afterState.allSatisfy(state.contains)
+        }
+        guard !byState.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "state the story has not reached", beat: beat, page: page)
+        }
+
+        // 0d. How the story ended, for a line that refers back to it.
+        //     **Does not degrade**, and deliberately asks a different question
+        //     from narrowing 3 below: on a page pairing `self_recognize` with
+        //     `warm_close`, the beat immediately before the closing line is the
+        //     one beside it, while what it refers back to is the resolution two
+        //     beats earlier.
+        let byClosing = byState.filter { variant in
+            guard !variant.afterClosing.isEmpty else { return true }
+            guard let closing else { return false }
+            return variant.afterClosing.contains(closing)
+        }
+        guard !byClosing.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a story that ended in '\(closing?.rawValue ?? "nothing")'",
+                beat: beat, page: page)
+        }
+
+        var pool = byClosing
         // 1. Content the line assumes must actually be there — including what
         //    the companion can do, so a line about gliding down is offered only
         //    to something that flies. Degrades: a glowing egg is wrong and a
