@@ -119,6 +119,19 @@ public enum DiscoveryTrait: String, Codable, Sendable, Hashable, CaseIterable {
     /// its best sentences; declaring it lets a variant say "gördü" and be
     /// offered only when that is true.
     case isVisible
+    /// Can be heard.
+    ///
+    /// The half of the modality axis that was missing, and the gap was invisible
+    /// because `emitsSignal` reads as though it covers it. It does not: a
+    /// flickering light and a faint sound both signal, and with only one
+    /// modality declared, a line built on *hearing* had nothing to require and
+    /// was offered to the light. The rendered story then opened on a sound and
+    /// examined a light on the next page — two pages that each read perfectly
+    /// and contradict each other.
+    ///
+    /// A half-built axis is worse than none: `isVisible` looks like modality is
+    /// handled, so nobody checks the other direction.
+    case isAudible
 }
 
 /// Where a piece of content belongs.

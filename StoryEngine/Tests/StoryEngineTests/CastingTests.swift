@@ -418,3 +418,54 @@ final class SocialThresholdTests: XCTestCase {
                        "A dolphin in a meadow is the original content defect.")
     }
 }
+
+/// The modality axis, which existed in one direction only.
+final class DiscoveryModalityTests: XCTestCase {
+
+    private func catalog() throws -> ContentCatalog {
+        try ContentCatalogLoader().load().catalog
+    }
+
+    /// `emitsSignal` reads as though it settles how a thing is perceived and
+    /// does not: a flickering light and a faint sound both signal. With only
+    /// `isVisible` declared, a line built on *hearing* had nothing to require.
+    func testSignallingIsNotAModality() throws {
+        let objects = try catalog().objects.filter { $0.traits.contains(.emitsSignal) }
+        XCTAssertGreaterThan(objects.count, 1, "Need at least two signallers to make the point.")
+        XCTAssertTrue(objects.contains { $0.traits.contains(.isVisible) })
+        XCTAssertTrue(objects.contains { $0.traits.contains(.isAudible) },
+                      "Both kinds of signal must exist, or the axis is untested.")
+    }
+
+    /// A modality-less discovery is not neutral, it is both — and a half-built
+    /// axis is worse than none, because `isVisible` makes it look handled.
+    func testEverySelectableDiscoverySaysHowItIsPerceived() throws {
+        let report = CatalogIntegrityChecker().check(try catalog())
+        XCTAssertEqual(report.issues(withCode: "discovery_without_modality"), [])
+    }
+
+    /// The defect this came from, as a property: the thing the child finds on
+    /// page 1 is perceived the same way on page 2, because it is the same
+    /// thing. Pages that each read perfectly can still contradict each other,
+    /// and only a rendered story shows it.
+    func testNoStoryPerceivesItsDiscoveryTwoWays() throws {
+        let catalog = try catalog()
+        for seed in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"] {
+            let story = try OfflineStoryComposer().compose(
+                catalog: catalog, intent: OfflineStoryIntent(childName: "Yeliz", seed: seed))
+            let discovery = story.content.discovery
+            let byID = Dictionary(
+                uniqueKeysWithValues: catalog.templates.flatMap(\.variants).map { ($0.id, $0) })
+            for page in story.pages {
+                for variant in page.variantIDs.compactMap({ byID[$0] }) {
+                    XCTAssertTrue(
+                        variant.discoveryTraits.isSubset(of: discovery.traits),
+                        "seed \(seed) p\(page.pageNumber): \(variant.id.rawValue) needs "
+                        + "\(variant.discoveryTraits.map(\.rawValue).sorted()) but "
+                        + "\(discovery.id.rawValue) offers "
+                        + "\(discovery.traits.map(\.rawValue).sorted())")
+                }
+            }
+        }
+    }
+}

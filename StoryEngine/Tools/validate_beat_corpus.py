@@ -337,48 +337,121 @@ def check_length_class_coverage(corpus, report) -> None:
     report.note(f"length-class coverage checked against {len(sequences)} blueprints")
 
 
-# Axes the ENGINE computes a wanted value for, rather than the content declaring
-# what it matches. A validator reading only the corpus cannot know the mapping
-# (`register` is derived from the narrative family), so it cannot say which cell
-# a given story lands in — but it can count the cells, which is enough.
-ENGINE_AXES = ("register", "conflictKinds")
+# Keys that describe the variant itself rather than gating when it is eligible.
+# Everything else in a variant is a filter of some kind.
+STRUCTURAL_KEYS = {"id", "text", "requiredSlots", "lengthClass", "move"}
 
 
-def check_engine_axis_pools(corpus, report) -> None:
+def check_partitioned_pools(corpus, report) -> None:
     """
-    Every value of an engine-derived axis must clear the bound-pool floor alone.
+    Any key EVERY variant of a beat declares partitions that beat's supply.
 
-    `check_bound_pools` walks content against content and is structurally blind
-    here: the wanted `register` comes from `NarrativeFamily.beliefRegister`, and
-    the wanted `conflictKinds` from the family's conflict mechanism, so neither
-    is visible in the corpus. Both were found by the engine session's own tests
-    after this file's author had written a table of partitioning axes that
-    omitted them.
+    This replaces a hardcoded list of two axes (`register`, `conflictKinds`)
+    which was incomplete when it was written — it missed `afterClosing` on
+    `warm_close` and `afterState` on `commit`. Listing the axes is the same
+    mistake as listing the bindings: a check must derive what it expects from
+    the thing it is checking, never hold its own copy.
 
-    The mapping is not needed. If a beat declares a value at all, some story
-    wants it, and a value carried by fewer than MIN_BOUND_POOL variants is a
-    thin cell whoever lands in it. `form_belief` was 3 certain / 3 tentative, and
-    `obstacle_raises` offered `duration` in exactly one variant.
+    The test is derivable from the corpus alone and needs no mapping. If some
+    variants of a beat leave a key undeclared, those are an unconditional floor
+    and a rare value is a bonus on top of it. If NONE do, the key's values carve
+    the beat into cells, every story lands in exactly one, and each value must
+    clear the floor by itself — whatever the engine derives the wanted value
+    from, and whether or not this file can see that derivation.
+
+    Caught at 3/3 (`form_belief.register`) and 1 (`obstacle_raises.duration`).
     """
     for beat_file in corpus:
-        values: dict[tuple[str, str], int] = {}
-        for variant in beat_file["variants"]:
-            for axis in ENGINE_AXES:
-                declared = variant.get(axis)
-                if not declared:
-                    continue
+        variants = beat_file["variants"]
+        if not variants:
+            continue
+        candidates = {k for v in variants for k in v} - STRUCTURAL_KEYS
+        for key in sorted(candidates):
+            if any(not v.get(key) for v in variants):
+                continue                      # an unconditional floor exists
+            counts: dict[str, int] = {}
+            for variant in variants:
+                declared = variant[key]
                 for value in ([declared] if isinstance(declared, str) else declared):
-                    values[(axis, value)] = values.get((axis, value), 0) + 1
-        for (axis, value), count in sorted(values.items()):
-            if count < MIN_BOUND_POOL:
-                report.fail(
-                    f"{beat_file['beat']}: {axis} `{value}` is offered by {count} variant(s) — "
-                    f"every story the engine derives that value for shares this page "
-                    f"{1 / count:.0%} of the time"
-                )
-        if values:
-            report.note(f"{beat_file['beat']}: engine axes "
-                        + ", ".join(f"{a}/{v}={n}" for (a, v), n in sorted(values.items())))
+                    counts[value] = counts.get(value, 0) + 1
+            for value, count in sorted(counts.items()):
+                if count < MIN_BOUND_POOL:
+                    report.fail(
+                        f"{beat_file['beat']}: every variant declares `{key}`, so its values are "
+                        f"cells — `{value}` holds {count}, and every story the engine sends there "
+                        f"shares this page {1 / count:.0%} of the time"
+                    )
+            report.note(f"{beat_file['beat']}: `{key}` partitions into "
+                        + ", ".join(f"{v}={n}" for v, n in sorted(counts.items())))
+
+
+def check_blueprints_satisfiable(corpus, report) -> None:
+    """
+    A blueprint that matches no content is a silent hole, not a thin cell.
+
+    `check_bound_pools` reports empty CELLS. A blueprint with no legal binding
+    contributes no cells at all, so it passes that check by producing nothing —
+    the failure mode is absence, and absence is what a walk cannot see.
+
+    This is the defect that took `bp_threshold_joining_002` out of the catalog
+    without anyone noticing: `thresholdKind = social` was required and no setting
+    offered one. BLUEPRINT_CATALOG_V2 §6 recorded that as resolved because the
+    BLUEPRINT had been rebuilt, which settled the architecture and not the
+    content. Nothing could see the difference until the engine's load-time
+    unexercised-vocabulary report met that claim.
+    """
+    library = _pilot_library()
+    if not library:
+        report.note("satisfiability check skipped: no content library found")
+        return
+    sequences = shipped_sequences()
+    if SEQUENCES.exists():
+        sequences += json.loads(SEQUENCES.read_text(encoding="utf-8"))["blueprints"]
+
+    all_roles = {"guide", "needsCare", "hesitant", "reassuring"}
+    for blueprint in sequences:
+        requires = blueprint.get("requires") or {}
+        forbids = blueprint.get("forbids") or {}
+        if not requires and not forbids:
+            continue
+        legal = 0
+        blocked: set[str] = set()
+        for setting in library["settings"]:
+            traits = set(setting.get("traits", []))
+            if not _satisfies(traits, requires.get("setting")) or (traits & set(forbids.get("setting") or [])):
+                blocked.add("setting")
+                continue
+            wanted = set(requires.get("thresholdKind") or [])
+            if wanted and not (wanted & set(setting.get("thresholdKinds", []))):
+                blocked.add(f"thresholdKind {sorted(wanted)}")
+                continue
+            for companion in library["companions"]:
+                if not (set(companion.get("habitat", [])) & set(setting.get("habitat", []))):
+                    continue
+                caps = set(companion.get("traits", []))
+                if not _satisfies(caps, requires.get("companion")) or (caps & set(forbids.get("companion") or [])):
+                    blocked.add("companion")
+                    continue
+                if not ((set(companion.get("castRoles", [])) or all_roles)
+                        & (set(requires.get("casting") or []) or all_roles)):
+                    blocked.add("casting")
+                    continue
+                for discovery in library["objects"]:
+                    found = set(discovery.get("traits", []))
+                    if not _satisfies(found, requires.get("discovery")) or (found & set(forbids.get("discovery") or [])):
+                        blocked.add("discovery")
+                        continue
+                    legal += 1
+        if legal == 0:
+            report.fail(
+                f"{blueprint['id']}: NO legal binding exists — the blueprint matches no content "
+                f"and can never be selected (narrowed away on: {', '.join(sorted(blocked)) or 'habitat'})"
+            )
+        elif legal < 4:
+            report.fail(
+                f"{blueprint['id']}: only {legal} legal binding(s) — every book of this blueprint "
+                f"draws from the same handful of settings, companions and discoveries"
+            )
 
 
 def check_bound_pools(corpus, report) -> None:
@@ -427,6 +500,9 @@ def check_bound_pools(corpus, report) -> None:
             if not _satisfies(set(setting.get("traits", [])), requires.get("setting")):
                 continue
             if set(setting.get("traits", [])) & set(forbids.get("setting") or []):
+                continue
+            wanted_kinds = set(requires.get("thresholdKind") or [])
+            if wanted_kinds and not (wanted_kinds & set(setting.get("thresholdKinds", []))):
                 continue
             for companion in library["companions"]:
                 if not (set(companion.get("habitat", [])) & set(setting.get("habitat", []))):
@@ -580,8 +656,9 @@ def main() -> int:
     check_place_welding(corpus, report)
     check_length_class_coverage(corpus, report)
     check_effective_pools(corpus, report)
+    check_blueprints_satisfiable(corpus, report)
     check_bound_pools(corpus, report)
-    check_engine_axis_pools(corpus, report)
+    check_partitioned_pools(corpus, report)
 
     for note in report.notes:
         print(f"note: {note}")
@@ -592,7 +669,7 @@ def main() -> int:
         return 1
 
     print("\nPASS — word bands, suffixes, declared slots, collisions, moves, "
-          "banned constructions, place welding, length-class coverage, effective pools, bound pools, engine-axis pools")
+          "banned constructions, place welding, length-class coverage, effective pools, bound pools, partitioned pools")
     return 0
 
 

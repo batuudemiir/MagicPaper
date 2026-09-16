@@ -381,32 +381,46 @@ Stated plainly rather than deferred silently.
 2. ~~Template supply is unmeasured.~~ **Measured, and it did not force the catalog down.** Two books of one blueprint share a given page 6.2–16.7% of the time depending on the page; every identity page (2, 6, 7, 8) is at 12.5% or better. The thinnest pages are 4 and 5 at 16.7%. See PROSE_PRODUCTION_GUIDE.md — including the correction to the aggregate figures first reported there.
 3. **The Family III page-4 constraint is still partly editorial.** §2.3 makes the taxi problem structural, but "the obstacle must not be soluble by the companion's own capabilities" still needs a human. It is now *partly* checkable: if the obstacle declares which capability it defeats, the selector can verify the companion lacks it. Recommended for Phase 6.
 4. ~~II-1 vs II-2 is the closest pair~~ — **resolved in Phase 6** by rebuilding II-2 on a social threshold (beat 5, arc 3). The closest pair is now cross-family: I-2 `moment` vs IV-2 `retracing` at beat 3.
-5. **Family II's `social` threshold is declared and unsatisfiable — REOPENED.** Marking this resolved in Phase 6 was wrong: rebuilding II-2 on the social threshold settled the *blueprint*, and I recorded that as though it settled the *content*. It did not. `ThresholdKind.social` exists in the engine and `bp_threshold_joining_002` requires it, but **no setting in the library declares it**, so the blueprint matches nothing. The engine's load-time unexercised-vocabulary report is what surfaced this; my own diversity gates could not, because they only ever read blueprints against each other.
+5. **Blueprints that match no content — a whole class, not one case. REOPENED and generalised.**
 
-   The gap is not an oversight in the trait list — it is that all five settings are *unoccupied places*. A social threshold is only afforded by somewhere others are characteristically already present, and none of the five is. It needs a new setting rather than a new trait on an old one.
+   `social` was the first instance found; transcribing all fourteen constraint blocks into `Tools/beat_sequences.json` and walking them against the traited content found **three more, including an entire family**:
 
-   **Proposed record** (content is the engine session's to add; this is the specification and the reason):
+   | blueprint | requires | why nothing matches |
+   |---|---|---|
+   | VI-1 `bp_charge_tending_001` | discovery `isFragile ∧ impliesNeed` | no discovery declares `isFragile` |
+   | VI-2 `bp_charge_release_002` | discovery `isFragile ∧ impliesNeed` | same — **Family VI is entirely unselectable** |
+   | V-2 `bp_misreading_twosides_002` | discovery `impliesPresence ∧ impliesNeed` | the three `impliesPresence` discoveries all lack `impliesNeed`; the one `impliesNeed` discovery lacks `impliesPresence` |
+
+   The engine's load-time report had already flagged `isFragile` as declared-but-unexercised, exactly as it flagged `social`. Both were the same signal and I read the first as a one-off.
+
+   **Three discovery records close all three** and substantially widen seven others (`bp_appeal_reunion_001` 40 → 70 legal bindings, `bp_appeal_sharing_003` and `blueprint_appeal_together_001` 8 → 32 each). Content is the engine session's to add; this is the specification:
 
    ```json
-   {
-     "id": "setting_festival_meadow_001",
-     "name": "Şenlik Çayırı",
-     "description": "Başkalarının çoktan oyuna başladığı, güneşli ve geniş bir çayır.",
-     "tags": ["meadow", "nature"],
-     "traits": ["hasThreshold", "isOpen", "isTended", "showsTraces"],
-     "compatibleThemes": ["courage", "friendship", "helping_others"],
-     "isProperNoun": true,
-     "hasPossessiveEnding": true,
-     "habitat": ["garden", "forest"],
-     "thresholdKinds": ["social"]
-   }
+   [
+     { "id": "object_fallen_nest_001", "name": "yere düşmüş küçük bir yuva",
+       "description": "Rüzgârda aşağı inmiş, içi boş ama sapasağlam küçük bir yuva.",
+       "tags": ["nest", "nature"], "traits": ["isFragile", "impliesNeed", "impliesPresence", "isVisible"],
+       "compatibleThemes": ["helping_others", "calm"], "isProperNoun": false,
+       "titleName": "Düşmüş Yuva", "habitat": ["forest", "garden"] },
+
+     { "id": "object_wilting_seedling_001", "name": "solmaya başlamış bir fide",
+       "description": "Suya ihtiyacı olduğu belli olan, henüz vazgeçmemiş küçük bir fide.",
+       "tags": ["plant", "nature"], "traits": ["isFragile", "impliesNeed", "isVisible"],
+       "compatibleThemes": ["helping_others", "patience"], "isProperNoun": false,
+       "titleName": "Küçük Fide", "habitat": ["garden"] },
+
+     { "id": "object_dropped_mitten_001", "name": "birinin düşürdüğü küçük bir eldiven",
+       "description": "Yolun kenarında duran, sahibi belli olmayan tek bir eldiven.",
+       "tags": ["belonging"], "traits": ["impliesPresence", "impliesNeed", "isVisible"],
+       "compatibleThemes": ["helping_others", "friendship"], "isProperNoun": false,
+       "titleName": "Kayıp Eldiven", "habitat": ["forest", "garden"] }
+   ]
    ```
 
-   - `isOpen ∧ isTended` satisfies II-2's `isOpen ∨ isTended` either way; `isHazardous` absent, as II-2 forbids it.
-   - `hasThreshold` is present because the integrity check requires it to agree with a non-empty `thresholdKinds` — and it is true here in the sense the axis means: there is a line, it is just drawn by people.
-   - `habitat: [garden, forest]` reaches four of the five pilot companions. Only Köpük (sea) is excluded, which is correct.
-   - Morphology: noun + 3sg possessive, back-vowel, proper — structurally identical to the already-tested `Bulut Dağı`. Locative `Şenlik Çayırı'nda`, relative `Şenlik Çayırı'ndaki`.
-   - The description does the load-bearing work: *"others have already started playing"* is what makes the threshold social. A meadow with nobody in it affords nothing.
+   The first two are deliberately *not* animals. Family VI's companion is already the small creature being tended (`casting: needsCare`, capability `isSmall`); making the discovery a second creature would give the book two things to care for and split the charge. A nest and a seedling need tending, are unambiguously fine at the end, and carry no danger — which VI-2 requires, since the release must visibly be the good outcome.
 
-   Open question for the engine session: whether occupancy belongs in the description or is its own trait. I think description, for now — one setting does not justify an axis, and inventing one before a second case exists is how `hasDistance` happened.
-6. **Product decision, unresolved since Phase 3:** Family III and V-2 end with `restore` — the ending belongs to someone other than the child. For a personalised book with the child's name on the cover this is deliberate and defensible, but it is the closest thing in the catalog to Phase 1's complaint that *the book is about the fox*. Five of fourteen blueprints end this way. Worth a decision before prose.
+   **Gate added:** `check_blueprints_satisfiable`. A blueprint with no legal binding contributes no cells to the bound-pool walk, so it passed that check *by producing nothing* — the failure mode is absence, and absence is what a walk cannot see. It also fails a blueprint down to fewer than four legal bindings.
+
+6. ~~Family II's `social` threshold is declared and unsatisfiable.~~ **Resolved** — `Şenlik Çayırı` is in the library and `bp_threshold_joining_002` has 20 legal bindings (28 with the discoveries above). Kept here rather than deleted because the wrong entry is instructive: it was first marked resolved when the *blueprint* was rebuilt, which settled the architecture and not the content.
+
+7. **Product decision, unresolved since Phase 3:** Family III and V-2 end with `restore` — the ending belongs to someone other than the child. For a personalised book with the child's name on the cover this is deliberate and defensible, but it is the closest thing in the catalog to Phase 1's complaint that *the book is about the fox*. Five of fourteen blueprints end this way. Worth a decision before prose.

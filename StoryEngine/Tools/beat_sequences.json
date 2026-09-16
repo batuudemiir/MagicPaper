@@ -32,7 +32,32 @@
         [
           "warm_close"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal"
+            ],
+            [
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "hesitant",
+          "guide"
+        ],
+        "discovery": [
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
     },
     {
       "id": "bp_unexplained_moment_002",
@@ -65,7 +90,32 @@
           "warm_close",
           "self_recognize"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen"
+            ],
+            [
+              "hasWeather"
+            ]
+          ]
+        },
+        "casting": [
+          "guide"
+        ],
+        "discovery": [
+          "isUnexplained",
+          "emitsSignal"
+        ]
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      }
     },
     {
       "id": "bp_unexplained_signal_001",
@@ -100,7 +150,40 @@
           "warm_close",
           "carry_forward"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal"
+            ],
+            [
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal"
+            ],
+            [
+              "isFragmentary"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
     },
     {
       "id": "bp_threshold_crossing_001",
@@ -132,7 +215,47 @@
           "self_recognize",
           "warm_close"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": [
+          "hasThreshold"
+        ],
+        "thresholdKind": [
+          "opening",
+          "span",
+          "social"
+        ],
+        "casting": [
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful"
+            ],
+            [
+              "emitsSignal"
+            ],
+            [
+              "isUnexplained"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry",
+          "canFly",
+          "canSwim"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
     },
     {
       "id": "bp_threshold_joining_002",
@@ -165,7 +288,44 @@
           "warm_close",
           "carry_forward"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen"
+            ],
+            [
+              "isTended"
+            ]
+          ]
+        },
+        "thresholdKind": [
+          "social"
+        ],
+        "casting": [
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful"
+            ],
+            [
+              "emitsSignal"
+            ],
+            [
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ]
+      }
     },
     {
       "id": "bp_appeal_reunion_001",
@@ -198,7 +358,50 @@
         [
           "warm_close"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "hasThreshold"
+            ],
+            [
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "anyOf": [
+            [
+              "hasLocalKnowledge"
+            ],
+            [
+              "isQuick"
+            ],
+            [
+              "isPatient"
+            ]
+          ]
+        },
+        "discovery": {
+          "anyOf": [
+            [
+              "impliesNeed"
+            ],
+            [
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      }
     },
     {
       "id": "bp_appeal_sharing_003",
@@ -232,7 +435,33 @@
           "warm_close",
           "self_recognize"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended"
+            ],
+            [
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": [
+          "isSmall"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      }
     },
     {
       "id": "bp_appeal_speakingup_002",
@@ -265,7 +494,30 @@
           "warm_close",
           "carry_forward"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended"
+            ],
+            [
+              "isOpen"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": [
+          "isSmall"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      }
     },
     {
       "id": "bp_absence_retracing_002",
@@ -299,7 +551,23 @@
           "warm_close",
           "self_recognize"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": [
+          "showsTraces"
+        ],
+        "casting": [
+          "guide"
+        ],
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
     },
     {
       "id": "bp_absence_search_001",
@@ -333,7 +601,32 @@
           "warm_close",
           "carry_forward"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces"
+            ],
+            [
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare",
+          "guide"
+        ],
+        "discovery": [
+          "impliesPresence",
+          "isFragmentary"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canFly"
+        ]
+      }
     },
     {
       "id": "bp_misreading_truth_001",
@@ -367,7 +660,40 @@
         [
           "warm_close"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal"
+            ],
+            [
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary"
+            ],
+            [
+              "isUnexplained"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
     },
     {
       "id": "bp_misreading_twosides_002",
@@ -402,7 +728,32 @@
           "warm_close",
           "self_recognize"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen"
+            ],
+            [
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare",
+          "hesitant"
+        ],
+        "discovery": [
+          "impliesPresence",
+          "impliesNeed"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      }
     },
     {
       "id": "bp_charge_release_002",
@@ -435,7 +786,34 @@
           "warm_close",
           "carry_forward"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen"
+            ],
+            [
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": [
+          "isSmall"
+        ],
+        "discovery": [
+          "isFragile",
+          "impliesNeed"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      }
     },
     {
       "id": "bp_charge_tending_001",
@@ -467,7 +845,35 @@
           "self_recognize",
           "warm_close"
         ]
-      ]
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended"
+            ],
+            [
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": [
+          "isSmall"
+        ],
+        "discovery": [
+          "isFragile",
+          "impliesNeed"
+        ]
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      }
     }
-  ]
+  ],
+  "note": "Beat sequences AND constraint blocks for the 14 catalog blueprints, transcribed from MagicPaper/docs/BLUEPRINT_CATALOG_V2.md. The constraints are here so the bound-pool check can walk only bindings these blueprints actually permit; without them every binding looks legal and the check invents defects. Source of truth is the catalog document until these are ported into the engine, at which point this fixture retires."
 }

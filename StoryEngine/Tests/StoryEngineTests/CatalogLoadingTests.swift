@@ -61,7 +61,7 @@ final class CatalogBundleTests: XCTestCase {
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
         XCTAssertEqual(catalog.templates.count, 85)
-        XCTAssertEqual(catalog.recordCounts["variants"], 507)
+        XCTAssertEqual(catalog.recordCounts["variants"], 512)
     }
 
     func testEveryShippedBlueprintDeclaresTheEightBeatArc() throws {

@@ -63,6 +63,24 @@
       ],
       "lengthClass": "paired",
       "move": "accepted_uninvited"
+    },
+    {
+      "id": "tc_p_03",
+      "text": "{{child.name}} bu işi üstlendi. Zor olacaktı ama başkası yoktu, sadece kendisi vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "nobody_else_was_there"
+    },
+    {
+      "id": "tc_p_04",
+      "text": "\"Ben bakarım,\" dedi {{child.name}}. Söyleyince gerçek oldu, artık sözünü tutmak zorundaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "saying_it_made_it_a_promise"
     }
   ]
 }

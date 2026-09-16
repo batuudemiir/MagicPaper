@@ -99,6 +99,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkCasting(catalog))
         issues.append(contentsOf: checkThresholdKinds(catalog))
         issues.append(contentsOf: checkVocabularyCarriesInformation(catalog))
+        issues.append(contentsOf: checkDiscoveryModality(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -455,6 +456,25 @@ public struct CatalogIntegrityChecker: Sendable {
         audit("companion role", catalog.companions.map(\.castRoles))
         audit("threshold kind", catalog.settings.map(\.thresholdKinds))
         return issues
+    }
+
+    /// Every discovery says how it can be perceived.
+    ///
+    /// A modality-less discovery is not neutral, it is *both*: nothing stops a
+    /// line built on hearing being offered to a light, and nothing stops a line
+    /// built on looking being offered to a sound. `emitsSignal` reads as though
+    /// it settles this and does not — a flickering light and a faint sound both
+    /// signal. The rendered story then opens on a sound and examines a light on
+    /// the next page, two pages that each read perfectly and contradict each
+    /// other, which no per-line check can see.
+    private func checkDiscoveryModality(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        catalog.objects
+            .filter { !$0.traits.isEmpty && $0.traits.isDisjoint(with: [.isVisible, .isAudible]) }
+            .map { object in
+                .init(severity: .error, code: "discovery_without_modality", recordID: object.id,
+                      message: "Discovery '\(object.id)' says neither that it can be seen nor "
+                          + "that it can be heard, so lines written for either will be offered it.")
+            }
     }
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {
