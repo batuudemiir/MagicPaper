@@ -41,6 +41,8 @@ BANDS = {
     "paired": (10, 16),
 }
 MAX_SENTENCE_WORDS = 14
+# A bound cell below this means two books of one binding repeat the page too often.
+MIN_BOUND_POOL = 4
 
 # Suffixes the Turkish renderer understands. Anything else after a slot — a
 # copula like 'ydi, a typo — is emitted verbatim and reported at render time.
@@ -295,7 +297,12 @@ def shipped_sequences() -> list[dict]:
                 if slot:
                     beats.append(slot)
             if beats:
-                out.append({"id": blueprint.get("id", path.stem), "beats": beats})
+                out.append({
+                    "id": blueprint.get("id", path.stem),
+                    "beats": beats,
+                    "requires": blueprint.get("requires"),
+                    "forbids": blueprint.get("forbids"),
+                })
     return out
 
 
@@ -328,6 +335,133 @@ def check_length_class_coverage(corpus, report) -> None:
                 f"need one — e.g. {sorted(who)[0]}"
             )
     report.note(f"length-class coverage checked against {len(sequences)} blueprints")
+
+
+def check_bound_pools(corpus, report) -> None:
+    """
+    Count supply per CELL, not per beat.
+
+    `check_effective_pools` above was written after `afterBeat` was found to
+    divide a beat's supply. It fixed one instance of the defect and named it too
+    narrowly: EVERY declared filter partitions a pool, and they compose. A beat
+    with 16 variants that declares `castRoles` and carries both length classes
+    is eight pools of one to four, not one pool of sixteen — and the story is
+    bound to exactly one cell before a single variant is eligible.
+
+    So this walks real bindings: blueprint x setting x companion x cast role x
+    discovery, applying every filter the composer applies, and asks what is
+    actually left for each page. An empty cell is a page that cannot render. A
+    cell of one is a page every book of that binding shares.
+
+    The length-class gate cannot see this: it checks that a class EXISTS for a
+    beat, never that the class survives the filters alongside it.
+    """
+    library = _pilot_library()
+    if not library:
+        report.note("bound-pool check skipped: no content library found")
+        return
+    sequences = shipped_sequences()
+    if SEQUENCES.exists():
+        sequences += json.loads(SEQUENCES.read_text(encoding="utf-8"))["blueprints"]
+    if not sequences:
+        report.note("bound-pool check skipped: no blueprints found")
+        return
+
+    by_beat = {bf["beat"]: bf["variants"] for bf in corpus}
+    all_roles = {"guide", "needsCare", "hesitant", "reassuring"}
+    worst: dict[tuple, tuple] = {}
+
+    unconstrained = [b["id"] for b in sequences if not b.get("requires") and not b.get("forbids")]
+
+    for blueprint in sequences:
+        if blueprint["id"] in unconstrained:
+            continue
+        beats = blueprint["beats"]
+        requires = blueprint.get("requires") or {}
+        forbids = blueprint.get("forbids") or {}
+        for setting in library["settings"]:
+            if not _satisfies(set(setting.get("traits", [])), requires.get("setting")):
+                continue
+            if set(setting.get("traits", [])) & set(forbids.get("setting") or []):
+                continue
+            for companion in library["companions"]:
+                if not (set(companion.get("habitat", [])) & set(setting.get("habitat", []))):
+                    continue
+                if not _satisfies(set(companion.get("traits", [])), requires.get("companion")):
+                    continue
+                if set(companion.get("traits", [])) & set(forbids.get("companion") or []):
+                    continue
+                for discovery in library["objects"]:
+                    if not _satisfies(set(discovery.get("traits", [])), requires.get("discovery")):
+                        continue
+                    if set(discovery.get("traits", [])) & set(forbids.get("discovery") or []):
+                        continue
+                    traits = set(setting.get("traits", []))
+                    caps = set(companion.get("traits", []))
+                    found = set(discovery.get("traits", []))
+                    cast = set(requires.get("casting") or []) or all_roles
+                    for role in ((set(companion.get("castRoles", [])) or all_roles) & cast):
+                        for index, slot in enumerate(beats):
+                            wanted = "paired" if len(slot) > 1 else "solo"
+                            previous = beats[index - 1][0] if index else None
+                            for beat in slot:
+                                variants = by_beat.get(beat)
+                                if not variants:
+                                    continue
+                                pool = [
+                                    v for v in variants
+                                    if (v.get("lengthClass") or "solo") == wanted
+                                    and set(v.get("settingTraits", [])) <= traits
+                                    and set(v.get("discoveryTraits", [])) <= found
+                                    and (not v.get("castRoles") or role in v["castRoles"])
+                                    and set(v.get("capabilityRequire", [])) <= caps
+                                    and not (set(v.get("capabilityForbid", [])) & caps)
+                                    and (not v.get("afterBeat")
+                                         or (previous and previous in v["afterBeat"]))
+                                ]
+                                key = (index + 1, beat, wanted)
+                                binding = (f"{blueprint['id']} | {setting['name']} | "
+                                           f"{companion['name']} as {role} | {discovery['name']}")
+                                if key not in worst or len(pool) < worst[key][0]:
+                                    worst[key] = (len(pool), binding)
+
+    empty = [(k, v) for k, v in worst.items() if v[0] == 0]
+    thin = [(k, v) for k, v in worst.items() if 0 < v[0] < MIN_BOUND_POOL]
+    for (page, beat, cls), (_, binding) in sorted(empty):
+        report.fail(f"page {page} {beat} [{cls}]: NO variant survives binding — {binding}")
+    for (page, beat, cls), (size, binding) in sorted(thin, key=lambda x: x[1][0]):
+        report.fail(f"page {page} {beat} [{cls}]: bound pool is {size} — two books of this "
+                    f"binding share the page {1 / size:.0%} of the time — {binding}")
+    report.note(f"bound pools: {len(worst)} cells walked across "
+                f"{len(sequences) - len(unconstrained)} constrained blueprint(s), "
+                f"{len(empty)} empty, {len(thin)} under {MIN_BOUND_POOL}")
+    if unconstrained:
+        report.note(f"bound pools: {len(unconstrained)} blueprint(s) skipped — no requires/forbids "
+                    f"declared, so every binding would look legal and the check would invent "
+                    f"defects (e.g. {sorted(unconstrained)[0]})")
+
+
+def _satisfies(held: set, requirement) -> bool:
+    """A TraitRequirement is either a flat list (all of) or {allOf, anyOf}."""
+    if not requirement:
+        return True
+    if isinstance(requirement, list):
+        return set(requirement) <= held
+    if set(requirement.get("allOf") or []) - held:
+        return False
+    groups = requirement.get("anyOf") or []
+    return not groups or any(set(g) <= held for g in groups)
+
+
+def _pilot_library() -> dict | None:
+    for path in sorted(SHIPPED_BLUEPRINTS.glob("*.json")):
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if {"settings", "companions", "objects"} <= document.keys():
+            return document
+    return None
 
 
 def check_effective_pools(corpus, report) -> None:
@@ -402,6 +536,7 @@ def main() -> int:
     check_place_welding(corpus, report)
     check_length_class_coverage(corpus, report)
     check_effective_pools(corpus, report)
+    check_bound_pools(corpus, report)
 
     for note in report.notes:
         print(f"note: {note}")
@@ -412,7 +547,7 @@ def main() -> int:
         return 1
 
     print("\nPASS — word bands, suffixes, declared slots, collisions, moves, "
-          "banned constructions, place welding, length-class coverage, effective pools")
+          "banned constructions, place welding, length-class coverage, effective pools, bound pools")
     return 0
 
 

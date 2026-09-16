@@ -3,7 +3,7 @@
   "beat": "examine",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 2. The child looks closely and notices ONE concrete thing — when it happens, which way it points, how many there are. Family I's page 6 builds its insight out of this observation, so it must be specific enough to reason from and never a second clue. 'It was strange' is not an observation. The child examines; the companion has not arrived yet.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 2. The child looks closely and notices ONE concrete thing — when it happens, which way it points, how many there are. Family I's page 6 builds its insight out of this observation, so it must be specific enough to reason from and never a second clue. 'It was strange' is not an observation. The child examines; the companion has not arrived yet. Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added.",
   "lengthClasses": {
     "solo": "18-38 words — examine is the whole page (8 of 9 blueprints)",
     "paired": "10-16 words — page 2 also carries form_belief (V-1)"
@@ -176,6 +176,45 @@
         "showsTraces"
       ],
       "move": "quick_look_direction"
+    },
+    {
+      "id": "ex_s_any_01",
+      "text": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "not_what_was_expected"
+    },
+    {
+      "id": "ex_s_any_02",
+      "text": "Ne olduğunu anlamak kolay değildi. {{child.name}} her açıdan baktı, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "still_a_puzzle_but_less_so"
+    },
+    {
+      "id": "ex_p_any_01",
+      "text": "{{child.name}} yakından baktı. {{discovery.name}} ne olursa olsun, buraya ait değildi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "does_not_belong_here"
+    },
+    {
+      "id": "ex_p_any_02",
+      "text": "Yaklaştı, eğildi, iyice baktı. {{discovery.name}} hakkında hiçbir fikri yoktu henüz.",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "no_idea_yet"
     }
   ]
 }

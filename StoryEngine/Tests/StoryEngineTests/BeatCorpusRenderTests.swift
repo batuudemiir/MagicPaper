@@ -134,13 +134,24 @@ final class BeatCorpusRenderTests: XCTestCase {
     ]
     private let children = ["Yeliz", "Ada", "Abdullah", "Irmak", "İnci", "Ömür", "Bulut", "Deniz"]
 
-    func testCorpusHasFullTieredSupply() throws {
+    /// The tiered premise is gone, and the assertion that rested on it with it.
+    ///
+    /// Tiering allocated variants by how many blueprints use a beat, which is
+    /// the count that is blind to partitioning: a beat used by all fourteen can
+    /// still hand one story a single line once cast role, length class and
+    /// declared content traits have divided the pool. What a beat needs is
+    /// whatever its worst *cell* needs, and that is not a function of exposure —
+    /// so "a 14/14 beat is 16" was not a number to raise to 19, it was a rule
+    /// that had stopped being true.
+    ///
+    /// What survives is the part that was never about tiering: ids must be
+    /// unique, or two variants silently become one. The supply question moved to
+    /// `BoundPoolTests`, where it is asked of the composer's own pool.
+    func testCorpusVariantIDsAreUnique() throws {
         let corpus = try loadCorpus()
         XCTAssertEqual(corpus.beat, "notice_anomaly")
-        // notice_anomaly appears in all 14 blueprints; the tiered allocation
-        // in the QA report puts a 14/14-exposure beat at 16 variants.
-        XCTAssertEqual(corpus.variants.count, 16, "tiered supply for a 14/14 beat is 16")
-        XCTAssertEqual(Set(corpus.variants.map(\.id)).count, 16, "variant ids must be unique")
+        XCTAssertEqual(Set(corpus.variants.map(\.id)).count, corpus.variants.count,
+                       "variant ids must be unique")
     }
 
     /// Every variant × every setting × every child name must render with no
@@ -166,7 +177,12 @@ final class BeatCorpusRenderTests: XCTestCase {
                 }
             }
         }
-        XCTAssertEqual(rendered, 16 * 16 * 8)
+        // Not pinned to a literal: the corpus grows, and a hand-counted product
+        // here would fail on every addition while proving nothing about the
+        // renderer. What matters is that every variant was actually exercised
+        // against every setting shape and every child name.
+        XCTAssertEqual(rendered, corpus.variants.count * settings.count * children.count)
+        XCTAssertGreaterThan(rendered, 2000)
     }
 
     /// Declared `requiredSlots` must match the tokens actually used, or the

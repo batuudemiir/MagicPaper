@@ -202,6 +202,36 @@ public struct OfflineStoryComposer: Sendable {
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
+        let pool = try self.pool(
+            from: variants, realizing: beat, wanting: length, after: previous,
+            onPage: page, content: content, register: register)
+        return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
+    }
+
+    /// Every line that could serve this page for this binding.
+    ///
+    /// Split out from the choice so a test can ask how *many* there were.
+    /// Declared filters compose, and each one partitions: `meet_companion`
+    /// offers sixteen variants but four cast roles times two length classes is
+    /// eight cells, and a story is bound to one cell before a single variant is
+    /// eligible. A cell of one means every book of that binding gets the same
+    /// page — which was true on page 3 of a shipped blueprint while the beat's
+    /// headline count read sixteen.
+    ///
+    /// Counting a beat's variants cannot see that, and neither can a check that
+    /// a length class merely *exists* for a beat. Only the pool the composer
+    /// actually ends up with can, so that pool is what this returns — the real
+    /// one, not a second implementation of the same filters that would be free
+    /// to drift away from it.
+    static func pool(
+        from variants: [CatalogVariant],
+        realizing beat: StoryBeat,
+        wanting length: VariantLengthClass,
+        after previous: StoryBeat?,
+        onPage page: Int,
+        content: BoundContent,
+        register: VariantRegister?
+    ) throws -> [CatalogVariant] {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
             return kept.isEmpty ? pool : kept
@@ -262,7 +292,7 @@ public struct OfflineStoryComposer: Sendable {
         guard !byOrder.isEmpty else {
             throw OfflineSelectionError.noVariantAfter(beat: previous, page: page)
         }
-        return DeterministicPicker.pick(from: byOrder, seed: seed, salt: salt)
+        return byOrder
     }
 
     /// The slot table, built once per story.

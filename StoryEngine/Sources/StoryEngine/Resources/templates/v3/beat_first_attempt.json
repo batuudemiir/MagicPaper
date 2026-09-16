@@ -3,7 +3,7 @@
   "beat": "first_attempt",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 5. The child acts and it does not fully work — and HOW it fails names what is missing. Fail informatively, never discouragingly: nobody is at fault, nothing is lost, and the child does not feel foolish. This is the page the old corpus left empty, so it carries more weight than its length suggests. The child acts first; a companion may help but may not lead.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 5. The child acts and it does not fully work — and HOW it fails names what is missing. Fail informatively, never discouragingly: nobody is at fault, nothing is lost, and the child does not feel foolish. This is the page the old corpus left empty, so it carries more weight than its length suggests. The child acts first; a companion may help but may not lead. Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added.",
   "lengthClasses": {
     "solo": "18-38 words — first_attempt is the whole page (8 of 9 blueprints)",
     "paired": "10-16 words — page 5 also carries obstacle_raises (I-1)"
@@ -116,6 +116,24 @@
       ],
       "lengthClass": "paired",
       "move": "twice_neither_enough"
+    },
+    {
+      "id": "fa_p_03",
+      "text": "{{child.name}} elinden geleni yaptı ama olmadı. Yine de bir kez daha denedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "did_their_best_and_retried"
+    },
+    {
+      "id": "fa_p_04",
+      "text": "İlk deneme işe yaramadı. {{child.name}} şaşırdı ama vazgeçmedi, hemen değil, hiç değil.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "surprised_but_not_done"
     }
   ]
 }
