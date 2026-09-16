@@ -50,7 +50,12 @@ final class CatalogBundleTests: XCTestCase {
         // only one that can afford a threshold you join rather than cross.
         XCTAssertEqual(catalog.settings.count, 22)
         XCTAssertEqual(catalog.companions.count, 20)
-        XCTAssertEqual(catalog.objects.count, 25)
+        // 28 with the nest, the seedling and the mitten — the three records
+        // that made Family VI selectable at all. Two of them are deliberately
+        // not animals: Family VI's companion is already the small creature
+        // being tended, so a second creature as the discovery would give the
+        // book two things to care for and split the charge in half.
+        XCTAssertEqual(catalog.objects.count, 28)
         // 85 with the corpus complete at 33 beat files, each replacing the
         // library's thinner scaffolding for the beat it covers.
         //

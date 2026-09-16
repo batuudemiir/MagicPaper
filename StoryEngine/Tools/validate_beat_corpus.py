@@ -385,6 +385,51 @@ def check_partitioned_pools(corpus, report) -> None:
                         + ", ".join(f"{v}={n}" for v, n in sorted(counts.items())))
 
 
+def check_variants_reachable(corpus, report) -> None:
+    """
+    A variant whose declared traits match no content record can never be chosen.
+
+    This is the Phase 1 defect in miniature. That audit measured 41% of the
+    shipped corpus unreachable and the fix was structural — beats, state, a
+    liveness rule. None of that helps here: these variants are reachable in the
+    ARC and unreachable in the CONTENT, because they ask for a trait combination
+    no setting or discovery actually has. Nothing fails; the line simply never
+    appears, and the beat looks better supplied than it is.
+
+    Found six: three asking for `emitsSignal ∧ isBeautiful` (no discovery has
+    both — the pairing was over-specified) and three asking for a `hasWeather`
+    setting, which the engine's own report had already flagged as declared and
+    unexercised.
+    """
+    library = _pilot_library()
+    if not library:
+        report.note("reachability check skipped: no content library found")
+        return
+    settings = [set(s.get("traits", [])) for s in library["settings"]]
+    discoveries = [set(o.get("traits", [])) for o in library["objects"]]
+    companions = [set(c.get("traits", [])) for c in library["companions"]]
+    roles = {r for c in library["companions"] for r in c.get("castRoles", [])}
+
+    for beat_file in corpus:
+        for variant in beat_file["variants"]:
+            reasons = []
+            wanted = set(variant.get("settingTraits") or [])
+            if wanted and not any(wanted <= held for held in settings):
+                reasons.append(f"no setting has {sorted(wanted)}")
+            wanted = set(variant.get("discoveryTraits") or [])
+            if wanted and not any(wanted <= held for held in discoveries):
+                reasons.append(f"no discovery has {sorted(wanted)}")
+            wanted = set(variant.get("capabilityRequire") or [])
+            if wanted and not any(wanted <= held for held in companions):
+                reasons.append(f"no companion has {sorted(wanted)}")
+            wanted = set(variant.get("castRoles") or [])
+            if wanted and not (wanted & roles):
+                reasons.append(f"no companion can be cast as {sorted(wanted)}")
+            if reasons:
+                report.fail(f"{beat_file['beat']}/{variant['id']}: unreachable — "
+                            + "; ".join(reasons))
+
+
 def check_blueprints_satisfiable(corpus, report) -> None:
     """
     A blueprint that matches no content is a silent hole, not a thin cell.
@@ -656,6 +701,7 @@ def main() -> int:
     check_place_welding(corpus, report)
     check_length_class_coverage(corpus, report)
     check_effective_pools(corpus, report)
+    check_variants_reachable(corpus, report)
     check_blueprints_satisfiable(corpus, report)
     check_bound_pools(corpus, report)
     check_partitioned_pools(corpus, report)

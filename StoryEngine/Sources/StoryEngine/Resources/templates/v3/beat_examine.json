@@ -3,7 +3,7 @@
   "beat": "examine",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 2. The child looks closely and notices ONE concrete thing — when it happens, which way it points, how many there are. Family I's page 6 builds its insight out of this observation, so it must be specific enough to reason from and never a second clue. 'It was strange' is not an observation. The child examines; the companion has not arrived yet. Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Usually page 2. The child looks closely and notices ONE concrete thing — when it happens, which way it points, how many there are. Family I's page 6 builds its insight out of this observation, so it must be specific enough to reason from and never a second clue. 'It was strange' is not an observation. The child examines; the companion has not arrived yet. Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added. MODALITY: `emitsSignal` is worn by a light AND a sound, so it never separated them — a line about listening could be chosen for a flickering light and a line about the light blinking for a thin sound. Sound lines now require `isAudible`; light lines require `emitsSignal ∧ isVisible`. The variant ids said light and sound all along; the traits did not.",
   "lengthClasses": {
     "solo": "18-38 words — examine is the whole page (8 of 9 blueprints)",
     "paired": "10-16 words — page 2 also carries form_belief (V-1)"
@@ -17,7 +17,8 @@
       ],
       "lengthClass": "solo",
       "discoveryTraits": [
-        "emitsSignal"
+        "emitsSignal",
+        "isVisible"
       ],
       "settingTraits": [],
       "move": "rhythm_not_constant"
@@ -44,8 +45,8 @@
       ],
       "lengthClass": "solo",
       "discoveryTraits": [
-        "isBeautiful",
-        "emitsSignal"
+        "emitsSignal",
+        "isVisible"
       ],
       "settingTraits": [],
       "move": "only_visible_in_shade"
@@ -117,7 +118,7 @@
       ],
       "lengthClass": "solo",
       "discoveryTraits": [
-        "emitsSignal"
+        "isAudible"
       ],
       "settingTraits": [],
       "move": "counted_pattern"
@@ -130,7 +131,7 @@
       ],
       "lengthClass": "solo",
       "discoveryTraits": [
-        "emitsSignal"
+        "isAudible"
       ],
       "settingTraits": [],
       "move": "louder_further_away"

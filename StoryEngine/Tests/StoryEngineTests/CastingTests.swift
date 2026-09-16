@@ -469,3 +469,67 @@ final class DiscoveryModalityTests: XCTestCase {
         }
     }
 }
+
+/// A blueprint no content can satisfy, which is the failure mode a walk over
+/// bindings structurally cannot see.
+///
+/// A blueprint with no legal binding contributes **no cells**, so every
+/// supply gate passes it by producing nothing. The failure is absence, and a
+/// sweep measures what is there. Only asking each blueprint directly finds it.
+final class BlueprintSatisfiabilityTests: XCTestCase {
+
+    private func catalog() throws -> ContentCatalog {
+        try ContentCatalogLoader().load().catalog
+    }
+
+    /// `isFragile` was reported declared-but-unexercised in the same breath as
+    /// `social`. `social` was one blueprint's gap and was closed as one; this
+    /// was the same signal and it was a whole family — two blueprints, the
+    /// entirety of Family VI, matching nothing at all.
+    func testTheVocabularyThatWasReportedUnexercisedNowHasContent() throws {
+        let objects = try catalog().objects
+        XCTAssertTrue(objects.contains { $0.traits.contains(.isFragile) },
+                      "Nothing is fragile; a blueprint asking for it selects nobody.")
+        XCTAssertTrue(
+            objects.contains { $0.traits.isSuperset(of: [.impliesPresence, .impliesNeed]) },
+            "Nothing both implies a presence and implies a need, so a blueprint "
+            + "asking for a trace of someone who needs something matches nothing.")
+    }
+
+    /// Every blueprint the catalog ships can actually be built, with room to
+    /// vary. Asked of each blueprint rather than swept over content, because a
+    /// blueprint that matches nothing is invisible to a sweep.
+    func testEveryShippedBlueprintHasLegalBindings() throws {
+        let catalog = try catalog()
+        let binder = OfflineContentBinder()
+        var counts: [String: Int] = [:]
+
+        let settings = catalog.settings.filter { !$0.traits.isEmpty }
+        let companions = catalog.companions.filter { !$0.traits.isEmpty }
+        let objects = catalog.objects.filter { !$0.traits.isEmpty }
+
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            var legal = 0
+            for setting in settings {
+                for companion in companions {
+                    for discovery in objects {
+                        let intent = OfflineStoryIntent(
+                            childName: "Yeliz", settingID: setting.id,
+                            companionID: companion.id, discoveryID: discovery.id, seed: "sat")
+                        if (try? binder.bind(
+                            blueprint: blueprint, catalog: catalog, intent: intent)) != nil {
+                            legal += 1
+                        }
+                    }
+                }
+            }
+            counts[blueprint.id.rawValue] = legal
+        }
+
+        XCTAssertFalse(counts.isEmpty, "No beat-authored blueprint; nothing measured.")
+        let starved = counts.filter { $0.value < 4 }.sorted { $0.key < $1.key }
+        XCTAssertTrue(starved.isEmpty,
+                      "Blueprints with fewer than four legal bindings — every child gets the "
+                      + "same book, or no book: \(starved)")
+    }
+}

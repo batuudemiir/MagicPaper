@@ -196,8 +196,10 @@ struct PremiumButton: View {
     
     var body: some View {
         Button(action: {
-            let impact = UIImpactFeedbackGenerator(style: .medium)
-            impact.impactOccurred()
+            // Doğrudan jeneratör çağrısı yerine `MPHaptics`: kullanıcının
+            // titreşimi kapatabilmesinin tek yolu, ayarın tek bir yerden
+            // okunması. Bu satır o ayarı hiç görmüyordu.
+            MPHaptics.tap()
             action()
         }) {
             HStack(spacing: 12) {

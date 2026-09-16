@@ -81,6 +81,24 @@
       ],
       "lengthClass": "paired",
       "move": "near_enough_to_see"
+    },
+    {
+      "id": "ap_p_03",
+      "text": "{{child.name}} adım adım ilerledi. Yakınlaştıkça merakı arttı, korkusu biraz daha azaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "curiosity_grew_fear_shrank"
+    },
+    {
+      "id": "ap_p_04",
+      "text": "{{child.name}} bir an duraksadı, sonra hiç durmadan tam yanına kadar gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "hesitated_once_then_all_the_way"
     }
   ]
 }

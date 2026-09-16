@@ -1007,3 +1007,29 @@ with the paper continuous · Dynamic Type at AX3 and AX5 · Reduce Motion.
   corpus work, not the reader.
 - The rest of the app has no Dynamic Type ceiling: at AX5 the tab bar truncates
   to "An… Küt… Gü… Eb…" and the library empty state runs under the tab bar.
+
+---
+
+## 18. Deliberate deviation from §6.5 (cover → reader choreography)
+
+§6.5 specified a four-stage transition with `matchedGeometryEffect` binding the
+cover's paper plane to the reader's. **That was not implemented, and the reason
+is structural rather than an omission.**
+
+The point of §6.5 was that *the paper must not move*. But the reader is a
+full-bleed opaque surface — it has to be, or the page curl shows the back of a
+transparent leaf (§2.1). So any insertion transition that offsets or scales the
+reader moves the paper with it, which is the one thing the section exists to
+prevent. Staging the text rise separately would mean plumbing a "just arrived
+from the cover" flag down into `StoryPageView`, which the library path must
+never set — real coupling for a sub-second effect.
+
+What ships instead: cover and reader are phases of the same view tree
+(`StoryCreationFlow.Phase.reading`), both drawn on the same paper colour, cross
+-fading over `MP.M.page` (0.52 s), gated for Reduce Motion. The paper genuinely
+never moves or flashes, because it is the same surface in both phases. The
+product requirement of §13 — a calm opening, no zoom, no flash — is met; the
+specific choreography is not, and is not worth the coupling.
+
+Revisit only if the transition reads as a dissolve rather than an opening on a
+real device in a dark room, which is where this kind of thing is actually judged.
