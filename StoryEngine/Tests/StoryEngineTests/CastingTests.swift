@@ -335,9 +335,86 @@ final class SettingAxisTests: XCTestCase {
         let report = CatalogIntegrityChecker().check(try catalog())
         let unexercised = report.issues(withCode: "unexercised_vocabulary")
         XCTAssertTrue(
-            unexercised.contains { $0.message.contains("social") },
-            "`social` is declared and nothing declares it; that must be reported, not silent. "
+            unexercised.contains { $0.message.contains("'hasWeather'") },
+            "`hasWeather` is declared and no setting has it; that must be reported, not silent. "
             + "Got: \(unexercised.map(\.message))")
         XCTAssertTrue(report.isUsable, "An unexercised axis is a warning, never a blocker.")
+    }
+}
+
+/// The `social` threshold, and the claim that had to be checked rather than
+/// taken on trust.
+final class SocialThresholdTests: XCTestCase {
+
+    private func meadow() throws -> CatalogSetting {
+        let catalog = try ContentCatalogLoader().load().catalog
+        return try XCTUnwrap(catalog.settings.first { $0.id == ContentID("setting_festival_meadow_001") })
+    }
+
+    /// The axis was declared before anything exercised it, and the load-time
+    /// report is what said so out loud. This is the content that answers it.
+    func testSomewhereInTheLibraryOffersASocialThreshold() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        XCTAssertTrue(
+            catalog.settings.contains { $0.thresholdKinds.contains(.social) },
+            "A blueprint asking to be joined rather than crossed matches nothing.")
+        let unexercised = CatalogIntegrityChecker().check(catalog)
+            .issues(withCode: "unexercised_vocabulary")
+        XCTAssertFalse(unexercised.contains { $0.message.contains("'social'") },
+                       "Still reported unexercised: \(unexercised.map(\.message))")
+    }
+
+    /// A social threshold is a threshold in the sense the axis means — there is
+    /// a line and people drew it — so both statements about that one fact have
+    /// to agree, or the place is invisible to every blueprint that wants one.
+    func testTheSocialThresholdIsStillDeclaredAsAThreshold() throws {
+        let meadow = try meadow()
+        XCTAssertTrue(meadow.traits.contains(.hasThreshold))
+        XCTAssertFalse(meadow.traits.contains(.isHazardous),
+                       "Family II forbids it; a joining story is daunting, never dangerous.")
+    }
+
+    /// The morphology was asserted to be "a solved shape, not a new one".
+    /// Asserted is not verified: `hasPossessiveEnding` is the one property the
+    /// renderer cannot infer from spelling, and getting it wrong is what put
+    /// both correct and incorrect `'nde` spellings in the shipped corpus.
+    func testTheMeadowInflectsTheWayItsRecordClaims() throws {
+        let meadow = try meadow()
+        let slots: [String: TurkishTextRenderer.Slot] = [
+            "setting.name": .init(
+                meadow.name,
+                isProperNoun: meadow.isProperNoun,
+                hasPossessiveEnding: meadow.hasPossessiveEnding,
+                blocksSoftening: meadow.blocksSoftening)
+        ]
+        // The suffix is written after the token and re-spelled by the renderer;
+        // an author writes the naive `'da` and gets the `'nda` the possessive
+        // requires. That re-spelling is the whole point — it is why both the
+        // correct and the incorrect form appear in the shipped corpus, where
+        // the author generalised from the subset that happened to be right.
+        let cases: [(String, String)] = [
+            ("{{setting.name}}'da", "Şenlik Çayırı'nda"),
+            ("{{setting.name}}'a", "Şenlik Çayırı'na"),
+            ("{{setting.name}}'daki", "Şenlik Çayırı'ndaki")
+        ]
+        for (pattern, expected) in cases {
+            let result = TurkishTextRenderer.render(pattern, slots: slots)
+            XCTAssertTrue(result.isClean, "\(pattern): \(result.unrecognisedSuffixes)")
+            XCTAssertEqual(result.text, expected)
+        }
+    }
+
+    /// Reachability, not just existence: a place nothing can be bound alongside
+    /// is a different kind of dead end from a place that does not exist.
+    func testTheMeadowCanActuallyBePeopled() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let meadow = try meadow()
+        let reachable = catalog.companions.filter {
+            !$0.traits.isEmpty && TraitMatch.sharesHabitat($0.habitat, setting: meadow.habitat)
+        }
+        XCTAssertGreaterThanOrEqual(reachable.count, 4,
+                                    "Reached: \(reachable.map(\.id.rawValue))")
+        XCTAssertFalse(reachable.contains { $0.id == ContentID("companion_dolphin_pilot_001") },
+                       "A dolphin in a meadow is the original content defect.")
     }
 }

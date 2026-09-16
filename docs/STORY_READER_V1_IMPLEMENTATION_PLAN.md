@@ -940,3 +940,70 @@ edits — and a separate accessibility/QA pass follows at step 6.
 4. **`DailyStoryReaderView`** (`DailyStoriesView.swift:137-231`) reads a
    `DailyStory` with a flat `content: String` and no pages. Out of scope here —
    but it will now look markedly older than the story reader. Worth a follow-up.
+
+---
+
+## 17. Implementation outcome (2026-09-16)
+
+Steps 1–6 are done. Verified on an iPhone 17 Pro simulator, not only by tests.
+
+### What the device test found that reading the code did not
+
+Five defects, none of which would have surfaced in a unit test:
+
+1. **Hosted pages were frozen snapshots.** `UIHostingController.rootView` is
+   written once at construction, so theme, text size and control visibility
+   never reached a page that was already on screen — the folio stayed visible
+   after the chrome hid. Fixed by `StoryLeafView`, which observes `model` and
+   `app` instead of receiving their values.
+2. **The page curl did not work at all.** A full-screen `Color.clear` tap layer
+   above the container swallowed every pan before the curl recognizer saw it.
+   Tap handling moved into UIKit (`onTap`, a `UITapGestureRecognizer` on the
+   page controller's own view), next to the gesture it competes with.
+3. **Content collided with the Dynamic Island.** `safeAreaRegions = []` zeroes
+   the very `safeAreaInsets` the layout then read back. Removed; the paper
+   goes full-bleed through `ReaderPaper`'s own `ignoresSafeArea`, and the text
+   stays inside the safe area.
+4. **Legacy pages clipped.** Old-pipeline stories carry ~1500 characters per
+   page and were cut off unreadably. The text column now scrolls only when it
+   overflows (`.scrollBounceBehavior(.basedOnSize)`), so a normal short page
+   still behaves exactly like a fixed page.
+5. **Reduce Motion could not take effect mid-session.** `transitionStyle` is
+   init-only, so someone turning the setting on while reading kept the curl.
+   Fixed with `.id(reduceMotion)` on the container.
+
+### Verified on device
+
+Library → reader · curl following the finger · tap toggles chrome · immersive
+mode · ending leaf reached by turning the last page · return to library ·
+progress persisted and the story correctly shown as finished · cover → reader
+with the paper continuous · Dynamic Type at AX3 and AX5 · Reduce Motion.
+
+40 unit tests pass across the three reader test files.
+
+### Two product judgments made during implementation
+
+- Auto-hide went from 3 s to **4.5 s**. At 3 s a parent holding the phone loses
+  the close button before they have decided to use it.
+- The ending's "Tekrar oku" went from the full brand fill to `variant: .soft`.
+  A saturated pink CTA at the end of a bedtime story is the app raising its
+  voice at the quietest moment (§16).
+
+### Not done
+
+- **§27 UI test target.** Deferred by agreement; it is a `project.pbxproj`
+  change of a different order from everything else here.
+- **VoiceOver semantics.** The labels, actions, `accessibilityScrollAction` and
+  `.pageScrolled` announcements are implemented, but the accessibility tree was
+  not readable in this session, so the reading *order* has not been confirmed on
+  a device with VoiceOver actually running. This is the one item claimed in code
+  and not yet observed.
+
+### Observed, out of scope
+
+- The catalog currently loads with **23 errors, 286 warnings**, and choosing a
+  named companion fails: `'companion_dolphin_pilot_001' was asked for but cannot
+  be used: no such companion`. "Bana sürpriz yap" works. This is the in-progress
+  corpus work, not the reader.
+- The rest of the app has no Dynamic Type ceiling: at AX5 the tab bar truncates
+  to "An… Küt… Gü… Eb…" and the library empty state runs under the tab bar.

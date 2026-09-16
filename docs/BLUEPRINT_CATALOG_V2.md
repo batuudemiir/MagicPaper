@@ -377,9 +377,36 @@ Per Phase 1 §6.5, record counts are never the headline.
 
 Stated plainly rather than deferred silently.
 
-1. **No prose exists.** Fourteen architectures, zero Turkish words. Whether `insight` can be written in 18–38 words for a five-year-old, fourteen different ways, without formula, is the real remaining risk — and Phase 1 showed four of five V1 files opening that page identically.
-2. **Template supply is unmeasured.** How many variants per beat before two books from one blueprint rhyme. This is Phase 6's first measurement and may force the catalog *down*, not up.
+1. ~~No prose exists.~~ **Closed in Phase 7.** 33 beats, 318 variants, every gate passing. `insight` is written eight ways inside the band with no shared 5-gram anywhere in the corpus.
+2. ~~Template supply is unmeasured.~~ **Measured, and it did not force the catalog down.** Two books of one blueprint share a given page 6.2–16.7% of the time depending on the page; every identity page (2, 6, 7, 8) is at 12.5% or better. The thinnest pages are 4 and 5 at 16.7%. See PROSE_PRODUCTION_GUIDE.md — including the correction to the aggregate figures first reported there.
 3. **The Family III page-4 constraint is still partly editorial.** §2.3 makes the taxi problem structural, but "the obstacle must not be soluble by the companion's own capabilities" still needs a human. It is now *partly* checkable: if the obstacle declares which capability it defeats, the selector can verify the companion lacks it. Recommended for Phase 6.
 4. ~~II-1 vs II-2 is the closest pair~~ — **resolved in Phase 6** by rebuilding II-2 on a social threshold (beat 5, arc 3). The closest pair is now cross-family: I-2 `moment` vs IV-2 `retracing` at beat 3.
-5. ~~Family II's `social` threshold is untested.~~ **Resolved** — it is now the basis of II-2.
+5. **Family II's `social` threshold is declared and unsatisfiable — REOPENED.** Marking this resolved in Phase 6 was wrong: rebuilding II-2 on the social threshold settled the *blueprint*, and I recorded that as though it settled the *content*. It did not. `ThresholdKind.social` exists in the engine and `bp_threshold_joining_002` requires it, but **no setting in the library declares it**, so the blueprint matches nothing. The engine's load-time unexercised-vocabulary report is what surfaced this; my own diversity gates could not, because they only ever read blueprints against each other.
+
+   The gap is not an oversight in the trait list — it is that all five settings are *unoccupied places*. A social threshold is only afforded by somewhere others are characteristically already present, and none of the five is. It needs a new setting rather than a new trait on an old one.
+
+   **Proposed record** (content is the engine session's to add; this is the specification and the reason):
+
+   ```json
+   {
+     "id": "setting_festival_meadow_001",
+     "name": "Şenlik Çayırı",
+     "description": "Başkalarının çoktan oyuna başladığı, güneşli ve geniş bir çayır.",
+     "tags": ["meadow", "nature"],
+     "traits": ["hasThreshold", "isOpen", "isTended", "showsTraces"],
+     "compatibleThemes": ["courage", "friendship", "helping_others"],
+     "isProperNoun": true,
+     "hasPossessiveEnding": true,
+     "habitat": ["garden", "forest"],
+     "thresholdKinds": ["social"]
+   }
+   ```
+
+   - `isOpen ∧ isTended` satisfies II-2's `isOpen ∨ isTended` either way; `isHazardous` absent, as II-2 forbids it.
+   - `hasThreshold` is present because the integrity check requires it to agree with a non-empty `thresholdKinds` — and it is true here in the sense the axis means: there is a line, it is just drawn by people.
+   - `habitat: [garden, forest]` reaches four of the five pilot companions. Only Köpük (sea) is excluded, which is correct.
+   - Morphology: noun + 3sg possessive, back-vowel, proper — structurally identical to the already-tested `Bulut Dağı`. Locative `Şenlik Çayırı'nda`, relative `Şenlik Çayırı'ndaki`.
+   - The description does the load-bearing work: *"others have already started playing"* is what makes the threshold social. A meadow with nobody in it affords nothing.
+
+   Open question for the engine session: whether occupancy belongs in the description or is its own trait. I think description, for now — one setting does not justify an axis, and inventing one before a second case exists is how `hasDistance` happened.
 6. **Product decision, unresolved since Phase 3:** Family III and V-2 end with `restore` — the ending belongs to someone other than the child. For a personalised book with the child's name on the cover this is deliberate and defensible, but it is the closest thing in the catalog to Phase 1's complaint that *the book is about the fox*. Five of fourteen blueprints end this way. Worth a decision before prose.

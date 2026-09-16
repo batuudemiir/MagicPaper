@@ -46,7 +46,9 @@ final class CatalogBundleTests: XCTestCase {
 
         // Merged totals.
         XCTAssertEqual(catalog.blueprints.count, 17)
-        XCTAssertEqual(catalog.settings.count, 21)
+        // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
+        // only one that can afford a threshold you join rather than cross.
+        XCTAssertEqual(catalog.settings.count, 22)
         XCTAssertEqual(catalog.companions.count, 20)
         XCTAssertEqual(catalog.objects.count, 25)
         // 85 with the corpus complete at 33 beat files, each replacing the
