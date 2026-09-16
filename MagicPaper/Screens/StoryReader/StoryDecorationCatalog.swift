@@ -19,6 +19,38 @@ struct StoryDecorationAsset: Identifiable, Hashable {
     let visualWeight: Double
 }
 
+/// Bir varlığın kürasyon durumu.
+enum DecorationStatus: String, CaseIterable, Identifiable {
+    case approved, reviewRequired, rejected
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .approved:       return "Onaylı"
+        case .reviewRequired: return "İncelemede"
+        case .rejected:       return "Elenen"
+        }
+    }
+}
+
+/// Katalogdaki bir kayıt — üretime girmeyenler dâhil.
+///
+/// `StoryDecorationAsset` yalnızca üretime giren varlığı tarif eder; bu ise
+/// *kürasyonun* kaydı. Elenen bir varlığın neden elendiği galeride görünmeli:
+/// eksikliği gizlemek, sessizce yanlış dekorasyona yol açar.
+struct StoryDecorationCatalogEntry: Identifiable, Hashable {
+    let id: String
+    /// Yalnızca onaylı varlıklar uygulamaya kopyalanır; ötekiler `nil`.
+    let imageName: String?
+    let category: DecorationCategory
+    let type: DecorationType
+    let environments: Set<StoryEnvironment>
+    let status: DecorationStatus
+    let license: String
+    /// Elenme gerekçesi ya da not.
+    let note: String
+}
+
 /// Onaylı varlıkların dizini.
 ///
 /// İçerik `StoryDecorationCatalog+Generated.swift` içinde ve elle yazılmıyor;
@@ -43,5 +75,14 @@ enum StoryDecorationCatalog {
     /// sessizce yanlış dekorasyona yol açar.
     static var emptyCategories: [DecorationCategory] {
         DecorationCategory.allCases.filter { assets(category: $0).isEmpty }
+    }
+
+    /// Ortam başına onaylı varlık sayısı.
+    ///
+    /// Yoğunluk hedefi sayfa başına 4–7; bunu besleyebilmek için ortam başına
+    /// en az ~6 varlık gerekiyor. Galeride görünür olması bilinçli: sistemin
+    /// darboğazı motor değil, kütüphanenin inceliği.
+    static func approvedCount(for environment: StoryEnvironment) -> Int {
+        generated.filter { $0.environments.contains(environment) }.count
     }
 }

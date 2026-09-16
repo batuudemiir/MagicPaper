@@ -169,15 +169,35 @@ public struct BlueprintSelector: Sendable {
         let leaning = candidates.filter { $0.family.map(preferred.contains) ?? false }
         let pool = leaning.isEmpty ? candidates : leaning
 
+        // Bir arkadaş, onunla BÜTÜN bir hikâye kurulabiliyorsa teklif edilir.
+        //
+        // Eksenlere tek tek bakmak yetmiyordu ve iki ayrı kusur üretti. İlki:
+        // yalnızca yeteneğe bakılıyor, kadro atlanıyordu — "yardıma ihtiyacı
+        // olan birini bulalım" kartı, o rolü oynayamayan bir tilkiyi teklif
+        // ediyordu. İkincisi daha ince: bir blueprint arkadaşı kabul edip,
+        // fikrin istediği keşfi kabul etmeyebiliyor. Yunus "gizemli bir işaret"
+        // kartında böyle çıkıyordu — onu kabul eden blueprint o keşfi
+        // kabul etmiyordu, ve eksenleri ayrı ayrı denetleyen hiçbir kontrol
+        // bunu göremez.
+        //
+        // Bu yüzden kural yeniden yazılmıyor, BİNDER'A SORULUYOR: bağlanabiliyor
+        // mu? Reddi "teklif etme" demek. Kuralın ikinci bir kopyası olmadığı
+        // için de bağlama kuralları değiştiğinde bu ekran kendiliğinden
+        // doğru kalıyor.
+        //
+        // Çocuğun gördüğü her kart seçilebilir olmalı: seçildiğinde çalışmayan
+        // bir kart, verdiği sözü sessizce başka bir hikâyeye çeviriyor.
+        let binder = OfflineContentBinder()
         return catalog.companions.filter { companion in
             pool.contains { blueprint in
-                let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
-                let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
-                return TraitMatch.admits(
-                    offered: companion.traits,
-                    required: requires.companion,
-                    forbidden: forbids.companion
+                let probe = OfflineStoryIntent(
+                    childName: intent.childName,
+                    storyIdeaID: intent.storyIdeaID,
+                    companionID: companion.id,
+                    seed: intent.seed
                 )
+                return (try? binder.bind(
+                    blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
             }
         }
         .sorted { $0.id.rawValue < $1.id.rawValue }

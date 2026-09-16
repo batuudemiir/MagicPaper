@@ -134,6 +134,26 @@ enum DecorationDensity: String, CaseIterable, Codable {
         }
     }
 
+    /// Sayfanın kendi yoğunluğu — §18'in "her sayfanın kişiliği".
+    ///
+    /// Her sayfaya aynı yoğunluğu vermek kitabı tekdüze yapar. Burada üç kural
+    /// var ve üçü de kompozisyon kararı:
+    ///
+    /// - **Açılış sayfası sakin.** Okumaya başlanan yer kalabalık olmamalı.
+    /// - **Son sayfa sakin.** Masalın kapanışı nefes ister.
+    /// - **Büyülü sayfa zengin.** Süslemenin hakkını vereceği tek yer.
+    ///
+    /// Aradaki sayfalar tohuma göre dönüşümlü: ardışık iki sayfa aynı
+    /// yoğunlukta olmaz, böylece çevirdikçe ritim hissediliyor.
+    static func forPage(index: Int, pageCount: Int,
+                        environment: StoryEnvironment,
+                        seed: UInt64) -> DecorationDensity {
+        if index == 0 { return .sparse }
+        if pageCount > 1 && index == pageCount - 1 { return .sparse }
+        if environment == .magic { return .rich }
+        return (index &+ Int(truncatingIfNeeded: seed)) % 2 == 0 ? .normal : .sparse
+    }
+
     /// Yazı boyutu büyüdükçe seyrelir; metin her zaman kazanır (§39).
     func reduced(for size: DynamicTypeSize) -> DecorationDensity {
         guard size.isAccessibilitySize else { return self }

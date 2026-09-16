@@ -136,6 +136,26 @@ struct SettingsView: View {
             MPCard(padding: 0) {
                 VStack(spacing: 0) {
                     MPListRow(
+                        symbol: "book-open",
+                        iconColor: MP.C.calm,
+                        title: "Dekorasyon galerisi",
+                        description: "Varlık kataloğu, kürasyon durumu, ortam kapsamı",
+                        action: { app.showDecorationGallery = true }
+                    ) { EmptyView() }
+
+                    MPRowDivider()
+
+                    MPListRow(
+                        symbol: "sparkles",
+                        iconColor: MP.C.brand,
+                        title: "Dekorasyon demoları",
+                        description: "Orman · Deniz · Uyku · Macera, debug katmanıyla",
+                        action: { app.showDecorationDemo = true }
+                    ) { EmptyView() }
+
+                    MPRowDivider()
+
+                    MPListRow(
                         symbol: "star.fill",
                         iconColor: MP.C.reward,
                         title: "Deneme yıldızı ekle",

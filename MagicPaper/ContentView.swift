@@ -58,6 +58,12 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $app.showGate) {
             ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
         }
+        .fullScreenCover(isPresented: $app.showDecorationGallery) {
+            StoryDecorationGallery()
+        }
+        .fullScreenCover(isPresented: $app.showDecorationDemo) {
+            StoryDecorationDemoView().environmentObject(app)
+        }
         .fullScreenCover(isPresented: $app.showSettings) {
             SettingsView().environmentObject(app).environmentObject(settings)
         }

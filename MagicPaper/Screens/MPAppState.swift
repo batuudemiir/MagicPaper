@@ -87,6 +87,9 @@ final class MPAppState: ObservableObject {
     @Published var wizardPreset = MPWizardPreset()
     @Published var showPaywall = false
     @Published var showSettings = false
+    /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
+    @Published var showDecorationGallery = false
+    @Published var showDecorationDemo = false
     @Published var showGate = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?

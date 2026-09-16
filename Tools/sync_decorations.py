@@ -66,6 +66,31 @@ for a in approved:
      f'            visualWeight: {a["visualWeight"]}',
      "        ),",
     ]
+lines += ["    ]", ""]
+
+# Galeri için: elenen ve incelemede olanlar dâhil bütün katalog.
+# Üretime girmezler ama kürasyon ekranında görünmeleri gerekiyor —
+# eksikliği gizlemek sessizce yanlış dekorasyona yol açar.
+lines += [
+ "    /// Bütün katalog — kürasyon ekranı için. Üretim yalnızca `generated`.",
+ "    static let catalogEntries: [StoryDecorationCatalogEntry] = [",
+]
+for a in CAT["assets"]:
+    reason = a.get("rejectionReason", "").replace('"', "'")
+    in_app = a["status"] == "approved"
+    image_ref = '"Storybook/' + a["id"] + '"' if in_app else "nil"
+    lines += [
+     "        StoryDecorationCatalogEntry(",
+     f'            id: "{a["id"]}",',
+     f'            imageName: {image_ref},',
+     f'            category: .{a["category"]},',
+     f'            type: .{a["type"]},',
+     f'            environments: {swift_set(a["environments"], "StoryEnvironment")},',
+     f'            status: .{ {"approved":"approved","review":"reviewRequired","rejected":"rejected"}[a["status"]] },',
+     f'            license: "{a["license"]}",',
+     f'            note: "{reason}"',
+     "        ),",
+    ]
 lines += ["    ]", "}", ""]
 open(SWIFT, "w").write("\n".join(lines))
 

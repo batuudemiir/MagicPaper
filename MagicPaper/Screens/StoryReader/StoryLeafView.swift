@@ -59,8 +59,13 @@ struct StoryLeafView: View {
         let illoRect = hasImage
             ? CGRect(x: 0.04, y: 0.05, width: 0.92, height: 0.50)
             : nil
+        let seed = StoryDecorationContext.seed(storyID: model.story.id, page: page.index)
+        let env = StoryEnvironment.resolve(scene: page.sceneHint, world: model.story.world)
+        let density = DecorationDensity.forPage(index: page.index,
+                                                pageCount: model.story.pageCount,
+                                                environment: env, seed: seed)
         return .make(story: model.story, page: page,
-                     density: .normal,
+                     density: density,
                      textSafeRect: textRect,
                      illustrationSafeRect: illoRect)
     }

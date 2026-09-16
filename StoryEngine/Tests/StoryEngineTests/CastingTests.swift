@@ -555,3 +555,67 @@ final class BlueprintSatisfiabilityTests: XCTestCase {
                       + "same book, or no book: \(starved)")
     }
 }
+
+/// Adım 2'nin teklifleri, adım 1'in verdiği sözü tutabilmeli.
+final class CompanionOfferTests: XCTestCase {
+
+    private func catalog() throws -> ContentCatalog {
+        try ContentCatalogLoader().load().catalog
+    }
+
+    /// Teklif edilen her arkadaş, o teklifi mümkün kılan blueprint'te gerçekten
+    /// bağlanabilmeli.
+    ///
+    /// Bu, akışı elle çalıştırırken görüldü: "Yardıma ihtiyacı olan birini
+    /// bulalım" kartı, `needsCare` rolünü oynayamayan bir tilkiyi teklif
+    /// ediyordu. Süzgeç yetenekleri kontrol ediyor, kadroyu atlıyordu — D2'den
+    /// beri yarım kalmış bir kontrol. Çocuk o arkadaşı seçtiğinde blueprint onu
+    /// kullanamıyor, motor başka bir şekle geçiyor ve kartın sözü sessizce
+    /// başka bir hikâyeye dönüşüyor.
+    func testEveryOfferedCompanionCanActuallyBeBound() throws {
+        let catalog = try catalog()
+        let selector = BlueprintSelector()
+        let composer = OfflineStoryComposer()
+        var unusable: [String] = []
+
+        for idea in catalog.storyIdeas {
+            let offered = selector.companionCandidates(
+                catalog: catalog,
+                intent: OfflineStoryIntent(childName: "", storyIdeaID: idea.id, seed: "offer"),
+                idea: idea)
+            XCTAssertFalse(offered.isEmpty, "\(idea.id.rawValue) hiç arkadaş teklif etmiyor.")
+
+            for companion in offered {
+                let intent = OfflineStoryIntent(
+                    childName: "Yeliz", storyIdeaID: idea.id,
+                    companionID: companion.id, seed: "offer")
+                if (try? composer.compose(catalog: catalog, intent: intent)) == nil {
+                    unusable.append("\(idea.id.rawValue) → \(companion.id.rawValue)")
+                }
+            }
+        }
+
+        XCTAssertTrue(unusable.isEmpty,
+                      "Teklif edilip kullanılamayan arkadaşlar:\n  "
+                      + unusable.joined(separator: "\n  "))
+    }
+
+    /// Ve teklif, kadroyu gerçekten daraltıyor olmalı — yoksa üstteki test
+    /// hiçbir şey kanıtlamaz.
+    func testCastingActuallyNarrowsTheOffer() throws {
+        let catalog = try catalog()
+        let selector = BlueprintSelector()
+        let needsCare = try XCTUnwrap(
+            catalog.storyIdeas.first { $0.id == ContentID("idea_someone_needs_us_001") })
+
+        let offered = selector.companionCandidates(
+            catalog: catalog,
+            intent: OfflineStoryIntent(childName: "", storyIdeaID: needsCare.id, seed: "offer"),
+            idea: needsCare)
+
+        XCTAssertFalse(offered.contains { $0.id == ContentID("companion_fox_pilot_001") },
+                       "Tilki bakıma muhtaç olanı oynayamaz; bu kart için teklif edilmemeli.")
+        XCTAssertTrue(offered.contains { $0.castRoles.contains(.needsCare) },
+                      "Oynayabilen biri teklif edilmeli.")
+    }
+}

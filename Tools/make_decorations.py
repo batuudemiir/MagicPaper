@@ -382,6 +382,206 @@ def space_constellation_01(w=180, h=150):
     return finish(im, w, h, "space_constellation_01", "Space")
 
 
+# =================================================================== EK SET
+#
+# İlk turda 26 varlıktan 9'u elendi ve örüntü netti: prosedürel çizim organik
+# çizgi formlarında çalışıyor, tanınması gereken nesnelerde ve geometrik
+# parçacıklarda çalışmıyor. Bu set o örüntüye göre yazıldı — yıldız poligonu
+# ya da daire yok; her şey büyüyen, akan, kıvrılan bir çizgi.
+
+def ocean_coral_01(w=150, h=170):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    base = h*S - 5*S
+    trunk = curve(74*S, base, 70*S, 66*S, 10*S, 30)
+    taper(dr, trunk, 4.2, 1.6, INK, 238)
+    for t, ang, ln in [(0.30,-58,42),(0.45,54,38),(0.62,-50,36),(0.78,46,30)]:
+        px, py = trunk[int(t*len(trunk))]
+        a = math.radians(ang - 90)
+        br = curve(px, py, px+math.cos(a)*ln*S, py+math.sin(a)*ln*S, ln*S*0.30, 24)
+        taper(dr, br, 2.6, 0.8, INK, 228)
+        # ikincil dallanma — mercanı mercan yapan şey
+        bx, by = br[-1]
+        a2 = math.radians(ang - 90 + (18 if ang > 0 else -18))
+        taper(dr, curve(bx, by, bx+math.cos(a2)*ln*0.5*S, by+math.sin(a2)*ln*0.5*S, 4*S, 16),
+              1.5, 0.5, INK, 210)
+    return finish(im, w, h, "ocean_coral_01", "Ocean")
+
+def ocean_fish_pair_01(w=170, h=110):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    def fish(cx, cy, ln, flip):
+        d = -1 if flip else 1
+        top = curve(cx-ln*S*d, cy, cx+ln*S*d, cy,  ln*S*0.30, 30)
+        bot = curve(cx-ln*S*d, cy, cx+ln*S*d, cy, -ln*S*0.30, 30)
+        dr.polygon(top + bot[::-1], fill=INK+(46,))
+        taper(dr, top, 1.6, 1.6, INK, 232)
+        taper(dr, bot, 1.6, 1.6, INK, 232)
+        tx = cx - ln*S*d
+        dr.polygon([(tx, cy), (tx-14*S*d, cy-11*S), (tx-14*S*d, cy+11*S)], fill=INK+(56,))
+        taper(dr, [(tx, cy), (tx-14*S*d, cy-11*S)], 1.4, 1.0, INK, 226)
+        taper(dr, [(tx, cy), (tx-14*S*d, cy+11*S)], 1.4, 1.0, INK, 226)
+    fish(70*S, 44*S, 26, False)
+    fish(112*S, 78*S, 18, True)
+    return finish(im, w, h, "ocean_fish_pair_01", "Ocean")
+
+def ocean_kelp_edge_01(w=110, h=250):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    base = h*S - 4*S
+    for x, ln, bend, ph in [(34,222,22,0.4),(58,190,-26,1.9)]:
+        pts, steps = [], 54
+        for i in range(steps+1):
+            t = i/steps
+            pts.append((x*S + math.sin(t*math.pi*1.6+ph)*bend*S*t, base - ln*S*t))
+        taper(dr, pts, 3.6, 0.7, INK, 234)
+        for k in range(4, steps-2, 7):
+            px, py = pts[k]
+            leaf(dr, px, py, 16, -150 if k % 14 else -30, 0.42, 190)
+    return finish(im, w, h, "ocean_kelp_edge_01", "Ocean")
+
+def sky_cloud_wisp_01(w=220, h=90):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    for y, ln, al, w0 in [(40,180,210,3.0),(58,130,170,2.2),(28,96,140,1.8)]:
+        x0 = 18*S + (200-ln)*S*0.3
+        taper(dr, curve(x0, y*S, x0+ln*S, y*S, -7*S, 40), w0, 0.6, INK, al)
+    return finish(im, w, h, "sky_cloud_wisp_01", "Sky")
+
+def sky_sun_rays_01(w=160, h=150):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    cx, cy = 26*S, 24*S
+    for k in range(7):
+        a = math.radians(14 + k*11.5)
+        ln = (78 + (k % 3)*26)
+        taper(dr, [(cx+math.cos(a)*20*S, cy+math.sin(a)*20*S),
+                   (cx+math.cos(a)*ln*S, cy+math.sin(a)*ln*S)],
+              2.0, 0.5, INK, 180 - (k % 3)*30)
+    taper(dr, curve(cx+8*S, cy+30*S, cx+34*S, cy-6*S, 12*S, 28), 2.2, 2.2, INK, 225)
+    return finish(im, w, h, "sky_sun_rays_01", "Sky")
+
+def bedtime_night_hills_01(w=240, h=100):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    base = h*S - 5*S
+    for x0, x1, bend, al, fill in [(0,140,-52,180,30),(90,244,-38,215,44)]:
+        arc = curve(x0*S, base, x1*S, base, bend*S, 60)
+        dr.polygon(arc + [(x1*S, base), (x0*S, base)], fill=INK+(fill,))
+        taper(dr, arc, 1.9, 1.9, INK, al)
+    return finish(im, w, h, "bedtime_night_hills_01", "Bedtime")
+
+def bedtime_moon_wisp_01(w=170, h=130):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    outer = curve(96*S, 16*S, 96*S, 104*S,  46*S, 54)
+    inner = curve(96*S, 16*S, 96*S, 104*S,  20*S, 54)
+    dr.polygon(outer + inner[::-1], fill=INK+(50,))
+    taper(dr, outer, 2.0, 2.0, INK, 238)
+    taper(dr, inner, 1.5, 1.5, INK, 214)
+    for y, ln, al in [(74,74,160),(88,54,125)]:
+        taper(dr, curve(14*S, y*S, (14+ln)*S, y*S, -5*S, 30), 2.0, 0.6, INK, al)
+    return finish(im, w, h, "bedtime_moon_wisp_01", "Bedtime")
+
+def adventure_pennant_01(w=120, h=180):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    pole = [(40*S, 172*S), (46*S, 14*S)]
+    taper(dr, pole, 3.0, 2.0, INK, 240)
+    top = curve(46*S, 20*S, 100*S, 40*S, -12*S, 26)
+    bot = curve(46*S, 52*S, 100*S, 40*S,  10*S, 26)
+    dr.polygon(top + bot[::-1], fill=INK+(52,))
+    taper(dr, top, 1.7, 1.2, INK, 232)
+    taper(dr, bot, 1.7, 1.2, INK, 232)
+    return finish(im, w, h, "adventure_pennant_01", "Adventure")
+
+def adventure_rope_01(w=210, h=90):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    path = curve(8*S, 40*S, 200*S, 58*S, 26*S, 60)
+    taper(dr, path, 3.0, 3.0, INK, 225)
+    for i in range(3, len(path)-3, 4):
+        x, y = path[i]
+        nx, ny = path[i+2]
+        a = math.atan2(ny-y, nx-x) + math.pi/2
+        taper(dr, [(x-math.cos(a)*4*S, y-math.sin(a)*4*S),
+                   (x+math.cos(a)*4*S, y+math.sin(a)*4*S)], 1.2, 1.2, INK, 165)
+    return finish(im, w, h, "adventure_rope_01", "Adventure")
+
+def adventure_fern_01(w=130, h=190):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    spine = curve(58*S, 180*S, 76*S, 14*S, 26*S, 54)
+    taper(dr, spine, 3.0, 0.8, INK, 238)
+    for i in range(4, len(spine)-3, 3):
+        x, y = spine[i]
+        t = i/len(spine)
+        ln = 34*(1 - t*0.72)
+        if ln < 6: continue
+        leaf(dr, x, y, ln, -150 + t*20, 0.30, 200)
+        leaf(dr, x, y, ln, -30 - t*20, 0.30, 200)
+    return finish(im, w, h, "adventure_fern_01", "Adventure")
+
+def magic_swirl_01(w=170, h=170):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    pts = []
+    for i in range(170):
+        t = i/169
+        a = t*math.pi*3.1
+        r = (8 + t*62)*S
+        pts.append((86*S + math.cos(a)*r, 86*S + math.sin(a)*r*0.82))
+    taper(dr, pts, 0.6, 3.0, INK, 215)
+    return finish(im, w, h, "magic_swirl_01", "Magic")
+
+def magic_wisp_trail_01(w=220, h=140):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    for off, al, bend in [(0,215,44),(13,160,38),(-11,120,50)]:
+        taper(dr, curve(16*S, (108+off)*S, 204*S, (34+off)*S, bend*S, 44),
+              2.6, 0.4, INK, al)
+    return finish(im, w, h, "magic_wisp_trail_01", "Magic")
+
+def magic_glow_grass_01(w=180, h=130):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    base = h*S - 5*S
+    for x, ln, lean, wt in [(48,64,-14,2.2),(68,96,-6,2.6),(90,118,2,2.8),
+                            (112,84,10,2.4),(132,56,18,2.0)]:
+        x0, y0 = x*S, base
+        x2, y2 = (x+lean)*S, base - ln*S
+        x1, y1 = (x+lean*0.15)*S, base - ln*S*0.55
+        pts = [((1-t)**2*x0 + 2*(1-t)*t*x1 + t*t*x2,
+                (1-t)**2*y0 + 2*(1-t)*t*y1 + t*t*y2) for t in (i/28 for i in range(29))]
+        taper(dr, pts, wt, 0.3, INK, 232)
+        # uçta yumuşak bir ışık — parıltı poligonu değil
+        tx, ty = pts[-1]
+        for r, a in [(3.0,150),(5.4,80),(8.0,40)]:
+            blob(dr, tx, ty, r, 0.05, a, 0.8, seed=int(x))
+    return finish(im, w, h, "magic_glow_grass_01", "Magic")
+
+def space_orbit_arcs_01(w=200, h=160):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    blob(dr, 112*S, 84*S, 26, 0.03, 228, 0.20, seed=41)
+    for r, al, tilt in [(52,205,16),(72,160,26),(92,115,36)]:
+        pts = []
+        for i in range(95):
+            t = i/94
+            a = math.pi*0.18 + t*math.pi*1.30
+            pts.append((112*S + math.cos(a)*r*S, 84*S + math.sin(a)*r*S*0.42 - tilt*S*0.2))
+        taper(dr, pts, 1.8, 0.6, INK, al)
+    return finish(im, w, h, "space_orbit_arcs_01", "Space")
+
+def space_moon_arc_01(w=180, h=150):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    outer = curve(106*S, 20*S, 106*S, 122*S,  50*S, 56)
+    inner = curve(106*S, 20*S, 106*S, 122*S,  22*S, 56)
+    dr.polygon(outer + inner[::-1], fill=INK+(48,))
+    taper(dr, outer, 2.0, 2.0, INK, 236)
+    taper(dr, inner, 1.5, 1.5, INK, 210)
+    pts = []
+    for i in range(80):
+        t = i/79
+        a = math.pi*0.62 + t*math.pi*0.78
+        pts.append((106*S + math.cos(a)*72*S, 72*S + math.sin(a)*66*S))
+    taper(dr, pts, 0.6, 2.0, INK, 150)
+    return finish(im, w, h, "space_moon_arc_01", "Space")
+
+def forest_fallen_leaves_01(w=190, h=100):
+    im = canvas(w, h); dr = ImageDraw.Draw(im); S = SS
+    for x, y, ln, ang, al in [(44,62,42,168,225),(96,74,36,150,210),(140,58,30,190,195)]:
+        leaf(dr, x*S, y*S, ln, ang, 0.36, al)
+    taper(dr, curve(24*S, 86*S, 166*S, 86*S, 4*S), 1.4, 1.4, INK, 110)
+    return finish(im, w, h, "forest_fallen_leaves_01", "Forest")
+
+
 BUILDERS = [v for k, v in sorted(globals().items())
             if callable(v) and any(k.startswith(p) for p in
             ("forest_","garden_","sky_","magic_","ocean_","bedtime_","adventure_","space_"))]
