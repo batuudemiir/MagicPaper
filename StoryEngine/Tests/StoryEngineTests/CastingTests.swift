@@ -619,3 +619,62 @@ final class CompanionOfferTests: XCTestCase {
                       "Oynayabilen biri teklif edilmeli.")
     }
 }
+
+/// Yaş, motorda modellenen bir şey — metin değil.
+final class AgeBandingTests: XCTestCase {
+
+    private func catalog() throws -> ContentCatalog {
+        try ContentCatalogLoader().load().catalog
+    }
+
+    /// Bantlar arasında okuma parametreleri gerçekten değişmeli. Hepsi aynıysa
+    /// "yaş bandı" diye bir şey yok, yalnızca bir etiket var.
+    func testTheBandsActuallyDiffer() {
+        let young = AgeBand(lowerBound: 3, upperBound: 4)
+        let mid = AgeBand(lowerBound: 5, upperBound: 7)
+        let older = AgeBand(lowerBound: 8, upperBound: 10)
+
+        XCTAssertLessThan(young.maxSentenceWords, mid.maxSentenceWords)
+        XCTAssertLessThan(mid.maxSentenceWords, older.maxSentenceWords)
+        XCTAssertLessThan(young.pageBudget.upper, mid.pageBudget.upper)
+        XCTAssertLessThan(young.pageCount, older.pageCount)
+    }
+
+    /// Bugünkü korpus 5-7 bandına yazıldı; bandın söylediğiyle korpusun
+    /// yazıldığı sayılar aynı olmalı, yoksa iki kaynak var demektir.
+    func testTheShippedBandMatchesWhatTheCorpusWasWrittenTo() {
+        let band = AgeBand(lowerBound: 5, upperBound: 6)
+        XCTAssertEqual(band.pageBudget.lower, 18)
+        XCTAssertEqual(band.pageBudget.upper, 38)
+        XCTAssertEqual(band.pageCount, 8)
+    }
+
+    /// MLU tavan değil taban: 5-6 yaş ortalama sözce uzunluğu ~5 kelime ve
+    /// cümle sınırı bunun belirgin biçimde üstünde olmalı. Altına inerse,
+    /// birisi üretim ölçüsünü anlama sınırı sanmış demektir.
+    func testSentenceLimitIsWellAboveWhatAChildProduces() {
+        XCTAssertGreaterThan(AgeBand(lowerBound: 5, upperBound: 6).maxSentenceWords, 10)
+    }
+
+    /// İkinci katman gerektiren aileler daha yüksek bir taban istiyor.
+    ///
+    /// İkisi arasında fark İDDİA EDİLMİYOR: "revelation, insight'tan bir yaş
+    /// daha büyük ister" gibi bir ayrımı kaynaklar söylemiyor, ve söylemediği
+    /// için test de sormuyor. Bir testin sormadığı şey, kodun iddia etmediği
+    /// şey olmalı.
+    func testInferenceFamiliesAskForMoreYears() {
+        for family in [NarrativeFamily.misreading, .unexplained] {
+            XCTAssertGreaterThan(family.minimumAge, NarrativeFamily.appeal.minimumAge,
+                                 "\(family.rawValue) ikinci katman iş istiyor.")
+        }
+        XCTAssertEqual(NarrativeFamily.misreading.minimumAge,
+                       NarrativeFamily.unexplained.minimumAge,
+                       "Aralarındaki farkı kaynaklar desteklemiyor.")
+    }
+
+    /// Ve gönderilen katalog kendi kuralına uyuyor.
+    func testTheShippedCatalogFitsItsOwnBands() throws {
+        let report = CatalogIntegrityChecker().check(try catalog())
+        XCTAssertEqual(report.issues(withCode: "blueprint_below_family_age"), [])
+    }
+}

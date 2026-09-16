@@ -118,6 +118,43 @@ public enum NarrativeFamily: String, Codable, Sendable, Hashable, CaseIterable {
         }
     }
 
+    /// Bu ailenin isteyebileceği en küçük yaş.
+    ///
+    /// Aileler bilişsel olarak eşit değil ve bu bugüne kadar hiçbir yerde
+    /// yazılı değildi. Anlama iki katmanlı: birincisi kelime ve dilbilgisi,
+    /// **ikincisi çıkarım, önbilgiyle bütünleştirme ve öykü yapısı bilgisi.**
+    /// İki aile açıkça ikinci katman işi:
+    ///
+    /// - `unexplained` iki ayrı gözlemden bir çıkarım istiyor.
+    /// - `misreading` bir inancı TUTUP sonra onu çürütmek istiyor — bu, yanlış
+    ///   inanç kavrayışının kendisi, ve dört yaşından önce güvenilir biçimde
+    ///   oturmuyor. Tutulamayan bir inancın çürütülmesi de bir şey ifade etmez;
+    ///   o hikâye küçük bir çocuk için yalnızca iki kopuk olaydır.
+    ///
+    /// Çözüm mekanizmasından TÜRETİLİYOR, aile aile elle yazılmıyor: aynı
+    /// olgunun iki kaynağı olmasın. `revelation` yanlış inancı çürütmektir,
+    /// `insight` çıkarımdır; ikisi de aynı ikinci katmana dayanıyor.
+    /// İkisi de **5**, ve aralarında fark yok — ilk yazımda `revelation`'a 6
+    /// vermiştim ve bu, elimdeki kaynakların desteklemediği bir ayrımdı.
+    ///
+    /// Kontrolün kendisi yakaladı: gönderilen `misreading` blueprint'i 5-6
+    /// bandında ve tabanı 6 yapınca kendi kataloğum kendi kuralını çiğnedi.
+    /// İki cevaptan biri yanlıştı ve yanlış olan sayıydı. Yanlış inanç
+    /// kavrayışı klasik olarak 4-5 civarında oturuyor; bir anlatı boyunca
+    /// sürdürmek daha zor, ama "revelation 6, insight 5" gibi bir yıllık ince
+    /// ayrımı okuduğum hiçbir kaynak söylemiyor. Testi geçirmek için sayıyı
+    /// değiştirmedim; sayıyı kanıtın söylediği yere çektim ve fazladan
+    /// söylediğim şeyi geri aldım.
+    ///
+    /// Beşin ALTI yine de ayrı: orada ne çıkarım ne inanç düzeltmesi güvenilir,
+    /// ve o eşik kaynakların gerçekten söylediği şey.
+    public var minimumAge: Int {
+        switch resolution {
+        case .revelation, .insight: return 5   // ikinci katman: çıkarım ve inanç
+        default:                    return 3   // doğrusal zincir: iste, yap, olsun
+        }
+    }
+
     /// How firmly a belief has to be voiced for this family's page 6 to work.
     ///
     /// Derived from the resolution mechanism rather than authored, so it cannot

@@ -64,6 +64,57 @@ public struct AgeBand: Hashable, Codable, Sendable, CustomStringConvertible {
     public var description: String { "\(lowerBound)-\(upperBound)" }
     public func contains(_ age: Int) -> Bool { (lowerBound...upperBound).contains(age) }
 
+    // MARK: - Okuma parametreleri
+    //
+    // Bu değerler `docs/AGE_BANDING.md`'den geliyor ve orada kaynaklarıyla
+    // birlikte duruyor. Buraya kadar taşınmalarının sebebi şu: `AgeBand` bugüne
+    // kadar yalnızca "5-6" metnini taşıyordu, yani bir bandın NE DEMEK olduğunu
+    // hiçbir yer bilmiyordu. Bir sonraki bant yazıldığında kelime bütçesinin,
+    // cümle sınırının ve sayfa sayısının nereden geleceği belirsizdi — ve
+    // belirsiz olduğu için de muhtemelen 5-6'nınkiler kopyalanacaktı.
+
+    /// Bir sayfanın kelime bandı.
+    ///
+    /// Resimli kitap (3-7) üst sınırı sektörde ~600 kelime. Sekiz sayfalık bir
+    /// masalda bu sayfa başına ~75; bugünkü 18-38 bandı bunun altında ve
+    /// bilerek öyle: metin SESLİ okunuyor, ve sesli okumada sayfada geçen süre
+    /// sayfadaki kelime kadar önemli.
+    public var pageBudget: (lower: Int, upper: Int) {
+        switch lowerBound {
+        case ..<5:  return (10, 24)   // 3-4: kısa, tek olaylı sayfalar
+        case 5...7: return (18, 38)   // bugünkü korpusun yazıldığı bant
+        case 8...10: return (30, 60)
+        default:    return (45, 90)
+        }
+    }
+
+    /// Bir cümlenin en fazla kaç kelime olabileceği.
+    ///
+    /// **MLU tavan değil tabandır.** Gelişim literatürünün en çok alıntılanan
+    /// ölçüsü olan ortalama sözce uzunluğu 5-6 yaş için ~5 kelime, ama o,
+    /// çocuğun ÜRETTİĞİdir. Anlama üretmeyi belirgin biçimde önden götürür:
+    /// masalı dinleyen çocuk, kendi kuramayacağı cümleleri rahatça takip eder.
+    /// MLU'yu tavan sanıp cümleleri beşe indirmek metni uygun değil TATSIZ
+    /// yapar — bu literatürdeki en kolay hata ve buraya bu yüzden yazıldı.
+    public var maxSentenceWords: Int {
+        switch lowerBound {
+        case ..<5:  return 10
+        case 5...7: return 14
+        case 8...10: return 20
+        default:    return 26
+        }
+    }
+
+    /// Kaç sayfa.
+    public var pageCount: Int {
+        switch lowerBound {
+        case ..<5:  return 6
+        case 5...7: return 8
+        case 8...10: return 10
+        default:    return 12
+        }
+    }
+
     public init(from decoder: Decoder) throws {
         let raw = try decoder.singleValueContainer().decode(String.self)
         guard let parsed = AgeBand(raw) else {

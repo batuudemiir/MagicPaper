@@ -100,6 +100,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkThresholdKinds(catalog))
         issues.append(contentsOf: checkVocabularyCarriesInformation(catalog))
         issues.append(contentsOf: checkDiscoveryModality(catalog))
+        issues.append(contentsOf: checkAgeFit(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -475,6 +476,42 @@ public struct CatalogIntegrityChecker: Sendable {
                       message: "Discovery '\(object.id)' says neither that it can be seen nor "
                           + "that it can be heard, so lines written for either will be offered it.")
             }
+    }
+
+    /// Bir blueprint, ailesinin istediği yaştan küçük bir banda sunulamaz.
+    ///
+    /// Aileler bilişsel olarak eşit değil: bir yanlış okumayı çürütmek, biri
+    /// yardım istediğinde yardım etmekle aynı iş değil. Dört yaşındaki bir
+    /// çocuğa Aile V vermek, hikâyeyi zorlaştırmaz — onu İKİ KOPUK OLAYA
+    /// çevirir, çünkü çürütülen inanç hiç tutulamamıştır. Ortada bir hata da
+    /// görünmez: metin kusursuzdur, çocuk yalnızca anlamaz.
+    ///
+    /// Sayfa bütçesi de aynı yerden denetleniyor: bir blueprint'in sayfa sayısı
+    /// bandının sayfa sayısıyla uyuşmalı, yoksa kelime bütçesi hesabı bir
+    /// bandın sayfa sayısına, prova ise başkasınınkine göre yapılır.
+    private func checkAgeFit(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for blueprint in catalog.blueprints {
+            guard let family = blueprint.family else { continue }
+            if blueprint.ageRange.lowerBound < family.minimumAge {
+                issues.append(.init(
+                    severity: .error, code: "blueprint_below_family_age", recordID: blueprint.id,
+                    message: "Blueprint '\(blueprint.id)' \(blueprint.ageRange) bandına sunuluyor "
+                        + "ama '\(family.rawValue)' ailesi en az \(family.minimumAge) yaş istiyor: "
+                        + "\(family.resolution) ile çözülen bir hikâye daha küçük bir çocukta "
+                        + "birbirinden kopuk olaylara dönüşür."
+                ))
+            }
+            if blueprint.pageCount != blueprint.ageRange.pageCount {
+                issues.append(.init(
+                    severity: .warning, code: "page_count_off_band", recordID: blueprint.id,
+                    message: "Blueprint '\(blueprint.id)' \(blueprint.pageCount) sayfa, "
+                        + "\(blueprint.ageRange) bandı ise \(blueprint.ageRange.pageCount) sayfa "
+                        + "için ölçüldü; kelime bütçesi bu sayfa sayısına göre hesaplanıyor."
+                ))
+            }
+        }
+        return issues
     }
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {
