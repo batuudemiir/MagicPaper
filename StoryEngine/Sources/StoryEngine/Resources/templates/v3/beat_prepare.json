@@ -3,7 +3,7 @@
   "beat": "prepare",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-2. The fear shrinks because the child gets READY — rehearsing, checking, steadying — not because they try a little. This is the sibling of small_step and must not read like it: nothing is attempted here, only prepared for.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-2. The fear shrinks because the child gets READY — rehearsing, checking, steadying — not because they try a little. This is the sibling of small_step and must not read like it: nothing is attempted here, only prepared for. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 5 is never shared for this beat"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "no_point_starting_unready"
+    },
+    {
+      "id": "pr_s_06",
+      "text": "{{child.name}} yanındakileri tek tek kontrol etti. Eksik bir şey var mı diye baktı. Yoktu. Artık bekleyecek bir şey kalmamıştı, sıra kendisindeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "checked_everything_twice"
+    },
+    {
+      "id": "pr_s_07",
+      "text": "Gözlerini kapattı {{child.name}}. Baştan sona nasıl olacağını içinden geçirdi. Sonra gözlerini açtı. Kafasındaki resim netti ve bu yeterliydi. Artık hazır olduğunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "ran_it_through_with_eyes_closed"
+    },
+    {
+      "id": "pr_s_08",
+      "text": "{{child.name}} oturdu, biraz bekledi, kalbinin yavaşlamasını dinledi. Yavaşladı. Şimdi eli de titremiyordu. Hazır olmak buymuş demek ki, başka bir şey değil.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waited_for_the_heart_to_slow"
     }
   ]
 }

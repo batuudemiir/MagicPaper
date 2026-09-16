@@ -3,7 +3,7 @@
   "beat": "exchange_views",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-2. Two people each held half the truth. NEITHER is at fault and neither is corrected — both were right about what they could see (catalog V-2 safety). The resolution is understanding, not winning, and the child listens at least as much as they explain.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-2. Two people each held half the truth. NEITHER is at fault and neither is corrected — both were right about what they could see (catalog V-2 safety). The resolution is understanding, not winning, and the child listens at least as much as they explain. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -53,6 +53,35 @@
       ],
       "lengthClass": "solo",
       "move": "pieces_put_together"
+    },
+    {
+      "id": "ev_s_06",
+      "text": "Önce {{child.name}} dinledi, sonra kendi gördüğünü söyledi. Bu sıra önemliydi. Dinlemeseydi anlatacağı şey yanlış olurdu. Dinledi ve ikisi de rahatladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "listened_first_then_spoke"
+    },
+    {
+      "id": "ev_s_07",
+      "text": "İkisinin de elinde yarım bir hikâye vardı. {{child.name}} ile {{companion.name}} yarımları yan yana koydu. Tam olunca kimsenin suçu kalmadı ortada.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_halves_of_one_story"
+    },
+    {
+      "id": "ev_s_08",
+      "text": "\"Ben seni yanlış anlamışım,\" dedi {{child.name}}. {{companion.name}} da aynısını söyledi. İkisi birden söyleyince gülüştüler. Yanlış anlamak iki kişilik bir işmiş.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "both_apologised_at_once"
     }
   ]
 }

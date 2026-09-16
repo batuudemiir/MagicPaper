@@ -3,7 +3,7 @@
   "beat": "cooperative_effort",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-1. TWO contributions, both necessary and both visible on the page. The child's half must include a CHOICE or an IDEA, never only labour — 'child = body, companion = directions' satisfies the letter of the agency rule and inverts its spirit (catalog §2.3). If either could have managed alone, the obstacle on page 4 is wrong, not this page.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-1. TWO contributions, both necessary and both visible on the page. The child's half must include a CHOICE or an IDEA, never only labour — 'child = body, companion = directions' satisfies the letter of the agency rule and inverts its spirit (catalog §2.3). If either could have managed alone, the obstacle on page 4 is wrong, not this page. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -57,6 +57,36 @@
       ],
       "lengthClass": "solo",
       "move": "who_did_what_forgotten"
+    },
+    {
+      "id": "ce_s_06",
+      "text": "{{child.name}} hangi taraftan tutulacağını söyledi, {{companion.name}} da oradan tuttu. İkisi aynı anda asıldı. Tek bir kişi olsa hiç kıpırdamazdı, ikisi olunca kıpırdadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "which_side_to_hold"
+    },
+    {
+      "id": "ce_s_07",
+      "text": "\"Bir fikrim var,\" dedi {{child.name}} ve anlattı. {{companion.name}} dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_ideas_combined"
+    },
+    {
+      "id": "ce_s_08",
+      "text": "{{child.name}} sırayı belirledi: önce şu, sonra bu. {{companion.name}} sırayı bozmadan yaptı. Doğru sıra olmasa hiçbiri işe yaramazdı. İkisi de bunu biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_order_mattered"
     }
   ]
 }

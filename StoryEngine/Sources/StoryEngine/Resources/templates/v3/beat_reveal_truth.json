@@ -3,7 +3,7 @@
   "beat": "reveal_truth",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-1. What the child was certain of turns out to be something else — and WARMER. The child is never foolish for having believed it and is never corrected by a person: the world simply shows itself. Nobody laughs at them; if anyone laughs, the child laughs first.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-1. What the child was certain of turns out to be something else — and WARMER. The child is never foolish for having believed it and is never corrected by a person: the world simply shows itself. Nobody laughs at them; if anyone laughs, the child laughs first. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "being_wrong_is_learning"
+    },
+    {
+      "id": "rv_s_06",
+      "text": "Uzaktan başka, yakından bambaşkaydı. {{child.name}} yaklaştıkça şekil değişti ve sonunda ne olduğu belli oldu. Korkulacak değil, sevinilecek bir şeymiş. {{child.name}} uzun uzun baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "different_from_up_close"
+    },
+    {
+      "id": "rv_s_07",
+      "text": "{{child.name}} yanılmıştı ama akıllıca yanılmıştı. Oradan bakınca gerçekten öyle görünüyordu. Şimdi doğrusunu gördü ve doğrusu çok daha güzeldi. Yanıldığına hiç üzülmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "a_reasonable_mistake"
+    },
+    {
+      "id": "rv_s_08",
+      "text": "Gerçek ortaya çıkınca {{child.name}}'in yüzü aydınlandı. Meğer bunca zaman yanlış bir hikâye anlatmış kendine. Doğru hikâye daha kısaydı ve çok daha tatlıydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_true_story_was_shorter"
     }
   ]
 }

@@ -3,7 +3,7 @@
   "beat": "retrace",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-2. The answer is BEHIND, not ahead — the child turns around and re-reads what they already passed. The insight is that going back is a choice, not a defeat. Nothing new is introduced on the way back; the thing was always there and was simply not seen.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-2. The answer is BEHIND, not ahead — the child turns around and re-reads what they already passed. The insight is that going back is a choice, not a defeat. Nothing new is introduced on the way back; the thing was always there and was simply not seen. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "sometimes_it_is_behind"
+    },
+    {
+      "id": "rt_s_06",
+      "text": "İlerisi hep aynıydı, oysa geride bir şey vardı. {{child.name}} döndü ve bu kez yavaş yürüdü. Yavaş yürüyünce gözden kaçan şey ortaya çıktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "slower_on_the_way_back"
+    },
+    {
+      "id": "rt_s_07",
+      "text": "\"Nereden geldik?\" diye sordu {{child.name}} kendine. Sonra tam oradan geri gitti. İlk geçişte acelesi vardı, şimdi yoktu. Fark bu kadarmış.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_difference_was_the_hurry"
+    },
+    {
+      "id": "rt_s_08",
+      "text": "{{child.name}} yeni bir yol aramaktan vazgeçti. Eski yolu yeniden yürümeye karar verdi. Aynı yerlerden ikinci kez geçti. Ve ikinci geçişte gördü aradığını.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "gave_up_on_new_paths"
     }
   ]
 }

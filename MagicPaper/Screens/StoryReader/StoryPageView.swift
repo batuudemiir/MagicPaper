@@ -101,7 +101,7 @@ struct StoryPageView: View {
                 // ve ikinci bir yazı stili olmadan ayrılır (§15).
                 ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
                     Text(paragraph)
-                        .font(MP.F.readScaled(readSize.points))
+                        .font(MP.F.read(readSize.points))
                         .lineSpacing(readSize.lineSpacing)
                         .foregroundStyle(theme.body)
                         .fixedSize(horizontal: false, vertical: true)

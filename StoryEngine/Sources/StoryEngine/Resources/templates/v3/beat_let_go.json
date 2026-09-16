@@ -3,7 +3,7 @@
   "beat": "let_go",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family VI-2 — the hardest page in the catalog. The release is visibly the GOOD outcome: the creature is well, it is going where it belongs, and the CHILD chooses the moment (catalog §2.4). No lingering, no last look that reads as loss, no ambiguity about whether it survives. Sadness is allowed; grief is not.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family VI-2 — the hardest page in the catalog. The release is visibly the GOOD outcome: the creature is well, it is going where it belongs, and the CHILD chooses the moment (catalog §2.4). No lingering, no last look that reads as loss, no ambiguity about whether it survives. Sadness is allowed; grief is not. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "ready_so_released"
+    },
+    {
+      "id": "lg_s_06",
+      "text": "{{child.name}} tam zamanını bekledi, sonra \"şimdi\" dedi içinden. Ve bıraktı. Gidişi güzeldi, hızlıydı, hiç tereddüt etmedi. Burnu biraz sızladı ama gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waited_for_the_right_moment"
+    },
+    {
+      "id": "lg_s_07",
+      "text": "Yanında kalsa mutlu olmazdı, {{child.name}} bunu görüyordu. Görünce de karar kolaylaştı. Ellerini açtı. Gidiş üzücü değildi, doğruydu ve öyle hissettirdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "staying_would_not_have_been_happy"
+    },
+    {
+      "id": "lg_s_08",
+      "text": "{{child.name}} \"görüşürüz\" dedi, \"hoşça kal\" demedi. Çünkü gidiyordu ama yok olmuyordu. Sonra bıraktı ve gittiğini sonuna kadar izledi. İyi bir gidişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "see_you_not_goodbye"
     }
   ]
 }

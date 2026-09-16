@@ -25,6 +25,9 @@
       "hasPossessiveEnding": false,
       "habitat": [
         "forest"
+      ],
+      "thresholdKinds": [
+        "span"
       ]
     },
     {
@@ -49,6 +52,9 @@
       "hasPossessiveEnding": true,
       "habitat": [
         "garden"
+      ],
+      "thresholdKinds": [
+        "opening"
       ]
     },
     {
@@ -61,9 +67,9 @@
       ],
       "traits": [
         "hasHeight",
-        "hasDistance",
         "isOpen",
-        "showsTraces"
+        "showsTraces",
+        "isHazardous"
       ],
       "compatibleThemes": [
         "courage",
@@ -85,8 +91,7 @@
       ],
       "traits": [
         "hasWater",
-        "isOpen",
-        "hasDistance"
+        "isOpen"
       ],
       "compatibleThemes": [
         "friendship",
@@ -120,6 +125,9 @@
       "hasPossessiveEnding": true,
       "habitat": [
         "garden"
+      ],
+      "thresholdKinds": [
+        "opening"
       ]
     }
   ],
@@ -302,7 +310,10 @@
         "isVisible"
       ],
       "isProperNoun": false,
-      "titleName": "Titrek Işık"
+      "titleName": "Titrek Işık",
+      "explainedBy": [
+        "hasWater"
+      ]
     },
     {
       "id": "object_faint_sound_001",
@@ -321,7 +332,10 @@
         "impliesNeed"
       ],
       "isProperNoun": false,
-      "titleName": "Gizemli Ses"
+      "titleName": "Gizemli Ses",
+      "explainedBy": [
+        "hasWeather"
+      ]
     },
     {
       "id": "object_footprints_001",
@@ -345,6 +359,9 @@
         "forest",
         "garden",
         "mountain"
+      ],
+      "explainedBy": [
+        "isTended"
       ]
     },
     {
@@ -388,7 +405,10 @@
         "isVisible"
       ],
       "isProperNoun": false,
-      "titleName": "Yırtık Harita"
+      "titleName": "Yırtık Harita",
+      "explainedBy": [
+        "isTended"
+      ]
     }
   ],
   "blueprints": [
@@ -421,6 +441,9 @@
         "companion": [
           "canFly",
           "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
         ]
       },
       "titlePatterns": [

@@ -223,28 +223,33 @@ the small system §20 presumes (§4, `MPHaptics.swift`) rather than adding a six
 raw call site. This is in scope because the alternative is to violate §20 either
 way.
 
-### 3.2 §18 requires Dynamic Type. The design system cannot currently do it.
+### 3.2 §18 Dynamic Type — corrected after testing on device
 
-Every `MP.F` token is a fixed-size custom font — `MPTheme.swift:252-277`:
+**The original version of this section was wrong and is corrected here.**
 
-```swift
-static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
-```
+It claimed that because every `MP.F` token is `.custom(name, size:)` with no
+`relativeTo:`, no text in the app scales with the system content size, and that
+the reader therefore needed a new font token.
 
-`.custom(_:size:)`, never `.custom(_:size:relativeTo:)`. Grep for `relativeTo`
-across the design system returns nothing. **No text in the app scales with the
-system content size.** The reader's only sizing is the manual `MP.ReadSize` chip
-control (17 / 19 / 22 / 26 pt, `MPTheme.swift:280-293`).
+That is not how `Font.custom(_:size:)` behaves. Since iOS 14 it **already scales
+with the body text style**; `relativeTo:` only selects a *different* reference
+style. Verified on device at AX3 and AX5: the library title, filter chips and
+tab bar all scale with no change to the design system.
 
-`Helpers/AccessibilityHelper.swift` does contain real Dynamic Type helpers, but
-they are `.system(...)`-based, do not use MP tokens, and are used by nothing in
-the current reader.
+So `MP.F` has had Dynamic Type all along, and the `MP.F.readScaled` token added
+during implementation was redundant with `MP.F.read`. It has been removed; the
+reader uses `MP.F.read`.
 
-**Making the reader honour Dynamic Type is therefore a design-system change, not
-a reader change.** Kept deliberately narrow — §4 adds one additive token,
-`MP.F.readScaled(_:)`, used only by the reader. Every other screen is untouched.
-Widening Dynamic Type across the app is a separate piece of work and this plan
-does not start it.
+**What the reader actually needed was the opposite: a ceiling.** The system size
+multiplies on top of `MP.ReadSize`, so the largest reading size at AX5 leaves
+about four words per line and the page stops being a page. The reader clamps at
+`.dynamicTypeSize(...DynamicTypeSize.accessibility3)`, applied to the leaf
+rather than to the reader's body — SwiftUI environment values do not cross into
+a `UIHostingController`, so a clamp on the outer view would never reach a page.
+
+**Out of scope, but observed:** the rest of the app has no such ceiling, and at
+AX5 the tab bar truncates to "An… Küt… Gü… Eb…" and the library empty state runs
+under the tab bar. Pre-existing, unrelated to the reader, and worth its own pass.
 
 ---
 
@@ -283,7 +288,7 @@ does not start it.
 
 | File | Change | pbxproj? |
 |---|---|---|
-| `DesignSystem/MPTheme.swift` | add `MP.F.readScaled(_:)`; add `MP.ReadTheme.paper` and `.spine` | No |
+| `DesignSystem/MPTheme.swift` | add `MP.ReadTheme.paper` and `.spine` (no new font token — §3.2) | No |
 | `Screens/MPStoryExtras.swift` | fix `mpProgress` for 1-page stories (D5); add `isFinished` | No |
 | `Screens/MPSettingsStore.swift` | add `haptics: Bool` (`mp_haptics`, default true) | No |
 | `Screens/MPSheets.swift` | `ReaderSettingsSheet` gains the haptics row | No |
@@ -515,25 +520,15 @@ Full-bleed, ignoring safe areas — required by the curl (§2.1) and wanted by �
 
 | Element | Token |
 |---|---|
-| Story text | `MP.F.readScaled(app.readSize.points)` — new, `relativeTo: .body` |
+| Story text | `MP.F.read(app.readSize.points)` — already Dynamic Type aware, see §3.2 |
 | Line spacing | `app.readSize.lineSpacing` (= `points * 0.72`, line-height 1.72) |
 | Page title, when non-empty | `MP.F.displaySM()` (Baloo 2, 21, bold) |
 | Folio `3 / 8` | `MP.F.caption()` |
 | Ending headline | `MP.F.displayMD()` + `mpTightTracking(26)` |
 
-The new token, additive, next to the existing `MP.F.read`:
-
-```swift
-/// Masal metni, sistem yazı boyutuna duyarlı. Okuyucu bunu kullanır.
-static func readScaled(_ size: CGFloat) -> Font {
-    .custom(body, size: size, relativeTo: .body).weight(.semibold)
-}
-```
-
-`MP.F.read` stays exactly as it is for every existing caller. The reader clamps
-at `.dynamicTypeSize(...DynamicTypeSize.accessibility3)` — the same ceiling
-`AccessibilityHelper.swift` already assumes — so `MP.ReadSize.cokBuyuk` (26 pt)
-at AX5 cannot produce three words per page.
+No new font token. `MP.F.read` already scales (§3.2). The reader adds a
+**ceiling** instead: `.dynamicTypeSize(...DynamicTypeSize.accessibility3)`, so
+`MP.ReadSize.cokBuyuk` (26 pt) at AX5 cannot produce four words per line.
 
 ### 6.4 Chrome (§9–§11)
 
@@ -756,7 +751,7 @@ one is noise.
 
 ### 9.4 Dynamic Type
 
-Per §3.2 and §6.3: `MP.F.readScaled`, capped at `accessibility3`, illustration
+Per §3.2 and §6.3: `MP.F.read`, capped at `accessibility3`, illustration
 yields height to text as sizes grow. The reader is the first screen in the app
 that responds to the system text size at all.
 
@@ -880,7 +875,7 @@ will fold it into step 5 instead.
 
 | Step | Work | Verification |
 |---|---|---|
-| 1 | `ReaderStory`, `StoryReaderModel`, `MPHaptics`, `MP.F.readScaled`, `ReadTheme.paper/.spine`, `mpProgress` fix | Unit tests green; app still builds on the old reader |
+| 1 | `ReaderStory`, `StoryReaderModel`, `MPHaptics`, `ReadTheme.paper/.spine`, `mpProgress` fix | Unit tests green; app still builds on the old reader |
 | 2 | `StoryReaderContainer` + `StoryPageHostController` + a placeholder page | Curl turns, follows the finger, boundaries hold, no crash on rapid swipes |
 | 3 | `StoryPageView`, `ReaderPaper`, `ReaderImageLoader` | Text-only and illustrated pages; Instruments shows no main-thread decode |
 | 4 | `ReaderChrome`, `StoryEndingLeaf`, tap-to-toggle, persistence wiring | Progress survives a relaunch; ending is calm; folio correct |

@@ -247,7 +247,7 @@ final class PilotBlueprintTests: XCTestCase {
                   roles: [.guide, .reassuring],
                   discovery: [.isUnexplained, .emitsSignal]),
             .init(name: "mountain+owl+footprints",
-                  setting: [.hasThreshold, .hasHeight, .hasDistance],
+                  setting: [.hasThreshold, .hasHeight, .isHazardous],
                   companion: [.canFly, .isPatient, .hasLocalKnowledge],
                   roles: [.guide, .reassuring],
                   discovery: [.impliesPresence, .isFragmentary]),
@@ -257,7 +257,7 @@ final class PilotBlueprintTests: XCTestCase {
                   roles: [.hesitant, .reassuring, .needsCare],
                   discovery: [.isUnexplained, .emitsSignal, .impliesNeed]),
             .init(name: "sea+dolphin+shell",
-                  setting: [.hasWater, .isOpen, .hasDistance],
+                  setting: [.hasWater, .isOpen],
                   companion: [.canCarry, .canSwim, .isPlayful],
                   roles: [.guide, .reassuring],
                   discovery: [.isBeautiful, .impliesPresence]),
@@ -288,7 +288,13 @@ final class PilotBlueprintTests: XCTestCase {
         }
 
         XCTAssertEqual(admitted, ["forest+fox+light", "garden+hedgehog+sound"])
-        XCTAssertEqual(rejected["mountain+owl+footprints"]?.count, 2)   // flying companion, and a discovery that does not signal
+        // Three now, not two. The third is the setting: a mountain is somewhere
+        // a child can actually be hurt, and this blueprint's premise is that the
+        // barrier is *not* the obstacle — the fear is. Set the same story
+        // somewhere genuinely dangerous and the reluctance becomes correct, the
+        // companion's encouragement becomes bad advice, and nothing about the
+        // generated text would look wrong.
+        XCTAssertEqual(rejected["mountain+owl+footprints"]?.count, 3)   // hazardous place, flying companion, a discovery that does not signal
         XCTAssertEqual(rejected["sea+dolphin+shell"]?.count, 3)         // no threshold, a carrying companion, a silent discovery
         // One reason, not two. The rabbit used to be rejected both for the map
         // and for "nothing reassures" — and that second rejection was the rule

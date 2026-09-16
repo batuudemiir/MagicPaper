@@ -15,6 +15,12 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
     /// Distinct from `tags`: a tag says a place is a forest, a trait says it
     /// has a threshold to cross. A blueprint never asks for a forest.
     public let traits: Set<SettingTrait>
+    /// What sort of boundary this place has, when it has one.
+    ///
+    /// Held separately from `traits` because it is not a yes/no affordance but
+    /// a choice among kinds, and because the renderer needs it: a line about
+    /// stepping onto a log is wrong at a gate and right at a stream.
+    public let thresholdKinds: Set<ThresholdKind>
     /// Turkish grammar the renderer cannot infer from spelling.
     ///
     /// `hasPossessiveEnding` is the one that genuinely cannot be guessed:
@@ -31,7 +37,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
 
     private enum CodingKeys: String, CodingKey {
         case id, name, description, visualKeywords, compatibleGenres, compatibleThemes, tags
-        case traits
+        case traits, thresholdKinds
     , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening}
 
     public init(from decoder: Decoder) throws {
@@ -44,6 +50,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .traits) ?? []
+        thresholdKinds = try container.decodeIfPresent(Set<ThresholdKind>.self, forKey: .thresholdKinds) ?? []
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
@@ -61,6 +68,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        if !thresholdKinds.isEmpty { try container.encode(thresholdKinds, forKey: .thresholdKinds) }
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
@@ -165,6 +173,18 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// What finding this *implies* (§8.1) — the structural half of the child's
     /// most invested choice, and what lets it select a narrative family.
     public let traits: Set<DiscoveryTrait>
+    /// Setting traits that would make this thing unremarkable.
+    ///
+    /// The reverse of every other constraint in this file: content ruling out a
+    /// *place*, rather than a place ruling out content. It has to run this way
+    /// because the failure is one of meaning, not plausibility — a flickering
+    /// light beside water is perfectly plausible and completely uninteresting,
+    /// because the water already explains it. Habitat cannot catch that; it
+    /// asks whether the thing could be here, and the answer is yes.
+    ///
+    /// A discovery the setting explains is not a discovery, and the first four
+    /// pages of the book are then about nothing.
+    public let explainedBy: Set<SettingTrait>
     /// The same thing, named for a title.
     ///
     /// "titrek bir ışık" is right in a sentence and wrong on a cover: a title
@@ -186,7 +206,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     public let blocksSoftening: Bool
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -196,6 +216,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
+        explainedBy = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .explainedBy) ?? []
         titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? false
@@ -212,6 +233,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        if !explainedBy.isEmpty { try container.encode(explainedBy, forKey: .explainedBy) }
         try container.encode(titleName, forKey: .titleName)
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)

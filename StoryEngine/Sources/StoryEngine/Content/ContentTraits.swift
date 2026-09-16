@@ -12,8 +12,37 @@ import Foundation
 /// `setting_ocean_001` — a reference that looks valid, compiles, ships, and
 /// never matches anything.
 public enum SettingTrait: String, Codable, Sendable, Hashable, CaseIterable {
-    case canConceal, hasThreshold, hasDistance, hasHeight, hasWater
+    case canConceal, hasThreshold, hasHeight, hasWater
     case isEnclosed, isOpen, showsTraces, isTended, hasWeather
+    /// Somewhere a child could actually be hurt.
+    ///
+    /// The exclusion a Family II blueprint needs and could not previously
+    /// write. Its premise is *the barrier is not the obstacle — the fear is*,
+    /// and that premise requires the fear to be unfounded. Set the same story
+    /// somewhere genuinely dangerous and the child's reluctance becomes correct,
+    /// the encouragement becomes bad advice, and the book is teaching something
+    /// nobody meant to teach. Nothing about the generated text would look wrong.
+    case isHazardous
+}
+
+/// What sort of threshold a place offers.
+///
+/// `hasThreshold` says there is a boundary; this says what kind, and the prose
+/// cannot be written without it — you pass *through* an opening, *across* a
+/// span, and *into* a circle of others. A corpus that does not know which one
+/// it has must write every crossing line abstractly, which is how a beat about
+/// the most physical moment in the book ends up with no physical verb in it.
+///
+/// `social` is the one that shows the axis is not spatial: joining a group
+/// already playing is a threshold in every sense the narrative model cares
+/// about, and the beat validator makes no spatial assumption anywhere.
+public enum ThresholdKind: String, Codable, Sendable, Hashable, CaseIterable {
+    /// A gate, a gap in a wall, a doorway. Passed through.
+    case opening
+    /// A log, a bridge, a line of stones. Crossed over.
+    case span
+    /// A circle of others already underway. Joined.
+    case social
 }
 
 /// What a companion *is capable of* — intrinsic, and true in every story.
@@ -195,6 +224,11 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
     public let setting: TraitRequirement<SettingTrait>
     public let companion: TraitRequirement<CompanionTrait>
     public let discovery: TraitRequirement<DiscoveryTrait>
+    /// What sort of threshold the story needs — **one of** these.
+    ///
+    /// Empty means the blueprint does not care, which is the honest default for
+    /// the nine families that are not about crossing anything.
+    public let thresholdKind: Set<ThresholdKind>
     /// The part the companion is cast in — **one of** these, not all of them.
     ///
     /// Deliberately not a `TraitRequirement`. A story casts exactly one part, so
@@ -215,16 +249,19 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
         setting: TraitRequirement<SettingTrait> = [],
         companion: TraitRequirement<CompanionTrait> = [],
         discovery: TraitRequirement<DiscoveryTrait> = [],
-        casting: Set<CompanionRole> = []
+        casting: Set<CompanionRole> = [],
+        thresholdKind: Set<ThresholdKind> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
         self.casting = casting
+        self.thresholdKind = thresholdKind
     }
 
     public var isEmpty: Bool {
-        setting.isEmpty && companion.isEmpty && discovery.isEmpty && casting.isEmpty
+        setting.isEmpty && companion.isEmpty && discovery.isEmpty
+            && casting.isEmpty && thresholdKind.isEmpty
     }
 
     public init(from decoder: Decoder) throws {
@@ -233,6 +270,7 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
         companion = try container.decodeIfPresent(TraitRequirement<CompanionTrait>.self, forKey: .companion) ?? []
         discovery = try container.decodeIfPresent(TraitRequirement<DiscoveryTrait>.self, forKey: .discovery) ?? []
         casting = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .casting) ?? []
+        thresholdKind = try container.decodeIfPresent(Set<ThresholdKind>.self, forKey: .thresholdKind) ?? []
     }
 }
 
@@ -316,6 +354,22 @@ public enum TraitMatch {
         guard castableRoles(offered: offered, casting: casting).isEmpty else { return nil }
         return "cannot be cast as "
             + casting.map(\.rawValue).sorted().joined(separator: " or ")
+    }
+
+    /// Why this place cannot host the crossing this story needs.
+    ///
+    /// A place offering no threshold at all is already rejected by
+    /// `hasThreshold`; this is the finer question of whether it offers the
+    /// *right* one, which is what the prose depends on.
+    public static func thresholdRejection(
+        offered: Set<ThresholdKind>,
+        wanted: Set<ThresholdKind>
+    ) -> String? {
+        guard !wanted.isEmpty else { return nil }
+        guard offered.isDisjoint(with: wanted) else { return nil }
+        return "offers no "
+            + wanted.map(\.rawValue).sorted().joined(separator: " or ")
+            + " threshold"
     }
 
     public static func admits<Trait>(

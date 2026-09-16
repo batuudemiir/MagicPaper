@@ -158,7 +158,11 @@ public struct OfflineContentBinder: Sendable {
         for candidate in try orderedCandidates(
             catalog.settings, requested: intent.settingID, seed: intent.seed, axis: "setting",
             offered: \.traits, required: requires.setting, forbidden: forbids.setting,
-            empty: OfflineSelectionError.noSetting
+            empty: OfflineSelectionError.noSetting,
+            also: {
+                TraitMatch.thresholdRejection(
+                    offered: $0.thresholdKinds, wanted: requires.thresholdKind)
+            }
         ) {
             do {
                 return try bindRest(
@@ -183,7 +187,11 @@ public struct OfflineContentBinder: Sendable {
         let unusedSetting = try choose(
             [setting], requested: nil, seed: intent.seed, axis: "setting",
             offered: \.traits, required: requires.setting, forbidden: forbids.setting,
-            empty: OfflineSelectionError.noSetting
+            empty: OfflineSelectionError.noSetting,
+            also: {
+                TraitMatch.thresholdRejection(
+                    offered: $0.thresholdKinds, wanted: requires.thresholdKind)
+            }
         )
         _ = unusedSetting
         // Habitat is checked after the setting is known and before anything else
@@ -219,7 +227,17 @@ public struct OfflineContentBinder: Sendable {
             },
             requested: intent.discoveryID, seed: intent.seed, axis: "discovery",
             offered: \.traits, required: requires.discovery, forbidden: forbids.discovery,
-            empty: OfflineSelectionError.noDiscovery
+            empty: OfflineSelectionError.noDiscovery,
+            // A place that already accounts for the thing makes it not a
+            // discovery. Checked here rather than on the setting axis because
+            // the claim belongs to the object — the water does not know it
+            // explains a flicker, but the flicker knows.
+            also: { discovery in
+                let explained = discovery.explainedBy.intersection(setting.traits)
+                guard !explained.isEmpty else { return nil }
+                return "already explained by the setting ("
+                    + explained.map(\.rawValue).sorted().joined(separator: ", ") + ")"
+            }
         )
         return BoundContent(
             setting: setting, companion: companion, discovery: discovery, castRole: castRole)
@@ -235,14 +253,20 @@ public struct OfflineContentBinder: Sendable {
         offered: KeyPath<Record, Set<Trait>>,
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>,
-        empty: ([String]) -> OfflineSelectionError
+        empty: ([String]) -> OfflineSelectionError,
+        also: ((Record) -> String?)? = nil
     ) throws -> [Record] where Record.ID == ContentID {
         var reasons: [String] = []
         var admissible: [Record] = []
-        for record in records {
-            if let reason = TraitMatch.rejection(
+
+        func rejection(_ record: Record) -> String? {
+            TraitMatch.rejection(
                 offered: record[keyPath: offered], required: required, forbidden: forbidden
-            ) {
+            ) ?? also?(record)
+        }
+
+        for record in records {
+            if let reason = rejection(record) {
                 reasons.append("  \(record.id.rawValue): \(reason)")
             } else {
                 admissible.append(record)
@@ -252,9 +276,7 @@ public struct OfflineContentBinder: Sendable {
         if let requested {
             if let match = admissible.first(where: { $0.id == requested }) { return [match] }
             let why = records.first(where: { $0.id == requested })
-                .flatMap {
-                    TraitMatch.rejection(offered: $0[keyPath: offered], required: required, forbidden: forbidden)
-                } ?? "no such \(axis)"
+                .flatMap(rejection) ?? "no such \(axis)"
             throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
         }
 

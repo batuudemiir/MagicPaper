@@ -296,20 +296,6 @@ enum MP {
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
-
-        /// Masal metni, sistemin yazı boyutu ayarına duyarlı.
-        ///
-        /// Sistemdeki diğer bütün token'lar sabit boyutludur
-        /// (`.custom(_:size:)`), yani uygulamada hiçbir yazı Dynamic Type ile
-        /// büyümez. Okuyucu bunu değiştiren ilk ekran: bir masal gerçek bir
-        /// okuma uygulamasıdır ve boyutu kullanıcı seçer. `size` yine
-        /// `MP.ReadSize`'dan gelen taban boyuttur, sistem onu ölçekler.
-        ///
-        /// Yalnızca okuyucu kullanır; `read` diğer bütün çağrı yerleri için
-        /// olduğu gibi durur.
-        static func readScaled(_ size: CGFloat) -> Font {
-            .custom(body, size: size, relativeTo: .body).weight(.semibold)
-        }
     }
 
     /// Display metinlerde tracking -0.01em karşılığı.

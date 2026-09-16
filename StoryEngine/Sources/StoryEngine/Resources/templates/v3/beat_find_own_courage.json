@@ -3,7 +3,7 @@
   "beat": "find_own_courage",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family II-1. The child registers that the small step HELD, and goes. The realisation is about THEMSELVES, never about the barrier — the barrier has not become safer. The companion may walk alongside but must not pull, lift or lead. Nobody says the word brave.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family II-1. The child registers that the small step HELD, and goes. The realisation is about THEMSELVES, never about the barrier — the barrier has not become safer. The companion may walk alongside but must not pull, lift or lead. Nobody says the word brave. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "knowing_how_made_it_possible"
+    },
+    {
+      "id": "fc_s_06",
+      "text": "{{child.name}} kendi ayaklarına baktı. Bu ayaklar az önce bir şey yapmıştı. Demek yapabiliyordu. Başını kaldırdı ve bu kez sonuna kadar gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "these_hands_already_did_it"
+    },
+    {
+      "id": "fc_s_07",
+      "text": "Değişen şey karşısındaki değildi, {{child.name}}'in kendisiydi. Bunu fark etti ve hiç durmadan yürüdü. Yol aynı yoldu ama yürüyen artık başka biriydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_road_stayed_the_walker_changed"
+    },
+    {
+      "id": "fc_s_08",
+      "text": "\"Bir kere oldu,\" diye düşündü {{child.name}}. \"Bir kere olduysa yine olur.\" Bu düşünceyle yola çıktı ve sonuna kadar götürdü. Bir daha da geri dönmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "once_means_again"
     }
   ]
 }

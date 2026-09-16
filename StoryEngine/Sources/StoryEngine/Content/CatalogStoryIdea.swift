@@ -122,7 +122,11 @@ extension ContentRequirements {
             // it would silently make every idea uncastable.
             casting: casting.isEmpty ? other.casting
                 : other.casting.isEmpty ? casting
-                : casting.intersection(other.casting)
+                : casting.intersection(other.casting),
+            // Same rule for the same reason: "one of" narrowed by "one of".
+            thresholdKind: thresholdKind.isEmpty ? other.thresholdKind
+                : other.thresholdKind.isEmpty ? thresholdKind
+                : thresholdKind.intersection(other.thresholdKind)
         )
     }
 }

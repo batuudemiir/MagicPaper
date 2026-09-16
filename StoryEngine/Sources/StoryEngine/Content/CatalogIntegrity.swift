@@ -97,6 +97,8 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkBeatSequences(catalog))
         issues.append(contentsOf: checkBeatCoverage(catalog))
         issues.append(contentsOf: checkCasting(catalog))
+        issues.append(contentsOf: checkThresholdKinds(catalog))
+        issues.append(contentsOf: checkVocabularyCarriesInformation(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -372,6 +374,86 @@ public struct CatalogIntegrityChecker: Sendable {
                     + ", which no companion in the catalog can play."
             ))
         }
+        return issues
+    }
+
+    /// `hasThreshold` and `thresholdKinds` are two statements about one fact,
+    /// so they can drift — and the drift is silent in both directions.
+    ///
+    /// A place claiming a boundary but no kind cannot be written about: the
+    /// corpus has to choose a verb, and there is nothing to choose from. A place
+    /// declaring a kind but no boundary is invisible to every blueprint that
+    /// asks for one, so the authoring is simply never used.
+    private func checkThresholdKinds(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for setting in catalog.settings {
+            let claims = setting.traits.contains(.hasThreshold)
+            switch (claims, setting.thresholdKinds.isEmpty) {
+            case (true, true):
+                issues.append(.init(
+                    severity: .error, code: "threshold_without_kind", recordID: setting.id,
+                    message: "Setting '\(setting.id)' has a threshold but does not say what kind, "
+                        + "so no line can name how it is crossed."))
+            case (false, false):
+                issues.append(.init(
+                    severity: .error, code: "kind_without_threshold", recordID: setting.id,
+                    message: "Setting '\(setting.id)' declares a threshold kind but not "
+                        + "hasThreshold, so no blueprint asking for a threshold will ever see it."))
+            default:
+                continue
+            }
+        }
+        return issues
+    }
+
+    /// A vocabulary member that almost every record holds, or that none holds,
+    /// is not carrying information.
+    ///
+    /// Their F6, as a load-time report. The rule of thumb is theirs too: above
+    /// roughly 60% a requirement selects nearly the whole library while looking
+    /// selective — which is how one blueprint's *only* setting rule turned out
+    /// to mean "any setting" — and at zero the axis exists but nothing exercises
+    /// it, so a blueprint built on it selects nobody.
+    ///
+    /// Warnings, not errors. A vocabulary legitimately runs ahead of the content
+    /// that will use it; what must not happen is that running ahead being
+    /// invisible.
+    private func checkVocabularyCarriesInformation(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+
+        func audit<Value: RawRepresentable & CaseIterable & Hashable>(
+            _ axis: String, _ held: [Set<Value>]
+        ) where Value.RawValue == String {
+            // Records declaring nothing are unmigrated, not evidence about the
+            // vocabulary; counting them would make every trait look rare.
+            let declaring = held.filter { !$0.isEmpty }
+            guard !declaring.isEmpty else { return }
+            for value in Value.allCases.sorted(by: { $0.rawValue < $1.rawValue }) {
+                let count = declaring.filter { $0.contains(value) }.count
+                let share = Double(count) / Double(declaring.count)
+                // "Nothing declares this" is a fact about the catalog and needs
+                // no sample size. "Almost everything declares this" is a claim
+                // about a distribution, and at four records it is noise — the
+                // threshold-kind axis has three, where two-of-three would be
+                // reported as uninformative and would not be.
+                if count == 0 {
+                    issues.append(.init(
+                        severity: .warning, code: "unexercised_vocabulary",
+                        message: "No \(axis) declares '\(value.rawValue)', so nothing can select on it."))
+                } else if share > 0.6 && declaring.count >= 5 {
+                    issues.append(.init(
+                        severity: .warning, code: "uninformative_vocabulary",
+                        message: "\(count) of \(declaring.count) \(axis) records declare "
+                            + "'\(value.rawValue)'; a requirement naming it filters almost nothing."))
+                }
+            }
+        }
+
+        audit("setting", catalog.settings.map(\.traits))
+        audit("companion", catalog.companions.map(\.traits))
+        audit("discovery", catalog.objects.map(\.traits))
+        audit("companion role", catalog.companions.map(\.castRoles))
+        audit("threshold kind", catalog.settings.map(\.thresholdKinds))
         return issues
     }
 

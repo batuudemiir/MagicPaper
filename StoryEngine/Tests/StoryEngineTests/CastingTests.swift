@@ -257,3 +257,87 @@ final class CastingTests: XCTestCase {
         XCTAssertEqual(report.issues(withCode: "uncastable_blueprint"), [])
     }
 }
+
+/// D3 — the axes added after the compatibility review, and the one removed.
+final class SettingAxisTests: XCTestCase {
+
+    private func catalog() throws -> ContentCatalog {
+        try ContentCatalogLoader().load().catalog
+    }
+
+    /// `hasDistance` was held by twelve of sixteen settings. A requirement that
+    /// three-quarters of the library satisfies is not a requirement, and it was
+    /// one blueprint's *only* setting rule — so that rule meant "any setting"
+    /// while reading as though it were selective.
+    func testTheTraitThatFilteredNothingIsGone() {
+        XCTAssertNil(SettingTrait(rawValue: "hasDistance"))
+    }
+
+    /// A boundary and what kind of boundary are two statements about one fact,
+    /// so they drift. Both directions are silent: a place with a threshold and
+    /// no kind cannot be written about, and a place with a kind and no threshold
+    /// is never offered to the blueprints that would want it.
+    func testEveryThresholdDeclaresWhatKindItIs() throws {
+        let report = CatalogIntegrityChecker().check(try catalog())
+        XCTAssertEqual(report.issues(withCode: "threshold_without_kind"), [])
+        XCTAssertEqual(report.issues(withCode: "kind_without_threshold"), [])
+    }
+
+    func testABlueprintAsksForTheKindOfCrossingItsProseCanDescribe() {
+        XCTAssertEqual(
+            TraitMatch.thresholdRejection(offered: [.opening], wanted: [.span]),
+            "offers no span threshold")
+        XCTAssertNil(TraitMatch.thresholdRejection(offered: [.opening], wanted: [.opening, .span]))
+        XCTAssertNil(TraitMatch.thresholdRejection(offered: [], wanted: []),
+                     "A blueprint that is not about crossing must not care.")
+    }
+
+    /// A flickering light beside water is perfectly plausible and completely
+    /// uninteresting, because the water already explains it. Habitat cannot
+    /// catch that — it asks whether the thing could be here, and the answer is
+    /// yes. A discovery the setting explains is not a discovery, and the first
+    /// four pages are then about nothing.
+    func testADiscoveryTheSettingExplainsIsNeverBound() throws {
+        let catalog = try catalog()
+        for seed in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"] {
+            let story = try OfflineStoryComposer().compose(
+                catalog: catalog, intent: OfflineStoryIntent(childName: "Yeliz", seed: seed))
+            XCTAssertTrue(
+                story.content.discovery.explainedBy.isDisjoint(with: story.content.setting.traits),
+                "seed \(seed): \(story.content.discovery.id.rawValue) in "
+                + "\(story.content.setting.id.rawValue), which accounts for it.")
+        }
+    }
+
+    func testAskingForAnExplainedDiscoveryIsRefusedWithItsReason() throws {
+        let catalog = try catalog()
+        // A flickering light is explained by water, and the sea is the one
+        // place in the library that has it.
+        XCTAssertThrowsError(
+            try OfflineStoryComposer().compose(
+                catalog: catalog,
+                intent: OfflineStoryIntent(
+                    childName: "Yeliz",
+                    settingID: ContentID("setting_coral_sea_001"),
+                    discoveryID: ContentID("object_flickering_light_001"),
+                    seed: "explained"))
+        ) { error in
+            XCTAssertTrue("\(error)".contains("explained"),
+                          "The refusal must name the reason, not just fail: \(error)")
+        }
+    }
+
+    /// Their F6, as a load-time report rather than a rule of thumb in a
+    /// document. Not an assertion that the catalog is clean — a vocabulary
+    /// legitimately runs ahead of its content — but that running ahead is
+    /// visible instead of silent.
+    func testAnUnexercisedVocabularyIsReported() throws {
+        let report = CatalogIntegrityChecker().check(try catalog())
+        let unexercised = report.issues(withCode: "unexercised_vocabulary")
+        XCTAssertTrue(
+            unexercised.contains { $0.message.contains("social") },
+            "`social` is declared and nothing declares it; that must be reported, not silent. "
+            + "Got: \(unexercised.map(\.message))")
+        XCTAssertTrue(report.isUsable, "An unexercised axis is a warning, never a blocker.")
+    }
+}

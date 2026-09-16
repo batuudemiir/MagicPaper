@@ -3,7 +3,7 @@
   "beat": "insight",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family I-1. The click. It combines the ONE observation from page 2 with the ONE fact from page 3 and NOTHING else — if the child needs something the reader has not been shown, the deduction is a trick (catalog §2.1). One inferential step, never a chain. The child says it; the companion never gets there first.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family I-1. The click. It combines the ONE observation from page 2 with the ONE fact from page 3 and NOTHING else — if the child needs something the reader has not been shown, the deduction is a trick (catalog §2.1). One inferential step, never a chain. The child says it; the companion never gets there first. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "two_pieces_one_answer"
+    },
+    {
+      "id": "in_s_06",
+      "text": "{{child.name}} kaşlarını çattı, sonra gözleri kocaman açıldı. Bir şey gördüğünü hatırladı, bir de duyduğunu. İkisi tek bir şeyi anlatıyordu. Fazlasına gerek yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "frown_then_wide_eyes"
+    },
+    {
+      "id": "in_s_07",
+      "text": "\"Bir dakika,\" dedi {{child.name}}. Gördüğü şeyi kenara koydu, duyduğu şeyi de. Sonra ikisini yan yana getirdi. Ve o anda bütün resim netleşti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "set_them_side_by_side"
+    },
+    {
+      "id": "in_s_08",
+      "text": "{{child.name}} ağzını açtı, sonra kapattı. Söyleyecekti ama önce emin olmak istedi. Bir daha düşündü ve evet, doğruydu. \"Buldum,\" dedi sonunda.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "checked_before_saying"
     }
   ]
 }

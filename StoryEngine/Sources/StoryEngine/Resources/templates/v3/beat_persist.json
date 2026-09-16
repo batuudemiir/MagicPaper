@@ -3,7 +3,7 @@
   "beat": "persist",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-1. The child keeps going after the attempt failed, and the persistence is METHODICAL rather than merely stubborn — each failure narrows what is left. Never rewarded by luck: the finding happens because the looking continued, and the text says so.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-1. The child keeps going after the attempt failed, and the persistence is METHODICAL rather than merely stubborn — each failure narrows what is left. Never rewarded by luck: the finding happens because the looking continued, and the text says so. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "said_it_ten_times"
+    },
+    {
+      "id": "ps_s_06",
+      "text": "{{child.name}} bir kağıda bakmadı ama kafasında saydı. Baktığı yerleri aklında tuttu, bakmadıklarını da. Liste kısaldıkça umudu arttı. Sonunda liste bitti ve o şey oradaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "kept_a_list_in_their_head"
+    },
+    {
+      "id": "ps_s_07",
+      "text": "Beş kez denedi {{child.name}}, beşi de olmadı. Ama her denemede bir yanlışı eledi. Altıncıda geriye yanlış kalmamıştı. O yüzden altıncı tuttu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "each_failure_eliminated_one"
+    },
+    {
+      "id": "ps_s_08",
+      "text": "{{child.name}}'in ayakları ağrıyordu ve hava kararmaya başlamıştı. Yine de bir yer daha baktı. Sonra bir yer daha. O son yerde çıktı karşısına.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_more_place_then_one_more"
     }
   ]
 }

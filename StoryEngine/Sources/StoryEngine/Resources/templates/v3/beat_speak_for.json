@@ -3,7 +3,7 @@
   "beat": "speak_for",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-2. The child says what the other CANNOT. Not louder, not instead of — for. The companion is present and wants this; the child is its voice, never its owner. The listeners are ordinary and unhostile: nobody is being fought, only reached.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-2. The child says what the other CANNOT. Not louder, not instead of — for. The companion is present and wants this; the child is its voice, never its owner. The listeners are ordinary and unhostile: nobody is being fought, only reached. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -55,6 +55,36 @@
       ],
       "lengthClass": "solo",
       "move": "said_it_though_watched"
+    },
+    {
+      "id": "sf_s_06",
+      "text": "{{child.name}} elini kaldırdı ve bekledi. Sıra kendisine gelince {{companion.name}}'in derdini anlattı. Kimse itiraz etmedi. Sadece bilmiyorlardı, şimdi öğrendiler. Öğrenince de yardım ettiler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "raised_a_hand_and_waited"
+    },
+    {
+      "id": "sf_s_07",
+      "text": "{{companion.name}} {{child.name}}'e baktı, {{child.name}} de anladı. Söylenmesi gerekeni söyledi, ne eksik ne fazla. Söylerken sesi hiç titremedi. Bittiğinde ortalık sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "a_look_was_the_signal"
+    },
+    {
+      "id": "sf_s_08",
+      "text": "Söyleyecek olan {{companion.name}} değildi, olamazdı da. {{child.name}} bunu bildiği için konuştu. Kendi adına değil, onun adına. Karşıdakiler başlarını salladı ve yer açtılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "not_for_themselves_but_for_them"
     }
   ]
 }

@@ -68,6 +68,7 @@ struct StoryReaderView: View {
             }
         }
         .background(theme.paper.ignoresSafeArea())
+        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
         .animation(MP.M.gated(MP.M.easeOut), value: model.controlsVisible)
         .animation(MP.M.gated(MP.M.base), value: theme)
         .statusBarHidden(!model.controlsVisible)
@@ -112,6 +113,17 @@ struct StoryReaderView: View {
             onClose: close
         )
         .environmentObject(app)
+        // Tavan AX3.
+        //
+        // Sistemin yazı boyutu `MP.ReadSize`'ın üstüne çarpan olarak biniyor,
+        // yani en büyük okuma boyutu AX5 ile birleştiğinde sayfada satır başına
+        // dört kelime kalıyor ve sayfa sayfa olmaktan çıkıyor. Metin
+        // kaybolmuyor — sütun kaydırılabiliyor — ama kitap görüntüsü bitiyor.
+        // AX3'te hem ölçek gerçekten büyük hem sayfa hâlâ sayfa.
+        //
+        // Ortam değerleri `UIHostingController`'a kendiliğinden geçmediği için
+        // okuyucunun gövdesine değil, yaprağın kendisine uygulanıyor.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
     }
 
     // MARK: - Yaşam döngüsü

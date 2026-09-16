@@ -3,7 +3,7 @@
   "beat": "give_up_something",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-3. The child gives up something of their own, FREELY. What is given must be replaceable and the giving must be the child's idea — no coerced sacrifice, no adult praising them for going without, no later reward that cancels it (catalog III-3 safety). Giving costs something or it is not giving.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-3. The child gives up something of their own, FREELY. What is given must be replaceable and the giving must be the child's idea — no coerced sacrifice, no adult praising them for going without, no later reward that cancels it (catalog III-3 safety). Giving costs something or it is not giving. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "chose_the_best_one"
+    },
+    {
+      "id": "gs_s_06",
+      "text": "Kimse istemedi, {{child.name}} kendi düşündü bunu. Sahip olduğu şeyi uzattı ve elini geri çekmedi. İhtiyacı olan kendisi değildi çünkü. Öyle olunca kolaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "nobody_asked_it_was_their_idea"
+    },
+    {
+      "id": "gs_s_07",
+      "text": "{{child.name}} bir an durdu. Vermek mi, saklamak mı? Sonra kendi eliyle verdi ve arkasına bakmadı. İçinden bir ses \"doğru olan buydu\" dedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "keep_or_give_then_gave"
+    },
+    {
+      "id": "gs_s_08",
+      "text": "{{child.name}} verdiğinin yerini başka bir şeyin tutacağını biliyordu. Ama şimdi veriyordu ve şimdi önemliydi. Karşısındaki için bekleyecek zaman yoktu. O yüzden hemen verdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "now_was_what_mattered"
     }
   ]
 }

@@ -3,7 +3,7 @@
   "beat": "small_step",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-1. A genuinely SMALL version of the crossing — one step, one hand, three paces — and it MUST succeed. Nothing goes wrong here: page 6 depends entirely on this having held. The child does it alone; the companion does not steady them.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-1. A genuinely SMALL version of the crossing — one step, one hand, three paces — and it MUST succeed. Nothing goes wrong here: page 6 depends entirely on this having held. The child does it alone; the companion does not steady them. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
     "solo": "18-38 words — page 5 is never shared for this beat"
   },
@@ -52,6 +52,33 @@
       ],
       "lengthClass": "solo",
       "move": "two_steps_counted"
+    },
+    {
+      "id": "ss_s_06",
+      "text": "{{child.name}} bir elini uzattı ve tuttu. Sıkıca tuttu, sonra yavaşça bıraktı. Ne sallandı ne kaydı, olduğu gibi durdu. Ellerine baktı, ikisi de sapasağlamdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "held_it_then_let_go"
+    },
+    {
+      "id": "ss_s_07",
+      "text": "Kenara kadar yürüdü {{child.name}}, sonra bir adım daha. Sadece bir tane daha. Durdu, bekledi, etrafa baktı. Her şey aynıydı ve kendisi de iyiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_more_pace_at_the_edge"
+    },
+    {
+      "id": "ss_s_08",
+      "text": "{{child.name}} gözlerini kapatmadı bu kez. Açık gözle yaptı ve gördü ki yapılıyormuş. Küçücük bir şeydi ama oldu. Olduğunu bizzat kendi gözleriyle gördü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "did_it_with_eyes_open"
     }
   ]
 }
