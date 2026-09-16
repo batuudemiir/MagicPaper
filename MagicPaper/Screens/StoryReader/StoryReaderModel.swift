@@ -65,13 +65,22 @@ final class StoryReaderModel: ObservableObject {
 
         // Bozuk ya da aralık dışı kayıtlı veri geçerli bir sayfada açılır,
         // çökmez (§25).
-        let opening = StoryReaderModel.clamp(
+        let openingPage = StoryReaderModel.clamp(
             requestedPage ?? savedPage ?? 0,
             pageCount: story.pageCount
         )
-        self.leafIndex = opening
-        self.furthestPageReached = opening
-        self.lastPersistedPage = savedPage ?? opening
+        // Hiç okunmamış masal kapaktan açılır — kitap da kapağından açılır.
+        // Devam eden okuma kaldığı sayfadan açılır, kapağı tekrar göstermez.
+        let resumes = requestedPage != nil || savedPage != nil
+        self.leafIndex = resumes ? story.leafIndex(forPage: openingPage) : 0
+        self.furthestPageReached = openingPage
+        // Kayıtlı ilerleme yoksa -1: ilk gerçek sayfa (0) da bir yazım sayılsın.
+        //
+        // `openingPage` ile başlatmak, bir masalın YALNIZCA ilk sayfasını okuyan
+        // çocuğu hiç okumamış gibi gösteriyordu: 0 == 0 olduğu için kayıt
+        // atlanıyor, masal sonsuza dek "Yeni" kalıyordu. Bir kitabı açıp ilk
+        // sayfasını okumak, o kitabı açmamış olmakla aynı şey değildir.
+        self.lastPersistedPage = savedPage ?? -1
 
         // Sayfası olmayan masal doğrudan kapanış yaprağında açılır.
         if story.isEmpty {
@@ -131,6 +140,7 @@ final class StoryReaderModel: ObservableObject {
     }
 
     /// Masalı baştan aç — kapanış yaprağındaki "Tekrar oku".
+    /// Masalı baştan aç — kapak varsa kapaktan.
     func restart() {
         move(to: 0)
     }

@@ -61,18 +61,18 @@ struct StoryReaderView: View {
             .id(reduceMotion)
             .ignoresSafeArea()
 
-            if model.controlsVisible {
-                ReaderChrome(
-                    theme: theme,
-                    isFavorite: favorites.contains(story.id),
-                    isSpeaking: speech.isSpeaking && !speech.isPaused,
-                    onClose: close,
-                    onToggleFavorite: toggleFavorite,
-                    onToggleSpeech: toggleSpeech,
-                    onOpenSettings: openSettings
-                )
-                .transition(.opacity)
-            }
+            // Koşulsuz. Kapat düğmesinin kendisi hep burada, geri kalanı
+            // `showsSecondary` ile geliyor gidiyor.
+            ReaderChrome(
+                theme: theme,
+                isFavorite: favorites.contains(story.id),
+                isSpeaking: speech.isSpeaking && !speech.isPaused,
+                showsSecondary: model.controlsVisible,
+                onClose: close,
+                onToggleFavorite: toggleFavorite,
+                onToggleSpeech: toggleSpeech,
+                onOpenSettings: openSettings
+            )
         }
         .background(theme.paper.ignoresSafeArea())
         .dynamicTypeSize(...DynamicTypeSize.accessibility3)

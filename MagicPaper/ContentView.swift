@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Kök ekran. 4 sekme + ortada yükseltilmiş (+) — `TabView` kullanılmaz,
-/// ortadaki buton yüzünden bar özel çizilir (05-SWIFTUI-MAPPING.md).
+/// Kök ekran. Dört sekme + ortada bir eylem öğesi — `TabView` kullanılmaz,
+/// çünkü eylem öğesi bir sekme değil (05-SWIFTUI-MAPPING.md).
 struct ContentView: View {
     @StateObject private var app = MPAppState()
     @StateObject private var settings = MPSettingsStore.shared
@@ -15,7 +15,10 @@ struct ContentView: View {
 
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.bottom, MP.S.tabBarHeight)
+                // Yükseltilen eylem düğmesinin taşması dahil. Öncesinde
+                // yalnızca bar yüksekliği bırakılıyordu ve düğme her ekranda
+                // içeriğin üstüne biniyordu.
+                .padding(.bottom, MPTabBar.reservedHeight)
 
             MPTabBar(
                 items: tabItems,
@@ -77,8 +80,12 @@ struct ContentView: View {
         }
     }
 
+    /// Ana Sayfa · Kütüphane · **Masal yarat** · Günlük · Ebeveyn
+    ///
+    /// Eylem ortada duruyor: iki yanına ikişer yer düşüyor, yani bar simetrik
+    /// ve en çok kullanılan iş baş parmağın doğal yerinde.
     private var tabItems: [MPTabBar.Item] {
-        MPTab.allCases.map { tab in
+        func item(_ tab: MPTab) -> MPTabBar.Item {
             MPTabBar.Item(
                 value: tab.rawValue,
                 label: tab.label,
@@ -86,6 +93,10 @@ struct ContentView: View {
                 symbol: (tab == .parent && settings.childMode) ? "lock.fill" : tab.symbol
             )
         }
+        return [item(.home), item(.library),
+                MPTabBar.Item(value: "create", label: "Masal yarat",
+                              symbol: "wand.and.stars", kind: .action),
+                item(.daily), item(.parent)]
     }
 
     // MARK: - Alt sayfa katmanı

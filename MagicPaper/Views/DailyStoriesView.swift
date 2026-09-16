@@ -1,6 +1,11 @@
 import SwiftUI
 
-/// Günlük — 03-SCREENS.md §10.
+/// Günlük — alışkanlık tarafı.
+///
+/// Kendi sekmesinde: seri, bugünün masalı ve rozetler burada toplanıyor. Ana
+/// Sayfa bu sayfanın kartlarını TEKRARLAMIYOR, yalnızca seriyi tek satırda
+/// özetleyip buraya getiriyor — aynı kartı iki sekmede göstermek, bu ekranların
+/// ilk hâlindeki sorundu.
 struct DailyStoriesView: View {
     @EnvironmentObject private var app: MPAppState
     @StateObject private var dailyManager = DailyStoryManager.shared
@@ -96,6 +101,9 @@ struct DailyStoriesView: View {
 
     // MARK: - Rozetler
 
+    /// Rozetler bu sayfaya ait: hepsi alışkanlıkla kazanılıyor ve alışkanlığın
+    /// sayfası burası. Ebeveyn panelinde bir kopyası yok — aynı şeyi iki yerde
+    /// göstermek, bu ekranlarda tekrar tekrar düzelttiğimiz kusurdu.
     private var badgesSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             MPSectionHeader(title: "Bu ayın rozetleri")
@@ -106,7 +114,7 @@ struct DailyStoriesView: View {
                 badge(symbol: "book", label: "10 masal",
                       color: MP.C.calm, earned: readCount >= 10)
                 badge(symbol: "flame.fill", label: "30 gün",
-                      color: MP.C.textFaint, earned: streak.currentStreak >= 30)
+                      color: MP.C.play, earned: streak.currentStreak >= 30)
             }
         }
     }

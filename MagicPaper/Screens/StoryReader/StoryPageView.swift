@@ -19,10 +19,23 @@ struct StoryPageView: View {
     /// Masalın dünya işareti — başlık vinyeti bunu kullanır.
     let symbol: String
     let ornament: ReaderPageOrnament
+    /// Sayfanın süsleme bağlamı. Nil ise süsleme çizilmez.
+    var decoration: StoryDecorationContext? = nil
+    /// Geliştirici katmanı.
+    var showsDecorationDebug: Bool = false
 
     var body: some View {
         ZStack {
             ReaderPaper(theme: theme)
+
+            // Süsleme kâğıdın üstünde, metnin altında: okuma her zaman önde.
+            if let decoration {
+                StoryPageDecorationLayer(
+                    context: decoration,
+                    tint: theme.muted,
+                    showsDebug: showsDecorationDebug
+                )
+            }
 
             if ornament == .spot {
                 VStack {

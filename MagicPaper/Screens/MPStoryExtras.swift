@@ -27,6 +27,19 @@ extension Story {
         pages.contains { $0.imageUrl != nil || $0.imageFileName != nil }
     }
 
+    /// Kapak olarak gösterilecek varlık adı.
+    ///
+    /// Metin masallarının kendi kapağı yok — motor sayfa yazıyor, resim
+    /// üretmiyor. Kapak yerine dünya ikonunu göstermek kütüphaneyi bir uygulama
+    /// listesine çeviriyordu; ortak bir illüstrasyon en azından kitap rafı gibi
+    /// duruyor.
+    ///
+    /// Görselli masallar kendi kapaklarını kullanır, bu yüzden `nil` döner.
+    var mpDefaultCoverAsset: String? {
+        guard !isIllustrated, coverImageFileName == nil, coverImageUrl == nil else { return nil }
+        return "StoryCoverDefault"
+    }
+
     /// Okuma ilerlemesi 0…1. Kayıtlı son sayfadan hesaplanır.
     ///
     /// Tek sayfalık masal özel olarak ele alınır. Önceki biçim

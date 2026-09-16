@@ -22,6 +22,9 @@ struct StoryLeafView: View {
 
     var body: some View {
         switch leaf {
+        case .cover:
+            StoryCover(story: model.story, theme: app.readTheme)
+
         case .page(let page):
             StoryPageView(
                 page: page,
@@ -31,7 +34,8 @@ struct StoryLeafView: View {
                 showsFolio: model.controlsVisible,
                 accent: model.story.accent,
                 symbol: model.story.symbol,
-                ornament: ReaderPageOrnament.current
+                ornament: ReaderPageOrnament.current,
+                decoration: decorationContext(for: page)
             )
         case .ending:
             StoryEndingLeaf(
@@ -41,6 +45,24 @@ struct StoryLeafView: View {
                 onClose: onClose
             )
         }
+    }
+
+    /// Sayfanın süsleme bağlamı.
+    ///
+    /// Güvenli bölgeler burada kabaca veriliyor: metin sayfanın orta bandını,
+    /// çizim varsa üst yarısını tutar. Motor bu dikdörtgenlerin dışında kalır.
+    private func decorationContext(for page: ReaderPage) -> StoryDecorationContext {
+        let hasImage = page.imageRef != nil
+        let textRect = hasImage
+            ? CGRect(x: 0.06, y: 0.58, width: 0.88, height: 0.34)
+            : CGRect(x: 0.06, y: 0.30, width: 0.88, height: 0.42)
+        let illoRect = hasImage
+            ? CGRect(x: 0.04, y: 0.05, width: 0.92, height: 0.50)
+            : nil
+        return .make(story: model.story, page: page,
+                     density: .normal,
+                     textSafeRect: textRect,
+                     illustrationSafeRect: illoRect)
     }
 
     private var leaf: ReaderLeaf {

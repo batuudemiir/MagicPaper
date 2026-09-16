@@ -1,6 +1,13 @@
 import SwiftUI
 
-/// Kütüphane — 03-SCREENS.md §9.
+/// Kütüphane — çocuğun okuduğu ve okuyacağı her şey.
+///
+/// Önceki hâli aramayı, üç filtre çipini ve bir kapsam düğmesini her zaman
+/// gösteriyordu: içerik başlamadan önce ekranın üçte biri denetimdi. Sekiz
+/// masallık bir rafta arama kutusu bir araç değil, bir engel — ve "Görselli"
+/// filtresi görselli masal yokken yalnızca boş bir sonuç üretebiliyordu.
+///
+/// Kural: bir denetim, işe yarayabileceği kadar içerik varken görünür.
 struct LibraryView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var storyManager = StoryGenerationManager.shared
@@ -16,31 +23,29 @@ struct LibraryView: View {
     /// Kapsam: yalnızca aktif çocuk ↔ tüm çocuklar.
     @State private var allChildren = false
 
+    /// Aramanın belirdiği eşik. Altında göz zaten hepsini görüyor.
+    private static let searchAppearsAt = 8
+
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(title: "Kütüphane") {
-                MPIconButton(
-                    symbol: allChildren ? "person.2.circle" : "person.crop.circle",
-                    label: "Kapsam"
-                ) {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { allChildren.toggle() }
+            MPNavBar(title: "Kütüphane", subtitle: scopeLine) {
+                // Kapsam ikonu tek başına ne yaptığını söylemiyordu. Artık
+                // durumu alt başlık yazıyor, düğme yalnızca değiştiriyor.
+                if profileManager.profiles.count > 1 {
+                    MPIconButton(
+                        symbol: allChildren ? "person.2.fill" : "person.crop.circle",
+                        label: allChildren ? "Yalnızca \(activeName)" : "Tüm çocuklar"
+                    ) {
+                        withAnimation(MP.M.gated(MP.M.easeOut)) { allChildren.toggle() }
+                    }
                 }
             }
 
-            filters
+            if !controls.isEmpty || showsSearch { filters }
 
             if visibleStories.isEmpty {
                 ScrollView(showsIndicators: false) {
-                    MPEmptyState(
-                        title: "Burada masal yok",
-                        description: query.isEmpty
-                            ? "İlk masalını yaratınca burada belirecek."
-                            : "Aramanla eşleşen bir masal bulamadık.",
-                        illustration: "AppLogo",
-                        actionLabel: "Masal yarat",
-                        action: { app.startStoryCreation() }
-                    )
-                    .padding(.top, 20)
+                    emptyState.padding(.top, 20)
                 }
             } else {
                 ScrollView(showsIndicators: false) {
@@ -48,9 +53,11 @@ struct LibraryView: View {
                         ForEach(visibleStories) { story in
                             MPStoryCard(
                                 title: story.title,
-                                meta: story.mpMetaWithChild,
+                                meta: allChildren ? story.mpMetaWithChild : story.mpMeta,
                                 symbol: story.mpSymbol,
                                 accent: story.mpAccent,
+                                coverImageName: story.mpDefaultCoverAsset,
+                                status: status(of: story),
                                 badge: story.isIllustrated ? "Görselli" : nil,
                                 progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
                                 layout: .row
@@ -67,14 +74,62 @@ struct LibraryView: View {
         .mpScreenBackground()
     }
 
+    /// Yarıda kalanın kendi göstergesi var (ilerleme çubuğu); burada yalnızca
+    /// iki uç işaretleniyor.
+    private func status(of story: Story) -> MPStoryCard.Status? {
+        // `lastReadPage == nil` ile "ilerleme 0" aynı şey değil: ilki hiç
+        // açılmamış, ikincisi açılmış ve ilk sayfasında duruyor. `mpProgress`
+        // ikisini de 0 verdiği için onunla ayırt edilemez — ve ayrım tam olarak
+        // bu rozetin söylediği şey.
+        if story.lastReadPage == nil { return .unread }
+        if story.isFinished { return .finished }
+        return nil
+    }
+
+    private var activeName: String {
+        profileManager.currentProfile?.name ?? "Arkadaşım"
+    }
+
+    /// Kapsam ve sayı, ikonun söyleyemediği şey.
+    private var scopeLine: String {
+        let n = scopedStories.count
+        let who = allChildren ? "Tüm çocuklar" : activeName
+        return n == 0 ? who : "\(who) · \(n) masal"
+    }
+
+    // MARK: - Denetimler
+
+    private var showsSearch: Bool { scopedStories.count >= Self.searchAppearsAt }
+
+    /// Yalnızca bir şey seçebilecek filtreler.
+    ///
+    /// Hiç görselli masal yokken "Görselli" çipi bir seçenek değil, boş bir
+    /// sonuç vaadi. Seçili olan çip, sonucu boşalsa bile kalır — yoksa
+    /// kullanıcının altından kaybolur.
+    private var controls: [Filter] {
+        Filter.allCases.filter { f in
+            switch f {
+            case .all: return false
+            case .illustrated: return filter == f || scopedStories.contains { $0.isIllustrated }
+            case .favorite: return filter == f || scopedStories.contains { favorites.contains($0.id) }
+            }
+        }
+    }
+
     private var filters: some View {
         VStack(spacing: 10) {
-            MPInput(placeholder: "Masal ara", text: $query, symbol: "magnifyingglass")
-
-            MPWrapRow(spacing: 10) {
-                ForEach(Filter.allCases, id: \.self) { f in
-                    MPChip(title: f.rawValue, isSelected: filter == f) {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
+            if showsSearch {
+                MPInput(placeholder: "Masal ara", text: $query, symbol: "magnifyingglass")
+            }
+            if !controls.isEmpty {
+                MPWrapRow(spacing: 10) {
+                    MPChip(title: Filter.all.rawValue, isSelected: filter == .all) {
+                        withAnimation(MP.M.gated(MP.M.easeOut)) { filter = .all }
+                    }
+                    ForEach(controls, id: \.self) { f in
+                        MPChip(title: f.rawValue, isSelected: filter == f) {
+                            withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
+                        }
                     }
                 }
             }
@@ -84,12 +139,53 @@ struct LibraryView: View {
         .padding(.bottom, 14)
     }
 
-    private var visibleStories: [Story] {
-        var list = storyManager.stories
+    // MARK: - Boş durumlar
 
-        if !allChildren, let active = profileManager.currentProfile {
-            list = list.filter { $0.belongs(to: active) }
+    /// Hiç masal olmamasıyla, arama sonucunun boş olması aynı şey değil: biri
+    /// masal yaratmaya davet, diğeri aramayı geri almaya. Tek bir metin ikisine
+    /// birden hitap ettiğinde ikisine de etmiyor.
+    @ViewBuilder
+    private var emptyState: some View {
+        if scopedStories.isEmpty {
+            MPEmptyState(
+                title: allChildren ? "Henüz masal yok" : "\(activeName) için masal yok",
+                description: "İlk masalı yaratınca burada belirecek.",
+                illustration: "AppLogo",
+                actionLabel: "Masal yarat",
+                action: { app.startStoryCreation() }
+            )
+        } else if !query.trimmingCharacters(in: .whitespaces).isEmpty {
+            MPEmptyState(
+                title: "Eşleşen masal yok",
+                description: "\"\(query)\" için bir şey bulamadık.",
+                illustration: "AppLogo",
+                actionLabel: "Aramayı temizle",
+                action: { query = "" }
+            )
+        } else {
+            MPEmptyState(
+                title: filter == .favorite ? "Favori masal yok" : "Görselli masal yok",
+                description: filter == .favorite
+                    ? "Bir masalı kalple işaretleyince burada toplanır."
+                    : "Görselli masallar resimleriyle birlikte burada durur.",
+                illustration: "AppLogo",
+                actionLabel: "Tümünü göster",
+                action: { withAnimation(MP.M.gated(MP.M.easeOut)) { filter = .all } }
+            )
         }
+    }
+
+    // MARK: - Liste
+
+    private var scopedStories: [Story] {
+        guard !allChildren, let active = profileManager.currentProfile else {
+            return storyManager.stories
+        }
+        return storyManager.stories.filter { $0.belongs(to: active) }
+    }
+
+    private var visibleStories: [Story] {
+        var list = scopedStories
 
         switch filter {
         case .all: break

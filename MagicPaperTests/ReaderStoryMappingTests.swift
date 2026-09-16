@@ -9,6 +9,7 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testTextOnlyStoryHasNoImages() {
         let reader = ReaderFixtures.reader(ReaderFixtures.textStory(pages: 8))
         XCTAssertEqual(reader.pageCount, 8)
+        XCTAssertNotNil(reader.coverAsset, "metin masalı ortak kapağı alır")
         for leaf in reader.leaves {
             guard let page = leaf.page else { continue }
             XCTAssertNil(page.imageRef, "metin masalında görsel olmamalı")
@@ -20,6 +21,8 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testIllustratedStoryPrefersFileNameOverUrl() {
         let story = ReaderFixtures.illustratedStory(pages: 3)
         let reader = ReaderFixtures.reader(story)
+        // Görselli masalın kendi kapağı vardır, kapak yaprağı eklenmez.
+        XCTAssertNil(reader.coverAsset)
         XCTAssertEqual(reader.leaves[0].page?.imageRef, "page-0.jpg")
         XCTAssertNotNil(reader.leaves[0].page?.imageLabel)
     }
@@ -81,8 +84,9 @@ final class ReaderStoryMappingTests: XCTestCase {
         let story = ReaderFixtures.textStory(pages: 0)
         let reader = ReaderFixtures.reader(story)
         XCTAssertEqual(reader.pageCount, 0)
-        XCTAssertEqual(reader.leaves.count, 1)
-        XCTAssertTrue(reader.leaves[0].isEnding)
+        XCTAssertEqual(reader.leaves.count, 2, "kapak ve kapanış")
+        XCTAssertTrue(reader.leaves[0].isCover)
+        XCTAssertTrue(reader.leaves[1].isEnding)
         XCTAssertTrue(reader.isEmpty)
     }
 
@@ -91,10 +95,11 @@ final class ReaderStoryMappingTests: XCTestCase {
             story: ReaderFixtures.reader(ReaderFixtures.textStory(pages: 0)),
             progressStore: SpyProgressStore()
         )
-        XCTAssertTrue(m.isOnEndingLeaf)
+        XCTAssertTrue(m.currentLeaf.isCover)
         XCTAssertNil(m.folio)
+        XCTAssertTrue(m.next(), "kapaktan kapanışa geçilebilir")
+        XCTAssertTrue(m.isOnEndingLeaf)
         XCTAssertFalse(m.next())
-        XCTAssertFalse(m.previous())
     }
 
     func testPageWithEmptyTextStillRenders() {
@@ -102,8 +107,9 @@ final class ReaderStoryMappingTests: XCTestCase {
         story.pages[0].text = ""
         let reader = ReaderFixtures.reader(story)
         XCTAssertEqual(reader.pageCount, 1)
-        XCTAssertTrue(reader.leaves[0].page!.paragraphs.isEmpty)
-        XCTAssertTrue(reader.leaves[0].page!.isBlank)
+        let first = reader.leaves.compactMap(\.page)[0]
+        XCTAssertTrue(first.paragraphs.isEmpty)
+        XCTAssertTrue(first.isBlank)
     }
 
     /// Çevrimdışı motor sayfa başlığı yazmaz; düzen boş başlığa yer ayırmamalı.

@@ -74,6 +74,40 @@ final class ReaderProgressTests: XCTestCase {
         XCTAssertEqual(spy.writeCount, 1)
     }
 
+    /// Hiç okunmamış bir masalın İLK sayfası da bir ilerlemedir.
+    ///
+    /// Bu, "okuma ilerlemesi diske yazılmıyor" şikâyetinin yarısıydı:
+    /// `lastPersistedPage` açılış sayfasıyla (0) başlatılıyordu, dolayısıyla
+    /// ilk sayfaya gelmek 0 == 0 karşılaştırmasına takılıp hiç yazılmıyordu.
+    /// Bir masalı açıp ilk sayfasını okuyan çocuk, kütüphanede o masalı hiç
+    /// açmamış gibi görünüyordu — ve ikinci sayfaya geçmeden kapatılan her
+    /// masal için bu kalıcıydı.
+    func testOpeningAFreshStoryRecordsItsFirstPage() {
+        let spy = SpyProgressStore()
+        let m = StoryReaderModel(
+            story: ReaderFixtures.reader(ReaderFixtures.textStory(pages: 8)),
+            progressStore: spy
+        )
+        m.next()                 // kapaktan ilk sayfaya
+        m.persistProgress()
+        XCTAssertEqual(spy.writeCount, 1, "ilk sayfa da yazılmalı")
+        XCTAssertEqual(spy.lastWrittenPage, 0)
+    }
+
+    /// Ve bir kez yazıldıktan sonra aynı sayfa tekrar yazılmaz — üstteki
+    /// düzeltme, gereksiz yazmayı önleyen kuralı bozmamalı.
+    func testTheFirstPageIsStillOnlyWrittenOnce() {
+        let spy = SpyProgressStore()
+        let m = StoryReaderModel(
+            story: ReaderFixtures.reader(ReaderFixtures.textStory(pages: 8)),
+            progressStore: spy
+        )
+        m.next()
+        m.persistProgress()
+        m.persistProgress()
+        XCTAssertEqual(spy.writeCount, 1)
+    }
+
     func testNoWriteWhenNothingWasRead() {
         let spy = SpyProgressStore()
         let m = StoryReaderModel(
@@ -92,7 +126,7 @@ final class ReaderProgressTests: XCTestCase {
             story: ReaderFixtures.reader(ReaderFixtures.textStory(pages: 4)),
             savedPage: 0, progressStore: spy
         )
-        m.go(toLeaf: 4)
+        m.go(toLeaf: 5)   // kapak + 4 sayfa → kapanış
         m.persistProgress()
         XCTAssertEqual(spy.lastWrittenPage, 3)
     }
@@ -146,6 +180,8 @@ final class ReaderProgressTests: XCTestCase {
             story: ReaderFixtures.reader(ReaderFixtures.textStory(pages: 1)),
             progressStore: SpyProgressStore()
         )
+        XCTAssertTrue(m.currentLeaf.isCover)
+        XCTAssertTrue(m.next())
         XCTAssertEqual(m.folio, "1 / 1")
         XCTAssertTrue(m.next())
         XCTAssertTrue(m.isOnEndingLeaf)

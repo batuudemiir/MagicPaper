@@ -75,8 +75,17 @@ struct MPPressableCard<Content: View>: View {
 // MARK: - MPSectionHeader
 
 struct MPSectionHeader: View {
+
+    /// Bölümün ekrandaki ağırlığı.
+    ///
+    /// Her başlık aynı puntodayken ekran hiyerarşisiz olur: çocuğun kendi
+    /// masalları ile en alttaki ikincil bir yol aynı sesle bağırır. Göz o zaman
+    /// sırayı konumdan çıkarmak zorunda kalır, ki en yavaş okuma biçimidir.
+    enum Emphasis { case primary, secondary }
+
     let title: String
     var subtitle: String? = nil
+    var emphasis: Emphasis = .primary
     var actionLabel: String? = nil
     var action: (() -> Void)? = nil
 
@@ -84,9 +93,9 @@ struct MPSectionHeader: View {
         HStack(alignment: .bottom, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(MP.F.displaySM())
-                    .mpTightTracking(21)
-                    .foregroundStyle(MP.C.textTitle)
+                    .font(emphasis == .primary ? MP.F.displaySM() : MP.F.bodyLG(.bold))
+                    .mpTightTracking(emphasis == .primary ? 21 : 18)
+                    .foregroundStyle(emphasis == .primary ? MP.C.textTitle : MP.C.textBody)
                 if let subtitle {
                     Text(subtitle).font(MP.F.bodySM()).foregroundStyle(MP.C.textMuted)
                 }
@@ -378,6 +387,22 @@ struct MPStoryCard: View {
     var meta: String? = nil
     var symbol: String = "book"
     var accent: Color = MP.C.brand
+    /// Varsa kapak illüstrasyonu; yoksa dünya ikonu çizilir.
+    var coverImageName: String? = nil
+    /// Masalın okuma durumu.
+    ///
+    /// Kütüphane bunu söylemiyordu: beş kart yan yana duruyor ve hangisinin
+    /// okunduğu, hangisinin hiç açılmadığı görünmüyordu. Bir masal kitaplığının
+    /// cevaplaması gereken ilk soru budur — "bunu okuduk mu?" — ve tarih onun
+    /// yerine geçmiyor, çünkü dün yaratılmış bir masal dün okunmuş demek değil.
+    var status: Status? = nil
+
+    enum Status {
+        /// Hiç açılmamış.
+        case unread
+        /// Sonuna kadar okunmuş.
+        case finished
+    }
     var badge: String? = nil
     var progress: Double? = nil
     var layout: Layout = .shelf
@@ -385,18 +410,31 @@ struct MPStoryCard: View {
 
     private var isShelf: Bool { layout == .shelf }
 
+    /// Raf kartının genişliği.
+    ///
+    /// 152pt'den büyütüldü. Masal başlıkları uzun — "Mercan Denizi'ne Cesur
+    /// Yolculuk", "Yeliz ve Eski Meyve Bahçesi" — ve 152pt'de hangi puntoyla
+    /// yazılırsa yazılsın kesiliyorlardı: rafta üç kart yan yana duruyor,
+    /// üçünün de adı yarım. Başlığı okunmayan bir kart seçilebilir bir kart
+    /// değildir, ve raf tam olarak seçim yapmak için var.
+    ///
+    /// Daha az kart görünüyor. Bu bir kayıp değil: ikinci kartın yarısını
+    /// göstermek zaten "sağa kaydır" demenin yoluydu, ve kaydırma ipucu için
+    /// okunurluk feda edilmez.
+    static let shelfWidth: CGFloat = 184
+
     var body: some View {
         Button(action: action) {
             Group {
                 if isShelf {
                     VStack(alignment: .leading, spacing: 0) {
-                        cover(side: 152, glyph: 46, rounded: false)
+                        cover(side: Self.shelfWidth, glyph: 46, rounded: false)
                         textBlock.padding(EdgeInsets(top: 12, leading: 14, bottom: 14, trailing: 14))
                     }
-                    .frame(width: 152)
+                    .frame(width: Self.shelfWidth)
                 } else {
                     HStack(spacing: 14) {
-                        cover(side: 62, glyph: 28, rounded: true)
+                        cover(side: 72, glyph: 30, rounded: true)
                         textBlock
                         Spacer(minLength: 0)
                     }
@@ -411,16 +449,44 @@ struct MPStoryCard: View {
         .buttonStyle(MPPressStyle(scales: false))
     }
 
-    /// Gerçek kapak görseli geldiğinde bu alan AsyncImage olur — ölçüler aynı kalır.
+    /// Kapak alanı: illüstrasyon varsa o, yoksa dünya ikonu. Ölçüler aynı.
+    @ViewBuilder
     private func cover(side: CGFloat, glyph: CGFloat, rounded: Bool) -> some View {
-        MPIcon(symbol, size: glyph, weight: .semibold)
-            .foregroundStyle(accent)
-            .frame(width: side, height: side)
-            .background(accent.opacity(0.16))
+        Group {
+            if let coverImageName {
+                // Kapak dikey (2:3), küçük kapak alanı kare. Ortadan kırpınca
+                // görselin yalnızca göğü kalıyor ve uzaktan renk lekesi gibi
+                // duruyordu; özne alt üçte birde olduğu için kırpma aşağıya
+                // hizalanıyor.
+                Image(coverImageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: side, height: side, alignment: .bottom)
+                    .clipped()
+                    // Ortak kapak, masalın kendi işareti olmadan her masalı
+                    // birbirinin aynı yapar. Raftaki üç masal tek bir masalın
+                    // üç kopyası gibi görünüyordu — bir çocuğun gezinme aracı
+                    // olan resmi, aynı resmi üç kez göstererek işlevsiz
+                    // bırakıyordu. Resim kalsın, kimlik üstüne binsin.
+                    .overlay(alignment: .bottomTrailing) {
+                        MPIcon(symbol, size: glyph * 0.44, weight: .bold)
+                            .foregroundStyle(MP.Palette.kagit0)
+                            .frame(width: glyph * 0.86, height: glyph * 0.86)
+                            .background(Circle().fill(accent))
+                            .overlay(Circle().stroke(MP.Palette.kagit0.opacity(0.9), lineWidth: 2))
+                            .padding(side >= 80 ? MP.S.x2 : 3)
+                    }
+            } else {
+                MPIcon(symbol, size: glyph, weight: .semibold)
+                    .foregroundStyle(accent)
+                    .frame(width: side, height: side)
+                    .background(accent.opacity(0.16))
+            }
+        }
             .clipShape(RoundedRectangle(cornerRadius: rounded ? MP.R.md : 0, style: .continuous))
             .overlay(alignment: .topLeading) {
-                // Rozet yalnızca 152pt'lik raf kapağına sığar. `row` düzeninde
-                // kapak 62pt olduğu için rozet metin bloğuna taşındı.
+                // Rozet yalnızca raf kapağına sığar. `row` düzeninde
+                // kapak küçük olduğu için rozet metin bloğuna taşındı.
                 if isShelf, let badge {
                     MPBadge(title: badge, tone: .reward, symbol: "crown.fill").padding(10)
                 }
@@ -430,12 +496,44 @@ struct MPStoryCard: View {
     private var textBlock: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text(title)
-                .font(MP.F.displaySM())
+                // Rafta bir punto küçük: 21pt'de iki satıra iki kelime
+                // sığıyordu. Başlığın tamamının görünmesi, başlığın büyük
+                // görünmesinden önemli.
+                // Hem rafta hem satırda bir punto küçük. 21pt'de iki satırlık
+                // bir başlık, tek satırlıkların neredeyse iki katı yükseklikte
+                // bir kart üretiyordu ve liste dalgalanıyordu.
+                .font(MP.F.bodyLG(.bold))
                 .foregroundStyle(MP.C.textTitle)
-                .lineLimit(2)
+                // Rafta iki satır YER TUTAR, tek satırlık başlıklarda da.
+                // Aksi hâlde "Yeliz ve Kıpır" kartı "Yeliz ve Eski Meyve
+                // Bahçesi" kartından alçak kalıyor ve yan yana dizilen kartların
+                // altı tırtıklı görünüyordu — kartların kendisi kusursuzken.
+                // Dikey listede sorun değil, çünkü orada zaten alt alta.
+                .lineLimit(2, reservesSpace: isShelf)
                 .multilineTextAlignment(.leading)
-            if let meta {
-                Text(meta).font(MP.F.labelSM(.semibold)).foregroundStyle(MP.C.textMuted).lineLimit(1)
+            HStack(spacing: MP.S.x2) {
+                if let meta {
+                    Text(meta).font(MP.F.labelSM(.semibold))
+                        .foregroundStyle(MP.C.textMuted).lineLimit(1)
+                }
+                switch status {
+                case .unread:
+                    // Okunmamış olan öne çıkar; okunmuş olan geri çekilir.
+                    // Tersi, listenin çoğunu vurgulamak olurdu ve vurgu her
+                    // yerde olduğunda hiçbir yerdedir.
+                    Text("Yeni")
+                        .font(MP.F.caption())
+                        .foregroundStyle(MP.C.textOnBrand)
+                        .padding(.horizontal, MP.S.x2)
+                        .padding(.vertical, 2)
+                        .background(Capsule(style: .continuous).fill(MP.C.brand))
+                case .finished:
+                    MPIcon("checkmark.circle.fill", size: 14, weight: .semibold)
+                        .foregroundStyle(MP.C.success)
+                        .accessibilityLabel("Okundu")
+                case nil:
+                    EmptyView()
+                }
             }
             if !isShelf, let badge {
                 MPBadge(title: badge, tone: .reward, symbol: "crown.fill")

@@ -881,24 +881,49 @@ class StoryGenerationManager: ObservableObject {
     // MARK: - Persistence
     
     private func saveStories() {
-        if let encoded = try? JSONEncoder().encode(stories) {
+        do {
+            let encoded = try JSONEncoder().encode(stories)
             let dataSize = encoded.count
             print("💾 Saving stories to UserDefaults: \(dataSize) bytes (\(dataSize / 1024) KB)")
-            
+
             // Check if size is reasonable (< 1MB for UserDefaults)
             if dataSize > 1_000_000 {
                 print("⚠️ WARNING: Stories data is large (\(dataSize / 1024 / 1024) MB). Consider cleanup.")
             }
-            
+
             UserDefaults.standard.set(encoded, forKey: "stories")
+        } catch {
+            // Önceden `try?` idi: kodlama başarısız olduğunda hiçbir şey
+            // yazılmıyor ve hiçbir şey söylenmiyordu. Kütüphane o andan sonra
+            // sessizce kalıcılığını yitiriyor, uygulama kusursuz çalışmaya
+            // devam ediyor ve kayıp ancak bir sonraki açılışta görülüyordu.
+            assertionFailure("Masallar kaydedilemedi: \(error)")
+            print("🛑 Masallar KAYDEDİLEMEDİ, bu oturumdaki değişiklikler kaybolacak: \(error)")
         }
     }
     
     private func loadStories() {
-        if let data = UserDefaults.standard.data(forKey: "stories"),
-           let decoded = try? JSONDecoder().decode([Story].self, from: data) {
-            stories = decoded
+        guard let data = UserDefaults.standard.data(forKey: "stories") else { return }
+        do {
+            stories = try JSONDecoder().decode([Story].self, from: data)
             print("✅ Loaded \(stories.count) stories from UserDefaults")
+        } catch {
+            // Bu, uygulamadaki en pahalı sessiz arıza yoluydu.
+            //
+            // Çözümleme başarısız olunca `stories` boş kalıyor, hemen ardından
+            // `createSampleStoriesIfNeeded()` örnekleri kuruyor ve ilk kayıtta
+            // gerçek kütüphanenin üstüne yazıyordu. Tek bir bozuk kayıt —
+            // tanınmayan bir enum değeri yeter — bir çocuğun bütün masallarını
+            // götürüyor, yerine üç örnek koyuyor ve kimseye bir şey söylemiyor.
+            //
+            // Ham veri artık tarihli bir anahtara alınıyor. Hâlâ ekranda
+            // görünmüyor, ama geri getirilebilir: kurtarılamayan bir kayıp ile
+            // kurtarılabilir bir kayıp arasındaki fark, kullanıcının o çocuğun
+            // ebeveyni olması.
+            let backupKey = "stories.undecodable.\(Int(Date().timeIntervalSince1970))"
+            UserDefaults.standard.set(data, forKey: backupKey)
+            assertionFailure("Masallar çözümlenemedi: \(error)")
+            print("🛑 Masallar ÇÖZÜMLENEMEDİ. Ham veri '\(backupKey)' altına alındı: \(error)")
         }
     }
     
@@ -995,14 +1020,39 @@ class StoryGenerationManager: ObservableObject {
         }
     }
 
+    /// Okuma ilerlemesini yazar.
+    ///
+    /// **Anında diske indirilir.** Okuma ilerlemesi, kaybolması en olası
+    /// veridir çünkü tam da uygulamanın kapanmasından hemen önce değişir:
+    /// çocuk son sayfayı çevirir, ebeveyn uygulamadan çıkar. `UserDefaults`
+    /// yazımı tembel; süreç o arada sonlandırılırsa değer hiç diske inmez ve
+    /// "kaldığın yer" bir sonraki açılışta yok olur. Ana sayfanın birincil
+    /// kartı buna bağlı olduğu için burada bekleyemeyiz.
+    ///
+    /// Maliyeti bilerek kabul ediliyor: `saveStories()` bütün kütüphaneyi
+    /// yeniden kodluyor (~37 KB) ve bu her sayfa çevirmede oluyor. Doğru çözüm
+    /// ilerlemeyi kendi küçük deposuna almak, ama o zaman aynı olgunun iki
+    /// kaynağı olur — bu projede defalarca canımızı yakan şey. Tek kaynak
+    /// kalsın, yazı da gerçekten insin.
     func updateLastReadPage(storyId: UUID, page: Int) {
         guard let index = stories.firstIndex(where: { $0.id == storyId }) else {
+            // Sessizce dönüyordu. Okuyucuya kütüphanede olmayan bir masal
+            // verildiğinde ilerleme hiçbir yere yazılmıyor, hiçbir şey de
+            // söylenmiyordu — okuma çalışıyor, kayıt çalışmıyor, arada fark
+            // yok gibi görünüyordu.
+            assertionFailure("İlerleme yazılamadı: '\(storyId)' kütüphanede yok.")
+            print("🛑 İlerleme yazılamadı: '\(storyId)' kütüphanede yok.")
             return
         }
-        
+
+        guard stories[index].lastReadPage != page else { return }
         stories[index].lastReadPage = page
         saveStories()
-        
+        // Tembel yazımı zorla indir. `synchronize()` kullanımdan kaldırıldı
+        // sayılır ve çoğu yerde gereksizdir; burada gereklidir, çünkü bu değeri
+        // yazan an ile sürecin öldüğü an arasında saniyeler olabiliyor.
+        UserDefaults.standard.synchronize()
+
         print("📖 Updated reading progress for story \(storyId): page \(page)")
     }
     

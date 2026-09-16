@@ -2,42 +2,45 @@ import SwiftUI
 
 // MARK: - MPTabBar
 
-/// Uygulamanın kök navigasyonu: 4 sekme + ortada yükseltilmiş (+).
-/// Masal yaratma her yerden tek dokunuş uzakta olmalı.
+/// Uygulamanın kök navigasyonu.
+///
+/// Yaratma eylemi barın ÜSTÜNDE yükseltilmiş bir hap değil, barın İÇİNDE bir
+/// öğe. Yükseltilmiş biçim iki bedel getiriyordu: içeriğin üstüne biniyordu —
+/// ana sayfada bölüm başlıklarını kapatıyordu — ve barın kendi ritmini bozuyor,
+/// sekmelerin ortasında hiçbir şeye ait olmayan bir boşluk bırakıyordu.
+///
+/// Eylem hâlâ gezinmeden ayrı duruyor, ama artık ayrımı yükseklikle değil
+/// renkle yapıyor: marka rengindeki tek öğe odur, ve seçilebilir bir yer
+/// olmadığı için hiçbir zaman "aktif sekme" gibi görünmez.
 struct MPTabBar: View {
     struct Item: Identifiable, Hashable {
+        /// Öğe bir yere mi götürüyor, yoksa bir iş mi yapıyor.
+        enum Kind: Hashable { case destination, action }
+
         let value: String
         let label: String
         let symbol: String
+        var kind: Kind = .destination
         var id: String { value }
     }
 
-    let items: [Item]           // tam olarak 4 öğe
+    let items: [Item]
     @Binding var selection: String
-    var createLabel: String = "Masal yarat"
     let onCreate: () -> Void
 
-    var body: some View {
-        ZStack(alignment: .top) {
-            HStack(spacing: 0) {
-                ForEach(items.prefix(2)) { tab(for: $0) }
-                Spacer().frame(width: 78)
-                ForEach(items.dropFirst(2).prefix(2)) { tab(for: $0) }
-            }
-            .frame(height: MP.S.tabBarHeight, alignment: .bottom)
+    /// Ekranların alttan bırakması gereken boşluk. Artık taşma yok.
+    static var reservedHeight: CGFloat { MP.S.tabBarHeight }
 
-            Button(action: onCreate) {
-                MPIcon("plus", size: 30, weight: .bold)
-                    .foregroundStyle(MP.C.textOnBrand)
-                    .frame(width: 64, height: 64)
-                    .mpEdge(fill: MP.C.brand, edge: MP.C.brandEdge, radius: MP.R.pill, width: MP.E.widthLG)
-                    .mpShadow(MP.Sh.brand)
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(items) { item in
+                switch item.kind {
+                case .destination: tab(for: item)
+                case .action:      actionTab(for: item)
+                }
             }
-            .buttonStyle(MPPressStyle(scales: false))
-            .offset(y: -22)
-            .accessibilityLabel(createLabel)
         }
-        .frame(height: MP.S.tabBarHeight)
+        .frame(height: MP.S.tabBarHeight, alignment: .bottom)
         // Zemin alt güvenli alana taşar: bar 76px içerik + altında home
         // göstergesi boşluğu (02-COMPONENTS.md "76px + padding-bottom 22px").
         .background(alignment: .top) {
@@ -63,19 +66,54 @@ struct MPTabBar: View {
         return Button {
             selection = item.value
         } label: {
-            VStack(spacing: 3) {
-                MPIcon(item.symbol, size: 24)
-                Text(item.label).font(MP.F.caption(isActive ? .bold : .semibold))
-            }
-            .foregroundStyle(isActive ? MP.C.brand : MP.C.textFaint)
-            .frame(maxWidth: .infinity)
-            // Etiketler barın altına yakın dursun; üstten hizalıyken
-            // altta ~26pt boşluk kalıyor, cihazın güvenli alanıyla birlikte
-            // bar havada duruyor gibi görünüyordu.
-            .padding(.bottom, 6)
+            slot(symbol: item.symbol, label: item.label,
+                 tint: isActive ? MP.C.brand : MP.C.textFaint,
+                 isBold: isActive)
         }
         .buttonStyle(.plain)
         .animation(MP.M.gated(MP.M.easeOut), value: isActive)
+    }
+
+    /// Eylem öğesi. Simgesi dolu bir dairenin içinde durur: aynı satırda,
+    /// aynı yükseklikte, ama bir sekme olmadığı bir bakışta belli.
+    private func actionTab(for item: Item) -> some View {
+        Button(action: onCreate) {
+            VStack(spacing: 3) {
+                MPIcon(item.symbol, size: 20, weight: .bold)
+                    .foregroundStyle(MP.C.textOnBrand)
+                    .frame(width: 38, height: 30)
+                    .background(
+                        RoundedRectangle(cornerRadius: MP.R.pill, style: .continuous)
+                            .fill(MP.C.brand)
+                    )
+                Text(item.label)
+                    .font(MP.F.caption())
+                    .foregroundStyle(MP.C.brand)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.bottom, 6)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(item.label)
+    }
+
+    private func slot(symbol: String, label: String, tint: Color, isBold: Bool) -> some View {
+        VStack(spacing: 3) {
+            MPIcon(symbol, size: 24)
+                .frame(height: 30)
+            Text(label)
+                .font(MP.F.caption(isBold ? .bold : .semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.85)
+        }
+        .foregroundStyle(tint)
+        .frame(maxWidth: .infinity)
+        // Etiketler barın altına yakın dursun; üstten hizalıyken
+        // altta ~26pt boşluk kalıyor, cihazın güvenli alanıyla birlikte
+        // bar havada duruyor gibi görünüyordu.
+        .padding(.bottom, 6)
     }
 }
 

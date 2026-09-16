@@ -16,14 +16,27 @@ struct ReaderStory {
     let childName: String
     let accent: Color
     let symbol: String
-    /// Masalın sayfaları ve bir de kapanış yaprağı.
+    /// Masalın dünyası — dekorasyon ortamının ikincil sinyali.
+    let world: MP.World
+    /// Kapak yaprağı, masalın sayfaları, ve kapanış yaprağı.
     let leaves: [ReaderLeaf]
+    /// Kapak varlığının adı; kapak yaprağı yoksa `nil`.
+    let coverAsset: String?
 
     /// Gerçek masal sayfası sayısı — "3 / 8"deki 8.
     /// Kapanış yaprağı sayfa değildir, sayılmaz.
     let pageCount: Int
 
     var isEmpty: Bool { pageCount == 0 }
+
+    /// Kapak yaprağı varsa sayfalar bir kaydırılmış demektir.
+    ///
+    /// Sayfa numarası ile yaprak numarası artık aynı şey değil: kitabın kapağı
+    /// 1. sayfa değildir. Bu kayma tek yerde söyleniyor ki künye, kayıtlı
+    /// ilerleme ve gezinme aynı şeyi anlasın.
+    var pageLeafOffset: Int { coverAsset == nil ? 0 : 1 }
+
+    func leafIndex(forPage page: Int) -> Int { page + pageLeafOffset }
 }
 
 /// Kitabın bir yaprağı.
@@ -34,11 +47,14 @@ struct ReaderStory {
 /// olur, "bitti" belirsiz kalmaz, ve okuyucu çocuk hâlâ resme bakarken kendini
 /// kapatmaz.
 enum ReaderLeaf: Identifiable {
+    /// Kitabın kapağı — illüstrasyon, yay biçiminde başlık, marka satırı.
+    case cover
     case page(ReaderPage)
     case ending
 
     var id: String {
         switch self {
+        case .cover:       return "cover"
         case .page(let p): return "page-\(p.index)"
         case .ending:      return "ending"
         }
@@ -51,6 +67,11 @@ enum ReaderLeaf: Identifiable {
 
     var isEnding: Bool {
         if case .ending = self { return true }
+        return false
+    }
+
+    var isCover: Bool {
+        if case .cover = self { return true }
         return false
     }
 }
@@ -70,6 +91,12 @@ struct ReaderPage: Equatable {
     let imageRef: String?
     /// VoiceOver'ın çizim için okuyacağı şey. Görsel yoksa `nil`.
     let imageLabel: String?
+    /// Sayfanın sahne yönergesi (motorun `visualScene`'i).
+    ///
+    /// Ekranda hiç gösterilmez — İngilizce yazılmış, okura ait olmayan bir
+    /// metin. Yalnızca sınıflandırılır: sayfa başına ortam sinyali veren tek
+    /// şey bu, ve bugüne kadar hiçbir yerde okunmuyordu.
+    let sceneHint: String
 
     /// Sayfanın tamamı, tek parça. VoiceOver sayfayı dört parça hâlinde değil,
     /// sürekli bir metin olarak okusun diye.
@@ -88,6 +115,7 @@ extension ReaderStory {
         self.childName = story.childName
         self.accent = story.mpAccent
         self.symbol = story.mpSymbol
+        self.world = story.mpWorld
 
         let pages = story.pages.enumerated().map { index, page in
             ReaderPage(
@@ -95,12 +123,20 @@ extension ReaderStory {
                 title: page.title,
                 paragraphs: ReaderStory.paragraphs(of: page.text),
                 imageRef: ReaderStory.imageRef(for: page),
-                imageLabel: ReaderStory.imageLabel(for: page, in: story, at: index)
+                imageLabel: ReaderStory.imageLabel(for: page, in: story, at: index),
+                sceneHint: page.imagePrompt
             )
         }
 
         self.pageCount = pages.count
-        self.leaves = pages.map(ReaderLeaf.page) + [.ending]
+        // Metin masallarının kendi kapağı yok; ortak illüstrasyon kapak
+        // yaprağı olarak kitabın başına konur. Görselli masal kendi kapağını
+        // taşıdığı için burada yaprak eklenmez.
+        let cover = story.mpDefaultCoverAsset
+        self.coverAsset = cover
+        self.leaves = (cover == nil ? [] : [ReaderLeaf.cover])
+            + pages.map(ReaderLeaf.page)
+            + [.ending]
     }
 
     /// Metni paragraflara böler.

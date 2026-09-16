@@ -15,11 +15,21 @@ struct ParentPanelView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("Ebeveyn")
-                    .font(MP.F.displayLG())
-                    .mpTightTracking(32)
-                    .foregroundStyle(MP.C.textTitle)
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Ebeveyn")
+                        .font(MP.F.displayLG())
+                        .mpTightTracking(32)
+                        .foregroundStyle(MP.C.textTitle)
+                    // Bir ebeveynin bu sayfaya geldiğinde sorduğu soru "işe
+                    // yarıyor mu?"dur. Sekiz blok o cevabı içinde taşıyordu ama
+                    // hiçbiri söylemiyordu; okumak için kartları toplamak
+                    // gerekiyordu. Cümle önce geliyor, ayrıntı arkasından.
+                    Text(weekSummary)
+                        .font(MP.F.bodySM())
+                        .foregroundStyle(MP.C.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
                 Spacer(minLength: 0)
                 MPIconButton(symbol: "gearshape", label: "Ayarlar") { app.showSettings = true }
             }
@@ -28,11 +38,14 @@ struct ParentPanelView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
+                    // Onay kuyruğu bu sayfadaki TEK eylem gerektiren şey ve
+                    // altıncı sıradaydı: yapılacak iş, okunacak istatistiklerin
+                    // altına gömülmüştü. Bir şey bekliyorsa önce o gelir.
+                    if settings.approve && !pendingStories.isEmpty { approvalQueue }
                     statsGrid
                     if vocabulary.hasData { vocabularySection }
                     favoriteWorlds
                     profilesSection
-                    if settings.approve && !pendingStories.isEmpty { approvalQueue }
                     subscriptionCard
                     MPButton(title: "Masalları indir / yazdır", variant: .outline,
                              icon: "arrow.down.circle", fullWidth: true,
@@ -85,6 +98,19 @@ struct ParentPanelView: View {
             MPStatCard(symbol: "star.fill", label: "Kalan yıldız",
                        value: "\(stars)", accent: MP.C.reward)
         }
+    }
+
+    /// Sayfanın tepesindeki tek cümle.
+    ///
+    /// Sıfır durumu ayrı yazılıyor: "0 masal · 0 dk" teknik olarak doğru ve
+    /// bir ebeveyne söylenecek en kötü şey. Henüz başlamamış olmak bir başarısızlık
+    /// değil.
+    private var weekSummary: String {
+        let name = profileManager.currentProfile?.name ?? "Çocuğunuz"
+        let minutes = weeklyMinutes
+        guard minutes > 0 else { return "\(name) bu hafta henüz masal okumadı." }
+        return "\(name) bu hafta \(minutes) dakika okudu"
+            + (streak.currentStreak > 0 ? " · \(streak.currentStreak) günlük seri" : "")
     }
 
     /// Okuyucuda geçirilen gerçek süre (MPStreak.addReadingTime ile birikir).

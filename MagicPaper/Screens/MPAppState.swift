@@ -3,6 +3,15 @@ import SwiftUI
 // MARK: - Kök sekmeler
 
 /// 04-STATE-INTERACTIONS.md — kök navigasyon 4 sekmelidir.
+/// Dört yer, artı bir eylem.
+///
+/// Günlük geri geldi: alışkanlık tarafı burada geliştirilecek. Ana Sayfa'daki
+/// kopyası kaldırıldı — aynı kartı iki sekmede göstermek, ilk seferinde de
+/// sorun olan şeydi. Ana Sayfa yalnızca seriyi özetliyor ve dokununca buraya
+/// getiriyor.
+///
+/// "Masal yarat" bu listede DEĞİL ve olmamalı: gidilecek bir yer değil,
+/// yapılacak bir iş. Bar onu ayrı bir öğe türü olarak çiziyor.
 enum MPTab: String, CaseIterable {
     case home, library, daily, parent
 
