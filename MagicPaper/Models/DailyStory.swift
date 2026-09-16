@@ -13,6 +13,20 @@ struct DailyStory: Identifiable, Codable, Equatable {
     var emoji: String
     var isRead: Bool
     var lastReadDate: Date?
+
+    /// Bu masal bu yaştaki bir çocuk için mi.
+    ///
+    /// `ageRange` serbest metin ("1-4", "3-6", "10+") ve tek kullanıcısı burası,
+    /// o yüzden ayrıştırma da burada duruyor. Okunamayan bir aralık HERKESE
+    /// uyar sayılır: elemek, tanınmayan bir yazım yüzünden bir masalı sessizce
+    /// yok etmek olurdu — bu projede tekrar tekrar düzelttiğimiz kusur.
+    func matches(age: Int) -> Bool {
+        let text = ageRange.trimmingCharacters(in: .whitespaces)
+        if text.hasSuffix("+"), let low = Int(text.dropLast()) { return age >= low }
+        let parts = text.split(separator: "-").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+        guard parts.count == 2 else { return true }
+        return (min(parts[0], parts[1])...max(parts[0], parts[1])).contains(age)
+    }
     
     static func == (lhs: DailyStory, rhs: DailyStory) -> Bool {
         lhs.id == rhs.id

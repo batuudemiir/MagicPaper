@@ -20,7 +20,7 @@ struct DailyStoriesView: View {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     streakCard
                     todaySection
-                    badgesSection
+                    goalsSection
                 }
                 .padding(.horizontal, MP.S.screenGutter)
                 .padding(.top, 8)
@@ -48,20 +48,12 @@ struct DailyStoriesView: View {
                 }
 
                 HStack(spacing: 0) {
-                    ForEach(Array(streak.thisWeek.enumerated()), id: \.offset) { index, done in
+                    ForEach(Array(streak.weekStates.enumerated()), id: \.offset) { index, state in
                         VStack(spacing: 6) {
-                            ZStack {
-                                Circle()
-                                    .fill(done ? MP.C.play : MP.C.surfaceSunken)
-                                    .frame(width: 34, height: 34)
-                                if done {
-                                    MPIcon("checkmark", size: 16, weight: .bold)
-                                        .foregroundStyle(MP.Palette.kagit0)
-                                }
-                            }
+                            dayDot(state)
                             Text(MPStreak.weekdayLabels[index])
                                 .font(MP.F.caption())
-                                .foregroundStyle(MP.C.textMuted)
+                                .foregroundStyle(state == .today ? MP.C.textTitle : MP.C.textMuted)
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -70,12 +62,42 @@ struct DailyStoriesView: View {
         }
     }
 
+    /// Dört durum, dört görünüm.
+    ///
+    /// Bugün, okunmamışken bile boş bir daire değil: kesikli bir halka, yani
+    /// "burası seni bekliyor". Gelecek günler soluk; kaçırılan günler ne soluk
+    /// ne dolu — yalnızca boş. Amaç suçlamak değil, bugünü göstermek.
+    @ViewBuilder
+    private func dayDot(_ state: MPStreak.DayState) -> some View {
+        switch state {
+        case .done:
+            ZStack {
+                Circle().fill(MP.C.play).frame(width: 34, height: 34)
+                MPIcon("checkmark", size: 16, weight: .bold)
+                    .foregroundStyle(MP.Palette.kagit0)
+            }
+        case .today:
+            Circle()
+                .strokeBorder(MP.C.brand, style: StrokeStyle(lineWidth: 2.5, dash: [4, 3]))
+                .frame(width: 34, height: 34)
+        case .missed:
+            Circle().fill(MP.C.surfaceSunken).frame(width: 34, height: 34)
+        case .upcoming:
+            // Dolu değil, çizgi. %50 opaklıkla dolu bir daire denenmişti ve
+            // kaçırılan günden ayırt edilemiyordu — bu paletin içinde iki
+            // açık bej ton yan yana aynı renk. Fark tonda değil BİÇİMDE
+            // olmalı: henüz gelmemiş bir gün boş bir çerçevedir.
+            Circle()
+                .strokeBorder(MP.C.borderHairline, lineWidth: 2)
+                .frame(width: 34, height: 34)
+        }
+    }
+
     // MARK: - Bugünün masalı
 
     private var todaySection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Bugünün masalı",
-                            subtitle: "Her gün kısa, yeni bir masal")
+            MPSectionHeader(title: "Bugünün masalı")
 
             if let story = dailyManager.todaysStory ?? dailyManager.dailyStories.first {
                 MPStoryCard(
@@ -99,42 +121,102 @@ struct DailyStoriesView: View {
         }
     }
 
-    // MARK: - Rozetler
+    // MARK: - Sıradaki hedef
 
-    /// Rozetler bu sayfaya ait: hepsi alışkanlıkla kazanılıyor ve alışkanlığın
-    /// sayfası burası. Ebeveyn panelinde bir kopyası yok — aynı şeyi iki yerde
-    /// göstermek, bu ekranlarda tekrar tekrar düzelttiğimiz kusurdu.
-    private var badgesSection: some View {
+    /// Üç ölü kupa yerine, ulaşılabilir olan tek hedef.
+    ///
+    /// Önceki hâli üç rozeti de hep gösteriyordu ve iki günlük serisi olan bir
+    /// çocuk için üçü de kilitliydi: %50 opaklıkta üç gri kart, hiçbiri ne kadar
+    /// kaldığını söylemiyor. Kilitli bir ödül, uzaklığı görünmediğinde ödül
+    /// değil; yalnızca sahip olunmayan bir şeyin listesi.
+    ///
+    /// Kazanılanlar kalır — kazanılmış bir rozeti gizlemek onu geri almaktır.
+    /// Kazanılmamışlardan yalnızca EN YAKIN olanı, ilerlemesiyle gösterilir.
+    private struct Goal {
+        let symbol: String
+        let label: String
+        let color: Color
+        let current: Int
+        let target: Int
+        var isEarned: Bool { current >= target }
+    }
+
+    private var goals: [Goal] {
+        [
+            Goal(symbol: "trophy.fill", label: "7 günlük seri", color: MP.C.reward,
+                 current: streak.currentStreak, target: 7),
+            Goal(symbol: "book", label: "10 masal", color: MP.C.calm,
+                 current: readCount, target: 10),
+            Goal(symbol: "flame.fill", label: "30 günlük seri", color: MP.C.play,
+                 current: streak.currentStreak, target: 30)
+        ]
+    }
+
+    @ViewBuilder
+    private var goalsSection: some View {
+        let earned = goals.filter(\.isEarned)
+        let next = goals.first { !$0.isEarned }
+
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Bu ayın rozetleri")
+            MPSectionHeader(title: earned.isEmpty ? "Sıradaki hedef" : "Rozetler")
 
-            HStack(spacing: 12) {
-                badge(symbol: "trophy.fill", label: "7 gün",
-                      color: MP.C.reward, earned: streak.currentStreak >= 7)
-                badge(symbol: "book", label: "10 masal",
-                      color: MP.C.calm, earned: readCount >= 10)
-                badge(symbol: "flame.fill", label: "30 gün",
-                      color: MP.C.play, earned: streak.currentStreak >= 30)
+            if let next {
+                MPCard(padding: 18) {
+                    HStack(spacing: 14) {
+                        MPIcon(next.symbol, size: 22, weight: .semibold)
+                            .foregroundStyle(next.color)
+                            .frame(width: 42, height: 42)
+                            .background(
+                                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                    .fill(next.color.opacity(0.16))
+                            )
+
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(next.label)
+                                .font(MP.F.bodyMD(.bold))
+                                .foregroundStyle(MP.C.textTitle)
+                            // Sayı açıkça yazılıyor: "2 / 7" bir çubuğun
+                            // söyleyemediğini söyler — kaç tane kaldığını.
+                            Text("\(next.current) / \(next.target)")
+                                .font(MP.F.labelSM())
+                                .foregroundStyle(MP.C.textMuted)
+                            Capsule().fill(MP.C.surfaceSunken)
+                                .frame(height: 8)
+                                .overlay(alignment: .leading) {
+                                    GeometryReader { geo in
+                                        Capsule().fill(next.color)
+                                            .frame(width: geo.size.width
+                                                   * min(1, Double(next.current) / Double(next.target)))
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+
+            if !earned.isEmpty {
+                HStack(spacing: 12) {
+                    ForEach(Array(earned.enumerated()), id: \.offset) { _, goal in
+                        MPCard(padding: 14) {
+                            VStack(spacing: 8) {
+                                MPIcon(goal.symbol, size: 26, weight: .semibold)
+                                    .foregroundStyle(goal.color)
+                                Text(goal.label)
+                                    .font(MP.F.labelSM())
+                                    .foregroundStyle(MP.C.textMuted)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
             }
         }
     }
 
     private var readCount: Int {
         dailyManager.dailyStories.filter { $0.isRead }.count
-    }
-
-    private func badge(symbol: String, label: String, color: Color, earned: Bool) -> some View {
-        MPCard(padding: 14) {
-            VStack(spacing: 8) {
-                MPIcon(symbol, size: 26, weight: .semibold)
-                    .foregroundStyle(earned ? color : MP.C.textFaint)
-                Text(label)
-                    .font(MP.F.labelSM())
-                    .foregroundStyle(MP.C.textMuted)
-            }
-            .frame(maxWidth: .infinity)
-        }
-        .opacity(earned ? 1 : 0.5)
     }
 }
 

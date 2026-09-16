@@ -73,9 +73,12 @@ enum DecorationZone: String, CaseIterable, Codable, Identifiable {
     /// Bölgenin sayfadaki normalize çapası (0…1).
     var anchor: UnitPoint {
         switch self {
-        case .topLeading:     return UnitPoint(x: 0.10, y: 0.09)
-        case .topCenter:      return UnitPoint(x: 0.50, y: 0.07)
-        case .topTrailing:    return UnitPoint(x: 0.89, y: 0.10)
+        // Üst bant kontrollerin altından başlar. Önce 0.07–0.10 denendi ve
+        // süs kapat düğmesiyle aynı hizaya düştü: sayfaya ait bir motif,
+        // arayüz öğesiyle çakışınca ikisi de yanlış okunuyor.
+        case .topLeading:     return UnitPoint(x: 0.10, y: 0.17)
+        case .topCenter:      return UnitPoint(x: 0.50, y: 0.14)
+        case .topTrailing:    return UnitPoint(x: 0.89, y: 0.18)
         case .leadingEdge:    return UnitPoint(x: 0.05, y: 0.46)
         case .trailingEdge:   return UnitPoint(x: 0.95, y: 0.52)
         case .bottomLeading:  return UnitPoint(x: 0.13, y: 0.91)

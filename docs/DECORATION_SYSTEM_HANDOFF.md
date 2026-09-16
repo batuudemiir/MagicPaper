@@ -70,3 +70,23 @@ gibi duruyorsa sırasıyla şunlara bakılmalı:
 `.custom`'a düşürüyor → `MP.World.dinozor`. Ortam çıkarımının ikinci kademesi
 bu yüzden çoğu masalda içerikle ilgisiz. Birinci kademe (sahne metni) bunu
 büyük ölçüde telafi ediyor ama kalıcı çözüm eşlemenin düzeltilmesi.
+
+---
+
+## Cihazda ilk gözlem (2026-09-16, akşam)
+
+Sistem çalışıyor. Ekran görüntüsünde: sol/alt kenardan giren deniz yosunu
+sayfa dışına taşıyor, üstte dalga izi, metne hiçbir şey değmiyor.
+
+**Düzeltildi:** üst bölge çapaları 0.07–0.10'dan 0.17'ye indirildi; süs kapat
+düğmesiyle aynı hizaya düşüyordu.
+
+**Düzeltilmedi — asıl darboğaz:** sayfa başına 4–7 süs isteniyor ama gerçekte
+2 çıkıyor. Motor doğru çalışıyor; **kütüphane çok ince.** Ortam başına onaylı
+varlık sayısı 4–7'yi besleyemiyor. Bir sonraki iş, varlık üretimi:
+
+- `magic` ve `space`: sıfır onaylı varlık
+- `ocean`, `bedtime`, `adventure`: ortam başına 2–3
+- Prosedürel üretim organik çizgi formlarında çalışıyor, tanınması gereken
+  nesnelerde ve parçacıklarda çalışmıyor — o kategoriler gerçek illüstrasyon
+  ya da ana illüstrasyonu üreten AI hattı ile doldurulmalı

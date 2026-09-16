@@ -49,23 +49,51 @@ class DailyStoryManager: ObservableObject {
         if let lastRotation = userDefaults.object(forKey: lastRotationKey) as? Date {
             let lastRotationDay = calendar.startOfDay(for: lastRotation)
             if today == lastRotationDay {
-                // Bugün zaten rotasyon yapılmış
+                // Bugün zaten rotasyon yapılmış.
+                //
+                // Ama kaydedilen seçim hâlâ GEÇERLİ olmalı: aktif profil
+                // değiştiyse (ya da yaş süzgeci sonradan geldiyse) dünkü
+                // mantıkla seçilmiş masal bugünkü çocuğa uymayabilir. Yalnızca
+                // id'ye bakıp döndürmek, üç yaşındaki kardeşi için seçilmiş
+                // masalı sekiz yaşındakine göstermek demekti — ve profil
+                // değiştirmek bunu hiç düzeltmiyordu.
                 if let savedTodayId = userDefaults.string(forKey: "todaysStoryId"),
                    let savedId = UUID(uuidString: savedTodayId),
-                   let story = dailyStories.first(where: { $0.id == savedId }) {
+                   let story = dailyStories.first(where: { $0.id == savedId }),
+                   ProfileManager.shared.currentProfile.map({ story.matches(age: $0.age) }) ?? true {
                     todaysStory = story
                     return
                 }
             }
         }
         
-        // Yeni günün hikayesini seç
-        let unreadStories = dailyStories.filter { !$0.isRead }
-        let storyPool = unreadStories.isEmpty ? dailyStories : unreadStories
-        
-        if let randomStory = storyPool.randomElement() {
-            todaysStory = randomStory
-            userDefaults.set(randomStory.id.uuidString, forKey: "todaysStoryId")
+        // Yeni günün hikayesini seç.
+        //
+        // Yaşa göre daraltılır. Öncesinde bütün havuzdan rastgele seçiliyordu,
+        // yani 5-7 yaşındaki bir çocuğa "1-4 yaş" etiketli üç dakikalık bir
+        // masal çıkabiliyordu — ekranda o etiketle birlikte. Günlük masalın tek
+        // işi her gün doğru masalı getirmek; yanlış yaşa getirmesi onu bir
+        // alışkanlıktan çıkarıp bir piyangoya çeviriyor.
+        let age = ProfileManager.shared.currentProfile?.age
+        let forAge = age.map { a in dailyStories.filter { $0.matches(age: a) } } ?? dailyStories
+
+        // Yaşa uyan hiç masal yoksa daraltma YAPILMAZ: boş bir Günlük sayfası,
+        // yaşı biraz kayan bir masaldan kötüdür. Ama sessiz kalmaz — bu bir
+        // içerik boşluğudur ve kayda geçer.
+        let pool: [DailyStory]
+        if forAge.isEmpty {
+            if let age { print("⚠️ Günlük: \(age) yaşına uygun masal yok, tüm havuzdan seçiliyor.") }
+            pool = dailyStories
+        } else {
+            pool = forAge
+        }
+
+        let unread = pool.filter { !$0.isRead }
+        let storyPool = unread.isEmpty ? pool : unread
+
+        if let chosen = storyPool.randomElement() {
+            todaysStory = chosen
+            userDefaults.set(chosen.id.uuidString, forKey: "todaysStoryId")
             userDefaults.set(Date(), forKey: lastRotationKey)
         }
     }

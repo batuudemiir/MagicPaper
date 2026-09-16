@@ -51,6 +51,32 @@ final class MPStreak: ObservableObject {
     }
 
     /// Pazartesi→Pazar, bu haftanın okunmuş günleri.
+    /// Haftanın bir gününün durumu.
+    ///
+    /// `[Bool]` yetmiyordu: kaçırılan bir Pazartesi ile henüz gelmemiş bir Cuma
+    /// ikisi de `false` dönüyor, ekranda ikisi de boş daire olarak çiziliyordu.
+    /// Çocuğa gelecek dört günü "kaçırdın" diye göstermek, alışkanlık kurmaya
+    /// çalışan bir ekranın yapabileceği en ters şey.
+    enum DayState { case done, missed, today, upcoming }
+
+    var weekStates: [DayState] {
+        var cal = Calendar(identifier: .gregorian)
+        cal.firstWeekday = 2 // Pazartesi
+        let today = cal.startOfDay(for: Date())
+        guard let weekStart = cal.dateInterval(of: .weekOfYear, for: today)?.start else {
+            return Array(repeating: .upcoming, count: 7)
+        }
+        return (0..<7).map { offset in
+            guard let day = cal.date(byAdding: .day, value: offset, to: weekStart) else {
+                return .upcoming
+            }
+            let read = readDays.contains(Self.fmt.string(from: day))
+            if read { return .done }
+            if day == today { return .today }
+            return day < today ? .missed : .upcoming
+        }
+    }
+
     var thisWeek: [Bool] {
         var cal = Calendar(identifier: .gregorian)
         cal.firstWeekday = 2 // Pazartesi
