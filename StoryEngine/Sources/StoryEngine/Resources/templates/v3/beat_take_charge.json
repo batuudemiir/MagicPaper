@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 4, Families III-2 and VI. The child accepts responsibility — and nobody asks them to. That is the whole beat: the decision is unprompted and the child names it to themselves. No adult delegates it, no companion requests it (that is receive_appeal, a different beat in a different family).",
+  "lengthClasses": {
+    "solo": "18-38 words — take_charge is the whole page (2 of 3)",
+    "paired": "10-16 words — shares page 4 with obstacle_raises (1 of 3)"
+  },
+  "variants": [
+    {
+      "id": "tc_s_01",
+      "text": "{{child.name}} bir karar verdi. Bu minik canlı kendi başına baş edemezdi, belliydi. O halde {{child.name}} bakacaktı ona. Kimse söylemedi, kendisi karar verdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "decided_unprompted"
+    },
+    {
+      "id": "tc_s_02",
+      "text": "Kimse {{child.name}}'e bir şey söylemedi. Ama {{child.name}} biliyordu. Bunu üstlenecek bir tek kendisi vardı ve üstlendi. Hiç tereddüt etmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "nobody_asked"
+    },
+    {
+      "id": "tc_s_03",
+      "text": "{{child.name}} yanına çömeldi. \"Ben buradayım,\" dedi. \"Ben hallederim.\" Söyleyince kendisi de şaşırdı ama geri almadı. Söylediğinin arkasında durdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "said_it_and_stood_by_it"
+    },
+    {
+      "id": "tc_s_04",
+      "text": "{{companion.name}} çok küçüktü ve yardıma ihtiyacı vardı. {{child.name}} bunu gördü ve sorumluluğu aldı. Artık onun işiydi bu, başkasının değil.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "saw_it_and_took_it"
+    },
+    {
+      "id": "tc_p_01",
+      "text": "{{child.name}} sorumluluğu üstlendi. Artık bu iş onundu, başkasının değil, bunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "the_job_is_mine_now"
+    },
+    {
+      "id": "tc_p_02",
+      "text": "Kimse ondan istemedi ama {{child.name}} kabul etti. Bakacaktı ona, söz vermişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "accepted_uninvited"
+    }
+  ]
+}

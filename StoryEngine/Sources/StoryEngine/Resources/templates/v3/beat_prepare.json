@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "prepare",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-2. The fear shrinks because the child gets READY — rehearsing, checking, steadying — not because they try a little. This is the sibling of small_step and must not read like it: nothing is attempted here, only prepared for.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 5 is never shared for this beat"
+  },
+  "variants": [
+    {
+      "id": "pr_s_01",
+      "text": "{{child.name}} hazırlandı. Ne söyleyeceğini kafasında bir kez daha kurdu. Sonra bir daha kurdu. Üçüncüde artık hazırdı. Hazırlanmak yarısı demekmiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "rehearsed_it_three_times"
+    },
+    {
+      "id": "pr_s_02",
+      "text": "Acele etmedi {{child.name}}. Önce durdu, baktı, nasıl olacağını kafasında canlandırdı. Hazırlanmak da işin bir parçasıydı. Hazırlanınca korkusu da küçüldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "picturing_it_first"
+    },
+    {
+      "id": "pr_s_03",
+      "text": "{{child.name}} kendini hazırladı. Derin nefes, düz omuz, sakin yüz. Kimse görmese de içeride bir şeyler yerine oturdu. Artık başlayabilirdi, hazırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "breath_shoulders_face"
+    },
+    {
+      "id": "pr_s_04",
+      "text": "Ne yapacağını önceden adım adım düşündü {{child.name}}. Bir de yedek planı vardı. Hazırlanınca iş o kadar da büyük görünmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "had_a_backup_plan"
+    },
+    {
+      "id": "pr_s_05",
+      "text": "{{child.name}} bir süre sessizce bekledi ve hazırlandı. Aceleye hiç getirmedi. Hazır olmadan başlamanın bir anlamı yoktu, bunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "no_point_starting_unready"
+    }
+  ]
+}

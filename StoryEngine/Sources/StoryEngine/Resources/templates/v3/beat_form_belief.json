@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 3,
+  "beat": "form_belief",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Pages 2 and 4. The child puts things together into an idea. Register differs by family and must be declared: Family I voices it as a QUESTION or a maybe, which keeps page 6 available; Family V voices it with CERTAINTY, because the misreading has to be held confidently before it can be gently overturned. A tentative line in a Misreading story has nothing to overturn.",
+  "lengthClasses": {
+    "paired": "10-16 words — shares its page with approach, examine or commit (3 of 3)"
+  },
+  "variants": [
+    {
+      "id": "fb_p_tent_01",
+      "text": "\"Belki de...\" diye başladı {{child.name}}. Bir fikir vardı ama emin değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "maybe_not_sure",
+      "register": "tentative"
+    },
+    {
+      "id": "fb_p_tent_02",
+      "text": "{{child.name}} bir ihtimal düşündü. Olabilir miydi acaba? Denemeye değerdi, kaybedecek bir şey yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "weighs_a_possibility",
+      "register": "tentative"
+    },
+    {
+      "id": "fb_p_tent_03",
+      "text": "Aklına bir şey geldi {{child.name}}'in. Kesin değildi ama bir başlangıçtı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "not_certain_but_a_start",
+      "register": "tentative"
+    },
+    {
+      "id": "fb_p_cert_01",
+      "text": "{{child.name}} hemen anladı. Bu kesin şuydu, başka bir şey olamazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "it_can_only_be_this",
+      "register": "certain"
+    },
+    {
+      "id": "fb_p_cert_02",
+      "text": "\"Biliyorum bunun ne olduğunu,\" dedi {{child.name}}. Hiç ama hiç şüphesi yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "no_doubt_at_all",
+      "register": "certain"
+    },
+    {
+      "id": "fb_p_cert_03",
+      "text": "{{child.name}} kafasında her şeyi çözmüştü bile. Çok basitti aslında, nasıl görmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "already_solved_it",
+      "register": "certain"
+    }
+  ]
+}

@@ -49,11 +49,17 @@ final class CatalogBundleTests: XCTestCase {
         XCTAssertEqual(catalog.settings.count, 21)
         XCTAssertEqual(catalog.companions.count, 20)
         XCTAssertEqual(catalog.objects.count, 25)
-        // 75 after the corpus replaced the library's scaffolding for its nine
-        // beats; the variant count rose because those nine are four to six
-        // times denser than what they replaced.
-        XCTAssertEqual(catalog.templates.count, 75)
-        XCTAssertEqual(catalog.recordCounts["variants"], 350)
+        // 85 with the corpus complete at 33 beat files, each replacing the
+        // library's thinner scaffolding for the beat it covers.
+        //
+        // These two numbers are pinned on purpose, and they have now earned it
+        // twice. A count that does not move when content is added is the only
+        // cheap signal that the test bundle's nested resource bundle went stale
+        // and the suite is being run against yesterday's corpus — a green run
+        // proves nothing about content the tests never loaded. When they fail
+        // after an authoring change, read the new number and move the pin.
+        XCTAssertEqual(catalog.templates.count, 85)
+        XCTAssertEqual(catalog.recordCounts["variants"], 434)
     }
 
     func testEveryShippedBlueprintDeclaresTheEightBeatArc() throws {

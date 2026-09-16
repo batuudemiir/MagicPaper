@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "insight",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family I-1. The click. It combines the ONE observation from page 2 with the ONE fact from page 3 and NOTHING else — if the child needs something the reader has not been shown, the deduction is a trick (catalog §2.1). One inferential step, never a chain. The child says it; the companion never gets there first.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "in_s_01",
+      "text": "Birden {{child.name}}'in kafasında iki şey birleşti. Gördüğü şeyle duyduğu şey aynı şeyi anlatıyordu. Nasıl da fark etmemişti! Cevap baştan beri oradaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_things_join"
+    },
+    {
+      "id": "in_s_02",
+      "text": "{{child.name}} durdu. Az önce olanla sabah gördüğü şey aynı kapıya çıkıyordu. \"Tamam,\" dedi yavaşça. \"Şimdi anladım.\" Cevap ta baştan beri elindeymiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "same_door"
+    },
+    {
+      "id": "in_s_03",
+      "text": "Tek bir şey eksikti ve {{child.name}} onu buldu. Cevap yeni bir yerde değildi. Zaten bildiği iki şeyin tam arasındaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "between_two_known_things"
+    },
+    {
+      "id": "in_s_04",
+      "text": "Aklına gelen şey çok basitti ama her şeyi açıklıyordu. {{child.name}} kendi kendine güldü. Bunca zaman burnunun dibindeymiş meğer.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "simple_and_explains_everything"
+    },
+    {
+      "id": "in_s_05",
+      "text": "{{child.name}} gözlerini kıstı ve düşündü. Sonra birden doğruldu. İki parça birbirine oturdu ve ortaya tek bir cevap çıktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_pieces_one_answer"
+    }
+  ]
+}

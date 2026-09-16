@@ -141,15 +141,19 @@
         "forest"
       ],
       "traits": [
-        "canReassure",
         "hasLocalKnowledge",
-        "isPlayful"
+        "isPlayful",
+        "isQuick"
       ],
       "isProperNoun": true,
       "habitat": [
         "forest",
         "garden",
         "mountain"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
       ]
     },
     {
@@ -170,14 +174,18 @@
         "garden"
       ],
       "traits": [
-        "canReassure",
-        "canHesitate",
-        "isSmallAndVulnerable"
+        "isSmall",
+        "isPatient"
       ],
       "isProperNoun": true,
       "habitat": [
         "garden",
         "forest"
+      ],
+      "castRoles": [
+        "hesitant",
+        "reassuring",
+        "needsCare"
       ]
     },
     {
@@ -199,13 +207,18 @@
       ],
       "traits": [
         "canFly",
-        "canReassure",
-        "isPatient"
+        "isPatient",
+        "hasLocalKnowledge"
       ],
       "isProperNoun": true,
       "habitat": [
         "forest",
         "mountain"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring",
+        "needsCare"
       ]
     },
     {
@@ -226,12 +239,16 @@
       ],
       "traits": [
         "canCarry",
-        "canReassure",
+        "canSwim",
         "isPlayful"
       ],
       "isProperNoun": true,
       "habitat": [
         "sea"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
       ]
     },
     {
@@ -252,14 +269,18 @@
         "forest"
       ],
       "traits": [
-        "canHesitate",
-        "isSmallAndVulnerable",
-        "isLiteralMinded"
+        "isSmall",
+        "isLiteralMinded",
+        "isQuick"
       ],
       "isProperNoun": true,
       "habitat": [
         "forest",
         "garden"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
       ]
     }
   ],
@@ -387,12 +408,13 @@
         "setting": [
           "hasThreshold"
         ],
-        "companion": [
-          "canReassure"
-        ],
         "discovery": [
           "isUnexplained",
           "emitsSignal"
+        ],
+        "casting": [
+          "hesitant",
+          "reassuring"
         ]
       },
       "forbids": {
@@ -483,7 +505,11 @@
               "showsTraces"
             ]
           ]
-        }
+        },
+        "casting": [
+          "hesitant",
+          "reassuring"
+        ]
       },
       "forbids": {
         "companion": [
@@ -563,11 +589,11 @@
       "premise": "Someone else cannot manage alone, and says so.",
       "editorialGuidance": "Page 3 states the need aloud. Page 6 is done by both, and the child's part must be real.",
       "requires": {
-        "companion": [
-          "isSmallAndVulnerable"
-        ],
         "discovery": [
           "impliesNeed"
+        ],
+        "casting": [
+          "needsCare"
         ]
       },
       "forbids": {
@@ -649,6 +675,10 @@
       "requires": {
         "discovery": [
           "impliesPresence"
+        ],
+        "casting": [
+          "hesitant",
+          "reassuring"
         ]
       },
       "forbids": {
@@ -733,6 +763,10 @@
         ],
         "discovery": [
           "impliesPresence"
+        ],
+        "casting": [
+          "hesitant",
+          "reassuring"
         ]
       },
       "forbids": {

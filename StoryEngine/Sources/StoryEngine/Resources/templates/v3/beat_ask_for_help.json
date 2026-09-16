@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 3,
+  "beat": "ask_for_help",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-3 and II-2 — a RESOLVING beat. Asking IS the child's act, and at five it is a real skill, harder than trying alone. The difficulty is saying you do not know. Never framed as giving up, never as the companion rescuing: the child chooses to ask, and the choosing is the page.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared (2 of 2)"
+  },
+  "variants": [
+    {
+      "id": "ah_s_01",
+      "text": "{{child.name}} sonunda sordu. Sormak zordu, çünkü bilmediğini söylemek gerekiyordu. Ama sordu ve hiçbir kötü şey olmadı. Hiçbir şey.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "saying_you_dont_know"
+    },
+    {
+      "id": "ah_s_02",
+      "text": "\"Bilmiyorum,\" dedi {{child.name}}. \"Bana yardım eder misin?\" Söylemesi zor oldu ama söyledi. İşte o zaman her şey değişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "said_i_dont_know"
+    },
+    {
+      "id": "ah_s_03",
+      "text": "{{child.name}} kendi başına çözemeyeceğini anladı. Bu utanılacak bir şey değildi, kimse öyle demezdi. Derin bir nefes aldı ve sordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "realised_and_asked"
+    },
+    {
+      "id": "ah_s_04",
+      "text": "Sormaya karar vermek, sormaktan daha zordu. {{child.name}} önce karar verdi, sonra sordu. İkisi de ayrı ayrı cesaret istedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "deciding_is_harder_than_asking"
+    },
+    {
+      "id": "ah_s_05",
+      "text": "{{child.name}} yanındakine döndü. \"Sen bilir misin?\" diye sordu. Sesi biraz titredi ama sorusunu sonuna kadar sordu, yarıda bırakmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "voice_shook_asked_anyway"
+    },
+    {
+      "id": "ah_s_06",
+      "text": "Yardım istemek {{child.name}}'e hiç kolay gelmedi. Yine de istedi, açıkça istedi. O gün öğrendiği en önemli şey buydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "hardest_and_most_useful"
+    }
+  ]
+}

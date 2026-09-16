@@ -118,6 +118,17 @@ public enum NarrativeFamily: String, Codable, Sendable, Hashable, CaseIterable {
         }
     }
 
+    /// How firmly a belief has to be voiced for this family's page 6 to work.
+    ///
+    /// Derived from the resolution mechanism rather than authored, so it cannot
+    /// drift: a story resolved *by revelation* has to overturn something, and a
+    /// belief voiced as a maybe leaves nothing to overturn. Everywhere else the
+    /// tentative form is what keeps the later page available — a certainty on
+    /// page 4 has already closed the question.
+    public var beliefRegister: VariantRegister {
+        resolution == .revelation ? .certain : .tentative
+    }
+
     /// The beat that realizes this family's resolution mechanism — the one that
     /// makes the way forward known.
     ///

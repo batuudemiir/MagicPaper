@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "give_up_something",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-3. The child gives up something of their own, FREELY. What is given must be replaceable and the giving must be the child's idea — no coerced sacrifice, no adult praising them for going without, no later reward that cancels it (catalog III-3 safety). Giving costs something or it is not giving.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "gs_s_01",
+      "text": "{{child.name}} cebindekini çıkardı ve uzattı. Kendi istedi, kimse söylemedi. Vermek düşündüğünden çok daha kolay geldi. Karşısındakinin yüzü bir anda değişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "took_it_out_and_offered"
+    },
+    {
+      "id": "gs_s_02",
+      "text": "\"Sende kalsın,\" dedi {{child.name}}. \"Benim zaten var.\" Doğruydu, vardı. Ama olmasaydı da yine verirdi. Verirken hiç düşünmedi bile.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "would_have_given_anyway"
+    },
+    {
+      "id": "gs_s_03",
+      "text": "{{child.name}} kısa bir süre düşündü, sonra verdi. İçinden \"keşke\" demedi hiç. Verince içi hafifledi, ağırlaşmadı. Beklediğinden çok daha iyi hissetti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "lighter_not_heavier"
+    },
+    {
+      "id": "gs_s_04",
+      "text": "Çok sevdiği bir şeydi ama {{child.name}} onu verdi. Sonra boş ellerine baktı. Yine de hiç pişman olmadı. Yerine başkası gelirdi nasılsa.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "loved_it_and_gave_it"
+    },
+    {
+      "id": "gs_s_05",
+      "text": "{{child.name}} en sevdiğini seçip verdi. En sevdiği olduğu için verdi zaten. Başkasını verse aynı şey olmazdı. Vermek böyle bir şeymiş demek.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "chose_the_best_one"
+    }
+  ]
+}

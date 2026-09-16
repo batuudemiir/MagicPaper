@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 3,
+  "beat": "exchange_views",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-2. Two people each held half the truth. NEITHER is at fault and neither is corrected — both were right about what they could see (catalog V-2 safety). The resolution is understanding, not winning, and the child listens at least as much as they explain.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "ev_s_01",
+      "text": "{{child.name}} anlattı, {{companion.name}} anlattı. İkisi de aynı şeyi başka yerden görmüştü. Anlayınca ikisi de güldü. Meğer kavga edecek bir şey yokmuş.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "each_told_their_half"
+    },
+    {
+      "id": "ev_s_02",
+      "text": "\"Sen oradan öyle görüyormuşsun,\" dedi {{child.name}}. \"Ben buradan başka türlü.\" İkisi de haklıydı, ikisi de eksikti. Eksikleri birbirini tamamladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "both_right_both_partial"
+    },
+    {
+      "id": "ev_s_03",
+      "text": "Konuştular. Uzun uzun değil, sadece birkaç cümle. Ama o birkaç cümle aradaki her şeyi düzeltmeye yetti. Konuşmadan anlaşmak mümkün değilmiş.",
+      "requiredSlots": [],
+      "lengthClass": "solo",
+      "move": "a_few_sentences_was_enough"
+    },
+    {
+      "id": "ev_s_04",
+      "text": "{{companion.name}} kendi gördüğünü anlattı. {{child.name}} dinledi ve kafasındaki resim tamamen değişti. Kimse yanılmamıştı aslında. Sadece farklı yerlerden bakmışlardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_picture_changed"
+    },
+    {
+      "id": "ev_s_05",
+      "text": "İki taraf da eksik bakmıştı. {{child.name}} ile {{companion.name}} parçalarını birleştirince ortaya bambaşka bir şey çıktı. İkisi de doğruymuş, ikisi de yarımmış.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "pieces_put_together"
+    }
+  ]
+}

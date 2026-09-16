@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "small_step",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Family II-1. A genuinely SMALL version of the crossing — one step, one hand, three paces — and it MUST succeed. Nothing goes wrong here: page 6 depends entirely on this having held. The child does it alone; the companion does not steady them.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 5 is never shared for this beat"
+  },
+  "variants": [
+    {
+      "id": "ss_s_01",
+      "text": "{{child.name}} sadece bir adım attı. Sadece bir tane. Ayağının altı sağlamdı, hiçbir şey olmadı. Orada öylece bir süre durdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "exactly_one_step"
+    },
+    {
+      "id": "ss_s_02",
+      "text": "Önce parmak ucuyla yokladı {{child.name}}. Sonra bütün ayağını koydu. Tuttu. Hiçbir şey sallanmadı, hiçbir şey kırılmadı. Bir süre öylece durup bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "toe_first_then_foot"
+    },
+    {
+      "id": "ss_s_03",
+      "text": "\"Bir adım,\" dedi {{child.name}} kendi kendine. \"Sadece bir adım.\" Attı o adımı ve dünya yerinde durdu, hiçbir yere gitmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_world_stayed_put"
+    },
+    {
+      "id": "ss_s_04",
+      "text": "{{child.name}} elini uzattı, dokundu, hemen geri çekti. Ama dokunmuştu işte. Sandığı kadar korkunç değildi, hiç de değildi. Parmakları hâlâ karıncalanıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "touched_and_withdrew"
+    },
+    {
+      "id": "ss_s_05",
+      "text": "İki adım gitti {{child.name}}, üçüncüyü atmadı. İki adım da bir şeydi. Arkasına baktı, geldiği yer o kadar uzak değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_steps_counted"
+    }
+  ]
+}

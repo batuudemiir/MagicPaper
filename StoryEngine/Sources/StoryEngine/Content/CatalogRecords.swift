@@ -81,12 +81,19 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     public let compatibleSettingTags: [ContentTag]
     public let compatibleThemes: [String]
     public let tags: [ContentTag]
-    /// What this companion can do *to the story* (§8.1).
+    /// What this companion can do, intrinsically (§8.1).
     ///
     /// This is what was missing when fifteen well-drawn personalities were
     /// being selected interchangeably: nothing could express why a timid
     /// rabbit and a wise owl are not the same choice.
     public let traits: Set<CompanionTrait>
+    /// The parts this companion could credibly play.
+    ///
+    /// Eligibility, not assignment: a hedgehog that can be `hesitant`,
+    /// `reassuring` *or* `needsCare` is not three characters — it is one
+    /// character a blueprint can cast three ways. Which part it actually plays
+    /// is resolved per story and lives on the binding, never here.
+    public let castRoles: Set<CompanionRole>
     /// Turkish grammar the renderer cannot infer from spelling.
     ///
     /// `hasPossessiveEnding` is the one that genuinely cannot be guessed:
@@ -104,7 +111,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
-        case traits
+        case traits, castRoles
     , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening}
 
     public init(from decoder: Decoder) throws {
@@ -119,6 +126,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .traits) ?? []
+        castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
@@ -138,6 +146,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         try container.encode(compatibleThemes, forKey: .compatibleThemes)
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
+        if !castRoles.isEmpty { try container.encode(castRoles, forKey: .castRoles) }
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)

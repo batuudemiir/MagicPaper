@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "retrace",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-2. The answer is BEHIND, not ahead — the child turns around and re-reads what they already passed. The insight is that going back is a choice, not a defeat. Nothing new is introduced on the way back; the thing was always there and was simply not seen.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "rt_s_01",
+      "text": "{{child.name}} durdu ve arkasını döndü. İleride yoktu, demek ki geridedi. Geldiği yoldan yavaş yavaş geri yürüdü. Her adımda bir kez daha baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "turned_around"
+    },
+    {
+      "id": "rt_s_02",
+      "text": "\"Biz bunu geçtik,\" dedi {{child.name}}. \"Geçerken görmedik.\" Geri döndüler ve bu kez çok dikkatli baktılar. Bu kez gözünden hiçbir şey kaçmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "we_passed_it"
+    },
+    {
+      "id": "rt_s_03",
+      "text": "İleriye gitmek hiç işe yaramıyordu. {{child.name}} geriye gitmeyi denedi. Aradığı şey ilk baktığı yerin hemen yanındaydı. Meğer hep oradaymış, görmemişler.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "backwards_instead"
+    },
+    {
+      "id": "rt_s_04",
+      "text": "{{child.name}} kendi ayak izlerini ters yönde takip etti. Her durduğu yerde bir kez daha baktı. Üçüncü durakta buldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "own_tracks_in_reverse"
+    },
+    {
+      "id": "rt_s_05",
+      "text": "Bazen ileride değil geride olur. {{child.name}} bunu o gün öğrendi. Geri döndü, yavaşladı ve gördü. Geri dönmek kaybetmek değilmiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sometimes_it_is_behind"
+    }
+  ]
+}

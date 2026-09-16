@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 3,
+  "beat": "belief_fails",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 4, Family V, always beside commit. What the child was sure of stops fitting. The child is NEVER foolish for having believed it and is never corrected by anyone — the world simply turns out to be different, and warmer (catalog V-1 safety). No embarrassment, no one laughing.",
+  "lengthClasses": {
+    "paired": "10-16 words — always beside commit (2 of 2)"
+  },
+  "variants": [
+    {
+      "id": "bf_p_01",
+      "text": "Ama bir şey uymadı. {{child.name}} düşündüğü gibi değilmiş, hiç de öyle değilmiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "does_not_fit_after_all"
+    },
+    {
+      "id": "bf_p_02",
+      "text": "{{child.name}}'e ilk bakışta öyle görünmüştü. İkinci bakışta hiç öyle değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "second_look_differs"
+    },
+    {
+      "id": "bf_p_03",
+      "text": "{{child.name}} yanılmıştı ama bunda utanılacak bir şey yoktu, herkes yanılabilirdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "wrong_and_that_is_fine"
+    },
+    {
+      "id": "bf_p_04",
+      "text": "{{child.name}}'in emin olduğu şey birden sallandı. Belki de yanlış anlamıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "certainty_wobbles"
+    },
+    {
+      "id": "bf_p_05",
+      "text": "Yaklaşınca {{child.name}} durakladı. Düşündüğü şey buraya hiç oturmuyordu, hiçbir şekilde.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "does_not_sit_right"
+    },
+    {
+      "id": "bf_p_06",
+      "text": "\"Ama olamaz,\" dedi {{child.name}}. Baktı, tekrar baktı. Uymuyordu işte, bir türlü uymuyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "looks_twice_still_wrong"
+    }
+  ]
+}

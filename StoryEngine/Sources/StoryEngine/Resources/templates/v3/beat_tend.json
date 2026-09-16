@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 5, Families III-3 and VI. The child cares for something, and nothing dramatic happens — that is the point. This is the only beat in the vocabulary whose content is ordinary effort repeated over time. Small acts, done properly, with no reward and no audience. Never a montage, never a miracle.",
+  "lengthClasses": {
+    "solo": "18-38 words — tend is the whole page (3 of 3)"
+  },
+  "variants": [
+    {
+      "id": "td_s_01",
+      "text": "{{child.name}} yapabileceği her şeyi yaptı. Su getirdi, gölgeye çekti, yanından ayrılmadı. Ne yaptığını tam bilmiyordu ama elinden geleni yaptı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "did_everything_possible"
+    },
+    {
+      "id": "td_s_02",
+      "text": "O gün {{child.name}} hep yanındaydı. Arada bakıyor, arada konuşuyordu. {{companion.name}} dinliyor gibiydi, belki de değildi. Hiç fark etmezdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stayed_all_day"
+    },
+    {
+      "id": "td_s_03",
+      "text": "{{child.name}} çok dikkatliydi. Dokunurken usul, taşırken yavaştı. Kırılacak bir şey tutuyormuş gibi davrandı, çünkü gerçekten öyleydi. Hiç acele etmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "handled_like_something_breakable"
+    },
+    {
+      "id": "td_s_04",
+      "text": "Bakmak sandığından zordu. {{child.name}} doğru yapıp yapmadığını hiç bilmiyordu. Yine de bırakıp gitmedi, hep oradaydı, hep yakınında durdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "harder_than_expected_stayed"
+    },
+    {
+      "id": "td_s_05",
+      "text": "{{child.name}} sabahtan akşama kadar ilgilendi. Yorulunca oturdu, dinlendi, sonra kalkıp devam etti. Kimse teşekkür etmedi, {{child.name}} de beklemedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "no_thanks_expected"
+    },
+    {
+      "id": "td_s_06",
+      "text": "Her şeyi küçük küçük yaptı {{child.name}}. Biraz su, biraz gölge, biraz sabır. Büyük bir şey yapmadı ama hiçbirini aksatmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "small_things_never_skipped"
+    }
+  ]
+}

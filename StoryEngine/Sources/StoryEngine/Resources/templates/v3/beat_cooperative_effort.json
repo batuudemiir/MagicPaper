@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 3,
+  "beat": "cooperative_effort",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-1. TWO contributions, both necessary and both visible on the page. The child's half must include a CHOICE or an IDEA, never only labour — 'child = body, companion = directions' satisfies the letter of the agency rule and inverts its spirit (catalog §2.3). If either could have managed alone, the obstacle on page 4 is wrong, not this page.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "ce_s_01",
+      "text": "{{child.name}} nasıl yapılacağını buldu, {{companion.name}} de yapabildiği yeri yaptı. İkisi aynı anda çalıştı. Ancak öyle oldu, başka türlü olmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_finds_one_does"
+    },
+    {
+      "id": "ce_s_02",
+      "text": "\"Sen şuradan, ben buradan,\" dedi {{child.name}}. {{companion.name}} başını salladı. Böyle bölüşünce iş birden kolaylaştı, ikisi de şaşırdı. Kimse tek başına yapamazdı bunu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "split_the_work"
+    },
+    {
+      "id": "ce_s_03",
+      "text": "{{child.name}}'in aklı, {{companion.name}}'in çevikliği. İkisi bir araya gelince olmayacak iş kalmadı. Birlikte çektiler, birlikte başardılar. Ne biri eksik olurdu, ne öteki.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "mind_and_quickness"
+    },
+    {
+      "id": "ce_s_04",
+      "text": "Tek başına olmuyordu, {{child.name}} bunu görmüştü. Yerini değiştirdi, {{companion.name}}'i çağırdı ve ikisi birden denedi. Bu kez oldu. İkisi birden olunca oldu işte.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "changed_position_called_help"
+    },
+    {
+      "id": "ce_s_05",
+      "text": "{{child.name}} planı yaptı, {{companion.name}} uyguladı. Ya da tam tersi oldu. Sonunda ikisi de kimin ne yaptığını hatırlamıyordu bile.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "who_did_what_forgotten"
+    }
+  ]
+}

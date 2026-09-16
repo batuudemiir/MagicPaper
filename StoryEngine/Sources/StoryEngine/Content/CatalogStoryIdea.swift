@@ -114,7 +114,15 @@ extension ContentRequirements {
         ContentRequirements(
             setting: setting.combined(with: other.setting),
             companion: companion.combined(with: other.companion),
-            discovery: discovery.combined(with: other.discovery)
+            discovery: discovery.combined(with: other.discovery),
+            // Two castings narrow each other: if the blueprint offers
+            // `hesitant ∨ reassuring` and the idea asks for `reassuring`, only
+            // `reassuring` survives. An empty side is "no opinion", so it yields
+            // to the other rather than emptying the result — intersecting with
+            // it would silently make every idea uncastable.
+            casting: casting.isEmpty ? other.casting
+                : other.casting.isEmpty ? casting
+                : casting.intersection(other.casting)
         )
     }
 }

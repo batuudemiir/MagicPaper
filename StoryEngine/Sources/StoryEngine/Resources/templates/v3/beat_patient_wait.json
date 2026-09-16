@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-2 and VI-1 — a RESOLVING beat. Waiting is the act, not the absence of one: the child chooses to stay, and that choice is what makes the story resolve. Never framed as passivity or as luck. Nothing arrives to reward the waiting; the waiting is what lets the child be there when it happens.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared (2 of 2)"
+  },
+  "variants": [
+    {
+      "id": "pw_s_01",
+      "text": "{{child.name}} oturdu ve bekledi. Acele etmedi, sıkılmadı, kalkıp gitmedi. Beklemek de bir şey yapmaktı, bunu o gün öğrendi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waiting_is_doing"
+    },
+    {
+      "id": "pw_s_02",
+      "text": "Zaman geçti. {{child.name}} kıpırdamadan bekledi, gözünü bile ayırmadı. Tam vazgeçecekken değil, tam beklerken oldu her şey. Tam orada.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "happened_while_waiting"
+    },
+    {
+      "id": "pw_s_03",
+      "text": "{{child.name}} sabırla bekledi. Bir kez gökyüzüne baktı, sonra sadece bekledi. Beklemek gerçekten zordu ama yapabiliyordu, şimdi bunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "looked_up_once_then_waited"
+    },
+    {
+      "id": "pw_s_04",
+      "text": "Beklemek hiç kolay değildi. {{child.name}} birkaç kez kalkmak istedi ama kalkmadı. Kalksaydı ne olacağını hiçbir zaman öğrenemeyecekti, hiç.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "nearly_got_up_but_did_not"
+    },
+    {
+      "id": "pw_s_05",
+      "text": "{{child.name}} bekledi, {{companion.name}} de bekledi. İkisi de tek kelime etmedi. Bekleyince olan şeyler vardır, bu da onlardan biriydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waited_together_in_silence"
+    },
+    {
+      "id": "pw_s_06",
+      "text": "Her şeyin bir zamanı vardı. {{child.name}} bunu önceden bilmiyordu ama o gün öğrendi. Sadece bekledi ve zamanı geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "everything_has_its_time"
+    }
+  ]
+}

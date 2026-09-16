@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family VI-2 — the hardest page in the catalog. The release is visibly the GOOD outcome: the creature is well, it is going where it belongs, and the CHILD chooses the moment (catalog §2.4). No lingering, no last look that reads as loss, no ambiguity about whether it survives. Sadness is allowed; grief is not.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "lg_s_01",
+      "text": "{{child.name}} avucunu açtı. Zorlamadı, tutmadı, sadece açtı. Gitme zamanıydı ve ikisi de bunu biliyordu. Bir süre elini öylece havada tuttu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "opened_the_palm"
+    },
+    {
+      "id": "lg_s_02",
+      "text": "Bırakmak zordu ama doğruydu. {{child.name}} bunu kendisi seçti, kimse söylemedi. Elini açtı ve gidişini izledi. Uzaklaşana kadar da gözünü ayırmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "chose_it_themselves"
+    },
+    {
+      "id": "lg_s_03",
+      "text": "\"Hadi git,\" dedi {{child.name}}. Sesi biraz çatladı ama söyledi. Bırakmak da bakmanın bir parçasıydı. Gitmesi gerekiyordu, kalması değil.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "letting_go_is_part_of_caring"
+    },
+    {
+      "id": "lg_s_04",
+      "text": "{{child.name}} son bir kez baktı, sonra bıraktı. Tutsaydı iyi olmazdı, bunu gayet iyi biliyordu. Doğru olanı yaptı. Zor olanla doğru olan aynı şeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "keeping_would_have_been_wrong"
+    },
+    {
+      "id": "lg_s_05",
+      "text": "Artık hazırdı, {{child.name}} bunu görebiliyordu. O yüzden bıraktı. Sevdiğin bir şeyi bırakmak da sevmekmiş. Bunu o gün, tam orada öğrendi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "ready_so_released"
+    }
+  ]
+}

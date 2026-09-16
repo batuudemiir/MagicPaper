@@ -16,15 +16,60 @@ public enum SettingTrait: String, Codable, Sendable, Hashable, CaseIterable {
     case isEnclosed, isOpen, showsTraces, isTended, hasWeather
 }
 
-/// What a companion can *do to the story* — not what species it is.
+/// What a companion *is capable of* — intrinsic, and true in every story.
 ///
-/// The fifteen shipped companions have well-drawn personalities that nothing in
-/// the old system could act on, because nothing could express why a timid
-/// rabbit and a wise owl are not interchangeable. These traits are that
-/// expression.
+/// Capabilities are what a blueprint **forbids**: an obliging dragon that can
+/// carry the child across dissolves a crossing story, so Family II forbids
+/// `canCarry` and the premise survives.
+///
+/// What a capability is *not* is a part in a story. That distinction is the
+/// whole of D2, and getting it wrong was a real defect on both sides of this
+/// merge: `isSmallAndVulnerable` was required by one blueprint ("someone who
+/// cannot manage alone") and forbidden by another ("someone needing care pulls
+/// attention away from thinking"), and both rationales were sound, because they
+/// were about different things. A firefly is small in every story; it is the
+/// one who needs help in only some of them. One vocabulary could not say that,
+/// so a blueprint excluded a firefly for a reason that was not true of it there.
+///
+/// `isSmall` is therefore the physical fact and lives here; `needsCare` is the
+/// part being played and lives in `CompanionRole`.
 public enum CompanionTrait: String, Codable, Sendable, Hashable, CaseIterable {
-    case canHesitate, canReassure, hasLocalKnowledge, isSmallAndVulnerable
-    case isLiteralMinded, canFly, canCarry, isPlayful, isPatient
+    case hasLocalKnowledge, isLiteralMinded
+    case canFly, canCarry, canSwim
+    case isSmall, isStrong, isQuick
+    case isPlayful, isPatient
+}
+
+/// A part a companion can credibly play.
+///
+/// Not `CharacterEngine.CastRole`, which answers a different question: that one
+/// says *which slot in the cast* (protagonist, companion, supporting), this one
+/// says *what the companion is being* within that slot. Both are casting; they
+/// are not the same casting, and one type doing both jobs would be the very
+/// conflation this delta exists to undo.
+///
+/// Declared by content as **eligibility** — "this one could be the knowledgeable
+/// local, or the one who is scared too" — and consumed by a blueprint as
+/// **casting**: *I cast the companion as `needsCare`*. The same firefly is a
+/// guide in one blueprint and the care-recipient in another, which is what a
+/// reusable content library is for, and what a single flat trait list made
+/// impossible.
+///
+/// Distinct from a capability in one testable way: capabilities are true of the
+/// record, cast roles are true of *this story*. So exactly one is resolved per
+/// story and carried on the binding — a companion that arrives trembling on
+/// page 3 and speaks steadily on page 6 is not two shades of the same
+/// character, it is two characters.
+public enum CompanionRole: String, Codable, Sendable, Hashable, CaseIterable {
+    /// Knows the way, or knows this place. Leads.
+    case guide
+    /// Is the one in trouble. The child's help is what the story turns on.
+    case needsCare
+    /// Is frightened too, and comes anyway. Not a lesser `reassuring`: for a
+    /// crossing story this is arguably the better children's-book part.
+    case hesitant
+    /// Is steady about the thing the child finds hard.
+    case reassuring
 }
 
 /// What the thing the child finds *implies*.
@@ -150,24 +195,44 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
     public let setting: TraitRequirement<SettingTrait>
     public let companion: TraitRequirement<CompanionTrait>
     public let discovery: TraitRequirement<DiscoveryTrait>
+    /// The part the companion is cast in — **one of** these, not all of them.
+    ///
+    /// Deliberately not a `TraitRequirement`. A story casts exactly one part, so
+    /// a conjunction here would be unwriteable ("must play the guide *and* the
+    /// one who needs care") and the type should not be able to say it. Empty
+    /// means the blueprint does not care, and any part the companion can play
+    /// will do.
+    ///
+    /// A choice of parts is the common case rather than the exception: a
+    /// crossing story wants a companion who is *emotionally legible about the
+    /// crossing*, which `hesitant` and `reassuring` both are. Requiring only the
+    /// soothing one — as this engine's own threshold blueprint did — excludes
+    /// the frightened companion who goes anyway, for no reason anybody would
+    /// defend once it is written down.
+    public let casting: Set<CompanionRole>
 
     public init(
         setting: TraitRequirement<SettingTrait> = [],
         companion: TraitRequirement<CompanionTrait> = [],
-        discovery: TraitRequirement<DiscoveryTrait> = []
+        discovery: TraitRequirement<DiscoveryTrait> = [],
+        casting: Set<CompanionRole> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
+        self.casting = casting
     }
 
-    public var isEmpty: Bool { setting.isEmpty && companion.isEmpty && discovery.isEmpty }
+    public var isEmpty: Bool {
+        setting.isEmpty && companion.isEmpty && discovery.isEmpty && casting.isEmpty
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         setting = try container.decodeIfPresent(TraitRequirement<SettingTrait>.self, forKey: .setting) ?? []
         companion = try container.decodeIfPresent(TraitRequirement<CompanionTrait>.self, forKey: .companion) ?? []
         discovery = try container.decodeIfPresent(TraitRequirement<DiscoveryTrait>.self, forKey: .discovery) ?? []
+        casting = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .casting) ?? []
     }
 }
 
@@ -221,6 +286,36 @@ public enum TraitMatch {
     /// its habitats must share one with the setting.
     public static func sharesHabitat(_ content: Set<Habitat>, setting: Set<Habitat>) -> Bool {
         content.isEmpty || setting.isEmpty || !content.isDisjoint(with: setting)
+    }
+
+    /// The parts this companion could play in *this* blueprint.
+    ///
+    /// Empty casting means the blueprint does not cast, so any part the
+    /// companion declares is available. Otherwise it is the overlap — and an
+    /// empty overlap is what makes the companion inadmissible, not a weaker
+    /// choice.
+    public static func castableRoles(
+        offered: Set<CompanionRole>,
+        casting: Set<CompanionRole>
+    ) -> Set<CompanionRole> {
+        casting.isEmpty ? offered : offered.intersection(casting)
+    }
+
+    /// Why this companion cannot be cast — or nil if it can.
+    ///
+    /// A companion declaring no parts is treated the way trait-less content is:
+    /// it has made no claims, so nothing about it can be checked. That keeps an
+    /// unmigrated record out of a cast rather than letting it through because
+    /// nobody asked it anything.
+    public static func castingRejection(
+        offered: Set<CompanionRole>,
+        casting: Set<CompanionRole>
+    ) -> String? {
+        guard !offered.isEmpty else { return "declares no castable role" }
+        guard !casting.isEmpty else { return nil }
+        guard castableRoles(offered: offered, casting: casting).isEmpty else { return nil }
+        return "cannot be cast as "
+            + casting.map(\.rawValue).sorted().joined(separator: " or ")
     }
 
     public static func admits<Trait>(

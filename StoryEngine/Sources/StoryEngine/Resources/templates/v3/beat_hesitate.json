@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 3,
+  "beat": "hesitate",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 4, Family II — the page the blueprint rests on. The reluctance is SHOWN, never named. 'Korkuyorum' makes fear the child's label for themselves and is the word they will carry out of the book; 'İstemiyorum' reads as sulking and invites a caregiver's correction; 'Çekiniyorum' is above register. The writable form is physical (catalog §2.2). Nobody urges, nobody counts down, and hesitating costs the child nothing. Paired variants exist because a shipped blueprint puts hesitate beside commit on page 4. Shown-not-named applies identically at both lengths; the short form simply drops the second physical detail, never the register.",
+  "lengthClasses": {
+    "solo": "18-38 words — hesitate is the whole page (2 of 2)",
+    "paired": "10-16 words — page 4 also carries commit (blueprint_threshold_crossing_001)"
+  },
+  "variants": [
+    {
+      "id": "hz_s_01",
+      "text": "{{child.name}}'in ayakları durdu. Gitmek istiyordu, bunu biliyordu. Ama ayakları bir türlü ilerlemedi. Öylece orada kaldı, uzun bir süre.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "feet_stopped"
+    },
+    {
+      "id": "hz_s_02",
+      "text": "Bir adım attı {{child.name}}, sonra geri çekildi. Sonra bir adım daha, yine geri. Vücudu ona bir şey söylüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "step_forward_step_back"
+    },
+    {
+      "id": "hz_s_03",
+      "text": "{{child.name}} elini uzattı ve geri çekti. İki kez daha aynısını yaptı. Üçüncüde elini cebine soktu ve orada tuttu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "hand_out_hand_back"
+    },
+    {
+      "id": "hz_s_04",
+      "text": "Orada durdu {{child.name}}. Uzun uzun durdu. Kimse acele ettirmedi, kendisi de etmedi. Ama kıpırdayamadı da, bir türlü kıpırdayamadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stood_a_long_time"
+    },
+    {
+      "id": "hz_s_05",
+      "text": "{{child.name}} bir süre hiç konuşmadı. Yutkundu. Sonra \"biraz bekleyelim mi?\" diye sordu, çok yavaş bir sesle, neredeyse fısıltıyla.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "asks_to_wait_a_bit"
+    },
+    {
+      "id": "hz_s_06",
+      "text": "Kalbi hızlandı {{child.name}}'in. Elleri biraz terledi. Bunun adını koymadı ama ne olduğunu gayet iyi biliyordu. Yine de söylemedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "knew_it_without_naming_it"
+    },
+    {
+      "id": "hz_p_01",
+      "text": "{{child.name}} olduğu yerde kaldı. Ayakları onu bir türlü dinlemek istemiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "stayed_put_feet_disobeyed"
+    },
+    {
+      "id": "hz_p_02",
+      "text": "{{child.name}} yutkundu. Bir adım ileri gitti, sonra iki adım geri geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "one_forward_two_back"
+    },
+    {
+      "id": "hz_p_03",
+      "text": "Eli havada kaldı {{child.name}}'in. Yavaşça indirdi, cebine soktu, öylece bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "hand_left_hanging"
+    },
+    {
+      "id": "hz_p_04",
+      "text": "{{child.name}} uzun uzun baktı ama hiç kıpırdamadı. Kimse de zorlamadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "looked_long_moved_none"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3, always beside meet_companion. The need is stated PLAINLY and ONCE, by the companion, in its own words. No pleading, no tears, no distress — it is a small problem stated by someone small, and that is what keeps the page safe for a five-year-old (catalog §2.3). Band is 8-14 because meet_companion is a long partner.",
+  "lengthClasses": {
+    "paired": "8-14 words — always beside meet_companion (4 of 4)"
+  },
+  "variants": [
+    {
+      "id": "ra_p_01",
+      "text": "\"Yardım eder misin?\" dedi {{companion.name}}. Sesi sakindi ama umutluydu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "asks_calmly"
+    },
+    {
+      "id": "ra_p_02",
+      "text": "{{companion.name}} tek bir şey istedi. \"Eve dönmem lazım,\" dedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "needs_to_get_home"
+    },
+    {
+      "id": "ra_p_03",
+      "text": "\"Bir şeyimi kaybettim,\" dedi {{companion.name}}. Ağlamadı, sadece söyledi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "lost_something_no_tears"
+    },
+    {
+      "id": "ra_p_04",
+      "text": "{{companion.name}} ne istediğini kısaca anlattı. Tek başına yapamıyordu, o kadar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "cannot_manage_alone"
+    },
+    {
+      "id": "ra_p_05",
+      "text": "\"Benimle gelir misin?\" diye sordu {{companion.name}}. Israr etmedi, bekledi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "asks_without_insisting"
+    },
+    {
+      "id": "ra_p_06",
+      "text": "{{companion.name}} derdini anlattı. Uzun sürmedi, birkaç kelimeyle bitti.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "few_words_only"
+    },
+    {
+      "id": "ra_p_07",
+      "text": "\"Sensiz olmuyor,\" dedi {{companion.name}}. Bunu hiç utanmadan söyledi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "says_it_unashamed"
+    },
+    {
+      "id": "ra_p_08",
+      "text": "{{companion.name}} yavaşça anlattı derdini. {{child.name}} sonuna kadar dinledi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "listened_to_the_end"
+    }
+  ]
+}

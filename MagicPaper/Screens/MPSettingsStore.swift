@@ -15,6 +15,8 @@ final class MPSettingsStore: ObservableObject {
     @Published var reminder: Bool { didSet { d.set(reminder, forKey: K.reminder) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
+    /// Dokunsal geri bildirim — okuyucudaki sayfa çevirme dokunuşu buna bakar.
+    @Published var haptics: Bool { didSet { d.set(haptics, forKey: K.haptics) } }
 
     /// Okunmuş masal id'leri — "seri" ve onay kuyruğu için.
     @Published var approvedStoryIDs: Set<String> {
@@ -29,6 +31,7 @@ final class MPSettingsStore: ObservableObject {
         static let approve = "mp_approveBeforeShow"
         static let screenLimit = "mp_screenLimit"
         static let approved = "mp_approvedStoryIDs"
+        static let haptics = "mp_haptics"
         static let seeded = "mp_settingsSeeded"
     }
 
@@ -50,6 +53,10 @@ final class MPSettingsStore: ObservableObject {
         approve = d.bool(forKey: K.approve)
         screenLimit = d.bool(forKey: K.screenLimit)
         approvedStoryIDs = Set(d.stringArray(forKey: K.approved) ?? [])
+        // `seeded` bloğuna eklenemez: o blok yalnızca ilk kurulumda çalışır ve
+        // mevcut kullanıcılarda bir daha çalışmaz, dolayısıyla oraya konan yeni
+        // bir varsayılan onlara hiç ulaşmaz. Anahtarın yokluğu "açık" demektir.
+        haptics = d.object(forKey: K.haptics) == nil ? true : d.bool(forKey: K.haptics)
     }
 
     var readSize: MP.ReadSize {

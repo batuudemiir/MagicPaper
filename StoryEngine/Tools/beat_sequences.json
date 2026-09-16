@@ -1,0 +1,473 @@
+{
+  "_comment": "Page-by-page beat sequences for the 14 blueprints in BLUEPRINT_CATALOG_V2.md. This is a CHECK FIXTURE, not the production content model — it carries only what validate_beat_corpus.py needs to compute the effective variant pool per page. Regenerate from the catalog whenever a blueprint's beat sequence changes.",
+  "source": "BLUEPRINT_CATALOG_V2.md",
+  "blueprints": [
+    {
+      "id": "bp_unexplained_askingout_003",
+      "family": "I",
+      "resolution": "seekingKnowledge",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion"
+        ],
+        [
+          "commit",
+          "obstacle_raises"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "ask_for_help"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close"
+        ]
+      ]
+    },
+    {
+      "id": "bp_unexplained_moment_002",
+      "family": "I",
+      "resolution": "patientObservation",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "approach"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "commit"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "patient_wait"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close",
+          "self_recognize"
+        ]
+      ]
+    },
+    {
+      "id": "bp_unexplained_signal_001",
+      "family": "I",
+      "resolution": "insight",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "form_belief",
+          "commit"
+        ],
+        [
+          "first_attempt",
+          "obstacle_raises"
+        ],
+        [
+          "insight"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close",
+          "carry_forward"
+        ]
+      ]
+    },
+    {
+      "id": "bp_threshold_crossing_001",
+      "family": "II",
+      "resolution": "incrementalCourage",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "approach"
+        ],
+        [
+          "meet_companion"
+        ],
+        [
+          "hesitate"
+        ],
+        [
+          "small_step"
+        ],
+        [
+          "find_own_courage"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "self_recognize",
+          "warm_close"
+        ]
+      ]
+    },
+    {
+      "id": "bp_threshold_joining_002",
+      "family": "II",
+      "resolution": "askingToJoin",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "hesitate"
+        ],
+        [
+          "prepare"
+        ],
+        [
+          "ask_for_help"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close",
+          "carry_forward"
+        ]
+      ]
+    },
+    {
+      "id": "bp_appeal_reunion_001",
+      "family": "III",
+      "resolution": "cooperation",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "approach"
+        ],
+        [
+          "meet_companion",
+          "receive_appeal"
+        ],
+        [
+          "commit",
+          "obstacle_raises"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "cooperative_effort"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close"
+        ]
+      ]
+    },
+    {
+      "id": "bp_appeal_sharing_003",
+      "family": "III",
+      "resolution": "givingSomethingUp",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion",
+          "receive_appeal"
+        ],
+        [
+          "commit",
+          "obstacle_raises"
+        ],
+        [
+          "tend"
+        ],
+        [
+          "give_up_something"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close",
+          "self_recognize"
+        ]
+      ]
+    },
+    {
+      "id": "bp_appeal_speakingup_002",
+      "family": "III",
+      "resolution": "advocacy",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion"
+        ],
+        [
+          "take_charge",
+          "obstacle_raises"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "speak_for"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close",
+          "carry_forward"
+        ]
+      ]
+    },
+    {
+      "id": "bp_absence_retracing_002",
+      "family": "IV",
+      "resolution": "retracing",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "commit",
+          "obstacle_raises"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "retrace"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close",
+          "self_recognize"
+        ]
+      ]
+    },
+    {
+      "id": "bp_absence_search_001",
+      "family": "IV",
+      "resolution": "persistence",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion",
+          "receive_appeal"
+        ],
+        [
+          "commit",
+          "obstacle_raises"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "persist"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close",
+          "carry_forward"
+        ]
+      ]
+    },
+    {
+      "id": "bp_misreading_truth_001",
+      "family": "V",
+      "resolution": "revelation",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine",
+          "form_belief"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "belief_fails",
+          "commit"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "reveal_truth"
+        ],
+        [
+          "succeed"
+        ],
+        [
+          "warm_close"
+        ]
+      ]
+    },
+    {
+      "id": "bp_misreading_twosides_002",
+      "family": "V",
+      "resolution": "perspectiveShift",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "approach",
+          "form_belief"
+        ],
+        [
+          "meet_companion",
+          "receive_appeal"
+        ],
+        [
+          "belief_fails",
+          "commit"
+        ],
+        [
+          "first_attempt"
+        ],
+        [
+          "exchange_views"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close",
+          "self_recognize"
+        ]
+      ]
+    },
+    {
+      "id": "bp_charge_release_002",
+      "family": "VI",
+      "resolution": "release",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "approach"
+        ],
+        [
+          "meet_companion",
+          "companion_offers"
+        ],
+        [
+          "take_charge"
+        ],
+        [
+          "tend"
+        ],
+        [
+          "let_go"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "warm_close",
+          "carry_forward"
+        ]
+      ]
+    },
+    {
+      "id": "bp_charge_tending_001",
+      "family": "VI",
+      "resolution": "patience",
+      "beats": [
+        [
+          "notice_anomaly"
+        ],
+        [
+          "examine"
+        ],
+        [
+          "meet_companion"
+        ],
+        [
+          "take_charge"
+        ],
+        [
+          "tend"
+        ],
+        [
+          "patient_wait"
+        ],
+        [
+          "restore"
+        ],
+        [
+          "self_recognize",
+          "warm_close"
+        ]
+      ]
+    }
+  ]
+}

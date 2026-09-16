@@ -65,7 +65,7 @@ struct CompanionStep: View {
     }
 
     /// The companion's own line if it has one, otherwise what it is. Never the
-    /// trait list — "canReassure" is a selection concept, not something to read.
+    /// trait list — "reassuring" is a casting concept, not something to read.
     private func description(for companion: CatalogCompanion) -> String {
         companion.personality.isEmpty
             ? companion.type.capitalized(with: Locale(identifier: "tr_TR"))

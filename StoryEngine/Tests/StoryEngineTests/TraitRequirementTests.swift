@@ -40,9 +40,9 @@ final class TraitRequirementTests: XCTestCase {
     /// Two groups are two independent choices, not one pooled alternative.
     func testTwoGroupsMustEachBeMet() {
         let requirement = TraitRequirement<CompanionTrait>(
-            anyOf: [[.canReassure, .canHesitate], [.isPatient, .isPlayful]])
-        XCTAssertTrue(requirement.isSatisfied(by: [.canReassure, .isPatient]))
-        XCTAssertFalse(requirement.isSatisfied(by: [.canReassure, .canHesitate]),
+            anyOf: [[.canFly, .canSwim], [.isPatient, .isPlayful]])
+        XCTAssertTrue(requirement.isSatisfied(by: [.canFly, .isPatient]))
+        XCTAssertFalse(requirement.isSatisfied(by: [.canFly, .canSwim]),
                        "Both members of one group does not satisfy the other group.")
     }
 
@@ -76,9 +76,9 @@ final class TraitRequirementTests: XCTestCase {
     func testRejectionNamesBothWhatIsMissingAndWhatIsForbidden() {
         let reason = TraitMatch.rejection(
             offered: [.canFly, .isPatient],
-            required: TraitRequirement<CompanionTrait>(allOf: [.canReassure]),
+            required: TraitRequirement<CompanionTrait>(allOf: [.hasLocalKnowledge]),
             forbidden: [.canFly])
-        XCTAssertEqual(reason, "lacks canReassure; offers forbidden canFly")
+        XCTAssertEqual(reason, "lacks hasLocalKnowledge; offers forbidden canFly")
     }
 
     // MARK: - Decoding

@@ -209,8 +209,9 @@ extension CatalogMergeTests {
     /// would have worked. The binder has to reconsider the setting.
     func testTheBinderReconsidersTheSettingRatherThanGivingUp() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        // "Someone needs us" leans Appeal, which requires isSmallAndVulnerable —
-        // a hedgehog or a rabbit, neither of which lives on a mountain.
+        // "Someone needs us" leans Appeal, which casts the companion as the
+        // one who needs care — a hedgehog or a rabbit, neither of which lives
+        // on a mountain.
         for seed in ["a", "b", "c", "d", "e", "f", "g", "h"] {
             let story = try OfflineStoryComposer().compose(
                 catalog: catalog,
@@ -218,7 +219,7 @@ extension CatalogMergeTests {
                     childName: "Yeliz",
                     storyIdeaID: ContentID("idea_someone_needs_us_001"),
                     seed: seed))
-            XCTAssertTrue(story.content.companion.traits.contains(.isSmallAndVulnerable))
+            XCTAssertEqual(story.content.castRole, .needsCare)
             XCTAssertTrue(TraitMatch.sharesHabitat(
                 story.content.companion.habitat, setting: story.content.setting.habitat))
         }
@@ -302,9 +303,21 @@ extension CatalogMergeTests {
                 for id in page.variantIDs {
                     guard let variant = byID[id] else { continue }
                     XCTAssertTrue(
-                        variant.fits(setting: story.content.setting, discovery: story.content.discovery),
+                        variant.fits(setting: story.content.setting,
+                                     discovery: story.content.discovery,
+                                     companion: story.content.companion),
                         "p\(page.pageNumber) used \(id.rawValue), which needs "
-                        + "\(variant.settingTraits.map(\.rawValue))/\(variant.discoveryTraits.map(\.rawValue))")
+                        + "\(variant.settingTraits.map(\.rawValue))/\(variant.discoveryTraits.map(\.rawValue))"
+                        + "/\(variant.capabilityRequire.map(\.rawValue))")
+                    // A line written for a part must never reach a companion
+                    // playing a different one — the cast is resolved once for
+                    // the story, so this holds across pages, not just within
+                    // them.
+                    XCTAssertTrue(
+                        variant.suits(role: story.content.castRole),
+                        "p\(page.pageNumber) used \(id.rawValue), written for "
+                        + "\(variant.castRoles.map(\.rawValue)), but the companion is cast as "
+                        + "\(story.content.castRole?.rawValue ?? "nothing")")
                 }
             }
         }

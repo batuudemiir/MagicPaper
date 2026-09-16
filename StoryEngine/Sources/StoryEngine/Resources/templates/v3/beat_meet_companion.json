@@ -3,7 +3,7 @@
   "beat": "meet_companion",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3 of every blueprint. The companion must arrive with its OWN reason to be here — it lives nearby, it crosses often, it is in trouble, it was passing. 'The fox appeared' is the failure this beat exists to prevent. Variants are cast-specific: a companion cast as needsCare cannot stride in offering help, and one cast as guide cannot be trembling. The need itself is NOT voiced here — receive_appeal does that on page 3 or 4. No body-part assumptions: the roster includes a robot.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3 of every blueprint. The companion must arrive with its OWN reason to be here — it lives nearby, it crosses often, it is in trouble, it was passing. 'The fox appeared' is the failure this beat exists to prevent. Variants are cast-specific: a companion cast as needsCare cannot stride in offering help, and one cast as guide cannot be trembling. The need itself is NOT voiced here — receive_appeal does that on page 3 or 4. No body-part assumptions: the roster includes a robot. Both classes are authored because page 3 is shared in 14 blueprints and solo in 5. This beat's real constraint is the PAGE total rather than the line: its partner is always short (8-14), so a 16-22 line pairs safely and an 18-24 line stands alone safely.",
   "castings": [
     "guide",
     "needsCare",
@@ -23,7 +23,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "emerges_and_claims_the_place"
+      "move": "emerges_and_claims_the_place",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_guide_02",
@@ -37,7 +38,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "routine_of_its_own"
+      "move": "routine_of_its_own",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_guide_03",
@@ -54,7 +56,8 @@
         "canFly"
       ],
       "capabilityForbid": [],
-      "move": "arrives_from_above"
+      "move": "arrives_from_above",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_guide_04",
@@ -69,7 +72,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "speaks_first_from_behind"
+      "move": "speaks_first_from_behind",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_guide_05",
@@ -83,7 +87,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "was_passing_and_saw_it_too"
+      "move": "was_passing_and_saw_it_too",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_care_01",
@@ -98,7 +103,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "movement_on_the_ground"
+      "move": "movement_on_the_ground",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_care_02",
@@ -113,7 +119,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "sound_leads_to_someone"
+      "move": "sound_leads_to_someone",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_care_03",
@@ -128,7 +135,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "trembling_stillness"
+      "move": "trembling_stillness",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_care_04",
@@ -142,7 +150,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "child_crouches_and_greets"
+      "move": "child_crouches_and_greets",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_care_05",
@@ -158,7 +167,8 @@
       "capabilityForbid": [
         "isLiteralMinded"
       ],
-      "move": "one_eye_opens"
+      "move": "one_eye_opens",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_hesitant_01",
@@ -174,7 +184,8 @@
       "capabilityForbid": [
         "isLiteralMinded"
       ],
-      "move": "watched_before_seen"
+      "move": "watched_before_seen",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_hesitant_02",
@@ -187,7 +198,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "both_stuck_at_the_same_place"
+      "move": "both_stuck_at_the_same_place",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_hesitant_03",
@@ -201,7 +213,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "admits_it_first"
+      "move": "admits_it_first",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_calm_01",
@@ -215,7 +228,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "sits_down_and_waits"
+      "move": "sits_down_and_waits",
+      "lengthClass": "paired"
     },
     {
       "id": "mc_calm_02",
@@ -230,7 +244,8 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "no_hurry"
+      "move": "no_hurry",
+      "lengthClass": "solo"
     },
     {
       "id": "mc_calm_03",
@@ -244,7 +259,12 @@
       ],
       "settingTraits": [],
       "capabilityForbid": [],
-      "move": "looks_the_same_way"
+      "move": "looks_the_same_way",
+      "lengthClass": "paired"
     }
-  ]
+  ],
+  "lengthClasses": {
+    "paired": "16-22 words — page 3 also carries companion_offers or receive_appeal, both 8-14, so the page lands 24-36",
+    "solo": "18-38 words — meet_companion is the whole page (5 blueprints)"
+  }
 }

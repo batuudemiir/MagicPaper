@@ -96,6 +96,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkBeatAuthoring(catalog))
         issues.append(contentsOf: checkBeatSequences(catalog))
         issues.append(contentsOf: checkBeatCoverage(catalog))
+        issues.append(contentsOf: checkCasting(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -329,6 +330,49 @@ public struct CatalogIntegrityChecker: Sendable {
             .init(severity: .fatal, code: "beat_without_templates",
                   message: "Blueprints require beat '\($0.rawValue)' but no template realizes it.")
         }
+    }
+
+    /// Casting has to have somewhere to land on both sides.
+    ///
+    /// Two ways it silently does not, both of which produce a story that fails
+    /// at compose time rather than at load time — which is the wrong end:
+    ///
+    /// - a companion that is otherwise selectable but declares no part is
+    ///   unusable for every corpus line that names one, and page 3 names one in
+    ///   every blueprint;
+    /// - a blueprint that casts a part nothing in the catalog can play selects
+    ///   nobody, however well-argued the blueprint is.
+    ///
+    /// Reported as errors rather than fatals, because a catalog can be
+    /// legitimately mid-migration and the rest of it still works.
+    private func checkCasting(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+
+        // Trait-less records are already unselectable and say so elsewhere;
+        // flagging them here as well would bury the ones that matter.
+        for companion in catalog.companions
+        where !companion.traits.isEmpty && companion.castRoles.isEmpty {
+            issues.append(.init(
+                severity: .error, code: "companion_without_cast_role", recordID: companion.id,
+                message: "Companion '\(companion.id)' declares capabilities but no castable role, "
+                    + "so no line written for a part can be given to it."
+            ))
+        }
+
+        let castable = catalog.companions.reduce(into: Set<CompanionRole>()) {
+            $0.formUnion($1.castRoles)
+        }
+        for blueprint in catalog.blueprints where !blueprint.requires.casting.isEmpty {
+            let orphans = blueprint.requires.casting.subtracting(castable)
+            guard orphans.count == blueprint.requires.casting.count else { continue }
+            issues.append(.init(
+                severity: .error, code: "uncastable_blueprint", recordID: blueprint.id,
+                message: "Blueprint '\(blueprint.id)' casts the companion as "
+                    + blueprint.requires.casting.map(\.rawValue).sorted().joined(separator: " or ")
+                    + ", which no companion in the catalog can play."
+            ))
+        }
+        return issues
     }
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {

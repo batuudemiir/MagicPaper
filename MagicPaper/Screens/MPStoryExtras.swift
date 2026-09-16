@@ -16,10 +16,22 @@ extension Story {
     }
 
     /// Okuma ilerlemesi 0…1. Kayıtlı son sayfadan hesaplanır.
+    ///
+    /// Tek sayfalık masal özel olarak ele alınır. Önceki biçim
+    /// `guard pages.count > 1` diyordu, yani tek sayfalık bir masal okunmuş
+    /// olsa bile sonsuza kadar `0` dönüyordu: kütüphanede hep "Oku" kalıyor,
+    /// asla bitmiş sayılmıyordu. Bir sayfa okunduysa o masal bitmiştir.
     var mpProgress: Double {
-        guard pages.count > 1, let last = lastReadPage else { return 0 }
+        guard !pages.isEmpty, let last = lastReadPage else { return 0 }
+        guard pages.count > 1 else { return last >= 0 ? 1 : 0 }
         return min(1, max(0, Double(last) / Double(pages.count - 1)))
     }
+
+    /// Masal sonuna kadar okundu mu?
+    ///
+    /// Tek yerde söylenir çünkü üç çağrı yeri (kütüphane, ana sayfa, masal
+    /// eylemleri sayfası) "bitti"yi aynı şekilde anlamak zorunda.
+    var isFinished: Bool { mpProgress >= 1 }
 
     /// "8 sayfa · Dün" — sayılar her zaman birim sözcüğüyle.
     var mpMeta: String {

@@ -19,6 +19,14 @@ struct StoryCreationFlow: View {
         case companion
         case preparing
         case cover(Story)
+        /// Okuyucu akışın *içinde* açılır.
+        ///
+        /// Eskiden kapak `app.readerStory`'yi kurup kendi tam ekran sunumunu
+        /// kapatıyordu, `ContentView` de ikinci bir tam ekran sunum açıyordu.
+        /// Üst üste geçen iki tam ekran sunum, içlerinde ne animasyonlanırsa
+        /// animasyonlansın, kitabın açılması gibi hissettirilemez. Aynı görünüm
+        /// ağacında olunca kâğıt kesintisiz kalabiliyor (§13).
+        case reading(Story)
         case failed
     }
 
@@ -37,11 +45,17 @@ struct StoryCreationFlow: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            header
+            if showsHeader { header }
             content
         }
         .mpScreenBackground()
-        .animation(MP.M.gated(MP.M.base), value: phase)
+        .animation(MP.M.gated(MP.M.page), value: phase)
+    }
+
+    /// Okuyucu açıkken akışın kendi başlık çubuğu yok: sayfa baştan başa kâğıt.
+    private var showsHeader: Bool {
+        if case .reading = phase { return false }
+        return true
     }
 
     // MARK: - Chrome
@@ -106,11 +120,15 @@ struct StoryCreationFlow: View {
             StoryPreparationView()
         case .cover(let story):
             StoryCoverView(story: story, childName: profile?.name ?? "") {
-                // The one line that fixes B1: the old text path saved a story
-                // and then dismissed to nothing, because it never set this.
-                app.readerStory = story
-                dismiss()
+                phase = .reading(story)
             }
+            .transition(.opacity)
+
+        case .reading(let story):
+            // Yeni yapılmış masal her zaman ilk sayfadan açılır.
+            StoryReaderView(story: story, startingPage: 0)
+                .environmentObject(app)
+                .transition(.opacity)
         case .failed:
             StoryCreationFailureView(
                 onRetry: { phase = .idea },

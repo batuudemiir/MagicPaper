@@ -131,10 +131,12 @@ public struct OfflineStoryComposer: Sendable {
 
                 let variant = try Self.chooseVariant(
                     from: template.variants,
+                    realizing: current,
                     wanting: wanted,
                     after: previousBeat,
                     onPage: slot.pageNumber,
                     content: content,
+                    register: blueprint.family?.beliefRegister,
                     seed: storySeed,
                     salt: salt + ".v"
                 )
@@ -181,18 +183,22 @@ public struct OfflineStoryComposer: Sendable {
 
     /// Picks a line for one beat.
     ///
-    /// Three narrowings, each applied only while it leaves something to choose
-    /// from. That ordering matters more than it looks: a corpus is always
-    /// partly authored, and a filter that empties the pool would turn "no
-    /// variant declares a length yet" into "this story cannot be told". So each
-    /// preference is dropped rather than enforced when honouring it would leave
-    /// nothing, and the selection stays deterministic throughout.
+    /// Some narrowings degrade and some do not, and which is which is the whole
+    /// design. A corpus is always partly authored, so a filter that empties the
+    /// pool must not turn "nobody has written a short version yet" into "this
+    /// story cannot be told" — those preferences are dropped rather than
+    /// enforced. But a filter whose violation **contradicts another page** is
+    /// different in kind: relaxing it does not make a weaker book, it makes an
+    /// incoherent one, and the author wants to be told instead. Selection stays
+    /// deterministic either way.
     static func chooseVariant(
         from variants: [CatalogVariant],
+        realizing beat: StoryBeat,
         wanting length: VariantLengthClass,
         after previous: StoryBeat?,
         onPage page: Int,
         content: BoundContent,
+        register: VariantRegister?,
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
@@ -201,13 +207,40 @@ public struct OfflineStoryComposer: Sendable {
             return kept.isEmpty ? pool : kept
         }
 
-        var pool = variants
-        // 1. Content the line assumes must actually be there. Degrades: a
-        //    glowing egg is wrong and a reader forgives it once.
-        pool = narrow(pool) { $0.fits(setting: content.setting, discovery: content.discovery) }
+        // 0. The part the companion is playing. **Does not degrade.**
+        //
+        //    A line written for a guide, given to a companion cast as the one
+        //    who needs care, does not read as a slightly-off line: it describes
+        //    a different character than the rest of the book does. This is the
+        //    same class as narrowing 3 below, and the reason the cast is
+        //    resolved once per story rather than per page.
+        let byRole = variants.filter { $0.suits(role: content.castRole) }
+        guard !byRole.isEmpty else {
+            throw OfflineSelectionError.noVariantForRole(
+                role: content.castRole, beat: beat, page: page)
+        }
+
+        var pool = byRole
+        // 1. Content the line assumes must actually be there — including what
+        //    the companion can do, so a line about gliding down is offered only
+        //    to something that flies. Degrades: a glowing egg is wrong and a
+        //    reader forgives it once.
+        pool = narrow(pool) {
+            $0.fits(
+                setting: content.setting,
+                discovery: content.discovery,
+                companion: content.companion)
+        }
         // 2. The right length for a shared or unshared page. Degrades: the page
         //    runs long or short, which is cosmetic.
         pool = narrow(pool) { $0.lengthClass == nil || $0.lengthClass == length }
+        // 2b. How firmly the line is voiced, where the corpus says it matters.
+        //     Degrades only in the sense that an unauthored register cannot be
+        //     honoured; a line that declares one is never given to a family that
+        //     needs the other while an alternative exists.
+        if let register {
+            pool = narrow(pool) { $0.register == nil || $0.register == register }
+        }
 
         // 3. A line written to follow a particular beat. **Does not degrade.**
         //

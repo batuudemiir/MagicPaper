@@ -328,7 +328,7 @@ enum CatalogCompanionFixture {
         try! JSONDecoder().decode(CatalogCompanion.self, from: Data("""
         {"id":"companion_dragon_test_001","name":"Kanat","type":"ejderha",
          "compatibleSettings":["forest"],"tags":["forest"],
-         "traits":["canReassure","canCarry","canFly"]}
+         "traits":["canCarry","canFly"],"castRoles":["guide","reassuring"]}
         """.utf8))
     }()
 }

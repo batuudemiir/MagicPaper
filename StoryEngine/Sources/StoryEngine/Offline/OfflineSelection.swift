@@ -56,6 +56,7 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case requestedContentRejected(id: ContentID, reason: String)
     case noTemplate(beat: StoryBeat, page: Int)
     case noVariantAfter(beat: StoryBeat?, page: Int)
+    case noVariantForRole(role: CompanionRole?, beat: StoryBeat, page: Int)
     case blueprintNotBeatAuthored(id: ContentID)
 
     public var explanation: String {
@@ -82,6 +83,10 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "Page \(page) has no line written to follow "
                 + "'\(beat?.rawValue ?? "the opening")'. Authoring gap: every beat that can "
                 + "precede this one needs a line, or one line with no ordering constraint."
+        case .noVariantForRole(let role, let beat, let page):
+            return "Page \(page) needs a '\(beat.rawValue)' line for a companion cast as "
+                + "'\(role?.rawValue ?? "nothing")'. Authoring gap: every part a blueprint can "
+                + "cast needs a line for this beat, or one line that names no part."
         case .blueprintNotBeatAuthored(let id):
             return "Blueprint '\(id.rawValue)' declares no beats and cannot be composed."
         }
@@ -95,6 +100,26 @@ public struct BoundContent: Sendable, Hashable {
     public let setting: CatalogSetting
     public let companion: CatalogCompanion
     public let discovery: CatalogObject
+    /// The part the companion plays in *this* story.
+    ///
+    /// Resolved once, here, rather than page by page. A companion eligible for
+    /// several parts must commit to one: picking per page would let the same
+    /// character arrive trembling on page 3 and speak steadily on page 6, which
+    /// is not a range, it is two characters. Nil only when nothing in the
+    /// catalog casts — content that declares no parts.
+    public let castRole: CompanionRole?
+
+    public init(
+        setting: CatalogSetting,
+        companion: CatalogCompanion,
+        discovery: CatalogObject,
+        castRole: CompanionRole? = nil
+    ) {
+        self.setting = setting
+        self.companion = companion
+        self.discovery = discovery
+        self.castRole = castRole
+    }
 }
 
 /// Chooses content for a blueprint by trait intersection.
@@ -171,8 +196,23 @@ public struct OfflineContentBinder: Sendable {
             },
             requested: intent.companionID, seed: intent.seed, axis: "companion",
             offered: \.traits, required: requires.companion, forbidden: forbids.companion,
-            empty: OfflineSelectionError.noCompanion
+            empty: OfflineSelectionError.noCompanion,
+            // Casting is checked alongside capability rather than before it, so
+            // "cannot be cast as needsCare" reaches the caller in the same list
+            // as "offers forbidden canFly". Pre-filtering would have been
+            // shorter and would have dropped the reason, which is the habit this
+            // whole error type exists to break.
+            also: { TraitMatch.castingRejection(offered: $0.castRoles, casting: requires.casting) }
         )
+        // One part, chosen once. `sorted` is not cosmetic: `Set` iteration order
+        // is not stable between runs, so picking from the raw set would make the
+        // same intent produce different books.
+        let castable = TraitMatch
+            .castableRoles(offered: companion.castRoles, casting: requires.casting)
+            .sorted { $0.rawValue < $1.rawValue }
+        let castRole = castable.isEmpty
+            ? nil
+            : DeterministicPicker.pick(from: castable, seed: intent.seed, salt: "cast")
         let discovery = try choose(
             catalog.objects.filter {
                 TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
@@ -181,7 +221,8 @@ public struct OfflineContentBinder: Sendable {
             offered: \.traits, required: requires.discovery, forbidden: forbids.discovery,
             empty: OfflineSelectionError.noDiscovery
         )
-        return BoundContent(setting: setting, companion: companion, discovery: discovery)
+        return BoundContent(
+            setting: setting, companion: companion, discovery: discovery, castRole: castRole)
     }
 
     /// Admissible records in the order the seed would pick them, so trying them
@@ -233,15 +274,20 @@ public struct OfflineContentBinder: Sendable {
         offered: KeyPath<Record, Set<Trait>>,
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>,
-        empty: ([String]) -> OfflineSelectionError
+        empty: ([String]) -> OfflineSelectionError,
+        also: ((Record) -> String?)? = nil
     ) throws -> Record where Record.ID == ContentID {
         var reasons: [String] = []
         var admissible: [Record] = []
 
-        for record in records {
-            if let reason = TraitMatch.rejection(
+        func rejection(_ record: Record) -> String? {
+            TraitMatch.rejection(
                 offered: record[keyPath: offered], required: required, forbidden: forbidden
-            ) {
+            ) ?? also?(record)
+        }
+
+        for record in records {
+            if let reason = rejection(record) {
                 reasons.append("  \(record.id.rawValue): \(reason)")
             } else {
                 admissible.append(record)
@@ -252,9 +298,7 @@ public struct OfflineContentBinder: Sendable {
         if let requested {
             if let match = admissible.first(where: { $0.id == requested }) { return match }
             let why = records.first(where: { $0.id == requested })
-                .flatMap {
-                    TraitMatch.rejection(offered: $0[keyPath: offered], required: required, forbidden: forbidden)
-                } ?? "no such \(axis)"
+                .flatMap(rejection) ?? "no such \(axis)"
             throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
         }
 

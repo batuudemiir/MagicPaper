@@ -77,10 +77,28 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// needs a setting with weather even when the blueprint does not.
     public let settingTraits: Set<SettingTrait>
     public let discoveryTraits: Set<DiscoveryTrait>
+    /// Capabilities the line takes for granted.
+    ///
+    /// `arrives_from_above` needs `canFly`. Declaring that is strictly better
+    /// than the workaround this engine reached for, which was to delete flight
+    /// from the prose so every line would be safe for every companion: that
+    /// keeps the corpus usable at the cost of its best sentences.
+    public let capabilityRequire: Set<CompanionTrait>
+    /// Capabilities that would make the line false or silly.
+    public let capabilityForbid: Set<CompanionTrait>
+    /// Parts this line is written for.
+    ///
+    /// A companion cast as `needsCare` cannot stride in offering help, and one
+    /// cast as `guide` cannot be trembling. Empty means the line works whoever
+    /// the companion is being.
+    public let castRoles: Set<CompanionRole>
+    /// How certain the line sounds, where that is load-bearing.
+    public let register: VariantRegister?
 
     private enum CodingKeys: String, CodingKey {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
+        case capabilityRequire, capabilityForbid, castRoles, register
     }
 
     public init(from decoder: Decoder) throws {
@@ -100,19 +118,51 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
             .compactMap(StoryBeat.init(rawValue:))
         settingTraits = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .settingTraits) ?? []
         discoveryTraits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .discoveryTraits) ?? []
+        capabilityRequire = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityRequire) ?? []
+        capabilityForbid = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityForbid) ?? []
+        castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
+        register = try container.decodeIfPresent(VariantRegister.self, forKey: .register)
     }
 
     /// Whether this line can be used for the content that was bound.
     ///
     /// A variant declaring nothing fits anything, which is what keeps the
     /// existing corpus working.
-    public func fits(setting: CatalogSetting, discovery: CatalogObject) -> Bool {
+    public func fits(
+        setting: CatalogSetting,
+        discovery: CatalogObject,
+        companion: CatalogCompanion
+    ) -> Bool {
         settingTraits.isSubset(of: setting.traits)
             && discoveryTraits.isSubset(of: discovery.traits)
+            && capabilityRequire.isSubset(of: companion.traits)
+            && capabilityForbid.isDisjoint(with: companion.traits)
+    }
+
+    /// Whether this line suits the part the companion is playing.
+    ///
+    /// Separate from `fits` because it is enforced differently: content the line
+    /// assumes can be relaxed under pool pressure, a part cannot. See
+    /// `OfflineStoryComposer.chooseVariant`.
+    public func suits(role: CompanionRole?) -> Bool {
+        guard !castRoles.isEmpty else { return true }
+        guard let role else { return false }
+        return castRoles.contains(role)
     }
 
     /// Slots the text genuinely contains, regardless of what was declared.
     public var actualSlots: [ContentSlot] { ContentSlot.tokens(in: text) }
+}
+
+/// How certain a line sounds.
+///
+/// Authored only where it decides whether a later page still works. A belief
+/// voiced as a maybe leaves page 6 something to do; one held with certainty is
+/// what a Misreading story needs, because a tentative misreading leaves nothing
+/// to overturn. The two are not stylistic variants of each other.
+public enum VariantRegister: String, Codable, Sendable, Hashable, CaseIterable {
+    case tentative
+    case certain
 }
 
 /// Whether a variant is a whole page or half of one.

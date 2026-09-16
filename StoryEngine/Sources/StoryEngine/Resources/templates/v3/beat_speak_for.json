@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 3,
+  "beat": "speak_for",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-2. The child says what the other CANNOT. Not louder, not instead of — for. The companion is present and wants this; the child is its voice, never its owner. The listeners are ordinary and unhostile: nobody is being fought, only reached.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "sf_s_01",
+      "text": "{{child.name}} öne çıktı ve konuştu. {{companion.name}} söyleyemiyordu, o söyledi. Sesi yüksek değildi ama gayet net çıktı. Herkes duydu, herkes döndü baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stepped_forward_and_spoke"
+    },
+    {
+      "id": "sf_s_02",
+      "text": "\"Onun adına ben söyleyeceğim,\" dedi {{child.name}}. Sonra anlattı. Baştan sona, hiçbir şeyi atlamadan, hiçbir şeyi büyütmeden. Anlatınca içi de rahatladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "speaks_on_their_behalf"
+    },
+    {
+      "id": "sf_s_03",
+      "text": "Kimse {{companion.name}}'i duymuyordu. {{child.name}} duyulana kadar tekrar etti, sabırla. Sonunda herkes döndü ve dinledi. Beklemeye değdi, sonunda anlaşıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "repeated_until_heard"
+    },
+    {
+      "id": "sf_s_04",
+      "text": "{{child.name}} kelimeleri buldu. {{companion.name}}'in bulamadığı, söylemeye çalışıp söyleyemediği kelimeleri. Söyleyince hava bir anda değişti. Doğru kelime çok şeyi değiştirirmiş.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "found_the_missing_words"
+    },
+    {
+      "id": "sf_s_05",
+      "text": "Söylemek hiç kolay değildi, herkes bakıyordu. {{child.name}} yine de söyledi. Çünkü kendisi söylemezse kimse söylemeyecekti. Söyledikten sonra hiç pişman olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "said_it_though_watched"
+    }
+  ]
+}

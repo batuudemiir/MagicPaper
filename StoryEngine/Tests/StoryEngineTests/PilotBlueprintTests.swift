@@ -157,8 +157,16 @@ final class PilotBlueprintTests: XCTestCase {
     func testPilotDeclaresWhatItNeedsAndWhatItCannotHave() throws {
         let blueprint = try pilot()
         XCTAssertEqual(blueprint.requires.setting, [.hasThreshold])
-        XCTAssertEqual(blueprint.requires.companion, [.canReassure])
         XCTAssertEqual(blueprint.requires.discovery, [.isUnexplained, .emitsSignal])
+        // The companion is *cast*, not required. A crossing story needs someone
+        // emotionally legible about the crossing, and the companion who is
+        // frightened too and goes anyway is that as much as the steady one is —
+        // arguably more. Requiring `canReassure`, as this blueprint used to,
+        // excluded the better half of its own cast for no defensible reason.
+        XCTAssertEqual(blueprint.requires.casting, [.hesitant, .reassuring])
+        XCTAssertTrue(
+            blueprint.requires.companion.isEmpty,
+            "Capability is what a blueprint forbids; the part it casts belongs in `casting`.")
         XCTAssertEqual(blueprint.forbids.companion, [.canFly, .canCarry])
         XCTAssertTrue(blueprint.contradictoryTraits.isEmpty)
     }
@@ -169,7 +177,7 @@ final class PilotBlueprintTests: XCTestCase {
     /// story.
     func testACarryingCompanionIsRejected() throws {
         let blueprint = try pilot()
-        let owl: Set<CompanionTrait> = [.canReassure, .hasLocalKnowledge, .canFly]
+        let owl: Set<CompanionTrait> = [.canFly, .isPatient, .hasLocalKnowledge]
         XCTAssertFalse(TraitMatch.admits(
             offered: owl,
             required: blueprint.requires.companion,
@@ -183,17 +191,40 @@ final class PilotBlueprintTests: XCTestCase {
         )
     }
 
-    func testAReassuringGroundedCompanionIsAccepted() throws {
+    func testAGroundedCompanionWhoCanPlayThePartIsAccepted() throws {
         let blueprint = try pilot()
-        let fox: Set<CompanionTrait> = [.canReassure, .hasLocalKnowledge, .isPlayful]
+        let fox: Set<CompanionTrait> = [.hasLocalKnowledge, .isPlayful, .isQuick]
         XCTAssertTrue(TraitMatch.admits(
             offered: fox,
             required: blueprint.requires.companion,
             forbidden: blueprint.forbids.companion
         ))
-        XCTAssertNil(TraitMatch.rejection(offered: fox,
-                                          required: blueprint.requires.companion,
-                                          forbidden: blueprint.forbids.companion))
+        XCTAssertNil(TraitMatch.castingRejection(
+            offered: [.guide, .reassuring], casting: blueprint.requires.casting))
+    }
+
+    /// The half of F2 that a single vocabulary could not express: the same
+    /// record, small in every story, is admitted here and cast as the one who
+    /// needs care elsewhere. Under the old vocabulary a blueprint that forbade
+    /// `isSmallAndVulnerable` rejected it for a fact that was true of the animal
+    /// and irrelevant to the part.
+    func testASmallCompanionIsCastableWithoutBeingTheOneWhoNeedsCare() throws {
+        let blueprint = try pilot()
+        let hedgehog: Set<CompanionRole> = [.hesitant, .reassuring, .needsCare]
+        XCTAssertNil(TraitMatch.castingRejection(
+            offered: hedgehog, casting: blueprint.requires.casting))
+        XCTAssertEqual(
+            TraitMatch.castableRoles(offered: hedgehog, casting: blueprint.requires.casting),
+            [.hesitant, .reassuring],
+            "Casting narrows to the parts this blueprint offers; `needsCare` is not one of them.")
+    }
+
+    /// A companion that can only be the one in trouble cannot carry a crossing.
+    func testACompanionWithNoOfferedPartIsRejectedWithAReason() throws {
+        let blueprint = try pilot()
+        XCTAssertEqual(
+            TraitMatch.castingRejection(offered: [.needsCare], casting: blueprint.requires.casting),
+            "cannot be cast as hesitant or reassuring")
     }
 
     /// §16 asks each pilot to be instantiable against the Phase 4 matrix. It is
@@ -206,28 +237,34 @@ final class PilotBlueprintTests: XCTestCase {
             let name: String
             let setting: Set<SettingTrait>
             let companion: Set<CompanionTrait>
+            let roles: Set<CompanionRole>
             let discovery: Set<DiscoveryTrait>
         }
         let matrix: [Row] = [
             .init(name: "forest+fox+light",
                   setting: [.hasThreshold, .canConceal, .isEnclosed],
-                  companion: [.canReassure, .hasLocalKnowledge, .isPlayful],
+                  companion: [.hasLocalKnowledge, .isPlayful, .isQuick],
+                  roles: [.guide, .reassuring],
                   discovery: [.isUnexplained, .emitsSignal]),
             .init(name: "mountain+owl+footprints",
                   setting: [.hasThreshold, .hasHeight, .hasDistance],
-                  companion: [.canReassure, .hasLocalKnowledge, .canFly],
+                  companion: [.canFly, .isPatient, .hasLocalKnowledge],
+                  roles: [.guide, .reassuring],
                   discovery: [.impliesPresence, .isFragmentary]),
             .init(name: "garden+hedgehog+sound",
                   setting: [.hasThreshold, .isTended, .canConceal],
-                  companion: [.canReassure, .canHesitate, .isSmallAndVulnerable],
+                  companion: [.isSmall, .isPatient],
+                  roles: [.hesitant, .reassuring, .needsCare],
                   discovery: [.isUnexplained, .emitsSignal, .impliesNeed]),
             .init(name: "sea+dolphin+shell",
                   setting: [.hasWater, .isOpen, .hasDistance],
-                  companion: [.canReassure, .canCarry, .isPlayful],
+                  companion: [.canCarry, .canSwim, .isPlayful],
+                  roles: [.guide, .reassuring],
                   discovery: [.isBeautiful, .impliesPresence]),
             .init(name: "forest+rabbit+map",
                   setting: [.hasThreshold, .canConceal, .isEnclosed],
-                  companion: [.canHesitate, .isSmallAndVulnerable],
+                  companion: [.isSmall, .isLiteralMinded, .isQuick],
+                  roles: [.hesitant, .needsCare],
                   discovery: [.isFragmentary, .impliesPresence])
         ]
 
@@ -241,6 +278,8 @@ final class PilotBlueprintTests: XCTestCase {
                 TraitMatch.rejection(offered: row.companion,
                                      required: blueprint.requires.companion,
                                      forbidden: blueprint.forbids.companion).map { "companion \($0)" },
+                TraitMatch.castingRejection(offered: row.roles,
+                                            casting: blueprint.requires.casting).map { "casting \($0)" },
                 TraitMatch.rejection(offered: row.discovery,
                                      required: blueprint.requires.discovery,
                                      forbidden: blueprint.forbids.discovery).map { "discovery \($0)" }
@@ -251,7 +290,12 @@ final class PilotBlueprintTests: XCTestCase {
         XCTAssertEqual(admitted, ["forest+fox+light", "garden+hedgehog+sound"])
         XCTAssertEqual(rejected["mountain+owl+footprints"]?.count, 2)   // flying companion, and a discovery that does not signal
         XCTAssertEqual(rejected["sea+dolphin+shell"]?.count, 3)         // no threshold, a carrying companion, a silent discovery
-        XCTAssertEqual(rejected["forest+rabbit+map"]?.count, 2)         // nothing reassures, and the map does not signal
+        // One reason, not two. The rabbit used to be rejected both for the map
+        // and for "nothing reassures" — and that second rejection was the rule
+        // being wrong, not the content: a rabbit that is frightened and crosses
+        // anyway is exactly what a threshold story wants. Only the map's silence
+        // survives the split, and it survives for a reason about the map.
+        XCTAssertEqual(rejected["forest+rabbit+map"], ["discovery lacks emitsSignal, isUnexplained"])
         XCTAssertFalse(admitted.isEmpty, "§8.4: a blueprint no content can satisfy is a build failure.")
     }
 

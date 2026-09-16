@@ -180,6 +180,31 @@ enum MP {
             case .night: return Palette.gece200
             }
         }
+
+        /// Kitap sayfasının kendi yüzeyi.
+        ///
+        /// `background` ile aynı değil ve olmamalı: `background` gündüz modunda
+        /// saf beyazdır (`kagit0`), beyaz ise kağıt değildir. Okuyucu bunu
+        /// kullanır, `MPStoryPDF`'in bastığı kağıt rengiyle aynı tonu
+        /// (`kagit100`) tutar. Ayrı bir property olmasının sebebi
+        /// `DailyStoryReaderView`'ın `background`'ı okumaya devam etmesi.
+        var paper: Color {
+            switch self {
+            case .light: return Palette.kagit100
+            case .sepia: return Color(hex: 0xF7EFDE)
+            case .night: return Palette.gece700
+            }
+        }
+
+        /// Cilt payı — sayfanın iç kenarındaki ince gölge.
+        /// Sistemdeki derinlik `mpEdge`'tir; bu onun kitaba özgü karşılığı.
+        var spine: Color {
+            switch self {
+            case .light: return Color(hex: 0xC3AB93, alpha: 0.22)
+            case .sepia: return Color(hex: 0xB49A78, alpha: 0.22)
+            case .night: return Color(hex: 0x0B1322, alpha: 0.38)
+            }
+        }
     }
 
     // MARK: Masal dünyası aksanları
@@ -271,6 +296,20 @@ enum MP {
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
+
+        /// Masal metni, sistemin yazı boyutu ayarına duyarlı.
+        ///
+        /// Sistemdeki diğer bütün token'lar sabit boyutludur
+        /// (`.custom(_:size:)`), yani uygulamada hiçbir yazı Dynamic Type ile
+        /// büyümez. Okuyucu bunu değiştiren ilk ekran: bir masal gerçek bir
+        /// okuma uygulamasıdır ve boyutu kullanıcı seçer. `size` yine
+        /// `MP.ReadSize`'dan gelen taban boyuttur, sistem onu ölçekler.
+        ///
+        /// Yalnızca okuyucu kullanır; `read` diğer bütün çağrı yerleri için
+        /// olduğu gibi durur.
+        static func readScaled(_ size: CGFloat) -> Font {
+            .custom(body, size: size, relativeTo: .body).weight(.semibold)
+        }
     }
 
     /// Display metinlerde tracking -0.01em karşılığı.

@@ -195,6 +195,14 @@ struct ReaderSettingsSheet: View {
                 ) {
                     MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
                 }
+
+                MPListRow(
+                    symbol: "sparkles",
+                    title: "Dokunsal geri bildirim",
+                    description: "Sayfa çevrilince hafif bir dokunuş"
+                ) {
+                    MPSwitch(isOn: $settings.haptics, label: "Dokunsal geri bildirim")
+                }
             }
         }
     }

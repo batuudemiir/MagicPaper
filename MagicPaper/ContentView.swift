@@ -47,7 +47,7 @@ struct ContentView: View {
             StoryWizardView(preset: app.wizardPreset).environmentObject(app).environmentObject(settings)
         }
         .fullScreenCover(item: $app.readerStory) { story in
-            StoryViewerView(story: story).environmentObject(app).environmentObject(settings)
+            StoryReaderView(story: story).environmentObject(app).environmentObject(settings)
         }
         .fullScreenCover(isPresented: $app.showPaywall) {
             PaywallView().environmentObject(app)

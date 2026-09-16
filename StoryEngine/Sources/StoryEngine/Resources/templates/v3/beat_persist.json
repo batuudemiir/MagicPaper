@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "persist",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-1. The child keeps going after the attempt failed, and the persistence is METHODICAL rather than merely stubborn — each failure narrows what is left. Never rewarded by luck: the finding happens because the looking continued, and the text says so.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "ps_s_01",
+      "text": "{{child.name}} baştan başladı. Bir daha, bir daha, bir daha. Beşincisinde değil, altıncısında buldu. Ama sonunda buldu işte. Aramaktan hiç vazgeçmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "kept_starting_over"
+    },
+    {
+      "id": "ps_s_02",
+      "text": "Vazgeçmek vardı, kolaydı da. {{child.name}} vazgeçmedi. Yorulunca oturdu, biraz dinlendi, sonra kalkıp aramaya devam etti. Her seferinde biraz daha yaklaştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "rested_then_continued"
+    },
+    {
+      "id": "ps_s_03",
+      "text": "Her yeri iki kez aradı {{child.name}}. İlk turda yoktu. İkinci turda, daha yavaş baktığında, tam oradaydı. Demek ki acele bakmak işe yaramıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "second_slower_pass"
+    },
+    {
+      "id": "ps_s_04",
+      "text": "{{child.name}} aramaya devam etti. Sıkıldı ama durmadı. Bulamadığı her yer, geriye kalan yerleri biraz daha azaltıyordu. Sonunda geriye tek bir yer kaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "narrowing_what_is_left"
+    },
+    {
+      "id": "ps_s_05",
+      "text": "\"Bir yerde olmalı,\" dedi {{child.name}}. Bunu en az on kere söyledi. Onuncuda haklı çıktı ve buldu. Israr etmek de bir işe yararmış.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "said_it_ten_times"
+    }
+  ]
+}

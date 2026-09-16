@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "find_own_courage",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family II-1. The child registers that the small step HELD, and goes. The realisation is about THEMSELVES, never about the barrier — the barrier has not become safer. The companion may walk alongside but must not pull, lift or lead. Nobody says the word brave.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "fc_s_01",
+      "text": "O ilk adım tutmuştu, {{child.name}} bunu gördü. Tutuyorsa ikincisi de tutardı. Doğruldu ve yürümeye başladı, bu kez hiç durmadan.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "if_one_held_so_will_two"
+    },
+    {
+      "id": "fc_s_02",
+      "text": "\"Ben bunu yapabiliyorum,\" dedi {{child.name}} kendi kendine. Söyleyince daha da doğru geldi. Sonra hiç durmadan, tek seferde yürüdü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "saying_it_made_it_truer"
+    },
+    {
+      "id": "fc_s_03",
+      "text": "Korkusu gitmedi. Ama {{child.name}} korkusuyla birlikte yürümeyi öğrendi, işte o kadar. Adım adım ilerledi ve bir kez bile geri bakmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "walked_with_the_fear"
+    },
+    {
+      "id": "fc_s_04",
+      "text": "{{child.name}} anladı ki beklemek daha zormuş. Bir kez başlayınca gerisi kendiliğinden geldi. Bu kadar kolay olmasına kendisi de şaşırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waiting_was_the_hard_part"
+    },
+    {
+      "id": "fc_s_05",
+      "text": "O ilk küçük adım her şeyi değiştirdi. {{child.name}} artık nasıl olduğunu biliyordu. Bildiği için de yapabildi, hem de rahatça.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "knowing_how_made_it_possible"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "reveal_truth",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-1. What the child was certain of turns out to be something else — and WARMER. The child is never foolish for having believed it and is never corrected by a person: the world simply shows itself. Nobody laughs at them; if anyone laughs, the child laughs first.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "rv_s_01",
+      "text": "Yaklaşınca her şey açıklığa kavuştu. {{child.name}} yanılmıştı ve yanıldığına sevindi. Gerçek, sandığından çok daha güzeldi. Korkulacak hiçbir şey yokmuş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "glad_to_be_wrong"
+    },
+    {
+      "id": "rv_s_02",
+      "text": "\"Ooo,\" dedi {{child.name}} usulca. Sandığı şey hiç değildi. Bambaşka bir şeydi ve hiç de korkutucu değildi. Hatta çok sevimli bir şeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "a_quiet_oh"
+    },
+    {
+      "id": "rv_s_03",
+      "text": "{{child.name}} gerçeği görünce güldü. Bunca zaman bambaşka bir şey sanmıştı. Gülmesi uzun sürdü, iyi bir gülmeydi. Sonra tekrar baktı ve yeniden güldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "laughed_a_good_laugh"
+    },
+    {
+      "id": "rv_s_04",
+      "text": "Perde kalktı sanki. {{child.name}} olanı biteni tam olarak gördü. Düşündüğünden çok daha basit, çok daha tatlıydı. Şaşırdı ama iyi anlamda şaşırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_curtain_lifted"
+    },
+    {
+      "id": "rv_s_05",
+      "text": "{{child.name}} bir adım daha attı ve anladı. Yanıldığı için hiç utanmadı. Yanılmak da öğrenmenin bir yoluydu. O gün bir şey daha öğrenmiş oldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "being_wrong_is_learning"
+    }
+  ]
+}
