@@ -14,10 +14,33 @@ struct StoryPageView: View {
     let folio: String?
     /// Kontroller görünürken alt künye de görünür (§11).
     let showsFolio: Bool
+    /// Masalın dünya rengi — süslemeler bunu kullanır.
+    let accent: Color
+    /// Masalın dünya işareti — başlık vinyeti bunu kullanır.
+    let symbol: String
+    let ornament: ReaderPageOrnament
 
     var body: some View {
         ZStack {
             ReaderPaper(theme: theme)
+
+            if ornament == .spot {
+                VStack {
+                    HStack {
+                        Spacer(minLength: 0)
+                        SpotOrnament(symbol: symbol, accent: accent)
+                            .padding(.trailing, MP.S.x5)
+                            .padding(.top, MP.S.x8)
+                    }
+                    Spacer(minLength: 0)
+                }
+            }
+
+            if ornament == .cerceve {
+                PageFrameOrnament(accent: accent)
+                    .padding(.horizontal, StoryPageView.gutter - MP.S.x3)
+                    .padding(.vertical, MP.S.x7)
+            }
 
             GeometryReader { geo in
                 VStack(spacing: 0) {
@@ -28,9 +51,9 @@ struct StoryPageView: View {
                     textColumn(in: geo)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal, StoryPageView.gutter)
-                .padding(.top, MP.S.x5)
-                .padding(.bottom, MP.S.x7)
+                .padding(.horizontal, StoryPageView.gutter + ornament.contentInset)
+                .padding(.top, MP.S.x5 + ornament.contentInset)
+                .padding(.bottom, MP.S.x7 + ornament.contentInset)
             }
 
             folioLine
@@ -99,12 +122,28 @@ struct StoryPageView: View {
                 // Paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
                 // paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz
                 // ve ikinci bir yazı stili olmadan ayrılır (§15).
-                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
-                    Text(paragraph)
-                        .font(MP.F.read(readSize.points))
-                        .lineSpacing(readSize.lineSpacing)
-                        .foregroundStyle(theme.body)
+                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { index, paragraph in
+                    if ornament == .versal && index == 0 {
+                        VersalParagraph(
+                            text: paragraph,
+                            size: readSize.points,
+                            accent: accent,
+                            ink: theme.body
+                        )
                         .fixedSize(horizontal: false, vertical: true)
+                    } else {
+                        Text(paragraph)
+                            .font(MP.F.read(readSize.points))
+                            .lineSpacing(readSize.lineSpacing)
+                            .foregroundStyle(theme.body)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+
+                if ornament == .versal {
+                    TailpieceOrnament(accent: accent)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top, MP.S.x3)
                 }
             }
             .frame(maxWidth: measure, alignment: .leading)

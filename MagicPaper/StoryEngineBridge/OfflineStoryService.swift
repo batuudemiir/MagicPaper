@@ -59,13 +59,30 @@ final class OfflineStoryService {
 
     var catalogVersion: String { (try? catalog().version) ?? "unknown" }
 
-    /// The ideas to show on the first screen, for a child of this age.
+    /// The ideas to show on the first screen.
     ///
     /// Returns them all; how many to show is the screen's decision (§7 says
     /// three plus Surprise), and the screen is where that stays changeable.
+    ///
+    /// **Age is deliberately not filtered on yet**, and `age` is kept in the
+    /// signature because it will be. Every authored idea is banded `5-6` while
+    /// the profile editor offers four bands (4, 6, 9, 11), so gating here
+    /// emptied the screen for three of them — not with an error or an empty
+    /// state, just a single Surprise tile where three cards and a Surprise were
+    /// specified. Nothing failed and nothing said so.
+    ///
+    /// Filtering was also only ever half-applied: `BlueprintSelector` does not
+    /// age-gate, so Surprise composed a story for any age regardless. Hiding
+    /// the cards from a nine-year-old while still handing them a story written
+    /// for a five-year-old protected nobody and cost the screen its content.
+    ///
+    /// `CatalogStoryIdea.suits(age:)` stays, tested, for when the catalog is
+    /// banded for real. `AgeBandCoverageTests` fails the moment a second band
+    /// is authored, which is the signal to turn this back on — so it is not a
+    /// decision anyone has to remember.
     func storyIdeas(forAge age: Int) -> [CatalogStoryIdea] {
         guard let catalog = try? catalog() else { return [] }
-        return catalog.storyIdeas.filter { $0.suits(age: age) }
+        return catalog.storyIdeas
     }
 
     func storyIdea(id: String) -> CatalogStoryIdea? {

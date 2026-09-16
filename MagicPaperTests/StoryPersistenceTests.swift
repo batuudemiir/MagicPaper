@@ -108,7 +108,7 @@ final class StoryPersistenceTests: XCTestCase {
     func testALegacyEncodedStoryDecodesWithoutAnID() throws {
         let json = """
         {"id":"\(UUID().uuidString)","title":"Eski Masal","childName":"Yeliz",
-         "theme":"fantasy","language":"turkish","status":"completed","pages":[],
+         "theme":"fantasy","language":"tr","status":"completed","pages":[],
          "createdAt":0}
         """
         let decoded = try JSONDecoder().decode(Story.self, from: Data(json.utf8))

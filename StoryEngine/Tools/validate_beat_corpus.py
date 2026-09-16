@@ -385,6 +385,131 @@ def check_partitioned_pools(corpus, report) -> None:
                         + ", ".join(f"{v}={n}" for v, n in sorted(counts.items())))
 
 
+# Verbs that claim the child SAW or HEARD the discovery. A variant using one is
+# asserting which sense the discovery reaches.
+SEEING = re.compile(r"gördü|görüyordu|görünüyordu|görmüştü|baktı|bakıyordu|izledi|seyretti"
+                    r"|göze çarp|parıltı|ışıl")
+HEARING = re.compile(r"duydu|duyuyordu|duyuldu|dinledi|kulak|mırıl|tıkırtı|çıtırtı")
+# Traits that guarantee the discovery can be seen / heard.
+VISIBLE_TRAITS = {"isVisible", "isBeautiful"}
+AUDIBLE_TRAITS = {"isAudible"}
+
+
+TRAITS_SOURCE = ROOT / "Sources/StoryEngine/Content/ContentTraits.swift"
+
+# Discovery traits this file has classified. Membership is a judgement about the
+# WORLD (can you look at it, can you hear it), so it cannot be derived — which
+# is exactly why it must be alarmed rather than trusted.
+CLASSIFIED_DISCOVERY_TRAITS = (
+    VISIBLE_TRAITS | AUDIBLE_TRAITS | {
+        "isUnexplained", "emitsSignal", "impliesPresence",
+        "impliesNeed", "isFragmentary", "isFragile",
+    }
+)
+
+
+def check_deferrals_still_hold(corpus, report) -> None:
+    """
+    Alarms on the FACTS three decisions rest on, not on the decisions.
+
+    Borrowed from the engine session, which hit a filter that hid every story
+    idea because the catalog has exactly one age band. Their fix pins the
+    premise: the test fails when a second band exists and names what to
+    re-enable. Nobody has to remember to revisit it.
+
+    Several choices here are "correct for now, because of a fact about the
+    content today", and each lived only as a comment somebody had to happen to
+    re-read.
+    """
+    # 1. Every band decision, sentence cap and word choice is calibrated for 5-6.
+    bands = {bf.get("ageBand") for bf in corpus}
+    if bands != {"5-6"}:
+        report.fail(
+            f"age bands are now {sorted(b for b in bands if b)} — the word bands, the "
+            f"{MAX_SENTENCE_WORDS}-word sentence cap and the vocabulary in this corpus are "
+            f"calibrated for 5-6 only. A second band needs its own bands, not these.")
+
+    # 2. `check_bound_pools` reimplements the composer's filtering. That is a
+    #    second copy of a rule, tolerated only because the 14 catalog blueprints
+    #    live in a fixture the engine cannot see. Once they ship, the engine's
+    #    own BoundPoolTests covers this from the authoritative side.
+    shipped = set()
+    for path in sorted(SHIPPED_BLUEPRINTS.glob("*.json")):
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        shipped |= {b.get("id") for b in document.get("blueprints", [])}
+    if SEQUENCES.exists():
+        fixture = {b["id"] for b in json.loads(SEQUENCES.read_text(encoding="utf-8"))["blueprints"]}
+        landed = fixture & shipped
+        if landed:
+            report.fail(
+                f"{len(landed)} catalog blueprint(s) now ship in the engine "
+                f"(e.g. {sorted(landed)[0]}) — delete check_bound_pools and this fixture's "
+                f"constraint blocks; BoundPoolTests covers them from the composer itself, and "
+                f"two copies of the filtering rule is the defect this project keeps finding.")
+
+    # 3. `check_modality_claims` knows two senses. A third would be under-checked
+    #    in silence, which is how `isVisible` shipping without `isAudible` went
+    #    unnoticed: one modality declared reads as modality handled.
+    if TRAITS_SOURCE.exists():
+        source = TRAITS_SOURCE.read_text(encoding="utf-8")
+        block = re.search(r"enum DiscoveryTrait[^{]*\{(.*?)\n\}", source, re.S)
+        if block:
+            lines = re.findall(r"^\s*case\s+([A-Za-z0-9_,\s]+?)\s*$", block.group(1), re.M)
+            names = {n.strip() for line in lines for n in line.split(",") if n.strip()}
+            unknown = names - CLASSIFIED_DISCOVERY_TRAITS
+            if unknown:
+                report.fail(
+                    f"DiscoveryTrait has grown {sorted(unknown)} — check_modality_claims only "
+                    f"knows {sorted(VISIBLE_TRAITS)} and {sorted(AUDIBLE_TRAITS)}. Classify the "
+                    f"new trait or the modality gate under-checks silently.")
+            else:
+                report.note(f"deferrals hold: one age band, {len(names)} discovery traits all "
+                            f"classified, catalog blueprints still fixture-only")
+
+
+def check_modality_claims(corpus, report) -> None:
+    """
+    A line may only claim a sense the discovery is guaranteed to reach.
+
+    `emitsSignal` is worn by a light and by a sound, so it says something is
+    salient, not how. Six variants gated on it could open a book by listening to
+    a light or watching a sound blink. That was invisible to every other gate:
+    each line is well-formed, inside its band, collision-free and reachable. It
+    is merely about the wrong sense.
+
+    The dangerous case is the UNCONDITIONAL variant. Those exist as a floor that
+    lifts every cell at once, which means they are offered for every discovery —
+    so a seeing verb in one is a claim no discovery can be relied on to honour.
+    Five written as a floor were visual.
+    """
+    for beat_file in corpus:
+        # A beat is about the discovery if ANY of its variants gates on a
+        # discovery trait. Scoping by `discovery.name` in requiredSlots was the
+        # first cut and was wrong: `na_sound_01` opens with "Önce sesi duydu"
+        # and never interpolates the name, so the check skipped the very variant
+        # that started this.
+        about_discovery = any(v.get("discoveryTraits") for v in beat_file["variants"])
+        for variant in beat_file["variants"]:
+            if not about_discovery and "discovery.name" not in (variant.get("requiredSlots") or []):
+                continue
+            declared = set(variant.get("discoveryTraits") or [])
+            text = variant["text"]
+            seen, heard = SEEING.search(text), HEARING.search(text)
+            if seen and not (declared & VISIBLE_TRAITS):
+                report.fail(
+                    f"{beat_file['beat']}/{variant['id']}: says `{seen.group(0)}` but declares "
+                    f"{sorted(declared) or 'no discovery trait'} — nothing guarantees this "
+                    f"discovery can be seen")
+            if heard and not (declared & AUDIBLE_TRAITS):
+                report.fail(
+                    f"{beat_file['beat']}/{variant['id']}: says `{heard.group(0)}` but declares "
+                    f"{sorted(declared) or 'no discovery trait'} — nothing guarantees this "
+                    f"discovery can be heard")
+
+
 def check_variants_reachable(corpus, report) -> None:
     """
     A variant whose declared traits match no content record can never be chosen.
@@ -692,19 +817,31 @@ def main() -> int:
             check_lengths([beat_file], bindings, Report(), True)
     print()
 
-    check_lengths(corpus, bindings, report, False)
-    check_suffixes(corpus, report)
-    check_declared_slots(corpus, report)
-    check_collisions(corpus, bindings, report)
-    check_moves(corpus, report)
-    check_banned(corpus, report)
-    check_place_welding(corpus, report)
-    check_length_class_coverage(corpus, report)
-    check_effective_pools(corpus, report)
-    check_variants_reachable(corpus, report)
-    check_blueprints_satisfiable(corpus, report)
-    check_bound_pools(corpus, report)
-    check_partitioned_pools(corpus, report)
+    # The gate list is derived, not hand-written. A summary line listing the
+    # checks by hand went stale the moment gates were added — it named nine
+    # while fourteen ran, which is a check reporting something other than what
+    # it did. Same rule we applied to the axis list and the binding walk: never
+    # keep a second copy of what the thing actually does.
+    gates = [
+        lambda: check_lengths(corpus, bindings, report, False),
+        lambda: check_suffixes(corpus, report),
+        lambda: check_declared_slots(corpus, report),
+        lambda: check_collisions(corpus, bindings, report),
+        lambda: check_moves(corpus, report),
+        lambda: check_banned(corpus, report),
+        lambda: check_place_welding(corpus, report),
+        lambda: check_length_class_coverage(corpus, report),
+        lambda: check_effective_pools(corpus, report),
+        lambda: check_modality_claims(corpus, report),
+        lambda: check_variants_reachable(corpus, report),
+        lambda: check_blueprints_satisfiable(corpus, report),
+        lambda: check_bound_pools(corpus, report),
+        lambda: check_partitioned_pools(corpus, report),
+        lambda: check_deferrals_still_hold(corpus, report),
+    ]
+    for gate in gates:
+        gate()
+    ran = [g for g in globals() if g.startswith("check_")]
 
     for note in report.notes:
         print(f"note: {note}")
@@ -714,8 +851,8 @@ def main() -> int:
             print(f"  - {failure}")
         return 1
 
-    print("\nPASS — word bands, suffixes, declared slots, collisions, moves, "
-          "banned constructions, place welding, length-class coverage, effective pools, bound pools, partitioned pools")
+    print(f"\nPASS — {len(gates)} gates: " + ", ".join(sorted(
+        name[len("check_"):].replace("_", " ") for name in ran)))
     return 0
 
 

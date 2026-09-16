@@ -3,7 +3,7 @@
   "beat": "notice_anomaly",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 1 of every blueprint. The child is doing something ordinary; something registers as not-normal. Lead with the ordinary so the interruption lands. Never explain the thing — page 1 asks, it does not answer. The child must be the one who notices. A variant that shows the discovery as a seen object must declare discoveryTrait isVisible; sound-only discoveries bind to the sound-led variants instead. Discovery phrases that end in a third-person possessive (\"ayak izleri\") must be declared possessiveStem in content, or the accusative renders as \"izleriyi\" instead of \"izlerini\". Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added. MODALITY: `emitsSignal` is worn by a light AND a sound, so it never separated them — a line about listening could be chosen for a flickering light and a line about the light blinking for a thin sound. Sound lines now require `isAudible`; light lines require `emitsSignal ∧ isVisible`. The variant ids said light and sound all along; the traits did not.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 1 of every blueprint. The child is doing something ordinary; something registers as not-normal. Lead with the ordinary so the interruption lands. Never explain the thing — page 1 asks, it does not answer. The child must be the one who notices. A variant that shows the discovery as a seen object must declare discoveryTrait isVisible; sound-only discoveries bind to the sound-led variants instead. Discovery phrases that end in a third-person possessive (\"ayak izleri\") must be declared possessiveStem in content, or the accusative renders as \"izleriyi\" instead of \"izlerini\". Unconditional variants (no settingTraits, no discoveryTraits) are a deliberate floor: nearly every variant here declares a discovery trait, so a story whose discovery matches none of them fell to whatever one partition held. An unconditional variant lifts every cell at once, which is cheaper than topping up each partition and is what keeps the bound-pool gate green as new discoveries are added. MODALITY: `emitsSignal` is worn by a light AND a sound, so it never separated them — a line about listening could be chosen for a flickering light and a line about the light blinking for a thin sound. Sound lines now require `isAudible`; light lines require `emitsSignal ∧ isVisible`. The variant ids said light and sound all along; the traits did not. The unconditional variants are modality-NEUTRAL on purpose. An unconditional variant is offered for every discovery, so a seeing verb in one is a claim the discovery cannot honour — \"gördü\" for a thin sound. They were written visual and corrected; the floor only works if it makes no claim about which sense the discovery reaches.",
   "variants": [
     {
       "id": "na_neutral_01",
@@ -210,7 +210,8 @@
         "showsTraces"
       ],
       "discoveryTraits": [
-        "impliesPresence"
+        "impliesPresence",
+        "isVisible"
       ],
       "move": "not_my_footprints",
       "lengthClass": "solo"
@@ -249,7 +250,7 @@
     },
     {
       "id": "na_any_01",
-      "text": "{{child.name}} o gün her zamankinden farklı bir şey gördü. {{discovery.name}} oradaydı ve daha önce orada değildi. Durdu, baktı, bir daha baktı.",
+      "text": "{{child.name}} o gün bir şeyin değiştiğini anladı. {{discovery.name}} oradaydı ve daha önce orada değildi. Durdu. Sonra biraz daha durdu.",
       "requiredSlots": [
         "child.name",
         "discovery.name"
@@ -269,7 +270,7 @@
     },
     {
       "id": "na_any_03",
-      "text": "{{child.name}} tam geçip gidecekti ki durdu. {{discovery.name}} dikkatini çekmişti. Geri döndü ve iyice yaklaştı. Böyle bir şeyi ilk kez görüyordu.",
+      "text": "{{child.name}} tam geçip gidecekti ki durdu. {{discovery.name}} dikkatini çekmişti. Geri döndü ve iyice yaklaştı. Böyle bir şeyle ilk kez karşılaşıyordu.",
       "requiredSlots": [
         "child.name",
         "discovery.name"

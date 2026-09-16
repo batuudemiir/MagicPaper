@@ -60,12 +60,30 @@ public struct OfflineStoryComposer: Sendable {
         catalog: ContentCatalog,
         intent: OfflineStoryIntent
     ) throws -> ComposedStory {
-        try compose(
-            blueprint: selector.select(catalog: catalog, intent: intent),
-            catalog: catalog,
-            intent: intent,
-            idea: selector.storyIdea(catalog: catalog, intent: intent)
-        )
+        let idea = try selector.storyIdea(catalog: catalog, intent: intent)
+        let candidates = try selector.ranked(catalog: catalog, intent: intent)
+
+        // Tried in order rather than picked once. A blueprint is admitted by
+        // checking each axis on its own, and the axes are coupled: one can
+        // accept the chosen companion and accept some setting while accepting
+        // no setting that companion could be in. The child's choice is the
+        // fixed point here — the shape is what should give way.
+        //
+        // The failure kept is the **first**, not the last. The first candidate
+        // is the one the idea's affinity actually chose, so its reason is the
+        // one that explains what the child asked for; the last is whatever
+        // remote blueprint the walk happened to end on.
+        var failure: Error?
+        for blueprint in candidates {
+            do {
+                return try compose(
+                    blueprint: blueprint, catalog: catalog, intent: intent, idea: idea)
+            } catch {
+                if failure == nil { failure = error }
+                continue
+            }
+        }
+        throw failure ?? OfflineSelectionError.noBlueprints
     }
 
     public func compose(

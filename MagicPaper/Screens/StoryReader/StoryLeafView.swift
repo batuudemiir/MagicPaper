@@ -28,7 +28,10 @@ struct StoryLeafView: View {
                 theme: app.readTheme,
                 readSize: app.readSize,
                 folio: "\(page.index + 1) / \(model.story.pageCount)",
-                showsFolio: model.controlsVisible
+                showsFolio: model.controlsVisible,
+                accent: model.story.accent,
+                symbol: model.story.symbol,
+                ornament: ReaderPageOrnament.current
             )
         case .ending:
             StoryEndingLeaf(

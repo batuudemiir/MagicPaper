@@ -95,12 +95,24 @@ public struct BlueprintSelector: Sendable {
         return (admitted, rejections)
     }
 
-    /// The blueprint this intent gets, or a typed failure naming every
-    /// blueprint that was ruled out and why. There is no "pick any" branch.
-    public func select(
+    /// Every blueprint this intent could get, best first.
+    ///
+    /// A list rather than a single answer, because admissibility is judged one
+    /// axis at a time and the axes are not independent. A blueprint can admit
+    /// the companion the child picked *and* admit some setting, while admitting
+    /// no setting the companion could plausibly be in: the dolphin fits on
+    /// capability, the sea fits on traits, and the blueprint needs a threshold
+    /// the sea does not have. Nothing checking one axis at a time can see that.
+    ///
+    /// So the caller walks this list until one blueprint binds, the same
+    /// backtracking the binder already does over settings and for the same
+    /// reason. The child chose a companion; the engine's job is to find a shape
+    /// that works with it, not to pick a shape first and then report that the
+    /// choice was impossible.
+    public func ranked(
         catalog: ContentCatalog,
         intent: OfflineStoryIntent
-    ) throws -> CatalogBlueprint {
+    ) throws -> [CatalogBlueprint] {
         let idea = try storyIdea(catalog: catalog, intent: intent)
         let (candidates, rejections) = admissible(catalog: catalog, intent: intent, idea: idea)
         guard !candidates.isEmpty else {
@@ -112,20 +124,30 @@ public struct BlueprintSelector: Sendable {
 
         // Affinity, applied as preference rather than as a filter (§12). A card
         // that always resolved to one blueprint would be a preset; a card that
-        // ignored its own promise would be a lie. So: choose among the families
-        // the idea leans toward, and step outside them only when none of them
-        // can be built from what the catalog holds.
-        guard let preferred = idea?.preferredFamilies, !preferred.isEmpty else {
-            return DeterministicPicker.pick(from: ordered, seed: intent.seed, salt: "blueprint")
+        // ignored its own promise would be a lie. So: the families the idea
+        // leans toward come first, and the rest stay available behind them
+        // rather than being discarded — the fallback is now an ordering, which
+        // is what lets an unbuildable preference give way without silence.
+        let preferred = Set(idea?.preferredFamilies ?? [])
+        let leaning = ordered.filter { $0.family.map(preferred.contains) ?? false }
+        let rest = ordered.filter { !($0.family.map(preferred.contains) ?? false) }
+
+        func rotated(_ items: [CatalogBlueprint]) -> [CatalogBlueprint] {
+            guard !items.isEmpty else { return [] }
+            let start = DeterministicPicker.index(
+                count: items.count, seed: intent.seed, salt: "blueprint")
+            return Array(items[start...] + items[..<start])
         }
-        let leaning = ordered.filter { blueprint in
-            blueprint.family.map(preferred.contains) ?? false
-        }
-        return DeterministicPicker.pick(
-            from: leaning.isEmpty ? ordered : leaning,
-            seed: intent.seed,
-            salt: "blueprint"
-        )
+        return rotated(leaning) + rotated(rest)
+    }
+
+    /// The blueprint this intent gets, or a typed failure naming every
+    /// blueprint that was ruled out and why. There is no "pick any" branch.
+    public func select(
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent
+    ) throws -> CatalogBlueprint {
+        try ranked(catalog: catalog, intent: intent)[0]
     }
 
     /// The companions worth offering for this intent, best first.
