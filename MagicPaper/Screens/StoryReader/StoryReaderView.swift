@@ -52,6 +52,13 @@ struct StoryReaderView: View {
                 onTap: toggleControls,
                 reduceMotion: reduceMotion
             )
+            // `transitionStyle` yalnızca init'te verilebilir, sonradan
+            // değiştirilemez. `.id` olmadan, okuyucu açıkken "Hareketi Azalt"ı
+            // açan biri sayfa kıvrımıyla okumaya devam ederdi — ayarı tam da
+            // o kıvrımı istemediği için açmış olmasına rağmen. Değer değişince
+            // SwiftUI denetleyiciyi baştan kurar, koordinatör de bulunduğu
+            // yaprakta yeniden bağlanır.
+            .id(reduceMotion)
             .ignoresSafeArea()
 
             if model.controlsVisible {

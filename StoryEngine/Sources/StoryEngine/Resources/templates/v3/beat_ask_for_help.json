@@ -3,7 +3,7 @@
   "beat": "ask_for_help",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-3 and II-2 — a RESOLVING beat. Asking IS the child's act, and at five it is a real skill, harder than trying alone. The difficulty is saying you do not know. Never framed as giving up, never as the companion rescuing: the child chooses to ask, and the choosing is the page.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-3 and II-2 — a RESOLVING beat. Asking IS the child's act, and at five it is a real skill, harder than trying alone. The difficulty is saying you do not know. Never framed as giving up, never as the companion rescuing: the child chooses to ask, and the choosing is the page. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared (2 of 2)"
   },
@@ -61,6 +61,24 @@
       ],
       "lengthClass": "solo",
       "move": "hardest_and_most_useful"
+    },
+    {
+      "id": "ah_s_07",
+      "text": "{{child.name}} ağzından çıkacak kelimeyi uzun uzun düşündü. Sonunda \"yardım\" dedi. Tek kelimeydi ama en zor kelimeydi. Söyleyince içi rahatladı, omuzları düştü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_word_the_hardest_word"
+    },
+    {
+      "id": "ah_s_08",
+      "text": "Tek başına denemişti, olmamıştı. {{child.name}} bunu saklamadı, dosdoğru söyledi ve yardım istedi. İstemek denemenin devamıydı, sonu değil. Bunu kendisi fark etti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "asking_continues_the_trying"
     }
   ]
 }

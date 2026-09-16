@@ -3,7 +3,7 @@
   "beat": "patient_wait",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-2 and VI-1 — a RESOLVING beat. Waiting is the act, not the absence of one: the child chooses to stay, and that choice is what makes the story resolve. Never framed as passivity or as luck. Nothing arrives to reward the waiting; the waiting is what lets the child be there when it happens.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-2 and VI-1 — a RESOLVING beat. Waiting is the act, not the absence of one: the child chooses to stay, and that choice is what makes the story resolve. Never framed as passivity or as luck. Nothing arrives to reward the waiting; the waiting is what lets the child be there when it happens. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere.",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared (2 of 2)"
   },
@@ -62,6 +62,24 @@
       ],
       "lengthClass": "solo",
       "move": "everything_has_its_time"
+    },
+    {
+      "id": "pw_s_07",
+      "text": "{{child.name}} yerinden kıpırdamamaya karar verdi ve kararında durdu. Sayı saydı, sonra saymayı da bıraktı. Sadece durdu ve bekledi. Beklerken tam oradaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "counted_then_stopped_counting"
+    },
+    {
+      "id": "pw_s_08",
+      "text": "Hiçbir şey olmuyordu. {{child.name}} yine de kaldı, çünkü gitmek hiçbir şeyi hızlandırmazdı. Kaldığı için gördü. Gitseydi göremeyecekti, bunu sonradan anladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "leaving_would_not_have_hurried_it"
     }
   ]
 }
