@@ -94,12 +94,25 @@ final class CatalogMergeTests: XCTestCase {
         let corpusBeats = Set(BeatCorpusLoader().load().templates.compactMap(\.realizesBeat))
         XCTAssertFalse(corpusBeats.isEmpty)
 
+        // Bir beat için birden çok şablon olabilir — her yaş bandı kendi
+        // prozasını getirir. Kural "tek şablon" değil, "iskele kalmadı":
+        // o beat'i yazan her şablon korpustan gelmeli.
+        let corpusIDs = Set(BeatCorpusLoader().load().templates.map(\.id))
         for beat in corpusBeats {
             let realizing = catalog.templates.filter { $0.realizesBeat == beat }
-            XCTAssertEqual(realizing.count, 1, "\(beat.rawValue) has \(realizing.count) templates.")
-            XCTAssertEqual(realizing.first?.id, BeatCorpusLoader.templateID(for: beat),
-                           "\(beat.rawValue) is not the corpus one.")
+            XCTAssertFalse(realizing.isEmpty, "\(beat.rawValue) için şablon yok.")
+            let scaffolding = realizing.filter { !corpusIDs.contains($0.id) }
+            XCTAssertTrue(scaffolding.isEmpty,
+                          "\(beat.rawValue) hâlâ iskele taşıyor: "
+                          + scaffolding.map(\.id.rawValue).joined(separator: ", "))
         }
+
+        // Ve bantlar birbirine karışmıyor: bir beat'i iki bant yazdıysa
+        // ikisi de ayrı şablon.
+        let byBand = Dictionary(grouping: BeatCorpusLoader().load().templates) {
+            $0.ageBand?.description ?? "-"
+        }
+        XCTAssertGreaterThan(byBand.count, 1, "Tek bant varsa bu kontrol boş çalışıyor.")
     }
 
     /// The reason D8 exists. V1 alone offers nothing the beat model can select.
@@ -119,7 +132,10 @@ final class CatalogMergeTests: XCTestCase {
             let story = try OfflineStoryComposer().compose(
                 catalog: catalog,
                 intent: OfflineStoryIntent(childName: "Yeliz", seed: seed))
-            XCTAssertEqual(story.pages.count, 8, "seed \(seed)")
+            // Sayfa sayısı bandın sayfa sayısı; sekiz evrensel bir sabit değil.
+            let expected = catalog.blueprints
+                .first { $0.id == story.blueprintID }?.ageRange.pageCount ?? 8
+            XCTAssertEqual(story.pages.count, expected, "seed \(seed)")
             XCTAssertTrue(story.isClean, "seed \(seed): "
                 + story.pages.flatMap { $0.missingSlots + $0.unrecognisedSuffixes }.joined(separator: ", "))
             XCTAssertFalse(story.title.contains("{{"), story.title)

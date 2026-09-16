@@ -152,9 +152,8 @@ final class PortedBlueprintSpikeTests: XCTestCase {
                             setting: bound.setting, companion: bound.companion,
                             discovery: bound.discovery, castRole: role)
                         for step in try OfflineStoryComposer.plan(blueprint) {
-                            let templates = catalog.templates.filter {
-                                $0.realizesBeat == step.beat && !$0.variants.isEmpty
-                            }
+                            let templates = OfflineStoryComposer.templates(
+                                for: step.beat, in: catalog, blueprint: blueprint)
                             guard !templates.isEmpty else { continue }
                             var available = 0
                             for template in templates {

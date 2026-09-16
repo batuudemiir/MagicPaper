@@ -98,9 +98,8 @@ final class BoundPoolTests: XCTestCase {
             // with `warm_close` is a different beat. It reported an authoring
             // gap that did not exist.
             for step in try OfflineStoryComposer.plan(cell.blueprint) {
-                let templates = catalog.templates.filter {
-                    $0.realizesBeat == step.beat && !$0.variants.isEmpty
-                }
+                let templates = OfflineStoryComposer.templates(
+                    for: step.beat, in: catalog, blueprint: cell.blueprint)
                 // A beat with no template at all is a different defect, and
                 // `checkBeatCoverage` is where it is reported.
                 guard !templates.isEmpty else { continue }

@@ -10,8 +10,16 @@ import XCTest
 /// the seam — they validate lines, the engine validates pages.
 final class PageBudgetTests: XCTestCase {
 
-    /// 18–38 words per page, from the catalog's shared constraints.
-    private let pageBudget = BeatCorpusLoader.WordBand(lower: 18, upper: 38)
+    /// Sayfa bütçesi masalın KENDİ bandından geliyor.
+    ///
+    /// 18-38 sabitti ve o, 5-6 bandının bütçesi — bütün masalların değil. Altı
+    /// sayfalık bir 3-4 masalında sayfa başına 10-24 kelime var, ve o sayfaları
+    /// 5-6 cetveliyle ölçmek "çok kısa" der. Kısa olan sayfa değil, cetvel
+    /// yanlış.
+    private func budget(for blueprint: CatalogBlueprint) -> BeatCorpusLoader.WordBand {
+        let band = blueprint.ageRange.pageBudget
+        return BeatCorpusLoader.WordBand(lower: band.lower, upper: band.upper)
+    }
 
     private func words(_ text: String) -> Int {
         text.split(whereSeparator: { $0.isWhitespace || $0.isNewline }).count
@@ -31,18 +39,19 @@ final class PageBudgetTests: XCTestCase {
         let bands = BeatCorpusLoader().load().bands
         XCTAssertFalse(bands.isEmpty, "No band was parsed from any beat file.")
 
-        if let offers = bands[.companionOffers]?[.paired] {
+        let fiveSix = AgeBand(lowerBound: 5, upperBound: 6)
+        if let offers = bands[BeatCorpusLoader.BandedBeat(.companionOffers, fiveSix)]?[.paired] {
             XCTAssertNotEqual(offers.upper, 16,
                 "companion_offers should carry its own narrower band, not the default.")
         } else {
-            XCTFail("companion_offers declares no paired band: \(bands.keys.map(\.rawValue).sorted())")
+            XCTFail("companion_offers declares no paired band: \(bands.keys.map { $0.beat.rawValue }.sorted())")
         }
     }
 
     func testDeclaredBandsParseIntoUsableNumbers() {
-        for (beat, classes) in BeatCorpusLoader().load().bands {
+        for (banded, classes) in BeatCorpusLoader().load().bands {
             for (kind, band) in classes {
-                XCTAssertLessThan(band.lower, band.upper, "\(beat.rawValue)/\(kind.rawValue)")
+                XCTAssertLessThan(band.lower, band.upper, "\(banded.beat.rawValue)/\(kind.rawValue)")
                 XCTAssertGreaterThan(band.lower, 0)
             }
         }
@@ -70,13 +79,15 @@ final class PageBudgetTests: XCTestCase {
         var outOfBand: [String] = []
         for template in report.templates {
             guard let beat = template.realizesBeat,
-                  let classes = report.bands[beat] else { continue }
+                  let classes = report.bands[
+                      BeatCorpusLoader.BandedBeat(beat, template.ageBand)] else { continue }
             for variant in template.variants {
                 guard let kind = variant.lengthClass, let band = classes[kind] else { continue }
                 let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
                 let count = words(rendered.text)
                 if !band.contains(count) {
-                    outOfBand.append("\(variant.id.rawValue) (\(beat.rawValue)/\(kind.rawValue)): "
+                    outOfBand.append("\(variant.id.rawValue) "
+                                     + "(\(beat.rawValue)/\(template.ageBand?.description ?? "-")/\(kind.rawValue)): "
                                      + "\(count) words, band \(band.lower)–\(band.upper)")
                 }
             }
@@ -102,16 +113,20 @@ final class PageBudgetTests: XCTestCase {
                         .first { $0.id == id }?.lengthClass != nil
                 }
                 guard banded else { continue }
+                let blueprint = catalog.blueprints.first { $0.id == story.blueprintID }
+                let band = blueprint.map(budget(for:))
+                    ?? BeatCorpusLoader.WordBand(lower: 18, upper: 38)
                 let count = words(page.text)
-                if !pageBudget.contains(count) {
+                if !band.contains(count) {
                     outOfBudget.append("seed \(seed) p\(page.pageNumber): \(count) words "
-                                       + "(\(page.beats.map(\.rawValue).joined(separator: "+")))")
+                                       + "(band \(band.lower)-\(band.upper), "
+                                       + "\(page.beats.map(\.rawValue).joined(separator: "+")))")
                 }
             }
         }
 
         XCTAssertTrue(outOfBudget.isEmpty,
-                      "Pages outside \(pageBudget.lower)–\(pageBudget.upper) words:\n"
+                      "Pages outside their band's budget:\n"
                       + outOfBudget.joined(separator: "\n"))
     }
 

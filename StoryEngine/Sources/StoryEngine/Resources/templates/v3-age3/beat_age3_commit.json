@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa 3 hiç paylaşılmaz"
+  },
+  "variants": [
+    {
+      "id": "cm3_01",
+      "text": "{{child.name}} yere oturdu. \"Ben buradayım,\" dedi. Sonra hiçbir yere gitmedi. Hiç.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "sits_down_stays",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "cm3_02",
+      "text": "\"Sana ben bakarım,\" dedi {{child.name}}. Sonra gerçekten kaldı. Yanından ayrılmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "says_and_stays",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "cm3_03",
+      "text": "{{child.name}} yavaşça yaklaştı. Elini uzattı ve bekledi. \"Korkma,\" dedi. \"Ben buradayım.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "comes_closer",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "cm3_04",
+      "text": "{{child.name}} bir karar verdi. Bugün başka hiçbir şey yapmayacaktı. Bugün {{companion.name}}'e bakacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "decides_today",
+      "lengthClass": "solo"
+    }
+  ]
+}

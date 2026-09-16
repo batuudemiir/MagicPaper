@@ -242,21 +242,44 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
     public let realizesBeat: StoryBeat?
     public let compatibleThemes: [String]
     public let variants: [CatalogVariant]
+    /// Bu prozanın yazıldığı yaş bandı.
+    ///
+    /// Yazım birimi dosyadır ve her dosya tek bir bant için yazılır — kelime
+    /// bütçesi, cümle uzunluğu ve kelime dağarcığı bandın tamamı boyunca aynı
+    /// kalır. Bu yüzden bant varyantta değil şablonda duruyor: bir dosyanın
+    /// yarısını 3-4, yarısını 5-6 için yazmak diye bir şey yok.
+    ///
+    /// Nil "her banda uyar" demek ve yalnızca bant kavramından önce yazılmış
+    /// eski kütüphane iskelesi için geçerli. Yeni içerik bandını söyler.
+    public let ageBand: AgeBand?
 
-    private enum CodingKeys: String, CodingKey { case id, role, realizesBeat, compatibleThemes, variants }
+    private enum CodingKeys: String, CodingKey { case id, role, realizesBeat, compatibleThemes, variants, ageBand }
 
     public init(
         id: ContentID,
         role: PageRole,
         realizesBeat: StoryBeat?,
         compatibleThemes: [String] = [],
-        variants: [CatalogVariant]
+        variants: [CatalogVariant],
+        ageBand: AgeBand? = nil
     ) {
         self.id = id
         self.role = role
         self.realizesBeat = realizesBeat
         self.compatibleThemes = compatibleThemes
         self.variants = variants
+        self.ageBand = ageBand
+    }
+
+    /// Bu şablon, bu bandın masalına yazı verebilir mi.
+    ///
+    /// Bantsız şablon her yere uyar (göç etmemiş içerik). Bantlı bir şablon,
+    /// blueprint'in bandıyla ÖRTÜŞMELİ — kesişim boşsa 3-4 için yazılmış bir
+    /// masala 5-6 cümlesi girer ve ortada hiçbir hata görünmez: metin
+    /// kusursuzdur, yalnızca yanlış çocuğa yazılmıştır.
+    public func suits(band: AgeBand?) -> Bool {
+        guard let ageBand, let band else { return true }
+        return ageBand.lowerBound <= band.upperBound && band.lowerBound <= ageBand.upperBound
     }
 
     public init(from decoder: Decoder) throws {
@@ -266,6 +289,7 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
         realizesBeat = try container.decodeIfPresent(StoryBeat.self, forKey: .realizesBeat)
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         variants = try container.decodeIfPresent([CatalogVariant].self, forKey: .variants) ?? []
+        ageBand = try container.decodeIfPresent(AgeBand.self, forKey: .ageBand)
     }
 
     /// Whether this template can be selected under the beat-driven model.

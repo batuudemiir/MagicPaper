@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa 1 hiç paylaşılmaz"
+  },
+  "variants": [
+    {
+      "id": "na3_01",
+      "text": "{{child.name}} o sabah bahçeye çıktı. Bir şey değişmişti. Ama ne olduğunu göremedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "something_changed",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "na3_02",
+      "text": "{{child.name}} durdu. Küçük bir ses duydu. Çok küçük bir ses.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "a_small_sound",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "na3_03",
+      "text": "Her şey her günkü gibiydi. Sonra {{child.name}} bir şey gördü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "then_saw",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "na3_04",
+      "text": "{{child.name}} yürüyordu. Birden durdu ve aşağı baktı. Tam önünde bir şey vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "stopped_short",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "na3_05",
+      "text": "Sabah oldu. {{child.name}} pencereden dışarı baktı. Bugün bir şey başkaydı. Ne acaba?",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "morning_different",
+      "lengthClass": "solo"
+    }
+  ]
+}

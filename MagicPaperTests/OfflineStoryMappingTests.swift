@@ -47,6 +47,12 @@ final class OfflineStoryMappingTests: XCTestCase {
     func testIdeasAreOfferedForTheTargetAge() {
         XCTAssertEqual(service.storyIdeas(forAge: 6).count, 3)
         XCTAssertEqual(service.storyIdeas(forAge: 5).count, 3)
+        // Dört yaş başka bir şey görüyor — ve bunu bir sayıya değil, gördüğü
+        // her kartın kendi yaşına uyduğuna bağlıyoruz. Sayı, o banda ikinci
+        // bir fikir yazıldığı gün değişecek; kural değişmeyecek.
+        let young = service.storyIdeas(forAge: 4)
+        XCTAssertFalse(young.isEmpty)
+        for idea in young { XCTAssertTrue(idea.suits(age: 4), idea.id.rawValue) }
     }
 
     func testCompanionCandidatesAreOfferedForEachIdea() {
@@ -65,7 +71,7 @@ final class OfflineStoryMappingTests: XCTestCase {
 
     func testAComposedStoryBecomesACompleteAppStory() throws {
         let story = try compose(ideaID: "idea_mysterious_signal_001")
-        XCTAssertEqual(story.pages.count, 8)
+        XCTAssertEqual(story.pages.count, 8, "5-6 bandının yayı sekiz sayfa.")
         XCTAssertEqual(story.status, .completed, "An offline story is finished when it exists.")
         XCTAssertEqual(story.language, .turkish)
         XCTAssertFalse(story.title.isEmpty)

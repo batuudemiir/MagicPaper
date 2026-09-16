@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa 6 hiç paylaşılmaz"
+  },
+  "variants": [
+    {
+      "id": "wc3_01",
+      "text": "{{child.name}} gülümsedi. Sonra yavaşça eve gitti. Yolda hep {{companion.name}}'i düşündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "smiled_went_home",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "wc3_02",
+      "text": "İkisi yan yana oturdu. Hava güzeldi. Kimse bir şey söylemedi.",
+      "requiredSlots": [],
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "sat_together",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "wc3_03",
+      "text": "\"Yarın yine gelirim,\" dedi {{child.name}}. Ve ertesi gün gerçekten geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "tomorrow_again",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "wc3_04",
+      "text": "Akşam oldu. {{child.name}} yatağına girdi. Bugün çok iyi bir gündü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "afterClosing": [
+        "restore"
+      ],
+      "move": "evening_happy",
+      "lengthClass": "solo"
+    }
+  ]
+}

@@ -59,36 +59,31 @@ final class OfflineStoryService {
 
     var catalogVersion: String { (try? catalog().version) ?? "unknown" }
 
-    /// The ideas to show on the first screen.
+    /// Bu yaştaki bir çocuğa gösterilecek fikirler.
     ///
-    /// Returns them all; how many to show is the screen's decision (§7 says
-    /// three plus Surprise), and the screen is where that stays changeable.
+    /// Süzgeç **geri açıldı**. Kapalıydı çünkü her fikir `5-6` bandındaydı ve
+    /// tek bantlı bir katalogda süzmek yalnızca çıkarabilir: dört banttan üçü
+    /// kartsız kalıyordu. 3-4 bandı yazılınca o öncül bozuldu — ve bozulduğunu
+    /// söyleyen şey `AgeBandCoverageTests` oldu, bir insanın hatırlaması değil.
     ///
-    /// **Age is deliberately not filtered on yet**, and `age` is kept in the
-    /// signature because it will be. Every authored idea is banded `5-6` while
-    /// the profile editor offers four bands (4, 6, 9, 11), so gating here
-    /// emptied the screen for three of them — not with an error or an empty
-    /// state, just a single Surprise tile where three cards and a Surprise were
-    /// specified. Nothing failed and nothing said so.
-    ///
-    /// Filtering was also only ever half-applied: `BlueprintSelector` does not
-    /// age-gate, so Surprise composed a story for any age regardless. Hiding
-    /// the cards from a nine-year-old while still handing them a story written
-    /// for a five-year-old protected nobody and cost the screen its content.
-    ///
-    /// `CatalogStoryIdea.suits(age:)` stays, tested, for when the catalog is
-    /// banded for real. `AgeBandCoverageTests` fails the moment a second band
-    /// is authored, which is the signal to turn this back on — so it is not a
-    /// decision anyone has to remember.
+    /// Hiç içeriği olmayan bir bant için en yakın banda düşülüyor. Bu bir
+    /// GEÇİCİ ÇÖZÜM ve öyle adlandırılıyor: 8-10 ve 11-12 için yazılmış hiçbir
+    /// şey yok, ve bu bantları sunmaya devam eden profil ekranıdır. Boş bir ilk
+    /// ekran bozuk bir uygulamadır; yaşı kayan bir masal ise bugün "Sürpriz"in
+    /// zaten yaptığı şey. İkisi arasında seçim yapmak zorundayız ve ikincisi
+    /// daha az kötü — ama sessiz kalmıyor.
     func storyIdeas(forAge age: Int) -> [CatalogStoryIdea] {
         guard let catalog = try? catalog() else { return [] }
-        return catalog.storyIdeas
-    }
+        let matching = catalog.storyIdeas.filter { $0.suits(age: age) }
+        guard matching.isEmpty else { return matching }
 
-    /// The place a story was set in, for anything that needs to show it.
-    func setting(id: String) -> CatalogSetting? {
-        guard let catalog = try? catalog() else { return nil }
-        return catalog.settings.first { $0.id.rawValue == id }
+        // En yakın bant: bandın kendi yaşına uzaklığı.
+        let nearest = catalog.storyIdeas.min { a, b in
+            a.ageRange.distance(to: age) < b.ageRange.distance(to: age)
+        }?.ageRange
+        guard let nearest else { return catalog.storyIdeas }
+        print("⚠️ \(age) yaşı için yazılmış hikâye fikri yok; \(nearest) bandına düşülüyor.")
+        return catalog.storyIdeas.filter { $0.ageRange == nearest }
     }
 
     func storyIdea(id: String) -> CatalogStoryIdea? {

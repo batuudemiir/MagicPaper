@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 6 warm_close ile paylaşılır"
+  },
+  "variants": [
+    {
+      "id": "rs3_01",
+      "text": "Sonra {{companion.name}} kıpırdadı. Yavaşça doğruldu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "moved_then_rose",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rs3_02",
+      "text": "{{companion.name}} artık üşümüyordu. Iyice ısınmıştı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "no_longer_cold",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rs3_03",
+      "text": "{{companion.name}} gözlerini açtı. Artık iyiydi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "opened_eyes",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rs3_04",
+      "text": "Yavaş yavaş {{companion.name}} iyileşti. Oldu işte.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "slowly_better",
+      "lengthClass": "paired"
+    }
+  ]
+}

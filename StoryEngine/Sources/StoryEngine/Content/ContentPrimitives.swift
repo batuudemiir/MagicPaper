@@ -64,6 +64,12 @@ public struct AgeBand: Hashable, Codable, Sendable, CustomStringConvertible {
     public var description: String { "\(lowerBound)-\(upperBound)" }
     public func contains(_ age: Int) -> Bool { (lowerBound...upperBound).contains(age) }
 
+    /// Bu bandın verilen yaşa uzaklığı. İçindeyse sıfır.
+    public func distance(to age: Int) -> Int {
+        if contains(age) { return 0 }
+        return age < lowerBound ? lowerBound - age : age - upperBound
+    }
+
     // MARK: - Okuma parametreleri
     //
     // Bu değerler `docs/AGE_BANDING.md`'den geliyor ve orada kaynaklarıyla

@@ -168,29 +168,43 @@ public struct BeatSequenceValidator: Sendable {
                                 message: "'establish_ordinary' may only appear on page 1; it is on page \(first)."))
         }
 
+        // Bu iki kural MUTLAK sayfa numaralarına yazılmıştı — "5. sayfaya kadar
+        // engel", "7. sayfada çözüm" — ve sekiz sayfalık bir yay dışında hiçbir
+        // şey için anlamlı değildi. Altı sayfalık bir masal 5. sayfada çözülür;
+        // bu bir kusur değil, daha kısa bir kitaptır.
+        //
+        // Altta yatan özellikler sayfa numarası değil YAYDAKİ KONUM:
+        // çözüm sondan bir önceki sayfaya düşer (son sayfa kapanır), engel de
+        // çözümden en az iki sayfa önce adını almış olmalı ki tam olarak
+        // çalışmayan denemeye yer kalsın. Sekiz sayfada bu eski sayıları
+        // aynen verir: 7 ve 5.
+        let closingPage = slots.map(\.pageNumber).max() ?? 1
+        let resolutionPage = max(1, closingPage - 1)
+        let obstacleDeadline = max(1, resolutionPage - 2)
+
         // The difficulty must be concrete before the attempt that does not fully
         // work — except where the conflict is duration and nothing blocks.
         let mechanismExempt = conflictMechanism.map(Self.mechanismsWithoutObstacle.contains) ?? false
         if !mechanismExempt {
-            let namedByFive = statesByPage
-                .filter { $0.key <= 5 }
+            let namedInTime = statesByPage
+                .filter { $0.key <= obstacleDeadline }
                 .contains { $0.value.contains(.obstacleNamed) }
-            if !namedByFive {
-                issues.append(.init(pageNumber: 5, beat: .obstacleRaises, code: "obstacle_too_late",
-                                    message: "'obstacleNamed' must be true by page 5."))
+            if !namedInTime {
+                issues.append(.init(pageNumber: obstacleDeadline, beat: .obstacleRaises, code: "obstacle_too_late",
+                                    message: "'obstacleNamed' must be true by page \(obstacleDeadline)."))
             }
         }
 
-        // Resolution lands on page 7, not before and not after.
+        // Çözüm sondan bir önceki sayfada: ne erken ne geç.
         let resolvedPage = statesByPage.filter { $0.value.isResolved }.keys.min()
         if let resolvedPage {
-            if resolvedPage < 7 {
+            if resolvedPage < resolutionPage {
                 issues.append(.init(pageNumber: resolvedPage, beat: .succeed, code: "resolved_too_early",
-                                    message: "The story resolves on page \(resolvedPage); nothing may resolve before page 7."))
+                                    message: "The story resolves on page \(resolvedPage); nothing may resolve before page \(resolutionPage)."))
             }
-            if resolvedPage > 7 {
+            if resolvedPage > resolutionPage {
                 issues.append(.init(pageNumber: resolvedPage, beat: .succeed, code: "resolved_too_late",
-                                    message: "The story resolves on page \(resolvedPage); it must be resolved by page 7."))
+                                    message: "The story resolves on page \(resolvedPage); it must be resolved by page \(resolutionPage)."))
             }
         }
 

@@ -147,9 +147,7 @@ public struct OfflineStoryComposer: Sendable {
                 flush()
                 currentPage = step.pageNumber
             }
-            let candidates = catalog.templates.filter {
-                $0.realizesBeat == step.beat && !$0.variants.isEmpty
-            }
+            let candidates = Self.templates(for: step.beat, in: catalog, blueprint: blueprint)
             guard !candidates.isEmpty else {
                 throw OfflineSelectionError.noTemplate(beat: step.beat, page: step.pageNumber)
             }
@@ -195,6 +193,24 @@ public struct OfflineStoryComposer: Sendable {
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
             )
         )
+    }
+
+    /// Bu beat'i bu blueprint için yazabilecek şablonlar.
+    ///
+    /// Tek yerde, çünkü iki yerde olduğunda ayrıştı: arz testleri şablon
+    /// seçimini kendileri yeniden türetiyordu ve yaş bandı süzgecini
+    /// öğrenmediler. Sonuç, 5-6 masalı için 3-4 şablonunun seçilmesi ve
+    /// "bu rol için satır yok" diye bir hata — kuralın değil, kuralın
+    /// kopyasının hatası.
+    static func templates(
+        for beat: StoryBeat,
+        in catalog: ContentCatalog,
+        blueprint: CatalogBlueprint
+    ) -> [CatalogTemplate] {
+        catalog.templates.filter {
+            $0.realizesBeat == beat && !$0.variants.isEmpty
+                && $0.suits(band: blueprint.ageRange)
+        }
     }
 
     /// One beat to be written, with everything the choice depends on.

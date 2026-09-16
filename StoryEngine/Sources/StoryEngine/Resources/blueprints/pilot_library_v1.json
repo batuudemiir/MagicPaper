@@ -960,6 +960,73 @@
           "emotion": "joy"
         }
       ]
+    },
+    {
+      "id": "blueprint_charge_tending_age3_001",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "family": "charge",
+      "premise": "Küçük biri bakıma muhtaç; çocuk kalır ve bekler, ve o iyileşir.",
+      "editorialName": "lookingAfter",
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
+      "requires": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "casting": [
+          "needsCare"
+        ]
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "patient_wait",
+          "supportingBeat": "restore",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "relief"
+        }
+      ]
     }
   ],
   "templates": [
@@ -1611,6 +1678,21 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_someone_to_look_after_001",
+      "display": "Bakılacak birini bulalım",
+      "supportingText": "Küçük biri üşümüş olabilir.",
+      "illustration": "heart",
+      "ageRange": "3-4",
+      "requires": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "preferredFamilies": [
+        "charge"
+      ]
     }
   ]
 }

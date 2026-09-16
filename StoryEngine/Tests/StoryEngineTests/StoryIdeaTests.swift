@@ -33,12 +33,14 @@ final class StoryIdeaTests: XCTestCase {
     func testTheLibraryOffersACuratedSet() throws {
         let ideas = try library().storyIdeas
         // §33: a small curated set, not a menu. Three plus Surprise.
-        XCTAssertEqual(ideas.count, 3, ideas.map(\.id.rawValue).description)
+        // Dört: üçü 5-6 bandı, biri 3-4. Ekranda yine üç kart görünüyor —
+        // kaç tanesinin gösterileceği ekranın kararı, kaç tanesinin var olduğu
+        // içeriğin.
+        XCTAssertEqual(ideas.count, 4, ideas.map(\.id.rawValue).description)
         for idea in ideas {
             XCTAssertFalse(idea.display.isEmpty)
             XCTAssertFalse(idea.supportingText.isEmpty)
-            XCTAssertTrue(idea.suits(age: 5))
-            XCTAssertTrue(idea.suits(age: 6))
+            XCTAssertFalse(idea.ageRange.description.isEmpty)
         }
         XCTAssertEqual(Set(ideas.map(\.id)).count, ideas.count, "Duplicate idea id.")
     }
@@ -57,7 +59,7 @@ final class StoryIdeaTests: XCTestCase {
     /// pilot file directly — otherwise the app cannot see them.
     func testIdeasSurviveTheMergedLoad() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(catalog.storyIdeas.count, 3)
+        XCTAssertEqual(catalog.storyIdeas.count, 4)
     }
 
     // MARK: - A promise, not a preset
@@ -95,7 +97,11 @@ final class StoryIdeaTests: XCTestCase {
 
     /// Affinity is a preference, and a preference that never wins is not one.
     func testAnIdeaResolvesToAFamilyItLeansTowardWhenOneIsAvailable() throws {
-        let catalog = try library()
+        // Birleşik katalog: 3-4 blueprint'inin prozası korpusta yaşıyor, ve
+        // kütüphane tek başına yüklendiğinde o blueprint hiç oluşamıyor —
+        // sonra da "söz tutulmadı" diye görünüyordu. Kütüphanenin kendi kendine
+        // yettiği dönem bitti; masalı yazan şey birleşik katalog.
+        let catalog = try ContentCatalogLoader().load().catalog
         for idea in catalog.storyIdeas {
             let preferred = Set(idea.preferredFamilies)
             XCTAssertFalse(preferred.isEmpty, "\(idea.id.rawValue) leans nowhere.")

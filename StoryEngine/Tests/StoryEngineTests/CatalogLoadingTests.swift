@@ -45,7 +45,7 @@ final class CatalogBundleTests: XCTestCase {
         XCTAssertEqual(catalog.endings.count, 10)
 
         // Merged totals.
-        XCTAssertEqual(catalog.blueprints.count, 17)
+        XCTAssertEqual(catalog.blueprints.count, 18)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         XCTAssertEqual(catalog.settings.count, 22)
@@ -65,13 +65,33 @@ final class CatalogBundleTests: XCTestCase {
         // and the suite is being run against yesterday's corpus — a green run
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
-        XCTAssertEqual(catalog.templates.count, 85)
-        XCTAssertEqual(catalog.recordCounts["variants"], 514)
+        XCTAssertEqual(catalog.templates.count, 93)
+        XCTAssertEqual(catalog.recordCounts["variants"], 547)
     }
 
-    func testEveryShippedBlueprintDeclaresTheEightBeatArc() throws {
+    /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.
+    ///
+    /// Bu test "her blueprint sekiz sayfa" diyordu ve 3-4 bandı gelene kadar
+    /// doğruydu. Sekiz, 5-6 bandının sayfa sayısı — evrensel bir sabit değil.
+    /// Üç yaşındaki bir çocuğun masalı altı sayfa ve bu bir eksiklik değil.
+    func testEveryShippedBlueprintDeclaresItsBandsArc() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        for blueprint in catalog.blueprints {
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            XCTAssertEqual(blueprint.pagePlan.count, blueprint.ageRange.pageCount,
+                           "\(blueprint.id.rawValue) (\(blueprint.ageRange))")
+        }
+    }
+
+    /// Sekiz sayfalık yay, sekiz sayfalık BANT için.
+    ///
+    /// `PageRole.mvpArc` sekiz rollük bir dizi ve o dizi 5-6 bandının yayı —
+    /// bütün masalların yayı değil. Altı sayfalık bir masalda `discovery` ve
+    /// `challenge` yok, çünkü o bantta inceleme ve engel yok.
+    func testTheEightPageBandKeepsTheEightBeatArc() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let eightPage = catalog.blueprints.filter { $0.ageRange.pageCount == 8 }
+        XCTAssertFalse(eightPage.isEmpty, "Sekiz sayfalık bant yok; test hiçbir şey ölçmüyor.")
+        for blueprint in eightPage {
             XCTAssertEqual(blueprint.pageCount, 8, "\(blueprint.id)")
             XCTAssertEqual(blueprint.roleSequence, PageRole.mvpArc, "\(blueprint.id) has the wrong arc")
         }

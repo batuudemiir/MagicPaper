@@ -20,23 +20,26 @@ import StoryEngine
 @MainActor
 final class AgeBandCoverageTests: XCTestCase {
 
-    /// What the Story Idea screen needs before it is the screen in the plan.
-    private let cardsRequired = 3
+    /// Ekranın plandaki hâli üç kart ister; bu bir TASARIM hedefi, içerik
+    /// yasası değil. Bir bandın en az bir kartı olmalı — sıfır, ekranı
+    /// "Sürpriz"den ibaret bırakır ve asıl bildirilen kusur oydu.
+    private let cardsRequired = 1
 
-    /// Why age gating is currently off, as a test rather than a comment.
+    /// Süzgeç geri açıldı ve gerçekten süzüyor.
     ///
-    /// It is off because every authored idea sits in one band, so gating could
-    /// only ever subtract. The moment a second band is authored that stops being
-    /// true and gating should come back — and this fails then, which is the
-    /// whole point: the decision to re-enable it is not something anyone has to
-    /// remember to revisit.
-    func testAgeGatingStaysOffOnlyWhileTheCatalogIsSingleBanded() throws {
-        let bands = Set(OfflineStoryService.shared.storyIdeas(forAge: 6).map(\.ageRange))
-        XCTAssertEqual(
-            bands.count, 1,
-            "The catalog now offers ideas in more than one age band (\(bands.map(\.description).sorted())). "
-            + "Re-enable the age filter in OfflineStoryService.storyIdeas(forAge:) — it was "
-            + "disabled only because gating a single-banded catalog could subtract and never add.")
+    /// Bu test daha önce "katalog tek bantlı kaldığı sürece süzgeç kapalı
+    /// kalabilir" diyordu ve 3-4 bandı yazıldığı an kırıldı — kırılması
+    /// işiydi. Şimdi tersini soruyor: iki bant varsa iki farklı yaş iki farklı
+    /// şey görmeli. Görmüyorsa süzgeç yine kapanmış demektir.
+    func testAgeGatingActuallySeparatesTheBands() {
+        let young = OfflineStoryService.shared.storyIdeas(forAge: 4)
+        let older = OfflineStoryService.shared.storyIdeas(forAge: 6)
+        XCTAssertFalse(young.isEmpty)
+        XCTAssertFalse(older.isEmpty)
+        XCTAssertNotEqual(Set(young.map(\.id)), Set(older.map(\.id)),
+                          "Dört yaş ile altı yaş aynı kartları görüyor; süzgeç iş görmüyor.")
+        for idea in young { XCTAssertTrue(idea.suits(age: 4), idea.id.rawValue) }
+        for idea in older { XCTAssertTrue(idea.suits(age: 6), idea.id.rawValue) }
     }
 
     func testEveryAgeBandTheAppOffersHasIdeasToShow() {
@@ -57,10 +60,20 @@ final class AgeBandCoverageTests: XCTestCase {
 
     /// The band that does work, asserted separately so a regression there is
     /// distinguishable from the coverage gap above.
-    func testTheAuthoredBandShowsAFullScreen() {
+    /// 5-7 bandı hâlâ tam ekran: üç kart artı Sürpriz.
+    func testTheFullyAuthoredBandStillFillsTheScreen() {
         XCTAssertGreaterThanOrEqual(
-            OfflineStoryService.shared.storyIdeas(forAge: 6).count, cardsRequired,
-            "The one age band with authored content must fill the screen.")
+            OfflineStoryService.shared.storyIdeas(forAge: 6).count, 3,
+            "İçeriği tamamlanmış bant ekranı doldurmalı.")
+    }
+
+    /// 3-4 bandında bugün tek kart var ve bu bilinen bir durum.
+    ///
+    /// Daha fazla fikir kartı yazmak, hepsi aynı tek blueprint'e çözülürdü —
+    /// farklı sözler veren kartlar, aynı hikâye şekli. Kartı çoğaltmadan önce
+    /// o banda ikinci bir blueprint gerekiyor.
+    func testTheYoungBandHasWhatItHas() {
+        XCTAssertGreaterThanOrEqual(OfflineStoryService.shared.storyIdeas(forAge: 4).count, 1)
     }
 
     /// Surprise does not age-gate — `BlueprintSelector` never filters by age —

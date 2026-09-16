@@ -106,14 +106,32 @@ final class MatrixCoverageTests: XCTestCase {
         }
     }
 
+    /// Birleştirilmiş katalogda sorulur, kütüphanede değil.
+    ///
+    /// Kütüphane tek başına her beat'ini karşıladığı sürece dar giriş yeterliydi.
+    /// 3-4 blueprint'inin beat'lerini korpus karşılıyor — `tend` ve
+    /// `patient_wait` için kütüphanenin kendi iskelesi yok. Hikâyeyi yazan şey
+    /// birleşik katalog olduğuna göre, tamlığı sorulacak yer de orası.
     func testEveryBeatAskedForHasATemplateThatRealizesIt() throws {
-        let catalog = try library()
+        let catalog = try ContentCatalogLoader().load().catalog
         let asked = Set(catalog.blueprints.flatMap { $0.beatSlots.flatMap(\.beats) })
         let realized = Set(catalog.templates.compactMap(\.realizesBeat))
         XCTAssertTrue(asked.subtracting(realized).isEmpty,
                       "unrealized: \(asked.subtracting(realized).map(\.rawValue).sorted())")
-        XCTAssertTrue(realized.subtracting(asked).isEmpty,
-                      "unreachable: \(realized.subtracting(asked).map(\.rawValue).sorted())")
+        // Ters yön birleşik katalogda SORULMUYOR. Korpus, blueprint'lerin
+        // önünden gidiyor: on iki çözüm beat'i yazıldı ama onları isteyen on
+        // dört blueprint henüz port edilmedi. Yazılmış ama kullanılmayan proza
+        // bir kusur değil, sıradaki iş — ve zaten bütünlük denetimi bunu
+        // `unreachable_template` uyarısı olarak söylüyor.
+        //
+        // Kütüphanenin KENDİ iskelesi için hâlâ geçerli: orada sahipsiz şablon
+        // gerçekten atıl iştir.
+        let libraryCatalog = try library()
+        let libraryAsked = Set(libraryCatalog.blueprints.flatMap { $0.beatSlots.flatMap(\.beats) })
+        let libraryRealized = Set(libraryCatalog.templates.compactMap(\.realizesBeat))
+        XCTAssertTrue(libraryRealized.subtracting(libraryAsked).isEmpty,
+                      "kütüphanede sahipsiz iskele: "
+                      + libraryRealized.subtracting(libraryAsked).map(\.rawValue).sorted().description)
     }
 
     // MARK: - Recruitment (§8.2)
@@ -155,8 +173,11 @@ final class MatrixCoverageTests: XCTestCase {
                        [.unexplained, .threshold], "a light")
         XCTAssertEqual(try recruits("object_footprints_001", in: catalog),
                        [.absence, .misreading], "footprints")
+        // İnce bir ses artık `charge`'ı da çağırıyor: 3-4 bandının bakım
+        // blueprint'i `impliesNeed` istiyor ve sesin ihtiyacı ima etmesi zaten
+        // onu Appeal'a çağıran şeydi. İçerik büyüdü, cevap büyüdü.
         XCTAssertEqual(try recruits("object_faint_sound_001", in: catalog),
-                       [.unexplained, .threshold, .appeal], "a sound")
+                       [.unexplained, .threshold, .appeal, .charge], "a sound")
         XCTAssertEqual(try recruits("object_torn_map_001", in: catalog),
                        [.unexplained, .absence, .misreading], "a torn map")
     }

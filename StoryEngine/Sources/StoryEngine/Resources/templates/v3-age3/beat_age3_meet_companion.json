@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 2 receive_appeal ile paylaşılır"
+  },
+  "variants": [
+    {
+      "id": "mc3_01",
+      "text": "Orada {{companion.name}} vardı. Çok küçüktü.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "was_there_small",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "mc3_02",
+      "text": "{{companion.name}} yerde oturuyordu. Hiç kıpırdamıyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "sitting_still",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "mc3_03",
+      "text": "Küçük bir {{companion.type}} gördü. Adı {{companion.name}}.",
+      "requiredSlots": [
+        "companion.type",
+        "companion.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "saw_and_named",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "mc3_04",
+      "text": "{{companion.name}} oradaydı. Başını kaldırıp {{child.name}}'e baktı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "looked_up",
+      "lengthClass": "paired"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa 4 hiç paylaşılmaz"
+  },
+  "variants": [
+    {
+      "id": "td3_01",
+      "text": "{{child.name}} yaprakları topladı. Hepsini yan yana dizdi. Yumuşacık bir yatak oldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "gathers_leaves",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "td3_02",
+      "text": "{{child.name}} avucuyla biraz su getirdi. Yavaşça döktü. Hiç acele etmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "brings_water",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "td3_03",
+      "text": "{{child.name}} rüzgârın önüne geçti. Kollarını iki yana açtı. Orada öyle durdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "blocks_the_wind",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "td3_04",
+      "text": "{{child.name}} yanına oturdu. Usulca bir şarkı söyledi. Çok yavaş söyledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "sings_quietly",
+      "lengthClass": "solo"
+    }
+  ]
+}

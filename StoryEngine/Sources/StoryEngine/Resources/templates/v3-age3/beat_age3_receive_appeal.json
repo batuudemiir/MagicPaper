@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır"
+  },
+  "variants": [
+    {
+      "id": "ra3_01",
+      "text": "\"Üşüdüm,\" dedi {{companion.name}}. Sesi çok yavaştı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "i_am_cold",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ra3_02",
+      "text": "\"Yardım eder misin?\" diye sordu {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "asks_plainly",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ra3_03",
+      "text": "{{companion.name}} çok yorgundu. Tek başınaydı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "tired_and_alone",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ra3_04",
+      "text": "\"Bir şeyim var,\" dedi {{companion.name}}. Ağlamadı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "says_without_crying",
+      "lengthClass": "paired"
+    }
+  ]
+}

@@ -31,6 +31,16 @@ public struct BeatCorpusLoader: Sendable {
         }
     }
 
+    /// Bir beat'in bir yaş bandındaki hâli.
+    public struct BandedBeat: Hashable, Sendable {
+        public let beat: StoryBeat
+        public let band: AgeBand?
+        public init(_ beat: StoryBeat, _ band: AgeBand?) {
+            self.beat = beat
+            self.band = band
+        }
+    }
+
     /// One authored beat file.
     private struct BeatFile: Decodable {
         let beat: StoryBeat
@@ -40,6 +50,10 @@ public struct BeatCorpusLoader: Sendable {
         /// the usual 10-16, to keep the shared page inside one budget. Assuming
         /// a single paired band would pass lines that put the page out of it.
         let lengthClasses: [String: String]?
+        /// Dosyanın en üstünde baştan beri yazılıydı ve baştan beri
+        /// OKUNMUYORDU. Tek bant varken zararsızdı; ikinci bant yazıldığı an
+        /// 3-4 cümleleri 5-6 masallarına karışırdı.
+        let ageBand: AgeBand?
         /// Declared in the file and **not used**: `StoryBeat` is the single
         /// source for what a beat requires and produces. Decoded only so the
         /// checker below can say when the two have drifted apart.
@@ -52,7 +66,10 @@ public struct BeatCorpusLoader: Sendable {
         public let templates: [CatalogTemplate]
         public let files: [String]
         /// The word band each beat declares, per length class.
-        public let bands: [StoryBeat: [VariantLengthClass: WordBand]]
+        /// Beat VE banda göre. Yalnızca beat'e göre anahtarlamak, 3-4 için
+        /// yazılmış dokuz kelimelik bir `commit` satırını 5-6'nın 18-38
+        /// bandıyla ölçüyordu — doğru satır, yanlış cetvel.
+        public let bands: [BandedBeat: [VariantLengthClass: WordBand]]
         /// Files that were present and could not be read, with the reason.
         public let skipped: [String]
         /// Beat files whose declared requires/produces disagree with the
@@ -64,8 +81,14 @@ public struct BeatCorpusLoader: Sendable {
     }
 
     /// A stable id for the template a beat file becomes.
-    static func templateID(for beat: StoryBeat) -> ContentID {
-        ContentID("corpus_" + beat.rawValue)
+    /// Şablon kimliği beat VE banttan üretilir.
+    ///
+    /// Yalnızca beat'ten üretmek tek bant varken yetiyordu. İkinci bant gelince
+    /// aynı beat için iki şablon aynı id'yi alır — ve `duplicate_id` bütünlük
+    /// hatası, 3-4 korpusunun neden çalışmadığını açıklayan en son yer olurdu.
+    static func templateID(for beat: StoryBeat, band: AgeBand?) -> ContentID {
+        guard let band else { return ContentID("corpus_" + beat.rawValue) }
+        return ContentID("corpus_\(band.description)_" + beat.rawValue)
     }
 
     public init() {}
@@ -87,7 +110,7 @@ public struct BeatCorpusLoader: Sendable {
     func load(urls: [URL]) -> Report {
         var templates: [CatalogTemplate] = []
         var files: [String] = []
-        var bands: [StoryBeat: [VariantLengthClass: WordBand]] = [:]
+        var bands: [BandedBeat: [VariantLengthClass: WordBand]] = [:]
         var skipped: [String] = []
         var drifted: [String] = []
 
@@ -115,7 +138,7 @@ public struct BeatCorpusLoader: Sendable {
             }
 
             if let declared = file.lengthClasses {
-                bands[file.beat] = declared.reduce(into: [:]) { result, entry in
+                bands[BandedBeat(file.beat, file.ageBand)] = declared.reduce(into: [:]) { result, entry in
                     guard let kind = VariantLengthClass(rawValue: entry.key),
                           let band = WordBand.parse(entry.value) else { return }
                     result[kind] = band
@@ -123,11 +146,12 @@ public struct BeatCorpusLoader: Sendable {
             }
 
             templates.append(CatalogTemplate(
-                id: Self.templateID(for: file.beat),
+                id: Self.templateID(for: file.beat, band: file.ageBand),
                 role: Self.role(for: file.beat),
                 realizesBeat: file.beat,
                 compatibleThemes: [],
-                variants: file.variants
+                variants: file.variants,
+                ageBand: file.ageBand
             ))
             files.append(name)
         }
