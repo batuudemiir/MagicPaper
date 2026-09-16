@@ -79,6 +79,39 @@ disjunction and not finding it.
 
 ---
 
+## 3b. Status — 2026-09-16
+
+| Delta | State | Note |
+|---|---|---|
+| D1 disjunction | **done** | `TraitRequirement.anyOf`; bare arrays still decode |
+| D2 capability/role | **done** | `CompanionRole`, cast resolved once per story and carried on the binding |
+| D3 new axes | **done** | habitat, `ThresholdKind`, `isHazardous`, `explainedBy`; `hasDistance` retired |
+| D4 naming | **done, by them** | the corpus already writes `discovery.name`; no file carries `produces`/`requires` |
+| D5 variant gating | **done** | `castRoles`, `capabilityRequire/Forbid`, `settingTraits`, `discoveryTraits`, `register` |
+| D6 lengthClass | **done** | per-beat bands parsed from `lengthClasses`, never assumed |
+| D7 `move` | **decoded, unused** | the diversity scorer that would read it does not exist yet |
+| D8 multi-file loader | **done** | 33 beat files; an unreadable one is **fatal**, not skipped |
+| D9 liveness | **done** | severity-graded; two principled exemptions |
+| D10 port the 14 | **open** | the last one, and the only one that is content rather than schema |
+
+**One disagreement, recorded rather than resolved silently.** D3 retires `hasDistance`;
+their F5 keeps it inside `hasDistance ∨ hasThreshold`. F5 is right that the real
+requirement is *separation* and right that the trait as used was vacuous — but a trait
+held by 12 of 16, placed in a disjunction with one held by most of the rest, constrains
+less than it did, not more. Separation is a relation between a companion and where it
+belongs; modelling it as a property of the place was the original error, and a disjunction
+inherits it. Retired here; if the port needs it, that is the evidence and it comes back.
+
+**Two runtime cautions learned the expensive way, both about trusting a green run.**
+A test bundle embeds its own copy of the resource bundle and it can go stale, so a suite
+can pass against content it never loaded — the pinned record counts in
+`CatalogLoadingTests` exist to catch exactly that and have now caught it twice. And with
+two sessions authoring at once, content can change *during* a run: a whole class of
+apparent budget failures turned out to be files rewritten 23 seconds into the run. Both
+sides now verify the bundle's file count and checksum the corpus either side of a suite.
+
+---
+
 ## 4. The deltas
 
 Ordered. **D1 and D8 are blocking**: until both land, the 14 blueprints can neither be
