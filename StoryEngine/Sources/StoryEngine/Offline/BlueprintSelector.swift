@@ -38,8 +38,20 @@ public struct BlueprintSelector: Sendable {
         var admitted: [CatalogBlueprint] = []
         var rejections: [String] = []
 
+        // A mode with no profile admits nothing: the parent asked for an
+        // intent the catalog cannot serve, and quietly serving another one is
+        // the substitution this engine exists to stop.
+        let modeProfile = intent.mode.flatMap { catalog.modeProfile($0) }
+
         for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
             var failures: [String] = []
+
+            if let band = intent.ageBand, blueprint.ageRange != band {
+                failures.append("written for \(blueprint.ageRange), not \(band)")
+            }
+            if let mode = intent.mode, !(modeProfile?.admits(blueprint) ?? false) {
+                failures.append("family '\(blueprint.family?.rawValue ?? "none")' does not serve mode '\(mode.rawValue)'")
+            }
 
             // The idea narrows; it never relaxes. Combining rather than
             // replacing is what keeps a blueprint's own premise intact — an
@@ -150,6 +162,35 @@ public struct BlueprintSelector: Sendable {
         try ranked(catalog: catalog, intent: intent)[0]
     }
 
+    /// The modes a story can actually be built in for this band.
+    ///
+    /// A mode is offered, and a surprise may land on it, only if its profile
+    /// admits at least one beat-authored blueprint written for the band. Nil
+    /// band means any band.
+    public func availableModes(catalog: ContentCatalog, ageBand: AgeBand?) -> [StoryMode] {
+        StoryMode.allCases.filter { mode in
+            guard let profile = catalog.modeProfile(mode) else { return false }
+            return catalog.blueprints.contains { blueprint in
+                blueprint.isBeatAuthored
+                    && profile.admits(blueprint)
+                    && (ageBand.map { blueprint.ageRange == $0 } ?? true)
+            }
+        }
+    }
+
+    /// The idea cards that belong under a mode, for a band.
+    ///
+    /// An idea belongs when one of the families it leans toward serves the
+    /// mode. Ideas are optional personalization under a mode; an empty result
+    /// means the flow skips straight past them.
+    public func storyIdeas(catalog: ContentCatalog, mode: StoryMode, ageBand: AgeBand?) -> [CatalogStoryIdea] {
+        guard let profile = catalog.modeProfile(mode) else { return [] }
+        return catalog.storyIdeas.filter { idea in
+            (ageBand.map { idea.ageRange == $0 } ?? true)
+                && idea.preferredFamilies.contains(where: profile.families.contains)
+        }
+    }
+
     /// The companions worth offering for this intent, best first.
     ///
     /// Step 2 of the flow asks "who should come with us?", and the answer has to
@@ -194,7 +235,9 @@ public struct BlueprintSelector: Sendable {
                     childName: intent.childName,
                     storyIdeaID: intent.storyIdeaID,
                     companionID: companion.id,
-                    seed: intent.seed
+                    seed: intent.seed,
+                    mode: intent.mode,
+                    ageBand: intent.ageBand
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil

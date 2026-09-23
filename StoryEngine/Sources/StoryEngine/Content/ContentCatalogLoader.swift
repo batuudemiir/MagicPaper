@@ -180,7 +180,8 @@ public struct ContentCatalogLoader: Sendable {
                     endings: catalog.endings,
                     templates: kept,
                     blueprints: catalog.blueprints,
-                    storyIdeas: catalog.storyIdeas
+                    storyIdeas: catalog.storyIdeas,
+                    storyModes: catalog.storyModes
                 )
             ])
         }

@@ -101,6 +101,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkVocabularyCarriesInformation(catalog))
         issues.append(contentsOf: checkDiscoveryModality(catalog))
         issues.append(contentsOf: checkAgeFit(catalog))
+        issues.append(contentsOf: checkStoryModes(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -509,6 +510,46 @@ public struct CatalogIntegrityChecker: Sendable {
                         + "\(blueprint.ageRange) bandı ise \(blueprint.ageRange.pageCount) sayfa "
                         + "için ölçüldü; kelime bütçesi bu sayfa sayısına göre hesaplanıyor."
                 ))
+            }
+        }
+        return issues
+    }
+
+    /// Her mod bir profile sahip olmalı ve o profil gerçekten kurulabilir bir
+    /// blueprint'e ulaşmalı. Ulaşamayan bir mod ekranda bir kart olarak durur
+    /// ve seçildiğinde hiçbir şey üretemez.
+    private func checkStoryModes(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        // Modeless catalogs (the V1 library, test fixtures) are not wrong, only
+        // older. Their silence is reported once, not as a fault per mode.
+        guard !catalog.storyModes.isEmpty else {
+            return [.init(severity: .warning, code: "no_story_modes",
+                          message: "The catalog declares no story modes; mode selection is unavailable.")]
+        }
+        var issues: [CatalogIssue] = []
+        for mode in StoryMode.allCases {
+            let profiles = catalog.storyModes.filter { $0.mode == mode }
+            guard let profile = profiles.first else {
+                issues.append(.init(severity: .error, code: "mode_without_profile",
+                                    message: "Mode '\(mode.rawValue)' has no profile."))
+                continue
+            }
+            if profiles.count > 1 {
+                issues.append(.init(severity: .error, code: "duplicate_mode_profile",
+                                    message: "Mode '\(mode.rawValue)' is declared \(profiles.count) times; the first wins."))
+            }
+            if profile.families.isEmpty {
+                issues.append(.init(severity: .error, code: "mode_without_families",
+                                    message: "Mode '\(mode.rawValue)' names no narrative family."))
+                continue
+            }
+            let reachable = catalog.blueprints.filter { $0.isBeatAuthored && profile.admits($0) }
+            if reachable.isEmpty {
+                issues.append(.init(severity: .error, code: "mode_unservable",
+                                    message: "Mode '\(mode.rawValue)' admits no beat-authored blueprint."))
+            }
+            for family in profile.families where !reachable.contains(where: { $0.family == family }) {
+                issues.append(.init(severity: .warning, code: "mode_family_unused",
+                                    message: "Mode '\(mode.rawValue)' lists '\(family.rawValue)', but no beat-authored blueprint has that family."))
             }
         }
         return issues

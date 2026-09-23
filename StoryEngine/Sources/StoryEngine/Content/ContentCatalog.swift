@@ -23,6 +23,9 @@ public struct ContentCatalog: Decodable, Sendable {
     /// What the child is offered. Empty in the V1 document; authored
     /// alongside the beat-authored blueprints.
     public let storyIdeas: [CatalogStoryIdea]
+    /// Which narrative families serve each parent intent (`StoryMode`).
+    /// Authored content, not code: re-mapping a mode is a catalog edit.
+    public let storyModes: [StoryModeProfile]
 
     /// How many `resolutions` the file declares.
     ///
@@ -35,6 +38,7 @@ public struct ContentCatalog: Decodable, Sendable {
     private enum CodingKeys: String, CodingKey {
         case version, settings, companions, objects, events, challenges, endings, templates, blueprints
         case storyIdeas
+        case storyModes
         case resolutions
     }
 
@@ -50,6 +54,7 @@ public struct ContentCatalog: Decodable, Sendable {
         templates = try container.decodeIfPresent([CatalogTemplate].self, forKey: .templates) ?? []
         blueprints = try container.decodeIfPresent([CatalogBlueprint].self, forKey: .blueprints) ?? []
         storyIdeas = try container.decodeIfPresent([CatalogStoryIdea].self, forKey: .storyIdeas) ?? []
+        storyModes = try container.decodeIfPresent([StoryModeProfile].self, forKey: .storyModes) ?? []
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -64,6 +69,7 @@ public struct ContentCatalog: Decodable, Sendable {
         templates: [CatalogTemplate] = [],
         blueprints: [CatalogBlueprint] = [],
         storyIdeas: [CatalogStoryIdea] = [],
+        storyModes: [StoryModeProfile] = [],
         declaredResolutionCount: Int = 0
     ) {
         self.version = version
@@ -76,6 +82,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.templates = templates
         self.blueprints = blueprints
         self.storyIdeas = storyIdeas
+        self.storyModes = storyModes
         self.declaredResolutionCount = declaredResolutionCount
     }
 
@@ -85,6 +92,7 @@ public struct ContentCatalog: Decodable, Sendable {
     public func companion(_ id: ContentID) -> CatalogCompanion? { companions.first { $0.id == id } }
     public func object(_ id: ContentID) -> CatalogObject? { objects.first { $0.id == id } }
     public func blueprint(_ id: ContentID) -> CatalogBlueprint? { blueprints.first { $0.id == id } }
+    public func modeProfile(_ mode: StoryMode) -> StoryModeProfile? { storyModes.first { $0.mode == mode } }
     public func templates(for role: PageRole) -> [CatalogTemplate] { templates.filter { $0.role == role } }
 
     /// Every setting tag in the catalog — the vocabulary other records may
@@ -184,6 +192,7 @@ extension ContentCatalog {
             templates: catalogs.flatMap(\.templates),
             blueprints: catalogs.flatMap(\.blueprints),
             storyIdeas: catalogs.flatMap(\.storyIdeas),
+            storyModes: catalogs.flatMap(\.storyModes),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
     }

@@ -19,6 +19,13 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     public let discoveryID: ContentID?
     /// Fixed input to every tie-break, so the same intent yields the same book.
     public let seed: String
+    /// The parent's intent, already resolved — "surprise" never reaches the
+    /// engine as a mode (`StoryModeResolver` turns it into one). Nil admits
+    /// every family, which is how intents built before modes behave.
+    public let mode: StoryMode?
+    /// The band the story is written for, from `AgeBandResolver`. Nil admits
+    /// every band, which is how intents built before age banding behave.
+    public let ageBand: AgeBand?
 
     public init(
         childName: String,
@@ -26,7 +33,9 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         settingID: ContentID? = nil,
         companionID: ContentID? = nil,
         discoveryID: ContentID? = nil,
-        seed: String
+        seed: String,
+        mode: StoryMode? = nil,
+        ageBand: AgeBand? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -34,6 +43,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.companionID = companionID
         self.discoveryID = discoveryID
         self.seed = seed
+        self.mode = mode
+        self.ageBand = ageBand
     }
 }
 
