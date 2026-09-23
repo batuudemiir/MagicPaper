@@ -2,6 +2,8 @@ import SwiftUI
 
 // MARK: - Renk yardımcısı
 
+/// Paletin kurucusu. Ham `hex` değerleri YALNIZCA `MP.Palette` içinde
+/// yazılır; bileşenler `MP.C` / `MP.Palette` token'larını kullanır.
 extension Color {
     init(hex: UInt32, alpha: Double = 1) {
         self.init(
@@ -17,7 +19,16 @@ extension Color {
 // MARK: - Tema
 
 /// MagicPaper tasarım sistemi token'ları.
-/// Kaynak: tokens/*.css — değerler birebir aktarılmıştır.
+///
+/// **Bu dosya token'ların tek kaynağıdır.** Daha önce buradaki yorum bir
+/// `tokens/*.css` kümesine işaret ediyordu; öyle bir klasör depoda yok ve
+/// hiç olmadı. Renk, tipografi, boşluk, yarıçap, gölge ve hareket
+/// değerleri artık yalnızca burada tanımlanır — dışarıda bir kopya veya
+/// üretim adımı yoktur.
+///
+/// Değer eklerken: önce `Palette`'e ham rengi, sonra `C`'ye anlamını yaz.
+/// Bileşenler `Palette`'i değil `C`'yi okur; `Palette`'i doğrudan okuyan
+/// tek yer marka dışı aksanlardır (`World`, `ReadTheme`, `C.avatarAccents`).
 enum MP {
 
     // MARK: Temel palet
@@ -66,6 +77,10 @@ enum MP {
         static let yesim700 = Color(hex: 0x133731)
 
         // Gece — okuma modu, derinlik
+        // 25 ve 50, gece temasının metin mürekkepleridir: zemin koyu olduğu
+        // için ramp burada ters çalışır, en açık ton en okunur olandır.
+        static let gece25  = Color(hex: 0xE4E9F2)
+        static let gece50  = Color(hex: 0xC6CFDD)
         static let gece100 = Color(hex: 0xD4DCEA)
         static let gece200 = Color(hex: 0x9BAAC6)
         static let gece300 = Color(hex: 0x5D719A)
@@ -89,6 +104,27 @@ enum MP {
         static let kagit300 = Color(hex: 0xEEDFCF)
         static let kagit400 = Color(hex: 0xDFCBB6)
         static let kagit500 = Color(hex: 0xC3AB93)
+
+        // Sepya — yalnızca okuma temasının kağıdı ve mürekkebi.
+        // Kağıt ailesinden ayrı durur: `kagit` arayüzün zeminidir, `sepya`
+        // kitabın kendi kağıdıdır ve arayüzde kullanılmaz.
+        static let sepya50  = Color(hex: 0xF7EFDE)
+        static let sepya300 = Color(hex: 0xB49A78)
+        static let sepya500 = Color(hex: 0x7A6248)
+        static let sepya700 = Color(hex: 0x503A22)
+        static let sepya900 = Color(hex: 0x3B2A18)
+
+        // Dünya aksanları — gül/hardal/mercan/yeşim/gece'nin karşılamadığı
+        // masal dünyaları. Tüketicileri: `MP.World.accent` ve ondan türeyen
+        // kategori eşlemeleri. Marka rengi değillerdir, arayüzde tek
+        // başlarına kullanılmazlar.
+        static let deniz400 = Color(hex: 0x2A7A94)
+        static let fosil400 = Color(hex: 0x7A6A3A)
+        static let lila400  = Color(hex: 0xB265A8)
+        static let kahve400 = Color(hex: 0x8A5A32)
+        static let buz400   = Color(hex: 0x6E93B8)
+        static let cimen400 = Color(hex: 0x8AA23C)
+        static let metal400 = Color(hex: 0x5C6B7A)
     }
 
     // MARK: Semantik renkler — bileşenlerde YALNIZCA bunları kullan
@@ -136,7 +172,30 @@ enum MP {
         static let danger  = Palette.mercan500
 
         static let focusRing = Palette.gul300
-        static let scrim     = Color(hex: 0x2B1D24, alpha: 0.44)
+        static let scrim     = Palette.murekkep900.opacity(0.44)
+
+        /// Dairesel öğelerin sert alt kenarı — `mpEdge`'in yuvarlak karşılığı.
+        /// Dikdörtgen kenarlar dolu renk kullanır; daire altında çalışan tek
+        /// çözüm yarı saydam mürekkep olduğu için ayrı token.
+        static let edgeCircle = Palette.murekkep900.opacity(0.18)
+
+        /// Renkli zemin üstündeki kenar (toast gibi). `edgeCard` kağıt
+        /// üstünde çalışır; renk üstünde aynı tonu vermediği için ayrı.
+        static let edgeOnColor = Palette.murekkep900.opacity(0.22)
+
+        /// Yarı saydam (`.ultraThinMaterial`) yüzeylerin kenarı.
+        static let edgeGlass = Palette.murekkep900.opacity(0.12)
+
+        /// Avatar madalyonunun renk kümesi.
+        ///
+        /// Sıra ve uzunluk sabittir: seçilen renk `UserDefaults`'ta *indeks*
+        /// olarak saklanıyor (`mp_avatarColor_<uuid>`), bu yüzden araya renk
+        /// eklemek kayıtlı profillerin rengini kaydırır. Yeni renk yalnızca
+        /// sona eklenir.
+        static let avatarAccents: [Color] = [
+            Palette.gul400, Palette.hardal400, Palette.yesim400,
+            Palette.mercan400, Palette.gece400, Palette.lila400
+        ]
     }
 
     // MARK: Okuma temaları — uygulamadaki tek tema anahtarı
@@ -155,28 +214,28 @@ enum MP {
         var background: Color {
             switch self {
             case .light: return Palette.kagit0
-            case .sepia: return Color(hex: 0xF7EFDE)
+            case .sepia: return Palette.sepya50
             case .night: return Palette.gece700
             }
         }
         var foreground: Color {
             switch self {
             case .light: return Palette.murekkep900
-            case .sepia: return Color(hex: 0x3B2A18)
-            case .night: return Color(hex: 0xE4E9F2)
+            case .sepia: return Palette.sepya900
+            case .night: return Palette.gece25
             }
         }
         var body: Color {
             switch self {
             case .light: return Palette.murekkep700
-            case .sepia: return Color(hex: 0x503A22)
-            case .night: return Color(hex: 0xC6CFDD)
+            case .sepia: return Palette.sepya700
+            case .night: return Palette.gece50
             }
         }
         var muted: Color {
             switch self {
             case .light: return Palette.murekkep500
-            case .sepia: return Color(hex: 0x7A6248)
+            case .sepia: return Palette.sepya500
             case .night: return Palette.gece200
             }
         }
@@ -191,7 +250,7 @@ enum MP {
         var paper: Color {
             switch self {
             case .light: return Palette.kagit100
-            case .sepia: return Color(hex: 0xF7EFDE)
+            case .sepia: return Palette.sepya50
             case .night: return Palette.gece700
             }
         }
@@ -200,9 +259,9 @@ enum MP {
         /// Sistemdeki derinlik `mpEdge`'tir; bu onun kitaba özgü karşılığı.
         var spine: Color {
             switch self {
-            case .light: return Color(hex: 0xC3AB93, alpha: 0.22)
-            case .sepia: return Color(hex: 0xB49A78, alpha: 0.22)
-            case .night: return Color(hex: 0x0B1322, alpha: 0.38)
+            case .light: return Palette.kagit500.opacity(0.22)
+            case .sepia: return Palette.sepya300.opacity(0.22)
+            case .night: return Palette.gece800.opacity(0.38)
             }
         }
     }
@@ -250,18 +309,18 @@ enum MP {
         }
         var accent: Color {
             switch self {
-            case .krallik:  return Color(hex: 0xD25C81)
-            case .uzay:     return Color(hex: 0x3A4E76)
-            case .orman:    return Color(hex: 0x2E7D6B)
-            case .kahraman: return Color(hex: 0xE0A32E)
-            case .deniz:    return Color(hex: 0x2A7A94)
-            case .dinozor:  return Color(hex: 0x7A6A3A)
-            case .peri:     return Color(hex: 0xB265A8)
-            case .korsan:   return Color(hex: 0x8A5A32)
-            case .kar:      return Color(hex: 0x6E93B8)
-            case .ciftlik:  return Color(hex: 0x8AA23C)
-            case .robot:    return Color(hex: 0x5C6B7A)
-            case .sirk:     return Color(hex: 0xE4572E)
+            case .krallik:  return Palette.gul400
+            case .uzay:     return Palette.gece400
+            case .orman:    return Palette.yesim400
+            case .kahraman: return Palette.hardal400
+            case .deniz:    return Palette.deniz400
+            case .dinozor:  return Palette.fosil400
+            case .peri:     return Palette.lila400
+            case .korsan:   return Palette.kahve400
+            case .kar:      return Palette.buz400
+            case .ciftlik:  return Palette.cimen400
+            case .robot:    return Palette.metal400
+            case .sirk:     return Palette.mercan400
             }
         }
         var isPremium: Bool {
@@ -314,6 +373,35 @@ enum MP {
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
+
+        /// Glyph (SF Symbol / emoji) boyutu.
+        ///
+        /// Sistemdeki tek meşru `.system(...)` kullanımı budur: semboller
+        /// sistem fontunun metriklerine bağlıdır, Baloo veya Nunito ile
+        /// çizilemezler. Bu fonksiyonun amacı `.system`'i yasaklamak değil,
+        /// sembol boyutlarının `MP.G` ölçeğinden gelmesini sağlamak.
+        static func glyph(_ size: CGFloat, _ w: Font.Weight = .regular) -> Font {
+            .system(size: size, weight: w)
+        }
+    }
+
+    // MARK: Glyph ölçeği
+
+    /// İkon ve emoji boyutları.
+    ///
+    /// Daha önce merkezi bir ikon ölçeği yoktu: 54 `MPIcon` çağrısı 17 ayrı
+    /// boyut kullanıyor. Bu ölçek o boyutları emekliye ayırmak için var;
+    /// mevcut çağrıların buraya taşınması görsel bir karar olduğu için
+    /// ayrı bir turda yapılmalı (bkz. docs/MagicPaper_Design_System.md).
+    enum G {
+        static let xs: CGFloat = 12
+        static let sm: CGFloat = 14
+        static let md: CGFloat = 18
+        static let lg: CGFloat = 22   // MPIcon varsayılanı
+        static let xl: CGFloat = 26
+        static let xxl: CGFloat = 34
+        static let hero: CGFloat = 52
+        static let display: CGFloat = 64
     }
 
     /// Display metinlerde tracking -0.01em karşılığı.
@@ -403,11 +491,19 @@ enum MP {
     }
 
     enum Sh {
-        static let soft    = ShadowSpec(color: Color(hex: 0x2B1D24, alpha: 0.05), radius: 3,  x: 0, y: 2)
-        static let card    = ShadowSpec(color: Color(hex: 0x2B1D24, alpha: 0.06), radius: 7,  x: 0, y: 4)
-        static let lifted  = ShadowSpec(color: Color(hex: 0x2B1D24, alpha: 0.10), radius: 13, x: 0, y: 10)
-        static let sheet   = ShadowSpec(color: Color(hex: 0x2B1D24, alpha: 0.16), radius: 17, x: 0, y: -8)
-        static let brand   = ShadowSpec(color: Color(hex: 0xC1436B, alpha: 0.22), radius: 9,  x: 0, y: 6)
+        static let soft    = ShadowSpec(color: Palette.murekkep900.opacity(0.05), radius: 3,  x: 0, y: 2)
+        static let card    = ShadowSpec(color: Palette.murekkep900.opacity(0.06), radius: 7,  x: 0, y: 4)
+        static let lifted  = ShadowSpec(color: Palette.murekkep900.opacity(0.10), radius: 13, x: 0, y: 10)
+        static let sheet   = ShadowSpec(color: Palette.murekkep900.opacity(0.16), radius: 17, x: 0, y: -8)
+        static let brand   = ShadowSpec(color: Palette.gul500.opacity(0.22),      radius: 9,  x: 0, y: 6)
+
+        /// Tek başına duran görsel: logo, boş durum illüstrasyonu.
+        /// Kart gölgesinden ayrıdır — kartın derinliği `mpEdge`'ten gelir,
+        /// burada kenarı olmayan bir görseli zeminden ayırmak gerekir.
+        static let art     = ShadowSpec(color: Palette.murekkep900.opacity(0.12), radius: 9,  x: 0, y: 8)
+
+        /// Anahtar/topuz gibi küçük hareketli parçalar.
+        static let knob    = ShadowSpec(color: Palette.murekkep900.opacity(0.20), radius: 1.5, x: 0, y: 1)
     }
 }
 

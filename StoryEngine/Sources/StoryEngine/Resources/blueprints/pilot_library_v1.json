@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "version": "1.0.0",
-  "note": "Phase 3 pilot library. Five blueprints, one per narrative family the Phase 4 matrix needs. Validated by PilotBlueprintTests and OfflineCompositionTests. Deliberately NOT merged into shared_content_library_v2.json: V1 content stays untouched until migration is verified (D2).",
+  "version": "2.0.0",
+  "note": "Canonical Schema 2 blueprint library. Fifteen blueprints: the fourteen of BLUEPRINT_CATALOG_V2.md section 3, ported 2026-09-18 under decision D3 / merge-plan D10, plus one 3-4 band charge blueprint. Schema 2 is the ONLY format a production blueprint may use. Settings, companions and objects below are order-sensitive: OfflineSelection indexes the admissible pool in array order, so records must never be reordered or removed without a product decision. See docs/MagicPaper_Content_Library.md.",
   "settings": [
     {
       "id": "setting_whispering_forest_001",
@@ -519,37 +519,359 @@
   ],
   "blueprints": [
     {
+      "id": "blueprint_unexplained_reading_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-1 - signal",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "İki ayrı gözlem birleşince çocuk anlamı kendi çıkarır.",
+      "editorialGuidance": "Cevap ÇALIŞILARAK bulunur, beklenerek değil. Sayfa 6 iki olguyu birleştirmeli; yeni bilgi getirmemeli.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal",
+              "isFragmentary"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{discovery.title}}'in Sırrı",
+        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "form_belief",
+          "supportingBeat": "commit",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "insight",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "carry_forward",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_unexplained_moment_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-2 - patientObservation",
+      "genre": "adventure",
+      "theme": "patience",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Yalnızca tek bir anda oluyor; çocuğun orada olması gerekiyor.",
+      "editorialGuidance": "Çocuk asla kuram kurmaz, yalnızca dikkatini verir. form_belief YOK: bekleme mekanizmanın kendisi, gecikme değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "hasWeather"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{discovery.title}}'in Sırrı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_unexplained_askingout_003",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-3 - seekingKnowledge",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Burada kimse bilmiyor; anlamak için bilenin yanına gitmek gerekiyor.",
+      "editorialGuidance": "Arkadaşın BİLMEMESİ mesele. Sormak bir beceridir ve bu blueprint onu modelliyor. Bilmemek asla utanç değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "isTended",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "hesitant",
+          "guide",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
       "id": "blueprint_threshold_crossing_001",
       "schemaVersion": 2,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "family": "threshold",
-      "editorialName": "Pilot A — The Crossing",
+      "editorialName": "II-1 - incrementalCourage",
       "genre": "adventure",
       "theme": "courage",
       "ageRange": "5-6",
       "pageCount": 8,
-      "premise": "The child wants to reach something on the far side of a boundary, and the boundary is not what stops them.",
-      "editorialGuidance": "Page 4 names the reluctance as the child's own, never the companion's. Page 6 is interior: nothing outside the child changes.",
+      "premise": "Önce küçük bir hâli, sonra tamamı: çocuk eşiği kendi geçer.",
+      "editorialGuidance": "Arkadaş AYNI engele tabi olmalı - uçarak, yüzerek veya taşıyarak geçebilen bir arkadaş, yardım etmeyi reddediyor gibi okunur. Eşik ürkütücü olabilir, tehlikeli asla.",
       "requires": {
-        "setting": [
-          "hasThreshold"
-        ],
-        "discovery": [
-          "isUnexplained",
-          "emitsSignal"
+        "setting": {
+          "allOf": [
+            "hasThreshold"
+          ]
+        },
+        "thresholdKind": [
+          "opening",
+          "span",
+          "social"
         ],
         "casting": [
           "hesitant",
           "reassuring"
-        ]
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "isUnexplained"
+            ]
+          ]
+        }
       },
       "forbids": {
         "companion": [
+          "canCarry",
           "canFly",
-          "canCarry"
+          "canSwim"
         ],
         "setting": [
           "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
         ]
       },
       "titlePatterns": [
@@ -574,27 +896,25 @@
           "pageNumber": 3,
           "role": "companion",
           "beat": "meet_companion",
-          "supportingBeat": "companion_offers",
-          "emotion": "warmth"
+          "emotion": "hesitation"
         },
         {
           "pageNumber": 4,
           "role": "problem",
           "beat": "hesitate",
-          "supportingBeat": "commit",
-          "emotion": "hesitation"
+          "emotion": "unease"
         },
         {
           "pageNumber": 5,
           "role": "attempt",
           "beat": "small_step",
-          "emotion": "effort"
+          "emotion": "determination"
         },
         {
           "pageNumber": 6,
           "role": "challenge",
           "beat": "find_own_courage",
-          "emotion": "determination"
+          "emotion": "effort"
         },
         {
           "pageNumber": 7,
@@ -612,43 +932,54 @@
       ]
     },
     {
-      "id": "blueprint_unexplained_reading_001",
+      "id": "bp_threshold_joining_002",
       "schemaVersion": 2,
-      "version": "1.0.0",
-      "family": "unexplained",
-      "editorialName": "Pilot B — The Reading",
-      "genre": "adventure",
+      "version": "2.0.0",
+      "family": "threshold",
+      "editorialName": "II-2 - askingToJoin",
+      "genre": "gentle_adventure",
       "theme": "courage",
       "ageRange": "5-6",
       "pageCount": 8,
-      "premise": "The child meets something incomplete and has to work out what it means.",
-      "editorialGuidance": "Page 6 is the child's own realisation. The companion may notice, but must not explain.",
+      "premise": "Çocuk çoktan başlamış bir şeye katılmak istiyor; engel başka insanlar.",
+      "editorialGuidance": "Fiziksel engel YOK, bu yüzden uçma/taşıma yasakları geçerli değil. Çözüm SORMAK - çocuk eyleyen taraf, ama eylem sosyal.",
       "requires": {
-        "discovery": [
-          "isUnexplained"
-        ],
         "setting": {
+          "allOf": [
+            "hasThreshold"
+          ],
           "anyOf": [
             [
-              "canConceal",
-              "showsTraces"
+              "isOpen",
+              "isTended"
             ]
           ]
         },
+        "thresholdKind": [
+          "social"
+        ],
         "casting": [
           "hesitant",
           "reassuring"
-        ]
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "impliesPresence"
+            ]
+          ]
+        }
       },
       "forbids": {
-        "companion": [
-          "hasLocalKnowledge"
+        "setting": [
+          "isHazardous"
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi",
-        "{{discovery.title}}'in Sırrı"
+        "{{child.name}} ve {{setting.name}}'daki Oyun",
+        "{{child.name}}'in Cesur Sorusu"
       ],
       "pages": [
         {
@@ -661,119 +992,137 @@
           "pageNumber": 2,
           "role": "discovery",
           "beat": "examine",
-          "emotion": "puzzlement"
+          "emotion": "unease"
         },
         {
           "pageNumber": 3,
           "role": "companion",
           "beat": "meet_companion",
-          "emotion": "warmth",
-          "supportingBeat": "companion_offers"
+          "supportingBeat": "companion_offers",
+          "emotion": "hesitation"
         },
         {
           "pageNumber": 4,
           "role": "problem",
-          "beat": "form_belief",
-          "emotion": "wonder",
-          "supportingBeat": "commit"
+          "beat": "hesitate",
+          "emotion": "determination"
         },
         {
           "pageNumber": 5,
           "role": "attempt",
-          "beat": "first_attempt",
-          "emotion": "effort",
-          "supportingBeat": "obstacle_raises"
+          "beat": "prepare",
+          "emotion": "doubt"
         },
         {
           "pageNumber": 6,
           "role": "challenge",
-          "beat": "insight",
-          "emotion": "insight"
+          "beat": "ask_for_help",
+          "emotion": "effort"
         },
         {
           "pageNumber": 7,
           "role": "resolution",
           "beat": "succeed",
-          "emotion": "satisfaction"
+          "emotion": "relief"
         },
         {
           "pageNumber": 8,
           "role": "emotional_ending",
           "beat": "warm_close",
-          "emotion": "calm",
-          "supportingBeat": "carry_forward"
+          "supportingBeat": "carry_forward",
+          "emotion": "pride"
         }
       ]
     },
     {
       "id": "blueprint_appeal_together_001",
       "schemaVersion": 2,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "family": "appeal",
-      "editorialName": "Pilot C — Together",
-      "genre": "adventure",
-      "theme": "courage",
+      "editorialName": "III-1 - cooperation",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
       "ageRange": "5-6",
       "pageCount": 8,
-      "premise": "Someone else cannot manage alone, and says so.",
-      "editorialGuidance": "Page 3 states the need aloud. Page 6 is done by both, and the child's part must be real.",
+      "premise": "İki ayrı beceri gerekiyor ve ikisi de şart.",
+      "editorialGuidance": "Engel ne arkadaşın kendi becerisiyle ne de çocuğun arkadaşı taşımasıyla çözülebilmeli. Arkadaşın bedeni asla yük değildir.",
       "requires": {
-        "discovery": [
-          "impliesNeed"
-        ],
+        "setting": {
+          "anyOf": [
+            [
+              "hasThreshold",
+              "canConceal"
+            ]
+          ]
+        },
         "casting": [
           "needsCare"
-        ]
+        ],
+        "companion": {
+          "anyOf": [
+            [
+              "hasLocalKnowledge",
+              "isQuick",
+              "isPatient"
+            ]
+          ]
+        },
+        "discovery": {
+          "anyOf": [
+            [
+              "impliesNeed",
+              "impliesPresence"
+            ]
+          ]
+        }
       },
       "forbids": {
         "companion": [
-          "canFly",
           "canCarry"
         ]
       },
       "titlePatterns": [
         "{{child.name}} ve {{companion.name}}",
-        "{{child.name}}'in {{setting.name}}'daki Yardımı",
-        "{{setting.name}}'na Cesur Yolculuk"
+        "{{child.name}}'in {{setting.name}}'daki Yardımı"
       ],
       "pages": [
         {
           "pageNumber": 1,
           "role": "hook",
           "beat": "notice_anomaly",
-          "emotion": "curiosity"
+          "emotion": "ease"
         },
         {
           "pageNumber": 2,
           "role": "discovery",
           "beat": "approach",
-          "emotion": "wonder"
+          "emotion": "curiosity"
         },
         {
           "pageNumber": 3,
           "role": "companion",
           "beat": "meet_companion",
-          "emotion": "sympathy",
-          "supportingBeat": "receive_appeal"
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
         },
         {
           "pageNumber": 4,
           "role": "problem",
           "beat": "commit",
-          "emotion": "duty",
-          "supportingBeat": "obstacle_raises"
+          "supportingBeat": "obstacle_raises",
+          "emotion": "concern"
         },
         {
           "pageNumber": 5,
           "role": "attempt",
           "beat": "first_attempt",
-          "emotion": "effort"
+          "emotion": "determination"
         },
         {
           "pageNumber": 6,
           "role": "challenge",
           "beat": "cooperative_effort",
-          "emotion": "determination"
+          "emotion": "effort"
         },
         {
           "pageNumber": 7,
@@ -790,68 +1139,269 @@
       ]
     },
     {
-      "id": "blueprint_absence_looking_001",
+      "id": "bp_appeal_speakingup_002",
       "schemaVersion": 2,
-      "version": "1.0.0",
-      "family": "absence",
-      "editorialName": "Pilot D — The Looking",
-      "genre": "adventure",
-      "theme": "courage",
+      "version": "2.0.0",
+      "family": "appeal",
+      "editorialName": "III-2 - advocacy",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
       "ageRange": "5-6",
       "pageCount": 8,
-      "premise": "Something is missing, and it is not obvious where it went.",
-      "editorialGuidance": "Page 5 does not work. Page 6 is the same effort again, not a cleverer one.",
+      "premise": "Çocuğun katkısı, söyleyemeyen biri adına konuşmaktır.",
+      "editorialGuidance": "Arkadaş ihtiyacını DİLE GETİRMEZ - çocuk neyin yanlış olduğunu kendi çıkarır. Bu bir casting talimatı, beceri filtresi değil.",
       "requires": {
-        "discovery": [
-          "impliesPresence"
-        ],
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen"
+            ]
+          ]
+        },
         "casting": [
-          "hesitant",
-          "reassuring"
-        ]
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        }
       },
       "forbids": {
         "companion": [
-          "hasLocalKnowledge"
+          "canCarry"
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve Kayıp {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Arayışı",
-        "{{setting.name}}'na Cesur Yolculuk"
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}}'in {{setting.name}}'daki Yardımı"
       ],
       "pages": [
         {
           "pageNumber": 1,
           "role": "hook",
           "beat": "notice_anomaly",
-          "emotion": "curiosity"
+          "emotion": "ease"
         },
         {
           "pageNumber": 2,
           "role": "discovery",
           "beat": "examine",
-          "emotion": "puzzlement"
+          "emotion": "curiosity"
         },
         {
           "pageNumber": 3,
           "role": "companion",
           "beat": "meet_companion",
-          "emotion": "sympathy",
-          "supportingBeat": "receive_appeal"
+          "emotion": "sympathy"
         },
         {
           "pageNumber": 4,
           "role": "problem",
-          "beat": "commit",
-          "emotion": "duty",
-          "supportingBeat": "obstacle_raises"
+          "beat": "take_charge",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
         },
         {
           "pageNumber": 5,
           "role": "attempt",
           "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "speak_for",
           "emotion": "effort"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "carry_forward",
+          "emotion": "pride"
+        }
+      ]
+    },
+    {
+      "id": "bp_appeal_sharing_003",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "appeal",
+      "editorialName": "III-3 - givingSomethingUp",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk, kendine ait bir şeyden vazgeçerek çözer.",
+      "editorialGuidance": "Vazgeçilen şey yerine konabilir ve gönüllü verilmiş olmalı. Zorlanmış fedakârlık yok; yetişkin çocuğu yoksunluğu için övmez.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}}'in {{setting.name}}'daki Yardımı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "give_up_something",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "pride"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_absence_looking_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "absence",
+      "editorialName": "IV-1 - persistence",
+      "genre": "adventure",
+      "theme": "trying_again",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "İlk deneme sonuç vermez; çocuk yöntemli biçimde aramayı sürdürür.",
+      "editorialGuidance": "İzlerin evi. Yukarıdan bakmak aramayı bitirir, bu yüzden uçan arkadaş yasak. Sayfa 6 vazgeçmemek, yeni bir fikir değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare",
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence",
+            "isFragmentary"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canFly",
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve Kayıp {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Arayışı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
         },
         {
           "pageNumber": 6,
@@ -869,36 +1419,146 @@
           "pageNumber": 8,
           "role": "emotional_ending",
           "beat": "warm_close",
-          "emotion": "warmth",
-          "supportingBeat": "carry_forward"
+          "supportingBeat": "carry_forward",
+          "emotion": "tenderness"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_retracing_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "absence",
+      "editorialName": "IV-2 - retracing",
+      "genre": "adventure",
+      "theme": "problem_solving",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Cevap ileride değil, geride: çocuk geçtiği yeri yeniden okur.",
+      "editorialGuidance": "IV-1 ileri arar, bu geri döner. Bu bir bulmaca, kurtarma değil - kimsenin yardıma ihtiyacı yok.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "showsTraces"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve Kayıp {{discovery.title}}",
+        "{{child.name}}'in {{setting.name}}'daki Arayışı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "retrace",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "satisfaction"
         }
       ]
     },
     {
       "id": "blueprint_misreading_tracks_001",
       "schemaVersion": 2,
-      "version": "1.0.0",
+      "version": "2.0.0",
       "family": "misreading",
-      "editorialName": "Pilot E — The Tracks",
+      "editorialName": "V-1 - revelation",
       "genre": "adventure",
-      "theme": "courage",
+      "theme": "discovery",
       "ageRange": "5-6",
       "pageCount": 8,
-      "premise": "The child reads the evidence confidently, and reads it wrong.",
-      "editorialGuidance": "The wrong belief must be reasonable, and never frightening. Page 6 is relief, not embarrassment.",
+      "premise": "Çocuğun emin olduğu şey başka bir şey çıkar, ve daha güzeldir.",
+      "editorialGuidance": "Yanlış inanç asla korkutucu olmamalı ve çocuk onu taşıdığı için asla aptal durumuna düşmemeli. Gerçek, varsayımdan daha sıcaktır.",
       "requires": {
-        "setting": [
-          "showsTraces"
-        ],
-        "discovery": [
-          "impliesPresence"
-        ],
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        },
         "casting": [
-          "hesitant",
-          "reassuring"
-        ]
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "isUnexplained"
+            ]
+          ]
+        }
       },
       "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
         "companion": [
           "isLiteralMinded"
         ]
@@ -919,61 +1579,353 @@
           "pageNumber": 2,
           "role": "discovery",
           "beat": "examine",
-          "emotion": "puzzlement",
-          "supportingBeat": "form_belief"
+          "supportingBeat": "form_belief",
+          "emotion": "certainty"
         },
         {
           "pageNumber": 3,
           "role": "companion",
           "beat": "meet_companion",
-          "emotion": "warmth"
+          "supportingBeat": "companion_offers",
+          "emotion": "surprise"
         },
         {
           "pageNumber": 4,
           "role": "problem",
           "beat": "belief_fails",
-          "emotion": "doubt",
-          "supportingBeat": "commit"
+          "supportingBeat": "commit",
+          "emotion": "puzzlement"
         },
         {
           "pageNumber": 5,
           "role": "attempt",
           "beat": "first_attempt",
-          "emotion": "effort"
+          "emotion": "doubt"
         },
         {
           "pageNumber": 6,
           "role": "challenge",
           "beat": "reveal_truth",
-          "emotion": "surprise"
+          "emotion": "insight"
         },
         {
           "pageNumber": 7,
           "role": "resolution",
           "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_misreading_twosides_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "misreading",
+      "editorialName": "V-2 - perspectiveShift",
+      "genre": "gentle_adventure",
+      "theme": "friendship",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "İkisi de gerçeğin yarısını tutuyor.",
+      "editorialGuidance": "Kimse suçlu değil ve kimse düzeltilmiyor. İkisi de gördükleri kadarıyla haklıydı.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare",
+          "hesitant"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "supportingBeat": "form_belief",
+          "emotion": "certainty"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "belief_fails",
+          "supportingBeat": "commit",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "exchange_views",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
           "emotion": "relief"
         },
         {
           "pageNumber": 8,
           "role": "emotional_ending",
           "beat": "warm_close",
-          "emotion": "joy"
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_charge_tending_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "VI-1 - patience",
+      "genre": "gentle_adventure",
+      "theme": "responsibility",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Hiçbir şey çocuğu engellemiyor; iş sadece zaman ve geri dönmek istiyor.",
+      "editorialGuidance": "Çatışma SÜRE, zorluk değil - bu yüzden adlandırılmış bir engel yok ve olmamalı. Sayfa 6 beklemek, uğraşmak değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isFragile",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "pride"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_charge_release_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "VI-2 - release",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk bir şeye bakar, sonra onu bırakır.",
+      "editorialGuidance": "Ayrılış görünür biçimde İYİ sonuç olmalı, canlı sağlıklı olmalı ve anı çocuk seçmeli. Bırakmak kayıp değildir.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isFragile",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "let_go",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "carry_forward",
+          "emotion": "calm"
         }
       ]
     },
     {
       "id": "blueprint_charge_tending_age3_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "lookingAfter",
       "genre": "gentle_adventure",
       "theme": "kindness",
       "ageRange": "3-4",
       "pageCount": 6,
-      "family": "charge",
       "premise": "Küçük biri bakıma muhtaç; çocuk kalır ve bekler, ve o iyileşir.",
-      "editorialName": "lookingAfter",
-      "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}} Bekledi"
-      ],
       "requires": {
         "discovery": [
           "impliesNeed"
@@ -987,6 +1939,10 @@
           "isHazardous"
         ]
       },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
       "pages": [
         {
           "pageNumber": 1,

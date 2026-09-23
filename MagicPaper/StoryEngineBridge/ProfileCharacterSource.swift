@@ -71,38 +71,71 @@ struct ProfileCharacterSource {
 
     /// Appends a new identity version rather than editing the old one, so books
     /// already generated keep resolving to the child they were drawn with.
+    ///
+    /// Every parameter is optional and `nil` means "unchanged". That matters
+    /// most for `descriptors`: passing `[]` used to wipe a child's entire
+    /// appearance into a brand-new version, and the only thing standing between
+    /// a parent and that outcome was a guard on the calling side. The guard now
+    /// lives in `CharacterVersion.next(_:)`, which also carries `identitySeed`
+    /// forward unconditionally so a version bump cannot change how the child
+    /// renders.
     func updating(
         _ profile: CharacterProfile,
-        referenceLocator: String?,
-        descriptors: [CharacterDescriptor],
-        doNotDepict: [String] = [],
+        referenceLocator: String? = nil,
+        ageYears: Int? = nil,
+        descriptors: [CharacterDescriptor]? = nil,
+        doNotDepict: [String]? = nil,
         now: Date = Date()
     ) -> CharacterProfile {
         guard let current = profile.latestVersion else { return profile }
 
-        let version = CharacterVersion(
-            versionNumber: current.versionNumber + 1,
-            createdAt: now,
-            identity: CharacterIdentity(
-                ageYears: current.identity.ageYears,
-                pronouns: current.identity.pronouns,
+        return profile.appending(
+            current.next(
+                createdAt: now,
+                ageYears: ageYears,
                 descriptors: descriptors,
-                identitySeed: current.identity.identitySeed,
-                doNotDepict: doNotDepict
-            ),
-            styleProfile: current.styleProfile,
-            assetSet: CharacterAssetSet(
-                masterReference: referenceLocator.map { CharacterAsset(role: .master, locator: $0, createdAt: now) }
-                    ?? current.assetSet.masterReference,
-                fullBodyReference: current.assetSet.fullBodyReference,
-                faceReference: current.assetSet.faceReference,
-                expressionReferences: current.assetSet.expressionReferences,
-                identitySeed: current.assetSet.identitySeed,
-                stylePresetID: current.assetSet.stylePresetID
-            ),
-            provenance: .authoredByParent
+                doNotDepict: doNotDepict,
+                masterReference: referenceLocator.map {
+                    CharacterAsset(role: .master, locator: $0, createdAt: now)
+                },
+                provenance: .authoredByParent
+            )
         )
-        return profile.appending(version)
+    }
+
+    /// Brings a character back in line with the profile the parent edited.
+    ///
+    /// `ProfileManager.updateProfile(_:name:age:)` writes the child's new name
+    /// and age into `UserProfile` and stops there. Nothing carried either into
+    /// the character, so a five-year-old who turned six went on being described
+    /// as five to every illustration request for the rest of the child's life
+    /// in the app — the exact "redefined per story" failure Principle 5 exists
+    /// to prevent, inverted: never redefined at all.
+    ///
+    /// The two edits are not the same kind of change, so they are not handled
+    /// the same way:
+    ///
+    /// - **Age** is an appearance fact. It belongs to a version, and a book
+    ///   drawn when the child was five must keep depicting a five-year-old, so
+    ///   the change appends a snapshot instead of rewriting one.
+    /// - **Name** is not an appearance fact. It applies to the whole character
+    ///   at once and mints no version.
+    ///
+    /// Returns the character untouched when nothing moved, which makes this
+    /// safe to call on every profile save: a no-op edit does not grow history.
+    func syncing(
+        _ character: CharacterProfile,
+        with profile: UserProfile,
+        now: Date = Date()
+    ) -> CharacterProfile {
+        let renamed = character.renamed(to: profile.name)
+
+        guard let current = renamed.latestVersion,
+              current.identity.ageYears != profile.age else {
+            return renamed
+        }
+
+        return updating(renamed, ageYears: profile.age, now: now)
     }
 
     static func seed(from id: UUID) -> UInt64 {

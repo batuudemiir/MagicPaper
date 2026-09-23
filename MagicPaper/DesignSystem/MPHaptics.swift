@@ -4,7 +4,7 @@ import UIKit
 ///
 /// Sistemde böyle bir katman yoktu: `UIImpactFeedbackGenerator` doğrudan,
 /// buton gövdelerinin içinde, hiçbir ayara bakmadan çağrılıyordu
-/// (`Helpers/PremiumComponents.swift`). Bu, kullanıcının titreşimi kapatmasının
+/// (kaldırıldı — ölü kod, bkz. docs/MagicPaper_Wave0_Stabilization.md §6). Bu, kullanıcının titreşimi kapatmasının
 /// hiçbir yolu olmaması demekti.
 ///
 /// Burada üç şey toplanır: tek bir çağrı yüzeyi, kullanıcının açık ayarı, ve

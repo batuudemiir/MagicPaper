@@ -11,6 +11,31 @@ class SubscriptionManager: ObservableObject {
     @Published var freeTrialCount: Int = 3 // 3 ücretsiz deneme (toplam)
     @Published var freeImageStoryUsed: Bool = false // Ücretsiz görselli hikaye kullanıldı mı?
     @Published var lastFreeTextStoryDate: Date? // Son ücretsiz metin hikaye tarihi
+
+    // MARK: - Yetki doğrulaması
+    //
+    // Kademenin kendisi `UserDefaults`'ta duruyor ve orası cihaz sahibinin
+    // yazabildiği bir yer. Bu iki alan "bu kademe nereden geldi" sorusunu
+    // cevaplıyor; `EntitlementPolicy` kararı ikisine birlikte bakarak veriyor.
+    // Yalnızca `RevenueCatManager` yazar — uygulamanın başka hiçbir yerinden
+    // doğrulama damgası atılamaz.
+
+    /// RevenueCat `CustomerInfo`'sunun kademeyi en son ne zaman doğruladığı.
+    /// `nil` ise hiç doğrulanmadı ve ücretli hiçbir yetenek açılmaz.
+    @Published private(set) var entitlementVerifiedAt: Date?
+
+    /// Bu uygulama oturumunda taze doğrulama yapıldı mı.
+    /// Kalıcı değil: her açılış yeniden kanıt ister.
+    @Published private(set) var isEntitlementVerifiedInThisSession: Bool = false
+
+    /// Doğrulama damgasını atar. Tek çağıran `RevenueCatManager`.
+    func recordEntitlementVerification(at date: Date = Date()) {
+        entitlementVerifiedAt = date
+        isEntitlementVerifiedInThisSession = true
+        UserDefaults.standard.set(date, forKey: Self.entitlementVerifiedAtKey)
+    }
+
+    fileprivate static let entitlementVerifiedAtKey = "mp_entitlementVerifiedAt"
     
     // Ücretsiz kullanıcı için 12 saatte 1 metin hikaye
     var canCreateFreeTextStory: Bool {
@@ -141,6 +166,12 @@ class SubscriptionManager: ObservableObject {
         if let savedDate = UserDefaults.standard.object(forKey: "lastFreeTextStoryDate") as? Date {
             lastFreeTextStoryDate = savedDate
         }
+
+        // Damga yüklenir ama `isEntitlementVerifiedInThisSession` bilerek
+        // `false` kalır: geçmiş bir doğrulama, tolerans penceresi içinde
+        // `.cached` güveni verir; taze güveni vermez.
+        entitlementVerifiedAt = UserDefaults.standard.object(
+            forKey: Self.entitlementVerifiedAtKey) as? Date
         
         // İlk açılış kontrolü
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
@@ -195,6 +226,12 @@ class SubscriptionManager: ObservableObject {
         
         UserDefaults.standard.set(SubscriptionTier.none.rawValue, forKey: "subscriptionTier")
         UserDefaults.standard.set(0, forKey: "remainingImageStories")
+
+        // Abonelik yoksa doğrulama damgası da anlamsız: bırakılırsa bayat bir
+        // damga sonraki bir kademe yazısına güven devretmiş olurdu.
+        entitlementVerifiedAt = nil
+        isEntitlementVerifiedInThisSession = false
+        UserDefaults.standard.removeObject(forKey: Self.entitlementVerifiedAtKey)
     }
     
     // Hikaye oluşturabilir mi?

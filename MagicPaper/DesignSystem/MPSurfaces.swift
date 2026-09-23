@@ -35,7 +35,7 @@ struct MPCard<Content: View>: View {
     static func foreground(for tone: MPCardTone) -> Color {
         switch tone {
         case .brand: return MP.C.textOnBrand
-        case .night: return Color(hex: 0xE4E9F2)
+        case .night: return MP.Palette.gece25
         default: return MP.C.textBody
         }
     }
@@ -125,10 +125,13 @@ struct MPAvatar: View {
     var size: CGFloat = 48
     var ring: Bool = false
 
-    private static let palette: [Color] = [
-        Color(hex: 0xD25C81), Color(hex: 0xE0A32E), Color(hex: 0x2E7D6B), Color(hex: 0xE4572E),
-        Color(hex: 0x3A4E76), Color(hex: 0xB265A8), Color(hex: 0x2A7A94), Color(hex: 0x8AA23C)
-    ]
+    /// Ad'dan renk türetmek için yedek küme.
+    ///
+    /// Burada ayrı bir liste vardı: 8 renkti, `UserProfile.mpColor`'ınki 6.
+    /// İkisi de `sum % count` ile seçtiği için aynı çocuk, hangi bileşenin
+    /// çizdiğine göre farklı renk alabiliyordu ve 7./8. renk hiçbir zaman
+    /// kaydedilemiyordu (saklanan indeks 1–6). Tek kümeye indirildi.
+    private static let palette: [Color] = MP.C.avatarAccents
 
     private var bg: Color {
         if let color { return color }
@@ -152,7 +155,7 @@ struct MPAvatar: View {
             .background {
                 // Sistemin imzası: 3px koyu alt kenar (CSS: inset 0 -3px 0 rgba(43,29,36,.18))
                 if !ring {
-                    Circle().fill(Color(hex: 0x2B1D24, alpha: 0.18)).offset(y: 3)
+                    Circle().fill(MP.C.edgeCircle).offset(y: 3)
                 }
             }
             .overlay {
@@ -387,8 +390,18 @@ struct MPStoryCard: View {
     var meta: String? = nil
     var symbol: String = "book"
     var accent: Color = MP.C.brand
-    /// Varsa kapak illüstrasyonu; yoksa dünya ikonu çizilir.
-    var coverImageName: String? = nil
+    /// Kapakta gösterilecek masal adı.
+    ///
+    /// Kartlar önce ortak bir illüstrasyon gösteriyordu. Bir masalı ayırt eden
+    /// şey hepsinde aynı olan resim değil, kendi adıdır — raf, aynı resimden
+    /// beş tane değil, beş farklı kitap gibi okunmalı. Kapak artık masalın
+    /// adını taşıyor; dünya işareti kimlik olarak üstünde kalıyor.
+    var coverTitle: String? = nil
+    /// Generative mosaic cover configuration for text-only stories.
+    ///
+    /// When set, the card renders a `MagicPaperCoverView` mosaic instead of
+    /// the typographic `StoryCoverFace`. Illustrated stories leave this `nil`.
+    var mosaicCover: MagicPaperCoverConfiguration? = nil
     /// Masalın okuma durumu.
     ///
     /// Kütüphane bunu söylemiyordu: beş kart yan yana duruyor ve hangisinin
@@ -449,25 +462,21 @@ struct MPStoryCard: View {
         .buttonStyle(MPPressStyle(scales: false))
     }
 
-    /// Kapak alanı: illüstrasyon varsa o, yoksa dünya ikonu. Ölçüler aynı.
+    /// Kapak alanı: mozaik kapak, tipografik kapak yüzü, veya dünya ikonu.
     @ViewBuilder
     private func cover(side: CGFloat, glyph: CGFloat, rounded: Bool) -> some View {
         Group {
-            if let coverImageName {
-                // Kapak dikey (2:3), küçük kapak alanı kare. Ortadan kırpınca
-                // görselin yalnızca göğü kalıyor ve uzaktan renk lekesi gibi
-                // duruyordu; özne alt üçte birde olduğu için kırpma aşağıya
-                // hizalanıyor.
-                Image(coverImageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: side, height: side, alignment: .bottom)
-                    .clipped()
-                    // Ortak kapak, masalın kendi işareti olmadan her masalı
-                    // birbirinin aynı yapar. Raftaki üç masal tek bir masalın
-                    // üç kopyası gibi görünüyordu — bir çocuğun gezinme aracı
-                    // olan resmi, aynı resmi üç kez göstererek işlevsiz
-                    // bırakıyordu. Resim kalsın, kimlik üstüne binsin.
+            if let mosaicCover {
+                // Generative paper-mosaic cover for text-only stories.
+                MagicPaperCoverView.thumbnail(for: mosaicCover)
+                    .frame(width: side, height: side)
+            } else if let coverTitle {
+                // Kitabın tipografik yüzü: kâğıt, yay biçiminde ad, marka
+                // satırı — okuyucunun kapak yaprağıyla aynı dil.
+                StoryCoverFace(title: coverTitle)
+                    .frame(width: side, height: side)
+                    // Dünya işareti kimlik olarak kalıyor: ad okunmadan da
+                    // hangi dünyaya ait olduğu bir bakışta anlaşılsın.
                     .overlay(alignment: .bottomTrailing) {
                         MPIcon(symbol, size: glyph * 0.44, weight: .bold)
                             .foregroundStyle(MP.Palette.kagit0)
@@ -495,7 +504,11 @@ struct MPStoryCard: View {
 
     private var textBlock: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text(title)
+            // Raf kartında kapak zaten masalın adını taşıyor; altında bir kez
+            // daha yazmak aynı şeyi iki kez söylemek olur. Satır düzeninde
+            // kapak küçük ve ad orada okunmuyor, dolayısıyla orada kalıyor.
+            if !(isShelf && coverTitle != nil) {
+                Text(title)
                 // Rafta bir punto küçük: 21pt'de iki satıra iki kelime
                 // sığıyordu. Başlığın tamamının görünmesi, başlığın büyük
                 // görünmesinden önemli.
@@ -511,6 +524,7 @@ struct MPStoryCard: View {
                 // Dikey listede sorun değil, çünkü orada zaten alt alta.
                 .lineLimit(2, reservesSpace: isShelf)
                 .multilineTextAlignment(.leading)
+            }
             HStack(spacing: MP.S.x2) {
                 if let meta {
                     Text(meta).font(MP.F.labelSM(.semibold))
@@ -690,7 +704,7 @@ struct MPEmptyState: View {
                 Image(illustration)
                     .resizable().scaledToFit()
                     .frame(width: 168, height: 168)
-                    .shadow(color: Color(hex: 0x2B1D24, alpha: 0.12), radius: 9, y: 8)
+                    .mpShadow(MP.Sh.art)
             }
             VStack(spacing: 6) {
                 Text(title).font(MP.F.displayMD()).foregroundStyle(MP.C.textTitle)
@@ -744,7 +758,7 @@ struct MPToast: View {
         .foregroundStyle(colors.fg)
         .padding(.horizontal, 16)
         .padding(.vertical, 13)
-        .mpEdge(fill: colors.bg, edge: Color(hex: 0x2B1D24, alpha: 0.22), radius: MP.R.md)
+        .mpEdge(fill: colors.bg, edge: MP.C.edgeOnColor, radius: MP.R.md)
         .mpShadow(MP.Sh.lifted)
         .padding(.horizontal, MP.S.screenGutter)
         .allowsHitTesting(false)

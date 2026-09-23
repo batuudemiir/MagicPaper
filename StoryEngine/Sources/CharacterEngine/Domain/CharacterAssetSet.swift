@@ -67,6 +67,22 @@ public struct CharacterAssetSet: Codable, Sendable, Hashable {
         self.stylePresetID = stylePresetID
     }
 
+    /// The reference slots beyond `masterReference` are already Optional, so
+    /// only the expression map needs help: V1 never writes one, and a record
+    /// without it must not fail to decode. See `CharacterIdentity.init(from:)`.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        masterReference = try container.decodeIfPresent(CharacterAsset.self, forKey: .masterReference)
+        fullBodyReference = try container.decodeIfPresent(CharacterAsset.self, forKey: .fullBodyReference)
+        faceReference = try container.decodeIfPresent(CharacterAsset.self, forKey: .faceReference)
+        expressionReferences = try container.decodeIfPresent(
+            [CharacterExpression: CharacterAsset].self,
+            forKey: .expressionReferences
+        ) ?? [:]
+        identitySeed = try container.decode(UInt64.self, forKey: .identitySeed)
+        stylePresetID = try container.decode(String.self, forKey: .stylePresetID)
+    }
+
     /// V1 bar: a master reference is enough to illustrate a book.
     public var isUsable: Bool { masterReference != nil }
 

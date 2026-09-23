@@ -100,11 +100,22 @@ struct DailyStoriesView: View {
             MPSectionHeader(title: "Bugünün masalı")
 
             if let story = dailyManager.todaysStory ?? dailyManager.dailyStories.first {
+                let theme: CoverTheme = {
+                    switch story.category {
+                    case .nature:      return .forest
+                    case .adventure:   return .pirate
+                    case .bedtime:     return .fairytale
+                    case .morning:     return .garden
+                    case .educational: return .ocean
+                    case .values:      return .kingdom
+                    }
+                }()
                 MPStoryCard(
                     title: story.title,
                     meta: story.mpMeta,
                     symbol: story.category.mpSymbol,
                     accent: story.category.mpAccent,
+                    mosaicCover: MagicPaperCoverGenerator.configuration(for: story.id.uuidString, theme: theme),
                     badge: "Günlük",
                     layout: .row
                 ) {
@@ -229,9 +240,13 @@ struct DailyStoryReaderView: View {
 
     @EnvironmentObject private var app: MPAppState
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject private var dailyManager = DailyStoryManager.shared
     @StateObject private var streak = MPStreak.shared
     @State private var openedAt: Date?
+    /// Ön planda geçen toplam süre. Arka plana geçip dönmek oturumu bölmez.
+    @State private var sessionSeconds: Double = 0
+    @State private var streakMarked = false
     @State private var showReaderSettings = false
 
     private var theme: MP.ReadTheme { app.readTheme }
@@ -306,16 +321,41 @@ struct DailyStoryReaderView: View {
             }
         }
         .animation(MP.M.gated(MP.M.base), value: theme)
+        // Günün işaretlenmesi buradan da kalktı. Ana okuyucuyla aynı anlam:
+        // günü işaretleyen şey masalın açılması değil, anlamlı bir okuma
+        // oturumu. Günlük masal tek parça metin olduğu için çevrilecek sayfa
+        // yok — ölçüt yalnızca süre (`MPReadingSession.minimumSeconds`).
+        //
+        // `markAsRead` ayrı bir defterdir: "bugünün masalı görüldü mü"
+        // sorusunun cevabı, seri değil. Yerinde kalıyor.
         .onAppear {
             dailyManager.markAsRead(storyId: story.id)
-            streak.markReadToday()
             openedAt = Date()
         }
-        .onDisappear {
-            if let openedAt {
-                streak.addReadingTime(Date().timeIntervalSince(openedAt))
-                self.openedAt = nil
+        .onDisappear(perform: commitReading)
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active {
+                commitReading()
+            } else if openedAt == nil {
+                openedAt = Date()
             }
+        }
+    }
+
+    /// Ön planda geçen süreyi deftere yazar ve oturumun anlamlı olup
+    /// olmadığını değerlendirir.
+    private func commitReading() {
+        guard let openedAt else { return }
+        let elapsed = max(Date().timeIntervalSince(openedAt), 0)
+        self.openedAt = nil
+        sessionSeconds += elapsed
+        streak.addReadingTime(elapsed)
+
+        guard !streakMarked else { return }
+        if streak.markReadingSession(
+            MPReadingSession(secondsRead: sessionSeconds, pagesTurned: 0)
+        ) {
+            streakMarked = true
         }
     }
 }

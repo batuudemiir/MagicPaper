@@ -65,6 +65,19 @@ public struct AICompletionResponse: Sendable, Hashable {
 /// swapping Gemini for something else an adapter change rather than an engine
 /// change.
 ///
+/// **This is not the story-production boundary, and the names invite that
+/// mistake.** D1 describes `StoryProvider` with `OfflineTemplateAIProvider`,
+/// `OnDeviceAIProvider` and `RemoteAIProvider` under it — a seam over *how a
+/// book gets made*. This protocol is a seam over *how a sentence gets
+/// generated*, and the offline path never crosses it: `OfflineStoryComposer`
+/// writes from an authored corpus and asks no model anything. Implementing
+/// "OfflineTemplateAIProvider" as a `StoryAIProvider` would mean wrapping a
+/// deterministic composer in a completion API it has no use for.
+///
+/// The D1 seam belongs one level up, in the app bridge, where the views
+/// currently name `OfflineStoryService` directly. See
+/// `docs/MagicPaper_Story_Engine_Plan.md` §5.5 (Dalga 0.4) for its shape.
+///
 /// Adapters must classify their failures as `StoryEngineError.providerFailed`
 /// with an `ErrorClass`; the retry policy has no other way to tell a timeout
 /// from a refusal.

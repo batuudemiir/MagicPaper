@@ -9,7 +9,44 @@ import SwiftUI
 ///
 /// Kapak, masalın birinci sayfası değildir. Okuyucuda künye "1 / 8"e kapaktan
 /// *sonra* başlar; kapak çevrilerek geçilir, tıpkı basılı kitapta olduğu gibi.
+///
+/// ## Başlık nerede durur — ve illüstrasyonun sessiz bandı
+///
+/// Düzen: illüstrasyon üstte (yaklaşık üst %56), hemen altında yay başlık,
+/// marka satırı, en altta künye. **Başlık illüstrasyonun ALTINDA kalır ve
+/// illüstrasyonun ÜSTÜNE BİNMEZ.** Bu bilinçli: başlık, kitabın tipografisine
+/// girişin ilk cümlesi; resmin üstüne konduğunda kapak bir afişe, resim de
+/// başlığın arka planına dönüşür. Aşağıda durduğunda ise resim resim olarak,
+/// başlık da bir levha yazısı olarak okunur.
+///
+/// Buna rağmen üretilecek illüstrasyonun `textSafeArea`'sı **alt bant**tır
+/// (`Cover.textSafeBand`). Başlık resmin içine girmiyorsa neden bir bant
+/// ayrılıyor:
+///
+/// 1. **Kırpma.** `artwork` görseli `scaledToFill` + `clipped` ile
+///    `width × min(width·1.32, height·0.56)` çerçevesine oturtuyor; bu çerçeve
+///    cihaza göre 3:4 civarında oynuyor. Merkezden kırpma, alt kenara yakın
+///    duran bir yüzü ya da odak nesnesini kesebilir. Alt bandın boş tutulması,
+///    kırpmanın hiçbir cihazda bir şeyin başını kesmemesini sağlar.
+/// 2. **Bitişiklik.** Kalabalık bir alt kenarın hemen altına oturan yay
+///    başlık, resimle yarışır. Bant "buraya yazı gelecek" demiyor; "burası
+///    sakin kalsın" diyor — detaysız, yüzsüz, düşük kontrastlı bir zemin.
+///
+/// Kapak V1 **3:4** ile çıkar. `AspectRatio`'ya 2:3 eklenmedi: o enum
+/// sağlayıcı tarafında exhaustive `switch`lerle tüketiliyor ve buradaki
+/// çerçeve zaten 3:4'e oturuyor.
+///
+/// Yay başlık (`MPArcText`) illüstrasyonlu kapakta da kalır: kart yüzüyle
+/// (`StoryCoverFace`) aynı tipografik imza, rafta ve okuyucuda aynı kitap.
 struct StoryCover: View {
+
+    /// İllüstrasyonun sessiz bırakılması istenen bandı — kadraj kesirleri,
+    /// sol üstten. İllüstrasyon üretimi tarafındaki kompozisyon kuralı bunu
+    /// `SafeArea` olarak taşır.
+    enum Cover {
+        static let textSafeBand = (x: 0.06, y: 0.76, width: 0.88, height: 0.20)
+    }
+
 
     let title: String
     let childName: String
@@ -19,6 +56,8 @@ struct StoryCover: View {
     /// Görseli olmayan masalın kapağı için.
     var symbol: String = "book"
     var accent: Color = MP.C.brand
+    /// Generative mosaic cover for text-only stories.
+    var mosaicCover: MagicPaperCoverConfiguration? = nil
     var theme: MP.ReadTheme = .light
 
     var body: some View {
@@ -63,7 +102,7 @@ struct StoryCover: View {
         .accessibilityLabel("Kapak. \(title). \(childName) için, \(pageCount) sayfa.")
     }
 
-    /// Kapağın ağırlık merkezi: illüstrasyon, kitap oranında ve tam genişlikte.
+    /// Kapağın ağırlık merkezi: illüstrasyon, mozaik kapak, veya dünya ikonu.
     @ViewBuilder
     private func artwork(width: CGFloat, height: CGFloat) -> some View {
         let side = min(width * 1.32, height * 0.56)
@@ -74,6 +113,12 @@ struct StoryCover: View {
                 .scaledToFill()
                 .frame(width: width, height: side)
                 .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: MP.R.lg, style: .continuous))
+                .accessibilityHidden(true)
+        } else if let mosaicCover {
+            // Generative paper-mosaic cover for text-only stories.
+            MagicPaperCoverView(configuration: mosaicCover, title: title)
+                .frame(width: width, height: side)
                 .clipShape(RoundedRectangle(cornerRadius: MP.R.lg, style: .continuous))
                 .accessibilityHidden(true)
         } else {
@@ -101,6 +146,7 @@ extension StoryCover {
                   coverAsset: story.coverAsset,
                   symbol: story.symbol,
                   accent: story.accent,
+                  mosaicCover: story.mosaicCover,
                   theme: theme)
     }
 
@@ -112,6 +158,7 @@ extension StoryCover {
                   coverAsset: story.mpDefaultCoverAsset,
                   symbol: story.mpSymbol,
                   accent: story.mpAccent,
+                  mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
                   theme: .light)
     }
 }

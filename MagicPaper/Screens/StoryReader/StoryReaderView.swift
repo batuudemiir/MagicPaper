@@ -23,8 +23,21 @@ struct StoryReaderView: View {
 
     @State private var showReaderSettings = false
     @State private var openedAt: Date?
+    /// Bu oturumda ön planda geçen, diske yazılmış süre. Arka plana geçip
+    /// dönmek oturumu bölmez — parçalar burada toplanır.
+    @State private var sessionSeconds: Double = 0
+    /// Bu oturumda tamamlanan yaprak geçişi sayısı.
+    @State private var pagesTurned: Int = 0
+    /// Gün bir kez işaretlenir; sonraki değerlendirmeler boşa çalışmasın.
+    @State private var streakMarked = false
     /// Kontrolleri kendiliğinden gizleyen sayaç.
     @State private var autoHideTask: Task<Void, Never>?
+    /// Günlük okuma bütçesini izleyen sayaç.
+    @State private var budgetTask: Task<Void, Never>?
+    /// Bugünün payı bitti — okuma burada durur.
+    @State private var budgetSpent = false
+    /// "Az kaldı" bir kez söylenir.
+    @State private var warnedAboutBudget = false
 
     init(story: Story, startingPage: Int? = nil) {
         self.story = story
@@ -79,6 +92,16 @@ struct StoryReaderView: View {
         .animation(MP.M.gated(MP.M.easeOut), value: model.controlsVisible)
         .animation(MP.M.gated(MP.M.base), value: theme)
         .statusBarHidden(!model.controlsVisible)
+        // Bütçe biterse okuma yerinde durur: sayfa arkada kalır, üstüne sakin
+        // bir kapanış gelir. Masalı yarıda kesmek hoş değil ama bir limitin
+        // "masalın sonuna kadar" beklemesi limit olmaktan çıkar — bu yüzden
+        // beş dakika önceden haber veriliyor.
+        .overlay {
+            if budgetSpent {
+                ReaderTimeUpLeaf(theme: theme, onClose: close)
+                    .transition(.opacity)
+            }
+        }
         .overlay {
             if showReaderSettings {
                 ReaderSettingsSheet(onClose: {
@@ -103,7 +126,20 @@ struct StoryReaderView: View {
         .onDisappear(perform: closeDown)
         .onChange(of: scenePhase) { _, phase in
             // Sayfa çevrilirken arka plana geçilebilir (§25).
-            if phase != .active { model.persistProgress() }
+            if phase != .active {
+                model.persistProgress()
+                // Ve okuma sayacı orada durur.
+                //
+                // Süre bugüne kadar "okuyucu açıldı → kapandı" arası duvar
+                // saatiydi: masalı açık bırakıp telefonu cebe koyan biri bir
+                // saat "okumuş" sayılıyordu. Ebeveyn panelindeki rakam yanlış
+                // oluyordu ama kimseye bir şey yapmıyordu — günlük limit bu
+                // sayının üstüne kurulduğu anda, yanlış rakam çocuğun bugünkü
+                // okumasını yiyen bir şeye dönüşüyor.
+                pauseReading()
+            } else {
+                resumeReading()
+            }
         }
         .onChange(of: model.leafIndex) { _, _ in pageChanged() }
     }
@@ -136,17 +172,27 @@ struct StoryReaderView: View {
     // MARK: - Yaşam döngüsü
 
     private func open() {
-        streak.markReadToday()
+        // Burada seri İŞARETLENMEZ. Açmak okumak değildir; günü işaretleyen
+        // olay anlamlı bir okuma oturumudur (`MPReadingSession`), ve o karar
+        // ilk sayfa çevriminde ya da oturum kapanırken verilir.
+        //
+        // "En son hangi masal" sorusunun cevabı ise burada yazılır: kütüphane
+        // için açmak gerçekten bir olaydır — kaldığı yerden devam edebilmek
+        // için masalın açıldığını bilmek gerekir (`markOpened`'ın gerekçesi).
+        // İki defter, iki farklı soru.
+        StoryGenerationManager.shared.markOpened(storyId: story.id)
         openedAt = Date()
         MPHaptics.prepare()
         if settings.readAloud, let text = model.currentPage?.spokenText {
             speech.speak(text)
         }
         scheduleAutoHide()
+        startBudgetWatch()
     }
 
     private func closeDown() {
         autoHideTask?.cancel()
+        budgetTask?.cancel()
         model.persistProgress()
         commitReadingTime()
         speech.stop()
@@ -157,10 +203,108 @@ struct StoryReaderView: View {
         dismiss()
     }
 
+    /// Arka plana geçerken: o ana kadarki süre yazılır, sayaçlar durur.
+    private func pauseReading() {
+        budgetTask?.cancel()
+        commitReadingTime()
+    }
+
+    /// Öne dönerken: sayaç yeniden başlar, bütçe bugünün güncel toplamıyla
+    /// yeniden hesaplanır (arada gün değişmiş bile olabilir).
+    private func resumeReading() {
+        guard !budgetSpent, openedAt == nil else { return }
+        openedAt = Date()
+        startBudgetWatch()
+    }
+
     private func commitReadingTime() {
         guard let openedAt else { return }
-        streak.addReadingTime(Date().timeIntervalSince(openedAt))
+        let elapsed = max(Date().timeIntervalSince(openedAt), 0)
         self.openedAt = nil
+        sessionSeconds += elapsed
+        streak.addReadingTime(elapsed)
+        markStreakIfEarned()
+    }
+
+    // MARK: - Okuma oturumu
+
+    /// Şu ana kadarki oturum. Ön planda geçen ve henüz yazılmamış süre de
+    /// sayılır — yoksa bir sayfa çevrilmeden okunan masal yalnızca kapanışta
+    /// değerlendirilirdi.
+    private var readingSession: MPReadingSession {
+        let live = openedAt.map { max(Date().timeIntervalSince($0), 0) } ?? 0
+        return MPReadingSession(secondsRead: sessionSeconds + live,
+                                pagesTurned: pagesTurned)
+    }
+
+    /// Günü işaretlemenin tek yeri. Kural `MPReadingSession`'da; burada
+    /// yalnızca "bir kez" garantisi var.
+    private func markStreakIfEarned() {
+        guard !streakMarked else { return }
+        if streak.markReadingSession(readingSession) { streakMarked = true }
+    }
+
+    // MARK: - Günlük okuma bütçesi
+
+    /// Ebeveynin koyduğu limitin okuyucudaki karşılığı.
+    ///
+    /// `secondsBeforeSession` okuyucu açılırken dondurulur: bu oturumun süresi
+    /// henüz diske yazılmadığı için, geçen süre ayrıca elde sayılır. İkisini
+    /// birden `streak`ten okumak, bu oturumu iki kez saymak olurdu.
+    private func budget(startedAt: Double) -> MPReadingBudget {
+        MPReadingBudget(
+            isEnabled: settings.screenLimit,
+            dailyLimitMinutes: settings.screenLimitMinutes,
+            secondsBeforeSession: startedAt
+        )
+    }
+
+    /// Beş dakikalık uyarı — bir çocuğa "bitti" demeden önce "az kaldı" demek.
+    private static let budgetWarningSeconds: Double = 5 * 60
+    private static let budgetTickNanoseconds: UInt64 = 20_000_000_000
+
+    private func startBudgetWatch() {
+        guard settings.screenLimit else { return }
+        let before = streak.secondsToday
+        let opened = Date()
+        let plan = budget(startedAt: before)
+
+        // Gün zaten dolmuşsa masal hiç açılmaz: kapanış yaprağı en baştan.
+        if plan.isExhausted(sessionSeconds: 0) {
+            endForToday()
+            return
+        }
+
+        budgetTask?.cancel()
+        budgetTask = Task { @MainActor in
+            while !Task.isCancelled {
+                try? await Task.sleep(nanoseconds: StoryReaderView.budgetTickNanoseconds)
+                guard !Task.isCancelled else { return }
+                let elapsed = Date().timeIntervalSince(opened)
+                guard let remaining = plan.remainingSeconds(sessionSeconds: elapsed) else { return }
+
+                if remaining <= 0 {
+                    endForToday()
+                    return
+                }
+                if remaining <= StoryReaderView.budgetWarningSeconds, !warnedAboutBudget {
+                    warnedAboutBudget = true
+                    app.showToast("Bugünkü masal vaktinden 5 dakika kaldı", symbol: "hourglass")
+                }
+            }
+        }
+    }
+
+    /// Bugünlük bitiş.
+    ///
+    /// Süre burada hemen diske yazılıyor: kapanış yaprağına bakarak geçen
+    /// dakikalar okuma değildir, ve yazmadan beklemek yarınki bütçeden çalardı.
+    private func endForToday() {
+        budgetTask?.cancel()
+        speech.stop()
+        model.persistProgress()
+        commitReadingTime()
+        withAnimation(MP.M.gated(MP.M.easeOut)) { budgetSpent = true }
     }
 
     // MARK: - Sayfa çevirme
@@ -172,6 +316,13 @@ struct StoryReaderView: View {
 
     private func pageChanged() {
         model.persistProgress()
+
+        // Bir yaprağın çevrilmesi, o masalın okunduğunun kitaba ait kanıtıdır.
+        // Süre eşiğini beklemeden günü işaretler: çocuk okurken serinin
+        // yanmasını okuyucunun kapanmasına bağlamak, olayı yine yanlış ana
+        // taşımak olurdu.
+        pagesTurned += 1
+        markStreakIfEarned()
 
         if model.isOnEndingLeaf {
             speech.stop()

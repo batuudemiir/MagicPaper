@@ -40,6 +40,31 @@ extension Story {
         return "StoryCoverDefault"
     }
 
+    // MARK: - Cover System
+
+    /// Explicit cover presentation decision.
+    ///
+    /// Asset existence does not implicitly define story type — this property
+    /// makes the decision explicit. Text-only stories use the generative
+    /// mosaic; illustrated stories use their own cover images.
+    var mpCoverStyle: StoryCoverStyle {
+        if isIllustrated || coverImageFileName != nil || coverImageUrl != nil {
+            return .illustrated
+        }
+        return .magicPaperMosaic
+    }
+
+    /// The generative mosaic cover configuration for this story.
+    ///
+    /// Computed via a stateless generator — no coupling from the model layer
+    /// into the UI layer. Only meaningful when `mpCoverStyle == .magicPaperMosaic`.
+    var mpMosaicCover: MagicPaperCoverConfiguration {
+        MagicPaperCoverGenerator.configuration(
+            for: id.uuidString,
+            theme: CoverTheme.from(world: mpWorld)
+        )
+    }
+
     /// Okuma ilerlemesi 0…1. Kayıtlı son sayfadan hesaplanır.
     ///
     /// Tek sayfalık masal özel olarak ele alınır. Önceki biçim
@@ -108,10 +133,7 @@ extension UserProfile {
 
     /// Avatar rengi addan türetilir; profil ekranında elle de seçilebilir.
     var mpColor: Color {
-        let palette: [Color] = [
-            Color(hex: 0xD25C81), Color(hex: 0xE0A32E), Color(hex: 0x2E7D6B),
-            Color(hex: 0xE4572E), Color(hex: 0x3A4E76), Color(hex: 0xB265A8)
-        ]
+        let palette = MP.C.avatarAccents
         let stored = UserDefaults.standard.integer(forKey: "mp_avatarColor_\(id.uuidString)")
         if stored > 0, stored - 1 < palette.count { return palette[stored - 1] }
         let sum = name.unicodeScalars.reduce(0) { $0 + Int($1.value) }
@@ -143,12 +165,12 @@ extension DailyStoryCategory {
 
     var mpAccent: Color {
         switch self {
-        case .bedtime:     return Color(hex: 0x3A4E76) // tema-uzay
-        case .morning:     return Color(hex: 0xE0A32E) // hardal
-        case .educational: return Color(hex: 0x2A7A94) // tema-deniz
-        case .values:      return Color(hex: 0xD25C81) // tema-krallik
-        case .adventure:   return Color(hex: 0x8A5A32) // tema-korsan
-        case .nature:      return Color(hex: 0x2E7D6B) // tema-orman
+        case .bedtime:     return MP.World.uzay.accent
+        case .morning:     return MP.C.reward
+        case .educational: return MP.World.deniz.accent
+        case .values:      return MP.World.krallik.accent
+        case .adventure:   return MP.World.korsan.accent
+        case .nature:      return MP.World.orman.accent
         }
     }
 }

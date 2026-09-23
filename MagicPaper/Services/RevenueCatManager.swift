@@ -46,6 +46,33 @@ class RevenueCatManager: ObservableObject {
         fetchOfferings()
     }
     
+    // MARK: - Customer info
+
+    /// Yetki durumunu kaynaktan tazeler.
+    ///
+    /// `EntitlementService.refresh()` buraya iner. Çevrimdışı tolerans
+    /// penceresini yenileyen tek yol bu; uygulamanın kendi kendine "doğrulandı"
+    /// diyebildiği başka bir kapı bilerek yok.
+    func refreshCustomerInfo() {
+        guard Purchases.isConfigured else {
+            errorMessage = "RevenueCat yapılandırılmadı"
+            return
+        }
+        Purchases.shared.getCustomerInfo { [weak self] info, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    // Hata durumunda damgaya dokunulmaz: mevcut damga yaşlanmaya
+                    // devam eder ve pencere dolunca yetki kendiliğinden düşer.
+                    self?.errorMessage = error.localizedDescription
+                    return
+                }
+                guard let info = info else { return }
+                self?.customerInfo = info
+                self?.updateSubscriptionManager(with: info)
+            }
+        }
+    }
+
     // MARK: - Offerings
     
     func fetchOfferings() {
@@ -192,6 +219,11 @@ class RevenueCatManager: ObservableObject {
                 print("   → Unknown subscription, setting to Basic")
                 SubscriptionManager.shared.purchaseSubscription(tier: .basic)
             }
+
+            // Kademe `CustomerInfo`'dan geldi — yalnızca burada damga atılır.
+            // `EntitlementPolicy` ücretli yetenekleri bu damgaya bakarak açar;
+            // damgasız bir `UserDefaults` kademesi premium açmaz.
+            SubscriptionManager.shared.recordEntitlementVerification()
         } else {
             print("   → No premium, cancelling subscription")
             SubscriptionManager.shared.cancelSubscription()
@@ -293,6 +325,12 @@ class RevenueCatManager: ObservableObject {
 
     func fetchOfferings() {
         print("⚠️ RevenueCat modülü yüklenmedi - Xcode'da package'ı target'a ekleyin")
+    }
+
+    /// Modül yokken doğrulanacak bir kaynak da yok; damga atılmaz, dolayısıyla
+    /// ücretli yetenekler kapalı kalır.
+    func refreshCustomerInfo() {
+        print("⚠️ RevenueCat modülü yüklenmedi - yetki doğrulanamıyor")
     }
 
     var isPremium: Bool { false }

@@ -71,10 +71,6 @@ extension View {
         self.padding(.horizontal, DeviceHelper.horizontalPadding)
     }
     
-    func adaptiveFont(_ size: CGFloat, weight: Font.Weight = .regular) -> some View {
-        self.font(.system(size: DeviceHelper.fontSize(size), weight: weight))
-    }
-    
     func minTouchSize() -> some View {
         self.frame(minWidth: DeviceHelper.minTouchTarget, minHeight: DeviceHelper.minTouchTarget)
     }

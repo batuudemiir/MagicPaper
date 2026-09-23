@@ -386,7 +386,12 @@ final class PilotBlueprintTests: XCTestCase {
         )
         XCTAssertTrue(v1.blueprints.allSatisfy { !$0.isBeatAuthored },
                       "V1 blueprints were edited to carry beats.")
-        XCTAssertEqual(v1.blueprints.count, 12)
+        // D3 retired V1's twelve blueprints to docs/retired/ rather than editing
+        // them in place. V1's settings, companions, objects, events, challenges
+        // and endings are untouched — only the blueprint array was emptied.
+        XCTAssertEqual(v1.blueprints.count, 0)
+        XCTAssertFalse(v1.settings.isEmpty, "V1 settings were dropped too.")
+        XCTAssertFalse(v1.objects.isEmpty, "V1 objects were dropped too.")
 
         // And the loaded catalog does contain it, because merging is the point.
         let loaded = try ContentCatalogLoader().load().catalog

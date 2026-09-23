@@ -8,14 +8,14 @@ import SwiftUI
 struct StoryDecorationGallery: View {
 
     @State private var category: DecorationCategory?
-    @State private var type: DecorationType?
+    @State private var motifZone: MotifZone?
     @State private var status: DecorationStatus? = .approved
     @Environment(\.dismiss) private var dismiss
 
     private var entries: [StoryDecorationCatalogEntry] {
         StoryDecorationCatalog.catalogEntries.filter { e in
             (category == nil || e.category == category)
-            && (type == nil || e.type == type)
+            && (motifZone == nil || e.motifZone == motifZone)
             && (status == nil || e.status == status)
         }
     }
@@ -70,9 +70,9 @@ struct StoryDecorationGallery: View {
                 let picked = DecorationCategory.allCases[i]
                 category = (category == picked) ? nil : picked
             }
-            chipRow(DecorationType.allCases.map { ($0.label, $0 == type) }) { i in
-                let picked = DecorationType.allCases[i]
-                type = (type == picked) ? nil : picked
+            chipRow(MotifZone.allCases.map { ($0.label, $0 == motifZone) }) { i in
+                let picked = MotifZone.allCases[i]
+                motifZone = (motifZone == picked) ? nil : picked
             }
         }
         .padding(.vertical, MP.S.x2)

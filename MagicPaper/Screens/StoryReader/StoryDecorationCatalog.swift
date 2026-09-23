@@ -9,11 +9,10 @@ struct StoryDecorationAsset: Identifiable, Hashable {
     /// Asset katalogundaki ad.
     let imageName: String
     let category: DecorationCategory
-    let type: DecorationType
+    let motifZone: MotifZone
     /// Hangi ortamlara uygun. Boşsa yalnızca kategorisiyle eşleşir.
     let environments: Set<StoryEnvironment>
     let moods: Set<StoryMood>
-    let preferredZones: Set<DecorationZone>
     /// 0…1 — sayfadaki görsel ağırlık. Yoğunluk bütçesi bununla harcanır,
     /// adetle değil: üç ağır motif, altı hafif motiften daha kalabalıktır.
     let visualWeight: Double
@@ -43,7 +42,7 @@ struct StoryDecorationCatalogEntry: Identifiable, Hashable {
     /// Yalnızca onaylı varlıklar uygulamaya kopyalanır; ötekiler `nil`.
     let imageName: String?
     let category: DecorationCategory
-    let type: DecorationType
+    let motifZone: MotifZone
     let environments: Set<StoryEnvironment>
     let status: DecorationStatus
     let license: String

@@ -91,8 +91,17 @@ struct ParentPanelView: View {
                   spacing: 12) {
             MPStatCard(symbol: "flame.fill", label: "Okuma serisi",
                        value: "\(streak.currentStreak)", unit: "gün", accent: MP.C.play)
-            MPStatCard(symbol: "clock", label: "Bu hafta okuma",
-                       value: "\(weeklyMinutes)", unit: "dk", accent: MP.C.calm)
+            // Limit açıkken haftalık toplam ikinci plana düşer: ebeveynin
+            // bakması gereken sayı, bugünün payından ne kadarının kullanıldığı.
+            // Haftalık rakam zaten sayfanın tepesindeki cümlede duruyor.
+            if settings.screenLimit {
+                MPStatCard(symbol: "hourglass", label: "Bugün okuma",
+                           value: "\(streak.minutesToday)",
+                           unit: "/ \(settings.screenLimitMinutes) dk", accent: MP.C.calm)
+            } else {
+                MPStatCard(symbol: "clock", label: "Bu hafta okuma",
+                           value: "\(weeklyMinutes)", unit: "dk", accent: MP.C.calm)
+            }
             MPStatCard(symbol: "book", label: "Toplam masal",
                        value: "\(storyManager.stories.count)", accent: MP.C.brand)
             MPStatCard(symbol: "star.fill", label: "Kalan yıldız",
@@ -135,8 +144,11 @@ struct ParentPanelView: View {
         let peak = max(data.lastSevenDays.max() ?? 1, 1)
 
         return VStack(alignment: .leading, spacing: 16) {
+            // "Yeni kelime" ölçülebilen bir şey değildi: bir kelimenin çocuk
+            // için yeni olup olmadığını uygulama bilmiyor. Ölçülen şey, okunan
+            // sayfalarda geçen FARKLI kelimeler — başlık da artık onu diyor.
             MPSectionHeader(title: "Kelime dağarcığı",
-                            subtitle: "Bu ay masallarda karşılaşılan yeni kelimeler")
+                            subtitle: "Bu ay okunan sayfalarda geçen farklı kelimeler")
 
             MPCard(padding: 18) {
                 VStack(alignment: .leading, spacing: 14) {
@@ -145,8 +157,8 @@ struct ParentPanelView: View {
                             .font(MP.F.displayHeavy(26))
                             .foregroundStyle(MP.C.textTitle)
                         Text(data.hasPreviousMonth
-                             ? "yeni kelime · geçen aya göre \(signed(data.deltaVsLastMonth))"
-                             : "yeni kelime")
+                             ? "farklı kelime · geçen aya göre \(signed(data.deltaVsLastMonth))"
+                             : "farklı kelime")
                             .font(MP.F.labelSM())
                             .foregroundStyle(MP.C.textMuted)
                             .fixedSize(horizontal: false, vertical: true)
@@ -236,7 +248,8 @@ struct ParentPanelView: View {
 
     private var approvalQueue: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Onay bekleyen masallar")
+            MPSectionHeader(title: "Onay bekleyen masallar",
+                            subtitle: "Onaylayana kadar kütüphanede görünmüyor")
 
             MPCard(padding: 0) {
                 VStack(spacing: 0) {

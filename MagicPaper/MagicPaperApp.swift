@@ -24,9 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // Apple ASIdentifierManager (IDFA) kullanımına izin vermiyor
     // Gelir modeli: Sadece IAP/Abonelik
     
-    // Request notification permission
-    LocalNotificationManager.shared.requestPermission()
-    print("✅ Notification izni istendi")
+    // Bildirim izni burada İSTENMİYOR.
+    //
+    // Açılışta, ortada tek bir masal yokken sorulan izin, hiçbir şey vaat
+    // etmeden sorulmuş izindir; üstelik izin verilse bile uygulama bugüne
+    // kadar tek bir bildirim planlamıyordu. İzin artık ebeveyn "Masal saati
+    // hatırlatması"nı açtığı anda isteniyor (MPReminder), yani istenen şeyin
+    // ne işe yarayacağı ekranda yazarken. iOS bir kez reddedilen izni bir daha
+    // sormaz — o yüzden hangi anda sorulduğu geri alınamaz bir karar.
     
     print("✅ AppDelegate: didFinishLaunching tamamlandı")
     return true
@@ -63,12 +68,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       #endif
       
       Purchases.configure(withAPIKey: apiKey)
-      print("✅ RevenueCat yapılandırıldı: \(apiKey.prefix(10))...")
+      // Only the scheme prefix, never key material: `prefix(10)` revealed five
+      // characters of the secret itself, and `print` survives into Release.
+      print("✅ RevenueCat yapılandırıldı: \(apiKey.prefix(5))… (\(apiKey.count) karakter)")
       
     } else {
       print("⚠️ RevenueCat API key bulunamadı - Info.plist ve Secrets.xcconfig kontrol edin")
-      print("⚠️ Beklenen key: test_ElHyzdqEfyVopUtAWnZlTlOnTmu (Debug) veya appl_... (Release)")
-      print("⚠️ Bulunan key: \(Bundle.main.object(forInfoDictionaryKey: "REVENUECAT_API_KEY") as? String ?? "nil")")
+      // Neither the expected key nor the found one is printed. The expected one
+      // was a real test key literal sitting in source; the found one printed
+      // whatever Info.plist held, in full. Both stay diagnosable from the shape
+      // alone — which prefix arrived, and how long it was.
+      let found = Bundle.main.object(forInfoDictionaryKey: "REVENUECAT_API_KEY") as? String
+      print("⚠️ Beklenen önek: test_ (Debug) veya appl_ (Release)")
+      print("⚠️ Bulunan: \(found.map { "\($0.prefix(5))… (\($0.count) karakter)" } ?? "yok")")
     }
   }
   #endif
@@ -148,7 +160,7 @@ struct SplashScreenView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 132, height: 132)
-                .shadow(color: Color(hex: 0x2B1D24, alpha: 0.12), radius: 9, y: 8)
+                .mpShadow(MP.Sh.art)
 
             VStack(spacing: 6) {
                 Text("MagicPaper")

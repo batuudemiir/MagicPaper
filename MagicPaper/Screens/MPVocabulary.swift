@@ -1,12 +1,21 @@
 import Foundation
 
 /// Ebeveyn panelindeki "Kelime dağarcığı" bölümünün veri kaynağı.
-/// Prototipteki sabit sayılar yerine üretilen masalların gerçek metinlerinden
+/// Prototipteki sabit sayılar yerine okunan masalların gerçek metinlerinden
 /// hesaplanır — ek bir backend gerekmez.
+///
+/// Ölçtüğü şeyin adı önemli: bunlar çocuğun okuduğu sayfalarda geçen **farklı**
+/// kelimelerdir, "yeni öğrenilen kelimeler" değil. Bir kelimenin çocuk için
+/// yeni olup olmadığını bilmenin yolu yok; ekran da artık bunu iddia etmiyor.
+///
+/// Dönem, masalın **oluşturulma** tarihine göre ayrılıyor, okunma tarihine
+/// göre değil: okuma zamanı hiçbir yerde saklanmıyor. Mart'ta oluşturulup
+/// Nisan'da okunan bir masal Mart'a yazılır. Bunu düzeltmek `Story`'ye bir
+/// okuma damgası eklemeyi gerektirir.
 enum MPVocabulary {
 
     struct Summary {
-        /// Bu ay üretilen masallarda geçen benzersiz kelime sayısı.
+        /// Bu ayın masallarında, okunmuş sayfalarda geçen farklı kelime sayısı.
         let uniqueThisMonth: Int
         /// Geçen aya göre fark (+/-). Yalnızca `hasPreviousMonth` ise anlamlı.
         let deltaVsLastMonth: Int
@@ -24,10 +33,19 @@ enum MPVocabulary {
         var hasChart: Bool { lastSevenDays.filter { $0 > 0 }.count >= 2 }
     }
 
-    /// Bir masalın tüm sayfa metinlerindeki benzersiz kelimeler.
+    /// Bir masalın **okunmuş** sayfalarındaki benzersiz kelimeler.
+    ///
+    /// Eskiden masalın bütün sayfaları sayılıyordu — açılmamış bir masal da
+    /// dâhil. Oysa bölümün adı "kelime dağarcığı": hiç okunmamış bir masalın
+    /// hiçbir kelimesiyle karşılaşılmamıştır. Üretilen ama okunmayan masallar
+    /// sayıyı şişirip ebeveyne çocuğun öğrendiğinden fazlasını gösteriyordu.
+    ///
+    /// Okunan sayfa = `lastReadPage`'e kadar olanlar; bu değer okuyucunun
+    /// ulaştığı **en ileri** sayfadır (`StoryReaderModel.persistProgress`).
     private static func words(in story: Story) -> Set<String> {
+        guard let furthest = story.lastReadPage else { return [] }
         var set = Set<String>()
-        for page in story.pages {
+        for page in story.pages.prefix(furthest + 1) {
             let folded = MPText.foldedForSearch(page.text)
             for raw in folded.split(whereSeparator: { !$0.isLetter }) {
                 // 2 harften kısa parçalar (bağlaçlar, ekler) sayılmaz.

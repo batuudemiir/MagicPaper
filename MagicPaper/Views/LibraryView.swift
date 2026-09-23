@@ -10,6 +10,7 @@ import SwiftUI
 /// Kural: bir denetim, işe yarayabileceği kadar içerik varken görünür.
 struct LibraryView: View {
     @EnvironmentObject private var app: MPAppState
+    @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
     @StateObject private var favorites = MPFavorites.shared
@@ -56,7 +57,8 @@ struct LibraryView: View {
                                 meta: allChildren ? story.mpMetaWithChild : story.mpMeta,
                                 symbol: story.mpSymbol,
                                 accent: story.mpAccent,
-                                coverImageName: story.mpDefaultCoverAsset,
+                                coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
+                                mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
                                 status: status(of: story),
                                 badge: story.isIllustrated ? "Görselli" : nil,
                                 progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
@@ -177,11 +179,22 @@ struct LibraryView: View {
 
     // MARK: - Liste
 
+    /// Kütüphaneye giren masallar.
+    ///
+    /// Onay kapısı en başta uygulanıyor — kapsam ve filtrelerden önce. Kapı
+    /// "hangi masallar var" sorusunun cevabını değiştirir; ondan sonra gelen
+    /// her şey (çocuk kapsamı, arama, favori) o cevabın üzerinde çalışır.
+    /// Sonda uygulansaydı boş durum metni bile yanlış sayardı.
     private var scopedStories: [Story] {
+        let allowed = MPStoryGate.visible(
+            storyManager.stories,
+            approvalRequired: settings.approve,
+            isApproved: { settings.isApproved($0) }
+        )
         guard !allChildren, let active = profileManager.currentProfile else {
-            return storyManager.stories
+            return allowed
         }
-        return storyManager.stories.filter { $0.belongs(to: active) }
+        return allowed.filter { $0.belongs(to: active) }
     }
 
     private var visibleStories: [Story] {

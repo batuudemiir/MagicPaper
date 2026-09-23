@@ -41,6 +41,15 @@ struct ContentView: View {
             if let name = MPWelcome.consume() {
                 app.showToast("\(name) için hazırız", symbol: "sparkles")
             }
+            // Hatırlatma planı iOS'ta kalıcı ama izin Sistem Ayarları'ndan geri
+            // alınabilir; ayrıca aktif çocuk değişmiş olabilir ve bildirimde
+            // onun adı yazıyor. Her açılışta plan gerçeğe göre yenilenir.
+            settings.reminder = await MPReminder.resync(
+                enabled: settings.reminder,
+                hour: settings.reminderHour,
+                minute: settings.reminderMinute,
+                childName: profileManager.currentProfile?.name
+            )
         }
         .overlay { sheetLayer }
         .fullScreenCover(isPresented: $app.showStoryCreation) {

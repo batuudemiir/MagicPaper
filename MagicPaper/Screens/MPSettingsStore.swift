@@ -15,6 +15,13 @@ final class MPSettingsStore: ObservableObject {
     @Published var reminder: Bool { didSet { d.set(reminder, forKey: K.reminder) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
+    /// Günlük okuma bütçesi, dakika. Ekrandaki "Günde 30 dakika" sabit bir
+    /// metindi; artık seçilen değerin kendisi.
+    @Published var screenLimitMinutes: Int { didSet { d.set(screenLimitMinutes, forKey: K.screenLimitMinutes) } }
+    /// Hatırlatma saati. "Her akşam 20.30" da sabit bir metindi — çocuğu
+    /// 19.30'da yatan bir evde işe yaramaz bir saat.
+    @Published var reminderHour: Int { didSet { d.set(reminderHour, forKey: K.reminderHour) } }
+    @Published var reminderMinute: Int { didSet { d.set(reminderMinute, forKey: K.reminderMinute) } }
     /// Dokunsal geri bildirim — okuyucudaki sayfa çevirme dokunuşu buna bakar.
     @Published var haptics: Bool { didSet { d.set(haptics, forKey: K.haptics) } }
 
@@ -30,6 +37,9 @@ final class MPSettingsStore: ObservableObject {
         static let reminder = "mp_reminder"
         static let approve = "mp_approveBeforeShow"
         static let screenLimit = "mp_screenLimit"
+        static let screenLimitMinutes = "mp_screenLimitMinutes"
+        static let reminderHour = "mp_reminderHour"
+        static let reminderMinute = "mp_reminderMinute"
         static let approved = "mp_approvedStoryIDs"
         static let haptics = "mp_haptics"
         static let seeded = "mp_settingsSeeded"
@@ -57,6 +67,24 @@ final class MPSettingsStore: ObservableObject {
         // mevcut kullanıcılarda bir daha çalışmaz, dolayısıyla oraya konan yeni
         // bir varsayılan onlara hiç ulaşmaz. Anahtarın yokluğu "açık" demektir.
         haptics = d.object(forKey: K.haptics) == nil ? true : d.bool(forKey: K.haptics)
+        // Aynı sebeple `seeded` bloğunun dışında: bu üç değer ekranda zaten
+        // yazılı olan sabitlerin (30 dakika, 20.30) yerini alıyor, yani
+        // anahtarı olmayan bir kullanıcıda ekranın bugüne kadar söylediği şey
+        // ne ise o.
+        let storedLimit = d.integer(forKey: K.screenLimitMinutes)
+        screenLimitMinutes = storedLimit > 0 ? storedLimit : 30
+        reminderHour = d.object(forKey: K.reminderHour) == nil ? 20 : d.integer(forKey: K.reminderHour)
+        reminderMinute = d.object(forKey: K.reminderMinute) == nil ? 30 : d.integer(forKey: K.reminderMinute)
+    }
+
+    /// Var olan masalları toplu onaylar.
+    ///
+    /// Onay kapısı açıldığı anda kütüphanedeki her şey birden görünmez olsaydı,
+    /// ebeveyn bir anahtara dokunup çocuğun rafını boşaltmış olurdu — üstelik
+    /// o masalların hepsi zaten okunmuştu. Kapı ileriye doğru çalışır: bundan
+    /// sonra üretilen masallar onay bekler.
+    func approveStories(_ ids: [UUID]) {
+        approvedStoryIDs.formUnion(ids.map(\.uuidString))
     }
 
     var readSize: MP.ReadSize {

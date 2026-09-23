@@ -23,6 +23,17 @@ struct Story: Identifiable, Codable, Equatable {
     var coverImageUrl: String?
     var createdAt: Date
     var lastReadPage: Int?
+    /// Bu masal en son ne zaman okundu.
+    ///
+    /// `lastReadPage` "nerede kalındı"yı söylüyordu, "ne zaman"ı hiçbir şey
+    /// söylemiyordu — ve ana sayfadaki "kaldığın yer" kartı tam olarak bu
+    /// soruyu sormak zorunda. Bu alan olmadan en iyi tahmin masalın
+    /// **oluşturulma** sırasıydı: dün yaratılıp bir sayfa okunup bırakılan
+    /// masal, bu akşam okunan iki haftalık masalın önüne geçiyordu.
+    ///
+    /// Bu alandan önce okunmuş masallarda `nil` — bir defalık bir boşluk,
+    /// çocuk o masalı bir kez daha açtığında kapanır.
+    var lastReadAt: Date?
     var currentProgress: String?
     /// Where an engine-built story came from.
     ///
@@ -52,6 +63,7 @@ struct Story: Identifiable, Codable, Equatable {
         self.coverImageUrl = coverImageUrl
         self.createdAt = Date()
         self.lastReadPage = nil
+        self.lastReadAt = nil
         self.currentProgress = nil
         self.origin = origin
     }

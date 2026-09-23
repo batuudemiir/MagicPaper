@@ -34,6 +34,8 @@
 		A10000010000000000000041 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000043 /* FirebaseStorage */; };
 		A10000010000000000000046 /* FirebaseTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000047 /* FirebaseTestView.swift */; };
 		A10000010000000000000048 /* StoryGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000049 /* StoryGenerationManager.swift */; };
+		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
+		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
 		A1000001000000000000004A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004B /* FileManagerService.swift */; };
 		A1000001000000000000004C /* LocalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004D /* LocalImageView.swift */; };
 		A1000001000000000000004E /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004F /* LocalNotificationManager.swift */; };
@@ -89,6 +91,8 @@
 		A1000001000000000000003F /* FalAITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalAITestView.swift; sourceTree = "<group>"; };
 		A10000010000000000000047 /* FirebaseTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestView.swift; sourceTree = "<group>"; };
 		A10000010000000000000049 /* StoryGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenerationManager.swift; sourceTree = "<group>"; };
+		D4A0000000000000000011 /* LibraryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileStore.swift; sourceTree = "<group>"; };
+		D4A0000000000000000013 /* LibraryMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMigration.swift; sourceTree = "<group>"; };
 		A1000001000000000000004B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		A1000001000000000000004D /* LocalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageView.swift; sourceTree = "<group>"; };
 		A1000001000000000000004F /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -242,6 +246,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D4A0000000000000000001 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0000000000000000011 /* LibraryFileStore.swift */,
+				D4A0000000000000000013 /* LibraryMigration.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		A10000010000000000000027 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +272,7 @@
 				A1000001000000000000005C /* DailyStoryManager.swift */,
 				A10000010000000000000072 /* TextStoryManager.swift */,
 				2DDE500000000000000000B2 /* RevenueCatManager.swift */,
+				D4A0000000000000000001 /* Persistence */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -416,6 +430,8 @@
 				A1000001000000000000004C /* LocalImageView.swift in Sources */,
 				A10000010000000000000013 /* Story.swift in Sources */,
 				A10000010000000000000048 /* StoryGenerationManager.swift in Sources */,
+				D4A0000000000000000010 /* LibraryFileStore.swift in Sources */,
+				D4A0000000000000000012 /* LibraryMigration.swift in Sources */,
 				A1000001000000000000006D /* SubscriptionManager.swift in Sources */,
 				A1000001000000000000004A /* FileManagerService.swift in Sources */,
 				A1000001000000000000004E /* LocalNotificationManager.swift in Sources */,

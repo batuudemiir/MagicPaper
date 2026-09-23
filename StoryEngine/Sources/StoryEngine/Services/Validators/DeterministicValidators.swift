@@ -105,7 +105,14 @@ public struct RepetitionValidator: DeterministicValidator {
                   let opener = TextMetrics.firstWord(ofSentence: sentence) else { continue }
             openers[opener, default: []].append(page.index)
         }
-        for (opener, indices) in openers where indices.count > rules.maximumSharedSentenceOpeners {
+        // Sorted before emitting. `Dictionary` iteration order is seeded per
+        // process, so walking `openers` raw put the same issues in a different
+        // order on every launch — and the issue list is stored on the story, so
+        // two validations of an unchanged book compared as different. The set of
+        // issues was always right; only their order moved, which is the kind of
+        // difference that is invisible until something diffs it.
+        for (opener, indices) in openers.sorted(by: { $0.key < $1.key })
+        where indices.count > rules.maximumSharedSentenceOpeners {
             issues.append(issue(
                 "repeated_openers", .warning, .story,
                 "\(indices.count) pages open with \"\(opener)\"."

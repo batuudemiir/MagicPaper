@@ -10,7 +10,80 @@ import UIKit
 ///
 /// Sayfa kıvrımı yerli olarak buradan gelir (§2): `transitionStyle = .pageCurl`
 /// parmağı takip eden, yarıda bırakılabilen, kendi ışığı olan bir çevirme verir.
-struct StoryReaderContainer<Page: View>: UIViewControllerRepresentable {
+/// SwiftUI wrapper switching between the legacy UIPageViewController and the custom MagicPaperPageTurn system.
+struct StoryReaderContainer<Page: View>: View {
+    @ObservedObject var model: StoryReaderModel
+    let theme: MP.ReadTheme
+    let page: (Int) -> Page
+    let onTurnCompleted: () -> Void
+    let onTap: () -> Void
+    let reduceMotion: Bool
+
+    var body: some View {
+        if MagicPaperPageTurnConfiguration.useCustomRenderer {
+            if reduceMotion {
+                page(model.leafIndex)
+                    .transition(.opacity)
+                    .id(model.leafIndex)
+                    .contentShape(Rectangle())
+                    .onTapGesture(coordinateSpace: .local) { location in
+                        let width = UIScreen.main.bounds.width
+                        let edgeTapWidth = width * MagicPaperPageTurnConfiguration.edgeTapWidthRatio
+                        if location.x < edgeTapWidth {
+                            if model.leafIndex > 0 { 
+                                withAnimation(MP.M.easeOut) { model.previous() }
+                            }
+                        } else if location.x > width - edgeTapWidth {
+                            if model.leafIndex < model.leafCount - 1 { 
+                                withAnimation(MP.M.easeOut) { model.next() }
+                            }
+                        } else {
+                            onTap()
+                        }
+                    }
+                    .gesture(
+                        DragGesture(minimumDistance: 20)
+                            .onEnded { value in
+                                let isHorizontal = abs(value.translation.width) > abs(value.translation.height)
+                                guard isHorizontal else { return }
+                                if value.translation.width < -50 && model.leafIndex < model.leafCount - 1 {
+                                    withAnimation(MP.M.easeOut) { model.next() }
+                                } else if value.translation.width > 50 && model.leafIndex > 0 {
+                                    withAnimation(MP.M.easeOut) { model.previous() }
+                                }
+                            }
+                    )
+            } else {
+                MagicPaperPageTurnContainer(
+                    theme: theme,
+                    leafIndex: model.leafIndex,
+                    leafCount: model.leafCount,
+                    page: page,
+                    onTurnCompleted: { direction in
+                        if direction == .forward {
+                            model.next()
+                        } else {
+                            model.previous()
+                        }
+                        onTurnCompleted()
+                    },
+                    onTap: onTap
+                )
+            }
+        } else {
+            LegacyStoryReaderContainer(
+                model: model,
+                theme: theme,
+                page: page,
+                onTurnCompleted: onTurnCompleted,
+                onTap: onTap,
+                reduceMotion: reduceMotion
+            )
+        }
+    }
+}
+
+struct LegacyStoryReaderContainer<Page: View>: UIViewControllerRepresentable {
 
     @ObservedObject var model: StoryReaderModel
     let theme: MP.ReadTheme

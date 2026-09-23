@@ -7,7 +7,12 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
 
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
     @State private var showPrivacy = false
+    /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
+    /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
+    @State private var notificationsDenied = false
 
     /// Kalan görselli masal hakkı — birim adı her zaman "Yıldız".
     private var stars: Int {
@@ -39,20 +44,57 @@ struct SettingsView: View {
         .fullScreenCover(isPresented: $showPrivacy) {
             PrivacyAndDataView()
         }
+        // Ekranı açtığında gerçeği göster: izin Sistem Ayarları'ndan geri
+        // alınmış olabilir ve bizim anahtarımız bunu bilmiyor.
+        .task {
+            guard settings.reminder else { return }
+            notificationsDenied = await !MPReminder.isAuthorised()
+        }
     }
 
     // MARK: - Okuma
 
+    /// Yazı boyutu satırı bir değeri **gösteriyordu** ama dokunulacak bir şeyi
+    /// yoktu: eylemi olmayan, seçeneği olmayan bir satır. Boyut yalnızca
+    /// okuyucunun kendi sheet'inden değişebiliyordu, yani Ayarlar'daki satır
+    /// bir ayar değil bir etiketti.
     private var readingSection: some View {
-        section(title: "Okuma") {
-            MPListRow(symbol: "textformat.size", title: "Yazı boyutu") {
-                Text(settings.readSize.rawValue)
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textMuted)
-            }
-            MPRowDivider()
-            MPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
-                MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
+        VStack(alignment: .leading, spacing: 16) {
+            MPSectionHeader(title: "Okuma")
+            MPCard(padding: 0) {
+                VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack(spacing: 14) {
+                            MPIcon("textformat.size", size: 20, weight: .semibold)
+                                .foregroundStyle(MP.C.brand)
+                                .frame(width: 38, height: 38)
+                                .background(RoundedRectangle(cornerRadius: MP.R.sm, style: .continuous)
+                                    .fill(MP.C.brand.opacity(0.13)))
+                            Text("Yazı boyutu")
+                                .font(MP.F.bodyMD(.bold))
+                                .foregroundStyle(MP.C.textTitle)
+                            Spacer(minLength: 0)
+                        }
+                        MPWrapRow(spacing: 10) {
+                            ForEach(MP.ReadSize.allCases) { size in
+                                MPChip(title: size.rawValue, isSelected: settings.readSize == size) {
+                                    settings.readSize = size
+                                    // Okuyucu oturum durumundan okuyor; ikisi
+                                    // birlikte değişmezse ayar bir sonraki
+                                    // açılışa kadar görünmez kalır.
+                                    app.readSize = size
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 13)
+
+                    MPRowDivider()
+                    MPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
+                        MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
+                    }
+                }
             }
         }
     }
@@ -88,22 +130,136 @@ struct SettingsView: View {
 
     // MARK: - Bildirimler ve limitler
 
+    /// Bu bölümdeki üç anahtarın üçü de hiçbir şey yapmıyordu: `reminder` ve
+    /// `screenLimit` kodun hiçbir yerinde okunmuyordu, `approve` ise yalnızca
+    /// Ebeveyn panelindeki kuyruğu açıyor, masalı gizlemiyordu. Üçü de
+    /// varsayılan olarak AÇIK geliyordu — yani uygulama, hiç sormadan üç şey
+    /// vaat edip üçünü de yapmıyordu.
     private var notificationsSection: some View {
         section(title: "Bildirimler ve limitler") {
             MPListRow(symbol: "bell", title: "Masal saati hatırlatması",
-                      description: "Her akşam 20.30") {
-                MPSwitch(isOn: $settings.reminder, label: "Masal saati hatırlatması")
+                      description: reminderDescription) {
+                MPSwitch(isOn: Binding(
+                    get: { settings.reminder && !notificationsDenied },
+                    set: { on in setReminder(on) }
+                ), label: "Masal saati hatırlatması")
             }
-            MPRowDivider()
-            MPListRow(symbol: "eye.slash", title: "Masalları onaylamadan gösterme") {
-                MPSwitch(isOn: $settings.approve, label: "Masalları onaylamadan gösterme")
+
+            if notificationsDenied {
+                MPRowDivider()
+                MPListRow(symbol: "exclamationmark.triangle",
+                          iconColor: MP.C.danger,
+                          title: "Bildirimlere izin verilmedi",
+                          description: "Sistem Ayarları'ndan açabilirsiniz",
+                          action: { openSystemSettings() })
+            } else if settings.reminder {
+                MPRowDivider()
+                MPListRow(symbol: "clock", title: "Hatırlatma saati") {
+                    DatePicker("", selection: reminderTime, displayedComponents: .hourAndMinute)
+                        .labelsHidden()
+                }
             }
+
             MPRowDivider()
-            MPListRow(symbol: "clock", title: "Ekran süresi limiti",
-                      description: "Günde 30 dakika") {
+            MPListRow(symbol: "eye.slash", title: "Masalları onaylamadan gösterme",
+                      description: settings.approve
+                        ? "Yeni masallar siz onaylayana kadar kütüphanede görünmez"
+                        : nil) {
+                MPSwitch(isOn: Binding(
+                    get: { settings.approve },
+                    set: { on in setApproval(on) }
+                ), label: "Masalları onaylamadan gösterme")
+            }
+
+            MPRowDivider()
+            MPListRow(symbol: "hourglass", title: "Ekran süresi limiti",
+                      description: settings.screenLimit
+                        ? "Günde \(settings.screenLimitMinutes) dakika okuma"
+                        : nil) {
                 MPSwitch(isOn: $settings.screenLimit, label: "Ekran süresi limiti")
             }
+
+            if settings.screenLimit {
+                MPRowDivider()
+                MPWrapRow(spacing: 10) {
+                    ForEach(MPReadingBudget.choices, id: \.self) { minutes in
+                        MPChip(title: "\(minutes) dk",
+                               isSelected: settings.screenLimitMinutes == minutes) {
+                            settings.screenLimitMinutes = minutes
+                        }
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 13)
+            }
         }
+    }
+
+    private var reminderDescription: String {
+        guard settings.reminder, !notificationsDenied else { return "Kapalı" }
+        return "Her akşam \(MPReminder.clockLabel(hour: settings.reminderHour, minute: settings.reminderMinute))"
+    }
+
+    /// DatePicker saat/dakika ile çalışır; sakladığımız şey iki sayı.
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                var c = DateComponents()
+                c.hour = settings.reminderHour
+                c.minute = settings.reminderMinute
+                return Calendar.current.date(from: c) ?? Date()
+            },
+            set: { date in
+                let c = Calendar.current.dateComponents([.hour, .minute], from: date)
+                settings.reminderHour = c.hour ?? 20
+                settings.reminderMinute = c.minute ?? 30
+                guard settings.reminder else { return }
+                let (h, m, who) = (settings.reminderHour, settings.reminderMinute, childName)
+                Task { @MainActor in
+                    _ = await MPReminder.enable(hour: h, minute: m, childName: who)
+                }
+            }
+        )
+    }
+
+    private var childName: String? { profileManager.currentProfile?.name }
+
+    /// İzin tam burada isteniyor: ebeveyn ne için olduğunu okuyup anahtara
+    /// dokunduğu anda. Açılışta, ortada hiçbir masal yokken değil.
+    private func setReminder(_ on: Bool) {
+        guard on else {
+            settings.reminder = false
+            MPReminder.disable()
+            return
+        }
+        Task { @MainActor in
+            let result = await MPReminder.enable(hour: settings.reminderHour,
+                                                 minute: settings.reminderMinute,
+                                                 childName: childName)
+            switch result {
+            case .scheduled:
+                settings.reminder = true
+                notificationsDenied = false
+                app.showToast("Her akşam \(MPReminder.clockLabel(hour: settings.reminderHour, minute: settings.reminderMinute)) hatırlatılacak",
+                              symbol: "bell")
+            case .denied:
+                settings.reminder = false
+                notificationsDenied = true
+            }
+        }
+    }
+
+    private func setApproval(_ on: Bool) {
+        settings.approve = on
+        guard on else { return }
+        // Kapı ileriye doğru çalışır — açıklaması `approveStories` üzerinde.
+        settings.approveStories(storyManager.stories.map(\.id))
+        app.showToast("Yeni masallar onayınızı bekleyecek", symbol: "eye.slash")
+    }
+
+    private func openSystemSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 
     // MARK: - Hesap
@@ -302,8 +458,12 @@ struct PrivacyAndDataView: View {
 
     private func clearAll() {
         let d = UserDefaults.standard
+        // `mp_readSeconds` was missing here: "delete all data" cleared the reading
+        // *days* but left the reading *time* ledger behind, so the parent panel
+        // kept showing minutes for a profile that no longer existed.
         for key in ["stories", "user_profiles", "current_profile_id",
-                    "mp_favoriteStoryIDs", "mp_readDays", "mp_approvedStoryIDs"] {
+                    "mp_favoriteStoryIDs", "mp_readDays", "mp_readSeconds",
+                    "mp_approvedStoryIDs"] {
             d.removeObject(forKey: key)
         }
         dismiss()

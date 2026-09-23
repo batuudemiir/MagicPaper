@@ -34,6 +34,20 @@ public struct CharacterProfile: Codable, Sendable, Hashable, Identifiable {
         self.schemaVersion = schemaVersion
     }
 
+    /// A record written before this field existed is a v1 record, not a corrupt
+    /// one. See `CharacterIdentity.init(from:)` for why refusing it is worse
+    /// than reading it.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(CharacterID.self, forKey: .id)
+        ownerProfileID = try container.decode(UUID.self, forKey: .ownerProfileID)
+        displayName = try container.decode(String.self, forKey: .displayName)
+        versions = try container.decode([CharacterVersion].self, forKey: .versions)
+        activeVersionID = try container.decode(CharacterVersionID.self, forKey: .activeVersionID)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        schemaVersion = try container.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? 1
+    }
+
     public func version(id versionID: CharacterVersionID) -> CharacterVersion? {
         versions.first { $0.id == versionID }
     }

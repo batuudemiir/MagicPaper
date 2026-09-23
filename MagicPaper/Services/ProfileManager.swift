@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 import SwiftUI
 
 // MARK: - Profile Type
@@ -54,9 +55,36 @@ class ProfileManager: ObservableObject {
     private let profilesKey = "user_profiles"
     private let currentProfileKey = "current_profile_id"
     private let onboardingKey = "has_completed_onboarding"
-    
+
+    /// Profile bookkeeping goes to the unified log, never to `print`.
+    ///
+    /// `print` writes to stdout, which on a device is captured verbatim into
+    /// the shared device console — readable by anything attached, kept after
+    /// the app quits, and swept up into diagnostic bundles. Two of the lines
+    /// that used to live here interpolated `profile_<UUID>.jpg`, which is a
+    /// pseudonymous child identifier: paired with the `read_history_<UUID>` and
+    /// `mp_avatarColor_<UUID>` keys it links a specific child to what they read.
+    ///
+    /// Nothing below interpolates a name, an age or a file name. Counts are
+    /// marked `.private` so the log does not state how many children live in
+    /// the house; only genuinely non-identifying values are `.public`.
+    private static let log = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids",
+        category: "profiles"
+    )
+
+    /// An error rendered without its `userInfo`.
+    ///
+    /// `\(error)` on a Foundation file error prints `NSFilePath`, and that path
+    /// ends in `profile_<UUID>.jpg`. The domain and code say what went wrong
+    /// without saying whose file it was.
+    private static func describe(_ error: Error) -> String {
+        let nsError = error as NSError
+        return "\(nsError.domain) \(nsError.code)"
+    }
+
     private init() {
-        print("🎯 ProfileManager başlatılıyor...")
+        Self.log.debug("ProfileManager starting")
         loadProfiles()
         loadOnboardingStatus()
         
@@ -70,21 +98,21 @@ class ProfileManager: ObservableObject {
         if let data = userDefaults.data(forKey: profilesKey),
            let savedProfiles = try? JSONDecoder().decode([UserProfile].self, from: data) {
             self.profiles = savedProfiles
-            print("✅ \(savedProfiles.count) profil yüklendi")
+            Self.log.debug("Profiles loaded: \(savedProfiles.count, privacy: .private)")
             
             // Load current profile
             if let currentProfileId = userDefaults.string(forKey: currentProfileKey),
                let uuid = UUID(uuidString: currentProfileId),
                let profile = profiles.first(where: { $0.id == uuid }) {
                 self.currentProfile = profile
-                print("✅ Aktif profil yüklendi")
+                Self.log.debug("Active profile restored")
             } else if let firstProfile = profiles.first {
                 self.currentProfile = firstProfile
-                print("✅ İlk profil aktif edildi")
+                Self.log.debug("First profile made active")
             }
         } else {
             self.profiles = []
-            print("ℹ️ Kayıtlı profil bulunamadı")
+            Self.log.debug("No stored profiles")
         }
     }
     
@@ -94,16 +122,18 @@ class ProfileManager: ObservableObject {
         do {
             let data = try JSONEncoder().encode(profiles)
             userDefaults.set(data, forKey: profilesKey)
-            print("💾 \(profiles.count) profil kaydedildi")
+            Self.log.debug("Profiles saved: \(self.profiles.count, privacy: .private)")
         } catch {
-            assertionFailure("Profiles could not be encoded: \(error)")
-            print("❌ Profiller kaydedilemedi: \(error)")
+            // Not `\(error)`: `EncodingError.invalidValue` carries the offending
+            // value, which here would be a child's name.
+            assertionFailure("Profiles could not be encoded: \(Self.describe(error))")
+            Self.log.error("Profiles could not be encoded: \(Self.describe(error), privacy: .public)")
         }
     }
     
     private func loadOnboardingStatus() {
         hasCompletedOnboarding = userDefaults.bool(forKey: onboardingKey)
-        print("📱 Onboarding durumu: \(hasCompletedOnboarding)")
+        Self.log.debug("Onboarding completed: \(self.hasCompletedOnboarding, privacy: .public)")
     }
     
     // MARK: - Profile Management
@@ -132,10 +162,22 @@ class ProfileManager: ObservableObject {
             switchProfile(to: profile)
         }
 
-        print("✅ Yeni profil oluşturuldu (\(profileType.displayName))")
+        Self.log.debug("Profile created")
         return profiles.last ?? profile
     }
     
+    /// Edits the stored profile.
+    ///
+    /// This is the seam where an age edit has to reach the child's character.
+    /// `UserProfile.age` is what the parent sees; `CharacterIdentity.ageYears`
+    /// is what every illustration request is conditioned on, and writing one
+    /// without the other is how a six-year-old keeps being drawn as five.
+    ///
+    /// `ProfileCharacterSource.syncing(_:with:)` performs that reconciliation
+    /// and is idempotent, so the wiring is a load-sync-save around this call.
+    /// It is deliberately not done here yet: the only character store today is
+    /// `FileCharacterStore`, whose lifecycle belongs to the persistence work in
+    /// flight. Until then no `CharacterProfile` exists to fall out of date.
     func updateProfile(_ profile: UserProfile, name: String? = nil, age: Int? = nil, image: UIImage? = nil) {
         guard let index = profiles.firstIndex(where: { $0.id == profile.id }) else { return }
         
@@ -158,7 +200,7 @@ class ProfileManager: ObservableObject {
             currentProfile = profiles[index]
         }
         
-        print("✅ Profil güncellendi")
+        Self.log.debug("Profile updated")
     }
     
     /// Why a deletion did not happen, when it did not.
@@ -172,7 +214,7 @@ class ProfileManager: ObservableObject {
     @discardableResult
     func deleteProfile(_ profile: UserProfile) -> Result<Void, DeletionRefusal> {
         guard profiles.count > 1 else {
-            print("⚠️ Son profil silinemez")
+            Self.log.notice("Refused to delete the last remaining profile")
             return .failure(.lastProfile)
         }
 
@@ -195,7 +237,7 @@ class ProfileManager: ObservableObject {
             }
         }
 
-        print("✅ Profil silindi")
+        Self.log.debug("Profile deleted")
         return .success(())
     }
     
@@ -203,7 +245,7 @@ class ProfileManager: ObservableObject {
         currentProfile = profile
         userDefaults.set(profile.id.uuidString, forKey: currentProfileKey)
         
-        print("✅ Profil değiştirildi (\(profile.profileType.displayName))")
+        Self.log.debug("Active profile switched")
     }
     
     // MARK: - Onboarding
@@ -211,7 +253,7 @@ class ProfileManager: ObservableObject {
     func completeOnboarding() {
         hasCompletedOnboarding = true
         userDefaults.set(true, forKey: onboardingKey)
-        print("✅ Onboarding tamamlandı")
+        Self.log.debug("Onboarding marked complete")
     }
     
     func hasProfile() -> Bool {
@@ -235,9 +277,9 @@ class ProfileManager: ObservableObject {
                 saveProfiles()
             }
             
-            print("✅ Profil resmi kaydedildi: \(fileName)")
+            Self.log.debug("Profile image written")
         } catch {
-            print("❌ Profil resmi kaydetme hatası: \(error)")
+            Self.log.error("Profile image could not be written: \(Self.describe(error), privacy: .public)")
         }
     }
     
@@ -267,9 +309,9 @@ class ProfileManager: ObservableObject {
         
         do {
             try FileManager.default.removeItem(at: fileURL)
-            print("✅ Profil resmi silindi: \(fileName)")
+            Self.log.debug("Profile image removed")
         } catch {
-            print("❌ Profil resmi silme hatası: \(error)")
+            Self.log.error("Profile image could not be removed: \(Self.describe(error), privacy: .public)")
         }
     }
     
@@ -295,7 +337,7 @@ class ProfileManager: ObservableObject {
            let legacyProfile = try? JSONDecoder().decode(LegacyUserProfile.self, from: data),
            !legacyProfile.name.isEmpty {
             
-            print("🔄 Eski profil sistemi tespit edildi, taşınıyor...")
+            Self.log.debug("Legacy profile detected, migrating")
             
             // Create new profile from legacy data
             let newProfile = UserProfile(
@@ -312,7 +354,7 @@ class ProfileManager: ObservableObject {
             // Clean up old profile data
             userDefaults.removeObject(forKey: legacyProfileKey)
             
-            print("✅ Eski profil yeni sisteme taşındı")
+            Self.log.debug("Legacy profile migrated")
         }
     }
     

@@ -10,10 +10,10 @@ import SwiftUI
 /// kullanılabileceğini söylüyor.
 struct MPIcon: View {
     let name: String
-    var size: CGFloat = 22
+    var size: CGFloat = MP.G.lg
     var weight: Font.Weight = .regular
 
-    init(_ name: String, size: CGFloat = 22, weight: Font.Weight = .regular) {
+    init(_ name: String, size: CGFloat = MP.G.lg, weight: Font.Weight = .regular) {
         self.name = name
         self.size = size
         self.weight = weight
@@ -29,7 +29,7 @@ struct MPIcon: View {
                 .frame(width: size, height: size)
         } else {
             Image(systemName: name)
-                .font(.system(size: size, weight: weight))
+                .font(MP.F.glyph(size, weight))
         }
     }
 }

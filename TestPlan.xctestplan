@@ -1,27 +1,54 @@
 {
-  "configurations" : [
+  "configurations": [
     {
-      "id" : "7E000001-0000-0000-0000-000000000001",
-      "name" : "Configuration 1",
-      "options" : {
-      }
+      "id": "7E000001-0000-0000-0000-000000000001",
+      "name": "Configuration 1",
+      "options": {}
     }
   ],
-  "defaultOptions" : {
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:MagicPaper.xcodeproj",
-      "identifier" : "A10000010000000000000029",
-      "name" : "MagicPaper"
+  "defaultOptions": {
+    "targetForVariableExpansion": {
+      "containerPath": "container:MagicPaper.xcodeproj",
+      "identifier": "A10000010000000000000029",
+      "name": "MagicPaper"
     }
   },
-  "testTargets" : [
+  "testTargets": [
     {
-      "target" : {
-        "containerPath" : "container:MagicPaper.xcodeproj",
-        "identifier" : "7E00000000000000000003",
-        "name" : "MagicPaperTests"
+      "target": {
+        "containerPath": "container:MagicPaper.xcodeproj",
+        "identifier": "7E00000000000000000003",
+        "name": "MagicPaperTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:StoryEngine",
+        "identifier": "EngineFoundationTests",
+        "name": "EngineFoundationTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:StoryEngine",
+        "identifier": "CharacterEngineTests",
+        "name": "CharacterEngineTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:StoryEngine",
+        "identifier": "VisualSystemTests",
+        "name": "VisualSystemTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:StoryEngine",
+        "identifier": "StoryEngineTests",
+        "name": "StoryEngineTests"
       }
     }
   ],
-  "version" : 1
+  "version": 1
 }

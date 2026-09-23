@@ -20,6 +20,7 @@ import SwiftUI
 /// duruyor: alt bardaki artı. Her yerden erişilir ve tektir.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
+    @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
@@ -125,15 +126,29 @@ struct HomeView: View {
 
     // MARK: - Bu akşam
 
+    /// Bu çocuğun, çocuğun görmeye hakkı olan masalları.
+    ///
+    /// Onay kapısı burada da geçerli — ve burada geçerli OLMASAYDI kapı hiçbir
+    /// işe yaramazdı: Kütüphane'den gizlenen bir masal "kaldığın yer" kartında
+    /// ekranın en tepesinde durabilirdi.
     private var myStories: [Story] {
-        storyManager.stories.filter { $0.belongs(to: profileManager.currentProfile) }
+        MPStoryGate.visible(
+            storyManager.stories,
+            approvalRequired: settings.approve,
+            isApproved: { settings.isApproved($0) }
+        )
+        .filter { $0.belongs(to: profileManager.currentProfile) }
     }
 
     /// Yarıda kalmış en son masal. Ekranın birincil yuvası bunun için ayrıldı:
     /// bir masalın ortasında bırakılmışsa, uygulamayı açmanın sebebi neredeyse
     /// her zaman odur.
+    ///
+    /// Seçim kuralı `MPContinueReading`'de — burada bir satır olarak durduğu
+    /// sürece iki kez yanlış yazıldı, ve ikisinde de sessizce yanlış bir masal
+    /// gösterdi. Kural artık tek bir yerde ve test edilebiliyor.
     private var unfinished: Story? {
-        myStories.first { $0.mpProgress > 0 && $0.mpProgress < 1 }
+        MPContinueReading.pick(from: myStories)
     }
 
     @ViewBuilder
@@ -238,7 +253,8 @@ struct HomeView: View {
                                 meta: story.mpMeta,
                                 symbol: story.mpSymbol,
                                 accent: story.mpAccent,
-                                coverImageName: story.mpDefaultCoverAsset,
+                                coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
+                                mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
                                 badge: story.isIllustrated ? "Görselli" : nil,
                                 progress: nil,
                                 layout: .shelf

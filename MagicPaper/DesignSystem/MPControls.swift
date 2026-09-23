@@ -149,7 +149,7 @@ struct MPIconButton: View {
             case .glass:
                 content
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: MP.R.md, style: .continuous))
-                    .mpEdge(fill: Color.white.opacity(0.82), edge: Color(hex: 0x2B1D24, alpha: 0.12), radius: MP.R.md)
+                    .mpEdge(fill: Color.white.opacity(0.82), edge: MP.C.edgeGlass, radius: MP.R.md)
             }
         }
     }
@@ -250,7 +250,7 @@ struct MPSwitch: View {
                 RoundedRectangle(cornerRadius: 999, style: .continuous)
                     .fill(MP.Palette.kagit0)
                     .frame(width: 28, height: 25)
-                    .shadow(color: Color(hex: 0x2B1D24, alpha: 0.2), radius: 1.5, y: 1)
+                    .mpShadow(MP.Sh.knob)
                     .padding(3)
             }
             .frame(width: 56, height: 34)

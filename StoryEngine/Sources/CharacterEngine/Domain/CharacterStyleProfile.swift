@@ -15,4 +15,14 @@ public struct CharacterStyleProfile: Codable, Sendable, Hashable {
         self.renderingNotes = renderingNotes
         self.negativeTraits = negativeTraits
     }
+
+    /// Both lists are additive detail; a record written without them is still a
+    /// complete style profile. See `CharacterIdentity.init(from:)`.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        illustrationStyleID = try container.decode(String.self, forKey: .illustrationStyleID)
+        palettePresetID = try container.decode(String.self, forKey: .palettePresetID)
+        renderingNotes = try container.decodeIfPresent([String].self, forKey: .renderingNotes) ?? []
+        negativeTraits = try container.decodeIfPresent([String].self, forKey: .negativeTraits) ?? []
+    }
 }

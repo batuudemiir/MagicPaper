@@ -35,8 +35,13 @@ final class CatalogBundleTests: XCTestCase {
     func testTheShippedCatalogHasTheExpectedRecordCounts() throws {
         let catalog = try ContentCatalogLoader().load().catalog
 
-        // V1 — unchanged, and identifiable by carrying no beats or traits.
-        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 12)
+        // D3: the 12 V1 blueprints were retired to
+        // docs/retired/retired_blueprints_2026-09-18.json. All twelve declared
+        // the same arc and none declared beats, so `isBeatAuthored` was false
+        // and the selector could never reach them. Schema 2 is now the single
+        // canonical blueprint format, so no unauthored blueprint should remain.
+        // V1's other records are untouched and still identifiable by having no traits.
+        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 0)
         XCTAssertEqual(catalog.settings.filter(\.traits.isEmpty).count, 16)
         XCTAssertEqual(catalog.companions.filter(\.traits.isEmpty).count, 15)
         XCTAssertEqual(catalog.objects.filter(\.traits.isEmpty).count, 20)
@@ -45,7 +50,8 @@ final class CatalogBundleTests: XCTestCase {
         XCTAssertEqual(catalog.endings.count, 10)
 
         // Merged totals.
-        XCTAssertEqual(catalog.blueprints.count, 18)
+        // 15 = the Schema 2 library alone, V1's 12 having been retired (D3).
+        XCTAssertEqual(catalog.blueprints.count, 15)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         XCTAssertEqual(catalog.settings.count, 22)
@@ -265,10 +271,13 @@ final class CatalogBeatMigrationTests: XCTestCase {
 
     func testTheBeatGapIsReportedRatherThanHidden() throws {
         let report = try shippedReport()
-        XCTAssertFalse(report.issues(withCode: "blueprint_without_beats").isEmpty)
+        // D3 closed the blueprint half of this gap: every shipped blueprint is
+        // now Schema 2 and beat-authored, so the loader reports none without
+        // beats and none without a family. The template gap is still open and
+        // must stay reported rather than hidden.
+        XCTAssertTrue(report.issues(withCode: "blueprint_without_beats").isEmpty)
         XCTAssertFalse(report.issues(withCode: "template_without_beat").isEmpty)
-        // The 12 V1 blueprints; the pilot library's five all declare a family.
-        XCTAssertEqual(report.issues(withCode: "blueprint_without_family").count, 12)
+        XCTAssertEqual(report.issues(withCode: "blueprint_without_family").count, 0)
     }
 
     /// This test used to assert the opposite — that nothing shipped was
@@ -289,7 +298,7 @@ final class CatalogBeatMigrationTests: XCTestCase {
             selectable.allSatisfy { $0.family != nil },
             "A V1 blueprint appears to have become beat-authored."
         )
-        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 12)
+        XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 0)
     }
 
     func testABeatAuthoredBlueprintValidatesEndToEnd() throws {

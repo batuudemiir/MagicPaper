@@ -156,8 +156,13 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         // `mentioned` covers the choice groups too: forbidding one arm of a
         // disjunction is legitimate, forbidding every arm is not, and both are
         // worth surfacing to the author.
-        Array(requires.setting.mentioned.intersection(forbids.setting).map(\.rawValue))
-            + requires.companion.mentioned.intersection(forbids.companion).map(\.rawValue)
-            + requires.discovery.mentioned.intersection(forbids.discovery).map(\.rawValue)
+        // Each axis is sorted: these come out of `Set.intersection`, whose
+        // iteration order is seeded per process, so the integrity report named
+        // the same contradictions in a different order on every run. The axes
+        // stay in their own fixed order — setting, companion, discovery — so the
+        // message still reads in the order an author thinks about them.
+        requires.setting.mentioned.intersection(forbids.setting).map(\.rawValue).sorted()
+            + requires.companion.mentioned.intersection(forbids.companion).map(\.rawValue).sorted()
+            + requires.discovery.mentioned.intersection(forbids.discovery).map(\.rawValue).sorted()
     }
 }

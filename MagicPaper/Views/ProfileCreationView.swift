@@ -15,10 +15,9 @@ struct ProfileCreationView: View {
     @State private var colorIndex = 0
     @State private var ageRange: MPAgeRange = .r57
 
-    private let palette: [Color] = [
-        Color(hex: 0xD25C81), Color(hex: 0xE0A32E), Color(hex: 0x2E7D6B),
-        Color(hex: 0xE4572E), Color(hex: 0x3A4E76), Color(hex: 0xB265A8)
-    ]
+    /// `UserProfile.mpColor` ile aynı kümedir; indeks `UserDefaults`'ta
+    /// saklandığı için iki taraf da `MP.C.avatarAccents` okumalı.
+    private let palette: [Color] = MP.C.avatarAccents
 
     private var trimmedName: String {
         name.trimmingCharacters(in: .whitespaces)
@@ -93,7 +92,7 @@ struct ProfileCreationView: View {
                             }
                             .background {
                                 if colorIndex != i {
-                                    Circle().fill(Color(hex: 0x2B1D24, alpha: 0.18)).offset(y: 3)
+                                    Circle().fill(MP.C.edgeCircle).offset(y: 3)
                                 }
                             }
                     }

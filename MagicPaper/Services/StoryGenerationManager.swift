@@ -22,8 +22,12 @@ class StoryGenerationManager: ObservableObject {
     private let fileManager = FileManagerService.shared
     
     private init() {
+        // Before anything reads the library: the migration needs the legacy
+        // store exactly as the last launch left it, and it is the only thing
+        // allowed to touch the `stories` key besides `save`/`load` below.
+        LibraryPersistence.bootstrap()
         loadStories()
-        migrateOldStoriesIfNeeded()
+        auditStoriesMissingImageURLs()
         createSampleStoriesIfNeeded()
     }
     
@@ -892,6 +896,11 @@ class StoryGenerationManager: ObservableObject {
             }
 
             UserDefaults.standard.set(encoded, forKey: "stories")
+            // Keep the verified copy on disk in step with the write that just
+            // happened, deletions included. Does nothing until the migration
+            // has verified; never the source of a failure here, because this
+            // store is still the authoritative one.
+            LibraryPersistence.reconcileAfterWrite(stories: stories)
         } catch {
             // Önceden `try?` idi: kodlama başarısız olduğunda hiçbir şey
             // yazılmıyor ve hiçbir şey söylenmiyordu. Kütüphane o andan sonra
@@ -920,38 +929,62 @@ class StoryGenerationManager: ObservableObject {
             // görünmüyor, ama geri getirilebilir: kurtarılamayan bir kayıp ile
             // kurtarılabilir bir kayıp arasındaki fark, kullanıcının o çocuğun
             // ebeveyni olması.
+            //
+            // The backup itself had no second half. Each failure minted a new
+            // dated key and nothing ever read one, pruned one, or told anyone
+            // they existed — a store that only grows, inside the store whose
+            // size is already the problem. It is capped now.
             let backupKey = "stories.undecodable.\(Int(Date().timeIntervalSince1970))"
             UserDefaults.standard.set(data, forKey: backupKey)
+            Self.pruneUndecodableBackups(keeping: Self.undecodableBackupLimit)
             assertionFailure("Masallar çözümlenemedi: \(error)")
             print("🛑 Masallar ÇÖZÜMLENEMEDİ. Ham veri '\(backupKey)' altına alındı: \(error)")
         }
     }
-    
-    /// Migrates old stories that have Data properties to new file-based system
-    private func migrateOldStoriesIfNeeded() {
-        // Check if old data exists and is too large
-        if let oldData = UserDefaults.standard.data(forKey: "stories") {
-            let oldSize = oldData.count
-            print("📊 Current UserDefaults size: \(oldSize) bytes (\(oldSize / 1024 / 1024) MB)")
-            
-            // If data is > 4MB, it's likely the old format with embedded images
-            if oldSize > 4_000_000 {
-                print("🔄 Migrating old stories to file-based storage...")
-                
-                // Clear the bloated data
-                UserDefaults.standard.removeObject(forKey: "stories")
-                UserDefaults.standard.synchronize()
-                
-                print("✅ Cleared old bloated UserDefaults data")
-                print("⚠️ Note: Old story images were removed. New stories will use file storage.")
-                
-                // Reset stories array
-                stories = []
+
+    /// How many `stories.undecodable.*` blobs to keep.
+    ///
+    /// More than one because the same fault can strike twice before anyone
+    /// looks, and the oldest copy is the one that predates the damage. Not
+    /// unbounded, because these are whole libraries and they sit in
+    /// `UserDefaults`.
+    static let undecodableBackupLimit = 3
+
+    static let undecodableBackupPrefix = "stories.undecodable."
+
+    /// Keeps the newest `limit` recovery blobs and removes the rest.
+    static func pruneUndecodableBackups(
+        keeping limit: Int,
+        in defaults: UserDefaults = .standard
+    ) {
+        let keys = defaults.dictionaryRepresentation().keys
+            .filter { $0.hasPrefix(undecodableBackupPrefix) }
+            // The suffix is a unix timestamp, so it sorts newest-first
+            // numerically. String order would put "1000000000" after
+            // "999999999" and drop the wrong one.
+            .sorted { lhs, rhs in
+                let l = Int(lhs.dropFirst(undecodableBackupPrefix.count)) ?? 0
+                let r = Int(rhs.dropFirst(undecodableBackupPrefix.count)) ?? 0
+                return l > r
             }
+        for key in keys.dropFirst(max(0, limit)) {
+            defaults.removeObject(forKey: key)
+            print("🧹 Eski kurtarma yedeği kaldırıldı: \(key)")
         }
-        
-        // CRITICAL FIX: Check for stories with missing imageUrl but have imageFileName
-        // This happens when stories were created before the imageUrl fix
+    }
+    
+    /// Reports stories written before `imageUrl` existed.
+    ///
+    /// This used to be the tail of `migrateOldStoriesIfNeeded()`. The head of
+    /// that function deleted `UserDefaults["stories"]` outright whenever the
+    /// blob passed four megabytes — no copy, no confirmation, on a launch —
+    /// and set `stories = []` over a child's whole shelf. It has moved to
+    /// `LibraryMigration`, which copies the blob to quarantine, reads the copy
+    /// back, and then leaves the original alone. Nothing on the launch path
+    /// removes user data any more.
+    ///
+    /// What remains here reads and reports. It never wrote anything.
+    private func auditStoriesMissingImageURLs() {
         var needsSave = false
         for (_, story) in stories.enumerated() {
             for (pageIndex, page) in story.pages.enumerated() {
@@ -1047,6 +1080,7 @@ class StoryGenerationManager: ObservableObject {
 
         guard stories[index].lastReadPage != page else { return }
         stories[index].lastReadPage = page
+        stories[index].lastReadAt = Date()
         saveStories()
         // Tembel yazımı zorla indir. `synchronize()` kullanımdan kaldırıldı
         // sayılır ve çoğu yerde gereksizdir; burada gereklidir, çünkü bu değeri
@@ -1056,6 +1090,22 @@ class StoryGenerationManager: ObservableObject {
         print("📖 Updated reading progress for story \(storyId): page \(page)")
     }
     
+    /// Masal açıldı — sayfa ilerlemese bile.
+    ///
+    /// `updateLastReadPage` yalnızca EN İLERİ sayfa değiştiğinde yazar, ki
+    /// doğrusu budur: gereksiz yazma bütün `[Story]` dizisini yeniden JSON'a
+    /// çevirmek demek. Ama o kural tek başına "en son hangi masalı okudu"
+    /// sorusunu yanlış cevaplıyor: 3. sayfada bıraktığı masalı bu akşam açıp
+    /// aynı sayfayı tekrar okuyan bir çocuk hiçbir iz bırakmıyor, ve ana sayfa
+    /// başka bir masalı "kaldığın yer" diye gösteriyor.
+    ///
+    /// Açmak da okumaktır. Oturum başına bir yazma.
+    func markOpened(storyId: UUID) {
+        guard let index = stories.firstIndex(where: { $0.id == storyId }) else { return }
+        stories[index].lastReadAt = Date()
+        saveStories()
+    }
+
     func getStory(id: UUID) -> Story? {
         return stories.first { $0.id == id }
     }

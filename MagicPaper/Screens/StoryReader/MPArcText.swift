@@ -21,18 +21,34 @@ struct MPArcText: View {
     var color: Color = MP.C.textTitle
     /// Kullanılabilir genişlik — başlık buna sığacak şekilde küçültülür.
     var availableWidth: CGFloat
+    /// Küçülmenin tabanı. Kart kapağı gibi dar yerlerde düşürülür.
+    var minimumSize: CGFloat = 15
 
     private var characters: [Character] { Array(text) }
 
     /// Başlığın sığması için gereken punto.
     ///
     /// Uzun Türkçe başlıklar ("Yelız ve Eski Meyve Bahçesi'ndeki Titrek Işık")
-    /// tek yayda taban puntoyla taşıyor. Küçülme 15 puntoda durur; altına
-    /// inmek başlığı okunmaz yapardı.
+    /// tek yayda taban puntoyla taşıyor. Küçülme `minimumSize`'da durur;
+    /// altına inmek başlığı okunmaz yapardı.
     private var fittedSize: CGFloat {
         let measured = width(at: size)
         guard measured > availableWidth, measured > 0 else { return size }
-        return max(15, size * (availableWidth / measured))
+        return max(minimumSize, size * (availableWidth / measured))
+    }
+
+    /// Verilen metnin bu genişliğe sığmak için ineceği punto.
+    ///
+    /// Dışarıdan sorulabilmesi gerekiyor: çağıran yer, yayın okunaklı kalıp
+    /// kalmayacağına *çizmeden önce* karar vermek zorunda. Kart kapağında uzun
+    /// bir başlık tek yayda 9 puntoya iniyor ve yay artık süs değil, okunmayan
+    /// bir şerit oluyor.
+    static func fittedSize(text: String, size: CGFloat,
+                           availableWidth: CGFloat, minimumSize: CGFloat) -> CGFloat {
+        let f = UIFont(name: "Baloo2-Bold", size: size) ?? .systemFont(ofSize: size, weight: .bold)
+        let measured = text.reduce(0.0) { $0 + String($1).size(withAttributes: [.font: f]).width }
+        guard measured > availableWidth, measured > 0 else { return size }
+        return max(minimumSize, size * (availableWidth / measured))
     }
 
     private func font(_ points: CGFloat) -> UIFont {

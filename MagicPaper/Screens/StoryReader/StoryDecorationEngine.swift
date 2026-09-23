@@ -41,156 +41,94 @@ struct StoryDecorationContext: Hashable {
     }
 }
 
-/// Tek bir yerleştirilmiş süs.
 struct StoryDecorationPlacement: Identifiable, Hashable {
     let id: String
     let assetID: String
-    let zone: DecorationZone
-    /// Sayfa genişliğine oranla motifin genişliği.
+    let zone: MotifZone
     let scale: CGFloat
     let rotation: Angle
     let opacity: Double
-    /// Bölge çapasından küçük kayma — kompozisyonu tekdüzelikten çıkarır.
-    let jitter: CGSize
+    let alignment: Alignment
+    let offset: CGSize
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: StoryDecorationPlacement, rhs: StoryDecorationPlacement) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
-/// Bağlamdan sayfaya: hangi süsler, hangi bölgede, ne ölçekte.
-///
-/// Akış §13'teki sırayla: semantik süzme → skorlama → çeşitlilik → güvenli
-/// bölge → yoğunluk → yerleştirme. Hiçbir adımda `Double.random` yok;
-/// belirleyici üreteç tohumdan besleniyor.
 struct StoryDecorationEngine {
-
-    /// Son sayfalarda kullanılan varlıklar — aynı mantar her sayfada çıkmasın.
-    var recentlyUsed: [String] = []
-
     func plan(_ ctx: StoryDecorationContext) -> [StoryDecorationPlacement] {
         var rng = SeededGenerator(seed: ctx.seed)
-
-        let candidates = score(ctx)
-        guard !candidates.isEmpty else { return [] }
-
-        let zones = availableZones(ctx)
-        guard !zones.isEmpty else { return [] }
-
-        let budget = ctx.density.range
-        let target = Int.random(in: budget, using: &rng)
-
+        
+        let composition = selectComposition(for: ctx.environment, rng: &rng)
         var placements: [StoryDecorationPlacement] = []
-        var usedZones: Set<DecorationZone> = []
-        var usedTypes: [DecorationType: Int] = [:]
-        var weight = 0.0
-        let weightCap = Double(budget.upperBound) * 0.62
-
-        for (asset, _) in candidates {
-            guard placements.count < target, weight < weightCap else { break }
-
-            // Aynı türden ikiden fazlası sayfayı tekdüze yapar.
-            if usedTypes[asset.type, default: 0] >= 2 { continue }
-
-            let open = zones.filter { !usedZones.contains($0) }
-            guard let zone = pick(asset: asset, from: open, rng: &rng) else { continue }
-
-            placements.append(place(asset, in: zone, ctx: ctx, rng: &rng))
-            usedZones.insert(zone)
-            usedTypes[asset.type, default: 0] += 1
-            weight += asset.visualWeight
+        
+        for zone in composition.requiredZones {
+            if let asset = pickAsset(for: zone, ctx: ctx, rng: &rng) {
+                placements.append(place(asset, in: zone, rng: &rng))
+            }
         }
+        
         return placements
     }
-
-    // MARK: - Süzme ve skorlama
-
-    /// Uygun varlıklar, skorlarına göre sıralı.
-    private func score(_ ctx: StoryDecorationContext) -> [(StoryDecorationAsset, Double)] {
-        StoryDecorationCatalog.all.compactMap { asset in
-            var s = 0.0
-
-            // Ortam eşleşmesi zorunlu benzeri: eşleşmiyorsa neredeyse hiç şansı yok.
-            if asset.environments.contains(ctx.environment) { s += 10 }
-            else if asset.environments.isEmpty { s += 2 }
-            else { return nil }
-
-            if let mood = ctx.mood, asset.moods.contains(mood) { s += 3 }
-            if ctx.timeOfDay == .night && asset.category == .bedtime { s += 2 }
-
-            // Yakın zamanda kullanıldıysa geriye düşer, ama tamamen elenmez:
-            // az varlıklı bir kategoride eleme, sayfayı bomboş bırakırdı.
-            if let idx = recentlyUsed.firstIndex(of: asset.id) {
-                s -= Double(recentlyUsed.count - idx) * 1.5
-            }
-            return (asset, s)
-        }
-        .sorted { $0.1 > $1.1 }
-    }
-
-    // MARK: - Güvenli bölgeler
-
-    /// Metnin ve çizimin üstüne düşen bölgeler elenir (§15).
-    private func availableZones(_ ctx: StoryDecorationContext) -> [DecorationZone] {
-        DecorationZone.allCases.filter { zone in
-            let probe = CGRect(x: zone.anchor.x - 0.13, y: zone.anchor.y - 0.10,
-                               width: 0.26, height: 0.20)
-            if probe.intersects(ctx.textSafeRect) { return false }
-            if let illo = ctx.illustrationSafeRect, probe.intersects(illo) { return false }
-            return true
+    
+    private func selectComposition(for env: StoryEnvironment, rng: inout SeededGenerator) -> StorybookComposition {
+        switch env {
+        case .forest, .garden, .magic: return .groundedForest
+        case .ocean: return .horizontalFlow
+        case .sky, .space, .bedtime: return .atmosphericVoid
+        case .adventure, .neutral: return .asymmetricalAdventure
         }
     }
-
-    private func pick(asset: StoryDecorationAsset,
-                      from zones: [DecorationZone],
-                      rng: inout SeededGenerator) -> DecorationZone? {
-        let preferred = zones.filter { asset.preferredZones.contains($0) }
-        let pool = preferred.isEmpty ? zones.filter { fallbackFits(asset, $0) } : preferred
-        guard !pool.isEmpty else { return nil }
-        return pool[Int.random(in: 0..<pool.count, using: &rng)]
+    
+    private func pickAsset(for zone: MotifZone, ctx: StoryDecorationContext, rng: inout SeededGenerator) -> StoryDecorationAsset? {
+        let candidates = StoryDecorationCatalog.all.filter {
+            $0.motifZone == zone &&
+            ($0.environments.contains(ctx.environment) || $0.environments.isEmpty)
+        }
+        guard !candidates.isEmpty else { return nil }
+        return candidates.randomElement(using: &rng)
     }
-
-    /// Tercih edilen bölge kalmadıysa: tür hâlâ mantıklı mı?
-    /// Zemine ait bir çim kümesi gökyüzüne konmaz.
-    private func fallbackFits(_ asset: StoryDecorationAsset, _ zone: DecorationZone) -> Bool {
-        switch asset.type {
-        case .ground, .background: return zone.isBottom
-        case .sky:                 return zone.isTop
-        default:                   return true
+    
+    private func place(_ asset: StoryDecorationAsset, in zone: MotifZone, rng: inout SeededGenerator) -> StoryDecorationPlacement {
+        let scale = 0.8 + CGFloat.random(in: 0...0.4, using: &rng)
+        
+        let alignment: Alignment
+        var offset = CGSize.zero
+        var rotation = Angle.zero
+        let opacity = 0.85
+        
+        switch zone {
+        case .foregroundBottom:
+            alignment = .bottom
+            offset = CGSize(width: 0, height: 20)
+        case .atmosphericTop:
+            let isLeft = Bool.random(using: &rng)
+            alignment = isLeft ? .topLeading : .topTrailing
+            offset = CGSize(width: isLeft ? -20 : 20, height: -20)
+            rotation = .degrees(Double.random(in: -10...10, using: &rng))
+        case .asymmetricalFrame:
+            alignment = .bottomLeading
+            offset = CGSize(width: -30, height: 20)
+        case .backgroundParticles:
+            alignment = .center
+            offset = CGSize(width: CGFloat.random(in: -100...100, using: &rng),
+                            height: CGFloat.random(in: -200...0, using: &rng))
         }
-    }
-
-    // MARK: - Yerleştirme
-
-    private func place(_ asset: StoryDecorationAsset,
-                       in zone: DecorationZone,
-                       ctx: StoryDecorationContext,
-                       rng: inout SeededGenerator) -> StoryDecorationPlacement {
-        // Ölçek: ağır motifler büyük, hafifler küçük — §19'un görsel hiyerarşisi.
-        let base = 0.16 + asset.visualWeight * 0.20
-        let scale = base * CGFloat.random(in: 0.88...1.12, using: &rng)
-
-        // Dönüş küçük ve türle sınırlı: zemine oturan bir şey eğik durmaz.
-        let span: ClosedRange<Double>
-        switch asset.type {
-        case .ground, .background: span = -2.5...2.5
-        case .corner, .edge:       span = -6...6
-        default:                   span = -9...9
-        }
-        let rotation = Angle.degrees(Double.random(in: span, using: &rng))
-
-        // Opaklık: arka plan soluk, ön plan net (§21).
-        let opacity: Double
-        switch asset.type {
-        case .background:        opacity = Double.random(in: 0.22...0.34, using: &rng)
-        case .accent, .particle: opacity = Double.random(in: 0.30...0.46, using: &rng)
-        case .sky, .floating:    opacity = Double.random(in: 0.42...0.62, using: &rng)
-        default:                 opacity = Double.random(in: 0.52...0.74, using: &rng)
-        }
-
-        let jitter = CGSize(width: CGFloat.random(in: -0.035...0.035, using: &rng),
-                            height: CGFloat.random(in: -0.030...0.030, using: &rng))
-
+        
         return StoryDecorationPlacement(
             id: "\(asset.id)-\(zone.rawValue)",
-            assetID: asset.id, zone: zone,
-            scale: scale, rotation: rotation, opacity: opacity, jitter: jitter
+            assetID: asset.id,
+            zone: zone,
+            scale: scale,
+            rotation: rotation,
+            opacity: opacity,
+            alignment: alignment,
+            offset: offset
         )
     }
 }

@@ -315,8 +315,12 @@ class AIService: ObservableObject {
         guard let url = URL(string: endpoint) else {
             throw URLError(.badURL)
         }
-        
-        print("🌐 API Endpoint: \(endpoint)")
+
+        // The endpoint carries the Gemini key in its query string, so it is never
+        // logged whole: `print` is not stripped in Release, and this line put the
+        // full key into the device log on every call. What is useful for debugging
+        // is the model and path, which the redacted form still shows.
+        print("🌐 API Endpoint: \(baseURL)/\(modelName):generateContent?key=<redacted>")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

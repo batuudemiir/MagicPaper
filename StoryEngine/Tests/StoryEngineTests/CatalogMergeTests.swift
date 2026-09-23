@@ -120,8 +120,13 @@ final class CatalogMergeTests: XCTestCase {
         let catalog = try ContentCatalogLoader().load().catalog
         let authored = catalog.blueprints.filter(\.isBeatAuthored)
         XCTAssertFalse(authored.isEmpty, "Nothing selectable was loaded.")
-        XCTAssertEqual(Set(authored.compactMap(\.family)).count, authored.count,
-                       "Each beat-authored blueprint should carry its own family.")
+        // Each blueprint declares a family, but families are no longer unique:
+        // D3 ported the catalog's 14 blueprints, so a family now holds several
+        // (I-1/I-2/I-3 …). What must hold is that none is family-less.
+        XCTAssertEqual(authored.compactMap(\.family).count, authored.count,
+                       "A beat-authored blueprint declares no family.")
+        XCTAssertGreaterThanOrEqual(Set(authored.compactMap(\.family)).count, 5,
+                                    "The families collapsed.")
     }
 
     /// The acceptance criterion, stated as the app will exercise it: a child's
@@ -164,12 +169,14 @@ final class CatalogMergeTests: XCTestCase {
         }
     }
 
-    /// D2 said V1 content stays untouched until migration is verified. Merging
-    /// must not be the thing that quietly drops it.
+    /// D3 retired V1's *blueprints* deliberately — they were twelve copies of
+    /// one arc that the selector could never reach — and archived them in
+    /// docs/retired/. Everything else V1 contributed must still survive the
+    /// merge: merging must not be the thing that quietly drops it.
     func testLegacyContentSurvivesTheMerge() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertNotNil(catalog.blueprints.first { !$0.isBeatAuthored },
-                        "The V1 blueprints were lost.")
+        XCTAssertNil(catalog.blueprints.first { !$0.isBeatAuthored },
+                     "A retired V1 blueprint is still being loaded.")
         XCTAssertNotNil(catalog.objects.first { $0.id.rawValue == "object_shell_001" },
                         "The V1 seashell was lost.")
         XCTAssertNotNil(catalog.objects.first { $0.id.rawValue == "object_shell_pilot_001" },

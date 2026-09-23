@@ -19,93 +19,43 @@ enum DecorationCategory: String, CaseIterable, Codable, Identifiable {
     }
 }
 
-/// Dekorasyonun sayfadaki **rolü** — nereye, nasıl oturduğu.
-///
-/// Kategori "ne olduğunu", tür "nasıl davrandığını" söyler. İkisi ayrı çünkü
-/// bir yaprak kümesi hem ormanda hem bahçede olabilir, ama her iki durumda da
-/// aynı şekilde yerleşir: havada, serbest.
-enum DecorationType: String, CaseIterable, Codable, Identifiable {
-    /// Köşeden giren, sayfayı çerçeveleyen parça.
-    case corner
-    /// Yere oturan: çim, mantar, taş.
-    case ground
-    /// Kenardan giren: sarmaşık, deniz yosunu.
-    case edge
-    /// Havada duran: yaprak, kelebek, tüy.
-    case floating
-    /// Üstte duran: bulut, ay, kuşlar.
-    case sky
-    /// Küçük vurgu: dalga izi, küçük süs.
-    case accent
-    /// Arkada duran, soluk: tepe silueti.
-    case background
-    /// Parçacık — şimdilik onaylı varlığı yok.
-    case particle
+/// Dekorasyonun sayfadaki yapısal rolü (Motif)
+enum MotifZone: String, CaseIterable, Codable, Identifiable {
+    /// Büyük, sayfayı alttan çerçeveleyen kümeler (çimen, kayalar)
+    case foregroundBottom
+    /// Üst köşelerden uzanan dallar, sarmaşıklar
+    case atmosphericTop
+    /// Tek taraflı, büyük çevresel asimetri sağlayan küme
+    case asymmetricalFrame
+    /// Serbest süzülen çok hafif partiküller (baloncuk, yıldız)
+    case backgroundParticles
 
     var id: String { rawValue }
-
-    var label: String {
-        switch self {
-        case .corner:     return "Köşe"
-        case .ground:     return "Zemin"
-        case .edge:       return "Kenar"
-        case .floating:   return "Serbest"
-        case .sky:        return "Gök"
-        case .accent:     return "Vurgu"
-        case .background: return "Arka"
-        case .particle:   return "Parçacık"
-        }
-    }
+    var label: String { rawValue }
 }
 
-/// Sayfadaki yerleşim bölgeleri.
-///
-/// Serbest koordinat yerine adlandırılmış bölge kullanılıyor: rastgele x/y
-/// dağıtmak §13'ün "AI çöplüğü" dediği şeyi üretir. Bölge, bir motifin
-/// *nereye ait olduğunu* söyler; içindeki küçük kayma kompozisyonu canlı tutar.
-enum DecorationZone: String, CaseIterable, Codable, Identifiable {
-    case topLeading, topCenter, topTrailing
-    case leadingEdge, trailingEdge
-    case bottomLeading, bottomCenter, bottomTrailing
-
+/// Sayfanın bütünsel kompozisyon yapısı.
+enum StorybookComposition: String, CaseIterable, Identifiable {
+    /// Orman gibi yerlerde: Alt taraf çimen/mantar, üst köşe dal.
+    case groundedForest
+    /// Deniz gibi yerlerde: Yana doğru akan sualtı elementleri, yukarıda boşluk.
+    case horizontalFlow
+    /// Uyku/Gökyüzü: Alt taraf boş (yazıya ayrılmış), üst köşeler yıldız/bulut.
+    case atmosphericVoid
+    /// Macera: Asimetrik ve ağır bir köşe çerçevesi (kayalık/büyük ağaç).
+    case asymmetricalAdventure
+    
     var id: String { rawValue }
-
-    /// Bölgenin sayfadaki normalize çapası (0…1).
-    var anchor: UnitPoint {
+    
+    /// Bu kompozisyonun gerektirdiği motif bölgeleri ve ağırlıkları.
+    var requiredZones: [MotifZone] {
         switch self {
-        // Üst bant kontrollerin altından başlar. Önce 0.07–0.10 denendi ve
-        // süs kapat düğmesiyle aynı hizaya düştü: sayfaya ait bir motif,
-        // arayüz öğesiyle çakışınca ikisi de yanlış okunuyor.
-        case .topLeading:     return UnitPoint(x: 0.10, y: 0.17)
-        case .topCenter:      return UnitPoint(x: 0.50, y: 0.14)
-        case .topTrailing:    return UnitPoint(x: 0.89, y: 0.18)
-        case .leadingEdge:    return UnitPoint(x: 0.05, y: 0.46)
-        case .trailingEdge:   return UnitPoint(x: 0.95, y: 0.52)
-        case .bottomLeading:  return UnitPoint(x: 0.13, y: 0.91)
-        case .bottomCenter:   return UnitPoint(x: 0.50, y: 0.95)
-        case .bottomTrailing: return UnitPoint(x: 0.87, y: 0.90)
+        case .groundedForest: return [.foregroundBottom, .atmosphericTop]
+        case .horizontalFlow: return [.foregroundBottom, .backgroundParticles]
+        case .atmosphericVoid: return [.atmosphericTop, .backgroundParticles]
+        case .asymmetricalAdventure: return [.asymmetricalFrame, .atmosphericTop]
         }
     }
-
-    /// Motifin bölgeye göre hangi kenarından hizalanacağı.
-    ///
-    /// Kenar ve köşe parçaları sayfa dışına taşarak devam ediyormuş gibi
-    /// durmalı (§16): çapa, motifin *dışına* düşer.
-    var bleed: CGSize {
-        switch self {
-        case .topLeading:     return CGSize(width: -0.22, height: -0.28)
-        case .topCenter:      return CGSize(width:  0.00, height: -0.34)
-        case .topTrailing:    return CGSize(width:  0.22, height: -0.28)
-        case .leadingEdge:    return CGSize(width: -0.34, height:  0.00)
-        case .trailingEdge:   return CGSize(width:  0.34, height:  0.00)
-        case .bottomLeading:  return CGSize(width: -0.18, height:  0.26)
-        case .bottomCenter:   return CGSize(width:  0.00, height:  0.30)
-        case .bottomTrailing: return CGSize(width:  0.18, height:  0.26)
-        }
-    }
-
-    var isTop: Bool { self == .topLeading || self == .topCenter || self == .topTrailing }
-    var isBottom: Bool { self == .bottomLeading || self == .bottomCenter || self == .bottomTrailing }
 }
 
 /// Sayfanın duygusu. Motor bugün bunu taşımıyor; §12 için ayrılmış alan.

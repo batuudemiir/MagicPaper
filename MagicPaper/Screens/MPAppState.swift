@@ -100,7 +100,11 @@ final class MPAppState: ObservableObject {
 
     // Okuyucu tercihleri (okuma yüzeyine özel — uygulama geneli tema yok)
     @Published var readTheme: MP.ReadTheme = .light
-    @Published var readSize: MP.ReadSize = .normal
+    /// Yazı boyutu diske yazılıyordu ama buraya hiç geri okunmuyordu: her
+    /// açılışta `.normal`'a dönüyordu. Ayarlar'da "Büyük" yazarken okuyucunun
+    /// normal boyutta açılması, kaydedilmiş bir tercihin hiç kaydedilmemiş
+    /// olmasından daha kötü — ekran tercihi gösteriyor, uygulama uygulamıyor.
+    @Published var readSize: MP.ReadSize = MPSettingsStore.shared.readSize
 
     // MARK: Eylemler
 

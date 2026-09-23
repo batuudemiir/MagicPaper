@@ -84,12 +84,16 @@ final class MatrixCoverageTests: XCTestCase {
             "Only \(families.map(\.rawValue).sorted()) reachable across the whole matrix.")
     }
 
-    func testLibraryHoldsOneBlueprintPerFamily() throws {
+    /// Renamed after D3: the library deliberately holds *several* blueprints per
+    /// family now (the catalog's I-1/I-2/I-3 …), so uniqueness is no longer the
+    /// property to protect. What still must hold is that every blueprint declares
+    /// a family and that every family is represented.
+    func testEveryBlueprintDeclaresAFamilyAndEveryFamilyIsRepresented() throws {
         let blueprints = try library().blueprints
         let families = blueprints.compactMap(\.family)
         XCTAssertEqual(families.count, blueprints.count, "A blueprint declares no family.")
-        XCTAssertEqual(Set(families).count, families.count, "Two blueprints share a family.")
-        XCTAssertGreaterThanOrEqual(families.count, 5)
+        XCTAssertGreaterThanOrEqual(Set(families).count, 5,
+                                    "Only \(Set(families).map(\.rawValue).sorted()) are represented.")
     }
 
     /// Every blueprint in the library must be coherent on its own terms. This

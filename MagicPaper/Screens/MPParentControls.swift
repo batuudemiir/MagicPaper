@@ -1,0 +1,74 @@
+import Foundation
+
+// MARK: - Günlük okuma bütçesi
+
+/// "Ekran süresi limiti" anahtarının arkasındaki kural.
+///
+/// Anahtar Ayarlar'da bir yıl boyunca **açık** durdu ve hiçbir yerde
+/// okunmuyordu: hiçbir kod `settings.screenLimit` kelimesini görmüyordu. Bir
+/// ebeveyne "günde 30 dakika" yazıp hiçbir şey saymamak, kapalı bir anahtar
+/// göstermekten kötüdür — kapalı anahtar yanlış bir şey vaat etmez.
+///
+/// Kural burada, ekranın içinde değil, çünkü doğrulanması gereken şey bir
+/// görünüm değil bir aritmetik: "bugün ne kadar okundu, ne kadar kaldı".
+struct MPReadingBudget: Equatable {
+
+    /// Ebeveyn limiti açtı mı.
+    var isEnabled: Bool
+    /// Günlük bütçe, dakika.
+    var dailyLimitMinutes: Int
+    /// Bugün, bu oturumdan **önce** okunmuş süre.
+    var secondsBeforeSession: Double
+
+    /// Seçilebilen bütçeler. "Günde 30 dakika" sabit bir metindi; bir
+    /// ebeveynin 15 ya da 60 demek istemesi için hiçbir yol yoktu.
+    static let choices = [15, 30, 45, 60]
+
+    /// Bütçeden kalan süre — limit kapalıysa `nil`.
+    ///
+    /// `nil`, "çok büyük bir sayı" değil: ölçülecek bir şey olmadığı anlamına
+    /// gelir. Limit kapalıyken `.greatestFiniteMagnitude` döndürmek, çağıran
+    /// her yerin o sayıyı bir süre sanma ihtimalini açık bırakırdı.
+    func remainingSeconds(sessionSeconds: Double) -> Double? {
+        guard isEnabled, dailyLimitMinutes > 0 else { return nil }
+        let budget = Double(dailyLimitMinutes) * 60
+        let spent = max(0, secondsBeforeSession) + max(0, sessionSeconds)
+        return max(0, budget - spent)
+    }
+
+    /// Bugünün payı bitti mi.
+    func isExhausted(sessionSeconds: Double) -> Bool {
+        guard let remaining = remainingSeconds(sessionSeconds: sessionSeconds) else { return false }
+        return remaining <= 0
+    }
+
+    /// Ebeveyn paneli için: bugün okunan dakika / bütçe.
+    var minutesUsedToday: Int { Int((max(0, secondsBeforeSession) / 60).rounded()) }
+}
+
+// MARK: - Onay kapısı
+
+/// "Masalları onaylamadan gösterme" anahtarının arkasındaki kural.
+///
+/// Onay kuyruğu Ebeveyn panelinde vardı ve çalışıyordu — ama onaylanmamış
+/// masal hiçbir yerden gizlenmiyordu. Çocuk masalı kütüphaneden açıp okuyor,
+/// ebeveyn de günler sonra paneldeki kuyruktan "onaylıyordu". Kuyruk gerçek,
+/// kapı hayalîydi.
+enum MPStoryGate {
+
+    /// Çocuğun görmeye hakkı olan masallar.
+    ///
+    /// Kapı yalnızca **tamamlanmış** masallara uygulanır: üretilmekte olan ya
+    /// da başarısız olmuş bir masalı "onay bekliyor" diye gizlemek, ebeveyne
+    /// onaylayacak bir şey vermeden çocuktan bir şey saklamak olurdu.
+    static func visible(
+        _ stories: [Story],
+        approvalRequired: Bool,
+        isApproved: (UUID) -> Bool
+    ) -> [Story] {
+        guard approvalRequired else { return stories }
+        return stories.filter { story in
+            story.status != .completed || isApproved(story.id)
+        }
+    }
+}

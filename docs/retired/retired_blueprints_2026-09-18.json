@@ -1,0 +1,502 @@
+{
+  "retiredOn": "2026-09-18",
+  "decision": "D3 - Schema 2 is the single canonical blueprint format",
+  "retiredFrom": "templates/offline/v2/shared_content_library_v2.json (package + app bundle copies)",
+  "reason": "All twelve declare the identical arc: genre=adventure, theme=courage, ageRange=5-6, pageCount=8, and the same eight page roles. They differ only in their id, so they are twelve copies of one blueprint rather than twelve blueprints. None declares a beat, so CatalogBlueprint.isBeatAuthored is false for all twelve and BlueprintSelector.admissible has never been able to select one. They also produced 12 blueprint_without_beats errors and 12 blueprint_without_family warnings at every catalog load. No narrative material is lost: the arc is superseded by the fourteen beat-authored Schema 2 blueprints.",
+  "selectionImpact": "None. OfflineSelection's order-sensitive indexing applies to settings, companions and objects; blueprints are sorted by id in BlueprintSelector.ranked, and these twelve were already excluded from the admissible pool by the isBeatAuthored filter.",
+  "reversal": "Paste this blueprints array back into the blueprints key of both copies.",
+  "blueprints": [
+    {
+      "id": "blueprint_adventure_courage_001",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_002",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_003",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_004",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_005",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_006",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_007",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_008",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_009",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_010",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_011",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    },
+    {
+      "id": "blueprint_adventure_courage_012",
+      "genre": "adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "pageRoles": [
+        {
+          "pageNumber": 1,
+          "role": "hook"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending"
+        }
+      ]
+    }
+  ]
+}

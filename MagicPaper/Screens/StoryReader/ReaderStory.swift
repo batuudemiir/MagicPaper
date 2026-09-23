@@ -22,6 +22,8 @@ struct ReaderStory {
     let leaves: [ReaderLeaf]
     /// Kapak varlığının adı; kapak yaprağı yoksa `nil`.
     let coverAsset: String?
+    let coverStyle: StoryCoverStyle
+    let mosaicCover: MagicPaperCoverConfiguration?
 
     /// Gerçek masal sayfası sayısı — "3 / 8"deki 8.
     /// Kapanış yaprağı sayfa değildir, sayılmaz.
@@ -34,7 +36,7 @@ struct ReaderStory {
     /// Sayfa numarası ile yaprak numarası artık aynı şey değil: kitabın kapağı
     /// 1. sayfa değildir. Bu kayma tek yerde söyleniyor ki künye, kayıtlı
     /// ilerleme ve gezinme aynı şeyi anlasın.
-    var pageLeafOffset: Int { coverAsset == nil ? 0 : 1 }
+    var pageLeafOffset: Int { (coverAsset == nil && coverStyle != .magicPaperMosaic) ? 0 : 1 }
 
     func leafIndex(forPage page: Int) -> Int { page + pageLeafOffset }
 }
@@ -129,12 +131,17 @@ extension ReaderStory {
         }
 
         self.pageCount = pages.count
-        // Metin masallarının kendi kapağı yok; ortak illüstrasyon kapak
-        // yaprağı olarak kitabın başına konur. Görselli masal kendi kapağını
-        // taşıdığı için burada yaprak eklenmez.
+        
         let cover = story.mpDefaultCoverAsset
         self.coverAsset = cover
-        self.leaves = (cover == nil ? [] : [ReaderLeaf.cover])
+        self.coverStyle = story.mpCoverStyle
+        self.mosaicCover = story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil
+        
+        // Metin masallarının kendi kapağı yok; ortak illüstrasyon veya
+        // jeneratif mozaik kapak yaprağı olarak kitabın başına konur.
+        // Görselli masal kendi kapağını taşıdığı için burada yaprak eklenmez.
+        let hasCoverLeaf = cover != nil || self.coverStyle == .magicPaperMosaic
+        self.leaves = (hasCoverLeaf ? [ReaderLeaf.cover] : [])
             + pages.map(ReaderLeaf.page)
             + [.ending]
     }

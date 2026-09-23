@@ -47,21 +47,15 @@ struct StoryPageDecorationLayer: View {
                       _ p: StoryDecorationPlacement,
                       in size: CGSize) -> some View {
         let width = size.width * p.scale
-        let anchor = p.zone.anchor
-        let bleed = p.zone.bleed
 
         Image(asset.imageName)
             .resizable()
-            .renderingMode(.template)
             .scaledToFit()
             .frame(width: width)
-            .foregroundStyle(tint)
             .opacity(p.opacity)
             .rotationEffect(p.rotation)
-            .position(
-                x: size.width * (anchor.x + p.jitter.width) + width * bleed.width,
-                y: size.height * (anchor.y + p.jitter.height) + width * bleed.height
-            )
+            .frame(width: size.width, height: size.height, alignment: p.alignment)
+            .offset(p.offset)
     }
 }
 
@@ -92,11 +86,8 @@ struct StoryDecorationDebugOverlay: View {
                         .position(x: s.width * illo.midX, y: s.height * illo.midY)
                 }
 
-                ForEach(DecorationZone.allCases) { zone in
-                    Circle()
-                        .fill(Color.green.opacity(0.35))
-                        .frame(width: 8, height: 8)
-                        .position(x: s.width * zone.anchor.x, y: s.height * zone.anchor.y)
+                ForEach(MotifZone.allCases) { zone in
+                    // debug visualization for zones could be more complex now, skip simple circles
                 }
 
                 VStack(alignment: .leading, spacing: 2) {

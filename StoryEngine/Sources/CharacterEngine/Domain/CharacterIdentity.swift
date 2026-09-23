@@ -20,6 +20,24 @@ public struct CharacterIdentity: Codable, Sendable, Hashable {
         self.doNotDepict = doNotDepict
     }
 
+    /// Tolerates a record written before a list existed.
+    ///
+    /// The synthesized decoder demands every key, and `FileBackedStore` turns a
+    /// decode failure into `nil` — which downstream reads as "no character
+    /// yet", not as an error. Re-minting an identity is the one failure mode
+    /// this package exists to prevent, so an absent list decodes as empty.
+    ///
+    /// `identitySeed` is deliberately excluded: it is what makes the same child
+    /// render the same way twice, and there is no honest default for it.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        ageYears = try container.decode(Int.self, forKey: .ageYears)
+        pronouns = try container.decode(Pronouns.self, forKey: .pronouns)
+        descriptors = try container.decodeIfPresent([CharacterDescriptor].self, forKey: .descriptors) ?? []
+        identitySeed = try container.decode(UInt64.self, forKey: .identitySeed)
+        doNotDepict = try container.decodeIfPresent([String].self, forKey: .doNotDepict) ?? []
+    }
+
     public func descriptors(in category: DescriptorCategory) -> [CharacterDescriptor] {
         descriptors.filter { $0.category == category }
     }
