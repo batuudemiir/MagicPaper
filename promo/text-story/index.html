@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>MagicPaper — Metin Hikaye tanıtımı</title>
+<style>
+  /* Pixelify Sans (fontsource). Dosyalar fonts/ altında, repoya girmez: README'ye bakın. */
+  @font-face { font-family: 'Pixelify Sans'; font-weight: 400; font-display: block;
+    src: url(fonts/pixelify-sans-latin-400-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: 'Pixelify Sans'; font-weight: 400; font-display: block;
+    src: url(fonts/pixelify-sans-latin-ext-400-normal.woff2) format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  @font-face { font-family: 'Pixelify Sans'; font-weight: 700; font-display: block;
+    src: url(fonts/pixelify-sans-latin-700-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: 'Pixelify Sans'; font-weight: 700; font-display: block;
+    src: url(fonts/pixelify-sans-latin-ext-700-normal.woff2) format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; width: 360px; height: 640px; image-rendering: pixelated; }
+  body.full canvas { width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+'use strict';
+// ---------------------------------------------------------------------------
+// Izgara: 180×320 düşük çözünürlük, 6× büyütme → 1080×1920.
+// ---------------------------------------------------------------------------
+const W = 180, H = 320, S = 6, FPS = 30;
+const LANG = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'tr';
+
+// Sahne başlangıçları (saniye). Tüm zamanlama buradan türetilir.
+const K = {
+  hook: 0.0,      // telefon girer, Ana Sayfa
+  home: 2.5,      // "+" butonuna dokunuş
+  tapPlus: 4.0,
+  sheet: 4.5,     // "Yeni Hikaye" sheet'i
+  tapCard: 6.4,
+  form: 7.3,      // Metin Hikaye formu, isim yazma
+  tapField: 8.1,
+  typeStart: 8.4,
+  theme: 10.2,    // kaydır + tema seç
+  dragStart: 11.2,
+  dragEnd: 12.0,
+  tapTheme: 12.8,
+  gen: 13.4,      // Hikaye Oluştur → yükleniyor → başarı
+  tapGen: 14.2,
+  loadEnd: 16.2,
+  alertEnd: 17.3,
+  lib: 17.4,      // sheet kapanır, Kütüphane
+  outro: 20.8,    // telefon iner, kapanış kartı
+  fade: 23.5,
+  end: 24.0,
+};
+const DURATION = K.end;
+
+// ---------------------------------------------------------------------------
+// Metinler. Uygulama metinleri MagicPaper/Helpers/Localization.swift,
+// Models/Story.swift, ContentView.swift, LibraryView.swift ve
+// TextOnlyStoryView.swift'ten alındı.
+// ---------------------------------------------------------------------------
+const STR = {
+  tr: {
+    name: 'Deniz',
+    captions: {
+      hook: 'Her çocuk kendi hikayesini sever.',
+      home: 'Ortadaki artıya dokun.',
+      sheet: "Metin Hikaye'yi seç.",
+      form: 'Çocuğunun adını yaz.',
+      theme: 'Bir macera seç.',
+      gen: 'Hikayeyi yapay zeka yazar.',
+      lib: 'Hikayen kütüphanede hazır.',
+      outro: "App Store'da.",
+    },
+    // ContentView.customTabBar
+    tabs: ['Ana Sayfa', 'Kütüphane', 'Günlük', 'Ayarlar'],
+    // HomeView
+    magicStories: 'Sihirli Hikayeler', makeChildHero: 'Çocuğunuz Kahramanı Olsun',
+    pills: ['Fotoğraf', 'Tema', 'Sihir'], getStartedNow: 'Hemen Başla',
+    quick: ['Görselli', 'Metin', 'Günlük', 'Kütüphane'],
+    dailyStories: 'Günlük Hikayeler', dailySub: 'Her gün yeni hikayeler',
+    noDaily: 'Henüz Günlük Hikaye Yok', dailySoon: 'Günlük hikayeler yakında eklenecek!',
+    // CreateStoryTypeSelectionView
+    newStory: 'Yeni Hikaye', whichType: 'Hangi tür hikaye oluşturmak istersiniz?',
+    types: [
+      ['Görselli Hikaye', 'Fotoğrafla özel hikaye', 'Popüler'],
+      ['Metin Hikaye', 'Hayal gücünü harekete geçir', null],
+      ['Günlük Hikaye', 'Kategori bazlı hikayeler', null],
+    ],
+    // TextOnlyStoryView
+    textStory: 'Metin Hikaye', quickCreate: 'Hızlı Hikaye Oluştur',
+    textOnly: 'Görselsiz, sadece metin tabanlı hikaye',
+    basicInfo: 'Temel Bilgiler', childName: 'Çocuğun İsmi', namePh: 'İsim girin',
+    gender: 'Cinsiyet', genders: ['Erkek', 'Kız', 'Diğer'],
+    storyTheme: 'Hikaye Teması', selectAdv: 'Maceranın türünü seçin',
+    freeThemes: 'Ücretsiz Temalar', premiumThemes: 'Premium Temalar',
+    themes: { fantasy: 'Sihirli Krallık', space: 'Uzay Macerası', jungle: 'Orman Macerası',
+              hero: 'Süper Kahraman', underwater: 'Okyanus Sırları', custom: 'Özel Macera' },
+    generate: 'Hikaye Oluştur', enterName: 'Lütfen çocuğun ismini girin',
+    creating: 'Hikaye oluşturuluyor...',
+    // Alert (kodda sabit Türkçe: "✅ Başarılı" / "Hikayeniz kütüphanede yükleniyor!" / "Tamam")
+    success: 'Başarılı', loadingInLib: 'Hikayeniz kütüphanede yükleniyor!', ok: 'Tamam',
+    // LibraryView
+    myLibrary: 'Kütüphanem', search: 'Hikaye ara...',
+    stats: ['Toplam', 'Görselli', 'Metin', 'Okunan'],
+    filters: ['Tümü', 'Görselli', 'Metin', 'Günlük'],
+    storyTitle: (n, th) => `${n} ve ${th}`,            // TextStoryManager.createTextStory
+    storyOf: (n) => `${n}'in Hikayesi`,                  // LibraryView
+    pages: (p) => `${p} sayfa`,
+    count: (c) => `${c} harf`,
+    upper: (s) => s.toLocaleUpperCase('tr'),
+    // Kapanış
+    summary: 'Çocuğunuz Kahramanı Olsun',
+  },
+  en: {
+    name: 'Mia',
+    captions: {
+      hook: 'Every child loves their own story.',
+      home: 'Tap the plus in the middle.',
+      sheet: 'Choose Text Story.',
+      form: "Type your child's name.",
+      theme: 'Pick an adventure.',
+      gen: 'AI writes the story.',
+      lib: 'Your story waits in the library.',
+      outro: 'On the App Store.',
+    },
+    tabs: ['Home', 'Library', 'Daily', 'Settings'],
+    magicStories: 'Magic Stories', makeChildHero: 'Make Your Child the Hero',
+    pills: ['Photo', 'Theme', 'Magic'], getStartedNow: 'Get Started Now',
+    quick: ['Illustrated', 'Text', 'Daily', 'Library'],
+    dailyStories: 'Daily Stories', dailySub: 'New stories every day',
+    noDaily: 'No Daily Stories Yet', dailySoon: 'Daily stories coming soon!',
+    newStory: 'New Story', whichType: 'Which type of story would you like to create?',
+    types: [
+      ['Illustrated Story', 'Custom story with photo', 'Popular'],
+      ['Text Story', 'Spark imagination', null],
+      ['Daily Story', 'Category-based stories', null],
+    ],
+    textStory: 'Text Story', quickCreate: 'Quick Story Create',
+    textOnly: 'Text-only story without images',
+    basicInfo: 'Basic Information', childName: "Child's Name", namePh: 'Enter name',
+    gender: 'Gender', genders: ['Boy', 'Girl', 'Other'],
+    storyTheme: 'Story Theme', selectAdv: 'Select the type of adventure',
+    freeThemes: 'Free Themes', premiumThemes: 'Premium Themes',
+    themes: { fantasy: 'Magical Kingdom', space: 'Space Adventure', jungle: 'Jungle Adventure',
+              hero: 'Superhero', underwater: 'Ocean Secrets', custom: 'Custom Adventure' },
+    generate: 'Generate Story', enterName: "Please enter child's name",
+    creating: 'Story creating...',
+    // L.success / L.storyLoadingInLibrary / L.ok (kod bu alert'te henüz bunları kullanmıyor)
+    success: 'Success', loadingInLib: 'Your story is loading in library!', ok: 'OK',
+    myLibrary: 'My Library', search: 'Search stories...',
+    // LibraryView bu etiketleri sabit Türkçe basıyor; İngilizce karşılıklar README'de işaretli.
+    stats: ['Total', 'Illustrated', 'Text', 'Read'],
+    filters: ['All', 'Illustrated', 'Text', 'Daily'],
+    storyTitle: (n, th) => `${n} and ${th}`,
+    storyOf: (n) => `${n}'s Story`,
+    pages: (p) => `${p} pages`,
+    count: (c) => `${c} ${c === 1 ? 'letter' : 'letters'}`,
+    upper: (s) => s.toUpperCase(),
+    summary: 'Make Your Child the Hero',
+  },
+}[LANG];
+document.documentElement.lang = LANG;
+
+// Türetilmiş değerler
+const NAME = STR.name;
+const PICK = 'space';                 // seçilen tema (ücretsiz)
+const STORY_PAGES = 7;                // AIService.generateTextOnlyStory: "Write a 7-page story"
+const STORY_TITLE = STR.storyTitle(NAME, STR.themes[PICK]);
+const TYPE_STEP = 0.22;               // harf başına saniye
+const TYPE_END = K.typeStart + NAME.length * TYPE_STEP;
+
+// ---------------------------------------------------------------------------
+// Yardımcılar
+// ---------------------------------------------------------------------------
+function rng(seed) {                 // mulberry32
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6D2B79F5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const prog = (t, a, b) => clamp01((t - a) / (b - a));
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const easeInOut = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const lerp = (a, b, t) => a + (b - a) * t;
+const hex = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+const mix = (a, b, t) => [0, 1, 2].map((i) => Math.round(lerp(a[i], b[i], t)));
+const css = (c, a = 1) => a >= 1 ? `rgb(${c[0]},${c[1]},${c[2]})` : `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+const bayer = (x, y) => (BAYER[((y % 4) + 4) % 4][((x % 4) + 4) % 4] + 0.5) / 16;
+
+// Uygulamanın renk token'ları (SwiftUI Color(red:green:blue:) değerleri ve sistem renkleri)
+const C = {
+  brandPurple: hex('#944AFA'),   // (0.58, 0.29, 0.98)
+  brandPink:   hex('#D959D9'),   // (0.85, 0.35, 0.85)
+  coral:       hex('#FF738C'),   // (1.0, 0.45, 0.55)
+  heroDeep:    hex('#6633E6'),   // (0.4, 0.2, 0.9)
+  heroPP:      hex('#B34DE6'),   // (0.7, 0.3, 0.9)
+  heroPink:    hex('#E666B3'),   // (0.9, 0.4, 0.7)
+  heroCoral:   hex('#FF8099'),   // (1.0, 0.5, 0.6)
+  txBlue:      hex('#3399DB'),   // TextOnlyStoryView (0.2, 0.6, 0.86)
+  txGreen:     hex('#66CC99'),   // (0.4, 0.8, 0.6)
+  txYellow:    hex('#F2C40F'),   // (0.95, 0.77, 0.06)
+  cardPink2:   hex('#F266BF'),   // (0.95, 0.40, 0.75)
+  cardCoral2:  hex('#FF8C73'),   // (1.0, 0.55, 0.45)
+  bgLight:     hex('#F2F5FA'),   // PremiumBackground (0.95, 0.96, 0.98)
+  bgLight2:    hex('#FAF7FF'),   // (0.98, 0.97, 1.0)
+  white: hex('#FFFFFF'), gray6: hex('#F2F2F7'), gray4: hex('#D1D1D6'), gray: hex('#8E8E93'),
+  label: hex('#1C1C1E'), secondary: hex('#8A8A8E'),
+  blue: hex('#007AFF'), purple: hex('#AF52DE'), green: hex('#34C759'), mint: hex('#00C7BE'),
+  orange: hex('#FF9500'), red: hex('#FF3B30'), cyan: hex('#32ADE6'), pink: hex('#FF2D55'),
+  yellow: hex('#FFCC00'), indigo: hex('#5856D6'), black: hex('#000000'),
+};
+const THEME_COLOR = { fantasy: C.purple, space: C.blue, jungle: C.green, hero: C.orange, underwater: C.cyan, custom: C.pink };
+
+// ---------------------------------------------------------------------------
+// Katmanlar: düşük çözünürlüklü piksel çizimi + yüksek çözünürlüklü yazı.
+// flush() piksel katmanını 6× büyütüp basar, ardından bekleyen yazıları basar.
+// ---------------------------------------------------------------------------
+const out = document.getElementById('c');
+const O = out.getContext('2d');
+const lo = document.createElement('canvas');
+lo.width = W; lo.height = H;
+const L = lo.getContext('2d');
+let texts = [];
+let OX = 0, OY = 0;          // yerel koordinat başlangıcı
+let clips = [];              // mutlak düşük çözünürlüklü kırpma dikdörtgenleri
+let ALPHA = 1;
+
+function flush() {
+  O.imageSmoothingEnabled = false;
+  O.drawImage(lo, 0, 0, W * S, H * S);
+  L.clearRect(0, 0, W, H);
+  for (const t of texts) drawText(t);
+  texts = [];
+}
+function pushClip(x, y, w, h) {
+  const r = { x: Math.round(x + OX), y: Math.round(y + OY), w: Math.round(w), h: Math.round(h) };
+  const top = clips[clips.length - 1];
+  if (top) {
+    const x2 = Math.min(r.x + r.w, top.x + top.w), y2 = Math.min(r.y + r.h, top.y + top.h);
+    r.x = Math.max(r.x, top.x); r.y = Math.max(r.y, top.y); r.w = Math.max(0, x2 - r.x); r.h = Math.max(0, y2 - r.y);
+  }
+  clips.push(r);
+}
+function popClip() { clips.pop(); }
+function at(x, y, fn) { const ox = OX, oy = OY; OX += Math.round(x); OY += Math.round(y); fn(); OX = ox; OY = oy; }
+
+function R(x, y, w, h, c, a = 1) {
+  if (w <= 0 || h <= 0) return;
+  let x0 = Math.round(x + OX), y0 = Math.round(y + OY), x1 = x0 + Math.round(w), y1 = y0 + Math.round(h);
+  const cl = clips[clips.length - 1];
+  if (cl) { x0 = Math.max(x0, cl.x); y0 = Math.max(y0, cl.y); x1 = Math.min(x1, cl.x + cl.w); y1 = Math.min(y1, cl.y + cl.h); }
+  if (x1 <= x0 || y1 <= y0) return;
+  L.fillStyle = css(c, a * ALPHA);
+  L.fillRect(x0, y0, x1 - x0, y1 - y0);
+}
+function P(x, y, c, a = 1) { R(x, y, 1, 1, c, a); }
+// Köşeleri 1 piksel kırpılmış kutu
+function box(x, y, w, h, c, a = 1) {
+  x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+  R(x + 1, y, w - 2, 1, c, a); R(x, y + 1, w, h - 2, c, a); R(x + 1, y + h - 1, w - 2, 1, c, a);
+}
+function boxLine(x, y, w, h, c, a = 1) {
+  x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+  R(x + 1, y, w - 2, 1, c, a); R(x + 1, y + h - 1, w - 2, 1, c, a);
+  R(x, y + 1, 1, h - 2, c, a); R(x + w - 1, y + 1, 1, h - 2, c, a);
+}
+// Bantlı gradyan; bant geçişlerinde 4×4 Bayer dither. dir: 'v' | 'h' | 'd'
+function bands(x, y, w, h, stops, n, dir = 'v', clipped = true, a = 1) {
+  x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
+  const cols = [];
+  for (let i = 0; i < n; i++) cols.push(sampleStops(stops, (i + 0.5) / n));
+  for (let j = 0; j < h; j++) {
+    for (let i = 0; i < w; i++) {
+      if (clipped && ((i === 0 || i === w - 1) && (j === 0 || j === h - 1))) continue;
+      const v = dir === 'v' ? j / Math.max(1, h - 1) : dir === 'h' ? i / Math.max(1, w - 1)
+        : (i / Math.max(1, w - 1) + j / Math.max(1, h - 1)) / 2;
+      const f = v * n - 0.5;
+      let k = Math.floor(f);
+      const fr = f - k;
+      if (fr > 0.6 && bayer(x + i + OX, y + j + OY) < (fr - 0.6) / 0.4) k++;
+      k = Math.max(0, Math.min(n - 1, k));
+      R(x + i, y + j, 1, 1, cols[k], a);
+    }
+  }
+}
+function sampleStops(stops, v) {
+  const s = (stops.length - 1) * clamp01(v);
+  const i = Math.min(stops.length - 2, Math.floor(s));
+  return mix(stops[i], stops[i + 1], s - i);
+}
+function disc(cx, cy, r, c, a = 1) {
+  for (let dy = -r; dy <= r; dy++) {
+    const dx = Math.floor(Math.sqrt(r * r - dy * dy) + 0.35);
+    R(cx - dx, cy + dy, dx * 2 + 1, 1, c, a);
+  }
+}
+// Piksel ikonlar ('#' dolu)
+const GLYPH = {
+  house: ['...#...', '..###..', '.#####.', '#######', '.##.##.', '.##.##.', '.#####.'],
+  books: ['##.##..', '##.##.#', '##.##.#', '##.##.#', '##.##.#', '##.##.#', '#######'],
+  calendar: ['.#...#.', '#######', '#.....#', '#.#.#.#', '#.....#', '#.#.#.#', '#######'],
+  gear: ['..#.#..', '.#####.', '##...##', '.#...#.', '##...##', '.#####.', '..#.#..'],
+  plus: ['...##...', '...##...', '...##...', '########', '########', '...##...', '...##...', '...##...'],
+  sparkle: ['...#...', '...#...', '..###..', '#######', '..###..', '...#...', '...#...'],
+  photo: ['#######', '#.....#', '#...#.#', '#.#...#', '####..#', '#######'],
+  textbook: ['######', '#....#', '#.##.#', '#....#', '#.##.#', '#....#', '######'],
+  calplus: ['.#..#..', '######.', '#....#.', '#.#..#.', '#...###', '####.#.'],
+  arrow: ['..#..', '...#.', '#####', '...#.', '..#..'],
+  chevL: ['..#', '.#.', '#..', '.#.', '..#'],
+  xmark: ['#...#', '.#.#.', '..#..', '.#.#.', '#...#'],
+  check: ['.....#', '....##', '#..##.', '##.#..', '.##...', '..#...'],
+  crown: ['#..#..#', '##.#.##', '#######', '#######'],
+  search: ['.###.', '#...#', '#...#', '.###.', '....#'],
+  child: ['..#..', '.###.', '#.#.#', '..#..', '.#.#.'],
+  person: ['.##.', '.##.', '....', '####', '####'],
+  castle: ['#.#.#.#', '#######', '.#####.', '.##.##.', '.##.##.', '.#####.'],
+  rocket: ['...#...', '..###..', '..#.#..', '..###..', '..###..', '.#####.', '##.#.##', '#.....#'],
+  lion: ['.#####.', '##...##', '#.#.#.#', '#..#..#', '##...##', '.#####.'],
+  bolt: ['...##', '..##.', '.####', '..##.', '.##..', '##...'],
+  dolphin: ['....#..', '..####.', '.######', '####...', '#......'],
+  dots: ['#.#.#'],
+  pages: ['###.', '#.##', '#..#', '#..#', '####'],
+  bookFill: ['######', '######', '######', '######', '#....#', '######'],
+};
+function G(name, x, y, c, a = 1, scale = 1) {
+  const g = GLYPH[name];
+  for (let j = 0; j < g.length; j++)
+    for (let i = 0; i < g[j].length; i++)
+      if (g[j][i] === '#') R(x + i * scale, y + j * scale, scale, scale, c, a);
+}
+const gw = (name) => GLYPH[name][0].length;
+const gh = (name) => GLYPH[name].length;
+
+// Yazı: boyut düşük çözünürlük biriminde (5 → 30 px). Konum aynı 6 px ızgaraya oturur.
+function font(size, bold) { return `${bold ? 700 : 400} ${Math.round(size * S)}px 'Pixelify Sans'`; }
+function measure(s, size, bold) { O.font = font(size, bold); return O.measureText(s).width / S; }
+function T(s, x, y, size, c, opt = {}) {
+  const bold = !!opt.bold;
+  O.font = font(size, bold);
+  const wpx = O.measureText(s).width;
+  let xl = (x + OX) * S;
+  if (opt.align === 'center') xl -= wpx / 2;
+  else if (opt.align === 'right') xl -= wpx;
+  const xi = Math.round(xl / S) * S;
+  const yi = Math.round(y + OY) * S;
+  texts.push({ s, x: xi, y: yi, f: font(size, bold), c: css(c), a: (opt.a ?? 1) * ALPHA, clip: clips[clips.length - 1] });
+  return wpx / S;
+}
+function drawText(t) {
+  if (t.a <= 0) return;
+  O.save();
+  if (t.clip) { O.beginPath(); O.rect(t.clip.x * S, t.clip.y * S, t.clip.w * S, t.clip.h * S); O.clip(); }
+  O.globalAlpha = t.a;
+  O.font = t.f; O.fillStyle = t.c; O.textBaseline = 'top';
+  O.fillText(t.s, t.x, t.y);
+  O.restore();
+}
+function wrap(s, maxW, size, bold) {
+  const words = s.split(' ');
+  const lines = [];
+  let cur = '';
+  for (const w of words) {
+    const test = cur ? cur + ' ' + w : w;
+    if (measure(test, size, bold) <= maxW || !cur) cur = test;
+    else { lines.push(cur); cur = w; }
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+
+// ---------------------------------------------------------------------------
+// Gökyüzü, güneş, ay, yıldızlar, bulutlar, şehir
+// ---------------------------------------------------------------------------
+// Öykünün saati: 0 şafak · 1 gündüz · 2 gün batımı · 3 gece
+const TOD = [[0, 0], [4.5, 1], [12.5, 1.25], [17.5, 2], [21.2, 3], [99, 3]];
+function tod(t) {
+  for (let i = 0; i < TOD.length - 1; i++) {
+    const [t0, p0] = TOD[i], [t1, p1] = TOD[i + 1];
+    if (t <= t1) return lerp(p0, p1, easeInOut(prog(t, t0, t1)));
+  }
+  return 3;
+}
+const SKY = [
+  ['#3B4A8C', '#B87AA8', '#FFB88A'],   // şafak
+  ['#3F86D8', '#78B9EC', '#C9E8F8'],   // gündüz
+  ['#3A3674', '#C8627C', '#FFA95A'],   // gün batımı
+  ['#070B1E', '#141A42', '#262C62'],   // gece
+].map((r) => r.map(hex));
+function skyAt(p) {
+  const i = Math.min(2, Math.floor(p)), f = p - i;
+  return [0, 1, 2].map((k) => mix(SKY[i][k], SKY[i + 1][k], f));
+}
+const HORIZON = 266;
+const skyImg = L.createImageData(W, H);
+function drawSky(t, p) {
+  const st = skyAt(p);
+  const n = 12;
+  const cols = [];
+  for (let i = 0; i < n; i++) cols.push(sampleStops(st, (i + 0.5) / n));
+  const d = skyImg.data;
+  for (let y = 0; y < H; y++) {
+    const f = (y / HORIZON) * n - 0.5;
+    for (let x = 0; x < W; x++) {
+      let k = Math.floor(f);
+      const fr = f - k;
+      if (fr > 0.55 && bayer(x, y) < (fr - 0.55) / 0.45) k++;
+      k = Math.max(0, Math.min(n - 1, k));
+      const c = cols[k], o = (y * W + x) * 4;
+      d[o] = c[0]; d[o + 1] = c[1]; d[o + 2] = c[2]; d[o + 3] = 255;
+    }
+  }
+  L.putImageData(skyImg, 0, 0);
+
+  // Yıldızlar
+  const night = clamp01((p - 2.25) / 0.6);
+  if (night > 0) {
+    const r = rng(7);
+    for (let i = 0; i < 46; i++) {
+      const x = Math.floor(r() * W), y = Math.floor(r() * 190), ph = r() * 6.28, big = r() < 0.18;
+      const tw = Math.sin(t * (1.3 + r()) + ph);
+      const a = night * (tw > -0.4 ? 1 : 0.35);
+      const col = r() < 0.3 ? hex('#FFE9B0') : hex('#FFFFFF');
+      P(x, y, col, a);
+      if (big && tw > 0.55) { P(x - 1, y, col, a * 0.5); P(x + 1, y, col, a * 0.5); P(x, y - 1, col, a * 0.5); P(x, y + 1, col, a * 0.5); }
+    }
+  }
+  // Güneş: şafaktan gün batımına bir yay
+  const sp = p / 2.2;
+  if (sp < 1) {
+    const x = Math.round(lerp(10, 170, sp));
+    const y = Math.round(250 - Math.sin(Math.PI * sp) * 236);
+    const warm = Math.abs(sp - 0.5) * 2;
+    disc(x, y, 7, mix(hex('#FFF1A8'), hex('#FF9E4A'), warm), 0.35);
+    disc(x, y, 6, mix(hex('#FFE680'), hex('#FFB347'), warm));
+    disc(x - 1, y - 1, 3, mix(hex('#FFF8D0'), hex('#FFD08A'), warm));
+  }
+  // Piksel hilal ay
+  const moon = clamp01((p - 2.35) / 0.55);
+  if (moon > 0) {
+    const mx = 20, my = Math.round(lerp(70, 22, easeOut(moon)));
+    for (let dy = -6; dy <= 6; dy++)
+      for (let dx = -6; dx <= 6; dx++) {
+        const in1 = dx * dx + dy * dy <= 36, in2 = (dx - 3) * (dx - 3) + (dy + 2) * (dy + 2) <= 30;
+        if (in1 && !in2) P(mx + dx, my + dy, hex('#F4EFC8'), moon);
+      }
+  }
+  // Bulutlar
+  const cloudCol = p < 1 ? mix(hex('#FFD2DC'), hex('#FFFFFF'), p)
+    : p < 2 ? mix(hex('#FFFFFF'), hex('#F2A39C'), p - 1)
+      : mix(hex('#F2A39C'), hex('#2A3166'), p - 2);
+  const clouds = [[10, 44, 2.2, 0], [120, 18, 1.4, 1], [70, 90, 1.8, 2], [150, 128, 1.1, 0]];
+  const shapes = [
+    [[2, 0, 8, 2], [0, 2, 16, 3], [5, -2, 4, 2]],
+    [[3, 0, 10, 2], [0, 2, 20, 3], [8, -2, 6, 2]],
+    [[1, 0, 6, 2], [0, 2, 12, 2]],
+  ];
+  for (const [x0, y0, v, s] of clouds) {
+    const x = Math.round(((x0 + t * v) % (W + 40)) - 20);
+    for (const [dx, dy, w, h] of shapes[s]) R(x + dx, y0 + dy, w, h, cloudCol, 0.92);
+  }
+}
+const CITY = (() => {
+  const r = rng(42);
+  const make = (hMin, hMax, wMin, wMax) => {
+    const bs = [];
+    let x = -3;
+    while (x < W + 3) {
+      const w = Math.floor(lerp(wMin, wMax, r())), h = Math.floor(lerp(hMin, hMax, r()));
+      const wins = [];
+      for (let wy = HORIZON - h + 3; wy < HORIZON - 3; wy += 4)
+        for (let wx = x + 2; wx < x + w - 2; wx += 3) wins.push([wx, wy, r()]);
+      bs.push({ x, w, h, wins, ant: r() < 0.25 });
+      x += w + (r() < 0.3 ? 1 : 0);
+    }
+    return bs;
+  };
+  return { far: make(40, 92, 9, 16), near: make(14, 58, 10, 20) };
+})();
+function drawCity(p) {
+  const nightF = clamp01((p - 1.6) / 1.2);
+  const dawnF = clamp01(1 - p / 0.8);
+  const lit = Math.max(dawnF * 0.35, nightF);
+  const farC = p < 1 ? mix(hex('#6C6E9E'), hex('#8FA6C6'), p) : mix(hex('#8FA6C6'), hex('#171C3C'), clamp01((p - 1) / 2));
+  const nearC = p < 1 ? mix(hex('#4A4876'), hex('#5F7899'), p) : mix(hex('#5F7899'), hex('#0E1129'), clamp01((p - 1) / 2));
+  const layer = (bs, col, winDark, winOn) => {
+    for (const b of bs) {
+      R(b.x, HORIZON - b.h, b.w, b.h, col);
+      if (b.ant) R(b.x + Math.floor(b.w / 2), HORIZON - b.h - 4, 1, 4, col);
+      for (const [wx, wy, th] of b.wins) {
+        if (th < lit) R(wx, wy, 1, 2, winOn);
+        else R(wx, wy, 1, 2, winDark);
+      }
+    }
+  };
+  layer(CITY.far, farC, mix(farC, hex('#000000'), 0.12), hex('#FFD86B'));
+  layer(CITY.near, nearC, mix(nearC, hex('#000000'), 0.15), hex('#FFE38F'));
+  R(0, HORIZON, W, 6, mix(nearC, hex('#000000'), 0.35));
+}
+
+// ---------------------------------------------------------------------------
+// Telefon ve ekranlar (yerel ekran koordinatları: 104×220)
+// ---------------------------------------------------------------------------
+const PX = 34, PY = 28, PW = 112, PH = 234;           // telefon gövdesi
+const SX = 38, SY = 34, SW = 104, SH = 220;           // ekran
+const SHEET_TOP = 10;
+const FORM_SCROLL = 64;
+
+function phoneBody() {
+  const body = hex('#1C1B22'), edge = hex('#34323F');
+  // basamaklı köşeler (r=4)
+  const cut = [4, 2, 1, 1];
+  for (let j = 0; j < PH; j++) {
+    const c = j < 4 ? cut[j] : j >= PH - 4 ? cut[PH - 1 - j] : 0;
+    R(PX + c, PY + j, PW - 2 * c, 1, body);
+  }
+  R(PX + 4, PY + 1, PW - 8, 1, edge);
+  R(PX + 1, PY + 4, 1, PH - 8, edge);
+  R(PX - 1, PY + 44, 1, 12, body); R(PX - 1, PY + 62, 1, 12, body);   // ses tuşları
+  R(PX + PW, PY + 56, 1, 20, body);                                  // yan tuş
+}
+function screenCorners() {
+  const body = hex('#1C1B22');
+  const pts = [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2]];
+  for (const [x, y] of pts) {
+    P(x, y, body); P(SW - 1 - x, y, body); P(x, SH - 1 - y, body); P(SW - 1 - x, SH - 1 - y, body);
+  }
+}
+function statusBar(dark) {
+  const c = dark ? C.white : C.label;
+  T('9:41', 8, 2, 3.5, c, { bold: true });
+  R(80, 4, 2, 3, c); R(83, 3, 2, 4, c); R(86, 2, 2, 5, c);   // sinyal
+  boxLine(90, 2, 9, 5, c); R(91, 3, 6, 3, c); R(99, 4, 1, 1, c);  // pil
+  box(40, 2, 24, 6, hex('#000000'));   // dynamic island
+}
+
+function tabBar(sel) {
+  const y = 196;
+  R(0, y, SW, SH - y, C.white);
+  R(0, y, SW, 1, C.gray4, 0.6);
+  const xs = [10, 31, 52, 73, 94];
+  const icons = ['house', 'books', null, 'calendar', 'gear'];
+  const labels = [STR.tabs[0], STR.tabs[1], null, STR.tabs[2], STR.tabs[3]];
+  for (let i = 0; i < 5; i++) {
+    if (i === 2) continue;
+    const on = (i === 0 && sel === 0) || (i === 1 && sel === 1);
+    const col = on ? C.brandPurple : mix(C.gray, C.white, 0.2);
+    if (on) box(xs[i] - 8, y + 3, 16, 10, mix(C.brandPurple, C.white, 0.86));
+    G(icons[i], xs[i] - 3, y + 5, col);
+    T(labels[i], xs[i], y + 14, 3.5, col, { align: 'center', bold: on });
+  }
+  // orta "+" butonu
+  const cx = 52, cy = y + 2;
+  disc(cx, cy, 10, mix(C.brandPurple, C.white, 0.7));
+  disc(cx, cy, 9, C.brandPurple);
+  for (let dy = -9; dy <= 9; dy++) for (let dx = -9; dx <= 9; dx++) {
+    if (dx * dx + dy * dy <= 81 && dx + dy > 3 && bayer(dx, dy) < clamp01((dx + dy - 3) / 10)) P(cx + dx, cy + dy, C.brandPink);
+  }
+  G('plus', cx - 4, cy - 4, C.white);
+}
+
+function homeScreen() {
+  bands(0, 0, SW, SH, [C.bgLight, C.bgLight2, hex('#F5F2FC')], 3, 'v', false);
+  statusBar(false);
+  // Hero kart
+  bands(4, 12, 96, 80, [C.heroDeep, C.heroPP, C.heroPink, C.heroCoral], 7, 'd');
+  T(STR.magicStories, 52, 22, 7, C.white, { align: 'center', bold: true });
+  T(STR.makeChildHero, 52, 33, 4, C.white, { align: 'center' });
+  const pw = STR.pills.map((s) => measure(s, 3.5) + 6);
+  let px = 52 - (pw.reduce((a, b) => a + b, 0) + 6) / 2;
+  STR.pills.forEach((s, i) => {
+    box(px, 58, pw[i], 9, C.white, 0.22);
+    T(s, px + pw[i] / 2, 59, 3.5, C.white, { align: 'center', bold: true });
+    px += pw[i] + 3;
+  });
+  box(10, 72, 84, 13, C.white);
+  G('sparkle', 16, 75, C.heroDeep);
+  T(STR.getStartedNow, 54, 75, 4.5, C.heroDeep, { align: 'center', bold: true });
+  // Hızlı eylemler
+  const grads = [[C.purple, C.pink], [C.blue, C.cyan], [C.orange, C.red], [C.green, C.mint]];
+  const icons = ['photo', 'textbook', 'calendar', 'books'];
+  for (let i = 0; i < 4; i++) {
+    const x = 4 + i * 25;
+    box(x, 98, 22, 26, C.white);
+    bands(x + 6, 101, 10, 10, grads[i], 3, 'd');
+    G(icons[i], x + 11 - Math.floor(gw(icons[i]) / 2), 102 + (i === 0 ? 1 : 0), C.white);
+    T(STR.quick[i], x + 11, 115, 3, C.label, { align: 'center', bold: true });
+  }
+  // Günlük Hikayeler (boş durum)
+  T(STR.dailyStories, 6, 132, 5, C.label, { bold: true });
+  T(STR.dailySub, 6, 140, 3.5, C.secondary);
+  box(4, 150, 96, 38, C.white);
+  G('calendar', 49, 155, C.orange);
+  T(STR.noDaily, 52, 165, 4, C.label, { align: 'center', bold: true });
+  T(STR.dailySoon, 52, 173, 3.5, C.secondary, { align: 'center' });
+  tabBar(0);
+}
+
+function libraryScreen() {
+  R(0, 0, SW, SH, C.white);
+  statusBar(false);
+  T(STR.myLibrary, 6, 11, 7, C.label, { bold: true });
+  box(4, 23, 96, 10, C.gray6);
+  G('search', 7, 25, C.gray);
+  T(STR.search, 14, 25, 3.5, C.gray);
+  // İstatistikler: 1 toplam, 0 görselli, 1 metin, 1 okunan
+  const cols = [C.indigo, C.purple, C.green, C.orange];
+  const vals = [1, 0, 1, 1];
+  const icons = ['bookFill', 'photo', 'textbook', 'check'];
+  for (let i = 0; i < 4; i++) {
+    const x = 3 + i * 25;
+    box(x, 37, 23, 22, mix(cols[i], C.white, 0.9));
+    boxLine(x, 37, 23, 22, mix(cols[i], C.white, 0.82));
+    G(icons[i], x + 4, 42, cols[i]);
+    T(String(vals[i]), x + 16, 40, 5, C.label, { align: 'center', bold: true });
+    T(STR.stats[i], x + 11.5, 51, 3, C.secondary, { align: 'center' });
+  }
+  // Filtre çipleri
+  let fx = 4;
+  STR.filters.forEach((s, i) => {
+    const w = Math.round(measure(s, 3.5, i === 0)) + 8;
+    if (i === 0) bands(fx, 63, w, 10, [C.indigo, C.purple], 3, 'h');
+    else box(fx, 63, w, 10, C.gray6);
+    T(s, fx + w / 2, 65, 3.5, i === 0 ? C.white : C.label, { align: 'center', bold: i === 0 });
+    fx += w + 3;
+  });
+  // Yeni hikaye kartı
+  const y = 78;
+  box(4, y, 96, 40, C.white);
+  boxLine(4, y, 96, 40, C.gray6);
+  bands(8, y + 5, 22, 30, [mix(THEME_COLOR[PICK], C.white, 0.4), THEME_COLOR[PICK]], 4, 'd');
+  G('rocket', 16, y + 16, C.white);
+  const tl = wrap(STORY_TITLE, 60, 4, true);
+  tl.slice(0, 2).forEach((s, i) => T(s, 34, y + 4 + i * 6, 4, C.label, { bold: true }));
+  const ty = y + 4 + Math.min(2, tl.length) * 6 + 1;
+  T(STR.storyOf(NAME), 34, ty, 3.5, C.indigo);
+  G('sparkle', 34, ty + 8, C.secondary);
+  T(STR.themes[PICK], 42, ty + 8, 3, C.secondary);
+  T(STR.pages(STORY_PAGES), 96, ty + 8, 3, C.secondary, { align: 'right' });
+  tabBar(1);
+}
+
+// "Yeni Hikaye" türü seçimi (sheet içeriği, sheet koordinatları)
+function typeSheet() {
+  bands(0, 0, SW, SH, [hex('#FAFAFF'), hex('#F2F4FA')], 3, 'v', false);
+  disc(94, 7, 4, C.gray4, 0.8); G('xmark', 92, 5, C.white);
+  disc(52, 22, 9, mix(C.brandPurple, C.white, 0.85));
+  G('sparkle', 49, 19, C.brandPurple);
+  T(STR.newStory, 52, 34, 7, C.label, { align: 'center', bold: true });
+  wrap(STR.whichType, 88, 3.5).forEach((s, i) => T(s, 52, 45 + i * 5, 3.5, C.secondary, { align: 'center' }));
+  const grads = [[C.brandPurple, hex('#BF52EB')], [C.brandPink, C.cardPink2], [C.coral, C.cardCoral2]];
+  const icons = ['photo', 'textbook', 'calplus'];
+  for (let i = 0; i < 3; i++) {
+    const y = 62 + i * 32;
+    box(4, y, 96, 28, C.white);
+    boxLine(4, y, 96, 28, mix(grads[i][0], C.white, 0.85));
+    bands(8, y + 6, 16, 16, grads[i], 3, 'd');
+    G(icons[i], 16 - Math.floor(gw(icons[i]) / 2), y + 11, C.white);
+    const [title, desc, badge] = STR.types[i];
+    const tw = T(title, 28, y + 7, 4.5, C.label, { bold: true });
+    if (badge) {
+      const bw = Math.round(measure(badge, 3, true)) + 5;
+      bands(28 + Math.round(tw) + 2, y + 7, bw, 7, grads[i], 2, 'h');
+      T(badge, 28 + Math.round(tw) + 2 + bw / 2, y + 8, 3, C.white, { align: 'center', bold: true });
+    }
+    T(desc, 28, y + 16, 3.5, C.secondary);
+    G('arrow', 92, y + 12, C.gray4);
+  }
+}
+
+// Metin Hikaye formu (sheet koordinatları, kaydırma dahil)
+function formSheet(t, scroll) {
+  const typed = NAME.slice(0, Math.floor(prog(t, K.typeStart, TYPE_END + 1e-6) * NAME.length + 1e-6));
+  const theme = t >= K.tapTheme ? PICK : 'fantasy';        // varsayılan: .fantasy
+  const generating = t >= K.tapGen && t < K.loadEnd;
+  const focused = t >= K.tapField && t < K.theme;
+  bands(0, 0, SW, SH, [hex('#F9FCFE'), hex('#FBFBF6')], 3, 'v', false);
+  at(0, -Math.round(scroll), () => {
+    G('chevL', 5, 3, C.blue);
+    T(STR.textStory, 6, 10, 7, C.label, { bold: true });
+    // başlık kartı
+    box(4, 22, 96, 38, C.white);
+    for (let dy = -8; dy <= 8; dy++) for (let dx = -8; dx <= 8; dx++)
+      if (dx * dx + dy * dy <= 64) P(52 + dx, 32 + dy, (dx + dy) / 16 + 0.5 > bayer(dx, dy) + 0.1 ? C.txGreen : C.txBlue);
+    G('textbook', 49, 29, C.white);
+    T(STR.quickCreate, 52, 43, 4.5, C.label, { align: 'center', bold: true });
+    T(STR.textOnly, 52, 51, 3.5, C.secondary, { align: 'center' });
+    // Temel bilgiler
+    box(4, 64, 96, 60, C.white);
+    T(STR.basicInfo, 8, 67, 5, C.label, { bold: true });
+    T(STR.childName, 8, 77, 3.5, C.secondary, { bold: true });
+    if (t >= K.typeStart) T(STR.count(typed.length), 96, 77, 3.5, focused ? C.txBlue : C.secondary, { align: 'right' });
+    box(8, 84, 88, 12, C.gray6);
+    if (focused) boxLine(8, 84, 88, 12, C.txBlue);
+    let cx = 12;
+    if (typed.length) cx += Math.round(T(typed, 12, 86, 4.5, C.label)) + 1;
+    else T(STR.namePh, 12, 86, 4.5, C.gray4);
+    if (focused && Math.floor(t * 2.4) % 2 === 0) R(typed.length ? cx : 11, 86, 1, 7, C.txBlue);
+    T(STR.gender, 8, 100, 3.5, C.secondary, { bold: true });
+    const icons = ['child', 'child', 'person'];
+    for (let i = 0; i < 3; i++) {
+      const x = 8 + i * 30, sel = i === 2;           // varsayılan: .other
+      if (sel) bands(x, 106, 28, 12, [C.txBlue, C.txGreen], 3, 'h');
+      else box(x, 106, 28, 12, C.gray6);
+      const col = sel ? C.white : C.label;
+      const lw = measure(STR.genders[i], 3.5, true);
+      const gx = Math.round(x + 14 - (lw + 7) / 2);
+      G(icons[i], gx, 109, col);
+      T(STR.genders[i], gx + 7, 109, 3.5, col, { bold: true });
+    }
+    // Tema
+    box(4, 128, 96, 108, C.white);
+    T(STR.storyTheme, 8, 131, 5, C.label, { bold: true });
+    T(STR.selectAdv, 8, 140, 3.5, C.secondary);
+    T(STR.upper(STR.freeThemes), 8, 148, 3, C.secondary, { bold: true });
+    const tile = (key, x, y, locked) => {
+      const sel = key === theme;
+      const a = locked ? 0.7 : 1;
+      box(x, y, 42, 22, sel ? THEME_COLOR[key] : C.gray6, a);
+      if (locked) boxLine(x, y, 42, 22, C.orange, 0.5);
+      const ic = { fantasy: 'castle', space: 'rocket', jungle: 'lion', hero: 'bolt', underwater: 'dolphin', custom: 'sparkle' }[key];
+      G(ic, x + 21 - Math.floor(gw(ic) / 2), y + 3 + (8 - gh(ic)), sel ? C.white : THEME_COLOR[key], a);
+      T(STR.themes[key], x + 21, y + 14, 3.5, sel ? C.white : C.label, { align: 'center', bold: true, a });
+      if (locked) { disc(x + 37, y + 4, 3, C.orange); G('crown', x + 34, y + 3, C.yellow); }
+    };
+    tile('fantasy', 8, 154, false); tile('space', 54, 154, false);
+    const pt = STR.upper(STR.premiumThemes);
+    const pw = T(pt, 8, 180, 3, C.secondary, { bold: true });
+    G('crown', 10 + Math.round(pw), 180, C.orange);
+    tile('jungle', 8, 186, true); tile('hero', 54, 186, true);
+    tile('underwater', 8, 210, true); tile('custom', 54, 210, true);
+    // Hikaye Oluştur
+    if (generating) box(4, 242, 96, 14, C.gray);
+    else bands(4, 242, 96, 14, [C.txBlue, C.txGreen, C.txYellow], 6, 'h');
+    const bl = generating ? STR.creating : STR.generate;
+    const lw = measure(bl, 4.5, true);
+    G('textbook', Math.round(52 - (lw + 9) / 2), 246, C.white);
+    T(bl, Math.round(52 - (lw + 9) / 2) + 9, 246, 4.5, C.white, { bold: true });
+    if (!typed.length) {
+      box(14, 260, 76, 10, C.orange, 0.12);
+      T('!', 18, 261, 4, C.orange, { bold: true });
+      T(STR.enterName, 22, 262, 3, C.orange);
+    }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// El imleci (ayrı katman, yazıların üstünde)
+// ---------------------------------------------------------------------------
+const HAND = [
+  '...##......',
+  '..#ww#.....',
+  '..#ww#.....',
+  '..#ww###...',
+  '..#ww#ww##.',
+  '..#ww#ww#w#',
+  '##.wwwwwww#',
+  '#w#wwwwwww#',
+  '#wwwwwwwww#',
+  '.#wwwwwwws#',
+  '..#wwwwwss#',
+  '...#wwwss#.',
+  '...#######.',
+];
+// Uç noktası (3,0). Konumlar mutlak düşük çözünürlük koordinatları.
+const TGT = {
+  plus: [90, 232], card2: [108, 152], field: [78, 134],
+  dragA: [122, 210], dragB: [122, 210 - FORM_SCROLL], space: [113, 145], gen: [90, 229],
+};
+const HAND_KEYS = [
+  [0, 196, 330], [K.home + 0.3, 196, 330],
+  [K.tapPlus - 0.2, ...TGT.plus], [K.sheet + 0.9, ...TGT.plus],
+  [K.tapCard - 0.2, ...TGT.card2], [K.form + 0.2, ...TGT.card2],
+  [K.tapField - 0.15, ...TGT.field], [K.theme + 0.2, ...TGT.field],
+  [K.dragStart - 0.15, ...TGT.dragA], [K.dragStart + 0.05, ...TGT.dragA],
+  [K.dragEnd, ...TGT.dragB], [K.dragEnd + 0.25, ...TGT.dragB],
+  [K.tapTheme - 0.15, ...TGT.space], [K.gen + 0.1, ...TGT.space],
+  [K.tapGen - 0.15, ...TGT.gen], [K.tapGen + 0.35, ...TGT.gen],
+  [K.tapGen + 1.2, 196, 330], [99, 196, 330],
+];
+const TAPS = [K.tapPlus, K.tapCard, K.tapField, K.tapTheme, K.tapGen];
+const TAP_POS = [TGT.plus, TGT.card2, TGT.field, TGT.space, TGT.gen];
+function handPos(t) {
+  for (let i = 0; i < HAND_KEYS.length - 1; i++) {
+    const [t0, x0, y0] = HAND_KEYS[i], [t1, x1, y1] = HAND_KEYS[i + 1];
+    if (t <= t1) {
+      const e = easeInOut(prog(t, t0, t1));
+      return [Math.round(lerp(x0, x1, e)), Math.round(lerp(y0, y1, e))];
+    }
+  }
+  return [196, 330];
+}
+function pressed(t) {
+  if (TAPS.some((tt) => t >= tt && t < tt + 0.15)) return true;
+  return t >= K.dragStart + 0.05 && t < K.dragEnd + 0.1;
+}
+function drawHand(t) {
+  // kare halka
+  TAPS.forEach((tt, i) => {
+    const k = prog(t, tt, tt + 0.4);
+    if (k <= 0 || k >= 1) return;
+    const r = Math.round(2 + easeOut(k) * 8);
+    const [x, y] = TAP_POS[i];
+    const a = 1 - k;
+    R(x - r, y - r, 2 * r + 1, 1, C.white, a); R(x - r, y + r, 2 * r + 1, 1, C.white, a);
+    R(x - r, y - r + 1, 1, 2 * r - 1, C.white, a); R(x + r, y - r + 1, 1, 2 * r - 1, C.white, a);
+  });
+  const [x, y] = handPos(t);
+  const dy = pressed(t) ? 1 : 0;
+  const pal = { '#': hex('#1A1A22'), w: hex('#FFFFFF'), s: hex('#C9CAD8') };
+  HAND.forEach((row, j) => [...row].forEach((ch, i) => { if (pal[ch]) P(x - 3 + i, y + j + dy, pal[ch]); }));
+}
+
+// ---------------------------------------------------------------------------
+// Alt şerit anlatı
+// ---------------------------------------------------------------------------
+const CAPS = [
+  [K.hook + 0.3, 'hook'], [K.home, 'home'], [K.sheet, 'sheet'], [K.form, 'form'],
+  [K.theme, 'theme'], [K.gen, 'gen'], [K.lib, 'lib'], [K.outro + 0.9, 'outro'],
+];
+function drawCaption(t) {
+  R(0, 272, W, 48, hex('#15131D'));
+  R(0, 272, W, 1, hex('#2C2840'));
+  let cur = null;
+  for (const c of CAPS) if (t >= c[0]) cur = c;
+  if (!cur) return;
+  const full = STR.captions[cur[1]];
+  const n = Math.floor((t - cur[0]) * 26);
+  const lines = wrap(full, 164, 8, true);
+  let left = n;
+  const y0 = lines.length === 1 ? 291 : 284;
+  lines.forEach((ln, i) => {
+    const vis = ln.slice(0, Math.max(0, left));
+    left -= ln.length + 1;
+    if (!vis) return;
+    // satırı tam metnin genişliğine göre ortala; harfler soldan belirir
+    const fw = measure(ln, 8, true);
+    T(vis, Math.round(90 - fw / 2), y0 + i * 11, 8, C.white, { bold: true });
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Kapanış kartı: piksel logo (AppIcon'dan: turuncu zemin, açık kitap, iki çocuk)
+// ---------------------------------------------------------------------------
+function logo(x0, y0) {
+  at(x0, y0, () => {
+    bands(0, 0, 40, 40, [hex('#F7A52A'), hex('#F08A1E'), hex('#E8621A')], 5, 'v');
+    // çocuklar
+    const skin = hex('#F3B08A'), hair = hex('#5A3524');
+    disc(13, 15, 6, hair); disc(13, 17, 5, skin); R(8, 11, 11, 3, hair);
+    P(11, 17, C.label); P(15, 17, C.label);
+    disc(28, 19, 5, hair); disc(28, 21, 4, skin); R(24, 16, 9, 2, hair); R(23, 18, 2, 6, hair); R(32, 18, 2, 6, hair);
+    P(26, 21, C.label); P(30, 21, C.label);
+    R(7, 23, 12, 6, C.cyan); R(22, 25, 12, 5, hex('#F06292'));
+    // kitap
+    R(6, 30, 28, 4, hex('#C62828'));
+    R(7, 26, 13, 5, C.white); R(20, 26, 13, 5, C.white);
+    R(8, 25, 11, 1, C.white); R(21, 25, 11, 1, C.white);
+    R(19, 26, 1, 5, C.gray4);
+    // parıltı
+    G('sparkle', 17, 17, hex('#FFF6C8'));
+  });
+}
+function outroCard(t) {
+  const a = easeOut(prog(t, K.outro + 0.8, K.outro + 1.3));
+  if (a <= 0) return;
+  ALPHA = a;
+  logo(70, 96);
+  T('MagicPaper', 90, 142, 11, C.white, { align: 'center', bold: true });
+  T(STR.summary, 90, 160, 5.5, hex('#E4DCFF'), { align: 'center' });
+  ALPHA = 1;
+}
+
+// ---------------------------------------------------------------------------
+// draw(t)
+// ---------------------------------------------------------------------------
+function draw(t) {
+  O.clearRect(0, 0, W * S, H * S);
+  L.clearRect(0, 0, W, H);
+  texts = []; clips = []; OX = 0; OY = 0; ALPHA = 1;
+
+  const p = tod(t);
+  drawSky(t, p);
+  drawCity(p);
+  flush();
+
+  // Telefon: girişte aşağıdan kayar, çıkışta aşağı iner
+  const inY = Math.round((1 - easeOut(prog(t, 0, 1.0))) * 300);
+  const outY = Math.round(easeInOut(prog(t, K.outro, K.outro + 0.8)) * 300);
+  const dy = inY + outY;
+  if (dy < 300) {
+    at(0, dy, () => {
+      phoneBody();
+      pushClip(SX, SY, SW, SH);
+      at(SX, SY, () => {
+        // taban ekran: sheet kapanana kadar Ana Sayfa, sonra Kütüphane
+        if (t < K.lib) homeScreen(); else libraryScreen();
+        flush();
+
+        // Sheet: aşağıdan kayarak açılır, arka ekran kararır
+        const open = easeOut(prog(t, K.sheet, K.sheet + 0.55)) * (1 - easeInOut(prog(t, K.lib, K.lib + 0.6)));
+        if (open > 0) {
+          R(0, 0, SW, SH, C.black, 0.4 * open);
+          const top = Math.round(lerp(SH, SHEET_TOP, open));
+          pushClip(0, top, SW, SH - top);
+          at(0, top, () => {
+            box(0, 0, SW, SH, C.white);
+            const push = easeInOut(prog(t, K.tapCard + 0.2, K.tapCard + 0.7));
+            const scroll = FORM_SCROLL * easeInOut(prog(t, K.dragStart + 0.05, K.dragEnd));
+            if (push < 1) at(-Math.round(push * SW), 0, typeSheet);
+            if (push > 0) at(Math.round((1 - push) * SW), 0, () => formSheet(t, scroll));
+          });
+          popClip();
+          flush();
+
+          // Yükleniyor katmanı (sheet üzerinde)
+          if (t >= K.tapGen + 0.15 && t < K.loadEnd) {
+            pushClip(0, SHEET_TOP, SW, SH - SHEET_TOP);
+            R(0, SHEET_TOP, SW, SH - SHEET_TOP, C.black, 0.3);
+            box(20, 88, 64, 40, hex('#141414'), 0.9);
+            const step = Math.floor(t * 12) % 8;
+            const ring = [[0, -5], [4, -4], [5, 0], [4, 4], [0, 5], [-4, 4], [-5, 0], [-4, -4]];
+            ring.forEach(([rx, ry], i) => R(52 + rx - 1, 101 + ry - 1, 2, 2, C.white, ((i - step + 8) % 8) === 0 ? 1 : 0.3));
+            wrap(STR.creating, 56, 4, true).forEach((s, i) => T(s, 52, 111 + i * 6, 4, C.white, { align: 'center', bold: true }));
+            popClip();
+            flush();
+          }
+          // Başarı uyarısı
+          const al = prog(t, K.loadEnd, K.loadEnd + 0.2) * (1 - prog(t, K.alertEnd - 0.15, K.alertEnd));
+          if (al > 0) {
+            ALPHA = al;
+            R(0, 0, SW, SH, C.black, 0.2);
+            const lines = wrap(STR.loadingInLib, 62, 3.5);
+            const h = 30 + lines.length * 5;
+            const y = Math.round(110 - h / 2);
+            box(16, y, 72, h, hex('#F4F4F7'));
+            const sw = measure(STR.success, 4.5, true);
+            const sx = Math.round(52 - (sw + 8) / 2);
+            box(sx, y + 5, 7, 7, C.green); G('check', sx + 1, y + 6, C.white);
+            T(STR.success, sx + 9, y + 5, 4.5, C.label, { bold: true });
+            lines.forEach((s, i) => T(s, 52, y + 15 + i * 5, 3.5, C.label, { align: 'center' }));
+            R(16, y + h - 11, 72, 1, C.gray4);
+            T(STR.ok, 52, y + h - 8, 4.5, C.blue, { align: 'center', bold: true });
+            ALPHA = 1;
+            flush();
+          }
+        }
+        screenCorners();
+      });
+      popClip();
+      flush();
+    });
+  }
+
+  outroCard(t);
+  flush();
+
+  drawCaption(t);
+  flush();
+
+  drawHand(t);
+  flush();
+
+  // Son 0,5 sn siyaha kararma
+  const f = prog(t, K.fade, K.end);
+  if (f > 0) { O.fillStyle = `rgba(0,0,0,${f})`; O.fillRect(0, 0, W * S, H * S); }
+}
+
+// Fontları bekle, ilk kareyi çiz
+window.DURATION = DURATION;
+window.FPS = FPS;
+window.K = K;
+window.draw = draw;
+window.ready = Promise.all([
+  document.fonts.load(font(5, false), 'AaÇçĞğİıÖöŞşÜü'),
+  document.fonts.load(font(5, true), 'AaÇçĞğİıÖöŞşÜü'),
+]).then(() => document.fonts.ready).then(() => { draw(0); return true; });
+
+// Tarayıcıda izleme: ?play=1
+if (new URLSearchParams(location.search).get('play')) {
+  window.ready.then(() => {
+    const t0 = performance.now();
+    const loop = () => { const t = ((performance.now() - t0) / 1000) % DURATION; draw(t); requestAnimationFrame(loop); };
+    loop();
+  });
+}
+</script>
+</body>
+</html>
