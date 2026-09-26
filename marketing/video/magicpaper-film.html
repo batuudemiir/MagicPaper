@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>MagicPaper Film</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  /* Brand rules — 3 colors, 2 typefaces. Nothing else is allowed on screen. */
+  :root {
+    --paper: #F6F1E7;   /* background / sheets */
+    --ink:   #1D1830;   /* lines, text, night */
+    --magic: #7E4CF2;   /* the one accent (app purple) */
+  }
+  html, body { margin: 0; background: var(--paper); overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+  svg { position: absolute; inset: 0; }
+  .cap {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-family: 'Fraunces', serif; font-weight: 400; color: var(--ink);
+    letter-spacing: -0.02em; font-variation-settings: 'opsz' 144;
+    white-space: nowrap;
+  }
+  .cap .w { display: inline-block; will-change: transform, opacity, filter; }
+  .cap em { font-style: italic; color: var(--magic); }
+  .small { font-family: 'Inter Tight', sans-serif; letter-spacing: 0; font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="stage">
+<svg id="svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1D1830" flood-opacity="0.10"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <path id="sparkle" d="M0,-1 C0.12,-0.12 0.12,-0.12 1,0 C0.12,0.12 0.12,0.12 0,1 C-0.12,0.12 -0.12,0.12 -1,0 C-0.12,-0.12 -0.12,-0.12 0,-1Z"/>
+    <!-- static portrait, reused inside the storybook illustration -->
+    <g id="portraitStatic">
+      <rect x="-100" y="-100" width="200" height="200" fill="#F6F1E7"/>
+      <path d="M-78,112 C-74,62 -40,48 0,48 C40,48 74,62 78,112 Z" fill="#7E4CF2"/>
+      <circle cx="0" cy="-6" r="40" fill="#F6F1E7" stroke="#1D1830" stroke-width="5"/>
+      <path d="M-42,-10 C-46,-50 -14,-66 8,-60 C30,-56 46,-40 42,-8 C30,-26 10,-34 -8,-30 C-20,-28 -32,-20 -42,-10 Z" fill="#1D1830"/>
+      <circle cx="-14" cy="0" r="4" fill="#1D1830"/><circle cx="14" cy="0" r="4" fill="#1D1830"/>
+      <path d="M-12,14 Q0,24 12,14" fill="none" stroke="#1D1830" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <clipPath id="avatarClip"><rect id="avatarClipRect"/></clipPath>
+    <clipPath id="panelClip"><rect x="1000" y="300" width="440" height="500" rx="18"/></clipPath>
+    <clipPath id="porthole2"><circle cx="0" cy="-20" r="20"/></clipPath>
+  </defs>
+
+  <rect id="bg" width="1920" height="1080" fill="#F6F1E7"/>
+
+  <g id="world">
+    <!-- ================= BOOK (scene 5) ================= -->
+    <g id="book">
+      <g id="pageL">
+        <path d="M960,270 C800,250 600,250 440,262 L440,842 C600,830 800,830 960,850 Z" fill="#FBF8F1" stroke="#1D1830" stroke-width="3" stroke-linejoin="round" filter="url(#soft)"/>
+        <text id="bookTitle" x="700" y="360" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="40" fill="#1D1830"></text>
+        <g id="lines"></g>
+        <circle id="caret" r="7" fill="#7E4CF2"/>
+      </g>
+      <g id="pageR">
+        <path d="M960,270 C1120,250 1320,250 1480,262 L1480,842 C1320,830 1120,830 960,850 Z" fill="#FBF8F1" stroke="#1D1830" stroke-width="3" stroke-linejoin="round" filter="url(#soft)"/>
+        <g id="panel">
+          <rect x="1000" y="300" width="440" height="500" rx="18" fill="#1D1830"/>
+          <g clip-path="url(#panelClip)">
+            <g id="pStars"></g>
+            <g id="pMoon">
+              <circle cx="1370" cy="380" r="46" fill="#F6F1E7"/>
+              <circle cx="1356" cy="372" r="9" fill="#1D1830" opacity="0.08"/>
+              <circle cx="1384" cy="394" r="6" fill="#1D1830" opacity="0.08"/>
+            </g>
+            <path id="pTrail" d="M1060,800 C1090,720 1170,690 1205,625" fill="none" stroke="#7E4CF2" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 12"/>
+            <g id="pRocket"></g>
+            <path id="pHills" d="M1000,740 C1100,700 1180,720 1260,712 C1340,704 1400,724 1440,716 L1440,800 L1000,800 Z" fill="#7E4CF2"/>
+          </g>
+        </g>
+      </g>
+      <line id="spine" x1="960" y1="270" x2="960" y2="850" stroke="#1D1830" stroke-width="3"/>
+    </g>
+
+    <!-- ================= THEME CHIPS (scene 3) ================= -->
+    <g id="chips"></g>
+
+    <!-- ================= TRAIL + SPARKLES (scene 4) ================= -->
+    <path id="trail" fill="none" stroke="#7E4CF2" stroke-width="7" stroke-linecap="round"/>
+    <g id="sparkles"></g>
+
+    <!-- ================= ROCKET (scene 3–4) ================= -->
+    <g id="rocket">
+      <g id="flame"><path d="M-18,48 C-14,80 0,96 0,112 C0,96 14,80 18,48 Z" fill="#7E4CF2"/></g>
+      <path d="M-38,4 L-66,56 L-66,66 L-38,52 Z" fill="#7E4CF2" stroke="#1D1830" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M38,4 L66,56 L66,66 L38,52 Z" fill="#7E4CF2" stroke="#1D1830" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M0,-92 C34,-66 42,-20 38,44 L-38,44 C-42,-20 -34,-66 0,-92 Z" fill="#FBF8F1" stroke="#1D1830" stroke-width="5" stroke-linejoin="round"/>
+      <circle cx="0" cy="-20" r="20" fill="#F6F1E7" stroke="#1D1830" stroke-width="5"/>
+    </g>
+
+    <!-- ================= AVATAR: dot → photo → circle → porthole ================= -->
+    <g id="avatar">
+      <rect id="frame" filter="url(#soft)"/>
+      <g clip-path="url(#avatarClip)">
+        <g id="portrait">
+          <path id="pShoulders" d="M-78,112 C-74,62 -40,48 0,48 C40,48 74,62 78,112 Z" fill="#7E4CF2"/>
+          <circle id="pFace" cx="0" cy="-6" r="40" fill="#F6F1E7" stroke="#1D1830" stroke-width="5" pathLength="1" stroke-dasharray="1 1"/>
+          <path id="pHair" d="M-42,-10 C-46,-50 -14,-66 8,-60 C30,-56 46,-40 42,-8 C30,-26 10,-34 -8,-30 C-20,-28 -32,-20 -42,-10 Z" fill="#1D1830"/>
+          <circle id="pEyeL" cx="-14" cy="0" r="4" fill="#1D1830"/>
+          <circle id="pEyeR" cx="14" cy="0" r="4" fill="#1D1830"/>
+          <path id="pSmile" d="M-12,14 Q0,24 12,14" fill="none" stroke="#1D1830" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
+          <circle id="pCheekL" cx="-25" cy="12" r="6" fill="#7E4CF2" opacity="0.35"/>
+          <circle id="pCheekR" cx="25" cy="12" r="6" fill="#7E4CF2" opacity="0.35"/>
+        </g>
+      </g>
+      <rect id="frameLine" fill="none" stroke="#1D1830"/>
+    </g>
+  </g>
+
+  <!-- ================= MOONLIGHT WIPE + LOGO (scene 7) ================= -->
+  <circle id="wipe" r="0" fill="#F6F1E7"/>
+  <g id="logo" transform="translate(960,400)">
+    <path id="sheet" d="M-60,-80 L28,-80 L60,-48 L60,80 L-60,80 Z" fill="#FBF8F1" stroke="#1D1830" stroke-width="6" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/>
+    <path id="fold" d="M28,-80 L28,-48 L60,-48" fill="none" stroke="#1D1830" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
+    <use id="logoSpark" href="#sparkle" fill="#7E4CF2"/>
+  </g>
+
+  <image id="grainImg" width="1920" height="1080" opacity="0.045" style="mix-blend-mode:multiply" pointer-events="none"/>
+</svg>
+<div id="caps"></div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ copy */
+const LANG = new URLSearchParams(location.search).get('lang') || 'tr';
+const COPY = {
+  tr: {
+    c1: 'Her çocuk bir <em>kahraman</em>dır.',
+    c2: 'Bir fotoğraf.',
+    c3: 'Bir dünya.',
+    c4: 'Ve biraz <em>sihir.</em>',
+    c5: 'Saniyeler içinde, ona özel bir masal.',
+    c6: 'Bu masalın kahramanı <em>o.</em>',
+    title: 'Ay’a Yolculuk',
+    tagline: 'Her gece yeni bir masal.',
+    store: 'App Store’da',
+  },
+  en: {
+    c1: 'Every child is a <em>hero.</em>',
+    c2: 'One photo.',
+    c3: 'One world.',
+    c4: 'And a little <em>magic.</em>',
+    c5: 'In seconds, a story made just for them.',
+    c6: 'And they are the <em>hero.</em>',
+    title: 'Journey to the Moon',
+    tagline: 'A new story, every night.',
+    store: 'On the App Store',
+  },
+}[LANG];
+document.documentElement.lang = LANG;
+
+/* ------------------------------------------------------------------ math */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, s, d) => clamp((t - s) / d);
+const lerp = (a, b, k) => a + (b - a) * k;
+const inOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const outExpo = x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+const outQuint = x => 1 - Math.pow(1 - x, 5);
+const inCubic = x => x * x * x;
+const outBack = (x, s = 1.5) => 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2);
+const inBack = (x, s = 1.5) => (s + 1) * x * x * x - s * x * x;
+const mix = (c1, c2, k) => {
+  const h = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+  const a = h(c1), b = h(c2);
+  return '#' + a.map((v, i) => Math.round(lerp(v, b[i], k)).toString(16).padStart(2, '0')).join('');
+};
+const PAPER = '#F6F1E7', INK = '#1D1830', MAGIC = '#7E4CF2', SHEET = '#FBF8F1';
+
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent) => {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const set = (e, attrs) => { for (const k in attrs) e.setAttribute(k, attrs[k]); };
+const tf = (x, y, r = 0, s = 1) => `translate(${x},${y}) rotate(${r}) scale(${s})`;
+
+/* ------------------------------------------------------------------ captions
+   One caption per shot. Words rise out of a soft blur, staggered. */
+const capsEl = $('caps');
+function caption(html, { y, size, tIn, tOut, color = INK, cls = '' }) {
+  const d = document.createElement('div');
+  d.className = 'cap ' + cls;
+  d.style.top = (y - size * 0.62) + 'px';
+  d.style.fontSize = size + 'px';
+  d.style.color = color;
+  // optical size follows the point size: display cut for headlines, text cut for small lines
+  d.style.fontVariationSettings = `'opsz' ${Math.min(144, size)}`;
+  d.style.letterSpacing = size >= 80 ? '-0.02em' : '-0.005em';
+  // split into words, keeping <em> groups intact
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+  const words = [];
+  tmp.childNodes.forEach(n => {
+    if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(p => {
+      if (!p) return;
+      if (/^\s+$/.test(p)) d.appendChild(document.createTextNode(' '));
+      else { const s = document.createElement('span'); s.className = 'w'; s.textContent = p; d.appendChild(s); words.push(s); }
+    });
+    else { const s = document.createElement('span'); s.className = 'w'; s.appendChild(n.cloneNode(true)); d.appendChild(s); words.push(s); }
+  });
+  capsEl.appendChild(d);
+  return { d, words, tIn, tOut, color };
+}
+function renderCaption(c, t, stagger = 0.075, dur = 0.95) {
+  const out = inCubic(P(t, c.tOut, 0.55));
+  c.d.style.display = (t < c.tIn - 0.01 || t > c.tOut + 0.6) ? 'none' : 'block';
+  c.words.forEach((w, i) => {
+    const k = outQuint(P(t, c.tIn + i * stagger, dur));
+    const y = (1 - k) * 34 - out * 22;
+    const blur = (1 - k) * 12 + out * 10;
+    w.style.opacity = (k * (1 - out)).toFixed(3);
+    w.style.transform = `translateY(${y.toFixed(2)}px)`;
+    w.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : 'none';
+  });
+}
+
+const CAP_Y = 905, CAP_SIZE = 62;
+const caps = [
+  caption(COPY.c1, { y: 540, size: 104, tIn: 0.6,  tOut: 3.0 }),
+  caption(COPY.c2, { y: CAP_Y, size: CAP_SIZE, tIn: 4.8,  tOut: 7.5 }),
+  caption(COPY.c3, { y: CAP_Y, size: CAP_SIZE, tIn: 8.5,  tOut: 11.2 }),
+  caption(COPY.c4, { y: CAP_Y, size: CAP_SIZE, tIn: 12.2, tOut: 14.9 }),
+  caption(COPY.c5, { y: 960,   size: 52,       tIn: 17.4, tOut: 21.4 }),
+  caption(COPY.c6, { y: CAP_Y, size: 72, tIn: 23.5, tOut: 26.0, color: PAPER }),
+];
+const wordmark = caption('Magic<em>Paper</em>', { y: 610, size: 112, tIn: 27.75, tOut: 99 });
+const tagline = caption(COPY.tagline, { y: 712, size: 40, tIn: 28.45, tOut: 99 });
+const store = caption(COPY.store, { y: 800, size: 24, tIn: 28.95, tOut: 99, cls: 'small' });
+store.d.style.letterSpacing = '0.18em'; store.d.style.textTransform = 'uppercase'; store.d.style.color = MAGIC;
+// wordmark animates per letter
+(() => {
+  const d = wordmark.d; d.innerHTML = '';
+  wordmark.words = [];
+  [...'Magic'].forEach(ch => { const s = document.createElement('span'); s.className = 'w'; s.textContent = ch; d.appendChild(s); wordmark.words.push(s); });
+  [...'Paper'].forEach(ch => { const s = document.createElement('span'); s.className = 'w'; s.innerHTML = `<em>${ch}</em>`; d.appendChild(s); wordmark.words.push(s); });
+})();
+
+/* ------------------------------------------------------------------ build: theme chips */
+const CENTER = { x: 960, y: 470 };
+const ORBIT = 275;
+const chipDefs = [
+  { a: -45, icon: 'rocket' },  // selected one (top-right)
+  { a: 45,  icon: 'wave' },
+  { a: 135, icon: 'leaf' },
+  { a: 225, icon: 'castle' },
+];
+const chipsG = $('chips');
+chipDefs.forEach(c => {
+  c.g = el('g', {}, chipsG);
+  c.disc = el('circle', { r: 62, fill: SHEET, stroke: INK, 'stroke-width': 3, filter: 'url(#soft)' }, c.g);
+  c.ring = el('circle', { r: 76, fill: 'none', stroke: MAGIC, 'stroke-width': 4, opacity: 0 }, c.g);
+  const ic = el('g', { fill: 'none', stroke: INK, 'stroke-width': 4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, c.g);
+  c.iconG = ic;
+  if (c.icon === 'castle') {
+    el('path', { d: 'M-30,32 L-30,-8 L-21,-8 L-21,0 L-11,0 L-11,-20 L0,-30 L11,-20 L11,0 L21,0 L21,-8 L30,-8 L30,32 Z' }, ic);
+    el('path', { d: 'M-7,32 L-7,18 A7,7 0 0 1 7,18 L7,32' }, ic);
+    el('path', { d: 'M0,-30 L0,-42 L10,-38 L0,-35' }, ic);
+  } else if (c.icon === 'wave') {
+    el('path', { d: 'M-34,-8 C-24,-20 -12,-20 -2,-8 S20,4 34,-8' }, ic);
+    el('path', { d: 'M-34,12 C-24,0 -12,0 -2,12 S20,24 34,12' }, ic);
+    el('circle', { cx: 16, cy: -28, r: 5 }, ic);
+    el('circle', { cx: 28, cy: -38, r: 3 }, ic);
+  } else if (c.icon === 'leaf') {
+    el('path', { d: 'M-26,28 C-30,-10 0,-34 30,-30 C30,6 6,32 -26,28 Z' }, ic);
+    el('path', { d: 'M-26,28 L14,-12' }, ic);
+  }
+  c.pos = { x: CENTER.x + ORBIT * Math.cos(c.a * Math.PI / 180), y: CENTER.y + ORBIT * Math.sin(c.a * Math.PI / 180) };
+});
+const ROCKET_CHIP = chipDefs[0];
+
+/* ------------------------------------------------------------------ build: sparkles */
+const sparkG = $('sparkles');
+const sparks = [
+  [-130, 60, 26, 0.00], [140, 30, 20, 0.08], [-80, 150, 14, 0.16],
+  [110, 150, 30, 0.10], [-190, -40, 16, 0.22], [200, -70, 14, 0.28],
+].map(([dx, dy, s, d]) => ({ dx, dy, s, d, e: el('use', { href: '#sparkle', fill: MAGIC }, sparkG) }));
+
+/* ------------------------------------------------------------------ build: book */
+$('bookTitle').textContent = COPY.title;
+const linesG = $('lines');
+const LINE_W = [390, 370, 395, 330, 380, 300, 390, 350, 210];
+const lines = LINE_W.map((w, i) => ({ w, y: 420 + i * 40, e: el('rect', { x: 505, y: 420 + i * 40 - 4, height: 8, rx: 4, fill: INK, opacity: 0.17 }, linesG) }));
+const pStarsG = $('pStars');
+const pStars = [[1060, 350, 9], [1130, 420, 6], [1270, 330, 7], [1420, 470, 6], [1080, 520, 5], [1300, 470, 5], [1180, 360, 4]]
+  .map(([x, y, s], i) => ({ x, y, s, i, e: el('use', { href: '#sparkle', fill: PAPER }, pStarsG) }));
+// small rocket inside the illustration, carrying the same portrait
+(() => {
+  const g = $('pRocket');
+  g.innerHTML = $('rocket').innerHTML;
+  g.querySelector('#flame')?.removeAttribute('id');
+  const inner = el('g', { 'clip-path': 'url(#porthole2)' }, g);
+  el('use', { href: '#portraitStatic', transform: 'translate(0,-20) scale(0.2)' }, inner);
+  el('circle', { cx: 0, cy: -20, r: 20, fill: 'none', stroke: INK, 'stroke-width': 5 }, g);
+})();
+
+/* ------------------------------------------------------------------ rocket flight path */
+const B = [[960, 600], [1180, 380], [740, 120], [960, -320]];
+const bez = u => {
+  const m = 1 - u;
+  const x = m*m*m*B[0][0] + 3*m*m*u*B[1][0] + 3*m*u*u*B[2][0] + u*u*u*B[3][0];
+  const y = m*m*m*B[0][1] + 3*m*m*u*B[1][1] + 3*m*u*u*B[2][1] + u*u*u*B[3][1];
+  return [x, y];
+};
+const bezTan = u => {
+  const m = 1 - u;
+  return [
+    3*m*m*(B[1][0]-B[0][0]) + 6*m*u*(B[2][0]-B[1][0]) + 3*u*u*(B[3][0]-B[2][0]),
+    3*m*m*(B[1][1]-B[0][1]) + 6*m*u*(B[2][1]-B[1][1]) + 3*u*u*(B[3][1]-B[2][1]),
+  ];
+};
+const TRAIL_N = 70;
+
+/* ------------------------------------------------------------------ RENDER(t) */
+const svgRoot = $('svg');
+function render(t) {
+  /* --- camera --- */
+  let z = 1, fx = 960, fy = 540;
+  const zk = inOut(P(t, 21.7, 2.3));
+  z = lerp(1, 4.4, zk); fx = lerp(960, 1220, zk); fy = lerp(540, 580, zk);
+  // gentle settle-in when the book opens
+  const bookIn = outExpo(P(t, 15.9, 1.4));
+  if (t > 15.5 && t < 21.7) z *= lerp(0.965, 1, bookIn) + 0.012 * P(t, 17.3, 4.4);
+  set($('world'), { transform: `translate(960,540) scale(${z}) translate(${-fx},${-fy})` });
+
+  /* --- background: paper → night as we enter the illustration --- */
+  $('bg').setAttribute('fill', mix(PAPER, INK, inOut(P(t, 22.7, 1.0))));
+
+  /* ===================== AVATAR ===================== */
+  // phase A: dot pop (3.0) → B: photo card (3.7–4.6) → C: circle (7.8–8.6) → D: porthole (11.7–12.7)
+  const pop = outBack(P(t, 3.0, 0.55), 2.2);
+  const toCard = inOut(P(t, 3.65, 0.95));
+  const toCircle = inOut(P(t, 7.8, 0.85));
+  let w = lerp(26, 360, toCard), h = lerp(26, 440, toCard), rx = lerp(13, 30, toCard);
+  w = lerp(w, 200, toCircle); h = lerp(h, 200, toCircle); rx = lerp(rx, 100, toCircle);
+  let tilt = lerp(0, -3, toCard) * (1 - toCircle);
+  const breathe = 1 + 0.035 * Math.sin((t - 3.0) * 3.4) * (1 - toCard) * P(t, 3.3, 0.3);
+  let aS = pop * breathe, aX = CENTER.x, aY = CENTER.y, aR = tilt;
+
+  // portrait layout inside card vs circle
+  const ps = lerp(1.55, 1, toCircle), py = lerp(38, 0, toCircle);
+  set($('portrait'), { transform: `translate(0,${py}) scale(${ps})` });
+
+  // phase D — merge into rocket porthole (computed after rocket below)
+  const merge = inOut(P(t, 11.7, 1.0));
+
+  /* ===================== CHIPS ===================== */
+  chipDefs.forEach((c, i) => {
+    const kin = outBack(P(t, 8.35 + i * 0.11, 0.7), 1.3);
+    const orbitA = c.a - (1 - outQuint(P(t, 8.35 + i * 0.11, 1.0))) * 50;
+    const r = lerp(110, ORBIT, outQuint(P(t, 8.35 + i * 0.11, 0.9)));
+    const x = CENTER.x + r * Math.cos(orbitA * Math.PI / 180);
+    const y = CENTER.y + r * Math.sin(orbitA * Math.PI / 180);
+    c.cur = { x, y };
+    // quick scanning highlight (adaptive rhythm: it accelerates, then lands)
+    const hops = [9.55, 9.85, 10.1, 10.3];
+    const order = [3, 2, 1, 0];
+    let ring = 0;
+    hops.forEach((ht, hi) => {
+      if (order[hi] === i) {
+        const on = P(t, ht, 0.12), off = hi === 3 ? 0 : P(t, ht + 0.22, 0.12);
+        ring = Math.max(ring, on * (1 - off));
+      }
+    });
+    const chosen = i === 0 ? outBack(P(t, 10.4, 0.5), 2) : 0;
+    const dim = i === 0 ? 1 : lerp(1, 0.28, inOut(P(t, 10.55, 0.5)));
+    const out = i === 0 ? 0 : inBack(P(t, 11.35 + (3 - i) * 0.06, 0.45));
+    const s = kin * (1 + 0.08 * chosen - 0.08 * chosen * P(t, 10.9, 0.4)) * (1 - out);
+    set(c.g, { transform: tf(x, y, 0, Math.max(0, s)), opacity: dim });
+    set(c.ring, { opacity: i === 0 ? ring * (1 - P(t, 11.5, 0.4)) : ring, r: 74 + 4 * ring });
+    if (i === 0) {
+      const fill = P(t, 10.4, 0.3);
+      set(c.disc, { fill: mix(SHEET, MAGIC, fill), opacity: 1 - inOut(P(t, 11.5, 0.6)) });
+    }
+    c.g.style.display = (t < 8.3 || s <= 0.001) ? 'none' : '';
+  });
+
+  /* ===================== ROCKET ===================== */
+  const rk = $('rocket');
+  const move = inOut(P(t, 11.6, 1.05));
+  const chip = ROCKET_CHIP.cur || ROCKET_CHIP.pos;
+  let rX = lerp(chip.x, 960, move), rY = lerp(chip.y + 8, 600, move);
+  let rS = lerp(0.42, 1, move), rR = 0;
+  const chosenScale = outBack(P(t, 10.4, 0.5), 2) * 0.08 * (1 - P(t, 10.9, 0.4));
+  const chipKin = outBack(P(t, 8.35, 0.7), 1.3);
+  if (t < 11.6) rS = 0.42 * chipKin * (1 + chosenScale);
+  // idle breathing on the pad, then a small crouch, then launch
+  rY += Math.sin((t - 12.6) * 4) * 4 * P(t, 12.6, 0.3) * (1 - P(t, 13.1, 0.2));
+  rY += 12 * Math.sin(Math.PI * P(t, 13.1, 0.35)) * (t < 13.45 ? 1 : 0);
+  const launch = P(t, 13.45, 1.75);
+  const u = launch * launch * (1.6 - 0.6 * launch); // eased-in acceleration, keeps moving at the end
+  if (t >= 13.45) {
+    const [bx, by] = bez(u);
+    const [dx, dy] = bezTan(Math.max(0.001, u));
+    rX = bx; rY = by; rR = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+    rR *= clamp(u * 6);
+  }
+  set(rk, { transform: tf(rX, rY, rR, rS) });
+  rk.style.display = (t < 8.3 || u >= 1) ? 'none' : '';
+  const fl = outBack(P(t, 12.85, 0.4), 2) * (1 + 0.1 * Math.sin(t * 43) + 0.06 * Math.sin(t * 71));
+  set($('flame'), { transform: `translate(0,48) scale(${0.9 + 0.1 * fl},${Math.max(0, fl)}) translate(0,-48)` });
+
+  /* ===================== AVATAR (final) ===================== */
+  if (merge > 0) {
+    const rad = rR * Math.PI / 180;
+    // porthole sits at rocket-local (0,-20)
+    const px = rX + 20 * rS * Math.sin(rad);
+    const pyy = rY - 20 * rS * Math.cos(rad);
+    aX = lerp(aX, px, merge); aY = lerp(aY, pyy, merge);
+    aS = lerp(aS, 0.2 * rS, merge);
+    aR = lerp(aR, rR, merge);
+  }
+  set($('avatar'), { transform: tf(aX, aY, aR, aS) });
+  $('avatar').style.display = (t < 3.0 || u >= 1) ? 'none' : '';
+  const frameFill = mix(MAGIC, PAPER, P(t, 3.75, 0.5));
+  const rectAttrs = { x: -w / 2, y: -h / 2, width: w, height: h, rx: rx };
+  set($('frame'), { ...rectAttrs, fill: frameFill });
+  set($('avatarClipRect'), rectAttrs);
+  set($('frameLine'), { ...rectAttrs, 'stroke-width': lerp(0, 5, P(t, 3.9, 0.4)) * lerp(1, 5, merge) });
+  $('frame').setAttribute('filter', merge > 0.5 ? '' : 'url(#soft)');
+
+  // portrait draws itself after the card lands (stroke draw + staggered pops)
+  const face = inOut(P(t, 4.45, 0.8));
+  set($('pFace'), { 'stroke-dashoffset': 1 - face, 'fill-opacity': P(t, 4.9, 0.3) });
+  const hair = outBack(P(t, 4.95, 0.55), 1.6);
+  set($('pHair'), { transform: `translate(0,-34) scale(${hair}) translate(0,34)`, opacity: clamp(hair * 3) });
+  const sh = outQuint(P(t, 4.7, 0.8));
+  set($('pShoulders'), { transform: `translate(0,${(1 - sh) * 80})` });
+  ['pEyeL', 'pEyeR'].forEach((id, i) => {
+    const k = outBack(P(t, 5.35 + i * 0.07, 0.4), 2.5);
+    // one blink during the "photo" beat
+    const blink = 1 - 0.9 * Math.sin(Math.PI * P(t, 6.6, 0.16));
+    set($(id), { transform: `translate(${i ? 14 : -14},0) scale(${k},${k * blink}) translate(${i ? -14 : 14},0)` });
+  });
+  set($('pSmile'), { 'stroke-dashoffset': 1 - inOut(P(t, 5.55, 0.45)) });
+  ['pCheekL', 'pCheekR'].forEach((id, i) => {
+    const k = outBack(P(t, 5.8 + i * 0.06, 0.45), 2);
+    set($(id), { transform: `translate(${i ? 25 : -25},12) scale(${k}) translate(${i ? -25 : 25},-12)` });
+  });
+
+  /* ===================== TRAIL → SPINE ===================== */
+  const trail = $('trail');
+  const toSpine = inOut(P(t, 15.2, 0.85));
+  if (t >= 13.5 && t < 16.4) {
+    const uEnd = t >= 15.2 ? 1 : u;
+    let d = '';
+    for (let i = 0; i <= TRAIL_N; i++) {
+      const ui = (i / TRAIL_N) * uEnd;
+      let [x, y] = bez(ui);
+      y += 30; // trail leaves from the nozzle, not the nose
+      const tx = 960, ty = 850 - (i / TRAIL_N) * 580;
+      // stagger the morph so the line "gathers" from bottom to top
+      const kk = inOut(clamp(toSpine * 1.6 - (i / TRAIL_N) * 0.6));
+      x = lerp(x, tx, kk); y = lerp(y, ty, kk);
+      d += (i ? 'L' : 'M') + x.toFixed(1) + ',' + y.toFixed(1);
+    }
+    const dash = lerp(0, 18, toSpine);
+    set(trail, {
+      d, 'stroke-dasharray': `${dash.toFixed(2)} ${(18 - dash + 0.001).toFixed(3)}`,
+      stroke: mix(MAGIC, INK, toSpine), 'stroke-width': lerp(7, 3, toSpine),
+      opacity: 1 - P(t, 16.0, 0.3),
+    });
+    trail.style.display = '';
+  } else trail.style.display = 'none';
+
+  /* ===================== SPARKLES at lift-off ===================== */
+  sparks.forEach(s => {
+    const k = P(t, 13.45 + s.d, 0.9);
+    const sc = Math.sin(Math.PI * k) * s.s;
+    set(s.e, { transform: `translate(${960 + s.dx},${640 + s.dy - k * 30}) rotate(${k * 90}) scale(${sc})` });
+    s.e.style.display = (k <= 0 || k >= 1) ? 'none' : '';
+  });
+
+  /* ===================== BOOK ===================== */
+  const book = $('book');
+  book.style.display = t < 15.8 ? 'none' : '';
+  const unfold = outExpo(P(t, 15.95, 1.1));
+  set($('pageL'), { transform: `translate(960,0) scale(${unfold},1) translate(-960,0)` });
+  set($('pageR'), { transform: `translate(960,0) scale(${unfold},1) translate(-960,0)` });
+  set($('spine'), { opacity: P(t, 15.95, 0.2) });
+
+  const tt = outQuint(P(t, 16.75, 0.9));
+  set($('bookTitle'), { opacity: tt, transform: `translate(0,${(1 - tt) * 14})` });
+  // the story "writes itself", one line at a time
+  let caretX = 505, caretY = 420, caretOn = 0;
+  lines.forEach((ln, i) => {
+    const k = inOut(P(t, 17.1 + i * 0.36, 0.42));
+    set(ln.e, { width: Math.max(0.01, ln.w * k), opacity: 0.17 * clamp(k * 8) });
+    if (k > 0 && (k < 1 || i === lines.length - 1)) { caretX = 505 + ln.w * k + 14; caretY = ln.y; caretOn = 1; }
+  });
+  const caretFade = 1 - P(t, 20.7, 0.4);
+  set($('caret'), { cx: caretX, cy: caretY, opacity: caretOn * caretFade * clamp((t - 17.1) * 4) });
+
+  // right page illustration
+  const pnl = outQuint(P(t, 16.85, 0.8));
+  set($('panel'), { opacity: pnl, transform: `translate(1220,550) scale(${lerp(0.94, 1, pnl)}) translate(-1220,-550)` });
+  const mo = outBack(P(t, 17.35, 0.7), 1.6);
+  set($('pMoon'), { transform: `translate(1370,380) scale(${mo}) translate(-1370,-380)` });
+  pStars.forEach(s => {
+    const k = outBack(P(t, 17.55 + s.i * 0.07, 0.5), 2);
+    const tw = 1 + 0.18 * Math.sin(t * 2.4 + s.i * 1.7);
+    set(s.e, { transform: `translate(${s.x},${s.y}) rotate(${s.i * 20 + t * 6}) scale(${s.s * k * tw})` });
+  });
+  const hl = outQuint(P(t, 17.25, 0.9));
+  set($('pHills'), { transform: `translate(0,${(1 - hl) * 90})` });
+  const pr = outBack(P(t, 17.85, 0.7), 1.7);
+  const bob = Math.sin(t * 1.9) * 5;
+  set($('pRocket'), { transform: tf(1220, 560 + bob + (1 - pr) * 40, 14 + Math.sin(t * 1.3) * 2, 0.5 * pr), opacity: clamp(pr * 2) });
+  const ptr = inOut(P(t, 18.0, 0.8));
+  // the trail steps back once we are inside the illustration, so the line never crosses the caption
+  set($('pTrail'), { opacity: ptr * (1 - inOut(P(t, 21.9, 1.2))), transform: `translate(0,${bob})` });
+
+  /* ===================== MOONLIGHT WIPE → LOGO ===================== */
+  const wk = inOut(P(t, 26.0, 1.15));
+  const moonSX = 960 + (1370 - fx) * z, moonSY = 540 + (380 - fy) * z;
+  set($('wipe'), { cx: moonSX, cy: moonSY, r: wk * 2700 });
+  $('wipe').style.display = wk > 0 ? '' : 'none';
+  if (wk >= 1) $('world').style.display = 'none'; else $('world').style.display = '';
+
+  const logo = $('logo');
+  logo.style.display = t < 26.7 ? 'none' : '';
+  const sd = inOut(P(t, 26.85, 0.95));
+  set($('sheet'), { 'stroke-dashoffset': 1 - sd, 'fill-opacity': P(t, 27.4, 0.4) });
+  set($('fold'), { 'stroke-dashoffset': 1 - inOut(P(t, 27.45, 0.45)) });
+  const sp = outBack(P(t, 27.6, 0.6), 2.2);
+  const spIdle = 1 + 0.06 * Math.sin((t - 27.6) * 2.6) * P(t, 28.2, 0.5);
+  set($('logoSpark'), { transform: `translate(0,8) rotate(${(1 - sp) * -90 + (t - 27.6) * 4 * P(t, 27.6, 0.1)}) scale(${34 * sp * spIdle})` });
+  // the whole mark eases upward a touch as the wordmark arrives
+  const lift = inOut(P(t, 27.5, 1.2));
+  set(logo, { transform: `translate(960,${lerp(470, 390, lift)}) scale(${lerp(1.35, 1.2, lift)})` });
+
+  /* ===================== CAPTIONS ===================== */
+  caps.forEach(c => renderCaption(c, t));
+  renderCaption(wordmark, t, 0.045, 0.9);
+  renderCaption(tagline, t);
+  renderCaption(store, t);
+}
+
+// bake the paper grain once (a per-frame feTurbulence is the most expensive thing on screen)
+window.ready = (async () => {
+  await document.fonts.ready;
+  const c = document.createElement('canvas'); c.width = 960; c.height = 540;
+  const x = c.getContext('2d'), img = x.createImageData(960, 540);
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < img.data.length; i += 4) { const v = 90 + rnd() * 165; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+  x.putImageData(img, 0, 0);
+  $('grainImg').setAttribute('href', c.toDataURL());
+})();
+window.DURATION = 31.5;
+window.render = render;
+render(0);
+
+// Live preview: `?play` loops the film in real time.
+if (new URLSearchParams(location.search).has('play')) {
+  let t0 = null;
+  const loop = ts => { if (t0 === null) t0 = ts; render(((ts - t0) / 1000) % window.DURATION); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
