@@ -1,14 +1,18 @@
 # MagicPaper — ürün filmi (Apple framework, "2. Design")
 
-31.5 sn · 1920×1080 · 60 fps · sessiz (müzik/ses tasarımı sonraki adım)
+31.5 sn · 1920×1080 · 60 fps · stereo AAC, -16 LUFS
 
 - `magicpaper-film.html`: filmin tamamı (SVG illüstrasyonlar + metin hareketi, tek zaman çizelgesi). Canlı önizleme için `magicpaper-film.html?play` (İngilizce: `?play&lang=en`)
 - `render.mjs`: kareleri Playwright ile alır, H.264 MP4'e çevirir
+- `soundtrack.py`: müziği ve ses efektlerini koddan üretir (numpy)
 - `magicpaper-film-tr.mp4`, `magicpaper-film-en.mp4`: render çıktıları
 
 ```bash
 pip install imageio-ffmpeg   # veya FFMPEG=/path/to/ffmpeg
 node render.mjs --lang tr    # --fps 30, --stills 4.5,9.2 da çalışır
+python3 soundtrack.py soundtrack.wav
+ffmpeg -i magicpaper-film-tr.mp4 -i soundtrack.wav -map 0:v -map 1:a -c:v copy \
+  -af "highpass=f=35,loudnorm=I=-16:TP=-1.5:LRA=7" -c:a aac -b:a 256k -shortest out.mp4
 ```
 
 ## Marka kuralları (makalenin 1. bölümü: "Intention is everything")
@@ -47,6 +51,15 @@ Filmdeki her seçim bu kurallardan geliyor, dışına çıkılmıyor.
 - **Dinamik geçişler:** filmde tek bir kesme yok. Nokta karta, kart avatara, avatar roket penceresine, roket izi kitap sırtına, illüstrasyon tam ekrana, Ay ışığı logoya dönüşüyor.
 - **Uyarlanabilir ritim:** açılış yavaş. Tema seçimi hızlanıyor (halka 300 → 200 ms arayla atlıyor). Kalkış ivmeleniyor. Final yavaş ve sakin.
 
-## Sonraki adım: müzik ve ses (makalenin 4. ve 5. bölümleri)
-- **BPM:** 90–110 ("Smooth, Cool, Effortless"). Yumuşak piyano/celesta, sıcak pad. Rap ya da hype yok.
-- **Ses efektleri:** yalnızca anlamı taşıyanlar kalsın. Kart oturduğunda yumuşak bir "tık", roket kalkışında hafif bir "whoosh", logoda tek bir çan. Gerisi çıkarılsın.
+## Müzik ve ses tasarımı (makalenin 4. ve 5. bölümleri)
+- **BPM:** 100, makaledeki "Smooth, Cool, Effortless" aralığı. Sıcak pad, celesta çanları ve yumuşak bas var. Davul, rap ya da hype yok.
+- **Uyarlanabilir ritim:**
+  - Açılışta seyrek çan notaları.
+  - Fotoğraf sahnesinde 8'likler.
+  - Tema taramasında 16'lıklar; atlama notaları seçilen dünyaya doğru tırmanıyor.
+  - Kalkıştan önce yükselen bir ses, kalkış anında sessizlik.
+  - Masal yazılırken yeniden 8'likler.
+  - İllüstrasyonun içinde seyrek, tiz "gece" notaları.
+  - Logoda tek bir çözümleyici çan.
+- **Ses efektleri:** yalnızca anlam taşıyanlar kaldı: kart oturunca "tık", kalkışta "whoosh" ve alt bas, kitap açılınca sayfa hışırtısı, ay ışığı geçişinde hafif bir süpürme.
+- **Seviye:** -16 LUFS, tepe -1.5 dBTP. Sakin marka filmi için sosyal medya normunun biraz altında.
