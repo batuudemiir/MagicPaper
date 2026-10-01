@@ -34,8 +34,18 @@ struct StoryDecorationContext: Hashable {
     /// bir sayfa görürdü ve kitap olmaktan çıkardı. Sayfa numarasının tohuma
     /// girmesi ise sayfadan sayfaya farklı kompozisyon verir — §18'in istediği
     /// "her sayfanın kendi kişiliği" elle tasarlamadan buradan çıkar.
+    ///
+    /// Kimlik, UUID'nin 16 baytı üzerinde FNV-1a ile özetlenir. `hashValue`
+    /// süreç başına tohumlandığı için her açılışta başka bir sayı verirdi;
+    /// sabit aritmetik açılıştan açılışa, cihazdan cihaza aynı sonucu verir.
     static func seed(storyID: UUID, page: Int) -> UInt64 {
-        var h = UInt64(bitPattern: Int64(storyID.hashValue))
+        var h: UInt64 = 0xcbf2_9ce4_8422_2325
+        withUnsafeBytes(of: storyID.uuid) { bytes in
+            for byte in bytes {
+                h ^= UInt64(byte)
+                h = h &* 0x0000_0100_0000_01b3
+            }
+        }
         h ^= UInt64(truncatingIfNeeded: page &+ 1) &* 0x9E37_79B9_7F4A_7C15
         return h == 0 ? 0x12345678 : h
     }
