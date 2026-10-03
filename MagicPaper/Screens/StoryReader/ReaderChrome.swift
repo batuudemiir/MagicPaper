@@ -39,10 +39,9 @@ struct ReaderChrome: View {
         VStack(spacing: 0) {
             HStack(spacing: MP.S.x2) {
                 MPIconButton(symbol: "xmark", label: "Kapat", tone: tone, action: onClose)
-                    // Okurken geri çekilir ama yerinde kalır: sayfaya bakan
-                    // gözü rahatsız etmeyecek kadar sönük, çıkmak isteyen eli
-                    // bulacağı kadar orada.
-                    .opacity(showsSecondary ? 1 : 0.45)
+                    // Sönükleştirilmez: `.opacity(0.45)` varken dokunuş düğmeye
+                    // değil alttaki sayfaya gidiyor, sayfa geri çevriliyordu ve
+                    // okuyucudan çıkılamıyordu (simülatörde log ile doğrulandı).
 
                 Spacer(minLength: MP.S.x3)
 
