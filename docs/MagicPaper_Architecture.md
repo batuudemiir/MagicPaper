@@ -1,5 +1,13 @@
 # MagicPaper — Mimari Referans
 
+> **Faz 9 durumu (3 Ekim 2026):** Bulut metin yolu kaldırıldı — `AIService`, `GeminiStoryAIProvider`,
+> `createCustomStory` / `createCategoryBasedStory`, `TextStoryManager`, `TextStory`, `TextOnlyStory`, eski 4 adımlı
+> sihirbaz (`StoryWizardView`, `StoryGeneratingView`, `MPAppState.startWizard`), `FirebaseTestView`, `LocalImageView`,
+> `ImagePicker`, `Retired/`. Metin masal yalnızca `OfflineStoryService`. Görsel bulut kodu (`FalImageProvider`,
+> `FalAIImageGenerator`, `FirebaseImageUploader`, `VisualSystem`) silinmedi: `StoryEngineBridge/CloudIllustrationPipeline.swift`
+> içinde, `CloudIllustrationAccess` bayrağının arkasında (Release'te hep kapalı) ve çocuk akışından erişilemez.
+> Bu belgede bu dosyalara verilen satır referansları tarihseldir. Ayrıntı: `MagicPaper_Faz_Plani_Ekim.md` → FAZ 9.
+
 **Tarih:** 2026-09-18
 **Rol:** product-architect
 **Durum:** Bu doküman bugünün mimarisinin tek doğru referansıdır.
@@ -38,21 +46,21 @@ Dört katman var ve sınırları gerçekten ayrı.
 ┌─ Bridge: MagicPaper/MagicPaper/StoryEngineBridge ──────────────────────┐
 │  OfflineStoryService · OfflineStoryMapper          ← CANLI             │
 │  StoryEngineContainer · StoryOrchestrator sarmalı  ← ÖLÜ               │
-│  FileStores · StoryEngineMapper · FalImageProvider ← ÖLÜ               │
-│  GeminiStoryAIProvider · ProfileCharacterSource    ← ÖLÜ               │
+│  FileStores · StoryEngineMapper · FalImageProvider ← BAYRAKLI (kapalı) │
+│  CloudIllustrationPipeline/Access · ProfileCharacterSource ← BAYRAKLI  │
 │  FileAssetDeleter                                  ← ÖLÜ               │
 └────────────────────────────────────────────────────────────────────────┘
                                    ↑
 ┌─ App servisleri: MagicPaper/MagicPaper/Services ───────────────────────┐
-│  StoryGenerationManager (1540) · AIService (1397) · ProfileManager     │
+│  StoryGenerationManager (~330, yalnız offline) · ProfileManager        │
 │  SubscriptionManager · RevenueCatManager · DailyStoryManager           │
 │  FalAIImageGenerator · FirebaseImageUploader · FileManagerService      │
-│  TextStoryManager · LocalizationManager · LocalNotificationManager     │
+│  LocalizationManager · LocalNotificationManager                        │
 └────────────────────────────────────────────────────────────────────────┘
                                    ↑
 ┌─ Ekranlar: Screens/ + Views/ + DesignSystem/ ──────────────────────────┐
 │  ContentView (kök) → MPTabBar → Home · Library · Daily · Parent        │
-│  fullScreenCover: StoryCreationFlow · StoryWizardView ·                │
+│  fullScreenCover: StoryCreationFlow ·                                  │
 │                   StoryReaderView · PaywallView · ParentalGateView     │
 └────────────────────────────────────────────────────────────────────────┘
 ```
