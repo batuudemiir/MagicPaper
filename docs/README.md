@@ -11,6 +11,7 @@ Geçerliliğini yitiren raporlar `retired/` altında durur (yalnızca tarihçe i
 | `MagicPaper_Faz_Plani_Ekim.md` | Etkin yol haritası (Faz 9 ve sonrası), değişmeyen kurallar, karar özeti |
 | `MagicPaper_Faz_Plani.md` | Faz 0–8 ve açık maddeleri (Ekim planı bunun devamı) |
 | `CLAUDE_CODE_PROMPTLARI.md` | Faz başına Claude Code promptları |
+| `FAZ10_UYGULAMA_PLANI.md` | FAZ 10 uygulama planı, mod × bant tablosu, eylem rengi kontrastları, K1-K9 kararları |
 
 ## Mimari
 

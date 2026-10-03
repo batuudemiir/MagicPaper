@@ -160,7 +160,7 @@ ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği i
 
 ---
 
-## FAZ 10 — Mod seti ve oluşturma akışı ⏳
+## FAZ 10 — Mod seti ve oluşturma akışı 🔧
 
 **Amaç:** Yarat akışı bugünkü kararlara otursun.
 
@@ -184,6 +184,8 @@ ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği i
 güncel; eski masallar açılıyor; tasarım yasası grep kontrolleri temiz.
 
 **Sahip:** content-library (motor/katalog) + design-system (ekran). `StoryCreationFlow` tek sahipli.
+
+**Uygulama planı ve kararlar (K1-K9):** `FAZ10_UYGULAMA_PLANI.md`. Dal: `faz-10`.
 
 ---
 
@@ -364,7 +366,9 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 
 | İhtiyaç | Faz |
 |---|---|
-| `learning` modu blueprint'leri ve konuları | 10 |
+| `learning` modu blueprint'leri ve konuları; 3-4 bandı için en az bir `appeal` blueprint'i (bugün 3-4'te öğrenelim kurulamıyor) | 10 |
+| 3-4 bandı için en az bir `threshold` ya da `absence` blueprint'i (bugün 3-4'te macera kurulamıyor) | 10 |
+| Gerçek bir uyku arkı (bugün Uyku öncesi geçici olarak `charge` ailesine bağlı) | 10 |
 | 7-8 ve 9-10 bantları için blueprint ve şablonlar (bugün yalnızca 3-4, 5-6 var) | 10 |
 | İlişki türü varyantları (kardeş, arkadaş, hayvan, hayali varlık) | 11 |
 | İlgi alanı etiketleri | 12 |
