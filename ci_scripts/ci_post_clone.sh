@@ -52,7 +52,8 @@ done
 # Değerler hiçbir zaman log'a yazılmaz; yalnızca hangi anahtarların bulunduğu.
 echo "🔐 Secrets.xcconfig oluşturuluyor..."
 : > Secrets.xcconfig
-for KEY_NAME in FAL_API_KEY REVENUECAT_API_KEY; do
+# Release yalnızca RevenueCat anahtarını taşır; FAL yalnızca yerel Debug içindir.
+for KEY_NAME in REVENUECAT_API_KEY; do
     eval "KEY_VALUE=\${$KEY_NAME}"
     if [ -n "$KEY_VALUE" ]; then
         printf '%s = %s\n' "$KEY_NAME" "$KEY_VALUE" >> Secrets.xcconfig

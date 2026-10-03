@@ -13,7 +13,16 @@ import Foundation
 /// tooling can override without editing a file that must never be committed.
 enum APIKeys {
 
-    static var fal: String? { resolve("FAL_API_KEY") }
+    /// Yalnızca Debug. Görsel bulut yolu (`CloudIllustrationAccess`) Release'te
+    /// kapalı; anahtar Release paketine hiç girmez (target'ın Release ayarı
+    /// `FAL_API_KEY`'i boşaltır), bu satır da ikinci kilit.
+    static var fal: String? {
+        #if DEBUG
+        resolve("FAL_API_KEY")
+        #else
+        nil
+        #endif
+    }
 
     /// An unresolved key is returned as `nil`, never as the literal
     /// `"$(FAL_API_KEY)"`. Xcode leaves the placeholder in place when the
