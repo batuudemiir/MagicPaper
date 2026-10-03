@@ -1,5 +1,8 @@
 # MagicPaper — Faz Planı
 
+> **3 Ekim 2026:** Faz 9 ve sonrası `MagicPaper_Faz_Plani_Ekim.md`'de. Çelişkide o belge geçerli.
+
+
 **23 Eylül 2026** · Grup 2 Dalga 2A yarıda kesildi (oturum limiti) · Bu plan oradan devam eder
 
 **30 Eylül 2026 durumu:** Faz 0 ✅ · Faz 1 ✅ (yalnızca UI'daki ~24 `print` kaldı) · Faz 2.1 ✅ · Faz 3.1 ✅ ·
