@@ -37,9 +37,8 @@ enum MPContinueReading {
 
     /// Devam edilebilir mi?
     static func isResumable(_ story: Story) -> Bool {
-        // Yarım üretilmiş ya da başarısız bir masalın "devamı" yok; okunacak
-        // metin henüz ortada değil.
-        guard story.status == .completed else { return false }
+        // Okunacak metni olmayan, takılı kalmış bir masalın "devamı" yok.
+        guard story.isReadable else { return false }
         guard !story.pages.isEmpty else { return false }
         // Açılmış olmalı. `lastReadPage == nil` ile "ilerleme 0" aynı şey
         // değil — ilki hiç açılmamış, ikincisi açılmış ve ilk sayfasında.

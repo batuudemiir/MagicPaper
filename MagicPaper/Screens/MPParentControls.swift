@@ -58,17 +58,17 @@ enum MPStoryGate {
 
     /// Çocuğun görmeye hakkı olan masallar.
     ///
-    /// Kapı yalnızca **tamamlanmış** masallara uygulanır: üretilmekte olan ya
-    /// da başarısız olmuş bir masalı "onay bekliyor" diye gizlemek, ebeveyne
-    /// onaylayacak bir şey vermeden çocuktan bir şey saklamak olurdu.
+    /// Önce okunabilirlik: okunacak metni olmayan, takılı kalmış eski masal
+    /// onay ayarından bağımsız olarak hiçbir yerde görünmez. Sonra onay kapısı:
+    /// metni olan takılı masal, tamamlanmış gibi davranır (onaylanmadıkça
+    /// gizlenir) — ebeveynin onay kuyruğunda da aynı masallar görünür.
     static func visible(
         _ stories: [Story],
         approvalRequired: Bool,
         isApproved: (UUID) -> Bool
     ) -> [Story] {
-        guard approvalRequired else { return stories }
-        return stories.filter { story in
-            story.status != .completed || isApproved(story.id)
-        }
+        let readable = stories.filter(\.isReadable)
+        guard approvalRequired else { return readable }
+        return readable.filter { isApproved($0.id) }
     }
 }

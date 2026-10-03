@@ -24,7 +24,10 @@ extension Story {
 
     /// En az bir sayfası çizilmişse masal "Görselli"dir.
     var isIllustrated: Bool {
-        pages.contains { $0.imageUrl != nil || $0.imageFileName != nil }
+        // Takılı kalmış eski masal metin masalı olarak açılır: sayfalarında
+        // kalmış çizim izleri onu "Görselli" yapmaz.
+        guard !opensAsTextOnly else { return false }
+        return pages.contains { $0.imageUrl != nil || $0.imageFileName != nil }
     }
 
     /// Kapak olarak gösterilecek varlık adı.
@@ -36,7 +39,7 @@ extension Story {
     ///
     /// Görselli masallar kendi kapaklarını kullanır, bu yüzden `nil` döner.
     var mpDefaultCoverAsset: String? {
-        guard !isIllustrated, coverImageFileName == nil, coverImageUrl == nil else { return nil }
+        guard !isIllustrated, opensAsTextOnly || (coverImageFileName == nil && coverImageUrl == nil) else { return nil }
         return "StoryCoverDefault"
     }
 
@@ -48,7 +51,7 @@ extension Story {
     /// makes the decision explicit. Text-only stories use the generative
     /// mosaic; illustrated stories use their own cover images.
     var mpCoverStyle: StoryCoverStyle {
-        if isIllustrated || coverImageFileName != nil || coverImageUrl != nil {
+        if isIllustrated || (!opensAsTextOnly && (coverImageFileName != nil || coverImageUrl != nil)) {
             return .illustrated
         }
         return .magicPaperMosaic

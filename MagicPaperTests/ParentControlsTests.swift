@@ -73,13 +73,13 @@ final class ParentControlsTests: XCTestCase {
         XCTAssertEqual(visible.map(\.id), [approved.id])
     }
 
-    /// Üretilmekte olan masal "onay bekliyor" değildir: ebeveyne onaylayacak
-    /// bir şey vermeden çocuktan bir şey saklamak olurdu.
-    func testUnfinishedStoriesAreNotGated() {
-        let generating = story(.writingStory)
-        let visible = MPStoryGate.visible([generating], approvalRequired: true,
+    /// Karar değişti (Faz 9 takip): metni olan takılı masal okunabilir sayılır
+    /// ve onay kapısında tamamlanmış gibi davranır; onaylanmamışsa gizlenir.
+    func testReadableStalledStoryIsGatedLikeCompleted() {
+        let stalled = story(.writingStory)
+        let visible = MPStoryGate.visible([stalled], approvalRequired: true,
                                           isApproved: { _ in false })
-        XCTAssertEqual(visible.count, 1)
+        XCTAssertTrue(visible.isEmpty)
     }
 
     private func story(_ status: StoryStatus) -> Story {

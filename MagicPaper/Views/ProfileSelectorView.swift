@@ -46,6 +46,6 @@ struct ProfileSelectorView: View {
     }
 
     private func storyCount(_ p: UserProfile) -> Int {
-        storyManager.stories.filter { $0.belongs(to: p) }.count
+        storyManager.stories.filter { $0.isReadable && $0.belongs(to: p) }.count
     }
 }

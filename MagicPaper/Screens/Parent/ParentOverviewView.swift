@@ -172,7 +172,7 @@ struct ParentOverviewView: View {
     // MARK: - Onay kuyruğu
 
     private var pendingStories: [Story] {
-        storyManager.stories.filter { $0.status == .completed && !settings.isApproved($0.id) }
+        storyManager.stories.filter { $0.isReadable && !settings.isApproved($0.id) }
     }
 
     private var approvalQueue: some View {

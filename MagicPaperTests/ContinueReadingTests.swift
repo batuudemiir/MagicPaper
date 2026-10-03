@@ -64,11 +64,20 @@ final class ContinueReadingTests: XCTestCase {
         XCTAssertNil(MPContinueReading.pick(from: [single]))
     }
 
-    /// Üretimi bitmemiş masalın "devamı" yok: okunacak metin henüz ortada değil.
-    func testUnfinishedGenerationIsNotOffered() {
+    /// Metni olmayan, takılı kalmış masalın "devamı" yok: okunacak bir şey yok.
+    func testUnfinishedGenerationWithoutTextIsNotOffered() {
         var building = started(title: "Yazılıyor", pagesRead: 2)
         building.status = .writingStory
+        for i in building.pages.indices { building.pages[i].text = "  " }
         XCTAssertNil(MPContinueReading.pick(from: [building]))
+    }
+
+    /// Karar değişti (Faz 9 takip): metni olan takılı masal metin masalı
+    /// olarak açılır, dolayısıyla yarım kalmışsa devam edilebilir.
+    func testStalledStoryWithTextIsOffered() {
+        var building = started(title: "Yazılıyor", pagesRead: 2)
+        building.status = .writingStory
+        XCTAssertEqual(MPContinueReading.pick(from: [building])?.title, "Yazılıyor")
     }
 
     func testEmptyStoryIsNotOffered() {

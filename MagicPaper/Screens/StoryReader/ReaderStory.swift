@@ -124,16 +124,19 @@ extension ReaderStory {
         self.symbol = story.mpSymbol
         self.world = story.mpWorld
 
+        // Takılı kalmış eski masal metin masalı olarak açılır: asla gelmeyecek
+        // bir çizimi okuyucu beklemesin.
+        let textOnly = story.opensAsTextOnly
         let pages = story.pages.enumerated().map { index, page in
-            let scene = ResolvedScene.resolve(page.scene, illustration: story.illustration)
+            let scene = textOnly ? nil : ResolvedScene.resolve(page.scene, illustration: story.illustration)
             return ReaderPage(
                 index: index,
                 title: page.title,
                 paragraphs: ReaderStory.paragraphs(of: page.text),
-                imageRef: ReaderStory.imageRef(for: page),
+                imageRef: textOnly ? nil : ReaderStory.imageRef(for: page),
                 // Hazır sahnenin Türkçe tarifi; `visualScene` İngilizce olduğu
                 // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
-                imageLabel: scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index),
+                imageLabel: textOnly ? nil : (scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index)),
                 sceneHint: page.imagePrompt,
                 scene: scene
             )

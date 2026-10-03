@@ -178,7 +178,7 @@ struct DailyStoriesView: View {
     /// Bu çocuğun hikâyeleri, en son okunan ya da yaratılan önce.
     private var childStories: [Story] {
         storyManager.stories
-            .filter { $0.belongs(to: profileManager.currentProfile) && $0.status == .completed }
+            .filter { $0.belongs(to: profileManager.currentProfile) && $0.isReadable }
             .sorted { ($0.lastReadAt ?? $0.createdAt) > ($1.lastReadAt ?? $1.createdAt) }
     }
 
