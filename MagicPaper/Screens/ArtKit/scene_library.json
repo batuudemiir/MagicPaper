@@ -1,0 +1,998 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "note": "Görselli masalın hazır sahneleri (B2). Sahneler bir kez çizilir, uygulamaya gömülür; masal başına üretim ve ağ yok. Seçim SceneSelector'da, deterministik. Yalnızca lifecycle=approved sürümler yeni kitaplara verilir; gerçek (placeholder=false) bir sürüm approvedBy + approvedAt olmadan onaylı sayılmaz. Kitap kaydettiği sürümle açılır; yer tutucu sürümler sabitlenmez. Anchor'lar kadraj kesridir, piksel değil. Plan: docs/B2_SCENE_LIBRARY_PLAN.md",
+  "canvas": {
+    "aspect": "4:3",
+    "minWidth": 2048,
+    "minHeight": 1536
+  },
+  "illustratedPages": {
+    "5-6": [
+      [
+        "hook"
+      ],
+      [
+        "discovery"
+      ],
+      [
+        "problem",
+        "challenge"
+      ],
+      [
+        "resolution",
+        "emotional_ending"
+      ]
+    ],
+    "3-4": [
+      [
+        "hook"
+      ],
+      [
+        "problem",
+        "challenge"
+      ],
+      [
+        "resolution",
+        "emotional_ending"
+      ]
+    ],
+    "default": [
+      [
+        "hook"
+      ],
+      [
+        "discovery"
+      ],
+      [
+        "problem",
+        "challenge"
+      ],
+      [
+        "resolution",
+        "emotional_ending"
+      ]
+    ]
+  },
+  "direction": {
+    "beatPoses": {
+      "notice_anomaly": "lookingUp",
+      "approach": "walking",
+      "examine": "reaching",
+      "hesitate": "standing",
+      "commit": "pointing",
+      "small_step": "walking",
+      "find_own_courage": "walking",
+      "persist": "walking",
+      "retrace": "pointing",
+      "ask_for_help": "pointing",
+      "succeed": "celebrating",
+      "restore": "reaching",
+      "warm_close": "sitting",
+      "self_recognize": "celebrating"
+    },
+    "rolePoses": {
+      "hook": "lookingUp",
+      "discovery": "walking",
+      "problem": "standing",
+      "challenge": "walking",
+      "resolution": "celebrating",
+      "emotional_ending": "sitting"
+    },
+    "fallbackPose": "standing"
+  },
+  "cooldown": {
+    "window": 5,
+    "penalty": 5.0
+  },
+  "scenes": [
+    {
+      "id": "scene_forest_hook_01",
+      "settingIDs": [
+        "setting_whispering_forest_001"
+      ],
+      "settingTags": [
+        "forest"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "hook"
+      ],
+      "beats": [
+        "notice_anomaly"
+      ],
+      "emotions": [
+        "curiosity",
+        "ease"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "lookingUp",
+        "standing",
+        "pointing"
+      ],
+      "defaultPose": "lookingUp",
+      "altTextTR": "Ağaçların arasında duran bir çocuk, ilerideki belli belirsiz bir ışığa bakıyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.4,
+            "y": 0.87,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "forest",
+            "motifs": [
+              "Storybook/forest_branch_corner_01",
+              "Storybook/forest_grass_cluster_01",
+              "Storybook/forest_mushroom_pair_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_forest_discovery_01",
+      "settingIDs": [
+        "setting_whispering_forest_001"
+      ],
+      "settingTags": [
+        "forest"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "discovery"
+      ],
+      "beats": [
+        "approach",
+        "examine"
+      ],
+      "emotions": [
+        "wonder",
+        "unease"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "walking",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "walking",
+      "altTextTR": "Bir çocuk ormanın içindeki ince patikada ağaçlara doğru yürüyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.32,
+            "y": 0.88,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "forest",
+            "motifs": [
+              "Storybook/forest_branch_corner_01",
+              "Storybook/forest_grass_cluster_01",
+              "Storybook/forest_mushroom_pair_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_forest_problem_01",
+      "settingIDs": [
+        "setting_whispering_forest_001"
+      ],
+      "settingTags": [
+        "forest"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "problem"
+      ],
+      "beats": [
+        "hesitate",
+        "commit"
+      ],
+      "emotions": [
+        "unease",
+        "determination"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "standing",
+        "pointing",
+        "walking"
+      ],
+      "defaultPose": "standing",
+      "altTextTR": "Bir çocuk ağaçların arasındaki dar aralığın önünde duruyor; yanında yol arkadaşı var.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.36,
+            "y": 0.87,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.68,
+            "y": 0.88,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "forest",
+            "motifs": [
+              "Storybook/forest_branch_corner_01",
+              "Storybook/forest_grass_cluster_01",
+              "Storybook/forest_mushroom_pair_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_forest_resolution_01",
+      "settingIDs": [
+        "setting_whispering_forest_001"
+      ],
+      "settingTags": [
+        "forest"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "resolution"
+      ],
+      "beats": [
+        "succeed",
+        "restore"
+      ],
+      "emotions": [
+        "relief"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "celebrating",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "celebrating",
+      "altTextTR": "Ormanın açıklığında bir çocuk sevinçle kollarını kaldırmış; yol arkadaşı yanında.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.44,
+            "y": 0.88,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.72,
+            "y": 0.89,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "forest",
+            "motifs": [
+              "Storybook/forest_branch_corner_01",
+              "Storybook/forest_grass_cluster_01",
+              "Storybook/forest_mushroom_pair_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_meadow_hook_01",
+      "settingIDs": [
+        "setting_festival_meadow_001"
+      ],
+      "settingTags": [
+        "meadow"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "hook"
+      ],
+      "beats": [
+        "notice_anomaly"
+      ],
+      "emotions": [
+        "curiosity",
+        "ease"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "lookingUp",
+        "standing",
+        "pointing"
+      ],
+      "defaultPose": "lookingUp",
+      "altTextTR": "Bayraklarla süslü bir çayırda duran bir çocuk, uzaktaki bir şeye bakıyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.4,
+            "y": 0.87,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "meadow",
+            "motifs": [
+              "Storybook/adventure_pennant_01",
+              "Storybook/garden_flower_cluster_01",
+              "Storybook/garden_butterfly_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_meadow_discovery_01",
+      "settingIDs": [
+        "setting_festival_meadow_001"
+      ],
+      "settingTags": [
+        "meadow"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "discovery"
+      ],
+      "beats": [
+        "approach",
+        "examine"
+      ],
+      "emotions": [
+        "wonder",
+        "unease"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "walking",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "walking",
+      "altTextTR": "Bir çocuk çiçekli çayırın içinden yürüyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.32,
+            "y": 0.88,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "meadow",
+            "motifs": [
+              "Storybook/adventure_pennant_01",
+              "Storybook/garden_flower_cluster_01",
+              "Storybook/garden_butterfly_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_meadow_problem_01",
+      "settingIDs": [
+        "setting_festival_meadow_001"
+      ],
+      "settingTags": [
+        "meadow"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "problem"
+      ],
+      "beats": [
+        "hesitate",
+        "commit"
+      ],
+      "emotions": [
+        "unease",
+        "determination"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "standing",
+        "pointing",
+        "walking"
+      ],
+      "defaultPose": "standing",
+      "altTextTR": "Bir çocuk şenlik alanının kenarında duruyor; yanında yol arkadaşı var.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.36,
+            "y": 0.87,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.68,
+            "y": 0.88,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "meadow",
+            "motifs": [
+              "Storybook/adventure_pennant_01",
+              "Storybook/garden_flower_cluster_01",
+              "Storybook/garden_butterfly_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_meadow_resolution_01",
+      "settingIDs": [
+        "setting_festival_meadow_001"
+      ],
+      "settingTags": [
+        "meadow"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "resolution"
+      ],
+      "beats": [
+        "succeed",
+        "restore"
+      ],
+      "emotions": [
+        "relief"
+      ],
+      "timeOfDay": "day",
+      "allowedPoses": [
+        "celebrating",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "celebrating",
+      "altTextTR": "Şenlik çayırında bir çocuk sevinçle kollarını kaldırmış; yol arkadaşı yanında.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.44,
+            "y": 0.88,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.72,
+            "y": 0.89,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "meadow",
+            "motifs": [
+              "Storybook/adventure_pennant_01",
+              "Storybook/garden_flower_cluster_01",
+              "Storybook/garden_butterfly_01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_garden_hook_01",
+      "settingIDs": [
+        "setting_night_garden_001"
+      ],
+      "settingTags": [
+        "garden"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "hook"
+      ],
+      "beats": [
+        "notice_anomaly"
+      ],
+      "emotions": [
+        "curiosity",
+        "ease"
+      ],
+      "timeOfDay": "night",
+      "allowedPoses": [
+        "lookingUp",
+        "standing",
+        "pointing"
+      ],
+      "defaultPose": "lookingUp",
+      "altTextTR": "Ay ışığındaki bir bahçede duran bir çocuk, çiçeklerin arasındaki ışığa bakıyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.4,
+            "y": 0.87,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "garden",
+            "motifs": [
+            "Storybook/garden_flower_cluster_01",
+            "Storybook/forest_grass_cluster_01"
+          ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_garden_discovery_01",
+      "settingIDs": [
+        "setting_night_garden_001"
+      ],
+      "settingTags": [
+        "garden"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "discovery"
+      ],
+      "beats": [
+        "approach",
+        "examine"
+      ],
+      "emotions": [
+        "wonder",
+        "unease"
+      ],
+      "timeOfDay": "night",
+      "allowedPoses": [
+        "walking",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "walking",
+      "altTextTR": "Bir çocuk gece bahçesindeki yolda usulca yürüyor.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.32,
+            "y": 0.88,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": null,
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "garden",
+            "motifs": [
+            "Storybook/garden_flower_cluster_01",
+            "Storybook/forest_grass_cluster_01"
+          ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_garden_problem_01",
+      "settingIDs": [
+        "setting_night_garden_001"
+      ],
+      "settingTags": [
+        "garden"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "problem"
+      ],
+      "beats": [
+        "hesitate",
+        "commit"
+      ],
+      "emotions": [
+        "unease",
+        "determination"
+      ],
+      "timeOfDay": "night",
+      "allowedPoses": [
+        "standing",
+        "pointing",
+        "walking"
+      ],
+      "defaultPose": "standing",
+      "altTextTR": "Bir çocuk bahçe kapısının önünde duruyor; yanında yol arkadaşı var.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.36,
+            "y": 0.87,
+            "scale": 0.5,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.68,
+            "y": 0.88,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "garden",
+            "motifs": [
+            "Storybook/garden_flower_cluster_01",
+            "Storybook/forest_grass_cluster_01"
+          ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_garden_resolution_01",
+      "settingIDs": [
+        "setting_night_garden_001"
+      ],
+      "settingTags": [
+        "garden"
+      ],
+      "modes": [
+        "adventure"
+      ],
+      "roles": [
+        "resolution"
+      ],
+      "beats": [
+        "succeed",
+        "restore"
+      ],
+      "emotions": [
+        "relief"
+      ],
+      "timeOfDay": "night",
+      "allowedPoses": [
+        "celebrating",
+        "reaching",
+        "standing"
+      ],
+      "defaultPose": "celebrating",
+      "altTextTR": "Ay ışığındaki bahçede bir çocuk sevinçle kollarını kaldırmış; yol arkadaşı yanında.",
+      "weight": 1.0,
+      "versions": [
+        {
+          "version": 1,
+          "lifecycle": "approved",
+          "placeholder": true,
+          "approvedBy": null,
+          "approvedAt": null,
+          "layers": [
+            {
+              "role": "background",
+              "asset": null
+            },
+            {
+              "role": "avatar"
+            },
+            {
+              "role": "companion"
+            },
+            {
+              "role": "foreground",
+              "asset": null,
+              "optional": true
+            }
+          ],
+          "characterAnchor": {
+            "x": 0.44,
+            "y": 0.88,
+            "scale": 0.52,
+            "facing": "right"
+          },
+          "companionAnchor": {
+            "x": 0.72,
+            "y": 0.89,
+            "scale": 0.26,
+            "facing": "left",
+            "pose": "standing"
+          },
+          "quietBand": null,
+          "placeholderArt": {
+            "horizon": 0.62,
+            "tone": "garden",
+            "motifs": [
+            "Storybook/garden_flower_cluster_01",
+            "Storybook/forest_grass_cluster_01"
+          ]
+          }
+        }
+      ]
+    }
+  ]
+}

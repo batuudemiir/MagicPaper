@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "artVersion": 1,
+  "note": "Kitap karakterinin parça kataloğu (B2). Parça listesi Zehra'nın kararına kadar varsayılandır (docs/B2_SCENE_LIBRARY_PLAN.md §6, §9). Etiketler biçim adıdır, cinsiyete bağlanmaz. Renkler MP.Palette avatar token'larının adıyla verilir, hex yazılmaz. descriptor.en görsel prompt'a, descriptor.tr metin kapısına gider; ikisi de CharacterEngine lexicons.json içinde bulunmak zorunda. Varlıklar Assets.xcassets/Avatar/ altında; yoksa AvatarView yer tutucu vektörle çizer.",
+  "canvas": { "width": 512, "height": 768, "footX": 0.5, "footY": 1.0 },
+  "layerOrder": ["hairBack", "body", "outfit", "face", "hairFront", "accessory"],
+  "poses": [
+    { "id": "standing",    "label": "Ayakta",         "lifecycle": "approved" },
+    { "id": "walking",     "label": "Yürüyor",        "lifecycle": "approved" },
+    { "id": "reaching",    "label": "Uzanıyor",       "lifecycle": "approved" },
+    { "id": "lookingUp",   "label": "Yukarı bakıyor", "lifecycle": "approved" },
+    { "id": "pointing",    "label": "Gösteriyor",     "lifecycle": "approved" },
+    { "id": "celebrating", "label": "Seviniyor",      "lifecycle": "approved" },
+    { "id": "sitting",     "label": "Oturuyor",       "lifecycle": "approved" },
+    { "id": "sleeping",    "label": "Uyuyor",         "lifecycle": "approved" }
+  ],
+  "groups": {
+    "skinTone": [
+      { "id": "skin_light", "label": "Açık",   "colorToken": "avatarSkinLight", "descriptor": { "category": "skinTone", "en": "light skin", "tr": "açık ten" },   "lifecycle": "approved", "placeholder": true },
+      { "id": "skin_olive", "label": "Buğday", "colorToken": "avatarSkinOlive", "descriptor": { "category": "skinTone", "en": "olive skin", "tr": "buğday ten" }, "lifecycle": "approved", "placeholder": true },
+      { "id": "skin_brown", "label": "Esmer",  "colorToken": "avatarSkinBrown", "descriptor": { "category": "skinTone", "en": "brown skin", "tr": "esmer ten" },  "lifecycle": "approved", "placeholder": true },
+      { "id": "skin_dark",  "label": "Koyu",   "colorToken": "avatarSkinDark",  "descriptor": { "category": "skinTone", "en": "dark skin",  "tr": "koyu ten" },   "lifecycle": "approved", "placeholder": true }
+    ],
+    "hairStyle": [
+      { "id": "hair_short",    "label": "Kısa",        "colorToken": null, "descriptor": { "category": "hair", "en": "short hair",           "tr": "kısa saç" },            "lifecycle": "approved", "placeholder": true },
+      { "id": "hair_curly",    "label": "Kıvırcık",    "colorToken": null, "descriptor": { "category": "hair", "en": "curly hair",           "tr": "kıvırcık saç" },        "lifecycle": "approved", "placeholder": true },
+      { "id": "hair_shoulder", "label": "Omuz hizası", "colorToken": null, "descriptor": { "category": "hair", "en": "shoulder length hair", "tr": "omuz hizasında saç" },  "lifecycle": "approved", "placeholder": true },
+      { "id": "hair_ponytail", "label": "At kuyruğu",  "colorToken": null, "descriptor": { "category": "hair", "en": "ponytail",             "tr": "at kuyruğu" },          "lifecycle": "approved", "placeholder": true },
+      { "id": "hair_braided",  "label": "Örgülü",      "colorToken": null, "descriptor": { "category": "hair", "en": "braided hair",         "tr": "örgülü saç" },          "lifecycle": "approved", "placeholder": true }
+    ],
+    "hairColor": [
+      { "id": "haircolor_black",  "label": "Siyah",      "colorToken": "avatarHairBlack",  "descriptor": { "category": "hair", "en": "black hair",  "tr": "siyah saç" },      "lifecycle": "approved", "placeholder": true },
+      { "id": "haircolor_brown",  "label": "Kahverengi", "colorToken": "avatarHairBrown",  "descriptor": { "category": "hair", "en": "brown hair",  "tr": "kahverengi saç" }, "lifecycle": "approved", "placeholder": true },
+      { "id": "haircolor_auburn", "label": "Kumral",     "colorToken": "avatarHairAuburn", "descriptor": { "category": "hair", "en": "auburn hair", "tr": "kumral saç" },     "lifecycle": "approved", "placeholder": true },
+      { "id": "haircolor_blonde", "label": "Sarı",       "colorToken": "avatarHairBlonde", "descriptor": { "category": "hair", "en": "blonde hair", "tr": "sarı saç" },       "lifecycle": "approved", "placeholder": true },
+      { "id": "haircolor_red",    "label": "Kızıl",      "colorToken": "avatarHairRed",    "descriptor": { "category": "hair", "en": "red hair",    "tr": "kızıl saç" },      "lifecycle": "approved", "placeholder": true }
+    ],
+    "outfit": [
+      { "id": "outfit_blue",   "label": "Mavi",    "shape": "tshirt", "colorToken": "avatarOutfitBlue",   "descriptor": { "category": "clothingDefault", "en": "blue t-shirt",   "tr": "mavi tişört" },    "lifecycle": "approved", "placeholder": true },
+      { "id": "outfit_green",  "label": "Yeşil",   "shape": "tshirt", "colorToken": "avatarOutfitGreen",  "descriptor": { "category": "clothingDefault", "en": "green t-shirt",  "tr": "yeşil tişört" },   "lifecycle": "approved", "placeholder": true },
+      { "id": "outfit_yellow", "label": "Sarı",    "shape": "tshirt", "colorToken": "avatarOutfitYellow", "descriptor": { "category": "clothingDefault", "en": "yellow t-shirt", "tr": "sarı tişört" },    "lifecycle": "approved", "placeholder": true },
+      { "id": "outfit_orange", "label": "Turuncu", "shape": "tshirt", "colorToken": "avatarOutfitOrange", "descriptor": { "category": "clothingDefault", "en": "orange t-shirt", "tr": "turuncu tişört" }, "lifecycle": "approved", "placeholder": true },
+      { "id": "outfit_purple", "label": "Mor",     "shape": "tshirt", "colorToken": "avatarOutfitPurple", "descriptor": { "category": "clothingDefault", "en": "purple t-shirt", "tr": "mor tişört" },     "lifecycle": "approved", "placeholder": true },
+      { "id": "outfit_red",    "label": "Kırmızı", "shape": "tshirt", "colorToken": "avatarOutfitRed",    "descriptor": { "category": "clothingDefault", "en": "red t-shirt",    "tr": "kırmızı tişört" }, "lifecycle": "approved", "placeholder": true }
+    ],
+    "accessory": [
+      { "id": "acc_glasses",  "label": "Gözlük",       "colorToken": null, "descriptor": { "category": "distinguishingFeature", "en": "glasses",     "tr": "gözlük" },       "lifecycle": "approved", "placeholder": true },
+      { "id": "acc_backpack", "label": "Sırt çantası", "colorToken": null, "descriptor": { "category": "accessory",             "en": "backpack",    "tr": "sırt çantası" }, "lifecycle": "approved", "placeholder": true },
+      { "id": "acc_beanie",   "label": "Bere",         "colorToken": null, "descriptor": { "category": "accessory",             "en": "woolly hat",  "tr": "bere" },         "lifecycle": "approved", "placeholder": true }
+    ]
+  },
+  "defaults": {
+    "skinTone": "skin_olive",
+    "hairStyle": "hair_short",
+    "hairColor": "haircolor_brown",
+    "outfit": "outfit_blue"
+  },
+  "samples": [
+    { "id": "sample_1", "label": "Örnek 1", "spec": { "skinTone": "skin_light", "hairStyle": "hair_ponytail", "hairColor": "haircolor_red",   "outfit": "outfit_yellow", "accessory": null } },
+    { "id": "sample_2", "label": "Örnek 2", "spec": { "skinTone": "skin_dark",  "hairStyle": "hair_curly",    "hairColor": "haircolor_black", "outfit": "outfit_green",  "accessory": "acc_glasses" } },
+    { "id": "sample_3", "label": "Örnek 3", "spec": { "skinTone": "skin_brown", "hairStyle": "hair_short",    "hairColor": "haircolor_brown", "outfit": "outfit_purple", "accessory": "acc_backpack" } }
+  ]
+}

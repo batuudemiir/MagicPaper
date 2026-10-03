@@ -28,7 +28,8 @@ extension Color {
 ///
 /// Değer eklerken: önce `Palette`'e ham rengi, sonra `C`'ye anlamını yaz.
 /// Bileşenler `Palette`'i değil `C`'yi okur; `Palette`'i doğrudan okuyan
-/// tek yer marka dışı aksanlardır (`World`, `ReadTheme`, `C.avatarAccents`).
+/// tek yer marka dışı aksanlardır (`World`, `ReadTheme`, `C.avatarAccents`,
+/// `C.avatarParts`).
 enum MP {
 
     // MARK: Temel palet
@@ -125,6 +126,19 @@ enum MP {
         static let buz400   = Color(hex: 0x6E93B8)
         static let cimen400 = Color(hex: 0x8AA23C)
         static let metal400 = Color(hex: 0x5C6B7A)
+
+        // Kitap karakteri (B2) — ten ve saç. Sıcak, boyanmış tonlar; arayüz
+        // rengi değildir. Tek tüketicisi `C.avatarParts`. Yer tutucu değerler:
+        // nihai liste Zehra'nın kararı (docs/B2_SCENE_LIBRARY_PLAN.md §9).
+        static let tenAcik   = Color(hex: 0xF3D2B8)
+        static let tenBugday = Color(hex: 0xD9A77C)
+        static let tenEsmer  = Color(hex: 0xA86B45)
+        static let tenKoyu   = Color(hex: 0x6B4029)
+        static let sacSiyah  = Color(hex: 0x2E2426)
+        static let sacKahve  = Color(hex: 0x5E3B26)
+        static let sacKumral = Color(hex: 0x8A4B2A)
+        static let sacSari   = Color(hex: 0xD9B26A)
+        static let sacKizil  = Color(hex: 0xB5502E)
     }
 
     // MARK: Semantik renkler — bileşenlerde YALNIZCA bunları kullan
@@ -203,6 +217,75 @@ enum MP {
             Palette.gul400, Palette.hardal400, Palette.yesim400,
             Palette.mercan400, Palette.gece400, Palette.lila400
         ]
+
+        /// Kitap karakterinin parça renkleri (B2), `avatar_kit.json`'daki
+        /// `colorToken` adıyla. Kit hex yazmaz; adı buradan çözülür.
+        /// `AvatarKitTests` kitteki her token'ın burada olduğunu denetler.
+        static let avatarParts: [String: Color] = [
+            "avatarSkinLight": Palette.tenAcik,
+            "avatarSkinOlive": Palette.tenBugday,
+            "avatarSkinBrown": Palette.tenEsmer,
+            "avatarSkinDark":  Palette.tenKoyu,
+            "avatarHairBlack":  Palette.sacSiyah,
+            "avatarHairBrown":  Palette.sacKahve,
+            "avatarHairAuburn": Palette.sacKumral,
+            "avatarHairBlonde": Palette.sacSari,
+            "avatarHairRed":    Palette.sacKizil,
+            "avatarOutfitBlue":   Palette.deniz400,
+            "avatarOutfitGreen":  Palette.yesim400,
+            "avatarOutfitYellow": Palette.hardal300,
+            "avatarOutfitOrange": Palette.mercan400,
+            "avatarOutfitPurple": Palette.lila400,
+            "avatarOutfitRed":    Palette.gul500,
+        ]
+        /// Yer tutucu avatarın yüz çizgisi ve gözlüğü.
+        static let avatarInk = Palette.murekkep900
+        /// Yer tutucu avatarın yüzü ve giysisi — ebeveynin seçmediği sabit
+        /// parçalar. Hepsi mevcut paletten; yeni ham renk yok.
+        static let avatarEyeWhite = Palette.kagit0
+        static let avatarIris     = Palette.kahve400
+        static let avatarCheek    = Palette.gul300
+        static let avatarMouth    = Palette.gul800
+        static let avatarTongue   = Palette.gul400
+        static let avatarShade    = Palette.murekkep900.opacity(0.14)
+        static let avatarHighlight = Palette.kagit0
+        static let avatarPants    = Palette.gece300
+        static let avatarShoe     = Palette.murekkep700
+        static let avatarBag      = Palette.kahve400
+
+        /// Yer tutucu yol arkadaşlarının (B2) renkleri. Gerçek çizim gelince
+        /// kullanılmaz.
+        static let companionFox         = Palette.mercan400
+        static let companionFoxLight    = Palette.kagit50
+        static let companionHedgehog    = Palette.kahve400
+        static let companionHedgehogFace = Palette.hardal100
+        static let companionRabbit      = Palette.kagit50
+        static let companionRabbitInner = Palette.gul200
+        static let companionOwl         = Palette.murekkep300
+        static let companionOwlBelly    = Palette.kagit200
+        static let companionBeak        = Palette.hardal400
+
+        /// Yer tutucu sahne arka planlarının tonları (B2), `scene_library.json`
+        /// → `placeholderArt.tone` adıyla. Düz renk; gradient yok.
+        static let sceneTones: [String: SceneTone] = [
+            "forest": SceneTone(sky: Palette.kagit50, far: Palette.yesim100, near: Palette.yesim300,
+                                ground: Palette.yesim200, path: Palette.kagit300, accent: Palette.kahve400),
+            "meadow": SceneTone(sky: Palette.hardal50, far: Palette.yesim100, near: Palette.cimen400,
+                                ground: Palette.yesim100, path: Palette.kagit200, accent: Palette.gul300),
+            "garden": SceneTone(sky: Palette.gece600, far: Palette.gece500, near: Palette.gece400,
+                                ground: Palette.gece300, path: Palette.gece200, accent: Palette.hardal200),
+        ]
+    }
+
+    /// Bir yer tutucu sahnenin renkleri: gökyüzü, uzak sıra, yakın sıra, zemin,
+    /// patika ve küçük vurgular (gövde, ay, çiçek).
+    struct SceneTone {
+        let sky: Color
+        let far: Color
+        let near: Color
+        let ground: Color
+        let path: Color
+        let accent: Color
     }
 
     // MARK: Okuma temaları — uygulamadaki tek tema anahtarı

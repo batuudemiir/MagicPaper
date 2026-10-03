@@ -164,6 +164,10 @@ struct ContentView: View {
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     ProfileEditSheet(profile: profile).environmentObject(app)
                 }
+            case .bookCharacter(let id):
+                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                    BookCharacterView(profile: profile).environmentObject(app)
+                }
             }
         }
     }

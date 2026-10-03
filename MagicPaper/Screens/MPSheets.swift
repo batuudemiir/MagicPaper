@@ -101,7 +101,7 @@ struct StoryActionList: View {
 
         let snapshot = story
         Task.detached(priority: .userInitiated) {
-            let url = MPStoryPDF.makePDF(for: snapshot)
+            let url = await MPStoryPDF.makePDF(for: snapshot)
             await MainActor.run {
                 isExporting = false
                 if let url {
@@ -187,6 +187,13 @@ struct ProfileEditSheet: View {
                     app.sheet = nil
                     app.showProfileAdd = true
                 }) { EmptyView() }
+
+                if IllustratedBookAccess.isEnabled() {
+                    MPListRow(symbol: "sparkles", title: "Kitap karakteri",
+                              description: "Görselli masallarda görünecek karakter", action: {
+                        app.sheet = .bookCharacter(profile.id)
+                    }) { EmptyView() }
+                }
 
                 MPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)

@@ -66,11 +66,14 @@ enum MPParentTab: String, CaseIterable {
 enum MPSheetRoute: Identifiable, Equatable {
     case profilePicker
     case profileEdit(UUID)
+    /// Görselli kitabın karakteri (B2) — ebeveyn tarafı.
+    case bookCharacter(UUID)
 
     var id: String {
         switch self {
-        case .profilePicker:      return "profilePicker"
-        case .profileEdit(let i): return "profileEdit-\(i)"
+        case .profilePicker:        return "profilePicker"
+        case .profileEdit(let i):   return "profileEdit-\(i)"
+        case .bookCharacter(let i): return "bookCharacter-\(i)"
         }
     }
 }
@@ -184,6 +187,7 @@ final class MPAppState: ObservableObject {
         tab = .home
         showProfileAdd = false
         if case .profileEdit = sheet { sheet = nil }
+        if case .bookCharacter = sheet { sheet = nil }
     }
 }
 

@@ -53,17 +53,27 @@ struct StoryLeafView: View {
     /// çizim varsa üst yarısını tutar. Motor bu dikdörtgenlerin dışında kalır.
     private func decorationContext(for page: ReaderPage) -> StoryDecorationContext {
         let hasImage = page.imageRef != nil
-        let textRect = hasImage
-            ? CGRect(x: 0.06, y: 0.58, width: 0.88, height: 0.34)
-            : CGRect(x: 0.06, y: 0.30, width: 0.88, height: 0.42)
-        let illoRect = hasImage
-            ? CGRect(x: 0.04, y: 0.05, width: 0.92, height: 0.50)
-            : nil
+        let hasScene = page.scene != nil
+        // Hazır sahne (B2) 4:3 ve sayfanın üst ~%40'ında kalır; metin hemen
+        // altından başlar, bu yüzden metin bölgesi daha yukarıdan açılır.
+        let textRect = hasScene
+            ? CGRect(x: 0.06, y: 0.42, width: 0.88, height: 0.52)
+            : hasImage
+                ? CGRect(x: 0.06, y: 0.58, width: 0.88, height: 0.34)
+                : CGRect(x: 0.06, y: 0.30, width: 0.88, height: 0.42)
+        let illoRect = hasScene
+            ? CGRect(x: 0.04, y: 0.03, width: 0.92, height: 0.40)
+            : hasImage
+                ? CGRect(x: 0.04, y: 0.05, width: 0.92, height: 0.50)
+                : nil
         let seed = StoryDecorationContext.seed(storyID: model.story.id, page: page.index)
         let env = StoryEnvironment.resolve(scene: page.sceneHint, world: model.story.world)
-        let density = DecorationDensity.forPage(index: page.index,
-                                                pageCount: model.story.pageCount,
-                                                environment: env, seed: seed)
+        // Sahneli sayfa zaten resimli: süs seyrek kalır ki sahneyle yarışmasın.
+        let density = hasScene
+            ? DecorationDensity.sparse
+            : DecorationDensity.forPage(index: page.index,
+                                        pageCount: model.story.pageCount,
+                                        environment: env, seed: seed)
         return .make(story: model.story, page: page,
                      density: density,
                      textSafeRect: textRect,

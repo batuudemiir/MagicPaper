@@ -54,7 +54,7 @@ struct ParentOverviewView: View {
 
         let snapshot = storyManager.stories
         Task.detached(priority: .userInitiated) {
-            let url = MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
+            let url = await MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
             await MainActor.run {
                 isExporting = false
                 if let url {

@@ -28,13 +28,18 @@ enum MPStoryPDF {
     private static let paper = UIColor(red: 0xFD / 255, green: 0xF6 / 255, blue: 0xEE / 255, alpha: 1)
 
     /// Tek masalı PDF'e basar ve geçici dosya URL'si döndürür.
-    static func makePDF(for story: Story) -> URL? {
-        makePDF(stories: [story], fileName: fileName(for: story.title))
+    static func makePDF(for story: Story) async -> URL? {
+        await makePDF(stories: [story], fileName: fileName(for: story.title))
     }
 
     /// Birden çok masalı tek kitapta toplar (ebeveyn panelindeki dışa aktarma).
-    static func makePDF(stories: [Story], fileName: String) -> URL? {
+    ///
+    /// Görselli kitabın sahneleri (B2) önce ana iş parçacığında görüntüye
+    /// çevrilir — `ImageRenderer` bunu ister — sonra çizim burada, arka planda
+    /// sürer.
+    static func makePDF(stories: [Story], fileName: String) async -> URL? {
         guard !stories.isEmpty else { return nil }
+        let scenes = await MainActor.run { sceneImages(for: stories) }
 
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: pageSize))
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
@@ -44,7 +49,8 @@ enum MPStoryPDF {
                 for story in stories {
                     drawCover(story, context: context)
                     for (index, page) in story.pages.enumerated() {
-                        drawPage(page, number: index + 1, total: story.pages.count, context: context)
+                        drawPage(page, number: index + 1, total: story.pages.count,
+                                 scene: scenes[page.id], context: context)
                     }
                 }
             }
@@ -81,7 +87,24 @@ enum MPStoryPDF {
                             width: width, height: 20), alignment: .center)
     }
 
-    private static func drawPage(_ page: StoryPage, number: Int, total: Int,
+    /// Sahne genişliği, punto. Sayfa metin sütunuyla aynı.
+    private static let sceneWidth: CGFloat = 420 - 40 * 2
+
+    /// Sayfa kimliği → sahnenin görüntüsü. 300 dpi'ye yakın basılsın diye 4×.
+    @MainActor
+    private static func sceneImages(for stories: [Story]) -> [UUID: UIImage] {
+        var images: [UUID: UIImage] = [:]
+        for story in stories {
+            for page in story.pages {
+                guard let scene = ResolvedScene.resolve(page.scene, illustration: story.illustration),
+                      let image = StorySceneView.renderImage(scene, width: sceneWidth, scale: 4) else { continue }
+                images[page.id] = image
+            }
+        }
+        return images
+    }
+
+    private static func drawPage(_ page: StoryPage, number: Int, total: Int, scene: UIImage? = nil,
                                  context: UIGraphicsPDFRendererContext) {
         context.beginPage()
         UIColor.white.setFill()
@@ -90,8 +113,16 @@ enum MPStoryPDF {
         let width = pageSize.width - margin * 2
         var y = margin
 
-        // Sayfanın çizimi varsa üstte, kırpılmadan.
-        if let file = page.imageUrl ?? page.imageFileName,
+        // Görselli kitabın hazır sahnesi: sütun genişliğinde, 4:3.
+        if let scene {
+            let rect = CGRect(x: margin, y: y, width: width, height: width * 3 / 4)
+            let path = UIBezierPath(roundedRect: rect, cornerRadius: 12)
+            context.cgContext.saveGState()
+            path.addClip()
+            scene.draw(in: rect)
+            context.cgContext.restoreGState()
+            y += rect.height + 22
+        } else if let file = page.imageUrl ?? page.imageFileName,
            let image = FileManagerService.shared.loadImage(fileName: file) {
             let side = min(width, 240)
             let rect = CGRect(x: (pageSize.width - side) / 2, y: y, width: side, height: side)

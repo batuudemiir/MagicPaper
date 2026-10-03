@@ -1301,7 +1301,7 @@ extension StoryGenerationManager {
             seed: seed
         )
 
-        let story = OfflineStoryMapper.appStory(
+        let mapped = OfflineStoryMapper.appStory(
             from: composed.story,
             childName: profile.name,
             childProfileID: profile.id,
@@ -1310,6 +1310,16 @@ extension StoryGenerationManager {
             mode: mode,
             selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: profile.age)
+        )
+        // Görselli kitap (B2): kayıtlı bir kitap karakteri varsa ve bayrak
+        // açıksa hazır sahneler eklenir; yoksa masal bugünkü gibi metin çıkar.
+        let story = await IllustratedBookBinder.illustrateIfEnabled(
+            mapped,
+            composed: composed.story,
+            profile: profile,
+            mode: mode,
+            ageBand: service.servedBand(forAge: profile.age),
+            existing: stories
         )
 
         recordBlueprintRead(composed.story.blueprintID.rawValue, for: profile)

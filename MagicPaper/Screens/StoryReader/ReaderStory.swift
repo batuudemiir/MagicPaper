@@ -99,12 +99,17 @@ struct ReaderPage: Equatable {
     /// metin. Yalnızca sınıflandırılır: sayfa başına ortam sinyali veren tek
     /// şey bu, ve bugüne kadar hiçbir yerde okunmuyordu.
     let sceneHint: String
+    /// Görselli kitabın hazır sahnesi (B2). Varsa `imageRef`'in yerine çizilir.
+    var scene: ResolvedScene? = nil
+
+    /// Sayfada çizim var mı — dosyadan ya da hazır sahneden.
+    var hasIllustration: Bool { imageRef != nil || scene != nil }
 
     /// Sayfanın tamamı, tek parça. VoiceOver sayfayı dört parça hâlinde değil,
     /// sürekli bir metin olarak okusun diye.
     var spokenText: String { paragraphs.joined(separator: "\n\n") }
 
-    var isBlank: Bool { paragraphs.isEmpty && imageRef == nil }
+    var isBlank: Bool { paragraphs.isEmpty && !hasIllustration }
 }
 
 // MARK: - Story → ReaderStory
@@ -120,13 +125,17 @@ extension ReaderStory {
         self.world = story.mpWorld
 
         let pages = story.pages.enumerated().map { index, page in
-            ReaderPage(
+            let scene = ResolvedScene.resolve(page.scene, illustration: story.illustration)
+            return ReaderPage(
                 index: index,
                 title: page.title,
                 paragraphs: ReaderStory.paragraphs(of: page.text),
                 imageRef: ReaderStory.imageRef(for: page),
-                imageLabel: ReaderStory.imageLabel(for: page, in: story, at: index),
-                sceneHint: page.imagePrompt
+                // Hazır sahnenin Türkçe tarifi; `visualScene` İngilizce olduğu
+                // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
+                imageLabel: scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index),
+                sceneHint: page.imagePrompt,
+                scene: scene
             )
         }
 

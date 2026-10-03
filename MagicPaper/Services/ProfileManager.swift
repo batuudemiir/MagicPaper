@@ -247,6 +247,10 @@ class ProfileManager: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "read_history_\(profile.id.uuidString)")
         // The reading ledger is per child too (MPStreak): it goes with the child.
         MPStreak.eraseLedger(for: profile.id)
+        // So does the book character (B2). The child's books keep their own
+        // copy and go with `storiesDeleted` above.
+        let profileID = profile.id
+        Task { await AvatarStore.shared.delete(for: profileID) }
 
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()

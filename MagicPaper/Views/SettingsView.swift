@@ -15,6 +15,10 @@ struct SettingsView: View {
     /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
     /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
     @State private var notificationsDenied = false
+    #if DEBUG
+    /// Görselli kitap (B2) geliştirici bayrağı; DEBUG'da varsayılan açık.
+    @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
+    #endif
 
     /// Kalan görselli masal hakkı — birim adı her zaman "Yıldız".
     private var stars: Int {
@@ -298,6 +302,20 @@ struct SettingsView: View {
             MPCard(padding: 0) {
                 VStack(spacing: 0) {
                     MPListRow(
+                        symbol: "sparkles",
+                        iconColor: MP.C.brand,
+                        title: "Görselli kitap (B2)",
+                        description: "Kitap karakteri ve hazır sahneler"
+                    ) {
+                        MPSwitch(isOn: Binding(
+                            get: { illustratedBooks },
+                            set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }
+                        ), label: "Görselli kitap")
+                    }
+
+                    MPRowDivider()
+
+                    MPListRow(
                         symbol: "book-open",
                         iconColor: MP.C.calm,
                         title: "Dekorasyon galerisi",
@@ -475,6 +493,9 @@ struct PrivacyAndDataView: View {
         // Reading ledgers are per child now; their keys carry the profile id,
         // so they cannot be listed above.
         MPStreak.eraseAllLedgers(in: d)
+        // Kitap karakterleri (B2) profil başına dosyada; listelenemezler,
+        // klasör toptan silinir.
+        AvatarStore.eraseAll()
         dismiss()
     }
 }

@@ -44,7 +44,11 @@ struct Story: Identifiable, Codable, Equatable {
     /// people actually choose, and it answers with ids rather than with
     /// Turkish display strings.
     var origin: StoryOrigin?
-    
+    /// Görselli kitabın anlık görüntüsü (B2): kaydedildiği andaki avatar ve
+    /// kütüphane sürümleri. `nil` = metin kitabı, bugünkü her masal gibi.
+    /// Çözücüsü atmaz; bkz. `StoryIllustration`.
+    var illustration: StoryIllustration?
+
     // Equatable conformance
     static func == (lhs: Story, rhs: Story) -> Bool {
         lhs.id == rhs.id
@@ -176,7 +180,9 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var imagePrompt: String
     var imageFileName: String? // Changed from Data to filename
     var imageUrl: String?
-    
+    /// Sayfanın hazır sahnesi (B2). `nil` = metin sayfası.
+    var scene: ScenePlate?
+
     // Equatable conformance
     static func == (lhs: StoryPage, rhs: StoryPage) -> Bool {
         lhs.id == rhs.id

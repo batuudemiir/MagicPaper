@@ -513,3 +513,27 @@ VisualSystem'in üç kavramına birebir oturuyor:
 | 5 | `VisualPlanner`'da `emotionalBeatKey` bağla | story-engine | — |
 | 6 | Kapak: kompozisyon kuralı + `planCover` + mapper | VisualSystem → engine → reader | §5.5 yanıtları |
 | 7 | Çoklu `VisualStylePreset` (configurable palette) | VisualSystem + content-library | — |
+
+---
+
+## 9. B2 — Avatar + hazır sahne kütüphanesi (2026-10-01, Faz 1)
+
+Ayrıntılı plan: `docs/B2_SCENE_LIBRARY_PLAN.md`. Bu bölüm yalnızca mimari yeri özetler.
+
+B2, VisualSystem'in prompt zincirine **paralel bir prompt sistemi değildir**. Ürettiği bir prompt yok. Uzak üretim de yok. Geliştirme zamanında çizilmiş katmanları, deterministik bir seçimle üst üste koyar. `StoryArtKit` deseninin sayfa düzeyindeki karşılığıdır.
+
+Zincir: masal → beat → sahne → avatar pozu → katmanlı birleştirme.
+
+| Parça | Dosya | Not |
+|---|---|---|
+| Avatar seçimi | `Screens/ArtKit/SceneBook/AvatarSpec.swift` | yalnızca kit parça kimlikleri, `String` |
+| Avatar kiti | `Screens/ArtKit/avatar_kit.json`, `SceneBook/AvatarKit.swift` | 8 poz, 512 × 768 tuval; her parça `descriptor.en/tr` taşır |
+| Sahne kütüphanesi | `Screens/ArtKit/scene_library.json`, `SceneBook/SceneLibrary.swift` | 12 yer tutucu sahne (3 ortam × 4 rol), sürümlü, yaşam döngülü |
+| Eylem sözleşmesi | `scene_library.json → direction` | beat → poz, rol → poz, sahnenin varsayılanı |
+| Seçici | `SceneBook/SceneSelector.swift` | yalnızca Foundation, deterministik, FNV-1a (`StableHash` ile aynı) |
+| Anlık görüntü | `SceneBook/StoryIllustration.swift`, `Story.illustration`, `StoryPage.scene` | çözücüler atmaz |
+| Motor köprüsü | `StoryEngineBridge/IllustratedBookBinder.swift` | `ComposedStory` → seçici girdisi; Faz 4'e kadar `createStory`'ye bağlı değil |
+
+**CharacterEngine ile ilişki.** Görünüşün anlamı CharacterEngine sözlüğündedir. `AvatarKit.descriptors(for:)` her parçayı `.parentProvided` bir `CharacterDescriptor`'a eşler. B1 geldiğinde bu liste `ProfileCharacterSource.makeProfile(parentProvidedDescriptors:)`'a girer; bugün bağlı değildir. Sözlüğe altı `t-shirt` / `tişört` ifadesi eklendi (kıyafet descriptor'ı).
+
+**§3.3 ile ilişki.** Legacy yolun `3d pixar style` sorunu B2'yi etkilemez. B2 hiçbir zaman uzak üretim yapmaz.

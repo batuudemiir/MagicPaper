@@ -57,7 +57,7 @@ struct StoryPageView: View {
 
             GeometryReader { geo in
                 VStack(spacing: 0) {
-                    if page.imageRef != nil {
+                    if page.hasIllustration {
                         illustration(in: geo)
                         Spacer(minLength: MP.S.x6)
                     }
@@ -92,6 +92,30 @@ struct StoryPageView: View {
 
     @ViewBuilder
     private func illustration(in geo: GeometryProxy) -> some View {
+        if let scene = page.scene {
+            StorySceneView(scene: scene)
+                .frame(height: sceneHeight(in: geo))
+                .frame(maxWidth: .infinity)
+        } else {
+            fileIllustration(in: geo)
+        }
+    }
+
+    /// Hazır sahnenin yüksekliği (B2): sütun genişliğinde 4:3, ama hiçbir
+    /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
+    /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
+    private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
+        let column = geo.size.width - 2 * (StoryPageView.gutter + ornament.contentInset)
+        return min(column / StorySceneView.aspectRatio, geo.size.height * 0.55)
+    }
+
+    /// Metin sütununun çizime bıraktığı yükseklik.
+    private func illustrationReserve(in geo: GeometryProxy) -> CGFloat {
+        page.scene != nil ? sceneHeight(in: geo) : geo.size.height * 0.55
+    }
+
+    @ViewBuilder
+    private func fileIllustration(in geo: GeometryProxy) -> some View {
         // §8'in hedefi kullanılabilir yüksekliğin %45–55'i. Hedef, katı kural
         // değil: yazı boyutu büyüdükçe önce çizim yer verir, çünkü §14 hiçbir
         // durumda okunabilirliğin feda edilmemesini söylüyor.
@@ -120,7 +144,7 @@ struct StoryPageView: View {
     /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
     private func textColumn(in geo: GeometryProxy) -> some View {
         let available = geo.size.height
-            - (page.imageRef != nil ? geo.size.height * 0.55 + MP.S.x6 : 0)
+            - (page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
 
         return ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: readSize.points * 0.55) {
@@ -163,7 +187,7 @@ struct StoryPageView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             // Sığdığında ortalanır, taştığında yukarıdan başlar.
             .frame(minHeight: max(available, 0),
-                   alignment: page.imageRef == nil ? .center : .top)
+                   alignment: page.hasIllustration ? .top : .center)
             // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
             // metin.
             .accessibilityElement(children: .ignore)
