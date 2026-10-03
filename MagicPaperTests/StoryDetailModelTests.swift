@@ -57,18 +57,29 @@ final class StoryDetailModelTests: XCTestCase {
         XCTAssertTrue(MPShelfFilter.available(in: shelf).isEmpty)
     }
 
+    /// Süzgeçler ekran sırasıyla (K5): Uyku öncesi, Yeni şeyler öğrenelim,
+    /// Maceraya çıkalım. `"growth"` 3 Ekim 2026 öncesi kayıtların adı.
     func testFiltersListPresentModesInFixedOrder() {
-        let shelf = [Self.story(mode: "bedtime"), Self.story(mode: "growth"),
-                     ReaderFixtures.textStory(pages: 2)]
-        XCTAssertEqual(MPShelfFilter.available(in: shelf), [.all, .mode(.growth), .mode(.bedtime)])
+        let shelf = [Self.story(mode: "adventure"), Self.story(mode: "growth"),
+                     Self.story(mode: "bedtime"), ReaderFixtures.textStory(pages: 2)]
+        XCTAssertEqual(MPShelfFilter.available(in: shelf),
+                       [.all, .mode(.bedtime), .mode(.learning), .mode(.adventure)])
     }
 
     func testFilterAdmitsOnlyItsMode() {
         let bedtime = Self.story(mode: "bedtime")
-        let growth = Self.story(mode: "growth")
+        let learning = Self.story(mode: "growth")
         XCTAssertTrue(MPShelfFilter.mode(.bedtime).admits(bedtime))
-        XCTAssertFalse(MPShelfFilter.mode(.bedtime).admits(growth))
-        XCTAssertTrue(MPShelfFilter.all.admits(growth))
+        XCTAssertFalse(MPShelfFilter.mode(.bedtime).admits(learning))
+        XCTAssertTrue(MPShelfFilter.all.admits(learning))
+    }
+
+    /// Eski ad ve yeni ad aynı rafta tek bir süzgeç olur.
+    func testOldAndNewLearningStoriesShareOneFilter() {
+        let shelf = [Self.story(mode: "growth"), Self.story(mode: "learning")]
+        XCTAssertTrue(MPShelfFilter.available(in: shelf).isEmpty, "tek mod: süzgeç yok")
+        XCTAssertTrue(shelf.allSatisfy(MPShelfFilter.mode(.learning).admits))
+        XCTAssertEqual(Self.story(mode: "growth").mpMode, .learning)
     }
 
     // MARK: Yardımcılar

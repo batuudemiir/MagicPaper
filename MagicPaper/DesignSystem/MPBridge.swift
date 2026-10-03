@@ -4,8 +4,9 @@ import SwiftUI
 //
 // Tasarım 12 masal dünyası tanımlar (04-STATE-INTERACTIONS.md), uygulamanın
 // üretim hattı ise 6 `StoryTheme` üzerinden çalışır. Arayüz 12 dünyayı gösterir,
-// üretim çağrısı karşılık gelen temaya düşer. Böylece görsel dil tasarıma
-// uyarken mevcut Gemini/Fal.ai hattı olduğu gibi çalışmaya devam eder.
+// üretim çağrısı karşılık gelen temaya düşer. Metin masalı cihazdaki offline
+// motorla yazılır (`OfflineStoryService`); dünya seçimi akıştan kalktı (FAZ 10),
+// dünya artık yalnızca kapak sanatı ve tema eşlemesi için okunur.
 
 extension MP.World {
 
@@ -38,67 +39,6 @@ extension MP.World {
         .krallik, .uzay, .orman, .kahraman, .deniz, .dinozor,
         .peri, .korsan, .kar, .ciftlik, .robot, .sirk
     ]
-}
-
-// MARK: - Masal uzunluğu
-
-/// Sihirbazın 3. adımındaki uzunluk seçenekleri (03-SCREENS.md §4).
-enum MPStoryLength: String, CaseIterable, Identifiable {
-    case kisa, orta, uzun
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .kisa: return "Kısa"
-        case .orta: return "Orta"
-        case .uzun: return "Uzun"
-        }
-    }
-
-    var detail: String {
-        switch self {
-        case .kisa: return "5 sayfa · 3 dakika"
-        case .orta: return "8 sayfa · 6 dakika"
-        case .uzun: return "12 sayfa · 9 dakika"
-        }
-    }
-
-    var symbol: String {
-        switch self {
-        case .kisa: return "clock"
-        case .orta: return "book"
-        case .uzun: return "bookmark"
-        }
-    }
-
-    var pageCount: Int {
-        switch self {
-        case .kisa: return 5
-        case .orta: return 8
-        case .uzun: return 12
-        }
-    }
-
-    /// "Uzun" premium kilitlidir.
-    var isPremium: Bool { self == .uzun }
-}
-
-// MARK: - Masal tonu
-
-enum MPStoryTone: String, CaseIterable, Identifiable {
-    case neseli, sakin, maceral, ogretici
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .neseli:   return "Neşeli"
-        case .sakin:    return "Sakin"
-        case .maceral:  return "Maceralı"
-        case .ogretici: return "Öğretici"
-        }
-    }
 }
 
 // MARK: - Yaş aralığı

@@ -101,6 +101,7 @@ final class StoryArtKitTests: XCTestCase {
         let catalog = StoryArtKitCatalog(schemaVersion: 1, kits: [forest, night])
         XCTAssertEqual(Self.story(mode: "bedtime", world: "orman").mpArtKit(in: catalog)?.id, "gece")
         XCTAssertEqual(Self.story(mode: "growth", world: "orman").mpArtKit(in: catalog)?.id, "orman")
+        XCTAssertEqual(Self.story(mode: "learning", world: "orman").mpArtKit(in: catalog)?.id, "orman")
     }
 
     // MARK: Sanat çözümü

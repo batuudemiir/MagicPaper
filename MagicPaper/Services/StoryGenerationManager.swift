@@ -364,6 +364,7 @@ extension StoryGenerationManager {
         strategy: StorySelectionStrategy? = nil,
         storyIdeaID: String?,
         companionID: String?,
+        subOption: String? = nil,
         seed: String? = nil
     ) async throws -> Story {
         isGenerating = true
@@ -376,7 +377,8 @@ extension StoryGenerationManager {
             companionID: companionID,
             mode: mode,
             age: profile.age,
-            seed: seed
+            seed: seed,
+            subOption: subOption
         )
 
         let mapped = OfflineStoryMapper.appStory(
@@ -387,7 +389,8 @@ extension StoryGenerationManager {
             catalogVersion: composed.catalogVersion,
             mode: mode,
             selectionStrategy: strategy,
-            ageBand: service.servedBand(forAge: profile.age)
+            ageBand: service.servedBand(forAge: profile.age),
+            subOption: subOption
         )
         // Görselli kitap (B2): kayıtlı bir kitap karakteri varsa ve bayrak
         // açıksa hazır sahneler eklenir; yoksa masal bugünkü gibi metin çıkar.
@@ -415,7 +418,7 @@ extension StoryGenerationManager {
         stories
             .filter { $0.belongs(to: profile) }
             .sorted { $0.createdAt > $1.createdAt }
-            .compactMap { $0.origin?.modeID.flatMap(StoryMode.init(rawValue:)) }
+            .compactMap { $0.origin?.mode }
             .prefix(limit)
             .map { $0 }
     }

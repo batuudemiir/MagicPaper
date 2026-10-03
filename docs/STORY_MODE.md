@@ -1,17 +1,20 @@
 # Story Mode, yaş bandı ve çocuk başına okuma defteri
 
-Ürün kararları: 2026-09-23, güncelleme 2026-10-03 (`MagicPaper_Faz_Plani_Ekim.md`). Bu belge o kararların
+Ürün kararları: 2026-09-23, güncelleme 2026-10-03, FAZ 10 2026-10-04 (`MagicPaper_Faz_Plani_Ekim.md`). Bu belge o kararların
 koddaki karşılığını anlatır. Çelişkide Ekim faz planı geçerlidir.
 
 ## Kararlar
 
 | Konu | Karar |
 |---|---|
-| Modlar | Uyku öncesi (`bedtime`), Yeni şeyler öğrenelim (`learning`), Maceraya çıkalım (`adventure`). Kodda `learning` bugün hâlâ `growth`; yeniden adlandırma ve eski masalların geriye dönük çözmesi Faz 10 |
-| Bana Sürpriz Yap | Mod **değil**. `StorySelectionStrategy.surprise`: MagicPaper üç moddan birini seçer |
-| Oluşturma | Mod → "Masalda kimler olsun?" (katalog yol arkadaşları + Masal ailem, Faz 11). Serbest metin yok. Uzunluk yaş bandından, ton moddan |
-| Fikir kartları / alt seçenek | Şimdi yok. `StoryIdeaStep` Faz 10'da varsayılan kapalı bir bayrağın arkasına alınır; alt seçeneğin yeri olarak kalır |
-| Yaş | Tek çözümleyici: `AgeBandResolver` → 3-4, 5-6, 7-8, 9-10. 11-12 yaşındaki profile en yakın bant (9-10) sunulur; profilde yaş seçimi 3-10 ile sınırlanır (Faz 10) |
+| Modlar | Uyku öncesi (`bedtime`), Yeni şeyler öğrenelim (`learning`), Maceraya çıkalım (`adventure`). Ekran sırası bu; kod sırası (`StoryMode.allCases`: learning, adventure, bedtime) sürprizin eşitlik bozması için sabit |
+| Eski ad | 3 Ekim 2026'ya kadar `learning` `growth` adıyla kaydedildi. Kayıtlar yeniden yazılmaz; `StoryMode(storedID:)` ve `StoryOrigin.mode` `"growth"`'u `learning` olarak çözer. Kayıttan mod okurken `StoryMode(rawValue:)` kullanılmaz |
+| Bana Sürpriz Yap | Mod **değil**. `StorySelectionStrategy.surprise`: MagicPaper kurulabilir modlardan birini seçer. Kart yalnızca bantta en az iki mod kurulabiliyorsa görünür. Sürpriz masal tek seferliktir; `origin.selectionStrategy` bunu kaydeder ve seri (Faz 13) yalnızca `direct` masaldan açılır |
+| Oluşturma | Mod → "Masalda kimler olsun?" (katalog yol arkadaşları + Masal ailem, Faz 11). Serbest metin yok. Ana sayfadaki mod kartları akışı doğrudan ikinci adımdan açar; dünya seçimi yok |
+| Uzunluk | Yaş bandından: `AgeBand.pageCount` (3-4 → 6, 5-6 → 8, 7-8 → 8, 9-10 → 10), kelime bütçesinin yanında, kodda. Bandını tutmayan blueprint bütünlük hatasıdır (`page_count_off_band`). Akışta uzunluk seçimi yok |
+| Ton | Ayrı bir alan yok. Ton modun anlatı ailelerinden gelir: Uyku öncesi yalnızca sakin, bakım üzerine kurulu aileleri (`charge`) kabul ettiği için sakindir. Tonu değiştirmek `storyModes` aile listesini değiştirmektir. Akışta ton seçimi yok |
+| Fikir kartları / alt seçenek | `StoryIdeaStep` `StoryIdeaStepAccess` bayrağının arkasında, her build'de kapalı; yalnızca Ayarlar > Geliştirici (DEBUG) açar. Alt seçeneğin yeri: `OfflineStoryIntent.subOption` ve `StoryOrigin.subOptionID`, bugün hep `nil`, motor okumaz |
+| Yaş | Tek çözümleyici: `AgeBandResolver` → 3-4, 5-6, 7-8, 9-10. 11-12 yaşındaki eski profiller 9-10'a oturur; profilde yaş seçimi 3-10 |
 | Rozet | Sakin kilometre taşı rozetlerine izin var (karar: 3 Ekim 2026, `CLAUDE.md` §7): yalnızca okumayla kazanılır, kaybolmaz, geri sayım ve karşılaştırma yok, push ile duyurulmaz. Uygulama Faz 17. Puan, kupa, hedef yok |
 | Günlük sekmesi | Süreklilik, bugün, son hikâyeler, bu ay |
 | Metin masal | Yalnızca cihazdaki offline motor (`OfflineStoryService`). Bulut metin yolu Faz 9'da kaldırıldı |
@@ -20,7 +23,7 @@ koddaki karşılığını anlatır. Çelişkide Ekim faz planı geçerlidir.
 ## Akış
 
 ```
-ParentIntent (StoryModeStep)   [mod adları kodda: bedtime / growth / adventure]
+ParentIntent (StoryModeStep ya da ana sayfa mod kartı)
  ├─ doğrudan mod ──────────────┐
  └─ Bana sürpriz yap           │
       StoryModeResolver         │  son 3 hikâyenin modu, en yeni en ağır
@@ -28,18 +31,18 @@ ParentIntent (StoryModeStep)   [mod adları kodda: bedtime / growth / adventure]
                                 ▼
                        StoryMode (3'ten biri)
                                 │
-             StoryIdeaStep (bugün isteğe bağlı; Faz 10'da bayrakla kapanır)
+             StoryIdeaStep (bayrak arkasında, varsayılan kapalı)
                                 │
-                          CompanionStep
+                          CompanionStep ("Masalda kimler olsun?")
                                 │
- OfflineStoryIntent(mode, ageBand = AgeBandResolver + servedBand)
+ OfflineStoryIntent(mode, ageBand = AgeBandResolver + servedBand, subOption = nil)
                                 │
  BlueprintSelector: blueprint.ageRange == ageBand
                     ve blueprint.family ∈ StoryModeProfile.families
                                 │
  OfflineStoryComposer → OfflineStoryMapper
                                 │
- Story.origin: modeID, selectionStrategy, ageBand
+ Story.origin: modeID, selectionStrategy, ageBand, subOptionID
 ```
 
 ## Nerede ne var
@@ -49,27 +52,38 @@ ParentIntent (StoryModeStep)   [mod adları kodda: bedtime / growth / adventure]
 | `StoryMode`, `StorySelectionStrategy`, `StoryModeProfile`, `StoryModeResolver` | `StoryEngine/Sources/StoryEngine/Offline/StoryMode.swift` |
 | `AgeBandResolver` | `StoryEngine/Sources/StoryEngine/Content/AgeBandResolver.swift` |
 | Mod → aile eşlemesi (**içerik**) | `pilot_library_v1.json` → `storyModes` |
-| Mod bütünlük denetimi | `CatalogIntegrity.checkStoryModes` |
-| `availableModes`, `storyIdeas(mode:)` | `BlueprintSelector` |
+| Mod bütünlük denetimi | `CatalogIntegrity.checkStoryModes` (bant bazlı: `mode_unavailable_in_band`, `band_without_content` uyarıları) |
+| `availableModes`, `modeCoverage`, `storyIdeas(mode:)` | `BlueprintSelector` |
 | Uygulama kapısı | `OfflineStoryService`: `servedBand`, `availableModes`, `storyIdeas(forAge:mode:)`, `resolveMode`, `compose(mode:age:)` |
-| Ekranlar | `StoryModeStep`, `StoryIdeaStep`, `CompanionStep`, `StoryCreationFlow` |
+| Ekranlar | `StoryModeStep`, `StoryIdeaStep`, `CompanionStep`, `StoryCreationFlow`; kararları `StoryCreationSteps`; ana sayfa `HomeView.modeCards` |
 | Geçmiş | `StoryGenerationManager.recentModes(for:)` |
 | Okuma defteri | `MPStreak.activate(profileID:)`, `ContentView` aktif profile bağlar |
 
 ## Yeni bir mod eklemek
 
 1. `StoryMode`'a vaka ekle (ürün kararı: kapalı küme).
-2. Katalogda `storyModes` altına profilini yaz. Bütünlük denetimi, blueprint'e ulaşmayan modu hata sayar.
-3. `StoryMode+Presentation` (`StoryModeStep.swift`) içinde başlık, söz, ikon, renk.
+2. Katalogda `storyModes` altına profilini yaz. Bütünlük denetimi, hiçbir bantta blueprint'e ulaşmayan modu hata, bir bantta ulaşmayanı uyarı sayar.
+3. `StoryMode+Presentation` (`StoryModeStep.swift`) içinde başlık, söz, ikon, renk ve `displayOrder`.
+4. Bir vakayı yeniden adlandırırsan eski adı `StoryMode.legacyAliases`'a ekle.
 
 Selector, resolver, mapper ve kayıt değişmez.
+
+## Mod × bant (4 Ekim 2026, `ModeBandCoverageTests`)
+
+| Bant | Sunulan | Sayfa | Uyku öncesi | Yeni şeyler öğrenelim | Maceraya çıkalım | Sürpriz kartı |
+|---|---|---|---|---|---|---|
+| 3-4 | 3-4 | 6 | ✓ 1 | ✗ | ✗ | gizli |
+| 5-6 | 5-6 | 8 | ✓ 2 | ✓ 8 | ✓ 4 | görünür |
+| 7-8 | 5-6 | 8 | ✓ | ✓ | ✓ | görünür |
+| 9-10 | 5-6 | 8 | ✓ | ✓ | ✓ | görünür |
+
+İçerik eksikleri: 3-4 için bir `appeal` (öğrenelim) ve bir `threshold`/`absence` (macera) blueprint'i; uyku arkı; 7-8 ve 9-10 içeriği.
 
 ## Bilinen boşluklar
 
 - **Uyku öncesinin gerçek bir arkı yok.** Geçici olarak `charge` ailesine bağlı (5-6 için 2, 3-4 için 1 blueprint). Profilin `editorialNote`'u bunu söylüyor. Uyku arkı yazıldığında eşleme değişmeli.
 - **3-4 bandında yalnızca Uyku öncesi kurulabilir**, çünkü o bantta tek blueprint `charge` ailesinden. Kurulamayan mod ekranda gösterilmez.
 - **7-8 ve 9-10 bantlarının içeriği yok.** `AgeBandResolver.servedBand` en yakın, eşitlikte küçük banttan sunar. Bu bir geçici çözüm.
-- Mod henüz sayfa sayısını, kelime bütçesini ya da dekorasyon yoğunluğunu etkilemiyor. Hepsi `StoryModeProfile`'a veri olarak eklenebilir.
 - Arkadaş adımı (`CompanionStep`) Faz 11'de "Masalda kimler olsun?" adımına dönüşür (katalog yol arkadaşları + Masal ailem).
 
 ## Okuma defteri geçişi

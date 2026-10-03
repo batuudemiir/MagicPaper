@@ -64,8 +64,8 @@ struct ContentView: View {
             if phase == .background { app.enterChildMode() }
         }
         .overlay { sheetLayer }
-        .fullScreenCover(isPresented: $app.showStoryCreation) {
-            StoryCreationFlow().environmentObject(app).environmentObject(settings)
+        .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: { app.creationPreset = nil }) {
+            StoryCreationFlow(preset: app.creationPreset).environmentObject(app).environmentObject(settings)
         }
         .fullScreenCover(item: $app.detailStory) { story in
             StoryDetailView(story: story).environmentObject(app).environmentObject(settings)

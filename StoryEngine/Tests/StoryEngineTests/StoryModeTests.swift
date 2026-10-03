@@ -4,9 +4,9 @@ import XCTest
 /// Story Mode ve yaş bandı: ebeveynin niyeti ve çocuğun yaşı hikâyeyi gerçekten
 /// yönlendiriyor mu?
 ///
-/// Ürün kararları (2026-09-23): üç mod var — Gelişelim, Maceraya Çıkalım, Uyku
-/// Zamanı. "Bana sürpriz yap" bir mod değil, bir seçim biçimi. Yaş tek bir
-/// çözümleyiciden banda dönüşür: 3-4, 5-6, 7-8, 9-10.
+/// Ürün kararları (2026-10-03): üç mod var — Uyku öncesi, Yeni şeyler
+/// öğrenelim, Maceraya çıkalım. "Bana sürpriz yap" bir mod değil, bir seçim
+/// biçimi. Yaş tek bir çözümleyiciden banda dönüşür: 3-4, 5-6, 7-8, 9-10.
 final class StoryModeTests: XCTestCase {
 
     private func catalog() throws -> ContentCatalog {
@@ -62,22 +62,22 @@ final class StoryModeTests: XCTestCase {
             available: StoryMode.allCases, recent: [], seed: "s"))
     }
 
-    /// Macera, Macera, Gelişelim → yeniden Macera sürpriz değil, tekrardır.
+    /// Macera, Macera, Öğrenelim → yeniden Macera sürpriz değil, tekrardır.
     func testSurpriseAvoidsWhatWasJustRead() throws {
         let mode = try StoryModeResolver().resolve(
             strategy: .surprise, requested: nil,
             available: StoryMode.allCases,
-            recent: [.adventure, .adventure, .growth], seed: "s")
+            recent: [.adventure, .adventure, .learning], seed: "s")
         XCTAssertEqual(mode, .bedtime)
     }
 
     func testSurpriseWeighsTheMostRecentStoryHeaviest() throws {
         // Uyku bu pencerede yok ama kurulamıyor; kalan ikisi birer kez geçti.
-        // En yeni Gelişelim olduğu için Macera seçilmeli.
+        // En yeni Öğrenelim olduğu için Macera seçilmeli.
         let mode = try StoryModeResolver().resolve(
             strategy: .surprise, requested: nil,
-            available: [.growth, .adventure],
-            recent: [.growth, .adventure], seed: "s")
+            available: [.learning, .adventure],
+            recent: [.learning, .adventure], seed: "s")
         XCTAssertEqual(mode, .adventure)
     }
 
@@ -87,7 +87,7 @@ final class StoryModeTests: XCTestCase {
         let mode = try StoryModeResolver().resolve(
             strategy: .surprise, requested: nil,
             available: StoryMode.allCases,
-            recent: [.growth, .adventure, .growth, .bedtime, .bedtime, .bedtime], seed: "s")
+            recent: [.learning, .adventure, .learning, .bedtime, .bedtime, .bedtime], seed: "s")
         XCTAssertEqual(mode, .bedtime)
     }
 
@@ -117,6 +117,30 @@ final class StoryModeTests: XCTestCase {
     func testSurpriseWithNothingAvailableIsAnError() {
         XCTAssertThrowsError(try StoryModeResolver().resolve(
             strategy: .surprise, requested: nil, available: [], recent: [], seed: "s"))
+    }
+
+    // MARK: - Eski ad
+
+    /// 3 Ekim 2026'dan önce `learning` modu `growth` adıyla kaydediliyordu.
+    /// O masallar diskte hâlâ `"growth"` taşıyor ve yeniden yazılmıyor.
+    func testLegacyGrowthDecodesAsLearning() throws {
+        let decoded = try JSONDecoder().decode(StoryMode.self, from: Data("\"growth\"".utf8))
+        XCTAssertEqual(decoded, .learning)
+        XCTAssertEqual(StoryMode(storedID: "growth"), .learning)
+        XCTAssertEqual(StoryMode(storedID: "learning"), .learning)
+        XCTAssertNil(StoryMode(storedID: "surprise"))
+    }
+
+    func testANewStoryWritesTheNewName() throws {
+        let encoded = try JSONEncoder().encode(StoryMode.learning)
+        XCTAssertEqual(String(decoding: encoded, as: UTF8.self), "\"learning\"")
+        XCTAssertFalse(StoryMode.allCases.map(\.rawValue).contains("growth"))
+    }
+
+    func testAnOldCatalogProfileStillDecodes() throws {
+        let json = #"{"mode": "growth", "families": ["appeal"]}"#
+        let profile = try JSONDecoder().decode(StoryModeProfile.self, from: Data(json.utf8))
+        XCTAssertEqual(profile.mode, .learning)
     }
 
     // MARK: - Catalog

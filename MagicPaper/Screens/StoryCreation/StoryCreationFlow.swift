@@ -6,10 +6,16 @@ import SwiftUI
 /// a world, a companion, and finally whether the story should be illustrated —
 /// six decisions that made the product feel like a form.
 ///
-/// The one required decision is the **mode** — Gelişelim, Maceraya Çıkalım,
-/// Uyku Zamanı — or "Bana sürpriz yap", which lets MagicPaper pick the mode.
-/// Idea cards are an optional second step under the mode ("Bana bırak" skips
-/// them); a surprise skips them too, because the parent asked us to decide.
+/// The one required decision is the **mode** — Uyku öncesi, Yeni şeyler
+/// öğrenelim, Maceraya çıkalım — or "Bana sürpriz yap", which lets MagicPaper
+/// pick the mode. Then "Masalda kimler olsun?". Idea cards sit behind a flag
+/// (`StoryIdeaStepAccess`, off in every build); when they are on, a surprise
+/// still skips them, because the parent asked us to decide.
+///
+/// A mode chosen on the home screen opens the flow at its second step: the
+/// parent has already made the first decision there. "Back" then returns to
+/// the modes, so it is never a dead end. The decisions themselves live in
+/// `StoryCreationSteps`.
 ///
 /// The child is not asked for: the app already has a current profile, and
 /// `MainContentView` will not reach this screen without one.
@@ -40,7 +46,7 @@ struct StoryCreationFlow: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
 
-    @State private var phase: Phase = .mode
+    @State private var phase: Phase
     /// Always one of the three modes once past step 1 — a surprise is resolved
     /// the moment it is chosen, so the companion step can already fit it.
     @State private var chosenMode: StoryMode?
@@ -53,6 +59,20 @@ struct StoryCreationFlow: View {
     @State private var chosenCompanionID: String?
 
     private var profile: UserProfile? { profileManager.currentProfile }
+
+    /// - Parameter preset: a mode already chosen on the home screen.
+    init(preset: StoryMode? = nil) {
+        let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
+        let available = StoryChoiceSources.current.availableModes(forAge: age)
+        switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
+        case .mode:
+            _phase = State(initialValue: .mode)
+            _chosenMode = State(initialValue: nil)
+        case .companion(let mode):
+            _phase = State(initialValue: .companion)
+            _chosenMode = State(initialValue: mode)
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -80,7 +100,7 @@ struct StoryCreationFlow: View {
             )
             Spacer(minLength: 0)
             if let step = stepIndex {
-                MPStepDots(total: 3, current: step, labels: ["Hikâye", "Fikir", "Arkadaş"])
+                MPStepDots(total: stepLabels.count, current: step, labels: stepLabels)
             }
             Spacer(minLength: 0)
             Color.clear.frame(width: 44, height: 44)
@@ -96,11 +116,13 @@ struct StoryCreationFlow: View {
         }
     }
 
+    private var stepLabels: [String] { StoryCreationSteps.stepLabels(ideaStep: ideaStepShown) }
+
     private var stepIndex: Int? {
         switch phase {
         case .mode: return 0
         case .idea: return 1
-        case .companion: return 2
+        case .companion: return stepLabels.count - 1
         default: return nil
         }
     }
@@ -184,9 +206,10 @@ struct StoryCreationFlow: View {
         strategy = .direct
         chosenIdeaID = nil
         let ideas = source.ideaChoices(forAge: age, mode: mode)
-        // No ideas under this mode for this band: nothing to personalise, so
-        // the step is skipped rather than shown with only "Bana bırak" on it.
-        ideaStepShown = !ideas.isEmpty
+        // Behind a flag, off in every build. With it on and no ideas under
+        // this mode for this band, the step is still skipped rather than shown
+        // with only "Bana bırak" on it.
+        ideaStepShown = StoryCreationSteps.showsIdeaStep(hasIdeas: !ideas.isEmpty)
         phase = ideaStepShown ? .idea(mode) : .companion
     }
 

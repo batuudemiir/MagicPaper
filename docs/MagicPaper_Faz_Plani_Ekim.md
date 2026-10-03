@@ -160,7 +160,7 @@ ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği i
 
 ---
 
-## FAZ 10 — Mod seti ve oluşturma akışı ⏳
+## FAZ 10 — Mod seti ve oluşturma akışı ✅
 
 **Amaç:** Yarat akışı bugünkü kararlara otursun.
 
@@ -184,6 +184,49 @@ ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği i
 güncel; eski masallar açılıyor; tasarım yasası grep kontrolleri temiz.
 
 **Sahip:** content-library (motor/katalog) + design-system (ekran). `StoryCreationFlow` tek sahipli.
+
+**Uygulama planı ve kararlar (K1-K9):** `FAZ10_UYGULAMA_PLANI.md`. Dal: `faz-10`.
+
+### Kapanış notu (4 Ekim 2026)
+
+**Doğrulama:**
+- Paket testleri 658, hata 18. Hata listesi tabanla birebir aynı.
+- App build yeşil.
+- Uygulama testleri 379/0 (1 atlanan; taban 359).
+- Reviewer: CRITICAL ve HIGH yok. İki MEDIUM düzeltildi: kurulamayan preset mod; preset ile fikir adımının atlanması testle sabitlendi.
+
+**Kabul kriterleri:**
+- Üç mod ve sürpriz her bantta ya masal üretiyor ya da modu göstermiyor (`testEveryBandEitherBuildsOrHidesEachMode`).
+- `StoryModeFlowTests` güncel.
+- Eski `"growth"` masalları "Yeni şeyler öğrenelim" olarak açılıyor (`testAStorySavedAsGrowthOpensAsLearning`).
+- Tasarım yasası: FAZ 10 yeni ihlal eklemedi; beş denetimin toplamı main ile aynı. Değişen dosyalardaki eski isabetler aşağıda borç olarak kayıtlı.
+
+**Ekran kontrolü** (iPhone 17 Pro, açık tema, en büyük Dynamic Type; mod adımı, "Masalda kimler olsun?", ana sayfa mod kartları, Ebeveyn > Çocuklar). İki kesilme bulundu ve düzeltildi:
+- Ana sayfa mod kartında "öğrenelim" kelime ortasından bölünüyordu. Kart satırdan sütun düzenine geçti; yanıltıcı seçim dairesi de kalktı.
+- Ebeveyn başlığı "Çocuk…" diye kesiliyordu. `MPParentHeader`, erişilebilirlik boyutlarında mod anahtarını başlığın üstüne alıyor. Üç ebeveyn ekranında ortak, değişiklik küçük.
+
+**Kapsam dışı bırakılanlar:**
+- iPhone SE ve Pro Max ekran görüntüleri alınmadı (Batuhan'ın kararı: 17 Pro yeterli).
+- Ana sayfa başlığındaki "Batu…" ve sekme çubuğundaki "Ana…" kesilmeleri FAZ 10'dan önce de vardı; dokunulmadı.
+
+**Devir:**
+- İçerik hattı: 3-4 bandı için öğrenelim ve macera blueprint'leri, uyku arkı, 7-8 ve 9-10 içeriği.
+- FAZ 12: Ebeveyn > Çocuklar'da "Favori dünyalar"ın boşalttığı yere İlgi alanları düzenleme bölümü gelecek.
+- FAZ 13: seri yalnızca `origin.selectionStrategy == "direct"` olan masaldan açılır.
+
+#### Tasarım yasası borcu
+
+FAZ 10'un dokunduğu ama düzeltmediği, FAZ 10'dan önce var olan isabetler. Hepsi çıplak sayılı `.padding(...)`;
+`MP.S` ölçeğinde karşılığı olmayan değerler (18, 30, 11, 13 vb.), düzeltmek görünümü değiştirir.
+
+| Dosya | İsabet |
+|---|---|
+| `DesignSystem/MPControls.swift` | 7 |
+| `DesignSystem/MPNavigation.swift` | 8 |
+| `Views/HomeView.swift` | 4 |
+| `Views/SettingsView.swift` | 6 |
+
+Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 
 ---
 
@@ -209,6 +252,8 @@ güncel; eski masallar açılıyor; tasarım yasası grep kontrolleri temiz.
 ---
 
 ## FAZ 12 — İlgi alanı sözlüğü ⏳
+
+> FAZ 10'dan not: Ebeveyn > Çocuklar'daki "Favori dünyalar" bölümü kaldırıldı. Çocuğun "İlgi alanları" düzenleme bölümü o konuma, profil listesinin altına gelir.
 
 **Amaç:** "Neleri sever" seçimi motorun diliyle aynı olsun.
 
@@ -364,10 +409,32 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 
 | İhtiyaç | Faz |
 |---|---|
-| `learning` modu blueprint'leri ve konuları | 10 |
+| `learning` modu blueprint'leri ve konuları; 3-4 bandı için en az bir `appeal` blueprint'i (bugün 3-4'te öğrenelim kurulamıyor) | 10 |
+| 3-4 bandı için en az bir `threshold` ya da `absence` blueprint'i (bugün 3-4'te macera kurulamıyor) | 10 |
+| Gerçek bir uyku arkı (bugün Uyku öncesi geçici olarak `charge` ailesine bağlı) | 10 |
 | 7-8 ve 9-10 bantları için blueprint ve şablonlar (bugün yalnızca 3-4, 5-6 var) | 10 |
 | İlişki türü varyantları (kardeş, arkadaş, hayvan, hayali varlık) | 11 |
 | İlgi alanı etiketleri | 12 |
 | `continuation` blueprint ailesi | 13 |
 | Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
 | Günün masalı ve eğitici hikâyeler (akış) | 15 |
+
+---
+
+## Tasarım yasası borç turu ⏳ — design-system (İrem)
+
+Ayrı bir turda, dosya sahibiyle. `CLAUDE.md` tasarım yasası kontrollerinin değiştirilen dosyalarda boş dönmesi
+için eski isabetler temizlenir. İlk liste FAZ 10 kapanışından:
+
+1. `DesignSystem/MPControls.swift` — 7 çıplak padding
+2. `DesignSystem/MPNavigation.swift` — 8 çıplak padding
+3. `Views/HomeView.swift` — 4 çıplak padding
+4. `Views/SettingsView.swift` — 6 çıplak padding
+
+Her değer ya `MP.S`'teki en yakın token'a oturur ya da gerekçesiyle yeni bir token açılır. Görsel fark
+ekran görüntüsüyle onaylanır. Repo geneli taban (4 Ekim 2026): padding 81, shadow 7, izinli iki dosya (`MPTheme.swift`, `MagicPaperCoverPalette.swift`) dışında `Color(hex:)` 59.
+
+## Açık sorular
+
+- **Koyu tema** (karar: İrem): Uygulama koyu temayı destekleyecek mi, yoksa bilinçli olarak her zaman açık kâğıt mı?
+  Bugün sistem koyu temadayken de uygulama açık kâğıtla açılıyor. FAZ 10'da tespit edildi, FAZ 10'un konusu değil.

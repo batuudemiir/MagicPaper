@@ -13,13 +13,47 @@ import EngineFoundation
 /// niyeti seçme biçimidir: MagicPaper ebeveyn adına bu üç moddan birini seçer.
 /// Onu bir mod olarak modellemek, sistemin her yerinde "sürpriz özel bir mod
 /// mu?" sorusunu doğururdu. Seçim biçimi `StorySelectionStrategy`'dir.
-public enum StoryMode: String, Codable, Sendable, Hashable, CaseIterable {
-    /// Gelişelim — bir şey keşfetmek, öğrenmek, bir beceride ilerlemek.
-    case growth
-    /// Maceraya Çıkalım — hedef, yolculuk, engel, çözüm, dönüş.
+///
+/// **Vaka sırası sabittir.** Sürprizin eşitlik bozması bu sıraya bakar; ekranda
+/// görünen sıra uygulamanın sunum katmanında ayrıca tanımlanır.
+public enum StoryMode: String, Sendable, Hashable, CaseIterable {
+    /// Yeni şeyler öğrenelim — bir şey keşfetmek, öğrenmek, bir beceride ilerlemek.
+    /// 3 Ekim 2026'ya kadar `growth` ("Gelişelim") adıyla kaydedildi.
+    case learning
+    /// Maceraya çıkalım — hedef, yolculuk, engel, çözüm, dönüş.
     case adventure
-    /// Uyku Zamanı — yavaş tempo, güven, tekrar, huzurlu son.
+    /// Uyku öncesi — yavaş tempo, güven, tekrar, huzurlu son.
     case bedtime
+
+    /// Artık yazılmayan ama kaydedilmiş masallarda ve eski kataloglarda duran
+    /// adlar. Veri yeniden yazılmaz; okurken çözülür.
+    public static let legacyAliases: [String: StoryMode] = ["growth": .learning]
+
+    /// Saklanmış bir mod kimliğini çözer: önce bugünkü ad, sonra eski ad.
+    ///
+    /// Kayıttan mod okuyan her yer `init(rawValue:)` yerine bunu kullanmalı;
+    /// yoksa eski bir masal modunu sessizce kaybeder.
+    public init?(storedID: String) {
+        guard let mode = StoryMode(rawValue: storedID) ?? Self.legacyAliases[storedID] else { return nil }
+        self = mode
+    }
+}
+
+extension StoryMode: Codable {
+    public init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        guard let mode = StoryMode(storedID: raw) else {
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: decoder.codingPath,
+                debugDescription: "'\(raw)' is not a story mode"))
+        }
+        self = mode
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rawValue)
+    }
 }
 
 /// Modun nasıl belirlendiği.
@@ -34,6 +68,11 @@ public enum StorySelectionStrategy: String, Codable, Sendable, Hashable {
 ///
 /// Yeni bir davranış kuralı gerekmedikçe bir modun içeriği değiştirmek Swift
 /// değişikliği gerektirmez — yalnızca katalog.
+///
+/// **Ton ayrı bir alan değil** (karar: 3 Ekim 2026). Bir masalın tonu modun
+/// ailelerinden gelir: Uyku öncesi yalnızca sakin, bakım üzerine kurulu
+/// aileleri kabul ettiği için sakin olur. Tonu değiştirmek aile listesini
+/// değiştirmektir. Uzunluk da moddan değil yaş bandından gelir (`AgeBand.pageCount`).
 public struct StoryModeProfile: Decodable, Sendable, Hashable {
     public let mode: StoryMode
     public let families: [NarrativeFamily]
@@ -64,7 +103,7 @@ public struct StoryModeProfile: Decodable, Sendable, Hashable {
 
 /// "Bana sürpriz yap"ın arkasındaki karar: üç moddan hangisi.
 ///
-/// Rastgele değil. Son hikâyeler Macera, Macera, Gelişelim ise yine Macera
+/// Rastgele değil. Son hikâyeler Macera, Macera, Öğrenelim ise yine Macera
 /// seçmek sürpriz değil tekrardır. Bu yüzden her aday, yakın geçmişte ne kadar
 /// göründüğüne göre puanlanır — en yeni hikâye en ağır basar — ve en az
 /// görünen seçilir. Eşitlik tohumla bozulur: aynı istek aynı modu verir.

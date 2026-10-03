@@ -8,7 +8,7 @@ extension Story {
 
     /// Masalın yazıldığı niyet. Mod öncesi masallarda `nil`.
     var mpMode: StoryMode? {
-        origin?.modeID.flatMap(StoryMode.init(rawValue:))
+        origin?.mode
     }
 
     /// Sesli okuma süresi, dakika.
@@ -102,12 +102,12 @@ enum MPShelfFilter: Hashable {
 
     /// Rafta gösterilecek süzgeçler.
     ///
-    /// Yalnızca rafta gerçekten bulunan modlar, sabit sırayla. Tek bir mod
+    /// Yalnızca rafta gerçekten bulunan modlar, ekran sırasıyla. Tek bir mod
     /// varsa hiç süzgeç yok: "Hepsi" ile o mod aynı listeyi verir ve iki
     /// düğmenin aynı şeyi yapması bir seçim değildir.
     static func available(in stories: [Story]) -> [MPShelfFilter] {
         let present = Set(stories.compactMap(\.mpMode))
-        let modes = StoryMode.allCases.filter(present.contains)
+        let modes = StoryMode.displayOrder.filter(present.contains)
         guard modes.count > 1 else { return [] }
         return [.all] + modes.map(MPShelfFilter.mode)
     }

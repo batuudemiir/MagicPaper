@@ -104,6 +104,6 @@ extension Story {
     var mpArtKit: StoryArtKit? { mpArtKit(in: .bundled) }
 
     func mpArtKit(in catalog: StoryArtKitCatalog) -> StoryArtKit? {
-        catalog.kit(modeID: origin?.modeID, worldID: origin?.worldID)
+        catalog.kit(modeID: origin?.mode?.rawValue, worldID: origin?.worldID)
     }
 }

@@ -505,10 +505,11 @@ public struct CatalogIntegrityChecker: Sendable {
             }
             if blueprint.pageCount != blueprint.ageRange.pageCount {
                 issues.append(.init(
-                    severity: .warning, code: "page_count_off_band", recordID: blueprint.id,
+                    severity: .error, code: "page_count_off_band", recordID: blueprint.id,
                     message: "Blueprint '\(blueprint.id)' \(blueprint.pageCount) sayfa, "
                         + "\(blueprint.ageRange) bandı ise \(blueprint.ageRange.pageCount) sayfa "
-                        + "için ölçüldü; kelime bütçesi bu sayfa sayısına göre hesaplanıyor."
+                        + "için ölçüldü; kelime bütçesi bu sayfa sayısına göre hesaplanıyor. "
+                        + "Uzunluk yaş bandından gelir (FAZ 10): sayfa sayısı bandı izlemeli."
                 ))
             }
         }
@@ -550,6 +551,31 @@ public struct CatalogIntegrityChecker: Sendable {
             for family in profile.families where !reachable.contains(where: { $0.family == family }) {
                 issues.append(.init(severity: .warning, code: "mode_family_unused",
                                     message: "Mode '\(mode.rawValue)' lists '\(family.rawValue)', but no beat-authored blueprint has that family."))
+            }
+        }
+        issues.append(contentsOf: checkModeBandCoverage(catalog))
+        return issues
+    }
+
+    /// Her mod, içeriği olan her bantta en az bir blueprint'e ulaşmalı.
+    ///
+    /// Ulaşamıyorsa bu bir **uyarı**, hata değil: mod o bant için
+    /// `availableModes`'tan düşer ve ekranda hiç görünmez. Uyarının işi,
+    /// eksiği içerik hattına söylemek. Hiç içeriği olmayan bir bant mod başına
+    /// değil bir kez raporlanır; o çocuk en yakın banttan sunulur.
+    private func checkModeBandCoverage(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let coverage = BlueprintSelector().modeCoverage(catalog: catalog)
+        var issues: [CatalogIssue] = []
+        for band in AgeBandResolver.bands {
+            let modes = coverage[band] ?? []
+            if modes.isEmpty {
+                issues.append(.init(severity: .warning, code: "band_without_content",
+                                    message: "Band \(band) has no beat-authored blueprint; it is served from the nearest band."))
+                continue
+            }
+            for mode in StoryMode.allCases where !modes.contains(mode) && catalog.modeProfile(mode) != nil {
+                issues.append(.init(severity: .warning, code: "mode_unavailable_in_band",
+                                    message: "Mode '\(mode.rawValue)' reaches no beat-authored blueprint in band \(band); it is not offered there."))
             }
         }
         return issues

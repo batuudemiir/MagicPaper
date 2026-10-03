@@ -8,22 +8,25 @@ import SwiftUI
 struct MPParentHeader: View {
     @EnvironmentObject private var app: MPAppState
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let title: String
     var subtitle: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: MP.S.x1) {
-            HStack(spacing: MP.S.x3) {
-                Text(title)
-                    .font(MP.F.displayLG())
-                    .mpTightTracking(32)
-                    .foregroundStyle(MP.C.textTitle)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
-                    .accessibilityAddTraits(.isHeader)
-                Spacer(minLength: 0)
-                MPModeSwitch(isParent: true) { parent in
-                    if !parent { app.enterChildMode() }
+            // Erişilebilirlik boyutlarında anahtar başlığın üstüne çıkar:
+            // aynı satırda "Çocuklar" bile "Çocuk…" diye kesiliyordu.
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: MP.S.x2) {
+                    modeSwitch
+                    titleText
+                }
+            } else {
+                HStack(spacing: MP.S.x3) {
+                    titleText
+                    Spacer(minLength: 0)
+                    modeSwitch
                 }
             }
             if let subtitle {
@@ -35,5 +38,21 @@ struct MPParentHeader: View {
         }
         .padding(.horizontal, MP.S.screenGutter)
         .padding(.vertical, MP.S.x1)
+    }
+
+    private var titleText: some View {
+        Text(title)
+            .font(MP.F.displayLG())
+            .mpTightTracking(32)
+            .foregroundStyle(MP.C.textTitle)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .accessibilityAddTraits(.isHeader)
+    }
+
+    private var modeSwitch: some View {
+        MPModeSwitch(isParent: true) { parent in
+            if !parent { app.enterChildMode() }
+        }
     }
 }

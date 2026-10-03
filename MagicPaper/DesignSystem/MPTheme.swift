@@ -35,7 +35,20 @@ enum MP {
     // MARK: Temel palet
 
     enum Palette {
-        // Gül — birincil marka
+        // Mor — eylem rengi (karar: 3 Ekim 2026). 500, 600 ve 900 İrem'in
+        // canvas'ından; 400, 50 ve 100 türetildi ve onaylandı. Kontrastlar
+        // `docs/MagicPaper_Design_System.md`'de. Degrade yok.
+        static let mor50      = Color(hex: 0xF2EDFA)
+        static let mor100     = Color(hex: 0xDCD0F1)
+        static let mor400     = Color(hex: 0x7653C2)
+        static let mor500     = Color(hex: 0x6A47B8)
+        static let mor600     = Color(hex: 0x5C3A8F)
+        static let mor900     = Color(hex: 0x3A2458)
+        /// Kâğıtta 3.74:1 — metin ve ikon için yetersiz. Yalnızca
+        /// `C.focusRing` ve `C.brandTrack` okur.
+        static let morLavanta = Color(hex: 0x8F6BD6)
+
+        // Gül — eski birincil marka; artık dünya ve avatar aksanı
         static let gul50  = Color(hex: 0xFDF0F4)
         static let gul100 = Color(hex: 0xF9D9E3)
         static let gul200 = Color(hex: 0xF0AEC3)
@@ -144,11 +157,17 @@ enum MP {
     // MARK: Semantik renkler — bileşenlerde YALNIZCA bunları kullan
 
     enum C {
-        static let brand      = Palette.gul500
-        static let brandHover = Palette.gul400
-        static let brandPress = Palette.gul600
-        static let brandEdge  = Palette.gul700
-        static let brandSoft  = Palette.gul50
+        static let brand      = Palette.mor500
+        static let brandHover = Palette.mor400
+        static let brandPress = Palette.mor600
+        static let brandEdge  = Palette.mor900
+        static let brandSoft  = Palette.mor50
+        /// `brandSoft` yüzeyin süs kenarı ve sönük veri çubuğu. Metin taşımaz.
+        static let brandSoftEdge = Palette.mor100
+        /// `brandSoft` üstünde metin ve ikon (7.44:1).
+        static let brandInk   = Palette.mor600
+        /// Tamamlanmış adım noktası. Metin dışı öğe (3.74:1 ≥ 3:1).
+        static let brandTrack = Palette.morLavanta
         static let textOnBrand = Palette.kagit0
 
         static let reward     = Palette.hardal400
@@ -168,7 +187,7 @@ enum MP {
         static let textBody  = Palette.murekkep700
         static let textMuted = Palette.murekkep500
         static let textFaint = Palette.murekkep300
-        static let textLink  = Palette.gul600
+        static let textLink  = Palette.mor600
 
         static let surfaceApp     = Palette.kagit100
         static let surfaceCard    = Palette.kagit0
@@ -185,7 +204,7 @@ enum MP {
         static let warning = Palette.hardal400
         static let danger  = Palette.mercan500
 
-        static let focusRing = Palette.gul300
+        static let focusRing = Palette.morLavanta
         static let scrim     = Palette.murekkep900.opacity(0.44)
 
         /// Dairesel öğelerin sert alt kenarı — `mpEdge`'in yuvarlak karşılığı.
@@ -587,7 +606,7 @@ enum MP {
         static let card    = ShadowSpec(color: Palette.murekkep900.opacity(0.06), radius: 7,  x: 0, y: 4)
         static let lifted  = ShadowSpec(color: Palette.murekkep900.opacity(0.10), radius: 13, x: 0, y: 10)
         static let sheet   = ShadowSpec(color: Palette.murekkep900.opacity(0.16), radius: 17, x: 0, y: -8)
-        static let brand   = ShadowSpec(color: Palette.gul500.opacity(0.22),      radius: 9,  x: 0, y: 6)
+        static let brand   = ShadowSpec(color: Palette.mor500.opacity(0.22),      radius: 9,  x: 0, y: 6)
 
         /// Tek başına duran görsel: logo, boş durum illüstrasyonu.
         /// Kart gölgesinden ayrıdır — kartın derinliği `mpEdge`'ten gelir,
