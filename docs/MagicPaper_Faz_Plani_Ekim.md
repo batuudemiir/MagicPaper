@@ -113,11 +113,18 @@ dosya envanterde gerekçesiyle.
 Sırayla ilgili not: sihirbaz `createCustomStory`'nin tek çağıranı olduğu için "sihirbazı kaldır" commit'i
 "bulut metin yolunu kaldır"dan önce geldi; her commit derleniyor.
 
-Açık kalanlar: tasarım yasasının ekran görüntüsü matrisi yarım kaldı (açık tema, normal boyut, iPhone 17 Pro'da
-Ana Sayfa + masal detayı + okuyucu bakıldı; koyu tema, en büyük Dynamic Type, Pro Max ve Ebeveyn > Çocuklar
-alınamadı — okuyucunun X butonu kapanmıyor, bilinen ayrı sorun; bu Mac'te iPhone SE simülatörü yok).
-Değişen ekranlarda yeni tasarım yasası ihlali yok (`HomeView`'deki 4 çıplak `.padding` eski). `DesignSystem/MPBridge.swift:8`
-yorumu hâlâ "Gemini/Fal.ai hattı" diyor (DesignSystem dosyalarına bu fazda dokunulmadı).
+Değişen ekranlarda yeni tasarım yasası ihlali yok (`HomeView`'deki 4 çıplak `.padding` eski).
+
+**Borç (4 Ekim 2026 kararları):**
+- **Ekran görüntüsü kontrolü (borç):** tasarım yasasının matrisi yarım kaldı. Açık tema, normal boyut, iPhone 17 Pro'da
+  Ana Sayfa + masal detayı + okuyucu bakıldı; koyu tema, en büyük Dynamic Type, Pro Max ve Ebeveyn > Çocuklar
+  alınamadı, çünkü okuyucunun X butonu kapanmıyor ve gezinmeyi kilitliyor. Ayrı iş: `fix/reader-close` dalı;
+  düzeltildikten sonra eksik kontroller orada tamamlanır. Bu Mac'te iPhone SE simülatörü yok.
+- **Premium kararıyla ele alınacak ölü kod:** sihirbaz kalkınca yıldız harcayan yol kalmadı.
+  `SubscriptionManager.remainingImageStories`, `freeTrialCount`, `canCreateFreeTextStory` ve `useStory(type:)`
+  bugün ölü ya da öksüz. Premium kararına kadar dokunulmaz. `SimpleSubscriptionView.swift` da derleniyor ama
+  hiçbir kullanıcı yolundan açılmıyor; paywall işiyle birlikte ele alınır.
+- `DesignSystem/MPBridge.swift:8` yorumu hâlâ "Gemini/Fal.ai hattı" diyor → FAZ 10 design-system işine eklendi.
 
 ### Faz 9 envanteri
 
@@ -171,6 +178,7 @@ ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği i
    (9-10) sunulur; profilde yaş seçimi 3-10 ile sınırlanır. Sunulan bant ile içeriğin olduğu bant
    farklıysa `servedBand` mevcut mantığıyla çalışır.
 6. Tasarım token'ı: `MP.C` eylem rengi #6A47B8 (`MP.Palette`'te tanımlanır). Tasarım yasası kontrolleri boş döner.
+7. Faz 9'dan devir (design-system): `DesignSystem/MPBridge.swift:8` yorumu kaldırılan "Gemini/Fal.ai hattı"ndan söz ediyor; güncellenir.
 
 **Kabul:** üç mod + sürpriz her bantta ya masal üretiyor ya da modu göstermiyor; `StoryModeFlowTests`
 güncel; eski masallar açılıyor; tasarım yasası grep kontrolleri temiz.
