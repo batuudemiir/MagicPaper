@@ -63,7 +63,7 @@ FAZ 16 Hesap ve senkron (Firebase)  ← Faz 11-13 modelleri sabitlendikten sonra
 
 ---
 
-## FAZ 9 — Temizlik ve taban ⏳
+## FAZ 9 — Temizlik ve taban ✅
 
 **Amaç:** Erişmek istediğimiz dosyalar bulunabilir olsun, ölü kod ve eski rehberler çıksın,
 plan tek kaynaktan okunsun.
@@ -96,6 +96,60 @@ yalnızca proje dosyaları, yasal sayfalar, `README.md`, `docs/`, kaynak klasör
 dosya envanterde gerekçesiyle.
 
 **Sahip:** builder (lead). Paylaşılan dosya yok; diğer fazlar başlamadan biter.
+
+### Kapanış notu (3 Ekim 2026, dal `faz-9`)
+
+| Kabul kriteri | Nasıl karşılandı |
+|---|---|
+| App build yeşil | `xcodebuild test` (iPhone 17 Pro simülatörü) `TEST SUCCEEDED` |
+| Uygulama testleri ≥ 248 | Taban 341 / 0 hata (1 atlanan) → **350 / 0 hata** (1 atlanan). Yeni: `CloudIllustrationAccessTests` (5), `LegacyCloudStoryDecodingTests` (4) |
+| Paket hata sayısı ≤ 18 | Taban 647 / 18 → **647 / 18** (temiz HEAD kopyasında ölçüldü); VisualSystem 89 / 0 |
+| Kök dizinde yalnızca proje dosyaları, yasal sayfalar, README, docs, kaynak klasörleri | Kök: `.github`, `AssetCatalog`, `Assets`, `ExportOptions.plist` (CI), `MagicPaper/`, `MagicPaper.xcodeproj`, `MagicPaperTests/`, `Scripts/`, `StoryEngine/`, `TestPlan.xctestplan`, `Tools/`, `ci_scripts/`, `docs/`, `marketing/`, `promo/`, `README.md`, `Secrets.xcconfig.template` (+ git dışı `Secrets.xcconfig`), yasal sayfalar (`PRIVACY_POLICY.md`, `TERMS_OF_SERVICE.md`, `privacy.html`, `privacy_policy.html`, `terms_of_service.html`, `accessibility.html`) |
+| Silinen her dosya envanterde gerekçesiyle | Aşağıdaki "Faz 9 envanteri" |
+| Kaydedilmiş masallar açılıyor | Geriye dönük çözme testleri (eski bulut masalı: `completed`/`generatingImages`, `imageUrl`, `coverImageUrl`, `origin` yok → `LibraryMigration`, `LibraryFileStore`, okuyucu eşlemesi); simülatörde mevcut kütüphane, masal detayı ve okuyucu açıldı |
+| Metin masal yalnızca `OfflineStoryService` | `AIService`, `GeminiStoryAIProvider`, `createCustomStory`, `createCategoryBasedStory`, `TextStory*` silindi; `grep "AIService\b\|GeminiStoryAIProvider\|createCustomStory\|GEMINI"` uygulama ve `ci_scripts`'te boş |
+| Görsel bulut yolu bayrak arkasında, çocuk akışından erişilemez | `CloudIllustrationAccess` (Release'te sabit `false`, DEBUG'da varsayılan kapalı, UI anahtarı yok); görsel yardımcıları `CloudIllustrationPipeline`'a taşındı; `StoryEngineContainer` bayrak kapalıyken kurulmuyor. `Screens/`, `Views/`, `ContentView`, `StoryGenerationManager`'dan bu tiplere referans yok |
+
+Sırayla ilgili not: sihirbaz `createCustomStory`'nin tek çağıranı olduğu için "sihirbazı kaldır" commit'i
+"bulut metin yolunu kaldır"dan önce geldi; her commit derleniyor.
+
+Açık kalanlar: tasarım yasasının ekran görüntüsü matrisi yarım kaldı (açık tema, normal boyut, iPhone 17 Pro'da
+Ana Sayfa + masal detayı + okuyucu bakıldı; koyu tema, en büyük Dynamic Type, Pro Max ve Ebeveyn > Çocuklar
+alınamadı — okuyucunun X butonu kapanmıyor, bilinen ayrı sorun; bu Mac'te iPhone SE simülatörü yok).
+Değişen ekranlarda yeni tasarım yasası ihlali yok (`HomeView`'deki 4 çıplak `.padding` eski). `DesignSystem/MPBridge.swift:8`
+yorumu hâlâ "Gemini/Fal.ai hattı" diyor (DesignSystem dosyalarına bu fazda dokunulmadı).
+
+### Faz 9 envanteri
+
+Kök dizin (git'ten silindi): 37 eski rehber `.md` (`ADD_REVENUECAT_TO_TARGET`, `APP_STORE_CONNECT_*` ×4,
+`APP_STORE_FINAL_SUBMISSION`, `APP_STORE_SUBMISSION_FIX`, `BUILD_FIX_SUMMARY`, `DEBUG_BUILD_REQUIRED`,
+`FIX_REVENUECAT_MODULE_ERROR`, `HEMEN_YAPILACAKLAR`, `LOCALIZATION_GUIDE`, `MANUAL_UPLOAD_GUIDE`, `PAYWALL_*` ×5,
+`QUICK_START`, `REVENUECAT_*` ×12, `SECURITY_WARNING`, `SONRAKI_ADIMLAR`, `SUBSCRIPTION_COMPLIANCE_CHECKLIST`,
+`ACCESSIBILITY_GUIDE`, `READING_CUSTOMIZATION_GUIDE`) — tek seferlik düzeltme notları ve Gemini dönemi rehberleri,
+kod/doc referansı yok. `SKILL.md` (başka projeden skill kopyası), `.claude.md` (eski Gemini prompt'u), `.vscode/settings.json`.
+24 tek seferlik betik (`*.sh` ×17, `add_*_to_xcode.rb` ×2, `generate_v2.py`, `localize_app.py`, `update_wizard.swift`,
+`translate_all.swift` (boş), `turkish_strings.txt`) — build fazında/CI'da çağrılmıyor.
+`Retired/` (5 swift, derlenmiyordu), `MagicPaper/Views/MagicPaper 2026-01-30 18-01-07/` (dağıtım çıktısı),
+`MagicPaper/patch.swift`, `MagicPaper/Services/LocalizationManager_Extended.swift` (target üyesi değildi), boş `MagicPaper/MagicPaper/`.
+
+Git dışı (çöp kutusuna taşındı, `~/.Trash/MagicPaper-Faz9-20261003/`): `build_log.txt`, `build_stateobj_fix.log`,
+`xcodebuild.log`, `m.xcodeproj/` (boş kabuk), boş `Development/`, dağıtım çıktısındaki `MagicPaper.ipa`; üst klasörden
+`fix_resolver.swift`, `full_local_test.swift`, `local_test.swift`, `run_test_now.swift`, `test_run.swift`,
+`test_runner.swift`, `test_story_init.swift`, `update_engine.swift`.
+
+Kod: `Services/AIService.swift`, `StoryEngineBridge/GeminiStoryAIProvider.swift`, `Services/TextStoryManager.swift`,
+`Models/TextStory.swift`, `Models/TextOnlyStory.swift` (bulut metin yolu / hiç çağrılmıyor);
+`Screens/StoryWizardView.swift`, `Screens/StoryGeneratingView.swift`, `MPAppState` sihirbaz alanları (karar: sihirbaz kalkar;
+içindeki `MPWrapRow`/`MPFlowLayout` `Screens/MPWrapRow.swift`'e taşındı); `Views/FirebaseTestView.swift`,
+`Views/LocalImageView.swift`, `Helpers/ImagePicker.swift` (hiçbir yerden açılmıyordu); `APIKeys.gemini`,
+`GEMINI_API_KEY`/`GEMINI_BUNDLE_ID` (Info.plist, şablonlar, CI); kamera ve fotoğraf kütüphanesi okuma izin metinleri.
+`MagicPaper/GoogleService-Info.plist` git takibinden çıkarıldı (yerel dosya duruyor).
+
+Kalanlar (madde 7 ile çelişki, karar: kalır): `ProfileSelectorView` (kök akış) ve `SimpleSubscriptionView`
+(PaywallView yedeği) canlı. `Views/` altındaki diğer 7 ekran yeni tasarıma yerinde taşınmış, canlı.
+
+docs: Eylül raporları ve yerini alan planlar `docs/retired/`'a taşındı (21 belge); `MagicPaper_Wave0_Stabilization`
+ve `MagicPaper_MultiAgent_Status` kodda/etkin belgelerde kaynak gösterildiği için yerinde kaldı. `docs/README.md` tek liste.
 
 ---
 
