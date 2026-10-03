@@ -72,7 +72,7 @@ struct FalImageProvider: ImageProvider {
             let code = (response as? HTTPURLResponse)?.statusCode ?? -1
             throw StoryEngineError.providerFailed(
                 operation: .imageGeneration,
-                errorClass: GeminiStoryAIProvider.classify(statusCode: code),
+                errorClass: Self.classify(statusCode: code),
                 message: "HTTP \(code): \(String(data: data, encoding: .utf8)?.prefix(300) ?? "")"
             )
         }
@@ -116,7 +116,7 @@ struct FalImageProvider: ImageProvider {
         } catch {
             throw StoryEngineError.providerFailed(
                 operation: .imageGeneration,
-                errorClass: GeminiStoryAIProvider.classify(transportError: error),
+                errorClass: Self.classify(transportError: error),
                 message: error.localizedDescription
             )
         }
@@ -137,7 +137,7 @@ struct FalImageProvider: ImageProvider {
             if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
                 throw StoryEngineError.providerFailed(
                     operation: .imageGeneration,
-                    errorClass: GeminiStoryAIProvider.classify(statusCode: http.statusCode),
+                    errorClass: Self.classify(statusCode: http.statusCode),
                     message: "Image download returned HTTP \(http.statusCode)"
                 )
             }
@@ -147,7 +147,7 @@ struct FalImageProvider: ImageProvider {
         } catch {
             throw StoryEngineError.providerFailed(
                 operation: .imageGeneration,
-                errorClass: GeminiStoryAIProvider.classify(transportError: error),
+                errorClass: Self.classify(transportError: error),
                 message: "Image download failed: \(error.localizedDescription)"
             )
         }
@@ -167,6 +167,27 @@ struct FalImageProvider: ImageProvider {
         case .portrait: return "3:4"
         case .landscape: return "4:3"
         case .wideLandscape: return "16:9"
+        }
+    }
+
+    static func classify(statusCode: Int) -> ErrorClass {
+        switch statusCode {
+        case 429: return .rateLimited
+        case 500...599: return .transient
+        case 408: return .transient
+        default: return .permanent
+        }
+    }
+
+    static func classify(transportError: Error) -> ErrorClass {
+        guard let urlError = transportError as? URLError else { return .transient }
+        switch urlError.code {
+        case .cancelled: return .cancelled
+        case .timedOut, .networkConnectionLost, .notConnectedToInternet,
+             .cannotFindHost, .cannotConnectToHost, .dnsLookupFailed:
+            return .transient
+        case .badURL, .unsupportedURL: return .permanent
+        default: return .transient
         }
     }
 }

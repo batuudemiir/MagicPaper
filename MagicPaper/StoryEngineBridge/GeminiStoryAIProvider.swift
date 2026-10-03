@@ -81,7 +81,7 @@ struct GeminiStoryAIProvider: StoryAIProvider {
         } catch {
             throw StoryEngineError.providerFailed(
                 operation: request.operation,
-                errorClass: Self.classify(transportError: error),
+                errorClass: FalImageProvider.classify(transportError: error),
                 message: error.localizedDescription
             )
         }
@@ -94,7 +94,7 @@ struct GeminiStoryAIProvider: StoryAIProvider {
         guard (200...299).contains(http.statusCode) else {
             throw StoryEngineError.providerFailed(
                 operation: request.operation,
-                errorClass: Self.classify(statusCode: http.statusCode),
+                errorClass: FalImageProvider.classify(statusCode: http.statusCode),
                 message: "HTTP \(http.statusCode): \(String(data: data, encoding: .utf8)?.prefix(300) ?? "")"
             )
         }
@@ -135,26 +135,5 @@ struct GeminiStoryAIProvider: StoryAIProvider {
         let inputRate = pricePerMillionInputTokens[tier] ?? 0
         let outputRate = pricePerMillionOutputTokens[tier] ?? 0
         return (Double(input) / 1_000_000 * inputRate) + (Double(output) / 1_000_000 * outputRate)
-    }
-
-    static func classify(statusCode: Int) -> ErrorClass {
-        switch statusCode {
-        case 429: return .rateLimited
-        case 500...599: return .transient
-        case 408: return .transient
-        default: return .permanent
-        }
-    }
-
-    static func classify(transportError: Error) -> ErrorClass {
-        guard let urlError = transportError as? URLError else { return .transient }
-        switch urlError.code {
-        case .cancelled: return .cancelled
-        case .timedOut, .networkConnectionLost, .notConnectedToInternet,
-             .cannotFindHost, .cannotConnectToHost, .dnsLookupFailed:
-            return .transient
-        case .badURL, .unsupportedURL: return .permanent
-        default: return .transient
-        }
     }
 }

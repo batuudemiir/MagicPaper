@@ -7,8 +7,7 @@ import VisualSystem
 ///
 /// Everything the engine needs is assembled here, once. The engine itself takes
 /// its dependencies through initializers and reaches for no singletons; this is
-/// the only place that knows the app uses `FileManagerService`, Gemini and
-/// fal.ai, which is what makes swapping any of them a change to this file.
+/// the only place that knows the app uses `FileManagerService` and fal.ai, which is what makes swapping any of them a change to this file.
 ///
 /// Nothing in this type runs automatically. The engine ships unwired: existing
 /// story creation still goes through `StoryGenerationManager`, untouched.
@@ -17,7 +16,7 @@ final class StoryEngineContainer {
 
     /// Why the engine could not be built, when it could not.
     enum UnavailableReason: String, Error {
-        case missingGeminiKey
+        case cloudIllustrationDisabled
         case missingFalKey
     }
 
@@ -31,11 +30,20 @@ final class StoryEngineContainer {
     ///
     /// Returns a failure rather than trapping on a missing key: a configuration
     /// problem should surface as a disabled feature, never as a launch crash.
+    ///
+    /// This is the cloud illustration path (fal.ai), so it refuses to build
+    /// unless `CloudIllustrationAccess` is on. The text provider has no default:
+    /// text stories are on-device, and nothing here picks a vendor for them.
     static func make(
+        textProvider: StoryAIProvider,
         imageValidationProvider: ImageValidationProvider? = nil,
-        concurrency: GenerationConcurrencyPolicy = .conservative
+        concurrency: GenerationConcurrencyPolicy = .conservative,
+        defaults: UserDefaults = .standard
     ) -> Result<StoryEngineContainer, UnavailableReason> {
-        guard let aiProvider = GeminiStoryAIProvider() else { return .failure(.missingGeminiKey) }
+        guard CloudIllustrationAccess.isEnabled(defaults: defaults) else {
+            return .failure(.cloudIllustrationDisabled)
+        }
+        let aiProvider = textProvider
         guard let imageProvider = FalImageProvider() else { return .failure(.missingFalKey) }
         return .success(
             StoryEngineContainer(

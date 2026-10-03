@@ -22,7 +22,6 @@ class StoryGenerationManager: ObservableObject {
     
     // MARK: - Private Properties
     
-    private let firebaseUploader = FirebaseImageUploader.shared
     private let aiService = AIService.shared
     private let fileManager = FileManagerService.shared
     
@@ -172,153 +171,27 @@ class StoryGenerationManager: ObservableObject {
         return storyId
     }
     
-    // MARK: - Image Generation
-    
-    /// Download and save image to disk - ROBUST VERSION
-    private func downloadAndSaveImage(from urlString: String, pageId: UUID) async -> String? {
-        // 1. Validate URL
-        guard let url = URL(string: urlString) else {
-            logger.error("❌ Invalid URL: \(urlString)")
-            return nil
-        }
-        
-        do {
-            // 2. Download Data (THE CRITICAL STEP!)
-            logger.debug("⬇️ Downloading image...")
-            let (data, response) = try await URLSession.shared.data(from: url)
-            
-            // Verify response
-            if let httpResponse = response as? HTTPURLResponse {
-                logger.debug("📡 Download response: HTTP \(httpResponse.statusCode)")
-                guard httpResponse.statusCode == 200 else {
-                    logger.error("❌ Bad HTTP status: \(httpResponse.statusCode)")
-                    return nil
-                }
-            }
-            
-            logger.debug("✅ Downloaded: \(data.count) bytes (\(data.count / 1024) KB)")
-            
-            // 3. Create Filename
-            let fileName = "\(pageId.uuidString).jpg"
-            
-            // 4. Save using FileManagerService (consistent with cover image)
-            guard let savedFileName = fileManager.saveImage(data: data, fileName: fileName) else {
-                logger.error("❌ Failed to save image to disk")
-                return nil
-            }
-            
-            logger.debug("✅ Image saved as: \(savedFileName)")
-            
-            return savedFileName // Return the filename
-            
-        } catch {
-            logger.error("❌ Download/Save Error: \(String(describing: error))")
-            logger.error("❌ Error details: \(error.localizedDescription)")
-            if let urlError = error as? URLError {
-                logger.error("❌ URLError code: \(urlError.code.rawValue)")
-            }
-            return nil
+    // MARK: - Illustration results
+
+    /// Applies what `CloudIllustrationPipeline` returned. The pipeline never
+    /// touches this manager's state; this is the only place that does.
+    private func illustrate(storyId: UUID, referencePhotoUrl: String, theme: StoryTheme) async throws {
+        guard let pages = stories.first(where: { $0.id == storyId })?.pages else { return }
+        updateStoryStatus(storyId: storyId, status: .generatingImages, progress: "İllüstrasyonlar oluşturuluyor... (0/\(pages.count))")
+        _ = try await CloudIllustrationPipeline.generateImages(
+            for: pages, referencePhotoUrl: referencePhotoUrl, theme: theme
+        ) { [weak self] image in
+            self?.setPageImage(storyId: storyId, result: image)
         }
     }
-    
-    /// CLEAN REFACTORED: Generate images for all pages
-    /// Flow: Fal.ai -> Download -> Save to Disk -> Update UI
-    @MainActor
-    private func generateImagesForStory(
-        storyId: UUID,
-        referencePhotoUrl: String,
-        childName: String,
-        theme: StoryTheme
-    ) async {
-        
-        guard let storyIndex = stories.firstIndex(where: { $0.id == storyId }) else {
-            logger.error("❌ Story not found")
-            return
-        }
-        
-        let totalPages = stories[storyIndex].pages.count
-        logger.debug("🎨 STARTING IMAGE GENERATION")
-        logger.debug("🎨 Total pages: \(totalPages)")
-        logger.debug("🎨 Theme: \(theme.displayName)")
-        
-        // CRITICAL: Generate a consistent seed for this story
-        // Same seed = Same character appearance across all pages
-        let storySeed = Int.random(in: 1000...999999)
-        logger.debug("🎲 STORY SEED GENERATED")
-        logger.debug("🎲 Seed: \(storySeed)")
-        logger.debug("🎲 Purpose: Same character across all 7 pages")
-        logger.debug("🎲 Note: Nano Banana may not support seed")
-        logger.debug("🎲 Primary identity: 4x reference images")
-        
-        // Loop through each page
-        for pageIndex in 0..<totalPages {
-            let pageNumber = pageIndex + 1
-            let page = stories[storyIndex].pages[pageIndex]
-            
-            logger.debug("\n📄 ========================================")
-            logger.debug("📄 PAGE \(pageNumber)/\(totalPages)")
-            
-            // Update status
-            updateStoryStatus(
-                storyId: storyId,
-                status: .generatingImages,
-                progress: "Sayfa \(pageNumber)/\(totalPages) çiziliyor..."
-            )
-            
-            do {
-                // ✅ FIX: Use imagePrompt instead of text!
-                // imagePrompt has detailed scene description from Gemini
-                let promptToUse = page.imagePrompt.isEmpty ? page.text : page.imagePrompt
-                
-                logger.debug("🎯 Identity: Using 4x reference images + seed \(storySeed)")
-                
-                // A. Generate Link with CONSISTENT SEED + REFERENCE PHOTO
-                let remoteUrl = try await FalAIImageGenerator.shared.generateImage(
-                    prompt: promptToUse,  // ✅ Use detailed imagePrompt
-                    referenceImageUrl: referencePhotoUrl,  // ✅ Pass reference photo
-                    style: theme.rawValue,
-                    seed: storySeed  // ✅ SAME seed for all pages = consistent character
-                )
-                logger.debug("✅ Remote URL received: \(remoteUrl.prefix(60))...")
-                
-                // B. Download & Save
-                logger.debug("⬇️ Downloading image...")
-                if let localFileName = await downloadAndSaveImage(from: remoteUrl, pageId: page.id) {
-                    // C. Update Model & Save
-                    await MainActor.run {
-                        stories[storyIndex].pages[pageIndex].imageUrl = localFileName
-                        saveStories() // Update UI immediately
-                        objectWillChange.send()
-                    }
-                    
-                    logger.debug("✅ PAGE \(pageNumber) COMPLETE!")
-                    logger.debug("✅ Saved as: \(localFileName)")
-                    logger.debug("✅ Identity: Same child as reference photo")
-                } else {
-                    logger.error("❌ PAGE \(pageNumber) DOWNLOAD FAILED")
-                    logger.error("❌ Could not save image to disk")
-                }
-                
-            } catch {
-                logger.error("❌ PAGE \(pageNumber) GENERATION FAILED")
-                logger.error("❌ Error: \(error.localizedDescription)")
-                if let urlError = error as? URLError {
-                    logger.error("❌ URLError code: \(urlError.code.rawValue)")
-                }
-                logger.error("❌ Continuing with next page...")
-                // Continue with next page
-            }
-            
-            // Small delay between requests
-            try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
-        }
-        
-        logger.debug("🎉 All images generated!")
-        
-        // Mark story as completed
-        updateStoryStatus(storyId: storyId, status: .completed, progress: "Tamamlandı!")
+
+    private func setPageImage(storyId: UUID, result: CloudIllustrationPipeline.PageImage) {
+        guard let storyIndex = stories.firstIndex(where: { $0.id == storyId }),
+              let pageIndex = stories[storyIndex].pages.firstIndex(where: { $0.id == result.pageID }) else { return }
+        stories[storyIndex].pages[pageIndex].imageUrl = result.fileName
+        saveStories()
     }
-    
+
     // MARK: - Story Text Generation
     
     /// Generates story in background with status updates
@@ -347,7 +220,7 @@ class StoryGenerationManager: ObservableObject {
             logger.debug("📤 STEP 1: Uploading photo to Firebase...")
             updateStoryStatus(storyId: storyId, status: .uploading, progress: "Fotoğraf yükleniyor...")
             
-            let downloadURL = try await firebaseUploader.uploadImageToFirebase(image: image)
+            let downloadURL = try await CloudIllustrationPipeline.uploadChildPhoto(image)
             uploadedPhotoURL = downloadURL
             logger.debug("✅ Firebase upload successful!")
             
@@ -382,7 +255,7 @@ class StoryGenerationManager: ObservableObject {
             updateStoryStatus(storyId: storyId, status: .generatingImages, progress: "İllüstrasyonlar oluşturuluyor... (0/\(storyPages.count))")
             
             // Generate images for all pages
-            await generateImagesForStory(storyId: storyId, referencePhotoUrl: downloadURL, childName: childName, theme: theme)
+            try await illustrate(storyId: storyId, referencePhotoUrl: downloadURL, theme: theme)
             
             // STEP 4: Mark as completed and send notification
             logger.debug("🎉 STORY GENERATION COMPLETED!")
@@ -412,7 +285,7 @@ class StoryGenerationManager: ObservableObject {
         }
 
         if let uploadedPhotoURL {
-            await firebaseUploader.deleteUploadedImage(at: uploadedPhotoURL)
+            await CloudIllustrationPipeline.deleteChildPhoto(at: uploadedPhotoURL)
         }
     }
     
@@ -439,7 +312,7 @@ class StoryGenerationManager: ObservableObject {
             logger.debug("📤 STEP 1: Uploading photo to Firebase...")
             updateStoryStatus(storyId: storyId, status: .uploading, progress: "Fotoğraf yükleniyor...")
             
-            let downloadURL = try await firebaseUploader.uploadImageToFirebase(image: image)
+            let downloadURL = try await CloudIllustrationPipeline.uploadChildPhoto(image)
             uploadedPhotoURL = downloadURL
             logger.debug("✅ Firebase upload successful!")
             
@@ -474,7 +347,7 @@ class StoryGenerationManager: ObservableObject {
             updateStoryStatus(storyId: storyId, status: .generatingImages, progress: "İllüstrasyonlar oluşturuluyor... (0/\(storyPages.count))")
             
             // Generate images for all pages
-            await generateImagesForStory(storyId: storyId, referencePhotoUrl: downloadURL, childName: childName, theme: theme)
+            try await illustrate(storyId: storyId, referencePhotoUrl: downloadURL, theme: theme)
             
             // STEP 4: Mark as completed and send notification
             logger.debug("🎉 CATEGORY STORY GENERATION COMPLETED!")
@@ -499,7 +372,7 @@ class StoryGenerationManager: ObservableObject {
         }
 
         if let uploadedPhotoURL {
-            await firebaseUploader.deleteUploadedImage(at: uploadedPhotoURL)
+            await CloudIllustrationPipeline.deleteChildPhoto(at: uploadedPhotoURL)
         }
     }
     
