@@ -5,7 +5,7 @@
 **Durum:** Bu doküman bugünün mimarisinin tek doğru referansıdır.
 **Kapsam:** Salt inceleme. Bu turda hiçbir üretim kodu değiştirilmedi.
 
-Bu doküman `docs/ARCHITECTURE_AUDIT.md` (2026-09-15) yerine geçer; o doküman
+Bu doküman `docs/retired/ARCHITECTURE_AUDIT.md` (2026-09-15) yerine geçer; o doküman
 **eskimiştir** ve §10'da hangi iddialarının artık yanlış olduğu tek tek yazılıdır.
 `docs/MagicPaper_MultiAgent_Status.md` bugünün lead audit'idir; bu doküman onu
 bağımsız olarak doğruladı, dört noktada düzeltti (§11) ve genişletti.
@@ -439,7 +439,7 @@ Lead audit §4'teki tablo doğrulandı ve genişletildi. ✅ = doğrulandı.
 
 ## 9. Eski audit'in artık yanlış olan iddiaları
 
-`docs/ARCHITECTURE_AUDIT.md` (2026-09-15) şu noktalarda **eskimiştir**:
+`docs/retired/ARCHITECTURE_AUDIT.md` (2026-09-15) şu noktalarda **eskimiştir**:
 
 | Eski iddia | Bugünkü gerçek |
 |---|---|

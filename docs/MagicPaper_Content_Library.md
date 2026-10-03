@@ -3,7 +3,7 @@
 **Tarih:** 2026-09-18
 **Sahip:** content-library agent
 **Karar dayanağı:** D3 — *Schema 2 tek kanonik blueprint formatıdır*
-**Önceki turun kaydı:** `docs/SCHEMA_MERGE_PLAN.md` (D1–D9 kapalı, **D10 bu turda kapandı**)
+**Önceki turun kaydı:** `docs/retired/SCHEMA_MERGE_PLAN.md` (D1–D9 kapalı, **D10 bu turda kapandı**)
 
 ---
 

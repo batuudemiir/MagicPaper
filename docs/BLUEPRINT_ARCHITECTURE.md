@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-15
 **Status:** Design for review. No content authored, no code written.
-**Input:** `BLUEPRINT_AUDIT.md` (Phase 1). Six families and the discovery-kind model approved.
+**Input:** `retired/BLUEPRINT_AUDIT.md` (Phase 1). Six families and the discovery-kind model approved.
 **Output of this phase:** the blueprint schema, beat vocabulary, state philosophy, compatibility semantics, emotional-arc rules, title architecture, and the diversity gate — everything Phase 3 needs to author pilots against.
 
 ---
