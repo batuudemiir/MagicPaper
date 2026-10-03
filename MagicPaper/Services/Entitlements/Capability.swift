@@ -41,7 +41,8 @@ public enum Capability: String, CaseIterable, Sendable {
     case premiumThemes
 
     /// Uzun masal (12 sayfa).
-    /// Bugünkü karşılığı: `MPStoryLength.isPremium` (`DesignSystem/MPBridge.swift:84`).
+    /// Bugün karşılığı yok: uzunluk seçimi kalktı, sayfa sayısı yaş bandından
+    /// gelir (FAZ 10, `AgeBand.pageCount`).
     case longStories
 }
 

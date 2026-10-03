@@ -18,6 +18,8 @@ struct SettingsView: View {
     #if DEBUG
     /// Görselli kitap (B2) geliştirici bayrağı; DEBUG'da varsayılan açık.
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
+    /// Fikir kartları adımı; her build'de varsayılan kapalı (karar K7).
+    @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
     #endif
 
     /// Kalan görselli masal hakkı — birim adı her zaman "Yıldız".
@@ -311,6 +313,20 @@ struct SettingsView: View {
                             get: { illustratedBooks },
                             set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }
                         ), label: "Görselli kitap")
+                    }
+
+                    MPRowDivider()
+
+                    MPListRow(
+                        symbol: "sparkles",
+                        iconColor: MP.C.brand,
+                        title: "Fikir kartları adımı",
+                        description: "Moddan sonra isteğe bağlı fikir kartları"
+                    ) {
+                        MPSwitch(isOn: Binding(
+                            get: { ideaStep },
+                            set: { ideaStep = $0; StoryIdeaStepAccess.setDeveloperFlag($0) }
+                        ), label: "Fikir kartları adımı")
                     }
 
                     MPRowDivider()

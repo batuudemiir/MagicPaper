@@ -34,8 +34,8 @@ struct CompanionStep: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: MP.S.x2) {
-                    // "Macera" değil: Uyku Zamanı'nda da bu soru soruluyor.
-                    Text("Bu hikâyede kim bizimle olsun?")
+                    // "Macera" değil: Uyku öncesinde de bu soru soruluyor.
+                    Text("Masalda kimler olsun?")
                         .font(MP.F.displayLG())
                         .mpTightTracking(32)
                         .foregroundStyle(MP.C.textTitle)

@@ -33,6 +33,7 @@ struct HomeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     tonight
+                    modeCards
                     storiesSection
                     streakRow
                 }
@@ -203,6 +204,43 @@ struct HomeView: View {
 
                     MPIcon("arrow.right", size: 22, weight: .semibold)
                         .foregroundStyle(MP.C.textOnBrand)
+                }
+            }
+        }
+    }
+
+    // MARK: - Mod kartları
+
+    /// Dünya şeridinin yerinde (karar K8, 3 Ekim 2026): dünya seçimi kalktı,
+    /// ebeveynin ilk kararı mod. Kart o kararı burada verdirir ve akışı
+    /// doğrudan "Masalda kimler olsun?" adımından açar.
+    ///
+    /// Yalnızca bu çocuğun bandında kurulabilen modlar, ekran sırasıyla.
+    /// Sürpriz burada yok: o, akışın birinci adımında.
+    private var shownModes: [StoryMode] {
+        let age = profileManager.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
+        return StoryCreationSteps.shownModes(StoryChoiceSources.current.availableModes(forAge: age))
+    }
+
+    @ViewBuilder
+    private var modeCards: some View {
+        if !shownModes.isEmpty {
+            VStack(alignment: .leading, spacing: MP.S.x4) {
+                MPSectionHeader(title: "Yeni bir masal",
+                                subtitle: "Bu akşam nasıl bir masal olsun?")
+                VStack(spacing: MP.S.stackGap) {
+                    ForEach(shownModes, id: \.self) { mode in
+                        MPChoiceTile(
+                            title: mode.title,
+                            description: mode.promise,
+                            symbol: mode.symbol,
+                            accent: mode.accent
+                        ) {
+                            app.startStoryCreation(mode: mode)
+                        }
+                        .accessibilityLabel("\(mode.title). \(mode.promise)")
+                        .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
+                    }
                 }
             }
         }

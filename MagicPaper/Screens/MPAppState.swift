@@ -100,6 +100,9 @@ final class MPAppState: ObservableObject {
     // Tam ekran yollar
     /// The new two-choice creation flow.
     @Published var showStoryCreation = false
+    /// A mode chosen on the home screen; the flow then opens at "Masalda
+    /// kimler olsun?". Nil opens it at the modes. Cleared when the flow closes.
+    @Published var creationPreset: StoryMode?
 
     @Published var showPaywall = false
     /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
@@ -132,8 +135,10 @@ final class MPAppState: ObservableObject {
         }
     }
 
-    /// (+) butonu ve ana sayfa hero kartı — yeni akışı açar.
-    func startStoryCreation() {
+    /// (+) butonu ve ana sayfa hero kartı yeni akışı baştan açar; ana
+    /// sayfadaki bir mod kartı ise modu vererek ikinci adımdan.
+    func startStoryCreation(mode: StoryMode? = nil) {
+        creationPreset = mode
         showStoryCreation = true
     }
 
