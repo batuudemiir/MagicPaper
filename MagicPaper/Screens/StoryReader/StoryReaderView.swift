@@ -86,6 +86,11 @@ struct StoryReaderView: View {
                 onToggleSpeech: toggleSpeech,
                 onOpenSettings: openSettings
             )
+            // Kontroller her zaman sayfanın üstünde dokunulur. Sıra tek başına
+            // yetmiyordu: sol kenar şeridinde (genişliğin %15'i) sayfanın
+            // dokunma işleyicisi Kapat'ı yutuyor ve sayfayı geri çeviriyordu;
+            // okuyucudan çıkılamıyordu. Açık z sırası bunu kapatır.
+            .zIndex(1)
         }
         .background(theme.paper.ignoresSafeArea())
         .dynamicTypeSize(...DynamicTypeSize.accessibility3)
