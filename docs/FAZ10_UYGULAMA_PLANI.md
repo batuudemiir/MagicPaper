@@ -8,6 +8,9 @@
 - FAZ 9'dan devir (madde 7): `MPBridge.swift` başındaki "Gemini/Fal.ai hattı" yorumu güncellendi.
 - Ana sayfadaki dünya şeridini FAZ 9 zaten kaldırmıştı. Mod kartları aynı yere, "Kaldığın yer" kartının altına geldi.
 
+**Kapanış (4 Ekim 2026): FAZ 10 ✅.** Kapanış notu, tasarım yasası borcu ve koyu tema açık sorusu
+`MagicPaper_Faz_Plani_Ekim.md`'de (FAZ 10 bölümü ve belgenin sonu).
+
 Bütün kararlar kapandı (3 Ekim, Batuhan): K1-K9. Özeti §13'te.
 
 ---
