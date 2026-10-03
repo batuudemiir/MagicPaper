@@ -1,9 +1,12 @@
 import SwiftUI
+import OSLog
 import FirebaseCore
 import FirebaseStorage
 #if canImport(RevenueCat)
 import RevenueCat
 #endif
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "MagicPaperApp")
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -141,7 +144,8 @@ struct MainContentView: View {
             print("🎯 MainContentView appeared")
             print("📱 Onboarding tamamlandı mı: \(profileManager.hasCompletedOnboarding)")
             print("📱 Profil sayısı: \(profileManager.profiles.count)")
-            print("📱 Aktif profil: \(profileManager.currentProfile?.name ?? "yok")")
+            // Çocuğun adı loglanmaz (CLAUDE.md §10); yalnızca seçili profil var mı.
+            logger.debug("Aktif profil seçili: \(profileManager.currentProfile != nil, privacy: .public)")
         }
     }
 }
