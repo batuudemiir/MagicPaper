@@ -78,14 +78,6 @@ enum MPSheetRoute: Identifiable, Equatable {
     }
 }
 
-// MARK: - Sihirbaz ön ayarı
-
-/// Ana sayfadaki dünya tile'ından girildiğinde sihirbaz doğrudan 3. adımda açılır.
-struct MPWizardPreset: Equatable {
-    var world: MP.World?
-    var startStep: Int = 0
-}
-
 // MARK: - Uygulama durumu
 
 /// Tasarımın durum modelinin (04-STATE-INTERACTIONS.md) görünüm katmanı karşılığı.
@@ -109,15 +101,6 @@ final class MPAppState: ObservableObject {
     /// The new two-choice creation flow.
     @Published var showStoryCreation = false
 
-    /// The old four-step wizard.
-    ///
-    /// Kept deliberately and temporarily. It is the only way to create an
-    /// *illustrated* story, and the feature meant to replace it — turning an
-    /// existing story into a picture book — does not exist yet. Reachable from
-    /// the world tiles rather than from the primary action, so the ritual is the
-    /// new flow and this is the side door. Retire it with that feature.
-    @Published var showWizard = false
-    @Published var wizardPreset = MPWizardPreset()
     @Published var showPaywall = false
     /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
     @Published var showDecorationGallery = false
@@ -152,12 +135,6 @@ final class MPAppState: ObservableObject {
     /// (+) butonu ve ana sayfa hero kartı — yeni akışı açar.
     func startStoryCreation() {
         showStoryCreation = true
-    }
-
-    /// Masal dünyaları — geçici olarak eski sihirbaza gider (görselli masal).
-    func startWizard(world: MP.World? = nil) {
-        wizardPreset = MPWizardPreset(world: world, startStep: world == nil ? 0 : 1)
-        showWizard = true
     }
 
     func openPaywall() {

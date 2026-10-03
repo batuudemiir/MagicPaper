@@ -15,15 +15,14 @@ import SwiftUI
 /// sekmenin menüsüydü ve çocuğun geri geldiği şey — kendi masalları — iki
 /// tanıtım bloğunun altında, ekranın dışında kalıyordu.
 ///
-/// Şimdi sıralama şu: önce çocuğun kaldığı yer, sonra kendi masalları, sonra
-/// alışkanlık, en sonda görselli masal yolu. Yaratma eylemi tek bir yerde
-/// duruyor: alt bardaki artı. Her yerden erişilir ve tektir.
+/// Şimdi sıralama şu: önce çocuğun kaldığı yer, sonra kendi masalları, en
+/// sonda alışkanlık. Yaratma eylemi tek bir yerde duruyor: alt bardaki artı.
+/// Her yerden erişilir ve tektir.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
-    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var streak = MPStreak.shared
     @State private var shelfFilter: MPShelfFilter = .all
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -36,7 +35,6 @@ struct HomeView: View {
                     tonight
                     storiesSection
                     streakRow
-                    illustratedPath
                 }
                 .padding(.horizontal, MP.S.screenGutter)
                 .padding(.top, 18)
@@ -342,50 +340,5 @@ struct HomeView: View {
         .accessibilityLabel(streak.currentStreak > 1
             ? "\(streak.currentStreak) gün üst üste birlikte okudunuz. Günlük sekmesini aç"
             : "Okuma yolculuğunuz devam ediyor. Günlük sekmesini aç")
-    }
-
-    // MARK: - Görselli masal yolu
-
-    /// Dünya şeridi burada, en altta ve adıyla duruyor.
-    ///
-    /// Eski yerinde — hero'nun hemen altında, "Bir dünya seç, gerisini biz
-    /// yazalım" alt başlığıyla — hero'nun sözünü neredeyse birebir tekrar
-    /// ediyor ama başka bir akışa gidiyordu. Üstelik "dünya", yeni mimarinin
-    /// kaldırdığı bir kavram: iki seçimlik akış yeri kendisi seçer.
-    ///
-    /// Silinmedi çünkü görselli masal yolu hâlâ yalnız buradan geçiyor. Ama
-    /// artık ne olduğunu söylüyor ve çocuğun kendi masallarının önüne
-    /// geçmiyor.
-    private var illustratedPath: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Görselli masal",
-                            subtitle: "Resimli bir masal için bir dünya seç",
-                            emphasis: .secondary)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(MP.World.ordered) { world in
-                        MPChoiceTile(
-                            title: world.name,
-                            symbol: world.symbol,
-                            accent: world.accent,
-                            isLocked: world.isPremium && !subscriptionManager.isPremium,
-                            layout: .column
-                        ) {
-                            if world.isPremium && !subscriptionManager.isPremium {
-                                app.openPaywall()
-                            } else {
-                                app.startWizard(world: world)
-                            }
-                        }
-                        .frame(width: 132)
-                    }
-                }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.bottom, 6)
-            }
-            .scrollClipDisabled()
-            .padding(.horizontal, -MP.S.screenGutter)
-        }
     }
 }

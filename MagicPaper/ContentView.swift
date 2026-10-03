@@ -67,9 +67,6 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $app.showStoryCreation) {
             StoryCreationFlow().environmentObject(app).environmentObject(settings)
         }
-        .fullScreenCover(isPresented: $app.showWizard) {
-            StoryWizardView(preset: app.wizardPreset).environmentObject(app).environmentObject(settings)
-        }
         .fullScreenCover(item: $app.detailStory) { story in
             StoryDetailView(story: story).environmentObject(app).environmentObject(settings)
         }

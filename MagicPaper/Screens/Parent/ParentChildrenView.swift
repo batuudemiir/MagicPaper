@@ -41,10 +41,11 @@ struct ParentChildrenView: View {
             MPWrapRow(spacing: 10) {
                 ForEach(topWorlds, id: \.self) { world in
                     // Tıklanabilir görünen bir kontrol bir şey yapmalı:
-                    // dünyaya dokunmak sihirbazı o dünyayla açar.
+                    // dokunmak masal oluşturma akışını açar.
                     MPChip(title: world.name, symbol: world.symbol, isSelected: true) {
-                        app.startWizard(world: world)
+                        app.startStoryCreation()
                     }
+                    .accessibilityHint("Masal oluşturmayı açar")
                 }
             }
         }
