@@ -234,7 +234,12 @@ struct HomeView: View {
                             title: mode.title,
                             description: mode.promise,
                             symbol: mode.symbol,
-                            accent: mode.accent
+                            accent: mode.accent,
+                            // Sütun: metin kartın tüm genişliğini alır. Satır
+                            // düzeninde ikon ve seçim dairesi en büyük yazı
+                            // boyutunda "öğrenelim"i kelime ortasından
+                            // bölüyordu; kart bir seçim değil, bir eylem.
+                            layout: .column
                         ) {
                             app.startStoryCreation(mode: mode)
                         }
