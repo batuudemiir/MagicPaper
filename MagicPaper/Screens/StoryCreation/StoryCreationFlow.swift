@@ -1,12 +1,15 @@
 import SwiftUI
-import StoryEngine
 
-/// The story creation experience: two choices, then a story.
+/// The story creation experience: an intent, then a story.
 ///
 /// Replaces the four-step wizard, which asked for a child, a type, a direction,
 /// a world, a companion, and finally whether the story should be illustrated —
-/// six decisions that made the product feel like a form. Here the parent picks
-/// how today's adventure begins and MagicPaper does the rest.
+/// six decisions that made the product feel like a form.
+///
+/// The one required decision is the **mode** — Gelişelim, Maceraya Çıkalım,
+/// Uyku Zamanı — or "Bana sürpriz yap", which lets MagicPaper pick the mode.
+/// Idea cards are an optional second step under the mode ("Bana bırak" skips
+/// them); a surprise skips them too, because the parent asked us to decide.
 ///
 /// The child is not asked for: the app already has a current profile, and
 /// `MainContentView` will not reach this screen without one.
@@ -15,7 +18,8 @@ struct StoryCreationFlow: View {
     /// Where the flow is. Linear on purpose — one decision per screen, which is
     /// also what makes it usable by a child later (§27).
     private enum Phase: Equatable {
-        case idea
+        case mode
+        case idea(StoryMode)
         case companion
         case preparing
         case cover(Story)
@@ -36,8 +40,15 @@ struct StoryCreationFlow: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
 
-    @State private var phase: Phase = .idea
-    /// Nil means the child chose "surprise me". Stable ids, never display text.
+    @State private var phase: Phase = .mode
+    /// Always one of the three modes once past step 1 — a surprise is resolved
+    /// the moment it is chosen, so the companion step can already fit it.
+    @State private var chosenMode: StoryMode?
+    @State private var strategy: StorySelectionStrategy = .direct
+    /// Whether step 2 was actually shown, so "back" from the companion step
+    /// returns to where the parent really was.
+    @State private var ideaStepShown = false
+    /// Nil means "Bana bırak" or a surprise. Stable ids, never display text.
     @State private var chosenIdeaID: String?
     @State private var chosenCompanionID: String?
 
@@ -69,7 +80,7 @@ struct StoryCreationFlow: View {
             )
             Spacer(minLength: 0)
             if let step = stepIndex {
-                MPStepDots(total: 2, current: step, labels: ["Hikâye", "Arkadaş"])
+                MPStepDots(total: 3, current: step, labels: ["Hikâye", "Fikir", "Arkadaş"])
             }
             Spacer(minLength: 0)
             Color.clear.frame(width: 44, height: 44)
@@ -79,14 +90,17 @@ struct StoryCreationFlow: View {
     }
 
     private var showsBack: Bool {
-        if case .companion = phase { return true }
-        return false
+        switch phase {
+        case .idea, .companion: return true
+        default: return false
+        }
     }
 
     private var stepIndex: Int? {
         switch phase {
-        case .idea: return 0
-        case .companion: return 1
+        case .mode: return 0
+        case .idea: return 1
+        case .companion: return 2
         default: return nil
         }
     }
@@ -95,10 +109,24 @@ struct StoryCreationFlow: View {
         switch phase {
         case .companion:
             chosenCompanionID = nil
-            phase = .idea
+            if ideaStepShown, let mode = chosenMode {
+                phase = .idea(mode)
+            } else {
+                resetToModes()
+            }
+        case .idea:
+            resetToModes()
         default:
             dismiss()
         }
+    }
+
+    private func resetToModes() {
+        chosenMode = nil
+        chosenIdeaID = nil
+        strategy = .direct
+        ideaStepShown = false
+        phase = .mode
     }
 
     // MARK: - Phases
@@ -106,13 +134,19 @@ struct StoryCreationFlow: View {
     @ViewBuilder
     private var content: some View {
         switch phase {
-        case .idea:
-            StoryIdeaStep(age: profile?.age ?? 6) { ideaID in
+        case .mode:
+            StoryModeStep(
+                modes: source.availableModes(forAge: age),
+                onChoose: chooseMode,
+                onSurprise: surprise
+            )
+        case .idea(let mode):
+            StoryIdeaStep(mode: mode, ideas: source.ideaChoices(forAge: age, mode: mode)) { ideaID in
                 chosenIdeaID = ideaID
                 phase = .companion
             }
         case .companion:
-            CompanionStep(ideaID: chosenIdeaID) { companionID in
+            CompanionStep(ideaID: chosenIdeaID, mode: chosenMode, age: age, source: source) { companionID in
                 chosenCompanionID = companionID
                 begin()
             }
@@ -131,9 +165,49 @@ struct StoryCreationFlow: View {
                 .transition(.opacity)
         case .failed:
             StoryCreationFailureView(
-                onRetry: { phase = .idea },
+                onRetry: { resetToModes() },
                 onClose: { dismiss() }
             )
+        }
+    }
+
+    // MARK: - Choosing
+
+    private var source: any StoryChoiceSource { StoryChoiceSources.current }
+
+    /// The child's age. `MainContentView` never reaches this flow without a
+    /// profile; the fallback is the MVP band's age only so previews render.
+    private var age: Int { profile?.age ?? AgeBandResolver.mvp.upperBound }
+
+    private func chooseMode(_ mode: StoryMode) {
+        chosenMode = mode
+        strategy = .direct
+        chosenIdeaID = nil
+        let ideas = source.ideaChoices(forAge: age, mode: mode)
+        // No ideas under this mode for this band: nothing to personalise, so
+        // the step is skipped rather than shown with only "Bana bırak" on it.
+        ideaStepShown = !ideas.isEmpty
+        phase = ideaStepShown ? .idea(mode) : .companion
+    }
+
+    /// "Bana sürpriz yap": MagicPaper picks the mode, looking at what this
+    /// child read last so the surprise is not a repeat.
+    private func surprise() {
+        guard let profile else { return dismiss() }
+        do {
+            chosenMode = try source.resolveMode(
+                strategy: .surprise,
+                requested: nil,
+                forAge: age,
+                recent: storyManager.recentModes(for: profile)
+            )
+            strategy = .surprise
+            chosenIdeaID = nil
+            ideaStepShown = false
+            phase = .companion
+        } catch {
+            print("❌ Sürpriz mod seçilemedi: \(storyFailureDetail(error))")
+            phase = .failed
         }
     }
 
@@ -147,6 +221,8 @@ struct StoryCreationFlow: View {
             do {
                 let story = try await storyManager.createStory(
                     for: profile,
+                    mode: chosenMode,
+                    strategy: strategy,
                     storyIdeaID: chosenIdeaID,
                     companionID: chosenCompanionID
                 )
@@ -157,9 +233,7 @@ struct StoryCreationFlow: View {
                 phase = .cover(story)
             } catch {
                 // §29: the detail goes to the log, never to the parent.
-                let detail = (error as? OfflineStoryService.Failure)?.detail
-                    ?? String(describing: error)
-                print("❌ Hikâye üretilemedi: \(detail)")
+                print("❌ Hikâye üretilemedi: \(storyFailureDetail(error))")
                 phase = .failed
             }
         }

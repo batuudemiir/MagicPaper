@@ -28,8 +28,6 @@ class FalImageGenerator: ObservableObject {
         }
         
         print("🚀 Fal.ai işlemi başlıyor...")
-        print("📝 Prompt: \(prompt)")
-        print("🔗 Fotoğraf URL: \(childPhotoURL)")
         
         progressCallback("İllüstrasyon hazırlanıyor...")
         

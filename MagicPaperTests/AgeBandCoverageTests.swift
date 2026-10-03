@@ -1,5 +1,4 @@
 import XCTest
-import StoryEngine
 @testable import MagicPaper
 
 /// The age bands the app offers must be bands the content can actually serve.
@@ -25,6 +24,16 @@ final class AgeBandCoverageTests: XCTestCase {
     /// "Sürpriz"den ibaret bırakır ve asıl bildirilen kusur oydu.
     private let cardsRequired = 1
 
+    /// Every idea card a child of this age can be shown: the cards under each
+    /// mode the flow offers them, asked through the seam the screens use.
+    private func ideasShown(forAge age: Int) -> [StoryIdeaChoice] {
+        let source = StoryChoiceSources.current
+        var seen = Set<String>()
+        return source.availableModes(forAge: age)
+            .flatMap { source.ideaChoices(forAge: age, mode: $0) }
+            .filter { seen.insert($0.id).inserted }
+    }
+
     /// Süzgeç geri açıldı ve gerçekten süzüyor.
     ///
     /// Bu test daha önce "katalog tek bantlı kaldığı sürece süzgeç kapalı
@@ -32,21 +41,18 @@ final class AgeBandCoverageTests: XCTestCase {
     /// işiydi. Şimdi tersini soruyor: iki bant varsa iki farklı yaş iki farklı
     /// şey görmeli. Görmüyorsa süzgeç yine kapanmış demektir.
     func testAgeGatingActuallySeparatesTheBands() {
-        let young = OfflineStoryService.shared.storyIdeas(forAge: 4)
-        let older = OfflineStoryService.shared.storyIdeas(forAge: 6)
+        let young = ideasShown(forAge: 4)
+        let older = ideasShown(forAge: 6)
         XCTAssertFalse(young.isEmpty)
         XCTAssertFalse(older.isEmpty)
         XCTAssertNotEqual(Set(young.map(\.id)), Set(older.map(\.id)),
                           "Dört yaş ile altı yaş aynı kartları görüyor; süzgeç iş görmüyor.")
-        for idea in young { XCTAssertTrue(idea.suits(age: 4), idea.id.rawValue) }
-        for idea in older { XCTAssertTrue(idea.suits(age: 6), idea.id.rawValue) }
     }
 
     func testEveryAgeBandTheAppOffersHasIdeasToShow() {
         var starved: [String] = []
         for band in MPAgeRange.allCases {
-            let count = OfflineStoryService.shared
-                .storyIdeas(forAge: band.representativeAge).count
+            let count = ideasShown(forAge: band.representativeAge).count
             if count < cardsRequired {
                 starved.append("\(band.title) (age \(band.representativeAge)): \(count) ideas")
             }
@@ -63,7 +69,7 @@ final class AgeBandCoverageTests: XCTestCase {
     /// 5-7 bandı hâlâ tam ekran: üç kart artı Sürpriz.
     func testTheFullyAuthoredBandStillFillsTheScreen() {
         XCTAssertGreaterThanOrEqual(
-            OfflineStoryService.shared.storyIdeas(forAge: 6).count, 3,
+            ideasShown(forAge: 6).count, 3,
             "İçeriği tamamlanmış bant ekranı doldurmalı.")
     }
 
@@ -73,14 +79,13 @@ final class AgeBandCoverageTests: XCTestCase {
     /// farklı sözler veren kartlar, aynı hikâye şekli. Kartı çoğaltmadan önce
     /// o banda ikinci bir blueprint gerekiyor.
     func testTheYoungBandHasWhatItHas() {
-        XCTAssertGreaterThanOrEqual(OfflineStoryService.shared.storyIdeas(forAge: 4).count, 1)
+        XCTAssertGreaterThanOrEqual(ideasShown(forAge: 4).count, 1)
     }
 
-    /// Surprise does not age-gate — `BlueprintSelector` never filters by age —
-    /// so a child outside the authored band still gets a story, written for a
-    /// five-year-old. Recorded here because it is the reason the gap is silent
-    /// rather than a crash: nothing downstream fails, the prose is just aimed
-    /// at the wrong child.
+    /// An intent with no age still composes: `BlueprintSelector` filters by
+    /// band only when the intent carries one. The creation flow always passes
+    /// the child's age now (`StoryModeFlowTests`), so this is the legacy path —
+    /// kept so older call sites are known to still work.
     func testSurpriseStillProducesAStoryOutsideTheAuthoredBand() throws {
         let result = try OfflineStoryService.shared.compose(
             childName: "Yeliz", ideaID: nil, companionID: nil, seed: "age-check")

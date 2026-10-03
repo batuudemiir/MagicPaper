@@ -29,18 +29,22 @@
 		A10000010000000000000017 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000018 /* AIService.swift */; };
 		A10000010000000000000038 /* FirebaseImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000039 /* FirebaseImageUploader.swift */; };
 		A1000001000000000000003A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000003B /* GoogleService-Info.plist */; };
-		A1000001000000000000003E /* FalAITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000003F /* FalAITestView.swift */; };
 		A10000010000000000000040 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000042 /* FirebaseCore */; };
 		A10000010000000000000041 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000043 /* FirebaseStorage */; };
 		A10000010000000000000046 /* FirebaseTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000047 /* FirebaseTestView.swift */; };
 		A10000010000000000000048 /* StoryGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000049 /* StoryGenerationManager.swift */; };
 		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
 		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
+		E5A0000000000000000010 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000011 /* Capability.swift */; };
+		E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */; };
+		E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000015 /* EntitlementPolicy.swift */; };
+		E5A0000000000000000016 /* EntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000017 /* EntitlementService.swift */; };
+		E5A0000000000000000018 /* LiveEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000019 /* LiveEntitlementService.swift */; };
+		E5A000000000000000001A /* StubEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A000000000000000001B /* StubEntitlementService.swift */; };
 		A1000001000000000000004A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004B /* FileManagerService.swift */; };
 		A1000001000000000000004C /* LocalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004D /* LocalImageView.swift */; };
 		A1000001000000000000004E /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004F /* LocalNotificationManager.swift */; };
 		A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000055 /* FalAIImageGenerator.swift */; };
-		A10000010000000000000058 /* FalImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000057 /* FalImageService.swift */; };
 		A10000010000000000000059 /* DailyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005A /* DailyStory.swift */; };
 		A1000001000000000000005B /* DailyStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005C /* DailyStoryManager.swift */; };
 		A1000001000000000000005D /* DailyStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005E /* DailyStoriesView.swift */; };
@@ -88,16 +92,20 @@
 		A10000010000000000000020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10000010000000000000039 /* FirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageUploader.swift; sourceTree = "<group>"; };
 		A1000001000000000000003B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A1000001000000000000003F /* FalAITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalAITestView.swift; sourceTree = "<group>"; };
 		A10000010000000000000047 /* FirebaseTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestView.swift; sourceTree = "<group>"; };
 		A10000010000000000000049 /* StoryGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenerationManager.swift; sourceTree = "<group>"; };
 		D4A0000000000000000011 /* LibraryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileStore.swift; sourceTree = "<group>"; };
 		D4A0000000000000000013 /* LibraryMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMigration.swift; sourceTree = "<group>"; };
+		E5A0000000000000000011 /* Capability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Capability.swift"; sourceTree = "<group>"; };
+		E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPlan+SubscriptionTier.swift"; sourceTree = "<group>"; };
+		E5A0000000000000000015 /* EntitlementPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPolicy.swift"; sourceTree = "<group>"; };
+		E5A0000000000000000017 /* EntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementService.swift"; sourceTree = "<group>"; };
+		E5A0000000000000000019 /* LiveEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveEntitlementService.swift"; sourceTree = "<group>"; };
+		E5A000000000000000001B /* StubEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StubEntitlementService.swift"; sourceTree = "<group>"; };
 		A1000001000000000000004B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		A1000001000000000000004D /* LocalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageView.swift; sourceTree = "<group>"; };
 		A1000001000000000000004F /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		A10000010000000000000055 /* FalAIImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalAIImageGenerator.swift; sourceTree = "<group>"; };
-		A10000010000000000000057 /* FalImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalImageService.swift; sourceTree = "<group>"; };
 		A1000001000000000000005A /* DailyStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStory.swift; sourceTree = "<group>"; };
 		A1000001000000000000005C /* DailyStoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStoryManager.swift; sourceTree = "<group>"; };
 		A1000001000000000000005E /* DailyStoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStoriesView.swift; sourceTree = "<group>"; };
@@ -145,6 +153,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E5A0000000000000000001 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				E5A0000000000000000011 /* Capability.swift */,
+				E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */,
+				E5A0000000000000000015 /* EntitlementPolicy.swift */,
+				E5A0000000000000000017 /* EntitlementService.swift */,
+				E5A0000000000000000019 /* LiveEntitlementService.swift */,
+				E5A000000000000000001B /* StubEntitlementService.swift */,
+			);
+			path = Entitlements;
+			sourceTree = "<group>";
+		};
 		20D25BA5457E0E7260E45BA4 /* v2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +243,6 @@
 				A1000001000000000000000A /* HomeView.swift */,
 				A1000001000000000000000E /* LibraryView.swift */,
 				A10000010000000000000010 /* SettingsView.swift */,
-				A1000001000000000000003F /* FalAITestView.swift */,
 				A10000010000000000000047 /* FirebaseTestView.swift */,
 				A1000001000000000000004D /* LocalImageView.swift */,
 				A1000001000000000000005E /* DailyStoriesView.swift */,
@@ -262,7 +282,6 @@
 				A1000001000000000000006E /* SubscriptionManager.swift */,
 				A10000010000000000000078 /* ProfileManager.swift */,
 				A10000010000000000000018 /* AIService.swift */,
-				A10000010000000000000057 /* FalImageService.swift */,
 				2D6C52292F2CABA60087A82F /* PermissionManager.swift */,
 				A10000010000000000000055 /* FalAIImageGenerator.swift */,
 				2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */,
@@ -273,6 +292,7 @@
 				A10000010000000000000072 /* TextStoryManager.swift */,
 				2DDE500000000000000000B2 /* RevenueCatManager.swift */,
 				D4A0000000000000000001 /* Persistence */,
+				E5A0000000000000000001 /* Entitlements */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -432,14 +452,18 @@
 				A10000010000000000000048 /* StoryGenerationManager.swift in Sources */,
 				D4A0000000000000000010 /* LibraryFileStore.swift in Sources */,
 				D4A0000000000000000012 /* LibraryMigration.swift in Sources */,
+				E5A0000000000000000010 /* Capability.swift in Sources */,
+				E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */,
+				E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */,
+				E5A0000000000000000016 /* EntitlementService.swift in Sources */,
+				E5A0000000000000000018 /* LiveEntitlementService.swift in Sources */,
+				E5A000000000000000001A /* StubEntitlementService.swift in Sources */,
 				A1000001000000000000006D /* SubscriptionManager.swift in Sources */,
 				A1000001000000000000004A /* FileManagerService.swift in Sources */,
 				A1000001000000000000004E /* LocalNotificationManager.swift in Sources */,
 				A10000010000000000000017 /* AIService.swift in Sources */,
 				A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */,
 				2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */,
-				A10000010000000000000058 /* FalImageService.swift in Sources */,
-				A1000001000000000000003E /* FalAITestView.swift in Sources */,
 				A10000010000000000000046 /* FirebaseTestView.swift in Sources */,
 				A10000010000000000000038 /* FirebaseImageUploader.swift in Sources */,
 				A10000010000000000000001 /* MagicPaperApp.swift in Sources */,

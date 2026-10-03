@@ -2,25 +2,27 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// 04-STATE-INTERACTIONS.md — kök navigasyon 4 sekmelidir.
-/// Dört yer, artı bir eylem.
+/// 04-STATE-INTERACTIONS.md — kök navigasyon.
+/// Üç yer, artı bir eylem.
 ///
 /// Günlük geri geldi: alışkanlık tarafı burada geliştirilecek. Ana Sayfa'daki
 /// kopyası kaldırıldı — aynı kartı iki sekmede göstermek, ilk seferinde de
 /// sorun olan şeydi. Ana Sayfa yalnızca seriyi özetliyor ve dokununca buraya
 /// getiriyor.
 ///
+/// Ebeveyn artık bir sekme değil, bir mod (`MPAppState.isParentMode`): ana
+/// ekranın sağ üstündeki anahtarla açılır ve Ana Sayfa'nın yerini alır.
+///
 /// "Masal yarat" bu listede DEĞİL ve olmamalı: gidilecek bir yer değil,
 /// yapılacak bir iş. Bar onu ayrı bir öğe türü olarak çiziyor.
 enum MPTab: String, CaseIterable {
-    case home, library, daily, parent
+    case home, library, daily
 
     var label: String {
         switch self {
         case .home:    return "Ana Sayfa"
         case .library: return "Kütüphane"
         case .daily:   return "Günlük"
-        case .parent:  return "Ebeveyn"
         }
     }
 
@@ -29,7 +31,32 @@ enum MPTab: String, CaseIterable {
         case .home:    return "house"
         case .library: return "book"
         case .daily:   return "calendar"
-        case .parent:  return "shield"
+        }
+    }
+}
+
+/// Ebeveyn modunun kendi menüsü. Çocuk menüsüyle ortak hiçbir sekmesi yok:
+/// ebeveynin yaptığı işler — bakmak, düzenlemek, ayarlamak — çocuğun
+/// yaptıklarından (okumak, yaratmak) ayrı.
+///
+/// Ham değerler `MPTab`'inkilerle çakışmamalı: ikisi de aynı sekme çubuğunun
+/// `String` seçimine yazılıyor.
+enum MPParentTab: String, CaseIterable {
+    case overview, children, settings
+
+    var label: String {
+        switch self {
+        case .overview: return "Özet"
+        case .children: return "Çocuklar"
+        case .settings: return "Ayarlar"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .overview: return "chart.bar"
+        case .children: return "person.2"
+        case .settings: return "gearshape"
         }
     }
 }
@@ -38,13 +65,11 @@ enum MPTab: String, CaseIterable {
 
 enum MPSheetRoute: Identifiable, Equatable {
     case profilePicker
-    case storyActions(UUID)
     case profileEdit(UUID)
 
     var id: String {
         switch self {
         case .profilePicker:      return "profilePicker"
-        case .storyActions(let i): return "storyActions-\(i)"
         case .profileEdit(let i): return "profileEdit-\(i)"
         }
     }
@@ -69,8 +94,13 @@ final class MPAppState: ObservableObject {
     // Kök navigasyon
     @Published var tab: MPTab = .home
 
-    // Ebeveyn kapısı oturum boyunca açık kalır
-    @Published var parentUnlocked = false
+    /// Çocuk mu, ebeveyn mi. Oturumluk ve kalıcı değil: uygulama her zaman
+    /// çocuk modunda açılır, arka plana gidince de çocuk moduna döner. Telefonu
+    /// çocuğa geri veren bir ebeveynin hiçbir şeyi kapatmayı hatırlaması
+    /// gerekmez.
+    @Published private(set) var isParentMode = false
+    /// Ebeveyn menüsünde açık sayfa. Her girişte Özet'ten başlar.
+    @Published var parentTab: MPParentTab = .overview
 
     // Tam ekran yollar
     /// The new two-choice creation flow.
@@ -86,13 +116,15 @@ final class MPAppState: ObservableObject {
     @Published var showWizard = false
     @Published var wizardPreset = MPWizardPreset()
     @Published var showPaywall = false
-    @Published var showSettings = false
     /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
     @Published var showDecorationGallery = false
     @Published var showDecorationDemo = false
     @Published var showGate = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
+    /// Raftan açılan masal detayı. Okuyucu detayın içinden açılır, bu yüzden
+    /// detaydan okumaya geçmek `readerStory`'ye dokunmaz.
+    @Published var detailStory: Story?
 
     // Alt sayfalar ve bildirim
     @Published var sheet: MPSheetRoute?
@@ -129,24 +161,29 @@ final class MPAppState: ObservableObject {
         showPaywall = true
     }
 
-    /// Ebeveyn sekmesi: kapı geçilmediyse önce matematik sorusu sorulur.
-    /// Çocuk modu açıkken kapı her seferinde yeniden sorulur.
-    func selectTab(_ next: MPTab, childModeOn: Bool) {
-        guard next == .parent else {
-            tab = next
-            return
-        }
-        if parentUnlocked && !childModeOn {
-            tab = .parent
-        } else {
-            showGate = true
-        }
+    /// Ebeveyn moduna geçiş her seferinde kapıdan geçer.
+    func requestParentMode() {
+        guard !isParentMode else { return }
+        showGate = true
     }
 
     func unlockParent() {
-        parentUnlocked = true
         showGate = false
-        tab = .parent
+        isParentMode = true
+        parentTab = .overview
+        MPHaptics.tap()
+    }
+
+    /// Çocuk moduna dönüş kapısızdır ve çocuk her zaman Ana Sayfa'ya döner.
+    /// Yalnızca ebeveynin açabildiği yüzeyler (profil ekleme/düzenleme) de
+    /// kapanır: mod değiştiği hâlde açık kalan bir ebeveyn ekranı, kapıyı
+    /// anlamsız kılardı.
+    func enterChildMode() {
+        guard isParentMode else { return }
+        isParentMode = false
+        tab = .home
+        showProfileAdd = false
+        if case .profileEdit = sheet { sheet = nil }
     }
 }
 

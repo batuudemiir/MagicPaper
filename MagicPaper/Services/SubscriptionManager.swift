@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import SwiftUI
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "SubscriptionManager")
 
 // Basit Üyelik Sistemi - Sadece 2 Paket
 class SubscriptionManager: ObservableObject {
@@ -340,7 +345,7 @@ class SubscriptionManager: ObservableObject {
             remainingImageStories += count
             UserDefaults.standard.set(remainingImageStories, forKey: "remainingImageStories")
         }
-        print("🧪 \(count) deneme yıldızı eklendi")
+        logger.debug("🧪 \(count) deneme yıldızı eklendi")
     }
 #endif
 

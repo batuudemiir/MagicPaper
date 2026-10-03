@@ -19,14 +19,29 @@ final class MatrixCoverageTests: XCTestCase {
         return try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: url))
     }
 
-    /// The five combinations from `BLUEPRINT_ARCHITECTURE.md` §16.
+    /// The combinations from `BLUEPRINT_ARCHITECTURE.md` §16 that must each
+    /// produce a book. Four, not five: see `retiredSeaRow`.
     private static let matrix: [(name: String, setting: String, companion: String, discovery: String)] = [
         ("forest+fox+light",        "setting_whispering_forest_001", "companion_fox_pilot_001",      "object_flickering_light_001"),
         ("mountain+owl+footprints", "setting_cloud_mountain_001",    "companion_owl_pilot_001",      "object_footprints_001"),
         ("garden+hedgehog+sound",   "setting_night_garden_001",      "companion_hedgehog_pilot_001", "object_faint_sound_001"),
-        ("sea+dolphin+shell",       "setting_coral_sea_001",         "companion_dolphin_pilot_001",  "object_shell_pilot_001"),
         ("forest+rabbit+map",       "setting_whispering_forest_001", "companion_rabbit_pilot_001",   "object_torn_map_001"),
     ]
+
+    /// Retired from the coverage matrix 2026-10-01 (product decision, Faz 7.1).
+    ///
+    /// No blueprint fits it: an open sea has no threshold, the dolphin carries,
+    /// and the shell neither signals nor needs explaining. The two nearest
+    /// blueprints were one trait away and both would have been a narrative
+    /// stretch, and §8.3 forbids widening a blueprint to buy coverage. The
+    /// alternative — a water-family blueprint — was declined for now.
+    ///
+    /// It is kept, not deleted, as the library's standing impossible request:
+    /// `testAnImpossibleCombinationStillFailsWithReasons` asserts it is refused
+    /// with a reason rather than bent into a story.
+    private static let retiredSeaRow =
+        (name: "sea+dolphin+shell", setting: "setting_coral_sea_001",
+         companion: "companion_dolphin_pilot_001", discovery: "object_shell_pilot_001")
 
     private func intent(_ row: (name: String, setting: String, companion: String, discovery: String),
                         child: String = "Yeliz", seed: String) -> OfflineStoryIntent {
@@ -220,7 +235,7 @@ final class MatrixCoverageTests: XCTestCase {
         XCTAssertThrowsError(
             try OfflineStoryComposer().compose(
                 blueprint: threshold, catalog: catalog,
-                intent: intent(Self.matrix[3], seed: "x"))
+                intent: intent(Self.retiredSeaRow, seed: "x"))
         ) { error in
             guard case OfflineSelectionError.requestedContentRejected(_, let reason) = error else {
                 return XCTFail("Wrong error: \(error)")

@@ -1,5 +1,4 @@
 import XCTest
-import StoryEngine
 @testable import MagicPaper
 
 /// The companion screen's whole job is choosing between three characters, and a
@@ -13,8 +12,10 @@ import StoryEngine
 @MainActor
 final class CompanionSymbolTests: XCTestCase {
 
-    private func companions() -> [CatalogCompanion] {
-        OfflineStoryService.shared.companionCandidates(forIdeaID: nil)
+    /// Through the seam the screen uses, so this checks what a parent can
+    /// actually be shown, whichever source is behind it.
+    private func companions() -> [CompanionChoice] {
+        StoryChoiceSources.current.companionChoices(forIdeaID: nil, mode: nil, age: nil)
     }
 
     func testThereAreCompanionsToCheck() {
@@ -25,8 +26,8 @@ final class CompanionSymbolTests: XCTestCase {
     func testEverySelectableCompanionHasItsOwnPicture() {
         var byType: [String: [String]] = [:]
         for companion in companions() {
-            byType[CompanionStep.symbol(forType: companion.type), default: []]
-                .append("\(companion.name) (\(companion.type))")
+            byType[CompanionStep.symbol(forType: companion.kind), default: []]
+                .append("\(companion.name) (\(companion.kind))")
         }
         let shared = byType.filter { $0.value.count > 1 }
         XCTAssertTrue(
@@ -43,8 +44,8 @@ final class CompanionSymbolTests: XCTestCase {
     /// there — the moment the fallback stops being a fallback.
     func testTheFallbackIsNeverCarryingTwoAnimals() {
         let onPaw = companions()
-            .filter { CompanionStep.symbol(forType: $0.type) == "pawprint" }
-            .map(\.type)
+            .filter { CompanionStep.symbol(forType: $0.kind) == "pawprint" }
+            .map(\.kind)
         XCTAssertLessThanOrEqual(
             onPaw.count, 1,
             "More than one companion fell through to the paw: \(onPaw.sorted()). "

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "note": "Sanat setleri. Bir set, bir masal ailesinin (mod ya da dünya) bir kez üretilip uygulamaya gömülen illüstrasyonlarıdır; masal başına üretim yoktur. Varlık adı Assets.xcassets içinde yoksa slot 'bekliyor' sayılır ve bileşen yer tutucu motiflere düşer. Üretim kuralları: docs/art/GECE_ART_KIT.md",
+  "kits": [
+    {
+      "id": "gece",
+      "name": "Gece",
+      "modes": ["bedtime"],
+      "worlds": [],
+      "placeholderMotifs": ["Storybook/bedtime_night_hills_01", "Storybook/bedtime_moon_01"],
+      "slots": [
+        {
+          "role": "hero",
+          "asset": "ArtKit/artkit_gece_hero_01",
+          "aspect": "3:4",
+          "textSafe": { "x": 0.0, "y": 0.62, "width": 1.0, "height": 0.38 },
+          "brief": "Masal detay ekranının tam genişlik sahnesi. Ay ışığında uykuya hazırlanan küçük bir dünya: pencere, tepe, fener. Odak üst üçte ikide; alt bant sakin ve detaysız, üstüne başlık gelecek."
+        },
+        {
+          "role": "cover",
+          "asset": "ArtKit/artkit_gece_cover_01",
+          "aspect": "3:4",
+          "textSafe": { "x": 0.06, "y": 0.76, "width": 0.88, "height": 0.20 },
+          "brief": "Rafta ve okuyucu kapağında görünen kapak resmi. Başlık resmin altında durur (StoryCover); alt bant yine de sakin kalmalı çünkü kadraj cihaza göre kırpılır."
+        },
+        {
+          "role": "spot",
+          "asset": "ArtKit/artkit_gece_spot_window_01",
+          "aspect": "1:1",
+          "brief": "Şeffaf zeminli küçük sahne: perdesi aralık bir pencere ve ay."
+        },
+        {
+          "role": "spot",
+          "asset": "ArtKit/artkit_gece_spot_lantern_01",
+          "aspect": "1:1",
+          "brief": "Şeffaf zeminli küçük sahne: patikada yanan bir fener."
+        },
+        {
+          "role": "spot",
+          "asset": "ArtKit/artkit_gece_spot_companion_01",
+          "aspect": "1:1",
+          "brief": "Şeffaf zeminli küçük sahne: yastıkta kıvrılmış uykulu bir yol arkadaşı."
+        },
+        {
+          "role": "spot",
+          "asset": "ArtKit/artkit_gece_spot_stars_01",
+          "aspect": "1:1",
+          "brief": "Şeffaf zeminli küçük sahne: battaniyeye düşen yıldızlar."
+        }
+      ]
+    }
+  ]
+}

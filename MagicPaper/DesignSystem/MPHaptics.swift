@@ -22,6 +22,7 @@ enum MPHaptics {
     private static let light = UIImpactFeedbackGenerator(style: .light)
     private static let medium = UIImpactFeedbackGenerator(style: .medium)
     private static let notice = UINotificationFeedbackGenerator()
+    private static let picker = UISelectionFeedbackGenerator()
 
     private static var enabled: Bool { MPSettingsStore.shared.haptics }
 
@@ -40,6 +41,16 @@ enum MPHaptics {
         guard enabled else { return }
         light.impactOccurred(intensity: 0.45)
         light.prepare()
+    }
+
+    /// Bir seçim değiştiğinde: sekme, segment, anahtar.
+    ///
+    /// Yalnızca değer gerçekten değiştiyse çağrılır. Zaten seçili olana
+    /// dokunmak titretmez, çünkü hiçbir şey olmadı.
+    static func selection() {
+        guard enabled else { return }
+        picker.selectionChanged()
+        picker.prepare()
     }
 
     /// Genel dokunma geri bildirimi.

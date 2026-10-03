@@ -25,6 +25,8 @@ struct HomeView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var streak = MPStreak.shared
+    @State private var shelfFilter: MPShelfFilter = .all
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: 0) {
@@ -72,28 +74,13 @@ struct HomeView: View {
 
             Spacer(minLength: 0)
 
-            // Sayı tek başına bir birim değil. "3" bir ebeveyne hiçbir şey
-            // söylemiyordu; neyin üçü olduğu ancak ödeme duvarına girince
-            // anlaşılıyordu — yani satın alma kararının isteneceği yerde.
-            Button { app.openPaywall() } label: {
-                HStack(spacing: 6) {
-                    MPIcon("star.fill", size: 15, weight: .bold)
-                    Text("\(starCount) görselli masal")
-                        .font(MP.F.labelSM())
-                        .lineLimit(1)
-                }
-                .foregroundStyle(MP.C.premiumInk)
-                .padding(.horizontal, MP.S.x3)
-                .frame(height: 34)
-                .background(
-                    Capsule(style: .continuous).fill(MP.C.rewardSoft)
-                )
-                .overlay(
-                    Capsule(style: .continuous).stroke(MP.C.reward.opacity(0.45), lineWidth: 1.5)
-                )
+            // Mod anahtarı. Görselli masal hakkını gösteren yıldız hapı buradaydı
+            // ve dokununca ödeme duvarını açıyordu — çocuk modunda, çocuğun
+            // parmağının altında bir satın alma kapısı. Kalan hak artık
+            // Ebeveyn tarafında, istatistiklerde ve abonelik kartında.
+            MPModeSwitch(isParent: false) { parent in
+                if parent { app.requestParentMode() }
             }
-            .buttonStyle(MPPressStyle(scales: false))
-            .accessibilityLabel("\(starCount) görselli masal hakkın kaldı")
         }
         .padding(.horizontal, MP.S.screenGutter)
         .padding(.vertical, 4)
@@ -116,12 +103,6 @@ struct HomeView: View {
         case 17..<22: return "İyi akşamlar,"
         default:      return "İyi geceler,"
         }
-    }
-
-    private var starCount: Int {
-        subscriptionManager.isPremium
-            ? subscriptionManager.remainingImageStories
-            : subscriptionManager.freeTrialCount
     }
 
     // MARK: - Bu akşam
@@ -231,10 +212,23 @@ struct HomeView: View {
 
     // MARK: - Çocuğun kendi masalları
 
-    private var shelf: [Story] {
+    /// Süzgeçten önceki raf.
+    private var shelfBase: [Story] {
         // Kaldığı yer zaten yukarıda duruyor; rafta ikinci kez göstermek
         // ekranın en değerli iki yuvasını aynı masala harcamak olurdu.
-        Array(myStories.filter { $0.id != unfinished?.id }.prefix(6))
+        myStories.filter { $0.id != unfinished?.id }
+    }
+
+    private var shelfFilters: [MPShelfFilter] { MPShelfFilter.available(in: shelfBase) }
+
+    /// Seçili süzgeç artık rafta yoksa (o moddaki tek masal silindiyse)
+    /// "Hepsi"ye düşülür; boş bir raf göstermek yerine.
+    private var activeFilter: MPShelfFilter {
+        shelfFilters.contains(shelfFilter) ? shelfFilter : .all
+    }
+
+    private var shelf: [Story] {
+        Array(shelfBase.filter(activeFilter.admits).prefix(6))
     }
 
     @ViewBuilder
@@ -244,6 +238,8 @@ struct HomeView: View {
                 MPSectionHeader(title: "\(activeName)'in masalları",
                                 actionLabel: "Tümü",
                                 action: { app.tab = .library })
+
+                if !shelfFilters.isEmpty { filterRow }
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top, spacing: 12) {
@@ -255,12 +251,15 @@ struct HomeView: View {
                                 accent: story.mpAccent,
                                 coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
                                 mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
+                                coverAsset: story.mpKitCoverAsset,
                                 badge: story.isIllustrated ? "Görselli" : nil,
                                 progress: nil,
                                 layout: .shelf
                             ) {
-                                app.sheet = .storyActions(story.id)
+                                app.detailStory = story
                             }
+                            .accessibilityLabel("\(story.title). Masalın sayfasını aç")
+                            .transition(.opacity)
                         }
                     }
                     .padding(.horizontal, MP.S.screenGutter)
@@ -270,6 +269,28 @@ struct HomeView: View {
                 .padding(.horizontal, -MP.S.screenGutter)
             }
         }
+    }
+
+    /// Mod hapları. Yalnızca rafta birden fazla mod varken görünür.
+    private var filterRow: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: MP.S.x2) {
+                ForEach(shelfFilters, id: \.self) { filter in
+                    MPChip(title: filter.title, symbol: filter.symbol,
+                           isSelected: filter == activeFilter) {
+                        guard filter != activeFilter else { return }
+                        MPHaptics.selection()
+                        withAnimation(reduceMotion ? MP.M.easeOut : MP.M.base) {
+                            shelfFilter = filter
+                        }
+                    }
+                    .accessibilityAddTraits(filter == activeFilter ? .isSelected : [])
+                }
+            }
+            .padding(.horizontal, MP.S.screenGutter)
+        }
+        .scrollClipDisabled()
+        .padding(.horizontal, -MP.S.screenGutter)
     }
 
     // MARK: - Alışkanlık
@@ -285,11 +306,13 @@ struct HomeView: View {
     private var streakRow: some View {
         Button { app.tab = .daily } label: {
             HStack(spacing: 12) {
-                MPIcon("flame.fill", size: 18, weight: .semibold)
+                MPIcon("book", size: 18, weight: .semibold)
                     .foregroundStyle(streak.readToday ? MP.C.play : MP.C.textFaint)
-                Text(streak.currentStreak > 0
-                     ? "\(streak.currentStreak) günlük seri"
-                     : "Bugün henüz masal okunmadı")
+                // Sakin süreklilik dili (CLAUDE.md §7): bir seri değil,
+                // birlikte geçen günler.
+                Text(streak.currentStreak > 1
+                     ? "\(streak.currentStreak) gün üst üste birlikte okudunuz"
+                     : "Okuma yolculuğunuz devam ediyor")
                     .font(MP.F.labelMD())
                     .foregroundStyle(MP.C.textBody)
 
@@ -316,7 +339,9 @@ struct HomeView: View {
             )
         }
         .buttonStyle(MPPressStyle(scales: false))
-        .accessibilityLabel("\(streak.currentStreak) günlük seri, Günlük sekmesini aç")
+        .accessibilityLabel(streak.currentStreak > 1
+            ? "\(streak.currentStreak) gün üst üste birlikte okudunuz. Günlük sekmesini aç"
+            : "Okuma yolculuğunuz devam ediyor. Günlük sekmesini aç")
     }
 
     // MARK: - Görselli masal yolu

@@ -103,46 +103,46 @@ enum MPStoryTone: String, CaseIterable, Identifiable {
 
 // MARK: - Yaş aralığı
 
-/// Profil oluşturmadaki 4 chip (03-SCREENS.md §2). Uygulama yaşı `Int` sakladığı
-/// için aralık ↔ tek yaş dönüşümü burada yapılır.
+/// Profil oluşturmadaki 4 chip (03-SCREENS.md §2) — `AgeBandResolver`'ın
+/// bantlarının ekrandaki karşılığı.
+///
+/// Eskiden 3-4 / 5-7 / 8-10 / 11-12 sunuyordu, motor ise 3-4 / 5-6 yazıyordu:
+/// ekranın "5-7" dediği bir çocuk motorun hiçbir bandına tam oturmuyordu. Artık
+/// bantların tek sahibi motordaki çözümleyici; burası yalnızca onları gösterir
+/// ve `MPAgeRangeTests` ikisinin ayrışmadığını denetler.
+///
+/// Uygulama yaşı `Int` sakladığı için seçilen chip bandın üst yaşı olarak
+/// kaydedilir; okurken `from(age:)` aynı çözümleyiciden geçer.
 enum MPAgeRange: String, CaseIterable, Identifiable {
     case r34 = "3-4 yaş"
-    case r57 = "5-7 yaş"
-    case r810 = "8-10 yaş"
-    case r1112 = "11-12 yaş"
+    case r56 = "5-6 yaş"
+    case r78 = "7-8 yaş"
+    case r910 = "9-10 yaş"
 
     var id: String { rawValue }
 
     /// Chip etiketi.
     var title: String { rawValue }
 
-    /// Üretim hattına gidecek temsili yaş (aralığın ortası).
-    var representativeAge: Int {
+    /// Motorun bandı.
+    var band: AgeBand {
         switch self {
-        case .r34: return 4
-        case .r57: return 6
-        case .r810: return 9
-        case .r1112: return 11
+        case .r34:  return AgeBand(lowerBound: 3, upperBound: 4)
+        case .r56:  return AgeBand(lowerBound: 5, upperBound: 6)
+        case .r78:  return AgeBand(lowerBound: 7, upperBound: 8)
+        case .r910: return AgeBand(lowerBound: 9, upperBound: 10)
         }
     }
+
+    /// Profile yazılan yaş: bandın üst ucu.
+    var representativeAge: Int { band.upperBound }
 
     /// "{yaş} yaş · {n} masal" satırında kullanılan kısa etiket.
-    var shortLabel: String {
-        switch self {
-        case .r34: return "3-4"
-        case .r57: return "5-7"
-        case .r810: return "8-10"
-        case .r1112: return "11-12"
-        }
-    }
+    var shortLabel: String { band.description }
 
     static func from(age: Int) -> MPAgeRange {
-        switch age {
-        case ..<5: return .r34
-        case 5...7: return .r57
-        case 8...10: return .r810
-        default: return .r1112
-        }
+        let band = AgeBandResolver.band(forAge: age)
+        return allCases.first { $0.band == band } ?? .r56
     }
 }
 

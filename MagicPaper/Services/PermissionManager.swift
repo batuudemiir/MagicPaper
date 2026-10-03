@@ -1,7 +1,12 @@
 import Foundation
+import OSLog
 // import AppTrackingTransparency // ❌ REMOVED - Not allowed for Kids Category apps
 import UserNotifications
 import UIKit
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "PermissionManager")
 
 @MainActor
 class PermissionManager: ObservableObject {
@@ -45,10 +50,10 @@ class PermissionManager: ObservableObject {
         do {
             let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
             await checkNotificationStatus()
-            print("🔔 Notification Permission: \(granted ? "Granted" : "Denied")")
+            logger.debug("🔔 Notification Permission: \(granted ? "Granted" : "Denied")")
             return granted
         } catch {
-            print("❌ Notification Permission Error: \(error)")
+            logger.error("❌ Notification Permission Error: \(String(describing: error))")
             return false
         }
     }

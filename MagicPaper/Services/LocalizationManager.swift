@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import SwiftUI
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "LocalizationManager")
 
 class LocalizationManager: ObservableObject {
     static let shared = LocalizationManager()
@@ -34,25 +39,25 @@ class LocalizationManager: ObservableObject {
         if let savedLanguage = UserDefaults.standard.string(forKey: "defaultLanguage"),
            let language = AppLanguage(rawValue: savedLanguage) {
             currentLanguage = language
-            print("📱 Saved language loaded: \(language.displayName)")
+            logger.debug("📱 Saved language loaded: \(language.displayName)")
         } else if let savedLanguage = UserDefaults.standard.string(forKey: "appLanguage"),
                   let language = AppLanguage(rawValue: savedLanguage) {
             currentLanguage = language
-            print("📱 App language loaded: \(language.displayName)")
+            logger.debug("📱 App language loaded: \(language.displayName)")
         } else {
             // Sistem dilini kontrol et - daha güvenilir yöntem
             let preferredLanguages = Locale.preferredLanguages
             let systemLanguageCode = preferredLanguages.first?.prefix(2).lowercased() ?? "en"
             
-            print("📱 System language code: \(systemLanguageCode)")
-            print("📱 Preferred languages: \(preferredLanguages)")
+            logger.debug("📱 System language code: \(systemLanguageCode)")
+            logger.debug("📱 Preferred languages: \(preferredLanguages)")
             
             if systemLanguageCode == "tr" {
                 currentLanguage = .turkish
-                print("📱 Setting Turkish as default")
+                logger.debug("📱 Setting Turkish as default")
             } else {
                 currentLanguage = .english
-                print("📱 Setting English as default")
+                logger.debug("📱 Setting English as default")
             }
             
             // İlk açılışta sistem dilini kaydet

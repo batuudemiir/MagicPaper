@@ -124,3 +124,57 @@ final class StoryPersistenceTests: XCTestCase {
         XCTAssertEqual(decoded.childProfileID, id)
     }
 }
+
+// MARK: - Deletion ownership
+
+/// Deleting a child deletes their stories — and only theirs. These pin the
+/// stricter rule `isSolelyOwned(by:among:)` uses, because a wrong answer here
+/// is unrecoverable.
+extension StoryPersistenceTests {
+
+    func testDeletingAChildTakesTheirIdentifiedStories() {
+        let yeliz = profile("Yeliz")
+        let demir = profile("Demir")
+        let own = story("A", childName: "Yeliz", childProfileID: yeliz.id)
+        XCTAssertTrue(own.isSolelyOwned(by: yeliz, among: [yeliz, demir]))
+    }
+
+    func testDeletingAChildLeavesTheirSiblingsStories() {
+        let yeliz = profile("Yeliz")
+        let demir = profile("Demir")
+        let siblings = story("A", childName: "Demir", childProfileID: demir.id)
+        XCTAssertFalse(siblings.isSolelyOwned(by: yeliz, among: [yeliz, demir]))
+    }
+
+    /// An identified story is the child's even if a sibling shares the name.
+    func testAnIdentifiedStoryIsOwnedEvenWhenANameIsShared() {
+        let first = profile("Deniz")
+        let second = profile("Deniz")
+        let own = story("A", childName: "Deniz", childProfileID: first.id)
+        XCTAssertTrue(own.isSolelyOwned(by: first, among: [first, second]))
+        XCTAssertFalse(own.isSolelyOwned(by: second, among: [first, second]))
+    }
+
+    func testALegacyStoryGoesWithTheOnlyChildOfThatName() {
+        let yeliz = profile("Yeliz")
+        let demir = profile("Demir")
+        let legacy = story("A", childName: "Yeliz")
+        XCTAssertTrue(legacy.isSolelyOwned(by: yeliz, among: [yeliz, demir]))
+    }
+
+    /// Two children named alike: a pre-id story could be either's, so neither
+    /// deletion may take it.
+    func testALegacyStoryIsKeptWhenTheNameIsShared() {
+        let first = profile("Deniz")
+        let second = profile("Deniz")
+        let legacy = story("A", childName: "Deniz")
+        XCTAssertFalse(legacy.isSolelyOwned(by: first, among: [first, second]))
+        XCTAssertFalse(legacy.isSolelyOwned(by: second, among: [first, second]))
+    }
+
+    func testAStoryWithNoNameIsNeverTaken() {
+        let yeliz = profile("Yeliz")
+        let nameless = story("A", childName: "")
+        XCTAssertFalse(nameless.isSolelyOwned(by: yeliz, among: [yeliz]))
+    }
+}

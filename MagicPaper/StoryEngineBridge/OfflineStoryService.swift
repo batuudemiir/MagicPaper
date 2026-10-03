@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import StoryEngine
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "OfflineStoryService")
 
 /// The app's door into the offline story engine.
 ///
@@ -22,14 +27,26 @@ final class OfflineStoryService {
         case contentUnavailable(detail: String)
         /// Content loaded, but no story could be built from these choices.
         case noStoryForChoices(detail: String)
+        /// A story was built, but its text has holes — a slot left unfilled or
+        /// a suffix the renderer did not know — so it is not shown to a child.
+        case defectiveDraft(detail: String)
 
         /// What to log.
         var detail: String {
             switch self {
-            case .contentUnavailable(let detail), .noStoryForChoices(let detail): return detail
+            case .contentUnavailable(let detail),
+                 .noStoryForChoices(let detail),
+                 .defectiveDraft(let detail):
+                return detail
             }
         }
     }
+
+    /// How many fresh seeds a new story may try before a defective draft is
+    /// reported. A different seed picks different sentence variants, which is
+    /// usually enough to step around one broken variant; a hole that every
+    /// variant shares will fail every attempt, and should.
+    static let cleanDraftAttempts = 3
 
     private var cached: ContentCatalog?
     private var cachedReport: CatalogLoadReport?
@@ -48,7 +65,7 @@ final class OfflineStoryService {
             let result = try ContentCatalogLoader().load()
             cached = result.catalog
             cachedReport = result.report
-            print("📚 \(result.report.summary)")
+            logger.debug("📚 \(result.report.summary)")
             return result.catalog
         } catch {
             throw Failure.contentUnavailable(detail: String(describing: error))
@@ -59,31 +76,71 @@ final class OfflineStoryService {
 
     var catalogVersion: String { (try? catalog().version) ?? "unknown" }
 
-    /// Bu yaştaki bir çocuğa gösterilecek fikirler.
+    // MARK: - Age
+
+    /// The band this child is served from.
     ///
-    /// Süzgeç **geri açıldı**. Kapalıydı çünkü her fikir `5-6` bandındaydı ve
-    /// tek bantlı bir katalogda süzmek yalnızca çıkarabilir: dört banttan üçü
-    /// kartsız kalıyordu. 3-4 bandı yazılınca o öncül bozuldu — ve bozulduğunu
-    /// söyleyen şey `AgeBandCoverageTests` oldu, bir insanın hatırlaması değil.
-    ///
-    /// Hiç içeriği olmayan bir bant için en yakın banda düşülüyor. Bu bir
-    /// GEÇİCİ ÇÖZÜM ve öyle adlandırılıyor: 8-10 ve 11-12 için yazılmış hiçbir
-    /// şey yok, ve bu bantları sunmaya devam eden profil ekranıdır. Boş bir ilk
-    /// ekran bozuk bir uygulamadır; yaşı kayan bir masal ise bugün "Sürpriz"in
-    /// zaten yaptığı şey. İkisi arasında seçim yapmak zorundayız ve ikincisi
-    /// daha az kötü — ama sessiz kalmıyor.
+    /// `AgeBandResolver` decides the child's band; if nothing is written for
+    /// it yet, the nearest band that has content serves instead (younger on a
+    /// tie). A TEMPORARY fallback, named as one: 7-8 and 9-10 have no content,
+    /// and an empty first screen is a broken app.
+    func servedBand(forAge age: Int) -> AgeBand {
+        let requested = AgeBandResolver.band(forAge: age)
+        guard let catalog = try? catalog() else { return requested }
+        let authored = Set(catalog.blueprints.filter(\.isBeatAuthored).map(\.ageRange))
+        guard let served = AgeBandResolver.servedBand(for: requested, available: authored) else {
+            return requested
+        }
+        if served != requested {
+            logger.warning("⚠️ \(requested) bandı için yazılmış içerik yok; \(served) bandından sunuluyor.")
+        }
+        return served
+    }
+
+    /// Every idea for this child's band, regardless of mode.
     func storyIdeas(forAge age: Int) -> [CatalogStoryIdea] {
         guard let catalog = try? catalog() else { return [] }
-        let matching = catalog.storyIdeas.filter { $0.suits(age: age) }
-        guard matching.isEmpty else { return matching }
+        let band = servedBand(forAge: age)
+        return catalog.storyIdeas.filter { $0.ageRange == band }
+    }
 
-        // En yakın bant: bandın kendi yaşına uzaklığı.
-        let nearest = catalog.storyIdeas.min { a, b in
-            a.ageRange.distance(to: age) < b.ageRange.distance(to: age)
-        }?.ageRange
-        guard let nearest else { return catalog.storyIdeas }
-        print("⚠️ \(age) yaşı için yazılmış hikâye fikri yok; \(nearest) bandına düşülüyor.")
-        return catalog.storyIdeas.filter { $0.ageRange == nearest }
+    // MARK: - Modes
+
+    /// The modes a story can be built in for this child. A mode that cannot
+    /// produce a story is not offered.
+    func availableModes(forAge age: Int) -> [StoryMode] {
+        guard let catalog = try? catalog() else { return [] }
+        return selector.availableModes(catalog: catalog, ageBand: servedBand(forAge: age))
+    }
+
+    /// The optional idea cards under a mode. Empty means the flow skips them.
+    func storyIdeas(forAge age: Int, mode: StoryMode) -> [CatalogStoryIdea] {
+        guard let catalog = try? catalog() else { return [] }
+        return selector.storyIdeas(catalog: catalog, mode: mode, ageBand: servedBand(forAge: age))
+    }
+
+    /// Turns the parent's choice into a mode. For "surprise" this is where
+    /// MagicPaper decides, looking at what this child read last.
+    ///
+    /// - Parameter recent: the child's recent modes, newest first.
+    func resolveMode(
+        strategy: StorySelectionStrategy,
+        requested: StoryMode?,
+        forAge age: Int,
+        recent: [StoryMode],
+        seed: String = UUID().uuidString
+    ) throws -> StoryMode {
+        do {
+            return try StoryModeResolver().resolve(
+                strategy: strategy,
+                requested: requested,
+                available: availableModes(forAge: age),
+                recent: recent,
+                seed: seed
+            )
+        } catch {
+            throw Failure.noStoryForChoices(detail: "Mod çözülemedi: \(error)")
+        }
     }
 
     func storyIdea(id: String) -> CatalogStoryIdea? {
@@ -96,7 +153,11 @@ final class OfflineStoryService {
     /// Empty only if the content is unloadable; an idea that can be offered can
     /// always be companioned, and the load-time integrity check is what keeps
     /// that true.
-    func companionCandidates(forIdeaID ideaID: String?) -> [CatalogCompanion] {
+    func companionCandidates(
+        forIdeaID ideaID: String?,
+        mode: StoryMode? = nil,
+        age: Int? = nil
+    ) -> [CatalogCompanion] {
         guard let catalog = try? catalog() else { return [] }
         let idea = ideaID.flatMap { id in catalog.storyIdeas.first { $0.id.rawValue == id } }
         return selector.companionCandidates(
@@ -104,7 +165,9 @@ final class OfflineStoryService {
             intent: OfflineStoryIntent(
                 childName: "",
                 storyIdeaID: idea?.id,
-                seed: "candidates"
+                seed: "candidates",
+                mode: mode,
+                ageBand: age.map(servedBand(forAge:))
             ),
             idea: idea
         )
@@ -112,34 +175,77 @@ final class OfflineStoryService {
 
     // MARK: - Composing
 
-    /// Builds a story from the two choices the child made.
+    /// Builds a story from the parent's choices.
     ///
-    /// - Parameter seed: supply one to rebuild an existing story exactly;
-    ///   otherwise a fresh one is made and stored on the result, which is what
-    ///   makes the story reproducible later. The previous implementation used
-    ///   `UInt64.random` and kept it nowhere, so no story could ever be rebuilt.
+    /// - Parameters:
+    ///   - mode: the resolved intent. Nil admits every family, which is how
+    ///     stories were built before modes existed.
+    ///   - age: the child's age; the story is written for its served band. Nil
+    ///     admits every band.
+    ///   - seed: supply one to rebuild an existing story exactly; otherwise a
+    ///     fresh one is made and stored on the result, which is what makes the
+    ///     story reproducible later. The previous implementation used
+    ///     `UInt64.random` and kept it nowhere, so no story could ever be rebuilt.
     func compose(
         childName: String,
         ideaID: String?,
         companionID: String?,
+        mode: StoryMode? = nil,
+        age: Int? = nil,
         seed: String? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
-        let seed = seed ?? UUID().uuidString
-        let intent = OfflineStoryIntent(
-            childName: childName,
-            storyIdeaID: ideaID.map { ContentID($0) },
-            companionID: companionID.map { ContentID($0) },
-            seed: seed
-        )
-        do {
-            let composed = try composer.compose(catalog: catalog, intent: intent)
-            return (composed, seed, catalog.version)
-        } catch let error as OfflineSelectionError {
-            // The full account goes to the log; the caller shows one sentence.
-            throw Failure.noStoryForChoices(detail: error.explanation)
-        } catch {
-            throw Failure.noStoryForChoices(detail: String(describing: error))
+        // A supplied seed is a rebuild: it must produce that story or nothing,
+        // so it gets exactly one attempt.
+        let seeds = seed.map { [$0] }
+            ?? (0..<Self.cleanDraftAttempts).map { _ in UUID().uuidString }
+
+        var defects: [String] = []
+        for seed in seeds {
+            let intent = OfflineStoryIntent(
+                childName: childName,
+                storyIdeaID: ideaID.map { ContentID($0) },
+                companionID: companionID.map { ContentID($0) },
+                seed: seed,
+                mode: mode,
+                ageBand: age.map(servedBand(forAge:))
+            )
+            let composed: ComposedStory
+            do {
+                composed = try composer.compose(catalog: catalog, intent: intent)
+            } catch let error as OfflineSelectionError {
+                // The full account goes to the log; the caller shows one sentence.
+                throw Failure.noStoryForChoices(detail: error.explanation)
+            } catch {
+                throw Failure.noStoryForChoices(detail: String(describing: error))
+            }
+
+            // The gate between the engine and a child. Nothing that failed
+            // `isClean` is returned, whatever else is true of it.
+            if composed.isClean {
+                return (composed, seed, catalog.version)
+            }
+            defects.append(Self.defectReport(composed))
         }
+        throw Failure.defectiveDraft(detail: defects.joined(separator: " | "))
+    }
+
+    /// What was wrong with a draft, for the log. Names content ids, slot names
+    /// and suffix spellings — never the page text, which carries the child's
+    /// name.
+    static func defectReport(_ composed: ComposedStory) -> String {
+        let pages = composed.pages.enumerated().compactMap { index, page -> String? in
+            guard !page.missingSlots.isEmpty || !page.unrecognisedSuffixes.isEmpty else { return nil }
+            var parts: [String] = []
+            if !page.missingSlots.isEmpty {
+                parts.append("missing slots \(page.missingSlots)")
+            }
+            if !page.unrecognisedSuffixes.isEmpty {
+                parts.append("unknown suffixes \(page.unrecognisedSuffixes)")
+            }
+            return "page \(index + 1) [\(page.variantIDs.map(\.rawValue).joined(separator: ","))]: "
+                + parts.joined(separator: ", ")
+        }
+        return "blueprint \(composed.blueprintID.rawValue): " + pages.joined(separator: "; ")
     }
 }

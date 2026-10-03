@@ -623,7 +623,9 @@ Three pilots, one per family, chosen for maximum mechanism distance:
 
 Mutual distances — mechanism 3 in every pair (§6), beat distance A↔B = 6, A↔C = 6, B↔C = 7. These are the three furthest-separated families in the library, which is the right property for a pilot set: if the architecture holds here, the intra-family cases in Phase 5 are the harder test, not the easier one.
 
-Each pilot must be authored with enough beat-tagged variants to be instantiated against the Phase 4 matrix (forest+fox+light, mountain+owl+footprints, garden+hedgehog+sound, sea+dolphin+shell, forest+rabbit+map).
+Each pilot must be authored with enough beat-tagged variants to be instantiated against the Phase 4 matrix (forest+fox+light, mountain+owl+footprints, garden+hedgehog+sound, ~~sea+dolphin+shell~~, forest+rabbit+map).
+
+> **2026-10-01 — `sea+dolphin+shell` retired from the matrix** (product decision, Faz 7.1). No blueprint in the library fits it: an open sea offers no threshold, the dolphin carries, and the shell neither signals nor asks to be explained. The two nearest blueprints were one trait away and both would have been a narrative stretch; §8.3 forbids widening a blueprint to buy coverage, and a water-family blueprint was declined for now. The row stays in `MatrixCoverageTests` as `retiredSeaRow`, the library's standing impossible request, which must be refused with a reason. The coral sea, dolphin and shell content remain in the catalog.
 
 **One blocker to resolve first.** The Turkish suffix resolver (§9, §15) does not implement the cases that `T2_achievement` and `T3_secret` need, and silently emits ungrammatical output rather than failing. Authoring title families against a resolver that cannot render them would bake the defect into the corpus. I recommend fixing the resolver — a contained, well-specified change — **before** Pilot titles are written, and I will flag it again rather than author around it.
 

@@ -109,8 +109,12 @@ struct MPSectionHeader: View {
                     }
                     .font(MP.F.labelMD())
                     .foregroundStyle(MP.C.textLink)
+                    // Dokunma alanı görünür boyuttan büyük, düzen değişmez.
+                    .padding(.vertical, MP.S.x3)
+                    .contentShape(Rectangle())
+                    .padding(.vertical, -MP.S.x3)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(MPPressStyle(.highlight))
             }
         }
     }
@@ -359,7 +363,8 @@ struct MPListRow<Trailing: View>: View {
 
     var body: some View {
         if let action {
-            Button(action: action) { content }.buttonStyle(.plain)
+            Button(action: action) { content.contentShape(Rectangle()) }
+                .buttonStyle(MPPressStyle(.highlight))
         } else {
             content
         }
@@ -402,6 +407,8 @@ struct MPStoryCard: View {
     /// When set, the card renders a `MagicPaperCoverView` mosaic instead of
     /// the typographic `StoryCoverFace`. Illustrated stories leave this `nil`.
     var mosaicCover: MagicPaperCoverConfiguration? = nil
+    /// Sanat setinin teslim edilmiş kapak görseli. Varsa mozaiğin önüne geçer.
+    var coverAsset: String? = nil
     /// Masalın okuma durumu.
     ///
     /// Kütüphane bunu söylemiyordu: beş kart yan yana duruyor ve hangisinin
@@ -436,18 +443,25 @@ struct MPStoryCard: View {
     /// okunurluk feda edilmez.
     static let shelfWidth: CGFloat = 184
 
+    /// Raf kapağı kare değil, kitap gibi 3:4.
+    ///
+    /// Kare kapak rafı bir uygulama ızgarasına benzetiyordu; dikey kapak bir
+    /// kitaplığa. Sanat seti kapakları da 3:4 üretiliyor (`art_kits.json`).
+    static let shelfCoverHeight: CGFloat = shelfWidth * 4 / 3
+
     var body: some View {
         Button(action: action) {
             Group {
                 if isShelf {
                     VStack(alignment: .leading, spacing: 0) {
-                        cover(side: Self.shelfWidth, glyph: 46, rounded: false)
+                        cover(width: Self.shelfWidth, height: Self.shelfCoverHeight,
+                              glyph: 46, rounded: false)
                         textBlock.padding(EdgeInsets(top: 12, leading: 14, bottom: 14, trailing: 14))
                     }
                     .frame(width: Self.shelfWidth)
                 } else {
                     HStack(spacing: 14) {
-                        cover(side: 72, glyph: 30, rounded: true)
+                        cover(width: 72, height: 72, glyph: 30, rounded: true)
                         textBlock
                         Spacer(minLength: 0)
                     }
@@ -463,18 +477,25 @@ struct MPStoryCard: View {
     }
 
     /// Kapak alanı: mozaik kapak, tipografik kapak yüzü, veya dünya ikonu.
-    @ViewBuilder
-    private func cover(side: CGFloat, glyph: CGFloat, rounded: Bool) -> some View {
-        Group {
-            if let mosaicCover {
+    private func cover(width: CGFloat, height: CGFloat, glyph: CGFloat, rounded: Bool) -> some View {
+        let side = min(width, height)
+        return Group {
+            if let coverAsset {
+                Image(coverAsset)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: width, height: height)
+                    .clipped()
+                    .accessibilityHidden(true)
+            } else if let mosaicCover {
                 // Generative paper-mosaic cover for text-only stories.
                 MagicPaperCoverView.thumbnail(for: mosaicCover)
-                    .frame(width: side, height: side)
+                    .frame(width: width, height: height)
             } else if let coverTitle {
                 // Kitabın tipografik yüzü: kâğıt, yay biçiminde ad, marka
                 // satırı — okuyucunun kapak yaprağıyla aynı dil.
                 StoryCoverFace(title: coverTitle)
-                    .frame(width: side, height: side)
+                    .frame(width: width, height: height)
                     // Dünya işareti kimlik olarak kalıyor: ad okunmadan da
                     // hangi dünyaya ait olduğu bir bakışta anlaşılsın.
                     .overlay(alignment: .bottomTrailing) {
@@ -488,7 +509,7 @@ struct MPStoryCard: View {
             } else {
                 MPIcon(symbol, size: glyph, weight: .semibold)
                     .foregroundStyle(accent)
-                    .frame(width: side, height: side)
+                    .frame(width: width, height: height)
                     .background(accent.opacity(0.16))
             }
         }

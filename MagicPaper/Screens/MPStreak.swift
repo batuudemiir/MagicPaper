@@ -62,12 +62,39 @@ struct MPReadingSession: Equatable {
 /// Oyunlaştırma değil: okuma sürekliliği ve ailece hikâye ritüeli. Bir gün,
 /// uygulama açıldığı için değil, **anlamlı bir okuma oturumu tamamlandığı için**
 /// işaretlenir — kural `MPReadingSession`'da.
+///
+/// ### Çocuk başına (ürün kararı 2026-09-23)
+///
+/// Defter çocuğa aittir, aileye değil: anne Ali için hikâye okuduğunda Ece'nin
+/// serisi devam etmemeli. Aile sahipliktir, çocuk deneyim. `activate(profileID:)`
+/// hangi çocuğun defterinin açık olduğunu söyler; `ContentView` aktif profil
+/// değiştikçe çağırır. Kurallar ve ekranların okuduğu değerler aynı kaldı —
+/// yalnızca hangi defterden okundukları değişti.
+///
+/// Profilsiz örnek (`profileID == nil`) eski, cihaz geneli anahtarları kullanır;
+/// testler ve geçiş bunun üzerine kurulu.
 @MainActor
 final class MPStreak: ObservableObject {
     static let shared = MPStreak()
 
-    private static let daysKey = "mp_readDays"
-    private static let secondsKey = "mp_readSeconds"
+    /// Cihaz geneli eski anahtarlar. Artık yalnızca geçişin kaynağı.
+    nonisolated static let legacyDaysKey = "mp_readDays"
+    nonisolated static let legacySecondsKey = "mp_readSeconds"
+    /// Eski cihaz geneli defterin hangi çocuğa devredildiği. Bir kez yazılır.
+    nonisolated static let legacyAssignedKey = "mp_streakLegacyAssignedTo"
+
+    nonisolated static func daysKey(for profileID: UUID?) -> String {
+        profileID.map { "\(legacyDaysKey).\($0.uuidString)" } ?? legacyDaysKey
+    }
+
+    nonisolated static func secondsKey(for profileID: UUID?) -> String {
+        profileID.map { "\(legacySecondsKey).\($0.uuidString)" } ?? legacySecondsKey
+    }
+
+    /// Hangi çocuğun defteri açık. Nil: eski, cihaz geneli defter.
+    private(set) var profileID: UUID?
+    private var daysKey: String { Self.daysKey(for: profileID) }
+    private var secondsKey: String { Self.secondsKey(for: profileID) }
 
     /// Defterin tuttuğu en uzun geçmiş.
     ///
@@ -98,10 +125,12 @@ final class MPStreak: ObservableObject {
     /// edilebilir. Uygulamada tek örnek `shared` üzerinden kullanılır.
     init(defaults: UserDefaults = .standard,
          calendar: Calendar = .current,
-         now: @escaping () -> Date = Date.init) {
+         now: @escaping () -> Date = Date.init,
+         profileID: UUID? = nil) {
         self.defaults = defaults
         self.calendar = calendar
         self.now = now
+        self.profileID = profileID
 
         let f = DateFormatter()
         f.locale = Locale(identifier: "en_US_POSIX")
@@ -110,8 +139,58 @@ final class MPStreak: ObservableObject {
         f.timeZone = calendar.timeZone
         self.fmt = f
 
-        self.readDays = Set(defaults.stringArray(forKey: MPStreak.daysKey) ?? [])
+        if let profileID { Self.adoptLegacyLedgerIfNeeded(for: profileID, in: defaults) }
+        self.readDays = Set(defaults.stringArray(forKey: Self.daysKey(for: profileID)) ?? [])
         prune()
+    }
+
+    // MARK: - Hangi çocuk
+
+    /// Aktif çocuğun defterini açar. Aynı çocuk için ikinci çağrı bir şey yapmaz.
+    func activate(profileID: UUID?) {
+        guard profileID != self.profileID else { return }
+        // `readSeconds` @Published değil; ekranlar yeni çocuğun süresini de görsün.
+        objectWillChange.send()
+        if let profileID { Self.adoptLegacyLedgerIfNeeded(for: profileID, in: defaults) }
+        self.profileID = profileID
+        readDays = Set(defaults.stringArray(forKey: daysKey) ?? [])
+        prune()
+    }
+
+    /// Çocuk başına deftere geçiş: eski cihaz geneli defter, **ilk** etkinleşen
+    /// çocuğa kopyalanır — geçiş anında seçili olan, yani o ana kadar okuyan çocuk.
+    ///
+    /// Kopyalanır, taşınmaz: eski anahtarlar yerinde kalır, hiçbir veri silinmez.
+    /// Bir kez olur (`legacyAssignedKey`); ikinci bir çocuk eski geçmişi almaz,
+    /// çünkü o geçmiş onun değildi. Çocuğun kendi defteri zaten varsa dokunulmaz.
+    nonisolated static func adoptLegacyLedgerIfNeeded(for profileID: UUID, in defaults: UserDefaults) {
+        guard defaults.string(forKey: legacyAssignedKey) == nil else { return }
+        defaults.set(profileID.uuidString, forKey: legacyAssignedKey)
+
+        let days = daysKey(for: profileID)
+        let seconds = secondsKey(for: profileID)
+        if defaults.object(forKey: days) == nil,
+           let legacy = defaults.stringArray(forKey: legacyDaysKey) {
+            defaults.set(legacy, forKey: days)
+        }
+        if defaults.object(forKey: seconds) == nil,
+           let legacy = defaults.dictionary(forKey: legacySecondsKey) {
+            defaults.set(legacy, forKey: seconds)
+        }
+    }
+
+    /// Bir çocuğun defterini siler — profil silindiğinde.
+    nonisolated static func eraseLedger(for profileID: UUID, in defaults: UserDefaults = .standard) {
+        defaults.removeObject(forKey: daysKey(for: profileID))
+        defaults.removeObject(forKey: secondsKey(for: profileID))
+    }
+
+    /// Bütün defterler, eskisi ve çocuklarınki — "tüm verileri sil".
+    nonisolated static func eraseAllLedgers(in defaults: UserDefaults = .standard) {
+        for key in defaults.dictionaryRepresentation().keys
+        where key.hasPrefix(legacyDaysKey) || key.hasPrefix(legacySecondsKey) || key == legacyAssignedKey {
+            defaults.removeObject(forKey: key)
+        }
     }
 
     // MARK: - Gün anahtarı
@@ -149,7 +228,7 @@ final class MPStreak: ObservableObject {
         var days = readDays
         days.insert(today)
         readDays = pruned(days)
-        defaults.set(Array(readDays), forKey: Self.daysKey)
+        defaults.set(Array(readDays), forKey: daysKey)
     }
 
     var readToday: Bool {
@@ -218,8 +297,8 @@ final class MPStreak: ObservableObject {
 
     /// Gün ("yyyy-MM-dd") → o gün okunan saniye.
     private var readSeconds: [String: Double] {
-        get { defaults.dictionary(forKey: Self.secondsKey) as? [String: Double] ?? [:] }
-        set { defaults.set(newValue, forKey: Self.secondsKey) }
+        get { defaults.dictionary(forKey: secondsKey) as? [String: Double] ?? [:] }
+        set { defaults.set(newValue, forKey: secondsKey) }
     }
 
     /// Okuyucu kapanırken ya da arka plana giderken çağrılır.
@@ -324,7 +403,7 @@ final class MPStreak: ObservableObject {
         let days = pruned(readDays)
         if days.count != readDays.count {
             readDays = days
-            defaults.set(Array(days), forKey: Self.daysKey)
+            defaults.set(Array(days), forKey: daysKey)
         }
         let map = readSeconds
         let kept = pruned(map)

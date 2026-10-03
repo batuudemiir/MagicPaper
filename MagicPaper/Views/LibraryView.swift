@@ -64,7 +64,7 @@ struct LibraryView: View {
                                 progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
                                 layout: .row
                             ) {
-                                app.sheet = .storyActions(story.id)
+                                app.detailStory = story
                             }
                         }
                     }

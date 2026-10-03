@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import UIKit
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FalAIImageGenerator")
 
 /// FAL.AI IMAGE GENERATOR - GEMINI 2.5 FLASH IMAGE EDIT
 /// 
@@ -45,10 +50,8 @@ class FalAIImageGenerator {
         seed: Int? = nil
     ) async throws -> String {
         
-        print("🚀 ========================================")
-        print("🚀 GEMINI 2.5 FLASH IMAGE EDIT")
-        print("🚀 Using fal.run endpoint (queue-based)")
-        print("🚀 ========================================")
+        logger.debug("🚀 GEMINI 2.5 FLASH IMAGE EDIT")
+        logger.debug("🚀 Using fal.run endpoint (queue-based)")
         
         guard let url = URL(string: endpoint) else { throw URLError(.badURL) }
         
@@ -59,7 +62,6 @@ class FalAIImageGenerator {
         Transform this image: show the child \(prompt), \(styleDescription). Keep the child's face and identity exactly the same, only change the scene, pose, and style.
         """
         
-        print("📝 Prompt: \(fullPrompt.prefix(100))...")
         
         // ✅ GEMINI 2.5 FLASH PARAMETERS
         var parameters: [String: Any] = [
@@ -69,20 +71,17 @@ class FalAIImageGenerator {
             "negative_prompt": "text, writing, letters, words, alphabet, numbers, digits, watermark, signature, logo, brand, trademark, subtitles, credits, captions, labels, title, heading, speech bubble, dialogue box, font, typography, written language, handwriting, calligraphy, graffiti, sign, banner, poster text, book text, newspaper, magazine text, ugly, bad anatomy, distorted face, blurry, low quality, crop, out of frame, deformed, disfigured, mutated, extra limbs, bad proportions"
         ]
         
-        print("🚫 ULTRA NEGATIVE PROMPT: Aggressively blocking ALL text and watermarks")
+        logger.debug("🚫 ULTRA NEGATIVE PROMPT: Aggressively blocking ALL text and watermarks")
         
         // ✅ Use same image 3x for stronger identity
         if let refUrl = referenceImageUrl {
             parameters["image_urls"] = [refUrl, refUrl, refUrl]
-            print("📸 ========================================")
-            print("📸 IDENTITY REFERENCE ATTACHED")
-            print("📸 Using 3x same reference for maximum identity")
-            print("📸 URL: \(refUrl.prefix(60))...")
-            print("📸 ========================================")
+            logger.debug("📸 IDENTITY REFERENCE ATTACHED")
+            logger.debug("📸 Using 3x same reference for maximum identity")
         }
         
         if let seed = seed {
-            print("🎲 Seed: \(seed) for consistency")
+            logger.debug("🎲 Seed: \(seed) for consistency")
         }
         
         // Create request
@@ -93,7 +92,7 @@ class FalAIImageGenerator {
         request.timeoutInterval = 30
         request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
         
-        print("⏳ Submitting to queue...")
+        logger.debug("⏳ Submitting to queue...")
         
         // Submit to queue
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -102,42 +101,40 @@ class FalAIImageGenerator {
             throw URLError(.badServerResponse)
         }
         
-        print("📡 Response status: \(httpResponse.statusCode)")
+        logger.debug("📡 Response status: \(httpResponse.statusCode)")
         
         guard httpResponse.statusCode == 200 else {
             let errorText = String(data: data, encoding: .utf8) ?? "Unknown error"
-            print("❌ ========================================")
-            print("❌ SUBMISSION ERROR")
-            print("❌ Status: \(httpResponse.statusCode)")
-            print("❌ Response: \(errorText)")
-            print("❌ ========================================")
+            logger.error("❌ SUBMISSION ERROR")
+            logger.error("❌ Status: \(httpResponse.statusCode)")
+            logger.error("❌ Response: \(errorText)")
             throw URLError(.badServerResponse)
         }
         
         // Parse response
         guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            print("❌ Failed to parse JSON response")
+            logger.error("❌ Failed to parse JSON response")
             throw URLError(.cannotParseResponse)
         }
         
-        print("📦 Response keys: \(json.keys)")
+        logger.debug("📦 Response keys: \(json.keys)")
         
         // Check if we got request_id (queue mode)
         if let requestId = json["request_id"] as? String {
-            print("✅ Queued with ID: \(requestId)")
-            print("⏳ Polling for result...")
+            logger.debug("✅ Queued with ID: \(requestId)")
+            logger.debug("⏳ Polling for result...")
             return try await pollForCompletion(requestId: requestId)
         }
         
         // Check if we got direct result (sync mode)
         if let images = json["images"] as? [[String: Any]],
            let imageUrl = images.first?["url"] as? String {
-            print("✅ Got direct result (sync mode)")
+            logger.debug("✅ Got direct result (sync mode)")
             return imageUrl
         }
         
-        print("❌ Unexpected response format")
-        print("❌ Full response: \(json)")
+        logger.error("❌ Unexpected response format")
+        logger.error("❌ Full response: \(json)")
         throw URLError(.cannotParseResponse)
     }
     
@@ -151,7 +148,7 @@ class FalAIImageGenerator {
             throw URLError(.badURL)
         }
         
-        print("📡 Status URL: \(statusUrl)")
+        logger.debug("📡 Status URL: \(statusUrl)")
         
         // Poll up to 60 times (2 minutes)
         for attempt in 1...60 {
@@ -166,50 +163,46 @@ class FalAIImageGenerator {
                 let (data, response) = try await URLSession.shared.data(for: request)
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    print("⚠️ Attempt \(attempt): No HTTP response")
+                    logger.warning("⚠️ Attempt \(attempt): No HTTP response")
                     continue
                 }
                 
                 if attempt % 5 == 0 {
-                    print("📡 Polling attempt \(attempt)/60... (status: \(httpResponse.statusCode))")
+                    logger.debug("📡 Polling attempt \(attempt)/60... (status: \(httpResponse.statusCode))")
                 }
                 
                 guard httpResponse.statusCode == 200 else {
                     if attempt % 5 == 0 {
-                        print("⚠️ Status code: \(httpResponse.statusCode)")
+                        logger.warning("⚠️ Status code: \(httpResponse.statusCode)")
                     }
                     continue
                 }
                 
                 guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                    print("⚠️ Attempt \(attempt): Failed to parse JSON")
+                    logger.warning("⚠️ Attempt \(attempt): Failed to parse JSON")
                     continue
                 }
                 
                 // Debug: Print response structure every 10 attempts
                 if attempt % 10 == 0 {
-                    print("🔍 Response keys: \(json.keys)")
+                    logger.debug("🔍 Response keys: \(json.keys)")
                     if let status = json["status"] as? String {
-                        print("🔍 Status: \(status)")
+                        logger.debug("🔍 Status: \(status)")
                     }
                 }
                 
                 // Check for explicit status field
                 if let status = json["status"] as? String {
                     if status == "COMPLETED" {
-                        print("🎉 ========================================")
-                        print("🎉 STATUS: COMPLETED")
-                        print("🎉 Extracting image URL...")
-                        print("🎉 ========================================")
+                        logger.debug("🎉 STATUS: COMPLETED")
+                        logger.debug("🎉 Extracting image URL...")
                         return try extractImageUrl(from: json)
                     }
                     
                     if status == "FAILED" {
                         let error = json["error"] as? String ?? "Unknown error"
-                        print("❌ ========================================")
-                        print("❌ GENERATION FAILED")
-                        print("❌ Error: \(error)")
-                        print("❌ ========================================")
+                        logger.error("❌ GENERATION FAILED")
+                        logger.error("❌ Error: \(String(describing: error))")
                         throw URLError(.badServerResponse)
                     }
                     
@@ -219,32 +212,30 @@ class FalAIImageGenerator {
                 
                 // Check if images array exists (implicit completion)
                 if json["images"] != nil {
-                    print("🎉 ========================================")
-                    print("🎉 Images found (implicit completion)")
-                    print("🎉 Extracting image URL...")
-                    print("🎉 ========================================")
+                    logger.debug("🎉 Images found (implicit completion)")
+                    logger.debug("🎉 Extracting image URL...")
                     return try extractImageUrl(from: json)
                 }
                 
             } catch {
                 if attempt == 60 {
-                    print("❌ Max attempts reached")
+                    logger.error("❌ Max attempts reached")
                     throw error
                 }
-                print("⚠️ Attempt \(attempt) error: \(error.localizedDescription)")
+                logger.warning("⚠️ Attempt \(attempt) error: \(error.localizedDescription)")
                 continue
             }
         }
         
-        print("❌ Timeout after 2 minutes (60 attempts)")
+        logger.error("❌ Timeout after 2 minutes (60 attempts)")
         throw URLError(.timedOut)
     }
     
     // MARK: - Image URL Extraction
     
     private func extractImageUrl(from json: [String: Any]) throws -> String {
-        print("🔍 Extracting image URL from response...")
-        print("🔍 Available keys: \(json.keys)")
+        logger.debug("🔍 Extracting image URL from response...")
+        logger.debug("🔍 Available keys: \(json.keys)")
         
         // Try multiple possible formats
         
@@ -252,23 +243,20 @@ class FalAIImageGenerator {
         if let images = json["images"] as? [[String: Any]],
            let firstImage = images.first,
            let imageUrl = firstImage["url"] as? String {
-            print("✅ Found image at: images[0].url")
-            print("✅ URL: \(imageUrl)")
+            logger.debug("✅ Found image at: images[0].url")
             return imageUrl
         }
         
         // Format 2: image.url
         if let imageDict = json["image"] as? [String: Any],
            let imageUrl = imageDict["url"] as? String {
-            print("✅ Found image at: image.url")
-            print("✅ URL: \(imageUrl)")
+            logger.debug("✅ Found image at: image.url")
             return imageUrl
         }
         
         // Format 3: url
         if let imageUrl = json["url"] as? String {
-            print("✅ Found image at: url")
-            print("✅ URL: \(imageUrl)")
+            logger.debug("✅ Found image at: url")
             return imageUrl
         }
         
@@ -277,8 +265,7 @@ class FalAIImageGenerator {
            let images = output["images"] as? [[String: Any]],
            let firstImage = images.first,
            let imageUrl = firstImage["url"] as? String {
-            print("✅ Found image at: output.images[0].url")
-            print("✅ URL: \(imageUrl)")
+            logger.debug("✅ Found image at: output.images[0].url")
             return imageUrl
         }
         
@@ -287,16 +274,13 @@ class FalAIImageGenerator {
            let images = data["images"] as? [[String: Any]],
            let firstImage = images.first,
            let imageUrl = firstImage["url"] as? String {
-            print("✅ Found image at: data.images[0].url")
-            print("✅ URL: \(imageUrl)")
+            logger.debug("✅ Found image at: data.images[0].url")
             return imageUrl
         }
         
         // If we get here, print full JSON for debugging
-        print("❌ ========================================")
-        print("❌ Could not find image URL in response")
-        print("❌ Full JSON: \(json)")
-        print("❌ ========================================")
+        logger.error("❌ Could not find image URL in response")
+        logger.error("❌ Full JSON: \(json)")
         throw URLError(.cannotParseResponse)
     }
 }

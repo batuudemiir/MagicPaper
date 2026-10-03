@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import UserNotifications
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "LocalNotificationManager")
 
 /// Manages local notifications for story completion
 class LocalNotificationManager {
@@ -12,11 +17,11 @@ class LocalNotificationManager {
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
-                print("✅ Notification permission granted")
+                logger.debug("✅ Notification permission granted")
             } else if let error = error {
-                print("❌ Notification permission error: \(error)")
+                logger.error("❌ Notification permission error: \(String(describing: error))")
             } else {
-                print("⚠️ Notification permission denied")
+                logger.warning("⚠️ Notification permission denied")
             }
         }
     }
@@ -36,9 +41,9 @@ class LocalNotificationManager {
         
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("❌ Failed to send notification: \(error)")
+                logger.error("❌ Failed to send notification: \(String(describing: error))")
             } else {
-                print("✅ Notification sent: \(title)")
+                logger.debug("✅ Notification sent: \(title)")
             }
         }
     }

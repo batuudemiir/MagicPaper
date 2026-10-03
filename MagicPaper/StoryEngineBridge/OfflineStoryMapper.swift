@@ -20,7 +20,10 @@ enum OfflineStoryMapper {
         childName: String,
         childProfileID: UUID,
         storyIdeaID: String?,
-        catalogVersion: String
+        catalogVersion: String,
+        mode: StoryMode? = nil,
+        selectionStrategy: StorySelectionStrategy? = nil,
+        ageBand: AgeBand? = nil
     ) -> MagicPaper.Story {
         var story = MagicPaper.Story(
             title: composed.title,
@@ -42,7 +45,10 @@ enum OfflineStoryMapper {
                 fingerprint: composed.fingerprint,
                 catalogVersion: catalogVersion,
                 worldID: MP.World.from(
-                    settingTags: composed.content.setting.tags.map(\.rawValue))?.rawValue
+                    settingTags: composed.content.setting.tags.map(\.rawValue))?.rawValue,
+                modeID: mode?.rawValue,
+                selectionStrategy: selectionStrategy?.rawValue,
+                ageBand: ageBand?.description
             )
         )
         story.currentProgress = nil

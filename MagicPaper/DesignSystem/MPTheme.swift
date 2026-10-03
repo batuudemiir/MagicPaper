@@ -186,6 +186,13 @@ enum MP {
         /// Yarı saydam (`.ultraThinMaterial`) yüzeylerin kenarı.
         static let edgeGlass = Palette.murekkep900.opacity(0.12)
 
+        /// İllüstrasyonun üstündeki metin — yalnızca `MP.Scrim.art` üstünde.
+        /// Kontrastı `StoryArtKitTests` en kötü duruma (beyaz resim) karşı ölçer.
+        static let textOnArt      = Palette.gece25
+        static let textOnArtMuted = Palette.gece100
+        /// Görseli henüz gelmemiş bir sanat setinin gece zemini.
+        static let surfaceNight   = Palette.gece700
+
         /// Avatar madalyonunun renk kümesi.
         ///
         /// Sıra ve uzunluk sabittir: seçilen renk `UserDefaults`'ta *indeks*
@@ -482,6 +489,8 @@ enum MP {
 
         static let sink: CGFloat = 2
         static let scale: CGFloat = 0.985
+        /// Yerinden kıpırdamayan basmanın sönme oranı (`MPPressStyle.highlight`).
+        static let pressDim: Double = 0.62
     }
 
     // MARK: Gölgeler
@@ -504,6 +513,32 @@ enum MP {
 
         /// Anahtar/topuz gibi küçük hareketli parçalar.
         static let knob    = ShadowSpec(color: Palette.murekkep900.opacity(0.20), radius: 1.5, x: 0, y: 1)
+    }
+
+    // MARK: Görsel üstü karartma
+
+    /// İllüstrasyonun üstüne metin binen tek yer için karartma.
+    ///
+    /// Design law'daki gradient istisnası buna dayanır: arayüz yüzeyi değil,
+    /// resmin içinde metni okunur kılan bir malzeme. Yalnızca `MPArtHero`
+    /// kullanır. `peak` değiştirilirse `StoryArtKitTests`'teki kontrast testi
+    /// yeniden koşmalı — `textOnArt` beyaz bir resim üstünde bile 4.5:1 kalmalı.
+    ///
+    /// Karartma kadrajın bir oranına değil metin bloğuna bağlıdır: metin
+    /// Dynamic Type ile uzadıkça tam koyu bölge de uzar, metin hiçbir boyutta
+    /// resmin açık kısmına taşmaz.
+    enum Scrim {
+        static let ink  = Palette.gece800
+        static let peak: Double = 0.78
+        /// Metnin üstünde karartmanın sıfırdan tam koyuya çıktığı mesafe.
+        static let featherHeight: CGFloat = S.x10
+
+        /// Metnin arkası — tam koyu.
+        static var solid: Color { ink.opacity(peak) }
+        /// Metnin üstündeki geçiş — yukarıdan aşağı saydamdan `solid`'e.
+        static var feather: LinearGradient {
+            LinearGradient(colors: [ink.opacity(0), solid], startPoint: .top, endPoint: .bottom)
+        }
     }
 }
 
@@ -536,17 +571,38 @@ extension View {
 
 // MARK: - Basma davranışı (tüm sistemde aynı)
 
-/// Öğe kendi alt kenarının üzerine çöker: 2px aşağı, 0.985 ölçek, %95 parlaklık.
+/// Basma davranışı — sistemdeki tek kaynak.
+///
+/// İki his var:
+/// - `sink`: öğe kendi alt kenarının üzerine çöker. 2px aşağı, 0.985 ölçek,
+///   biraz koyulaşma. Kenarı (`mpEdge`) olan butonlar ve kartlar içindir.
+/// - `highlight`: yerinden kıpırdamaz, yalnızca söner. Liste satırları,
+///   sekmeler ve metin bağlantıları içindir. Bunlar hareket ettiğinde
+///   satırlar birbirine çarpıyormuş gibi durur.
+///
+/// "Hareketi Azalt" açıkken `sink` da yerinden kıpırdamaz ve söner. Önceden
+/// hiç tepki vermiyordu, yani basıldığını gösteren bir işaret kalmıyordu.
 struct MPPressStyle: ButtonStyle {
-    var scales: Bool = true
+    enum Feel { case sink, sinkFlat, highlight }
+
+    var feel: Feel = .sink
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    init(_ feel: Feel = .sink) { self.feel = feel }
+
+    /// Eski çağrı biçimi: `scales: false` ölçeksiz çökme.
+    init(scales: Bool) { self.feel = scales ? .sink : .sinkFlat }
+
     func makeBody(configuration: Configuration) -> some View {
-        let held = configuration.isPressed && !reduceMotion
+        let pressed = configuration.isPressed
+        let moves = feel != .highlight && !reduceMotion
+        let held = pressed && moves
+        let dims = pressed && !moves
         return configuration.label
             .offset(y: held ? MP.M.sink : 0)
-            .scaleEffect(held && scales ? MP.M.scale : 1)
-            .brightness(held && scales ? -0.02 : 0)
-            .animation(MP.M.press, value: configuration.isPressed)
+            .scaleEffect(held && feel == .sink ? MP.M.scale : 1)
+            .brightness(held && feel == .sink ? -0.02 : 0)
+            .opacity(dims ? MP.M.pressDim : 1)
+            .animation(MP.M.press, value: pressed)
     }
 }

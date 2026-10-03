@@ -235,6 +235,7 @@ struct MPSwitch: View {
 
     var body: some View {
         Button {
+            MPHaptics.selection()
             withAnimation(MP.M.gated(MP.M.spring)) { isOn.toggle() }
         } label: {
             ZStack(alignment: isOn ? .trailing : .leading) {
@@ -270,21 +271,30 @@ struct MPSegmentedControl<T: Hashable>: View {
     let options: [(value: T, label: String)]
     @Binding var selection: T
 
+    @Namespace private var thumb
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
         HStack(spacing: 4) {
             ForEach(options, id: \.value) { opt in
+                let isActive = selection == opt.value
                 Button {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { selection = opt.value }
+                    guard !isActive else { return }
+                    MPHaptics.selection()
+                    // Seçili zemin bir seçenekten ötekine kayar; Hareketi
+                    // Azalt açıkken yerinde belirip söner.
+                    withAnimation(reduceMotion ? MP.M.easeOut : MP.M.base) { selection = opt.value }
                 } label: {
                     Text(opt.label)
                         .font(.custom(MP.F.display, size: 15).weight(.bold))
-                        .foregroundStyle(selection == opt.value ? MP.C.textTitle : MP.C.textMuted)
+                        .foregroundStyle(isActive ? MP.C.textTitle : MP.C.textMuted)
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
-                        .modifier(ActiveSkin(isActive: selection == opt.value))
+                        .background { activeThumb(isActive) }
+                        .contentShape(Rectangle())
                 }
-                .buttonStyle(.plain)
-                .accessibilityAddTraits(selection == opt.value ? .isSelected : [])
+                .buttonStyle(MPPressStyle(.highlight))
+                .accessibilityAddTraits(isActive ? .isSelected : [])
             }
         }
         .padding(4)
@@ -295,13 +305,14 @@ struct MPSegmentedControl<T: Hashable>: View {
         )
     }
 
-    private struct ActiveSkin: ViewModifier {
-        let isActive: Bool
-        @ViewBuilder func body(content: Content) -> some View {
-            if isActive {
-                content.mpEdge(fill: MP.C.surfaceCard, edge: MP.C.edgeCard, radius: MP.R.sm)
+    @ViewBuilder
+    private func activeThumb(_ isActive: Bool) -> some View {
+        if isActive {
+            let shape = Color.clear.mpEdge(fill: MP.C.surfaceCard, edge: MP.C.edgeCard, radius: MP.R.sm)
+            if reduceMotion {
+                shape.transition(.opacity)
             } else {
-                content
+                shape.matchedGeometryEffect(id: "segment-thumb", in: thumb)
             }
         }
     }

@@ -1,5 +1,10 @@
 import Foundation
 import SwiftUI
+import OSLog
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "DailyStoryManager")
 
 /// Günlük hikayeleri yöneten servis
 @MainActor
@@ -82,7 +87,7 @@ class DailyStoryManager: ObservableObject {
         // içerik boşluğudur ve kayda geçer.
         let pool: [DailyStory]
         if forAge.isEmpty {
-            if let age { print("⚠️ Günlük: \(age) yaşına uygun masal yok, tüm havuzdan seçiliyor.") }
+            if let age { logger.warning("Günlük: \(age, privacy: .private) yaşına uygun masal yok, tüm havuzdan seçiliyor.") }
             pool = dailyStories
         } else {
             pool = forAge

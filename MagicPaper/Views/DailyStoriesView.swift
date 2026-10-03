@@ -1,26 +1,34 @@
 import SwiftUI
 
-/// Günlük — alışkanlık tarafı.
+/// Günlük — hatıra ve süreklilik yüzeyi.
 ///
-/// Kendi sekmesinde: seri, bugünün masalı ve rozetler burada toplanıyor. Ana
-/// Sayfa bu sayfanın kartlarını TEKRARLAMIYOR, yalnızca seriyi tek satırda
-/// özetleyip buraya getiriyor — aynı kartı iki sekmede göstermek, bu ekranların
-/// ilk hâlindeki sorundu.
+/// Bir oyunlaştırma panosu değil. Rozetler ve kupa hedefleri kaldırıldı
+/// (ürün kararı 2026-09-23, CLAUDE.md §7): "3 hikâye daha okuyalım, kupayı
+/// tamamlayalım" duygusu MagicPaper'ın duygusu değil. Burada sayı varsa bir
+/// ödül değil, birlikte yaşanan bir şeyin hatırasıdır.
+///
+/// Sıra: okuma sürekliliği, bugün için bir hikâye, bugünün masalı, son
+/// hikâyeler, bu ayın özeti. Ana Sayfa bu kartları TEKRARLAMIYOR, yalnızca
+/// seriyi tek satırda özetleyip buraya getiriyor.
 struct DailyStoriesView: View {
     @EnvironmentObject private var app: MPAppState
     @StateObject private var dailyManager = DailyStoryManager.shared
     @StateObject private var streak = MPStreak.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var storyManager = StoryGenerationManager.shared
     @State private var reading: DailyStory?
 
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(title: "Günlük", subtitle: "Her gün bir masal alışkanlığı")
+            MPNavBar(title: "Günlük", subtitle: "Birlikte okuduklarınız")
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     streakCard
+                    createPrompt
                     todaySection
-                    goalsSection
+                    recentSection
+                    monthSummary
                 }
                 .padding(.horizontal, MP.S.screenGutter)
                 .padding(.top, 8)
@@ -40,11 +48,12 @@ struct DailyStoriesView: View {
         MPCard(padding: 20) {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 10) {
-                    MPIcon("flame.fill", size: 22, weight: .semibold)
+                    MPIcon("book", size: 22, weight: .semibold)
                         .foregroundStyle(MP.C.play)
-                    Text("\(streak.currentStreak) günlük seri")
+                    Text(continuityLine)
                         .font(MP.F.displaySM())
                         .foregroundStyle(MP.C.textTitle)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 HStack(spacing: 0) {
@@ -132,93 +141,67 @@ struct DailyStoriesView: View {
         }
     }
 
-    // MARK: - Sıradaki hedef
-
-    /// Üç ölü kupa yerine, ulaşılabilir olan tek hedef.
-    ///
-    /// Önceki hâli üç rozeti de hep gösteriyordu ve iki günlük serisi olan bir
-    /// çocuk için üçü de kilitliydi: %50 opaklıkta üç gri kart, hiçbiri ne kadar
-    /// kaldığını söylemiyor. Kilitli bir ödül, uzaklığı görünmediğinde ödül
-    /// değil; yalnızca sahip olunmayan bir şeyin listesi.
-    ///
-    /// Kazanılanlar kalır — kazanılmış bir rozeti gizlemek onu geri almaktır.
-    /// Kazanılmamışlardan yalnızca EN YAKIN olanı, ilerlemesiyle gösterilir.
-    private struct Goal {
-        let symbol: String
-        let label: String
-        let color: Color
-        let current: Int
-        let target: Int
-        var isEarned: Bool { current >= target }
+    /// Süreklilik bir hatırlatma değil, bir cümle (CLAUDE.md §7).
+    private var continuityLine: String {
+        switch streak.currentStreak {
+        case 0:  return "Okuma yolculuğunuz burada başlıyor."
+        case 1:  return "Dün ya da bugün birlikte okudunuz."
+        default: return "\(streak.currentStreak) gün üst üste birlikte okudunuz."
+        }
     }
 
-    private var goals: [Goal] {
-        [
-            Goal(symbol: "trophy.fill", label: "7 günlük seri", color: MP.C.reward,
-                 current: streak.currentStreak, target: 7),
-            Goal(symbol: "book", label: "10 masal", color: MP.C.calm,
-                 current: readCount, target: 10),
-            Goal(symbol: "flame.fill", label: "30 günlük seri", color: MP.C.play,
-                 current: streak.currentStreak, target: 30)
-        ]
+    // MARK: - Bugün
+
+    private var childName: String { profileManager.currentProfile?.name ?? "" }
+
+    private var createPrompt: some View {
+        MPCard(padding: 20) {
+            VStack(alignment: .leading, spacing: 14) {
+                Text("BUGÜN")
+                    .font(MP.F.labelSM())
+                    .foregroundStyle(MP.C.textMuted)
+                Text(childName.isEmpty
+                     ? "Bugün için bir hikâye oluşturalım mı?"
+                     : "\(childName) için bir hikâye oluşturalım mı?")
+                    .font(MP.F.displaySM())
+                    .foregroundStyle(MP.C.textTitle)
+                    .fixedSize(horizontal: false, vertical: true)
+                MPButton(title: "Hikâye Oluştur", icon: "wand.and.stars", fullWidth: true) {
+                    app.startStoryCreation()
+                }
+            }
+        }
+    }
+
+    // MARK: - Son hikâyeler
+
+    /// Bu çocuğun hikâyeleri, en son okunan ya da yaratılan önce.
+    private var childStories: [Story] {
+        storyManager.stories
+            .filter { $0.belongs(to: profileManager.currentProfile) && $0.status == .completed }
+            .sorted { ($0.lastReadAt ?? $0.createdAt) > ($1.lastReadAt ?? $1.createdAt) }
     }
 
     @ViewBuilder
-    private var goalsSection: some View {
-        let earned = goals.filter(\.isEarned)
-        let next = goals.first { !$0.isEarned }
-
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: earned.isEmpty ? "Sıradaki hedef" : "Rozetler")
-
-            if let next {
-                MPCard(padding: 18) {
-                    HStack(spacing: 14) {
-                        MPIcon(next.symbol, size: 22, weight: .semibold)
-                            .foregroundStyle(next.color)
-                            .frame(width: 42, height: 42)
-                            .background(
-                                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                    .fill(next.color.opacity(0.16))
-                            )
-
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(next.label)
-                                .font(MP.F.bodyMD(.bold))
-                                .foregroundStyle(MP.C.textTitle)
-                            // Sayı açıkça yazılıyor: "2 / 7" bir çubuğun
-                            // söyleyemediğini söyler — kaç tane kaldığını.
-                            Text("\(next.current) / \(next.target)")
-                                .font(MP.F.labelSM())
-                                .foregroundStyle(MP.C.textMuted)
-                            Capsule().fill(MP.C.surfaceSunken)
-                                .frame(height: 8)
-                                .overlay(alignment: .leading) {
-                                    GeometryReader { geo in
-                                        Capsule().fill(next.color)
-                                            .frame(width: geo.size.width
-                                                   * min(1, Double(next.current) / Double(next.target)))
-                                    }
-                                }
-                        }
-                    }
-                }
-            }
-
-            if !earned.isEmpty {
-                HStack(spacing: 12) {
-                    ForEach(Array(earned.enumerated()), id: \.offset) { _, goal in
-                        MPCard(padding: 14) {
-                            VStack(spacing: 8) {
-                                MPIcon(goal.symbol, size: 26, weight: .semibold)
-                                    .foregroundStyle(goal.color)
-                                Text(goal.label)
-                                    .font(MP.F.labelSM())
-                                    .foregroundStyle(MP.C.textMuted)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.8)
-                            }
-                            .frame(maxWidth: .infinity)
+    private var recentSection: some View {
+        let recent = Array(childStories.prefix(3))
+        if !recent.isEmpty {
+            VStack(alignment: .leading, spacing: 16) {
+                MPSectionHeader(title: "Son hikâyeler")
+                VStack(spacing: 12) {
+                    ForEach(recent) { story in
+                        MPStoryCard(
+                            title: story.title,
+                            meta: MPText.relativeDayLabel(story.lastReadAt ?? story.createdAt),
+                            symbol: story.mpSymbol,
+                            accent: story.mpAccent,
+                            coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
+                            mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
+                            badge: nil,
+                            progress: nil,
+                            layout: .row
+                        ) {
+                            app.readerStory = story
                         }
                     }
                 }
@@ -226,8 +209,25 @@ struct DailyStoriesView: View {
         }
     }
 
-    private var readCount: Int {
-        dailyManager.dailyStories.filter { $0.isRead }.count
+    // MARK: - Bu ay
+
+    /// Bu ay bu çocuk için yaratılan hikâye sayısı — bir hedef değil, bir hatıra.
+    /// Sıfırken hiç gösterilmez: boş bir sayaç, doldurulması gereken bir şeye
+    /// benzer.
+    @ViewBuilder
+    private var monthSummary: some View {
+        let calendar = Calendar.current
+        let count = childStories.filter {
+            calendar.isDate($0.createdAt, equalTo: Date(), toGranularity: .month)
+        }.count
+        if count > 0 {
+            MPCard(tone: .sunken, padding: 18) {
+                Text("Bu ay birlikte \(count) hikâye")
+                    .font(MP.F.bodyMD(.semibold))
+                    .foregroundStyle(MP.C.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+        }
     }
 }
 

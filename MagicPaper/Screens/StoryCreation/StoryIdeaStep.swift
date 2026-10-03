@@ -1,59 +1,66 @@
 import SwiftUI
-import StoryEngine
 
-/// Step 1 — which little story should we begin?
+/// Adım 2 (isteğe bağlı) — bu mod içinde neyin etrafında?
 ///
-/// Not "where shall it happen" and not a list of themes. The cards are narrative
-/// promises: each can become several different stories, and the engine decides
-/// which. Nothing here names a world, a blueprint or a theme, because none of
-/// those are the parent's decision to make.
+/// Mod birincil karardır; fikir kartı ikincil kişiselleştirme. Ebeveyn
+/// "Bana bırak" diyerek geçebilir ve MagicPaper modun içinden seçer. Bu adımı
+/// zorunlu yapmak uygulamayı bir hikâye yapılandırıcısına çevirirdi.
+///
+/// Kartlar anlatı sözleridir: her biri birkaç farklı hikâyeye dönüşebilir ve
+/// hangisi olacağına motor karar verir. Burada hiçbir şey bir dünyayı, bir
+/// blueprint'i ya da bir temayı adlandırmaz.
 struct StoryIdeaStep: View {
 
-    let age: Int
-    /// Nil means "surprise me" — a first-class engine mode, not a random card.
+    let mode: StoryMode
+    /// Bu modun, bu çocuğun bandındaki fikirleri. Boşsa akış bu adımı atlar.
+    let ideas: [StoryIdeaChoice]
+    /// Nil "Bana bırak" demek — motor modun içinden seçer.
     let onChoose: (String?) -> Void
 
-    /// §7: three plus Surprise. Curated, not a menu; the screen owns the number
-    /// so changing it does not mean re-authoring content.
-    private static let shown = 3
-
-    private var ideas: [CatalogStoryIdea] {
-        Array(OfflineStoryService.shared.storyIdeas(forAge: age).prefix(Self.shown))
-    }
+    /// §7: küratörlü, menü değil; sayıyı ekran belirler ki değiştirmek içerik
+    /// yeniden yazmak anlamına gelmesin.
+    private static let shown = 4
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: MP.S.x2) {
-                    Text("Bugün hangi hikâyeye başlayalım?")
+                    HStack(spacing: 6) {
+                        MPIcon(mode.symbol, size: 16, weight: .semibold)
+                        Text(mode.title)
+                            .font(MP.F.labelSM())
+                        MPIcon("checkmark", size: 14, weight: .bold)
+                    }
+                    .foregroundStyle(mode.accent)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(mode.title) seçildi")
+
+                    Text("Bugün neyin etrafında bir hikâye oluşturalım?")
                         .font(MP.F.displayLG())
                         .mpTightTracking(32)
                         .foregroundStyle(MP.C.textTitle)
-                    Text("Birini seç, gerisini biz hazırlayalım.")
-                        .font(MP.F.bodyMD())
-                        .foregroundStyle(MP.C.textMuted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.top, MP.S.x3)
                 .padding(.bottom, MP.S.x5)
 
                 VStack(spacing: MP.S.stackGap) {
-                    ForEach(ideas) { idea in
+                    ForEach(ideas.prefix(Self.shown)) { idea in
                         MPChoiceTile(
-                            title: idea.display,
-                            description: idea.supportingText,
-                            symbol: idea.illustration,
-                            accent: MP.C.brand,
+                            title: idea.title,
+                            description: idea.detail,
+                            symbol: idea.symbol,
+                            accent: mode.accent,
                             layout: .column
                         ) {
-                            onChoose(idea.id.rawValue)
+                            onChoose(idea.id)
                         }
-                        .accessibilityLabel("\(idea.display). \(idea.supportingText)")
+                        .accessibilityLabel("\(idea.title). \(idea.detail)")
                     }
 
                     MPChoiceTile(
-                        title: "Bana sürpriz yap",
-                        description: "Bugünün hikâyesini biz seçelim.",
+                        title: "Bana bırak",
+                        description: "Bu hikâyeyi biz seçelim.",
                         symbol: "wand.and.stars",
                         accent: MP.C.reward,
                         layout: .column

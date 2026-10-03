@@ -206,17 +206,38 @@ class ProfileManager: ObservableObject {
     /// Why a deletion did not happen, when it did not.
     enum DeletionRefusal: Error { case lastProfile }
 
-    /// Deletes a profile and everything keyed to it.
+    /// The stories that are deleted along with `profile`.
+    ///
+    /// The confirmation shows this count and `deleteProfile` deletes exactly
+    /// this set, so what the parent is told and what is lost cannot drift apart.
+    func storiesDeleted(
+        with profile: UserProfile,
+        library: StoryGenerationManager = .shared
+    ) -> [Story] {
+        library.stories.filter { $0.isSolelyOwned(by: profile, among: profiles) }
+    }
+
+    /// Deletes a profile and everything keyed to it, including the child's
+    /// stories (`storiesDeleted(with:)`). Irreversible: callers confirm first.
     ///
     /// Returns a failure instead of silently doing nothing: the caller shows a
     /// delete button, and a button that sometimes does nothing with no
     /// explanation is worse than one that is disabled.
     @discardableResult
-    func deleteProfile(_ profile: UserProfile) -> Result<Void, DeletionRefusal> {
+    func deleteProfile(
+        _ profile: UserProfile,
+        library: StoryGenerationManager = .shared
+    ) -> Result<Void, DeletionRefusal> {
         guard profiles.count > 1 else {
             Self.log.notice("Refused to delete the last remaining profile")
             return .failure(.lastProfile)
         }
+
+        // Before the profile leaves `profiles`: ownership is decided against
+        // the full list, so a sibling with the same name still protects
+        // pre-id stories.
+        let stories = storiesDeleted(with: profile, library: library)
+        library.deleteStories(ids: Set(stories.map(\.id)))
 
         deleteProfileImage(for: profile.id)
         // Side tables keyed by profile id. Left behind, these outlive the
@@ -224,6 +245,8 @@ class ProfileManager: ObservableObject {
         // UUID — and the avatar colour was visibly wrong for a recreated child.
         UserDefaults.standard.removeObject(forKey: "mp_avatarColor_\(profile.id.uuidString)")
         UserDefaults.standard.removeObject(forKey: "read_history_\(profile.id.uuidString)")
+        // The reading ledger is per child too (MPStreak): it goes with the child.
+        MPStreak.eraseLedger(for: profile.id)
 
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()

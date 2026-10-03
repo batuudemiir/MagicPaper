@@ -1,4 +1,9 @@
 import Foundation
+import OSLog
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "AIService")
 
 class AIService: ObservableObject {
     static let shared = AIService()
@@ -7,13 +12,13 @@ class AIService: ObservableObject {
     private let apiKey: String = {
         // 1. Önce Xcode Cloud ortam değişkenlerine bak
         if let cloudKey = ProcessInfo.processInfo.environment["GEMINI_API_KEY"], !cloudKey.isEmpty {
-            print("🌥️ API Key Xcode Cloud'dan alındı")
+            logger.debug("🌥️ API Key Xcode Cloud'dan alındı")
             return cloudKey
         }
         
         // 2. Eğer bulutta değilsek Info.plist/xcconfig'den oku
         if let localKey = Bundle.main.object(forInfoDictionaryKey: "GEMINI_API_KEY") as? String, !localKey.isEmpty {
-            print("💻 API Key local Info.plist'ten alındı")
+            logger.debug("💻 API Key local Info.plist'ten alındı")
             return localKey
         }
         
@@ -52,7 +57,7 @@ class AIService: ObservableObject {
         // isteklere hem de aşırı uzun üretime karşı koruma.
         let pages = min(max(pageCount, 3), 16)
         
-        print("📝 GEMINI FLASH: Hikaye Oluşturuluyor...")
+        logger.debug("📝 GEMINI FLASH: Hikaye Oluşturuluyor...")
         
         let languageName = language == "tr" ? "Turkish" : "English"
         
@@ -130,8 +135,8 @@ class AIService: ObservableObject {
         
         let storyResponse = try JSONDecoder().decode(StoryResponse.self, from: data)
         
-        print("✅ Hikaye Başlığı: \(storyResponse.title)")
-        print("📊 UZUNLUK KONTROLÜ (Yaş: \(age)):")
+        logger.debug("✅ Hikaye Başlığı: \(storyResponse.title)")
+        logger.debug("📊 UZUNLUK KONTROLÜ (Yaş: \(age, privacy: .private)):")
         
         // Yaş grubuna göre hedef kelime sayısı
         let (minWords, maxWords) = getTargetWordCount(age: age)
@@ -142,12 +147,12 @@ class AIService: ObservableObject {
             let wordCount = page.text.split(separator: " ").count
             totalWords += wordCount
             let status = wordCount >= minWords && wordCount <= maxWords ? "✅" : "⚠️"
-            print("\(status) Sayfa \(i+1): \(wordCount) kelime (hedef: \(minWords)-\(maxWords))")
+            logger.debug("\(status) Sayfa \(i+1): \(wordCount) kelime (hedef: \(minWords)-\(maxWords))")
         }
         
-        print("📊 TOPLAM: \(totalWords) kelime (\(storyResponse.pages.count) sayfa)")
+        logger.debug("📊 TOPLAM: \(totalWords) kelime (\(storyResponse.pages.count) sayfa)")
         if !storyResponse.pages.isEmpty {
-            print("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
+            logger.debug("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
         }
 
         // Model bos sayfa listesi dondurduyse cagiran taraf demo moda dussun;
@@ -320,7 +325,7 @@ class AIService: ObservableObject {
         // logged whole: `print` is not stripped in Release, and this line put the
         // full key into the device log on every call. What is useful for debugging
         // is the model and path, which the redacted form still shows.
-        print("🌐 API Endpoint: \(baseURL)/\(modelName):generateContent?key=<redacted>")
+        logger.debug("🌐 API Endpoint: \(self.baseURL)/\(self.modelName):generateContent?key=<redacted>")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -329,7 +334,7 @@ class AIService: ObservableObject {
         // Bundle ID'yi header'a ekle (iOS app restriction için)
         if let bundleId = Bundle.main.bundleIdentifier {
             request.setValue(bundleId, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
-            print("📱 Bundle ID: \(bundleId)")
+            logger.debug("📱 Bundle ID: \(bundleId)")
         }
         
         request.timeoutInterval = 90  // Uzun hikaye için daha fazla zaman
@@ -376,7 +381,7 @@ class AIService: ObservableObject {
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             let errorText = String(data: data, encoding: .utf8) ?? "Bilinmiyor"
-            print("❌ API Hatası: \(errorText)")
+            logger.error("❌ API Hatası: \(errorText)")
             throw URLError(.badServerResponse)
         }
         
@@ -385,11 +390,11 @@ class AIService: ObservableObject {
               let content = candidates.first?["content"] as? [String: Any],
               let parts = content["parts"] as? [[String: Any]],
               let text = parts.first?["text"] as? String else {
-            print("❌ JSON parse hatası")
+            logger.error("❌ JSON parse hatası")
             throw URLError(.cannotParseResponse)
         }
         
-        print("✅ Gemini yanıtı alındı: \(text.count) karakter")
+        logger.debug("✅ Gemini yanıtı alındı: \(text.count) karakter")
         
         return text
     }
@@ -793,8 +798,8 @@ class AIService: ObservableObject {
         photoData: Data?
     ) async throws -> StoryResponse {
         
-        print("📝 GEMINI FLASH: Kategoriye Özel Hikaye Oluşturuluyor...")
-        print("📂 Kategori: \(category)")
+        logger.debug("📝 GEMINI FLASH: Kategoriye Özel Hikaye Oluşturuluyor...")
+        logger.debug("📂 Kategori: \(category)")
         
         let languageName = language == "tr" ? "Turkish" : "English"
         let ageLevel = getAgeLevelGuidance(age: age, childName: childName)
@@ -863,9 +868,9 @@ class AIService: ObservableObject {
         
         let storyResponse = try JSONDecoder().decode(StoryResponse.self, from: data)
         
-        print("✅ Category Story Title: \(storyResponse.title)")
-        print("📂 Category: \(category)")
-        print("📊 LENGTH CHECK (Age: \(age)):")
+        logger.debug("✅ Category Story Title: \(storyResponse.title)")
+        logger.debug("📂 Category: \(category)")
+        logger.debug("📊 LENGTH CHECK (Age: \(age, privacy: .private)):")
         
         let (minWords, maxWords) = getTargetWordCount(age: age)
         
@@ -874,11 +879,11 @@ class AIService: ObservableObject {
             let wordCount = page.text.split(separator: " ").count
             totalWords += wordCount
             let status = wordCount >= minWords && wordCount <= maxWords ? "✅" : "⚠️"
-            print("\(status) Page \(i+1): \(wordCount) words (target: \(minWords)-\(maxWords))")
+            logger.debug("\(status) Page \(i+1): \(wordCount) words (target: \(minWords)-\(maxWords))")
         }
         
-        print("📊 TOTAL: \(totalWords) words (\(storyResponse.pages.count) pages)")
-        print("📊 AVERAGE: \(totalWords / storyResponse.pages.count) words/page")
+        logger.debug("📊 TOTAL: \(totalWords) words (\(storyResponse.pages.count) pages)")
+        logger.debug("📊 AVERAGE: \(totalWords / storyResponse.pages.count) words/page")
         
         return storyResponse
     }
@@ -1232,11 +1237,9 @@ class AIService: ObservableObject {
         customTitle: String? = nil
     ) async throws -> TextOnlyStoryResponse {
         
-        print("📖 GEMINI FLASH: Metin Hikaye Oluşturuluyor...")
-        print("👤 Çocuk: \(childName)")
-        print("🎭 Cinsiyet: \(gender.displayName)")
-        print("🎨 Tema: \(theme)")
-        print("🌍 Dil: \(language)")
+        logger.debug("📖 GEMINI FLASH: Metin Hikaye Oluşturuluyor...")
+        logger.debug("🎨 Tema: \(theme)")
+        logger.debug("🌍 Dil: \(language)")
         
         let languageName = language == "tr" ? "Turkish" : language == "en" ? "English" : "Turkish"
         let genderPronoun = getGenderPronoun(gender: gender, language: language)
@@ -1370,19 +1373,19 @@ class AIService: ObservableObject {
         
         let storyResponse = try JSONDecoder().decode(TextOnlyStoryResponse.self, from: data)
         
-        print("✅ Hikaye Başlığı: \(storyResponse.title)")
-        print("📊 UZUNLUK KONTROLÜ:")
+        logger.debug("✅ Hikaye Başlığı: \(storyResponse.title)")
+        logger.debug("📊 UZUNLUK KONTROLÜ:")
         
         var totalWords = 0
         for (i, page) in storyResponse.pages.enumerated() {
             let wordCount = page.text.split(separator: " ").count
             totalWords += wordCount
             let status = wordCount >= 120 && wordCount <= 150 ? "✅" : "⚠️"
-            print("\(status) Sayfa \(i+1): \(wordCount) kelime (hedef: 120-150)")
+            logger.debug("\(status) Sayfa \(i+1): \(wordCount) kelime (hedef: 120-150)")
         }
         
-        print("📊 TOPLAM: \(totalWords) kelime (\(storyResponse.pages.count) sayfa)")
-        print("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
+        logger.debug("📊 TOPLAM: \(totalWords) kelime (\(storyResponse.pages.count) sayfa)")
+        logger.debug("📊 ORTALAMA: \(totalWords / storyResponse.pages.count) kelime/sayfa")
         
         return storyResponse
     }

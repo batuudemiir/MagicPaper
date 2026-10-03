@@ -42,10 +42,16 @@ struct ProfilePickerSheet: View {
     }
 }
 
-// MARK: - Masal aksiyon sheet'i — 03-SCREENS.md §7
+// MARK: - Masalın eylemleri
 
-struct StoryActionsSheet: View {
+/// Favori, PDF, paylaş, sil — masal detayının eylemleri (03-SCREENS.md §7).
+///
+/// Eskiden ayrı bir alt sayfadaydı (`StoryActionsSheet`). Raftan ve
+/// kütüphaneden artık masalın kendi sayfası açılıyor; eylemler orada.
+struct StoryActionList: View {
     let story: Story
+    /// Masal silindikten sonra, bulunduğu yüzeyi kapatmak için.
+    let onDeleted: () -> Void
 
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var storyManager = StoryGenerationManager.shared
@@ -57,45 +63,29 @@ struct StoryActionsSheet: View {
     private var isFavorite: Bool { favorites.contains(story.id) }
 
     var body: some View {
-        MPSheet(onClose: { app.sheet = nil }) {
-            VStack(alignment: .leading, spacing: 0) {
-                header.padding(.bottom, 18)
-
-                VStack(spacing: 4) {
-                    MPListRow(
-                        symbol: "heart",
-                        iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
-                        title: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
-                        action: {
-                            let now = favorites.toggle(story.id)
-                            app.showToast(now ? "Favorilere eklendi" : "Favorilerden çıkarıldı",
-                                          symbol: "heart.fill")
-                        }
-                    ) { EmptyView() }
-
-                    MPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
-                              action: { export() }) { EmptyView() }
-
-                    MPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
-                              action: { export() }) { EmptyView() }
-
-                    MPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
-                        storyManager.deleteStory(id: story.id)
-                        app.sheet = nil
-                        app.showToast("Masal silindi", symbol: "trash", tone: .danger)
-                    }) { EmptyView() }
+        VStack(spacing: 4) {
+            MPListRow(
+                symbol: "heart",
+                iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
+                title: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
+                action: {
+                    let now = favorites.toggle(story.id)
+                    app.showToast(now ? "Favorilere eklendi" : "Favorilerden çıkarıldı",
+                                  symbol: "heart.fill")
                 }
-            }
-        } footer: {
-            MPButton(
-                title: (story.mpProgress > 0 && story.mpProgress < 1) ? "Okumaya devam et" : "Oku",
-                size: .lg,
-                icon: "book",
-                fullWidth: true
-            ) {
-                app.sheet = nil
-                app.readerStory = story
-            }
+            ) { EmptyView() }
+
+            MPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
+                      action: { export() }) { EmptyView() }
+
+            MPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
+                      action: { export() }) { EmptyView() }
+
+            MPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
+                storyManager.deleteStory(id: story.id)
+                onDeleted()
+                app.showToast("Masal silindi", symbol: "trash", tone: .danger)
+            }) { EmptyView() }
         }
         .sheet(item: $exportFile) { file in
             ShareSheet(items: [file.url])
@@ -120,36 +110,6 @@ struct StoryActionsSheet: View {
                     app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
                 }
             }
-        }
-    }
-
-    private var header: some View {
-        HStack(alignment: .top, spacing: 14) {
-            MPIcon(story.mpSymbol, size: 38, weight: .semibold)
-                .foregroundStyle(story.mpAccent)
-                .frame(width: 84, height: 84)
-                .background(
-                    RoundedRectangle(cornerRadius: MP.R.md, style: .continuous)
-                        .fill(story.mpAccent.opacity(0.16))
-                )
-
-            VStack(alignment: .leading, spacing: 8) {
-                Text(story.title)
-                    .font(MP.F.displaySM())
-                    .foregroundStyle(MP.C.textTitle)
-                    .lineLimit(3)
-
-                HStack(spacing: 6) {
-                    MPBadge(title: "\(story.pages.count) sayfa", tone: .neutral)
-                    if story.isIllustrated {
-                        MPBadge(title: "Görselli", tone: .reward, symbol: "crown.fill")
-                    }
-                }
-                if !story.childName.isEmpty {
-                    MPBadge(title: story.childName, tone: .brand, symbol: "person.crop.circle")
-                }
-            }
-            Spacer(minLength: 0)
         }
     }
 }
@@ -216,6 +176,10 @@ struct ProfileEditSheet: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
 
+    /// How many stories go with the profile, counted when the parent asks to
+    /// delete — `nil` while no confirmation is showing.
+    @State private var pendingDeletionStoryCount: Int?
+
     var body: some View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
             VStack(spacing: 4) {
@@ -231,19 +195,51 @@ struct ProfileEditSheet: View {
                 }) { EmptyView() }
 
                 if profileManager.profiles.count > 1 {
+                    // Deletion takes the child's stories with it and cannot be
+                    // undone, so the row only asks; the dialog deletes.
                     MPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
-                        // Report what actually happened: the toast used to
-                        // fire even when the deletion was refused.
-                        switch profileManager.deleteProfile(profile) {
-                        case .success:
-                            app.sheet = nil
-                            app.showToast("Profil silindi", symbol: "trash", tone: .danger)
-                        case .failure(.lastProfile):
-                            app.showToast("Son profil silinemez", symbol: "exclamationmark.triangle", tone: .danger)
-                        }
+                        pendingDeletionStoryCount = profileManager.storiesDeleted(with: profile).count
                     }) { EmptyView() }
                 }
             }
+        }
+        .confirmationDialog(
+            "Profili sil",
+            isPresented: Binding(
+                get: { pendingDeletionStoryCount != nil },
+                set: { if !$0 { pendingDeletionStoryCount = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button(deleteButtonTitle, role: .destructive, action: deleteProfile)
+            Button("Vazgeç", role: .cancel) {}
+        } message: {
+            Text(deletionMessage)
+        }
+    }
+
+    private var deleteButtonTitle: String {
+        (pendingDeletionStoryCount ?? 0) > 0 ? "Profili ve masalları sil" : "Profili sil"
+    }
+
+    private var deletionMessage: String {
+        let count = pendingDeletionStoryCount ?? 0
+        if count > 0 {
+            return "\(profile.name) profili ve bu profile ait \(count) masal kalıcı olarak silinecek. Bu işlem geri alınamaz."
+        }
+        return "\(profile.name) profili kalıcı olarak silinecek. Bu işlem geri alınamaz."
+    }
+
+    private func deleteProfile() {
+        pendingDeletionStoryCount = nil
+        // Report what actually happened: the toast used to fire even when
+        // the deletion was refused.
+        switch profileManager.deleteProfile(profile) {
+        case .success:
+            app.sheet = nil
+            app.showToast("Profil silindi", symbol: "trash", tone: .danger)
+        case .failure(.lastProfile):
+            app.showToast("Son profil silinemez", symbol: "exclamationmark.triangle", tone: .danger)
         }
     }
 }

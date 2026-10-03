@@ -64,20 +64,51 @@ struct MPTabBar: View {
     private func tab(for item: Item) -> some View {
         let isActive = item.value == selection
         return Button {
-            selection = item.value
+            guard item.value != selection else { return }
+            MPHaptics.selection()
+            // Gösterge bir sekmeden ötekine kayar. "Hareketi Azalt" açıkken
+            // kaymaz, yerinde belirip söner: aynı anlam, hareketsiz.
+            withAnimation(reduceMotion ? MP.M.easeOut : MP.M.base) {
+                selection = item.value
+            }
         } label: {
             slot(symbol: item.symbol, label: item.label,
                  tint: isActive ? MP.C.brand : MP.C.textFaint,
-                 isBold: isActive)
+                 isBold: isActive, isActive: isActive)
         }
-        .buttonStyle(.plain)
-        .animation(MP.M.gated(MP.M.easeOut), value: isActive)
+        .buttonStyle(MPPressStyle(.highlight))
+        .accessibilityLabel(item.label)
+        .accessibilityAddTraits(isActive ? .isSelected : [])
+    }
+
+    @Namespace private var indicator
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// Seçili sekmenin simgesinin arkasındaki yumuşak hap.
+    ///
+    /// Seçimi yalnızca renk göstermesin diye var (Differentiate Without
+    /// Color). Tek bir hap sekmeler arasında kayar; Hareketi Azalt açıkken
+    /// her sekme kendi hapını çapraz geçişle gösterir.
+    @ViewBuilder
+    private func activeIndicator(_ isActive: Bool) -> some View {
+        if isActive {
+            let pill = Capsule().fill(MP.C.brandSoft)
+                .frame(width: MP.S.x10 - MP.S.x2, height: MP.S.x7)
+            if reduceMotion {
+                pill.transition(.opacity)
+            } else {
+                pill.matchedGeometryEffect(id: "tab-indicator", in: indicator)
+            }
+        }
     }
 
     /// Eylem öğesi. Simgesi dolu bir dairenin içinde durur: aynı satırda,
     /// aynı yükseklikte, ama bir sekme olmadığı bir bakışta belli.
     private func actionTab(for item: Item) -> some View {
-        Button(action: onCreate) {
+        Button {
+            MPHaptics.tap()
+            onCreate()
+        } label: {
             VStack(spacing: 3) {
                 MPIcon(item.symbol, size: 20, weight: .bold)
                     .foregroundStyle(MP.C.textOnBrand)
@@ -95,21 +126,26 @@ struct MPTabBar: View {
             .frame(maxWidth: .infinity)
             .padding(.bottom, 6)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(MPPressStyle())
         .accessibilityLabel(item.label)
     }
 
-    private func slot(symbol: String, label: String, tint: Color, isBold: Bool) -> some View {
+    private func slot(symbol: String, label: String, tint: Color, isBold: Bool,
+                      isActive: Bool) -> some View {
         VStack(spacing: 3) {
             MPIcon(symbol, size: 24)
                 .frame(height: 30)
+                .background { activeIndicator(isActive) }
             Text(label)
                 .font(MP.F.caption(isBold ? .bold : .semibold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.85)
         }
         .foregroundStyle(tint)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        // Sekmenin tamamı dokunulabilir: simge ile etiket arası ve kenarlar
+        // dahil. Önceden yalnızca çizili pikseller tepki veriyordu.
+        .contentShape(Rectangle())
         // Etiketler barın altına yakın dursun; üstten hizalıyken
         // altta ~26pt boşluk kalıyor, cihazın güvenli alanıyla birlikte
         // bar havada duruyor gibi görünüyordu.
@@ -219,8 +255,13 @@ struct MPSheet<Content: View, Footer: View>: View {
                                 .foregroundStyle(MP.C.textBody)
                                 .frame(width: 34, height: 34)
                                 .background(Circle().fill(MP.C.surfaceSunken))
+                                // Görünen daire küçük kalır, dokunma alanı
+                                // ~50pt; düzen değişmez.
+                                .padding(MP.S.x2)
+                                .contentShape(Rectangle())
+                                .padding(-MP.S.x2)
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(MPPressStyle(.highlight))
                         .accessibilityLabel("Kapat")
                     }
                 }

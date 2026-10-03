@@ -91,6 +91,17 @@ struct StoryOrigin: Codable, Equatable {
     /// not of whatever the catalog happens to hold when a list is drawn. Nil for
     /// stories written before covers were tied to the setting.
     var worldID: String?
+    /// The parent's intent the story was built for (`StoryMode.rawValue`).
+    ///
+    /// Always one of the three modes, never "surprise": a surprise is resolved
+    /// to a mode before composing, and `selectionStrategy` records that it
+    /// was one. Nil for stories written before modes existed.
+    var modeID: String?
+    /// `StorySelectionStrategy.rawValue`: whether the parent picked the mode
+    /// or asked MagicPaper to. Nil for stories written before modes existed.
+    var selectionStrategy: String?
+    /// The age band the story was written for (`"5-6"`). Nil for older stories.
+    var ageBand: String?
 }
 
 extension Story {
@@ -113,6 +124,19 @@ extension Story {
     func belongs(to profile: UserProfile?) -> Bool {
         guard let profile else { return false }
         return belongs(to: profile)
+    }
+
+    /// Whether deleting `profile` should delete this story too.
+    ///
+    /// Stricter than `belongs(to:)`, because this answer destroys data. A story
+    /// saved before `childProfileID` existed is matched by name, and a name is
+    /// not unique: if any other profile shares it, the story could be that
+    /// child's, so it is kept. Showing a story on the wrong shelf is a display
+    /// bug; deleting it from the wrong child is unrecoverable.
+    func isSolelyOwned(by profile: UserProfile, among profiles: [UserProfile]) -> Bool {
+        guard belongs(to: profile) else { return false }
+        if childProfileID != nil { return true }
+        return !profiles.contains { $0.id != profile.id && $0.name == childName }
     }
 }
 

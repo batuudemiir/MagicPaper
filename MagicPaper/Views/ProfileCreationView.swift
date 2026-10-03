@@ -13,7 +13,7 @@ struct ProfileCreationView: View {
 
     @State private var name = ""
     @State private var colorIndex = 0
-    @State private var ageRange: MPAgeRange = .r57
+    @State private var ageRange: MPAgeRange = .r56
 
     /// `UserProfile.mpColor` ile aynı kümedir; indeks `UserDefaults`'ta
     /// saklandığı için iki taraf da `MP.C.avatarAccents` okumalı.

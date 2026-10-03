@@ -1,4 +1,9 @@
 import Foundation
+import OSLog
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "LibraryMigration")
 
 /// Moves the library out of `UserDefaults` and onto disk, in the only order
 /// that cannot lose a book: **write → verify → mark → wait → delete.**
@@ -103,7 +108,7 @@ final class LibraryMigration {
         var next = state
         mutate(&next)
         guard let data = try? JSONEncoder().encode(next) else {
-            print("🛑 Göç durumu kodlanamadı; bir sonraki açılışta baştan denenecek.")
+            logger.error("🛑 Göç durumu kodlanamadı; bir sonraki açılışta baştan denenecek.")
             return
         }
         defaults.set(data, forKey: State.key)
@@ -159,14 +164,14 @@ final class LibraryMigration {
         do {
             let url = try store.quarantine(blob, named: name)
             guard try Data(contentsOf: url) == blob else {
-                print("🛑 Aşırı büyük masal yığınının kopyası eşleşmedi. Hiçbir şey silinmedi.")
+                logger.error("🛑 Aşırı büyük masal yığınının kopyası eşleşmedi. Hiçbir şey silinmedi.")
                 return
             }
             store.pruneQuarantine(keeping: Self.quarantineLimit)
             mark { $0.oversizedBlobBytes = blob.count }
-            print("ℹ️ \(blob.count / 1024 / 1024) MB'lık masal yığını '\(name)' altına kopyalandı. Eski anahtar OLDUĞU GİBİ duruyor.")
+            logger.debug("ℹ️ \(blob.count / 1024 / 1024) MB'lık masal yığını '\(name)' altına kopyalandı. Eski anahtar OLDUĞU GİBİ duruyor.")
         } catch {
-            print("🛑 Aşırı büyük masal yığını kopyalanamadı: \(error). Hiçbir şey silinmedi.")
+            logger.error("🛑 Aşırı büyük masal yığını kopyalanamadı: \(String(describing: error)). Hiçbir şey silinmedi.")
         }
     }
 
@@ -182,7 +187,7 @@ final class LibraryMigration {
         // permanent one, so it stops here and says so.
         if let failure = source.failure {
             mark { $0.lastFailure = failure }
-            print("🛑 Göç durduruldu: \(failure)")
+            logger.error("🛑 Göç durduruldu: \(failure)")
             return
         }
 
@@ -196,7 +201,7 @@ final class LibraryMigration {
             try store.writeFlagList(source.approvals, as: .approvals)
         } catch {
             mark { $0.lastFailure = "Yazma: \(error)" }
-            print("🛑 Göç yazma adımında durdu: \(error). Eski veriye dokunulmadı.")
+            logger.error("🛑 Göç yazma adımında durdu: \(String(describing: error)). Eski veriye dokunulmadı.")
             return
         }
 
@@ -208,7 +213,7 @@ final class LibraryMigration {
                 $0.lastFailure = verification.reason
                 $0.quarantinedFiles = verification.damagedFiles
             }
-            print("🛑 Göç doğrulanamadı: \(verification.reason ?? "?"). Eski veriye dokunulmadı.")
+            logger.error("🛑 Göç doğrulanamadı: \(verification.reason ?? "?"). Eski veriye dokunulmadı.")
             return
         }
 
@@ -219,7 +224,7 @@ final class LibraryMigration {
             $0.lastFailure = nil
             $0.quarantinedFiles = verification.damagedFiles
         }
-        print("✅ Kütüphane göçü doğrulandı: \(source.stories.count) masal, \(source.favorites.count) favori, \(source.approvals.count) onay. Eski kopya \(Int(Self.graceInterval / 86400)) gün daha duruyor.")
+        logger.debug("✅ Kütüphane göçü doğrulandı: \(source.stories.count) masal, \(source.favorites.count) favori, \(source.approvals.count) onay. Eski kopya \(Int(Self.graceInterval / 86400)) gün daha duruyor.")
     }
 
     private struct Verification {
@@ -321,7 +326,7 @@ final class LibraryMigration {
             try store.writeFlagList(source.approvals, as: .approvals)
             return true
         } catch {
-            print("🛑 Gölge kopya eşitlenemedi: \(error)")
+            logger.error("🛑 Gölge kopya eşitlenemedi: \(String(describing: error))")
             return false
         }
     }
@@ -345,7 +350,7 @@ final class LibraryMigration {
         let source = readLegacy()
         guard source.failure == nil else { return false }
         guard verify(against: source).ok else {
-            print("🛑 Emeklilik iptal: doğrulama artık geçmiyor. Eski veri duruyor.")
+            logger.error("🛑 Emeklilik iptal: doğrulama artık geçmiyor. Eski veri duruyor.")
             return false
         }
 
@@ -357,7 +362,7 @@ final class LibraryMigration {
             $0.phase = .legacyRetired
             $0.retiredAt = now()
         }
-        print("✅ Eski UserDefaults kopyası emekliye ayrıldı. Kütüphane artık yalnızca diskte.")
+        logger.debug("✅ Eski UserDefaults kopyası emekliye ayrıldı. Kütüphane artık yalnızca diskte.")
         return true
     }
 
@@ -416,7 +421,7 @@ enum LibraryPersistence {
     static func bootstrap() -> LibraryMigration? {
         if let migration { return migration }
         guard let root = LibraryFileStore.documentsRoot() else {
-            print("🛑 Documents dizinine erişilemedi; kütüphane eski yolda kalıyor.")
+            logger.error("🛑 Documents dizinine erişilemedi; kütüphane eski yolda kalıyor.")
             return nil
         }
         do {
@@ -427,7 +432,7 @@ enum LibraryPersistence {
             self.migration = migration
             return migration
         } catch {
-            print("🛑 Kütüphane deposu kurulamadı: \(error). Eski yol kullanılmaya devam ediyor.")
+            logger.error("🛑 Kütüphane deposu kurulamadı: \(String(describing: error)). Eski yol kullanılmaya devam ediyor.")
             return nil
         }
     }
@@ -447,6 +452,6 @@ enum LibraryPersistence {
     /// is one line when that lands.
     static func eraseAll() {
         do { try store?.eraseEverything() }
-        catch { print("🛑 Kütüphane dosyaları silinemedi: \(error)") }
+        catch { logger.error("🛑 Kütüphane dosyaları silinemedi: \(String(describing: error))") }
     }
 }

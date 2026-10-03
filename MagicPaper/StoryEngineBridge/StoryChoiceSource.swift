@@ -1,0 +1,134 @@
+import Foundation
+import StoryEngine
+
+// MARK: - Vocabulary the screens may use
+
+/// The engine's value vocabulary, named in the app module so the creation
+/// screens can speak it without `import StoryEngine`.
+///
+/// These are plain values — a mode, a band, how a choice was made — and the
+/// product talks in them. What the screens must not see is the machinery
+/// (catalog records, traits, blueprints, the provider), and that is what the
+/// seam below keeps out.
+typealias StoryMode = StoryEngine.StoryMode
+typealias StorySelectionStrategy = StoryEngine.StorySelectionStrategy
+typealias AgeBand = StoryEngine.AgeBand
+typealias AgeBandResolver = StoryEngine.AgeBandResolver
+
+// MARK: - What a screen shows
+
+/// One idea card, as the idea step draws it.
+///
+/// Carries display text and a stable id, nothing else. `CatalogStoryIdea`
+/// also carries the traits and affinities the selector casts with; a view that
+/// can read those can start making casting decisions, which is the engine's job.
+struct StoryIdeaChoice: Identifiable, Hashable {
+    /// Stable content id, handed back to the source when the story is built.
+    let id: String
+    let title: String
+    let detail: String
+    /// SF Symbol name.
+    let symbol: String
+}
+
+/// One companion tile, as the companion step draws it.
+struct CompanionChoice: Identifiable, Hashable {
+    /// Stable content id, handed back to the source when the story is built.
+    let id: String
+    let name: String
+    /// What the companion is — "tilki", "baykuş". Drives the tile's symbol.
+    let kind: String
+    /// The companion's own line; empty when content has none.
+    let personality: String
+}
+
+// MARK: - The seam
+
+/// Everything the creation flow asks of a story source before a story exists.
+///
+/// The flow used to call `OfflineStoryService` by name and read catalog
+/// records directly, so the screens knew which provider was writing the story
+/// (D1). Behind this protocol the provider can change — the illustrated path
+/// will put a different one here — without a screen changing with it.
+///
+/// Building the story itself stays with `StoryGenerationManager.createStory`,
+/// which saves it; this is only the part that happens while the parent chooses.
+@MainActor
+protocol StoryChoiceSource {
+    /// The modes that have something to offer a child of this age.
+    func availableModes(forAge age: Int) -> [StoryMode]
+    /// The idea cards for a mode, in the order they should be shown.
+    func ideaChoices(forAge age: Int, mode: StoryMode) -> [StoryIdeaChoice]
+    /// The companions that fit the chosen idea, best first.
+    func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice]
+    /// Turns "surprise me" (or a direct choice) into one concrete mode.
+    func resolveMode(
+        strategy: StorySelectionStrategy,
+        requested: StoryMode?,
+        forAge age: Int,
+        recent: [StoryMode]
+    ) throws -> StoryMode
+}
+
+/// The source the creation flow uses. The one place that names a provider.
+@MainActor
+enum StoryChoiceSources {
+    static var current: any StoryChoiceSource { OfflineStoryService.shared }
+}
+
+/// What to log when a source or the build fails.
+///
+/// §29: the parent sees one sentence; the log gets the account. Callers used to
+/// cast to `OfflineStoryService.Failure` themselves, which is the provider's
+/// name leaking into a screen through its error type.
+func storyFailureDetail(_ error: Error) -> String {
+    (error as? OfflineStoryService.Failure)?.detail ?? String(describing: error)
+}
+
+// MARK: - The offline engine behind it
+
+extension OfflineStoryService: StoryChoiceSource {
+
+    func ideaChoices(forAge age: Int, mode: StoryMode) -> [StoryIdeaChoice] {
+        storyIdeas(forAge: age, mode: mode).map(StoryIdeaChoice.init)
+    }
+
+    /// The service's own `resolveMode` also takes a `seed` for tests; a
+    /// defaulted parameter does not satisfy a requirement, so this forwards.
+    func resolveMode(
+        strategy: StorySelectionStrategy,
+        requested: StoryMode?,
+        forAge age: Int,
+        recent: [StoryMode]
+    ) throws -> StoryMode {
+        try resolveMode(
+            strategy: strategy, requested: requested, forAge: age,
+            recent: recent, seed: UUID().uuidString)
+    }
+
+    func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice] {
+        companionCandidates(forIdeaID: ideaID, mode: mode, age: age).map(CompanionChoice.init)
+    }
+}
+
+extension StoryIdeaChoice {
+    init(_ idea: CatalogStoryIdea) {
+        self.init(
+            id: idea.id.rawValue,
+            title: idea.display,
+            detail: idea.supportingText,
+            symbol: idea.illustration
+        )
+    }
+}
+
+extension CompanionChoice {
+    init(_ companion: CatalogCompanion) {
+        self.init(
+            id: companion.id.rawValue,
+            name: companion.name,
+            kind: companion.type,
+            personality: companion.personality
+        )
+    }
+}

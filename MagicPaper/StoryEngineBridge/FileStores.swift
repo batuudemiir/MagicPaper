@@ -1,6 +1,11 @@
 import Foundation
+import OSLog
 import CharacterEngine
 import StoryEngine
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FileStores")
 
 /// Where the engine's records live on disk.
 ///
@@ -165,7 +170,7 @@ actor FileBackedStore<Value: Codable & Sendable> {
         else {
             let failure = StoryEngineStorage.Failure.documentsUnavailable(subdirectory: subdirectory)
             lastLoadFailures = [failure]
-            print("🛑 FileBackedStore<\(Value.self)>: \(failure)")
+            logger.error("🛑 FileBackedStore<\(Value.self)>: \(failure)")
             return ([], [failure])
         }
 
@@ -190,7 +195,7 @@ actor FileBackedStore<Value: Codable & Sendable> {
             // Not an `assertionFailure`: a damaged file is a production
             // condition, not a programmer error, and crashing the debug build
             // on it would make the damaged state impossible to inspect.
-            print("🛑 FileBackedStore<\(Value.self)> atladı: \(failure)")
+            logger.error("🛑 FileBackedStore<\(Value.self)> atladı: \(failure)")
         }
         return (values, failures)
     }

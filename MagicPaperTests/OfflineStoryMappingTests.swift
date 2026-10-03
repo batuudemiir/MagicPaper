@@ -212,3 +212,43 @@ final class OfflineStoryMappingTests: XCTestCase {
         )
     }
 }
+
+// MARK: - The clean-draft gate
+
+/// `OfflineStoryService.compose` returns nothing that failed
+/// `ComposedStory.isClean`. A defective draft cannot be built from app tests —
+/// its initialiser is the engine's — so these pin the other two halves: the
+/// gate turns away nothing the flow actually offers, and a rebuild seed is
+/// never swapped for a fresh one to get past it.
+@MainActor
+extension OfflineStoryMappingTests {
+
+    /// Every idea and companion the creation flow can show, for every age
+    /// band, composes to a clean draft. If the gate ever rejects one of these,
+    /// a parent sees "could not create" for a choice the app offered them.
+    func testEveryOfferedChoiceComposesCleanly() throws {
+        var checked = 0
+        for age in [4, 6, 8, 10] {
+            for idea in service.storyIdeas(forAge: age) {
+                let ideaID = idea.id.rawValue
+                for companion in service.companionCandidates(forIdeaID: ideaID, age: age) {
+                    let result = try service.compose(
+                        childName: "Yeliz", ideaID: ideaID,
+                        companionID: companion.id.rawValue, age: age, seed: "gate-\(checked)")
+                    XCTAssertTrue(result.story.isClean, "\(ideaID) + \(companion.id.rawValue), age \(age)")
+                    checked += 1
+                }
+            }
+        }
+        XCTAssertGreaterThan(checked, 0, "No choices were offered, so nothing was checked.")
+    }
+
+    /// A supplied seed is a rebuild; the story that comes back is that seed's
+    /// story, not a substitute found by retrying.
+    func testARebuildKeepsItsSeed() throws {
+        let result = try service.compose(
+            childName: "Yeliz", ideaID: nil, companionID: nil, seed: "rebuild-seed")
+        XCTAssertEqual(result.seed, "rebuild-seed")
+    }
+}
+

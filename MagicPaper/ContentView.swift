@@ -1,6 +1,7 @@
 import SwiftUI
 
-/// Kök ekran. Dört sekme + ortada bir eylem öğesi — `TabView` kullanılmaz,
+/// Kök ekran. Çocuk modunda üç sekme + bir eylem öğesi, ebeveyn modunda
+/// ebeveynin kendi üç sekmesi — `TabView` kullanılmaz,
 /// çünkü eylem öğesi bir sekme değil (05-SWIFTUI-MAPPING.md).
 struct ContentView: View {
     @StateObject private var app = MPAppState()
@@ -8,6 +9,8 @@ struct ContentView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -23,10 +26,10 @@ struct ContentView: View {
             MPTabBar(
                 items: tabItems,
                 selection: Binding(
-                    get: { app.tab.rawValue },
+                    get: { app.isParentMode ? app.parentTab.rawValue : app.tab.rawValue },
                     set: { raw in
-                        guard let next = MPTab(rawValue: raw) else { return }
-                        app.selectTab(next, childModeOn: settings.childMode)
+                        if let next = MPParentTab(rawValue: raw) { app.parentTab = next }
+                        else if let next = MPTab(rawValue: raw) { app.tab = next }
                     }
                 ),
                 onCreate: { app.startStoryCreation() }
@@ -51,12 +54,24 @@ struct ContentView: View {
                 childName: profileManager.currentProfile?.name
             )
         }
+        // The reading ledger belongs to the child (MPStreak): open the active
+        // child's, and switch when the parent switches profiles.
+        .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
+            MPStreak.shared.activate(profileID: id)
+        }
+        // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .background { app.enterChildMode() }
+        }
         .overlay { sheetLayer }
         .fullScreenCover(isPresented: $app.showStoryCreation) {
             StoryCreationFlow().environmentObject(app).environmentObject(settings)
         }
         .fullScreenCover(isPresented: $app.showWizard) {
             StoryWizardView(preset: app.wizardPreset).environmentObject(app).environmentObject(settings)
+        }
+        .fullScreenCover(item: $app.detailStory) { story in
+            StoryDetailView(story: story).environmentObject(app).environmentObject(settings)
         }
         .fullScreenCover(item: $app.readerStory) { story in
             StoryReaderView(story: story).environmentObject(app).environmentObject(settings)
@@ -73,9 +88,6 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $app.showDecorationDemo) {
             StoryDecorationDemoView().environmentObject(app)
         }
-        .fullScreenCover(isPresented: $app.showSettings) {
-            SettingsView().environmentObject(app).environmentObject(settings)
-        }
         .fullScreenCover(isPresented: $app.showProfileAdd) {
             ProfileCreationView(mode: .addAnother) { name in
                 app.showToast("\(name) eklendi", symbol: "sparkles")
@@ -85,33 +97,55 @@ struct ContentView: View {
 
     // MARK: - Sekme içeriği
 
-    @ViewBuilder
+    /// Mod değişince tüm sekme içeriği çapraz geçer — ebeveyn sayfaları
+    /// çocuğun ekranlarının üstüne açılan bir katman değil, başka bir menü.
     private var content: some View {
+        Group {
+            if app.isParentMode {
+                parentContent.transition(.opacity)
+            } else {
+                childContent.transition(.opacity)
+            }
+        }
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.isParentMode)
+    }
+
+    @ViewBuilder
+    private var childContent: some View {
         switch app.tab {
         case .home:    HomeView()
         case .library: LibraryView()
         case .daily:   DailyStoriesView()
-        case .parent:  ParentPanelView()
         }
     }
 
-    /// Ana Sayfa · Kütüphane · **Masal yarat** · Günlük · Ebeveyn
+    @ViewBuilder
+    private var parentContent: some View {
+        switch app.parentTab {
+        case .overview: ParentOverviewView()
+        case .children: ParentChildrenView()
+        case .settings: SettingsView()
+        }
+    }
+
+    /// Çocuk: Ana Sayfa · Kütüphane · **Masal yarat** · Günlük
+    /// Ebeveyn: Özet · Çocuklar · Ayarlar
     ///
-    /// Eylem ortada duruyor: iki yanına ikişer yer düşüyor, yani bar simetrik
-    /// ve en çok kullanılan iş baş parmağın doğal yerinde.
+    /// Ebeveyn menüsünde yaratma eylemi yok: masal çocukla birlikte, çocuk
+    /// modunda yaratılır. Ebeveyn tarafı bakmak ve ayarlamak için.
     private var tabItems: [MPTabBar.Item] {
+        if app.isParentMode {
+            return MPParentTab.allCases.map {
+                MPTabBar.Item(value: $0.rawValue, label: $0.label, symbol: $0.symbol)
+            }
+        }
         func item(_ tab: MPTab) -> MPTabBar.Item {
-            MPTabBar.Item(
-                value: tab.rawValue,
-                label: tab.label,
-                // Çocuk modunda ebeveyn sekmesi kilitli görünür
-                symbol: (tab == .parent && settings.childMode) ? "lock.fill" : tab.symbol
-            )
+            MPTabBar.Item(value: tab.rawValue, label: tab.label, symbol: tab.symbol)
         }
         return [item(.home), item(.library),
                 MPTabBar.Item(value: "create", label: "Masal yarat",
                               symbol: "wand.and.stars", kind: .action),
-                item(.daily), item(.parent)]
+                item(.daily)]
     }
 
     // MARK: - Alt sayfa katmanı
@@ -126,10 +160,6 @@ struct ContentView: View {
             case .profilePicker:
                 ProfilePickerSheet()
                     .environmentObject(app)
-            case .storyActions(let id):
-                if let story = storyManager.stories.first(where: { $0.id == id }) {
-                    StoryActionsSheet(story: story).environmentObject(app)
-                }
             case .profileEdit(let id):
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     ProfileEditSheet(profile: profile).environmentObject(app)

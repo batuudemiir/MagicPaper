@@ -1,5 +1,10 @@
 import Foundation
+import OSLog
 import SwiftUI
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "TextStoryManager")
 
 @MainActor
 class TextStoryManager: ObservableObject {
@@ -140,24 +145,22 @@ class TextStoryManager: ObservableObject {
     
     private func generateStoryContent(for storyId: UUID) async -> Bool {
         guard let index = textStories.firstIndex(where: { $0.id == storyId }) else {
-            print("❌ Hikaye bulunamadı: \(storyId)")
+            logger.error("❌ Hikaye bulunamadı: \(storyId)")
             return false
         }
         
         let story = textStories[index]
         
-        print("📝 Hikaye oluşturuluyor...")
-        print("   - ID: \(story.id)")
-        print("   - Başlık: \(story.title)")
-        print("   - Çocuk: \(story.childName)")
-        print("   - Tema: \(story.theme.rawValue)")
-        print("   - Dil: \(story.language.rawValue)")
+        logger.debug("📝 Hikaye oluşturuluyor...")
+        logger.debug("   - ID: \(story.id)")
+        logger.debug("   - Tema: \(story.theme.rawValue)")
+        logger.debug("   - Dil: \(story.language.rawValue)")
         
         // Gemini ile hikaye oluştur
         do {
             // Dile göre tema adını seç
             let themeName = story.language == .turkish ? story.theme.displayName : story.theme.englishName
-            print("   - Tema Adı (API): \(themeName)")
+            logger.debug("   - Tema Adı (API): \(themeName)")
             
             let storyResponse = try await aiService.generateTextOnlyStory(
                 childName: story.childName,
@@ -167,9 +170,9 @@ class TextStoryManager: ObservableObject {
                 customTitle: story.theme == .custom ? story.title : nil
             )
             
-            print("✅ API yanıtı alındı")
-            print("   - Başlık: \(storyResponse.title)")
-            print("   - Sayfa sayısı: \(storyResponse.pages.count)")
+            logger.debug("✅ API yanıtı alındı")
+            logger.debug("   - Başlık: \(storyResponse.title)")
+            logger.debug("   - Sayfa sayısı: \(storyResponse.pages.count)")
             
             // Sayfaları birleştir
             let fullContent = storyResponse.pages.map { page in
@@ -181,40 +184,40 @@ class TextStoryManager: ObservableObject {
             textStories[index].status = .completed
             saveStories()
             
-            print("✅ Text hikaye başarıyla oluşturuldu: \(story.title)")
+            logger.debug("✅ Text hikaye başarıyla oluşturuldu")
             return true
             
         } catch let error as URLError {
-            print("❌ Network hatası: \(error.localizedDescription)")
-            print("   - Code: \(error.code)")
-            print("   - URL: \(error.failureURLString ?? "N/A")")
+            logger.error("❌ Network hatası: \(error.localizedDescription)")
+            logger.debug("   - Code: \(error.code.rawValue)")
+            logger.debug("   - URL: \(error.failureURLString ?? "N/A")")
             textStories[index].status = .failed
             saveStories()
             return false
         } catch let error as DecodingError {
-            print("❌ JSON parse hatası: \(error)")
+            logger.error("❌ JSON parse hatası: \(String(describing: error))")
             switch error {
             case .keyNotFound(let key, let context):
-                print("   - Missing key: \(key.stringValue)")
-                print("   - Context: \(context.debugDescription)")
+                logger.debug("   - Missing key: \(key.stringValue)")
+                logger.debug("   - Context: \(context.debugDescription)")
             case .typeMismatch(let type, let context):
-                print("   - Type mismatch: \(type)")
-                print("   - Context: \(context.debugDescription)")
+                logger.debug("   - Type mismatch: \(type)")
+                logger.debug("   - Context: \(context.debugDescription)")
             case .valueNotFound(let type, let context):
-                print("   - Value not found: \(type)")
-                print("   - Context: \(context.debugDescription)")
+                logger.debug("   - Value not found: \(type)")
+                logger.debug("   - Context: \(context.debugDescription)")
             case .dataCorrupted(let context):
-                print("   - Data corrupted: \(context.debugDescription)")
+                logger.debug("   - Data corrupted: \(context.debugDescription)")
             @unknown default:
-                print("   - Unknown decoding error")
+                logger.debug("   - Unknown decoding error")
             }
             textStories[index].status = .failed
             saveStories()
             return false
         } catch {
-            print("❌ Text hikaye oluşturma hatası: \(error.localizedDescription)")
-            print("   - Error type: \(type(of: error))")
-            print("   - Error: \(error)")
+            logger.error("❌ Text hikaye oluşturma hatası: \(error.localizedDescription)")
+            logger.debug("   - Error type: \(type(of: error))")
+            logger.debug("   - Error: \(String(describing: error))")
             textStories[index].status = .failed
             saveStories()
             return false
@@ -248,11 +251,11 @@ class TextStoryManager: ObservableObject {
             textStories[index].status = .completed
             saveStories()
             
-            print("✅ Kategori bazlı text hikaye başarıyla oluşturuldu: \(story.title)")
+            logger.debug("✅ Kategori bazlı text hikaye başarıyla oluşturuldu")
             return true
             
         } catch {
-            print("❌ Kategori bazlı text hikaye oluşturma hatası: \(error.localizedDescription)")
+            logger.error("❌ Kategori bazlı text hikaye oluşturma hatası: \(error.localizedDescription)")
             textStories[index].status = .failed
             saveStories()
             return false
@@ -290,7 +293,7 @@ class TextStoryManager: ObservableObject {
     func saveStories() {
         if let encoded = try? JSONEncoder().encode(textStories) {
             UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
-            print("💾 \(textStories.count) text hikaye kaydedildi")
+            logger.debug("💾 \(self.textStories.count) text hikaye kaydedildi")
         }
     }
     
@@ -298,19 +301,19 @@ class TextStoryManager: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
            let decoded = try? JSONDecoder().decode([TextStory].self, from: data) {
             textStories = decoded
-            print("📖 \(textStories.count) text hikaye yüklendi")
+            logger.debug("📖 \(self.textStories.count) text hikaye yüklendi")
         }
     }
     
     func deleteStory(_ story: TextStory) {
         textStories.removeAll { $0.id == story.id }
         saveStories()
-        print("🗑️ Text hikaye silindi: \(story.title)")
+        logger.debug("🗑️ Text hikaye silindi")
     }
     
     func deleteAllStories() {
         textStories.removeAll()
         saveStories()
-        print("🗑️ Tüm text hikayeler silindi")
+        logger.debug("🗑️ Tüm text hikayeler silindi")
     }
 }

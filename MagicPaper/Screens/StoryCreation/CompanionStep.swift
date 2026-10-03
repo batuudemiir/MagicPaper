@@ -1,5 +1,4 @@
 import SwiftUI
-import StoryEngine
 
 /// Step 2 — who comes with us?
 ///
@@ -12,21 +11,31 @@ import StoryEngine
 struct CompanionStep: View {
 
     let ideaID: String?
+    /// The resolved intent. Candidates must be able to carry a story of this
+    /// mode — a companion only the wrong mode's blueprints accept is not offered.
+    var mode: StoryMode? = nil
+    /// The child's age, so candidates come from the band the story is written for.
+    var age: Int? = nil
+    /// Where the candidates come from. The flow passes its own so both steps
+    /// ask the same source.
+    var source: any StoryChoiceSource = StoryChoiceSources.current
     /// Nil means "surprise me". §16: this keeps the chosen idea; it does not
     /// start the story over.
     let onChoose: (String?) -> Void
 
     private static let shown = 3
 
-    private var candidates: [CatalogCompanion] {
-        Array(OfflineStoryService.shared.companionCandidates(forIdeaID: ideaID).prefix(Self.shown))
+    private var candidates: [CompanionChoice] {
+        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age)
+            .prefix(Self.shown))
     }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: MP.S.x2) {
-                    Text("Bu macerada kim bizimle olsun?")
+                    // "Macera" değil: Uyku Zamanı'nda da bu soru soruluyor.
+                    Text("Bu hikâyede kim bizimle olsun?")
                         .font(MP.F.displayLG())
                         .mpTightTracking(32)
                         .foregroundStyle(MP.C.textTitle)
@@ -43,9 +52,9 @@ struct CompanionStep: View {
                             accent: MP.C.brand,
                             layout: .column
                         ) {
-                            onChoose(companion.id.rawValue)
+                            onChoose(companion.id)
                         }
-                        .accessibilityLabel("\(companion.name), \(companion.type)")
+                        .accessibilityLabel("\(companion.name), \(companion.kind)")
                     }
 
                     MPChoiceTile(
@@ -66,9 +75,9 @@ struct CompanionStep: View {
 
     /// The companion's own line if it has one, otherwise what it is. Never the
     /// trait list — "reassuring" is a casting concept, not something to read.
-    private func description(for companion: CatalogCompanion) -> String {
+    private func description(for companion: CompanionChoice) -> String {
         companion.personality.isEmpty
-            ? companion.type.capitalized(with: Locale(identifier: "tr_TR"))
+            ? companion.kind.capitalized(with: Locale(identifier: "tr_TR"))
             : companion.personality
     }
 
@@ -102,7 +111,7 @@ struct CompanionStep: View {
         }
     }
 
-    private func symbol(for companion: CatalogCompanion) -> String {
-        Self.symbol(forType: companion.type)
+    private func symbol(for companion: CompanionChoice) -> String {
+        Self.symbol(forType: companion.kind)
     }
 }

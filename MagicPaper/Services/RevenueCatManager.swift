@@ -1,8 +1,13 @@
 import Foundation
+import OSLog
 #if canImport(RevenueCat)
 import RevenueCat
 #endif
 import Combine
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "RevenueCatManager")
 
 #if canImport(RevenueCat)
 class RevenueCatManager: ObservableObject {
@@ -16,12 +21,12 @@ class RevenueCatManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     private init() {
-        print("🔑 RevenueCatManager: Initializing...")
+        logger.debug("🔑 RevenueCatManager: Initializing...")
 
         // Purchases.configure() henüz çalışmadıysa `Purchases.shared` çöker.
         // AppDelegate'ten önce dokunulma ihtimaline karşı koruma.
         guard Purchases.isConfigured else {
-            print("⚠️ RevenueCat henüz yapılandırılmadı — offerings yüklenmeyecek")
+            logger.warning("⚠️ RevenueCat henüz yapılandırılmadı — offerings yüklenmeyecek")
             return
         }
 
@@ -29,13 +34,13 @@ class RevenueCatManager: ObservableObject {
         Purchases.shared.getCustomerInfo { [weak self] info, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("❌ RevenueCat customer info error: \(error.localizedDescription)")
+                    logger.error("❌ RevenueCat customer info error: \(error.localizedDescription)")
                     self?.errorMessage = error.localizedDescription
                     return
                 }
                 
                 if let info = info {
-                    print("✅ RevenueCat customer info loaded")
+                    logger.debug("✅ RevenueCat customer info loaded")
                     self?.customerInfo = info
                     self?.updateSubscriptionManager(with: info)
                 }
@@ -80,7 +85,7 @@ class RevenueCatManager: ObservableObject {
             errorMessage = "RevenueCat yapılandırılmadı"
             return
         }
-        print("📦 RevenueCat: Fetching offerings...")
+        logger.debug("📦 RevenueCat: Fetching offerings...")
         isLoading = true
         errorMessage = nil
         
@@ -89,27 +94,27 @@ class RevenueCatManager: ObservableObject {
                 self?.isLoading = false
                 
                 if let error = error {
-                    print("❌ RevenueCat offerings error: \(error.localizedDescription)")
+                    logger.error("❌ RevenueCat offerings error: \(error.localizedDescription)")
                     self?.errorMessage = error.localizedDescription
                     return
                 }
                 
                 if let offerings = offerings {
                     self?.offerings = offerings
-                    print("✅ RevenueCat offerings loaded: \(offerings.all.count) offerings")
+                    logger.debug("✅ RevenueCat offerings loaded: \(offerings.all.count) offerings")
                     
                     if let current = offerings.current {
-                        print("📦 Current offering: \(current.identifier)")
-                        print("📦 Available packages: \(current.availablePackages.count)")
+                        logger.debug("📦 Current offering: \(current.identifier)")
+                        logger.debug("📦 Available packages: \(current.availablePackages.count)")
                         
                         for package in current.availablePackages {
-                            print("   - \(package.identifier): \(package.storeProduct.localizedPriceString)")
+                            logger.debug("   - \(package.identifier): \(package.storeProduct.localizedPriceString)")
                         }
                     } else {
-                        print("⚠️ No current offering found")
+                        logger.warning("⚠️ No current offering found")
                     }
                 } else {
-                    print("⚠️ No offerings returned")
+                    logger.warning("⚠️ No offerings returned")
                 }
             }
         }
@@ -122,7 +127,7 @@ class RevenueCatManager: ObservableObject {
             completion(false, nil)
             return
         }
-        print("💳 RevenueCat: Purchasing package \(package.identifier)...")
+        logger.debug("💳 RevenueCat: Purchasing package \(package.identifier)...")
         isLoading = true
         errorMessage = nil
         
@@ -131,25 +136,25 @@ class RevenueCatManager: ObservableObject {
                 self?.isLoading = false
                 
                 if userCancelled {
-                    print("⚠️ User cancelled purchase")
+                    logger.warning("⚠️ User cancelled purchase")
                     completion(false, nil)
                     return
                 }
                 
                 if let error = error {
-                    print("❌ Purchase error: \(error.localizedDescription)")
+                    logger.error("❌ Purchase error: \(error.localizedDescription)")
                     self?.errorMessage = error.localizedDescription
                     completion(false, error)
                     return
                 }
                 
                 if let customerInfo = customerInfo {
-                    print("✅ Purchase successful!")
+                    logger.debug("✅ Purchase successful!")
                     self?.customerInfo = customerInfo
                     self?.updateSubscriptionManager(with: customerInfo)
                     completion(true, nil)
                 } else {
-                    print("⚠️ Purchase completed but no customer info")
+                    logger.warning("⚠️ Purchase completed but no customer info")
                     completion(false, nil)
                 }
             }
@@ -159,7 +164,7 @@ class RevenueCatManager: ObservableObject {
     // MARK: - Restore
     
     func restorePurchases(completion: @escaping (Bool, Error?) -> Void) {
-        print("🔄 RevenueCat: Restoring purchases...")
+        logger.debug("🔄 RevenueCat: Restoring purchases...")
         isLoading = true
         errorMessage = nil
         
@@ -168,27 +173,27 @@ class RevenueCatManager: ObservableObject {
                 self?.isLoading = false
                 
                 if let error = error {
-                    print("❌ Restore error: \(error.localizedDescription)")
+                    logger.error("❌ Restore error: \(error.localizedDescription)")
                     self?.errorMessage = error.localizedDescription
                     completion(false, error)
                     return
                 }
                 
                 if let customerInfo = customerInfo {
-                    print("✅ Restore successful")
+                    logger.debug("✅ Restore successful")
                     self?.customerInfo = customerInfo
                     self?.updateSubscriptionManager(with: customerInfo)
                     
                     let hasPremium = customerInfo.entitlements["premium"]?.isActive == true
                     if hasPremium {
-                        print("✅ Premium entitlement restored")
+                        logger.debug("✅ Premium entitlement restored")
                     } else {
-                        print("ℹ️ No active subscriptions found")
+                        logger.debug("ℹ️ No active subscriptions found")
                     }
                     
                     completion(true, nil)
                 } else {
-                    print("⚠️ Restore completed but no customer info")
+                    logger.warning("⚠️ Restore completed but no customer info")
                     completion(false, nil)
                 }
             }
@@ -200,23 +205,23 @@ class RevenueCatManager: ObservableObject {
     private func updateSubscriptionManager(with customerInfo: CustomerInfo) {
         let hasPremium = customerInfo.entitlements["premium"]?.isActive == true
         
-        print("🔄 Updating SubscriptionManager...")
-        print("   Premium active: \(hasPremium)")
-        print("   Active subscriptions: \(customerInfo.activeSubscriptions)")
+        logger.debug("🔄 Updating SubscriptionManager...")
+        logger.debug("   Premium active: \(hasPremium)")
+        logger.debug("   Active subscriptions: \(customerInfo.activeSubscriptions)")
         
         if hasPremium {
             // Hangi paketi aldığını belirle
             if customerInfo.activeSubscriptions.contains("magicpaper_ultimate_monthly") {
-                print("   → Setting tier: Ultimate")
+                logger.debug("   → Setting tier: Ultimate")
                 SubscriptionManager.shared.purchaseSubscription(tier: .ultimate)
             } else if customerInfo.activeSubscriptions.contains("magicpaper_premium_monthly") {
-                print("   → Setting tier: Premium")
+                logger.debug("   → Setting tier: Premium")
                 SubscriptionManager.shared.purchaseSubscription(tier: .premium)
             } else if customerInfo.activeSubscriptions.contains("magicpaper_basic_monthly") {
-                print("   → Setting tier: Basic")
+                logger.debug("   → Setting tier: Basic")
                 SubscriptionManager.shared.purchaseSubscription(tier: .basic)
             } else {
-                print("   → Unknown subscription, setting to Basic")
+                logger.debug("   → Unknown subscription, setting to Basic")
                 SubscriptionManager.shared.purchaseSubscription(tier: .basic)
             }
 
@@ -225,7 +230,7 @@ class RevenueCatManager: ObservableObject {
             // damgasız bir `UserDefaults` kademesi premium açmaz.
             SubscriptionManager.shared.recordEntitlementVerification()
         } else {
-            print("   → No premium, cancelling subscription")
+            logger.debug("   → No premium, cancelling subscription")
             SubscriptionManager.shared.cancelSubscription()
         }
     }
@@ -275,7 +280,7 @@ class RevenueCatManager: ObservableObject {
     func getPackage(for tier: SubscriptionManager.SubscriptionTier,
                     period: BillingPeriod = .monthly) -> Package? {
         guard let currentOffering = offerings?.current else {
-            print("⚠️ No current offering available")
+            logger.warning("⚠️ No current offering available")
             return nil
         }
         guard let productId = productIdentifier(for: tier, period: period) else { return nil }
@@ -302,7 +307,7 @@ class RevenueCatManager: ObservableObject {
                       period: BillingPeriod,
                       completion: @escaping (Bool, Error?) -> Void) {
         guard let package = getPackage(for: tier, period: period) else {
-            print("⚠️ \(tier) / \(period.rawValue) için ürün bulunamadı")
+            logger.warning("⚠️ \(tier.rawValue) / \(period.rawValue) için ürün bulunamadı")
             completion(false, nil)
             return
         }
@@ -318,19 +323,19 @@ class RevenueCatManager: ObservableObject {
     @Published var errorMessage: String?
     
     private init() {
-        print("⚠️ RevenueCatManager: RevenueCat modülü bulunamadı")
+        logger.warning("⚠️ RevenueCatManager: RevenueCat modülü bulunamadı")
     }
     
     enum BillingPeriod: String { case monthly, yearly }
 
     func fetchOfferings() {
-        print("⚠️ RevenueCat modülü yüklenmedi - Xcode'da package'ı target'a ekleyin")
+        logger.warning("⚠️ RevenueCat modülü yüklenmedi - Xcode'da package'ı target'a ekleyin")
     }
 
     /// Modül yokken doğrulanacak bir kaynak da yok; damga atılmaz, dolayısıyla
     /// ücretli yetenekler kapalı kalır.
     func refreshCustomerInfo() {
-        print("⚠️ RevenueCat modülü yüklenmedi - yetki doğrulanamıyor")
+        logger.warning("⚠️ RevenueCat modülü yüklenmedi - yetki doğrulanamıyor")
     }
 
     var isPremium: Bool { false }

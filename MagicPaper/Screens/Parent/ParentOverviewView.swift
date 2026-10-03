@@ -1,7 +1,14 @@
 import SwiftUI
 
-/// Ebeveyn paneli — 03-SCREENS.md §12. Uygulamada karşılığı olmayan yeni ekran.
-struct ParentPanelView: View {
+/// Ebeveyn modu · **Özet**.
+///
+/// Bir ebeveynin bu sayfaya geldiğinde sorduğu soru "işe yarıyor mu?"dur.
+/// Cümle önce geliyor, ayrıntı arkasından. Yapılacak tek iş — onay bekleyen
+/// masallar — okunacak sayıların önünde durur.
+///
+/// Eski tek parça Ebeveyn panelinin (03-SCREENS.md §12) ilk yarısı. Profiller
+/// `ParentChildrenView`'a, abonelik `SettingsView`'a taşındı.
+struct ParentOverviewView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
 
@@ -15,38 +22,13 @@ struct ParentPanelView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Ebeveyn")
-                        .font(MP.F.displayLG())
-                        .mpTightTracking(32)
-                        .foregroundStyle(MP.C.textTitle)
-                    // Bir ebeveynin bu sayfaya geldiğinde sorduğu soru "işe
-                    // yarıyor mu?"dur. Sekiz blok o cevabı içinde taşıyordu ama
-                    // hiçbiri söylemiyordu; okumak için kartları toplamak
-                    // gerekiyordu. Cümle önce geliyor, ayrıntı arkasından.
-                    Text(weekSummary)
-                        .font(MP.F.bodySM())
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                Spacer(minLength: 0)
-                MPIconButton(symbol: "gearshape", label: "Ayarlar") { app.showSettings = true }
-            }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.vertical, 4)
+            MPParentHeader(title: "Özet", subtitle: weekSummary)
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
-                    // Onay kuyruğu bu sayfadaki TEK eylem gerektiren şey ve
-                    // altıncı sıradaydı: yapılacak iş, okunacak istatistiklerin
-                    // altına gömülmüştü. Bir şey bekliyorsa önce o gelir.
                     if settings.approve && !pendingStories.isEmpty { approvalQueue }
                     statsGrid
                     if vocabulary.hasData { vocabularySection }
-                    favoriteWorlds
-                    profilesSection
-                    subscriptionCard
                     MPButton(title: "Masalları indir / yazdır", variant: .outline,
                              icon: "arrow.down.circle", fullWidth: true,
                              isDisabled: isExporting || storyManager.stories.isEmpty) {
@@ -54,8 +36,8 @@ struct ParentPanelView: View {
                     }
                 }
                 .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 12)
-                .padding(.bottom, 30)
+                .padding(.top, MP.S.x3)
+                .padding(.bottom, MP.S.x7)
             }
         }
         .mpScreenBackground()
@@ -119,7 +101,7 @@ struct ParentPanelView: View {
         let minutes = weeklyMinutes
         guard minutes > 0 else { return "\(name) bu hafta henüz masal okumadı." }
         return "\(name) bu hafta \(minutes) dakika okudu"
-            + (streak.currentStreak > 0 ? " · \(streak.currentStreak) günlük seri" : "")
+            + (streak.currentStreak > 0 ? " · \(streak.currentStreak) gün üst üste" : "")
     }
 
     /// Okuyucuda geçirilen gerçek süre (MPStreak.addReadingTime ile birikir).
@@ -187,59 +169,6 @@ struct ParentPanelView: View {
         n >= 0 ? "+\(n)" : "\(n)"
     }
 
-    // MARK: - Favori dünyalar
-
-    private var favoriteWorlds: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Favori dünyalar")
-            MPWrapRow(spacing: 10) {
-                ForEach(topWorlds, id: \.self) { world in
-                    // Tıklanabilir görünen bir kontrol bir şey yapmalı:
-                    // dünyaya dokunmak sihirbazı o dünyayla açar.
-                    MPChip(title: world.name, symbol: world.symbol, isSelected: true) {
-                        app.startWizard(world: world)
-                    }
-                }
-            }
-        }
-    }
-
-    private var topWorlds: [MP.World] {
-        let counts = Dictionary(grouping: storyManager.stories, by: { $0.mpWorld })
-            .mapValues(\.count)
-        let sorted = counts.sorted { $0.value > $1.value }.map(\.key)
-        return sorted.isEmpty ? Array(MP.World.ordered.prefix(3)) : Array(sorted.prefix(3))
-    }
-
-    // MARK: - Profiller
-
-    private var profilesSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Çocuk profilleri",
-                            actionLabel: "Ekle",
-                            action: { app.showProfileAdd = true })
-
-            MPCard(padding: 0) {
-                VStack(spacing: 0) {
-                    ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
-                        if index > 0 { MPRowDivider() }
-                        MPListRow(
-                            symbol: "person.crop.circle",
-                            iconColor: profile.mpColor,
-                            title: profile.name,
-                            description: "\(profile.mpAgeRange.shortLabel) yaş · \(storyCount(profile)) masal",
-                            action: { app.sheet = .profileEdit(profile.id) }
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    private func storyCount(_ p: UserProfile) -> Int {
-        storyManager.stories.filter { $0.belongs(to: p) }.count
-    }
-
     // MARK: - Onay kuyruğu
 
     private var pendingStories: [Story] {
@@ -265,39 +194,6 @@ struct ParentPanelView: View {
                                 app.showToast("Masal onaylandı", symbol: "checkmark")
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Abonelik
-
-    private var subscriptionCard: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Abonelik")
-
-            MPCard(tone: .reward, padding: 18) {
-                HStack(spacing: 14) {
-                    MPIcon("crown.fill", size: 24, weight: .semibold)
-                        .foregroundStyle(MP.C.premiumInk)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan")
-                            .font(MP.F.bodyMD(.bold))
-                            .foregroundStyle(MP.C.textTitle)
-                        Text(subscriptionManager.isPremium
-                             ? "Aylık yenilenir"
-                             : "\(stars) yıldız kaldı")
-                            .font(MP.F.labelSM())
-                            .foregroundStyle(MP.C.premiumInk)
-                    }
-
-                    Spacer(minLength: 0)
-
-                    MPButton(title: subscriptionManager.isPremium ? "Yönet" : "Yükselt",
-                             tone: .reward, size: .sm) {
-                        app.openPaywall()
                     }
                 }
             }

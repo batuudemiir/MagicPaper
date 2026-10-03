@@ -1,6 +1,11 @@
 import Foundation
+import OSLog
 import UIKit
 import SwiftUI
+
+/// `print` reaches the shared device console verbatim. `Logger` redacts
+/// interpolated values as `<private>` outside a debugger by default.
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FileManagerService")
 
 /// Simple file storage service
 /// Saves images to Documents/Stories/ directory
@@ -26,7 +31,7 @@ class FileManagerService {
         
         if !fileManager.fileExists(atPath: storiesURL.path) {
             try? fileManager.createDirectory(at: storiesURL, withIntermediateDirectories: true)
-            print("✅ FileManager: Stories directory created")
+            logger.debug("✅ FileManager: Stories directory created")
         }
     }
     
@@ -42,7 +47,7 @@ class FileManagerService {
     /// Save image data to disk and return filename
     func saveImage(data: Data, fileName: String) -> String? {
         guard let storiesURL = getStoriesDirectoryURL() else {
-            print("❌ FileManager: Cannot get directory")
+            logger.error("❌ FileManager: Cannot get directory")
             return nil
         }
         
@@ -50,10 +55,10 @@ class FileManagerService {
         
         do {
             try data.write(to: fileURL)
-            print("✅ FileManager: Saved \(fileName) (\(data.count / 1024) KB)")
+            logger.debug("✅ FileManager: Saved \(fileName) (\(data.count / 1024) KB)")
             return fileName
         } catch {
-            print("❌ FileManager: Save failed - \(error)")
+            logger.error("❌ FileManager: Save failed - \(String(describing: error))")
             return nil
         }
     }
@@ -111,9 +116,9 @@ class FileManagerService {
                 try fileManager.removeItem(at: file)
             }
             
-            print("✅ FileManager: Deleted \(storyFiles.count) files for story")
+            logger.debug("✅ FileManager: Deleted \(storyFiles.count) files for story")
         } catch {
-            print("❌ FileManager: Delete failed - \(error)")
+            logger.error("❌ FileManager: Delete failed - \(String(describing: error))")
         }
     }
 }

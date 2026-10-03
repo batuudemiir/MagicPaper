@@ -1,11 +1,13 @@
 import SwiftUI
 
-/// Ayarlar — 03-SCREENS.md §13.
+/// Ebeveyn modu · **Ayarlar** — 03-SCREENS.md §13.
+///
+/// Eskiden Ebeveyn panelindeki bir dişliden tam ekran açılıyordu; artık
+/// ebeveyn menüsünün bir sayfası. Abonelik kartı da panelden buraya geldi:
+/// plan bir ayar, istatistik değil.
 struct SettingsView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
-    @Environment(\.dismiss) private var dismiss
-
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -23,12 +25,12 @@ struct SettingsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(title: "Ayarlar", onBack: { dismiss() })
+            MPParentHeader(title: "Ayarlar")
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
+                    subscriptionCard
                     readingSection
-                    childModeSection
                     notificationsSection
                     accountSection
                     #if DEBUG
@@ -36,8 +38,8 @@ struct SettingsView: View {
                     #endif
                 }
                 .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 8)
-                .padding(.bottom, 30)
+                .padding(.top, MP.S.x3)
+                .padding(.bottom, MP.S.x7)
             }
         }
         .mpScreenBackground()
@@ -49,6 +51,39 @@ struct SettingsView: View {
         .task {
             guard settings.reminder else { return }
             notificationsDenied = await !MPReminder.isAuthorised()
+        }
+    }
+
+    // MARK: - Abonelik
+
+    private var subscriptionCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            MPSectionHeader(title: "Abonelik")
+
+            MPCard(tone: .reward, padding: 18) {
+                HStack(spacing: 14) {
+                    MPIcon("crown.fill", size: 24, weight: .semibold)
+                        .foregroundStyle(MP.C.premiumInk)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan")
+                            .font(MP.F.bodyMD(.bold))
+                            .foregroundStyle(MP.C.textTitle)
+                        Text(subscriptionManager.isPremium
+                             ? "Aylık yenilenir"
+                             : "\(stars) yıldız kaldı")
+                            .font(MP.F.labelSM())
+                            .foregroundStyle(MP.C.premiumInk)
+                    }
+
+                    Spacer(minLength: 0)
+
+                    MPButton(title: subscriptionManager.isPremium ? "Yönet" : "Yükselt",
+                             tone: .reward, size: .sm) {
+                        app.openPaywall()
+                    }
+                }
+            }
         }
     }
 
@@ -94,35 +129,6 @@ struct SettingsView: View {
                     MPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
                         MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
                     }
-                }
-            }
-        }
-    }
-
-    // MARK: - Çocuk modu
-
-    private var childModeSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Çocuk modu",
-                            subtitle: "Satın alma ve ebeveyn bölümü gizlenir")
-            MPCard(padding: 0) {
-                MPListRow(
-                    symbol: "shield",
-                    title: "Çocuk modunu aç",
-                    description: settings.childMode
-                        ? "Açık — çıkmak için ebeveyn kapısı sorulur"
-                        : "Kapalı"
-                ) {
-                    MPSwitch(isOn: Binding(
-                        get: { settings.childMode },
-                        set: { on in
-                            settings.childMode = on
-                            if on {
-                                app.parentUnlocked = false
-                                app.showToast("Çocuk modu açıldı", symbol: "lock.fill")
-                            }
-                        }
-                    ), label: "Çocuk modu")
                 }
             }
         }
@@ -466,6 +472,9 @@ struct PrivacyAndDataView: View {
                     "mp_approvedStoryIDs"] {
             d.removeObject(forKey: key)
         }
+        // Reading ledgers are per child now; their keys carry the profile id,
+        // so they cannot be listed above.
+        MPStreak.eraseAllLedgers(in: d)
         dismiss()
     }
 }

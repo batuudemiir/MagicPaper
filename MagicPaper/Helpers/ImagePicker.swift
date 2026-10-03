@@ -3,8 +3,8 @@ import UIKit
 
 /// `UIImagePickerController` sarmalayıcısı.
 /// Eskiden CreateStoryView.swift içinde tanımlıydı; o ekran yeni tasarımda
-/// sihirbaza devredilip kaldırılınca, hâlâ kullanan FalAITestView için
-/// bağımsız bir yardımcıya taşındı.
+/// sihirbaza devredilip kaldırılınca bağımsız bir yardımcıya taşındı. Bugün
+/// tek kullanıcısı FirebaseTestView (FalAITestView 2026-09-30'da emekliye ayrıldı).
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
     @Binding var photoData: Data?

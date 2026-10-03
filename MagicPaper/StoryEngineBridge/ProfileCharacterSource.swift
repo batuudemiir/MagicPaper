@@ -138,11 +138,18 @@ struct ProfileCharacterSource {
         return updating(renamed, ageYears: profile.age, now: now)
     }
 
+    /// FNV-1a over all sixteen bytes of the profile id.
+    ///
+    /// It used to take only the first eight bytes, so two ids that differed
+    /// only in their second half — siblings, in the worst case — got the same
+    /// seed and the same look. Every byte now reaches the result, and the hash
+    /// is fixed arithmetic, so the seed is stable across launches and devices.
     static func seed(from id: UUID) -> UInt64 {
-        var result: UInt64 = 0
+        var result: UInt64 = 0xcbf2_9ce4_8422_2325
         withUnsafeBytes(of: id.uuid) { bytes in
-            for byte in bytes.prefix(8) {
-                result = (result << 8) | UInt64(byte)
+            for byte in bytes {
+                result ^= UInt64(byte)
+                result = result &* 0x0000_0100_0000_01b3
             }
         }
         return result
