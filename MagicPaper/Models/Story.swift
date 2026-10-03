@@ -100,12 +100,26 @@ struct StoryOrigin: Codable, Equatable {
     /// Always one of the three modes, never "surprise": a surprise is resolved
     /// to a mode before composing, and `selectionStrategy` records that it
     /// was one. Nil for stories written before modes existed.
+    ///
+    /// Read it through `mode`, never `StoryMode(rawValue:)`: stories written
+    /// before 3 October 2026 store `"growth"` for what is now `learning`, and
+    /// the stored value is not rewritten.
     var modeID: String?
     /// `StorySelectionStrategy.rawValue`: whether the parent picked the mode
     /// or asked MagicPaper to. Nil for stories written before modes existed.
+    ///
+    /// Faz 13: a series is only ever continued from a story whose strategy is
+    /// `"direct"`. A surprise is a one-off.
     var selectionStrategy: String?
     /// The age band the story was written for (`"5-6"`). Nil for older stories.
     var ageBand: String?
+    /// A choice within the mode. The place exists before the product decision
+    /// does, so the stored model does not change when it arrives; today it is
+    /// always nil. Nil for every story written before it existed.
+    var subOptionID: String?
+
+    /// The mode this story was written in, old names included.
+    var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }
 }
 
 extension Story {

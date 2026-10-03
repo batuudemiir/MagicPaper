@@ -178,6 +178,18 @@ public struct BlueprintSelector: Sendable {
         }
     }
 
+    /// Hangi mod hangi yaş bandında kurulabilir — ürünün tanıdığı her bant için.
+    ///
+    /// Bandın **kendi** blueprint'lerine bakar; içeriği olmayan bir bandın
+    /// başka banttan sunulması (`AgeBandResolver.servedBand`) burada yok
+    /// sayılır, çünkü soru "bu bant için ne yazıldı?". Boş liste o bant için
+    /// hiç içerik yazılmadığı anlamına gelir.
+    public func modeCoverage(catalog: ContentCatalog) -> [AgeBand: [StoryMode]] {
+        Dictionary(uniqueKeysWithValues: AgeBandResolver.bands.map { band in
+            (band, availableModes(catalog: catalog, ageBand: band))
+        })
+    }
+
     /// The idea cards that belong under a mode, for a band.
     ///
     /// An idea belongs when one of the families it leans toward serves the
@@ -237,7 +249,8 @@ public struct BlueprintSelector: Sendable {
                     companionID: companion.id,
                     seed: intent.seed,
                     mode: intent.mode,
-                    ageBand: intent.ageBand
+                    ageBand: intent.ageBand,
+                    subOption: intent.subOption
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil

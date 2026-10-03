@@ -26,6 +26,10 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// The band the story is written for, from `AgeBandResolver`. Nil admits
     /// every band, which is how intents built before age banding behave.
     public let ageBand: AgeBand?
+    /// Mod içinde bir alt seçenek. Her mod için gelecek, bugün hep `nil` ve
+    /// seçici ile composer onu okumaz: alanın yeri ürün kararından önce
+    /// açıldı ki niyet modeli o gün değişmesin.
+    public let subOption: String?
 
     public init(
         childName: String,
@@ -35,7 +39,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         discoveryID: ContentID? = nil,
         seed: String,
         mode: StoryMode? = nil,
-        ageBand: AgeBand? = nil
+        ageBand: AgeBand? = nil,
+        subOption: String? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -45,6 +50,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.seed = seed
         self.mode = mode
         self.ageBand = ageBand
+        self.subOption = subOption
     }
 }
 

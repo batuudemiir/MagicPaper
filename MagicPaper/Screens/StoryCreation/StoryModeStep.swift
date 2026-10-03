@@ -31,7 +31,7 @@ struct StoryModeStep: View {
                 .padding(.bottom, MP.S.x5)
 
                 VStack(spacing: MP.S.stackGap) {
-                    ForEach(modes, id: \.self) { mode in
+                    ForEach(StoryCreationSteps.shownModes(modes), id: \.self) { mode in
                         MPChoiceTile(
                             title: mode.title,
                             description: mode.promise,
@@ -44,8 +44,8 @@ struct StoryModeStep: View {
                         .accessibilityLabel("\(mode.title). \(mode.promise)")
                     }
 
-                    // Tek bir mod kaldıysa sürprizin seçeceği bir şey yok.
-                    if modes.count > 1 {
+                    // Tek bir mod kaldıysa sürprizin seçeceği bir şey yok (K6).
+                    if StoryCreationSteps.showsSurprise(availableModes: modes) {
                         MPChoiceTile(
                             title: "Bana sürpriz yap",
                             description: "Bugünün hikâyesini biz seçelim.",
@@ -54,6 +54,7 @@ struct StoryModeStep: View {
                             layout: .column,
                             action: onSurprise
                         )
+                        .accessibilityLabel("Bana sürpriz yap. Bugünün hikâyesini biz seçelim.")
                     }
                 }
             }
@@ -68,17 +69,22 @@ struct StoryModeStep: View {
 /// Modların ekrandaki karşılığı. Motor modun ne *olduğunu* bilir; nasıl
 /// göründüğü uygulamanın işi.
 extension StoryMode {
+    /// Ekrandaki sıra (karar K5, 3 Ekim 2026). Motorun `allCases` sırası
+    /// sürprizin eşitlik bozması için sabit kalır; kart, süzgeç ve ana sayfa
+    /// sırası buradan okunur.
+    static let displayOrder: [StoryMode] = [.bedtime, .learning, .adventure]
+
     var title: String {
         switch self {
-        case .growth:    return "Gelişelim"
-        case .adventure: return "Maceraya Çıkalım"
-        case .bedtime:   return "Uyku Zamanı"
+        case .bedtime:   return "Uyku öncesi"
+        case .learning:  return "Yeni şeyler öğrenelim"
+        case .adventure: return "Maceraya çıkalım"
         }
     }
 
     var promise: String {
         switch self {
-        case .growth:    return "Yeni bir şey keşfedelim."
+        case .learning:  return "Yeni bir şey keşfedelim."
         case .adventure: return "Birlikte bir maceraya çıkalım."
         case .bedtime:   return "Günü sakin bir hikâyeyle kapatalım."
         }
@@ -86,7 +92,7 @@ extension StoryMode {
 
     var symbol: String {
         switch self {
-        case .growth:    return "sparkles"
+        case .learning:  return "sparkles"
         case .adventure: return "tent"
         case .bedtime:   return "moon"
         }
@@ -94,7 +100,7 @@ extension StoryMode {
 
     var accent: Color {
         switch self {
-        case .growth:    return MP.C.brand
+        case .learning:  return MP.C.brand
         case .adventure: return MP.C.play
         case .bedtime:   return MP.C.calm
         }

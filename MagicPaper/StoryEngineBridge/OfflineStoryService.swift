@@ -182,6 +182,8 @@ final class OfflineStoryService {
     ///     stories were built before modes existed.
     ///   - age: the child's age; the story is written for its served band. Nil
     ///     admits every band.
+    ///   - subOption: a choice within the mode. Always nil today; the engine
+    ///     carries it but does not read it.
     ///   - seed: supply one to rebuild an existing story exactly; otherwise a
     ///     fresh one is made and stored on the result, which is what makes the
     ///     story reproducible later. The previous implementation used
@@ -192,7 +194,8 @@ final class OfflineStoryService {
         companionID: String?,
         mode: StoryMode? = nil,
         age: Int? = nil,
-        seed: String? = nil
+        seed: String? = nil,
+        subOption: String? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         // A supplied seed is a rebuild: it must produce that story or nothing,
@@ -208,7 +211,8 @@ final class OfflineStoryService {
                 companionID: companionID.map { ContentID($0) },
                 seed: seed,
                 mode: mode,
-                ageBand: age.map(servedBand(forAge:))
+                ageBand: age.map(servedBand(forAge:)),
+                subOption: subOption
             )
             let composed: ComposedStory
             do {
