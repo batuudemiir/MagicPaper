@@ -7,10 +7,13 @@ import VisualSystem
 ///
 /// Everything the engine needs is assembled here, once. The engine itself takes
 /// its dependencies through initializers and reaches for no singletons; this is
-/// the only place that knows the app uses `FileManagerService` and fal.ai, which is what makes swapping any of them a change to this file.
+/// the only place that knows the app uses `FileManagerService` and fal.ai,
+/// which is what makes swapping any of them a change to this file.
 ///
-/// Nothing in this type runs automatically. The engine ships unwired: existing
-/// story creation still goes through `StoryGenerationManager`, untouched.
+/// Nothing in this type runs automatically and nothing in the app builds it.
+/// Text stories come only from `OfflineStoryService`; this container exists for
+/// the cloud illustration path, which stays behind `CloudIllustrationAccess`
+/// (always off in Release) until illustrated stories are decided.
 @MainActor
 final class StoryEngineContainer {
 
