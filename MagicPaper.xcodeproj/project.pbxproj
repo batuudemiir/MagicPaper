@@ -26,7 +26,6 @@
 		A1000001000000000000000D /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000000E /* LibraryView.swift */; };
 		A1000001000000000000000F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000010 /* SettingsView.swift */; };
 		A10000010000000000000013 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000014 /* Story.swift */; };
-		A10000010000000000000017 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000018 /* AIService.swift */; };
 		A10000010000000000000038 /* FirebaseImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000039 /* FirebaseImageUploader.swift */; };
 		A1000001000000000000003A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000003B /* GoogleService-Info.plist */; };
 		A10000010000000000000040 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000042 /* FirebaseCore */; };
@@ -48,10 +47,7 @@
 		A10000010000000000000059 /* DailyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005A /* DailyStory.swift */; };
 		A1000001000000000000005B /* DailyStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005C /* DailyStoryManager.swift */; };
 		A1000001000000000000005D /* DailyStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005E /* DailyStoriesView.swift */; };
-		A1000001000000000000006B /* TextOnlyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006C /* TextOnlyStory.swift */; };
 		A1000001000000000000006D /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000006E /* SubscriptionManager.swift */; };
-		A1000001000000000000006F /* TextStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000070 /* TextStory.swift */; };
-		A10000010000000000000071 /* TextStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000072 /* TextStoryManager.swift */; };
 		A10000010000000000000075 /* SimpleSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000076 /* SimpleSubscriptionView.swift */; };
 		A10000010000000000000077 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000078 /* ProfileManager.swift */; };
 		A10000010000000000000079 /* ProfileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007A /* ProfileSelectorView.swift */; };
@@ -87,7 +83,6 @@
 		A1000001000000000000000E /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		A10000010000000000000010 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A10000010000000000000014 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
-		A10000010000000000000018 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		A1000001000000000000001F /* MagicPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000010000000000000020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10000010000000000000039 /* FirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageUploader.swift; sourceTree = "<group>"; };
@@ -109,10 +104,7 @@
 		A1000001000000000000005A /* DailyStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStory.swift; sourceTree = "<group>"; };
 		A1000001000000000000005C /* DailyStoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStoryManager.swift; sourceTree = "<group>"; };
 		A1000001000000000000005E /* DailyStoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStoriesView.swift; sourceTree = "<group>"; };
-		A1000001000000000000006C /* TextOnlyStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyStory.swift; sourceTree = "<group>"; };
 		A1000001000000000000006E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
-		A10000010000000000000070 /* TextStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStory.swift; sourceTree = "<group>"; };
-		A10000010000000000000072 /* TextStoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStoryManager.swift; sourceTree = "<group>"; };
 		A10000010000000000000076 /* SimpleSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSubscriptionView.swift; sourceTree = "<group>"; };
 		A10000010000000000000078 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		A1000001000000000000007A /* ProfileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectorView.swift; sourceTree = "<group>"; };
@@ -260,8 +252,6 @@
 			children = (
 				A10000010000000000000014 /* Story.swift */,
 				A1000001000000000000005A /* DailyStory.swift */,
-				A1000001000000000000006C /* TextOnlyStory.swift */,
-				A10000010000000000000070 /* TextStory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,7 +271,6 @@
 				A10000010000000000000049 /* StoryGenerationManager.swift */,
 				A1000001000000000000006E /* SubscriptionManager.swift */,
 				A10000010000000000000078 /* ProfileManager.swift */,
-				A10000010000000000000018 /* AIService.swift */,
 				2D6C52292F2CABA60087A82F /* PermissionManager.swift */,
 				A10000010000000000000055 /* FalAIImageGenerator.swift */,
 				2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */,
@@ -289,7 +278,6 @@
 				A1000001000000000000004B /* FileManagerService.swift */,
 				A1000001000000000000004F /* LocalNotificationManager.swift */,
 				A1000001000000000000005C /* DailyStoryManager.swift */,
-				A10000010000000000000072 /* TextStoryManager.swift */,
 				2DDE500000000000000000B2 /* RevenueCatManager.swift */,
 				D4A0000000000000000001 /* Persistence */,
 				E5A0000000000000000001 /* Entitlements */,
@@ -461,7 +449,6 @@
 				A1000001000000000000006D /* SubscriptionManager.swift in Sources */,
 				A1000001000000000000004A /* FileManagerService.swift in Sources */,
 				A1000001000000000000004E /* LocalNotificationManager.swift in Sources */,
-				A10000010000000000000017 /* AIService.swift in Sources */,
 				A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */,
 				2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */,
 				A10000010000000000000046 /* FirebaseTestView.swift in Sources */,
@@ -473,9 +460,6 @@
 				A1000001000000000000005D /* DailyStoriesView.swift in Sources */,
 				2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */,
 				2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */,
-				A1000001000000000000006B /* TextOnlyStory.swift in Sources */,
-				A1000001000000000000006F /* TextStory.swift in Sources */,
-				A10000010000000000000071 /* TextStoryManager.swift in Sources */,
 				2DDE500000000000000000B1 /* RevenueCatManager.swift in Sources */,
 				A10000010000000000000075 /* SimpleSubscriptionView.swift in Sources */,
 				A10000010000000000000077 /* ProfileManager.swift in Sources */,

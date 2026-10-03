@@ -16,21 +16,12 @@ xcodebuild -version || echo "⚠️ xcodebuild version alınamadı"
 echo "🔷 Swift version:"
 swift --version || echo "⚠️ swift version alınamadı"
 
-# Secrets.xcconfig kontrolü
+# Secrets.xcconfig kontrolü (içeriği asla log'a yazma)
 echo "🔐 Secrets.xcconfig kontrolü..."
 if [ -f "Secrets.xcconfig" ]; then
     echo "✅ Secrets.xcconfig bulundu"
-    cat Secrets.xcconfig | grep -v "GEMINI_API_KEY" || echo "✅ API key var"
 else
-    echo "⚠️ Secrets.xcconfig bulunamadı!"
-    if [ -n "$GEMINI_API_KEY" ]; then
-        echo "🔧 Environment variable'dan oluşturuluyor..."
-        echo "GEMINI_API_KEY = $GEMINI_API_KEY" > Secrets.xcconfig
-        echo "✅ Secrets.xcconfig oluşturuldu"
-    else
-        echo "❌ GEMINI_API_KEY environment variable bulunamadı!"
-        exit 1
-    fi
+    echo "⚠️ Secrets.xcconfig bulunamadı; bulut anahtarları olmadan devam ediliyor"
 fi
 
 # Package dependencies durumunu kontrol et

@@ -6,7 +6,7 @@ import UIKit
 /// interpolated values as `<private>` outside a debugger by default.
 private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FalAIImageGenerator")
 
-/// FAL.AI IMAGE GENERATOR - GEMINI 2.5 FLASH IMAGE EDIT
+/// FAL.AI IMAGE GENERATOR - 2.5 FLASH IMAGE EDIT
 /// 
 /// Fixed polling logic for queue-based API
 /// Uses correct fal.run endpoint (not queue.fal.run)
@@ -50,7 +50,7 @@ class FalAIImageGenerator {
         seed: Int? = nil
     ) async throws -> String {
         
-        logger.debug("🚀 GEMINI 2.5 FLASH IMAGE EDIT")
+        logger.debug("🚀 2.5 FLASH IMAGE EDIT")
         logger.debug("🚀 Using fal.run endpoint (queue-based)")
         
         guard let url = URL(string: endpoint) else { throw URLError(.badURL) }
@@ -63,7 +63,7 @@ class FalAIImageGenerator {
         """
         
         
-        // ✅ GEMINI 2.5 FLASH PARAMETERS
+        // ✅ 2.5 FLASH IMAGE PARAMETERS
         var parameters: [String: Any] = [
             "prompt": fullPrompt,
             "seed": seed ?? Int.random(in: 1...1000000),

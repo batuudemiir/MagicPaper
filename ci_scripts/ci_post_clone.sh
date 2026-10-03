@@ -49,14 +49,19 @@ while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
 done
 
 # Secrets.xcconfig oluştur (Xcode Cloud için)
+# Değerler hiçbir zaman log'a yazılmaz; yalnızca hangi anahtarların bulunduğu.
 echo "🔐 Secrets.xcconfig oluşturuluyor..."
-if [ -n "$GEMINI_API_KEY" ]; then
-    echo "GEMINI_API_KEY = $GEMINI_API_KEY" > Secrets.xcconfig
-    echo "✅ Secrets.xcconfig oluşturuldu"
-else
-    echo "⚠️ GEMINI_API_KEY environment variable bulunamadı"
-    echo "GEMINI_API_KEY = PLACEHOLDER" > Secrets.xcconfig
-fi
+: > Secrets.xcconfig
+for KEY_NAME in FAL_API_KEY REVENUECAT_API_KEY; do
+    eval "KEY_VALUE=\${$KEY_NAME}"
+    if [ -n "$KEY_VALUE" ]; then
+        printf '%s = %s\n' "$KEY_NAME" "$KEY_VALUE" >> Secrets.xcconfig
+        echo "✅ $KEY_NAME bulundu"
+    else
+        echo "⚠️ $KEY_NAME environment variable bulunamadı"
+    fi
+done
+unset KEY_VALUE
 
 echo "✅ Post-clone script tamamlandı!"
 exit 0

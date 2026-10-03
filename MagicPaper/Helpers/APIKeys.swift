@@ -6,15 +6,14 @@ import Foundation
 /// to rotate, three chances to miss one, and a working copy that could not be
 /// shared without shipping the credential. The project already had the right
 /// mechanism for this — `Secrets.xcconfig` feeds a build setting into
-/// `Info.plist`, which is how `GEMINI_API_KEY` and `REVENUECAT_API_KEY` already
-/// work. fal.ai simply never used it.
+/// `Info.plist`, which is how `REVENUECAT_API_KEY` already works. fal.ai simply
+/// never used it.
 ///
 /// Resolution order is environment first, then `Info.plist`, so CI and local
 /// tooling can override without editing a file that must never be committed.
 enum APIKeys {
 
     static var fal: String? { resolve("FAL_API_KEY") }
-    static var gemini: String? { resolve("GEMINI_API_KEY") }
 
     /// An unresolved key is returned as `nil`, never as the literal
     /// `"$(FAL_API_KEY)"`. Xcode leaves the placeholder in place when the
