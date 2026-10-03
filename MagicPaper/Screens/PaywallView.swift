@@ -12,7 +12,6 @@ struct PaywallView: View {
 
     @State private var showPlans = false
     @State private var selectedTier: SubscriptionManager.SubscriptionTier = .premium
-    @State private var showPurchaseSheet = false
     @State private var cycle: Cycle = .monthly
     @State private var isPurchasing = false
     @State private var purchaseError: String?
@@ -80,17 +79,6 @@ struct PaywallView: View {
         }
         .mpScreenBackground()
         .task { revenueCat.fetchOfferings() }
-        .fullScreenCover(isPresented: $showPurchaseSheet) {
-            // Gerçek satın alma RevenueCat üzerinden yürür.
-            SimpleSubscriptionView()
-                .onDisappear {
-                    if subscriptionManager.isPremium {
-                        dismiss()
-                        app.showToast("Premium açıldı, iyi masallar",
-                                      symbol: "crown.fill", tone: .reward)
-                    }
-                }
-        }
     }
 
     // MARK: - Değer bölümü
@@ -176,11 +164,13 @@ struct PaywallView: View {
     // MARK: - Satın alma
 
     /// Seçilen plan için gerçek ürün varsa doğrudan satın alınır; ürün
-    /// tanımlı değilse (ör. yıllık henüz açılmadıysa) RevenueCat'in kendi
-    /// paywall'ına düşülür — kullanıcı hiçbir durumda çıkmaza girmez.
+    /// tanımlı değilse (ör. yıllık henüz açılmadıysa) sakin bir mesaj
+    /// gösterilir; başka bir ekran açılmaz. Paywall işi Premium kararını bekler.
     private func startPurchase() {
         guard hasLiveProduct else {
-            showPurchaseSheet = true
+            // Paywall kendi örtüsünde açık; kökteki toast onun arkasında kalır,
+            // bu yüzden mesaj mevcut satır içi alanda gösterilir.
+            purchaseError = "Abonelik şu an açılamıyor. Biraz sonra yeniden dene."
             return
         }
         isPurchasing = true
