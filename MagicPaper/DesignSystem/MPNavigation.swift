@@ -211,7 +211,7 @@ struct MPStepDots: View {
         HStack(spacing: 8) {
             ForEach(0..<total, id: \.self) { i in
                 Capsule()
-                    .fill(i < current ? MP.Palette.gul200 : (i == current ? MP.C.brand : MP.Palette.kagit300))
+                    .fill(i < current ? MP.C.brandTrack : (i == current ? MP.C.brand : MP.C.borderHairline))
                     .frame(width: i == current ? 30 : 8, height: 8)
                     .accessibilityLabel(labels?[safe: i] ?? "Adım \(i + 1)")
             }

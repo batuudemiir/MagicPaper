@@ -62,7 +62,7 @@ struct MPButton: View {
         if isDisabled { return MP.C.textFaint }
         switch variant {
         case .solid: return toneColors.fg
-        case .soft: return MP.Palette.gul600
+        case .soft: return MP.C.brandInk
         case .outline: return MP.C.textTitle
         case .ghost: return MP.C.textLink
         }
@@ -89,7 +89,7 @@ struct MPButton: View {
                         )
                 }
             case .soft:
-                content.mpEdge(fill: MP.C.brandSoft, edge: MP.Palette.gul100, radius: radius)
+                content.mpEdge(fill: MP.C.brandSoft, edge: MP.C.brandSoftEdge, radius: radius)
             case .outline:
                 content
                     .mpEdge(fill: MP.C.surfaceCard, edge: MP.C.borderStrong, radius: radius, width: MP.E.widthLG)
@@ -215,7 +215,7 @@ struct MPBadge: View {
 
     private var colors: (bg: Color, fg: Color) {
         switch tone {
-        case .brand:   return (MP.C.brandSoft, MP.Palette.gul600)
+        case .brand:   return (MP.C.brandSoft, MP.C.brandInk)
         case .reward:  return (MP.C.rewardSoft, MP.C.premiumInk)
         case .calm:    return (MP.C.calmSoft, MP.Palette.yesim600)
         case .play:    return (MP.C.playSoft, MP.Palette.mercan600)

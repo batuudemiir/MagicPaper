@@ -49,7 +49,7 @@ Bileşen   MPCard, MPButton, MPAvatar …
 
 | Küme | Sembol | Durum |
 |---|---|---|
-| Renk — ham | `MP.Palette` | ✅ gul, hardal, mercan, yeşim, gece, mürekkep, kağıt, **sepya**, **dünya aksanları** |
+| Renk — ham | `MP.Palette` | ✅ **mor** (eylem rengi, FAZ 10), gul, hardal, mercan, yeşim, gece, mürekkep, kağıt, **sepya**, **dünya aksanları** |
 | Renk — semantik | `MP.C` | ✅ |
 | Tipografi | `MP.F` | ✅ display XL–SM, body LG/MD/SM, label, caption, read |
 | Glyph ölçeği | `MP.G` | ⚠️ **bu turda eklendi, henüz benimsenmedi** (§5) |
@@ -78,6 +78,28 @@ Hiçbiri yeni bir renk icat etmez; hepsi kodda zaten dolaşan değerlere ad veri
 | `MP.G` | 12–64 | ikon/emoji boyut ölçeği |
 
 ---
+
+### Eylem rengi: mor (FAZ 10, 4 Ekim 2026)
+
+Karar K1 (3 Ekim 2026): eylem rengi #6A47B8. 500, 600, 900 ve lavanta İrem'in canvas'ından; 400, 50
+ve 100 türetildi ve onaylandı. **Degrade yok**: canvas'taki buton degradesi tasarım yasasına aykırı,
+butonlar düz `brand` dolgusu ve `mpEdge(brandEdge)`. Kontrast WCAG 2.x; "kâğıt" = `kagit100` (#FDF6EE).
+
+| `MP.C` | `MP.Palette` | Hex | Kaynak | Kullanım | Kontrast |
+|---|---|---|---|---|---|
+| `brand` | `mor500` | #6A47B8 | canvas | buton dolgusu, seçili adım, mod aksanı | beyaz metin 6.55 · kâğıtta 6.11 |
+| `brandPress`, `textLink`, `brandInk` | `mor600` | #5C3A8F | canvas | basılı buton, link, açık zemin üstünde metin/ikon | beyazda 8.55 · `brandSoft`'ta 7.44 |
+| `brandEdge` | `mor900` | #3A2458 | canvas | butonun sert alt kenarı | beyazda 13.35 |
+| `brandHover` | `mor400` | #7653C2 | türetildi | basılmadan önceki hâl (bugün kullanılmıyor) | beyaz metin 5.55 |
+| `brandSoft` | `mor50` | #F2EDFA | türetildi | yumuşak buton ve rozet zemini | üstünde `mor600` 7.44 · `mor500` 5.70 |
+| `brandSoftEdge` | `mor100` | #DCD0F1 | türetildi | açık yüzeyin süs kenarı, sönük veri çubuğu | metin taşımaz · kâğıtta 1.37 |
+| `focusRing`, `brandTrack` | `morLavanta` | #8F6BD6 | canvas | odak halkası, tamamlanmış adım noktası | kâğıtta 3.74: metin dışı öğe için yeterli (≥ 3:1) |
+
+**Lavanta kuralı:** `morLavanta` beyaz ya da kâğıt zemin üstünde metin veya ikon rengi olamaz (beyazda 4.01,
+kâğıtta 3.74 < 4.5). Yalnızca `focusRing` ve `brandTrack` okur.
+
+`gul*` paletten silinmedi: dünya aksanları ve avatar aksanları okumaya devam ediyor. FAZ 10'da bileşenlerde
+doğrudan `Palette.gul*` okuyan 5 yer (`MPControls` ×3, `MPNavigation`, `ParentOverviewView`) `MP.C`'ye geçti.
 
 ## 3. Bileşen envanteri
 

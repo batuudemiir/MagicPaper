@@ -151,7 +151,7 @@ struct ParentOverviewView: View {
                         ForEach(Array(data.lastSevenDays.enumerated()), id: \.offset) { index, value in
                             RoundedRectangle(cornerRadius: 6, style: .continuous)
                                 .fill(index == data.lastSevenDays.count - 1
-                                      ? MP.C.brand : MP.Palette.gul100)
+                                      ? MP.C.brand : MP.C.brandSoftEdge)
                                 .frame(height: max(6, 56 * CGFloat(value) / CGFloat(peak)))
                                 .frame(maxWidth: .infinity)
                         }
