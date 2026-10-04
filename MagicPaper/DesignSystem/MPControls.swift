@@ -164,16 +164,28 @@ struct MPChip: View {
     var isDisabled: Bool = false
     let action: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 7) {
                 if let symbol { MPIcon(symbol, size: 16, weight: .semibold) }
-                // Chip yüksekliği sabit 42px — etiket asla ikinci satıra inmez.
-                Text(title).lineLimit(1).fixedSize(horizontal: true, vertical: false)
+                // Normal boyutlarda etiket asla ikinci satıra inmez. Erişilebilirlik
+                // boyutlarında uzun bir etiket (ör. Masal ailem adı) ekrandan
+                // taşacağına alt satıra geçer.
+                if typeSize.isAccessibilitySize {
+                    Text(title).lineLimit(3).fixedSize(horizontal: false, vertical: true)
+                } else {
+                    Text(title).lineLimit(1).fixedSize(horizontal: true, vertical: false)
+                }
             }
             .font(MP.F.labelMD())
             .foregroundStyle(isSelected ? MP.C.textOnBrand : (isDisabled ? MP.C.textFaint : MP.C.textBody))
-            .frame(height: 42)
+            // En az 42: büyük yazı boyutunda etiket yüksekliğe sığmıyor ve
+            // kenar yazının üstüne biniyordu (FAZ 11 ekran kontrolü).
+            // Normal boyutta görünüm aynı.
+            .padding(.vertical, MP.S.x1)
+            .frame(minHeight: 42)
             .padding(.horizontal, 16)
             .mpEdge(
                 fill: isSelected ? MP.C.brand : MP.C.surfaceCard,

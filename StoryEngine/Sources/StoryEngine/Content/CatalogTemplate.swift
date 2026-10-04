@@ -123,11 +123,20 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// does not require it.
     public let afterState: [NarrativeStateKey]
 
+    /// Masal ailem relations this line is written for (FAZ 11).
+    ///
+    /// Empty means the line names no family character, which is every line
+    /// written before FAZ 11. Non-empty means the line says `{{family.name}}`
+    /// and reads right only for these relations — "kardeşi" is not a cat.
+    /// Enforced like `castRoles`, never relaxed: see `suits(family:)`.
+    public let familyRelations: Set<FamilyRelationKind>
+
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
         case capabilityRequire, capabilityForbid, castRoles, register
         case conflictKinds, afterClosing, afterState
+        case familyRelations
     }
 
     /// Every key this type actually reads.
@@ -168,6 +177,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         afterClosing = (try container.decodeIfPresent([String].self, forKey: .afterClosing) ?? [])
             .compactMap(StoryBeat.init(rawValue:))
         afterState = try container.decodeIfPresent([NarrativeStateKey].self, forKey: .afterState) ?? []
+        familyRelations = try container.decodeIfPresent(Set<FamilyRelationKind>.self, forKey: .familyRelations) ?? []
     }
 
     /// Whether this line is the right shape for how the story's conflict works.
@@ -202,6 +212,22 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         guard let role else { return false }
         return castRoles.contains(role)
     }
+
+    /// Whether this line may appear in a story with this Masal ailem character.
+    ///
+    /// Two directions, both strict. A family line in a story with no family
+    /// character would leave `{{family.name}}` unfilled. A family line for the
+    /// wrong relation describes someone else. Lines that name no family
+    /// character suit every story; whether a family moment *must* carry one is
+    /// the composer's decision, not the line's.
+    public func suits(family relation: FamilyRelationKind?) -> Bool {
+        guard !familyRelations.isEmpty else { return true }
+        guard let relation else { return false }
+        return familyRelations.contains(relation)
+    }
+
+    /// Whether this line carries a Masal ailem character at all.
+    public var isFamilyLine: Bool { !familyRelations.isEmpty }
 
     /// Slots the text genuinely contains, regardless of what was declared.
     public var actualSlots: [ContentSlot] { ContentSlot.tokens(in: text) }

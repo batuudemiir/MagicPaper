@@ -216,6 +216,175 @@
         "restore"
       ],
       "move": "sitting_down_to_let_it_settle"
+    },
+    {
+      "id": "wc_fam_sib_p01",
+      "text": "O akşam kardeşi {{family.name}} ile sofrada oturdular. {{child.name}} gün boyu olanları bir bir hatırladı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam_sibling_dinner_table",
+      "lengthClass": "paired",
+      "visualScene": "two children at a dinner table, evening light"
+    },
+    {
+      "id": "wc_fam_sib_p02",
+      "text": "O akşam {{child.name}} ile kardeşi {{family.name}} yan yana uzandı. Konuşacak çok şeyleri vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam_sibling_side_by_side",
+      "lengthClass": "paired",
+      "visualScene": "two children lying side by side, whispering"
+    },
+    {
+      "id": "wc_fam_sib_s01",
+      "text": "Akşam olmuştu. {{child.name}} ile kardeşi {{family.name}} aynı battaniyenin altına girdi. Bugün olanları fısıltıyla konuştular. Sonra ikisi de yavaşça uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam_sibling_shared_blanket",
+      "lengthClass": "solo",
+      "visualScene": "two children under one blanket, drifting to sleep"
+    },
+    {
+      "id": "wc_fam_fr_p01",
+      "text": "Ayrılırken arkadaşı {{family.name}} kapıdan dönüp kocaman el salladı. {{child.name}} gülümseyerek karşılık verdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam_friend_wave_goodbye",
+      "lengthClass": "paired",
+      "visualScene": "two friends waving goodbye at dusk"
+    },
+    {
+      "id": "wc_fam_fr_p02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} eve kadar birlikte yürüdü. Pek konuşmadılar ama ikisi de gülümsüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam_friend_quiet_walk_home",
+      "lengthClass": "paired",
+      "visualScene": "two friends walking home quietly, smiling"
+    },
+    {
+      "id": "wc_fam_fr_s01",
+      "text": "Akşam olunca arkadaşı {{family.name}} evine gitti. Giderken kapıda durup \"Yarın yine geleyim mi?\" diye sordu. {{child.name}} başını salladı. İkisi de gülümsüyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam_friend_see_you_tomorrow",
+      "lengthClass": "solo",
+      "visualScene": "friend pausing at a door, child nodding"
+    },
+    {
+      "id": "wc_fam_an_p01",
+      "text": "Eve gelince önce {{family.possessive}} {{family.name}}'ı aradı {{child.name}}. {{family.name}} her zamanki yerinde onu bekliyordu.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam_pet_in_its_place",
+      "lengthClass": "paired",
+      "visualScene": "child coming home and finding a pet in its usual spot"
+    },
+    {
+      "id": "wc_fam_an_p02",
+      "text": "O akşam {{child.name}} bütün günü {{family.name}}'a fısıldayarak anlattı. {{family.name}} onu sessizce dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam_pet_whispered_story",
+      "lengthClass": "paired",
+      "visualScene": "child whispering to a pet in the evening"
+    },
+    {
+      "id": "wc_fam_an_s01",
+      "text": "{{child.name}} eve döndüğünde hava kararmıştı. {{family.possessive}} {{family.name}} onu bekliyordu. {{child.name}} yanına oturdu ve bugün olanları anlattı. {{family.name}} hiç acele etmeden dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam_pet_waiting_home",
+      "lengthClass": "solo",
+      "visualScene": "pet waiting at home at dusk, child sitting beside it"
+    },
+    {
+      "id": "wc_fam_im_p01",
+      "text": "Eve dönerken hayali arkadaşı {{family.name}} yine yanı başındaydı. Ayakları yorulmuştu ama ikisinin de yüzü gülüyordu.",
+      "requiredSlots": [
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam_imaginary_walk_home",
+      "lengthClass": "paired",
+      "visualScene": "child walking home at dusk, a faint soft shape beside them"
+    },
+    {
+      "id": "wc_fam_im_p02",
+      "text": "O gece {{child.name}} yatağında {{family.name}}'a fısıldadı: \"Bugün güzel bir gündü.\" {{family.name}} başını sallayıp gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam_imaginary_bedtime_whisper",
+      "lengthClass": "paired",
+      "visualScene": "child in bed whispering to the air"
+    },
+    {
+      "id": "wc_fam_im_s01",
+      "text": "Akşam olunca {{child.name}} odasına çekildi. Hayali arkadaşı {{family.name}} pencerenin önünde oturuyordu. {{child.name}} bugün olanları ona anlattı. {{family.name}} her şeyi zaten biliyormuş gibi gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam_imaginary_window_seat",
+      "lengthClass": "solo",
+      "visualScene": "child in their room, a soft shape by the window"
     }
   ]
 }

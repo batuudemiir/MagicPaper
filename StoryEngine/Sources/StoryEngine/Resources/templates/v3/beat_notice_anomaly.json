@@ -277,6 +277,125 @@
       ],
       "lengthClass": "solo",
       "move": "almost_walked_past_it"
+    },
+    {
+      "id": "na_fam_sib_01",
+      "text": "{{child.name}} o sabah kardeşi {{family.name}} ile {{setting.name}}'a gitti. İkisi de çok keyifliydi. Sonra {{child.name}} adımlarını yavaşlattı. Bir şey her zamanki gibi değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam_sibling_walk_then_stop",
+      "lengthClass": "solo",
+      "visualScene": "two children walking together, the elder pausing"
+    },
+    {
+      "id": "na_fam_sib_02",
+      "text": "{{child.name}} arkadan yavaş yavaş geliyordu. Kardeşi {{family.name}} önden koşuyordu. Tam o sırada bir şey {{child.name}}'in dikkatini çekti. {{family.name}} bunu fark etmemişti bile.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam_sibling_runs_ahead",
+      "lengthClass": "solo",
+      "visualScene": "one child running ahead, the other slowing down, attentive"
+    },
+    {
+      "id": "na_fam_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da saklambaç oynuyordu. Sayma sırası {{child.name}}'e gelmişti. Gözlerini açtığında bir şeyin değiştiğini hemen anladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam_friend_hide_and_seek",
+      "lengthClass": "solo",
+      "visualScene": "child opening their eyes after counting, a friend hidden nearby"
+    },
+    {
+      "id": "na_fam_fr_02",
+      "text": "{{child.name}} kapıyı açtığında arkadaşı {{family.name}} gelmişti bile. Birlikte {{setting.name}}'a doğru yavaşça yürüdüler. {{child.name}} yolda birden durdu. Bir şey tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam_friend_early_visit",
+      "lengthClass": "solo",
+      "visualScene": "two friends walking side by side, one stopping"
+    },
+    {
+      "id": "na_fam_an_01",
+      "text": "{{child.name}} çıkmadan önce {{family.possessive}} {{family.name}}'a günaydın dedi. {{setting.name}}'a vardığında içini tuhaf bir merak kapladı. Bir şey her günkü gibi değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam_pet_good_morning",
+      "lengthClass": "solo",
+      "visualScene": "child saying good morning to a pet before heading out"
+    },
+    {
+      "id": "na_fam_an_02",
+      "text": "Kapıdan çıkarken {{family.name}}'ın yanına uğradı {{child.name}}. \"Hemen dönerim,\" dedi. Yol boyunca her yer sessizdi. Birden {{child.name}} durdu. Burada bir tuhaflık vardı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam_pet_back_soon",
+      "lengthClass": "solo",
+      "visualScene": "child leaving home after a goodbye to a pet, quiet place ahead"
+    },
+    {
+      "id": "na_fam_im_01",
+      "text": "{{setting.name}}'a giden yolda {{child.name}} yalnız değildi. Hayali arkadaşı {{family.name}} hep onunlaydı. Onu kimse göremezdi ama {{child.name}} görürdü. Sonra ikisi birden sustu. Bir şey tuhaftı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam_imaginary_unseen_companion",
+      "lengthClass": "solo",
+      "visualScene": "child walking alone, a faint soft shape beside them"
+    },
+    {
+      "id": "na_fam_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile konuşa konuşa yürüyordu. {{setting.name}} her zamanki gibiydi. Derken {{child.name}} sustu. Bir şey yerinde değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam_imaginary_talking_walk",
+      "lengthClass": "solo",
+      "visualScene": "child talking to the air while walking, then falling silent"
     }
   ],
   "lengthClasses": {

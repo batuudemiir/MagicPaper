@@ -406,3 +406,28 @@ Hiçbir `.swift` dosyası değiştirilmedi.
 6. Değişiklikten sonra: `cd MagicPaper/StoryEngine && swift test --build-system native`
    (düz `swift test` bu repoda codesign hatası veriyor; `xattr -cr Sources Tests .build`
    gerekebilir).
+
+## 11. Masal ailem satırları (FAZ 11, 4 Ekim 2026)
+
+**Alanlar:**
+- Bir v3 varyantı `familyRelations: ["sibling" | "friend" | "animal" | "imaginary"]` taşıyorsa aile satırıdır.
+- Aile satırının metni `{{family.name}}` içermek zorunda.
+- Hayvan satırları `{{family.kind}}` ("köpek", yumuşar) ya da `{{family.possessive}}` ("köpeği") da kullanabilir. Bu iki yuva yalnızca `["animal"]` satırında geçerlidir.
+
+**Aile anları:**
+- Katalogda `familyMoments` tanımlıdır; bugün `notice_anomaly` ve `warm_close`.
+- Karakter seçildiyse bu beat'lerde yalnızca o ilişki türünün satırları kullanılır, başka beat'lerde aile satırı hiç kullanılmaz.
+- Bir blueprint'in herhangi bir aile anında o tür için satır yoksa blueprint o karakterle seçilmez.
+
+**Hayvan türleri:** `familyAnimalKinds` (`id`, `name`, `possessive`, `blocksSoftening`). Liste sabittir ve ekranda buradan gelir.
+
+**Yazım kuralları** (`validate_beat_corpus.py` ve `CatalogIntegrity.checkFamily` denetler):
+- Her aile beat'inde her ilişki türü için en az 2 satır olmalı.
+- `{{…}}` ile `da/de` arasına bağlaç yazılmaz ("Ela da" ve "Bulut de" aynı satırdan çıkar).
+- "Hayali varlık" yazılmaz; "hayali arkadaşı" yazılır ya da yalnızca ad kullanılır.
+- Hayvan satırı türden bağımsız olmalı; balık ya da kaplumbağa da olabilir.
+- `afterBeat`/`afterClosing` kısıtı konmazsa satır her blueprint'e oturur.
+
+**Doğrulayıcı:** artık 3-4 korpusunu da (`v3-age3/`) aile kapısı için okur.
+
+**Kapsama raporu:** `BlueprintSelector.familyCoverage`; test: `testEveryShippedBlueprintCarriesEveryRelation`.

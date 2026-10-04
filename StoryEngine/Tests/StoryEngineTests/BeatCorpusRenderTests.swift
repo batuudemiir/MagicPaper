@@ -39,6 +39,18 @@ final class BeatCorpusRenderTests: XCTestCase {
         return try JSONDecoder().decode(BeatFile.self, from: Data(contentsOf: url))
     }
 
+    /// Masal ailem slots (FAZ 11). Family lines name the character, so the
+    /// corpus is rendered with one; the child-name list doubles as family
+    /// names, which puts every vowel class through the family slot too.
+    /// Supplying them to lines that do not use them changes nothing.
+    private func familySlots(_ name: String) -> [String: TurkishTextRenderer.Slot] {
+        [
+            "family.name": .init(name, isProperNoun: true),
+            "family.kind": .init("köpek", isProperNoun: false),
+            "family.possessive": .init("köpeği", isProperNoun: false, hasPossessiveEnding: true)
+        ]
+    }
+
     /// Every authored beat file in the v3 corpus.
     private func loadAllCorpora() throws -> [BeatFile] {
         let dir = URL(fileURLWithPath: #filePath)
@@ -70,7 +82,7 @@ final class BeatCorpusRenderTests: XCTestCase {
                             "discovery.name": .init("parlayan bir ışık", isProperNoun: false),
                             "companion.name": .init("Kıpır", isProperNoun: true),
                             "companion.type": .init("tilki", isProperNoun: false)
-                        ]
+                        ].merging(familySlots(childName)) { $1 }
                         let r = TurkishTextRenderer.render(variant.text, slots: slots)
                         XCTAssertTrue(r.isClean,
                             "\(corpus.beat)/\(variant.id) @ \(settingName)/\(childName): missing \(r.missingSlots) bad \(r.unrecognisedSuffixes)")
@@ -166,7 +178,7 @@ final class BeatCorpusRenderTests: XCTestCase {
                         "child.name": .init(childName, isProperNoun: true),
                         "setting.name": .init(settingName, isProperNoun: true, hasPossessiveEnding: possessive),
                         "discovery.name": .init("parlayan bir ışık", isProperNoun: false)
-                    ]
+                    ].merging(familySlots(childName)) { $1 }
                     let r = TurkishTextRenderer.render(variant.text, slots: slots)
                     XCTAssertTrue(
                         r.isClean,

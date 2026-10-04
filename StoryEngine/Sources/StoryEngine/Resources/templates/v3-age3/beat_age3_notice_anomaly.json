@@ -58,6 +58,119 @@
       ],
       "move": "morning_different",
       "lengthClass": "solo"
+    },
+    {
+      "id": "na3_fam_sib_01",
+      "text": "{{child.name}} kardeşi {{family.name}} ile dışarı çıktı. Birden durdu. Bir şey değişmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam3_sibling_out_together",
+      "lengthClass": "solo",
+      "visualScene": "two small children stepping outside"
+    },
+    {
+      "id": "na3_fam_sib_02",
+      "text": "{{child.name}} pencereden baktı. Kardeşi {{family.name}} hâlâ uyuyordu. Bugün bir şey başkaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam3_sibling_asleep_window",
+      "lengthClass": "solo",
+      "visualScene": "small child at a window, sibling asleep behind"
+    },
+    {
+      "id": "na3_fam_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} oyun oynuyordu. Sonra {{child.name}} durdu. Ortada tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam3_friend_play_pause",
+      "lengthClass": "solo",
+      "visualScene": "two small friends playing, one pausing"
+    },
+    {
+      "id": "na3_fam_fr_02",
+      "text": "{{child.name}} kapıyı açtı, arkadaşı {{family.name}} gelmişti. İkisi dışarı çıktı. {{child.name}} birden durdu. Ne oldu acaba?",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam3_friend_came_over",
+      "lengthClass": "solo",
+      "visualScene": "two small friends at a door, one stopping"
+    },
+    {
+      "id": "na3_fam_an_01",
+      "text": "{{child.name}} sabah {{family.name}}'a günaydın dedi. Sonra dışarı baktı. Bir şey değişmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam3_pet_good_morning",
+      "lengthClass": "solo",
+      "visualScene": "small child greeting a pet, then looking out"
+    },
+    {
+      "id": "na3_fam_an_02",
+      "text": "{{child.name}} yavaşça kalktı. {{family.possessive}} {{family.name}} hâlâ uyuyordu. Dışarı çıkınca {{child.name}} birden durdu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam3_pet_asleep",
+      "lengthClass": "solo",
+      "visualScene": "a pet asleep, small child tiptoeing out"
+    },
+    {
+      "id": "na3_fam_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yürüyordu. Birden durdu. Bir şey başkaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam3_imaginary_walk",
+      "lengthClass": "solo",
+      "visualScene": "small child walking, a faint soft shape beside them"
+    },
+    {
+      "id": "na3_fam_im_02",
+      "text": "{{child.name}} bugün de hayali arkadaşı {{family.name}} ile birlikteydi. Sonra bir şey fark etti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam3_imaginary_always_there",
+      "lengthClass": "solo",
+      "visualScene": "small child with a faint soft shape, noticing something"
     }
   ]
 }

@@ -160,8 +160,12 @@ public enum TurkishGrammar {
     // (back), and `İ` is the capital of `i` (front). The previous table listed
     // `I` as front-unrounded, which flipped harmony for any name typed or
     // stored uppercase.
-    private static let frontUnrounded: Set<Character> = ["e", "i", "E", "İ"]
-    private static let frontRounded: Set<Character> = ["ö", "ü", "Ö", "Ü"]
+    // `â`, `î` and `û` (circumflex) appear in names typed by parents — "Kemâl",
+    // "Nihâl" — and they mark exactly the palatal sound that takes a front
+    // suffix. Left out of the table, they were not vowels at all, so the
+    // harmony came from whatever vowel stood before them.
+    private static let frontUnrounded: Set<Character> = ["e", "i", "E", "İ", "â", "Â", "î", "Î"]
+    private static let frontRounded: Set<Character> = ["ö", "ü", "Ö", "Ü", "û", "Û"]
     private static let backUnrounded: Set<Character> = ["a", "ı", "A", "I"]
     private static let backRounded: Set<Character> = ["o", "u", "O", "U"]
 
@@ -183,6 +187,27 @@ public enum TurkishGrammar {
 
     private static func lastVowel(of text: String) -> Character? {
         text.reversed().first { vowels.contains($0) }
+    }
+
+    /// Names whose last syllable is written with a back vowel but said with a
+    /// palatal *l*, so they take front suffixes: "Kemal'e", "Hilal'i".
+    ///
+    /// Spelling cannot reveal this — "Kemal'e" and "Kartal'a" end alike — so
+    /// it is a list, and a short one on purpose: a name goes on it only when
+    /// the front form is the standard one. Adding a doubtful name would make a
+    /// correct story wrong for every child who has it.
+    static let frontHarmonyNames: Set<String> = [
+        "kemal", "celal", "cemal", "hilal", "bilal", "nihal", "iclal"
+    ]
+
+    /// The vowel suffix harmony follows for this noun.
+    private static func harmonyVowel(of noun: TurkishNoun) -> Character {
+        if noun.isProperNoun,
+           let lastWord = noun.text.split(separator: " ").last,
+           frontHarmonyNames.contains(lastWord.lowercased(with: Locale(identifier: "tr_TR"))) {
+            return "e"
+        }
+        return lastVowel(of: noun.text) ?? "a"
     }
 
     private static func endsWithVowel(_ text: String) -> Bool {
@@ -225,7 +250,7 @@ public enum TurkishGrammar {
         let stem = noun.text
         guard !stem.isEmpty else { return "" }
 
-        let finalVowel = lastVowel(of: stem) ?? "a"
+        let finalVowel = harmonyVowel(of: noun)
         let isFront = frontUnrounded.contains(finalVowel) || frontRounded.contains(finalVowel)
         let isRounded = frontRounded.contains(finalVowel) || backRounded.contains(finalVowel)
         let vowelFinal = endsWithVowel(stem)

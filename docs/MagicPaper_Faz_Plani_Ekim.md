@@ -230,7 +230,7 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 
 ---
 
-## FAZ 11 — Masal ailem ⏳
+## FAZ 11 — Masal ailem ✅
 
 **Amaç:** Çocuğun tekrar eden karakterleri masallara girsin.
 
@@ -248,6 +248,93 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 (golden test); kullanıcı adı log'da yok; profil silme karakterleri siliyor.
 
 **Sahip:** character-system (model) + content-library (motor).
+
+**Uygulama planı:** dal `faz-11`. Kararlar (4 Ekim 2026):
+- Pilot satırları ajan taslak olarak yazar; birleştirmeden önce okunur (`MagicPaperAPP/FAZ11_AILE_SATIRLARI.md`, repo dışı).
+- Karakter masalın açılışında (`notice_anomaly`) ve kapanışında (`warm_close`) yer alır.
+- Giriş profil sayfasından.
+- Hayvan türü sabit listeden.
+
+### Kapanış notu (4 Ekim 2026)
+
+**Doğrulama:**
+- Paket testleri 674, hata 18. Hata listesi test başına tabanla birebir aynı (taban 658/18).
+- `validate_beat_corpus.py`: bulgular tabanla birebir aynı (12, hepsi FAZ 11 öncesi). Yeni aile kapısı temiz.
+- App build yeşil.
+- Uygulama testleri 404/0 (1 atlanan; taban 379).
+- Reviewer: CRITICAL yok. İki HIGH düzeltildi:
+  - Çocuk moduna geçince Masal ailem sayfası açık kalıyordu.
+  - Mod değişince uygun olmayan seçim yol arkadaşı listesini boşaltıyordu.
+- Tasarım yasası: beş denetim yeni ve değişen dosyalarda yeni isabet vermedi. Repo geneli tabanla aynı (padding 81, shadow 7, hex 59).
+
+**Kabul kriterleri:**
+- **Her ilişki türü için en az bir blueprint her desteklenen bantta karakteri doğal bağlıyor (golden test):**
+  - `FamilyCastTests.testEveryRelationIsCarriedInEveryBand`: 4 bant × 4 ilişki türü, `servedBand` üzerinden. Ad ilk ve son sayfada geçiyor, eksik yuva ya da tanınmayan ek yok.
+  - `testEveryShippedBlueprintCarriesEveryRelation`: 15 blueprint'in hepsi 4 türü de taşıyor.
+  - `FamilyStoryFixtureTests`: bant × ilişki türü başına tam metin sabitlendi.
+- **Kullanıcı adı log'da yok:**
+  - `FamilyCharacter` ve `FamilyCast`'in `description`, `debugDescription` ve `Mirror` çıktısı adı içermiyor.
+  - Yeni hata (`noVariantForFamily`), seçici gerekçeleri ve köprü hataları yalnızca ilişki türünü söylüyor.
+  - Depo log'u yalnızca sayı içeriyor.
+  - Testler: `FamilyCharacterPrivacyTests`, `testTheFamilyErrorNamesTheRelationNotTheName`, `testARelationWithNoLineIsReportedNotSubstituted`. Değişen dosyalarda log grep'i temiz.
+- **Profil silme karakterleri siliyor:** `FamilyCharacterDeletionTests`, gerçek `deleteProfile` üzerinden; kardeşin karakterleri duruyor. "Tüm verileri sil" de siliyor.
+- **Kaydedilmiş masallar açılıyor:** `StoryOrigin`'e iki isteğe bağlı alan eklendi; FAZ 10 kökeni `nil` ile çözülüyor (`testAnOriginWrittenBeforeFaz11StillOpens`). Ailesiz masalın tohumu, fingerprint'i ve havuzu değişmedi (`OfflineDeterminismTests` sabit değerleri aynı, `testAStoryWithoutAFamilyCharacterNeverUsesAFamilyLine`).
+
+**Plandan sapmalar (onaylı plan):**
+- **`CastBinding` yerine canlı yol kullanıldı:** `OfflineStoryIntent.family` → composer. `CastBinding` ölü yolda.
+- **Yuva biçimi:** `{family:sibling}` değil; `{{family.name}}` yuvası ve varyantta `familyRelations` alanı. Doğrulayıcının `[a-z.]+` deseni yüzünden iyelik yuvası `family.possessive` adını aldı.
+- **"Benim köşem" yok:** Masal ailem profil sayfasından açılıyor; FAZ 17'de taşınır.
+- **Ad kuralı plandan katı:** tek bir rakam ya da emoji de reddediliyor.
+- **Dosya yeri:** yeni uygulama dosyaları senkron `StoryEngineBridge/` klasöründe; pbxproj'a dokunulmadı.
+
+**Yolda bulunan ve düzeltilenler:**
+- Yol arkadaşı ile aile karakteri aynı adı taşıyabiliyordu ("Pamuk" tavşan + "Pamuk" kedi). Artık bağlanmıyor.
+- `TurkishGrammar` iki noktada düzeltildi; bu, ailesiz masalları da etkiler, kayıtlı metinler değişmez:
+  - `â/î/û` ünlü sayılıyor.
+  - İnce *l* ile biten adlar (Kemal, Hilal…) artık "Kemal'e" çekiliyor.
+- `MPChip` sabit 42 pt yüksekliği en büyük yazı boyutunda etiketi kesiyordu. Artık en az 42 pt; normal boyutta görünüm aynı.
+
+**Ekran kontrolü** (iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type):
+- Bakılan ekranlar: profil sayfası, Masal ailem (boş ve dolu), düzenleyici (hata mesajıyla), "Masalda kimler olsun?" (çip seçili ve seçili değil).
+- Uçtan uca: karakter eklendi, masal yazıldı, ilk sayfada "kardeşi Ela" geçti, kayıtlı masalın kökeninde ilişki türü ve kimlik var.
+- İkinci tur:
+  - Evcil hayvan ve hayvan türü çipleri.
+  - Uzun ad ("Karamelli Pofuduk").
+  - Gerçek masalda hayvan çekimi: "köpeği Karamelli Pofuduk'a günaydın dedi".
+  - Sayaç "1 masalda".
+  - Pro Max'te düzenleme ve çıkarma; karakter silinince masal kitaplıkta kaldı.
+- İkinci turda bulunan ve düzeltilen:
+  - En büyük boyutta uzun ad çipi ekrandan taşıyordu. `MPFlowLayout` artık satırdan geniş öğeye satır genişliğini öneriyor; `MPChip` yalnızca erişilebilirlik boyutlarında alt satıra geçiyor. Normal boyutta görünüm aynı.
+  - Düzenleyici her tuş vuruşunda diskten okuyordu; artık açılışta bir kez okuyor.
+  - Kaydet düğmesi soluk ama basılabilir; VoiceOver'a ne eksik olduğunu söyleyen bir ipucu eklendi.
+- Bakılmayan: devre dışı çip durumu. Bugünkü içerikte her ilişki türü her modda uygun, bu yüzden oluşmuyor; mantığı `CompanionStep`/`StoryCreationFlow`'da, reviewer bulgusuyla düzeltildi.
+
+**Kararlar (4 Ekim 2026):**
+- Pilot satırlar 12 düzeltmeyle onaylandı (`FAZ11_AILE_SATIRLARI.md`). Aile açılış satırı çocuğun adıyla başlar; kural doğrulayıcıda ve `testEveryFamilyOpeningNamesTheChildInItsFirstSentence`'ta.
+- "Yeni karakter" çocuk modunda gizli: başka birinin adını kaydetmek ebeveyn eylemi.
+- Çocuk başına en fazla 8 karakter, masal başına 1. Adda tek rakam ya da emoji de reddedilir.
+
+**Son doğrulama (birleştirme öncesi, temiz git worktree'de):**
+- Paket 675/18, hata listesi tabanla test başına aynı.
+- Uygulama testleri için aşağıdaki birleştirme commit'ine bakın.
+
+#### Tasarım borcu (FAZ 11 ekran kontrolünden)
+
+| Yer | Sorun |
+|---|---|
+| iOS onay penceresi (`confirmationDialog`: Masal ailem'den çıkar, profil sil) | En büyük yazı boyutunda dar bir balon olarak çiziliyor, kelimeleri bölüyor ("Karakt / eri"). Sistem bileşeni; çözüm kendi onay sayfamız (`MPSheet`) olabilir |
+| `MPInput` | Tek satırlık alan, odak dışındayken uzun adı "…" ile kısaltıyor (Masal ailem adı, çocuk adı). Çok satırlı alan (`axis: .vertical`) ya da odak dışında sarılan metin |
+
+
+**FAZ 11 dışı, ekran kontrolünde görülenler:**
+- Masal kapağında başlık satırları en büyük boyutta üst üste biniyor.
+- Ebeveyn > Çocuklar başlığı "profiller / i" diye kelime ortasından bölünüyor.
+- `MPSheet` başlığı klavye açıkken tek satıra kesiliyor.
+- Korpusta `{{child.name}} de/da …` biçiminde, adın ünlü uyumuna uymayan eski satırlar var ("Can de anladı").
+
+**İçerik hattına devir:**
+- (a) **İlişki türü varyantı eksik blueprint listesi:** bugün boş. `familyCoverage` raporuna göre 15 blueprint'in hepsi 4 ilişki türünü de taşıyor, çünkü aile anları her blueprint'in ortak açılış ve kapanışı. Yeni bir blueprint ya da yeni bir aile anı eklendiğinde `testEveryShippedBlueprintCarriesEveryRelation` eksikleri adıyla listeler. Pilot hücreler ince: hücre başına 2 satır (5-6 kapanışında 3).
+- (b) **Masalın ortasındaki aile anları — FAZ 13'ten önce öncelikli.** Bugün karakter yalnızca ilk ve son sayfada. Seri bölümlerinde karakterin ortada hiç görünmemesi belirginleşecek.
 
 ---
 
@@ -413,7 +500,10 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 | 3-4 bandı için en az bir `threshold` ya da `absence` blueprint'i (bugün 3-4'te macera kurulamıyor) | 10 |
 | Gerçek bir uyku arkı (bugün Uyku öncesi geçici olarak `charge` ailesine bağlı) | 10 |
 | 7-8 ve 9-10 bantları için blueprint ve şablonlar (bugün yalnızca 3-4, 5-6 var) | 10 |
-| İlişki türü varyantları (kardeş, arkadaş, hayvan, hayali varlık) | 11 |
+| İlişki türü varyantları (kardeş, arkadaş, hayvan, hayali varlık): pilot set FAZ 11'de (açılış + kapanış, hücre başına 2), gözden geçirme bekliyor | 11 |
+| İlişki türü varyantı eksik blueprint'ler: bugün yok; yeni blueprint ya da aile anı eklenince `testEveryShippedBlueprintCarriesEveryRelation` listeler | 11 |
+| **Masalın ortasındaki aile anları (FAZ 13'ten önce, öncelikli)** | 11 → 13 |
+| `{{child.name}} de/da` gibi adla ünlü uyumuna uymayan eski satırlar | 11 (bulgu) |
 | İlgi alanı etiketleri | 12 |
 | `continuation` blueprint ailesi | 13 |
 | Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
@@ -430,6 +520,8 @@ için eski isabetler temizlenir. İlk liste FAZ 10 kapanışından:
 2. `DesignSystem/MPNavigation.swift` — 8 çıplak padding
 3. `Views/HomeView.swift` — 4 çıplak padding
 4. `Views/SettingsView.swift` — 6 çıplak padding
+5. iOS onay penceresi en büyük yazı boyutunda kelime bölüyor (FAZ 11)
+6. `MPInput` odak dışında uzun değeri kısaltıyor (FAZ 11)
 
 Her değer ya `MP.S`'teki en yakın token'a oturur ya da gerekçesiyle yeni bir token açılır. Görsel fark
 ekran görüntüsüyle onaylanır. Repo geneli taban (4 Ekim 2026): padding 81, shadow 7, izinli iki dosya (`MPTheme.swift`, `MagicPaperCoverPalette.swift`) dışında `Color(hex:)` 59.

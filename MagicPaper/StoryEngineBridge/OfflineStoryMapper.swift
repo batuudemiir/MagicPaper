@@ -24,7 +24,8 @@ enum OfflineStoryMapper {
         mode: StoryMode? = nil,
         selectionStrategy: StorySelectionStrategy? = nil,
         ageBand: AgeBand? = nil,
-        subOption: String? = nil
+        subOption: String? = nil,
+        familyCharacter: FamilyCharacter? = nil
     ) -> MagicPaper.Story {
         var story = MagicPaper.Story(
             title: composed.title,
@@ -50,7 +51,9 @@ enum OfflineStoryMapper {
                 modeID: mode?.rawValue,
                 selectionStrategy: selectionStrategy?.rawValue,
                 ageBand: ageBand?.description,
-                subOptionID: subOption
+                subOptionID: subOption,
+                familyCharacterID: familyCharacter?.id.uuidString,
+                familyRelation: familyCharacter?.relation.kind.rawValue
             )
         )
         story.currentProgress = nil

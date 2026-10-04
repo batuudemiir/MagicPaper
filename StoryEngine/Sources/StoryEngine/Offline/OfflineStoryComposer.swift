@@ -98,7 +98,7 @@ public struct OfflineStoryComposer: Sendable {
 
         let content = try binder.bind(
             blueprint: blueprint, catalog: catalog, intent: intent, idea: idea)
-        let slots = Self.slots(childName: intent.childName, content: content)
+        let slots = Self.slots(childName: intent.childName, content: content, family: intent.family)
 
         // Variant choice is keyed on the whole story, not on the seed alone.
         // Keyed on the seed alone, two stories built from the same seed but
@@ -107,11 +107,13 @@ public struct OfflineStoryComposer: Sendable {
         // input that identifies the story is folded in, which keeps a
         // regenerate reproducible (same inputs, same book) while letting two
         // different books diverge.
+        // The family character joins the key only when there is one, so every
+        // story without one keeps the seed — and the book — it had before.
         let storySeed = StableHash.fingerprint([
             intent.seed, intent.childName, blueprint.id.rawValue,
             content.setting.id.rawValue, content.companion.id.rawValue,
             content.discovery.id.rawValue
-        ])
+        ] + Self.familyKey(intent.family))
 
         var pages: [ComposedPage] = []
         var carried: [Int: (beats: [StoryBeat], role: PageRole, emotion: EmotionalState?)] = [:]
@@ -151,7 +153,15 @@ public struct OfflineStoryComposer: Sendable {
             guard !candidates.isEmpty else {
                 throw OfflineSelectionError.noTemplate(beat: step.beat, page: step.pageNumber)
             }
-            let template = DeterministicPicker.pick(from: candidates, seed: storySeed, salt: step.salt)
+            // On a family moment only a template that has a line for this
+            // relation can serve; picking among all of them would let the seed
+            // land on one that cannot, and the page would fail for no reason.
+            let familyMoment = intent.family != nil && catalog.familyMoments.contains(step.beat)
+            let serving = familyMoment
+                ? candidates.filter { Self.hasFamilyLine($0, for: intent.family?.relation) }
+                : candidates
+            let template = DeterministicPicker.pick(
+                from: serving.isEmpty ? candidates : serving, seed: storySeed, salt: step.salt)
 
             let variant = try Self.chooseVariant(
                 from: template.variants,
@@ -164,6 +174,8 @@ public struct OfflineStoryComposer: Sendable {
                 content: content,
                 register: blueprint.family?.beliefRegister,
                 conflict: blueprint.family?.conflict,
+                family: intent.family?.relation,
+                familyMoment: familyMoment,
                 seed: storySeed,
                 salt: step.salt + ".v"
             )
@@ -190,6 +202,7 @@ public struct OfflineStoryComposer: Sendable {
                 [blueprint.id.rawValue, content.setting.id.rawValue,
                  content.companion.id.rawValue, content.discovery.id.rawValue,
                  intent.childName, intent.seed]
+                + Self.familyKey(intent.family)
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
             )
         )
@@ -211,6 +224,32 @@ public struct OfflineStoryComposer: Sendable {
             $0.realizesBeat == beat && !$0.variants.isEmpty
                 && $0.suits(band: blueprint.ageRange)
         }
+    }
+
+    /// Whether a template has any line for this Masal ailem relation.
+    static func hasFamilyLine(_ template: CatalogTemplate, for relation: FamilyRelationKind?) -> Bool {
+        guard let relation else { return false }
+        return template.variants.contains { $0.isFamilyLine && $0.suits(family: relation) }
+    }
+
+    /// The first family moment in this blueprint that has no line for the
+    /// relation, or nil when every one does.
+    ///
+    /// A pre-check, not the whole rule: the pool still applies the role,
+    /// conflict and ordering filters when the page is written. It exists so a
+    /// blueprint that plainly cannot carry the character is ruled out with a
+    /// reason, instead of being tried and failing behind the selector's back.
+    static func familyGap(
+        in blueprint: CatalogBlueprint,
+        catalog: ContentCatalog,
+        relation: FamilyRelationKind
+    ) -> StoryBeat? {
+        guard let steps = try? plan(blueprint) else { return nil }
+        for step in steps where catalog.familyMoments.contains(step.beat) {
+            let lines = templates(for: step.beat, in: catalog, blueprint: blueprint)
+            if !lines.contains(where: { hasFamilyLine($0, for: relation) }) { return step.beat }
+        }
+        return nil
     }
 
     /// One beat to be written, with everything the choice depends on.
@@ -294,13 +333,16 @@ public struct OfflineStoryComposer: Sendable {
         content: BoundContent,
         register: VariantRegister?,
         conflict: ConflictMechanism? = nil,
+        family: FamilyRelationKind? = nil,
+        familyMoment: Bool = false,
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
         let pool = try self.pool(
             from: variants, realizing: beat, wanting: length, after: previous,
             closing: closing, state: state, onPage: page, content: content,
-            register: register, conflict: conflict)
+            register: register, conflict: conflict,
+            family: family, familyMoment: familyMoment)
         return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
     }
 
@@ -329,7 +371,9 @@ public struct OfflineStoryComposer: Sendable {
         onPage page: Int,
         content: BoundContent,
         register: VariantRegister?,
-        conflict: ConflictMechanism? = nil
+        conflict: ConflictMechanism? = nil,
+        family: FamilyRelationKind? = nil,
+        familyMoment: Bool = false
     ) throws -> [CatalogVariant] {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
@@ -349,6 +393,27 @@ public struct OfflineStoryComposer: Sendable {
                 role: content.castRole, beat: beat, page: page)
         }
 
+        // 0a. The Masal ailem character. **Does not degrade**, in either
+        //     direction. On a family moment the character must be there: a
+        //     story that opens with the child's sister and never mentions her
+        //     again is the defect, not a weaker page. Everywhere else family
+        //     lines stay out, and with no character they are out entirely —
+        //     which is what keeps every story written before FAZ 11 the same.
+        let byFamily: [CatalogVariant]
+        if familyMoment, let family {
+            byFamily = byRole.filter { $0.isFamilyLine && $0.suits(family: family) }
+            guard !byFamily.isEmpty else {
+                throw OfflineSelectionError.noVariantForFamily(
+                    relation: family, beat: beat, page: page)
+            }
+        } else {
+            byFamily = byRole.filter { !$0.isFamilyLine }
+            guard !byFamily.isEmpty else {
+                throw OfflineSelectionError.noVariantForRole(
+                    role: content.castRole, beat: beat, page: page)
+            }
+        }
+
         // 0b. The shape the conflict actually has. **Does not degrade.**
         //
         //     An obstacle that stands in the way is the wrong shape for a
@@ -356,7 +421,7 @@ public struct OfflineStoryComposer: Sendable {
         //     difficulty is that it is not finished yet. A line of the wrong
         //     shape does not read as a weaker obstacle, it reads as a different
         //     story's obstacle.
-        let byConflict = byRole.filter { $0.suits(conflict: conflict) }
+        let byConflict = byFamily.filter { $0.suits(conflict: conflict) }
         guard !byConflict.isEmpty else {
             throw OfflineSelectionError.noVariantSatisfying(
                 constraint: "a \(conflict?.rawValue ?? "unstated")-shaped conflict",
@@ -438,8 +503,12 @@ public struct OfflineStoryComposer: Sendable {
     ///
     /// Each value carries its own grammar, declared by the content record —
     /// which is why "tilki" comes back as "tilkiye" and "Tarçın" as "Tarçın'a".
-    static func slots(childName: String, content: BoundContent) -> [String: TurkishTextRenderer.Slot] {
-        [
+    static func slots(
+        childName: String,
+        content: BoundContent,
+        family: FamilyCast? = nil
+    ) -> [String: TurkishTextRenderer.Slot] {
+        var table: [String: TurkishTextRenderer.Slot] = [
             "child.name": .init(childName, isProperNoun: true),
             "setting.name": .init(
                 content.setting.name,
@@ -471,5 +540,26 @@ public struct OfflineStoryComposer: Sendable {
                 blocksSoftening: content.discovery.blocksSoftening
             )
         ]
+        if let family {
+            // The parent typed it, so it is a name: "Ela'ya", never "elaya".
+            table["family.name"] = .init(family.name, isProperNoun: true)
+            if let kind = family.animalKind {
+                // A kind is a common noun and softens: "köpeğe".
+                table["family.kind"] = .init(
+                    kind.name, isProperNoun: false, blocksSoftening: kind.blocksSoftening)
+                // Its owned form already ends in a possessive: "kedisini".
+                table["family.possessive"] = .init(
+                    kind.possessive, isProperNoun: false, hasPossessiveEnding: true)
+            }
+        }
+        return table
+    }
+
+    /// What the family character adds to a seed or fingerprint. Empty without
+    /// one, so nothing that existed before FAZ 11 changes.
+    static func familyKey(_ family: FamilyCast?) -> [String] {
+        guard let family else { return [] }
+        return ["family", family.relation.rawValue, family.name,
+                family.animalKind?.id.rawValue ?? ""]
     }
 }

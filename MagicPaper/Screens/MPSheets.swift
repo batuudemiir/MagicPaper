@@ -195,6 +195,12 @@ struct ProfileEditSheet: View {
                     }) { EmptyView() }
                 }
 
+                MPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
+                          title: FamilyCharacterCopy.profileRowTitle,
+                          description: FamilyCharacterCopy.profileRowDescription, action: {
+                    app.sheet = .familyCharacters(profile.id)
+                }) { EmptyView() }
+
                 MPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
                     app.sheet = nil

@@ -512,6 +512,7 @@ struct PrivacyAndDataView: View {
         // Kitap karakterleri (B2) profil başına dosyada; listelenemezler,
         // klasör toptan silinir.
         AvatarStore.eraseAll()
+        FamilyCharacterStore.eraseAll()
         dismiss()
     }
 }

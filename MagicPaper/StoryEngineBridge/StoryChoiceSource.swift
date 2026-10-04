@@ -31,6 +31,12 @@ struct StoryIdeaChoice: Identifiable, Hashable {
     let symbol: String
 }
 
+/// One animal kind a Masal ailem pet can be — "kedi", "köpek".
+struct FamilyAnimalKindChoice: Identifiable, Hashable {
+    let id: String
+    let name: String
+}
+
 /// One companion tile, as the companion step draws it.
 struct CompanionChoice: Identifiable, Hashable {
     /// Stable content id, handed back to the source when the story is built.
@@ -61,6 +67,15 @@ protocol StoryChoiceSource {
     func ideaChoices(forAge age: Int, mode: StoryMode) -> [StoryIdeaChoice]
     /// The companions that fit the chosen idea, best first.
     func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice]
+    /// The companions, when a Masal ailem character comes along too: a
+    /// companion with the character's name is not offered beside them.
+    func companionChoices(
+        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?, family: FamilyCharacter?
+    ) -> [CompanionChoice]
+    /// Masal ailem relations a story of this mode can carry for this child.
+    func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
+    /// The animal kinds a Masal ailem pet can be.
+    func familyAnimalKindChoices() -> [FamilyAnimalKindChoice]
     /// Turns "surprise me" (or a direct choice) into one concrete mode.
     func resolveMode(
         strategy: StorySelectionStrategy,
@@ -108,6 +123,17 @@ extension OfflineStoryService: StoryChoiceSource {
 
     func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice] {
         companionCandidates(forIdeaID: ideaID, mode: mode, age: age).map(CompanionChoice.init)
+    }
+
+    func companionChoices(
+        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?, family: FamilyCharacter?
+    ) -> [CompanionChoice] {
+        companionCandidates(forIdeaID: ideaID, mode: mode, age: age, family: family)
+            .map(CompanionChoice.init)
+    }
+
+    func familyAnimalKindChoices() -> [FamilyAnimalKindChoice] {
+        familyAnimalKinds().map { FamilyAnimalKindChoice(id: $0.id.rawValue, name: $0.name) }
     }
 }
 

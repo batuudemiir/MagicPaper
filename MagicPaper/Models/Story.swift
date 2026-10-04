@@ -117,6 +117,15 @@ struct StoryOrigin: Codable, Equatable {
     /// does, so the stored model does not change when it arrives; today it is
     /// always nil. Nil for every story written before it existed.
     var subOptionID: String?
+    /// The Masal ailem character the story was written with (FAZ 11), as its
+    /// id. Never the name: the name is already in the text, written the way it
+    /// was spelled that day. Nil for stories without one and for every story
+    /// written before FAZ 11.
+    var familyCharacterID: String? = nil
+    /// That character's relation (`FamilyRelationKind.rawValue`, e.g.
+    /// "animal"), kept so the story still says what kind of character it had
+    /// after the character itself is deleted. Nil whenever the id is.
+    var familyRelation: String? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }

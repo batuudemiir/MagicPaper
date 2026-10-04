@@ -707,3 +707,13 @@ Mevcut hiçbir tip, alan veya kodlama biçimi değişmedi. Eklemeler additive;
 | `Tests/CharacterEngineTests/CharacterVersionSuccessionTests.swift` | 11 | yaş değişimi, eski sürümün korunması, atlamanın silme olmaması, seed'in her düzenlemede hayatta kalması, yeniden adlandırma |
 | `Tests/CharacterEngineTests/CharacterCopyVerificationTests.swift` | 12 | parmak izi kararlılığı/sıra bağımsızlığı, kopya doğrulama, beş kusur vakası |
 | `MagicPaperTests/ProfileCharacterSourceTests.swift` | 19 | determinizm, profil→karakter eşlemesi, eksik opsiyonel alanlar, yaş/ad senkronu, idempotans, depo gidiş-dönüşü, silme |
+
+## 15. Masal ailem (FAZ 11, 4 Ekim 2026)
+
+Çocuğun tekrar eden karakterleri:
+- **Model:** `FamilyCharacter { id, childID, name, relation, createdAt, schemaVersion }`. `relation`: kardeş, arkadaş, hayvan(tür) ya da hayali arkadaş. Cinsiyet yok.
+- **Depo:** `Documents/StoryEngine/FamilyCharacters/<çocukUUID>.json`, çocuk başına tek dosya, kayıplı okuma, en fazla 8 karakter.
+- **Bilinçli ayrım:** `CharacterProfile` (Character Bible) kullanılmadı. Masal ailem karakterinin görsel kimliği yok, yalnızca metinde adı ve ilişkisi var. Görselli masal açıldığında bir Masal ailem karakterine görsel kimlik verilecekse `CharacterProfile`'a bağlanması o fazın kararıdır.
+- **Silme:** `ProfileManager.deleteProfile` ve "Tüm verileri sil" bu klasörü de siler.
+- **Masala kopyalanan:** adın o günkü hâli metne girer. Kökende yalnızca kimlik ve ilişki türü tutulur. Karakter silinse ya da adı değişse de kayıtlı masal değişmez.
+- **Senkron (FAZ 16):** kimlik ve `createdAt` sabit. Kayıplı okuma, daha yeni bir sürümün yazdığı kaydı atlar; eski sürümde düzenleme yapılırsa o kayıt kaybolur.
