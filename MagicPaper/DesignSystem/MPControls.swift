@@ -173,7 +173,11 @@ struct MPChip: View {
             }
             .font(MP.F.labelMD())
             .foregroundStyle(isSelected ? MP.C.textOnBrand : (isDisabled ? MP.C.textFaint : MP.C.textBody))
-            .frame(height: 42)
+            // En az 42: büyük yazı boyutunda etiket yüksekliğe sığmıyor ve
+            // kenar yazının üstüne biniyordu (FAZ 11 ekran kontrolü).
+            // Normal boyutta görünüm aynı.
+            .padding(.vertical, MP.S.x1)
+            .frame(minHeight: 42)
             .padding(.horizontal, 16)
             .mpEdge(
                 fill: isSelected ? MP.C.brand : MP.C.surfaceCard,
