@@ -129,6 +129,8 @@ Kurallar:
   tohumlu döndürmedir; saklanmış tohum aynı kitabı kurar.
 - **Seçilen eksen ağırlıktan etkilenmez** (çocuğun seçtiği yol arkadaşı, aile karakteri).
 - Geçmiş kayıtlı masalların `StoryOrigin`'inden okunur; `read_history_<UUID>` artık okunmuyor.
+- Sunulan kelime 4'ten azsa (`ChildInterests.minimumOfferedToShow`) "Neleri sever?" ve ebeveyn bölümü gizli;
+  kayıtlı seçimler durur ve puanlamaya girer. Bugün 2 kelime var, ekranlar gizli.
 - Çocuk başına en fazla 3 seçim, hiç seçmemek geçerli. Katalogdan kalkan kelime profilde saklı kalır,
   gösterilmez ve motora gitmez; düzenleme onu silmez.
 - Kabul testi: `InterestScoringTests.testAnInterestRaisesItsShareWithoutCollapsingOntoIt` (3 sabit tohum seti × 20 ardışık masal).

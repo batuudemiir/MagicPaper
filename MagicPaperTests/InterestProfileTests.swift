@@ -68,6 +68,22 @@ final class InterestProfileTests: XCTestCase {
         XCTAssertEqual(merged, ["animals", "nature", "space"])
     }
 
+    /// Karar (4 Ekim 2026): dörtten az sunulan kelimeyle ekranlar gizli.
+    func testTheScreensNeedAtLeastFourOfferedWords() {
+        XCTAssertEqual(ChildInterests.minimumOfferedToShow, 4)
+        XCTAssertFalse(ChildInterests.isShown([]))
+        XCTAssertFalse(ChildInterests.isShown([animals, nature, space]))
+        XCTAssertTrue(ChildInterests.isShown(choices))
+    }
+
+    /// Today's catalog offers two words: the screens are hidden, yet a stored
+    /// interest still reaches the engine — hiding is not forgetting.
+    func testTodaysCatalogHidesTheScreensButKeepsWeighing() throws {
+        let offered = OfflineStoryService.shared.interestChoices()
+        XCTAssertFalse(ChildInterests.isShown(offered))
+        XCTAssertEqual(ChildInterests.offered(["animals"], from: offered), ["animals"])
+    }
+
     func testNoneIsAValidAnswer() {
         XCTAssertEqual(ChildInterests.merging(stored: ["animals"], edited: [], choices: choices), [])
     }

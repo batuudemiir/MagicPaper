@@ -362,7 +362,7 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 **Doğrulama** (kendi worktree'sinde):
 - Paket testleri 854, hata 18 (bu sayım biçimiyle main 832/18; 22 yeni test). Hata listesi test başına main ile aynı.
 - `validate_beat_corpus.py`: 12 bulgu, main ile birebir aynı. Yeni sözlük kapısı temiz.
-- App build yeşil. Uygulama testleri 415/0 (1 atlanan; taban 404).
+- App build yeşil. Uygulama testleri 417/0 (1 atlanan; taban 404).
 - Reviewer: CRITICAL ve HIGH yok. Bir LOW düzeltildi (düzenleme sayfası yeniden görününce seçimi sıfırlıyordu). Bir MEDIUM belgelendi, aşağıda açık kalanlarda.
 - Tasarım yasası: yeni ve değişen dosyalarda yeni isabet yok. `ProfileCreationView`'daki 4 çıplak padding main'de de var (eski borç).
 
@@ -388,7 +388,16 @@ Etiketleme teste ait, çünkü bugünkü görünür kelimeler her masalla eşle�
 - **Ağırlıklı sıralamada FNV hash'in üst bitleri karışmıyordu;** SplitMix64 sonlandırıcısı eklendi.
 - **Simgeler:** `MPIconMap`, `leaf`'i traktör, `pawprint`'i kemik çiziyor; sözlükte `tree` ve `hare` kullanıldı.
 
-**Ekran kontrolü** (iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type):
+**Kararlar (4 Ekim 2026, kapanış sonrası):**
+- Etiketleme taslağı onaylandı; `blueprint_charge_tending_age3_001` etiketsiz.
+- Seçim zorunlu değil, en fazla 3.
+- **Görünürlük eşiği:** sunulan ilgi alanı sayısı 4'ün altındaysa "Neleri sever?" ve Ebeveyn > Çocuklar'daki
+  İlgi alanları bölümü gizlenir. Sabit: `ChildInterests.minimumOfferedToShow`, test:
+  `testTheScreensNeedAtLeastFourOfferedWords`. Kaydedilmiş seçimler silinmez, puanlama çalışmaya devam eder
+  (`testTodaysCatalogHidesTheScreensButKeepsWeighing`). **Bugün 2 kelime sunulduğu için iki ekran da gizli;**
+  içerik dördüncü kelimeyi ulaştırınca kendiliğinden görünür.
+
+**Ekran kontrolü** (eşik kararından önce; iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type):
 - Bakılan ekranlar: Ebeveyn > Çocuklar İlgi alanları (boş ve dolu), düzenleme sayfası, profil oluşturma "Neleri sever?". Kesilme ve taşma yok.
 - Uçtan uca: seçildi, kaydedildi, satır "Hayvanlar" oldu.
 - Görülemeyen: 3 sınırı. Bugün yalnızca 2 çip var, sınır testle sabit.
@@ -398,7 +407,7 @@ Etiketleme teste ait, çünkü bugünkü görünür kelimeler her masalla eşle�
 - **Tohumla yeniden kurma:** ilgi alanı ve geçmiş kökende saklanmıyor, bu yüzden aynı tohum yalnızca aynı ilgi alanı ve geçmişle aynı kitabı kurar. Bugün yeniden kuran çağıran yok. FAZ 13 seri planı yeniden kuracaksa karar orada.
 - **`hostsInterest` maliyeti:** her masalda blueprint × etiketli kayıt kadar bağlama denemesi yapıyor (bugün ≤ ~285). Katalog büyüyünce önbellek gerekir.
 - **Ekran metinleri** İrem'in gözden geçirmesini bekliyor (`InterestCopy`).
-- **"Profili düzenle" satırı** gerçek düzenleme yerine yeni profil ekleme ekranını açıyor (FAZ 12 öncesi hata).
+- **"Profili düzenle" satırı:** "Küçük işler" listesine hata olarak eklendi.
 
 **İçerik hattına devir:**
 - Mercan Denizi / Köpük / Deniz Kabuğu'nu taşıyabilecek bir blueprint.
@@ -572,6 +581,12 @@ için eski isabetler temizlenir. İlk liste FAZ 10 kapanışından:
 
 Her değer ya `MP.S`'teki en yakın token'a oturur ya da gerekçesiyle yeni bir token açılır. Görsel fark
 ekran görüntüsüyle onaylanır. Repo geneli taban (4 Ekim 2026): padding 81, shadow 7, izinli iki dosya (`MPTheme.swift`, `MagicPaperCoverPalette.swift`) dışında `Color(hex:)` 59.
+
+## Küçük işler
+
+| İş | Tür | Nereden |
+|---|---|---|
+| Ebeveyn > Çocuklar > profil sayfasındaki "Profili düzenle" satırı profili düzenlemiyor, yeni profil ekleme ekranını açıyor (`Screens/MPSheets.swift`, `ProfileEditSheet`: `app.showProfileAdd = true`). Ad ve yaş düzenleme akışı yok; `ProfileManager.updateProfile` hiçbir ekrandan çağrılmıyor | Hata | FAZ 12 incelemesi |
 
 ## Açık sorular
 

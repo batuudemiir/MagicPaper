@@ -50,7 +50,7 @@ struct ProfileCreationView: View {
 
                     colorPicker
                     agePicker
-                    if !interestChoices.isEmpty {
+                    if ChildInterests.isShown(interestChoices) {
                         interestPicker
                     }
                     privacyNote

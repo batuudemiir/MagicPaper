@@ -27,6 +27,17 @@ enum ChildInterests {
     /// is not made to guess.
     static let maxSelection = 3
 
+    /// Fewer offered words than this and the interest screens are hidden
+    /// (karar, 4 Ekim 2026): two chips that every story already matches are
+    /// not a choice. Stored interests are kept and still weigh selection;
+    /// the screens return on their own when content brings a fourth word.
+    static let minimumOfferedToShow = 4
+
+    /// Whether "Neleri sever?" and the parent section are shown at all.
+    static func isShown(_ choices: [InterestChoice]) -> Bool {
+        choices.count >= minimumOfferedToShow
+    }
+
     /// The stored interests the catalog offers today, in the catalog's order.
     /// What the screen shows as selected and what the engine is given.
     static func offered(_ stored: [String], from choices: [InterestChoice]) -> [String] {

@@ -19,9 +19,9 @@ struct ParentChildrenView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     profilesSection
-                    // FAZ 10'da kalkan "Favori dünyalar"ın yeri. Sunulacak
-                    // kelime yoksa bölüm hiç görünmez.
-                    if !interestChoices.isEmpty {
+                    // FAZ 10'da kalkan "Favori dünyalar"ın yeri. Sunulan
+                    // kelime eşiğin altındaysa bölüm hiç görünmez.
+                    if ChildInterests.isShown(interestChoices) {
                         interestsSection
                     }
                 }
