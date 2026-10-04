@@ -159,13 +159,53 @@ public struct BlueprintSelector: Sendable {
         let leaning = ordered.filter { $0.family.map(preferred.contains) ?? false }
         let rest = ordered.filter { !($0.family.map(preferred.contains) ?? false) }
 
-        func rotated(_ items: [CatalogBlueprint]) -> [CatalogBlueprint] {
-            guard !items.isEmpty else { return [] }
-            let start = DeterministicPicker.index(
-                count: items.count, seed: intent.seed, salt: "blueprint")
-            return Array(items[start...] + items[..<start])
+        // Within each group, interests and recent history weigh the order
+        // (FAZ 12). Equal weights — no interests, no history — are the seeded
+        // rotation this always was.
+        let wanted = Set(intent.interests)
+        let recent = intent.recent.map(\.blueprintID)
+        func weighted(_ items: [CatalogBlueprint]) -> [CatalogBlueprint] {
+            SelectionScoring.ordered(
+                items,
+                weights: items.map { blueprint in
+                    SelectionScoring.weight(
+                        id: blueprint.id,
+                        matchesInterest: hostsInterest(
+                            blueprint, wanted: wanted, catalog: catalog, intent: intent, idea: idea),
+                        recent: recent)
+                },
+                id: \.id, seed: intent.seed, salt: "blueprint")
         }
-        return rotated(leaning) + rotated(rest)
+        return weighted(leaning) + weighted(rest)
+    }
+
+    /// Whether this blueprint can tell a story about something the child likes:
+    /// it is tagged itself, or it can be built around a setting, companion or
+    /// discovery that is. Asked of the binder, with the intent's own pins kept,
+    /// so a blueprint is not preferred for content it could never be given.
+    func hostsInterest(
+        _ blueprint: CatalogBlueprint,
+        wanted: Set<InterestTag>,
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea?
+    ) -> Bool {
+        guard !wanted.isEmpty else { return false }
+        if blueprint.matches(wanted) { return true }
+        let binder = OfflineContentBinder()
+        func binds(_ probe: OfflineStoryIntent) -> Bool {
+            (try? binder.bind(blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
+        }
+        if intent.settingID == nil, catalog.settings.contains(where: {
+            $0.matches(wanted) && binds(intent.pinning(settingID: $0.id))
+        }) { return true }
+        if intent.companionID == nil, catalog.companions.contains(where: {
+            $0.matches(wanted) && binds(intent.pinning(companionID: $0.id))
+        }) { return true }
+        if intent.discoveryID == nil, catalog.objects.contains(where: {
+            $0.matches(wanted) && binds(intent.pinning(discoveryID: $0.id))
+        }) { return true }
+        return false
     }
 
     /// The blueprint this intent gets, or a typed failure naming every
@@ -310,7 +350,9 @@ public struct BlueprintSelector: Sendable {
                     mode: intent.mode,
                     ageBand: intent.ageBand,
                     subOption: intent.subOption,
-                    family: intent.family
+                    family: intent.family,
+                    interests: intent.interests,
+                    recent: intent.recent
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
