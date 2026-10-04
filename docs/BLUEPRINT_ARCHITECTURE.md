@@ -557,6 +557,10 @@ The brief's §31 requires deterministic implementability. The full selection alg
 2. Candidate blueprints ← those whose requires/forbids admit all three choices,
                             whose constraints cover age and page count
 3. Rank by novelty (unseen family first, then unseen blueprint), pick with seed
+     — as built (FAZ 12): idea affinity groups first; within a group, a seeded
+       weighted order (`SelectionScoring`): interest match ×3, content used in the
+       last 4 stories cooled linearly. The binder orders settings, companions and
+       discoveries the same way. Equal weights reproduce the old seeded rotation.
 4. Bind content: setting, companion, discovery-kind, object, ending
      — by trait intersection; empty candidate set is impossible (§8.4)
 5. For each page slot, in order:

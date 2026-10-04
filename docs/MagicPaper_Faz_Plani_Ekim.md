@@ -338,7 +338,7 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 
 ---
 
-## FAZ 12 — İlgi alanı sözlüğü ⏳
+## FAZ 12 — İlgi alanı sözlüğü ✅
 
 > FAZ 10'dan not: Ebeveyn > Çocuklar'daki "Favori dünyalar" bölümü kaldırıldı. Çocuğun "İlgi alanları" düzenleme bölümü o konuma, profil listesinin altına gelir.
 
@@ -356,6 +356,53 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 (belirleyici test, sabit tohum).
 
 **Sahip:** content-library.
+
+### Kapanış notu (4 Ekim 2026, dal `faz-12`)
+
+**Doğrulama** (kendi worktree'sinde):
+- Paket testleri 854, hata 18 (bu sayım biçimiyle main 832/18; 22 yeni test). Hata listesi test başına main ile aynı.
+- `validate_beat_corpus.py`: 12 bulgu, main ile birebir aynı. Yeni sözlük kapısı temiz.
+- App build yeşil. Uygulama testleri 415/0 (1 atlanan; taban 404).
+- Reviewer: CRITICAL ve HIGH yok. Bir LOW düzeltildi (düzenleme sayfası yeniden görününce seçimi sıfırlıyordu). Bir MEDIUM belgelendi, aşağıda açık kalanlarda.
+- Tasarım yasası: yeni ve değişen dosyalarda yeni isabet yok. `ProfileCreationView`'daki 4 çıplak padding main'de de var (eski borç).
+
+**Kabul:** `InterestScoringTests.testAnInterestRaisesItsShareWithoutCollapsingOntoIt`. Üç sabit tohum setinde, 20 ardışık masalda, her masalın içeriği bir sonrakinin geçmişine girerek:
+- ilgi alanı payı ilgi alanısız tabandan yüksek (0,35→0,40 · 0,35→0,50 · 0,25→0,55);
+- pay en fazla %60;
+- en az 3 farklı ortam ve 2 farklı aile;
+- aynı ortam üst üste en fazla 3 kez, konu üst üste en fazla 4 masal.
+
+Etiketleme teste ait, çünkü bugünkü görünür kelimeler her masalla eşleşiyor (aşağıda).
+
+**Ne yapıldı:**
+- **Sözlük katalogda:** `interests` (12 kelime, İrem'in demosu); kayıtlarda ayrı bir `interests` alanı (`tags` kapak dünyasını seçtiği için ona dokunulmadı).
+- **Görünürlük:** `availableInterests`, binder'a sorarak yalnızca içeriği olan her bantta masala ulaşan kelimeyi sunar. Ulaşmayan kelime `interest_unreachable_in_band` uyarısıyla içerik hattına düşer.
+- **Puanlama (`SelectionScoring`):** ilgi eşleşmesi ×3; son 4 masalın içeriği doğrusal soğur. Ağırlıklar eşitse eski tohumlu döndürme çalışır, `OfflineDeterminismTests` değişmedi.
+- **Profil:** `UserProfile.interests`, elle yazılmış çözücüyle; FAZ 12 öncesi profil listesi açılıyor (test + cihazda eski profil açıldı).
+- **Ekranlar:** isteğe bağlı "Neleri sever?" (profil oluşturma); Ebeveyn > Çocuklar'da "Favori dünyalar"ın yerinde İlgi alanları ve düzenleme sayfası. Metinler `InterestCopy`'de.
+
+**Plandan sapmalar ve bulgular:**
+- **Cooldown yoktu; FAZ 12 kurdu.** `SelectionWeights` tanımlıydı ama okunmuyordu, `read_history` yazılıyor ama okunmuyordu. Karar: cooldown herkese. Geçmiş artık kayıtlı masalların kökeninden okunuyor.
+- **Bugün yalnızca 2 kelime görünüyor** (Hayvanlar, Doğa). İkisinin de gözle görülür etkisi yok: her yol arkadaşı hayvan, ulaşılan her ortam doğa. Etki içerik ayrıştıkça başlar.
+- **Deniz hiçbir banda ulaşmıyor:** Mercan Denizi, Köpük ve Deniz Kabuğu hiçbir blueprint'e bağlanamıyor (ölü içerik, FAZ 12 öncesinden).
+- **Ağırlıklı sıralamada FNV hash'in üst bitleri karışmıyordu;** SplitMix64 sonlandırıcısı eklendi.
+- **Simgeler:** `MPIconMap`, `leaf`'i traktör, `pawprint`'i kemik çiziyor; sözlükte `tree` ve `hare` kullanıldı.
+
+**Ekran kontrolü** (iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type):
+- Bakılan ekranlar: Ebeveyn > Çocuklar İlgi alanları (boş ve dolu), düzenleme sayfası, profil oluşturma "Neleri sever?". Kesilme ve taşma yok.
+- Uçtan uca: seçildi, kaydedildi, satır "Hayvanlar" oldu.
+- Görülemeyen: 3 sınırı. Bugün yalnızca 2 çip var, sınır testle sabit.
+
+**Açık kalanlar:**
+- **Etiketleme taslağı onay bekliyor:** `MagicPaperAPP/FAZ12_ILGI_ETIKETLERI.md`, ayrı commit "içerik etiketleme taslağı". `blueprint_charge_tending_age3_001` için Hayvanlar etiketi kararı da orada.
+- **Tohumla yeniden kurma:** ilgi alanı ve geçmiş kökende saklanmıyor, bu yüzden aynı tohum yalnızca aynı ilgi alanı ve geçmişle aynı kitabı kurar. Bugün yeniden kuran çağıran yok. FAZ 13 seri planı yeniden kuracaksa karar orada.
+- **`hostsInterest` maliyeti:** her masalda blueprint × etiketli kayıt kadar bağlama denemesi yapıyor (bugün ≤ ~285). Katalog büyüyünce önbellek gerekir.
+- **Ekran metinleri** İrem'in gözden geçirmesini bekliyor (`InterestCopy`).
+- **"Profili düzenle" satırı** gerçek düzenleme yerine yeni profil ekleme ekranını açıyor (FAZ 12 öncesi hata).
+
+**İçerik hattına devir:**
+- Mercan Denizi / Köpük / Deniz Kabuğu'nu taşıyabilecek bir blueprint.
+- 9 kelime için içerik (Uzay, Dinozorlar, Prensesler, Arabalar, Müzik, Sihir, Robotlar, Spor, Korsanlar), her biri 3-4 ve 5-6'da bir masala ulaşmalı.
 
 ---
 
@@ -504,7 +551,7 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 | İlişki türü varyantı eksik blueprint'ler: bugün yok; yeni blueprint ya da aile anı eklenince `testEveryShippedBlueprintCarriesEveryRelation` listeler | 11 |
 | **Masalın ortasındaki aile anları (FAZ 13'ten önce, öncelikli)** | 11 → 13 |
 | `{{child.name}} de/da` gibi adla ünlü uyumuna uymayan eski satırlar | 11 (bulgu) |
-| İlgi alanı etiketleri | 12 |
+| İlgi alanı etiketleri: taslak onayı; Deniz içeriğini taşıyan blueprint; 9 kelime için 3-4 ve 5-6 içeriği | 12 |
 | `continuation` blueprint ailesi | 13 |
 | Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
 | Günün masalı ve eğitici hikâyeler (akış) | 15 |

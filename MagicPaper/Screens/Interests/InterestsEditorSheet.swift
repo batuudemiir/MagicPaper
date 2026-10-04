@@ -13,6 +13,9 @@ struct InterestsEditorSheet: View {
 
     @State private var choices: [InterestChoice] = []
     @State private var selection: [String] = []
+    /// Sayfa yeniden göründüğünde (ör. bir sistem uyarısından sonra)
+    /// kaydedilmemiş seçim sıfırlanmasın.
+    @State private var loaded = false
 
     var body: some View {
         MPSheet(title: InterestCopy.editorTitle(child: profile.name), onClose: close) {
@@ -27,6 +30,8 @@ struct InterestsEditorSheet: View {
             MPButton(title: InterestCopy.save, fullWidth: true, action: save)
         }
         .onAppear {
+            guard !loaded else { return }
+            loaded = true
             choices = source.interestChoices()
             selection = ChildInterests.offered(profile.interests, from: choices)
         }

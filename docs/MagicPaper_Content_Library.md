@@ -431,3 +431,29 @@ Hiçbir `.swift` dosyası değiştirilmedi.
 **Doğrulayıcı:** artık 3-4 korpusunu da (`v3-age3/`) aile kapısı için okur.
 
 **Kapsama raporu:** `BlueprintSelector.familyCoverage`; test: `testEveryShippedBlueprintCarriesEveryRelation`.
+
+## 12. İlgi alanı sözlüğü (FAZ 12, 4 Ekim 2026)
+
+**Sözlük katalog verisidir**, kodda kapalı küme değil. `pilot_library_v1.json` üst düzeyinde:
+`"interests": [{ "id": "animals", "name": "Hayvanlar", "symbol": "hare" }, …]`. Bugün 12 kelime
+(İrem'in demosundan). `symbol` bir SF Symbol adı; `MPIcon` Lucide karşılığı varsa onu çizer, simge
+seçerken `MPIconMap`'e bakın (`leaf` traktör, `pawprint` kemik çiziyor).
+
+**Etiket alanı:** ortam, yol arkadaşı, nesne ve blueprint kayıtlarında `interests: ["animals", …]`.
+`tags` ile karıştırılmaz: ortam `tags`'ı kapak dünyasını seçer, ilgi kelimesi kapağı değiştirmemeli.
+
+**Etiketleme kuralı:** çocuk o kelimeyi seçtiğinde "bu masal bununla ilgili" denebiliyorsa etiketlenir.
+Zorlama etiket yok; eşleşmenin değeri eşleşmeyenlerden ayrışmasından gelir. Etiketleme içerik kararıdır
+(Batuhan onaylar); taslak `MagicPaperAPP/FAZ12_ILGI_ETIKETLERI.md`.
+
+**Görünürlük:** bir kelime ebeveyne yalnızca **içeriği olan her bantta** kurulabilir bir masala ulaşıyorsa
+gösterilir (`BlueprintSelector.availableInterests`; ulaşım binder'a sorularak hesaplanır, habitat dahil).
+Ulaşmayan kelime `interest_unreachable_in_band` uyarısıyla içerik hattına düşer. Kelime eklemek için
+içeriği **her iki bantta** (bugün 3-4 ve 5-6) bir masala ulaştırmak gerekir; 3-4 tek blueprint'le dar boğaz.
+
+**Denetim:** `CatalogIntegrity.checkInterests` (tanımsız kelime ve çift tanım hata, ulaşmayan kelime uyarı),
+`validate_beat_corpus.py` → `check_interest_vocabulary`. Testler: `InterestCatalogTests`
+(`testTheShippedInterestMatrix` içerik eklendikçe güncellenir).
+
+**Bulgu (4 Ekim):** Mercan Denizi, Köpük (yunus) ve Deniz Kabuğu hiçbir blueprint'e bağlanamıyor;
+"Deniz" bu yüzden hiçbir banda ulaşmıyor.

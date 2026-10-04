@@ -229,6 +229,10 @@ final class OfflineStoryService {
     ///     admits every band.
     ///   - subOption: a choice within the mode. Always nil today; the engine
     ///     carries it but does not read it.
+    ///   - interests, recent: weigh the choice (FAZ 12). Neither is stored on
+    ///     the story, so a rebuild by seed reproduces the book only with the
+    ///     same interests and history it was written with. No caller rebuilds
+    ///     today; whoever adds one decides whether to store them (FAZ 13).
     ///   - seed: supply one to rebuild an existing story exactly; otherwise a
     ///     fresh one is made and stored on the result, which is what makes the
     ///     story reproducible later. The previous implementation used

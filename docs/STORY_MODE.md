@@ -35,10 +35,13 @@ ParentIntent (StoryModeStep ya da ana sayfa mod kartı)
                                 │
                           CompanionStep ("Masalda kimler olsun?")
                                 │  + isteğe bağlı Masal ailem karakteri (sürpriz kadroyu seçmez)
- OfflineStoryIntent(mode, ageBand = AgeBandResolver + servedBand, subOption = nil, family)
+ OfflineStoryIntent(mode, ageBand = AgeBandResolver + servedBand, subOption = nil, family,
+                    interests = profilin sunulan ilgi alanları, recent = son 4 masalın içeriği)
                                 │
  BlueprintSelector: blueprint.ageRange == ageBand
                     ve blueprint.family ∈ StoryModeProfile.families
+                    sıra: fikir yakınlığı grubu → grup içinde SelectionScoring (ilgi ×3, cooldown)
+ OfflineContentBinder: ortam / yol arkadaşı / keşif de SelectionScoring ile sıralanır
                                 │
  OfflineStoryComposer → OfflineStoryMapper
                                 │
@@ -106,3 +109,26 @@ Kurallar:
 - İlişki türünün satırı olmayan blueprint o karakterle seçilmez ve gerekçe yazılır. O mod ve bantta hiçbir blueprint taşıyamıyorsa çip soluk görünür.
 - Masal ailem karakteriyle aynı adı taşıyan yol arkadaşı bağlanmaz.
 - Ad yalnızca masal metnine girer. Kökende kimlik ve ilişki türü tutulur, ad tutulmaz.
+
+## İlgi alanları ve cooldown (FAZ 12)
+
+| Parça | Dosya |
+|---|---|
+| Sözlük ve etiket tipleri | `StoryEngine/.../Content/InterestVocabulary.swift` (`InterestTag`, `CatalogInterest`) |
+| Ulaşım ve sunulan kelimeler | `StoryEngine/.../Offline/InterestCoverage.swift` (`interestCoverage`, `availableInterests`) |
+| Puanlama | `StoryEngine/.../Offline/SelectionScoring.swift` |
+| Profil alanı ve kurallar | `UserProfile.interests` (`Services/ProfileManager.swift`), `StoryEngineBridge/ChildInterests.swift` |
+| Köprü | `StoryChoiceSource.interestChoices`, `OfflineStoryService.compose(interests:recent:)`, `StoryGenerationManager.recentOrigins` |
+| Ekranlar | `Screens/Interests/` (metinler tek dosyada: `InterestCopy`), `ProfileCreationView`, `ParentChildrenView` |
+
+Kurallar:
+- **Ağırlık, filtre değil.** İlgi eşleşmesi ağırlığı ×3 yapar; son 4 masalda kullanılan içerik doğrusal soğur
+  (en yeni ×0,1, dördüncü ×0,775). Hiçbir şey havuzdan çıkmaz; sunulamayan ilgi alanı masalı değiştirmez.
+- **Cooldown herkese** (karar 4 Ekim): ilgi alanı seçmemiş çocukta da aynı ortam üst üste en fazla 2 kez gelir.
+- **Eski masal aynı kalır:** ağırlıklar eşitse (ilgi alanı ve geçmiş yok, ya da herkes eşleşiyor) sıra eski
+  tohumlu döndürmedir; saklanmış tohum aynı kitabı kurar.
+- **Seçilen eksen ağırlıktan etkilenmez** (çocuğun seçtiği yol arkadaşı, aile karakteri).
+- Geçmiş kayıtlı masalların `StoryOrigin`'inden okunur; `read_history_<UUID>` artık okunmuyor.
+- Çocuk başına en fazla 3 seçim, hiç seçmemek geçerli. Katalogdan kalkan kelime profilde saklı kalır,
+  gösterilmez ve motora gitmez; düzenleme onu silmez.
+- Kabul testi: `InterestScoringTests.testAnInterestRaisesItsShareWithoutCollapsingOntoIt` (3 sabit tohum seti × 20 ardışık masal).
