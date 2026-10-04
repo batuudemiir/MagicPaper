@@ -705,3 +705,13 @@ gerekçeye göre Firebase'in tek işlevi zaten bir public URL üretmek.
    `CharacterEngine` bu soyutlamaya sahip. Kimlik tutarlılığı ham fotoğraf yerine
    karakter tarifiyle sağlanabilirse, ham fotoğrafın dış servise hiç çıkması
    gerekmez. Bu, İlke 10'un en güçlü uygulaması olurdu.
+
+## 10. Masal ailem adları (FAZ 11, 4 Ekim 2026)
+
+Ebeveynin yazdığı karakter adları (kardeş, arkadaş, evcil hayvan, hayali arkadaş) çocuk verisi gibi ele alınır:
+- **Saklama:** yalnızca cihazda (`Documents/StoryEngine/FamilyCharacters/`, `.completeUnlessOpen`). Cihaz ve iCloud yedeğine girer; öteki depolarla aynı.
+- **Log ve tanı:** ad hiçbir log'a, hata metnine ya da `description`'a girmez. `FamilyCharacter` ve `FamilyCast` ilişki türünü yazar; seçici ve köprü gerekçeleri yalnızca ilişki türünü söyler. Testler: `FamilyCharacterPrivacyTests`, `FamilyCastTests`.
+- **Kayıt:** masal kökeni (`StoryOrigin`) ad değil kimlik ve ilişki türü tutar. Ad yalnızca masal metninde.
+- **FAZ 14:** olay şemasına yalnızca ilişki türü girer.
+- **Silme:** profil silme ve "Tüm verileri sil".
+- **Serbest metin girişi:** yalnızca ebeveyn modunda. Çocuk modunda "Masalda kimler olsun?" yalnızca mevcut karakterleri gösterir.
