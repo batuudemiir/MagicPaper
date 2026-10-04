@@ -34,6 +34,15 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// story written before FAZ 11, and its text does not change: lines
     /// written for a family character are left out of the pool entirely.
     public let family: FamilyCast?
+    /// The child's interests (FAZ 12). They add weight to matching content
+    /// and never filter: an interest the catalog cannot serve today leaves the
+    /// story exactly as it would have been. Empty is every story before FAZ 12.
+    public let interests: [InterestTag]
+    /// What the child's last stories were made of, newest first. Recently used
+    /// content loses weight, which is what keeps an interest from turning every
+    /// story into the same one. Empty means no history, and selection is then
+    /// exactly what it was before FAZ 12.
+    public let recent: [RecentContent]
 
     public init(
         childName: String,
@@ -45,7 +54,9 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         mode: StoryMode? = nil,
         ageBand: AgeBand? = nil,
         subOption: String? = nil,
-        family: FamilyCast? = nil
+        family: FamilyCast? = nil,
+        interests: [InterestTag] = [],
+        recent: [RecentContent] = []
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -57,6 +68,29 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.ageBand = ageBand
         self.subOption = subOption
         self.family = family
+        self.interests = interests
+        self.recent = recent
+    }
+}
+
+/// The content one earlier story was built from. Ids only: what the story
+/// said, and who it was for, never reaches the selector.
+public struct RecentContent: Sendable, Hashable {
+    public let blueprintID: ContentID?
+    public let settingID: ContentID?
+    public let companionID: ContentID?
+    public let discoveryID: ContentID?
+
+    public init(
+        blueprintID: ContentID? = nil,
+        settingID: ContentID? = nil,
+        companionID: ContentID? = nil,
+        discoveryID: ContentID? = nil
+    ) {
+        self.blueprintID = blueprintID
+        self.settingID = settingID
+        self.companionID = companionID
+        self.discoveryID = discoveryID
     }
 }
 
