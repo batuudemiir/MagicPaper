@@ -140,6 +140,18 @@ final class FamilyCastTests: XCTestCase {
         }
     }
 
+    /// The same holds for every line, in every band: "Can de anladı" is as
+    /// wrong for the child's name and a companion's as for a family character.
+    func testNoLineWritesTheConjunctionAfterASlot() throws {
+        let pattern = try NSRegularExpression(pattern: "\\}\\}(?:'[a-zçğıöşü]+)? (?:da|de|ta|te)\\b")
+        let variants = try catalog().templates.flatMap(\.variants)
+        XCTAssertFalse(variants.isEmpty)
+        for variant in variants {
+            let range = NSRange(variant.text.startIndex..., in: variant.text)
+            XCTAssertNil(pattern.firstMatch(in: variant.text, range: range), "\(variant.id): \(variant.text)")
+        }
+    }
+
     // MARK: - No silent substitution
 
     /// A relation with no line is ruled out by name, not swapped for a story

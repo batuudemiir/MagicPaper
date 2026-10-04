@@ -278,12 +278,6 @@ def check_family_lines(corpus, report) -> None:
                 report.fail(f"{label}/{variant['id']}: written for {relations} but never names the character")
             if names and not relations:
                 report.fail(f"{label}/{variant['id']}: names a family character but declares no familyRelations")
-            # "da/de" after a slot cannot follow the name's harmony: the same
-            # line gives "Ela da" and "Bulut de". Only family lines are held to
-            # it here; the older corpus has the same defect and is reported
-            # separately.
-            if relations and UNHARMONISED_CONJUNCTION.search(variant["text"]):
-                report.fail(f"{label}/{variant['id']}: 'da/de' after a slot does not follow the name's vowel harmony")
             # The child opens the story (karar: 4 Ekim 2026): a family opening
             # names the child in its first sentence, so "Kardeşi Ela …" is
             # never the book's first sentence.
@@ -302,6 +296,20 @@ def check_family_lines(corpus, report) -> None:
                                 f"need {MIN_FAMILY_CELL}")
             report.note(f"{label}: family lines " + ", ".join(
                 f"{r}={cells[r]}" for r in FAMILY_RELATIONS))
+
+
+def check_conjunctions(corpus, report) -> None:
+    """"da/de" written after a slot cannot follow the name's vowel harmony: the
+    same line gives "Ela da" and "Can de". Every line, in both bands — the
+    child's name and a companion's are as varied as a family character's."""
+    files = list(corpus)
+    for path in sorted(AGE3_CORPUS.glob("beat_*.json")):
+        files.append(json.loads(path.read_text(encoding="utf-8")))
+    for beat_file in files:
+        label = f"{beat_file['beat']}[{beat_file.get('ageBand', '?')}]"
+        for variant in beat_file["variants"]:
+            if UNHARMONISED_CONJUNCTION.search(variant["text"]):
+                report.fail(f"{label}/{variant['id']}: 'da/de' after a slot does not follow the name's vowel harmony")
 
 
 def check_banned(corpus, report) -> None:
@@ -919,6 +927,7 @@ def main() -> int:
         lambda: check_bound_pools(corpus, report),
         lambda: check_partitioned_pools(corpus, report),
         lambda: check_family_lines(corpus, report),
+        lambda: check_conjunctions(corpus, report),
         lambda: check_deferrals_still_hold(corpus, report),
         lambda: check_interest_vocabulary(corpus, report),
     ]
