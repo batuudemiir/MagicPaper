@@ -59,6 +59,31 @@ final class InterestCatalogTests: XCTestCase {
         XCTAssertEqual(tagged.traits, sea.traits)
     }
 
+    // MARK: - The authored tagging (content decision, FAZ12_ILGI_ETIKETLERI.md)
+
+    /// Bugünkü katalogla hangi kelime hangi banda ulaşıyor. İçerik kararıdır ve
+    /// bilerek sabitlenir: içerik eklendiğinde kırmızıya döner ve güncellenir.
+    func testTheShippedInterestMatrix() throws {
+        let catalog = try catalog()
+        let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
+        XCTAssertEqual(coverage[b34], ["animals", "nature"])
+        XCTAssertEqual(coverage[b56], ["animals", "nature"])
+        XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
+                       ["Hayvanlar", "Doğa"])
+    }
+
+    /// The sea is authored but reaches no story: the coral sea, the dolphin
+    /// and the shell bind to no shipped blueprint. Listed for the content
+    /// pipeline, not hidden.
+    func testTheSeaIsTaggedButUnreachable() throws {
+        let catalog = try catalog()
+        XCTAssertEqual(catalog.setting("setting_coral_sea_001")?.interests, ["sea"])
+        let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
+        let sea = report.issues(withCode: "interest_unreachable_in_band").filter { $0.message.contains("'sea'") }
+        XCTAssertEqual(sea.count, 1)
+        XCTAssertTrue(sea[0].message.contains("3-4") && sea[0].message.contains("5-6"), sea[0].message)
+    }
+
     // MARK: - Integrity
 
     func testAnUndefinedInterestIsAnError() throws {
@@ -119,12 +144,8 @@ final class InterestCatalogTests: XCTestCase {
     }
 
     func testABlueprintTagCountsOnlyInItsOwnBand() throws {
-        let base = try catalog()
-        let blueprints = try base.blueprints.map {
-            $0.id == "blueprint_charge_tending_age3_001"
-                ? try InterestFixtures.tagging($0, with: ["nature"]) : $0
-        }
-        let catalog = InterestFixtures.rebuilding(base, blueprints: blueprints)
+        let catalog = try InterestFixtures.retagging(
+            try catalog(), ["blueprint_charge_tending_age3_001": ["nature"]])
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
         XCTAssertEqual(coverage[b34], ["nature"])
         XCTAssertEqual(coverage[b56], [])
