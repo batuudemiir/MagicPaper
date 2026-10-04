@@ -1,4 +1,5 @@
 import SwiftUI
+import StoryEngine
 
 /// Step 2 — who comes with us?
 ///
@@ -19,15 +20,33 @@ struct CompanionStep: View {
     /// Where the candidates come from. The flow passes its own so both steps
     /// ask the same source.
     var source: any StoryChoiceSource = StoryChoiceSources.current
+    /// Masal ailem (FAZ 11): the child's own characters, offered above the
+    /// companions. The flow owns the choice so "Yeni karakter" can hand back
+    /// the character it just made.
+    var familyCharacters: [FamilyCharacter] = []
+    @Binding var selectedFamilyID: UUID?
+    /// Opens the new-character editor. The flow draws it, over the whole flow.
+    var onAddFamily: (() -> Void)? = nil
     /// Nil means "surprise me". §16: this keeps the chosen idea; it does not
     /// start the story over.
     let onChoose: (String?) -> Void
 
     private static let shown = 3
 
+    private var selectedFamily: FamilyCharacter? {
+        familyCharacters.first { $0.id == selectedFamilyID }
+    }
+
     private var candidates: [CompanionChoice] {
-        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age)
+        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age, family: selectedFamily)
             .prefix(Self.shown))
+    }
+
+    /// Relations this mode can carry for this child. A character whose
+    /// relation is missing is shown, but cannot be chosen.
+    private var availableRelations: Set<FamilyRelationKind> {
+        guard let age else { return [] }
+        return Set(source.availableFamilyRelations(mode: mode, age: age))
     }
 
     var body: some View {
@@ -42,6 +61,16 @@ struct CompanionStep: View {
                 }
                 .padding(.top, MP.S.x3)
                 .padding(.bottom, MP.S.x5)
+
+                if onAddFamily != nil || !familyCharacters.isEmpty {
+                    familySection
+                        .padding(.bottom, MP.S.sectionGap)
+                    Text(FamilyCharacterCopy.stepCompanionLabel)
+                        .font(MP.F.labelMD())
+                        .foregroundStyle(MP.C.textTitle)
+                        .padding(.bottom, MP.S.x3)
+                        .accessibilityAddTraits(.isHeader)
+                }
 
                 VStack(spacing: MP.S.stackGap) {
                     ForEach(candidates) { companion in
@@ -70,6 +99,52 @@ struct CompanionStep: View {
             }
             .mpGutter()
             .padding(.bottom, MP.S.x6)
+        }
+    }
+
+    /// "Masal ailemden biri de gelsin mi?" — optional, one at most.
+    private var familySection: some View {
+        let available = availableRelations
+        let hasUnavailable = familyCharacters.contains { !available.contains($0.relation.kind) }
+        return VStack(alignment: .leading, spacing: MP.S.x3) {
+            VStack(alignment: .leading, spacing: MP.S.x1) {
+                Text(FamilyCharacterCopy.stepFamilyQuestion)
+                    .font(MP.F.labelMD())
+                    .foregroundStyle(MP.C.textTitle)
+                    .accessibilityAddTraits(.isHeader)
+                Text(FamilyCharacterCopy.stepFamilyHint)
+                    .font(MP.F.bodySM())
+                    .foregroundStyle(MP.C.textMuted)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            MPWrapRow {
+                ForEach(familyCharacters) { character in
+                    let isAvailable = available.contains(character.relation.kind)
+                    MPChip(
+                        title: character.name,
+                        symbol: FamilyCharacterCopy.relationSymbol(character.relation.kind),
+                        isSelected: selectedFamilyID == character.id,
+                        isDisabled: !isAvailable
+                    ) {
+                        MPHaptics.selection()
+                        selectedFamilyID = selectedFamilyID == character.id ? nil : character.id
+                    }
+                    .accessibilityLabel("\(character.name), \(FamilyCharacterCopy.relation(character.relation.kind))")
+                    .accessibilityHint(isAvailable ? "" : FamilyCharacterCopy.stepUnavailableAccessibility)
+                }
+                if let onAddFamily, familyCharacters.count < FamilyCharacter.maxPerChild {
+                    MPChip(title: FamilyCharacterCopy.addButton, symbol: "plus") {
+                        onAddFamily()
+                    }
+                    .accessibilityLabel(FamilyCharacterCopy.addButton)
+                }
+            }
+            if hasUnavailable {
+                Text(FamilyCharacterCopy.stepUnavailable)
+                    .font(MP.F.caption(.regular))
+                    .foregroundStyle(MP.C.textMuted)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
     }
 

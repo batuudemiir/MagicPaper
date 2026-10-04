@@ -68,12 +68,15 @@ enum MPSheetRoute: Identifiable, Equatable {
     case profileEdit(UUID)
     /// Görselli kitabın karakteri (B2) — ebeveyn tarafı.
     case bookCharacter(UUID)
+    /// Masal ailem (FAZ 11), çocuk başına. Benim köşem gelince oradan açılır.
+    case familyCharacters(UUID)
 
     var id: String {
         switch self {
         case .profilePicker:        return "profilePicker"
         case .profileEdit(let i):   return "profileEdit-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
+        case .familyCharacters(let i): return "familyCharacters-\(i)"
         }
     }
 }

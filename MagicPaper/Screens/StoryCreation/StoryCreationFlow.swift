@@ -57,6 +57,11 @@ struct StoryCreationFlow: View {
     /// Nil means "Bana bırak" or a surprise. Stable ids, never display text.
     @State private var chosenIdeaID: String?
     @State private var chosenCompanionID: String?
+    /// Masal ailem (FAZ 11). Chosen on the companion step, optional, one at
+    /// most. A surprise picks the mode, never the cast: this survives it.
+    @State private var chosenFamilyID: UUID?
+    @State private var familyCharacters: [FamilyCharacter] = []
+    @State private var showsFamilyEditor = false
 
     private var profile: UserProfile? { profileManager.currentProfile }
 
@@ -81,6 +86,36 @@ struct StoryCreationFlow: View {
         }
         .mpScreenBackground()
         .animation(MP.M.gated(MP.M.page), value: phase)
+        .overlay {
+            if showsFamilyEditor, let profile {
+                FamilyCharacterEditor(
+                    childID: profile.id,
+                    childName: profile.name,
+                    source: source,
+                    onClose: { showsFamilyEditor = false },
+                    onSaved: { character in
+                        reloadFamily()
+                        // Just made for this story, so it comes along —
+                        // unless this mode cannot carry its relation.
+                        if source.availableFamilyRelations(mode: chosenMode, age: age)
+                            .contains(character.relation.kind) {
+                            chosenFamilyID = character.id
+                        }
+                        showsFamilyEditor = false
+                    }
+                )
+                .transition(.opacity)
+            }
+        }
+        .animation(MP.M.gated(MP.M.easeOut), value: showsFamilyEditor)
+        .onAppear(perform: reloadFamily)
+    }
+
+    private func reloadFamily() {
+        familyCharacters = profile.map { FamilyCharacterStore().characters(for: $0.id) } ?? []
+        if let id = chosenFamilyID, !familyCharacters.contains(where: { $0.id == id }) {
+            chosenFamilyID = nil
+        }
     }
 
     /// Okuyucu açıkken akışın kendi başlık çubuğu yok: sayfa baştan başa kâğıt.
@@ -168,7 +203,12 @@ struct StoryCreationFlow: View {
                 phase = .companion
             }
         case .companion:
-            CompanionStep(ideaID: chosenIdeaID, mode: chosenMode, age: age, source: source) { companionID in
+            CompanionStep(
+                ideaID: chosenIdeaID, mode: chosenMode, age: age, source: source,
+                familyCharacters: familyCharacters,
+                selectedFamilyID: $chosenFamilyID,
+                onAddFamily: { showsFamilyEditor = true }
+            ) { companionID in
                 chosenCompanionID = companionID
                 begin()
             }
@@ -236,6 +276,15 @@ struct StoryCreationFlow: View {
 
     // MARK: - Building
 
+    /// The chosen Masal ailem character, if this mode can still carry it. A
+    /// character chosen and then made unavailable by going back to another
+    /// mode is dropped rather than failing the story.
+    private var chosenFamily: FamilyCharacter? {
+        guard let character = familyCharacters.first(where: { $0.id == chosenFamilyID }) else { return nil }
+        let available = source.availableFamilyRelations(mode: chosenMode, age: age)
+        return available.contains(character.relation.kind) ? character : nil
+    }
+
     private func begin() {
         guard let profile else { return dismiss() }
         phase = .preparing
@@ -247,7 +296,8 @@ struct StoryCreationFlow: View {
                     mode: chosenMode,
                     strategy: strategy,
                     storyIdeaID: chosenIdeaID,
-                    companionID: chosenCompanionID
+                    companionID: chosenCompanionID,
+                    family: chosenFamily
                 )
                 // Composition takes milliseconds. The pause is the transition
                 // doing its job (§19), not work being waited on — long enough
