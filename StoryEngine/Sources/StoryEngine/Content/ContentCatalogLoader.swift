@@ -181,7 +181,9 @@ public struct ContentCatalogLoader: Sendable {
                     templates: kept,
                     blueprints: catalog.blueprints,
                     storyIdeas: catalog.storyIdeas,
-                    storyModes: catalog.storyModes
+                    storyModes: catalog.storyModes,
+                    familyMoments: catalog.familyMoments,
+                    familyAnimalKinds: catalog.familyAnimalKinds
                 )
             ])
         }

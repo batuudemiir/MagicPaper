@@ -26,6 +26,12 @@ public struct ContentCatalog: Decodable, Sendable {
     /// Which narrative families serve each parent intent (`StoryMode`).
     /// Authored content, not code: re-mapping a mode is a catalog edit.
     public let storyModes: [StoryModeProfile]
+    /// Beats where a Masal ailem character appears (FAZ 11). Authored content:
+    /// today the opening and the closing, which every blueprint shares, so one
+    /// set of lines makes every blueprint able to carry the character.
+    public let familyMoments: [StoryBeat]
+    /// The animal kinds a Masal ailem pet can be. A fixed list, not free text.
+    public let familyAnimalKinds: [CatalogFamilyAnimalKind]
 
     /// How many `resolutions` the file declares.
     ///
@@ -39,6 +45,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case version, settings, companions, objects, events, challenges, endings, templates, blueprints
         case storyIdeas
         case storyModes
+        case familyMoments, familyAnimalKinds
         case resolutions
     }
 
@@ -55,6 +62,9 @@ public struct ContentCatalog: Decodable, Sendable {
         blueprints = try container.decodeIfPresent([CatalogBlueprint].self, forKey: .blueprints) ?? []
         storyIdeas = try container.decodeIfPresent([CatalogStoryIdea].self, forKey: .storyIdeas) ?? []
         storyModes = try container.decodeIfPresent([StoryModeProfile].self, forKey: .storyModes) ?? []
+        familyMoments = try container.decodeIfPresent([StoryBeat].self, forKey: .familyMoments) ?? []
+        familyAnimalKinds = try container.decodeIfPresent(
+            [CatalogFamilyAnimalKind].self, forKey: .familyAnimalKinds) ?? []
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -70,6 +80,8 @@ public struct ContentCatalog: Decodable, Sendable {
         blueprints: [CatalogBlueprint] = [],
         storyIdeas: [CatalogStoryIdea] = [],
         storyModes: [StoryModeProfile] = [],
+        familyMoments: [StoryBeat] = [],
+        familyAnimalKinds: [CatalogFamilyAnimalKind] = [],
         declaredResolutionCount: Int = 0
     ) {
         self.version = version
@@ -83,6 +95,8 @@ public struct ContentCatalog: Decodable, Sendable {
         self.blueprints = blueprints
         self.storyIdeas = storyIdeas
         self.storyModes = storyModes
+        self.familyMoments = familyMoments
+        self.familyAnimalKinds = familyAnimalKinds
         self.declaredResolutionCount = declaredResolutionCount
     }
 
@@ -93,6 +107,9 @@ public struct ContentCatalog: Decodable, Sendable {
     public func object(_ id: ContentID) -> CatalogObject? { objects.first { $0.id == id } }
     public func blueprint(_ id: ContentID) -> CatalogBlueprint? { blueprints.first { $0.id == id } }
     public func modeProfile(_ mode: StoryMode) -> StoryModeProfile? { storyModes.first { $0.mode == mode } }
+    public func familyAnimalKind(_ id: ContentID) -> CatalogFamilyAnimalKind? {
+        familyAnimalKinds.first { $0.id == id }
+    }
     public func templates(for role: PageRole) -> [CatalogTemplate] { templates.filter { $0.role == role } }
 
     /// Every setting tag in the catalog — the vocabulary other records may
@@ -193,6 +210,12 @@ extension ContentCatalog {
             blueprints: catalogs.flatMap(\.blueprints),
             storyIdeas: catalogs.flatMap(\.storyIdeas),
             storyModes: catalogs.flatMap(\.storyModes),
+            // A moment is a beat, so two documents naming the same one mean
+            // the same thing; kinds are records and go to the duplicate check.
+            familyMoments: catalogs.flatMap(\.familyMoments).reduce(into: []) {
+                if !$0.contains($1) { $0.append($1) }
+            },
+            familyAnimalKinds: catalogs.flatMap(\.familyAnimalKinds),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
     }

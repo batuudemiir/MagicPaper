@@ -102,6 +102,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkDiscoveryModality(catalog))
         issues.append(contentsOf: checkAgeFit(catalog))
         issues.append(contentsOf: checkStoryModes(catalog))
+        issues.append(contentsOf: checkFamily(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -376,6 +377,77 @@ public struct CatalogIntegrityChecker: Sendable {
                     + blueprint.requires.casting.map(\.rawValue).sorted().joined(separator: " or ")
                     + ", which no companion in the catalog can play."
             ))
+        }
+        return issues
+    }
+
+    /// Masal ailem lines (FAZ 11).
+    ///
+    /// A line's relation tag and its `{{family.*}}` slot are two statements
+    /// about one fact, so they are checked against each other: a tagged line
+    /// that never names the character would be chosen for a family moment and
+    /// then not mention them; an untagged line that names them would reach a
+    /// story with nobody to name. Coverage gaps are warnings — a relation the
+    /// catalog cannot carry yet is shown as unavailable, not broken.
+    private func checkFamily(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        let moments = Set(catalog.familyMoments)
+
+        for template in catalog.templates {
+            for variant in template.variants {
+                let namesFamily = variant.actualSlots.contains { $0.rawValue.hasPrefix("family.") }
+                if namesFamily && !variant.isFamilyLine {
+                    issues.append(.init(
+                        severity: .error, code: "family_slot_without_relation", recordID: variant.id,
+                        message: "Line '\(variant.id)' names a Masal ailem character but declares "
+                            + "no relation, so it could reach a story that has none."))
+                }
+                if variant.isFamilyLine && !variant.actualSlots.contains(ContentSlot("family.name")) {
+                    issues.append(.init(
+                        severity: .error, code: "family_relation_without_slot", recordID: variant.id,
+                        message: "Line '\(variant.id)' is written for "
+                            + variant.familyRelations.map(\.rawValue).sorted().joined(separator: ", ")
+                            + " but never names the character."))
+                }
+                if variant.isFamilyLine, let beat = template.realizesBeat, !moments.contains(beat) {
+                    issues.append(.init(
+                        severity: .warning, code: "family_line_outside_moment", recordID: variant.id,
+                        message: "Line '\(variant.id)' carries a Masal ailem character on "
+                            + "'\(beat.rawValue)', which is not a family moment; it is never used."))
+                }
+                let usesKind = variant.actualSlots.contains {
+                    $0.rawValue == "family.kind" || $0.rawValue == "family.possessive"
+                }
+                if usesKind && variant.familyRelations != [.animal] {
+                    issues.append(.init(
+                        severity: .error, code: "family_kind_outside_animal", recordID: variant.id,
+                        message: "Line '\(variant.id)' names an animal kind but is not written "
+                            + "only for an animal."))
+                }
+            }
+        }
+
+        var seenKinds = Set<ContentID>()
+        for kind in catalog.familyAnimalKinds where !seenKinds.insert(kind.id).inserted {
+            issues.append(.init(
+                severity: .error, code: "duplicate_id", recordID: kind.id,
+                message: "Animal kind '\(kind.id)' is declared twice."))
+        }
+
+        let selector = BlueprintSelector()
+        if !moments.isEmpty {
+            for band in AgeBandResolver.bands {
+                let hasContent = catalog.blueprints.contains { $0.isBeatAuthored && $0.ageRange == band }
+                guard hasContent else { continue }
+                let available = Set(selector.availableFamilyRelations(
+                    catalog: catalog, mode: nil, ageBand: band))
+                for relation in FamilyRelationKind.allCases where !available.contains(relation) {
+                    issues.append(.init(
+                        severity: .warning, code: "family_relation_unavailable_in_band",
+                        message: "No \(band) blueprint can carry a '\(relation.rawValue)' "
+                            + "Masal ailem character: a family moment has no line for it."))
+                }
+            }
         }
         return issues
     }

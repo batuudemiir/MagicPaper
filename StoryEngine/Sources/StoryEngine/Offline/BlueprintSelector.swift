@@ -96,6 +96,21 @@ public struct BlueprintSelector: Sendable {
                   offered: \.traits, required: requires.discovery,
                   forbidden: forbids.discovery)
 
+            // A Masal ailem character narrows like everything else the parent
+            // chose: a blueprint with no line for this relation at one of its
+            // family moments is ruled out here, with the beat named, rather
+            // than tried and silently swapped for the next one.
+            if intent.family != nil, catalog.familyMoments.isEmpty {
+                failures.append("the catalog declares no family moments")
+            } else if let relation = intent.family?.relation,
+               let gap = OfflineStoryComposer.familyGap(
+                   in: blueprint, catalog: catalog, relation: relation) {
+                failures.append("no '\(relation.rawValue)' line for '\(gap.rawValue)' in \(blueprint.ageRange)")
+            }
+            if intent.family?.relation == .animal, intent.family?.animalKind == nil {
+                failures.append("an animal Masal ailem character needs a kind")
+            }
+
             if failures.isEmpty {
                 admitted.append(blueprint)
             } else {
@@ -190,6 +205,50 @@ public struct BlueprintSelector: Sendable {
         })
     }
 
+    /// The Masal ailem relations a story can carry in this mode and band.
+    ///
+    /// A relation is offered when some blueprint the mode admits for the band
+    /// has a line at every one of its family moments. The screen shows the
+    /// rest as unavailable rather than letting a choice fail at "Başla".
+    public func availableFamilyRelations(
+        catalog: ContentCatalog,
+        mode: StoryMode?,
+        ageBand: AgeBand?
+    ) -> [FamilyRelationKind] {
+        // No moments means no line ever carries the character: offering it
+        // would write a story that never mentions them.
+        guard !catalog.familyMoments.isEmpty else { return [] }
+        let profile = mode.flatMap { catalog.modeProfile($0) }
+        let blueprints = catalog.blueprints.filter { blueprint in
+            blueprint.isBeatAuthored
+                && (mode == nil || (profile?.admits(blueprint) ?? false))
+                && (ageBand.map { blueprint.ageRange == $0 } ?? true)
+        }
+        return FamilyRelationKind.allCases.filter { relation in
+            blueprints.contains {
+                OfflineStoryComposer.familyGap(in: $0, catalog: catalog, relation: relation) == nil
+            }
+        }
+    }
+
+    /// For every blueprint, the relations it cannot carry and the family moment
+    /// that stops it. Empty arrays mean the blueprint carries every relation.
+    /// The list FAZ 11 hands to the content pipeline.
+    public func familyCoverage(catalog: ContentCatalog) -> [ContentID: [FamilyRelationKind: StoryBeat]] {
+        var report: [ContentID: [FamilyRelationKind: StoryBeat]] = [:]
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            var gaps: [FamilyRelationKind: StoryBeat] = [:]
+            for relation in FamilyRelationKind.allCases {
+                if let gap = OfflineStoryComposer.familyGap(
+                    in: blueprint, catalog: catalog, relation: relation) {
+                    gaps[relation] = gap
+                }
+            }
+            report[blueprint.id] = gaps
+        }
+        return report
+    }
+
     /// The idea cards that belong under a mode, for a band.
     ///
     /// An idea belongs when one of the families it leans toward serves the
@@ -250,7 +309,8 @@ public struct BlueprintSelector: Sendable {
                     seed: intent.seed,
                     mode: intent.mode,
                     ageBand: intent.ageBand,
-                    subOption: intent.subOption
+                    subOption: intent.subOption,
+                    family: intent.family
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil

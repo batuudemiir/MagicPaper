@@ -30,6 +30,10 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// seçici ile composer onu okumaz: alanın yeri ürün kararından önce
     /// açıldı ki niyet modeli o gün değişmesin.
     public let subOption: String?
+    /// The child's Masal ailem character, if one was asked for. Nil is every
+    /// story written before FAZ 11, and its text does not change: lines
+    /// written for a family character are left out of the pool entirely.
+    public let family: FamilyCast?
 
     public init(
         childName: String,
@@ -40,7 +44,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         seed: String,
         mode: StoryMode? = nil,
         ageBand: AgeBand? = nil,
-        subOption: String? = nil
+        subOption: String? = nil,
+        family: FamilyCast? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -51,6 +56,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.mode = mode
         self.ageBand = ageBand
         self.subOption = subOption
+        self.family = family
     }
 }
 
@@ -74,6 +80,9 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noTemplate(beat: StoryBeat, page: Int)
     case noVariantAfter(beat: StoryBeat?, page: Int)
     case noVariantForRole(role: CompanionRole?, beat: StoryBeat, page: Int)
+    /// A family moment with no line for this relation. Carries the relation,
+    /// never the name: the name is the parent's words and stays in the text.
+    case noVariantForFamily(relation: FamilyRelationKind, beat: StoryBeat, page: Int)
     case noVariantSatisfying(constraint: String, beat: StoryBeat, page: Int)
     case blueprintNotBeatAuthored(id: ContentID)
 
@@ -105,6 +114,10 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "Page \(page) needs a '\(beat.rawValue)' line for a companion cast as "
                 + "'\(role?.rawValue ?? "nothing")'. Authoring gap: every part a blueprint can "
                 + "cast needs a line for this beat, or one line that names no part."
+        case .noVariantForFamily(let relation, let beat, let page):
+            return "Page \(page) needs a '\(beat.rawValue)' line for a Masal ailem character "
+                + "who is '\(relation.rawValue)'. Authoring gap: a blueprint is only offered with "
+                + "a relation every one of its family moments has a line for."
         case .noVariantSatisfying(let constraint, let beat, let page):
             return "Page \(page) has no '\(beat.rawValue)' line for \(constraint). Authoring "
                 + "gap: relaxing it would contradict another page, so it is reported rather "
@@ -232,7 +245,19 @@ public struct OfflineContentBinder: Sendable {
             // as "offers forbidden canFly". Pre-filtering would have been
             // shorter and would have dropped the reason, which is the habit this
             // whole error type exists to break.
-            also: { TraitMatch.castingRejection(offered: $0.castRoles, casting: requires.casting) }
+            also: { companion in
+                if let reason = TraitMatch.castingRejection(
+                    offered: companion.castRoles, casting: requires.casting) {
+                    return reason
+                }
+                // Two characters with one name in one book is not a story the
+                // child can follow: "Pamuk" the rabbit beside "Pamuk" the cat.
+                // The reason names neither — the family name is the parent's.
+                if let family = intent.family, Self.sameName(companion.name, family.name) {
+                    return "shares its name with the Masal ailem character"
+                }
+                return nil
+            }
         )
         // One part, chosen once. `sorted` is not cosmetic: `Set` iteration order
         // is not stable between runs, so picking from the raw set would make the
@@ -263,6 +288,14 @@ public struct OfflineContentBinder: Sendable {
         )
         return BoundContent(
             setting: setting, companion: companion, discovery: discovery, castRole: castRole)
+    }
+
+    /// Names compared the way a reader hears them: Turkish case folding, so
+    /// "IŞIK" and "Işık" are one name and "Işık" and "İşık" are not.
+    static func sameName(_ a: String, _ b: String) -> Bool {
+        let locale = Locale(identifier: "tr_TR")
+        return a.trimmingCharacters(in: .whitespaces).lowercased(with: locale)
+            == b.trimmingCharacters(in: .whitespaces).lowercased(with: locale)
     }
 
     /// Admissible records in the order the seed would pick them, so trying them

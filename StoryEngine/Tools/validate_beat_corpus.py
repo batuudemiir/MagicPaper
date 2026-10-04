@@ -43,6 +43,13 @@ BANDS = {
 MAX_SENTENCE_WORDS = 14
 # A bound cell below this means two books of one binding repeat the page too often.
 MIN_BOUND_POOL = 4
+# Masal ailem (FAZ 11): lines per relation at a family moment. Lower than
+# MIN_BOUND_POOL on purpose — the pilot set is two per cell, and a relation with
+# one line would give every book with that character the same opening.
+MIN_FAMILY_CELL = 2
+FAMILY_RELATIONS = ("sibling", "friend", "animal", "imaginary")
+UNHARMONISED_CONJUNCTION = re.compile(r"\}\}(?:'[a-zçğıöşü]+)? (?:da|de|ta|te)\b")
+AGE3_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age3"
 
 # Suffixes the Turkish renderer understands. Anything else after a slot — a
 # copula like 'ydi, a typo — is emitted verbatim and reported at render time.
@@ -245,6 +252,49 @@ def check_moves(corpus, report) -> None:
     for move, count in moves.items():
         if count > 1:
             report.fail(f"rhetorical move {move!r} used {count}x: {owners[move]}")
+
+
+def check_family_lines(corpus, report) -> None:
+    """Masal ailem lines, in both bands. The 3-4 corpus is read here too,
+    because the family moments exist there as well and nothing else in this
+    script looks at it.
+
+    - every beat that carries family lines has at least MIN_FAMILY_CELL for
+      every relation, so a relation is never one sentence;
+    - a family line names the character, and only family lines do;
+    - an imaginary friend is "hayali arkadaşı" or just the name, never
+      "hayali varlığı" (karar: 4 Ekim 2026).
+    """
+    files = list(corpus)
+    for path in sorted(AGE3_CORPUS.glob("beat_*.json")):
+        files.append(json.loads(path.read_text(encoding="utf-8")))
+    for beat_file in files:
+        label = f"{beat_file['beat']}[{beat_file.get('ageBand', '?')}]"
+        cells = Counter()
+        for variant in beat_file["variants"]:
+            relations = variant.get("familyRelations", [])
+            names = "{{family.name}}" in variant["text"]
+            if relations and not names:
+                report.fail(f"{label}/{variant['id']}: written for {relations} but never names the character")
+            if names and not relations:
+                report.fail(f"{label}/{variant['id']}: names a family character but declares no familyRelations")
+            # "da/de" after a slot cannot follow the name's harmony: the same
+            # line gives "Ela da" and "Bulut de". Only family lines are held to
+            # it here; the older corpus has the same defect and is reported
+            # separately.
+            if relations and UNHARMONISED_CONJUNCTION.search(variant["text"]):
+                report.fail(f"{label}/{variant['id']}: 'da/de' after a slot does not follow the name's vowel harmony")
+            if "hayali varlı" in variant["text"].lower():
+                report.fail(f"{label}/{variant['id']}: says 'hayali varlık' — write 'hayali arkadaşı' or just the name")
+            for relation in relations:
+                cells[relation] += 1
+        if cells:
+            for relation in FAMILY_RELATIONS:
+                if cells[relation] < MIN_FAMILY_CELL:
+                    report.fail(f"{label}: {cells[relation]} line(s) for a '{relation}' family character, "
+                                f"need {MIN_FAMILY_CELL}")
+            report.note(f"{label}: family lines " + ", ".join(
+                f"{r}={cells[r]}" for r in FAMILY_RELATIONS))
 
 
 def check_banned(corpus, report) -> None:
@@ -837,6 +887,7 @@ def main() -> int:
         lambda: check_blueprints_satisfiable(corpus, report),
         lambda: check_bound_pools(corpus, report),
         lambda: check_partitioned_pools(corpus, report),
+        lambda: check_family_lines(corpus, report),
         lambda: check_deferrals_still_hold(corpus, report),
     ]
     for gate in gates:
