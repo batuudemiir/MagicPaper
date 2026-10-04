@@ -308,7 +308,23 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
   - Düzenleyici her tuş vuruşunda diskten okuyordu; artık açılışta bir kez okuyor.
   - Kaydet düğmesi soluk ama basılabilir; VoiceOver'a ne eksik olduğunu söyleyen bir ipucu eklendi.
 - Bakılmayan: devre dışı çip durumu. Bugünkü içerikte her ilişki türü her modda uygun, bu yüzden oluşmuyor; mantığı `CompanionStep`/`StoryCreationFlow`'da, reviewer bulgusuyla düzeltildi.
-- Sistem bileşeni notu: iOS'un onay penceresi en büyük boyutta dar bir balon olarak çiziliyor ve kelimeleri bölüyor (profil silme penceresinde de aynı). Tek satırlık ad alanı odak dışındayken uzun adı "…" ile kısaltıyor (ortak `MPInput`, çocuk adı alanında da aynı).
+
+**Kararlar (4 Ekim 2026):**
+- Pilot satırlar 12 düzeltmeyle onaylandı (`FAZ11_AILE_SATIRLARI.md`). Aile açılış satırı çocuğun adıyla başlar; kural doğrulayıcıda ve `testEveryFamilyOpeningNamesTheChildInItsFirstSentence`'ta.
+- "Yeni karakter" çocuk modunda gizli: başka birinin adını kaydetmek ebeveyn eylemi.
+- Çocuk başına en fazla 8 karakter, masal başına 1. Adda tek rakam ya da emoji de reddedilir.
+
+**Son doğrulama (birleştirme öncesi, temiz git worktree'de):**
+- Paket 675/18, hata listesi tabanla test başına aynı.
+- Uygulama testleri için aşağıdaki birleştirme commit'ine bakın.
+
+#### Tasarım borcu (FAZ 11 ekran kontrolünden)
+
+| Yer | Sorun |
+|---|---|
+| iOS onay penceresi (`confirmationDialog`: Masal ailem'den çıkar, profil sil) | En büyük yazı boyutunda dar bir balon olarak çiziliyor, kelimeleri bölüyor ("Karakt / eri"). Sistem bileşeni; çözüm kendi onay sayfamız (`MPSheet`) olabilir |
+| `MPInput` | Tek satırlık alan, odak dışındayken uzun adı "…" ile kısaltıyor (Masal ailem adı, çocuk adı). Çok satırlı alan (`axis: .vertical`) ya da odak dışında sarılan metin |
+
 
 **FAZ 11 dışı, ekran kontrolünde görülenler:**
 - Masal kapağında başlık satırları en büyük boyutta üst üste biniyor.
@@ -504,6 +520,8 @@ için eski isabetler temizlenir. İlk liste FAZ 10 kapanışından:
 2. `DesignSystem/MPNavigation.swift` — 8 çıplak padding
 3. `Views/HomeView.swift` — 4 çıplak padding
 4. `Views/SettingsView.swift` — 6 çıplak padding
+5. iOS onay penceresi en büyük yazı boyutunda kelime bölüyor (FAZ 11)
+6. `MPInput` odak dışında uzun değeri kısaltıyor (FAZ 11)
 
 Her değer ya `MP.S`'teki en yakın token'a oturur ya da gerekçesiyle yeni bir token açılır. Görsel fark
 ekran görüntüsüyle onaylanır. Repo geneli taban (4 Ekim 2026): padding 81, shadow 7, izinli iki dosya (`MPTheme.swift`, `MagicPaperCoverPalette.swift`) dışında `Color(hex:)` 59.

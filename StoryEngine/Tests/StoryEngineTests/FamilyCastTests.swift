@@ -124,6 +124,22 @@ final class FamilyCastTests: XCTestCase {
         }
     }
 
+    /// The child opens the story (karar: 4 Ekim 2026): a family opening names
+    /// the child in its first sentence; "Kardeşi Ela uyuyordu." is never the
+    /// first sentence of a book.
+    func testEveryFamilyOpeningNamesTheChildInItsFirstSentence() throws {
+        let catalog = try catalog()
+        for template in catalog.templates where template.realizesBeat == .noticeAnomaly {
+            for variant in template.variants where variant.isFamilyLine {
+                // Sentence ends are punctuation followed by a space; a bare "."
+                // would split inside the `{{child.name}}` token itself.
+                let end = variant.text.range(of: #"[.!?…]\s"#, options: .regularExpression)
+                let first = end.map { String(variant.text[..<$0.lowerBound]) } ?? variant.text
+                XCTAssertTrue(first.contains("{{child.name}}"), "\(variant.id): \(variant.text)")
+            }
+        }
+    }
+
     // MARK: - No silent substitution
 
     /// A relation with no line is ruled out by name, not swapped for a story

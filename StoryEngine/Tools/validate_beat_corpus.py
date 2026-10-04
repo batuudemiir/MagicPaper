@@ -284,6 +284,13 @@ def check_family_lines(corpus, report) -> None:
             # separately.
             if relations and UNHARMONISED_CONJUNCTION.search(variant["text"]):
                 report.fail(f"{label}/{variant['id']}: 'da/de' after a slot does not follow the name's vowel harmony")
+            # The child opens the story (karar: 4 Ekim 2026): a family opening
+            # names the child in its first sentence, so "Kardeşi Ela …" is
+            # never the book's first sentence.
+            if relations and beat_file["beat"] == "notice_anomaly":
+                first = re.split(r"(?<=[.!?…])\s", variant["text"], maxsplit=1)[0]
+                if "{{child.name}}" not in first:
+                    report.fail(f"{label}/{variant['id']}: the first sentence must name the child")
             if "hayali varlı" in variant["text"].lower():
                 report.fail(f"{label}/{variant['id']}: says 'hayali varlık' — write 'hayali arkadaşı' or just the name")
             for relation in relations:

@@ -295,10 +295,10 @@
     },
     {
       "id": "na_fam_sib_02",
-      "text": "Kardeşi {{family.name}} önden koşuyordu. {{child.name}} arkadan yavaş yavaş geliyordu. Tam o sırada bir şey dikkatini çekti. {{family.name}} bunu fark etmemişti bile.",
+      "text": "{{child.name}} arkadan yavaş yavaş geliyordu. Kardeşi {{family.name}} önden koşuyordu. Tam o sırada bir şey {{child.name}}'in dikkatini çekti. {{family.name}} bunu fark etmemişti bile.",
       "requiredSlots": [
-        "family.name",
-        "child.name"
+        "child.name",
+        "family.name"
       ],
       "familyRelations": [
         "sibling"
@@ -324,11 +324,11 @@
     },
     {
       "id": "na_fam_fr_02",
-      "text": "Arkadaşı {{family.name}} o gün erkenden gelmişti. Birlikte {{setting.name}}'a doğru yürüdüler. {{child.name}} yolda birden durdu. Bir şey tuhaftı.",
+      "text": "{{child.name}} kapıyı açtığında arkadaşı {{family.name}} gelmişti bile. Birlikte {{setting.name}}'a doğru yavaşça yürüdüler. {{child.name}} yolda birden durdu. Bir şey tuhaftı.",
       "requiredSlots": [
+        "child.name",
         "family.name",
-        "setting.name",
-        "child.name"
+        "setting.name"
       ],
       "familyRelations": [
         "friend"

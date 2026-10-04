@@ -75,10 +75,10 @@
     },
     {
       "id": "na3_fam_sib_02",
-      "text": "Kardeşi {{family.name}} uyuyordu. {{child.name}} pencereden baktı. Bugün bir şey başkaydı.",
+      "text": "{{child.name}} pencereden baktı. Kardeşi {{family.name}} hâlâ uyuyordu. Bugün bir şey başkaydı.",
       "requiredSlots": [
-        "family.name",
-        "child.name"
+        "child.name",
+        "family.name"
       ],
       "familyRelations": [
         "sibling"
@@ -89,7 +89,7 @@
     },
     {
       "id": "na3_fam_fr_01",
-      "text": "{{child.name}} ile arkadaşı {{family.name}} oyun oynuyordu. Sonra {{child.name}} durdu. Bir şey vardı.",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} oyun oynuyordu. Sonra {{child.name}} durdu. Ortada tuhaf bir şey vardı.",
       "requiredSlots": [
         "child.name",
         "family.name"
@@ -103,10 +103,10 @@
     },
     {
       "id": "na3_fam_fr_02",
-      "text": "Arkadaşı {{family.name}} geldi. İkisi dışarı çıktı. {{child.name}} birden durdu. Ne oldu acaba?",
+      "text": "{{child.name}} kapıyı açtı, arkadaşı {{family.name}} gelmişti. İkisi dışarı çıktı. {{child.name}} birden durdu. Ne oldu acaba?",
       "requiredSlots": [
-        "family.name",
-        "child.name"
+        "child.name",
+        "family.name"
       ],
       "familyRelations": [
         "friend"
@@ -131,11 +131,11 @@
     },
     {
       "id": "na3_fam_an_02",
-      "text": "{{family.possessive}} {{family.name}} uyuyordu. {{child.name}} yavaşça dışarı çıktı. Birden durdu ve etrafına baktı.",
+      "text": "{{child.name}} yavaşça kalktı. {{family.possessive}} {{family.name}} hâlâ uyuyordu. Dışarı çıkınca {{child.name}} birden durdu.",
       "requiredSlots": [
+        "child.name",
         "family.possessive",
-        "family.name",
-        "child.name"
+        "family.name"
       ],
       "familyRelations": [
         "animal"
@@ -160,10 +160,10 @@
     },
     {
       "id": "na3_fam_im_02",
-      "text": "Hayali arkadaşı {{family.name}} hep yanındaydı. Bugün de öyle. Sonra {{child.name}} bir şey fark etti.",
+      "text": "{{child.name}} bugün de hayali arkadaşı {{family.name}} ile birlikteydi. Sonra bir şey fark etti.",
       "requiredSlots": [
-        "family.name",
-        "child.name"
+        "child.name",
+        "family.name"
       ],
       "familyRelations": [
         "imaginary"
