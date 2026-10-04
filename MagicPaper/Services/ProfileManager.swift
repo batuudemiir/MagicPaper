@@ -31,15 +31,50 @@ struct UserProfile: Codable, Identifiable {
     var profileType: ProfileType
     var imageFileName: String?
     var createdAt: Date
-    
-    init(id: UUID = UUID(), name: String = "", age: Int = 6, profileType: ProfileType = .child, imageFileName: String? = nil) {
+    /// "Neleri sever?" (FAZ 12): interest ids from the catalog vocabulary,
+    /// e.g. `animals`. Kept even when the catalog stops offering one, so an
+    /// edit never silently drops a parent's choice; `ChildInterests` decides
+    /// what is shown and what reaches the engine.
+    var interests: [String]
+
+    init(id: UUID = UUID(), name: String = "", age: Int = 6, profileType: ProfileType = .child,
+         imageFileName: String? = nil, interests: [String] = []) {
         self.id = id
         self.name = name
         self.age = age
         self.profileType = profileType
         self.imageFileName = imageFileName
         self.createdAt = Date()
+        self.interests = interests
     }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, age, profileType, imageFileName, createdAt, interests
+    }
+
+    /// Hand-written so a profile saved before FAZ 12 still loads.
+    ///
+    /// `loadProfiles` decodes the whole list with `try?`: one missing key in
+    /// the synthesised decoder would have emptied the list, and every child
+    /// would have disappeared on the first launch after the update.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        age = try container.decode(Int.self, forKey: .age)
+        profileType = try container.decode(ProfileType.self, forKey: .profileType)
+        imageFileName = try container.decodeIfPresent(String.self, forKey: .imageFileName)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        interests = try container.decodeIfPresent([String].self, forKey: .interests) ?? []
+    }
+}
+
+/// A profile never prints what it holds: `"\(profile)"` in a log line would
+/// otherwise carry the child's name, age and interests.
+extension UserProfile: CustomStringConvertible, CustomDebugStringConvertible, CustomReflectable {
+    var description: String { "UserProfile(\(profileType.rawValue))" }
+    var debugDescription: String { description }
+    var customMirror: Mirror { Mirror(self, children: ["profileType": profileType]) }
 }
 
 // MARK: - Profile Manager
@@ -144,8 +179,9 @@ class ProfileManager: ObservableObject {
     /// `profiles.last`, which is only correct while this method happens to
     /// append.
     @discardableResult
-    func createProfile(name: String, age: Int, profileType: ProfileType, image: UIImage? = nil) -> UserProfile {
-        let profile = UserProfile(name: name, age: age, profileType: profileType)
+    func createProfile(name: String, age: Int, profileType: ProfileType, image: UIImage? = nil,
+                       interests: [String] = []) -> UserProfile {
+        let profile = UserProfile(name: name, age: age, profileType: profileType, interests: interests)
 
         // Append BEFORE saving the image. `saveProfileImage` records the file
         // name on the stored profile by looking it up in `profiles`; called
@@ -203,6 +239,20 @@ class ProfileManager: ObservableObject {
         Self.log.debug("Profile updated")
     }
     
+    /// Replaces a child's interests (FAZ 12). The caller merges with what the
+    /// screen did not show (`ChildInterests.merging`); this only stores.
+    func setInterests(_ interests: [String], for profileID: UUID) {
+        guard let index = profiles.firstIndex(where: { $0.id == profileID }) else { return }
+        var seen = Set<String>()
+        profiles[index].interests = interests.filter { seen.insert($0).inserted }
+        saveProfiles()
+        if currentProfile?.id == profileID {
+            currentProfile = profiles[index]
+        }
+        // A count only: which interests a child has is family content.
+        Self.log.debug("Interests updated: \(self.profiles[index].interests.count, privacy: .private)")
+    }
+
     /// Why a deletion did not happen, when it did not.
     enum DeletionRefusal: Error { case lastProfile }
 
