@@ -173,6 +173,7 @@ final class MPAppState: ObservableObject {
         showProfileAdd = false
         if case .profileEdit = sheet { sheet = nil }
         if case .bookCharacter = sheet { sheet = nil }
+        if case .familyCharacters = sheet { sheet = nil }
     }
 }
 

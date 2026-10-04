@@ -1,4 +1,5 @@
 import SwiftUI
+import StoryEngine
 
 /// The story creation experience: an intent, then a story.
 ///
@@ -62,6 +63,9 @@ struct StoryCreationFlow: View {
     @State private var chosenFamilyID: UUID?
     @State private var familyCharacters: [FamilyCharacter] = []
     @State private var showsFamilyEditor = false
+    /// Relations the chosen mode can carry for this child, computed once per
+    /// mode rather than on every redraw: it walks every blueprint.
+    @State private var familyRelations: Set<FamilyRelationKind> = []
 
     private var profile: UserProfile? { profileManager.currentProfile }
 
@@ -97,8 +101,7 @@ struct StoryCreationFlow: View {
                         reloadFamily()
                         // Just made for this story, so it comes along —
                         // unless this mode cannot carry its relation.
-                        if source.availableFamilyRelations(mode: chosenMode, age: age)
-                            .contains(character.relation.kind) {
+                        if familyRelations.contains(character.relation.kind) {
                             chosenFamilyID = character.id
                         }
                         showsFamilyEditor = false
@@ -108,7 +111,22 @@ struct StoryCreationFlow: View {
             }
         }
         .animation(MP.M.gated(MP.M.easeOut), value: showsFamilyEditor)
-        .onAppear(perform: reloadFamily)
+        .onAppear {
+            reloadFamily()
+            refreshFamilyRelations()
+        }
+        .onChange(of: chosenMode) { _, _ in refreshFamilyRelations() }
+    }
+
+    /// A mode change can make the chosen character's relation unavailable.
+    /// The selection is cleared then, visibly (the chip is no longer
+    /// selected), rather than kept and dropped silently at "Başla".
+    private func refreshFamilyRelations() {
+        familyRelations = Set(source.availableFamilyRelations(mode: chosenMode, age: age))
+        if let character = familyCharacters.first(where: { $0.id == chosenFamilyID }),
+           !familyRelations.contains(character.relation.kind) {
+            chosenFamilyID = nil
+        }
     }
 
     private func reloadFamily() {
@@ -206,8 +224,11 @@ struct StoryCreationFlow: View {
             CompanionStep(
                 ideaID: chosenIdeaID, mode: chosenMode, age: age, source: source,
                 familyCharacters: familyCharacters,
+                availableRelations: familyRelations,
                 selectedFamilyID: $chosenFamilyID,
-                onAddFamily: { showsFamilyEditor = true }
+                // Free text is a parent's surface: in child mode the child
+                // picks from the characters the parent made, and cannot type.
+                onAddFamily: app.isParentMode ? { showsFamilyEditor = true } : nil
             ) { companionID in
                 chosenCompanionID = companionID
                 begin()
@@ -281,8 +302,7 @@ struct StoryCreationFlow: View {
     /// mode is dropped rather than failing the story.
     private var chosenFamily: FamilyCharacter? {
         guard let character = familyCharacters.first(where: { $0.id == chosenFamilyID }) else { return nil }
-        let available = source.availableFamilyRelations(mode: chosenMode, age: age)
-        return available.contains(character.relation.kind) ? character : nil
+        return familyRelations.contains(character.relation.kind) ? character : nil
     }
 
     private func begin() {

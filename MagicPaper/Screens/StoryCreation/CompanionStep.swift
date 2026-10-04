@@ -24,6 +24,8 @@ struct CompanionStep: View {
     /// companions. The flow owns the choice so "Yeni karakter" can hand back
     /// the character it just made.
     var familyCharacters: [FamilyCharacter] = []
+    /// Relations this mode can carry for this child, from the flow.
+    var availableRelations: Set<FamilyRelationKind> = []
     @Binding var selectedFamilyID: UUID?
     /// Opens the new-character editor. The flow draws it, over the whole flow.
     var onAddFamily: (() -> Void)? = nil
@@ -33,8 +35,10 @@ struct CompanionStep: View {
 
     private static let shown = 3
 
+    /// Only a character this mode can carry shapes the companion list; one
+    /// that cannot would leave no blueprint and an empty step.
     private var selectedFamily: FamilyCharacter? {
-        familyCharacters.first { $0.id == selectedFamilyID }
+        familyCharacters.first { $0.id == selectedFamilyID && availableRelations.contains($0.relation.kind) }
     }
 
     private var candidates: [CompanionChoice] {
@@ -42,12 +46,6 @@ struct CompanionStep: View {
             .prefix(Self.shown))
     }
 
-    /// Relations this mode can carry for this child. A character whose
-    /// relation is missing is shown, but cannot be chosen.
-    private var availableRelations: Set<FamilyRelationKind> {
-        guard let age else { return [] }
-        return Set(source.availableFamilyRelations(mode: mode, age: age))
-    }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
