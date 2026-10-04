@@ -251,6 +251,8 @@ class ProfileManager: ObservableObject {
         // copy and go with `storiesDeleted` above.
         let profileID = profile.id
         Task { await AvatarStore.shared.delete(for: profileID) }
+        // Masal ailem belongs to the child; their stories keep the names as written.
+        FamilyCharacterStore().delete(for: profileID)
 
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()
