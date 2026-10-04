@@ -56,8 +56,9 @@ extension BlueprintSelector {
     ///
     /// One list for every child rather than one per band, so a child growing
     /// into the next band never sees a chip disappear. A word that reaches only
-    /// some bands stays in the vocabulary, is still weighed for a child who
-    /// already has it, and is reported to the content pipeline.
+    /// some bands stays in the vocabulary and on any profile that saved it, is
+    /// not shown or used until it reaches every band, and is reported to the
+    /// content pipeline.
     public func availableInterests(catalog: ContentCatalog) -> [CatalogInterest] {
         let bands = AgeBandResolver.bands.filter { band in
             catalog.blueprints.contains { $0.isBeatAuthored && $0.ageRange == band }
