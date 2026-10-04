@@ -38,6 +38,7 @@ enum FamilyCharacterCopy {
     static let relationLabel = "Çocuğun nesi?"
     static let animalKindLabel = "Hangi hayvan?"
     static let save = "Kaydet"
+    static let saveIncompleteHint = "Ad ve ilişki türü seçilince kaydedilir"
     static let remove = "Masal ailesinden çıkar"
     static let removeConfirmTitle = "Karakteri çıkar"
     static let removeConfirmButton = "Çıkar"

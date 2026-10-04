@@ -297,10 +297,18 @@ Ayrı tur: "Tasarım yasası borç turu" (bu belgenin sonu).
 **Ekran kontrolü** (iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type):
 - Bakılan ekranlar: profil sayfası, Masal ailem (boş ve dolu), düzenleyici (hata mesajıyla), "Masalda kimler olsun?" (çip seçili ve seçili değil).
 - Uçtan uca: karakter eklendi, masal yazıldı, ilk sayfada "kardeşi Ela" geçti, kayıtlı masalın kökeninde ilişki türü ve kimlik var.
-- Bakılmayanlar:
-  - Hayvan türü çipleri.
-  - Devre dışı çip durumu; bugünkü içerikte her ilişki türü her modda uygun, bu yüzden görünmüyor.
-  - Pro Max'te düzenleyici; 17e daha dar olduğu için zor durum o.
+- İkinci tur:
+  - Evcil hayvan ve hayvan türü çipleri.
+  - Uzun ad ("Karamelli Pofuduk").
+  - Gerçek masalda hayvan çekimi: "köpeği Karamelli Pofuduk'a günaydın dedi".
+  - Sayaç "1 masalda".
+  - Pro Max'te düzenleme ve çıkarma; karakter silinince masal kitaplıkta kaldı.
+- İkinci turda bulunan ve düzeltilen:
+  - En büyük boyutta uzun ad çipi ekrandan taşıyordu. `MPFlowLayout` artık satırdan geniş öğeye satır genişliğini öneriyor; `MPChip` yalnızca erişilebilirlik boyutlarında alt satıra geçiyor. Normal boyutta görünüm aynı.
+  - Düzenleyici her tuş vuruşunda diskten okuyordu; artık açılışta bir kez okuyor.
+  - Kaydet düğmesi soluk ama basılabilir; VoiceOver'a ne eksik olduğunu söyleyen bir ipucu eklendi.
+- Bakılmayan: devre dışı çip durumu. Bugünkü içerikte her ilişki türü her modda uygun, bu yüzden oluşmuyor; mantığı `CompanionStep`/`StoryCreationFlow`'da, reviewer bulgusuyla düzeltildi.
+- Sistem bileşeni notu: iOS'un onay penceresi en büyük boyutta dar bir balon olarak çiziliyor ve kelimeleri bölüyor (profil silme penceresinde de aynı). Tek satırlık ad alanı odak dışındayken uzun adı "…" ile kısaltıyor (ortak `MPInput`, çocuk adı alanında da aynı).
 
 **FAZ 11 dışı, ekran kontrolünde görülenler:**
 - Masal kapağında başlık satırları en büyük boyutta üst üste biniyor.

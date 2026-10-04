@@ -27,11 +27,10 @@ struct FamilyCharacterEditor: View {
     @State private var confirmsRemoval = false
     @State private var saveFailed = false
 
-    private var kinds: [FamilyAnimalKindChoice] { source.familyAnimalKindChoices() }
-
-    private var otherNames: [String] {
-        store.characters(for: childID).filter { $0.id != editing?.id }.map(\.name)
-    }
+    /// Read once when the editor opens. Reading them in `body` meant a file
+    /// read and a catalog walk on every keystroke.
+    @State private var kinds: [FamilyAnimalKindChoice] = []
+    @State private var otherNames: [String] = []
 
     private var validation: Result<String, FamilyNameValidator.Rejection> {
         FamilyNameValidator.validate(name, childName: childName, existing: otherNames)
@@ -128,6 +127,8 @@ struct FamilyCharacterEditor: View {
             // Devre dışı değil: eksik bir şey varsa basınca söyler. Ad kuralları
             // ancak böyle görünür olur.
             .opacity(canSave ? 1 : 0.6)
+            // Görsel olarak soluk ama basılabilir; VoiceOver da eksik olduğunu söylesin.
+            .accessibilityHint(canSave ? "" : FamilyCharacterCopy.saveIncompleteHint)
         }
         .confirmationDialog(
             FamilyCharacterCopy.removeConfirmTitle,
@@ -143,6 +144,8 @@ struct FamilyCharacterEditor: View {
     }
 
     private func load() {
+        kinds = source.familyAnimalKindChoices()
+        otherNames = store.characters(for: childID).filter { $0.id != editing?.id }.map(\.name)
         guard let editing else { return }
         name = editing.name
         relation = editing.relation.kind

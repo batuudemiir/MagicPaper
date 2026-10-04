@@ -35,7 +35,7 @@ struct MPFlowLayout: Layout {
         for row in rows {
             var x = bounds.minX
             for index in row.indices {
-                let size = subviews[index].sizeThatFits(.unspecified)
+                let size = Self.size(of: subviews[index], maxWidth: bounds.width)
                 subviews[index].place(
                     at: CGPoint(x: x, y: y + (row.height - size.height) / 2),
                     proposal: ProposedViewSize(size)
@@ -52,12 +52,22 @@ struct MPFlowLayout: Layout {
         var height: CGFloat = 0
     }
 
+    /// An item's natural size, unless it is wider than the row — then it is
+    /// offered the row's width and may wrap. Before this, a chip carrying a
+    /// long name at the largest text size ran off the screen (FAZ 11).
+    /// Items that fit are measured exactly as before.
+    private static func size(of subview: LayoutSubview, maxWidth: CGFloat) -> CGSize {
+        let ideal = subview.sizeThatFits(.unspecified)
+        guard ideal.width > maxWidth, maxWidth.isFinite else { return ideal }
+        return subview.sizeThatFits(ProposedViewSize(width: maxWidth, height: nil))
+    }
+
     private func layout(subviews: Subviews, maxWidth: CGFloat) -> [Row] {
         var rows: [Row] = []
         var current = Row()
 
         for index in subviews.indices {
-            let size = subviews[index].sizeThatFits(.unspecified)
+            let size = Self.size(of: subviews[index], maxWidth: maxWidth)
             let needed = current.indices.isEmpty ? size.width : current.width + spacing + size.width
 
             if needed > maxWidth, !current.indices.isEmpty {
