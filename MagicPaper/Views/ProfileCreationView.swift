@@ -14,6 +14,8 @@ struct ProfileCreationView: View {
     @State private var name = ""
     @State private var colorIndex = 0
     @State private var ageRange: MPAgeRange = .r56
+    @State private var interestChoices: [InterestChoice] = []
+    @State private var interests: [String] = []
 
     /// `UserProfile.mpColor` ile aynı kümedir; indeks `UserDefaults`'ta
     /// saklandığı için iki taraf da `MP.C.avatarAccents` okumalı.
@@ -48,6 +50,9 @@ struct ProfileCreationView: View {
 
                     colorPicker
                     agePicker
+                    if !interestChoices.isEmpty {
+                        interestPicker
+                    }
                     privacyNote
                 }
                 .padding(.horizontal, MP.S.screenGutter)
@@ -66,6 +71,24 @@ struct ProfileCreationView: View {
             .padding(.bottom, 12)
         }
         .mpScreenBackground()
+        .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
+    }
+
+    /// "Neleri sever?" (FAZ 12). İsteğe bağlı: hiç seçmeden de profil oluşur.
+    private var interestPicker: some View {
+        VStack(alignment: .leading, spacing: MP.S.x3) {
+            VStack(alignment: .leading, spacing: MP.S.x1) {
+                Text(InterestCopy.question)
+                    .font(MP.F.labelMD())
+                    .foregroundStyle(MP.C.textTitle)
+                Text(InterestCopy.questionHint)
+                    .font(MP.F.caption(.regular))
+                    .foregroundStyle(MP.C.textMuted)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .accessibilityElement(children: .combine)
+            InterestChipGrid(choices: interestChoices, selection: $interests)
+        }
     }
 
     private var colorPicker: some View {
@@ -137,7 +160,8 @@ struct ProfileCreationView: View {
         let created = profileManager.createProfile(
             name: finalName,
             age: ageRange.representativeAge,
-            profileType: .child
+            profileType: .child,
+            interests: ChildInterests.merging(stored: [], edited: interests, choices: interestChoices)
         )
         UserProfile.storeColorIndex(colorIndex, for: created.id)
         if mode == .addAnother {

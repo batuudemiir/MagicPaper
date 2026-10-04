@@ -10,6 +10,7 @@ struct ParentChildrenView: View {
 
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @State private var interestChoices: [InterestChoice] = []
 
     var body: some View {
         VStack(spacing: 0) {
@@ -18,6 +19,11 @@ struct ParentChildrenView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     profilesSection
+                    // FAZ 10'da kalkan "Favori dünyalar"ın yeri. Sunulacak
+                    // kelime yoksa bölüm hiç görünmez.
+                    if !interestChoices.isEmpty {
+                        interestsSection
+                    }
                 }
                 .padding(.horizontal, MP.S.screenGutter)
                 .padding(.top, MP.S.x3)
@@ -25,6 +31,7 @@ struct ParentChildrenView: View {
             }
         }
         .mpScreenBackground()
+        .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
     }
 
     private var subtitle: String {
@@ -55,6 +62,41 @@ struct ParentChildrenView: View {
                 }
             }
         }
+    }
+
+    // MARK: - İlgi alanları (FAZ 12)
+
+    private var interestsSection: some View {
+        VStack(alignment: .leading, spacing: MP.S.x4) {
+            MPSectionHeader(title: InterestCopy.sectionTitle, subtitle: InterestCopy.sectionSubtitle)
+
+            MPCard(padding: 0) {
+                VStack(spacing: 0) {
+                    ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
+                        if index > 0 { MPRowDivider() }
+                        let names = interestNames(profile)
+                        MPListRow(
+                            symbol: InterestCopy.rowSymbol,
+                            iconColor: profile.mpColor,
+                            title: profile.name,
+                            description: InterestCopy.summary(names),
+                            action: { app.sheet = .interests(profile.id) }
+                        )
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel(InterestCopy.rowAccessibility(child: profile.name, names: names))
+                        .accessibilityHint(InterestCopy.rowHint)
+                        .accessibilityAddTraits(.isButton)
+                    }
+                }
+            }
+        }
+    }
+
+    /// The chip names of what this child has, in catalog order; a stored word
+    /// the catalog no longer offers is not shown.
+    private func interestNames(_ profile: UserProfile) -> [String] {
+        let offered = Set(ChildInterests.offered(profile.interests, from: interestChoices))
+        return interestChoices.filter { offered.contains($0.id) }.map(\.name)
     }
 
     private func storyCount(_ p: UserProfile) -> Int {

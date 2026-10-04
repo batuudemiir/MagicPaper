@@ -50,6 +50,9 @@ final class OfflineStoryService {
 
     private var cached: ContentCatalog?
     private var cachedReport: CatalogLoadReport?
+    /// Interest coverage asks the binder about every tagged record; the answer
+    /// only changes with the catalog, which is loaded once.
+    private var cachedInterests: [InterestChoice]?
 
     private let selector = BlueprintSelector()
     private let composer = OfflineStoryComposer()
@@ -175,6 +178,20 @@ final class OfflineStoryService {
         )
     }
 
+    // MARK: - İlgi alanları (FAZ 12)
+
+    /// The interest chips a parent is offered: the catalog's words that reach
+    /// a story in every band with content. Catalog order.
+    func interestChoices() -> [InterestChoice] {
+        if let cachedInterests { return cachedInterests }
+        guard let catalog = try? catalog() else { return [] }
+        let choices = selector.availableInterests(catalog: catalog).map {
+            InterestChoice(id: $0.id.rawValue, name: $0.name, symbol: $0.symbol)
+        }
+        cachedInterests = choices
+        return choices
+    }
+
     // MARK: - Masal ailem (FAZ 11)
 
     /// The relations a Masal ailem character can have in a story of this mode
@@ -224,7 +241,9 @@ final class OfflineStoryService {
         age: Int? = nil,
         seed: String? = nil,
         subOption: String? = nil,
-        family: FamilyCharacter? = nil
+        family: FamilyCharacter? = nil,
+        interests: [String] = [],
+        recent: [StoryOrigin] = []
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         let familyCast = try family.map { character -> FamilyCast in
@@ -237,6 +256,14 @@ final class OfflineStoryService {
         }
         // A supplied seed is a rebuild: it must produce that story or nothing,
         // so it gets exactly one attempt.
+        // Only what the parent is offered today reaches the engine: a stored
+        // word the catalog stopped offering is kept on the profile, not used.
+        let wanted = ChildInterests.offered(interests, from: interestChoices()).map { InterestTag($0) }
+        let history = recent.prefix(SelectionScoring.cooldownWindow).map {
+            RecentContent(
+                blueprintID: ContentID($0.blueprintID), settingID: ContentID($0.settingID),
+                companionID: ContentID($0.companionID), discoveryID: ContentID($0.discoveryID))
+        }
         let seeds = seed.map { [$0] }
             ?? (0..<Self.cleanDraftAttempts).map { _ in UUID().uuidString }
 
@@ -250,7 +277,9 @@ final class OfflineStoryService {
                 mode: mode,
                 ageBand: age.map(servedBand(forAge:)),
                 subOption: subOption,
-                family: familyCast
+                family: familyCast,
+                interests: wanted,
+                recent: Array(history)
             )
             let composed: ComposedStory
             do {
