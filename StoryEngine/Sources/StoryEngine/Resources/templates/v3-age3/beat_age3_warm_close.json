@@ -54,6 +54,118 @@
       ],
       "move": "evening_happy",
       "lengthClass": "solo"
+    },
+    {
+      "id": "wc3_fam_sib_01",
+      "text": "Akşam oldu. {{child.name}} kardeşi {{family.name}}'a sıkıca sarıldı. İkisi de çok mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam3_sibling_hug",
+      "lengthClass": "solo",
+      "visualScene": "two small children hugging in the evening"
+    },
+    {
+      "id": "wc3_fam_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yan yana uzandı. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "move": "fam3_sibling_lie_down",
+      "lengthClass": "solo",
+      "visualScene": "two small children lying side by side"
+    },
+    {
+      "id": "wc3_fam_fr_01",
+      "text": "Arkadaşı {{family.name}} el salladı. {{child.name}} gülümsedi. Yarın yine birlikte buluşacaklardı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam3_friend_wave",
+      "lengthClass": "solo",
+      "visualScene": "two small friends waving"
+    },
+    {
+      "id": "wc3_fam_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yan yana oturdu. Hava güzeldi. İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "move": "fam3_friend_sit_together",
+      "lengthClass": "solo",
+      "visualScene": "two small friends sitting together, smiling"
+    },
+    {
+      "id": "wc3_fam_an_01",
+      "text": "Akşam oldu. {{child.name}} {{family.possessive}} {{family.name}}'ın yanına oturdu. Her şey yolundaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam3_pet_sit_beside",
+      "lengthClass": "solo",
+      "visualScene": "small child sitting beside a pet in the evening"
+    },
+    {
+      "id": "wc3_fam_an_02",
+      "text": "{{child.name}} eve geldi. Önce {{family.name}}'a baktı. {{family.name}} oradaydı. İçi rahatladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "move": "fam3_pet_still_there",
+      "lengthClass": "solo",
+      "visualScene": "small child finding a pet at home"
+    },
+    {
+      "id": "wc3_fam_im_01",
+      "text": "Akşam oldu. Hayali arkadaşı {{family.name}} uzun uzun esnedi. İkisi birlikte uyudu.",
+      "requiredSlots": [
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam3_imaginary_sleep",
+      "lengthClass": "solo",
+      "visualScene": "small child asleep, a faint soft shape nearby"
+    },
+    {
+      "id": "wc3_fam_im_02",
+      "text": "{{child.name}} yatağına girdi. {{family.name}}'a iyi geceler dedi. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "move": "fam3_imaginary_good_night",
+      "lengthClass": "solo",
+      "visualScene": "small child in bed saying good night to the air"
     }
   ]
 }

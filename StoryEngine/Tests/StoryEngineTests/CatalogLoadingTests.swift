@@ -72,7 +72,8 @@ final class CatalogBundleTests: XCTestCase {
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
         XCTAssertEqual(catalog.templates.count, 93)
-        XCTAssertEqual(catalog.recordCounts["variants"], 547)
+        // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
+        XCTAssertEqual(catalog.recordCounts["variants"], 583)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.
