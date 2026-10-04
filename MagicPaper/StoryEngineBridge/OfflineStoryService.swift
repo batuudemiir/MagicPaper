@@ -156,7 +156,8 @@ final class OfflineStoryService {
     func companionCandidates(
         forIdeaID ideaID: String?,
         mode: StoryMode? = nil,
-        age: Int? = nil
+        age: Int? = nil,
+        family: FamilyCharacter? = nil
     ) -> [CatalogCompanion] {
         guard let catalog = try? catalog() else { return [] }
         let idea = ideaID.flatMap { id in catalog.storyIdeas.first { $0.id.rawValue == id } }
@@ -167,10 +168,37 @@ final class OfflineStoryService {
                 storyIdeaID: idea?.id,
                 seed: "candidates",
                 mode: mode,
-                ageBand: age.map(servedBand(forAge:))
+                ageBand: age.map(servedBand(forAge:)),
+                family: family.flatMap { familyCast(for: $0, in: catalog) }
             ),
             idea: idea
         )
+    }
+
+    // MARK: - Masal ailem (FAZ 11)
+
+    /// The relations a Masal ailem character can have in a story of this mode
+    /// for this child. A relation missing here is shown as unavailable.
+    func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind] {
+        guard let catalog = try? catalog() else { return [] }
+        return selector.availableFamilyRelations(
+            catalog: catalog, mode: mode, ageBand: servedBand(forAge: age))
+    }
+
+    /// The fixed list of animal kinds a pet can be, in catalog order.
+    func familyAnimalKinds() -> [CatalogFamilyAnimalKind] {
+        (try? catalog())?.familyAnimalKinds ?? []
+    }
+
+    /// The engine's view of a Masal ailem character. Nil for an animal whose
+    /// kind the catalog no longer lists, which the engine would refuse anyway.
+    func familyCast(for character: FamilyCharacter, in catalog: ContentCatalog) -> FamilyCast? {
+        var kind: CatalogFamilyAnimalKind?
+        if let kindID = character.relation.animalKindID {
+            guard let found = catalog.familyAnimalKind(ContentID(kindID)) else { return nil }
+            kind = found
+        }
+        return FamilyCast(name: character.name, relation: character.relation.kind, animalKind: kind)
     }
 
     // MARK: - Composing
@@ -195,9 +223,18 @@ final class OfflineStoryService {
         mode: StoryMode? = nil,
         age: Int? = nil,
         seed: String? = nil,
-        subOption: String? = nil
+        subOption: String? = nil,
+        family: FamilyCharacter? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
+        let familyCast = try family.map { character -> FamilyCast in
+            guard let cast = self.familyCast(for: character, in: catalog) else {
+                // The relation, never the name.
+                throw Failure.noStoryForChoices(
+                    detail: "Masal ailem hayvan türü katalogda yok (\(character.relation.kind.rawValue))")
+            }
+            return cast
+        }
         // A supplied seed is a rebuild: it must produce that story or nothing,
         // so it gets exactly one attempt.
         let seeds = seed.map { [$0] }
@@ -212,7 +249,8 @@ final class OfflineStoryService {
                 seed: seed,
                 mode: mode,
                 ageBand: age.map(servedBand(forAge:)),
-                subOption: subOption
+                subOption: subOption,
+                family: familyCast
             )
             let composed: ComposedStory
             do {
