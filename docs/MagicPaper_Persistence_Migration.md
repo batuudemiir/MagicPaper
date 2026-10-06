@@ -238,6 +238,16 @@ StoryMemory        seri kapsamında, hikâyeler arası süreklilik defteri
    karşılandığı yer
 4. Kalıcılık: `Documents/MPLibrary/Series/<uuid>.json`, aynı yaz-doğrula-işaretle kalıbı
 
+### FAZ 13'te ne yapıldı (6 Ekim 2026)
+
+Yukarıdaki tasarımdan farklı olarak, ürün kararlarına göre:
+
+- **Alanlar `StoryOrigin`'de**, `Story`'de değil: `seriesID: String?`, `seriesEpisode: Int?` (2…5). İlk masal serinin üyesidir ama bu alanları taşımaz; seri onu `firstStoryID` ile tanır. Eski kayıtlar `nil` çözer (`testAStoryWrittenBeforeFaz13StillOpens`).
+- **Depo:** `Documents/StoryEngine/Series/<çocukUUID>.json` (`StorySeriesStore`), çocuk başına bir dosya, `FamilyCharacterStore` kalıbı: atomik yazma, `.completeUnlessOpen`, kayıplı okuma. Bölüm metni bu dosyada durur (asıl kaynak); açılan bölüm kitaplığa `Story` olarak kopyalanır.
+- **`StoryMemory` türetici yok.** Seri, ilk masalın kökeninden bir `SeriesAnchor` kurar (ortam, yol arkadaşı, hatıra); bölümler arası tutarlılık plandan gelir.
+- **`unresolvedThreads` yok, olmayacak:** her bölüm kapalı ve sakin biter (karar 6 Ekim 2026, `CalmEnding`).
+- Profil silme ve "Tüm verileri sil" seri dosyalarını da siler.
+
 ---
 
 ## 8. Dosya düzeni
