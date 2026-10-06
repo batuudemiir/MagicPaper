@@ -2,6 +2,7 @@ import SwiftUI
 import OSLog
 import FirebaseCore
 import FirebaseStorage
+import GoogleSignIn
 #if canImport(RevenueCat)
 import RevenueCat
 #endif
@@ -14,6 +15,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     print("🚀 AppDelegate: didFinishLaunching başladı")
     
     FirebaseApp.configure()
+    // Ebeveyn hesabı ve senkron (FAZ 16): Firestore ayarı ilk kullanımdan
+    // önce yapılmak zorunda; ardından önceki oturum varsa geri alınır.
+    FirebaseBackend.configure()
+    AccountService.shared.bootstrap()
     print("✅ Firebase yapılandırıldı")
 
     // Günün masalı ve içerik paketleri arka planda da yenilenir (FAZ 15).
@@ -120,6 +125,8 @@ struct MagicPaperApp: App {
             .environmentObject(profileManager)
         }
       }
+      // Google ile giriş tarayıcıdan bu adrese döner (FAZ 16).
+      .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
     }
   }
 }
@@ -128,27 +135,49 @@ struct MagicPaperApp: App {
 
 struct MainContentView: View {
     @EnvironmentObject var profileManager: ProfileManager
-    
+    @ObservedObject private var account = AccountService.shared
+    @ObservedObject private var sync = AccountService.shared.sync
+    @Environment(\.scenePhase) private var scenePhase
+
+    /// Karşılama → Giriş → Ebeveyn onayı → Profil → Neleri sever → İlk masal
+    /// (FAZ 16). Already-installed apps meet Giriş and Onay once, on the first
+    /// launch after the update; their children and stories then go to the
+    /// account.
+    private var gate: AppGate {
+        AppGate.resolve(.init(
+            onboardingDone: profileManager.hasCompletedOnboarding,
+            signedIn: account.account != nil,
+            deferredSignIn: account.deferredSignIn,
+            consentCurrent: account.consent != nil,
+            restoreSettled: sync.restored,
+            hasProfiles: !profileManager.profiles.isEmpty,
+            hasCurrentProfile: profileManager.currentProfile != nil))
+    }
+
     var body: some View {
         Group {
-            if !profileManager.hasCompletedOnboarding {
-                // İlk açılış - Onboarding göster
+            switch gate {
+            case .intro:
                 OnboardingView(isOnboardingComplete: $profileManager.hasCompletedOnboarding)
-            } else if profileManager.profiles.isEmpty {
-                // Hiç profil yok - İlk profili oluştur
+            case .signIn:
+                AccountSignInView()
+            case .consent:
+                if account.checkingConsent { AccountWaitView() } else { ParentConsentView() }
+            case .restoring:
+                AccountRestoreView()
+            case .createProfile:
                 ProfileCreationView()
-            } else if profileManager.currentProfile == nil {
-                // Profiller var ama seçili değil - Profil seçim ekranı
+            case .selectProfile:
                 ProfileSelectorView()
-            } else {
-                // Profil seçili - Ana ekrana git
+            case .app:
                 ContentView()
             }
         }
+        .animation(MP.M.gated(MP.M.base), value: gate)
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { sync.schedule(after: 0) }
+        }
         .onAppear {
-            print("🎯 MainContentView appeared")
-            print("📱 Onboarding tamamlandı mı: \(profileManager.hasCompletedOnboarding)")
-            print("📱 Profil sayısı: \(profileManager.profiles.count)")
             // Çocuğun adı loglanmaz (CLAUDE.md §10); yalnızca seçili profil var mı.
             logger.debug("Aktif profil seçili: \(profileManager.currentProfile != nil, privacy: .public)")
         }

@@ -98,6 +98,11 @@ struct StorySeriesStore: Sendable {
         try write(list, for: series.childID)
     }
 
+    /// The account's copy of the child's series replaces the device's (FAZ 16).
+    func replaceAll(_ list: [StorySeries], for childID: UUID) throws {
+        try write(list.filter { $0.childID == childID }, for: childID)
+    }
+
     /// When a profile is deleted: every series of that child, set-aside
     /// copies included.
     func delete(for childID: UUID) {
@@ -107,6 +112,7 @@ struct StorySeriesStore: Sendable {
         for name in files where name.hasPrefix(prefix) {
             try? FileManager.default.removeItem(at: directory.appendingPathComponent(name))
         }
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
     }
 
     /// Moves an unreadable file out of the way, beside it.
@@ -135,6 +141,8 @@ struct StorySeriesStore: Sendable {
             let data = try StoryEngineStorage.makeEncoder()
                 .encode(File(series: list.map(File.Lossy.init)))
             try StoryEngineStorage.write(data, to: url)
+            // The account sync (FAZ 16) follows this.
+            NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
         } catch {
             logger.error("🛑 Seri kaydedilemedi")
             throw Failure.writeFailed

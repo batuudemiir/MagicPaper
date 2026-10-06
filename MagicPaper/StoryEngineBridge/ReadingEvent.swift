@@ -9,14 +9,16 @@ import Foundation
 /// Masal ailem appears only as its relation kind.
 ///
 /// `storyID` is the story's own random UUID; it ties a story's sessions
-/// together (a re-read is a second session of the same story). It says
-/// nothing about the child by itself, but events of one device can be linked
-/// through it: pseudonymous, not anonymous. FAZ 16 decides whether to send it
-/// as is, rotate it per batch, or drop it.
+/// together on the device (a re-read is a second session of the same story).
+/// It **never leaves the device** (karar: 6 Ekim 2026): events of one device
+/// could be linked through it, and the server's table — finished and re-read
+/// per blueprint — does not need it; `reread` is already decided here.
+/// What is sent is `ReadingEventWire`.
 ///
-/// Sending is FAZ 16's (with the parent's switch, `shareUsageData`). Until
-/// then events wait in `ReadingEventQueue`. The keys below are a contract with
-/// the server: `ReadingEventTests` pins them.
+/// Sent by `ReadingEventUploader` (FAZ 16) when the parent's switch
+/// (`shareUsageData`) is on and the parent has seen the consent text. Until
+/// then events wait in `ReadingEventQueue`. The keys of `ReadingEventWire` are
+/// a contract with the server and its rules: `ReadingEventTests` pins them.
 struct ReadingEvent: Codable, Equatable, Sendable {
     static let schemaVersion = 1
 
@@ -85,5 +87,58 @@ extension ReadingEvent: CustomStringConvertible, CustomDebugStringConvertible, C
     var debugDescription: String { description }
     var customMirror: Mirror {
         Mirror(self, children: ["mode": mode as Any, "finished": finished, "reread": reread])
+    }
+}
+
+/// A reading event as it leaves the device: the event without `storyID`.
+struct ReadingEventWire: Codable, Equatable, Sendable {
+    let schemaVersion: Int
+    let mode: String?
+    let blueprintID: String
+    let contentIDs: ReadingEvent.ContentIDs
+    let companionKind: String?
+    let familyRelation: String?
+    let ageBand: String?
+    let pageReached: Int
+    let pageCount: Int
+    let finished: Bool
+    let reread: Bool
+    let day: String
+
+    init(_ event: ReadingEvent) {
+        schemaVersion = event.schemaVersion
+        mode = event.mode
+        blueprintID = event.blueprintID
+        contentIDs = event.contentIDs
+        companionKind = event.companionKind
+        familyRelation = event.familyRelation
+        ageBand = event.ageBand
+        pageReached = event.pageReached
+        pageCount = event.pageCount
+        finished = event.finished
+        reread = event.reread
+        day = event.day
+    }
+
+    /// The document as Firestore takes it. Absent optionals are left out,
+    /// never written as null.
+    var fields: [String: Any] {
+        var fields: [String: Any] = [
+            "schemaVersion": schemaVersion,
+            "blueprintID": blueprintID,
+            "contentIDs": ["setting": contentIDs.setting,
+                           "companion": contentIDs.companion,
+                           "discovery": contentIDs.discovery],
+            "pageReached": pageReached,
+            "pageCount": pageCount,
+            "finished": finished,
+            "reread": reread,
+            "day": day,
+        ]
+        if let mode { fields["mode"] = mode }
+        if let companionKind { fields["companionKind"] = companionKind }
+        if let familyRelation { fields["familyRelation"] = familyRelation }
+        if let ageBand { fields["ageBand"] = ageBand }
+        return fields
     }
 }

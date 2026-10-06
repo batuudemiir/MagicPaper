@@ -192,6 +192,8 @@ struct ContentView: View {
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     InterestsEditorSheet(profile: profile).environmentObject(app)
                 }
+            case .signOut:
+                AccountSignOutSheet(onClose: { app.sheet = nil })
             }
         }
     }

@@ -30,6 +30,9 @@
 		A1000001000000000000003A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000003B /* GoogleService-Info.plist */; };
 		A10000010000000000000040 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000042 /* FirebaseCore */; };
 		A10000010000000000000041 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000043 /* FirebaseStorage */; };
+		F16000000000000000000001 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000011 /* FirebaseAuth */; };
+		F16000000000000000000002 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000012 /* FirebaseFirestore */; };
+		F16000000000000000000003 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000013 /* GoogleSignIn */; };
 		A10000010000000000000048 /* StoryGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000049 /* StoryGenerationManager.swift */; };
 		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
 		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
@@ -133,6 +136,9 @@
 				5E00000000000000000007 /* VisualSystem in Frameworks */,
 				A10000010000000000000040 /* FirebaseCore in Frameworks */,
 				A10000010000000000000041 /* FirebaseStorage in Frameworks */,
+				F16000000000000000000001 /* FirebaseAuth in Frameworks */,
+				F16000000000000000000002 /* FirebaseFirestore in Frameworks */,
+				F16000000000000000000003 /* GoogleSignIn in Frameworks */,
 				2DB76A672F4911DA00DE621B /* RevenueCat in Frameworks */,
 				2DB76A6B2F49130100DE621B /* RevenueCatUI in Frameworks */,
 			);
@@ -341,6 +347,9 @@
 				5E00000000000000000003 /* CharacterEngine */,
 				5E00000000000000000004 /* VisualSystem */,
 				A10000010000000000000043 /* FirebaseStorage */,
+				F16000000000000000000011 /* FirebaseAuth */,
+				F16000000000000000000012 /* FirebaseFirestore */,
+				F16000000000000000000013 /* GoogleSignIn */,
 				2DB76A662F4911DA00DE621B /* RevenueCat */,
 				2DB76A6A2F49130100DE621B /* RevenueCatUI */,
 			);
@@ -380,6 +389,7 @@
 				5E00000000000000000001 /* XCLocalSwiftPackageReference "StoryEngine" */,
 				A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				F16000000000000000000020 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = A10000010000000000000024 /* Products */;
 			projectDirPath = "";
@@ -644,6 +654,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = MagicPaper/MagicPaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -681,6 +692,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = MagicPaper/MagicPaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -765,6 +777,14 @@
 				minimumVersion = 11.0.0;
 			};
 		};
+		F16000000000000000000020 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -799,6 +819,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F16000000000000000000011 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F16000000000000000000012 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F16000000000000000000013 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F16000000000000000000020 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

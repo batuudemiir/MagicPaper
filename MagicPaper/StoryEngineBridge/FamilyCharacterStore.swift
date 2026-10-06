@@ -86,6 +86,12 @@ struct FamilyCharacterStore: Sendable {
         try write(list, for: character.childID)
     }
 
+    /// The account's copy of the child's list replaces the device's (FAZ 16).
+    /// Not limited like `save`: the list was limited where it was written.
+    func replaceAll(_ list: [FamilyCharacter], for childID: UUID) throws {
+        try write(list.filter { $0.childID == childID }, for: childID)
+    }
+
     func delete(id: UUID, childID: UUID) throws {
         let list = characters(for: childID).filter { $0.id != id }
         try write(list, for: childID)
@@ -95,6 +101,7 @@ struct FamilyCharacterStore: Sendable {
     func delete(for childID: UUID) {
         guard let url = url(for: childID) else { return }
         try? FileManager.default.removeItem(at: url)
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
     }
 
     /// "Tüm verileri sil" için: klasörün tamamı.
@@ -113,6 +120,8 @@ struct FamilyCharacterStore: Sendable {
             let data = try StoryEngineStorage.makeEncoder()
                 .encode(File(characters: list.map(File.Lossy.init)))
             try StoryEngineStorage.write(data, to: url)
+            // Hesap eşitlemesi (FAZ 16) bunu izler.
+            NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
         } catch {
             logger.error("🛑 Masal ailem kaydedilemedi")
             throw Failure.writeFailed
