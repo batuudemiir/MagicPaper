@@ -16,7 +16,7 @@ struct SeriesEndingSection: View {
     @EnvironmentObject private var app: MPAppState
 
     var body: some View {
-        switch series.endingState(for: story) {
+        switch series.endingState(for: story, atEnd: true) {
         case .none:
             EmptyView()
         case .offer:
@@ -77,7 +77,7 @@ struct SeriesEndingSection: View {
 
     private func start() {
         do {
-            try series.startSeries(from: story)
+            try series.startSeries(from: story, readToEnd: true)
             MPHaptics.success()
             app.showToast(SeriesCopy.startedToast, symbol: "sparkles")
         } catch {

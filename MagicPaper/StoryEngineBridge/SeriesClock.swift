@@ -11,6 +11,12 @@ import Foundation
 ///   seen, and an opened episode is never locked again.
 /// - **Turning the clock forward** opens the next episode early. Accepted: a
 ///   trustworthy clock needs the network, and the parent has no reason to.
+/// - **The latest time seen may lead the device clock by at most two days**
+///   (karar: 6 Ekim 2026). A clock set a year ahead by mistake and then
+///   corrected would otherwise hold every series back for that year. Only a
+///   reading made *while* the clock was wrong keeps its wrong day: dating it
+///   again would let a clock set back more than two days open an episode
+///   early, which the series never allows.
 /// - **The day of a reading** is computed in the time zone of that moment and
 ///   compared in that same zone, so travelling does not move the boundary.
 struct SeriesClock {
@@ -46,7 +52,11 @@ struct SeriesClock {
     static let debugDayOffsetKey = "mp_seriesClockDebugDays"
     #endif
 
-    /// The later of the device clock and the latest time seen; recorded.
+    /// How far the latest time seen may lead the device clock.
+    static let maximumLead: TimeInterval = 2 * 86_400
+
+    /// The later of the device clock and the latest time seen, the latter
+    /// never more than `maximumLead` ahead; recorded.
     func now() -> Date {
         let wall = wallClock()
         let seen = defaults.object(forKey: Self.highWaterKey) as? Date
@@ -54,7 +64,9 @@ struct SeriesClock {
             defaults.set(wall, forKey: Self.highWaterKey)
             return wall
         }
-        return seen
+        let capped = min(seen, wall.addingTimeInterval(Self.maximumLead))
+        if capped < seen { defaults.set(capped, forKey: Self.highWaterKey) }
+        return capped
     }
 
     /// A reading, dated now.

@@ -102,6 +102,21 @@ final class SeriesClockTests: XCTestCase {
         XCTAssertTrue(clock(test).dayHasPassed(since: mark))
     }
 
+    /// Karar 2: the latest time seen leads the device clock by two days at most.
+    func testTheLatestTimeSeenLeadsByAtMostTwoDays() {
+        let test = TestClock("2026-10-06 10:00")
+        test.set("2027-10-06 10:00")
+        _ = clock(test).now()
+        test.set("2026-10-06 10:00")
+        let now = clock(test).now()
+        XCTAssertEqual(now, TestClock.date("2026-10-08 10:00", zone: test.zone))
+        XCTAssertEqual(defaults.object(forKey: SeriesClock.highWaterKey) as? Date, now,
+                       "the stored value is capped too")
+        // Within the lead it still holds: turning back a day changes nothing.
+        test.set("2026-10-07 10:00")
+        XCTAssertEqual(clock(test).now(), TestClock.date("2026-10-08 10:00", zone: test.zone))
+    }
+
     func testTheDayIsGregorianWhateverTheCalendar() {
         let zone = TimeZone(identifier: "Europe/Istanbul")!
         XCTAssertEqual(SeriesClock.day(of: TestClock.date("2026-01-02 03:04", zone: zone), in: zone), "2026-01-02")
@@ -157,16 +172,19 @@ final class SeriesManagerTests: XCTestCase {
     private func firstStory(
         child: UUID = UUID(), age: Int = 3, mode: StoryMode = .bedtime,
         strategy: StorySelectionStrategy = .direct, seed: String = "s1",
-        character: FamilyCharacter? = nil
+        character: FamilyCharacter? = nil, finished: Bool = true
     ) throws -> MagicPaper.Story {
         let service = OfflineStoryService.shared
         let composed = try service.compose(
             childName: "Yeliz", ideaID: nil, companionID: nil, mode: mode, age: age, seed: seed,
             family: character)
-        return OfflineStoryMapper.appStory(
+        var story = OfflineStoryMapper.appStory(
             from: composed.story, childName: "Yeliz", childProfileID: child, storyIdeaID: nil,
             catalogVersion: composed.catalogVersion, mode: mode, selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: age), familyCharacter: character)
+        // Read to its last page, unless a test says otherwise.
+        if finished { story.lastReadPage = story.pages.count - 1 }
+        return story
     }
 
     private func libraryStory(_ id: UUID?) -> MagicPaper.Story? {
@@ -362,6 +380,63 @@ final class SeriesManagerTests: XCTestCase {
         XCTAssertTrue(SeriesCopy.blocked(child: "Yeliz").hasPrefix("Yeliz'in bir serisi"))
         XCTAssertTrue(SeriesCopy.blocked(child: "Can").hasPrefix("Can'ın bir serisi"))
         XCTAssertTrue(SeriesCopy.blocked(child: "Nuri").hasPrefix("Nuri'nin bir serisi"))
+    }
+
+    // MARK: - Decisions of 6 October (faz-13-takip)
+
+    /// Karar 3: "Devam ettir" only for a story read to the end.
+    func testAStoryNotReadToTheEndOffersNothingInItsActions() throws {
+        let story = try firstStory(finished: false)
+        let manager = manager()
+        XCTAssertEqual(manager.eligibility(for: story), .unavailable)
+        XCTAssertEqual(manager.endingState(for: story), .none, "the actions sheet shows nothing")
+        XCTAssertThrowsError(try manager.startSeries(from: story))
+        // On its last leaf it has just been read to the end.
+        XCTAssertEqual(manager.endingState(for: story, atEnd: true), .offer)
+        XCTAssertNoThrow(try manager.startSeries(from: story, readToEnd: true))
+    }
+
+    /// Karar 1: a finished series' first story is read again, not continued.
+    func testAFinishedSeriesFirstStoryIsNotContinuedAgain() throws {
+        let story = try firstStory()
+        let child = story.childProfileID!
+        let manager = manager()
+        try manager.startSeries(from: story)
+        for day in 7...10 {
+            clock.set("2026-10-\(String(format: "%02d", day)) 09:00")
+            manager.refreshUnlocks(for: child)
+            let opened = try XCTUnwrap(manager.allSeries(for: child).first?.episodes.last(where: \.isUnlocked))
+            manager.markRead(try XCTUnwrap(libraryStory(opened.storyID)))
+        }
+        XCTAssertEqual(manager.allSeries(for: child).first?.status, .completed)
+        XCTAssertEqual(manager.eligibility(for: story), .unavailable)
+        XCTAssertEqual(manager.endingState(for: story), .none)
+        XCTAssertEqual(manager.endingState(for: story, atEnd: true), .none)
+        let episodes = try XCTUnwrap(manager.allSeries(for: child).first?.episodes)
+        XCTAssertTrue(episodes.allSatisfy { libraryStory($0.storyID) != nil }, "the episodes stay on the shelf")
+    }
+
+    /// Karar 2: the app opened once under a clock a year ahead, then the
+    /// clock was corrected. The series is not held back for a year.
+    func testAClockAYearAheadAndBackDoesNotHoldTheSeries() throws {
+        let story = try firstStory()
+        let child = story.childProfileID!
+        let manager = manager()
+        try manager.startSeries(from: story)
+        clock.set("2027-10-06 10:00")
+        manager.refreshUnlocks(for: child)       // episode 2 opens: the accepted gap
+        clock.set("2026-10-07 09:00")           // corrected
+        let two = try XCTUnwrap(libraryStory(store.openSeries(for: child)?.episodes.first?.storyID))
+        manager.markRead(two)                    // read today, under the right clock
+        // "Now" still leads the corrected clock by up to two days, so the
+        // reading is dated two days ahead and episode 3 waits for that.
+        clock.set("2026-10-09 09:00")
+        manager.refreshUnlocks(for: child)
+        XCTAssertEqual(store.openSeries(for: child)?.episodes.filter(\.isUnlocked).count, 1)
+        clock.set("2026-10-10 09:00")
+        manager.refreshUnlocks(for: child)
+        XCTAssertEqual(store.openSeries(for: child)?.episodes.filter(\.isUnlocked).count, 2,
+                       "within three days, not a year later")
     }
 
     // MARK: - Review fixes
