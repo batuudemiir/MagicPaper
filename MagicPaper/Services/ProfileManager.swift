@@ -294,6 +294,8 @@ class ProfileManager: ObservableObject {
         // profile and are inherited by the next profile to be given the same
         // UUID — and the avatar colour was visibly wrong for a recreated child.
         UserDefaults.standard.removeObject(forKey: "mp_avatarColor_\(profile.id.uuidString)")
+        // Written until FAZ 14, read by nothing; removed so old devices do
+        // not keep it. Its successor is `StoryUsageStore`, below.
         UserDefaults.standard.removeObject(forKey: "read_history_\(profile.id.uuidString)")
         // The reading ledger is per child too (MPStreak): it goes with the child.
         MPStreak.eraseLedger(for: profile.id)
@@ -306,6 +308,10 @@ class ProfileManager: ObservableObject {
         // So do their series (FAZ 13); the episodes already on the shelf went
         // with `storiesDeleted` above.
         StorySeriesStore().delete(for: profileID)
+        // How the child read (FAZ 14): their own record and their events
+        // still waiting to be sent.
+        StoryUsageStore().delete(for: profileID)
+        ReadingEventQueue().delete(for: profileID)
 
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()

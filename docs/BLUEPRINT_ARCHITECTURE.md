@@ -648,3 +648,12 @@ A liked story continues as four more episodes. The architecture above holds for 
 - **Calm ending** (`CalmEnding`). The last page of an episode closes: no `?`, "yarın", "acaba", "birden", "sonra ne olacak". Enforced as a non-degrading pool filter on the last page, as a check on the rendered page, and as a validator gate on series closing lines. The rule replaces the `unresolvedThreads` idea in `MagicPaper_Persistence_Migration.md` §7: an episode never ends on a hook.
 - **Picking.** Episodes use `DeterministicPicker.mixedIndex` (SplitMix-finished hash): the plain `index` reads FNV's poorly mixed low bits, and two episodes then picked the same line on every page one time in four. Standalone stories keep `index`. Each episode also prefers lines the earlier episodes have not used (a degrading preference).
 - **Planning** (`SeriesPlanner`): continuations alternate A-B-A-B from a seeded start; discoveries are new in every episode and never the keepsake (a search that first forbids any repeat, then allows one, never twice in a row); every episode must compose both with and without the Masal ailem character.
+
+## 18. Learning from reading (FAZ 14, 6 October 2026)
+
+Selection weight gains one more factor, `usage`, after interests and cooldown. It never filters.
+
+- **`UsageLearner`** turns the child's own reading (`StoryUsage`: blueprint, companion, mode, completions, abandoned) into a `UsageProfile`: a multiplier per narrative family and per companion. Re-read +1, finished once +¼, abandoned −1 when the mode counts it; `1 + sum / (stories + 2)`, clamped to 0.6…1.8 so it never outweighs an interest (×3). Nothing read means no keys, every multiplier exactly 1, and the seeded rotation is untouched — every pinned book stays the same book.
+- **`storyModes[].success.abandonIsPenalty`** (default `true`). Bedtime sets it to `false`: a bedtime story left halfway usually means the child fell asleep.
+- **`aggregateWeight`** on a blueprint (default 1, not written when 1; integrity error when not a positive number). A multiplier for what every child's reading says, to be published by the server from `BlueprintOutcome` rows (starts, completions, re-reads) with Thompson sampling after FAZ 16, delivered as a catalog package (FAZ 15). Nothing sets it yet.
+

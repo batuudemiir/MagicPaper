@@ -17,6 +17,8 @@ struct StoryReaderView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     @StateObject private var model: StoryReaderModel
+    /// Bu açılışın okuma kaydı (FAZ 14).
+    @State private var recorder: ReadingSessionRecorder
     @StateObject private var favorites = MPFavorites.shared
     @StateObject private var streak = MPStreak.shared
     @StateObject private var speech = MPSpeech.shared
@@ -47,6 +49,7 @@ struct StoryReaderView: View {
             startingAt: startingPage,
             savedPage: story.lastReadPage
         ))
+        _recorder = State(initialValue: ReadingSessionRecorder(story: story))
     }
 
     private var theme: MP.ReadTheme { app.readTheme }
@@ -158,7 +161,10 @@ struct StoryReaderView: View {
             index: index,
             story: story,
             model: model,
-            onReadAgain: { model.restart() },
+            onReadAgain: {
+                recorder.readAgain()
+                model.restart()
+            },
             onClose: close
         )
         .environmentObject(app)
@@ -201,6 +207,7 @@ struct StoryReaderView: View {
         budgetTask?.cancel()
         model.persistProgress()
         commitReadingTime()
+        recordSession()
         speech.stop()
     }
 
@@ -310,7 +317,15 @@ struct StoryReaderView: View {
         speech.stop()
         model.persistProgress()
         commitReadingTime()
+        // Süre bittiyse oturum da bitti; okuyucu kapanınca ikinci kez yazılmaz.
+        recordSession()
         withAnimation(MP.M.gated(MP.M.easeOut)) { budgetSpent = true }
+    }
+
+    /// Oturumun kaydı: çocuğun kendi okuma kaydı ve, ebeveyn izin verdiyse,
+    /// anonim bir okuma olayı (FAZ 14).
+    private func recordSession() {
+        recorder.close(furthestPage: model.furthestPageReached, session: readingSession)
     }
 
     // MARK: - Sayfa çevirme
@@ -332,6 +347,7 @@ struct StoryReaderView: View {
 
         if model.isOnEndingLeaf {
             speech.stop()
+            recorder.reachedEnding()
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
             SeriesManager.shared.markRead(story)

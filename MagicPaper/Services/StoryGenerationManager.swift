@@ -382,7 +382,8 @@ extension StoryGenerationManager {
             subOption: subOption,
             family: family,
             interests: profile.interests,
-            recent: recentOrigins(for: profile)
+            recent: recentOrigins(for: profile),
+            usage: StoryUsageStore().usage(of: stories.filter { $0.belongs(to: profile) }, for: profile.id)
         )
 
         let mapped = OfflineStoryMapper.appStory(
@@ -407,8 +408,6 @@ extension StoryGenerationManager {
             ageBand: service.servedBand(forAge: profile.age),
             existing: stories
         )
-
-        recordBlueprintRead(composed.story.blueprintID.rawValue, for: profile)
 
         stories.insert(story, at: 0)
         saveStories()
@@ -440,19 +439,6 @@ extension StoryGenerationManager {
             .compactMap(\.origin)
             .prefix(limit)
             .map { $0 }
-    }
-
-    /// A bounded list of the blueprints this child was given. Nothing reads it:
-    /// since FAZ 12 the engine's cooldown reads the saved stories' origins
-    /// (`recentOrigins`), which also know the setting, companion and discovery.
-    /// Kept so existing devices' keys stay meaningful until FAZ 14 decides what
-    /// local history to keep; `deleteProfile` still removes it.
-    private func recordBlueprintRead(_ blueprintID: String, for profile: UserProfile) {
-        let key = "read_history_\(profile.id.uuidString)"
-        var seen = UserDefaults.standard.stringArray(forKey: key) ?? []
-        seen.append(blueprintID)
-        // Bounded: this is a cooldown signal, not an archive.
-        UserDefaults.standard.set(Array(seen.suffix(40)), forKey: key)
     }
 
 }
