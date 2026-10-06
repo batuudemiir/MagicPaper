@@ -544,6 +544,7 @@ struct PrivacyAndDataView: View {
         AvatarStore.eraseAll()
         FamilyCharacterStore.eraseAll()
         StorySeriesStore.eraseAll()
+        d.removeObject(forKey: SeriesClock.highWaterKey)
         dismiss()
     }
 }

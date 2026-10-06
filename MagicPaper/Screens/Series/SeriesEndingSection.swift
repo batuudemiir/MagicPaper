@@ -14,7 +14,6 @@ struct SeriesEndingSection: View {
 
     @ObservedObject private var series = SeriesManager.shared
     @EnvironmentObject private var app: MPAppState
-    @State private var isStarting = false
 
     var body: some View {
         switch series.endingState(for: story) {
@@ -27,7 +26,7 @@ struct SeriesEndingSection: View {
                     .foregroundStyle(theme.muted)
                     .fixedSize(horizontal: false, vertical: true)
                 MPButton(title: SeriesCopy.continueButton, size: .lg, icon: "sparkles",
-                         fullWidth: true, isDisabled: isStarting) {
+                         fullWidth: true) {
                     start()
                 }
                 .accessibilityHint(SeriesCopy.continueAccessibilityHint)
@@ -77,9 +76,6 @@ struct SeriesEndingSection: View {
     }
 
     private func start() {
-        guard !isStarting else { return }
-        isStarting = true
-        defer { isStarting = false }
         do {
             try series.startSeries(from: story)
             MPHaptics.success()

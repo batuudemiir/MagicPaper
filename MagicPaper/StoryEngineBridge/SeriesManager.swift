@@ -64,15 +64,42 @@ final class SeriesManager: ObservableObject {
 
     // MARK: - Reading state
 
-    func openSeries(for childID: UUID) -> StorySeries? { store.openSeries(for: childID) }
+    func openSeries(for childID: UUID) -> StorySeries? { list(for: childID).first(where: \.isOpen) }
 
-    func allSeries(for childID: UUID) -> [StorySeries] { store.series(for: childID) }
+    func allSeries(for childID: UUID) -> [StorySeries] { list(for: childID) }
+
+    /// What the child's file holds, decoded once until the file changes.
+    /// Screens ask from `body`; without this every redraw read and decoded
+    /// the file, episode text included.
+    private var cache: [UUID: (stamp: Date?, list: [StorySeries])] = [:]
+
+    private func list(for childID: UUID) -> [StorySeries] {
+        let stamp = store.modificationDate(for: childID)
+        if let cached = cache[childID], cached.stamp == stamp { return cached.list }
+        let list = store.series(for: childID)
+        cache[childID] = (stamp, list)
+        return list
+    }
+
+    /// Writes a series. A failed write is logged and reported, never shown as
+    /// if it had happened.
+    @discardableResult
+    private func save(_ series: StorySeries) -> Bool {
+        defer { cache[series.childID] = nil }
+        do {
+            try store.save(series)
+            return true
+        } catch {
+            logger.notice("Seri: kaydedilemedi")
+            return false
+        }
+    }
 
     /// The series a story belongs to: as its first story or as an episode.
     func series(containing story: Story) -> StorySeries? {
         guard let childID = story.childProfileID else { return nil }
         let id = story.origin?.seriesID
-        return store.series(for: childID).first {
+        return list(for: childID).first {
             $0.id.uuidString == id || $0.firstStoryID == story.id
         }
     }
@@ -123,7 +150,7 @@ final class SeriesManager: ObservableObject {
     }
 
     func cardState(for childID: UUID) -> CardState? {
-        guard let series = store.openSeries(for: childID) else { return nil }
+        guard let series = openSeries(for: childID) else { return nil }
         if let ready = series.episodes.first(where: { $0.isUnlocked && $0.read == nil }),
            let id = ready.storyID {
             return .ready(storyID: id, episode: ready.number, title: series.firstStoryTitle)
@@ -146,7 +173,7 @@ final class SeriesManager: ObservableObject {
               let band = origin.ageBand.flatMap(AgeBand.init),
               service.seriesAvailable(mode: mode, band: band)
         else { return .unavailable }
-        let all = store.series(for: childID)
+        let all = list(for: childID)
         // A story continues once. Whether a finished series' first story may
         // start another is not decided; today it may not.
         if all.contains(where: { $0.firstStoryID == story.id }) { return .unavailable }
@@ -182,11 +209,7 @@ final class SeriesManager: ObservableObject {
             id: id, childID: childID, childName: story.childName,
             firstStoryID: story.id, firstStoryTitle: story.title,
             plan: planned.plan, episodes: episodes, firstRead: clock.mark(), createdAt: clock.now())
-        do {
-            try store.save(series)
-        } catch {
-            throw StartFailure.couldNotWrite
-        }
+        guard save(series) else { throw StartFailure.couldNotWrite }
         logger.info("Seri başladı (4 bölüm)")
         revision += 1
         return series
@@ -201,7 +224,7 @@ final class SeriesManager: ObservableObject {
         guard let childID = story.childProfileID,
               let seriesID = story.origin?.seriesID,
               let number = story.origin?.seriesEpisode,
-              var series = store.series(for: childID).first(where: { $0.id.uuidString == seriesID }),
+              var series = list(for: childID).first(where: { $0.id.uuidString == seriesID }),
               let index = series.episodes.firstIndex(where: { $0.number == number })
         else { return .notAnEpisode }
         guard series.episodes[index].read == nil else {
@@ -210,13 +233,17 @@ final class SeriesManager: ObservableObject {
         }
         series.episodes[index].read = clock.mark()
         var outcome = ReadOutcome.episodeRead
-        if series.episodes.allSatisfy({ $0.read != nil }) {
+        // Only an open series with all its episodes completes: a series that
+        // closed early (its unopened episodes gone) stays closed.
+        if series.status == .open,
+           series.episodes.count == SeriesPlanner.episodeNumbers.count,
+           series.episodes.allSatisfy({ $0.read != nil }) {
             series.status = .completed
             series.completedAt = clock.now()
             outcome = .seriesCompleted
             logger.info("Seri tamamlandı")
         }
-        try? store.save(series)
+        guard save(series) else { return .episodeRead }
         revision += 1
         return outcome
     }
@@ -225,7 +252,7 @@ final class SeriesManager: ObservableObject {
     /// episode that was deleted from the library before it was read. At most
     /// one episode opens: the one after it waits for this one to be read.
     func refreshUnlocks(for childID: UUID) {
-        guard var series = store.openSeries(for: childID) else { return }
+        guard var series = openSeries(for: childID) else { return }
         var changed = false
 
         for index in series.episodes.indices {
@@ -248,8 +275,7 @@ final class SeriesManager: ObservableObject {
             changed = true
         }
 
-        guard changed else { return }
-        try? store.save(series)
+        guard changed, save(series) else { return }
         revision += 1
     }
 
@@ -260,7 +286,7 @@ final class SeriesManager: ObservableObject {
     /// the same plan without the character; if the catalog can no longer do
     /// that, the series ends calmly with what has opened.
     func familyCharacterRemoved(id: UUID, childID: UUID) {
-        for var series in store.series(for: childID)
+        for var series in list(for: childID)
         where series.isOpen && series.plan.family?.characterID == id.uuidString {
             let plan = series.plan.withoutFamily()
             do {
@@ -281,14 +307,14 @@ final class SeriesManager: ObservableObject {
                 series.completedAt = clock.now()
                 logger.notice("Seri: açılmamış bölümler yazılamadı, seri kapandı")
             }
-            try? store.save(series)
-            revision += 1
+            if save(series) { revision += 1 }
         }
     }
 
     /// Every series of a deleted profile.
     func deleteAll(for childID: UUID) {
         store.delete(for: childID)
+        cache[childID] = nil
         revision += 1
     }
 

@@ -69,6 +69,9 @@ struct SeriesCard: View {
     }
 
     private func open(_ id: UUID) {
+        // An episode deleted from the library before it was read comes back
+        // here, not only on the next launch.
+        series.refreshUnlocks(for: childID)
         guard let story = library.getStory(id: id) else { return }
         app.readerStory = story
     }

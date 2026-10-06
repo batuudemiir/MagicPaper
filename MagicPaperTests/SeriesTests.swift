@@ -364,6 +364,41 @@ final class SeriesManagerTests: XCTestCase {
         XCTAssertTrue(SeriesCopy.blocked(child: "Nuri").hasPrefix("Nuri'nin bir serisi"))
     }
 
+    // MARK: - Review fixes
+
+    /// A series that closed early stays closed when what opened is read.
+    func testAClosedSeriesNeverTurnsCompleted() throws {
+        let story = try firstStory()
+        let child = story.childProfileID!
+        let manager = manager()
+        var series = try manager.startSeries(from: story)
+        clock.set("2026-10-07 09:00")
+        manager.refreshUnlocks(for: child)
+        series = try XCTUnwrap(store.openSeries(for: child))
+        series.episodes.removeAll { !$0.isUnlocked }
+        series.status = .closed
+        try store.save(series)
+        let two = try XCTUnwrap(libraryStory(series.episodes.first?.storyID))
+        XCTAssertEqual(manager.markRead(two), .episodeRead)
+        XCTAssertEqual(manager.allSeries(for: child).first?.status, .closed)
+    }
+
+    /// A file the app cannot read whole is set aside, never written over.
+    func testAnUnreadableFileIsSetAsideNotOverwritten() throws {
+        let story = try firstStory()
+        let child = story.childProfileID!
+        let directory = try XCTUnwrap(StoryEngineStorage.directory(seriesFolder))
+        let file = directory.appendingPathComponent("\(child.uuidString).json")
+        try Data("not json".utf8).write(to: file)
+        try manager().startSeries(from: story)
+        let names = try FileManager.default.contentsOfDirectory(atPath: directory.path)
+        XCTAssertTrue(names.contains { $0.hasPrefix(child.uuidString) && $0.contains("unreadable") })
+        XCTAssertEqual(store.series(for: child).count, 1)
+        store.delete(for: child)
+        XCTAssertTrue(try FileManager.default.contentsOfDirectory(atPath: directory.path)
+            .filter { $0.hasPrefix(child.uuidString) }.isEmpty, "profile deletion takes the set-aside copy too")
+    }
+
     // MARK: - Masal ailem
 
     func testDeletingTheCharacterRewritesOnlyUnopenedEpisodes() throws {
