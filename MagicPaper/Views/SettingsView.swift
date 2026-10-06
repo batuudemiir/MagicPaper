@@ -332,6 +332,36 @@ struct SettingsView: View {
                     MPRowDivider()
 
                     MPListRow(
+                        symbol: "clock",
+                        iconColor: MP.C.brand,
+                        title: SeriesCopy.debugAdvance,
+                        description: "Seri bölümünü simülatörde açmak için",
+                        action: {
+                            let key = SeriesClock.debugDayOffsetKey
+                            UserDefaults.standard.set(UserDefaults.standard.integer(forKey: key) + 1, forKey: key)
+                            if let id = ProfileManager.shared.currentProfile?.id {
+                                SeriesManager.shared.refreshUnlocks(for: id)
+                            }
+                            app.showToast("Seri saati +1 gün", symbol: "clock")
+                        }
+                    ) { EmptyView() }
+
+                    MPRowDivider()
+
+                    MPListRow(
+                        symbol: "clock",
+                        iconColor: MP.C.textMuted,
+                        title: SeriesCopy.debugReset,
+                        action: {
+                            UserDefaults.standard.removeObject(forKey: SeriesClock.debugDayOffsetKey)
+                            UserDefaults.standard.removeObject(forKey: SeriesClock.highWaterKey)
+                            app.showToast("Seri saati sıfırlandı", symbol: "clock")
+                        }
+                    ) { EmptyView() }
+
+                    MPRowDivider()
+
+                    MPListRow(
                         symbol: "book-open",
                         iconColor: MP.C.calm,
                         title: "Dekorasyon galerisi",

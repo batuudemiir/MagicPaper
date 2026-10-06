@@ -322,6 +322,48 @@ final class SeriesManagerTests: XCTestCase {
         XCTAssertNotNil(libraryStory(id))
     }
 
+    // MARK: - What the screens show
+
+    func testTheLastPageShowsWhatTheStoryAllows() throws {
+        let child = UUID()
+        let story = try firstStory(child: child, seed: "a")
+        let other = try firstStory(child: child, seed: "b")
+        let manager = manager()
+        XCTAssertEqual(manager.endingState(for: story), .offer)
+        XCTAssertEqual(manager.endingState(for: try firstStory(strategy: .surprise)), .none,
+                       "no button on a surprise story")
+        try manager.startSeries(from: story)
+        XCTAssertEqual(manager.endingState(for: story), .started)
+        XCTAssertEqual(manager.endingState(for: other), .blocked)
+
+        clock.set("2026-10-07 09:00")
+        manager.refreshUnlocks(for: child)
+        let two = try XCTUnwrap(libraryStory(store.openSeries(for: child)?.episodes.first?.storyID))
+        XCTAssertEqual(manager.endingState(for: two), .episode(2))
+    }
+
+    func testTheCardSaysReadyThenWaiting() throws {
+        let story = try firstStory()
+        let child = story.childProfileID!
+        let manager = manager()
+        XCTAssertNil(manager.cardState(for: child))
+        let series = try manager.startSeries(from: story)
+        XCTAssertEqual(manager.cardState(for: child), .waiting(episode: 2, title: series.firstStoryTitle))
+        clock.set("2026-10-07 09:00")
+        manager.refreshUnlocks(for: child)
+        guard case .ready(let id, 2, _) = manager.cardState(for: child) else {
+            return XCTFail("episode 2 should be ready")
+        }
+        manager.markRead(try XCTUnwrap(libraryStory(id)))
+        XCTAssertEqual(manager.cardState(for: child), .waiting(episode: 3, title: series.firstStoryTitle))
+    }
+
+    func testTheCalmLineFollowsTheName() {
+        XCTAssertTrue(SeriesCopy.blocked(child: "Yeliz").hasPrefix("Yeliz'in bir serisi"))
+        XCTAssertTrue(SeriesCopy.blocked(child: "Can").hasPrefix("Can'ın bir serisi"))
+        XCTAssertTrue(SeriesCopy.blocked(child: "Nuri").hasPrefix("Nuri'nin bir serisi"))
+    }
+
     // MARK: - Masal ailem
 
     func testDeletingTheCharacterRewritesOnlyUnopenedEpisodes() throws {

@@ -77,6 +77,63 @@ final class SeriesManager: ObservableObject {
         }
     }
 
+    // MARK: - What the screens show
+
+    /// The series part of a story's last page.
+    enum EndingState: Equatable {
+        case none
+        /// "Devam ettir".
+        case offer
+        /// Another series of this child is open: the calm line.
+        case blocked
+        /// This story started the open series.
+        case started
+        /// An episode of the open series.
+        case episode(Int)
+        /// The last episode of a finished series: "Seri tamamlandı".
+        case completed
+    }
+
+    func endingState(for story: Story) -> EndingState {
+        if let series = series(containing: story) {
+            if story.id == series.firstStoryID { return series.isOpen ? .started : .none }
+            let number = story.origin?.seriesEpisode ?? 0
+            switch series.status {
+            case .completed:
+                return number == SeriesPlanner.episodeNumbers.last ? .completed : .none
+            case .open:
+                return .episode(number)
+            case .closed:
+                return .none
+            }
+        }
+        switch eligibility(for: story) {
+        case .available: return .offer
+        case .blockedByOpenSeries: return .blocked
+        case .unavailable: return .none
+        }
+    }
+
+    /// The series card on Home and in the Library.
+    enum CardState: Equatable {
+        /// An episode has opened and is waiting to be read.
+        case ready(storyID: UUID, episode: Int, title: String)
+        /// The next episode opens on a later day.
+        case waiting(episode: Int, title: String)
+    }
+
+    func cardState(for childID: UUID) -> CardState? {
+        guard let series = store.openSeries(for: childID) else { return nil }
+        if let ready = series.episodes.first(where: { $0.isUnlocked && $0.read == nil }),
+           let id = ready.storyID {
+            return .ready(storyID: id, episode: ready.number, title: series.firstStoryTitle)
+        }
+        if let next = series.nextLocked {
+            return .waiting(episode: next.number, title: series.firstStoryTitle)
+        }
+        return nil
+    }
+
     // MARK: - Eligibility
 
     func eligibility(for story: Story) -> Eligibility {

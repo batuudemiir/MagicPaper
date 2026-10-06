@@ -58,10 +58,16 @@ struct ContentView: View {
         // child's, and switch when the parent switches profiles.
         .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
             MPStreak.shared.activate(profileID: id)
+            // A series episode whose day has come opens here (FAZ 13); no
+            // notification announces it.
+            if let id { SeriesManager.shared.refreshUnlocks(for: id) }
         }
         // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
         .onChange(of: scenePhase) { _, phase in
             if phase == .background { app.enterChildMode() }
+            if phase == .active, let id = profileManager.currentProfile?.id {
+                SeriesManager.shared.refreshUnlocks(for: id)
+            }
         }
         .overlay { sheetLayer }
         .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: { app.creationPreset = nil }) {

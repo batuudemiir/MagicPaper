@@ -14,6 +14,8 @@ import SwiftUI
 struct StoryLeafView: View {
 
     let index: Int
+    /// The saved story, for what its last leaf offers (FAZ 13 series).
+    let story: Story
     @ObservedObject var model: StoryReaderModel
     @EnvironmentObject private var app: MPAppState
 
@@ -39,6 +41,7 @@ struct StoryLeafView: View {
             )
         case .ending:
             StoryEndingLeaf(
+                story: story,
                 theme: app.readTheme,
                 accent: model.story.accent,
                 onReadAgain: onReadAgain,

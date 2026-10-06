@@ -21,7 +21,7 @@ struct SeriesClock {
     var defaults: UserDefaults
 
     init(
-        wallClock: @escaping () -> Date = Date.init,
+        wallClock: @escaping () -> Date = SeriesClock.deviceClock,
         timeZone: @escaping () -> TimeZone = { TimeZone.current },
         defaults: UserDefaults = .standard
     ) {
@@ -29,6 +29,22 @@ struct SeriesClock {
         self.timeZone = timeZone
         self.defaults = defaults
     }
+
+    /// The device clock. In a DEBUG build, Ayarlar > Geliştirici can move it
+    /// forward a day at a time to look at an opened episode in the simulator;
+    /// a released app has no such switch (no "şimdi aç" for parents).
+    static func deviceClock() -> Date {
+        #if DEBUG
+        let days = UserDefaults.standard.integer(forKey: debugDayOffsetKey)
+        return Date().addingTimeInterval(TimeInterval(days) * 86_400)
+        #else
+        return Date()
+        #endif
+    }
+
+    #if DEBUG
+    static let debugDayOffsetKey = "mp_seriesClockDebugDays"
+    #endif
 
     /// The later of the device clock and the latest time seen; recorded.
     func now() -> Date {

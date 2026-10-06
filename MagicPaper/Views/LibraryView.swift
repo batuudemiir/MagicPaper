@@ -51,6 +51,9 @@ struct LibraryView: View {
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 10) {
+                        if !allChildren, let child = profileManager.currentProfile?.id {
+                            SeriesCard(childID: child)
+                        }
                         ForEach(visibleStories) { story in
                             MPStoryCard(
                                 title: story.title,
@@ -60,7 +63,9 @@ struct LibraryView: View {
                                 coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
                                 mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
                                 status: status(of: story),
-                                badge: story.isIllustrated ? "Görselli" : nil,
+                                badge: story.isIllustrated ? "Görselli" : SeriesCopy.episodeBadge(story),
+                                badgeTone: story.isIllustrated ? .reward : .neutral,
+                                badgeSymbol: story.isIllustrated ? "crown.fill" : "bookmark",
                                 progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
                                 layout: .row
                             ) {
