@@ -121,7 +121,9 @@ final class SeriesManager: ObservableObject {
         case completed
     }
 
-    func endingState(for story: Story) -> EndingState {
+    /// - Parameter atEnd: the story's last leaf is on screen, so it has been
+    ///   read to the end whatever the saved progress says yet.
+    func endingState(for story: Story, atEnd: Bool = false) -> EndingState {
         if let series = series(containing: story) {
             if story.id == series.firstStoryID { return series.isOpen ? .started : .none }
             let number = story.origin?.seriesEpisode ?? 0
@@ -134,7 +136,7 @@ final class SeriesManager: ObservableObject {
                 return .none
             }
         }
-        switch eligibility(for: story) {
+        switch eligibility(for: story, readToEnd: atEnd) {
         case .available: return .offer
         case .blockedByOpenSeries: return .blocked
         case .unavailable: return .none
@@ -163,8 +165,14 @@ final class SeriesManager: ObservableObject {
 
     // MARK: - Eligibility
 
-    func eligibility(for story: Story) -> Eligibility {
-        guard story.status == .completed,
+    /// - Parameter readToEnd: the caller knows the story was just read to its
+    ///   last leaf. Otherwise the library's saved progress decides.
+    func eligibility(for story: Story, readToEnd: Bool = false) -> Eligibility {
+        // Only a story read to the end (karar: 6 Ekim 2026): "Devam ettir"
+        // is how a family says they liked it, and they have to have heard it.
+        let finished = readToEnd || (library.getStory(id: story.id) ?? story).isFinished
+        guard finished,
+              story.status == .completed,
               let origin = story.origin,
               origin.selectionStrategy == StorySelectionStrategy.direct.rawValue,
               origin.seriesID == nil,
@@ -174,8 +182,8 @@ final class SeriesManager: ObservableObject {
               service.seriesAvailable(mode: mode, band: band)
         else { return .unavailable }
         let all = list(for: childID)
-        // A story continues once. Whether a finished series' first story may
-        // start another is not decided; today it may not.
+        // A story continues once (karar: 6 Ekim 2026): after its series is
+        // finished, the story and its episodes are read again, not continued.
         if all.contains(where: { $0.firstStoryID == story.id }) { return .unavailable }
         if all.contains(where: \.isOpen) { return .blockedByOpenSeries }
         return .available
@@ -186,8 +194,8 @@ final class SeriesManager: ObservableObject {
     /// Plans the series, writes all four episodes and saves them. Episode 2
     /// opens on the next calendar day.
     @discardableResult
-    func startSeries(from story: Story) throws -> StorySeries {
-        guard eligibility(for: story) == .available,
+    func startSeries(from story: Story, readToEnd: Bool = false) throws -> StorySeries {
+        guard eligibility(for: story, readToEnd: readToEnd) == .available,
               let origin = story.origin, let childID = story.childProfileID
         else { throw StartFailure.notEligible }
 
