@@ -5,6 +5,7 @@
   "settings": [
     {
       "id": "setting_whispering_forest_001",
+      "interests": ["nature"],
       "name": "Fısıldayan Orman",
       "description": "Ağaçların arasından ince bir aralık geçen, sakin bir orman.",
       "tags": [
@@ -32,6 +33,7 @@
     },
     {
       "id": "setting_night_garden_001",
+      "interests": ["nature"],
       "name": "Gece Bahçesi",
       "description": "Alçak bir kapısı olan, geceleri sessizleşen bir bahçe.",
       "tags": [
@@ -59,6 +61,7 @@
     },
     {
       "id": "setting_cloud_mountain_001",
+      "interests": ["nature"],
       "name": "Bulut Dağı",
       "description": "Yolu taşlı, tepesi bulutlara değen bir dağ.",
       "tags": [
@@ -84,6 +87,7 @@
     },
     {
       "id": "setting_coral_sea_001",
+      "interests": ["sea"],
       "name": "Mercan Denizi",
       "description": "Suyu berrak, dibi mercanla kaplı bir deniz.",
       "tags": [
@@ -106,6 +110,7 @@
     },
     {
       "id": "setting_old_orchard_001",
+      "interests": ["nature"],
       "name": "Eski Meyve Bahçesi",
       "description": "Uzun otları ve alçak duvarı olan, bakımlı ama ıssız bir meyve bahçesi.",
       "tags": [
@@ -133,6 +138,7 @@
     },
     {
       "id": "setting_festival_meadow_001",
+      "interests": ["nature"],
       "name": "Şenlik Çayırı",
       "description": "Başkalarının çoktan oyuna başladığı, güneşli ve geniş bir çayır.",
       "tags": [
@@ -164,6 +170,7 @@
   "companions": [
     {
       "id": "companion_fox_pilot_001",
+      "interests": ["animals"],
       "name": "Tarçın",
       "type": "tilki",
       "personality": "Sakin ve güven veren.",
@@ -196,6 +203,7 @@
     },
     {
       "id": "companion_hedgehog_pilot_001",
+      "interests": ["animals"],
       "name": "Kestane",
       "type": "kirpi",
       "personality": "Ürkek ama cesaretlendirici.",
@@ -228,6 +236,7 @@
     },
     {
       "id": "companion_owl_pilot_001",
+      "interests": ["animals"],
       "name": "Yıldız",
       "type": "baykuş",
       "personality": "Sabırlı, az konuşan.",
@@ -261,6 +270,7 @@
     },
     {
       "id": "companion_dolphin_pilot_001",
+      "interests": ["animals", "sea"],
       "name": "Köpük",
       "type": "yunus",
       "personality": "Neşeli ve yardımsever.",
@@ -291,6 +301,7 @@
     },
     {
       "id": "companion_rabbit_pilot_001",
+      "interests": ["animals"],
       "name": "Pamuk",
       "type": "tavşan",
       "personality": "Çekingen ve her şeyi düz anlayan.",
@@ -397,6 +408,7 @@
     },
     {
       "id": "object_shell_pilot_001",
+      "interests": ["sea"],
       "name": "parlak bir deniz kabuğu",
       "description": "Bir başkasına ait olduğu belli, parlak bir kabuk.",
       "compatibleThemes": [
@@ -443,6 +455,7 @@
     },
     {
       "id": "object_fallen_nest_001",
+      "interests": ["animals", "nature"],
       "name": "yere düşmüş küçük bir yuva",
       "titleName": "Düşmüş Yuva",
       "description": "Rüzgârda dalından ayrılmış, hâlâ sapasağlam duran küçük bir yuva.",
@@ -468,6 +481,7 @@
     },
     {
       "id": "object_wilting_seedling_001",
+      "interests": ["nature"],
       "name": "solmaya başlamış bir fide",
       "titleName": "Solan Fide",
       "description": "Yaprakları aşağı sarkmış, henüz kurumamış küçük bir fide.",
@@ -1720,6 +1734,7 @@
     },
     {
       "id": "bp_charge_tending_001",
+      "interests": ["nature"],
       "schemaVersion": 2,
       "version": "2.0.0",
       "family": "charge",
@@ -2715,5 +2730,19 @@
       "possessive": "hamsteri",
       "blocksSoftening": true
     }
+  ],
+  "interests": [
+    { "id": "animals", "name": "Hayvanlar", "symbol": "hare" },
+    { "id": "space", "name": "Uzay", "symbol": "airplane.departure" },
+    { "id": "dinosaurs", "name": "Dinozorlar", "symbol": "lizard" },
+    { "id": "princesses", "name": "Prensesler", "symbol": "crown.fill" },
+    { "id": "cars", "name": "Arabalar", "symbol": "car" },
+    { "id": "sea", "name": "Deniz", "symbol": "fish" },
+    { "id": "music", "name": "Müzik", "symbol": "music.note" },
+    { "id": "magic", "name": "Sihir", "symbol": "wand.and.stars" },
+    { "id": "nature", "name": "Doğa", "symbol": "tree" },
+    { "id": "robots", "name": "Robotlar", "symbol": "cpu" },
+    { "id": "sports", "name": "Spor", "symbol": "soccerball" },
+    { "id": "pirates", "name": "Korsanlar", "symbol": "sailboat" }
   ]
 }

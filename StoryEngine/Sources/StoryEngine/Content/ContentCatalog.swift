@@ -32,6 +32,10 @@ public struct ContentCatalog: Decodable, Sendable {
     public let familyMoments: [StoryBeat]
     /// The animal kinds a Masal ailem pet can be. A fixed list, not free text.
     public let familyAnimalKinds: [CatalogFamilyAnimalKind]
+    /// The interest vocabulary (FAZ 12): every word a parent can pick under
+    /// "Neleri sever?" and content can be tagged with. Authored, not coded —
+    /// which words are *shown* is decided by coverage, not by this list.
+    public let interests: [CatalogInterest]
 
     /// How many `resolutions` the file declares.
     ///
@@ -46,6 +50,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case storyIdeas
         case storyModes
         case familyMoments, familyAnimalKinds
+        case interests
         case resolutions
     }
 
@@ -65,6 +70,7 @@ public struct ContentCatalog: Decodable, Sendable {
         familyMoments = try container.decodeIfPresent([StoryBeat].self, forKey: .familyMoments) ?? []
         familyAnimalKinds = try container.decodeIfPresent(
             [CatalogFamilyAnimalKind].self, forKey: .familyAnimalKinds) ?? []
+        interests = try container.decodeIfPresent([CatalogInterest].self, forKey: .interests) ?? []
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -82,6 +88,7 @@ public struct ContentCatalog: Decodable, Sendable {
         storyModes: [StoryModeProfile] = [],
         familyMoments: [StoryBeat] = [],
         familyAnimalKinds: [CatalogFamilyAnimalKind] = [],
+        interests: [CatalogInterest] = [],
         declaredResolutionCount: Int = 0
     ) {
         self.version = version
@@ -97,6 +104,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.storyModes = storyModes
         self.familyMoments = familyMoments
         self.familyAnimalKinds = familyAnimalKinds
+        self.interests = interests
         self.declaredResolutionCount = declaredResolutionCount
     }
 
@@ -110,6 +118,7 @@ public struct ContentCatalog: Decodable, Sendable {
     public func familyAnimalKind(_ id: ContentID) -> CatalogFamilyAnimalKind? {
         familyAnimalKinds.first { $0.id == id }
     }
+    public func interest(_ id: InterestTag) -> CatalogInterest? { interests.first { $0.id == id } }
     public func templates(for role: PageRole) -> [CatalogTemplate] { templates.filter { $0.role == role } }
 
     /// Every setting tag in the catalog — the vocabulary other records may
@@ -216,6 +225,7 @@ extension ContentCatalog {
                 if !$0.contains($1) { $0.append($1) }
             },
             familyAnimalKinds: catalogs.flatMap(\.familyAnimalKinds),
+            interests: catalogs.flatMap(\.interests),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
     }

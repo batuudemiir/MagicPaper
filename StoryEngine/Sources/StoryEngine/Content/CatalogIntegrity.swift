@@ -103,6 +103,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkAgeFit(catalog))
         issues.append(contentsOf: checkStoryModes(catalog))
         issues.append(contentsOf: checkFamily(catalog))
+        issues.append(contentsOf: checkInterests(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -649,6 +650,55 @@ public struct CatalogIntegrityChecker: Sendable {
                 issues.append(.init(severity: .warning, code: "mode_unavailable_in_band",
                                     message: "Mode '\(mode.rawValue)' reaches no beat-authored blueprint in band \(band); it is not offered there."))
             }
+        }
+        return issues
+    }
+
+    /// İlgi alanı sözlüğü (FAZ 12).
+    ///
+    /// İçeriğin kullandığı her kelime sözlükte tanımlı olmalı: tanımsız bir
+    /// kelime hiçbir çocuğun seçimiyle eşleşmez, yani etiket sessizce işe
+    /// yaramaz — bu bir **hata**. Bir kelimenin içeriği olan bir banda
+    /// ulaşmaması ise **uyarı**: kelime ekranda gösterilmez, eksik içerik
+    /// hattına gider.
+    private func checkInterests(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        var defined = Set<InterestTag>()
+        for interest in catalog.interests {
+            if !defined.insert(interest.id).inserted {
+                issues.append(.init(severity: .error, code: "duplicate_interest",
+                                    message: "Interest '\(interest.id)' is defined more than once; the first wins."))
+            }
+            if interest.name.trimmingCharacters(in: .whitespaces).isEmpty {
+                issues.append(.init(severity: .error, code: "interest_without_name",
+                                    message: "Interest '\(interest.id)' has no display name."))
+            }
+        }
+
+        func references(_ id: ContentID, _ interests: [InterestTag]) {
+            for interest in interests where !defined.contains(interest) {
+                issues.append(.init(severity: .error, code: "unknown_interest", recordID: id,
+                                    message: "'\(id)' is tagged '\(interest)', which the interest vocabulary does not define."))
+            }
+        }
+        catalog.settings.forEach { references($0.id, $0.interests) }
+        catalog.companions.forEach { references($0.id, $0.interests) }
+        catalog.objects.forEach { references($0.id, $0.interests) }
+        catalog.blueprints.forEach { references($0.id, $0.interests) }
+
+        guard !catalog.interests.isEmpty else { return issues }
+        let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
+        let bands = AgeBandResolver.bands.filter { band in
+            catalog.blueprints.contains { $0.isBeatAuthored && $0.ageRange == band }
+        }
+        var reported = Set<InterestTag>()
+        for interest in catalog.interests where reported.insert(interest.id).inserted {
+            let missing = bands.filter { !(coverage[$0]?.contains(interest.id) ?? false) }
+            guard !missing.isEmpty else { continue }
+            issues.append(.init(severity: .warning, code: "interest_unreachable_in_band",
+                                message: "Interest '\(interest.id)' reaches no story in band "
+                                    + missing.map(\.description).joined(separator: ", ")
+                                    + "; it is not offered to parents."))
         }
         return issues
     }

@@ -55,6 +55,7 @@ ve bunların **sürümlenmiş** hâli.
 | `profileType` (child/parent) | — | engine'in umurunda değil |
 | `imageFileName: String?` | `assetSet.masterReference.locator` | ⚠️ köprü var, kullanılmıyor |
 | `createdAt` | `createdAt` | ✅ |
+| `interests: [String]` (FAZ 12, katalog ilgi kimlikleri) | — | masal seçimine ağırlık; görsel kimlik değil |
 | **yok** | `pronouns` | ❌ app hiç toplamıyor |
 | **yok** | `descriptors[]` (saç, göz, ten, beden, boy, ayırt edici özellik, kıyafet, aksesuar) | ❌ app hiç toplamıyor |
 | **yok** | `identitySeed` | ❌ köprüde türetiliyor, saklanmıyor |

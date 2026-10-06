@@ -715,3 +715,12 @@ Ebeveynin yazdığı karakter adları (kardeş, arkadaş, evcil hayvan, hayali a
 - **FAZ 14:** olay şemasına yalnızca ilişki türü girer.
 - **Silme:** profil silme ve "Tüm verileri sil".
 - **Serbest metin girişi:** yalnızca ebeveyn modunda. Çocuk modunda "Masalda kimler olsun?" yalnızca mevcut karakterleri gösterir.
+
+## 11. İlgi alanları (FAZ 12, 4 Ekim 2026)
+
+Çocuğun ilgi alanları ("Hayvanlar", "Doğa") aile içeriği gibi ele alınır:
+- **Saklama:** `UserProfile.interests`, yalnızca cihazda, profil listesiyle aynı yerde (`UserDefaults["user_profiles"]`). Değer katalog kimliği (`animals`), serbest metin değil.
+- **Log ve tanı:** ilgi alanı hiçbir log'a girmez; `ProfileManager` yalnızca sayıyı `.private` yazar. `UserProfile`'ın `description`, `debugDescription` ve `Mirror`'ı ne adı ne ilgi alanlarını içerir (`InterestProfileTests.testAProfileNeverPrintsItsNameOrInterests`).
+- **Motor:** yalnızca katalog kimlikleri gider; masal kökenine ilgi alanı yazılmaz.
+- **Silme:** profil kaydının parçası; profil silme ve "Tüm verileri sil" ile gider.
+- **FAZ 14 / 16:** olay şemasına ve senkrona girip girmeyeceği o fazlarda karara bağlanır; girerse ad ve çocuk kimliğiyle birlikte değil.

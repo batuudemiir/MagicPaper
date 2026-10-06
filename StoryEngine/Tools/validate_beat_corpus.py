@@ -853,6 +853,30 @@ def check_effective_pools(corpus, report) -> None:
         report.note(f"smallest effective pool: {smallest[0]} ({smallest[1]})")
 
 
+def check_interest_vocabulary(corpus, report) -> None:
+    """
+    Every interest word content is tagged with must be defined in the
+    vocabulary (FAZ 12). An undefined word matches no child's choice, so the
+    tag silently does nothing — the same failure as a slot nobody fills.
+    """
+    library = _pilot_library()
+    if library is None:
+        report.note("interest check skipped: no pilot library")
+        return
+    defined = [i.get("id", "").lower() for i in library.get("interests", [])]
+    for word in sorted({w for w in defined if defined.count(w) > 1}):
+        report.fail(f"interest '{word}' is defined more than once")
+    known = set(defined)
+    for axis in ("settings", "companions", "objects", "blueprints"):
+        for record in library.get(axis, []):
+            for word in record.get("interests", []):
+                if word.lower() not in known:
+                    report.fail(f"{record.get('id')}: interest '{word}' is not in the vocabulary")
+    tagged = sum(1 for axis in ("settings", "companions", "objects", "blueprints")
+                 for record in library.get(axis, []) if record.get("interests"))
+    report.note(f"interest vocabulary: {len(known)} words, {tagged} tagged records")
+
+
 # --- main -------------------------------------------------------------------
 
 def main() -> int:
@@ -896,6 +920,7 @@ def main() -> int:
         lambda: check_partitioned_pools(corpus, report),
         lambda: check_family_lines(corpus, report),
         lambda: check_deferrals_still_hold(corpus, report),
+        lambda: check_interest_vocabulary(corpus, report),
     ]
     for gate in gates:
         gate()

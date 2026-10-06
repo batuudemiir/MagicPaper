@@ -380,7 +380,9 @@ extension StoryGenerationManager {
             age: profile.age,
             seed: seed,
             subOption: subOption,
-            family: family
+            family: family,
+            interests: profile.interests,
+            recent: recentOrigins(for: profile)
         )
 
         let mapped = OfflineStoryMapper.appStory(
@@ -426,9 +428,25 @@ extension StoryGenerationManager {
             .map { $0 }
     }
 
-    /// Feeds the per-child blueprint cooldown, so the next story is less likely
-    /// to repeat this one's shape. It is the only novelty mechanism that exists
-    /// today; proper scoring is still ahead.
+    /// What this child's most recent stories were made of, newest first
+    /// (FAZ 12). The engine cools that content down, so the next story is
+    /// less likely to repeat the last ones — for every child, interests or not.
+    /// Stories without an origin (written before the offline engine) say
+    /// nothing and are skipped.
+    func recentOrigins(for profile: UserProfile, limit: Int = SelectionScoring.cooldownWindow) -> [StoryOrigin] {
+        stories
+            .filter { $0.belongs(to: profile) }
+            .sorted { $0.createdAt > $1.createdAt }
+            .compactMap(\.origin)
+            .prefix(limit)
+            .map { $0 }
+    }
+
+    /// A bounded list of the blueprints this child was given. Nothing reads it:
+    /// since FAZ 12 the engine's cooldown reads the saved stories' origins
+    /// (`recentOrigins`), which also know the setting, companion and discovery.
+    /// Kept so existing devices' keys stay meaningful until FAZ 14 decides what
+    /// local history to keep; `deleteProfile` still removes it.
     private func recordBlueprintRead(_ blueprintID: String, for profile: UserProfile) {
         let key = "read_history_\(profile.id.uuidString)"
         var seen = UserDefaults.standard.stringArray(forKey: key) ?? []

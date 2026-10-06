@@ -87,10 +87,13 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     public let requires: ContentRequirements
     /// Traits it must not offer. §8.3 — this is where identity lives.
     public let forbids: ContentExclusions
+    /// Interest words (FAZ 12) the story itself is about, independent of the
+    /// content bound into it. Most blueprints are structural and carry none.
+    public let interests: [InterestTag]
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
-        case premise, editorialName, editorialGuidance, requires, forbids
+        case premise, editorialName, editorialGuidance, requires, forbids, interests
     }
 
     public init(from decoder: Decoder) throws {
@@ -113,6 +116,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
             ?? ContentRequirements()
         forbids = try container.decodeIfPresent(ContentExclusions.self, forKey: .forbids)
             ?? ContentExclusions()
+        interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -130,6 +134,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         try container.encodeIfPresent(editorialGuidance, forKey: .editorialGuidance)
         if !requires.isEmpty { try container.encode(requires, forKey: .requires) }
         if !forbids.isEmpty { try container.encode(forbids, forKey: .forbids) }
+        if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
     }
 
     /// The roles this blueprint asks for, in page order.

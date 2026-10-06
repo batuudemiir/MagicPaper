@@ -34,6 +34,15 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// story written before FAZ 11, and its text does not change: lines
     /// written for a family character are left out of the pool entirely.
     public let family: FamilyCast?
+    /// The child's interests (FAZ 12). They add weight to matching content
+    /// and never filter: an interest the catalog cannot serve today leaves the
+    /// story exactly as it would have been. Empty is every story before FAZ 12.
+    public let interests: [InterestTag]
+    /// What the child's last stories were made of, newest first. Recently used
+    /// content loses weight, which is what keeps an interest from turning every
+    /// story into the same one. Empty means no history, and selection is then
+    /// exactly what it was before FAZ 12.
+    public let recent: [RecentContent]
 
     public init(
         childName: String,
@@ -45,7 +54,9 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         mode: StoryMode? = nil,
         ageBand: AgeBand? = nil,
         subOption: String? = nil,
-        family: FamilyCast? = nil
+        family: FamilyCast? = nil,
+        interests: [InterestTag] = [],
+        recent: [RecentContent] = []
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -57,6 +68,53 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.ageBand = ageBand
         self.subOption = subOption
         self.family = family
+        self.interests = interests
+        self.recent = recent
+    }
+}
+
+extension OfflineStoryIntent {
+    /// The same intent with one more axis pinned; every other field kept.
+    func pinning(
+        settingID: ContentID? = nil,
+        companionID: ContentID? = nil,
+        discoveryID: ContentID? = nil
+    ) -> OfflineStoryIntent {
+        OfflineStoryIntent(
+            childName: childName,
+            storyIdeaID: storyIdeaID,
+            settingID: settingID ?? self.settingID,
+            companionID: companionID ?? self.companionID,
+            discoveryID: discoveryID ?? self.discoveryID,
+            seed: seed,
+            mode: mode,
+            ageBand: ageBand,
+            subOption: subOption,
+            family: family,
+            interests: interests,
+            recent: recent
+        )
+    }
+}
+
+/// The content one earlier story was built from. Ids only: what the story
+/// said, and who it was for, never reaches the selector.
+public struct RecentContent: Sendable, Hashable {
+    public let blueprintID: ContentID?
+    public let settingID: ContentID?
+    public let companionID: ContentID?
+    public let discoveryID: ContentID?
+
+    public init(
+        blueprintID: ContentID? = nil,
+        settingID: ContentID? = nil,
+        companionID: ContentID? = nil,
+        discoveryID: ContentID? = nil
+    ) {
+        self.blueprintID = blueprintID
+        self.settingID = settingID
+        self.companionID = companionID
+        self.discoveryID = discoveryID
     }
 }
 
@@ -192,6 +250,7 @@ public struct OfflineContentBinder: Sendable {
         var settingFailure: Error?
         for candidate in try orderedCandidates(
             catalog.settings, requested: intent.settingID, seed: intent.seed, axis: "setting",
+            weight: weigher(intent, recent: \.settingID),
             offered: \.traits, required: requires.setting, forbidden: forbids.setting,
             empty: OfflineSelectionError.noSetting,
             also: {
@@ -238,6 +297,7 @@ public struct OfflineContentBinder: Sendable {
                 TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
             },
             requested: intent.companionID, seed: intent.seed, axis: "companion",
+            weight: weigher(intent, recent: \.companionID),
             offered: \.traits, required: requires.companion, forbidden: forbids.companion,
             empty: OfflineSelectionError.noCompanion,
             // Casting is checked alongside capability rather than before it, so
@@ -273,6 +333,7 @@ public struct OfflineContentBinder: Sendable {
                 TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
             },
             requested: intent.discoveryID, seed: intent.seed, axis: "discovery",
+            weight: weigher(intent, recent: \.discoveryID),
             offered: \.traits, required: requires.discovery, forbidden: forbids.discovery,
             empty: OfflineSelectionError.noDiscovery,
             // A place that already accounts for the thing makes it not a
@@ -298,6 +359,21 @@ public struct OfflineContentBinder: Sendable {
             == b.trimmingCharacters(in: .whitespaces).lowercased(with: locale)
     }
 
+    /// How much each record of one axis weighs for this intent (FAZ 12):
+    /// interests raise it, the child's recent stories on this axis lower it.
+    private func weigher<Record: WeighedContent>(
+        _ intent: OfflineStoryIntent,
+        recent axis: KeyPath<RecentContent, ContentID?>
+    ) -> (Record) -> Double {
+        let wanted = Set(intent.interests)
+        let recent = intent.recent.map { $0[keyPath: axis] }
+        return { record in
+            SelectionScoring.weight(
+                id: record.id, matchesInterest: record.matches(wanted),
+                cooldown: record.weights.cooldown, recent: recent)
+        }
+    }
+
     /// Admissible records in the order the seed would pick them, so trying them
     /// in turn is still deterministic and still honours an explicit request.
     private func orderedCandidates<Record: Identifiable, Trait>(
@@ -305,6 +381,7 @@ public struct OfflineContentBinder: Sendable {
         requested: ContentID?,
         seed: String,
         axis: String,
+        weight: (Record) -> Double = { _ in 1 },
         offered: KeyPath<Record, Set<Trait>>,
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>,
@@ -336,8 +413,8 @@ public struct OfflineContentBinder: Sendable {
         }
 
         guard !admissible.isEmpty else { throw empty(reasons) }
-        let start = DeterministicPicker.index(count: admissible.count, seed: seed, salt: axis)
-        return Array(admissible[start...] + admissible[..<start])
+        return SelectionScoring.ordered(
+            admissible, weights: admissible.map(weight), id: \.id, seed: seed, salt: axis)
     }
 
     /// One implementation for all three axes. Written generically on purpose:
@@ -348,6 +425,7 @@ public struct OfflineContentBinder: Sendable {
         requested: ContentID?,
         seed: String,
         axis: String,
+        weight: (Record) -> Double = { _ in 1 },
         offered: KeyPath<Record, Set<Trait>>,
         required: TraitRequirement<Trait>,
         forbidden: Set<Trait>,
@@ -380,7 +458,8 @@ public struct OfflineContentBinder: Sendable {
         }
 
         guard !admissible.isEmpty else { throw empty(reasons) }
-        return DeterministicPicker.pick(from: admissible, seed: seed, salt: axis)
+        return SelectionScoring.ordered(
+            admissible, weights: admissible.map(weight), id: \.id, seed: seed, salt: axis)[0]
     }
 }
 

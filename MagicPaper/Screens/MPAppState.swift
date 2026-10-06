@@ -70,6 +70,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case bookCharacter(UUID)
     /// Masal ailem (FAZ 11), çocuk başına. Benim köşem gelince oradan açılır.
     case familyCharacters(UUID)
+    /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
+    case interests(UUID)
 
     var id: String {
         switch self {
@@ -77,6 +79,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .profileEdit(let i):   return "profileEdit-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
+        case .interests(let i): return "interests-\(i)"
         }
     }
 }
@@ -174,6 +177,7 @@ final class MPAppState: ObservableObject {
         if case .profileEdit = sheet { sheet = nil }
         if case .bookCharacter = sheet { sheet = nil }
         if case .familyCharacters = sheet { sheet = nil }
+        if case .interests = sheet { sheet = nil }
     }
 }
 

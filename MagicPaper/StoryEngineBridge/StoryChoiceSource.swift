@@ -76,6 +76,8 @@ protocol StoryChoiceSource {
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
     /// The animal kinds a Masal ailem pet can be.
     func familyAnimalKindChoices() -> [FamilyAnimalKindChoice]
+    /// The "Neleri sever?" chips a parent is offered (FAZ 12).
+    func interestChoices() -> [InterestChoice]
     /// Turns "surprise me" (or a direct choice) into one concrete mode.
     func resolveMode(
         strategy: StorySelectionStrategy,

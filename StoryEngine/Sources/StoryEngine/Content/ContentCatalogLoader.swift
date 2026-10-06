@@ -183,7 +183,8 @@ public struct ContentCatalogLoader: Sendable {
                     storyIdeas: catalog.storyIdeas,
                     storyModes: catalog.storyModes,
                     familyMoments: catalog.familyMoments,
-                    familyAnimalKinds: catalog.familyAnimalKinds
+                    familyAnimalKinds: catalog.familyAnimalKinds,
+                    interests: catalog.interests
                 )
             ])
         }
