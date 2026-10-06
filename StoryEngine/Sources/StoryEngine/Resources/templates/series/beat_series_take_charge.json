@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "stc_01",
+      "text": "\"Buna biz bakarız,\" dedi {{child.name}}. {{companion.name}} hiç düşünmeden başını salladı. Bugün bütün günü buna ayıracaklardı. Bu küçük şey artık yalnız değildi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stc_01"
+    },
+    {
+      "id": "stc_02",
+      "text": "{{child.name}} burada kalmaya karar verdi. Yardıma ihtiyacı olan birini yalnız bırakmazdı. {{companion.name}} hemen yanına yerleşti, o da onunla kalacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stc_02"
+    },
+    {
+      "id": "stc_03",
+      "text": "{{child.name}} ellerini dizlerine koyup düşündü. Biraz sıcaklık gerekiyordu, biraz da sabır. \"Tamam,\" dedi. \"Başlıyoruz.\" {{companion.name}} hemen yanına sokuldu, hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stc_03"
+    },
+    {
+      "id": "stc_04",
+      "text": "\"Ben buradayım,\" dedi {{child.name}} usulca. Sonra {{companion.name}}'e döndü. \"Sen kalır mısın?\" {{companion.name}} çoktan yanına oturmuştu bile. Hiç gitmeye niyeti yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "stc_04"
+    }
+  ]
+}

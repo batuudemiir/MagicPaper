@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sra_01",
+      "text": "\"Ben bunun yerini biliyorum,\" dedi {{companion.name}}. \"Hiç uzak değil, biraz ileride.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra_01"
+    },
+    {
+      "id": "sra_02",
+      "text": "{{companion.name}} başıyla bir yönü gösterdi. \"Onun yeri orası. Götürelim mi?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra_02"
+    },
+    {
+      "id": "sra_03",
+      "text": "\"Bunu yerine götürmeliyiz,\" dedi {{companion.name}} yumuşak bir sesle. \"Onun evi burası değil.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra_03"
+    },
+    {
+      "id": "sra_04",
+      "text": "{{companion.name}} biraz düşündü. \"Bunu nereye götüreceğimizi ben biliyorum,\" dedi sonunda gülümseyerek.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra_04"
+    }
+  ]
+}

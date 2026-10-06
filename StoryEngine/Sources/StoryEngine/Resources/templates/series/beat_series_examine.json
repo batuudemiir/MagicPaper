@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sex_01",
+      "text": "{{child.name}} eğilip dikkatle baktı. Ne kadar da küçük ve hafifti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sex_01"
+    },
+    {
+      "id": "sex_02",
+      "text": "{{child.name}} onu iki eliyle, çok dikkatli tuttu. Hiç ağır değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sex_02"
+    },
+    {
+      "id": "sex_03",
+      "text": "{{child.name}} yaklaşıp her yanına baktı. Belli ki bir yerden gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sex_03"
+    },
+    {
+      "id": "sex_04",
+      "text": "{{child.name}} onu evirip çevirdi. Kimin olduğunu, nereden geldiğini merak etti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sex_04"
+    }
+  ]
+}

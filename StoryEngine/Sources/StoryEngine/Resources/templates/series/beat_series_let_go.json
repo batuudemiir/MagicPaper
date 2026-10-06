@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "slg_01",
+      "text": "Sonunda vardılar. {{child.name}} onu tam yerine, usulca bıraktı. Ellerini yavaşça çekti ve bir adım geri durdu. Sonra uzun uzun baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "slg_01"
+    },
+    {
+      "id": "slg_02",
+      "text": "\"İşte,\" dedi {{companion.name}}. \"Yeri burası.\" {{child.name}} eğildi ve onu dikkatle yerine koydu. Bir süre gözünü ondan ayıramadı. Orası tam ona göreydi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "slg_02"
+    },
+    {
+      "id": "slg_03",
+      "text": "{{child.name}} bir an durdu. Bırakmak biraz zordu, ona alışmıştı. Ama yeri burasıydı. Onu yavaşça, özenle yerine koydu ve gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "slg_03"
+    },
+    {
+      "id": "slg_04",
+      "text": "{{child.name}} onu yerine bıraktı ve \"Hoşça kal,\" diye fısıldadı. {{companion.name}} sevinçle gülümsedi. Her şey artık tam olması gerektiği gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "slg_04"
+    }
+  ]
+}

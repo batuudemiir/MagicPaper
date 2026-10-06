@@ -352,6 +352,7 @@
       ],
       "isProperNoun": false,
       "titleName": "Titrek Işık",
+      "keepsakeName": "titrek ışık",
       "explainedBy": [
         "hasWater"
       ]
@@ -375,6 +376,7 @@
       ],
       "isProperNoun": false,
       "titleName": "Gizemli Ses",
+      "keepsakeName": "ince ses",
       "explainedBy": [
         "hasWeather"
       ]
@@ -397,6 +399,7 @@
       "isProperNoun": false,
       "hasPossessiveEnding": true,
       "titleName": "Ayak İzleri",
+      "keepsakeName": "küçük ayak izleri",
       "habitat": [
         "forest",
         "garden",
@@ -426,6 +429,7 @@
       "isProperNoun": false,
       "hasPossessiveEnding": true,
       "titleName": "Deniz Kabuğu",
+      "keepsakeName": "deniz kabuğu",
       "habitat": [
         "sea"
       ]
@@ -449,6 +453,7 @@
       ],
       "isProperNoun": false,
       "titleName": "Yırtık Harita",
+      "keepsakeName": "yırtık harita",
       "explainedBy": [
         "isTended"
       ]
@@ -458,6 +463,7 @@
       "interests": ["animals", "nature"],
       "name": "yere düşmüş küçük bir yuva",
       "titleName": "Düşmüş Yuva",
+      "keepsakeName": "küçük yuva",
       "description": "Rüzgârda dalından ayrılmış, hâlâ sapasağlam duran küçük bir yuva.",
       "compatibleThemes": [
         "helping_others",
@@ -484,6 +490,7 @@
       "interests": ["nature"],
       "name": "solmaya başlamış bir fide",
       "titleName": "Solan Fide",
+      "keepsakeName": "küçük fide",
       "description": "Yaprakları aşağı sarkmış, henüz kurumamış küçük bir fide.",
       "compatibleThemes": [
         "patience",
@@ -508,6 +515,7 @@
       "id": "object_dropped_mitten_001",
       "name": "birinin düşürdüğü küçük bir eldiven",
       "titleName": "Kayıp Eldiven",
+      "keepsakeName": "küçük eldiven",
       "description": "Yolun kenarında duran, tek başına kalmış küçük bir eldiven.",
       "compatibleThemes": [
         "helping_others",
@@ -2744,5 +2752,338 @@
     { "id": "robots", "name": "Robotlar", "symbol": "cpu" },
     { "id": "sports", "name": "Spor", "symbol": "soccerball" },
     { "id": "pirates", "name": "Korsanlar", "symbol": "sailboat" }
-  ]
+  ],
+  "series": {
+    "editorialNote": "FAZ 13 seri katmanı. Devam bölümleri yalnızca buradaki blueprint'lerle yazılır; tek seferlik masal bunları göremez. Her bölüm aynı yerde, aynı yol arkadaşıyla geçer, ilk masalın bulduğu şeyi (keepsake) hatırlar ve yeni bir şey bulur. Masal ailem karakteri bölümün açılışında (revisit) ve kapanışında yer alır.",
+    "familyMoments": [
+      "revisit",
+      "warm_close"
+    ],
+    "continuations": [
+      {
+        "id": "bp_cont_waiting_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "stayingWith",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Çocuk tanıdık yere döner; küçük bir şey yardıma muhtaçtır; çocuk yanında kalır ve bekler, o iyileşir.",
+        "editorialGuidance": "Bekleyen çocuk. Çözüm sabırdan gelir, hiçbir şey taşınmaz ya da gönderilmez.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ],
+            "anyOf": [
+              [
+                "isFragile",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{child.name}} Yine Geldi",
+          "{{child.name}} ve {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "patient_wait",
+            "supportingBeat": "restore",
+            "emotion": "patience"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_homeward_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "takingItHome",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Çocuk tanıdık yere döner; yerinde olmayan küçük bir şey bulur; onu ait olduğu yere götürüp bırakır.",
+        "editorialGuidance": "Götüren çocuk. Çözüm bir şeyi yerine bırakmaktır; kimse beklemez, kimse iyileşmez.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "isVisible",
+              "impliesPresence"
+            ]
+          }
+        },
+        "forbids": {
+          "discovery": [
+            "isFragmentary"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Yerine Bıraktı",
+          "{{child.name}} ve {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "commit",
+            "supportingBeat": "receive_appeal",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "let_go",
+            "supportingBeat": "restore",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_waiting_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "stayingWith",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Çocuk tanıdık yere döner; küçük bir şey yardıma muhtaçtır; çocuk yanında kalır, bakar ve bekler.",
+        "editorialGuidance": "Bekleyen çocuk. Sayfa 6 sabırdır, engel değil; sayfa 7 kendiliğinden olan iyileşmedir.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ],
+            "anyOf": [
+              [
+                "isFragile",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{child.name}} Yine Orada",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "patience"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_homeward_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "takingItHome",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Çocuk tanıdık yere döner; yerinde olmayan bir şey bulur; yol arkadaşı onun nereye ait olduğunu bilir; çocuk onu götürüp bırakır.",
+        "editorialGuidance": "Götüren çocuk. Sayfa 6 bırakmaktır; vedalaşma sakin ve sevinçlidir, kayıp değil.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "isVisible",
+              "impliesPresence"
+            ]
+          }
+        },
+        "forbids": {
+          "discovery": [
+            "isFragmentary"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Yerine Götürdü",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "companion",
+            "beat": "examine",
+            "supportingBeat": "receive_appeal",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "effort"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      }
+    ]
+  }
 }

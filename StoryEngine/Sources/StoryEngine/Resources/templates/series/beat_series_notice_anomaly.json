@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sn_01",
+      "text": "İkisi biraz yürüdükten sonra {{child.name}} durdu. Az ileride {{discovery.name}} vardı. Geçen sefer orada değildi, bundan emindi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_01",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "sn_02",
+      "text": "{{companion.name}} durup kulak kabarttı. {{child.name}} nefesini tutup dinledi. Çok yakından {{discovery.name}} geliyordu. İkisi sesin geldiği yöne döndü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_02",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "sn_03",
+      "text": "Bugün {{setting.name}}'da bir şey farklıydı. {{child.name}} etrafına dikkatle baktı, sonra bir şey gördü. Az ileride {{discovery.name}} duruyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_03",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "sn_04",
+      "text": "{{child.name}} her zamanki yolda yürürken bir şey fark etti. Orada {{discovery.name}} vardı. Bunu daha önce hiç görmemişti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_04",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "sn_05",
+      "text": "Her şey geçen seferki gibiydi, bir şey dışında. {{child.name}} durdu, {{companion.name}} yanında durdu. İkisi aynı yere, aynı küçük şeye bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_05"
+    },
+    {
+      "id": "sn_06",
+      "text": "{{child.name}} ile {{companion.name}} yürürken bir şey duydular. Yakından {{discovery.name}} geliyordu. İkisi aynı anda durup dinledi. Ses çok küçük ve tatlıydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sn_06",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    }
+  ]
+}
