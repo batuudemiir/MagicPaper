@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sfa_01",
+      "text": "{{child.name}} onu iki eliyle taşıdı. Her adımı dikkatle attı, hiç sallamadı. {{companion.name}} önden gidip yolu gösterdi. Arada bir dönüp arkasına baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sfa_01"
+    },
+    {
+      "id": "sfa_02",
+      "text": "Yol sandığından uzundu. {{child.name}} acele etmedi, küçük adımlarla yürüdü. Arada bir durup {{companion.name}}'i bekledi. Böyle yürümek hiç de yorucu değildi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sfa_02"
+    },
+    {
+      "id": "sfa_03",
+      "text": "{{child.name}} onu göğsüne yakın tuttu. {{companion.name}} yanında yürüdü, arada bir yolu gösterdi. Az kalmıştı, bunu ikisi de hissediyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sfa_03"
+    },
+    {
+      "id": "sfa_04",
+      "text": "İkisi birlikte yola koyuldu. {{child.name}} taşıyordu, {{companion.name}} yolu gösteriyordu. Çok iyi bir ekip olmuşlardı. Yol da onlara kısa geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sfa_04"
+    }
+  ]
+}

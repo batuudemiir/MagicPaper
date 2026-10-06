@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 3-4 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Altı sayfa, sayfa başına 10-24 kelime, cümle en fazla 10 kelime. Yol arkadaşı tanıdık bir dosttur: tanıştırılmaz, bakıma muhtaç olan o değil, bulunan küçük şeydir. Bulunan şeyin adı çoğu satırda geçmez ('küçük şey'), çünkü yuva, fide ve eldiven aynı cümleye oturmalı.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "scm3_01",
+      "text": "\"Bunu yerine götürelim,\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "scm3_01"
+    },
+    {
+      "id": "scm3_02",
+      "text": "{{child.name}} onu iki eliyle, yavaşça aldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "scm3_02"
+    },
+    {
+      "id": "scm3_03",
+      "text": "{{child.name}} bir karar verdi. Yardım edecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "scm3_03"
+    },
+    {
+      "id": "scm3_04",
+      "text": "\"Ben hallederim,\" dedi {{child.name}}. Gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "scm3_04"
+    }
+  ]
+}

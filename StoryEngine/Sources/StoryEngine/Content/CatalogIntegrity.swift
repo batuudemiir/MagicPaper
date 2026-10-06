@@ -104,11 +104,93 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkStoryModes(catalog))
         issues.append(contentsOf: checkFamily(catalog))
         issues.append(contentsOf: checkInterests(catalog))
+        issues.append(contentsOf: checkSeries(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
 
     // MARK: - Checks
+
+    /// The series layer (FAZ 13).
+    ///
+    /// A continuation is held to everything a standalone blueprint is — a
+    /// coherent beat sequence, the band's page count — and to two things of its
+    /// own: it opens by coming back (`revisit` on page 1), and it says which
+    /// series it may join. `revisit` in a standalone blueprint would greet a
+    /// friend the child has never met.
+    ///
+    /// Coverage is a warning, like `mode_unavailable_in_band`: a mode and band
+    /// whose stories cannot be continued only lose the button.
+    private func checkSeries(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        let validator = BeatSequenceValidator()
+
+        for blueprint in catalog.blueprints where blueprint.beatSlots.contains(where: { $0.beats.contains(.revisit) }) {
+            issues.append(.init(severity: .error, code: "revisit_in_standalone", recordID: blueprint.id,
+                                message: "Blueprint '\(blueprint.id)' uses 'revisit', which only a series episode may."))
+        }
+
+        for blueprint in catalog.series.continuations {
+            guard let spec = blueprint.continuation, !spec.modes.isEmpty else {
+                issues.append(.init(severity: .error, code: "continuation_without_modes", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' names no mode it may serve."))
+                continue
+            }
+            if spec.episodes.contains(where: { !ContinuationSpec.allEpisodes.contains($0) }) {
+                issues.append(.init(severity: .error, code: "continuation_episode_out_of_range", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' names an episode outside 2…5."))
+            }
+            guard blueprint.isBeatAuthored else {
+                issues.append(.init(severity: .error, code: "blueprint_without_beats", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' has pages without beats."))
+                continue
+            }
+            if blueprint.beatSlots.first?.beat != .revisit {
+                issues.append(.init(severity: .error, code: "continuation_without_revisit", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' must open with 'revisit' on page 1."))
+            }
+            if blueprint.pageCount != blueprint.ageRange.pageCount || blueprint.pagePlan.count != blueprint.pageCount {
+                issues.append(.init(severity: .error, code: "page_count_off_band", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' has \(blueprint.pagePlan.count) pages; "
+                                        + "band \(blueprint.ageRange) is \(blueprint.ageRange.pageCount)."))
+            }
+            let result = validator.validate(blueprint.beatSlots, conflictMechanism: blueprint.family?.conflict)
+            for issue in result.issues {
+                issues.append(.init(
+                    severity: issue.severity == .fatal ? .error : .warning,
+                    code: "beat_sequence_\(issue.code)", recordID: blueprint.id,
+                    message: "Continuation '\(blueprint.id)': \(issue.message)"))
+            }
+            for beat in Set(blueprint.beatSlots.flatMap(\.beats)).sorted(by: { $0.rawValue < $1.rawValue })
+            where OfflineStoryComposer.templates(for: beat, in: catalog, blueprint: blueprint, series: true).isEmpty {
+                issues.append(.init(severity: .error, code: "series_beat_without_templates", recordID: blueprint.id,
+                                    message: "Continuation '\(blueprint.id)' needs '\(beat.rawValue)' in \(blueprint.ageRange) and nothing writes it."))
+            }
+        }
+
+        guard !catalog.series.continuations.isEmpty else { return issues }
+
+        // Only beat-model content can be found in a story, so only it can be a
+        // keepsake; the V1 library's untraited objects are never bound.
+        for object in catalog.objects where object.keepsakeName == nil && !object.traits.isEmpty {
+            issues.append(.init(severity: .warning, code: "keepsake_name_missing", recordID: object.id,
+                                message: "Object '\(object.id)' has no keepsakeName; a later episode remembers it by its prose name."))
+        }
+
+        let coverage = BlueprintSelector().modeCoverage(catalog: catalog)
+        for band in AgeBandResolver.bands {
+            for mode in StoryMode.allCases where coverage[band]?.contains(mode) == true {
+                let served = catalog.series.continuations.contains {
+                    $0.ageRange == band && $0.continuation?.modes.contains(mode) == true
+                }
+                if !served {
+                    issues.append(.init(severity: .warning, code: "series_unavailable_in_band",
+                                        message: "Mode '\(mode.rawValue)' has stories in band \(band) but no continuation; they cannot be continued."))
+                }
+            }
+        }
+        return issues
+    }
 
     private func checkNotEmpty(_ catalog: ContentCatalog) -> [CatalogIssue] {
         var issues: [CatalogIssue] = []

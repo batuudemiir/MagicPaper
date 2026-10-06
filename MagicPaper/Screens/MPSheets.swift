@@ -56,6 +56,7 @@ struct StoryActionList: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var favorites = MPFavorites.shared
+    @ObservedObject private var series = SeriesManager.shared
 
     @State private var exportFile: MPExportFile?
     @State private var isExporting = false
@@ -64,6 +65,8 @@ struct StoryActionList: View {
 
     var body: some View {
         VStack(spacing: 4) {
+            seriesRow
+
             MPListRow(
                 symbol: "heart",
                 iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
@@ -89,6 +92,34 @@ struct StoryActionList: View {
         }
         .sheet(item: $exportFile) { file in
             ShareSheet(items: [file.url])
+        }
+    }
+
+    /// "Devam ettir" (FAZ 13), ya da başka bir seri sürerken sakin satır.
+    @ViewBuilder
+    private var seriesRow: some View {
+        switch series.endingState(for: story) {
+        case .offer:
+            MPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
+                      description: SeriesCopy.continueHint, action: {
+                do {
+                    try series.startSeries(from: story)
+                    MPHaptics.success()
+                    app.showToast(SeriesCopy.startedToast, symbol: "sparkles")
+                } catch {
+                    app.showToast(SeriesCopy.startFailed, symbol: "xmark")
+                }
+            }) { EmptyView() }
+            .accessibilityHint(SeriesCopy.continueAccessibilityHint)
+        case .blocked:
+            Text(SeriesCopy.blocked(child: story.childName))
+                .font(MP.F.bodySM())
+                .foregroundStyle(MP.C.textMuted)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, MP.S.x2)
+        default:
+            EmptyView()
         }
     }
 

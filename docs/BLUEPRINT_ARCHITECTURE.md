@@ -634,3 +634,17 @@ Each pilot must be authored with enough beat-tagged variants to be instantiated 
 **One blocker to resolve first.** The Turkish suffix resolver (§9, §15) does not implement the cases that `T2_achievement` and `T3_secret` need, and silently emits ungrammatical output rather than failing. Authoring title families against a resolver that cannot render them would bake the defect into the corpus. I recommend fixing the resolver — a contained, well-specified change — **before** Pilot titles are written, and I will flag it again rather than author around it.
 
 Two smaller items I will decide during Phase 3 unless directed otherwise: whether `ending` content becomes a bindable component or is absorbed into the closing beats (I lean absorbed — Phase 1 found the 10 ending records never selected, and closing beats already carry the emotional landing); and whether `establish_ordinary` earns its place at all, given the pacing rule effectively forbids it after page 1.
+
+---
+
+## 17. Series episodes (FAZ 13, 6 October 2026)
+
+A liked story continues as four more episodes. The architecture above holds for every episode; these are the additions.
+
+- **A separate catalog layer.** Continuation blueprints live in `ContentCatalog.series.continuations`, episode-only lines in `series.templates` (`beat_series_*.json`, `series: true`). Nothing that picks or writes a standalone story can see either, so every saved seed still builds the same book. A `kind` field on ordinary blueprints was the first design; a separate list does the same without touching any code path a standalone story uses.
+- **`continuation` block** on a blueprint: `modes` (which parent intents its series may belong to; the tone comes from here, not from `storyModes`) and `episodes` (2…5, default all). What carries over is not declared because it is not a choice: place, companion, Masal ailem character and keepsake always do; the discovery is always new.
+- **`revisit`** — the 35th beat. The episode's opening: the child comes back to a known place and friend. Requires nothing, produces `companionPresent`. Only on page 1 (`revisit_out_of_place`), and never in a standalone blueprint (`revisit_in_standalone`). It is a family moment of the series layer (`series.familyMoments = [revisit, warm_close]`).
+- **`{{keepsake.name}}`** — what the first story found, remembered. Rendered from `CatalogObject.keepsakeName` ("ince ses", "küçük yuva"), a third register beside the prose name and the title name; falls back to `name`.
+- **Calm ending** (`CalmEnding`). The last page of an episode closes: no `?`, "yarın", "acaba", "birden", "sonra ne olacak". Enforced as a non-degrading pool filter on the last page, as a check on the rendered page, and as a validator gate on series closing lines. The rule replaces the `unresolvedThreads` idea in `MagicPaper_Persistence_Migration.md` §7: an episode never ends on a hook.
+- **Picking.** Episodes use `DeterministicPicker.mixedIndex` (SplitMix-finished hash): the plain `index` reads FNV's poorly mixed low bits, and two episodes then picked the same line on every page one time in four. Standalone stories keep `index`. Each episode also prefers lines the earlier episodes have not used (a degrading preference).
+- **Planning** (`SeriesPlanner`): continuations alternate A-B-A-B from a seeded start; discoveries are new in every episode and never the keepsake (a search that first forbids any repeat, then allows one, never twice in a row); every episode must compose both with and without the Masal ailem character.

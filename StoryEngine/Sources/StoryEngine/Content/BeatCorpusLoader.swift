@@ -59,11 +59,19 @@ public struct BeatCorpusLoader: Sendable {
         /// checker below can say when the two have drifted apart.
         let produces: [NarrativeStateKey]?
         let requires: [NarrativeStateKey]?
+        /// Lines written only for a series episode (FAZ 13). They load into
+        /// `seriesTemplates` and never join a standalone story's pool.
+        let series: Bool?
     }
 
     /// What a load found, including what it could not use.
     public struct Report: Sendable {
         public let templates: [CatalogTemplate]
+        /// Episode-only lines (FAZ 13), kept apart from `templates`.
+        public let seriesTemplates: [CatalogTemplate]
+        /// The word bands the series files declare, keyed like `bands`. Apart,
+        /// because a series file may budget the same beat differently.
+        public let seriesBands: [BandedBeat: [VariantLengthClass: WordBand]]
         public let files: [String]
         /// The word band each beat declares, per length class.
         /// Beat VE banda göre. Yalnızca beat'e göre anahtarlamak, 3-4 için
@@ -77,6 +85,24 @@ public struct BeatCorpusLoader: Sendable {
         /// drift, and the engine is the one the validator uses.
         public let drifted: [String]
 
+        init(
+            templates: [CatalogTemplate],
+            seriesTemplates: [CatalogTemplate] = [],
+            files: [String],
+            bands: [BandedBeat: [VariantLengthClass: WordBand]],
+            seriesBands: [BandedBeat: [VariantLengthClass: WordBand]] = [:],
+            skipped: [String],
+            drifted: [String]
+        ) {
+            self.templates = templates
+            self.seriesTemplates = seriesTemplates
+            self.seriesBands = seriesBands
+            self.files = files
+            self.bands = bands
+            self.skipped = skipped
+            self.drifted = drifted
+        }
+
         public var isEmpty: Bool { templates.isEmpty }
     }
 
@@ -89,6 +115,12 @@ public struct BeatCorpusLoader: Sendable {
     static func templateID(for beat: StoryBeat, band: AgeBand?) -> ContentID {
         guard let band else { return ContentID("corpus_" + beat.rawValue) }
         return ContentID("corpus_\(band.description)_" + beat.rawValue)
+    }
+
+    /// A series file's template id: apart from the standalone one, so the two
+    /// templates for one beat and band never collide.
+    static func seriesTemplateID(for beat: StoryBeat, band: AgeBand?) -> ContentID {
+        ContentID("series_\(band?.description ?? "any")_" + beat.rawValue)
     }
 
     public init() {}
@@ -109,8 +141,10 @@ public struct BeatCorpusLoader: Sendable {
 
     func load(urls: [URL]) -> Report {
         var templates: [CatalogTemplate] = []
+        var seriesTemplates: [CatalogTemplate] = []
         var files: [String] = []
         var bands: [BandedBeat: [VariantLengthClass: WordBand]] = [:]
+        var seriesBands: [BandedBeat: [VariantLengthClass: WordBand]] = [:]
         var skipped: [String] = []
         var drifted: [String] = []
 
@@ -137,27 +171,36 @@ public struct BeatCorpusLoader: Sendable {
                                + "engine says \(file.beat.produces.map(\.rawValue).sorted())")
             }
 
+            let isSeries = file.series == true
             if let declared = file.lengthClasses {
-                bands[BandedBeat(file.beat, file.ageBand)] = declared.reduce(into: [:]) { result, entry in
+                let parsed: [VariantLengthClass: WordBand] = declared.reduce(into: [:]) { result, entry in
                     guard let kind = VariantLengthClass(rawValue: entry.key),
                           let band = WordBand.parse(entry.value) else { return }
                     result[kind] = band
                 }
+                if isSeries {
+                    seriesBands[BandedBeat(file.beat, file.ageBand)] = parsed
+                } else {
+                    bands[BandedBeat(file.beat, file.ageBand)] = parsed
+                }
             }
 
-            templates.append(CatalogTemplate(
-                id: Self.templateID(for: file.beat, band: file.ageBand),
+            let template = CatalogTemplate(
+                id: isSeries
+                    ? Self.seriesTemplateID(for: file.beat, band: file.ageBand)
+                    : Self.templateID(for: file.beat, band: file.ageBand),
                 role: Self.role(for: file.beat),
                 realizesBeat: file.beat,
                 compatibleThemes: [],
                 variants: file.variants,
                 ageBand: file.ageBand
-            ))
+            )
+            if isSeries { seriesTemplates.append(template) } else { templates.append(template) }
             files.append(name)
         }
 
-        return Report(templates: templates, files: files, bands: bands,
-                      skipped: skipped, drifted: drifted)
+        return Report(templates: templates, seriesTemplates: seriesTemplates, files: files,
+                      bands: bands, seriesBands: seriesBands, skipped: skipped, drifted: drifted)
     }
 
     /// The page role a beat usually fills.
@@ -167,7 +210,7 @@ public struct BeatCorpusLoader: Sendable {
     /// on more than one kind of page gets the one it most often occupies.
     static func role(for beat: StoryBeat) -> PageRole {
         switch beat {
-        case .establishOrdinary, .noticeAnomaly: return .hook
+        case .establishOrdinary, .noticeAnomaly, .revisit: return .hook
         case .approach, .examine: return .discovery
         case .meetCompanion, .companionOffers, .receiveAppeal: return .companion
         case .commit, .formBelief, .beliefFails, .obstacleRaises, .hesitate, .takeCharge:

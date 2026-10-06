@@ -50,6 +50,12 @@ MIN_FAMILY_CELL = 2
 FAMILY_RELATIONS = ("sibling", "friend", "animal", "imaginary")
 UNHARMONISED_CONJUNCTION = re.compile(r"\}\}(?:'[a-zçğıöşü]+)? (?:da|de|ta|te)\b")
 AGE3_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age3"
+# Series episodes (FAZ 13): lines only a continuation episode uses.
+SERIES_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/series"
+# How an episode may not end (karar: 6 Ekim 2026). The same list as
+# `CalmEnding` in the engine: word prefixes, then phrases. "ama" is allowed.
+CALM_WORD_PREFIXES = ("yarın", "acaba", "birden")
+CALM_PHRASES = ("?", "sonra ne olacak")
 
 # Suffixes the Turkish renderer understands. Anything else after a slot — a
 # copula like 'ydi, a typo — is emitted verbatim and reported at render time.
@@ -310,6 +316,116 @@ def check_conjunctions(corpus, report) -> None:
         for variant in beat_file["variants"]:
             if UNHARMONISED_CONJUNCTION.search(variant["text"]):
                 report.fail(f"{label}/{variant['id']}: 'da/de' after a slot does not follow the name's vowel harmony")
+
+
+def calm_violations(text: str) -> list[str]:
+    lowered = text.replace("I", "ı").replace("İ", "i").lower()
+    words = re.findall(r"[a-zçğıöşüâîû]+", lowered)
+    found = [p for p in CALM_PHRASES if p in lowered]
+    found += [p for p in CALM_WORD_PREFIXES if any(w.startswith(p) for w in words)]
+    return found
+
+
+def series_bindings() -> list[dict[str, str]]:
+    """The shortest and longest names the pilot library can bind, since the
+    series is only ever written from the pilot's beat-model content."""
+    library = _pilot_library() or {}
+    settings = [s["name"] for s in library.get("settings", [])] or ["Minik Köy"]
+    companions = library.get("companions", []) or [{"name": "Zip"}]
+    objects = [o for o in library.get("objects", []) if o.get("traits")] or [{"name": "bir şey"}]
+    def words(v): return len(v.split())
+    def pick(values, f): return f(values, key=words)
+    names = [c["name"] for c in companions]
+    keeps = [o.get("keepsakeName", o["name"]) for o in objects]
+    finds = [o["name"] for o in objects]
+    return [
+        {"child.name": "Ada", "setting.name": pick(settings, min), "companion.name": pick(names, min),
+         "keepsake.name": pick(keeps, min), "discovery.name": pick(finds, min),
+         "family.name": "Ela", "family.possessive": "kedisi"},
+        {"child.name": "Abdullah", "setting.name": pick(settings, max), "companion.name": pick(names, max),
+         "keepsake.name": pick(keeps, max), "discovery.name": pick(finds, max),
+         "family.name": "Karamelli Pofuduk", "family.possessive": "kaplumbağası"},
+    ]
+
+
+def check_series_lines(report) -> None:
+    """Series episode lines (FAZ 13), both bands, held to every rule the
+    standalone lines are — and to the calm ending on the closing beat.
+
+    - each file says `series: true`, so the engine keeps it out of standalone
+      stories;
+    - word bands from the file, sentence ceiling from the band (3-4: 10);
+    - case suffixes, declared slots, no "da/de" after a slot;
+    - family lines name the character, only they do, and every relation has
+      MIN_FAMILY_CELL lines; an opening (`revisit`) names the child first;
+    - a place noun needs the setting trait that guarantees it;
+    - `warm_close` lines end calmly: no question, "yarın", "acaba", "birden",
+      "sonra ne olacak".
+    """
+    paths = sorted(SERIES_CORPUS.glob("beat_*.json"))
+    if not paths:
+        report.note("series: no episode lines yet")
+        return
+    bindings = series_bindings()
+    total = 0
+    for path in paths:
+        beat_file = json.loads(path.read_text(encoding="utf-8"))
+        band = beat_file.get("ageBand", "?")
+        label = f"series {beat_file['beat']}[{band}]"
+        if beat_file.get("series") is not True:
+            report.fail(f"{label}: {path.name} is in the series folder but does not say series: true")
+        ceiling = 10 if band == "3-4" else MAX_SENTENCE_WORDS
+        cells = Counter()
+        for variant in beat_file["variants"]:
+            total += 1
+            vid = f"{label}/{variant['id']}"
+            text = variant["text"]
+            klass = variant.get("lengthClass")
+            low, high = band_for(beat_file, klass)
+            counts = [len(render(text, b).split()) for b in bindings]
+            if min(counts) < low or max(counts) > high:
+                report.fail(f"{vid}: {min(counts)}-{max(counts)} words, band is {low}-{high}")
+            for b in bindings:
+                sentences = [x for x in re.split(r"[.!?:]", render(text, b)) if x.strip()]
+                longest = max((len(x.split()) for x in sentences), default=0)
+                if longest > ceiling:
+                    report.fail(f"{vid}: longest sentence {longest} words, max {ceiling}")
+                    break
+            for match in SLOT_PATTERN.finditer(text):
+                if match.group(2) and match.group(2) not in CASE_SUFFIXES:
+                    report.fail(f"{vid}: '{match.group(2)}' is not a case ending")
+            used = set(TOKEN_PATTERN.findall(text))
+            if used != set(variant.get("requiredSlots", [])):
+                report.fail(f"{vid}: requiredSlots {sorted(variant.get('requiredSlots', []))} but text uses {sorted(used)}")
+            if UNHARMONISED_CONJUNCTION.search(text):
+                report.fail(f"{vid}: 'da/de' after a slot does not follow the name's vowel harmony")
+            if "hayali varlı" in text.lower():
+                report.fail(f"{vid}: says 'hayali varlık'")
+            relations = variant.get("familyRelations", [])
+            names = "{{family.name}}" in text
+            if relations and not names:
+                report.fail(f"{vid}: written for {relations} but never names the character")
+            if names and not relations:
+                report.fail(f"{vid}: names a family character but declares no familyRelations")
+            if relations and beat_file["beat"] == "revisit":
+                first = re.split(r"(?<=[.!?…])\s", text, maxsplit=1)[0]
+                if "{{child.name}}" not in first:
+                    report.fail(f"{vid}: the first sentence must name the child")
+            for relation in relations:
+                cells[relation] += 1
+            if not variant.get("settingTraits"):
+                found = PLACE_NOUNS.findall(TOKEN_PATTERN.sub("", text))
+                if found:
+                    report.fail(f"{vid}: names {sorted(set(found))} but declares no settingTraits")
+            if beat_file["beat"] == "warm_close":
+                wrong = calm_violations(text)
+                if wrong:
+                    report.fail(f"{vid}: an episode must end calmly, found {wrong}")
+        if cells:
+            for relation in FAMILY_RELATIONS:
+                if cells[relation] < MIN_FAMILY_CELL:
+                    report.fail(f"{label}: {cells[relation]} line(s) for '{relation}', need {MIN_FAMILY_CELL}")
+    report.note(f"series: {len(paths)} beat files, {total} lines")
 
 
 def check_banned(corpus, report) -> None:
@@ -930,6 +1046,7 @@ def main() -> int:
         lambda: check_conjunctions(corpus, report),
         lambda: check_deferrals_still_hold(corpus, report),
         lambda: check_interest_vocabulary(corpus, report),
+        lambda: check_series_lines(report),
     ]
     for gate in gates:
         gate()

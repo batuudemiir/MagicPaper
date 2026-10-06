@@ -134,3 +134,29 @@ Kurallar:
 - Çocuk başına en fazla 3 seçim, hiç seçmemek geçerli. Katalogdan kalkan kelime profilde saklı kalır,
   gösterilmez ve motora gitmez; düzenleme onu silmez.
 - Kabul testi: `InterestScoringTests.testAnInterestRaisesItsShareWithoutCollapsingOntoIt` (3 sabit tohum seti × 20 ardışık masal).
+
+## Seri (FAZ 13)
+
+Kararlar 6 Ekim 2026 (`MagicPaper_Faz_Plani_Ekim.md`, FAZ 13).
+
+| Parça | Dosya |
+|---|---|
+| Plan, planlayıcı, sakin son | `StoryEngine/.../Offline/Series/SeriesPlan.swift`, `CalmEnding.swift` |
+| Bölüm yazımı | `OfflineStoryComposer.composeEpisode` (seri katmanı, `{{keepsake.name}}`, karışık seçici, önceki bölüm satırlarından kaçınma) |
+| Seri katmanı (içerik) | `pilot_library_v1.json` → `series` (`continuations`, `familyMoments`); satırlar `templates/series/beat_series_*.json` (`series: true`) |
+| Model, depo, gün kuralı | `StoryEngineBridge/StorySeries.swift`, `StorySeriesStore.swift`, `SeriesClock.swift` |
+| Kurallar ve ekran durumları | `StoryEngineBridge/SeriesManager.swift` |
+| Ekranlar | `Screens/Series/` (metinler tek dosyada: `SeriesCopy`), `StoryEndingLeaf`, `StoryActionList`, `HomeView`, `LibraryView` |
+
+Kurallar:
+- **Kim devam ettirilir:** `origin.selectionStrategy == "direct"`, bölüm değil (`seriesID == nil`), mod ve bant için bir continuation var, masal daha önce devam ettirilmemiş. "Devam ettir"e basmak beğeni sayılır (favori şart değil).
+- **Çocuk başına tek açık seri.** Açık seri varken başka masalda düğme yerine sakin satır (`SeriesCopy.blocked`).
+- **Plan anında yazılır:** "Devam ettir" dört bölümü planlar ve metinlerini hemen yazar; seri dosyası bölüm metninin asıl kaynağıdır. İlgi alanı ve geçmiş plana girmez, katalog sonradan değişse de yazılmış bölüm değişmez.
+- **Plan girdisi:** ilk masalın kökeni (`SeriesAnchor`: ortam, yol arkadaşı, keşif = hatıra), mod, bant, Masal ailem karakteri (ilişki türü; ad plana girmez). Bitiş `NarrativeState`'i saklanmaz: biten her masalda aynıdır, ayıran şey bağlanan içeriktir.
+- **Günde bir bölüm (`SeriesClock`):** "şimdi" = max(cihaz saati, görülen en geç an). Bir sonraki bölüm, önceki bölümün okunduğu günden (okumanın saat diliminde) sonraki bir takvim gününde açılır. Okunmayan gün bölüm bekler, birikmez. Saat geri alınınca hiçbir şey erken açılmaz; ileri alma kabul edilen açık. "Okundu" = son yaprağa varmak; ilk masal "Devam ettir" anında okunmuş sayılır.
+- **Sakin son:** bölümün son sayfasında `?`, "yarın", "acaba", "birden", "sonra ne olacak" yok ("ama" serbest). Satır seçiminde süzgeç, yazılmış sayfada denetim, doğrulayıcıda kapı.
+- **Masal ailem karakteri silinirse:** açılmış bölümler yazıldığı gibi kalır; açılmamışlar aynı plandan karaktersiz yeniden yazılır; yazılamazsa seri sakince kapanır (`closed`).
+- **Silme:** profil silme ve "Tüm verileri sil" seri dosyalarını da siler. Okunmadan kitaplıktan silinen bölüm seri kartından geri gelir.
+- **Bildirim yok.** Bölüm açılınca kitaplıkta ve ana sayfadaki seri kartında görünür.
+- **3-4 bandında** seri bugün yalnızca Uyku öncesinde açılabilir (o bantta ilk masal yalnız orada yazılabiliyor); 5-6'da iki continuation üç modda da.
+- Yalnız DEBUG: Ayarlar > Geliştirici'de seri saatini bir gün ileri alma / sıfırlama.

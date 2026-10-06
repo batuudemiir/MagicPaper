@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 3-4 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Altı sayfa, sayfa başına 10-24 kelime, cümle en fazla 10 kelime. Yol arkadaşı tanıdık bir dosttur: tanıştırılmaz, bakıma muhtaç olan o değil, bulunan küçük şeydir. Bulunan şeyin adı çoğu satırda geçmez ('küçük şey'), çünkü yuva, fide ve eldiven aynı cümleye oturmalı.",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "swc3_01",
+      "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Hava ılıktı. Her şey yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_01"
+    },
+    {
+      "id": "swc3_02",
+      "text": "Akşam oldu. {{child.name}} eve döndü. Bugün de güzel bir gündü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_02"
+    },
+    {
+      "id": "swc3_03",
+      "text": "{{companion.name}} {{child.name}}'e sarıldı. Sonra ikisi de güldü. Ne güzel bir gün.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_03"
+    },
+    {
+      "id": "swc3_04",
+      "text": "{{child.name}} yatağına uzandı. Gözlerini kapadı. Önce {{keepsake.name}}'i düşündü, sonra bugünü. Uyudu.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_04"
+    },
+    {
+      "id": "swc3_05",
+      "text": "Güneş battı. {{companion.name}} evine döndü. {{child.name}} kendi evine döndü, mutluydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_05"
+    },
+    {
+      "id": "swc3_fam_sib_01",
+      "text": "Akşam {{child.name}} kardeşi {{family.name}}'a her şeyi anlattı. İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children talking in the evening"
+    },
+    {
+      "id": "swc3_fam_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} el ele eve döndü. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children walking home hand in hand"
+    },
+    {
+      "id": "swc3_fam_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} kapıda vedalaştı. İkisi de çok mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends saying goodbye at a door"
+    },
+    {
+      "id": "swc3_fam_fr_02",
+      "text": "Arkadaşı {{family.name}} eve gitti. {{child.name}} pencereden el salladı. Güzel bir gündü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "small child waving from a window"
+    },
+    {
+      "id": "swc3_fam_an_01",
+      "text": "Eve dönünce {{child.name}}, {{family.possessive}} {{family.name}}'ın yanına kıvrıldı. Her şey yolundaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child curled up beside a pet"
+    },
+    {
+      "id": "swc3_fam_an_02",
+      "text": "Akşam oldu. {{child.name}} {{family.name}}'a bugünü anlattı. Sonra ikisi de dinlendi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child talking to a pet in the evening"
+    },
+    {
+      "id": "swc3_fam_im_01",
+      "text": "Akşam oldu. Hayali arkadaşı {{family.name}} usulca esnedi. {{child.name}} gülümsedi, sonra uyudu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child falling asleep, a faint soft shape nearby"
+    },
+    {
+      "id": "swc3_fam_im_02",
+      "text": "{{child.name}} yorganını çekti. Sonra hayali arkadaşı {{family.name}}'a fısıldadı: \"İyi geceler.\"",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child in bed whispering good night"
+    },
+    {
+      "id": "swc3_fam_sib_03",
+      "text": "{{child.name}} ile kardeşi {{family.name}} aynı yatağa uzandı. İkisi de hemen uyudu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_sib_03",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "swc3_fam_sib_04",
+      "text": "Eve dönünce {{child.name}}, kardeşi {{family.name}}'a sarıldı. Ne güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_sib_04",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "swc3_fam_fr_03",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} el salladı. Sonra herkes evine döndü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_fr_03",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "swc3_fam_fr_04",
+      "text": "Akşam {{child.name}}, arkadaşı {{family.name}}'ı düşündü. İkisi bugün çok gülmüştü. Gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_fr_04",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "swc3_fam_an_03",
+      "text": "Akşam {{child.name}}, {{family.possessive}} {{family.name}} ile yan yana dinlendi. Her şey sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_an_03",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "swc3_fam_an_04",
+      "text": "{{child.name}} eve gelince önce {{family.name}}'ı buldu. İkisi birlikte uzun uzun dinlendi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_an_04",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "swc3_fam_im_03",
+      "text": "{{child.name}} gözlerini kapadı. Hayali arkadaşı {{family.name}} yanındaydı. İkisi de mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_im_03",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "swc3_fam_im_04",
+      "text": "Akşam {{child.name}} pencereden baktı. Hayali arkadaşı {{family.name}} ile birlikte gülümsedi. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "swc3_fam_im_04",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

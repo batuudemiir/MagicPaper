@@ -156,6 +156,7 @@ struct StoryReaderView: View {
     private func leaf(at index: Int) -> some View {
         StoryLeafView(
             index: index,
+            story: story,
             model: model,
             onReadAgain: { model.restart() },
             onClose: close
@@ -331,6 +332,9 @@ struct StoryReaderView: View {
 
         if model.isOnEndingLeaf {
             speech.stop()
+            // The last page was reached: for a series episode, that is what
+            // the next episode waits on (FAZ 13).
+            SeriesManager.shared.markRead(story)
             return
         }
 

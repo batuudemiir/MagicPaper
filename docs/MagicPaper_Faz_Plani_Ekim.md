@@ -415,7 +415,7 @@ Etiketleme teste ait, çünkü bugünkü görünür kelimeler her masalla eşle�
 
 ---
 
-## FAZ 13 — Seri ⏳
+## FAZ 13 — Seri ✅
 
 **Amaç:** Beğenilen masal 5 bölümlük seriye dönüşsün.
 
@@ -435,6 +435,59 @@ Etiketleme teste ait, çünkü bugünkü görünür kelimeler her masalla eşle�
 masalda "Devam ettir" yok; 5. bölümden sonra seri kapanıyor.
 
 **Sahip:** content-library + library-memory. `StoryGenerationManager` bu fazda tek sahipli.
+
+### Kapanış notu (6 Ekim 2026, dal `faz-13`)
+
+**Ön koşul:** `fix/conjunction-harmony` main'e cherry-pick ile alındı (`9b28d1e`, iki çakışma iki taraf korunarak çözüldü), dal silindi.
+
+**Doğrulama** (kendi worktree'sinde):
+- Paket testleri 878, hata 18. Hata listesi test başına main ile aynı (taban 855/18; 23 yeni test).
+- `validate_beat_corpus.py`: 12 bulgu, main ile aynı. Yeni seri kapısı (`check_series_lines`, 171 satır) temiz.
+- App build yeşil. Uygulama testleri 446/0 (1 atlanan; taban 417, 29 yeni test).
+- Reviewer: CRITICAL ve HIGH yok. Üç MEDIUM düzeltildi:
+  - erken kapanan seri, açılmış bölümü okununca "tamamlandı"ya dönebiliyordu;
+  - okunamayan seri dosyası bir sonraki yazımda eziliyordu, artık kenara alınıyor (profil silme onu da siliyor);
+  - ekranlar her çizimde dosyayı okuyup çözüyordu, artık değişiklik tarihine bağlı önbellek var.
+  Ayrıca: yazma hataları log'lanıyor, "Tüm verileri sil" seri saatini de siliyor, seri kartı silinmiş bölümü açmadan önce geri koyuyor. Açık bırakılan MEDIUM'lar aşağıda.
+- Tasarım yasası: değişen dosyalarda yeni isabet yok; `HomeView` 4, `LibraryView` 4, `SettingsView` 6 isabet main ile aynı (eski borç).
+
+**Kabul kriterleri:**
+- **Belirleyicilik** (aynı masal + tohum = aynı seri): `SeriesPlannerTests.testTheSameStoryAndSeedPlanTheSameSeries`, `testAPlanRoundTripsAndComposesTheSameText`.
+- **Bölüm kilidi tarih testleri:** `SeriesClockTests` (aynı gün, ertesi gün, 23:50→00:00, saat geri, saat ileri = kabul edilen açık, saat dilimi değişimi) ve `SeriesManagerTests.testEpisodesOpenOneADayAndWaitWhenUnread` (okunmayan gün bekler, birikmez).
+- **Sürpriz masalda "Devam ettir" yok:** `testASurpriseStoryMayNot`, `testTheLastPageShowsWhatTheStoryAllows`.
+- **5. bölümden sonra seri kapanıyor:** `testTheFifthEpisodeCompletesTheSeries` (sonrasında yeni seri açılabiliyor).
+- **Tek açık seri:** `testOneOpenSeriesPerChild`. **Profil silme seriyi siliyor:** `testDeletingAProfileDeletesItsSeries` (gerçek `deleteProfile`). **FAZ 13 öncesi masallar açılıyor:** `testAStoryWrittenBeforeFaz13StillOpens`; kayıtlı masallar değişmedi (`OfflineDeterminismTests` aynı).
+- **Sakin son:** `CalmEnding` (motor süzgeci + yazılmış sayfa denetimi + doğrulayıcı), `testEveryEpisodeEndsCalmly`, `testNoEpisodeEverClosesOnTomorrow`.
+- **Masal ailem silinince:** `testDeletingTheCharacterRewritesOnlyUnopenedEpisodes`.
+
+**Kararlar (6 Ekim 2026):** "Devam ettir"e basmak = beğeni; açık seri varken sakin satır; dört bölüm anında yazılır; Masal ailem silinirse açılmış bölümler kalır, açılmamışlar karaktersiz yeniden yazılır (olmazsa seri sakince kapanır); saat kuralı sade (şimdi = max(cihaz saati, görülen en geç an), ileri alma kabul); `revisit` beat'i, `{{keepsake.name}}`, `SeriesAnchor`; FAZ 11 #11 bölüm sonlarında yok; sakin son yasak listesi; 3-4'te yalnız Uyku öncesi; içerik taslağı onaylandı (`MagicPaperAPP/FAZ13_SERI_TASLAK.md`).
+
+**Plandan sapmalar:**
+- Continuation blueprint'leri `kind` alanı yerine ayrı bir katalog katmanında (`series`): eski kod yollarına dokunmadan, kayıtlı masallar değişmeden.
+- Bölümler için karışık hash'li seçici (`DeterministicPicker.mixedIndex`): eski seçici iki bölüme dörtte bir olasılıkla sayfa sayfa aynı satırları veriyordu. Tek seferlik masalın seçicisi aynı.
+- Bölüm, önceki bölümlerin satırlarından kaçınır; bu yüzden "tek bölümü yeniden yaz" yerine "seriyi baştan yaz" (`SeriesPlanner.compose(plan:)`).
+- `MPStoryCard`'a rozet simgesi/tonu parametresi (paylaşılan dosya, küçük ek): bölüm rozeti taç yerine yer imi.
+- Masal sonu sütunu en büyük yazı boyutunda sığmazsa kayıyor (ay simgesi kapatma düğmesine çarpıyordu).
+
+**Ekran kontrolü** (iPhone 17e + 17 Pro Max, açık tema, en büyük Dynamic Type; görüntüler `MagicPaperAPP/FAZ13_ekran/`, repo dışı):
+- 17e: masal sonu (Devam ettir, başlatıldı, bölüm, Seri tamamlandı; normal ve en büyük boyut), ana sayfa seri kartı (bekliyor, hazır), kitaplık kartı ve bölüm rozeti, masal aksiyonlarında sakin satır.
+- Pro Max: masal sonu (Devam ettir, başlatıldı), ana sayfa kartı (bekliyor, hazır), kitaplık rozeti. "Seri tamamlandı" Pro Max'te bakılmadı (17e'de iki boyutta bakıldı).
+- Uçtan uca: 17e'de bir seri beş bölüm boyunca okundu (DEBUG saat ileri alma ile).
+
+**Açık kalanlar:**
+- **Ekran metinleri** İrem'in gözden geçirmesini bekliyor (`SeriesCopy`).
+- **Bitmiş serinin ilk masalı** yeniden devam ettirilemez (bugünkü davranış; karar verilmedi).
+- **Keşif tekrarı:** 8 nesneyle bazı yerlerde bir keşif iki kez geliyor (üst üste değil). İçerik hattı.
+- **5-6'da ton farkı yok:** iki continuation üç modda da; mod başına continuation içerik hattının işi.
+- **Masalın ortasındaki aile anları** hâlâ yok (FAZ 11 devri); seride karakter açılış ve kapanışta.
+
+- **Reviewer'dan açık kalan (karar ya da ileri iş):**
+  - *Saat ileri alınıp geri getirilirse seri o fark kadar bekler:* "şimdi" görülen en geç ana bağlı, yanlış bir ileri tarih (ör. +1 yıl) düzelince bölümler o tarih gelene dek açılmaz. Öneri: görülen en geç anın duvar saatini en fazla 2 gün geçebilmesi; ürün kararı (karar 5'i değiştirir).
+  - *Plan ve dört bölümün yazımı ana iş parçacığında:* bugün 8 nesneyle hızlı, katalog büyüyünce arama büyür. Öneri: bölüm başına uygun keşifleri önceden hesaplamak ve başlatmayı arka plana almak.
+  - *"Devam ettir" masal aksiyonlarında okunmamış masalda da görünüyor;* ilk masal düğmeye basıldığı an okunmuş sayılıyor. Ürün kararı.
+  - *"Yarın yeni bölüm kitaplığında olacak":* bölüm uygulama açılınca açılıyor; metin İrem'in gözden geçirmesinde.
+
+**İçerik hattına devir:** öğrenelim ve macera için ayrı continuation'lar; 3-4'te öğrenelim/macera ilk masalı gelince continuation'ları; yeni nesneler (`keepsakeName` ile).
 
 ---
 
@@ -561,7 +614,7 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 | **Masalın ortasındaki aile anları (FAZ 13'ten önce, öncelikli)** | 11 → 13 |
 | `{{child.name}} de/da` gibi adla ünlü uyumuna uymayan eski satırlar | 11 (bulgu) |
 | İlgi alanı etiketleri: taslak onayı; Deniz içeriğini taşıyan blueprint; 9 kelime için 3-4 ve 5-6 içeriği | 12 |
-| `continuation` blueprint ailesi | 13 |
+| `continuation` blueprint ailesi: pilot onaylı (bantta 2); mod başına continuation, 3-4 öğrenelim/macera, daha çok nesne | 13 |
 | Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
 | Günün masalı ve eğitici hikâyeler (akış) | 15 |
 

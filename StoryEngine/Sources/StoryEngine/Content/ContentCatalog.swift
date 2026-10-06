@@ -36,6 +36,10 @@ public struct ContentCatalog: Decodable, Sendable {
     /// "Neleri sever?" and content can be tagged with. Authored, not coded —
     /// which words are *shown* is decided by coverage, not by this list.
     public let interests: [CatalogInterest]
+    /// Everything only a series episode uses (FAZ 13). Kept out of
+    /// `blueprints` and `templates` so no standalone story can reach it, and
+    /// every book written before the series existed stays the same book.
+    public let series: SeriesCatalog
 
     /// How many `resolutions` the file declares.
     ///
@@ -51,6 +55,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case storyModes
         case familyMoments, familyAnimalKinds
         case interests
+        case series
         case resolutions
     }
 
@@ -71,6 +76,7 @@ public struct ContentCatalog: Decodable, Sendable {
         familyAnimalKinds = try container.decodeIfPresent(
             [CatalogFamilyAnimalKind].self, forKey: .familyAnimalKinds) ?? []
         interests = try container.decodeIfPresent([CatalogInterest].self, forKey: .interests) ?? []
+        series = try container.decodeIfPresent(SeriesCatalog.self, forKey: .series) ?? SeriesCatalog()
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -89,6 +95,7 @@ public struct ContentCatalog: Decodable, Sendable {
         familyMoments: [StoryBeat] = [],
         familyAnimalKinds: [CatalogFamilyAnimalKind] = [],
         interests: [CatalogInterest] = [],
+        series: SeriesCatalog = SeriesCatalog(),
         declaredResolutionCount: Int = 0
     ) {
         self.version = version
@@ -105,6 +112,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.familyMoments = familyMoments
         self.familyAnimalKinds = familyAnimalKinds
         self.interests = interests
+        self.series = series
         self.declaredResolutionCount = declaredResolutionCount
     }
 
@@ -173,6 +181,57 @@ public struct ContentCatalog: Decodable, Sendable {
 }
 
 
+/// The series layer of the catalog (FAZ 13).
+///
+/// Continuation blueprints, the lines written only for episodes, and where in
+/// an episode the Masal ailem character appears. An episode opens with
+/// `revisit`, not `notice_anomaly`, so its family moments differ from a
+/// standalone story's.
+public struct SeriesCatalog: Decodable, Sendable {
+    public let continuations: [CatalogBlueprint]
+    /// Episode-only lines, one template per beat file and band. Loaded from
+    /// `beat_series_*.json` files; never in `ContentCatalog.templates`.
+    public let templates: [CatalogTemplate]
+    public let familyMoments: [StoryBeat]
+
+    public init(
+        continuations: [CatalogBlueprint] = [],
+        templates: [CatalogTemplate] = [],
+        familyMoments: [StoryBeat] = []
+    ) {
+        self.continuations = continuations
+        self.templates = templates
+        self.familyMoments = familyMoments
+    }
+
+    private enum CodingKeys: String, CodingKey { case continuations, templates, familyMoments }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        continuations = try container.decodeIfPresent([CatalogBlueprint].self, forKey: .continuations) ?? []
+        templates = try container.decodeIfPresent([CatalogTemplate].self, forKey: .templates) ?? []
+        familyMoments = try container.decodeIfPresent([StoryBeat].self, forKey: .familyMoments) ?? []
+    }
+
+    public var isEmpty: Bool { continuations.isEmpty }
+
+    public func continuation(_ id: ContentID) -> CatalogBlueprint? { continuations.first { $0.id == id } }
+
+    static func merging(_ parts: [SeriesCatalog]) -> SeriesCatalog {
+        SeriesCatalog(
+            continuations: parts.flatMap(\.continuations),
+            templates: parts.flatMap(\.templates),
+            familyMoments: parts.flatMap(\.familyMoments).reduce(into: []) {
+                if !$0.contains($1) { $0.append($1) }
+            })
+    }
+
+    /// The same layer with the corpus' series lines added.
+    func adding(templates extra: [CatalogTemplate]) -> SeriesCatalog {
+        SeriesCatalog(continuations: continuations, templates: extra + templates, familyMoments: familyMoments)
+    }
+}
+
 /// Decodes and discards. Lets the catalog count records of a shape it does not
 /// yet model without inventing one.
 struct AnyIgnored: Decodable {
@@ -226,7 +285,21 @@ extension ContentCatalog {
             },
             familyAnimalKinds: catalogs.flatMap(\.familyAnimalKinds),
             interests: catalogs.flatMap(\.interests),
+            series: SeriesCatalog.merging(catalogs.map(\.series)),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
+    }
+}
+
+extension ContentCatalog {
+    /// This catalog with a different series layer; everything else as it is.
+    func replacingSeries(_ series: SeriesCatalog) -> ContentCatalog {
+        ContentCatalog(
+            version: version, settings: settings, companions: companions, objects: objects,
+            events: events, challenges: challenges, endings: endings, templates: templates,
+            blueprints: blueprints, storyIdeas: storyIdeas, storyModes: storyModes,
+            familyMoments: familyMoments, familyAnimalKinds: familyAnimalKinds,
+            interests: interests, series: series,
+            declaredResolutionCount: declaredResolutionCount)
     }
 }

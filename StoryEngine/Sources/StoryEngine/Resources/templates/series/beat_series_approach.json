@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sap_01",
+      "text": "{{child.name}} yavaşça yaklaştı. Acele etmedi, onu ürkütmek istemiyordu. {{companion.name}} hemen arkasından geldi, o da çok sessizdi. İkisi yan yana durdu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sap_01"
+    },
+    {
+      "id": "sap_02",
+      "text": "İkisi usul usul ilerledi. {{child.name}} eğilip daha yakından baktı. Gerçekten küçücük bir şeydi bu. Bir süre gözlerini ondan ayıramadılar.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sap_02"
+    },
+    {
+      "id": "sap_03",
+      "text": "{{child.name}} birkaç adım atıp çömeldi. {{companion.name}} hemen yanına oturdu. İkisi bir süre hiç konuşmadan baktı. Her şey çok sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sap_03"
+    },
+    {
+      "id": "sap_04",
+      "text": "\"Yavaş olalım,\" dedi {{companion.name}}. {{child.name}} başını salladı ve adım adım yaklaştı. Artık çok yakınındaydı. Bir süre hiç kıpırdamadan bekledi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sap_04"
+    }
+  ]
+}

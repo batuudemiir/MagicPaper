@@ -479,4 +479,17 @@ public enum DeterministicPicker {
     public static func pick<T>(from items: [T], seed: String, salt: String) -> T {
         items[index(count: items.count, seed: seed, salt: salt)]
     }
+
+    /// The same draw, with the hash mixed first (FAZ 13).
+    ///
+    /// `index` reads the low bits of an FNV-1a hash, and those barely depend
+    /// on the seed: every page of a story shares one of four low-bit states
+    /// before its salt is hashed, so two stories land in the same state one
+    /// time in four — and then pick the same line on *every* page. Standalone
+    /// stories keep `index`, because changing it would rewrite every saved
+    /// book. Series episodes, which are new, use this.
+    public static func mixedIndex(count: Int, seed: String, salt: String) -> Int {
+        guard count > 1 else { return 0 }
+        return Int(SelectionScoring.mixed(StableHash.hash([seed, salt])) % UInt64(count))
+    }
 }

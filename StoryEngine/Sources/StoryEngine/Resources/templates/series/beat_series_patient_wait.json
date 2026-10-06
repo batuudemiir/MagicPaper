@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "spw_01",
+      "text": "Sonra beklediler. Güneş yavaşça yer değiştirdi, gölgeler uzadı. {{child.name}} hiç sabırsızlanmadı. Bazı şeyler zaman isterdi, bunu çok iyi biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "spw_01"
+    },
+    {
+      "id": "spw_02",
+      "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Kuşların sesini dinlediler, bulutları saydılar. Zaman yavaş geçiyordu, ama acele eden yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "spw_02"
+    },
+    {
+      "id": "spw_03",
+      "text": "Bir süre hiçbir şey olmadı. {{child.name}} bekledi. {{companion.name}} bekledi. Rüzgâr bile usulca esiyordu, sanki o da onlarla birlikte bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "spw_03"
+    },
+    {
+      "id": "spw_04",
+      "text": "\"Biraz daha,\" dedi {{companion.name}} fısıltıyla. {{child.name}} başını salladı ve yerinden hiç kıpırdamadı. Beklemek kolay değildi, ama yanında bir dost olunca güzeldi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "spw_04"
+    }
+  ]
+}

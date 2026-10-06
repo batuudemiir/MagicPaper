@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "std_01",
+      "text": "{{child.name}} yumuşak otlar topladı ve etrafına serdi. {{companion.name}} rüzgârın geldiği yana oturdu. Böylece küçük, sıcak bir köşe oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "std_01"
+    },
+    {
+      "id": "std_02",
+      "text": "{{child.name}} avucuyla biraz gölge yaptı. Sonra alçak sesle konuştu, güzel ve sakin şeyler anlattı. {{companion.name}} arada bir başını sallayarak dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "std_02"
+    },
+    {
+      "id": "std_03",
+      "text": "İkisi sırayla nöbet tuttu. Önce {{child.name}} baktı, sonra {{companion.name}}. Hiçbiri yerinden kalkmadı, hiçbiri sesini yükseltmedi. Her şey sakin ve güvendeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "std_03"
+    },
+    {
+      "id": "std_04",
+      "text": "{{child.name}} cebindeki mendili çıkardı ve dikkatle üstüne örttü. \"Böyle daha iyi,\" dedi. {{companion.name}} onaylarcasına göz kırptı. Artık her yer sıcacıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "std_04",
+      "discoveryTraits": [
+        "isFragile"
+      ]
+    }
+  ]
+}

@@ -457,3 +457,20 @@ içeriği **her iki bantta** (bugün 3-4 ve 5-6) bir masala ulaştırmak gerekir
 
 **Bulgu (4 Ekim):** Mercan Denizi, Köpük (yunus) ve Deniz Kabuğu hiçbir blueprint'e bağlanamıyor;
 "Deniz" bu yüzden hiçbir banda ulaşmıyor.
+
+## 13. Seri bölümleri (FAZ 13, 6 Ekim 2026)
+
+Onaylı pilot: bantta iki continuation, mekanizmaları isimler silinince de ayrılır. **A, beklemek**: çocuk kalır, bakar, bekler; hiçbir şey taşınmaz. **B, yerine götürmek**: çocuk bir şeyi alıp ait olduğu yere bırakır; kimse beklemez. 3-4'te yalnız Uyku öncesi, 5-6'da üç mod. Gözden geçirme dosyası: `MagicPaperAPP/FAZ13_SERI_TASLAK.md` (repo dışı).
+
+**Nerede:** blueprint'ler `pilot_library_v1.json` → `series.continuations`; satırlar `templates/series/beat_series_*.json` (3-4: `beat_series_age3_*`), her dosyada `"series": true`. Tek seferlik masal bu satırları görmez; bir bölüm önce seri satırlarını, o beat için yoksa normal satırları kullanır.
+
+**Yazım kuralları (normal kuralların üstüne):**
+- Yol arkadaşı tanıdık bir dosttur: tanıştırılmaz, bakıma muhtaç olan o değil. Satırlarda `castRoles` yok.
+- Açılış `revisit`: çocuk tanıdık yere döner. Aile satırında ilk cümle çocuğun adını söyler. Aile karakteri her bölümde vardır: "yeni misafir", "tanışmayı merak ediyordu" gibi ilk karşılaşma dili yazılmaz.
+- Hatıra `{{keepsake.name}}` hatırlanan bir şeydir, sahip olunan değil ("İkisi küçük yuvayı hatırladı"). Cümle başına konmaz (küçük harfle başlar).
+- Son sayfa (`warm_close`) sakin kapanır: `?`, "yarın", "acaba", "birden", "sonra ne olacak" yok. Doğrulayıcı (`check_series_lines`) ve motor ikisi de denetler.
+- 3-4'te bakım satırları bulunan şeyi adlandırmaz ("küçük şey"), çünkü yuva, fide ve ses aynı cümleye oturmalı; açılış satırları adlandırır.
+- Her bölüm önceki bölümlerin satırlarından kaçınır; bu yüzden her beat için en az 4, aile anında ilişki türü başına en az 4 satır gerekir (4 bölüm).
+- Yeni nesne eklenirse `keepsakeName` yazılır (yoksa `keepsake_name_missing` uyarısı).
+
+**Bilinen sınır:** katalogda 8 nesne var. Bir yer dört yeni keşif veremezse bir keşif geri gelir (üst üste değil). Daha çok nesne bu tekrarı kaldırır.

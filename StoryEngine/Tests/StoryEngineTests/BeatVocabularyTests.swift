@@ -71,11 +71,12 @@ final class BeatVocabularyTests: XCTestCase {
     /// `give_up_something`, `retrace`, `exchange_views`, `let_go`, `prepare`.
     /// Each is a sibling of a beat already present, differing in how the way
     /// forward is found, not in kind. The vocabulary is still closed; it grew
-    /// once, on the record.
-    func testTheVocabularyIsThirtyFourBeats() {
-        XCTAssertEqual(StoryBeat.allCases.count, 34)
+    /// once, on the record — and a second time for FAZ 13 (6 October 2026):
+    /// `revisit`, the opening of a series episode, approved with the series.
+    func testTheVocabularyIsThirtyFiveBeats() {
+        XCTAssertEqual(StoryBeat.allCases.count, 35)
         for added: StoryBeat in [.speakFor, .giveUpSomething, .retrace,
-                                 .exchangeViews, .letGo, .prepare] {
+                                 .exchangeViews, .letGo, .prepare, .revisit] {
             XCTAssertFalse(added.produces.isEmpty, "\(added.rawValue) changes nothing.")
         }
     }

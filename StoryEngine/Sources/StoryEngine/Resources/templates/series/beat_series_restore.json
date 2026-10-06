@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "srs_01",
+      "text": "Ve sonunda oldu. Her şey yavaş yavaş yoluna girdi. {{child.name}} derin bir nefes verdi, {{companion.name}} sevinçle yerinde döndü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "srs_01"
+    },
+    {
+      "id": "srs_02",
+      "text": "Biraz sonra her şey yerli yerindeydi. {{child.name}} ile {{companion.name}} birbirine baktı. İkisinin de yüzünde kocaman bir gülümseme vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "srs_02"
+    },
+    {
+      "id": "srs_03",
+      "text": "Az sonra küçük şey kendini toparladı. Artık iyiydi, tam olması gerektiği gibiydi. {{child.name}} içinin sevinçle ısındığını hissetti ve gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "srs_03",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "srs_04",
+      "text": "İşte şimdi her şey olması gereken yerdeydi. {{child.name}} geri çekilip bir kez daha baktı. {{companion.name}} usulca \"Oldu,\" dedi, sesi sevinç doluydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "srs_04"
+    },
+    {
+      "id": "srs_05",
+      "text": "Orası onun yeriydi, bu belliydi. Sanki hep orada duruyormuş gibi rahattı. {{child.name}} ile {{companion.name}} birbirine bakıp sevinçle, uzun uzun gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "srs_05",
+      "afterBeat": [
+        "let_go"
+      ]
+    }
+  ]
+}

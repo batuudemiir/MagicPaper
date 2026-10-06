@@ -33,6 +33,9 @@ struct HomeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
                     tonight
+                    if let child = profileManager.currentProfile?.id {
+                        SeriesCard(childID: child)
+                    }
                     modeCards
                     storiesSection
                     streakRow

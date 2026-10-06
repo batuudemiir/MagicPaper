@@ -144,7 +144,10 @@ final class FamilyCastTests: XCTestCase {
     /// wrong for the child's name and a companion's as for a family character.
     func testNoLineWritesTheConjunctionAfterASlot() throws {
         let pattern = try NSRegularExpression(pattern: "\\}\\}(?:'[a-zçğıöşü]+)? (?:da|de|ta|te)\\b")
-        let variants = try catalog().templates.flatMap(\.variants)
+        // The series lines (FAZ 13) too: they are a separate layer, not a
+        // separate rule.
+        let catalog = try catalog()
+        let variants = (catalog.templates + catalog.series.templates).flatMap(\.variants)
         XCTAssertFalse(variants.isEmpty)
         for variant in variants {
             let range = NSRange(variant.text.startIndex..., in: variant.text)

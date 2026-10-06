@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 3,
+  "beat": "revisit",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "sr_01",
+      "text": "{{child.name}} o sabah yine {{setting.name}}'a gitti. {{companion.name}} her zamanki yerinde onu bekliyordu. İkisi birbirini görünce aynı anda gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_01"
+    },
+    {
+      "id": "sr_02",
+      "text": "{{child.name}} yolu artık ezbere biliyordu. {{setting.name}}'a varır varmaz {{companion.name}} karşısına çıktı. \"Geldin işte,\" dedi sevinçle. \"Seni çok bekledim.\"",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_02"
+    },
+    {
+      "id": "sr_03",
+      "text": "{{child.name}} yine {{setting.name}}'a geldi. {{companion.name}} ile ilk buluştukları günü düşündü. O günkü {{keepsake.name}} hâlâ aklındaydı. İkisi de onu unutmamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name",
+        "keepsake.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_03"
+    },
+    {
+      "id": "sr_04",
+      "text": "{{child.name}} {{setting.name}}'a vardığında {{companion.name}} onu bekliyordu. İkisi önce {{keepsake.name}}'i konuştu, o günü uzun uzun andılar. Sonra yeni bir güne başladılar.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name",
+        "keepsake.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_04"
+    },
+    {
+      "id": "sr_05",
+      "text": "Güneşli bir sabahtı. {{child.name}} yine {{setting.name}}'a doğru yürüdü. {{companion.name}} onu uzaktan görünce sevinçle yanına geldi. \"Hoş geldin,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_05"
+    },
+    {
+      "id": "sr_06",
+      "text": "{{child.name}} bugün {{setting.name}}'a erkenden geldi. {{companion.name}} daha yeni uyanıyordu. \"Günaydın,\" dedi {{child.name}} usulca. {{companion.name}} gözlerini açıp ona gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_06"
+    },
+    {
+      "id": "sr_fam_sib_01",
+      "text": "{{child.name}} bu sabah kardeşi {{family.name}} ile {{setting.name}}'a geldi. {{companion.name}} ikisini görünce sevindi. \"Bugün iki kişisiniz,\" dedi gülümseyerek.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children arriving, an animal friend waiting"
+    },
+    {
+      "id": "sr_fam_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}}'ın elini tuttu, birlikte {{setting.name}}'a yürüdüler. {{companion.name}} onları her zamanki yerde bekliyordu. Üçü de çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children walking hand in hand"
+    },
+    {
+      "id": "sr_fam_fr_01",
+      "text": "{{child.name}} bugün arkadaşı {{family.name}} ile buluştu. İkisi birlikte {{setting.name}}'a gitti. {{companion.name}} ikisini her zamanki gibi sevinçle karşıladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends arriving together"
+    },
+    {
+      "id": "sr_fam_fr_02",
+      "text": "{{child.name}} yolda arkadaşı {{family.name}}'a {{companion.name}}'i anlattı. {{setting.name}}'a vardıklarında {{companion.name}} oradaydı, ikisine de gülümsedi. \"İkiniz de hoş geldiniz,\" dedi neşeyle.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends greeted by an animal friend"
+    },
+    {
+      "id": "sr_fam_an_01",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}} ile {{setting.name}}'a gitti. {{companion.name}} ikisini görünce sevinçle yanlarına geldi. Üçü de birbirini çok seviyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "a child arriving with a pet"
+    },
+    {
+      "id": "sr_fam_an_02",
+      "text": "{{child.name}} bugün yalnız değildi. Yanında {{family.possessive}} {{family.name}} vardı. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı. Üçü hemen tanışıp kaynaştı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "a child and a pet on a path"
+    },
+    {
+      "id": "sr_fam_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yine {{setting.name}}'a geldi. {{companion.name}} onu göremiyordu, ama anlatılanları dinleyip gülümsedi. Bu çok hoşuna gitti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "a child arriving, a faint soft shape beside them"
+    },
+    {
+      "id": "sr_fam_im_02",
+      "text": "{{child.name}} yürürken hayali arkadaşı {{family.name}} ile konuşuyordu. {{setting.name}}'a vardıklarında {{companion.name}} onları her zamanki yerde bekliyordu. Gün güzel başlamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "a child talking to a faint soft shape"
+    },
+    {
+      "id": "sr_fam_sib_03",
+      "text": "{{child.name}} ile kardeşi {{family.name}} bu sabah erkenden yola çıktı. {{setting.name}}'a vardıklarında {{companion.name}} onları bekliyordu. \"Günaydın ikinize de,\" dedi neşeyle.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_sib_03",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "sr_fam_sib_04",
+      "text": "{{child.name}} yolda kardeşi {{family.name}}'a geçen seferi anlattı. {{family.name}} her şeyi merakla dinledi. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_sib_04",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "sr_fam_fr_03",
+      "text": "{{child.name}} bugün arkadaşı {{family.name}} ile birlikte geldi. {{companion.name}} onları her zamanki yerde bekliyordu. Üçü bir süre sohbet etti, sonra yürüyüşe çıktılar.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_fr_03",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "sr_fam_fr_04",
+      "text": "{{child.name}} sabah kapıyı açınca arkadaşı {{family.name}}'ı gördü. Birlikte {{setting.name}}'a gittiler. {{companion.name}} ikisini görünce sevinçle gülümsedi ve yanlarına geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_fr_04",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "sr_fam_an_03",
+      "text": "{{child.name}} bu sabah {{family.possessive}} {{family.name}} ile birlikte {{setting.name}}'a gitti. {{companion.name}} ikisini uzaktan hemen tanıdı, çok sevindi. Üçü uzun uzun birbirini selamladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_an_03",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "sr_fam_an_04",
+      "text": "{{child.name}} yola çıkarken {{family.possessive}} {{family.name}} hemen peşine takıldı. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı. Bugün de güzel bir gün olacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_an_04",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "sr_fam_im_03",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a yolu tek tek gösterdi. Birlikte {{setting.name}}'a vardılar. {{companion.name}} onları her zamanki yerde bekliyordu, çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_im_03",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "sr_fam_im_04",
+      "text": "{{child.name}} bugün hayali arkadaşı {{family.name}} ile birlikteydi. {{setting.name}}'a varınca {{companion.name}}'e ondan söz etti. {{companion.name}} dikkatle dinledi ve sevinçle gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sr_fam_im_04",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

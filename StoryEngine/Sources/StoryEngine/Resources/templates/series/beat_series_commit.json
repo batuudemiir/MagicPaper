@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, 5-6 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz. Son sayfa kapalı ve sakin biter: soru, 'yarın', 'acaba', 'birden', 'sonra ne olacak' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa tek beat taşır"
+  },
+  "variants": [
+    {
+      "id": "scm_01",
+      "text": "\"Hadi götürelim,\" dedi {{child.name}} hiç duraksamadan. {{companion.name}} sevinçle önden yürüdü. Yol kısaydı, ama dikkat istiyordu. {{child.name}} onu nazikçe tuttu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "scm_01"
+    },
+    {
+      "id": "scm_02",
+      "text": "{{child.name}} kararını verdi: onu yerine götürecekti. Ne kadar sürerse sürsün, yarıda bırakmayacaktı. {{companion.name}} hemen yanına geldi, o da yardım edecekti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "scm_02"
+    },
+    {
+      "id": "scm_03",
+      "text": "{{child.name}} derin bir nefes aldı ve ayağa kalktı. \"Tamam,\" dedi. \"Onu evine birlikte götürelim.\" {{companion.name}} sevinçle başını salladı, hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "scm_03"
+    },
+    {
+      "id": "scm_04",
+      "text": "Bir şeyin yerinde olmaması {{child.name}}'i rahatsız ediyordu. Onu yerine götürmeye karar verdi. {{companion.name}} yolu gösterecekti, çünkü burayı çok iyi biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "scm_04"
+    }
+  ]
+}

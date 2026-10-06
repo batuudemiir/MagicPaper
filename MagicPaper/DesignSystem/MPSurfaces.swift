@@ -424,6 +424,11 @@ struct MPStoryCard: View {
         case finished
     }
     var badge: String? = nil
+    /// The badge's look. Defaults to the illustrated-book crown; a series
+    /// episode (FAZ 13) passes a neutral one, so "2. bölüm" does not read as
+    /// something premium.
+    var badgeTone: MPBadge.Tone = .reward
+    var badgeSymbol: String = "crown.fill"
     var progress: Double? = nil
     var layout: Layout = .shelf
     let action: () -> Void
@@ -518,7 +523,7 @@ struct MPStoryCard: View {
                 // Rozet yalnızca raf kapağına sığar. `row` düzeninde
                 // kapak küçük olduğu için rozet metin bloğuna taşındı.
                 if isShelf, let badge {
-                    MPBadge(title: badge, tone: .reward, symbol: "crown.fill").padding(10)
+                    MPBadge(title: badge, tone: badgeTone, symbol: badgeSymbol).padding(10)
                 }
             }
     }
@@ -571,7 +576,7 @@ struct MPStoryCard: View {
                 }
             }
             if !isShelf, let badge {
-                MPBadge(title: badge, tone: .reward, symbol: "crown.fill")
+                MPBadge(title: badge, tone: badgeTone, symbol: badgeSymbol)
                     .padding(.top, 2)
             }
             // İlerleme çubuğu yalnızca yarım kalmış masalda. Bitmiş masalda
