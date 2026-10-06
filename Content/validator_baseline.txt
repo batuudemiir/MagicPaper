@@ -1,0 +1,12 @@
+  - patient_wait: no `paired` variant authored, but 1 blueprint(s) need one — e.g. blueprint_charge_tending_age3_001
+  - restore: no `paired` variant authored, but 1 blueprint(s) need one — e.g. blueprint_charge_tending_age3_001
+  - blueprint_unexplained_reading_001: NO legal binding exists — the blueprint matches no content and can never be selected (narrowed away on: companion, discovery, setting)
+  - bp_unexplained_moment_002: only 2 legal binding(s) — every book of this blueprint draws from the same handful of settings, companions and discoveries
+  - bp_unexplained_askingout_003: NO legal binding exists — the blueprint matches no content and can never be selected (narrowed away on: companion, discovery, setting)
+  - blueprint_threshold_crossing_001: NO legal binding exists — the blueprint matches no content and can never be selected (narrowed away on: companion, discovery, setting)
+  - bp_threshold_joining_002: NO legal binding exists — the blueprint matches no content and can never be selected (narrowed away on: discovery, setting)
+  - blueprint_appeal_together_001: NO legal binding exists — the blueprint matches no content and can never be selected (narrowed away on: companion, setting)
+  - blueprint_misreading_tracks_001: only 3 legal binding(s) — every book of this blueprint draws from the same handful of settings, companions and discoveries
+  - page 5 patient_wait [paired]: NO variant survives binding — blueprint_charge_tending_age3_001 | Fısıldayan Orman | Kestane as needsCare | ince bir ses
+  - page 5 restore [paired]: NO variant survives binding — blueprint_charge_tending_age3_001 | Fısıldayan Orman | Kestane as needsCare | ince bir ses
+  - 9 catalog blueprint(s) now ship in the engine (e.g. bp_absence_retracing_002) — delete check_bound_pools and this fixture's constraint blocks; BoundPoolTests covers them from the composer itself, and two copies of the filtering rule is the defect this project keeps finding.

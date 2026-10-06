@@ -140,6 +140,13 @@ public struct BeatCorpusLoader: Sendable {
     }
 
     func load(urls: [URL]) -> Report {
+        load(files: urls.map { ($0.lastPathComponent, try? Data(contentsOf: $0)) })
+    }
+
+    /// The corpus from files already in hand — a content package (FAZ 15)
+    /// carries the same beat files the bundle does. A `nil` body is a file that
+    /// could not be read, and is skipped the same way.
+    func load(files sources: [(name: String, data: Data?)]) -> Report {
         var templates: [CatalogTemplate] = []
         var seriesTemplates: [CatalogTemplate] = []
         var files: [String] = []
@@ -148,9 +155,8 @@ public struct BeatCorpusLoader: Sendable {
         var skipped: [String] = []
         var drifted: [String] = []
 
-        for url in urls {
-            let name = url.lastPathComponent
-            guard let data = try? Data(contentsOf: url) else {
+        for (name, data) in sources {
+            guard let data else {
                 skipped.append("\(name): unreadable")
                 continue
             }

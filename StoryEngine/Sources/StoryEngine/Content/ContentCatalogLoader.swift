@@ -14,6 +14,9 @@ public struct CatalogLoadReport: Sendable {
         case otherBundle(String)
         /// Supplied directly, e.g. by a test.
         case memory
+        /// A content package downloaded after the app shipped (FAZ 15),
+        /// named by its version.
+        case remotePackage(String)
         case notFound(searched: [String])
 
         public var isFound: Bool { if case .notFound = self { return false } else { return true } }
@@ -60,6 +63,8 @@ public struct CatalogLoadReport: Sendable {
             return "Catalog loaded from \(path)\(documents) — \(integrity?.summary ?? "not checked")"
         case .memory:
             return "Catalog supplied in memory — \(integrity?.summary ?? "not checked")"
+        case .remotePackage(let version):
+            return "Catalog loaded from content package \(version) — \(integrity?.summary ?? "not checked")"
         }
     }
 }
@@ -69,6 +74,8 @@ public enum CatalogLoadError: Error, Sendable, CustomStringConvertible {
     case unreadable(path: String, underlying: String)
     case undecodable(path: String, underlying: String)
     case unusable(report: CatalogIntegrityReport)
+    /// A content package written for a format this engine does not read.
+    case unsupportedSchema(found: Int, supported: Int)
 
     public var description: String {
         switch self {
@@ -81,6 +88,8 @@ public enum CatalogLoadError: Error, Sendable, CustomStringConvertible {
         case .unusable(let report):
             return "Story content is unusable: "
                 + report.fatals.map(\.message).joined(separator: "; ")
+        case .unsupportedSchema(let found, let supported):
+            return "Content package schema \(found) is not supported (this engine reads \(supported))"
         }
     }
 }
@@ -155,6 +164,20 @@ public struct ContentCatalogLoader: Sendable {
         // not being told; a fatal issue is.
         let corpus = BeatCorpusLoader().load()
 
+        return try assemble(documents: documents, corpus: corpus, source: source)
+    }
+
+    /// The one road every complete source set takes: the bundle's documents,
+    /// or the same documents arriving as a remote package (FAZ 15).
+    ///
+    /// Moved here unchanged from `load()` so a package cannot be merged by
+    /// rules the bundle is not — the two would drift, and a package that passed
+    /// on a Mac would build a different book on a phone.
+    func assemble(
+        documents: [(name: String, catalog: ContentCatalog)],
+        corpus: BeatCorpusLoader.Report,
+        source: CatalogLoadReport.Source
+    ) throws -> Result {
         var catalog = ContentCatalog.merging(documents.map(\.catalog))
         if !corpus.templates.isEmpty {
             // The corpus **replaces** rather than joins, for the beats it

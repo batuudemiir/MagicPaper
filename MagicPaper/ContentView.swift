@@ -40,6 +40,10 @@ struct ContentView: View {
         .environmentObject(settings)
         .mpToast($app.toast)
         .task {
+            // İçerik akışı (FAZ 15): yeni günün masalı yeniden başlatmadan gelir.
+            await RemoteContentService.shared.refresh()
+        }
+        .task {
             // Akış 1: ilk profil oluşturulduysa ana sayfada karşılama toast'ı.
             if let name = MPWelcome.consume() {
                 app.showToast("\(name) için hazırız", symbol: "sparkles")
@@ -61,12 +65,21 @@ struct ContentView: View {
             // A series episode whose day has come opens here (FAZ 13); no
             // notification announces it.
             if let id { SeriesManager.shared.refreshUnlocks(for: id) }
+            DailyStoryManager.shared.refreshForToday()
         }
         // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
         .onChange(of: scenePhase) { _, phase in
-            if phase == .background { app.enterChildMode() }
+            if phase == .background {
+                app.enterChildMode()
+                RemoteContentService.scheduleBackgroundRefresh()
+            }
             if phase == .active, let id = profileManager.currentProfile?.id {
                 SeriesManager.shared.refreshUnlocks(for: id)
+            }
+            if phase == .active {
+                // Gün dönmüş olabilir; akış yarım saatte bir yoklanır.
+                DailyStoryManager.shared.refreshForToday()
+                Task { await RemoteContentService.shared.refreshIfDue() }
             }
         }
         .overlay { sheetLayer }

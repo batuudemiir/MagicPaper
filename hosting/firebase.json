@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["**/.*"],
+    "headers": [
+      {
+        "source": "/content/feed.json*",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+      },
+      {
+        "source": "/content/catalog/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      }
+    ]
+  }
+}
