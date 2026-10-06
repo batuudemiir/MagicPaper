@@ -476,16 +476,20 @@ masalda "Devam ettir" yok; 5. bölümden sonra seri kapanıyor.
 
 **Açık kalanlar:**
 - **Ekran metinleri** İrem'in gözden geçirmesini bekliyor (`SeriesCopy`).
-- **Bitmiş serinin ilk masalı** yeniden devam ettirilemez (bugünkü davranış; karar verilmedi).
 - **Keşif tekrarı:** 8 nesneyle bazı yerlerde bir keşif iki kez geliyor (üst üste değil). İçerik hattı.
 - **5-6'da ton farkı yok:** iki continuation üç modda da; mod başına continuation içerik hattının işi.
 - **Masalın ortasındaki aile anları** hâlâ yok (FAZ 11 devri); seride karakter açılış ve kapanışta.
 
-- **Reviewer'dan açık kalan (karar ya da ileri iş):**
-  - *Saat ileri alınıp geri getirilirse seri o fark kadar bekler:* "şimdi" görülen en geç ana bağlı, yanlış bir ileri tarih (ör. +1 yıl) düzelince bölümler o tarih gelene dek açılmaz. Öneri: görülen en geç anın duvar saatini en fazla 2 gün geçebilmesi; ürün kararı (karar 5'i değiştirir).
+- **Reviewer'dan açık kalan (ileri iş):**
   - *Plan ve dört bölümün yazımı ana iş parçacığında:* bugün 8 nesneyle hızlı, katalog büyüyünce arama büyür. Öneri: bölüm başına uygun keşifleri önceden hesaplamak ve başlatmayı arka plana almak.
-  - *"Devam ettir" masal aksiyonlarında okunmamış masalda da görünüyor;* ilk masal düğmeye basıldığı an okunmuş sayılıyor. Ürün kararı.
   - *"Yarın yeni bölüm kitaplığında olacak":* bölüm uygulama açılınca açılıyor; metin İrem'in gözden geçirmesinde.
+  - *Saat yanlışken yapılan okuma:* yanlış (ileri) gününü taşır, sonraki bölüm o gün gelene dek bekler. Yeniden tarihlemek, saati iki günden fazla geri alıp getirenin bölümü erken açmasına izin verirdi (karar: geri alma hiçbir şeyi erken açmaz); cihaz bu ikisini ayıramaz.
+
+**Takip kararları (6 Ekim 2026, dal `faz-13-takip`):**
+1. Bitmiş serinin ilk masalı yeniden devam ettirilmez; masal ve bölümler yeniden okunur (`testAFinishedSeriesFirstStoryIsNotContinuedAgain`).
+2. Görülen en geç an cihaz saatini en fazla 2 gün geçebilir (`SeriesClock.maximumLead`; `testTheLatestTimeSeenLeadsByAtMostTwoDays`, `testAClockAYearAheadAndBackDoesNotHoldTheSeries`).
+3. "Devam ettir" yalnız sonuna kadar okunmuş masalda (`testAStoryNotReadToTheEndOffersNothingInItsActions`).
+Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 12.
 
 **İçerik hattına devir:** öğrenelim ve macera için ayrı continuation'lar; 3-4'te öğrenelim/macera ilk masalı gelince continuation'ları; yeni nesneler (`keepsakeName` ile).
 
