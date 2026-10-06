@@ -567,7 +567,7 @@ Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 
 
 ---
 
-## FAZ 15 — Uzaktan içerik ⏳
+## FAZ 15 — Uzaktan içerik ✅
 
 **Amaç:** Günün masalı, eğitici hikâyeler ve motor içerik paketleri App Store güncellemesi olmadan değişsin.
 
@@ -585,6 +585,66 @@ Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 
 gösteriyor; bozuk paket etkinleşmiyor; çevrimdışı açılış çalışıyor.
 
 **Sahip:** builder.
+
+### Kapanış notu (6 Ekim 2026, dal `faz-15`)
+
+**Kararlar (Batuhan, 6 Ekim):** bütünlük Ed25519 imza (akış imzalı, paket özeti akışta); barındırma Firebase
+Hosting (`magicpaper-393a7.web.app/content/`); paket = tam kaynak seti (kütüphaneler + tüm beat dosyaları,
+yama değil); günün masalı hazır metin, tarihli, belirleyici seçim. Süreç ve yayın: `docs/REMOTE_CONTENT.md`.
+
+**Doğrulama** (kendi worktree'sinde):
+- Paket testleri 912, hata 18; hata listesi main'in 898/18'iyle test başına aynı.
+- Uygulama testleri 514/0 (1 atlanan; taban 472). Yayın aracı testleri 10/0.
+- `validate_beat_corpus.py`: 12 bulgu, tabanla aynı (taban artık `Content/validator_baseline.txt`'de; araç bunu aşan yayını durdurur).
+- Tasarım yasası: yeni ve değişen dosyalarda yeni isabet yok. Ekran değişmedi (Günlük aynı görünüm, yalnız veri kaynağı).
+- Reviewer: CRITICAL yok. HIGH (arka plan görevinin süresi dolunca bitirilmemesi) düzeltildi. MEDIUM'lardan düzeltilenler:
+  özet uyuşmazlığı kalıcı kara listeye girmiyor (önbellek olabilir), ret listesi uygulama sürümüne bağlı, indirme sınırı
+  akarken uygulanıyor, ilk yayın `--first` ister. LOW: paket yolu izin listesi (`catalog/x.y.z.json`), bozuk yazılmış
+  `publishDate` masalı atlanıyor.
+- Simülatörde (17 Pro, yerel sunucu + test anahtarı): akış 1'de günün masalı "Dürüstlük Ödülü"; bugün tarihli masalla
+  akış 2 yayımlanıp uygulama arka plana alınıp öne getirildi → aynı süreçte (PID değişmeden) "Ragi ve Ay Işığı Feneri".
+  Paket 2.0.1 bekletildi, yeniden açılışta etkinleşti, onunla yazılan masal `catalogVersion 2.0.1` kaydetti. Özeti bozuk
+  2.0.2 reddedildi ("digest"), açılışta paketle gelen katalog döndü. Sunucu kapalıyken açılış son akışı gösterdi.
+
+**Kabul:**
+- *Akış değişince yeniden başlatmadan yeni günün masalı:* `DailyStoryManagerTests.testANewFeedChangesTodaysStoryWithoutARestart`
+  + simülatör (öne gelme yolu). Arka plan yenilemesi (`BGAppRefreshTask`) kayıtlı ama simülatörde çalışmıyor; cihazda denenmedi.
+- *Bozuk paket etkinleşmiyor:* `testAPackageThatIsNotThePublishedOneIsNotStaged`, `testABrokenPackageIsNotStaged`,
+  `testAnActivePackageTheFeedDoesNotNameIsDropped`, paket tarafında `ContentPackageTests` (şema, sürüm, yeni hata, eksik beat).
+- *Çevrimdışı açılış:* `testOfflineTheLastFeedIsRead` + simülatör.
+
+**Ne yapıldı:**
+- Motor: `ContentCatalogLoader.load()` birleştirme hattı değiştirilmeden `assemble(...)`'a çıkarıldı; `ContentPackage`,
+  `load(package:)`, `RemoteCatalogPolicy`, `BeatCorpusLoader.load(files:)`, `CatalogLoadReport.Source.remotePackage`.
+- Uygulama (`StoryEngineBridge/RemoteContent/`): `ContentFeed` (+imza), `RemoteContentStore` (Application Support,
+  yedekten hariç, ilk kilit açılışından sonra okunur — arka plan yenilemesi için; çocuk verisi yok), `RemoteContentService`,
+  `CatalogSourceResolver` (`OfflineStoryService.catalog()` bunu kullanır), `TodaysStoryPicker`. `DailyStoryManager`
+  akıştan okur; 12 hazır masal sabit kimlikle `Content/DailyFeed/stories/`'a ve uygulama yedeğine taşındı (Swift'teki
+  ~400 satır kaldırıldı); okundu bilgisi başlıkla bir kez taşınır. "Tüm verileri sil" günlük masal okuma durumunu da siler
+  (önceden eksikti). `Info.plist`: arka plan görevi, `fetch`, `MPContentBaseURL`, `MPContentSigningKey` (boş).
+- `Scripts/ContentPublisher`: `keygen`, `public-key`, `build-package`, `publish`, `fallback`, `verify`. `hosting/firebase.json`.
+
+**Plandan sapmalar:**
+- Günün masalı artık rastgele değil (karar); aynı gün, yaş ve okuma geçmişi her cihazda aynı masalı verir.
+- Paket ancak uygulamanın katalog sürümünden yeniyse kullanılır; sürümün tek kaynağı `shared_content_library_v2.json`.
+- Akış bir paket adlandırıp o paket indirilemezse/reddedilirse eski paket de bırakılır (akış neyi adlandırıyorsa o).
+  Güvenli tarafta kalan bir davranış: o arada paketle gelen katalog çalışır.
+
+**Batuhan'ın yapacakları (ajan yapmadı):** `content-publisher keygen`, açık anahtarı `MPContentSigningKey`'e koymak,
+gizli anahtarı yedeklemek, `firebase login` + ilk `publish --first --deploy`, yayımlanan `feed.json`'u commit'lemek.
+Anahtar boş kaldıkça uygulama uzaktan içerik almaz, yerel yedekle çalışır.
+
+**FAZ 16'ya devir:**
+- Gizlilik metni: uygulama Firebase Hosting'den içerik çeker (IP adresi Google'a görünür; istekte kimlik yok).
+  `PRIVACY_POLICY.md`, html'ler ve App Store etiketi buna göre.
+
+**Açık kalanlar:**
+- Paket, ilk masal oluşturmada ana iş parçacığında yükleniyor (paketle gelen katalogdan sonra bir yükleme daha, ~0,2 sn);
+  büyük paketlerde açılışta takılma olursa arka plana alınmalı.
+- Yeni kurulumda geri sarma tabanı yok (saklanan akış yokken imzalı eski bir akış kabul edilir; TLS + imza gerektirir).
+- Tek imza anahtarı; anahtar değişimi uygulama güncellemesi ister (birden çok açık anahtar ileride).
+- `feed.json` ve `.sig` CDN'de ayrı önbelleklenir: 5 dk'lık pencerede imza uyuşmazlığı olursa akış reddedilir, sonraki çekişte düzelir.
+- Arka plan yenilemesi gerçek cihazda denenmedi.
 
 ---
 
@@ -673,7 +733,7 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 | İlgi alanı etiketleri: taslak onayı; Deniz içeriğini taşıyan blueprint; 9 kelime için 3-4 ve 5-6 içeriği | 12 |
 | `continuation` blueprint ailesi: pilot onaylı (bantta 2); mod başına continuation, 3-4 öğrenelim/macera, daha çok nesne | 13 |
 | Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
-| Günün masalı ve eğitici hikâyeler (akış) | 15 |
+| Günün masalı ve eğitici hikâyeler (akış): `Content/DailyFeed/stories/`, yayın `docs/REMOTE_CONTENT.md`; bugün 12 eski masal var | 15 |
 
 ---
 

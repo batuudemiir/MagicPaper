@@ -86,6 +86,41 @@ struct FeedStory: Codable, Equatable {
     let moralLesson: String
     let emoji: String
 
+    enum CodingKeys: String, CodingKey {
+        case id, publishDate, title, category, ageRange, readingTime, content, moralLesson, emoji
+    }
+
+    init(id: UUID, publishDate: String, title: String, category: DailyStoryCategory, ageRange: String,
+         readingTime: Int, content: String, moralLesson: String, emoji: String) {
+        self.id = id
+        self.publishDate = publishDate
+        self.title = title
+        self.category = category
+        self.ageRange = ageRange
+        self.readingTime = readingTime
+        self.content = content
+        self.moralLesson = moralLesson
+        self.emoji = emoji
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        publishDate = try container.decode(String.self, forKey: .publishDate)
+        // Days are compared as text, so they must all be written one way.
+        guard publishDate.range(of: #"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"#, options: .regularExpression) != nil else {
+            throw DecodingError.dataCorruptedError(forKey: .publishDate, in: container,
+                                                   debugDescription: "not yyyy-MM-dd")
+        }
+        id = try container.decode(UUID.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        category = try container.decode(DailyStoryCategory.self, forKey: .category)
+        ageRange = try container.decode(String.self, forKey: .ageRange)
+        readingTime = try container.decode(Int.self, forKey: .readingTime)
+        content = try container.decode(String.self, forKey: .content)
+        moralLesson = try container.decode(String.self, forKey: .moralLesson)
+        emoji = try container.decode(String.self, forKey: .emoji)
+    }
+
     func dailyStory(readOn date: Date?) -> DailyStory {
         DailyStory(id: id, title: title, category: category, ageRange: ageRange, readingTime: readingTime,
                    content: content, moralLesson: moralLesson, emoji: emoji,
@@ -105,8 +140,9 @@ struct CatalogPackageRef: Codable, Equatable {
     /// Lowercase hex SHA-256 of the package bytes.
     let sha256: String
 
+    /// Exactly what the publisher writes: `catalog/<x.y.z>.json`.
     var isWellFormed: Bool {
-        path.hasPrefix("catalog/") && !path.contains("..") && !path.contains("://") && !path.contains("?")
+        path.range(of: #"^catalog/[0-9]+\.[0-9]+\.[0-9]+\.json$"#, options: .regularExpression) != nil
             && sha256.count == 64 && sha256.allSatisfy { $0.isHexDigit && !$0.isUppercase }
     }
 

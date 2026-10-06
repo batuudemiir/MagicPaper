@@ -84,7 +84,9 @@ final class PublisherKitTests: XCTestCase {
         var publisher = Publisher(repo: Repo(root: temp))
         publisher.log = { _ in }
 
-        let first = try publisher.publishFeed(signer: signer, package: .none, today: "2026-10-06")
+        XCTAssertThrowsError(try publisher.publishFeed(signer: signer, package: .none, today: "2026-10-06"),
+                             "Without a previous feed, only --first publishes")
+        let first = try publisher.publishFeed(signer: signer, package: .none, today: "2026-10-06", first: true)
         let second = try publisher.publishFeed(signer: signer, package: .keep, today: "2026-10-07")
 
         XCTAssertEqual(first.feedVersion, 1)
@@ -99,7 +101,7 @@ final class PublisherKitTests: XCTestCase {
         var publisher = Publisher(repo: Repo(root: temp))
         publisher.log = { _ in }
         XCTAssertThrowsError(try publisher.publishFeed(signer: Signer(key: .init()), package: .version("9.9.9"),
-                                                       today: "2026-10-06"))
+                                                       today: "2026-10-06", first: true))
     }
 
     /// The app's bundled copy is the publisher's output, not hand-kept.

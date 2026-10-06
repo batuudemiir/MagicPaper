@@ -232,9 +232,18 @@ public struct Publisher {
     /// Writes `feed.json` and its signature. `feedVersion` is one above the
     /// last written feed's.
     @discardableResult
-    public func publishFeed(signer: Signer, package choice: PackageChoice, today: String) throws -> FeedFile {
+    public func publishFeed(signer: Signer, package choice: PackageChoice, today: String,
+                            first: Bool = false) throws -> FeedFile {
         let stories = try StoryLibrary.load(from: repo.stories)
         let previous = try? JSONDecoder().decode(FeedFile.self, from: Data(contentsOf: repo.feed))
+        // Installed apps refuse a feed that is not newer than theirs. Starting
+        // again from 1 in a checkout without the last feed would be refused
+        // everywhere, silently — so the first feed is said out loud.
+        guard previous != nil || first else {
+            throw PublishError.message(
+                "Önceki feed.json yok (\(repo.feed.path)). Gerçekten ilk yayınsa --first ekleyin; "
+                + "değilse yayımlanan son feed.json'u (repoda commit'li olmalı) geri getirin.")
+        }
 
         let package: PackageReference?
         switch choice {

@@ -251,7 +251,8 @@ final class RemoteContentTests: XCTestCase {
     }
 
     func testAPackagePathOutsideTheCatalogFolderIsRefused() {
-        for path in ["../secret.json", "https://elsewhere.test/x.json", "catalog/../x.json", "catalog/x.json?u=1"] {
+        for path in ["../secret.json", "https://elsewhere.test/x.json", "catalog/../x.json", "catalog/x.json?u=1",
+                     "catalog/2.0.1.json/../../x", "catalog\\2.0.1.json", "catalog/%2e%2e/2.0.1.json"] {
             let reference = CatalogPackageRef(version: "2.0.1", schemaVersion: 1, path: path,
                                               sha256: String(repeating: "a", count: 64))
             let data = TestPublisher.feedData(version: 1, stories: [], package: reference)
@@ -302,11 +303,45 @@ final class RemoteContentTests: XCTestCase {
         var altered = package
         altered.append(contentsOf: Data(" ".utf8))
         serve(package: altered, at: reference)
+        let content = service()
 
+        await content.refresh()
+        XCTAssertNil(store.stagedPackage)
+
+        // A stale cache, not a bad package: the right body is taken next run.
+        serve(package: package, at: reference)
+        await content.refresh()
+        XCTAssertNotNil(store.stagedPackage)
+    }
+
+    func testARefusalIsRememberedForThisBuildOnly() async {
+        let package = TestPackages.newer(breakWeight: true)
+        let reference = TestPublisher.reference(for: package)
+        serve(TestPublisher.feedData(version: 1, stories: [], package: reference))
+        serve(package: package, at: reference)
         await service().refresh()
 
-        XCTAssertNil(store.stagedPackage)
-        XCTAssertEqual(defaults.stringArray(forKey: RemoteContentService.rejectedPackagesKey), [reference.sha256])
+        XCTAssertEqual(defaults.stringArray(forKey: RemoteContentService.rejectedPackagesKey),
+                       [RemoteContentService.buildNumber + ":" + reference.sha256])
+    }
+
+    func testAnOversizedFeedIsRefused() async {
+        serve(Data(repeating: 32, count: RemoteContentService.maxFeedBytes + 1))
+        let outcome = await service().refresh()
+        XCTAssertEqual(outcome, .failed)
+    }
+
+    func testAStoryWithABadlyWrittenDayIsSkipped() throws {
+        var object = try JSONSerialization.jsonObject(
+            with: TestPublisher.feedData(version: 1, stories: [TestPublisher.story("A"), TestPublisher.story("B")])
+        ) as! [String: Any]
+        var stories = object["stories"] as! [[String: Any]]
+        stories[1]["publishDate"] = "2026-9-1"
+        object["stories"] = stories
+        let data = try JSONSerialization.data(withJSONObject: object)
+
+        let feed = try ContentFeed.verified(data, signature: publisher.sign(data), key: config.key)
+        XCTAssertEqual(feed.stories.map(\.title), ["A"])
     }
 
     func testABrokenPackageIsNotStaged() async throws {

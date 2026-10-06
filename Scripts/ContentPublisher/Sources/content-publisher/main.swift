@@ -11,6 +11,7 @@ content-publisher — MagicPaper uzaktan içerik yayını (FAZ 15)
       --package keep|latest|none|<sürüm>   (varsayılan keep: önceki akışın paketi)
       --date yyyy-MM-dd                    (varsayılan bugün)
       --deploy                             Yazdıktan sonra `firebase deploy --only hosting`.
+      --first                              Yalnız ilk yayında: önceki feed.json yokken.
   fallback               Uygulamanın yedek masal dosyasını stories'ten yeniden yazar.
   verify --public-key K  Yazılmış akışın imzasını ve paket özetini denetler.
 
@@ -65,7 +66,8 @@ do {
         }
         let date = option("--date") ?? today()
         let deploy = flag("--deploy")
-        try publisher.publishFeed(signer: try Signer(contentsOf: keyPath), package: choice, today: date)
+        let first = flag("--first")
+        try publisher.publishFeed(signer: try Signer(contentsOf: keyPath), package: choice, today: date, first: first)
         if deploy { try publisher.deploy() }
     case "fallback":
         try publisher.writeFallback()

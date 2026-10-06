@@ -54,6 +54,10 @@ final class RemoteContentService: ObservableObject {
     /// until a feed names a different one.
     static let rejectedPackagesKey = "mp.remoteContent.rejectedPackages"
 
+    static var buildNumber: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "0"
+    }
+
     init(
         config: RemoteContentConfig? = RemoteContentConfig.current(),
         store: RemoteContentStore = RemoteContentStore(),
@@ -112,6 +116,11 @@ final class RemoteContentService: ObservableObject {
         return outcome
     }
 
+    /// The background task ran out of time: stop downloading.
+    func cancelRunning() {
+        running?.cancel()
+    }
+
     private func run() async -> Outcome {
         guard let config else { return .disabled }
         lastAttempt = now()
@@ -165,7 +174,8 @@ final class RemoteContentService: ObservableObject {
         }
         if let active = store.activePackage, reference.matches(active) { return }
         var rejected = defaults.stringArray(forKey: Self.rejectedPackagesKey) ?? []
-        guard !rejected.contains(reference.sha256),
+        let rejectionKey = Self.buildNumber + ":" + reference.sha256
+        guard !rejected.contains(rejectionKey),
               reference.schemaVersion == ContentPackage.currentSchemaVersion else { return }
 
         let package: Data
@@ -188,8 +198,13 @@ final class RemoteContentService: ObservableObject {
 
         if let verdict {
             logger.notice("İçerik paketi \(reference.version, privacy: .public) geri çevrildi: \(verdict, privacy: .public)")
-            rejected = Array((rejected + [reference.sha256]).suffix(20))
-            defaults.set(rejected, forKey: Self.rejectedPackagesKey)
+            // A body that does not hash right may be a cache in the way, not
+            // the package: tried again next run. A package this engine read
+            // and refused stays refused — until an app update, which may read it.
+            if verdict != "digest" {
+                rejected = Array((rejected + [rejectionKey]).suffix(20))
+                defaults.set(rejected, forKey: Self.rejectedPackagesKey)
+            }
             return
         }
         do {
@@ -210,11 +225,10 @@ final class RemoteContentService: ObservableObject {
     private func download(_ url: URL, limit: Int) async throws -> Data {
         var request = URLRequest(url: url)
         request.httpShouldHandleCookies = false
-        let (data, response) = try await session.data(for: request)
+        let (data, response) = try await LimitedDownload(limit: limit).run(request, configuration: session.configuration)
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        guard data.count <= limit else { throw URLError(.dataLengthExceedsMaximum) }
         return data
     }
 
@@ -225,11 +239,15 @@ final class RemoteContentService: ObservableObject {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: backgroundTaskIdentifier, using: nil) { task in
             guard let task = task as? BGAppRefreshTask else { return task.setTaskCompleted(success: false) }
             scheduleBackgroundRefresh()
-            let work = Task { @MainActor in
-                let outcome = await RemoteContentService.shared.refresh()
-                task.setTaskCompleted(success: outcome != .failed)
+            let completion = BackgroundCompletion(task)
+            task.expirationHandler = {
+                Task { @MainActor in RemoteContentService.shared.cancelRunning() }
+                completion.finish(success: false)
             }
-            task.expirationHandler = { work.cancel() }
+            Task { @MainActor in
+                let outcome = await RemoteContentService.shared.refresh()
+                completion.finish(success: outcome != .failed)
+            }
         }
     }
 
@@ -242,5 +260,89 @@ final class RemoteContentService: ObservableObject {
         } catch {
             logger.notice("Arka plan yenilemesi planlanamadı: \(String(describing: error), privacy: .public)")
         }
+    }
+}
+
+/// Tells iOS a background task is over — once, whichever comes first: the
+/// run finishing or the time running out.
+private final class BackgroundCompletion: @unchecked Sendable {
+    private let task: BGTask
+    private let lock = NSLock()
+    private var finished = false
+
+    init(_ task: BGTask) { self.task = task }
+
+    func finish(success: Bool) {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !finished else { return }
+        finished = true
+        task.setTaskCompleted(success: success)
+    }
+}
+
+/// One download that stops the moment it passes `limit` — refused before it
+/// fills memory, not after. Cancelling the calling task cancels the request.
+private final class LimitedDownload: NSObject, URLSessionDataDelegate, @unchecked Sendable {
+    private let limit: Int
+    private let lock = NSLock()
+    private var buffer = Data()
+    private var response: URLResponse?
+    private var continuation: CheckedContinuation<(Data, URLResponse), Error>?
+    private var overflow = false
+
+    init(limit: Int) { self.limit = limit }
+
+    func run(_ request: URLRequest, configuration: URLSessionConfiguration) async throws -> (Data, URLResponse) {
+        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        defer { session.finishTasksAndInvalidate() }
+        let task = session.dataTask(with: request)
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                lock.lock()
+                self.continuation = continuation
+                lock.unlock()
+                task.resume()
+            }
+        } onCancel: {
+            task.cancel()
+        }
+    }
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
+                    completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        lock.lock()
+        self.response = response
+        let tooLarge = response.expectedContentLength > Int64(limit)
+        if tooLarge { overflow = true }
+        lock.unlock()
+        completionHandler(tooLarge ? .cancel : .allow)
+    }
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        lock.lock()
+        buffer.append(data)
+        let tooLarge = buffer.count > limit
+        if tooLarge { overflow = true }
+        lock.unlock()
+        if tooLarge { dataTask.cancel() }
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        lock.lock()
+        let continuation = self.continuation
+        self.continuation = nil
+        let result: Result<(Data, URLResponse), Error>
+        if overflow {
+            result = .failure(URLError(.dataLengthExceedsMaximum))
+        } else if let error {
+            result = .failure(error)
+        } else if let response {
+            result = .success((buffer, response))
+        } else {
+            result = .failure(URLError(.badServerResponse))
+        }
+        lock.unlock()
+        continuation?.resume(with: result)
     }
 }
