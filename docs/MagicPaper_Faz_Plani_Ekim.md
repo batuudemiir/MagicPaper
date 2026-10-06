@@ -495,7 +495,7 @@ Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 
 
 ---
 
-## FAZ 14 — Kullanımdan öğrenme (cihaz tarafı) ⏳
+## FAZ 14 — Kullanımdan öğrenme (cihaz tarafı) ✅
 
 **Amaç:** Motor kullanım verisinden öğrensin; veri cihazdan anonim çıkacak şekilde tasarlansın.
 
@@ -511,6 +511,59 @@ Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 
 **Kabul:** olay şeması testleri (kişisel alan yok); yerel ağırlıklandırma belirleyici; Uyku modu kuralı test edilmiş.
 
 **Sahip:** library-memory.
+
+### Kapanış notu (6 Ekim 2026, dal `faz-14`)
+
+**Kararlar (Batuhan, 6 Ekim):** taban FAZ 13 birleştikten sonraki main; "tekrar okunan aile" = anlatı ailesi
+(`NarrativeFamily`); "Okuma bilgisini paylaş" anahtarı varsayılan **açık**.
+
+**Doğrulama** (kendi worktree'sinde):
+- Paket testleri 741, hata 18; hata listesi test başına tabanla aynı.
+- `validate_beat_corpus.py`: 12 bulgu, tabanla aynı.
+- App build yeşil. Uygulama testleri 472/0 (1 atlanan; taban 446).
+- Reviewer: CRITICAL yok. İki HIGH onay ve bilgilendirme üzerine (aşağıda FAZ 16 devri). Kodda düzeltilenler: süre bitince
+  kapanan masal yarıda bırakılmış sayılmıyor; profil silme kenara alınmış kuyruk dosyasını da siliyor; anahtar metni
+  kapatınca bekleyenlerin silindiğini söylüyor.
+- Tasarım yasası: yeni ve değişen dosyalarda yeni isabet yok.
+- Simülatörde (17 Pro): masal okunup kapatılınca kuyrukta tek olay (bitti, sayfa 7/8, "kirpi", gün), içinde çocuğun adı
+  yok; yerel kayıt yazıldı.
+
+**Kabul:**
+- *Olay şeması testleri (kişisel alan yok):* `ReadingEventTests.testTheEventCarriesOnlyTheseKeys` (anahtar beyaz listesi),
+  `testNothingPersonalIsInTheEvent` (ad, profil kimliği, Masal ailem kimliği, başlık yok; description/Mirror/dump),
+  `testTheTimeIsADay`, `testTheOutboundPayloadHasNoProfileID`.
+- *Yerel ağırlıklandırma belirleyici:* `UsageLearningTests.testTheOrderOfStoriesDoesNotMatter`, `testPinnedMultipliers`,
+  `testANeutralProfileKeepsThePinnedBook` (okuma yokken sabit kitap aynı).
+- *Uyku modu kuralı:* `testAbandoningABedtimeStoryIsNotAPenalty` (katalogda `success.abandonIsPenalty: false`).
+
+**Ne yapıldı:**
+- Motor: `UsageLearner` → `UsageProfile` (anlatı ailesi ve yol arkadaşı çarpanı; tekrar okuma +1, bir kez bitirme +¼,
+  yarıda bırakma −1; `1 + toplam / (masal + 2)`, 0,6…1,8). Okuma yoksa çarpan tam 1, tohumlu döndürme değişmez.
+  `storyModes[].success`, `CatalogBlueprint.aggregateWeight` (varsayılan 1), `BlueprintOutcome` satırı.
+- Uygulama: `ReadingEvent`, `ReadingEventQueue` (500 tavan), `StoryUsageStore` (son 30 masal motora gider),
+  `ReadingSessionRecorder` (okuyucu oturumu başına bir kayıt; "Tekrar oku" ile ikinci bitiş), Gizlilik ve veri'de anahtar.
+  Profil silme ve "Tüm verileri sil" ikisini de siler. `read_history_<UUID>` artık yazılmıyor.
+
+**Plandan sapmalar:**
+- Thompson sampling için ayrı bir protokol açılmadı: arayüz `BlueprintOutcome` satırı + katalogdaki `aggregateWeight`.
+  Sunucu ağırlığı katalog paketiyle (FAZ 15) gönderir; motor yalnızca okur.
+- Gizlilik ve veri'deki üst bilgi kartının metnine dokunulmadı; açıklama yeni anahtarın satırında.
+- Arka planda öldürülen uygulamanın açık oturumu kaydedilmez (bir veri noktası kaybı, yanlış veri değil).
+
+**FAZ 16'ya devir (reviewer HIGH, ajan uygulamaz):**
+- Anahtar varsayılan açık ve mevcut kurulumlarda da olay birikiyor. Gönderimden önce ebeveyn kapısının arkasında açık bir
+  bildirim gösterilmeli; bildirimden önce biriken olaylar ya gönderilmemeli ya da bildirimde söylenmeli.
+- `PRIVACY_POLICY.md:269` ("Anonim kullanım istatistikleri toplanır"), `privacy.html`, `privacy_policy.html` ve App Store
+  gizlilik etiketleri okuma olaylarını anlatacak biçimde güncellenmeli.
+- `storyID` olayları aynı cihazda birbirine bağlar (takma ad, anonim değil). Olduğu gibi göndermek, parti başına döndürmek
+  ya da çıkarmak FAZ 16 kararı.
+
+**Açık kalanlar:**
+- Tek sayfa çevirip kapatmak da (öğrenelim/macera modunda) yarıda bırakma sayılıyor. Bir eşik (örn. masalın üçte biri)
+  istenirse küçük bir değişiklik.
+- Modu olmayan eski masallar varsayılan kurala (yarıda bırakma ceza) düşüyor.
+- `pageReached` oturumun açıldığı sayfadan başlar; kaldığı yerden açılan oturum o sayfaya "ulaşmış" sayılır.
+- Ayar metni İrem'in gözden geçirmesini bekliyor.
 
 ---
 
