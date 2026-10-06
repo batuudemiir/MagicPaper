@@ -566,6 +566,8 @@ struct PrivacyAndDataView: View {
         // Okuma kaydı ve gönderilmeyi bekleyen olaylar (FAZ 14).
         StoryUsageStore.eraseAll()
         ReadingEventQueue.eraseAll()
+        // Günlük masallarda neyin okunduğu (FAZ 15'e kadar burada eksikti).
+        DailyStoryManager.shared.eraseReadingState()
         dismiss()
     }
 }

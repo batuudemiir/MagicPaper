@@ -62,10 +62,14 @@ final class OfflineStoryService {
     // MARK: - Content
 
     /// Loads once and keeps it. The catalog is authored, read-only and small.
+    ///
+    /// The bundle's, or a downloaded content package that passed every check
+    /// (FAZ 15, `CatalogSourceResolver`). Decided once per launch: a package
+    /// that arrives mid-session waits for the next one.
     private func catalog() throws -> ContentCatalog {
         if let cached { return cached }
         do {
-            let result = try ContentCatalogLoader().load()
+            let result = try CatalogSourceResolver.forThisLaunch().resolve().result
             cached = result.catalog
             cachedReport = result.report
             logger.debug("📚 \(result.report.summary)")

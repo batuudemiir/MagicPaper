@@ -15,6 +15,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     FirebaseApp.configure()
     print("✅ Firebase yapılandırıldı")
+
+    // Günün masalı ve içerik paketleri arka planda da yenilenir (FAZ 15).
+    // Kayıt, açılış bitmeden yapılmak zorunda.
+    RemoteContentService.registerBackgroundRefresh()
+    RemoteContentService.scheduleBackgroundRefresh()
     
     // RevenueCat Configuration
     #if canImport(RevenueCat)
