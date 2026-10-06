@@ -39,10 +39,13 @@ struct AvatarStore: Sendable {
 
     func save(_ spec: AvatarSpec, for profileID: UUID) async throws {
         try await store.save(spec, id: profileID)
+        // Hesap eşitlemesi (FAZ 16) bunu izler.
+        await MainActor.run { NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil) }
     }
 
     func delete(for profileID: UUID) async {
         await store.delete(id: profileID)
+        await MainActor.run { NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil) }
     }
 
     /// "Tüm verileri sil" için: klasörün tamamı, eşzamanlı.

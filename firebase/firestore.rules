@@ -1,0 +1,110 @@
+rules_version = '2';
+
+// MagicPaper — Firestore güvenlik kuralları (FAZ 16).
+//
+// Her aile belgesi yalnızca sahibi ebeveyne açık. Masal metni yazıldıktan
+// sonra değişmez. Okuma olayları anonim: yalnızca eklenir, hiç okunmaz,
+// içinde hesap kimliği yoktur. Geri kalan her şey kapalı.
+// Testler: firebase/tests/rules.test.mjs (npm test, emülatörle).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function syncCollections() {
+      return ['children', 'avatars', 'family', 'stories', 'progress', 'series'];
+    }
+
+    // Bir kayıt: uygulamanın kendi modeli JSON olarak (`payload`), silinmişse
+    // içeriksiz bir iz (`deleted`).
+    function validRecord() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['payload', 'deleted', 'updatedAt', 'serverUpdatedAt', 'schemaVersion'])
+        && d.keys().hasAll(['deleted', 'updatedAt', 'serverUpdatedAt', 'schemaVersion'])
+        && d.deleted is bool
+        && d.updatedAt is int
+        && d.schemaVersion is int
+        && d.serverUpdatedAt == request.time
+        && (d.deleted
+              ? !('payload' in d)
+              : (d.payload is string && d.payload.size() > 0 && d.payload.size() < 900000));
+    }
+
+    // Masal yazıldıktan sonra değişmez; yalnızca silinebilir.
+    function storyTextUnchanged() {
+      let before = resource.data;
+      let after = request.resource.data;
+      return after.deleted == true
+        || (before.deleted == false && after.payload == before.payload);
+    }
+
+    function validConsent(version) {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['version', 'acceptedAt', 'clientAcceptedAt', 'shareUsageData'])
+        && d.keys().hasAll(['version', 'acceptedAt', 'clientAcceptedAt', 'shareUsageData'])
+        && d.version == version
+        && d.acceptedAt == request.time
+        && d.clientAcceptedAt is int
+        && d.shareUsageData is bool;
+    }
+
+    function optionalString(d, key, maxSize) {
+      return !(key in d) || (d[key] is string && d[key].size() <= maxSize);
+    }
+
+    function validEvent() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['schemaVersion', 'mode', 'blueprintID', 'contentIDs', 'companionKind',
+                               'familyRelation', 'ageBand', 'pageReached', 'pageCount', 'finished',
+                               'reread', 'day'])
+        && d.keys().hasAll(['schemaVersion', 'blueprintID', 'contentIDs', 'pageReached', 'pageCount',
+                            'finished', 'reread', 'day'])
+        && d.schemaVersion is int
+        && d.blueprintID is string && d.blueprintID.size() <= 120
+        && d.contentIDs is map
+        && d.contentIDs.keys().hasOnly(['setting', 'companion', 'discovery'])
+        && d.contentIDs.keys().hasAll(['setting', 'companion', 'discovery'])
+        && d.contentIDs.setting is string && d.contentIDs.setting.size() <= 120
+        && d.contentIDs.companion is string && d.contentIDs.companion.size() <= 120
+        && d.contentIDs.discovery is string && d.contentIDs.discovery.size() <= 120
+        && d.pageReached is int && d.pageReached >= 0
+        && d.pageCount is int && d.pageCount >= 0 && d.pageCount <= 200
+        && d.finished is bool
+        && d.reread is bool
+        && d.day is string && d.day.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && optionalString(d, 'mode', 40)
+        && optionalString(d, 'companionKind', 60)
+        && (!('familyRelation' in d) || d.familyRelation in ['sibling', 'friend', 'animal', 'imaginary'])
+        && (!('ageBand' in d) || d.ageBand in ['3-4', '5-6', '7-8', '9-10']);
+    }
+
+    match /families/{uid} {
+      // Aile belgesi hiçbir şey taşımaz; hesap silinirken silinir.
+      allow read, delete: if isOwner(uid);
+
+      match /{collection}/{recordId} {
+        allow read, delete: if isOwner(uid) && collection in syncCollections();
+        allow create: if isOwner(uid) && collection in syncCollections() && validRecord();
+        allow update: if isOwner(uid) && collection in syncCollections() && validRecord()
+                      && (collection != 'stories' || storyTextUnchanged());
+      }
+
+      // KVKK açık rıza kaydı: sürüm başına bir kez yazılır, değiştirilemez.
+      match /consents/{version} {
+        allow read, delete: if isOwner(uid);
+        allow create: if isOwner(uid) && validConsent(version);
+      }
+    }
+
+    match /readingEvents/{eventId} {
+      allow create: if signedIn() && validEvent();
+    }
+  }
+}

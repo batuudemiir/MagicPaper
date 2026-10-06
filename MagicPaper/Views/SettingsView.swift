@@ -52,6 +52,7 @@ struct SettingsView: View {
         .fullScreenCover(isPresented: $showPrivacy) {
             PrivacyAndDataView()
         }
+
         // Ekranı açtığında gerçeği göster: izin Sistem Ayarları'ndan geri
         // alınmış olabilir ve bizim anahtarımız bunu bilmiyor.
         .task {
@@ -278,6 +279,9 @@ struct SettingsView: View {
 
     private var accountSection: some View {
         section(title: "Hesap") {
+            // Ebeveyn hesabı ve eşitleme (FAZ 16).
+            AccountStatusRows(onSignOut: { app.sheet = .signOut })
+            MPRowDivider()
             MPListRow(symbol: "crown.fill", title: "Aboneliği yönet", action: {
                 if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
                     UIApplication.shared.open(url)
@@ -285,7 +289,7 @@ struct SettingsView: View {
             })
             MPRowDivider()
             MPListRow(symbol: "lock.fill", title: "Gizlilik ve veri",
-                      description: "Çocuk fotoğrafı toplanmaz",
+                      description: "Hesabı silme ve okuma bilgisi",
                       action: { showPrivacy = true })
         }
     }
@@ -444,7 +448,9 @@ struct SettingsView: View {
 struct PrivacyAndDataView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var settings = MPSettingsStore.shared
+    @ObservedObject private var account = AccountService.shared
     @State private var confirmClear = false
+    @State private var confirmDelete = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -457,7 +463,7 @@ struct PrivacyAndDataView: View {
                             Text("Çocuk fotoğrafı toplanmaz")
                                 .font(MP.F.displaySM())
                                 .foregroundStyle(MP.C.textTitle)
-                            Text("MagicPaper yalnızca çocuğun adını ve avatar rengini saklar. Masallar ve görseller cihazında tutulur.")
+                            Text("Profiller ve masallar cihazınızda ve yalnızca sizin erişebildiğiniz ebeveyn hesabınızda saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
                                 .font(MP.F.bodyMD())
                                 .lineSpacing(16 * 0.55)
                                 .foregroundStyle(MP.C.textMuted)
@@ -485,10 +491,20 @@ struct PrivacyAndDataView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         MPSectionHeader(title: "Veriler")
                         MPCard(padding: 0) {
-                            MPListRow(symbol: "trash", title: "Tüm verileri sil",
-                                      description: "Masallar, profiller ve ayarlar cihazdan kaldırılır",
-                                      isDanger: true,
-                                      action: { confirmClear = true })
+                            // Signed in, a device-only erase would come back
+                            // with the next sync: the real erase is the
+                            // account's (FAZ 16).
+                            if account.account != nil {
+                                MPListRow(symbol: "trash", title: AccountCopy.deleteAccount,
+                                          description: AccountCopy.deleteAccountRow,
+                                          isDanger: true,
+                                          action: { confirmDelete = true })
+                            } else {
+                                MPListRow(symbol: "trash", title: "Tüm verileri sil",
+                                          description: "Masallar ve profiller cihazdan kaldırılır",
+                                          isDanger: true,
+                                          action: { confirmClear = true })
+                            }
                         }
                     }
                 }
@@ -500,6 +516,15 @@ struct PrivacyAndDataView: View {
         .mpScreenBackground()
         // Onay dili sistem alert'i değil, sistemin kendi alt sayfasıdır:
         // "her ikincil aksiyon ekran push etmek yerine sheet'te açılır".
+        .overlay {
+            if confirmDelete {
+                AccountDeletionSheet(onClose: { confirmDelete = false })
+            }
+        }
+        // The account is gone: this screen and the parent area close with it.
+        .onChange(of: account.account == nil) { _, signedOut in
+            if signedOut && confirmDelete { confirmDelete = false; dismiss() }
+        }
         .overlay {
             if confirmClear {
                 MPSheet(title: "Tüm verileri sil", onClose: { confirmClear = false }) {
@@ -532,7 +557,7 @@ struct PrivacyAndDataView: View {
             MPSectionHeader(title: "Okuma bilgisi")
             MPCard(padding: 0) {
                 MPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
-                          description: "Hangi masalların bitirildiği; ad, yaş ve kimlik olmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
+                          description: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan, hesabınıza bağlanmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
                     MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
                 }
             }
@@ -545,29 +570,9 @@ struct PrivacyAndDataView: View {
     }
 
     private func clearAll() {
-        let d = UserDefaults.standard
-        // `mp_readSeconds` was missing here: "delete all data" cleared the reading
-        // *days* but left the reading *time* ledger behind, so the parent panel
-        // kept showing minutes for a profile that no longer existed.
-        for key in ["stories", "user_profiles", "current_profile_id",
-                    "mp_favoriteStoryIDs", "mp_readDays", "mp_readSeconds",
-                    "mp_approvedStoryIDs"] {
-            d.removeObject(forKey: key)
-        }
-        // Reading ledgers are per child now; their keys carry the profile id,
-        // so they cannot be listed above.
-        MPStreak.eraseAllLedgers(in: d)
-        // Kitap karakterleri (B2) profil başına dosyada; listelenemezler,
-        // klasör toptan silinir.
-        AvatarStore.eraseAll()
-        FamilyCharacterStore.eraseAll()
-        StorySeriesStore.eraseAll()
-        d.removeObject(forKey: SeriesClock.highWaterKey)
-        // Okuma kaydı ve gönderilmeyi bekleyen olaylar (FAZ 14).
-        StoryUsageStore.eraseAll()
-        ReadingEventQueue.eraseAll()
-        // Günlük masallarda neyin okunduğu (FAZ 15'e kadar burada eksikti).
-        DailyStoryManager.shared.eraseReadingState()
+        // One list of what "everything" is, shared with signing out and
+        // deleting the account (FAZ 16).
+        LocalDataEraser.eraseFamilyData(keepingOnboarding: true)
         dismiss()
     }
 }

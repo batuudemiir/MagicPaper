@@ -442,3 +442,36 @@ extension StoryGenerationManager {
     }
 
 }
+
+// MARK: - Account sync (FAZ 16)
+
+extension StoryGenerationManager {
+    /// A story another device wrote. Added when missing, never rewritten: a
+    /// story's text does not change once written, and the copy already here
+    /// keeps whatever this device knows about it (its cover file, its place).
+    func applySyncedStory(_ story: Story) {
+        guard !stories.contains(where: { $0.id == story.id }) else { return }
+        let index = stories.firstIndex(where: { $0.createdAt < story.createdAt }) ?? stories.endIndex
+        stories.insert(story, at: index)
+        saveStories()
+    }
+
+    /// Where another device left a story. The later reading wins; a reading
+    /// position never moves back because an older one arrived late.
+    func applySyncedProgress(storyID: UUID, progress: StoryProgress) {
+        guard let index = stories.firstIndex(where: { $0.id == storyID }) else { return }
+        let local = stories[index].lastReadAt ?? .distantPast
+        guard (progress.lastReadAt ?? .distantPast) > local else { return }
+        stories[index].lastReadPage = progress.lastReadPage
+        stories[index].lastReadAt = progress.lastReadAt
+        saveStories()
+    }
+
+    /// After `LocalDataEraser`: an empty shelf, on disk and on screen. The
+    /// empty write also carries the erasure to the file copy
+    /// (`LibraryPersistence.reconcileAfterWrite`).
+    func resetAfterErase() {
+        stories = []
+        saveStories()
+    }
+}

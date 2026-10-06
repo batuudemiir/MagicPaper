@@ -648,7 +648,7 @@ Anahtar boş kaldıkça uygulama uzaktan içerik almaz, yerel yedekle çalışı
 
 ---
 
-## FAZ 16 — Hesap ve senkron (Firebase) ⏳
+## FAZ 16 — Hesap ve senkron (Firebase) ✅
 
 **Amaç:** Ebeveyn hesabı, KVKK onayı, cihazlar arası kütüphane.
 
@@ -668,6 +668,61 @@ Anahtar boş kaldıkça uygulama uzaktan içerik almaz, yerel yedekle çalışı
 hesap silme sonrası sunucuda veri yok; güvenlik kuralları testi geçiyor.
 
 **Sahip:** builder + library-memory.
+
+### Kapanış notu (6 Ekim 2026, dal `faz-16`)
+
+**Kararlar (Batuhan, 6 Ekim):** giriş kurulu uygulamalara da zorunlu (güncellemeden sonra bir kez Giriş + Onay,
+cihazdaki veri hesaba yüklenir); `storyID` cihazdan çıkmaz; ebeveyn onayından önce biriken okuma olayları silinir,
+gönderilmez; kural testi için Firebase Emulator (taşınabilir JDK). Ayrıntı ve Batuhan'ın adımları: `docs/ACCOUNT_SYNC.md`.
+
+**Doğrulama** (kendi worktree'sinde):
+- App build yeşil. Uygulama testleri 545/0 (1 atlanan; taban 514). Yeni: `AccountSyncTests` (16), `AccountServiceTests` (15).
+- Güvenlik kuralları: `firebase/tests/rules.test.mjs` emülatörde 18/18.
+- Paket kodu değişmedi (StoryEngine'e dokunulmadı); doğrulayıcı tabanı etkilenmedi.
+- Tasarım yasası: yeni ve değişen dosyalarda yeni isabet yok (SettingsView'daki 6 padding eski).
+- Simülatörde (17, yerel Auth + Firestore emülatörü): Karşılama → Giriş (test hesabı) → Onay (sunucuya `consents/2026-10-06`,
+  sunucu saatiyle) → Profil → masal yazıldı ve 2 sayfa okundu → sunucuda profil (fotoğraf alanı yok), tek masal (örnek
+  masallar gitmedi), ilerleme. İkinci cihazın yazımı emülatöre doğrudan yapıldı (yeni masal + sayfa 4): öne gelişte
+  kütüphaneye ve "Kaldığın yer"e geldi. Çıkış yap → cihaz boşaldı, onboarding korundu; tekrar giriş → onay sorulmadı,
+  profil, masallar ve ilerleme geri geldi.
+
+**Kabul:**
+- *İki cihazda aynı hesapla kütüphane eşleşiyor:* `AccountSyncTests.testTwoDevicesOnOneAccountShareTheLibrary` (iki cihaz,
+  tek sunucu: ekleme, ilerleme, silme) + simülatörde uzaktan yazım ve boş cihaz geri yüklemesi. **İkinci gerçek simülatör
+  açılamadı** (makinede süreç sınırı: başka oturumların üç simülatörü açık); gerçek iki cihaz denemesi Firebase kurulumu
+  bitince yapılmalı.
+- *Çevrimdışı masal yazma ve okuma:* uygulama hep cihazı okur/yazar; `testAStoryWrittenOfflineIsSentWhenTheConnectionReturns`.
+- *Hesap silme sonrası sunucuda veri yok:* `testDeletingTheAccountDeletesServerThenSignInThenDevice` (sıra ve boş sunucu),
+  kural testinde sahibin her belgeyi silip geriye hiçbir şey kalmaması. Simülatörde uçtan uca hesap silme denenmedi.
+- *Güvenlik kuralları testi:* 18/18 (sahiplik, masal metni değişmez, onay bir kez, olaylar yalnız eklenir ve kimliksiz).
+
+**Ne yapıldı:** Firebase Auth (Apple: nonce, ad/e-posta istenmez; Google; DEBUG emülatör hesabı), Firestore (disk önbelleği
+kapalı), `families/{uid}/{children,avatars,family,stories,progress,series}` kayıt zarfı, defterli eşitleme (son yazan kazanır,
+masal yalnız var/yok, silme iz olarak), KVKK onay metni ve kaydı, okuma olayı gönderimi (`ReadingEventWire`), hesap silme
+(yeniden giriş + Apple token iptali), çıkış (eşitlenmemiş değişiklik varsa reddeder), `LocalDataEraser` (Tüm verileri sil
+artık profil fotoğraflarını, kütüphane dosya kopyasını ve bellekteki listeyi de siliyor). Gizlilik politikası (md + html)
+yeniden yazıldı (hukuki onay bekliyor). Avatar rengi çocuk kaydıyla eşitleniyor.
+
+**Plandan sapmalar:**
+- Giriş yapılmışken "Tüm verileri sil" yerine "Hesabı sil" gösteriliyor (yalnız cihaz silmek eşitlemeyle geri gelirdi).
+- Çevrimdışı ve cihazda çocuk varsa "Şimdilik masallara dön" o açılış için girişi erteler.
+- Giriş düğmeleri ebeveyn kapısının arkasında (Çocuklar kategorisi: Apple/Google kendi sayfasını açar).
+- Eşitlenmeyenler: örnek masallar, okuma serisi defterleri, favoriler/onay listesi, cihaz tercihleri, yerel okuma kaydı.
+
+**Batuhan'ın yapacakları:** Firestore'u oluştur (**bölge KVKK m.9 kararı**), kuralları yayımla, Apple ve Google
+sağlayıcılarını aç, **`GoogleService-Info.plist` paket kimliği `com.magicpaper.kids`, uygulama `com.batu.magicpaper.v1`:
+Firebase'de doğru iOS uygulamasını kaydedip plist'i yenile** (Google için `CLIENT_ID` de gelir), `GOOGLE_REVERSED_CLIENT_ID`,
+App Store gizlilik etiketi, okuma olaylarının saklama süresi. Liste: `docs/ACCOUNT_SYNC.md`.
+
+**Açık kalanlar:**
+- Apple düğmesi İngilizce görünüyor (uygulama `tr` yerelleştirmesi bildirmiyor; `CFBundleLocalizations`).
+- Google düğmesinde Google logosu yok (marka kuralı; tasarım kararı).
+- Ekran matrisi (koyu, en büyük Dynamic Type, SE/Pro Max) yeni ekranlarda yapılmadı; metinler İrem'in gözden geçirmesini bekliyor.
+- İletişim adresi kaynaklarda farklıydı; politika ve onay metninde `support@magicpaperkids.com` kullanıldı, uygulamadaki
+  bağlantı `magicpaper.app/privacy` — tek alan adına karar.
+- Yerel değişiklik zamanı (profil, seri) değişikliğin ilk görüldüğü andır; aynı kaydı iki cihazda dakikalar içinde
+  düzenlemek nadiren yanlış tarafı kazandırabilir.
+- Avatar rengi ve Masal ailem değişikliği bir sonraki öne gelişte/değişiklikte gider (anlık dinleyici yok).
 
 ---
 

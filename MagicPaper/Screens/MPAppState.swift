@@ -72,6 +72,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case familyCharacters(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
+    /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
+    case signOut
 
     var id: String {
         switch self {
@@ -80,6 +82,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .bookCharacter(let i): return "bookCharacter-\(i)"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
         case .interests(let i): return "interests-\(i)"
+        case .signOut: return "signOut"
         }
     }
 }

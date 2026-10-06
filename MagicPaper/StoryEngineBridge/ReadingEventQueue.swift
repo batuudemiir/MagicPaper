@@ -3,7 +3,8 @@ import OSLog
 
 private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "ReadingEventQueue")
 
-/// Reading events waiting to be sent (FAZ 14). Sending is FAZ 16's.
+/// Reading events waiting to be sent (FAZ 14). `ReadingEventUploader` sends
+/// them (FAZ 16).
 ///
 /// `Documents/StoryEngine/ReadingEvents/queue.json`, one file for the device.
 /// Each entry keeps the child's local profile id beside the event so that
@@ -44,8 +45,23 @@ struct ReadingEventQueue: Sendable {
         StoryEngineStorage.directory(subdirectory)?.appendingPathComponent("queue.json")
     }
 
-    /// What FAZ 16 sends: the events alone, oldest first.
+    /// What is sent: the events alone, oldest first.
     func outbound() -> [ReadingEvent] { load().entries.map(\.event) }
+
+    /// After a send: removes the sent events, oldest first. Events read while
+    /// the send was on its way stay (they were appended after the batch).
+    func removeSent(_ sent: [ReadingEvent]) {
+        guard !sent.isEmpty else { return }
+        let loaded = load()
+        guard loaded.intact else { return }
+        var entries = loaded.entries
+        for event in sent {
+            if let index = entries.firstIndex(where: { $0.event == event }) {
+                entries.remove(at: index)
+            }
+        }
+        write(entries)
+    }
 
     var count: Int { load().entries.count }
 

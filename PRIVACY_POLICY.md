@@ -1,283 +1,153 @@
 # Gizlilik Politikası - MagicPaper
 
-**Son Güncelleme**: 27 Ocak 2026
+**Son Güncelleme**: 6 Ekim 2026
+**Versiyon**: 2.0
+
+> Hukuki gözden geçirme bekliyor. Bu sürüm, uygulamanın Ekim 2026'daki gerçek davranışını anlatmak için
+> FAZ 16'da yeniden yazıldı (ebeveyn hesabı, senkron, anonim okuma bilgisi, uzaktan içerik). Yayından önce
+> KVKK danışmanı tarafından onaylanmalı; Firestore bölgesi ve yurt dışı aktarım bölümü buna bağlı.
 
 ## Giriş
 
-MagicPaper ("biz", "bizim" veya "uygulama"), kullanıcılarımızın gizliliğini korumayı taahhüt eder. Bu Gizlilik Politikası, MagicPaper mobil uygulamasını kullandığınızda hangi bilgilerin toplandığını, nasıl kullanıldığını ve korunduğunu açıklar.
+MagicPaper ("biz", "uygulama"), çocuklar için kişiselleştirilmiş masallar yazan bir uygulamadır. Uygulamayı
+ebeveyn kurar ve yönetir; hesap ebeveynindir, çocuk giriş yapmaz. Bu politika hangi bilgilerin nerede
+saklandığını, neden saklandığını ve nasıl silineceğini anlatır.
+
+Masal metinleri cihazda, internet bağlantısı olmadan yazılır. Masal yazmak için çocuğa ait hiçbir bilgi bir
+yapay zekâ servisine gönderilmez.
 
 ## Toplanan Bilgiler
 
-### 1. Kullanıcı Tarafından Sağlanan Bilgiler
+### 1. Ebeveyn hesabı
 
-**Profil Bilgileri:**
-- İsim (kullanıcı adı)
-- Profil fotoğrafı (opsiyonel)
+Uygulama, ebeveynin Apple ile Giriş Yap ya da Google ile giriş yapmasını ister.
 
-**Hikaye Oluşturma Bilgileri:**
-- Çocuğun ismi
-- Çocuğun yaşı (3-12 yaş arası)
-- Çocuğun cinsiyeti
-- Yüklenen fotoğraflar
-- Seçilen hikaye temaları
-- Dil tercihi
+- **Saklanan**: Firebase Authentication'ın verdiği hesap kimliği ve giriş yöntemi (Apple ya da Google).
+- **Saklanmayan**: Apple ile girişte ad ve e-posta istenmez. Google ile girişte Google'ın döndürdüğü ad ve
+  e-posta MagicPaper tarafından saklanmaz; giriş hizmetini veren Google/Firebase kendi kayıtlarını tutar.
 
-**Oluşturulan İçerik:**
-- Hikaye metinleri
-- Oluşturulan görseller
-- Hikaye başlıkları ve açıklamaları
+### 2. Ebeveynin girdiği çocuk bilgileri
 
-### 2. Otomatik Olarak Toplanan Bilgiler
+- Çocuğun adı ve yaşı
+- Sevdiği şeyler (ilgi alanları, hazır bir listeden)
+- Kitap karakteri seçimleri (hazır parçalardan; fotoğraf değil)
+- Masal ailem: ebeveynin eklediği karakter adları ve ilişki türü (kardeş, arkadaş, hayvan, hayali varlık)
 
-**Cihaz Bilgileri:**
-- Cihaz modeli ve işletim sistemi versiyonu
-- Uygulama versiyonu
-- Dil ve bölge ayarları
+**Toplanmayanlar**: Çocuk fotoğrafı hiçbir yere gönderilmez. Ses kaydı yapılmaz. Cinsiyet sorulmaz.
 
-**Kullanım Verileri:**
-- Uygulama kullanım istatistikleri
-- Özellik kullanım sıklığı
-- Hata raporları (çökme durumunda)
+### 3. Uygulamanın ürettiği bilgiler
 
-### 3. Üçüncü Taraf Servisleri
+- Yazılan masallar (metin, başlık, hangi içerikten yazıldığı)
+- Seriler ve hangi bölümün açıldığı
+- Okuma ilerlemesi (bir masalın hangi sayfasında kalındığı, en son ne zaman okunduğu)
 
-**Google Gemini AI:**
-- Hikaye metni oluşturmak için kullanılır
-- Gönderilen veriler: Çocuk ismi, yaş, cinsiyet, tema tercihleri
-- Google'ın gizlilik politikası: https://policies.google.com/privacy
+### 4. Anonim okuma bilgisi (isteğe bağlı)
 
-**Fal.ai (Görsel Oluşturma):**
-- Hikaye görselleri oluşturmak için kullanılır
-- Gönderilen veriler: Yüklenen fotoğraflar, görsel açıklamaları
-- Fal.ai gizlilik politikası: https://fal.ai/privacy
+Ebeveyn "Okuma bilgisini paylaş" seçeneğini açık bırakırsa, her okumadan sonra şu bilgi gönderilir:
+masalın modu, hangi hazır içerikten yazıldığı (içerik kimlikleri), yol arkadaşının türü, Masal ailem
+karakterinin yalnızca ilişki türü, yaş bandı (örn. "5-6"), ulaşılan sayfa ve sayfa sayısı, bitirilip
+bitirilmediği, tekrar okunup okunmadığı ve gün (saat yok).
 
-**Firebase (Google):**
-- Görsel depolama için kullanılır
-- Gönderilen veriler: Oluşturulan hikaye görselleri
-- Firebase gizlilik politikası: https://firebase.google.com/support/privacy
+- **İçinde olmayanlar**: Çocuğun adı, tam yaşı, Masal ailem adları, hesap kimliği, cihaz kimliği, masal
+  metni, masalın kendi kimliği, okuma saati.
+- Bu bilgi ebeveyn hesabına bağlanmaz; sunucuda hesap kimliği olmadan, okunamaz biçimde saklanır.
+- Yalnızca ebeveyn onay metnini gördükten sonraki okumalar gönderilir. Onaydan önce cihazda biriken
+  okumalar silinir, gönderilmez.
+- Ayarlar > Gizlilik ve veri'den istenildiği an kapatılabilir; kapatınca gönderilmeyi bekleyenler silinir.
+- Amaç: hangi masal yapılarının bitirildiğini ve tekrar okunduğunu görerek masalları iyileştirmek.
+
+### 5. Otomatik bilgiler
+
+- Uygulama Firebase Analytics, reklam kimliği (IDFA) ya da çökme raporlama (Crashlytics) **kullanmaz**.
+- Uygulama, günün masalını ve içerik paketlerini Firebase Hosting'den indirir. Bu isteklerde hesap ya da
+  çocuk bilgisi yoktur; isteğin geldiği IP adresi barındırma hizmetini veren Google'a görünür.
 
 ## Bilgilerin Kullanımı
 
-Topladığımız bilgileri şu amaçlarla kullanırız:
+- Masalları çocuğa göre yazmak (ad, yaş bandı, sevdiği şeyler, Masal ailem)
+- Kütüphaneyi, serileri ve okuma ilerlemesini saklamak; telefon değişse de kaybolmamasını sağlamak
+- Sıradaki masalı seçerken çocuğun kendi okuma geçmişini kullanmak (bu kayıt cihazdan çıkmaz)
+- Anonim okuma bilgisiyle masal içeriğini iyileştirmek (yalnızca açıksa)
 
-### 1. Temel Hizmet Sunumu
-- Kişiselleştirilmiş hikayeler oluşturmak
-- Çocuğun fotoğrafıyla özel görseller üretmek
-- Hikaye kütüphanesini yönetmek
-- Kullanıcı profilini saklamak
-
-### 2. Uygulama İyileştirme
-- Kullanıcı deneyimini geliştirmek
-- Hataları tespit edip düzeltmek
-- Yeni özellikler geliştirmek
-- Performansı optimize etmek
-
-### 3. İletişim
-- Önemli güncellemeler hakkında bilgilendirme
-- Teknik destek sağlama
-- Kullanıcı geri bildirimlerine yanıt verme
+Bilgiler reklam, profil çıkarma ya da pazarlama için kullanılmaz ve satılmaz.
 
 ## Veri Saklama
 
-### Yerel Depolama
-- **Profil bilgileri**: Cihazınızda UserDefaults ile saklanır
-- **Hikayeler**: Cihazınızda yerel olarak saklanır
-- **Fotoğraflar**: Cihazınızın dosya sisteminde saklanır
-- **Tercihler**: Cihazınızda yerel olarak saklanır
+### Cihazda
+Profiller, masallar, seriler, okuma ilerlemesi ve tercihler cihazda, iOS dosya korumasıyla saklanır.
+Çocuğun okuma geçmişinden öğrenilen tercihler yalnızca cihazdadır.
 
-### Bulut Depolama
-- **Hikaye görselleri**: Firebase Storage'da geçici olarak saklanır
-- **Saklama süresi**: Görseller oluşturulduktan sonra kalıcı olarak cihazınıza indirilir
-- **Silme**: Hikaye silindiğinde tüm ilgili veriler cihazınızdan silinir
+### Ebeveyn hesabında (Google Firebase Firestore)
+Çocuk profilleri (fotoğrafsız), kitap karakteri seçimleri, Masal ailem, masallar, seriler, okuma ilerlemesi
+ve ebeveyn onayı kaydı (onay metninin sürümü ve tarihi). Bu belgeler yalnızca o ebeveynin hesabıyla
+okunup yazılabilir; güvenlik kuralları başka hiçbir hesabın erişimine izin vermez.
 
-### Veri Saklama Süresi
-- Verileriniz, uygulamayı silene kadar cihazınızda saklanır
-- Uygulama silindiğinde tüm yerel veriler otomatik olarak silinir
-- Bulut depolamadaki geçici veriler 30 gün sonra otomatik silinir
+Silinen bir masal ya da profil sunucuda içeriği olmayan bir iz olarak kalır (diğer cihazların da silmesi
+için); izde ad ya da metin bulunmaz.
 
-## Veri Güvenliği
+### Saklama süresi
+- Ebeveyn hesabındaki bilgiler, ebeveyn hesabı silinene kadar saklanır.
+- Anonim okuma bilgisi kimseye bağlanmadığı için tek tek silinemez. Saklama süresi yayından önce
+  belirlenecek *(karar bekliyor; Firestore TTL ile uygulanabilir)*.
 
-Verilerinizi korumak için şu önlemleri alıyoruz:
+## Hesabı ve Verileri Silme
 
-### Teknik Güvenlik
-- **Şifreleme**: Tüm ağ iletişimi HTTPS/TLS ile şifrelenir
-- **Güvenli API**: API anahtarları güvenli şekilde saklanır
-- **Yerel Depolama**: Veriler iOS güvenlik standartlarıyla korunur
+Ayarlar > Gizlilik ve veri > **Hesabı sil**:
+1. Ebeveynden bir kez daha giriş yapması istenir (Apple ile girişte Apple bağlantısı da iptal edilir).
+2. Hesaptaki bütün belgeler (profiller, masallar, seriler, ilerleme, onay kaydı) sunucudan silinir.
+3. Giriş hesabı silinir.
+4. Cihazdaki bütün aile verisi silinir.
 
-### Erişim Kontrolü
-- Verilerinize sadece siz erişebilirsiniz
-- Üçüncü taraflarla veri paylaşımı yapılmaz
-- Çalışanlarımızın verilerinize erişimi yoktur
-
-### Veri Minimizasyonu
-- Sadece gerekli verileri toplarız
-- Gereksiz veri saklamayız
-- Kullanılmayan veriler otomatik silinir
+**Çıkış yap** ise yalnızca bu cihazdaki verileri kaldırır; hesaptaki bilgiler kalır ve tekrar giriş
+yapınca geri gelir.
 
 ## Çocukların Gizliliği
 
-MagicPaper, çocuklar için hikayeler oluşturan bir uygulamadır ancak çocuklar tarafından doğrudan kullanılması amaçlanmamıştır.
+- Uygulama Apple'ın Çocuklar kategorisi kurallarına göre tasarlanmıştır: reklam yok, üçüncü taraf analitik
+  yok, uygulama dışına bağlantılar ve satın alma ebeveyn kapısının arkasında.
+- Çocuk verileri ebeveynin açık rızasıyla işlenir (KVKK). Rıza, uygulama içinde onay metniyle alınır ve
+  sürümü ile tarihi hesaba kaydedilir. Metin değişirse rıza yeniden istenir.
+- Ebeveyn rızasını istediği zaman hesabı silerek geri alabilir.
 
-### COPPA Uyumluluğu (ABD)
-- Uygulama, ebeveynler/yetişkinler tarafından kullanılmak üzere tasarlanmıştır
-- 13 yaş altı çocuklardan bilerek veri toplamayız
-- Çocuk fotoğrafları sadece hikaye oluşturmak için kullanılır
-- Çocuk verileri üçüncü taraflarla paylaşılmaz
+## Üçüncü Taraf Servisleri
 
-### KVKK Uyumluluğu (Türkiye)
-- Çocuk verilerinin işlenmesinde ebeveyn rızası gereklidir
-- Veriler sadece belirtilen amaçlarla kullanılır
-- Veri sahibi hakları (erişim, düzeltme, silme) korunur
+| Servis | Ne için | Ne gider |
+|---|---|---|
+| Firebase Authentication (Google) | Ebeveyn girişi | Apple/Google giriş belirteci |
+| Cloud Firestore (Google) | Ebeveyn hesabındaki veriler, anonim okuma bilgisi | Yukarıda "Ebeveyn hesabında" ve "Anonim okuma bilgisi" |
+| Firebase Hosting (Google) | Günün masalı ve içerik paketleri | Kişisel bilgi yok (IP adresi) |
+| Apple ile Giriş Yap / Google ile giriş | Kimlik doğrulama | Apple/Google'ın kendi giriş akışı |
+| Apple App Store / RevenueCat | Abonelik | Ödeme bilgilerini görmeyiz |
 
-### Ebeveyn Kontrolü
-- Ebeveynler tüm verileri kontrol edebilir
-- İstedikleri zaman hikayeleri silebilir
-- Profil ve fotoğrafları yönetebilir
-- Uygulamayı tamamen silebilir
-
-## Kullanıcı Hakları
-
-KVKK ve GDPR kapsamında aşağıdaki haklara sahipsiniz:
-
-### 1. Erişim Hakkı
-- Hangi verilerinizin toplandığını öğrenebilirsiniz
-- Verilerinizin bir kopyasını talep edebilirsiniz
-
-### 2. Düzeltme Hakkı
-- Yanlış verileri düzeltebilirsiniz
-- Eksik verileri tamamlayabilirsiniz
-
-### 3. Silme Hakkı ("Unutulma Hakkı")
-- Verilerinizin silinmesini talep edebilirsiniz
-- Uygulamayı silerek tüm verileri kaldırabilirsiniz
-
-### 4. İtiraz Hakkı
-- Veri işleme faaliyetlerine itiraz edebilirsiniz
-- Pazarlama iletişimlerini reddedebilirsiniz
-
-### 5. Veri Taşınabilirliği
-- Verilerinizi yapılandırılmış formatta alabilirsiniz
-- Verilerinizi başka bir hizmete aktarabilirsiniz
-
-## Üçüncü Taraf Bağlantıları
-
-Uygulamamız şu üçüncü taraf servisleri kullanır:
-
-### AI Servisleri
-- **Google Gemini**: Hikaye metni oluşturma
-- **Fal.ai**: Görsel oluşturma
-- Bu servislerin kendi gizlilik politikaları geçerlidir
-
-### Altyapı Servisleri
-- **Firebase (Google)**: Görsel depolama
-- **Apple iCloud**: Yedekleme (kullanıcı tercihine bağlı)
-
-### Ödeme İşlemleri
-- **Apple In-App Purchase**: Premium abonelik ödemeleri
-- Apple'ın gizlilik politikası geçerlidir
-- Ödeme bilgilerinizi görmeyiz veya saklamayız
-
-## Veri Paylaşımı
-
-### Paylaşmadığımız Bilgiler
-- ❌ Kişisel bilgilerinizi satmayız
-- ❌ Çocuk fotoğraflarını paylaşmayız
-- ❌ Reklam ağlarıyla veri paylaşmayız
-- ❌ Sosyal medyada veri paylaşmayız
-
-### Paylaşabileceğimiz Durumlar
-- ✅ Yasal zorunluluk (mahkeme kararı)
-- ✅ Kullanıcı güvenliği (acil durum)
-- ✅ Hizmet sağlayıcılar (AI servisleri - sadece işleme için)
+Görselli masal (bulut illüstrasyon) özelliği bu sürümde kapalıdır; açıldığında bu politika önceden
+güncellenecektir.
 
 ## Uluslararası Veri Aktarımı
 
-### Veri Konumları
-- **Yerel Veriler**: Cihazınızda (Türkiye)
-- **AI İşleme**: Google ve Fal.ai sunucuları (ABD/AB)
-- **Görsel Depolama**: Firebase (bölge seçilebilir)
+Firebase sunucuları Türkiye dışında olabilir. Ebeveyn onay metni bu aktarımı açıkça belirtir. Aktarım
+TLS ile şifrelidir; Google ile standart sözleşme maddeleri uygulanır.
+*(Hukuki not: Firestore bölgesine göre KVKK m.9 kapsamında standart sözleşme ve Kurul bildirimi
+gerekebilir — yayından önce netleştirilecek.)*
 
-### Güvenlik Önlemleri
-- Tüm aktarımlar şifreli (TLS/HTTPS)
-- Standart sözleşme maddeleri uygulanır
-- GDPR ve KVKK standartlarına uygun
+## Kullanıcı Hakları (KVKK m.11, GDPR)
+
+Bilgilerinize erişme, düzeltme, silinmesini isteme, işlemeye itiraz etme ve rızayı geri alma haklarınız
+vardır. Profil bilgileri uygulama içinden düzenlenebilir; hesap uygulama içinden silinebilir. Diğer
+talepler için aşağıdaki adrese yazabilirsiniz; talepler en geç 30 gün içinde yanıtlanır.
 
 ## Gizlilik Politikası Değişiklikleri
 
-### Güncelleme Süreci
-- Gizlilik politikasını zaman zaman güncelleyebiliriz
-- Önemli değişiklikler uygulama içinde bildirilir
-- "Son Güncelleme" tarihi her zaman günceldir
-
-### Bildirim
-- Önemli değişiklikler için bildirim gönderilir
-- Kullanıcılar değişiklikleri incelemeye teşvik edilir
-- Devam eden kullanım, değişikliklerin kabulü anlamına gelir
+Önemli değişikliklerde uygulama içi onay metni de güncellenir ve ebeveynden yeniden onay istenir.
+"Son Güncelleme" tarihi her zaman günceldir.
 
 ## İletişim
 
-Gizlilik ile ilgili sorularınız için:
+**E-posta**: support@magicpaperkids.com
+**Web**: https://www.magicpaperkids.com/gizlilik
 
-**E-posta**: privacy@magicpaper.app
-**Destek**: destek@magicpaper.app
-**Web**: https://magicpaper.app/gizlilik
-
-**Posta Adresi**:
-MagicPaper
-Gizlilik Sorumlusu
-[Adres bilgisi eklenecek]
-İstanbul, Türkiye
-
-### Yanıt Süresi
-- E-posta sorularına 48 saat içinde yanıt verilir
-- Veri taleplerine 30 gün içinde yanıt verilir (KVKK)
-- Acil durumlarda öncelikli işlem yapılır
-
-## Yasal Uyumluluk
-
-### Türkiye (KVKK)
-- 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygunuz
-- Veri Sorumlusu: MagicPaper
-- Veri İşleyen: Google, Fal.ai, Firebase
-
-### Avrupa Birliği (GDPR)
-- General Data Protection Regulation'a uygunuz
-- AB vatandaşlarının hakları korunur
-- Veri koruma görevlisi atanmıştır
-
-### Amerika Birleşik Devletleri
-- COPPA (Children's Online Privacy Protection Act) uyumlu
-- California Consumer Privacy Act (CCPA) uyumlu
-- Eyalet bazlı gizlilik yasalarına uygunuz
-
-## Veri İhlali Bildirimi
-
-Veri ihlali durumunda:
-- 72 saat içinde yetkili makamlara bildirim yapılır
-- Etkilenen kullanıcılar derhal bilgilendirilir
-- Gerekli güvenlik önlemleri alınır
-- İhlal raporu şeffaf şekilde paylaşılır
-
-## Ek Bilgiler
-
-### Çerezler (Cookies)
-- Uygulama çerez kullanmaz
-- Yerel depolama (UserDefaults) kullanılır
-- Takip teknolojileri kullanılmaz
-
-### Analitik
-- Anonim kullanım istatistikleri toplanır
-- Kişisel bilgilerle ilişkilendirilmez
-- İsteğe bağlı olarak devre dışı bırakılabilir
-
-### Pazarlama
-- Pazarlama e-postaları göndermeyiz
-- Push bildirimleri opsiyoneldir
-- Üçüncü taraf reklamlar gösterilmez
+**Veri Sorumlusu**: MagicPaper, İstanbul, Türkiye — [adres bilgisi eklenecek]
 
 ---
 
-**Bu gizlilik politikası, MagicPaper uygulamasının kullanımını yönetir. Uygulamayı kullanarak, bu politikayı kabul etmiş olursunuz.**
-
-**Son Güncelleme**: 27 Ocak 2026
-**Versiyon**: 1.0
+**Son Güncelleme**: 6 Ekim 2026
+**Versiyon**: 2.0

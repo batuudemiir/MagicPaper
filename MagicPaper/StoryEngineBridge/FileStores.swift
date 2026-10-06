@@ -148,7 +148,10 @@ actor FileBackedStore<Value: Codable & Sendable> {
     /// was unreachable the call succeeded and wrote nothing. Every caller of
     /// this method is already `throws`; none of them were being told.
     func save(_ value: Value, id: UUID) throws {
-        guard let url = directory?.appendingPathComponent("\(id.uuidString).json") else {
+        // The folder is looked up again, not taken from `init`: "Tüm verileri
+        // sil" and signing out (FAZ 16) remove it while this store lives on,
+        // and every save after that failed until the next launch.
+        guard let url = StoryEngineStorage.directory(subdirectory)?.appendingPathComponent("\(id.uuidString).json") else {
             throw StoryEngineStorage.Failure.documentsUnavailable(subdirectory: subdirectory)
         }
         try StoryEngineStorage.write(try encoder.encode(value), to: url)

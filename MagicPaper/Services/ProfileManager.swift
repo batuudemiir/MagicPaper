@@ -283,6 +283,15 @@ class ProfileManager: ObservableObject {
             return .failure(.lastProfile)
         }
 
+        removeProfileAndData(profile, library: library)
+        Self.log.debug("Profile deleted")
+        return .success(())
+    }
+
+    /// Everything `deleteProfile` removes, without its last-profile guard:
+    /// the account sync (FAZ 16) carries out a deletion another device has
+    /// already confirmed.
+    private func removeProfileAndData(_ profile: UserProfile, library: StoryGenerationManager) {
         // Before the profile leaves `profiles`: ownership is decided against
         // the full list, so a sibling with the same name still protects
         // pre-id stories.
@@ -324,9 +333,48 @@ class ProfileManager: ObservableObject {
                 userDefaults.removeObject(forKey: currentProfileKey)
             }
         }
+    }
 
-        Self.log.debug("Profile deleted")
-        return .success(())
+    // MARK: - Account sync (FAZ 16)
+
+    /// A profile as the account holds it, written onto this device.
+    ///
+    /// The photo stays the device's: the account never carries one, so the
+    /// local file name is kept.
+    func applySyncedProfile(_ incoming: UserProfile) {
+        var profile = incoming
+        if let index = profiles.firstIndex(where: { $0.id == incoming.id }) {
+            profile.imageFileName = profiles[index].imageFileName
+            profiles[index] = profile
+        } else {
+            profile.imageFileName = nil
+            profiles.append(profile)
+        }
+        saveProfiles()
+        if currentProfile?.id == profile.id || currentProfile == nil {
+            switchProfile(to: profiles.first(where: { $0.id == profile.id }) ?? profile)
+        }
+        Self.log.debug("Profile applied from account")
+    }
+
+    /// A profile another device deleted.
+    func removeSyncedProfile(id: UUID, library: StoryGenerationManager = .shared) {
+        guard let profile = profiles.first(where: { $0.id == id }) else { return }
+        removeProfileAndData(profile, library: library)
+        Self.log.debug("Profile removed by account")
+    }
+
+    /// After `LocalDataEraser`: the profiles are gone from disk, and from
+    /// what the screens show.
+    func resetAfterErase(keepingOnboarding: Bool) {
+        profiles = []
+        currentProfile = nil
+        userDefaults.removeObject(forKey: profilesKey)
+        userDefaults.removeObject(forKey: currentProfileKey)
+        if !keepingOnboarding {
+            hasCompletedOnboarding = false
+            userDefaults.removeObject(forKey: onboardingKey)
+        }
     }
     
     func switchProfile(to profile: UserProfile) {
