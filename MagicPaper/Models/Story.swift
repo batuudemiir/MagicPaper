@@ -126,6 +126,13 @@ struct StoryOrigin: Codable, Equatable {
     /// "animal"), kept so the story still says what kind of character it had
     /// after the character itself is deleted. Nil whenever the id is.
     var familyRelation: String? = nil
+    /// The series this story is an episode of (FAZ 13), as `StorySeries.id`.
+    /// Nil for every standalone story, for the first story of a series (which
+    /// was written before the series existed), and for every story written
+    /// before FAZ 13.
+    var seriesID: String? = nil
+    /// Which episode (2…5). Nil whenever `seriesID` is.
+    var seriesEpisode: Int? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }

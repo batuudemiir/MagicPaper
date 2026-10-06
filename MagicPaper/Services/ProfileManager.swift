@@ -303,6 +303,9 @@ class ProfileManager: ObservableObject {
         Task { await AvatarStore.shared.delete(for: profileID) }
         // Masal ailem belongs to the child; their stories keep the names as written.
         FamilyCharacterStore().delete(for: profileID)
+        // So do their series (FAZ 13); the episodes already on the shelf went
+        // with `storiesDeleted` above.
+        StorySeriesStore().delete(for: profileID)
 
         profiles.removeAll { $0.id == profile.id }
         saveProfiles()

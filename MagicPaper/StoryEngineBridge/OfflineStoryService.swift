@@ -305,6 +305,71 @@ final class OfflineStoryService {
         throw Failure.defectiveDraft(detail: defects.joined(separator: " | "))
     }
 
+    // MARK: - Series (FAZ 13)
+
+    /// Whether a story of this mode and band could be continued at all: some
+    /// continuation serves it. Cheap; the plan itself is made on "Devam ettir".
+    func seriesAvailable(mode: StoryMode, band: AgeBand) -> Bool {
+        guard let catalog = try? catalog() else { return false }
+        return catalog.series.continuations.contains {
+            $0.ageRange == band && $0.continuation?.modes.contains(mode) == true
+        }
+    }
+
+    /// Plans a series from a saved story's origin and writes its four episodes.
+    ///
+    /// The band is the one the first story was written for, not the child's
+    /// age today: the series continues that book. Every episode must be clean,
+    /// like any story shown to a child.
+    func planSeries(
+        from origin: StoryOrigin,
+        childName: String,
+        family: FamilyCharacter?
+    ) throws -> (plan: SeriesPlan, episodes: [ComposedStory]) {
+        let catalog = try catalog()
+        guard let mode = origin.mode, let bandID = origin.ageBand, let band = AgeBand(bandID) else {
+            throw Failure.noStoryForChoices(detail: "origin has no mode or band")
+        }
+        let cast = family.flatMap { familyCast(for: $0, in: catalog) }
+        let anchor = SeriesAnchor(
+            settingID: ContentID(origin.settingID),
+            companionID: ContentID(origin.companionID),
+            keepsakeID: ContentID(origin.discoveryID))
+        do {
+            let result = try SeriesPlanner().plan(
+                anchor: anchor, mode: mode, band: band, family: cast,
+                familyCharacterID: cast == nil ? nil : family?.id.uuidString,
+                childName: childName,
+                seed: SeriesPlanner.seed(storySeed: origin.seed, fingerprint: origin.fingerprint),
+                catalog: catalog)
+            try Self.requireClean(result.episodes)
+            return (result.plan, result.episodes)
+        } catch let error as SeriesPlanningError {
+            throw Failure.noStoryForChoices(detail: error.description)
+        }
+    }
+
+    /// Writes every episode of a plan again (a plan whose Masal ailem
+    /// character was removed composes without it).
+    func composeSeries(_ plan: SeriesPlan, childName: String, family: FamilyCharacter?) throws -> [ComposedStory] {
+        let catalog = try catalog()
+        let cast = family.flatMap { familyCast(for: $0, in: catalog) }
+        do {
+            let episodes = try SeriesPlanner().compose(plan, childName: childName, family: cast, catalog: catalog)
+            try Self.requireClean(episodes)
+            return episodes
+        } catch let error as SeriesPlanningError {
+            throw Failure.noStoryForChoices(detail: error.description)
+        } catch let error as OfflineSelectionError {
+            throw Failure.noStoryForChoices(detail: error.explanation)
+        }
+    }
+
+    private static func requireClean(_ episodes: [ComposedStory]) throws {
+        let defects = episodes.filter { !$0.isClean }.map(defectReport)
+        guard defects.isEmpty else { throw Failure.defectiveDraft(detail: defects.joined(separator: " | ")) }
+    }
+
     /// What was wrong with a draft, for the log. Names content ids, slot names
     /// and suffix spellings — never the page text, which carries the child's
     /// name.

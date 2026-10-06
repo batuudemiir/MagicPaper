@@ -513,6 +513,7 @@ struct PrivacyAndDataView: View {
         // klasör toptan silinir.
         AvatarStore.eraseAll()
         FamilyCharacterStore.eraseAll()
+        StorySeriesStore.eraseAll()
         dismiss()
     }
 }

@@ -172,6 +172,9 @@ struct FamilyCharacterEditor: View {
         guard let editing else { return }
         do {
             try store.delete(id: editing.id, childID: childID)
+            // An open series written with this character goes on without it
+            // (FAZ 13): unopened episodes are written again.
+            SeriesManager.shared.familyCharacterRemoved(id: editing.id, childID: childID)
             onRemoved?()
         } catch {
             saveFailed = true
