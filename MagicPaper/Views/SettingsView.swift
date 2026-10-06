@@ -443,6 +443,7 @@ struct SettingsView: View {
 
 struct PrivacyAndDataView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject private var settings = MPSettingsStore.shared
     @State private var confirmClear = false
 
     var body: some View {
@@ -478,6 +479,8 @@ struct PrivacyAndDataView: View {
                             }
                         }
                     }
+
+                    usageSection
 
                     VStack(alignment: .leading, spacing: 16) {
                         MPSectionHeader(title: "Veriler")
@@ -521,6 +524,21 @@ struct PrivacyAndDataView: View {
         }
     }
 
+    /// Anonim okuma bilgisi (FAZ 14). Kapatmak bekleyenleri de siler.
+    /// Çocuğun kendi okuma kaydı — sıradaki masalın ona göre seçilmesi —
+    /// cihazda kalır ve bu anahtardan etkilenmez.
+    private var usageSection: some View {
+        VStack(alignment: .leading, spacing: MP.S.x4) {
+            MPSectionHeader(title: "Okuma bilgisi")
+            MPCard(padding: 0) {
+                MPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
+                          description: "Hangi masalların bitirildiği; ad, yaş ve kimlik olmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
+                    MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
+                }
+            }
+        }
+    }
+
     private func open(_ url: String) {
         guard let u = URL(string: url) else { return }
         UIApplication.shared.open(u)
@@ -545,6 +563,9 @@ struct PrivacyAndDataView: View {
         FamilyCharacterStore.eraseAll()
         StorySeriesStore.eraseAll()
         d.removeObject(forKey: SeriesClock.highWaterKey)
+        // Okuma kaydı ve gönderilmeyi bekleyen olaylar (FAZ 14).
+        StoryUsageStore.eraseAll()
+        ReadingEventQueue.eraseAll()
         dismiss()
     }
 }

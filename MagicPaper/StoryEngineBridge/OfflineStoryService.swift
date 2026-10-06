@@ -202,6 +202,11 @@ final class OfflineStoryService {
             catalog: catalog, mode: mode, ageBand: servedBand(forAge: age))
     }
 
+    /// A companion's catalog type ("tavşan"), for reading events (FAZ 14).
+    func companionKind(id: String) -> String? {
+        (try? catalog())?.companions.first { $0.id.rawValue == id }?.type
+    }
+
     /// The fixed list of animal kinds a pet can be, in catalog order.
     func familyAnimalKinds() -> [CatalogFamilyAnimalKind] {
         (try? catalog())?.familyAnimalKinds ?? []
@@ -229,6 +234,8 @@ final class OfflineStoryService {
     ///     admits every band.
     ///   - subOption: a choice within the mode. Always nil today; the engine
     ///     carries it but does not read it.
+    ///   - usage: how this child read their stories (FAZ 14); what they
+    ///     re-read weighs more, what they left weighs less. Not stored either.
     ///   - interests, recent: weigh the choice (FAZ 12). Neither is stored on
     ///     the story, so a rebuild by seed reproduces the book only with the
     ///     same interests and history it was written with. No caller rebuilds
@@ -247,7 +254,8 @@ final class OfflineStoryService {
         subOption: String? = nil,
         family: FamilyCharacter? = nil,
         interests: [String] = [],
-        recent: [StoryOrigin] = []
+        recent: [StoryOrigin] = [],
+        usage: [StoryUsage] = []
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         let familyCast = try family.map { character -> FamilyCast in
@@ -268,6 +276,7 @@ final class OfflineStoryService {
                 blueprintID: ContentID($0.blueprintID), settingID: ContentID($0.settingID),
                 companionID: ContentID($0.companionID), discoveryID: ContentID($0.discoveryID))
         }
+        let learned = UsageLearner.profile(from: usage, catalog: catalog)
         let seeds = seed.map { [$0] }
             ?? (0..<Self.cleanDraftAttempts).map { _ in UUID().uuidString }
 
@@ -283,7 +292,8 @@ final class OfflineStoryService {
                 subOption: subOption,
                 family: familyCast,
                 interests: wanted,
-                recent: Array(history)
+                recent: Array(history),
+                usage: learned
             )
             let composed: ComposedStory
             do {

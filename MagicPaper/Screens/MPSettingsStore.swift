@@ -24,6 +24,16 @@ final class MPSettingsStore: ObservableObject {
     /// Dokunsal geri bildirim — okuyucudaki sayfa çevirme dokunuşu buna bakar.
     @Published var haptics: Bool { didSet { d.set(haptics, forKey: K.haptics) } }
 
+    /// Anonim okuma olaylarının paylaşılması (FAZ 14). Gönderim FAZ 16'da;
+    /// kapatmak bekleyen olayları da siler. Yerel öğrenme bundan bağımsız:
+    /// çocuğun kendi okuma kaydı cihazdan hiç çıkmaz.
+    @Published var shareUsageData: Bool {
+        didSet {
+            d.set(shareUsageData, forKey: K.shareUsageData)
+            if !shareUsageData { ReadingEventQueue().eraseAll() }
+        }
+    }
+
     /// Okunmuş masal id'leri — "seri" ve onay kuyruğu için.
     @Published var approvedStoryIDs: Set<String> {
         didSet { d.set(Array(approvedStoryIDs), forKey: K.approved) }
@@ -40,6 +50,7 @@ final class MPSettingsStore: ObservableObject {
         static let reminderMinute = "mp_reminderMinute"
         static let approved = "mp_approvedStoryIDs"
         static let haptics = "mp_haptics"
+        static let shareUsageData = "mp_shareUsageData"
         static let seeded = "mp_settingsSeeded"
     }
 
@@ -63,6 +74,9 @@ final class MPSettingsStore: ObservableObject {
         // mevcut kullanıcılarda bir daha çalışmaz, dolayısıyla oraya konan yeni
         // bir varsayılan onlara hiç ulaşmaz. Anahtarın yokluğu "açık" demektir.
         haptics = d.object(forKey: K.haptics) == nil ? true : d.bool(forKey: K.haptics)
+        // Varsayılan açık (karar: 6 Ekim 2026). FAZ 16'daki ebeveyn onayı
+        // metni bunu açıkça söyler.
+        shareUsageData = d.object(forKey: K.shareUsageData) == nil ? true : d.bool(forKey: K.shareUsageData)
         // Aynı sebeple `seeded` bloğunun dışında: bu üç değer ekranda zaten
         // yazılı olan sabitlerin (30 dakika, 20.30) yerini alıyor, yani
         // anahtarı olmayan bir kullanıcıda ekranın bugüne kadar söylediği şey

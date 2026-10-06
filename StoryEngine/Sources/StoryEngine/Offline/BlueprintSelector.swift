@@ -159,8 +159,8 @@ public struct BlueprintSelector: Sendable {
         let leaning = ordered.filter { $0.family.map(preferred.contains) ?? false }
         let rest = ordered.filter { !($0.family.map(preferred.contains) ?? false) }
 
-        // Within each group, interests and recent history weigh the order
-        // (FAZ 12). Equal weights — no interests, no history — are the seeded
+        // Within each group, interests, recent history (FAZ 12) and what the
+        // child's reading taught (FAZ 14) weigh the order. Equal weights — no interests, no history — are the seeded
         // rotation this always was.
         let wanted = Set(intent.interests)
         let recent = intent.recent.map(\.blueprintID)
@@ -172,7 +172,11 @@ public struct BlueprintSelector: Sendable {
                         id: blueprint.id,
                         matchesInterest: hostsInterest(
                             blueprint, wanted: wanted, catalog: catalog, intent: intent, idea: idea),
-                        recent: recent)
+                        recent: recent,
+                        // What the child's reading taught (FAZ 14) and what
+                        // every child's reading will (aggregate, 1 today).
+                        usage: intent.usage.multiplier(family: blueprint.family)
+                            * blueprint.aggregateWeight)
                 },
                 id: \.id, seed: intent.seed, salt: "blueprint")
         }
@@ -352,7 +356,8 @@ public struct BlueprintSelector: Sendable {
                     subOption: intent.subOption,
                     family: intent.family,
                     interests: intent.interests,
-                    recent: intent.recent
+                    recent: intent.recent,
+                    usage: intent.usage
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil

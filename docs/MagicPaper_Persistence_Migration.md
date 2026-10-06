@@ -248,6 +248,13 @@ Yukarıdaki tasarımdan farklı olarak, ürün kararlarına göre:
 - **`unresolvedThreads` yok, olmayacak:** her bölüm kapalı ve sakin biter (karar 6 Ekim 2026, `CalmEnding`).
 - Profil silme ve "Tüm verileri sil" seri dosyalarını da siler.
 
+### FAZ 14: okuma kaydı ve olay kuyruğu (6 Ekim 2026)
+
+- **`Documents/StoryEngine/Usage/<çocukUUID>.json`** (`StoryUsageStore`): masal başına kaç kez bitirildiği, kaç oturum, en ileri sayfa, son oturum bitti mi. Cihazdan çıkmaz; motor bundan öğrenir (`UsageLearner`, son 30 masal). Hiç kullanılmayan `read_history_<UUID>` anahtarının yerini aldı; anahtar artık yazılmıyor, profil silme eski cihazlarda hâlâ temizliyor.
+- **`Documents/StoryEngine/ReadingEvents/queue.json`** (`ReadingEventQueue`): gönderilmeyi bekleyen anonim `ReadingEvent`'ler, en fazla 500. Her kaydın yanında yerel profil kimliği durur, yalnızca profil silinince o çocuğun olaylarını bulmak için; gönderilecek yük (`outbound()`) yalnızca olaylardır. Gönderim FAZ 16'da.
+- **`mp_shareUsageData`** (UserDefaults, varsayılan açık): kapatmak kuyruğu siler ve yeni olay yazılmaz. Yerel kayıt anahtardan bağımsızdır.
+- Profil silme ve "Tüm verileri sil" ikisini de siler.
+
 ---
 
 ## 8. Dosya düzeni

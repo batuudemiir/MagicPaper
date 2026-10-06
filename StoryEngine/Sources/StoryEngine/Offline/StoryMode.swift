@@ -78,24 +78,57 @@ public struct StoryModeProfile: Decodable, Sendable, Hashable {
     public let families: [NarrativeFamily]
     /// Neden bu aileler — içerik yazarları için. Uygulama göstermez.
     public let editorialNote: String
+    /// Bu modda bir masalın "işe yaradığı" ne demek (FAZ 14). Kullanımdan
+    /// öğrenme bunu okur.
+    public let success: ModeSuccessRule
 
-    public init(mode: StoryMode, families: [NarrativeFamily], editorialNote: String = "") {
+    public init(
+        mode: StoryMode,
+        families: [NarrativeFamily],
+        editorialNote: String = "",
+        success: ModeSuccessRule = .default
+    ) {
         self.mode = mode
         self.families = families
         self.editorialNote = editorialNote
+        self.success = success
     }
 
-    private enum CodingKeys: String, CodingKey { case mode, families, editorialNote }
+    private enum CodingKeys: String, CodingKey { case mode, families, editorialNote, success }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         mode = try container.decode(StoryMode.self, forKey: .mode)
         families = try container.decodeIfPresent([NarrativeFamily].self, forKey: .families) ?? []
         editorialNote = try container.decodeIfPresent(String.self, forKey: .editorialNote) ?? ""
+        success = try container.decodeIfPresent(ModeSuccessRule.self, forKey: .success) ?? .default
     }
 
     public func admits(_ blueprint: CatalogBlueprint) -> Bool {
         blueprint.family.map(families.contains) ?? false
+    }
+}
+
+/// Bir modda başarının tanımı, katalogda (FAZ 14).
+///
+/// Uyku öncesinde masalı yarıda bırakmak başarıdır: çocuk uyumuştur. Bu
+/// yüzden kural kodda değil katalogda; yeni bir mod kendi tanımını getirir.
+public struct ModeSuccessRule: Decodable, Sendable, Hashable {
+    /// Bitmeden kapanan ve hiç bitirilmemiş masal, ailesinin ve yol
+    /// arkadaşının ağırlığını düşürür mü.
+    public let abandonIsPenalty: Bool
+
+    public init(abandonIsPenalty: Bool = true) {
+        self.abandonIsPenalty = abandonIsPenalty
+    }
+
+    public static let `default` = ModeSuccessRule()
+
+    private enum CodingKeys: String, CodingKey { case abandonIsPenalty }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        abandonIsPenalty = try container.decodeIfPresent(Bool.self, forKey: .abandonIsPenalty) ?? true
     }
 }
 
