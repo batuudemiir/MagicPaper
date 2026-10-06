@@ -43,6 +43,10 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// story into the same one. Empty means no history, and selection is then
     /// exactly what it was before FAZ 12.
     public let recent: [RecentContent]
+    /// What the child's own reading taught (FAZ 14): families and companions
+    /// re-read weigh more, ones abandoned weigh less. `.neutral` — every story
+    /// before FAZ 14, and every child with nothing read yet — changes nothing.
+    public let usage: UsageProfile
 
     public init(
         childName: String,
@@ -56,7 +60,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         subOption: String? = nil,
         family: FamilyCast? = nil,
         interests: [InterestTag] = [],
-        recent: [RecentContent] = []
+        recent: [RecentContent] = [],
+        usage: UsageProfile = .neutral
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -70,6 +75,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.family = family
         self.interests = interests
         self.recent = recent
+        self.usage = usage
     }
 }
 
@@ -92,7 +98,8 @@ extension OfflineStoryIntent {
             subOption: subOption,
             family: family,
             interests: interests,
-            recent: recent
+            recent: recent,
+            usage: usage
         )
     }
 }
@@ -297,7 +304,7 @@ public struct OfflineContentBinder: Sendable {
                 TraitMatch.sharesHabitat($0.habitat, setting: setting.habitat)
             },
             requested: intent.companionID, seed: intent.seed, axis: "companion",
-            weight: weigher(intent, recent: \.companionID),
+            weight: weigher(intent, recent: \.companionID, learned: intent.usage.multiplier(companion:)),
             offered: \.traits, required: requires.companion, forbidden: forbids.companion,
             empty: OfflineSelectionError.noCompanion,
             // Casting is checked alongside capability rather than before it, so
@@ -361,16 +368,20 @@ public struct OfflineContentBinder: Sendable {
 
     /// How much each record of one axis weighs for this intent (FAZ 12):
     /// interests raise it, the child's recent stories on this axis lower it.
+    /// `learned` is what reading taught about this axis (FAZ 14); only
+    /// companions have one today.
     private func weigher<Record: WeighedContent>(
         _ intent: OfflineStoryIntent,
-        recent axis: KeyPath<RecentContent, ContentID?>
+        recent axis: KeyPath<RecentContent, ContentID?>,
+        learned: ((ContentID) -> Double)? = nil
     ) -> (Record) -> Double {
         let wanted = Set(intent.interests)
         let recent = intent.recent.map { $0[keyPath: axis] }
         return { record in
             SelectionScoring.weight(
                 id: record.id, matchesInterest: record.matches(wanted),
-                cooldown: record.weights.cooldown, recent: recent)
+                cooldown: record.weights.cooldown, recent: recent,
+                usage: learned?(record.id) ?? 1)
         }
     }
 

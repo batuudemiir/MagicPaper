@@ -93,6 +93,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkUnreachableTemplates(catalog))
         issues.append(contentsOf: checkVariants(catalog))
         issues.append(contentsOf: checkBlueprintShape(catalog))
+        issues.append(contentsOf: checkAggregateWeights(catalog))
         issues.append(contentsOf: checkBeatAuthoring(catalog))
         issues.append(contentsOf: checkBeatSequences(catalog))
         issues.append(contentsOf: checkBeatCoverage(catalog))
@@ -783,6 +784,15 @@ public struct CatalogIntegrityChecker: Sendable {
                                     + "; it is not offered to parents."))
         }
         return issues
+    }
+
+    /// An aggregate weight (FAZ 14) multiplies selection weight; zero, negative
+    /// or not a number would make a blueprint unpickable or break the order.
+    private func checkAggregateWeights(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        (catalog.blueprints + catalog.series.continuations)
+            .filter { !($0.aggregateWeight.isFinite && $0.aggregateWeight > 0) }
+            .map { .init(severity: .error, code: "blueprint_aggregate_weight_invalid", recordID: $0.id,
+                         message: "aggregateWeight must be a positive number.") }
     }
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {

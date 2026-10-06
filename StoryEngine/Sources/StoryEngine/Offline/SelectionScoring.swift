@@ -31,13 +31,17 @@ public enum SelectionScoring {
     /// `recent` is this axis's ids, newest first, one per earlier story (nil
     /// where that story had none). `cooldown` is the record's own authored
     /// `SelectionWeights.cooldown`: 1 is the default, 0 never cools.
+    /// `usage` is what the child's own reading taught (FAZ 14,
+    /// `UsageProfile`) times any aggregate weight the catalog carries; exactly
+    /// 1 when there is nothing to learn from, which keeps the seeded rotation.
     public static func weight(
         id: ContentID,
         matchesInterest: Bool,
         cooldown: Double = 1.0,
-        recent: [ContentID?]
+        recent: [ContentID?],
+        usage: Double = 1.0
     ) -> Double {
-        var weight = 1.0
+        var weight = usage
         if matchesInterest { weight *= 1 + interestBoost }
         if let index = recent.prefix(cooldownWindow).firstIndex(of: id) {
             let full = (1 - cooldownFloor) * Double(cooldownWindow - index) / Double(cooldownWindow)

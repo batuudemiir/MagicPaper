@@ -129,11 +129,16 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     /// `ContentCatalog.series`, never in `blueprints`, so nothing that picks a
     /// standalone story can see it.
     public let continuation: ContinuationSpec?
+    /// What every child's reading says of this blueprint (FAZ 14 madde 4): a
+    /// multiplier on its selection weight, published by the server from
+    /// `BlueprintOutcome` rows. 1 — the default, and every shipped blueprint
+    /// today — changes nothing.
+    public let aggregateWeight: Double
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
         case premise, editorialName, editorialGuidance, requires, forbids, interests
-        case continuation
+        case continuation, aggregateWeight
     }
 
     public init(from decoder: Decoder) throws {
@@ -158,6 +163,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
             ?? ContentExclusions()
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
         continuation = try container.decodeIfPresent(ContinuationSpec.self, forKey: .continuation)
+        aggregateWeight = try container.decodeIfPresent(Double.self, forKey: .aggregateWeight) ?? 1
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,6 +183,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         if !forbids.isEmpty { try container.encode(forbids, forKey: .forbids) }
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
         try container.encodeIfPresent(continuation, forKey: .continuation)
+        if aggregateWeight != 1 { try container.encode(aggregateWeight, forKey: .aggregateWeight) }
     }
 
     /// The roles this blueprint asks for, in page order.
