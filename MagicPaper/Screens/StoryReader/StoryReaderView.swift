@@ -318,14 +318,16 @@ struct StoryReaderView: View {
         model.persistProgress()
         commitReadingTime()
         // Süre bittiyse oturum da bitti; okuyucu kapanınca ikinci kez yazılmaz.
-        recordSession()
+        // Masalı çocuk bırakmadı, gün bitti: yarıda bırakma sayılmaz.
+        recordSession(interrupted: true)
         withAnimation(MP.M.gated(MP.M.easeOut)) { budgetSpent = true }
     }
 
     /// Oturumun kaydı: çocuğun kendi okuma kaydı ve, ebeveyn izin verdiyse,
     /// anonim bir okuma olayı (FAZ 14).
-    private func recordSession() {
-        recorder.close(furthestPage: model.furthestPageReached, session: readingSession)
+    private func recordSession(interrupted: Bool = false) {
+        recorder.close(furthestPage: model.furthestPageReached, session: readingSession,
+                       interrupted: interrupted)
     }
 
     // MARK: - Sayfa çevirme

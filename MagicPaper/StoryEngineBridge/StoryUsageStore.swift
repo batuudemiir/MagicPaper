@@ -23,10 +23,15 @@ struct StoryUsageStore: Sendable {
         var sessions = 0
         var furthestPage = 0
         var lastSessionFinished = false
+        /// The last session was stopped by today's reading time, not by the
+        /// child: the story was not left, the day ran out.
+        var lastSessionInterrupted = false
 
         /// Left before the end, and never finished. Whether that counts
         /// against the story is the mode's call (`ModeSuccessRule`).
-        var abandoned: Bool { sessions > 0 && completions == 0 && !lastSessionFinished }
+        var abandoned: Bool {
+            sessions > 0 && completions == 0 && !lastSessionFinished && !lastSessionInterrupted
+        }
 
         init() {}
 
@@ -36,6 +41,7 @@ struct StoryUsageStore: Sendable {
             sessions = try c.decodeIfPresent(Int.self, forKey: .sessions) ?? 0
             furthestPage = try c.decodeIfPresent(Int.self, forKey: .furthestPage) ?? 0
             lastSessionFinished = try c.decodeIfPresent(Bool.self, forKey: .lastSessionFinished) ?? false
+            lastSessionInterrupted = try c.decodeIfPresent(Bool.self, forKey: .lastSessionInterrupted) ?? false
         }
     }
 
@@ -71,13 +77,16 @@ struct StoryUsageStore: Sendable {
     func stats(of storyID: UUID, for childID: UUID) -> Stats? { stats(for: childID)[storyID] }
 
     /// One reading session of one story ended.
-    func recordSession(storyID: UUID, childID: UUID, completions: Int, furthestPage: Int) {
+    func recordSession(
+        storyID: UUID, childID: UUID, completions: Int, furthestPage: Int, interrupted: Bool = false
+    ) {
         var all = stats(for: childID)
         var stats = all[storyID] ?? Stats()
         stats.sessions += 1
         stats.completions += completions
         stats.furthestPage = max(stats.furthestPage, furthestPage)
         stats.lastSessionFinished = completions > 0
+        stats.lastSessionInterrupted = interrupted && completions == 0
         all[storyID] = stats
         write(all, for: childID)
     }

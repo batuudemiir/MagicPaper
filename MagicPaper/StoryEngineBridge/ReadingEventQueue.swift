@@ -56,8 +56,10 @@ struct ReadingEventQueue: Sendable {
         write(Array(entries))
     }
 
-    /// When a profile is deleted: its events, nobody else's.
+    /// When a profile is deleted: its events, nobody else's. A set-aside
+    /// unreadable file cannot be sorted by child, so it goes too.
     func delete(for childID: UUID) {
+        removeSetAsideFiles()
         let loaded = load()
         guard loaded.intact else { return eraseAll() }
         let kept = loaded.entries.filter { $0.childID != childID }
@@ -88,6 +90,14 @@ struct ReadingEventQueue: Sendable {
         } catch {
             logger.error("🛑 Okuma olayı kuyruğu okunamadı")
             return ([], false)
+        }
+    }
+
+    private func removeSetAsideFiles() {
+        guard let directory = StoryEngineStorage.directory(subdirectory) else { return }
+        let names = (try? FileManager.default.contentsOfDirectory(atPath: directory.path)) ?? []
+        for name in names where name.hasPrefix("queue.unreadable-") {
+            try? FileManager.default.removeItem(at: directory.appendingPathComponent(name))
         }
     }
 

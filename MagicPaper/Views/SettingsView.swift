@@ -532,7 +532,7 @@ struct PrivacyAndDataView: View {
             MPSectionHeader(title: "Okuma bilgisi")
             MPCard(padding: 0) {
                 MPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
-                          description: "Hangi masalların bitirildiği; ad, yaş ve kimlik olmadan. Masalları iyileştirmek için.") {
+                          description: "Hangi masalların bitirildiği; ad, yaş ve kimlik olmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
                     MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
                 }
             }

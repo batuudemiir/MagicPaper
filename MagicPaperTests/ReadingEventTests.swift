@@ -209,6 +209,19 @@ final class ReadingEventTests: XCTestCase {
         XCTAssertEqual(queue.outbound().first?.pageReached, 2)
     }
 
+    /// Today's reading time ran out: the story was stopped, not left.
+    func testABudgetStopIsNotAbandoning() throws {
+        let child = UUID()
+        let story = story(child: child)
+        recorder(story).close(furthestPage: 2, session: read, interrupted: true)
+        let stats = try XCTUnwrap(usageStore.stats(of: story.id, for: child))
+        XCTAssertFalse(stats.abandoned)
+        XCTAssertEqual(queue.outbound().first?.finished, false)
+        // A later reading left by the child is abandoning again.
+        recorder(story).close(furthestPage: 3, session: read)
+        XCTAssertTrue(try XCTUnwrap(usageStore.stats(of: story.id, for: child)).abandoned)
+    }
+
     /// An opening that was not a reading teaches nothing.
     func testAnAccidentalOpeningRecordsNothing() {
         let child = UUID()
@@ -291,6 +304,16 @@ final class ReadingEventTests: XCTestCase {
         XCTAssertNil(usageStore.stats(of: goneStory.id, for: gone))
         XCTAssertNotNil(usageStore.stats(of: keptStory.id, for: kept))
         XCTAssertEqual(queue.outbound().map(\.storyID), [keptStory.id.uuidString])
+    }
+
+    func testDeletingAProfileAlsoRemovesASetAsideQueue() throws {
+        let directory = try XCTUnwrap(StoryEngineStorage.directory(queueFolder))
+        try Data("not json".utf8).write(to: directory.appendingPathComponent("queue.json"))
+        recorder(story()).close(furthestPage: 2, session: read)
+        queue.delete(for: UUID())
+        let names = try FileManager.default.contentsOfDirectory(atPath: directory.path)
+        XCTAssertFalse(names.contains { $0.hasPrefix("queue.unreadable-") })
+        XCTAssertEqual(queue.count, 1)
     }
 
     func testEraseAllEmptiesBoth() {

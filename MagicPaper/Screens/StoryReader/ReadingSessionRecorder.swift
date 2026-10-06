@@ -59,8 +59,10 @@ final class ReadingSessionRecorder {
         nextEndingCounts = true
     }
 
-    /// The reader closed, or today's reading time ran out. Once per session.
-    func close(furthestPage: Int, session: MPReadingSession) {
+    /// The reader closed, or today's reading time ran out (`interrupted`:
+    /// the story was stopped, not left, so it is not counted as abandoned).
+    /// Once per session.
+    func close(furthestPage: Int, session: MPReadingSession, interrupted: Bool = false) {
         guard !closed else { return }
         closed = true
         guard let childID = story.childProfileID, story.origin != nil,
@@ -68,7 +70,8 @@ final class ReadingSessionRecorder {
 
         let before = usageStore.stats(of: story.id, for: childID)?.completions ?? 0
         usageStore.recordSession(
-            storyID: story.id, childID: childID, completions: completions, furthestPage: furthestPage)
+            storyID: story.id, childID: childID, completions: completions,
+            furthestPage: furthestPage, interrupted: interrupted)
 
         guard isSharing(), let event = ReadingEvent(
             story: story,

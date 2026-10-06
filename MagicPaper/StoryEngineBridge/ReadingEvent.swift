@@ -9,8 +9,10 @@ import Foundation
 /// Masal ailem appears only as its relation kind.
 ///
 /// `storyID` is the story's own random UUID; it ties a story's sessions
-/// together (a re-read is a second session of the same story) and is
-/// meaningless outside this device.
+/// together (a re-read is a second session of the same story). It says
+/// nothing about the child by itself, but events of one device can be linked
+/// through it: pseudonymous, not anonymous. FAZ 16 decides whether to send it
+/// as is, rotate it per batch, or drop it.
 ///
 /// Sending is FAZ 16's (with the parent's switch, `shareUsageData`). Until
 /// then events wait in `ReadingEventQueue`. The keys below are a contract with
