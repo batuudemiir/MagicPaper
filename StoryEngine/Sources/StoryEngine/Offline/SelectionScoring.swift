@@ -89,7 +89,7 @@ public enum SelectionScoring {
     /// high bits when two ids differ only in their last byte, and the draw is
     /// read from the high bits: unmixed, "a" led a four-item list 199 times in
     /// 200 at a weight that should give it half.
-    private static func mixed(_ value: UInt64) -> UInt64 {
+    static func mixed(_ value: UInt64) -> UInt64 {
         var z = value &+ 0x9E37_79B9_7F4A_7C15
         z = (z ^ (z >> 30)) &* 0xBF58_476D_1CE4_E5B9
         z = (z ^ (z >> 27)) &* 0x94D0_49BB_1331_11EB

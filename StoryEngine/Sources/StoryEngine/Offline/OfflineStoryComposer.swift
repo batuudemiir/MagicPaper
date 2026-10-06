@@ -39,6 +39,23 @@ public struct ComposedStory: Sendable, Hashable {
     }
 }
 
+/// What composing a series episode needs beyond an ordinary intent (FAZ 13).
+public struct EpisodeContext: Sendable, Hashable {
+    /// 2…5. The first story is episode 1 and is never composed again.
+    public let number: Int
+    /// What the first story found, remembered in every later episode.
+    public let keepsake: CatalogObject
+    /// Lines the earlier episodes already used. A preference, not a rule:
+    /// where every line of a page has been used, one is used again.
+    public let avoiding: Set<ContentID>
+
+    public init(number: Int, keepsake: CatalogObject, avoiding: Set<ContentID> = []) {
+        self.number = number
+        self.keepsake = keepsake
+        self.avoiding = avoiding
+    }
+}
+
 // MARK: - Composer
 
 /// Turns a blueprint plus bound content into Turkish prose.
@@ -92,13 +109,43 @@ public struct OfflineStoryComposer: Sendable {
         intent: OfflineStoryIntent,
         idea: CatalogStoryIdea? = nil
     ) throws -> ComposedStory {
+        try compose(blueprint: blueprint, catalog: catalog, intent: intent, idea: idea, episode: nil)
+    }
+
+    /// One episode of a series (FAZ 13): a continuation blueprint, the first
+    /// story's place and companion pinned in `intent`, and the keepsake that
+    /// story found. Lines come from the series layer where it has them, and
+    /// the last page must close calmly (`CalmEnding`).
+    public func composeEpisode(
+        blueprint: CatalogBlueprint,
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        episode: EpisodeContext
+    ) throws -> ComposedStory {
+        guard blueprint.continuation != nil else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a continuation blueprint", beat: .revisit, page: 1)
+        }
+        return try compose(blueprint: blueprint, catalog: catalog, intent: intent, idea: nil, episode: episode)
+    }
+
+    private func compose(
+        blueprint: CatalogBlueprint,
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea?,
+        episode: EpisodeContext?
+    ) throws -> ComposedStory {
         guard blueprint.isBeatAuthored else {
             throw OfflineSelectionError.blueprintNotBeatAuthored(id: blueprint.id)
         }
 
         let content = try binder.bind(
             blueprint: blueprint, catalog: catalog, intent: intent, idea: idea)
-        let slots = Self.slots(childName: intent.childName, content: content, family: intent.family)
+        var slots = Self.slots(childName: intent.childName, content: content, family: intent.family)
+        if let episode { slots["keepsake.name"] = Self.keepsakeSlot(episode.keepsake) }
+        let familyMoments = episode == nil ? catalog.familyMoments : catalog.series.familyMoments
+        let lastPage = blueprint.pagePlan.map(\.pageNumber).max() ?? 0
 
         // Variant choice is keyed on the whole story, not on the seed alone.
         // Keyed on the seed alone, two stories built from the same seed but
@@ -113,7 +160,7 @@ public struct OfflineStoryComposer: Sendable {
             intent.seed, intent.childName, blueprint.id.rawValue,
             content.setting.id.rawValue, content.companion.id.rawValue,
             content.discovery.id.rawValue
-        ] + Self.familyKey(intent.family))
+        ] + Self.familyKey(intent.family) + Self.episodeKey(episode))
 
         var pages: [ComposedPage] = []
         var carried: [Int: (beats: [StoryBeat], role: PageRole, emotion: EmotionalState?)] = [:]
@@ -149,19 +196,23 @@ public struct OfflineStoryComposer: Sendable {
                 flush()
                 currentPage = step.pageNumber
             }
-            let candidates = Self.templates(for: step.beat, in: catalog, blueprint: blueprint)
+            let candidates = Self.templates(
+                for: step.beat, in: catalog, blueprint: blueprint, series: episode != nil)
             guard !candidates.isEmpty else {
                 throw OfflineSelectionError.noTemplate(beat: step.beat, page: step.pageNumber)
             }
             // On a family moment only a template that has a line for this
             // relation can serve; picking among all of them would let the seed
             // land on one that cannot, and the page would fail for no reason.
-            let familyMoment = intent.family != nil && catalog.familyMoments.contains(step.beat)
+            let familyMoment = intent.family != nil && familyMoments.contains(step.beat)
             let serving = familyMoment
                 ? candidates.filter { Self.hasFamilyLine($0, for: intent.family?.relation) }
                 : candidates
-            let template = DeterministicPicker.pick(
-                from: serving.isEmpty ? candidates : serving, seed: storySeed, salt: step.salt)
+            let templatePool = serving.isEmpty ? candidates : serving
+            let template = episode == nil
+                ? DeterministicPicker.pick(from: templatePool, seed: storySeed, salt: step.salt)
+                : templatePool[DeterministicPicker.mixedIndex(
+                    count: templatePool.count, seed: storySeed, salt: step.salt)]
 
             let variant = try Self.chooseVariant(
                 from: template.variants,
@@ -176,6 +227,8 @@ public struct OfflineStoryComposer: Sendable {
                 conflict: blueprint.family?.conflict,
                 family: intent.family?.relation,
                 familyMoment: familyMoment,
+                calmEnding: episode != nil && step.pageNumber == lastPage,
+                episode: episode,
                 seed: storySeed,
                 salt: step.salt + ".v"
             )
@@ -188,6 +241,14 @@ public struct OfflineStoryComposer: Sendable {
             unrecognised += rendered.unrecognisedSuffixes
         }
         flush()
+
+        // The lines were filtered, and the page is checked again as rendered:
+        // a slot value is the one thing the filter could not see.
+        if episode != nil, let last = pages.last, !CalmEnding.isCalm(last.text) {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a calm episode ending", beat: last.beats.last ?? .warmClose,
+                page: last.pageNumber)
+        }
 
         let title = titles.compose(blueprint: blueprint, slots: slots, seed: storySeed)
 
@@ -203,6 +264,7 @@ public struct OfflineStoryComposer: Sendable {
                  content.companion.id.rawValue, content.discovery.id.rawValue,
                  intent.childName, intent.seed]
                 + Self.familyKey(intent.family)
+                + Self.episodeKey(episode)
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
             )
         )
@@ -218,12 +280,25 @@ public struct OfflineStoryComposer: Sendable {
     static func templates(
         for beat: StoryBeat,
         in catalog: ContentCatalog,
-        blueprint: CatalogBlueprint
+        blueprint: CatalogBlueprint,
+        series: Bool = false
     ) -> [CatalogTemplate] {
-        catalog.templates.filter {
-            $0.realizesBeat == beat && !$0.variants.isEmpty
-                && $0.suits(band: blueprint.ageRange)
+        func serving(_ templates: [CatalogTemplate]) -> [CatalogTemplate] {
+            templates.filter {
+                $0.realizesBeat == beat && !$0.variants.isEmpty
+                    && $0.suits(band: blueprint.ageRange)
+            }
         }
+        // An episode prefers the lines written for episodes: the standalone
+        // ones were written for a first meeting, and a book the child has
+        // heard four times already should not open the same way again. Where
+        // the series layer has nothing for a beat yet, the standalone lines
+        // serve. A standalone story never sees the series layer.
+        if series {
+            let written = serving(catalog.series.templates)
+            if !written.isEmpty { return written }
+        }
+        return serving(catalog.templates)
     }
 
     /// Whether a template has any line for this Masal ailem relation.
@@ -335,6 +410,8 @@ public struct OfflineStoryComposer: Sendable {
         conflict: ConflictMechanism? = nil,
         family: FamilyRelationKind? = nil,
         familyMoment: Bool = false,
+        calmEnding: Bool = false,
+        episode: EpisodeContext? = nil,
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
@@ -342,8 +419,15 @@ public struct OfflineStoryComposer: Sendable {
             from: variants, realizing: beat, wanting: length, after: previous,
             closing: closing, state: state, onPage: page, content: content,
             register: register, conflict: conflict,
-            family: family, familyMoment: familyMoment)
-        return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
+            family: family, familyMoment: familyMoment, calmEnding: calmEnding)
+        guard let episode else {
+            return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
+        }
+        // An episode prefers a line the series has not used yet: the child
+        // hears these books in a row, and the second "Bak," dedi is noticed.
+        let fresh = pool.filter { !episode.avoiding.contains($0.id) }
+        let choices = fresh.isEmpty ? pool : fresh
+        return choices[DeterministicPicker.mixedIndex(count: choices.count, seed: seed, salt: salt)]
     }
 
     /// Every line that could serve this page for this binding.
@@ -373,7 +457,8 @@ public struct OfflineStoryComposer: Sendable {
         register: VariantRegister?,
         conflict: ConflictMechanism? = nil,
         family: FamilyRelationKind? = nil,
-        familyMoment: Bool = false
+        familyMoment: Bool = false,
+        calmEnding: Bool = false
     ) throws -> [CatalogVariant] {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
@@ -454,7 +539,16 @@ public struct OfflineStoryComposer: Sendable {
                 beat: beat, page: page)
         }
 
-        var pool = byClosing
+        // 0e. The last page of a series episode closes. **Does not degrade.**
+        //     A line that leaves a question open is not a weaker ending, it is
+        //     the hook the series promised not to use (FAZ 13, `CalmEnding`).
+        let byCalm = calmEnding ? byClosing.filter { CalmEnding.isCalm($0.text) } : byClosing
+        guard !byCalm.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a calm episode ending", beat: beat, page: page)
+        }
+
+        var pool = byCalm
         // 1. Content the line assumes must actually be there — including what
         //    the companion can do, so a line about gliding down is offered only
         //    to something that flies. Degrades: a glowing egg is wrong and a
@@ -553,6 +647,23 @@ public struct OfflineStoryComposer: Sendable {
             }
         }
         return table
+    }
+
+    /// The keepsake as a remembered thing: its own register when authored,
+    /// the prose name otherwise, with the object's grammar either way.
+    static func keepsakeSlot(_ object: CatalogObject) -> TurkishTextRenderer.Slot {
+        .init(
+            object.keepsakeName ?? object.name,
+            isProperNoun: object.isProperNoun,
+            hasPossessiveEnding: object.hasPossessiveEnding,
+            blocksSoftening: object.blocksSoftening)
+    }
+
+    /// What an episode adds to a seed or fingerprint. Empty for a standalone
+    /// story, so nothing written before FAZ 13 changes.
+    static func episodeKey(_ episode: EpisodeContext?) -> [String] {
+        guard let episode else { return [] }
+        return ["episode", String(episode.number), episode.keepsake.id.rawValue]
     }
 
     /// What the family character adds to a seed or fingerprint. Empty without

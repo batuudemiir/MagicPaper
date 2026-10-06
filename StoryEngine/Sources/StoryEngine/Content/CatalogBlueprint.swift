@@ -52,6 +52,40 @@ public struct BlueprintPageSlot: Codable, Sendable, Hashable {
     }
 }
 
+/// What a continuation blueprint (FAZ 13) promises about the series it joins.
+///
+/// What it carries over is not declared, because it is not a choice: every
+/// episode keeps the first story's place, companion, Masal ailem character and
+/// keepsake, and finds something new. Only *which* series it may serve is.
+public struct ContinuationSpec: Codable, Sendable, Hashable {
+    /// The parent intents whose series this episode can belong to. The tone
+    /// comes from here, not from `storyModes`: a continuation is chosen for the
+    /// mode its first story was written in.
+    public let modes: [StoryMode]
+    /// The episode numbers it may fill (2…5). Empty in the file means all.
+    public let episodes: [Int]
+
+    public static let allEpisodes = Array(2...5)
+
+    public init(modes: [StoryMode], episodes: [Int] = ContinuationSpec.allEpisodes) {
+        self.modes = modes
+        self.episodes = episodes
+    }
+
+    private enum CodingKeys: String, CodingKey { case modes, episodes }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        modes = try container.decodeIfPresent([StoryMode].self, forKey: .modes) ?? []
+        let declared = try container.decodeIfPresent([Int].self, forKey: .episodes) ?? []
+        episodes = declared.isEmpty ? Self.allEpisodes : declared
+    }
+
+    public func serves(mode: StoryMode, episode: Int) -> Bool {
+        modes.contains(mode) && episodes.contains(episode)
+    }
+}
+
 /// A reusable narrative skeleton — *not* a story.
 ///
 /// It says what shape a book has: which beats, in what order, for whom. It says
@@ -90,10 +124,16 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     /// Interest words (FAZ 12) the story itself is about, independent of the
     /// content bound into it. Most blueprints are structural and carry none.
     public let interests: [InterestTag]
+    /// Where this blueprint may stand in a series (FAZ 13). Nil for every
+    /// standalone story. A continuation blueprint lives in
+    /// `ContentCatalog.series`, never in `blueprints`, so nothing that picks a
+    /// standalone story can see it.
+    public let continuation: ContinuationSpec?
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
         case premise, editorialName, editorialGuidance, requires, forbids, interests
+        case continuation
     }
 
     public init(from decoder: Decoder) throws {
@@ -117,6 +157,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         forbids = try container.decodeIfPresent(ContentExclusions.self, forKey: .forbids)
             ?? ContentExclusions()
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
+        continuation = try container.decodeIfPresent(ContinuationSpec.self, forKey: .continuation)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -135,6 +176,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         if !requires.isEmpty { try container.encode(requires, forKey: .requires) }
         if !forbids.isEmpty { try container.encode(forbids, forKey: .forbids) }
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
+        try container.encodeIfPresent(continuation, forKey: .continuation)
     }
 
     /// The roles this blueprint asks for, in page order.

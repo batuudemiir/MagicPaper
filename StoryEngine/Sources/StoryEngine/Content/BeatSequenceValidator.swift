@@ -168,6 +168,13 @@ public struct BeatSequenceValidator: Sendable {
                                 message: "'establish_ordinary' may only appear on page 1; it is on page \(first)."))
         }
 
+        // A return opens the book (FAZ 13): coming back to the place halfway
+        // through an episode is a second story, not a continuation.
+        for slot in slots where slot.pageNumber != 1 && slot.beats.contains(.revisit) {
+            issues.append(.init(pageNumber: slot.pageNumber, beat: .revisit, code: "revisit_out_of_place",
+                                message: "'revisit' may only appear on page 1; it is on page \(slot.pageNumber)."))
+        }
+
         // Bu iki kural MUTLAK sayfa numaralarına yazılmıştı — "5. sayfaya kadar
         // engel", "7. sayfada çözüm" — ve sekiz sayfalık bir yay dışında hiçbir
         // şey için anlamlı değildi. Altı sayfalık bir masal 5. sayfada çözülür;

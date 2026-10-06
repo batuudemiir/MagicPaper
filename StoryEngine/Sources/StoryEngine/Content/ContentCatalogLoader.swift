@@ -184,9 +184,14 @@ public struct ContentCatalogLoader: Sendable {
                     storyModes: catalog.storyModes,
                     familyMoments: catalog.familyMoments,
                     familyAnimalKinds: catalog.familyAnimalKinds,
-                    interests: catalog.interests
+                    interests: catalog.interests,
+                    series: catalog.series
                 )
             ])
+        }
+        // Episode-only lines (FAZ 13) go to the series layer and nowhere else.
+        if !corpus.seriesTemplates.isEmpty {
+            catalog = catalog.replacingSeries(catalog.series.adding(templates: corpus.seriesTemplates))
         }
         let integrity = checker.check(catalog, corpus: corpus)
         let report = CatalogLoadReport(

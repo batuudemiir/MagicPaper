@@ -8,7 +8,8 @@ import Foundation
 /// another, `receive_appeal` in a third. That is what the previous system could
 /// not express, and why twelve blueprints collapsed into one story.
 ///
-/// Closed, with twenty-eight entries. Authors compose; they never invent. Each
+/// Closed, with thirty-five entries (twenty-eight, six resolution variants,
+/// one series opening). Authors compose; they never invent. Each
 /// beat declares what it requires and what it produces, which is what makes
 /// narrative state derivable rather than authored.
 public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
@@ -82,10 +83,18 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
     /// `small_step`.
     case prepare
 
+    // MARK: Series (FAZ 13)
+
+    /// The child comes back to a place and a friend the reader already knows.
+    /// The opening of every later episode of a series, in place of meeting the
+    /// companion: nobody is introduced twice. Only continuation blueprints use
+    /// it, and only on page 1 (`BeatSequenceValidator`).
+    case revisit
+
     /// What must already be true for this beat to be usable.
     public var requires: BeatRequirement {
         switch self {
-        case .establishOrdinary, .noticeAnomaly, .meetCompanion, .hesitate:
+        case .establishOrdinary, .noticeAnomaly, .meetCompanion, .hesitate, .revisit:
             return .none
         case .approach, .examine, .formBelief:
             return .all([.anomalyKnown])
@@ -148,7 +157,7 @@ public enum StoryBeat: String, Codable, Sendable, Hashable, CaseIterable {
              .selfRecognize, .warmClose, .carryForward:
             return []
         case .noticeAnomaly: return [.anomalyKnown]
-        case .meetCompanion: return [.companionPresent]
+        case .meetCompanion, .revisit: return [.companionPresent]
         case .receiveAppeal: return [.needKnown]
         case .commit: return [.committed]
         case .formBelief: return [.beliefFormed]

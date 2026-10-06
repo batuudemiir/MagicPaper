@@ -202,6 +202,12 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// registers, and using the prose name produced "Yeliz ve Kayıp yırtık bir
     /// harita". Falls back to `name` when unset.
     public let titleName: String
+    /// The same thing, remembered (FAZ 13): how a later episode of a series
+    /// names what the first story found. "ince bir ses" was heard once; three
+    /// days later it is "ince ses". A third register, because neither the
+    /// indefinite prose name nor the capitalised title reads inside a sentence
+    /// that looks back. Nil until authored; the slot then falls back to `name`.
+    public let keepsakeName: String?
     /// Turkish grammar the renderer cannot infer from spelling.
     ///
     /// `hasPossessiveEnding` is the one that genuinely cannot be guessed:
@@ -219,7 +225,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     public let interests: [InterestTag]
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -231,6 +237,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
         explainedBy = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .explainedBy) ?? []
         titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
+        keepsakeName = try container.decodeIfPresent(String.self, forKey: .keepsakeName)
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? false
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
@@ -249,6 +256,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
         if !explainedBy.isEmpty { try container.encode(explainedBy, forKey: .explainedBy) }
         try container.encode(titleName, forKey: .titleName)
+        try container.encodeIfPresent(keepsakeName, forKey: .keepsakeName)
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
