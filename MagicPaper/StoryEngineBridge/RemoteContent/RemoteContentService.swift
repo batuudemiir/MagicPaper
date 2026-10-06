@@ -82,12 +82,22 @@ final class RemoteContentService: ObservableObject {
         return URLSession(configuration: configuration)
     }
 
+    private var foregroundInterval: TimeInterval {
+        #if DEBUG
+        // `-mp.debug.contentRefreshInterval 5`: try a republish in the simulator,
+        // where background refresh does not run.
+        let override = defaults.double(forKey: "mp.debug.contentRefreshInterval")
+        if override > 0 { return override }
+        #endif
+        return Self.minimumInterval
+    }
+
     // MARK: - Running
 
     /// The foreground entry point: skipped if a run happened recently.
     @discardableResult
     func refreshIfDue() async -> Outcome {
-        if let lastAttempt, now().timeIntervalSince(lastAttempt) < Self.minimumInterval { return .skipped }
+        if let lastAttempt, now().timeIntervalSince(lastAttempt) < foregroundInterval { return .skipped }
         return await refresh()
     }
 
@@ -116,7 +126,7 @@ final class RemoteContentService: ObservableObject {
             fresh = try ContentFeed.verified(data, signature: signature, key: config.key)
         } catch {
             // Offline is the ordinary case for this; the stored feed serves.
-            logger.notice("İçerik akışı alınamadı: \(String(describing: error), privacy: .public)")
+            logger.notice("İçerik akışı alınamadı: \(Self.brief(error), privacy: .public)")
             return .failed
         }
 
@@ -163,7 +173,7 @@ final class RemoteContentService: ObservableObject {
             package = try await download(config.url(for: reference), limit: Self.maxPackageBytes)
         } catch {
             // Retried on the next run.
-            logger.notice("İçerik paketi indirilemedi: \(String(describing: error), privacy: .public)")
+            logger.notice("İçerik paketi indirilemedi: \(Self.brief(error), privacy: .public)")
             return
         }
 
@@ -188,6 +198,13 @@ final class RemoteContentService: ObservableObject {
         } catch {
             logger.error("🛑 İçerik paketi yazılamadı")
         }
+    }
+
+    /// A failure in a few words: the code, not the whole error with its URL.
+    private static func brief(_ error: Error) -> String {
+        if let rejection = error as? ContentFeed.Rejection { return "\(rejection)" }
+        if let url = error as? URLError { return "URLError \(url.code.rawValue)" }
+        return String(describing: type(of: error))
     }
 
     private func download(_ url: URL, limit: Int) async throws -> Data {

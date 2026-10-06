@@ -54,6 +54,7 @@ struct CatalogSourceResolver {
             store.removeActive()
             return Resolved(result: bundled, fromPackage: false)
         }
+        logger.info("İçerik paketi \(reference.version, privacy: .public) kullanılıyor")
         return Resolved(result: loaded, fromPackage: true)
     }
 }
