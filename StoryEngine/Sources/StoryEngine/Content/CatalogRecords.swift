@@ -36,12 +36,15 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
     /// Interest words (FAZ 12) this record answers to. Separate from `tags`,
     /// which pick the cover world; an interest never changes a cover.
     public let interests: [InterestTag]
+    /// Safety topics (FAZ 17) this record touches, e.g. a night garden is
+    /// `darkness`. A parent who avoids the topic never gets the record.
+    public let topics: [SafetyTopic]
     public let weights: SelectionWeights
 
     private enum CodingKeys: String, CodingKey {
         case id, name, description, visualKeywords, compatibleGenres, compatibleThemes, tags
         case traits, thresholdKinds
-    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests}
+    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -59,6 +62,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
+        topics = try container.decodeIfPresent([SafetyTopic].self, forKey: .topics) ?? []
         weights = try SelectionWeights(from: decoder)
     }
 
@@ -78,6 +82,7 @@ public struct CatalogSetting: Codable, Sendable, Hashable, Identifiable {
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
+        if !topics.isEmpty { try container.encode(topics, forKey: .topics) }
         try weights.encode(to: encoder)
     }
 }
@@ -122,13 +127,16 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     /// Interest words (FAZ 12) this record answers to. Separate from `tags`,
     /// which pick the cover world; an interest never changes a cover.
     public let interests: [InterestTag]
+    /// Safety topics (FAZ 17) this record touches, e.g. a night garden is
+    /// `darkness`. A parent who avoids the topic never gets the record.
+    public let topics: [SafetyTopic]
     public let weights: SelectionWeights
 
     private enum CodingKeys: String, CodingKey {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
         case traits, castRoles
-    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests}
+    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -148,6 +156,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
+        topics = try container.decodeIfPresent([SafetyTopic].self, forKey: .topics) ?? []
         weights = try SelectionWeights(from: decoder)
     }
 
@@ -169,6 +178,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
+        if !topics.isEmpty { try container.encode(topics, forKey: .topics) }
         try weights.encode(to: encoder)
     }
 }
@@ -223,9 +233,12 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// Interest words (FAZ 12) this record answers to. Separate from `tags`,
     /// which pick the cover world; an interest never changes a cover.
     public let interests: [InterestTag]
+    /// Safety topics (FAZ 17) this record touches, e.g. a night garden is
+    /// `darkness`. A parent who avoids the topic never gets the record.
+    public let topics: [SafetyTopic]
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -243,6 +256,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
+        topics = try container.decodeIfPresent([SafetyTopic].self, forKey: .topics) ?? []
         weights = try SelectionWeights(from: decoder)
     }
 
@@ -262,6 +276,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
+        if !topics.isEmpty { try container.encode(topics, forKey: .topics) }
         try weights.encode(to: encoder)
     }
 }

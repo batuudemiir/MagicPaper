@@ -52,6 +52,14 @@ public struct BlueprintSelector: Sendable {
             if let mode = intent.mode, !(modeProfile?.admits(blueprint) ?? false) {
                 failures.append("family '\(blueprint.family?.rawValue ?? "none")' does not serve mode '\(mode.rawValue)'")
             }
+            // What the parent allows (FAZ 17). A rule, not a preference, so it
+            // rules out here with its reason rather than lowering a weight.
+            if let safety = intent.safety {
+                if let why = safety.rejection(of: blueprint) { failures.append(why) }
+                if let gap = OfflineStoryComposer.safetyGap(in: blueprint, catalog: catalog, safety: safety) {
+                    failures.append("every '\(gap.rawValue)' line carries a topic the parent avoids")
+                }
+            }
 
             // The idea narrows; it never relaxes. Combining rather than
             // replacing is what keeps a blueprint's own premise intact — an
@@ -60,14 +68,16 @@ public struct BlueprintSelector: Sendable {
             let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
             let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
 
-            func check<Record: Identifiable, Trait>(
-                _ records: [Record],
+            func check<Record: Identifiable & SafetyTagged, Trait>(
+                _ all: [Record],
                 pinned: ContentID?,
                 axis: String,
                 offered: KeyPath<Record, Set<Trait>>,
                 required: TraitRequirement<Trait>,
                 forbidden: Set<Trait>
             ) where Record.ID == ContentID {
+                // Content the parent avoids is not there to be bound at all.
+                let records = intent.safety.map { safety in all.filter(safety.admits) } ?? all
                 // A pinned choice must itself fit; otherwise any record may.
                 let pool = pinned.map { id in records.filter { $0.id == id } } ?? records
                 let fits = pool.contains {
@@ -79,6 +89,9 @@ public struct BlueprintSelector: Sendable {
                     let why = TraitMatch.rejection(offered: record[keyPath: offered],
                                                    required: required, forbidden: forbidden)
                     failures.append("\(axis) '\(pinned.rawValue)' \(why ?? "does not fit")")
+                } else if let pinned, let record = all.first(where: { $0.id == pinned }) {
+                    let why = intent.safety?.rejection(of: record) ?? "is not offered"
+                    failures.append("\(axis) '\(pinned.rawValue)' \(why)")
                 } else if pinned != nil {
                     failures.append("\(axis) '\(pinned!.rawValue)' is not in the catalog")
                 } else {
@@ -226,9 +239,23 @@ public struct BlueprintSelector: Sendable {
     /// A mode is offered, and a surprise may land on it, only if its profile
     /// admits at least one beat-authored blueprint written for the band. Nil
     /// band means any band.
-    public func availableModes(catalog: ContentCatalog, ageBand: AgeBand?) -> [StoryMode] {
+    ///
+    /// With a safety setting (FAZ 17) the question is asked as a story would
+    /// be built: a mode is offered when some blueprint passes `admissible` for
+    /// it. A mode the parent's setting empties is not offered, rather than
+    /// offered and failing at "Başla".
+    public func availableModes(
+        catalog: ContentCatalog,
+        ageBand: AgeBand?,
+        safety: ContentSafety? = nil
+    ) -> [StoryMode] {
         StoryMode.allCases.filter { mode in
             guard let profile = catalog.modeProfile(mode) else { return false }
+            if let safety {
+                let probe = OfflineStoryIntent(
+                    childName: "", seed: "available-modes", mode: mode, ageBand: ageBand, safety: safety)
+                return !admissible(catalog: catalog, intent: probe).blueprints.isEmpty
+            }
             return catalog.blueprints.contains { blueprint in
                 blueprint.isBeatAuthored
                     && profile.admits(blueprint)
@@ -257,7 +284,8 @@ public struct BlueprintSelector: Sendable {
     public func availableFamilyRelations(
         catalog: ContentCatalog,
         mode: StoryMode?,
-        ageBand: AgeBand?
+        ageBand: AgeBand?,
+        safety: ContentSafety? = nil
     ) -> [FamilyRelationKind] {
         // No moments means no line ever carries the character: offering it
         // would write a story that never mentions them.
@@ -267,6 +295,10 @@ public struct BlueprintSelector: Sendable {
             blueprint.isBeatAuthored
                 && (mode == nil || (profile?.admits(blueprint) ?? false))
                 && (ageBand.map { blueprint.ageRange == $0 } ?? true)
+                && (safety.map {
+                    $0.admits(blueprint: blueprint)
+                        && OfflineStoryComposer.safetyGap(in: blueprint, catalog: catalog, safety: $0) == nil
+                } ?? true)
         }
         return FamilyRelationKind.allCases.filter { relation in
             blueprints.contains {
@@ -357,7 +389,8 @@ public struct BlueprintSelector: Sendable {
                     family: intent.family,
                     interests: intent.interests,
                     recent: intent.recent,
-                    usage: intent.usage
+                    usage: intent.usage,
+                    safety: intent.safety
                 )
                 return (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil

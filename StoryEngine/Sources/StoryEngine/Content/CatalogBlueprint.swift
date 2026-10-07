@@ -124,6 +124,9 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     /// Interest words (FAZ 12) the story itself is about, independent of the
     /// content bound into it. Most blueprints are structural and carry none.
     public let interests: [InterestTag]
+    /// Safety topics (FAZ 17) the story itself is about, whatever is bound
+    /// into it. A parent who avoids one never gets this blueprint.
+    public let topics: [SafetyTopic]
     /// Where this blueprint may stand in a series (FAZ 13). Nil for every
     /// standalone story. A continuation blueprint lives in
     /// `ContentCatalog.series`, never in `blueprints`, so nothing that picks a
@@ -137,7 +140,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
-        case premise, editorialName, editorialGuidance, requires, forbids, interests
+        case premise, editorialName, editorialGuidance, requires, forbids, interests, topics
         case continuation, aggregateWeight
     }
 
@@ -162,6 +165,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         forbids = try container.decodeIfPresent(ContentExclusions.self, forKey: .forbids)
             ?? ContentExclusions()
         interests = try container.decodeIfPresent([InterestTag].self, forKey: .interests) ?? []
+        topics = try container.decodeIfPresent([SafetyTopic].self, forKey: .topics) ?? []
         continuation = try container.decodeIfPresent(ContinuationSpec.self, forKey: .continuation)
         aggregateWeight = try container.decodeIfPresent(Double.self, forKey: .aggregateWeight) ?? 1
     }
@@ -182,6 +186,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         if !requires.isEmpty { try container.encode(requires, forKey: .requires) }
         if !forbids.isEmpty { try container.encode(forbids, forKey: .forbids) }
         if !interests.isEmpty { try container.encode(interests, forKey: .interests) }
+        if !topics.isEmpty { try container.encode(topics, forKey: .topics) }
         try container.encodeIfPresent(continuation, forKey: .continuation)
         if aggregateWeight != 1 { try container.encode(aggregateWeight, forKey: .aggregateWeight) }
     }

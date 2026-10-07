@@ -47,6 +47,12 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// re-read weigh more, ones abandoned weigh less. `.neutral` — every story
     /// before FAZ 14, and every child with nothing read yet — changes nothing.
     public let usage: UsageProfile
+    /// What the parent allows (FAZ 17). Nil filters nothing, which is every
+    /// story before FAZ 17 and every test that does not ask; the app always
+    /// passes the child's setting, `.mostProtective` until a parent changes it.
+    /// A filter, not a weight, and not part of the story's seed: where it
+    /// rules nothing out, the book is the one it would have been.
+    public let safety: ContentSafety?
 
     public init(
         childName: String,
@@ -61,7 +67,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         family: FamilyCast? = nil,
         interests: [InterestTag] = [],
         recent: [RecentContent] = [],
-        usage: UsageProfile = .neutral
+        usage: UsageProfile = .neutral,
+        safety: ContentSafety? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -76,6 +83,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.interests = interests
         self.recent = recent
         self.usage = usage
+        self.safety = safety
     }
 }
 
@@ -99,7 +107,8 @@ extension OfflineStoryIntent {
             family: family,
             interests: interests,
             recent: recent,
-            usage: usage
+            usage: usage,
+            safety: safety
         )
     }
 }
@@ -263,6 +272,7 @@ public struct OfflineContentBinder: Sendable {
             also: {
                 TraitMatch.thresholdRejection(
                     offered: $0.thresholdKinds, wanted: requires.thresholdKind)
+                    ?? intent.safety?.rejection(of: $0)
             }
         ) {
             do {
@@ -292,6 +302,7 @@ public struct OfflineContentBinder: Sendable {
             also: {
                 TraitMatch.thresholdRejection(
                     offered: $0.thresholdKinds, wanted: requires.thresholdKind)
+                    ?? intent.safety?.rejection(of: $0)
             }
         )
         _ = unusedSetting
@@ -313,6 +324,7 @@ public struct OfflineContentBinder: Sendable {
             // shorter and would have dropped the reason, which is the habit this
             // whole error type exists to break.
             also: { companion in
+                if let reason = intent.safety?.rejection(of: companion) { return reason }
                 if let reason = TraitMatch.castingRejection(
                     offered: companion.castRoles, casting: requires.casting) {
                     return reason
@@ -348,6 +360,7 @@ public struct OfflineContentBinder: Sendable {
             // the claim belongs to the object — the water does not know it
             // explains a flicker, but the flicker knows.
             also: { discovery in
+                if let reason = intent.safety?.rejection(of: discovery) { return reason }
                 let explained = discovery.explainedBy.intersection(setting.traits)
                 guard !explained.isEmpty else { return nil }
                 return "already explained by the setting ("
