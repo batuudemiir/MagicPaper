@@ -1,225 +1,204 @@
 import SwiftUI
 
-/// Kütüphane — çocuğun okuduğu ve okuyacağı her şey.
+/// 16 · Kitaplık (`Kutuphane`) ve 42 · Boş kitaplık (`BosKitaplik`).
 ///
-/// Önceki hâli aramayı, üç filtre çipini ve bir kapsam düğmesini her zaman
-/// gösteriyordu: içerik başlamadan önce ekranın üçte biri denetimdi. Sekiz
-/// masallık bir rafta arama kutusu bir araç değil, bir engel — ve "Görselli"
-/// filtresi görselli masal yokken yalnızca boş bir sonuç üretebiliyordu.
-///
-/// Kural: bir denetim, işe yarayabileceği kadar içerik varken görünür.
+/// Arama, filtre çipleri (Tümü · Favoriler · Yarım kalanlar), seri bandı,
+/// iki sütun kapak ızgarası. Kapağa dokununca Masal aksiyonları (17).
+/// Kitaplık etkin çocuğun; çocuk Benim köşem'den değişir.
 struct LibraryView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var series = SeriesManager.shared
     @StateObject private var favorites = MPFavorites.shared
 
     enum Filter: String, CaseIterable {
-        case all = "Tümü", illustrated = "Görselli", favorite = "Favori"
+        case all = "Tümü", favorite = "Favoriler", unfinished = "Yarım kalanlar"
     }
 
     @State private var query = ""
     @State private var filter: Filter = .all
-    /// Kapsam: yalnızca aktif çocuk ↔ tüm çocuklar.
-    @State private var allChildren = false
-
-    /// Aramanın belirdiği eşik. Altında göz zaten hepsini görüyor.
-    private static let searchAppearsAt = 8
 
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(title: "Kütüphane", subtitle: scopeLine) {
-                // Kapsam ikonu tek başına ne yaptığını söylemiyordu. Artık
-                // durumu alt başlık yazıyor, düğme yalnızca değiştiriyor.
-                if profileManager.profiles.count > 1 {
-                    MPIconButton(
-                        symbol: allChildren ? "person.2.fill" : "person.crop.circle",
-                        label: allChildren ? "Yalnızca \(activeName)" : "Tüm çocuklar"
-                    ) {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { allChildren.toggle() }
+            topBar
+            if myStories.isEmpty {
+                MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş",
+                            message: "İlk masalını yarat, burada seni beklesin.") {
+                    MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {
+                        app.startStoryCreation()
                     }
-                }
-            }
-
-            if !controls.isEmpty || showsSearch { filters }
-
-            if visibleStories.isEmpty {
-                ScrollView(showsIndicators: false) {
-                    emptyState.padding(.top, 20)
                 }
             } else {
                 ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: 10) {
-                        if !allChildren, let child = profileManager.currentProfile?.id {
-                            SeriesCard(childID: child)
-                        }
-                        ForEach(visibleStories) { story in
-                            MPStoryCard(
-                                title: story.title,
-                                meta: allChildren ? story.mpMetaWithChild : story.mpMeta,
-                                symbol: story.mpSymbol,
-                                accent: story.mpAccent,
-                                coverTitle: story.mpCoverStyle == .magicPaperMosaic ? nil : story.title,
-                                mosaicCover: story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil,
-                                status: status(of: story),
-                                badge: story.isIllustrated ? "Görselli" : SeriesCopy.episodeBadge(story),
-                                badgeTone: story.isIllustrated ? .reward : .neutral,
-                                badgeSymbol: story.isIllustrated ? "crown.fill" : "bookmark",
-                                progress: (story.mpProgress > 0 && story.mpProgress < 1) ? story.mpProgress : nil,
-                                layout: .row
-                            ) {
-                                app.detailStory = story
-                            }
-                        }
+                    VStack(spacing: MPSpacing.lg) {
+                        searchField
+                        chips
+                        if filter == .all, query.isEmpty { seriesBand }
+                        if visibleStories.isEmpty { noMatch } else { grid }
                     }
-                    .padding(.horizontal, MP.S.screenGutter)
-                    .padding(.bottom, 24)
+                    .padding(.horizontal, MPSpacing.screenH)
+                    .padding(.bottom, MPSpacing.xxxl)
                 }
             }
         }
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
     }
 
-    /// Yarıda kalanın kendi göstergesi var (ilerleme çubuğu); burada yalnızca
-    /// iki uç işaretleniyor.
-    private func status(of story: Story) -> MPStoryCard.Status? {
-        // `lastReadPage == nil` ile "ilerleme 0" aynı şey değil: ilki hiç
-        // açılmamış, ikincisi açılmış ve ilk sayfasında duruyor. `mpProgress`
-        // ikisini de 0 verdiği için onunla ayırt edilemez — ve ayrım tam olarak
-        // bu rozetin söylediği şey.
-        if story.lastReadPage == nil { return .unread }
-        if story.isFinished { return .finished }
+    // MARK: - Üst bölüm
+
+    private var topBar: some View {
+        MPTopBar(title: "Kitaplık") {
+            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") { app.requestParentMode() }
+        }
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.top, MPSpacing.sm)
+        .padding(.bottom, MPSpacing.md)
+    }
+
+    private var searchField: some View {
+        HStack(spacing: MPSpacing.md) {
+            MPIcon("magnifyingglass", size: 20, weight: .semibold).foregroundStyle(MPColor.textSecondary)
+                .accessibilityHidden(true)
+            TextField("Masal ara", text: $query)
+                .font(.mp(.bodyStrong))
+                .foregroundStyle(MPColor.textPrimary)
+                .submitLabel(.search)
+            if !query.isEmpty {
+                Button { query = "" } label: {
+                    MPIcon("xmark", size: 14, weight: .bold).foregroundStyle(MPColor.textSecondary)
+                }
+                .accessibilityLabel("Aramayı temizle")
+            }
+        }
+        .padding(.horizontal, MPSpacing.lg)
+        .frame(minHeight: MPSize.inputHeight)
+        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
+        .overlay(RoundedRectangle(cornerRadius: MPRadius.input).strokeBorder(MPColor.borderKid, lineWidth: 1.5))
+    }
+
+    private var chips: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: MPSpacing.sm) {
+                ForEach(Filter.allCases, id: \.self) { f in
+                    MPChip(title: f.rawValue, isSelected: filter == f) {
+                        MPHaptics.selection()
+                        withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
+                    }
+                }
+            }
+            .padding(.horizontal, MPSpacing.screenH)
+        }
+        .padding(.horizontal, -MPSpacing.screenH)
+    }
+
+    @ViewBuilder
+    private var seriesBand: some View {
+        if let child = profileManager.currentProfile?.id,
+           let open = series.openSeries(for: child),
+           let progress = series.readProgress(for: child) {
+            Button { withAnimation(MP.M.gated(MP.M.base)) { app.seriesChildID = child } } label: {
+                HStack(spacing: MPSpacing.md) {
+                    MPIcon("pawprint", size: 24, weight: .semibold)
+                        .foregroundStyle(MPWorldTone.peach.deep)
+                        .frame(width: 48, height: 48)
+                        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md))
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Seri · \(progress.read) / \(progress.total) bölüm")
+                            .mpText(.eyebrow).foregroundStyle(MPWorldTone.peach.deep)
+                        Text(open.firstStoryTitle).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    }
+                    Spacer(minLength: 0)
+                    MPChevron().accessibilityHidden(true)
+                }
+                .padding(MPSpacing.md)
+                .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityElement(children: .combine)
+            .accessibilityHint("Seri masalı açar")
+        }
+    }
+
+    // MARK: - Izgara
+
+    private var grid: some View {
+        LazyVGrid(columns: [GridItem(.flexible(), spacing: MPSpacing.lg), GridItem(.flexible(), spacing: MPSpacing.lg)],
+                  spacing: MPSpacing.lg) {
+            ForEach(visibleStories) { story in
+                Button { app.actionsStory = story } label: {
+                    MPStoryCover(title: story.title, systemImage: story.mpWorld.icon, tone: story.mpWorld.tone,
+                                 badge: badge(for: story),
+                                 actionTitle: isPartlyRead(story) ? "Devam" : "Oku",
+                                 illustration: story.mpKitCoverAsset.map { Image($0) })
+                }
+                .buttonStyle(MPPressStyle())
+                .accessibilityLabel(story.title)
+                .accessibilityValue(badge(for: story) ?? "")
+                .accessibilityHint("Masalın seçeneklerini açar")
+            }
+        }
+    }
+
+    private func isPartlyRead(_ story: Story) -> Bool { story.mpProgress > 0 && story.mpProgress < 1 }
+
+    private func badge(for story: Story) -> String? {
+        if story.isIllustrated { return "Görselli" }
+        if let episode = SeriesCopy.episodeBadge(story) { return episode }
+        if isPartlyRead(story) { return "Yarım" }
         return nil
     }
 
-    private var activeName: String {
-        profileManager.currentProfile?.name ?? "Arkadaşım"
-    }
-
-    /// Kapsam ve sayı, ikonun söyleyemediği şey.
-    private var scopeLine: String {
-        let n = scopedStories.count
-        let who = allChildren ? "Tüm çocuklar" : activeName
-        return n == 0 ? who : "\(who) · \(n) masal"
-    }
-
-    // MARK: - Denetimler
-
-    private var showsSearch: Bool { scopedStories.count >= Self.searchAppearsAt }
-
-    /// Yalnızca bir şey seçebilecek filtreler.
-    ///
-    /// Hiç görselli masal yokken "Görselli" çipi bir seçenek değil, boş bir
-    /// sonuç vaadi. Seçili olan çip, sonucu boşalsa bile kalır — yoksa
-    /// kullanıcının altından kaybolur.
-    private var controls: [Filter] {
-        Filter.allCases.filter { f in
-            switch f {
-            case .all: return false
-            case .illustrated: return filter == f || scopedStories.contains { $0.isIllustrated }
-            case .favorite: return filter == f || scopedStories.contains { favorites.contains($0.id) }
-            }
-        }
-    }
-
-    private var filters: some View {
-        VStack(spacing: 10) {
-            if showsSearch {
-                MPInput(placeholder: "Masal ara", text: $query, symbol: "magnifyingglass")
-            }
-            if !controls.isEmpty {
-                MPWrapRow(spacing: 10) {
-                    LegacyMPChip(title: Filter.all.rawValue, isSelected: filter == .all) {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { filter = .all }
-                    }
-                    ForEach(controls, id: \.self) { f in
-                        LegacyMPChip(title: f.rawValue, isSelected: filter == f) {
-                            withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
-                        }
-                    }
-                }
-            }
-        }
-        .padding(.horizontal, MP.S.screenGutter)
-        .padding(.top, 4)
-        .padding(.bottom, 14)
-    }
-
-    // MARK: - Boş durumlar
-
-    /// Hiç masal olmamasıyla, arama sonucunun boş olması aynı şey değil: biri
-    /// masal yaratmaya davet, diğeri aramayı geri almaya. Tek bir metin ikisine
-    /// birden hitap ettiğinde ikisine de etmiyor.
     @ViewBuilder
-    private var emptyState: some View {
-        if scopedStories.isEmpty {
-            MPEmptyState(
-                title: allChildren ? "Henüz masal yok" : "\(activeName) için masal yok",
-                description: "İlk masalı yaratınca burada belirecek.",
-                illustration: "AppLogo",
-                actionLabel: "Masal yarat",
-                action: { app.startStoryCreation() }
-            )
-        } else if !query.trimmingCharacters(in: .whitespaces).isEmpty {
-            MPEmptyState(
-                title: "Eşleşen masal yok",
-                description: "\"\(query)\" için bir şey bulamadık.",
-                illustration: "AppLogo",
-                actionLabel: "Aramayı temizle",
-                action: { query = "" }
-            )
-        } else {
-            MPEmptyState(
-                title: filter == .favorite ? "Favori masal yok" : "Görselli masal yok",
-                description: filter == .favorite
-                    ? "Bir masalı kalple işaretleyince burada toplanır."
-                    : "Görselli masallar resimleriyle birlikte burada durur.",
-                illustration: "AppLogo",
-                actionLabel: "Tümünü göster",
-                action: { withAnimation(MP.M.gated(MP.M.easeOut)) { filter = .all } }
-            )
+    private var noMatch: some View {
+        VStack(spacing: MPSpacing.md) {
+            Text(query.isEmpty ? (filter == .favorite ? "Favori masal yok" : "Yarım kalan masal yok")
+                               : "Eşleşen masal yok")
+                .mpText(.title3).foregroundStyle(MPColor.textPrimary)
+            Text(query.isEmpty ? (filter == .favorite ? "Bir masalı kalple işaretleyince burada toplanır."
+                                                      : "Yarıda bıraktığın masallar burada durur.")
+                               : "\u{201C}\(query)\u{201D} için bir şey bulamadık.")
+                .mpText(.body).foregroundStyle(MPColor.textSecondary).multilineTextAlignment(.center)
+            MPButton(title: query.isEmpty ? "Tümünü göster" : "Aramayı temizle", kind: .soft, size: .small) {
+                query = ""
+                filter = .all
+            }
         }
+        .frame(maxWidth: .infinity)
+        .padding(.top, MPSpacing.xxxl)
     }
 
     // MARK: - Liste
 
-    /// Kütüphaneye giren masallar.
-    ///
-    /// Onay kapısı en başta uygulanıyor — kapsam ve filtrelerden önce. Kapı
-    /// "hangi masallar var" sorusunun cevabını değiştirir; ondan sonra gelen
-    /// her şey (çocuk kapsamı, arama, favori) o cevabın üzerinde çalışır.
-    /// Sonda uygulansaydı boş durum metni bile yanlış sayardı.
-    private var scopedStories: [Story] {
-        let allowed = MPStoryGate.visible(
-            storyManager.stories,
-            approvalRequired: settings.approve,
-            isApproved: { settings.isApproved($0) }
-        )
-        guard !allChildren, let active = profileManager.currentProfile else {
-            return allowed
-        }
-        return allowed.filter { $0.belongs(to: active) }
+    /// Onay kapısı en başta: kapı "hangi masallar var" sorusunun cevabını
+    /// değiştirir; arama ve filtre o cevabın üzerinde çalışır.
+    private var myStories: [Story] {
+        MPStoryGate.visible(storyManager.stories, approvalRequired: settings.approve,
+                            isApproved: { settings.isApproved($0) })
+            .filter { $0.belongs(to: profileManager.currentProfile) }
     }
 
     private var visibleStories: [Story] {
-        var list = scopedStories
-
+        var list = myStories
         switch filter {
         case .all: break
-        case .illustrated: list = list.filter { $0.isIllustrated }
         case .favorite: list = list.filter { favorites.contains($0.id) }
+        case .unfinished: list = list.filter(isPartlyRead)
         }
-
         let trimmed = query.trimmingCharacters(in: .whitespaces)
         if !trimmed.isEmpty {
-            // Türkçe locale ile küçük harfe çevrilir — i/ı ayrımı için zorunlu.
+            // Türkçe katlama: i/ı ayrımı için zorunlu.
             let needle = MPText.foldedForSearch(trimmed)
-            list = list.filter {
-                MPText.foldedForSearch($0.title).contains(needle)
-                || MPText.foldedForSearch($0.childName).contains(needle)
-            }
+            list = list.filter { MPText.foldedForSearch($0.title).contains(needle) }
         }
         return list
     }
+}
+
+#Preview("16 · Kitaplık") {
+    LibraryView()
+        .environmentObject(MPAppState())
+        .environmentObject(MPSettingsStore.shared)
 }

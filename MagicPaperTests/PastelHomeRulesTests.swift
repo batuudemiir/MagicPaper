@@ -93,4 +93,30 @@ final class PastelHomeRulesTests: XCTestCase {
         XCTAssertEqual(StreakStrip(done: [], streak: 1, todayIndex: 0).title, "Okuma yolculuğun devam ediyor")
         XCTAssertEqual(StreakStrip(done: [], streak: 4, todayIndex: 0).title, "4 gün üst üste okudun")
     }
+
+    // MARK: - Ebeveyn kapısı
+
+    func testTheGateAsksAMultiplicationAndAcceptsTheProduct() {
+        var quiz = MPGateQuiz(a: 7, b: 4)
+        XCTAssertEqual(quiz.question, "7 × 4 = ?")
+        XCTAssertEqual(quiz.answer(28), .correct)
+    }
+
+    func testAWrongAnswerAsksANewQuestion() {
+        var quiz = MPGateQuiz(a: 7, b: 4)
+        XCTAssertEqual(quiz.answer(27, next: { (3, 3) }), .wrong)
+        XCTAssertEqual(quiz.question, "3 × 3 = ?")
+    }
+
+    func testThreeMissesLockTheGateForThirtySeconds() {
+        let t0 = Date(timeIntervalSince1970: 1_000)
+        var quiz = MPGateQuiz(a: 2, b: 2)
+        XCTAssertEqual(quiz.answer(1, at: t0, next: { (2, 2) }), .wrong)
+        XCTAssertEqual(quiz.answer(1, at: t0, next: { (2, 2) }), .wrong)
+        XCTAssertEqual(quiz.answer(1, at: t0, next: { (2, 2) }), .locked)
+        // Even the right answer waits.
+        XCTAssertEqual(quiz.answer(4, at: t0.addingTimeInterval(29)), .locked)
+        XCTAssertEqual(quiz.secondsLeft(at: t0.addingTimeInterval(20)), 10)
+        XCTAssertEqual(quiz.answer(4, at: t0.addingTimeInterval(30)), .correct)
+    }
 }

@@ -119,9 +119,19 @@ final class MPAppState: ObservableObject {
     @Published var showDaily = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
-    /// Raftan açılan masal detayı. Okuyucu detayın içinden açılır, bu yüzden
-    /// detaydan okumaya geçmek `readerStory`'ye dokunmaz.
-    @Published var detailStory: Story?
+    /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
+    @Published var readerStartPage: Int?
+    /// 17 · Masal aksiyonları: kitaplıkta kapağa dokununca açılan sayfa.
+    @Published var actionsStory: Story?
+    /// Sayfa kapanınca açılacak masal (sayfa ile okuyucu aynı anda açılamaz).
+    var pendingRead: (story: Story, startPage: Int?)?
+    /// 18 · Seri masal, çocuk kökünün üstünde.
+    @Published var seriesChildID: UUID?
+
+    func read(_ story: Story, fromStart: Bool = false) {
+        readerStartPage = fromStart ? 0 : nil
+        readerStory = story
+    }
 
     // Alt sayfalar ve bildirim
     @Published var sheet: MPSheetRoute?

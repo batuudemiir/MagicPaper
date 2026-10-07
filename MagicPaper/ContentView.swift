@@ -76,11 +76,19 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: { app.creationPreset = nil }) {
                 StoryCreationFlow(preset: app.creationPreset).environmentObject(app).environmentObject(settings)
             }
-            .fullScreenCover(item: $app.detailStory) { story in
-                StoryDetailView(story: story).environmentObject(app).environmentObject(settings)
+            .sheet(item: $app.actionsStory, onDismiss: {
+                if let next = app.pendingRead {
+                    app.pendingRead = nil
+                    app.read(next.story, fromStart: next.startPage == 0)
+                }
+            }) { story in
+                StoryActionsSheet(story: story) { chosen, fromStart in
+                    app.pendingRead = (chosen, fromStart ? 0 : nil)
+                }
+                .environmentObject(app)
             }
-            .fullScreenCover(item: $app.readerStory) { story in
-                StoryReaderView(story: story).environmentObject(app).environmentObject(settings)
+            .fullScreenCover(item: $app.readerStory, onDismiss: { app.readerStartPage = nil }) { story in
+                StoryReaderView(story: story, startingPage: app.readerStartPage).environmentObject(app).environmentObject(settings)
             }
             .fullScreenCover(isPresented: $app.showPaywall) {
                 PaywallView().environmentObject(app)
@@ -144,6 +152,12 @@ struct ContentView: View {
                 )
             }
 
+            if let child = app.seriesChildID {
+                SeriesView(childID: child)
+                    .transition(reduceMotion ? .opacity : .move(edge: .trailing))
+                    .zIndex(2)
+            }
+
             if app.showKidCorner {
                 KidCornerView()
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
@@ -151,6 +165,7 @@ struct ContentView: View {
             }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.showKidCorner)
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
     }
 
     private var parentRoot: some View {

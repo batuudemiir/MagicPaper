@@ -98,3 +98,51 @@ enum MPBedtime {
                   minute: settings.bedtimeMinute, now: now)
     }
 }
+
+// MARK: - Ebeveyn kapısı
+
+/// 28 · Ebeveyn kapısı'nın kuralı: çarpma sorusu, üç yanlışta 30 saniye
+/// bekleme. Çocuk tahminle geçemesin, ebeveyn yorulmasın.
+struct MPGateQuiz: Equatable {
+    static let maxMisses = 3
+    static let lockout: TimeInterval = 30
+
+    private(set) var a: Int
+    private(set) var b: Int
+    private(set) var misses = 0
+    private(set) var lockedUntil: Date?
+
+    init(a: Int = Int.random(in: 3...9), b: Int = Int.random(in: 3...9)) {
+        self.a = a
+        self.b = b
+    }
+
+    var question: String { "\(a) × \(b) = ?" }
+
+    func isLocked(at now: Date = Date()) -> Bool {
+        guard let lockedUntil else { return false }
+        return now < lockedUntil
+    }
+
+    func secondsLeft(at now: Date = Date()) -> Int {
+        guard let lockedUntil else { return 0 }
+        return max(0, Int(lockedUntil.timeIntervalSince(now).rounded(.up)))
+    }
+
+    enum Result: Equatable { case correct, wrong, locked }
+
+    /// Yanlışta yeni soru gelir; üçüncü yanlış kapıyı 30 saniye kilitler.
+    mutating func answer(_ value: Int?, at now: Date = Date(),
+                         next: () -> (Int, Int) = { (Int.random(in: 3...9), Int.random(in: 3...9)) }) -> Result {
+        if isLocked(at: now) { return .locked }
+        if lockedUntil != nil { lockedUntil = nil; misses = 0 }
+        if value == a * b { return .correct }
+        misses += 1
+        (a, b) = next()
+        if misses >= Self.maxMisses {
+            lockedUntil = now.addingTimeInterval(Self.lockout)
+            return .locked
+        }
+        return .wrong
+    }
+}

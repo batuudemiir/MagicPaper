@@ -182,7 +182,7 @@ struct ParentOverviewView: View {
                     if index > 0 { MPRowDivider(area: .parent) }
                     ParentRowButton(systemImage: story.mpWorld.icon, tone: story.mpWorld.tone,
                                     title: story.title, subtitle: subtitle(for: story)) {
-                        app.detailStory = story
+                        app.actionsStory = story
                     }
                 }
             }

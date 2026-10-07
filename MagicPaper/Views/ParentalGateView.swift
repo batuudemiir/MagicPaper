@@ -1,77 +1,123 @@
 import SwiftUI
 
-/// Ebeveyn kapısı — 03-SCREENS.md §11.
+/// 28 · Ebeveyn kapısı (`EbeveynKapisi`).
+///
+/// Çarpma sorusu; üç yanlışta 30 saniye bekleme (`MPGateQuiz`). Ebeveyn
+/// alanının kapısı olduğu için maskot yok. Masal aksiyonlarındaki kilitli
+/// satırlar da (yazdır, paylaş, sil) bu ekrandan geçer.
 struct ParentalGateView: View {
     var onSuccess: () -> Void
     var onCancel: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    @State private var a = Int.random(in: 3...8)
-    @State private var b = Int.random(in: 2...8)
+    @State private var quiz = MPGateQuiz()
     @State private var answer = ""
     @State private var error: String?
+    @State private var now = Date()
+    @FocusState private var focused: Bool
+
+    private let tick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer(minLength: 0)
-
-            MPIcon("shield", size: 34, weight: .semibold)
-                .foregroundStyle(MP.C.brand)
-                .frame(width: 72, height: 72)
-                .background(
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(MP.C.brandSoft)
-                )
-
-            VStack(spacing: 6) {
-                Text("Bu bölüm ebeveynler için")
-                    .font(MP.F.displayMD())
-                    .foregroundStyle(MP.C.textTitle)
-                    .multilineTextAlignment(.center)
-                Text("Devam etmek için işlemi çöz")
-                    .font(MP.F.bodyMD())
-                    .foregroundStyle(MP.C.textMuted)
+        VStack(spacing: 0) {
+            HStack {
+                MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: cancel)
+                Spacer()
             }
+            .padding(.top, MPSpacing.sm)
 
-            Text("\(a) + \(b) = ?")
-                .font(MP.F.displayHeavy(32))
-                .foregroundStyle(MP.C.textTitle)
+            Spacer(minLength: MPSpacing.xl)
 
-            MPInput(placeholder: "Cevap", text: $answer, error: error, keyboard: .numberPad)
-                .frame(width: 160)
-                .onChange(of: answer) { _, new in
-                    let digits = new.filter(\.isNumber)
-                    if digits != new { answer = digits }
+            VStack(spacing: MPSpacing.xl) {
+                MPIcon("shield", size: 40, weight: .semibold)
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(width: 120, height: 108)
+                    .background(MPWorldTone.sky.soft, in: Ellipse())
+                    .accessibilityHidden(true)
+
+                VStack(spacing: MPSpacing.md) {
+                    Text("Bu bölüm büyükler için")
+                        .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Devam etmek için işlemi çöz")
+                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                        .multilineTextAlignment(.center)
                 }
 
-            LegacyMPButton(title: "Onayla", size: .lg, fullWidth: true,
-                     isDisabled: answer.trimmingCharacters(in: .whitespaces).isEmpty) {
-                check()
+                Text(quiz.question)
+                    .font(.custom("Nunito", size: 40, relativeTo: .largeTitle).weight(.black))
+                    .foregroundStyle(MPColor.textPrimary)
+                    .accessibilityLabel("\(quiz.a) çarpı \(quiz.b) kaç eder?")
+
+                VStack(spacing: MPSpacing.xs) {
+                    TextField("Cevap", text: $answer)
+                        .keyboardType(.numberPad)
+                        .focused($focused)
+                        .multilineTextAlignment(.center)
+                        .font(.custom("Nunito", size: 24, relativeTo: .title2).weight(.black))
+                        .foregroundStyle(MPColor.textPrimary)
+                        .frame(width: 160, height: 54)
+                        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
+                        .overlay(RoundedRectangle(cornerRadius: MPRadius.input)
+                            .strokeBorder(error != nil ? MPColor.statusDanger : MPColor.borderKid, lineWidth: 2))
+                        .disabled(locked)
+                        .accessibilityLabel("Cevap")
+                        .onChange(of: answer) { _, new in
+                            let digits = String(new.filter(\.isNumber).prefix(3))
+                            if digits != new { answer = digits }
+                        }
+                    if let error {
+                        Text(error).mpText(.callout).foregroundStyle(MPColor.statusDanger)
+                    }
+                }
+
+                VStack(spacing: MPSpacing.sm) {
+                    MPButton(title: "Onayla", fullWidth: true, action: check)
+                        .disabled(answer.isEmpty || locked)
+                    MPButton(title: "Geri dön", kind: .ghost, action: cancel)
+                }
+                .padding(.horizontal, MPSpacing.xxxl)
+
+                Text(locked
+                     ? "Biraz bekleyelim: \(quiz.secondsLeft(at: now)) saniye."
+                     : "Üç yanlış denemeden sonra 30 saniye beklenir.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .multilineTextAlignment(.center)
             }
 
-            LegacyMPButton(title: "Geri dön", variant: .ghost, size: .sm) {
-                if let onCancel { onCancel() } else { dismiss() }
-            }
-
-            Spacer(minLength: 0)
+            Spacer(minLength: MPSpacing.xl)
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, MPSpacing.screenH)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .onReceive(tick) { now = $0 }
+        .onAppear { focused = true }
+    }
+
+    private var locked: Bool { quiz.isLocked(at: now) }
+
+    private func cancel() {
+        if let onCancel { onCancel() } else { dismiss() }
     }
 
     private func check() {
-        if Int(answer) == a + b {
+        now = Date()
+        switch quiz.answer(Int(answer), at: now) {
+        case .correct:
             error = nil
             onSuccess()
-        } else {
+        case .wrong, .locked:
             withAnimation(MP.M.gated(MP.M.easeOut)) {
                 answer = ""
                 error = "Tekrar dene"
-                a = Int.random(in: 3...8)
-                b = Int.random(in: 2...8)
             }
         }
     }
+}
+
+#Preview("28 · Ebeveyn kapısı") {
+    ParentalGateView(onSuccess: {})
 }

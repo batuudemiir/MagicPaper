@@ -16,7 +16,7 @@ struct SeriesCard: View {
     var body: some View {
         switch series.cardState(for: childID) {
         case .ready(let storyID, let episode, let title):
-            Button { open(storyID) } label: {
+            Button { openSeries() } label: {
                 row(title: title, subtitle: SeriesCopy.readyTitle(episode), showsChevron: true)
             }
             .buttonStyle(MPPressStyle())
@@ -24,7 +24,10 @@ struct SeriesCard: View {
             .accessibilityLabel(SeriesCopy.readyAccessibility(episode, title))
             .accessibilityAddTraits(.isButton)
         case .waiting(let episode, let title):
-            row(title: title, subtitle: SeriesCopy.waitingTitle(episode), showsChevron: false)
+            Button { openSeries() } label: {
+                row(title: title, subtitle: SeriesCopy.waitingTitle(episode), showsChevron: true)
+            }
+            .buttonStyle(MPPressStyle())
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(SeriesCopy.waitingAccessibility(episode, title))
                 .accessibilityHint(SeriesCopy.waitingNote)
@@ -65,11 +68,9 @@ struct SeriesCard: View {
         .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
     }
 
-    private func open(_ id: UUID) {
-        // An episode deleted from the library before it was read comes back
-        // here, not only on the next launch.
+    /// 18 · Seri masal; bölüm oradan okunur.
+    private func openSeries() {
         series.refreshUnlocks(for: childID)
-        guard let story = library.getStory(id: id) else { return }
-        app.readerStory = story
+        withAnimation(MP.M.gated(MP.M.base)) { app.seriesChildID = childID }
     }
 }

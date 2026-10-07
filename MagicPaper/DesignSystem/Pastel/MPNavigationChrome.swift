@@ -136,7 +136,7 @@ struct MPTopBar<Trailing: View>: View {
     @ViewBuilder var trailing: Trailing
     var body: some View {
         HStack(spacing: 10) {
-            if let onBack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack) } else { Color.clear.frame(width: MPSize.circleButton) }
+            if let onBack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack) } else { Color.clear.frame(width: MPSize.circleButton, height: MPSize.circleButton) }
             VStack(spacing: 0) {
                 Text(title).mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
                 if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
