@@ -145,33 +145,32 @@ struct StoryActionList: View {
     }
 }
 
-// MARK: - Okuma ayarları sheet'i — 03-SCREENS.md §6
+// MARK: - 24 · Okuma ayarları (`OkumaAyarlari`)
 
+/// Okuyucunun kendi sayfası: tema, yazı boyutu, kim okusun, okuma hızı,
+/// sesli okuma. Okuyucu tam ekran sunulduğu için onun içinden `.sheet` ile
+/// açılır. "Kim okusun?" yalnızca Kendi sesin (FAZ 18) bayrağı açıkken.
 struct ReaderSettingsSheet: View {
-    /// Okuyucu tam ekran cover olarak sunulduğu için bu sheet, ContentView'ın
-    /// paylaşılan katmanında değil, okuyucunun **kendi içinde** açılır — aksi
-    /// hâlde cover'ın arkasında kalıyordu.
     let onClose: () -> Void
 
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
 
     var body: some View {
-        MPSheet(title: "Okuma ayarları", onClose: onClose) {
-            VStack(alignment: .leading, spacing: 20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Tema").font(MP.F.labelMD()).foregroundStyle(MP.C.textTitle)
-                    MPSegmentedControl(
-                        options: MP.ReadTheme.allCases.map { ($0, $0.label) },
-                        selection: $app.readTheme
-                    )
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                Text("Okuma ayarları").mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+
+                group("Tema") {
+                    MPSegmented(options: MP.ReadTheme.allCases.map { ($0, $0.label) },
+                                selection: $app.readTheme)
                 }
 
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Yazı boyutu").font(MP.F.labelMD()).foregroundStyle(MP.C.textTitle)
-                    MPWrapRow(spacing: 10) {
+                group("Yazı boyutu") {
+                    MPFlowLayout(spacing: MPSpacing.sm) {
                         ForEach(MP.ReadSize.allCases) { size in
-                            LegacyMPChip(title: size.rawValue, isSelected: app.readSize == size) {
+                            MPChip(title: size.rawValue, isSelected: app.readSize == size) {
                                 app.readSize = size
                                 settings.readSize = size
                             }
@@ -179,22 +178,58 @@ struct ReaderSettingsSheet: View {
                     }
                 }
 
-                LegacyMPListRow(
-                    symbol: "speaker.wave.2",
-                    title: "Sesli okuma",
-                    description: "Masalı sesli oku"
-                ) {
-                    MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
+                if FamilyFeatureAccess.isEnabled(.voiceRecording) {
+                    group("Kim okusun?") {
+                        MPSegmented(options: [(false, "Masal anlatıcısı"), (true, "Ailenin sesi")],
+                                    selection: .constant(false))
+                    }
                 }
 
-                LegacyMPListRow(
-                    symbol: "sparkles",
-                    title: "Dokunsal geri bildirim",
-                    description: "Sayfa çevrilince hafif bir dokunuş"
-                ) {
-                    MPSwitch(isOn: $settings.haptics, label: "Dokunsal geri bildirim")
+                group("Okuma hızı") {
+                    MPSegmented(options: MPSpeechRate.allCases.map { ($0, $0.label) },
+                                selection: Binding(get: { settings.speechRate },
+                                                   set: { settings.speechRate = $0 }))
+                }
+
+                MPGroupedList(area: .kid) {
+                    MPListRow(systemImage: "speaker.wave.2", tone: .sky, title: "Sesli okuma",
+                              subtitle: "Sayfa açılınca kendiliğinden okunur") {
+                        Toggle(isOn: $settings.readAloud) { EmptyView() }
+                            .toggleStyle(MPSwitchStyle()).fixedSize()
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityValue(settings.readAloud ? "Açık" : "Kapalı")
+                    .accessibilityAction { settings.readAloud.toggle() }
+                    MPRowDivider(area: .kid)
+                    MPListRow(systemImage: "sparkles", tone: .lav, title: "Dokunsal geri bildirim",
+                              subtitle: "Sayfa çevrilince hafif bir dokunuş") {
+                        Toggle(isOn: $settings.haptics) { EmptyView() }
+                            .toggleStyle(MPSwitchStyle()).fixedSize()
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityValue(settings.haptics ? "Açık" : "Kapalı")
+                    .accessibilityAction { settings.haptics.toggle() }
                 }
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.xxl)
+            .padding(.bottom, MPSpacing.lg)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            MPButton(title: "Okumaya dön", fullWidth: true, action: onClose)
+                .padding(.horizontal, MPSpacing.xxxl)
+                .padding(.vertical, MPSpacing.md)
+        }
+        .presentationDetents([.large])
+        .presentationDragIndicator(.visible)
+        .presentationCornerRadius(MPRadius.sheet)
+        .presentationBackground(MPColor.backgroundKid)
+    }
+
+    private func group<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.sm) {
+            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            content()
         }
     }
 }

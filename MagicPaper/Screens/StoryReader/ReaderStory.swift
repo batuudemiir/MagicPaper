@@ -101,6 +101,8 @@ struct ReaderPage: Equatable {
     let sceneHint: String
     /// Görselli kitabın hazır sahnesi (B2). Varsa `imageRef`'in yerine çizilir.
     var scene: ResolvedScene? = nil
+    /// Sayfanın yeni kelimeleri (FAZ 17). Eski masallarda boş.
+    var words: [StoryWord] = []
 
     /// Sayfada çizim var mı — dosyadan ya da hazır sahneden.
     var hasIllustration: Bool { imageRef != nil || scene != nil }
@@ -138,7 +140,8 @@ extension ReaderStory {
                 // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
                 imageLabel: textOnly ? nil : (scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index)),
                 sceneHint: page.imagePrompt,
-                scene: scene
+                scene: scene,
+                words: page.words ?? []
             )
         }
 

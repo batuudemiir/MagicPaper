@@ -1,5 +1,6 @@
 import Foundation
 import OSLog
+import StoryEngine
 import SwiftUI
 
 // MARK: - Profile Type
@@ -36,6 +37,12 @@ struct UserProfile: Codable, Identifiable {
     /// edit never silently drops a parent's choice; `ChildInterests` decides
     /// what is shown and what reaches the engine.
     var interests: [String]
+    /// İçerik güvenliği (FAZ 17, 31 · Güvenlik): korku seviyesi ve kaçınılan
+    /// konular. `nil` = hiç ayarlanmadı = en korumacı (`effectiveSafety`).
+    var safety: ContentSafety?
+
+    /// Motora giden ayar: hiç seçilmediyse en korumacı.
+    var effectiveSafety: ContentSafety { safety ?? .mostProtective }
 
     init(id: UUID = UUID(), name: String = "", age: Int = 6, profileType: ProfileType = .child,
          imageFileName: String? = nil, interests: [String] = []) {
@@ -49,7 +56,7 @@ struct UserProfile: Codable, Identifiable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, age, profileType, imageFileName, createdAt, interests
+        case id, name, age, profileType, imageFileName, createdAt, interests, safety
     }
 
     /// Hand-written so a profile saved before FAZ 12 still loads.
@@ -66,6 +73,8 @@ struct UserProfile: Codable, Identifiable {
         imageFileName = try container.decodeIfPresent(String.self, forKey: .imageFileName)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         interests = try container.decodeIfPresent([String].self, forKey: .interests) ?? []
+        // FAZ 17 öncesi profil: alan yok, en korumacı ayarla açılır.
+        safety = try? container.decodeIfPresent(ContentSafety.self, forKey: .safety)
     }
 }
 
@@ -251,6 +260,17 @@ class ProfileManager: ObservableObject {
         }
         // A count only: which interests a child has is family content.
         Self.log.debug("Interests updated: \(self.profiles[index].interests.count, privacy: .private)")
+    }
+
+    /// Replaces a child's content safety setting (FAZ 17).
+    func setSafety(_ safety: ContentSafety, for profileID: UUID) {
+        guard let index = profiles.firstIndex(where: { $0.id == profileID }) else { return }
+        profiles[index].safety = safety
+        saveProfiles()
+        if currentProfile?.id == profileID {
+            currentProfile = profiles[index]
+        }
+        Self.log.debug("Safety updated: \(safety.level.rawValue, privacy: .public)")
     }
 
     /// Why a deletion did not happen, when it did not.

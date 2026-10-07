@@ -1,14 +1,11 @@
 import SwiftUI
 
-/// Okuyucunun kontrolleri.
+/// Okuyucunun kontrolleri (23 · Okuyucu, Pastel Masal).
 ///
-/// Varsayılan hâli az: kapat, ve sayfanın altında bir künye. Eski okuyucudaki
-/// tam genişlik ilerleme çubuğu ve üç adet 54 puntoluk ok buradan çıktı — §11
-/// belirgin bir sayfa denetimini, §9 kalıcı büyük butonları yasaklıyor. İkisinin
-/// yerini künye ve kıvrımın kendisi alıyor.
-///
-/// Mevcut ürün davranışları (favori, sesli okuma, okuma ayarları) korunur ama
-/// yalnızca kontroller görünürken ulaşılabilir.
+/// Üstte kapat, favori ve okuma ayarları; altta teslimdeki kontrol çubuğu:
+/// sayfa, ilerleme, önceki · sesli oku · sonraki. Çocuk sayfayı kıvrımla da
+/// çevirebilir; çubuk okumayı bilmeyen çocuğun yolu. Kapat dışındaki her şey
+/// okumaya dalınca kendiliğinden çekilir, sayfaya dokununca geri gelir.
 ///
 /// **Kapat düğmesi bunun dışındadır ve hiç kaybolmaz.** Geri kalan kontroller
 /// 4,5 saniye sonra çekiliyor; çıkış yolu da çekildiğinde, kapatmak isteyen
@@ -28,48 +25,96 @@ struct ReaderChrome: View {
     let isSpeaking: Bool
     /// Geri kalan kontroller görünür mü. Kapat bundan bağımsızdır.
     var showsSecondary: Bool = true
+    /// "Sayfa 2 / 8"; kapak ve kapanış yaprağında `nil`.
+    var pageLabel: String? = nil
+    var progress: Double = 0
+    var canGoPrevious: Bool = false
+    var canGoNext: Bool = false
+    /// Son masal sayfasında ileri düğmesi bayrağa döner: masal sonu.
+    var isLastPage: Bool = false
     let onClose: () -> Void
     let onToggleFavorite: () -> Void
     let onToggleSpeech: () -> Void
     let onOpenSettings: () -> Void
-
-    private var tone: MPIconButton.Tone { theme == .night ? .glass : .paper }
+    var onPrevious: () -> Void = {}
+    var onNext: () -> Void = {}
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: MP.S.x2) {
-                MPIconButton(symbol: "xmark", label: "Kapat", tone: tone, action: onClose)
+            HStack(spacing: MPSpacing.sm) {
+                MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat", action: onClose)
                     // Sönükleştirilmez: `.opacity(0.45)` varken dokunuş düğmeye
-                    // değil alttaki sayfaya gidiyor, sayfa geri çevriliyordu ve
-                    // okuyucudan çıkılamıyordu (simülatörde log ile doğrulandı).
-
-                Spacer(minLength: MP.S.x3)
-
+                    // değil alttaki sayfaya gidiyor, sayfa geri çevriliyordu.
+                Spacer(minLength: MPSpacing.md)
                 if showsSecondary {
-                MPIconButton(
-                    symbol: isFavorite ? "heart.fill" : "heart",
-                    label: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
-                    tone: isFavorite ? .brand : tone,
-                    action: onToggleFavorite
-                )
-                MPIconButton(
-                    symbol: isSpeaking ? "pause.fill" : "speaker.wave.2",
-                    label: isSpeaking ? "Sesli okumayı duraklat" : "Sesli oku",
-                    tone: tone,
-                    action: onToggleSpeech
-                )
-                MPIconButton(
-                    symbol: "textformat.size",
-                    label: "Okuma ayarları",
-                    tone: tone,
-                    action: onOpenSettings
-                )
+                    MPCircleButton(systemImage: isFavorite ? "heart.fill" : "heart",
+                                   accessibilityLabel: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
+                                   tint: isFavorite ? MPColor.brandPink : MPColor.textPrimary,
+                                   action: onToggleFavorite)
+                    MPCircleButton(systemImage: "textformat", accessibilityLabel: "Okuma ayarları",
+                                   action: onOpenSettings)
                 }
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.top, MP.S.x1)
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.xxs)
 
             Spacer(minLength: 0)
+
+            if showsSecondary, let pageLabel {
+                controlBar(pageLabel)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
+    }
+
+    /// 23 · Okuyucu alt çubuğu: sayfa, ilerleme, önceki · sesli oku · sonraki.
+    private func controlBar(_ label: String) -> some View {
+        VStack(spacing: MPSpacing.md) {
+            HStack {
+                Text(label).mpText(.footnote).fontWeight(.heavy).foregroundStyle(MPColor.textSecondary)
+                Spacer()
+                Text(isSpeaking ? "Sesli okunuyor" : "Sesli okuma").mpText(.footnote).fontWeight(.heavy)
+                    .foregroundStyle(MPColor.textSecondary)
+            }
+            GeometryReader { geo in
+                Capsule().fill(MPColor.readerDayTrack)
+                    .overlay(alignment: .leading) {
+                        Capsule().fill(MPColor.actionPrimary)
+                            .frame(width: max(MPSpacing.md, geo.size.width * progress))
+                    }
+            }
+            .frame(height: 8)
+            .accessibilityHidden(true)
+            HStack {
+                navButton(symbol: "chevron.left", label: "Önceki sayfa", enabled: canGoPrevious, action: onPrevious)
+                Spacer()
+                MPRoundActionButton(systemImage: isSpeaking ? "pause.fill" : "play.fill",
+                                    accessibilityLabel: isSpeaking ? "Sesli okumayı duraklat" : "Sesli oku",
+                                    action: onToggleSpeech)
+                Spacer()
+                navButton(symbol: isLastPage ? "flag.checkered" : "chevron.right",
+                          label: isLastPage ? "Masalı bitir" : "Sonraki sayfa",
+                          enabled: canGoNext, action: onNext)
+            }
+            .padding(.horizontal, MPSpacing.xxl)
+        }
+        .padding(.horizontal, MPSpacing.xl)
+        .padding(.top, MPSpacing.lg)
+        .padding(.bottom, MPSpacing.md)
+        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.sheet))
+        .mpShadow(.sheet)
+        .padding(.horizontal, MPSpacing.sm)
+    }
+
+    private func navButton(symbol: String, label: String, enabled: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            MPIcon(symbol, size: 24, weight: .bold)
+                .foregroundStyle(enabled ? MPColor.textPrimary : MPColor.textTertiary)
+                .frame(width: MPSize.minTouchKid, height: MPSize.minTouchKid)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(MPPressStyle())
+        .disabled(!enabled)
+        .accessibilityLabel(label)
     }
 }

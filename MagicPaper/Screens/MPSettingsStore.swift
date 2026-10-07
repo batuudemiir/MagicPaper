@@ -21,6 +21,10 @@ final class MPSettingsStore: ObservableObject {
     /// 19.30'da yatan bir evde işe yaramaz bir saat.
     @Published var reminderHour: Int { didSet { d.set(reminderHour, forKey: K.reminderHour) } }
     @Published var reminderMinute: Int { didSet { d.set(reminderMinute, forKey: K.reminderMinute) } }
+    /// Sesli okuma hızı (24 · Okuma ayarları): yavaş, normal, hızlı.
+    @Published var speechRateRaw: String { didSet { d.set(speechRateRaw, forKey: K.speechRate) } }
+    /// Okuma teması kalıcı (FAZ 17): ertesi akşam aynı kâğıtla açılır.
+    @Published var readThemeRaw: String { didSet { d.set(readThemeRaw, forKey: K.readTheme) } }
     /// Uyku saati (31 · Güvenlik): bu saatten sonra yalnızca uyku masalı.
     @Published var bedtime: Bool { didSet { d.set(bedtime, forKey: K.bedtime) } }
     @Published var bedtimeHour: Int { didSet { d.set(bedtimeHour, forKey: K.bedtimeHour) } }
@@ -57,6 +61,8 @@ final class MPSettingsStore: ObservableObject {
         static let shareUsageData = "mp_shareUsageData"
         static let seeded = "mp_settingsSeeded"
         static let bedtime = "mp_bedtime"
+        static let speechRate = "mp_speechRate"
+        static let readTheme = "mp_readTheme"
         static let bedtimeHour = "mp_bedtimeHour"
         static let bedtimeMinute = "mp_bedtimeMinute"
     }
@@ -95,6 +101,8 @@ final class MPSettingsStore: ObservableObject {
         // Uyku saati (FAZ 17): varsayılan açık, 20.30. Güvenlik ayarlarında
         // varsayılan en korumacı seçenek (teslimin notu).
         bedtime = d.object(forKey: K.bedtime) == nil ? true : d.bool(forKey: K.bedtime)
+        speechRateRaw = d.string(forKey: K.speechRate) ?? MPSpeechRate.normal.rawValue
+        readThemeRaw = d.string(forKey: K.readTheme) ?? MP.ReadTheme.light.rawValue
         bedtimeHour = d.object(forKey: K.bedtimeHour) == nil ? 20 : d.integer(forKey: K.bedtimeHour)
         bedtimeMinute = d.object(forKey: K.bedtimeMinute) == nil ? 30 : d.integer(forKey: K.bedtimeMinute)
     }
@@ -109,6 +117,16 @@ final class MPSettingsStore: ObservableObject {
         approvedStoryIDs.formUnion(ids.map(\.uuidString))
     }
 
+    var speechRate: MPSpeechRate {
+        get { MPSpeechRate(rawValue: speechRateRaw) ?? .normal }
+        set { speechRateRaw = newValue.rawValue }
+    }
+
+    var readTheme: MP.ReadTheme {
+        get { MP.ReadTheme(rawValue: readThemeRaw) ?? .light }
+        set { readThemeRaw = newValue.rawValue }
+    }
+
     var readSize: MP.ReadSize {
         get { MP.ReadSize(rawValue: readSizeRaw) ?? .normal }
         set { readSizeRaw = newValue.rawValue }
@@ -120,5 +138,27 @@ final class MPSettingsStore: ObservableObject {
 
     func isApproved(_ id: UUID) -> Bool {
         approvedStoryIDs.contains(id.uuidString)
+    }
+}
+
+
+/// Sesli okuma hızı. Çocuğa okurken sistemin varsayılanı fazla hızlı.
+enum MPSpeechRate: String, CaseIterable, Identifiable {
+    case slow, normal, fast
+    var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .slow:   return "Yavaş"
+        case .normal: return "Normal"
+        case .fast:   return "Hızlı"
+        }
+    }
+    /// `AVSpeechUtteranceDefaultSpeechRate` çarpanı.
+    var multiplier: Float {
+        switch self {
+        case .slow:   return 0.8
+        case .normal: return 0.92
+        case .fast:   return 1.04
+        }
     }
 }

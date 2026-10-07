@@ -212,6 +212,9 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var imageUrl: String?
     /// Sayfanın hazır sahnesi (B2). `nil` = metin sayfası.
     var scene: ScenePlate?
+    /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
+    /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
+    var words: [StoryWord]?
 
     // Equatable conformance
     static func == (lhs: StoryPage, rhs: StoryPage) -> Bool {
@@ -226,6 +229,18 @@ struct StoryPage: Identifiable, Codable, Equatable {
         self.imageFileName = imageFileName
         self.imageUrl = imageUrl
     }
+}
+
+/// Bir sayfada öğretilen kelime (FAZ 17, motorun `PageWord`'ü).
+///
+/// `surface`, kelimenin sayfa metnindeki asıl yazılışı ("müjdeliyordu"):
+/// okuyucu paragrafları yeniden dizdiği için karakter ofseti değil, yazılış
+/// taşınır ve paragrafta aranır.
+struct StoryWord: Codable, Equatable, Hashable {
+    let id: String
+    let term: String
+    let meaning: String
+    let surface: String
 }
 
 enum StoryTheme: String, CaseIterable, Codable {

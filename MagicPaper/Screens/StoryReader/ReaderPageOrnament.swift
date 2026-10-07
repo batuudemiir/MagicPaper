@@ -63,16 +63,18 @@ struct VersalParagraph: View {
     let size: CGFloat
     let accent: Color
     let ink: Color
+    /// Yeni kelimeler (FAZ 17) ve vurgu rengi.
+    var words: [StoryWord] = []
+    var highlight: Color = MPColor.actionPrimary
 
     var body: some View {
         if let first = text.first {
             (
                 Text(String(first))
-                    .font(.custom(MP.F.display, size: size * 1.45).weight(.bold))
+                    .font(.custom(MP.F.display, size: size * 1.45).weight(.black))
                     .foregroundColor(accent)
-                + Text(String(text.dropFirst()))
-                    .font(MP.F.read(size))
-                    .foregroundColor(ink)
+                + Text(ReaderWords.attributed(String(text.dropFirst()), words: words, size: size,
+                                              ink: ink, highlight: highlight))
             )
             .lineSpacing(size * 0.72)
         } else {

@@ -1,3 +1,4 @@
+import StoryEngine
 import SwiftUI
 
 /// Kök ekran (FAZ 17, Pastel Masal).
@@ -50,8 +51,13 @@ struct ContentView: View {
             }
             // The reading ledger belongs to the child (MPStreak): open the active
             // child's, and switch when the parent switches profiles.
+            .onChange(of: profileManager.currentProfile?.safety) { _, _ in
+                OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
+            }
             .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
                 MPStreak.shared.activate(profileID: id)
+            // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
+            OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
                 // A series episode whose day has come opens here (FAZ 13); no
                 // notification announces it.
                 if let id { SeriesManager.shared.refreshUnlocks(for: id) }

@@ -64,7 +64,7 @@ enum OfflineStoryMapper {
     }
 
     static func appPage(from page: ComposedPage) -> MagicPaper.StoryPage {
-        MagicPaper.StoryPage(
+        var appPage = MagicPaper.StoryPage(
             id: UUID(),
             // The app model wants a per-page title; the offline engine does not
             // author one, and inventing a heading per page would put text on the
@@ -75,6 +75,20 @@ enum OfflineStoryMapper {
             // what a later illustration pass would build a prompt from.
             imagePrompt: page.visualScene
         )
+        let words = storyWords(page.words, in: page.text)
+        appPage.words = words.isEmpty ? nil : words
+        return appPage
+    }
+
+    /// The engine's words with the spelling they have on the page. A word
+    /// whose range does not fit the text is dropped, never guessed.
+    static func storyWords(_ words: [PageWord], in text: String) -> [StoryWord] {
+        let characters = Array(text)
+        return words.compactMap { word in
+            guard word.start >= 0, word.length > 0, word.start + word.length <= characters.count else { return nil }
+            let surface = String(characters[word.start ..< word.start + word.length])
+            return StoryWord(id: word.glossaryID.rawValue, term: word.term, meaning: word.meaning, surface: surface)
+        }
     }
 
     /// The app's `StoryTheme` is a **world** taxonomy — Magical Kingdom, Space,

@@ -1,23 +1,34 @@
+import StoryEngine
 import SwiftUI
 
 /// 31 · Ebeveyn · Güvenlik (`IcerikGuvenligi`).
 ///
-/// Yalnızca gerçekten işleyen ayarlar burada: günlük okuma süresi
-/// (`MPReadingBudget`), uyku saati (`MPBedtime`) ve masal onayı. Prototipteki "Serbest metin"
-/// yok: masallar çevrimdışı motorla, serbest metin olmadan yazılıyor (karar
-/// 7 Ekim 2026). "Korku ve gerilim" ile "Kaçınılacak konular" motorda içerik
-/// etiketi gelince eklenir; işlemeyen bir anahtar göstermek, hiç
-/// göstermemekten kötüdür (bkz. `MPReadingBudget`).
+/// Çocuk başına içerik güvenliği (FAZ 17): korku ve gerilim iki kademe
+/// (Sakin varsayılan, Biraz heyecan), kaçınılacak konular katalogdan. Motor
+/// bunları süzgeç olarak uygular (`ContentSafety`): elenen içerik daha az
+/// değil, hiç seçilmez. Altında aile geneli kurallar: günlük okuma süresi
+/// (`MPReadingBudget`), uyku saati (`MPBedtime`), masal onayı.
+///
+/// Prototipteki "Serbest metin" yok: masallar serbest metin olmadan yazılıyor
+/// (karar 7 Ekim 2026). "Ölüm ve kayıp" bir seçenek değil: hiçbir masalda yok.
 struct ParentSafetyView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var profileManager = ProfileManager.shared
+    @State private var topics: [CatalogSafetyTopic] = []
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Güvenlik", subtitle: "Masallar iki kez kontrol edilir")
                     .padding(.horizontal, -MPSpacing.screenH)
+
+                if let profile = profileManager.currentProfile {
+                    if profileManager.profiles.count > 1 { childPicker }
+                    fearCard(profile)
+                    if !topics.isEmpty { topicsCard(profile) }
+                }
 
                 MPGroupedList(area: .parent) {
                     readingLimitRow
@@ -81,6 +92,78 @@ struct ParentSafetyView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
+        .onAppear { topics = OfflineStoryService.shared.safetyTopics() }
+    }
+
+    // MARK: - Çocuk başına
+
+    private var childPicker: some View {
+        MPFlowLayout(spacing: MPSpacing.sm) {
+            ForEach(profileManager.profiles) { child in
+                MPChip(title: child.name, isSelected: child.id == profileManager.currentProfile?.id) {
+                    profileManager.switchProfile(to: child)
+                }
+                .frame(minHeight: MPSize.minTouchParent)
+                .accessibilityLabel("\(child.name) için güvenlik ayarları")
+            }
+        }
+    }
+
+    private func fearCard(_ profile: UserProfile) -> some View {
+        let safety = profile.effectiveSafety
+        return MPCard(area: .parent, padding: MPSpacing.xl) {
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    Text("Korku ve gerilim").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Masallardaki heyecanın üst sınırı.").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                }
+                MPSegmented(options: [(ContentSafety.Level.calm, "Sakin"),
+                                      (ContentSafety.Level.someExcitement, "Biraz heyecan")],
+                            selection: Binding(
+                                get: { safety.level },
+                                set: { level in
+                                    profileManager.setSafety(ContentSafety(level: level, avoided: safety.avoided),
+                                                             for: profile.id)
+                                }),
+                            track: MPColor.borderParent)
+                Text(safety.level == .calm
+                     ? "Tedirginlik ya da tereddüt anı olan masallar seçilmez."
+                     : "Biraz merak ve heyecan olabilir. Hiçbir masal korkutmaz, hepsi sakin biter.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+
+    /// Seçili çip = kaçınılan konu. Hiç ayarlanmamış ayar her konuyu kaçınır.
+    private func topicsCard(_ profile: UserProfile) -> some View {
+        let safety = profile.effectiveSafety
+        return MPCard(area: .parent, padding: MPSpacing.xl) {
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    Text("Kaçınılacak konular").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Seçilen konular hiçbir masalda geçmez.").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                }
+                MPFlowLayout(spacing: MPSpacing.sm) {
+                    ForEach(topics) { topic in
+                        let avoided = safety.avoids(topic.id)
+                        MPChip(title: topic.name, isSelected: avoided) {
+                            toggle(topic.id, in: safety, profile: profile)
+                        }
+                        .frame(minHeight: MPSize.minTouchParent)
+                        .accessibilityHint(topic.summary ?? "")
+                    }
+                }
+            }
+        }
+    }
+
+    private func toggle(_ topic: SafetyTopic, in safety: ContentSafety, profile: UserProfile) {
+        var avoided = safety.avoided ?? Set(topics.map(\.id))
+        if avoided.contains(topic) { avoided.remove(topic) } else { avoided.insert(topic) }
+        profileManager.setSafety(ContentSafety(level: safety.level, avoided: avoided), for: profile.id)
     }
 
     private var readingLimitRow: some View {

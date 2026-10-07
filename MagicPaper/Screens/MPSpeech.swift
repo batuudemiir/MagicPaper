@@ -33,9 +33,12 @@ final class MPSpeech: NSObject, ObservableObject {
         try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
-    /// Türkçe ses; cihazda yoksa sistem varsayılanına düşer.
+    /// Cihazdaki en iyi Türkçe ses (FAZ 17): yüklüyse premium ya da
+    /// geliştirilmiş ses, yoksa sistem varsayılanı.
     private func voice(for language: String) -> AVSpeechSynthesisVoice? {
-        AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
+        let candidates = AVSpeechSynthesisVoice.speechVoices().filter { $0.language == language }
+        if let best = candidates.max(by: { $0.quality.rawValue < $1.quality.rawValue }) { return best }
+        return AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
     }
 
     func speak(_ text: String, language: String = "tr-TR") {
@@ -48,7 +51,7 @@ final class MPSpeech: NSObject, ObservableObject {
         let utterance = AVSpeechUtterance(string: trimmed)
         utterance.voice = voice(for: language)
         // Çocuğa okurken varsayılan hız fazla hızlı geliyor.
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.92
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * MPSettingsStore.shared.speechRate.multiplier
         utterance.pitchMultiplier = 1.05
         utterance.postUtteranceDelay = 0.2
 

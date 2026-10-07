@@ -59,6 +59,12 @@ final class OfflineStoryService {
 
     private init() {}
 
+    /// Etkin çocuğun içerik güvenliği ayarı (FAZ 17). Uygulama profil
+    /// değişince kurar (`ContentView`); `nil` süzgeç yok demektir, testler ve
+    /// profilsiz önizlemeler böyle çalışır. Her sorgu ve her masal bunu okur:
+    /// ayarın boşalttığı mod gösterilmez, seçilen masal ayarı geçer.
+    var currentSafety: ContentSafety?
+
     // MARK: - Content
 
     /// Loads once and keeps it. The catalog is authored, read-only and small.
@@ -117,7 +123,7 @@ final class OfflineStoryService {
     /// produce a story is not offered.
     func availableModes(forAge age: Int) -> [StoryMode] {
         guard let catalog = try? catalog() else { return [] }
-        return selector.availableModes(catalog: catalog, ageBand: servedBand(forAge: age))
+        return selector.availableModes(catalog: catalog, ageBand: servedBand(forAge: age), safety: currentSafety)
     }
 
     /// The optional idea cards under a mode. Empty means the flow skips them.
@@ -176,7 +182,8 @@ final class OfflineStoryService {
                 seed: "candidates",
                 mode: mode,
                 ageBand: age.map(servedBand(forAge:)),
-                family: family.flatMap { familyCast(for: $0, in: catalog) }
+                family: family.flatMap { familyCast(for: $0, in: catalog) },
+                safety: currentSafety
             ),
             idea: idea
         )
@@ -203,7 +210,12 @@ final class OfflineStoryService {
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind] {
         guard let catalog = try? catalog() else { return [] }
         return selector.availableFamilyRelations(
-            catalog: catalog, mode: mode, ageBand: servedBand(forAge: age))
+            catalog: catalog, mode: mode, ageBand: servedBand(forAge: age), safety: currentSafety)
+    }
+
+    /// Kaçınılabilecek konular (31 · Güvenlik), katalog sırasıyla.
+    func safetyTopics() -> [CatalogSafetyTopic] {
+        (try? catalog())?.safetyTopics ?? []
     }
 
     /// A companion's catalog type ("tavşan"), for reading events (FAZ 14).
@@ -297,7 +309,8 @@ final class OfflineStoryService {
                 family: familyCast,
                 interests: wanted,
                 recent: Array(history),
-                usage: learned
+                usage: learned,
+                safety: currentSafety
             )
             let composed: ComposedStory
             do {
@@ -355,7 +368,7 @@ final class OfflineStoryService {
                 familyCharacterID: cast == nil ? nil : family?.id.uuidString,
                 childName: childName,
                 seed: SeriesPlanner.seed(storySeed: origin.seed, fingerprint: origin.fingerprint),
-                catalog: catalog)
+                catalog: catalog, safety: currentSafety)
             try Self.requireClean(result.episodes)
             return (result.plan, result.episodes)
         } catch let error as SeriesPlanningError {

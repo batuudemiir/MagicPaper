@@ -142,6 +142,16 @@ struct StoryPageView: View {
     /// sabit bir sayfa gibi davranır.
     ///
     /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
+    /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
+    /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
+    private var wordHighlight: Color {
+        switch theme {
+        case .light: return MPColor.readerDayHeroName
+        case .sepia: return MPColor.readerSepiaHeroName
+        case .night: return MPColor.readerNightHeroName
+        }
+    }
+
     private func textColumn(in geo: GeometryProxy) -> some View {
         let available = geo.size.height
             - (page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
@@ -165,14 +175,16 @@ struct StoryPageView: View {
                             text: paragraph,
                             size: readSize.points,
                             accent: accent,
-                            ink: theme.body
+                            ink: theme.body,
+                            words: page.words,
+                            highlight: wordHighlight
                         )
                         .fixedSize(horizontal: false, vertical: true)
                     } else {
-                        Text(paragraph)
-                            .font(MP.F.read(readSize.points))
+                        Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
+                                                    ink: theme.body, highlight: wordHighlight))
                             .lineSpacing(readSize.lineSpacing)
-                            .foregroundStyle(theme.body)
+                            .tint(wordHighlight)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
@@ -194,6 +206,10 @@ struct StoryPageView: View {
             .accessibilityLabel(page.spokenText)
             .accessibilityAddTraits(.isStaticText)
             .accessibilityTextContentType(.narrative)
+            .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
+            .environment(\.openURL, OpenURLAction { url in
+                ReaderWordSelection.shared.handle(url, in: page.words)
+            })
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.hidden)
@@ -267,5 +283,19 @@ private struct PageIllustration: View {
         .accessibilityElement()
         .accessibilityLabel(label ?? "")
         .accessibilityHidden(label == nil)
+    }
+}
+
+
+/// VoiceOver: sayfa tek parça okunur; her yeni kelime bir eylem olarak
+/// eklenir ("Yeni kelime: müjdelemek"), seçilince kartı açar.
+private struct WordActions: ViewModifier {
+    let words: [StoryWord]
+    func body(content: Content) -> some View {
+        words.reduce(AnyView(content)) { view, word in
+            AnyView(view.accessibilityAction(named: "Yeni kelime: \(word.term)") {
+                ReaderWordSelection.shared.selected = word
+            })
+        }
     }
 }
