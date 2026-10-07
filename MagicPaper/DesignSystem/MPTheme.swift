@@ -105,7 +105,7 @@ enum MP {
         static let gece800 = Color(hex: 0x0B1322)
 
         // Mürekkep — tüm metin
-        static let murekkep900 = Color(hex: 0x2B1D24)
+        static let murekkep900 = Color(hex: 0x2E1E3E)
         static let murekkep700 = Color(hex: 0x4A3640)
         static let murekkep500 = Color(hex: 0x6E5964)
         static let murekkep300 = Color(hex: 0x9B8892)
@@ -113,7 +113,7 @@ enum MP {
         // Kağıt — nötrler (sistemde soğuk gri yoktur)
         static let kagit0   = Color(hex: 0xFFFFFF)
         static let kagit50  = Color(hex: 0xFFFBF6)
-        static let kagit100 = Color(hex: 0xFDF6EE)
+        static let kagit100 = Color(hex: 0xFFF8EE)
         static let kagit200 = Color(hex: 0xF7EDE1)
         static let kagit300 = Color(hex: 0xEEDFCF)
         static let kagit400 = Color(hex: 0xDFCBB6)
@@ -156,53 +156,55 @@ enum MP {
 
     // MARK: Semantik renkler — bileşenlerde YALNIZCA bunları kullan
 
+    /// Geçiş köprüsü (FAZ 17): semantik adlar Pastel Masal asset'lerine
+    /// (`MPColor`) yönlenir. Taşınan ekranlar doğrudan `MPColor` okur.
     enum C {
-        static let brand      = Palette.mor500
+        static let brand      = MPColor.actionPrimary
         static let brandHover = Palette.mor400
-        static let brandPress = Palette.mor600
-        static let brandEdge  = Palette.mor900
-        static let brandSoft  = Palette.mor50
+        static let brandPress = MPColor.brandPurple
+        static let brandEdge  = MPColor.brandNight
+        static let brandSoft  = MPColor.actionSoft
         /// `brandSoft` yüzeyin süs kenarı ve sönük veri çubuğu. Metin taşımaz.
-        static let brandSoftEdge = Palette.mor100
+        static let brandSoftEdge = MPColor.borderOutline
         /// `brandSoft` üstünde metin ve ikon (7.44:1).
-        static let brandInk   = Palette.mor600
+        static let brandInk   = MPColor.brandPurple
         /// Tamamlanmış adım noktası. Metin dışı öğe (3.74:1 ≥ 3:1).
-        static let brandTrack = Palette.morLavanta
-        static let textOnBrand = Palette.kagit0
+        static let brandTrack = MPColor.brandLavender
+        static let textOnBrand = MPColor.textOnAction
 
-        static let reward     = Palette.hardal400
+        static let reward     = MPColor.brandStar
         static let rewardEdge = Palette.hardal600
-        static let rewardSoft = Palette.hardal50
+        static let rewardSoft = MPColor.statusWarningSoft
         static let premiumInk = Palette.hardal700
 
-        static let play     = Palette.mercan400
+        static let play     = MPColor.brandCoral
         static let playEdge = Palette.mercan600
-        static let playSoft = Palette.mercan50
+        static let playSoft = MPColor.worldPeachSoft
 
-        static let calm     = Palette.yesim400
+        static let calm     = MPColor.statusSuccess
         static let calmEdge = Palette.yesim600
-        static let calmSoft = Palette.yesim50
+        static let calmSoft = MPColor.statusSuccessSoft
 
-        static let textTitle = Palette.murekkep900
-        static let textBody  = Palette.murekkep700
-        static let textMuted = Palette.murekkep500
-        static let textFaint = Palette.murekkep300
-        static let textLink  = Palette.mor600
+        static let textTitle = MPColor.textPrimary
+        static let textBody  = MPColor.textPrimary
+        static let textMuted = MPColor.textSecondary
+        static let textFaint = MPColor.textTertiary
+        static let textLink  = MPColor.actionPrimary
 
-        static let surfaceApp     = Palette.kagit100
-        static let surfaceCard    = Palette.kagit0
-        static let surfaceSunken  = Palette.kagit200
-        static let surfaceRaised  = Palette.kagit50
+        static let surfaceApp     = MPColor.backgroundKid
+        static let surfaceCard    = MPColor.backgroundSurface
+        static let surfaceSunken  = MPColor.backgroundSunken
+        static let surfaceRaised  = MPColor.backgroundSurface
         static let surfaceInverse = Palette.gece600
 
-        static let borderHairline = Palette.kagit300
-        static let borderStrong   = Palette.kagit400
-        static let edgeCard       = Palette.kagit400
+        static let borderHairline = MPColor.borderKid
+        static let borderStrong   = MPColor.borderDashed
+        static let edgeCard       = MPColor.borderKid
         static let edgeInverse    = Palette.gece800
 
-        static let success = Palette.yesim400
-        static let warning = Palette.hardal400
-        static let danger  = Palette.mercan500
+        static let success = MPColor.statusSuccess
+        static let warning = MPColor.statusWarning
+        static let danger  = MPColor.statusDanger
 
         static let focusRing = Palette.morLavanta
         static let scrim     = Palette.murekkep900.opacity(0.44)
@@ -322,30 +324,30 @@ enum MP {
         }
         var background: Color {
             switch self {
-            case .light: return Palette.kagit0
-            case .sepia: return Palette.sepya50
-            case .night: return Palette.gece700
+            case .light: return MPColor.readerDayBackground
+            case .sepia: return MPColor.readerSepiaBackground
+            case .night: return MPColor.readerNightBackground
             }
         }
         var foreground: Color {
             switch self {
-            case .light: return Palette.murekkep900
-            case .sepia: return Palette.sepya900
-            case .night: return Palette.gece25
+            case .light: return MPColor.readerDayText
+            case .sepia: return MPColor.readerSepiaText
+            case .night: return MPColor.readerNightText
             }
         }
         var body: Color {
             switch self {
-            case .light: return Palette.murekkep700
-            case .sepia: return Palette.sepya700
-            case .night: return Palette.gece50
+            case .light: return MPColor.readerDayText
+            case .sepia: return MPColor.readerSepiaText
+            case .night: return MPColor.readerNightText
             }
         }
         var muted: Color {
             switch self {
-            case .light: return Palette.murekkep500
-            case .sepia: return Palette.sepya500
-            case .night: return Palette.gece200
+            case .light: return MPColor.readerDaySecondary
+            case .sepia: return MPColor.readerSepiaSecondary
+            case .night: return MPColor.readerNightSecondary
             }
         }
 
@@ -358,9 +360,9 @@ enum MP {
         /// `DailyStoryReaderView`'ın `background`'ı okumaya devam etmesi.
         var paper: Color {
             switch self {
-            case .light: return Palette.kagit100
-            case .sepia: return Palette.sepya50
-            case .night: return Palette.gece700
+            case .light: return MPColor.readerDayBackground
+            case .sepia: return MPColor.readerSepiaBackground
+            case .night: return MPColor.readerNightBackground
             }
         }
 
@@ -461,14 +463,14 @@ enum MP {
     // MARK: Tipografi
 
     enum F {
-        static let display = "Baloo 2"
+        static let display = "Nunito"
         static let body    = "Nunito"
 
-        // Display — Baloo 2, weight 700, tracking -0.01em
-        static func displayXL() -> Font { .custom(display, size: 40).weight(.bold) }
-        static func displayLG() -> Font { .custom(display, size: 32).weight(.bold) }
-        static func displayMD() -> Font { .custom(display, size: 26).weight(.bold) }
-        static func displaySM() -> Font { .custom(display, size: 21).weight(.bold) }
+        // Display: Nunito black (FAZ 17, Baloo 2 kalktı)
+        static func displayXL() -> Font { .custom(display, size: 40).weight(.black) }
+        static func displayLG() -> Font { .custom(display, size: 32).weight(.black) }
+        static func displayMD() -> Font { .custom(display, size: 26).weight(.black) }
+        static func displaySM() -> Font { .custom(display, size: 21).weight(.black) }
         /// StatCard / PlanCard fiyatı gibi ağır (800) display kullanımları
         static func displayHeavy(_ size: CGFloat) -> Font { .custom(display, size: size).weight(.heavy) }
 
@@ -486,7 +488,7 @@ enum MP {
         /// Glyph (SF Symbol / emoji) boyutu.
         ///
         /// Sistemdeki tek meşru `.system(...)` kullanımı budur: semboller
-        /// sistem fontunun metriklerine bağlıdır, Baloo veya Nunito ile
+        /// sistem fontunun metriklerine bağlıdır, Nunito ile
         /// çizilemezler. Bu fonksiyonun amacı `.system`'i yasaklamak değil,
         /// sembol boyutlarının `MP.G` ölçeğinden gelmesini sağlamak.
         static func glyph(_ size: CGFloat, _ w: Font.Weight = .regular) -> Font {
@@ -590,7 +592,7 @@ enum MP {
         static let spring  = Animation.spring(response: 0.32, dampingFraction: 0.62)
 
         static let sink: CGFloat = 2
-        static let scale: CGFloat = 0.985
+        static let scale: CGFloat = 0.96
         /// Yerinden kıpırdamayan basmanın sönme oranı (`MPPressStyle.highlight`).
         static let pressDim: Double = 0.62
     }
@@ -650,15 +652,12 @@ extension View {
     /// CSS'teki `border-bottom: Npx solid <edge>` karşılığı.
     /// Derinlik bu modifier'dan gelir — gölge ile taklit edilmemeli.
     func mpEdge(fill: Color, edge: Color, radius: CGFloat, width: CGFloat = MP.E.width) -> some View {
+        // FAZ 17: Pastel Masal'da derinlik gölgeden gelir; `edge` artık çizilmez.
+        // Taşınmamış ekranlar bu imzayı kullanmaya devam eder.
         self.background(
-            RoundedRectangle(cornerRadius: radius, style: .continuous)
-                .fill(edge)
-                .overlay(
-                    RoundedRectangle(cornerRadius: radius, style: .continuous)
-                        .fill(fill)
-                        .padding(.bottom, width)
-                )
+            RoundedRectangle(cornerRadius: radius, style: .continuous).fill(fill)
         )
+        .mpShadow(.card)
     }
 
     func mpShadow(_ s: MP.ShadowSpec) -> some View {
@@ -701,7 +700,6 @@ struct MPPressStyle: ButtonStyle {
         let held = pressed && moves
         let dims = pressed && !moves
         return configuration.label
-            .offset(y: held ? MP.M.sink : 0)
             .scaleEffect(held && feel == .sink ? MP.M.scale : 1)
             .brightness(held && feel == .sink ? -0.02 : 0)
             .opacity(dims ? MP.M.pressDim : 1)
