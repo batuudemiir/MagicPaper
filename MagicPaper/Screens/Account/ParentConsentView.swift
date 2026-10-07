@@ -29,7 +29,7 @@ struct ParentConsentView: View {
                     }
                     .padding(.top, MP.S.x7)
 
-                    MPCard(padding: MP.S.x5) {
+                    LegacyMPCard(padding: MP.S.x5) {
                         VStack(alignment: .leading, spacing: MP.S.x5) {
                             ForEach(ParentConsentText.sections) { section in
                                 VStack(alignment: .leading, spacing: MP.S.x1) {
@@ -46,14 +46,14 @@ struct ParentConsentView: View {
                         }
                     }
 
-                    MPCard(padding: 0) {
+                    LegacyMPCard(padding: 0) {
                         VStack(spacing: 0) {
-                            MPListRow(symbol: "eye.slash", title: AccountCopy.usageRowTitle,
+                            LegacyMPListRow(symbol: "eye.slash", title: AccountCopy.usageRowTitle,
                                       description: AccountCopy.usageRowBody) {
                                 MPSwitch(isOn: $shareUsage, label: AccountCopy.usageRowTitle)
                             }
-                            MPRowDivider()
-                            MPListRow(symbol: "checkmark.shield", title: AccountCopy.agreeLabel,
+                            LegacyMPRowDivider()
+                            LegacyMPListRow(symbol: "checkmark.shield", title: AccountCopy.agreeLabel,
                                       description: ParentConsentText.agreement) {
                                 MPSwitch(isOn: $agreed, label: ParentConsentText.agreement)
                             }
@@ -68,7 +68,7 @@ struct ParentConsentView: View {
                 .padding(.bottom, MP.S.x6)
             }
 
-            MPButton(title: AccountCopy.agreeButton, size: .lg, iconAfter: "arrow.right",
+            LegacyMPButton(title: AccountCopy.agreeButton, size: .lg, iconAfter: "arrow.right",
                      fullWidth: true, isDisabled: !agreed || saving) {
                 saving = true
                 Task {
@@ -115,11 +115,11 @@ struct AccountRestoreView: View {
             }
             if failed {
                 VStack(spacing: MP.S.x2) {
-                    MPButton(title: AccountCopy.retry, size: .md, fullWidth: true) {
+                    LegacyMPButton(title: AccountCopy.retry, size: .md, fullWidth: true) {
                         failed = false
                         Task { await attempt() }
                     }
-                    MPButton(title: AccountCopy.startFresh, variant: .ghost, size: .md) {
+                    LegacyMPButton(title: AccountCopy.startFresh, variant: .ghost, size: .md) {
                         account.sync.settleRestoreWithoutPull()
                     }
                 }

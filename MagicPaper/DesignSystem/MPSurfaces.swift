@@ -1,11 +1,11 @@
 import SwiftUI
 
-// MARK: - MPCard
+// MARK: - LegacyMPCard
 
-/// Kart tonları. MPCard generic olduğu için tipin dışında tanımlı.
+/// Kart tonları. LegacyMPCard generic olduğu için tipin dışında tanımlı.
 enum MPCardTone { case paper, sunken, brand, night, reward }
 
-struct MPCard<Content: View>: View {
+struct LegacyMPCard<Content: View>: View {
     typealias Tone = MPCardTone
 
     var tone: MPCardTone = .paper
@@ -43,7 +43,7 @@ struct MPCard<Content: View>: View {
 }
 
 /// Kart tonuna göre ikincil gölge.
-/// MPCard generic olduğu için bu modifier üst seviyede durur — aksi hâlde
+/// LegacyMPCard generic olduğu için bu modifier üst seviyede durur — aksi hâlde
 /// `Content` adı ViewModifier'ın associatedtype'ını gölgeliyor.
 private struct MPCardShadow: ViewModifier {
     let tone: MPCardTone
@@ -66,15 +66,15 @@ struct MPPressableCard<Content: View>: View {
 
     var body: some View {
         Button(action: action) {
-            MPCard(tone: tone, padding: padding, content: content)
+            LegacyMPCard(tone: tone, padding: padding, content: content)
         }
         .buttonStyle(MPPressStyle(scales: false))
     }
 }
 
-// MARK: - MPSectionHeader
+// MARK: - LegacyMPSectionHeader
 
-struct MPSectionHeader: View {
+struct LegacyMPSectionHeader: View {
 
     /// Bölümün ekrandaki ağırlığı.
     ///
@@ -325,9 +325,9 @@ extension Color {
     }
 }
 
-// MARK: - MPListRow
+// MARK: - LegacyMPListRow
 
-struct MPListRow<Trailing: View>: View {
+struct LegacyMPListRow<Trailing: View>: View {
     var symbol: String? = nil
     var iconColor: Color = MP.C.brand
     let title: String
@@ -371,7 +371,7 @@ struct MPListRow<Trailing: View>: View {
     }
 }
 
-extension MPListRow where Trailing == EmptyView {
+extension LegacyMPListRow where Trailing == EmptyView {
     init(symbol: String? = nil, iconColor: Color = MP.C.brand, title: String,
          description: String? = nil, isDanger: Bool = false, action: (() -> Void)? = nil) {
         self.init(symbol: symbol, iconColor: iconColor, title: title, description: description,
@@ -380,7 +380,7 @@ extension MPListRow where Trailing == EmptyView {
 }
 
 /// ListRow gruplarının arasındaki 1px ayırıcı.
-struct MPRowDivider: View {
+struct LegacyMPRowDivider: View {
     var body: some View {
         Rectangle().fill(MP.C.borderHairline).frame(height: 1).padding(.horizontal, 16)
     }
@@ -745,10 +745,10 @@ struct MPEmptyState: View {
             .frame(maxWidth: 320)
 
             if let actionLabel, let action {
-                MPButton(title: actionLabel, icon: "wand.and.stars", action: action)
+                LegacyMPButton(title: actionLabel, icon: "wand.and.stars", action: action)
             }
             if let secondaryLabel, let secondaryAction {
-                MPButton(title: secondaryLabel, variant: .ghost, size: .sm, action: secondaryAction)
+                LegacyMPButton(title: secondaryLabel, variant: .ghost, size: .sm, action: secondaryAction)
             }
         }
         .padding(.horizontal, 24)

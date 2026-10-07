@@ -201,7 +201,7 @@ struct PaywallView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            MPButton(
+            LegacyMPButton(
                 title: isPurchasing ? "İşleniyor…"
                                     : (showPlans ? "7 gün ücretsiz dene" : "Planları gör"),
                 tone: .reward,
@@ -216,7 +216,7 @@ struct PaywallView: View {
                 }
             }
 
-            MPButton(title: "Şimdi değil", variant: .ghost, size: .sm) { dismiss() }
+            LegacyMPButton(title: "Şimdi değil", variant: .ghost, size: .sm) { dismiss() }
         }
         .padding(.horizontal, MP.S.screenGutter)
         .padding(.bottom, 12)

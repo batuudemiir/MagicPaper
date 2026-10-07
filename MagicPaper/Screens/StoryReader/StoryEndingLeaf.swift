@@ -60,11 +60,11 @@ struct StoryEndingLeaf: View {
                 // biten bir masalın sonunda tam doygunlukta pembe bir düğme
                 // sessiz anın ortasında sesini yükseltmek olurdu (§16);
                 // yumuşak varyant hâlâ açıkça dokunulabilir bir düğme.
-                MPButton(title: "Tekrar oku", variant: .soft, size: .lg,
+                LegacyMPButton(title: "Tekrar oku", variant: .soft, size: .lg,
                          icon: "book", fullWidth: true) {
                     onReadAgain()
                 }
-                MPButton(title: "Kitaplığıma dön", variant: .ghost, size: .lg,
+                LegacyMPButton(title: "Kitaplığıma dön", variant: .ghost, size: .lg,
                          fullWidth: true) {
                     onClose()
                 }

@@ -18,7 +18,7 @@ struct StoryCoverView: View {
         ZStack(alignment: .bottom) {
             StoryCover(story: story, childName: childName)
 
-            MPButton(title: "Hikâyeyi Başlat", size: .lg, icon: "book", fullWidth: true) {
+            LegacyMPButton(title: "Hikâyeyi Başlat", size: .lg, icon: "book", fullWidth: true) {
                 onOpen()
             }
             .mpGutter()

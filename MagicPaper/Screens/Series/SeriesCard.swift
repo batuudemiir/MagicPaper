@@ -24,7 +24,7 @@ struct SeriesCard: View {
             .accessibilityLabel(SeriesCopy.readyAccessibility(episode, title))
             .accessibilityAddTraits(.isButton)
         case .waiting(let episode, let title):
-            MPCard(tone: .sunken, padding: MP.S.x5) {
+            LegacyMPCard(tone: .sunken, padding: MP.S.x5) {
                 content(eyebrow: SeriesCopy.cardEyebrow, title: SeriesCopy.waitingTitle(episode),
                         subtitle: SeriesCopy.cardSubtitle(title), note: SeriesCopy.waitingNote,
                         showsAction: false)

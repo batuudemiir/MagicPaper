@@ -1,9 +1,9 @@
 import SwiftUI
 import UIKit
 
-// MARK: - MPButton
+// MARK: - LegacyMPButton
 
-struct MPButton: View {
+struct LegacyMPButton: View {
     enum Variant { case solid, soft, outline, ghost }
     enum Tone { case brand, reward, play, calm }
     enum Size {
@@ -155,9 +155,9 @@ struct MPIconButton: View {
     }
 }
 
-// MARK: - MPChip
+// MARK: - LegacyMPChip
 
-struct MPChip: View {
+struct LegacyMPChip: View {
     let title: String
     var symbol: String? = nil
     var isSelected: Bool = false

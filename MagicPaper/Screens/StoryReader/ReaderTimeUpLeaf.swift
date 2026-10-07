@@ -43,7 +43,7 @@ struct ReaderTimeUpLeaf: View {
 
                 Spacer(minLength: 0)
 
-                MPButton(title: "Tamam", variant: .soft, size: .lg, fullWidth: true) {
+                LegacyMPButton(title: "Tamam", variant: .soft, size: .lg, fullWidth: true) {
                     onClose()
                 }
 

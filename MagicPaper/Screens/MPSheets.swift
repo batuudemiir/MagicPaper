@@ -11,7 +11,7 @@ struct ProfilePickerSheet: View {
         MPSheet(title: "Kim okuyacak?", onClose: { app.sheet = nil }) {
             VStack(spacing: 8) {
                 ForEach(profileManager.profiles) { profile in
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "person.crop.circle",
                         iconColor: profile.mpColor,
                         title: profile.name,
@@ -30,7 +30,7 @@ struct ProfilePickerSheet: View {
                 }
             }
         } footer: {
-            MPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
+            LegacyMPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
                 app.sheet = nil
                 app.showProfileAdd = true
             }
@@ -67,7 +67,7 @@ struct StoryActionList: View {
         VStack(spacing: 4) {
             seriesRow
 
-            MPListRow(
+            LegacyMPListRow(
                 symbol: "heart",
                 iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
                 title: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
@@ -78,13 +78,13 @@ struct StoryActionList: View {
                 }
             ) { EmptyView() }
 
-            MPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
+            LegacyMPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
                       action: { export() }) { EmptyView() }
 
-            MPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
+            LegacyMPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
                       action: { export() }) { EmptyView() }
 
-            MPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
+            LegacyMPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
                 storyManager.deleteStory(id: story.id)
                 onDeleted()
                 app.showToast("Masal silindi", symbol: "trash", tone: .danger)
@@ -100,7 +100,7 @@ struct StoryActionList: View {
     private var seriesRow: some View {
         switch series.endingState(for: story) {
         case .offer:
-            MPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
+            LegacyMPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
                       description: SeriesCopy.continueHint, action: {
                 do {
                     try series.startSeries(from: story)
@@ -171,7 +171,7 @@ struct ReaderSettingsSheet: View {
                     Text("Yazı boyutu").font(MP.F.labelMD()).foregroundStyle(MP.C.textTitle)
                     MPWrapRow(spacing: 10) {
                         ForEach(MP.ReadSize.allCases) { size in
-                            MPChip(title: size.rawValue, isSelected: app.readSize == size) {
+                            LegacyMPChip(title: size.rawValue, isSelected: app.readSize == size) {
                                 app.readSize = size
                                 settings.readSize = size
                             }
@@ -179,7 +179,7 @@ struct ReaderSettingsSheet: View {
                     }
                 }
 
-                MPListRow(
+                LegacyMPListRow(
                     symbol: "speaker.wave.2",
                     title: "Sesli okuma",
                     description: "Masalı sesli oku"
@@ -187,7 +187,7 @@ struct ReaderSettingsSheet: View {
                     MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
                 }
 
-                MPListRow(
+                LegacyMPListRow(
                     symbol: "sparkles",
                     title: "Dokunsal geri bildirim",
                     description: "Sayfa çevrilince hafif bir dokunuş"
@@ -214,25 +214,25 @@ struct ProfileEditSheet: View {
     var body: some View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
             VStack(spacing: 4) {
-                MPListRow(symbol: "pencil", title: "Profili düzenle", action: {
+                LegacyMPListRow(symbol: "pencil", title: "Profili düzenle", action: {
                     app.sheet = nil
                     app.showProfileAdd = true
                 }) { EmptyView() }
 
                 if IllustratedBookAccess.isEnabled() {
-                    MPListRow(symbol: "sparkles", title: "Kitap karakteri",
+                    LegacyMPListRow(symbol: "sparkles", title: "Kitap karakteri",
                               description: "Görselli masallarda görünecek karakter", action: {
                         app.sheet = .bookCharacter(profile.id)
                     }) { EmptyView() }
                 }
 
-                MPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
+                LegacyMPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
                           title: FamilyCharacterCopy.profileRowTitle,
                           description: FamilyCharacterCopy.profileRowDescription, action: {
                     app.sheet = .familyCharacters(profile.id)
                 }) { EmptyView() }
 
-                MPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
+                LegacyMPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
                     app.sheet = nil
                     app.tab = .library
@@ -241,7 +241,7 @@ struct ProfileEditSheet: View {
                 if profileManager.profiles.count > 1 {
                     // Deletion takes the child's stories with it and cannot be
                     // undone, so the row only asks; the dialog deletes.
-                    MPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
+                    LegacyMPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
                         pendingDeletionStoryCount = profileManager.storiesDeleted(with: profile).count
                     }) { EmptyView() }
                 }

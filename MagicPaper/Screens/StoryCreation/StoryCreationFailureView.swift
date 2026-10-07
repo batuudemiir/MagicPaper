@@ -39,10 +39,10 @@ struct StoryCreationFailureView: View {
             Spacer(minLength: 0)
 
             VStack(spacing: MP.S.x2) {
-                MPButton(title: "Tekrar deneyelim", size: .lg, icon: "arrow.clockwise", fullWidth: true) {
+                LegacyMPButton(title: "Tekrar deneyelim", size: .lg, icon: "arrow.clockwise", fullWidth: true) {
                     onRetry()
                 }
-                MPButton(title: "Şimdi değil", variant: .ghost, size: .lg, fullWidth: true) {
+                LegacyMPButton(title: "Şimdi değil", variant: .ghost, size: .lg, fullWidth: true) {
                     onClose()
                 }
             }

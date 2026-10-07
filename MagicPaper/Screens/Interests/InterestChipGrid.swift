@@ -14,7 +14,7 @@ struct InterestChipGrid: View {
             ForEach(choices) { choice in
                 let isSelected = selection.contains(choice.id)
                 let canAdd = ChildInterests.canAdd(choice.id, to: selection)
-                MPChip(
+                LegacyMPChip(
                     title: choice.name,
                     symbol: choice.symbol,
                     isSelected: isSelected,

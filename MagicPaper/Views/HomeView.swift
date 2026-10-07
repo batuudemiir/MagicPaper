@@ -229,7 +229,7 @@ struct HomeView: View {
     private var modeCards: some View {
         if !shownModes.isEmpty {
             VStack(alignment: .leading, spacing: MP.S.x4) {
-                MPSectionHeader(title: "Yeni bir masal",
+                LegacyMPSectionHeader(title: "Yeni bir masal",
                                 subtitle: "Bu akşam nasıl bir masal olsun?")
                 VStack(spacing: MP.S.stackGap) {
                     ForEach(shownModes, id: \.self) { mode in
@@ -279,7 +279,7 @@ struct HomeView: View {
     private var storiesSection: some View {
         if !shelf.isEmpty {
             VStack(alignment: .leading, spacing: 16) {
-                MPSectionHeader(title: "\(activeName)'in masalları",
+                LegacyMPSectionHeader(title: "\(activeName)'in masalları",
                                 actionLabel: "Tümü",
                                 action: { app.tab = .library })
 
@@ -320,7 +320,7 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: MP.S.x2) {
                 ForEach(shelfFilters, id: \.self) { filter in
-                    MPChip(title: filter.title, symbol: filter.symbol,
+                    LegacyMPChip(title: filter.title, symbol: filter.symbol,
                            isSelected: filter == activeFilter) {
                         guard filter != activeFilter else { return }
                         MPHaptics.selection()

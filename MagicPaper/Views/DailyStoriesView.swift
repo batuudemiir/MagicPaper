@@ -45,7 +45,7 @@ struct DailyStoriesView: View {
     // MARK: - Seri kartı
 
     private var streakCard: some View {
-        MPCard(padding: 20) {
+        LegacyMPCard(padding: 20) {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 10) {
                     MPIcon("book", size: 22, weight: .semibold)
@@ -106,7 +106,7 @@ struct DailyStoriesView: View {
 
     private var todaySection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Bugünün masalı")
+            LegacyMPSectionHeader(title: "Bugünün masalı")
 
             if let story = dailyManager.todaysStory ?? dailyManager.dailyStories.first {
                 let theme: CoverTheme = {
@@ -131,7 +131,7 @@ struct DailyStoriesView: View {
                     reading = story
                 }
             } else {
-                MPCard(tone: .sunken, padding: 22) {
+                LegacyMPCard(tone: .sunken, padding: 22) {
                     Text("Bugün için masal hazırlanıyor.")
                         .font(MP.F.bodyMD(.semibold))
                         .foregroundStyle(MP.C.textMuted)
@@ -155,7 +155,7 @@ struct DailyStoriesView: View {
     private var childName: String { profileManager.currentProfile?.name ?? "" }
 
     private var createPrompt: some View {
-        MPCard(padding: 20) {
+        LegacyMPCard(padding: 20) {
             VStack(alignment: .leading, spacing: 14) {
                 Text("BUGÜN")
                     .font(MP.F.labelSM())
@@ -166,7 +166,7 @@ struct DailyStoriesView: View {
                     .font(MP.F.displaySM())
                     .foregroundStyle(MP.C.textTitle)
                     .fixedSize(horizontal: false, vertical: true)
-                MPButton(title: "Hikâye Oluştur", icon: "wand.and.stars", fullWidth: true) {
+                LegacyMPButton(title: "Hikâye Oluştur", icon: "wand.and.stars", fullWidth: true) {
                     app.startStoryCreation()
                 }
             }
@@ -187,7 +187,7 @@ struct DailyStoriesView: View {
         let recent = Array(childStories.prefix(3))
         if !recent.isEmpty {
             VStack(alignment: .leading, spacing: 16) {
-                MPSectionHeader(title: "Son hikâyeler")
+                LegacyMPSectionHeader(title: "Son hikâyeler")
                 VStack(spacing: 12) {
                     ForEach(recent) { story in
                         MPStoryCard(
@@ -221,7 +221,7 @@ struct DailyStoriesView: View {
             calendar.isDate($0.createdAt, equalTo: Date(), toGranularity: .month)
         }.count
         if count > 0 {
-            MPCard(tone: .sunken, padding: 18) {
+            LegacyMPCard(tone: .sunken, padding: 18) {
                 Text("Bu ay birlikte \(count) hikâye")
                     .font(MP.F.bodyMD(.semibold))
                     .foregroundStyle(MP.C.textMuted)
@@ -293,7 +293,7 @@ struct DailyStoryReaderView: View {
                         .multilineTextAlignment(.center)
 
                     if !story.moralLesson.isEmpty {
-                        MPCard(tone: theme == .night ? .night : .reward, padding: 16) {
+                        LegacyMPCard(tone: theme == .night ? .night : .reward, padding: 16) {
                             HStack(spacing: 10) {
                                 MPIcon("sparkles", size: 22, weight: .semibold)
                                     .foregroundStyle(MP.C.reward)

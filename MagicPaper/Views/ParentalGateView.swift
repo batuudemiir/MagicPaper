@@ -45,12 +45,12 @@ struct ParentalGateView: View {
                     if digits != new { answer = digits }
                 }
 
-            MPButton(title: "Onayla", size: .lg, fullWidth: true,
+            LegacyMPButton(title: "Onayla", size: .lg, fullWidth: true,
                      isDisabled: answer.trimmingCharacters(in: .whitespaces).isEmpty) {
                 check()
             }
 
-            MPButton(title: "Geri dön", variant: .ghost, size: .sm) {
+            LegacyMPButton(title: "Geri dön", variant: .ghost, size: .sm) {
                 if let onCancel { onCancel() } else { dismiss() }
             }
 

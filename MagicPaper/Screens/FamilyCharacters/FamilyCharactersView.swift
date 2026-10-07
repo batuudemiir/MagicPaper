@@ -51,7 +51,7 @@ struct FamilyCharactersView: View {
                     ForEach(characters) { character in
                         let count = FamilyCharacterAppearances.count(of: character.id, in: storyManager.stories)
                         let relation = FamilyCharacterCopy.relationLine(character.relation, kinds: kinds)
-                        MPListRow(
+                        LegacyMPListRow(
                             symbol: FamilyCharacterCopy.relationSymbol(character.relation.kind),
                             title: character.name,
                             description: "\(relation) · \(FamilyCharacterCopy.appearances(count))",
@@ -76,7 +76,7 @@ struct FamilyCharactersView: View {
                         .foregroundStyle(MP.C.textMuted)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                MPButton(title: FamilyCharacterCopy.addButton, variant: .outline, icon: "plus",
+                LegacyMPButton(title: FamilyCharacterCopy.addButton, variant: .outline, icon: "plus",
                          fullWidth: true, isDisabled: full) {
                     mode = .adding
                 }

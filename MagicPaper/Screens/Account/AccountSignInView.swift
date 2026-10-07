@@ -48,7 +48,7 @@ struct AccountSignInView: View {
                         .accessibilityLabel(AccountCopy.continueWithApple)
 
                     if account.googleAvailable {
-                        MPButton(title: AccountCopy.continueWithGoogle, variant: .outline, size: .md,
+                        LegacyMPButton(title: AccountCopy.continueWithGoogle, variant: .outline, size: .md,
                                  icon: "g.circle", fullWidth: true, isDisabled: working != nil) {
                             gateFor = .google
                         }
@@ -56,7 +56,7 @@ struct AccountSignInView: View {
                     }
 
                     if FirebaseBackend.emulatorHost != nil {
-                        MPButton(title: AccountCopy.emulatorSignIn, variant: .soft, size: .md,
+                        LegacyMPButton(title: AccountCopy.emulatorSignIn, variant: .soft, size: .md,
                                  fullWidth: true, isDisabled: working != nil) {
                             Task { await signIn(.emulator) }
                         }
@@ -82,7 +82,7 @@ struct AccountSignInView: View {
                 // a connection to read tonight's story.
                 if wasOffline && !profiles.profiles.isEmpty {
                     VStack(spacing: MP.S.x2) {
-                        MPButton(title: AccountCopy.deferSignIn, variant: .ghost, size: .md) {
+                        LegacyMPButton(title: AccountCopy.deferSignIn, variant: .ghost, size: .md) {
                             account.deferredSignIn = true
                         }
                         Text(AccountCopy.deferFootnote)

@@ -169,7 +169,7 @@ struct StoryDetailView: View {
     // MARK: - Birincil eylem
 
     private var readBar: some View {
-        MPButton(
+        LegacyMPButton(
             title: isPartlyRead ? "Okumaya devam et" : "Oku",
             size: .lg,
             icon: "book",

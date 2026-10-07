@@ -121,12 +121,12 @@ struct BookCharacterView: View {
             }
         } footer: {
             VStack(spacing: MP.S.x2) {
-                MPButton(title: "Kaydet", fullWidth: true, isDisabled: model.isBusy || model.kit == nil) {
+                LegacyMPButton(title: "Kaydet", fullWidth: true, isDisabled: model.isBusy || model.kit == nil) {
                     Task { await save() }
                 }
                 .accessibilityLabel("Kitap karakterini kaydet")
                 if model.hasSaved {
-                    MPButton(title: "Kitap karakterini kaldır", variant: .ghost, size: .sm, isDisabled: model.isBusy) {
+                    LegacyMPButton(title: "Kitap karakterini kaldır", variant: .ghost, size: .sm, isDisabled: model.isBusy) {
                         Task { await model.remove() }
                     }
                 }
@@ -151,7 +151,7 @@ struct BookCharacterView: View {
 
     private func group(_ group: AvatarKit.Group, title: String, kit: AvatarKit, allowsNone: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: MP.S.x2) {
-            MPSectionHeader(title: title, emphasis: .secondary)
+            LegacyMPSectionHeader(title: title, emphasis: .secondary)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: MP.S.x2)],
                       alignment: .leading, spacing: MP.S.x2) {
                 if allowsNone {

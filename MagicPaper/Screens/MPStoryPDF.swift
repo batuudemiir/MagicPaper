@@ -16,7 +16,7 @@ enum MPStoryPDF {
     private static let margin: CGFloat = 40
 
     private static func displayFont(_ size: CGFloat, weight: UIFont.Weight = .bold) -> UIFont {
-        UIFont(name: "Baloo2-Bold", size: size) ?? .systemFont(ofSize: size, weight: weight)
+        UIFont(name: "Nunito-Black", size: size) ?? .systemFont(ofSize: size, weight: weight)
     }
 
     private static func bodyFont(_ size: CGFloat) -> UIFont {

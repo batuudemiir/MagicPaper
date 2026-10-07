@@ -118,7 +118,7 @@ struct CompanionStep: View {
             MPWrapRow {
                 ForEach(familyCharacters) { character in
                     let isAvailable = available.contains(character.relation.kind)
-                    MPChip(
+                    LegacyMPChip(
                         title: character.name,
                         symbol: FamilyCharacterCopy.relationSymbol(character.relation.kind),
                         isSelected: selectedFamilyID == character.id,
@@ -131,7 +131,7 @@ struct CompanionStep: View {
                     .accessibilityHint(isAvailable ? "" : FamilyCharacterCopy.stepUnavailableAccessibility)
                 }
                 if let onAddFamily, familyCharacters.count < FamilyCharacter.maxPerChild {
-                    MPChip(title: FamilyCharacterCopy.addButton, symbol: "plus") {
+                    LegacyMPChip(title: FamilyCharacterCopy.addButton, symbol: "plus") {
                         onAddFamily()
                     }
                     .accessibilityLabel(FamilyCharacterCopy.addButton)

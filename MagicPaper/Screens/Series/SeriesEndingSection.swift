@@ -25,7 +25,7 @@ struct SeriesEndingSection: View {
                     .font(MP.F.bodySM())
                     .foregroundStyle(theme.muted)
                     .fixedSize(horizontal: false, vertical: true)
-                MPButton(title: SeriesCopy.continueButton, size: .lg, icon: "sparkles",
+                LegacyMPButton(title: SeriesCopy.continueButton, size: .lg, icon: "sparkles",
                          fullWidth: true) {
                     start()
                 }

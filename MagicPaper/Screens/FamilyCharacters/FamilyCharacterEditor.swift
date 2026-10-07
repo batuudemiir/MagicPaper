@@ -79,7 +79,7 @@ struct FamilyCharacterEditor: View {
                         .foregroundStyle(MP.C.textTitle)
                     MPWrapRow {
                         ForEach(FamilyRelationKind.allCases, id: \.self) { kind in
-                            MPChip(
+                            LegacyMPChip(
                                 title: FamilyCharacterCopy.relation(kind),
                                 symbol: FamilyCharacterCopy.relationSymbol(kind),
                                 isSelected: relation == kind
@@ -99,7 +99,7 @@ struct FamilyCharacterEditor: View {
                             .foregroundStyle(MP.C.textTitle)
                         MPWrapRow {
                             ForEach(kinds) { kind in
-                                MPChip(
+                                LegacyMPChip(
                                     title: kind.name.capitalized(with: Locale(identifier: "tr_TR")),
                                     symbol: CompanionStep.symbol(forType: kind.name),
                                     isSelected: animalKindID == kind.id
@@ -115,13 +115,13 @@ struct FamilyCharacterEditor: View {
                 }
 
                 if editing != nil, onRemoved != nil {
-                    MPListRow(symbol: "minus.circle", title: FamilyCharacterCopy.remove, isDanger: true,
+                    LegacyMPListRow(symbol: "minus.circle", title: FamilyCharacterCopy.remove, isDanger: true,
                               action: { confirmsRemoval = true }) { EmptyView() }
                 }
             }
             .animation(MP.M.gated(MP.M.easeOut), value: relation)
         } footer: {
-            MPButton(title: FamilyCharacterCopy.save, fullWidth: true) {
+            LegacyMPButton(title: FamilyCharacterCopy.save, fullWidth: true) {
                 save()
             }
             // Devre dışı değil: eksik bir şey varsa basınca söyler. Ad kuralları

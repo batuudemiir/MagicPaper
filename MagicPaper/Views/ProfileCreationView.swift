@@ -59,7 +59,7 @@ struct ProfileCreationView: View {
                 .padding(.bottom, 24)
             }
 
-            MPButton(
+            LegacyMPButton(
                 title: mode == .first ? "Profili oluştur" : "Profili ekle",
                 size: .lg,
                 fullWidth: true,
@@ -137,7 +137,7 @@ struct ProfileCreationView: View {
 
             MPWrapRow(spacing: 10) {
                 ForEach(MPAgeRange.allCases) { range in
-                    MPChip(title: range.title, isSelected: ageRange == range) {
+                    LegacyMPChip(title: range.title, isSelected: ageRange == range) {
                         withAnimation(MP.M.gated(MP.M.easeOut)) { ageRange = range }
                     }
                 }

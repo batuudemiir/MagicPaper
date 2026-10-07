@@ -29,7 +29,7 @@ struct ParentOverviewView: View {
                     if settings.approve && !pendingStories.isEmpty { approvalQueue }
                     statsGrid
                     if vocabulary.hasData { vocabularySection }
-                    MPButton(title: "Masalları indir / yazdır", variant: .outline,
+                    LegacyMPButton(title: "Masalları indir / yazdır", variant: .outline,
                              icon: "arrow.down.circle", fullWidth: true,
                              isDisabled: isExporting || storyManager.stories.isEmpty) {
                         exportAll()
@@ -129,10 +129,10 @@ struct ParentOverviewView: View {
             // "Yeni kelime" ölçülebilen bir şey değildi: bir kelimenin çocuk
             // için yeni olup olmadığını uygulama bilmiyor. Ölçülen şey, okunan
             // sayfalarda geçen FARKLI kelimeler — başlık da artık onu diyor.
-            MPSectionHeader(title: "Kelime dağarcığı",
+            LegacyMPSectionHeader(title: "Kelime dağarcığı",
                             subtitle: "Bu ay okunan sayfalarda geçen farklı kelimeler")
 
-            MPCard(padding: 18) {
+            LegacyMPCard(padding: 18) {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
                         Text("\(data.uniqueThisMonth)")
@@ -177,19 +177,19 @@ struct ParentOverviewView: View {
 
     private var approvalQueue: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Onay bekleyen masallar",
+            LegacyMPSectionHeader(title: "Onay bekleyen masallar",
                             subtitle: "Onaylayana kadar kütüphanede görünmüyor")
 
-            MPCard(padding: 0) {
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) {
                     ForEach(Array(pendingStories.prefix(5).enumerated()), id: \.element.id) { index, story in
-                        if index > 0 { MPRowDivider() }
-                        MPListRow(
+                        if index > 0 { LegacyMPRowDivider() }
+                        LegacyMPListRow(
                             symbol: "eye.slash",
                             title: story.title,
                             description: "\(story.childName) için oluşturuldu"
                         ) {
-                            MPButton(title: "Onayla", variant: .soft, size: .sm) {
+                            LegacyMPButton(title: "Onayla", variant: .soft, size: .sm) {
                                 settings.approveStory(story.id)
                                 app.showToast("Masal onaylandı", symbol: "checkmark")
                             }

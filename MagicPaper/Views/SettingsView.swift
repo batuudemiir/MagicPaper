@@ -65,9 +65,9 @@ struct SettingsView: View {
 
     private var subscriptionCard: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Abonelik")
+            LegacyMPSectionHeader(title: "Abonelik")
 
-            MPCard(tone: .reward, padding: 18) {
+            LegacyMPCard(tone: .reward, padding: 18) {
                 HStack(spacing: 14) {
                     MPIcon("crown.fill", size: 24, weight: .semibold)
                         .foregroundStyle(MP.C.premiumInk)
@@ -85,7 +85,7 @@ struct SettingsView: View {
 
                     Spacer(minLength: 0)
 
-                    MPButton(title: subscriptionManager.isPremium ? "Yönet" : "Yükselt",
+                    LegacyMPButton(title: subscriptionManager.isPremium ? "Yönet" : "Yükselt",
                              tone: .reward, size: .sm) {
                         app.openPaywall()
                     }
@@ -102,8 +102,8 @@ struct SettingsView: View {
     /// bir ayar değil bir etiketti.
     private var readingSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Okuma")
-            MPCard(padding: 0) {
+            LegacyMPSectionHeader(title: "Okuma")
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack(spacing: 14) {
@@ -119,7 +119,7 @@ struct SettingsView: View {
                         }
                         MPWrapRow(spacing: 10) {
                             ForEach(MP.ReadSize.allCases) { size in
-                                MPChip(title: size.rawValue, isSelected: settings.readSize == size) {
+                                LegacyMPChip(title: size.rawValue, isSelected: settings.readSize == size) {
                                     settings.readSize = size
                                     // Okuyucu oturum durumundan okuyor; ikisi
                                     // birlikte değişmezse ayar bir sonraki
@@ -132,8 +132,8 @@ struct SettingsView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 13)
 
-                    MPRowDivider()
-                    MPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
+                    LegacyMPRowDivider()
+                    LegacyMPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
                         MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
                     }
                 }
@@ -150,7 +150,7 @@ struct SettingsView: View {
     /// vaat edip üçünü de yapmıyordu.
     private var notificationsSection: some View {
         section(title: "Bildirimler ve limitler") {
-            MPListRow(symbol: "bell", title: "Masal saati hatırlatması",
+            LegacyMPListRow(symbol: "bell", title: "Masal saati hatırlatması",
                       description: reminderDescription) {
                 MPSwitch(isOn: Binding(
                     get: { settings.reminder && !notificationsDenied },
@@ -159,22 +159,22 @@ struct SettingsView: View {
             }
 
             if notificationsDenied {
-                MPRowDivider()
-                MPListRow(symbol: "exclamationmark.triangle",
+                LegacyMPRowDivider()
+                LegacyMPListRow(symbol: "exclamationmark.triangle",
                           iconColor: MP.C.danger,
                           title: "Bildirimlere izin verilmedi",
                           description: "Sistem Ayarları'ndan açabilirsiniz",
                           action: { openSystemSettings() })
             } else if settings.reminder {
-                MPRowDivider()
-                MPListRow(symbol: "clock", title: "Hatırlatma saati") {
+                LegacyMPRowDivider()
+                LegacyMPListRow(symbol: "clock", title: "Hatırlatma saati") {
                     DatePicker("", selection: reminderTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                 }
             }
 
-            MPRowDivider()
-            MPListRow(symbol: "eye.slash", title: "Masalları onaylamadan gösterme",
+            LegacyMPRowDivider()
+            LegacyMPListRow(symbol: "eye.slash", title: "Masalları onaylamadan gösterme",
                       description: settings.approve
                         ? "Yeni masallar siz onaylayana kadar kütüphanede görünmez"
                         : nil) {
@@ -184,8 +184,8 @@ struct SettingsView: View {
                 ), label: "Masalları onaylamadan gösterme")
             }
 
-            MPRowDivider()
-            MPListRow(symbol: "hourglass", title: "Ekran süresi limiti",
+            LegacyMPRowDivider()
+            LegacyMPListRow(symbol: "hourglass", title: "Ekran süresi limiti",
                       description: settings.screenLimit
                         ? "Günde \(settings.screenLimitMinutes) dakika okuma"
                         : nil) {
@@ -193,10 +193,10 @@ struct SettingsView: View {
             }
 
             if settings.screenLimit {
-                MPRowDivider()
+                LegacyMPRowDivider()
                 MPWrapRow(spacing: 10) {
                     ForEach(MPReadingBudget.choices, id: \.self) { minutes in
-                        MPChip(title: "\(minutes) dk",
+                        LegacyMPChip(title: "\(minutes) dk",
                                isSelected: settings.screenLimitMinutes == minutes) {
                             settings.screenLimitMinutes = minutes
                         }
@@ -281,14 +281,14 @@ struct SettingsView: View {
         section(title: "Hesap") {
             // Ebeveyn hesabı ve eşitleme (FAZ 16).
             AccountStatusRows(onSignOut: { app.sheet = .signOut })
-            MPRowDivider()
-            MPListRow(symbol: "crown.fill", title: "Aboneliği yönet", action: {
+            LegacyMPRowDivider()
+            LegacyMPListRow(symbol: "crown.fill", title: "Aboneliği yönet", action: {
                 if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
                     UIApplication.shared.open(url)
                 }
             })
-            MPRowDivider()
-            MPListRow(symbol: "lock.fill", title: "Gizlilik ve veri",
+            LegacyMPRowDivider()
+            LegacyMPListRow(symbol: "lock.fill", title: "Gizlilik ve veri",
                       description: "Hesabı silme ve okuma bilgisi",
                       action: { showPrivacy = true })
         }
@@ -302,12 +302,12 @@ struct SettingsView: View {
     #if DEBUG
     private var developerSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Geliştirici",
+            LegacyMPSectionHeader(title: "Geliştirici",
                             subtitle: "Yalnızca test derlemesinde görünür")
 
-            MPCard(padding: 0) {
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) {
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "sparkles",
                         iconColor: MP.C.brand,
                         title: "Görselli kitap (B2)",
@@ -319,9 +319,9 @@ struct SettingsView: View {
                         ), label: "Görselli kitap")
                     }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "sparkles",
                         iconColor: MP.C.brand,
                         title: "Fikir kartları adımı",
@@ -333,9 +333,9 @@ struct SettingsView: View {
                         ), label: "Fikir kartları adımı")
                     }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "clock",
                         iconColor: MP.C.brand,
                         title: SeriesCopy.debugAdvance,
@@ -350,9 +350,9 @@ struct SettingsView: View {
                         }
                     ) { EmptyView() }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "clock",
                         iconColor: MP.C.textMuted,
                         title: SeriesCopy.debugReset,
@@ -363,9 +363,9 @@ struct SettingsView: View {
                         }
                     ) { EmptyView() }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "book-open",
                         iconColor: MP.C.calm,
                         title: "Dekorasyon galerisi",
@@ -373,9 +373,9 @@ struct SettingsView: View {
                         action: { app.showDecorationGallery = true }
                     ) { EmptyView() }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "sparkles",
                         iconColor: MP.C.brand,
                         title: "Dekorasyon demoları",
@@ -383,9 +383,9 @@ struct SettingsView: View {
                         action: { app.showDecorationDemo = true }
                     ) { EmptyView() }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "star.fill",
                         iconColor: MP.C.reward,
                         title: "Deneme yıldızı ekle",
@@ -401,9 +401,9 @@ struct SettingsView: View {
                             .foregroundStyle(MP.C.textMuted)
                     }
 
-                    MPRowDivider()
+                    LegacyMPRowDivider()
 
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "crown.fill",
                         iconColor: MP.C.premiumInk,
                         title: subscriptionManager.isPremium
@@ -431,8 +431,8 @@ struct SettingsView: View {
     private func section<Content: View>(title: String,
                                         @ViewBuilder content: @escaping () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: title)
-            MPCard(padding: 0) {
+            LegacyMPSectionHeader(title: title)
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) { content() }
             }
         }
@@ -458,7 +458,7 @@ struct PrivacyAndDataView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MP.S.sectionGap) {
-                    MPCard(padding: 20) {
+                    LegacyMPCard(padding: 20) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Çocuk fotoğrafı toplanmaz")
                                 .font(MP.F.displaySM())
@@ -472,14 +472,14 @@ struct PrivacyAndDataView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 16) {
-                        MPSectionHeader(title: "Yasal")
-                        MPCard(padding: 0) {
+                        LegacyMPSectionHeader(title: "Yasal")
+                        LegacyMPCard(padding: 0) {
                             VStack(spacing: 0) {
-                                MPListRow(symbol: "shield", title: "Gizlilik politikası", action: {
+                                LegacyMPListRow(symbol: "shield", title: "Gizlilik politikası", action: {
                                     open("https://magicpaper.app/privacy")
                                 })
-                                MPRowDivider()
-                                MPListRow(symbol: "book", title: "Kullanım koşulları", action: {
+                                LegacyMPRowDivider()
+                                LegacyMPListRow(symbol: "book", title: "Kullanım koşulları", action: {
                                     open("https://magicpaper.app/terms")
                                 })
                             }
@@ -489,18 +489,18 @@ struct PrivacyAndDataView: View {
                     usageSection
 
                     VStack(alignment: .leading, spacing: 16) {
-                        MPSectionHeader(title: "Veriler")
-                        MPCard(padding: 0) {
+                        LegacyMPSectionHeader(title: "Veriler")
+                        LegacyMPCard(padding: 0) {
                             // Signed in, a device-only erase would come back
                             // with the next sync: the real erase is the
                             // account's (FAZ 16).
                             if account.account != nil {
-                                MPListRow(symbol: "trash", title: AccountCopy.deleteAccount,
+                                LegacyMPListRow(symbol: "trash", title: AccountCopy.deleteAccount,
                                           description: AccountCopy.deleteAccountRow,
                                           isDanger: true,
                                           action: { confirmDelete = true })
                             } else {
-                                MPListRow(symbol: "trash", title: "Tüm verileri sil",
+                                LegacyMPListRow(symbol: "trash", title: "Tüm verileri sil",
                                           description: "Masallar ve profiller cihazdan kaldırılır",
                                           isDanger: true,
                                           action: { confirmClear = true })
@@ -536,11 +536,11 @@ struct PrivacyAndDataView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 } footer: {
                     VStack(spacing: 8) {
-                        MPButton(title: "Sil", tone: .play, size: .lg, fullWidth: true) {
+                        LegacyMPButton(title: "Sil", tone: .play, size: .lg, fullWidth: true) {
                             confirmClear = false
                             clearAll()
                         }
-                        MPButton(title: "Vazgeç", variant: .ghost, size: .sm) {
+                        LegacyMPButton(title: "Vazgeç", variant: .ghost, size: .sm) {
                             confirmClear = false
                         }
                     }
@@ -554,9 +554,9 @@ struct PrivacyAndDataView: View {
     /// cihazda kalır ve bu anahtardan etkilenmez.
     private var usageSection: some View {
         VStack(alignment: .leading, spacing: MP.S.x4) {
-            MPSectionHeader(title: "Okuma bilgisi")
-            MPCard(padding: 0) {
-                MPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
+            LegacyMPSectionHeader(title: "Okuma bilgisi")
+            LegacyMPCard(padding: 0) {
+                LegacyMPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
                           description: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan, hesabınıza bağlanmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
                     MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
                 }

@@ -14,7 +14,7 @@ struct ProfileSelectorView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
                     ForEach(profileManager.profiles) { profile in
-                        MPListRow(
+                        LegacyMPListRow(
                             symbol: "person.crop.circle",
                             iconColor: profile.mpColor,
                             title: profile.name,
@@ -33,7 +33,7 @@ struct ProfileSelectorView: View {
                 .padding(.bottom, 24)
             }
 
-            MPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
+            LegacyMPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
                 showAddProfile = true
             }
             .padding(.horizontal, MP.S.screenGutter)

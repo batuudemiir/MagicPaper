@@ -130,11 +130,11 @@ struct LibraryView: View {
             }
             if !controls.isEmpty {
                 MPWrapRow(spacing: 10) {
-                    MPChip(title: Filter.all.rawValue, isSelected: filter == .all) {
+                    LegacyMPChip(title: Filter.all.rawValue, isSelected: filter == .all) {
                         withAnimation(MP.M.gated(MP.M.easeOut)) { filter = .all }
                     }
                     ForEach(controls, id: \.self) { f in
-                        MPChip(title: f.rawValue, isSelected: filter == f) {
+                        LegacyMPChip(title: f.rawValue, isSelected: filter == f) {
                             withAnimation(MP.M.gated(MP.M.easeOut)) { filter = f }
                         }
                     }

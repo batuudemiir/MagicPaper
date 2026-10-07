@@ -43,15 +43,15 @@ struct ParentChildrenView: View {
 
     private var profilesSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Çocuk profilleri",
+            LegacyMPSectionHeader(title: "Çocuk profilleri",
                             actionLabel: "Ekle",
                             action: { app.showProfileAdd = true })
 
-            MPCard(padding: 0) {
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) {
                     ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
-                        if index > 0 { MPRowDivider() }
-                        MPListRow(
+                        if index > 0 { LegacyMPRowDivider() }
+                        LegacyMPListRow(
                             symbol: "person.crop.circle",
                             iconColor: profile.mpColor,
                             title: profile.name,
@@ -68,14 +68,14 @@ struct ParentChildrenView: View {
 
     private var interestsSection: some View {
         VStack(alignment: .leading, spacing: MP.S.x4) {
-            MPSectionHeader(title: InterestCopy.sectionTitle, subtitle: InterestCopy.sectionSubtitle)
+            LegacyMPSectionHeader(title: InterestCopy.sectionTitle, subtitle: InterestCopy.sectionSubtitle)
 
-            MPCard(padding: 0) {
+            LegacyMPCard(padding: 0) {
                 VStack(spacing: 0) {
                     ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
-                        if index > 0 { MPRowDivider() }
+                        if index > 0 { LegacyMPRowDivider() }
                         let names = interestNames(profile)
-                        MPListRow(
+                        LegacyMPListRow(
                             symbol: InterestCopy.rowSymbol,
                             iconColor: profile.mpColor,
                             title: profile.name,

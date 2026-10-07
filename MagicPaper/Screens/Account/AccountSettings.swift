@@ -7,18 +7,18 @@ struct AccountStatusRows: View {
 
     var body: some View {
         if let signedIn = account.account {
-            MPListRow(symbol: "person.crop.circle", title: AccountCopy.signedIn(with: signedIn.provider),
+            LegacyMPListRow(symbol: "person.crop.circle", title: AccountCopy.signedIn(with: signedIn.provider),
                       description: syncLine, action: { Task { await account.sync.syncNow() } }) {
                 if account.sync.status == .syncing {
                     ProgressView().tint(MP.C.brand).accessibilityHidden(true)
                 }
             }
             .accessibilityHint("Eşitlemek için dokunun")
-            MPRowDivider()
-            MPListRow(symbol: "rectangle.portrait.and.arrow.right", title: AccountCopy.signOut,
+            LegacyMPRowDivider()
+            LegacyMPListRow(symbol: "rectangle.portrait.and.arrow.right", title: AccountCopy.signOut,
                       action: onSignOut)
         } else {
-            MPListRow(symbol: "person.crop.circle.badge.exclamationmark", title: AccountCopy.notSignedIn,
+            LegacyMPListRow(symbol: "person.crop.circle.badge.exclamationmark", title: AccountCopy.notSignedIn,
                       description: AccountCopy.deferFootnote, action: { account.deferredSignIn = false })
         }
     }
@@ -59,7 +59,7 @@ struct AccountSignOutSheet: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         } footer: {
             VStack(spacing: MP.S.x2) {
-                MPButton(title: AccountCopy.signOut, tone: .play, size: .lg, fullWidth: true,
+                LegacyMPButton(title: AccountCopy.signOut, tone: .play, size: .lg, fullWidth: true,
                          isDisabled: working) {
                     working = true
                     message = nil
@@ -72,7 +72,7 @@ struct AccountSignOutSheet: View {
                         working = false
                     }
                 }
-                MPButton(title: "Vazgeç", variant: .ghost, size: .sm, isDisabled: working, action: onClose)
+                LegacyMPButton(title: "Vazgeç", variant: .ghost, size: .sm, isDisabled: working, action: onClose)
             }
         }
     }
@@ -111,7 +111,7 @@ struct AccountDeletionSheet: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         } footer: {
             VStack(spacing: MP.S.x2) {
-                MPButton(title: AccountCopy.deleteConfirm, tone: .play, size: .lg, fullWidth: true,
+                LegacyMPButton(title: AccountCopy.deleteConfirm, tone: .play, size: .lg, fullWidth: true,
                          isDisabled: step != nil) {
                     message = nil
                     Task {
@@ -125,7 +125,7 @@ struct AccountDeletionSheet: View {
                         }
                     }
                 }
-                MPButton(title: "Vazgeç", variant: .ghost, size: .sm, isDisabled: step != nil, action: onClose)
+                LegacyMPButton(title: "Vazgeç", variant: .ghost, size: .sm, isDisabled: step != nil, action: onClose)
             }
         }
     }

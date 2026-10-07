@@ -45,14 +45,14 @@ struct MPArcText: View {
     /// bir şerit oluyor.
     static func fittedSize(text: String, size: CGFloat,
                            availableWidth: CGFloat, minimumSize: CGFloat) -> CGFloat {
-        let f = UIFont(name: "Baloo2-Bold", size: size) ?? .systemFont(ofSize: size, weight: .bold)
+        let f = UIFont(name: "Nunito-Black", size: size) ?? .systemFont(ofSize: size, weight: .bold)
         let measured = text.reduce(0.0) { $0 + String($1).size(withAttributes: [.font: f]).width }
         guard measured > availableWidth, measured > 0 else { return size }
         return max(minimumSize, size * (availableWidth / measured))
     }
 
     private func font(_ points: CGFloat) -> UIFont {
-        UIFont(name: "Baloo2-Bold", size: points)
+        UIFont(name: "Nunito-Black", size: points)
             ?? .systemFont(ofSize: points, weight: .bold)
     }
 

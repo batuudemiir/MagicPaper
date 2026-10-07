@@ -39,7 +39,7 @@ struct OnboardingView: View {
         VStack(spacing: 0) {
             HStack {
                 Spacer(minLength: 0)
-                MPButton(title: "Geç", variant: .ghost, size: .sm) { finish() }
+                LegacyMPButton(title: "Geç", variant: .ghost, size: .sm) { finish() }
                     .padding(.horizontal, 4)
             }
             .padding(.horizontal, MP.S.screenGutter)
@@ -73,7 +73,7 @@ struct OnboardingView: View {
             VStack(spacing: 18) {
                 MPStepDots(total: pages.count, current: page)
 
-                MPButton(title: pages[page].cta,
+                LegacyMPButton(title: pages[page].cta,
                          size: .lg,
                          iconAfter: page < pages.count - 1 ? "arrow.right" : nil,
                          fullWidth: true) {
