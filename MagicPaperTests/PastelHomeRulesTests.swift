@@ -43,47 +43,52 @@ final class PastelHomeRulesTests: XCTestCase {
 
     // MARK: - Rozetler
 
-    private func store() -> MPBadgeStore {
+    func testTheFirstFinishedStoryEarnsTheFirstBadgeOnce() {
+        var ledger = MPBadgeLedger()
+        XCTAssertEqual(ledger.recordFinished(storyID: "a", mode: .bedtime), [.firstStory])
+        XCTAssertTrue(ledger.recordFinished(storyID: "a", mode: .bedtime).isEmpty, "aynı masal ikinci kez sayılmaz")
+        XCTAssertEqual(ledger.finished.count, 1)
+    }
+
+    func testModeBadgesAndThresholds() {
+        var ledger = MPBadgeLedger()
+        ledger.recordFinished(storyID: "l", mode: .learning)
+        ledger.recordFinished(storyID: "a", mode: .adventure)
+        XCTAssertEqual(Set(ledger.earnedMilestones), [.firstStory, .firstLearning, .firstAdventure])
+        for i in 0..<7 { ledger.recordFinished(storyID: "b\(i)", mode: .bedtime) }
+        XCTAssertTrue(ledger.earnedMilestones.contains(.sevenBedtime))
+        XCTAssertTrue(ledger.earnedMilestones.contains(.fiveStories))
+        XCTAssertFalse(ledger.earnedMilestones.contains(.tenStories))
+    }
+
+    func testTheFifthEpisodeCompletesASeriesBadge() {
+        var ledger = MPBadgeLedger()
+        XCTAssertTrue(ledger.recordFinished(storyID: "e5", mode: .bedtime, seriesCompletedID: "s1")
+            .contains(.firstSeriesCompleted))
+    }
+
+    func testMergingKeepsEveryBadgeAndTheEarliestDate() {
+        let early = Date(timeIntervalSince1970: 100), late = Date(timeIntervalSince1970: 200)
+        var a = MPBadgeLedger(); a.recordFinished(storyID: "x", mode: .learning, at: late)
+        var b = MPBadgeLedger(); b.recordFinished(storyID: "y", mode: .adventure, at: early)
+        let merged = a.merged(with: b)
+        XCTAssertEqual(merged.finished, ["x", "y"])
+        XCTAssertEqual(merged.earned[MPMilestone.firstStory.rawValue], early)
+        XCTAssertNotNil(merged.earned[MPMilestone.firstLearning.rawValue])
+        XCTAssertNotNil(merged.earned[MPMilestone.firstAdventure.rawValue])
+    }
+
+    func testLedgersArePerChildAndErasable() {
         let defaults = UserDefaults(suiteName: "PastelHomeRulesTests-\(UUID().uuidString)")!
-        return MPBadgeStore(defaults: defaults)
-    }
-
-    func testMilestonesAreEarnedOnlyByReading() {
-        let none = MPMilestone.Reading(finishedStories: 0, finishedBedtime: 0, finishedAdventure: 0, daysInARow: 0)
-        XCTAssertTrue(MPMilestone.allCases.allSatisfy { !$0.isMet(by: none) })
-        let one = MPMilestone.Reading(finishedStories: 1, finishedBedtime: 0, finishedAdventure: 0, daysInARow: 1)
-        XCTAssertEqual(MPMilestone.allCases.filter { $0.isMet(by: one) }, [.firstStory])
-    }
-
-    func testAnEarnedMilestoneIsNeverLost() {
-        let s = store()
-        let child = UUID()
-        let fresh = s.update(for: child, reading: .init(finishedStories: 1, finishedBedtime: 0,
-                                                        finishedAdventure: 0, daysInARow: 3))
-        XCTAssertEqual(Set(fresh), [.firstStory, .threeDays])
-        // The streak breaks: "3 gün üst üste" stays.
-        let again = s.update(for: child, reading: .init(finishedStories: 1, finishedBedtime: 0,
-                                                        finishedAdventure: 0, daysInARow: 0))
-        XCTAssertTrue(again.isEmpty)
-        XCTAssertEqual(s.earned(for: child), [.firstStory, .threeDays])
-    }
-
-    func testMilestonesArePerChildAndErasable() {
-        let s = store()
+        let store = MPBadgeStore(defaults: defaults)
         let a = UUID(), b = UUID()
-        s.update(for: a, reading: .init(finishedStories: 10, finishedBedtime: 7, finishedAdventure: 3, daysInARow: 0))
-        XCTAssertTrue(s.earned(for: b).isEmpty)
-        XCTAssertEqual(s.earned(for: a), [.firstStory, .tenStories, .sevenBedtime, .adventurer])
-        s.erase(for: a)
-        XCTAssertTrue(s.earned(for: a).isEmpty)
-    }
-
-    func testEraseAllRemovesEveryChildsMilestones() {
-        let defaults = UserDefaults(suiteName: "PastelHomeRulesTests-all-\(UUID().uuidString)")!
-        let s = MPBadgeStore(defaults: defaults)
-        s.update(for: UUID(), reading: .init(finishedStories: 1, finishedBedtime: 0, finishedAdventure: 0, daysInARow: 0))
+        var ledger = MPBadgeLedger(); ledger.recordFinished(storyID: "x", mode: nil)
+        store.save(ledger, for: a)
+        XCTAssertNil(store.storedLedger(for: b))
+        store.merge(MPBadgeLedger(), for: a)
+        XCTAssertEqual(store.storedLedger(for: a)?.earnedMilestones, [.firstStory])
         MPBadgeStore.eraseAll(in: defaults)
-        XCTAssertFalse(defaults.dictionaryRepresentation().keys.contains { $0.hasPrefix("mp_badges_") })
+        XCTAssertNil(store.storedLedger(for: a))
     }
 
     // MARK: - Okuma şeridi

@@ -79,7 +79,13 @@ struct ContentView: View {
                 }
             }
             .overlay { sheetLayer }
-            .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: { app.creationPreset = nil }) {
+            .fullScreenCover(item: $app.sleepSession) { session in
+                SleepModeView(session: session).environmentObject(app)
+            }
+            .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
+                app.creationPreset = nil
+                app.runAfterReader()
+            }) {
                 StoryCreationFlow(preset: app.creationPreset).environmentObject(app).environmentObject(settings)
             }
             .sheet(item: $app.actionsStory, onDismiss: {
@@ -93,7 +99,10 @@ struct ContentView: View {
                 }
                 .environmentObject(app)
             }
-            .fullScreenCover(item: $app.readerStory, onDismiss: { app.readerStartPage = nil }) { story in
+            .fullScreenCover(item: $app.readerStory, onDismiss: {
+                app.readerStartPage = nil
+                app.runAfterReader()
+            }) { story in
                 StoryReaderView(story: story, startingPage: app.readerStartPage).environmentObject(app).environmentObject(settings)
             }
             .fullScreenCover(isPresented: $app.showPaywall) {

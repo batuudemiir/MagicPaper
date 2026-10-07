@@ -134,6 +134,10 @@ final class AppFamilyLocalStore: FamilyLocalStore {
             if !list.isEmpty, let payload = try? SyncCoding.encode(list) {
                 records.append(LocalSyncRecord(key: SyncKey(collection: .series, id: id), payload: payload))
             }
+            if let ledger = MPBadgeStore().storedLedger(for: profile.id), !ledger.earned.isEmpty,
+               let payload = try? SyncCoding.encode(ledger) {
+                records.append(LocalSyncRecord(key: SyncKey(collection: .badges, id: id), payload: payload))
+            }
         }
         for story in library.stories where FamilyRecordMapping.syncs(story) {
             let id = story.id.uuidString
@@ -201,6 +205,13 @@ final class AppFamilyLocalStore: FamilyLocalStore {
                 try series.replaceAll(try SyncCoding.decode([StorySeries].self, from: payload), for: id)
             } else {
                 series.delete(for: id)
+            }
+        case .badges:
+            guard let id = UUID(uuidString: key.id) else { return }
+            if let payload = record.payload {
+                MPBadgeStore().merge(try SyncCoding.decode(MPBadgeLedger.self, from: payload), for: id)
+            } else {
+                MPBadgeStore().erase(for: id)
             }
         case .stories:
             guard let id = UUID(uuidString: key.id) else { return }

@@ -181,7 +181,15 @@ struct StoryReaderView: View {
                 recorder.readAgain()
                 model.restart()
             },
-            onClose: close
+            onClose: close,
+            onAnother: {
+                app.afterReader = .create
+                close()
+            },
+            onGoodNight: {
+                app.afterReader = .sleep(story)
+                close()
+            }
         )
         .environmentObject(app)
         // Tavan AX3.
@@ -367,6 +375,12 @@ struct StoryReaderView: View {
         if model.isOnEndingLeaf {
             speech.stop()
             recorder.reachedEnding()
+            // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
+            if let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) {
+                let fresh = MPBadgeStore().recordFinished(story, profile: profile,
+                                                          stories: StoryGenerationManager.shared.stories)
+                MPBadgeNews.shared.fresh = fresh
+            }
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
             SeriesManager.shared.markRead(story)

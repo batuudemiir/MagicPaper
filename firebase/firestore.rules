@@ -19,7 +19,7 @@ service cloud.firestore {
     }
 
     function syncCollections() {
-      return ['children', 'avatars', 'family', 'stories', 'progress', 'series'];
+      return ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges'];
     }
 
     // Bir kayıt: uygulamanın kendi modeli JSON olarak (`payload`), silinmişse

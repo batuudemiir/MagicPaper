@@ -125,6 +125,22 @@ final class MPAppState: ObservableObject {
     @Published var actionsStory: Story?
     /// Sayfa kapanınca açılacak masal (sayfa ile okuyucu aynı anda açılamaz).
     var pendingRead: (story: Story, startPage: Int?)?
+    /// Okuyucu kapanınca yapılacak iş (masal sonu: "Bir masal daha", "İyi geceler").
+    enum AfterReader { case create, sleep(Story) }
+    var afterReader: AfterReader?
+    /// 26 · Uyku modu.
+    @Published var sleepSession: MPSleepSession?
+
+    /// Okuyucu kapandıktan sonra (iki tam ekran sunum üst üste açılamaz).
+    func runAfterReader() {
+        guard let next = afterReader else { return }
+        afterReader = nil
+        switch next {
+        case .create: startStoryCreation()
+        case .sleep(let story): sleepSession = MPSleepSession(story: story)
+        }
+    }
+
     /// 18 · Seri masal, çocuk kökünün üstünde.
     @Published var seriesChildID: UUID?
 

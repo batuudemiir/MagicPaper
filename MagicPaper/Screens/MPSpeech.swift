@@ -13,6 +13,10 @@ final class MPSpeech: NSObject, ObservableObject {
 
     private let synthesizer = AVSpeechSynthesizer()
 
+    /// Bir metin sonuna kadar okununca (durdurulunca değil). Okuyucu sesli
+    /// okurken sonraki sayfaya geçer, Uyku modu sonraki sayfayı okur.
+    var onFinished: (() -> Void)?
+
     private override init() {
         super.init()
         synthesizer.delegate = self
@@ -101,6 +105,7 @@ extension MPSpeech: AVSpeechSynthesizerDelegate {
             self.isSpeaking = false
             self.isPaused = false
             self.deactivateSession()
+            self.onFinished?()
         }
     }
 

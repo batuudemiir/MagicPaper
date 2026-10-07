@@ -25,8 +25,9 @@ struct SeriesEndingSection: View {
                     .font(MP.F.bodySM())
                     .foregroundStyle(theme.muted)
                     .fixedSize(horizontal: false, vertical: true)
-                LegacyMPButton(title: SeriesCopy.continueButton, size: .lg, icon: "sparkles",
-                         fullWidth: true) {
+                // Masal sonunun birincil eylemi "Bir masal daha"; devam ettir
+                // yumuşak düğme (ekranda tek birincil buton).
+                MPButton(title: SeriesCopy.continueButton, systemImage: "sparkles", kind: .soft, fullWidth: true) {
                     start()
                 }
                 .accessibilityHint(SeriesCopy.continueAccessibilityHint)

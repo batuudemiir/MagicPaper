@@ -135,6 +135,13 @@ test('okuma ilerlemesi ve profil güncellenebilir', async () => {
   await assertSucceeds(updateDoc(child, { payload: '{"age":6}', updatedAt: 1759780000900, serverUpdatedAt: serverTimestamp() }));
 });
 
+test('rozet defteri yalnızca sahibine açık ve güncellenebilir (FAZ 17)', async () => {
+  const badges = doc(db(ALICE), 'families', ALICE, 'badges', 'c1');
+  await assertSucceeds(setDoc(badges, record('{"earned":{"firstStory":1}}')));
+  await assertSucceeds(updateDoc(badges, { payload: '{"earned":{"firstStory":1,"fiveStories":2}}', updatedAt: 1759780000900, serverUpdatedAt: serverTimestamp() }));
+  await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'badges', 'c1')));
+});
+
 // --- Ebeveyn onayı ----------------------------------------------------------
 
 const consent = (version, extra = {}) => ({
@@ -204,7 +211,7 @@ test('giriş yapmamış biri olay ekleyemez', async () => {
 
 test('sahibi bütün aile belgelerini silebilir; geriye bir şey kalmaz', async () => {
   const alice = db(ALICE);
-  const collections = ['children', 'avatars', 'family', 'stories', 'progress', 'series'];
+  const collections = ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges'];
   const batch = writeBatch(alice);
   for (const name of collections) {
     for (const id of ['a', 'b']) batch.set(doc(alice, 'families', ALICE, name, id), record(`{"${name}":"${id}"}`));

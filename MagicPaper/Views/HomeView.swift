@@ -131,7 +131,17 @@ struct HomeView: View {
         case .readToday:
             app.startStoryCreation()
         case .bedtime:
-            app.startStoryCreation(mode: .bedtime)
+            // 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı;
+            // ikisi de yoksa uyku öncesi modunda yeni bir masal.
+            if let story = myStories
+                .filter({ $0.mpMode == .bedtime })
+                .max(by: { ($0.lastReadAt ?? $0.createdAt) < ($1.lastReadAt ?? $1.createdAt) }) {
+                app.sleepSession = MPSleepSession(story: story)
+            } else if let daily = todaysDaily {
+                app.sleepSession = MPSleepSession(daily: daily)
+            } else {
+                app.startStoryCreation(mode: .bedtime)
+            }
         }
     }
 

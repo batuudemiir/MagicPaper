@@ -21,6 +21,8 @@ struct StoryLeafView: View {
 
     let onReadAgain: () -> Void
     let onClose: () -> Void
+    var onAnother: () -> Void = {}
+    var onGoodNight: () -> Void = {}
 
     var body: some View {
         switch leaf {
@@ -45,7 +47,9 @@ struct StoryLeafView: View {
                 theme: app.readTheme,
                 accent: model.story.accent,
                 onReadAgain: onReadAgain,
-                onClose: onClose
+                onClose: onClose,
+                onAnother: onAnother,
+                onGoodNight: onGoodNight
             )
         }
     }

@@ -11,7 +11,7 @@ struct KidCornerView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var streak = MPStreak.shared
-    @State private var earned: Set<MPMilestone> = []
+    @State private var earned: [MPMilestone] = []
     @State private var familyNames: [String] = []
 
     private var profile: UserProfile? { profileManager.currentProfile }
@@ -37,10 +37,7 @@ struct KidCornerView: View {
 
     private func refresh() {
         guard let profile else { earned = []; familyNames = []; return }
-        let store = MPBadgeStore()
-        store.update(for: profile.id, reading: MPBadgeStore.reading(
-            stories: storyManager.stories, profile: profile, daysInARow: streak.currentStreak))
-        earned = store.earned(for: profile.id)
+        earned = MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
@@ -133,14 +130,21 @@ struct KidCornerView: View {
 
     // MARK: - Rozetlerim
 
+    /// Yalnızca kazanılanlar: kazanılmamış rozet "az kaldı" baskısı olurdu
+    /// (CLAUDE.md ilke 7, FAZ 17 kararı).
     private var badgesSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Rozetlerim")
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3),
-                      spacing: MPSpacing.md) {
-                ForEach(MPMilestone.allCases) { badge in
-                    MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone,
-                                isUnlocked: earned.contains(badge))
+            if earned.isEmpty {
+                Text("İlk masalını sonuna kadar okuyunca rozetin burada olacak.")
+                    .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3),
+                          spacing: MPSpacing.md) {
+                    ForEach(earned) { badge in
+                        MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone)
+                    }
                 }
             }
         }
