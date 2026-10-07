@@ -25,7 +25,7 @@ struct MPButton: View {
                 if isLoading {
                     ProgressView().tint(foreground)
                 } else {
-                    if let systemImage { Image(systemName: systemImage).font(.system(size: 16, weight: .bold)) }
+                    if let systemImage { MPIcon(systemImage, size: 16, weight: .bold) }
                     Text(title).mpText(kind == .primary || kind == .danger ? .button : .callout)
                 }
             }
@@ -107,8 +107,7 @@ struct MPCircleButton: View {
 
     var body: some View {
         Button(action: action) {
-            Image(systemName: systemImage)
-                .font(.system(size: size * 0.45, weight: .semibold))
+            MPIcon(systemImage, size: size * 0.45, weight: .semibold)
                 .foregroundStyle(tint)
                 .frame(width: size, height: size)
                 .background(MPColor.backgroundSurface, in: Circle())
@@ -130,8 +129,7 @@ struct MPRoundActionButton: View {
 
     var body: some View {
         Button(action: action) {
-            Image(systemName: systemImage)
-                .font(.system(size: size * 0.4, weight: .bold))
+            MPIcon(systemImage, size: size * 0.4, weight: .bold)
                 .foregroundStyle(.white)
                 .frame(width: size, height: size)
                 .background(fill, in: Circle())

@@ -7,19 +7,23 @@ struct AccountStatusRows: View {
 
     var body: some View {
         if let signedIn = account.account {
-            LegacyMPListRow(symbol: "person.crop.circle", title: AccountCopy.signedIn(with: signedIn.provider),
-                      description: syncLine, action: { Task { await account.sync.syncNow() } }) {
-                if account.sync.status == .syncing {
-                    ProgressView().tint(MP.C.brand).accessibilityHidden(true)
+            Button { Task { await account.sync.syncNow() } } label: {
+                MPListRow(systemImage: "person", tone: .lav,
+                          title: AccountCopy.signedIn(with: signedIn.provider), subtitle: syncLine) {
+                    if account.sync.status == .syncing {
+                        ProgressView().tint(MPColor.actionPrimary).accessibilityHidden(true)
+                    }
                 }
             }
-            .accessibilityHint("Eşitlemek için dokunun")
-            LegacyMPRowDivider()
-            LegacyMPListRow(symbol: "rectangle.portrait.and.arrow.right", title: AccountCopy.signOut,
-                      action: onSignOut)
+            .buttonStyle(MPPressStyle(.highlight))
+            .accessibilityElement(children: .combine)
+            .accessibilityHint("Eşitlemek için dokun")
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "rectangle.portrait.and.arrow.right", tone: .gray,
+                            title: AccountCopy.signOut, action: onSignOut)
         } else {
-            LegacyMPListRow(symbol: "person.crop.circle.badge.exclamationmark", title: AccountCopy.notSignedIn,
-                      description: AccountCopy.deferFootnote, action: { account.deferredSignIn = false })
+            ParentRowButton(systemImage: "person", tone: .yellow, title: AccountCopy.notSignedIn,
+                            subtitle: AccountCopy.deferFootnote, action: { account.deferredSignIn = false })
         }
     }
 

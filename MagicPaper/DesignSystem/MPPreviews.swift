@@ -71,27 +71,6 @@ import SwiftUI
     .background(MP.C.surfaceApp)
 }
 
-#Preview("MPTabBar — 4 sekme + (+)") {
-    // bar 76px · ortada 64px daire, -22 offset · 78px boşluk · aktif renk brand
-    struct Host: View {
-        @State private var tab = MPTab.home.rawValue
-        var body: some View {
-            VStack {
-                Spacer()
-                MPTabBar(
-                    items: MPTab.allCases.map {
-                        MPTabBar.Item(value: $0.rawValue, label: $0.label, symbol: $0.symbol)
-                    },
-                    selection: $tab,
-                    onCreate: {}
-                )
-            }
-            .background(MP.C.surfaceApp)
-        }
-    }
-    return Host()
-}
-
 #Preview("Diğer bileşenler") {
     ScrollView {
         VStack(alignment: .leading, spacing: 18) {

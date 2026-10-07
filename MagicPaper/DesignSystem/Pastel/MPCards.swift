@@ -37,8 +37,7 @@ struct MPIconTile: View {
     var size: CGFloat = 40
     var filled: Bool = true
     var body: some View {
-        Image(systemName: systemImage)
-            .font(.system(size: size * 0.5, weight: .semibold))
+        MPIcon(systemImage, size: size * 0.5, weight: .semibold)
             .foregroundStyle(tone.deep)
             .frame(width: size, height: size)
             .background(filled ? tone.soft : MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: size * 0.35))
@@ -56,8 +55,7 @@ struct MPListRow<Trailing: View>: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Image(systemName: systemImage)
-                .font(.system(size: 18, weight: .semibold))
+            MPIcon(systemImage, size: 18, weight: .semibold)
                 .foregroundStyle(isDestructive ? MPColor.statusDanger : tone.deep)
                 .frame(width: 40, height: 40)
                 .background(isDestructive ? MPColor.statusDangerSoft : tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md))
@@ -81,7 +79,7 @@ extension MPListRow where Trailing == MPChevron {
 }
 
 struct MPChevron: View {
-    var body: some View { Image(systemName: "chevron.right").font(.system(size: 15, weight: .semibold)).foregroundStyle(MPColor.textChevron) }
+    var body: some View { MPIcon("chevron.right", size: 15, weight: .semibold).foregroundStyle(MPColor.textChevron) }
 }
 
 /// Grouped rows inside one card (Ayarlar, Masal aksiyonları). Put `MPRowDivider(area:)` between rows.
@@ -159,8 +157,7 @@ struct MPBadgeCard: View {
     var isUnlocked: Bool = true
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: systemImage)
-                .font(.system(size: 22, weight: .semibold))
+            MPIcon(systemImage, size: 22, weight: .semibold)
                 .foregroundStyle(isUnlocked ? tone.deep : Color(red: 0xA3 / 255, green: 0x9D / 255, blue: 0x94 / 255))
                 .frame(width: 50, height: 50)
                 .background(isUnlocked ? MPColor.backgroundSurface : Color(red: 0xE4 / 255, green: 0xDE / 255, blue: 0xD4 / 255), in: Circle())
@@ -171,7 +168,7 @@ struct MPBadgeCard: View {
         .padding(.vertical, 14)
         .background(isUnlocked ? tone.soft : Color(red: 0xF1 / 255, green: 0xEC / 255, blue: 0xE4 / 255), in: RoundedRectangle(cornerRadius: MPRadius.tile))
         .overlay(alignment: .topTrailing) {
-            if !isUnlocked { Image(systemName: "lock.fill").font(.system(size: 12)).foregroundStyle(MPColor.textSecondary).padding(8) }
+            if !isUnlocked { MPIcon("lock.fill", size: 12).foregroundStyle(MPColor.textSecondary).padding(8) }
         }
         .accessibilityElement(children: .combine)
         .accessibilityValue(isUnlocked ? "Kazanıldı" : "Kilitli")
@@ -186,7 +183,7 @@ struct MPNotice: View {
     var systemImage: String? = nil
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
-            if let systemImage { Image(systemName: systemImage).font(.system(size: 15, weight: .bold)) }
+            if let systemImage { MPIcon(systemImage, size: 15, weight: .bold) }
             Text(text).mpText(.footnote)
         }
         .foregroundStyle(fg)

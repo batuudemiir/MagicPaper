@@ -18,7 +18,7 @@ struct MPChip: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 4) {
-                if let systemImage { Image(systemName: systemImage).font(.system(size: 14, weight: .bold)) }
+                if let systemImage { MPIcon(systemImage, size: 14, weight: .bold) }
                 Text(title).mpText(.callout)
             }
             .foregroundStyle(isSelected ? MPColor.textOnAction : (style == .dashed ? MPColor.textSecondary : MPColor.textPrimary))
@@ -116,7 +116,7 @@ struct MPCheckbox: View {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(isOn ? MPColor.actionPrimary : MPColor.backgroundSurface)
                     .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(isOn ? MPColor.actionPrimary : MPColor.borderDashed, lineWidth: 2.5))
-                    .overlay { if isOn { Image(systemName: "checkmark").font(.system(size: 14, weight: .heavy)).foregroundStyle(.white) } }
+                    .overlay { if isOn { MPIcon("checkmark", size: 14, weight: .heavy).foregroundStyle(.white) } }
                     .frame(width: 26, height: 26)
                 Text(label).mpText(.footnote).foregroundStyle(MPColor.textPrimary).multilineTextAlignment(.leading)
             }

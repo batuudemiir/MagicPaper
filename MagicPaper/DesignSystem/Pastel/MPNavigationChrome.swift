@@ -19,8 +19,7 @@ struct KidTabBar: View {
             tab(.home, "Ana sayfa", "house")
             Button(action: onCreate) {
                 VStack(spacing: 4) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 28, weight: .bold))
+                    MPIcon("plus", size: 28, weight: .bold)
                         .foregroundStyle(.white)
                         .frame(width: MPSize.createFab, height: MPSize.createFab)
                         .background(LinearGradient.mpPrimary, in: Circle())
@@ -49,7 +48,7 @@ struct KidTabBar: View {
         let on = selection == t
         return Button { selection = t } label: {
             VStack(spacing: 3) {
-                Image(systemName: icon).font(.system(size: 22, weight: on ? .bold : .regular))
+                MPIcon(icon, size: 22, weight: on ? .bold : .regular).frame(height: 26)
                 Text(label).font(.custom("Nunito", size: 12, relativeTo: .caption).weight(on ? .black : .bold))
             }
             .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textTertiary)

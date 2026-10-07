@@ -20,7 +20,9 @@ struct MPIcon: View {
     }
 
     var body: some View {
-        if let lucide = MPIconMap.lucideName(for: name),
+        // Doğrudan Lucide adı da olur ("castle", "rocket"): SF karşılığı
+        // olmayan dünya simgeleri için (design-handoff/docs/ICONS.md "custom").
+        if let lucide = MPIconMap.lucideName(for: name) ?? (UIImage(named: "Icons/\(name)") != nil ? name : nil),
            UIImage(named: "Icons/\(lucide)") != nil {
             Image("Icons/\(lucide)")
                 .renderingMode(.template)
@@ -87,7 +89,20 @@ enum MPIconMap {
         "speaker.wave.2": "volume-2",
         "wand.and.stars": "wand-sparkles",
         "xmark": "x",
-        "bolt.fill": "zap"
+        "bolt.fill": "zap",
+        // Pastel Masal teslimindeki SF adları (ICONS.md)
+        "lock": "lock",
+        "star": "star",
+        "crown": "crown",
+        "flame": "flame",
+        "wand.and.sparkles": "wand-sparkles",
+        "bolt": "zap",
+        "book.closed": "book-marked",
+        "person": "user-round",
+        "person.2": "users-round",
+        "trophy": "trophy",
+        "trash.fill": "trash-2",
+        "gearshape.fill": "settings"
     ]
 
     static func lucideName(for sfSymbol: String) -> String? { table[sfSymbol] }

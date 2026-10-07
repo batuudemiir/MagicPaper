@@ -178,6 +178,9 @@ struct MainContentView: View {
             if phase == .active { sync.schedule(after: 0) }
         }
         .onAppear {
+            #if DEBUG
+            MPDebugLaunch.applyBeforeGate()
+            #endif
             // Çocuğun adı loglanmaz (CLAUDE.md §10); yalnızca seçili profil var mı.
             logger.debug("Aktif profil seçili: \(profileManager.currentProfile != nil, privacy: .public)")
         }

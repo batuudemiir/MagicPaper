@@ -348,7 +348,7 @@ struct HomeView: View {
     /// giden ayrı bir düğme vardı — ana sayfanın bir bölümü, başka bir sekmenin
     /// reklamıydı.
     private var streakRow: some View {
-        Button { app.tab = .daily } label: {
+        Button { app.showDaily = true } label: {
             HStack(spacing: 12) {
                 MPIcon("book", size: 18, weight: .semibold)
                     .foregroundStyle(streak.readToday ? MP.C.play : MP.C.textFaint)

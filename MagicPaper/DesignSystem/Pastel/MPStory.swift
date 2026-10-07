@@ -34,7 +34,7 @@ struct WorldTile: View {
                         }
                         .overlay(alignment: .topTrailing) {
                             if isLocked {
-                                Image(systemName: "lock.fill").font(.system(size: 12, weight: .bold))
+                                MPIcon("lock.fill", size: 12, weight: .bold)
                                     .foregroundStyle(MPColor.statusWarning)
                                     .frame(width: 28, height: 28).background(.white, in: Circle()).padding(10)
                             }
@@ -65,7 +65,7 @@ struct MPStoryCover: View {
         ZStack(alignment: .bottom) {
             LinearGradient(colors: [tone.soft, tone.deep], startPoint: .topLeading, endPoint: .bottomTrailing)
             if let illustration { illustration.resizable().scaledToFill() }
-            else { Image(systemName: systemImage).font(.system(size: 64, weight: .light)).foregroundStyle(.white.opacity(0.95)).frame(maxHeight: .infinity, alignment: .top).padding(.top, 26) }
+            else { MPIcon(systemImage, size: 64, weight: .light).foregroundStyle(.white.opacity(0.95)).frame(maxHeight: .infinity, alignment: .top).padding(.top, 26) }
             VStack(spacing: 8) {
                 Text(actionTitle).font(.custom("Nunito", size: 12, relativeTo: .caption).weight(.black)).foregroundStyle(.white)
                     .padding(.horizontal, 16).frame(height: 28).background(LinearGradient.mpPrimary, in: Capsule())
@@ -194,8 +194,7 @@ struct StageRow: View {
     let state: StageState
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: state == .done ? "checkmark" : systemImage)
-                .font(.system(size: 14, weight: .bold))
+            MPIcon(state == .done ? "checkmark" : systemImage, size: 14, weight: .bold)
                 .foregroundStyle(state == .done ? MPWorldTone.green.deep : state == .active ? MPColor.actionPrimary : Color(red: 0x8C / 255, green: 0x87 / 255, blue: 0x92 / 255))
                 .frame(width: 32, height: 32)
                 .background(state == .done ? MPWorldTone.green.soft : state == .active ? MPColor.actionSoft : MPWorldTone.gray.soft, in: Circle())
@@ -236,7 +235,7 @@ struct NewWordCard: View {
             Spacer()
             if let onSpeak {
                 Button(action: onSpeak) {
-                    Image(systemName: "speaker.wave.2").font(.system(size: 20, weight: .semibold))
+                    MPIcon("speaker.wave.2", size: 20, weight: .semibold)
                         .foregroundStyle(isSpeaking ? .white : MPColor.actionPrimary)
                         .frame(width: 46, height: 46)
                         .background(isSpeaking ? MPColor.actionPrimary : .white, in: Circle())

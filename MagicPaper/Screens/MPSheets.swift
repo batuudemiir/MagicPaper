@@ -232,6 +232,12 @@ struct ProfileEditSheet: View {
                     app.sheet = .familyCharacters(profile.id)
                 }) { EmptyView() }
 
+                if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {
+                    LegacyMPListRow(symbol: InterestCopy.rowSymbol, title: InterestCopy.sectionTitle, action: {
+                        app.sheet = .interests(profile.id)
+                    }) { EmptyView() }
+                }
+
                 LegacyMPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
                     app.sheet = nil

@@ -2,63 +2,56 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// 04-STATE-INTERACTIONS.md — kök navigasyon.
-/// Üç yer, artı bir eylem.
+/// Çocuk alanının sekmeleri (11 · Ana sayfa, 16 · Kitaplık).
 ///
-/// Günlük geri geldi: alışkanlık tarafı burada geliştirilecek. Ana Sayfa'daki
-/// kopyası kaldırıldı — aynı kartı iki sekmede göstermek, ilk seferinde de
-/// sorun olan şeydi. Ana Sayfa yalnızca seriyi özetliyor ve dokununca buraya
-/// getiriyor.
-///
-/// Ebeveyn artık bir sekme değil, bir mod (`MPAppState.isParentMode`): ana
-/// ekranın sağ üstündeki anahtarla açılır ve Ana Sayfa'nın yerini alır.
-///
-/// "Masal yarat" bu listede DEĞİL ve olmamalı: gidilecek bir yer değil,
-/// yapılacak bir iş. Bar onu ayrı bir öğe türü olarak çiziyor.
+/// FAZ 17 (Pastel Masal): alt bar Ana sayfa · Yarat · Kitaplık. "Günlük"
+/// sekmesi kalktı; günün masalı ve okuma serisi Ana sayfada.
+/// "Yarat" bir sekme değil, bir eylem: `KidTabBar` onu ayrı çizer.
 enum MPTab: String, CaseIterable {
-    case home, library, daily
+    case home, library
 
     var label: String {
         switch self {
-        case .home:    return "Ana Sayfa"
-        case .library: return "Kütüphane"
-        case .daily:   return "Günlük"
+        case .home:    return "Ana sayfa"
+        case .library: return "Kitaplık"
         }
     }
 
-    var symbol: String {
+    var kidTab: KidTab { self == .home ? .home : .library }
+    init(_ kidTab: KidTab) { self = kidTab == .home ? .home : .library }
+}
+
+/// Ebeveyn alanının sekmeleri: Özet · Güvenlik · Ayarlar.
+/// Çocuk profilleri Ayarlar'ın ilk bölümünde (FAZ 17).
+enum MPParentTab: String, CaseIterable {
+    case overview, safety, settings
+
+    var parentTab: ParentTab {
         switch self {
-        case .home:    return "house"
-        case .library: return "book"
-        case .daily:   return "calendar"
+        case .overview: return .summary
+        case .safety:   return .safety
+        case .settings: return .settings
+        }
+    }
+
+    init(_ tab: ParentTab) {
+        switch tab {
+        case .summary:  self = .overview
+        case .safety:   self = .safety
+        case .settings: self = .settings
         }
     }
 }
 
-/// Ebeveyn modunun kendi menüsü. Çocuk menüsüyle ortak hiçbir sekmesi yok:
-/// ebeveynin yaptığı işler — bakmak, düzenlemek, ayarlamak — çocuğun
-/// yaptıklarından (okumak, yaratmak) ayrı.
-///
-/// Ham değerler `MPTab`'inkilerle çakışmamalı: ikisi de aynı sekme çubuğunun
-/// `String` seçimine yazılıyor.
-enum MPParentTab: String, CaseIterable {
-    case overview, children, settings
+// MARK: - Ebeveyn alt sayfaları
 
-    var label: String {
-        switch self {
-        case .overview: return "Özet"
-        case .children: return "Çocuklar"
-        case .settings: return "Ayarlar"
-        }
-    }
-
-    var symbol: String {
-        switch self {
-        case .overview: return "chart.bar"
-        case .children: return "person.2"
-        case .settings: return "gearshape"
-        }
-    }
+/// Ebeveyn alanından tam ekran açılan sayfalar (teslimdeki `ParentRoute`).
+/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür.
+enum MPParentRoute: String, Identifiable {
+    case voiceRecording   // 33 · Kendi sesin
+    case familyMembers    // 34 · Aile üyeleri
+    case shareLink        // 36 · Aileyle paylaş
+    var id: String { rawValue }
 }
 
 // MARK: - Alt sayfalar (sheet)
@@ -118,6 +111,10 @@ final class MPAppState: ObservableObject {
     @Published var showDecorationGallery = false
     @Published var showDecorationDemo = false
     @Published var showGate = false
+    /// Ebeveyn alanından açılan tam ekran sayfa.
+    @Published var parentRoute: MPParentRoute?
+    /// Günlük masallar listesi (eski "Günlük" sekmesi), Ana sayfadan açılır.
+    @Published var showDaily = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
     /// Raftan açılan masal detayı. Okuyucu detayın içinden açılır, bu yüzden
@@ -176,6 +173,7 @@ final class MPAppState: ObservableObject {
         guard isParentMode else { return }
         isParentMode = false
         tab = .home
+        parentRoute = nil
         showProfileAdd = false
         if case .profileEdit = sheet { sheet = nil }
         if case .bookCharacter = sheet { sheet = nil }
