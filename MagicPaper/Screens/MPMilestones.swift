@@ -163,9 +163,15 @@ struct MPBadgeStore {
     func recordFinished(_ story: Story, profile: UserProfile, stories: [Story]) -> [MPMilestone] {
         var ledger = ledger(for: profile, stories: stories)
         let completedSeries = (story.origin?.seriesEpisode == SeriesCopy.episodeCount) ? story.origin?.seriesID : nil
+        let before = ledger
         let fresh = ledger.recordFinished(storyID: story.id.uuidString, mode: story.mpMode,
                                           seriesCompletedID: completedSeries)
         save(ledger, for: profile.id)
+        // Defter değiştiyse hesap eşitlemesi de bilsin (diğer aile depoları
+        // gibi); yoksa yeni rozet bir sonraki başka değişikliği beklerdi.
+        if ledger != before {
+            NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
+        }
         return fresh
     }
 

@@ -241,6 +241,26 @@ struct StoryWord: Codable, Equatable, Hashable {
     let term: String
     let meaning: String
     let surface: String
+
+    init(id: String, term: String, meaning: String, surface: String) {
+        self.id = id
+        self.term = term
+        self.meaning = meaning
+        self.surface = surface
+    }
+
+    private enum CodingKeys: String, CodingKey { case id, term, meaning, surface }
+
+    /// Elle yazılmış: kitaplık tek parça çözülüyor, eksik tek bir alan bütün
+    /// masalları düşürür (`StoryGenerationManager`). `surface` yoksa sözlük
+    /// biçimi kullanılır; bulunamayan yazılış vurgulanmaz, masal açılır.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        term = try container.decode(String.self, forKey: .term)
+        meaning = try container.decodeIfPresent(String.self, forKey: .meaning) ?? ""
+        surface = try container.decodeIfPresent(String.self, forKey: .surface) ?? term
+    }
 }
 
 enum StoryTheme: String, CaseIterable, Codable {
