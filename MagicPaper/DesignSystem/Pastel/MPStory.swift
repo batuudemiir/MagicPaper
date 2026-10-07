@@ -91,6 +91,9 @@ enum TonightState { case resume(progress: Double, title: String, meta: String), 
 
 struct TonightHeroCard: View {
     let state: TonightState
+    /// Yarım ya da bu akşamın masalının kapak simgesi ve dünyası.
+    var coverIcon: String? = nil
+    var coverTone: MPWorldTone = .yellow
     let onPrimary: () -> Void
 
     var body: some View {
@@ -126,7 +129,18 @@ struct TonightHeroCard: View {
         switch state {
         case .readToday: MascotImage(mascot: .waving, width: 140).padding(.top, 20)
         case .bedtime: MascotImage(mascot: .sleeping, width: 160).padding(.top, 46)
-        default: EmptyView() // story cover art (rotated 6°) goes here
+        default:
+            if let coverIcon {
+                MPIcon(coverIcon, size: 64, weight: .semibold)
+                    .foregroundStyle(.white)
+                    .frame(width: 130, height: 150)
+                    .background(LinearGradient(colors: [coverTone.soft, coverTone.deep], startPoint: .topLeading, endPoint: .bottomTrailing),
+                                in: RoundedRectangle(cornerRadius: MPRadius.tile))
+                    .rotationEffect(.degrees(6))
+                    .mpShadow(.raised)
+                    .padding(.top, 10)
+                    .accessibilityHidden(true)
+            }
         }
     }
     private var background: AnyShapeStyle {
@@ -142,21 +156,35 @@ struct TonightHeroCard: View {
 // MARK: Streak strip (Ana sayfa): weekly, forgiving: today is dashed, no guilt copy
 
 struct StreakStrip: View {
-    let days: [String]          // ["P","S","Ç","P","C","C","P"]
-    let doneCount: Int
+    static let dayLetters = ["P", "S", "Ç", "P", "C", "C", "P"]
+    /// Pazartesi'den Pazar'a, bu hafta okunan günler (`MPStreak.thisWeek`).
+    let done: [Bool]
+    /// Üst üste okunan gün (`MPStreak.currentStreak`).
+    let streak: Int
     let todayIndex: Int
+
+    /// Sakin süreklilik dili (CLAUDE.md §7): kayıp, geri sayım yok.
+    var title: String {
+        switch streak {
+        case 0:  return "Okuma yolculuğun burada başlıyor"
+        case 1:  return "Okuma yolculuğun devam ediyor"
+        default: return "\(streak) gün üst üste okudun"
+        }
+    }
+
     var body: some View {
         HStack(spacing: 12) {
             MPIconTile(systemImage: "flame", tone: .peach, size: 42, filled: false)
             VStack(alignment: .leading, spacing: 8) {
-                Text("\(doneCount) gün üst üste okudun").mpText(.bodyStrong).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.bodyStrong).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
                 HStack(spacing: 5) {
-                    ForEach(days.indices, id: \.self) { i in
-                        Text(days[i]).font(.custom("Nunito", size: 11, relativeTo: .caption2).weight(.black))
-                            .foregroundStyle(i < doneCount ? .white : MPColor.textSecondary)
+                    ForEach(Self.dayLetters.indices, id: \.self) { i in
+                        let read = i < done.count && done[i]
+                        Text(Self.dayLetters[i]).font(.custom("Nunito", size: 11, relativeTo: .caption2).weight(.black))
+                            .foregroundStyle(read ? .white : MPColor.textSecondary)
                             .frame(width: 26, height: 26)
-                            .background(i < doneCount ? MPColor.statusStreak : (i == todayIndex ? .white : .white.opacity(0.6)), in: Circle())
-                            .overlay { if i == todayIndex { Circle().strokeBorder(MPColor.statusStreak, style: StrokeStyle(lineWidth: 2, dash: [3, 2])) } }
+                            .background(read ? MPColor.statusStreak : (i == todayIndex ? .white : .white.opacity(0.6)), in: Circle())
+                            .overlay { if i == todayIndex && !read { Circle().strokeBorder(MPColor.statusStreak, style: StrokeStyle(lineWidth: 2, dash: [3, 2])) } }
                     }
                 }
             }
@@ -165,7 +193,7 @@ struct StreakStrip: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Bu hafta \(doneCount) gün okudun")
+        .accessibilityLabel("\(title). Bu hafta \(done.filter { $0 }.count) gün okudun")
     }
 }
 
@@ -270,7 +298,7 @@ enum ReaderTheme: String, CaseIterable, Codable {
         VStack(spacing: 16) {
             TonightHeroCard(state: .resume(progress: 0.37, title: "Şehri Kurtaran Gün", meta: "Sayfa 3 / 8 · 4 dakika kaldı")) {}
             TonightHeroCard(state: .bedtime(time: "20.30")) {}
-            StreakStrip(days: ["P", "S", "Ç", "P", "C", "C", "P"], doneCount: 3, todayIndex: 3)
+            StreakStrip(done: [true, true, true, false, false, false, false], streak: 3, todayIndex: 3)
             HStack { WorldTile(title: "Uzay Macerası", systemImage: "airplane", tone: .sky, isSelected: true) {}; WorldTile(title: "Korsanlar", systemImage: "sailboat", tone: .sky, isLocked: true) {} }
             StoryProgressRing(progress: 0.36)
         }

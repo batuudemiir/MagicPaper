@@ -27,6 +27,7 @@ enum LocalDataEraser {
         for key in defaultsKeys { defaults.removeObject(forKey: key) }
         // Reading ledgers are per child; their keys carry the profile id.
         MPStreak.eraseAllLedgers(in: defaults)
+        MPBadgeStore.eraseAll(in: defaults)
         for key in defaults.dictionaryRepresentation().keys
         where key.hasPrefix("mp_avatarColor_") || key.hasPrefix("read_history_") || key.hasPrefix(StoryGenerationManager.undecodableBackupPrefix) {
             defaults.removeObject(forKey: key)

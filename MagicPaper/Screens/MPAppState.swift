@@ -113,6 +113,8 @@ final class MPAppState: ObservableObject {
     @Published var showGate = false
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?
+    /// 12 · Benim köşem, Ana sayfa başlığındaki avatardan.
+    @Published var showKidCorner = false
     /// Günlük masallar listesi (eski "Günlük" sekmesi), Ana sayfadan açılır.
     @Published var showDaily = false
     @Published var showProfileAdd = false
@@ -160,6 +162,7 @@ final class MPAppState: ObservableObject {
 
     func unlockParent() {
         showGate = false
+        showKidCorner = false
         isParentMode = true
         parentTab = .overview
         MPHaptics.tap()

@@ -21,6 +21,10 @@ final class MPSettingsStore: ObservableObject {
     /// 19.30'da yatan bir evde işe yaramaz bir saat.
     @Published var reminderHour: Int { didSet { d.set(reminderHour, forKey: K.reminderHour) } }
     @Published var reminderMinute: Int { didSet { d.set(reminderMinute, forKey: K.reminderMinute) } }
+    /// Uyku saati (31 · Güvenlik): bu saatten sonra yalnızca uyku masalı.
+    @Published var bedtime: Bool { didSet { d.set(bedtime, forKey: K.bedtime) } }
+    @Published var bedtimeHour: Int { didSet { d.set(bedtimeHour, forKey: K.bedtimeHour) } }
+    @Published var bedtimeMinute: Int { didSet { d.set(bedtimeMinute, forKey: K.bedtimeMinute) } }
     /// Dokunsal geri bildirim — okuyucudaki sayfa çevirme dokunuşu buna bakar.
     @Published var haptics: Bool { didSet { d.set(haptics, forKey: K.haptics) } }
 
@@ -52,6 +56,9 @@ final class MPSettingsStore: ObservableObject {
         static let haptics = "mp_haptics"
         static let shareUsageData = "mp_shareUsageData"
         static let seeded = "mp_settingsSeeded"
+        static let bedtime = "mp_bedtime"
+        static let bedtimeHour = "mp_bedtimeHour"
+        static let bedtimeMinute = "mp_bedtimeMinute"
     }
 
     private init() {
@@ -85,6 +92,11 @@ final class MPSettingsStore: ObservableObject {
         screenLimitMinutes = storedLimit > 0 ? storedLimit : 30
         reminderHour = d.object(forKey: K.reminderHour) == nil ? 20 : d.integer(forKey: K.reminderHour)
         reminderMinute = d.object(forKey: K.reminderMinute) == nil ? 30 : d.integer(forKey: K.reminderMinute)
+        // Uyku saati (FAZ 17): varsayılan açık, 20.30. Güvenlik ayarlarında
+        // varsayılan en korumacı seçenek (teslimin notu).
+        bedtime = d.object(forKey: K.bedtime) == nil ? true : d.bool(forKey: K.bedtime)
+        bedtimeHour = d.object(forKey: K.bedtimeHour) == nil ? 20 : d.integer(forKey: K.bedtimeHour)
+        bedtimeMinute = d.object(forKey: K.bedtimeMinute) == nil ? 30 : d.integer(forKey: K.bedtimeMinute)
     }
 
     /// Var olan masalları toplu onaylar.

@@ -72,7 +72,9 @@ struct StoryCreationFlow: View {
     /// - Parameter preset: a mode already chosen on the home screen.
     init(preset: StoryMode? = nil) {
         let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
-        let available = StoryChoiceSources.current.availableModes(forAge: age)
+        let available = StoryCreationSteps.allowedModes(
+            StoryChoiceSources.current.availableModes(forAge: age),
+            isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared))
         switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
         case .mode:
             _phase = State(initialValue: .mode)
@@ -211,7 +213,7 @@ struct StoryCreationFlow: View {
         switch phase {
         case .mode:
             StoryModeStep(
-                modes: source.availableModes(forAge: age),
+                modes: allowedModes,
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
@@ -261,6 +263,12 @@ struct StoryCreationFlow: View {
     /// The child's age. `MainContentView` never reaches this flow without a
     /// profile; the fallback is the MVP band's age only so previews render.
     private var age: Int { profile?.age ?? AgeBandResolver.mvp.upperBound }
+
+    /// Bu bantta kurulabilen modlar, uyku saatinde yalnızca Uyku öncesi.
+    private var allowedModes: [StoryMode] {
+        StoryCreationSteps.allowedModes(source.availableModes(forAge: age),
+                                        isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared))
+    }
 
     private func chooseMode(_ mode: StoryMode) {
         chosenMode = mode

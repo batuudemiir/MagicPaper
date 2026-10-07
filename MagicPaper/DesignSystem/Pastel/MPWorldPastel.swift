@@ -39,3 +39,24 @@ extension MP.World {
         }
     }
 }
+
+/// Modların Pastel Masal karşılığı (11 · Ana sayfa şeridi, 19 · Yarat 1).
+/// Teslimdeki dünya kartlarının yerinde modlar duruyor (karar 7 Ekim 2026).
+extension StoryMode {
+    var tone: MPWorldTone {
+        switch self {
+        case .bedtime:   return .lav
+        case .learning:  return .yellow
+        case .adventure: return .green
+        }
+    }
+
+    /// Ana sayfa şeridindeki kısa ad.
+    var shortTitle: String {
+        switch self {
+        case .bedtime:   return "Uyku"
+        case .learning:  return "Öğrenelim"
+        case .adventure: return "Macera"
+        }
+    }
+}

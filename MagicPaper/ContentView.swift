@@ -143,7 +143,14 @@ struct ContentView: View {
                     onCreate: { app.startStoryCreation() }
                 )
             }
+
+            if app.showKidCorner {
+                KidCornerView()
+                    .transition(reduceMotion ? .opacity : .move(edge: .bottom))
+                    .zIndex(1)
+            }
         }
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.showKidCorner)
     }
 
     private var parentRoot: some View {

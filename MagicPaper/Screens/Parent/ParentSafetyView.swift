@@ -2,7 +2,8 @@ import SwiftUI
 
 /// 31 · Ebeveyn · Güvenlik (`IcerikGuvenligi`).
 ///
-/// Yalnızca gerçekten işleyen ayarlar burada. Prototipteki "Serbest metin"
+/// Yalnızca gerçekten işleyen ayarlar burada: günlük okuma süresi
+/// (`MPReadingBudget`), uyku saati (`MPBedtime`) ve masal onayı. Prototipteki "Serbest metin"
 /// yok: masallar çevrimdışı motorla, serbest metin olmadan yazılıyor (karar
 /// 7 Ekim 2026). "Korku ve gerilim" ile "Kaçınılacak konular" motorda içerik
 /// etiketi gelince eklenir; işlemeyen bir anahtar göstermek, hiç
@@ -33,6 +34,24 @@ struct ParentSafetyView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, MPSpacing.lg)
                         .padding(.bottom, MPSpacing.md)
+                    }
+                    MPRowDivider(area: .parent)
+                    ParentToggleRow(
+                        systemImage: "moon",
+                        tone: .lav,
+                        title: "Uyku saati",
+                        subtitle: settings.bedtime
+                            ? "\(MPReminder.clockLabel(hour: settings.bedtimeHour, minute: settings.bedtimeMinute)) ve sonrasında yalnızca uyku masalı"
+                            : "Kapalı",
+                        isOn: $settings.bedtime
+                    )
+                    if settings.bedtime {
+                        MPRowDivider(area: .parent)
+                        MPListRow(systemImage: "clock", tone: .lav, title: "Uyku saati başlangıcı") {
+                            DatePicker("Uyku saati başlangıcı", selection: bedtimeTime, displayedComponents: .hourAndMinute)
+                                .labelsHidden()
+                                .tint(MPColor.actionPrimary)
+                        }
                     }
                     MPRowDivider(area: .parent)
                     ParentToggleRow(
@@ -73,6 +92,22 @@ struct ParentSafetyView: View {
                 ? "\(settings.screenLimitMinutes) dakika, sonra \u{201C}Yarın devam\u{201D}"
                 : "Sınır yok",
             isOn: $settings.screenLimit
+        )
+    }
+
+    private var bedtimeTime: Binding<Date> {
+        Binding(
+            get: {
+                var c = DateComponents()
+                c.hour = settings.bedtimeHour
+                c.minute = settings.bedtimeMinute
+                return Calendar.current.date(from: c) ?? Date()
+            },
+            set: { date in
+                let c = Calendar.current.dateComponents([.hour, .minute], from: date)
+                settings.bedtimeHour = c.hour ?? 20
+                settings.bedtimeMinute = c.minute ?? 30
+            }
         )
     }
 

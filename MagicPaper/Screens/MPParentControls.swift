@@ -72,3 +72,29 @@ enum MPStoryGate {
         return readable.filter { isApproved($0.id) }
     }
 }
+
+// MARK: - Uyku saati
+
+/// "Uyku saati" anahtarının arkasındaki kural (31 · Güvenlik).
+///
+/// Saat geldiyse Ana sayfa uyku kartını gösterir ve Yarat yalnızca Uyku
+/// öncesi modunu sunar. Gece yarısından sabah 5'e kadar da uyku saati
+/// sayılır: 20.30'da başlayan gece 00.10'da bitmiş olmaz.
+enum MPBedtime {
+    static let morningHour = 5
+
+    static func isBedtime(enabled: Bool, hour: Int, minute: Int, now: Date = Date(),
+                          calendar: Calendar = .current) -> Bool {
+        guard enabled else { return false }
+        let c = calendar.dateComponents([.hour, .minute], from: now)
+        let current = (c.hour ?? 0) * 60 + (c.minute ?? 0)
+        let start = hour * 60 + minute
+        return current >= start || current < morningHour * 60
+    }
+
+    @MainActor
+    static func isBedtime(settings: MPSettingsStore, now: Date = Date()) -> Bool {
+        isBedtime(enabled: settings.bedtime, hour: settings.bedtimeHour,
+                  minute: settings.bedtimeMinute, now: now)
+    }
+}
