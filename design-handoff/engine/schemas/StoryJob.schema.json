@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "StoryJob",
+  "title": "Backend iş durumu ve hata gövdesi",
+  "type": "object",
+  "properties": {
+    "jobId": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "queued",
+        "waiting_approval",
+        "writing",
+        "checking",
+        "rewriting",
+        "done",
+        "failed",
+        "rejected"
+      ]
+    },
+    "starsReserved": {
+      "type": "integer"
+    },
+    "starsLeftAfter": {
+      "type": "integer"
+    },
+    "storyId": {
+      "type": "string"
+    },
+    "error": {
+      "enum": [
+        "invalid_request",
+        "no_stars",
+        "locked_option",
+        "input_rejected",
+        "parent_rejected",
+        "generation_failed"
+      ]
+    },
+    "http": {
+      "enum": [
+        400,
+        402,
+        403,
+        422,
+        500
+      ]
+    },
+    "refund": {
+      "type": "boolean"
+    },
+    "childMessage": {
+      "type": "string"
+    }
+  }
+}

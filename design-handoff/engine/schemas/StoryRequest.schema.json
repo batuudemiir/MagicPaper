@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "StoryRequest",
+  "title": "StoryRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "locale",
+    "profileId",
+    "child",
+    "worldId",
+    "length",
+    "tone",
+    "mode",
+    "characters",
+    "wish",
+    "series",
+    "parentSettings",
+    "includeImagePrompts"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "locale": {
+      "const": "tr-TR"
+    },
+    "profileId": {
+      "type": "string"
+    },
+    "child": {
+      "type": "object",
+      "required": [
+        "name",
+        "ageBand"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-zÇĞİÖŞÜçğıöşü \\-]{1,20}$"
+        },
+        "ageBand": {
+          "enum": [
+            "3-4",
+            "5-7",
+            "8-10",
+            "11-12"
+          ]
+        }
+      }
+    },
+    "worldId": {
+      "enum": [
+        "sihirli_krallik",
+        "uzay_macerasi",
+        "orman_macerasi",
+        "super_kahraman",
+        "deniz_alti",
+        "dinozorlar",
+        "peri_masali",
+        "korsanlar",
+        "kar_diyari",
+        "ciftlik",
+        "robotlar",
+        "sirk"
+      ]
+    },
+    "length": {
+      "enum": [
+        "kisa",
+        "orta",
+        "uzun"
+      ]
+    },
+    "tone": {
+      "enum": [
+        "neseli",
+        "sakin",
+        "macerali",
+        "komik"
+      ],
+      "description": "mode=bedtime ise uygulama tone=sakin gönderir"
+    },
+    "mode": {
+      "enum": [
+        "normal",
+        "bedtime"
+      ]
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "traits"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "wish": {
+      "type": "string",
+      "maxLength": 140
+    },
+    "series": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "seriesId",
+            "episode"
+          ],
+          "properties": {
+            "seriesId": {
+              "type": "string"
+            },
+            "episode": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ]
+    },
+    "parentSettings": {
+      "type": "object",
+      "required": [
+        "freeText",
+        "fearLevel",
+        "avoidTopics"
+      ],
+      "properties": {
+        "freeText": {
+          "enum": [
+            "off",
+            "on",
+            "approval"
+          ]
+        },
+        "fearLevel": {
+          "enum": [
+            "none",
+            "mild",
+            "medium"
+          ]
+        },
+        "avoidTopics": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "olum_kayip",
+              "karanlik",
+              "canavar",
+              "ayrilik",
+              "hastane",
+              "firtina"
+            ]
+          }
+        }
+      }
+    },
+    "includeImagePrompts": {
+      "type": "boolean"
+    }
+  }
+}

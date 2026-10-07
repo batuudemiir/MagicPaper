@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Uyku modu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: #161A2E; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, #3B4370 0%, transparent 55%), #161A2E"></div>
+<span style="position: absolute; left: 40px; top: 90px; width: 3px; height: 3px; border-radius: 999px; background: #FFFFFF; opacity: 0.7"></span><span style="position: absolute; left: 120px; top: 60px; width: 2px; height: 2px; border-radius: 999px; background: #FFFFFF; opacity: 0.5"></span><span style="position: absolute; left: 300px; top: 80px; width: 3px; height: 3px; border-radius: 999px; background: #FFFFFF; opacity: 0.8"></span><span style="position: absolute; left: 350px; top: 160px; width: 2px; height: 2px; border-radius: 999px; background: #FFFFFF; opacity: 0.5"></span><span style="position: absolute; left: 70px; top: 200px; width: 2px; height: 2px; border-radius: 999px; background: #FFFFFF; opacity: 0.6"></span><span style="position: absolute; left: 250px; top: 140px; width: 2px; height: 2px; border-radius: 999px; background: #FFFFFF; opacity: 0.4"></span><span style="position: absolute; left: 200px; top: 40px; width: 3px; height: 3px; border-radius: 999px; background: #FFFFFF; opacity: 0.6"></span><span style="position: absolute; left: 30px; top: 330px; width: 2px; height: 2px; border-radius: 999px; background: #FFFFFF; opacity: 0.4"></span><span style="position: absolute; left: 340px; top: 300px; width: 3px; height: 3px; border-radius: 999px; background: #FFFFFF; opacity: 0.5"></span>
+<div style="position: relative; display: flex; align-items: center; justify-content: space-between">
+<a href="AnaSayfa.dc.html" aria-label="Uyku modundan çık" style="width: 42px; height: 42px; border-radius: 999px; background: rgba(255,255,255,.10); color: #ECEAF6; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ECEAF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg></a>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: #B3B0C8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFE7A0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>Uyku modu</span><div style="width: 42px"></div></div>
+<div style="position: relative; flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
+<div style="position: relative; width: 260px; height: 220px"><div style="position: absolute; left: 60px; top: 0; width: 150px; height: 150px; border-radius: 999px; background: radial-gradient(circle at 35% 35%, #FFF4C9 0%, #FFE08A 60%, #E9B949 100%); box-shadow: 0 0 80px rgba(255,224,138,.35)"></div><div style="position: absolute; left: 30px; bottom: 0"><img src="/_blob/f674579ca610d95160e0995bf20142a1" alt="" style="width: 200px; height: auto; display: block; flex-shrink: 0"></div></div>
+<span style="font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: #8F8CA8; padding-top: 18px">Sesli okunuyor</span>
+<span style="font-size: 24px; font-weight: 900; color: #ECEAF6">Ay Işığında Uyuyan Orman</span>
+<span style="font-size: 14px; font-weight: 700; color: #B3B0C8">Ekran yavaşça kararır, masal bitince kapanır.</span>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<button onClick="{{toggle}}" aria-label="Oynat veya duraklat" style="width: 72px; height: 72px; border: 0; border-radius: 999px; background: rgba(255,255,255,.12); color: #ECEAF6; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer">
+<sc-if value="{{playing}}" hint-placeholder-val="{{ true }}"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ECEAF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"></rect> <rect x="5" y="3" width="5" height="18" rx="1"></rect></svg></sc-if><sc-if value="{{paused}}" hint-placeholder-val="{{ false }}"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ECEAF6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></sc-if></button>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px"><span style="font-size: 13px; font-weight: 800; color: #8F8CA8">Kapanma süresi</span>
+<div style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.08)"><button onClick="{{tm0.pick}}" style="flex: 1; height: 40px; border: 0; border-radius: 999px; background: {{tm0.bg}}; color: {{tm0.fg}}; font-size: 14px; min-width: 76px; font-weight: 900; cursor: pointer">10 dk</button><button onClick="{{tm1.pick}}" style="flex: 1; height: 40px; border: 0; border-radius: 999px; background: {{tm1.bg}}; color: {{tm1.fg}}; font-size: 14px; min-width: 76px; font-weight: 900; cursor: pointer">15 dk</button><button onClick="{{tm2.pick}}" style="flex: 1; height: 40px; border: 0; border-radius: 999px; background: {{tm2.bg}}; color: {{tm2.fg}}; font-size: 14px; min-width: 76px; font-weight: 900; cursor: pointer">20 dk</button></div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { play: true, tm: 1 }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { var o = { playing: self.state.play, paused: !self.state.play, toggle: function () { self.setState({ play: !self.state.play }); } }; for (var i = 0; i < 3; i++) { (function (i) { var s = self.state.tm === i; o['tm' + i] = { bg: s ? 'rgba(255,255,255,.18)' : 'transparent', fg: s ? '#FFFFFF' : '#B3B0C8', pick: function () { self.setState({ tm: i }); } }; })(i); } return o; })();
+  }
+}
+</script>
+</body>
+</html>

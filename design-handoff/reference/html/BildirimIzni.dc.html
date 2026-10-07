@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Bildirim izni</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: #FFF8EE; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 0 12px"><div style="position: relative; width: 220px; height: 200px; display: flex; align-items: flex-end; justify-content: center"><span style="position: absolute; left: 10px; right: 10px; bottom: 0; height: 150px; border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%; background: #FFF1C2"></span><div style="position: relative; padding-bottom: 10px"><img src="/_blob/f38d6a54d4cf7f6acb9a83bfbf106155" alt="" style="width: 190px; height: auto; display: block; flex-shrink: 0"></div></div><h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 900; color: #2E1E3E; text-wrap: balance">Masal saatini hatırlatalım mı?</h1><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #6E6478; max-width: 300px">Her akşam seçtiğin saatte tek bir hatırlatma. Başka bildirim göndermeyiz.</p><div style="display: flex; gap: 8px; padding-top: 6px"><button onClick="{{t0.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{t0.bd}}; background: {{t0.bg}}; color: {{t0.fg}}; font-size: 14px; font-weight: 800; cursor: pointer">19.30</button><button onClick="{{t1.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{t1.bd}}; background: {{t1.bg}}; color: {{t1.fg}}; font-size: 14px; font-weight: 800; cursor: pointer">20.00</button><button onClick="{{t2.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{t2.bd}}; background: {{t2.bg}}; color: {{t2.fg}}; font-size: 14px; font-weight: 800; cursor: pointer">20.30</button><button onClick="{{t3.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{t3.bd}}; background: {{t3.bg}}; color: {{t3.fg}}; font-size: 14px; font-weight: 800; cursor: pointer">21.00</button></div><div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 6px"><a href="IlkMasal.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 30px; border: 0; border-radius: 999px; background: linear-gradient(180deg, #9C7BE3 0%, #5C3A8F 100%); color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 10px 22px rgba(92,58,143,.32), inset 0 2px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(0,0,0,.10); width: 260px"><span>Hatırlat</span></a><a href="IlkMasal.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 24px; border: 2px solid #E6D3F2; border-radius: 999px; background: #FFFFFF; color: #6A47B8; font-size: 15px; font-weight: 800; text-decoration: none; cursor: pointer; width: 260px"><span>Şimdi değil</span></a></div></div>
+<p style="margin: 0; font-size: 12px; line-height: 1.5; color: #6E6478; text-align: center">İzni sonra Ebeveyn bölümünden değiştirebilirsin.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { t: 2 }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { var o = {}; function segv(k, n, track) { for (var i = 0; i < n; i++) { (function (i) { var s = self.state[k] === i; o[k + i] = { bg: s ? '#6A47B8' : (track || 'transparent'), fg: s ? '#FFFFFF' : '#2E1E3E', bd: s ? '#6A47B8' : '#E6DED2', pick: function () { var u = {}; u[k] = i; self.setState(u); } }; })(i); } } segv('t', 4, '#FFFFFF'); return o; })();
+  }
+}
+</script>
+</body>
+</html>

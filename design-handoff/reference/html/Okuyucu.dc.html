@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Okuyucu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: {{bg}}; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 330px; background: {{wash}}"></div>
+<div style="position: relative; display: flex; align-items: center; gap: 10px"><a href="AnaSayfa.dc.html" aria-label="Kapat" style="width: 42px; height: 42px; flex-shrink: 0; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; color: #2E1E3E; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; text-decoration: none; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg></a><div style="flex-grow: 1"></div>
+<button onClick="{{toggleFav}}" aria-label="Favorilere ekle" style="width: 42px; height: 42px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; color: {{favC}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="{{favF}}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg></button>
+<a href="OkumaAyarlari.dc.html" aria-label="Okuma ayarları" style="width: 42px; height: 42px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; display: flex; align-items: center; justify-content: center; color: #2E1E3E; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16"></path> <path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path> <path d="M9 20h6"></path></svg></a></div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 6px">
+<div style="width: 118px; height: 148px; border-radius: 18px; background: linear-gradient(160deg, #FFF1C2, #D9A21B); display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 28px rgba(45,42,50,.18)"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"></path></svg></div>
+<span style="font-size: 18px; font-weight: 900; color: {{fg}}">İrem ve Şehri Kurtaran Gün</span>
+<span style="font-size: 12px; font-weight: 700; color: {{muted}}">Süper Kahraman · 3 sayfa</span>
+</div>
+<div style="position: relative; flex-grow: 1; padding: 22px 6px 0; font-size: 19px; line-height: 1.7; font-weight: 600; color: {{fg}}"><sc-if value="{{p0}}" hint-placeholder-val="{{ true }}"><p style="margin: 0"><strong style="color: {{nameC}}">İrem</strong> sabah güneşinin ışıklarıyla uyandı. Pencereden süzülen altın renkli ışıklar odasını aydınlatıyordu. Kuşların cıvıltısı güzel bir günün başladığını <button onClick="{{toggleWord}}" style="display: inline; border: 0; padding: 0; background: none; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted #6A47B8 2px; text-underline-offset: 5px">müjdeliyordu</button>. Ama dışarıda bir tuhaflık vardı: şehrin bütün saatleri aynı anda durmuştu!</p></sc-if><sc-if value="{{p1}}" hint-placeholder-val="{{ false }}"><p style="margin: 0"><strong style="color: {{nameC}}">İrem</strong> pelerinini omzuna attı ve pencereden dışarı baktı. Meydandaki saat kulesinin tepesinde minicik bir ışık yanıp sönüyordu. "Birisi yardım istiyor," diye fısıldadı. Derin bir nefes aldı ve kuleye doğru koşmaya başladı.</p></sc-if><sc-if value="{{p2}}" hint-placeholder-val="{{ false }}"><p style="margin: 0">Kulenin kapısında yaşlı saatçi Nuri Usta bekliyordu. "Çarkların arasına yıldız tozu sıkışmış," dedi. <strong style="color: {{nameC}}">İrem</strong> sabırla tozu tek tek üfledi. Tik, tak! Saatler yeniden çalışmaya başladı ve bütün şehir alkışladı.</p></sc-if></div>
+<sc-if value="{{showWord}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; left: 20px; right: 20px; bottom: 150px; z-index: 5; border-radius: 22px; background: #FFFFFF; padding: 14px 12px 14px 18px; display: flex; gap: 10px; box-shadow: 0 14px 30px rgba(45,42,50,.18)">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: #6A47B8">Yeni kelime</span><span style="font-size: 19px; font-weight: 900; color: #2E1E3E">müjdelemek</span><span style="font-size: 14px; color: #6E6478">Güzel bir haberi önceden vermek.</span></div>
+<button onClick="{{toggleWord}}" aria-label="Kapat" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 999px; border: 0; background: #F2EEE8; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg></button></div>
+</sc-if>
+<div style="position: relative; margin: 0 -8px; padding: 14px 16px 12px; border-radius: 24px; background: {{bar}}; box-shadow: 0 10px 26px rgba(45,42,50,.12)">
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: {{muted}}"><span>Sayfa {{pageNo}} / 3</span><span>{{playLabel}}</span></div>
+<div style="height: 6px; border-radius: 999px; background: {{track}}; margin: 8px 0 10px"><div style="width: {{barW}}; height: 6px; border-radius: 999px; background: #6A47B8"></div></div>
+<div style="display: flex; align-items: center; justify-content: space-around">
+<button onClick="{{prev}}" aria-label="Önceki sayfa" style="width: 48px; height: 48px; border: 0; border-radius: 999px; background: transparent; color: {{fg}}; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; opacity: {{prevOp}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button onClick="{{togglePlay}}" aria-label="Sesli oku" style="width: 58px; height: 58px; border: 0; border-radius: 999px; background: linear-gradient(180deg, #9C7BE3, #5C3A8F); color: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 10px 20px rgba(92,58,143,.32)">
+<sc-if value="{{playing}}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"></rect> <rect x="5" y="3" width="5" height="18" rx="1"></rect></svg></sc-if><sc-if value="{{paused}}" hint-placeholder-val="{{ true }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></sc-if></button>
+<sc-if value="{{notLast}}" hint-placeholder-val="{{ true }}"><button onClick="{{next}}" aria-label="Sonraki sayfa" style="width: 48px; height: 48px; border: 0; border-radius: 999px; background: transparent; color: {{fg}}; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button></sc-if>
+<sc-if value="{{isLast}}" hint-placeholder-val="{{ false }}"><a href="MasalSonu.dc.html" aria-label="Masalı bitir" style="width: 48px; height: 48px; border: 0; border-radius: 999px; background: transparent; color: {{fg}}; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; text-decoration: none; color: #6A47B8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg></a></sc-if>
+</div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema": {"editor": "enum", "options": ["Gündüz", "Sepya", "Gece"], "default": "Gündüz"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { page: 0, word: true, fav: false, play: false }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { var T = { 'Gündüz': { bg: '#FFF8EE', wash: 'radial-gradient(circle at 50% 0%, #FFE9A8 0%, transparent 70%)', fg: '#2E1E3E', muted: '#6E6478', bar: 'rgba(255,255,255,.95)', track: '#ECE5DA', nameC: '#6A47B8' },
+  'Sepya': { bg: '#F6ECD9', wash: 'radial-gradient(circle at 50% 0%, #F0D9A8 0%, transparent 70%)', fg: '#3B2A18', muted: '#6E5A44', bar: 'rgba(255,250,240,.95)', track: '#E5D6BC', nameC: '#9A5B1E' },
+  'Gece': { bg: '#1E2238', wash: 'radial-gradient(circle at 50% 0%, #3B4370 0%, transparent 70%)', fg: '#ECEAF6', muted: '#B3B0C8', bar: 'rgba(48,53,84,.95)', track: '#41476E', nameC: '#CDB6F2' } };
+var t = T[self.props.tema || 'Gündüz'] || T['Gündüz'], pg = self.state.page;
+return Object.assign({}, t, { pageNo: pg + 1, barW: Math.round((pg + 1) / 3 * 100) + '%', p0: pg === 0, p1: pg === 1, p2: pg === 2, isLast: pg === 2, notLast: pg !== 2,
+  showWord: pg === 0 && self.state.word, prevOp: pg === 0 ? 0.35 : 1, playing: self.state.play, paused: !self.state.play, playLabel: self.state.play ? 'Sesli okunuyor' : 'Sesli okuma',
+  favC: self.state.fav ? '#E06A92' : '#2E1E3E', favF: self.state.fav ? '#E06A92' : 'none',
+  prev: function () { if (self.state.page > 0) self.setState({ page: self.state.page - 1 }); },
+  next: function () { if (self.state.page < 2) self.setState({ page: self.state.page + 1 }); },
+  toggleWord: function () { self.setState({ word: !self.state.word }); }, toggleFav: function () { self.setState({ fav: !self.state.fav }); },
+  togglePlay: function () { self.setState({ play: !self.state.play }); } }); })();
+  }
+}
+</script>
+</body>
+</html>

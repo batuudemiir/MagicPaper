@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Ebeveyn kapısı</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: #FFF8EE; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 46px"><a href="AnaSayfa.dc.html" aria-label="Geri" style="width: 42px; height: 42px; flex-shrink: 0; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; color: #2E1E3E; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; text-decoration: none; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a><div style="flex-grow: 1; text-align: center"><div style="font-size: 21px; font-weight: 800; color: #2E1E3E"></div></div><div style="width: 42px"></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 0 10px">
+<div style="width: 120px; height: 108px; border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%; background: #E1EEFB; display: flex; align-items: center; justify-content: center; color: #6A47B8"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#6A47B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg></div>
+<h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 900; color: #2E1E3E; text-wrap: balance">Bu bölüm büyükler için</h1><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #6E6478">Devam etmek için işlemi çöz</p>
+<div style="font-size: 38px; font-weight: 900; color: #2E1E3E; padding: 6px 0">7 × 4 = ?</div>
+<label style="display: flex; flex-direction: column; align-items: center; gap: 6px"><input aria-label="Cevap" inputmode="numeric" maxlength="2" placeholder="Cevap" value="{{a}}" onChange="{{setA}}" style="width: 160px; height: 56px; box-sizing: border-box; text-align: center; border-radius: 18px; border: 2px solid {{inBd}}; background: #FFFFFF; font-size: 22px; font-weight: 900; outline: none">
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; color: #D64545">Tekrar dene</span></sc-if></label>
+<sc-if value="{{notOk}}" hint-placeholder-val="{{ true }}"><button onClick="{{check}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 30px; border: 0; border-radius: 999px; background: linear-gradient(180deg, #9C7BE3 0%, #5C3A8F 100%); color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 10px 22px rgba(92,58,143,.32), inset 0 2px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(0,0,0,.10); width: 220px"><span>Onayla</span></button></sc-if>
+<sc-if value="{{ok}}" hint-placeholder-val="{{ false }}"><a href="EbeveynPaneli.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 30px; border: 0; border-radius: 999px; background: linear-gradient(180deg, #9C7BE3 0%, #5C3A8F 100%); color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 10px 22px rgba(92,58,143,.32), inset 0 2px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(0,0,0,.10); width: 240px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Doğru, devam et</span></a></sc-if>
+<a href="AnaSayfa.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: #6A47B8; font-size: 15px; font-weight: 800; text-decoration: none; cursor: pointer"><span>Geri dön</span></a>
+<p style="margin: 0; font-size: 12px; line-height: 1.5; color: #6E6478">Üç yanlış denemeden sonra 30 saniye beklenir.</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { a: '', err: false, ok: false }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { return { a: self.state.a, ok: self.state.ok, notOk: !self.state.ok, hasErr: self.state.err, inBd: self.state.err ? '#D64545' : (self.state.ok ? '#4E9A4A' : '#E6DED2'),
+  setA: function (e) { var v = e && e.target ? e.target.value : e; self.setState({ a: String(v).replace(/[^0-9]/g, ''), err: false, ok: false }); },
+  check: function () { if (self.state.a === '28') self.setState({ ok: true }); else self.setState({ a: '', err: true }); } }; })();
+  }
+}
+</script>
+</body>
+</html>
