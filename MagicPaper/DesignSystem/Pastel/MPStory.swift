@@ -26,6 +26,8 @@ struct WorldTile: View {
                     .frame(width: 98, height: 108)
                 } else {
                     Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, MPSpacing.md)
                         .padding(.top, 24)
                         .frame(maxWidth: .infinity, minHeight: 108)
                         .overlay(alignment: .topLeading) {

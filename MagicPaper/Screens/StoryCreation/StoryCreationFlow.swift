@@ -28,8 +28,8 @@ struct StoryCreationFlow: View {
         case mode
         case idea(StoryMode)
         case companion
+        /// 21 · Masal yazılıyor; masal hazır olunca aynı ekranda "Masalı oku".
         case preparing
-        case cover(Story)
         /// Okuyucu akışın *içinde* açılır.
         ///
         /// Eskiden kapak `app.readerStory`'yi kurup kendi tam ekran sunumunu
@@ -48,6 +48,8 @@ struct StoryCreationFlow: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
 
     @State private var phase: Phase
+    /// The story built during `.preparing`, read once "Masalı oku" is tapped.
+    @State private var preparedStory: Story?
     /// Always one of the three modes once past step 1 — a surprise is resolved
     /// the moment it is chosen, so the companion step can already fit it.
     @State private var chosenMode: StoryMode?
@@ -138,30 +140,43 @@ struct StoryCreationFlow: View {
         }
     }
 
-    /// Okuyucu açıkken akışın kendi başlık çubuğu yok: sayfa baştan başa kâğıt.
+    /// Başlık yalnızca seçim adımlarında: okuyucu, masal yazılıyor ve hata
+    /// ekranlarının kendi düzeni var.
     private var showsHeader: Bool {
-        if case .reading = phase { return false }
-        return true
+        switch phase {
+        case .mode, .idea, .companion: return true
+        default: return false
+        }
     }
 
     // MARK: - Chrome
 
     private var header: some View {
-        HStack {
-            MPIconButton(
-                symbol: showsBack ? "chevron.left" : "xmark",
-                label: showsBack ? "Geri" : "Kapat",
-                action: goBack
-            )
-            Spacer(minLength: 0)
+        ZStack {
             if let step = stepIndex {
-                MPStepDots(total: stepLabels.count, current: step, labels: stepLabels)
+                VStack(spacing: MPSpacing.xs) {
+                    Text("Adım \(step + 1) / \(stepLabels.count)")
+                        .mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                    HStack(spacing: MPSpacing.xs) {
+                        ForEach(0..<stepLabels.count, id: \.self) { i in
+                            Capsule()
+                                .fill(i == step ? MPColor.actionPrimary : MPColor.borderKid)
+                                .frame(width: i == step ? 28 : 10, height: 10)
+                        }
+                    }
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Adım \(step + 1) / \(stepLabels.count), \(stepLabels[step])")
             }
-            Spacer(minLength: 0)
-            Color.clear.frame(width: 44, height: 44)
+            HStack {
+                MPCircleButton(systemImage: showsBack ? "chevron.left" : "xmark",
+                               accessibilityLabel: showsBack ? "Geri" : "Kapat", action: goBack)
+                Spacer(minLength: 0)
+            }
         }
-        .mpGutter()
-        .padding(.top, MP.S.x1)
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.top, MPSpacing.sm)
+        .padding(.bottom, MPSpacing.md)
     }
 
     private var showsBack: Bool {
@@ -214,6 +229,8 @@ struct StoryCreationFlow: View {
         case .mode:
             StoryModeStep(
                 modes: allowedModes,
+                childName: profile?.name ?? "",
+                childColor: profile?.mpColor,
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
@@ -224,24 +241,27 @@ struct StoryCreationFlow: View {
             }
         case .companion:
             CompanionStep(
-                ideaID: chosenIdeaID, mode: chosenMode, age: age, source: source,
+                ideaID: chosenIdeaID, mode: chosenMode, age: age, childName: profile?.name ?? "",
+                childColor: profile?.mpColor, source: source,
                 familyCharacters: familyCharacters,
                 availableRelations: familyRelations,
                 selectedFamilyID: $chosenFamilyID,
                 // Free text is a parent's surface: in child mode the child
                 // picks from the characters the parent made, and cannot type.
-                onAddFamily: app.isParentMode ? { showsFamilyEditor = true } : nil
+                onAddFamily: app.isParentMode ? { showsFamilyEditor = true } : nil,
+                onChangeMode: { goBack() }
             ) { companionID in
                 chosenCompanionID = companionID
                 begin()
             }
         case .preparing:
-            StoryPreparationView()
-        case .cover(let story):
-            StoryCoverView(story: story, childName: profile?.name ?? "") {
-                phase = .reading(story)
-            }
-            .transition(.opacity)
+            StoryPreparationView(
+                childName: profile?.name ?? "",
+                modeTitle: chosenMode?.title,
+                story: preparedStory,
+                onRead: { if let story = preparedStory { phase = .reading(story) } },
+                onCancel: { dismiss() }
+            )
 
         case .reading(let story):
             // Yeni yapılmış masal her zaman ilk sayfadan açılır.
@@ -315,6 +335,7 @@ struct StoryCreationFlow: View {
 
     private func begin() {
         guard let profile else { return dismiss() }
+        preparedStory = nil
         phase = .preparing
 
         Task {
@@ -327,11 +348,9 @@ struct StoryCreationFlow: View {
                     companionID: chosenCompanionID,
                     family: chosenFamily
                 )
-                // Composition takes milliseconds. The pause is the transition
-                // doing its job (§19), not work being waited on — long enough
-                // to read one line, short enough not to be a spinner.
-                try? await Task.sleep(nanoseconds: 1_400_000_000)
-                phase = .cover(story)
+                // Composition takes milliseconds; the preparation screen runs
+                // its stages and offers "Masalı oku" once both are done.
+                preparedStory = story
             } catch {
                 // §29: the detail goes to the log, never to the parent.
                 print("❌ Hikâye üretilemedi: \(storyFailureDetail(error))")

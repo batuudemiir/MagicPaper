@@ -42,7 +42,6 @@ enum MPIconMap {
         "arrow.left": "arrow-left",
         "arrow.right": "arrow-right",
         "bell": "bell",
-        "pawprint": "bone",
         "bookmark": "book-marked",
         "book": "book-open",
         "cpu": "bot",
