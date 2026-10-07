@@ -73,7 +73,8 @@ final class CorpusKeyCoverageTests: XCTestCase {
         let enforced: Set<String> = [
             "castRoles", "conflictKinds", "register", "afterBeat", "afterClosing",
             "afterState", "settingTraits", "discoveryTraits",
-            "capabilityRequire", "capabilityForbid", "lengthClass"
+            "capabilityRequire", "capabilityForbid", "lengthClass",
+            "topics", "words"
         ]
         let unexercised = enforced.subtracting(declared).sorted()
         XCTAssertTrue(

@@ -34,6 +34,7 @@
     {
       "id": "setting_night_garden_001",
       "interests": ["nature"],
+      "topics": ["darkness"],
       "name": "Gece Bahçesi",
       "description": "Alçak bir kapısı olan, geceleri sessizleşen bir bahçe.",
       "tags": [
@@ -62,6 +63,7 @@
     {
       "id": "setting_cloud_mountain_001",
       "interests": ["nature"],
+      "topics": ["heights", "weather"],
       "name": "Bulut Dağı",
       "description": "Yolu taşlı, tepesi bulutlara değen bir dağ.",
       "tags": [
@@ -2753,6 +2755,43 @@
     { "id": "robots", "name": "Robotlar", "symbol": "cpu" },
     { "id": "sports", "name": "Spor", "symbol": "soccerball" },
     { "id": "pirates", "name": "Korsanlar", "symbol": "sailboat" }
+  ],
+  "safetyTopics": [
+    { "id": "darkness", "name": "Karanlık", "summary": "Karanlık ve loş yerler geçmez." },
+    { "id": "alone", "name": "Yalnız kalmak", "summary": "Bir karakterin tek başına ve korkmuş kaldığı anlar geçmez." },
+    { "id": "fear", "name": "Korkmak", "summary": "Bir karakterin korktuğunu söylediği anlar geçmez." },
+    { "id": "weather", "name": "Fırtına ve sert hava", "summary": "Sert rüzgâr ve hava olayları geçmez." },
+    { "id": "heights", "name": "Yükseklik", "summary": "Yüksek ve sarp yerler geçmez." }
+  ],
+  "glossary": [
+    { "id": "w56_siper", "term": "siper etmek", "forms": ["siper"], "meaning": "Bir şeyi korumak için önüne elini ya da başka bir şeyi tutmak.", "bands": ["5-6"] },
+    { "id": "w56_ihtimal", "term": "ihtimal", "meaning": "Olabilecek bir şey, belki olur belki olmaz.", "bands": ["5-6"] },
+    { "id": "w56_karincalanmak", "term": "karıncalanmak", "forms": ["karıncalan"], "meaning": "Elde ya da ayakta küçük küçük iğne batıyormuş gibi bir his.", "bands": ["5-6"] },
+    { "id": "w56_usulca", "term": "usulca", "meaning": "Yavaşça ve sessizce, kimseyi rahatsız etmeden.", "bands": ["5-6"] },
+    { "id": "w56_apacik", "term": "apaçık", "meaning": "Çok net, kolayca görülen.", "bands": ["5-6"] },
+    { "id": "w56_sapasaglam", "term": "sapasağlam", "meaning": "Hiç kırılmamış, hiç zarar görmemiş.", "bands": ["5-6"] },
+    { "id": "w56_parilti", "term": "parıltı", "meaning": "Bir an görünen küçük, parlak ışık.", "bands": ["5-6"] },
+    { "id": "w56_isildamak", "term": "ışıldamak", "forms": ["ışılda", "ışıldı"], "meaning": "Hafif hafif ışık saçmak.", "bands": ["5-6"] },
+    { "id": "w56_kipirkipir", "term": "kıpır kıpır", "meaning": "Heyecandan yerinde duramayacak gibi olmak.", "bands": ["5-6"] },
+    { "id": "w56_sabir", "term": "sabır", "forms": ["sabır", "sabr"], "meaning": "Acele etmeden, kızmadan beklemeyi bilmek.", "bands": ["5-6"] },
+    { "id": "w56_bolusmek", "term": "bölüşmek", "forms": ["bölüş"], "meaning": "Bir şeyi ya da bir işi başkasıyla paylaşmak.", "bands": ["5-6"] },
+    { "id": "w56_kaynasmak", "term": "kaynaşmak", "forms": ["kaynaş"], "meaning": "Yeni tanıştığın biriyle çabucak arkadaş olmak.", "bands": ["5-6"] },
+    { "id": "w56_fisildamak", "term": "fısıldamak", "forms": ["fısılda"], "meaning": "Çok alçak sesle, neredeyse duyulmadan konuşmak.", "bands": ["5-6"] },
+    { "id": "w56_urkutmek", "term": "ürkütmek", "forms": ["ürküt"], "meaning": "Birini birden korkutup kaçmasına sebep olmak.", "bands": ["5-6"] },
+    { "id": "w56_vazgecmek", "term": "vazgeçmek", "forms": ["vazgeç"], "meaning": "Yapmak istediğin bir şeyi yapmaktan geri durmak.", "bands": ["5-6"] },
+    { "id": "w56_canlandirmak", "term": "kafasında canlandırmak", "forms": ["canlandır"], "meaning": "Bir şeyin nasıl olacağını gözünün önüne getirmek.", "bands": ["5-6"] },
+    { "id": "w56_comelmek", "term": "çömelmek", "forms": ["çömel"], "meaning": "Dizlerini kırıp yere yakın oturur gibi eğilmek.", "bands": ["5-6"] },
+    { "id": "w56_yanilmak", "term": "yanılmak", "forms": ["yanıl"], "meaning": "Bir şeyi yanlış sanmak.", "bands": ["5-6"] },
+    { "id": "w56_serin", "term": "serin", "meaning": "Biraz soğuk, ama üşütmeyen.", "bands": ["5-6"] },
+    { "id": "w56_yumusacik", "term": "yumuşacık", "meaning": "Dokununca çok yumuşak olan.", "bands": ["5-6"] },
+    { "id": "w34_comelmek", "term": "çömelmek", "forms": ["çömel"], "meaning": "Dizlerini kırıp yere yakın eğilmek.", "bands": ["3-4"] },
+    { "id": "w34_usulca", "term": "usulca", "meaning": "Yavaşça ve sessizce.", "bands": ["3-4"] },
+    { "id": "w34_fisildamak", "term": "fısıldamak", "forms": ["fısılda"], "meaning": "Çok alçak sesle konuşmak.", "bands": ["3-4"] },
+    { "id": "w34_yorgan", "term": "yorgan", "meaning": "Yatakta üstümüze örttüğümüz kalın örtü.", "bands": ["3-4"] },
+    { "id": "w34_sarilmak", "term": "sarılmak", "forms": ["sarıl"], "meaning": "Kollarınla birini sıkıca tutmak.", "bands": ["3-4"] },
+    { "id": "w34_sicacik", "term": "sıcacık", "meaning": "Çok sıcak ve rahat.", "bands": ["3-4"] },
+    { "id": "w34_yavasca", "term": "yavaşça", "meaning": "Acele etmeden, ağır ağır.", "bands": ["3-4"] },
+    { "id": "w34_sessiz", "term": "sessiz", "meaning": "Hiç ses çıkarmayan.", "bands": ["3-4"] }
   ],
   "series": {
     "editorialNote": "FAZ 13 seri katmanı. Devam bölümleri yalnızca buradaki blueprint'lerle yazılır; tek seferlik masal bunları göremez. Her bölüm aynı yerde, aynı yol arkadaşıyla geçer, ilk masalın bulduğu şeyi (keepsake) hatırlar ve yeni bir şey bulur. Masal ailem karakteri bölümün açılışında (revisit) ve kapanışında yer alır.",

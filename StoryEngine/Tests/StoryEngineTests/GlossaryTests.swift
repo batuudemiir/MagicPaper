@@ -133,8 +133,37 @@ final class GlossaryTests: XCTestCase {
                 let after = try? OfflineStoryComposer().compose(catalog: catalog, intent: intent)
                 XCTAssertEqual(before?.fingerprint, after?.fingerprint)
                 XCTAssertEqual(before?.pages.map(\.text), after?.pages.map(\.text))
-                XCTAssertTrue(before?.pages.allSatisfy { $0.words.isEmpty } ?? true)
             }
+        }
+    }
+
+    /// The shipped corpus teaches words (FAZ 17 content, 7 Ekim 2026): a
+    /// handful of books in each band carry at least one, and every one sits
+    /// where the page says it.
+    func testShippedStoriesTeachWords() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let available = Set(catalog.blueprints.filter(\.isBeatAuthored).map(\.ageRange))
+        for band in available {
+            var taught = 0
+            for mode in BlueprintSelector().availableModes(catalog: catalog, ageBand: band) {
+                for seed in ["a", "b", "c", "d", "e", "f"] {
+                    guard let story = try? OfflineStoryComposer().compose(catalog: catalog, intent: OfflineStoryIntent(
+                        childName: "Yeliz", seed: seed, mode: mode, ageBand: band)) else { continue }
+                    for page in story.pages {
+                        let characters = Array(page.text)
+                        for word in page.words {
+                            taught += 1
+                            let slice = String(characters[word.start..<(word.start + word.length)])
+                            let entry = try XCTUnwrap(catalog.glossaryEntry(word.glossaryID))
+                            XCTAssertTrue(entry.suits(band: band))
+                            XCTAssertTrue(entry.forms.contains {
+                                slice.lowercased(with: Self.locale).hasPrefix($0)
+                            }, "'\(slice)' for \(entry.id)")
+                        }
+                    }
+                }
+            }
+            XCTAssertGreaterThan(taught, 0, "no word taught in \(band)")
         }
     }
 
