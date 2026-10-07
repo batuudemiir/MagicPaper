@@ -1001,6 +1001,93 @@ def check_interest_vocabulary(corpus, report) -> None:
     report.note(f"interest vocabulary: {len(known)} words, {tagged} tagged records")
 
 
+# Safety topics that must never be a choice (FAZ 17): no story tells of them,
+# and offering one would suggest some story does. The same list as
+# `CatalogIntegrityChecker.forbiddenSafetyTopics` in the engine.
+FORBIDDEN_SAFETY_TOPICS = ("death", "loss", "olum", "ölüm", "kayip", "kayıp")
+
+
+def _all_line_files() -> list[tuple[str, dict]]:
+    """Every beat file a story can read lines from: 5-6, 3-4 and series."""
+    files = []
+    for folder in (CORPUS, AGE3_CORPUS, SERIES_CORPUS):
+        for path in sorted(folder.glob("*.json")):
+            files.append((f"{folder.name}/{path.name}", json.loads(path.read_text(encoding="utf-8"))))
+    return files
+
+
+def check_safety_topics(corpus, report) -> None:
+    """
+    Every safety topic content is tagged with must be defined (FAZ 17). An
+    undefined topic is never avoided, so the parent's choice silently does
+    nothing for that line. "Ölüm ve kayıp" is never a topic.
+    """
+    library = _pilot_library()
+    if library is None:
+        report.note("safety check skipped: no pilot library")
+        return
+    defined = [t.get("id", "").lower() for t in library.get("safetyTopics", [])]
+    for topic in sorted({t for t in defined if defined.count(t) > 1}):
+        report.fail(f"safety topic '{topic}' is defined more than once")
+    for topic in defined:
+        if topic in FORBIDDEN_SAFETY_TOPICS:
+            report.fail(f"safety topic '{topic}' is not a choice: no story tells of it")
+    known = set(defined)
+    tagged = 0
+    for axis in ("settings", "companions", "objects", "blueprints"):
+        for record in library.get(axis, []):
+            for topic in record.get("topics", []):
+                tagged += 1
+                if topic.lower() not in known:
+                    report.fail(f"{record.get('id')}: topic '{topic}' is not in the safety vocabulary")
+    for name, beat_file in _all_line_files():
+        for variant in beat_file.get("variants", []):
+            for topic in variant.get("topics", []):
+                tagged += 1
+                if topic.lower() not in known:
+                    report.fail(f"{name} {variant.get('id')}: topic '{topic}' is not in the safety vocabulary")
+    report.note(f"safety vocabulary: {len(known)} topics, {tagged} tags")
+
+
+def check_glossary_words(corpus, report) -> None:
+    """
+    A line that teaches a word must name a glossary entry, and say the word
+    (FAZ 17). Otherwise the reader has nothing to highlight and the tag is lost.
+    The word is matched like the engine does: a form at the start of a word,
+    Turkish case folded.
+    """
+    library = _pilot_library()
+    if library is None:
+        report.note("glossary check skipped: no pilot library")
+        return
+    entries = {}
+    for entry in library.get("glossary", []):
+        if entry.get("id") in entries:
+            report.fail(f"glossary entry '{entry.get('id')}' is defined more than once")
+        if not str(entry.get("meaning", "")).strip():
+            report.fail(f"glossary entry '{entry.get('id')}' has no meaning")
+        entries[entry.get("id")] = entry
+
+    def fold(text: str) -> str:
+        return text.replace("I", "ı").replace("İ", "i").lower()
+
+    taught = 0
+    for name, beat_file in _all_line_files():
+        for variant in beat_file.get("variants", []):
+            for word in variant.get("words", []):
+                taught += 1
+                entry = entries.get(word)
+                if entry is None:
+                    report.fail(f"{name} {variant.get('id')}: word '{word}' is not in the glossary")
+                    continue
+                forms = [fold(f) for f in (entry.get("forms") or [entry.get("term", "")]) if f]
+                text = fold(variant.get("text", ""))
+                if not any(re.search(r"(?<![a-zçğıöşüâîû])" + re.escape(f), text) for f in forms):
+                    report.fail(f"{name} {variant.get('id')}: teaches '{entry.get('term')}' "
+                                f"but does not say it")
+    report.note(f"glossary: {len(entries)} words, {taught} taught on lines")
+
+
 # --- main -------------------------------------------------------------------
 
 def main() -> int:
@@ -1046,6 +1133,8 @@ def main() -> int:
         lambda: check_conjunctions(corpus, report),
         lambda: check_deferrals_still_hold(corpus, report),
         lambda: check_interest_vocabulary(corpus, report),
+        lambda: check_safety_topics(corpus, report),
+        lambda: check_glossary_words(corpus, report),
         lambda: check_series_lines(report),
     ]
     for gate in gates:

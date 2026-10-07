@@ -36,6 +36,12 @@ public struct ContentCatalog: Decodable, Sendable {
     /// "Neleri sever?" and content can be tagged with. Authored, not coded —
     /// which words are *shown* is decided by coverage, not by this list.
     public let interests: [CatalogInterest]
+    /// Topics a parent can ask stories to avoid (FAZ 17). Authored like the
+    /// interests: a new topic is a catalog edit.
+    public let safetyTopics: [CatalogSafetyTopic]
+    /// Words stories teach, with their meanings (FAZ 17). Lines refer to
+    /// entries by id (`CatalogVariant.words`).
+    public let glossary: [CatalogGlossaryEntry]
     /// Everything only a series episode uses (FAZ 13). Kept out of
     /// `blueprints` and `templates` so no standalone story can reach it, and
     /// every book written before the series existed stays the same book.
@@ -55,6 +61,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case storyModes
         case familyMoments, familyAnimalKinds
         case interests
+        case safetyTopics, glossary
         case series
         case resolutions
     }
@@ -76,6 +83,8 @@ public struct ContentCatalog: Decodable, Sendable {
         familyAnimalKinds = try container.decodeIfPresent(
             [CatalogFamilyAnimalKind].self, forKey: .familyAnimalKinds) ?? []
         interests = try container.decodeIfPresent([CatalogInterest].self, forKey: .interests) ?? []
+        safetyTopics = try container.decodeIfPresent([CatalogSafetyTopic].self, forKey: .safetyTopics) ?? []
+        glossary = try container.decodeIfPresent([CatalogGlossaryEntry].self, forKey: .glossary) ?? []
         series = try container.decodeIfPresent(SeriesCatalog.self, forKey: .series) ?? SeriesCatalog()
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
@@ -95,6 +104,8 @@ public struct ContentCatalog: Decodable, Sendable {
         familyMoments: [StoryBeat] = [],
         familyAnimalKinds: [CatalogFamilyAnimalKind] = [],
         interests: [CatalogInterest] = [],
+        safetyTopics: [CatalogSafetyTopic] = [],
+        glossary: [CatalogGlossaryEntry] = [],
         series: SeriesCatalog = SeriesCatalog(),
         declaredResolutionCount: Int = 0
     ) {
@@ -112,6 +123,8 @@ public struct ContentCatalog: Decodable, Sendable {
         self.familyMoments = familyMoments
         self.familyAnimalKinds = familyAnimalKinds
         self.interests = interests
+        self.safetyTopics = safetyTopics
+        self.glossary = glossary
         self.series = series
         self.declaredResolutionCount = declaredResolutionCount
     }
@@ -127,6 +140,8 @@ public struct ContentCatalog: Decodable, Sendable {
         familyAnimalKinds.first { $0.id == id }
     }
     public func interest(_ id: InterestTag) -> CatalogInterest? { interests.first { $0.id == id } }
+    public func safetyTopic(_ id: SafetyTopic) -> CatalogSafetyTopic? { safetyTopics.first { $0.id == id } }
+    public func glossaryEntry(_ id: ContentID) -> CatalogGlossaryEntry? { glossary.first { $0.id == id } }
     public func templates(for role: PageRole) -> [CatalogTemplate] { templates.filter { $0.role == role } }
 
     /// Every setting tag in the catalog — the vocabulary other records may
@@ -285,6 +300,8 @@ extension ContentCatalog {
             },
             familyAnimalKinds: catalogs.flatMap(\.familyAnimalKinds),
             interests: catalogs.flatMap(\.interests),
+            safetyTopics: catalogs.flatMap(\.safetyTopics),
+            glossary: catalogs.flatMap(\.glossary),
             series: SeriesCatalog.merging(catalogs.map(\.series)),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
@@ -299,7 +316,7 @@ extension ContentCatalog {
             events: events, challenges: challenges, endings: endings, templates: templates,
             blueprints: blueprints, storyIdeas: storyIdeas, storyModes: storyModes,
             familyMoments: familyMoments, familyAnimalKinds: familyAnimalKinds,
-            interests: interests, series: series,
+            interests: interests, safetyTopics: safetyTopics, glossary: glossary, series: series,
             declaredResolutionCount: declaredResolutionCount)
     }
 }
