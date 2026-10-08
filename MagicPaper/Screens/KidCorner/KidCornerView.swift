@@ -12,6 +12,7 @@ struct KidCornerView: View {
     @StateObject private var streak = MPStreak.shared
     @State private var earned: [MPMilestone] = []
     @State private var familyNames: [String] = []
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private var profile: UserProfile? { profileManager.currentProfile }
 
@@ -140,7 +141,8 @@ struct KidCornerView: View {
                     .mpText(.body).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             } else {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3),
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+                                         count: typeSize.isAccessibilitySize ? 1 : 3),
                           spacing: MPSpacing.md) {
                     ForEach(earned) { badge in
                         MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone)

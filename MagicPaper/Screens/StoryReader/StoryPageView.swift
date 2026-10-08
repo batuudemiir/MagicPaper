@@ -23,13 +23,15 @@ struct StoryPageView: View {
     var decoration: StoryDecorationContext? = nil
     /// Geliştirici katmanı.
     var showsDecorationDebug: Bool = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ZStack {
             ReaderPaper(theme: theme)
 
             // Süsleme kâğıdın üstünde, metnin altında: okuma her zaman önde.
-            if let decoration {
+            // En büyük yazı boyutlarında metin sayfayı doldurur; süs çizilmez.
+            if let decoration, !typeSize.isAccessibilitySize {
                 StoryPageDecorationLayer(
                     context: decoration,
                     tint: theme.muted,

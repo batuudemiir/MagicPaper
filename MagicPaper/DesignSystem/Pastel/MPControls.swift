@@ -51,9 +51,12 @@ struct MPSegmented<Value: Hashable>: View {
     var selectedFill: Color = MPColor.actionPrimary
     var selectedText: Color = MPColor.textOnAction
     var text: Color = MPColor.textPrimary
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        HStack(spacing: MPSpacing.xxs) {
+        // En büyük yazı boyutlarında seçenekler alt alta: kelime bölünmez.
+        (typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: MPSpacing.xxs))
+                                      : AnyLayout(HStackLayout(spacing: MPSpacing.xxs))) {
             ForEach(options, id: \.0) { value, label in
                 let on = value == selection
                 Button { withAnimation(MPMotion.spring) { selection = value } } label: {
