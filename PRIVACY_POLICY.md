@@ -1,11 +1,14 @@
 # Gizlilik Politikası - MagicPaper
 
-**Son Güncelleme**: 6 Ekim 2026
-**Versiyon**: 2.0
+**Son Güncelleme**: 8 Ekim 2026
+**Versiyon**: 2.1 (taslak)
 
 > Hukuki gözden geçirme bekliyor. Bu sürüm, uygulamanın Ekim 2026'daki gerçek davranışını anlatmak için
 > FAZ 16'da yeniden yazıldı (ebeveyn hesabı, senkron, anonim okuma bilgisi, uzaktan içerik). Yayından önce
 > KVKK danışmanı tarafından onaylanmalı; Firestore bölgesi ve yurt dışı aktarım bölümü buna bağlı.
+>
+> 2.1 taslağı FAZ 18'in aile özelliklerini ekler (Kendi sesin, Aile üyeleri, Aileyle paylaş, Haftalık özet).
+> Bu özellikler yayında bayrakla kapalıdır; bayrak açılmadan önce bu sürüm onaylanmış olmalıdır.
 
 ## Giriş
 
@@ -23,8 +26,10 @@ yapay zekâ servisine gönderilmez.
 Uygulama, ebeveynin Apple ile Giriş Yap ya da Google ile giriş yapmasını ister.
 
 - **Saklanan**: Firebase Authentication'ın verdiği hesap kimliği ve giriş yöntemi (Apple ya da Google).
-- **Saklanmayan**: Apple ile girişte ad ve e-posta istenmez. Google ile girişte Google'ın döndürdüğü ad ve
-  e-posta MagicPaper tarafından saklanmaz; giriş hizmetini veren Google/Firebase kendi kayıtlarını tutar.
+- **E-posta**: Apple ile girişte ad istenmez, e-posta istenir (Apple gizli aktarma adresi de verebilir);
+  Google ile girişte e-posta Google'dan gelir. E-posta giriş hizmetinde (Firebase Authentication) durur.
+  MagicPaper onu yalnızca ebeveyn Haftalık özeti açarsa kullanır (aşağıda, 5. madde).
+- Ad saklanmaz.
 
 ### 2. Ebeveynin girdiği çocuk bilgileri
 
@@ -33,7 +38,7 @@ Uygulama, ebeveynin Apple ile Giriş Yap ya da Google ile giriş yapmasını ist
 - Kitap karakteri seçimleri (hazır parçalardan; fotoğraf değil)
 - Masal ailem: ebeveynin eklediği karakter adları ve ilişki türü (kardeş, arkadaş, hayvan, hayali varlık)
 
-**Toplanmayanlar**: Çocuk fotoğrafı hiçbir yere gönderilmez. Ses kaydı yapılmaz. Cinsiyet sorulmaz.
+**Toplanmayanlar**: Çocuk fotoğrafı hiçbir yere gönderilmez. Çocuğun sesi kaydedilmez. Cinsiyet sorulmaz.
 
 ### 3. Uygulamanın ürettiği bilgiler
 
@@ -56,7 +61,27 @@ bitirilmediği, tekrar okunup okunmadığı ve gün (saat yok).
 - Ayarlar > Gizlilik ve veri'den istenildiği an kapatılabilir; kapatınca gönderilmeyi bekleyenler silinir.
 - Amaç: hangi masal yapılarının bitirildiğini ve tekrar okunduğunu görerek masalları iyileştirmek.
 
-### 5. Otomatik bilgiler
+### 5. Aile özellikleri (ebeveyn açarsa)
+
+- **Kendi sesin**: Ebeveyn masal sayfalarını kendi sesiyle kaydedebilir. Kayıttan önce ayrı bir açık
+  rıza istenir (kaydeden her yetişkinden bir kez; sürümü ve tarihi hesapta saklanır). Kayıtlar cihazda ve
+  ailenin hesabında (Firebase Storage) saklanır, yalnızca ailenin yetişkinlerinin hesaplarıyla açılır.
+  Ebeveyn sesli bir paylaşım bağlantısı oluşturmadıkça başka hiçbir yerde açılmaz. Reklam, analiz ya da
+  yapay zekâ eğitimi için kullanılmaz. Rızayı geri çekmek o yetişkinin bütün kayıtlarını siler.
+- **Aile üyeleri**: Ailenin kurucusu başka yetişkinleri bir davet koduyla ekleyebilir. Her üyenin hesap
+  kimliği, rolü (ebeveyn ya da sadece okuma) ve kendi yazdığı görünen adı ailenin hesabında saklanır.
+  Üyeler ailenin masallarını ve okuma ilerlemesini görür; sadece okuma rolündekiler hiçbir şeyi değiştiremez.
+- **Aileyle paylaş**: Ebeveyn seçtiği masallar için süreli (1, 7 ya da 30 gün), salt okuma bir bağlantı
+  oluşturabilir. Bağlantıyı bilen herkes süre bitene kadar çocuğun **yalnızca adını ve masal metnini**
+  (sesli paylaşımda ebeveynin ses kayıtlarını da) görür; yaş, profil, hesap ya da başka masal görünmez.
+  Bağlantının kime gönderildiği yalnızca ailenin kendi listesinde durur. Süre dolunca bağlantı kapanır ve
+  kopyalar silinir; ebeveyn istediği an kapatabilir.
+- **Haftalık özet e-postası**: Varsayılan kapalıdır. Kurucu açarsa hesabının doğrulanmış e-postasına
+  Pazar sabahları kısa bir özet gider: çocuğun adı ve o hafta okunan, yazılan masal ve kazanılan rozet
+  sayısı. Masal metni gönderilmez; o hafta okuma olmadıysa e-posta gönderilmez. Her e-postada tek tıkla
+  kapatma bağlantısı vardır.
+
+### 6. Otomatik bilgiler
 
 - Uygulama Firebase Analytics, reklam kimliği (IDFA) ya da çökme raporlama (Crashlytics) **kullanmaz**.
 - Uygulama, günün masalını ve içerik paketlerini Firebase Hosting'den indirir. Bu isteklerde hesap ya da
@@ -68,6 +93,8 @@ bitirilmediği, tekrar okunup okunmadığı ve gün (saat yok).
 - Kütüphaneyi, serileri ve okuma ilerlemesini saklamak; telefon değişse de kaybolmamasını sağlamak
 - Sıradaki masalı seçerken çocuğun kendi okuma geçmişini kullanmak (bu kayıt cihazdan çıkmaz)
 - Anonim okuma bilgisiyle masal içeriğini iyileştirmek (yalnızca açıksa)
+- Ebeveynin seçtiği aile özellikleri: kendi sesiyle okuma, aile üyeleriyle ve paylaşım bağlantısıyla
+  okuma, haftalık özet (yalnızca açıksa)
 
 Bilgiler reklam, profil çıkarma ya da pazarlama için kullanılmaz ve satılmaz.
 
@@ -82,11 +109,18 @@ Profiller, masallar, seriler, okuma ilerlemesi ve tercihler cihazda, iOS dosya k
 ve ebeveyn onayı kaydı (onay metninin sürümü ve tarihi). Bu belgeler yalnızca o ebeveynin hesabıyla
 okunup yazılabilir; güvenlik kuralları başka hiçbir hesabın erişimine izin vermez.
 
+Aile özellikleri açıksa ayrıca: aile üyeleri ve rolleri, davet kodları (7 gün), ses kaydı rızaları,
+paylaşım bağlantılarının listesi ve haftalık özet ayarı (e-posta adresiyle). Ses kayıtları ve sesli
+paylaşım kopyaları Firebase Storage'da. Paylaşım bağlantısı belgesi (çocuğun adı ve masal metni) süre
+bitene kadar bağlantıyı bilen herkese açıktır.
+
 Silinen bir masal ya da profil sunucuda içeriği olmayan bir iz olarak kalır (diğer cihazların da silmesi
 için); izde ad ya da metin bulunmaz.
 
 ### Saklama süresi
 - Ebeveyn hesabındaki bilgiler, ebeveyn hesabı silinene kadar saklanır.
+- Paylaşım bağlantıları ve sesli paylaşım kopyaları süre dolunca (en geç 31 gün) silinir.
+- Kullanılmayan davet kodları 7 günde geçersiz olur.
 - Anonim okuma bilgisi kimseye bağlanmadığı için tek tek silinemez. Saklama süresi yayından önce
   belirlenecek *(karar bekliyor; Firestore TTL ile uygulanabilir)*.
 
@@ -94,9 +128,14 @@ için); izde ad ya da metin bulunmaz.
 
 Ayarlar > Gizlilik ve veri > **Hesabı sil**:
 1. Ebeveynden bir kez daha giriş yapması istenir (Apple ile girişte Apple bağlantısı da iptal edilir).
-2. Hesaptaki bütün belgeler (profiller, masallar, seriler, ilerleme, onay kaydı) sunucudan silinir.
+2. Hesaptaki bütün belgeler (profiller, masallar, seriler, ilerleme, onay kaydı), ses kayıtları,
+   paylaşım bağlantıları, aile üyelikleri, davetler ve haftalık özet ayarı sunucudan silinir. Aileye
+   davetle katılan üyelerin erişimi kapanır.
 3. Giriş hesabı silinir.
 4. Cihazdaki bütün aile verisi silinir.
+
+Aileye davetle katılmış bir üye hesabını silerse yalnızca kendi üyeliği ve ses kaydı rızası silinir;
+ailenin masalları kurucunun hesabında kalır.
 
 **Çıkış yap** ise yalnızca bu cihazdaki verileri kaldırır; hesaptaki bilgiler kalır ve tekrar giriş
 yapınca geri gelir.
@@ -114,8 +153,11 @@ yapınca geri gelir.
 | Servis | Ne için | Ne gider |
 |---|---|---|
 | Firebase Authentication (Google) | Ebeveyn girişi | Apple/Google giriş belirteci |
-| Cloud Firestore (Google) | Ebeveyn hesabındaki veriler, anonim okuma bilgisi | Yukarıda "Ebeveyn hesabında" ve "Anonim okuma bilgisi" |
-| Firebase Hosting (Google) | Günün masalı ve içerik paketleri | Kişisel bilgi yok (IP adresi) |
+| Cloud Firestore (Google) | Ebeveyn hesabındaki veriler, anonim okuma bilgisi, paylaşım bağlantıları | Yukarıda "Ebeveyn hesabında" ve "Anonim okuma bilgisi" |
+| Firebase Storage (Google) | Ebeveynin ses kayıtları (açıksa) | Ses dosyaları |
+| Firebase Hosting (Google) | Günün masalı, içerik paketleri, paylaşım bağlantısının web okuyucusu | Kişisel bilgi yok (IP adresi); okuyucu bağlantıdaki adı ve metni gösterir |
+| Cloud Functions (Google) | Haftalık özetin hazırlanması, süresi dolan bağlantıların silinmesi | Ailenin kayıtları Google içinde işlenir |
+| Resend | Haftalık özet e-postasının gönderimi (açıksa) | E-posta adresi, çocuğun adı ve haftanın sayıları |
 | Apple ile Giriş Yap / Google ile giriş | Kimlik doğrulama | Apple/Google'ın kendi giriş akışı |
 | Apple App Store / RevenueCat | Abonelik | Ödeme bilgilerini görmeyiz |
 
@@ -149,5 +191,5 @@ talepler için aşağıdaki adrese yazabilirsiniz; talepler en geç 30 gün içi
 
 ---
 
-**Son Güncelleme**: 6 Ekim 2026
-**Versiyon**: 2.0
+**Son Güncelleme**: 8 Ekim 2026
+**Versiyon**: 2.1 (taslak)

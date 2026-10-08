@@ -230,6 +230,8 @@ struct FamilyMembersView: View {
     private func remove(_ member: FamilyMember) async {
         guard let familyID = account.familyID else { return }
         do {
+            // Çıkarılan yetişkinin sesi ailede kalmaz.
+            VoiceRecordingStore.shared.deleteAll(recordedBy: member.uid)
             try await account.directory.remove(uid: member.uid, from: familyID)
             app.showToast("\(member.displayName) aileden çıkarıldı", symbol: "person")
             await load()
@@ -429,7 +431,7 @@ struct JoinFamilySheet: View {
                                 text: Binding(get: { name }, set: { name = String($0.prefix(40)) }))
                     if hasOwnData {
                         MPNotice(kind: .warning,
-                                 text: "Bu hesabın kendi masalları ve çocuk profilleri silinir. Bir hesap tek bir ailede olabilir.",
+                                 text: "Bu hesabın kendi ailesi silinir: masallar, çocuk profilleri, ses kayıtları, paylaşım bağlantıları; davet ettiğin yetişkinler de aileden çıkar. Bir hesap tek bir ailede olabilir.",
                                  systemImage: "exclamationmark.triangle")
                     }
                 } else {
@@ -464,7 +466,7 @@ struct JoinFamilySheet: View {
             Button("Sil ve katıl", role: .destructive) { Task { await join() } }
             Button("Vazgeç", role: .cancel) {}
         } message: {
-            Text("Bu hesaptaki masallar ve çocuk profilleri sunucudan ve bu cihazdan silinir. Bu işlem geri alınamaz.")
+            Text("Bu hesabın ailesindeki her şey sunucudan ve bu cihazdan silinir, davet ettiğin yetişkinlerin erişimi kapanır. Bu işlem geri alınamaz.")
         }
         .onAppear {
             if let initialCode, code.isEmpty {
@@ -476,9 +478,9 @@ struct JoinFamilySheet: View {
 
     private var trimmedName: String { name.trimmingCharacters(in: .whitespacesAndNewlines) }
 
-    private var hasOwnData: Bool {
-        account.isFounder && (!profileManager.profiles.isEmpty || !storyManager.stories.isEmpty)
-    }
+    /// Kurucuya her zaman sorulur: sunucuda yalnızca orada duran veri (ses,
+    /// paylaşım, üyeler) olabilir; cihaz boş diye ailesi boş değildir.
+    private var hasOwnData: Bool { account.isFounder }
 
     private func lookUp() async {
         guard let normalized = FamilyInviteCode.normalize(code) else { return }

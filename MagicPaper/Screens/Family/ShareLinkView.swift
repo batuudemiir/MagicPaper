@@ -177,7 +177,14 @@ struct ShareLinkView: View {
         let document = ShareDocument(
             familyID: familyID, childName: childName, stories: stories, voice: withVoice,
             expiresAt: Date().addingTimeInterval(TimeInterval(days) * 86_400),
-            recordedPages: { id in voices.recordings(for: id)?.pageIndexes.filter { voices.localFile(id, page: $0) != nil } ?? [] })
+            // Yalnızca paylaşanın kendi sesi: başka bir yetişkinin kaydı onun
+            // rızası olmadan bağlantıya girmez.
+            recordedPages: { id in
+                guard let set = voices.recordings(for: id) else { return [] }
+                return set.pageIndexes.filter { page in
+                    set.by?[String(page)] == uid && voices.localFile(id, page: page) != nil
+                }
+            })
         var files: [String: URL] = [:]
         for (index, story) in document.stories.enumerated() {
             let id = stories[index].id

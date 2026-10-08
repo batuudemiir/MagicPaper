@@ -163,7 +163,7 @@ struct VoiceRecordingView: View {
 
 enum VoiceCopy {
     /// Teslimdeki not, sesli paylaşım eklendiği için "sen paylaşmadıkça" ile.
-    static let privacy = "Kaydın yalnızca bu aile hesabında kullanılır; sen sesli bir paylaşım bağlantısı oluşturmadıkça başka bir yerde açılmaz. Ayarlar'dan istediğin an silebilirsin."
+    static let privacy = "Kaydın yalnızca bu aile hesabında kullanılır; sen sesli bir paylaşım bağlantısı oluşturmadıkça başka bir yerde açılmaz. Başka biri paylaşırken senin sesin bağlantıya girmez. Ayarlar'dan istediğin an silebilirsin."
 
     static func progress(_ set: VoiceRecordingSet?, pages: Int) -> String {
         let done = set?.pages.count ?? 0

@@ -147,7 +147,7 @@ final class FamilyMembershipTests: XCTestCase {
 
     // MARK: - Katıl, ayrıl
 
-    func testJoiningDeletesTheAccountsOwnFamilyFirst() async throws {
+    func testJoiningAcceptsFirstThenDeletesTheAccountsOwnFamily() async throws {
         let h = harness()
         try await h.service.signIn(with: .apple)
         await h.service.acceptConsent(shareUsageData: false)
@@ -160,10 +160,29 @@ final class FamilyMembershipTests: XCTestCase {
         let ownDeleted = await h.remotes["parent-1"]!.deletedEverything
         XCTAssertTrue(ownDeleted)
         let log = await h.directory.log
-        XCTAssertEqual(log, ["dissolve parent-1", "accept ABCDEFGH parent-1 Murat"])
+        XCTAssertEqual(log, ["accept ABCDEFGH parent-1 Murat", "dissolve parent-1"])
         XCTAssertEqual(h.erased(), [true], "the device's copy of the old family goes; onboarding stays")
         XCTAssertEqual(h.service.familyID, "founder")
         XCTAssertNotNil(h.service.consent)
+    }
+
+    func testAFailedAcceptDeletesNothing() async throws {
+        let directory = FakeFamilyDirectory()
+        await directory.setAcceptFails(true)
+        let h = harness(directory: directory)
+        try await h.service.signIn(with: .apple)
+        let invite = FamilyInvite(code: "ABCDEFGH", familyID: "founder", role: .parent, inviterName: "Batu",
+                                  expiresAt: Date().addingTimeInterval(3600))
+        do {
+            try await h.service.joinFamily(invite, displayName: "Murat")
+            XCTFail("expected a refusal")
+        } catch {}
+        let ownDeleted = await h.remotes["parent-1"]!.deletedEverything
+        XCTAssertFalse(ownDeleted, "a used or revoked invite never costs the account its own family")
+        let log = await directory.log
+        XCTAssertFalse(log.contains("dissolve parent-1"))
+        XCTAssertTrue(h.erased().isEmpty)
+        XCTAssertEqual(h.service.familyID, "parent-1")
     }
 
     func testAnExpiredInviteIsRefusedBeforeAnythingIsDeleted() async throws {
@@ -272,7 +291,10 @@ final class FamilyMembershipTests: XCTestCase {
 actor FakeFamilyDirectory: FamilyDirectory {
     private var memberships: [String: FamilyMembership] = [:]
     private var offline = false
+    private var acceptFails = false
     private(set) var log: [String] = []
+
+    func setAcceptFails(_ value: Bool) { acceptFails = value }
 
     func setMembership(_ membership: FamilyMembership?, for uid: String) { memberships[uid] = membership }
     func setOffline(_ value: Bool) { offline = value }
@@ -291,6 +313,7 @@ actor FakeFamilyDirectory: FamilyDirectory {
     func invite(code: String) async throws -> FamilyInvite? { nil }
     func deleteInvite(code: String) async throws {}
     func accept(_ invite: FamilyInvite, uid: String, displayName: String) async throws {
+        if acceptFails { throw AccountError.failed }
         log.append("accept \(invite.code) \(uid) \(displayName)")
         memberships[uid] = FamilyMembership(familyID: invite.familyID, role: invite.role)
     }

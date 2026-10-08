@@ -37,6 +37,7 @@ struct ContentView: View {
                 if let tab = MPDebugLaunch.startTab { app.tab = tab }
                 if MPDebugLaunch.startsInParent { app.unlockParent() }
                 if let tab = MPDebugLaunch.parentTab { app.parentTab = tab }
+                if let route = MPDebugLaunch.parentRoute { app.parentRoute = route }
             }
             #endif
             .task {

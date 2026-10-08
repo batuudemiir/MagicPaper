@@ -81,8 +81,8 @@ export const unsubscribe = onRequest({ region: REGION, secrets: [UNSUBSCRIBE_SEC
       '<form method="post"><button style="font-size:16px;font-weight:700;padding:14px 24px;border-radius:999px;border:0;background:#6A47B8;color:#fff">Özeti kapat</button></form>'));
     return;
   }
-  await getFirestore().collection('families').doc(familyID).collection('settings').doc('weeklyEmail')
-    .set({ enabled: false, updatedAt: Timestamp.now() }, { merge: true });
+  // Kapatınca adres de silinir.
+  await getFirestore().collection('families').doc(familyID).collection('settings').doc('weeklyEmail').delete();
   res.send(page('Haftalık özet kapatıldı',
     '<p>Bir daha gönderilmeyecek. İstersen uygulamanın ayarlarından yeniden açabilirsin.</p>'));
 });

@@ -1,8 +1,13 @@
 # Onay metni taslağı: Kendi sesin (FAZ 18)
 
-Durum: **taslak, uygulanmadı.** Hukuki gözden geçirme ve Batuhan'ın onayı bekliyor.
-Uygulamadaki metin (`ParentConsentText`, sürüm `2026-10-07`) hâlâ "Ses kaydı yapılmaz" diyor.
-Kendi sesin bugün yalnızca geliştirici bayrağının arkasında ve kayıtlar yalnızca cihazda.
+Durum: **taslak, hukuk bekliyor.** Uygulamadaki genel metin (`ParentConsentText`, sürüm `2026-10-07`)
+değişmedi.
+
+**8 Ekim güncellemesi (faz-18):** Seçenek B uygulandı, ama genel onayı yeniden sormak yerine **ayrı bir
+ses kaydı rızası** ile: kaydeden her yetişkin ilk kaydından önce `VoiceConsent.text`'i okuyup onaylar
+(`families/{fid}/voiceConsents/{uid}`, sürüm `voice-2026-10`). Kayıtlar cihazda ve ailenin Storage
+klasöründe; sesli paylaşım bağlantısıyla süreli olarak açılabilir. Mikrofon izni metni de buna göre
+güncellendi (Info.plist). Ayrıntı: `docs/FAMILY_FEATURES.md`. Aşağıdaki seçenekler kayıt için duruyor.
 
 ## Ne değişir
 

@@ -109,7 +109,8 @@ struct FirestoreFamilyRemote: FamilyRemote {
             for key in share.data()["audio"] as? [String] ?? [] {
                 try? await Storage.storage().reference(withPath: "shares/\(share.documentID)/\(key).m4a").delete()
             }
-            try? await db.collection("shares").document(share.documentID).delete()
+            // Açık belge silinemezse liste satırı da kalır: yeniden denenince bulunur.
+            try await db.collection("shares").document(share.documentID).delete()
             try await share.reference.delete()
         }
         for name in ["settings", "voiceConsents"] {

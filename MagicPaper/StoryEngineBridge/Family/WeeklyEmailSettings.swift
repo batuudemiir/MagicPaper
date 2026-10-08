@@ -22,6 +22,11 @@ struct FirestoreWeeklyEmailRemote: WeeklyEmailRemote {
     }
 
     func set(enabled: Bool, email: String, timeZone: String, familyID: String) async throws {
+        // Kapatınca adres de gider: kullanılmayan e-posta saklanmaz.
+        guard enabled else {
+            try await document(familyID).delete()
+            return
+        }
         try await document(familyID).setData([
             "enabled": enabled,
             "email": email,

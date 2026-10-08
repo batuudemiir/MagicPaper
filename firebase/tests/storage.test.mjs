@@ -8,7 +8,7 @@ import {
   assertSucceeds,
   assertFails,
 } from '@firebase/rules-unit-testing';
-import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getBytes, deleteObject, listAll } from 'firebase/storage';
 
 let env;
@@ -36,6 +36,9 @@ beforeEach(async () => {
     const db = ctx.firestore();
     await setDoc(doc(db, 'families', OWNER, 'members', MURAT), { role: 'parent', displayName: 'Murat' });
     await setDoc(doc(db, 'families', OWNER, 'members', NINE), { role: 'reader', displayName: 'Nine' });
+    for (const uid of [OWNER, MURAT, NINE, STRANGER]) {
+      await setDoc(doc(db, 'families', OWNER, 'voiceConsents', uid), { version: 'voice-2026-10' });
+    }
   });
 });
 
@@ -95,6 +98,14 @@ test('ebeveyn siler, sadece okuma silemez; kurucu klasörü listeleyip boşaltı
     for (const item of inner.items) await assertSucceeds(deleteObject(item));
   }
   await assertFails(listAll(ref(storage(STRANGER), `families/${OWNER}/voice`)));
+});
+
+test('ses kaydı rızası sunucuda yoksa kayıt yüklenmez', async () => {
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await deleteDoc(doc(ctx.firestore(), 'families', OWNER, 'voiceConsents', MURAT));
+  });
+  await assertFails(uploadBytes(ref(storage(MURAT), voicePath(5)), audio, asAudio));
+  await assertSucceeds(uploadBytes(ref(storage(OWNER), voicePath(5)), audio, asAudio));
 });
 
 test('başka bir ailenin klasörü kapalı', async () => {

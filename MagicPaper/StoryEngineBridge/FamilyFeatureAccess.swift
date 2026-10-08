@@ -31,7 +31,8 @@ enum FamilyFeatureAccess {
     /// DEBUG'da geliştirici ayarı (varsayılan kapalı), Release'te hep kapalı.
     static func isEnabled(_ feature: FamilyFeature, defaults: UserDefaults = .standard) -> Bool {
         #if DEBUG
-        return defaults.object(forKey: key(feature)) as? Bool ?? false
+        // `bool(forKey:)`: başlatma argümanı (`-mp_dev_family_x YES`) metin olarak gelir.
+        return defaults.bool(forKey: key(feature))
         #else
         return false
         #endif

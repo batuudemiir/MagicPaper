@@ -141,12 +141,21 @@ final class AccountService: ObservableObject {
     func joinFamily(_ invite: FamilyInvite, displayName: String) async throws {
         guard let account else { throw AccountError.failed }
         guard invite.isValid() else { throw AccountError.failed }
-        if isFounder {
-            try await directory.dissolve(familyID: account.uid)
-            try await makeRemote(account.uid).deleteEverything()
-        }
+        let wasFounder = isFounder
+        // Önce katıl: davet geçersiz ya da bağlantı yoksa hiçbir şey silinmemiş olur.
         try await directory.accept(invite, uid: account.uid, displayName: displayName)
         sync.stop()
+        if wasFounder {
+            // Hesabın eski ailesi: sahibi hâlâ bu hesap (kurallar uid'e bakar).
+            // Yarım kalırsa veriler sunucuda kalır ama hiçbir şey bozulmaz;
+            // kullanıcı hesabı silerek temizleyebilir.
+            do {
+                try await directory.dissolve(familyID: account.uid)
+                try await makeRemote(account.uid).deleteEverything()
+            } catch {
+                logger.notice("Eski aile tamamen silinemedi")
+            }
+        }
         consent = nil
         eraseLocal(true)
         let joined = FamilyMembership(familyID: invite.familyID, role: invite.role)
@@ -161,6 +170,7 @@ final class AccountService: ObservableObject {
     /// The account then founds its own, empty family.
     func leaveFamily() async throws {
         guard let account, let membership, !membership.isFounder else { throw AccountError.failed }
+        await deleteOwnRecordings(uid: account.uid)
         try await directory.remove(uid: account.uid, from: membership.familyID)
         sync.stop()
         consent = nil
@@ -168,6 +178,13 @@ final class AccountService: ObservableObject {
         self.membership = .founder(account.uid)
         membershipCache.save(.founder(account.uid), for: account.uid)
         await lookUpConsent(for: account.uid)
+    }
+
+    /// Ayrılan ya da hesabını silen üyenin sesi ailede kalmaz (rıza metni).
+    private func deleteOwnRecordings(uid: String) async {
+        guard canWriteFamily else { return }
+        VoiceRecordingStore.shared.deleteAll(recordedBy: uid)
+        await VoiceRecordingStore.shared.flush()
     }
 
     // MARK: - Launch
@@ -312,6 +329,7 @@ final class AccountService: ObservableObject {
                 try await directory.dissolve(familyID: account.uid)
                 try await makeRemote(account.uid).deleteEverything()
             } else {
+                await deleteOwnRecordings(uid: account.uid)
                 try await directory.remove(uid: account.uid, from: membership.familyID)
             }
             progress(.deletingAccount)

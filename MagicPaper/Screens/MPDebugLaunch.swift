@@ -9,6 +9,7 @@ import Foundation
 /// - `mpStartParent`: uygulama ebeveyn alanında açılır.
 /// - `mpStartTab`: `home` ya da `library`.
 /// - `mpParentTab`: `overview`, `safety` ya da `settings`.
+/// - `mpParentRoute`: ebeveyn alt sayfası, ör. `bookExport`, `familyMembers` (FAZ 18).
 enum MPDebugLaunch {
     private static var defaults: UserDefaults { .standard }
 
@@ -16,6 +17,7 @@ enum MPDebugLaunch {
     static var startsInParent: Bool { defaults.bool(forKey: "mpStartParent") }
     static var startTab: MPTab? { defaults.string(forKey: "mpStartTab").flatMap(MPTab.init(rawValue:)) }
     static var parentTab: MPParentTab? { defaults.string(forKey: "mpParentTab").flatMap(MPParentTab.init(rawValue:)) }
+    static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(rawValue:)) }
 
     @MainActor
     static func applyBeforeGate() {

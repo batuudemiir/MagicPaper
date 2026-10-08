@@ -39,28 +39,37 @@ service firebase.storage {
       return /databases/(default)/documents/shares/$(token);
     }
 
+    // Ses kaydı rızası (FAZ 18): kaydeden yetişkinin rızası sunucuda yoksa yükleme yok.
+    function voiceConsentGiven(fid) {
+      return firestore.exists(/databases/(default)/documents/families/$(fid)/voiceConsents/$(request.auth.uid));
+    }
+
+    // Paylaşım belgesi bir kez okunur (aynı istekte tekrarlanan get önbellekten gelir);
+    // belge yoksa get hata verir ve istek reddedilir.
+    function shareOpen(token) {
+      let d = firestore.get(shareDoc(token)).data;
+      return d.expiresAt > request.time && d.voice == true;
+    }
+
     match /families/{fid}/voice/{allPaths=**} {
       allow read: if canRead(fid);
     }
 
     match /families/{fid}/voice/{storyID}/{file} {
-      allow create, update: if canWrite(fid) && file.matches('^[0-9]{1,3}[.]m4a$') && validAudio();
+      allow create, update: if canWrite(fid) && voiceConsentGiven(fid)
+                            && file.matches('^[0-9]{1,3}[.]m4a$') && validAudio();
       allow delete: if canWrite(fid);
     }
 
     match /shares/{token}/{allPaths=**} {
-      allow get: if firestore.exists(shareDoc(token))
-                  && firestore.get(shareDoc(token)).data.expiresAt > request.time
-                  && firestore.get(shareDoc(token)).data.voice == true;
+      allow get: if shareOpen(token);
     }
 
     match /shares/{token}/{story}/{file} {
-      allow create: if firestore.exists(shareDoc(token))
+      allow create: if shareOpen(token)
                     && canWrite(firestore.get(shareDoc(token)).data.familyID)
-                    && firestore.get(shareDoc(token)).data.voice == true
                     && file.matches('^[0-9]{1,3}[.]m4a$') && validAudio();
-      allow delete: if firestore.exists(shareDoc(token))
-                    && canWrite(firestore.get(shareDoc(token)).data.familyID);
+      allow delete: if canWrite(firestore.get(shareDoc(token)).data.familyID);
     }
   }
 }

@@ -36,7 +36,7 @@ struct BookExportView: View {
                         .frame(maxWidth: .infinity)
 
                     MPSegmented(options: [(Format.pdf, "PDF"), (Format.printed, "Basılı kitap")],
-                                selection: $format, track: MPColor.segmentTrack)
+                                selection: $format, track: MPColor.borderParent)
 
                     switch format {
                     case .pdf: pdfContent(selection)

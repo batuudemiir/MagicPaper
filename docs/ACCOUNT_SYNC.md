@@ -35,7 +35,12 @@ Karşılama → **Giriş** → **Ebeveyn onayı** → Profil → Neleri sever �
 
 `families/{uid}/{koleksiyon}/{kimlik}` — koleksiyonlar: `children` (UserProfile, fotoğrafsız),
 `avatars` (AvatarSpec), `family` (çocuğun Masal ailem listesi), `stories` (Story, ilerlemesiz),
-`progress` (`lastReadPage`, `lastReadAt`), `series` (çocuğun serileri).
+`progress` (`lastReadPage`, `lastReadAt`), `series` (çocuğun serileri), `badges` (rozet defteri, FAZ 17),
+`recordings` (ailenin sesiyle kaydedilen sayfalar, FAZ 18; ses dosyası Storage'da).
+
+**FAZ 18:** `{uid}` artık ailenin kimliği (`familyID`, kurucunun uid'i). Davetle katılan yetişkinler aynı
+aileyi eşitler; sadece okuma rolü yalnızca çeker. Üyelik, davet, paylaşım, ses ve haftalık özet:
+`docs/FAMILY_FEATURES.md`.
 
 Belge alanları: `payload` (modelin JSON'u; silinmişse yok), `deleted`, `updatedAt` (yazanın saati, ms),
 `serverUpdatedAt` (sunucu saati; çekme işareti), `schemaVersion`.
@@ -100,8 +105,11 @@ Takip (tracking): **yok**. Veriler:
 | Kullanıcı içeriği › Diğer | Masallar, seriler, ilgi alanları, kitap karakteri | Evet | Uygulama işlevi |
 | Kullanım verileri › Ürün etkileşimi | Okuma ilerlemesi (hesapta) | Evet | Uygulama işlevi |
 | Kullanım verileri › Ürün etkileşimi | Anonim okuma olayları (isteğe bağlı) | Hayır | Analiz |
+| Kullanıcı içeriği › Ses verileri | Ebeveynin masal kaydı (Kendi sesin, isteğe bağlı, FAZ 18) | Evet | Uygulama işlevi |
+| İletişim bilgileri › E-posta adresi | Haftalık özet (isteğe bağlı, FAZ 18) | Evet | Uygulama işlevi |
 
-Toplanmayan: fotoğraf, ses, konum, e-posta (MagicPaper saklamaz), reklam kimliği, çökme verisi.
+Toplanmayan: fotoğraf, konum, çocuğun sesi, reklam kimliği, çökme verisi. FAZ 18 bayrakları açılmadan
+önce ses ve e-posta satırları etikete eklenmelidir.
 
 ## Emülatörle deneme (geliştirici)
 

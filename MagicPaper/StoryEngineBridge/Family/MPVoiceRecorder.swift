@@ -48,9 +48,15 @@ final class MPVoiceRecorder: NSObject, ObservableObject {
         try session.setActive(true)
         discard()
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("mp-voice-\(UUID().uuidString).m4a")
-        let recorder = try AVAudioRecorder(url: url, settings: Self.settings)
-        recorder.isMeteringEnabled = true
-        guard recorder.record(forDuration: VoiceRecordingStore.maxPageSeconds) else { throw AccountError.failed }
+        let recorder: AVAudioRecorder
+        do {
+            recorder = try AVAudioRecorder(url: url, settings: Self.settings)
+            recorder.isMeteringEnabled = true
+            guard recorder.record(forDuration: VoiceRecordingStore.maxPageSeconds) else { throw AccountError.failed }
+        } catch {
+            try? session.setActive(false, options: .notifyOthersOnDeactivation)
+            throw error
+        }
         self.recorder = recorder
         file = url
         state = .recording
@@ -161,7 +167,9 @@ enum VoiceConsent {
     static func give(familyID: String, uid: String, defaults: UserDefaults = .standard) async throws {
         let ref = Firestore.firestore().collection("families").document(familyID)
             .collection("voiceConsents").document(uid)
-        if try await !ref.getDocument(source: .server).exists {
+        let existing = try await ref.getDocument(source: .server)
+        if existing.data()?["version"] as? String != version {
+            if existing.exists { try await ref.delete() }
             try await ref.setData([
                 "version": version,
                 "acceptedAt": FieldValue.serverTimestamp(),
