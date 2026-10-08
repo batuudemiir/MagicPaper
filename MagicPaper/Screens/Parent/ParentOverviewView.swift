@@ -13,8 +13,6 @@ struct ParentOverviewView: View {
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @StateObject private var streak = MPStreak.shared
 
-    @State private var exportFile: MPExportFile?
-    @State private var isExporting = false
     @State private var showsLapse = false
 
     var body: some View {
@@ -34,9 +32,6 @@ struct ParentOverviewView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .sheet(item: $exportFile) { file in
-            ShareSheet(items: [file.url])
-        }
         .fullScreenCover(isPresented: $showsLapse, onDismiss: { subscriptionManager.acknowledgeLapse() }) {
             SubscriptionExpiredView(onRenew: {
                 showsLapse = false
@@ -182,8 +177,8 @@ struct ParentOverviewView: View {
     private var recentSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Son masallar",
-                            actionTitle: isExporting ? "Hazırlanıyor" : "Kitap yap",
-                            action: exportAll)
+                            actionTitle: "Kitap yap",
+                            action: { app.parentRoute = .bookExport })
             MPGroupedList(area: .parent) {
                 ForEach(Array(recentStories.enumerated()), id: \.element.id) { index, story in
                     if index > 0 { MPRowDivider(area: .parent) }
@@ -209,25 +204,6 @@ struct ParentOverviewView: View {
         }
         let unfinished = (story.lastReadPage ?? 0) > 0 && (story.lastReadPage ?? 0) < story.pages.count - 1
         return "\(story.childName) · \(day) · " + (unfinished ? "yarım kaldı" : "\(story.pages.count) sayfa")
-    }
-
-    /// Kitaplıktaki masalları tek bir PDF kitapta toplar (35 · Masal kitabı'nın PDF yolu).
-    private func exportAll() {
-        guard !isExporting, !storyManager.stories.isEmpty else { return }
-        isExporting = true
-        app.showToast("PDF hazırlanıyor", symbol: "printer")
-        let snapshot = storyManager.stories
-        Task.detached(priority: .userInitiated) {
-            let url = await MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
-            await MainActor.run {
-                isExporting = false
-                if let url {
-                    exportFile = MPExportFile(url: url)
-                } else {
-                    app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
-                }
-            }
-        }
     }
 
     // MARK: - Abonelik

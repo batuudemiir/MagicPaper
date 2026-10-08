@@ -18,8 +18,6 @@ struct SettingsView: View {
     @State private var showPrivacy = false
     @State private var confirmDelete = false
     @State private var confirmClear = false
-    @State private var exportFile: MPExportFile?
-    @State private var isExporting = false
     @State private var interestChoices: [InterestChoice] = []
     /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
     /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
@@ -52,7 +50,6 @@ struct SettingsView: View {
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
         .fullScreenCover(isPresented: $showPrivacy) { PrivacyAndDataView() }
-        .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
         .fullScreenCover(isPresented: $confirmDelete) {
             AccountDeletionSheet(onClose: { confirmDelete = false })
         }
@@ -256,28 +253,9 @@ struct SettingsView: View {
             ParentRowButton(systemImage: "lock", tone: .gray, title: "Gizlilik ve veri",
                             subtitle: "Ne tuttuğumuz, nasıl sildiğimiz") { showPrivacy = true }
             MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "arrow.down.circle", tone: .green, title: "Masal kitabı",
-                            subtitle: isExporting ? "PDF hazırlanıyor" : "Masalların PDF kitap olarak") {
-                exportBook()
-            }
-        }
-    }
-
-    /// Kitaplıktaki masalları tek bir PDF kitapta toplar (35 · Masal kitabı'nın
-    /// PDF yolu; basılı kitap iş modeli kararına kadar yok).
-    private func exportBook() {
-        guard !isExporting, !storyManager.stories.isEmpty else { return }
-        isExporting = true
-        let snapshot = storyManager.stories
-        Task.detached(priority: .userInitiated) {
-            let url = await MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
-            await MainActor.run {
-                isExporting = false
-                if let url {
-                    exportFile = MPExportFile(url: url)
-                } else {
-                    app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
-                }
+            ParentRowButton(systemImage: "book", tone: .green, title: "Masal kitabı",
+                            subtitle: "PDF ya da basılı kitap") {
+                app.parentRoute = .bookExport
             }
         }
     }

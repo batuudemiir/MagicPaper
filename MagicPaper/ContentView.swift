@@ -206,6 +206,9 @@ struct ContentView: View {
             safety: { ParentSafetyView() },
             settings: { SettingsView() }
         )
+        .fullScreenCover(item: $app.parentRoute) { route in
+            ParentRouteView(route: route).environmentObject(app).environmentObject(settings)
+        }
     }
 
     // MARK: - Alt sayfa katmanı

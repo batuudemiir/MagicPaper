@@ -46,8 +46,10 @@ enum MPParentTab: String, CaseIterable {
 // MARK: - Ebeveyn alt sayfaları
 
 /// Ebeveyn alanından tam ekran açılan sayfalar (teslimdeki `ParentRoute`).
-/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür.
+/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür; Masal
+/// kitabı sunucu istemediği için bayrak dışı.
 enum MPParentRoute: String, Identifiable {
+    case bookExport       // 35 · Masal kitabı
     case voiceRecording   // 33 · Kendi sesin
     case familyMembers    // 34 · Aile üyeleri
     case shareLink        // 36 · Aileyle paylaş
