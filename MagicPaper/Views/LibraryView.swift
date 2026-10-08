@@ -26,8 +26,12 @@ struct LibraryView: View {
         VStack(spacing: 0) {
             topBar
             if myStories.isEmpty {
+                if pendingCount > 0 {
+                    pendingNote.padding(.horizontal, MPSpacing.screenH)
+                }
                 MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş",
-                            message: "İlk masalını yarat, burada seni beklesin.") {
+                            message: pendingCount > 0 ? "Onaylanan masallar burada görünür."
+                                                      : "İlk masalını yarat, burada seni beklesin.") {
                     MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {
                         app.startStoryCreation()
                     }
@@ -35,6 +39,7 @@ struct LibraryView: View {
             } else {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: MPSpacing.lg) {
+                        if pendingCount > 0 { pendingNote }
                         searchField
                         chips
                         if filter == .all, query.isEmpty { seriesBand }
@@ -46,6 +51,35 @@ struct LibraryView: View {
             }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
+    }
+
+    // MARK: - Onay bekleyenler
+
+    /// "Masalları onayla" açıkken bu çocuğun onay bekleyen masalları.
+    private var pendingCount: Int {
+        MPStoryGate.pending(storyManager.stories, approvalRequired: settings.approve,
+                            isApproved: { settings.isApproved($0) })
+            .filter { $0.belongs(to: profileManager.currentProfile) }
+            .count
+    }
+
+    /// Sakin bir not: masal kaybolmadı, bir büyüğün onayını bekliyor.
+    private var pendingNote: some View {
+        HStack(alignment: .top, spacing: MPSpacing.sm) {
+            MPIcon("lock", size: 16, weight: .semibold)
+                .foregroundStyle(MPColor.actionPrimary)
+                .accessibilityHidden(true)
+            Text(pendingCount == 1
+                 ? "1 masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor."
+                 : "\(pendingCount) masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
+                .mpText(.callout)
+                .foregroundStyle(MPColor.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
+        }
+        .padding(MPSpacing.lg)
+        .background(MPColor.actionSoft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Üst bölüm

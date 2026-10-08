@@ -161,6 +161,8 @@ class StoryGenerationManager: ObservableObject {
     func deleteStory(id: UUID) {
         // Delete images from file system
         fileManager.deleteStoryImages(storyId: id)
+        // Kendi sesin (FAZ 18): masalla birlikte kayıtları da gider.
+        VoiceRecordingStore.shared.deleteRecordings(for: id)
         
         // Remove from array
         stories.removeAll { $0.id == id }
@@ -175,6 +177,7 @@ class StoryGenerationManager: ObservableObject {
         guard !ids.isEmpty else { return }
         for id in ids {
             fileManager.deleteStoryImages(storyId: id)
+            VoiceRecordingStore.shared.deleteRecordings(for: id)
         }
         stories.removeAll { ids.contains($0.id) }
         saveStories()

@@ -71,6 +71,17 @@ enum MPStoryGate {
         guard approvalRequired else { return readable }
         return readable.filter { isApproved($0.id) }
     }
+
+    /// Okunabilir ama onay bekleyen masallar: çocuğa "onay bekliyor" denir,
+    /// masal kaybolmuş gibi görünmez. Onay kapalıyken hiçbiri.
+    static func pending(
+        _ stories: [Story],
+        approvalRequired: Bool,
+        isApproved: (UUID) -> Bool
+    ) -> [Story] {
+        guard approvalRequired else { return [] }
+        return stories.filter { $0.isReadable && !isApproved($0.id) }
+    }
 }
 
 // MARK: - Uyku saati
