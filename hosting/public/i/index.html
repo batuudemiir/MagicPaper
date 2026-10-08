@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>MagicPaper Daveti</title>
+<!-- Aile daveti (FAZ 18): kodu gösterir, uygulamayı açmayı dener. Veri okumaz. -->
+<style>
+  @font-face { font-family: "Nunito"; src: url("/fonts/Nunito-Variable.ttf") format("truetype"); font-weight: 200 1000; font-display: swap; }
+  :root { --paper: #FFF8EE; --ink: #2E1E3E; --muted: #6E6478; --track: #ECE5DA; --action: #6A47B8; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body { font-family: "Nunito", ui-rounded, system-ui, sans-serif; font-size: 18px; line-height: 1.6; }
+  main { max-width: 520px; margin: 0 auto; padding: 40px 16px; }
+  h1 { font-size: 28px; line-height: 1.2; font-weight: 900; margin: 0 0 12px; }
+  .code { font-size: 34px; font-weight: 900; letter-spacing: .12em; background: #fff; border: 1.5px solid var(--track);
+          border-radius: 22px; padding: 16px; text-align: center; margin: 20px 0; }
+  a.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px;
+          border-radius: 999px; background: var(--action); color: #fff; font-weight: 900; text-decoration: none; }
+  .muted { color: var(--muted); font-size: 15px; }
+  :focus-visible { outline: 3px solid var(--action); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>MagicPaper'da bir aileye davet edildin</h1>
+  <p>Uygulamayı aç, giriş yap ve Ayarlar &gt; Aile üyeleri &gt; Davet kodum var bölümüne bu kodu yaz.</p>
+  <div class="code" id="code" aria-label="Davet kodu">—</div>
+  <a class="btn" id="open" href="#">Uygulamada aç</a>
+  <p class="muted">Kod 7 gün geçerli ve tek kişilik.</p>
+</main>
+<script>
+(() => {
+  const raw = (location.pathname.split("/")[2] || "").toUpperCase();
+  const code = /^[A-HJ-NP-Z2-9]{8}$/.test(raw) ? raw : "";
+  document.getElementById("code").textContent = code || "Kod okunamadı";
+  const open = document.getElementById("open");
+  if (code) open.href = `magicpaper://invite/${code}`; else open.hidden = true;
+})();
+</script>
+</body>
+</html>

@@ -150,6 +150,11 @@ final class AppFamilyLocalStore: FamilyLocalStore {
                     key: SyncKey(collection: .progress, id: id), payload: payload, changedAt: progress.lastReadAt))
             }
         }
+        for (storyID, set) in VoiceRecordingStore.shared.syncPayloads {
+            if let payload = try? SyncCoding.encode(set) {
+                records.append(LocalSyncRecord(key: SyncKey(collection: .recordings, id: storyID.uuidString), payload: payload))
+            }
+        }
         return records
     }
 
@@ -223,6 +228,10 @@ final class AppFamilyLocalStore: FamilyLocalStore {
         case .progress:
             guard let id = UUID(uuidString: key.id), let payload = record.payload else { return }
             library.applySyncedProgress(storyID: id, progress: try SyncCoding.decode(StoryProgress.self, from: payload))
+        case .recordings:
+            guard let id = UUID(uuidString: key.id) else { return }
+            VoiceRecordingStore.shared.applySynced(
+                try record.payload.map { try SyncCoding.decode(VoiceRecordingSet.self, from: $0) }, for: id)
         }
     }
 }

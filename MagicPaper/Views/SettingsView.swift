@@ -123,7 +123,7 @@ struct SettingsView: View {
             }
             if FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
-                                subtitle: "Masalları senin sesinle okusun") { app.parentRoute = .voiceRecording }
+                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.parentRoute = .voiceRecording }
             }
         }
     }

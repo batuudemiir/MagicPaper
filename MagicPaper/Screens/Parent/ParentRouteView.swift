@@ -12,12 +12,10 @@ struct ParentRouteView: View {
             BookExportView(onClose: close)
         case .familyMembers:
             FamilyMembersView(onClose: close)
-        case .voiceRecording, .shareLink:
-            // FAZ 18 blokları geldikçe dolar; bayraklar kapalıyken buraya gelinmez.
-            ParentHeader(title: "Yakında", onBack: close)
-                .padding(MPSpacing.screenH)
-                .frame(maxHeight: .infinity, alignment: .top)
-                .background(MPColor.backgroundParent.ignoresSafeArea())
+        case .voiceRecording:
+            VoiceRecordingView(onClose: close)
+        case .shareLink:
+            ShareLinkView(onClose: close)
         }
     }
 

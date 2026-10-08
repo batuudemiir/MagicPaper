@@ -55,6 +55,10 @@ struct BookExportView: View {
             if format == .pdf, let selection { bottomActions(selection) }
         }
         .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
+        .fullScreenCover(item: $shareStories) { chosen in
+            ShareLinkView(preselected: chosen.ids, onClose: { shareStories = nil })
+                .environmentObject(app)
+        }
         .onAppear {
             if childID == nil { childID = profileManager.currentProfile?.id ?? profileManager.profiles.first?.id }
             rebuild()

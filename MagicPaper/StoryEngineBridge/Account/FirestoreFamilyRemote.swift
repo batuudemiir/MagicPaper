@@ -3,6 +3,7 @@ import OSLog
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FirebaseBackend")
 
@@ -31,6 +32,7 @@ enum FirebaseBackend {
             settings.host = "\(host):8080"
             settings.isSSLEnabled = false
             Auth.auth().useEmulator(withHost: host, port: 9099)
+            Storage.storage().useEmulator(withHost: host, port: 9199)
             logger.notice("Firebase emülatörü kullanılıyor")
         }
         Firestore.firestore().settings = settings
@@ -96,7 +98,25 @@ struct FirestoreFamilyRemote: FamilyRemote {
     }
 
     func deleteEverything() async throws {
+        // Ses kayıtları (FAZ 18) önce: Firestore'daki `recordings` kaydı
+        // gittikten sonra hangi dosyaların kaldığını bilen kalmaz.
+        try await Self.deleteFolder(Storage.storage().reference(withPath: "families/\(uid)/voice"))
         let db = Firestore.firestore()
+        // Ailenin paylaşım bağlantıları (FAZ 18): açık belge ve ses kopyaları.
+        let shares = try await family.collection("shares").getDocuments(source: .server)
+        for share in shares.documents {
+            // Ses kopyaları açık belge silinmeden: kural ona bakarak izin verir.
+            for key in share.data()["audio"] as? [String] ?? [] {
+                try? await Storage.storage().reference(withPath: "shares/\(share.documentID)/\(key).m4a").delete()
+            }
+            try? await db.collection("shares").document(share.documentID).delete()
+            try await share.reference.delete()
+        }
+        for name in ["settings", "voiceConsents"] {
+            for document in try await family.collection(name).getDocuments(source: .server).documents {
+                try await document.reference.delete()
+            }
+        }
         let names = SyncCollection.allCases.map(\.rawValue) + [Self.consentsCollection]
         for name in names {
             let snapshot = try await family.collection(name).getDocuments(source: .server)
@@ -108,6 +128,13 @@ struct FirestoreFamilyRemote: FamilyRemote {
             }
         }
         try await family.delete()
+    }
+
+    /// Bir Storage klasörünü alt klasörleriyle siler. Yoksa hiçbir şey yapmaz.
+    static func deleteFolder(_ folder: StorageReference) async throws {
+        let listing = try await folder.listAll()
+        for item in listing.items { try await item.delete() }
+        for prefix in listing.prefixes { try await deleteFolder(prefix) }
     }
 
     func recordConsent(_ record: ConsentRecord) async throws {

@@ -25,6 +25,9 @@ enum SyncCollection: String, CaseIterable, Codable, Sendable {
     /// The child's badge ledger (`MPBadgeLedger`, FAZ 17), keyed by profile id.
     /// Merged on apply: a badge is never lost.
     case badges
+    /// Which pages of a story have the family's own voice (FAZ 18), keyed by
+    /// story id (`VoiceRecordingSet`). The audio itself is in Storage.
+    case recordings
 
     /// How two devices that both changed a record are reconciled.
     var policy: SyncConflictPolicy {
@@ -35,7 +38,7 @@ enum SyncCollection: String, CaseIterable, Codable, Sendable {
     }
 
     /// Children first: everything else hangs off a child.
-    static let applyOrder: [SyncCollection] = [.children, .avatars, .family, .series, .badges, .stories, .progress]
+    static let applyOrder: [SyncCollection] = [.children, .avatars, .family, .series, .badges, .stories, .progress, .recordings]
 }
 
 enum SyncConflictPolicy: Sendable {

@@ -256,6 +256,8 @@ final class AccountService: ObservableObject {
 
     private func afterSync() async {
         await recordPendingConsent()
+        // Bekleyen ses kayıtları (FAZ 18) aynı bağlantıyla gider.
+        if canWriteFamily { await VoiceRecordingStore.shared.flush() }
         let conditions = ReadingEventUploader.Conditions(
             sharingOn: shareUsageData(), consentGiven: consent != nil, signedIn: account != nil)
         await ReadingEventUploader(queue: eventQueue, sink: eventSink).flush(when: conditions)

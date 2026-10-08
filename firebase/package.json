@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "firebase emulators:exec --only firestore --project demo-magicpaper 'node --test --test-concurrency=1 tests/*.test.mjs'"
+    "test": "firebase emulators:exec --only firestore,storage --project demo-magicpaper 'node --test --test-concurrency=1 tests/*.test.mjs'"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^4.0.1",

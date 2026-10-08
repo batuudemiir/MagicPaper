@@ -234,7 +234,9 @@ service cloud.firestore {
         allow read: if canRead(uid);
         allow delete: if canWrite(uid);
         allow create: if canWrite(uid)
-                      && request.resource.data.keys().hasOnly(['recipient', 'storyCount', 'voice', 'expiresAt', 'createdAt', 'createdBy'])
+                      && request.resource.data.keys().hasOnly(['recipient', 'storyCount', 'voice', 'audio', 'expiresAt', 'createdAt', 'createdBy'])
+                      && (!('audio' in request.resource.data)
+                          || (request.resource.data.audio is list && request.resource.data.audio.size() <= 1200))
                       && request.resource.data.keys().hasAll(['storyCount', 'voice', 'expiresAt', 'createdAt', 'createdBy'])
                       && (!('recipient' in request.resource.data)
                           || (request.resource.data.recipient is string && request.resource.data.recipient.size() <= 40))

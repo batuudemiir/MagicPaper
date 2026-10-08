@@ -4,6 +4,10 @@ import SwiftUI
 /// Sesli okuma motoru.
 /// Tasarım "Sesli okuma"yı hem ayar hem okuyucu kontrolü olarak tanımlıyordu
 /// ama arkasında ses yoktu; bu tip gerçek seslendirmeyi sağlar.
+///
+/// FAZ 18: sayfanın ailenin sesiyle kaydı varsa (`recording`) o çalınır,
+/// yoksa masal anlatıcısı okur. Okuyucu ve Uyku modu farkı bilmez: aynı
+/// `isSpeaking`/`isPaused`/`onFinished` sözleşmesi.
 @MainActor
 final class MPSpeech: NSObject, ObservableObject {
     static let shared = MPSpeech()
@@ -12,6 +16,8 @@ final class MPSpeech: NSObject, ObservableObject {
     @Published private(set) var isPaused = false
 
     private let synthesizer = AVSpeechSynthesizer()
+    /// Ailenin sesi çalarken.
+    private var player: AVAudioPlayer?
     /// Şu an okunan metin. Bir okuma durdurulup yenisi başladığında eskisinin
     /// "iptal" ya da "bitti" haberi geç gelir; yeni okumanın durumunu ezmesin,
     /// `onFinished`'i yanlış sayfa için çağırmasın diye karşılaştırılır.
@@ -49,7 +55,8 @@ final class MPSpeech: NSObject, ObservableObject {
         return AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
     }
 
-    func speak(_ text: String, language: String = "tr-TR") {
+    func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil) {
+        if let recording, play(recording) { return }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
 
@@ -69,19 +76,45 @@ final class MPSpeech: NSObject, ObservableObject {
         isPaused = false
     }
 
+    /// Ailenin sesiyle kaydedilmiş sayfa. Dosya açılmazsa anlatıcıya kalır.
+    private func play(_ file: URL) -> Bool {
+        stop()
+        activateSession()
+        guard let player = try? AVAudioPlayer(contentsOf: file) else { return false }
+        player.delegate = self
+        guard player.play() else { return false }
+        self.player = player
+        current = ObjectIdentifier(player)
+        isSpeaking = true
+        isPaused = false
+        return true
+    }
+
     func pause() {
+        if let player, player.isPlaying {
+            player.pause()
+            isPaused = true
+            return
+        }
         guard synthesizer.isSpeaking, !synthesizer.isPaused else { return }
         synthesizer.pauseSpeaking(at: .word)
         isPaused = true
     }
 
     func resume() {
+        if let player, isPaused {
+            player.play()
+            isPaused = false
+            return
+        }
         guard synthesizer.isPaused else { return }
         synthesizer.continueSpeaking()
         isPaused = false
     }
 
     func stop() {
+        player?.stop()
+        player = nil
         if synthesizer.isSpeaking || synthesizer.isPaused {
             synthesizer.stopSpeaking(at: .immediate)
         }
@@ -96,13 +129,28 @@ final class MPSpeech: NSObject, ObservableObject {
 
     /// Okuyucudaki tek butonun davranışı: çalıyorsa duraklat, duraklamışsa
     /// devam et, duruyorsa baştan oku.
-    func toggle(_ text: String, language: String = "tr-TR") {
+    func toggle(_ text: String, language: String = "tr-TR", recording: URL? = nil) {
         if isSpeaking && !isPaused {
             pause()
         } else if isPaused {
             resume()
         } else {
-            speak(text, language: language)
+            speak(text, language: language, recording: recording)
+        }
+    }
+}
+
+extension MPSpeech: AVAudioPlayerDelegate {
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        let finished = ObjectIdentifier(player)
+        Task { @MainActor in
+            guard self.isCurrent(finished) else { return }
+            self.current = nil
+            self.player = nil
+            self.isSpeaking = false
+            self.isPaused = false
+            self.deactivateSession()
+            self.onFinished?()
         }
     }
 }

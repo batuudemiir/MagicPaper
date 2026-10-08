@@ -44,6 +44,7 @@ enum LocalDataEraser {
             if let url = StoryEngineStorage.directory(folder) { try? FileManager.default.removeItem(at: url) }
         }
         eraseDocumentsFiles()
+        VoiceRecordingStore.shared.eraseLocal()
         // The account's bookkeeping on this device.
         SyncLedgerStore().erase()
         ParentConsentStore(defaults: defaults).erase()
