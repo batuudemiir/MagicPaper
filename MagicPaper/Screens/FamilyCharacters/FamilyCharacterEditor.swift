@@ -58,78 +58,75 @@ struct FamilyCharacterEditor: View {
     }
 
     var body: some View {
-        MPSheet(
-            title: editing == nil ? FamilyCharacterCopy.newTitle : FamilyCharacterCopy.editTitle,
-            onClose: onClose
-        ) {
-            VStack(alignment: .leading, spacing: MP.S.x6) {
-                MPInput(
-                    label: FamilyCharacterCopy.nameLabel,
-                    hint: FamilyCharacterCopy.nameHint,
-                    placeholder: FamilyCharacterCopy.namePlaceholder,
-                    text: $name,
-                    symbol: "person.crop.circle",
-                    error: nameError,
-                    maxLength: FamilyNameValidator.maxLength + 4
-                )
+        VStack(spacing: 0) {
+            MPTopBar(title: editing == nil ? FamilyCharacterCopy.newTitle : FamilyCharacterCopy.editTitle,
+                     onBack: onClose) { EmptyView() }
+                .padding(.horizontal, MPSpacing.screenH)
 
-                VStack(alignment: .leading, spacing: MP.S.x3) {
-                    Text(FamilyCharacterCopy.relationLabel)
-                        .font(MP.F.labelMD())
-                        .foregroundStyle(MP.C.textTitle)
-                    MPWrapRow {
-                        ForEach(FamilyRelationKind.allCases, id: \.self) { kind in
-                            MPChip(
-                                title: FamilyCharacterCopy.relation(kind),
-                                symbol: FamilyCharacterCopy.relationSymbol(kind),
-                                isSelected: relation == kind
-                            ) {
-                                MPHaptics.selection()
-                                relation = kind
-                            }
-                            .accessibilityLabel(FamilyCharacterCopy.relation(kind))
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                    MPTextField(label: FamilyCharacterCopy.nameLabel,
+                                placeholder: FamilyCharacterCopy.namePlaceholder,
+                                text: $name,
+                                helper: nameError ?? FamilyCharacterCopy.nameHint,
+                                isError: nameError != nil)
+                        .textInputAutocapitalization(.words)
+                        .onChange(of: name) { _, value in
+                            let limit = FamilyNameValidator.maxLength + 4
+                            if value.count > limit { name = String(value.prefix(limit)) }
                         }
-                    }
-                }
 
-                if relation == .animal {
-                    VStack(alignment: .leading, spacing: MP.S.x3) {
-                        Text(FamilyCharacterCopy.animalKindLabel)
-                            .font(MP.F.labelMD())
-                            .foregroundStyle(MP.C.textTitle)
-                        MPWrapRow {
-                            ForEach(kinds) { kind in
-                                MPChip(
-                                    title: kind.name.capitalized(with: Locale(identifier: "tr_TR")),
-                                    symbol: CompanionStep.symbol(forType: kind.name),
-                                    isSelected: animalKindID == kind.id
-                                ) {
+                    VStack(alignment: .leading, spacing: MPSpacing.md) {
+                        Text(FamilyCharacterCopy.relationLabel).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                        MPWrapRow(spacing: MPSpacing.sm) {
+                            ForEach(FamilyRelationKind.allCases, id: \.self) { kind in
+                                MPChip(title: FamilyCharacterCopy.relation(kind),
+                                       systemImage: FamilyCharacterCopy.relationSymbol(kind),
+                                       isSelected: relation == kind) {
                                     MPHaptics.selection()
-                                    animalKindID = kind.id
+                                    relation = kind
                                 }
-                                .accessibilityLabel(kind.name)
                             }
                         }
                     }
-                    .transition(.opacity)
-                }
 
-                if editing != nil, onRemoved != nil {
-                    MPListRow(symbol: "minus.circle", title: FamilyCharacterCopy.remove, isDanger: true,
-                              action: { confirmsRemoval = true }) { EmptyView() }
+                    if relation == .animal {
+                        VStack(alignment: .leading, spacing: MPSpacing.md) {
+                            Text(FamilyCharacterCopy.animalKindLabel).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                            MPWrapRow(spacing: MPSpacing.sm) {
+                                ForEach(kinds) { kind in
+                                    MPChip(title: kind.name.capitalized(with: Locale(identifier: "tr_TR")),
+                                           systemImage: CompanionStep.symbol(forType: kind.name),
+                                           isSelected: animalKindID == kind.id) {
+                                        MPHaptics.selection()
+                                        animalKindID = kind.id
+                                    }
+                                }
+                            }
+                        }
+                        .transition(.opacity)
+                    }
+
+                    if editing != nil, onRemoved != nil {
+                        MPButton(title: FamilyCharacterCopy.remove, systemImage: "minus.circle", kind: .ghost) {
+                            confirmsRemoval = true
+                        }
+                    }
                 }
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.vertical, MPSpacing.lg)
+                .animation(MP.M.gated(MP.M.easeOut), value: relation)
             }
-            .animation(MP.M.gated(MP.M.easeOut), value: relation)
-        } footer: {
-            MPButton(title: FamilyCharacterCopy.save, fullWidth: true) {
-                save()
-            }
-            // Devre dışı değil: eksik bir şey varsa basınca söyler. Ad kuralları
-            // ancak böyle görünür olur.
-            .opacity(canSave ? 1 : 0.6)
-            // Görsel olarak soluk ama basılabilir; VoiceOver da eksik olduğunu söylesin.
-            .accessibilityHint(canSave ? "" : FamilyCharacterCopy.saveIncompleteHint)
+
+            MPButton(title: FamilyCharacterCopy.save, fullWidth: true) { save() }
+                // Devre dışı değil: eksik bir şey varsa basınca söyler. Ad
+                // kuralları ancak böyle görünür olur.
+                .opacity(canSave ? 1 : 0.6)
+                .accessibilityHint(canSave ? "" : FamilyCharacterCopy.saveIncompleteHint)
+                .padding(.horizontal, MPSpacing.xxxl)
+                .padding(.vertical, MPSpacing.md)
         }
+        .background(MPColor.backgroundKid.ignoresSafeArea())
         .confirmationDialog(
             FamilyCharacterCopy.removeConfirmTitle,
             isPresented: $confirmsRemoval,

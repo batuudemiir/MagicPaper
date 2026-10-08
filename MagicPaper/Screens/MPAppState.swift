@@ -2,63 +2,56 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// 04-STATE-INTERACTIONS.md — kök navigasyon.
-/// Üç yer, artı bir eylem.
+/// Çocuk alanının sekmeleri (11 · Ana sayfa, 16 · Kitaplık).
 ///
-/// Günlük geri geldi: alışkanlık tarafı burada geliştirilecek. Ana Sayfa'daki
-/// kopyası kaldırıldı — aynı kartı iki sekmede göstermek, ilk seferinde de
-/// sorun olan şeydi. Ana Sayfa yalnızca seriyi özetliyor ve dokununca buraya
-/// getiriyor.
-///
-/// Ebeveyn artık bir sekme değil, bir mod (`MPAppState.isParentMode`): ana
-/// ekranın sağ üstündeki anahtarla açılır ve Ana Sayfa'nın yerini alır.
-///
-/// "Masal yarat" bu listede DEĞİL ve olmamalı: gidilecek bir yer değil,
-/// yapılacak bir iş. Bar onu ayrı bir öğe türü olarak çiziyor.
+/// FAZ 17 (Pastel Masal): alt bar Ana sayfa · Yarat · Kitaplık. "Günlük"
+/// sekmesi kalktı; günün masalı ve okuma serisi Ana sayfada.
+/// "Yarat" bir sekme değil, bir eylem: `KidTabBar` onu ayrı çizer.
 enum MPTab: String, CaseIterable {
-    case home, library, daily
+    case home, library
 
     var label: String {
         switch self {
-        case .home:    return "Ana Sayfa"
-        case .library: return "Kütüphane"
-        case .daily:   return "Günlük"
+        case .home:    return "Ana sayfa"
+        case .library: return "Kitaplık"
         }
     }
 
-    var symbol: String {
+    var kidTab: KidTab { self == .home ? .home : .library }
+    init(_ kidTab: KidTab) { self = kidTab == .home ? .home : .library }
+}
+
+/// Ebeveyn alanının sekmeleri: Özet · Güvenlik · Ayarlar.
+/// Çocuk profilleri Ayarlar'ın ilk bölümünde (FAZ 17).
+enum MPParentTab: String, CaseIterable {
+    case overview, safety, settings
+
+    var parentTab: ParentTab {
         switch self {
-        case .home:    return "house"
-        case .library: return "book"
-        case .daily:   return "calendar"
+        case .overview: return .summary
+        case .safety:   return .safety
+        case .settings: return .settings
+        }
+    }
+
+    init(_ tab: ParentTab) {
+        switch tab {
+        case .summary:  self = .overview
+        case .safety:   self = .safety
+        case .settings: self = .settings
         }
     }
 }
 
-/// Ebeveyn modunun kendi menüsü. Çocuk menüsüyle ortak hiçbir sekmesi yok:
-/// ebeveynin yaptığı işler — bakmak, düzenlemek, ayarlamak — çocuğun
-/// yaptıklarından (okumak, yaratmak) ayrı.
-///
-/// Ham değerler `MPTab`'inkilerle çakışmamalı: ikisi de aynı sekme çubuğunun
-/// `String` seçimine yazılıyor.
-enum MPParentTab: String, CaseIterable {
-    case overview, children, settings
+// MARK: - Ebeveyn alt sayfaları
 
-    var label: String {
-        switch self {
-        case .overview: return "Özet"
-        case .children: return "Çocuklar"
-        case .settings: return "Ayarlar"
-        }
-    }
-
-    var symbol: String {
-        switch self {
-        case .overview: return "chart.bar"
-        case .children: return "person.2"
-        case .settings: return "gearshape"
-        }
-    }
+/// Ebeveyn alanından tam ekran açılan sayfalar (teslimdeki `ParentRoute`).
+/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür.
+enum MPParentRoute: String, Identifiable {
+    case voiceRecording   // 33 · Kendi sesin
+    case familyMembers    // 34 · Aile üyeleri
+    case shareLink        // 36 · Aileyle paylaş
+    var id: String { rawValue }
 }
 
 // MARK: - Alt sayfalar (sheet)
@@ -70,6 +63,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case bookCharacter(UUID)
     /// Masal ailem (FAZ 11), çocuk başına. Benim köşem gelince oradan açılır.
     case familyCharacters(UUID)
+    /// 15 · Yeni kelimelerim, Benim köşem'den.
+    case newWords(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
@@ -81,6 +76,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .profileEdit(let i):   return "profileEdit-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
+        case .newWords(let i): return "newWords-\(i)"
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         }
@@ -112,24 +108,59 @@ final class MPAppState: ObservableObject {
     /// A mode chosen on the home screen; the flow then opens at "Masalda
     /// kimler olsun?". Nil opens it at the modes. Cleared when the flow closes.
     @Published var creationPreset: StoryMode?
+    /// 14 · "Bu karakterle masal yaz": a Masal ailem character already chosen.
+    @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
     /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
     @Published var showDecorationGallery = false
     @Published var showDecorationDemo = false
     @Published var showGate = false
+    /// Ebeveyn alanından açılan tam ekran sayfa.
+    @Published var parentRoute: MPParentRoute?
+    /// 12 · Benim köşem, Ana sayfa başlığındaki avatardan.
+    @Published var showKidCorner = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
-    /// Raftan açılan masal detayı. Okuyucu detayın içinden açılır, bu yüzden
-    /// detaydan okumaya geçmek `readerStory`'ye dokunmaz.
-    @Published var detailStory: Story?
+    /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
+    @Published var readerStartPage: Int?
+    /// 17 · Masal aksiyonları: kitaplıkta kapağa dokununca açılan sayfa.
+    @Published var actionsStory: Story?
+    /// Sayfa kapanınca açılacak masal (sayfa ile okuyucu aynı anda açılamaz).
+    var pendingRead: (story: Story, startPage: Int?)?
+    /// Okuyucu kapanınca yapılacak iş (masal sonu: "Bir masal daha", "İyi geceler").
+    enum AfterReader { case create, sleep(Story) }
+    var afterReader: AfterReader?
+    /// 26 · Uyku modu.
+    @Published var sleepSession: MPSleepSession?
+
+    /// Okuyucu kapandıktan sonra (iki tam ekran sunum üst üste açılamaz).
+    func runAfterReader() {
+        guard let next = afterReader else { return }
+        afterReader = nil
+        switch next {
+        case .create: startStoryCreation()
+        case .sleep(let story): sleepSession = MPSleepSession(story: story)
+        }
+    }
+
+    /// 18 · Seri masal, çocuk kökünün üstünde.
+    @Published var seriesChildID: UUID?
+
+    func read(_ story: Story, fromStart: Bool = false) {
+        readerStartPage = fromStart ? 0 : nil
+        readerStory = story
+    }
 
     // Alt sayfalar ve bildirim
     @Published var sheet: MPSheetRoute?
     @Published var toast: MPToastMessage?
 
     // Okuyucu tercihleri (okuma yüzeyine özel — uygulama geneli tema yok)
-    @Published var readTheme: MP.ReadTheme = .light
+    /// Kalıcı (FAZ 17): `MPSettingsStore.readTheme`'e yazılır.
+    @Published var readTheme: MP.ReadTheme = MPSettingsStore.shared.readTheme {
+        didSet { MPSettingsStore.shared.readTheme = readTheme }
+    }
     /// Yazı boyutu diske yazılıyordu ama buraya hiç geri okunmuyordu: her
     /// açılışta `.normal`'a dönüyordu. Ayarlar'da "Büyük" yazarken okuyucunun
     /// normal boyutta açılması, kaydedilmiş bir tercihin hiç kaydedilmemiş
@@ -146,8 +177,9 @@ final class MPAppState: ObservableObject {
 
     /// (+) butonu ve ana sayfa hero kartı yeni akışı baştan açar; ana
     /// sayfadaki bir mod kartı ise modu vererek ikinci adımdan.
-    func startStoryCreation(mode: StoryMode? = nil) {
+    func startStoryCreation(mode: StoryMode? = nil, family: UUID? = nil) {
         creationPreset = mode
+        creationFamilyID = family
         showStoryCreation = true
     }
 
@@ -163,6 +195,7 @@ final class MPAppState: ObservableObject {
 
     func unlockParent() {
         showGate = false
+        showKidCorner = false
         isParentMode = true
         parentTab = .overview
         MPHaptics.tap()
@@ -176,6 +209,7 @@ final class MPAppState: ObservableObject {
         guard isParentMode else { return }
         isParentMode = false
         tab = .home
+        parentRoute = nil
         showProfileAdd = false
         if case .profileEdit = sheet { sheet = nil }
         if case .bookCharacter = sheet { sheet = nil }

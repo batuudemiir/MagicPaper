@@ -1,8 +1,13 @@
+import StoryEngine
 import SwiftUI
 
-/// Kök ekran. Çocuk modunda üç sekme + bir eylem öğesi, ebeveyn modunda
-/// ebeveynin kendi üç sekmesi — `TabView` kullanılmaz,
-/// çünkü eylem öğesi bir sekme değil (05-SWIFTUI-MAPPING.md).
+/// Kök ekran (FAZ 17, Pastel Masal).
+///
+/// Çocuk modu: krem zemin, iki sekme ve ortada yükseltilmiş "Yarat"
+/// (`KidTabBar`, 11 · Ana sayfa, 16 · Kitaplık). Ebeveyn modu: gri zemin,
+/// sistem sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32).
+/// Ebeveyn moduna yalnızca kapıdan geçilir; arka plana gidince çocuk moduna
+/// dönülür.
 struct ContentView: View {
     @StateObject private var app = MPAppState()
     @StateObject private var settings = MPSettingsStore.shared
@@ -11,157 +16,196 @@ struct ContentView: View {
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// 09 + 10: ilk profil oluştuktan sonra bir kez.
+    @State private var firstRun: FirstRunName?
+    /// İlk masal hazırsa, kapak kapandıktan sonra okunur.
+    @State private var firstStory: Story?
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            MP.C.surfaceApp.ignoresSafeArea()
-
-            content
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                // Yükseltilen eylem düğmesinin taşması dahil. Öncesinde
-                // yalnızca bar yüksekliği bırakılıyordu ve düğme her ekranda
-                // içeriğin üstüne biniyordu.
-                .padding(.bottom, MPTabBar.reservedHeight)
-
-            MPTabBar(
-                items: tabItems,
-                selection: Binding(
-                    get: { app.isParentMode ? app.parentTab.rawValue : app.tab.rawValue },
-                    set: { raw in
-                        if let next = MPParentTab(rawValue: raw) { app.parentTab = next }
-                        else if let next = MPTab(rawValue: raw) { app.tab = next }
-                    }
-                ),
-                onCreate: { app.startStoryCreation() }
-            )
-        }
-        .ignoresSafeArea(.keyboard)
-        .environmentObject(app)
-        .environmentObject(settings)
-        .mpToast($app.toast)
-        .task {
-            // İçerik akışı (FAZ 15): yeni günün masalı yeniden başlatmadan gelir.
-            await RemoteContentService.shared.refresh()
-        }
-        .task {
-            // Akış 1: ilk profil oluşturulduysa ana sayfada karşılama toast'ı.
-            if let name = MPWelcome.consume() {
-                app.showToast("\(name) için hazırız", symbol: "sparkles")
+        content
+            .ignoresSafeArea(.keyboard)
+            .environmentObject(app)
+            .environmentObject(settings)
+            .mpToast($app.toast)
+            .task {
+                // İçerik akışı (FAZ 15): yeni günün masalı yeniden başlatmadan gelir.
+                await RemoteContentService.shared.refresh()
             }
-            // Hatırlatma planı iOS'ta kalıcı ama izin Sistem Ayarları'ndan geri
-            // alınabilir; ayrıca aktif çocuk değişmiş olabilir ve bildirimde
-            // onun adı yazıyor. Her açılışta plan gerçeğe göre yenilenir.
-            settings.reminder = await MPReminder.resync(
-                enabled: settings.reminder,
-                hour: settings.reminderHour,
-                minute: settings.reminderMinute,
-                childName: profileManager.currentProfile?.name
-            )
-        }
-        // The reading ledger belongs to the child (MPStreak): open the active
-        // child's, and switch when the parent switches profiles.
-        .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
-            MPStreak.shared.activate(profileID: id)
-            // A series episode whose day has come opens here (FAZ 13); no
-            // notification announces it.
-            if let id { SeriesManager.shared.refreshUnlocks(for: id) }
-            DailyStoryManager.shared.refreshForToday()
-        }
-        // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .background {
-                app.enterChildMode()
-                RemoteContentService.scheduleBackgroundRefresh()
+            #if DEBUG
+            .onAppear {
+                if let tab = MPDebugLaunch.startTab { app.tab = tab }
+                if MPDebugLaunch.startsInParent { app.unlockParent() }
+                if let tab = MPDebugLaunch.parentTab { app.parentTab = tab }
             }
-            if phase == .active, let id = profileManager.currentProfile?.id {
-                SeriesManager.shared.refreshUnlocks(for: id)
+            #endif
+            .task {
+                // Akış 1: ilk profil oluşturulduysa ana sayfada karşılama toast'ı.
+                if let name = MPWelcome.consume() {
+                    firstRun = FirstRunName(name: name)
+                }
+                // Hatırlatma planı iOS'ta kalıcı ama izin Sistem Ayarları'ndan geri
+                // alınabilir; ayrıca aktif çocuk değişmiş olabilir ve bildirimde
+                // onun adı yazıyor. Her açılışta plan gerçeğe göre yenilenir.
+                settings.reminder = await MPReminder.resync(
+                    enabled: settings.reminder,
+                    hour: settings.reminderHour,
+                    minute: settings.reminderMinute,
+                    childName: profileManager.currentProfile?.name
+                )
             }
-            if phase == .active {
-                // Gün dönmüş olabilir; akış yarım saatte bir yoklanır.
+            // The reading ledger belongs to the child (MPStreak): open the active
+            // child's, and switch when the parent switches profiles.
+            .onChange(of: profileManager.currentProfile?.safety) { _, _ in
+                OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
+            }
+            .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
+                MPStreak.shared.activate(profileID: id)
+            // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
+            OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
+                // A series episode whose day has come opens here (FAZ 13); no
+                // notification announces it.
+                if let id { SeriesManager.shared.refreshUnlocks(for: id) }
                 DailyStoryManager.shared.refreshForToday()
-                Task { await RemoteContentService.shared.refreshIfDue() }
             }
-        }
-        .overlay { sheetLayer }
-        .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: { app.creationPreset = nil }) {
-            StoryCreationFlow(preset: app.creationPreset).environmentObject(app).environmentObject(settings)
-        }
-        .fullScreenCover(item: $app.detailStory) { story in
-            StoryDetailView(story: story).environmentObject(app).environmentObject(settings)
-        }
-        .fullScreenCover(item: $app.readerStory) { story in
-            StoryReaderView(story: story).environmentObject(app).environmentObject(settings)
-        }
-        .fullScreenCover(isPresented: $app.showPaywall) {
-            PaywallView().environmentObject(app)
-        }
-        .fullScreenCover(isPresented: $app.showGate) {
-            ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
-        }
-        .fullScreenCover(isPresented: $app.showDecorationGallery) {
-            StoryDecorationGallery()
-        }
-        .fullScreenCover(isPresented: $app.showDecorationDemo) {
-            StoryDecorationDemoView().environmentObject(app)
-        }
-        .fullScreenCover(isPresented: $app.showProfileAdd) {
-            ProfileCreationView(mode: .addAnother) { name in
-                app.showToast("\(name) eklendi", symbol: "sparkles")
+            // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .background {
+                    app.enterChildMode()
+                    RemoteContentService.scheduleBackgroundRefresh()
+                }
+                if phase == .active, let id = profileManager.currentProfile?.id {
+                    SeriesManager.shared.refreshUnlocks(for: id)
+                }
+                if phase == .active {
+                    // Gün dönmüş olabilir; akış yarım saatte bir yoklanır.
+                    DailyStoryManager.shared.refreshForToday()
+                    Task { await RemoteContentService.shared.refreshIfDue() }
+                }
             }
-        }
+            .overlay { sheetLayer }
+            .fullScreenCover(item: $app.sleepSession) { session in
+                SleepModeView(session: session).environmentObject(app)
+            }
+            .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
+                app.creationPreset = nil
+                app.creationFamilyID = nil
+                app.runAfterReader()
+            }) {
+                StoryCreationFlow(preset: app.creationPreset, family: app.creationFamilyID).environmentObject(app).environmentObject(settings)
+            }
+            .sheet(item: $app.actionsStory, onDismiss: {
+                if let next = app.pendingRead {
+                    app.pendingRead = nil
+                    app.read(next.story, fromStart: next.startPage == 0)
+                }
+            }) { story in
+                StoryActionsSheet(story: story) { chosen, fromStart in
+                    app.pendingRead = (chosen, fromStart ? 0 : nil)
+                }
+                .environmentObject(app)
+            }
+            .fullScreenCover(item: $app.readerStory, onDismiss: {
+                app.readerStartPage = nil
+                app.runAfterReader()
+            }) { story in
+                StoryReaderView(story: story, startingPage: app.readerStartPage).environmentObject(app).environmentObject(settings)
+            }
+            .fullScreenCover(isPresented: $app.showPaywall) {
+                PaywallView().environmentObject(app)
+            }
+            .fullScreenCover(isPresented: $app.showGate) {
+                ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
+            }
+            .fullScreenCover(isPresented: $app.showDecorationGallery) {
+                StoryDecorationGallery()
+            }
+            .fullScreenCover(isPresented: $app.showDecorationDemo) {
+                StoryDecorationDemoView().environmentObject(app)
+            }
+            .fullScreenCover(item: $firstRun, onDismiss: {
+                if let story = firstStory {
+                    firstStory = nil
+                    app.read(story, fromStart: true)
+                }
+            }) { run in
+                FirstRunView(childName: run.name) { story in
+                    firstStory = story
+                    firstRun = nil
+                }
+            }
+            .fullScreenCover(isPresented: $app.showProfileAdd) {
+                ProfileCreationView(mode: .addAnother) { name in
+                    app.showToast("\(name) eklendi", symbol: "sparkles")
+                }
+            }
     }
 
     // MARK: - Sekme içeriği
 
-    /// Mod değişince tüm sekme içeriği çapraz geçer — ebeveyn sayfaları
-    /// çocuğun ekranlarının üstüne açılan bir katman değil, başka bir menü.
+    /// Mod değişince tüm içerik çapraz geçer: ebeveyn sayfaları çocuğun
+    /// ekranlarının üstüne açılan bir katman değil, başka bir menü.
     private var content: some View {
         Group {
             if app.isParentMode {
-                parentContent.transition(.opacity)
+                parentRoot.transition(.opacity)
             } else {
-                childContent.transition(.opacity)
+                kidRoot.transition(.opacity)
             }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.isParentMode)
     }
 
-    @ViewBuilder
-    private var childContent: some View {
-        switch app.tab {
-        case .home:    HomeView()
-        case .library: LibraryView()
-        case .daily:   DailyStoriesView()
-        }
-    }
+    private var kidRoot: some View {
+        ZStack(alignment: .bottom) {
+            MPColor.backgroundKid.ignoresSafeArea()
 
-    @ViewBuilder
-    private var parentContent: some View {
-        switch app.parentTab {
-        case .overview: ParentOverviewView()
-        case .children: ParentChildrenView()
-        case .settings: SettingsView()
-        }
-    }
+            Group {
+                switch app.tab {
+                case .home:    HomeView()
+                case .library: LibraryView()
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                KidTabBar(
+                    selection: Binding(
+                        get: { app.tab.kidTab },
+                        set: { next in
+                            guard MPTab(next) != app.tab else { return }
+                            MPHaptics.selection()
+                            app.tab = MPTab(next)
+                        }
+                    ),
+                    onCreate: { app.startStoryCreation() }
+                )
+            }
 
-    /// Çocuk: Ana Sayfa · Kütüphane · **Masal yarat** · Günlük
-    /// Ebeveyn: Özet · Çocuklar · Ayarlar
-    ///
-    /// Ebeveyn menüsünde yaratma eylemi yok: masal çocukla birlikte, çocuk
-    /// modunda yaratılır. Ebeveyn tarafı bakmak ve ayarlamak için.
-    private var tabItems: [MPTabBar.Item] {
-        if app.isParentMode {
-            return MPParentTab.allCases.map {
-                MPTabBar.Item(value: $0.rawValue, label: $0.label, symbol: $0.symbol)
+            if let child = app.seriesChildID {
+                SeriesView(childID: child)
+                    .transition(reduceMotion ? .opacity : .move(edge: .trailing))
+                    .zIndex(2)
+            }
+
+            if app.showKidCorner {
+                KidCornerView()
+                    .transition(reduceMotion ? .opacity : .move(edge: .bottom))
+                    .zIndex(1)
             }
         }
-        func item(_ tab: MPTab) -> MPTabBar.Item {
-            MPTabBar.Item(value: tab.rawValue, label: tab.label, symbol: tab.symbol)
-        }
-        return [item(.home), item(.library),
-                MPTabBar.Item(value: "create", label: "Masal yarat",
-                              symbol: "wand.and.stars", kind: .action),
-                item(.daily)]
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.showKidCorner)
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
+    }
+
+    private var parentRoot: some View {
+        ParentTabs(
+            selection: Binding(
+                get: { app.parentTab.parentTab },
+                set: { app.parentTab = MPParentTab($0) }
+            ),
+            summary: { ParentOverviewView() },
+            safety: { ParentSafetyView() },
+            settings: { SettingsView() }
+        )
     }
 
     // MARK: - Alt sayfa katmanı
@@ -188,6 +232,10 @@ struct ContentView: View {
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     FamilyCharactersView(profile: profile).environmentObject(app)
                 }
+            case .newWords(let id):
+                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                    NewWordsView(profile: profile) { app.sheet = nil }
+                }
             case .interests(let id):
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     InterestsEditorSheet(profile: profile).environmentObject(app)
@@ -201,4 +249,10 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+/// İlk kurulum kapağının kimliği (09 + 10).
+private struct FirstRunName: Identifiable {
+    let name: String
+    var id: String { name }
 }

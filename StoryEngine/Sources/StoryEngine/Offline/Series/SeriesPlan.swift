@@ -76,6 +76,10 @@ public struct SeriesPlan: Codable, Sendable, Hashable {
     public let anchor: SeriesAnchor
     public private(set) var family: SeriesFamily?
     public let episodes: [PlannedEpisode]
+    /// The parent's content setting when the series was planned (FAZ 17). Kept
+    /// so composing again gives the same episodes; a later change to the
+    /// setting applies to the next series. Nil is every plan before FAZ 17.
+    public let safety: ContentSafety?
 
     public init(
         seed: String,
@@ -84,9 +88,11 @@ public struct SeriesPlan: Codable, Sendable, Hashable {
         ageBand: AgeBand,
         anchor: SeriesAnchor,
         family: SeriesFamily?,
-        episodes: [PlannedEpisode]
+        episodes: [PlannedEpisode],
+        safety: ContentSafety? = nil
     ) {
         self.schemaVersion = Self.currentSchemaVersion
+        self.safety = safety
         self.seed = seed
         self.catalogVersion = catalogVersion
         self.mode = mode
@@ -167,7 +173,8 @@ public struct SeriesPlanner: Sendable {
         familyCharacterID: String?,
         childName: String,
         seed: String,
-        catalog: ContentCatalog
+        catalog: ContentCatalog,
+        safety: ContentSafety? = nil
     ) throws -> Result {
         guard let keepsake = catalog.object(anchor.keepsakeID) else {
             throw SeriesPlanningError.unknownContent(anchor.keepsakeID)
@@ -211,7 +218,7 @@ public struct SeriesPlanner: Sendable {
                 guard let story = try? compose(
                     planned, blueprint: blueprints[index], anchor: anchor, keepsake: keepsake,
                     mode: mode, band: band, childName: childName, family: family,
-                    avoiding: avoiding, catalog: catalog)
+                    avoiding: avoiding, catalog: catalog, safety: safety)
                 else { continue }
                 // Avoiding is a preference that never fails a page, so the
                 // set used here does not change whether this composes.
@@ -219,7 +226,7 @@ public struct SeriesPlanner: Sendable {
                     guard (try? compose(
                         planned, blueprint: blueprints[index], anchor: anchor, keepsake: keepsake,
                         mode: mode, band: band, childName: childName, family: nil,
-                        avoiding: avoiding, catalog: catalog)) != nil
+                        avoiding: avoiding, catalog: catalog, safety: safety)) != nil
                     else { continue }
                 }
                 chosen.append((planned, story))
@@ -238,7 +245,7 @@ public struct SeriesPlanner: Sendable {
 
         let plan = SeriesPlan(
             seed: seed, catalogVersion: catalog.version, mode: mode, ageBand: band,
-            anchor: anchor, family: seriesFamily, episodes: chosen.map(\.0))
+            anchor: anchor, family: seriesFamily, episodes: chosen.map(\.0), safety: safety)
         return Result(plan: plan, episodes: chosen.map(\.1))
     }
 
@@ -268,7 +275,7 @@ public struct SeriesPlanner: Sendable {
                 mode: plan.mode, band: plan.ageBand, childName: childName,
                 family: plan.family == nil ? nil : family,
                 avoiding: Set(stories.flatMap { $0.pages.flatMap(\.variantIDs) }),
-                catalog: catalog))
+                catalog: catalog, safety: plan.safety))
         }
         return stories
     }
@@ -285,7 +292,8 @@ public struct SeriesPlanner: Sendable {
         childName: String,
         family: FamilyCast?,
         avoiding: Set<ContentID>,
-        catalog: ContentCatalog
+        catalog: ContentCatalog,
+        safety: ContentSafety?
     ) throws -> ComposedStory {
         let intent = OfflineStoryIntent(
             childName: childName,
@@ -295,7 +303,8 @@ public struct SeriesPlanner: Sendable {
             seed: episode.seed,
             mode: mode,
             ageBand: band,
-            family: family)
+            family: family,
+            safety: safety)
         return try composer.composeEpisode(
             blueprint: blueprint, catalog: catalog, intent: intent,
             episode: EpisodeContext(number: episode.number, keepsake: keepsake, avoiding: avoiding))

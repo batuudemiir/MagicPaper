@@ -290,6 +290,21 @@ final class MPStreak: ObservableObject {
         }
     }
 
+    /// Bu haftanın günlük okuma dakikaları, Pazartesi'den Pazar'a
+    /// (Ebeveyn · Özet "Günlük okuma" grafiği).
+    var minutesThisWeekByDay: [Int] {
+        let cal = weekCalendar
+        let today = cal.startOfDay(for: now())
+        guard let weekStart = cal.dateInterval(of: .weekOfYear, for: today)?.start else {
+            return Array(repeating: 0, count: 7)
+        }
+        let seconds = readSeconds
+        return (0..<7).map { offset in
+            guard let d = cal.date(byAdding: .day, value: offset, to: weekStart) else { return 0 }
+            return Int(((seconds[dayKey(d)] ?? 0) / 60).rounded())
+        }
+    }
+
     // MARK: - Okuma süresi
     //
     // Ebeveyn panelindeki "Bu hafta okuma" değeri eskiden okunan gün sayısından

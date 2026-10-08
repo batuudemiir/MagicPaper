@@ -86,4 +86,47 @@ enum MPVocabulary {
             lastSevenDays: days
         )
     }
+
+    // MARK: - Yeni kelimelerim (FAZ 17)
+
+    /// Çocuğun masallarda karşılaştığı, sözlükten gelen bir kelime.
+    struct CollectedWord: Identifiable, Equatable {
+        let word: StoryWord
+        /// İlk karşılaştığı masalın adı.
+        let storyTitle: String
+        let storyID: UUID
+        /// İlk karşılaşma: masalın son okunduğu an, yoksa yazıldığı gün.
+        let date: Date
+        var id: String { word.id }
+    }
+
+    /// Okunmuş sayfalardaki (`lastReadPage`'e kadar) öğretilen kelimeler,
+    /// tekrarsız (sözlük kimliğine göre), en yeniden eskiye.
+    ///
+    /// Bunlar bir yazarın bu bant için "yeni" diye işaretlediği kelimelerdir;
+    /// çocuğun gerçekten bilmediğini iddia etmez. Okunmamış sayfanın kelimesi
+    /// sayılmaz: hiç karşılaşılmamış bir kelime toplanmış olamaz.
+    static func collectedWords(in stories: [Story]) -> [CollectedWord] {
+        var earliest: [String: CollectedWord] = [:]
+        for story in stories {
+            guard let furthest = story.lastReadPage else { continue }
+            let date = story.lastReadAt ?? story.createdAt
+            for page in story.pages.prefix(furthest + 1) {
+                for word in page.words ?? [] {
+                    if let known = earliest[word.id], known.date <= date { continue }
+                    earliest[word.id] = CollectedWord(word: word, storyTitle: story.title,
+                                                      storyID: story.id, date: date)
+                }
+            }
+        }
+        return earliest.values.sorted {
+            $0.date == $1.date ? $0.word.term < $1.word.term : $0.date > $1.date
+        }
+    }
+
+    /// Son yedi günde toplananlar ("Bu hafta").
+    static func collectedThisWeek(_ words: [CollectedWord], now: Date = Date()) -> [CollectedWord] {
+        let start = Calendar.current.date(byAdding: .day, value: -7, to: now) ?? .distantPast
+        return words.filter { $0.date >= start }
+    }
 }

@@ -1,6 +1,8 @@
 import SwiftUI
 
-/// Profil oluşturma — 03-SCREENS.md §2.
+/// 07 · Çocuk profili + 08 · Neleri sever (`ProfilOlusturma`, `NeleriSever`).
+/// Tasarımın yaş aralıkları (5-7, 8-10, 11-12) yerine motorun bantları
+/// (3-4 / 5-6 / 7-8 / 9-10); ilgi seçimi isteğe bağlı, en fazla üç (FAZ 12).
 /// MagicPaper çocuk fotoğrafı istemez ve saklamaz; kimlik bir harf madalyonudur.
 struct ProfileCreationView: View {
     enum Mode { case first, addAnother }
@@ -25,132 +27,142 @@ struct ProfileCreationView: View {
         name.trimmingCharacters(in: .whitespaces)
     }
 
+    /// 07 → 08. "Neleri sever" yalnızca katalog yeterince ilgi sunuyorsa
+    /// (FAZ 12 eşiği) ikinci adım olur; yoksa 07'den profil oluşur.
+    @State private var step = 1
+
+    private var hasInterestStep: Bool { ChildInterests.isShown(interestChoices) }
+    private var stepCount: Int { hasInterestStep ? 2 : 1 }
+    private var title: String { mode == .first ? "Çocuk profili" : "Yeni profil" }
+
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(
-                title: mode == .first ? "İlk profil" : "Yeni profil",
-                onBack: mode == .first ? nil : { dismiss() }
-            )
+            MPTopBar(title: title, subtitle: stepCount > 1 ? "\(step) / \(stepCount)" : nil,
+                     onBack: backAction) { EmptyView() }
+                .padding(.horizontal, MPSpacing.screenH)
 
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 24) {
-                    MPAvatar(name: trimmedName.isEmpty ? "?" : trimmedName,
-                             color: palette[colorIndex], size: 88, ring: true)
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 8)
-
-                    MPInput(
-                        label: "Çocuğunun adı ne?",
-                        hint: "Masalda bu isim geçecek",
-                        placeholder: "Örn. Elif",
-                        text: $name,
-                        symbol: "person.crop.circle",
-                        maxLength: 20
-                    )
-
-                    colorPicker
-                    agePicker
-                    if ChildInterests.isShown(interestChoices) {
-                        interestPicker
-                    }
-                    privacyNote
+                Group {
+                    if step == 1 { profileStep } else { interestStep }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.bottom, 24)
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.vertical, MPSpacing.lg)
             }
 
-            MPButton(
-                title: mode == .first ? "Profili oluştur" : "Profili ekle",
-                size: .lg,
-                fullWidth: true,
-                isDisabled: trimmedName.isEmpty
-            ) {
-                create()
+            VStack(spacing: MPSpacing.sm) {
+                if step == 2 {
+                    Text("\(interests.count) seçildi")
+                        .mpText(.callout)
+                        .foregroundStyle(MPColor.textSecondary)
+                        .accessibilityAddTraits(.updatesFrequently)
+                }
+                MPButton(title: "Devam et", fullWidth: true) {
+                    if step == 1 && hasInterestStep {
+                        withAnimation(MP.M.gated(MP.M.base)) { step = 2 }
+                    } else {
+                        create()
+                    }
+                }
+                .disabled(trimmedName.isEmpty)
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.bottom, 12)
+            .padding(.horizontal, MPSpacing.xxxl)
+            .padding(.vertical, MPSpacing.md)
         }
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
         .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
     }
 
-    /// "Neleri sever?" (FAZ 12). İsteğe bağlı: hiç seçmeden de profil oluşur.
-    private var interestPicker: some View {
-        VStack(alignment: .leading, spacing: MP.S.x3) {
-            VStack(alignment: .leading, spacing: MP.S.x1) {
-                Text(InterestCopy.question)
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textTitle)
-                Text(InterestCopy.questionHint)
-                    .font(MP.F.caption(.regular))
-                    .foregroundStyle(MP.C.textMuted)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .accessibilityElement(children: .combine)
-            InterestChipGrid(choices: interestChoices, selection: $interests)
+    private var backAction: (() -> Void)? {
+        if step == 2 { return { withAnimation(MP.M.gated(MP.M.base)) { step = 1 } } }
+        return mode == .first ? nil : { dismiss() }
+    }
+
+    // MARK: 07 · Çocuk profili
+
+    private var profileStep: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+            avatar
+                .frame(maxWidth: .infinity)
+
+            MPTextField(label: "Çocuğunun adı ne?", placeholder: "Örn. Elif",
+                        text: $name, helper: "Masallarda bu isim geçecek")
+                .textInputAutocapitalization(.words)
+                .onChange(of: name) { _, value in
+                    if value.count > 20 { name = String(value.prefix(20)) }
+                }
+
+            colorPicker
+            agePicker
         }
     }
 
-    private var colorPicker: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Avatar rengi")
-                .font(MP.F.labelMD())
-                .foregroundStyle(MP.C.textTitle)
+    private var avatar: some View {
+        let color = palette[colorIndex]
+        return ZStack {
+            Ellipse()
+                .fill(color.opacity(0.18))
+                .frame(width: 150, height: 134)
+                .rotationEffect(.degrees(-18))
+            MPInitialAvatar(name: trimmedName, color: color, size: 76)
+                .mpShadow(.card)
+        }
+        .accessibilityHidden(true)
+        .animation(MP.M.gated(MP.M.easeOut), value: colorIndex)
+    }
 
-            HStack(spacing: 10) {
+    private var colorPicker: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            Text("Avatar rengi").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            HStack(spacing: MPSpacing.md) {
                 ForEach(palette.indices, id: \.self) { i in
                     Button {
-                        withAnimation(MP.M.gated(MP.M.spring)) { colorIndex = i }
+                        MPHaptics.selection()
+                        colorIndex = i
                     } label: {
                         Circle()
                             .fill(palette[i])
                             .frame(width: 40, height: 40)
+                            .padding(MPSpacing.xxs)
                             .overlay {
                                 if colorIndex == i {
-                                    ZStack {
-                                        Circle().strokeBorder(palette[i], lineWidth: 3).padding(-6)
-                                        Circle().strokeBorder(MP.C.surfaceApp, lineWidth: 3).padding(-3)
-                                    }
-                                }
-                            }
-                            .background {
-                                if colorIndex != i {
-                                    Circle().fill(MP.C.edgeCircle).offset(y: 3)
+                                    Circle().strokeBorder(palette[i], lineWidth: 3)
                                 }
                             }
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(MPPressStyle())
                     .accessibilityLabel("Avatar rengi \(i + 1)")
                     .accessibilityAddTraits(colorIndex == i ? .isSelected : [])
                 }
                 Spacer(minLength: 0)
             }
-            .padding(.vertical, 4)
         }
     }
 
     private var agePicker: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Yaş aralığı")
-                .font(MP.F.labelMD())
-                .foregroundStyle(MP.C.textTitle)
-
-            MPWrapRow(spacing: 10) {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            Text("Yaş aralığı").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            MPWrapRow(spacing: MPSpacing.sm) {
                 ForEach(MPAgeRange.allCases) { range in
                     MPChip(title: range.title, isSelected: ageRange == range) {
-                        withAnimation(MP.M.gated(MP.M.easeOut)) { ageRange = range }
+                        MPHaptics.selection()
+                        ageRange = range
                     }
                 }
             }
+            Text("Masalın dili ve uzunluğu yaşa göre ayarlanır.")
+                .mpText(.caption).fontWeight(.regular)
+                .foregroundStyle(MPColor.textSecondary)
         }
     }
 
-    private var privacyNote: some View {
-        Text("MagicPaper çocuk fotoğrafı istemez ve saklamaz — sadece bir isim ve avatar rengi.")
-            .font(MP.F.caption(.regular))
-            .lineSpacing(12 * 0.5)
-            .foregroundStyle(MP.C.textFaint)
-            .fixedSize(horizontal: false, vertical: true)
+    // MARK: 08 · Neleri sever
+
+    private var interestStep: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xl) {
+            MascotSays(mascot: .curious,
+                       text: "\(trimmedName) neleri sever? En fazla \(ChildInterests.maxSelection) tane seç.")
+            InterestChipGrid(choices: interestChoices, selection: $interests)
+        }
     }
 
     private func create() {

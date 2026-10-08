@@ -151,6 +151,12 @@ final class SeriesManager: ObservableObject {
         case waiting(episode: Int, title: String)
     }
 
+    /// Okunan bölüm ve toplam bölüm, ilk masal dahil (seri satırının şeridi).
+    func readProgress(for childID: UUID) -> (read: Int, total: Int)? {
+        guard let series = openSeries(for: childID) else { return nil }
+        return (1 + series.episodes.filter { $0.read != nil }.count, 1 + series.episodes.count)
+    }
+
     func cardState(for childID: UUID) -> CardState? {
         guard let series = openSeries(for: childID) else { return nil }
         if let ready = series.episodes.first(where: { $0.isUnlocked && $0.read == nil }),

@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Paywall — 03-SCREENS.md §14.
+/// 37 · Abonelik (`Paywall`). Yalnızca ebeveyn alanından açılır.
 /// Kural: **önce değer, sonra fiyat.** Ekran açıldığında fiyat gösterilmez;
 /// planlar yalnızca "Planları gör"e basıldıktan sonra görünür.
 struct PaywallView: View {
@@ -15,6 +15,7 @@ struct PaywallView: View {
     @State private var cycle: Cycle = .monthly
     @State private var isPurchasing = false
     @State private var purchaseError: String?
+    @State private var isRestoring = false
 
     enum Cycle: Hashable { case monthly, yearly }
 
@@ -45,120 +46,151 @@ struct PaywallView: View {
     private struct Benefit {
         let text: String
         let symbol: String
+        let tone: MPWorldTone
     }
 
     private let benefits: [Benefit] = [
-        Benefit(text: "Sınırsız metin masalı", symbol: "sparkles"),
-        Benefit(text: "12 masal dünyasının tamamı", symbol: "building.columns"),
-        Benefit(text: "Aylık görselli masal hakkı", symbol: "star.fill"),
-        Benefit(text: "Uzun masallar ve sesli okuma", symbol: "speaker.wave.2"),
-        Benefit(text: "Yazdırılabilir PDF kitap", symbol: "printer")
+        Benefit(text: "Sınırsız metin masalı", symbol: "sparkles", tone: .lav),
+        Benefit(text: "12 masal dünyasının tamamı", symbol: "building.columns", tone: .pink),
+        Benefit(text: "Aylık görselli masal hakkı", symbol: "star", tone: .yellow),
+        Benefit(text: "Uzun masallar ve sesli okuma", symbol: "speaker.wave.2", tone: .sky),
+        Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green)
     ]
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Spacer(minLength: 0)
-                MPIconButton(symbol: "xmark", label: "Kapat") { dismiss() }
-            }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.top, 4)
-
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 24) {
+                VStack(spacing: MPSpacing.xxl) {
+                    hero
                     valueSection
-                    benefitList
-                    if showPlans { planSection }
+                    if showPlans { planSection } else { benefitList }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 8)
-                .padding(.bottom, 24)
+                .padding(.bottom, MPSpacing.xxl)
             }
-
             footer
         }
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .overlay(alignment: .topTrailing) {
+            MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat") { dismiss() }
+                .padding(.horizontal, MPSpacing.screenH)
+                .padding(.top, MPSpacing.sm)
+        }
         .task { revenueCat.fetchOfferings() }
     }
 
     // MARK: - Değer bölümü
 
-    private var valueSection: some View {
-        VStack(spacing: 10) {
-            MPBadge(title: "Premium", tone: .reward, symbol: "crown.fill")
-
-            Text("Her akşam yeni bir masal")
-                .font(MP.F.displayLG())
-                .mpTightTracking(32)
-                .foregroundStyle(MP.C.textTitle)
-                .multilineTextAlignment(.center)
-
-            Text("Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.")
-                .font(MP.F.bodyMD())
-                .foregroundStyle(MP.C.textMuted)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
+    private var hero: some View {
+        ZStack(alignment: .bottom) {
+            HeaderWash(height: 290)
+                .clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 200, bottomTrailingRadius: 200))
+                .ignoresSafeArea(edges: .top)
+            MascotImage(mascot: .onBook, width: 200)
+                .padding(.bottom, MPSpacing.xxl)
+                .accessibilityHidden(true)
+            HStack(spacing: MPSpacing.xs) {
+                MPIcon("crown", size: 16, weight: .semibold)
+                Text("Premium").mpText(.callout)
+            }
+            .foregroundStyle(MPWorldTone.yellow.deep)
+            .padding(.horizontal, MPSpacing.lg)
+            .padding(.vertical, MPSpacing.xs)
+            .background(MPColor.backgroundSurface, in: Capsule())
+            .offset(y: 14)
         }
-        .frame(maxWidth: .infinity)
+    }
+
+    private var valueSection: some View {
+        VStack(spacing: MPSpacing.sm) {
+            Text("Her akşam yeni bir masal")
+                .mpText(.largeTitle)
+                .foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Text("Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.")
+                .mpText(.body)
+                .foregroundStyle(MPColor.textSecondary)
+        }
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(.horizontal, MPSpacing.xl)
     }
 
     private var benefitList: some View {
-        VStack(spacing: 12) {
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
             ForEach(benefits, id: \.text) { benefit in
-                HStack(spacing: 12) {
-                    MPIcon(benefit.symbol, size: 17, weight: .semibold)
-                        .foregroundStyle(MP.C.calm)
-                        .frame(width: 34, height: 34)
-                        .background(
-                            RoundedRectangle(cornerRadius: MP.R.sm, style: .continuous)
-                                .fill(MP.C.calmSoft)
-                        )
-                    Text(benefit.text)
-                        .font(MP.F.bodyMD(.bold))
-                        .foregroundStyle(MP.C.textTitle)
+                HStack(spacing: MPSpacing.lg) {
+                    MPIcon(benefit.symbol, size: 20, weight: .semibold)
+                        .foregroundStyle(benefit.tone.deep)
+                        .frame(width: 42, height: 42)
+                        .background(benefit.tone.soft, in: Circle())
+                        .accessibilityHidden(true)
+                    Text(benefit.text).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 0)
                 }
             }
         }
+        .padding(.horizontal, MPSpacing.xxl)
     }
 
     // MARK: - Fiyat bölümü
 
     private var planSection: some View {
-        VStack(spacing: 12) {
-            MPSegmentedControl(
-                options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")],
-                selection: $cycle
-            )
-            .padding(.bottom, 2)
-
-            MPPlanCard(
-                name: "Hikaye Kahramanı",
-                price: price(.premium),
-                period: periodLabel,
-                stars: "Ayda 5 görselli masal",
-                note: "Sınırsız metin masalı",
-                isRecommended: true,
-                isSelected: selectedTier == .premium
-            ) { selectedTier = .premium }
-
-            MPPlanCard(
-                name: "Yıldız Kaşifi",
-                price: price(.basic),
-                period: periodLabel,
-                stars: "Ayda 1 görselli masal",
-                note: "Sınırsız metin masalı",
-                isSelected: selectedTier == .basic
-            ) { selectedTier = .basic }
-
+        VStack(spacing: MPSpacing.md) {
+            MPSegmented(options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")], selection: $cycle)
+                .padding(.bottom, MPSpacing.sm)
+            planCard(.premium, name: "Hikaye Kahramanı", allowance: "Ayda 5 görselli masal", recommended: true)
+            planCard(.basic, name: "Yıldız Kaşifi", allowance: "Ayda 1 görselli masal", recommended: false)
             Text("İstediğin zaman iptal edebilirsin. İlk 7 gün ücretsiz.")
-                .font(MP.F.caption(.regular))
-                .foregroundStyle(MP.C.textFaint)
+                .mpText(.caption).fontWeight(.regular)
+                .foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
-                .padding(.top, 2)
+                .padding(.top, MPSpacing.xs)
         }
-        .transition(.opacity.combined(with: .offset(y: 12)))
+        .padding(.horizontal, MPSpacing.xl)
+        .transition(.opacity)
+    }
+
+    private func planCard(_ tier: SubscriptionManager.SubscriptionTier, name: String,
+                          allowance: String, recommended: Bool) -> some View {
+        let selected = selectedTier == tier
+        return Button { selectedTier = tier } label: {
+            HStack(alignment: .center, spacing: MPSpacing.md) {
+                Circle()
+                    .strokeBorder(selected ? MPColor.actionPrimary : MPColor.borderKid, lineWidth: 2.5)
+                    .background(Circle().fill(selected ? MPColor.actionPrimary : .clear).padding(MPSpacing.xxs))
+                    .frame(width: 26, height: 26)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    Text(name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                    Text(allowance).mpText(.callout).foregroundStyle(MPWorldTone.yellow.deep)
+                    Text("Sınırsız metin masalı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                }
+                Spacer(minLength: 0)
+                VStack(alignment: .trailing, spacing: 0) {
+                    Text(price(tier)).mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                    Text(periodLabel).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                }
+            }
+            .padding(MPSpacing.lg)
+            .padding(.top, recommended ? MPSpacing.xs : 0)
+            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
+                .strokeBorder(selected ? MPColor.actionPrimary : MPColor.borderKid, lineWidth: selected ? 3 : 1.5))
+            .overlay(alignment: .topLeading) {
+                if recommended {
+                    Text("En çok seçilen").mpText(.caption)
+                        .foregroundStyle(MPColor.textPrimary)
+                        .padding(.horizontal, MPSpacing.md)
+                        .padding(.vertical, MPSpacing.xxs)
+                        .background(MPColor.brandStar, in: Capsule())
+                        .offset(x: MPSpacing.lg, y: -12)
+                }
+            }
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     // MARK: - Satın alma
@@ -192,34 +224,55 @@ struct PaywallView: View {
     // MARK: - Alt butonlar
 
     private var footer: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: MPSpacing.xs) {
             if let purchaseError {
                 Text(purchaseError)
-                    .font(MP.F.labelSM())
-                    .foregroundStyle(MP.C.danger)
+                    .mpText(.footnote)
+                    .foregroundStyle(MPColor.statusDanger)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            MPButton(
-                title: isPurchasing ? "İşleniyor…"
-                                    : (showPlans ? "7 gün ücretsiz dene" : "Planları gör"),
-                tone: .reward,
-                size: .lg,
-                fullWidth: true,
-                isDisabled: isPurchasing
-            ) {
+            MPButton(title: showPlans ? "7 gün ücretsiz dene" : "Planları gör",
+                     fullWidth: true, isLoading: isPurchasing) {
                 if showPlans {
                     startPurchase()
                 } else {
                     withAnimation(MP.M.gated(MP.M.base)) { showPlans = true }
                 }
             }
+            .padding(.horizontal, MPSpacing.xxxl)
 
-            MPButton(title: "Şimdi değil", variant: .ghost, size: .sm) { dismiss() }
+            MPButton(title: "Şimdi değil", kind: .ghost) { dismiss() }
+
+            HStack(spacing: MPSpacing.lg) {
+                Button(isRestoring ? "Geri yükleniyor…" : "Satın alımları geri yükle", action: restore)
+                    .disabled(isRestoring)
+                Link("Koşullar", destination: URL(string: "https://magicpaper.app/terms")!)
+                Link("Gizlilik", destination: URL(string: "https://magicpaper.app/privacy")!)
+            }
+            .mpText(.caption)
+            .foregroundStyle(MPColor.actionPrimary)
+            .frame(minHeight: MPSize.minTouchParent)
         }
-        .padding(.horizontal, MP.S.screenGutter)
-        .padding(.bottom, 12)
-        .background(MP.C.surfaceApp)
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.bottom, MPSpacing.xs)
+        .background(MPColor.backgroundKid)
+    }
+
+    private func restore() {
+        isRestoring = true
+        purchaseError = nil
+        revenueCat.restorePurchases { success, error in
+            isRestoring = false
+            if success {
+                dismiss()
+                app.showToast("Satın alımlar geri yüklendi", symbol: "crown.fill", tone: .reward)
+            } else if let error {
+                purchaseError = error.localizedDescription
+            } else {
+                purchaseError = "Geri yüklenecek bir abonelik bulunamadı."
+            }
+        }
     }
 }

@@ -18,6 +18,9 @@ public struct ComposedPage: Sendable, Hashable {
     public let missingSlots: [String]
     /// Suffix spellings the Turkish renderer did not recognise.
     public let unrecognisedSuffixes: [String]
+    /// Words this page teaches (FAZ 17), where they sit in `text`. Empty for
+    /// a page whose lines teach none, which is every page before FAZ 17.
+    public let words: [PageWord]
 }
 
 /// A finished offline draft — text only. No images, no persistence, no IDs the
@@ -174,6 +177,8 @@ public struct OfflineStoryComposer: Sendable {
         var variantIDs: [ContentID] = []
         var missing: [String] = []
         var unrecognised: [String] = []
+        var words: [PageWord] = []
+        var pageLength = 0
 
         func flush() {
             guard currentPage != 0, let page = carried[currentPage] else { return }
@@ -186,9 +191,11 @@ public struct OfflineStoryComposer: Sendable {
                 visualScene: scenes.joined(separator: "; "),
                 variantIDs: variantIDs,
                 missingSlots: missing,
-                unrecognisedSuffixes: unrecognised
+                unrecognisedSuffixes: unrecognised,
+                words: words
             ))
             sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
+            words = []; pageLength = 0
         }
 
         for step in try Self.plan(blueprint) {
@@ -208,7 +215,23 @@ public struct OfflineStoryComposer: Sendable {
             let serving = familyMoment
                 ? candidates.filter { Self.hasFamilyLine($0, for: intent.family?.relation) }
                 : candidates
-            let templatePool = serving.isEmpty ? candidates : serving
+            let familyPool = serving.isEmpty ? candidates : serving
+            // A template with no line the parent allows cannot serve this page
+            // (FAZ 17). Filtered only when a setting is given, so a story
+            // without one picks among exactly the templates it always did.
+            let templatePool: [CatalogTemplate]
+            if let safety = intent.safety {
+                templatePool = familyPool.filter { template in
+                    template.variants.contains { safety.admits(topics: $0.topics) }
+                }
+                guard !templatePool.isEmpty else {
+                    throw OfflineSelectionError.noVariantSatisfying(
+                        constraint: "a line clear of the topics the parent avoids",
+                        beat: step.beat, page: step.pageNumber)
+                }
+            } else {
+                templatePool = familyPool
+            }
             let template = episode == nil
                 ? DeterministicPicker.pick(from: templatePool, seed: storySeed, salt: step.salt)
                 : templatePool[DeterministicPicker.mixedIndex(
@@ -228,12 +251,20 @@ public struct OfflineStoryComposer: Sendable {
                 family: intent.family?.relation,
                 familyMoment: familyMoment,
                 calmEnding: episode != nil && step.pageNumber == lastPage,
+                safety: intent.safety,
                 episode: episode,
                 seed: storySeed,
                 salt: step.salt + ".v"
             )
 
             let rendered = TurkishTextRenderer.render(variant.text, slots: slots)
+            // Sentences are joined with one space; offsets count from the
+            // start of the page text the reader will show.
+            let sentenceStart = sentences.isEmpty ? 0 : pageLength + 1
+            words += Self.words(
+                of: variant, in: rendered.text, at: sentenceStart,
+                catalog: catalog, band: blueprint.ageRange)
+            pageLength = sentenceStart + rendered.text.count
             sentences.append(rendered.text)
             if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
             variantIDs.append(variant.id)
@@ -327,6 +358,48 @@ public struct OfflineStoryComposer: Sendable {
         return nil
     }
 
+    /// The first beat in this blueprint where every line touches a topic the
+    /// parent avoids, or nil when each beat keeps one (FAZ 17).
+    ///
+    /// A pre-check like `familyGap`: the pool still applies its other filters
+    /// when the page is written, and a blueprint that fails there is passed
+    /// over for the next one.
+    static func safetyGap(
+        in blueprint: CatalogBlueprint,
+        catalog: ContentCatalog,
+        safety: ContentSafety
+    ) -> StoryBeat? {
+        guard let steps = try? plan(blueprint) else { return nil }
+        for step in steps {
+            let lines = templates(for: step.beat, in: catalog, blueprint: blueprint)
+                .flatMap(\.variants)
+                .filter { !$0.isFamilyLine }
+            if !lines.isEmpty, !lines.contains(where: { safety.admits(topics: $0.topics) }) {
+                return step.beat
+            }
+        }
+        return nil
+    }
+
+    /// The glossary words a line teaches, located in its rendered sentence.
+    /// A word the sentence does not hold, or one not written for this band,
+    /// is left out; the integrity check reports the first for the author.
+    static func words(
+        of variant: CatalogVariant,
+        in sentence: String,
+        at offset: Int,
+        catalog: ContentCatalog,
+        band: AgeBand
+    ) -> [PageWord] {
+        variant.words.compactMap { id in
+            guard let entry = catalog.glossaryEntry(id), entry.suits(band: band),
+                  let found = GlossaryMatcher.locate(entry, in: sentence) else { return nil }
+            return PageWord(
+                glossaryID: entry.id, term: entry.term, meaning: entry.meaning,
+                start: offset + found.start, length: found.length)
+        }
+    }
+
     /// One beat to be written, with everything the choice depends on.
     ///
     /// `previous`, `closing` and `state` are three different questions about
@@ -411,6 +484,7 @@ public struct OfflineStoryComposer: Sendable {
         family: FamilyRelationKind? = nil,
         familyMoment: Bool = false,
         calmEnding: Bool = false,
+        safety: ContentSafety? = nil,
         episode: EpisodeContext? = nil,
         seed: String,
         salt: String
@@ -419,7 +493,8 @@ public struct OfflineStoryComposer: Sendable {
             from: variants, realizing: beat, wanting: length, after: previous,
             closing: closing, state: state, onPage: page, content: content,
             register: register, conflict: conflict,
-            family: family, familyMoment: familyMoment, calmEnding: calmEnding)
+            family: family, familyMoment: familyMoment, calmEnding: calmEnding,
+            safety: safety)
         guard let episode else {
             return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
         }
@@ -458,7 +533,8 @@ public struct OfflineStoryComposer: Sendable {
         conflict: ConflictMechanism? = nil,
         family: FamilyRelationKind? = nil,
         familyMoment: Bool = false,
-        calmEnding: Bool = false
+        calmEnding: Bool = false,
+        safety: ContentSafety? = nil
     ) throws -> [CatalogVariant] {
         func narrow(_ pool: [CatalogVariant], _ keep: (CatalogVariant) -> Bool) -> [CatalogVariant] {
             let kept = pool.filter(keep)
@@ -472,7 +548,19 @@ public struct OfflineStoryComposer: Sendable {
         //    a different character than the rest of the book does. This is the
         //    same class as narrowing 3 below, and the reason the cast is
         //    resolved once per story rather than per page.
-        let byRole = variants.filter { $0.suits(role: content.castRole) }
+        // 0f. What the parent asked stories to avoid (FAZ 17). **Does not
+        //     degrade**, and comes first: a line about being alone in the dark
+        //     is not a weaker line for a child whose parent ruled that out, it
+        //     is the one thing the setting promised would not be read.
+        let allowed = safety.map { safety in
+            variants.filter { safety.admits(topics: $0.topics) }
+        } ?? variants
+        guard !allowed.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line clear of the topics the parent avoids", beat: beat, page: page)
+        }
+
+        let byRole = allowed.filter { $0.suits(role: content.castRole) }
         guard !byRole.isEmpty else {
             throw OfflineSelectionError.noVariantForRole(
                 role: content.castRole, beat: beat, page: page)

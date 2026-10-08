@@ -12,6 +12,14 @@ final class MPSpeech: NSObject, ObservableObject {
     @Published private(set) var isPaused = false
 
     private let synthesizer = AVSpeechSynthesizer()
+    /// Şu an okunan metin. Bir okuma durdurulup yenisi başladığında eskisinin
+    /// "iptal" ya da "bitti" haberi geç gelir; yeni okumanın durumunu ezmesin,
+    /// `onFinished`'i yanlış sayfa için çağırmasın diye karşılaştırılır.
+    private var current: ObjectIdentifier?
+
+    /// Bir metin sonuna kadar okununca (durdurulunca değil). Okuyucu sesli
+    /// okurken sonraki sayfaya geçer, Uyku modu sonraki sayfayı okur.
+    var onFinished: (() -> Void)?
 
     private override init() {
         super.init()
@@ -33,9 +41,12 @@ final class MPSpeech: NSObject, ObservableObject {
         try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
-    /// Türkçe ses; cihazda yoksa sistem varsayılanına düşer.
+    /// Cihazdaki en iyi Türkçe ses (FAZ 17): yüklüyse premium ya da
+    /// geliştirilmiş ses, yoksa sistem varsayılanı.
     private func voice(for language: String) -> AVSpeechSynthesisVoice? {
-        AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
+        let candidates = AVSpeechSynthesisVoice.speechVoices().filter { $0.language == language }
+        if let best = candidates.max(by: { $0.quality.rawValue < $1.quality.rawValue }) { return best }
+        return AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
     }
 
     func speak(_ text: String, language: String = "tr-TR") {
@@ -48,10 +59,11 @@ final class MPSpeech: NSObject, ObservableObject {
         let utterance = AVSpeechUtterance(string: trimmed)
         utterance.voice = voice(for: language)
         // Çocuğa okurken varsayılan hız fazla hızlı geliyor.
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.92
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * MPSettingsStore.shared.speechRate.multiplier
         utterance.pitchMultiplier = 1.05
         utterance.postUtteranceDelay = 0.2
 
+        current = ObjectIdentifier(utterance)
         synthesizer.speak(utterance)
         isSpeaking = true
         isPaused = false
@@ -73,10 +85,14 @@ final class MPSpeech: NSObject, ObservableObject {
         if synthesizer.isSpeaking || synthesizer.isPaused {
             synthesizer.stopSpeaking(at: .immediate)
         }
+        current = nil
         isSpeaking = false
         isPaused = false
         deactivateSession()
     }
+
+    /// Bir delege haberi şu anki okumaya mı ait (geç gelen haber değil mi).
+    func isCurrent(_ utterance: ObjectIdentifier) -> Bool { current == utterance }
 
     /// Okuyucudaki tek butonun davranışı: çalıyorsa duraklat, duraklamışsa
     /// devam et, duruyorsa baştan oku.
@@ -94,16 +110,23 @@ final class MPSpeech: NSObject, ObservableObject {
 extension MPSpeech: AVSpeechSynthesizerDelegate {
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer,
                                        didFinish utterance: AVSpeechUtterance) {
+        let finished = ObjectIdentifier(utterance)
         Task { @MainActor in
+            guard self.isCurrent(finished) else { return }
+            self.current = nil
             self.isSpeaking = false
             self.isPaused = false
             self.deactivateSession()
+            self.onFinished?()
         }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer,
                                        didCancel utterance: AVSpeechUtterance) {
+        let cancelled = ObjectIdentifier(utterance)
         Task { @MainActor in
+            guard self.isCurrent(cancelled) else { return }
+            self.current = nil
             self.isSpeaking = false
             self.isPaused = false
         }

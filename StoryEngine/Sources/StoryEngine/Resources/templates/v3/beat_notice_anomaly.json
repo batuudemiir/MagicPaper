@@ -38,6 +38,7 @@
     {
       "id": "na_neutral_03",
       "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.name}} tam oradaydı, apaçık.",
+      "words": ["w56_apacik"],
       "requiredSlots": [
         "child.name",
         "setting.name",
@@ -124,6 +125,7 @@
     {
       "id": "na_light_01",
       "text": "Gözünün ucuyla bir parıltı yakaladı {{child.name}}. Döndüğünde kayboldu. Bir adım attı ve parıltı geri geldi. {{setting.name}}'da bir şey ışıldıyordu.",
+      "words": ["w56_parilti", "w56_isildamak"],
       "requiredSlots": [
         "child.name",
         "setting.name"
@@ -139,6 +141,7 @@
     {
       "id": "na_light_02",
       "text": "{{setting.name}}'da gölgeler uzamıştı. {{child.name}} tam eve dönecekti ki küçücük bir ışık gördü. Uzakta bir yerdeydi. Orada olmaması gerekiyordu.",
+      "topics": ["darkness"],
       "requiredSlots": [
         "child.name",
         "setting.name"
@@ -154,6 +157,7 @@
     {
       "id": "na_light_03",
       "text": "{{child.name}} elini gözlerine siper etti. {{setting.name}}'da bir yer pırıl pırıl parlıyordu. Orası hep gölgede kalırdı oysa. Bugün neden başkaydı?",
+      "words": ["w56_siper"],
       "requiredSlots": [
         "child.name",
         "setting.name"
@@ -185,6 +189,7 @@
     {
       "id": "na_weather_02",
       "text": "Rüzgar bütün sabah esmişti. Sonunda durdu. {{setting.name}} bambaşka görünüyordu. {{child.name}} yavaşça yaklaştı. Rüzgar {{discovery.name}} ortaya çıkarmıştı sanki.",
+      "topics": ["weather"],
       "requiredSlots": [
         "child.name",
         "setting.name",
@@ -219,6 +224,7 @@
     {
       "id": "na_traces_02",
       "text": "{{setting.name}}'da toprak yumuşacıktı. {{child.name}} kendi ayak izlerini sayarak yürüyordu. Derken bir tane fazla saydı. Sonra bir tane daha.",
+      "words": ["w56_yumusacik"],
       "requiredSlots": [
         "child.name",
         "setting.name"
@@ -235,6 +241,8 @@
     {
       "id": "na_enclosed_01",
       "text": "İçerisi dışarıdan serindi. {{child.name}} bir iki adım attı ve gözleri karanlığa alıştı. Tam o sırada {{discovery.name}}'i fark etti.",
+      "topics": ["darkness"],
+      "words": ["w56_serin"],
       "requiredSlots": [
         "child.name",
         "discovery.name"

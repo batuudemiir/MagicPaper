@@ -11,6 +11,7 @@ import SwiftUI
 /// gibi okunabilir, bu yüzden metin kaybedilen bir şeyden değil yarın devam
 /// edecek bir şeyden bahsediyor. Suçlayan bir dil ("çok okudun") ya da bir
 /// sayaç ("30/30 dk") yok: sayı ebeveynin bilgisi, çocuğun değil.
+/// Pastel görünüm (FAZ 17): uykulu Ragi, ortalanmış metin, tek birincil buton.
 struct ReaderTimeUpLeaf: View {
 
     let theme: MP.ReadTheme
@@ -20,38 +21,35 @@ struct ReaderTimeUpLeaf: View {
         ZStack {
             ReaderPaper(theme: theme)
 
-            VStack(alignment: .leading, spacing: MP.S.x6) {
+            VStack(spacing: MPSpacing.xl) {
                 Spacer(minLength: 0)
 
-                // Kapanış yaprağı ay çiziyor; bu yaprak kum saati çiziyor.
-                // Aynı kâğıt, farklı sebep: masal bitmedi, gün bitti. Ve bu,
-                // ebeveynin Ayarlar'da dokunduğu simgenin aynısı.
-                MPIcon("hourglass", size: 26, weight: .semibold)
-                    .foregroundStyle(theme.muted)
+                // Kapanış yaprağında Ragi el sallar; burada uykulu. Masal
+                // bitmedi, gün bitti.
+                MascotImage(mascot: .sleepy, width: 150)
+                    .accessibilityHidden(true)
 
-                Text("Bugünlük bu kadar")
-                    .font(MP.F.displayMD())
-                    .mpTightTracking(26)
-                    .foregroundStyle(theme.foreground)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                Text("Masal kaldığı yerde bekliyor. Yarın devam ederiz.")
-                    .font(MP.F.bodyMD())
-                    .lineSpacing(16 * 0.55)
-                    .foregroundStyle(theme.muted)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                Spacer(minLength: 0)
-
-                MPButton(title: "Tamam", variant: .soft, size: .lg, fullWidth: true) {
-                    onClose()
+                VStack(spacing: MPSpacing.sm) {
+                    Text("Bugünlük bu kadar")
+                        .mpText(.display)
+                        .foregroundStyle(theme.foreground)
+                        .multilineTextAlignment(.center)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Masal kaldığı yerde bekliyor. Yarın devam ederiz.")
+                        .mpText(.body)
+                        .foregroundStyle(theme.muted)
+                        .multilineTextAlignment(.center)
                 }
+                .fixedSize(horizontal: false, vertical: true)
 
                 Spacer(minLength: 0)
+
+                MPButton(title: "Tamam", fullWidth: true, action: onClose)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: 560)
+            .frame(maxWidth: .infinity)
             .padding(.horizontal, StoryPageView.gutter)
-            .padding(.vertical, MP.S.x8)
+            .padding(.vertical, MPSpacing.xxxl)
         }
         // Arkadaki sayfa hâlâ ekranda duruyor; dokunuşun oraya geçmemesi
         // gerekiyor, yoksa kapanmış bir okuma sayfa çevirmeye devam eder.

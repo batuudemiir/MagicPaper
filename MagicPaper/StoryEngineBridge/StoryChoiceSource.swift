@@ -102,6 +102,37 @@ func storyFailureDetail(_ error: Error) -> String {
     (error as? OfflineStoryService.Failure)?.detail ?? String(describing: error)
 }
 
+/// Why a story could not be written, as far as the parent needs to know (43).
+///
+/// Only one reason is worth telling apart: the parent's content safety
+/// setting (FAZ 17) left nothing to tell. Everything else is one calm
+/// sentence; the detail goes to the log.
+enum StoryFailureReason: Equatable {
+    case general
+    /// The safety setting ruled out every story for these choices.
+    case safetySetting
+
+    init(_ error: Error) {
+        let detail = storyFailureDetail(error)
+        // The engine's rejection reasons for a safety rule (`ContentSafety`,
+        // `OfflineStoryComposer.pool`) all name the parent's setting.
+        self = Self.safetyMarkers.contains(where: detail.contains) ? .safetySetting : .general
+    }
+
+    static let safetyMarkers = ["which the parent avoids", "the parent chose calm stories",
+                                "clear of the topics the parent avoids", "carries a topic the parent avoids"]
+
+    /// The sentence under the title. Never blames the child.
+    var message: String {
+        switch self {
+        case .general:
+            return "Bir şeyler yolunda gitmedi ama sorun sende değil. Tekrar deneyelim mi?"
+        case .safetySetting:
+            return "Bu seçimlerle, güvenlik ayarlarına uyan bir masal bulunamadı. Başka bir masal türü deneyebilirsin; ayarlara bir büyüğün bakması da olur."
+        }
+    }
+}
+
 // MARK: - The offline engine behind it
 
 extension OfflineStoryService: StoryChoiceSource {

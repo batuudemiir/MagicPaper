@@ -31,6 +31,13 @@ enum StoryCreationSteps {
     }
 
     /// Kurulabilir modlar, ekran sırasıyla (K5). Kurulamayan mod gösterilmez.
+    /// Uyku saatinde (31 · Güvenlik) yalnızca Uyku öncesi. Bu bantta uyku
+    /// modu kurulamıyorsa kural akışı kilitlemez, hepsi kalır.
+    static func allowedModes(_ available: [StoryMode], isBedtime: Bool) -> [StoryMode] {
+        guard isBedtime, available.contains(.bedtime) else { return available }
+        return [.bedtime]
+    }
+
     static func shownModes(_ available: [StoryMode]) -> [StoryMode] {
         StoryMode.displayOrder.filter(available.contains)
     }

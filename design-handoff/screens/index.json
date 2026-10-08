@@ -1,0 +1,788 @@
+{
+ "screens": [
+  {
+   "n": "01",
+   "file": "Marka.dc.html",
+   "title": "Marka ve maskot",
+   "area": "brand",
+   "route": null,
+   "presentation": "yok",
+   "w": 1180,
+   "h": 1340,
+   "screenshot": "screens/01-Marka.png",
+   "links": []
+  },
+  {
+   "n": "02",
+   "file": "Main.dc.html",
+   "title": "Karşılama 1",
+   "area": "onboarding",
+   "route": "welcome(page: 0)",
+   "presentation": "root (onboarding stack)",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/02-Main.png",
+   "links": [
+    "Giris.dc.html",
+    "Onboarding2.dc.html"
+   ]
+  },
+  {
+   "n": "03",
+   "file": "Onboarding2.dc.html",
+   "title": "Karşılama 2",
+   "area": "onboarding",
+   "route": "welcome(page: 1)",
+   "presentation": "page (TabView .page)",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/03-Onboarding2.png",
+   "links": [
+    "Giris.dc.html",
+    "Onboarding3.dc.html"
+   ]
+  },
+  {
+   "n": "04",
+   "file": "Onboarding3.dc.html",
+   "title": "Karşılama 3",
+   "area": "onboarding",
+   "route": "welcome(page: 2)",
+   "presentation": "page",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/04-Onboarding3.png",
+   "links": [
+    "Giris.dc.html"
+   ]
+  },
+  {
+   "n": "05",
+   "file": "Giris.dc.html",
+   "title": "Giriş",
+   "area": "onboarding",
+   "route": "signIn",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/05-Giris.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "EbeveynOnayi.dc.html"
+   ]
+  },
+  {
+   "n": "06",
+   "file": "EbeveynOnayi.dc.html",
+   "title": "Ebeveyn onayı",
+   "area": "onboarding",
+   "route": "parentalConsent",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/06-EbeveynOnayi.png",
+   "links": [
+    "Giris.dc.html",
+    "ProfilOlusturma.dc.html"
+   ]
+  },
+  {
+   "n": "07",
+   "file": "ProfilOlusturma.dc.html",
+   "title": "Çocuk profili",
+   "area": "onboarding",
+   "route": "createChildProfile(step: 1)",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/07-ProfilOlusturma.png",
+   "links": [
+    "EbeveynOnayi.dc.html",
+    "KahramanOlustur.dc.html",
+    "NeleriSever.dc.html"
+   ]
+  },
+  {
+   "n": "08",
+   "file": "NeleriSever.dc.html",
+   "title": "Neleri sever",
+   "area": "onboarding",
+   "route": "createChildProfile(step: 2)",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/08-NeleriSever.png",
+   "links": [
+    "BildirimIzni.dc.html",
+    "ProfilOlusturma.dc.html"
+   ]
+  },
+  {
+   "n": "09",
+   "file": "BildirimIzni.dc.html",
+   "title": "Bildirim izni",
+   "area": "onboarding",
+   "route": "notificationPrePrompt",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/09-BildirimIzni.png",
+   "links": [
+    "IlkMasal.dc.html"
+   ]
+  },
+  {
+   "n": "10",
+   "file": "IlkMasal.dc.html",
+   "title": "İlk masal hazırlanıyor",
+   "area": "onboarding",
+   "route": "firstStoryGenerating",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/10-IlkMasal.png",
+   "links": [
+    "AnaSayfa.dc.html"
+   ]
+  },
+  {
+   "n": "11",
+   "file": "AnaSayfa.dc.html",
+   "title": "Ana sayfa (tam sayfa)",
+   "area": "kid",
+   "route": "kid(.home)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 1060,
+   "screenshot": "screens/11-AnaSayfa.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "BenimKosem.dc.html",
+    "EbeveynKapisi.dc.html",
+    "Kutuphane.dc.html",
+    "Okuyucu.dc.html",
+    "SeriMasal.dc.html",
+    "SihirbazNasil.dc.html",
+    "SihirbazNerede.dc.html"
+   ]
+  },
+  {
+   "n": "12",
+   "file": "BenimKosem.dc.html",
+   "title": "Benim köşem (tam sayfa)",
+   "area": "kid",
+   "route": "kidCorner",
+   "presentation": "fullScreen (avatar)",
+   "w": 390,
+   "h": 1010,
+   "screenshot": "screens/12-BenimKosem.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "EbeveynKapisi.dc.html",
+    "KahramanOlustur.dc.html",
+    "MasalAilem.dc.html",
+    "YeniKelimeler.dc.html"
+   ]
+  },
+  {
+   "n": "13",
+   "file": "KahramanOlustur.dc.html",
+   "title": "Kahraman oluşturucu (tam sayfa)",
+   "area": "kid",
+   "route": "heroEditor",
+   "presentation": "push",
+   "w": 390,
+   "h": 1000,
+   "screenshot": "screens/13-KahramanOlustur.png",
+   "links": [
+    "BenimKosem.dc.html"
+   ]
+  },
+  {
+   "n": "14",
+   "file": "MasalAilem.dc.html",
+   "title": "Masal ailem",
+   "area": "kid",
+   "route": "storyFamily",
+   "presentation": "push",
+   "w": 390,
+   "h": 960,
+   "screenshot": "screens/14-MasalAilem.png",
+   "links": [
+    "BenimKosem.dc.html",
+    "KahramanOlustur.dc.html",
+    "SihirbazNasil.dc.html"
+   ]
+  },
+  {
+   "n": "15",
+   "file": "YeniKelimeler.dc.html",
+   "title": "Yeni kelimelerim",
+   "area": "kid",
+   "route": "newWords",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/15-YeniKelimeler.png",
+   "links": [
+    "BenimKosem.dc.html"
+   ]
+  },
+  {
+   "n": "16",
+   "file": "Kutuphane.dc.html",
+   "title": "Kitaplık (tam sayfa)",
+   "area": "kid",
+   "route": "kid(.library)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/16-Kutuphane.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "EbeveynKapisi.dc.html",
+    "Kutuphane.dc.html",
+    "MasalAksiyon.dc.html",
+    "SeriMasal.dc.html",
+    "SihirbazNerede.dc.html"
+   ]
+  },
+  {
+   "n": "17",
+   "file": "MasalAksiyon.dc.html",
+   "title": "Masal aksiyonları",
+   "area": "kid",
+   "route": "storyActions(id)",
+   "presentation": "sheet (.medium)",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/17-MasalAksiyon.png",
+   "links": [
+    "EbeveynKapisi.dc.html",
+    "MasalAksiyon.dc.html",
+    "Okuyucu.dc.html",
+    "OkuyucuGorselli.dc.html",
+    "SeriMasal.dc.html"
+   ]
+  },
+  {
+   "n": "18",
+   "file": "SeriMasal.dc.html",
+   "title": "Seri masal",
+   "area": "kid",
+   "route": "series(id)",
+   "presentation": "push",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/18-SeriMasal.png",
+   "links": [
+    "Kutuphane.dc.html",
+    "OkuyucuGorselli.dc.html"
+   ]
+  },
+  {
+   "n": "19",
+   "file": "SihirbazNerede.dc.html",
+   "title": "Yarat 1 · Dünya (tam sayfa)",
+   "area": "create",
+   "route": "create(step: .world)",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 1100,
+   "screenshot": "screens/19-SihirbazNerede.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "SihirbazNasil.dc.html"
+   ]
+  },
+  {
+   "n": "20",
+   "file": "SihirbazNasil.dc.html",
+   "title": "Yarat 2 · Ayarla (tam sayfa)",
+   "area": "create",
+   "route": "create(step: .details)",
+   "presentation": "push (create stack)",
+   "w": 390,
+   "h": 1140,
+   "screenshot": "screens/20-SihirbazNasil.png",
+   "links": [
+    "MasalAilem.dc.html",
+    "SihirbazNerede.dc.html",
+    "Uretim.dc.html"
+   ]
+  },
+  {
+   "n": "21",
+   "file": "Uretim.dc.html",
+   "title": "Masal yazılıyor",
+   "area": "create",
+   "route": "generating(jobId)",
+   "presentation": "push (create stack)",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/21-Uretim.png",
+   "links": [
+    "AnaSayfa.dc.html"
+   ]
+  },
+  {
+   "n": "22",
+   "file": "OkuyucuGorselli.dc.html",
+   "title": "Okuyucu · görselli",
+   "area": "create",
+   "route": "reader(id, mode: .illustrated)",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/22-OkuyucuGorselli.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "OkumaAyarlari.dc.html"
+   ]
+  },
+  {
+   "n": "23",
+   "file": "Okuyucu.dc.html",
+   "title": "Okuyucu · sadece metin",
+   "area": "create",
+   "route": "reader(id, mode: .text)",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/23-Okuyucu.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "OkumaAyarlari.dc.html"
+   ]
+  },
+  {
+   "n": "24",
+   "file": "OkumaAyarlari.dc.html",
+   "title": "Okuma ayarları",
+   "area": "create",
+   "route": "readerSettings",
+   "presentation": "sheet",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/24-OkumaAyarlari.png",
+   "links": [
+    "Okuyucu.dc.html"
+   ]
+  },
+  {
+   "n": "25",
+   "file": "MasalSonu.dc.html",
+   "title": "Masal sonu",
+   "area": "create",
+   "route": "storyEnd(id)",
+   "presentation": "push (reader stack)",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/25-MasalSonu.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "SihirbazNerede.dc.html",
+    "UykuModu.dc.html",
+    "YeniKelimeler.dc.html"
+   ]
+  },
+  {
+   "n": "26",
+   "file": "UykuModu.dc.html",
+   "title": "Uyku modu",
+   "area": "create",
+   "route": "sleepMode",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/26-UykuModu.png",
+   "links": [
+    "AnaSayfa.dc.html"
+   ]
+  },
+  {
+   "n": "27",
+   "file": "iPadOkuyucu.dc.html",
+   "title": "iPad · yatay okuyucu",
+   "area": "create",
+   "route": "reader(id, mode: .illustrated) [iPad]",
+   "presentation": "fullScreen (regular width)",
+   "w": 1180,
+   "h": 820,
+   "screenshot": "screens/27-iPadOkuyucu.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "MasalSonu.dc.html",
+    "OkumaAyarlari.dc.html"
+   ]
+  },
+  {
+   "n": "28",
+   "file": "EbeveynKapisi.dc.html",
+   "title": "Ebeveyn kapısı",
+   "area": "parent",
+   "route": "parentGate",
+   "presentation": "fullScreen",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/28-EbeveynKapisi.png",
+   "links": [
+    "AnaSayfa.dc.html"
+   ]
+  },
+  {
+   "n": "29",
+   "file": "EbeveynPaneli.dc.html",
+   "title": "Ebeveyn · Özet (tam sayfa)",
+   "area": "parent",
+   "route": "parent(.summary)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 1320,
+   "screenshot": "screens/29-EbeveynPaneli.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "Ayarlar.dc.html",
+    "EbeveynPaneli.dc.html",
+    "IcerikGuvenligi.dc.html",
+    "KitapSiparisi.dc.html",
+    "OnayBekleyenler.dc.html",
+    "Paywall.dc.html"
+   ]
+  },
+  {
+   "n": "30",
+   "file": "OnayBekleyenler.dc.html",
+   "title": "Ebeveyn · Onaylar (tam sayfa)",
+   "area": "parent",
+   "route": "parent(.approvals)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 1000,
+   "screenshot": "screens/30-OnayBekleyenler.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "Ayarlar.dc.html",
+    "EbeveynPaneli.dc.html",
+    "IcerikGuvenligi.dc.html",
+    "OnayBekleyenler.dc.html"
+   ]
+  },
+  {
+   "n": "31",
+   "file": "IcerikGuvenligi.dc.html",
+   "title": "Ebeveyn · Güvenlik (tam sayfa)",
+   "area": "parent",
+   "route": "parent(.safety)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 1060,
+   "screenshot": "screens/31-IcerikGuvenligi.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "Ayarlar.dc.html",
+    "EbeveynPaneli.dc.html",
+    "IcerikGuvenligi.dc.html",
+    "OnayBekleyenler.dc.html"
+   ]
+  },
+  {
+   "n": "32",
+   "file": "Ayarlar.dc.html",
+   "title": "Ebeveyn · Ayarlar (tam sayfa)",
+   "area": "parent",
+   "route": "parent(.settings)",
+   "presentation": "tab root",
+   "w": 390,
+   "h": 1340,
+   "screenshot": "screens/32-Ayarlar.png",
+   "links": [
+    "AileUyeleri.dc.html",
+    "AnaSayfa.dc.html",
+    "Ayarlar.dc.html",
+    "EbeveynPaneli.dc.html",
+    "HesapSil.dc.html",
+    "IcerikGuvenligi.dc.html",
+    "KitapSiparisi.dc.html",
+    "OnayBekleyenler.dc.html",
+    "Paywall.dc.html",
+    "ProfilOlusturma.dc.html",
+    "SesKaydi.dc.html"
+   ]
+  },
+  {
+   "n": "33",
+   "file": "SesKaydi.dc.html",
+   "title": "Kendi sesin",
+   "area": "parent",
+   "route": "voiceRecording",
+   "presentation": "push",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/33-SesKaydi.png",
+   "links": [
+    "Ayarlar.dc.html"
+   ]
+  },
+  {
+   "n": "34",
+   "file": "AileUyeleri.dc.html",
+   "title": "Aile üyeleri",
+   "area": "parent",
+   "route": "familyMembers",
+   "presentation": "push",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/34-AileUyeleri.png",
+   "links": [
+    "Ayarlar.dc.html"
+   ]
+  },
+  {
+   "n": "35",
+   "file": "KitapSiparisi.dc.html",
+   "title": "Masal kitabı",
+   "area": "parent",
+   "route": "bookExport",
+   "presentation": "push",
+   "w": 390,
+   "h": 1040,
+   "screenshot": "screens/35-KitapSiparisi.png",
+   "links": [
+    "EbeveynPaneli.dc.html",
+    "Paylas.dc.html"
+   ]
+  },
+  {
+   "n": "36",
+   "file": "Paylas.dc.html",
+   "title": "Aileyle paylaş",
+   "area": "parent",
+   "route": "shareLink",
+   "presentation": "push",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/36-Paylas.png",
+   "links": [
+    "KitapSiparisi.dc.html"
+   ]
+  },
+  {
+   "n": "37",
+   "file": "Paywall.dc.html",
+   "title": "Abonelik",
+   "area": "parent",
+   "route": "paywall",
+   "presentation": "sheet / push (only from parent area)",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/37-Paywall.png",
+   "links": [
+    "EbeveynPaneli.dc.html"
+   ]
+  },
+  {
+   "n": "38",
+   "file": "AbonelikBitti.dc.html",
+   "title": "Abonelik bitti",
+   "area": "parent",
+   "route": "subscriptionExpired",
+   "presentation": "push",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/38-AbonelikBitti.png",
+   "links": [
+    "EbeveynPaneli.dc.html",
+    "Paywall.dc.html"
+   ]
+  },
+  {
+   "n": "39",
+   "file": "HesapSil.dc.html",
+   "title": "Hesabı sil",
+   "area": "parent",
+   "route": "deleteAccount",
+   "presentation": "push",
+   "w": 390,
+   "h": 900,
+   "screenshot": "screens/39-HesapSil.png",
+   "links": [
+    "Ayarlar.dc.html",
+    "KitapSiparisi.dc.html"
+   ]
+  },
+  {
+   "n": "40",
+   "file": "Widgetlar.dc.html",
+   "title": "Widget'lar",
+   "area": "system",
+   "route": null,
+   "presentation": "WidgetKit",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/40-Widgetlar.png",
+   "links": [
+    "OkuyucuGorselli.dc.html",
+    "SeriMasal.dc.html"
+   ]
+  },
+  {
+   "n": "41",
+   "file": "KilitEkrani.dc.html",
+   "title": "Kilit ekranı ve Siri",
+   "area": "system",
+   "route": null,
+   "presentation": "ActivityKit + App Intents",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/41-KilitEkrani.png",
+   "links": [
+    "OkuyucuGorselli.dc.html"
+   ]
+  },
+  {
+   "n": "42",
+   "file": "BosKitaplik.dc.html",
+   "title": "Boş kitaplık",
+   "area": "state",
+   "route": "kid(.library) [empty]",
+   "presentation": "state",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/42-BosKitaplik.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "EbeveynKapisi.dc.html",
+    "Kutuphane.dc.html",
+    "SihirbazNerede.dc.html"
+   ]
+  },
+  {
+   "n": "43",
+   "file": "UretimHata.dc.html",
+   "title": "Üretim başarısız",
+   "area": "state",
+   "route": "generating(jobId) [failed]",
+   "presentation": "state",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/43-UretimHata.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "Uretim.dc.html"
+   ]
+  },
+  {
+   "n": "44",
+   "file": "InternetYok.dc.html",
+   "title": "İnternet yok",
+   "area": "state",
+   "route": "kid(.home) [offline]",
+   "presentation": "state",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/44-InternetYok.png",
+   "links": [
+    "AnaSayfa.dc.html",
+    "BenimKosem.dc.html",
+    "EbeveynKapisi.dc.html",
+    "Kutuphane.dc.html",
+    "Okuyucu.dc.html",
+    "SihirbazNerede.dc.html"
+   ]
+  },
+  {
+   "n": "45",
+   "file": "YildizBitti.dc.html",
+   "title": "Yıldız bitti",
+   "area": "state",
+   "route": "create [no_stars]",
+   "presentation": "state",
+   "w": 390,
+   "h": 844,
+   "screenshot": "screens/45-YildizBitti.png",
+   "links": [
+    "EbeveynKapisi.dc.html",
+    "Kutuphane.dc.html",
+    "SihirbazNasil.dc.html"
+   ]
+  }
+ ],
+ "stateScreenshots": [
+  {
+   "file": "screens/state-AnaSayfa-durum1.png",
+   "screen": "AnaSayfa",
+   "state": "Yarım masal"
+  },
+  {
+   "file": "screens/state-AnaSayfa-durum2.png",
+   "screen": "AnaSayfa",
+   "state": "Bugün okunmadı"
+  },
+  {
+   "file": "screens/state-AnaSayfa-durum3.png",
+   "screen": "AnaSayfa",
+   "state": "Bugün okundu"
+  },
+  {
+   "file": "screens/state-AnaSayfa-durum4.png",
+   "screen": "AnaSayfa",
+   "state": "Uyku saati"
+  },
+  {
+   "file": "screens/state-Okuyucu-Sepya.png",
+   "screen": "Okuyucu",
+   "state": "Tema: Sepya"
+  },
+  {
+   "file": "screens/state-Okuyucu-Gece.png",
+   "screen": "Okuyucu",
+   "state": "Tema: Gece"
+  },
+  {
+   "file": "screens/state-Paywall-planlar.png",
+   "screen": "Paywall.dc.html",
+   "state": "Planlar açık (2. adım)"
+  },
+  {
+   "file": "screens/state-SesKaydi-kayit.png",
+   "screen": "SesKaydi.dc.html",
+   "state": "Kayıt sürüyor"
+  },
+  {
+   "file": "screens/state-EbeveynKapisi-hata.png",
+   "screen": "EbeveynKapisi.dc.html",
+   "state": "Yanlış cevap"
+  },
+  {
+   "file": "screens/state-EbeveynOnayi-onaysiz.png",
+   "screen": "EbeveynOnayi.dc.html",
+   "state": "Kutu işaretsiz, buton pasif"
+  },
+  {
+   "file": "screens/state-OkuyucuGorselli-sayfa4.png",
+   "screen": "OkuyucuGorselli.dc.html",
+   "state": "Son sayfa, bitir bayrağı"
+  },
+  {
+   "file": "screens/state-Onaylar-karar.png",
+   "screen": "OnayBekleyenler.dc.html",
+   "state": "İlk istek onaylandı"
+  },
+  {
+   "file": "screens/state-Uretim-bitti.png",
+   "screen": "Uretim.dc.html",
+   "state": "Masal hazır"
+  },
+  {
+   "file": "screens/state-SihirbazNerede-elif.png",
+   "screen": "SihirbazNerede.dc.html",
+   "state": "Kahraman çipi Elif"
+  },
+  {
+   "file": "screens/state-HesapSil-aktif.png",
+   "screen": "HesapSil.dc.html",
+   "state": "SİL yazıldı, buton aktif"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ struct ProfilePickerSheet: View {
         MPSheet(title: "Kim okuyacak?", onClose: { app.sheet = nil }) {
             VStack(spacing: 8) {
                 ForEach(profileManager.profiles) { profile in
-                    MPListRow(
+                    LegacyMPListRow(
                         symbol: "person.crop.circle",
                         iconColor: profile.mpColor,
                         title: profile.name,
@@ -30,7 +30,7 @@ struct ProfilePickerSheet: View {
                 }
             }
         } footer: {
-            MPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
+            LegacyMPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
                 app.sheet = nil
                 app.showProfileAdd = true
             }
@@ -67,7 +67,7 @@ struct StoryActionList: View {
         VStack(spacing: 4) {
             seriesRow
 
-            MPListRow(
+            LegacyMPListRow(
                 symbol: "heart",
                 iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
                 title: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
@@ -78,13 +78,13 @@ struct StoryActionList: View {
                 }
             ) { EmptyView() }
 
-            MPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
+            LegacyMPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
                       action: { export() }) { EmptyView() }
 
-            MPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
+            LegacyMPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
                       action: { export() }) { EmptyView() }
 
-            MPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
+            LegacyMPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
                 storyManager.deleteStory(id: story.id)
                 onDeleted()
                 app.showToast("Masal silindi", symbol: "trash", tone: .danger)
@@ -100,7 +100,7 @@ struct StoryActionList: View {
     private var seriesRow: some View {
         switch series.endingState(for: story) {
         case .offer:
-            MPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
+            LegacyMPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
                       description: SeriesCopy.continueHint, action: {
                 do {
                     try series.startSeries(from: story)
@@ -145,31 +145,30 @@ struct StoryActionList: View {
     }
 }
 
-// MARK: - Okuma ayarları sheet'i — 03-SCREENS.md §6
+// MARK: - 24 · Okuma ayarları (`OkumaAyarlari`)
 
+/// Okuyucunun kendi sayfası: tema, yazı boyutu, kim okusun, okuma hızı,
+/// sesli okuma. Okuyucu tam ekran sunulduğu için onun içinden `.sheet` ile
+/// açılır. "Kim okusun?" yalnızca Kendi sesin (FAZ 18) bayrağı açıkken.
 struct ReaderSettingsSheet: View {
-    /// Okuyucu tam ekran cover olarak sunulduğu için bu sheet, ContentView'ın
-    /// paylaşılan katmanında değil, okuyucunun **kendi içinde** açılır — aksi
-    /// hâlde cover'ın arkasında kalıyordu.
     let onClose: () -> Void
 
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
 
     var body: some View {
-        MPSheet(title: "Okuma ayarları", onClose: onClose) {
-            VStack(alignment: .leading, spacing: 20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Tema").font(MP.F.labelMD()).foregroundStyle(MP.C.textTitle)
-                    MPSegmentedControl(
-                        options: MP.ReadTheme.allCases.map { ($0, $0.label) },
-                        selection: $app.readTheme
-                    )
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                Text("Okuma ayarları").mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+
+                group("Tema") {
+                    MPSegmented(options: MP.ReadTheme.allCases.map { ($0, $0.label) },
+                                selection: $app.readTheme)
                 }
 
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Yazı boyutu").font(MP.F.labelMD()).foregroundStyle(MP.C.textTitle)
-                    MPWrapRow(spacing: 10) {
+                group("Yazı boyutu") {
+                    MPFlowLayout(spacing: MPSpacing.sm) {
                         ForEach(MP.ReadSize.allCases) { size in
                             MPChip(title: size.rawValue, isSelected: app.readSize == size) {
                                 app.readSize = size
@@ -179,22 +178,58 @@ struct ReaderSettingsSheet: View {
                     }
                 }
 
-                MPListRow(
-                    symbol: "speaker.wave.2",
-                    title: "Sesli okuma",
-                    description: "Masalı sesli oku"
-                ) {
-                    MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
+                if FamilyFeatureAccess.isEnabled(.voiceRecording) {
+                    group("Kim okusun?") {
+                        MPSegmented(options: [(false, "Masal anlatıcısı"), (true, "Ailenin sesi")],
+                                    selection: .constant(false))
+                    }
                 }
 
-                MPListRow(
-                    symbol: "sparkles",
-                    title: "Dokunsal geri bildirim",
-                    description: "Sayfa çevrilince hafif bir dokunuş"
-                ) {
-                    MPSwitch(isOn: $settings.haptics, label: "Dokunsal geri bildirim")
+                group("Okuma hızı") {
+                    MPSegmented(options: MPSpeechRate.allCases.map { ($0, $0.label) },
+                                selection: Binding(get: { settings.speechRate },
+                                                   set: { settings.speechRate = $0 }))
+                }
+
+                MPGroupedList(area: .kid) {
+                    MPListRow(systemImage: "speaker.wave.2", tone: .sky, title: "Sesli okuma",
+                              subtitle: "Sayfa açılınca kendiliğinden okunur") {
+                        Toggle(isOn: $settings.readAloud) { EmptyView() }
+                            .toggleStyle(MPSwitchStyle()).fixedSize()
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityValue(settings.readAloud ? "Açık" : "Kapalı")
+                    .accessibilityAction { settings.readAloud.toggle() }
+                    MPRowDivider(area: .kid)
+                    MPListRow(systemImage: "sparkles", tone: .lav, title: "Dokunsal geri bildirim",
+                              subtitle: "Sayfa çevrilince hafif bir dokunuş") {
+                        Toggle(isOn: $settings.haptics) { EmptyView() }
+                            .toggleStyle(MPSwitchStyle()).fixedSize()
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityValue(settings.haptics ? "Açık" : "Kapalı")
+                    .accessibilityAction { settings.haptics.toggle() }
                 }
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.xxl)
+            .padding(.bottom, MPSpacing.lg)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            MPButton(title: "Okumaya dön", fullWidth: true, action: onClose)
+                .padding(.horizontal, MPSpacing.xxxl)
+                .padding(.vertical, MPSpacing.md)
+        }
+        .presentationDetents([.large])
+        .presentationDragIndicator(.visible)
+        .presentationCornerRadius(MPRadius.sheet)
+        .presentationBackground(MPColor.backgroundKid)
+    }
+
+    private func group<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.sm) {
+            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            content()
         }
     }
 }
@@ -214,25 +249,31 @@ struct ProfileEditSheet: View {
     var body: some View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
             VStack(spacing: 4) {
-                MPListRow(symbol: "pencil", title: "Profili düzenle", action: {
+                LegacyMPListRow(symbol: "pencil", title: "Profili düzenle", action: {
                     app.sheet = nil
                     app.showProfileAdd = true
                 }) { EmptyView() }
 
                 if IllustratedBookAccess.isEnabled() {
-                    MPListRow(symbol: "sparkles", title: "Kitap karakteri",
+                    LegacyMPListRow(symbol: "sparkles", title: "Kitap karakteri",
                               description: "Görselli masallarda görünecek karakter", action: {
                         app.sheet = .bookCharacter(profile.id)
                     }) { EmptyView() }
                 }
 
-                MPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
+                LegacyMPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
                           title: FamilyCharacterCopy.profileRowTitle,
                           description: FamilyCharacterCopy.profileRowDescription, action: {
                     app.sheet = .familyCharacters(profile.id)
                 }) { EmptyView() }
 
-                MPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
+                if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {
+                    LegacyMPListRow(symbol: InterestCopy.rowSymbol, title: InterestCopy.sectionTitle, action: {
+                        app.sheet = .interests(profile.id)
+                    }) { EmptyView() }
+                }
+
+                LegacyMPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
                     app.sheet = nil
                     app.tab = .library
@@ -241,7 +282,7 @@ struct ProfileEditSheet: View {
                 if profileManager.profiles.count > 1 {
                     // Deletion takes the child's stories with it and cannot be
                     // undone, so the row only asks; the dialog deletes.
-                    MPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
+                    LegacyMPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
                         pendingDeletionStoryCount = profileManager.storiesDeleted(with: profile).count
                     }) { EmptyView() }
                 }

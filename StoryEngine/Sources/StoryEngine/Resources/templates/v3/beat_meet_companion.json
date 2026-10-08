@@ -109,6 +109,8 @@
     {
       "id": "mc_care_02",
       "text": "Ses yine geldi, bu kez çok yakından. {{child.name}} usulca yaklaştı. {{companion.name}} oradaydı, küçücük bir {{companion.type}}, tek başına ve korkmuş.",
+      "topics": ["alone", "fear"],
+      "words": ["w56_usulca"],
       "requiredSlots": [
         "child.name",
         "companion.type",
@@ -141,6 +143,7 @@
     {
       "id": "mc_care_04",
       "text": "{{companion.name}} çok küçüktü ve çok yorgundu. {{child.name}} onu hemen fark etti. Yanına çömeldi ve usulca seslendi. \"Merhaba,\" dedi.",
+      "words": ["w56_usulca", "w56_comelmek"],
       "requiredSlots": [
         "companion.name",
         "child.name"
@@ -401,6 +404,7 @@
     {
       "id": "mc_hesitant_05",
       "text": "\"Ben de biraz korkuyorum,\" dedi {{companion.name}}. Söylemesi kolay olmadı. {{child.name}} şaşırdı, çünkü yalnız olmadığını yeni öğrenmişti. İkisi de rahatladı.",
+      "topics": ["fear"],
       "requiredSlots": [
         "companion.name",
         "child.name"
@@ -447,6 +451,7 @@
     {
       "id": "mc_hesitant_p04",
       "text": "Yakınlarda biri daha vardı. {{companion.name}} çıkageldi ama hemen durdu. \"Ben de duruyorum burada,\" dedi usulca, sesi çok alçaktı.",
+      "words": ["w56_usulca"],
       "requiredSlots": [
         "companion.name"
       ],
@@ -461,6 +466,7 @@
     {
       "id": "mc_hesitant_p05",
       "text": "{{companion.name}} yaklaştı, sonra vazgeçti, sonra yine yaklaştı. {{child.name}} hiç kıpırdamadı. Beklemek doğru olan şeydi, {{child.name}} bunu biliyordu.",
+      "words": ["w56_vazgecmek"],
       "requiredSlots": [
         "companion.name",
         "child.name"

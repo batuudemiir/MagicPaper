@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 /// `.sheet(item:)` `Identifiable` istediği için üretilen PDF bu tiple taşınır.
 struct MPExportFile: Identifiable {
@@ -16,16 +17,16 @@ enum MPStoryPDF {
     private static let margin: CGFloat = 40
 
     private static func displayFont(_ size: CGFloat, weight: UIFont.Weight = .bold) -> UIFont {
-        UIFont(name: "Baloo2-Bold", size: size) ?? .systemFont(ofSize: size, weight: weight)
+        UIFont(name: "Nunito-Black", size: size) ?? .systemFont(ofSize: size, weight: weight)
     }
 
     private static func bodyFont(_ size: CGFloat) -> UIFont {
         UIFont(name: "Nunito-SemiBold", size: size) ?? .systemFont(ofSize: size, weight: .medium)
     }
 
-    private static let ink = UIColor(red: 0x2B / 255, green: 0x1D / 255, blue: 0x24 / 255, alpha: 1)
-    private static let muted = UIColor(red: 0x6E / 255, green: 0x59 / 255, blue: 0x64 / 255, alpha: 1)
-    private static let paper = UIColor(red: 0xFD / 255, green: 0xF6 / 255, blue: 0xEE / 255, alpha: 1)
+    private static let ink = UIColor(MPColor.textPrimary)
+    private static let muted = UIColor(MPColor.textSecondary)
+    private static let paper = UIColor(MPColor.readerDayBackground)
 
     /// Tek masalı PDF'e basar ve geçici dosya URL'si döndürür.
     static func makePDF(for story: Story) async -> URL? {

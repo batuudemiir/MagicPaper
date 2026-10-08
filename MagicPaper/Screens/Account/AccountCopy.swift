@@ -3,17 +3,20 @@ import Foundation
 /// Hesap ekranlarının metni (FAZ 16). İrem'in gözden geçirmesini bekliyor.
 enum AccountCopy {
     // Giriş
-    static let signInTitle = "Ebeveyn hesabı"
-    static let signInBody = "Masallar ve profiller hesabınızda saklanır; telefon değişse de kaybolmaz. Çocuğunuz giriş yapmaz."
+    static let signInTitle = "Ebeveyn hesabını oluştur"
+    static let signInBody = "Hesap senin adına açılır. Çocuğun hiçbir zaman giriş yapmaz, şifre ya da e-posta girmez."
     static let continueWithApple = "Apple ile devam et"
     static let continueWithGoogle = "Google ile devam et"
     static let emulatorSignIn = "Test hesabıyla gir (emülatör)"
-    static let signInFootnote = "E-posta adresiniz ve adınız MagicPaper tarafından saklanmaz."
-    static let offlineMessage = "İnternet bağlantısı yok. Bağlanınca tekrar deneyin."
-    static let failedMessage = "Giriş yapılamadı. Biraz sonra tekrar deneyin."
+    static let signInFootnote = "Devam ederek [Kullanım koşulları](https://magicpaper.app/terms) ve [Gizlilik politikası](https://magicpaper.app/privacy)'nı kabul etmiş olursun."
+    static let offlineMessage = "İnternet bağlantısı yok. Bağlanınca tekrar dene."
+    // 44 · İnternet yok
+    static let offlineTitle = "İnternet yok gibi"
+    static let offlineNotice = "Masallar cihazda yazılır ve okunur. Giriş için bağlantı gerekir; bağlanınca tekrar dene."
+    static let failedMessage = "Giriş yapılamadı. Biraz sonra tekrar dene."
     static let googleUnavailable = "Google ile giriş bu sürümde henüz açık değil."
     static let deferSignIn = "Şimdilik masallara dön"
-    static let deferFootnote = "Masallarınız cihazda. Bağlantı gelince giriş yapabilirsiniz."
+    static let deferFootnote = "Masalların cihazda. Bağlantı gelince giriş yapabilirsin."
 
     // Onay
     static let usageRowTitle = "Okuma bilgisini paylaş"
@@ -23,10 +26,10 @@ enum AccountCopy {
     static func versionLine(_ version: String) -> String { "Onay metni sürümü: \(version)" }
 
     // Geri yükleme
-    static let restoringTitle = "Masallarınız getiriliyor"
-    static let restoringBody = "Hesabınızdaki profiller ve masallar bu cihaza geliyor."
+    static let restoringTitle = "Masalların getiriliyor"
+    static let restoringBody = "Hesabındaki profiller ve masallar bu cihaza geliyor."
     static let restoreFailedTitle = "Şu an getirilemedi"
-    static let restoreFailedBody = "İnternet bağlantısı gelince masallarınız kendiliğinden gelir."
+    static let restoreFailedBody = "İnternet bağlantısı gelince masalların kendiliğinden gelir."
     static let retry = "Tekrar dene"
     static let startFresh = "Yeni profil oluştur"
 
@@ -46,14 +49,14 @@ enum AccountCopy {
     static func synced(at time: String) -> String { "Son eşitleme \(time)" }
 
     static let signOut = "Çıkış yap"
-    static let signOutBody = "Bu cihazdaki profiller ve masallar kaldırılır; hepsi hesabınızda kalır. Tekrar giriş yapınca geri gelir."
-    static let signOutUnsent = "Bu cihazda hesaba henüz gitmemiş değişiklikler var. İnternete bağlanınca tekrar deneyin."
+    static let signOutBody = "Bu cihazdaki profiller ve masallar kaldırılır; hepsi hesabında kalır. Tekrar giriş yapınca geri gelir."
+    static let signOutUnsent = "Bu cihazda hesaba henüz gitmemiş değişiklikler var. İnternete bağlanınca tekrar dene."
 
     static let deleteAccount = "Hesabı sil"
     static let deleteAccountRow = "Hesap ve sunucudaki bütün bilgiler kalıcı olarak silinir"
-    static let deleteAccountBody = "Hesabınız, çocuk profilleri, masallar, seriler ve okuma ilerlemesi sunucudan ve bu cihazdan kalıcı olarak silinir. Bu işlem geri alınamaz. Devam etmek için bir kez daha giriş yapmanız istenecek."
+    static let deleteAccountBody = "Hesabın, çocuk profilleri, masallar, seriler ve okuma ilerlemesi sunucudan ve bu cihazdan kalıcı olarak silinir. Bu işlem geri alınamaz. Devam etmek için bir kez daha giriş yapman istenecek."
     static let deleteConfirm = "Hesabı kalıcı olarak sil"
-    static let deleteFailed = "Hesap silinemedi. İnternet bağlantınızı kontrol edip tekrar deneyin."
+    static let deleteFailed = "Hesap silinemedi. İnternet bağlantını kontrol edip tekrar dene."
     static func deletionStep(_ step: AccountService.DeletionStep) -> String {
         switch step {
         case .reauthenticating: return "Giriş doğrulanıyor"

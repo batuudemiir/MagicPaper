@@ -1,10 +1,10 @@
 import SwiftUI
 
-/// The open series, on Home and in the Library (FAZ 13).
+/// "Devam eden seri" satırı: Ana sayfa (11) ve Kitaplık (16), FAZ 13.
 ///
-/// Two calm states: an episode is ready, or the next one opens after the one
-/// before it is read. No countdown, no time, no "don't miss it" — the card is
-/// where a family finds the next episode, not a reason to come back.
+/// İki sakin durum: bölüm hazır, ya da bir sonraki bölüm öncekinden sonraki
+/// gün açılır. Geri sayım yok, saat yok, "kaçırma" yok: kart ailenin bir
+/// sonraki bölümü bulduğu yer, geri gelmek için bir sebep değil.
 struct SeriesCard: View {
 
     let childID: UUID
@@ -16,63 +16,61 @@ struct SeriesCard: View {
     var body: some View {
         switch series.cardState(for: childID) {
         case .ready(let storyID, let episode, let title):
-            MPPressableCard(tone: .paper, padding: MP.S.x5, action: { open(storyID) }) {
-                content(eyebrow: SeriesCopy.cardEyebrow, title: SeriesCopy.readyTitle(episode),
-                        subtitle: SeriesCopy.cardSubtitle(title), note: nil, showsAction: true)
+            Button { openSeries() } label: {
+                row(title: title, subtitle: SeriesCopy.readyTitle(episode), showsChevron: true)
             }
+            .buttonStyle(MPPressStyle())
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(SeriesCopy.readyAccessibility(episode, title))
             .accessibilityAddTraits(.isButton)
         case .waiting(let episode, let title):
-            MPCard(tone: .sunken, padding: MP.S.x5) {
-                content(eyebrow: SeriesCopy.cardEyebrow, title: SeriesCopy.waitingTitle(episode),
-                        subtitle: SeriesCopy.cardSubtitle(title), note: SeriesCopy.waitingNote,
-                        showsAction: false)
+            Button { openSeries() } label: {
+                row(title: title, subtitle: SeriesCopy.waitingTitle(episode), showsChevron: true)
             }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(SeriesCopy.waitingAccessibility(episode, title))
+            .buttonStyle(MPPressStyle())
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(SeriesCopy.waitingAccessibility(episode, title))
+                .accessibilityHint(SeriesCopy.waitingNote)
         case nil:
             EmptyView()
         }
     }
 
-    private func content(eyebrow: String, title: String, subtitle: String,
-                         note: String?, showsAction: Bool) -> some View {
-        HStack(alignment: .center, spacing: MP.S.x4) {
-            VStack(alignment: .leading, spacing: MP.S.x1) {
-                Text(eyebrow)
-                    .font(MP.F.caption())
-                    .tracking(1.1)
-                    .foregroundStyle(MP.C.textMuted)
-                Text(title)
-                    .font(MP.F.displaySM())
-                    .foregroundStyle(MP.C.textTitle)
+    private func row(title: String, subtitle: String, showsChevron: Bool) -> some View {
+        HStack(spacing: MPSpacing.lg) {
+            MPIcon("pawprint", size: 30, weight: .semibold)
+                .foregroundStyle(MPWorldTone.peach.deep)
+                .frame(width: 62, height: 62)
+                .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.tile))
+                .mpShadow(.control)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
-                Text(subtitle)
-                    .font(MP.F.bodySM(.semibold))
-                    .foregroundStyle(MP.C.textBody)
-                    .fixedSize(horizontal: false, vertical: true)
-                if let note {
-                    Text(note)
-                        .font(MP.F.bodySM())
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
+                Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                if let progress = series.readProgress(for: childID) {
+                    HStack(spacing: MPSpacing.xxs) {
+                        ForEach(0..<progress.total, id: \.self) { i in
+                            Capsule()
+                                .fill(i < progress.read ? MPWorldTone.peach.deep : MPColor.backgroundSurface)
+                                .frame(height: 5)
+                        }
+                    }
+                    .frame(maxWidth: 200)
+                    .padding(.top, MPSpacing.xs)
                 }
             }
             Spacer(minLength: 0)
-            if showsAction {
-                MPIcon("book", size: MP.G.lg, weight: .semibold)
-                    .foregroundStyle(MP.C.brand)
-                    .accessibilityHidden(true)
-            }
+            if showsChevron { MPChevron().accessibilityHidden(true) }
         }
+        .padding(MPSpacing.lg)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
     }
 
-    private func open(_ id: UUID) {
-        // An episode deleted from the library before it was read comes back
-        // here, not only on the next launch.
+    /// 18 · Seri masal; bölüm oradan okunur.
+    private func openSeries() {
         series.refreshUnlocks(for: childID)
-        guard let story = library.getStory(id: id) else { return }
-        app.readerStory = story
+        withAnimation(MP.M.gated(MP.M.base)) { app.seriesChildID = childID }
     }
 }

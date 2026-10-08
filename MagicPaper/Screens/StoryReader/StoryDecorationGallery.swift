@@ -83,7 +83,7 @@ struct StoryDecorationGallery: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: MP.S.x2) {
                 ForEach(Array(items.enumerated()), id: \.offset) { index, item in
-                    MPChip(title: item.0, isSelected: item.1) { onTap(index) }
+                    LegacyMPChip(title: item.0, isSelected: item.1) { onTap(index) }
                 }
             }
             .mpGutter()

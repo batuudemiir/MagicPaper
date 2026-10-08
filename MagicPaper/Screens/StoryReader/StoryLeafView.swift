@@ -21,6 +21,8 @@ struct StoryLeafView: View {
 
     let onReadAgain: () -> Void
     let onClose: () -> Void
+    var onAnother: () -> Void = {}
+    var onGoodNight: () -> Void = {}
 
     var body: some View {
         switch leaf {
@@ -33,7 +35,8 @@ struct StoryLeafView: View {
                 theme: app.readTheme,
                 readSize: app.readSize,
                 folio: "\(page.index + 1) / \(model.story.pageCount)",
-                showsFolio: model.controlsVisible,
+                // Sayfa numarası alt kontrol çubuğunda ("Sayfa X / Y", 23).
+                showsFolio: false,
                 accent: model.story.accent,
                 symbol: model.story.symbol,
                 ornament: ReaderPageOrnament.current,
@@ -45,7 +48,9 @@ struct StoryLeafView: View {
                 theme: app.readTheme,
                 accent: model.story.accent,
                 onReadAgain: onReadAgain,
-                onClose: onClose
+                onClose: onClose,
+                onAnother: onAnother,
+                onGoodNight: onGoodNight
             )
         }
     }

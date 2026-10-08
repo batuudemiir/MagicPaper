@@ -208,6 +208,8 @@ public struct ContentCatalogLoader: Sendable {
                     familyMoments: catalog.familyMoments,
                     familyAnimalKinds: catalog.familyAnimalKinds,
                     interests: catalog.interests,
+                    safetyTopics: catalog.safetyTopics,
+                    glossary: catalog.glossary,
                     series: catalog.series
                 )
             ])

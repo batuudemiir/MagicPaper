@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "StoryResponse",
+  "title": "StoryResponse (modelin döndürdüğü masal)",
+  "type": "object",
+  "required": [
+    "title",
+    "summary",
+    "pages",
+    "wordList",
+    "characters",
+    "endingType",
+    "seriesUpdate",
+    "refusal"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "en fazla 6 kelime, kahramanın adını içerir"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "text",
+          "imagePrompt",
+          "mood"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imagePrompt": {
+            "type": "string"
+          },
+          "mood": {
+            "enum": [
+              "meraklı",
+              "mutlu",
+              "sakin",
+              "heyecanlı",
+              "uykulu"
+            ]
+          }
+        }
+      }
+    },
+    "wordList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "word",
+          "meaning",
+          "page"
+        ],
+        "properties": {
+          "word": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "endingType": {
+      "enum": [
+        "mutlu",
+        "huzurlu",
+        "uykulu"
+      ]
+    },
+    "seriesUpdate": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "newFacts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nextHook": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "refusal": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

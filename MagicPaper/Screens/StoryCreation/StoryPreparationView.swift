@@ -1,68 +1,94 @@
 import SwiftUI
 
-/// The moment between choosing and reading.
+/// 21 · Masal yazılıyor (`Uretim`) ve bitmiş durumu (`state-Uretim-bitti`).
 ///
-/// §18: never "Blueprint seçiliyor" or "Story Engine çalışıyor". The parent made
-/// two choices and MagicPaper made the rest; this says that, in the product's
-/// own voice.
-///
-/// It is also not a progress indicator. Composition is offline and finishes in
-/// milliseconds, so there is nothing to report the progress *of* — a spinner
-/// here would be theatre. What the time buys is a beat of anticipation, and the
-/// lines advance on their own rather than tracking work.
+/// Çevrimdışı motor masalı milisaniyede kurar; burada beklenen bir iş yok.
+/// Aşamalar kısa bir geçiş ritmiyle ilerler (Reduce Motion açıksa hepsi
+/// birden tamamlanır) ve masal hazır olunca "Masalı oku" görünür. Aşama
+/// adları motorun gerçekte yaptığı işlerdir: kahraman ve kadro bağlanır,
+/// yer seçilir, sayfalar yazılır, doğrulayıcı çalışır.
 struct StoryPreparationView: View {
 
-    private static let lines = [
-        "Bir macera bulduk…",
-        "Bir arkadaş seçtik…",
-        "Şimdi sayfalar açılıyor…"
+    let childName: String
+    let modeTitle: String?
+    /// Kurulan masal; `nil` iken aşamalar sürer.
+    let story: Story?
+    let onRead: () -> Void
+    let onCancel: () -> Void
+    /// 10 · İlk masal: "Elif'in ilk masalı yazılıyor", "Sonra oku".
+    var title: String = "Masal yazılıyor"
+    var cancelTitle: String = "Vazgeç"
+
+    private static let stages: [(title: String, icon: String)] = [
+        ("Kahraman hazırlanıyor", "person"),
+        ("Dünya kuruluyor", "castle"),
+        ("Masal yazılıyor", "pencil"),
+        ("Güvenlik kontrolü", "checkmark.shield")
     ]
 
-    @State private var visible = 0
+    @State private var completed = 0
+
+    private var isDone: Bool { story != nil && completed >= Self.stages.count }
+    private var progress: Double { Double(completed) / Double(Self.stages.count) }
+
+    private var subtitle: String {
+        var parts = [childName]
+        if let modeTitle { parts.append(modeTitle) }
+        if let story { parts.append("\(story.pages.count) sayfa") }
+        return parts.filter { !$0.isEmpty }.joined(separator: " · ")
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: MP.S.x5) {
-            Spacer(minLength: 0)
+        VStack(spacing: MPSpacing.xl) {
+            Spacer(minLength: MPSpacing.lg)
 
-            Text("Sen başlangıcı seçtin.\nGerisini biz hazırlıyoruz.")
-                .font(MP.F.displayLG())
-                .mpTightTracking(32)
-                .foregroundStyle(MP.C.textTitle)
-                .fixedSize(horizontal: false, vertical: true)
+            VStack(spacing: MPSpacing.sm) {
+                MascotImage(mascot: .pencil, width: 120)
+                Text(title).mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .accessibilityAddTraits(.isHeader)
+                Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)
+            }
 
-            VStack(alignment: .leading, spacing: MP.S.x3) {
-                ForEach(Array(Self.lines.enumerated()), id: \.offset) { index, line in
-                    HStack(spacing: MP.S.x3) {
-                        MPIcon("sparkles", size: 15, weight: .bold)
-                            .foregroundStyle(MP.C.brand)
-                        Text(line)
-                            .font(MP.F.bodyMD())
-                            .foregroundStyle(MP.C.textMuted)
-                    }
-                    .opacity(index < visible ? 1 : 0)
-                    .offset(y: index < visible ? 0 : 6)
-                    .animation(MP.M.gated(MP.M.base), value: visible)
+            StoryProgressRing(progress: progress)
+
+            VStack(spacing: MPSpacing.xs) {
+                ForEach(Array(Self.stages.enumerated()), id: \.offset) { index, stage in
+                    StageRow(title: stage.title, systemImage: stage.icon,
+                             state: index < completed ? .done : (index == completed ? .active : .todo))
                 }
             }
 
-            Spacer(minLength: 0)
-            Spacer(minLength: 0)
+            Spacer(minLength: MPSpacing.lg)
+
+            if isDone {
+                MPButton(title: "Masalı oku", systemImage: "book", fullWidth: true, action: onRead)
+                    .padding(.horizontal, MPSpacing.xxxl)
+                    .transition(.opacity)
+            } else {
+                MPButton(title: cancelTitle, kind: .ghost, action: onCancel)
+            }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .mpGutter()
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Hikâyen hazırlanıyor.")
+        .padding(.horizontal, MPSpacing.screenH + MPSpacing.lg)
+        .padding(.bottom, MPSpacing.lg)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .animation(MP.M.gated(MP.M.base), value: completed)
+        .animation(MP.M.gated(MP.M.base), value: isDone)
+        .onChange(of: isDone) { _, done in if done { MPHaptics.success() } }
         .task {
-            // Reduced motion gets the whole message at once rather than a
-            // sequence it did not ask for.
             guard !UIAccessibility.isReduceMotionEnabled else {
-                visible = Self.lines.count
+                completed = Self.stages.count
                 return
             }
-            for step in 1...Self.lines.count {
+            for step in 1...Self.stages.count {
                 try? await Task.sleep(nanoseconds: 380_000_000)
-                visible = step
+                completed = step
             }
         }
     }
+}
+
+#Preview("21 · Masal yazılıyor") {
+    StoryPreparationView(childName: "İrem", modeTitle: "Uyku öncesi", story: nil, onRead: {}, onCancel: {})
+        .background(MPColor.backgroundKid)
 }

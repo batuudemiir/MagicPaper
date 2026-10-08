@@ -72,3 +72,77 @@ enum MPStoryGate {
         return readable.filter { isApproved($0.id) }
     }
 }
+
+// MARK: - Uyku saati
+
+/// "Uyku saati" anahtarının arkasındaki kural (31 · Güvenlik).
+///
+/// Saat geldiyse Ana sayfa uyku kartını gösterir ve Yarat yalnızca Uyku
+/// öncesi modunu sunar. Gece yarısından sabah 5'e kadar da uyku saati
+/// sayılır: 20.30'da başlayan gece 00.10'da bitmiş olmaz.
+enum MPBedtime {
+    static let morningHour = 5
+
+    static func isBedtime(enabled: Bool, hour: Int, minute: Int, now: Date = Date(),
+                          calendar: Calendar = .current) -> Bool {
+        guard enabled else { return false }
+        let c = calendar.dateComponents([.hour, .minute], from: now)
+        let current = (c.hour ?? 0) * 60 + (c.minute ?? 0)
+        let start = hour * 60 + minute
+        return current >= start || current < morningHour * 60
+    }
+
+    @MainActor
+    static func isBedtime(settings: MPSettingsStore, now: Date = Date()) -> Bool {
+        isBedtime(enabled: settings.bedtime, hour: settings.bedtimeHour,
+                  minute: settings.bedtimeMinute, now: now)
+    }
+}
+
+// MARK: - Ebeveyn kapısı
+
+/// 28 · Ebeveyn kapısı'nın kuralı: çarpma sorusu, üç yanlışta 30 saniye
+/// bekleme. Çocuk tahminle geçemesin, ebeveyn yorulmasın.
+struct MPGateQuiz: Equatable {
+    static let maxMisses = 3
+    static let lockout: TimeInterval = 30
+
+    private(set) var a: Int
+    private(set) var b: Int
+    private(set) var misses = 0
+    private(set) var lockedUntil: Date?
+
+    init(a: Int = Int.random(in: 3...9), b: Int = Int.random(in: 3...9)) {
+        self.a = a
+        self.b = b
+    }
+
+    var question: String { "\(a) × \(b) = ?" }
+
+    func isLocked(at now: Date = Date()) -> Bool {
+        guard let lockedUntil else { return false }
+        return now < lockedUntil
+    }
+
+    func secondsLeft(at now: Date = Date()) -> Int {
+        guard let lockedUntil else { return 0 }
+        return max(0, Int(lockedUntil.timeIntervalSince(now).rounded(.up)))
+    }
+
+    enum Result: Equatable { case correct, wrong, locked }
+
+    /// Yanlışta yeni soru gelir; üçüncü yanlış kapıyı 30 saniye kilitler.
+    mutating func answer(_ value: Int?, at now: Date = Date(),
+                         next: () -> (Int, Int) = { (Int.random(in: 3...9), Int.random(in: 3...9)) }) -> Result {
+        if isLocked(at: now) { return .locked }
+        if lockedUntil != nil { lockedUntil = nil; misses = 0 }
+        if value == a * b { return .correct }
+        misses += 1
+        (a, b) = next()
+        if misses >= Self.maxMisses {
+            lockedUntil = now.addingTimeInterval(Self.lockout)
+            return .locked
+        }
+        return .wrong
+    }
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Hesabı sil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 900px; box-sizing: border-box; position: relative; overflow: hidden; background: #F6F7F9; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 10px"><a href="Ayarlar.dc.html" aria-label="Geri" style="width: 42px; height: 42px; flex-shrink: 0; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; color: #2E1E3E; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; text-decoration: none; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a><div style="flex-grow: 1; display: flex; flex-direction: column"><span style="font-size: 22px; font-weight: 900; color: #2E1E3E">Hesabı sil</span></div></div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding-top: 22px">
+<div style="width: 64px; height: 64px; border-radius: 22px; background: #FDE4E2; color: #D64545; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D64545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 11v6"></path> <path d="M14 11v6"></path> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path> <path d="M3 6h18"></path> <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div>
+<h1 style="margin: 0; font-size: 24px; line-height: 1.15; font-weight: 900; color: #2E1E3E; text-wrap: balance">Her şey kalıcı olarak silinecek</h1>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px; border: 1px solid #E7E9EE"><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D64545" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg><span style="font-size: 14px; font-weight: 700; color: #2E1E3E">2 çocuk profili ve kahramanları</span></div><div style="height: 10px"></div><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D64545" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg><span style="font-size: 14px; font-weight: 700; color: #2E1E3E">6 masal ve resimleri</span></div><div style="height: 10px"></div><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D64545" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg><span style="font-size: 14px; font-weight: 700; color: #2E1E3E">Kendi sesinle yaptığın kayıtlar</span></div><div style="height: 10px"></div><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D64545" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path> <path d="m6 6 12 12"></path></svg><span style="font-size: 14px; font-weight: 700; color: #2E1E3E">Paylaşım bağlantıları</span></div></div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6E6478">Aboneliğin App Store üzerinden ayrıca iptal edilmeli. Silmeden önce masalları PDF olarak indirebilirsin.</p>
+<a href="KitapSiparisi.dc.html" style="font-size: 14px; font-weight: 800; text-decoration: none">Önce masalları indir</a>
+<label style="display: flex; flex-direction: column; gap: 8px; padding-top: 6px"><span style="font-size: 14px; font-weight: 800; color: #2E1E3E">Onaylamak için SİL yaz</span>
+<input aria-label="Onay" placeholder="SİL" value="{{v}}" onChange="{{setV}}" style="height: 52px; box-sizing: border-box; border-radius: 16px; border: 1.5px solid {{bd}}; background: #FFFFFF; padding: 0 16px; font-size: 16px; font-weight: 800; outline: none"></label>
+</div>
+<div style="flex-grow: 1"></div>
+<sc-if value="{{ok}}" hint-placeholder-val="{{ false }}"><a href="Main.dc.html" style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; background: #D64545; color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none">Hesabı kalıcı olarak sil</a></sc-if>
+<sc-if value="{{notOk}}" hint-placeholder-val="{{ true }}"><div style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; background: #F3D0CD; color: #FFFFFF; font-size: 16px; font-weight: 800">Hesabı kalıcı olarak sil</div></sc-if>
+<div style="display: flex; justify-content: center; padding: 6px 0 0"><a href="Ayarlar.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: #6A47B8; font-size: 15px; font-weight: 800; text-decoration: none; cursor: pointer"><span>Vazgeç</span></a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { v: '' }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { var ok = (self.state.v || '').trim().toLocaleUpperCase('tr-TR') === 'SİL'; return { v: self.state.v, ok: ok, notOk: !ok, bd: ok ? '#D64545' : '#E2E5EA', setV: function (e) { self.setState({ v: e && e.target ? e.target.value : e }); } }; })();
+  }
+}
+</script>
+</body>
+</html>

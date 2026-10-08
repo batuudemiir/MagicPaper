@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Onboarding · **Ebeveyn onayı** (FAZ 16 §2): the KVKK consent, versioned.
+/// 06 · Ebeveyn onayı (`EbeveynOnayi`). Onboarding · **Ebeveyn onayı** (FAZ 16 §2): the KVKK consent, versioned.
 ///
 /// The whole text is on the screen, not behind a link: leaving the app is a
 /// parent-gated door in a Kids app, and the parent should not need it to
@@ -11,123 +11,172 @@ struct ParentConsentView: View {
     @State private var shareUsage = true
     @State private var agreed = false
     @State private var saving = false
+    @State private var showFullText = false
+
+    /// 06 · Ebeveyn onayı: neyi neden tuttuğumuzun üç satırlık özeti. Tam
+    /// metin "Aydınlatma metni"nde, uygulamanın içinde (dışarı link yok).
+    private let summary: [(icon: String, tone: MPWorldTone, title: String, body: String)] = [
+        // Tasarımda "Sadece ad ve yaş aralığı"; sevdiği şeyler ve Masal ailem
+        // de saklandığı için başlık doğru olanı söylüyor (İrem'e not).
+        ("person", .green, "Ad, yaş ve sevdiği şeyler", "Fotoğraf, konum ya da ses kaydı istemiyoruz."),
+        ("eye.slash", .pink, "Reklam ve takip yok", "Uygulamada reklam ve üçüncü taraf takip aracı yok."),
+        ("trash", .sky, "İstediğin an silebilirsin", "Ayarlar'dan tüm verileri tek dokunuşla silersin.")
+    ]
 
     var body: some View {
         VStack(spacing: 0) {
+            MPTopBar(title: "Ebeveyn onayı") { EmptyView() }
+                .padding(.horizontal, MPSpacing.screenH)
+
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: MP.S.x6) {
-                    VStack(alignment: .leading, spacing: MP.S.x3) {
-                        Text(ParentConsentText.title)
-                            .font(MP.F.displayLG())
-                            .mpTightTracking(32)
-                            .foregroundStyle(MP.C.textTitle)
-                            .accessibilityAddTraits(.isHeader)
-                        Text(ParentConsentText.lead)
-                            .font(MP.F.bodyLG())
-                            .foregroundStyle(MP.C.textMuted)
+                VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                    HStack(spacing: MPSpacing.lg) {
+                        MascotImage(mascot: .calm, width: 80)
+                            .accessibilityHidden(true)
+                        Text("Çocuğunun verileri güvende")
+                            .mpText(.largeTitle)
+                            .foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
+                            .accessibilityAddTraits(.isHeader)
                     }
-                    .padding(.top, MP.S.x7)
+                    Text("Masal yazabilmek için çok az şey bilmemiz gerekiyor. Neyi neden tuttuğumuz aşağıda.")
+                        .mpText(.body)
+                        .foregroundStyle(MPColor.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
 
-                    MPCard(padding: MP.S.x5) {
-                        VStack(alignment: .leading, spacing: MP.S.x5) {
-                            ForEach(ParentConsentText.sections) { section in
-                                VStack(alignment: .leading, spacing: MP.S.x1) {
-                                    Text(section.title)
-                                        .font(MP.F.bodyMD(.bold))
-                                        .foregroundStyle(MP.C.textTitle)
-                                        .accessibilityAddTraits(.isHeader)
-                                    Text(section.body)
-                                        .font(MP.F.bodyMD())
-                                        .foregroundStyle(MP.C.textBody)
-                                        .fixedSize(horizontal: false, vertical: true)
+                    MPCard(padding: MPSpacing.lg) {
+                        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                            ForEach(summary, id: \.title) { row in
+                                HStack(alignment: .top, spacing: MPSpacing.md) {
+                                    MPIconTile(systemImage: row.icon, tone: row.tone, size: 44)
+                                        .accessibilityHidden(true)
+                                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                                        Text(row.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                                        Text(row.body).mpText(.callout).fontWeight(.regular)
+                                            .foregroundStyle(MPColor.textSecondary)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                    }
                                 }
+                                .accessibilityElement(children: .combine)
                             }
                         }
                     }
 
-                    MPCard(padding: 0) {
-                        VStack(spacing: 0) {
-                            MPListRow(symbol: "eye.slash", title: AccountCopy.usageRowTitle,
-                                      description: AccountCopy.usageRowBody) {
-                                MPSwitch(isOn: $shareUsage, label: AccountCopy.usageRowTitle)
-                            }
-                            MPRowDivider()
-                            MPListRow(symbol: "checkmark.shield", title: AccountCopy.agreeLabel,
-                                      description: ParentConsentText.agreement) {
-                                MPSwitch(isOn: $agreed, label: ParentConsentText.agreement)
-                            }
-                        }
+                    VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                        MPCheckbox(isOn: $agreed, label: ParentConsentText.agreement)
+                        Button("Aydınlatma metni") { showFullText = true }
+                            .mpText(.callout)
+                            .foregroundStyle(MPColor.actionPrimary)
+                            .underline()
+                            .padding(.leading, (MPSpacing.xxxl + MPSpacing.xs))
+                            .frame(minHeight: MPSize.minTouchParent)
                     }
 
-                    Text(AccountCopy.versionLine(ParentConsentText.version))
-                        .font(MP.F.caption(.regular))
-                        .foregroundStyle(MP.C.textMuted)
+                    // Okuma bilgisi paylaşımı: ürünün seçtiği varsayılan,
+                    // ebeveynin gördüğü bir varsayılan olsun diye burada (FAZ 16).
+                    MPCard(padding: MPSpacing.lg) {
+                        Toggle(isOn: $shareUsage) {
+                            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                                Text(AccountCopy.usageRowTitle).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                                Text(AccountCopy.usageRowBody).mpText(.footnote).fontWeight(.regular)
+                                    .foregroundStyle(MPColor.textSecondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                        .toggleStyle(MPSwitchStyle())
+                    }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.bottom, MP.S.x6)
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.vertical, MPSpacing.lg)
             }
 
-            MPButton(title: AccountCopy.agreeButton, size: .lg, iconAfter: "arrow.right",
-                     fullWidth: true, isDisabled: !agreed || saving) {
+            MPButton(title: AccountCopy.agreeLabel, fullWidth: true, isLoading: saving) {
                 saving = true
                 Task {
                     await account.acceptConsent(shareUsageData: shareUsage)
                     saving = false
                 }
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.vertical, MP.S.x3)
+            .disabled(!agreed)
+            .padding(.horizontal, MPSpacing.xxxl)
+            .padding(.vertical, MPSpacing.md)
         }
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .sheet(isPresented: $showFullText) { ConsentFullTextSheet() }
+    }
+}
+
+/// "Aydınlatma metni": onay metninin tamamı, sürümüyle.
+private struct ConsentFullTextSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: 0) {
+            MPTopBar(title: "Aydınlatma metni") {
+                MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat") { dismiss() }
+            }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.md)
+            ScrollView {
+                VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                    Text(ParentConsentText.lead)
+                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                    ForEach(ParentConsentText.sections) { section in
+                        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                            Text(section.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                                .accessibilityAddTraits(.isHeader)
+                            Text(section.body).mpText(.body).foregroundStyle(MPColor.textPrimary)
+                        }
+                    }
+                    Text(AccountCopy.versionLine(ParentConsentText.version))
+                        .mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(MPSpacing.xl)
+            }
+        }
+        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .presentationDetents([.large])
+        .presentationCornerRadius(MPRadius.sheet)
     }
 }
 
 /// Signed in on a device without children: the account's are on their way.
+/// Bağlantı yoksa 44 · İnternet yok durumu (düşünceli Ragi, "Tekrar dene").
 struct AccountRestoreView: View {
     @ObservedObject private var account = AccountService.shared
     @State private var failed = false
 
     var body: some View {
-        VStack(spacing: MP.S.x6) {
-            Spacer(minLength: 0)
+        Group {
             if failed {
-                MPIcon("wifi.slash", size: MP.G.xxl, weight: .semibold)
-                    .foregroundStyle(MP.C.textMuted)
-                    .accessibilityHidden(true)
-            } else {
-                ProgressView()
-                    .controlSize(.large)
-                    .tint(MP.C.brand)
-                    .accessibilityHidden(true)
-            }
-            VStack(spacing: MP.S.x2) {
-                Text(failed ? AccountCopy.restoreFailedTitle : AccountCopy.restoringTitle)
-                    .font(MP.F.displayMD())
-                    .foregroundStyle(MP.C.textTitle)
-                    .multilineTextAlignment(.center)
-                    .accessibilityAddTraits(.isHeader)
-                Text(failed ? AccountCopy.restoreFailedBody : AccountCopy.restoringBody)
-                    .font(MP.F.bodyMD())
-                    .foregroundStyle(MP.C.textMuted)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            if failed {
-                VStack(spacing: MP.S.x2) {
-                    MPButton(title: AccountCopy.retry, size: .md, fullWidth: true) {
+                MPStateView(mascot: .thinking, tone: .sky,
+                            title: AccountCopy.restoreFailedTitle,
+                            message: AccountCopy.restoreFailedBody) {
+                    MPButton(title: AccountCopy.retry, systemImage: "arrow.counterclockwise", fullWidth: true) {
                         failed = false
                         Task { await attempt() }
                     }
-                    MPButton(title: AccountCopy.startFresh, variant: .ghost, size: .md) {
+                    .padding(.horizontal, MPSpacing.xl)
+                    MPButton(title: AccountCopy.startFresh, kind: .ghost) {
                         account.sync.settleRestoreWithoutPull()
                     }
                 }
+            } else {
+                VStack(spacing: MPSpacing.lg) {
+                    MascotImage(mascot: .reading, width: 160).accessibilityHidden(true)
+                    ProgressView().controlSize(.large).tint(MPColor.actionPrimary)
+                        .accessibilityHidden(true)
+                    Text(AccountCopy.restoringTitle).mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(AccountCopy.restoringBody).mpText(.body).foregroundStyle(MPColor.textSecondary)
+                }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Spacer(minLength: 0)
         }
-        .padding(.horizontal, MP.S.screenGutter)
-        .mpScreenBackground()
+        .padding(.horizontal, MPSpacing.xl)
+        .background(MPColor.backgroundKid.ignoresSafeArea())
         .task { await attempt() }
     }
 
@@ -143,9 +192,9 @@ struct AccountWaitView: View {
     var body: some View {
         ProgressView()
             .controlSize(.large)
-            .tint(MP.C.brand)
+            .tint(MPColor.actionPrimary)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .mpScreenBackground()
+            .background(MPColor.backgroundKid.ignoresSafeArea())
             .accessibilityLabel("Yükleniyor")
     }
 }

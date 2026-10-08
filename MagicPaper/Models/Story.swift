@@ -212,6 +212,9 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var imageUrl: String?
     /// Sayfanın hazır sahnesi (B2). `nil` = metin sayfası.
     var scene: ScenePlate?
+    /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
+    /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
+    var words: [StoryWord]?
 
     // Equatable conformance
     static func == (lhs: StoryPage, rhs: StoryPage) -> Bool {
@@ -225,6 +228,38 @@ struct StoryPage: Identifiable, Codable, Equatable {
         self.imagePrompt = imagePrompt
         self.imageFileName = imageFileName
         self.imageUrl = imageUrl
+    }
+}
+
+/// Bir sayfada öğretilen kelime (FAZ 17, motorun `PageWord`'ü).
+///
+/// `surface`, kelimenin sayfa metnindeki asıl yazılışı ("müjdeliyordu"):
+/// okuyucu paragrafları yeniden dizdiği için karakter ofseti değil, yazılış
+/// taşınır ve paragrafta aranır.
+struct StoryWord: Codable, Equatable, Hashable {
+    let id: String
+    let term: String
+    let meaning: String
+    let surface: String
+
+    init(id: String, term: String, meaning: String, surface: String) {
+        self.id = id
+        self.term = term
+        self.meaning = meaning
+        self.surface = surface
+    }
+
+    private enum CodingKeys: String, CodingKey { case id, term, meaning, surface }
+
+    /// Elle yazılmış: kitaplık tek parça çözülüyor, eksik tek bir alan bütün
+    /// masalları düşürür (`StoryGenerationManager`). `surface` yoksa sözlük
+    /// biçimi kullanılır; bulunamayan yazılış vurgulanmaz, masal açılır.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        term = try container.decode(String.self, forKey: .term)
+        meaning = try container.decodeIfPresent(String.self, forKey: .meaning) ?? ""
+        surface = try container.decodeIfPresent(String.self, forKey: .surface) ?? term
     }
 }
 

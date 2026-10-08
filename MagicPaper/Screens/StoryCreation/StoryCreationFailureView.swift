@@ -1,53 +1,37 @@
 import SwiftUI
 
-/// What the parent sees when a story could not be made.
+/// 43 · Üretim başarısız (`UretimHata`).
 ///
-/// §29: one sentence and a way forward. No `noBlueprintsFound`, no decode error,
-/// no compatibility report — those are in the log, which is where someone can do
-/// something with them. What matters here is that the flow is not a dead end,
-/// which is what it used to be: the old path printed to the console and returned
-/// the parent to a wizard with no explanation at all.
+/// Bir cümle ve bir yol: ayrıntı log'a gider, ebeveyne değil (§29). Suçlamaz.
+/// Teslimdeki "Yıldızın geri verildi" satırı yok: yıldız yok.
 struct StoryCreationFailureView: View {
 
     let onRetry: () -> Void
     let onClose: () -> Void
+    /// `StoryFailureReason(error).message`: güvenlik ayarının elediği masal
+    /// için ayrı, sakin bir cümle.
+    var message: String = "Bir şeyler yolunda gitmedi ama sorun sende değil. Tekrar deneyelim mi?"
 
     var body: some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 0)
-
-            VStack(alignment: .leading, spacing: MP.S.x3) {
-                MPIcon("exclamationmark.triangle", size: 26, weight: .semibold)
-                    .foregroundStyle(MP.C.reward)
-                    .frame(width: 56, height: 56)
-                    .background(
-                        RoundedRectangle(cornerRadius: MP.R.md, style: .continuous)
-                            .fill(MP.C.reward.mpMixedWithWhite(0.16))
-                    )
-
-                Text("Hikâyemizi hazırlarken küçük bir sorun oldu.")
-                    .font(MP.F.displaySM())
-                    .foregroundStyle(MP.C.textTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                Text("Bir kez daha deneyelim.")
-                    .font(MP.F.bodyMD())
-                    .foregroundStyle(MP.C.textMuted)
+            HStack {
+                MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat", action: onClose)
+                Spacer()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, MPSpacing.sm)
 
-            Spacer(minLength: 0)
-
-            VStack(spacing: MP.S.x2) {
-                MPButton(title: "Tekrar deneyelim", size: .lg, icon: "arrow.clockwise", fullWidth: true) {
-                    onRetry()
-                }
-                MPButton(title: "Şimdi değil", variant: .ghost, size: .lg, fullWidth: true) {
-                    onClose()
-                }
+            MPStateView(mascot: .surprised, tone: .pink, title: "Masal biraz takılı kaldı",
+                        message: message) {
+                MPButton(title: "Tekrar dene", systemImage: "arrow.counterclockwise", fullWidth: true, action: onRetry)
+                    .padding(.horizontal, MPSpacing.xl)
+                MPButton(title: "Ana sayfaya dön", kind: .ghost, action: onClose)
             }
-            .padding(.bottom, MP.S.x3)
         }
-        .mpGutter()
+        .padding(.horizontal, MPSpacing.screenH)
     }
+}
+
+#Preview("43 · Üretim başarısız") {
+    StoryCreationFailureView(onRetry: {}, onClose: {})
+        .background(MPColor.backgroundKid)
 }

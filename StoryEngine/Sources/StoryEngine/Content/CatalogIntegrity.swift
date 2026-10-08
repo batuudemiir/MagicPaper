@@ -105,6 +105,8 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkStoryModes(catalog))
         issues.append(contentsOf: checkFamily(catalog))
         issues.append(contentsOf: checkInterests(catalog))
+        issues.append(contentsOf: checkSafetyTopics(catalog))
+        issues.append(contentsOf: checkGlossary(catalog))
         issues.append(contentsOf: checkSeries(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
@@ -782,6 +784,102 @@ public struct CatalogIntegrityChecker: Sendable {
                                 message: "Interest '\(interest.id)' reaches no story in band "
                                     + missing.map(\.description).joined(separator: ", ")
                                     + "; it is not offered to parents."))
+        }
+        return issues
+    }
+
+    /// İçerik güvenliği sözlüğü (FAZ 17).
+    ///
+    /// Tanımsız bir konuyla etiketlenmiş içerik, ebeveyn o konuyu tek tek
+    /// seçtiğinde elenmez: etiket sessizce işe yaramaz — **hata**. "Ölüm ve
+    /// kayıp" bir konu değildir (hiçbir içerikte yok); sözlükte görünmesi
+    /// ebeveyne öyle bir masal varmış gibi söyler — **hata**. En korumacı
+    /// ayarda içeriği olan bir bantta bir modun hiç masalı kalmaması
+    /// **uyarı**: o mod varsayılan ayarla gösterilmez, içerik hattına gider.
+    private func checkSafetyTopics(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        var defined = Set<SafetyTopic>()
+        for topic in catalog.safetyTopics {
+            if !defined.insert(topic.id).inserted {
+                issues.append(.init(severity: .error, code: "duplicate_safety_topic",
+                                    message: "Safety topic '\(topic.id)' is defined more than once; the first wins."))
+            }
+            if topic.name.trimmingCharacters(in: .whitespaces).isEmpty {
+                issues.append(.init(severity: .error, code: "safety_topic_without_name",
+                                    message: "Safety topic '\(topic.id)' has no display name."))
+            }
+            if Self.forbiddenSafetyTopics.contains(topic.id) {
+                issues.append(.init(severity: .error, code: "safety_topic_not_offered",
+                                    message: "'\(topic.id)' is not a choice: no story tells of it."))
+            }
+        }
+
+        func references(_ id: ContentID, _ topics: some Sequence<SafetyTopic>) {
+            for topic in topics where !defined.contains(topic) {
+                issues.append(.init(severity: .error, code: "unknown_safety_topic", recordID: id,
+                                    message: "'\(id)' is tagged '\(topic)', which the safety vocabulary does not define."))
+            }
+        }
+        catalog.settings.forEach { references($0.id, $0.topics) }
+        catalog.companions.forEach { references($0.id, $0.topics) }
+        catalog.objects.forEach { references($0.id, $0.topics) }
+        (catalog.blueprints + catalog.series.continuations).forEach { references($0.id, $0.topics) }
+        for template in catalog.templates + catalog.series.templates {
+            template.variants.forEach { references($0.id, $0.topics) }
+        }
+
+        let selector = BlueprintSelector()
+        for band in AgeBandResolver.bands where catalog.blueprints.contains(where: {
+            $0.isBeatAuthored && $0.ageRange == band
+        }) {
+            let open = Set(selector.availableModes(catalog: catalog, ageBand: band))
+            let protected = Set(selector.availableModes(
+                catalog: catalog, ageBand: band, safety: .mostProtective))
+            for mode in StoryMode.allCases where open.contains(mode) && !protected.contains(mode) {
+                issues.append(.init(severity: .warning, code: "mode_hidden_by_default_safety",
+                                    message: "Mode '\(mode.rawValue)' has no story in \(band) under the "
+                                        + "default safety setting; it is not offered until a parent relaxes it."))
+            }
+        }
+        return issues
+    }
+
+    /// Topic ids that must never be offered as a choice.
+    static let forbiddenSafetyTopics: Set<SafetyTopic> = ["death", "loss", "olum", "ölüm", "kayip", "kayıp"]
+
+    /// Kelime sözlüğü (FAZ 17).
+    ///
+    /// Bir satırın öğrettiği kelime sözlükte yoksa ya da satırın metninde
+    /// geçmiyorsa okuyucu onu vurgulayamaz: etiket sessizce kaybolur — **hata**.
+    private func checkGlossary(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        var entries: [ContentID: CatalogGlossaryEntry] = [:]
+        for entry in catalog.glossary {
+            if entries[entry.id] != nil {
+                issues.append(.init(severity: .error, code: "duplicate_glossary_entry", recordID: entry.id,
+                                    message: "Glossary entry '\(entry.id)' is defined more than once; the first wins."))
+                continue
+            }
+            entries[entry.id] = entry
+            if entry.meaning.trimmingCharacters(in: .whitespaces).isEmpty {
+                issues.append(.init(severity: .error, code: "glossary_entry_without_meaning", recordID: entry.id,
+                                    message: "Glossary entry '\(entry.id)' has no meaning."))
+            }
+        }
+        for template in catalog.templates + catalog.series.templates {
+            for variant in template.variants {
+                for id in variant.words {
+                    guard let entry = entries[id] else {
+                        issues.append(.init(severity: .error, code: "unknown_glossary_word", recordID: variant.id,
+                                            message: "'\(variant.id)' teaches '\(id)', which the glossary does not define."))
+                        continue
+                    }
+                    if GlossaryMatcher.locate(entry, in: variant.text) == nil {
+                        issues.append(.init(severity: .error, code: "glossary_word_not_in_line", recordID: variant.id,
+                                            message: "'\(variant.id)' teaches '\(entry.term)', but its text does not contain it."))
+                    }
+                }
+            }
         }
         return issues
     }

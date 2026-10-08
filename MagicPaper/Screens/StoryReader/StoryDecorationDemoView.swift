@@ -80,13 +80,13 @@ struct StoryDecorationDemoView: View {
             HStack {
                 MPIconButton(symbol: "xmark", label: "Kapat") { dismiss() }
                 Spacer(minLength: 0)
-                MPChip(title: showsDebug ? "Debug açık" : "Debug",
+                LegacyMPChip(title: showsDebug ? "Debug açık" : "Debug",
                        isSelected: showsDebug) { showsDebug.toggle() }
             }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: MP.S.x2) {
                     ForEach(Array(Self.demos.enumerated()), id: \.element.id) { i, d in
-                        MPChip(title: d.title, isSelected: i == index) { index = i }
+                        LegacyMPChip(title: d.title, isSelected: i == index) { index = i }
                     }
                 }
             }

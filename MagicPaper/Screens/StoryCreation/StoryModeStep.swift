@@ -1,65 +1,86 @@
 import SwiftUI
 
-/// Adım 1 — bu akşam nasıl bir hikâye?
+/// 19 · Yarat 1 (`SihirbazNerede`): bu akşam nasıl bir masal?
 ///
-/// Ebeveynin tek zorunlu kararı. Üç niyet ve "Bana sürpriz yap". Sürpriz bir
-/// dördüncü mod değil: MagicPaper'ın ebeveyn adına üç moddan birini seçmesi
-/// (`StoryModeResolver`). Bu yüzden ayrı bir geri çağrıyla bildirilir.
+/// Teslimdeki dünya ızgarasının yerinde modlar duruyor (karar 7 Ekim 2026):
+/// üç niyet ve "Bana sürpriz yap", pastel kartlarda. Kart seçilir, "Devam
+/// et" ilerler. Sürpriz dördüncü bir mod değil: MagicPaper'ın üç moddan
+/// birini seçmesi (`StoryModeResolver`), bu yüzden ayrı bir geri çağrı.
 ///
-/// Kurulamayan bir mod gösterilmez. Seçildiğinde hiçbir şey üretemeyecek bir
-/// kart, verdiği sözü sessizce başka bir hikâyeye çevirir.
+/// Kurulamayan bir mod gösterilmez: seçildiğinde hiçbir şey üretemeyecek
+/// bir kart, verdiği sözü sessizce başka bir masala çevirir.
 struct StoryModeStep: View {
 
     let modes: [StoryMode]
+    var childName: String = ""
+    var childColor: Color? = nil
     let onChoose: (StoryMode) -> Void
     let onSurprise: () -> Void
 
+    private enum Choice: Hashable { case mode(StoryMode), surprise }
+    @State private var choice: Choice?
+
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 0) {
-                VStack(alignment: .leading, spacing: MP.S.x2) {
-                    Text("Bu akşam nasıl bir hikâye olsun?")
-                        .font(MP.F.displayLG())
-                        .mpTightTracking(32)
-                        .foregroundStyle(MP.C.textTitle)
+            VStack(spacing: MPSpacing.lg) {
+                VStack(spacing: MPSpacing.sm) {
+                    Text("Masal nasıl olsun?")
+                        .mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .accessibilityAddTraits(.isHeader)
                     Text("Birini seç, gerisini biz hazırlayalım.")
-                        .font(MP.F.bodyMD())
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                        .multilineTextAlignment(.center)
                 }
-                .padding(.top, MP.S.x3)
-                .padding(.bottom, MP.S.x5)
+                if !childName.isEmpty {
+                    HStack(spacing: MPSpacing.sm) {
+                        MPAvatar(name: childName, color: childColor, size: 32)
+                        Text("Kahraman: \(childName)").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                    }
+                    .padding(.leading, MPSpacing.xs).padding(.trailing, MPSpacing.lg)
+                    .frame(minHeight: 44)
+                    .background(MPColor.backgroundSurface, in: Capsule())
+                    .mpShadow(.control)
+                    .accessibilityElement(children: .combine)
+                }
 
-                VStack(spacing: MP.S.stackGap) {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: MPSpacing.md),
+                                    GridItem(.flexible(), spacing: MPSpacing.md)],
+                          spacing: MPSpacing.lg) {
                     ForEach(StoryCreationSteps.shownModes(modes), id: \.self) { mode in
-                        MPChoiceTile(
-                            title: mode.title,
-                            description: mode.promise,
-                            symbol: mode.symbol,
-                            accent: mode.accent,
-                            layout: .column
-                        ) {
-                            onChoose(mode)
+                        WorldTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
+                                  isSelected: choice == .mode(mode)) {
+                            MPHaptics.selection()
+                            choice = .mode(mode)
                         }
                         .accessibilityLabel("\(mode.title). \(mode.promise)")
                     }
-
                     // Tek bir mod kaldıysa sürprizin seçeceği bir şey yok (K6).
                     if StoryCreationSteps.showsSurprise(availableModes: modes) {
-                        MPChoiceTile(
-                            title: "Bana sürpriz yap",
-                            description: "Bugünün hikâyesini biz seçelim.",
-                            symbol: "wand.and.stars",
-                            accent: MP.C.reward,
-                            layout: .column,
-                            action: onSurprise
-                        )
-                        .accessibilityLabel("Bana sürpriz yap. Bugünün hikâyesini biz seçelim.")
+                        WorldTile(title: "Bana sürpriz yap", systemImage: "wand.and.sparkles", tone: .pink,
+                                  isSelected: choice == .surprise) {
+                            MPHaptics.selection()
+                            choice = .surprise
+                        }
+                        .accessibilityLabel("Bana sürpriz yap. Bugünün masalını biz seçelim.")
                     }
                 }
+                .padding(.top, MPSpacing.sm)
             }
-            .mpGutter()
-            .padding(.bottom, MP.S.x6)
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxxl)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            MPButton(title: "Devam et", fullWidth: true) {
+                switch choice {
+                case .mode(let mode): onChoose(mode)
+                case .surprise: onSurprise()
+                case nil: break
+                }
+            }
+            .disabled(choice == nil)
+            .padding(.horizontal, MPSpacing.xxxl)
+            .padding(.vertical, MPSpacing.md)
         }
     }
 }

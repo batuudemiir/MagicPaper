@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Çocuk profili</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Nunito","Helvetica Neue",sans-serif;background:#FFF8EE;color:#2E1E3E}
+button,input{font:inherit;color:inherit}
+a{color:#6A47B8}a:hover{color:#3A2458}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: #FFF8EE; padding: 52px 20px 24px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 46px"><a href="EbeveynOnayi.dc.html" aria-label="Geri" style="width: 42px; height: 42px; flex-shrink: 0; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #E6DED2; color: #2E1E3E; display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; text-decoration: none; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a><div style="flex-grow: 1; text-align: center"><div style="font-size: 21px; font-weight: 800; color: #2E1E3E">Çocuk profili</div><div style="font-size: 13px; font-weight: 600; color: #6E6478">1 / 2</div></div><div style="width: 42px"></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px; padding-top: 14px">
+<div style="display: flex; justify-content: center">
+<div style="width: 150px; height: 135px; border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%; background: {{soft}}; display: flex; align-items: center; justify-content: center">
+<div style="width: 76px; height: 76px; border-radius: 999px; background: {{deep}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900; box-shadow: 0 8px 16px rgba(45,42,50,.12)">{{letter}}</div></div>
+</div>
+<label for="kid-name" style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 15px; font-weight: 800; color: #2E1E3E">Çocuğunun adı ne?</span>
+<input id="kid-name" maxlength="20" placeholder="Örn. Elif" value="{{name}}" onChange="{{setName}}" style="height: 52px; box-sizing: border-box; border-radius: 18px; border: 1.5px solid #E6DED2; background: #FFFFFF; padding: 0 18px; font-size: 16px; font-weight: 700; outline: none">
+<span style="font-size: 12px; font-weight: 600; color: #6E6478">Masallarda bu isim geçecek</span>
+</label>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 15px; font-weight: 800; color: #2E1E3E">Avatar rengi</span><a href="KahramanOlustur.dc.html" style="font-size: 14px; font-weight: 800; text-decoration: none">Kahramanı tasarla</a></div>
+<div style="display: flex; gap: 12px">
+<sc-for list="{{swatches}}" as="c" hint-placeholder-count="6">
+<button onClick="{{c.pick}}" aria-label="{{c.label}}" style="width: 40px; height: 40px; border-radius: 999px; border: 0; padding: 0; cursor: pointer; background: {{c.hex}}; box-shadow: {{c.ring}}"></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 15px; font-weight: 800; color: #2E1E3E">Yaş aralığı</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ages}}" as="a" hint-placeholder-count="4"><button onClick="{{a.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{a.bd}}; background: {{a.bg}}; color: {{a.fg}}; font-size: 14px; font-weight: 800; cursor: pointer">{{a.label}}</button></sc-for>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 1.5; color: #6E6478">Masalın dili ve uzunluğu yaşa göre ayarlanır.</p>
+</div>
+</div>
+<div style="display: flex; justify-content: center; padding: 0"><a href="NeleriSever.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 30px; border: 0; border-radius: 999px; background: linear-gradient(180deg, #9C7BE3 0%, #5C3A8F 100%); color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 10px 22px rgba(92,58,143,.32), inset 0 2px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(0,0,0,.10); width: 220px"><span>Devam et</span></a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { name: 'Elif', c: 0, age: 1 }; }
+
+  renderVals() {
+    var self = this;
+    return (function () { 
+var C = [["#FCE3EA", "#E06A92", "Pembe"], ["#FFF1C2", "#D9A21B", "Sarı"], ["#E3F2D9", "#4E9A4A", "Yeşil"], ["#FFE7D6", "#E07A3E", "Turuncu"], ["#E1EEFB", "#2E80CF", "Mavi"], ["#EEE5FB", "#8B6BD6", "Mor"]];
+var A = ['3-4 yaş','5-7 yaş','8-10 yaş','11-12 yaş'];
+var n = self.state.name || '';
+return { name: n, letter: n ? n.charAt(0).toLocaleUpperCase('tr-TR') : '?', soft: C[self.state.c][0], deep: C[self.state.c][1],
+  setName: function (e) { self.setState({ name: e && e.target ? e.target.value : e }); },
+  swatches: C.map(function (c, i) { return { hex: c[1], label: c[2], ring: i === self.state.c ? '0 0 0 3px #FFF8EE, 0 0 0 6px ' + c[1] : 'none', pick: function () { self.setState({ c: i }); } }; }),
+  ages: A.map(function (a, i) { var s = i === self.state.age; return { label: a, bg: s ? '#6A47B8' : '#FFFFFF', fg: s ? '#FFFFFF' : '#2E1E3E', bd: s ? '#6A47B8' : '#E6DED2', pick: function () { self.setState({ age: i }); } }; }) }; })();
+  }
+}
+</script>
+</body>
+</html>

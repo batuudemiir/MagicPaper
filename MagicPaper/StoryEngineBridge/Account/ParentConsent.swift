@@ -8,7 +8,7 @@ import Foundation
 ///
 /// Hukuki gözden geçirme bekliyor: metin ajan taslağıdır.
 enum ParentConsentText {
-    static let version = "2026-10-06"
+    static let version = "2026-10-07"
 
     struct Section: Identifiable, Equatable {
         let title: String
@@ -38,7 +38,8 @@ enum ParentConsentText {
             body: "Onayınızı istediğiniz zaman geri alabilirsiniz: Ayarlar > Gizlilik ve veri > Hesabı sil, hesabınızı ve sunucudaki bütün bilgileri kalıcı olarak siler. Sorularınız için: support@magicpaperkids.com"),
     ]
 
-    static let agreement = "Okudum; bu bilgilerin çocuğum için açıklanan amaçla saklanmasına onay veriyorum."
+    /// 06 · Ebeveyn onayı tasarımından (2026-10-07): 18 yaş beyanı eklendi.
+    static let agreement = "18 yaşından büyüğüm. Aydınlatma metnindeki bilgilerin çocuğuma masal yazmak için işlenmesine açık rıza veriyorum."
 }
 
 /// This device's copy of the parent's consent, tied to the account it was

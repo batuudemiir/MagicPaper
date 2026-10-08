@@ -9,18 +9,18 @@ import SwiftUI
     // outline: 2px çerçeve + 4px alt kenar · disabled: kenar yok
     ScrollView {
         VStack(alignment: .leading, spacing: 14) {
-            MPButton(title: "Küçük", size: .sm) {}
-            MPButton(title: "Orta", size: .md) {}
-            MPButton(title: "Masalı oluştur", size: .lg, icon: "wand.and.stars", fullWidth: true) {}
+            LegacyMPButton(title: "Küçük", size: .sm) {}
+            LegacyMPButton(title: "Orta", size: .md) {}
+            LegacyMPButton(title: "Masalı oluştur", size: .lg, icon: "wand.and.stars", fullWidth: true) {}
 
-            MPButton(title: "Yıldız", tone: .reward) {}
-            MPButton(title: "Enerjik", tone: .play) {}
-            MPButton(title: "Onay", tone: .calm) {}
+            LegacyMPButton(title: "Yıldız", tone: .reward) {}
+            LegacyMPButton(title: "Enerjik", tone: .play) {}
+            LegacyMPButton(title: "Onay", tone: .calm) {}
 
-            MPButton(title: "Yumuşak", variant: .soft) {}
-            MPButton(title: "Geri", variant: .outline, icon: "chevron.left") {}
-            MPButton(title: "Şimdi değil", variant: .ghost, size: .sm) {}
-            MPButton(title: "Pasif", isDisabled: true) {}
+            LegacyMPButton(title: "Yumuşak", variant: .soft) {}
+            LegacyMPButton(title: "Geri", variant: .outline, icon: "chevron.left") {}
+            LegacyMPButton(title: "Şimdi değil", variant: .ghost, size: .sm) {}
+            LegacyMPButton(title: "Pasif", isDisabled: true) {}
         }
         .padding(MP.S.screenGutter)
     }
@@ -31,15 +31,15 @@ import SwiftUI
     // yarıçap 22 · paper/brand/night/reward 4px kenar · sunken 3px
     ScrollView {
         VStack(spacing: 14) {
-            MPCard { Text("paper").font(MP.F.displaySM()) }
-            MPCard(tone: .sunken) { Text("sunken").font(MP.F.displaySM()) }
-            MPCard(tone: .brand) {
+            LegacyMPCard { Text("paper").font(MP.F.displaySM()) }
+            LegacyMPCard(tone: .sunken) { Text("sunken").font(MP.F.displaySM()) }
+            LegacyMPCard(tone: .brand) {
                 Text("brand").font(MP.F.displaySM()).foregroundStyle(MP.C.textOnBrand)
             }
-            MPCard(tone: .night) {
+            LegacyMPCard(tone: .night) {
                 Text("night").font(MP.F.displaySM()).foregroundStyle(MP.Palette.gece100)
             }
-            MPCard(tone: .reward) { Text("reward").font(MP.F.displaySM()) }
+            LegacyMPCard(tone: .reward) { Text("reward").font(MP.F.displaySM()) }
         }
         .padding(MP.S.screenGutter)
     }
@@ -71,27 +71,6 @@ import SwiftUI
     .background(MP.C.surfaceApp)
 }
 
-#Preview("MPTabBar — 4 sekme + (+)") {
-    // bar 76px · ortada 64px daire, -22 offset · 78px boşluk · aktif renk brand
-    struct Host: View {
-        @State private var tab = MPTab.home.rawValue
-        var body: some View {
-            VStack {
-                Spacer()
-                MPTabBar(
-                    items: MPTab.allCases.map {
-                        MPTabBar.Item(value: $0.rawValue, label: $0.label, symbol: $0.symbol)
-                    },
-                    selection: $tab,
-                    onCreate: {}
-                )
-            }
-            .background(MP.C.surfaceApp)
-        }
-    }
-    return Host()
-}
-
 #Preview("Diğer bileşenler") {
     ScrollView {
         VStack(alignment: .leading, spacing: 18) {
@@ -103,8 +82,8 @@ import SwiftUI
             HStack(spacing: 10) {
                 MPAvatar(name: "elif", size: 48)
                 MPAvatar(name: "İnci", size: 48, ring: true)
-                MPChip(title: "Neşeli", isSelected: true) {}
-                MPChip(title: "Sakin") {}
+                LegacyMPChip(title: "Neşeli", isSelected: true) {}
+                LegacyMPChip(title: "Sakin") {}
             }
             MPStepDots(total: 3, current: 1)
             MPProgressRing(value: 0.62, size: 120, color: MP.C.brand,

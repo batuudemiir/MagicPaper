@@ -22,6 +22,7 @@ struct StoryReaderView: View {
     @StateObject private var favorites = MPFavorites.shared
     @StateObject private var streak = MPStreak.shared
     @StateObject private var speech = MPSpeech.shared
+    @StateObject private var words = ReaderWordSelection.shared
 
     @State private var showReaderSettings = false
     @State private var openedAt: Date?
@@ -84,10 +85,17 @@ struct StoryReaderView: View {
                 isFavorite: favorites.contains(story.id),
                 isSpeaking: speech.isSpeaking && !speech.isPaused,
                 showsSecondary: model.controlsVisible,
+                pageLabel: model.folio.map { "Sayfa \($0)" },
+                progress: model.currentPage.map { Double($0.index + 1) / Double(max(story.pages.count, 1)) } ?? 0,
+                canGoPrevious: model.canGoPrevious,
+                canGoNext: model.canGoNext,
+                isLastPage: model.currentPage.map { $0.index == story.pages.count - 1 } ?? false,
                 onClose: close,
                 onToggleFavorite: toggleFavorite,
                 onToggleSpeech: toggleSpeech,
-                onOpenSettings: openSettings
+                onOpenSettings: openSettings,
+                onPrevious: { model.previous(); scheduleAutoHide() },
+                onNext: { model.next(); scheduleAutoHide() }
             )
             // Kontroller her zaman sayfanın üstünde dokunulur. Sıra tek başına
             // yetmiyordu: sol kenar şeridinde (genişliğin %15'i) sayfanın
@@ -104,21 +112,29 @@ struct StoryReaderView: View {
         // bir kapanış gelir. Masalı yarıda kesmek hoş değil ama bir limitin
         // "masalın sonuna kadar" beklemesi limit olmaktan çıkar — bu yüzden
         // beş dakika önceden haber veriliyor.
+        .overlay(alignment: .bottom) {
+            if let word = words.selected {
+                NewWordCard(word: word.term, meaning: word.meaning,
+                            isSpeaking: false,
+                            onSpeak: { speech.speak("\(word.term). \(word.meaning)") },
+                            onClose: { words.selected = nil })
+                    .padding(.horizontal, MPSpacing.screenH)
+                    .padding(.bottom, model.controlsVisible ? 190 : MPSpacing.xxl)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .zIndex(2)
+            }
+        }
+        .animation(MP.M.gated(MP.M.base), value: words.selected)
         .overlay {
             if budgetSpent {
                 ReaderTimeUpLeaf(theme: theme, onClose: close)
                     .transition(.opacity)
             }
         }
-        .overlay {
-            if showReaderSettings {
-                ReaderSettingsSheet(onClose: {
-                    withAnimation(MP.M.gated(MP.M.easeOut)) { showReaderSettings = false }
-                    scheduleAutoHide()
-                })
+        .sheet(isPresented: $showReaderSettings, onDismiss: scheduleAutoHide) {
+            ReaderSettingsSheet(onClose: { showReaderSettings = false })
                 .environmentObject(app)
                 .environmentObject(settings)
-            }
         }
         // VoiceOver kaydırma jestini tüketir; sayfa çevirme yine de çalışmalı.
         .accessibilityScrollAction { edge in
@@ -165,7 +181,15 @@ struct StoryReaderView: View {
                 recorder.readAgain()
                 model.restart()
             },
-            onClose: close
+            onClose: close,
+            onAnother: {
+                app.afterReader = .create
+                close()
+            },
+            onGoodNight: {
+                app.afterReader = .sleep(story)
+                close()
+            }
         )
         .environmentObject(app)
         // Tavan AX3.
@@ -339,6 +363,7 @@ struct StoryReaderView: View {
 
     private func pageChanged() {
         model.persistProgress()
+        words.selected = nil
 
         // Bir yaprağın çevrilmesi, o masalın okunduğunun kitaba ait kanıtıdır.
         // Süre eşiğini beklemeden günü işaretler: çocuk okurken serinin
@@ -350,6 +375,12 @@ struct StoryReaderView: View {
         if model.isOnEndingLeaf {
             speech.stop()
             recorder.reachedEnding()
+            // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
+            if let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) {
+                let fresh = MPBadgeStore().recordFinished(story, profile: profile,
+                                                          stories: StoryGenerationManager.shared.stories)
+                MPBadgeNews.shared.fresh = fresh
+            }
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
             SeriesManager.shared.markRead(story)
@@ -392,7 +423,7 @@ struct StoryReaderView: View {
 
     private func openSettings() {
         autoHideTask?.cancel()
-        withAnimation(MP.M.gated(MP.M.spring)) { showReaderSettings = true }
+        showReaderSettings = true
     }
 
     private func toggleFavorite() {

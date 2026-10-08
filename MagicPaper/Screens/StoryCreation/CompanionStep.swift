@@ -1,37 +1,43 @@
 import SwiftUI
 import StoryEngine
 
-/// Step 2 — who comes with us?
+/// 20 · Yarat 2 (`SihirbazNasil`): Masalda kimler olsun?
 ///
-/// The candidates are derived from the idea chosen a moment ago, which is what
-/// makes the companion a role rather than decoration: a companion who would
-/// dissolve the story's premise is not offered. A companion that can fly does
-/// not appear for a story about crossing something on your own, and one that
-/// says exactly what it sees does not appear for a story about misreading the
-/// evidence — not because this screen knows that, but because the blueprints do.
+/// Teslimdeki ekranın uzunluk, ton ve serbest metin bölümleri yok: uzunluk
+/// yaş bandından, ton moddan gelir, serbest metin yok (karar 3 ve 7 Ekim
+/// 2026). Kalanlar: yol arkadaşı ve Masal ailem çipleri, "Masalı yaz".
+///
+/// Adaylar seçilen fikirden türer: masalın öncülünü bozacak bir yol arkadaşı
+/// önerilmez. Bunu ekran bilmez, blueprint'ler bilir. Hiçbiri seçilmezse en
+/// uygun arkadaşı MagicPaper seçer.
 struct CompanionStep: View {
 
     let ideaID: String?
     /// The resolved intent. Candidates must be able to carry a story of this
-    /// mode — a companion only the wrong mode's blueprints accept is not offered.
+    /// mode: a companion only the wrong mode's blueprints accept is not offered.
     var mode: StoryMode? = nil
     /// The child's age, so candidates come from the band the story is written for.
     var age: Int? = nil
+    /// Üstteki özet kartı için.
+    var childName: String = ""
+    var childColor: Color? = nil
     /// Where the candidates come from. The flow passes its own so both steps
     /// ask the same source.
     var source: any StoryChoiceSource = StoryChoiceSources.current
-    /// Masal ailem (FAZ 11): the child's own characters, offered above the
-    /// companions. The flow owns the choice so "Yeni karakter" can hand back
-    /// the character it just made.
+    /// Masal ailem (FAZ 11): the child's own characters. The flow owns the
+    /// choice so "Yeni karakter" can hand back the character it just made.
     var familyCharacters: [FamilyCharacter] = []
     /// Relations this mode can carry for this child, from the flow.
     var availableRelations: Set<FamilyRelationKind> = []
     @Binding var selectedFamilyID: UUID?
-    /// Opens the new-character editor. The flow draws it, over the whole flow.
+    /// Opens the new-character editor (parent mode only).
     var onAddFamily: (() -> Void)? = nil
-    /// Nil means "surprise me". §16: this keeps the chosen idea; it does not
-    /// start the story over.
+    /// "Değiştir": birinci adıma döner.
+    var onChangeMode: (() -> Void)? = nil
+    /// Nil means "MagicPaper chooses".
     let onChoose: (String?) -> Void
+
+    @State private var selectedCompanionID: String?
 
     private static let shown = 3
 
@@ -46,101 +52,125 @@ struct CompanionStep: View {
             .prefix(Self.shown))
     }
 
-
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 0) {
-                VStack(alignment: .leading, spacing: MP.S.x2) {
+            VStack(alignment: .leading, spacing: MPSpacing.section) {
+                VStack(spacing: MPSpacing.sm) {
                     // "Macera" değil: Uyku öncesinde de bu soru soruluyor.
                     Text("Masalda kimler olsun?")
-                        .font(MP.F.displayLG())
-                        .mpTightTracking(32)
-                        .foregroundStyle(MP.C.textTitle)
+                        .mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Hepsi isteğe bağlı. İstersen direkt yaz.")
+                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
                 }
-                .padding(.top, MP.S.x3)
-                .padding(.bottom, MP.S.x5)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+
+                if let mode { summary(mode) }
+
+                companionSection
 
                 if onAddFamily != nil || !familyCharacters.isEmpty {
                     familySection
-                        .padding(.bottom, MP.S.sectionGap)
-                    Text(FamilyCharacterCopy.stepCompanionLabel)
-                        .font(MP.F.labelMD())
-                        .foregroundStyle(MP.C.textTitle)
-                        .padding(.bottom, MP.S.x3)
-                        .accessibilityAddTraits(.isHeader)
-                }
-
-                VStack(spacing: MP.S.stackGap) {
-                    ForEach(candidates) { companion in
-                        MPChoiceTile(
-                            title: companion.name,
-                            description: description(for: companion),
-                            symbol: symbol(for: companion),
-                            accent: MP.C.brand,
-                            layout: .column
-                        ) {
-                            onChoose(companion.id)
-                        }
-                        .accessibilityLabel("\(companion.name), \(companion.kind)")
-                    }
-
-                    MPChoiceTile(
-                        title: "Bana sürpriz yap",
-                        description: "En uygun arkadaşı biz seçelim.",
-                        symbol: "wand.and.stars",
-                        accent: MP.C.reward,
-                        layout: .column
-                    ) {
-                        onChoose(nil)
-                    }
                 }
             }
-            .mpGutter()
-            .padding(.bottom, MP.S.x6)
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxxl)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
+                onChoose(selectedCompanionID)
+            }
+            .padding(.horizontal, MPSpacing.xxxl)
+            .padding(.vertical, MPSpacing.md)
+        }
+        // A companion the new family choice no longer allows is dropped,
+        // visibly, rather than kept and refused at "Masalı yaz".
+        .onChange(of: selectedFamilyID) { _, _ in
+            if let id = selectedCompanionID, !candidates.contains(where: { $0.id == id }) {
+                selectedCompanionID = nil
+            }
         }
     }
 
-    /// "Masal ailemden biri de gelsin mi?" — optional, one at most.
+    private func summary(_ mode: StoryMode) -> some View {
+        HStack(spacing: MPSpacing.md) {
+            MPAvatar(name: childName, color: childColor, size: 40)
+            Text(childName.isEmpty ? mode.title : "\(childName) · \(mode.title)")
+                .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                .lineLimit(2)
+            Spacer(minLength: MPSpacing.sm)
+            if let onChangeMode {
+                Button("Değiştir", action: onChangeMode)
+                    .mpText(.callout).fontWeight(.black)
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(minHeight: MPSize.minTouchParent)
+            }
+        }
+        .padding(.leading, MPSpacing.sm).padding(.trailing, MPSpacing.lg)
+        .padding(.vertical, MPSpacing.xs)
+        .background(MPColor.backgroundSurface, in: Capsule())
+        .mpShadow(.control)
+    }
+
+    private var companionSection: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            Text(FamilyCharacterCopy.stepCompanionLabel).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            MPFlowLayout(spacing: MPSpacing.sm) {
+                ForEach(candidates) { companion in
+                    let on = selectedCompanionID == companion.id
+                    MPChip(title: companion.name, systemImage: symbol(for: companion), isSelected: on) {
+                        MPHaptics.selection()
+                        selectedCompanionID = on ? nil : companion.id
+                    }
+                    .frame(minHeight: MPSize.minTouchKid)
+                    .accessibilityLabel("\(companion.name), \(description(for: companion))")
+                }
+            }
+            if selectedCompanionID == nil {
+                Text("Seçmezsen en uygun arkadaşı biz seçeriz.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+            }
+        }
+    }
+
+    /// "Masal ailemden biri de gelsin mi?": optional, one at most.
     private var familySection: some View {
         let available = availableRelations
         let hasUnavailable = familyCharacters.contains { !available.contains($0.relation.kind) }
-        return VStack(alignment: .leading, spacing: MP.S.x3) {
-            VStack(alignment: .leading, spacing: MP.S.x1) {
-                Text(FamilyCharacterCopy.stepFamilyQuestion)
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textTitle)
+        return VStack(alignment: .leading, spacing: MPSpacing.md) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                Text("Masal ailem").mpText(.headline).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 Text(FamilyCharacterCopy.stepFamilyHint)
-                    .font(MP.F.bodySM())
-                    .foregroundStyle(MP.C.textMuted)
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            MPWrapRow {
+            MPFlowLayout(spacing: MPSpacing.sm) {
                 ForEach(familyCharacters) { character in
                     let isAvailable = available.contains(character.relation.kind)
-                    MPChip(
-                        title: character.name,
-                        symbol: FamilyCharacterCopy.relationSymbol(character.relation.kind),
-                        isSelected: selectedFamilyID == character.id,
-                        isDisabled: !isAvailable
-                    ) {
+                    MPChip(title: character.name,
+                           systemImage: FamilyCharacterCopy.relationSymbol(character.relation.kind),
+                           isSelected: selectedFamilyID == character.id) {
                         MPHaptics.selection()
                         selectedFamilyID = selectedFamilyID == character.id ? nil : character.id
                     }
+                    .disabled(!isAvailable)
+                    .opacity(isAvailable ? 1 : 0.45)
+                    .frame(minHeight: MPSize.minTouchKid)
                     .accessibilityLabel("\(character.name), \(FamilyCharacterCopy.relation(character.relation.kind))")
                     .accessibilityHint(isAvailable ? "" : FamilyCharacterCopy.stepUnavailableAccessibility)
                 }
                 if let onAddFamily, familyCharacters.count < FamilyCharacter.maxPerChild {
-                    MPChip(title: FamilyCharacterCopy.addButton, symbol: "plus") {
-                        onAddFamily()
-                    }
-                    .accessibilityLabel(FamilyCharacterCopy.addButton)
+                    MPChip(title: "Masal ailem", systemImage: "plus", style: .dashed) { onAddFamily() }
+                        .frame(minHeight: MPSize.minTouchKid)
+                        .accessibilityLabel(FamilyCharacterCopy.addButton)
                 }
             }
             if hasUnavailable {
                 Text(FamilyCharacterCopy.stepUnavailable)
-                    .font(MP.F.caption(.regular))
-                    .foregroundStyle(MP.C.textMuted)
+                    .mpText(.caption).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }

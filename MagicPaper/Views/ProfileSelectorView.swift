@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Profil seçimi — 03-SCREENS.md §8'deki "Kim okuyacak?" listesinin tam ekran hâli.
-/// `MainContentView`, profiller varken hiçbiri seçili değilse buraya düşer.
+/// "Kim okuyor?": profiller varken hiçbiri seçili değilse `MainContentView`
+/// buraya düşer. Benim köşem'deki seçiciyle aynı dil: renkli harf madalyonu,
+/// ad, yaş bandı ve masal sayısı.
 struct ProfileSelectorView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
@@ -9,37 +10,42 @@ struct ProfileSelectorView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            MPNavBar(title: "Kim okuyacak?")
+            MPTopBar(title: "Kim okuyor?") { EmptyView() }
+                .padding(.horizontal, MPSpacing.screenH)
 
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 8) {
+                VStack(spacing: MPSpacing.md) {
                     ForEach(profileManager.profiles) { profile in
-                        MPListRow(
-                            symbol: "person.crop.circle",
-                            iconColor: profile.mpColor,
-                            title: profile.name,
-                            description: "\(profile.mpAgeRange.shortLabel) yaş · \(storyCount(profile)) masal",
-                            action: { profileManager.switchProfile(to: profile) }
-                        ) {
-                            if profileManager.currentProfile?.id == profile.id {
-                                MPIcon("checkmark", size: 20, weight: .bold)
-                                    .foregroundStyle(MP.C.brand)
+                        Button { profileManager.switchProfile(to: profile) } label: {
+                            HStack(spacing: MPSpacing.md) {
+                                MPInitialAvatar(name: profile.name, color: profile.mpColor)
+                                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                                    Text(profile.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                                    Text("\(profile.mpAgeRange.shortLabel) yaş · \(storyCount(profile)) masal")
+                                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                                }
+                                Spacer(minLength: 0)
+                                MPChevron()
                             }
+                            .padding(MPSpacing.lg)
+                            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                            .mpShadow(.card)
                         }
+                        .buttonStyle(MPPressStyle())
+                        .accessibilityElement(children: .combine)
                     }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 8)
-                .padding(.bottom, 24)
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.vertical, MPSpacing.lg)
             }
 
-            MPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
+            MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .outline, fullWidth: true) {
                 showAddProfile = true
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.bottom, 12)
+            .padding(.horizontal, MPSpacing.xl)
+            .padding(.vertical, MPSpacing.md)
         }
-        .mpScreenBackground()
+        .background(MPColor.backgroundKid.ignoresSafeArea())
         .fullScreenCover(isPresented: $showAddProfile) {
             ProfileCreationView(mode: .addAnother)
         }

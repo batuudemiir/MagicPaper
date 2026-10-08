@@ -1,58 +1,70 @@
 import SwiftUI
+import StoreKit
 
-/// Ebeveyn modu · **Ayarlar** — 03-SCREENS.md §13.
+/// 32 · Ebeveyn · Ayarlar (`Ayarlar`).
 ///
-/// Eskiden Ebeveyn panelindeki bir dişliden tam ekran açılıyordu; artık
-/// ebeveyn menüsünün bir sayfası. Abonelik kartı da panelden buraya geldi:
-/// plan bir ayar, istatistik değil.
+/// Gruplanmış liste: çocuk profilleri, aile ve ses, bildirimler, okuma,
+/// hesap, destek, hesabı sil. Çocuk profilleri eski "Çocuklar" sekmesinden
+/// buraya geldi (FAZ 17). Henüz altyapısı olmayan satırlar (Aile üyeleri,
+/// Kendi sesin, Haftalık özet) `FamilyFeatureAccess` kapalıyken görünmez.
 struct SettingsView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
+    @Environment(\.requestReview) private var requestReview
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var account = AccountService.shared
     @State private var showPrivacy = false
+    @State private var confirmDelete = false
+    @State private var confirmClear = false
+    @State private var exportFile: MPExportFile?
+    @State private var isExporting = false
+    @State private var interestChoices: [InterestChoice] = []
     /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
     /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
     @State private var notificationsDenied = false
     #if DEBUG
-    /// Görselli kitap (B2) geliştirici bayrağı; DEBUG'da varsayılan açık.
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
-    /// Fikir kartları adımı; her build'de varsayılan kapalı (karar K7).
     @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
+    @State private var familyFlags: [FamilyFeature: Bool] = Dictionary(
+        uniqueKeysWithValues: FamilyFeature.allCases.map { ($0, FamilyFeatureAccess.isEnabled($0)) })
     #endif
 
-    /// Kalan görselli masal hakkı — birim adı her zaman "Yıldız".
-    private var stars: Int {
-        subscriptionManager.isPremium
-            ? subscriptionManager.remainingImageStories
-            : subscriptionManager.freeTrialCount
-    }
-
     var body: some View {
-        VStack(spacing: 0) {
-            MPParentHeader(title: "Ayarlar")
-
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: MP.S.sectionGap) {
-                    subscriptionCard
-                    readingSection
-                    notificationsSection
-                    accountSection
-                    #if DEBUG
-                    developerSection
-                    #endif
-                }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, MP.S.x3)
-                .padding(.bottom, MP.S.x7)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.section) {
+                MPParentHeader(title: "Ayarlar")
+                    .padding(.horizontal, -MPSpacing.screenH)
+                profilesSection
+                if showsFamilySection { familySection }
+                notificationsSection
+                readingSection
+                accountSection
+                supportSection
+                deleteSection
+                #if DEBUG
+                developerSection
+                #endif
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxxl)
         }
-        .mpScreenBackground()
-        .fullScreenCover(isPresented: $showPrivacy) {
-            PrivacyAndDataView()
+        .background(MPColor.backgroundParent.ignoresSafeArea())
+        .fullScreenCover(isPresented: $showPrivacy) { PrivacyAndDataView() }
+        .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
+        .fullScreenCover(isPresented: $confirmDelete) {
+            AccountDeletionSheet(onClose: { confirmDelete = false })
         }
-
+        .confirmationDialog("Tüm verileri sil", isPresented: $confirmClear, titleVisibility: .visible) {
+            Button("Sil", role: .destructive) {
+                LocalDataEraser.eraseFamilyData(keepingOnboarding: true)
+            }
+            Button("Vazgeç", role: .cancel) {}
+        } message: {
+            Text("Masallar, profiller ve okuma ilerlemen cihazdan kaldırılır. Bu işlem geri alınamaz.")
+        }
+        .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
         // Ekranı açtığında gerçeği göster: izin Sistem Ayarları'ndan geri
         // alınmış olabilir ve bizim anahtarımız bunu bilmiyor.
         .task {
@@ -61,149 +73,87 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Abonelik
+    // MARK: - Çocuk profilleri
 
-    private var subscriptionCard: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Abonelik")
+    private static let profileTones: [MPWorldTone] = [.green, .pink, .sky, .yellow, .lav, .mint]
 
-            MPCard(tone: .reward, padding: 18) {
-                HStack(spacing: 14) {
-                    MPIcon("crown.fill", size: 24, weight: .semibold)
-                        .foregroundStyle(MP.C.premiumInk)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan")
-                            .font(MP.F.bodyMD(.bold))
-                            .foregroundStyle(MP.C.textTitle)
-                        Text(subscriptionManager.isPremium
-                             ? "Aylık yenilenir"
-                             : "\(stars) yıldız kaldı")
-                            .font(MP.F.labelSM())
-                            .foregroundStyle(MP.C.premiumInk)
-                    }
-
-                    Spacer(minLength: 0)
-
-                    MPButton(title: subscriptionManager.isPremium ? "Yönet" : "Yükselt",
-                             tone: .reward, size: .sm) {
-                        app.openPaywall()
-                    }
+    private var profilesSection: some View {
+        ParentSection(title: "Çocuk profilleri") {
+            ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
+                if index > 0 { MPRowDivider(area: .parent) }
+                ParentRowButton(systemImage: "person",
+                                tone: Self.profileTones[index % Self.profileTones.count],
+                                title: profile.name,
+                                subtitle: profileLine(profile)) {
+                    app.sheet = .profileEdit(profile.id)
                 }
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
+                app.showProfileAdd = true
             }
         }
     }
 
-    // MARK: - Okuma
+    /// "5-6 yaş · Hayvanlar, Doğa" ya da ilgi alanı yoksa "5-6 yaş · 3 masal".
+    private func profileLine(_ profile: UserProfile) -> String {
+        let age = "\(profile.mpAgeRange.shortLabel) yaş"
+        if ChildInterests.isShown(interestChoices) {
+            let offered = Set(ChildInterests.offered(profile.interests, from: interestChoices))
+            let names = interestChoices.filter { offered.contains($0.id) }.map(\.name)
+            if !names.isEmpty { return "\(age) · \(names.joined(separator: ", "))" }
+        }
+        let count = storyManager.stories.filter { $0.isReadable && $0.belongs(to: profile) }.count
+        return "\(age) · \(count) masal"
+    }
 
-    /// Yazı boyutu satırı bir değeri **gösteriyordu** ama dokunulacak bir şeyi
-    /// yoktu: eylemi olmayan, seçeneği olmayan bir satır. Boyut yalnızca
-    /// okuyucunun kendi sheet'inden değişebiliyordu, yani Ayarlar'daki satır
-    /// bir ayar değil bir etiketti.
-    private var readingSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Okuma")
-            MPCard(padding: 0) {
-                VStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack(spacing: 14) {
-                            MPIcon("textformat.size", size: 20, weight: .semibold)
-                                .foregroundStyle(MP.C.brand)
-                                .frame(width: 38, height: 38)
-                                .background(RoundedRectangle(cornerRadius: MP.R.sm, style: .continuous)
-                                    .fill(MP.C.brand.opacity(0.13)))
-                            Text("Yazı boyutu")
-                                .font(MP.F.bodyMD(.bold))
-                                .foregroundStyle(MP.C.textTitle)
-                            Spacer(minLength: 0)
-                        }
-                        MPWrapRow(spacing: 10) {
-                            ForEach(MP.ReadSize.allCases) { size in
-                                MPChip(title: size.rawValue, isSelected: settings.readSize == size) {
-                                    settings.readSize = size
-                                    // Okuyucu oturum durumundan okuyor; ikisi
-                                    // birlikte değişmezse ayar bir sonraki
-                                    // açılışa kadar görünmez kalır.
-                                    app.readSize = size
-                                }
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 13)
+    // MARK: - Aile ve ses (FAZ 18, bayrakta)
 
-                    MPRowDivider()
-                    MPListRow(symbol: "speaker.wave.2", title: "Sesli okuma") {
-                        MPSwitch(isOn: $settings.readAloud, label: "Sesli okuma")
-                    }
-                }
+    private var showsFamilySection: Bool {
+        FamilyFeatureAccess.isEnabled(.familyMembers) || FamilyFeatureAccess.isEnabled(.voiceRecording)
+    }
+
+    private var familySection: some View {
+        ParentSection(title: "Aile ve ses") {
+            if FamilyFeatureAccess.isEnabled(.familyMembers) {
+                ParentRowButton(systemImage: "person.2", tone: .sky, title: "Aile üyeleri",
+                                subtitle: "Davet et, birlikte okuyun") { app.parentRoute = .familyMembers }
+            }
+            if FamilyFeatureAccess.isEnabled(.familyMembers) && FamilyFeatureAccess.isEnabled(.voiceRecording) {
+                MPRowDivider(area: .parent)
+            }
+            if FamilyFeatureAccess.isEnabled(.voiceRecording) {
+                ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
+                                subtitle: "Masalları senin sesinle okusun") { app.parentRoute = .voiceRecording }
             }
         }
     }
 
-    // MARK: - Bildirimler ve limitler
+    // MARK: - Bildirimler
 
-    /// Bu bölümdeki üç anahtarın üçü de hiçbir şey yapmıyordu: `reminder` ve
-    /// `screenLimit` kodun hiçbir yerinde okunmuyordu, `approve` ise yalnızca
-    /// Ebeveyn panelindeki kuyruğu açıyor, masalı gizlemiyordu. Üçü de
-    /// varsayılan olarak AÇIK geliyordu — yani uygulama, hiç sormadan üç şey
-    /// vaat edip üçünü de yapmıyordu.
     private var notificationsSection: some View {
-        section(title: "Bildirimler ve limitler") {
-            MPListRow(symbol: "bell", title: "Masal saati hatırlatması",
-                      description: reminderDescription) {
-                MPSwitch(isOn: Binding(
-                    get: { settings.reminder && !notificationsDenied },
-                    set: { on in setReminder(on) }
-                ), label: "Masal saati hatırlatması")
-            }
-
+        ParentSection(title: "Bildirimler") {
+            ParentToggleRow(systemImage: "bell", tone: .yellow, title: "Masal saati hatırlatması",
+                            subtitle: reminderDescription,
+                            isOn: Binding(get: { settings.reminder && !notificationsDenied },
+                                          set: setReminder))
             if notificationsDenied {
-                MPRowDivider()
-                MPListRow(symbol: "exclamationmark.triangle",
-                          iconColor: MP.C.danger,
-                          title: "Bildirimlere izin verilmedi",
-                          description: "Sistem Ayarları'ndan açabilirsiniz",
-                          action: { openSystemSettings() })
+                MPRowDivider(area: .parent)
+                ParentRowButton(systemImage: "exclamationmark.triangle", tone: .pink,
+                                title: "Bildirimlere izin verilmedi",
+                                subtitle: "Sistem Ayarları'ndan açabilirsin", action: openSystemSettings)
             } else if settings.reminder {
-                MPRowDivider()
-                MPListRow(symbol: "clock", title: "Hatırlatma saati") {
-                    DatePicker("", selection: reminderTime, displayedComponents: .hourAndMinute)
+                MPRowDivider(area: .parent)
+                MPListRow(systemImage: "clock", tone: .yellow, title: "Hatırlatma saati") {
+                    DatePicker("Hatırlatma saati", selection: reminderTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
+                        .tint(MPColor.actionPrimary)
                 }
             }
-
-            MPRowDivider()
-            MPListRow(symbol: "eye.slash", title: "Masalları onaylamadan gösterme",
-                      description: settings.approve
-                        ? "Yeni masallar siz onaylayana kadar kütüphanede görünmez"
-                        : nil) {
-                MPSwitch(isOn: Binding(
-                    get: { settings.approve },
-                    set: { on in setApproval(on) }
-                ), label: "Masalları onaylamadan gösterme")
-            }
-
-            MPRowDivider()
-            MPListRow(symbol: "hourglass", title: "Ekran süresi limiti",
-                      description: settings.screenLimit
-                        ? "Günde \(settings.screenLimitMinutes) dakika okuma"
-                        : nil) {
-                MPSwitch(isOn: $settings.screenLimit, label: "Ekran süresi limiti")
-            }
-
-            if settings.screenLimit {
-                MPRowDivider()
-                MPWrapRow(spacing: 10) {
-                    ForEach(MPReadingBudget.choices, id: \.self) { minutes in
-                        MPChip(title: "\(minutes) dk",
-                               isSelected: settings.screenLimitMinutes == minutes) {
-                            settings.screenLimitMinutes = minutes
-                        }
-                    }
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 13)
+            if FamilyFeatureAccess.isEnabled(.weeklyEmail) {
+                MPRowDivider(area: .parent)
+                ParentToggleRow(systemImage: "envelope", tone: .sky, title: "Haftalık özet e-postası",
+                                subtitle: "Pazar sabahları", isOn: .constant(false))
             }
         }
     }
@@ -238,7 +188,7 @@ struct SettingsView: View {
     private var childName: String? { profileManager.currentProfile?.name }
 
     /// İzin tam burada isteniyor: ebeveyn ne için olduğunu okuyup anahtara
-    /// dokunduğu anda. Açılışta, ortada hiçbir masal yokken değil.
+    /// dokunduğu anda.
     private func setReminder(_ on: Bool) {
         guard on else {
             settings.reminder = false
@@ -262,35 +212,101 @@ struct SettingsView: View {
         }
     }
 
-    private func setApproval(_ on: Bool) {
-        settings.approve = on
-        guard on else { return }
-        // Kapı ileriye doğru çalışır — açıklaması `approveStories` üzerinde.
-        settings.approveStories(storyManager.stories.map(\.id))
-        app.showToast("Yeni masallar onayınızı bekleyecek", symbol: "eye.slash")
-    }
-
     private func openSystemSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
     }
 
+    // MARK: - Okuma
+
+    private var readingSection: some View {
+        ParentSection(title: "Okuma") {
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                Text("Yazı boyutu").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                MPFlowLayout(spacing: MPSpacing.sm) {
+                    ForEach(MP.ReadSize.allCases) { size in
+                        MPChip(title: size.rawValue, isSelected: settings.readSize == size) {
+                            settings.readSize = size
+                            // Okuyucu oturum durumundan okuyor; ikisi birlikte
+                            // değişmezse ayar bir sonraki açılışa kadar görünmez.
+                            app.readSize = size
+                        }
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(MPSpacing.lg)
+            MPRowDivider(area: .parent)
+            ParentToggleRow(systemImage: "speaker.wave.2", tone: .mint, title: "Sesli okuma",
+                            subtitle: "Masal sayfaları sesli okunur", isOn: $settings.readAloud)
+        }
+    }
+
     // MARK: - Hesap
 
     private var accountSection: some View {
-        section(title: "Hesap") {
-            // Ebeveyn hesabı ve eşitleme (FAZ 16).
+        ParentSection(title: "Hesap") {
             AccountStatusRows(onSignOut: { app.sheet = .signOut })
-            MPRowDivider()
-            MPListRow(symbol: "crown.fill", title: "Aboneliği yönet", action: {
-                if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
-                    UIApplication.shared.open(url)
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "crown", tone: .yellow, title: "Abonelik",
+                            subtitle: subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan") {
+                app.openPaywall()
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "lock", tone: .gray, title: "Gizlilik ve veri",
+                            subtitle: "Ne tuttuğumuz, nasıl sildiğimiz") { showPrivacy = true }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "arrow.down.circle", tone: .green, title: "Masal kitabı",
+                            subtitle: isExporting ? "PDF hazırlanıyor" : "Masalların PDF kitap olarak") {
+                exportBook()
+            }
+        }
+    }
+
+    /// Kitaplıktaki masalları tek bir PDF kitapta toplar (35 · Masal kitabı'nın
+    /// PDF yolu; basılı kitap iş modeli kararına kadar yok).
+    private func exportBook() {
+        guard !isExporting, !storyManager.stories.isEmpty else { return }
+        isExporting = true
+        let snapshot = storyManager.stories
+        Task.detached(priority: .userInitiated) {
+            let url = await MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
+            await MainActor.run {
+                isExporting = false
+                if let url {
+                    exportFile = MPExportFile(url: url)
+                } else {
+                    app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
                 }
-            })
-            MPRowDivider()
-            MPListRow(symbol: "lock.fill", title: "Gizlilik ve veri",
-                      description: "Hesabı silme ve okuma bilgisi",
-                      action: { showPrivacy = true })
+            }
+        }
+    }
+
+    // MARK: - Destek
+
+    private var supportSection: some View {
+        ParentSection(title: "Destek") {
+            ParentRowButton(systemImage: "message", tone: .lav, title: "Bize yaz") {
+                if let url = URL(string: "mailto:support@magicpaperkids.com") { UIApplication.shared.open(url) }
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "star", tone: .yellow, title: "Uygulamayı değerlendir") {
+                requestReview()
+            }
+        }
+    }
+
+    // MARK: - Hesabı sil
+
+    /// Giriş yapılmışken yalnız cihazı silmek eşitlemeyle geri gelirdi; gerçek
+    /// silme hesabınki (FAZ 16).
+    private var deleteSection: some View {
+        MPGroupedList(area: .parent) {
+            ParentRowButton(systemImage: "trash", title: account.account != nil
+                                ? "Hesabı ve tüm verileri sil" : "Tüm verileri sil",
+                            subtitle: "Geri alınamaz", isDestructive: true) {
+                if account.account != nil { confirmDelete = true } else { confirmClear = true }
+            }
         }
     }
 
@@ -301,142 +317,64 @@ struct SettingsView: View {
 
     #if DEBUG
     private var developerSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: "Geliştirici",
-                            subtitle: "Yalnızca test derlemesinde görünür")
-
-            MPCard(padding: 0) {
-                VStack(spacing: 0) {
-                    MPListRow(
-                        symbol: "sparkles",
-                        iconColor: MP.C.brand,
-                        title: "Görselli kitap (B2)",
-                        description: "Kitap karakteri ve hazır sahneler"
-                    ) {
-                        MPSwitch(isOn: Binding(
-                            get: { illustratedBooks },
-                            set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }
-                        ), label: "Görselli kitap")
-                    }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "sparkles",
-                        iconColor: MP.C.brand,
-                        title: "Fikir kartları adımı",
-                        description: "Moddan sonra isteğe bağlı fikir kartları"
-                    ) {
-                        MPSwitch(isOn: Binding(
-                            get: { ideaStep },
-                            set: { ideaStep = $0; StoryIdeaStepAccess.setDeveloperFlag($0) }
-                        ), label: "Fikir kartları adımı")
-                    }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "clock",
-                        iconColor: MP.C.brand,
-                        title: SeriesCopy.debugAdvance,
-                        description: "Seri bölümünü simülatörde açmak için",
-                        action: {
-                            let key = SeriesClock.debugDayOffsetKey
-                            UserDefaults.standard.set(UserDefaults.standard.integer(forKey: key) + 1, forKey: key)
-                            if let id = ProfileManager.shared.currentProfile?.id {
-                                SeriesManager.shared.refreshUnlocks(for: id)
-                            }
-                            app.showToast("Seri saati +1 gün", symbol: "clock")
-                        }
-                    ) { EmptyView() }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "clock",
-                        iconColor: MP.C.textMuted,
-                        title: SeriesCopy.debugReset,
-                        action: {
-                            UserDefaults.standard.removeObject(forKey: SeriesClock.debugDayOffsetKey)
-                            UserDefaults.standard.removeObject(forKey: SeriesClock.highWaterKey)
-                            app.showToast("Seri saati sıfırlandı", symbol: "clock")
-                        }
-                    ) { EmptyView() }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "book-open",
-                        iconColor: MP.C.calm,
-                        title: "Dekorasyon galerisi",
-                        description: "Varlık kataloğu, kürasyon durumu, ortam kapsamı",
-                        action: { app.showDecorationGallery = true }
-                    ) { EmptyView() }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "sparkles",
-                        iconColor: MP.C.brand,
-                        title: "Dekorasyon demoları",
-                        description: "Orman · Deniz · Uyku · Macera, debug katmanıyla",
-                        action: { app.showDecorationDemo = true }
-                    ) { EmptyView() }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "star.fill",
-                        iconColor: MP.C.reward,
-                        title: "Deneme yıldızı ekle",
-                        description: "5 yıldız ekler, görselli masal kilidini açar",
-                        action: {
-                            subscriptionManager.grantTrialStars(5)
-                            app.showToast("5 yıldız eklendi",
-                                          symbol: "star.fill", tone: .reward)
-                        }
-                    ) {
-                        Text("\(stars)")
-                            .font(MP.F.labelMD())
-                            .foregroundStyle(MP.C.textMuted)
-                    }
-
-                    MPRowDivider()
-
-                    MPListRow(
-                        symbol: "crown.fill",
-                        iconColor: MP.C.premiumInk,
-                        title: subscriptionManager.isPremium
-                            ? "Aboneliği kapat" : "Aboneliği aç",
-                        description: subscriptionManager.isPremium
-                            ? "Ücretsiz plana döner" : "Hikaye Kahramanı planını açar",
-                        action: {
-                            if subscriptionManager.isPremium {
-                                subscriptionManager.cancelSubscription()
-                                app.showToast("Abonelik kapatıldı", symbol: "crown.fill")
-                            } else {
-                                subscriptionManager.purchaseSubscription(tier: .premium)
-                                app.showToast("Premium açıldı, iyi masallar",
-                                              symbol: "crown.fill", tone: .reward)
-                            }
-                        }
-                    )
+        ParentSection(title: "Geliştirici", subtitle: "Yalnızca test derlemesinde görünür") {
+            ParentToggleRow(systemImage: "sparkles", title: "Görselli kitap (B2)",
+                            subtitle: "Kitap karakteri ve hazır sahneler",
+                            isOn: Binding(get: { illustratedBooks },
+                                          set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }))
+            MPRowDivider(area: .parent)
+            ParentToggleRow(systemImage: "sparkles", title: "Fikir kartları adımı",
+                            subtitle: "Moddan sonra isteğe bağlı fikir kartları",
+                            isOn: Binding(get: { ideaStep },
+                                          set: { ideaStep = $0; StoryIdeaStepAccess.setDeveloperFlag($0) }))
+            ForEach(FamilyFeature.allCases, id: \.self) { feature in
+                MPRowDivider(area: .parent)
+                ParentToggleRow(systemImage: "person.2", tone: .sky, title: feature.title,
+                                subtitle: "FAZ 18 ekranı (bayrak)",
+                                isOn: Binding(get: { familyFlags[feature] ?? false },
+                                              set: { familyFlags[feature] = $0; FamilyFeatureAccess.setDeveloperFlag(feature, $0) }))
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "clock", title: SeriesCopy.debugAdvance,
+                            subtitle: "Seri bölümünü simülatörde açmak için") {
+                let key = SeriesClock.debugDayOffsetKey
+                UserDefaults.standard.set(UserDefaults.standard.integer(forKey: key) + 1, forKey: key)
+                if let id = ProfileManager.shared.currentProfile?.id {
+                    SeriesManager.shared.refreshUnlocks(for: id)
+                }
+                app.showToast("Seri saati +1 gün", symbol: "clock")
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "clock", tone: .gray, title: SeriesCopy.debugReset) {
+                UserDefaults.standard.removeObject(forKey: SeriesClock.debugDayOffsetKey)
+                UserDefaults.standard.removeObject(forKey: SeriesClock.highWaterKey)
+                app.showToast("Seri saati sıfırlandı", symbol: "clock")
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "book", tone: .green, title: "Dekorasyon galerisi",
+                            subtitle: "Varlık kataloğu, kürasyon durumu, ortam kapsamı") {
+                app.showDecorationGallery = true
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "sparkles", title: "Dekorasyon demoları",
+                            subtitle: "Orman · Deniz · Uyku · Macera, debug katmanıyla") {
+                app.showDecorationDemo = true
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "crown", tone: .yellow,
+                            title: subscriptionManager.isPremium ? "Aboneliği kapat" : "Aboneliği aç",
+                            subtitle: subscriptionManager.isPremium ? "Ücretsiz plana döner" : "Hikaye Kahramanı planını açar") {
+                if subscriptionManager.isPremium {
+                    subscriptionManager.cancelSubscription()
+                    app.showToast("Abonelik kapatıldı", symbol: "crown.fill")
+                } else {
+                    subscriptionManager.purchaseSubscription(tier: .premium)
+                    app.showToast("Premium açıldı, iyi masallar", symbol: "crown.fill", tone: .reward)
                 }
             }
         }
     }
     #endif
-
-    @ViewBuilder
-    private func section<Content: View>(title: String,
-                                        @ViewBuilder content: @escaping () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 16) {
-            MPSectionHeader(title: title)
-            MPCard(padding: 0) {
-                VStack(spacing: 0) { content() }
-            }
-        }
-    }
 }
 
 // MARK: - Gizlilik ve veri
@@ -453,114 +391,66 @@ struct PrivacyAndDataView: View {
     @State private var confirmDelete = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            MPNavBar(title: "Gizlilik ve veri", onBack: { dismiss() })
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.section) {
+                ParentHeader(title: "Gizlilik ve veri", onBack: { dismiss() })
 
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: MP.S.sectionGap) {
-                    MPCard(padding: 20) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Çocuk fotoğrafı toplanmaz")
-                                .font(MP.F.displaySM())
-                                .foregroundStyle(MP.C.textTitle)
-                            Text("Profiller ve masallar cihazınızda ve yalnızca sizin erişebildiğiniz ebeveyn hesabınızda saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
-                                .font(MP.F.bodyMD())
-                                .lineSpacing(16 * 0.55)
-                                .foregroundStyle(MP.C.textMuted)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 16) {
-                        MPSectionHeader(title: "Yasal")
-                        MPCard(padding: 0) {
-                            VStack(spacing: 0) {
-                                MPListRow(symbol: "shield", title: "Gizlilik politikası", action: {
-                                    open("https://magicpaper.app/privacy")
-                                })
-                                MPRowDivider()
-                                MPListRow(symbol: "book", title: "Kullanım koşulları", action: {
-                                    open("https://magicpaper.app/terms")
-                                })
-                            }
-                        }
-                    }
-
-                    usageSection
-
-                    VStack(alignment: .leading, spacing: 16) {
-                        MPSectionHeader(title: "Veriler")
-                        MPCard(padding: 0) {
-                            // Signed in, a device-only erase would come back
-                            // with the next sync: the real erase is the
-                            // account's (FAZ 16).
-                            if account.account != nil {
-                                MPListRow(symbol: "trash", title: AccountCopy.deleteAccount,
-                                          description: AccountCopy.deleteAccountRow,
-                                          isDanger: true,
-                                          action: { confirmDelete = true })
-                            } else {
-                                MPListRow(symbol: "trash", title: "Tüm verileri sil",
-                                          description: "Masallar ve profiller cihazdan kaldırılır",
-                                          isDanger: true,
-                                          action: { confirmClear = true })
-                            }
-                        }
+                MPCard(area: .parent, padding: MPSpacing.lg) {
+                    VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                        Text("Çocuk fotoğrafı toplanmaz").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        Text("Profiller ve masallar cihazında ve yalnızca senin erişebildiğin ebeveyn hesabında saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
+                            .mpText(.footnote).fontWeight(.regular)
+                            .foregroundStyle(MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 8)
-                .padding(.bottom, 30)
+
+                ParentSection(title: "Yasal") {
+                    ParentRowButton(systemImage: "shield", tone: .lav, title: "Gizlilik politikası") {
+                        open("https://magicpaper.app/privacy")
+                    }
+                    MPRowDivider(area: .parent)
+                    ParentRowButton(systemImage: "book", tone: .sky, title: "Kullanım koşulları") {
+                        open("https://magicpaper.app/terms")
+                    }
+                }
+
+                // Anonim okuma bilgisi (FAZ 14). Kapatmak bekleyenleri de
+                // siler. Çocuğun kendi okuma kaydı cihazda kalır.
+                ParentSection(title: "Okuma bilgisi") {
+                    ParentToggleRow(systemImage: "eye.slash", tone: .gray, title: "Okuma bilgisini paylaş",
+                                    subtitle: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan. Kapatınca bekleyen bilgiler silinir.",
+                                    isOn: $settings.shareUsageData)
+                }
+
+                ParentSection(title: "Veriler") {
+                    // Signed in, a device-only erase would come back with the
+                    // next sync: the real erase is the account's (FAZ 16).
+                    if account.account != nil {
+                        ParentRowButton(systemImage: "trash", tone: .pink, title: AccountCopy.deleteAccount,
+                                        subtitle: AccountCopy.deleteAccountRow) { confirmDelete = true }
+                    } else {
+                        ParentRowButton(systemImage: "trash", tone: .pink, title: "Tüm verileri sil",
+                                        subtitle: "Masallar ve profiller cihazdan kaldırılır") { confirmClear = true }
+                    }
+                }
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxxl)
         }
-        .mpScreenBackground()
-        // Onay dili sistem alert'i değil, sistemin kendi alt sayfasıdır:
-        // "her ikincil aksiyon ekran push etmek yerine sheet'te açılır".
-        .overlay {
-            if confirmDelete {
-                AccountDeletionSheet(onClose: { confirmDelete = false })
-            }
+        .background(MPColor.backgroundParent.ignoresSafeArea())
+        .fullScreenCover(isPresented: $confirmDelete) {
+            AccountDeletionSheet(onClose: { confirmDelete = false })
         }
         // The account is gone: this screen and the parent area close with it.
         .onChange(of: account.account == nil) { _, signedOut in
             if signedOut && confirmDelete { confirmDelete = false; dismiss() }
         }
-        .overlay {
-            if confirmClear {
-                MPSheet(title: "Tüm verileri sil", onClose: { confirmClear = false }) {
-                    Text("Masallar, profiller ve okuma ilerlemen cihazdan kaldırılır. Bu işlem geri alınamaz.")
-                        .font(MP.F.bodyMD())
-                        .lineSpacing(16 * 0.55)
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } footer: {
-                    VStack(spacing: 8) {
-                        MPButton(title: "Sil", tone: .play, size: .lg, fullWidth: true) {
-                            confirmClear = false
-                            clearAll()
-                        }
-                        MPButton(title: "Vazgeç", variant: .ghost, size: .sm) {
-                            confirmClear = false
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /// Anonim okuma bilgisi (FAZ 14). Kapatmak bekleyenleri de siler.
-    /// Çocuğun kendi okuma kaydı — sıradaki masalın ona göre seçilmesi —
-    /// cihazda kalır ve bu anahtardan etkilenmez.
-    private var usageSection: some View {
-        VStack(alignment: .leading, spacing: MP.S.x4) {
-            MPSectionHeader(title: "Okuma bilgisi")
-            MPCard(padding: 0) {
-                MPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
-                          description: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan, hesabınıza bağlanmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
-                    MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
-                }
-            }
+        .confirmationDialog("Tüm verileri sil", isPresented: $confirmClear, titleVisibility: .visible) {
+            Button("Sil", role: .destructive, action: clearAll)
+            Button("Vazgeç", role: .cancel) {}
+        } message: {
+            Text("Masallar, profiller ve okuma ilerlemen cihazdan kaldırılır. Bu işlem geri alınamaz.")
         }
     }
 

@@ -726,7 +726,7 @@ App Store gizlilik etiketi, okuma olaylarının saklama süresi. Liste: `docs/AC
 
 ---
 
-## FAZ 17 — MVP deneyimi ⏳
+## FAZ 17 — MVP deneyimi 🔧
 
 **Amaç:** İrem'in demosundaki çekirdek deneyim.
 
@@ -744,6 +744,83 @@ App Store gizlilik etiketi, okuma olaylarının saklama süresi. Liste: `docs/AC
 en büyük Dynamic Type'ta taşma yok.
 
 **Sahip:** design-system (UI) — İrem'in oturumları. Motor tarafı (kelime/güvenlik etiketleri) content-library.
+
+### Kapanış durumu (8 Ekim 2026, dal `faz-17-pastel` @ `a35b314`)
+
+**Durum: kapsam bitti; kabulden yalnız VoiceOver ve iki küçük bölünme açık.** Planın altı maddesi uygulandı ve uçtan
+uca çalışıyor. VoiceOver turu Batuhan'ın cihazında yapılınca ✅.
+
+**İş bölümü:** iki oturum. Motor, içerik etiketleri ve ekran dışı mantık "FAZ 17 uygulaması" (`faz-17-motor` →
+`faz-17-mantik`); ekranlar ve UX "MagicPaper design system implementation" (İrem'in teslim paketi `design-handoff/`).
+Esas dal `faz-17-pastel`.
+
+**Kararlar (Batuhan, 7 Ekim):** ebeveyn Özet · Güvenlik · Ayarlar, Onaylar Özet'in içinde (paketteki ayrı sekme yok);
+Çocuklar Ayarlar'ın başında; korku iki kademe (Sakin varsayılan / Biraz heyecan); rozetler hesapla eşitlenir; kelime ve
+konu etiketleri ajan taslağı + Batuhan onayı (`MagicPaperAPP/FAZ17_KELIME_GUVENLIK_TASLAK.md`, Korkmak konusu kalır).
+
+**Kabul:**
+
+| Ölçüt | Durum |
+|---|---|
+| CLAUDE.md doğrulama komutları temiz | ✅ FAZ 17'de değişen her dosyada beş grep boş. Repo geneli: padding 81 → 44, `MPColor` dışı `Color(red:)` 0, gölge 7 (kalanların hepsi FAZ 17'nin dokunmadığı eski dosyalarda: kapak galerisi önizlemeleri, `SimpleSubscriptionView`, süsleme katmanı) |
+| VoiceOver ile ilk masal baştan sona | ⏳ Batuhan, iPhone 16'da: başlangıç → ilk masal → okuyucu → masal sonu. Simülatörde VoiceOver sürülemiyor. Kodda: sayfa eylemleri, Magic Tap, kelime için VoiceOver eylemi, Türkçe etiketler var |
+| En büyük Dynamic Type'ta taşma yok | ✅ iPhone 17 ve 17 Pro, AX5: ana sayfa, Benim köşem, Yeni kelimelerim, kitaplık, masal aksiyonları, okuyucu, kelime kartı, masal sonu, uyku modu, ebeveyn Özet/Güvenlik/Ayarlar kesilmeden ve taşmadan. Son iki bölünme `204dffa`'te düzeldi (rozet ızgarası AX'te tek sütun, segment alt alta; sayfa süsü AX'te çizilmez). Pro Max'e bakılmadı |
+
+**Doğrulama:**
+- Paket testleri 937, hata 18; hata listesi test başına taban (912/18) ile aynı. 25 yeni test (`ContentSafetyTests`, `GlossaryTests`).
+- `validate_beat_corpus.py`: 12 bulgu (taban). Yeni kapılar `check_safety_topics`, `check_glossary_words` temiz.
+- Uygulama testleri 586/0 (1 atlanan; FAZ 16 tabanı 545), `8841e44` ve `a35b314`'te.
+- Firestore kuralları 19/19 (`badges` dahil).
+- Simülatörde uçtan uca (iPhone 17): masal yazıldı ve okundu; "usulca" vurgulandı, kart açıldı; masal sonunda "İlk masal"
+  rozeti, "1 yeni kelime", "2 gün"; uyku vaktinde "İyi geceler" birincil, uyku modu açıldı ve sesli okudu; Yeni kelimelerim
+  "1 kelime topladın"; Güvenlik varsayılanı Sakin + her konu.
+
+**Ne yapıldı:**
+- *Motor:* katalogda `safetyTopics` ve `glossary`; kayıt, blueprint ve satırlarda `topics`, satırlarda `words`. `ContentSafety`
+  (nil = süzgeç yok, tohuma girmez): seçici gerekçeli eler, bağlayıcı ve composer (gevşemeyen adım 0f) kayıt ve satır düzeyinde;
+  mod ve aile listeleri ayara göre; seri planı ayarı saklar. Sakin seviye `unease`/`hesitation` sayfalı blueprint'i eler.
+  "Ölüm ve kayıp" konu değildir (bütünlük ve doğrulayıcı reddeder). `ComposedPage.words`: kelime işlenmiş cümlede ekleriyle bulunur.
+- *İçerik:* 5 konu (Karanlık, Yalnız kalmak, Korkmak, Fırtına ve sert hava, Yükseklik), 9 satır + 2 yer etiketli; 28 kelime
+  (5-6: 20, 3-4: 8), 76 satır etiketi. Varsayılan ayarda hiçbir mod gizlenmiyor.
+- *Uygulama:* bilgi mimarisi (Ana sayfa · Yarat · Kitaplık, Günlük ana sayfada, avatar → Benim köşem, kilit → kapı, hero kartının
+  dört durumu); Güvenlik (31); kelime vurgusu ve kartı (23); Yeni kelimelerim (15); okuma ayarları (24: tema kalıcı, hız, en iyi
+  Türkçe ses, sesli okumada sayfa kendiliğinden çevrilir); masal sonu (25); uyku modu (26); rozet defteri (8 rozet, yalnız
+  kazanılanlar gösterilir, birleşimle eşitlenir); boş kitaplık (42); üretim başarısız (43, güvenlik ayarının elediği masal ayrı
+  cümleyle); internet yok (44, yalnız girişte); başlangıç (02-10).
+
+**Plandan ve teslim paketinden sapmalar:**
+- Paketle çelişen yerlerde kararlar geçerli: korku iki kademe (paket üç), "Ölüm ve kayıp" yok, serbest metin yok, Onaylar sekmesi
+  yok, yıldız ve puan yok, kilitli rozet gösterilmez.
+- "Kim okusun? / Ailenin sesi" FAZ 18'e; "kelimeler okunurken parlar" ve masal sonundaki "Masalı nasıl buldun?" yapılmadı.
+- Tasarım oturumu aynı dalda FAZ 18-19 ekranlarını bayrak arkasında (ve 37/38 abonelik, 39 hesabı sil) da yaptı; bunlar FAZ 17
+  kapsamı değil.
+
+**Batuhan'ın bilmesi gerekenler:**
+- **KVKK onay metni sürümü 2026-10-07:** "18 yaşından büyüğüm" satırı ve özet satırları değişti, hukuki bölümler aynı.
+  2026-10-06'ya onay vermiş her ebeveyn bir sonraki açılışta Ebeveyn onayı ekranını bir kez daha görür; hesap iki kaydı da
+  tutar. FAZ 16'dan beri yayın yok, bugün yalnız test cihazları etkilenir. **Hukuki gözden geçirme hâlâ bekliyor.**
+- Ekran metinleri (konu adları ve açıklamaları, kelime anlamları, rozet adları) İrem'in gözden geçirmesini bekliyor.
+
+**Yolda bulunan ve düzeltilenler:**
+- `StoryWord` zorunlu bir alanı eksik olunca bütün kitaplık çözülemiyor, `StoryGenerationManager` `fatalError` ile düşüyordu;
+  artık eksik alan sözlük biçimine düşer.
+- Rozet defteri değişince hesap eşitlemesine haber verilmiyordu.
+- Sesli okumada durdurulan okumanın geç gelen haberi yeni okumayı ezebiliyordu.
+- Worktree'de iCloud'un bıraktığı " 2" adlı eski kopya dosyalar derlemeyi bozuyordu (kenara alındı).
+- Disk iki kez doldu (ENOSPC); derlemeler sırayla, tek DerivedData ile.
+
+**Açık kalanlar (✅ için):**
+- VoiceOver ile ilk masal baştan sona, gerçek cihazda (Batuhan).
+
+**Kapanış turunda düzeltilenler (`fe4a2ff`, `a35b314`):** AX5'te on yerde kesilme ve bölünme; `eyebrow` stili artık Türkçe
+büyük harf yapıyor ("YENİ KELİME", "SESLİ OKUNUYOR"); pastel bileşenlerindeki çıplak padding, ham renk, çıplak gölge ve saf
+siyah.
+
+**FAZ 17 öncesinden, ayrı iş:** en büyük yazı boyutunda okuyucunun sayfa süsleri (`StoryPageDecorationLayer`) metnin üstüne
+biniyor; süslerin güvenli alanı normal yazı boyutuna göre.
+
+**İçerik hattına devir:** Kaybolmak konusu (bugün satır yok); 3-4 için daha çok kelime; yeni blueprint'lerde konu etiketi ve
+sakin seviyenin modları boşaltmadığının kontrolü (`mode_hidden_by_default_safety` uyarısı).
 
 ---
 
@@ -787,7 +864,7 @@ her parça doğrulayıcıdan (`validate_beat_corpus.py`, `CatalogIntegrity`) ge�
 | `{{child.name}} de/da` gibi adla ünlü uyumuna uymayan eski satırlar | 11 (bulgu) |
 | İlgi alanı etiketleri: taslak onayı; Deniz içeriğini taşıyan blueprint; 9 kelime için 3-4 ve 5-6 içeriği | 12 |
 | `continuation` blueprint ailesi: pilot onaylı (bantta 2); mod başına continuation, 3-4 öğrenelim/macera, daha çok nesne | 13 |
-| Kelime + anlam etiketleri, güvenlik etiketleri | 17 |
+| Kelime + anlam etiketleri, güvenlik etiketleri: ilk set işlendi (28 kelime, 5 konu); Kaybolmak konusu ve 3-4 kelimeleri | 17 |
 | Günün masalı ve eğitici hikâyeler (akış): `Content/DailyFeed/stories/`, yayın `docs/REMOTE_CONTENT.md`; bugün 12 eski masal var | 15 |
 
 ---

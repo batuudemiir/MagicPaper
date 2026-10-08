@@ -131,12 +131,24 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// Enforced like `castRoles`, never relaxed: see `suits(family:)`.
     public let familyRelations: Set<FamilyRelationKind>
 
+    /// Safety topics (FAZ 17) this line touches, e.g. a line where the child
+    /// is alone in the dark is `darkness` and `alone`. Empty is every line
+    /// that touches none. Enforced, never relaxed: a parent who avoids the
+    /// topic never hears the line (`OfflineStoryComposer.pool`).
+    public let topics: Set<SafetyTopic>
+
+    /// Glossary entries (FAZ 17, "Yeni kelimeler") this line teaches. Ids into
+    /// `ContentCatalog.glossary`; the word itself is found in the rendered
+    /// sentence, so the text stays plain prose for every other check.
+    public let words: [ContentID]
+
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
         case capabilityRequire, capabilityForbid, castRoles, register
         case conflictKinds, afterClosing, afterState
         case familyRelations
+        case topics, words
     }
 
     /// Every key this type actually reads.
@@ -178,6 +190,8 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
             .compactMap(StoryBeat.init(rawValue:))
         afterState = try container.decodeIfPresent([NarrativeStateKey].self, forKey: .afterState) ?? []
         familyRelations = try container.decodeIfPresent(Set<FamilyRelationKind>.self, forKey: .familyRelations) ?? []
+        topics = try container.decodeIfPresent(Set<SafetyTopic>.self, forKey: .topics) ?? []
+        words = try container.decodeIfPresent([ContentID].self, forKey: .words) ?? []
     }
 
     /// Whether this line is the right shape for how the story's conflict works.
