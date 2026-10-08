@@ -59,6 +59,7 @@ struct SleepModeView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @StateObject private var speech = MPSpeech.shared
 
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var timer = MPSleepTimer()
     @State private var page = 0
     @State private var elapsed: TimeInterval = 0
@@ -70,6 +71,9 @@ struct SleepModeView: View {
     var body: some View {
         ZStack {
             night
+            // En büyük yazı boyutlarında içerik kaydırılır, sıkışıp kesilmez.
+            GeometryReader { geo in
+            ScrollView(showsIndicators: false) {
             VStack(spacing: MPSpacing.lg) {
                 ZStack {
                     HStack {
@@ -90,7 +94,7 @@ struct SleepModeView: View {
                     Circle().fill(MPColor.brandStar.opacity(0.9))
                         .frame(width: 150, height: 150)
                         .offset(y: -50)
-                    MascotImage(mascot: .sleeping, width: 200)
+                    MascotImage(mascot: .sleeping, width: typeSize.isAccessibilitySize ? 140 : 200)
                 }
                 .accessibilityHidden(true)
 
@@ -99,9 +103,11 @@ struct SleepModeView: View {
                         .mpText(.eyebrow).foregroundStyle(MPColor.readerNightSecondary)
                     Text(session.title).mpText(.title2).foregroundStyle(MPColor.readerNightText)
                         .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("Ekran yavaşça kararır, masal bitince kapanır.")
                         .mpText(.body).foregroundStyle(MPColor.readerNightSecondary)
                         .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 Spacer(minLength: MPSpacing.lg)
@@ -122,12 +128,16 @@ struct SleepModeView: View {
                                 selectedFill: MPColor.readerNightSecondary.opacity(0.35),
                                 selectedText: MPColor.readerNightText,
                                 text: MPColor.readerNightSecondary)
-                        .frame(maxWidth: 260)
+                        .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : 260)
                         .accessibilityLabel("Kapanma süresi")
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.lg)
+            .frame(minHeight: geo.size.height)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            }
 
             // Kararma: ekranın üstünde, dokunuşları engellemez.
             MPColor.backgroundNight

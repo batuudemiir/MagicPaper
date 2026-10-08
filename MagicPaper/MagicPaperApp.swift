@@ -125,6 +125,8 @@ struct MagicPaperApp: App {
             .environmentObject(profileManager)
         }
       }
+      // Uygulama Türkçe: büyük harf (İ), tarih ve saat seçicileri tr_TR.
+      .environment(\.locale, Locale(identifier: "tr_TR"))
       // Google ile giriş tarayıcıdan bu adrese döner (FAZ 16).
       .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
     }

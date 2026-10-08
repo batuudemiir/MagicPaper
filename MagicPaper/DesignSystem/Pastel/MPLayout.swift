@@ -52,7 +52,7 @@ enum MPShadow {
     case card, raised, control, primaryGlow, sheet
 
     fileprivate var spec: (color: Color, radius: CGFloat, y: CGFloat) {
-        let ink = Color(red: 45 / 255, green: 42 / 255, blue: 50 / 255)
+        let ink = MPColor.shadowInk
         switch self {
         case .card: return (ink.opacity(0.06), 9, 6)
         case .raised: return (ink.opacity(0.10), 14, 12)

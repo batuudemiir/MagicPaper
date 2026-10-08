@@ -116,11 +116,7 @@ struct FamilyCharactersView: View {
     /// oluşturucuya gider (görselli kitap açıkken).
     private var heroCard: some View {
         HStack(spacing: MPSpacing.lg) {
-            Text(profile.name.first.map { String($0).uppercased(with: Locale(identifier: "tr_TR")) } ?? "?")
-                .mpText(.title1)
-                .foregroundStyle(MPColor.textOnAction)
-                .frame(width: 64, height: 64)
-                .background(profile.mpColor, in: Circle())
+            MPInitialAvatar(name: profile.name, color: profile.mpColor, size: 64)
                 .padding(MPSpacing.xxs)
                 .background(MPColor.backgroundSurface, in: Circle())
                 .accessibilityHidden(true)

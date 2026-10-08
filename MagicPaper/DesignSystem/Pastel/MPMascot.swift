@@ -72,7 +72,7 @@ struct SpeechBubble: View {
         Text(text)
             .mpText(style)
             .foregroundStyle(MPColor.textPrimary)
-            .padding(.horizontal, 16).padding(.vertical, 12)
+            .padding(.horizontal, MPSpacing.lg).padding(.vertical, MPSpacing.md)
             .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: 20))
             .overlay(alignment: .bottomLeading) {
                 RoundedRectangle(cornerRadius: 3).fill(MPColor.backgroundSurface)
@@ -90,7 +90,7 @@ struct MascotSays: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 12) {
             MascotImage(mascot: mascot, width: mascotWidth)
-            SpeechBubble(text: text).padding(.bottom, 8)
+            SpeechBubble(text: text).padding(.bottom, MPSpacing.sm)
             Spacer(minLength: 0)
         }
         .accessibilityElement(children: .ignore)
@@ -112,15 +112,15 @@ struct MPStateView<Actions: View, Extra: View>: View {
         VStack(spacing: 16) {
             ZStack(alignment: .bottom) {
                 Ellipse().fill(tone.soft).frame(width: 200, height: 150)
-                MascotImage(mascot: mascot, width: 190).padding(.bottom, 10)
+                MascotImage(mascot: mascot, width: 190).padding(.bottom, MPSpacing.md)
             }
             .frame(height: 200)
             Text(title).mpText(.title2).multilineTextAlignment(.center).foregroundStyle(MPColor.textPrimary)
             Text(message).mpText(.body).multilineTextAlignment(.center).foregroundStyle(MPColor.textSecondary).frame(maxWidth: 300)
             extra
-            VStack(spacing: 6) { actions }.padding(.top, 6)
+            VStack(spacing: 6) { actions }.padding(.top, MPSpacing.xs)
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, MPSpacing.md)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

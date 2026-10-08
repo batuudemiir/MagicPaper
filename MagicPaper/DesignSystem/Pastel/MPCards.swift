@@ -52,22 +52,27 @@ struct MPListRow<Trailing: View>: View {
     var subtitle: String? = nil
     var isDestructive: Bool = false
     @ViewBuilder var trailing: Trailing
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        HStack(spacing: 14) {
-            MPIcon(systemImage, size: 18, weight: .semibold)
-                .foregroundStyle(isDestructive ? MPColor.statusDanger : tone.deep)
-                .frame(width: 40, height: 40)
-                .background(isDestructive ? MPColor.statusDangerSoft : tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md))
+        HStack(spacing: MPSpacing.md) {
+            // Süs: en büyük yazı boyutlarında metne yer açmak için gizlenir.
+            if !typeSize.isAccessibilitySize {
+                MPIcon(systemImage, size: 18, weight: .semibold)
+                    .foregroundStyle(isDestructive ? MPColor.statusDanger : tone.deep)
+                    .frame(width: 40, height: 40)
+                    .background(isDestructive ? MPColor.statusDangerSoft : tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md))
+                    .accessibilityHidden(true)
+            }
             VStack(alignment: .leading, spacing: 1) {
                 Text(title).mpText(.bodyStrong).foregroundStyle(isDestructive ? MPColor.statusDanger : MPColor.textPrimary)
                 if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
             }
-            Spacer(minLength: 8)
+            Spacer(minLength: MPSpacing.sm)
             trailing
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 12)
+        .padding(.horizontal, MPSpacing.md)
+        .padding(.vertical, MPSpacing.md)
         .contentShape(Rectangle())
     }
 }
@@ -95,7 +100,7 @@ struct MPGroupedList<Content: View>: View {
 struct MPRowDivider: View {
     var area: MPArea = .kid
     var body: some View {
-        Rectangle().fill(area == .kid ? MPColor.borderKidDivider : MPColor.borderParentDivider).frame(height: 1).padding(.horizontal, 14)
+        Rectangle().fill(area == .kid ? MPColor.borderKidDivider : MPColor.borderParentDivider).frame(height: 1).padding(.horizontal, MPSpacing.md)
     }
 }
 
@@ -121,8 +126,8 @@ struct MPPill: View {
     var tone: MPWorldTone = .gray
     var body: some View {
         Text(text).mpText(.caption)
-            .foregroundStyle(tone == .yellow ? Color(red: 0x8A / 255, green: 0x64 / 255, blue: 0) : tone.deep)
-            .padding(.horizontal, 10).padding(.vertical, 4)
+            .foregroundStyle(tone == .yellow ? MPColor.yellowText : tone.deep)
+            .padding(.horizontal, MPSpacing.md).padding(.vertical, MPSpacing.xxs)
             .background(tone.soft, in: Capsule())
     }
 }
@@ -158,17 +163,17 @@ struct MPBadgeCard: View {
     var body: some View {
         VStack(spacing: 8) {
             MPIcon(systemImage, size: 22, weight: .semibold)
-                .foregroundStyle(isUnlocked ? tone.deep : Color(red: 0xA3 / 255, green: 0x9D / 255, blue: 0x94 / 255))
+                .foregroundStyle(isUnlocked ? tone.deep : MPColor.lockedIcon)
                 .frame(width: 50, height: 50)
-                .background(isUnlocked ? MPColor.backgroundSurface : Color(red: 0xE4 / 255, green: 0xDE / 255, blue: 0xD4 / 255), in: Circle())
+                .background(isUnlocked ? MPColor.backgroundSurface : MPColor.lockedCircle, in: Circle())
             Text(title).mpText(.caption).multilineTextAlignment(.center)
                 .foregroundStyle(isUnlocked ? MPColor.textPrimary : MPColor.textSecondary)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 14)
-        .background(isUnlocked ? tone.soft : Color(red: 0xF1 / 255, green: 0xEC / 255, blue: 0xE4 / 255), in: RoundedRectangle(cornerRadius: MPRadius.tile))
+        .padding(.vertical, MPSpacing.md)
+        .background(isUnlocked ? tone.soft : MPColor.lockedFill, in: RoundedRectangle(cornerRadius: MPRadius.tile))
         .overlay(alignment: .topTrailing) {
-            if !isUnlocked { MPIcon("lock.fill", size: 12).foregroundStyle(MPColor.textSecondary).padding(8) }
+            if !isUnlocked { MPIcon("lock.fill", size: 12).foregroundStyle(MPColor.textSecondary).padding(MPSpacing.sm) }
         }
         .accessibilityElement(children: .combine)
         .accessibilityValue(isUnlocked ? "Kazanıldı" : "Kilitli")
@@ -187,10 +192,36 @@ struct MPNotice: View {
             Text(text).mpText(.footnote)
         }
         .foregroundStyle(fg)
-        .padding(.horizontal, 12).padding(.vertical, 10)
+        .padding(.horizontal, MPSpacing.md).padding(.vertical, MPSpacing.md)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(bg, in: RoundedRectangle(cornerRadius: MPRadius.md))
     }
     private var fg: Color { switch kind { case .info: MPColor.textPrimary; case .success: MPColor.statusSuccess; case .warning: MPColor.textPrimary; case .danger: MPColor.statusDanger } }
     private var bg: Color { switch kind { case .info: MPColor.actionSoft; case .success: MPColor.statusSuccessSoft; case .warning: MPColor.statusWarningSoft; case .danger: MPColor.statusDangerSoft } }
+}
+
+/// Çocuğun harf madalyonu: adın ilk harfi (Türkçe büyük harf), profil
+/// renginde daire. Harf daireye göre ölçeklenir; en büyük yazı boyutunda da
+/// taşmaz (madalyon bir görsel, metin değil; ad yanında yazılı).
+struct MPInitialAvatar: View {
+    let name: String
+    let color: Color
+    var size: CGFloat = 52
+
+    private var letter: String {
+        name.trimmingCharacters(in: .whitespaces).first
+            .map { String($0).uppercased(with: Locale(identifier: "tr_TR")) } ?? "?"
+    }
+
+    var body: some View {
+        Text(letter)
+            .font(.mpInitial(size: size * 0.45))
+            .dynamicTypeSize(...DynamicTypeSize.large)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .foregroundStyle(MPColor.textOnAction)
+            .frame(width: size, height: size)
+            .background(color, in: Circle())
+            .accessibilityHidden(true)
+    }
 }

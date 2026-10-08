@@ -28,16 +28,21 @@ struct KidTabBar: View {
                         .offset(y: -26)
                         .padding(.bottom, -26)
                     Text("Yarat").mpText(.caption).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
+                        .lineLimit(1)
                 }
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityLabel("Masal yarat")
+            .accessibilityShowsLargeContentViewer { MPIcon("plus", size: 22, weight: .bold); Text("Yarat") }
             tab(.library, "Kitaplık", "books.vertical")
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 10)
+        .padding(.horizontal, MPSpacing.xl)
+        .padding(.top, MPSpacing.md)
         .frame(height: MPSize.kidTabBarHeight - 20, alignment: .top)
+        // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
+        // boyutta basılı tutunca büyük içerik görüntüleyici gösterir.
+        .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .background(alignment: .top) {
             Color.white.opacity(0.97).ignoresSafeArea(edges: .bottom)
                 .overlay(alignment: .top) { Rectangle().fill(MPColor.borderKidDivider).frame(height: 1) }
@@ -49,13 +54,18 @@ struct KidTabBar: View {
         return Button { selection = t } label: {
             VStack(spacing: 3) {
                 MPIcon(icon, size: 22, weight: on ? .bold : .regular).frame(height: 26)
-                Text(label).font(.custom("Nunito", size: 12, relativeTo: .caption).weight(on ? .black : .bold))
+                Text(label).mpText(.tabLabel).fontWeight(on ? .black : .bold)
+                    .lineLimit(1)
             }
             .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textTertiary)
             .frame(maxWidth: .infinity, minHeight: MPSize.minTouchParent)
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(on ? .isSelected : [])
+        .accessibilityShowsLargeContentViewer {
+            MPIcon(icon, size: 22, weight: .bold)
+            Text(label)
+        }
     }
 }
 
@@ -96,13 +106,14 @@ struct KidHeader<Avatar: View>: View {
             Button(action: onAvatar) {
                 HStack(spacing: 12) {
                     avatar
+                        .dynamicTypeSize(...DynamicTypeSize.large)
                         .frame(width: MPSize.headerAvatar, height: MPSize.headerAvatar)
                         .clipShape(Circle())
                         .overlay(Circle().strokeBorder(.white, lineWidth: 3))
                         .mpShadow(.control)
                     VStack(alignment: .leading, spacing: 0) {
                         Text(greeting).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                        Text(childName).font(.custom("Nunito", size: 20, relativeTo: .title3).weight(.black)).foregroundStyle(MPColor.textPrimary)
+                        Text(childName).mpText(.navTitle).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
                             .lineLimit(1).minimumScaleFactor(0.8)
                     }
                 }
@@ -118,8 +129,8 @@ struct KidHeader<Avatar: View>: View {
 /// Rainbow band behind the kid header (Ana sayfa, Benim köşem, Paywall): 150–300 pt tall, bottom corners curved.
 struct HeaderWash: View {
     var height: CGFloat = 170
-    var colors: [Color] = [Color(red: 0xFB / 255, green: 0xD3 / 255, blue: 0xE0 / 255), Color(red: 0xFC / 255, green: 0xE8 / 255, blue: 0xB6 / 255),
-                           Color(red: 0xD7 / 255, green: 0xEF / 255, blue: 0xD0 / 255), Color(red: 0xCF / 255, green: 0xE5 / 255, blue: 0xFA / 255)]
+    var colors: [Color] = [MPColor.washPink, MPColor.washYellow,
+                           MPColor.washGreen, MPColor.washSky]
     var body: some View {
         LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
             .frame(height: height)
@@ -173,7 +184,7 @@ struct ParentHeader: View {
                     Label("Çocuk modu", systemImage: "rectangle.portrait.and.arrow.right")
                         .mpText(.footnote).fontWeight(.heavy)
                         .foregroundStyle(MPColor.textPrimary)
-                        .padding(.horizontal, 12).frame(height: 36)
+                        .padding(.horizontal, MPSpacing.md).frame(height: 36)
                         .background(MPColor.backgroundSurface, in: Capsule())
                         .overlay(Capsule().strokeBorder(MPColor.borderParentControl, lineWidth: 1.5))
                 }

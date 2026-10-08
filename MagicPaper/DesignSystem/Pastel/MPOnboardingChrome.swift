@@ -11,26 +11,26 @@ struct MPGlowBackground: View {
 
     private var base: Color {
         switch style {
-        case .dawn:  Color(red: 0xFD / 255, green: 0xF5 / 255, blue: 0xEE / 255)
-        case .night: Color(red: 0x3A / 255, green: 0x24 / 255, blue: 0x58 / 255)
-        case .lilac: Color(red: 0xF3 / 255, green: 0xE6 / 255, blue: 0xF8 / 255)
+        case .dawn:  MPColor.glowDawnBase
+        case .night: MPColor.glowNightBase
+        case .lilac: MPColor.glowLilacBase
         }
     }
 
     private var glows: [Glow] {
         switch style {
         case .dawn:
-            [Glow(color: Color(red: 230 / 255, green: 199 / 255, blue: 242 / 255).opacity(0.75), x: 0.5, y: 0.34, radius: 0.46),
-             Glow(color: Color(red: 242 / 255, green: 163 / 255, blue: 195 / 255).opacity(0.35), x: 0.12, y: 0.7, radius: 0.38),
-             Glow(color: Color(red: 244 / 255, green: 183 / 255, blue: 53 / 255).opacity(0.25), x: 0.9, y: 0.18, radius: 0.34)]
+            [Glow(color: MPColor.glowLilac.opacity(0.75), x: 0.5, y: 0.34, radius: 0.46),
+             Glow(color: MPColor.glowPink.opacity(0.35), x: 0.12, y: 0.7, radius: 0.38),
+             Glow(color: MPColor.glowGold.opacity(0.25), x: 0.9, y: 0.18, radius: 0.34)]
         case .night:
-            [Glow(color: Color(red: 143 / 255, green: 107 / 255, blue: 214 / 255).opacity(0.55), x: 0.5, y: 0.34, radius: 0.46),
-             Glow(color: Color(red: 92 / 255, green: 58 / 255, blue: 143 / 255).opacity(0.6), x: 0.12, y: 0.7, radius: 0.38),
-             Glow(color: Color(red: 244 / 255, green: 183 / 255, blue: 53 / 255).opacity(0.18), x: 0.9, y: 0.18, radius: 0.34)]
+            [Glow(color: MPColor.glowViolet.opacity(0.55), x: 0.5, y: 0.34, radius: 0.46),
+             Glow(color: MPColor.glowPlum.opacity(0.6), x: 0.12, y: 0.7, radius: 0.38),
+             Glow(color: MPColor.glowGold.opacity(0.18), x: 0.9, y: 0.18, radius: 0.34)]
         case .lilac:
             [Glow(color: Color.white.opacity(0.85), x: 0.5, y: 0.34, radius: 0.46),
-             Glow(color: Color(red: 242 / 255, green: 163 / 255, blue: 195 / 255).opacity(0.35), x: 0.12, y: 0.7, radius: 0.38),
-             Glow(color: Color(red: 143 / 255, green: 107 / 255, blue: 214 / 255).opacity(0.25), x: 0.9, y: 0.18, radius: 0.34)]
+             Glow(color: MPColor.glowPink.opacity(0.35), x: 0.12, y: 0.7, radius: 0.38),
+             Glow(color: MPColor.glowViolet.opacity(0.25), x: 0.9, y: 0.18, radius: 0.34)]
         }
     }
 

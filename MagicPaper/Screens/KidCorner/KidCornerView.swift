@@ -44,14 +44,15 @@ struct KidCornerView: View {
 
     private var header: some View {
         VStack(spacing: MPSpacing.lg) {
-            ZStack {
+            // Başlık kapat düğmesinin altına girmesin: iki yanda düğme genişliği.
+            HStack(spacing: MPSpacing.sm) {
+                Color.clear.frame(width: MPSize.circleButton, height: 1)
                 Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
                     .accessibilityAddTraits(.isHeader)
-                HStack {
-                    Spacer()
-                    MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat") {
-                        withAnimation(MP.M.gated(MP.M.base)) { app.showKidCorner = false }
-                    }
+                MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat") {
+                    withAnimation(MP.M.gated(MP.M.base)) { app.showKidCorner = false }
                 }
             }
             .padding(.top, MPSpacing.lg)

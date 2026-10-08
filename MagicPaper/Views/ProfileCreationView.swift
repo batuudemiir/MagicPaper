@@ -103,11 +103,7 @@ struct ProfileCreationView: View {
                 .fill(color.opacity(0.18))
                 .frame(width: 150, height: 134)
                 .rotationEffect(.degrees(-18))
-            Text(trimmedName.first.map { String($0).uppercased(with: Locale(identifier: "tr_TR")) } ?? "?")
-                .mpText(.display)
-                .foregroundStyle(MPColor.textOnAction)
-                .frame(width: 76, height: 76)
-                .background(color, in: Circle())
+            MPInitialAvatar(name: trimmedName, color: color, size: 76)
                 .mpShadow(.card)
         }
         .accessibilityHidden(true)

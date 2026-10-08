@@ -28,7 +28,7 @@ struct WorldTile: View {
                     Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, MPSpacing.md)
-                        .padding(.top, 24)
+                        .padding(.top, MPSpacing.xxl)
                         .frame(maxWidth: .infinity, minHeight: 108)
                         .overlay(alignment: .topLeading) {
                             MPIconTile(systemImage: systemImage, tone: tone, size: 46, filled: false)
@@ -38,7 +38,7 @@ struct WorldTile: View {
                             if isLocked {
                                 MPIcon("lock.fill", size: 12, weight: .bold)
                                     .foregroundStyle(MPColor.statusWarning)
-                                    .frame(width: 28, height: 28).background(.white, in: Circle()).padding(10)
+                                    .frame(width: 28, height: 28).background(.white, in: Circle()).padding(MPSpacing.md)
                             }
                         }
                 }
@@ -67,20 +67,35 @@ struct MPStoryCover: View {
         ZStack(alignment: .bottom) {
             LinearGradient(colors: [tone.soft, tone.deep], startPoint: .topLeading, endPoint: .bottomTrailing)
             if let illustration { illustration.resizable().scaledToFill() }
-            else { MPIcon(systemImage, size: 64, weight: .light).foregroundStyle(.white.opacity(0.95)).frame(maxHeight: .infinity, alignment: .top).padding(.top, 26) }
-            VStack(spacing: 8) {
-                Text(actionTitle).font(.custom("Nunito", size: 12, relativeTo: .caption).weight(.black)).foregroundStyle(.white)
-                    .padding(.horizontal, 16).frame(height: 28).background(LinearGradient.mpPrimary, in: Capsule())
-                Text(title).font(.custom("Nunito", size: 13, relativeTo: .footnote).weight(.heavy)).foregroundStyle(.white).multilineTextAlignment(.center).lineLimit(2)
+            else {
+                MPIcon(systemImage, size: 64, weight: .light).foregroundStyle(.white.opacity(0.95))
+                    .frame(maxHeight: .infinity, alignment: .top).padding(.top, MPSpacing.xxl)
+                    .accessibilityHidden(true)
             }
-            .padding(.horizontal, 12).padding(.bottom, 12).padding(.top, 40)
+            VStack(spacing: MPSpacing.sm) {
+                Text(actionTitle).mpText(.caption).fontWeight(.black).foregroundStyle(.white)
+                    .lineLimit(1)
+                    .padding(.horizontal, MPSpacing.lg).frame(minHeight: 28).background(LinearGradient.mpPrimary, in: Capsule())
+                Text(title).mpText(.footnote).fontWeight(.heavy).foregroundStyle(.white)
+                    .multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.75)
+            }
+            .padding(.horizontal, MPSpacing.md).padding(.bottom, MPSpacing.md).padding(.top, MPSpacing.xxxl)
             .frame(maxWidth: .infinity)
-            .background(LinearGradient(colors: [Color(red: 20 / 255, green: 18 / 255, blue: 26 / 255).opacity(0), Color(red: 20 / 255, green: 18 / 255, blue: 26 / 255).opacity(0.62)], startPoint: .top, endPoint: .bottom))
+            .background(LinearGradient(colors: [MPColor.coverScrim.opacity(0), MPColor.coverScrim.opacity(0.62)], startPoint: .top, endPoint: .bottom))
         }
         .aspectRatio(167.0 / 206.0, contentMode: .fit)
+        // Kapak bir görsel karo: oranı sabit. Yazı en fazla xxLarge'a büyür;
+        // başlığın tamamı erişilebilirlik etiketinde.
+        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         .clipShape(RoundedRectangle(cornerRadius: MPRadius.tile))
         .overlay(alignment: .topLeading) {
-            if let badge { Text(badge).mpText(.caption).fontWeight(.black).foregroundStyle(MPColor.textPrimary).padding(.horizontal, 10).padding(.vertical, 3).background(.white.opacity(0.92), in: Capsule()).padding(10) }
+            if let badge {
+                Text(badge).mpText(.caption).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(1)
+                    .padding(.horizontal, MPSpacing.sm).padding(.vertical, MPSpacing.xxs)
+                    .background(.white.opacity(0.92), in: Capsule()).padding(MPSpacing.sm)
+                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+            }
         }
         .mpShadow(.card)
         .accessibilityElement(children: .combine)
@@ -107,11 +122,11 @@ struct TonightHeroCard: View {
             }
             .frame(maxWidth: 200, minHeight: 120, alignment: .topLeading)
             if case let .resume(progress, _, _) = state {
-                ProgressView(value: progress).tint(MPWorldTone.pink.deep).padding(.top, 14)
+                ProgressView(value: progress).tint(MPWorldTone.pink.deep).padding(.top, MPSpacing.md)
             }
-            MPButton(title: buttonTitle, systemImage: buttonIcon, action: onPrimary).padding(.top, 16)
+            MPButton(title: buttonTitle, systemImage: buttonIcon, action: onPrimary).padding(.top, MPSpacing.lg)
         }
-        .padding(20)
+        .padding(MPSpacing.xl)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(alignment: .topTrailing) { art.offset(x: 14, y: -6) }
         .background(background, in: RoundedRectangle(cornerRadius: MPRadius.hero))
@@ -129,8 +144,8 @@ struct TonightHeroCard: View {
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
     @ViewBuilder private var art: some View {
         switch state {
-        case .readToday: MascotImage(mascot: .waving, width: 140).padding(.top, 20)
-        case .bedtime: MascotImage(mascot: .sleeping, width: 160).padding(.top, 46)
+        case .readToday: MascotImage(mascot: .waving, width: 140).padding(.top, MPSpacing.xl)
+        case .bedtime: MascotImage(mascot: .sleeping, width: 160).padding(.top, (MPSpacing.xxxl + MPSpacing.md))
         default:
             if let coverIcon {
                 MPIcon(coverIcon, size: 64, weight: .semibold)
@@ -140,7 +155,7 @@ struct TonightHeroCard: View {
                                 in: RoundedRectangle(cornerRadius: MPRadius.tile))
                     .rotationEffect(.degrees(6))
                     .mpShadow(.raised)
-                    .padding(.top, 10)
+                    .padding(.top, MPSpacing.md)
                     .accessibilityHidden(true)
             }
         }
@@ -150,7 +165,7 @@ struct TonightHeroCard: View {
         case .resume: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.pink.soft, MPWorldTone.yellow.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
         case .unread: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.sky.soft, MPWorldTone.lav.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
         case .readToday: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.green.soft, MPWorldTone.mint.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
-        case .bedtime: AnyShapeStyle(LinearGradient(colors: [Color(red: 0x2B / 255, green: 0x31 / 255, blue: 0x60 / 255), Color(red: 0x1E / 255, green: 0x22 / 255, blue: 0x38 / 255)], startPoint: .top, endPoint: .bottom))
+        case .bedtime: AnyShapeStyle(LinearGradient(colors: [MPColor.bedtimeSkyTop, MPColor.bedtimeSkyBottom], startPoint: .top, endPoint: .bottom))
         }
     }
 }
@@ -182,7 +197,7 @@ struct StreakStrip: View {
                 HStack(spacing: 5) {
                     ForEach(Self.dayLetters.indices, id: \.self) { i in
                         let read = i < done.count && done[i]
-                        Text(Self.dayLetters[i]).font(.custom("Nunito", size: 11, relativeTo: .caption2).weight(.black))
+                        Text(Self.dayLetters[i]).mpText(.caption).fontWeight(.black)
                             .foregroundStyle(read ? .white : MPColor.textSecondary)
                             .frame(width: 26, height: 26)
                             .background(read ? MPColor.statusStreak : (i == todayIndex ? .white : .white.opacity(0.6)), in: Circle())
@@ -191,7 +206,7 @@ struct StreakStrip: View {
                 }
             }
         }
-        .padding(.horizontal, 16).padding(.vertical, 14)
+        .padding(.horizontal, MPSpacing.lg).padding(.vertical, MPSpacing.md)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
         .accessibilityElement(children: .ignore)
@@ -207,9 +222,9 @@ struct StoryProgressRing: View {
     let progress: Double   // 0...1
     var body: some View {
         ZStack {
-            Circle().stroke(Color(red: 0xEF / 255, green: 0xE6 / 255, blue: 0xF7 / 255), lineWidth: 14)
+            Circle().stroke(MPColor.ringTrack, lineWidth: 14)
             Circle().trim(from: 0, to: progress).stroke(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 14, lineCap: .round)).rotationEffect(.degrees(-90))
-            Text("%\(Int(progress * 100))").font(.custom("Nunito", size: 30, relativeTo: .largeTitle).weight(.black)).monospacedDigit().foregroundStyle(MPColor.textPrimary)
+            Text("%\(Int(progress * 100))").mpText(.display).monospacedDigit().foregroundStyle(MPColor.textPrimary)
         }
         .frame(width: 150, height: 150)
         .animation(.easeInOut(duration: MPMotion.transition), value: progress)
@@ -225,13 +240,13 @@ struct StageRow: View {
     var body: some View {
         HStack(spacing: 12) {
             MPIcon(state == .done ? "checkmark" : systemImage, size: 14, weight: .bold)
-                .foregroundStyle(state == .done ? MPWorldTone.green.deep : state == .active ? MPColor.actionPrimary : Color(red: 0x8C / 255, green: 0x87 / 255, blue: 0x92 / 255))
+                .foregroundStyle(state == .done ? MPWorldTone.green.deep : state == .active ? MPColor.actionPrimary : MPColor.stageTodo)
                 .frame(width: 32, height: 32)
                 .background(state == .done ? MPWorldTone.green.soft : state == .active ? MPColor.actionSoft : MPWorldTone.gray.soft, in: Circle())
             Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
             Spacer()
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, MPSpacing.lg).padding(.vertical, MPSpacing.md)
         .background(state == .active ? MPColor.backgroundSurface : .clear, in: RoundedRectangle(cornerRadius: 18))
         .modifier(StageShadow(on: state == .active))
         .opacity(state == .todo ? 0.45 : 1)
@@ -258,7 +273,7 @@ struct NewWordCard: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
                 if onClose != nil { Text("Yeni kelime").mpText(.eyebrow).foregroundStyle(MPColor.actionPrimary) }
-                Text(word).font(.custom("Nunito", size: 19, relativeTo: .headline).weight(.black)).foregroundStyle(MPColor.textPrimary)
+                Text(word).mpText(.headline).foregroundStyle(MPColor.textPrimary)
                 Text(meaning).mpText(.body).foregroundStyle(onClose != nil ? MPColor.textSecondary : MPColor.textPrimary)
                 if let source { Text(source).mpText(.caption).foregroundStyle(MPColor.textSecondary) }
             }
@@ -275,7 +290,7 @@ struct NewWordCard: View {
             }
             if let onClose { MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat", size: 34, bordered: false, action: onClose) }
         }
-        .padding(14)
+        .padding(MPSpacing.md)
         .background(onClose != nil ? MPColor.backgroundSurface : tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.tile))
         .modifier(StageShadow(on: onClose != nil))
     }
@@ -304,7 +319,7 @@ enum ReaderTheme: String, CaseIterable, Codable {
             HStack { WorldTile(title: "Uzay Macerası", systemImage: "airplane", tone: .sky, isSelected: true) {}; WorldTile(title: "Korsanlar", systemImage: "sailboat", tone: .sky, isLocked: true) {} }
             StoryProgressRing(progress: 0.36)
         }
-        .padding(20)
+        .padding(MPSpacing.xl)
     }
     .background(MPColor.backgroundKid)
 }

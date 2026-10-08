@@ -65,7 +65,9 @@ struct StoryPageView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.horizontal, StoryPageView.gutter + ornament.contentInset)
-                .padding(.top, MP.S.x5 + ornament.contentInset)
+                // Üst denetimlerin (kapat, kalp, Aa) altından başlar; en büyük
+                // yazı boyutunda metin kapat düğmesinin altına akmaz.
+                .padding(.top, MP.S.navBarHeight + ornament.contentInset)
                 .padding(.bottom, MP.S.x7 + ornament.contentInset)
             }
 

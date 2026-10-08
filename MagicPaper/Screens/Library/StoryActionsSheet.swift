@@ -7,6 +7,7 @@ import SwiftUI
 /// kapı bu sayfanın içinde açılır ve yalnızca o işlemi yapar, ebeveyn
 /// alanına geçmez. Birincil eylem: Okumaya başla.
 struct StoryActionsSheet: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     let storyID: UUID
     let snapshot: Story
     /// Okuyucu sayfa kapandıktan sonra açılır (`baştan` ise ilk sayfadan).
@@ -113,8 +114,13 @@ struct StoryActionsSheet: View {
 
     // MARK: - Başlık
 
+    /// En büyük yazı boyutlarında kapak başlığın üstüne iner; başlık
+    /// kelime ortasından bölünmez.
     private var header: some View {
-        HStack(spacing: MPSpacing.lg) {
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.lg))
+            : AnyLayout(HStackLayout(spacing: MPSpacing.lg))
+        return layout {
             MPIcon(story.mpWorld.icon, size: 44, weight: .semibold)
                 .foregroundStyle(.white)
                 .frame(width: 100, height: 124)

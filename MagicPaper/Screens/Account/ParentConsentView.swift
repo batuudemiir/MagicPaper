@@ -68,7 +68,7 @@ struct ParentConsentView: View {
                             .mpText(.callout)
                             .foregroundStyle(MPColor.actionPrimary)
                             .underline()
-                            .padding(.leading, 38)
+                            .padding(.leading, (MPSpacing.xxxl + MPSpacing.xs))
                             .frame(minHeight: MPSize.minTouchParent)
                     }
 

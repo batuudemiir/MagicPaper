@@ -74,6 +74,10 @@ enum MPTextStyle: CaseIterable {
 
 extension Font {
     static func mp(_ style: MPTextStyle) -> Font { style.font }
+    /// Ebeveyn kapısının çarpma sorusu (40 pt, ölçekli).
+    static let mpNumeral = Font.custom("Nunito", size: 40, relativeTo: .largeTitle).weight(.black)
+    /// Harf madalyonu: daireye göre ölçeklenir.
+    static func mpInitial(size: CGFloat) -> Font { .custom("Nunito", size: size, relativeTo: .body).weight(.black) }
 }
 
 private struct MPTextModifier: ViewModifier {
@@ -84,6 +88,8 @@ private struct MPTextModifier: ViewModifier {
             .tracking(style.tracking)
             .lineSpacing(max(0, style.size * (style.lineHeight - 1.2)))
             .textCase(style.isUppercase ? .uppercase : nil)
+            // Türkçe büyük harf: "yeni" → "YENİ", "sesli" → "SESLİ".
+            .environment(\.locale, Locale(identifier: "tr_TR"))
     }
 }
 

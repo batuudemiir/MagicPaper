@@ -48,7 +48,7 @@ struct ParentalGateView: View {
                 }
 
                 Text(quiz.question)
-                    .font(.custom("Nunito", size: 40, relativeTo: .largeTitle).weight(.black))
+                    .font(.mpNumeral)
                     .foregroundStyle(MPColor.textPrimary)
                     .accessibilityLabel("\(quiz.a) çarpı \(quiz.b) kaç eder?")
 
@@ -57,7 +57,7 @@ struct ParentalGateView: View {
                         .keyboardType(.numberPad)
                         .focused($focused)
                         .multilineTextAlignment(.center)
-                        .font(.custom("Nunito", size: 24, relativeTo: .title2).weight(.black))
+                        .mpText(.title2)
                         .foregroundStyle(MPColor.textPrimary)
                         .frame(width: 160, height: 54)
                         .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))

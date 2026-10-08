@@ -21,17 +21,21 @@ struct MPButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 8) {
+            HStack(spacing: MPSpacing.sm) {
                 if isLoading {
                     ProgressView().tint(foreground)
                 } else {
-                    if let systemImage { MPIcon(systemImage, size: 16, weight: .bold) }
+                    if let systemImage { MPIcon(systemImage, size: 16, weight: .bold).accessibilityHidden(true) }
                     Text(title).mpText(kind == .primary || kind == .danger ? .button : .callout)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .foregroundStyle(foreground)
-            .padding(.horizontal, size == .small ? 16 : 28)
-            .frame(height: height)
+            .padding(.horizontal, size == .small ? MPSpacing.lg : 28)
+            .padding(.vertical, MPSpacing.xs)
+            // En büyük yazı boyutunda düğme uzar, etiket kesilmez.
+            .frame(minHeight: height)
             .frame(maxWidth: fullWidth ? .infinity : nil)
             .frame(minWidth: kind == .primary && !fullWidth ? 220 : nil)
             .background(background)

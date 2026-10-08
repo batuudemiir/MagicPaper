@@ -17,16 +17,21 @@ struct MPChip: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 4) {
-                if let systemImage { MPIcon(systemImage, size: 14, weight: .bold) }
+            HStack(spacing: MPSpacing.xxs) {
+                if let systemImage { MPIcon(systemImage, size: 14, weight: .bold).accessibilityHidden(true) }
                 Text(title).mpText(.callout)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .foregroundStyle(isSelected ? MPColor.textOnAction : (style == .dashed ? MPColor.textSecondary : MPColor.textPrimary))
-            .padding(.horizontal, 16)
-            .frame(height: MPSize.chipHeight)
-            .background(isSelected ? MPColor.actionPrimary : (style == .dashed ? Color.clear : MPColor.backgroundSurface), in: Capsule())
+            .padding(.horizontal, MPSpacing.lg)
+            .padding(.vertical, MPSpacing.xs)
+            // En büyük yazı boyutunda çip uzar, metin kesilmez.
+            .frame(minHeight: MPSize.chipHeight)
+            .background(isSelected ? MPColor.actionPrimary : (style == .dashed ? Color.clear : MPColor.backgroundSurface),
+                        in: RoundedRectangle(cornerRadius: MPSize.chipHeight / 2, style: .continuous))
             .overlay {
-                Capsule().strokeBorder(isSelected ? MPColor.actionPrimary : (style == .dashed ? MPColor.borderDashed : MPColor.borderKid),
+                RoundedRectangle(cornerRadius: MPSize.chipHeight / 2, style: .continuous).strokeBorder(isSelected ? MPColor.actionPrimary : (style == .dashed ? MPColor.borderDashed : MPColor.borderKid),
                                        style: StrokeStyle(lineWidth: 1.5, dash: style == .dashed ? [5, 4] : []))
             }
         }
@@ -41,29 +46,33 @@ struct MPChip: View {
 struct MPSegmented<Value: Hashable>: View {
     let options: [(Value, String)]
     @Binding var selection: Value
-    var track: Color = Color(red: 0xEF / 255, green: 0xE8 / 255, blue: 0xDD / 255)
+    var track: Color = MPColor.segmentTrack
     /// Gece yüzeyi (Uyku modu): seçili dolgu ve yazı renkleri değişir.
     var selectedFill: Color = MPColor.actionPrimary
     var selectedText: Color = MPColor.textOnAction
     var text: Color = MPColor.textPrimary
 
     var body: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: MPSpacing.xxs) {
             ForEach(options, id: \.0) { value, label in
                 let on = value == selection
                 Button { withAnimation(MPMotion.spring) { selection = value } } label: {
                     Text(label).mpText(.callout)
                         .foregroundStyle(on ? selectedText : text)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: MPSize.segmentHeight)
-                        .background(on ? selectedFill : .clear, in: Capsule())
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal, MPSpacing.xs)
+                        .padding(.vertical, MPSpacing.xxs)
+                        .frame(maxWidth: .infinity, minHeight: MPSize.segmentHeight)
+                        .background(on ? selectedFill : .clear,
+                                    in: RoundedRectangle(cornerRadius: MPSize.segmentHeight / 2, style: .continuous))
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(on ? .isSelected : [])
             }
         }
-        .padding(4)
-        .background(track, in: Capsule())
+        .padding(MPSpacing.xxs)
+        .background(track, in: RoundedRectangle(cornerRadius: (MPSize.segmentHeight + MPSpacing.sm) / 2, style: .continuous))
     }
 }
 
@@ -78,7 +87,7 @@ struct MPSwitchStyle: ToggleStyle {
                     .fill(configuration.isOn ? MPColor.actionPrimary : MPColor.actionDisabled)
                     .frame(width: 52, height: 30)
                     .overlay(alignment: configuration.isOn ? .trailing : .leading) {
-                        Circle().fill(.white).frame(width: 24, height: 24).padding(3).shadow(color: .black.opacity(0.15), radius: 3, y: 2)
+                        Circle().fill(MPColor.backgroundSurface).frame(width: 24, height: 24).mpShadow(.control).padding(MPSpacing.xxs)
                     }
             }
         }
@@ -100,8 +109,8 @@ struct MPTextField: View {
         VStack(alignment: .leading, spacing: 8) {
             if let label { Text(label).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary) }
             TextField(placeholder, text: $text)
-                .font(.custom("Nunito", size: 16, relativeTo: .body).weight(.bold))
-                .padding(.horizontal, 18)
+                .font(MPTextStyle.button.font).fontWeight(.bold)
+                .padding(.horizontal, MPSpacing.lg)
                 .frame(height: MPSize.inputHeight)
                 .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
                 .overlay(RoundedRectangle(cornerRadius: MPRadius.input).strokeBorder(isError ? MPColor.statusDanger : MPColor.borderKid, lineWidth: 1.5))

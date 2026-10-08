@@ -158,7 +158,7 @@ struct PaywallView: View {
             HStack(alignment: .center, spacing: MPSpacing.md) {
                 Circle()
                     .strokeBorder(selected ? MPColor.actionPrimary : MPColor.borderKid, lineWidth: 2.5)
-                    .background(Circle().fill(selected ? MPColor.actionPrimary : .clear).padding(5))
+                    .background(Circle().fill(selected ? MPColor.actionPrimary : .clear).padding(MPSpacing.xxs))
                     .frame(width: 26, height: 26)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {

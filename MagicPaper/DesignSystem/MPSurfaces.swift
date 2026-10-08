@@ -153,6 +153,10 @@ struct MPAvatar: View {
     var body: some View {
         Text(letter)
             .font(.custom(MP.F.display, size: round(size * 0.44)).weight(.heavy))
+            // Madalyon bir görsel: harf daireden taşmasın (ad yanında yazılı).
+            .dynamicTypeSize(...DynamicTypeSize.large)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
             .foregroundStyle(MP.Palette.kagit0)
             .frame(width: size, height: size)
             .background(Circle().fill(bg))

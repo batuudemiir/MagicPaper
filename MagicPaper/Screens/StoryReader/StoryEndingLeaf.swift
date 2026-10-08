@@ -21,6 +21,7 @@ struct StoryEndingLeaf: View {
     @StateObject private var news = MPBadgeNews.shared
     @StateObject private var settings = MPSettingsStore.shared
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var appeared = false
 
     var body: some View {
@@ -60,7 +61,9 @@ struct StoryEndingLeaf: View {
                     .multilineTextAlignment(.center)
             }
 
-            HStack(spacing: MPSpacing.md) {
+            // En büyük yazı boyutlarında döşemeler alt alta: kelime ortasından bölünmesin.
+            (typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: MPSpacing.md))
+                                          : AnyLayout(HStackLayout(spacing: MPSpacing.md))) {
                 if streak.currentStreak > 0 {
                     tile(icon: "flame", tone: .peach, value: "\(streak.currentStreak) gün",
                          label: streak.currentStreak > 1 ? "üst üste okudun" : "okuma yolculuğun")

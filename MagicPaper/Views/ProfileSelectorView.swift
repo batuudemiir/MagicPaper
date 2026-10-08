@@ -18,12 +18,7 @@ struct ProfileSelectorView: View {
                     ForEach(profileManager.profiles) { profile in
                         Button { profileManager.switchProfile(to: profile) } label: {
                             HStack(spacing: MPSpacing.md) {
-                                Text(profile.name.first.map { String($0).uppercased(with: Locale(identifier: "tr_TR")) } ?? "?")
-                                    .mpText(.title3)
-                                    .foregroundStyle(MPColor.textOnAction)
-                                    .frame(width: 52, height: 52)
-                                    .background(profile.mpColor, in: Circle())
-                                    .accessibilityHidden(true)
+                                MPInitialAvatar(name: profile.name, color: profile.mpColor)
                                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                                     Text(profile.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
                                     Text("\(profile.mpAgeRange.shortLabel) yaş · \(storyCount(profile)) masal")

@@ -6,6 +6,8 @@ import SwiftUI
 /// iki sütun kapak ızgarası. Kapağa dokununca Masal aksiyonları (17).
 /// Kitaplık etkin çocuğun; çocuk Benim köşem'den değişir.
 struct LibraryView: View {
+    /// En büyük yazı boyutlarında kapaklar tek sütun.
+    @Environment(\.dynamicTypeSize) private var typeSize
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var storyManager = StoryGenerationManager.shared
@@ -125,7 +127,8 @@ struct LibraryView: View {
     // MARK: - Izgara
 
     private var grid: some View {
-        LazyVGrid(columns: [GridItem(.flexible(), spacing: MPSpacing.lg), GridItem(.flexible(), spacing: MPSpacing.lg)],
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.lg),
+                                 count: typeSize.isAccessibilitySize ? 1 : 2),
                   spacing: MPSpacing.lg) {
             ForEach(visibleStories) { story in
                 Button { app.actionsStory = story } label: {

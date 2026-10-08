@@ -178,3 +178,43 @@ enum MPWorldTone: String, CaseIterable, Codable {
 extension LinearGradient {
     static let mpPrimary = LinearGradient(colors: [MPColor.actionGradientTop, MPColor.actionGradientBottom], startPoint: .top, endPoint: .bottom)
 }
+
+// MARK: - Malzeme ve süs renkleri
+//
+// Asset kataloğunda karşılığı olmayan, teslimin satır içi değerleri. Renk
+// değişmezlerinin tek yeri burası (tasarım yasası): bileşenler ve ekranlar
+// bunları adıyla okur, `Color(red:...)` yazmaz.
+extension MPColor {
+    /// Gölgelerin mürekkebi (tokens.json shadow.*).
+    static let shadowInk = Color(red: 45 / 255, green: 42 / 255, blue: 50 / 255)
+    /// Kapak ve görsel üstü metnin karartması.
+    static let coverScrim = Color(red: 20 / 255, green: 18 / 255, blue: 26 / 255)
+    /// Segment ve parça izi (çocuk alanı).
+    static let segmentTrack = Color(red: 0xEF / 255, green: 0xE8 / 255, blue: 0xDD / 255)
+    /// Sarı tonun okunur metni (hap, rozet).
+    static let yellowText = Color(red: 0x8A / 255, green: 0x64 / 255, blue: 0)
+    /// Kilitli rozet: simge, daire, zemin.
+    static let lockedIcon = Color(red: 0xA3 / 255, green: 0x9D / 255, blue: 0x94 / 255)
+    static let lockedCircle = Color(red: 0xE4 / 255, green: 0xDE / 255, blue: 0xD4 / 255)
+    static let lockedFill = Color(red: 0xF1 / 255, green: 0xEC / 255, blue: 0xE4 / 255)
+    /// Masal yazılıyor halkasının izi ve bekleyen aşama simgesi.
+    static let ringTrack = Color(red: 0xEF / 255, green: 0xE6 / 255, blue: 0xF7 / 255)
+    static let stageTodo = Color(red: 0x8C / 255, green: 0x87 / 255, blue: 0x92 / 255)
+    /// Uyku kartının gece gökyüzü.
+    static let bedtimeSkyTop = Color(red: 0x2B / 255, green: 0x31 / 255, blue: 0x60 / 255)
+    static let bedtimeSkyBottom = Color(red: 0x1E / 255, green: 0x22 / 255, blue: 0x38 / 255)
+    /// Başlık arkasındaki gökkuşağı (HeaderWash).
+    static let washPink = Color(red: 0xFB / 255, green: 0xD3 / 255, blue: 0xE0 / 255)
+    static let washYellow = Color(red: 0xFC / 255, green: 0xE8 / 255, blue: 0xB6 / 255)
+    static let washGreen = Color(red: 0xD7 / 255, green: 0xEF / 255, blue: 0xD0 / 255)
+    static let washSky = Color(red: 0xCF / 255, green: 0xE5 / 255, blue: 0xFA / 255)
+    /// Karşılama zeminleri ve ışıkları (02-04).
+    static let glowDawnBase = Color(red: 0xFD / 255, green: 0xF5 / 255, blue: 0xEE / 255)
+    static let glowNightBase = Color(red: 0x3A / 255, green: 0x24 / 255, blue: 0x58 / 255)
+    static let glowLilacBase = Color(red: 0xF3 / 255, green: 0xE6 / 255, blue: 0xF8 / 255)
+    static let glowLilac = Color(red: 230 / 255, green: 199 / 255, blue: 242 / 255)
+    static let glowPink = Color(red: 242 / 255, green: 163 / 255, blue: 195 / 255)
+    static let glowGold = Color(red: 244 / 255, green: 183 / 255, blue: 53 / 255)
+    static let glowViolet = Color(red: 143 / 255, green: 107 / 255, blue: 214 / 255)
+    static let glowPlum = Color(red: 92 / 255, green: 58 / 255, blue: 143 / 255)
+}
