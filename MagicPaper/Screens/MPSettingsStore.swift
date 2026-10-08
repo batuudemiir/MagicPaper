@@ -10,6 +10,9 @@ final class MPSettingsStore: ObservableObject {
     private let d = UserDefaults.standard
 
     @Published var readAloud: Bool { didSet { d.set(readAloud, forKey: K.readAloud) } }
+    /// "Kim okusun?" (24, FAZ 18): kayıtlı sayfalarda ailenin sesi çalar,
+    /// kaydı olmayan sayfada masal anlatıcısı okur.
+    @Published var familyVoice: Bool { didSet { d.set(familyVoice, forKey: K.familyVoice) } }
     @Published var readSizeRaw: String { didSet { d.set(readSizeRaw, forKey: K.readSize) } }
     @Published var reminder: Bool { didSet { d.set(reminder, forKey: K.reminder) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
@@ -49,6 +52,7 @@ final class MPSettingsStore: ObservableObject {
 
     private enum K {
         static let readAloud = "mp_readAloud"
+        static let familyVoice = "mp_familyVoice"
         static let readSize = "mp_readSize"
         static let reminder = "mp_reminder"
         static let approve = "mp_approveBeforeShow"
@@ -78,6 +82,7 @@ final class MPSettingsStore: ObservableObject {
             d.set(true, forKey: K.seeded)
         }
         readAloud = d.bool(forKey: K.readAloud)
+        familyVoice = d.bool(forKey: K.familyVoice)
         readSizeRaw = d.string(forKey: K.readSize) ?? MP.ReadSize.normal.rawValue
         reminder = d.bool(forKey: K.reminder)
         approve = d.bool(forKey: K.approve)

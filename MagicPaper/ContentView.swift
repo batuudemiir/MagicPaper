@@ -133,6 +133,11 @@ struct ContentView: View {
                     firstRun = nil
                 }
             }
+            .fullScreenCover(item: voiceRoute) { _ in
+                if let profile = profileManager.currentProfile {
+                    VoiceRecordingView(profile: profile) { app.parentRoute = nil }
+                }
+            }
             .fullScreenCover(isPresented: $app.showProfileAdd) {
                 ProfileCreationView(mode: .addAnother) { name in
                     app.showToast("\(name) eklendi", symbol: "sparkles")
@@ -249,6 +254,14 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+extension ContentView {
+    /// 33 · Kendi sesin. Diğer aile yolları (34, 36) henüz ekran açmaz.
+    fileprivate var voiceRoute: Binding<MPParentRoute?> {
+        Binding(get: { app.parentRoute == .voiceRecording ? .voiceRecording : nil },
+                set: { app.parentRoute = $0 })
+    }
 }
 
 /// İlk kurulum kapağının kimliği (09 + 10).

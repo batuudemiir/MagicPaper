@@ -37,6 +37,8 @@ enum LocalDataEraser {
         StorySeriesStore.eraseAll()
         defaults.removeObject(forKey: SeriesClock.highWaterKey)
         StoryUsageStore.eraseAll()
+        // Kendi sesin (FAZ 18): ebeveynin ses kayıtları.
+        VoiceRecordingStore.shared.deleteAll()
         ReadingEventQueue.eraseAll()
         DailyStoryManager.shared.eraseReadingState()
         LibraryPersistence.eraseAll()

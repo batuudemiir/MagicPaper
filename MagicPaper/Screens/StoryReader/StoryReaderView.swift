@@ -220,7 +220,7 @@ struct StoryReaderView: View {
         openedAt = Date()
         MPHaptics.prepare()
         if settings.readAloud, let text = model.currentPage?.spokenText {
-            speech.speak(text)
+            speech.speak(text, recording: familyRecording)
         }
         scheduleAutoHide()
         startBudgetWatch()
@@ -390,7 +390,7 @@ struct StoryReaderView: View {
         // Sesli okuma açıksa yeni sayfa kendiliğinden okunur.
         let wasSpeaking = speech.isSpeaking && !speech.isPaused
         if let text = model.currentPage?.spokenText, wasSpeaking || settings.readAloud {
-            speech.speak(text)
+            speech.speak(text, recording: familyRecording)
         }
 
         if let folio = model.folio {
@@ -435,7 +435,14 @@ struct StoryReaderView: View {
     }
 
     private func toggleSpeech() {
-        speech.toggle(model.currentPage?.spokenText ?? "")
+        speech.toggle(model.currentPage?.spokenText ?? "", recording: familyRecording)
         scheduleAutoHide()
+    }
+
+    /// "Kim okusun? Ailenin sesi" (33): açık sayfanın kaydı, varsa.
+    private var familyRecording: URL? {
+        guard settings.familyVoice, FamilyFeatureAccess.isEnabled(.voiceRecording),
+              let page = model.currentPage else { return nil }
+        return VoiceRecordingStore.shared.recording(story: story.id, page: page.index)
     }
 }

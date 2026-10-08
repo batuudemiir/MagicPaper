@@ -111,23 +111,16 @@ struct SettingsView: View {
 
     // MARK: - Aile ve ses (FAZ 18, bayrakta)
 
+    /// Aile üyeleri (34) ve Aileyle paylaş (36) sunucu tarafını bekliyor;
+    /// bayrak açık olsa da satırı yok, boş bir sayfaya gitmesin.
     private var showsFamilySection: Bool {
-        FamilyFeatureAccess.isEnabled(.familyMembers) || FamilyFeatureAccess.isEnabled(.voiceRecording)
+        FamilyFeatureAccess.isEnabled(.voiceRecording)
     }
 
     private var familySection: some View {
         ParentSection(title: "Aile ve ses") {
-            if FamilyFeatureAccess.isEnabled(.familyMembers) {
-                ParentRowButton(systemImage: "person.2", tone: .sky, title: "Aile üyeleri",
-                                subtitle: "Davet et, birlikte okuyun") { app.parentRoute = .familyMembers }
-            }
-            if FamilyFeatureAccess.isEnabled(.familyMembers) && FamilyFeatureAccess.isEnabled(.voiceRecording) {
-                MPRowDivider(area: .parent)
-            }
-            if FamilyFeatureAccess.isEnabled(.voiceRecording) {
-                ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
-                                subtitle: "Masalları senin sesinle okusun") { app.parentRoute = .voiceRecording }
-            }
+            ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
+                            subtitle: "Masalları senin sesinle okusun") { app.parentRoute = .voiceRecording }
         }
     }
 

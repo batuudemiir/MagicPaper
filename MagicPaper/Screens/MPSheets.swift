@@ -181,7 +181,7 @@ struct ReaderSettingsSheet: View {
                 if FamilyFeatureAccess.isEnabled(.voiceRecording) {
                     group("Kim okusun?") {
                         MPSegmented(options: [(false, "Masal anlatıcısı"), (true, "Ailenin sesi")],
-                                    selection: .constant(false))
+                                    selection: $settings.familyVoice)
                     }
                 }
 
