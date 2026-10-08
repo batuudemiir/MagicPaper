@@ -764,7 +764,7 @@ konu etiketleri ajan taslağı + Batuhan onayı (`MagicPaperAPP/FAZ17_KELIME_GUV
 |---|---|
 | CLAUDE.md doğrulama komutları temiz | ✅ FAZ 17'de değişen her dosyada beş grep boş. Repo geneli: padding 81 → 44, `MPColor` dışı `Color(red:)` 0, gölge 7 (kalanların hepsi FAZ 17'nin dokunmadığı eski dosyalarda: kapak galerisi önizlemeleri, `SimpleSubscriptionView`, süsleme katmanı) |
 | VoiceOver ile ilk masal baştan sona | ⏳ Batuhan, iPhone 16'da: başlangıç → ilk masal → okuyucu → masal sonu. Simülatörde VoiceOver sürülemiyor. Kodda: sayfa eylemleri, Magic Tap, kelime için VoiceOver eylemi, Türkçe etiketler var |
-| En büyük Dynamic Type'ta taşma yok | 🟡 iPhone 17 ve 17 Pro, AX5: ana sayfa, Benim köşem, Yeni kelimelerim, kitaplık, masal aksiyonları, okuyucu, kelime kartı, masal sonu, uyku modu, ebeveyn Özet/Güvenlik/Ayarlar kesilmeden ve taşmadan. Kalan iki kelime bölünmesi: Benim köşem rozet ızgarası ("öğren/elim"), Güvenlik "Biraz heyecan" segmenti ("heyeca/n"). Pro Max'e bakılmadı |
+| En büyük Dynamic Type'ta taşma yok | ✅ iPhone 17 ve 17 Pro, AX5: ana sayfa, Benim köşem, Yeni kelimelerim, kitaplık, masal aksiyonları, okuyucu, kelime kartı, masal sonu, uyku modu, ebeveyn Özet/Güvenlik/Ayarlar kesilmeden ve taşmadan. Son iki bölünme `204dffa`'te düzeldi (rozet ızgarası AX'te tek sütun, segment alt alta; sayfa süsü AX'te çizilmez). Pro Max'e bakılmadı |
 
 **Doğrulama:**
 - Paket testleri 937, hata 18; hata listesi test başına taban (912/18) ile aynı. 25 yeni test (`ContentSafetyTests`, `GlossaryTests`).
@@ -811,7 +811,6 @@ konu etiketleri ajan taslağı + Batuhan onayı (`MagicPaperAPP/FAZ17_KELIME_GUV
 
 **Açık kalanlar (✅ için):**
 - VoiceOver ile ilk masal baştan sona, gerçek cihazda (Batuhan).
-- İki AX5 kelime bölünmesi (rozet ızgarası, "Biraz heyecan" segmenti; tasarım oturumu).
 
 **Kapanış turunda düzeltilenler (`fe4a2ff`, `a35b314`):** AX5'te on yerde kesilme ve bölünme; `eyebrow` stili artık Türkçe
 büyük harf yapıyor ("YENİ KELİME", "SESLİ OKUNUYOR"); pastel bileşenlerindeki çıplak padding, ham renk, çıplak gölge ve saf
