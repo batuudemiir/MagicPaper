@@ -1,10 +1,14 @@
 rules_version = '2';
 
-// MagicPaper — Firestore güvenlik kuralları (FAZ 16).
+// MagicPaper — Firestore güvenlik kuralları (FAZ 16, FAZ 18).
 //
-// Her aile belgesi yalnızca sahibi ebeveyne açık. Masal metni yazıldıktan
+// Aile `families/{fid}`: `fid` kurucu ebeveynin uid'i ve tek yönetici odur.
+// Davetle katılan yetişkinler `members/{uid}` ile ya ebeveyn (`parent`:
+// okur, yazar) ya sadece okuma (`reader`) rolündedir. Masal metni yazıldıktan
 // sonra değişmez. Okuma olayları anonim: yalnızca eklenir, hiç okunmaz,
-// içinde hesap kimliği yoktur. Geri kalan her şey kapalı.
+// içinde hesap kimliği yoktur. Paylaşım bağlantısı (`shares/{token}`)
+// süresi dolana kadar bağlantıyı bilen herkese açık ve yalnızca çocuğun adı
+// ile masal metnini taşır. Geri kalan her şey kapalı.
 // Testler: firebase/tests/rules.test.mjs (npm test, emülatörle).
 
 service cloud.firestore {
@@ -19,7 +23,74 @@ service cloud.firestore {
     }
 
     function syncCollections() {
-      return ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges'];
+      return ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges', 'recordings'];
+    }
+
+    // --- Aile üyeliği (FAZ 18) ---------------------------------------------
+
+    function memberPath(fid, uid) {
+      return /databases/$(database)/documents/families/$(fid)/members/$(uid);
+    }
+
+    function isMember(fid) {
+      return signedIn() && exists(memberPath(fid, request.auth.uid));
+    }
+
+    function memberRole(fid) {
+      return get(memberPath(fid, request.auth.uid)).data.role;
+    }
+
+    // Okuyabilen: kurucu ya da her üye.
+    function canRead(fid) {
+      return isOwner(fid) || isMember(fid);
+    }
+
+    // Yazabilen: kurucu ya da ebeveyn rolündeki üye.
+    function canWrite(fid) {
+      return isOwner(fid) || (isMember(fid) && memberRole(fid) == 'parent');
+    }
+
+    function invitePath(code) {
+      return /databases/$(database)/documents/invites/$(code);
+    }
+
+    // Paylaşılan bir masal: başlık, sayfa metinleri ve sesli sayfaların
+    // dizinleri. Başka hiçbir alan (yaş, profil, kimlik) giremez.
+    function sharedStory(x) {
+      return x is map
+        && x.keys().hasOnly(['title', 'pages', 'audio'])
+        && x.keys().hasAll(['title', 'pages', 'audio'])
+        && x.title is string && x.title.size() <= 200
+        && x.pages is list && x.pages.size() > 0 && x.pages.size() <= 60
+        && x.audio is list && x.audio.size() <= x.pages.size();
+    }
+
+    function sharedStories(s) {
+      return s is list && s.size() > 0 && s.size() <= 20
+        && (s.size() <= 0 || sharedStory(s[0]))
+        && (s.size() <= 1 || sharedStory(s[1]))
+        && (s.size() <= 2 || sharedStory(s[2]))
+        && (s.size() <= 3 || sharedStory(s[3]))
+        && (s.size() <= 4 || sharedStory(s[4]))
+        && (s.size() <= 5 || sharedStory(s[5]))
+        && (s.size() <= 6 || sharedStory(s[6]))
+        && (s.size() <= 7 || sharedStory(s[7]))
+        && (s.size() <= 8 || sharedStory(s[8]))
+        && (s.size() <= 9 || sharedStory(s[9]))
+        && (s.size() <= 10 || sharedStory(s[10]))
+        && (s.size() <= 11 || sharedStory(s[11]))
+        && (s.size() <= 12 || sharedStory(s[12]))
+        && (s.size() <= 13 || sharedStory(s[13]))
+        && (s.size() <= 14 || sharedStory(s[14]))
+        && (s.size() <= 15 || sharedStory(s[15]))
+        && (s.size() <= 16 || sharedStory(s[16]))
+        && (s.size() <= 17 || sharedStory(s[17]))
+        && (s.size() <= 18 || sharedStory(s[18]))
+        && (s.size() <= 19 || sharedStory(s[19]));
+    }
+
+    function displayName(d) {
+      return d.displayName is string && d.displayName.size() > 0 && d.displayName.size() <= 40;
     }
 
     // Bir kayıt: uygulamanın kendi modeli JSON olarak (`payload`), silinmişse
@@ -87,20 +158,154 @@ service cloud.firestore {
 
     match /families/{uid} {
       // Aile belgesi hiçbir şey taşımaz; hesap silinirken silinir.
-      allow read, delete: if isOwner(uid);
+      allow read: if canRead(uid);
+      allow delete: if isOwner(uid);
 
       match /{collection}/{recordId} {
-        allow read, delete: if isOwner(uid) && collection in syncCollections();
-        allow create: if isOwner(uid) && collection in syncCollections() && validRecord();
-        allow update: if isOwner(uid) && collection in syncCollections() && validRecord()
+        allow read: if canRead(uid) && collection in syncCollections();
+        allow delete: if canWrite(uid) && collection in syncCollections();
+        allow create: if canWrite(uid) && collection in syncCollections() && validRecord();
+        allow update: if canWrite(uid) && collection in syncCollections() && validRecord()
                       && (collection != 'stories' || storyTextUnchanged());
       }
 
       // KVKK açık rıza kaydı: sürüm başına bir kez yazılır, değiştirilemez.
+      // Üyeler okur: ailenin onayı verilmiş mi, uygulama buna bakar.
       match /consents/{version} {
-        allow read, delete: if isOwner(uid);
+        allow read: if canRead(uid);
+        allow delete: if isOwner(uid);
         allow create: if isOwner(uid) && validConsent(version);
       }
+
+      // Ses kaydı açık rızası (FAZ 18): kaydeden her yetişkin kendi adına bir
+      // kez verir. Silmek rızayı geri çekmektir (uygulama kayıtları da siler).
+      match /voiceConsents/{memberUID} {
+        allow read: if canRead(uid);
+        allow create: if canWrite(uid) && request.auth.uid == memberUID
+                      && request.resource.data.keys().hasOnly(['version', 'acceptedAt', 'clientAcceptedAt'])
+                      && request.resource.data.keys().hasAll(['version', 'acceptedAt', 'clientAcceptedAt'])
+                      && request.resource.data.version is string
+                      && request.resource.data.acceptedAt == request.time
+                      && request.resource.data.clientAcceptedAt is int;
+        allow delete: if isOwner(uid) || request.auth.uid == memberUID;
+      }
+
+      // Aile üyeleri (FAZ 18). Kurucu kendi satırını yönetici olarak yazar;
+      // diğerleri yalnızca geçerli bir daveti aynı yazımda tüketerek katılır.
+      match /members/{memberUID} {
+        allow read: if canRead(uid);
+        allow create: if (
+            // Kurucunun kendi satırı.
+            isOwner(uid) && memberUID == uid
+            && request.resource.data.keys().hasOnly(['role', 'displayName', 'joinedAt'])
+            && request.resource.data.role == 'admin'
+            && displayName(request.resource.data)
+            && request.resource.data.joinedAt == request.time
+          ) || (
+            // Davetle katılan yetişkin.
+            signedIn() && request.auth.uid == memberUID && memberUID != uid
+            && request.resource.data.keys().hasOnly(['role', 'displayName', 'joinedAt', 'invite'])
+            && displayName(request.resource.data)
+            && request.resource.data.joinedAt == request.time
+            && exists(invitePath(request.resource.data.invite))
+            && get(invitePath(request.resource.data.invite)).data.familyID == uid
+            && get(invitePath(request.resource.data.invite)).data.role == request.resource.data.role
+            && get(invitePath(request.resource.data.invite)).data.expiresAt > request.time
+            // Davet tek kullanımlık: aynı yazımda silinir.
+            && !existsAfter(invitePath(request.resource.data.invite))
+          );
+        // Kurucu rolü değiştirir; herkes kendi görünen adını değiştirir.
+        allow update: if (
+            isOwner(uid) && memberUID != uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role'])
+            && request.resource.data.role in ['parent', 'reader']
+          ) || (
+            signedIn() && request.auth.uid == memberUID
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName'])
+            && displayName(request.resource.data)
+          );
+        // Kurucu çıkarır, üye ayrılır.
+        allow delete: if isOwner(uid) || (signedIn() && request.auth.uid == memberUID);
+      }
+
+      // Paylaşımların aileye özel listesi: alıcı etiketi ("Ayşe Nine") burada,
+      // herkese açık bağlantı belgesinde değil.
+      match /shares/{token} {
+        allow read: if canRead(uid);
+        allow delete: if canWrite(uid);
+        allow create: if canWrite(uid)
+                      && request.resource.data.keys().hasOnly(['recipient', 'storyCount', 'voice', 'expiresAt', 'createdAt', 'createdBy'])
+                      && request.resource.data.keys().hasAll(['storyCount', 'voice', 'expiresAt', 'createdAt', 'createdBy'])
+                      && (!('recipient' in request.resource.data)
+                          || (request.resource.data.recipient is string && request.resource.data.recipient.size() <= 40))
+                      && request.resource.data.storyCount is int
+                      && request.resource.data.voice is bool
+                      && request.resource.data.expiresAt is timestamp
+                      && request.resource.data.createdAt == request.time
+                      && request.resource.data.createdBy == request.auth.uid;
+      }
+
+      // Haftalık özet e-postası (FAZ 18): yalnızca kurucu, yalnızca hesabının
+      // doğrulanmış e-postası. Abonelikten çıkma bağlantısı sunucuda yazar.
+      match /settings/{name} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && name == 'weeklyEmail'
+                      && request.resource.data.keys().hasOnly(['enabled', 'email', 'timezone', 'updatedAt'])
+                      && request.resource.data.keys().hasAll(['enabled', 'email', 'timezone', 'updatedAt'])
+                      && request.resource.data.enabled is bool
+                      && request.resource.data.email == request.auth.token.email
+                      && request.auth.token.email_verified == true
+                      && request.resource.data.timezone is string && request.resource.data.timezone.size() <= 64
+                      && request.resource.data.updatedAt == request.time;
+      }
+    }
+
+    // Kişi → aile (FAZ 18). Yoksa kişi kendi ailesinin kurucusudur.
+    match /memberships/{memberUID} {
+      allow read: if signedIn() && (request.auth.uid == memberUID || isOwner(resource.data.familyID));
+      allow create: if signedIn() && request.auth.uid == memberUID
+                    && request.resource.data.keys().hasOnly(['familyID', 'joinedAt'])
+                    && request.resource.data.joinedAt == request.time
+                    && existsAfter(memberPath(request.resource.data.familyID, memberUID))
+                    && !exists(memberPath(request.resource.data.familyID, memberUID));
+      allow delete: if signedIn() && (request.auth.uid == memberUID || isOwner(resource.data.familyID));
+    }
+
+    // Davet: kurucu yazar; kodu bilen giriş yapmış kişi okur (kimin daveti,
+    // hangi rol). Katılan kişi kendi üyelik yazımında siler.
+    match /invites/{code} {
+      allow get: if signedIn();
+      allow list: if signedIn() && resource.data.familyID == request.auth.uid;
+      allow create: if isOwner(request.resource.data.familyID)
+                    && code.matches('^[A-HJ-NP-Z2-9]{8}$')
+                    && request.resource.data.keys().hasOnly(['familyID', 'role', 'inviterName', 'expiresAt', 'createdAt'])
+                    && request.resource.data.keys().hasAll(['familyID', 'role', 'inviterName', 'expiresAt', 'createdAt'])
+                    && request.resource.data.role in ['parent', 'reader']
+                    && displayName({'displayName': request.resource.data.inviterName})
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.expiresAt is timestamp
+                    && request.resource.data.expiresAt <= request.time + duration.value(8, 'd');
+      allow delete: if signedIn() && (
+                      isOwner(resource.data.familyID)
+                      || existsAfter(memberPath(resource.data.familyID, request.auth.uid)));
+    }
+
+    // Aileyle paylaş (FAZ 18): bağlantıyı bilen herkes, süresi dolana kadar
+    // okur; liste yok. Belge yalnızca çocuğun adını ve masal metnini taşır.
+    match /shares/{token} {
+      allow get: if resource.data.expiresAt > request.time;
+      allow create: if signedIn()
+                    && canWrite(request.resource.data.familyID)
+                    && token.matches('^[A-Za-z0-9_-]{22,}$')
+                    && request.resource.data.keys().hasOnly(['familyID', 'childName', 'stories', 'voice', 'expiresAt', 'createdAt'])
+                    && request.resource.data.keys().hasAll(['familyID', 'childName', 'stories', 'voice', 'expiresAt', 'createdAt'])
+                    && request.resource.data.childName is string && request.resource.data.childName.size() <= 40
+                    && sharedStories(request.resource.data.stories)
+                    && request.resource.data.voice is bool
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.expiresAt is timestamp
+                    && request.resource.data.expiresAt <= request.time + duration.value(31, 'd');
+      allow delete: if signedIn() && canWrite(resource.data.familyID);
     }
 
     match /readingEvents/{eventId} {

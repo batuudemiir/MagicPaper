@@ -33,6 +33,9 @@ final class FamilySyncService: ObservableObject {
     private let clock: () -> Date
     private var remote: FamilyRemote?
     private var uid: String?
+    /// Sadece okuma rolü (FAZ 18): aileden çeker, hiçbir şey göndermez.
+    /// Cihazdaki okuma ilerlemesi cihazda kalır.
+    private(set) var readOnly = false
     private var running: Task<Bool, Never>?
     private var runID = 0
     private var scheduled: Task<Void, Never>?
@@ -52,18 +55,20 @@ final class FamilySyncService: ObservableObject {
         self.clock = clock
     }
 
-    /// Starts syncing `uid`. A ledger kept for another account is dropped:
-    /// its marks say nothing about this one.
-    func start(uid: String, remote: FamilyRemote) {
+    /// Starts syncing the family `uid` (FAZ 18: the family's id, which is the
+    /// founder's uid). A ledger kept for another family is dropped: its marks
+    /// say nothing about this one.
+    func start(uid: String, remote: FamilyRemote, readOnly: Bool = false) {
         self.uid = uid
         self.remote = remote
+        self.readOnly = readOnly
         var ledger = ledgerStore.load()
         if ledger.ownerUID != uid {
             ledger = SyncLedger(ownerUID: uid)
             ledgerStore.save(ledger)
         }
         restored = ledger.restored
-        hasUnsentChanges = ledger.hasUnsentChanges
+        hasUnsentChanges = !readOnly && ledger.hasUnsentChanges
         observeLocalChanges()
         reachability.onChange = { [weak self] online in
             Task { @MainActor in
@@ -83,6 +88,7 @@ final class FamilySyncService: ObservableObject {
         reachability.stop()
         uid = nil
         remote = nil
+        readOnly = false
         restored = false
         hasUnsentChanges = false
         status = .idle
@@ -125,11 +131,12 @@ final class FamilySyncService: ObservableObject {
 
     private func performSync() async -> Bool {
         guard let uid, let remote else { return false }
+        let readOnly = self.readOnly
         let records = await local.records()
-        var ledger = SyncPlanner.notePending(local: records, in: ledgerStore.load(), now: clock())
+        var ledger = readOnly ? ledgerStore.load() : SyncPlanner.notePending(local: records, in: ledgerStore.load(), now: clock())
         ledger.ownerUID = uid
         ledgerStore.save(ledger)
-        hasUnsentChanges = ledger.hasUnsentChanges
+        hasUnsentChanges = !readOnly && ledger.hasUnsentChanges
 
         guard reachability.isOnline else {
             status = .offline
@@ -139,7 +146,14 @@ final class FamilySyncService: ObservableObject {
         do {
             let pulled = try await remote.pull(since: ledger.highWater)
             guard self.uid == uid else { return false }
-            let plan = SyncPlanner.plan(local: records, remote: pulled, ledger: ledger, now: clock())
+            var plan = SyncPlanner.plan(local: records, remote: pulled, ledger: ledger, now: clock())
+            if readOnly {
+                // Gönderilecek olanlar gönderilmez; defter de onları
+                // "anlaşıldı" saymaz, yoksa aileden gelen bir sonraki
+                // değişiklik cihazınki sanılırdı.
+                for record in plan.push { plan.ledger[record.key] = ledger[record.key] }
+                plan.push = []
+            }
             if !plan.apply.isEmpty {
                 applying = true
                 await local.apply(plan.apply)
@@ -159,7 +173,7 @@ final class FamilySyncService: ObservableObject {
             settled.restored = true
             ledgerStore.save(settled)
             restored = true
-            hasUnsentChanges = settled.hasUnsentChanges
+            hasUnsentChanges = !readOnly && settled.hasUnsentChanges
             status = .synced(clock())
             logger.debug("Eşitleme: \(plan.apply.count, privacy: .public) geldi, \(plan.push.count, privacy: .public) gitti")
             await afterSync?()

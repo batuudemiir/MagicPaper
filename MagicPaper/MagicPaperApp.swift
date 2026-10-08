@@ -128,7 +128,14 @@ struct MagicPaperApp: App {
       // Uygulama Türkçe: büyük harf (İ), tarih ve saat seçicileri tr_TR.
       .environment(\.locale, Locale(identifier: "tr_TR"))
       // Google ile giriş tarayıcıdan bu adrese döner (FAZ 16).
-      .onOpenURL { url in _ = GIDSignIn.sharedInstance.handle(url) }
+      .onOpenURL { url in
+        // Aile daveti (FAZ 18): kod bekler, ebeveyn kapısından sonra açılır.
+        if FamilyFeatureAccess.isEnabled(.familyMembers), let code = FamilyInviteCode.from(url: url) {
+          AccountService.shared.pendingInviteCode = code
+          return
+        }
+        _ = GIDSignIn.sharedInstance.handle(url)
+      }
     }
   }
 }

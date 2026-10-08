@@ -99,11 +99,13 @@ struct StoryActionsSheet: View {
                     subtitle: app.isParentMode ? nil : "Ebeveyn onayı ister", locked: !app.isParentMode) {
                     if app.isParentMode { export() } else { gateFor = .export }
                 }
+                if AccountService.shared.canWriteFamily {
                 MPRowDivider(area: .kid)
                 row(icon: "trash", tone: .pink, title: "Masalı sil",
                     subtitle: app.isParentMode ? nil : "Ebeveyn onayı ister",
                     destructive: true, locked: !app.isParentMode) {
                     if app.isParentMode { confirmDelete = true } else { gateFor = .delete }
+                }
                 }
             }
         }

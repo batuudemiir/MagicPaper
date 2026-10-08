@@ -10,7 +10,9 @@ struct ParentRouteView: View {
         switch route {
         case .bookExport:
             BookExportView(onClose: close)
-        case .voiceRecording, .familyMembers, .shareLink:
+        case .familyMembers:
+            FamilyMembersView(onClose: close)
+        case .voiceRecording, .shareLink:
             // FAZ 18 blokları geldikçe dolar; bayraklar kapalıyken buraya gelinmez.
             ParentHeader(title: "Yakında", onBack: close)
                 .padding(MPSpacing.screenH)

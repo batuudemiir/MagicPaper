@@ -180,6 +180,11 @@ final class MPAppState: ObservableObject {
     /// (+) butonu ve ana sayfa hero kartı yeni akışı baştan açar; ana
     /// sayfadaki bir mod kartı ise modu vererek ikinci adımdan.
     func startStoryCreation(mode: StoryMode? = nil, family: UUID? = nil) {
+        // Sadece okuma rolündeki yetişkin aileye masal yazamaz (FAZ 18).
+        guard AccountService.shared.canWriteFamily else {
+            showToast(FamilyCopy.readOnly, symbol: "book")
+            return
+        }
         creationPreset = mode
         creationFamilyID = family
         showStoryCreation = true

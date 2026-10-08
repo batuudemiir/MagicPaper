@@ -12,6 +12,7 @@ struct ParentConsentView: View {
     @State private var agreed = false
     @State private var saving = false
     @State private var showFullText = false
+    @State private var showJoin = false
 
     /// 06 · Ebeveyn onayı: neyi neden tuttuğumuzun üç satırlık özeti. Tam
     /// metin "Aydınlatma metni"nde, uygulamanın içinde (dışarı link yok).
@@ -99,10 +100,22 @@ struct ParentConsentView: View {
             }
             .disabled(!agreed)
             .padding(.horizontal, MPSpacing.xxxl)
-            .padding(.vertical, MPSpacing.md)
+            .padding(.top, MPSpacing.md)
+            .padding(.bottom, FamilyFeatureAccess.isEnabled(.familyMembers) ? 0 : MPSpacing.md)
+
+            // Davetle gelen yetişkin (FAZ 18) kendi ailesini kurmadan katılır;
+            // onay ailenin kurucusunun onayıdır.
+            if FamilyFeatureAccess.isEnabled(.familyMembers) {
+                MPButton(title: "Bir aileye davet edildim", kind: .ghost) { showJoin = true }
+                    .padding(.bottom, MPSpacing.sm)
+            }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .sheet(isPresented: $showFullText) { ConsentFullTextSheet() }
+        .sheet(isPresented: $showJoin, onDismiss: { account.pendingInviteCode = nil }) {
+            JoinFamilySheet(initialCode: account.pendingInviteCode, onJoined: { showJoin = false })
+        }
+        .onAppear { if account.pendingInviteCode != nil { showJoin = true } }
     }
 }
 

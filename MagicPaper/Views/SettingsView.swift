@@ -85,9 +85,11 @@ struct SettingsView: View {
                     app.sheet = .profileEdit(profile.id)
                 }
             }
-            MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
-                app.showProfileAdd = true
+            if account.canWriteFamily {
+                MPRowDivider(area: .parent)
+                ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
+                    app.showProfileAdd = true
+                }
             }
         }
     }
@@ -114,7 +116,7 @@ struct SettingsView: View {
         ParentSection(title: "Aile ve ses") {
             if FamilyFeatureAccess.isEnabled(.familyMembers) {
                 ParentRowButton(systemImage: "person.2", tone: .sky, title: "Aile üyeleri",
-                                subtitle: "Davet et, birlikte okuyun") { app.parentRoute = .familyMembers }
+                                subtitle: account.isFounder ? "Davet et, birlikte okuyun" : (account.role.map { "\($0.title) olarak katıldın" } ?? "")) { app.parentRoute = .familyMembers }
             }
             if FamilyFeatureAccess.isEnabled(.familyMembers) && FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 MPRowDivider(area: .parent)
