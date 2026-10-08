@@ -189,35 +189,26 @@ struct MainContentView: View {
 
 // MARK: - Splash Screen View
 
-/// Açılış ekranı. Tasarımda gradyan, arka plan görseli ve emoji yok;
-/// zemin düz sıcak kağıt rengi, marka tipografiyle taşınıyor.
+/// Açılış ekranı (01 · Marka): yazı markası ve kitaptaki Ragi, karşılamanın
+/// sabah ışığı zemininde.
 struct SplashScreenView: View {
     @Binding var isActive: Bool
     @State private var appeared = false
 
     var body: some View {
-        VStack(spacing: 20) {
-            Image("AppLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 132, height: 132)
-                .mpShadow(MP.Sh.art)
-
-            VStack(spacing: 6) {
-                Text("MagicPaper")
-                    .font(MP.F.displayXL())
-                    .mpTightTracking(40)
-                    .foregroundStyle(MP.C.textTitle)
-
-                Text("Her akşam yeni bir masal")
-                    .font(MP.F.bodyMD())
-                    .foregroundStyle(MP.C.textMuted)
+        ZStack {
+            MPGlowBackground(style: .dawn)
+            VStack(spacing: MPSpacing.xxl) {
+                Image("Brand/wordmarkLight")
+                    .resizable().scaledToFit()
+                    .frame(maxWidth: 240)
+                    .accessibilityLabel("MagicPaper")
+                MascotImage(mascot: .onBook, width: 220)
+                    .accessibilityHidden(true)
             }
+            .opacity(appeared ? 1 : 0)
+            .scaleEffect(appeared ? 1 : 0.94)
         }
-        .opacity(appeared ? 1 : 0)
-        .scaleEffect(appeared ? 1 : 0.94)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(MP.C.surfaceApp.ignoresSafeArea())
         .onAppear {
             withAnimation(MP.M.spring) { appeared = true }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {

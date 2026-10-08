@@ -103,6 +103,8 @@ struct MPCircleButton: View {
     var size: CGFloat = MPSize.circleButton
     var bordered: Bool = true
     var tint: Color = MPColor.textPrimary
+    /// Gece yüzeylerinde (Uyku modu) koyu dolgu.
+    var fill: Color = MPColor.backgroundSurface
     let action: () -> Void
 
     var body: some View {
@@ -110,7 +112,7 @@ struct MPCircleButton: View {
             MPIcon(systemImage, size: size * 0.45, weight: .semibold)
                 .foregroundStyle(tint)
                 .frame(width: size, height: size)
-                .background(MPColor.backgroundSurface, in: Circle())
+                .background(fill, in: Circle())
                 .overlay(Circle().strokeBorder(bordered ? MPColor.borderKid : .clear, lineWidth: 1.5))
                 .contentShape(Circle().inset(by: -6))
         }

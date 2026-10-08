@@ -63,6 +63,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case bookCharacter(UUID)
     /// Masal ailem (FAZ 11), çocuk başına. Benim köşem gelince oradan açılır.
     case familyCharacters(UUID)
+    /// 15 · Yeni kelimelerim, Benim köşem'den.
+    case newWords(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
@@ -74,6 +76,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .profileEdit(let i):   return "profileEdit-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
+        case .newWords(let i): return "newWords-\(i)"
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         }
@@ -105,6 +108,8 @@ final class MPAppState: ObservableObject {
     /// A mode chosen on the home screen; the flow then opens at "Masalda
     /// kimler olsun?". Nil opens it at the modes. Cleared when the flow closes.
     @Published var creationPreset: StoryMode?
+    /// 14 · "Bu karakterle masal yaz": a Masal ailem character already chosen.
+    @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
     /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
@@ -115,8 +120,6 @@ final class MPAppState: ObservableObject {
     @Published var parentRoute: MPParentRoute?
     /// 12 · Benim köşem, Ana sayfa başlığındaki avatardan.
     @Published var showKidCorner = false
-    /// Günlük masallar listesi (eski "Günlük" sekmesi), Ana sayfadan açılır.
-    @Published var showDaily = false
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
@@ -174,8 +177,9 @@ final class MPAppState: ObservableObject {
 
     /// (+) butonu ve ana sayfa hero kartı yeni akışı baştan açar; ana
     /// sayfadaki bir mod kartı ise modu vererek ikinci adımdan.
-    func startStoryCreation(mode: StoryMode? = nil) {
+    func startStoryCreation(mode: StoryMode? = nil, family: UUID? = nil) {
         creationPreset = mode
+        creationFamilyID = family
         showStoryCreation = true
     }
 

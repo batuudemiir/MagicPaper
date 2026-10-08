@@ -3,9 +3,8 @@ import SwiftUI
 /// 12 · Benim köşem (`BenimKosem`).
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
-/// Masal ailem. Yıldız sayacı yok (karar 7 Ekim 2026). "Ekle" ebeveyn
-/// kapısına gider. "Yeni kelimelerim" kelime ve anlam içeriği gelince
-/// görünür (FAZ 17 içerik hattı).
+/// Masal ailem, Yeni kelimelerim (15). Yıldız sayacı yok (karar 7 Ekim
+/// 2026). "Ekle" ebeveyn kapısına gider.
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -167,8 +166,19 @@ struct KidCornerView: View {
                         subtitle: familySubtitle) {
                     app.sheet = .familyCharacters(profile.id)
                 }
+                MPRowDivider(area: .kid)
+                linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
+                        subtitle: wordsSubtitle) {
+                    app.sheet = .newWords(profile.id)
+                }
             }
         }
+    }
+
+    private var wordsSubtitle: String {
+        guard let profile else { return "" }
+        let count = MPVocabulary.collectedWords(in: storyManager.stories.filter { $0.belongs(to: profile) }).count
+        return count == 0 ? "Masallarda geçen kelimeler" : "\(count) kelime topladın"
     }
 
     private var familySubtitle: String {

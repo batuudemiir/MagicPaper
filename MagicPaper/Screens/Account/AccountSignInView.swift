@@ -1,7 +1,7 @@
 import SwiftUI
 import AuthenticationServices
 
-/// Onboarding · **Giriş** (FAZ 16): Karşılama → Giriş → Ebeveyn onayı → Profil.
+/// 05 · Giriş (`Giris`). Onboarding · **Giriş** (FAZ 16): Karşılama → Giriş → Ebeveyn onayı → Profil.
 ///
 /// Both buttons sit behind the parental gate: signing in opens Apple's or
 /// Google's own sheet, which in a Kids app is a parent-only door.
@@ -14,89 +14,100 @@ struct AccountSignInView: View {
     @State private var wasOffline = false
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: MP.S.x7) {
-                VStack(spacing: MP.S.x5) {
-                    MPIcon("person.crop.circle.badge.checkmark", size: MP.G.hero, weight: .semibold)
-                        .foregroundStyle(MP.C.brand)
-                        .frame(width: 108, height: 108)
-                        .background(
-                            RoundedRectangle(cornerRadius: MP.R.xxl, style: .continuous)
-                                .fill(MP.C.brandSoft))
-                        .accessibilityHidden(true)
-
-                    VStack(spacing: MP.S.x3) {
-                        Text(AccountCopy.signInTitle)
-                            .font(MP.F.displayLG())
-                            .mpTightTracking(32)
-                            .foregroundStyle(MP.C.textTitle)
-                            .multilineTextAlignment(.center)
-                            .accessibilityAddTraits(.isHeader)
-                        Text(AccountCopy.signInBody)
-                            .font(MP.F.bodyLG())
-                            .foregroundStyle(MP.C.textMuted)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .padding(.top, MP.S.x10)
-
-                VStack(spacing: MP.S.x3) {
-                    AppleSignInButton(isBusy: working == .apple) { gateFor = .apple }
-                        .frame(height: 56)
-                        .frame(maxWidth: .infinity)
-                        .accessibilityLabel(AccountCopy.continueWithApple)
-
-                    if account.googleAvailable {
-                        LegacyMPButton(title: AccountCopy.continueWithGoogle, variant: .outline, size: .md,
-                                 icon: "g.circle", fullWidth: true, isDisabled: working != nil) {
-                            gateFor = .google
+        ZStack {
+            MPGlowBackground(style: .dawn)
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: MPSpacing.xxl) {
+                    VStack(spacing: MPSpacing.xl) {
+                        Image("Brand/appIconLight")
+                            .resizable().scaledToFit()
+                            .frame(width: 128, height: 128)
+                            .clipShape(RoundedRectangle(cornerRadius: MPRadius.hero, style: .continuous))
+                            .mpShadow(.card)
+                            .accessibilityHidden(true)
+                        Image("Brand/wordmarkLight")
+                            .resizable().scaledToFit()
+                            .frame(maxWidth: 200)
+                            .accessibilityLabel("MagicPaper")
+                        VStack(spacing: MPSpacing.md) {
+                            Text(AccountCopy.signInTitle)
+                                .mpText(.largeTitle)
+                                .foregroundStyle(MPColor.textPrimary)
+                                .accessibilityAddTraits(.isHeader)
+                            Text(AccountCopy.signInBody)
+                                .mpText(.body)
+                                .foregroundStyle(MPColor.textSecondary)
                         }
-                        .accessibilityLabel(AccountCopy.continueWithGoogle)
-                    }
-
-                    if FirebaseBackend.emulatorHost != nil {
-                        LegacyMPButton(title: AccountCopy.emulatorSignIn, variant: .soft, size: .md,
-                                 fullWidth: true, isDisabled: working != nil) {
-                            Task { await signIn(.emulator) }
-                        }
-                    }
-
-                    if let message {
-                        Text(message)
-                            .font(MP.F.bodySM(.semibold))
-                            .foregroundStyle(MP.C.danger)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityAddTraits(.updatesFrequently)
-                    }
-
-                    Text(AccountCopy.signInFootnote)
-                        .font(MP.F.caption(.regular))
-                        .foregroundStyle(MP.C.textMuted)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                }
+                    }
+                    .padding(.top, MPSpacing.xxxl)
 
-                // A device that already has its children need not wait for
-                // a connection to read tonight's story.
-                if wasOffline && !profiles.profiles.isEmpty {
-                    VStack(spacing: MP.S.x2) {
-                        LegacyMPButton(title: AccountCopy.deferSignIn, variant: .ghost, size: .md) {
-                            account.deferredSignIn = true
+                    if wasOffline {
+                        MPOfflineNotice(showsMascot: false)
+                    }
+
+                    VStack(spacing: MPSpacing.md) {
+                        AppleSignInButton(isBusy: working == .apple) { gateFor = .apple }
+                            .frame(height: MPSize.buttonHeightAuth)
+                            .frame(maxWidth: .infinity)
+                            .accessibilityLabel(AccountCopy.continueWithApple)
+
+                        // Ürün kararı: Apple + Google (tasarımdaki "E-posta ile
+                        // devam et" yerine). Aynı dış çizgili görünüm.
+                        if account.googleAvailable {
+                            MPButton(title: AccountCopy.continueWithGoogle, systemImage: "g.circle",
+                                     kind: .outline, size: .auth, fullWidth: true) {
+                                gateFor = .google
+                            }
+                            .disabled(working != nil)
                         }
-                        Text(AccountCopy.deferFootnote)
-                            .font(MP.F.caption(.regular))
-                            .foregroundStyle(MP.C.textMuted)
+
+                        if FirebaseBackend.emulatorHost != nil {
+                            MPButton(title: AccountCopy.emulatorSignIn, kind: .soft, size: .auth,
+                                     fullWidth: true) {
+                                Task { await signIn(.emulator) }
+                            }
+                            .disabled(working != nil)
+                        }
+
+                        if let message, !wasOffline {
+                            Text(message)
+                                .mpText(.footnote)
+                                .foregroundStyle(MPColor.statusDanger)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .accessibilityAddTraits(.updatesFrequently)
+                        }
+
+                        Text(.init(AccountCopy.signInFootnote))
+                            .mpText(.caption)
+                            .foregroundStyle(MPColor.textSecondary)
+                            .tint(MPColor.actionPrimary)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, MPSpacing.xs)
+                    }
+
+                    // A device that already has its children need not wait for
+                    // a connection to read tonight's story.
+                    if wasOffline && !profiles.profiles.isEmpty {
+                        VStack(spacing: MPSpacing.xs) {
+                            MPButton(title: AccountCopy.deferSignIn, kind: .ghost) {
+                                account.deferredSignIn = true
+                            }
+                            Text(AccountCopy.deferFootnote)
+                                .mpText(.caption)
+                                .foregroundStyle(MPColor.textSecondary)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                     }
                 }
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.bottom, MPSpacing.xxl)
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.bottom, MP.S.x7)
         }
-        .mpScreenBackground()
         .fullScreenCover(item: $gateFor) { provider in
             ParentalGateView(onSuccess: {
                 gateFor = nil
@@ -119,7 +130,7 @@ struct AccountSignInView: View {
             try await account.signIn(with: provider)
         } catch {
             message = AccountCopy.message(for: error)
-            if (error as? AccountError) == .offline { wasOffline = true }
+            wasOffline = (error as? AccountError) == .offline
         }
     }
 }
@@ -137,7 +148,7 @@ private struct AppleSignInButton: UIViewRepresentable {
 
     func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
         let button = ASAuthorizationAppleIDButton(authorizationButtonType: .continue, authorizationButtonStyle: .black)
-        button.cornerRadius = MP.R.button
+        button.cornerRadius = MPSize.buttonHeightAuth / 2
         button.addTarget(context.coordinator, action: #selector(Coordinator.tap), for: .touchUpInside)
         return button
     }

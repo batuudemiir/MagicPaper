@@ -79,11 +79,10 @@ final class BookCharacterModel: ObservableObject {
 
 // MARK: - Görünüm
 
-/// Ebeveynin, çocuğun masallarda görünecek karakterini seçtiği ekran.
-///
-/// İlk, işlevsel sürüm. Görsel tasarımı Zehra'nın kararı (plan §9 #3).
-/// Profil düzenleme sayfasından, ebeveyn tarafından açılır; çocuk profilinin
-/// madalyonu değişmez — karakter yalnızca kitabın içinde görünür.
+/// 13 · Kahraman oluşturucu (`KahramanOlustur`): çocuğun görselli
+/// masallarda görünecek karakteri. Canlı önizleme, ten, saç, kıyafet,
+/// aksesuar. Fotoğraf asla istenmez. Benim köşem ve Masal ailem'den açılır
+/// (görselli kitap bayrağı açıkken); çocuk profilinin madalyonu değişmez.
 struct BookCharacterView: View {
     let profile: UserProfile
     @EnvironmentObject private var app: MPAppState
@@ -95,75 +94,98 @@ struct BookCharacterView: View {
     }
 
     var body: some View {
-        MPSheet(title: "Kitap karakteri", onClose: close) {
-            VStack(alignment: .leading, spacing: MP.S.x5) {
-                Text("Görselli masallarda \(profile.name) bu karakterle görünür. Fotoğraf istemiyoruz; seçtiğin parçalar yalnızca bu cihazda saklanır.")
-                    .font(MP.F.bodyMD())
-                    .foregroundStyle(MP.C.textBody)
-                    .fixedSize(horizontal: false, vertical: true)
+        VStack(spacing: 0) {
+            MPTopBar(title: "Kahramanını tasarla", onBack: close) { EmptyView() }
+                .padding(.horizontal, MPSpacing.screenH)
 
-                preview
-
-                if let kit = model.kit {
-                    group(.skinTone, title: "Ten", kit: kit)
-                    group(.hairStyle, title: "Saç biçimi", kit: kit)
-                    group(.hairColor, title: "Saç rengi", kit: kit)
-                    group(.outfit, title: "Kıyafet", kit: kit)
-                    group(.accessory, title: "Aksesuar", kit: kit, allowsNone: true)
-                }
-
-                if !model.hasSaved {
-                    Text("Kaydedene kadar masallar bugünkü gibi resimsiz kalır.")
-                        .font(MP.F.bodySM())
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-        } footer: {
-            VStack(spacing: MP.S.x2) {
-                LegacyMPButton(title: "Kaydet", fullWidth: true, isDisabled: model.isBusy || model.kit == nil) {
-                    Task { await save() }
-                }
-                .accessibilityLabel("Kitap karakterini kaydet")
-                if model.hasSaved {
-                    LegacyMPButton(title: "Kitap karakterini kaldır", variant: .ghost, size: .sm, isDisabled: model.isBusy) {
-                        Task { await model.remove() }
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                    preview
+                    if let kit = model.kit {
+                        group(.skinTone, title: "Ten rengi", kit: kit)
+                        group(.hairStyle, title: "Saç", kit: kit)
+                        group(.hairColor, title: "Saç rengi", kit: kit)
+                        group(.outfit, title: "Kıyafet", kit: kit)
+                        group(.accessory, title: "Aksesuar", kit: kit, allowsNone: true)
+                    }
+                    if model.hasSaved {
+                        MPButton(title: "Kahramanı kaldır", kind: .ghost, size: .small) {
+                            Task { await model.remove() }
+                        }
+                        .disabled(model.isBusy)
+                        .frame(maxWidth: .infinity)
                     }
                 }
+                .padding(.horizontal, MPSpacing.xl)
+                .padding(.vertical, MPSpacing.lg)
             }
+
+            VStack(spacing: MPSpacing.sm) {
+                MPButton(title: "Kaydet", systemImage: "checkmark", fullWidth: true, isLoading: model.isBusy) {
+                    Task { await save() }
+                }
+                .disabled(model.kit == nil)
+                .accessibilityLabel("Kahramanı kaydet")
+                Text("Kahraman masal kapaklarında ve resimlerde böyle görünür.")
+                    .mpText(.caption).fontWeight(.regular)
+                    .foregroundStyle(MPColor.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(.horizontal, MPSpacing.xxxl)
+            .padding(.vertical, MPSpacing.md)
         }
+        .background(MPColor.backgroundKid.ignoresSafeArea())
         .task { await model.load() }
     }
 
     private var preview: some View {
-        HStack(alignment: .bottom, spacing: MP.S.x4) {
-            ForEach(["standing", "celebrating"], id: \.self) { pose in
-                AvatarView(spec: model.spec, pose: pose, kit: model.kit)
-                    .frame(height: 190)
-            }
+        VStack(spacing: MPSpacing.sm) {
+            AvatarView(spec: model.spec, pose: "standing", kit: model.kit)
+                .frame(height: 150)
+                .frame(width: 170, height: 170)
+                .background(MPWorldTone.sky.soft, in: Circle())
+                .clipShape(Circle())
+                .mpShadow(.card)
+            Text(profile.name).mpText(.title2).foregroundStyle(MPColor.textPrimary)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, MP.S.x4)
-        .mpEdge(fill: MP.C.surfaceSunken, edge: MP.C.borderHairline, radius: MP.R.card)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(model.spokenSummary)
     }
 
+    @ViewBuilder
     private func group(_ group: AvatarKit.Group, title: String, kit: AvatarKit, allowsNone: Bool = false) -> some View {
-        VStack(alignment: .leading, spacing: MP.S.x2) {
-            LegacyMPSectionHeader(title: title, emphasis: .secondary)
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: MP.S.x2)],
-                      alignment: .leading, spacing: MP.S.x2) {
+        let options = kit.selectableOptions(group)
+        let swatches = options.allSatisfy { $0.colorToken != nil }
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            MPWrapRow(spacing: MPSpacing.sm) {
                 if allowsNone {
-                    BookCharacterOption(label: "Yok", swatch: nil,
-                                        isSelected: model.isSelected(group, nil),
-                                        accessibilityGroup: title) { model.select(group, nil) }
+                    MPChip(title: "Yok", isSelected: model.isSelected(group, nil)) { model.select(group, nil) }
+                        .accessibilityLabel("\(title): Yok")
                 }
-                ForEach(kit.selectableOptions(group)) { option in
-                    BookCharacterOption(label: option.label,
-                                        swatch: option.colorToken.flatMap { MP.C.avatarParts[$0] },
-                                        isSelected: model.isSelected(group, option.id),
-                                        accessibilityGroup: title) { model.select(group, option.id) }
+                ForEach(options) { option in
+                    let selected = model.isSelected(group, option.id)
+                    if swatches, let token = option.colorToken, let color = MP.C.avatarParts[token] {
+                        Button { MPHaptics.selection(); model.select(group, option.id) } label: {
+                            Circle().fill(color)
+                                .frame(width: 42, height: 42)
+                                .overlay(Circle().strokeBorder(MPColor.borderKid, lineWidth: 1))
+                                .padding(MPSpacing.xxs)
+                                .overlay { if selected { Circle().strokeBorder(MPColor.actionPrimary, lineWidth: 3) } }
+                                .frame(minWidth: MPSize.minTouchKid, minHeight: MPSize.minTouchKid)
+                        }
+                        .buttonStyle(MPPressStyle())
+                        .accessibilityLabel("\(title): \(option.label)")
+                        .accessibilityAddTraits(selected ? .isSelected : [])
+                    } else {
+                        MPChip(title: option.label, isSelected: selected) {
+                            MPHaptics.selection()
+                            model.select(group, option.id)
+                        }
+                        .accessibilityLabel("\(title): \(option.label)")
+                    }
                 }
             }
         }
@@ -171,7 +193,7 @@ struct BookCharacterView: View {
 
     private func save() async {
         if await model.save() {
-            app.showToast("Kitap karakteri kaydedildi", symbol: "sparkles")
+            app.showToast("Kahraman kaydedildi", symbol: "sparkles")
             close()
         } else {
             app.showToast("Kaydedilemedi", symbol: "exclamationmark.triangle", tone: .danger)
@@ -179,47 +201,6 @@ struct BookCharacterView: View {
     }
 
     private func close() {
-        app.sheet = .profileEdit(profile.id)
-    }
-}
-
-/// Tek bir parça seçeneği: varsa renk örneği ve her zaman yazılı ad — bilgi
-/// yalnızca renkle verilmez.
-private struct BookCharacterOption: View {
-    let label: String
-    let swatch: Color?
-    let isSelected: Bool
-    let accessibilityGroup: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: MP.S.x2) {
-                if let swatch {
-                    Circle().fill(swatch)
-                        .frame(width: MP.S.x5, height: MP.S.x5)
-                        .overlay(Circle().strokeBorder(MP.C.borderStrong, lineWidth: 1))
-                        .accessibilityHidden(true)
-                }
-                Text(label)
-                    .font(MP.F.labelMD())
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.85)
-                    .multilineTextAlignment(.leading)
-                Spacer(minLength: 0)
-                if isSelected {
-                    MPIcon("checkmark", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
-                }
-            }
-            .foregroundStyle(isSelected ? MP.C.textOnBrand : MP.C.textBody)
-            .padding(.horizontal, MP.S.x3)
-            .frame(maxWidth: .infinity, minHeight: MP.S.tapMin)
-            .mpEdge(fill: isSelected ? MP.C.brand : MP.C.surfaceCard,
-                    edge: isSelected ? MP.C.brandEdge : MP.C.borderStrong,
-                    radius: MP.R.md)
-        }
-        .buttonStyle(MPPressStyle(scales: false))
-        .accessibilityLabel("\(accessibilityGroup): \(label)")
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        app.sheet = nil
     }
 }

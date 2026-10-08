@@ -1,117 +1,129 @@
 import SwiftUI
 
-/// Onboarding — 03-SCREENS.md §1. Üç sayfa, sıfır emoji.
+/// 02-04 · Karşılama (`Main`, `Onboarding2`, `Onboarding3`).
+///
+/// Üç sayfa, yana kaydırılır ya da "Devam et" ile ilerler. "Geç" ve son
+/// sayfanın "Başlayalım"ı girişe geçer. Her sayfada tek maskot, tek birincil
+/// buton. Metinler `docs/SCREENS.md`'den aynen; 03'teki dünya listesi
+/// tasarımın sözü, motor bugün modları sunuyor (İrem'e not).
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
 
     @ObservedObject private var profileManager = ProfileManager.shared
     @State private var page = 0
-    @State private var cycleIndex = 0
-    @State private var cycleVisible = true
-
-    /// 2. sayfanın döngüsel ikonu — her 1000ms'de bir değişir.
-    private let cycleSymbols = ["building.columns", "airplane.departure", "tree", "fish",
-                                "sailboat", "snowflake", "cpu", "tent"]
 
     private struct Page {
-        let symbol: String
         let title: String
         let body: String
         let cta: String
+        let background: MPGlowBackground.Style
     }
 
     private let pages: [Page] = [
-        Page(symbol: "wand.and.stars",
-             title: "Kendi masalını yarat",
-             body: "Çocuğun ismini ve dünyasını seç, gerisini biz yazalım.",
-             cta: "Devam et"),
-        Page(symbol: "",
-             title: "Onlarca dünya",
-             body: "Uzay, orman, deniz altı, korsanlar... her akşam farklı bir masal.",
-             cta: "Devam et"),
-        Page(symbol: "book",
-             title: "Uykudan önceki en güzel on dakika",
-             body: "Çocuğunun adının geçtiği bir masal, birlikte geçen sakin bir akşam ve mutlu bir uyku.",
-             cta: "Başlayalım")
+        Page(title: "Kahramanı çocuğun olan masallar",
+             body: "Adını ve sevdiği dünyayı seç, masalı birlikte yazalım.",
+             cta: "Devam et", background: .dawn),
+        Page(title: "Her akşam başka bir dünya",
+             body: "Uzay, orman, deniz altı, korsanlar. Masal her gece yeniden yazılır.",
+             cta: "Devam et", background: .night),
+        Page(title: "Kontrol her zaman sende",
+             body: "Reklam yok, satın alma çocuğa kapalı. Her masal güvenlik kontrolünden geçer.",
+             cta: "Başlayalım", background: .lilac)
     ]
 
+    private var onDark: Bool { page == 1 }
+
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Spacer(minLength: 0)
-                LegacyMPButton(title: "Geç", variant: .ghost, size: .sm) { finish() }
-                    .padding(.horizontal, 4)
+        ZStack {
+            ForEach(pages.indices, id: \.self) { index in
+                MPGlowBackground(style: pages[index].background)
+                    .opacity(index == page ? 1 : 0)
             }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.top, 4)
+            .animation(MP.M.gated(MP.M.base), value: page)
 
-            Spacer(minLength: 0)
-
-            VStack(spacing: 22) {
-                iconBox
-
-                VStack(spacing: 10) {
-                    Text(pages[page].title)
-                        .font(MP.F.displayLG())
-                        .mpTightTracking(32)
-                        .foregroundStyle(MP.C.textTitle)
-                        .multilineTextAlignment(.center)
-
-                    Text(pages[page].body)
-                        .font(MP.F.bodyLG())
-                        .lineSpacing(18 * 0.5)
-                        .foregroundStyle(MP.C.textMuted)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: 290)
-                        .fixedSize(horizontal: false, vertical: true)
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer(minLength: 0)
+                    Button("Geç", action: finish)
+                        .mpText(.bodyStrong)
+                        .foregroundStyle(onDark ? Color.white : MPColor.textPrimary)
+                        .frame(minWidth: MPSize.minTouchKid, minHeight: MPSize.minTouchParent)
+                        .accessibilityHint("Karşılamayı atlar")
                 }
-            }
-            .padding(.horizontal, 32)
+                .padding(.horizontal, MPSpacing.screenH)
 
-            Spacer(minLength: 0)
-
-            VStack(spacing: 18) {
-                MPStepDots(total: pages.count, current: page)
-
-                LegacyMPButton(title: pages[page].cta,
-                         size: .lg,
-                         iconAfter: page < pages.count - 1 ? "arrow.right" : nil,
-                         fullWidth: true) {
-                    if page < pages.count - 1 {
-                        withAnimation(MP.M.gated(MP.M.base)) { page += 1 }
-                    } else {
-                        finish()
+                TabView(selection: $page) {
+                    ForEach(pages.indices, id: \.self) { index in
+                        pageView(index).tag(index)
                     }
                 }
-            }
-            .padding(.horizontal, MP.S.screenGutter)
-            .padding(.bottom, 12)
-        }
-        .mpScreenBackground()
-        .task(id: page) {
-            guard page == 1 else { return }
-            // 1000ms'de bir ikon değişir; çıkış ease-out, giriş ease-spring.
-            while !Task.isCancelled && page == 1 {
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
-                guard page == 1 else { break }
-                withAnimation(.easeOut(duration: 0.13)) { cycleVisible = false }
-                try? await Task.sleep(nanoseconds: 130_000_000)
-                cycleIndex = (cycleIndex + 1) % cycleSymbols.count
-                withAnimation(MP.M.gated(MP.M.spring)) { cycleVisible = true }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+
+                VStack(spacing: MPSpacing.xxl) {
+                    MPPageDots(count: pages.count, current: page, onDark: onDark)
+                    MPButton(title: pages[page].cta, fullWidth: true) {
+                        if page < pages.count - 1 {
+                            withAnimation(MP.M.gated(MP.M.base)) { page += 1 }
+                        } else {
+                            finish()
+                        }
+                    }
+                    .padding(.horizontal, MPSpacing.xxxl)
+                }
+                .padding(.bottom, MPSpacing.lg)
             }
         }
     }
 
-    private var iconBox: some View {
-        MPIcon(page == 1 ? cycleSymbols[cycleIndex] : pages[page].symbol, size: 52, weight: .semibold)
-            .foregroundStyle(MP.C.brand)
-            .opacity(page == 1 && !cycleVisible ? 0 : 1)
-            .scaleEffect(page == 1 && !cycleVisible ? 0.82 : 1)
-            .frame(width: 108, height: 108)
-            .background(
-                RoundedRectangle(cornerRadius: MP.R.xxl, style: .continuous)
-                    .fill(MP.C.brandSoft)
-            )
+    @ViewBuilder
+    private func pageView(_ index: Int) -> some View {
+        let page = pages[index]
+        VStack(spacing: MPSpacing.xl) {
+            Spacer(minLength: 0)
+            art(index)
+            Spacer(minLength: 0)
+            VStack(spacing: MPSpacing.md) {
+                Text(page.title)
+                    .mpText(.largeTitle)
+                    .foregroundStyle(index == 1 ? Color.white : MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                Text(page.body)
+                    .mpText(.body)
+                    .foregroundStyle(index == 1 ? Color.white.opacity(0.82) : MPColor.textSecondary)
+            }
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal, MPSpacing.xxxl)
+        }
+        .padding(.bottom, MPSpacing.xxl)
+    }
+
+    @ViewBuilder
+    private func art(_ index: Int) -> some View {
+        switch index {
+        case 0:
+            VStack(spacing: MPSpacing.xxl) {
+                Image("Brand/wordmarkLight")
+                    .resizable().scaledToFit()
+                    .frame(maxWidth: 230)
+                    .accessibilityLabel("MagicPaper")
+                MascotImage(mascot: .onBook, width: 270)
+                    .accessibilityHidden(true)
+            }
+        case 1:
+            Image("Brand/sceneNight")
+                .resizable().scaledToFill()
+                .frame(width: 300, height: 246)
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.hero, style: .continuous))
+                .mpShadow(.card)
+                .accessibilityHidden(true)
+        default:
+            MascotImage(mascot: .walking, width: 200)
+                .frame(width: 260, height: 260)
+                .background(MPColor.backgroundSurface, in: Circle())
+                .mpShadow(.card)
+                .accessibilityHidden(true)
+        }
     }
 
     private func finish() {

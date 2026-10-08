@@ -19,6 +19,7 @@ struct StoryEndingLeaf: View {
 
     @StateObject private var streak = MPStreak.shared
     @StateObject private var news = MPBadgeNews.shared
+    @StateObject private var settings = MPSettingsStore.shared
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var appeared = false
 
@@ -33,6 +34,8 @@ struct StoryEndingLeaf: View {
             withAnimation(reduceMotion ? .easeOut(duration: MPMotion.tap) : MPMotion.spring) { appeared = true }
         }
     }
+
+    private var isBedtime: Bool { MPBedtime.isBedtime(settings: settings) }
 
     private var wordCount: Int {
         Set(story.pages.flatMap { $0.words ?? [] }.map(\.id)).count
@@ -72,11 +75,19 @@ struct StoryEndingLeaf: View {
 
             SeriesEndingSection(story: story, theme: theme, accent: accent)
 
+            // Uyku vaktinde birincil yol "İyi geceler"; gündüz "Bir masal daha".
             VStack(spacing: MPSpacing.xs) {
-                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", fullWidth: true,
-                         action: onAnother)
-                    .padding(.horizontal, MPSpacing.lg)
-                MPButton(title: "İyi geceler", systemImage: "moon", kind: .ghost, action: onGoodNight)
+                if isBedtime {
+                    MPButton(title: "İyi geceler", systemImage: "moon", fullWidth: true, action: onGoodNight)
+                        .padding(.horizontal, MPSpacing.lg)
+                    MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", kind: .ghost,
+                             action: onAnother)
+                } else {
+                    MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", fullWidth: true,
+                             action: onAnother)
+                        .padding(.horizontal, MPSpacing.lg)
+                    MPButton(title: "İyi geceler", systemImage: "moon", kind: .ghost, action: onGoodNight)
+                }
                 MPButton(title: "Tekrar oku", kind: .ghost, size: .small, action: onReadAgain)
             }
         }
@@ -84,7 +95,7 @@ struct StoryEndingLeaf: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, StoryPageView.gutter)
         // Okuyucunun kapat düğmesinin altından başlar.
-        .padding(.top, MP.S.navBarHeight + MPSpacing.xl)
+        .padding(.top, MP.S.navBarHeight + MPSpacing.xxxl)
         .padding(.bottom, MPSpacing.xxxl)
     }
 

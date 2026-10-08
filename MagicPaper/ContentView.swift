@@ -16,6 +16,10 @@ struct ContentView: View {
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// 09 + 10: ilk profil oluştuktan sonra bir kez.
+    @State private var firstRun: FirstRunName?
+    /// İlk masal hazırsa, kapak kapandıktan sonra okunur.
+    @State private var firstStory: Story?
 
     var body: some View {
         content
@@ -37,7 +41,7 @@ struct ContentView: View {
             .task {
                 // Akış 1: ilk profil oluşturulduysa ana sayfada karşılama toast'ı.
                 if let name = MPWelcome.consume() {
-                    app.showToast("\(name) için hazırız", symbol: "sparkles")
+                    firstRun = FirstRunName(name: name)
                 }
                 // Hatırlatma planı iOS'ta kalıcı ama izin Sistem Ayarları'ndan geri
                 // alınabilir; ayrıca aktif çocuk değişmiş olabilir ve bildirimde
@@ -84,9 +88,10 @@ struct ContentView: View {
             }
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
                 app.creationPreset = nil
+                app.creationFamilyID = nil
                 app.runAfterReader()
             }) {
-                StoryCreationFlow(preset: app.creationPreset).environmentObject(app).environmentObject(settings)
+                StoryCreationFlow(preset: app.creationPreset, family: app.creationFamilyID).environmentObject(app).environmentObject(settings)
             }
             .sheet(item: $app.actionsStory, onDismiss: {
                 if let next = app.pendingRead {
@@ -108,9 +113,6 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showPaywall) {
                 PaywallView().environmentObject(app)
             }
-            .fullScreenCover(isPresented: $app.showDaily) {
-                DailyStoriesView().environmentObject(app).environmentObject(settings)
-            }
             .fullScreenCover(isPresented: $app.showGate) {
                 ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
             }
@@ -119,6 +121,17 @@ struct ContentView: View {
             }
             .fullScreenCover(isPresented: $app.showDecorationDemo) {
                 StoryDecorationDemoView().environmentObject(app)
+            }
+            .fullScreenCover(item: $firstRun, onDismiss: {
+                if let story = firstStory {
+                    firstStory = nil
+                    app.read(story, fromStart: true)
+                }
+            }) { run in
+                FirstRunView(childName: run.name) { story in
+                    firstStory = story
+                    firstRun = nil
+                }
             }
             .fullScreenCover(isPresented: $app.showProfileAdd) {
                 ProfileCreationView(mode: .addAnother) { name in
@@ -219,6 +232,10 @@ struct ContentView: View {
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     FamilyCharactersView(profile: profile).environmentObject(app)
                 }
+            case .newWords(let id):
+                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                    NewWordsView(profile: profile) { app.sheet = nil }
+                }
             case .interests(let id):
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     InterestsEditorSheet(profile: profile).environmentObject(app)
@@ -232,4 +249,10 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+/// İlk kurulum kapağının kimliği (09 + 10).
+private struct FirstRunName: Identifiable {
+    let name: String
+    var id: String { name }
 }

@@ -50,6 +50,8 @@ struct StoryCreationFlow: View {
     @State private var phase: Phase
     /// The story built during `.preparing`, read once "Masalı oku" is tapped.
     @State private var preparedStory: Story?
+    /// Why the last attempt failed (43 shows a calmer sentence for safety).
+    @State private var failureReason: StoryFailureReason?
     /// Always one of the three modes once past step 1 — a surprise is resolved
     /// the moment it is chosen, so the companion step can already fit it.
     @State private var chosenMode: StoryMode?
@@ -72,7 +74,9 @@ struct StoryCreationFlow: View {
     private var profile: UserProfile? { profileManager.currentProfile }
 
     /// - Parameter preset: a mode already chosen on the home screen.
-    init(preset: StoryMode? = nil) {
+    /// - Parameter family: a Masal ailem character chosen on 14.
+    init(preset: StoryMode? = nil, family: UUID? = nil) {
+        _chosenFamilyID = State(initialValue: family)
         let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
         let available = StoryCreationSteps.allowedModes(
             StoryChoiceSources.current.availableModes(forAge: age),
@@ -271,7 +275,8 @@ struct StoryCreationFlow: View {
         case .failed:
             StoryCreationFailureView(
                 onRetry: { resetToModes() },
-                onClose: { dismiss() }
+                onClose: { dismiss() },
+                message: (failureReason ?? .general).message
             )
         }
     }
@@ -319,6 +324,7 @@ struct StoryCreationFlow: View {
             phase = .companion
         } catch {
             print("❌ Sürpriz mod seçilemedi: \(storyFailureDetail(error))")
+            failureReason = StoryFailureReason(error)
             phase = .failed
         }
     }
@@ -354,6 +360,7 @@ struct StoryCreationFlow: View {
             } catch {
                 // §29: the detail goes to the log, never to the parent.
                 print("❌ Hikâye üretilemedi: \(storyFailureDetail(error))")
+                failureReason = StoryFailureReason(error)
                 phase = .failed
             }
         }

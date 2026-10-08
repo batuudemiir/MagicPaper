@@ -8,6 +8,9 @@ struct StoryCreationFailureView: View {
 
     let onRetry: () -> Void
     let onClose: () -> Void
+    /// `StoryFailureReason(error).message`: güvenlik ayarının elediği masal
+    /// için ayrı, sakin bir cümle.
+    var message: String = "Bir şeyler yolunda gitmedi ama sorun sende değil. Tekrar deneyelim mi?"
 
     var body: some View {
         VStack(spacing: 0) {
@@ -18,7 +21,7 @@ struct StoryCreationFailureView: View {
             .padding(.top, MPSpacing.sm)
 
             MPStateView(mascot: .surprised, tone: .pink, title: "Masal biraz takılı kaldı",
-                        message: "Bir şeyler yolunda gitmedi ama sorun sende değil. Tekrar deneyelim mi?") {
+                        message: message) {
                 MPButton(title: "Tekrar dene", systemImage: "arrow.counterclockwise", fullWidth: true, action: onRetry)
                     .padding(.horizontal, MPSpacing.xl)
                 MPButton(title: "Ana sayfaya dön", kind: .ghost, action: onClose)

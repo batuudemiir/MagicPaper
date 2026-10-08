@@ -15,6 +15,7 @@ struct ParentOverviewView: View {
 
     @State private var exportFile: MPExportFile?
     @State private var isExporting = false
+    @State private var showsLapse = false
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -35,6 +36,12 @@ struct ParentOverviewView: View {
         .background(MPColor.backgroundParent.ignoresSafeArea())
         .sheet(item: $exportFile) { file in
             ShareSheet(items: [file.url])
+        }
+        .fullScreenCover(isPresented: $showsLapse, onDismiss: { subscriptionManager.acknowledgeLapse() }) {
+            SubscriptionExpiredView(onRenew: {
+                showsLapse = false
+                app.openPaywall()
+            }, onClose: { showsLapse = false })
         }
     }
 
@@ -235,11 +242,16 @@ struct ParentOverviewView: View {
                     VStack(alignment: .leading, spacing: 1) {
                         Text(subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan")
                             .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        Text(subscriptionManager.isPremium ? "Aylık yenilenir" : "Temel masallar")
+                        Text(subscriptionManager.isPremium ? "Aylık yenilenir"
+                             : (subscriptionManager.hasUnseenLapse ? "Premium süren doldu" : "Temel masallar"))
                             .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     }
                     Spacer(minLength: MPSpacing.sm)
-                    MPButton(title: "Planlar", kind: .soft, size: .small) { app.openPaywall() }
+                    if subscriptionManager.hasUnseenLapse && !subscriptionManager.isPremium {
+                        MPButton(title: "Ayrıntı", kind: .soft, size: .small) { showsLapse = true }
+                    } else {
+                        MPButton(title: "Planlar", kind: .soft, size: .small) { app.openPaywall() }
+                    }
                 }
             }
         }

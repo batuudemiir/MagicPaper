@@ -42,6 +42,10 @@ struct MPSegmented<Value: Hashable>: View {
     let options: [(Value, String)]
     @Binding var selection: Value
     var track: Color = Color(red: 0xEF / 255, green: 0xE8 / 255, blue: 0xDD / 255)
+    /// Gece yüzeyi (Uyku modu): seçili dolgu ve yazı renkleri değişir.
+    var selectedFill: Color = MPColor.actionPrimary
+    var selectedText: Color = MPColor.textOnAction
+    var text: Color = MPColor.textPrimary
 
     var body: some View {
         HStack(spacing: 4) {
@@ -49,10 +53,10 @@ struct MPSegmented<Value: Hashable>: View {
                 let on = value == selection
                 Button { withAnimation(MPMotion.spring) { selection = value } } label: {
                     Text(label).mpText(.callout)
-                        .foregroundStyle(on ? MPColor.textOnAction : MPColor.textPrimary)
+                        .foregroundStyle(on ? selectedText : text)
                         .frame(maxWidth: .infinity)
                         .frame(height: MPSize.segmentHeight)
-                        .background(on ? MPColor.actionPrimary : .clear, in: Capsule())
+                        .background(on ? selectedFill : .clear, in: Capsule())
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(on ? .isSelected : [])

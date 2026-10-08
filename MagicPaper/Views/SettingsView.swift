@@ -53,8 +53,8 @@ struct SettingsView: View {
         .background(MPColor.backgroundParent.ignoresSafeArea())
         .fullScreenCover(isPresented: $showPrivacy) { PrivacyAndDataView() }
         .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
-        .overlay {
-            if confirmDelete { AccountDeletionSheet(onClose: { confirmDelete = false }) }
+        .fullScreenCover(isPresented: $confirmDelete) {
+            AccountDeletionSheet(onClose: { confirmDelete = false })
         }
         .confirmationDialog("Tüm verileri sil", isPresented: $confirmClear, titleVisibility: .visible) {
             Button("Sil", role: .destructive) {
@@ -391,114 +391,66 @@ struct PrivacyAndDataView: View {
     @State private var confirmDelete = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            MPNavBar(title: "Gizlilik ve veri", onBack: { dismiss() })
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.section) {
+                ParentHeader(title: "Gizlilik ve veri", onBack: { dismiss() })
 
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: MP.S.sectionGap) {
-                    LegacyMPCard(padding: 20) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Çocuk fotoğrafı toplanmaz")
-                                .font(MP.F.displaySM())
-                                .foregroundStyle(MP.C.textTitle)
-                            Text("Profiller ve masallar cihazınızda ve yalnızca sizin erişebildiğiniz ebeveyn hesabınızda saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
-                                .font(MP.F.bodyMD())
-                                .lineSpacing(16 * 0.55)
-                                .foregroundStyle(MP.C.textMuted)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 16) {
-                        LegacyMPSectionHeader(title: "Yasal")
-                        LegacyMPCard(padding: 0) {
-                            VStack(spacing: 0) {
-                                LegacyMPListRow(symbol: "shield", title: "Gizlilik politikası", action: {
-                                    open("https://magicpaper.app/privacy")
-                                })
-                                LegacyMPRowDivider()
-                                LegacyMPListRow(symbol: "book", title: "Kullanım koşulları", action: {
-                                    open("https://magicpaper.app/terms")
-                                })
-                            }
-                        }
-                    }
-
-                    usageSection
-
-                    VStack(alignment: .leading, spacing: 16) {
-                        LegacyMPSectionHeader(title: "Veriler")
-                        LegacyMPCard(padding: 0) {
-                            // Signed in, a device-only erase would come back
-                            // with the next sync: the real erase is the
-                            // account's (FAZ 16).
-                            if account.account != nil {
-                                LegacyMPListRow(symbol: "trash", title: AccountCopy.deleteAccount,
-                                          description: AccountCopy.deleteAccountRow,
-                                          isDanger: true,
-                                          action: { confirmDelete = true })
-                            } else {
-                                LegacyMPListRow(symbol: "trash", title: "Tüm verileri sil",
-                                          description: "Masallar ve profiller cihazdan kaldırılır",
-                                          isDanger: true,
-                                          action: { confirmClear = true })
-                            }
-                        }
+                MPCard(area: .parent, padding: MPSpacing.lg) {
+                    VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                        Text("Çocuk fotoğrafı toplanmaz").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        Text("Profiller ve masallar cihazında ve yalnızca senin erişebildiğin ebeveyn hesabında saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
+                            .mpText(.footnote).fontWeight(.regular)
+                            .foregroundStyle(MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-                .padding(.horizontal, MP.S.screenGutter)
-                .padding(.top, 8)
-                .padding(.bottom, 30)
+
+                ParentSection(title: "Yasal") {
+                    ParentRowButton(systemImage: "shield", tone: .lav, title: "Gizlilik politikası") {
+                        open("https://magicpaper.app/privacy")
+                    }
+                    MPRowDivider(area: .parent)
+                    ParentRowButton(systemImage: "book", tone: .sky, title: "Kullanım koşulları") {
+                        open("https://magicpaper.app/terms")
+                    }
+                }
+
+                // Anonim okuma bilgisi (FAZ 14). Kapatmak bekleyenleri de
+                // siler. Çocuğun kendi okuma kaydı cihazda kalır.
+                ParentSection(title: "Okuma bilgisi") {
+                    ParentToggleRow(systemImage: "eye.slash", tone: .gray, title: "Okuma bilgisini paylaş",
+                                    subtitle: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan. Kapatınca bekleyen bilgiler silinir.",
+                                    isOn: $settings.shareUsageData)
+                }
+
+                ParentSection(title: "Veriler") {
+                    // Signed in, a device-only erase would come back with the
+                    // next sync: the real erase is the account's (FAZ 16).
+                    if account.account != nil {
+                        ParentRowButton(systemImage: "trash", tone: .pink, title: AccountCopy.deleteAccount,
+                                        subtitle: AccountCopy.deleteAccountRow) { confirmDelete = true }
+                    } else {
+                        ParentRowButton(systemImage: "trash", tone: .pink, title: "Tüm verileri sil",
+                                        subtitle: "Masallar ve profiller cihazdan kaldırılır") { confirmClear = true }
+                    }
+                }
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxxl)
         }
-        .mpScreenBackground()
-        // Onay dili sistem alert'i değil, sistemin kendi alt sayfasıdır:
-        // "her ikincil aksiyon ekran push etmek yerine sheet'te açılır".
-        .overlay {
-            if confirmDelete {
-                AccountDeletionSheet(onClose: { confirmDelete = false })
-            }
+        .background(MPColor.backgroundParent.ignoresSafeArea())
+        .fullScreenCover(isPresented: $confirmDelete) {
+            AccountDeletionSheet(onClose: { confirmDelete = false })
         }
         // The account is gone: this screen and the parent area close with it.
         .onChange(of: account.account == nil) { _, signedOut in
             if signedOut && confirmDelete { confirmDelete = false; dismiss() }
         }
-        .overlay {
-            if confirmClear {
-                MPSheet(title: "Tüm verileri sil", onClose: { confirmClear = false }) {
-                    Text("Masallar, profiller ve okuma ilerlemen cihazdan kaldırılır. Bu işlem geri alınamaz.")
-                        .font(MP.F.bodyMD())
-                        .lineSpacing(16 * 0.55)
-                        .foregroundStyle(MP.C.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } footer: {
-                    VStack(spacing: 8) {
-                        LegacyMPButton(title: "Sil", tone: .play, size: .lg, fullWidth: true) {
-                            confirmClear = false
-                            clearAll()
-                        }
-                        LegacyMPButton(title: "Vazgeç", variant: .ghost, size: .sm) {
-                            confirmClear = false
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /// Anonim okuma bilgisi (FAZ 14). Kapatmak bekleyenleri de siler.
-    /// Çocuğun kendi okuma kaydı — sıradaki masalın ona göre seçilmesi —
-    /// cihazda kalır ve bu anahtardan etkilenmez.
-    private var usageSection: some View {
-        VStack(alignment: .leading, spacing: MP.S.x4) {
-            LegacyMPSectionHeader(title: "Okuma bilgisi")
-            LegacyMPCard(padding: 0) {
-                LegacyMPListRow(symbol: "eye.slash", title: "Okuma bilgisini paylaş",
-                          description: "Hangi masalların bitirildiği; ad, yaş, hesap ve cihaz bilgisi olmadan, hesabınıza bağlanmadan. Masalları iyileştirmek için. Kapatınca bekleyen bilgiler silinir.") {
-                    MPSwitch(isOn: $settings.shareUsageData, label: "Okuma bilgisini paylaş")
-                }
-            }
+        .confirmationDialog("Tüm verileri sil", isPresented: $confirmClear, titleVisibility: .visible) {
+            Button("Sil", role: .destructive, action: clearAll)
+            Button("Vazgeç", role: .cancel) {}
+        } message: {
+            Text("Masallar, profiller ve okuma ilerlemen cihazdan kaldırılır. Bu işlem geri alınamaz.")
         }
     }
 

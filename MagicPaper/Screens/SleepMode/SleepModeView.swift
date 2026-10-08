@@ -74,8 +74,8 @@ struct SleepModeView: View {
                 ZStack {
                     HStack {
                         MPCircleButton(systemImage: "xmark", accessibilityLabel: "Uyku modundan çık",
-                                       bordered: false, tint: MPColor.readerNightText, action: close)
-                            .colorScheme(.dark)
+                                       bordered: false, tint: MPColor.readerNightText,
+                                       fill: MPColor.readerNightTrack, action: close)
                         Spacer()
                     }
                     Label("Uyku modu", systemImage: "moon")
@@ -118,7 +118,10 @@ struct SleepModeView: View {
                 VStack(spacing: MPSpacing.sm) {
                     Text("Kapanma süresi").mpText(.callout).foregroundStyle(MPColor.readerNightSecondary)
                     MPSegmented(options: MPSleepTimer.choices.map { ($0, "\($0) dk") },
-                                selection: $timer.minutes, track: MPColor.readerNightTrack)
+                                selection: $timer.minutes, track: MPColor.readerNightTrack,
+                                selectedFill: MPColor.readerNightSecondary.opacity(0.35),
+                                selectedText: MPColor.readerNightText,
+                                text: MPColor.readerNightSecondary)
                         .frame(maxWidth: 260)
                         .accessibilityLabel("Kapanma süresi")
                 }

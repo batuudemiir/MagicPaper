@@ -15,6 +15,9 @@ struct StoryPreparationView: View {
     let story: Story?
     let onRead: () -> Void
     let onCancel: () -> Void
+    /// 10 · İlk masal: "Elif'in ilk masalı yazılıyor", "Sonra oku".
+    var title: String = "Masal yazılıyor"
+    var cancelTitle: String = "Vazgeç"
 
     private static let stages: [(title: String, icon: String)] = [
         ("Kahraman hazırlanıyor", "person"),
@@ -41,7 +44,8 @@ struct StoryPreparationView: View {
 
             VStack(spacing: MPSpacing.sm) {
                 MascotImage(mascot: .pencil, width: 120)
-                Text("Masal yazılıyor").mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
                 Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)
             }
@@ -62,7 +66,7 @@ struct StoryPreparationView: View {
                     .padding(.horizontal, MPSpacing.xxxl)
                     .transition(.opacity)
             } else {
-                MPButton(title: "Vazgeç", kind: .ghost, action: onCancel)
+                MPButton(title: cancelTitle, kind: .ghost, action: onCancel)
             }
         }
         .padding(.horizontal, MPSpacing.screenH + MPSpacing.lg)

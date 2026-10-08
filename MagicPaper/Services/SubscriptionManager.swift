@@ -224,8 +224,24 @@ class SubscriptionManager: ObservableObject {
         UserDefaults.standard.set(Date(), forKey: "lastQuotaReset")
     }
     
+    // MARK: - 38 · Abonelik bitti
+
+    private static let lapsedKey = "mp_subscriptionLapsed"
+
+    /// Ücretli bir plan sona erdi ve ebeveyn bunu henüz görmedi. Özet'te
+    /// bir kart gösterilir; görülünce kapanır. Bildirim yok.
+    var hasUnseenLapse: Bool { UserDefaults.standard.bool(forKey: Self.lapsedKey) }
+
+    func acknowledgeLapse() {
+        UserDefaults.standard.removeObject(forKey: Self.lapsedKey)
+        objectWillChange.send()
+    }
+
     // Üyeliği iptal et
     func cancelSubscription() {
+        if subscriptionTier != .none {
+            UserDefaults.standard.set(true, forKey: Self.lapsedKey)
+        }
         subscriptionTier = .none
         remainingImageStories = 0
         

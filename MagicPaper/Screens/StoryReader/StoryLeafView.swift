@@ -35,7 +35,8 @@ struct StoryLeafView: View {
                 theme: app.readTheme,
                 readSize: app.readSize,
                 folio: "\(page.index + 1) / \(model.story.pageCount)",
-                showsFolio: model.controlsVisible,
+                // Sayfa numarası alt kontrol çubuğunda ("Sayfa X / Y", 23).
+                showsFolio: false,
                 accent: model.story.accent,
                 symbol: model.story.symbol,
                 ornament: ReaderPageOrnament.current,
