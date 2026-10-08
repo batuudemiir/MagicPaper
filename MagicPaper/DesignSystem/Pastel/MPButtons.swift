@@ -74,7 +74,7 @@ struct MPButton: View {
                 VStack(spacing: 0) {
                     Color.white.opacity(0.45).frame(height: 2)
                     Spacer()
-                    Color.black.opacity(0.10).frame(height: 3)
+                    MPColor.shadowInk.opacity(0.14).frame(height: 3)
                 }
             }
         case .danger: MPColor.statusDanger
