@@ -111,6 +111,26 @@ silinemezse hata; Storage'da ses yüklemesi sunucudaki ses rızasını ister, pa
 okuması; sesli paylaşıma yalnızca paylaşanın kendi kayıtları girer; özet kapatılınca e-posta adresi
 silinir; üretim CSP'sinden yerel adresler çıktı; kayıt başlatılamazsa ses oturumu kapanır.
 
+## Uçtan uca deneme (emülatör, 8 Ekim)
+
+iPhone 17 Pro + Auth/Firestore/Storage emülatörü, test hesabı: giriş → onay ekranında "Bir aileye davet
+edildim" görünüyor → onay → Aile (34): "Sen · Yönetici", çocuklar yaş bandı ve masal sayısıyla →
+Yetişkin davet et → "Sadece okuma" → kod `SWZ7DLPB` emülatörde, kurallardan geçerek yazıldı → Aileyle
+paylaş (36) → bağlantı oluştu; açık belgede yalnızca `childName, createdAt, expiresAt, familyID, stories,
+voice` → web okuyucu (yerel sunucu) girişsiz masal listesini ve sayfaları gösterdi → süre geçmişe
+alınınca Firestore 403 ve okuyucuda "Bu bağlantının süresi doldu"; listeleme 403. Davet sayfası `/i/` kodu
+gösteriyor. Masal kitabı (35) ekranı demo verisiyle açıldı.
+
+Denenmedi: ikinci yetişkinin katılması (tek simülatör; kurallar ve birim testleri kapsıyor), mikrofonla
+gerçek kayıt (simülatörde mikrofon yok), Cloud Functions emülatörü (bağımlılıklar kurulmadı; saf
+modüller test edildi), en büyük Dynamic Type ve SE ekran görüntüleri.
+
+**Proje kimliği uyuşmazlığı:** uygulamanın `GoogleService-Info.plist`'i `PROJECT_ID = magicpaper-393a7-f2d31`
+(kova `magicpaper-393a7-f2d31.firebasestorage.app`), `hosting/.firebaserc` ve `firebase/.firebaserc` ise
+`magicpaper-393a7`. Web okuyucu `PROJECT = "magicpaper-393a7"`, `BUCKET` plist'tekini kullanıyor. FAZ 16'daki
+"plist'i doğru iOS uygulamasıyla yenile" işi bitince `hosting/public/s/index.html` başındaki iki sabit o
+projeye göre düzeltilmeli; yoksa okuyucu bağlantıyı bulamaz ya da ses çalmaz.
+
 ## Açık kalanlar
 
 - Açık paylaşım belgesi `familyID` (kurucunun hesap kimliği) taşır: kurallar ve Storage sahibi buradan bulur.

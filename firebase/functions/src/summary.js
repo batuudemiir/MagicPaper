@@ -96,7 +96,7 @@ export function renderWeeklyEmail(summary, unsubscribeURL) {
   ].join('\n');
   const html = `<!doctype html><html lang="tr"><body style="margin:0;background:#FFF8EE;color:#2E1E3E;font-family:Nunito,Helvetica,Arial,sans-serif">
 <div style="max-width:560px;margin:0 auto;padding:32px 20px;font-size:17px;line-height:1.6">
-<p style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6E6478;margin:0 0 8px">MagicPaper</p>
+<p lang="en" style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6E6478;margin:0 0 8px">MagicPaper</p>
 <h1 style="font-size:24px;line-height:1.25;margin:0 0 20px">${subject}</h1>
 ${lines.map((l) => `<p style="margin:0 0 12px">${escapeHTML(l)}</p>`).join('\n')}
 <p style="margin:20px 0 0">Okuma yolculuğunuz devam ediyor.</p>

@@ -105,7 +105,7 @@
   function closed() {
     bar.hidden = true;
     app.replaceChildren(
-      el("p", { class: "eyebrow" }, "MagicPaper"),
+      el("p", { class: "eyebrow", lang: "en" }, "MagicPaper"),
       el("h1", {}, "Bu bağlantının süresi doldu"),
       Object.assign(el("div", { class: "notice" }),
         { textContent: "Masalları paylaşan aileden yeni bir bağlantı isteyebilirsin." })
@@ -155,7 +155,7 @@
     });
     const days = Math.max(0, Math.ceil((share.expiresAt - new Date()) / 86400000));
     app.replaceChildren(
-      el("p", { class: "eyebrow" }, "MagicPaper"),
+      el("p", { class: "eyebrow", lang: "en" }, "MagicPaper"),
       el("h1", {}, title),
       list,
       el("p", { class: "muted" }, days <= 1 ? "Bu bağlantı yakında kapanır." : `Bu bağlantı ${days} gün daha açık.`)
