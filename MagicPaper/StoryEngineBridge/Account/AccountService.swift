@@ -83,6 +83,9 @@ final class AccountService: ObservableObject {
 
     var googleAvailable: Bool { auth.googleAvailable }
 
+    /// Haftalık özetin gideceği adres: hesabın doğrulanmış e-postası (FAZ 18).
+    var accountEmail: String? { auth.verifiedEmail }
+
     // MARK: - Family (FAZ 18)
 
     /// The family this account reads and writes: its founder's uid.

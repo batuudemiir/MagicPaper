@@ -22,12 +22,24 @@ protocol AccountAuth: AnyObject {
     func reauthenticateForDeletion() async throws
     func deleteUser() async throws
     func signOut() throws
+    /// The account's e-mail, only when the provider verified it (FAZ 18,
+    /// Haftalık özet). Kept by Firebase Auth, not by the app.
+    var verifiedEmail: String? { get }
+}
+
+extension AccountAuth {
+    var verifiedEmail: String? { nil }
 }
 
 /// Firebase Auth with Sign in with Apple and Google.
 @MainActor
 final class FirebaseAccountAuth: AccountAuth {
     private var appleFlow: AppleSignInFlow?
+
+    var verifiedEmail: String? {
+        guard let user = Auth.auth().currentUser, user.isEmailVerified, let email = user.email, !email.isEmpty else { return nil }
+        return email
+    }
 
     var current: ParentAccount? {
         guard let user = Auth.auth().currentUser else { return nil }
@@ -195,7 +207,10 @@ final class AppleSignInFlow: NSObject, ASAuthorizationControllerDelegate, ASAuth
     func run() async throws -> Result {
         rawNonce = Self.randomNonce()
         let request = ASAuthorizationAppleIDProvider().createRequest()
-        request.requestedScopes = []
+        // E-posta yalnızca Haftalık özet için (FAZ 18, karar: giriş hesabının
+        // e-postası). Apple onu yalnızca ilk girişte verir; daha önce girmiş
+        // hesaplarda olmayabilir. Ad istenmez.
+        request.requestedScopes = [.email]
         request.nonce = Self.sha256(rawNonce)
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self

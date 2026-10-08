@@ -22,6 +22,8 @@ struct SettingsView: View {
     /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
     /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
     @State private var notificationsDenied = false
+    /// Haftalık özet (FAZ 18): sunucudaki ayar; açılışta okunur.
+    @State private var weeklyEmail = false
     #if DEBUG
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
     @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
@@ -64,6 +66,10 @@ struct SettingsView: View {
         .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
         // Ekranı açtığında gerçeği göster: izin Sistem Ayarları'ndan geri
         // alınmış olabilir ve bizim anahtarımız bunu bilmiyor.
+        .task {
+            guard FamilyFeatureAccess.isEnabled(.weeklyEmail), account.isFounder, let familyID = account.familyID else { return }
+            weeklyEmail = (try? await FirestoreWeeklyEmailRemote().isEnabled(familyID: familyID)) ?? false
+        }
         .task {
             guard settings.reminder else { return }
             notificationsDenied = await !MPReminder.isAuthorised()
@@ -149,10 +155,30 @@ struct SettingsView: View {
                         .tint(MPColor.actionPrimary)
                 }
             }
-            if FamilyFeatureAccess.isEnabled(.weeklyEmail) {
+            if FamilyFeatureAccess.isEnabled(.weeklyEmail) && account.account != nil {
                 MPRowDivider(area: .parent)
-                ParentToggleRow(systemImage: "envelope", tone: .sky, title: "Haftalık özet e-postası",
-                                subtitle: "Pazar sabahları", isOn: .constant(false))
+                ParentToggleRow(systemImage: "envelope", tone: .sky, title: WeeklyEmailCopy.title,
+                                subtitle: WeeklyEmailCopy.subtitle(enabled: weeklyEmail, email: account.accountEmail,
+                                                                   isFounder: account.isFounder),
+                                isOn: Binding(get: { weeklyEmail }, set: setWeeklyEmail))
+                    .disabled(!account.isFounder || account.accountEmail == nil)
+            }
+        }
+    }
+
+    /// Haftalık özeti açar ya da kapatır; adres hesabın e-postası.
+    private func setWeeklyEmail(_ on: Bool) {
+        guard account.isFounder, let familyID = account.familyID, let email = account.accountEmail else { return }
+        let previous = weeklyEmail
+        weeklyEmail = on
+        Task { @MainActor in
+            do {
+                try await FirestoreWeeklyEmailRemote().set(enabled: on, email: email,
+                                                           timeZone: TimeZone.current.identifier, familyID: familyID)
+                if on { app.showToast("Pazar sabahları özet gelecek", symbol: "envelope") }
+            } catch {
+                weeklyEmail = previous
+                app.showToast(FamilyCopy.failed, symbol: "xmark", tone: .danger)
             }
         }
     }
