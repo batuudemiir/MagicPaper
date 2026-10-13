@@ -129,9 +129,6 @@ final class MPAppState: ObservableObject {
     @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
-    /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
-    @Published var showDecorationGallery = false
-    @Published var showDecorationDemo = false
     @Published var showGate = false
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?

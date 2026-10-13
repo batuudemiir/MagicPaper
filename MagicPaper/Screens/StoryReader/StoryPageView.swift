@@ -14,49 +14,16 @@ struct StoryPageView: View {
     let folio: String?
     /// Kontroller görünürken alt künye de görünür (§11).
     let showsFolio: Bool
-    /// Masalın dünya rengi — süslemeler bunu kullanır.
+    /// Masalın dünya rengi.
     let accent: Color
-    /// Masalın dünya işareti — başlık vinyeti bunu kullanır.
+    /// Masalın dünya işareti — iPad açık kitabın resimsiz sol sayfası bunu kullanır.
     let symbol: String
-    let ornament: ReaderPageOrnament
-    /// Sayfanın süsleme bağlamı. Nil ise süsleme çizilmez.
-    var decoration: StoryDecorationContext? = nil
-    /// Geliştirici katmanı.
-    var showsDecorationDebug: Bool = false
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         ZStack {
             ReaderPaper(theme: theme)
-
-            // Süsleme kâğıdın üstünde, metnin altında: okuma her zaman önde.
-            // En büyük yazı boyutlarında metin sayfayı doldurur; süs çizilmez.
-            if let decoration, !typeSize.isAccessibilitySize {
-                StoryPageDecorationLayer(
-                    context: decoration,
-                    tint: theme.muted,
-                    showsDebug: showsDecorationDebug
-                )
-            }
-
-            if ornament == .spot {
-                VStack {
-                    HStack {
-                        Spacer(minLength: 0)
-                        SpotOrnament(symbol: symbol, accent: accent)
-                            .padding(.trailing, MP.S.x5)
-                            .padding(.top, MP.S.x8)
-                    }
-                    Spacer(minLength: 0)
-                }
-            }
-
-            if ornament == .cerceve {
-                PageFrameOrnament(accent: accent)
-                    .padding(.horizontal, StoryPageView.gutter - MP.S.x3)
-                    .padding(.vertical, MP.S.x7)
-            }
 
             GeometryReader { geo in
                 if isSpread(geo) {
@@ -70,11 +37,11 @@ struct StoryPageView: View {
                     textColumn(in: geo)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal, StoryPageView.gutter + ornament.contentInset)
+                .padding(.horizontal, StoryPageView.gutter)
                 // Üst denetimlerin (kapat, kalp, Aa) altından başlar; en büyük
                 // yazı boyutunda metin kapat düğmesinin altına akmaz.
-                .padding(.top, MP.S.navBarHeight + ornament.contentInset)
-                .padding(.bottom, MP.S.x7 + ornament.contentInset)
+                .padding(.top, MP.S.navBarHeight)
+                .padding(.bottom, MP.S.x7)
                 }
             }
 
@@ -114,7 +81,7 @@ struct StoryPageView: View {
     /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
     /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
     private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
-        let column = geo.size.width - 2 * (StoryPageView.gutter + ornament.contentInset)
+        let column = geo.size.width - 2 * (StoryPageView.gutter)
         return min(column / StorySceneView.aspectRatio, geo.size.height * 0.55)
     }
 
@@ -231,30 +198,12 @@ struct StoryPageView: View {
                 // Paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
                 // paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz
                 // ve ikinci bir yazı stili olmadan ayrılır (§15).
-                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { index, paragraph in
-                    if ornament == .versal && index == 0 {
-                        VersalParagraph(
-                            text: paragraph,
-                            size: readSize.points,
-                            accent: accent,
-                            ink: theme.body,
-                            words: page.words,
-                            highlight: wordHighlight
-                        )
+                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
+                    Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
+                                                ink: theme.body, highlight: wordHighlight))
+                        .lineSpacing(readSize.lineSpacing)
+                        .tint(wordHighlight)
                         .fixedSize(horizontal: false, vertical: true)
-                    } else {
-                        Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
-                                                    ink: theme.body, highlight: wordHighlight))
-                            .lineSpacing(readSize.lineSpacing)
-                            .tint(wordHighlight)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-
-                if ornament == .versal {
-                    TailpieceOrnament(accent: accent)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.top, MP.S.x3)
                 }
             }
             .frame(maxWidth: measure, alignment: .leading)

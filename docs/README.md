@@ -43,7 +43,6 @@ Geçerliliğini yitiren raporlar `retired/` altında durur (yalnızca tarihçe i
 | `MagicPaper_Illustration_System.md` | İllüstrasyon mimarisi; bulut görsel yolu bayrak arkasında |
 | `B2_SCENE_LIBRARY_PLAN.md` | Avatar + hazır sahne kütüphanesi (B2) |
 | `MagicPaper_Reader.md` | Masal okuyucu |
-| `DECORATION_SYSTEM_HANDOFF.md` | Masal sayfası dekorasyon sistemi ve araçları (`Tools/`) |
 | `MagicPaper_Streak_System.md` | `MPStreak` okuma sürekliliği |
 
 ## Tasarım
