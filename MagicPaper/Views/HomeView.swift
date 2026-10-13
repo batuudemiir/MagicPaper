@@ -41,18 +41,16 @@ struct HomeView: View {
 
                 if let child = profileManager.currentProfile?.id,
                    SeriesManager.shared.cardState(for: child) != nil {
-                    VStack(alignment: .leading, spacing: MPSpacing.md) {
-                        MPSectionHeader(title: "Devam eden seri")
-                        SeriesCard(childID: child)
-                    }
+                    HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
                 }
 
                 if let daily = todaysDaily { dailySection(daily) }
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
+            // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
+            .background(alignment: .top) { HomeSky(isNight: isNight, height: 230, bleed: 400) }
         }
-        .background(alignment: .top) { HomeSky(isNight: isNight) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
     }
 
@@ -140,18 +138,15 @@ struct HomeView: View {
 
     /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
     private var modeStrip: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            // Diğer bölüm başlıklarıyla aynı biçim; Ragi yanında küçük.
-            HStack(spacing: MPSpacing.sm) {
-                if !HomeHeroCard.showsMascot(tonightState) {
-                    MascotImage(mascot: .curious, width: 40)
-                }
-                MPSectionHeader(title: "Bu akşam nasıl bir masal olsun?")
+        // Soru ve düğmeler aynı kartta; Ragi başlığın yanında küçük.
+        HomeSection(title: "Bu akşam nasıl bir masal olsun?") {
+            if !HomeHeroCard.showsMascot(tonightState) {
+                MascotImage(mascot: .curious, width: 36)
             }
-            .accessibilityElement(children: .combine)
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+        } content: {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
-                      spacing: MPSpacing.md) {
+                      spacing: MPSpacing.sm) {
                 ForEach(shownModes, id: \.self) { mode in
                     HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
                         app.startStoryCreation(mode: mode)
@@ -166,23 +161,27 @@ struct HomeView: View {
     // MARK: - Günün masalı
 
     private func dailySection(_ daily: DailyStory) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: "Günün masalı")
-            Button { app.dailyReading = daily } label: {
-                HStack(spacing: MPSpacing.lg) {
+        Button { app.dailyReading = daily } label: {
+            HomeSection(title: "Günün masalı") {
+                // En büyük yazı boyutlarında görsel metnin üstüne iner;
+                // başlık kelime ortasından bölünmez.
+                let layout = typeSize.isAccessibilitySize
+                    ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
+                    : AnyLayout(HStackLayout(spacing: MPSpacing.lg))
+                layout {
                     MPIcon(daily.category.mpSymbol, size: MP.G.xl, weight: .semibold)
                         .foregroundStyle(MPWorldTone.green.deep)
                         .frame(width: 64, height: 64)
                         .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                         .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                        Text("Herkes için").mpText(.caption).foregroundStyle(MPWorldTone.green.deep)
+                        Text("Herkes için").mpText(.caption).foregroundStyle(MPColor.textSecondary)
                         Text(daily.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
                         Text("\(daily.readingTime) dakika").mpText(.footnote)
                             .foregroundStyle(MPColor.textSecondary)
                     }
-                    Spacer(minLength: 0)
+                    if !typeSize.isAccessibilitySize { Spacer(minLength: 0) }
                     MPIcon("play.fill", size: MP.G.md, weight: .bold)
                         .foregroundStyle(MPColor.actionPrimary)
                         .frame(width: 44, height: 44)
@@ -190,14 +189,11 @@ struct HomeView: View {
                         .overlay(Circle().strokeBorder(MPColor.actionPrimary, lineWidth: 2))
                         .accessibilityHidden(true)
                 }
-                .padding(MPSpacing.lg)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
             }
-            .buttonStyle(MPPressStyle())
-            .accessibilityElement(children: .combine)
-            .accessibilityHint("Masalı okur")
         }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("Masalı okur")
     }
 }
 

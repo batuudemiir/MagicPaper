@@ -1,6 +1,7 @@
 import SwiftUI
 
-/// "Devam eden seri" satırı: Ana sayfa (11) ve Kitaplık (16), FAZ 13.
+/// "Devam eden seri" satırı: Ana sayfa (11), FAZ 13. Kartı ve başlığı
+/// ana sayfanın `HomeSection`'ı çizer; burada yalnızca satır var.
 ///
 /// İki sakin durum: bölüm hazır, ya da bir sonraki bölüm öncekinden sonraki
 /// gün açılır. Geri sayım yok, saat yok, "kaçırma" yok: kart ailenin bir
@@ -62,9 +63,8 @@ struct SeriesCard: View {
             Spacer(minLength: 0)
             if showsChevron { MPChevron().accessibilityHidden(true) }
         }
-        .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+        .contentShape(Rectangle())
     }
 
     /// 18 · Seri masal; bölüm oradan okunur.

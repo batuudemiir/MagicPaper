@@ -35,30 +35,42 @@ extension View {
 struct HomeSky: View {
     let isNight: Bool
     var height: CGFloat = 210
+    /// Kayan içeriğin içinde durduğunda saat çubuğunun altına ve yukarı
+    /// esnemeye taşan düz gökyüzü payı.
+    var bleed: CGFloat = 0
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var drift = false
 
     var body: some View {
-        GeometryReader { geo in
-            let w = geo.size.width, h = geo.size.height
-            ZStack(alignment: .topLeading) {
-                Rectangle().fill(MPWorldTone.lav.soft)
-                Rectangle().fill(MPColor.bedtimeSkyTop).opacity(isNight ? 1 : 0)
-                if isNight { stars(w: w, h: h).transition(.opacity) }
-                cloud(width: w * 0.30, at: CGPoint(x: w * 0.08, y: h * 0.34), sway: 1)
-                cloud(width: w * 0.36, at: CGPoint(x: w * 0.62, y: h * 0.52), sway: -1)
-                cloud(width: w * 0.16, at: CGPoint(x: w * 0.46, y: h * 0.22), sway: 1)
+        VStack(spacing: 0) {
+            skyFill.frame(height: bleed)
+            GeometryReader { geo in
+                let w = geo.size.width, h = geo.size.height
+                ZStack(alignment: .topLeading) {
+                    skyFill
+                    if isNight { stars(w: w, h: h).transition(.opacity) }
+                    cloud(width: w * 0.30, at: CGPoint(x: w * 0.08, y: h * 0.34), sway: 1)
+                    cloud(width: w * 0.36, at: CGPoint(x: w * 0.62, y: h * 0.52), sway: -1)
+                    cloud(width: w * 0.16, at: CGPoint(x: w * 0.46, y: h * 0.22), sway: 1)
+                }
             }
+            .frame(height: height)
         }
-        .frame(height: height)
         .clipShape(WaveBottom())
-        .ignoresSafeArea(edges: .top)
+        .offset(y: -bleed)
         .animation(MP.M.gated(MP.M.slow), value: isNight)
         .accessibilityHidden(true)
         .onAppear {
             guard !reduceMotion else { return }
             withAnimation(MP.M.ambient) { drift = true }
+        }
+    }
+
+    private var skyFill: some View {
+        ZStack {
+            Rectangle().fill(MPWorldTone.lav.soft)
+            Rectangle().fill(MPColor.bedtimeSkyTop).opacity(isNight ? 1 : 0)
         }
     }
 
@@ -141,7 +153,7 @@ struct HomeHeader<Avatar: View>: View {
                         .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 3))
                     VStack(alignment: .leading, spacing: 0) {
                         Text(greeting).mpText(.footnote)
-                            .foregroundStyle(isNight ? MPColor.readerNightSecondary : MPWorldTone.lav.deep)
+                            .foregroundStyle(isNight ? MPColor.readerNightSecondary : MPColor.actionPrimary)
                         Text(childName).mpText(.navTitle).fontWeight(.black)
                             .foregroundStyle(isNight ? MPColor.readerNightText : MPColor.textPrimary)
                             .lineLimit(1).minimumScaleFactor(0.8)
@@ -273,6 +285,40 @@ struct HomeHeroCard: View {
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
 }
 
+// MARK: - Bölüm kartı
+
+/// Ana sayfanın her bölümü tek bir kart: başlık üst satırda, içerik altında.
+/// Başlık kartın dışında ayrı durmaz (13 Ekim kararı). Hero kartı dışındaki
+/// bütün bölümler bunu kullanır; iç öğeler kenarsız, pastel zeminli olur ki
+/// kart içinde kart görünmesin.
+struct HomeSection<Leading: View, Content: View>: View {
+    let title: String
+    @ViewBuilder var leading: Leading
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            HStack(alignment: .top, spacing: MPSpacing.sm) {
+                leading
+                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityAddTraits(.isHeader)
+            }
+            content
+        }
+        .padding(MPSpacing.lg)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+    }
+}
+
+extension HomeSection where Leading == EmptyView {
+    init(title: String, @ViewBuilder content: () -> Content) {
+        self.init(title: title, leading: { EmptyView() }, content: content)
+    }
+}
+
 // MARK: - Okuma şeridi
 
 /// Haftalık okuma şeridi: gün adları, okunan gün tikli, bugün mor halka.
@@ -291,18 +337,16 @@ struct HomeStreakCard: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(spacing: MPSpacing.sm) {
-                MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
-                Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+        HomeSection(title: title) {
+            MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
+                .padding(.top, MPSpacing.xxs)
+        } content: {
             HStack(spacing: 0) {
                 ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
                     VStack(spacing: MPSpacing.xxs) {
                         dot(i)
                         Text(MPStreak.weekdayLabels[i]).mpText(.caption)
-                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPWorldTone.lav.deep)
+                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
                             .lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: .infinity)
@@ -310,9 +354,6 @@ struct HomeStreakCard: View {
             }
             .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         }
-        .padding(MPSpacing.lg)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(title). Bu hafta \(done.filter { $0 }.count) gün okudun")
@@ -340,8 +381,8 @@ struct HomeStreakCard: View {
 
 // MARK: - Mod kartı
 
-/// "Bu akşam nasıl bir masal olsun?" altındaki mod kartı: beyaz kutuda büyük
-/// ikon ve mod adı.
+/// "Bu akşam nasıl bir masal olsun?" kartının içindeki mod düğmesi: pastel
+/// zemin, beyaz kutuda büyük ikon ve mod adı. Kenarsız: kart içinde kart olmaz.
 struct HomeModeTile: View {
     let title: String
     let systemImage: String
@@ -354,7 +395,7 @@ struct HomeModeTile: View {
                 MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(tone.deep)
                     .frame(width: MPSize.iconTile, height: MPSize.iconTile)
-                    .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                    .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
                 Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
                     .multilineTextAlignment(.center)
@@ -362,8 +403,8 @@ struct HomeModeTile: View {
             }
             .padding(.vertical, MPSpacing.md)
             .padding(.horizontal, MPSpacing.sm)
-            .frame(maxWidth: .infinity, minHeight: 112)
-            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+            .frame(maxWidth: .infinity, minHeight: 104)
+            .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
         }
         .buttonStyle(MPPressStyle())
     }
