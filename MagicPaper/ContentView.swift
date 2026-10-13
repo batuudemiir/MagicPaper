@@ -142,12 +142,6 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showGate) {
                 ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
             }
-            .fullScreenCover(isPresented: $app.showDecorationGallery) {
-                StoryDecorationGallery()
-            }
-            .fullScreenCover(isPresented: $app.showDecorationDemo) {
-                StoryDecorationDemoView().environmentObject(app)
-            }
             .fullScreenCover(item: $firstRun, onDismiss: {
                 if let story = firstStory {
                     firstStory = nil
@@ -213,7 +207,6 @@ struct ContentView: View {
                     .transition(reduceMotion ? .opacity : .move(edge: .trailing))
                     .zIndex(2)
             }
-
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
     }

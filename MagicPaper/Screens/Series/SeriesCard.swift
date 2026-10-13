@@ -1,6 +1,7 @@
 import SwiftUI
 
-/// "Devam eden seri" satırı: Ana sayfa (11) ve Kitaplık (16), FAZ 13.
+/// "Devam eden seri" satırı: Ana sayfa (11), FAZ 13. Kartı ve başlığı
+/// ana sayfanın `HomeSection`'ı çizer; burada yalnızca satır var.
 ///
 /// İki sakin durum: bölüm hazır, ya da bir sonraki bölüm öncekinden sonraki
 /// gün açılır. Geri sayım yok, saat yok, "kaçırma" yok: kart ailenin bir
@@ -41,8 +42,7 @@ struct SeriesCard: View {
             MPIcon("pawprint", size: 30, weight: .semibold)
                 .foregroundStyle(MPWorldTone.peach.deep)
                 .frame(width: 62, height: 62)
-                .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.tile))
-                .mpShadow(.control)
+                .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
@@ -52,7 +52,7 @@ struct SeriesCard: View {
                     HStack(spacing: MPSpacing.xxs) {
                         ForEach(0..<progress.total, id: \.self) { i in
                             Capsule()
-                                .fill(i < progress.read ? MPWorldTone.peach.deep : MPColor.backgroundSurface)
+                                .fill(i < progress.read ? MPWorldTone.peach.deep : MPWorldTone.peach.soft)
                                 .frame(height: 5)
                         }
                     }
@@ -63,9 +63,8 @@ struct SeriesCard: View {
             Spacer(minLength: 0)
             if showsChevron { MPChevron().accessibilityHidden(true) }
         }
-        .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
+        .contentShape(Rectangle())
     }
 
     /// 18 · Seri masal; bölüm oradan okunur.

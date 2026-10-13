@@ -1,7 +1,7 @@
 // MPNavigationChrome.swift
 // Kid tab bar (Ana sayfa · Günlük · + Yarat · Kitaplık · Köşem), parent tab bar (Özet · Güvenlik · Ayarlar),
 // kid header (avatar → Benim köşem, kilit → Ebeveyn kapısı), top bar, parent header.
-// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok (kid tab bar); EbeveynPaneli,
+// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok, BenimKosem (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
 
 import SwiftUI

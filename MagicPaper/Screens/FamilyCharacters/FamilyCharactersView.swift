@@ -12,6 +12,7 @@ struct FamilyCharactersView: View {
 
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private enum Mode: Equatable {
         case list
@@ -42,53 +43,43 @@ struct FamilyCharactersView: View {
     /// 14: bir masal tek bir Masal ailem karakteri taşır, seçim tek.
     @State private var selectedID: UUID?
     private static let tones: [MPWorldTone] = [.peach, .sky, .lav, .yellow, .mint, .pink, .green]
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 2)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm), count: 2)
 
+    /// Ana sayfanın dili (13 Ekim): lavanta bulut bandı, çocuğun mor kahraman
+    /// kartı, karakterler tek beyaz bölüm kartında pastel karelerle.
     private var list: some View {
         let kinds = source.familyAnimalKindChoices()
         let full = characters.count >= FamilyCharacter.maxPerChild
         return VStack(spacing: 0) {
-            MPTopBar(title: FamilyCharacterCopy.screenTitle, subtitle: "Masallarında tekrar görünen karakterler",
-                     onBack: { app.sheet = nil }) { EmptyView() }
-                .padding(.horizontal, MPSpacing.screenH)
-
             ScrollView(showsIndicators: false) {
-                VStack(spacing: MPSpacing.md) {
+                VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                    MPTopBar(title: FamilyCharacterCopy.screenTitle, subtitle: "Masallarında tekrar görünen karakterler",
+                             onBack: { app.sheet = nil }) { EmptyView() }
+                        .padding(.top, MPSpacing.sm)
                     heroCard
-                    LazyVGrid(columns: columns, spacing: MPSpacing.md) {
-                        ForEach(Array(characters.enumerated()), id: \.element.id) { index, character in
-                            card(character, kinds: kinds, tone: Self.tones[index % Self.tones.count])
-                        }
-                        if !full {
-                            Button { mode = .adding } label: {
-                                VStack(spacing: MPSpacing.sm) {
-                                    MPIcon("plus", size: 26, weight: .semibold)
-                                    Text(FamilyCharacterCopy.addButton).mpText(.callout)
-                                }
-                                .foregroundStyle(MPColor.textSecondary)
-                                .frame(maxWidth: .infinity, minHeight: 150)
-                                .overlay(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                                    .strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [6, 5])))
+                    HomeSection(title: FamilyCharacterCopy.profileRowDescription) {
+                        LazyVGrid(columns: columns, spacing: MPSpacing.sm) {
+                            ForEach(Array(characters.enumerated()), id: \.element.id) { index, character in
+                                card(character, kinds: kinds, tone: Self.tones[index % Self.tones.count])
                             }
-                            .buttonStyle(MPPressStyle())
+                            if !full { addTile }
                         }
-                    }
-                    if characters.isEmpty {
-                        Text(FamilyCharacterCopy.emptyDescription)
-                            .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(.top, MPSpacing.sm)
-                    }
-                    if full {
-                        Text(FamilyCharacterCopy.limitReached)
-                            .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        if characters.isEmpty {
+                            Text(FamilyCharacterCopy.emptyDescription)
+                                .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        if full {
+                            Text(FamilyCharacterCopy.limitReached)
+                                .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                     }
                 }
-                .padding(.horizontal, MPSpacing.xl)
-                .padding(.bottom, MPSpacing.xl)
+                .padding(.horizontal, MPSpacing.screenH)
+                .padding(.bottom, MPSpacing.xxxl)
+                .background(alignment: .top) { HomeSky(isNight: false, height: 190, bleed: 400) }
             }
-
             if let selected = characters.first(where: { $0.id == selectedID }) {
                 VStack(spacing: MPSpacing.sm) {
                     HStack(spacing: MPSpacing.lg) {
@@ -99,12 +90,12 @@ struct FamilyCharactersView: View {
                     }
                     MPButton(title: "Bu karakterle masal yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
                         app.sheet = nil
-                        app.showKidCorner = false
                         app.startStoryCreation(family: selected.id)
                     }
                 }
-                .padding(.horizontal, MPSpacing.xl)
+                .padding(.horizontal, MPSpacing.screenH)
                 .padding(.vertical, MPSpacing.md)
+                .background(MPColor.backgroundKid)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
@@ -112,8 +103,9 @@ struct FamilyCharactersView: View {
         .animation(MP.M.gated(MP.M.base), value: selectedID)
     }
 
-    /// Çocuğun kendisi: her masalda kahraman. "Düzenle" kahraman
-    /// oluşturucuya gider (görselli kitap açıkken).
+    /// Çocuğun kendisi: her masalda kahraman. Ana sayfanın hero kartı gibi
+    /// sayfanın tek dolgun mor yüzeyi. "Düzenle" kahraman oluşturucuya gider
+    /// (görselli kitap açıkken).
     private var heroCard: some View {
         HStack(spacing: MPSpacing.lg) {
             MPInitialAvatar(name: profile.name, color: profile.mpColor, size: 64)
@@ -121,50 +113,74 @@ struct FamilyCharactersView: View {
                 .background(MPColor.backgroundSurface, in: Circle())
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text(profile.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                Text("Kahraman · her masalda").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                Text("Kahraman").mpText(.eyebrow).foregroundStyle(MPWorldTone.lav.soft)
+                Text(profile.name).mpText(.title3).foregroundStyle(MPColor.textOnAction)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("Her masalda").mpText(.footnote).foregroundStyle(MPWorldTone.lav.soft)
             }
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
             if IllustratedBookAccess.isEnabled() {
-                Button("Düzenle") { app.sheet = .bookCharacter(profile.id) }
-                    .mpText(.callout).foregroundStyle(MPColor.actionPrimary)
-                    .frame(minHeight: MPSize.minTouchParent)
+                MPButton(title: "Düzenle", kind: .secondary, size: .small) { app.sheet = .bookCharacter(profile.id) }
+                    .accessibilityLabel("Kahramanı düzenle")
             }
         }
         .padding(MPSpacing.lg)
-        .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+        .mpKidSurface(MPColor.actionPrimary, edge: MPColor.brandNight)
         .accessibilityElement(children: .combine)
     }
 
+    /// "Yeni karakter": karakter kareleriyle aynı ölçüde, kesikli çerçeveli.
+    private var addTile: some View {
+        Button { mode = .adding } label: {
+            VStack(spacing: MPSpacing.sm) {
+                MPIcon("plus", size: MP.G.xl, weight: .semibold)
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
+                    .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                Text(FamilyCharacterCopy.addButton).mpText(.callout).foregroundStyle(MPColor.actionPrimary)
+            }
+            .frame(maxWidth: .infinity, minHeight: 168)
+            .overlay(RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
+                .strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [6, 5])))
+        }
+        .buttonStyle(MPPressStyle())
+    }
+
+    /// Karakter karesi: ana sayfanın mod düğmesi gibi kenarsız pastel zemin,
+    /// beyaz kutuda ikon. Seçim mor halka ve tik ile (renge ek olarak tik).
     private func card(_ character: FamilyCharacter, kinds: [FamilyAnimalKindChoice], tone: MPWorldTone) -> some View {
         let count = FamilyCharacterAppearances.count(of: character.id, in: storyManager.stories)
         let relation = FamilyCharacterCopy.relationLine(character.relation, kinds: kinds)
         let isSelected = selectedID == character.id
+        let shape = RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
         return Button {
             MPHaptics.selection()
             selectedID = isSelected ? nil : character.id
         } label: {
             VStack(spacing: MPSpacing.sm) {
-                MPIcon(FamilyCharacterCopy.relationSymbol(character.relation.kind), size: 26, weight: .semibold)
+                MPIcon(FamilyCharacterCopy.relationSymbol(character.relation.kind), size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(tone.deep)
-                    .frame(width: 60, height: 60)
-                    .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.tile, style: .continuous))
+                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
+                    .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 Text(character.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
                     .lineLimit(1).minimumScaleFactor(0.8)
-                Text("\(relation.lowercased(with: Locale(identifier: "tr_TR"))) · \(FamilyCharacterCopy.appearances(count))")
-                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .multilineTextAlignment(.center)
+                // İki ayrı satır: kareler aynı satırda aynı yükseklikte kalır.
+                VStack(spacing: 0) {
+                    Text(relation).mpText(.footnote).foregroundStyle(MPColor.textPrimary)
+                        .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
+                    Text(FamilyCharacterCopy.appearances(count)).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                        .lineLimit(typeSize.isAccessibilitySize ? nil : 2)
+                }
+                .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.9)
             }
-            .padding(MPSpacing.lg)
-            .frame(maxWidth: .infinity, minHeight: 150)
-            .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                    .strokeBorder(isSelected ? MPColor.actionPrimary : .clear, lineWidth: 3)
-            }
+            .padding(MPSpacing.md)
+            .frame(maxWidth: .infinity, minHeight: 168, alignment: .top)
+            .background(tone.soft, in: shape)
+            .overlay { shape.strokeBorder(isSelected ? MPColor.actionPrimary : .clear, lineWidth: 3) }
             .overlay(alignment: .topTrailing) {
                 if isSelected {
-                    MPIcon("checkmark", size: 12, weight: .heavy)
+                    MPIcon("checkmark", size: MP.G.xs, weight: .heavy)
                         .foregroundStyle(MPColor.textOnAction)
                         .frame(width: 24, height: 24)
                         .background(MPColor.actionPrimary, in: Circle())

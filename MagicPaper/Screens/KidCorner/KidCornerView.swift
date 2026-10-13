@@ -3,14 +3,15 @@ import SwiftUI
 /// 12 · Benim köşem (`BenimKosem`). FAZ 20'den beri alt barın "Köşem" sekmesi.
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
-/// Masal ailem, Yeni kelimelerim (15). Yıldız sayacı yok (karar 7 Ekim
-/// 2026). "Ekle" ebeveyn kapısına gider.
+/// Masal ailem, Yeni kelimelerim (15). 13 Ekim 2026'dan beri alt bardaki
+/// "Köşem" sekmesi; kapat düğmesi yok, kilit ve "Ekle" ebeveyn kapısına gider.
+/// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var streak = MPStreak.shared
-    @State private var earned: [MPMilestone] = []
+    @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
     @Environment(\.dynamicTypeSize) private var typeSize
 
@@ -33,11 +34,13 @@ struct KidCornerView: View {
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .onAppear(perform: refresh)
         .onChange(of: profile?.id) { _, _ in refresh() }
+        // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.
+        .onChange(of: storyManager.stories) { _, _ in refresh() }
     }
 
     private func refresh() {
         guard let profile else { earned = []; familyNames = []; return }
-        earned = MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones
+        earned = Set(MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones)
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
@@ -45,12 +48,19 @@ struct KidCornerView: View {
 
     private var header: some View {
         VStack(spacing: MPSpacing.lg) {
-            // FAZ 20: Köşem bir sekme; kapat düğmesi yok, alt bar geri götürür.
-            Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: MPSize.circleButton)
-                .accessibilityAddTraits(.isHeader)
-                .padding(.top, MPSpacing.lg)
+            // Başlık kilit düğmesinin altına girmesin: iki yanda düğme genişliği.
+            // Kilit Ana sayfa başlığındakiyle aynı iş: ebeveyn kapısı.
+            HStack(spacing: MPSpacing.sm) {
+                Color.clear.frame(width: MPSize.circleButton, height: 1)
+                Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .accessibilityAddTraits(.isHeader)
+                MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") {
+                    app.requestParentMode()
+                }
+            }
+            .padding(.top, MPSpacing.lg)
 
             Text("Kim okuyor?").mpText(.callout).foregroundStyle(MPColor.textSecondary)
 
@@ -101,11 +111,26 @@ struct KidCornerView: View {
         storyManager.stories.filter { $0.isFinished && $0.belongs(to: profile) }.count
     }
 
+    private var stars: Int {
+        guard let profile else { return 0 }
+        return MPStars.count(for: profile, stories: storyManager.stories)
+    }
+
     private var statsRow: some View {
-        HStack(spacing: MPSpacing.md) {
-            stat(icon: "flame", tone: .peach, value: streak.currentStreak, label: "gün üst üste")
-            stat(icon: "book", tone: .sky, value: finishedCount, label: "masal")
-            stat(icon: "trophy", tone: .yellow, value: earned.count, label: "rozet")
+        // En büyük yazı boyutlarında üç kutucuk yan yana sığmaz: alt alta.
+        let tiles = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: MPSpacing.md))
+            : AnyLayout(HStackLayout(spacing: MPSpacing.md))
+        return VStack(spacing: MPSpacing.sm) {
+            tiles {
+                stat(icon: "star", tone: .yellow, value: stars, label: "yıldız")
+                stat(icon: "flame", tone: .peach, value: streak.currentStreak, label: "gün seri")
+                stat(icon: "book", tone: .sky, value: finishedCount, label: "masal")
+            }
+            Text("Her sabah 1 yıldız gelir. Her masal 1 yıldız.")
+                .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
         }
     }
 
@@ -125,22 +150,28 @@ struct KidCornerView: View {
 
     // MARK: - Rozetlerim
 
-    /// Yalnızca kazanılanlar: kazanılmamış rozet "az kaldı" baskısı olurdu
-    /// (CLAUDE.md ilke 7, FAZ 17 kararı).
+    /// Bütün rozetler, kazanılmamışlar kilitli (karar 13 Ekim 2026). İlerleme
+    /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7).
     private var badgesSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: "Rozetlerim")
-            if earned.isEmpty {
-                Text("İlk masalını sonuna kadar okuyunca rozetin burada olacak.")
-                    .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            } else {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
-                                         count: typeSize.isAccessibilitySize ? 1 : 3),
-                          spacing: MPSpacing.md) {
-                    ForEach(earned) { badge in
-                        MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone)
-                    }
+            // En büyük yazı boyutlarında sayaç başlığın altına iner.
+            let headerLayout = typeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.xxs))
+                : AnyLayout(HStackLayout(alignment: .firstTextBaseline))
+            headerLayout {
+                Text("Rozetlerim").mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                if !typeSize.isAccessibilitySize { Spacer() }
+                Text("\(earned.count) / \(MPMilestone.allCases.count)")
+                    .mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
+                    .accessibilityLabel("\(MPMilestone.allCases.count) rozetten \(earned.count) tanesi kazanıldı")
+            }
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+                                     count: typeSize.isAccessibilitySize ? 1 : 3),
+                      spacing: MPSpacing.md) {
+                ForEach(MPMilestone.gridOrder(earned: earned)) { badge in
+                    MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone,
+                                isUnlocked: earned.contains(badge))
                 }
             }
         }

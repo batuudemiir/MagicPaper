@@ -4,8 +4,9 @@ import SwiftUI
 
 /// Çocuk alanının sekmeleri (11 · Ana sayfa, Günlük, 16 · Kitaplık, 12 · Benim köşem).
 ///
-/// FAZ 20: alt bar Ana sayfa · Günlük · Yarat · Kitaplık · Köşem (İrem'in
-/// tasarımı). Günlük ücretsiz masallar; FAZ 17'de kalkmıştı, geri geldi.
+/// 13 Ekim 2026: Benim köşem avatardan açılan katman olmaktan çıkıp sekme
+/// oldu. FAZ 20: Günlük (ücretsiz masallar) geri geldi; alt bar İrem'in
+/// tasarımındaki gibi Ana sayfa · Günlük · Yarat · Kitaplık · Köşem.
 /// "Yarat" bir sekme değil, bir eylem: `KidTabBar` onu ayrı çizer.
 enum MPTab: String, CaseIterable {
     case home, gunluk, library, corner
@@ -131,17 +132,9 @@ final class MPAppState: ObservableObject {
     @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
-    /// Geliştirici: dekorasyon galerisi ve demo sayfalar.
-    @Published var showDecorationGallery = false
-    @Published var showDecorationDemo = false
     @Published var showGate = false
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?
-    /// 12 · Benim köşem. FAZ 20'den beri bir sekme; avatar da oraya götürür.
-    var showKidCorner: Bool {
-        get { tab == .corner }
-        set { tab = newValue ? .corner : (tab == .corner ? .home : tab) }
-    }
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
@@ -206,7 +199,6 @@ final class MPAppState: ObservableObject {
         guard readerStory == nil, sleepSession == nil, !showStoryCreation, dailyReading == nil else { return }
         sheet = nil
         actionsStory = nil
-        showKidCorner = false
         tab = .home
         switch link {
         case .tonight:
@@ -300,6 +292,11 @@ final class MPAppState: ObservableObject {
         showPaywall = true
     }
 
+    /// 12 · Benim köşem: Ana sayfadaki avatar ve okuma şeridi bu sekmeye geçirir.
+    func openKidCorner() {
+        tab = .corner
+    }
+
     /// Ebeveyn moduna geçiş her seferinde kapıdan geçer.
     func requestParentMode() {
         guard !isParentMode else { return }
@@ -308,7 +305,6 @@ final class MPAppState: ObservableObject {
 
     func unlockParent() {
         showGate = false
-        showKidCorner = false
         isParentMode = true
         parentTab = .overview
         MPHaptics.tap()

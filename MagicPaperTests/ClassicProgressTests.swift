@@ -100,12 +100,8 @@ final class ClassicProgressTests: XCTestCase {
 
     func testKidCornerIsATab() {
         let app = MPAppState()
-        app.showKidCorner = true
-        XCTAssertEqual(app.tab, .corner)
-        app.showKidCorner = false
-        XCTAssertEqual(app.tab, .home)
         app.tab = .gunluk
-        app.showKidCorner = false
-        XCTAssertEqual(app.tab, .gunluk, "köşe kapalıyken başka sekmeye dokunmaz")
+        app.openKidCorner()
+        XCTAssertEqual(app.tab, .corner)
     }
 }

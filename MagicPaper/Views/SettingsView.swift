@@ -357,16 +357,6 @@ struct SettingsView: View {
                 app.showToast("Seri saati sıfırlandı", symbol: "clock")
             }
             MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "book", tone: .green, title: "Dekorasyon galerisi",
-                            subtitle: "Varlık kataloğu, kürasyon durumu, ortam kapsamı") {
-                app.showDecorationGallery = true
-            }
-            MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "sparkles", title: "Dekorasyon demoları",
-                            subtitle: "Orman · Deniz · Uyku · Macera, debug katmanıyla") {
-                app.showDecorationDemo = true
-            }
-            MPRowDivider(area: .parent)
             ParentRowButton(systemImage: "crown", tone: .yellow,
                             title: subscriptionManager.isPremium ? "Aboneliği kapat" : "Aboneliği aç",
                             subtitle: subscriptionManager.isPremium ? "Ücretsiz plana döner" : "Hikaye Kahramanı planını açar") {

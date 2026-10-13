@@ -5,7 +5,8 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 ## Kural: bu dosya her değişiklikte güncellenir
 
 - Canvas'ta herhangi bir ekran eklenir, silinir ya da değişirse, aynı yayında bu dosyanın **Değişiklik günlüğü** bölümüne yeni bir kayıt eklenir. İrem istemese, hatırlatmasa bile.
-- Kayıt en üste eklenir (en yeni en üstte). Biçim: tarih, canvas sürümü, kısa başlık, madde madde ne değişti, hangi dosyalar etkilendi.
+- 13 Ekim 2026'dan itibaren uygulama kodunda, içerikte ya da belgelerde tamamlanan her iş de buraya yazılır. Kim istemese, hatırlatmasa bile. Kural kaynak koddaki `CLAUDE.md`'de de var.
+- Kayıt en üste eklenir (en yeni en üstte). Biçim: tarih, sürüm (canvas işinde canvas sürümü, uygulama işinde dal ve commit; commit yoksa "commit yok"), kısa başlık, madde madde ne değişti, test sonucu, hangi dosyalar etkilendi.
 - Ekran listesi, kurallar ya da varlık listesi değiştiyse ilgili bölüm de aynı anda güncellenir.
 - Bu dosyanın bir kopyası "Magic Paper" projesinde `claude/magicpaper-demo-CLAUDE.md` olarak durur. İkisi her zaman aynı içerikte tutulur.
 
@@ -131,6 +132,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+
+### 2026-10-13 · main (ab6f02c üstüne) · Günlük kuralı uygulama işlerine genişletildi
+- Bundan sonra tamamlanan her iş (uygulama, canvas, içerik, belge) bu günlüğe yazılır.
+- Kural iki yerde: bu dosyanın "Kural" bölümü ve kaynak koddaki `CLAUDE.md` (yeni "Değişiklik günlüğü" bölümü, Definition of Done maddesi).
+- Etkilenen: `CLAUDE.md` (repo dışında, kökte), `design-handoff/reference/DEMO_CHANGELOG.md`.
+
+### 2026-10-13 · main (ab6f02c üstüne) · Okuyucu sayfalarındaki süslemeler kaldırıldı
+- Masal sayfasından kâğıda serpiştirilen süs katmanı (dekorasyon motoru) çıkarıldı.
+- Sayfa süsü seçenekleri çıkarıldı: süslü ilk harf (versal), paragraf sonu vinyeti, sayfa çerçevesi, kenar spot motifi.
+- Süsleme sisteminin tüm kodu silindi; `docs/DECORATION_SYSTEM_HANDOFF.md` → `docs/retired/`. Geliştirici ayarlarındaki "Dekorasyon galerisi" ve "Dekorasyon demoları" satırları kaldırıldı.
+- Bilerek değişmedi: kâğıt rengi, kâğıt dokusu ve cilt payı gölgesi (`ReaderPaper`), sahneler ve resimler, kapak, bitiş sayfası. `Storybook/` görselleri başka ekranlarda kullanıldığı için duruyor.
+- Test: derleme yeşil, MagicPaperTests 657 test, 0 hata, 1 atlandı (önceki 660 testin 3'ü silinen süsleme seed testleriydi). Simülatörde görsel kontrol yapılmadı.
+- Etkilenen: `StoryPageView.swift`, `StoryLeafView.swift`, `ContentView.swift`, `MPAppState.swift`, `SettingsView.swift`. Silinen: `StoryDecorationCatalog.swift`, `StoryDecorationCatalog+Generated.swift`, `StoryDecorationDemoView.swift`, `StoryDecorationEngine.swift`, `StoryDecorationGallery.swift`, `StoryDecorationTaxonomy.swift`, `StoryEnvironment.swift`, `StoryPageDecorationLayer.swift`, `ReaderPageOrnament.swift`, `MagicPaperTests/StoryDecorationSeedTests.swift`.
 
 ### 2026-10-03 · v21 · CLAUDE.md eklendi
 - Canvas'a `project/CLAUDE.md` eklendi, kopyası projede `claude/magicpaper-demo-CLAUDE.md`.
