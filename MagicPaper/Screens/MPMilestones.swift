@@ -6,8 +6,10 @@ import StoryEngine
 /// - Yalnızca okuyarak kazanılır: sonuna kadar okunan farklı masallar. Süre,
 ///   uygulama kullanımı ya da üst üste gün sayılmaz.
 /// - Kazanılan rozet kaybolmaz: masal silinse de defterde kalır.
-/// - Kıyas, geri sayım, "az kaldı" yok: Benim köşem yalnızca kazanılanları
-///   gösterir. Masal sonunda yeni kazanılan bir satırla söylenir; bildirim yok.
+/// - Kıyas, geri sayım, "az kaldı" yok. Benim köşem kazanılmamışları da
+///   kilitli gösterir (karar 13 Ekim 2026), ama ilerleme çubuğu ya da "2 masal
+///   kaldı" gibi bir metin olmadan. Masal sonunda yeni kazanılan bir satırla
+///   söylenir; bildirim yok.
 ///
 /// Liste FAZ 17 planının onaylı listesi (Batuhan, 7 Ekim 2026).
 enum MPMilestone: String, CaseIterable, Identifiable, Codable {
@@ -59,6 +61,12 @@ enum MPMilestone: String, CaseIterable, Identifiable, Codable {
         case .firstLearning:        return .yellow
         case .firstSeriesCompleted: return .peach
         }
+    }
+
+    /// Benim köşem ızgarası: önce kazanılanlar, sonra kilitliler; ikisi de
+    /// listedeki sırayla. Her zaman bütün rozetler.
+    static func gridOrder(earned: Set<MPMilestone>) -> [MPMilestone] {
+        allCases.filter { earned.contains($0) } + allCases.filter { !earned.contains($0) }
     }
 
     func isMet(by ledger: MPBadgeLedger) -> Bool {
