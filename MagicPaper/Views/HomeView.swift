@@ -64,7 +64,7 @@ struct HomeView: View {
     @State private var width: CGFloat = 402
     private var sceneHeight: CGFloat { width * 1.12 }
     /// Başlıktan çiplere kadar sahnenin açık kalan kısmı.
-    private var sceneClearance: CGFloat { max(sceneHeight - 230, 160) }
+    private var sceneClearance: CGFloat { max(sceneHeight - 150, 220) }
 
     /// Uyku saatinde sahne geceye döner; sayfa açık kalır.
     private var isNight: Bool {

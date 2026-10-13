@@ -303,7 +303,7 @@ struct HomeHeroCard: View {
     @ViewBuilder private var art: some View {
         switch state {
         case .readToday: stateTile("sparkles", rotation: 0)
-        case .bedtime: stateTile("moon.stars", rotation: 0)
+        case .bedtime: stateTile("moon", rotation: 0)
         default: stateTile(coverIcon ?? "book", rotation: -3)
         }
     }
