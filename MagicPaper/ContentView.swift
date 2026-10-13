@@ -188,6 +188,7 @@ struct ContentView: View {
             ZStack {
                 switch app.tab {
                 case .home:    HomeView().transition(tabTransition)
+                case .gunluk:  GunlukView().transition(tabTransition)
                 case .library: LibraryView().transition(tabTransition)
                 case .corner:  KidCornerView().transition(tabTransition)
                 }

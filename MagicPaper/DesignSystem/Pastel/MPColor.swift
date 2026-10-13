@@ -165,6 +165,10 @@ enum MPColor {
     static let readerNightHeroName = Color("Colors/readerNightHeroName")
     /// #3B4370
     static let readerNightWash = Color("Colors/readerNightWash")
+    /// #DCCDEE · Günlük: "Bu haftanın seçkisi" sıra numarası (süs).
+    static let classicRank = Color("Colors/classicRank")
+    /// #231733 · Günlük: Kategoriler örtüsünün gece moru zemini.
+    static let backgroundPlum = Color("Colors/backgroundPlum")
 }
 
 /// World (story universe) palette: pastel card background + deep tone for icon and accent text.

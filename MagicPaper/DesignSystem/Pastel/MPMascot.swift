@@ -43,7 +43,7 @@ enum Mascot: String, CaseIterable {
         case .thinking: "İnternet yok"
         case .onBook: "Karşılama 1, Abonelik"
         case .waving: "Masal sonu, Okundu kartı"
-        case .pencil: "Masal yazılıyor, İlk masal"
+        case .pencil: "Masal yazılıyor, İlk masal, Günlük \"Kahramanı sen ol\""
         case .reading: "Boş kitaplık"
         case .sleeping: "Uyku modu, Uyku kartı"
         case .walking: "Karşılama 3"

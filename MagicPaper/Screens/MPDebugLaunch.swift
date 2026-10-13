@@ -7,7 +7,7 @@ import Foundation
 /// - `mpDemo`: karşılama geçilmiş sayılır, giriş bu açılış için ertelenir,
 ///   profil yoksa örnek bir çocuk ("İrem", 6) kurulur.
 /// - `mpStartParent`: uygulama ebeveyn alanında açılır.
-/// - `mpStartTab`: `home`, `library` ya da `corner`.
+/// - `mpStartTab`: `home`, `gunluk`, `library` ya da `corner`.
 /// - `mpParentTab`: `overview`, `safety` ya da `settings`.
 /// - `mpParentRoute`: ebeveyn alt sayfası, ör. `bookExport`, `familyMembers` (FAZ 18).
 enum MPDebugLaunch {

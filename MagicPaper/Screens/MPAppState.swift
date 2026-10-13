@@ -2,18 +2,19 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// Çocuk alanının sekmeleri (11 · Ana sayfa, 16 · Kitaplık, 12 · Benim köşem).
+/// Çocuk alanının sekmeleri (11 · Ana sayfa, Günlük, 16 · Kitaplık, 12 · Benim köşem).
 ///
-/// FAZ 17 (Pastel Masal): "Günlük" sekmesi kalktı; günün masalı ve okuma
-/// serisi Ana sayfada. 13 Ekim 2026: Benim köşem avatardan açılan katman
-/// olmaktan çıkıp sekme oldu; alt bar Ana sayfa · Kitaplık · Yarat · Köşem.
+/// 13 Ekim 2026: Benim köşem avatardan açılan katman olmaktan çıkıp sekme
+/// oldu. FAZ 20: Günlük (ücretsiz masallar) geri geldi; alt bar İrem'in
+/// tasarımındaki gibi Ana sayfa · Günlük · Yarat · Kitaplık · Köşem.
 /// "Yarat" bir sekme değil, bir eylem: `KidTabBar` onu ayrı çizer.
 enum MPTab: String, CaseIterable {
-    case home, library, corner
+    case home, gunluk, library, corner
 
     var label: String {
         switch self {
         case .home:    return "Ana sayfa"
+        case .gunluk:  return "Günlük"
         case .library: return "Kitaplık"
         case .corner:  return "Köşem"
         }
@@ -22,6 +23,7 @@ enum MPTab: String, CaseIterable {
     var kidTab: KidTab {
         switch self {
         case .home:    return .home
+        case .gunluk:  return .gunluk
         case .library: return .library
         case .corner:  return .corner
         }
@@ -30,6 +32,7 @@ enum MPTab: String, CaseIterable {
     init(_ kidTab: KidTab) {
         switch kidTab {
         case .home:    self = .home
+        case .gunluk:  self = .gunluk
         case .library: self = .library
         case .corner:  self = .corner
         }
@@ -211,7 +214,42 @@ final class MPAppState: ObservableObject {
 
     func read(_ story: Story, fromStart: Bool = false) {
         readerStartPage = fromStart ? 0 : nil
+        readerListens = false
         readerStory = story
+    }
+
+    /// Okuyucu açılır açılmaz sesli okusun mu (Günlük detayındaki "Dinle").
+    /// Okuyucu her açılışta sıfırlar.
+    @Published var readerListens = false
+
+    // MARK: - Günlük (FAZ 20)
+
+    /// Bir Günlük masalını okuyucuda açar: seçili anlatımla, kaldığı yerden.
+    func readClassic(_ tale: ClassicTale, listen: Bool = false, progress: ClassicProgressStore = .shared) {
+        let narration = progress.narration(for: tale.id)
+        let pageCount = tale.text(narration).pages.count
+        progress.markOpened(tale.id, pageCount: pageCount, narration: narration)
+        let entry = progress.entry(tale.id)
+        let finished = entry?.isFinished ?? false
+        let child = ProfileManager.shared.currentProfile
+        let story = ClassicReading.story(
+            for: tale, narration: narration, childID: child?.id, childName: child?.name ?? "",
+            savedPage: finished ? 0 : entry?.page)
+        read(story, fromStart: finished)
+        readerListens = listen
+    }
+
+    /// Günlük akışın kendi masalı (FAZ 15), Günlük'ün okuyucusunda.
+    func readOriginal(_ daily: DailyStory, progress: ClassicProgressStore = .shared) {
+        let child = ProfileManager.shared.currentProfile
+        let draft = ClassicReading.story(for: daily, childID: child?.id, childName: child?.name ?? "", savedPage: nil)
+        progress.markOpened(daily.id, pageCount: draft.pages.count, narration: .soft)
+        let entry = progress.entry(daily.id)
+        let finished = entry?.isFinished ?? false
+        var story = draft
+        story.lastReadPage = finished ? 0 : entry?.page
+        DailyStoryManager.shared.markAsRead(storyId: daily.id)
+        read(story, fromStart: finished)
     }
 
     // Alt sayfalar ve bildirim

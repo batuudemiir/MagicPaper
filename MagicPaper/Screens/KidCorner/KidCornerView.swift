@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// 12 · Benim köşem (`BenimKosem`).
+/// 12 · Benim köşem (`BenimKosem`). FAZ 20'den beri alt barın "Köşem" sekmesi.
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). 13 Ekim 2026'dan beri alt bardaki
