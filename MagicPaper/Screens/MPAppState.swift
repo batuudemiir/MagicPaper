@@ -135,6 +135,8 @@ final class MPAppState: ObservableObject {
     var afterReader: AfterReader?
     /// 26 · Uyku modu.
     @Published var sleepSession: MPSleepSession?
+    /// Günün masalı, kendi okuyucusunda.
+    @Published var dailyReading: DailyStory?
 
     /// Okuyucu kapandıktan sonra (iki tam ekran sunum üst üste açılamaz).
     func runAfterReader() {
@@ -148,6 +150,55 @@ final class MPAppState: ObservableObject {
 
     /// 18 · Seri masal, çocuk kökünün üstünde.
     @Published var seriesChildID: UUID?
+
+    /// "Bu akşamın masalı" (`MPTonight`): Ana sayfa kartının düğmesi, widget
+    /// ve Siri (FAZ 19). Dışarıdan gelindiğinde (widget, Siri) "bugün
+    /// okudun" durumu yeni masal akışını açmaz, Ana sayfada kalır.
+    func openTonight(fromSurface: Bool = false, now: Date = Date()) {
+        let resolved = MPTonightSource.current()
+        switch resolved.tonight(at: now) {
+        case .bedtime:
+            openSleepMode()
+        case .resume:
+            if let story = resolved.resumeStory { read(story) }
+        case .unread:
+            dailyReading = resolved.daily
+        case .readToday:
+            if !fromSurface { startStoryCreation() }
+        }
+    }
+
+    /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
+    /// yoksa uyku öncesi modunda yeni bir masal.
+    func openSleepMode() {
+        if let session = MPTonightSource.sleepSession() {
+            sleepSession = session
+        } else {
+            startStoryCreation(mode: .bedtime)
+        }
+    }
+
+    /// Widget, Live Activity ya da Siri'den gelen yer (FAZ 19). Hepsi çocuk
+    /// alanında açılır: ebeveyn modundaysa önce çocuk moduna dönülür, açık
+    /// bir tam ekran varsa ona dokunulmaz.
+    func open(_ link: MPSurfaceLink, childID: UUID?) {
+        enterChildMode()
+        guard readerStory == nil, sleepSession == nil, !showStoryCreation, dailyReading == nil else { return }
+        sheet = nil
+        actionsStory = nil
+        showKidCorner = false
+        tab = .home
+        switch link {
+        case .tonight:
+            openTonight(fromSurface: true)
+        case .sleep:
+            openSleepMode()
+        case .series:
+            guard let childID else { return }
+            SeriesManager.shared.refreshUnlocks(for: childID)
+            if SeriesManager.shared.openSeries(for: childID) != nil { seriesChildID = childID }
+        }
+    }
 
     func read(_ story: Story, fromStart: Bool = false) {
         readerStartPage = fromStart ? 0 : nil

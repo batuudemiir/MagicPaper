@@ -59,19 +59,26 @@ struct MPSleepTimer: Equatable {
 /// Koyu gece, ay ve uyuyan Ragi. Masal sayfa sayfa sesli okunur; ekran son
 /// iki dakikada kararır, süre dolunca ya da masal bitince kapanır. Uyku
 /// modu sürerken ekran kendiliğinden kilitlenmez; kapanınca eski hâline döner.
+/// Telefon kilitlenirse masal okunmaya devam eder; kilit ekranında Live
+/// Activity kalan süreyi ve Durdur'u gösterir (FAZ 19, `MPSleepPlayback`).
 struct SleepModeView: View {
     let session: MPSleepSession
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @StateObject private var speech = MPSpeech.shared
+    @StateObject private var playback: MPSleepPlayback
 
     @Environment(\.dynamicTypeSize) private var typeSize
-    @State private var timer = MPSleepTimer()
-    @State private var page = 0
-    @State private var elapsed: TimeInterval = 0
-    @State private var isPlaying = true
-    @State private var finished = false
+
+    init(session: MPSleepSession) {
+        self.session = session
+        _playback = StateObject(wrappedValue: MPSleepPlayback(session: session))
+    }
+
+    private var timer: MPSleepTimer { playback.timer }
+    private var elapsed: TimeInterval { playback.elapsed }
+    private var isPlaying: Bool { playback.isPlaying }
+    private var finished: Bool { playback.finished }
 
     private let tick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -119,7 +126,7 @@ struct SleepModeView: View {
 
                 Spacer(minLength: MPSpacing.lg)
 
-                Button(action: togglePlay) {
+                Button(action: playback.togglePlay) {
                     MPIcon(isPlaying ? "pause.fill" : "play.fill", size: 30, weight: .bold)
                         .foregroundStyle(MPColor.readerNightText)
                         .frame(width: 72, height: 72)
@@ -131,7 +138,7 @@ struct SleepModeView: View {
                 VStack(spacing: MPSpacing.sm) {
                     Text("Kapanma süresi").mpText(.callout).foregroundStyle(MPColor.readerNightSecondary)
                     MPSegmented(options: MPSleepTimer.choices.map { ($0, "\($0) dk") },
-                                selection: $timer.minutes, track: MPColor.readerNightTrack,
+                                selection: $playback.timer.minutes, track: MPColor.readerNightTrack,
                                 selectedFill: MPColor.readerNightSecondary.opacity(0.35),
                                 selectedText: MPColor.readerNightText,
                                 text: MPColor.readerNightSecondary)
@@ -155,11 +162,7 @@ struct SleepModeView: View {
         }
         .onAppear(perform: start)
         .onDisappear(perform: stop)
-        .onReceive(tick) { _ in
-            guard isPlaying else { return }
-            elapsed += 1
-            if timer.isOver(after: elapsed) { close() }
-        }
+        .onReceive(tick) { _ in playback.tick() }
     }
 
     private var night: some View {
@@ -180,47 +183,17 @@ struct SleepModeView: View {
 
     private func start() {
         UIApplication.shared.isIdleTimerDisabled = true
-        speech.onFinished = { advance() }
-        readCurrentPage()
+        playback.onClose = { dismiss() }
+        playback.start()
     }
 
     private func stop() {
-        speech.onFinished = nil
-        speech.stop()
+        playback.stop()
         UIApplication.shared.isIdleTimerDisabled = false
     }
 
-    private func readCurrentPage() {
-        guard session.pages.indices.contains(page) else {
-            finished = true
-            Task { @MainActor in
-                try? await Task.sleep(nanoseconds: 4_000_000_000)
-                close()
-            }
-            return
-        }
-        speech.speak(session.pages[page],
-                     recording: session.storyID.flatMap { MPNarration.recording($0, page: session.pageIndexes[page]) })
-    }
-
-    private func advance() {
-        guard isPlaying else { return }
-        page += 1
-        readCurrentPage()
-    }
-
-    private func togglePlay() {
-        isPlaying.toggle()
-        if isPlaying {
-            if speech.isPaused { speech.resume() } else { readCurrentPage() }
-        } else {
-            speech.pause()
-        }
-    }
-
     private func close() {
-        stop()
-        dismiss()
+        playback.close()
     }
 }
 

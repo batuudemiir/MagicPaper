@@ -15,6 +15,8 @@ struct ContentView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @ObservedObject private var account = AccountService.shared
+    /// Widget, Live Activity ve Siri'nin açtığı yer (FAZ 19).
+    @ObservedObject private var surfaceRouter = MPSurfaceRouter.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// 09 + 10: ilk profil oluştuktan sonra bir kez.
@@ -68,12 +70,15 @@ struct ContentView: View {
                 // notification announces it.
                 if let id { SeriesManager.shared.refreshUnlocks(for: id) }
                 DailyStoryManager.shared.refreshForToday()
+                // Widget'lar o an seçili çocuğu gösterir (FAZ 19).
+                MPSurfaceSync.refresh()
             }
             // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
             .onChange(of: scenePhase) { _, phase in
                 if phase == .background {
                     app.enterChildMode()
                     RemoteContentService.scheduleBackgroundRefresh()
+                    MPSurfaceSync.refresh()
                 }
                 if phase == .active, let id = profileManager.currentProfile?.id {
                     SeriesManager.shared.refreshUnlocks(for: id)
@@ -92,9 +97,19 @@ struct ContentView: View {
             .onChange(of: app.isParentMode) { _, parent in
                 if parent && account.pendingInviteCode != nil { app.parentRoute = .familyMembers }
             }
+            // Widget, Live Activity ve Siri (FAZ 19): uygulama kök ekrana
+            // varınca işlenir; giriş ya da profil seçimi sırasında bekler.
+            .onChange(of: surfaceRouter.pending, initial: true) { _, link in
+                guard let link else { return }
+                surfaceRouter.pending = nil
+                app.open(link, childID: profileManager.currentProfile?.id)
+            }
             .overlay { sheetLayer }
-            .fullScreenCover(item: $app.sleepSession) { session in
+            .fullScreenCover(item: $app.sleepSession, onDismiss: { MPSurfaceSync.refresh() }) { session in
                 SleepModeView(session: session).environmentObject(app)
+            }
+            .fullScreenCover(item: $app.dailyReading, onDismiss: { MPSurfaceSync.refresh() }) { story in
+                DailyStoryReaderView(story: story).environmentObject(app).environmentObject(settings)
             }
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
                 app.creationPreset = nil
@@ -116,6 +131,7 @@ struct ContentView: View {
             }
             .fullScreenCover(item: $app.readerStory, onDismiss: {
                 app.readerStartPage = nil
+                MPSurfaceSync.refresh()
                 app.runAfterReader()
             }) { story in
                 StoryReaderView(story: story, startingPage: app.readerStartPage).environmentObject(app).environmentObject(settings)
