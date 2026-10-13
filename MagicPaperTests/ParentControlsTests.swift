@@ -82,6 +82,17 @@ final class ParentControlsTests: XCTestCase {
         XCTAssertTrue(visible.isEmpty)
     }
 
+    /// Gizlenen masal kaybolmuş gibi görünmesin: çocuğa "onay bekliyor"
+    /// denir (karar 8 Ekim 2026). Bekleyen ve görünen birbirini tamamlar.
+    func testPendingIsWhatTheGateHides() {
+        let approved = story(.completed)
+        let waiting = story(.completed)
+        let isApproved: (UUID) -> Bool = { $0 == approved.id }
+        XCTAssertEqual(MPStoryGate.pending([approved, waiting], approvalRequired: true, isApproved: isApproved).map(\.id),
+                       [waiting.id])
+        XCTAssertTrue(MPStoryGate.pending([waiting], approvalRequired: false, isApproved: isApproved).isEmpty)
+    }
+
     private func story(_ status: StoryStatus) -> Story {
         var s = ReaderFixtures.textStory(pages: 2)
         s.status = status

@@ -151,6 +151,8 @@ struct StoryActionList: View {
 /// sesli okuma. Okuyucu tam ekran sunulduğu için onun içinden `.sheet` ile
 /// açılır. "Kim okusun?" yalnızca Kendi sesin (FAZ 18) bayrağı açıkken.
 struct ReaderSettingsSheet: View {
+    /// Bu masalın ailenin sesiyle kaydı var mı (FAZ 18).
+    var hasFamilyVoice = false
     let onClose: () -> Void
 
     @EnvironmentObject private var app: MPAppState
@@ -178,10 +180,11 @@ struct ReaderSettingsSheet: View {
                     }
                 }
 
-                if FamilyFeatureAccess.isEnabled(.voiceRecording) {
+                // "Ailenin sesi" yalnızca bu masalın kaydı varsa (24 · teslim notu).
+                if hasFamilyVoice {
                     group("Kim okusun?") {
                         MPSegmented(options: [(false, "Masal anlatıcısı"), (true, "Ailenin sesi")],
-                                    selection: .constant(false))
+                                    selection: $settings.familyVoice)
                     }
                 }
 

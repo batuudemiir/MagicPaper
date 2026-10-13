@@ -18,6 +18,9 @@ struct StoryPreparationView: View {
     /// 10 · İlk masal: "Elif'in ilk masalı yazılıyor", "Sonra oku".
     var title: String = "Masal yazılıyor"
     var cancelTitle: String = "Vazgeç"
+    /// "Masalları onayla" açıksa masal hazır olunca okunmaz: ebeveyn
+    /// bölümünden onaylanması gerektiği söylenir (karar 8 Ekim 2026).
+    var awaitsApproval: Bool = false
 
     private static let stages: [(title: String, icon: String)] = [
         ("Kahraman hazırlanıyor", "person"),
@@ -61,7 +64,26 @@ struct StoryPreparationView: View {
 
             Spacer(minLength: MPSpacing.lg)
 
-            if isDone {
+            if isDone && awaitsApproval {
+                VStack(spacing: MPSpacing.md) {
+                    HStack(alignment: .top, spacing: MPSpacing.sm) {
+                        MPIcon("lock", size: 18, weight: .semibold)
+                            .foregroundStyle(MPColor.actionPrimary)
+                            .accessibilityHidden(true)
+                        Text("Masal hazır. Okumadan önce bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
+                            .mpText(.bodyStrong)
+                            .foregroundStyle(MPColor.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(MPSpacing.lg)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(MPColor.actionSoft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                    .accessibilityElement(children: .combine)
+                    MPButton(title: "Tamam", fullWidth: true, action: onCancel)
+                        .padding(.horizontal, MPSpacing.xxxl)
+                }
+                .transition(.opacity)
+            } else if isDone {
                 MPButton(title: "Masalı oku", systemImage: "book", fullWidth: true, action: onRead)
                     .padding(.horizontal, MPSpacing.xxxl)
                     .transition(.opacity)

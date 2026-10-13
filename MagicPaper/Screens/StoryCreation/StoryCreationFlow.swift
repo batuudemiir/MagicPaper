@@ -264,7 +264,8 @@ struct StoryCreationFlow: View {
                 modeTitle: chosenMode?.title,
                 story: preparedStory,
                 onRead: { if let story = preparedStory { phase = .reading(story) } },
-                onCancel: { dismiss() }
+                onCancel: { dismiss() },
+                awaitsApproval: preparedStory.map(awaitsApproval) ?? false
             )
 
         case .reading(let story):
@@ -279,6 +280,13 @@ struct StoryCreationFlow: View {
                 message: (failureReason ?? .general).message
             )
         }
+    }
+
+    /// "Masalları onayla" açıkken çocuğun yazdığı masal onay bekler. Ebeveyn
+    /// alanında yazılan masalı ebeveyn zaten görüyor: o masal onaylı girer.
+    private func awaitsApproval(_ story: Story) -> Bool {
+        let settings = MPSettingsStore.shared
+        return settings.approve && !settings.isApproved(story.id)
     }
 
     // MARK: - Choosing
@@ -354,6 +362,9 @@ struct StoryCreationFlow: View {
                     companionID: chosenCompanionID,
                     family: chosenFamily
                 )
+                if app.isParentMode && MPSettingsStore.shared.approve {
+                    MPSettingsStore.shared.approveStory(story.id)
+                }
                 // Composition takes milliseconds; the preparation screen runs
                 // its stages and offers "Masalı oku" once both are done.
                 preparedStory = story

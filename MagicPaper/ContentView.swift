@@ -14,6 +14,7 @@ struct ContentView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @ObservedObject private var account = AccountService.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// 09 + 10: ilk profil oluştuktan sonra bir kez.
@@ -36,6 +37,7 @@ struct ContentView: View {
                 if let tab = MPDebugLaunch.startTab { app.tab = tab }
                 if MPDebugLaunch.startsInParent { app.unlockParent() }
                 if let tab = MPDebugLaunch.parentTab { app.parentTab = tab }
+                if let route = MPDebugLaunch.parentRoute { app.parentRoute = route }
             }
             #endif
             .task {
@@ -81,6 +83,14 @@ struct ContentView: View {
                     DailyStoryManager.shared.refreshForToday()
                     Task { await RemoteContentService.shared.refreshIfDue() }
                 }
+            }
+            // Aile daveti bağlantısı (FAZ 18): kapıdan geçip Aile üyeleri'nde açılır.
+            .onChange(of: account.pendingInviteCode, initial: true) { _, code in
+                guard code != nil else { return }
+                if app.isParentMode { app.parentRoute = .familyMembers } else { app.requestParentMode() }
+            }
+            .onChange(of: app.isParentMode) { _, parent in
+                if parent && account.pendingInviteCode != nil { app.parentRoute = .familyMembers }
             }
             .overlay { sheetLayer }
             .fullScreenCover(item: $app.sleepSession) { session in
@@ -206,6 +216,9 @@ struct ContentView: View {
             safety: { ParentSafetyView() },
             settings: { SettingsView() }
         )
+        .fullScreenCover(item: $app.parentRoute) { route in
+            ParentRouteView(route: route).environmentObject(app).environmentObject(settings)
+        }
     }
 
     // MARK: - Alt sayfa katmanı

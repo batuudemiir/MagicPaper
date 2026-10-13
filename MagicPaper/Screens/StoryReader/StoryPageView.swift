@@ -24,6 +24,7 @@ struct StoryPageView: View {
     /// Geliştirici katmanı.
     var showsDecorationDebug: Bool = false
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         ZStack {
@@ -58,6 +59,9 @@ struct StoryPageView: View {
             }
 
             GeometryReader { geo in
+                if isSpread(geo) {
+                    spread(in: geo)
+                } else {
                 VStack(spacing: 0) {
                     if page.hasIllustration {
                         illustration(in: geo)
@@ -71,6 +75,7 @@ struct StoryPageView: View {
                 // yazı boyutunda metin kapat düğmesinin altına akmaz.
                 .padding(.top, MP.S.navBarHeight + ornament.contentInset)
                 .padding(.bottom, MP.S.x7 + ornament.contentInset)
+                }
             }
 
             folioLine
@@ -134,6 +139,59 @@ struct StoryPageView: View {
         .frame(height: height)
     }
 
+    // MARK: - 27 · iPad yatay açık kitap
+
+    /// iPad yatayda (geniş boyut sınıfı, yatay sayfa) sayfa açık kitap olur:
+    /// solda resim, sağda metin, ortada sırt gölgesi. En büyük yazı
+    /// boyutlarında metin tüm genişliği alır.
+    private func isSpread(_ geo: GeometryProxy) -> Bool {
+        sizeClass == .regular && geo.size.width > geo.size.height * 1.15 && !typeSize.isAccessibilitySize
+    }
+
+    private func spread(in geo: GeometryProxy) -> some View {
+        let half = geo.size.width / 2
+        return HStack(spacing: 0) {
+            spreadArt
+                .frame(width: half, height: geo.size.height)
+                .clipped()
+                .accessibilityHidden(page.imageLabel == nil)
+            GeometryReader { right in
+                textColumn(in: right, reservesArt: false)
+                    .padding(.horizontal, StoryPageView.gutter + MP.S.x4)
+                    .padding(.top, MP.S.navBarHeight)
+                    .padding(.bottom, MP.S.x7)
+            }
+            .frame(width: half, height: geo.size.height)
+            // Kitabın sırtı: kâğıt gölgelemesi (malzeme taklidi).
+            .overlay(alignment: .leading) {
+                LinearGradient(colors: [MPColor.shadowInk.opacity(0.10), MPColor.shadowInk.opacity(0)],
+                               startPoint: .leading, endPoint: .trailing)
+                    .frame(width: MP.S.x8)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
+        }
+    }
+
+    /// Sol sayfa: masalın resmi; resimsiz masalda dünyanın işareti, dünya
+    /// renginde bir kapak sanatı gibi.
+    @ViewBuilder
+    private var spreadArt: some View {
+        if let scene = page.scene {
+            StorySceneView(scene: scene)
+                .aspectRatio(StorySceneView.aspectRatio, contentMode: .fill)
+        } else if let file = page.imageRef {
+            PageIllustration(fileName: file, label: page.imageLabel, theme: theme)
+        } else {
+            ZStack {
+                LinearGradient(colors: [accent.opacity(0.22), accent.opacity(0.55)],
+                               startPoint: .top, endPoint: .bottom)
+                MPIcon(symbol, size: 120, weight: .light)
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+        }
+    }
+
     // MARK: - Metin
 
     /// Metin sütunu.
@@ -156,9 +214,9 @@ struct StoryPageView: View {
         }
     }
 
-    private func textColumn(in geo: GeometryProxy) -> some View {
+    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
         let available = geo.size.height
-            - (page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
+            - (reservesArt && page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
 
         return ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: readSize.points * 0.55) {
@@ -203,7 +261,7 @@ struct StoryPageView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             // Sığdığında ortalanır, taştığında yukarıdan başlar.
             .frame(minHeight: max(available, 0),
-                   alignment: page.hasIllustration ? .top : .center)
+                   alignment: reservesArt && page.hasIllustration ? .top : .center)
             // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
             // metin.
             .accessibilityElement(children: .ignore)

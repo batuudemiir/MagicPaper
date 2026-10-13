@@ -132,7 +132,8 @@ struct StoryReaderView: View {
             }
         }
         .sheet(isPresented: $showReaderSettings, onDismiss: scheduleAutoHide) {
-            ReaderSettingsSheet(onClose: { showReaderSettings = false })
+            ReaderSettingsSheet(hasFamilyVoice: MPNarration.isAvailable(for: story.id),
+                                onClose: { showReaderSettings = false })
                 .environmentObject(app)
                 .environmentObject(settings)
         }
@@ -220,8 +221,10 @@ struct StoryReaderView: View {
         openedAt = Date()
         MPHaptics.prepare()
         if settings.readAloud, let text = model.currentPage?.spokenText {
-            speech.speak(text)
+            speech.speak(text, recording: familyRecording)
         }
+        // Ailenin sesi başka cihazda kaydedildiyse sayfalar şimdi iner (FAZ 18).
+        Task { await VoiceRecordingStore.shared.prefetch(story.id) }
         scheduleAutoHide()
         startBudgetWatch()
     }
@@ -390,7 +393,7 @@ struct StoryReaderView: View {
         // Sesli okuma açıksa yeni sayfa kendiliğinden okunur.
         let wasSpeaking = speech.isSpeaking && !speech.isPaused
         if let text = model.currentPage?.spokenText, wasSpeaking || settings.readAloud {
-            speech.speak(text)
+            speech.speak(text, recording: familyRecording)
         }
 
         if let folio = model.folio {
@@ -434,8 +437,13 @@ struct StoryReaderView: View {
         scheduleAutoHide()
     }
 
+    /// Bu sayfanın ailenin sesiyle kaydı, "Kim okusun?" ailenin sesiyse.
+    private var familyRecording: URL? {
+        model.currentPage.flatMap { MPNarration.recording(story.id, page: $0.index) }
+    }
+
     private func toggleSpeech() {
-        speech.toggle(model.currentPage?.spokenText ?? "")
+        speech.toggle(model.currentPage?.spokenText ?? "", recording: familyRecording)
         scheduleAutoHide()
     }
 }

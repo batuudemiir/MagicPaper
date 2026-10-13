@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>MagicPaper Masalları</title>
+<!--
+  Aileyle paylaş (FAZ 18): süreli, salt okuma web okuyucu.
+  Bağlantı belgesi shares/{token} yalnızca çocuğun adını ve masal metnini
+  taşır; sesli paylaşımda ailenin ses kayıtları da açılır. Analitik, çerez,
+  üçüncü taraf betik yok. Veri Firestore ve Storage REST'ten, kurallar
+  süresi dolan bağlantıyı reddeder.
+-->
+<style>
+  @font-face {
+    font-family: "Nunito";
+    src: url("/fonts/Nunito-Variable.ttf") format("truetype");
+    font-weight: 200 1000;
+    font-display: swap;
+  }
+  :root {
+    --paper: #FFF8EE;
+    --ink: #2E1E3E;
+    --muted: #6E6478;
+    --track: #ECE5DA;
+    --action: #6A47B8;
+    --on-action: #FFFFFF;
+    --surface: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body {
+    font-family: "Nunito", ui-rounded, system-ui, -apple-system, sans-serif;
+    font-size: 19px; line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 120px; }
+  .eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+  h1 { font-size: 28px; line-height: 1.2; font-weight: 900; margin: 0 0 20px; }
+  h2 { font-size: 24px; line-height: 1.25; font-weight: 900; margin: 0 0 4px; }
+  .muted { color: var(--muted); font-size: 15px; }
+  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .list button {
+    width: 100%; text-align: left; font: inherit; font-weight: 800; color: var(--ink);
+    background: var(--surface); border: 1.5px solid var(--track); border-radius: 22px;
+    padding: 16px 18px; min-height: 56px; cursor: pointer;
+  }
+  .list button span { display: block; font-weight: 600; font-size: 15px; color: var(--muted); }
+  .page { white-space: pre-wrap; font-weight: 600; margin: 16px 0 24px; min-height: 40vh; }
+  .bar {
+    position: fixed; left: 0; right: 0; bottom: 0; background: var(--paper);
+    border-top: 1px solid var(--track); padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+  .bar .inner { max-width: 640px; margin: 0 auto; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+  .btn {
+    font: inherit; font-size: 16px; font-weight: 900; border-radius: 999px; min-height: 48px; padding: 0 20px;
+    border: 2px solid var(--action); background: var(--surface); color: var(--action); cursor: pointer;
+  }
+  .btn.primary { background: var(--action); color: var(--on-action); }
+  .btn[disabled] { opacity: .4; cursor: default; }
+  .folio { font-size: 15px; font-weight: 800; color: var(--muted); min-width: 64px; text-align: center; }
+  .notice { background: var(--surface); border: 1.5px solid var(--track); border-radius: 22px; padding: 20px; }
+  .back { margin-bottom: 16px; }
+  :focus-visible { outline: 3px solid var(--action); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) { .page { animation: fade .25s ease-out; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<main id="app" aria-live="polite"><p class="muted">Masallar açılıyor…</p></main>
+<div class="bar" id="bar" hidden><div class="inner">
+  <button class="btn" id="prev" type="button" aria-label="Önceki sayfa">Önceki</button>
+  <button class="btn" id="listen" type="button" hidden>Dinle</button>
+  <span class="folio" id="folio"></span>
+  <button class="btn primary" id="next" type="button" aria-label="Sonraki sayfa">Sonraki</button>
+</div></div>
+<audio id="audio" preload="none"></audio>
+<script>
+(() => {
+  "use strict";
+  const PROJECT = "magicpaper-393a7";
+  const BUCKET = "magicpaper-393a7-f2d31.firebasestorage.app";
+  // Yerel deneme: firebase emulators (Firestore 8080, Storage 9199).
+  const local = ["localhost", "127.0.0.1"].includes(location.hostname);
+  const params = new URLSearchParams(location.search);
+  const project = local ? (params.get("project") || PROJECT) : PROJECT;
+  const firestore = local ? "http://127.0.0.1:8080" : "https://firestore.googleapis.com";
+  const storage = local ? "http://127.0.0.1:9199" : "https://firebasestorage.googleapis.com";
+  const bucket = local ? (params.get("bucket") || BUCKET) : BUCKET;
+
+  const app = document.getElementById("app");
+  const bar = document.getElementById("bar");
+  const audio = document.getElementById("audio");
+  const token = (location.pathname.split("/")[2] || "").trim();
+
+  const el = (tag, attrs = {}, text) => {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+
+  function closed() {
+    bar.hidden = true;
+    app.replaceChildren(
+      el("p", { class: "eyebrow", lang: "en" }, "MagicPaper"),
+      el("h1", {}, "Bu bağlantının süresi doldu"),
+      Object.assign(el("div", { class: "notice" }),
+        { textContent: "Masalları paylaşan aileden yeni bir bağlantı isteyebilirsin." })
+    );
+    document.title = "MagicPaper";
+  }
+
+  // Firestore REST değerlerini düz değere çevirir.
+  function value(v) {
+    if (!v) return undefined;
+    if ("stringValue" in v) return v.stringValue;
+    if ("integerValue" in v) return Number(v.integerValue);
+    if ("booleanValue" in v) return v.booleanValue;
+    if ("timestampValue" in v) return new Date(v.timestampValue);
+    if ("arrayValue" in v) return (v.arrayValue.values || []).map(value);
+    if ("mapValue" in v) {
+      const out = {};
+      for (const [k, f] of Object.entries(v.mapValue.fields || {})) out[k] = value(f);
+      return out;
+    }
+    return undefined;
+  }
+
+  function audioURL(storyIndex, page) {
+    const path = encodeURIComponent(`shares/${token}/${storyIndex}/${page}.m4a`);
+    return `${storage}/v0/b/${bucket}/o/${path}?alt=media`;
+  }
+
+  let share, storyIndex = -1, page = 0;
+
+  function showList() {
+    stopAudio();
+    storyIndex = -1;
+    bar.hidden = true;
+    const title = share.childName ? `${share.childName} için masallar` : "Masallar";
+    document.title = title;
+    const list = el("ul", { class: "list" });
+    share.stories.forEach((story, i) => {
+      const li = el("li");
+      const button = el("button", { type: "button" });
+      button.append(document.createTextNode(story.title));
+      const meta = `${story.pages.length} sayfa` + (story.audio.length ? " · sesli" : "");
+      button.append(el("span", {}, meta));
+      button.addEventListener("click", () => openStory(i));
+      li.append(button);
+      list.append(li);
+    });
+    const days = Math.max(0, Math.ceil((share.expiresAt - new Date()) / 86400000));
+    app.replaceChildren(
+      el("p", { class: "eyebrow", lang: "en" }, "MagicPaper"),
+      el("h1", {}, title),
+      list,
+      el("p", { class: "muted" }, days <= 1 ? "Bu bağlantı yakında kapanır." : `Bu bağlantı ${days} gün daha açık.`)
+    );
+    app.querySelector("h1").focus?.();
+  }
+
+  function openStory(i) {
+    storyIndex = i;
+    page = 0;
+    renderPage();
+  }
+
+  function renderPage() {
+    stopAudio();
+    const story = share.stories[storyIndex];
+    const back = el("button", { class: "btn back", type: "button" }, "Masallar");
+    back.addEventListener("click", showList);
+    const text = el("div", { class: "page", tabindex: "-1" }, story.pages[page]);
+    app.replaceChildren(back, el("h2", {}, story.title), text);
+    document.title = story.title;
+    bar.hidden = false;
+    document.getElementById("folio").textContent = `${page + 1} / ${story.pages.length}`;
+    document.getElementById("prev").disabled = page === 0;
+    const next = document.getElementById("next");
+    const last = page === story.pages.length - 1;
+    next.textContent = last ? "Bitti" : "Sonraki";
+    next.setAttribute("aria-label", last ? "Masal bitti, listeye dön" : "Sonraki sayfa");
+    const listen = document.getElementById("listen");
+    const hasAudio = share.voice && story.audio.includes(page);
+    listen.hidden = !hasAudio;
+    listen.textContent = "Dinle";
+    listen.setAttribute("aria-label", "Bu sayfayı ailenin sesiyle dinle");
+    text.focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  }
+
+  function stopAudio() {
+    audio.pause();
+    audio.removeAttribute("src");
+    const listen = document.getElementById("listen");
+    if (listen) listen.textContent = "Dinle";
+  }
+
+  document.getElementById("prev").addEventListener("click", () => { if (page > 0) { page--; renderPage(); } });
+  document.getElementById("next").addEventListener("click", () => {
+    const story = share.stories[storyIndex];
+    if (page < story.pages.length - 1) { page++; renderPage(); } else { showList(); }
+  });
+  document.getElementById("listen").addEventListener("click", () => {
+    const listen = document.getElementById("listen");
+    if (!audio.paused) { stopAudio(); return; }
+    audio.src = audioURL(storyIndex, page);
+    audio.play().then(() => { listen.textContent = "Durdur"; }).catch(() => { listen.hidden = true; });
+  });
+  audio.addEventListener("ended", () => { document.getElementById("listen").textContent = "Dinle"; });
+
+  async function load() {
+    if (!/^[A-Za-z0-9_-]{22,}$/.test(token)) { closed(); return; }
+    try {
+      const url = `${firestore}/v1/projects/${project}/databases/(default)/documents/shares/${token}`;
+      const response = await fetch(url, { credentials: "omit", referrerPolicy: "no-referrer" });
+      if (!response.ok) { closed(); return; }
+      const doc = await response.json();
+      const f = doc.fields || {};
+      share = {
+        childName: value(f.childName) || "",
+        voice: value(f.voice) === true,
+        expiresAt: value(f.expiresAt) || new Date(0),
+        stories: (value(f.stories) || []).map((s) => ({
+          title: s.title || "", pages: s.pages || [], audio: s.audio || [],
+        })).filter((s) => s.pages.length),
+      };
+      if (share.expiresAt <= new Date() || !share.stories.length) { closed(); return; }
+      if (share.stories.length === 1) openStory(0); else showList();
+    } catch (error) {
+      app.replaceChildren(
+        el("h1", {}, "Masallar açılamadı"),
+        el("p", { class: "muted" }, "İnternet bağlantını kontrol edip sayfayı yenile.")
+      );
+    }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>

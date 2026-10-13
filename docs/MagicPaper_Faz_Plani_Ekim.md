@@ -824,7 +824,7 @@ sakin seviyenin modları boşaltmadığının kontrolü (`mode_hidden_by_default
 
 ---
 
-## FAZ 18 — Aile özellikleri ⏳
+## FAZ 18 — Aile özellikleri 🔧
 
 1. Kendi sesin: sayfa sayfa kayıt, Firebase Storage'da yalnızca aile hesabına açık; okuyucuda
    "Kim okusun?" seçimi; silme.
@@ -835,6 +835,24 @@ sakin seviyenin modları boşaltmadığının kontrolü (`mode_hidden_by_default
 5. Haftalık özet e-postası (Cloud Functions + e-posta sağlayıcısı).
 
 **Sahip:** builder + library-memory + design-system.
+
+### Kapanış notu (8 Ekim 2026, dal `faz-18`)
+
+Kod tamam, yayın Batuhan'ın Firebase adımlarına bağlı (🔧). Ayrıntı ve adımlar: `docs/FAMILY_FEATURES.md`.
+
+**Kararlar (Batuhan):** beşi de bu turda; haftalık özet giriş hesabının e-postasına (Apple artık e-posta
+kapsamı ister); Resend; tasarım geçerli (sesli paylaşım, "Basılı kitap yakında" sekmesi); `faz-17-pastel`'de
+paralel yazılan 33 ve 35 yerine faz-18 sürümleri (iPad açık kitap, onay notu, KVKK taslağı birleşti).
+Onaya sunulanlar: tek yönetici kurucu; bir hesap tek ailede; ayrı ses kaydı rızası; üye ailenin onayıyla girer.
+
+**Doğrulama:** uygulama 631/0 (1 atlanan; taban 586), kurallar 51/51 (Firestore 42 + Storage 9),
+fonksiyonlar 9/9, paket koduna dokunulmadı. Reviewer: CRITICAL yok, HIGH ve MEDIUM bulgular düzeltildi.
+Emülatörle uçtan uca: giriş, onay, Aile, davet, paylaşım bağlantısı, web okuyucu, süre dolumu.
+
+**Açık:** proje kimliği uyuşmazlığı (plist `magicpaper-393a7-f2d31`, hosting `magicpaper-393a7`); açık
+paylaşım belgesinde `familyID`; ikinci cihazla katılma ve gerçek mikrofon kaydı denenmedi; ekran matrisi
+(koyu, en büyük Dynamic Type, SE/Pro Max) yeni ekranlarda yapılmadı; gizlilik politikası 2.1 ve ses rızası
+metni hukuk bekliyor; `privacy_policy.html` 2.0.
 
 ---
 

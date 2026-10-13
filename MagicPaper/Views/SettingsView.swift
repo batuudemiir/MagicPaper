@@ -18,12 +18,12 @@ struct SettingsView: View {
     @State private var showPrivacy = false
     @State private var confirmDelete = false
     @State private var confirmClear = false
-    @State private var exportFile: MPExportFile?
-    @State private var isExporting = false
     @State private var interestChoices: [InterestChoice] = []
     /// iOS bildirimi reddettiyse anahtar açık kalamaz; ekran bunu söylemek
     /// zorunda, yoksa ebeveyn açık bir anahtara bakıp hiç bildirim almaz.
     @State private var notificationsDenied = false
+    /// Haftalık özet (FAZ 18): sunucudaki ayar; açılışta okunur.
+    @State private var weeklyEmail = false
     #if DEBUG
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
     @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
@@ -52,7 +52,6 @@ struct SettingsView: View {
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
         .fullScreenCover(isPresented: $showPrivacy) { PrivacyAndDataView() }
-        .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
         .fullScreenCover(isPresented: $confirmDelete) {
             AccountDeletionSheet(onClose: { confirmDelete = false })
         }
@@ -67,6 +66,10 @@ struct SettingsView: View {
         .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
         // Ekranı açtığında gerçeği göster: izin Sistem Ayarları'ndan geri
         // alınmış olabilir ve bizim anahtarımız bunu bilmiyor.
+        .task {
+            guard FamilyFeatureAccess.isEnabled(.weeklyEmail), account.isFounder, let familyID = account.familyID else { return }
+            weeklyEmail = (try? await FirestoreWeeklyEmailRemote().isEnabled(familyID: familyID)) ?? false
+        }
         .task {
             guard settings.reminder else { return }
             notificationsDenied = await !MPReminder.isAuthorised()
@@ -88,9 +91,11 @@ struct SettingsView: View {
                     app.sheet = .profileEdit(profile.id)
                 }
             }
-            MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
-                app.showProfileAdd = true
+            if account.canWriteFamily {
+                MPRowDivider(area: .parent)
+                ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
+                    app.showProfileAdd = true
+                }
             }
         }
     }
@@ -117,14 +122,14 @@ struct SettingsView: View {
         ParentSection(title: "Aile ve ses") {
             if FamilyFeatureAccess.isEnabled(.familyMembers) {
                 ParentRowButton(systemImage: "person.2", tone: .sky, title: "Aile üyeleri",
-                                subtitle: "Davet et, birlikte okuyun") { app.parentRoute = .familyMembers }
+                                subtitle: account.isFounder ? "Davet et, birlikte okuyun" : (account.role.map { "\($0.title) olarak katıldın" } ?? "")) { app.parentRoute = .familyMembers }
             }
             if FamilyFeatureAccess.isEnabled(.familyMembers) && FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 MPRowDivider(area: .parent)
             }
             if FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
-                                subtitle: "Masalları senin sesinle okusun") { app.parentRoute = .voiceRecording }
+                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.parentRoute = .voiceRecording }
             }
         }
     }
@@ -150,10 +155,30 @@ struct SettingsView: View {
                         .tint(MPColor.actionPrimary)
                 }
             }
-            if FamilyFeatureAccess.isEnabled(.weeklyEmail) {
+            if FamilyFeatureAccess.isEnabled(.weeklyEmail) && account.account != nil {
                 MPRowDivider(area: .parent)
-                ParentToggleRow(systemImage: "envelope", tone: .sky, title: "Haftalık özet e-postası",
-                                subtitle: "Pazar sabahları", isOn: .constant(false))
+                ParentToggleRow(systemImage: "envelope", tone: .sky, title: WeeklyEmailCopy.title,
+                                subtitle: WeeklyEmailCopy.subtitle(enabled: weeklyEmail, email: account.accountEmail,
+                                                                   isFounder: account.isFounder),
+                                isOn: Binding(get: { weeklyEmail }, set: setWeeklyEmail))
+                    .disabled(!account.isFounder || account.accountEmail == nil)
+            }
+        }
+    }
+
+    /// Haftalık özeti açar ya da kapatır; adres hesabın e-postası.
+    private func setWeeklyEmail(_ on: Bool) {
+        guard account.isFounder, let familyID = account.familyID, let email = account.accountEmail else { return }
+        let previous = weeklyEmail
+        weeklyEmail = on
+        Task { @MainActor in
+            do {
+                try await FirestoreWeeklyEmailRemote().set(enabled: on, email: email,
+                                                           timeZone: TimeZone.current.identifier, familyID: familyID)
+                if on { app.showToast("Pazar sabahları özet gelecek", symbol: "envelope") }
+            } catch {
+                weeklyEmail = previous
+                app.showToast(FamilyCopy.failed, symbol: "xmark", tone: .danger)
             }
         }
     }
@@ -256,28 +281,9 @@ struct SettingsView: View {
             ParentRowButton(systemImage: "lock", tone: .gray, title: "Gizlilik ve veri",
                             subtitle: "Ne tuttuğumuz, nasıl sildiğimiz") { showPrivacy = true }
             MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "arrow.down.circle", tone: .green, title: "Masal kitabı",
-                            subtitle: isExporting ? "PDF hazırlanıyor" : "Masalların PDF kitap olarak") {
-                exportBook()
-            }
-        }
-    }
-
-    /// Kitaplıktaki masalları tek bir PDF kitapta toplar (35 · Masal kitabı'nın
-    /// PDF yolu; basılı kitap iş modeli kararına kadar yok).
-    private func exportBook() {
-        guard !isExporting, !storyManager.stories.isEmpty else { return }
-        isExporting = true
-        let snapshot = storyManager.stories
-        Task.detached(priority: .userInitiated) {
-            let url = await MPStoryPDF.makePDF(stories: snapshot, fileName: "magicpaper-masallar.pdf")
-            await MainActor.run {
-                isExporting = false
-                if let url {
-                    exportFile = MPExportFile(url: url)
-                } else {
-                    app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
-                }
+            ParentRowButton(systemImage: "book", tone: .green, title: "Masal kitabı",
+                            subtitle: "PDF ya da basılı kitap") {
+                app.parentRoute = .bookExport
             }
         }
     }

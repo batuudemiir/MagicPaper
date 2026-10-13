@@ -6,14 +6,21 @@ struct MPSleepSession: Identifiable, Equatable {
     let id = UUID()
     let title: String
     let pages: [String]
+    /// Masalın kimliği ve okunan her sayfanın masaldaki dizini: ailenin sesiyle
+    /// kaydı varsa o çalınır (FAZ 18). Günün masalında yok.
+    let storyID: UUID?
+    let pageIndexes: [Int]
 
-    init(title: String, pages: [String]) {
+    init(title: String, pages: [String], storyID: UUID? = nil) {
         self.title = title
-        self.pages = pages.filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        let kept = pages.enumerated().filter { !$0.element.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        self.pages = kept.map(\.element)
+        self.pageIndexes = kept.map(\.offset)
+        self.storyID = storyID
     }
 
     init(story: Story) {
-        self.init(title: story.title, pages: story.pages.map(\.text))
+        self.init(title: story.title, pages: story.pages.map(\.text), storyID: story.id)
     }
 
     init(daily: DailyStory) {
@@ -192,7 +199,8 @@ struct SleepModeView: View {
             }
             return
         }
-        speech.speak(session.pages[page])
+        speech.speak(session.pages[page],
+                     recording: session.storyID.flatMap { MPNarration.recording($0, page: session.pageIndexes[page]) })
     }
 
     private func advance() {

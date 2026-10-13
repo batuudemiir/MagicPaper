@@ -46,8 +46,10 @@ enum MPParentTab: String, CaseIterable {
 // MARK: - Ebeveyn alt sayfaları
 
 /// Ebeveyn alanından tam ekran açılan sayfalar (teslimdeki `ParentRoute`).
-/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür.
+/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür; Masal
+/// kitabı sunucu istemediği için bayrak dışı.
 enum MPParentRoute: String, Identifiable {
+    case bookExport       // 35 · Masal kitabı
     case voiceRecording   // 33 · Kendi sesin
     case familyMembers    // 34 · Aile üyeleri
     case shareLink        // 36 · Aileyle paylaş
@@ -178,6 +180,11 @@ final class MPAppState: ObservableObject {
     /// (+) butonu ve ana sayfa hero kartı yeni akışı baştan açar; ana
     /// sayfadaki bir mod kartı ise modu vererek ikinci adımdan.
     func startStoryCreation(mode: StoryMode? = nil, family: UUID? = nil) {
+        // Sadece okuma rolündeki yetişkin aileye masal yazamaz (FAZ 18).
+        guard AccountService.shared.canWriteFamily else {
+            showToast(FamilyCopy.readOnly, symbol: "book")
+            return
+        }
         creationPreset = mode
         creationFamilyID = family
         showStoryCreation = true

@@ -1,0 +1,75 @@
+rules_version = '2';
+
+// MagicPaper — Storage güvenlik kuralları (FAZ 18).
+//
+// Ailenin ses kayıtları: families/{fid}/voice/{storyID}/{page}.m4a. Ailenin
+// üyeleri dinler; kurucu ve ebeveyn rolündekiler kaydeder ve siler.
+// Sesli paylaşım: shares/{token}/{story}/{page}.m4a, paylaşım bağlantısının
+// süresi dolana kadar bağlantıyı bilen herkese açık. İndirme URL'si
+// (kalıcı belirteç) uygulama tarafından hiç üretilmez.
+// Eski görsel hattının child_uploads/ yolu bu sürümde kapalı (bayrakta).
+// Testler: firebase/tests/storage.test.mjs (npm test, emülatörle).
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function memberDoc(fid) {
+      return /databases/(default)/documents/families/$(fid)/members/$(request.auth.uid);
+    }
+
+    function canRead(fid) {
+      return request.auth != null
+        && (request.auth.uid == fid || firestore.exists(memberDoc(fid)));
+    }
+
+    function canWrite(fid) {
+      return request.auth != null
+        && (request.auth.uid == fid
+            || (firestore.exists(memberDoc(fid)) && firestore.get(memberDoc(fid)).data.role == 'parent'));
+    }
+
+    // Bir sayfa: AAC, en çok 4 MB (3 dakika, 48 kbps'nin epey üstü).
+    function validAudio() {
+      return request.resource.contentType == 'audio/mp4'
+        && request.resource.size > 0
+        && request.resource.size < 4 * 1024 * 1024;
+    }
+
+    function shareDoc(token) {
+      return /databases/(default)/documents/shares/$(token);
+    }
+
+    // Ses kaydı rızası (FAZ 18): kaydeden yetişkinin rızası sunucuda yoksa yükleme yok.
+    function voiceConsentGiven(fid) {
+      return firestore.exists(/databases/(default)/documents/families/$(fid)/voiceConsents/$(request.auth.uid));
+    }
+
+    // Paylaşım belgesi bir kez okunur (aynı istekte tekrarlanan get önbellekten gelir);
+    // belge yoksa get hata verir ve istek reddedilir.
+    function shareOpen(token) {
+      let d = firestore.get(shareDoc(token)).data;
+      return d.expiresAt > request.time && d.voice == true;
+    }
+
+    match /families/{fid}/voice/{allPaths=**} {
+      allow read: if canRead(fid);
+    }
+
+    match /families/{fid}/voice/{storyID}/{file} {
+      allow create, update: if canWrite(fid) && voiceConsentGiven(fid)
+                            && file.matches('^[0-9]{1,3}[.]m4a$') && validAudio();
+      allow delete: if canWrite(fid);
+    }
+
+    match /shares/{token}/{allPaths=**} {
+      allow get: if shareOpen(token);
+    }
+
+    match /shares/{token}/{story}/{file} {
+      allow create: if shareOpen(token)
+                    && canWrite(firestore.get(shareDoc(token)).data.familyID)
+                    && file.matches('^[0-9]{1,3}[.]m4a$') && validAudio();
+      allow delete: if canWrite(firestore.get(shareDoc(token)).data.familyID);
+    }
+  }
+}

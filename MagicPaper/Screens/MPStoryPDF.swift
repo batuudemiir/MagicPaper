@@ -33,12 +33,13 @@ enum MPStoryPDF {
         await makePDF(stories: [story], fileName: fileName(for: story.title))
     }
 
-    /// Birden çok masalı tek kitapta toplar (ebeveyn panelindeki dışa aktarma).
+    /// Birden çok masalı tek kitapta toplar (35 · Masal kitabı).
+    /// `bookTitle` verilirse kitabın kendi kapağı en başa basılır.
     ///
     /// Görselli kitabın sahneleri (B2) önce ana iş parçacığında görüntüye
     /// çevrilir — `ImageRenderer` bunu ister — sonra çizim burada, arka planda
     /// sürer.
-    static func makePDF(stories: [Story], fileName: String) async -> URL? {
+    static func makePDF(stories: [Story], fileName: String, bookTitle: String? = nil) async -> URL? {
         guard !stories.isEmpty else { return nil }
         let scenes = await MainActor.run { sceneImages(for: stories) }
 
@@ -47,6 +48,7 @@ enum MPStoryPDF {
 
         do {
             try renderer.writePDF(to: url) { context in
+                if let bookTitle { drawBookCover(bookTitle, stories: stories, context: context) }
                 for story in stories {
                     drawCover(story, context: context)
                     for (index, page) in story.pages.enumerated() {
@@ -63,6 +65,26 @@ enum MPStoryPDF {
     }
 
     // MARK: - Sayfa çizimi
+
+    /// Kitabın kapağı: "İrem'in Masal Kitabı" ve içindekiler.
+    private static func drawBookCover(_ title: String, stories: [Story], context: UIGraphicsPDFRendererContext) {
+        context.beginPage()
+        paper.setFill()
+        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+
+        let width = pageSize.width - margin * 2
+        var y: CGFloat = 140
+        y += draw(title, font: displayFont(32), color: ink,
+                  in: CGRect(x: margin, y: y, width: width, height: 200), alignment: .center) + 28
+        for story in stories {
+            y += draw(story.title, font: bodyFont(14), color: muted,
+                      in: CGRect(x: margin, y: y, width: width, height: 60), alignment: .center) + 6
+            if y > pageSize.height - margin * 3 { break }
+        }
+        _ = draw("MagicPaper", font: displayFont(13), color: muted,
+                 in: CGRect(x: margin, y: pageSize.height - margin - 20,
+                            width: width, height: 20), alignment: .center)
+    }
 
     private static func drawCover(_ story: Story, context: UIGraphicsPDFRendererContext) {
         context.beginPage()

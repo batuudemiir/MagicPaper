@@ -34,11 +34,23 @@
 				<string>$(GOOGLE_REVERSED_CLIENT_ID)</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>family-invite</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>magicpaper</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FAL_API_KEY</key>
 	<string>$(FAL_API_KEY)</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Kendi sesin: masalı senin sesinle kaydetmek için. Kayıt yalnızca ebeveyn alanından başlar ve aile hesabında saklanır.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MPContentBaseURL</key>

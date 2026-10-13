@@ -29,7 +29,7 @@ enum LocalDataEraser {
         MPStreak.eraseAllLedgers(in: defaults)
         MPBadgeStore.eraseAll(in: defaults)
         for key in defaults.dictionaryRepresentation().keys
-        where key.hasPrefix("mp_avatarColor_") || key.hasPrefix("read_history_") || key.hasPrefix(StoryGenerationManager.undecodableBackupPrefix) {
+        where key.hasPrefix("mp_avatarColor_") || key.hasPrefix("read_history_") || key.hasPrefix("mp_family_membership_") || key.hasPrefix(StoryGenerationManager.undecodableBackupPrefix) {
             defaults.removeObject(forKey: key)
         }
         AvatarStore.eraseAll()
@@ -44,6 +44,7 @@ enum LocalDataEraser {
             if let url = StoryEngineStorage.directory(folder) { try? FileManager.default.removeItem(at: url) }
         }
         eraseDocumentsFiles()
+        VoiceRecordingStore.shared.eraseLocal()
         // The account's bookkeeping on this device.
         SyncLedgerStore().erase()
         ParentConsentStore(defaults: defaults).erase()
