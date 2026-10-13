@@ -132,13 +132,6 @@ final class MPAppState: ObservableObject {
     @Published var showGate = false
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?
-    /// 12 · Benim köşem artık bir sekme (`tab == .corner`). Bu özellik yalnızca
-    /// Ana sayfanın eski giriş noktaları için: `anasayfa-yenileme` birleşince
-    /// `HomeView` `openKidCorner()` çağırır ve bu silinir.
-    var showKidCorner: Bool {
-        get { tab == .corner }
-        set { if newValue { openKidCorner() } else if tab == .corner { tab = .home } }
-    }
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.

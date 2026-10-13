@@ -18,19 +18,6 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertEqual(app.tab, .corner)
     }
 
-    /// Ana sayfanın eski giriş noktaları (`showKidCorner`) sekmeye yönlenir.
-    func testTheOldHomeEntryPointsUseTheTab() {
-        let app = MPAppState()
-        app.showKidCorner = true
-        XCTAssertEqual(app.tab, .corner)
-        app.showKidCorner = false
-        XCTAssertEqual(app.tab, .home)
-
-        app.tab = .library
-        app.showKidCorner = false
-        XCTAssertEqual(app.tab, .library, "Köşem açık değilken kapatmak sekmeyi değiştirmez")
-    }
-
     func testReturningFromTheParentAreaLandsOnHome() {
         let app = MPAppState()
         app.openKidCorner()

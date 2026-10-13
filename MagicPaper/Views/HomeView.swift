@@ -24,7 +24,7 @@ struct HomeView: View {
                 HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
                            avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
                                               size: MPSize.headerAvatar) },
-                           onAvatar: { app.showKidCorner = true },
+                           onAvatar: { app.openKidCorner() },
                            onLock: { app.requestParentMode() })
                     .padding(.top, MPSpacing.md)
 
@@ -36,7 +36,7 @@ struct HomeView: View {
                 }
                 .padding(.top, sceneClearance)
 
-                Button { app.showKidCorner = true } label: {
+                Button { app.openKidCorner() } label: {
                     HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
                 }
                 .buttonStyle(MPPressStyle())
