@@ -1,0 +1,27 @@
+{
+  "fields": [
+    "StoryTemplate.maximumRepeatedNGrams",
+    "RepetitionValidator",
+    "validate_beat_corpus.check_collisions",
+    "validate_beat_corpus.check_moves",
+    "CatalogBlueprint.refrain(new)"
+  ],
+  "files": [
+    "StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift",
+    "StoryEngine/Sources/StoryEngine/Domain/StoryTemplate.swift",
+    "StoryEngine/Sources/StoryEngine/Content/CatalogBlueprint.swift",
+    "StoryEngine/Sources/StoryEngine/Content/CatalogIntegrity.swift",
+    "StoryEngine/Tools/validate_beat_corpus.py",
+    "StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift"
+  ],
+  "tests": [
+    "RepetitionValidator: declared refrain allowed",
+    "undeclared repeat still flagged; composer places refrain on declared pages only; final-use variant differs; corpus validator whitelists refrain n-grams only"
+  ],
+  "owner": "story-engine",
+  "cost": "M",
+  "reversible": true,
+  "notes": "Do not raise maximumRepeatedNGrams. Add an optional, declared refrain on a blueprint (text, pages, final variant) that the validators subtract before counting n-grams. Experiment: one or two refrain-carrying sibling blueprints in 3-4 / 5-6 bedtime, weighted via aggregateWeight and measured by BlueprintOutcome rereads (the signal UsageLearner already weights highest). Blueprints without the field behave exactly as today.",
+  "by": "story-engine",
+  "at": "2026-10-08T08:07:27Z"
+}

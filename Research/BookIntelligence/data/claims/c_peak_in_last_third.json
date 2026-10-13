@@ -1,0 +1,51 @@
+{
+  "claim_id": "c_peak_in_last_third",
+  "statement": "The emotional peak falls in the last third of the book in 4 of 5 analysed books; Grumpy Cloud reaches its first peak at the midpoint.",
+  "kind": "INFERRED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+  },
+  "supporting_works": [
+    "w_amahle_wants_to_help_nsibande",
+    "w_brave_bora_gicovi",
+    "w_catch_that_cat_pirie",
+    "w_mud_waterkeyn"
+  ],
+  "counterexample_works": [
+    "w_grumpy_cloud_ditlhareng"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": null,
+  "magicpaper": {
+    "target": "beat_sequences",
+    "current": "8-beat arcs",
+    "suggested": "Check where MagicPaper arcs place their most intense page; compare after the corpus grows.",
+    "note": "Emotion intensity is an analyst judgment per page.",
+    "review_status": "proposed"
+  },
+  "computed": {
+    "n_examined": 5,
+    "support": 4,
+    "counter": 1,
+    "support_ratio": 0.8,
+    "sample_scope": "SMALL_SAMPLE",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    }
+  ]
+}

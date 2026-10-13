@@ -1,0 +1,51 @@
+{
+  "claim_id": "c_repeated_line",
+  "statement": "A line returns on 2 or more spreads in 3 of 5 books ('It's not me, Mama. It's Mud!', 'Catch that cat!', 'No, Amahle, you are too young.'); the other 2 repeat a failed-attempt structure instead of a line.",
+  "kind": "OBSERVED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+  },
+  "supporting_works": [
+    "w_mud_waterkeyn",
+    "w_catch_that_cat_pirie",
+    "w_amahle_wants_to_help_nsibande"
+  ],
+  "counterexample_works": [
+    "w_grumpy_cloud_ditlhareng",
+    "w_brave_bora_gicovi"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": null,
+  "magicpaper": {
+    "target": "writing_guidance",
+    "current": "repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)",
+    "suggested": "Distinguish deliberate refrains (a line the listener can join, changed once at the end) from accidental repetition before treating all repetition as a defect.",
+    "note": null,
+    "review_status": "proposed"
+  },
+  "computed": {
+    "n_examined": 5,
+    "support": 3,
+    "counter": 2,
+    "support_ratio": 0.6,
+    "sample_scope": "SMALL_SAMPLE",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    }
+  ]
+}

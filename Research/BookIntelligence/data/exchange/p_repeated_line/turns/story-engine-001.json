@@ -1,0 +1,14 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "concern",
+  "text": "The conflict is harder than 'guidance': RepetitionValidator flags any 5-gram repeated across pages (maximumRepeatedNGrams defaults to 0), and validate_beat_corpus.py fails the corpus on shared 5-grams (check_collisions) and reused rhetorical moves (check_moves). A refrain is by definition a repeated n-gram, so every refrain story would be flagged. Feasible path: a declared refrain slot on the blueprint (one line, fixed pages, one changed final use) that both validators whitelist explicitly, so accidental repetition stays a defect. This is the most promising proposal for read-aloud at 3-6, but 3/5 books does not justify loosening a gate globally.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift",
+    "StoryEngine/Sources/StoryEngine/Domain/StoryTemplate.swift",
+    "StoryEngine/Tools/validate_beat_corpus.py"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:07Z"
+}

@@ -1,0 +1,259 @@
+{
+  "work_id": "w_grumpy_cloud_ditlhareng",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_grumpy_cloud",
+  "status": "complete",
+  "analyst": "book-research (Claude)",
+  "analyzed_at": "2026-10-08T07:29:11Z",
+  "completeness": "full",
+  "summary_paraphrase": "A cheerful boy whose feelings take shape wakes up with a grumpy cloud that spoils his day; his own attempts fail, and his mother's third tickle makes the cloud giggle and leave.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 1,
+      "function": "world and boy"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 2,
+      "function": "feelings come alive"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 4,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "grumpy cloud"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 5,
+      "end_page": 5,
+      "intensity": 3,
+      "function": "cloud spoils play"
+    },
+    {
+      "beat": "FIRST_ATTEMPT",
+      "start_page": 6,
+      "end_page": 6,
+      "intensity": 3,
+      "function": "shake it off"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 7,
+      "end_page": 7,
+      "intensity": 4,
+      "function": "dancing fails"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 8,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "Mama tries"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 3,
+      "function": "almost"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "giggle"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 4,
+      "function": "joy"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 2,
+      "function": "stated lesson"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "DISCOVERY": 0.182,
+    "PROBLEM": 0.273,
+    "ESCALATION": 0.364,
+    "FIRST_ATTEMPT": 0.455,
+    "COMPLICATION": 0.545,
+    "TURN": 0.636,
+    "SOLUTION": 0.818,
+    "EMOTIONAL_PAYOFF": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "fafa",
+      "name": "Fafa",
+      "role": "protagonist",
+      "personality": "cheerful",
+      "desire": "to play",
+      "problem": "a bad mood he cannot shake",
+      "change": "learns moods pass",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "cloud",
+      "name": "Grumpy Cloud",
+      "role": "antagonistic_force",
+      "personality": "a mood made visible",
+      "relation_to_protagonist": "his own feeling",
+      "humor_source": "being tickled",
+      "tension_source": "spoils everything"
+    },
+    {
+      "id": "mama",
+      "name": "Mama",
+      "role": "family_member",
+      "relation_to_protagonist": "mother",
+      "humor_source": "tickling a cloud"
+    },
+    {
+      "id": "bird",
+      "name": "orange bird",
+      "role": "animal_companion",
+      "relation_to_protagonist": "silent companion, pictures only"
+    }
+  ],
+  "protagonist_agency": 2,
+  "emotional_curve": [
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    3,
+    3,
+    4,
+    4,
+    2
+  ],
+  "humor_notes": "Light: tickling a cloud. The book is reflective rather than funny.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "attempt fails, attempt fails, Mama fails, Mama nearly, Mama succeeds",
+      "pages": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "functions": [
+        "anticipation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "the near-miss on page 9 raises hope before the release"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "The cloud's size tracks the mood: small above his head, then raining, then filling the sky, then a close-up, then fading.",
+      "Bold type marks feeling words on every spread (cheerful, grumpy, sad, joy, smile)."
+    ]
+  },
+  "strengths": [
+    "a feeling made into a visible character whose size shows intensity",
+    "a clear three-try escalation"
+  ],
+  "weaknesses": [
+    "the child does not solve his own problem",
+    "the last spread states the lesson"
+  ],
+  "anti_patterns": [
+    {
+      "id": "adult_rescues_child",
+      "pages": [
+        8,
+        9,
+        10
+      ],
+      "note": "Fafa's own attempts fail; his mother's tickling resolves it."
+    },
+    {
+      "id": "moral_stated_not_shown",
+      "pages": [
+        12
+      ],
+      "note": "Final spread states that different feelings are okay."
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 3,
+      "participation": 2,
+      "emotional_identification": 5,
+      "surprise": 2,
+      "character_warmth": 4,
+      "agency": 2,
+      "visual_novelty": 4,
+      "predictability_balance": 3,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": null
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 158,
+    "words_per_page": {
+      "min": 9,
+      "median": 12.0,
+      "max": 21
+    },
+    "mean_sentence_words": 10.53,
+    "longest_sentence": 21,
+    "type_token_ratio": 0.563,
+    "dialogue_ratio": 0.0,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 0,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "and grumpy cloud": 2,
+        "but grumpy cloud": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "fafa": 4,
+        "mama": 3,
+        "in": 1,
+        "but": 1,
+        "one": 1
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

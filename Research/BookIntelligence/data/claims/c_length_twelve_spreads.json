@@ -1,0 +1,50 @@
+{
+  "claim_id": "c_length_twelve_spreads",
+  "statement": "All 5 analysed contemporary picture books run 12 spreads with 136-211 words in total (median 150), about 13 words per spread.",
+  "kind": "OBSERVED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+  },
+  "supporting_works": [
+    "w_mud_waterkeyn",
+    "w_grumpy_cloud_ditlhareng",
+    "w_catch_that_cat_pirie",
+    "w_brave_bora_gicovi",
+    "w_amahle_wants_to_help_nsibande"
+  ],
+  "counterexample_works": [],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": null,
+  "magicpaper": {
+    "target": "validator.BANDS",
+    "current": "8 pages × 18-38 words (144-304 words)",
+    "suggested": "Similar total length, but these books spend it on ~12 page turns of ~10-20 words. Worth testing shorter pages and more turns once the corpus is larger.",
+    "note": "One publisher, one country. Do not act on this before ≥10 books from ≥2 sources agree.",
+    "review_status": "proposed"
+  },
+  "computed": {
+    "n_examined": 5,
+    "support": 5,
+    "counter": 0,
+    "support_ratio": 1.0,
+    "sample_scope": "SMALL_SAMPLE",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": null,
+    "experiments": 0
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    }
+  ]
+}

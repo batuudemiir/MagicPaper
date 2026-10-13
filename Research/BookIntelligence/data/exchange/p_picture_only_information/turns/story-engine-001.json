@@ -1,0 +1,13 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "concern",
+  "text": "For the live text-only product this is inapplicable and would break coherence: the engine validates that text carries the arc (page roles, continuity), and a withheld fact with no picture is a plot hole. It becomes relevant only if illustrated stories go live; then it needs a page-plan field marking which fact is picture-only plus a validator exemption, owned jointly with illustration-system. Park until then.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift",
+    "StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:07Z"
+}

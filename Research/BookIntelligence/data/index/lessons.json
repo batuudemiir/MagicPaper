@@ -1,0 +1,106 @@
+{
+  "by_target": {
+    "writing_guidance": {
+      "proposed": 5,
+      "approved": 0,
+      "rejected": 0,
+      "parked": 0
+    },
+    "EmotionalState.intensity": {
+      "proposed": 1,
+      "approved": 0,
+      "rejected": 0,
+      "parked": 0
+    },
+    "validator.BANDS": {
+      "proposed": 1,
+      "approved": 0,
+      "rejected": 0,
+      "parked": 0
+    },
+    "beat_sequences": {
+      "proposed": 1,
+      "approved": 0,
+      "rejected": 0,
+      "parked": 0
+    },
+    "validator.MAX_SENTENCE_WORDS": {
+      "proposed": 1,
+      "approved": 0,
+      "rejected": 0,
+      "parked": 0
+    }
+  },
+  "notes": [
+    {
+      "proposal": "p_adult_enables_resolution",
+      "objection_by": "content-library",
+      "text": "Agree to record only. MagicPaper's product rule is that the child is the protagonist, and resolution beats name causation (succeed/restore variants declare afterBeat, 'kendi sayesinde'). ask_for_help already lets an adult or Masal ailem mem"
+    },
+    {
+      "proposal": "p_companion_mirrors_feeling",
+      "objection_by": "privacy-safety",
+      "text": "Mostly low risk, but it targets companion illustration briefs, and illustrated stories are not live (cloud path behind CloudIllustrationAccess). A silently mirrored feeling is unvalidated: the text-side intensity ceiling cannot see a pictur"
+    },
+    {
+      "proposal": "p_fear_named_and_supported",
+      "objection_by": "privacy-safety",
+      "text": "Object to any experiment here. Fear/panic are intensity 3 and the BeatSequenceValidator ceiling is 2 for every band; SafetyVocabulary documents that this ceiling keeps fear out of every band, and parents chose 'Sakin' or 'Biraz heyecan' on "
+    },
+    {
+      "proposal": "p_fear_named_and_supported",
+      "objection_by": "story-engine",
+      "text": "Factual correction: the engine scale is 0-3, so 'intensity 4' maps onto nothing here; Brave Bora's peak would be our intensity 3 (fear), which BeatSequenceValidator rejects with intensityCeiling=2 in every band, not only 5-6. A narrower ver"
+    },
+    {
+      "proposal": "p_fear_named_and_supported",
+      "objection_by": "content-library",
+      "text": "Content objects for now. beat_hesitate.json deliberately never names fear ('Korkuyorum' becomes the label the child carries out of the book) and EmotionalArc keeps fear/panic out of the band. One book cannot outweigh that editorial decision"
+    },
+    {
+      "proposal": "p_length_twelve_spreads",
+      "objection_by": "story-engine",
+      "text": "Page count is not a validator knob: it is AgeBand.pageCount (6 at 3-4, 8 at 5-6 and 7-8, 10 at 9-10), and CatalogIntegrity rejects any blueprint whose pageCount differs from its band. Twelve pages means new 12-beat sequences, new beat_seque"
+    },
+    {
+      "proposal": "p_length_twelve_spreads",
+      "objection_by": "privacy-safety",
+      "text": "Experiment-loop conditions (apply to every proposal). Before any arm reaches a child: owner decision recorded; arm is a catalog/content variant within existing validators (no ceiling change), off by default, killable remotely, bedtime exclu"
+    },
+    {
+      "proposal": "p_length_twelve_spreads",
+      "objection_by": "content-library",
+      "text": "Concern about 12 beats: every new page needs bound cells of at least MIN_BOUND_POOL=4 variants, i.e. ~50% more corpus for the same word count. Cheaper alternative content can offer: keep 8 beats and mark a turnAfter split inside existing mu"
+    },
+    {
+      "proposal": "p_picture_only_information",
+      "objection_by": "privacy-safety",
+      "text": "Not applicable to today's text-only stories, and safety-relevant when illustrations arrive: information carried only by the picture escapes the text validators (banned phrases, ceiling, safety topics). 'What is hiding' drawn but not written"
+    },
+    {
+      "proposal": "p_picture_only_information",
+      "objection_by": "story-engine",
+      "text": "For the live text-only product this is inapplicable and would break coherence: the engine validates that text carries the arc (page roles, continuity), and a withheld fact with no picture is a plot hole. It becomes relevant only if illustra"
+    },
+    {
+      "proposal": "p_picture_only_information",
+      "objection_by": "content-library",
+      "text": "Not applicable to today's content: stories are text-only, illustrated stories are not live, and read-aloud (MPSpeech) means text must carry the whole story. Leaving a fact to the picture would make the text story incomplete. Revisit only wh"
+    },
+    {
+      "proposal": "p_repeated_line",
+      "objection_by": "story-engine",
+      "text": "The conflict is harder than 'guidance': RepetitionValidator flags any 5-gram repeated across pages (maximumRepeatedNGrams defaults to 0), and validate_beat_corpus.py fails the corpus on shared 5-grams (check_collisions) and reused rhetorica"
+    },
+    {
+      "proposal": "p_spread_end_hook",
+      "objection_by": "privacy-safety",
+      "text": "Generally fine, but two conditions. Bedtime: page-turn hooks are an engagement device; in bedtime mode they work against wind-down and must not appear in the last third, and never on the final page. Series: hooks must stay inside the story;"
+    },
+    {
+      "proposal": "p_spread_end_hook",
+      "objection_by": "story-engine",
+      "text": "Feasible as content guidance, with two engine frictions. Page variants are composed independently from pools, so 'But where is X?' on page n only works if page n+1's pool always answers it, which means pairing variants across beats (today t"
+    }
+  ]
+}

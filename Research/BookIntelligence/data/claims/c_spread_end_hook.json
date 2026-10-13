@@ -1,0 +1,51 @@
+{
+  "claim_id": "c_spread_end_hook",
+  "statement": "In 3 of 5 books a spread ends on an unfinished line or a direct question answered on the next spread ('But Mama says...', 'But where is Mud?', 'Hmm. But how?').",
+  "kind": "INFERRED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+  },
+  "supporting_works": [
+    "w_amahle_wants_to_help_nsibande",
+    "w_mud_waterkeyn",
+    "w_catch_that_cat_pirie"
+  ],
+  "counterexample_works": [
+    "w_grumpy_cloud_ditlhareng",
+    "w_brave_bora_gicovi"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": null,
+  "magicpaper": {
+    "target": "writing_guidance",
+    "current": "page-end lines are not specified",
+    "suggested": "Hypothesis for page-based stories: end some pages on a question or an open 'says...' and answer it after the turn.",
+    "note": null,
+    "review_status": "proposed"
+  },
+  "computed": {
+    "n_examined": 5,
+    "support": 3,
+    "counter": 2,
+    "support_ratio": 0.6,
+    "sample_scope": "SMALL_SAMPLE",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    }
+  ]
+}
