@@ -125,11 +125,11 @@ Denenmedi: ikinci yetişkinin katılması (tek simülatör; kurallar ve birim te
 gerçek kayıt (simülatörde mikrofon yok), Cloud Functions emülatörü (bağımlılıklar kurulmadı; saf
 modüller test edildi), en büyük Dynamic Type ve SE ekran görüntüleri.
 
-**Proje kimliği uyuşmazlığı:** uygulamanın `GoogleService-Info.plist`'i `PROJECT_ID = magicpaper-393a7-f2d31`
-(kova `magicpaper-393a7-f2d31.firebasestorage.app`), `hosting/.firebaserc` ve `firebase/.firebaserc` ise
-`magicpaper-393a7`. Web okuyucu `PROJECT = "magicpaper-393a7"`, `BUCKET` plist'tekini kullanıyor. FAZ 16'daki
-"plist'i doğru iOS uygulamasıyla yenile" işi bitince `hosting/public/s/index.html` başındaki iki sabit o
-projeye göre düzeltilmeli; yoksa okuyucu bağlantıyı bulamaz ya da ses çalmaz.
+**Proje kimliği (13 Ekim):** proje `magicpaper-393a7-f2d31` (plist `PROJECT_ID`, kova
+`magicpaper-393a7-f2d31.firebasestorage.app`). Web okuyucunun `PROJECT` ve `BUCKET` sabitleri buna göre.
+`.firebaserc` dosyaları da bu projeye çevrilecek (ana klasörde Batuhan'ın değişikliği). Uygulamadaki web
+adresleri (`FamilyShareLink.url`, `FamilyInviteCode.link`, `MPContentBaseURL`) hâlâ `magicpaper-393a7.web.app`;
+Hosting sitesinin adı netleşince onlar da gözden geçirilmeli.
 
 ## Açık kalanlar
 
