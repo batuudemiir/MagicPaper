@@ -175,18 +175,25 @@ struct ContentView: View {
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.isParentMode)
     }
 
+    private var tabTransition: AnyTransition {
+        reduceMotion ? .opacity : .opacity.combined(with: .offset(y: MP.S.x3))
+    }
+
     private var kidRoot: some View {
         ZStack(alignment: .bottom) {
             MPColor.backgroundKid.ignoresSafeArea()
 
-            Group {
+            // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
+            // yalnızca solma.
+            ZStack {
                 switch app.tab {
-                case .home:    HomeView()
-                case .library: LibraryView()
-                case .corner:  KidCornerView()
+                case .home:    HomeView().transition(tabTransition)
+                case .library: LibraryView().transition(tabTransition)
+                case .corner:  KidCornerView().transition(tabTransition)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.tab)
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 KidTabBar(
                     selection: Binding(

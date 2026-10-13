@@ -24,6 +24,10 @@ commit'le eşleşir; ayrıntı commit mesajında ve bağlantılı belgede.
 - **Ragi ayrı katman** (`HomeSceneMascot`): markanın kendi görseli; gündüz kitap okur,
   gece uyur. Açılışta tepeye süzülür, yavaşça nefes alır, dokununca bir kez zıplar.
   Çiplerin üstünde durur, altında kalmaz. Reduce Motion'da yerinde durur.
+- **Hareketsiz dokunuşlar giderildi**: başlıktaki avatar ve isim ile alt bardaki sekmeler
+  artık yaylı basma alıyor (önceden `.plain`, hiç tepki yoktu); seçilen sekmenin ikonu
+  yaylanarak büyür; sekmeler arasında yumuşak kayma ve solma (Reduce Motion'da yalnızca
+  solma); avatara dokununca hafif titreşim.
 - **Dokunuş hissi** (`MPPressStyle`, tüm uygulama): basınca öğe alt kenarına çöker,
   bırakınca yaylanarak geri gelir (önceden yalnızca küçülüyordu, `sinkFlat` hiç hareket
   etmiyordu). Ana sayfanın ana eylemlerinde tek hafif titreşim (`MPHaptics`).

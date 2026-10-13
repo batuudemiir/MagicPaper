@@ -295,7 +295,7 @@ struct HomeHeader<Avatar: View>: View {
 
     var body: some View {
         HStack(spacing: MPSpacing.sm) {
-            Button(action: onAvatar) {
+            Button { MPHaptics.tap(); onAvatar() } label: {
                 HStack(spacing: MPSpacing.md) {
                     avatar
                         .dynamicTypeSize(...DynamicTypeSize.large)
@@ -312,7 +312,7 @@ struct HomeHeader<Avatar: View>: View {
                 }
                 .frame(minHeight: MPSize.minTouchKid)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(MPPressStyle())
             .accessibilityLabel("Benim köşem, \(childName)")
             Spacer(minLength: 0)
             if let stars { starPill(stars) }

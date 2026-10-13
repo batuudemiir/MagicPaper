@@ -54,14 +54,19 @@ struct KidTabBar: View {
         let on = selection == t
         return Button { selection = t } label: {
             VStack(spacing: 3) {
+                // Seçilen sekmenin ikonu yaylanarak büyür; seçim renkle birlikte
+                // kalınlık ve ölçekle de görünür.
                 MPIcon(icon, size: 22, weight: on ? .bold : .regular).frame(height: 26)
+                    .scaleEffect(on ? 1.12 : 1)
                 Text(label).mpText(.tabLabel).fontWeight(on ? .black : .bold)
                     .lineLimit(1)
             }
             .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textTertiary)
             .frame(maxWidth: .infinity, minHeight: MPSize.minTouchParent)
+            .contentShape(Rectangle())
+            .animation(MP.M.gated(MP.M.spring), value: on)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(MPPressStyle())
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {
             MPIcon(icon, size: 22, weight: .bold)
