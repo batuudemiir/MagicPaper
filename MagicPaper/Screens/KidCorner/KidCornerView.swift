@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// 12 · Benim köşem (`BenimKosem`).
+/// 12 · Benim köşem (`BenimKosem`). FAZ 20'den beri alt barın "Köşem" sekmesi.
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). Yıldız sayacı yok (karar 7 Ekim
@@ -45,18 +45,12 @@ struct KidCornerView: View {
 
     private var header: some View {
         VStack(spacing: MPSpacing.lg) {
-            // Başlık kapat düğmesinin altına girmesin: iki yanda düğme genişliği.
-            HStack(spacing: MPSpacing.sm) {
-                Color.clear.frame(width: MPSize.circleButton, height: 1)
-                Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .accessibilityAddTraits(.isHeader)
-                MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat") {
-                    withAnimation(MP.M.gated(MP.M.base)) { app.showKidCorner = false }
-                }
-            }
-            .padding(.top, MPSpacing.lg)
+            // FAZ 20: Köşem bir sekme; kapat düğmesi yok, alt bar geri götürür.
+            Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, minHeight: MPSize.circleButton)
+                .accessibilityAddTraits(.isHeader)
+                .padding(.top, MPSpacing.lg)
 
             Text("Kim okuyor?").mpText(.callout).foregroundStyle(MPColor.textSecondary)
 

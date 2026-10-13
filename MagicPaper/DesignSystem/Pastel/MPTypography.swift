@@ -7,10 +7,14 @@ import SwiftUI
 
 enum MPTextStyle: CaseIterable {
     case display, largeTitle, title1, title2, title3, navTitle, headline, cardTitle
+    /// Günlük (FAZ 20): sola yaslı sayfa başlığı 34 ve illüstrasyon üstü masal adı 38.
+    case pageTitle, heroTitle
     case button, body, bodyStrong, callout, footnote, caption, eyebrow, tabLabel, story, storyLarge
 
     var size: CGFloat {
         switch self {
+        case .heroTitle: 38
+        case .pageTitle: 34
         case .display: 30
         case .largeTitle: 28
         case .title1: 26
@@ -31,7 +35,7 @@ enum MPTextStyle: CaseIterable {
 
     var weight: Font.Weight {
         switch self {
-        case .display, .largeTitle, .title1, .title2, .title3, .headline, .cardTitle, .eyebrow: .black
+        case .display, .largeTitle, .title1, .title2, .title3, .headline, .cardTitle, .eyebrow, .pageTitle, .heroTitle: .black
         case .navTitle, .button, .bodyStrong, .callout, .caption: .heavy
         case .footnote, .tabLabel, .storyLarge: .bold
         case .body, .story: .semibold
@@ -41,6 +45,7 @@ enum MPTextStyle: CaseIterable {
     /// Multiplier of the font size (CSS line-height). Converted to SwiftUI lineSpacing in `mpText`.
     var lineHeight: CGFloat {
         switch self {
+        case .pageTitle, .heroTitle: 1.05
         case .display, .largeTitle, .title1, .title2: 1.15
         case .title3, .navTitle, .eyebrow: 1.2
         case .headline, .cardTitle: 1.25
@@ -52,12 +57,18 @@ enum MPTextStyle: CaseIterable {
         }
     }
 
-    var tracking: CGFloat { self == .eyebrow ? size * 0.06 : 0 }
+    var tracking: CGFloat {
+        switch self {
+        case .eyebrow: size * 0.06
+        case .pageTitle, .heroTitle: size * -0.02
+        default: 0
+        }
+    }
     var isUppercase: Bool { self == .eyebrow }
 
     var relativeTo: Font.TextStyle {
         switch self {
-        case .display, .largeTitle: .largeTitle
+        case .display, .largeTitle, .pageTitle, .heroTitle: .largeTitle
         case .title1, .title2: .title
         case .title3, .navTitle: .title2
         case .headline, .cardTitle: .headline
@@ -76,6 +87,8 @@ extension Font {
     static func mp(_ style: MPTextStyle) -> Font { style.font }
     /// Ebeveyn kapısının çarpma sorusu (40 pt, ölçekli).
     static let mpNumeral = Font.custom("Nunito", size: 40, relativeTo: .largeTitle).weight(.black)
+    /// Haftanın seçkisi sıra numarası (128 pt, süs; `accessibilityHidden`).
+    static let mpRankNumeral = Font.custom("Nunito", size: 128, relativeTo: .largeTitle).weight(.black)
     /// Harf madalyonu: daireye göre ölçeklenir.
     static func mpInitial(size: CGFloat) -> Font { .custom("Nunito", size: size, relativeTo: .body).weight(.black) }
 }

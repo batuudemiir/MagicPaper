@@ -11,9 +11,14 @@ protocol ReaderProgressStore {
 }
 
 /// Gerçek kalıcılık: mevcut yönetici, mevcut anahtar.
+/// Günlük masalları (FAZ 20) Kitaplık'a ait değil; kendi defterlerine gider.
 @MainActor
 struct LiveReaderProgressStore: ReaderProgressStore {
     func saveProgress(storyID: UUID, page: Int) {
+        if ClassicsCatalog.contains(storyID) {
+            ClassicProgressStore.shared.saveProgress(storyID, page: page)
+            return
+        }
         StoryGenerationManager.shared.updateLastReadPage(storyId: storyID, page: page)
     }
 }

@@ -39,6 +39,8 @@ extension Story {
     ///
     /// Görselli masallar kendi kapaklarını kullanır, bu yüzden `nil` döner.
     var mpDefaultCoverAsset: String? {
+        // Günlük masalı (FAZ 20): kendi boyalı kapağı.
+        if let classic = ClassicsCatalog.coverAsset(for: id) { return classic }
         guard !isIllustrated, opensAsTextOnly || (coverImageFileName == nil && coverImageUrl == nil) else { return nil }
         return "StoryCoverDefault"
     }

@@ -220,7 +220,7 @@ struct StoryReaderView: View {
         StoryGenerationManager.shared.markOpened(storyId: story.id)
         openedAt = Date()
         MPHaptics.prepare()
-        if settings.readAloud, let text = model.currentPage?.spokenText {
+        if settings.readAloud || app.readerListens, let text = model.currentPage?.spokenText {
             speech.speak(text, recording: familyRecording)
         }
         // Ailenin sesi başka cihazda kaydedildiyse sayfalar şimdi iner (FAZ 18).

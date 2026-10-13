@@ -188,7 +188,9 @@ struct ContentView: View {
             Group {
                 switch app.tab {
                 case .home:    HomeView()
+                case .gunluk:  GunlukView()
                 case .library: LibraryView()
+                case .corner:  KidCornerView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -212,13 +214,7 @@ struct ContentView: View {
                     .zIndex(2)
             }
 
-            if app.showKidCorner {
-                KidCornerView()
-                    .transition(reduceMotion ? .opacity : .move(edge: .bottom))
-                    .zIndex(1)
-            }
         }
-        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.showKidCorner)
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
     }
 
