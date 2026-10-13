@@ -607,7 +607,7 @@ Kitaplık
 |---|---|
 | Alan | Çocuk alanı |
 | Rota | `kidCorner` |
-| Sunum | fullScreen (avatar) |
+| Sunum | sekme: alt barda "Köşem" (13 Ekim 2026; avatar da bu sekmeye geçirir) |
 | Boyut | 390 × 1010 pt (prototip artboard) |
 | Kaynak | `reference/html/BenimKosem.dc.html` |
 
@@ -618,7 +618,7 @@ Kitaplık
 **Uygulama notları.** 'Ekle' ebeveyn kapısına gider. Rozetler 3 sütun.
 
 **Gezinme (dokununca nereye gider).**
-- "Kapat" → 11 · Ana sayfa (tam sayfa)
+- Kilit → 28 · Ebeveyn kapısı (sekme olduğu için "Kapat" yok)
 - "Ekle" → 28 · Ebeveyn kapısı
 - "Kahramanımı düzenle Saç, ten rengi, gözlük, kıyafet" → 13 · Kahraman oluşturucu (tam sayfa)
 - "Masal ailem Pamuk, Can, Bulut ve diğerleri" → 14 · Masal ailem

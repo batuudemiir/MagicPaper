@@ -99,7 +99,6 @@ struct FamilyCharactersView: View {
                     }
                     MPButton(title: "Bu karakterle masal yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
                         app.sheet = nil
-                        app.showKidCorner = false
                         app.startStoryCreation(family: selected.id)
                     }
                 }

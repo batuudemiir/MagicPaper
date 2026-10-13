@@ -1,12 +1,12 @@
 // MPNavigationChrome.swift
-// Kid tab bar (Ana sayfa · + Yarat · Kitaplık), parent tab bar (Özet · Güvenlik · Ayarlar),
+// Kid tab bar (Ana sayfa · Kitaplık · + Yarat · Köşem), parent tab bar (Özet · Güvenlik · Ayarlar),
 // kid header (avatar → Benim köşem, kilit → Ebeveyn kapısı), top bar, parent header.
-// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok (kid tab bar); EbeveynPaneli,
+// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok, BenimKosem (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
 
 import SwiftUI
 
-enum KidTab: Hashable { case home, library }
+enum KidTab: Hashable { case home, library, corner }
 
 /// Custom bar: the system TabView bar cannot host the raised 64 pt "Yarat" button.
 /// Hide the system bar (`.toolbar(.hidden, for: .tabBar)`) and overlay this at the bottom of the kid root.
@@ -17,6 +17,7 @@ struct KidTabBar: View {
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             tab(.home, "Ana sayfa", "house")
+            tab(.library, "Kitaplık", "books.vertical")
             Button(action: onCreate) {
                 VStack(spacing: 4) {
                     MPIcon("plus", size: 28, weight: .bold)
@@ -35,7 +36,7 @@ struct KidTabBar: View {
             .buttonStyle(MPPressStyle())
             .accessibilityLabel("Masal yarat")
             .accessibilityShowsLargeContentViewer { MPIcon("plus", size: 22, weight: .bold); Text("Yarat") }
-            tab(.library, "Kitaplık", "books.vertical")
+            tab(.corner, "Köşem", "person")
         }
         .padding(.horizontal, MPSpacing.xl)
         .padding(.top, MPSpacing.md)

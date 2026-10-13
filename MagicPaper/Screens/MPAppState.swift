@@ -2,23 +2,38 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// Çocuk alanının sekmeleri (11 · Ana sayfa, 16 · Kitaplık).
+/// Çocuk alanının sekmeleri (11 · Ana sayfa, 16 · Kitaplık, 12 · Benim köşem).
 ///
-/// FAZ 17 (Pastel Masal): alt bar Ana sayfa · Yarat · Kitaplık. "Günlük"
-/// sekmesi kalktı; günün masalı ve okuma serisi Ana sayfada.
+/// FAZ 17 (Pastel Masal): "Günlük" sekmesi kalktı; günün masalı ve okuma
+/// serisi Ana sayfada. 13 Ekim 2026: Benim köşem avatardan açılan katman
+/// olmaktan çıkıp sekme oldu; alt bar Ana sayfa · Kitaplık · Yarat · Köşem.
 /// "Yarat" bir sekme değil, bir eylem: `KidTabBar` onu ayrı çizer.
 enum MPTab: String, CaseIterable {
-    case home, library
+    case home, library, corner
 
     var label: String {
         switch self {
         case .home:    return "Ana sayfa"
         case .library: return "Kitaplık"
+        case .corner:  return "Köşem"
         }
     }
 
-    var kidTab: KidTab { self == .home ? .home : .library }
-    init(_ kidTab: KidTab) { self = kidTab == .home ? .home : .library }
+    var kidTab: KidTab {
+        switch self {
+        case .home:    return .home
+        case .library: return .library
+        case .corner:  return .corner
+        }
+    }
+
+    init(_ kidTab: KidTab) {
+        switch kidTab {
+        case .home:    self = .home
+        case .library: self = .library
+        case .corner:  self = .corner
+        }
+    }
 }
 
 /// Ebeveyn alanının sekmeleri: Özet · Güvenlik · Ayarlar.
@@ -120,8 +135,13 @@ final class MPAppState: ObservableObject {
     @Published var showGate = false
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?
-    /// 12 · Benim köşem, Ana sayfa başlığındaki avatardan.
-    @Published var showKidCorner = false
+    /// 12 · Benim köşem artık bir sekme (`tab == .corner`). Bu özellik yalnızca
+    /// Ana sayfanın eski giriş noktaları için: `anasayfa-yenileme` birleşince
+    /// `HomeView` `openKidCorner()` çağırır ve bu silinir.
+    var showKidCorner: Bool {
+        get { tab == .corner }
+        set { if newValue { openKidCorner() } else if tab == .corner { tab = .home } }
+    }
     @Published var showProfileAdd = false
     @Published var readerStory: Story?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
@@ -186,7 +206,6 @@ final class MPAppState: ObservableObject {
         guard readerStory == nil, sleepSession == nil, !showStoryCreation, dailyReading == nil else { return }
         sheet = nil
         actionsStory = nil
-        showKidCorner = false
         tab = .home
         switch link {
         case .tonight:
@@ -245,6 +264,11 @@ final class MPAppState: ObservableObject {
         showPaywall = true
     }
 
+    /// 12 · Benim köşem: Ana sayfadaki avatar ve okuma şeridi bu sekmeye geçirir.
+    func openKidCorner() {
+        tab = .corner
+    }
+
     /// Ebeveyn moduna geçiş her seferinde kapıdan geçer.
     func requestParentMode() {
         guard !isParentMode else { return }
@@ -253,7 +277,6 @@ final class MPAppState: ObservableObject {
 
     func unlockParent() {
         showGate = false
-        showKidCorner = false
         isParentMode = true
         parentTab = .overview
         MPHaptics.tap()
