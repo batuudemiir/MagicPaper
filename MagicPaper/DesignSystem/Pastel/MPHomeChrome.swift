@@ -177,8 +177,8 @@ struct HomeHeader<Avatar: View>: View {
 // MARK: - Hero kartı
 
 /// "Bu akşamın masalı" kartının yeni yüzü, dört durum (SCREENS.md 11).
-/// Metinler `TonightHeroCard` ile aynı; iskelet her durumda aynı, durumu
-/// kartın rengi ve görseli söyler.
+/// Metinler `TonightHeroCard` ile aynı. Sayfanın tek dolgun mor yüzeyi
+/// (yön A, 13 Ekim): göz ilk buraya gider; diğer kartlar pastel ve sakin.
 struct HomeHeroCard: View {
     let state: TonightState
     var coverIcon: String? = nil
@@ -202,19 +202,19 @@ struct HomeHeroCard: View {
             layout {
                 art
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                    Text(eyebrow).mpText(.eyebrow).foregroundStyle(tone.deep)
-                    Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                    Text(eyebrow).mpText(.eyebrow).foregroundStyle(MPWorldTone.lav.soft)
+                    Text(title).mpText(.title3).foregroundStyle(MPColor.textOnAction)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    Text(sub).mpText(.footnote).foregroundStyle(MPWorldTone.lav.soft)
                         .fixedSize(horizontal: false, vertical: true)
                     if case let .resume(progress, _, _) = state { progressBar(progress) }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
-            MPButton(title: buttonTitle, systemImage: buttonIcon, fullWidth: true, action: onPrimary)
+            MPButton(title: buttonTitle, systemImage: buttonIcon, kind: .secondary, fullWidth: true, action: onPrimary)
         }
         .padding(MPSpacing.lg)
-        .mpKidSurface(fill, edge: tone.edge, radius: MPRadius.hero)
+        .mpKidSurface(fill, edge: MPColor.brandNight, radius: MPRadius.hero)
         .task(id: Self.showsMascot(state)) { await waveOnce() }
     }
 
@@ -240,7 +240,6 @@ struct HomeHeroCard: View {
                 .foregroundStyle(coverTone.deep)
                 .frame(width: 84, height: 104)
                 .background(coverTone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous).strokeBorder(coverTone.edge, lineWidth: 1))
                 .rotationEffect(.degrees(-3))
                 .accessibilityHidden(true)
         }
@@ -248,9 +247,9 @@ struct HomeHeroCard: View {
 
     private func progressBar(_ progress: Double) -> some View {
         GeometryReader { geo in
-            Capsule().fill(MPWorldTone.lav.soft)
+            Capsule().fill(MPColor.brandPurple)
                 .overlay(alignment: .leading) {
-                    Capsule().fill(MPColor.actionPrimary)
+                    Capsule().fill(MPColor.statusStarIcon)
                         .frame(width: geo.size.width * min(max(progress, 0), 1))
                 }
         }
@@ -259,15 +258,11 @@ struct HomeHeroCard: View {
         .accessibilityHidden(true)
     }
 
-    private var tone: MPWorldTone {
-        switch state { case .resume, .bedtime: .lav; case .unread: .sky; case .readToday: .mint }
-    }
+    /// Kart her durumda markanın moru; uyku saatinde başlıktaki gece gökyüzü.
+    /// Durumu kapak ya da Ragi'nin pozu söyler.
     private var fill: Color {
-        switch state {
-        case .resume, .unread: MPColor.backgroundSurface
-        case .readToday: MPWorldTone.mint.soft
-        case .bedtime: MPWorldTone.lav.soft
-        }
+        if case .bedtime = state { return MPColor.bedtimeSkyTop }
+        return MPColor.actionPrimary
     }
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Harika gidiyorsun!"; case .bedtime: "Uyku masalı zamanı" } }
@@ -296,7 +291,7 @@ struct HomeStreakCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             HStack(spacing: MPSpacing.sm) {
-                MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.peach.deep)
+                MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
                 Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -305,7 +300,7 @@ struct HomeStreakCard: View {
                     VStack(spacing: MPSpacing.xxs) {
                         dot(i)
                         Text(MPStreak.weekdayLabels[i]).mpText(.caption)
-                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPWorldTone.peach.deep)
+                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPWorldTone.lav.deep)
                             .lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: .infinity)
@@ -315,7 +310,7 @@ struct HomeStreakCard: View {
         }
         .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPWorldTone.peach.soft, edge: MPWorldTone.peach.edge)
+        .mpKidSurface(MPWorldTone.lav.soft, edge: MPWorldTone.lav.edge)
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(title). Bu hafta \(done.filter { $0 }.count) gün okudun")
@@ -326,7 +321,7 @@ struct HomeStreakCard: View {
         let today = i == todayIndex
         ZStack {
             if read {
-                Circle().fill(today ? MPColor.actionPrimary : MPWorldTone.peach.deep)
+                Circle().fill(MPColor.actionPrimary)
                 MPIcon("checkmark", size: MP.G.xs, weight: .heavy).foregroundStyle(MPColor.textOnAction)
             } else if today {
                 Circle().fill(MPColor.backgroundSurface)
