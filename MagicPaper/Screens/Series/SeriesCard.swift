@@ -65,7 +65,7 @@ struct SeriesCard: View {
         }
         .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.card))
+        .mpKidSurface(MPWorldTone.peach.soft, edge: MPWorldTone.peach.edge)
     }
 
     /// 18 · Seri masal; bölüm oradan okunur.

@@ -5,7 +5,10 @@ import SwiftUI
 /// Sıra teslimdeki gibi: çocuğun başlığı, "Bu akşamın masalı" kartı (4 durum),
 /// haftalık okuma şeridi, Ragi'nin sorusu ve mod şeridi, devam eden seri,
 /// günün masalı. Dünya şeridinin yerinde modlar duruyor: dünyalar içerik
-/// geldikçe eklenecek (karar 7 Ekim 2026). Yıldız sayacı yok.
+/// geldikçe eklenecek (karar 7 Ekim 2026).
+///
+/// Yenileme (13 Ekim 2026): bulutlu gökyüzü bandı (uyku saatinde gece),
+/// başlıkta yıldız sayacı, sert alt kenarlı kartlar (`MPHomeChrome.swift`).
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -13,22 +16,24 @@ struct HomeView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var streak = MPStreak.shared
     @StateObject private var dailyManager = DailyStoryManager.shared
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                KidHeader(greeting: greeting, childName: activeName,
-                          avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
-                                             size: MPSize.headerAvatar) },
-                          onAvatar: { app.showKidCorner = true },
-                          onLock: { app.requestParentMode() })
+                HomeHeader(greeting: greeting, childName: activeName, stars: stars, isNight: isNight,
+                           avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
+                                              size: MPSize.headerAvatar) },
+                           onAvatar: { app.showKidCorner = true },
+                           onLock: { app.requestParentMode() })
                     .padding(.top, MPSpacing.md)
 
-                TonightHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
-                                coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
+                HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
+                             coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
+                    .padding(.top, MPSpacing.xl)
 
                 Button { app.showKidCorner = true } label: {
-                    StreakStrip(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
+                    HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
                 }
                 .buttonStyle(MPPressStyle())
                 .accessibilityHint("Benim köşemi açar")
@@ -48,8 +53,19 @@ struct HomeView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
         }
-        .background(alignment: .top) { HeaderWash(height: 220) }
+        .background(alignment: .top) { HomeSky(isNight: isNight) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
+    }
+
+    /// Uyku saatinde yalnızca başlık bandı geceye döner; sayfa açık kalır.
+    private var isNight: Bool {
+        if case .bedtime = tonightState { return true }
+        return false
+    }
+
+    /// Her sabah 1, sonuna kadar okunan her masal 1 (`MPStars`).
+    private var stars: Int {
+        profileManager.currentProfile.map { MPStars.count(for: $0, stories: storyManager.stories) } ?? 0
     }
 
     // MARK: - Başlık
@@ -123,25 +139,25 @@ struct HomeView: View {
         return StoryCreationSteps.shownModes(available)
     }
 
+    /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
     private var modeStrip: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MascotSays(mascot: .curious, text: "Bu akşam nasıl bir masal olsun?")
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: MPSpacing.md) {
-                    ForEach(shownModes, id: \.self) { mode in
-                        WorldTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone,
-                                  compact: true) {
-                            app.startStoryCreation(mode: mode)
-                        }
-                        .accessibilityLabel(mode.title)
-                        .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
-                    }
-                }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.vertical, MPSpacing.xs)
+            if HomeHeroCard.showsMascot(tonightState) {
+                MPSectionHeader(title: "Bu akşam nasıl bir masal olsun?")
+            } else {
+                MascotSays(mascot: .curious, text: "Bu akşam nasıl bir masal olsun?")
             }
-            .scrollClipDisabled()
-            .padding(.horizontal, -MPSpacing.screenH)
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
+                                     count: typeSize.isAccessibilitySize ? 1 : min(shownModes.count, 3)),
+                      spacing: MPSpacing.sm) {
+                ForEach(shownModes, id: \.self) { mode in
+                    HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
+                        app.startStoryCreation(mode: mode)
+                    }
+                    .accessibilityLabel(mode.title)
+                    .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
+                }
+            }
         }
     }
 
@@ -151,28 +167,31 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Günün masalı")
             Button { app.dailyReading = daily } label: {
-                MPCard(area: .kid, padding: MPSpacing.lg) {
-                    HStack(spacing: MPSpacing.lg) {
-                        MPIcon(daily.category.mpSymbol, size: 30, weight: .semibold)
-                            .foregroundStyle(MPWorldTone.green.deep)
-                            .frame(width: 72, height: 72)
-                            .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.tile))
-                            .accessibilityHidden(true)
-                        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                            Text("Herkes için").mpText(.caption).foregroundStyle(MPWorldTone.green.deep)
-                            Text(daily.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Text("\(daily.readingTime) dakika").mpText(.footnote)
-                                .foregroundStyle(MPColor.textSecondary)
-                        }
-                        Spacer(minLength: 0)
-                        MPIcon("play.fill", size: 18, weight: .bold)
-                            .foregroundStyle(.white)
-                            .frame(width: 44, height: 44)
-                            .background(LinearGradient.mpPrimary, in: Circle())
-                            .accessibilityHidden(true)
+                HStack(spacing: MPSpacing.lg) {
+                    MPIcon(daily.category.mpSymbol, size: MP.G.xl, weight: .semibold)
+                        .foregroundStyle(MPWorldTone.green.deep)
+                        .frame(width: 64, height: 64)
+                        .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                        .rotationEffect(.degrees(2))
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                        Text("Herkes için").mpText(.caption).foregroundStyle(MPWorldTone.green.deep)
+                        Text(daily.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text("\(daily.readingTime) dakika").mpText(.footnote)
+                            .foregroundStyle(MPColor.textSecondary)
                     }
+                    Spacer(minLength: 0)
+                    MPIcon("play.fill", size: MP.G.md, weight: .bold)
+                        .foregroundStyle(MPColor.actionPrimary)
+                        .frame(width: 44, height: 44)
+                        .background(MPColor.backgroundSurface, in: Circle())
+                        .overlay(Circle().strokeBorder(MPColor.actionPrimary, lineWidth: 2))
+                        .accessibilityHidden(true)
                 }
+                .padding(MPSpacing.lg)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.green.edge)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityElement(children: .combine)

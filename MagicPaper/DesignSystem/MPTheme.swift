@@ -590,6 +590,9 @@ enum MP {
         static let slow    = Animation.timingCurve(0.2, 0.8, 0.3, 1, duration: 0.42)
         static let page    = Animation.timingCurve(0.2, 0.8, 0.3, 1, duration: 0.52)
         static let spring  = Animation.spring(response: 0.32, dampingFraction: 0.62)
+        /// Ortam hareketi: ana sayfa bulutlarının birkaç noktalık gidip gelişi.
+        /// Bir tepki değil, bir dekor; yalnızca Reduce Motion kapalıyken başlar.
+        static let ambient = Animation.easeInOut(duration: 14).repeatForever(autoreverses: true)
 
         static let sink: CGFloat = 2
         static let scale: CGFloat = 0.96
