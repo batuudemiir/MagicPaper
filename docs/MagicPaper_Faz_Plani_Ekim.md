@@ -856,12 +856,49 @@ metni hukuk bekliyor; `privacy_policy.html` 2.0.
 
 ---
 
-## FAZ 19 — iOS yüzeyleri ve iPad ⏳
+## FAZ 19 — iOS yüzeyleri ve iPad 🔧
 
 Widget'lar (bu akşamın masalı, seri), Live Activity, App Intents/Siri ("bu akşamın masalını oku"),
 iPad yatay okuyucu.
 
 **Sahip:** design-system + builder.
+
+### Kapanış notu (13 Ekim 2026, dal `faz-19`)
+
+Kod tamam; cihaz denemeleri Batuhan'da (🔧).
+
+**Kararlar:** Live Activity = Uyku modu (Batuhan; "Masal yazılıyor" çevrimdışı motorda anlamsız). Haftalık
+widget hedefsiz: teslimdeki "3/4" halkası ve "1 kaldı" yerine okunan akşam sayısı ve 7 gün (CLAUDE.md §7).
+Kilit ekranında ve Live Activity'de masal adı yok (başlıkta çocuğun adı geçiyor).
+
+**Yapı:**
+- `MagicPaper/Surfaces/` (uygulama + uzantı): `MPSurfaceSnapshot`/`MPSurfaceStore` (App Group
+  `group.com.batu.magicpaper.v1`), `MPTonight` (bu akşamın masalı kuralı; Ana sayfa kartı, widget ve Siri
+  aynı kuralı okur, `MPBedtime` ve `MPReminder.clockLabel` ona bağlandı), `MPSurfaceLink`
+  (`magicpaper://tonight|series|sleep`), `MPSleepActivityAttributes` + `StopSleepModeIntent`.
+- `StoryEngineBridge/Surfaces/`: `MPTonightSource`, `MPSurfaceSync` (kayıt arka plana geçişte, çocuk
+  değişince, okuyucu/uyku modu kapanınca yazılır; değişmediyse widget yenilenmez), `MPSurfaceRouter`,
+  App Intents ("Masal oku", "Uyku modu").
+- `Screens/SleepMode/MPSleepPlayback`: uyku modunun sesi ve saati görünümden çıktı; süre duvar saatiyle,
+  telefon kilitliyken de işler (`UIBackgroundModes: audio`). Live Activity'de kalan süre ve Durdur.
+- `MagicPaperWidgets` uzantısı: Bu akşamın masalı (küçük), Okuma haftası (küçük), Seri (orta), Masal saati
+  (kilit ekranı), Uyku modu Live Activity. Tasarım sistemi `DesignSystem` klasöründen üyelik istisnasıyla
+  paylaşılıyor (MPTheme, MPIcon, MPColor, MPLayout, MPTypography, Nunito); varlık kataloğu ortak.
+- Aile verisi silinince widget kaydı silinir, Live Activity kapanır (`LocalDataEraser`).
+- iPad yatay açık kitap faz-17-pastel'den geldi (`StoryPageView.spread`); bu fazda değişmedi.
+
+**Doğrulama:** uygulama 652/0 (1 atlanan; taban 631, +21 `SurfacesTests`); paket koduna dokunulmadı.
+Simülatörde (iPhone 17 Pro): üç ana ekran widget'ı gerçek veriyle çizildi; widget dokunuşu yarım masalı
+açtı; `magicpaper://sleep` uyku modunu açtı; kilit ekranında Live Activity göründü.
+
+**Açık:**
+- Live Activity'de ay simgesi görünmüyor (kilit ekranı ve Dynamic Island); metin, süre ve Durdur doğru.
+- Batuhan: Developer hesabında App Group ve `com.batu.magicpaper.v1.widgets` kaydı (otomatik imza).
+- Uzantı sürümü uygulamanın Info.plist'indeki sabit `1.0 (1)` ile eşleşiyor; sürüm değişince ikisi birlikte.
+- Cihazda denenmedi: kilitli telefonda sesli okumanın sürmesi, Live Activity'de Durdur, Siri Türkçe
+  ifadeleri (`AppShortcuts.xcstrings` yok), kilit ekranı widget'ları.
+- iPad yatay okuyucu ve ekran matrisi (koyu, en büyük Dynamic Type, SE/Pro Max) bu fazda çekilmedi.
+- Uyku modu masalının görselleri 1x (teslim notu).
 
 ---
 

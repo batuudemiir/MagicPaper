@@ -25,6 +25,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // Kayıt, açılış bitmeden yapılmak zorunda.
     RemoteContentService.registerBackgroundRefresh()
     RemoteContentService.scheduleBackgroundRefresh()
+
+    // Uygulama uyku modundayken kapatıldıysa Live Activity kilit ekranında
+    // kalmasın (FAZ 19).
+    MPSleepActivity.endAll()
     
     // RevenueCat Configuration
     #if canImport(RevenueCat)
@@ -129,6 +133,11 @@ struct MagicPaperApp: App {
       .environment(\.locale, Locale(identifier: "tr_TR"))
       // Google ile giriş tarayıcıdan bu adrese döner (FAZ 16).
       .onOpenURL { url in
+        // Widget ve Live Activity (FAZ 19): çocuk alanında bir yer.
+        if let link = MPSurfaceLink(url: url) {
+          MPSurfaceRouter.shared.pending = link
+          return
+        }
         // Aile daveti (FAZ 18): kod bekler, ebeveyn kapısından sonra açılır.
         if FamilyFeatureAccess.isEnabled(.familyMembers), let code = FamilyInviteCode.from(url: url) {
           AccountService.shared.pendingInviteCode = code

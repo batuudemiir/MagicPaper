@@ -113,6 +113,6 @@ enum MPReminder {
 
     /// Ekranda gösterilecek saat — "20.30".
     static func clockLabel(hour: Int, minute: Int) -> String {
-        String(format: "%02d.%02d", hour, minute)
+        MPTonight.clockLabel(hour: hour, minute: minute)
     }
 }

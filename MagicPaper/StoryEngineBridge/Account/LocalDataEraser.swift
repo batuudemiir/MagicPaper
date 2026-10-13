@@ -48,6 +48,9 @@ enum LocalDataEraser {
         // The account's bookkeeping on this device.
         SyncLedgerStore().erase()
         ParentConsentStore(defaults: defaults).erase()
+        // Widget'ların kaydı (FAZ 19): masal başlıkları ve okuma günleri.
+        MPSurfaceSync.erase()
+        MPSleepActivity.endAll()
 
         // What the screens hold in memory goes with what was on disk; the
         // empty library write also clears the library's file copy.

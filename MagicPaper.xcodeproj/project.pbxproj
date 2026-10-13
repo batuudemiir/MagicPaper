@@ -54,6 +54,8 @@
 		A10000010000000000000079 /* ProfileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007A /* ProfileSelectorView.swift */; };
 		A1000001000000000000007B /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007C /* ProfileCreationView.swift */; };
 		C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */; };
+		F19000000000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* Assets.xcassets */; };
+		F19000000000000000000002 /* MagicPaperWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F19000000000000000000010 /* MagicPaperWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +66,28 @@
 			remoteGlobalIDString = A10000010000000000000029;
 			remoteInfo = MagicPaper;
 		};
+		F19000000000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000001000000000000002D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F19000000000000000000020;
+			remoteInfo = MagicPaperWidgets;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F19000000000000000000043 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F19000000000000000000002 /* MagicPaperWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D025C7C3055D26300BABB08 /* adventure_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = adventure_01.json; sourceTree = "<group>"; };
@@ -109,14 +132,35 @@
 		A1000001000000000000007A /* ProfileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectorView.swift; sourceTree = "<group>"; };
 		A1000001000000000000007C /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = shared_content_library_v2.json; sourceTree = "<group>"; };
+		F19000000000000000000010 /* MagicPaperWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MagicPaperWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19000000000000000000011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F19000000000000000000012 /* MagicPaperWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MagicPaperWidgets.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F19000000000000000000035 /* Exceptions for "DesignSystem" folder in "MagicPaperWidgets" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Fonts/Nunito-Italic-Variable.ttf,
+				Fonts/Nunito-Variable.ttf,
+				MPIcon.swift,
+				MPTheme.swift,
+				Pastel/MPColor.swift,
+				Pastel/MPLayout.swift,
+				Pastel/MPTypography.swift,
+			);
+			target = F19000000000000000000020 /* MagicPaperWidgets */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
+		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F19000000000000000000035 /* Exceptions for "DesignSystem" folder in "MagicPaperWidgets" target */, ); explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
 		2DDE500000000000000000A2 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
 		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
 		5E00000000000000000008 /* StoryEngineBridge */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StoryEngineBridge; sourceTree = "<group>"; };
 		7E00000000000000000002 /* MagicPaperTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MagicPaperTests; sourceTree = "<group>"; };
+		F19000000000000000000030 /* Surfaces */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Surfaces; sourceTree = "<group>"; };
+		F19000000000000000000031 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +185,13 @@
 				F16000000000000000000003 /* GoogleSignIn in Frameworks */,
 				2DB76A672F4911DA00DE621B /* RevenueCat in Frameworks */,
 				2DB76A6B2F49130100DE621B /* RevenueCatUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F19000000000000000000040 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +257,7 @@
 				2DDE500000000000000000A2 /* Screens */,
 				5E00000000000000000008 /* StoryEngineBridge */,
 				A10000010000000000000006 /* Assets.xcassets */,
+				F19000000000000000000030 /* Surfaces */,
 				A10000010000000000000020 /* Info.plist */,
 				A1000001000000000000003B /* GoogleService-Info.plist */,
 				A10000010000000000000023 /* Preview Content */,
@@ -225,6 +277,7 @@
 		A10000010000000000000024 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				F19000000000000000000010 /* MagicPaperWidgets.appex */,
 				A1000001000000000000001F /* MagicPaper.app */,
 				7E00000000000000000001 /* MagicPaperTests.xctest */,
 			);
@@ -290,10 +343,21 @@
 			children = (
 				2D2DE9B72F49CCE80012EF4A /* Products.storekit */,
 				A10000010000000000000022 /* MagicPaper */,
+				F19000000000000000000032 /* MagicPaperWidgets */,
 				7E00000000000000000002 /* MagicPaperTests */,
 				2DB76A652F4911DA00DE621B /* Frameworks */,
 				A10000010000000000000024 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		F19000000000000000000032 /* MagicPaperWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				F19000000000000000000031 /* Sources */,
+				F19000000000000000000011 /* Info.plist */,
+				F19000000000000000000012 /* MagicPaperWidgets.entitlements */,
+			);
+			path = MagicPaperWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,16 +393,19 @@
 				A1000001000000000000002B /* Sources */,
 				A10000010000000000000021 /* Frameworks */,
 				A1000001000000000000002C /* Resources */,
+				F19000000000000000000043 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F19000000000000000000004 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2DDE500000000000000000A1 /* DesignSystem */,
 				2DDE500000000000000000A2 /* Screens */,
 				2DE729782F2E3D0100CD275E /* Helpers */,
 				5E00000000000000000008 /* StoryEngineBridge */,
+				F19000000000000000000030 /* Surfaces */,
 			);
 			name = MagicPaper;
 			packageProductDependencies = (
@@ -357,6 +424,29 @@
 			productReference = A1000001000000000000001F /* MagicPaper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F19000000000000000000020 /* MagicPaperWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F19000000000000000000050 /* Build configuration list for PBXNativeTarget "MagicPaperWidgets" */;
+			buildPhases = (
+				F19000000000000000000042 /* Sources */,
+				F19000000000000000000040 /* Frameworks */,
+				F19000000000000000000041 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F19000000000000000000031 /* Sources */,
+				F19000000000000000000030 /* Surfaces */,
+			);
+			name = MagicPaperWidgets;
+			packageProductDependencies = (
+			);
+			productName = MagicPaperWidgets;
+			productReference = F19000000000000000000010 /* MagicPaperWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -373,6 +463,9 @@
 					};
 					A10000010000000000000029 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					F19000000000000000000020 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -397,6 +490,7 @@
 			targets = (
 				A10000010000000000000029 /* MagicPaper */,
 				7E00000000000000000003 /* MagicPaperTests */,
+				F19000000000000000000020 /* MagicPaperWidgets */,
 			);
 		};
 /* End PBXProject section */
@@ -418,6 +512,14 @@
 				A10000010000000000000005 /* Assets.xcassets in Resources */,
 				A1000001000000000000003A /* GoogleService-Info.plist in Resources */,
 				C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F19000000000000000000041 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F19000000000000000000001 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +572,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F19000000000000000000042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -477,6 +586,11 @@
 			isa = PBXTargetDependency;
 			target = A10000010000000000000029 /* MagicPaper */;
 			targetProxy = 7E00000000000000000008 /* PBXContainerItemProxy */;
+		};
+		F19000000000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F19000000000000000000020 /* MagicPaperWidgets */;
+			targetProxy = F19000000000000000000003 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -721,6 +835,60 @@
 			};
 			name = Release;
 		};
+		F19000000000000000000051 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MagicPaperWidgets/MagicPaperWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MagicPaperWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Magic Paper";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F19000000000000000000052 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MagicPaperWidgets/MagicPaperWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MagicPaperWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Magic Paper";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -747,6 +915,15 @@
 			buildConfigurations = (
 				A1000001000000000000002F /* Debug */,
 				A10000010000000000000030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F19000000000000000000050 /* Build configuration list for PBXNativeTarget "MagicPaperWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F19000000000000000000051 /* Debug */,
+				F19000000000000000000052 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -13,7 +13,6 @@ struct HomeView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var streak = MPStreak.shared
     @StateObject private var dailyManager = DailyStoryManager.shared
-    @State private var readingDaily: DailyStory?
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -51,9 +50,6 @@ struct HomeView: View {
         }
         .background(alignment: .top) { HeaderWash(height: 220) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
-        .fullScreenCover(item: $readingDaily) { story in
-            DailyStoryReaderView(story: story).environmentObject(app).environmentObject(settings)
-        }
     }
 
     // MARK: - Başlık
@@ -79,41 +75,33 @@ struct HomeView: View {
 
     // MARK: - Bu akşamın masalı
 
-    /// Çocuğun görmeye hakkı olan masalları. Onay kapısı burada da geçerli:
-    /// kitaplıktan gizlenen bir masal bu kartta duramaz.
-    private var myStories: [Story] {
-        MPStoryGate.visible(storyManager.stories, approvalRequired: settings.approve,
-                            isApproved: { settings.isApproved($0) })
-            .filter { $0.belongs(to: profileManager.currentProfile) }
-    }
-
-    private var unfinished: Story? { MPContinueReading.pick(from: myStories) }
-
     private var todaysDaily: DailyStory? {
         dailyManager.todaysStory ?? dailyManager.dailyStories.first
     }
 
-    /// Kural (SCREENS.md 11): uyku saatiyse uyku; yarım masal varsa devam;
-    /// bugün okunmadıysa bu akşamın masalı; okunduysa "Harika gidiyorsun".
+    /// Kural `MPTonight`'ta (SCREENS.md 11): widget ve Siri de aynı masalı
+    /// seçer. Görünüm yalnızca metne çevirir.
+    private var tonight: MPTonightSource.Resolved { MPTonightSource.current(settings: settings) }
+
     private var tonightState: TonightState {
-        if MPBedtime.isBedtime(settings: settings) {
-            return .bedtime(time: MPReminder.clockLabel(hour: settings.bedtimeHour, minute: settings.bedtimeMinute))
+        switch tonight.tonight() {
+        case .bedtime(let bedtime):
+            return .bedtime(time: bedtime.clockLabel)
+        case .resume(let resume):
+            return .resume(progress: resume.progress, title: resume.title,
+                           meta: "Sayfa \(resume.page) / \(resume.pageCount)")
+        case .unread(let daily):
+            return .unread(title: daily.title, meta: "\(daily.minutes) dakika")
+        case .readToday:
+            return .readToday
         }
-        if let story = unfinished {
-            let page = min((story.lastReadPage ?? 0) + 1, story.pages.count)
-            return .resume(progress: story.mpProgress, title: story.title,
-                           meta: "Sayfa \(page) / \(story.pages.count)")
-        }
-        if !streak.readToday, let daily = todaysDaily {
-            return .unread(title: daily.title, meta: "\(daily.readingTime) dakika")
-        }
-        return .readToday
     }
 
     private var tonightCover: (icon: String, tone: MPWorldTone)? {
-        switch tonightState {
+        let tonight = tonight
+        switch tonight.tonight() {
         case .resume:
-            guard let story = unfinished else { return nil }
+            guard let story = tonight.resumeStory else { return nil }
             return (story.mpWorld.icon, story.mpWorld.tone)
         case .unread:
             return ("book", .sky)
@@ -123,26 +111,7 @@ struct HomeView: View {
     }
 
     private func tonightAction() {
-        switch tonightState {
-        case .resume:
-            if let story = unfinished { app.readerStory = story }
-        case .unread:
-            readingDaily = todaysDaily
-        case .readToday:
-            app.startStoryCreation()
-        case .bedtime:
-            // 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı;
-            // ikisi de yoksa uyku öncesi modunda yeni bir masal.
-            if let story = myStories
-                .filter({ $0.mpMode == .bedtime })
-                .max(by: { ($0.lastReadAt ?? $0.createdAt) < ($1.lastReadAt ?? $1.createdAt) }) {
-                app.sleepSession = MPSleepSession(story: story)
-            } else if let daily = todaysDaily {
-                app.sleepSession = MPSleepSession(daily: daily)
-            } else {
-                app.startStoryCreation(mode: .bedtime)
-            }
-        }
+        app.openTonight()
     }
 
     // MARK: - Mod şeridi
@@ -181,7 +150,7 @@ struct HomeView: View {
     private func dailySection(_ daily: DailyStory) -> some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Günün masalı")
-            Button { readingDaily = daily } label: {
+            Button { app.dailyReading = daily } label: {
                 MPCard(area: .kid, padding: MPSpacing.lg) {
                     HStack(spacing: MPSpacing.lg) {
                         MPIcon(daily.category.mpSymbol, size: 30, weight: .semibold)
