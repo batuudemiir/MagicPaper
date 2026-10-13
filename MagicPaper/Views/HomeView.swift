@@ -21,15 +21,20 @@ struct HomeView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                HomeHeader(greeting: greeting, childName: activeName, stars: stars, isNight: isNight,
+                HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
                            avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
                                               size: MPSize.headerAvatar) },
                            onAvatar: { app.showKidCorner = true },
                            onLock: { app.requestParentMode() })
                     .padding(.top, MPSpacing.md)
 
-                HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
-                             coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
+                // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
+                VStack(spacing: MPSpacing.md) {
+                    HomeStatChips(stars: stars, streak: streak.currentStreak)
+                    HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
+                                 coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
+                }
+                .padding(.top, sceneClearance)
 
                 Button { app.showKidCorner = true } label: {
                     HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
@@ -49,12 +54,19 @@ struct HomeView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
             // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-            .background(alignment: .top) { HomeSky(isNight: isNight, height: 230, bleed: 400) }
+            .background(alignment: .top) { HomeScene(isNight: isNight, height: sceneHeight, bleed: 120) }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
     }
 
-    /// Uyku saatinde yalnızca başlık bandı geceye döner; sayfa açık kalır.
+    /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
+    @State private var width: CGFloat = 402
+    private var sceneHeight: CGFloat { width * 1.12 }
+    /// Başlıktan çiplere kadar sahnenin açık kalan kısmı.
+    private var sceneClearance: CGFloat { max(sceneHeight - 230, 160) }
+
+    /// Uyku saatinde sahne geceye döner; sayfa açık kalır.
     private var isNight: Bool {
         if case .bedtime = tonightState { return true }
         return false
@@ -138,11 +150,10 @@ struct HomeView: View {
 
     /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
     private var modeStrip: some View {
-        // Soru ve düğmeler aynı kartta; Ragi başlığın yanında küçük.
+        // Soru ve düğmeler aynı kartta.
         HomeSection(title: "Bu akşam nasıl bir masal olsun?") {
-            if !HomeHeroCard.showsMascot(tonightState) {
-                MascotImage(mascot: .curious, width: 36)
-            }
+            // Ragi sahnede; ekranda tek maskot.
+            EmptyView()
         } content: {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),

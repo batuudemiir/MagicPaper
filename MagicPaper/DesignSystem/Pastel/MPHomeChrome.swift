@@ -102,6 +102,82 @@ struct HomeSky: View {
     ]
 }
 
+// MARK: - Sahne (illüstrasyonlu başlık)
+
+/// Ana sayfanın üstündeki masal manzarası (13 Ekim, referans: editoryal uygulama
+/// hero sahneleri). Görsel bir taslak: kalıcı sürümü illüstratör çizecek.
+/// Uyku saatinde aynı sahnenin gece hâline çapraz geçer; alt kenarı sayfanın
+/// krem zeminine karışır (malzeme maskesi, arayüz gradyanı değil). Süs:
+/// erişilebilirlikten gizli.
+struct HomeScene: View {
+    let isNight: Bool
+    var height: CGFloat = 470
+    /// Kayan içeriğin içinde saat çubuğunun altına taşan pay.
+    var bleed: CGFloat = 0
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            Image("Scenes/homeSceneDay").resizable().scaledToFill()
+            Image("Scenes/homeSceneNight").resizable().scaledToFill()
+                .opacity(isNight ? 1 : 0)
+        }
+        .frame(height: height + bleed, alignment: .top)
+        .frame(maxWidth: .infinity)
+        .clipped()
+        .mask {
+            VStack(spacing: 0) {
+                Rectangle()
+                LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)], startPoint: .top, endPoint: .bottom)
+                    .frame(height: 90)
+            }
+        }
+        .offset(y: -bleed)
+        .animation(MP.M.gated(MP.M.slow), value: isNight)
+        .accessibilityHidden(true)
+    }
+}
+
+/// Sahnenin alt kenarına binen bilgi çipleri: yıldız ve okuma serisi.
+struct HomeStatChips: View {
+    let stars: Int
+    let streak: Int
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
+            : AnyLayout(HStackLayout(spacing: MPSpacing.sm))
+        layout {
+            chip(icon: "star.fill", iconColor: MPColor.statusStarIcon, tone: .yellow,
+                 label: "Yıldızların", value: "\(stars) yıldız", number: stars)
+            chip(icon: "flame", iconColor: MPColor.actionPrimary, tone: .lav,
+                 label: "Okuma serisi", value: "\(streak) gün", number: streak)
+        }
+    }
+
+    private func chip(icon: String, iconColor: Color, tone: MPWorldTone, label: String,
+                      value: String, number: Int) -> some View {
+        HStack(spacing: MPSpacing.sm) {
+            MPIcon(icon, size: MP.G.md, weight: .bold)
+                .foregroundStyle(iconColor)
+                .frame(width: 36, height: 36)
+                .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(label).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                Text(value).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                    .contentTransition(.numericText(value: Double(number)))
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(MPSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.input)
+        .animation(MP.M.gated(MP.M.spring), value: number)
+        .accessibilityElement(children: .combine)
+    }
+}
+
 /// Üç tümsekli bulut.
 struct CloudShape: Shape {
     func path(in r: CGRect) -> Path {
@@ -136,7 +212,8 @@ struct WaveBottom: Shape {
 struct HomeHeader<Avatar: View>: View {
     let greeting: String
     let childName: String
-    let stars: Int
+    /// `nil`: yıldız başlıkta değil, sahnenin çiplerinde.
+    var stars: Int? = nil
     var isNight: Bool = false
     @ViewBuilder var avatar: Avatar
     let onAvatar: () -> Void
@@ -153,7 +230,7 @@ struct HomeHeader<Avatar: View>: View {
                         .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 3))
                     VStack(alignment: .leading, spacing: 0) {
                         Text(greeting).mpText(.footnote)
-                            .foregroundStyle(isNight ? MPColor.readerNightSecondary : MPColor.actionPrimary)
+                            .foregroundStyle(isNight ? MPColor.readerNightText : MPColor.textPrimary)
                         Text(childName).mpText(.navTitle).fontWeight(.black)
                             .foregroundStyle(isNight ? MPColor.readerNightText : MPColor.textPrimary)
                             .lineLimit(1).minimumScaleFactor(0.8)
@@ -164,12 +241,12 @@ struct HomeHeader<Avatar: View>: View {
             .buttonStyle(.plain)
             .accessibilityLabel("Benim köşem, \(childName)")
             Spacer(minLength: 0)
-            starPill
+            if let stars { starPill(stars) }
             MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", size: 40, action: onLock)
         }
     }
 
-    private var starPill: some View {
+    private func starPill(_ stars: Int) -> some View {
         HStack(spacing: MPSpacing.xxs) {
             MPIcon("star.fill", size: MP.G.sm, weight: .bold).foregroundStyle(MPColor.statusStarIcon)
             Text("\(stars)").mpText(.callout).monospacedDigit()
@@ -198,13 +275,6 @@ struct HomeHeroCard: View {
     let onPrimary: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var wave: Double = 0
-
-    /// Kartta Ragi var mı (ekranda tek maskot kuralı için ana sayfa okur).
-    static func showsMascot(_ state: TonightState) -> Bool {
-        switch state { case .readToday, .bedtime: true; default: false }
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.lg) {
@@ -227,36 +297,26 @@ struct HomeHeroCard: View {
         }
         .padding(MPSpacing.lg)
         .mpKidSurface(fill, edge: MPColor.brandNight)
-        .task(id: Self.showsMascot(state)) { await waveOnce() }
     }
 
-    // Ragi ilk görünüşte bir kez sallanır; Reduce Motion açıkken durur.
-    private func waveOnce() async {
-        guard Self.showsMascot(state), !reduceMotion else { return }
-        try? await Task.sleep(for: .milliseconds(300))
-        withAnimation(MP.M.spring) { wave = -8 }
-        try? await Task.sleep(for: .milliseconds(260))
-        withAnimation(MP.M.spring) { wave = 0 }
-    }
-
+    /// Sahnede Ragi zaten var (ekranda tek maskot): kart durumu bir simgeyle söyler.
     @ViewBuilder private var art: some View {
         switch state {
-        case .readToday:
-            MascotImage(mascot: .waving, width: 92)
-                .rotationEffect(.degrees(wave), anchor: .bottom)
-        case .bedtime:
-            MascotImage(mascot: .sleeping, width: 104)
-                .rotationEffect(.degrees(wave), anchor: .bottom)
-        default:
-            // Mor kartın üstünde kapak markanın lavantası: masalın dünyası
-            // simgeden okunur, renk bütünlüğü bozulmaz.
-            MPIcon(coverIcon ?? "book", size: MP.G.xxl, weight: .semibold)
-                .foregroundStyle(MPColor.actionPrimary)
-                .frame(width: 84, height: 104)
-                .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                .rotationEffect(.degrees(-3))
-                .accessibilityHidden(true)
+        case .readToday: stateTile("sparkles", rotation: 0)
+        case .bedtime: stateTile("moon.stars", rotation: 0)
+        default: stateTile(coverIcon ?? "book", rotation: -3)
         }
+    }
+
+    private func stateTile(_ icon: String, rotation: Double) -> some View {
+        // Mor kartın üstünde kapak markanın lavantası: masalın dünyası
+        // simgeden okunur, renk bütünlüğü bozulmaz.
+        MPIcon(icon, size: MP.G.xxl, weight: .semibold)
+            .foregroundStyle(MPColor.actionPrimary)
+            .frame(width: 84, height: 104)
+            .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+            .rotationEffect(.degrees(rotation))
+            .accessibilityHidden(true)
     }
 
     private func progressBar(_ progress: Double) -> some View {
@@ -328,7 +388,10 @@ struct HomeStreakCard: View {
     let streak: Int
     let todayIndex: Int
 
-    var title: String {
+    /// Seri sayısı sahnenin çipinde; kart haftayı gösterir.
+    let title = "Bu hafta"
+
+    private var spokenStreak: String {
         switch streak {
         case 0:  return "Okuma yolculuğun burada başlıyor"
         case 1:  return "Okuma yolculuğun devam ediyor"
@@ -356,7 +419,7 @@ struct HomeStreakCard: View {
         }
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(title). Bu hafta \(done.filter { $0 }.count) gün okudun")
+        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudun")
     }
 
     @ViewBuilder private func dot(_ i: Int) -> some View {

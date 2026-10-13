@@ -24,7 +24,9 @@ değişmiyor; kartlar tek bir dile oturuyor ve sayfa tek bir renk düzenine bağ
 - Boşluk: bölümler arası `MPSpacing.xxl`, kart içinde başlık ile içerik `MPSpacing.md`.
 - Kart: büyük yarıçap, pastel ya da beyaz zemin, **sert alt kenar** (`mpKidSurface`). Derinlik gölgeden değil kenardan.
 - Kart kuralı: hero dışındaki her kart beyaz, lavanta kenarlı, aynı yarıçapta (`MPRadius.card`); pastel tonlar yalnızca ikon karelerinde. Hero kapağı lavanta.
-- Başlık bandı: lavanta zemin, beyaz bulutlar, alt kenarı dalgalı. Uyku saatinde lacivert gece, hilal, yıldızlar.
+- Başlık sahnesi (`HomeScene`, 13 Ekim akşam): tam genişlikte masal manzarası illüstrasyonu (gökyüzü, bulutlar, dağlar, kule, değirmen, kulübe, kitap okuyan Ragi). Uyku saatinde aynı sahnenin gece hâli. Görseller `Assets.xcassets/Scenes` içinde, yapay zekâyla üretilmiş **taslak**; kalıcı sürümü illüstratör çizecek. Alt kenar krem zemine maskelenir.
+- Sahnenin alt kenarına iki bilgi çipi biner (`HomeStatChips`): yıldız ve okuma serisi. Yıldız başlıktan buraya taşındı; okuma şeridi kartının başlığı "Bu hafta".
+- Ekranda tek Ragi: sahnede olduğu için hero kartı ve mod sorusu maskotsuz (durum simgeyle söylenir).
 - Butonda gradient yok (günün masalındaki oynatma düğmesi çerçeveli daireye döner).
 
 ## Bölümler (sıra aynı)
