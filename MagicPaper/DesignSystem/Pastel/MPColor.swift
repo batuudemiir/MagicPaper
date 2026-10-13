@@ -207,6 +207,10 @@ extension MPColor {
     /// Uyku kartının gece gökyüzü.
     static let bedtimeSkyTop = Color(red: 0x2B / 255, green: 0x31 / 255, blue: 0x60 / 255)
     static let bedtimeSkyBottom = Color(red: 0x1E / 255, green: 0x22 / 255, blue: 0x38 / 255)
+    /// Ana sayfa sahnesinin gökyüzü: görselin en üst satırının rengi; görsel
+    /// ekran genişliğine sığar, üstündeki boşluk bu renkle devam eder.
+    static let sceneSkyDay = Color(red: 0x3D / 255, green: 0xA0 / 255, blue: 0xF3 / 255)
+    static let sceneSkyNight = Color(red: 0x0C / 255, green: 0x21 / 255, blue: 0x5D / 255)
     /// Başlık arkasındaki gökkuşağı (HeaderWash).
     static let washPink = Color(red: 0xFB / 255, green: 0xD3 / 255, blue: 0xE0 / 255)
     static let washYellow = Color(red: 0xFC / 255, green: 0xE8 / 255, blue: 0xB6 / 255)

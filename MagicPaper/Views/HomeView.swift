@@ -36,7 +36,7 @@ struct HomeView: View {
                 }
                 .padding(.top, sceneClearance)
 
-                Button { app.openKidCorner() } label: {
+                Button { MPHaptics.tap(); app.openKidCorner() } label: {
                     HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
                 }
                 .buttonStyle(MPPressStyle())
@@ -54,7 +54,7 @@ struct HomeView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
             // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-            .background(alignment: .top) { HomeScene(isNight: isNight, height: sceneHeight, bleed: 120) }
+            .background(alignment: .top) { HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46) }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
@@ -62,9 +62,11 @@ struct HomeView: View {
 
     /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
     @State private var width: CGFloat = 402
-    private var sceneHeight: CGFloat { width * 1.12 }
-    /// Başlıktan çiplere kadar sahnenin açık kalan kısmı.
-    private var sceneClearance: CGFloat { max(sceneHeight - 150, 220) }
+    /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
+    /// bu akşamın kartı ilk bakışta görünür.
+    private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
+    /// Başlıktan çiplere kadar: çipler sahnenin alt kenarına biner.
+    private var sceneClearance: CGFloat { sceneHeight - 132 }
 
     /// Uyku saatinde sahne geceye döner; sayfa açık kalır.
     private var isNight: Bool {
@@ -136,6 +138,7 @@ struct HomeView: View {
     }
 
     private func tonightAction() {
+        MPHaptics.tap()
         app.openTonight()
     }
 
@@ -160,6 +163,7 @@ struct HomeView: View {
                       spacing: MPSpacing.sm) {
                 ForEach(shownModes, id: \.self) { mode in
                     HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
+                        MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
                     }
                     .accessibilityLabel(mode.title)
@@ -172,7 +176,7 @@ struct HomeView: View {
     // MARK: - Günün masalı
 
     private func dailySection(_ daily: DailyStory) -> some View {
-        Button { app.dailyReading = daily } label: {
+        Button { MPHaptics.tap(); app.dailyReading = daily } label: {
             HomeSection(title: "Günün masalı") {
                 // En büyük yazı boyutlarında görsel metnin üstüne iner;
                 // başlık kelime ortasından bölünmez.

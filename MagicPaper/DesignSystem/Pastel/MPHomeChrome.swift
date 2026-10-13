@@ -111,28 +111,102 @@ struct HomeSky: View {
 /// erişilebilirlikten gizli.
 struct HomeScene: View {
     let isNight: Bool
-    var height: CGFloat = 470
+    var height: CGFloat = 300
     /// Kayan içeriğin içinde saat çubuğunun altına taşan pay.
     var bleed: CGFloat = 0
+    /// Ragi'nin ayaklarının sahnenin alt kenarından yüksekliği: çiplerin üstünde kalır.
+    var mascotLift: CGFloat = 44
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Image("Scenes/homeSceneDay").resizable().scaledToFill()
-            Image("Scenes/homeSceneNight").resizable().scaledToFill()
+        ZStack(alignment: .bottomTrailing) {
+            backdrop
+            HomeSceneMascot(isNight: isNight)
+                .padding(.trailing, MPSpacing.screenH)
+                .padding(.bottom, mascotLift)
+        }
+        .frame(height: height + bleed)
+        .offset(y: -bleed)
+    }
+
+    /// Maskotsuz manzara: gündüz ve gece aynı kompozisyon, çapraz geçişle.
+    /// Görsel ekran genişliğine sığar (kule ve ay kırpılmaz); üstündeki boşluk
+    /// görselin en üst gökyüzü rengiyle devam eder.
+    private var backdrop: some View {
+        ZStack {
+            layer(image: "Scenes/homeSceneDay", sky: MPColor.sceneSkyDay)
+            layer(image: "Scenes/homeSceneNight", sky: MPColor.sceneSkyNight)
                 .opacity(isNight ? 1 : 0)
         }
-        .frame(height: height + bleed, alignment: .top)
+        .frame(height: height + bleed)
         .frame(maxWidth: .infinity)
         .clipped()
         .mask {
             VStack(spacing: 0) {
                 Rectangle()
-                LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)], startPoint: .top, endPoint: .bottom)
-                    .frame(height: 90)
+                LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)],
+                               startPoint: .top, endPoint: .bottom)
+                    .frame(height: 56)
             }
         }
-        .offset(y: -bleed)
         .animation(MP.M.gated(MP.M.slow), value: isNight)
+        .accessibilityHidden(true)
+    }
+
+    /// Görsel tam genişlikte, doğal oranında; üst kenarı gökyüzü rengine
+    /// yumuşakça karışır, dikiş görünmez.
+    private func layer(image: String, sky: Color) -> some View {
+        ZStack(alignment: .bottom) {
+            sky
+            Image(image).resizable().aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .mask {
+                    VStack(spacing: 0) {
+                        LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
+                                       startPoint: .top, endPoint: .bottom)
+                            .frame(height: 48)
+                        Rectangle()
+                    }
+                }
+        }
+    }
+}
+
+/// Sahnenin üstündeki Ragi: markanın kendi görseli, ayrı katman. Gündüz kitap
+/// okur ve yavaşça nefes alır; gece uyur. Açılışta tepeye süzülür, dokununca
+/// bir kez zıplar. Reduce Motion açıkken yerinde durur. Süs: erişilebilirlikten gizli.
+struct HomeSceneMascot: View {
+    let isNight: Bool
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var appeared = false
+    @State private var breathing = false
+    @State private var hop = false
+
+    var body: some View {
+        ZStack {
+            MascotImage(mascot: .reading, width: 92).opacity(isNight ? 0 : 1)
+            MascotImage(mascot: .sleeping, width: 104).opacity(isNight ? 1 : 0)
+        }
+        .scaleEffect(breathing ? 1.025 : 1, anchor: .bottom)
+        .offset(y: hop ? -14 : 0)
+        .offset(y: appeared ? 0 : 24)
+        .opacity(appeared ? 1 : 0)
+        .animation(MP.M.gated(MP.M.slow), value: isNight)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard !reduceMotion, !hop else { return }
+            MPHaptics.tap()
+            withAnimation(MP.M.spring) { hop = true }
+            Task {
+                try? await Task.sleep(for: .milliseconds(220))
+                withAnimation(MP.M.spring) { hop = false }
+            }
+        }
+        .onAppear {
+            if reduceMotion { appeared = true; return }
+            withAnimation(MP.M.spring.delay(0.15)) { appeared = true }
+            withAnimation(MP.M.idle.delay(0.6)) { breathing = true }
+        }
         .accessibilityHidden(true)
     }
 }

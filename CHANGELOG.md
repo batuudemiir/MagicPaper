@@ -14,6 +14,21 @@ commit'le eşleşir; ayrıntı commit mesajında ve bağlantılı belgede.
 - **Yıldız bu turda yalnızca kazanılır ve gösterilir**: her sabah 1, sonuna kadar okunan
   her farklı masal 1. Harcama, üst sınır ve abonelik bağı sonraki planlarda.
 
+### Ana sayfa: telefon testinden sonra
+
+- **Sahne ekranın ~%40'ı**: görsel ekran genişliğine sığar (kule ve ay kırpılmaz), üstündeki
+  boşluk görselin gökyüzü rengiyle dikişsiz devam eder; çipler ve bu akşamın kartı ilk
+  ekranda görünür.
+- **Yeni sahne görselleri**: Batuhan'ın ChatGPT ile ürettiği gündüz ve gece manzarası,
+  maskotsuz (`Assets.xcassets/Scenes`).
+- **Ragi ayrı katman** (`HomeSceneMascot`): markanın kendi görseli; gündüz kitap okur,
+  gece uyur. Açılışta tepeye süzülür, yavaşça nefes alır, dokununca bir kez zıplar.
+  Çiplerin üstünde durur, altında kalmaz. Reduce Motion'da yerinde durur.
+- **Dokunuş hissi** (`MPPressStyle`, tüm uygulama): basınca öğe alt kenarına çöker,
+  bırakınca yaylanarak geri gelir (önceden yalnızca küçülüyordu, `sinkFlat` hiç hareket
+  etmiyordu). Ana sayfanın ana eylemlerinde tek hafif titreşim (`MPHaptics`).
+  Hareketi Azalt açıkken bilerek sönme kullanılır.
+
 ### Ana sayfa yenilemesi (`anasayfa-yenileme`)
 
 Tasarım notu: `docs/superpowers/specs/2026-10-13-ana-sayfa-yenileme-design.md`.

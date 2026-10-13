@@ -593,6 +593,8 @@ enum MP {
         /// Ortam hareketi: ana sayfa bulutlarının birkaç noktalık gidip gelişi.
         /// Bir tepki değil, bir dekor; yalnızca Reduce Motion kapalıyken başlar.
         static let ambient = Animation.easeInOut(duration: 14).repeatForever(autoreverses: true)
+        /// Sahnedeki Ragi'nin nefes alışı: birkaç noktalık, yavaş, sürekli.
+        static let idle = Animation.easeInOut(duration: 2.6).repeatForever(autoreverses: true)
 
         static let sink: CGFloat = 2
         static let scale: CGFloat = 0.96
@@ -702,10 +704,13 @@ struct MPPressStyle: ButtonStyle {
         let moves = feel != .highlight && !reduceMotion
         let held = pressed && moves
         let dims = pressed && !moves
+        // Basınca kendi alt kenarına çöker (kısa eğri), bırakınca yaylanarak
+        // geri gelir (tek spring): "dokundum" hissi yalnızca küçülmeden gelmez.
         return configuration.label
             .scaleEffect(held && feel == .sink ? MP.M.scale : 1)
-            .brightness(held && feel == .sink ? -0.02 : 0)
+            .offset(y: held ? MP.M.sink : 0)
+            .brightness(held ? -0.03 : 0)
             .opacity(dims ? MP.M.pressDim : 1)
-            .animation(MP.M.press, value: pressed)
+            .animation(pressed ? MP.M.press : MP.M.spring, value: pressed)
     }
 }
