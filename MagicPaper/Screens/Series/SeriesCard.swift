@@ -41,8 +41,7 @@ struct SeriesCard: View {
             MPIcon("pawprint", size: 30, weight: .semibold)
                 .foregroundStyle(MPWorldTone.peach.deep)
                 .frame(width: 62, height: 62)
-                .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.tile))
-                .mpShadow(.control)
+                .background(MPWorldTone.peach.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
@@ -52,7 +51,7 @@ struct SeriesCard: View {
                     HStack(spacing: MPSpacing.xxs) {
                         ForEach(0..<progress.total, id: \.self) { i in
                             Capsule()
-                                .fill(i < progress.read ? MPWorldTone.peach.deep : MPColor.backgroundSurface)
+                                .fill(i < progress.read ? MPWorldTone.peach.deep : MPWorldTone.peach.soft)
                                 .frame(height: 5)
                         }
                     }
@@ -65,7 +64,7 @@ struct SeriesCard: View {
         }
         .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPWorldTone.peach.soft, edge: MPWorldTone.peach.edge)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
     }
 
     /// 18 · Seri masal; bölüm oradan okunur.

@@ -20,7 +20,7 @@ struct HomeView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: MPSpacing.section) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                 HomeHeader(greeting: greeting, childName: activeName, stars: stars, isNight: isNight,
                            avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
                                               size: MPSize.headerAvatar) },
@@ -30,7 +30,6 @@ struct HomeView: View {
 
                 HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
                              coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
-                    .padding(.top, MPSpacing.xl)
 
                 Button { app.showKidCorner = true } label: {
                     HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
@@ -142,14 +141,17 @@ struct HomeView: View {
     /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
     private var modeStrip: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            if HomeHeroCard.showsMascot(tonightState) {
+            // Diğer bölüm başlıklarıyla aynı biçim; Ragi yanında küçük.
+            HStack(spacing: MPSpacing.sm) {
+                if !HomeHeroCard.showsMascot(tonightState) {
+                    MascotImage(mascot: .curious, width: 40)
+                }
                 MPSectionHeader(title: "Bu akşam nasıl bir masal olsun?")
-            } else {
-                MascotSays(mascot: .curious, text: "Bu akşam nasıl bir masal olsun?")
             }
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
-                                     count: typeSize.isAccessibilitySize ? 1 : min(shownModes.count, 3)),
-                      spacing: MPSpacing.sm) {
+            .accessibilityElement(children: .combine)
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+                                     count: typeSize.isAccessibilitySize ? 1 : 3),
+                      spacing: MPSpacing.md) {
                 ForEach(shownModes, id: \.self) { mode in
                     HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
                         app.startStoryCreation(mode: mode)
@@ -172,7 +174,6 @@ struct HomeView: View {
                         .foregroundStyle(MPWorldTone.green.deep)
                         .frame(width: 64, height: 64)
                         .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                        .rotationEffect(.degrees(2))
                         .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                         Text("Herkes için").mpText(.caption).foregroundStyle(MPWorldTone.green.deep)
@@ -191,7 +192,7 @@ struct HomeView: View {
                 }
                 .padding(MPSpacing.lg)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.green.edge)
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityElement(children: .combine)

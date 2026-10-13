@@ -214,7 +214,7 @@ struct HomeHeroCard: View {
             MPButton(title: buttonTitle, systemImage: buttonIcon, kind: .secondary, fullWidth: true, action: onPrimary)
         }
         .padding(MPSpacing.lg)
-        .mpKidSurface(fill, edge: MPColor.brandNight, radius: MPRadius.hero)
+        .mpKidSurface(fill, edge: MPColor.brandNight)
         .task(id: Self.showsMascot(state)) { await waveOnce() }
     }
 
@@ -236,10 +236,12 @@ struct HomeHeroCard: View {
             MascotImage(mascot: .sleeping, width: 104)
                 .rotationEffect(.degrees(wave), anchor: .bottom)
         default:
+            // Mor kartın üstünde kapak markanın lavantası: masalın dünyası
+            // simgeden okunur, renk bütünlüğü bozulmaz.
             MPIcon(coverIcon ?? "book", size: MP.G.xxl, weight: .semibold)
-                .foregroundStyle(coverTone.deep)
+                .foregroundStyle(MPColor.actionPrimary)
                 .frame(width: 84, height: 104)
-                .background(coverTone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .rotationEffect(.degrees(-3))
                 .accessibilityHidden(true)
         }
@@ -310,7 +312,7 @@ struct HomeStreakCard: View {
         }
         .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPWorldTone.lav.soft, edge: MPWorldTone.lav.edge)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(title). Bu hafta \(done.filter { $0 }.count) gün okudun")
@@ -328,7 +330,7 @@ struct HomeStreakCard: View {
                 Circle().strokeBorder(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 2, dash: [4, 3]))
                 MPIcon("book", size: MP.G.xs, weight: .bold).foregroundStyle(MPColor.actionPrimary)
             } else {
-                Circle().fill(MPColor.backgroundSurface.opacity(0.7))
+                Circle().fill(MPWorldTone.lav.soft)
             }
         }
         .frame(width: 30, height: 30)
@@ -352,7 +354,7 @@ struct HomeModeTile: View {
                 MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(tone.deep)
                     .frame(width: MPSize.iconTile, height: MPSize.iconTile)
-                    .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                    .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
                 Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
                     .multilineTextAlignment(.center)
@@ -361,7 +363,7 @@ struct HomeModeTile: View {
             .padding(.vertical, MPSpacing.md)
             .padding(.horizontal, MPSpacing.sm)
             .frame(maxWidth: .infinity, minHeight: 112)
-            .mpKidSurface(tone.soft, edge: tone.edge, radius: MPRadius.tile)
+            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
         }
         .buttonStyle(MPPressStyle())
     }

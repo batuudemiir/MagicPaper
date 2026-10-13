@@ -19,10 +19,10 @@ değişmiyor; kartlar tek bir dile oturuyor ve sayfa tek bir renk düzenine bağ
 
 ## Görsel dil
 
-- Hero kartı sayfanın tek dolgun mor yüzeyi (yön A, 13 Ekim); uyku saatinde gece laciverti, düğme beyaz. Diğer kartlar pastel.
+- Hero kartı sayfanın tek dolgun mor yüzeyi (yön A, 13 Ekim); uyku saatinde gece laciverti, düğme beyaz.
+- Boşluk: bölümler arası `MPSpacing.xxl`, başlık ile içerik ve ızgara aralığı `MPSpacing.md`. Ragi sorusu diğer başlıklarla aynı biçimde.
 - Kart: büyük yarıçap, pastel ya da beyaz zemin, **sert alt kenar** (`mpKidSurface`). Derinlik gölgeden değil kenardan.
-- Renk düzeni: mor = hero, eylem, okuma şeridi; şeftali = seri; mod kartları kendi tonlarında; nane = günün masalı,
-  sarı = yıldız ve kapak, gök = bu akşamın masalı.
+- Kart kuralı: hero dışındaki her kart beyaz, lavanta kenarlı, aynı yarıçapta (`MPRadius.card`); pastel tonlar yalnızca ikon karelerinde. Hero kapağı lavanta.
 - Başlık bandı: lavanta zemin, beyaz bulutlar, alt kenarı dalgalı. Uyku saatinde lacivert gece, hilal, yıldızlar.
 - Butonda gradient yok (günün masalındaki oynatma düğmesi çerçeveli daireye döner).
 
