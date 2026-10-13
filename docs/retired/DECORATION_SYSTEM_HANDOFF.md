@@ -1,5 +1,7 @@
 # Storybook Decoration System — Devam Notu
 
+> **Emekli (13 Ekim 2026):** Okuyucu sayfalarındaki tüm süslemeler kaldırıldı; bu belgede anlatılan Swift kodu silindi. Yalnızca tarihçe için duruyor. `Tools/` altındaki üretim betikleri artık uygulamada bir hedefe yazmıyor.
+
 **Tarih:** 2026-09-16 · **Durum:** derleniyor, 42 test geçiyor, simülatöre kurulu
 
 ---

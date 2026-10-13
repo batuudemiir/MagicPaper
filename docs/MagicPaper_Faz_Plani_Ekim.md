@@ -791,6 +791,10 @@ konu etiketleri ajan taslağı + Batuhan onayı (`MagicPaperAPP/FAZ17_KELIME_GUV
 **Plandan ve teslim paketinden sapmalar:**
 - Paketle çelişen yerlerde kararlar geçerli: korku iki kademe (paket üç), "Ölüm ve kayıp" yok, serbest metin yok, Onaylar sekmesi
   yok, yıldız ve puan yok, kilitli rozet gösterilmez.
+- **13 Ekim 2026 kararıyla değişti (Batuhan):** çocuk alanı tasarımdaki gibi. Benim köşem alt barda "Köşem" sekmesi
+  (Ana sayfa · Kitaplık · Yarat · Köşem; avatar ve okuma şeridi bu sekmeye geçirir). Rozetlerde 8 onaylı rozetin hepsi
+  görünür, kazanılmamışlar kilitli, başlıkta "3 / 8"; ilerleme çubuğu ve "az kaldı" metni yok, seri rozeti yok. Yıldız
+  yalnızca kazanılır ve gösterilir (sabah +1, biten masal +1, `MPStars`); harcama sonraki planlarda.
 - "Kim okusun? / Ailenin sesi" FAZ 18'e; "kelimeler okunurken parlar" ve masal sonundaki "Masalı nasıl buldun?" yapılmadı.
 - Tasarım oturumu aynı dalda FAZ 18-19 ekranlarını bayrak arkasında (ve 37/38 abonelik, 39 hesabı sil) da yaptı; bunlar FAZ 17
   kapsamı değil.
