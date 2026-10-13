@@ -54,7 +54,14 @@ struct HomeView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
             // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-            .background(alignment: .top) { HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46) }
+            .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
+                // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
+                if restY == nil { restY = y }
+                pull = max(0, y - (restY ?? y))
+            }
+            .background(alignment: .top) {
+                HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46, pull: pull)
+            }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
@@ -62,6 +69,9 @@ struct HomeView: View {
 
     /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
     @State private var width: CGFloat = 402
+    /// Esneyen başlık: içeriğin dinlenme konumu ve aşağı çekilen mesafe.
+    @State private var restY: CGFloat?
+    @State private var pull: CGFloat = 0
     /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
     /// bu akşamın kartı ilk bakışta görünür.
     private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }

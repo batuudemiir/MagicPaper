@@ -24,6 +24,9 @@ commit'le eşleşir; ayrıntı commit mesajında ve bağlantılı belgede.
 - **Ragi ayrı katman** (`HomeSceneMascot`): markanın kendi görseli; gündüz kitap okur,
   gece uyur. Açılışta tepeye süzülür, yavaşça nefes alır, dokununca bir kez zıplar.
   Çiplerin üstünde durur, altında kalmaz. Reduce Motion'da yerinde durur.
+- **Esneyen başlık**: sayfa en üstteyken aşağı çekince üstte beyaz boşluk açılmıyor; sahne
+  alttan sabit kalıp yukarı doğru büyür, manzara parmağı izleyerek yakınlaşır, bırakınca
+  yerine döner.
 - **Hareketsiz dokunuşlar giderildi**: başlıktaki avatar ve isim ile alt bardaki sekmeler
   artık yaylı basma alıyor (önceden `.plain`, hiç tepki yoktu); seçilen sekmenin ikonu
   yaylanarak büyür; sekmeler arasında yumuşak kayma ve solma (Reduce Motion'da yalnızca
