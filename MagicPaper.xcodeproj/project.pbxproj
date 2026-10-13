@@ -30,18 +30,7 @@
 		A1000001000000000000003A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000003B /* GoogleService-Info.plist */; };
 		A10000010000000000000040 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000042 /* FirebaseCore */; };
 		A10000010000000000000041 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000043 /* FirebaseStorage */; };
-		F16000000000000000000001 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000011 /* FirebaseAuth */; };
-		F16000000000000000000002 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000012 /* FirebaseFirestore */; };
-		F16000000000000000000003 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000013 /* GoogleSignIn */; };
 		A10000010000000000000048 /* StoryGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000049 /* StoryGenerationManager.swift */; };
-		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
-		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
-		E5A0000000000000000010 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000011 /* Capability.swift */; };
-		E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */; };
-		E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000015 /* EntitlementPolicy.swift */; };
-		E5A0000000000000000016 /* EntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000017 /* EntitlementService.swift */; };
-		E5A0000000000000000018 /* LiveEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000019 /* LiveEntitlementService.swift */; };
-		E5A000000000000000001A /* StubEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A000000000000000001B /* StubEntitlementService.swift */; };
 		A1000001000000000000004A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004B /* FileManagerService.swift */; };
 		A1000001000000000000004E /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004F /* LocalNotificationManager.swift */; };
 		A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000055 /* FalAIImageGenerator.swift */; };
@@ -54,6 +43,17 @@
 		A10000010000000000000079 /* ProfileSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007A /* ProfileSelectorView.swift */; };
 		A1000001000000000000007B /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000007C /* ProfileCreationView.swift */; };
 		C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */; };
+		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
+		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
+		E5A0000000000000000010 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000011 /* Capability.swift */; };
+		E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */; };
+		E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000015 /* EntitlementPolicy.swift */; };
+		E5A0000000000000000016 /* EntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000017 /* EntitlementService.swift */; };
+		E5A0000000000000000018 /* LiveEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000019 /* LiveEntitlementService.swift */; };
+		E5A000000000000000001A /* StubEntitlementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A000000000000000001B /* StubEntitlementService.swift */; };
+		F16000000000000000000001 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000011 /* FirebaseAuth */; };
+		F16000000000000000000002 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000012 /* FirebaseFirestore */; };
+		F16000000000000000000003 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F16000000000000000000013 /* GoogleSignIn */; };
 		F19000000000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000006 /* Assets.xcassets */; };
 		F19000000000000000000002 /* MagicPaperWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F19000000000000000000010 /* MagicPaperWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -112,14 +112,6 @@
 		A10000010000000000000039 /* FirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageUploader.swift; sourceTree = "<group>"; };
 		A1000001000000000000003B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A10000010000000000000049 /* StoryGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenerationManager.swift; sourceTree = "<group>"; };
-		D4A0000000000000000011 /* LibraryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileStore.swift; sourceTree = "<group>"; };
-		D4A0000000000000000013 /* LibraryMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMigration.swift; sourceTree = "<group>"; };
-		E5A0000000000000000011 /* Capability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Capability.swift"; sourceTree = "<group>"; };
-		E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPlan+SubscriptionTier.swift"; sourceTree = "<group>"; };
-		E5A0000000000000000015 /* EntitlementPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPolicy.swift"; sourceTree = "<group>"; };
-		E5A0000000000000000017 /* EntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementService.swift"; sourceTree = "<group>"; };
-		E5A0000000000000000019 /* LiveEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveEntitlementService.swift"; sourceTree = "<group>"; };
-		E5A000000000000000001B /* StubEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StubEntitlementService.swift"; sourceTree = "<group>"; };
 		A1000001000000000000004B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
 		A1000001000000000000004F /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		A10000010000000000000055 /* FalAIImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalAIImageGenerator.swift; sourceTree = "<group>"; };
@@ -132,17 +124,25 @@
 		A1000001000000000000007A /* ProfileSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectorView.swift; sourceTree = "<group>"; };
 		A1000001000000000000007C /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
 		B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = shared_content_library_v2.json; sourceTree = "<group>"; };
+		D4A0000000000000000011 /* LibraryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileStore.swift; sourceTree = "<group>"; };
+		D4A0000000000000000013 /* LibraryMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMigration.swift; sourceTree = "<group>"; };
+		E5A0000000000000000011 /* Capability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
+		E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPlan+SubscriptionTier.swift"; sourceTree = "<group>"; };
+		E5A0000000000000000015 /* EntitlementPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementPolicy.swift; sourceTree = "<group>"; };
+		E5A0000000000000000017 /* EntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementService.swift; sourceTree = "<group>"; };
+		E5A0000000000000000019 /* LiveEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveEntitlementService.swift; sourceTree = "<group>"; };
+		E5A000000000000000001B /* StubEntitlementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubEntitlementService.swift; sourceTree = "<group>"; };
 		F19000000000000000000010 /* MagicPaperWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MagicPaperWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19000000000000000000011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F19000000000000000000012 /* MagicPaperWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MagicPaperWidgets.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F19000000000000000000035 /* Exceptions for "DesignSystem" folder in "MagicPaperWidgets" target */ = {
+		F19000000000000000000035 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Fonts/Nunito-Italic-Variable.ttf,
-				Fonts/Nunito-Variable.ttf,
+				"Fonts/Nunito-Italic-Variable.ttf",
+				"Fonts/Nunito-Variable.ttf",
 				MPIcon.swift,
 				MPTheme.swift,
 				Pastel/MPColor.swift,
@@ -154,7 +154,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F19000000000000000000035 /* Exceptions for "DesignSystem" folder in "MagicPaperWidgets" target */, ); explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
+		2DDE500000000000000000A1 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F19000000000000000000035 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
 		2DDE500000000000000000A2 /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
 		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
 		5E00000000000000000008 /* StoryEngineBridge */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StoryEngineBridge; sourceTree = "<group>"; };
@@ -198,19 +198,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E5A0000000000000000001 /* Entitlements */ = {
-			isa = PBXGroup;
-			children = (
-				E5A0000000000000000011 /* Capability.swift */,
-				E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */,
-				E5A0000000000000000015 /* EntitlementPolicy.swift */,
-				E5A0000000000000000017 /* EntitlementService.swift */,
-				E5A0000000000000000019 /* LiveEntitlementService.swift */,
-				E5A000000000000000001B /* StubEntitlementService.swift */,
-			);
-			path = Entitlements;
-			sourceTree = "<group>";
-		};
 		20D25BA5457E0E7260E45BA4 /* v2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,15 +296,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D4A0000000000000000001 /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				D4A0000000000000000011 /* LibraryFileStore.swift */,
-				D4A0000000000000000013 /* LibraryMigration.swift */,
-			);
-			path = Persistence;
-			sourceTree = "<group>";
-		};
 		A10000010000000000000027 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +326,28 @@
 				2DB76A652F4911DA00DE621B /* Frameworks */,
 				A10000010000000000000024 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		D4A0000000000000000001 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0000000000000000011 /* LibraryFileStore.swift */,
+				D4A0000000000000000013 /* LibraryMigration.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		E5A0000000000000000001 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				E5A0000000000000000011 /* Capability.swift */,
+				E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */,
+				E5A0000000000000000015 /* EntitlementPolicy.swift */,
+				E5A0000000000000000017 /* EntitlementService.swift */,
+				E5A0000000000000000019 /* LiveEntitlementService.swift */,
+				E5A000000000000000001B /* StubEntitlementService.swift */,
+			);
+			path = Entitlements;
 			sourceTree = "<group>";
 		};
 		F19000000000000000000032 /* MagicPaperWidgets */ = {
@@ -437,8 +437,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F19000000000000000000031 /* Sources */,
 				F19000000000000000000030 /* Surfaces */,
+				F19000000000000000000031 /* Sources */,
 			);
 			name = MagicPaperWidgets;
 			packageProductDependencies = (
@@ -767,8 +767,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_ENTITLEMENTS = MagicPaper/MagicPaper.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -801,17 +801,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D6C522D2F2CB4080087A82F /* Secrets.xcconfig */;
 			buildSettings = {
-				FAL_API_KEY = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_ENTITLEMENTS = MagicPaper/MagicPaper.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"MagicPaper/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FAL_API_KEY = "";
 				INFOPLIST_FILE = MagicPaper/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Magic Paper";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
