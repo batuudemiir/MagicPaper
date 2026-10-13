@@ -5,7 +5,7 @@ import SwiftUI
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). 13 Ekim 2026'dan beri alt bardaki
 /// "Köşem" sekmesi; kapat düğmesi yok, kilit ve "Ekle" ebeveyn kapısına gider.
-/// Yıldız kutucuğu `MPStars` ile (`anasayfa-yenileme`) gelecek.
+/// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -111,10 +111,26 @@ struct KidCornerView: View {
         storyManager.stories.filter { $0.isFinished && $0.belongs(to: profile) }.count
     }
 
+    private var stars: Int {
+        guard let profile else { return 0 }
+        return MPStars.count(for: profile, stories: storyManager.stories)
+    }
+
     private var statsRow: some View {
-        HStack(spacing: MPSpacing.md) {
-            stat(icon: "flame", tone: .peach, value: streak.currentStreak, label: "gün seri")
-            stat(icon: "book", tone: .sky, value: finishedCount, label: "masal")
+        // En büyük yazı boyutlarında üç kutucuk yan yana sığmaz: alt alta.
+        let tiles = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: MPSpacing.md))
+            : AnyLayout(HStackLayout(spacing: MPSpacing.md))
+        return VStack(spacing: MPSpacing.sm) {
+            tiles {
+                stat(icon: "star", tone: .yellow, value: stars, label: "yıldız")
+                stat(icon: "flame", tone: .peach, value: streak.currentStreak, label: "gün seri")
+                stat(icon: "book", tone: .sky, value: finishedCount, label: "masal")
+            }
+            Text("Her sabah 1 yıldız gelir. Her masal 1 yıldız.")
+                .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
         }
     }
 
