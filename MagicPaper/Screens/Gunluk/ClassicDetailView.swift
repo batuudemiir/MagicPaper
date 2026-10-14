@@ -78,7 +78,7 @@ struct ClassicDetailView: View {
     /// Vitrinle aynı sahne: tam genişlik boyalı görsel, altta karartma ve
     /// masalın adı, alt köşeler yuvarlak ve sert kenarlı (`gunlukStage`).
     private var art: some View {
-        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title)
+        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
             .frame(height: artHeight)
             .frame(maxWidth: .infinity)
             .overlay {
@@ -96,6 +96,10 @@ struct ClassicDetailView: View {
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, MPSpacing.xxl)
+                // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+                .lineLimit(3)
+                .minimumScaleFactor(0.6)
             }
             .overlay(alignment: .top) {
                 HStack {

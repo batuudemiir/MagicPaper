@@ -233,7 +233,7 @@ final class MPAppState: ObservableObject {
         let finished = entry?.isFinished ?? false
         let child = ProfileManager.shared.currentProfile
         let story = ClassicReading.story(
-            for: tale, narration: narration, childID: child?.id, childName: child?.name ?? "",
+            for: tale, narration: narration, childID: child?.id, childName: "",
             savedPage: finished ? 0 : entry?.page)
         read(story, fromStart: finished)
         readerListens = listen
@@ -242,7 +242,7 @@ final class MPAppState: ObservableObject {
     /// Günlük akışın kendi masalı (FAZ 15), Günlük'ün okuyucusunda.
     func readOriginal(_ daily: DailyStory, progress: ClassicProgressStore = .shared) {
         let child = ProfileManager.shared.currentProfile
-        let draft = ClassicReading.story(for: daily, childID: child?.id, childName: child?.name ?? "", savedPage: nil)
+        let draft = ClassicReading.story(for: daily, childID: child?.id, childName: "", savedPage: nil)
         progress.markOpened(daily.id, pageCount: draft.pages.count, narration: .soft)
         let entry = progress.entry(daily.id)
         let finished = entry?.isFinished ?? false

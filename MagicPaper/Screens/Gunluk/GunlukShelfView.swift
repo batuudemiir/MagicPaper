@@ -58,43 +58,54 @@ struct GunlukShelfView: View {
 
     var body: some View {
         GeometryReader { geo in
-            let cardWidth = max((geo.size.width - MPSpacing.screenH * 2 - 14) / 2, 100)
+            // Izgara rafın kartının içinde: iki sütun, kart iç boşluğu kadar içeride.
+            let cardWidth = max((geo.size.width - MPSpacing.screenH * 2 - MPSpacing.lg * 2 - 14) / 2, 96)
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 0) {
-                    MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri",
-                                   size: MPSize.minTouchParent, bordered: false, fill: MPColor.backgroundSunken) {
-                        if !path.isEmpty { path.removeLast() }
+                VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                    VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                        HStack(spacing: MPSpacing.md) {
+                            GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
+                                if !path.isEmpty { path.removeLast() }
+                            }
+                            if let shelf {
+                                MPIcon(shelf.symbol, size: MP.G.md, weight: .semibold)
+                                    .foregroundStyle(shelf.tone.deep)
+                                    .frame(width: MPSize.circleButton, height: MPSize.circleButton)
+                                    .background(shelf.tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md,
+                                                                                       style: .continuous))
+                                    .accessibilityHidden(true)
+                            }
+                        }
+                        .padding(.top, MPSpacing.sm)
+
+                        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                            Text(title).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                                .accessibilityAddTraits(.isHeader)
+                            Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)
+                        }
+
+                        if startsSearching { searchField }
+
+                        GunlukRow(spacing: MPSpacing.sm) {
+                            if let current = band {
+                                GunlukChip(title: current.title, isSelected: true, trailingIcon: "xmark") { band = nil }
+                                    .accessibilityLabel("\(current.title) süzgecini kaldır")
+                            }
+                            GunlukChip(title: "Hepsi", isSelected: narrow == .all) { narrow = .all }
+                            if shelf != .seriler {
+                                GunlukChip(title: "Seriler", isSelected: narrow == .series) { narrow = .series }
+                            }
+                            if shelf != .besDakika {
+                                GunlukChip(title: "5 dakika", isSelected: narrow == .short) { narrow = .short }
+                            }
+                            // "Sesli": seslendirilmiş masal gelince görünür.
+                            if !library.items(in: .sesli).isEmpty {
+                                GunlukChip(title: "Sesli", isSelected: narrow == .voiced) { narrow = .voiced }
+                            }
+                        }
                     }
-                    .padding(.top, MPSpacing.sm)
 
-                    Text(title).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                        .accessibilityAddTraits(.isHeader)
-                        .padding(.top, MPSpacing.lg)
-                    Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)
-                        .padding(.top, MPSpacing.xxs)
-
-                    if startsSearching { searchField.padding(.top, MPSpacing.lg) }
-
-                    GunlukRow(spacing: MPSpacing.sm) {
-                        if let current = band {
-                            GunlukChip(title: "\(current.title)  ✕", isSelected: true) { band = nil }
-                                .accessibilityLabel("\(current.title) süzgecini kaldır")
-                        }
-                        GunlukChip(title: "Hepsi", isSelected: narrow == .all) { narrow = .all }
-                        if shelf != .seriler {
-                            GunlukChip(title: "Seriler", isSelected: narrow == .series) { narrow = .series }
-                        }
-                        if shelf != .besDakika {
-                            GunlukChip(title: "5 dakika", isSelected: narrow == .short) { narrow = .short }
-                        }
-                        // "Sesli": seslendirilmiş masal gelince görünür.
-                        if !library.items(in: .sesli).isEmpty {
-                            GunlukChip(title: "Sesli", isSelected: narrow == .voiced) { narrow = .voiced }
-                        }
-                    }
-                    .padding(.top, MPSpacing.lg + 2)
-
-                    grid(cardWidth: cardWidth).padding(.top, MPSpacing.xl + 2)
+                    results(cardWidth: cardWidth)
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, GunlukLayout.bottomClearance)
@@ -105,9 +116,10 @@ struct GunlukShelfView: View {
         .onAppear { if startsSearching { searchFocused = true } }
     }
 
+    /// Ana sayfa dilinde arama alanı: beyaz, lavanta kenar, sert alt kenar.
     private var searchField: some View {
         HStack(spacing: MPSpacing.md - 2) {
-            MPIcon("magnifyingglass", size: 18, weight: .semibold).foregroundStyle(MPColor.textSecondary)
+            MPIcon("magnifyingglass", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
                 .accessibilityHidden(true)
             TextField("Masal ara", text: $query)
                 .mpText(.bodyStrong)
@@ -116,41 +128,68 @@ struct GunlukShelfView: View {
                 .submitLabel(.search)
                 .autocorrectionDisabled()
                 .accessibilityLabel("Masal ara")
+            if !query.isEmpty {
+                Button { query = "" } label: {
+                    MPIcon("xmark", size: MP.G.sm, weight: .bold).foregroundStyle(MPColor.textSecondary)
+                        .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent)
+                }
+                .buttonStyle(MPPressStyle())
+                .accessibilityLabel("Aramayı temizle")
+            }
         }
-        .padding(.horizontal, MPSpacing.lg)
+        .padding(.leading, MPSpacing.lg)
+        .padding(.trailing, MPSpacing.xs)
         .frame(minHeight: MPSize.inputHeight)
-        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
-            .strokeBorder(MPColor.borderKidInput, lineWidth: 1.5))
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.input)
     }
 
+    private var count: Int { items.count + originals.count }
+
+    /// Sonuçlar tek kartta, başlığı sayı: "12 masal".
     @ViewBuilder
-    private func grid(cardWidth: CGFloat) -> some View {
+    private func results(cardWidth: CGFloat) -> some View {
         let height = (cardWidth * 4 / 3).rounded()
         let columns = [GridItem(.fixed(cardWidth), spacing: 14, alignment: .top),
                        GridItem(.fixed(cardWidth), spacing: 14, alignment: .top)]
-        if items.isEmpty && originals.isEmpty {
-            Text(startsSearching && !query.isEmpty ? "Bu adla bir masal bulamadık." : "Bu rafta henüz masal yok.")
-                .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, MPSpacing.xxxl)
+        if count == 0 {
+            emptyState
         } else {
-            LazyVGrid(columns: columns, alignment: .leading, spacing: MPSpacing.xl + 2) {
-                ForEach(originals) { original in
-                    ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
-                                     focus: original.cover.coverFocus, width: cardWidth, height: height) {
-                        app.readOriginal(original.story)
+            GunlukSection(title: "\(count) masal") {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: MPSpacing.xl) {
+                    ForEach(originals) { original in
+                        ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
+                                         focus: original.cover.coverFocus, width: cardWidth, height: height) {
+                            app.readOriginal(original.story)
+                        }
                     }
-                }
-                ForEach(items) { item in
-                    ClassicShelfCard(item: item, width: cardWidth, height: height) {
-                        switch item {
-                        case .tale(let tale): path.append(.tale(tale.id))
-                        case .series(let series, _): path.append(.series(series.id))
+                    ForEach(items) { item in
+                        ClassicShelfCard(item: item, width: cardWidth, height: height) {
+                            switch item {
+                            case .tale(let tale): path.append(.tale(tale.id))
+                            case .series(let series, _): path.append(.series(series.id))
+                            }
                         }
                     }
                 }
+                .padding(.horizontal, MPSpacing.lg)
+                .padding(.bottom, MP.E.widthLG)
             }
         }
+    }
+
+    /// Sonuç yok: suçlamayan, sakin bir cümle ve düşünceli Ragi (ekranda tek maskot).
+    private var emptyState: some View {
+        VStack(spacing: MPSpacing.md) {
+            MascotImage(mascot: .thinking, width: 120).accessibilityHidden(true)
+            Text(startsSearching && !query.isEmpty ? "Bu adla bir masal bulamadık." : "Bu rafta henüz masal yok.")
+                .mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                .multilineTextAlignment(.center)
+            Text(startsSearching ? "Başka bir kelimeyle dene ya da raflara göz at." : "Yeni masallar yolda.")
+                .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                .multilineTextAlignment(.center)
+        }
+        .padding(MPSpacing.xl)
+        .frame(maxWidth: .infinity)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
     }
 }

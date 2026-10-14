@@ -29,6 +29,12 @@ struct GunlukHeaderCarousel: View {
     @State private var userTookOver = false
 
 
+    /// Büyük telefonlarda 520 pt (Batuhan, 14 Ekim); küçük ekranda (iPhone SE)
+    /// ekranın %60'ı, ki altındaki çipler ve ilk raf da görünsün.
+    static func height(screen: CGFloat) -> CGFloat {
+        min(520, (screen * 0.6).rounded())
+    }
+
     private static let autoAdvance: UInt64 = 7_000_000_000
 
     private var current: Int {
@@ -94,9 +100,11 @@ struct GunlukHeaderCarousel: View {
 
             VStack(alignment: .leading, spacing: MPSpacing.xs) {
                 Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
+                    .lineLimit(1).minimumScaleFactor(0.7)
                 Text(slide.tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(3).minimumScaleFactor(0.6)
                 Text(slide.tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                    .lineLimit(2).minimumScaleFactor(0.7)
                 MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
                          systemImage: slide.kind == .resume ? "play.fill" : "book",
                          kind: .secondary, size: .small) { onRead(slide.tale) }
@@ -105,14 +113,21 @@ struct GunlukHeaderCarousel: View {
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxl)
+            // Sahne sabit yükseklikte: en büyük yazı boyutlarında metin başlığın
+            // üstüne binmesin diye büyüme sınırlı, sığmazsa küçülür (alt bar gibi).
+            .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+            .frame(maxHeight: height - Self.titleBarClearance, alignment: .bottom)
         }
         .frame(height: height + topInset)
     }
 
+    /// Başlık satırının ("Günlük" ve arama) sahnede kapladığı yer.
+    private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
+
     /// Boyalı kapak: tepesi kreme açılır (başlık), altı karartılır (metin),
     /// en alt kenarı sayfanın kremine erir (Ana sayfa sahnesi gibi).
     private func art(_ tale: ClassicTale) -> some View {
-        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title)
+        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
             .frame(height: height + topInset)
             .frame(maxWidth: .infinity)
             .overlay {
@@ -138,6 +153,8 @@ struct GunlukHeaderCarousel: View {
     private var titleBar: some View {
         HStack(alignment: .center) {
             Text("Günlük").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                .lineLimit(1).minimumScaleFactor(0.6)
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
                 .accessibilityAddTraits(.isHeader)
             Spacer(minLength: MPSpacing.sm)
             Button(action: onSearch) {
