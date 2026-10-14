@@ -68,6 +68,13 @@ final class ClassicsLibrary: ObservableObject {
         return tale
     }
 
+    // MARK: - Başlık vitrini
+
+    /// Günlük'ün en üstündeki kaydırılan vitrin (kural `ClassicsCatalog.headerSlides`).
+    func headerSlides(isBedtime: Bool) -> [ClassicHeaderSlide] {
+        catalog.headerSlides(today: todaysTale, inProgress: progress.inProgress().map(\.id), isBedtime: isBedtime)
+    }
+
     // MARK: - Kaldığın yerden
 
     struct InProgress: Identifiable, Equatable {

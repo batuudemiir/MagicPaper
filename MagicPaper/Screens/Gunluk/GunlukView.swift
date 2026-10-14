@@ -17,35 +17,42 @@ enum GunlukRoute: Hashable {
 struct GunlukView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
-    @ObservedObject private var favorites = MPFavorites.shared
+    @EnvironmentObject private var settings: MPSettingsStore
     @State private var path: [GunlukRoute] = []
     @State private var showCategories = false
 
     var body: some View {
         NavigationStack(path: $path) {
-            ScrollView(showsIndicators: false) {
-                // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
-                // kartında (beyaz, lavanta kenar, sert alt kenar).
-                VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                    VStack(alignment: .leading, spacing: MPSpacing.lg + 2) {
-                        header
-                        chips
-                    }
-                    if let today = library.todaysTale {
-                        VStack(spacing: MPSpacing.md + 2) {
-                            ClassicHeroCard(tale: today) { path.append(.tale(today.id)) }
-                            heroActions(today)
+            GeometryReader { proxy in
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                        // Ana sayfanın sahnesi gibi: vitrin ekranın tepesinden başlar.
+                        GunlukHeaderCarousel(
+                            slides: library.headerSlides(isBedtime: MPBedtime.isBedtime(settings: settings)),
+                            topInset: proxy.safeAreaInsets.top,
+                            height: GunlukHeaderCarousel.height(
+                                screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom,
+                                topInset: proxy.safeAreaInsets.top),
+                            onOpen: { path.append(.tale($0.id)) },
+                            onRead: { app.readClassic($0) },
+                            onSearch: { path.append(.search) })
+
+                        // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
+                        // kartında (beyaz, lavanta kenar, sert alt kenar).
+                        VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                            chips
+                            continueSection
+                            weeklySection
+                            shelfSection(.anadolu, title: "Anadolu'dan", width: 128, height: 176)
+                            shelfSection(.klasikler, title: "Dünya klasikleri", width: 128, height: 176)
+                            bedtimeSection
+                            heroPromo
                         }
+                        .padding(.horizontal, MPSpacing.screenH)
                     }
-                    continueSection
-                    weeklySection
-                    shelfSection(.anadolu, title: "Anadolu'dan", width: 128, height: 176)
-                    shelfSection(.klasikler, title: "Dünya klasikleri", width: 128, height: 176)
-                    bedtimeSection
-                    heroPromo
+                    .padding(.bottom, GunlukLayout.bottomClearance)
                 }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.bottom, GunlukLayout.bottomClearance)
+                .ignoresSafeArea(edges: .top)
             }
             .background(MPColor.backgroundKid.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
@@ -79,20 +86,7 @@ struct GunlukView: View {
         }
     }
 
-    // MARK: - Başlık ve çipler
-
-    private var header: some View {
-        HStack(alignment: .bottom) {
-            Text("Günlük").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                .accessibilityAddTraits(.isHeader)
-            Spacer(minLength: MPSpacing.sm)
-            MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara",
-                           bordered: false, fill: MPColor.backgroundSunken) {
-                path.append(.search)
-            }
-        }
-        .padding(.top, MPSpacing.xl)
-    }
+    // MARK: - Çipler
 
     private var chips: some View {
         GunlukRow(spacing: MPSpacing.sm) {
@@ -101,38 +95,6 @@ struct GunlukView: View {
                 GunlukChip(title: shelf.chipTitle) { path.append(.shelf(shelf)) }
             }
             GunlukChip(title: "Kategoriler", trailingChevron: true) { showCategories = true }
-        }
-    }
-
-    // MARK: - Günün masalı
-
-    private func heroActions(_ tale: ClassicTale) -> some View {
-        let saved = favorites.contains(tale.id)
-        return HStack(spacing: MPSpacing.md - 2) {
-            // Tasarımdaki düz mor "Oku" (tasarım yasası: butonda gradient yok).
-            Button { app.readClassic(tale) } label: {
-                HStack(spacing: MPSpacing.sm) {
-                    MPIcon("play", size: 18, weight: .bold).accessibilityHidden(true)
-                    Text("Oku").mpText(.button)
-                }
-                .foregroundStyle(MPColor.textOnAction)
-                .frame(maxWidth: .infinity, minHeight: MPSize.buttonHeight)
-                .mpKidSurface(MPColor.actionPrimary, edge: MPColor.brandNight, radius: MPSize.buttonHeight / 2)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityLabel("\(tale.title) masalını oku")
-            Button {
-                let now = favorites.toggle(tale.id)
-                MPHaptics.tap()
-                app.showToast(now ? "Listene eklendi" : "Listenden çıkarıldı", symbol: now ? "checkmark" : "minus")
-            } label: {
-                MPIcon(saved ? "checkmark" : "plus", size: MP.G.md, weight: .bold)
-                    .foregroundStyle(MPColor.actionPrimary)
-                    .frame(width: MPSize.buttonHeight, height: MPSize.buttonHeight)
-                    .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPSize.buttonHeight / 2)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityLabel(saved ? "Listemden çıkar" : "Listeme ekle")
         }
     }
 
@@ -244,48 +206,5 @@ struct GunlukView: View {
         } else if let original = library.original(id) {
             app.readOriginal(original.story)
         }
-    }
-}
-
-// MARK: - Günün masalı kartı
-
-/// Tam taşan boyalı kapak, altta karartma ve masalın adı. Uygulamada
-/// illüstrasyon üstünde metin taşıyan iki yerden biri (öteki `MPArtHero`).
-struct ClassicHeroCard: View {
-    let tale: ClassicTale
-    var eyebrow: String = "Günün masalı"
-    var height: CGFloat = 452
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title)
-                .frame(height: height)
-                .frame(maxWidth: .infinity)
-                // Tasarımdaki gibi: karartma yüksekliğin %40'ında başlar, alt kenarda
-                // en koyu (MP.Scrim.peak); metin doğrudan resmin üstünde durur.
-                .overlay {
-                    LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.4),
-                                           .init(color: MP.Scrim.solid, location: 1)],
-                                   startPoint: .top, endPoint: .bottom)
-                }
-                .overlay(alignment: .bottomLeading) {
-                    VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                        Text(eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
-                        Text(tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
-                            .multilineTextAlignment(.leading)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Text(tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
-                    }
-                    .padding(MPSpacing.xl + 2)
-                }
-                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-                // Ana sayfanın hero kartı gibi: derinlik sert alt kenardan.
-                .mpKidSurface(MPColor.brandNight, edge: MPColor.brandNight)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(eyebrow): \(tale.title). \(tale.fullMeta)")
-        .accessibilityHint("Masalın sayfasını açar")
     }
 }
