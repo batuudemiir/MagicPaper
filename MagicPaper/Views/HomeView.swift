@@ -20,6 +20,14 @@ struct HomeView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+            // Kaydırma ölçüsü: içerik sabitlemesinden etkilenmeyen görünmez işaret.
+            Color.clear.frame(height: 0)
+                .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
+                    // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
+                    if restY == nil { restY = y }
+                    pull = max(0, y - (restY ?? y))
+                }
             VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                 HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
                            avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
@@ -27,9 +35,6 @@ struct HomeView: View {
                            onAvatar: { app.openKidCorner() },
                            onLock: { app.requestParentMode() })
                     .padding(.top, MPSpacing.md)
-                    // Aşağı çekerken selam, avatar ve kilit yerinde kalır; yalnızca
-                    // sahne esner.
-                    .offset(y: -pull)
 
                 // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
                 VStack(spacing: MPSpacing.md) {
@@ -57,13 +62,13 @@ struct HomeView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
             // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-            .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
-                // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
-                if restY == nil { restY = y }
-                pull = max(0, y - (restY ?? y))
-            }
             .background(alignment: .top) {
                 HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46, pull: pull)
+            }
+            // Aşağı çekerken hiçbir öğe kaymaz: içerik çekilen mesafe kadar geri
+            // tutulur, yalnızca sahne görseli yerinde büyür. Ölçüm üstteki
+            // ayrı işaretten okunur; bu kaydırma ölçümü etkilemez.
+            .offset(y: -pull)
             }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
