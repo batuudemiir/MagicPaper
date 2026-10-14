@@ -1,8 +1,8 @@
 # p_sentence_length
 
-**Status:** ready_for_decision · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (LOW, 3/5 works)
+**Status:** decided · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (LOW, 4/6 works)
 
-> Mean sentence length is 3-11 words in the 5 analysed books; the longest sentence stays at or under 14 words in 3 of 5 (the other two reach 18 and 21).
+> Mean sentence length is 3-11 words in the 6 analysed books with text; the longest sentence stays at or under 14 words in 4 of 6 (the other two reach 18 and 21).
 
 - Current: 14
 - Suggested: No change suggested: the pilot sits around the current cap.
@@ -39,7 +39,7 @@ Agreed, and thanks for the per-band correction (10/14/14/20). No change. The opt
 
 Evidence: `StoryEngine/Tools/validate_beat_corpus.py`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: AgeBand.maxSentenceWords, validate_beat_corpus.MAX_SENTENCE_WORDS
 - Files: StoryEngine/Tools/validate_beat_corpus.py
@@ -57,4 +57,4 @@ Evidence: `StoryEngine/Tools/validate_beat_corpus.py`
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_sentence_length --verdict approved|rejected|parked --note "…"`
+**parked** — Değişiklik yok (2026-10-14)

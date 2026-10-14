@@ -300,6 +300,15 @@ def cmd_exchange(store, args):
         print(exchange.render(store, exchange.check_id(args.target)))
     elif a == "lessons":
         _print(exchange.lessons(store))
+    elif a == "handoff":
+        h = exchange.set_handoff_status(store, exchange.check_id(args.target), args.agent or "", args.status or "",
+                                        args.note or "")
+        exchange.write_docs(store)
+        print(f"{h['proposal_id']}: {h['status']}")
+    elif a == "handoffs":
+        exchange.write_docs(store)
+        for h in exchange.all_handoffs(store):
+            print(f"{h['proposal_id']:32} {h['owner']:20} {h['status']}")
     else:  # digest
         for path in exchange.write_docs(store):
             print(f"→ {path}")
@@ -433,7 +442,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     s = sub.add_parser("exchange", help="idea exchange between agents (see docs/research/EXCHANGE_PROTOCOL.md)")
     s.add_argument("action", choices=["open", "post", "impact", "prototype", "safety", "recommend", "decide",
-                                      "show", "digest", "lessons"])
+                                      "show", "digest", "lessons", "handoff", "handoffs"])
     s.add_argument("target", nargs="?", help="claim id (open) or proposal id")
     s.add_argument("--all", action="store_true", help="open: every active claim with a MagicPaper proposal")
     s.add_argument("--agent"); s.add_argument("--stance"); s.add_argument("--text")
@@ -446,6 +455,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--action", dest="rec_action",
                    choices=["experiment", "adopt_guidance", "research_more", "park", "decline"])
     s.add_argument("--rationale")
+    s.add_argument("--status", help="handoff: waiting | in_progress | blocked | done")
     s.set_defaults(fn=cmd_exchange)
 
     s = sub.add_parser("experiment", help="experiments that test approved proposals with children")

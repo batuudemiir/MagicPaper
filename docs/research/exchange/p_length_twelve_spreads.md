@@ -1,8 +1,8 @@
 # p_length_twelve_spreads
 
-**Status:** ready_for_decision · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 5/5 works)
+**Status:** decided · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 7/7 works)
 
-> All 5 analysed contemporary picture books run 12 spreads with 136-211 words in total (median 150), about 13 words per spread.
+> All 7 analysed contemporary picture books run 12 spreads; the 6 with text have 136-220 words in total (median 154), about 13 words per spread.
 
 - Current: 8 pages × 18-38 words (144-304 words)
 - Suggested: Similar total length, but these books spend it on ~12 page turns of ~10-20 words. Worth testing shorter pages and more turns once the corpus is larger.
@@ -51,7 +51,7 @@ Conceded: 18-38 words/page is the 5-6 band only; 3-4 is already 6 pages x 10-24,
 
 Evidence: `StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift`, `Research/BookIntelligence/sandbox/p_length_twelve_spreads.md`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: AgeBand.pageCount, AgeBand.wordRange, validate_beat_corpus.BANDS, CatalogBlueprint.pageCount, beat_sequences
 - Files: StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift, StoryEngine/Sources/StoryEngine/Content/CatalogIntegrity.swift, StoryEngine/Tools/validate_beat_corpus.py, StoryEngine/Tools/beat_sequences.json, StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json
@@ -73,4 +73,4 @@ Evidence: `StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift`, `Re
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_length_twelve_spreads --verdict approved|rejected|parked --note "…"`
+**parked** — Başka kaynaklardan kitap gelince yeniden bakılsın (2026-10-14)

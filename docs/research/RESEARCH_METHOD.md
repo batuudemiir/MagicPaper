@@ -183,5 +183,7 @@ each shortfall. Targets are a research plan, not a quality bar; raise them as th
 A claim may carry a `magicpaper` block: `target` (one of `AgeBand.pageBudget`,
 `AgeBand.maxSentenceWords`, `NarrativeFamily.minimumAge`, `EmotionalState.intensity`,
 `beat_sequences`, `validator.BANDS`, `writing_guidance`, `new_validator_gate`, …),
-`current`, `suggested`, `note`, `review_status`. `book-agent insights` renders them into
+`current`, `suggested`, `note`, `review_status`. UX targets (`reader.page_turn`, `reader.layout`, `reader.read_aloud`, `ux.parent_flow`,
+`ux.child_area`, `design.visual_language`, `illustration.brief`) carry findings about the reading experience
+and design; their owners are listed in [EXCHANGE_PROTOCOL.md](EXCHANGE_PROTOCOL.md). `book-agent insights` renders them into
 `MAGICPAPER_STORY_INSIGHTS.md`, grouped by review status.

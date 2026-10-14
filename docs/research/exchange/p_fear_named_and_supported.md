@@ -1,6 +1,6 @@
 # p_fear_named_and_supported
 
-**Status:** ready_for_decision · **Target:** `EmotionalState.intensity` · claim `c_fear_named_and_supported` (HYPOTHESIS, 1/1 works)
+**Status:** decided · **Target:** `EmotionalState.intensity` · claim `c_fear_named_and_supported` (HYPOTHESIS, 1/1 works)
 
 > Fear is the subject of 1 of 5 books (Brave Bora): it is named on page 2, called okay by a parent, rehearsed on a toy, and peaks at intensity 4 just before the solution.
 
@@ -39,7 +39,7 @@ Conceded on both points. My 'intensity 4' was on the research scale (0-5) and sh
 
 Evidence: `StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift`, `StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: EmotionalState.intensity, BeatSequenceValidator.intensityCeiling
 - Files: StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift, StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift, StoryEngine/Sources/StoryEngine/Content/SafetyVocabulary.swift
@@ -57,4 +57,4 @@ Evidence: `StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift`, `StoryEn
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_fear_named_and_supported --verdict approved|rejected|parked --note "…"`
+**rejected** — Korku sınırı kalıyor (2026-10-14)

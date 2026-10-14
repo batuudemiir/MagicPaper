@@ -1,8 +1,8 @@
 # p_spread_end_hook
 
-**Status:** ready_for_decision · **Target:** `writing_guidance` · claim `c_spread_end_hook` (LOW, 3/5 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_spread_end_hook` (LOW, 4/6 works)
 
-> In 3 of 5 books a spread ends on an unfinished line or a direct question answered on the next spread ('But Mama says...', 'But where is Mud?', 'Hmm. But how?').
+> In 4 of 6 books with text a spread ends on an unfinished line or a direct question answered on the next spread ('But Mama says...', 'But where is Mud?', 'Hmm. But how?', an invitation to play together).
 
 - Current: page-end lines are not specified
 - Suggested: Hypothesis for page-based stories: end some pages on a question or an open 'says...' and answer it after the turn.
@@ -45,7 +45,7 @@ Agree the composer cannot guarantee a specific answer on the next page. The gene
 
 Evidence: `Research/BookIntelligence/sandbox/p_spread_end_hook.md`, `StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: beat variant pairing (new), CalmEnding
 - Files: StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift, StoryEngine/Tools/validate_beat_corpus.py
@@ -67,4 +67,4 @@ Evidence: `Research/BookIntelligence/sandbox/p_spread_end_hook.md`, `StoryEngine
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_spread_end_hook --verdict approved|rejected|parked --note "…"`
+**approved** — Yazım rehberine girsin (2026-10-14)

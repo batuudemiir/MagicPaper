@@ -187,3 +187,13 @@ class Loop(TestCase):
         self.assertIn("P(varyant daha iyi)", page)
         again = cycle.run(self.store)
         self.assertEqual(again["imported"], [], "a period is imported once")
+
+
+class WeeklyHtml(TestCase):
+    def test_cycle_writes_a_readable_html_copy(self):
+        report = cycle.run(self.store)
+        html_path = (self.ws.docs / "weekly" / f"{report['date']}.html")
+        page = html_path.read_text()
+        self.assertIn("<h1>", page)
+        self.assertIn("İş paketleri", page)
+        self.assertNotIn("**", page)

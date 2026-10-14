@@ -1,8 +1,8 @@
 # p_companion_mirrors_feeling
 
-**Status:** ready_for_decision · **Target:** `writing_guidance` · claim `c_companion_mirrors_feeling` (LOW, 3/5 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_companion_mirrors_feeling` (LOW, 3/7 works)
 
-> In 3 of 5 books a toy or animal companion is drawn mirroring the protagonist's feeling (Jojo the monkey, Teddy, the dog) while saying nothing in the text.
+> In 3 of 7 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text; the other 4 have no such silent companion.
 
 - Current: catalog companions speak and act in text
 - Suggested: Hypothesis: a companion can amplify feeling silently, through the picture; relevant to companion illustration briefs.
@@ -59,4 +59,4 @@ Evidence: `w_brave_bora_gicovi`, `w_amahle_wants_to_help_nsibande`, `w_catch_tha
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_companion_mirrors_feeling --verdict approved|rejected|parked --note "…"`
+**approved** — Yalnızca metin hali, yazım rehberine (2026-10-14)

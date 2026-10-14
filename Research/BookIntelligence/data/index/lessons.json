@@ -2,36 +2,41 @@
   "by_target": {
     "writing_guidance": {
       "proposed": 5,
-      "approved": 0,
-      "rejected": 0,
-      "parked": 0
+      "approved": 3,
+      "rejected": 1,
+      "parked": 1
     },
     "EmotionalState.intensity": {
       "proposed": 1,
       "approved": 0,
-      "rejected": 0,
+      "rejected": 1,
       "parked": 0
     },
     "validator.BANDS": {
       "proposed": 1,
       "approved": 0,
       "rejected": 0,
-      "parked": 0
+      "parked": 1
     },
     "beat_sequences": {
       "proposed": 1,
       "approved": 0,
       "rejected": 0,
-      "parked": 0
+      "parked": 1
     },
     "validator.MAX_SENTENCE_WORDS": {
       "proposed": 1,
       "approved": 0,
       "rejected": 0,
-      "parked": 0
+      "parked": 1
     }
   },
   "notes": [
+    {
+      "proposal": "p_adult_enables_resolution",
+      "verdict": "rejected",
+      "note": "Çocuk çözer kuralı kalıyor"
+    },
     {
       "proposal": "p_adult_enables_resolution",
       "objection_by": "content-library",
@@ -39,8 +44,18 @@
     },
     {
       "proposal": "p_companion_mirrors_feeling",
+      "verdict": "approved",
+      "note": "Yalnızca metin hali, yazım rehberine"
+    },
+    {
+      "proposal": "p_companion_mirrors_feeling",
       "objection_by": "privacy-safety",
       "text": "Mostly low risk, but it targets companion illustration briefs, and illustrated stories are not live (cloud path behind CloudIllustrationAccess). A silently mirrored feeling is unvalidated: the text-side intensity ceiling cannot see a pictur"
+    },
+    {
+      "proposal": "p_fear_named_and_supported",
+      "verdict": "rejected",
+      "note": "Korku sınırı kalıyor"
     },
     {
       "proposal": "p_fear_named_and_supported",
@@ -59,6 +74,11 @@
     },
     {
       "proposal": "p_length_twelve_spreads",
+      "verdict": "parked",
+      "note": "Başka kaynaklardan kitap gelince yeniden bakılsın"
+    },
+    {
+      "proposal": "p_length_twelve_spreads",
       "objection_by": "story-engine",
       "text": "Page count is not a validator knob: it is AgeBand.pageCount (6 at 3-4, 8 at 5-6 and 7-8, 10 at 9-10), and CatalogIntegrity rejects any blueprint whose pageCount differs from its band. Twelve pages means new 12-beat sequences, new beat_seque"
     },
@@ -71,6 +91,16 @@
       "proposal": "p_length_twelve_spreads",
       "objection_by": "content-library",
       "text": "Concern about 12 beats: every new page needs bound cells of at least MIN_BOUND_POOL=4 variants, i.e. ~50% more corpus for the same word count. Cheaper alternative content can offer: keep 8 beats and mark a turnAfter split inside existing mu"
+    },
+    {
+      "proposal": "p_peak_in_last_third",
+      "verdict": "parked",
+      "note": "Değişiklik yok"
+    },
+    {
+      "proposal": "p_picture_only_information",
+      "verdict": "parked",
+      "note": "Resimli masallar canlıya çıkınca"
     },
     {
       "proposal": "p_picture_only_information",
@@ -89,8 +119,23 @@
     },
     {
       "proposal": "p_repeated_line",
+      "verdict": "approved",
+      "note": "Deney onaylandı"
+    },
+    {
+      "proposal": "p_repeated_line",
       "objection_by": "story-engine",
       "text": "The conflict is harder than 'guidance': RepetitionValidator flags any 5-gram repeated across pages (maximumRepeatedNGrams defaults to 0), and validate_beat_corpus.py fails the corpus on shared 5-grams (check_collisions) and reused rhetorica"
+    },
+    {
+      "proposal": "p_sentence_length",
+      "verdict": "parked",
+      "note": "Değişiklik yok"
+    },
+    {
+      "proposal": "p_spread_end_hook",
+      "verdict": "approved",
+      "note": "Yazım rehberine girsin"
     },
     {
       "proposal": "p_spread_end_hook",

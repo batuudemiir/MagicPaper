@@ -1,8 +1,8 @@
 # p_picture_only_information
 
-**Status:** ready_for_decision · **Target:** `writing_guidance` · claim `c_picture_only_information` (LOW, 5/5 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_picture_only_information` (LOW, 7/7 works)
 
-> In all 5 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, how the feeling grows).
+> In all 7 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, who is now left out); one book is wordless.
 
 - Current: text carries the whole story
 - Suggested: Hypothesis for illustrated stories: leave one fact per story to the picture; not applicable to text-only stories.
@@ -47,4 +47,4 @@ Agreed with all three: text-only stories read aloud must be complete in text. Pa
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_picture_only_information --verdict approved|rejected|parked --note "…"`
+**parked** — Resimli masallar canlıya çıkınca (2026-10-14)

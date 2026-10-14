@@ -1,6 +1,6 @@
 {
   "claim_id": "c_sentence_length",
-  "statement": "Mean sentence length is 3-11 words in the 5 analysed books; the longest sentence stays at or under 14 words in 3 of 5 (the other two reach 18 and 21).",
+  "statement": "Mean sentence length is 3-11 words in the 6 analysed books with text; the longest sentence stays at or under 14 words in 4 of 6 (the other two reach 18 and 21).",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,12 +8,13 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_mud_waterkeyn",
     "w_catch_that_cat_pirie",
-    "w_amahle_wants_to_help_nsibande"
+    "w_amahle_wants_to_help_nsibande",
+    "w_best_friends_louw"
   ],
   "counterexample_works": [
     "w_brave_bora_gicovi",
@@ -23,19 +24,19 @@
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends: mean 6.9, longest 13. The wordless book is not counted.",
   "magicpaper": {
     "target": "validator.MAX_SENTENCE_WORDS",
     "current": "14",
     "suggested": "No change suggested: the pilot sits around the current cap.",
     "note": null,
-    "review_status": "proposed"
+    "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 5,
-    "support": 3,
+    "n_examined": 6,
+    "support": 4,
     "counter": 2,
-    "support_ratio": 0.6,
+    "support_ratio": 0.667,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

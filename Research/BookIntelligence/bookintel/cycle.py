@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import analyze, confidence, exchange, experiments, gaps, runs
+from . import analyze, confidence, exchange, experiments, gaps, htmlpage, runs
 from .store import Store, write_if_changed
 
 
@@ -91,6 +91,9 @@ def write_weekly(store: Store, report: dict) -> Path:
         out.append("- Henüz sonuçlanmış tahmin yok.")
     out += ["", "## Güven değişiklikleri", ""]
     out += [f"- `{c['claim_id']}`: {c['from']} → {c['to']}" for c in report["confidence"]] or ["- Yok."]
+    out += ["", "## İş paketleri (onaylanan öneriler)", ""]
+    out += [f"- `{h['proposal_id']}` → {h['owner']}" + (f" + {', '.join(h['with'])}" if h.get("with") else "")
+            + f" [{h['status']}]: {h.get('task') or '—'}" for h in exchange.all_handoffs(store)] or ["- Yok."]
     out += ["", "## Tartışması süren öneriler", ""]
     out += [f"- `{t['thread']['proposal_id']}` — konuşanlar: {', '.join(sorted({x['agent'] for x in t['turns']}))}"
             for t in open_threads] or ["- Yok."]
@@ -98,5 +101,9 @@ def write_weekly(store: Store, report: dict) -> Path:
     out += [f"- {g['gap']}: {g['have']} / {g['want']}" for g in report["gaps"][:6]] or ["- Plan hedefleri karşılanıyor."]
     out += ["", f"Ayrıntı: [EXCHANGE_DIGEST.md](../EXCHANGE_DIGEST.md) · [FINDINGS.md](../FINDINGS.md)"]
     path = store.ws.docs / "weekly" / f"{report['date']}.md"
-    write_if_changed(path, "\n".join(out) + "\n")
+    page = "\n".join(out) + "\n"
+    write_if_changed(path, page)
+    # The owner reads HTML, not Markdown: the weekly page and the decision digest in one file.
+    htmlpage.write(path.with_suffix(".html"), f"MagicPaper hafta {report['date']}",
+                   [page, exchange.digest(store), exchange.handoff_index(store)])
     return path

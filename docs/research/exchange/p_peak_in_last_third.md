@@ -1,8 +1,8 @@
 # p_peak_in_last_third
 
-**Status:** ready_for_decision · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (LOW, 4/5 works)
+**Status:** decided · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (LOW, 5/7 works)
 
-> The emotional peak falls in the last third of the book in 4 of 5 analysed books; Grumpy Cloud reaches its first peak at the midpoint.
+> The emotional peak falls in the last third of the book in 5 of 7 analysed books; Grumpy Cloud and An Unexpected Adventure reach their first peak at the midpoint and plateau.
 
 - Current: 8-beat arcs
 - Suggested: Check where MagicPaper arcs place their most intense page; compare after the corpus grows.
@@ -39,7 +39,7 @@ Thanks for measuring the 15 blueprints: the last peak already sits on page 5-6 o
 
 Evidence: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: CatalogBlueprint.pages.emotion, BeatSequenceValidator(report)
 - Files: StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json, StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift
@@ -57,4 +57,4 @@ Evidence: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_peak_in_last_third --verdict approved|rejected|parked --note "…"`
+**parked** — Değişiklik yok (2026-10-14)

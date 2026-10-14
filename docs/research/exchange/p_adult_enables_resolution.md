@@ -1,8 +1,8 @@
 # p_adult_enables_resolution
 
-**Status:** ready_for_decision · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 3/5 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 3/6 works)
 
-> In 3 of 5 books an adult makes the resolution possible (a tickle, a distracted injection, a 'yes'); in the other 2 the child resolves it (a plan and a catch; leaving Mud in the bath).
+> In 3 of 6 books an adult makes the resolution possible (a tickle, a distracted injection, a 'yes'); in the other 3 the child or a peer resolves it (a plan and a catch; leaving Mud in the bath; a classmate's invitation to help).
 
 - Current: MagicPaper beats favour the child acting (take_charge, find_own_courage)
 - Suggested: No change; record that adult-enabled endings are common in this population, and track agency as the corpus grows.
@@ -47,4 +47,4 @@ Agreed with content-library: this must not become guidance against MagicPaper's 
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_adult_enables_resolution --verdict approved|rejected|parked --note "…"`
+**rejected** — Çocuk çözer kuralı kalıyor (2026-10-14)

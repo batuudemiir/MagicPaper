@@ -23,20 +23,58 @@ Her ajan yalnızca kendi dosyasını yazar; böylece ajanlar paralel çalışır
 |---|---|---|
 | Öneri + durum + tavsiye (`thread.json`) | book-research | `exchange open`, `exchange recommend` |
 | Tartışma turları (`turns/`) | herkes (insan hariç) | `exchange post` |
-| Motor etkisi (`impact.json`) | story-engine | `exchange impact` |
+| Etki (`impact.json`) | hedefin sahibi (motor: story-engine; UX: reader / parent-ux / ui-agent / illustration-system) | `exchange impact` |
+| İş paketi durumu (`handoff.json`) | paketin sahibi ve birlikte çalışanlar | `exchange handoff` |
 | Prototip (`prototype.json` + `Research/BookIntelligence/sandbox/`) | content-library | `exchange prototype` |
 | Güvenlik (`safety.json`) | privacy-safety | `exchange safety` |
 | Karar (`decision.json`) | **yalnızca ürün sahibi** | `exchange decide` |
 
 ## Kurallar (kodda zorunlu)
 
-- Tavsiye yazılmadan önce **story-engine** ve **privacy-safety** en az bir kez konuşmuş olmalı.
+- Tavsiye yazılmadan önce hedefin sahibi (motor hedeflerinde **story-engine**) ve **privacy-safety** en az bir kez konuşmuş olmalı.
 - `experiment` tavsiyesi için motor etkisi kaydı ve güvenlikten **pass** gerekir.
 - Güvenlik **block** dediyse yalnızca `park`, `decline` ya da `research_more` önerilebilir.
 - Prototipler yalnızca `Research/BookIntelligence/sandbox/` altında. Üretim içeriğine, motora, kataloğa dokunulmaz.
 - Kanıt referansı bir iddia, eser, repo dosyası ya da URL olmalı; uydurma referans doğrulamadan geçmez.
 - Karar verilmiş öneri donar. Yeniden açmak için yeni öneri gerekir.
 - Ajanlar `exchange decide` çalıştırmaz. Bu, ajan tanımlarında yasak ve `decision.json` yalnızca insan kapısından geçer.
+
+## Hedefler ve sahipleri (14 Ekim 2026)
+
+Öneriler yalnızca motora değil, okuma deneyimine ve tasarıma da gider. Her hedefin bir sahibi var:
+etki kaydını (`impact.json`) o yazar ve tavsiyeden önce o ve **privacy-safety** konuşmuş olmalı.
+
+| Hedef | Sahibi | Örnek |
+|---|---|---|
+| Motor hedefleri (`AgeBand.*`, `validator.*`, `beat_sequences`, `EmotionalState.*`, `writing_guidance` …) | story-engine | sayfa sayısı, cümle sınırı |
+| `reader.page_turn`, `reader.layout`, `reader.read_aloud` | reader | sayfa çevirme anı, sessiz sayfa, sesli okuma |
+| `ux.parent_flow` | parent-ux | masal oluşturma, ebeveyn ekranları |
+| `ux.child_area`, `design.visual_language` | ui-agent | çocuk alanı, görsel dil |
+| `illustration.brief` | illustration-system | resim brifi |
+
+UX hedefleri `experiment` olamaz (deneyler blueprint karşılaştırır); `adopt_guidance`, `research_more`,
+`park` ya da `decline` alır.
+
+## Onaydan işe: iş paketi
+
+Ürün sahibi bir öneriyi `approved` yaptığında `handoff.json` (iş paketi) kendiliğinden oluşur ve
+`docs/research/handoffs/<öneri>.md` + `docs/research/HANDOFFS.md` yazılır.
+
+- **Sahibi:** deney → hedefin sahibi (motor için story-engine), birlikte content-library; yazım rehberi →
+  content-library; UX hedefi → hedefin sahibi. Etkiyi değerlendiren ajan "birlikte" listesine girer.
+- **İçerik:** ne yapılacak, neden, ürün sahibinin notu, dokunacağı alan/dosya/testler, güvenlik koşulları, "bitti" tanımı.
+- **Durum:** `waiting` → `in_progress` → `done` (ya da `blocked`). Yalnızca sahibi, "birlikte" ajanları ya da insan değiştirir:
+  `ba exchange handoff <öneri> --agent <ajan> --status in_progress|blocked|done --note "<dal@commit ya da engel>"`.
+  `done` ve `blocked` not ister.
+- **Kim başlatır:** ürün sahibi, tek cümleyle ("p_repeated_line paketini uygula"). Ajan kendi dalında/worktree'sinde
+  çalışır, testleri ve değişiklik günlüğü kaydıyla; ana koda ürün sahibinin onayıyla girer. Deney kolları yine
+  `experiment preflight` + insan `mark live` olmadan çocuğa ulaşmaz.
+- `ba exchange handoffs` paketleri listeler ve belgeleri yeniler; haftalık sayfada "İş paketleri" bölümü vardır.
+
+## Okunabilir sayfa
+
+`ba cycle` haftalık sayfayı ayrıca HTML olarak yazar (`docs/research/weekly/<tarih>.html`): haftalık özet,
+karar bekleyen öneriler ve iş paketleri tek dosyada, tarayıcıda açılır.
 
 ## Tutumlar (stance)
 

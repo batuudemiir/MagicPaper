@@ -1,6 +1,6 @@
 {
   "claim_id": "c_companion_mirrors_feeling",
-  "statement": "In 3 of 5 books a toy or animal companion is drawn mirroring the protagonist's feeling (Jojo the monkey, Teddy, the dog) while saying nothing in the text.",
+  "statement": "In 3 of 7 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text; the other 4 have no such silent companion.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_brave_bora_gicovi",
@@ -17,25 +17,27 @@
   ],
   "counterexample_works": [
     "w_grumpy_cloud_ditlhareng",
-    "w_mud_waterkeyn"
+    "w_mud_waterkeyn",
+    "w_best_friends_louw",
+    "w_unexpected_adventure_jooste"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Neither new book has a silent mirroring companion (Best Friends' companion speaks; the wordless book has none).",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "catalog companions speak and act in text",
     "suggested": "Hypothesis: a companion can amplify feeling silently, through the picture; relevant to companion illustration briefs.",
     "note": "Companions as emotional amplifiers, not protagonists.",
-    "review_status": "proposed"
+    "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 5,
+    "n_examined": 7,
     "support": 3,
-    "counter": 2,
-    "support_ratio": 0.6,
+    "counter": 4,
+    "support_ratio": 0.429,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

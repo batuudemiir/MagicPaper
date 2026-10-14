@@ -1,6 +1,6 @@
 {
   "claim_id": "c_length_twelve_spreads",
-  "statement": "All 5 analysed contemporary picture books run 12 spreads with 136-211 words in total (median 150), about 13 words per spread.",
+  "statement": "All 7 analysed contemporary picture books run 12 spreads; the 6 with text have 136-220 words in total (median 154), about 13 words per spread.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,31 +8,33 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_mud_waterkeyn",
     "w_grumpy_cloud_ditlhareng",
     "w_catch_that_cat_pirie",
     "w_brave_bora_gicovi",
-    "w_amahle_wants_to_help_nsibande"
+    "w_amahle_wants_to_help_nsibande",
+    "w_best_friends_louw",
+    "w_unexpected_adventure_jooste"
   ],
   "counterexample_works": [],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Caution: all 7 are Book Dash, whose format fixes the spread count, so more Book Dash books do not answer the one-publisher objection; a second source is still required.",
   "magicpaper": {
     "target": "validator.BANDS",
     "current": "8 pages × 18-38 words (144-304 words)",
     "suggested": "Similar total length, but these books spend it on ~12 page turns of ~10-20 words. Worth testing shorter pages and more turns once the corpus is larger.",
     "note": "One publisher, one country. Do not act on this before ≥10 books from ≥2 sources agree.",
-    "review_status": "proposed"
+    "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 5,
-    "support": 5,
+    "n_examined": 7,
+    "support": 7,
     "counter": 0,
     "support_ratio": 1.0,
     "sample_scope": "SMALL_SAMPLE",

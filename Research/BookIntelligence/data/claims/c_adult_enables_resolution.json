@@ -1,6 +1,6 @@
 {
   "claim_id": "c_adult_enables_resolution",
-  "statement": "In 3 of 5 books an adult makes the resolution possible (a tickle, a distracted injection, a 'yes'); in the other 2 the child resolves it (a plan and a catch; leaving Mud in the bath).",
+  "statement": "In 3 of 6 books an adult makes the resolution possible (a tickle, a distracted injection, a 'yes'); in the other 3 the child or a peer resolves it (a plan and a catch; leaving Mud in the bath; a classmate's invitation to help).",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_grumpy_cloud_ditlhareng",
@@ -17,25 +17,26 @@
   ],
   "counterexample_works": [
     "w_catch_that_cat_pirie",
-    "w_mud_waterkeyn"
+    "w_mud_waterkeyn",
+    "w_best_friends_louw"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends: the teacher only suggests; a classmate's invitation and the protagonist's own choice resolve it (counterexample). An Unexpected Adventure has no problem to resolve and is not counted.",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "MagicPaper beats favour the child acting (take_charge, find_own_courage)",
     "suggested": "No change; record that adult-enabled endings are common in this population, and track agency as the corpus grows.",
     "note": null,
-    "review_status": "proposed"
+    "review_status": "declined"
   },
   "computed": {
-    "n_examined": 5,
+    "n_examined": 6,
     "support": 3,
-    "counter": 2,
-    "support_ratio": 0.6,
+    "counter": 3,
+    "support_ratio": 0.5,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

@@ -91,6 +91,7 @@ Claude Code'da: *"book-research ajanıyla bu haftanın kitabını incele"* ya da
 | `exchange recommend` | book-research'ün tavsiyesi (story-engine + privacy-safety konuştuktan sonra) | yok |
 | `exchange digest` | Ürün sahibine tek sayfa: `EXCHANGE_DIGEST.md` | yok |
 | `exchange decide` | **Yalnızca ürün sahibi**: approved / rejected / parked | yok |
+| `exchange handoffs` / `exchange handoff <öneri> --agent … --status …` | Onaylanan önerilerin iş paketleri ve durumları → `docs/research/HANDOFFS.md` | yok |
 | `exchange lessons` | Geçmiş kararlardan dersler (ajan yeni öneriden önce okur) | yok |
 | `experiment create / preflight / mark / show / list` | Onaylı öneriyi kardeş blueprint ile deneme; tahmin önceden yazılır | yok |
 | `usage import <dosya>` | Sunucunun toplu sonuç belgesi (yalnızca toplamlar, mahremiyet eşiği zorunlu) | yok |

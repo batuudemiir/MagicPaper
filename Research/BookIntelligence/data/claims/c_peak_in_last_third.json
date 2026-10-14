@@ -1,6 +1,6 @@
 {
   "claim_id": "c_peak_in_last_third",
-  "statement": "The emotional peak falls in the last third of the book in 4 of 5 analysed books; Grumpy Cloud reaches its first peak at the midpoint.",
+  "statement": "The emotional peak falls in the last third of the book in 5 of 7 analysed books; Grumpy Cloud and An Unexpected Adventure reach their first peak at the midpoint and plateau.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,34 +8,36 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
     "w_brave_bora_gicovi",
     "w_catch_that_cat_pirie",
-    "w_mud_waterkeyn"
+    "w_mud_waterkeyn",
+    "w_best_friends_louw"
   ],
   "counterexample_works": [
-    "w_grumpy_cloud_ditlhareng"
+    "w_grumpy_cloud_ditlhareng",
+    "w_unexpected_adventure_jooste"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "8-beat arcs",
     "suggested": "Check where MagicPaper arcs place their most intense page; compare after the corpus grows.",
     "note": "Emotion intensity is an analyst judgment per page.",
-    "review_status": "proposed"
+    "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 5,
-    "support": 4,
-    "counter": 1,
-    "support_ratio": 0.8,
+    "n_examined": 7,
+    "support": 5,
+    "counter": 2,
+    "support_ratio": 0.714,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

@@ -1,0 +1,43 @@
+{
+  "run_id": "r_20261014_132709",
+  "status": "closed",
+  "started_at": "2026-10-14T13:27:09Z",
+  "finished_at": "2026-10-14T13:33:19Z",
+  "goal": "weekly increment",
+  "query_strategy": [
+    "Book Dash: fill 5-6 adventure + friendship gaps (contemporary, real page boundaries)"
+  ],
+  "queries": [],
+  "candidates": [],
+  "sources_added": [
+    "s_bookdash_an_unexpected_adventure",
+    "s_bookdash_best_friends"
+  ],
+  "works_added": [
+    "w_unexpected_adventure_jooste",
+    "w_best_friends_louw"
+  ],
+  "editions_added": [
+    "e_bookdash_an_unexpected_adventure",
+    "e_bookdash_best_friends"
+  ],
+  "analyses_completed": [
+    "w_best_friends_louw.v1",
+    "w_unexpected_adventure_jooste.v1"
+  ],
+  "failures": [],
+  "claims_snapshot_start": {
+    "c_adult_enables_resolution": "LOW",
+    "c_companion_mirrors_feeling": "LOW",
+    "c_fear_named_and_supported": "HYPOTHESIS",
+    "c_length_twelve_spreads": "LOW",
+    "c_peak_in_last_third": "LOW",
+    "c_picture_only_information": "LOW",
+    "c_repeated_line": "LOW",
+    "c_sentence_length": "LOW",
+    "c_spread_end_hook": "LOW"
+  },
+  "confidence_changes": [],
+  "new_claims": [],
+  "summary": "Added two contemporary Book Dash books for the 5-6 friendship and adventure gaps: Best Friends (text) and An Unexpected Adventure (wordless, analysed from pictures only). Both added as support or counterexamples to 8 existing claims; no confidence changed and no new claim reached 3 supporting works, so no exchange round was held. Note: the dialogue metric reads 0 for Best Friends because the book uses single quotation marks, and all evidence is still from one publisher whose format fixes 12 spreads."
+}

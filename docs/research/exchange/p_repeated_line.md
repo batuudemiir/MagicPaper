@@ -1,8 +1,8 @@
 # p_repeated_line
 
-**Status:** ready_for_decision · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 3/5 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 4/6 works)
 
-> A line returns on 2 or more spreads in 3 of 5 books ('It's not me, Mama. It's Mud!', 'Catch that cat!', 'No, Amahle, you are too young.'); the other 2 repeat a failed-attempt structure instead of a line.
+> A line returns on 2 or more spreads in 4 of 6 books with text ('It's not me, Mama. It's Mud!', 'Catch that cat!', 'No, Amahle, you are too young.', a polite refusal in Best Friends); the other 2 repeat a failed-attempt structure instead of a line.
 
 - Current: repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)
 - Suggested: Distinguish deliberate refrains (a line the listener can join, changed once at the end) from accidental repetition before treating all repetition as a defect.
@@ -45,7 +45,7 @@ Accepting all three voices: (1) never loosen the 5-gram gate globally — only a
 
 Evidence: `Research/BookIntelligence/sandbox/p_repeated_line.md`, `StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift`
 
-## Engine impact (story-engine)
+## Impact (story-engine)
 
 - Fields: StoryTemplate.maximumRepeatedNGrams, RepetitionValidator, validate_beat_corpus.check_collisions, validate_beat_corpus.check_moves, CatalogBlueprint.refrain(new)
 - Files: StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift, StoryEngine/Sources/StoryEngine/Domain/StoryTemplate.swift, StoryEngine/Sources/StoryEngine/Content/CatalogBlueprint.swift, StoryEngine/Sources/StoryEngine/Content/CatalogIntegrity.swift, StoryEngine/Tools/validate_beat_corpus.py, StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift
@@ -67,4 +67,4 @@ Evidence: `Research/BookIntelligence/sandbox/p_repeated_line.md`, `StoryEngine/S
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_repeated_line --verdict approved|rejected|parked --note "…"`
+**approved** — Deney onaylandı (2026-10-14)

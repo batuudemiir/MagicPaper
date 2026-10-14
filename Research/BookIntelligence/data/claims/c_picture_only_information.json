@@ -1,6 +1,6 @@
 {
   "claim_id": "c_picture_only_information",
-  "statement": "In all 5 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, how the feeling grows).",
+  "statement": "In all 7 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, who is now left out); one book is wordless.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,31 +8,33 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2024)"
+    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
   },
   "supporting_works": [
     "w_mud_waterkeyn",
     "w_grumpy_cloud_ditlhareng",
     "w_catch_that_cat_pirie",
     "w_brave_bora_gicovi",
-    "w_amahle_wants_to_help_nsibande"
+    "w_amahle_wants_to_help_nsibande",
+    "w_best_friends_louw",
+    "w_unexpected_adventure_jooste"
   ],
   "counterexample_works": [],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends shows only in the picture that the new friend now sits alone; the wordless book counts trivially and should not be weighed as independent evidence of the technique.",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "text carries the whole story",
     "suggested": "Hypothesis for illustrated stories: leave one fact per story to the picture; not applicable to text-only stories.",
     "note": null,
-    "review_status": "proposed"
+    "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 5,
-    "support": 5,
+    "n_examined": 7,
+    "support": 7,
     "counter": 0,
     "support_ratio": 1.0,
     "sample_scope": "SMALL_SAMPLE",
