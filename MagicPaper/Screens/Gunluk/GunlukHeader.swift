@@ -16,8 +16,9 @@ struct GunlukHeaderCarousel: View {
     let slides: [ClassicHeaderSlide]
     /// Saat çubuğunun yüksekliği: vitrin onun altına taşar, başlık altında kalır.
     var topInset: CGFloat = 0
-    /// Saat çubuğunun altındaki görünen yükseklik (`GunlukHeaderCarousel.height(screen:topInset:)`).
-    var height: CGFloat = 330
+    /// Saat çubuğunun altındaki görünen yükseklik: boyalı sahne olayı anlatacak
+    /// kadar büyük (Batuhan, 14 Ekim: %45'e küçültülmüş hali görseli kesiyordu).
+    var height: CGFloat = 520
     let onOpen: (ClassicTale) -> Void
     let onRead: (ClassicTale) -> Void
     let onSearch: () -> Void
@@ -27,12 +28,6 @@ struct GunlukHeaderCarousel: View {
     @State private var userTookOver = false
 
 
-    /// Vitrin saat çubuğu dahil ekranın %45'i (Ana sayfanın sahnesi ~%40): ilk
-    /// bakışta vitrin, çipler ve ilk kartın üstü birlikte görünür. Küçük ve
-    /// büyük ekranda 340–420 pt arasında kalır.
-    static func height(screen: CGFloat, topInset: CGFloat) -> CGFloat {
-        min(max(screen * 0.45, 340), 420) - topInset
-    }
     private static let autoAdvance: UInt64 = 7_000_000_000
 
     private var current: Int {
@@ -95,7 +90,7 @@ struct GunlukHeaderCarousel: View {
 
             VStack(alignment: .leading, spacing: MPSpacing.xs) {
                 Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
-                Text(slide.tale.title).mpText(.title1).foregroundStyle(MP.C.textOnArt)
+                Text(slide.tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(slide.tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
                 MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
@@ -105,7 +100,7 @@ struct GunlukHeaderCarousel: View {
                     .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
             }
             .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xl)
+            .padding(.bottom, MPSpacing.xxl)
         }
         .frame(height: height + topInset)
     }
@@ -122,9 +117,13 @@ struct GunlukHeaderCarousel: View {
                                startPoint: .top, endPoint: .bottom)
             }
             .overlay(alignment: .top) {
-                LinearGradient(colors: [MPColor.backgroundKid.opacity(0.92), MPColor.backgroundKid.opacity(0)],
+                // Yalnızca saat çubuğu ve "Günlük" yazısının arkası açılır; resmin
+                // geri kalanı olduğu gibi, soluklaşmadan görünür.
+                LinearGradient(stops: [.init(color: MPColor.backgroundKid.opacity(0.8), location: 0),
+                                       .init(color: MPColor.backgroundKid.opacity(0.55), location: 0.55),
+                                       .init(color: MPColor.backgroundKid.opacity(0), location: 1)],
                                startPoint: .top, endPoint: .bottom)
-                    .frame(height: topInset + 120)
+                    .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg)
             }
             .clipped()
             .accessibilityHidden(true)
@@ -137,8 +136,15 @@ struct GunlukHeaderCarousel: View {
             Text("Günlük").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             Spacer(minLength: MPSpacing.sm)
-            MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara",
-                           bordered: false, fill: MPColor.backgroundSurface, action: onSearch)
+            Button(action: onSearch) {
+                MPIcon("magnifyingglass", size: MP.G.md, weight: .semibold)
+                    .foregroundStyle(MPColor.textPrimary)
+                    .frame(width: MPSize.circleButton, height: MPSize.circleButton)
+                    .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge,
+                                  radius: MPSize.circleButton / 2)
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityLabel("Masal ara")
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.top, topInset + MPSpacing.sm)
