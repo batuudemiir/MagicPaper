@@ -12,14 +12,30 @@ struct MPIcon: View {
     let name: String
     var size: CGFloat = MP.G.lg
     var weight: Font.Weight = .regular
+    /// Lucide eşlemesini atlar, doğrudan SF Symbol çizer. Dolu/boş varyantı
+    /// ve sembol animasyonu gereken yerler için (alt sekme çubuğu): Lucide
+    /// ikonlarının dolu hâli yok, karışık set de aynı çubukta tutarsız durur.
+    var symbolOnly: Bool = false
 
-    init(_ name: String, size: CGFloat = MP.G.lg, weight: Font.Weight = .regular) {
+    init(_ name: String, size: CGFloat = MP.G.lg, weight: Font.Weight = .regular,
+         symbolOnly: Bool = false) {
         self.name = name
         self.size = size
         self.weight = weight
+        self.symbolOnly = symbolOnly
     }
 
     var body: some View {
+        if symbolOnly {
+            Image(systemName: name)
+                .font(MP.F.glyph(size, weight))
+        } else {
+            mapped
+        }
+    }
+
+    @ViewBuilder
+    private var mapped: some View {
         // Doğrudan Lucide adı da olur ("castle", "rocket"): SF karşılığı
         // olmayan dünya simgeleri için (design-handoff/docs/ICONS.md "custom").
         if let lucide = MPIconMap.lucideName(for: name) ?? (UIImage(named: "Icons/\(name)") != nil ? name : nil),

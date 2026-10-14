@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · liquid-glass-tab-bar (6dd3573 üstüne) · Alt çubuk yalnızca ikon, seçilince içi boyanır
+- Çubukta yazı yok, yalnızca ikon (Yarat dahil). Sekmelerin adı VoiceOver'da ve basılı tutunca büyük içerik görüntüleyicide okunuyor.
+- Her sekmenin kendi rengi var: Ana sayfa mor (`brand`), Günlük sarı (`reward`), Kitaplık mercan (`play`), Köşem yeşil (`calm`). Seçilince ikonun içi o renkle dolar (SF Symbol `.fill`, çizgiden dolguya sembol geçişi) ve bir kez zıplar; Hareketi Azalt'ta yalnızca dolgu değişir. Seçim renkle birlikte dolu/boş şekil farkıyla da belli.
+- Seçili sekme arkasındaki hap kaldırıldı. Yarat: marka renginde hap, içinde artı.
+- Sekme ikonları Lucide yerine SF Symbol (Lucide'nin dolu hâli yok); `MPIcon`'a `symbolOnly` eklendi.
+- Çubuk aşağı indi: ana ekran göstergesi olan cihazda alt kenarı ekranın altından 16 pt (`MP.S.x4`) yukarıda; göstergesiz cihazda 8 pt boşluk (`mpFloatingBar`).
+- Kaldırıldı: resimli ikon denemesi (Batuhan: ek görsel kullanılmasın) ve `docs/TAB_ICON_PROMPTS.md`; "Alt çubukta tüm yazılar" geliştirici anahtarı.
+- Bilerek değişmedi: cam yüzey, ebeveyn `TabView`'ı, üst başlıklar.
+- Test: uygulama testleri 696, 0 hata, 1 atlandı (main birleşimiyle 3 yeni test). Tasarım yasası denetimleri yeni satırlarda boş. Simülatör (iPhone 17 Pro, iOS 27): dört sekme.
+- Etkilenen: `MPNavigationChrome.swift`, `MPIcon.swift`, `MPGlass.swift`, `SettingsView.swift`, `docs/TAB_ICON_PROMPTS.md` (silindi).
+
 ### 2026-10-14 · liquid-glass-tab-bar (0e68d68 üstüne) · Alt çubukta yazı yalnızca seçili sekmede
 - Çocuk alt çubuğunda yazı artık yalnızca seçili sekmede ve Yarat'ta görünüyor; diğer sekmeler yalnızca ikon ve ortada. Seçilince ikon yukarı kayar, yazı altından açılır; Hareketi Azalt'ta yalnızca belirir.
 - Yatay hap (`[ikon Ana sayfa]`) denendi ama beş öğeyle iPhone SE'ye sığmıyor, sekme dokunma alanı 48 pt'nin altına düşüyor; bu yüzden dikey düzen.
