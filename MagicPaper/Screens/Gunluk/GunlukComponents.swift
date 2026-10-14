@@ -282,3 +282,70 @@ struct GunlukSection<Content: View>: View {
 enum GunlukLayout {
     static let bottomClearance: CGFloat = MPSize.kidTabBarHeight + MPSize.minTouchKid
 }
+
+
+// MARK: - Sahne
+
+extension GunlukLayout {
+    /// Sahnenin (vitrin, detay ve seri üst görseli) alt köşe yarıçapı.
+    static let stageRadius: CGFloat = MPRadius.input
+}
+
+extension View {
+    /// Tam genişlikte boyalı sahnenin bitişi: alt köşeler yuvarlak, altta Ana
+    /// sayfanın kartları gibi sert kenar. Vitrin, detay ve seri aynı dili kullanır.
+    func gunlukStage() -> some View {
+        let shape = UnevenRoundedRectangle(bottomLeadingRadius: GunlukLayout.stageRadius,
+                                           bottomTrailingRadius: GunlukLayout.stageRadius, style: .continuous)
+        return clipShape(shape)
+            .background(alignment: .bottom) {
+                shape.fill(MPColor.brandNight)
+                    .frame(height: GunlukLayout.stageRadius * 2)
+                    .offset(y: MP.E.widthLG)
+            }
+    }
+}
+
+/// Günlük'ün tek dolgun düğmesi: düz mor, sert alt kenar (butonda gradient yok).
+struct GunlukPrimaryButton: View {
+    let title: String
+    var systemImage: String = "play"
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: MPSpacing.sm) {
+                MPIcon(systemImage, size: MP.G.md, weight: .bold).accessibilityHidden(true)
+                Text(title).mpText(.button)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .foregroundStyle(MPColor.textOnAction)
+            .padding(.horizontal, MPSpacing.xl)
+            .frame(maxWidth: .infinity, minHeight: MPSize.buttonHeight)
+            .mpKidSurface(MPColor.actionPrimary, edge: MPColor.brandNight, radius: MPSize.buttonHeight / 2)
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel(title)
+    }
+}
+
+/// Sahnenin tepesindeki geri ve paylaş düğmeleri: beyaz daire, sert kenar.
+struct GunlukStageButton: View {
+    let systemImage: String
+    let label: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            MPIcon(systemImage, size: MP.G.md, weight: .semibold)
+                .foregroundStyle(MPColor.textPrimary)
+                .frame(width: MPSize.circleButton, height: MPSize.circleButton)
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge,
+                              radius: MPSize.circleButton / 2)
+                .contentShape(Circle().inset(by: -4))
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel(label)
+    }
+}

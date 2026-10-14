@@ -35,28 +35,22 @@ struct GunlukHeaderCarousel: View {
     }
 
     var body: some View {
-        VStack(spacing: MPSpacing.md) {
-            // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
-            // yuvarlak, sert alt kenarlı bir sahne olarak biter.
-            ZStack(alignment: .top) {
-                pager
-                titleBar
-            }
-            .frame(height: height + topInset)
-            .clipShape(UnevenRoundedRectangle(bottomLeadingRadius: MPRadius.hero, bottomTrailingRadius: MPRadius.hero,
-                                              style: .continuous))
-            .background(alignment: .bottom) {
-                UnevenRoundedRectangle(bottomLeadingRadius: MPRadius.hero, bottomTrailingRadius: MPRadius.hero,
-                                       style: .continuous)
-                    .fill(MPColor.brandNight)
-                    .frame(height: MPRadius.hero * 2)
-                    .offset(y: MP.E.widthLG)
-            }
-
+        // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
+        // yuvarlak, sert alt kenarlı bir sahne olarak biter. Sayfa noktaları
+        // sahnenin içinde, resmin üstünde: vitrinden ayrı bir parça durmaz.
+        ZStack(alignment: .top) {
+            pager
+            titleBar
+        }
+        .overlay(alignment: .bottomTrailing) {
             if slides.count > 1 {
-                MPPageDots(count: slides.count, current: current)
+                MPPageDots(count: slides.count, current: current, onDark: true)
+                    .padding(.trailing, MPSpacing.screenH)
+                    .padding(.bottom, MPSpacing.xxl + MPSpacing.md)
             }
         }
+        .frame(height: height + topInset)
+        .gunlukStage()
         .task(id: selection) { await advanceLater() }
         .onAppear { if selection == nil { selection = slides.first?.id } }
     }
