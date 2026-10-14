@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-13/14 · main@675bb72 → main@75a578f · FAZ 20: Günlük (ücretsiz masallar)
+- Alt bar beş öğe: Ana sayfa · Günlük · Yarat · Kitaplık · Köşem (İrem'in tasarımı; Köşem sekmesi korunarak Günlük eklendi).
+- Ekranlar (`Screens/Gunluk/`): Günlük, Kategoriler, Kategori rafı ve arama, Klasik detay, Seri klasik.
+- Başlık vitrini (`GunlukHeaderCarousel`): ekranın tepesinden başlayan boyalı kapak slaytları, sırası kaldığın yer → günün masalı (editör: Rapunzel) → uyku saatinde uyku masalı → seçki; 7 sn'de bir sakin geçiş, dokununca durur, Hareketi Azalt'ta yok; sonsuz döngü (`GunlukLoop`).
+- Kart dili Ana sayfayla aynı: her raf tek beyaz kart (lavanta kenar, sert alt kenar, `GunlukSection`), gölge yok; detay ve seri aynı sahne (`gunlukStage`), düz mor ana düğme, "Bu masalla" kutuları Ana sayfa mod kutularıyla aynı.
+- İçerik: 56 masal metni (16 tek, 5 seri: Keloğlan, Nasreddin Hoca, Dede Korkut, Karagöz, Kelile ve Dimne), 5'inde Klasik anlatım; güvenlik incelemesi bulguları işlendi. Kaynak `Content/Classics/`, katalog `Scripts/ClassicsCatalog/build_classics_catalog.py`.
+- Kapaklar: 13 kamu malı renkli illüstrasyon (Gruelle, J. W. Smith, Anderson, Abbott, Rackham, Nicholson), kaynaklar `Content/Classics/COVER_SOURCES.md`; 11 masal kapağı bekliyor (pastel yedek kapak, üretim onaylanmadı).
+- "Bu hafta en çok okunan" yerine editör listesi "Bu haftanın seçkisi" (gerçek okuma verisi yok).
+- Bilerek değişmedi: Ana sayfadaki "Günün masalı" kartı (günlük akış masalı) bu turda klasiklere bağlanmadı; "Kahramanı ben" düğmesi motor desteğine kadar gizli; yıldız harcaması yok.
+- Test: Günlük testleri 35/0 (`ClassicsCatalogTests`, `ClassicProgressTests`); tam takım son ölçüm 681/0 (vitrin değişikliklerinden önce); telefonda (iPhone 16) denendi.
+- Etkilenen: `Screens/Gunluk/*`, `MPAppState.swift`, `MPNavigationChrome.swift`, `ContentView.swift`, `StoryReaderModel.swift`, `StoryReaderView.swift`, `MPStoryExtras.swift`, `MPTypography.swift`, `MPColor.swift`, `Assets.xcassets/Classics`, `Content/Classics/`.
+
 ### 2026-10-14 · main@b321c1e · Ana sayfa: aşağı çekerken yalnızca manzara yakınlaşır
 - Sayfa en üstteyken aşağı çekince başlık, çipler ve kartlar yerinden oynamaz; içerik çekilen mesafe kadar geri tutulur, manzara köy hizasından yerinde yakınlaşır.
 - Kaydırma ölçüsü içerikten değil ayrı görünmez bir işaretten okunur (önceki denemede içerik sabitlemesi ölçümü sıfırlıyordu).
