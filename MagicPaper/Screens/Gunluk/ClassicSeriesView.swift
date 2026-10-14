@@ -58,7 +58,7 @@ struct ClassicSeriesView: View {
                     .padding(.top, MPSpacing.lg + 2)
             }
             .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xxxl + MPSpacing.sm)
+            .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .ignoresSafeArea(edges: .top)
         .background(MPColor.backgroundKid.ignoresSafeArea())
