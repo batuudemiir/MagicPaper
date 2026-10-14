@@ -97,7 +97,7 @@ struct GunlukShelfView: View {
                     grid(cardWidth: cardWidth).padding(.top, MPSpacing.xl + 2)
                 }
                 .padding(.horizontal, MPSpacing.screenH)
-                .padding(.bottom, MPSpacing.xxxl)
+                .padding(.bottom, GunlukLayout.bottomClearance)
             }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())

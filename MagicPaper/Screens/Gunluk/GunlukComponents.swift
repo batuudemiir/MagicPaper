@@ -29,10 +29,11 @@ struct ClassicCoverImage: View {
                     .clipped()
             } else {
                 let tone = Self.fallbackTone(seed)
+                // Ana sayfanın dili: pastel ton yalnızca zeminde, simge koyu tonda.
                 ZStack {
-                    tone.deep
+                    tone.soft
                     MPIcon("book.closed", size: min(geo.size.width, geo.size.height) * 0.28, weight: .regular)
-                        .foregroundStyle(MPColor.textOnAction.opacity(0.9))
+                        .foregroundStyle(tone.deep)
                 }
             }
         }
@@ -54,7 +55,8 @@ struct ClassicCoverImage: View {
     }
 }
 
-/// Rafta duran kapak: köşe 14, hafif gölge.
+/// Rafta duran kapak: köşe 14; derinlik Ana sayfadaki gibi sert alt kenardan
+/// (`mpKidSurface`), gölgeden değil.
 struct ClassicCoverTile: View {
     let asset: String
     var focus: ClassicFocus = .center
@@ -66,7 +68,7 @@ struct ClassicCoverTile: View {
         ClassicCoverImage(asset: asset, focus: focus, seed: seed)
             .frame(width: width, height: height)
             .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-            .mpShadow(.card)
+            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
     }
 }
 
@@ -95,30 +97,6 @@ struct GunlukChip: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityAddTraits(isSelected ? .isSelected : [])
-    }
-}
-
-// MARK: - Raf başlığı
-
-struct GunlukSectionHeader: View {
-    let title: String
-    var action: (() -> Void)? = nil
-
-    var body: some View {
-        HStack(alignment: .center) {
-            Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
-                .accessibilityAddTraits(.isHeader)
-            Spacer(minLength: MPSpacing.sm)
-            if let action {
-                Button(action: action) {
-                    MPIcon("chevron.right", size: 18, weight: .bold)
-                        .foregroundStyle(MPColor.textSecondary)
-                        .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent, alignment: .trailing)
-                }
-                .buttonStyle(MPPressStyle())
-                .accessibilityLabel("\(title): tümü")
-            }
-        }
     }
 }
 
@@ -213,7 +191,7 @@ struct ContinueClassicCard: View {
                         .padding(.bottom, MPSpacing.sm + 2)
                     }
                     .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                    .mpShadow(.card)
+                    .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(item.title).mpText(.callout).foregroundStyle(MPColor.textPrimary).lineLimit(1)
                     Text("\(item.minutesLeft) dk kaldı").mpText(.caption).foregroundStyle(MPColor.textSecondary)
@@ -229,18 +207,78 @@ struct ContinueClassicCard: View {
     }
 }
 
-/// Yatay kaydırılan raf, ekran kenarından kenarına.
+/// Yatay kaydırılan raf.
+///
+/// `inset` verilmezse ekran kenarından kenarına kayar (çip satırı). Bir
+/// `GunlukSection` kartının içindeyken kartın iç boşluğuyla başlar ve kartın
+/// kenarında kesilir: kart içinde kart görünmez, kenar temiz kalır.
 struct GunlukRow<Content: View>: View {
     var spacing: CGFloat = 14
+    var inset: CGFloat? = nil
     @ViewBuilder let content: () -> Content
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: spacing) { content() }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.vertical, MPSpacing.xxs)
+        if let inset {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: spacing) { content() }
+                    .padding(.horizontal, inset)
+                    // Kapakların sert alt kenarı kesilmesin.
+                    .padding(.bottom, MP.E.widthLG + MPSpacing.xxs)
+            }
+        } else {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: spacing) { content() }
+                    .padding(.horizontal, MPSpacing.screenH)
+                    .padding(.vertical, MPSpacing.xxs)
+            }
+            .scrollClipDisabled()
+            .padding(.horizontal, -MPSpacing.screenH)
         }
-        .scrollClipDisabled()
-        .padding(.horizontal, -MPSpacing.screenH)
     }
+}
+
+// MARK: - Bölüm kartı
+
+/// Günlük'ün her rafı Ana sayfadaki bölüm kartı gibi tek bir kart: beyaz zemin,
+/// lavanta kenar, sert alt kenar (`mpKidSurface`, `MPRadius.card`); başlık
+/// kartın üst satırında, sağda "tümü" oku. Raf kartın içinde kayar.
+struct GunlukSection<Content: View>: View {
+    let title: String
+    var action: (() -> Void)? = nil
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            HStack(alignment: .center, spacing: MPSpacing.sm) {
+                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityAddTraits(.isHeader)
+                if let action {
+                    Button(action: action) {
+                        MPIcon("chevron.right", size: MP.G.md, weight: .bold)
+                            .foregroundStyle(MPColor.actionPrimary)
+                            .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent)
+                            .background(MPWorldTone.lav.soft, in: Circle())
+                    }
+                    .buttonStyle(MPPressStyle())
+                    .accessibilityLabel("\(title): tümü")
+                }
+            }
+            .padding(.horizontal, MPSpacing.lg)
+            content
+        }
+        .padding(.vertical, MPSpacing.lg)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+    }
+}
+
+/// Alt barın (Ana sayfa · Günlük · Yarat · Kitaplık · Köşem) kapladığı yükseklik.
+/// Günlük `NavigationStack` içinde durduğu için kök görünümdeki alt bar
+/// boşluğu (`safeAreaInset`) kaydırma alanına ulaşmıyor; sayfalar bu kadar
+/// alt boşlukla biter ki son kart barın altında kalmasın.
+enum GunlukLayout {
+    static let bottomClearance: CGFloat = MPSize.kidTabBarHeight + MPSize.minTouchKid
 }
