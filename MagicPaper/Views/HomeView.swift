@@ -27,6 +27,9 @@ struct HomeView: View {
                            onAvatar: { app.openKidCorner() },
                            onLock: { app.requestParentMode() })
                     .padding(.top, MPSpacing.md)
+                    // Aşağı çekerken selam, avatar ve kilit yerinde kalır; yalnızca
+                    // sahne esner.
+                    .offset(y: -pull)
 
                 // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
                 VStack(spacing: MPSpacing.md) {
