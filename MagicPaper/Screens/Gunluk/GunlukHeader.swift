@@ -24,41 +24,45 @@ struct GunlukHeaderCarousel: View {
     let onSearch: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var selection: String?
+    /// Döngüdeki konum (`GunlukLoop`): slayt `position % slides.count`.
+    @State private var selection: Int?
     @State private var userTookOver = false
 
 
     private static let autoAdvance: UInt64 = 7_000_000_000
 
     private var current: Int {
-        slides.firstIndex { $0.id == selection } ?? 0
+        guard !slides.isEmpty else { return 0 }
+        return (selection ?? 0) % slides.count
     }
 
     var body: some View {
-        VStack(spacing: MPSpacing.md) {
-            // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
-            // yuvarlak, sert alt kenarlı bir sahne olarak biter.
-            ZStack(alignment: .top) {
-                pager
-                titleBar
-            }
-            .frame(height: height + topInset)
-            .clipShape(UnevenRoundedRectangle(bottomLeadingRadius: MPRadius.hero, bottomTrailingRadius: MPRadius.hero,
-                                              style: .continuous))
-            .background(alignment: .bottom) {
-                UnevenRoundedRectangle(bottomLeadingRadius: MPRadius.hero, bottomTrailingRadius: MPRadius.hero,
-                                       style: .continuous)
-                    .fill(MPColor.brandNight)
-                    .frame(height: MPRadius.hero * 2)
-                    .offset(y: MP.E.widthLG)
-            }
-
+        // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
+        // yuvarlak, sert alt kenarlı bir sahne olarak biter. Sayfa noktaları
+        // sahnenin içinde, resmin üstünde: vitrinden ayrı bir parça durmaz.
+        ZStack(alignment: .top) {
+            pager
+            titleBar
+        }
+        .overlay(alignment: .bottomTrailing) {
             if slides.count > 1 {
-                MPPageDots(count: slides.count, current: current)
+                MPPageDots(count: slides.count, current: current, onDark: true)
+                    .padding(.trailing, MPSpacing.screenH)
+                    .padding(.bottom, MPSpacing.xxl + MPSpacing.md)
             }
         }
+        .frame(height: height + topInset)
+        .gunlukStage()
         .task(id: selection) { await advanceLater() }
-        .onAppear { if selection == nil { selection = slides.first?.id } }
+        .onAppear { if selection == nil { selection = GunlukLoop.start(count: slides.count) } }
+        // Kenara yaklaşınca ortadaki aynı slayta görünmeden atlar: sondan sonra
+        // baş gelir, kaydırma iki yönde de bitmez.
+        .onChange(of: selection) { _, position in
+            guard let position, let centered = GunlukLoop.recentered(position, count: slides.count) else { return }
+            var jump = Transaction()
+            jump.disablesAnimations = true
+            withTransaction(jump) { selection = centered }
+        }
     }
 
     // MARK: - Sayfalar
@@ -66,10 +70,10 @@ struct GunlukHeaderCarousel: View {
     private var pager: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 0) {
-                ForEach(slides) { slide in
-                    slideView(slide)
+                ForEach(0..<GunlukLoop.length(count: slides.count), id: \.self) { position in
+                    slideView(slides[position % slides.count])
                         .containerRelativeFrame(.horizontal)
-                        .id(slide.id)
+                        .id(position)
                 }
             }
             .scrollTargetLayout()
@@ -156,7 +160,7 @@ struct GunlukHeaderCarousel: View {
         guard !reduceMotion, !userTookOver, slides.count > 1 else { return }
         try? await Task.sleep(nanoseconds: Self.autoAdvance)
         guard !Task.isCancelled, !userTookOver else { return }
-        let next = slides[(current + 1) % slides.count].id
+        let next = (selection ?? GunlukLoop.start(count: slides.count)) + 1
         withAnimation(MP.M.gated(MP.M.page)) { selection = next }
     }
 }

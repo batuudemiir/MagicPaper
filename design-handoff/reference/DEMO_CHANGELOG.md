@@ -172,6 +172,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmedi: ebeveyn `TabView`'ı (sistem camını zaten alıyor), üst başlıklar, `MPModeSwitch`, kullanılmayan `MPTabBar`, `ContentView` yerleşimi.
 - Test: uygulama testleri 692 geçti, 0 hata. Tasarım yasası denetimleri yeni kodda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık, normal ve en büyük Dynamic Type; etiketler kesilmiyor. iOS 17.6 yedek yolu, koyu görünüm (uygulama yalnızca açık), küçük ekran ve VoiceOver simülatörde bakılmadı.
 - Etkilenen: `MPNavigationChrome.swift`, `MPTheme.swift`, `MPGlass.swift` (yeni), `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` (yeni), `docs/MagicPaper_Design_System.md`, `CLAUDE.md` (kökte, repo dışında).
+### 2026-10-14 · main@b321c1e · Ana sayfa: aşağı çekerken yalnızca manzara yakınlaşır
+- Sayfa en üstteyken aşağı çekince başlık, çipler ve kartlar yerinden oynamaz; içerik çekilen mesafe kadar geri tutulur, manzara köy hizasından yerinde yakınlaşır.
+- Kaydırma ölçüsü içerikten değil ayrı görünmez bir işaretten okunur (önceki denemede içerik sabitlemesi ölçümü sıfırlıyordu).
+- Görselin üst kenarı ile gökyüzü arasındaki ince dikiş çizgisi, daha uzun geçişle kalktı.
+- Bilerek değişmedi: Ragi tepede yerinde durur, esneme zıplamaz (tasarım yasası, sürükleme).
+- Test: derleme yeşil; simülatörde çekme anı ekran görüntüsüyle doğrulandı (öğeler sabit, manzara yakınlaşıyor).
+- Etkilenen: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-14 · main@3a6f75e · Ana sayfa: aşağı çekerken başlık sabit
 - Sayfa en üstteyken aşağı çekince selam, avatar ve kilit yerinde kalır; yalnızca başlık sahnesi esner ve yakınlaşır (`HomeView`, başlığa `offset(y: -pull)`).
 - Bilerek değişmedi: çipler ve kartlar içerikle birlikte hareket eder; esneme doğrudan dokunuşu izler, zıplama yok (tasarım yasası, sürükleme).

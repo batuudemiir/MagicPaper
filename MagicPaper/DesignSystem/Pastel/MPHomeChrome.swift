@@ -116,15 +116,15 @@ struct HomeScene: View {
     var bleed: CGFloat = 0
     /// Ragi'nin ayaklarının sahnenin alt kenarından yüksekliği: çiplerin üstünde kalır.
     var mascotLift: CGFloat = 44
-    /// Sayfa en üstteyken aşağı çekilen mesafe. Sahne alttan sabit kalıp yukarı
-    /// doğru büyür: boşluk görünmez, manzara parmağı izleyerek yakınlaşır.
-    /// Doğrudan dokunuşu izler; zıplama yok (tasarım yasası, sürükleme).
+    /// Sayfa en üstteyken aşağı çekilen mesafe. İçerik yerinde tutulur; manzara
+    /// köyün hizasından, olduğu yerde parmağı izleyerek yakınlaşır.
+    /// Doğrudan dokunuşu izler; zıplama yok.
     var pull: CGFloat = 0
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             backdrop
-                .scaleEffect(1 + pull / max(height + bleed, 1), anchor: .bottom)
+                .scaleEffect(1 + pull / max(height + bleed, 1) * 0.6, anchor: UnitPoint(x: 0.5, y: 0.62))
             HomeSceneMascot(isNight: isNight)
                 .padding(.trailing, MPSpacing.screenH)
                 .padding(.bottom, mascotLift)
@@ -168,7 +168,7 @@ struct HomeScene: View {
                     VStack(spacing: 0) {
                         LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
                                        startPoint: .top, endPoint: .bottom)
-                            .frame(height: 48)
+                            .frame(height: 110)
                         Rectangle()
                     }
                 }
