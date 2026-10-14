@@ -161,6 +161,31 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmedi: ebeveyn `TabView`'ı (sistem camını zaten alıyor), üst başlıklar, `MPModeSwitch`, kullanılmayan `MPTabBar`, `ContentView` yerleşimi.
 - Test: uygulama testleri 692 geçti, 0 hata. Tasarım yasası denetimleri yeni kodda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık, normal ve en büyük Dynamic Type; etiketler kesilmiyor. iOS 17.6 yedek yolu, koyu görünüm (uygulama yalnızca açık), küçük ekran ve VoiceOver simülatörde bakılmadı.
 - Etkilenen: `MPNavigationChrome.swift`, `MPTheme.swift`, `MPGlass.swift` (yeni), `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` (yeni), `docs/MagicPaper_Design_System.md`, `CLAUDE.md` (kökte, repo dışında).
+### 2026-10-14 · main@3a6f75e · Ana sayfa: aşağı çekerken başlık sabit
+- Sayfa en üstteyken aşağı çekince selam, avatar ve kilit yerinde kalır; yalnızca başlık sahnesi esner ve yakınlaşır (`HomeView`, başlığa `offset(y: -pull)`).
+- Bilerek değişmedi: çipler ve kartlar içerikle birlikte hareket eder; esneme doğrudan dokunuşu izler, zıplama yok (tasarım yasası, sürükleme).
+- Test: derleme yeşil. Simülatörde çekme anı bu turda yakalanamadı (simülatörü başka bir oturum devraldı).
+- Etkilenen: `MagicPaper/Views/HomeView.swift`.
+
+### 2026-10-13/14 · main@fd6d67a → main@17c68e5 · Ana sayfa: telefon testi düzeltmeleri
+- Başlık sahnesi ekranın ~%40'ı; görsel ekran genişliğine sığar, gökyüzü üstte dikişsiz devam eder (`MPColor.sceneSkyDay/Night`).
+- Sahne görselleri Batuhan'ın ChatGPT ile ürettiği maskotsuz gündüz/gece manzarası (`Assets.xcassets/Scenes`, taslak).
+- Ragi ayrı katman (`HomeSceneMascot`): markanın görseli, gündüz okur gece uyur; süzülme, nefes, dokununca zıplama; Reduce Motion'da durur.
+- `MPPressStyle` (tüm uygulama): basınca alt kenara çökme, bırakınca `MP.M.spring`; `sinkFlat` de hareket eder. Ana eylemlerde tek `MPHaptics.tap`.
+- Avatar/isim ve alt bar sekmeleri `.plain` yerine `MPPressStyle`; seçili sekme ikonu yaylanır; sekmeler kayma + solma ile değişir (`ContentView`).
+- Esneyen başlık: aşağı çekince beyaz boşluk yerine sahne alttan büyür (`HomeScene.pull`).
+- Yeni token: `MP.M.idle` (Ragi'nin nefesi).
+- Test: MagicPaperTests 662/0 (1 atlandı); simülatörde gündüz, gece ve çekme anı görüldü; telefona kuruldu.
+- Etkilenen: `HomeView.swift`, `MPHomeChrome.swift`, `MPTheme.swift`, `MPColor.swift`, `MPNavigationChrome.swift`, `ContentView.swift`, `Assets.xcassets/Scenes`.
+
+### 2026-10-13 · main@d1b2a28 · Ana sayfa ve Masal ailem yenilemesi
+- Ana sayfa: illüstrasyonlu başlık sahnesi (`HomeScene`), yıldız ve okuma serisi çipleri (`HomeStatChips`), mor hero kartı, her bölüm tek kart (`HomeSection`), beyaz lavanta kenarlı kart dili (`mpKidSurface`), ekranda tek Ragi.
+- Yıldız sayacı `MPStars`: her sabah 1 + biten her masal 1, rozet defterinden türetilir; harcama yok.
+- Masal ailem aynı dille: mor kahraman kartı, pastel karakter kareleri, mor halka + tik ile seçim (seçim şimdilik tek).
+- Ana sayfa Köşem sekmesine `openKidCorner()` ile gider; `kosem-sekme`'nin geçici `showKidCorner` köprüsü silindi.
+- Bilerek değişmedi: hero kartı metinleri, karakter düzenleyici, motorun tek aile karakteri.
+- Test: MagicPaperTests 662/0 (1 atlandı); en büyük yazı boyutu ve kontrast kontrolü.
+- Etkilenen: `HomeView.swift`, `MPHomeChrome.swift` (yeni), `MPStars.swift` (yeni), `FamilyCharactersView.swift`, `SeriesCard.swift`, `MPAppState.swift`, tasarım notu `docs/superpowers/specs/2026-10-13-ana-sayfa-yenileme-design.md`.
 
 ### 2026-10-13 · main (ab6f02c üstüne) · Günlük kuralı uygulama işlerine genişletildi
 - Bundan sonra tamamlanan her iş (uygulama, canvas, içerik, belge) bu günlüğe yazılır.
