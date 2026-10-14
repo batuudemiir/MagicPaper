@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · liquid-glass-tab-bar (3862324 üstüne) · Alt çubuk camı geliştirildi
+- Çubuk iOS 26+ `safeAreaBar` ile yerleşiyor (`mpFloatingBar`): altından kayan içerik sistemin kaydırma kenarı efektiyle yumuşar. Öncesinde `safeAreaInset`.
+- Cam dokunuşa tepki veriyor (`.interactive()`), kâğıt tonu %50'den %25'e indi: kapakların rengi camdan geçiyor, beyaz bir şerit gibi durmuyor.
+- Pasif sekme rengi `textTertiary` → `textSecondary`: beyaz cam üstünde kontrast yaklaşık 2.5:1'den 5:1'e çıktı.
+- `MPModeSwitch` kendi `GlassTrack`'i yerine ortak `mpGlassSurface`'i kullanıyor; böylece Saydamlığı Azalt yedeği ve ton ayarı iki kontrolde aynı.
+- Bilerek değişmedi: Yarat hapı, seçili sekme göstergesi, üst başlıklar, ebeveyn `TabView`'ı.
+- Test: uygulama testleri 693, 0 hata, 1 atlandı. Tasarım yasası denetimleri yeni satırlarda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık. Yalnızca iOS 27 runtime kurulu; iOS 26 öncesi yedek yol hâlâ görülmedi.
+- Etkilenen: `MPGlass.swift`, `MPTheme.swift`, `MPNavigationChrome.swift`, `ContentView.swift`, `MPModeSwitch.swift`.
+
 ### 2026-10-14 · liquid-glass-tab-bar (675bb72 üstüne) · Çocuk alt çubuğu Liquid Glass
 - Çocuk modunun alt çubuğu (`KidTabBar`) içeriğin üstünde yüzen cam bir kapsül oldu: iOS 26+ sistem Liquid Glass'ı, öncesinde sistem materyali + kâğıt tonu, Saydamlığı Azalt açıkken opak kâğıt.
 - "Yarat" çubuğun içine indi: yükseltilmiş 64 pt daire, gradient ve mor parlama kalktı; sekmelerle aynı satırda marka renginde dolu hap. Cam üstüne cam konmadı.

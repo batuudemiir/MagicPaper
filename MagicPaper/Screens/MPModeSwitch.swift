@@ -29,7 +29,7 @@ struct MPModeSwitch: View {
                 segment(symbol: "shield", isActive: isParent)
             }
             .padding(MP.S.x1)
-            .modifier(GlassTrack())
+            .mpGlassSurface(in: Capsule(style: .continuous))
             .contentShape(Capsule(style: .continuous))
         }
         .buttonStyle(MPPressStyle(scales: false))
@@ -75,23 +75,6 @@ struct MPModeSwitch: View {
             shape
         } else {
             shape.matchedGeometryEffect(id: "knob", in: knob)
-        }
-    }
-
-    /// Ray: iOS 26'da Liquid Glass, öncesinde sistem materyali.
-    private struct GlassTrack: ViewModifier {
-        func body(content: Content) -> some View {
-            if #available(iOS 26.0, *) {
-                content
-                    .glassEffect(.regular.interactive(), in: .capsule)
-            } else {
-                content
-                    .background(.ultraThinMaterial, in: Capsule(style: .continuous))
-                    .overlay(
-                        Capsule(style: .continuous)
-                            .strokeBorder(MP.C.edgeGlass, lineWidth: 1)
-                    )
-            }
         }
     }
 }

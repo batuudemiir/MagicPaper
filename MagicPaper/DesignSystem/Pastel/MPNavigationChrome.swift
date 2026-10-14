@@ -16,8 +16,8 @@ enum KidTab: Hashable { case home, gunluk, library, corner }
 /// sekmelerle aynı satırda durur; sekmeden ayrımı yükseklikle değil marka
 /// rengindeki dolu haptan gelir ve hiçbir zaman "seçili" görünmez.
 /// Cam üstüne cam konmaz: Yarat'ın hapı düz renk.
-/// `ContentView.kidRoot` bunu `.safeAreaInset(edge: .bottom)` ile yerleştirir;
-/// ekranların içeriği kapsülün altından ve çevresinden kayar.
+/// `ContentView.kidRoot` bunu `mpFloatingBar` ile yerleştirir; ekranların
+/// içeriği kapsülün altından ve çevresinden kayar.
 struct KidTabBar: View {
     @Binding var selection: KidTab
     let onCreate: () -> Void
@@ -78,7 +78,9 @@ struct KidTabBar: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.85)
             }
-            .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textTertiary)
+            // Pasif sekme `textSecondary`: cam beyaza yakınken `textTertiary`
+            // 2.5:1'de kalıyordu, bu 5:1.
+            .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textSecondary)
             .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
             .contentShape(Rectangle())
             .animation(MP.M.gated(MP.M.spring), value: on)

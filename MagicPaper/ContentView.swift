@@ -195,7 +195,7 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.tab)
-            .safeAreaInset(edge: .bottom, spacing: 0) {
+            .mpFloatingBar {
                 KidTabBar(
                     selection: Binding(
                         get: { app.tab.kidTab },

@@ -34,3 +34,19 @@ extension View {
         modifier(MPGlassSurface(shape: shape))
     }
 }
+
+extension View {
+    /// Ekranın altına yüzen bir gezinme çubuğu yerleştirir.
+    ///
+    /// iOS 26+ `safeAreaBar`: içerik çubuğun altından kayarken sistemin
+    /// kaydırma kenarı efekti onu yumuşakça siler, cam renkli sahne ve
+    /// kapakların üstünde de okunur kalır. Öncesinde `safeAreaInset`.
+    @ViewBuilder
+    func mpFloatingBar<Bar: View>(@ViewBuilder _ bar: () -> Bar) -> some View {
+        if #available(iOS 26.0, *) {
+            safeAreaBar(edge: .bottom, spacing: 0, content: bar)
+        } else {
+            safeAreaInset(edge: .bottom, spacing: 0, content: bar)
+        }
+    }
+}
