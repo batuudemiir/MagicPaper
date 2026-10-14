@@ -21,38 +21,37 @@ struct ClassicDetailView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
+            VStack(spacing: MPSpacing.xxl) {
                 art
-                VStack(spacing: MPSpacing.xs) {
-                    Text(tale.title).mpText(.title1).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(tale.fullMeta).mpText(.callout).foregroundStyle(MPColor.textSecondary)
+
+                // Ana sayfanın kart dili: düz mor düğme, beyaz kartlar (lavanta
+                // kenar, sert alt kenar), pastel tonlar yalnızca kutu zeminlerinde.
+                VStack(spacing: MPSpacing.xxl) {
+                    GunlukPrimaryButton(title: startTitle, systemImage: "play") {
+                        app.readClassic(tale)
+                    }
+                    .padding(.top, -MPSpacing.sm)
+
+                    GunlukSection(title: "Bu masalla") {
+                        actions.padding(.horizontal, MPSpacing.lg)
+                    }
+
+                    GunlukSection(title: "Masal hakkında") {
+                        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                            Text(tale.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            if tale.classic != nil { narrationPicker }
+                            Text(tale.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, MPSpacing.lg)
+                    }
+
+                    similar
                 }
-                .padding(.top, -(MPSize.buttonHeight + 2))
-
-                MPButton(title: startTitle, systemImage: "book.fill", fullWidth: true) {
-                    app.readClassic(tale)
-                }
-                .padding(.top, MPSpacing.xl)
-
-                actions.padding(.top, MPSpacing.lg + 2)
-
-                Text(tale.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, MPSpacing.xxl)
-
-                if tale.classic != nil { narrationPicker.padding(.top, MPSpacing.xxl) }
-
-                similar
-
-                Text(tale.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, MPSpacing.xxl + 2)
+                .padding(.horizontal, MPSpacing.screenH)
             }
-            .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .ignoresSafeArea(edges: .top)
@@ -76,52 +75,60 @@ struct ClassicDetailView: View {
 
     // MARK: - Üst görsel
 
+    /// Vitrinle aynı sahne: tam genişlik boyalı görsel, altta karartma ve
+    /// masalın adı, alt köşeler yuvarlak ve sert kenarlı (`gunlukStage`).
     private var art: some View {
         ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title)
             .frame(height: artHeight)
             .frame(maxWidth: .infinity)
             .overlay {
-                // Görselin alt kenarı kâğıda erir (malzeme taklidi).
-                LinearGradient(stops: [.init(color: MPColor.backgroundKid.opacity(0), location: 0.46),
-                                       .init(color: MPColor.backgroundKid, location: 0.92)],
+                LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.5),
+                                       .init(color: MP.Scrim.solid, location: 1)],
                                startPoint: .top, endPoint: .bottom)
             }
             .clipped()
+            .overlay(alignment: .bottomLeading) {
+                VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                    Text(tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                }
+                .padding(.horizontal, MPSpacing.screenH)
+                .padding(.bottom, MPSpacing.xxl)
+            }
             .overlay(alignment: .top) {
                 HStack {
-                    glassButton("chevron.left", label: "Geri") { if !path.isEmpty { path.removeLast() } }
+                    GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
+                        if !path.isEmpty { path.removeLast() }
+                    }
                     Spacer()
-                    glassButton("square.and.arrow.up", label: "Paylaş") { gate = true }
+                    GunlukStageButton(systemImage: "square.and.arrow.up", label: "Paylaş") { gate = true }
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.top, MPSize.minTouchKid)
             }
-            .padding(.horizontal, -MPSpacing.screenH)
-    }
-
-    private func glassButton(_ icon: String, label: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            MPIcon(icon, size: 18, weight: .semibold)
-                .foregroundStyle(MPColor.textPrimary)
-                .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent)
-                .background(.ultraThinMaterial, in: Circle())
-                .background(MPColor.backgroundSurface.opacity(0.6), in: Circle())
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel(label)
+            .gunlukStage()
     }
 
     // MARK: - Eylemler
 
+    /// Ana sayfadaki mod kartları gibi: pastel kutu, beyaz kare içinde simge.
     private var actions: some View {
         let saved = favorites.contains(tale.id)
-        return HStack(alignment: .top, spacing: 0) {
-            action("speaker.wave.2.fill", "Dinle") { app.readClassic(tale, listen: true) }
-            action("moon.stars.fill", "Uyku modu") {
+        return HStack(spacing: MPSpacing.sm) {
+            HomeModeTile(title: "Dinle", systemImage: "speaker.wave.2", tone: .lav) {
+                MPHaptics.tap()
+                app.readClassic(tale, listen: true)
+            }
+            .accessibilityHint("Masalı sesli okuyarak açar")
+            HomeModeTile(title: "Uyku modu", systemImage: "moon", tone: .sky) {
+                MPHaptics.tap()
                 app.sleepSession = MPSleepSession(title: tale.title, pages: tale.text(narration).pages,
                                                   storyID: tale.id)
             }
-            action(saved ? "checkmark" : "plus", saved ? "Listemde" : "Listem") {
+            HomeModeTile(title: saved ? "Listemde" : "Listeme ekle", systemImage: saved ? "checkmark" : "plus",
+                         tone: .peach) {
                 let now = favorites.toggle(tale.id)
                 MPHaptics.tap()
                 app.showToast(now ? "Listene eklendi" : "Listenden çıkarıldı", symbol: now ? "checkmark" : "minus")
@@ -129,26 +136,10 @@ struct ClassicDetailView: View {
         }
     }
 
-    private func action(_ icon: String, _ title: String, perform: @escaping () -> Void) -> some View {
-        Button(action: perform) {
-            VStack(spacing: MPSpacing.xs) {
-                MPIcon(icon, size: 20, weight: .semibold)
-                    .foregroundStyle(MPColor.textPrimary)
-                    .frame(width: 48, height: 48)
-                    .background(MPColor.backgroundSunken, in: Circle())
-                Text(title).mpText(.caption).foregroundStyle(MPColor.textPrimary)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .combine)
-    }
-
     // MARK: - Anlatım
 
     private var narrationPicker: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md - 2) {
+        VStack(alignment: .leading, spacing: MPSpacing.sm) {
             Text("Anlatım").mpText(.eyebrow).foregroundStyle(MPColor.textSecondary)
             MPSegmented(options: ClassicNarration.allCases.map { ($0, $0.title) },
                         selection: Binding(get: { narration }, set: { value in
@@ -182,7 +173,6 @@ struct ClassicDetailView: View {
                     }
                 }
             }
-            .padding(.top, MPSpacing.xxl)
         }
     }
 }

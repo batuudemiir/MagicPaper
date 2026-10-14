@@ -17,47 +17,37 @@ struct ClassicSeriesView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(spacing: MPSpacing.xxl) {
                 art
-                VStack(spacing: MPSpacing.xs) {
-                    Text(series.title).mpText(.title1).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("\(series.byline) · \(episodes.count) \(series.unitName) · \(series.ageLabel)")
-                        .mpText(.callout).foregroundStyle(MPColor.textSecondary)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, -(MPSize.buttonHeight - 4))
 
-                if let next = library.nextEpisode(of: series.id) {
-                    MPButton(title: continueTitle(next), systemImage: "book.fill", fullWidth: true) {
-                        app.readClassic(next)
-                    }
-                    .padding(.top, MPSpacing.xl)
-                }
-
-                Text(series.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, MPSpacing.xl)
-
-                Text(series.bookTitle).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                    .padding(.top, MPSpacing.xxl + 2)
-                    .padding(.bottom, MPSpacing.xs)
-
-                VStack(spacing: 0) {
-                    ForEach(episodes) { episode in
-                        EpisodeRow(series: series, episode: episode, state: library.state(of: episode)) {
-                            app.readClassic(episode)
+                // Detay ekranıyla aynı kart dili.
+                VStack(spacing: MPSpacing.xxl) {
+                    if let next = library.nextEpisode(of: series.id) {
+                        GunlukPrimaryButton(title: continueTitle(next), systemImage: "play") {
+                            app.readClassic(next)
                         }
+                        .padding(.top, -MPSpacing.sm)
+                    }
+
+                    GunlukSection(title: series.bookTitle) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(series.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.bottom, MPSpacing.md)
+                            ForEach(episodes) { episode in
+                                EpisodeRow(series: series, episode: episode, state: library.state(of: episode)) {
+                                    app.readClassic(episode)
+                                }
+                            }
+                            Text(series.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.top, MPSpacing.md)
+                        }
+                        .padding(.horizontal, MPSpacing.lg)
                     }
                 }
-
-                Text(series.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, MPSpacing.lg + 2)
+                .padding(.horizontal, MPSpacing.screenH)
             }
-            .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .ignoresSafeArea(edges: .top)
@@ -74,19 +64,33 @@ struct ClassicSeriesView: View {
     private var art: some View {
         let saved = favorites.contains(series.id)
         return ClassicCoverImage(asset: series.cover, focus: series.coverFocus, seed: series.title)
-            .frame(height: 380)
+            .frame(height: 400)
             .frame(maxWidth: .infinity)
             .overlay {
-                LinearGradient(stops: [.init(color: MPColor.backgroundKid.opacity(0), location: 0.55),
-                                       .init(color: MPColor.backgroundKid, location: 0.96)],
+                LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.45),
+                                       .init(color: MP.Scrim.solid, location: 1)],
                                startPoint: .top, endPoint: .bottom)
             }
             .clipped()
+            .overlay(alignment: .bottomLeading) {
+                VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                    Text(series.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("\(series.byline) · \(episodes.count) \(series.unitName) · \(series.ageLabel)")
+                        .mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                }
+                .padding(.horizontal, MPSpacing.screenH)
+                .padding(.bottom, MPSpacing.xxl)
+            }
             .overlay(alignment: .top) {
                 HStack {
-                    glassButton("chevron.left", label: "Geri") { if !path.isEmpty { path.removeLast() } }
+                    GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
+                        if !path.isEmpty { path.removeLast() }
+                    }
                     Spacer()
-                    glassButton(saved ? "checkmark" : "plus", label: saved ? "Listemden çıkar" : "Listeme ekle") {
+                    GunlukStageButton(systemImage: saved ? "checkmark" : "plus",
+                                      label: saved ? "Listemden çıkar" : "Listeme ekle") {
                         let now = favorites.toggle(series.id)
                         MPHaptics.tap()
                         app.showToast(now ? "Listene eklendi" : "Listenden çıkarıldı", symbol: now ? "checkmark" : "minus")
@@ -95,19 +99,7 @@ struct ClassicSeriesView: View {
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.top, MPSize.minTouchKid)
             }
-            .padding(.horizontal, -MPSpacing.screenH)
-    }
-
-    private func glassButton(_ icon: String, label: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            MPIcon(icon, size: 18, weight: .semibold)
-                .foregroundStyle(MPColor.textPrimary)
-                .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent)
-                .background(.ultraThinMaterial, in: Circle())
-                .background(MPColor.backgroundSurface.opacity(0.6), in: Circle())
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel(label)
+            .gunlukStage()
     }
 }
 

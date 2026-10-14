@@ -177,6 +177,50 @@ struct ClassicsCatalog: Equatable {
     }
 }
 
+// MARK: - Başlık vitrini
+
+/// Günlük'ün en üstündeki kaydırılan vitrinin bir slaytı.
+struct ClassicHeaderSlide: Identifiable, Equatable {
+    enum Kind: Equatable { case resume, today, bedtime, weekly }
+    let kind: Kind
+    let tale: ClassicTale
+    var id: String { "\(kind)-\(tale.id)" }
+
+    var eyebrow: String {
+        switch kind {
+        case .resume: return "Kaldığın yerden"
+        case .today: return "Günün masalı"
+        case .bedtime: return "Uyku vakti"
+        case .weekly: return "Bu haftanın seçkisi"
+        }
+    }
+}
+
+extension ClassicsCatalog {
+    /// Vitrinin slaytları, sırayla:
+    /// 1. yarım kalan masal (en son açılan),
+    /// 2. günün masalı,
+    /// 3. uyku saatindeyse bir uyku masalı,
+    /// 4. kalan yerler haftanın seçkisinden.
+    /// Yalnızca boyalı kapağı olan tek masallar; aynı masal iki kez gelmez.
+    func headerSlides(today: ClassicTale?, inProgress: [UUID], isBedtime: Bool, limit: Int = 5) -> [ClassicHeaderSlide] {
+        let pending = Set(file.pendingCovers)
+        var used = Set<UUID>()
+        var slides: [ClassicHeaderSlide] = []
+        func add(_ tale: ClassicTale?, _ kind: ClassicHeaderSlide.Kind) {
+            guard let tale, slides.count < limit, !tale.isEpisode, !pending.contains(tale.cover),
+                  !used.contains(tale.id) else { return }
+            used.insert(tale.id)
+            slides.append(ClassicHeaderSlide(kind: kind, tale: tale))
+        }
+        add(inProgress.lazy.compactMap(tale).first { !$0.isEpisode }, .resume)
+        add(today, .today)
+        if isBedtime { add(items(in: .uyku).compactMap { if case .tale(let t) = $0, !pending.contains(t.cover) { return t } else { return nil } }.first, .bedtime) }
+        for item in weeklyPicks { if case .tale(let t) = item { add(t, .weekly) } }
+        return slides
+    }
+}
+
 // MARK: - Doğrulama
 
 extension ClassicsCatalog {

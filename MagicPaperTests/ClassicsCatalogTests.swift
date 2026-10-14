@@ -174,6 +174,51 @@ final class ClassicsCatalogTests: XCTestCase {
         XCTAssertEqual(tale, rapunzel)
     }
 
+    func testHeaderSlidesOrderAndUniqueness() {
+        let tales = catalog.standaloneTales
+        let rapunzel = tales[0], kirmizi = tales[1]
+        let slides = catalog.headerSlides(today: rapunzel, inProgress: [kirmizi.id, rapunzel.id], isBedtime: false)
+        // Seçki (Kırmızı Başlıklı Kız, Keloğlan serisi, Rapunzel) yeni bir şey getirmez:
+        // ikisi zaten slaytta, seri vitrine girmez.
+        XCTAssertEqual(slides.map(\.kind), [.resume, .today])
+        XCTAssertEqual(slides.map(\.tale.title), ["Kırmızı Başlıklı Kız", "Rapunzel"])
+    }
+
+    func testBedtimeSlideAppearsOnlyAtBedtime() {
+        let base = Self.file
+        var tales = base.tales
+        tales[3] = Self.tale(4, "Tavşan ile Kaplumbağa", origin: .aesop, shelves: [.uyku], ages: 3...6, minutes: 4)
+        let catalog = ClassicsCatalog(file: ClassicsCatalogFile(version: 1, tales: tales, series: base.series,
+                                                                weeklyPicks: base.weeklyPicks, originals: []))
+        XCTAssertFalse(catalog.headerSlides(today: nil, inProgress: [], isBedtime: false).contains { $0.kind == .bedtime })
+        XCTAssertEqual(catalog.headerSlides(today: nil, inProgress: [], isBedtime: true).first?.kind, .bedtime)
+    }
+
+    func testHeaderSlidesSkipPendingCoversAndRespectLimit() {
+        let base = Self.file
+        let file = ClassicsCatalogFile(version: 1, tales: base.tales, series: base.series,
+                                       weeklyPicks: ClassicWeeklyPicks(weekOf: "2026-10-12", ids: base.tales.map(\.id)),
+                                       originals: [], pendingCovers: [base.tales[2].cover])
+        let slides = ClassicsCatalog(file: file).headerSlides(today: nil, inProgress: [], isBedtime: false, limit: 3)
+        XCTAssertEqual(slides.count, 3)
+        XCTAssertFalse(slides.contains { $0.tale.cover == base.tales[2].cover })
+    }
+
+    func testCarouselLoopStartsInTheMiddleAndWraps() {
+        let count = 5
+        let start = GunlukLoop.start(count: count)
+        XCTAssertEqual(start % count, 0, "ilk slayttan başlar")
+        XCTAssertNil(GunlukLoop.recentered(start + 7, count: count), "ortada yerinde kalır")
+        // Sona yaklaşınca aynı slaydın ortadaki eşine.
+        let nearEnd = GunlukLoop.length(count: count) - 2
+        XCTAssertEqual(GunlukLoop.recentered(nearEnd, count: count), start + nearEnd % count)
+        // Başa yaklaşınca da.
+        XCTAssertEqual(GunlukLoop.recentered(3, count: count), start + 3)
+        // Tek slayt döngü kurmaz.
+        XCTAssertEqual(GunlukLoop.length(count: 1), 1)
+        XCTAssertNil(GunlukLoop.recentered(0, count: 1))
+    }
+
     func testDayOrdinalCountsDays() {
         XCTAssertEqual(ClassicsCatalog.dayOrdinal("1970-01-02"), 1)
         XCTAssertEqual(ClassicsCatalog.dayOrdinal("2026-10-14") - ClassicsCatalog.dayOrdinal("2026-10-13"), 1)
