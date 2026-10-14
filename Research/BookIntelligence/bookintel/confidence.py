@@ -11,6 +11,8 @@ Rules (RESEARCH_METHOD.md §Confidence, starting defaults to revisit at ~20 work
   HIGH        corpus scope, ratio >= 0.75, >= 2 evidence layers, kind OBSERVED,
               counterexamples reviewed, a tier A/B source
   INFERRED claims stop at MEDIUM.
+  A claim resting on a judgment field the agent reads inconsistently (blind re-reads,
+  learning.reliability) stops at LOW.
 """
 
 from __future__ import annotations
@@ -36,6 +38,8 @@ class Context:
         self.works = {w["work_id"]: w for w in store.all("work")}
         self.editions = {e["edition_id"]: e for e in store.all("edition")}
         self.sources = {s["source_id"]: s for s in store.all("source")}
+        from .learning import unreliable_fields
+        self.unreliable = unreliable_fields(store)
 
     def work_of(self, identifier: str) -> str:
         if identifier in self.editions:
@@ -84,6 +88,9 @@ def compute(claim: dict, ctx: Context) -> dict:
     contradicted = [e for e in claim.get("experiments", []) if e.get("observed") == "worse"]
     if contradicted and LEVELS.index(level) > LEVELS.index("LOW"):
         level = "LOW"
+    shaky = sorted(set(claim.get("judgment_fields", [])) & getattr(ctx, "unreliable", set()))
+    if shaky and LEVELS.index(level) > LEVELS.index("LOW"):
+        level = "LOW"
 
     return {
         "n_examined": n,
@@ -96,6 +103,7 @@ def compute(claim: dict, ctx: Context) -> dict:
         "wording": ("contradicted by an experiment with children" if contradicted else
                     "common, not universal" if counter else ("single book" if n == 1 else None)),
         "experiments": len(claim.get("experiments", [])),
+        **({"unreliable_fields": shaky} if shaky else {}),
     }
 
 

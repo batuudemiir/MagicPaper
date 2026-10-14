@@ -1,0 +1,120 @@
+{
+  "version": 5,
+  "rules": [
+    {
+      "rule_id": "m001",
+      "kind": "require_when",
+      "text": "Duygu yoğunluğu motorun 0-3 ölçeğinde söylenir; araştırmanın 0-5 ölçeği çevrilmeden öneriye girmez.",
+      "pattern": "0-3|engine (scale|intensity)|motor ölçeği",
+      "when": "intensity\\s*[0-9]",
+      "scope": [
+        "turn"
+      ],
+      "evidence": [
+        "p_fear_named_and_supported/story-engine-1",
+        "p_fear_named_and_supported/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m002",
+      "kind": "note",
+      "text": "Sayfa sayısı önerisi her yaş bandı için ayrı söylenir (AgeBand.pageCount: 3-4 → 6, 5-6 ve 7-8 → 8, 9-10 → 10); tek bir bandı tüm ürün gibi sunma.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_length_twelve_spreads/story-engine-1",
+        "p_length_twelve_spreads/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m003",
+      "kind": "note",
+      "text": "Tekrar önerileri genel tekrar kapısını (5-gram, RepetitionValidator) gevşetmez; yalnızca blueprint'te ilan edilmiş, katılınabilir, olumlu ya da nötr bir nakarat önerilir.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_repeated_line/story-engine-1",
+        "p_repeated_line/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m004",
+      "kind": "note",
+      "text": "Her öneri uyku modunu ayrıca düşünür: merak kancası gibi ilgi araçları uyku masalının son üçte birinde ve son sayfasında olmaz.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_spread_end_hook/privacy-safety-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m005",
+      "kind": "note",
+      "text": "Masallar şu an yalnızca metin ve sesli okunuyor: bilgiyi resme bırakan öneriler resimli masallar canlıya çıkana kadar uygulanamaz; öneriyi bugünkü ürüne göre yaz.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_picture_only_information/content-library-1",
+        "p_picture_only_information/story-engine-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:20Z"
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "change": "added",
+      "rule_id": "m001",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 2,
+      "change": "added",
+      "rule_id": "m002",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 3,
+      "change": "added",
+      "rule_id": "m003",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 4,
+      "change": "added",
+      "rule_id": "m004",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 5,
+      "change": "added",
+      "rule_id": "m005",
+      "at": "2026-10-14T14:27:20Z"
+    }
+  ]
+}

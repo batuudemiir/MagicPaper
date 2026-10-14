@@ -213,6 +213,8 @@ def validate_claim(claim: dict) -> list[str]:
     e.one_of(claim.get("kind"), terms("claim_kinds"), f"{cid}.kind")
     e.all_of(claim.get("layers", []), terms("evidence_layers"), f"{cid}.layers")
     e.need(bool(claim.get("layers")), f"{cid}: at least one evidence layer")
+    from .learning import COMPARED  # page judgments whose reliability is measured
+    e.all_of(claim.get("judgment_fields", []), set(COMPARED), f"{cid}.judgment_fields")
     e.one_of(claim.get("status"), CLAIM_STATUSES, f"{cid}.status")
     if claim.get("status") == "rejected":
         e.need(bool(claim.get("rejected_reason")), f"{cid}: a rejected claim keeps its reason")

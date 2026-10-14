@@ -141,6 +141,19 @@ book-agent ingest bookdash mud --age-band 5-6 --age-basis publisher
 
 Kapak ve künye sayfaları da sayfa olarak gelir; `[no text]` ile işaretlenir ve analizde belirtilir.
 
+## Kendini geliştirme
+
+Ajan üç yoldan iyileşir; her biri haftalık sayfada "Ajanlardan gelen sorular" ve "Ajan kendini nasıl geliştirdi" bölümlerinde görünür (`bookintel/learning.py`).
+
+- **Diğer ajanların soruları** (`data/requests/`): story-engine, content-library, privacy-safety, reader, parent-ux, ui-agent, illustration-system ya da ürün sahibi soru sorar; araştırma ajanı bir sonraki koşuda önce bunları cevaplar. Cevap iddia ve kitap gösterir, kanıt gücü (iddianın güven düzeyi) cevaba yazılır.
+  `ba request ask --agent reader --question "…" --why "…"` · `ba request list` · `ba request take|answer|decline|show <id>`
+- **Kör yeniden okuma** (`data/rechecks/`): her koşuda tamamlanmış bir kitap, ilk analizine bakılmadan yeniden okunur; iki okumanın uyuşması alan başına ajanın tutarlılığıdır. 20+ sayfada %60'ın altında kalan bir alan güvenilmez sayılır ve o alana dayanan iddialar (`judgment_fields`) LOW'u geçemez.
+  `ba recheck pick` · `ba recheck start <work>` · `ba recheck score <work>` · `ba recheck reliability`
+- **Yöntem kuralları** (`data/method/rules.json`): başka bir ajanın yakaladığı ve araştırma ajanının kabul ettiği her hata bir kurala dönüşür. `note` kuralları her oturumda okunur; `forbid` ve `require_when` kuralları `validate` tarafından denetlenir. Kurallar sürümlenir, gerekçesiz kaldırılmaz, uygulamayı değil yalnızca araştırma yöntemini değiştirir.
+  `ba method show` · `ba method add --kind … --text … --evidence <öneri>/<tur>` · `ba method retire <id> --text …` · `ba method check`
+
+Sınır: kör okumayı CLI zorlayamaz; ajanın ilk analizi açmaması talimatla sağlanır. Tutarlılık doğruluk değildir; doğruluğu yalnızca çocuklardan gelen deney sonuçları ölçer.
+
 ## Dosyalar
 
 ```

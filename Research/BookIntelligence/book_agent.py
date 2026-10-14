@@ -33,7 +33,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from bookintel import aggregate, analyze, confidence, cycle, exchange, experiments, gaps, ingest, report, runs  # noqa: E402
+from bookintel import (aggregate, analyze, confidence, cycle, exchange, experiments, gaps, ingest,  # noqa: E402
+                      learning, report, runs)
 from bookintel.adapters.base import AccessRefused  # noqa: E402
 from bookintel.adapters.bookdash import BookDashAdapter  # noqa: E402
 from bookintel.adapters.gutenberg import GutenbergAdapter  # noqa: E402
@@ -200,7 +201,7 @@ def cmd_metrics(store, args):
 
 
 def cmd_validate(store, args):
-    errors = validate_store(store) + exchange.validate(store)
+    errors = validate_store(store) + exchange.validate(store) + learning.validate(store)
     for error in errors:
         print(f"✗ {error}")
     print(f"{'FAILED' if errors else 'OK'}: {len(errors)} errors")
@@ -357,6 +358,65 @@ def cmd_cycle(store, args):
     print(f"→ {result['path']}")
 
 
+def cmd_request(store, args):
+    a = args.action
+    if a == "ask":
+        r = learning.ask(store, args.agent or "", args.question or "", args.why or "",
+                         target=args.target, age_band=args.age)
+        print(f"→ {r['request_id']}")
+    elif a == "take":
+        print(learning.take(store, args.request_id)["status"])
+    elif a == "answer":
+        r = learning.answer(store, args.request_id, args.text or "", claims=args.claim or [], works=args.work or [])
+        print(f"{r['request_id']}: answered (evidence {r['answer']['evidence_strength']})")
+    elif a == "decline":
+        print(learning.decline(store, args.request_id, args.text or "")["status"])
+    elif a == "show":
+        _print(learning.get_request(store, args.request_id))
+    else:  # list
+        for r in learning.all_requests(store):
+            print(f"{r['request_id']:40} {r['from']:18} {r['status']:12} {r['question']}")
+
+
+def cmd_recheck(store, args):
+    a = args.action
+    if a == "pick":
+        print(learning.pick(store) or "no complete analysis to re-read")
+    elif a == "start":
+        print(f"→ {learning.start(store, args.work_id or learning.pick(store))}")
+    elif a == "score":
+        r = learning.score(store, args.work_id)
+        for field, v in r["score"].items():
+            print(f"{field:22} {v['agree']}/{v['total']}  {v['rate']}" + (f"  differ p{v['differ']}" if v["differ"] else ""))
+    else:  # reliability
+        _print(learning.reliability(store))
+
+
+def cmd_method(store, args):
+    a = args.action
+    if a == "add":
+        r = learning.add_rule(store, kind=args.kind, text=args.text or "", evidence=args.evidence or [],
+                              pattern=args.pattern, when=args.when, scope=args.scope)
+        problems = [p for p in learning.check(store) if f"rule {r['rule_id']} " in p]
+        print(f"→ {r['rule_id']} ({len(problems)} current record(s) break it)")
+        for p in problems:
+            print(f"✗ {p}")
+    elif a == "retire":
+        print(learning.retire_rule(store, args.rule_id, args.text or "")["rule_id"], "retired")
+    elif a == "check":
+        problems = learning.check(store)
+        for p in problems:
+            print(f"✗ {p}")
+        print(f"{len(problems)} problem(s)")
+        return 1 if problems else 0
+    else:  # show: what the agent reads before each session
+        m = learning.method(store)
+        print(f"Method version {m['version']}")
+        for r in m["rules"]:
+            if r["active"]:
+                print(f"- {r['rule_id']} [{r['kind']}] {r['text']}")
+
+
 def cmd_review(store, args):
     _print(store.review_items())
 
@@ -475,6 +535,23 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("action", choices=["import"]); s.add_argument("path"); s.set_defaults(fn=cmd_usage)
     s = sub.add_parser("evaluate", help="score live experiments against imported usage"); s.set_defaults(fn=cmd_evaluate)
     s = sub.add_parser("calibration", help="how well the research agent's predictions held"); s.set_defaults(fn=cmd_calibration)
+    s = sub.add_parser("request", help="questions other agents send to the research agent")
+    s.add_argument("action", choices=["ask", "take", "answer", "decline", "show", "list"])
+    s.add_argument("request_id", nargs="?")
+    s.add_argument("--agent"); s.add_argument("--question"); s.add_argument("--why"); s.add_argument("--text")
+    s.add_argument("--target"); s.add_argument("--age")
+    s.add_argument("--claim", action="append"); s.add_argument("--work", action="append")
+    s.set_defaults(fn=cmd_request)
+    s = sub.add_parser("recheck", help="blind re-read of a complete book: the agent's reliability")
+    s.add_argument("action", choices=["pick", "start", "score", "reliability"]); s.add_argument("work_id", nargs="?")
+    s.set_defaults(fn=cmd_recheck)
+    s = sub.add_parser("method", help="the research agent's own rules, learnt from caught mistakes")
+    s.add_argument("action", choices=["show", "add", "retire", "check"]); s.add_argument("rule_id", nargs="?")
+    s.add_argument("--kind", choices=list(learning.RULE_KINDS)); s.add_argument("--text")
+    s.add_argument("--pattern"); s.add_argument("--when")
+    s.add_argument("--scope", action="append", choices=list(learning.RULE_SCOPES))
+    s.add_argument("--evidence", action="append")
+    s.set_defaults(fn=cmd_method)
     s = sub.add_parser("cycle", help="the weekly deterministic loop + one-page report"); s.set_defaults(fn=cmd_cycle)
     return p
 

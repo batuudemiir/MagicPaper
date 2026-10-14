@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import analyze, confidence, exchange, experiments, gaps, htmlpage, runs
+from . import analyze, confidence, exchange, experiments, gaps, htmlpage, learning, runs
 from .store import Store, write_if_changed
 
 
@@ -36,9 +36,17 @@ def run(store: Store) -> dict:
     report["confidence"] = confidence.recompute_all(store)
     report["calibration"] = experiments.calibration(store)
     report["gaps"] = gaps.gaps(store)
+    report["learning"] = learning.summary(store, since=_last_week(store, report["date"]))
     exchange.write_docs(store)
     report["path"] = str(write_weekly(store, report))
     return report
+
+
+def _last_week(store: Store, today: str) -> str | None:
+    """Start of the period this page covers: the previous weekly page's date."""
+    folder = store.ws.docs / "weekly"
+    earlier = sorted(p.stem for p in folder.glob("*.md") if p.stem < today) if folder.exists() else []
+    return earlier[-1] if earlier else None
 
 
 def write_weekly(store: Store, report: dict) -> Path:
@@ -97,6 +105,7 @@ def write_weekly(store: Store, report: dict) -> Path:
     out += ["", "## Tartışması süren öneriler", ""]
     out += [f"- `{t['thread']['proposal_id']}` — konuşanlar: {', '.join(sorted({x['agent'] for x in t['turns']}))}"
             for t in open_threads] or ["- Yok."]
+    out += [""] + learning.weekly_lines(report["learning"])
     out += ["", "## Sıradaki araştırma görevleri", ""]
     out += [f"- {g['gap']}: {g['have']} / {g['want']}" for g in report["gaps"][:6]] or ["- Plan hedefleri karşılanıyor."]
     out += ["", f"Ayrıntı: [EXCHANGE_DIGEST.md](../EXCHANGE_DIGEST.md) · [FINDINGS.md](../FINDINGS.md)"]
