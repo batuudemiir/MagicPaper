@@ -8,48 +8,60 @@ import SwiftUI
 
 enum KidTab: Hashable { case home, gunluk, library, corner }
 
-/// Custom bar: the system TabView bar cannot host the raised 64 pt "Yarat" button.
-/// Hide the system bar (`.toolbar(.hidden, for: .tabBar)`) and overlay this at the bottom of the kid root.
+/// Çocuk modunun alt çubuğu: içeriğin üstünde yüzen cam bir kapsül
+/// (iOS 26+ Liquid Glass, öncesinde sistem materyali; `mpGlassSurface`).
+///
+/// Özel çubuk, sistem `TabView` değil: "Yarat" bir yer değil eylem, sistem
+/// çubuğunda seçilebilir bir sekme gibi davranırdı. Yarat çubuğun içinde,
+/// sekmelerle aynı satırda durur; sekmeden ayrımı yükseklikle değil marka
+/// rengindeki dolu haptan gelir ve hiçbir zaman "seçili" görünmez.
+/// Cam üstüne cam konmaz: Yarat'ın hapı düz renk.
+/// `ContentView.kidRoot` bunu `.safeAreaInset(edge: .bottom)` ile yerleştirir;
+/// ekranların içeriği kapsülün altından ve çevresinden kayar.
 struct KidTabBar: View {
     @Binding var selection: KidTab
     let onCreate: () -> Void
 
+    @Namespace private var indicator
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
-        HStack(alignment: .top, spacing: 0) {
+        HStack(alignment: .center, spacing: 0) {
             tab(.home, "Ana sayfa", "house")
             tab(.gunluk, "Günlük", "sun.max")
-            Button(action: onCreate) {
-                VStack(spacing: 4) {
-                    MPIcon("plus", size: 28, weight: .bold)
-                        .foregroundStyle(.white)
-                        .frame(width: MPSize.createFab, height: MPSize.createFab)
-                        .background(LinearGradient.mpPrimary, in: Circle())
-                        .overlay(Circle().strokeBorder(MPColor.backgroundKid, lineWidth: 4))
-                        .mpShadow(.primaryGlow)
-                        .offset(y: -26)
-                        .padding(.bottom, -26)
-                    Text("Yarat").mpText(.caption).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(1)
-                }
-                .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityLabel("Masal yarat")
-            .accessibilityShowsLargeContentViewer { MPIcon("plus", size: 22, weight: .bold); Text("Yarat") }
+            createButton
             tab(.library, "Kitaplık", "books.vertical")
             tab(.corner, "Köşem", "face.smiling")
         }
-        // Beş öğe: tasarımdaki 8 pt kenar (İrem, FAZ 20).
-        .padding(.horizontal, MPSpacing.sm)
-        .padding(.top, MPSpacing.md)
-        .frame(height: MPSize.kidTabBarHeight - 20, alignment: .top)
+        .padding(.horizontal, MP.S.x1)
+        .padding(.vertical, MP.S.x1)
         // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
         // boyutta basılı tutunca büyük içerik görüntüleyici gösterir.
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
-        .background(alignment: .top) {
-            Color.white.opacity(0.97).ignoresSafeArea(edges: .bottom)
-                .overlay(alignment: .top) { Rectangle().fill(MPColor.borderKidDivider).frame(height: 1) }
+        .mpGlassSurface(in: Capsule(style: .continuous))
+        .padding(.horizontal, MP.S.x3)
+        .padding(.bottom, MP.S.x2)
+    }
+
+    /// Yarat: aynı satırda, marka renginde dolu hap. Sekme değil, eylem.
+    private var createButton: some View {
+        Button(action: onCreate) {
+            VStack(spacing: 3) {
+                MPIcon("plus", size: MP.G.md, weight: .bold)
+                    .foregroundStyle(MP.C.textOnBrand)
+                    .frame(width: MP.S.x9, height: MP.S.x7)
+                    .background(MP.C.brand, in: Capsule(style: .continuous))
+                Text("Yarat").mpText(.tabLabel).fontWeight(.black)
+                    .foregroundStyle(MP.C.brand)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+            }
+            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel("Masal yarat")
+        .accessibilityShowsLargeContentViewer { MPIcon("plus", size: MP.G.lg, weight: .bold); Text("Yarat") }
     }
 
     private func tab(_ t: KidTab, _ label: String, _ icon: String) -> some View {
@@ -57,22 +69,41 @@ struct KidTabBar: View {
         return Button { selection = t } label: {
             VStack(spacing: 3) {
                 // Seçilen sekmenin ikonu yaylanarak büyür; seçim renkle birlikte
-                // kalınlık ve ölçekle de görünür.
-                MPIcon(icon, size: 22, weight: on ? .bold : .regular).frame(height: 26)
+                // kalınlık, ölçek ve arkasındaki hapla da görünür.
+                MPIcon(icon, size: MP.G.lg, weight: on ? .bold : .regular)
+                    .frame(width: MP.S.x9, height: MP.S.x7)
                     .scaleEffect(on ? 1.12 : 1)
+                    .background { activeIndicator(on) }
                 Text(label).mpText(.tabLabel).fontWeight(on ? .black : .bold)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.85)
             }
             .foregroundStyle(on ? MPColor.actionPrimary : MPColor.textTertiary)
-            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchParent)
+            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
             .contentShape(Rectangle())
             .animation(MP.M.gated(MP.M.spring), value: on)
         }
         .buttonStyle(MPPressStyle())
+        .accessibilityLabel(label)
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {
-            MPIcon(icon, size: 22, weight: .bold)
+            MPIcon(icon, size: MP.G.lg, weight: .bold)
             Text(label)
+        }
+    }
+
+    /// Seçili sekmenin simgesinin arkasındaki yumuşak hap. Tek hap sekmeler
+    /// arasında kayar; Hareketi Azalt açıkken her sekme kendi hapını çapraz
+    /// geçişle gösterir.
+    @ViewBuilder
+    private func activeIndicator(_ isActive: Bool) -> some View {
+        if isActive {
+            let pill = Capsule(style: .continuous).fill(MP.C.brandSoft)
+            if reduceMotion {
+                pill.transition(.opacity)
+            } else {
+                pill.matchedGeometryEffect(id: "kid-tab-indicator", in: indicator)
+            }
         }
     }
 }

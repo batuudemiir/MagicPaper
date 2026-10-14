@@ -624,6 +624,22 @@ enum MP {
         static let knob    = ShadowSpec(color: Palette.murekkep900.opacity(0.20), radius: 1.5, x: 0, y: 1)
     }
 
+    // MARK: Cam
+
+    /// Liquid Glass (iOS 26+). Yalnızca içeriğin üstünde yüzen gezinme
+    /// kontrollerinde: alt sekme çubuğu, `MPModeSwitch` (CLAUDE.md, Derinlik).
+    /// Yüzey `mpGlassSurface(in:)` ile kurulur; bileşenler satır içi cam kurmaz.
+    enum Glass {
+        /// Sekme çubuğu. Kâğıt tonu, çok renkli sahne ve kapakların üstünde
+        /// etiketlerin okunur kalması için.
+        @available(iOS 26.0, *)
+        static var bar: SwiftUI.Glass { .regular.tint(C.surfaceCard.opacity(0.5)) }
+
+        /// iOS 26 öncesi yüzeyin dolgusu (malzemenin üstünde) ve kenarı.
+        static let fallbackFill = C.surfaceCard.opacity(0.72)
+        static let fallbackEdge = C.edgeGlass
+    }
+
     // MARK: Görsel üstü karartma
 
     /// İllüstrasyonun üstüne metin binen tek yer için karartma.

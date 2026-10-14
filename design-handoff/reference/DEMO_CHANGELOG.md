@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · liquid-glass-tab-bar (675bb72 üstüne) · Çocuk alt çubuğu Liquid Glass
+- Çocuk modunun alt çubuğu (`KidTabBar`) içeriğin üstünde yüzen cam bir kapsül oldu: iOS 26+ sistem Liquid Glass'ı, öncesinde sistem materyali + kâğıt tonu, Saydamlığı Azalt açıkken opak kâğıt.
+- "Yarat" çubuğun içine indi: yükseltilmiş 64 pt daire, gradient ve mor parlama kalktı; sekmelerle aynı satırda marka renginde dolu hap. Cam üstüne cam konmadı.
+- Seçili sekmenin simgesinin arkasında `brandSoft` hap; sekmeler arasında kayar, Hareketi Azalt açıkken çapraz geçer. Dokunma alanı çocuk ölçüsüne (56 pt) çıktı.
+- Yeni: `MP.Glass` token'ları (`MPTheme.swift`), `mpGlassSurface(in:)` (`MPGlass.swift`).
+- Kararlar (13 Ekim, Batuhan): Yarat çubuğun içinde, yüzen kapsül, üst başlıklar sonraki tur, cam kuralı `CLAUDE.md` "Derinlik"e eklendi (yalnızca içerik üstünde yüzen gezinme kontrolleri). Araştırma ve plan: `docs/LIQUID_GLASS_TAB_BAR_PLAN.md`.
+- Bilerek değişmedi: ebeveyn `TabView`'ı (sistem camını zaten alıyor), üst başlıklar, `MPModeSwitch`, kullanılmayan `MPTabBar`, `ContentView` yerleşimi.
+- Test: uygulama testleri 692 geçti, 0 hata. Tasarım yasası denetimleri yeni kodda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık, normal ve en büyük Dynamic Type; etiketler kesilmiyor. iOS 17.6 yedek yolu, koyu görünüm (uygulama yalnızca açık), küçük ekran ve VoiceOver simülatörde bakılmadı.
+- Etkilenen: `MPNavigationChrome.swift`, `MPTheme.swift`, `MPGlass.swift` (yeni), `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` (yeni), `docs/MagicPaper_Design_System.md`, `CLAUDE.md` (kökte, repo dışında).
+
 ### 2026-10-13 · main (ab6f02c üstüne) · Günlük kuralı uygulama işlerine genişletildi
 - Bundan sonra tamamlanan her iş (uygulama, canvas, içerik, belge) bu günlüğe yazılır.
 - Kural iki yerde: bu dosyanın "Kural" bölümü ve kaynak koddaki `CLAUDE.md` (yeni "Değişiklik günlüğü" bölümü, Definition of Done maddesi).

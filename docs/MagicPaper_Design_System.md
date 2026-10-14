@@ -109,7 +109,8 @@ doğrudan `Palette.gul*` okuyan 5 yer (`MPControls` ×3, `MPNavigation`, `Parent
 | Buton | `MPButton`, `MPIconButton` | ✅ |
 | Etiket | `MPChip`, `MPBadge`, `MPStarPill` | ✅ |
 | Form | `MPInput`, `MPSwitch`, `MPSegmentedControl`, `MPChoiceTile` | ✅ |
-| Navigasyon | `MPTabBar`, `MPNavBar`, `MPStepDots`, `MPSheet` | ✅ |
+| Navigasyon | `MPTabBar` (kullanılmıyor), `MPNavBar`, `MPStepDots`, `MPSheet`; çocuk alt çubuğu `KidTabBar` | ✅ |
+| Cam | `MP.Glass`, `mpGlassSurface(in:)`: yalnızca içerik üstünde yüzen gezinme kontrolleri | ✅ |
 | Liste | `MPListRow`, `MPRowDivider`, `MPSectionHeader` | ✅ |
 | İçerik | `MPStoryCard`, `MPStatCard`, `MPPlanCard`, `MPProgressRing`, `MPAvatar` | ✅ |
 | Boş durum | `MPEmptyState` | ✅ (tek tüketici: `LibraryView`, 3 çağrı) |
