@@ -204,6 +204,21 @@ final class ClassicsCatalogTests: XCTestCase {
         XCTAssertFalse(slides.contains { $0.tale.cover == base.tales[2].cover })
     }
 
+    func testCarouselLoopStartsInTheMiddleAndWraps() {
+        let count = 5
+        let start = GunlukLoop.start(count: count)
+        XCTAssertEqual(start % count, 0, "ilk slayttan başlar")
+        XCTAssertNil(GunlukLoop.recentered(start + 7, count: count), "ortada yerinde kalır")
+        // Sona yaklaşınca aynı slaydın ortadaki eşine.
+        let nearEnd = GunlukLoop.length(count: count) - 2
+        XCTAssertEqual(GunlukLoop.recentered(nearEnd, count: count), start + nearEnd % count)
+        // Başa yaklaşınca da.
+        XCTAssertEqual(GunlukLoop.recentered(3, count: count), start + 3)
+        // Tek slayt döngü kurmaz.
+        XCTAssertEqual(GunlukLoop.length(count: 1), 1)
+        XCTAssertNil(GunlukLoop.recentered(0, count: 1))
+    }
+
     func testDayOrdinalCountsDays() {
         XCTAssertEqual(ClassicsCatalog.dayOrdinal("1970-01-02"), 1)
         XCTAssertEqual(ClassicsCatalog.dayOrdinal("2026-10-14") - ClassicsCatalog.dayOrdinal("2026-10-13"), 1)
