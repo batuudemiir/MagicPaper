@@ -133,6 +133,31 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · main@a532209 · FAZ 20 Günlük: raf, arama ve Kategoriler kart dilinde; erişilebilirlik ve küçük ekran
+- **Raf ve arama:**
+  - Geri düğmesi ve arama alanı sert kenarlı, raf simgesi başlığın yanında.
+  - Sonuçlar "N masal" kartında; arama alanında temizleme düğmesi var.
+  - Sonuç yoksa düşünceli Ragi ile sakin bir mesaj çıkıyor.
+  - Yaş süzgeci çipinde "✕" yazısı yerine simge.
+- **Kategoriler:** koyu mor tam ekran örtü yerine krem bir alt sayfa. Yaş segmentle seçiliyor; raflar tek kartta (pastel simge kutusu, ad, masal sayısı).
+- **Düzeltmeler:**
+  - Kapağı bekleyen masal büyük sahnede koyu tonda çiziliyor; karartma artık çamurlu griye dönmüyor.
+  - "Fabllar" simgesi traktör olarak çiziliyordu, düzeldi.
+  - Okuyucu kapağı Günlük masallarında "İrem için" demiyor, yalnızca sayfa sayısı yazıyor (`StoryCover`: ad boşsa).
+- **Erişilebilirlik ve küçük ekran:**
+  - En büyük yazı boyutunda vitrin, detay ve seri sahne metni başlığa ve geri düğmesine binmiyor (büyüme `accessibility1` ile sınırlı, sığmazsa küçülüyor).
+  - Vitrin küçük ekranda ekranın %60'ı, büyük telefonlarda 520 pt.
+- **Bilerek değişmedi:** vitrin yüksekliği büyük telefonlarda aynı; 11 masal hâlâ kapak bekliyor.
+- **Test ve doğrulama:**
+  - Günlük ve okuyucu testleri 64/0. Tam takım bu turda çalıştırılmadı.
+  - Simülatörde okuma akışı uçtan uca denendi: Rapunzel açıldı, 3. sayfada bırakıldı, "Kaldığın yerden"de göründü.
+  - En büyük yazı boyutu ve iPhone SE ekran görüntüsüyle kontrol edildi.
+  - SE'deki oran düzeltmesi ve koyu yedek sahne sonradan simülatörde ayrıca açılıp bakılmadı.
+  - Telefona kurulamadı (iPhone 16 bağlı değildi).
+- **Gönderim:** `main` origin'e gönderildi (`1a14de7..a532209`).
+- **Kural:** kökteki `CLAUDE.md`, "Değişiklik günlüğü" bölümü sertleşti (Batuhan, 14 Ekim). Biten her iş, küçüğü de, yazılır. Dosyada başka oturumun değişikliği olsa da kayıt ertelenmez, yalnızca kendi kaydını commit'lersin.
+- **Etkilenen:** `Screens/Gunluk/GunlukShelfView.swift`, `GunlukCategoriesView.swift`, `GunlukComponents.swift`, `GunlukHeader.swift`, `GunlukView.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `Screens/StoryReader/StoryCover.swift`, `Screens/MPAppState.swift`; repo dışında `CLAUDE.md`.
+
 ### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
 - `liquid-glass-tab-bar` dalı main'e ileri sarıldı (origin'e gönderilmedi, izin bekliyor): yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
 - Birleşmeden önce main'in son hâli (Ana sayfa, Günlük, günlük kayıtları) dala alındı; yalnızca bu dosyada çakışma vardı, iki tarafın kayıtları da korundu.
