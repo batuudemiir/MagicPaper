@@ -349,3 +349,28 @@ struct GunlukStageButton: View {
         .accessibilityLabel(label)
     }
 }
+
+// MARK: - Sonsuz vitrin
+
+/// Vitrinin sonsuz döngüsü: slaytlar `cycles` tur tekrarlanır, ortadan
+/// başlanır; kullanıcı kenara iki tur kalana dek yaklaşınca ortadaki aynı
+/// slayta görünmeden dönülür. Tek slayt döngü kurmaz.
+enum GunlukLoop {
+    static let cycles = 41
+
+    static func length(count: Int) -> Int {
+        count > 1 ? count * cycles : count
+    }
+
+    static func start(count: Int) -> Int {
+        count > 1 ? count * (cycles / 2) : 0
+    }
+
+    /// Kenara yakınsa ortadaki eşi; değilse `nil` (yerinde kalır).
+    static func recentered(_ position: Int, count: Int) -> Int? {
+        guard count > 1 else { return nil }
+        let cycle = position / count
+        guard cycle < 2 || cycle > cycles - 3 else { return nil }
+        return start(count: count) + position % count
+    }
+}
