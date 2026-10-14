@@ -134,7 +134,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 ## Değişiklik günlüğü
 
 ### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
-- `liquid-glass-tab-bar` dalı main'e ileri sarıldı ve origin'e gönderildi: yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
+- `liquid-glass-tab-bar` dalı main'e ileri sarıldı (origin'e gönderilmedi, izin bekliyor): yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
 - Birleşmeden önce main'in son hâli (Ana sayfa, Günlük, günlük kayıtları) dala alındı; yalnızca bu dosyada çakışma vardı, iki tarafın kayıtları da korundu.
 - Test: birleşik hâlde uygulama testleri 697, 0 hata, 1 atlandı.
 - Etkilenen: bu dosya (önceki kayıtlarda listelenen dosyalar main'e girdi).
