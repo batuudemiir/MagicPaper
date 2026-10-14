@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
+- `liquid-glass-tab-bar` dalı main'e ileri sarıldı ve origin'e gönderildi: yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
+- Birleşmeden önce main'in son hâli (Ana sayfa, Günlük, günlük kayıtları) dala alındı; yalnızca bu dosyada çakışma vardı, iki tarafın kayıtları da korundu.
+- Test: birleşik hâlde uygulama testleri 697, 0 hata, 1 atlandı.
+- Etkilenen: bu dosya (önceki kayıtlarda listelenen dosyalar main'e girdi).
+
 ### 2026-10-14 · liquid-glass-tab-bar (6dd3573 üstüne) · Alt çubuk yalnızca ikon, seçilince içi boyanır
 - Çubukta yazı yok, yalnızca ikon (Yarat dahil). Sekmelerin adı VoiceOver'da ve basılı tutunca büyük içerik görüntüleyicide okunuyor.
 - Her sekmenin kendi rengi var: Ana sayfa mor (`brand`), Günlük sarı (`reward`), Kitaplık mercan (`play`), Köşem yeşil (`calm`). Seçilince ikonun içi o renkle dolar (SF Symbol `.fill`, çizgiden dolguya sembol geçişi) ve bir kez zıplar; Hareketi Azalt'ta yalnızca dolgu değişir. Seçim renkle birlikte dolu/boş şekil farkıyla da belli.
