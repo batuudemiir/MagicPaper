@@ -53,7 +53,7 @@ struct ClassicDetailView: View {
                     .padding(.top, MPSpacing.xxl + 2)
             }
             .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xxxl + MPSpacing.sm)
+            .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .ignoresSafeArea(edges: .top)
         .background(MPColor.backgroundKid.ignoresSafeArea())
@@ -170,18 +170,19 @@ struct ClassicDetailView: View {
     private var similar: some View {
         let items = library.catalog.similar(to: tale)
         if !items.isEmpty {
-            GunlukSectionHeader(title: "Benzerleri").padding(.top, MPSpacing.xxxl + 2)
-            GunlukRow {
-                ForEach(items) { item in
-                    ClassicShelfCard(item: item, width: 120, height: 166) {
-                        switch item {
-                        case .tale(let t): path.append(.tale(t.id))
-                        case .series(let s, _): path.append(.series(s.id))
+            GunlukSection(title: "Benzerleri") {
+                GunlukRow(inset: MPSpacing.lg) {
+                    ForEach(items) { item in
+                        ClassicShelfCard(item: item, width: 120, height: 166) {
+                            switch item {
+                            case .tale(let t): path.append(.tale(t.id))
+                            case .series(let s, _): path.append(.series(s.id))
+                            }
                         }
                     }
                 }
             }
-            .padding(.top, MPSpacing.md + 2)
+            .padding(.top, MPSpacing.xxl)
         }
     }
 }
