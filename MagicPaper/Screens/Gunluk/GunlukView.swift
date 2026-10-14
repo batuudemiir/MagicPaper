@@ -30,6 +30,8 @@ struct GunlukView: View {
                         GunlukHeaderCarousel(
                             slides: slides,
                             topInset: proxy.safeAreaInsets.top,
+                            height: GunlukHeaderCarousel.height(
+                                screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
                             onOpen: { path.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
                             onSearch: { path.append(.search) })
@@ -57,11 +59,15 @@ struct GunlukView: View {
                 destination(route)
             }
         }
-        .fullScreenCover(isPresented: $showCategories) {
+        .sheet(isPresented: $showCategories) {
             GunlukCategoriesView { shelf, band in
                 showCategories = false
                 path = [.shelf(shelf, band)]
             }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationCornerRadius(MPRadius.sheet)
+            .presentationBackground(MPColor.backgroundKid)
         }
     }
 
@@ -91,7 +97,7 @@ struct GunlukView: View {
             ForEach([ClassicShelf.klasikler, .anadolu, .uyku]) { shelf in
                 GunlukChip(title: shelf.chipTitle) { path.append(.shelf(shelf)) }
             }
-            GunlukChip(title: "Kategoriler", trailingChevron: true) { showCategories = true }
+            GunlukChip(title: "Kategoriler", trailingIcon: "chevron.down") { showCategories = true }
         }
     }
 

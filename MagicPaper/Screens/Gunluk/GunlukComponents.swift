@@ -15,6 +15,9 @@ struct ClassicCoverImage: View {
     var focus: ClassicFocus = .center
     /// Yedek kapağın rengini seçmek için.
     var seed: String = ""
+    /// Büyük sahnede (vitrin, detay, seri): yedek kapak koyu tonda çizilir ki
+    /// üstündeki karartma çamurlu bir griye dönmesin.
+    var onStage: Bool = false
 
     var body: some View {
         GeometryReader { geo in
@@ -31,9 +34,11 @@ struct ClassicCoverImage: View {
                 let tone = Self.fallbackTone(seed)
                 // Ana sayfanın dili: pastel ton yalnızca zeminde, simge koyu tonda.
                 ZStack {
-                    tone.soft
-                    MPIcon("book.closed", size: min(geo.size.width, geo.size.height) * 0.28, weight: .regular)
-                        .foregroundStyle(tone.deep)
+                    onStage ? tone.deep : tone.soft
+                    MPIcon("book.closed", size: min(geo.size.width, geo.size.height) * (onStage ? 0.22 : 0.28),
+                           weight: .regular)
+                        .foregroundStyle(onStage ? tone.soft : tone.deep)
+                        .offset(y: onStage ? -geo.size.height * 0.12 : 0)
                 }
             }
         }
@@ -78,15 +83,16 @@ struct ClassicCoverTile: View {
 struct GunlukChip: View {
     let title: String
     var isSelected: Bool = false
-    var trailingChevron: Bool = false
+    /// Sağdaki küçük simge: "Kategoriler"de aşağı ok, süzgeçte çarpı.
+    var trailingIcon: String? = nil
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: MPSpacing.xxs) {
                 Text(title).mpText(.callout).lineLimit(1)
-                if trailingChevron {
-                    MPIcon("chevron.down", size: 11, weight: .bold).accessibilityHidden(true)
+                if let trailingIcon {
+                    MPIcon(trailingIcon, size: 11, weight: .bold).accessibilityHidden(true)
                 }
             }
             .foregroundStyle(isSelected ? MPColor.textOnAction : MPColor.textPrimary)
@@ -372,5 +378,36 @@ enum GunlukLoop {
         let cycle = position / count
         guard cycle < 2 || cycle > cycles - 3 else { return nil }
         return start(count: count) + position % count
+    }
+}
+
+// MARK: - Raf simgesi
+
+/// Rafın Ana sayfa dilindeki simge kutusu: pastel zemin, koyu simge.
+extension ClassicShelf {
+    var symbol: String {
+        switch self {
+        case .klasikler: return "crown"
+        case .anadolu:   return "building.columns"
+        case .fabllar:   return "sparkles"
+        case .seriler:   return "bookmark"
+        case .uyku:      return "moon"
+        case .besDakika: return "clock"
+        case .hayvanlar: return "tree"
+        case .sesli:     return "speaker.wave.2"
+        }
+    }
+
+    var tone: MPWorldTone {
+        switch self {
+        case .klasikler: return .lav
+        case .anadolu:   return .peach
+        case .fabllar:   return .mint
+        case .seriler:   return .yellow
+        case .uyku:      return .sky
+        case .besDakika: return .pink
+        case .hayvanlar: return .green
+        case .sesli:     return .lav
+        }
     }
 }
