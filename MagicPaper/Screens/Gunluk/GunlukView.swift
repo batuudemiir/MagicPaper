@@ -28,11 +28,8 @@ struct GunlukView: View {
                     VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                         // Ana sayfanın sahnesi gibi: vitrin ekranın tepesinden başlar.
                         GunlukHeaderCarousel(
-                            slides: library.headerSlides(isBedtime: MPBedtime.isBedtime(settings: settings)),
+                            slides: slides,
                             topInset: proxy.safeAreaInsets.top,
-                            height: GunlukHeaderCarousel.height(
-                                screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom,
-                                topInset: proxy.safeAreaInsets.top),
                             onOpen: { path.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
                             onSearch: { path.append(.search) })
@@ -40,7 +37,7 @@ struct GunlukView: View {
                         // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
                         // kartında (beyaz, lavanta kenar, sert alt kenar).
                         VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                            chips
+                            chips.padding(.top, -MPSpacing.sm)
                             continueSection
                             weeklySection
                             shelfSection(.anadolu, title: "Anadolu'dan", width: 128, height: 176)
@@ -114,9 +111,15 @@ struct GunlukView: View {
         }
     }
 
+    /// Vitrinin slaytları; seçki bunları tekrarlamaz.
+    private var slides: [ClassicHeaderSlide] {
+        library.headerSlides(isBedtime: MPBedtime.isBedtime(settings: settings))
+    }
+
     @ViewBuilder
     private var weeklySection: some View {
-        let picks = library.weeklyPicks
+        let shown = Set(slides.map(\.tale.id))
+        let picks = library.weeklyPicks.filter { !shown.contains($0.id) }
         if !picks.isEmpty {
             GunlukSection(title: "Bu haftanın seçkisi") {
                 GunlukRow(spacing: MPSpacing.sm, inset: MPSpacing.lg) {
