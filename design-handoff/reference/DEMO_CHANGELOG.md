@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-14 · liquid-glass-tab-bar (0e68d68 üstüne) · Alt çubukta yazı yalnızca seçili sekmede
+- Çocuk alt çubuğunda yazı artık yalnızca seçili sekmede ve Yarat'ta görünüyor; diğer sekmeler yalnızca ikon ve ortada. Seçilince ikon yukarı kayar, yazı altından açılır; Hareketi Azalt'ta yalnızca belirir.
+- Yatay hap (`[ikon Ana sayfa]`) denendi ama beş öğeyle iPhone SE'ye sığmıyor, sekme dokunma alanı 48 pt'nin altına düşüyor; bu yüzden dikey düzen.
+- Karşılaştırma için geliştirici ayarına "Alt çubukta tüm yazılar" anahtarı eklendi (yalnızca DEBUG). Kapalı (varsayılan) yeni biçim.
+- VoiceOver her sekmenin adını okumaya devam ediyor; basılı tutunca büyük içerik görüntüleyici çalışıyor.
+- Resimli ikonlar için görsel promptları yazıldı: `docs/TAB_ICON_PROMPTS.md` (Ana sayfa, Günlük, Kitaplık; Köşem çocuğun avatarı). Görseller Batuhan'dan bekleniyor.
+- Bilerek değişmedi: Yarat, cam yüzey, seçili sekme hapı.
+- Test: uygulama testleri 693, 0 hata, 1 atlandı. Tasarım yasası denetimleri yeni satırlarda boş. Simülatör (iPhone 17 Pro, iOS 27): Kitaplık ve Ana sayfa, sekme geçişi.
+- Etkilenen: `MPNavigationChrome.swift`, `SettingsView.swift`, `docs/TAB_ICON_PROMPTS.md` (yeni).
+
 ### 2026-10-14 · liquid-glass-tab-bar (3862324 üstüne) · Alt çubuk camı geliştirildi
 - Çubuk iOS 26+ `safeAreaBar` ile yerleşiyor (`mpFloatingBar`): altından kayan içerik sistemin kaydırma kenarı efektiyle yumuşar. Öncesinde `safeAreaInset`.
 - Cam dokunuşa tepki veriyor (`.interactive()`), kâğıt tonu %50'den %25'e indi: kapakların rengi camdan geçiyor, beyaz bir şerit gibi durmuyor.

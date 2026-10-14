@@ -24,6 +24,12 @@ struct KidTabBar: View {
 
     @Namespace private var indicator
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Yazı yalnızca seçili sekmede ve Yarat'ta görünür; diğerleri yalnızca
+    /// ikon. Çubuk sakinleşir, "neredeyim" sorusunun cevabı yine yazılı kalır.
+    /// Geliştirici ayarındaki anahtar eski biçimi (her sekmede yazı) açar,
+    /// iki biçim telefonda karşılaştırılabilsin diye.
+    @AppStorage(KidTabBar.allLabelsKey) private var showsAllLabels = false
+    static let allLabelsKey = "mp_debug_kidTabAllLabels"
 
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
@@ -74,9 +80,15 @@ struct KidTabBar: View {
                     .frame(width: MP.S.x9, height: MP.S.x7)
                     .scaleEffect(on ? 1.12 : 1)
                     .background { activeIndicator(on) }
-                Text(label).mpText(.tabLabel).fontWeight(on ? .black : .bold)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.85)
+                if on || showsAllLabels {
+                    Text(label).mpText(.tabLabel).fontWeight(on ? .black : .bold)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.85)
+                        // Yazı ikonun altından açılır; Hareketi Azalt'ta
+                        // yalnızca belirir.
+                        .transition(reduceMotion ? .opacity
+                                    : .opacity.combined(with: .scale(scale: 0.8, anchor: .top)))
+                }
             }
             // Pasif sekme `textSecondary`: cam beyaza yakınken `textTertiary`
             // 2.5:1'de kalıyordu, bu 5:1.

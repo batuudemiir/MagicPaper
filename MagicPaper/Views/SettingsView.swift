@@ -27,6 +27,7 @@ struct SettingsView: View {
     #if DEBUG
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
     @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
+    @AppStorage(KidTabBar.allLabelsKey) private var allTabLabels = false
     @State private var familyFlags: [FamilyFeature: Bool] = Dictionary(
         uniqueKeysWithValues: FamilyFeature.allCases.map { ($0, FamilyFeatureAccess.isEnabled($0)) })
     #endif
@@ -328,6 +329,10 @@ struct SettingsView: View {
                             subtitle: "Kitap karakteri ve hazır sahneler",
                             isOn: Binding(get: { illustratedBooks },
                                           set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }))
+            MPRowDivider(area: .parent)
+            ParentToggleRow(systemImage: "square.grid.2x2", title: "Alt çubukta tüm yazılar",
+                            subtitle: "Kapalıyken yalnızca seçili sekmenin yazısı görünür",
+                            isOn: $allTabLabels)
             MPRowDivider(area: .parent)
             ParentToggleRow(systemImage: "sparkles", title: "Fikir kartları adımı",
                             subtitle: "Moddan sonra isteğe bağlı fikir kartları",
