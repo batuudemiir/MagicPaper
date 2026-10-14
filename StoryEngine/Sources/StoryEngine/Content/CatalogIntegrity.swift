@@ -94,6 +94,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkVariants(catalog))
         issues.append(contentsOf: checkBlueprintShape(catalog))
         issues.append(contentsOf: checkAggregateWeights(catalog))
+        issues.append(contentsOf: checkRefrains(catalog))
         issues.append(contentsOf: checkBeatAuthoring(catalog))
         issues.append(contentsOf: checkBeatSequences(catalog))
         issues.append(contentsOf: checkBeatCoverage(catalog))
@@ -891,6 +892,55 @@ public struct CatalogIntegrityChecker: Sendable {
             .filter { !($0.aggregateWeight.isFinite && $0.aggregateWeight > 0) }
             .map { .init(severity: .error, code: "blueprint_aggregate_weight_invalid", recordID: $0.id,
                          message: "aggregateWeight must be a positive number.") }
+    }
+
+    /// A declared refrain (book research `p_repeated_line`): short, slot-free,
+    /// said at least twice on pages the blueprint has, changed once at the end,
+    /// and inside the band's sentence limit. The last use closes the book, so it
+    /// must close calmly.
+    private func checkRefrains(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for blueprint in catalog.blueprints + catalog.series.continuations {
+            guard let refrain = blueprint.refrain else { continue }
+            func fail(_ code: String, _ message: String) {
+                issues.append(.init(severity: .error, code: code, recordID: blueprint.id,
+                                    message: "Refrain of '\(blueprint.id)': \(message)"))
+            }
+            let pageNumbers = Set(blueprint.pagePlan.map(\.pageNumber))
+            let lastPage = pageNumbers.max() ?? 0
+            if refrain.pages.count < 2 {
+                fail("refrain_too_few_pages", "a refrain is said at least twice before its last use.")
+            }
+            if refrain.pages != refrain.pages.sorted() || Set(refrain.pages).count != refrain.pages.count {
+                fail("refrain_pages_unordered", "pages must be distinct and in reading order.")
+            }
+            let all = refrain.pages + [refrain.finalPage]
+            if let stray = all.first(where: { !pageNumbers.contains($0) }) {
+                fail("refrain_page_missing", "page \(stray) is not in the blueprint.")
+            }
+            if refrain.pages.contains(refrain.finalPage) || refrain.pages.contains(where: { $0 > refrain.finalPage }) {
+                fail("refrain_final_not_last", "the changed line is the last use.")
+            }
+            if refrain.finalPage != lastPage {
+                fail("refrain_final_not_on_last_page", "the changed line closes the book (page \(lastPage)).")
+            }
+            if refrain.line == refrain.finalLine {
+                fail("refrain_final_unchanged", "the last use changes the line.")
+            }
+            for text in [refrain.line, refrain.finalLine] {
+                if text.contains("{{") {
+                    fail("refrain_has_slot", "refrains are slot-free: \"\(text)\".")
+                }
+                let words = TextMetrics.wordCount(text)
+                if words > RefrainSpec.maxWords || words > blueprint.ageRange.maxSentenceWords {
+                    fail("refrain_too_long", "\"\(text)\" is \(words) words (max \(RefrainSpec.maxWords)).")
+                }
+            }
+            if !CalmEnding.isCalm(refrain.finalLine) {
+                fail("refrain_final_not_calm", "the last line closes the book and must close calmly.")
+            }
+        }
+        return issues
     }
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {
