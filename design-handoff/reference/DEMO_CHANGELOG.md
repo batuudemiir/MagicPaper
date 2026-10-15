@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@4a81a49 · Ana sayfa: mod kartlarına sahnecik yeri
+- "Yeni bir masal yaz" kartları (`HomeModeCard`) sahneciğe hazır: `Assets.xcassets/Scenes/mode-bedtime`, `mode-learning`, `mode-adventure` (uyku saatinde `mode-bedtime-night`) eklenince kartın sağ altında kenardan taşan küçük illüstrasyon ve iki kelimelik ipucu ("sakin, kısa", "merak, keşif", "cesur, hızlı") görünür; ikon dairesi kalkar. Gece görseli varsa uyku kartı gece göğü zemininde.
+- Görsel henüz yok: kartlar bugünkü ikonla aynı görünür. Görselleri Batuhan header'la aynı üslupta, maskotsuz üretecek (ekranda tek Ragi).
+- Sahnecik düzeni etkilemez (arka plan katmanı); geçici yer tutucuyla denenen ilk sürüm kartı genişletip sayfayı sağa taşırıyordu, düzeltildi. Yer tutucu commit'lenmedi.
+- Simülatörde yer tutucuyla görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-15 · anasayfa-yenileme@0eea25c · Ana sayfa: header altı Apple düzeninde, beyaz zemin
 - Araştırma (Apple Design Awards 2026, Khan Academy Kids, Pok Pok, Moshi, Apple HIG Branding): birkaç büyük giriş noktası, az yazı, sakin süreklilik, her gün küçük bir an, tekrar eden az sayıda marka öğesi.
 - **Zemin beyaz** (krem kalktı). Bölüm başlığı içeriğin üstünde, kalın (`HomeSection` yeniden: başlık dışarıda, isteğe bağlı "Tümü" bağlantısı, içerik açık gri alanda ya da doğrudan zeminde).
