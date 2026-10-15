@@ -133,8 +133,8 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, push yok) · Uyku modu bayrak arkasında, akşam üç mod serbest
-- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı (Batuhan'ın isteği); origin'e gönderilmedi. Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, origin'e gönderildi) · Uyku modu bayrak arkasında, akşam üç mod serbest
+- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı, ardından origin'e gönderildi (Batuhan'ın isteği; plan, iş ve günlük commit'leri dahil). Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
 - Uyku modu v1'de kapalı: yeni `MPFeatures.sleepMode = false`. Kod duruyor; Ana sayfa akşam kartı uyku modunu açmıyor, klasik masal detayındaki "Uyku modu" karesi gizli, masal sonu "İyi geceler" okuyucuyu kapatıp "İyi geceler" tostu gösteriyor, `magicpaper://sleep` bu akşamın masalına düşüyor, Siri "Uyku modu" kısayolu çıktı (intent `isDiscoverable` bayrağa bağlı).
 - Akşam kartı: düğme "Uyku masalı oluştur", alt metin "Kısa, sakin bir masalla günü kapatalım." Düğme yeni `BedtimeStorySheet`'i açar: "Uyku masalı oluştur" (doğrudan Masalda kimler olsun?), yarım masal varsa "Kaldığın yerden devam et", "Başka bir masal seçeyim" (mod adımı). Pencere yalnızca dokununca açılır, kendiliğinden gelmez.
 - Uyku saatinde Yarat artık üç modu da sunar: `allowedModes` filtresi kalktı, yerine `emphasizedMode` + `shownModes(_:emphasized:)`. Ana sayfada Uyku karosu "Bu akşam" etiketi ve mor çerçeveyle önde; Yarat 1'de Uyku öncesi önceden seçili ve üstte açıklama satırı. Sürpriz değişmedi.
