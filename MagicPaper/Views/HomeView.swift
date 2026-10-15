@@ -162,11 +162,18 @@ struct HomeView: View {
 
     // MARK: - Mod şeridi
 
-    private var shownModes: [StoryMode] {
+    private var availableModes: [StoryMode] {
         let age = profileManager.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
-        let available = StoryCreationSteps.allowedModes(StoryChoiceSources.current.availableModes(forAge: age),
-                                                        isBedtime: MPBedtime.isBedtime(settings: settings))
-        return StoryCreationSteps.shownModes(available)
+        return StoryChoiceSources.current.availableModes(forAge: age)
+    }
+
+    /// Uyku saatinde Uyku öncesi önde; diğer modlar da seçilebilir (15 Ekim 2026).
+    private var emphasizedMode: StoryMode? {
+        StoryCreationSteps.emphasizedMode(availableModes, isBedtime: MPBedtime.isBedtime(settings: settings))
+    }
+
+    private var shownModes: [StoryMode] {
+        StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
     /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
@@ -180,14 +187,17 @@ struct HomeView: View {
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
                       spacing: MPSpacing.sm) {
                 ForEach(shownModes, id: \.self) { mode in
-                    HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
+                    HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone,
+                                 badge: mode == emphasizedMode ? "Bu akşam" : nil) {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
                     }
-                    .accessibilityLabel(mode.title)
+                    .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
+            // "Bu akşam" etiketi karonun üst kenarına biner.
+            .padding(.top, emphasizedMode == nil ? 0 : MPSpacing.lg)
         }
     }
 

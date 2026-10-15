@@ -108,6 +108,11 @@ struct ContentView: View {
             .fullScreenCover(item: $app.sleepSession, onDismiss: { MPSurfaceSync.refresh() }) { session in
                 SleepModeView(session: session).environmentObject(app)
             }
+            .sheet(isPresented: $app.showBedtimeSheet, onDismiss: { app.runBedtimeChoice() }) {
+                BedtimeStorySheet(resumeStory: MPTonightSource.current().resumeStory) { choice in
+                    app.pendingBedtimeChoice = choice
+                }
+            }
             .fullScreenCover(item: $app.dailyReading, onDismiss: { MPSurfaceSync.refresh() }) { story in
                 DailyStoryReaderView(story: story).environmentObject(app).environmentObject(settings)
             }

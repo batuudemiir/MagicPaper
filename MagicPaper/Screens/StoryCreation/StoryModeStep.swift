@@ -12,6 +12,9 @@ import SwiftUI
 struct StoryModeStep: View {
 
     let modes: [StoryMode]
+    /// Uyku saatinde öne çıkan mod: ilk sırada ve seçili gelir, diğerleri
+    /// serbest (karar 15 Ekim 2026).
+    var emphasized: StoryMode? = nil
     var childName: String = ""
     var childColor: Color? = nil
     let onChoose: (StoryMode) -> Void
@@ -31,6 +34,11 @@ struct StoryModeStep: View {
                     Text("Birini seç, gerisini biz hazırlayalım.")
                         .mpText(.body).foregroundStyle(MPColor.textSecondary)
                         .multilineTextAlignment(.center)
+                    if let emphasized {
+                        Text("Bu akşam için \(emphasized.title) seçili. İstersen değiştir.")
+                            .mpText(.footnote).foregroundStyle(MPColor.actionPrimary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 if !childName.isEmpty {
                     HStack(spacing: MPSpacing.sm) {
@@ -47,13 +55,15 @@ struct StoryModeStep: View {
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: MPSpacing.md),
                                     GridItem(.flexible(), spacing: MPSpacing.md)],
                           spacing: MPSpacing.lg) {
-                    ForEach(StoryCreationSteps.shownModes(modes), id: \.self) { mode in
+                    ForEach(StoryCreationSteps.shownModes(modes, emphasized: emphasized), id: \.self) { mode in
                         WorldTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
                                   isSelected: choice == .mode(mode)) {
                             MPHaptics.selection()
                             choice = .mode(mode)
                         }
-                        .accessibilityLabel("\(mode.title). \(mode.promise)")
+                        .accessibilityLabel(mode == emphasized
+                            ? "\(mode.title), bu akşam için önerilen. \(mode.promise)"
+                            : "\(mode.title). \(mode.promise)")
                     }
                     // Tek bir mod kaldıysa sürprizin seçeceği bir şey yok (K6).
                     if StoryCreationSteps.showsSurprise(availableModes: modes) {
@@ -69,6 +79,9 @@ struct StoryModeStep: View {
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
+        }
+        .onAppear {
+            if choice == nil, let emphasized { choice = .mode(emphasized) }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             MPButton(title: "Devam et", fullWidth: true) {

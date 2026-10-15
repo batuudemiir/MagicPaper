@@ -88,8 +88,8 @@ enum MPStoryGate {
 
 /// "Uyku saati" anahtarının arkasındaki kural (31 · Güvenlik).
 ///
-/// Saat geldiyse Ana sayfa uyku kartını gösterir ve Yarat yalnızca Uyku
-/// öncesi modunu sunar. Gece yarısından sabah 5'e kadar da uyku saati
+/// Saat geldiyse Ana sayfa uyku kartını gösterir ve Yarat Uyku öncesini öne
+/// çıkarır; diğer modlar da seçilebilir (15 Ekim 2026). Gece yarısından sabah 5'e kadar da uyku saati
 /// sayılır: 20.30'da başlayan gece 00.10'da bitmiş olmaz.
 enum MPBedtime {
     static let morningHour = MPTonight.morningHour

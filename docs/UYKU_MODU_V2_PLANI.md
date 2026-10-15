@@ -9,6 +9,12 @@
 2. **Akşam yalnız uyku masalı değil.** Uyku saatinde Yarat üç modu da sunar;
    Uyku öncesi yalnızca öne çıkar (ilk sırada, vurgulu).
 
+**Durum (15 Ekim 2026):** V1 bölümü uygulandı, `uyku-v2` dalında. Pencere yalnızca
+karta dokununca açılır (Batuhan). Uygulamada plandan sapmalar: Yarat 1'de Uyku
+öncesi önceden seçili gelir ve üstte "Bu akşam için Uyku öncesi seçili. İstersen
+değiştir." satırı durur; Ana sayfa karosunda "Bu akşam" etiketi (Dynamic Type
+tavanı xxLarge) ve mor çerçeve; Siri intent'i silinmedi, `isDiscoverable` bayrağa bağlı.
+
 "Uyku öncesi" **masal modu** v1'de kalır; v2'ye giden yalnızca **uyku modu**
 (oynatma ekranı) özelliğidir.
 
@@ -123,5 +129,5 @@ yeni `BedtimeStorySheet.swift`, yeni `MPFeatures.swift`, `PastelHomeRulesTests.s
 
 ## Açık kararlar
 
-1. Pencere yalnız dokununca mı (öneri), yoksa akşam ilk açılışta bir kez de kendiliğinden mi?
+1. ~~Pencere yalnız dokununca mı?~~ Karar: yalnız dokununca (Batuhan, 15 Ekim 2026).
 2. Uyku saatinde "Bana sürpriz yap" Uyku öncesine ağırlık versin mi?
