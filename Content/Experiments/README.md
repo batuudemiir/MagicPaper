@@ -25,9 +25,27 @@ Varyant kontrolün birebir aynısıdır; yalnızca `refrain` alanı eklenir: say
 - **Ölçüt:** uyku öncesinde tekrar okuma (bitirmemek başarısızlık değildir). Deney kayıtları ve tahmin:
   `x_refrain_bedtime_56`, `x_refrain_bedtime_34` (book-intelligence dalı, `ba experiment list`).
 
+## Paketleme (15 Ekim 2026)
+
+Kol pakete açık istekle girer; varsayılan paket hâlâ uygulamanın taşıdığı içeriğin aynısıdır:
+
+```bash
+swift run content-publisher build-package --experiment x_refrain_bedtime
+swift run content-publisher publish --package latest --deploy
+```
+
+- Belge paketin **son** kütüphanesi olarak eklenir. Sıra kozmetik değil: `ContentCatalog.merging` ilk
+  `0.0.0` olmayan sürümü kataloğun sürümü sayar, ve paket belgelerinin taşıdığı sürümü ilan etmek zorundadır.
+  Bu dosya kendini adlandırdığı için (`"version": "experiment-x_refrain_bedtime"`) başa konsa paketin sürümü o
+  olur ve cihaz paketi reddeder. Sonda yalnızca kayıt ekler — bir kolun yapması gereken de bu.
+- Dosya adı ile belgedeki `experiment.id` aynı olmalı; publisher ayrışırsa yayımlamaz. Yanlış adla yayımlanan bir
+  kol veri üretir ama yanlış kolun verisini üretir, ki bu hiç yayımlamamaktan kötüdür.
+- Aynı sürümle iki ayrı katalog yayımlanamaz: kol eklemek "içerik farklı" demektir, bu yüzden
+  `shared_content_library_v2.json`'daki `version` artırılır.
+- `ContentPackage.currentSchemaVersion` **2**: paket `refrain` taşıyabildiği için nakaratı bilmeyen uygulama
+  paketi indirmez (karşılaştırma eşitlik, `RemoteContentService`). O uygulama yayındaki kataloğu okur — veride
+  yanlış cevap, cevapsızlıktan kötüdür.
+
 ## Yayından önce açık işler (Batuhan)
 
-1. `content-publisher build-package` bu klasörü okumuyor: varyantların pakete girmesi için bir adım gerekiyor.
-2. Paket yeni bir alan (`refrain`) taşıdığı için `ContentPackage.currentSchemaVersion` artırılmalı; yoksa eski
-   uygulamalar nakaratı görmeden varyantı gösterir ve deney kolu bozulur.
-3. `ba experiment preflight x_refrain_bedtime_56 --package <paket.json>`, sonra yayın ve `experiment mark … live`.
+1. `ba experiment preflight x_refrain_bedtime_56 --package <paket.json>`, sonra yayın ve `experiment mark … live`.

@@ -124,6 +124,66 @@ final class PublisherKitTests: XCTestCase {
         XCTAssertFalse(version.isEmpty)
     }
 
+    // MARK: - Deney kolları
+
+    /// Varsayılan paket, bu checkout'un uygulamasının taşıdığı içeriktir.
+    /// Bir deney kolunun oraya kendiliğinden girmesi, ölçülmeyi bekleyen bir
+    /// varyantı herkese yayımlamak olurdu.
+    func testThePlainPackageCarriesNoExperiment() throws {
+        let (_, data) = try PackageBuilder().build()
+        XCTAssertFalse(String(decoding: data, as: UTF8.self).contains("_refrain"))
+    }
+
+    func testAnExperimentArmGoesIntoThePackageAndStillPassesTheDeviceChecks() throws {
+        let publisher = Publisher(repo: realRepo)
+        let arm = try publisher.experimentFile("x_refrain_bedtime")
+        let (plainVersion, _) = try PackageBuilder().build()
+        let (version, data) = try PackageBuilder().build(extraLibraries: [arm])
+
+        // Kol sürümü değiştirmez: paket hâlâ kütüphanenin sürümünü ilan eder,
+        // yoksa cihaz "ilan ettiği sürüm belgelerinin sürümü değil" diye reddeder.
+        XCTAssertEqual(version, plainVersion)
+
+        let loaded = try PackageBuilder().check(data, against: nil)
+        let ids = Set(loaded.catalog.blueprints.map(\.id.rawValue))
+        XCTAssertTrue(ids.contains("bp_charge_tending_001_refrain"), "kol pakete girmedi")
+        XCTAssertTrue(ids.contains("blueprint_charge_tending_age3_001_refrain"))
+        // Kontrol kardeşleri hâlâ orada: deney bir karşılaştırmadır.
+        XCTAssertTrue(ids.contains("bp_charge_tending_001"))
+        XCTAssertTrue(ids.contains("blueprint_charge_tending_age3_001"))
+    }
+
+    /// Belgenin kendi adlandırdığı sürüm pakete sızmamalı.
+    func testTheExperimentDocumentDoesNotBecomeThePackageVersion() throws {
+        let arm = try Publisher(repo: realRepo).experimentFile("x_refrain_bedtime")
+        let object = try JSONSerialization.jsonObject(with: arm.data) as! [String: Any]
+        XCTAssertEqual(object["version"] as? String, "experiment-x_refrain_bedtime", "ön koşul")
+
+        let (version, _) = try PackageBuilder().build(extraLibraries: [arm])
+        XCTAssertFalse(version.hasPrefix("experiment-"))
+    }
+
+    func testAnUnknownExperimentIsNamedWithWhatExists() {
+        let publisher = Publisher(repo: realRepo)
+        XCTAssertThrowsError(try publisher.experimentFile("x_yok")) { error in
+            XCTAssertTrue("\(error)".contains("x_refrain_bedtime"), "mevcut kollar sayılmalı: \(error)")
+        }
+    }
+
+    /// Dosya adı ile belgedeki `experiment.id` ayrışırsa yayımlanan kol,
+    /// ölçüm kayıtlarının adını taşıdığı kol olmaz.
+    func testAnExperimentWhoseIDDoesNotMatchItsFileNameIsRefused() throws {
+        let folder = temp.appendingPathComponent("Content/Experiments")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let document: [String: Any] = ["schemaVersion": 2, "version": "experiment-x_a",
+                                       "experiment": ["id": "x_b"], "blueprints": []]
+        try JSONSerialization.data(withJSONObject: document).write(to: folder.appendingPathComponent("x_a.json"))
+
+        XCTAssertThrowsError(try Publisher(repo: Repo(root: temp)).experimentFile("x_a")) { error in
+            XCTAssertTrue("\(error)".contains("x_b"), "\(error)")
+        }
+    }
+
     func testValidatorOutputIsParsed() {
         let output = "header\n  - not an issue\nFAILED — 2 issue(s):\n  - one\n  - two\n"
         XCTAssertEqual(Publisher.validatorIssues(output), ["  - one", "  - two"])

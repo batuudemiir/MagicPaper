@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · refrain-deneyi (104b3c3 üstüne) · Deney kolu pakete girebiliyor, paket şeması 2
+
+- `content-publisher build-package --experiment <id>` (yinelenebilir): `Content/Experiments/<id>.json` pakete **son** kütüphane belgesi olarak ekleniyor. Varsayılan boş — paket, bu checkout'un uygulamasının taşıdığı içeriğin aynısı kalıyor; bir kolu yayına koymak ürün sahibinin o yayına özel kararı.
+- Sıra kozmetik değil: `ContentCatalog.merging` ilk `0.0.0` olmayan sürümü kataloğun sürümü sayıyor ve paket, belgelerinin taşıdığı sürümü ilan etmek zorunda. Deney belgesi kendini adlandırdığı için (`"version": "experiment-x_refrain_bedtime"`) başa konsa paketin sürümü o olur ve cihaz paketi reddederdi. Buna ayrı bir test var.
+- Publisher, dosya adı ile belgedeki `experiment.id` ayrışırsa yayımlamıyor: yanlış adla yayımlanan kol veri üretir ama yanlış kolun verisini üretir, bu hiç yayımlamamaktan kötü. Bilinmeyen id'de mevcut kolları sayıyor.
+- `ContentPackage.currentSchemaVersion` 1 → 2, çünkü paket artık `refrain` taşıyabiliyor. Karşılaştırma iki yerde de eşitlik (`RemoteContentService` indirmeden önce, `load(package:)` indirdikten sonra): nakaratı bilmeyen uygulama paketi hiç indirmiyor ve yayındaki kataloğu okuyor. Alanı bilmeyen bir uygulamanın varyantı nakaratsız göstermesi, kontrolü varyant sanmak olurdu — veride yanlış cevap, cevapsızlıktan kötü.
+- Bilerek yapılmadı: deney kolunun kendisi yayımlanmadı (`publish`/`deploy` çalıştırılmadı), `ba experiment preflight` ve `mark … live` adımları hâlâ Batuhan'da (README'de 1 numaralı açık iş olarak kaldı). Paket dosyası yazılmadı: `hosting/public/content/catalog/` hâlâ yok ve feed'de `catalogPackage: null` — yani şema artırımı yayındaki hiçbir paketi okunamaz hâle getirmiyor.
+- Test: publisher 15/0 (5'i yeni). Motor demeti 790 test / 18 hata — aynı demet HEAD'de (104b3c3, ayrı worktree) 788/18 ve **birebir aynı 10 test**: fark yalnızca eklediğim iki test, yeni hata yok. O 18 hata blueprint/beat mimarisi tarafındaki bilinen içerik-belge ayrışması, bu işle ilgisi yok ve bu işte düzeltilmedi. Uygulama hedefi (`MagicPaperTests`) çalıştırılmadı: değişen kodun hiçbiri uygulama hedefinde değil.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/ContentPackage.swift`, `StoryEngine/Tests/StoryEngineTests/ContentPackageTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Publisher.swift`, `Scripts/ContentPublisher/Sources/content-publisher/main.swift`, `Scripts/ContentPublisher/Tests/PublisherKitTests/PublisherKitTests.swift`, `Content/Experiments/README.md`, `docs/REMOTE_CONTENT.md`, bu dosya.
+
 ### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
 - `liquid-glass-tab-bar` dalı main'e ileri sarıldı (origin'e gönderilmedi, izin bekliyor): yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
 - Birleşmeden önce main'in son hâli (Ana sayfa, Günlük, günlük kayıtları) dala alındı; yalnızca bu dosyada çakışma vardı, iki tarafın kayıtları da korundu.
