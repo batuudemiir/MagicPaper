@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · main (faz-20-gunluk ileri sarıldı, push yok) · Günlük denetimi ve yeni düzen main'de
+
+- `faz-20-gunluk` dalının 15 Ekim işleri main'e alındı: Günlük denetimi (kenardan geri, durum çubuğu zemini, sekmeye dokununca başa dönüş, tekrar ve boşluk düzeltmeleri), vitrin altının yeni düzeni (raf kapıları, simgeli bölümler) ve sayfa sonundaki gece bölgesi.
+- Önce main (uyku modu v2) dala birleştirildi; tek çakışma bu dosyadaki kayıtlardı, ikisi de korundu. Ardından main dala ileri sarıldı.
+- **Test:** birleşmiş sürüm derlendi ve simülatörde Günlük açıldı (iPhone 17 Pro). Birim testleri birleşmeden sonra çalıştırılmadı.
+- main checkout'taki başka oturumun commit edilmemiş değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+- **Durum:** main'de; origin'e gönderilmedi.
+
 ### 2026-10-15 · faz-20-gunluk@f1cc054 · Günlük: sayfa sonu gece bölgesi
 
 Batuhan: alttaki manzaranın kreme beyaz yumuşak geçişi güzel durmamış; Uyku vakti ile aynı renkte olsa daha iyi.
