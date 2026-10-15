@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · main@412a94d · Ana sayfa yenilemesi main'e birleşti (push yok)
+- `anasayfa-yenileme` main'e ileri sarıldı: başlığın altı Apple düzeninde (beyaz zemin, Yeni bir masal yaz, Günlük rafı, Bu hafta), vektör mod sahnecikleri, görsel tutarlılık (yıldız imzası, yarıçap kuralı, lavanta paneller).
+- Çakışma çözümü: uyku-v2 (`cf1ae56`) uyku saatinde üç modu açıp Uyku'yu "Bu akşam" etiketiyle öne çıkarıyordu; etiket ve mor çerçeve yeni `HomeModeCard`'a taşındı. Koyu gece kartı artık yalnızca tek mod kaldığında. Değişiklik günlüğünde iki tarafın kayıtları korundu.
+- Test: uygulama testleri 698/0 (1 atlanan). Simülatörde gece hâli görüldü (iPhone 18 Pro Max): üç kart, Uyku'da "Bu akşam".
+- Paylaşılan checkout'taki başka oturumun commit'lenmemiş `MPTheme.swift` ve `MPNavigationChrome.swift` değişikliklerine dokunulmadı. GitHub'a gönderilmedi.
+
 ### 2026-10-15 · anasayfa-yenileme@a4bf106 · Ana sayfa: görsel tutarlılık iyileştirmesi
 - Batuhan'ın kararı (ChatGPT önerisi üzerine, B seçeneği): **"Günlük" başlığı** öbür bölüm başlıklarıyla aynı font, boyut ve ağırlıkta (`title3`); el yazısı satırı yok, klasik hava kapaklardan gelir. `MP.F.script` ve tasarım sistemi belgesindeki istisna notu silindi; iki aile kuralı yeniden istisnasız.
 - **Yıldız imzası:** tek çizim ve tek sarı (`MPStarMark`: beş köşe, `statusStarIcon`, ince koyu sarı kontur). "Yıldızların" çipi (önce içi boş ikon yıldızdı), "Bugün" kurdelesi ve okunan günler bunu kullanır; tamamlanmamış günler soluk beyaz, bugün kesikli halkayla vurgulu. Yeni yıldız eklenmedi; kullanılmayan başlık yıldız hapı silindi.
