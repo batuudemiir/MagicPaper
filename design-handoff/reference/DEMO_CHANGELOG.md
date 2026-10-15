@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@ed02a0e · Ana sayfa: Günlük önizleme kartı
+- **Günlük'te bugün** (`HomeGunlukPreview`): mod kartının altında, öbür bölümlerle aynı beyaz kart (lavanta kenar, sert alt kenar, başlık içeride, pırıltı ikonu). Günlük rafından çizimi gelmiş üç klasik kapak, adı ve süresiyle; ilki günün klasiği (Günlük vitriniyle aynı). Altta "Günlük'e git". Kartın tamamı Günlük sekmesini açar, tek hafif titreşim. En büyük yazı boyutunda iki kapak.
+- Önce denenen mavi, yelpaze kapaklı ve pırıltılı vitrin kartı Batuhan'ın isteğiyle ana sayfa diline uygun önizleme kartına çevrildi; o sürüm commit'lenmedi.
+- **Uyku saatinde mod kartı:** yalnızca "Uyku" kalınca kare solda tek başına duruyordu; artık tam genişliğe yayılır.
+- Gözlem: gece sahnesinde saat çubuğu yazısı sistem tarafından beyaza dönüyor; "gece saat yazısı" açık maddesi gerçekte sorun değil.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz ve uyku saati); karta dokununca Günlük açılıyor. Test çalıştırılmadı (yalnızca görünüm değişikliği); derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-15 · anasayfa-yenileme@5b0d24b · Ana sayfa son kontrol: tekrar eden kart, saat çubuğu
 - iPhone 18 Pro Max simülatöründe tasarım ve işlev kontrolü (normal ve en büyük yazı boyutu, kaydırma, tüm düğmelerin hedefi kodda izlendi).
 - **Tekrar kalktı:** "Bu akşamın masalı" okunmadı durumunda günün masalını gösterirken altta aynı masal "Günün masalı" olarak bir daha çıkıyordu; bu durumda Günün masalı kartı gizlenir.
