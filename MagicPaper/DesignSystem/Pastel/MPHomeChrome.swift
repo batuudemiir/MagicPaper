@@ -425,37 +425,57 @@ struct HomeHeroCard: View {
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
 }
 
-// MARK: - Bölüm kartı
+// MARK: - Bölüm
 
-/// Ana sayfanın her bölümü tek bir kart: başlık üst satırda, içerik altında.
-/// Başlık kartın dışında ayrı durmaz (13 Ekim kararı). Hero kartı dışındaki
-/// bütün bölümler bunu kullanır; iç öğeler kenarsız, pastel zeminli olur ki
-/// kart içinde kart görünmesin.
+/// Ana sayfanın bölümü (15 Ekim, Apple düzeni): kalın başlık içeriğin üstünde,
+/// sağında isteğe bağlı bağlantı ("Tümü"); içerik açık gri yuvarlak alanda ya
+/// da (`contained: false`) doğrudan beyaz zeminde. Kenar çizgisi yok; altta
+/// markanın ince sert kenarı.
 struct HomeSection<Leading: View, Content: View>: View {
     let title: String
+    var contained: Bool = true
+    var link: (title: String, action: () -> Void)? = nil
     @ViewBuilder var leading: Leading
     @ViewBuilder var content: Content
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(alignment: .top, spacing: MPSpacing.sm) {
+            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
                 leading
-                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: 0)
+                if let link {
+                    Button(action: link.action) {
+                        HStack(spacing: MPSpacing.xxs) {
+                            Text(link.title).mpText(.callout)
+                            MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+                        }
+                        .foregroundStyle(MPColor.actionPrimary)
+                        .frame(minHeight: MPSize.minTouchKid)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(MPPressStyle())
+                }
             }
-            content
+            if contained {
+                content
+                    .padding(MPSpacing.lg)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .mpKidSurface(MPColor.backgroundParent, edge: MPWorldTone.lav.edge.opacity(0.6))
+            } else {
+                content
+            }
         }
-        .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
     }
 }
 
 extension HomeSection where Leading == EmptyView {
-    init(title: String, @ViewBuilder content: () -> Content) {
-        self.init(title: title, leading: { EmptyView() }, content: content)
+    init(title: String, contained: Bool = true, link: (title: String, action: () -> Void)? = nil,
+         @ViewBuilder content: () -> Content) {
+        self.init(title: title, contained: contained, link: link, leading: { EmptyView() }, content: content)
     }
 }
 
@@ -481,56 +501,120 @@ struct HomeStreakCard: View {
 
     var body: some View {
         HomeSection(title: title) {
-            MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
-                .padding(.top, MPSpacing.xxs)
-        } content: {
-            HStack(spacing: 0) {
-                ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
-                    VStack(spacing: MPSpacing.xxs) {
-                        dot(i)
-                        Text(MPStreak.weekdayLabels[i]).mpText(.caption)
-                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
-                            .lineLimit(1).minimumScaleFactor(0.7)
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                HStack(spacing: 0) {
+                    ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
+                        VStack(spacing: MPSpacing.xs) {
+                            dot(i)
+                            Text(MPStreak.weekdayLabels[i]).mpText(.caption)
+                                .fontWeight(i == todayIndex ? .heavy : .semibold)
+                                .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
+                                .lineLimit(1).minimumScaleFactor(0.7)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
                 }
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                Text(caption).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         }
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudun")
+        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudunuz")
+    }
+
+    /// Sakin süreklilik cümlesi (CLAUDE.md §7 örnekleri).
+    private var caption: String {
+        let read = done.filter { $0 }.count
+        switch read {
+        case 0:  return "Okuma yolculuğunuz bu hafta başlıyor."
+        default: return "Bu hafta \(read) gün birlikte okudunuz."
+        }
     }
 
     @ViewBuilder private func dot(_ i: Int) -> some View {
         let read = i < done.count && done[i]
         let today = i == todayIndex
         ZStack {
-            if read {
-                Circle().fill(MPColor.actionPrimary)
-                MPIcon("checkmark", size: MP.G.xs, weight: .heavy).foregroundStyle(MPColor.textOnAction)
-            } else if today {
-                Circle().fill(MPColor.backgroundSurface)
+            if today {
                 Circle().strokeBorder(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 2, dash: [4, 3]))
-                MPIcon("book", size: MP.G.xs, weight: .bold).foregroundStyle(MPColor.actionPrimary)
+            }
+            if read {
+                StarShape().fill(MPColor.statusStarIcon)
+                    .overlay(StarShape().stroke(MPColor.yellowText.opacity(0.45), lineWidth: 1))
+                    .frame(width: 26, height: 26)
+                    .transition(.scale.combined(with: .opacity))
             } else {
-                Circle().fill(MPWorldTone.lav.soft)
+                StarShape().fill(today ? MPColor.backgroundSurface : MPWorldTone.lav.soft)
+                    .overlay(StarShape().stroke(MPWorldTone.lav.deep.opacity(today ? 0.6 : 0.25), lineWidth: 1.5))
+                    .frame(width: today ? 20 : 24, height: today ? 20 : 24)
             }
         }
-        .frame(width: 30, height: 30)
-        .transition(.scale.combined(with: .opacity))
+        .frame(width: 32, height: 32)
     }
 }
 
-// MARK: - Günlük önizlemesi
+// MARK: - Yıldız
 
-/// Ana sayfadaki Günlük önizlemesi (15 Ekim): öbür bölümler gibi tek beyaz
-/// kart, başlık üst satırda. İçinde sahnenin bulutları ve yıldızları, eğik
-/// duran üç kapak (ilki günün klasiği, "Bugün" kurdeleli) ve "Günlük'e git".
-///
-/// Hareket sakin ve tek seferlik olanı çok: kapaklar açılışta sırayla
-/// süzülür, sonra çok yavaş yüzer; pırıltı parıldar, ok ara ara ileri iter.
-/// Reduce Motion açıkken her şey yerinde durur. Kartın tamamı Günlük'ü açar.
+/// Beş köşeli yıldız: markanın yıldızı (yıldız sayacı, haftalık şerit).
+struct StarShape: Shape {
+    func path(in r: CGRect) -> Path {
+        let c = CGPoint(x: r.midX, y: r.midY)
+        let outer = min(r.width, r.height) / 2, inner = outer * 0.45
+        var p = Path()
+        for i in 0..<10 {
+            let radius = i.isMultiple(of: 2) ? outer : inner
+            let angle = Double(i) * .pi / 5 - .pi / 2
+            let point = CGPoint(x: c.x + CGFloat(cos(angle)) * radius, y: c.y + CGFloat(sin(angle)) * radius)
+            i == 0 ? p.move(to: point) : p.addLine(to: point)
+        }
+        p.closeSubpath()
+        return p
+    }
+}
+
+// MARK: - Mod kartı (yeni masal)
+
+/// "Yeni bir masal yaz" bölümündeki büyük mod kartı: pastel zemin, beyaz
+/// daire içinde koyu tonda ikon, altında adı. Az yazı, büyük hedef (araştırma:
+/// birkaç büyük giriş noktası). Tek mod kaldığında (uyku saati) yatay ve tam genişlik.
+struct HomeModeCard: View {
+    let title: String
+    let systemImage: String
+    let tone: MPWorldTone
+    var wide: Bool = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            let layout = wide
+                ? AnyLayout(HStackLayout(spacing: MPSpacing.lg))
+                : AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
+            layout {
+                MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
+                    .foregroundStyle(tone.deep)
+                    .frame(width: 56, height: 56)
+                    .background(MPColor.backgroundSurface, in: Circle())
+                    .accessibilityHidden(true)
+                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                if wide { Spacer(minLength: 0) }
+            }
+            .padding(MPSpacing.lg)
+            .frame(maxWidth: .infinity, minHeight: wide ? 0 : 136, alignment: wide ? .leading : .topLeading)
+            .mpKidSurface(tone.soft, edge: tone.edge)
+        }
+        .buttonStyle(MPPressStyle())
+    }
+}
+
+// MARK: - Günlük rafı
+
+/// Ana sayfadaki Günlük rafı (15 Ekim, Apple Books rafı gibi): başlıkta "Tümü",
+/// altında yatay kayan kapaklar, adı ve süresi; ilki günün klasiği, "Bugün"
+/// kurdeleli. Kapaklar açılışta sırayla süzülür; Reduce Motion'da yerinde.
 struct HomeGunlukPreview: View {
     struct Item: Identifiable {
         let id: UUID
@@ -540,134 +624,63 @@ struct HomeGunlukPreview: View {
         let focus: ClassicFocus
     }
 
-    /// En çok üç; ilki günün klasiği.
+    /// İlki günün klasiği.
     let items: [Item]
     let action: () -> Void
 
-    @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var arrived = false
-    @State private var floating = false
-
-    private static let tilts: [Double] = [-3, 2, -2]
 
     var body: some View {
-        Button(action: action) {
-            HomeSection(title: "Günlük'te bugün") {
-                MPIcon("sparkles", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.statusStarIcon)
-                    .scaleEffect(motion && floating ? 1.15 : 1)
-                    .rotationEffect(.degrees(motion && floating ? 12 : 0))
-                    .padding(.top, MPSpacing.xxs)
-                    .accessibilityHidden(true)
-            } content: {
-                VStack(alignment: .leading, spacing: MPSpacing.md) {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md, alignment: .top),
-                                             count: columns),
-                              alignment: .leading, spacing: MPSpacing.md) {
-                        ForEach(Array(items.prefix(columns).enumerated()), id: \.element.id) { index, item in
-                            tile(item, index: index)
-                        }
+        HomeSection(title: "Günlük", contained: false, link: ("Tümü", action)) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: MPSpacing.md) {
+                    ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                        Button(action: action) { tile(item, today: index == 0) }
+                            .buttonStyle(MPPressStyle())
+                            .accessibilityLabel(index == 0 ? "Bugünün klasiği: \(item.title)" : item.title)
+                            .accessibilityHint("Günlük sekmesini açar")
+                            .offset(y: arrived ? 0 : MP.S.x5)
+                            .opacity(arrived ? 1 : 0)
+                            .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)
                     }
-                    .background { decor }
-                    footer
                 }
+                // Kurdele ve sert kenar kırpılmasın.
+                .padding(.vertical, MPSpacing.sm)
+                .padding(.horizontal, MPSpacing.screenH)
             }
+            .padding(.horizontal, -MPSpacing.screenH)
+            .padding(.vertical, -MPSpacing.sm)
         }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Günlük'te bugün: " + items.map(\.title).joined(separator: ", "))
-        .accessibilityHint("Günlük sekmesini açar")
-        .accessibilityAddTraits(.isButton)
-        .onAppear {
-            guard motion else { arrived = true; return }
-            withAnimation(MP.M.spring.delay(0.15)) { arrived = true }
-            withAnimation(MP.M.idle.delay(0.9)) { floating = true }
-        }
+        .onAppear { arrived = true }
     }
 
-    private var motion: Bool { !reduceMotion }
-    private var columns: Int { typeSize.isAccessibilitySize ? 2 : 3 }
-
-    private func tile(_ item: Item, index: Int) -> some View {
-        let lift: CGFloat = index.isMultiple(of: 2) ? -3 : 3
-        return VStack(alignment: .leading, spacing: MPSpacing.xs) {
-            // Kapak sütunu doldurur; oran rafla aynı (3:4).
-            Color.clear
-                .aspectRatio(0.75, contentMode: .fit)
-                .overlay {
-                    ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
-                }
+    private func tile(_ item: Item, today: Bool) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xs) {
+            ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
+                .frame(width: 118, height: 158)
                 .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
-                .overlay(alignment: .topLeading) {
-                    if index == 0 { todayRibbon }
-                }
-                .rotationEffect(.degrees(Self.tilts[index % Self.tilts.count]))
-                .offset(y: motion && floating ? lift : 0)
-                // Sırayla süzülerek gelir.
-                .offset(y: arrived ? 0 : MP.S.x6)
-                .opacity(arrived ? 1 : 0)
-                .animation(motion ? MP.M.spring.delay(0.15 + Double(index) * 0.09) : nil, value: arrived)
+                .overlay(alignment: .topLeading) { if today { todayRibbon } }
             Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
                 .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 .padding(.top, MPSpacing.xxs)
             Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
         }
+        .frame(width: 118, alignment: .leading)
     }
 
-    /// Günün klasiğinin kurdelesi: sarı hap, yıldız ve "Bugün".
+    /// Günün klasiğinin kurdelesi: sarı hap, markanın yıldızı ve "Bugün".
     private var todayRibbon: some View {
         HStack(spacing: MPSpacing.xxs) {
-            MPIcon("star.fill", size: MP.G.xs, weight: .bold).foregroundStyle(MPColor.statusStarIcon)
+            StarShape().fill(MPColor.statusStarIcon).frame(width: 11, height: 11)
             Text("Bugün").mpText(.caption).fontWeight(.heavy).foregroundStyle(MPColor.yellowText)
         }
         .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         .padding(.horizontal, MPSpacing.sm)
         .padding(.vertical, MPSpacing.xxs)
         .mpKidSurface(MPWorldTone.yellow.soft, edge: MPWorldTone.yellow.edge, radius: MPRadius.input)
-        .rotationEffect(.degrees(-6))
-        .offset(x: -MPSpacing.xs, y: -MPSpacing.sm)
-    }
-
-    /// Sahne süsü: başlığın sağında bir bulut, "Günlük'e git" satırının
-    /// solunda küçük bir bulut, kapakların arasında yıldızlar. Kartın içinde kalır.
-    private var decor: some View {
-        GeometryReader { geo in
-            let w = geo.size.width, h = geo.size.height
-            ZStack(alignment: .topLeading) {
-                CloudShape().fill(MPWorldTone.sky.soft)
-                    .frame(width: w * 0.30, height: w * 0.13)
-                    .offset(x: w * 0.68 - (motion && floating ? MP.S.x2 : 0), y: -w * 0.13 - MPSpacing.md)
-                CloudShape().fill(MPWorldTone.lav.soft)
-                    .frame(width: w * 0.26, height: w * 0.11)
-                    .offset(x: (motion && floating ? MP.S.x2 : 0), y: h + MPSpacing.md)
-                ForEach(Array(Self.starPoints.enumerated()), id: \.offset) { i, p in
-                    MPIcon("sparkles", size: p.z, weight: .bold)
-                        .foregroundStyle(MPColor.statusStarIcon)
-                        .opacity(motion ? (floating == i.isMultiple(of: 2) ? 0.9 : 0.35) : 0.7)
-                        .offset(x: w * p.x, y: h * p.y)
-                }
-            }
-        }
-        .accessibilityHidden(true)
-    }
-
-    private static let starPoints: [(x: CGFloat, y: CGFloat, z: CGFloat)] = [
-        (0.31, -0.02, MP.G.xs), (0.64, 0.50, MP.G.sm), (0.93, 0.62, MP.G.xs)
-    ]
-
-    private var footer: some View {
-        HStack(spacing: MPSpacing.xs) {
-            Text("Günlük'e git").mpText(.callout)
-            MPIcon("chevron.right", size: MP.G.xs, weight: .bold)
-                .offset(x: motion && floating ? MP.S.x1 : 0)
-                .accessibilityHidden(true)
-        }
-        .foregroundStyle(MPColor.actionPrimary)
-        .padding(.horizontal, MPSpacing.md)
-        .frame(minHeight: 36)
-        .background(MPWorldTone.lav.soft, in: Capsule())
-        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding(MPSpacing.xs)
     }
 }
 

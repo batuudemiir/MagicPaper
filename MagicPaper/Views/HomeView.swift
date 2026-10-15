@@ -37,12 +37,12 @@ struct HomeView: View {
                 content
             }
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(pageBackground.ignoresSafeArea())
         // Kartlar saat çubuğunun altından geçerken saat okunur kalsın.
         // Sıfır yükseklikli şeridin zemini yalnızca saat çubuğunun alanına taşar.
         .overlay(alignment: .top) {
             Color.clear.frame(height: 0)
-                .background(MPColor.backgroundKid.ignoresSafeArea(edges: .top))
+                .background(pageBackground.ignoresSafeArea(edges: .top))
                 .opacity(scrolledPastScene ? 1 : 0)
                 .animation(MP.M.gated(MP.M.easeOut), value: scrolledPastScene)
                 .allowsHitTesting(false)
@@ -71,22 +71,22 @@ struct HomeView: View {
             .padding(.top, sceneClearance)
             .homeEntrance(0)
 
-            Button { MPHaptics.tap(); app.openKidCorner() } label: {
-                HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityHint("Benim köşemi açar")
-            .homeEntrance(1)
-
-            if !shownModes.isEmpty { modeStrip.homeEntrance(2) }
+            if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
 
             if !gunlukItems.isEmpty {
                 HomeGunlukPreview(items: gunlukItems) {
                     MPHaptics.tap()
                     app.tab = .gunluk
                 }
-                .homeEntrance(3)
+                .homeEntrance(2)
             }
+
+            Button { MPHaptics.tap(); app.openKidCorner() } label: {
+                HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityHint("Benim köşemi açar")
+            .homeEntrance(3)
 
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
@@ -206,13 +206,13 @@ struct HomeView: View {
 
     private var classics: ClassicsLibrary { .shared }
 
-    /// Çizimi gelmiş üç klasik; günün klasiği başta.
+    /// Çizimi gelmiş klasikler (en çok 8); günün klasiği başta.
     private var gunlukItems: [HomeGunlukPreview.Item] {
         var tales = classics.catalog.standaloneTales.filter { UIImage(named: $0.cover) != nil }
         if let today = classics.todaysTale, let i = tales.firstIndex(where: { $0.id == today.id }) {
             tales.insert(tales.remove(at: i), at: 0)
         }
-        return tales.prefix(3).map {
+        return tales.prefix(8).map {
             .init(id: $0.id, title: $0.title, minutes: $0.minutes, asset: $0.cover, focus: $0.coverFocus)
         }
     }
@@ -227,13 +227,16 @@ struct HomeView: View {
     }
 
     /// Soru ve mod düğmeleri tek kartta; Ragi sahnede olduğu için kart maskotsuz.
+    /// Masal yaratmaya giriş: büyük mod kartları (Ragi sahnede; kart maskotsuz).
     private var modeStrip: some View {
-        HomeSection(title: "Bu akşam nasıl bir masal olsun?") {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
-                                     count: typeSize.isAccessibilitySize ? 1 : min(max(shownModes.count, 1), 3)),
-                      spacing: MPSpacing.sm) {
+        HomeSection(title: "Yeni bir masal yaz", contained: false) {
+            let wide = shownModes.count == 1 || typeSize.isAccessibilitySize
+            let layout = wide
+                ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
+                : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
+            layout {
                 ForEach(shownModes, id: \.self) { mode in
-                    HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {
+                    HomeModeCard(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone, wide: wide) {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
                     }
@@ -243,6 +246,9 @@ struct HomeView: View {
             }
         }
     }
+
+    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler açık gri ya da pastel.
+    private var pageBackground: Color { MPColor.backgroundSurface }
 
     // MARK: - Günün masalı
 
