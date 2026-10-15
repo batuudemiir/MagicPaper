@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · faz-20-gunluk@bd6dbcf · Günlük: vitrinin altı yeniden tasarlandı
+
+Batuhan vitrine (üstteki slayt) dokunmadan altının Ana sayfa diliyle, markaya açık biçimde yeniden düzenlenmesini istedi. Web araştırması (Epic, Booka, Kidbox) raf düzeni ya da arka plan için kullanışlı örnek vermedi; yön Ana sayfanın kendi dilinden kuruldu.
+
+- **Çipler yerine raf kapıları:** "Hangi raftan okuyalım?" kartı (Ana sayfadaki "Bu akşam nasıl bir masal olsun?" kartının dili). Pastel kutu, beyaz kare içinde rafın simgesi, kısa ad ve masal sayısı: Klasikler · Anadolu · Fabllar · Uyku · Seriler · Tüm raflar (Kategoriler sayfasını açar). Yeni `GunlukShelfTile`.
+- **Simgeli bölüm başlıkları:** `GunlukSection` artık Ana sayfadaki "Bu hafta" gibi solda rafın tonunda simge kutusu ve altta bir cümle taşıyor. Kaldığın yerden (yer imi, şeftali), Bu haftanın seçkisi ("Editörün bu hafta için seçtikleri", yıldız, sarı), Anadolu'dan ve Dünya klasikleri (rafın kendi alt başlığı).
+- **Uyku vakti gece kartı:** Ana sayfanın uyku saatindeki kartıyla aynı gece laciverti (`bedtimeSkyTop`, `brandNight` kenar), açık renk yazılar, başlığın yanında birkaç hareketsiz yıldız (`GunlukNightSky`). Raf kartları `onDark` ile açık yazılı.
+- **Manzaralı son:** Sayfa Ana sayfanın masal manzarasıyla biter (`GunlukSceneFooter`): tam genişlik, üstü ve altı kreme erir, uyku saatinde gece hâli. Kalemli Ragi çimenin üstünde (ekrandaki tek maskot); "Kahramanı sen ol" kartı manzaranın göğüne biner ve markanın moruna döndü (sert gece kenarı, sihirli değnek simgesi, "Adınla, sevdiklerinle yepyeni bir masal").
+- **Bilerek değişmeyenler:** Vitrin (slayt, başlık, arama) aynen duruyor. Bölüm sırası aynı. Anadolu'dan rafının yedek kapakları duruyor (kapak kaynağı bekliyor). Raf ve detay ekranları bu turda değişmedi.
+- **Test:** birim testleri çalıştırılmadı (disk dolduğu için test derleme klasörü silindi; değişiklik yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri değişen dosyalarda boş. Simülatörde görülen: iPhone 17 Pro, açık tema, uyku saati (gece manzarası). Gündüz manzarası, koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
 ### 2026-10-15 · faz-20-gunluk@9edb7fb · Günlük denetimi: gezinme, durum çubuğu, tekrarlar, boşluklar
 
 Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülatörümde ("MP Günlük (Claude)", iPhone 17 Pro) baştan sona gezildi; bulunan sorunlar düzeltildi.
