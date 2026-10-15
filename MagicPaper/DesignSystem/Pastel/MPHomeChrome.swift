@@ -525,8 +525,12 @@ struct HomeStreakCard: View {
 // MARK: - Günlük önizlemesi
 
 /// Ana sayfadaki Günlük önizlemesi (15 Ekim): öbür bölümler gibi tek beyaz
-/// kart, başlık üst satırda; altında Günlük rafından üç kapak, adı ve süresi;
-/// en altta "Günlük'e git". Kartın tamamı Günlük sekmesini açar.
+/// kart, başlık üst satırda. İçinde sahnenin bulutları ve yıldızları, eğik
+/// duran üç kapak (ilki günün klasiği, "Bugün" kurdeleli) ve "Günlük'e git".
+///
+/// Hareket sakin ve tek seferlik olanı çok: kapaklar açılışta sırayla
+/// süzülür, sonra çok yavaş yüzer; pırıltı parıldar, ok ara ara ileri iter.
+/// Reduce Motion açıkken her şey yerinde durur. Kartın tamamı Günlük'ü açar.
 struct HomeGunlukPreview: View {
     struct Item: Identifiable {
         let id: UUID
@@ -541,26 +545,31 @@ struct HomeGunlukPreview: View {
     let action: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var arrived = false
+    @State private var floating = false
+
+    private static let tilts: [Double] = [-3, 2, -2]
 
     var body: some View {
         Button(action: action) {
             HomeSection(title: "Günlük'te bugün") {
-                MPIcon("sparkles", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
+                MPIcon("sparkles", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.statusStarIcon)
+                    .scaleEffect(motion && floating ? 1.15 : 1)
+                    .rotationEffect(.degrees(motion && floating ? 12 : 0))
                     .padding(.top, MPSpacing.xxs)
                     .accessibilityHidden(true)
             } content: {
                 VStack(alignment: .leading, spacing: MPSpacing.md) {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md, alignment: .top),
-                                             count: typeSize.isAccessibilitySize ? 2 : 3),
+                                             count: columns),
                               alignment: .leading, spacing: MPSpacing.md) {
-                        ForEach(items.prefix(typeSize.isAccessibilitySize ? 2 : 3)) { item in tile(item) }
+                        ForEach(Array(items.prefix(columns).enumerated()), id: \.element.id) { index, item in
+                            tile(item, index: index)
+                        }
                     }
-                    HStack(spacing: MPSpacing.xxs) {
-                        Text("Günlük'e git").mpText(.callout)
-                        MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
-                    }
-                    .foregroundStyle(MPColor.actionPrimary)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .background { decor }
+                    footer
                 }
             }
         }
@@ -569,10 +578,19 @@ struct HomeGunlukPreview: View {
         .accessibilityLabel("Günlük'te bugün: " + items.map(\.title).joined(separator: ", "))
         .accessibilityHint("Günlük sekmesini açar")
         .accessibilityAddTraits(.isButton)
+        .onAppear {
+            guard motion else { arrived = true; return }
+            withAnimation(MP.M.spring.delay(0.15)) { arrived = true }
+            withAnimation(MP.M.idle.delay(0.9)) { floating = true }
+        }
     }
 
-    private func tile(_ item: Item) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xs) {
+    private var motion: Bool { !reduceMotion }
+    private var columns: Int { typeSize.isAccessibilitySize ? 2 : 3 }
+
+    private func tile(_ item: Item, index: Int) -> some View {
+        let lift: CGFloat = index.isMultiple(of: 2) ? -3 : 3
+        return VStack(alignment: .leading, spacing: MPSpacing.xs) {
             // Kapak sütunu doldurur; oran rafla aynı (3:4).
             Color.clear
                 .aspectRatio(0.75, contentMode: .fit)
@@ -581,10 +599,108 @@ struct HomeGunlukPreview: View {
                 }
                 .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
+                .overlay(alignment: .topLeading) {
+                    if index == 0 { todayRibbon }
+                }
+                .rotationEffect(.degrees(Self.tilts[index % Self.tilts.count]))
+                .offset(y: motion && floating ? lift : 0)
+                // Sırayla süzülerek gelir.
+                .offset(y: arrived ? 0 : MP.S.x6)
+                .opacity(arrived ? 1 : 0)
+                .animation(motion ? MP.M.spring.delay(0.15 + Double(index) * 0.09) : nil, value: arrived)
             Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
                 .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                .padding(.top, MPSpacing.xxs)
             Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
         }
+    }
+
+    /// Günün klasiğinin kurdelesi: sarı hap, yıldız ve "Bugün".
+    private var todayRibbon: some View {
+        HStack(spacing: MPSpacing.xxs) {
+            MPIcon("star.fill", size: MP.G.xs, weight: .bold).foregroundStyle(MPColor.statusStarIcon)
+            Text("Bugün").mpText(.caption).fontWeight(.heavy).foregroundStyle(MPColor.yellowText)
+        }
+        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+        .padding(.horizontal, MPSpacing.sm)
+        .padding(.vertical, MPSpacing.xxs)
+        .mpKidSurface(MPWorldTone.yellow.soft, edge: MPWorldTone.yellow.edge, radius: MPRadius.input)
+        .rotationEffect(.degrees(-6))
+        .offset(x: -MPSpacing.xs, y: -MPSpacing.sm)
+    }
+
+    /// Sahne süsü: başlığın sağında bir bulut, "Günlük'e git" satırının
+    /// solunda küçük bir bulut, kapakların arasında yıldızlar. Kartın içinde kalır.
+    private var decor: some View {
+        GeometryReader { geo in
+            let w = geo.size.width, h = geo.size.height
+            ZStack(alignment: .topLeading) {
+                CloudShape().fill(MPWorldTone.sky.soft)
+                    .frame(width: w * 0.30, height: w * 0.13)
+                    .offset(x: w * 0.68 - (motion && floating ? MP.S.x2 : 0), y: -w * 0.13 - MPSpacing.md)
+                CloudShape().fill(MPWorldTone.lav.soft)
+                    .frame(width: w * 0.26, height: w * 0.11)
+                    .offset(x: (motion && floating ? MP.S.x2 : 0), y: h + MPSpacing.md)
+                ForEach(Array(Self.starPoints.enumerated()), id: \.offset) { i, p in
+                    MPIcon("sparkles", size: p.z, weight: .bold)
+                        .foregroundStyle(MPColor.statusStarIcon)
+                        .opacity(motion ? (floating == i.isMultiple(of: 2) ? 0.9 : 0.35) : 0.7)
+                        .offset(x: w * p.x, y: h * p.y)
+                }
+            }
+        }
+        .accessibilityHidden(true)
+    }
+
+    private static let starPoints: [(x: CGFloat, y: CGFloat, z: CGFloat)] = [
+        (0.31, -0.02, MP.G.xs), (0.64, 0.50, MP.G.sm), (0.93, 0.62, MP.G.xs)
+    ]
+
+    private var footer: some View {
+        HStack(spacing: MPSpacing.xs) {
+            Text("Günlük'e git").mpText(.callout)
+            MPIcon("chevron.right", size: MP.G.xs, weight: .bold)
+                .offset(x: motion && floating ? MP.S.x1 : 0)
+                .accessibilityHidden(true)
+        }
+        .foregroundStyle(MPColor.actionPrimary)
+        .padding(.horizontal, MPSpacing.md)
+        .frame(minHeight: 36)
+        .background(MPWorldTone.lav.soft, in: Capsule())
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    }
+}
+
+// MARK: - Giriş
+
+extension View {
+    /// Ana sayfa bölümlerinin girişi: uygulama açılışında bir kez, sırayla
+    /// hafifçe yukarı kayarak gelir. Sekme değiştirip dönünce tekrarlamaz.
+    /// Reduce Motion açıkken yalnızca solma.
+    func homeEntrance(_ index: Int) -> some View { modifier(HomeEntrance(index: index)) }
+}
+
+private struct HomeEntrance: ViewModifier {
+    let index: Int
+    /// Açılış başına bir kez.
+    @MainActor static var played = false
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown = HomeEntrance.played
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(shown ? 1 : 0)
+            .offset(y: shown || reduceMotion ? 0 : MP.S.x4)
+            .onAppear {
+                guard !shown else { return }
+                let delay = 0.05 + Double(index) * 0.06
+                withAnimation((reduceMotion ? MP.M.easeOut : MP.M.spring).delay(delay)) { shown = true }
+                Task { @MainActor in
+                    try? await Task.sleep(for: .seconds(1))
+                    HomeEntrance.played = true
+                }
+            }
     }
 }
 

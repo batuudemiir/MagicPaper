@@ -29,6 +29,7 @@ struct HomeView: View {
                         if restY == nil { restY = y }
                         let rest = restY ?? y
                         pull = max(0, y - rest)
+                        scrolled = max(0, rest - y)
                         // Sahne yarıya kadar kaydıysa saat çubuğunun altına zemin gelir.
                         let past = rest - y > sceneHeight / 2
                         if past != scrolledPastScene { scrolledPastScene = past }
@@ -58,6 +59,8 @@ struct HomeView: View {
                        onAvatar: { app.openKidCorner() },
                        onLock: { app.requestParentMode() })
                 .padding(.top, MPSpacing.md)
+                // Saatin altına girmeden kaydırdıkça solar.
+                .opacity(max(0, 1 - scrolled / MP.S.x8))
 
             // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
             VStack(spacing: MPSpacing.md) {
@@ -66,29 +69,33 @@ struct HomeView: View {
                              coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
             }
             .padding(.top, sceneClearance)
+            .homeEntrance(0)
 
             Button { MPHaptics.tap(); app.openKidCorner() } label: {
                 HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityHint("Benim köşemi açar")
+            .homeEntrance(1)
 
-            if !shownModes.isEmpty { modeStrip }
+            if !shownModes.isEmpty { modeStrip.homeEntrance(2) }
 
             if !gunlukItems.isEmpty {
                 HomeGunlukPreview(items: gunlukItems) {
                     MPHaptics.tap()
                     app.tab = .gunluk
                 }
+                .homeEntrance(3)
             }
 
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
+                    .homeEntrance(4)
             }
 
             // Bu akşamın kartı zaten günün masalını gösteriyorsa ikinci kez gösterilmez.
-            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily) }
+            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily).homeEntrance(5) }
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, MPSpacing.xxxl)
@@ -108,6 +115,7 @@ struct HomeView: View {
     @State private var restY: CGFloat?
     @State private var pull: CGFloat = 0
     @State private var scrolledPastScene = false
+    @State private var scrolled: CGFloat = 0
     /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
     /// bu akşamın kartı ilk bakışta görünür.
     private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
