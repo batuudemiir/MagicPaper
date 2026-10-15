@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · main, commit aşağıda · Alt çubukta zıplama kaldırıldı
+- Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.
+- `KidTabBar` sekmeleri: `.symbolEffect(.bounce)` ve `.symbolEffect(.replace)` geçişi kaldırıldı, yerine kısa opaklık geçişi (`MP.M.easeOut`, Hareketi Azalt'ta animasyonsuz). Basma stili `MPPressStyle(.highlight)`: çökme ve yaylanma yok, basılıyken yalnızca hafif söner.
+- `MP.Glass.bar`: `.interactive()` kaldırıldı; dokununca cam kapsül esneyip yaylanmıyor. Aynı yüzeyi kullanan `MPModeSwitch` de etkilenir.
+- Bilerek değişmedi: Yarat düğmesi (ortadaki artı) basma stili, sekme renkleri, ikonlar, çubuğun yeri.
+- Doğrulama: derleme yarıda kesildi (başka oturumun derlemesiyle çakıştı); derlenmedi, test çalıştırılmadı, simülatörde ya da cihazda görülmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPTheme.swift`.
+
 ### 2026-10-15 · main@93d6a13 · Ana sayfa yenilemesi main'e birleşti (push yok)
 - `anasayfa-yenileme` main'e ileri sarıldı: başlığın altı Apple düzeninde (beyaz zemin, Yeni bir masal yaz, Günlük rafı, Bu hafta), vektör mod sahnecikleri, görsel tutarlılık (yıldız imzası, yarıçap kuralı, lavanta paneller).
 - Çakışma çözümü: uyku-v2 (`cf1ae56`) uyku saatinde üç modu açıp Uyku'yu "Bu akşam" etiketiyle öne çıkarıyordu; etiket ve mor çerçeve yeni `HomeModeCard`'a taşındı. Koyu gece kartı artık yalnızca tek mod kaldığında. Değişiklik günlüğünde iki tarafın kayıtları korundu.
