@@ -133,6 +133,22 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
+- Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.
+- Tekrar eden satır, sayfa sonu kancası, cümle uzunluğu ve resimde kalan bilgi LOW → MEDIUM. "12 sayfa" iddiası çürüdü (Book Dash dışı 3 kitaptan 1'i), yayınevi sorusuna çevrildi.
+- Yeni öneri `p_bedtime_closes_circle` karar bekliyor (tavsiye research_more; story-engine bugünkü 3 uyku şablonunun da kurala uymadığını gösterdi, deney önerdi). Yöntem kuralı m006 eklendi.
+- İlk kör yeniden okuma (Amahle): olay işlevi ve resimde kalan bilgi %58; 12 sayfa ile henüz "ölçülüyor".
+- Bilerek değişmeyen: uygulama, StoryEngine, içerik; karar verilmedi. Book Dash'ten gelen 6 kitabın hepsi 3-4 bandında; 5-6 pilotu için korpus hâlâ karışık.
+- Test: 131/131, `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**` (9 eser, analiz, sayfa; iddialar; `p_bedtime_closes_circle`; `method/rules.json`), `docs/research/**` (derin incelemeler, haftalık sayfa 2026-10-15), `Research/BookIntelligence/bookintel/runs.py`, `.gitignore`. Bu kayıtla birlikte 14 Ekim araştırma kayıtlarındaki "commit yok" sürümleri gerçek commit'lerle düzeltildi.
+
+### 2026-10-14 · book-intelligence@ecf41b5 · Haftalık kitap sayısı 10
+- Haftalık öğrenme döngüsü artık haftada 10 kitaba kadar okuyor (önce 2). En az 3'ü Book Dash dışından olmalı. Kitaplar her biri 2 kitap alan, aynı anda en fazla 4 book-research alt ajanına dağıtılıyor; iddiaları, tartışmayı ve kuralları yalnızca yönetici oturum güncelliyor. Kural: sayıya ulaşmak için yargı atlanmaz.
+- `runs.log` kilitli yazıyor: paralel ajanlar koşu kaydında birbirinin girişini silmiyor (8 süreçle 200 eşzamanlı yazma, 200'ü korundu). `data/runs/.lock` gitignore'da.
+- Bilerek değişmeyen: kaynak kuralları, insan onayı, kitap başına analiz adımları.
+- Test: 131/131.
+- Etkilenen: `Research/BookIntelligence/bookintel/runs.py`, `Research/BookIntelligence/.gitignore`; repo dışında `scheduled-tasks/magicpaper-learning-loop/SKILL.md`.
+
 ### 2026-10-14 · main@a532209 · FAZ 20 Günlük: raf, arama ve Kategoriler kart dilinde; erişilebilirlik ve küçük ekran
 - **Raf ve arama:**
   - Geri düğmesi ve arama alanı sert kenarlı, raf simgesi başlığın yanında.
@@ -157,6 +173,51 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Gönderim:** `main` origin'e gönderildi (`1a14de7..a532209`).
 - **Kural:** kökteki `CLAUDE.md`, "Değişiklik günlüğü" bölümü sertleşti (Batuhan, 14 Ekim). Biten her iş, küçüğü de, yazılır. Dosyada başka oturumun değişikliği olsa da kayıt ertelenmez, yalnızca kendi kaydını commit'lersin.
 - **Etkilenen:** `Screens/Gunluk/GunlukShelfView.swift`, `GunlukCategoriesView.swift`, `GunlukComponents.swift`, `GunlukHeader.swift`, `GunlukView.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `Screens/StoryReader/StoryCover.swift`, `Screens/MPAppState.swift`; repo dışında `CLAUDE.md`.
+
+### 2026-10-14 · refrain-deneyi@104b3c3, kitap-rehberi@e6e6bc5, book-intelligence@227fcea · Onaylanan 3 araştırma önerisi uygulandı
+- **Nakarat (p_repeated_line), `refrain-deneyi`:** motorda isteğe bağlı `RefrainSpec`: kısa, slotsuz bir satır belirtilen sayfaların sonuna eklenir, son sayfada bir kez değişir; `CatalogIntegrity` kuralları denetler. İki kardeş blueprint (uyku öncesi 5-6 ve 3-4) `Content/Experiments/x_refrain_bedtime.json` içinde, uygulamayla gelmez. Deneyler `x_refrain_bedtime_56/_34` tahminleriyle kayıtlı (taslak).
+- **Sayfa sonu sorusu ve arkadaşın yansıtması, `kitap-rehberi`:** `docs/MagicPaper_Content_Library.md` §14'e yazım kuralı olarak girdi; mevcut satırlar değişmedi.
+- **Araştırma, `book-intelligence`:** haftalık tur, 9 karar, UX hattı ve iş paketleri commit'lendi; 3 paket `done`.
+- Bilerek değişmeyen: yayındaki katalog (hiçbir blueprint nakarat taşımaz), uygulama kodu, main. Hiçbir dal main'e birleştirilmedi, push yok.
+- Yayın için açık (Batuhan): paket aracı `Content/Experiments`'i okumuyor; `ContentPackage.currentSchemaVersion` artırılmalı; sonra `experiment preflight` ve `mark live`.
+- Test: motor paketi 788 test, 18 hata (main'de de aynı 18 test hatalı, önceden var), yeni `RefrainExperimentTests` 8/8; araştırma 119/119, `validate` 0 hata. Uygulama hedefi derlenmedi.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/{CatalogBlueprint,CatalogIntegrity}.swift`, `Offline/OfflineStoryComposer.swift`, `StoryEngine/Tests/StoryEngineTests/RefrainExperimentTests.swift`, `Content/Experiments/*`, `docs/MagicPaper_Content_Library.md`, `Research/BookIntelligence/**`, `docs/research/**`.
+
+### 2026-10-14 · book-intelligence@cfd900c · Araştırma ajanı kendini geliştiriyor
+- Diğer ajanlar (story-engine, content-library, privacy-safety, reader, parent-ux, ui-agent, illustration-system) ve ürün sahibi araştırma ajanına soru sorabiliyor (`ba request ask`). Ajan bir sonraki koşuda önce bunları, iddia ve kitap göstererek cevaplıyor.
+- Kör yeniden okuma: her koşuda tamamlanmış bir kitap, ilk analizine bakılmadan yeniden okunuyor; alan başına tutarlılık ölçülüyor. 20+ sayfada %60'ın altındaki bir alana dayanan iddialar LOW'u geçemiyor (`confidence.py`).
+- Yöntem kuralları: kabul edilen her düzeltme bir kurala dönüşüyor, `validate` uyguluyor. İlk 5 kural gerçek düzeltmelerden geldi (0-3 yoğunluk ölçeği, yaş bandına göre sayfa sayısı, ilan edilmiş nakarat, uyku modu, metin-yalnız ürün).
+- Haftalık sayfaya iki bölüm eklendi: "Ajanlardan gelen sorular" ve "Ajan kendini nasıl geliştirdi". Haftalık görev ve 8 ajan tanımı güncellendi (repo dışında).
+- Bilerek değişmeyen: uygulama, StoryEngine, içerik; tek insan onayı (`exchange decide`). Kör okumayı CLI zorlayamıyor, talimatla sağlanıyor. Aynı worktree'deki haftalık koşunun commit edilmemiş işi olduğu gibi duruyor.
+- Test: 131/131 (12 yeni), `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/bookintel/learning.py` (yeni), `bookintel/confidence.py`, `bookintel/schema.py`, `bookintel/cycle.py`, `book_agent.py`, `tests/test_learning.py` (yeni), `data/method/rules.json` (yeni), `docs/research/BOOK_RESEARCH_AGENT.md`; repo dışında `.claude/agents/*.md` ve `scheduled-tasks/magicpaper-learning-loop/SKILL.md`.
+
+### 2026-10-14 · book-intelligence@227fcea · Araştırmadan UX'e ve onaydan işe bağlantı
+- Öneriler artık tasarıma da gidebiliyor: 7 yeni hedef (okuyucu: sayfa çevirme, düzen, sesli okuma; ebeveyn akışı; çocuk alanı; görsel dil; resim brifi). Her hedefin sahibi tartışmaya katılır: reader, parent-ux, ui-agent, illustration-system; motor hedeflerinde story-engine. Güvenlik ajanı her öneride zorunlu.
+- Onaylanan öneri kendiliğinden iş paketine dönüşür (`docs/research/handoffs/`, `HANDOFFS.md`): ne yapılacak, dokunacağı dosyalar, testler, güvenlik koşulları, "bitti" tanımı; durumu yalnızca sahibi ya da insan değiştirir (`ba exchange handoff`). Bugünkü 3 onay için paket açıldı: tekrar eden satır (story-engine + content-library), sayfa sonu sorusu ve arkadaşın duygusu (content-library).
+- Haftalık sayfa ayrıca HTML yazılıyor (`docs/research/weekly/<tarih>.html`), karar listesi ve iş paketleriyle birlikte.
+- Ajan tanımlarına (book-research, story-engine, content-library, reader, parent-ux, ui-agent, illustration-system) kısa tartışma ve iş paketi bölümü; haftalık görev UX sahiplerini paralel çağıracak şekilde güncellendi.
+- Bilerek değişmeyen: uygulama ve motor kodu. İş paketlerini ajanlar kendiliğinden başlatmaz, ürün sahibi başlatır; ana koda yine onayla girer. UX önerileri deney olamaz.
+- Test: araştırma testleri 119/119 (9 yeni), `ba validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/bookintel/{exchange,cycle,htmlpage}.py`, `book_agent.py`, `vocab/research_vocab.json`, `tests/test_exchange.py`, `tests/test_loop.py`, `docs/research/{EXCHANGE_PROTOCOL,BOOK_RESEARCH_AGENT,RESEARCH_METHOD}.md`; repo dışında `.claude/agents/*.md` (7 dosya) ve zamanlanmış görev.
+
+### 2026-10-14 · book-intelligence@227fcea · Haftalık araştırma turu ve 9 öneriye karar
+- Haftalık döngü çalıştı (koşu `r_20261014_132709`): iki yeni Book Dash kitabı sayfa sayfa incelendi, *Best Friends* (arkadaşlık) ve kelimesiz *An Unexpected Adventure* (macera). İncelenmiş kitap sayısı 7 oldu.
+- İki kitap 8 mevcut iddiaya destek ya da karşı örnek olarak eklendi. Güven düzeyi değişmedi, yeni iddia yok, bu yüzden ajan turu yapılmadı.
+- Batuhan 9 öneriye tavsiye doğrultusunda karar verdi: tekrar eden satır deneyi, sayfa sonu merak sorusu ve arkadaşın duyguyu yansıtması onaylandı; 4 öneri bekletildi; korku sınırı ve "yetişkin çözer" önerileri reddedildi.
+- Haftalık görev güncellendi: her hafta en az bir kitap Book Dash dışından gelecek (African Storybook ya da StoryWeaver, olmazsa Internet Archive).
+- Bilerek değişmeyen: motor, içerik, uygulama kodu. Onaylanan deney henüz çocuklara ulaşmıyor; varyant yazılıp güvenlikten geçtikten sonra yayın için ayrıca onay gerekir.
+- Test: `ba validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**` (2 eser, 8 iddia, 9 karar), `docs/research/**` (haftalık sayfa, rapor, deep-dive'lar, digest); repo dışında zamanlanmış görev `magicpaper-learning-loop`.
+
+### 2026-10-14 · book-intelligence@3d55ee8 · Çocuk kitabı araştırma ajanı ve öğrenme döngüsü
+- Yeni, uygulamadan ayrık araştırma aracı: `Research/BookIntelligence/` (Python stdlib CLI `book_agent.py`) ve `docs/research/`. Yasal kaynaklardan (Book Dash CC BY 4.0, Internet Archive ≤ 96 yıl, Gutenberg) kitap bulur, sayfa sayfa analiz eder, kanıt ve güven düzeyiyle iddia üretir.
+- Fikir alışverişi (`exchange`): araştırma önerileri story-engine, content-library ve privacy-safety ajanlarıyla tartışılır; tek insan onayı çocuğa ulaşan her şeyde. 9 öneri karar bekliyor (`docs/research/EXCHANGE_DIGEST.md`).
+- Döngü: deneyler (tahmin veriden önce kaydedilir), kullanım verisi içe aktarma (hücre başına ≥ 50 okuma, ≥ 7 gün), kalibrasyon, `cycle`; haftalık zamanlanmış görev `magicpaper-learning-loop` (pazartesi 10:10). 14 Ekim'de elle bir kez çalıştırıldı.
+- `firebase/functions`: `aggregateOutcomes` zamanlanmış fonksiyonu ve `src/outcomes.js` eklendi; deploy edilmedi (Batuhan).
+- Bilerek değişmeyen: StoryEngine, içerik, katalog, uygulama kodu. Kitap metinleri git'e girmez (`cache/`). Dal main'e birleştirilmedi; origin'de, PR açılmadı.
+- Test: araştırma testleri 110/110, `outcomes` fonksiyon testleri 15/15.
+- Etkilenen: `Research/BookIntelligence/**`, `docs/research/**`, `firebase/functions/src/outcomes.js`, `firebase/functions/index.js`, `firebase/functions/test/outcomes.test.mjs`; repo dışında `.claude/agents/book-research.md`.
 
 ### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
 - `liquid-glass-tab-bar` dalı main'e ileri sarıldı (origin'e gönderilmedi, izin bekliyor): yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
