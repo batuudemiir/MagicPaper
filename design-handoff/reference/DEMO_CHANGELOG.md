@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@0eea25c · Ana sayfa: header altı Apple düzeninde, beyaz zemin
+- Araştırma (Apple Design Awards 2026, Khan Academy Kids, Pok Pok, Moshi, Apple HIG Branding): birkaç büyük giriş noktası, az yazı, sakin süreklilik, her gün küçük bir an, tekrar eden az sayıda marka öğesi.
+- **Zemin beyaz** (krem kalktı). Bölüm başlığı içeriğin üstünde, kalın (`HomeSection` yeniden: başlık dışarıda, isteğe bağlı "Tümü" bağlantısı, içerik açık gri alanda ya da doğrudan zeminde).
+- **Sıra:** header ve çipler, bu akşamın masalı (değişmedi), **Yeni bir masal yaz** (üç büyük pastel mod kartı, beyaz daire içinde ikon; uyku saatinde tek ve geniş), **Günlük** (Apple Books rafı gibi yatay kapaklar, ilki "Bugün" kurdeleli, "Tümü" Günlük sekmesini açar), **Bu hafta** (noktalar yerine markanın sarı yıldızları, altında "Bu hafta 2 gün birlikte okudunuz." gibi sakin cümle), seri, günün masalı.
+- Önceki tur (`547c3b6`, kaydı bu kayıtla yazılıyor): bölümler açılışta bir kez sırayla gelir, kapaklar sırayla süzülür, başlık saat çubuğunun altına girmeden kaydırdıkça solar. Reduce Motion'da hepsi yerinde.
+- Denenip bırakılan: yıldız yolunun sahneye taşındığı "C · Yıldız yolu" header'ı ve lavanta/gök mavisi zemin; Batuhan header'ın eski hâlinde kalmasını istedi, commit'lenmedi.
+- Bilerek değişmeyen: header, sahne, Ragi, Yıldızların ve Okuma serisi çipleri, hero kartı.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz; gece hâli bu düzende görülmedi). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-15 · anasayfa-yenileme@ed02a0e · Ana sayfa: Günlük önizleme kartı
 - **Günlük'te bugün** (`HomeGunlukPreview`): mod kartının altında, öbür bölümlerle aynı beyaz kart (lavanta kenar, sert alt kenar, başlık içeride, pırıltı ikonu). Günlük rafından çizimi gelmiş üç klasik kapak, adı ve süresiyle; ilki günün klasiği (Günlük vitriniyle aynı). Altta "Günlük'e git". Kartın tamamı Günlük sekmesini açar, tek hafif titreşim. En büyük yazı boyutunda iki kapak.
 - Önce denenen mavi, yelpaze kapaklı ve pırıltılı vitrin kartı Batuhan'ın isteğiyle ana sayfa diline uygun önizleme kartına çevrildi; o sürüm commit'lenmedi.
