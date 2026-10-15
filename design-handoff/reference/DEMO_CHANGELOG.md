@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-15 · main, commit aşağıda · Alt çubukta zıplama kaldırıldı
+### 2026-10-15 · main@cf518bd · Alt çubukta zıplama kaldırıldı
 - Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.
 - `KidTabBar` sekmeleri: `.symbolEffect(.bounce)` ve `.symbolEffect(.replace)` geçişi kaldırıldı, yerine kısa opaklık geçişi (`MP.M.easeOut`, Hareketi Azalt'ta animasyonsuz). Basma stili `MPPressStyle(.highlight)`: çökme ve yaylanma yok, basılıyken yalnızca hafif söner.
 - `MP.Glass.bar`: `.interactive()` kaldırıldı; dokununca cam kapsül esneyip yaylanmıyor. Aynı yüzeyi kullanan `MPModeSwitch` de etkilenir.
