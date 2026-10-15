@@ -52,7 +52,7 @@ struct HomeView: View {
     }
 
     private var content: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+        VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
             HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
                        avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
                                           size: MPSize.headerAvatar) },

@@ -434,15 +434,19 @@ struct HomeHeroCard: View {
 struct HomeSection<Leading: View, Content: View>: View {
     let title: String
     var contained: Bool = true
+    /// Başlık el yazısıyla (yalnızca "Günlük", `MP.F.script`).
+    var script: Bool = false
     var link: (title: String, action: () -> Void)? = nil
     @ViewBuilder var leading: Leading
     @ViewBuilder var content: Content
 
     var body: some View {
+        // Başlık içeriğine yapışık (12), bölümler birbirinden uzak (32,
+        // `HomeView`): her bölüm tek bir bütün gibi okunur.
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
                 leading
-                Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                titleText
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Spacer(minLength: 0)
@@ -453,8 +457,8 @@ struct HomeSection<Leading: View, Content: View>: View {
                             MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
                         }
                         .foregroundStyle(MPColor.actionPrimary)
-                        .frame(minHeight: MPSize.minTouchKid)
-                        .contentShape(Rectangle())
+                        // Dokunma alanı büyük, başlık satırını uzatmaz.
+                        .contentShape(Rectangle().inset(by: -MPSpacing.md))
                     }
                     .buttonStyle(MPPressStyle())
                 }
@@ -470,12 +474,23 @@ struct HomeSection<Leading: View, Content: View>: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+
+    @ViewBuilder private var titleText: some View {
+        if script {
+            // El yazısının satır yüksekliği büyük: alt boşluk öbür başlıklarla eşitlenir.
+            Text(title).font(MP.F.script(34)).foregroundStyle(MPColor.actionPrimary)
+                .padding(.bottom, -MPSpacing.xs)
+        } else {
+            Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+        }
+    }
 }
 
 extension HomeSection where Leading == EmptyView {
-    init(title: String, contained: Bool = true, link: (title: String, action: () -> Void)? = nil,
-         @ViewBuilder content: () -> Content) {
-        self.init(title: title, contained: contained, link: link, leading: { EmptyView() }, content: content)
+    init(title: String, contained: Bool = true, script: Bool = false,
+         link: (title: String, action: () -> Void)? = nil, @ViewBuilder content: () -> Content) {
+        self.init(title: title, contained: contained, script: script, link: link,
+                  leading: { EmptyView() }, content: content)
     }
 }
 
@@ -661,7 +676,7 @@ struct HomeGunlukPreview: View {
     @State private var arrived = false
 
     var body: some View {
-        HomeSection(title: "Günlük", contained: false, link: ("Tümü", action)) {
+        HomeSection(title: "Günlük", contained: false, script: true, link: ("Tümü", action)) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.md) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
