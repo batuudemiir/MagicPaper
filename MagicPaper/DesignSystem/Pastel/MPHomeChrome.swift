@@ -600,12 +600,12 @@ struct HomeModeCard: View {
             label
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding(MPSpacing.lg)
-                .frame(maxWidth: .infinity, minHeight: wide ? 112 : 148, alignment: .topLeading)
+                .frame(maxWidth: .infinity, minHeight: wide ? 120 : 166, alignment: .topLeading)
                 // Sahnecik düzeni etkilemez: sağ altta, kenardan hafifçe taşar; kart kırpar.
                 .background(alignment: .bottomTrailing) {
                     if let artImage {
                         Image(uiImage: artImage).resizable().scaledToFit()
-                            .frame(width: wide ? 140 : 92, height: wide ? 104 : 80, alignment: .bottomTrailing)
+                            .frame(width: wide ? 150 : 124, height: wide ? 112 : 98, alignment: .bottomTrailing)
                             .offset(x: MPSpacing.xs, y: MPSpacing.xs)
                             .accessibilityHidden(true)
                     }
