@@ -46,12 +46,15 @@ struct GunlukView: View {
                             weeklySection
                             shelfSection(.anadolu, width: 128, height: 176)
                             shelfSection(.klasikler, width: 128, height: 176)
-                            bedtimeSection
                         }
                         .padding(.horizontal, MPSpacing.screenH)
 
-                        // Sayfa Ana sayfanın manzarasıyla biter.
-                        GunlukSceneFooter(isNight: isBedtime) { heroPromo }
+                        // Sayfa gece gökyüzüyle biter: Uyku vakti, "Kahramanı sen ol"
+                        // ve manzara tek renkte, vitrinin karşılığı olan bir sahne.
+                        GunlukNightZone {
+                            bedtimeSection
+                            GunlukSceneFooter { heroPromo }
+                        }
                     }
                     .padding(.bottom, GunlukLayout.bottomClearance)
                     .id(Self.top)
@@ -195,9 +198,9 @@ struct GunlukView: View {
         let originals = library.originals(in: .uyku)
         if !items.isEmpty || !originals.isEmpty {
             GunlukSection(title: ClassicShelf.uyku.title, subtitle: ClassicShelf.uyku.subtitle, symbol: "moon",
-                          night: true, action: { path.append(.shelf(.uyku)) }) {
+                          night: true, surface: false, action: { path.append(.shelf(.uyku)) }) {
                 // Boyalı kapaklar önde; çizimi bekleyen orijinaller sonda.
-                GunlukRow(inset: MPSpacing.lg) {
+                GunlukRow(inset: MPSpacing.screenH) {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: 160, height: 200, onDark: true) { open(item) }
                     }

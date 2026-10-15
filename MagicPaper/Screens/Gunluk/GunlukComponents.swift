@@ -264,10 +264,29 @@ struct GunlukSection<Content: View>: View {
     var symbol: String? = nil
     var tone: MPWorldTone = .lav
     var night: Bool = false
+    /// `false`: kart çizilmez, bölüm doğrudan zeminin (gece bölgesi) üstünde
+    /// durur; başlık ekran kenarı boşluğuyla hizalanır.
+    var surface: Bool = true
     var action: (() -> Void)? = nil
     @ViewBuilder var content: Content
 
     var body: some View {
+        if surface {
+            section
+                .padding(.vertical, MPSpacing.lg)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(alignment: .topTrailing) { if night { GunlukNightSky() } }
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                .mpKidSurface(night ? MPColor.bedtimeSkyTop : MPColor.backgroundSurface,
+                              edge: night ? MPColor.brandNight : MPWorldTone.lav.edge)
+        } else {
+            section
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(alignment: .topTrailing) { if night { GunlukNightSky() } }
+        }
+    }
+
+    private var section: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             HStack(alignment: .center, spacing: MPSpacing.md) {
                 if let symbol {
@@ -301,15 +320,9 @@ struct GunlukSection<Content: View>: View {
                     .accessibilityLabel("\(title): tümü")
                 }
             }
-            .padding(.horizontal, MPSpacing.lg)
+            .padding(.horizontal, surface ? MPSpacing.lg : MPSpacing.screenH)
             content
         }
-        .padding(.vertical, MPSpacing.lg)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(alignment: .topTrailing) { if night { GunlukNightSky() } }
-        .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-        .mpKidSurface(night ? MPColor.bedtimeSkyTop : MPColor.backgroundSurface,
-                      edge: night ? MPColor.brandNight : MPWorldTone.lav.edge)
     }
 }
 
@@ -375,11 +388,11 @@ struct GunlukShelfTile: View {
 
 // MARK: - Sayfa sonu
 
-/// Günlük'ün sonu: Ana sayfanın masal manzarası tam genişlikte, üstü kreme
-/// erir; kalemli Ragi çimenin üstünde, "Kahramanı sen ol" kartı göğe biner.
-/// Uyku saatinde manzaranın gece hâli. Ekrandaki tek Ragi burada.
+/// Günlük'ün sonu: Ana sayfanın masal manzarasının gece hâli, tam genişlikte.
+/// Gökyüzü gece bölgesinin rengiyle aynı, kenarları ona erir (dikiş yok);
+/// kalemli Ragi çimenin üstünde (ekrandaki tek maskot), "Kahramanı sen ol"
+/// kartı göğe biner.
 struct GunlukSceneFooter<Card: View>: View {
-    let isNight: Bool
     @ViewBuilder var card: Card
 
     var body: some View {
@@ -388,10 +401,22 @@ struct GunlukSceneFooter<Card: View>: View {
                 .padding(.horizontal, MPSpacing.screenH)
                 .zIndex(1)
             ZStack(alignment: .bottomTrailing) {
-                ZStack {
-                    scene("Scenes/homeSceneDay").opacity(isNight ? 0 : 1)
-                    scene("Scenes/homeSceneNight").opacity(isNight ? 1 : 0)
-                }
+                Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+                    // Manzara bir illüstrasyon: üst kenarı aynı renkteki göğe,
+                    // çimenin alt kenarı gece bölgesine erir; dikiş görünmez.
+                    .mask {
+                        VStack(spacing: 0) {
+                            LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
+                                           startPoint: .top, endPoint: .bottom)
+                                .frame(height: 90)
+                            Rectangle()
+                            LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)],
+                                           startPoint: .top, endPoint: .bottom)
+                                .frame(height: 64)
+                        }
+                    }
+                    .accessibilityHidden(true)
                 MascotImage(mascot: .pencil, width: 88)
                     .padding(.trailing, MPSpacing.screenH + MPSpacing.sm)
                     .padding(.bottom, MPSpacing.xl)
@@ -400,24 +425,29 @@ struct GunlukSceneFooter<Card: View>: View {
             .padding(.top, -MPSpacing.xxxl)
         }
     }
+}
 
-    private func scene(_ name: String) -> some View {
-        Image(name).resizable().aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity)
-            // Manzara bir illüstrasyon: kenarları kreme erir (malzeme taklidi).
-            .mask {
-                VStack(spacing: 0) {
-                    LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
-                                   startPoint: .top, endPoint: .bottom)
-                        .frame(height: 120)
-                    Rectangle()
-                    LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)],
-                                   startPoint: .top, endPoint: .bottom)
-                        .frame(height: MPSpacing.xxl)
-                }
+/// Sayfanın gece bölgesi: vitrinin aynası. Üst köşeleri yuvarlak, rengi
+/// manzaranın gece göğü; aşağıya, alt barın arkasına ve sayfa sonundaki
+/// esnemeye kadar uzanır ki krem bir şerit görünmesin.
+struct GunlukNightZone<Content: View>: View {
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        let shape = UnevenRoundedRectangle(topLeadingRadius: GunlukLayout.stageRadius,
+                                           topTrailingRadius: GunlukLayout.stageRadius, style: .continuous)
+        VStack(alignment: .leading, spacing: MPSpacing.xxl) { content }
+            .padding(.top, MPSpacing.xxl)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(alignment: .top) {
+                shape.fill(MPColor.sceneSkyNight)
+                    .padding(.bottom, -Self.overscroll)
             }
-            .accessibilityHidden(true)
+            .padding(.top, MPSpacing.sm)
     }
+
+    /// Sayfa sonundaki boşluk, alt bar ve aşağı esneme payı.
+    private static var overscroll: CGFloat { 1000 }
 }
 
 /// Alt barın (Ana sayfa · Günlük · Yarat · Kitaplık · Köşem) kapladığı yükseklik.
