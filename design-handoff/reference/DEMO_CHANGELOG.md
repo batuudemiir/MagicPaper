@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@c2c91b0 · Ana sayfa: mod kartlarına vektör sahnecikler
+- Batuhan'ın isteğiyle sahnecikleri ChatGPT yerine taslaktaki düz vektör üslupla Claude çizdi: **Uyku** (ay ışığında yatak, uyuyan bulut, hilal ve yıldızlar), **Öğrenelim** (açık kitaptan çıkan filiz, büyüteç, kelebek), **Macera** (karlı dağlar, tepede bayraklı turuncu çadır, harita), **Uyku gecesi** (aynı sahnenin lacivert ve mor tonları). Hepsi maskotsuz (ekranda tek Ragi).
+- SVG olarak `Assets.xcassets/Scenes/mode-*` içinde, vektör korunuyor; her boyutta keskin. Renkler kart pastelleriyle uyumlu.
+- Sahnecik büyütüldü (kartın sağ alt yarısını doldurur), kart 166 pt'ye uzadı. Gece hilali kesme daire yerine gerçek hilal şekli (lacivert kartta koyu leke bırakıyordu).
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz üç kart ve uyku saatinde tek geniş gece kartı). Test çalıştırılmadı; derleme temiz.
+- Not: üslup düz vektör, header manzarası boyalı; illüstratör kalıcı sahne setini çizerken bu dört sahnecik de aynı elden geçmeli.
+
 ### 2026-10-15 · anasayfa-yenileme@4a81a49 · Ana sayfa: mod kartlarına sahnecik yeri
 - "Yeni bir masal yaz" kartları (`HomeModeCard`) sahneciğe hazır: `Assets.xcassets/Scenes/mode-bedtime`, `mode-learning`, `mode-adventure` (uyku saatinde `mode-bedtime-night`) eklenince kartın sağ altında kenardan taşan küçük illüstrasyon ve iki kelimelik ipucu ("sakin, kısa", "merak, keşif", "cesur, hızlı") görünür; ikon dairesi kalkar. Gece görseli varsa uyku kartı gece göğü zemininde.
 - Görsel henüz yok: kartlar bugünkü ikonla aynı görünür. Görselleri Batuhan header'la aynı üslupta, maskotsuz üretecek (ekranda tek Ragi).
