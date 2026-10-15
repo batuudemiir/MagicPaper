@@ -92,8 +92,12 @@ struct ClassicsCatalog: Equatable {
                 + file.series.filter { $0.shelves.contains(written) }
                     .map { .series($0, episodeCount: episodes(of: $0.id).count) }
         }
-        guard let age else { return onShelf }
-        return onShelf.filter { $0.fits(age: age) }
+        // Boyalı kapaklar önde, çizimi bekleyenler (`pendingCovers`) sonda;
+        // kendi içlerinde katalog sırası korunur.
+        let pending = Set(file.pendingCovers)
+        let ordered = onShelf.filter { !pending.contains($0.cover) } + onShelf.filter { pending.contains($0.cover) }
+        guard let age else { return ordered }
+        return ordered.filter { $0.fits(age: age) }
     }
 
     /// Haftanın seçkisi, editörün sırasıyla. Yaşa göre süzülmez: numaralar

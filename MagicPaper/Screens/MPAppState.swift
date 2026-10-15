@@ -114,6 +114,12 @@ final class MPAppState: ObservableObject {
     // Kök navigasyon
     @Published var tab: MPTab = .home
 
+    /// Seçili sekmeye yeniden dokunulunca artar; sekme kendi köküne döner
+    /// (Günlük'te açık detay sayfaları kapanır, iOS'un alışılmış davranışı).
+    @Published private(set) var tabReselections = 0
+
+    func reselectTab() { tabReselections += 1 }
+
     /// Çocuk mu, ebeveyn mi. Oturumluk ve kalıcı değil: uygulama her zaman
     /// çocuk modunda açılır, arka plana gidince de çocuk moduna döner. Telefonu
     /// çocuğa geri veren bir ebeveynin hiçbir şeyi kapatmayı hatırlaması

@@ -20,10 +20,12 @@ struct GunlukView: View {
     @EnvironmentObject private var settings: MPSettingsStore
     @State private var path: [GunlukRoute] = []
     @State private var showCategories = false
+    @State private var scrolled = false
 
     var body: some View {
         NavigationStack(path: $path) {
             GeometryReader { proxy in
+                ScrollViewReader { reader in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                         // Ana sayfanın sahnesi gibi: vitrin ekranın tepesinden başlar.
@@ -50,9 +52,22 @@ struct GunlukView: View {
                         .padding(.horizontal, MPSpacing.screenH)
                     }
                     .padding(.bottom, GunlukLayout.bottomClearance)
+                    .id(Self.top)
+                    .gunlukTracksScroll($scrolled)
                 }
                 .ignoresSafeArea(edges: .top)
+                // Sekmeye yeniden dokunmak: açık sayfalar kapanır, sayfa başa döner.
+                .onChange(of: app.tabReselections) { _, _ in
+                    guard app.tab == .gunluk else { return }
+                    if path.isEmpty {
+                        withAnimation(MP.M.gated(MP.M.base)) { reader.scrollTo(Self.top, anchor: .top) }
+                    } else {
+                        path = []
+                    }
+                }
+                }
             }
+            .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
             .background(MPColor.backgroundKid.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: GunlukRoute.self) { route in
@@ -89,6 +104,8 @@ struct GunlukView: View {
         }
     }
 
+    private static let top = "gunluk-top"
+
     // MARK: - Çipler
 
     private var chips: some View {
@@ -105,7 +122,9 @@ struct GunlukView: View {
 
     @ViewBuilder
     private var continueSection: some View {
-        let items = library.continueReading
+        // Vitrindeki masal burada tekrar etmez ("Kaldığın yerden" slaytı).
+        let shown = Set(slides.map(\.tale.id))
+        let items = library.continueReading.filter { !shown.contains($0.id) }
         if !items.isEmpty {
             GunlukSection(title: "Kaldığın yerden") {
                 GunlukRow(inset: MPSpacing.lg) {
@@ -157,15 +176,16 @@ struct GunlukView: View {
         let originals = library.originals(in: .uyku)
         if !items.isEmpty || !originals.isEmpty {
             GunlukSection(title: "Uyku vakti", action: { path.append(.shelf(.uyku)) }) {
+                // Boyalı kapaklar önde; çizimi bekleyen orijinaller sonda.
                 GunlukRow(inset: MPSpacing.lg) {
+                    ForEach(items) { item in
+                        ClassicShelfCard(item: item, width: 160, height: 200) { open(item) }
+                    }
                     ForEach(originals) { original in
                         ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
                                          focus: original.cover.coverFocus, width: 160, height: 200) {
                             app.readOriginal(original.story)
                         }
-                    }
-                    ForEach(items) { item in
-                        ClassicShelfCard(item: item, width: 160, height: 200) { open(item) }
                     }
                 }
             }

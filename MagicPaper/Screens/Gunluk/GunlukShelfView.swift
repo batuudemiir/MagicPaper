@@ -156,18 +156,18 @@ struct GunlukShelfView: View {
         } else {
             GunlukSection(title: "\(count) masal") {
                 LazyVGrid(columns: columns, alignment: .leading, spacing: MPSpacing.xl) {
-                    ForEach(originals) { original in
-                        ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
-                                         focus: original.cover.coverFocus, width: cardWidth, height: height) {
-                            app.readOriginal(original.story)
-                        }
-                    }
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: cardWidth, height: height) {
                             switch item {
                             case .tale(let tale): path.append(.tale(tale.id))
                             case .series(let series, _): path.append(.series(series.id))
                             }
+                        }
+                    }
+                    ForEach(originals) { original in
+                        ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
+                                         focus: original.cover.coverFocus, width: cardWidth, height: height) {
+                            app.readOriginal(original.story)
                         }
                     }
                 }

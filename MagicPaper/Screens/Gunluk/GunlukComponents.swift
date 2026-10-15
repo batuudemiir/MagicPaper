@@ -92,14 +92,14 @@ struct GunlukChip: View {
             HStack(spacing: MPSpacing.xxs) {
                 Text(title).mpText(.callout).lineLimit(1)
                 if let trailingIcon {
-                    MPIcon(trailingIcon, size: 11, weight: .bold).accessibilityHidden(true)
+                    MPIcon(trailingIcon, size: MP.G.xs, weight: .bold).accessibilityHidden(true)
                 }
             }
             .foregroundStyle(isSelected ? MPColor.textOnAction : MPColor.textPrimary)
             .padding(.horizontal, MPSpacing.md + 2)
             .frame(minHeight: 34)
             .background(isSelected ? MPColor.textPrimary : MPColor.backgroundSunken, in: Capsule())
-            .contentShape(Capsule().inset(by: -6))
+            .contentShape(Capsule().inset(by: -(MP.S.tapMin - 34) / 2))
         }
         .buttonStyle(MPPressStyle())
         .accessibilityAddTraits(isSelected ? .isSelected : [])
@@ -123,7 +123,10 @@ struct ClassicShelfCard: View {
             VStack(alignment: .leading, spacing: MPSpacing.sm) {
                 ClassicCoverTile(asset: cover, focus: focus, seed: title, width: width, height: height)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary).lineLimit(1)
+                    // İki satır: "Kırmızı Başlıklı Kız" dar kartta kesilmesin.
+                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                        .lineLimit(2).multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text(meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
                 }
                 .padding(.horizontal, MPSpacing.xxs / 2)
@@ -286,7 +289,13 @@ struct GunlukSection<Content: View>: View {
 /// boşluğu (`safeAreaInset`) kaydırma alanına ulaşmıyor; sayfalar bu kadar
 /// alt boşlukla biter ki son kart barın altında kalmasın.
 enum GunlukLayout {
-    static let bottomClearance: CGFloat = MPSize.kidTabBarHeight + MPSize.minTouchKid
+    /// iOS 26'da alt bar `safeAreaBar` ile kaydırma alanına kendi boşluğunu
+    /// verir; burada yalnızca Ana sayfadaki kadar nefes payı kalır (yoksa son
+    /// kartın altında barın iki katı boşluk açılıyordu).
+    static var bottomClearance: CGFloat {
+        if #available(iOS 26.0, *) { return MPSpacing.xxxl }
+        return MPSize.kidTabBarHeight + MPSize.minTouchKid
+    }
 }
 
 
@@ -409,5 +418,53 @@ extension ClassicShelf {
         case .hayvanlar: return .green
         case .sesli:     return .lav
         }
+    }
+}
+
+
+// MARK: - Durum çubuğu
+
+/// Sahne yukarı kayınca saat çubuğunun arkası krem olur; kartlar ve yazılar
+/// saatin, Dynamic Island'ın altından geçerken okunmaz hale gelmez. Sahne
+/// tepedeyken görünmez (boyalı görsel saatin arkasına kadar uzanır).
+struct GunlukStatusBarBackdrop: View {
+    let visible: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        // Sıfır yükseklikli şerit güvenli alanın tepesinde durur; zemini
+        // saat çubuğunun arkasına uzanır.
+        Color.clear
+            .frame(maxWidth: .infinity, maxHeight: 0)
+            .background(alignment: .top) { MPColor.backgroundKid.ignoresSafeArea(edges: .top) }
+            .opacity(visible ? 1 : 0)
+            .animation(reduceMotion ? nil : MP.M.easeOut, value: visible)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+}
+
+extension View {
+    /// Kaydırma içeriğinin tepesi saat çubuğunun altına girdi mi.
+    func gunlukTracksScroll(_ scrolled: Binding<Bool>) -> some View {
+        onGeometryChange(for: Bool.self) { $0.frame(in: .scrollView).minY < -MPSpacing.sm } action: {
+            scrolled.wrappedValue = $0
+        }
+    }
+}
+
+// MARK: - Kenardan geri
+
+/// Günlük sayfaları gezinme çubuğunu gizliyor; UIKit bu durumda kenardan
+/// kaydırarak geri dönmeyi kapatır. Yığında geri dönülecek sayfa varken
+/// hareketi yeniden açar (uygulamada çubuğu gizleyen yığın yalnızca Günlük).
+extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        viewControllers.count > 1
     }
 }
