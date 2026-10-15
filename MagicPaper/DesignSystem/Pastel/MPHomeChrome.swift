@@ -576,37 +576,66 @@ struct StarShape: Shape {
 
 // MARK: - Mod kartı (yeni masal)
 
-/// "Yeni bir masal yaz" bölümündeki büyük mod kartı: pastel zemin, beyaz
-/// daire içinde koyu tonda ikon, altında adı. Az yazı, büyük hedef (araştırma:
-/// birkaç büyük giriş noktası). Tek mod kaldığında (uyku saati) yatay ve tam genişlik.
+/// "Yeni bir masal yaz" bölümündeki büyük mod kartı: pastel zemin, mod adı
+/// ve iki kelimelik ipucu, sağ altta taşan küçük sahnecik (15 Ekim). Az yazı,
+/// büyük hedef (araştırma: okumayan çocuk resimden seçer). Sahneciğin görseli
+/// henüz yoksa beyaz daire içinde ikon gösterilir. Tek mod kaldığında (uyku
+/// saati) yatay ve tam genişlik; gece görseli varsa gece göğü zemininde.
 struct HomeModeCard: View {
     let title: String
+    var hint: String? = nil
     let systemImage: String
     let tone: MPWorldTone
+    /// Sahneciğin varlık adı (`Scenes/mode-…`); yoksa ikon.
+    var art: String? = nil
     var wide: Bool = false
+    var night: Bool = false
     let action: () -> Void
+
+    private var artImage: UIImage? { art.flatMap { UIImage(named: $0) } }
+    private var onNight: Bool { night && artImage != nil }
 
     var body: some View {
         Button(action: action) {
-            let layout = wide
-                ? AnyLayout(HStackLayout(spacing: MPSpacing.lg))
-                : AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
-            layout {
+            label
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .padding(MPSpacing.lg)
+                .frame(maxWidth: .infinity, minHeight: wide ? 112 : 148, alignment: .topLeading)
+                // Sahnecik düzeni etkilemez: sağ altta, kenardan hafifçe taşar; kart kırpar.
+                .background(alignment: .bottomTrailing) {
+                    if let artImage {
+                        Image(uiImage: artImage).resizable().scaledToFit()
+                            .frame(width: wide ? 140 : 92, height: wide ? 104 : 80, alignment: .bottomTrailing)
+                            .offset(x: MPSpacing.xs, y: MPSpacing.xs)
+                            .accessibilityHidden(true)
+                    }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                .mpKidSurface(onNight ? MPColor.bedtimeSkyTop : tone.soft,
+                              edge: onNight ? MPColor.brandNight : tone.edge)
+        }
+        .buttonStyle(MPPressStyle())
+    }
+
+    private var label: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+            if artImage == nil {
                 MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(tone.deep)
                     .frame(width: 56, height: 56)
                     .background(MPColor.backgroundSurface, in: Circle())
+                    .padding(.bottom, MPSpacing.sm)
                     .accessibilityHidden(true)
-                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                if wide { Spacer(minLength: 0) }
             }
-            .padding(MPSpacing.lg)
-            .frame(maxWidth: .infinity, minHeight: wide ? 0 : 136, alignment: wide ? .leading : .topLeading)
-            .mpKidSurface(tone.soft, edge: tone.edge)
+            Text(title).mpText(.cardTitle)
+                .foregroundStyle(onNight ? MPColor.textOnAction : MPColor.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+            if let hint, artImage != nil {
+                Text(hint).mpText(.caption)
+                    .foregroundStyle(onNight ? MPWorldTone.lav.soft : tone.deep)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
-        .buttonStyle(MPPressStyle())
     }
 }
 

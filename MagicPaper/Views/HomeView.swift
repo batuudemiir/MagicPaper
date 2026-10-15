@@ -236,7 +236,8 @@ struct HomeView: View {
                 : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
             layout {
                 ForEach(shownModes, id: \.self) { mode in
-                    HomeModeCard(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone, wide: wide) {
+                    HomeModeCard(title: mode.shortTitle, hint: modeHint(mode), systemImage: mode.symbol,
+                                 tone: mode.tone, art: modeArt(mode), wide: wide, night: isNight) {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
                     }
@@ -244,6 +245,19 @@ struct HomeView: View {
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
+        }
+    }
+
+    /// Mod kartının sahneciği (`Assets.xcassets/Scenes`); uyku saatinde Uyku'nun gece hâli.
+    private func modeArt(_ mode: StoryMode) -> String {
+        mode == .bedtime && isNight ? "Scenes/mode-bedtime-night" : "Scenes/mode-\(mode.rawValue)"
+    }
+
+    private func modeHint(_ mode: StoryMode) -> String {
+        switch mode {
+        case .bedtime:   return "sakin, kısa"
+        case .learning:  return "merak, keşif"
+        case .adventure: return "cesur, hızlı"
         }
     }
 
