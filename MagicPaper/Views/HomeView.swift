@@ -75,6 +75,13 @@ struct HomeView: View {
 
             if !shownModes.isEmpty { modeStrip }
 
+            if !gunlukItems.isEmpty {
+                HomeGunlukPreview(items: gunlukItems) {
+                    MPHaptics.tap()
+                    app.tab = .gunluk
+                }
+            }
+
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
@@ -187,6 +194,21 @@ struct HomeView: View {
         app.openTonight()
     }
 
+    // MARK: - Günlük önizlemesi
+
+    private var classics: ClassicsLibrary { .shared }
+
+    /// Çizimi gelmiş üç klasik; günün klasiği başta.
+    private var gunlukItems: [HomeGunlukPreview.Item] {
+        var tales = classics.catalog.standaloneTales.filter { UIImage(named: $0.cover) != nil }
+        if let today = classics.todaysTale, let i = tales.firstIndex(where: { $0.id == today.id }) {
+            tales.insert(tales.remove(at: i), at: 0)
+        }
+        return tales.prefix(3).map {
+            .init(id: $0.id, title: $0.title, minutes: $0.minutes, asset: $0.cover, focus: $0.coverFocus)
+        }
+    }
+
     // MARK: - Mod şeridi
 
     private var shownModes: [StoryMode] {
@@ -200,7 +222,7 @@ struct HomeView: View {
     private var modeStrip: some View {
         HomeSection(title: "Bu akşam nasıl bir masal olsun?") {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
-                                     count: typeSize.isAccessibilitySize ? 1 : 3),
+                                     count: typeSize.isAccessibilitySize ? 1 : min(max(shownModes.count, 1), 3)),
                       spacing: MPSpacing.sm) {
                 ForEach(shownModes, id: \.self) { mode in
                     HomeModeTile(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone) {

@@ -522,6 +522,72 @@ struct HomeStreakCard: View {
     }
 }
 
+// MARK: - Günlük önizlemesi
+
+/// Ana sayfadaki Günlük önizlemesi (15 Ekim): öbür bölümler gibi tek beyaz
+/// kart, başlık üst satırda; altında Günlük rafından üç kapak, adı ve süresi;
+/// en altta "Günlük'e git". Kartın tamamı Günlük sekmesini açar.
+struct HomeGunlukPreview: View {
+    struct Item: Identifiable {
+        let id: UUID
+        let title: String
+        let minutes: Int
+        let asset: String
+        let focus: ClassicFocus
+    }
+
+    /// En çok üç; ilki günün klasiği.
+    let items: [Item]
+    let action: () -> Void
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        Button(action: action) {
+            HomeSection(title: "Günlük'te bugün") {
+                MPIcon("sparkles", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
+                    .padding(.top, MPSpacing.xxs)
+                    .accessibilityHidden(true)
+            } content: {
+                VStack(alignment: .leading, spacing: MPSpacing.md) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md, alignment: .top),
+                                             count: typeSize.isAccessibilitySize ? 2 : 3),
+                              alignment: .leading, spacing: MPSpacing.md) {
+                        ForEach(items.prefix(typeSize.isAccessibilitySize ? 2 : 3)) { item in tile(item) }
+                    }
+                    HStack(spacing: MPSpacing.xxs) {
+                        Text("Günlük'e git").mpText(.callout)
+                        MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+                    }
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Günlük'te bugün: " + items.map(\.title).joined(separator: ", "))
+        .accessibilityHint("Günlük sekmesini açar")
+        .accessibilityAddTraits(.isButton)
+    }
+
+    private func tile(_ item: Item) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xs) {
+            // Kapak sütunu doldurur; oran rafla aynı (3:4).
+            Color.clear
+                .aspectRatio(0.75, contentMode: .fit)
+                .overlay {
+                    ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
+            Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
+                .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+            Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+        }
+    }
+}
+
 // MARK: - Mod kartı
 
 /// "Bu akşam nasıl bir masal olsun?" kartının içindeki mod düğmesi: pastel
