@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@5b0d24b · Ana sayfa son kontrol: tekrar eden kart, saat çubuğu
+- iPhone 18 Pro Max simülatöründe tasarım ve işlev kontrolü (normal ve en büyük yazı boyutu, kaydırma, tüm düğmelerin hedefi kodda izlendi).
+- **Tekrar kalktı:** "Bu akşamın masalı" okunmadı durumunda günün masalını gösterirken altta aynı masal "Günün masalı" olarak bir daha çıkıyordu; bu durumda Günün masalı kartı gizlenir.
+- **Saat çubuğu:** sayfa kaydırılınca kartlar saatin altından geçip okunmaz oluyordu; sahne yarıya kadar kaydığında saat çubuğunun altına krem zemin yumuşakça gelir (Reduce Motion'da animasyonsuz).
+- Eski yorumlar ("bulutlu bant", "başlıkta yıldız", "hero kartında maskot") güncellendi, `HomeView` girintisi düzeltildi.
+- Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
+- `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+
 ### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
 - Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.
 - Tekrar eden satır, sayfa sonu kancası, cümle uzunluğu ve resimde kalan bilgi LOW → MEDIUM. "12 sayfa" iddiası çürüdü (Book Dash dışı 3 kitaptan 1'i), yayınevi sorusuna çevrildi.
