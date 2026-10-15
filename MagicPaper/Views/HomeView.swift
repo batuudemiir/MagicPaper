@@ -7,8 +7,9 @@ import SwiftUI
 /// günün masalı. Dünya şeridinin yerinde modlar duruyor: dünyalar içerik
 /// geldikçe eklenecek (karar 7 Ekim 2026).
 ///
-/// Yenileme (13 Ekim 2026): bulutlu gökyüzü bandı (uyku saatinde gece),
-/// başlıkta yıldız sayacı, sert alt kenarlı kartlar (`MPHomeChrome.swift`).
+/// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
+/// sahnenin kenarında yıldız ve seri çipleri, sert alt kenarlı kartlar
+/// (`MPHomeChrome.swift`).
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -21,58 +22,77 @@ struct HomeView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-            // Kaydırma ölçüsü: içerik sabitlemesinden etkilenmeyen görünmez işaret.
-            Color.clear.frame(height: 0)
-                .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
-                    // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
-                    if restY == nil { restY = y }
-                    pull = max(0, y - (restY ?? y))
-                }
-            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
-                           avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
-                                              size: MPSize.headerAvatar) },
-                           onAvatar: { app.openKidCorner() },
-                           onLock: { app.requestParentMode() })
-                    .padding(.top, MPSpacing.md)
-
-                // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
-                VStack(spacing: MPSpacing.md) {
-                    HomeStatChips(stars: stars, streak: streak.currentStreak)
-                    HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
-                                 coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
-                }
-                .padding(.top, sceneClearance)
-
-                Button { MPHaptics.tap(); app.openKidCorner() } label: {
-                    HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
-                }
-                .buttonStyle(MPPressStyle())
-                .accessibilityHint("Benim köşemi açar")
-
-                if !shownModes.isEmpty { modeStrip }
-
-                if let child = profileManager.currentProfile?.id,
-                   SeriesManager.shared.cardState(for: child) != nil {
-                    HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                }
-
-                if let daily = todaysDaily { dailySection(daily) }
-            }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xxxl)
-            // Bant içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-            .background(alignment: .top) {
-                HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46, pull: pull)
-            }
-            // Aşağı çekerken hiçbir öğe kaymaz: içerik çekilen mesafe kadar geri
-            // tutulur, yalnızca sahne görseli yerinde büyür. Ölçüm üstteki
-            // ayrı işaretten okunur; bu kaydırma ölçümü etkilemez.
-            .offset(y: -pull)
+                // Kaydırma ölçüsü: içerik sabitlemesinden etkilenmeyen görünmez işaret.
+                Color.clear.frame(height: 0)
+                    .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
+                        // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
+                        if restY == nil { restY = y }
+                        let rest = restY ?? y
+                        pull = max(0, y - rest)
+                        // Sahne yarıya kadar kaydıysa saat çubuğunun altına zemin gelir.
+                        let past = rest - y > sceneHeight / 2
+                        if past != scrolledPastScene { scrolledPastScene = past }
+                    }
+                content
             }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
+        // Kartlar saat çubuğunun altından geçerken saat okunur kalsın.
+        // Sıfır yükseklikli şeridin zemini yalnızca saat çubuğunun alanına taşar.
+        .overlay(alignment: .top) {
+            Color.clear.frame(height: 0)
+                .background(MPColor.backgroundKid.ignoresSafeArea(edges: .top))
+                .opacity(scrolledPastScene ? 1 : 0)
+                .animation(MP.M.gated(MP.M.easeOut), value: scrolledPastScene)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+    }
+
+    private var content: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+            HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
+                       avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
+                                          size: MPSize.headerAvatar) },
+                       onAvatar: { app.openKidCorner() },
+                       onLock: { app.requestParentMode() })
+                .padding(.top, MPSpacing.md)
+
+            // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
+            VStack(spacing: MPSpacing.md) {
+                HomeStatChips(stars: stars, streak: streak.currentStreak)
+                HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
+                             coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
+            }
+            .padding(.top, sceneClearance)
+
+            Button { MPHaptics.tap(); app.openKidCorner() } label: {
+                HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityHint("Benim köşemi açar")
+
+            if !shownModes.isEmpty { modeStrip }
+
+            if let child = profileManager.currentProfile?.id,
+               SeriesManager.shared.cardState(for: child) != nil {
+                HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
+            }
+
+            // Bu akşamın kartı zaten günün masalını gösteriyorsa ikinci kez gösterilmez.
+            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily) }
+        }
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.bottom, MPSpacing.xxxl)
+        // Sahne içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
+        .background(alignment: .top) {
+            HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46, pull: pull)
+        }
+        // Aşağı çekerken hiçbir öğe kaymaz: içerik çekilen mesafe kadar geri
+        // tutulur, yalnızca sahne görseli yerinde büyür. Ölçüm üstteki
+        // ayrı işaretten okunur; bu kaydırma ölçümü etkilemez.
+        .offset(y: -pull)
     }
 
     /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
@@ -80,6 +100,7 @@ struct HomeView: View {
     /// Esneyen başlık: içeriğin dinlenme konumu ve aşağı çekilen mesafe.
     @State private var restY: CGFloat?
     @State private var pull: CGFloat = 0
+    @State private var scrolledPastScene = false
     /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
     /// bu akşamın kartı ilk bakışta görünür.
     private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
@@ -142,6 +163,12 @@ struct HomeView: View {
         }
     }
 
+    /// "Okunmadı" durumunda hero kartı günün masalını gösterir.
+    private var heroShowsDaily: Bool {
+        if case .unread = tonightState { return true }
+        return false
+    }
+
     private var tonightCover: (icon: String, tone: MPWorldTone)? {
         let tonight = tonight
         switch tonight.tonight() {
@@ -169,13 +196,9 @@ struct HomeView: View {
         return StoryCreationSteps.shownModes(available)
     }
 
-    /// Ekranda tek Ragi: hero kartında maskot varsa soru maskotsuz bir başlık olur.
+    /// Soru ve mod düğmeleri tek kartta; Ragi sahnede olduğu için kart maskotsuz.
     private var modeStrip: some View {
-        // Soru ve düğmeler aynı kartta.
         HomeSection(title: "Bu akşam nasıl bir masal olsun?") {
-            // Ragi sahnede; ekranda tek maskot.
-            EmptyView()
-        } content: {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
                       spacing: MPSpacing.sm) {

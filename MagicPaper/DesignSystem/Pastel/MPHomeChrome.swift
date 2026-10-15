@@ -1,5 +1,5 @@
 // MPHomeChrome.swift
-// 11 · Ana sayfa yenilemesi (13 Ekim 2026): bulutlu gökyüzü bandı, başlık,
+// 11 · Ana sayfa yenilemesi (13 Ekim 2026): illüstrasyonlu sahne, başlık,
 // hero kartı, okuma şeridi, mod kartı ve hepsinin ortak kart yüzeyi.
 // Tasarım notu: docs/superpowers/specs/2026-10-13-ana-sayfa-yenileme-design.md
 
@@ -287,7 +287,8 @@ struct WaveBottom: Shape {
 
 // MARK: - Başlık
 
-/// Avatar (→ Benim köşem), selam ve ad, yıldız hapı, kilit (→ ebeveyn kapısı).
+/// Avatar (→ Benim köşem), selam ve ad, kilit (→ ebeveyn kapısı). Yıldız hapı
+/// isteğe bağlı; ana sayfada yıldız sahnenin çipinde.
 struct HomeHeader<Avatar: View>: View {
     let greeting: String
     let childName: String
