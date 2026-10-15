@@ -190,6 +190,22 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
 - `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
 - Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, push yok) · Uyku modu bayrak arkasında, akşam üç mod serbest
+- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı (Batuhan'ın isteği); origin'e gönderilmedi. Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+- Uyku modu v1'de kapalı: yeni `MPFeatures.sleepMode = false`. Kod duruyor; Ana sayfa akşam kartı uyku modunu açmıyor, klasik masal detayındaki "Uyku modu" karesi gizli, masal sonu "İyi geceler" okuyucuyu kapatıp "İyi geceler" tostu gösteriyor, `magicpaper://sleep` bu akşamın masalına düşüyor, Siri "Uyku modu" kısayolu çıktı (intent `isDiscoverable` bayrağa bağlı).
+- Akşam kartı: düğme "Uyku masalı oluştur", alt metin "Kısa, sakin bir masalla günü kapatalım." Düğme yeni `BedtimeStorySheet`'i açar: "Uyku masalı oluştur" (doğrudan Masalda kimler olsun?), yarım masal varsa "Kaldığın yerden devam et", "Başka bir masal seçeyim" (mod adımı). Pencere yalnızca dokununca açılır, kendiliğinden gelmez.
+- Uyku saatinde Yarat artık üç modu da sunar: `allowedModes` filtresi kalktı, yerine `emphasizedMode` + `shownModes(_:emphasized:)`. Ana sayfada Uyku karosu "Bu akşam" etiketi ve mor çerçeveyle önde; Yarat 1'de Uyku öncesi önceden seçili ve üstte açıklama satırı. Sürpriz değişmedi.
+- Ebeveyn Güvenlik: "… ve sonrasında uyku masalı öne çıkar".
+- Bilerek değişmeyen: `SleepModeView`, `MPSleepPlayback`, Live Activity kodu; sürprizin mod ağırlığı; masal sonu düğme sırası.
+- Test: tam takım 698 test, 2 hata. `AvatarViewTests.testAnUnknownPoseDrawsStanding` tekrar koşuda geçti (kararsız). `ReadingEventTests.testDeleteProfileReachesTheLiveStores` yeni simülatörde profil olmadığı için "son profil" kuralına takılıyor; bu değişiklikle ilgisiz, main'de denenmedi. `PastelHomeRulesTests` yeni kurallarla yeşil.
+- Simülatör (iPhone 17 Pro, demo profil, saat 21.10): akşam kartı, "Bu akşam" etiketi, pencere, iki yol (Uyku masalı oluştur → Masalda kimler olsun?, Başka bir masal → mod adımı, Uyku öncesi seçili) açık temada ve en büyük Dynamic Type'ta görüldü; koyu temada pencere görüldü. iPhone SE, Pro Max, "Kaldığın yerden" satırı ve masal sonu "İyi geceler" simülatörde görülmedi.
+- Dosyalar: `Screens/MPFeatures.swift` (yeni), `Screens/BedtimeStorySheet.swift` (yeni), `MPAppState`, `ContentView`, `HomeView`, `MPHomeChrome` (HomeModeTile `badge`), `StoryCreationSteps`, `StoryCreationFlow`, `StoryModeStep`, `StoryReaderView`, `ClassicDetailView`, `MPAppIntents`, `ParentSafetyView`, `MPSettingsStore`, `MPParentControls`, `PastelHomeRulesTests`, `docs/UYKU_MODU_V2_PLANI.md`.
+
+### 2026-10-15 · main (belge) · Plan: uyku modu v2'ye, akşam üç mod serbest
+- Yeni plan `docs/UYKU_MODU_V2_PLANI.md` (Batuhan'ın iki kararı): uyku modu (kararan ekran, süre, Live Activity, Siri "Uyku modu") lansmanda bayrak arkasında gizlenir, v2'de açılır; Ana sayfa akşam kartı "Uyku modunu aç" yerine "Uyku masalı oluştur" penceresi açar; uyku saatinde Yarat üç modu sunar, Uyku öncesi ilk sırada ve vurgulu.
+- Bütün giriş noktaları dosya:satır ile listelendi (akşam kartı, masal sonu "İyi geceler", klasik detay karesi, Siri, `magicpaper://sleep`, Live Activity, ebeveyn Güvenlik kopyası).
+- Açık kararlar: pencere yalnız dokununca mı (öneri) yoksa akşam bir kez kendiliğinden mi; sürpriz uyku saatinde Uyku öncesine ağırlık versin mi.
+- Bilerek değişmeyen: uygulama kodu; "Uyku öncesi" masal modu v1'de kalır. Test çalıştırılmadı (yalnız belge).
 
 ### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
 - Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.

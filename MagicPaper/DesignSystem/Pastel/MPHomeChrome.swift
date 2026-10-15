@@ -402,8 +402,8 @@ struct HomeHeroCard: View {
     }
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Harika gidiyorsun!"; case .bedtime: "Uyku masalı zamanı" } }
-    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "Yarın yeni bir masal hazır olacak. Bir tane daha yazalım mı?"; case .bedtime: "Kısa, sakin bir masal ve kısılan ışıklar." } }
-    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yarat"; case .bedtime: "Uyku modunu aç" } }
+    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "Yarın yeni bir masal hazır olacak. Bir tane daha yazalım mı?"; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
+    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yarat"; case .bedtime: "Uyku masalı oluştur" } }
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
 }
 
@@ -594,7 +594,12 @@ struct HomeModeCard: View {
     var art: String? = nil
     var wide: Bool = false
     var night: Bool = false
+    /// Öne çıkan mod (uyku saatinde "Bu akşam"): mor çerçeve ve üst kenara
+    /// binen etiket, `HomeModeTile` ile aynı dil. Bilgi yalnızca renkle verilmez.
+    var badge: String? = nil
     let action: () -> Void
+
+    @State private var badgeHeight: CGFloat = 0
 
     private var artImage: UIImage? { art.flatMap { UIImage(named: $0) } }
     private var onNight: Bool { night && artImage != nil }
@@ -617,6 +622,26 @@ struct HomeModeCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
                 .mpKidSurface(onNight ? MPColor.bedtimeSkyTop : tone.soft,
                               edge: onNight ? MPColor.brandNight : tone.edge)
+                .overlay {
+                    if badge != nil {
+                        RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
+                            .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
+                    }
+                }
+                .overlay(alignment: .top) {
+                    if let badge {
+                        Text(badge).mpText(.caption)
+                            .foregroundStyle(MPColor.textOnAction)
+                            .lineLimit(1)
+                            .padding(.horizontal, MPSpacing.sm)
+                            .padding(.vertical, MPSpacing.xxs)
+                            .background(MPColor.actionPrimary, in: Capsule())
+                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                            .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { badgeHeight = $0 }
+                            .offset(y: -badgeHeight / 2)
+                            .accessibilityHidden(true)
+                    }
+                }
         }
         .buttonStyle(MPPressStyle())
     }
@@ -749,11 +774,18 @@ private struct HomeEntrance: ViewModifier {
 
 /// "Bu akşam nasıl bir masal olsun?" kartının içindeki mod düğmesi: pastel
 /// zemin, beyaz kutuda büyük ikon ve mod adı. Kenarsız: kart içinde kart olmaz.
+///
+/// `badge` öne çıkan modu işaretler (uyku saatinde "Bu akşam"): üst kenara
+/// binen etiket ve mor çerçeve. Bilgi yalnızca renkle verilmez, etiket yazılı.
 struct HomeModeTile: View {
     let title: String
     let systemImage: String
     let tone: MPWorldTone
+    var badge: String? = nil
     let action: () -> Void
+
+    /// Etiketin yüksekliği: yarısı kadar yukarı çıkıp kenara biner (Dynamic Type ile büyür).
+    @State private var badgeHeight: CGFloat = 0
 
     var body: some View {
         Button(action: action) {
@@ -771,6 +803,28 @@ struct HomeModeTile: View {
             .padding(.horizontal, MPSpacing.sm)
             .frame(maxWidth: .infinity, minHeight: 104)
             .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+            .overlay {
+                if badge != nil {
+                    RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
+                        .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
+                }
+            }
+            .overlay(alignment: .top) {
+                if let badge {
+                    Text(badge).mpText(.caption)
+                        .foregroundStyle(MPColor.textOnAction)
+                        .lineLimit(1)
+                        .padding(.horizontal, MPSpacing.sm)
+                        .padding(.vertical, MPSpacing.xxs)
+                        .background(MPColor.actionPrimary, in: Capsule())
+                        // Okuma şeridi gibi tavanlı: etiket ikonu örtmez, mod
+                        // adı ve erişilebilirlik etiketi büyümeye devam eder.
+                        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { badgeHeight = $0 }
+                        .offset(y: -badgeHeight / 2)
+                        .accessibilityHidden(true)
+                }
+            }
         }
         .buttonStyle(MPPressStyle())
     }

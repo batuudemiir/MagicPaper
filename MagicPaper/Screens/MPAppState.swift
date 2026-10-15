@@ -146,8 +146,14 @@ final class MPAppState: ObservableObject {
     /// Okuyucu kapanınca yapılacak iş (masal sonu: "Bir masal daha", "İyi geceler").
     enum AfterReader { case create, sleep(Story) }
     var afterReader: AfterReader?
-    /// 26 · Uyku modu.
+    /// 26 · Uyku modu (v2, `MPFeatures.sleepMode`).
     @Published var sleepSession: MPSleepSession?
+    /// Uyku saatinde akşam kartının açtığı "Uyku masalı oluştur" penceresi.
+    /// Yalnızca karta dokununca açılır, kendiliğinden gelmez (15 Ekim 2026).
+    @Published var showBedtimeSheet = false
+    /// Pencerede seçilen yol: pencere kapandıktan sonra açılır (bir sayfa
+    /// açıkken tam ekran sunum açılamaz).
+    var pendingBedtimeChoice: BedtimeChoice?
     /// Günün masalı, kendi okuyucusunda.
     @Published var dailyReading: DailyStory?
 
@@ -158,6 +164,27 @@ final class MPAppState: ObservableObject {
         switch next {
         case .create: startStoryCreation()
         case .sleep(let story): sleepSession = MPSleepSession(story: story)
+        }
+    }
+
+    /// "Uyku masalı oluştur" penceresi kapandıktan sonra seçilen yol.
+    func runBedtimeChoice() {
+        guard let choice = pendingBedtimeChoice else { return }
+        pendingBedtimeChoice = nil
+        switch choice {
+        case .bedtimeStory: startStoryCreation(mode: .bedtime)
+        case .resume(let story): read(story)
+        case .otherStory: startStoryCreation()
+        }
+    }
+
+    /// Masal sonu "İyi geceler": uyku modu açıksa masal orada sürer; kapalıyken
+    /// okuyucu kapanır ve Ana sayfa iyi geceler der.
+    func sayGoodNight(after story: Story) {
+        if MPFeatures.sleepMode {
+            afterReader = .sleep(story)
+        } else {
+            showToast("İyi geceler", symbol: "moon")
         }
     }
 
@@ -182,8 +209,13 @@ final class MPAppState: ObservableObject {
     }
 
     /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
-    /// yoksa uyku öncesi modunda yeni bir masal.
+    /// yoksa uyku öncesi modunda yeni bir masal. Uyku modu kapalıyken (v1)
+    /// "Uyku masalı oluştur" penceresi.
     func openSleepMode() {
+        guard MPFeatures.sleepMode else {
+            showBedtimeSheet = true
+            return
+        }
         if let session = MPTonightSource.sleepSession() {
             sleepSession = session
         } else {
@@ -198,13 +230,16 @@ final class MPAppState: ObservableObject {
         enterChildMode()
         guard readerStory == nil, sleepSession == nil, !showStoryCreation, dailyReading == nil else { return }
         sheet = nil
+        showBedtimeSheet = false
+        pendingBedtimeChoice = nil
         actionsStory = nil
         tab = .home
         switch link {
         case .tonight:
             openTonight(fromSurface: true)
         case .sleep:
-            openSleepMode()
+            // Uyku modu v2'de; eski widget ve kısayol dokunuşları boşa düşmez.
+            if MPFeatures.sleepMode { openSleepMode() } else { openTonight(fromSurface: true) }
         case .series:
             guard let childID else { return }
             SeriesManager.shared.refreshUnlocks(for: childID)

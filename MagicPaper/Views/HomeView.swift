@@ -219,11 +219,18 @@ struct HomeView: View {
 
     // MARK: - Mod şeridi
 
-    private var shownModes: [StoryMode] {
+    private var availableModes: [StoryMode] {
         let age = profileManager.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
-        let available = StoryCreationSteps.allowedModes(StoryChoiceSources.current.availableModes(forAge: age),
-                                                        isBedtime: MPBedtime.isBedtime(settings: settings))
-        return StoryCreationSteps.shownModes(available)
+        return StoryChoiceSources.current.availableModes(forAge: age)
+    }
+
+    /// Uyku saatinde Uyku öncesi önde; diğer modlar da seçilebilir (15 Ekim 2026).
+    private var emphasizedMode: StoryMode? {
+        StoryCreationSteps.emphasizedMode(availableModes, isBedtime: MPBedtime.isBedtime(settings: settings))
+    }
+
+    private var shownModes: [StoryMode] {
+        StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
     /// Soru ve mod düğmeleri tek kartta; Ragi sahnede olduğu için kart maskotsuz.
@@ -236,21 +243,26 @@ struct HomeView: View {
                 : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
             layout {
                 ForEach(shownModes, id: \.self) { mode in
-                    HomeModeCard(title: mode.shortTitle, systemImage: mode.symbol,
-                                 tone: mode.tone, art: modeArt(mode), wide: wide, night: isNight) {
+                    HomeModeCard(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone,
+                                 art: modeArt(mode), wide: wide, night: isNight && wide,
+                                 badge: mode == emphasizedMode ? "Bu akşam" : nil) {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
                     }
-                    .accessibilityLabel(mode.title)
+                    .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
+            // "Bu akşam" etiketi kartın üst kenarına biner.
+            .padding(.top, emphasizedMode == nil ? 0 : MPSpacing.sm)
         }
     }
 
-    /// Mod kartının sahneciği (`Assets.xcassets/Scenes`); uyku saatinde Uyku'nun gece hâli.
+    /// Mod kartının sahneciği (`Assets.xcassets/Scenes`); uyku saatinde tek kart
+    /// kaldığında Uyku'nun gece hâli.
     private func modeArt(_ mode: StoryMode) -> String {
-        mode == .bedtime && isNight ? "Scenes/mode-bedtime-night" : "Scenes/mode-\(mode.rawValue)"
+        mode == .bedtime && isNight && shownModes.count == 1
+            ? "Scenes/mode-bedtime-night" : "Scenes/mode-\(mode.rawValue)"
     }
 
     /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler açık gri ya da pastel.

@@ -188,7 +188,7 @@ struct StoryReaderView: View {
                 close()
             },
             onGoodNight: {
-                app.afterReader = .sleep(story)
+                app.sayGoodNight(after: story)
                 close()
             }
         )
