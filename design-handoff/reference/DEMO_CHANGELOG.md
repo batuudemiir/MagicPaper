@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · faz-20-gunluk@f1cc054 · Günlük: sayfa sonu gece bölgesi
+
+Batuhan: alttaki manzaranın kreme beyaz yumuşak geçişi güzel durmamış; Uyku vakti ile aynı renkte olsa daha iyi.
+
+- **Gece bölgesi** (`GunlukNightZone`): Uyku vakti, "Kahramanı sen ol" ve manzara tek bir tam genişlik lacivert alanda. Renk manzaranın gece göğüyle aynı (`MPColor.sceneSkyNight`, Ana sayfa sahnesinin göğü); üst köşeleri vitrinin alt köşeleriyle aynı yarıçapta yuvarlak, sayfa vitrinle açılıp gece sahnesiyle kapanıyor. Alan alt barın arkasına ve aşağı esnemeye kadar uzanıyor, krem şerit görünmüyor.
+- **Uyku vakti** artık ayrı kart değil, doğrudan gece bölgesinin üstünde (`GunlukSection(surface: false)`); raf ekran kenarından kenarına kayıyor.
+- **Manzara** her zaman gece hâli; üst kenarı aynı renkteki göğe, çimenin alt kenarı gece bölgesine eriyor (kreme geçiş kalktı). Ragi ve mor "Kahramanı sen ol" kartı yerinde.
+- **Bilerek değişmeyenler:** vitrin, üstteki beyaz kartlar, bölüm sırası.
+- **Test:** birim testleri çalıştırılmadı (yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri boş. Simülatörde görülen: iPhone 17 Pro, açık tema. Koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
 ### 2026-10-15 · faz-20-gunluk@bd6dbcf · Günlük: vitrinin altı yeniden tasarlandı
 
 Batuhan vitrine (üstteki slayt) dokunmadan altının Ana sayfa diliyle, markaya açık biçimde yeniden düzenlenmesini istedi. Web araştırması (Epic, Booka, Kidbox) raf düzeni ya da arka plan için kullanışlı örnek vermedi; yön Ana sayfanın kendi dilinden kuruldu.
