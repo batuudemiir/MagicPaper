@@ -133,6 +133,24 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · faz-20-gunluk@9edb7fb · Günlük denetimi: gezinme, durum çubuğu, tekrarlar, boşluklar
+
+Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülatörümde ("MP Günlük (Claude)", iPhone 17 Pro) baştan sona gezildi; bulunan sorunlar düzeltildi.
+
+- **Kenardan kaydırarak geri dönme çalışmıyordu.** Günlük sayfaları gezinme çubuğunu gizlediği için iOS bu hareketi kapatıyordu; geri düğmesi de görselle birlikte yukarı kayıp kaybolduğundan detayın altından geri dönmenin yolu yoktu. Yığında sayfa varken hareket yeniden açıldı (`GunlukComponents.swift`, `UINavigationController` uzantısı; uygulamada çubuğu gizleyen yığın yalnızca Günlük). Simülatörde doğrulandı.
+- **Sekmeye yeniden dokunmak bir şey yapmıyordu.** Artık açık detay sayfaları kapanıp Günlük'ün köküne dönülüyor; kökteyken sayfa başa kayıyor. `MPAppState.reselectTab()` ve `ContentView` alt bar bağlamasına tek satır (paylaşılan dosyalar, en küçük değişiklik).
+- **Saat ve Dynamic Island içeriğin üstüne biniyordu.** Sayfa kaydırılınca slayt yazıları, düğmeler ve kartlar saatin altından geçiyordu. Kaydırınca saat çubuğunun arkası krem oluyor (`GunlukStatusBarBackdrop`); sahne tepedeyken görünmüyor. Ana Günlük, detay ve seri ekranlarında.
+- **Rapunzel iki kez görünüyordu**: vitrinde "Kaldığın yerden" slaytı, hemen altında aynı "Kaldığın yerden" kartı. Vitrindeki masallar artık bu rafta tekrar etmiyor (seçki zaten böyleydi).
+- **Son kartın altında barın iki katı boşluk vardı** (~150 pt). Liquid Glass alt bar (`safeAreaBar`) kendi boşluğunu verdiği için Günlük'ün eklediği boşluk iki kat oluyordu. iOS 26'da Ana sayfadaki kadar (`MPSpacing.xxxl`); eski sürümlerde eski değer.
+- **Uyku vakti rafı çizimi bekleyen iki düz kapakla açılıyordu**, boyalı Uyuyan Güzel ve Kadife Tavşan sağda gizliydi. Raflarda ve raf ekranında boyalı kapaklar öne, `pendingCovers` sona alındı (`ClassicsCatalog.items(in:)`, kendi içinde katalog sırası korunuyor).
+- **Anlatım açıklaması masalın yaşıyla çelişiyordu**: Rapunzel "5-7 yaş" iken altta "3-5 yaş için" yazıyordu. Yaş kaldırıldı: "Küçükler için: korkutucu sahneler çıkarıldı." / "Büyükler için: Grimm metnine yakın."
+- **Dar kartlarda başlık kesiliyordu** ("Kırmızı Başlıklı..."). Raf kartı başlıkları iki satıra çıktı.
+- Çiplerin dokunma alanı 46'dan `MP.S.tapMin` (48) oldu; çip ok simgesi boyutu `MP.G.xs`'ten (yasa).
+- **Bilerek değişmeyenler:** Anadolu'dan rafı ve üç uyku orijinali hâlâ düz yedek kapakla; 11 kapak için kaynak ve indirme onayı gerekiyor. "Hepsi" çipi kök sayfada seçili durum gösteriyor, dokununca bir şey yapmıyor (tasarımdaki gibi). Detayın geri düğmesi sahnede kalıyor; kaydırınca kenardan geri dönülüyor.
+- **Test:** ClassicsCatalogTests + ClassicProgressTests 35/0 (iPhone SE simülatörü). Tam takım çalıştırılmadı. Tasarım yasası grep'leri değişen dosyalarda boş. Ekranda görülen: iPhone 17 Pro, açık tema, varsayılan yazı boyutu. Koyu tema, en büyük Dynamic Type, SE ve Pro Max ekran görüntüleri bu turda alınmadı.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `GunlukComponents.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `GunlukShelfView.swift`, `Model/ClassicsCatalog.swift`, `Screens/MPAppState.swift`, `ContentView.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
 ### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
 - Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.
 - Tekrar eden satır, sayfa sonu kancası, cümle uzunluğu ve resimde kalan bilgi LOW → MEDIUM. "12 sayfa" iddiası çürüdü (Book Dash dışı 3 kitaptan 1'i), yayınevi sorusuna çevrildi.
