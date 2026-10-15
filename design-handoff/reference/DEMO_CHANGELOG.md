@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@a4bf106 · Ana sayfa: görsel tutarlılık iyileştirmesi
+- Batuhan'ın kararı (ChatGPT önerisi üzerine, B seçeneği): **"Günlük" başlığı** öbür bölüm başlıklarıyla aynı font, boyut ve ağırlıkta (`title3`); el yazısı satırı yok, klasik hava kapaklardan gelir. `MP.F.script` ve tasarım sistemi belgesindeki istisna notu silindi; iki aile kuralı yeniden istisnasız.
+- **Yıldız imzası:** tek çizim ve tek sarı (`MPStarMark`: beş köşe, `statusStarIcon`, ince koyu sarı kontur). "Yıldızların" çipi (önce içi boş ikon yıldızdı), "Bugün" kurdelesi ve okunan günler bunu kullanır; tamamlanmamış günler soluk beyaz, bugün kesikli halkayla vurgulu. Yeni yıldız eklenmedi; kullanılmayan başlık yıldız hapı silindi.
+- **Köşe yarıçapı kuralı:** büyük yüzeyler (hero, mod kartları, paneller) `card` 24; küçük bilgi kartları (çipler) `input` 18; iç kutular (ikon kareleri, kapaklar) `md` 14 (çip ikon kutusu 12'den 14'e); rozetler hap.
+- **Paneller:** "Bu hafta" (ve aynı kalıbı kullanan seri ve günün masalı) gri yerine beyaz üstünde hafif lavanta, kenarı daha sakin; mod kartlarının dolu pastelinden açık.
+- **Metin:** mod kartlarındaki ipuçları ("sakin, kısa" vb.) kalktı; "Bu hafta"nın sakin cümlesi kaldı (CLAUDE.md §7).
+- Değişmeyen: öğeler, sıra, gezinme, işlevler, başlık-içerik 12 ve bölümler arası 32 aralık.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `DesignSystem/MPTheme.swift`, `docs/MagicPaper_Design_System.md`.
+
 ### 2026-10-15 · anasayfa-yenileme@56cecc7 · Ana sayfa: bölüm başlıkları içeriğe yapışık, Günlük el yazısıyla
 - **Bütünlük:** her bölümde başlık ile içerik arası 12, bölümler arası 32 (önce 24); başlık kendi içeriğiyle tek parça okunur. "Günlük"teki "Tümü" bağlantısı 48 pt'lik yüksekliğiyle başlık satırını uzatıp başlığı içerikten koparıyordu; dokunma alanı korunarak satırı etkilemez hâle geldi.
 - **"Günlük" el yazısıyla:** `MP.F.script` (iOS'un kendi Snell Roundhand'i, indirme yok, Türkçe harfler var), marka morunda, 34 pt, Dynamic Type ile büyür. El yazısının büyük satır yüksekliği alt boşlukta eşitlendi.
