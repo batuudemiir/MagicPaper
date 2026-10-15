@@ -52,7 +52,7 @@ struct ParentSafetyView: View {
                         tone: .lav,
                         title: "Uyku saati",
                         subtitle: settings.bedtime
-                            ? "\(MPReminder.clockLabel(hour: settings.bedtimeHour, minute: settings.bedtimeMinute)) ve sonrasında yalnızca uyku masalı"
+                            ? "\(MPReminder.clockLabel(hour: settings.bedtimeHour, minute: settings.bedtimeMinute)) ve sonrasında uyku masalı öne çıkar"
                             : "Kapalı",
                         isOn: $settings.bedtime
                     )

@@ -78,9 +78,7 @@ struct StoryCreationFlow: View {
     init(preset: StoryMode? = nil, family: UUID? = nil) {
         _chosenFamilyID = State(initialValue: family)
         let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
-        let available = StoryCreationSteps.allowedModes(
-            StoryChoiceSources.current.availableModes(forAge: age),
-            isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared))
+        let available = StoryChoiceSources.current.availableModes(forAge: age)
         switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
         case .mode:
             _phase = State(initialValue: .mode)
@@ -233,6 +231,8 @@ struct StoryCreationFlow: View {
         case .mode:
             StoryModeStep(
                 modes: allowedModes,
+                emphasized: StoryCreationSteps.emphasizedMode(allowedModes,
+                                                              isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
                 childName: profile?.name ?? "",
                 childColor: profile?.mpColor,
                 onChoose: chooseMode,
@@ -297,11 +297,9 @@ struct StoryCreationFlow: View {
     /// profile; the fallback is the MVP band's age only so previews render.
     private var age: Int { profile?.age ?? AgeBandResolver.mvp.upperBound }
 
-    /// Bu bantta kurulabilen modlar, uyku saatinde yalnızca Uyku öncesi.
-    private var allowedModes: [StoryMode] {
-        StoryCreationSteps.allowedModes(source.availableModes(forAge: age),
-                                        isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared))
-    }
+    /// Bu bantta kurulabilen modlar. Uyku saatinde de üçü (15 Ekim 2026);
+    /// Uyku öncesi yalnızca öne çıkar.
+    private var allowedModes: [StoryMode] { source.availableModes(forAge: age) }
 
     private func chooseMode(_ mode: StoryMode) {
         chosenMode = mode

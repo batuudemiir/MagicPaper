@@ -30,16 +30,20 @@ enum StoryCreationSteps {
         availableModes.count >= 2
     }
 
-    /// Kurulabilir modlar, ekran sırasıyla (K5). Kurulamayan mod gösterilmez.
-    /// Uyku saatinde (31 · Güvenlik) yalnızca Uyku öncesi. Bu bantta uyku
-    /// modu kurulamıyorsa kural akışı kilitlemez, hepsi kalır.
-    static func allowedModes(_ available: [StoryMode], isBedtime: Bool) -> [StoryMode] {
-        guard isBedtime, available.contains(.bedtime) else { return available }
-        return [.bedtime]
+    /// Uyku saatinde öne çıkan mod (31 · Güvenlik, karar 15 Ekim 2026).
+    ///
+    /// Akşam yalnızca uyku masalı demek değil: üç mod da seçilebilir, Uyku
+    /// öncesi ilk sırada ve vurgulu. Bu bantta kurulamıyorsa vurgu yok.
+    static func emphasizedMode(_ available: [StoryMode], isBedtime: Bool) -> StoryMode? {
+        isBedtime && available.contains(.bedtime) ? .bedtime : nil
     }
 
-    static func shownModes(_ available: [StoryMode]) -> [StoryMode] {
-        StoryMode.displayOrder.filter(available.contains)
+    /// Kurulabilir modlar, ekran sırasıyla (K5). Kurulamayan mod gösterilmez;
+    /// öne çıkan mod varsa ilk sırada.
+    static func shownModes(_ available: [StoryMode], emphasized: StoryMode? = nil) -> [StoryMode] {
+        let ordered = StoryMode.displayOrder.filter(available.contains)
+        guard let emphasized, ordered.contains(emphasized) else { return ordered }
+        return [emphasized] + ordered.filter { $0 != emphasized }
     }
 
     /// Ana sayfadan bir modla gelindiyse ikinci adım, yoksa birinci.

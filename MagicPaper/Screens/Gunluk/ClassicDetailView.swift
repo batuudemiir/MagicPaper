@@ -129,10 +129,13 @@ struct ClassicDetailView: View {
                 app.readClassic(tale, listen: true)
             }
             .accessibilityHint("Masalı sesli okuyarak açar")
-            HomeModeTile(title: "Uyku modu", systemImage: "moon", tone: .sky) {
-                MPHaptics.tap()
-                app.sleepSession = MPSleepSession(title: tale.title, pages: tale.text(narration).pages,
-                                                  storyID: tale.id)
+            // Uyku modu v2'de (`MPFeatures.sleepMode`).
+            if MPFeatures.sleepMode {
+                HomeModeTile(title: "Uyku modu", systemImage: "moon", tone: .sky) {
+                    MPHaptics.tap()
+                    app.sleepSession = MPSleepSession(title: tale.title, pages: tale.text(narration).pages,
+                                                      storyID: tale.id)
+                }
             }
             HomeModeTile(title: saved ? "Listemde" : "Listeme ekle", systemImage: saved ? "checkmark" : "plus",
                          tone: .peach) {

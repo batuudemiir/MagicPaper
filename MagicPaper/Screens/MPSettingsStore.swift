@@ -25,7 +25,7 @@ final class MPSettingsStore: ObservableObject {
     @Published var speechRateRaw: String { didSet { d.set(speechRateRaw, forKey: K.speechRate) } }
     /// Okuma teması kalıcı (FAZ 17): ertesi akşam aynı kâğıtla açılır.
     @Published var readThemeRaw: String { didSet { d.set(readThemeRaw, forKey: K.readTheme) } }
-    /// Uyku saati (31 · Güvenlik): bu saatten sonra yalnızca uyku masalı.
+    /// Uyku saati (31 · Güvenlik): bu saatten sonra uyku masalı öne çıkar.
     @Published var bedtime: Bool { didSet { d.set(bedtime, forKey: K.bedtime) } }
     @Published var bedtimeHour: Int { didSet { d.set(bedtimeHour, forKey: K.bedtimeHour) } }
     @Published var bedtimeMinute: Int { didSet { d.set(bedtimeMinute, forKey: K.bedtimeMinute) } }
