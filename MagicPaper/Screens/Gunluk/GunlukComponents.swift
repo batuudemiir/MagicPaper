@@ -116,6 +116,8 @@ struct ClassicShelfCard: View {
     var focus: ClassicFocus = .center
     let width: CGFloat
     let height: CGFloat
+    /// Gece kartında (Uyku vakti): yazılar açık renk.
+    var onDark: Bool = false
     let action: () -> Void
 
     var body: some View {
@@ -124,10 +126,11 @@ struct ClassicShelfCard: View {
                 ClassicCoverTile(asset: cover, focus: focus, seed: title, width: width, height: height)
                 VStack(alignment: .leading, spacing: 1) {
                     // İki satır: "Kırmızı Başlıklı Kız" dar kartta kesilmesin.
-                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                    Text(title).mpText(.callout).foregroundStyle(onDark ? MPColor.textOnAction : MPColor.textPrimary)
                         .lineLimit(2).multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
+                    Text(meta).mpText(.caption).foregroundStyle(onDark ? MPWorldTone.lav.soft : MPColor.textSecondary)
+                        .lineLimit(1)
                 }
                 .padding(.horizontal, MPSpacing.xxs / 2)
             }
@@ -140,9 +143,9 @@ struct ClassicShelfCard: View {
 }
 
 extension ClassicShelfCard {
-    init(item: ClassicItem, width: CGFloat, height: CGFloat, action: @escaping () -> Void) {
+    init(item: ClassicItem, width: CGFloat, height: CGFloat, onDark: Bool = false, action: @escaping () -> Void) {
         self.init(title: item.title, meta: item.meta, cover: item.cover, focus: item.coverFocus,
-                  width: width, height: height, action: action)
+                  width: width, height: height, onDark: onDark, action: action)
     }
 }
 
@@ -249,20 +252,44 @@ struct GunlukRow<Content: View>: View {
 // MARK: - Bölüm kartı
 
 /// Günlük'ün her rafı Ana sayfadaki bölüm kartı gibi tek bir kart: beyaz zemin,
-/// lavanta kenar, sert alt kenar (`mpKidSurface`, `MPRadius.card`); başlık
-/// kartın üst satırında, sağda "tümü" oku. Raf kartın içinde kayar.
+/// lavanta kenar, sert alt kenar (`mpKidSurface`, `MPRadius.card`). Başlık
+/// kartın üst satırında; solunda Ana sayfadaki "Bu hafta" gibi rafın simgesi,
+/// altında kısa bir cümle, sağda "tümü" oku. Raf kartın içinde kayar.
+///
+/// `night`: Uyku vakti kartı. Ana sayfanın uyku saatindeki kartıyla aynı gece
+/// laciverti; yazılar açık renk.
 struct GunlukSection<Content: View>: View {
     let title: String
+    var subtitle: String? = nil
+    var symbol: String? = nil
+    var tone: MPWorldTone = .lav
+    var night: Bool = false
     var action: (() -> Void)? = nil
     @ViewBuilder var content: Content
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(alignment: .center, spacing: MPSpacing.sm) {
-                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .accessibilityAddTraits(.isHeader)
+            HStack(alignment: .center, spacing: MPSpacing.md) {
+                if let symbol {
+                    MPIcon(symbol, size: MP.G.md, weight: .semibold)
+                        .foregroundStyle(night ? MPWorldTone.lav.soft : tone.deep)
+                        .frame(width: 40, height: 40)
+                        .background(night ? MPColor.textOnAction.opacity(0.12) : tone.soft,
+                                    in: RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
+                        .accessibilityHidden(true)
+                }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(title).mpText(.headline)
+                        .foregroundStyle(night ? MPColor.textOnAction : MPColor.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                    if let subtitle {
+                        Text(subtitle).mpText(.footnote)
+                            .foregroundStyle(night ? MPWorldTone.lav.soft : MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 if let action {
                     Button(action: action) {
                         MPIcon("chevron.right", size: MP.G.md, weight: .bold)
@@ -279,8 +306,117 @@ struct GunlukSection<Content: View>: View {
         }
         .padding(.vertical, MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .background(alignment: .topTrailing) { if night { GunlukNightSky() } }
         .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+        .mpKidSurface(night ? MPColor.bedtimeSkyTop : MPColor.backgroundSurface,
+                      edge: night ? MPColor.brandNight : MPWorldTone.lav.edge)
+    }
+}
+
+/// Uyku kartının başlığının yanındaki birkaç yıldız: süs, hareketsiz.
+struct GunlukNightSky: View {
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            ForEach(Self.stars.indices, id: \.self) { i in
+                let star = Self.stars[i]
+                MPIcon("sparkle", size: star.size, weight: .regular)
+                    .foregroundStyle(MPColor.textOnAction.opacity(star.opacity))
+                    .offset(x: star.x, y: star.y)
+            }
+        }
+        .accessibilityHidden(true)
+    }
+
+    private static let stars: [(x: CGFloat, y: CGFloat, size: CGFloat, opacity: Double)] = [
+        (-130, 22, MP.G.sm, 0.7), (-170, 64, MP.G.xs, 0.45), (-108, 8, MP.G.xs, 0.55)
+    ]
+}
+
+// MARK: - Raf kapıları
+
+/// "Hangi raftan okuyalım?": Ana sayfadaki mod kartlarının dili. Pastel kutu,
+/// beyaz kare içinde rafın simgesi, adı ve masal sayısı.
+struct GunlukShelfTile: View {
+    let title: String
+    let symbol: String
+    let tone: MPWorldTone
+    let count: Int?
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: MPSpacing.sm) {
+                MPIcon(symbol, size: MP.G.xl, weight: .semibold)
+                    .foregroundStyle(tone.deep)
+                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
+                    .background(MPColor.backgroundSurface,
+                                in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                    .accessibilityHidden(true)
+                VStack(spacing: 0) {
+                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if let count {
+                        Text("\(count) masal").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                    }
+                }
+            }
+            .padding(.vertical, MPSpacing.md)
+            .padding(.horizontal, MPSpacing.sm)
+            .frame(width: 112)
+            .frame(minHeight: 128)
+            .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(count.map { "\(title), \($0) masal" } ?? title)
+    }
+}
+
+// MARK: - Sayfa sonu
+
+/// Günlük'ün sonu: Ana sayfanın masal manzarası tam genişlikte, üstü kreme
+/// erir; kalemli Ragi çimenin üstünde, "Kahramanı sen ol" kartı göğe biner.
+/// Uyku saatinde manzaranın gece hâli. Ekrandaki tek Ragi burada.
+struct GunlukSceneFooter<Card: View>: View {
+    let isNight: Bool
+    @ViewBuilder var card: Card
+
+    var body: some View {
+        VStack(spacing: 0) {
+            card
+                .padding(.horizontal, MPSpacing.screenH)
+                .zIndex(1)
+            ZStack(alignment: .bottomTrailing) {
+                ZStack {
+                    scene("Scenes/homeSceneDay").opacity(isNight ? 0 : 1)
+                    scene("Scenes/homeSceneNight").opacity(isNight ? 1 : 0)
+                }
+                MascotImage(mascot: .pencil, width: 88)
+                    .padding(.trailing, MPSpacing.screenH + MPSpacing.sm)
+                    .padding(.bottom, MPSpacing.xl)
+                    .accessibilityHidden(true)
+            }
+            .padding(.top, -MPSpacing.xxxl)
+        }
+    }
+
+    private func scene(_ name: String) -> some View {
+        Image(name).resizable().aspectRatio(contentMode: .fit)
+            .frame(maxWidth: .infinity)
+            // Manzara bir illüstrasyon: kenarları kreme erir (malzeme taklidi).
+            .mask {
+                VStack(spacing: 0) {
+                    LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
+                                   startPoint: .top, endPoint: .bottom)
+                        .frame(height: 120)
+                    Rectangle()
+                    LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)],
+                                   startPoint: .top, endPoint: .bottom)
+                        .frame(height: MPSpacing.xxl)
+                }
+            }
+            .accessibilityHidden(true)
     }
 }
 
