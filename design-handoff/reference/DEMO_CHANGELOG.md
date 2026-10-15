@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · anasayfa-yenileme@56cecc7 · Ana sayfa: bölüm başlıkları içeriğe yapışık, Günlük el yazısıyla
+- **Bütünlük:** her bölümde başlık ile içerik arası 12, bölümler arası 32 (önce 24); başlık kendi içeriğiyle tek parça okunur. "Günlük"teki "Tümü" bağlantısı 48 pt'lik yüksekliğiyle başlık satırını uzatıp başlığı içerikten koparıyordu; dokunma alanı korunarak satırı etkilemez hâle geldi.
+- **"Günlük" el yazısıyla:** `MP.F.script` (iOS'un kendi Snell Roundhand'i, indirme yok, Türkçe harfler var), marka morunda, 34 pt, Dynamic Type ile büyür. El yazısının büyük satır yüksekliği alt boşlukta eşitlendi.
+- **Tasarım kuralı istisnası (Batuhan'ın kararı):** iki font ailesi kuralına tek istisna, yalnızca bu başlık. `MPTheme.swift` içinde ve `docs/MagicPaper_Design_System.md` §5'te yazılı. Kökteki `CLAUDE.md` tasarım yasası metni güncellenmedi (repo dışı dosya); Batuhan'ın onayıyla eklenmeli.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `docs/MagicPaper_Design_System.md`.
+
 ### 2026-10-15 · anasayfa-yenileme@c2c91b0 · Ana sayfa: mod kartlarına vektör sahnecikler
 - Batuhan'ın isteğiyle sahnecikleri ChatGPT yerine taslaktaki düz vektör üslupla Claude çizdi: **Uyku** (ay ışığında yatak, uyuyan bulut, hilal ve yıldızlar), **Öğrenelim** (açık kitaptan çıkan filiz, büyüteç, kelebek), **Macera** (karlı dağlar, tepede bayraklı turuncu çadır, harita), **Uyku gecesi** (aynı sahnenin lacivert ve mor tonları). Hepsi maskotsuz (ekranda tek Ragi).
 - SVG olarak `Assets.xcassets/Scenes/mode-*` içinde, vektör korunuyor; her boyutta keskin. Renkler kart pastelleriyle uyumlu.
