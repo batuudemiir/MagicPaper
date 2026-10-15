@@ -205,7 +205,7 @@ struct ContentView: View {
                     selection: Binding(
                         get: { app.tab.kidTab },
                         set: { next in
-                            guard MPTab(next) != app.tab else { return }
+                            guard MPTab(next) != app.tab else { app.reselectTab(); return }
                             MPHaptics.selection()
                             app.tab = MPTab(next)
                         }

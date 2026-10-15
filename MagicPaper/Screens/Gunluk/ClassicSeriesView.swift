@@ -12,6 +12,7 @@ struct ClassicSeriesView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
     @ObservedObject private var favorites = MPFavorites.shared
+    @State private var scrolled = false
 
     private var episodes: [ClassicTale] { library.catalog.episodes(of: series.id) }
 
@@ -49,8 +50,10 @@ struct ClassicSeriesView: View {
                 .padding(.horizontal, MPSpacing.screenH)
             }
             .padding(.bottom, GunlukLayout.bottomClearance)
+            .gunlukTracksScroll($scrolled)
         }
         .ignoresSafeArea(edges: .top)
+        .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
     }

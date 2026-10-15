@@ -16,6 +16,7 @@ struct ClassicDetailView: View {
     @State private var narration: ClassicNarration = .soft
     @State private var gate = false
     @State private var sharing = false
+    @State private var scrolled = false
 
     private let artHeight: CGFloat = 470
 
@@ -53,8 +54,10 @@ struct ClassicDetailView: View {
                 .padding(.horizontal, MPSpacing.screenH)
             }
             .padding(.bottom, GunlukLayout.bottomClearance)
+            .gunlukTracksScroll($scrolled)
         }
         .ignoresSafeArea(edges: .top)
+        .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { narration = progress.narration(for: tale.id) }
@@ -154,9 +157,10 @@ struct ClassicDetailView: View {
                             progress.setNarration(value, for: tale.id)
                         }),
                         track: MPColor.backgroundSunken)
+            // Yaş yazılmaz: masalın kendi yaş aralığıyla (üstte) çelişmesin.
             Text(narration == .soft
-                 ? "3-5 yaş için. Korkutucu sahneler çıkarıldı."
-                 : "6 yaş ve üstü. \(tale.byline) metnine yakın.")
+                 ? "Küçükler için: korkutucu sahneler çıkarıldı."
+                 : "Büyükler için: \(tale.byline) metnine yakın.")
                 .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

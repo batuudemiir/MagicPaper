@@ -196,8 +196,62 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
 - `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
 - Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+### 2026-10-15 · main (faz-20-gunluk ileri sarıldı, push yok) · Günlük denetimi ve yeni düzen main'de
+
+- `faz-20-gunluk` dalının 15 Ekim işleri main'e alındı: Günlük denetimi (kenardan geri, durum çubuğu zemini, sekmeye dokununca başa dönüş, tekrar ve boşluk düzeltmeleri), vitrin altının yeni düzeni (raf kapıları, simgeli bölümler) ve sayfa sonundaki gece bölgesi.
+- Önce main (uyku modu v2) dala birleştirildi; tek çakışma bu dosyadaki kayıtlardı, ikisi de korundu. Ardından main dala ileri sarıldı.
+- **Test:** birleşmiş sürüm derlendi ve simülatörde Günlük açıldı (iPhone 17 Pro). Birim testleri birleşmeden sonra çalıştırılmadı.
+- main checkout'taki başka oturumun commit edilmemiş değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+- **Durum:** main'de; origin'e gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@f1cc054 · Günlük: sayfa sonu gece bölgesi
+
+Batuhan: alttaki manzaranın kreme beyaz yumuşak geçişi güzel durmamış; Uyku vakti ile aynı renkte olsa daha iyi.
+
+- **Gece bölgesi** (`GunlukNightZone`): Uyku vakti, "Kahramanı sen ol" ve manzara tek bir tam genişlik lacivert alanda. Renk manzaranın gece göğüyle aynı (`MPColor.sceneSkyNight`, Ana sayfa sahnesinin göğü); üst köşeleri vitrinin alt köşeleriyle aynı yarıçapta yuvarlak, sayfa vitrinle açılıp gece sahnesiyle kapanıyor. Alan alt barın arkasına ve aşağı esnemeye kadar uzanıyor, krem şerit görünmüyor.
+- **Uyku vakti** artık ayrı kart değil, doğrudan gece bölgesinin üstünde (`GunlukSection(surface: false)`); raf ekran kenarından kenarına kayıyor.
+- **Manzara** her zaman gece hâli; üst kenarı aynı renkteki göğe, çimenin alt kenarı gece bölgesine eriyor (kreme geçiş kalktı). Ragi ve mor "Kahramanı sen ol" kartı yerinde.
+- **Bilerek değişmeyenler:** vitrin, üstteki beyaz kartlar, bölüm sırası.
+- **Test:** birim testleri çalıştırılmadı (yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri boş. Simülatörde görülen: iPhone 17 Pro, açık tema. Koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@bd6dbcf · Günlük: vitrinin altı yeniden tasarlandı
+
+Batuhan vitrine (üstteki slayt) dokunmadan altının Ana sayfa diliyle, markaya açık biçimde yeniden düzenlenmesini istedi. Web araştırması (Epic, Booka, Kidbox) raf düzeni ya da arka plan için kullanışlı örnek vermedi; yön Ana sayfanın kendi dilinden kuruldu.
+
+- **Çipler yerine raf kapıları:** "Hangi raftan okuyalım?" kartı (Ana sayfadaki "Bu akşam nasıl bir masal olsun?" kartının dili). Pastel kutu, beyaz kare içinde rafın simgesi, kısa ad ve masal sayısı: Klasikler · Anadolu · Fabllar · Uyku · Seriler · Tüm raflar (Kategoriler sayfasını açar). Yeni `GunlukShelfTile`.
+- **Simgeli bölüm başlıkları:** `GunlukSection` artık Ana sayfadaki "Bu hafta" gibi solda rafın tonunda simge kutusu ve altta bir cümle taşıyor. Kaldığın yerden (yer imi, şeftali), Bu haftanın seçkisi ("Editörün bu hafta için seçtikleri", yıldız, sarı), Anadolu'dan ve Dünya klasikleri (rafın kendi alt başlığı).
+- **Uyku vakti gece kartı:** Ana sayfanın uyku saatindeki kartıyla aynı gece laciverti (`bedtimeSkyTop`, `brandNight` kenar), açık renk yazılar, başlığın yanında birkaç hareketsiz yıldız (`GunlukNightSky`). Raf kartları `onDark` ile açık yazılı.
+- **Manzaralı son:** Sayfa Ana sayfanın masal manzarasıyla biter (`GunlukSceneFooter`): tam genişlik, üstü ve altı kreme erir, uyku saatinde gece hâli. Kalemli Ragi çimenin üstünde (ekrandaki tek maskot); "Kahramanı sen ol" kartı manzaranın göğüne biner ve markanın moruna döndü (sert gece kenarı, sihirli değnek simgesi, "Adınla, sevdiklerinle yepyeni bir masal").
+- **Bilerek değişmeyenler:** Vitrin (slayt, başlık, arama) aynen duruyor. Bölüm sırası aynı. Anadolu'dan rafının yedek kapakları duruyor (kapak kaynağı bekliyor). Raf ve detay ekranları bu turda değişmedi.
+- **Test:** birim testleri çalıştırılmadı (disk dolduğu için test derleme klasörü silindi; değişiklik yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri değişen dosyalarda boş. Simülatörde görülen: iPhone 17 Pro, açık tema, uyku saati (gece manzarası). Gündüz manzarası, koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@9edb7fb · Günlük denetimi: gezinme, durum çubuğu, tekrarlar, boşluklar
+
+Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülatörümde ("MP Günlük (Claude)", iPhone 17 Pro) baştan sona gezildi; bulunan sorunlar düzeltildi.
+
+- **Kenardan kaydırarak geri dönme çalışmıyordu.** Günlük sayfaları gezinme çubuğunu gizlediği için iOS bu hareketi kapatıyordu; geri düğmesi de görselle birlikte yukarı kayıp kaybolduğundan detayın altından geri dönmenin yolu yoktu. Yığında sayfa varken hareket yeniden açıldı (`GunlukComponents.swift`, `UINavigationController` uzantısı; uygulamada çubuğu gizleyen yığın yalnızca Günlük). Simülatörde doğrulandı.
+- **Sekmeye yeniden dokunmak bir şey yapmıyordu.** Artık açık detay sayfaları kapanıp Günlük'ün köküne dönülüyor; kökteyken sayfa başa kayıyor. `MPAppState.reselectTab()` ve `ContentView` alt bar bağlamasına tek satır (paylaşılan dosyalar, en küçük değişiklik).
+- **Saat ve Dynamic Island içeriğin üstüne biniyordu.** Sayfa kaydırılınca slayt yazıları, düğmeler ve kartlar saatin altından geçiyordu. Kaydırınca saat çubuğunun arkası krem oluyor (`GunlukStatusBarBackdrop`); sahne tepedeyken görünmüyor. Ana Günlük, detay ve seri ekranlarında.
+- **Rapunzel iki kez görünüyordu**: vitrinde "Kaldığın yerden" slaytı, hemen altında aynı "Kaldığın yerden" kartı. Vitrindeki masallar artık bu rafta tekrar etmiyor (seçki zaten böyleydi).
+- **Son kartın altında barın iki katı boşluk vardı** (~150 pt). Liquid Glass alt bar (`safeAreaBar`) kendi boşluğunu verdiği için Günlük'ün eklediği boşluk iki kat oluyordu. iOS 26'da Ana sayfadaki kadar (`MPSpacing.xxxl`); eski sürümlerde eski değer.
+- **Uyku vakti rafı çizimi bekleyen iki düz kapakla açılıyordu**, boyalı Uyuyan Güzel ve Kadife Tavşan sağda gizliydi. Raflarda ve raf ekranında boyalı kapaklar öne, `pendingCovers` sona alındı (`ClassicsCatalog.items(in:)`, kendi içinde katalog sırası korunuyor).
+- **Anlatım açıklaması masalın yaşıyla çelişiyordu**: Rapunzel "5-7 yaş" iken altta "3-5 yaş için" yazıyordu. Yaş kaldırıldı: "Küçükler için: korkutucu sahneler çıkarıldı." / "Büyükler için: Grimm metnine yakın."
+- **Dar kartlarda başlık kesiliyordu** ("Kırmızı Başlıklı..."). Raf kartı başlıkları iki satıra çıktı.
+- Çiplerin dokunma alanı 46'dan `MP.S.tapMin` (48) oldu; çip ok simgesi boyutu `MP.G.xs`'ten (yasa).
+- **Bilerek değişmeyenler:** Anadolu'dan rafı ve üç uyku orijinali hâlâ düz yedek kapakla; 11 kapak için kaynak ve indirme onayı gerekiyor. "Hepsi" çipi kök sayfada seçili durum gösteriyor, dokununca bir şey yapmıyor (tasarımdaki gibi). Detayın geri düğmesi sahnede kalıyor; kaydırınca kenardan geri dönülüyor.
+- **Test:** ClassicsCatalogTests + ClassicProgressTests 35/0 (iPhone SE simülatörü). Tam takım çalıştırılmadı. Tasarım yasası grep'leri değişen dosyalarda boş. Ekranda görülen: iPhone 17 Pro, açık tema, varsayılan yazı boyutu. Koyu tema, en büyük Dynamic Type, SE ve Pro Max ekran görüntüleri bu turda alınmadı.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `GunlukComponents.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `GunlukShelfView.swift`, `Model/ClassicsCatalog.swift`, `Screens/MPAppState.swift`, `ContentView.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
 ### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, push yok) · Uyku modu bayrak arkasında, akşam üç mod serbest
 - Birleştirme: `uyku-v2` main'e ileri sarma ile alındı (Batuhan'ın isteği); origin'e gönderilmedi. Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+
+### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, origin'e gönderildi) · Uyku modu bayrak arkasında, akşam üç mod serbest
+- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı, ardından origin'e gönderildi (Batuhan'ın isteği; plan, iş ve günlük commit'leri dahil). Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
 - Uyku modu v1'de kapalı: yeni `MPFeatures.sleepMode = false`. Kod duruyor; Ana sayfa akşam kartı uyku modunu açmıyor, klasik masal detayındaki "Uyku modu" karesi gizli, masal sonu "İyi geceler" okuyucuyu kapatıp "İyi geceler" tostu gösteriyor, `magicpaper://sleep` bu akşamın masalına düşüyor, Siri "Uyku modu" kısayolu çıktı (intent `isDiscoverable` bayrağa bağlı).
 - Akşam kartı: düğme "Uyku masalı oluştur", alt metin "Kısa, sakin bir masalla günü kapatalım." Düğme yeni `BedtimeStorySheet`'i açar: "Uyku masalı oluştur" (doğrudan Masalda kimler olsun?), yarım masal varsa "Kaldığın yerden devam et", "Başka bir masal seçeyim" (mod adımı). Pencere yalnızca dokununca açılır, kendiliğinden gelmez.
 - Uyku saatinde Yarat artık üç modu da sunar: `allowedModes` filtresi kalktı, yerine `emphasizedMode` + `shownModes(_:emphasized:)`. Ana sayfada Uyku karosu "Bu akşam" etiketi ve mor çerçeveyle önde; Yarat 1'de Uyku öncesi önceden seçili ve üstte açıklama satırı. Sürpriz değişmedi.
