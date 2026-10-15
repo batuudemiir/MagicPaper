@@ -1,8 +1,8 @@
 # p_spread_end_hook
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_spread_end_hook` (LOW, 4/6 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_spread_end_hook` (MEDIUM, 11/14 works)
 
-> In 4 of 6 books with text a spread ends on an unfinished line or a direct question answered on the next spread ('But Mama says...', 'But where is Mud?', 'Hmm. But how?', an invitation to play together).
+> In 11 of 14 books with text a spread ends on an unfinished line or a direct question answered on the next spread (e.g. 'And then…', 'Cat?', 'and good night, at last, to…', a step count broken off mid-way).
 
 - Current: page-end lines are not specified
 - Suggested: Hypothesis for page-based stories: end some pages on a question or an open 'says...' and answer it after the turn.

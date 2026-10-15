@@ -1,8 +1,8 @@
 # p_length_twelve_spreads
 
-**Status:** decided · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 7/7 works)
+**Status:** decided · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 1/3 works)
 
-> All 7 analysed contemporary picture books run 12 spreads; the 6 with text have 136-220 words in total (median 154), about 13 words per spread.
+> Outside Book Dash, whose format fixes 12 spreads, 1 of 3 analysed books runs 12 pages (Chicken and Millipede, African Storybook); Good Night, Monu (StoryWeaver) runs 13 and Bohlale's adventure (African Storybook) 15. The 12-spread pattern is not yet shown beyond one publisher.
 
 - Current: 8 pages × 18-38 words (144-304 words)
 - Suggested: Similar total length, but these books spend it on ~12 page turns of ~10-20 words. Worth testing shorter pages and more turns once the corpus is larger.

@@ -1,6 +1,6 @@
 {
   "claim_id": "c_repeated_line",
-  "statement": "A line returns on 2 or more spreads in 4 of 6 books with text ('It's not me, Mama. It's Mud!', 'Catch that cat!', 'No, Amahle, you are too young.', a polite refusal in Best Friends); the other 2 repeat a failed-attempt structure instead of a line.",
+  "statement": "A line returns on 2 or more spreads in 9 of 14 books with text (e.g. 'Come back, cat!', 'Are we there yet?', 'Good night, Monu.', Bohlale's 'I think I will give up because…'); the other 5 repeat a structure or a sound pattern instead of a line.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,23 +8,31 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
   },
   "supporting_works": [
     "w_mud_waterkeyn",
     "w_catch_that_cat_pirie",
     "w_amahle_wants_to_help_nsibande",
-    "w_best_friends_louw"
+    "w_best_friends_louw",
+    "w_khumos_big_trip_sedibe",
+    "w_come_back_cat_rijsdijk",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_good_night_monu_karthik",
+    "w_bohlales_adventure_ambrosano"
   ],
   "counterexample_works": [
     "w_grumpy_cloud_ditlhareng",
-    "w_brave_bora_gicovi"
+    "w_brave_bora_gicovi",
+    "w_bathtub_safari_chemaly",
+    "w_feathered_friends_ange",
+    "w_chicken_and_millipede_asara"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends repeats a refusal line on 3 spreads, then reverses it by action rather than changing the line. The wordless book is not counted.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends repeats a refusal line on 3 spreads, then reverses it by action rather than changing the line. The wordless book is not counted.\n2026-10-15: Book Dash: Khumo, Come Back Cat, Ga Mohana support; Bathtub Safari and Feathered Friends repeat structure only. African Storybook: Bohlale supports (near-quit line x3), Chicken and Millipede repeats a comparison structure. StoryWeaver: Good Night, Monu supports (refrain at pp 2, 5, 13 answers the child's good nights; comfort function, fits m003).",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)",
@@ -33,13 +41,13 @@
     "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 6,
-    "support": 4,
-    "counter": 2,
-    "support_ratio": 0.667,
-    "sample_scope": "SMALL_SAMPLE",
+    "n_examined": 14,
+    "support": 9,
+    "counter": 5,
+    "support_ratio": 0.643,
+    "sample_scope": "CORPUS",
     "best_source_tier": "A",
-    "confidence": "LOW",
+    "confidence": "MEDIUM",
     "wording": "common, not universal",
     "experiments": 0
   },
@@ -47,6 +55,10 @@
     {
       "from": null,
       "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
     }
   ]
 }

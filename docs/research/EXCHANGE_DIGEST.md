@@ -1,10 +1,14 @@
-# Exchange digest — 2026-10-14
+# Exchange digest — 2026-10-15
 
 One page for the product owner. Only the first section needs you.
 
-## Waiting for your decision (0)
+## Waiting for your decision (1)
 
-Nothing.
+### p_bedtime_closes_circle → **research_more**
+
+Three owners agree the direction is sound but the evidence is 4 bedtime-framed books (3 support, LOW), safety is 'concerns' with five conditions (so no experiment yet), and the peak measure was only defined in this round. Next: read at least 4 more bedtime books, then bring back an experiment on a bp_charge_tending_001 variant (peak by page 5, frame line on pages 1 and 8, privacy-safety's ceilings) as story-engine-002 and the content-library sandbox outline describe.
+
+Target `beat_sequences` · safety **concerns** · cost M · [thread](exchange/p_bedtime_closes_circle.md)
 
 ## Still being discussed (0)
 

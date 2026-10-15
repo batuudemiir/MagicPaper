@@ -6,6 +6,7 @@ which confidences moved. Commands that add data attach it to the open run.
 
 from __future__ import annotations
 
+import fcntl
 import os
 from datetime import datetime, timezone
 
@@ -55,13 +56,20 @@ def start(store: Store, goal: str, strategy: list[str]) -> dict:
 
 
 def log(store: Store, field: str, item) -> None:
-    """Append to the open run, once. No open run → nothing is recorded."""
-    run = open_run(store)
-    if run is None:
-        return
-    if item not in run[field]:
-        run[field].append(item)
-        store.put("run", run)
+    """Append to the open run, once. No open run → nothing is recorded.
+
+    Several analyst agents can work on different books at once; the lock keeps one
+    agent's append from overwriting another's."""
+    lock = store.ws.data / "runs" / ".lock"
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    with open(lock, "w") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        run = open_run(store)
+        if run is None:
+            return
+        if item not in run[field]:
+            run[field].append(item)
+            store.put("run", run)
 
 
 def finish(store: Store, summary: str | None = None) -> dict:

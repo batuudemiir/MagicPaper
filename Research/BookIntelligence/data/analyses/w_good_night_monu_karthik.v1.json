@@ -1,0 +1,277 @@
+{
+  "work_id": "w_good_night_monu_karthik",
+  "analysis_version": "1",
+  "edition_id": "e_manual_sw_good_night_monu",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-15T10:43:30Z",
+  "completeness": "full",
+  "summary_paraphrase": "At bedtime a small boy says good night to his family, the sky, the garden and every object in the house; huge shaggy monsters appear in his room, and instead of fleeing he tucks them in, befriends a little one and falls asleep on top of the biggest.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 1,
+      "function": "bedtime, family good nights"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 6,
+      "intensity": 2,
+      "function": "good-night list widens to the world"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 7,
+      "end_page": 7,
+      "intensity": 4,
+      "function": "monsters appear"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 8,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "wordless face-off"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 3,
+      "function": "he puts the monsters to bed"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "one more under the bed"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 2,
+      "function": "befriends the small one"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 13,
+      "end_page": 13,
+      "intensity": 1,
+      "function": "asleep on a monster"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "ESCALATION": 0.167,
+    "TURN": 0.5,
+    "CLIMAX": 0.583,
+    "SOLUTION": 0.75,
+    "COMPLICATION": 0.833,
+    "EMOTIONAL_PAYOFF": 0.917,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "monu",
+      "name": "Monu",
+      "role": "protagonist",
+      "age": "about 4-5 (picture)",
+      "desire": "to say good night to everything",
+      "fear": "the monsters (shown, not said)",
+      "change": "from frozen fear to tucking the monsters in",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "amma",
+      "name": "Amma",
+      "role": "family_member",
+      "relation_to_protagonist": "mother"
+    },
+    {
+      "id": "appa",
+      "name": "Appa",
+      "role": "family_member",
+      "relation_to_protagonist": "father"
+    },
+    {
+      "id": "sister",
+      "name": "sister",
+      "role": "family_member",
+      "relation_to_protagonist": "sister (picture only)"
+    },
+    {
+      "id": "monsters",
+      "name": "the monsters",
+      "role": "antagonistic_force",
+      "relation_to_protagonist": "bedtime fear made visible, then tucked in",
+      "tension_source": "size and staring eyes"
+    },
+    {
+      "id": "small_monster",
+      "name": "small monster",
+      "role": "companion",
+      "relation_to_protagonist": "the one under the bed, becomes a friend"
+    }
+  ],
+  "protagonist_agency": 5,
+  "emotional_curve": [
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    4,
+    4,
+    4,
+    3,
+    3,
+    2,
+    1
+  ],
+  "humor_notes": "Role reversal: the child puts the monsters to bed and kisses them; the bed perched on a sleeping monster.",
+  "repetition": [
+    {
+      "type": "refrain",
+      "description": "'Good night, Monu.' answers his good nights",
+      "pages": [
+        2,
+        5,
+        13
+      ],
+      "functions": [
+        "comfort",
+        "participation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "the world answers him; the last return closes the book as the bedtime ritual"
+    },
+    {
+      "type": "structure",
+      "description": "good-night list: say/wish/sleep tight to each thing in turn",
+      "pages": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "functions": [
+        "rhythm",
+        "comfort",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "a calming list that widens and then breaks off mid-line before the monsters"
+    },
+    {
+      "type": "callback",
+      "description": "his bedtime words (sleep, sweet dreams) are given to the monsters and to himself",
+      "pages": [
+        10,
+        12
+      ],
+      "functions": [
+        "humor",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "the ritual becomes the tool that tames the fear"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Four of thirteen pages are wordless (1, 8, 9, 11); the monsters exist only in the pictures.",
+      "A shadow in the kitchen (p5) foreshadows the monsters.",
+      "The last picture turns the threat into the bed itself."
+    ]
+  },
+  "strengths": [
+    "a bedtime ritual list that calms by rhythm",
+    "the fear peak sits in the middle and the last pages wind down to sleep",
+    "the child tames the fear with the ritual he already owns; no adult intervenes"
+  ],
+  "weaknesses": [
+    "the monster sequence is carried by wordless pages; as text alone the middle is nearly empty",
+    "the mini-scare under the bed (p11) reopens tension close to the end"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "scores": {
+      "curiosity": 4,
+      "humor": 4,
+      "participation": 4,
+      "emotional_identification": 5,
+      "surprise": 5,
+      "character_warmth": 5,
+      "agency": 5,
+      "visual_novelty": 5,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 5
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children.",
+    "label": "Research heuristic — not validated"
+  },
+  "content_flags": [
+    "frightening_imagery"
+  ],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Monsters are large and staring for three pages (research 4/5, about 2 on the engine's 0-3 scale) and are defused by the child's own action; the book itself is a bedtime book. As a text-only model the wordless middle would have to be told in words (m005)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 13,
+    "total_words": 168,
+    "words_per_page": {
+      "min": 0,
+      "median": 12,
+      "max": 38
+    },
+    "mean_sentence_words": 9.88,
+    "longest_sentence": 18,
+    "type_token_ratio": 0.476,
+    "dialogue_ratio": 0.238,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 1,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "says to the": 4,
+        "good night monu": 3,
+        "he says to the": 2,
+        "he sends a": 2,
+        "monu says to the": 2,
+        "sweet dreams he says": 2
+      },
+      "refrains": {
+        "good night monu": 3
+      },
+      "top_sentence_openers": {
+        "he": 3,
+        "good": 3,
+        "sweet": 2,
+        "it": 1,
+        "sleep": 1
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

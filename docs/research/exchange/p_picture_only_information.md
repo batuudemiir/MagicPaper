@@ -1,8 +1,8 @@
 # p_picture_only_information
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_picture_only_information` (LOW, 7/7 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_picture_only_information` (MEDIUM, 16/16 works)
 
-> In all 7 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, who is now left out); one book is wordless.
+> In 16 of 16 analysed books at least one spread carries story information only in the picture; 2 are wordless and in 4 more the turning point is carried by wordless spreads (Come Back Cat, Feathered Friends, Bathtub Safari, Good Night, Monu).
 
 - Current: text carries the whole story
 - Suggested: Hypothesis for illustrated stories: leave one fact per story to the picture; not applicable to text-only stories.

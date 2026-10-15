@@ -1,8 +1,8 @@
 # p_peak_in_last_third
 
-**Status:** decided · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (LOW, 5/7 works)
+**Status:** decided · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (LOW, 9/16 works)
 
-> The emotional peak falls in the last third of the book in 5 of 7 analysed books; Grumpy Cloud and An Unexpected Adventure reach their first peak at the midpoint and plateau.
+> The emotional peak falls in the last third in 9 of 16 analysed books; in 7 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).
 
 - Current: 8-beat arcs
 - Suggested: Check where MagicPaper arcs place their most intense page; compare after the corpus grows.

@@ -1,0 +1,14 @@
+{
+  "agent": "story-engine",
+  "n": 2,
+  "id": "story-engine-2",
+  "stance": "support",
+  "text": "Recommend it as an experiment, not a rule. With 3/4 books (LOW) and every shipped bedtime blueprint failing it, a hard validator rule would empty bedtime mode. Feasible shape: one variant of bp_charge_tending_001 (same family charge, band 5-6, 8 pages, so experiment preflight passes) that moves the waiting/effort pages to 4-5 and spends 6-7 on settling beats at intensity 0-1, with page 8 warm_close using a back-to-the-start variant; control is the current blueprint. Outcome is the bedtime success rule already in the catalog (abandonIsPenalty false, rereads count). In parallel it can enter writing guidance for the real sleep arc the catalog note says is still unwritten. The engine side is a bedtime-scoped arc check (last max-intensity page <= ceil(2/3 n)) as a warning, applied to families the bedtime StoryModeProfile admits, only if the experiment wins.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Offline/StoryMode.swift",
+    "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+    "c_peak_in_last_third"
+  ],
+  "reply_to": "story-engine-1",
+  "at": "2026-10-15T10:47:25Z"
+}

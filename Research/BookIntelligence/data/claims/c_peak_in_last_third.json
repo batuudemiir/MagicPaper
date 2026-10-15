@@ -1,6 +1,6 @@
 {
   "claim_id": "c_peak_in_last_third",
-  "statement": "The emotional peak falls in the last third of the book in 5 of 7 analysed books; Grumpy Cloud and An Unexpected Adventure reach their first peak at the midpoint and plateau.",
+  "statement": "The emotional peak falls in the last third in 9 of 16 analysed books; in 7 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,24 +8,33 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
     "w_brave_bora_gicovi",
     "w_catch_that_cat_pirie",
     "w_mud_waterkeyn",
-    "w_best_friends_louw"
+    "w_best_friends_louw",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_feathered_friends_ange",
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_bohlales_adventure_ambrosano"
   ],
   "counterexample_works": [
     "w_grumpy_cloud_ditlhareng",
-    "w_unexpected_adventure_jooste"
+    "w_unexpected_adventure_jooste",
+    "w_bathtub_safari_chemaly",
+    "w_come_back_cat_rijsdijk",
+    "w_khumos_big_trip_sedibe",
+    "w_chicken_and_millipede_asara",
+    "w_good_night_monu_karthik"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.\n2026-10-15: Counts: support 5 earlier + Ga Mohana, Feathered Friends, Zuko (Book Dash) and Bohlale (African Storybook, first 4 at 0.71). Contradict: Bathtub Safari, Come Back Cat, Khumo (Book Dash, Khumo borderline), Chicken and Millipede (African Storybook, peak 5/5 at 0.45, about 3+ on the engine's 0-3 scale) and Good Night, Monu (StoryWeaver, peak 4/5 at 0.5-0.67, about 2 on 0-3). Two of the counterexamples are bedtime books that peak mid-way and wind down; see c_bedtime_closes_circle.",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "8-beat arcs",
@@ -34,11 +43,11 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 7,
-    "support": 5,
-    "counter": 2,
-    "support_ratio": 0.714,
-    "sample_scope": "SMALL_SAMPLE",
+    "n_examined": 16,
+    "support": 9,
+    "counter": 7,
+    "support_ratio": 0.562,
+    "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "LOW",
     "wording": "common, not universal",
@@ -49,5 +58,9 @@
       "from": null,
       "to": "LOW"
     }
+  ],
+  "judgment_fields": [
+    "emotion_intensity",
+    "beat"
   ]
 }

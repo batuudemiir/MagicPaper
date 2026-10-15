@@ -1,0 +1,275 @@
+{
+  "work_id": "w_bathtub_safari_chemaly",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_bathtub_safari",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-15T10:40:46Z",
+  "completeness": "full",
+  "summary_paraphrase": "Left alone in the bath for a few moments, a boy turns sponges, the tap and bubbles into a safari of crocodile, elephant, giraffe and hippo until a lion roars; his mother comes back, bathtime ends, and he falls asleep among toy versions of the animals.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 1,
+      "function": "bath, Mom steps out"
+    },
+    {
+      "beat": "HOOK",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 3,
+      "function": "a tail in the water"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 4,
+      "function": "safari begins"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 4,
+      "end_page": 8,
+      "intensity": 4,
+      "function": "sound, unfinished line, new animal: repeated cycle"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 3,
+      "function": "rest, then something lurks"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "lion roars"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 2,
+      "function": "Mom returns, bath is ordinary"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 1,
+      "function": "wordless sleep among toy animals"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "HOOK": 0.091,
+    "DISCOVERY": 0.182,
+    "ESCALATION": 0.273,
+    "COMPLICATION": 0.727,
+    "CLIMAX": 0.818,
+    "SOLUTION": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "jack",
+      "name": "Jack",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "to play in the bath",
+      "fear": null,
+      "change": "from bath to imagined safari and back to bed; no inner change",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "mom",
+      "name": "Mom",
+      "role": "family_member",
+      "relation_to_protagonist": "mother",
+      "personality": "cheerful; frames the play by leaving and returning",
+      "humor_source": "may have been the roarer (picture only)"
+    },
+    {
+      "id": "crocodile",
+      "name": "crocodile",
+      "role": "animal_companion",
+      "relation_to_protagonist": "bath sponge turned mount"
+    },
+    {
+      "id": "elephant",
+      "name": "elephant",
+      "role": "animal_companion",
+      "relation_to_protagonist": "bath tap turned shower"
+    },
+    {
+      "id": "giraffe",
+      "name": "giraffe",
+      "role": "animal_companion",
+      "relation_to_protagonist": "a slide"
+    },
+    {
+      "id": "hippo",
+      "name": "hippo",
+      "role": "animal_companion",
+      "relation_to_protagonist": "yellow sponge turned lounger"
+    },
+    {
+      "id": "lion",
+      "name": "lion",
+      "role": "antagonistic_force",
+      "relation_to_protagonist": "the one threat; never meets Jack on the page",
+      "tension_source": "lurks, then roars"
+    }
+  ],
+  "protagonist_agency": 2,
+  "emotional_curve": [
+    1,
+    3,
+    4,
+    3,
+    4,
+    3,
+    4,
+    3,
+    3,
+    4,
+    2,
+    1
+  ],
+  "humor_notes": "Visual and sound-driven: bath objects become animals, the rest-sigh drawn with sunglasses, a giraffe neck used as a slide; the roar may be Mom (picture only).",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "each animal arrives the same way: a sound word, a half line that stops mid-sentence, then the animal on the next spread",
+      "pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "functions": [
+        "anticipation",
+        "participation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "the unfinished lines invite the listener to guess before the turn, and the picture always answers"
+    },
+    {
+      "type": "callback",
+      "description": "bath objects from page 1 (sponges, bottles, tap) return as animals, and all animals return as toys around the bed",
+      "pages": [
+        1,
+        11,
+        12
+      ],
+      "functions": [
+        "memory",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "the toys at bedtime close the fantasy and land it safely at home"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "No animal is named in the text; every animal is identified only by the picture (and one by its trumpet).",
+      "Every bath object (sponge, tap, bottles) is drawn becoming its animal, so the picture carries the logic of the imagined game.",
+      "The 'aaah' line is a rest sigh in the picture, not a scream: the picture reverses how a listener would hear the word.",
+      "The last story page is wordless: sleep and the toy animals close the book without text."
+    ]
+  },
+  "strengths": [
+    "five spreads end on a half line the picture completes after the turn",
+    "picture carries all the animals, so the words stay very few",
+    "wordless sleeping page as a closing ritual"
+  ],
+  "weaknesses": [
+    "almost meaningless without pictures: as text alone it is a list of sounds",
+    "no problem or inner change; the lion threat is dropped rather than resolved",
+    "premise of a young child alone in the bath"
+  ],
+  "anti_patterns": [
+    {
+      "id": "unclear_stakes",
+      "pages": [
+        9,
+        10,
+        11
+      ],
+      "note": "the lion threat is raised and then dropped when Mom returns; nothing is at stake for Jack"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 3,
+      "participation": 4,
+      "emotional_identification": 2,
+      "surprise": 4,
+      "character_warmth": 2,
+      "agency": 2,
+      "visual_novelty": 5,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 3
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [
+    "unsafe_behavior_imitable"
+  ],
+  "age_suitability": {
+    "magicpaper": "adapt_with_care",
+    "notes": "A young child is left alone in the bath and plays roughly in the water; as a model keep the imagined-play frame and the bedtime landing, drop the unattended bath. The lion roar is research intensity 4 of 5 for one page, about 2 on the engine's 0-3 scale, defused on the next spread. Text alone does not tell the story (MagicPaper stories are text-only today)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 93,
+    "words_per_page": {
+      "min": 0,
+      "median": 7.5,
+      "max": 25
+    },
+    "mean_sentence_words": 4.23,
+    "longest_sentence": 10,
+    "type_token_ratio": 0.699,
+    "dialogue_ratio": 0.28,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 2,
+    "sound_words": 3,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {},
+      "refrains": {},
+      "top_sentence_openers": {
+        "there's": 4,
+        "and": 2,
+        "it's": 2,
+        "bathtime": 1,
+        "i'll": 1
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "claim_id": "c_picture_only_information",
-  "statement": "In all 7 analysed books at least one spread carries story information only in the picture (who caused the mess, what is hiding, who is now left out); one book is wordless.",
+  "statement": "In 16 of 16 analysed books at least one spread carries story information only in the picture; 2 are wordless and in 4 more the turning point is carried by wordless spreads (Come Back Cat, Feathered Friends, Bathtub Safari, Good Night, Monu).",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books (Book Dash, South Africa, 2021-2025)"
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
   },
   "supporting_works": [
     "w_mud_waterkeyn",
@@ -17,14 +17,23 @@
     "w_brave_bora_gicovi",
     "w_amahle_wants_to_help_nsibande",
     "w_best_friends_louw",
-    "w_unexpected_adventure_jooste"
+    "w_unexpected_adventure_jooste",
+    "w_bathtub_safari_chemaly",
+    "w_khumos_big_trip_sedibe",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_come_back_cat_rijsdijk",
+    "w_feathered_friends_ange",
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_bohlales_adventure_ambrosano",
+    "w_chicken_and_millipede_asara",
+    "w_good_night_monu_karthik"
   ],
   "counterexample_works": [],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends shows only in the picture that the new friend now sits alone; the wordless book counts trivially and should not be weighed as independent evidence of the technique.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends shows only in the picture that the new friend now sits alone; the wordless book counts trivially and should not be weighed as independent evidence of the technique.\n2026-10-15: Holds across all three sources: African Storybook (Bohlale: the giraffe is drawn before the text needs it; Chicken and Millipede: the size gap carries the joke) and StoryWeaver (Monu: the monsters exist only in pictures). Method rule m005 still applies: today's product is text and audio, so this is evidence for the illustrated product and for what text must carry when pictures are absent. Re-read 2026-10-15 measured only_in_image at 58% on 12 pages (below the 20-page threshold, still measuring); judging it now as information a listener without pictures would lose.",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "text carries the whole story",
@@ -33,13 +42,13 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 7,
-    "support": 7,
+    "n_examined": 16,
+    "support": 16,
     "counter": 0,
     "support_ratio": 1.0,
-    "sample_scope": "SMALL_SAMPLE",
+    "sample_scope": "CORPUS",
     "best_source_tier": "A",
-    "confidence": "LOW",
+    "confidence": "MEDIUM",
     "wording": null,
     "experiments": 0
   },
@@ -47,6 +56,13 @@
     {
       "from": null,
       "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
     }
+  ],
+  "judgment_fields": [
+    "only_in_image"
   ]
 }

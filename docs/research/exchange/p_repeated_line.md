@@ -1,8 +1,8 @@
 # p_repeated_line
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 4/6 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (MEDIUM, 9/14 works)
 
-> A line returns on 2 or more spreads in 4 of 6 books with text ('It's not me, Mama. It's Mud!', 'Catch that cat!', 'No, Amahle, you are too young.', a polite refusal in Best Friends); the other 2 repeat a failed-attempt structure instead of a line.
+> A line returns on 2 or more spreads in 9 of 14 books with text (e.g. 'Come back, cat!', 'Are we there yet?', 'Good night, Monu.', Bohlale's 'I think I will give up because…'); the other 5 repeat a structure or a sound pattern instead of a line.
 
 - Current: repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)
 - Suggested: Distinguish deliberate refrains (a line the listener can join, changed once at the end) from accidental repetition before treating all repetition as a defect.

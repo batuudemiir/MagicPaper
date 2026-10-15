@@ -1,8 +1,8 @@
 # p_fear_named_and_supported
 
-**Status:** decided · **Target:** `EmotionalState.intensity` · claim `c_fear_named_and_supported` (HYPOTHESIS, 1/1 works)
+**Status:** decided · **Target:** `EmotionalState.intensity` · claim `c_fear_named_and_supported` (HYPOTHESIS, 1/3 works)
 
-> Fear is the subject of 1 of 5 books (Brave Bora): it is named on page 2, called okay by a parent, rehearsed on a toy, and peaks at intensity 4 just before the solution.
+> Fear is a subject in 3 of 16 books with three different handlings: Brave Bora names it and a parent supports him; Bohlale names it herself and defuses it by looking again; Good Night, Monu shows it only in pictures and the child settles it alone.
 
 - Current: fear, panic, grief, despair (intensity 3) never permitted at age 5-6
 - Suggested: Open question, not a recommendation: whether named fear followed by adult support could be allowed mid-story. One book cannot answer it.

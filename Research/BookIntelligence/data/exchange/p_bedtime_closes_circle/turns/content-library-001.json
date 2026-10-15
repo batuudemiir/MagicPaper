@@ -1,0 +1,15 @@
+{
+  "agent": "content-library",
+  "n": 1,
+  "id": "content-library-1",
+  "stance": "concern",
+  "text": "Peak half fits and exposes a real gap; the 'return to the opening setting' half does not fit our content as written. Bedtime today maps only to the charge family (pilot_library_v1 storyModes, marked GEÇİCİ). On the engine's 0-3 scale VI-1 runs 0,1,1,1,2,2,0,0 and VI-2 0,1,1,1,2,2,1,0: the last peak page is 6 of 8 (75%), and the age-3 charge blueprint peaks on page 5 of 6 (83%). So the rule would fail all three bedtime blueprints and needs a defined peak (first or last page at max intensity; with first-peak VI-1/VI-2 pass at 62%). The final page already lands lowest (calm/relief = 0), so that half adds nothing new. The circle half is the problem: page 1 is notice_anomaly in an outdoor setting (forest, garden), never the bed, so 'return to opening setting' would end the story outdoors. Of 29 warm_close variants, only about 5 put the child in bed or room (wc_s_both_02, fam_sibling_side_by_side, fam_sibling_shared_blanket, fam_imaginary_bedtime_whisper, fam_imaginary_window_seat); most walk home at dusk. Content-library proposal: implement as a bedtime frame, not a setting match: a bedtime-only page-1 frame line (child in bed/at the window notices something) plus a bedtime-tagged warm_close subset that returns to that bed/window, with no new slot. That is a content task (new variants + a mode filter on warm_close), and the peak position should be a separate, measurable validator check owned by story-engine. Sandbox outline attached.",
+  "evidence": [
+    "c_bedtime_closes_circle",
+    "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+    "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+    "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-15T10:46:53Z"
+}

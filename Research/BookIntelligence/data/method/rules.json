@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "rules": [
     {
       "rule_id": "m001",
@@ -83,6 +83,22 @@
       ],
       "active": true,
       "added_at": "2026-10-14T14:27:20Z"
+    },
+    {
+      "rule_id": "m006",
+      "kind": "note",
+      "text": "A structural proposal names its measure before it is posted: say exactly how a 'peak' (or any position) is computed on the engine's page plan, check it against the current blueprints of that mode, and say what share already passes; a rule that every existing blueprint fails is an experiment or guidance, not a rule.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_bedtime_closes_circle/story-engine-001"
+      ],
+      "active": true,
+      "added_at": "2026-10-15T10:48:02Z"
     }
   ],
   "history": [
@@ -115,6 +131,12 @@
       "change": "added",
       "rule_id": "m005",
       "at": "2026-10-14T14:27:20Z"
+    },
+    {
+      "version": 6,
+      "change": "added",
+      "rule_id": "m006",
+      "at": "2026-10-15T10:48:02Z"
     }
   ]
 }

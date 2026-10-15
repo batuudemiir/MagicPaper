@@ -1,0 +1,54 @@
+{
+  "claim_id": "c_bedtime_closes_circle",
+  "statement": "In 3 of 4 analysed books framed by bedtime or sleep, the last page returns to the opening place (the bed or bedroom) at low intensity (1-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap); Bohlale's adventure wakes in the same bedroom but ends on a high payoff (4 of 5).",
+  "kind": "INFERRED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+  },
+  "supporting_works": [
+    "w_good_night_monu_karthik",
+    "w_bathtub_safari_chemaly",
+    "w_zuko_and_the_crying_tap_langeni"
+  ],
+  "counterexample_works": [
+    "w_bohlales_adventure_ambrosano"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "judgment_fields": [
+    "emotion_intensity",
+    "beat"
+  ],
+  "analyst_note": "2026-10-15: from three sources (Book Dash: Bathtub Safari, Zuko; StoryWeaver: Good Night, Monu; African Storybook: Bohlale as counterexample). Final-page intensity 1/5 (Monu, Bathtub Safari), 2/5 (Zuko), 4/5 (Bohlale); on the engine's 0-3 scale about 0-1 for the three, 2-3 for Bohlale. Monu and Bathtub Safari peak at or before the midpoint and then descend, so this is a shape where the peak is not in the last third (see c_peak_in_last_third). Small sample; inferred from intensity judgments.",
+  "magicpaper": {
+    "target": "beat_sequences",
+    "current": "bedtime mode shares beat sequences with the other modes; m004 already keeps hooks out of its last third",
+    "suggested": "For bedtime blueprints only: place the emotional peak no later than about two thirds through, and let the final page return to the opening setting (bed, room, window) at the lowest intensity of the story.",
+    "note": "Hypothesis from 4 books; bedtime-specific, does not apply to adventure or learning modes.",
+    "review_status": "proposed"
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    }
+  ],
+  "computed": {
+    "n_examined": 4,
+    "support": 3,
+    "counter": 1,
+    "support_ratio": 0.75,
+    "sample_scope": "SMALL_SAMPLE",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0
+  }
+}
