@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-15 · main (belge) · Plan: uyku modu v2'ye, akşam üç mod serbest
+- Yeni plan `docs/UYKU_MODU_V2_PLANI.md` (Batuhan'ın iki kararı): uyku modu (kararan ekran, süre, Live Activity, Siri "Uyku modu") lansmanda bayrak arkasında gizlenir, v2'de açılır; Ana sayfa akşam kartı "Uyku modunu aç" yerine "Uyku masalı oluştur" penceresi açar; uyku saatinde Yarat üç modu sunar, Uyku öncesi ilk sırada ve vurgulu.
+- Bütün giriş noktaları dosya:satır ile listelendi (akşam kartı, masal sonu "İyi geceler", klasik detay karesi, Siri, `magicpaper://sleep`, Live Activity, ebeveyn Güvenlik kopyası).
+- Açık kararlar: pencere yalnız dokununca mı (öneri) yoksa akşam bir kez kendiliğinden mi; sürpriz uyku saatinde Uyku öncesine ağırlık versin mi.
+- Bilerek değişmeyen: uygulama kodu; "Uyku öncesi" masal modu v1'de kalır. Test çalıştırılmadı (yalnız belge).
+
 ### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
 - Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.
 - Tekrar eden satır, sayfa sonu kancası, cümle uzunluğu ve resimde kalan bilgi LOW → MEDIUM. "12 sayfa" iddiası çürüdü (Book Dash dışı 3 kitaptan 1'i), yayınevi sorusuna çevrildi.
