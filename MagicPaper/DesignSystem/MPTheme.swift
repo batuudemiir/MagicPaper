@@ -482,13 +482,6 @@ enum MP {
         static func labelSM(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 13).weight(w) }
         static func caption(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 12).weight(w) }
 
-        /// El yazısı (karar 15 Ekim 2026, Batuhan): iki aile kuralının tek
-        /// istisnası, yalnızca ana sayfadaki "Günlük" başlığı. iOS'un kendi
-        /// Snell Roundhand'i (indirilmez, Türkçe harfleri var); Dynamic Type ile büyür.
-        static func script(_ size: CGFloat) -> Font {
-            .custom("SnellRoundhand-Bold", size: size, relativeTo: .title)
-        }
-
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
 

@@ -182,13 +182,6 @@ dosyalardaydı. Onları migrate etmek ölü kodu canlı gibi gösterir ve gerçe
 gizlerdi; doğru hamle silmekti ve bu karar alındı (§6.1, §6.2). `DeviceHelper`
 içindeki `adaptiveFont` da aynı gerekçeyle kaldırıldı.
 
-### İstisna: el yazısı (karar 15 Ekim 2026, Batuhan)
-
-İki aile kuralının tek istisnası `MP.F.script(_:)`: iOS'un kendi Snell Roundhand'i
-(indirilmez, Türkçe harfleri var), Dynamic Type ile büyür. **Yalnızca ana sayfadaki
-"Günlük" bölüm başlığında**, marka morunda. Başka bir yerde kullanılmadan önce yeniden
-karar alınır.
-
 ### Açık borç: ikon boyutları
 
 54 `MPIcon` çağrısı **17 ayrı boyut** kullanıyor (20, 22, 16, 26, 18, 17, 15, 14, 13,
