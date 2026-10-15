@@ -248,9 +248,6 @@ Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülat�
 - **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `GunlukComponents.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `GunlukShelfView.swift`, `Model/ClassicsCatalog.swift`, `Screens/MPAppState.swift`, `ContentView.swift`.
 - **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
 
-### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, push yok) · Uyku modu bayrak arkasında, akşam üç mod serbest
-- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı (Batuhan'ın isteği); origin'e gönderilmedi. Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
-
 ### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, origin'e gönderildi) · Uyku modu bayrak arkasında, akşam üç mod serbest
 - Birleştirme: `uyku-v2` main'e ileri sarma ile alındı, ardından origin'e gönderildi (Batuhan'ın isteği; plan, iş ve günlük commit'leri dahil). Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
 - Uyku modu v1'de kapalı: yeni `MPFeatures.sleepMode = false`. Kod duruyor; Ana sayfa akşam kartı uyku modunu açmıyor, klasik masal detayındaki "Uyku modu" karesi gizli, masal sonu "İyi geceler" okuyucuyu kapatıp "İyi geceler" tostu gösteriyor, `magicpaper://sleep` bu akşamın masalına düşüyor, Siri "Uyku modu" kısayolu çıktı (intent `isDiscoverable` bayrağa bağlı).
