@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · anasayfa-yenileme@ac75075 · Benim köşem: ana sayfanın tasarım dili, Ragi ön planda
+- Karar (Batuhan, 16 Ekim): Ragi her çocuk ekranında ön planda, Duolingo'daki Duo gibi; ekran başına tek Ragi ve ebeveyn alanında yok kuralı sürüyor.
+- **Zemin beyaz**; krem ve renk geçişli üst bant (`HeaderWash`, arayüz yüzeyinde gradyan) kalktı.
+- **Başlık:** "Benim köşem" solda büyük (`pageTitle`, Günlük sekmesi gibi), kilit sağda. Altında **el sallayan Ragi** ve lavanta panelde sakin karşılama: "Merhaba İrem! Masal okudukça rozetlerin burada toplanır." ya da kazanılan rozet sayısı; "az kaldı" yok. Ragi açılışta süzülür, nefes alır, dokununca zıplar; Reduce Motion'da yerinde.
+- **Bölümler ana sayfa düzeninde** (`HomeSection`, başlık-içerik 12, bölümler arası 32): Kim okuyor?, sayılar, Rozetlerim (sağda "0 / 8", `HomeSection`'a eklenen sağ sayaçla), Masal dünyam (Kahramanımı düzenle, Masal ailem, Yeni kelimelerim tek lavanta panelde; ortak `MPGroupedList`'e dokunulmadı).
+- **Sayı kutuları** çiplerin ailesinde: beyaz, sert alt kenar, `input` yarıçap, pastel ikon kutusu `md`, yıldızda `MPStarMark` (önce gölgeli kutu ve içi boş ikon yıldızdı).
+- **Rozet kartı** (`MPBadgeCard`, yalnızca bu ekranda kullanılıyor): `card` yarıçap ve sert alt kenar; başlık iki satır yer ayırır, kartlar satırda eşit yükseklikte. Kilitli rozetler gri.
+- Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-15 · main@cf518bd · Alt çubukta zıplama kaldırıldı
 - Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.
 - `KidTabBar` sekmeleri: `.symbolEffect(.bounce)` ve `.symbolEffect(.replace)` geçişi kaldırıldı, yerine kısa opaklık geçişi (`MP.M.easeOut`, Hareketi Azalt'ta animasyonsuz). Basma stili `MPPressStyle(.highlight)`: çökme ve yaylanma yok, basılıyken yalnızca hafif söner.
