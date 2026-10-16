@@ -154,6 +154,40 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
 - Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
 - Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+### 2026-10-16 · main@7ae7b30 (kitap-rehberi ileri sarıldı, push yok) · Kitap rehberi main'de
+- Batuhan onayıyla `kitap-rehberi` main'e ileri sarıldı: `docs/MagicPaper_Content_Library.md` §14 (sayfa sonunda açık uç, arkadaş duyguyu yansıtır) artık main'de. Yalnızca belge; test çalıştırılmadı. Origin'e gönderilmedi.
+
+### 2026-10-16 · kitap-rehberi@c4d937a + düzeltme · Kitap rehberi dalı main ile güncellendi
+- `kitap-rehberi` main içine alındı (`c4d937a`), çakışma yok. Dalın main'den tek farkı `docs/MagicPaper_Content_Library.md` §14: kitap araştırmasından iki yazım kuralı (sayfa sonunda genel soru, arkadaşın duyguyu sessizce yansıtması). Yalnızca yeni yazılan satırlar için; motor ve mevcut içerik değişmez.
+- Gözden geçirmede düzeltildi: "ajans kuralı, §2" yanlış bölümü gösteriyordu (§2 şema bölümü); artık `docs/BLUEPRINT_CATALOG_V2.md`'deki kuralı gösteriyor. Beat dosyalarına tam yol eklendi; `PROSE_PRODUCTION_GUIDE.md`'nin repo dışında olduğu yazıldı.
+- Test çalıştırılmadı: değişiklik yalnızca belge. Main'e alınmadı (Batuhan onayı bekliyor), push yok.
+
+### 2026-10-16 · main@dd44465 (refrain-deneyi ileri sarıldı, push yok) · Nakarat deneyi main'de
+- Batuhan onayıyla `refrain-deneyi` main'e ileri sarıldı. Main artık şunları içeriyor: motorda `RefrainSpec` ve nakarat denetimi, `Content/Experiments/x_refrain_bedtime.json` (uyku öncesi iki kardeş blueprint), yayın aracında `build-package --experiment`, paket şeması 2.
+- Bilerek değişmedi: deney yayımlanmadı; uygulama deney dosyasını yüklemiyor, çocuklar nakaratlı masalı görmüyor. `preflight`, yayın ve `mark live` Batuhan'da. Origin'e gönderilmedi.
+- Test: ileri sarma olduğu için main, dalda test edilen hâlin aynısı: uygulama 699/0, yayın aracı 15/0, motor 790/18 (bilinen aynı 10 test).
+
+### 2026-10-16 · refrain-deneyi@19d7f51 · Nakarat deneyi dalı main ile güncellendi ve tam test edildi
+- `refrain-deneyi` 41 commit gerideydi; main içine alındı (`19d7f51`). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
+- Test: motor 790 test / 18 hata. Hata veren 10 test, 15 Ekim kaydındakiyle birebir aynı (bilinen içerik-belge ayrışması); yeni hata yok. Yayın aracı 15/0. Uygulama testleri ilk kez bu dalda çalıştırıldı: 699/0 (1 atlanan), main ile aynı.
+- Bilerek değişmedi: dal main'e alınmadı (Batuhan onayı bekliyor), deney kolu yayımlanmadı, `preflight` / `mark live` adımları Batuhan'da. Uygulama deney dosyasını yüklemiyor; paket şeması 2 yayında hiçbir paketi etkilemiyor (henüz paket yok).
+- Simülatörde görülmedi (arayüz değişikliği yok). Dosyalar: yalnızca birleştirme ve bu dosya.
+
+### 2026-10-16 · main@7f695e7 · Kullanımdan öğrenme: ilk üçte birde kapatmak yarıda bırakma sayılmıyor
+- FAZ 14'ün açık kalemi kapandı. Önce: masalda bir sayfa çevirip kapatmak "yarıda bıraktı" sayılıyor ve o masalın ailesini ve yol arkadaşını sonraki seçimlerde aşağı itiyordu. Şimdi: masalın en az üçte biri (yukarı yuvarlanmış) görülmeden kapatılırsa bu bir göz atmadır; motor ne ödül ne ceza verir. 9 sayfalık masalda 3. sayfaya ulaşan çocuk bırakırsa sayılır, 2. sayfada bırakırsa sayılmaz.
+- Bilerek değişmedi: sunucuya giden okuma olayı (ulaşılan sayfa ve sayfa sayısı zaten içinde; karar sunucuda da verilebilir), Uyku öncesinde yarıda bırakmanın hiç ceza olmaması, süre bitince kapanan masal kuralı, kayıt dosyası biçimi.
+- Test: uygulama testleri 699/0 (1 atlanan; taban 698), yeni `ReadingEventTests.testLeavingInTheFirstThirdIsNotAbandoning`. Test, kod yazılmadan önce kırmızıda çalıştırılmadı. Arayüz değişikliği yok, simülatörde görülmedi.
+- Dosyalar: `StoryEngineBridge/StoryUsageStore.swift`, `MagicPaperTests/ReadingEventTests.swift`, `docs/MagicPaper_Faz_Plani_Ekim.md`.
+
+### 2026-10-15 · refrain-deneyi (104b3c3 üstüne) · Deney kolu pakete girebiliyor, paket şeması 2
+
+- `content-publisher build-package --experiment <id>` (yinelenebilir): `Content/Experiments/<id>.json` pakete **son** kütüphane belgesi olarak ekleniyor. Varsayılan boş — paket, bu checkout'un uygulamasının taşıdığı içeriğin aynısı kalıyor; bir kolu yayına koymak ürün sahibinin o yayına özel kararı.
+- Sıra kozmetik değil: `ContentCatalog.merging` ilk `0.0.0` olmayan sürümü kataloğun sürümü sayıyor ve paket, belgelerinin taşıdığı sürümü ilan etmek zorunda. Deney belgesi kendini adlandırdığı için (`"version": "experiment-x_refrain_bedtime"`) başa konsa paketin sürümü o olur ve cihaz paketi reddederdi. Buna ayrı bir test var.
+- Publisher, dosya adı ile belgedeki `experiment.id` ayrışırsa yayımlamıyor: yanlış adla yayımlanan kol veri üretir ama yanlış kolun verisini üretir, bu hiç yayımlamamaktan kötü. Bilinmeyen id'de mevcut kolları sayıyor.
+- `ContentPackage.currentSchemaVersion` 1 → 2, çünkü paket artık `refrain` taşıyabiliyor. Karşılaştırma iki yerde de eşitlik (`RemoteContentService` indirmeden önce, `load(package:)` indirdikten sonra): nakaratı bilmeyen uygulama paketi hiç indirmiyor ve yayındaki kataloğu okuyor. Alanı bilmeyen bir uygulamanın varyantı nakaratsız göstermesi, kontrolü varyant sanmak olurdu — veride yanlış cevap, cevapsızlıktan kötü.
+- Bilerek yapılmadı: deney kolunun kendisi yayımlanmadı (`publish`/`deploy` çalıştırılmadı), `ba experiment preflight` ve `mark … live` adımları hâlâ Batuhan'da (README'de 1 numaralı açık iş olarak kaldı). Paket dosyası yazılmadı: `hosting/public/content/catalog/` hâlâ yok ve feed'de `catalogPackage: null` — yani şema artırımı yayındaki hiçbir paketi okunamaz hâle getirmiyor.
+- Test: publisher 15/0 (5'i yeni). Motor demeti 790 test / 18 hata — aynı demet HEAD'de (104b3c3, ayrı worktree) 788/18 ve **birebir aynı 10 test**: fark yalnızca eklediğim iki test, yeni hata yok. O 18 hata blueprint/beat mimarisi tarafındaki bilinen içerik-belge ayrışması, bu işle ilgisi yok ve bu işte düzeltilmedi. Uygulama hedefi (`MagicPaperTests`) çalıştırılmadı: değişen kodun hiçbiri uygulama hedefinde değil.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/ContentPackage.swift`, `StoryEngine/Tests/StoryEngineTests/ContentPackageTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Publisher.swift`, `Scripts/ContentPublisher/Sources/content-publisher/main.swift`, `Scripts/ContentPublisher/Tests/PublisherKitTests/PublisherKitTests.swift`, `Content/Experiments/README.md`, `docs/REMOTE_CONTENT.md`, bu dosya.
 
 ### 2026-10-15 · main@cf518bd · Alt çubukta zıplama kaldırıldı
 - Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.

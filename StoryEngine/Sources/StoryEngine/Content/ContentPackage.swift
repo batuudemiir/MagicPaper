@@ -9,7 +9,7 @@ import EngineFoundation
 /// bundle could not; there are no overlay rules to get wrong.
 ///
 /// ```json
-/// { "schemaVersion": 1, "version": "2.0.1",
+/// { "schemaVersion": 2, "version": "2.0.1",
 ///   "libraries": [ { "name": "shared_content_library_v2.json", "content": { … } } ],
 ///   "beats":     [ { "name": "beat_warm_close.json",           "content": { … } } ] }
 /// ```
@@ -19,7 +19,22 @@ import EngineFoundation
 public enum ContentPackage {
     /// The package format this engine reads. Raised when content needs engine
     /// code an older app does not have — an older app then keeps its bundle.
-    public static let currentSchemaVersion = 1
+    ///
+    /// The number is a **capability claim, not a date**: it says "the records in
+    /// here may use everything the engine at this version understands". The app
+    /// compares it before downloading (`RemoteContentService`) and the loader
+    /// compares it again after, and both want it exactly equal — so raising it
+    /// is also what keeps a *new* app from reading an *old* package whose
+    /// records it would silently reinterpret.
+    ///
+    /// - 1: FAZ 15, the first package format.
+    /// - 2: `refrain` (`RefrainSpec` on a blueprint, 15 Ekim 2026). An app
+    ///   without that field decodes the blueprint and drops the repeated line,
+    ///   which is the whole of the `p_repeated_line` experiment: it would show
+    ///   the variant arm as if it were the control and quietly ruin the
+    ///   measurement. A refused package is a child reading the shipped
+    ///   catalog — a wrong answer in the data is worse than no answer.
+    public static let currentSchemaVersion = 2
 
     /// One named document inside a package.
     public struct File: Sendable {

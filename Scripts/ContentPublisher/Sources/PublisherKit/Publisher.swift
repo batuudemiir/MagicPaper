@@ -21,6 +21,11 @@ public struct Repo {
     }
 
     public var stories: URL { root.appendingPathComponent("Content/DailyFeed/stories") }
+    /// Deney kolları (`Content/Experiments/<id>.json`). Uygulamanın paketiyle
+    /// GELMEZ: motorun `Bundle.module`'ü bu klasörü görmez, dolayısıyla buradaki
+    /// bir blueprint çocuğa yalnızca `build-package --experiment <id>` ile
+    /// yayımlanmış bir paketten ulaşabilir.
+    public var experiments: URL { root.appendingPathComponent("Content/Experiments") }
     public var validatorBaseline: URL { root.appendingPathComponent("Content/validator_baseline.txt") }
     public var validator: URL { root.appendingPathComponent("StoryEngine/Tools/validate_beat_corpus.py") }
     public var hosting: URL { root.appendingPathComponent("hosting") }
@@ -93,14 +98,26 @@ public struct PackageBuilder {
 
     /// A package from the engine's bundled sources — exactly what this
     /// checkout's app would ship. The version is the library's own `version`.
-    public func build() throws -> (version: String, data: Data) {
+    ///
+    /// `extraLibraries` are documents the bundle does not carry (deney kolları).
+    /// They go **after** the bundled ones, and that order is not cosmetic:
+    /// `ContentCatalog.merging` takes the first non-`0.0.0` version as the
+    /// merged catalog's version, and a package must declare the version its
+    /// documents carry. An experiment document names itself
+    /// (`"version": "experiment-x_refrain_bedtime"`) so that it can be read on
+    /// its own; put first, it would become the package's version and the
+    /// package would be refused on the device. Last, it adds records and
+    /// nothing else — which is all an arm should do.
+    public func build(extraLibraries: [ContentPackage.File] = []) throws -> (version: String, data: Data) {
         let sources = ContentPackage.bundledSources()
         guard let first = sources.libraries.first,
               let object = try JSONSerialization.jsonObject(with: first.data) as? [String: Any],
               let version = object["version"] as? String else {
             throw PublishError.message("Kütüphane belgesinde sürüm yok.")
         }
-        return (version, try ContentPackage.build(version: version, libraries: sources.libraries, beats: sources.beats))
+        return (version, try ContentPackage.build(version: version,
+                                                  libraries: sources.libraries + extraLibraries,
+                                                  beats: sources.beats))
     }
 
     /// The device's checks, run here first: it loads, it is newer than the
@@ -181,16 +198,30 @@ public struct Publisher {
     // MARK: Package
 
     /// Builds, checks and writes `catalog/<version>.json`. Returns its reference.
+    ///
+    /// `experiments` verilirse `Content/Experiments/<id>.json` belgeleri de
+    /// pakete girer (deney kolları, `Content/Experiments/README.md`).
+    ///
+    /// Varsayılan boştur ve bu kasıtlı: paket, bu checkout'un uygulamasının
+    /// taşıdığı içeriğin aynısı olmalı. Bir deney kolunu eklemek ürün sahibinin
+    /// o yayına özel kararıdır, komutun sessiz bir yan etkisi değil.
     @discardableResult
-    public func buildPackage() throws -> PackageReference {
+    public func buildPackage(experiments: [String] = []) throws -> PackageReference {
         try runValidator()
+        let arms = try experiments.map(experimentFile)
         let builder = PackageBuilder()
-        let (version, data) = try builder.build()
+        let (version, data) = try builder.build(extraLibraries: arms)
         let path = "catalog/\(version).json"
         let target = repo.content.appendingPathComponent(path)
         if let existing = try? Data(contentsOf: target) {
             guard existing == data else {
-                throw PublishError.message("\(path) zaten yayımlanmış ve içerik farklı. Sürümü artırın.")
+                // Deney kolu eklemek/çıkarmak da "içerik farklı"dır: aynı sürüm
+                // numarasıyla iki ayrı katalog yayımlanamaz, çünkü cihaz
+                // paketleri sürüme göre karşılaştırıyor ve kaydedilen masal
+                // hangi katalogdan geldiğini sürümle söylüyor.
+                throw PublishError.message(
+                    "\(path) zaten yayımlanmış ve içerik farklı\(arms.isEmpty ? "" : " (deney: \(experiments.joined(separator: ", ")))")."
+                    + " shared_content_library_v2.json'daki version'ı artırın.")
             }
             log("\(path) zaten var, aynı içerik.")
             return reference(version: version, path: path, data: data)
@@ -199,7 +230,36 @@ public struct Publisher {
         try FileManager.default.createDirectory(at: repo.catalogFolder, withIntermediateDirectories: true)
         try data.write(to: target, options: .atomic)
         log("Paket \(version) yazıldı (\(data.count / 1024) KB): \(loaded.report.integrity?.summary ?? "")")
+        if !arms.isEmpty {
+            log("Deney kolu: \(arms.map(\.name).joined(separator: ", ")) — `ba experiment mark … live` demeden çocuğa ulaşmaz.")
+        }
         return reference(version: version, path: path, data: data)
+    }
+
+    /// Bir deney kolu belgesini okur ve kimliğini doğrular.
+    ///
+    /// Dosya adıyla belgenin içindeki `experiment.id` ayrı ayrı yanlış olabilir;
+    /// ikisi uyuşmazsa yayımlanan kol, ölçüm kayıtlarının (`ba experiment`)
+    /// adını taşıdığı kol olmaz — ve bu, hiç yayımlamamaktan kötüdür, çünkü
+    /// veri gelir ama yanlış kolun verisi olur.
+    func experimentFile(_ id: String) throws -> ContentPackage.File {
+        let name = "\(id).json"
+        let url = repo.experiments.appendingPathComponent(name)
+        guard let data = try? Data(contentsOf: url) else {
+            let available = ((try? FileManager.default.contentsOfDirectory(atPath: repo.experiments.path)) ?? [])
+                .filter { $0.hasSuffix(".json") }.map { String($0.dropLast(5)) }.sorted()
+            throw PublishError.message(
+                "Deney kolu bulunamadı: \(url.path). Olanlar: \(available.isEmpty ? "yok" : available.joined(separator: ", "))")
+        }
+        guard let object = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] else {
+            throw PublishError.message("\(name) JSON nesnesi değil.")
+        }
+        let declared = (object["experiment"] as? [String: Any])?["id"] as? String
+        guard declared == id else {
+            throw PublishError.message(
+                "\(name) içindeki experiment.id '\(declared ?? "yok")', dosya adı '\(id)'. İkisi aynı olmalı.")
+        }
+        return ContentPackage.File(name: name, data: data)
     }
 
     func reference(version: String, path: String, data: Data) -> PackageReference {

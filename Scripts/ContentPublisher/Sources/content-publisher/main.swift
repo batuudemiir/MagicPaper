@@ -7,6 +7,8 @@ content-publisher — MagicPaper uzaktan içerik yayını (FAZ 15)
   keygen                 İmza anahtarı üretir (~/.magicpaper/content-signing.key), açık anahtarı yazar.
   public-key             Mevcut anahtarın açık yarısını yazar (Info.plist MPContentSigningKey).
   build-package          Doğrulayıcı + motor denetimi; hosting/public/content/catalog/<sürüm>.json yazar.
+      --experiment <id>                    Content/Experiments/<id>.json'u pakete ekler (yinelenebilir).
+                                           Kol yalnızca `ba experiment mark … live` sonrası çocuğa ulaşır.
   publish                Content/DailyFeed/stories'ten feed.json + feed.json.sig yazar.
       --package keep|latest|none|<sürüm>   (varsayılan keep: önceki akışın paketi)
       --date yyyy-MM-dd                    (varsayılan bugün)
@@ -55,7 +57,11 @@ do {
     case "public-key":
         print(try Signer(contentsOf: keyPath).publicKeyBase64)
     case "build-package":
-        try publisher.buildPackage()
+        // Yinelenebilir: `--experiment a --experiment b`. `option` ilk eşleşmeyi
+        // tüketip çıkardığı için döngü kalanları toplar.
+        var experiments: [String] = []
+        while let id = option("--experiment") { experiments.append(id) }
+        try publisher.buildPackage(experiments: experiments)
     case "publish":
         let choice: Publisher.PackageChoice
         switch option("--package") ?? "keep" {

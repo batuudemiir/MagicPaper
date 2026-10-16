@@ -21,6 +21,9 @@ public struct ComposedPage: Sendable, Hashable {
     /// Words this page teaches (FAZ 17), where they sit in `text`. Empty for
     /// a page whose lines teach none, which is every page before FAZ 17.
     public let words: [PageWord]
+    /// The declared refrain this page ends with, as it appears at the end of
+    /// `text`. Nil on every page of a blueprint without one.
+    public var refrain: String? = nil
 }
 
 /// A finished offline draft — text only. No images, no persistence, no IDs the
@@ -182,6 +185,10 @@ public struct OfflineStoryComposer: Sendable {
 
         func flush() {
             guard currentPage != 0, let page = carried[currentPage] else { return }
+            // A declared refrain closes its page, after the beat's own lines,
+            // so the listener hears the story first and then the line to join.
+            let refrain = blueprint.refrain?.text(onPage: currentPage)
+            if let refrain { sentences.append(refrain) }
             pages.append(ComposedPage(
                 pageNumber: currentPage,
                 role: page.role,
@@ -192,7 +199,8 @@ public struct OfflineStoryComposer: Sendable {
                 variantIDs: variantIDs,
                 missingSlots: missing,
                 unrecognisedSuffixes: unrecognised,
-                words: words
+                words: words,
+                refrain: refrain
             ))
             sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
             words = []; pageLength = 0

@@ -474,3 +474,39 @@ Onaylı pilot: bantta iki continuation, mekanizmaları isimler silinince de ayr�
 - Yeni nesne eklenirse `keepsakeName` yazılır (yoksa `keepsake_name_missing` uyarısı).
 
 **Bilinen sınır:** katalogda 8 nesne var. Bir yer dört yeni keşif veremezse bir keşif geri gelir (üst üste değil). Daha çok nesne bu tekrarı kaldırır.
+
+## 14. Kitap araştırmasından gelen yazım kuralları (14 Ekim 2026)
+
+Kaynak: çocuk kitabı araştırması (`book-intelligence` dalı, `docs/research/`). Batuhan iki öneriyi **yalnızca yazım
+kuralı** olarak onayladı; motor değişmez, mevcut satırlar yeniden yazılmaz. Kurallar **yeni yazılan satırlar** için geçerlidir.
+Kanıt küçük (7 kitap, tek yayınevi), bu yüzden "her sayfada yap" değil, "yerinde kullan" kurallarıdır.
+
+### 14.1 Sayfa sonunda açık uç (`p_spread_end_hook`)
+
+İncelenen kitapların çoğunda bazı sayfalar küçük bir soruyla biter ve cevap sayfa çevrilince gelir.
+
+- **Yalnızca** `adventure` ve `learning` modunda, **hikâyenin ortasında** (8 sayfalık yayda 3-6. sayfalar), masal başına en fazla 2 kez.
+- Soru **genel** kalır, ayrıntı vaat etmez: "Ama nasıl?", "Peki şimdi ne olacaktı?", "Bunu kim yapmıştı?".
+  Sayfalar havuzdan bağımsız çekildiği için "Ama ışık nereye gitmişti?" gibi bir soru, sonraki sayfanın her varyantı o ışığı
+  anlatmıyorsa çelişki üretir (bkz. repo dışındaki `PROSE_PRODUCTION_GUIDE.md`, ışık/ses hatası).
+- Soruyu taşıyan bir beat yazılırsa, **sonraki beat'in bütün varyantları** soruyu karşılayabilecek bir açılışla başlar
+  (eylemle cevap: "Kıyı boyunca yürüyerek."). Bu sağlanmadan soru satırı eklenmez.
+- **Asla:** `bedtime` modunda; son iki sayfada; seri bölüm sonunda (zaten `CalmEnding` yasaklar); tehlike ya da bilinmeyen
+  üzerine soru ("Karanlıkta ne vardı?" yok, "Bunu nasıl taşıyacaktı?" olur). Sayfanın duygusu yoğunluk tavanını (2) aşmaz.
+- 3-4 bandında soru 3-5 kelimedir; cümle tavanı aynen geçerli.
+
+### 14.2 Arkadaş duyguyu yansıtır, çözmez (`p_companion_mirrors_feeling`)
+
+İncelenen kitapların bir kısmında oyuncak ya da hayvan arkadaş çocuğun duygusunu konuşmadan yansıtır; sorunu çocuk çözer.
+Resimli masallar canlı olmadığı için yalnızca **metin hali** onaylandı.
+
+- `hesitate` ve çözüm sayfalarında (`succeed`, `restore`) arkadaşa **kısa, sessiz bir yansıtma** satırı yazılabilir:
+  çocuk durunca arkadaş da durur; çocuk adım atınca arkadaş da rahatlar. Örnek: "{{companion.name}} da olduğu yerde kaldı."
+  / "{{companion.name}} da derin bir nefes aldı."
+- Arkadaş bu satırda **konuşmaz, öneri vermez, gerilimi çözmez.** Kararı ve eylemi çocuk yapar (ajans kuralı: `docs/BLUEPRINT_CATALOG_V2.md`, "Cooperation must not collapse").
+- Duygunun adı konmaz; `templates/v3/beat_hesitate.json` kuralı gibi beden diliyle gösterilir ("korktu" yok).
+- Beden varsayımı yapılmaz: arkadaş listesinde robot da var (`templates/v3/beat_meet_companion.json`). "Kuyruğunu salladı" yerine
+  "durdu", "yanına geldi", "bekledi" gibi her türe uyan fiiller.
+- `{{companion.name}}` sonrası "da/de" uyumu çözümleyiciye bırakılır; elle yazılmaz (`check_conjunctions`).
+- Resim tarafı (arkadaşın çizilen duygusu) resimli masallar kendi bayrağıyla canlıya çıkana ve görsel güvenlik kapısı
+  arkadaşın duygusunu sayfanın tavanına bağlayana kadar **bekliyor**.
