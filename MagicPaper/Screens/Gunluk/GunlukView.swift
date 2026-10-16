@@ -20,16 +20,20 @@ struct GunlukView: View {
     @EnvironmentObject private var settings: MPSettingsStore
     @State private var path: [GunlukRoute] = []
     @State private var showCategories = false
+    @State private var scrolled = false
 
     var body: some View {
         NavigationStack(path: $path) {
             GeometryReader { proxy in
+                ScrollViewReader { reader in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                         // Ana sayfanın sahnesi gibi: vitrin ekranın tepesinden başlar.
                         GunlukHeaderCarousel(
                             slides: slides,
                             topInset: proxy.safeAreaInsets.top,
+                            height: GunlukHeaderCarousel.height(
+                                screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
                             onOpen: { path.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
                             onSearch: { path.append(.search) })
@@ -37,31 +41,53 @@ struct GunlukView: View {
                         // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
                         // kartında (beyaz, lavanta kenar, sert alt kenar).
                         VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                            chips.padding(.top, -MPSpacing.sm)
+                            shelfDoors
                             continueSection
                             weeklySection
-                            shelfSection(.anadolu, title: "Anadolu'dan", width: 128, height: 176)
-                            shelfSection(.klasikler, title: "Dünya klasikleri", width: 128, height: 176)
-                            bedtimeSection
-                            heroPromo
+                            shelfSection(.anadolu, width: 128, height: 176)
+                            shelfSection(.klasikler, width: 128, height: 176)
                         }
                         .padding(.horizontal, MPSpacing.screenH)
+
+                        // Sayfa gece gökyüzüyle biter: Uyku vakti, "Kahramanı sen ol"
+                        // ve manzara tek renkte, vitrinin karşılığı olan bir sahne.
+                        GunlukNightZone {
+                            bedtimeSection
+                            GunlukSceneFooter { heroPromo }
+                        }
                     }
                     .padding(.bottom, GunlukLayout.bottomClearance)
+                    .id(Self.top)
+                    .gunlukTracksScroll($scrolled)
                 }
                 .ignoresSafeArea(edges: .top)
+                // Sekmeye yeniden dokunmak: açık sayfalar kapanır, sayfa başa döner.
+                .onChange(of: app.tabReselections) { _, _ in
+                    guard app.tab == .gunluk else { return }
+                    if path.isEmpty {
+                        withAnimation(MP.M.gated(MP.M.base)) { reader.scrollTo(Self.top, anchor: .top) }
+                    } else {
+                        path = []
+                    }
+                }
+                }
             }
+            .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
             .background(MPColor.backgroundKid.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: GunlukRoute.self) { route in
                 destination(route)
             }
         }
-        .fullScreenCover(isPresented: $showCategories) {
+        .sheet(isPresented: $showCategories) {
             GunlukCategoriesView { shelf, band in
                 showCategories = false
                 path = [.shelf(shelf, band)]
             }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationCornerRadius(MPRadius.sheet)
+            .presentationBackground(MPColor.backgroundKid)
         }
     }
 
@@ -83,25 +109,44 @@ struct GunlukView: View {
         }
     }
 
-    // MARK: - Çipler
+    private static let top = "gunluk-top"
 
-    private var chips: some View {
-        GunlukRow(spacing: MPSpacing.sm) {
-            GunlukChip(title: "Hepsi", isSelected: true) {}
-            ForEach([ClassicShelf.klasikler, .anadolu, .uyku]) { shelf in
-                GunlukChip(title: shelf.chipTitle) { path.append(.shelf(shelf)) }
+    // MARK: - Raf kapıları
+
+    /// "Hangi raftan okuyalım?": Ana sayfadaki "Bu akşam nasıl bir masal
+    /// olsun?" kartının dili; düz çiplerin yerine.
+    private var shelfDoors: some View {
+        GunlukSection(title: "Hangi raftan okuyalım?") {
+            GunlukRow(spacing: MPSpacing.sm, inset: MPSpacing.lg) {
+                ForEach(Self.doorShelves) { shelf in
+                    GunlukShelfTile(title: shelf.chipTitle, symbol: shelf.symbol, tone: shelf.tone,
+                                    count: count(shelf)) { path.append(.shelf(shelf)) }
+                }
+                GunlukShelfTile(title: "Tüm raflar", symbol: "square.grid.2x2", tone: .gray, count: nil) {
+                    showCategories = true
+                }
+                .accessibilityHint("Kategorileri ve yaş seçimini açar")
             }
-            GunlukChip(title: "Kategoriler", trailingChevron: true) { showCategories = true }
         }
     }
+
+    private static let doorShelves: [ClassicShelf] = [.klasikler, .anadolu, .fabllar, .uyku, .seriler]
+
+    private func count(_ shelf: ClassicShelf) -> Int {
+        library.items(in: shelf).count + (shelf == .uyku ? library.originals(in: .uyku).count : 0)
+    }
+
+    private var isBedtime: Bool { MPBedtime.isBedtime(settings: settings) }
 
     // MARK: - Raflar
 
     @ViewBuilder
     private var continueSection: some View {
-        let items = library.continueReading
+        // Vitrindeki masal burada tekrar etmez ("Kaldığın yerden" slaytı).
+        let shown = Set(slides.map(\.tale.id))
+        let items = library.continueReading.filter { !shown.contains($0.id) }
         if !items.isEmpty {
-            GunlukSection(title: "Kaldığın yerden") {
+            GunlukSection(title: "Kaldığın yerden", symbol: "bookmark", tone: .peach) {
                 GunlukRow(inset: MPSpacing.lg) {
                     ForEach(items) { item in
                         ContinueClassicCard(item: item) { resume(item.id) }
@@ -113,7 +158,7 @@ struct GunlukView: View {
 
     /// Vitrinin slaytları; seçki bunları tekrarlamaz.
     private var slides: [ClassicHeaderSlide] {
-        library.headerSlides(isBedtime: MPBedtime.isBedtime(settings: settings))
+        library.headerSlides(isBedtime: isBedtime)
     }
 
     @ViewBuilder
@@ -121,7 +166,8 @@ struct GunlukView: View {
         let shown = Set(slides.map(\.tale.id))
         let picks = library.weeklyPicks.filter { !shown.contains($0.id) }
         if !picks.isEmpty {
-            GunlukSection(title: "Bu haftanın seçkisi") {
+            GunlukSection(title: "Bu haftanın seçkisi", subtitle: "Editörün bu hafta için seçtikleri",
+                          symbol: "star", tone: .yellow) {
                 GunlukRow(spacing: MPSpacing.sm, inset: MPSpacing.lg) {
                     ForEach(Array(picks.enumerated()), id: \.element.id) { index, item in
                         RankedPickCard(rank: index + 1, item: item) { open(item) }
@@ -132,10 +178,11 @@ struct GunlukView: View {
     }
 
     @ViewBuilder
-    private func shelfSection(_ shelf: ClassicShelf, title: String, width: CGFloat, height: CGFloat) -> some View {
+    private func shelfSection(_ shelf: ClassicShelf, width: CGFloat, height: CGFloat) -> some View {
         let items = library.items(in: shelf)
         if !items.isEmpty {
-            GunlukSection(title: title, action: { path.append(.shelf(shelf)) }) {
+            GunlukSection(title: shelf.title, subtitle: shelf.subtitle, symbol: shelf.symbol, tone: shelf.tone,
+                          action: { path.append(.shelf(shelf)) }) {
                 GunlukRow(inset: MPSpacing.lg) {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: width, height: height) { open(item) }
@@ -150,16 +197,18 @@ struct GunlukView: View {
         let items = library.items(in: .uyku)
         let originals = library.originals(in: .uyku)
         if !items.isEmpty || !originals.isEmpty {
-            GunlukSection(title: "Uyku vakti", action: { path.append(.shelf(.uyku)) }) {
-                GunlukRow(inset: MPSpacing.lg) {
+            GunlukSection(title: ClassicShelf.uyku.title, subtitle: ClassicShelf.uyku.subtitle, symbol: "moon",
+                          night: true, surface: false, action: { path.append(.shelf(.uyku)) }) {
+                // Boyalı kapaklar önde; çizimi bekleyen orijinaller sonda.
+                GunlukRow(inset: MPSpacing.screenH) {
+                    ForEach(items) { item in
+                        ClassicShelfCard(item: item, width: 160, height: 200, onDark: true) { open(item) }
+                    }
                     ForEach(originals) { original in
                         ClassicShelfCard(title: original.story.title, meta: original.meta, cover: original.cover.cover,
-                                         focus: original.cover.coverFocus, width: 160, height: 200) {
+                                         focus: original.cover.coverFocus, width: 160, height: 200, onDark: true) {
                             app.readOriginal(original.story)
                         }
-                    }
-                    ForEach(items) { item in
-                        ClassicShelfCard(item: item, width: 160, height: 200) { open(item) }
                     }
                 }
             }
@@ -168,25 +217,32 @@ struct GunlukView: View {
 
     // MARK: - Kahramanı sen ol
 
+    /// Markanın çağrısı: Ana sayfanın hero kartı gibi dolgun mor, sert gece
+    /// kenarı. Ragi kartta değil, altındaki manzarada (ekranda tek maskot).
     private var heroPromo: some View {
         Button { app.startStoryCreation() } label: {
-            HStack(spacing: MPSpacing.md + 2) {
-                MascotImage(mascot: .pencil, width: 92).accessibilityHidden(true)
+            HStack(spacing: MPSpacing.md) {
+                MPIcon("wand.and.sparkles", size: MP.G.xl, weight: .semibold)
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
+                    .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Kahramanı sen ol").mpText(.button).foregroundStyle(MPColor.textPrimary)
-                    Text("Adınla yepyeni bir masal").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    Text("Kahramanı sen ol").mpText(.title3).foregroundStyle(MPColor.textOnAction)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text("Adınla, sevdiklerinle yepyeni bir masal").mpText(.footnote)
+                        .foregroundStyle(MPWorldTone.lav.soft)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 MPIcon("chevron.right", size: MP.G.md, weight: .bold)
                     .foregroundStyle(MPColor.actionPrimary)
                     .frame(width: MPSize.minTouchParent, height: MPSize.minTouchParent)
-                    .background(MPWorldTone.lav.soft, in: Circle())
+                    .background(MPColor.backgroundSurface, in: Circle())
                     .accessibilityHidden(true)
             }
-            .padding(.vertical, MPSpacing.md)
-            .padding(.leading, MPSpacing.md - 2)
-            .padding(.trailing, MPSpacing.lg)
-            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+            .padding(MPSpacing.lg)
+            .mpKidSurface(MPColor.actionPrimary, edge: MPColor.brandNight)
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .combine)

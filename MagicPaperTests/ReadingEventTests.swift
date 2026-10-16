@@ -209,6 +209,21 @@ final class ReadingEventTests: XCTestCase {
         XCTAssertEqual(queue.outbound().first?.pageReached, 2)
     }
 
+    /// A glance is not a verdict: closing before a third of the story was
+    /// seen does not count against it. From a third on, leaving does.
+    func testLeavingInTheFirstThirdIsNotAbandoning() throws {
+        let child = UUID()
+        let glanced = story(child: child, pages: 9)
+        let left = story(child: child, pages: 9)
+        recorder(glanced).close(furthestPage: 1, session: read)
+        recorder(left).close(furthestPage: 2, session: read)
+
+        let usage = usageStore.usage(of: [glanced, left], for: child)
+        XCTAssertEqual(usage.count, 2, "Both were read; only one was left.")
+        XCTAssertEqual(usage.filter(\.abandoned).count, 1)
+        XCTAssertEqual(queue.outbound().map(\.pageReached), [1, 2], "The event still says how far it got.")
+    }
+
     /// Today's reading time ran out: the story was stopped, not left.
     func testABudgetStopIsNotAbandoning() throws {
         let child = UUID()

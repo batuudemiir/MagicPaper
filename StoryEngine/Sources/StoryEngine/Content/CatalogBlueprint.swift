@@ -86,6 +86,43 @@ public struct ContinuationSpec: Codable, Sendable, Hashable {
     }
 }
 
+/// A declared refrain (book research `p_repeated_line`, approved 14 October 2026).
+///
+/// A line the listener can join, said on fixed pages, and changed once on its
+/// last use. It is the only repetition a book may carry on purpose: accidental
+/// repetition is still a defect. Slot-free, so it cannot break vowel harmony
+/// and cannot be welded to content the blueprint does not bind.
+///
+/// Experimental: no shipped blueprint carries one. Refrain siblings live in an
+/// experiment file and reach children only through a published package.
+public struct RefrainSpec: Codable, Sendable, Hashable {
+    /// The repeated line, ending in its own punctuation.
+    public let line: String
+    /// Pages that end with `line`, in reading order. At least two: a line said
+    /// once is not a refrain.
+    public let pages: [Int]
+    /// The changed last use, and the page it closes.
+    public let finalLine: String
+    public let finalPage: Int
+
+    /// Longest line a refrain may be, in words. A refrain is short enough to
+    /// join after hearing it once; the page budget allows this much on top.
+    public static let maxWords = 6
+
+    public init(line: String, pages: [Int], finalLine: String, finalPage: Int) {
+        self.line = line
+        self.pages = pages
+        self.finalLine = finalLine
+        self.finalPage = finalPage
+    }
+
+    /// The refrain sentence a page ends with, if it carries one.
+    public func text(onPage page: Int) -> String? {
+        if page == finalPage { return finalLine }
+        return pages.contains(page) ? line : nil
+    }
+}
+
 /// A reusable narrative skeleton — *not* a story.
 ///
 /// It says what shape a book has: which beats, in what order, for whom. It says
@@ -137,11 +174,13 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     /// `BlueprintOutcome` rows. 1 — the default, and every shipped blueprint
     /// today — changes nothing.
     public let aggregateWeight: Double
+    /// A declared refrain (experimental). Nil for every shipped blueprint.
+    public let refrain: RefrainSpec?
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
         case premise, editorialName, editorialGuidance, requires, forbids, interests, topics
-        case continuation, aggregateWeight
+        case continuation, aggregateWeight, refrain
     }
 
     public init(from decoder: Decoder) throws {
@@ -168,6 +207,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         topics = try container.decodeIfPresent([SafetyTopic].self, forKey: .topics) ?? []
         continuation = try container.decodeIfPresent(ContinuationSpec.self, forKey: .continuation)
         aggregateWeight = try container.decodeIfPresent(Double.self, forKey: .aggregateWeight) ?? 1
+        refrain = try container.decodeIfPresent(RefrainSpec.self, forKey: .refrain)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -189,6 +229,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         if !topics.isEmpty { try container.encode(topics, forKey: .topics) }
         try container.encodeIfPresent(continuation, forKey: .continuation)
         if aggregateWeight != 1 { try container.encode(aggregateWeight, forKey: .aggregateWeight) }
+        try container.encodeIfPresent(refrain, forKey: .refrain)
     }
 
     /// The roles this blueprint asks for, in page order.

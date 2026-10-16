@@ -86,6 +86,34 @@ final class ContentPackageTests: XCTestCase {
         }
     }
 
+    /// Yeni uygulama da ESKİ bir paketi okumaz.
+    ///
+    /// Karşılaştırma eşitlik olduğu için bu iki yönlü: eski uygulama yeni
+    /// paketi indirmez (alanı bilmiyor), yeni uygulama eski paketi yüklemez.
+    /// İkincisi önemsiz görünür ama `refrain` gibi bir alanın yokluğu ile
+    /// "nakaratsız" olmak aynı şey değil — eski bir paketi yeni motorla
+    /// okumak, kaydı olmayan bir kolu kontrol sanmak olurdu.
+    func testAnOlderSchemaIsRefusedToo() throws {
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: try package()) as? [String: Any])
+        object["schemaVersion"] = ContentPackage.currentSchemaVersion - 1
+        let data = try JSONSerialization.data(withJSONObject: object)
+
+        XCTAssertThrowsError(try ContentCatalogLoader().load(package: data)) { error in
+            guard case CatalogLoadError.unsupportedSchema(let found, let supported) = error else {
+                return XCTFail("Expected unsupportedSchema, got \(error)")
+            }
+            XCTAssertEqual(found, ContentPackage.currentSchemaVersion - 1)
+            XCTAssertEqual(supported, ContentPackage.currentSchemaVersion)
+        }
+    }
+
+    /// Nakarat taşıyabilen bir paket, nakaratı bilmeyen bir uygulamaya
+    /// gitmemeli: şema sürümü bunun tek işareti (`Content/Experiments/README.md`).
+    func testTheSchemaVersionCoversTheRefrainField() {
+        XCTAssertGreaterThanOrEqual(ContentPackage.currentSchemaVersion, 2,
+                                     "refrain alanı eklendiğinde şema sürümü artırılmış olmalı")
+    }
+
     func testAPackageWithoutLibrariesIsRefused() throws {
         let data = try ContentPackage.build(version: "2.0.1", libraries: [], beats: sources.beats)
         XCTAssertThrowsError(try ContentCatalogLoader().load(package: data))

@@ -1,5 +1,5 @@
 // MPHomeChrome.swift
-// 11 · Ana sayfa yenilemesi (13 Ekim 2026): bulutlu gökyüzü bandı, başlık,
+// 11 · Ana sayfa yenilemesi (13 Ekim 2026): illüstrasyonlu sahne, başlık,
 // hero kartı, okuma şeridi, mod kartı ve hepsinin ortak kart yüzeyi.
 // Tasarım notu: docs/superpowers/specs/2026-10-13-ana-sayfa-yenileme-design.md
 
@@ -227,20 +227,21 @@ struct HomeStatChips: View {
             ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
             : AnyLayout(HStackLayout(spacing: MPSpacing.sm))
         layout {
-            chip(icon: "star.fill", iconColor: MPColor.statusStarIcon, tone: .yellow,
-                 label: "Yıldızların", value: "\(stars) yıldız", number: stars)
-            chip(icon: "flame", iconColor: MPColor.actionPrimary, tone: .lav,
-                 label: "Okuma serisi", value: "\(streak) gün", number: streak)
+            chip(tone: .yellow, label: "Yıldızların", value: "\(stars) yıldız", number: stars) {
+                MPStarMark(size: 20)
+            }
+            chip(tone: .lav, label: "Okuma serisi", value: "\(streak) gün", number: streak) {
+                MPIcon("flame", size: MP.G.md, weight: .bold).foregroundStyle(MPColor.actionPrimary)
+            }
         }
     }
 
-    private func chip(icon: String, iconColor: Color, tone: MPWorldTone, label: String,
-                      value: String, number: Int) -> some View {
+    private func chip<Glyph: View>(tone: MPWorldTone, label: String, value: String, number: Int,
+                                   @ViewBuilder glyph: () -> Glyph) -> some View {
         HStack(spacing: MPSpacing.sm) {
-            MPIcon(icon, size: MP.G.md, weight: .bold)
-                .foregroundStyle(iconColor)
+            glyph()
                 .frame(width: 36, height: 36)
-                .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
+                .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 0) {
                 Text(label).mpText(.caption).foregroundStyle(MPColor.textSecondary)
@@ -287,12 +288,11 @@ struct WaveBottom: Shape {
 
 // MARK: - Başlık
 
-/// Avatar (→ Benim köşem), selam ve ad, yıldız hapı, kilit (→ ebeveyn kapısı).
+/// Avatar (→ Benim köşem), selam ve ad, kilit (→ ebeveyn kapısı). Yıldız
+/// sahnenin çipinde.
 struct HomeHeader<Avatar: View>: View {
     let greeting: String
     let childName: String
-    /// `nil`: yıldız başlıkta değil, sahnenin çiplerinde.
-    var stars: Int? = nil
     var isNight: Bool = false
     @ViewBuilder var avatar: Avatar
     let onAvatar: () -> Void
@@ -320,25 +320,8 @@ struct HomeHeader<Avatar: View>: View {
             .buttonStyle(MPPressStyle())
             .accessibilityLabel("Benim köşem, \(childName)")
             Spacer(minLength: 0)
-            if let stars { starPill(stars) }
             MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", size: 40, action: onLock)
         }
-    }
-
-    private func starPill(_ stars: Int) -> some View {
-        HStack(spacing: MPSpacing.xxs) {
-            MPIcon("star.fill", size: MP.G.sm, weight: .bold).foregroundStyle(MPColor.statusStarIcon)
-            Text("\(stars)").mpText(.callout).monospacedDigit()
-                .foregroundStyle(MPColor.yellowText)
-                .contentTransition(.numericText(value: Double(stars)))
-        }
-        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-        .padding(.horizontal, MPSpacing.md)
-        .frame(minHeight: 36)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.yellow.edge, radius: MPRadius.input)
-        .animation(MP.M.gated(MP.M.spring), value: stars)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(stars) yıldız")
     }
 }
 
@@ -419,42 +402,72 @@ struct HomeHeroCard: View {
     }
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Harika gidiyorsun!"; case .bedtime: "Uyku masalı zamanı" } }
-    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "Yarın yeni bir masal hazır olacak. Bir tane daha yazalım mı?"; case .bedtime: "Kısa, sakin bir masal ve kısılan ışıklar." } }
-    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yarat"; case .bedtime: "Uyku modunu aç" } }
+    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "Yarın yeni bir masal hazır olacak. Bir tane daha yazalım mı?"; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
+    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yarat"; case .bedtime: "Uyku masalı oluştur" } }
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
 }
 
-// MARK: - Bölüm kartı
+// MARK: - Bölüm
 
-/// Ana sayfanın her bölümü tek bir kart: başlık üst satırda, içerik altında.
-/// Başlık kartın dışında ayrı durmaz (13 Ekim kararı). Hero kartı dışındaki
-/// bütün bölümler bunu kullanır; iç öğeler kenarsız, pastel zeminli olur ki
-/// kart içinde kart görünmesin.
+/// Ana sayfanın bölümü (15 Ekim, Apple düzeni): kalın başlık içeriğin üstünde,
+/// sağında isteğe bağlı bağlantı ("Tümü"); içerik hafif lavanta panelde ya da
+/// (`contained: false`) doğrudan beyaz zeminde. Bütün bölüm başlıkları aynı
+/// font, boyut ve ağırlıkta (`title3`).
+///
+/// Köşe yarıçapı kuralı (15 Ekim): büyük yüzeyler (hero, mod kartları,
+/// paneller) `card`; küçük bilgi kartları (çipler) `input`; içerideki kutular
+/// (ikon kareleri, kapaklar) `md`; rozetler hap biçiminde.
 struct HomeSection<Leading: View, Content: View>: View {
     let title: String
+    var contained: Bool = true
+    var link: (title: String, action: () -> Void)? = nil
     @ViewBuilder var leading: Leading
     @ViewBuilder var content: Content
 
     var body: some View {
+        // Başlık içeriğine yapışık (12), bölümler birbirinden uzak (32,
+        // `HomeView`): her bölüm tek bir bütün gibi okunur.
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(alignment: .top, spacing: MPSpacing.sm) {
+            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
                 leading
-                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: 0)
+                if let link {
+                    Button(action: link.action) {
+                        HStack(spacing: MPSpacing.xxs) {
+                            Text(link.title).mpText(.callout)
+                            MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+                        }
+                        .foregroundStyle(MPColor.actionPrimary)
+                        // Dokunma alanı büyük, başlık satırını uzatmaz.
+                        .contentShape(Rectangle().inset(by: -MPSpacing.md))
+                    }
+                    .buttonStyle(MPPressStyle())
+                }
             }
-            content
+            if contained {
+                // Panel: beyazın üstünde hafif lavanta; mod kartlarının dolu
+                // pastelinden açık, kenarı sakin (aynı aile, kopya değil).
+                content
+                    .padding(MPSpacing.lg)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(MPWorldTone.lav.soft.opacity(0.45),
+                                in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                    .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
+            } else {
+                content
+            }
         }
-        .padding(MPSpacing.lg)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
     }
 }
 
 extension HomeSection where Leading == EmptyView {
-    init(title: String, @ViewBuilder content: () -> Content) {
-        self.init(title: title, leading: { EmptyView() }, content: content)
+    init(title: String, contained: Bool = true,
+         link: (title: String, action: () -> Void)? = nil, @ViewBuilder content: () -> Content) {
+        self.init(title: title, contained: contained, link: link, leading: { EmptyView() }, content: content)
     }
 }
 
@@ -480,44 +493,280 @@ struct HomeStreakCard: View {
 
     var body: some View {
         HomeSection(title: title) {
-            MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
-                .padding(.top, MPSpacing.xxs)
-        } content: {
-            HStack(spacing: 0) {
-                ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
-                    VStack(spacing: MPSpacing.xxs) {
-                        dot(i)
-                        Text(MPStreak.weekdayLabels[i]).mpText(.caption)
-                            .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
-                            .lineLimit(1).minimumScaleFactor(0.7)
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                HStack(spacing: 0) {
+                    ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
+                        VStack(spacing: MPSpacing.xs) {
+                            dot(i)
+                            Text(MPStreak.weekdayLabels[i]).mpText(.caption)
+                                .fontWeight(i == todayIndex ? .heavy : .semibold)
+                                .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
+                                .lineLimit(1).minimumScaleFactor(0.7)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
                 }
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                Text(caption).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         }
         .animation(MP.M.gated(MP.M.spring), value: done)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudun")
+        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudunuz")
+    }
+
+    /// Sakin süreklilik cümlesi (CLAUDE.md §7 örnekleri).
+    private var caption: String {
+        let read = done.filter { $0 }.count
+        switch read {
+        case 0:  return "Okuma yolculuğunuz bu hafta başlıyor."
+        default: return "Bu hafta \(read) gün birlikte okudunuz."
+        }
     }
 
     @ViewBuilder private func dot(_ i: Int) -> some View {
         let read = i < done.count && done[i]
         let today = i == todayIndex
         ZStack {
-            if read {
-                Circle().fill(MPColor.actionPrimary)
-                MPIcon("checkmark", size: MP.G.xs, weight: .heavy).foregroundStyle(MPColor.textOnAction)
-            } else if today {
-                Circle().fill(MPColor.backgroundSurface)
+            if today {
                 Circle().strokeBorder(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 2, dash: [4, 3]))
-                MPIcon("book", size: MP.G.xs, weight: .bold).foregroundStyle(MPColor.actionPrimary)
+            }
+            if read {
+                MPStarMark(size: 26)
+                    .transition(.scale.combined(with: .opacity))
             } else {
-                Circle().fill(MPWorldTone.lav.soft)
+                // Tamamlanmamış gün soluk; bugün halkayla vurgulu.
+                StarShape().fill(MPColor.backgroundSurface)
+                    .overlay(StarShape().stroke(MPWorldTone.lav.deep.opacity(today ? 0.6 : 0.22), lineWidth: 1.5))
+                    .frame(width: today ? 20 : 24, height: today ? 20 : 24)
             }
         }
-        .frame(width: 30, height: 30)
-        .transition(.scale.combined(with: .opacity))
+        .frame(width: 32, height: 32)
+    }
+}
+
+// MARK: - Yıldız
+
+/// Markanın yıldızı (imza, 15 Ekim): tek çizim, tek sarı, ince koyu sarı
+/// kontur. Yıldız sayacı, "Bugün" kurdelesi ve okunan günler bunu kullanır;
+/// tamamlanmamış günler soluk kalır. Süs olarak çoğaltılmaz.
+struct MPStarMark: View {
+    var size: CGFloat
+
+    var body: some View {
+        StarShape().fill(MPColor.statusStarIcon)
+            .overlay(StarShape().stroke(MPColor.yellowText.opacity(0.45), lineWidth: max(1, size / 24)))
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
+    }
+}
+
+/// Beş köşeli yıldız şekli.
+struct StarShape: Shape {
+    func path(in r: CGRect) -> Path {
+        let c = CGPoint(x: r.midX, y: r.midY)
+        let outer = min(r.width, r.height) / 2, inner = outer * 0.45
+        var p = Path()
+        for i in 0..<10 {
+            let radius = i.isMultiple(of: 2) ? outer : inner
+            let angle = Double(i) * .pi / 5 - .pi / 2
+            let point = CGPoint(x: c.x + CGFloat(cos(angle)) * radius, y: c.y + CGFloat(sin(angle)) * radius)
+            i == 0 ? p.move(to: point) : p.addLine(to: point)
+        }
+        p.closeSubpath()
+        return p
+    }
+}
+
+// MARK: - Mod kartı (yeni masal)
+
+/// "Yeni bir masal yaz" bölümündeki büyük mod kartı: pastel zemin, mod adı,
+/// sağ altta taşan küçük sahnecik (15 Ekim); anlatımı resim taşır. Az yazı,
+/// büyük hedef (araştırma: okumayan çocuk resimden seçer). Sahneciğin görseli
+/// henüz yoksa beyaz daire içinde ikon gösterilir. Tek mod kaldığında (uyku
+/// saati) yatay ve tam genişlik; gece görseli varsa gece göğü zemininde.
+struct HomeModeCard: View {
+    let title: String
+    let systemImage: String
+    let tone: MPWorldTone
+    /// Sahneciğin varlık adı (`Scenes/mode-…`); yoksa ikon.
+    var art: String? = nil
+    var wide: Bool = false
+    var night: Bool = false
+    /// Öne çıkan mod (uyku saatinde "Bu akşam"): mor çerçeve ve üst kenara
+    /// binen etiket, `HomeModeTile` ile aynı dil. Bilgi yalnızca renkle verilmez.
+    var badge: String? = nil
+    let action: () -> Void
+
+    @State private var badgeHeight: CGFloat = 0
+
+    private var artImage: UIImage? { art.flatMap { UIImage(named: $0) } }
+    private var onNight: Bool { night && artImage != nil }
+
+    var body: some View {
+        Button(action: action) {
+            label
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .padding(MPSpacing.lg)
+                .frame(maxWidth: .infinity, minHeight: wide ? 120 : 166, alignment: .topLeading)
+                // Sahnecik düzeni etkilemez: sağ altta, kenardan hafifçe taşar; kart kırpar.
+                .background(alignment: .bottomTrailing) {
+                    if let artImage {
+                        Image(uiImage: artImage).resizable().scaledToFit()
+                            .frame(width: wide ? 150 : 124, height: wide ? 112 : 98, alignment: .bottomTrailing)
+                            .offset(x: MPSpacing.xs, y: MPSpacing.xs)
+                            .accessibilityHidden(true)
+                    }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                .mpKidSurface(onNight ? MPColor.bedtimeSkyTop : tone.soft,
+                              edge: onNight ? MPColor.brandNight : tone.edge)
+                .overlay {
+                    if badge != nil {
+                        RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
+                            .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
+                    }
+                }
+                .overlay(alignment: .top) {
+                    if let badge {
+                        Text(badge).mpText(.caption)
+                            .foregroundStyle(MPColor.textOnAction)
+                            .lineLimit(1)
+                            .padding(.horizontal, MPSpacing.sm)
+                            .padding(.vertical, MPSpacing.xxs)
+                            .background(MPColor.actionPrimary, in: Capsule())
+                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                            .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { badgeHeight = $0 }
+                            .offset(y: -badgeHeight / 2)
+                            .accessibilityHidden(true)
+                    }
+                }
+        }
+        .buttonStyle(MPPressStyle())
+    }
+
+    private var label: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+            if artImage == nil {
+                MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
+                    .foregroundStyle(tone.deep)
+                    .frame(width: 56, height: 56)
+                    .background(MPColor.backgroundSurface, in: Circle())
+                    .padding(.bottom, MPSpacing.sm)
+                    .accessibilityHidden(true)
+            }
+            Text(title).mpText(.cardTitle)
+                .foregroundStyle(onNight ? MPColor.textOnAction : MPColor.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+}
+
+// MARK: - Günlük rafı
+
+/// Ana sayfadaki Günlük rafı (15 Ekim, Apple Books rafı gibi): başlıkta "Tümü",
+/// altında yatay kayan kapaklar, adı ve süresi; ilki günün klasiği, "Bugün"
+/// kurdeleli. Kapaklar açılışta sırayla süzülür; Reduce Motion'da yerinde.
+struct HomeGunlukPreview: View {
+    struct Item: Identifiable {
+        let id: UUID
+        let title: String
+        let minutes: Int
+        let asset: String
+        let focus: ClassicFocus
+    }
+
+    /// İlki günün klasiği.
+    let items: [Item]
+    let action: () -> Void
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var arrived = false
+
+    var body: some View {
+        HomeSection(title: "Günlük", contained: false, link: ("Tümü", action)) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: MPSpacing.md) {
+                    ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                        Button(action: action) { tile(item, today: index == 0) }
+                            .buttonStyle(MPPressStyle())
+                            .accessibilityLabel(index == 0 ? "Bugünün klasiği: \(item.title)" : item.title)
+                            .accessibilityHint("Günlük sekmesini açar")
+                            .offset(y: arrived ? 0 : MP.S.x5)
+                            .opacity(arrived ? 1 : 0)
+                            .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)
+                    }
+                }
+                // Kurdele ve sert kenar kırpılmasın.
+                .padding(.vertical, MPSpacing.sm)
+                .padding(.horizontal, MPSpacing.screenH)
+            }
+            .padding(.horizontal, -MPSpacing.screenH)
+            .padding(.vertical, -MPSpacing.sm)
+        }
+        .onAppear { arrived = true }
+    }
+
+    private func tile(_ item: Item, today: Bool) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xs) {
+            ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
+                .frame(width: 118, height: 158)
+                .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
+                .overlay(alignment: .topLeading) { if today { todayRibbon } }
+            Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
+                .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                .padding(.top, MPSpacing.xxs)
+            Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+        }
+        .frame(width: 118, alignment: .leading)
+    }
+
+    /// Günün klasiğinin kurdelesi: sarı hap, markanın yıldızı ve "Bugün".
+    private var todayRibbon: some View {
+        HStack(spacing: MPSpacing.xxs) {
+            MPStarMark(size: 12)
+            Text("Bugün").mpText(.caption).fontWeight(.heavy).foregroundStyle(MPColor.yellowText)
+        }
+        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+        .padding(.horizontal, MPSpacing.sm)
+        .padding(.vertical, MPSpacing.xxs)
+        .mpKidSurface(MPWorldTone.yellow.soft, edge: MPWorldTone.yellow.edge, radius: MPRadius.input)
+        .padding(MPSpacing.xs)
+    }
+}
+
+// MARK: - Giriş
+
+extension View {
+    /// Ana sayfa bölümlerinin girişi: uygulama açılışında bir kez, sırayla
+    /// hafifçe yukarı kayarak gelir. Sekme değiştirip dönünce tekrarlamaz.
+    /// Reduce Motion açıkken yalnızca solma.
+    func homeEntrance(_ index: Int) -> some View { modifier(HomeEntrance(index: index)) }
+}
+
+private struct HomeEntrance: ViewModifier {
+    let index: Int
+    /// Açılış başına bir kez.
+    @MainActor static var played = false
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown = HomeEntrance.played
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(shown ? 1 : 0)
+            .offset(y: shown || reduceMotion ? 0 : MP.S.x4)
+            .onAppear {
+                guard !shown else { return }
+                let delay = 0.05 + Double(index) * 0.06
+                withAnimation((reduceMotion ? MP.M.easeOut : MP.M.spring).delay(delay)) { shown = true }
+                Task { @MainActor in
+                    try? await Task.sleep(for: .seconds(1))
+                    HomeEntrance.played = true
+                }
+            }
     }
 }
 
@@ -525,11 +774,18 @@ struct HomeStreakCard: View {
 
 /// "Bu akşam nasıl bir masal olsun?" kartının içindeki mod düğmesi: pastel
 /// zemin, beyaz kutuda büyük ikon ve mod adı. Kenarsız: kart içinde kart olmaz.
+///
+/// `badge` öne çıkan modu işaretler (uyku saatinde "Bu akşam"): üst kenara
+/// binen etiket ve mor çerçeve. Bilgi yalnızca renkle verilmez, etiket yazılı.
 struct HomeModeTile: View {
     let title: String
     let systemImage: String
     let tone: MPWorldTone
+    var badge: String? = nil
     let action: () -> Void
+
+    /// Etiketin yüksekliği: yarısı kadar yukarı çıkıp kenara biner (Dynamic Type ile büyür).
+    @State private var badgeHeight: CGFloat = 0
 
     var body: some View {
         Button(action: action) {
@@ -547,6 +803,28 @@ struct HomeModeTile: View {
             .padding(.horizontal, MPSpacing.sm)
             .frame(maxWidth: .infinity, minHeight: 104)
             .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+            .overlay {
+                if badge != nil {
+                    RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
+                        .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
+                }
+            }
+            .overlay(alignment: .top) {
+                if let badge {
+                    Text(badge).mpText(.caption)
+                        .foregroundStyle(MPColor.textOnAction)
+                        .lineLimit(1)
+                        .padding(.horizontal, MPSpacing.sm)
+                        .padding(.vertical, MPSpacing.xxs)
+                        .background(MPColor.actionPrimary, in: Capsule())
+                        // Okuma şeridi gibi tavanlı: etiket ikonu örtmez, mod
+                        // adı ve erişilebilirlik etiketi büyümeye devam eder.
+                        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { badgeHeight = $0 }
+                        .offset(y: -badgeHeight / 2)
+                        .accessibilityHidden(true)
+                }
+            }
         }
         .buttonStyle(MPPressStyle())
     }

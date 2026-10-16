@@ -16,6 +16,7 @@ struct ClassicDetailView: View {
     @State private var narration: ClassicNarration = .soft
     @State private var gate = false
     @State private var sharing = false
+    @State private var scrolled = false
 
     private let artHeight: CGFloat = 470
 
@@ -53,8 +54,10 @@ struct ClassicDetailView: View {
                 .padding(.horizontal, MPSpacing.screenH)
             }
             .padding(.bottom, GunlukLayout.bottomClearance)
+            .gunlukTracksScroll($scrolled)
         }
         .ignoresSafeArea(edges: .top)
+        .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { narration = progress.narration(for: tale.id) }
@@ -78,7 +81,7 @@ struct ClassicDetailView: View {
     /// Vitrinle aynı sahne: tam genişlik boyalı görsel, altta karartma ve
     /// masalın adı, alt köşeler yuvarlak ve sert kenarlı (`gunlukStage`).
     private var art: some View {
-        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title)
+        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
             .frame(height: artHeight)
             .frame(maxWidth: .infinity)
             .overlay {
@@ -96,6 +99,10 @@ struct ClassicDetailView: View {
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, MPSpacing.xxl)
+                // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+                .lineLimit(3)
+                .minimumScaleFactor(0.6)
             }
             .overlay(alignment: .top) {
                 HStack {
@@ -122,10 +129,13 @@ struct ClassicDetailView: View {
                 app.readClassic(tale, listen: true)
             }
             .accessibilityHint("Masalı sesli okuyarak açar")
-            HomeModeTile(title: "Uyku modu", systemImage: "moon", tone: .sky) {
-                MPHaptics.tap()
-                app.sleepSession = MPSleepSession(title: tale.title, pages: tale.text(narration).pages,
-                                                  storyID: tale.id)
+            // Uyku modu v2'de (`MPFeatures.sleepMode`).
+            if MPFeatures.sleepMode {
+                HomeModeTile(title: "Uyku modu", systemImage: "moon", tone: .sky) {
+                    MPHaptics.tap()
+                    app.sleepSession = MPSleepSession(title: tale.title, pages: tale.text(narration).pages,
+                                                      storyID: tale.id)
+                }
             }
             HomeModeTile(title: saved ? "Listemde" : "Listeme ekle", systemImage: saved ? "checkmark" : "plus",
                          tone: .peach) {
@@ -147,9 +157,10 @@ struct ClassicDetailView: View {
                             progress.setNarration(value, for: tale.id)
                         }),
                         track: MPColor.backgroundSunken)
+            // Yaş yazılmaz: masalın kendi yaş aralığıyla (üstte) çelişmesin.
             Text(narration == .soft
-                 ? "3-5 yaş için. Korkutucu sahneler çıkarıldı."
-                 : "6 yaş ve üstü. \(tale.byline) metnine yakın.")
+                 ? "Küçükler için: korkutucu sahneler çıkarıldı."
+                 : "Büyükler için: \(tale.byline) metnine yakın.")
                 .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

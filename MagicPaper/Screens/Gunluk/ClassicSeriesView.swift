@@ -12,6 +12,7 @@ struct ClassicSeriesView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
     @ObservedObject private var favorites = MPFavorites.shared
+    @State private var scrolled = false
 
     private var episodes: [ClassicTale] { library.catalog.episodes(of: series.id) }
 
@@ -49,8 +50,10 @@ struct ClassicSeriesView: View {
                 .padding(.horizontal, MPSpacing.screenH)
             }
             .padding(.bottom, GunlukLayout.bottomClearance)
+            .gunlukTracksScroll($scrolled)
         }
         .ignoresSafeArea(edges: .top)
+        .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -63,7 +66,7 @@ struct ClassicSeriesView: View {
 
     private var art: some View {
         let saved = favorites.contains(series.id)
-        return ClassicCoverImage(asset: series.cover, focus: series.coverFocus, seed: series.title)
+        return ClassicCoverImage(asset: series.cover, focus: series.coverFocus, seed: series.title, onStage: true)
             .frame(height: 400)
             .frame(maxWidth: .infinity)
             .overlay {
@@ -82,6 +85,10 @@ struct ClassicSeriesView: View {
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, MPSpacing.xxl)
+                // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+                .lineLimit(3)
+                .minimumScaleFactor(0.6)
             }
             .overlay(alignment: .top) {
                 HStack {

@@ -133,6 +133,259 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@dd44465 (refrain-deneyi ileri sarıldı, push yok) · Nakarat deneyi main'de
+- Batuhan onayıyla `refrain-deneyi` main'e ileri sarıldı. Main artık şunları içeriyor: motorda `RefrainSpec` ve nakarat denetimi, `Content/Experiments/x_refrain_bedtime.json` (uyku öncesi iki kardeş blueprint), yayın aracında `build-package --experiment`, paket şeması 2.
+- Bilerek değişmedi: deney yayımlanmadı; uygulama deney dosyasını yüklemiyor, çocuklar nakaratlı masalı görmüyor. `preflight`, yayın ve `mark live` Batuhan'da. Origin'e gönderilmedi.
+- Test: ileri sarma olduğu için main, dalda test edilen hâlin aynısı: uygulama 699/0, yayın aracı 15/0, motor 790/18 (bilinen aynı 10 test).
+
+### 2026-10-16 · refrain-deneyi@19d7f51 · Nakarat deneyi dalı main ile güncellendi ve tam test edildi
+- `refrain-deneyi` 41 commit gerideydi; main içine alındı (`19d7f51`). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
+- Test: motor 790 test / 18 hata. Hata veren 10 test, 15 Ekim kaydındakiyle birebir aynı (bilinen içerik-belge ayrışması); yeni hata yok. Yayın aracı 15/0. Uygulama testleri ilk kez bu dalda çalıştırıldı: 699/0 (1 atlanan), main ile aynı.
+- Bilerek değişmedi: dal main'e alınmadı (Batuhan onayı bekliyor), deney kolu yayımlanmadı, `preflight` / `mark live` adımları Batuhan'da. Uygulama deney dosyasını yüklemiyor; paket şeması 2 yayında hiçbir paketi etkilemiyor (henüz paket yok).
+- Simülatörde görülmedi (arayüz değişikliği yok). Dosyalar: yalnızca birleştirme ve bu dosya.
+
+### 2026-10-16 · main@7f695e7 · Kullanımdan öğrenme: ilk üçte birde kapatmak yarıda bırakma sayılmıyor
+- FAZ 14'ün açık kalemi kapandı. Önce: masalda bir sayfa çevirip kapatmak "yarıda bıraktı" sayılıyor ve o masalın ailesini ve yol arkadaşını sonraki seçimlerde aşağı itiyordu. Şimdi: masalın en az üçte biri (yukarı yuvarlanmış) görülmeden kapatılırsa bu bir göz atmadır; motor ne ödül ne ceza verir. 9 sayfalık masalda 3. sayfaya ulaşan çocuk bırakırsa sayılır, 2. sayfada bırakırsa sayılmaz.
+- Bilerek değişmedi: sunucuya giden okuma olayı (ulaşılan sayfa ve sayfa sayısı zaten içinde; karar sunucuda da verilebilir), Uyku öncesinde yarıda bırakmanın hiç ceza olmaması, süre bitince kapanan masal kuralı, kayıt dosyası biçimi.
+- Test: uygulama testleri 699/0 (1 atlanan; taban 698), yeni `ReadingEventTests.testLeavingInTheFirstThirdIsNotAbandoning`. Test, kod yazılmadan önce kırmızıda çalıştırılmadı. Arayüz değişikliği yok, simülatörde görülmedi.
+- Dosyalar: `StoryEngineBridge/StoryUsageStore.swift`, `MagicPaperTests/ReadingEventTests.swift`, `docs/MagicPaper_Faz_Plani_Ekim.md`.
+
+### 2026-10-15 · refrain-deneyi (104b3c3 üstüne) · Deney kolu pakete girebiliyor, paket şeması 2
+
+- `content-publisher build-package --experiment <id>` (yinelenebilir): `Content/Experiments/<id>.json` pakete **son** kütüphane belgesi olarak ekleniyor. Varsayılan boş — paket, bu checkout'un uygulamasının taşıdığı içeriğin aynısı kalıyor; bir kolu yayına koymak ürün sahibinin o yayına özel kararı.
+- Sıra kozmetik değil: `ContentCatalog.merging` ilk `0.0.0` olmayan sürümü kataloğun sürümü sayıyor ve paket, belgelerinin taşıdığı sürümü ilan etmek zorunda. Deney belgesi kendini adlandırdığı için (`"version": "experiment-x_refrain_bedtime"`) başa konsa paketin sürümü o olur ve cihaz paketi reddederdi. Buna ayrı bir test var.
+- Publisher, dosya adı ile belgedeki `experiment.id` ayrışırsa yayımlamıyor: yanlış adla yayımlanan kol veri üretir ama yanlış kolun verisini üretir, bu hiç yayımlamamaktan kötü. Bilinmeyen id'de mevcut kolları sayıyor.
+- `ContentPackage.currentSchemaVersion` 1 → 2, çünkü paket artık `refrain` taşıyabiliyor. Karşılaştırma iki yerde de eşitlik (`RemoteContentService` indirmeden önce, `load(package:)` indirdikten sonra): nakaratı bilmeyen uygulama paketi hiç indirmiyor ve yayındaki kataloğu okuyor. Alanı bilmeyen bir uygulamanın varyantı nakaratsız göstermesi, kontrolü varyant sanmak olurdu — veride yanlış cevap, cevapsızlıktan kötü.
+- Bilerek yapılmadı: deney kolunun kendisi yayımlanmadı (`publish`/`deploy` çalıştırılmadı), `ba experiment preflight` ve `mark … live` adımları hâlâ Batuhan'da (README'de 1 numaralı açık iş olarak kaldı). Paket dosyası yazılmadı: `hosting/public/content/catalog/` hâlâ yok ve feed'de `catalogPackage: null` — yani şema artırımı yayındaki hiçbir paketi okunamaz hâle getirmiyor.
+- Test: publisher 15/0 (5'i yeni). Motor demeti 790 test / 18 hata — aynı demet HEAD'de (104b3c3, ayrı worktree) 788/18 ve **birebir aynı 10 test**: fark yalnızca eklediğim iki test, yeni hata yok. O 18 hata blueprint/beat mimarisi tarafındaki bilinen içerik-belge ayrışması, bu işle ilgisi yok ve bu işte düzeltilmedi. Uygulama hedefi (`MagicPaperTests`) çalıştırılmadı: değişen kodun hiçbiri uygulama hedefinde değil.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/ContentPackage.swift`, `StoryEngine/Tests/StoryEngineTests/ContentPackageTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Publisher.swift`, `Scripts/ContentPublisher/Sources/content-publisher/main.swift`, `Scripts/ContentPublisher/Tests/PublisherKitTests/PublisherKitTests.swift`, `Content/Experiments/README.md`, `docs/REMOTE_CONTENT.md`, bu dosya.
+
+### 2026-10-15 · main@cf518bd · Alt çubukta zıplama kaldırıldı
+- Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.
+- `KidTabBar` sekmeleri: `.symbolEffect(.bounce)` ve `.symbolEffect(.replace)` geçişi kaldırıldı, yerine kısa opaklık geçişi (`MP.M.easeOut`, Hareketi Azalt'ta animasyonsuz). Basma stili `MPPressStyle(.highlight)`: çökme ve yaylanma yok, basılıyken yalnızca hafif söner.
+- `MP.Glass.bar`: `.interactive()` kaldırıldı; dokununca cam kapsül esneyip yaylanmıyor. Aynı yüzeyi kullanan `MPModeSwitch` de etkilenir.
+- Bilerek değişmedi: Yarat düğmesi (ortadaki artı) basma stili, sekme renkleri, ikonlar, çubuğun yeri.
+- Doğrulama: derleme yarıda kesildi (başka oturumun derlemesiyle çakıştı); derlenmedi, test çalıştırılmadı, simülatörde ya da cihazda görülmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPTheme.swift`.
+
+### 2026-10-15 · main@93d6a13 · Ana sayfa yenilemesi main'e birleşti (push yok)
+- `anasayfa-yenileme` main'e ileri sarıldı: başlığın altı Apple düzeninde (beyaz zemin, Yeni bir masal yaz, Günlük rafı, Bu hafta), vektör mod sahnecikleri, görsel tutarlılık (yıldız imzası, yarıçap kuralı, lavanta paneller).
+- Çakışma çözümü: uyku-v2 (`cf1ae56`) uyku saatinde üç modu açıp Uyku'yu "Bu akşam" etiketiyle öne çıkarıyordu; etiket ve mor çerçeve yeni `HomeModeCard`'a taşındı. Koyu gece kartı artık yalnızca tek mod kaldığında. Değişiklik günlüğünde iki tarafın kayıtları korundu.
+- Birleştirme sırasında Günlük (`faz-20-gunluk`) da main'e girdi; ikinci kez main alındı, yalnızca değişiklik günlüğü çakıştı.
+- Test: uygulama testleri 698/0 (1 atlanan), iki birleştirmeden sonra da. Simülatörde gece hâli görüldü (iPhone 18 Pro Max): üç kart, Uyku'da "Bu akşam".
+- Paylaşılan checkout'taki başka oturumun commit'lenmemiş `MPTheme.swift` ve `MPNavigationChrome.swift` değişikliklerine dokunulmadı. GitHub'a gönderilmedi.
+
+### 2026-10-15 · anasayfa-yenileme@a4bf106 · Ana sayfa: görsel tutarlılık iyileştirmesi
+- Batuhan'ın kararı (ChatGPT önerisi üzerine, B seçeneği): **"Günlük" başlığı** öbür bölüm başlıklarıyla aynı font, boyut ve ağırlıkta (`title3`); el yazısı satırı yok, klasik hava kapaklardan gelir. `MP.F.script` ve tasarım sistemi belgesindeki istisna notu silindi; iki aile kuralı yeniden istisnasız.
+- **Yıldız imzası:** tek çizim ve tek sarı (`MPStarMark`: beş köşe, `statusStarIcon`, ince koyu sarı kontur). "Yıldızların" çipi (önce içi boş ikon yıldızdı), "Bugün" kurdelesi ve okunan günler bunu kullanır; tamamlanmamış günler soluk beyaz, bugün kesikli halkayla vurgulu. Yeni yıldız eklenmedi; kullanılmayan başlık yıldız hapı silindi.
+- **Köşe yarıçapı kuralı:** büyük yüzeyler (hero, mod kartları, paneller) `card` 24; küçük bilgi kartları (çipler) `input` 18; iç kutular (ikon kareleri, kapaklar) `md` 14 (çip ikon kutusu 12'den 14'e); rozetler hap.
+- **Paneller:** "Bu hafta" (ve aynı kalıbı kullanan seri ve günün masalı) gri yerine beyaz üstünde hafif lavanta, kenarı daha sakin; mod kartlarının dolu pastelinden açık.
+- **Metin:** mod kartlarındaki ipuçları ("sakin, kısa" vb.) kalktı; "Bu hafta"nın sakin cümlesi kaldı (CLAUDE.md §7).
+- Değişmeyen: öğeler, sıra, gezinme, işlevler, başlık-içerik 12 ve bölümler arası 32 aralık.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `DesignSystem/MPTheme.swift`, `docs/MagicPaper_Design_System.md`.
+
+### 2026-10-15 · anasayfa-yenileme@56cecc7 · Ana sayfa: bölüm başlıkları içeriğe yapışık, Günlük el yazısıyla
+- **Bütünlük:** her bölümde başlık ile içerik arası 12, bölümler arası 32 (önce 24); başlık kendi içeriğiyle tek parça okunur. "Günlük"teki "Tümü" bağlantısı 48 pt'lik yüksekliğiyle başlık satırını uzatıp başlığı içerikten koparıyordu; dokunma alanı korunarak satırı etkilemez hâle geldi.
+- **"Günlük" el yazısıyla:** `MP.F.script` (iOS'un kendi Snell Roundhand'i, indirme yok, Türkçe harfler var), marka morunda, 34 pt, Dynamic Type ile büyür. El yazısının büyük satır yüksekliği alt boşlukta eşitlendi.
+- **Tasarım kuralı istisnası (Batuhan'ın kararı):** iki font ailesi kuralına tek istisna, yalnızca bu başlık. `MPTheme.swift` içinde ve `docs/MagicPaper_Design_System.md` §5'te yazılı. Kökteki `CLAUDE.md` tasarım yasası metni güncellenmedi (repo dışı dosya); Batuhan'ın onayıyla eklenmeli.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `docs/MagicPaper_Design_System.md`.
+
+### 2026-10-15 · anasayfa-yenileme@c2c91b0 · Ana sayfa: mod kartlarına vektör sahnecikler
+- Batuhan'ın isteğiyle sahnecikleri ChatGPT yerine taslaktaki düz vektör üslupla Claude çizdi: **Uyku** (ay ışığında yatak, uyuyan bulut, hilal ve yıldızlar), **Öğrenelim** (açık kitaptan çıkan filiz, büyüteç, kelebek), **Macera** (karlı dağlar, tepede bayraklı turuncu çadır, harita), **Uyku gecesi** (aynı sahnenin lacivert ve mor tonları). Hepsi maskotsuz (ekranda tek Ragi).
+- SVG olarak `Assets.xcassets/Scenes/mode-*` içinde, vektör korunuyor; her boyutta keskin. Renkler kart pastelleriyle uyumlu.
+- Sahnecik büyütüldü (kartın sağ alt yarısını doldurur), kart 166 pt'ye uzadı. Gece hilali kesme daire yerine gerçek hilal şekli (lacivert kartta koyu leke bırakıyordu).
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz üç kart ve uyku saatinde tek geniş gece kartı). Test çalıştırılmadı; derleme temiz.
+- Not: üslup düz vektör, header manzarası boyalı; illüstratör kalıcı sahne setini çizerken bu dört sahnecik de aynı elden geçmeli.
+
+### 2026-10-15 · anasayfa-yenileme@4a81a49 · Ana sayfa: mod kartlarına sahnecik yeri
+- "Yeni bir masal yaz" kartları (`HomeModeCard`) sahneciğe hazır: `Assets.xcassets/Scenes/mode-bedtime`, `mode-learning`, `mode-adventure` (uyku saatinde `mode-bedtime-night`) eklenince kartın sağ altında kenardan taşan küçük illüstrasyon ve iki kelimelik ipucu ("sakin, kısa", "merak, keşif", "cesur, hızlı") görünür; ikon dairesi kalkar. Gece görseli varsa uyku kartı gece göğü zemininde.
+- Görsel henüz yok: kartlar bugünkü ikonla aynı görünür. Görselleri Batuhan header'la aynı üslupta, maskotsuz üretecek (ekranda tek Ragi).
+- Sahnecik düzeni etkilemez (arka plan katmanı); geçici yer tutucuyla denenen ilk sürüm kartı genişletip sayfayı sağa taşırıyordu, düzeltildi. Yer tutucu commit'lenmedi.
+- Simülatörde yer tutucuyla görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı; derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
+### 2026-10-15 · anasayfa-yenileme@0eea25c · Ana sayfa: header altı Apple düzeninde, beyaz zemin
+- Araştırma (Apple Design Awards 2026, Khan Academy Kids, Pok Pok, Moshi, Apple HIG Branding): birkaç büyük giriş noktası, az yazı, sakin süreklilik, her gün küçük bir an, tekrar eden az sayıda marka öğesi.
+- **Zemin beyaz** (krem kalktı). Bölüm başlığı içeriğin üstünde, kalın (`HomeSection` yeniden: başlık dışarıda, isteğe bağlı "Tümü" bağlantısı, içerik açık gri alanda ya da doğrudan zeminde).
+- **Sıra:** header ve çipler, bu akşamın masalı (değişmedi), **Yeni bir masal yaz** (üç büyük pastel mod kartı, beyaz daire içinde ikon; uyku saatinde tek ve geniş), **Günlük** (Apple Books rafı gibi yatay kapaklar, ilki "Bugün" kurdeleli, "Tümü" Günlük sekmesini açar), **Bu hafta** (noktalar yerine markanın sarı yıldızları, altında "Bu hafta 2 gün birlikte okudunuz." gibi sakin cümle), seri, günün masalı.
+- Önceki tur (`547c3b6`, kaydı bu kayıtla yazılıyor): bölümler açılışta bir kez sırayla gelir, kapaklar sırayla süzülür, başlık saat çubuğunun altına girmeden kaydırdıkça solar. Reduce Motion'da hepsi yerinde.
+- Denenip bırakılan: yıldız yolunun sahneye taşındığı "C · Yıldız yolu" header'ı ve lavanta/gök mavisi zemin; Batuhan header'ın eski hâlinde kalmasını istedi, commit'lenmedi.
+- Bilerek değişmeyen: header, sahne, Ragi, Yıldızların ve Okuma serisi çipleri, hero kartı.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz; gece hâli bu düzende görülmedi). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
+### 2026-10-15 · anasayfa-yenileme@ed02a0e · Ana sayfa: Günlük önizleme kartı
+- **Günlük'te bugün** (`HomeGunlukPreview`): mod kartının altında, öbür bölümlerle aynı beyaz kart (lavanta kenar, sert alt kenar, başlık içeride, pırıltı ikonu). Günlük rafından çizimi gelmiş üç klasik kapak, adı ve süresiyle; ilki günün klasiği (Günlük vitriniyle aynı). Altta "Günlük'e git". Kartın tamamı Günlük sekmesini açar, tek hafif titreşim. En büyük yazı boyutunda iki kapak.
+- Önce denenen mavi, yelpaze kapaklı ve pırıltılı vitrin kartı Batuhan'ın isteğiyle ana sayfa diline uygun önizleme kartına çevrildi; o sürüm commit'lenmedi.
+- **Uyku saatinde mod kartı:** yalnızca "Uyku" kalınca kare solda tek başına duruyordu; artık tam genişliğe yayılır.
+- Gözlem: gece sahnesinde saat çubuğu yazısı sistem tarafından beyaza dönüyor; "gece saat yazısı" açık maddesi gerçekte sorun değil.
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz ve uyku saati); karta dokununca Günlük açılıyor. Test çalıştırılmadı (yalnızca görünüm değişikliği); derleme temiz.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
+### 2026-10-15 · anasayfa-yenileme@5b0d24b · Ana sayfa son kontrol: tekrar eden kart, saat çubuğu
+- iPhone 18 Pro Max simülatöründe tasarım ve işlev kontrolü (normal ve en büyük yazı boyutu, kaydırma, tüm düğmelerin hedefi kodda izlendi).
+- **Tekrar kalktı:** "Bu akşamın masalı" okunmadı durumunda günün masalını gösterirken altta aynı masal "Günün masalı" olarak bir daha çıkıyordu; bu durumda Günün masalı kartı gizlenir.
+- **Saat çubuğu:** sayfa kaydırılınca kartlar saatin altından geçip okunmaz oluyordu; sahne yarıya kadar kaydığında saat çubuğunun altına krem zemin yumuşakça gelir (Reduce Motion'da animasyonsuz).
+- Eski yorumlar ("bulutlu bant", "başlıkta yıldız", "hero kartında maskot") güncellendi, `HomeView` girintisi düzeltildi.
+- Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
+- `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+### 2026-10-15 · main (faz-20-gunluk ileri sarıldı, push yok) · Günlük denetimi ve yeni düzen main'de
+
+- `faz-20-gunluk` dalının 15 Ekim işleri main'e alındı: Günlük denetimi (kenardan geri, durum çubuğu zemini, sekmeye dokununca başa dönüş, tekrar ve boşluk düzeltmeleri), vitrin altının yeni düzeni (raf kapıları, simgeli bölümler) ve sayfa sonundaki gece bölgesi.
+- Önce main (uyku modu v2) dala birleştirildi; tek çakışma bu dosyadaki kayıtlardı, ikisi de korundu. Ardından main dala ileri sarıldı.
+- **Test:** birleşmiş sürüm derlendi ve simülatörde Günlük açıldı (iPhone 17 Pro). Birim testleri birleşmeden sonra çalıştırılmadı.
+- main checkout'taki başka oturumun commit edilmemiş değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+- **Durum:** main'de; origin'e gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@f1cc054 · Günlük: sayfa sonu gece bölgesi
+
+Batuhan: alttaki manzaranın kreme beyaz yumuşak geçişi güzel durmamış; Uyku vakti ile aynı renkte olsa daha iyi.
+
+- **Gece bölgesi** (`GunlukNightZone`): Uyku vakti, "Kahramanı sen ol" ve manzara tek bir tam genişlik lacivert alanda. Renk manzaranın gece göğüyle aynı (`MPColor.sceneSkyNight`, Ana sayfa sahnesinin göğü); üst köşeleri vitrinin alt köşeleriyle aynı yarıçapta yuvarlak, sayfa vitrinle açılıp gece sahnesiyle kapanıyor. Alan alt barın arkasına ve aşağı esnemeye kadar uzanıyor, krem şerit görünmüyor.
+- **Uyku vakti** artık ayrı kart değil, doğrudan gece bölgesinin üstünde (`GunlukSection(surface: false)`); raf ekran kenarından kenarına kayıyor.
+- **Manzara** her zaman gece hâli; üst kenarı aynı renkteki göğe, çimenin alt kenarı gece bölgesine eriyor (kreme geçiş kalktı). Ragi ve mor "Kahramanı sen ol" kartı yerinde.
+- **Bilerek değişmeyenler:** vitrin, üstteki beyaz kartlar, bölüm sırası.
+- **Test:** birim testleri çalıştırılmadı (yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri boş. Simülatörde görülen: iPhone 17 Pro, açık tema. Koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@bd6dbcf · Günlük: vitrinin altı yeniden tasarlandı
+
+Batuhan vitrine (üstteki slayt) dokunmadan altının Ana sayfa diliyle, markaya açık biçimde yeniden düzenlenmesini istedi. Web araştırması (Epic, Booka, Kidbox) raf düzeni ya da arka plan için kullanışlı örnek vermedi; yön Ana sayfanın kendi dilinden kuruldu.
+
+- **Çipler yerine raf kapıları:** "Hangi raftan okuyalım?" kartı (Ana sayfadaki "Bu akşam nasıl bir masal olsun?" kartının dili). Pastel kutu, beyaz kare içinde rafın simgesi, kısa ad ve masal sayısı: Klasikler · Anadolu · Fabllar · Uyku · Seriler · Tüm raflar (Kategoriler sayfasını açar). Yeni `GunlukShelfTile`.
+- **Simgeli bölüm başlıkları:** `GunlukSection` artık Ana sayfadaki "Bu hafta" gibi solda rafın tonunda simge kutusu ve altta bir cümle taşıyor. Kaldığın yerden (yer imi, şeftali), Bu haftanın seçkisi ("Editörün bu hafta için seçtikleri", yıldız, sarı), Anadolu'dan ve Dünya klasikleri (rafın kendi alt başlığı).
+- **Uyku vakti gece kartı:** Ana sayfanın uyku saatindeki kartıyla aynı gece laciverti (`bedtimeSkyTop`, `brandNight` kenar), açık renk yazılar, başlığın yanında birkaç hareketsiz yıldız (`GunlukNightSky`). Raf kartları `onDark` ile açık yazılı.
+- **Manzaralı son:** Sayfa Ana sayfanın masal manzarasıyla biter (`GunlukSceneFooter`): tam genişlik, üstü ve altı kreme erir, uyku saatinde gece hâli. Kalemli Ragi çimenin üstünde (ekrandaki tek maskot); "Kahramanı sen ol" kartı manzaranın göğüne biner ve markanın moruna döndü (sert gece kenarı, sihirli değnek simgesi, "Adınla, sevdiklerinle yepyeni bir masal").
+- **Bilerek değişmeyenler:** Vitrin (slayt, başlık, arama) aynen duruyor. Bölüm sırası aynı. Anadolu'dan rafının yedek kapakları duruyor (kapak kaynağı bekliyor). Raf ve detay ekranları bu turda değişmedi.
+- **Test:** birim testleri çalıştırılmadı (disk dolduğu için test derleme klasörü silindi; değişiklik yalnızca görünüm). Derleme temiz, tasarım yasası grep'leri değişen dosyalarda boş. Simülatörde görülen: iPhone 17 Pro, açık tema, uyku saati (gece manzarası). Gündüz manzarası, koyu tema, en büyük Dynamic Type, SE ve Pro Max görülmedi.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `Screens/Gunluk/GunlukComponents.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
+### 2026-10-15 · faz-20-gunluk@9edb7fb · Günlük denetimi: gezinme, durum çubuğu, tekrarlar, boşluklar
+
+Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülatörümde ("MP Günlük (Claude)", iPhone 17 Pro) baştan sona gezildi; bulunan sorunlar düzeltildi.
+
+- **Kenardan kaydırarak geri dönme çalışmıyordu.** Günlük sayfaları gezinme çubuğunu gizlediği için iOS bu hareketi kapatıyordu; geri düğmesi de görselle birlikte yukarı kayıp kaybolduğundan detayın altından geri dönmenin yolu yoktu. Yığında sayfa varken hareket yeniden açıldı (`GunlukComponents.swift`, `UINavigationController` uzantısı; uygulamada çubuğu gizleyen yığın yalnızca Günlük). Simülatörde doğrulandı.
+- **Sekmeye yeniden dokunmak bir şey yapmıyordu.** Artık açık detay sayfaları kapanıp Günlük'ün köküne dönülüyor; kökteyken sayfa başa kayıyor. `MPAppState.reselectTab()` ve `ContentView` alt bar bağlamasına tek satır (paylaşılan dosyalar, en küçük değişiklik).
+- **Saat ve Dynamic Island içeriğin üstüne biniyordu.** Sayfa kaydırılınca slayt yazıları, düğmeler ve kartlar saatin altından geçiyordu. Kaydırınca saat çubuğunun arkası krem oluyor (`GunlukStatusBarBackdrop`); sahne tepedeyken görünmüyor. Ana Günlük, detay ve seri ekranlarında.
+- **Rapunzel iki kez görünüyordu**: vitrinde "Kaldığın yerden" slaytı, hemen altında aynı "Kaldığın yerden" kartı. Vitrindeki masallar artık bu rafta tekrar etmiyor (seçki zaten böyleydi).
+- **Son kartın altında barın iki katı boşluk vardı** (~150 pt). Liquid Glass alt bar (`safeAreaBar`) kendi boşluğunu verdiği için Günlük'ün eklediği boşluk iki kat oluyordu. iOS 26'da Ana sayfadaki kadar (`MPSpacing.xxxl`); eski sürümlerde eski değer.
+- **Uyku vakti rafı çizimi bekleyen iki düz kapakla açılıyordu**, boyalı Uyuyan Güzel ve Kadife Tavşan sağda gizliydi. Raflarda ve raf ekranında boyalı kapaklar öne, `pendingCovers` sona alındı (`ClassicsCatalog.items(in:)`, kendi içinde katalog sırası korunuyor).
+- **Anlatım açıklaması masalın yaşıyla çelişiyordu**: Rapunzel "5-7 yaş" iken altta "3-5 yaş için" yazıyordu. Yaş kaldırıldı: "Küçükler için: korkutucu sahneler çıkarıldı." / "Büyükler için: Grimm metnine yakın."
+- **Dar kartlarda başlık kesiliyordu** ("Kırmızı Başlıklı..."). Raf kartı başlıkları iki satıra çıktı.
+- Çiplerin dokunma alanı 46'dan `MP.S.tapMin` (48) oldu; çip ok simgesi boyutu `MP.G.xs`'ten (yasa).
+- **Bilerek değişmeyenler:** Anadolu'dan rafı ve üç uyku orijinali hâlâ düz yedek kapakla; 11 kapak için kaynak ve indirme onayı gerekiyor. "Hepsi" çipi kök sayfada seçili durum gösteriyor, dokununca bir şey yapmıyor (tasarımdaki gibi). Detayın geri düğmesi sahnede kalıyor; kaydırınca kenardan geri dönülüyor.
+- **Test:** ClassicsCatalogTests + ClassicProgressTests 35/0 (iPhone SE simülatörü). Tam takım çalıştırılmadı. Tasarım yasası grep'leri değişen dosyalarda boş. Ekranda görülen: iPhone 17 Pro, açık tema, varsayılan yazı boyutu. Koyu tema, en büyük Dynamic Type, SE ve Pro Max ekran görüntüleri bu turda alınmadı.
+- **Dosyalar:** `Screens/Gunluk/GunlukView.swift`, `GunlukComponents.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `GunlukShelfView.swift`, `Model/ClassicsCatalog.swift`, `Screens/MPAppState.swift`, `ContentView.swift`.
+- **Durum:** `faz-20-gunluk` dalında commit'li; main'e birleştirilmedi, gönderilmedi.
+
+### 2026-10-15 · main@cf1ae56 (uyku-v2 ileri sarıldı, origin'e gönderildi) · Uyku modu bayrak arkasında, akşam üç mod serbest
+- Birleştirme: `uyku-v2` main'e ileri sarma ile alındı, ardından origin'e gönderildi (Batuhan'ın isteği; plan, iş ve günlük commit'leri dahil). Main'deki başka oturumun açık değişikliklerine (`MPTheme.swift`, `MPNavigationChrome.swift`) dokunulmadı.
+- Uyku modu v1'de kapalı: yeni `MPFeatures.sleepMode = false`. Kod duruyor; Ana sayfa akşam kartı uyku modunu açmıyor, klasik masal detayındaki "Uyku modu" karesi gizli, masal sonu "İyi geceler" okuyucuyu kapatıp "İyi geceler" tostu gösteriyor, `magicpaper://sleep` bu akşamın masalına düşüyor, Siri "Uyku modu" kısayolu çıktı (intent `isDiscoverable` bayrağa bağlı).
+- Akşam kartı: düğme "Uyku masalı oluştur", alt metin "Kısa, sakin bir masalla günü kapatalım." Düğme yeni `BedtimeStorySheet`'i açar: "Uyku masalı oluştur" (doğrudan Masalda kimler olsun?), yarım masal varsa "Kaldığın yerden devam et", "Başka bir masal seçeyim" (mod adımı). Pencere yalnızca dokununca açılır, kendiliğinden gelmez.
+- Uyku saatinde Yarat artık üç modu da sunar: `allowedModes` filtresi kalktı, yerine `emphasizedMode` + `shownModes(_:emphasized:)`. Ana sayfada Uyku karosu "Bu akşam" etiketi ve mor çerçeveyle önde; Yarat 1'de Uyku öncesi önceden seçili ve üstte açıklama satırı. Sürpriz değişmedi.
+- Ebeveyn Güvenlik: "… ve sonrasında uyku masalı öne çıkar".
+- Bilerek değişmeyen: `SleepModeView`, `MPSleepPlayback`, Live Activity kodu; sürprizin mod ağırlığı; masal sonu düğme sırası.
+- Test: tam takım 698 test, 2 hata. `AvatarViewTests.testAnUnknownPoseDrawsStanding` tekrar koşuda geçti (kararsız). `ReadingEventTests.testDeleteProfileReachesTheLiveStores` yeni simülatörde profil olmadığı için "son profil" kuralına takılıyor; bu değişiklikle ilgisiz, main'de denenmedi. `PastelHomeRulesTests` yeni kurallarla yeşil.
+- Simülatör (iPhone 17 Pro, demo profil, saat 21.10): akşam kartı, "Bu akşam" etiketi, pencere, iki yol (Uyku masalı oluştur → Masalda kimler olsun?, Başka bir masal → mod adımı, Uyku öncesi seçili) açık temada ve en büyük Dynamic Type'ta görüldü; koyu temada pencere görüldü. iPhone SE, Pro Max, "Kaldığın yerden" satırı ve masal sonu "İyi geceler" simülatörde görülmedi.
+- Dosyalar: `Screens/MPFeatures.swift` (yeni), `Screens/BedtimeStorySheet.swift` (yeni), `MPAppState`, `ContentView`, `HomeView`, `MPHomeChrome` (HomeModeTile `badge`), `StoryCreationSteps`, `StoryCreationFlow`, `StoryModeStep`, `StoryReaderView`, `ClassicDetailView`, `MPAppIntents`, `ParentSafetyView`, `MPSettingsStore`, `MPParentControls`, `PastelHomeRulesTests`, `docs/UYKU_MODU_V2_PLANI.md`.
+
+### 2026-10-15 · main (belge) · Plan: uyku modu v2'ye, akşam üç mod serbest
+- Yeni plan `docs/UYKU_MODU_V2_PLANI.md` (Batuhan'ın iki kararı): uyku modu (kararan ekran, süre, Live Activity, Siri "Uyku modu") lansmanda bayrak arkasında gizlenir, v2'de açılır; Ana sayfa akşam kartı "Uyku modunu aç" yerine "Uyku masalı oluştur" penceresi açar; uyku saatinde Yarat üç modu sunar, Uyku öncesi ilk sırada ve vurgulu.
+- Bütün giriş noktaları dosya:satır ile listelendi (akşam kartı, masal sonu "İyi geceler", klasik detay karesi, Siri, `magicpaper://sleep`, Live Activity, ebeveyn Güvenlik kopyası).
+- Açık kararlar: pencere yalnız dokununca mı (öneri) yoksa akşam bir kez kendiliğinden mi; sürpriz uyku saatinde Uyku öncesine ağırlık versin mi.
+- Bilerek değişmeyen: uygulama kodu; "Uyku öncesi" masal modu v1'de kalır. Test çalıştırılmadı (yalnız belge).
+
+### 2026-10-15 · book-intelligence@ecf41b5 · Haftalık araştırma turu: 9 yeni kitap
+- Öğrenme döngüsü elle çalıştırıldı (yaklaşık 1 saat). 9 kitap tam analiz edildi (hedef 10; aceleye getirilmedi): 6 Book Dash, 3 Book Dash dışı (African Storybook 2, StoryWeaver 1; *Good Night, Monu* ilk uyku masalı). Hepsi CC BY 4.0. Korpus 16 tam analiz.
+- Tekrar eden satır, sayfa sonu kancası, cümle uzunluğu ve resimde kalan bilgi LOW → MEDIUM. "12 sayfa" iddiası çürüdü (Book Dash dışı 3 kitaptan 1'i), yayınevi sorusuna çevrildi.
+- Yeni öneri `p_bedtime_closes_circle` karar bekliyor (tavsiye research_more; story-engine bugünkü 3 uyku şablonunun da kurala uymadığını gösterdi, deney önerdi). Yöntem kuralı m006 eklendi.
+- İlk kör yeniden okuma (Amahle): olay işlevi ve resimde kalan bilgi %58; 12 sayfa ile henüz "ölçülüyor".
+- Bilerek değişmeyen: uygulama, StoryEngine, içerik; karar verilmedi. Book Dash'ten gelen 6 kitabın hepsi 3-4 bandında; 5-6 pilotu için korpus hâlâ karışık.
+- Test: 131/131, `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**` (9 eser, analiz, sayfa; iddialar; `p_bedtime_closes_circle`; `method/rules.json`), `docs/research/**` (derin incelemeler, haftalık sayfa 2026-10-15), `Research/BookIntelligence/bookintel/runs.py`, `.gitignore`. Bu kayıtla birlikte 14 Ekim araştırma kayıtlarındaki "commit yok" sürümleri gerçek commit'lerle düzeltildi.
+
+### 2026-10-14 · book-intelligence@ecf41b5 · Haftalık kitap sayısı 10
+- Haftalık öğrenme döngüsü artık haftada 10 kitaba kadar okuyor (önce 2). En az 3'ü Book Dash dışından olmalı. Kitaplar her biri 2 kitap alan, aynı anda en fazla 4 book-research alt ajanına dağıtılıyor; iddiaları, tartışmayı ve kuralları yalnızca yönetici oturum güncelliyor. Kural: sayıya ulaşmak için yargı atlanmaz.
+- `runs.log` kilitli yazıyor: paralel ajanlar koşu kaydında birbirinin girişini silmiyor (8 süreçle 200 eşzamanlı yazma, 200'ü korundu). `data/runs/.lock` gitignore'da.
+- Bilerek değişmeyen: kaynak kuralları, insan onayı, kitap başına analiz adımları.
+- Test: 131/131.
+- Etkilenen: `Research/BookIntelligence/bookintel/runs.py`, `Research/BookIntelligence/.gitignore`; repo dışında `scheduled-tasks/magicpaper-learning-loop/SKILL.md`.
+
+### 2026-10-14 · main@a532209 · FAZ 20 Günlük: raf, arama ve Kategoriler kart dilinde; erişilebilirlik ve küçük ekran
+- **Raf ve arama:**
+  - Geri düğmesi ve arama alanı sert kenarlı, raf simgesi başlığın yanında.
+  - Sonuçlar "N masal" kartında; arama alanında temizleme düğmesi var.
+  - Sonuç yoksa düşünceli Ragi ile sakin bir mesaj çıkıyor.
+  - Yaş süzgeci çipinde "✕" yazısı yerine simge.
+- **Kategoriler:** koyu mor tam ekran örtü yerine krem bir alt sayfa. Yaş segmentle seçiliyor; raflar tek kartta (pastel simge kutusu, ad, masal sayısı).
+- **Düzeltmeler:**
+  - Kapağı bekleyen masal büyük sahnede koyu tonda çiziliyor; karartma artık çamurlu griye dönmüyor.
+  - "Fabllar" simgesi traktör olarak çiziliyordu, düzeldi.
+  - Okuyucu kapağı Günlük masallarında "İrem için" demiyor, yalnızca sayfa sayısı yazıyor (`StoryCover`: ad boşsa).
+- **Erişilebilirlik ve küçük ekran:**
+  - En büyük yazı boyutunda vitrin, detay ve seri sahne metni başlığa ve geri düğmesine binmiyor (büyüme `accessibility1` ile sınırlı, sığmazsa küçülüyor).
+  - Vitrin küçük ekranda ekranın %60'ı, büyük telefonlarda 520 pt.
+- **Bilerek değişmedi:** vitrin yüksekliği büyük telefonlarda aynı; 11 masal hâlâ kapak bekliyor.
+- **Test ve doğrulama:**
+  - Günlük ve okuyucu testleri 64/0. Tam takım bu turda çalıştırılmadı.
+  - Simülatörde okuma akışı uçtan uca denendi: Rapunzel açıldı, 3. sayfada bırakıldı, "Kaldığın yerden"de göründü.
+  - En büyük yazı boyutu ve iPhone SE ekran görüntüsüyle kontrol edildi.
+  - SE'deki oran düzeltmesi ve koyu yedek sahne sonradan simülatörde ayrıca açılıp bakılmadı.
+  - Telefona kurulamadı (iPhone 16 bağlı değildi).
+- **Gönderim:** `main` origin'e gönderildi (`1a14de7..a532209`).
+- **Kural:** kökteki `CLAUDE.md`, "Değişiklik günlüğü" bölümü sertleşti (Batuhan, 14 Ekim). Biten her iş, küçüğü de, yazılır. Dosyada başka oturumun değişikliği olsa da kayıt ertelenmez, yalnızca kendi kaydını commit'lersin.
+- **Etkilenen:** `Screens/Gunluk/GunlukShelfView.swift`, `GunlukCategoriesView.swift`, `GunlukComponents.swift`, `GunlukHeader.swift`, `GunlukView.swift`, `ClassicDetailView.swift`, `ClassicSeriesView.swift`, `Screens/StoryReader/StoryCover.swift`, `Screens/MPAppState.swift`; repo dışında `CLAUDE.md`.
+
+### 2026-10-14 · refrain-deneyi@104b3c3, kitap-rehberi@e6e6bc5, book-intelligence@227fcea · Onaylanan 3 araştırma önerisi uygulandı
+- **Nakarat (p_repeated_line), `refrain-deneyi`:** motorda isteğe bağlı `RefrainSpec`: kısa, slotsuz bir satır belirtilen sayfaların sonuna eklenir, son sayfada bir kez değişir; `CatalogIntegrity` kuralları denetler. İki kardeş blueprint (uyku öncesi 5-6 ve 3-4) `Content/Experiments/x_refrain_bedtime.json` içinde, uygulamayla gelmez. Deneyler `x_refrain_bedtime_56/_34` tahminleriyle kayıtlı (taslak).
+- **Sayfa sonu sorusu ve arkadaşın yansıtması, `kitap-rehberi`:** `docs/MagicPaper_Content_Library.md` §14'e yazım kuralı olarak girdi; mevcut satırlar değişmedi.
+- **Araştırma, `book-intelligence`:** haftalık tur, 9 karar, UX hattı ve iş paketleri commit'lendi; 3 paket `done`.
+- Bilerek değişmeyen: yayındaki katalog (hiçbir blueprint nakarat taşımaz), uygulama kodu, main. Hiçbir dal main'e birleştirilmedi, push yok.
+- Yayın için açık (Batuhan): paket aracı `Content/Experiments`'i okumuyor; `ContentPackage.currentSchemaVersion` artırılmalı; sonra `experiment preflight` ve `mark live`.
+- Test: motor paketi 788 test, 18 hata (main'de de aynı 18 test hatalı, önceden var), yeni `RefrainExperimentTests` 8/8; araştırma 119/119, `validate` 0 hata. Uygulama hedefi derlenmedi.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/{CatalogBlueprint,CatalogIntegrity}.swift`, `Offline/OfflineStoryComposer.swift`, `StoryEngine/Tests/StoryEngineTests/RefrainExperimentTests.swift`, `Content/Experiments/*`, `docs/MagicPaper_Content_Library.md`, `Research/BookIntelligence/**`, `docs/research/**`.
+
+### 2026-10-14 · book-intelligence@cfd900c · Araştırma ajanı kendini geliştiriyor
+- Diğer ajanlar (story-engine, content-library, privacy-safety, reader, parent-ux, ui-agent, illustration-system) ve ürün sahibi araştırma ajanına soru sorabiliyor (`ba request ask`). Ajan bir sonraki koşuda önce bunları, iddia ve kitap göstererek cevaplıyor.
+- Kör yeniden okuma: her koşuda tamamlanmış bir kitap, ilk analizine bakılmadan yeniden okunuyor; alan başına tutarlılık ölçülüyor. 20+ sayfada %60'ın altındaki bir alana dayanan iddialar LOW'u geçemiyor (`confidence.py`).
+- Yöntem kuralları: kabul edilen her düzeltme bir kurala dönüşüyor, `validate` uyguluyor. İlk 5 kural gerçek düzeltmelerden geldi (0-3 yoğunluk ölçeği, yaş bandına göre sayfa sayısı, ilan edilmiş nakarat, uyku modu, metin-yalnız ürün).
+- Haftalık sayfaya iki bölüm eklendi: "Ajanlardan gelen sorular" ve "Ajan kendini nasıl geliştirdi". Haftalık görev ve 8 ajan tanımı güncellendi (repo dışında).
+- Bilerek değişmeyen: uygulama, StoryEngine, içerik; tek insan onayı (`exchange decide`). Kör okumayı CLI zorlayamıyor, talimatla sağlanıyor. Aynı worktree'deki haftalık koşunun commit edilmemiş işi olduğu gibi duruyor.
+- Test: 131/131 (12 yeni), `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/bookintel/learning.py` (yeni), `bookintel/confidence.py`, `bookintel/schema.py`, `bookintel/cycle.py`, `book_agent.py`, `tests/test_learning.py` (yeni), `data/method/rules.json` (yeni), `docs/research/BOOK_RESEARCH_AGENT.md`; repo dışında `.claude/agents/*.md` ve `scheduled-tasks/magicpaper-learning-loop/SKILL.md`.
+
+### 2026-10-14 · book-intelligence@227fcea · Araştırmadan UX'e ve onaydan işe bağlantı
+- Öneriler artık tasarıma da gidebiliyor: 7 yeni hedef (okuyucu: sayfa çevirme, düzen, sesli okuma; ebeveyn akışı; çocuk alanı; görsel dil; resim brifi). Her hedefin sahibi tartışmaya katılır: reader, parent-ux, ui-agent, illustration-system; motor hedeflerinde story-engine. Güvenlik ajanı her öneride zorunlu.
+- Onaylanan öneri kendiliğinden iş paketine dönüşür (`docs/research/handoffs/`, `HANDOFFS.md`): ne yapılacak, dokunacağı dosyalar, testler, güvenlik koşulları, "bitti" tanımı; durumu yalnızca sahibi ya da insan değiştirir (`ba exchange handoff`). Bugünkü 3 onay için paket açıldı: tekrar eden satır (story-engine + content-library), sayfa sonu sorusu ve arkadaşın duygusu (content-library).
+- Haftalık sayfa ayrıca HTML yazılıyor (`docs/research/weekly/<tarih>.html`), karar listesi ve iş paketleriyle birlikte.
+- Ajan tanımlarına (book-research, story-engine, content-library, reader, parent-ux, ui-agent, illustration-system) kısa tartışma ve iş paketi bölümü; haftalık görev UX sahiplerini paralel çağıracak şekilde güncellendi.
+- Bilerek değişmeyen: uygulama ve motor kodu. İş paketlerini ajanlar kendiliğinden başlatmaz, ürün sahibi başlatır; ana koda yine onayla girer. UX önerileri deney olamaz.
+- Test: araştırma testleri 119/119 (9 yeni), `ba validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/bookintel/{exchange,cycle,htmlpage}.py`, `book_agent.py`, `vocab/research_vocab.json`, `tests/test_exchange.py`, `tests/test_loop.py`, `docs/research/{EXCHANGE_PROTOCOL,BOOK_RESEARCH_AGENT,RESEARCH_METHOD}.md`; repo dışında `.claude/agents/*.md` (7 dosya) ve zamanlanmış görev.
+
+### 2026-10-14 · book-intelligence@227fcea · Haftalık araştırma turu ve 9 öneriye karar
+- Haftalık döngü çalıştı (koşu `r_20261014_132709`): iki yeni Book Dash kitabı sayfa sayfa incelendi, *Best Friends* (arkadaşlık) ve kelimesiz *An Unexpected Adventure* (macera). İncelenmiş kitap sayısı 7 oldu.
+- İki kitap 8 mevcut iddiaya destek ya da karşı örnek olarak eklendi. Güven düzeyi değişmedi, yeni iddia yok, bu yüzden ajan turu yapılmadı.
+- Batuhan 9 öneriye tavsiye doğrultusunda karar verdi: tekrar eden satır deneyi, sayfa sonu merak sorusu ve arkadaşın duyguyu yansıtması onaylandı; 4 öneri bekletildi; korku sınırı ve "yetişkin çözer" önerileri reddedildi.
+- Haftalık görev güncellendi: her hafta en az bir kitap Book Dash dışından gelecek (African Storybook ya da StoryWeaver, olmazsa Internet Archive).
+- Bilerek değişmeyen: motor, içerik, uygulama kodu. Onaylanan deney henüz çocuklara ulaşmıyor; varyant yazılıp güvenlikten geçtikten sonra yayın için ayrıca onay gerekir.
+- Test: `ba validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**` (2 eser, 8 iddia, 9 karar), `docs/research/**` (haftalık sayfa, rapor, deep-dive'lar, digest); repo dışında zamanlanmış görev `magicpaper-learning-loop`.
+
+### 2026-10-14 · book-intelligence@3d55ee8 · Çocuk kitabı araştırma ajanı ve öğrenme döngüsü
+- Yeni, uygulamadan ayrık araştırma aracı: `Research/BookIntelligence/` (Python stdlib CLI `book_agent.py`) ve `docs/research/`. Yasal kaynaklardan (Book Dash CC BY 4.0, Internet Archive ≤ 96 yıl, Gutenberg) kitap bulur, sayfa sayfa analiz eder, kanıt ve güven düzeyiyle iddia üretir.
+- Fikir alışverişi (`exchange`): araştırma önerileri story-engine, content-library ve privacy-safety ajanlarıyla tartışılır; tek insan onayı çocuğa ulaşan her şeyde. 9 öneri karar bekliyor (`docs/research/EXCHANGE_DIGEST.md`).
+- Döngü: deneyler (tahmin veriden önce kaydedilir), kullanım verisi içe aktarma (hücre başına ≥ 50 okuma, ≥ 7 gün), kalibrasyon, `cycle`; haftalık zamanlanmış görev `magicpaper-learning-loop` (pazartesi 10:10). 14 Ekim'de elle bir kez çalıştırıldı.
+- `firebase/functions`: `aggregateOutcomes` zamanlanmış fonksiyonu ve `src/outcomes.js` eklendi; deploy edilmedi (Batuhan).
+- Bilerek değişmeyen: StoryEngine, içerik, katalog, uygulama kodu. Kitap metinleri git'e girmez (`cache/`). Dal main'e birleştirilmedi; origin'de, PR açılmadı.
+- Test: araştırma testleri 110/110, `outcomes` fonksiyon testleri 15/15.
+- Etkilenen: `Research/BookIntelligence/**`, `docs/research/**`, `firebase/functions/src/outcomes.js`, `firebase/functions/index.js`, `firebase/functions/test/outcomes.test.mjs`; repo dışında `.claude/agents/book-research.md`.
+
 ### 2026-10-14 · main (c223ccd) · Liquid Glass alt çubuk main'e alındı
 - `liquid-glass-tab-bar` dalı main'e ileri sarıldı (origin'e gönderilmedi, izin bekliyor): yüzen cam alt çubuk, yalnızca ikon, seçilince içi sekmenin rengiyle dolar, Yarat yalnızca artı, çubuk ana ekran göstergesinin hemen üstünde.
 - Birleşmeden önce main'in son hâli (Ana sayfa, Günlük, günlük kayıtları) dala alındı; yalnızca bu dosyada çakışma vardı, iki tarafın kayıtları da korundu.
