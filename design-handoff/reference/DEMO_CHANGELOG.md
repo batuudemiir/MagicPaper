@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@e52658d · Ana sayfa: başlık bölgesindeki kasmanın kökten düzeltmesi
+- Batuhan telefonda bildirdi: ilk düzeltmeden (`8105c71`) sonra da başlık bölgesinde kasma sürüyor, aşağısı akıcı.
+- Neden: ilk düzeltme durum yazımlarını yalnızca seyrekleştirmişti; ilk 64 pt'de ve aşağı çekerken `scrolled`/`pull` hâlâ her karede yazılıyor, `HomeView` tamamen yeniden hesaplanıyordu. Ayrıca sahne iki büyük görsel ve üç gradyan maskesinden oluşuyor, maskeler her karede ekran dışında yeniden birleştiriliyordu.
+- Düzeltme: `pull` ve `scrolled` durumları kaldırıldı. Başlığın solması `visualEffect` içinde çizim anında hesaplanıyor; durumda yalnızca dinlenme konumu (bir kez) ve sahne eşiği (seyrek) yazılıyor. Sahne görseli `drawingGroup` ile tek dokuya düzleşti.
+- **Aşağı çekme esnemesi kaldırıldı (Batuhan'ın kararı):** sahne içerikle birlikte doğal biçimde iniyor, açılan boşluğu 400 pt'lik gökyüzü payı dolduruyor.
+- Değişmeyen: başlık solması, saat çubuğunun altındaki zemin, sahne ve Ragi.
+- **Derlenmedi, test çalıştırılmadı:** derleme `swift-protobuf` alt modülünün indirilmesinde takıldı; Batuhan'ın isteğiyle derlenmeden commit'lendi ve gönderildi. Cihazda ve simülatörde görülmedi.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-16 · main@3a96b50 · Masal atölyesi: ~15 sn ritim ve dolan defter
 - Batuhan'ın isteği: daha uzun bekleme, daha yüksek değer algısı. İlk masal ~15 sn, 2.-3. masal ~10 sn, sonra ~6 sn; uyku saatinde x1,2 (önce x1,3). Mürekkep temposu `MP.M.inkDuration` 1,8 → 2,8 sn.
 - Tasarım, uzun süre boş durmasın diye: her adım defterde iz bırakır. Üstte "İrem'in masal defteri · No. 1", kadro etiketleri, "Yaşına uygun kelimeler" ve mod notu ("Yumuşak bir son" / "Yeni bir kelime" / "Bir keşif" / "Bir macera yolu"), mürekkeple ilk cümle, yeşil ikonlu "Ragi okudu" mührü. Durum cümlesinin altında yüzde ya da süre göstermeyen adım noktaları. Ragi hafifçe nefes alır, Reduce Motion açıkken durur. Metin notlarda gövde ya da soluk renkte kalır, yeşil yalnızca ikonda.
