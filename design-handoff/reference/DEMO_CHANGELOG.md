@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · kitap-rehberi@c4d937a + düzeltme · Kitap rehberi dalı main ile güncellendi
+- `kitap-rehberi` main içine alındı (`c4d937a`), çakışma yok. Dalın main'den tek farkı `docs/MagicPaper_Content_Library.md` §14: kitap araştırmasından iki yazım kuralı (sayfa sonunda genel soru, arkadaşın duyguyu sessizce yansıtması). Yalnızca yeni yazılan satırlar için; motor ve mevcut içerik değişmez.
+- Gözden geçirmede düzeltildi: "ajans kuralı, §2" yanlış bölümü gösteriyordu (§2 şema bölümü); artık `docs/BLUEPRINT_CATALOG_V2.md`'deki kuralı gösteriyor. Beat dosyalarına tam yol eklendi; `PROSE_PRODUCTION_GUIDE.md`'nin repo dışında olduğu yazıldı.
+- Test çalıştırılmadı: değişiklik yalnızca belge. Main'e alınmadı (Batuhan onayı bekliyor), push yok.
+
 ### 2026-10-16 · main@dd44465 (refrain-deneyi ileri sarıldı, push yok) · Nakarat deneyi main'de
 - Batuhan onayıyla `refrain-deneyi` main'e ileri sarıldı. Main artık şunları içeriyor: motorda `RefrainSpec` ve nakarat denetimi, `Content/Experiments/x_refrain_bedtime.json` (uyku öncesi iki kardeş blueprint), yayın aracında `build-package --experiment`, paket şeması 2.
 - Bilerek değişmedi: deney yayımlanmadı; uygulama deney dosyasını yüklemiyor, çocuklar nakaratlı masalı görmüyor. `preflight`, yayın ve `mark live` Batuhan'da. Origin'e gönderilmedi.

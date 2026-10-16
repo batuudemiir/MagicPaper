@@ -488,7 +488,7 @@ Kanıt küçük (7 kitap, tek yayınevi), bu yüzden "her sayfada yap" değil, "
 - **Yalnızca** `adventure` ve `learning` modunda, **hikâyenin ortasında** (8 sayfalık yayda 3-6. sayfalar), masal başına en fazla 2 kez.
 - Soru **genel** kalır, ayrıntı vaat etmez: "Ama nasıl?", "Peki şimdi ne olacaktı?", "Bunu kim yapmıştı?".
   Sayfalar havuzdan bağımsız çekildiği için "Ama ışık nereye gitmişti?" gibi bir soru, sonraki sayfanın her varyantı o ışığı
-  anlatmıyorsa çelişki üretir (bkz. PROSE_PRODUCTION_GUIDE.md, ışık/ses hatası).
+  anlatmıyorsa çelişki üretir (bkz. repo dışındaki `PROSE_PRODUCTION_GUIDE.md`, ışık/ses hatası).
 - Soruyu taşıyan bir beat yazılırsa, **sonraki beat'in bütün varyantları** soruyu karşılayabilecek bir açılışla başlar
   (eylemle cevap: "Kıyı boyunca yürüyerek."). Bu sağlanmadan soru satırı eklenmez.
 - **Asla:** `bedtime` modunda; son iki sayfada; seri bölüm sonunda (zaten `CalmEnding` yasaklar); tehlike ya da bilinmeyen
@@ -503,9 +503,9 @@ Resimli masallar canlı olmadığı için yalnızca **metin hali** onaylandı.
 - `hesitate` ve çözüm sayfalarında (`succeed`, `restore`) arkadaşa **kısa, sessiz bir yansıtma** satırı yazılabilir:
   çocuk durunca arkadaş da durur; çocuk adım atınca arkadaş da rahatlar. Örnek: "{{companion.name}} da olduğu yerde kaldı."
   / "{{companion.name}} da derin bir nefes aldı."
-- Arkadaş bu satırda **konuşmaz, öneri vermez, gerilimi çözmez.** Kararı ve eylemi çocuk yapar (ajans kuralı, §2).
-- Duygunun adı konmaz; `beat_hesitate.json` kuralı gibi beden diliyle gösterilir ("korktu" yok).
-- Beden varsayımı yapılmaz: arkadaş listesinde robot da var (`beat_meet_companion.json`). "Kuyruğunu salladı" yerine
+- Arkadaş bu satırda **konuşmaz, öneri vermez, gerilimi çözmez.** Kararı ve eylemi çocuk yapar (ajans kuralı: `docs/BLUEPRINT_CATALOG_V2.md`, "Cooperation must not collapse").
+- Duygunun adı konmaz; `templates/v3/beat_hesitate.json` kuralı gibi beden diliyle gösterilir ("korktu" yok).
+- Beden varsayımı yapılmaz: arkadaş listesinde robot da var (`templates/v3/beat_meet_companion.json`). "Kuyruğunu salladı" yerine
   "durdu", "yanına geldi", "bekledi" gibi her türe uyan fiiller.
 - `{{companion.name}}` sonrası "da/de" uyumu çözümleyiciye bırakılır; elle yazılmaz (`check_conjunctions`).
 - Resim tarafı (arkadaşın çizilen duygusu) resimli masallar kendi bayrağıyla canlıya çıkana ve görsel güvenlik kapısı
