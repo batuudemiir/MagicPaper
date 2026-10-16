@@ -1,6 +1,7 @@
 # Masal atölyesi: "Masal yazılıyor" ekranının yeniden tasarımı
 
-Durum: **plan, onay bekliyor** (16 Ekim 2026). Kod yazılmadı.
+Durum: **uygulandı** (16 Ekim 2026). §9 kararlarının hepsi önerildiği gibi onaylandı.
+Uygulamada farklar: adım 3b (sevdikleri) v1'de yok, çünkü motor eşleşen ilgi alanını dışarı vermiyor. Mürekkep sabiti `MP.M.inkDuration` (1,8 sn) adıyla eklendi: bir eğri değil, harf harf ilerleyen bir tempo.
 Ekran: 21 · Masal yazılıyor (ve 10 · İlk masal). Dosya: `MagicPaper/Screens/StoryCreation/StoryPreparationView.swift`.
 
 ---

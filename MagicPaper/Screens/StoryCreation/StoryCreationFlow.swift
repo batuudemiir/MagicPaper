@@ -50,6 +50,8 @@ struct StoryCreationFlow: View {
     @State private var phase: Phase
     /// The story built during `.preparing`, read once "Masalı oku" is tapped.
     @State private var preparedStory: Story?
+    /// What the masal atölyesi shows about `preparedStory`.
+    @State private var preparationFacts: PreparationFacts?
     /// Why the last attempt failed (43 shows a calmer sentence for safety).
     @State private var failureReason: StoryFailureReason?
     /// Always one of the three modes once past step 1 — a surprise is resolved
@@ -263,6 +265,8 @@ struct StoryCreationFlow: View {
                 childName: profile?.name ?? "",
                 modeTitle: chosenMode?.title,
                 story: preparedStory,
+                facts: preparationFacts,
+                childColor: profile?.mpColor,
                 onRead: { if let story = preparedStory { phase = .reading(story) } },
                 onCancel: { dismiss() },
                 awaitsApproval: preparedStory.map(awaitsApproval) ?? false
@@ -348,6 +352,7 @@ struct StoryCreationFlow: View {
     private func begin() {
         guard let profile else { return dismiss() }
         preparedStory = nil
+        preparationFacts = nil
         phase = .preparing
 
         Task {
@@ -363,8 +368,10 @@ struct StoryCreationFlow: View {
                 if app.isParentMode && MPSettingsStore.shared.approve {
                     MPSettingsStore.shared.approveStory(story.id)
                 }
-                // Composition takes milliseconds; the preparation screen runs
-                // its stages and offers "Masalı oku" once both are done.
+                // Composition takes milliseconds; the preparation screen plays
+                // the masal atölyesi and offers "Masalı oku" at the cover.
+                preparationFacts = .gather(story: story, profile: profile, family: chosenFamily,
+                                           isFirstRun: false)
                 preparedStory = story
             } catch {
                 // §29: the detail goes to the log, never to the parent.
