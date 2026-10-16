@@ -457,7 +457,8 @@ struct HomeSection<Leading: View, Content: View>: View {
             if contained {
                 // Panel: beyazın üstünde hafif lavanta; mod kartlarının dolu
                 // pastelinden açık, kenarı sakin (aynı aile, kopya değil).
-                content
+                // İçerik tek kapta: birden fazla öğe verilse de tek panel olur.
+                VStack(alignment: .leading, spacing: MPSpacing.md) { content }
                     .padding(MPSpacing.lg)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(MPWorldTone.lav.soft.opacity(0.45),

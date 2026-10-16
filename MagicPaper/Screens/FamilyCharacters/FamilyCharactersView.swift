@@ -21,6 +21,10 @@ struct FamilyCharactersView: View {
     }
 
     @State private var mode: Mode = .list
+    /// Görmek ve seçmek serbest; ekleme, düzenleme ve silme çocuk modunda
+    /// ebeveyn kapısından geçer (karar 16 Ekim 2026, FAZ 11 kuralıyla uyumlu).
+    @State private var gate = false
+    @State private var afterGate: (() -> Void)?
     @State private var characters: [FamilyCharacter] = []
 
     private let store = FamilyCharacterStore()
@@ -38,6 +42,20 @@ struct FamilyCharactersView: View {
             }
         }
         .onAppear(perform: reload)
+        .fullScreenCover(isPresented: $gate, onDismiss: {
+            let action = afterGate
+            afterGate = nil
+            action?()
+        }) {
+            ParentalGateView(onSuccess: { gate = false }, onCancel: { afterGate = nil; gate = false })
+        }
+    }
+
+    /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
+    private func guarded(_ action: @escaping () -> Void) {
+        if app.isParentMode { action(); return }
+        afterGate = action
+        gate = true
     }
 
     /// 14: bir masal tek bir Masal ailem karakteri taşır, seçim tek.
@@ -84,7 +102,7 @@ struct FamilyCharactersView: View {
                 VStack(spacing: MPSpacing.sm) {
                     HStack(spacing: MPSpacing.lg) {
                         Text("\(selected.name) seçili").mpText(.callout).foregroundStyle(MPColor.textSecondary)
-                        Button("Düzenle") { mode = .editing(selected) }
+                        Button("Düzenle") { guarded { mode = .editing(selected) } }
                             .mpText(.callout).foregroundStyle(MPColor.actionPrimary)
                             .frame(minHeight: MPSize.minTouchParent)
                     }
@@ -120,7 +138,7 @@ struct FamilyCharactersView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if IllustratedBookAccess.isEnabled() {
-                MPButton(title: "Düzenle", kind: .secondary, size: .small) { app.sheet = .bookCharacter(profile.id) }
+                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.sheet = .bookCharacter(profile.id) } }
                     .accessibilityLabel("Kahramanı düzenle")
             }
         }
@@ -131,7 +149,7 @@ struct FamilyCharactersView: View {
 
     /// "Yeni karakter": karakter kareleriyle aynı ölçüde, kesikli çerçeveli.
     private var addTile: some View {
-        Button { mode = .adding } label: {
+        Button { guarded { mode = .adding } } label: {
             VStack(spacing: MPSpacing.sm) {
                 MPIcon("plus", size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(MPColor.actionPrimary)
@@ -191,7 +209,7 @@ struct FamilyCharactersView: View {
         .buttonStyle(MPPressStyle())
         .accessibilityLabel(FamilyCharacterCopy.rowAccessibility(name: character.name, relation: relation, count: count))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
-        .accessibilityAction(named: "Düzenle") { mode = .editing(character) }
+        .accessibilityAction(named: "Düzenle") { guarded { mode = .editing(character) } }
     }
 
     private func editor(_ character: FamilyCharacter?) -> some View {

@@ -64,7 +64,14 @@ struct HomeView: View {
 
             // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
             VStack(spacing: MPSpacing.md) {
-                HomeStatChips(stars: stars, streak: streak.currentStreak)
+                // Çipler Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada
+                // (basılabilir görünen öğe çalışsın, 16 Ekim denetimi).
+                Button { MPHaptics.tap(); app.openKidCorner() } label: {
+                    HomeStatChips(stars: stars, streak: streak.currentStreak)
+                }
+                .buttonStyle(MPPressStyle())
+                .accessibilityElement(children: .combine)
+                .accessibilityHint("Benim köşemi açar")
                 HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
                              coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
             }

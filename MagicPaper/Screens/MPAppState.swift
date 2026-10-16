@@ -142,6 +142,8 @@ final class MPAppState: ObservableObject {
     /// Ebeveyn alanından açılan tam ekran sayfa.
     @Published var parentRoute: MPParentRoute?
     @Published var showProfileAdd = false
+    /// Kapı açılınca doğrudan profil ekleme açılsın (Benim köşem "Ekle", 16 Ekim).
+    private(set) var profileAddAfterGate = false
     @Published var readerStory: Story?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
     @Published var readerStartPage: Int?
@@ -349,6 +351,21 @@ final class MPAppState: ObservableObject {
         isParentMode = true
         parentTab = .overview
         MPHaptics.tap()
+    }
+
+    /// Çocuk alanındaki "Ekle": kapıdan geçer, kapı açılınca ebeveyn özetinde
+    /// kalmadan doğrudan profil eklemeye gider.
+    func requestProfileAdd() {
+        if isParentMode { showProfileAdd = true; return }
+        profileAddAfterGate = true
+        showGate = true
+    }
+
+    /// Kapı ekranı kapandıktan sonra (iki tam ekran üst üste açılmasın diye
+    /// kapanışta): kapı açıldıysa bekleyen profil eklemeyi açar, vazgeçildiyse unutur.
+    func gateDismissed() {
+        defer { profileAddAfterGate = false }
+        if profileAddAfterGate && isParentMode { showProfileAdd = true }
     }
 
     /// Çocuk moduna dönüş kapısızdır ve çocuk her zaman Ana Sayfa'ya döner.
