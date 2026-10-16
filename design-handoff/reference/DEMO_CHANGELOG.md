@@ -158,12 +158,94 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek yapılmadı: 1. adım (hangi çocuk) ekranı, alt kategori adımının arayüzü, ve sekiz konunun içeriği. Uygulama hedefi testleri çalıştırılmadı — değişen kodun hiçbiri uygulama hedefinde değil.
 - Test: motor 795 test / 18 hata — bilinen 10 vakanın aynısı, bugün `refrain-deneyi` HEAD'inde ölçülen tabanla birebir; yeni hata yok. 15 yeni test (13 konu + 1 katalog alanı koruması + 1 alt seçenek sözleşmesi).
 - Etkilenen: `StoryEngine/Sources/StoryEngine/Content/StoryTopic.swift` (yeni), `ContentCatalog.swift`, `ContentCatalogLoader.swift`, `CatalogIntegrity.swift`, `Offline/OfflineSelection.swift`, `Offline/BlueprintSelector.swift`, `Resources/blueprints/pilot_library_v1.json`, `Tests/StoryEngineTests/StoryTopicTests.swift` (yeni), `CatalogMergeTests.swift`, `InterestCatalogTests.swift`, `ModeBandCoverageTests.swift`, bu dosya.
+### 2026-10-16 · main@7bbb3ce · Masal atölyesi: "Masal yazılıyor" ekranı
+- 21 · Masal yazılıyor ve 10 · İlk masal artık bir masal defteri. Adımlar: kadro etiketleri (çocuk, "kirpi Kestane", Masal ailem), yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesi harf harf mürekkeple, "Ragi masalı bir kez daha okuyor", sonra kapak ve "İrem'in 3. masalı hazır." künyesi. Yüzdeli halka kalktı.
+- Süre: ilk masal ~10 sn, 2.-3. masal ~8 sn, sonra ~5 sn; uyku saatinde x1,3. İlk masal atlanamaz; sonra 2 sn (4. masaldan itibaren 1 sn) içinde "Hemen aç" çıkar. Reduce Motion açıkken adımlar aynı sırayla çapraz geçişle gelir, cümle bütün halde belirir.
+- Mimari: sıra, metin ve süre saf `StoryPreparationScript`'te; veriler `PreparationFacts.gather` ile masaldan, katalogdan (`companionName(id:)` eklendi) ve kitaplıktan. `Story` modeli ve motor değişmedi. Yeni hareket sabiti `MP.M.inkDuration` (1,8 sn).
+- Bilerek yapılmadı: plandaki "sevdikleri" adımı (motor eşleşen ilgi alanını dışarı vermiyor), ses efekti, seri bölümleri.
+- Test: yeni `StoryPreparationScriptTests` 15/0. Tam takım 717 test, 716 geçti; düşen `AccountServiceTests.testAFailedSendKeepsTheEvents` (159 sn zaman aşımı) tek başına tekrarda 16/16 geçti, kararsız. Defter çizgilerinin kaldırılması (metinle hizalanmıyordu) son düzeltme; bu düzeltmeden sonra derleme ve test çalıştırılmadı (Batuhan'ın isteğiyle).
+- Simülatör: iPhone 17 Pro Max'te açık temada kadro, yaş, yazım, ikinci okuma, "Hemen aç" ve kapak videodan kare kare görüldü (açılış ve mod satırı karelerine bakılmadı). Reduce Motion, en büyük Dynamic Type, koyu tema ve iPhone 17e/SE görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryPreparationView.swift`, `Screens/StoryCreation/Preparation/` (yeni: `StoryPreparationScript`, `PreparationNotebook`, `PreparationFacts+Gather`), `StoryCreationFlow.swift`, `Onboarding/FirstRunView.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/StoryPreparationScriptTests.swift`, `docs/MASAL_ATOLYESI_PLANI.md`, `docs/MagicPaper_Design_System.md`.
+
+### 2026-10-16 · main@8105c71 · Ana sayfa: kaydırırken kasma düzeltmesi
+- Batuhan telefonda bildirdi: ana sayfa kaydırırken kasıyor, donuyor.
+- Neden: kaydırma ölçümü (`onGeometryChange`) her karede `scrolled`/`pull` durumunu yazıyor, her yazım `HomeView`'ın tamamını yeniden hesaplatıyordu. Bu hesap içinde Günlük önizlemesi her karede bütün klasiklerin kapağını `UIImage(named:)` ile arıyor, yıldız sayısı bütün masalları tarıyordu.
+- Düzeltme: `scrolled` başlığın tamamen solduğu `MP.S.x8`'de kırpılır; `pull` ve `scrolled` yalnızca değer değişince yazılır (ilk 64 pt ve aşağı çekme dışında kaydırma sayfayı yeniden hesaplatmaz). Yıldız sayısı ve Günlük listesi `@State`'te tutulur; ekran açılınca, masallar ya da profil değişince yenilenir.
+- Değişmeyen: görünüm ve davranış (başlık solması, esneyen sahne, saat çubuğu zemini).
+- Test çalıştırılmadı (Batuhan'ın isteği). Telefona derleme arka planda sürüyor (silinen Firebase/gRPC ikili paketleri yeniden iniyor); cihazda henüz doğrulanmadı.
+- Dosya: `MagicPaper/Views/HomeView.swift`.
+
+### 2026-10-16 · main@1a4870b · Telefona kurulum: Benim köşem birleşmesi sonrası ilk derleme
+- Disk temizliğinden sonra (8,8 GB boş) `main@1a4870b` iPhone 16'ya derlendi ve kuruldu; Swift paketleri derleme önbelleği silindiği için baştan indirildi.
+- Derleme temiz (`BUILD SUCCEEDED`): birleştirme sonrası derlenmemiş durum kapandı.
+- Uygulama uzaktan açılamadı (telefon kilitliydi, ardından iOS açmayı reddetti); Batuhan elle açacak. Test çalıştırılmadı; kod değişmedi.
+
+### 2026-10-16 · main@d4ce1bf · Benim köşem main'e birleşti ve gönderildi
+- `anasayfa-yenileme` main'e ileri sarıldı ve origin'e gönderildi: Benim köşem ana sayfa dilinde ve Ragi ön planda (`ac75075`), denetim düzeltmeleri (`9082245`: Ekle yönlendirmesi, Masal ailem ve kahraman düzenleme kapısı, bulunabilirlik sırası, düz bilgi paneli, büyük yazı düzeni, ana sayfa çipleri Benim köşem'e).
+- main'den gelenler (refrain deneyi, içerik yayıncısı, kitap rehberi) yalnızca değişiklik günlüğünde çakıştı; iki tarafın kayıtları korundu.
+- Birleştirme sırasında main bir kez daha ilerledi (masal atölyesi planı); ilk gönderim yalnızca main'de bekleyen öbür oturumların commit'lerini götürdü (`9896d81`), main yeniden alınıp bu iş ikinci gönderimle gitti. Çakışma yine yalnızca değişiklik günlüğündeydi.
+- Test: Batuhan'ın isteğiyle bu birleştirmede çalıştırılmadı (telefonda deneyecek); son ilgili sonuç `KidCornerTabTests` 10/0. Birleştirme sonrası derleme de yapılmadı.
+
+### 2026-10-16 · anasayfa-yenileme@9082245 · Benim köşem denetimi: yönlendirme, kapı, bulunabilirlik, büyük yazı
+- Denetim (Batuhan'ın isteği): etiketler, dokunma alanları (hepsi ≥ 48), okuma sırası ve en büyük yazı boyutu iyiydi; beş sorun bulundu ve sırayla düzeltildi.
+- **1. "Ekle" yönlendirmesi:** kapı açılınca ebeveyn özetine düşüyordu; artık doğrudan profil ekleme açılır (`MPAppState.requestProfileAdd`, kapı kapanışında `gateDismissed`; iki tam ekran üst üste açılmaz). Kapıdan vazgeçilirse bekleyen istek unutulur. Testler: `KidCornerTabTests` +3.
+- **2. Kapı tutarlılığı (Batuhan: önerilen yol):** uygulama Masal ailem ve kahraman düzenlemeyi "yalnızca ebeveyn" sayıyordu ama Benim köşem bunları kapısız açıyordu. Artık görmek ve seçmek serbest; Masal ailem'de yeni karakter, düzenle (ve düzenleyicideki silme) ile kahramanı düzenle çocuk modunda ebeveyn kapısından geçer. Simülatörde "Yeni karakter"e dokununca kapının açıldığı görüldü; kapı sonrası devam, Günlük'teki "Paylaş" kapısıyla aynı kalıp (elle çözülemedi: simülatörün metin gönderme yolu kapı kutusuna yazamadı).
+- **3. Bulunabilirlik:** "Masal dünyam" (Kahramanımı düzenle, Masal ailem, Yeni kelimelerim) Rozetlerim'in üstüne çıktı; eylemler bakılacak şeylerden önce.
+- **4. Basılabilir görünüp çalışmayan öğeler:** Benim köşem'deki üç sayı tek, düz bir bilgi panelinde (ayrı sert kenarlar kalktı). Ana sayfadaki "Yıldızların" ve "Okuma serisi" çipleri artık dokununca Benim köşem'i açar (ipucu: "Benim köşemi açar").
+- **5. En büyük yazı boyutu:** Ragi küçülüp balonun üstüne çıkar; sayılar tek satırlık yatay biçimde, alt alta.
+- Yan düzeltme: `HomeSection` birden fazla öğeli içeriği her öğe için ayrı panel çiziyordu (Masal ailem'in açıklama metni ayrı panele düşmüştü); içerik artık tek kapta.
+- Test: `KidCornerTabTests` 10/0. Tam test takımı bu commit'te çalıştırıldı ama derleme servisi ve paket indirmesi yüzünden tamamlanmadı; sonucu ayrıca yazılacak. Simülatörde görüldü (iPhone 18 Pro Max, normal ve en büyük yazı boyutu).
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `Screens/FamilyCharacters/FamilyCharactersView.swift`, `Screens/MPAppState.swift`, `ContentView.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `MagicPaperTests/KidCornerTabTests.swift`.
+
+### 2026-10-16 · anasayfa-yenileme@ac75075 · Benim köşem: ana sayfanın tasarım dili, Ragi ön planda
+- Karar (Batuhan, 16 Ekim): Ragi her çocuk ekranında ön planda, Duolingo'daki Duo gibi; ekran başına tek Ragi ve ebeveyn alanında yok kuralı sürüyor.
+- **Zemin beyaz**; krem ve renk geçişli üst bant (`HeaderWash`, arayüz yüzeyinde gradyan) kalktı.
+- **Başlık:** "Benim köşem" solda büyük (`pageTitle`, Günlük sekmesi gibi), kilit sağda. Altında **el sallayan Ragi** ve lavanta panelde sakin karşılama: "Merhaba İrem! Masal okudukça rozetlerin burada toplanır." ya da kazanılan rozet sayısı; "az kaldı" yok. Ragi açılışta süzülür, nefes alır, dokununca zıplar; Reduce Motion'da yerinde.
+- **Bölümler ana sayfa düzeninde** (`HomeSection`, başlık-içerik 12, bölümler arası 32): Kim okuyor?, sayılar, Rozetlerim (sağda "0 / 8", `HomeSection`'a eklenen sağ sayaçla), Masal dünyam (Kahramanımı düzenle, Masal ailem, Yeni kelimelerim tek lavanta panelde; ortak `MPGroupedList`'e dokunulmadı).
+- **Sayı kutuları** çiplerin ailesinde: beyaz, sert alt kenar, `input` yarıçap, pastel ikon kutusu `md`, yıldızda `MPStarMark` (önce gölgeli kutu ve içi boş ikon yıldızdı).
+- **Rozet kartı** (`MPBadgeCard`, yalnızca bu ekranda kullanılıyor): `card` yarıçap ve sert alt kenar; başlık iki satır yer ayırır, kartlar satırda eşit yükseklikte. Kilitli rozetler gri.
+- Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
+- Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+### 2026-10-16 · main@b997fcb (push yok) · Masal atölyesi planı
+- Yeni belge `docs/MASAL_ATOLYESI_PLANI.md`: "Masal yazılıyor" ekranının (21 ve 10 · İlk masal) yeniden tasarımı için plan. Ekran, motorun gerçekten yaptığı işi ve ailenin kendi seçimlerini gösteren bir masal defterine dönüşüyor: kadro, yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesinin mürekkeple yazılması, okuma kontrolü, ciltleme ve "Ela'nın 12. masalı" künyesi. Süreler ilk masalda ~10 sn, sonra kısalıyor ve "Hemen aç" ile atlanabiliyor.
+- Bilerek değişmedi: kod yazılmadı. `StoryPreparationView`, `Story` modeli ve motor aynı. Beş karar Batuhan'da (süreler, `MP.M.ink` sabiti, ilk cümlenin gösterilmesi, künyenin yeri, yüzdeli halkanın kaldırılması).
+- Test çalıştırılmadı: yalnızca belge. Simülatörde görülmedi.
+
+### 2026-10-16 · main@7ae7b30 (kitap-rehberi ileri sarıldı, push yok) · Kitap rehberi main'de
+- Batuhan onayıyla `kitap-rehberi` main'e ileri sarıldı: `docs/MagicPaper_Content_Library.md` §14 (sayfa sonunda açık uç, arkadaş duyguyu yansıtır) artık main'de. Yalnızca belge; test çalıştırılmadı. Origin'e gönderilmedi.
+
+### 2026-10-16 · kitap-rehberi@c4d937a + düzeltme · Kitap rehberi dalı main ile güncellendi
+- `kitap-rehberi` main içine alındı (`c4d937a`), çakışma yok. Dalın main'den tek farkı `docs/MagicPaper_Content_Library.md` §14: kitap araştırmasından iki yazım kuralı (sayfa sonunda genel soru, arkadaşın duyguyu sessizce yansıtması). Yalnızca yeni yazılan satırlar için; motor ve mevcut içerik değişmez.
+- Gözden geçirmede düzeltildi: "ajans kuralı, §2" yanlış bölümü gösteriyordu (§2 şema bölümü); artık `docs/BLUEPRINT_CATALOG_V2.md`'deki kuralı gösteriyor. Beat dosyalarına tam yol eklendi; `PROSE_PRODUCTION_GUIDE.md`'nin repo dışında olduğu yazıldı.
+- Test çalıştırılmadı: değişiklik yalnızca belge. Main'e alınmadı (Batuhan onayı bekliyor), push yok.
+
+### 2026-10-16 · main@dd44465 (refrain-deneyi ileri sarıldı, push yok) · Nakarat deneyi main'de
+- Batuhan onayıyla `refrain-deneyi` main'e ileri sarıldı. Main artık şunları içeriyor: motorda `RefrainSpec` ve nakarat denetimi, `Content/Experiments/x_refrain_bedtime.json` (uyku öncesi iki kardeş blueprint), yayın aracında `build-package --experiment`, paket şeması 2.
+- Bilerek değişmedi: deney yayımlanmadı; uygulama deney dosyasını yüklemiyor, çocuklar nakaratlı masalı görmüyor. `preflight`, yayın ve `mark live` Batuhan'da. Origin'e gönderilmedi.
+- Test: ileri sarma olduğu için main, dalda test edilen hâlin aynısı: uygulama 699/0, yayın aracı 15/0, motor 790/18 (bilinen aynı 10 test).
+
+### 2026-10-16 · refrain-deneyi@19d7f51 · Nakarat deneyi dalı main ile güncellendi ve tam test edildi
+- `refrain-deneyi` 41 commit gerideydi; main içine alındı (`19d7f51`). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
+- Test: motor 790 test / 18 hata. Hata veren 10 test, 15 Ekim kaydındakiyle birebir aynı (bilinen içerik-belge ayrışması); yeni hata yok. Yayın aracı 15/0. Uygulama testleri ilk kez bu dalda çalıştırıldı: 699/0 (1 atlanan), main ile aynı.
+- Bilerek değişmedi: dal main'e alınmadı (Batuhan onayı bekliyor), deney kolu yayımlanmadı, `preflight` / `mark live` adımları Batuhan'da. Uygulama deney dosyasını yüklemiyor; paket şeması 2 yayında hiçbir paketi etkilemiyor (henüz paket yok).
+- Simülatörde görülmedi (arayüz değişikliği yok). Dosyalar: yalnızca birleştirme ve bu dosya.
 
 ### 2026-10-16 · main@7f695e7 · Kullanımdan öğrenme: ilk üçte birde kapatmak yarıda bırakma sayılmıyor
 - FAZ 14'ün açık kalemi kapandı. Önce: masalda bir sayfa çevirip kapatmak "yarıda bıraktı" sayılıyor ve o masalın ailesini ve yol arkadaşını sonraki seçimlerde aşağı itiyordu. Şimdi: masalın en az üçte biri (yukarı yuvarlanmış) görülmeden kapatılırsa bu bir göz atmadır; motor ne ödül ne ceza verir. 9 sayfalık masalda 3. sayfaya ulaşan çocuk bırakırsa sayılır, 2. sayfada bırakırsa sayılmaz.
 - Bilerek değişmedi: sunucuya giden okuma olayı (ulaşılan sayfa ve sayfa sayısı zaten içinde; karar sunucuda da verilebilir), Uyku öncesinde yarıda bırakmanın hiç ceza olmaması, süre bitince kapanan masal kuralı, kayıt dosyası biçimi.
 - Test: uygulama testleri 699/0 (1 atlanan; taban 698), yeni `ReadingEventTests.testLeavingInTheFirstThirdIsNotAbandoning`. Test, kod yazılmadan önce kırmızıda çalıştırılmadı. Arayüz değişikliği yok, simülatörde görülmedi.
 - Dosyalar: `StoryEngineBridge/StoryUsageStore.swift`, `MagicPaperTests/ReadingEventTests.swift`, `docs/MagicPaper_Faz_Plani_Ekim.md`.
+
+### 2026-10-15 · refrain-deneyi (104b3c3 üstüne) · Deney kolu pakete girebiliyor, paket şeması 2
+
+- `content-publisher build-package --experiment <id>` (yinelenebilir): `Content/Experiments/<id>.json` pakete **son** kütüphane belgesi olarak ekleniyor. Varsayılan boş — paket, bu checkout'un uygulamasının taşıdığı içeriğin aynısı kalıyor; bir kolu yayına koymak ürün sahibinin o yayına özel kararı.
+- Sıra kozmetik değil: `ContentCatalog.merging` ilk `0.0.0` olmayan sürümü kataloğun sürümü sayıyor ve paket, belgelerinin taşıdığı sürümü ilan etmek zorunda. Deney belgesi kendini adlandırdığı için (`"version": "experiment-x_refrain_bedtime"`) başa konsa paketin sürümü o olur ve cihaz paketi reddederdi. Buna ayrı bir test var.
+- Publisher, dosya adı ile belgedeki `experiment.id` ayrışırsa yayımlamıyor: yanlış adla yayımlanan kol veri üretir ama yanlış kolun verisini üretir, bu hiç yayımlamamaktan kötü. Bilinmeyen id'de mevcut kolları sayıyor.
+- `ContentPackage.currentSchemaVersion` 1 → 2, çünkü paket artık `refrain` taşıyabiliyor. Karşılaştırma iki yerde de eşitlik (`RemoteContentService` indirmeden önce, `load(package:)` indirdikten sonra): nakaratı bilmeyen uygulama paketi hiç indirmiyor ve yayındaki kataloğu okuyor. Alanı bilmeyen bir uygulamanın varyantı nakaratsız göstermesi, kontrolü varyant sanmak olurdu — veride yanlış cevap, cevapsızlıktan kötü.
+- Bilerek yapılmadı: deney kolunun kendisi yayımlanmadı (`publish`/`deploy` çalıştırılmadı), `ba experiment preflight` ve `mark … live` adımları hâlâ Batuhan'da (README'de 1 numaralı açık iş olarak kaldı). Paket dosyası yazılmadı: `hosting/public/content/catalog/` hâlâ yok ve feed'de `catalogPackage: null` — yani şema artırımı yayındaki hiçbir paketi okunamaz hâle getirmiyor.
+- Test: publisher 15/0 (5'i yeni). Motor demeti 790 test / 18 hata — aynı demet HEAD'de (104b3c3, ayrı worktree) 788/18 ve **birebir aynı 10 test**: fark yalnızca eklediğim iki test, yeni hata yok. O 18 hata blueprint/beat mimarisi tarafındaki bilinen içerik-belge ayrışması, bu işle ilgisi yok ve bu işte düzeltilmedi. Uygulama hedefi (`MagicPaperTests`) çalıştırılmadı: değişen kodun hiçbiri uygulama hedefinde değil.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/ContentPackage.swift`, `StoryEngine/Tests/StoryEngineTests/ContentPackageTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Publisher.swift`, `Scripts/ContentPublisher/Sources/content-publisher/main.swift`, `Scripts/ContentPublisher/Tests/PublisherKitTests/PublisherKitTests.swift`, `Content/Experiments/README.md`, `docs/REMOTE_CONTENT.md`, bu dosya.
 
 ### 2026-10-15 · main@cf518bd · Alt çubukta zıplama kaldırıldı
 - Batuhan kararı: sekmeye dokununca ikon zıplamaz; yalnızca ikonun içi dolar ve sekme rengini alır.

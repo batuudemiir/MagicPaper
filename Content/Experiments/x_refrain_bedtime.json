@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 2,
+  "version": "experiment-x_refrain_bedtime",
+  "note": "Deney kolu (p_repeated_line, 14 Ekim 2026 onayı). Uygulamayla GELMEZ: ContentCatalogLoader bu klasörü okumaz. Kardeş blueprint'ler kontrol blueprint'lerinin aynısı, yalnızca `refrain` eklendi. Çocuğa yalnızca yayımlanmış bir paketle ve deney `live` işaretlenince ulaşır.",
+  "experiment": {
+    "id": "x_refrain_bedtime",
+    "proposal": "p_repeated_line",
+    "controls": {
+      "bp_charge_tending_001_refrain": "bp_charge_tending_001",
+      "blueprint_charge_tending_age3_001_refrain": "blueprint_charge_tending_age3_001"
+    }
+  },
+  "blueprints": [
+    {
+      "id": "bp_charge_tending_001_refrain",
+      "interests": [
+        "nature"
+      ],
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "VI-1 - patience (nakaratlı)",
+      "genre": "gentle_adventure",
+      "theme": "responsibility",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Hiçbir şey çocuğu engellemiyor; iş sadece zaman ve geri dönmek istiyor.",
+      "editorialGuidance": "Çatışma SÜRE, zorluk değil - bu yüzden adlandırılmış bir engel yok ve olmamalı. Sayfa 6 beklemek, uğraşmak değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isFragile",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "pride"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ],
+      "refrain": {
+        "line": "Usul usul, yavaş yavaş.",
+        "pages": [
+          2,
+          4,
+          6
+        ],
+        "finalLine": "Usul usul, yavaş yavaş, uyku geldi.",
+        "finalPage": 8
+      }
+    },
+    {
+      "id": "blueprint_charge_tending_age3_001_refrain",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "lookingAfter (nakaratlı)",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Küçük biri bakıma muhtaç; çocuk kalır ve bekler, ve o iyileşir.",
+      "requires": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "casting": [
+          "needsCare"
+        ]
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}}",
+        "{{child.name}} Bekledi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "patient_wait",
+          "supportingBeat": "restore",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "relief"
+        }
+      ],
+      "refrain": {
+        "line": "Usul usul, yavaş yavaş.",
+        "pages": [
+          2,
+          4,
+          5
+        ],
+        "finalLine": "Usul usul, yavaş yavaş, uyku geldi.",
+        "finalPage": 6
+      }
+    }
+  ]
+}

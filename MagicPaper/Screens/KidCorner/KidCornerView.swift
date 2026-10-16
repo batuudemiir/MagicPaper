@@ -4,7 +4,8 @@ import SwiftUI
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). 13 Ekim 2026'dan beri alt bardaki
-/// "Köşem" sekmesi; kapat düğmesi yok, kilit ve "Ekle" ebeveyn kapısına gider.
+/// "Köşem" sekmesi; kapat düğmesi yok, kilit ebeveyn kapısına, "Ekle" kapıdan
+/// sonra doğrudan profil eklemeye gider; kahramanı düzenlemek kapıdan geçer.
 /// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
@@ -13,26 +14,42 @@ struct KidCornerView: View {
     @StateObject private var streak = MPStreak.shared
     @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
+    @State private var gate = false
+    @State private var afterGate: (() -> Void)?
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var profile: UserProfile? { profileManager.currentProfile }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: MPSpacing.section) {
-                header
+            // Ana sayfanın düzeni (16 Ekim): beyaz zemin, başlık içeriğine
+            // yapışık (12), bölümler arası 32; ekranın tek Ragi'si üstte.
+            VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
+                VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                    titleBar
+                    greeting
+                }
+                whoSection
                 statsRow
-                badgesSection
+                // Yapılacak işler (bağlantılar) bakılacak şeylerden (rozetler)
+                // önce: bulunabilirlik (16 Ekim denetimi).
                 linksSection
+                badgesSection
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
         }
-        .background(alignment: .top) {
-            HeaderWash(height: 290, colors: [MPWorldTone.green.soft, MPWorldTone.sky.soft, MPWorldTone.lav.soft])
-        }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear(perform: refresh)
+        // Kahramanı düzenlemek ebeveyn kapısından geçer (Masal ailem'deki
+        // düzenleme gibi); görmek ve seçmek serbest.
+        .fullScreenCover(isPresented: $gate, onDismiss: {
+            let action = afterGate
+            afterGate = nil
+            action?()
+        }) {
+            ParentalGateView(onSuccess: { gate = false }, onCancel: { afterGate = nil; gate = false })
+        }
         .onChange(of: profile?.id) { _, _ in refresh() }
         // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.
         .onChange(of: storyManager.stories) { _, _ in refresh() }
@@ -44,26 +61,55 @@ struct KidCornerView: View {
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
+    // MARK: - Başlık ve Ragi
+
+    /// Sekmenin büyük başlığı solda, kilit (ebeveyn kapısı) sağda: Günlük
+    /// sekmesinin başlığıyla aynı düzen.
+    private var titleBar: some View {
+        HStack(alignment: .center, spacing: MPSpacing.sm) {
+            Text("Benim köşem").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Spacer(minLength: 0)
+            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") {
+                app.requestParentMode()
+            }
+        }
+        .padding(.top, MPSpacing.lg)
+    }
+
+    /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu
+    /// (karar 16 Ekim 2026: Ragi her çocuk ekranında ön planda).
+    private var greeting: some View {
+        // En büyük yazı boyutlarında Ragi küçülüp balonun üstüne çıkar; balon
+        // dar bir sütunda uzamaz.
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.md))
+        return layout {
+            RagiGreeting(mascot: .waving, width: typeSize.isAccessibilitySize ? 80 : 108)
+            Text(greetingText).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(MPSpacing.lg)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(MPWorldTone.lav.soft.opacity(0.45),
+                            in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
+        }
+        .accessibilityElement(children: .combine)
+    }
+
+    /// Sakin karşılama: kazanılanı söyler, "az kaldı" demez (CLAUDE.md §7).
+    private var greetingText: String {
+        let name = profile?.name ?? "Arkadaşım"
+        return earned.isEmpty
+            ? "Merhaba \(name)! Masal okudukça rozetlerin burada toplanır."
+            : "Merhaba \(name)! \(earned.count) rozetin var, hepsi burada."
+    }
+
     // MARK: - Kim okuyor?
 
-    private var header: some View {
-        VStack(spacing: MPSpacing.lg) {
-            // Başlık kilit düğmesinin altına girmesin: iki yanda düğme genişliği.
-            // Kilit Ana sayfa başlığındakiyle aynı iş: ebeveyn kapısı.
-            HStack(spacing: MPSpacing.sm) {
-                Color.clear.frame(width: MPSize.circleButton, height: 1)
-                Text("Benim köşem").mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .accessibilityAddTraits(.isHeader)
-                MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") {
-                    app.requestParentMode()
-                }
-            }
-            .padding(.top, MPSpacing.lg)
-
-            Text("Kim okuyor?").mpText(.callout).foregroundStyle(MPColor.textSecondary)
-
+    private var whoSection: some View {
+        HomeSection(title: "Kim okuyor?", contained: false) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.xl) {
                     ForEach(profileManager.profiles) { child in
@@ -86,9 +132,9 @@ struct KidCornerView: View {
                         .accessibilityLabel(child.name)
                         .accessibilityAddTraits(selected ? .isSelected : [])
                     }
-                    Button { app.requestParentMode() } label: {
+                    Button { app.requestProfileAdd() } label: {
                         VStack(spacing: MPSpacing.xs) {
-                            MPIcon("plus", size: 26, weight: .semibold)
+                            MPIcon("plus", size: MP.G.xl, weight: .semibold)
                                 .foregroundStyle(MPColor.textSecondary)
                                 .frame(width: 80, height: 80)
                                 .overlay(Circle().strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
@@ -116,35 +162,50 @@ struct KidCornerView: View {
         return MPStars.count(for: profile, stories: storyManager.stories)
     }
 
+    /// Sayılar tek, düz bir bilgi panelinde: kutuların ayrı sert kenarı yok,
+    /// çünkü dokunulmuyorlar (basılabilir görünen ama çalışmayan öğe olmasın).
+    /// En büyük yazı boyutlarında her sayı tek satır, alt alta.
     private var statsRow: some View {
-        // En büyük yazı boyutlarında üç kutucuk yan yana sığmaz: alt alta.
-        let tiles = typeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(spacing: MPSpacing.md))
-            : AnyLayout(HStackLayout(spacing: MPSpacing.md))
-        return VStack(spacing: MPSpacing.sm) {
-            tiles {
-                stat(icon: "star", tone: .yellow, value: stars, label: "yıldız")
-                stat(icon: "flame", tone: .peach, value: streak.currentStreak, label: "gün seri")
-                stat(icon: "book", tone: .sky, value: finishedCount, label: "masal")
+        let ax = typeSize.isAccessibilitySize
+        let layout = ax
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
+        return VStack(spacing: MPSpacing.md) {
+            layout {
+                stat(tone: .yellow, value: stars, label: "yıldız", row: ax) { MPStarMark(size: 22) }
+                stat(tone: .peach, value: streak.currentStreak, label: "gün seri", row: ax) {
+                    MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.peach.deep)
+                }
+                stat(tone: .sky, value: finishedCount, label: "masal", row: ax) {
+                    MPIcon("book", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.sky.deep)
+                }
             }
             Text("Her sabah 1 yıldız gelir. Her masal 1 yıldız.")
                 .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
         }
+        .padding(MPSpacing.lg)
+        .background(MPWorldTone.lav.soft.opacity(0.45),
+                    in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
     }
 
-    private func stat(icon: String, tone: MPWorldTone, value: Int, label: String) -> some View {
-        VStack(spacing: MPSpacing.xxs) {
-            MPIcon(icon, size: 24, weight: .semibold).foregroundStyle(tone.deep).accessibilityHidden(true)
+    private func stat<Glyph: View>(tone: MPWorldTone, value: Int, label: String, row: Bool,
+                                   @ViewBuilder glyph: () -> Glyph) -> some View {
+        let layout = row
+            ? AnyLayout(HStackLayout(spacing: MPSpacing.md))
+            : AnyLayout(VStackLayout(spacing: MPSpacing.xs))
+        return layout {
+            glyph()
+                .frame(width: 40, height: 40)
+                .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                .accessibilityHidden(true)
             Text("\(value)").mpText(.title2).monospacedDigit().foregroundStyle(MPColor.textPrimary)
             Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, MPSpacing.lg)
-        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.tile))
-        .mpShadow(.card)
+        .frame(maxWidth: .infinity, alignment: row ? .leading : .center)
         .accessibilityElement(children: .combine)
     }
 
@@ -153,19 +214,9 @@ struct KidCornerView: View {
     /// Bütün rozetler, kazanılmamışlar kilitli (karar 13 Ekim 2026). İlerleme
     /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7).
     private var badgesSection: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            // En büyük yazı boyutlarında sayaç başlığın altına iner.
-            let headerLayout = typeSize.isAccessibilitySize
-                ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.xxs))
-                : AnyLayout(HStackLayout(alignment: .firstTextBaseline))
-            headerLayout {
-                Text("Rozetlerim").mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                if !typeSize.isAccessibilitySize { Spacer() }
-                Text("\(earned.count) / \(MPMilestone.allCases.count)")
-                    .mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
-                    .accessibilityLabel("\(MPMilestone.allCases.count) rozetten \(earned.count) tanesi kazanıldı")
-            }
+        HomeSection(title: "Rozetlerim", contained: false,
+                    note: "\(earned.count) / \(MPMilestone.allCases.count)",
+                    noteSpoken: "\(MPMilestone.allCases.count) rozetten \(earned.count) tanesi kazanıldı") {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
                       spacing: MPSpacing.md) {
@@ -182,25 +233,37 @@ struct KidCornerView: View {
     @ViewBuilder
     private var linksSection: some View {
         if let profile {
-            MPGroupedList(area: .kid) {
-                if IllustratedBookAccess.isEnabled() {
-                    linkRow(icon: "paintpalette", tone: .sky, title: "Kahramanımı düzenle",
-                            subtitle: "Saç, ten rengi, gözlük, kıyafet") {
-                        app.sheet = .bookCharacter(profile.id)
+            HomeSection(title: "Masal dünyam") {
+                // Satırlar tek panelde; panel tek parça olsun diye tek kap.
+                VStack(spacing: 0) {
+                    if IllustratedBookAccess.isEnabled() {
+                        linkRow(icon: "paintpalette", tone: .sky, title: "Kahramanımı düzenle",
+                                subtitle: "Saç, ten rengi, gözlük, kıyafet") {
+                            guarded { app.sheet = .bookCharacter(profile.id) }
+                        }
+                        MPRowDivider(area: .kid)
+                    }
+                    linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
+                            subtitle: familySubtitle) {
+                        app.sheet = .familyCharacters(profile.id)
                     }
                     MPRowDivider(area: .kid)
+                    linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
+                            subtitle: wordsSubtitle) {
+                        app.sheet = .newWords(profile.id)
+                    }
                 }
-                linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
-                        subtitle: familySubtitle) {
-                    app.sheet = .familyCharacters(profile.id)
-                }
-                MPRowDivider(area: .kid)
-                linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
-                        subtitle: wordsSubtitle) {
-                    app.sheet = .newWords(profile.id)
-                }
+                .padding(.horizontal, -MPSpacing.sm)
+                .padding(.vertical, -MPSpacing.sm)
             }
         }
+    }
+
+    /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
+    private func guarded(_ action: @escaping () -> Void) {
+        if app.isParentMode { action(); return }
+        afterGate = action
+        gate = true
     }
 
     private var wordsSubtitle: String {
@@ -226,6 +289,43 @@ struct KidCornerView: View {
         .buttonStyle(MPPressStyle(.highlight))
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
+    }
+}
+
+/// Ekranın Ragi'si: açılışta süzülerek gelir, yavaşça nefes alır, dokununca
+/// bir kez zıplar (ana sayfadaki `HomeSceneMascot` ile aynı hareket dili).
+/// Reduce Motion açıkken yerinde durur. Süs: erişilebilirlikten gizli.
+struct RagiGreeting: View {
+    let mascot: Mascot
+    var width: CGFloat
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var appeared = false
+    @State private var breathing = false
+    @State private var hop = false
+
+    var body: some View {
+        MascotImage(mascot: mascot, width: width)
+            .scaleEffect(breathing ? 1.025 : 1, anchor: .bottom)
+            .offset(y: hop ? -12 : 0)
+            .offset(y: appeared ? 0 : MP.S.x5)
+            .opacity(appeared ? 1 : 0)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                guard !reduceMotion, !hop else { return }
+                MPHaptics.tap()
+                withAnimation(MP.M.spring) { hop = true }
+                Task {
+                    try? await Task.sleep(for: .milliseconds(220))
+                    withAnimation(MP.M.spring) { hop = false }
+                }
+            }
+            .onAppear {
+                if reduceMotion { appeared = true; return }
+                withAnimation(MP.M.spring.delay(0.1)) { appeared = true }
+                withAnimation(MP.M.idle.delay(0.6)) { breathing = true }
+            }
+            .accessibilityHidden(true)
     }
 }
 

@@ -68,6 +68,7 @@ yayımlanan yeni masal onu geçer.
    uygulama aynı ya da daha yeni katalogla güncellendiğinde indirilen paket kendiliğinden devre dışı kalır.
 2. ```bash
    swift run content-publisher build-package             # doğrulayıcı (taban: Content/validator_baseline.txt) + motor denetimi
+   # Deney kolu da eklenecekse: build-package --experiment <id>  (Content/Experiments/README.md)
    swift run content-publisher publish --package latest --deploy
    ```
 3. Paket biçimi motorun yeni kodunu gerektiriyorsa (yeni alan, yeni kural) `ContentPackage.currentSchemaVersion`

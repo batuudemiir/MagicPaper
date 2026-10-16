@@ -595,6 +595,9 @@ enum MP {
         static let ambient = Animation.easeInOut(duration: 14).repeatForever(autoreverses: true)
         /// Sahnedeki Ragi'nin nefes alışı: birkaç noktalık, yavaş, sürekli.
         static let idle = Animation.easeInOut(duration: 2.6).repeatForever(autoreverses: true)
+        /// Masal atölyesi: bir cümlenin mürekkeple yazılma süresi, saniye
+        /// (karar 16 Ekim 2026). Harf harf ilerler; bir eğri değil, bir tempo.
+        static let inkDuration: Double = 1.8
 
         static let sink: CGFloat = 2
         static let scale: CGFloat = 0.96

@@ -57,7 +57,7 @@ Bileşen   MPCard, MPButton, MPAvatar …
 | Yarıçap | `MP.R` | ✅ xs–xxl, pill + semantik card/button/tile/sheet/input |
 | Kenar (derinlik) | `MP.E` | ✅ width 3, widthLG 4 |
 | Gölge | `MP.Sh` | ✅ soft, card, lifted, sheet, brand + **art**, **knob** |
-| Hareket | `MP.M` | ✅ + `MPPressStyle`, reduce-motion farkında |
+| Hareket | `MP.M` | ✅ + `MPPressStyle`, reduce-motion farkında. `inkDuration` (1,8 sn, 16 Ekim 2026): masal atölyesinde bir cümlenin harf harf yazılma temposu |
 | Okuma teması | `MP.ReadTheme` | ✅ background, foreground, body, muted, **paper**, **spine** |
 
 ### Bu turda eklenen token'lar

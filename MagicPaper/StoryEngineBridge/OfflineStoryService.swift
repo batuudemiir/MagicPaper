@@ -239,6 +239,11 @@ final class OfflineStoryService {
         (try? catalog())?.companions.first { $0.id.rawValue == id }?.type
     }
 
+    /// A companion's name ("Tarçın"), for the masal atölyesi cast line.
+    func companionName(id: String) -> String? {
+        (try? catalog())?.companions.first { $0.id.rawValue == id }?.name
+    }
+
     /// The fixed list of animal kinds a pet can be, in catalog order.
     func familyAnimalKinds() -> [CatalogFamilyAnimalKind] {
         (try? catalog())?.familyAnimalKinds ?? []

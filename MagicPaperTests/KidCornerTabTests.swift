@@ -63,4 +63,40 @@ final class KidCornerTabTests: XCTestCase {
     func testWithNothingEarnedEveryBadgeIsLockedInListOrder() {
         XCTAssertEqual(MPMilestone.gridOrder(earned: []), MPMilestone.allCases)
     }
+
+    /// "Ekle" kapıdan geçer; kapı açılınca ebeveyn özetinde kalmadan profil
+    /// ekleme açılır (16 Ekim denetimi).
+    func testAddingAProfileFromTheCornerOpensProfileCreationAfterTheGate() {
+        let app = MPAppState()
+        app.openKidCorner()
+        app.requestProfileAdd()
+        XCTAssertTrue(app.showGate)
+        XCTAssertFalse(app.showProfileAdd)
+        app.unlockParent()
+        app.gateDismissed()
+        XCTAssertTrue(app.isParentMode)
+        XCTAssertTrue(app.showProfileAdd)
+    }
+
+    func testCancellingTheGateForgetsThePendingProfileAdd() {
+        let app = MPAppState()
+        app.requestProfileAdd()
+        app.showGate = false
+        app.gateDismissed()
+        XCTAssertFalse(app.showProfileAdd)
+        // Sonraki sıradan kilit açılışı profil eklemeyi açmaz.
+        app.requestParentMode()
+        app.unlockParent()
+        app.gateDismissed()
+        XCTAssertFalse(app.showProfileAdd)
+    }
+
+    func testInTheParentAreaAddingAProfileSkipsTheGate() {
+        let app = MPAppState()
+        app.requestParentMode()
+        app.unlockParent()
+        app.gateDismissed()
+        app.requestProfileAdd()
+        XCTAssertTrue(app.showProfileAdd)
+    }
 }

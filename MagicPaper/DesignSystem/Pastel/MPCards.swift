@@ -166,12 +166,17 @@ struct MPBadgeCard: View {
                 .foregroundStyle(isUnlocked ? tone.deep : MPColor.lockedIcon)
                 .frame(width: 50, height: 50)
                 .background(isUnlocked ? MPColor.backgroundSurface : MPColor.lockedCircle, in: Circle())
+            // İki satırlık yer ayrılır: rozetler satırda eşit yükseklikte.
             Text(title).mpText(.caption).multilineTextAlignment(.center)
+                .lineLimit(2, reservesSpace: true)
                 .foregroundStyle(isUnlocked ? MPColor.textPrimary : MPColor.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, MPSpacing.md)
-        .background(isUnlocked ? tone.soft : MPColor.lockedFill, in: RoundedRectangle(cornerRadius: MPRadius.tile))
+        .padding(.horizontal, MPSpacing.xs)
+        // Ana sayfanın kart dili (16 Ekim): büyük yüzey `card`, sert alt kenar.
+        .mpKidSurface(isUnlocked ? tone.soft : MPColor.lockedFill,
+                      edge: isUnlocked ? tone.edge : MPColor.lockedCircle)
         .overlay(alignment: .topTrailing) {
             if !isUnlocked { MPIcon("lock.fill", size: 12).foregroundStyle(MPColor.textSecondary).padding(MPSpacing.sm) }
         }

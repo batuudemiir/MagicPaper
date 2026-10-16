@@ -144,7 +144,7 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showPaywall) {
                 PaywallView().environmentObject(app)
             }
-            .fullScreenCover(isPresented: $app.showGate) {
+            .fullScreenCover(isPresented: $app.showGate, onDismiss: { app.gateDismissed() }) {
                 ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
             }
             .fullScreenCover(item: $firstRun, onDismiss: {
