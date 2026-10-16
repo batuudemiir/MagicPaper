@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@1f35970 · Benim köşem main'e birleşti ve gönderildi
+- `anasayfa-yenileme` main'e ileri sarıldı ve origin'e gönderildi: Benim köşem ana sayfa dilinde ve Ragi ön planda (`ac75075`), denetim düzeltmeleri (`9082245`: Ekle yönlendirmesi, Masal ailem ve kahraman düzenleme kapısı, bulunabilirlik sırası, düz bilgi paneli, büyük yazı düzeni, ana sayfa çipleri Benim köşem'e).
+- main'den gelenler (refrain deneyi, içerik yayıncısı, kitap rehberi) yalnızca değişiklik günlüğünde çakıştı; iki tarafın kayıtları korundu.
+- Gönderim, main'de bekleyen öbür oturumların commit'lerini de origin'e götürdü.
+- Test: Batuhan'ın isteğiyle bu birleştirmede çalıştırılmadı (telefonda deneyecek); son ilgili sonuç `KidCornerTabTests` 10/0. Birleştirme sonrası derleme de yapılmadı.
+
 ### 2026-10-16 · anasayfa-yenileme@9082245 · Benim köşem denetimi: yönlendirme, kapı, bulunabilirlik, büyük yazı
 - Denetim (Batuhan'ın isteği): etiketler, dokunma alanları (hepsi ≥ 48), okuma sırası ve en büyük yazı boyutu iyiydi; beş sorun bulundu ve sırayla düzeltildi.
 - **1. "Ekle" yönlendirmesi:** kapı açılınca ebeveyn özetine düşüyordu; artık doğrudan profil ekleme açılır (`MPAppState.requestProfileAdd`, kapı kapanışında `gateDismissed`; iki tam ekran üst üste açılmaz). Kapıdan vazgeçilirse bekleyen istek unutulur. Testler: `KidCornerTabTests` +3.
