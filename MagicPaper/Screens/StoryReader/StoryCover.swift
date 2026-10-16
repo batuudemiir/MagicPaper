@@ -88,7 +88,7 @@ struct StoryCover: View {
 
                     Spacer(minLength: 0)
 
-                    Text("\(childName) için · \(pageCount) sayfa")
+                    Text(footer)
                         .font(MP.F.labelSM(.semibold))
                         .foregroundStyle(theme.muted.opacity(0.8))
                         .padding(.bottom, MP.S.x4)
@@ -99,7 +99,12 @@ struct StoryCover: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Kapak. \(title). \(childName) için, \(pageCount) sayfa.")
+        .accessibilityLabel("Kapak. \(title). \(footer).")
+    }
+
+    /// Kimin için yazıldığı; Günlük masalları kimse için yazılmadı (ad boş).
+    private var footer: String {
+        childName.isEmpty ? "\(pageCount) sayfa" : "\(childName) için · \(pageCount) sayfa"
     }
 
     /// Kapağın ağırlık merkezi: illüstrasyon, mozaik kapak, veya dünya ikonu.

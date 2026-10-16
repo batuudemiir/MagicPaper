@@ -85,16 +85,15 @@ struct KidTabBar: View {
             MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.xl,
                    weight: on ? .semibold : .regular, symbolOnly: true)
                 .foregroundStyle(on ? item.tint : MP.C.textMuted)
-                // Çizgiden dolguya geçiş sembolün kendi animasyonuyla;
-                // seçilince bir kez zıplar. Hareketi Azalt'ta yalnızca
-                // dolgu değişir.
-                .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace))
-                .symbolEffect(.bounce, value: reduceMotion ? false : on)
+                // Seçilince yalnızca ikonun içi dolar ve rengi değişir:
+                // zıplama, ölçek ya da yaylanma yok (karar: 15 Ekim 2026).
+                // Hareketi Azalt'ta dolgu animasyonsuz değişir.
+                .contentTransition(reduceMotion ? .identity : .opacity)
                 .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
                 .contentShape(Rectangle())
-                .animation(MP.M.gated(MP.M.spring), value: on)
+                .animation(MP.M.gated(MP.M.easeOut), value: on)
         }
-        .buttonStyle(MPPressStyle())
+        .buttonStyle(MPPressStyle(.highlight))
         .accessibilityLabel(item.label)
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {

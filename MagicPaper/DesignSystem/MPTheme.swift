@@ -630,11 +630,12 @@ enum MP {
     /// kontrollerinde: alt sekme çubuğu, `MPModeSwitch` (CLAUDE.md, Derinlik).
     /// Yüzey `mpGlassSurface(in:)` ile kurulur; bileşenler satır içi cam kurmaz.
     enum Glass {
-        /// Yüzen gezinme kontrolü: dokununca sistem camı gibi tepki verir.
-        /// Ton hafif; okunurluğu altındaki kaydırma kenarı efekti taşır
+        /// Yüzen gezinme kontrolü. Etkileşimli değil: dokununca cam esnemez,
+        /// zıplamaz (karar: 15 Ekim 2026). Ton hafif; okunurluğu altındaki
+        /// kaydırma kenarı efekti taşır
         /// (`mpFloatingBar`), cam kâğıda dönüşmez.
         @available(iOS 26.0, *)
-        static var bar: SwiftUI.Glass { .regular.tint(C.surfaceCard.opacity(0.25)).interactive() }
+        static var bar: SwiftUI.Glass { .regular.tint(C.surfaceCard.opacity(0.25)) }
 
         /// iOS 26 öncesi yüzeyin dolgusu (malzemenin üstünde) ve kenarı.
         static let fallbackFill = C.surfaceCard.opacity(0.72)

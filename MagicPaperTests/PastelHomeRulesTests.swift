@@ -30,15 +30,24 @@ final class PastelHomeRulesTests: XCTestCase {
         XCTAssertFalse(MPBedtime.isBedtime(enabled: false, hour: 20, minute: 30, now: at(22, 0)))
     }
 
-    func testAtBedtimeOnlyTheBedtimeModeIsOffered() {
-        let all: [StoryMode] = [.bedtime, .learning, .adventure]
-        XCTAssertEqual(StoryCreationSteps.allowedModes(all, isBedtime: true), [.bedtime])
-        XCTAssertEqual(StoryCreationSteps.allowedModes(all, isBedtime: false), all)
+    /// Akşam üç mod da seçilebilir; Uyku öncesi ilk ve vurgulu (15 Ekim 2026).
+    func testAtBedtimeEveryModeIsOfferedAndBedtimeLeads() {
+        let all: [StoryMode] = [.adventure, .learning, .bedtime]
+        let emphasized = StoryCreationSteps.emphasizedMode(all, isBedtime: true)
+        XCTAssertEqual(emphasized, .bedtime)
+        XCTAssertEqual(StoryCreationSteps.shownModes(all, emphasized: emphasized), [.bedtime, .learning, .adventure])
     }
 
-    /// A band that cannot build a bedtime story is not locked out at night.
+    func testDuringTheDayNothingIsEmphasized() {
+        let all: [StoryMode] = [.bedtime, .learning, .adventure]
+        XCTAssertNil(StoryCreationSteps.emphasizedMode(all, isBedtime: false))
+        XCTAssertEqual(StoryCreationSteps.shownModes(all), StoryMode.displayOrder)
+    }
+
+    /// A band that cannot build a bedtime story keeps its modes and gets no emphasis.
     func testBedtimeNeverEmptiesTheModes() {
-        XCTAssertEqual(StoryCreationSteps.allowedModes([.learning], isBedtime: true), [.learning])
+        XCTAssertNil(StoryCreationSteps.emphasizedMode([.learning], isBedtime: true))
+        XCTAssertEqual(StoryCreationSteps.shownModes([.learning], emphasized: nil), [.learning])
     }
 
     // MARK: - Rozetler
