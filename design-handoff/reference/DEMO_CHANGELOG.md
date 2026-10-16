@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main (commit aşağıda) · Masal atölyesi planı
+- Yeni belge `docs/MASAL_ATOLYESI_PLANI.md`: "Masal yazılıyor" ekranının (21 ve 10 · İlk masal) yeniden tasarımı için plan. Ekran, motorun gerçekten yaptığı işi ve ailenin kendi seçimlerini gösteren bir masal defterine dönüşüyor: kadro, yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesinin mürekkeple yazılması, okuma kontrolü, ciltleme ve "Ela'nın 12. masalı" künyesi. Süreler ilk masalda ~10 sn, sonra kısalıyor ve "Hemen aç" ile atlanabiliyor.
+- Bilerek değişmedi: kod yazılmadı. `StoryPreparationView`, `Story` modeli ve motor aynı. Beş karar Batuhan'da (süreler, `MP.M.ink` sabiti, ilk cümlenin gösterilmesi, künyenin yeri, yüzdeli halkanın kaldırılması).
+- Test çalıştırılmadı: yalnızca belge. Simülatörde görülmedi.
+
 ### 2026-10-16 · main@7ae7b30 (kitap-rehberi ileri sarıldı, push yok) · Kitap rehberi main'de
 - Batuhan onayıyla `kitap-rehberi` main'e ileri sarıldı: `docs/MagicPaper_Content_Library.md` §14 (sayfa sonunda açık uç, arkadaş duyguyu yansıtır) artık main'de. Yalnızca belge; test çalıştırılmadı. Origin'e gönderilmedi.
 
