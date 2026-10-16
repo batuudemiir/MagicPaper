@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-16 · main@1f35970 · Benim köşem main'e birleşti ve gönderildi
+### 2026-10-16 · main@d4ce1bf · Benim köşem main'e birleşti ve gönderildi
 - `anasayfa-yenileme` main'e ileri sarıldı ve origin'e gönderildi: Benim köşem ana sayfa dilinde ve Ragi ön planda (`ac75075`), denetim düzeltmeleri (`9082245`: Ekle yönlendirmesi, Masal ailem ve kahraman düzenleme kapısı, bulunabilirlik sırası, düz bilgi paneli, büyük yazı düzeni, ana sayfa çipleri Benim köşem'e).
 - main'den gelenler (refrain deneyi, içerik yayıncısı, kitap rehberi) yalnızca değişiklik günlüğünde çakıştı; iki tarafın kayıtları korundu.
 - Birleştirme sırasında main bir kez daha ilerledi (masal atölyesi planı); ilk gönderim yalnızca main'de bekleyen öbür oturumların commit'lerini götürdü (`9896d81`), main yeniden alınıp bu iş ikinci gönderimle gitti. Çakışma yine yalnızca değişiklik günlüğündeydi.
