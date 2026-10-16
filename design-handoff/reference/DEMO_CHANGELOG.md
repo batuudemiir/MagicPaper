@@ -133,6 +133,9 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@7ae7b30 (kitap-rehberi ileri sarıldı, push yok) · Kitap rehberi main'de
+- Batuhan onayıyla `kitap-rehberi` main'e ileri sarıldı: `docs/MagicPaper_Content_Library.md` §14 (sayfa sonunda açık uç, arkadaş duyguyu yansıtır) artık main'de. Yalnızca belge; test çalıştırılmadı. Origin'e gönderilmedi.
+
 ### 2026-10-16 · kitap-rehberi@c4d937a + düzeltme · Kitap rehberi dalı main ile güncellendi
 - `kitap-rehberi` main içine alındı (`c4d937a`), çakışma yok. Dalın main'den tek farkı `docs/MagicPaper_Content_Library.md` §14: kitap araştırmasından iki yazım kuralı (sayfa sonunda genel soru, arkadaşın duyguyu sessizce yansıtması). Yalnızca yeni yazılan satırlar için; motor ve mevcut içerik değişmez.
 - Gözden geçirmede düzeltildi: "ajans kuralı, §2" yanlış bölümü gösteriyordu (§2 şema bölümü); artık `docs/BLUEPRINT_CATALOG_V2.md`'deki kuralı gösteriyor. Beat dosyalarına tam yol eklendi; `PROSE_PRODUCTION_GUIDE.md`'nin repo dışında olduğu yazıldı.
