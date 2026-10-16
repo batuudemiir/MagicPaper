@@ -29,28 +29,16 @@ struct HomeView: View {
                         // tamamını yeniden hesaplatır ve başlık bölgesinde kasma
                         // yapıyordu (16 Ekim). Kaydırmaya bağlı görsel etkiler
                         // `visualEffect` içinde çizim anında hesaplanır; burada
-                        // yalnızca bir kez dinlenme konumu, seyrek de eşik geçişi yazılır.
+                        // yalnızca bir kez dinlenme konumu yazılır.
                         if restY == nil { restY = y }
-                        // Şerit sahne tamamen saatin altından geçince açılır;
-                        // daha önce açılınca gökyüzünün üstünde beyaz blok
-                        // gibi görünüyordu (16 Ekim).
-                        let past = (restY ?? y) - y > sceneHeight
-                        if past != scrolledPastScene { scrolledPastScene = past }
                     }
                 content
             }
         }
+        // Saat çubuğunun altında şerit yok: içerik iOS'un standart davranışıyla
+        // altından akar. Beyaz şerit renkli kartların üstünde blok gibi
+        // görünüyordu (Batuhan, 16 Ekim).
         .background(pageBackground.ignoresSafeArea())
-        // Kartlar saat çubuğunun altından geçerken saat okunur kalsın.
-        // Sıfır yükseklikli şeridin zemini yalnızca saat çubuğunun alanına taşar.
-        .overlay(alignment: .top) {
-            Color.clear.frame(height: 0)
-                .background(pageBackground.ignoresSafeArea(edges: .top))
-                .opacity(scrolledPastScene ? 1 : 0)
-                .animation(MP.M.gated(MP.M.easeOut), value: scrolledPastScene)
-                .allowsHitTesting(false)
-                .accessibilityHidden(true)
-        }
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
         // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
         .onAppear(perform: refreshCaches)
@@ -139,7 +127,6 @@ struct HomeView: View {
     @State private var width: CGFloat = 402
     /// İçeriğin dinlenme konumu (global y); kaydırma etkileri buna göre çizilir.
     @State private var restY: CGFloat?
-    @State private var scrolledPastScene = false
     /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
     /// bu akşamın kartı ilk bakışta görünür.
     private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
