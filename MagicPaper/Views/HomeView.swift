@@ -28,8 +28,14 @@ struct HomeView: View {
                         // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
                         if restY == nil { restY = y }
                         let rest = restY ?? y
-                        pull = max(0, y - rest)
-                        scrolled = max(0, rest - y)
+                        // Durum yalnızca görünen bir şey değişince yazılır: her
+                        // yazım sayfanın tamamını yeniden hesaplatır ve kaydırma
+                        // karesi başına olunca kasma yapıyordu (16 Ekim). Başlık
+                        // MP.S.x8'de tamamen solar; ötesinde güncelleme yok.
+                        let newPull = max(0, y - rest)
+                        if newPull != pull { pull = newPull }
+                        let newScrolled = min(max(0, rest - y), MP.S.x8)
+                        if newScrolled != scrolled { scrolled = newScrolled }
                         // Sahne yarıya kadar kaydıysa saat çubuğunun altına zemin gelir.
                         let past = rest - y > sceneHeight / 2
                         if past != scrolledPastScene { scrolledPastScene = past }
@@ -49,6 +55,15 @@ struct HomeView: View {
                 .accessibilityHidden(true)
         }
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+        // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
+        .onAppear(perform: refreshCaches)
+        .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
+        .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches() }
+    }
+
+    private func refreshCaches() {
+        stars = profileManager.currentProfile.map { MPStars.count(for: $0, stories: storyManager.stories) } ?? 0
+        gunlukItems = Self.makeGunlukItems(classics)
     }
 
     private var content: some View {
@@ -136,9 +151,7 @@ struct HomeView: View {
     }
 
     /// Her sabah 1, sonuna kadar okunan her masal 1 (`MPStars`).
-    private var stars: Int {
-        profileManager.currentProfile.map { MPStars.count(for: $0, stories: storyManager.stories) } ?? 0
-    }
+    @State private var stars = 0
 
     // MARK: - Başlık
 
@@ -214,7 +227,9 @@ struct HomeView: View {
     private var classics: ClassicsLibrary { .shared }
 
     /// Çizimi gelmiş klasikler (en çok 8); günün klasiği başta.
-    private var gunlukItems: [HomeGunlukPreview.Item] {
+    @State private var gunlukItems: [HomeGunlukPreview.Item] = []
+
+    private static func makeGunlukItems(_ classics: ClassicsLibrary) -> [HomeGunlukPreview.Item] {
         var tales = classics.catalog.standaloneTales.filter { UIImage(named: $0.cover) != nil }
         if let today = classics.todaysTale, let i = tales.firstIndex(where: { $0.id == today.id }) {
             tales.insert(tales.remove(at: i), at: 0)
