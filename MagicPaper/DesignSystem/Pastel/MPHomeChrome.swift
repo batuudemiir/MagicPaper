@@ -116,15 +116,9 @@ struct HomeScene: View {
     var bleed: CGFloat = 0
     /// Ragi'nin ayaklarının sahnenin alt kenarından yüksekliği: çiplerin üstünde kalır.
     var mascotLift: CGFloat = 44
-    /// Sayfa en üstteyken aşağı çekilen mesafe. İçerik yerinde tutulur; manzara
-    /// köyün hizasından, olduğu yerde parmağı izleyerek yakınlaşır.
-    /// Doğrudan dokunuşu izler; zıplama yok.
-    var pull: CGFloat = 0
-
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             backdrop
-                .scaleEffect(1 + pull / max(height + bleed, 1) * 0.6, anchor: UnitPoint(x: 0.5, y: 0.62))
             HomeSceneMascot(isNight: isNight)
                 .padding(.trailing, MPSpacing.screenH)
                 .padding(.bottom, mascotLift)
@@ -153,6 +147,10 @@ struct HomeScene: View {
                     .frame(height: 56)
             }
         }
+        // İki görsel ve üç gradyan maskesi tek dokuya düzleşir: maskeler her
+        // kaydırma karesinde ekran dışında yeniden birleştirilmez, hazır görüntü
+        // taşınır (başlık bölgesindeki kasma, 16 Ekim).
+        .drawingGroup()
         .animation(MP.M.gated(MP.M.slow), value: isNight)
         .accessibilityHidden(true)
     }

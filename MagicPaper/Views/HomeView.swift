@@ -25,19 +25,13 @@ struct HomeView: View {
                 // Kaydırma ölçüsü: içerik sabitlemesinden etkilenmeyen görünmez işaret.
                 Color.clear.frame(height: 0)
                     .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
-                        // İlk ölçüm dinlenme konumu; üstüne çekilen kadar sahne esner.
+                        // Kaydırma karesi başına durum YAZILMAZ: her yazım sayfanın
+                        // tamamını yeniden hesaplatır ve başlık bölgesinde kasma
+                        // yapıyordu (16 Ekim). Kaydırmaya bağlı görsel etkiler
+                        // `visualEffect` içinde çizim anında hesaplanır; burada
+                        // yalnızca bir kez dinlenme konumu, seyrek de eşik geçişi yazılır.
                         if restY == nil { restY = y }
-                        let rest = restY ?? y
-                        // Durum yalnızca görünen bir şey değişince yazılır: her
-                        // yazım sayfanın tamamını yeniden hesaplatır ve kaydırma
-                        // karesi başına olunca kasma yapıyordu (16 Ekim). Başlık
-                        // MP.S.x8'de tamamen solar; ötesinde güncelleme yok.
-                        let newPull = max(0, y - rest)
-                        if newPull != pull { pull = newPull }
-                        let newScrolled = min(max(0, rest - y), MP.S.x8)
-                        if newScrolled != scrolled { scrolled = newScrolled }
-                        // Sahne yarıya kadar kaydıysa saat çubuğunun altına zemin gelir.
-                        let past = rest - y > sceneHeight / 2
+                        let past = (restY ?? y) - y > sceneHeight / 2
                         if past != scrolledPastScene { scrolledPastScene = past }
                     }
                 content
@@ -74,8 +68,12 @@ struct HomeView: View {
                        onAvatar: { app.openKidCorner() },
                        onLock: { app.requestParentMode() })
                 .padding(.top, MPSpacing.md)
-                // Saatin altına girmeden kaydırdıkça solar.
-                .opacity(max(0, 1 - scrolled / MP.S.x8))
+                // Saatin altına girmeden kaydırdıkça solar (çizim anında; durum yok).
+                .visualEffect { [restY] content, proxy in
+                    let y = proxy.frame(in: .global).minY
+                    let scrolled = max(0, (restY ?? y) - y)
+                    return content.opacity(max(0, 1 - scrolled / MP.S.x8))
+                }
 
             // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
             VStack(spacing: MPSpacing.md) {
@@ -123,21 +121,17 @@ struct HomeView: View {
         .padding(.bottom, MPSpacing.xxxl)
         // Sahne içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
         .background(alignment: .top) {
-            HomeScene(isNight: isNight, height: sceneHeight, bleed: 80, mascotLift: 46, pull: pull)
+            // Üst pay geniş: aşağı çekince sahne içerikle birlikte iner, açılan
+            // boşluğu gökyüzü rengi doldurur (esneme yok, karar 16 Ekim).
+            HomeScene(isNight: isNight, height: sceneHeight, bleed: 400, mascotLift: 46)
         }
-        // Aşağı çekerken hiçbir öğe kaymaz: içerik çekilen mesafe kadar geri
-        // tutulur, yalnızca sahne görseli yerinde büyür. Ölçüm üstteki
-        // ayrı işaretten okunur; bu kaydırma ölçümü etkilemez.
-        .offset(y: -pull)
     }
 
     /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
     @State private var width: CGFloat = 402
-    /// Esneyen başlık: içeriğin dinlenme konumu ve aşağı çekilen mesafe.
+    /// İçeriğin dinlenme konumu (global y); kaydırma etkileri buna göre çizilir.
     @State private var restY: CGFloat?
-    @State private var pull: CGFloat = 0
     @State private var scrolledPastScene = false
-    @State private var scrolled: CGFloat = 0
     /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
     /// bu akşamın kartı ilk bakışta görünür.
     private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
