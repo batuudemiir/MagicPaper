@@ -18,6 +18,12 @@ struct StoryUsageStore: Sendable {
     /// fade: a child who loved foxes at four need not get them at six.
     static let learningWindow = 30
 
+    /// Pages that must have been seen before leaving counts as leaving: a
+    /// third of the story, rounded up (`furthestPage` counts from 0).
+    static func leavingThreshold(pageCount: Int) -> Int {
+        max(1, (pageCount + 2) / 3)
+    }
+
     struct Stats: Codable, Equatable, Sendable {
         var completions = 0
         var sessions = 0
@@ -31,6 +37,12 @@ struct StoryUsageStore: Sendable {
         /// against the story is the mode's call (`ModeSuccessRule`).
         var abandoned: Bool {
             sessions > 0 && completions == 0 && !lastSessionFinished && !lastSessionInterrupted
+        }
+
+        /// Abandoned, and far enough in to mean it: a child who shut the book
+        /// in its first third only glanced, and a glance is not a verdict.
+        func abandoned(pageCount: Int) -> Bool {
+            abandoned && furthestPage + 1 >= StoryUsageStore.leavingThreshold(pageCount: pageCount)
         }
 
         init() {}
@@ -106,7 +118,7 @@ struct StoryUsageStore: Sendable {
                     companionID: ContentID(origin.companionID),
                     mode: origin.mode,
                     completions: read.completions,
-                    abandoned: read.abandoned)
+                    abandoned: read.abandoned(pageCount: story.pages.count))
             }
     }
 

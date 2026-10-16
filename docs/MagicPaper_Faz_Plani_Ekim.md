@@ -559,8 +559,8 @@ Uygulama testleri 450/0 (1 atlanan), paket 878/18 (liste aynı), doğrulayıcı 
   ya da çıkarmak FAZ 16 kararı.
 
 **Açık kalanlar:**
-- Tek sayfa çevirip kapatmak da (öğrenelim/macera modunda) yarıda bırakma sayılıyor. Bir eşik (örn. masalın üçte biri)
-  istenirse küçük bir değişiklik.
+- ~~Tek sayfa çevirip kapatmak da yarıda bırakma sayılıyor.~~ Kapandı (16 Ekim 2026): masalın ilk üçte biri görülmeden
+  kapatılan masal yarıda bırakılmış sayılmıyor (`StoryUsageStore.leavingThreshold`). Gönderilen olay değişmedi.
 - Modu olmayan eski masallar varsayılan kurala (yarıda bırakma ceza) düşüyor.
 - `pageReached` oturumun açıldığı sayfadan başlar; kaldığı yerden açılan oturum o sayfaya "ulaşmış" sayılır.
 - Ayar metni İrem'in gözden geçirmesini bekliyor.
