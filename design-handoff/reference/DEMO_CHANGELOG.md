@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@7bbb3ce · Masal atölyesi: "Masal yazılıyor" ekranı
+- 21 · Masal yazılıyor ve 10 · İlk masal artık bir masal defteri. Adımlar: kadro etiketleri (çocuk, "kirpi Kestane", Masal ailem), yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesi harf harf mürekkeple, "Ragi masalı bir kez daha okuyor", sonra kapak ve "İrem'in 3. masalı hazır." künyesi. Yüzdeli halka kalktı.
+- Süre: ilk masal ~10 sn, 2.-3. masal ~8 sn, sonra ~5 sn; uyku saatinde x1,3. İlk masal atlanamaz; sonra 2 sn (4. masaldan itibaren 1 sn) içinde "Hemen aç" çıkar. Reduce Motion açıkken adımlar aynı sırayla çapraz geçişle gelir, cümle bütün halde belirir.
+- Mimari: sıra, metin ve süre saf `StoryPreparationScript`'te; veriler `PreparationFacts.gather` ile masaldan, katalogdan (`companionName(id:)` eklendi) ve kitaplıktan. `Story` modeli ve motor değişmedi. Yeni hareket sabiti `MP.M.inkDuration` (1,8 sn).
+- Bilerek yapılmadı: plandaki "sevdikleri" adımı (motor eşleşen ilgi alanını dışarı vermiyor), ses efekti, seri bölümleri.
+- Test: yeni `StoryPreparationScriptTests` 15/0. Tam takım 717 test, 716 geçti; düşen `AccountServiceTests.testAFailedSendKeepsTheEvents` (159 sn zaman aşımı) tek başına tekrarda 16/16 geçti, kararsız. Defter çizgilerinin kaldırılması (metinle hizalanmıyordu) son düzeltme; bu düzeltmeden sonra derleme ve test çalıştırılmadı (Batuhan'ın isteğiyle).
+- Simülatör: iPhone 17 Pro Max'te açık temada kadro, yaş, yazım, ikinci okuma, "Hemen aç" ve kapak videodan kare kare görüldü (açılış ve mod satırı karelerine bakılmadı). Reduce Motion, en büyük Dynamic Type, koyu tema ve iPhone 17e/SE görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryPreparationView.swift`, `Screens/StoryCreation/Preparation/` (yeni: `StoryPreparationScript`, `PreparationNotebook`, `PreparationFacts+Gather`), `StoryCreationFlow.swift`, `Onboarding/FirstRunView.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/StoryPreparationScriptTests.swift`, `docs/MASAL_ATOLYESI_PLANI.md`, `docs/MagicPaper_Design_System.md`.
+
 ### 2026-10-16 · main@8105c71 · Ana sayfa: kaydırırken kasma düzeltmesi
 - Batuhan telefonda bildirdi: ana sayfa kaydırırken kasıyor, donuyor.
 - Neden: kaydırma ölçümü (`onGeometryChange`) her karede `scrolled`/`pull` durumunu yazıyor, her yazım `HomeView`'ın tamamını yeniden hesaplatıyordu. Bu hesap içinde Günlük önizlemesi her karede bütün klasiklerin kapağını `UIImage(named:)` ile arıyor, yıldız sayısı bütün masalları tarıyordu.
