@@ -136,7 +136,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 ### 2026-10-16 · main@1f35970 · Benim köşem main'e birleşti ve gönderildi
 - `anasayfa-yenileme` main'e ileri sarıldı ve origin'e gönderildi: Benim köşem ana sayfa dilinde ve Ragi ön planda (`ac75075`), denetim düzeltmeleri (`9082245`: Ekle yönlendirmesi, Masal ailem ve kahraman düzenleme kapısı, bulunabilirlik sırası, düz bilgi paneli, büyük yazı düzeni, ana sayfa çipleri Benim köşem'e).
 - main'den gelenler (refrain deneyi, içerik yayıncısı, kitap rehberi) yalnızca değişiklik günlüğünde çakıştı; iki tarafın kayıtları korundu.
-- Gönderim, main'de bekleyen öbür oturumların commit'lerini de origin'e götürdü.
+- Birleştirme sırasında main bir kez daha ilerledi (masal atölyesi planı); ilk gönderim yalnızca main'de bekleyen öbür oturumların commit'lerini götürdü (`9896d81`), main yeniden alınıp bu iş ikinci gönderimle gitti. Çakışma yine yalnızca değişiklik günlüğündeydi.
 - Test: Batuhan'ın isteğiyle bu birleştirmede çalıştırılmadı (telefonda deneyecek); son ilgili sonuç `KidCornerTabTests` 10/0. Birleştirme sonrası derleme de yapılmadı.
 
 ### 2026-10-16 · anasayfa-yenileme@9082245 · Benim köşem denetimi: yönlendirme, kapı, bulunabilirlik, büyük yazı
@@ -160,6 +160,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
 - Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
 - Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+### 2026-10-16 · main@b997fcb (push yok) · Masal atölyesi planı
+- Yeni belge `docs/MASAL_ATOLYESI_PLANI.md`: "Masal yazılıyor" ekranının (21 ve 10 · İlk masal) yeniden tasarımı için plan. Ekran, motorun gerçekten yaptığı işi ve ailenin kendi seçimlerini gösteren bir masal defterine dönüşüyor: kadro, yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesinin mürekkeple yazılması, okuma kontrolü, ciltleme ve "Ela'nın 12. masalı" künyesi. Süreler ilk masalda ~10 sn, sonra kısalıyor ve "Hemen aç" ile atlanabiliyor.
+- Bilerek değişmedi: kod yazılmadı. `StoryPreparationView`, `Story` modeli ve motor aynı. Beş karar Batuhan'da (süreler, `MP.M.ink` sabiti, ilk cümlenin gösterilmesi, künyenin yeri, yüzdeli halkanın kaldırılması).
+- Test çalıştırılmadı: yalnızca belge. Simülatörde görülmedi.
+
 ### 2026-10-16 · main@7ae7b30 (kitap-rehberi ileri sarıldı, push yok) · Kitap rehberi main'de
 - Batuhan onayıyla `kitap-rehberi` main'e ileri sarıldı: `docs/MagicPaper_Content_Library.md` §14 (sayfa sonunda açık uç, arkadaş duyguyu yansıtır) artık main'de. Yalnızca belge; test çalıştırılmadı. Origin'e gönderilmedi.
 
