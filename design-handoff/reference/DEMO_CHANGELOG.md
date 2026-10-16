@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@8105c71 · Ana sayfa: kaydırırken kasma düzeltmesi
+- Batuhan telefonda bildirdi: ana sayfa kaydırırken kasıyor, donuyor.
+- Neden: kaydırma ölçümü (`onGeometryChange`) her karede `scrolled`/`pull` durumunu yazıyor, her yazım `HomeView`'ın tamamını yeniden hesaplatıyordu. Bu hesap içinde Günlük önizlemesi her karede bütün klasiklerin kapağını `UIImage(named:)` ile arıyor, yıldız sayısı bütün masalları tarıyordu.
+- Düzeltme: `scrolled` başlığın tamamen solduğu `MP.S.x8`'de kırpılır; `pull` ve `scrolled` yalnızca değer değişince yazılır (ilk 64 pt ve aşağı çekme dışında kaydırma sayfayı yeniden hesaplatmaz). Yıldız sayısı ve Günlük listesi `@State`'te tutulur; ekran açılınca, masallar ya da profil değişince yenilenir.
+- Değişmeyen: görünüm ve davranış (başlık solması, esneyen sahne, saat çubuğu zemini).
+- Test çalıştırılmadı (Batuhan'ın isteği). Telefona derleme arka planda sürüyor (silinen Firebase/gRPC ikili paketleri yeniden iniyor); cihazda henüz doğrulanmadı.
+- Dosya: `MagicPaper/Views/HomeView.swift`.
+
 ### 2026-10-16 · main@1a4870b · Telefona kurulum: Benim köşem birleşmesi sonrası ilk derleme
 - Disk temizliğinden sonra (8,8 GB boş) `main@1a4870b` iPhone 16'ya derlendi ve kuruldu; Swift paketleri derleme önbelleği silindiği için baştan indirildi.
 - Derleme temiz (`BUILD SUCCEEDED`): birleştirme sonrası derlenmemiş durum kapandı.
