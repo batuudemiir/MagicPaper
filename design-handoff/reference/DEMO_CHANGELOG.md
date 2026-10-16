@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@dd44465 (refrain-deneyi ileri sarıldı, push yok) · Nakarat deneyi main'de
+- Batuhan onayıyla `refrain-deneyi` main'e ileri sarıldı. Main artık şunları içeriyor: motorda `RefrainSpec` ve nakarat denetimi, `Content/Experiments/x_refrain_bedtime.json` (uyku öncesi iki kardeş blueprint), yayın aracında `build-package --experiment`, paket şeması 2.
+- Bilerek değişmedi: deney yayımlanmadı; uygulama deney dosyasını yüklemiyor, çocuklar nakaratlı masalı görmüyor. `preflight`, yayın ve `mark live` Batuhan'da. Origin'e gönderilmedi.
+- Test: ileri sarma olduğu için main, dalda test edilen hâlin aynısı: uygulama 699/0, yayın aracı 15/0, motor 790/18 (bilinen aynı 10 test).
+
 ### 2026-10-16 · refrain-deneyi@19d7f51 · Nakarat deneyi dalı main ile güncellendi ve tam test edildi
 - `refrain-deneyi` 41 commit gerideydi; main içine alındı (`19d7f51`). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
 - Test: motor 790 test / 18 hata. Hata veren 10 test, 15 Ekim kaydındakiyle birebir aynı (bilinen içerik-belge ayrışması); yeni hata yok. Yayın aracı 15/0. Uygulama testleri ilk kez bu dalda çalıştırıldı: 699/0 (1 atlanan), main ile aynı.
