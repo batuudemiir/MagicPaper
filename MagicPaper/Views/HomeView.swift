@@ -31,7 +31,10 @@ struct HomeView: View {
                         // `visualEffect` içinde çizim anında hesaplanır; burada
                         // yalnızca bir kez dinlenme konumu, seyrek de eşik geçişi yazılır.
                         if restY == nil { restY = y }
-                        let past = (restY ?? y) - y > sceneHeight / 2
+                        // Şerit sahne tamamen saatin altından geçince açılır;
+                        // daha önce açılınca gökyüzünün üstünde beyaz blok
+                        // gibi görünüyordu (16 Ekim).
+                        let past = (restY ?? y) - y > sceneHeight
                         if past != scrolledPastScene { scrolledPastScene = past }
                     }
                 content
@@ -53,9 +56,14 @@ struct HomeView: View {
         .onAppear(perform: refreshCaches)
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
         .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches() }
+        .onChange(of: profileManager.currentProfile?.age) { _, _ in
+            availableModes = Self.modes(for: profileManager.currentProfile)
+        }
     }
 
     private func refreshCaches() {
+        let modes = Self.modes(for: profileManager.currentProfile)
+        if modes != availableModes { availableModes = modes }
         stars = profileManager.currentProfile.map { MPStars.count(for: $0, stories: storyManager.stories) } ?? 0
         gunlukItems = Self.makeGunlukItems(classics)
     }
@@ -235,8 +243,14 @@ struct HomeView: View {
 
     // MARK: - Mod şeridi
 
-    private var availableModes: [StoryMode] {
-        let age = profileManager.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
+    /// Yaşa uygun modlar. Motor bütün kataloğu güvenlik kurallarına karşı
+    /// tarar (yüzlerce ms): gövdede hesaplanınca her yeniden çizim, kaydırma
+    /// sırasında 166 ms'lik donmalar yapıyordu (16 Ekim, cihaz ölçümü). Bu
+    /// yüzden yalnızca profil ya da yaş değişince hesaplanıp saklanır.
+    @State private var availableModes: [StoryMode] = []
+
+    private static func modes(for profile: UserProfile?) -> [StoryMode] {
+        let age = profile?.age ?? AgeBandResolver.mvp.upperBound
         return StoryChoiceSources.current.availableModes(forAge: age)
     }
 
