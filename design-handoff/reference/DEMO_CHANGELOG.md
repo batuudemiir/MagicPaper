@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@3a96b50 · Masal atölyesi: ~15 sn ritim ve dolan defter
+- Batuhan'ın isteği: daha uzun bekleme, daha yüksek değer algısı. İlk masal ~15 sn, 2.-3. masal ~10 sn, sonra ~6 sn; uyku saatinde x1,2 (önce x1,3). Mürekkep temposu `MP.M.inkDuration` 1,8 → 2,8 sn.
+- Tasarım, uzun süre boş durmasın diye: her adım defterde iz bırakır. Üstte "İrem'in masal defteri · No. 1", kadro etiketleri, "Yaşına uygun kelimeler" ve mod notu ("Yumuşak bir son" / "Yeni bir kelime" / "Bir keşif" / "Bir macera yolu"), mürekkeple ilk cümle, yeşil ikonlu "Ragi okudu" mührü. Durum cümlesinin altında yüzde ya da süre göstermeyen adım noktaları. Ragi hafifçe nefes alır, Reduce Motion açıkken durur. Metin notlarda gövde ya da soluk renkte kalır, yeşil yalnızca ikonda.
+- Önceki turdan: hizalanmayan defter çizgileri kaldırıldı. Dolu defterde "Vazgeç" ekranın altına taşıyordu; Ragi 96 → 80 pt, boşluklar daraltıldı.
+- Bilerek değişmedi: ilk masal yine atlanamaz, "Vazgeç" her an görünür; bildirim, ses, geri sayım yok.
+- Test: `StoryPreparationScriptTests` 17/0 (2 yeni: adım notları, defter başlığı). Tam takım çalıştırılmadı.
+- Simülatör: iPhone 17 Pro, açık tema, sıfır kurulumla ilk masal videoyla kare kare görüldü: bütün adımlar ve kapak doğru. Ragi küçültme ve boşluk daraltma bu kayıttan sonra yapıldı; derlendi ama simülatörde görülmedi. Reduce Motion, en büyük Dynamic Type, koyu tema ve küçük ekran görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryPreparationView.swift`, `Preparation/PreparationNotebook.swift`, `Preparation/StoryPreparationScript.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/StoryPreparationScriptTests.swift`, `docs/MASAL_ATOLYESI_PLANI.md`, `docs/MagicPaper_Design_System.md`.
+
 ### 2026-10-16 · main@b1850ff üstüne · Derleme düzeltmesi ve telefona kurulum
 
 - `StoryChildStep` içinde `MPRadius.lg` kullanılmıştı; ölçekte öyle bir değer yok (semantik: `tile`, `card`, `hero`…). Mod kartlarıyla aynı yarıçapa (`card`) çevrildi.
