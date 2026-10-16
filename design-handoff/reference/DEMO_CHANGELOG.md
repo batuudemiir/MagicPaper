@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@b7f04fd · Telefona kurulum: kasma düzeltmesinin ilk derlemesi
+- `main@b7f04fd` iPhone 16'ya derlendi, kuruldu ve açıldı (18:47). Kasma düzeltmesi derlenmeden gönderilmişti; derleme temiz (`BUILD SUCCEEDED`).
+- Derlemeyi yavaşlatan neden: `swift-protobuf` paketi, uygulamanın kullanmadığı `protobuf` ve `abseil` alt modüllerini her paket çözümlemesinde baştan indiriyor. Paket kopyasında alt modülleri kapatmak işe yaramadı (Xcode kopyayı yeniden oluşturdu); indirme beklendi.
+- Test çalıştırılmadı. Kaydırmanın akıcılığını Batuhan telefonda deneyecek; henüz doğrulanmadı.
+
 ### 2026-10-16 · main@e52658d · Ana sayfa: başlık bölgesindeki kasmanın kökten düzeltmesi
 - Batuhan telefonda bildirdi: ilk düzeltmeden (`8105c71`) sonra da başlık bölgesinde kasma sürüyor, aşağısı akıcı.
 - Neden: ilk düzeltme durum yazımlarını yalnızca seyrekleştirmişti; ilk 64 pt'de ve aşağı çekerken `scrolled`/`pull` hâlâ her karede yazılıyor, `HomeView` tamamen yeniden hesaplanıyordu. Ayrıca sahne iki büyük görsel ve üç gradyan maskesinden oluşuyor, maskeler her karede ekran dışında yeniden birleştiriliyordu.
