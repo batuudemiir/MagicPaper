@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · refrain-deneyi@19d7f51 · Nakarat deneyi dalı main ile güncellendi ve tam test edildi
+- `refrain-deneyi` 41 commit gerideydi; main içine alındı (`19d7f51`). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
+- Test: motor 790 test / 18 hata. Hata veren 10 test, 15 Ekim kaydındakiyle birebir aynı (bilinen içerik-belge ayrışması); yeni hata yok. Yayın aracı 15/0. Uygulama testleri ilk kez bu dalda çalıştırıldı: 699/0 (1 atlanan), main ile aynı.
+- Bilerek değişmedi: dal main'e alınmadı (Batuhan onayı bekliyor), deney kolu yayımlanmadı, `preflight` / `mark live` adımları Batuhan'da. Uygulama deney dosyasını yüklemiyor; paket şeması 2 yayında hiçbir paketi etkilemiyor (henüz paket yok).
+- Simülatörde görülmedi (arayüz değişikliği yok). Dosyalar: yalnızca birleştirme ve bu dosya.
+
 ### 2026-10-16 · main@7f695e7 · Kullanımdan öğrenme: ilk üçte birde kapatmak yarıda bırakma sayılmıyor
 - FAZ 14'ün açık kalemi kapandı. Önce: masalda bir sayfa çevirip kapatmak "yarıda bıraktı" sayılıyor ve o masalın ailesini ve yol arkadaşını sonraki seçimlerde aşağı itiyordu. Şimdi: masalın en az üçte biri (yukarı yuvarlanmış) görülmeden kapatılırsa bu bir göz atmadır; motor ne ödül ne ceza verir. 9 sayfalık masalda 3. sayfaya ulaşan çocuk bırakırsa sayılır, 2. sayfada bırakırsa sayılmaz.
 - Bilerek değişmedi: sunucuya giden okuma olayı (ulaşılan sayfa ve sayfa sayısı zaten içinde; karar sunucuda da verilebilir), Uyku öncesinde yarıda bırakmanın hiç ceza olmaması, süre bitince kapanan masal kuralı, kayıt dosyası biçimi.
