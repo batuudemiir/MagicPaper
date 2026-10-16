@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@1a4870b · Telefona kurulum: Benim köşem birleşmesi sonrası ilk derleme
+- Disk temizliğinden sonra (8,8 GB boş) `main@1a4870b` iPhone 16'ya derlendi ve kuruldu; Swift paketleri derleme önbelleği silindiği için baştan indirildi.
+- Derleme temiz (`BUILD SUCCEEDED`): birleştirme sonrası derlenmemiş durum kapandı.
+- Uygulama uzaktan açılamadı (telefon kilitliydi, ardından iOS açmayı reddetti); Batuhan elle açacak. Test çalıştırılmadı; kod değişmedi.
+
 ### 2026-10-16 · main@d4ce1bf · Benim köşem main'e birleşti ve gönderildi
 - `anasayfa-yenileme` main'e ileri sarıldı ve origin'e gönderildi: Benim köşem ana sayfa dilinde ve Ragi ön planda (`ac75075`), denetim düzeltmeleri (`9082245`: Ekle yönlendirmesi, Masal ailem ve kahraman düzenleme kapısı, bulunabilirlik sırası, düz bilgi paneli, büyük yazı düzeni, ana sayfa çipleri Benim köşem'e).
 - main'den gelenler (refrain deneyi, içerik yayıncısı, kitap rehberi) yalnızca değişiklik günlüğünde çakıştı; iki tarafın kayıtları korundu.
