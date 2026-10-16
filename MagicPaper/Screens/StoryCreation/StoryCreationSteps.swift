@@ -14,14 +14,40 @@ enum StoryCreationSteps {
         case companion(StoryMode)
     }
 
+    /// "Hangi çocuk?" adımı yalnızca seçilecek bir şey varken (16 Ekim 2026).
+    ///
+    /// Tek çocuklu bir evde bu adım, cevabı belli bir soruyu sormaktır: tek
+    /// kart, tek seçenek, bir dokunuş fazladan. Kütüphanedeki arama kutusuyla
+    /// aynı kural — bir denetim, işe yarayabileceği kadar seçenek varken
+    /// görünür.
+    static func showsChildStep(profileCount: Int) -> Bool {
+        profileCount >= 2
+    }
+
+    /// Alt kategori ayrı bir adım DEĞİL (karar: 16 Ekim 2026).
+    ///
+    /// Önce ayrı bir ekran olarak yazılmıştı; ürün kararı aynı adımda, modun
+    /// kartının altında açılması yönünde. İkinci soru ancak birincisi
+    /// cevaplandıktan sonra anlam kazanıyor, ve ayrı ekran ebeveyne ikinci bir
+    /// "Devam et" bastırıyordu. Bu yüzden burada bir kural kalmadı: konular
+    /// `StoryModeStep` içinde, mod seçilince beliriyor.
+
     /// Fikir adımı yalnızca bayrak açıkken ve bu mod için fikir varken.
     static func showsIdeaStep(hasIdeas: Bool, flag: Bool = StoryIdeaStepAccess.isEnabled()) -> Bool {
         flag && hasIdeas
     }
 
     /// Adım noktalarının erişilebilirlik etiketleri.
-    static func stepLabels(ideaStep: Bool) -> [String] {
-        ideaStep ? ["Masal", "Fikir", "Kimler"] : ["Masal", "Kimler"]
+    ///
+    /// Adım sayısı eve göre değişiyor: tek çocuklu evde "Çocuk" adımı yok.
+    /// Etiketler tek yerden üretiliyor
+    /// ki nokta sayısı ile ekran sayısı ayrışmasın — ayrıştığında kimse fark
+    /// etmez, yalnızca "Adım 2 / 3" yanlış yazar.
+    static func stepLabels(childStep: Bool = false, ideaStep: Bool) -> [String] {
+        (childStep ? ["Çocuk"] : [])
+            + ["Masal"]
+            + (ideaStep ? ["Fikir"] : [])
+            + ["Kimler"]
     }
 
     /// "Bana sürpriz yap" en az iki kurulabilir mod varken görünür (K6). Tek

@@ -159,6 +159,8 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case noVariantForFamily(relation: FamilyRelationKind, beat: StoryBeat, page: Int)
     case noVariantSatisfying(constraint: String, beat: StoryBeat, page: Int)
     case blueprintNotBeatAuthored(id: ContentID)
+    /// Katalogda karşılığı olmayan bir alt seçenek istendi.
+    case unknownTopic(String)
 
     public var explanation: String {
         switch self {
@@ -168,6 +170,8 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
             return "No blueprint fits these choices:\n" + reasons.joined(separator: "\n")
         case .storyIdeaNotFound(let id):
             return "Story idea '\(id.rawValue)' is not in the catalog."
+        case .unknownTopic(let raw):
+            return "Sub-option '\(raw)' is not a topic in this catalog."
         case .noStoryIdeas:
             return "The catalog offers no story ideas." 
         case .noSetting(let reasons):
@@ -253,6 +257,20 @@ public struct OfflineContentBinder: Sendable {
         let requires = idea.map { blueprint.requires.combined(with: $0.requires) } ?? blueprint.requires
         let forbids = idea.map { blueprint.forbids.combined(with: $0.forbids) } ?? blueprint.forbids
 
+        // Alt seçenek bir söz (`CatalogStoryTopic`): "Meslekler" denmişse masal
+        // meslekle ilgili olmak zorunda. Bu yüzden burada süzgece dönüşüyor.
+        //
+        // Tanınmayan bir alt seçenek sessizce yok sayılmaz: yok sayılsaydı
+        // uygulamadaki bir yazım hatası, söz verilmiş ama tutulmamış bir masal
+        // üretirdi — ve hiç kimse bunu fark etmezdi. FAZ 10'dan beri alan hep
+        // `nil` geldiği için reddetmenin kimseye bir bedeli yok.
+        let topic = try intent.subOption.map { raw -> CatalogStoryTopic in
+            guard let topic = catalog.storyTopic(ContentID(raw)) else {
+                throw OfflineSelectionError.unknownTopic(raw)
+            }
+            return topic
+        }
+
         // Habitat couples the axes, so binding one at a time in order is no
         // longer enough: a mountain admits no hedgehog, and a blueprint that
         // needs someone small and vulnerable then has nobody — even though a
@@ -273,12 +291,13 @@ public struct OfflineContentBinder: Sendable {
                 TraitMatch.thresholdRejection(
                     offered: $0.thresholdKinds, wanted: requires.thresholdKind)
                     ?? intent.safety?.rejection(of: $0)
+                    ?? topic?.rejection(setting: $0)
             }
         ) {
             do {
                 return try bindRest(
                     setting: candidate, catalog: catalog, intent: intent,
-                    requires: requires, forbids: forbids)
+                    requires: requires, forbids: forbids, topic: topic)
             } catch {
                 settingFailure = error
                 continue
@@ -293,7 +312,8 @@ public struct OfflineContentBinder: Sendable {
         catalog: ContentCatalog,
         intent: OfflineStoryIntent,
         requires: ContentRequirements,
-        forbids: ContentExclusions
+        forbids: ContentExclusions,
+        topic: CatalogStoryTopic?
     ) throws -> BoundContent {
         let unusedSetting = try choose(
             [setting], requested: nil, seed: intent.seed, axis: "setting",
@@ -325,6 +345,7 @@ public struct OfflineContentBinder: Sendable {
             // whole error type exists to break.
             also: { companion in
                 if let reason = intent.safety?.rejection(of: companion) { return reason }
+                if let reason = topic?.rejection(companion: companion) { return reason }
                 if let reason = TraitMatch.castingRejection(
                     offered: companion.castRoles, casting: requires.casting) {
                     return reason
@@ -361,6 +382,7 @@ public struct OfflineContentBinder: Sendable {
             // explains a flicker, but the flicker knows.
             also: { discovery in
                 if let reason = intent.safety?.rejection(of: discovery) { return reason }
+                if let reason = topic?.rejection(discovery: discovery) { return reason }
                 let explained = discovery.explainedBy.intersection(setting.traits)
                 guard !explained.isEmpty else { return nil }
                 return "already explained by the setting ("

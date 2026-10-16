@@ -1,6 +1,7 @@
 # Masal atölyesi: "Masal yazılıyor" ekranının yeniden tasarımı
 
-Durum: **plan, onay bekliyor** (16 Ekim 2026). Kod yazılmadı.
+Durum: **uygulandı** (16 Ekim 2026). §9 kararlarının hepsi önerildiği gibi onaylandı.
+Süreler 16 Ekim'de Batuhan'ın isteğiyle uzatıldı (ilk masal ~15 sn, bkz. §5). Uygulamada farklar: adım 3b (sevdikleri) v1'de yok, çünkü motor eşleşen ilgi alanını dışarı vermiyor. Mürekkep sabiti `MP.M.inkDuration` (2,8 sn) adıyla eklendi: bir eğri değil, harf harf ilerleyen bir tempo.
 Ekran: 21 · Masal yazılıyor (ve 10 · İlk masal). Dosya: `MagicPaper/Screens/StoryCreation/StoryPreparationView.swift`.
 
 ---
@@ -93,10 +94,10 @@ Notlar:
 
 | Durum | Toplam | Atlama |
 |---|---|---|
-| İlk masal (`FirstRunView`) | ~10 sn | Yok |
-| Çocuğun 2.–3. masalı | ~8 sn | 2 sn sonra "Hemen aç" |
-| 4. masal ve sonrası | ~5 sn (adım 2 ve 3b birleşir, adım 4 tek satır) | 1 sn sonra "Hemen aç" |
-| Uyku saati (`MPBedtime.isBedtime`) | Yukarıdakinin ~1,3 katı, daha yavaş geçişler | Aynı |
+| Çocuğun ilk masalı | ~15 sn | Yok |
+| Çocuğun 2.–3. masalı | ~10 sn | 2 sn sonra "Hemen aç" |
+| 4. masal ve sonrası | ~6 sn (yaş satırı düşer) | 1 sn sonra "Hemen aç" |
+| Uyku saati (`MPBedtime.isBedtime`) | Yukarıdakinin 1,2 katı | Aynı |
 
 - **"Hemen aç"**, defterin altında hayalet (ghost) bir buton olur. Dokununca
   kalan adımlar tek geçişle tamamlanır ve kapağa gelinir. Adım listesi

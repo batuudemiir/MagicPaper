@@ -18,6 +18,7 @@ struct FirstRunView: View {
     @State private var story: Story?
     @State private var modeTitle: String?
     @State private var failed = false
+    @State private var facts: PreparationFacts?
     @State private var failureReason: StoryFailureReason = .general
     @State private var asking = false
 
@@ -38,6 +39,8 @@ struct FirstRunView: View {
                         childName: childName,
                         modeTitle: modeTitle,
                         story: story,
+                        facts: facts,
+                        childColor: profileManager.currentProfile?.mpColor,
                         onRead: { onFinish(story) },
                         onCancel: { onFinish(nil) },
                         title: "\(SeriesCopy.genitive(childName)) ilk masalı yazılıyor",
@@ -80,6 +83,7 @@ struct FirstRunView: View {
     private func buildFirstStory() {
         guard let profile = profileManager.currentProfile else { return onFinish(nil) }
         story = nil
+        facts = nil
         Task {
             do {
                 let manager = StoryGenerationManager.shared
@@ -87,9 +91,11 @@ struct FirstRunView: View {
                     strategy: .surprise, requested: nil, forAge: profile.age,
                     recent: manager.recentModes(for: profile))
                 modeTitle = mode.shortTitle
-                story = try await manager.createStory(
+                let built = try await manager.createStory(
                     for: profile, mode: mode, strategy: .surprise,
                     storyIdeaID: nil, companionID: nil)
+                facts = .gather(story: built, profile: profile, family: nil, isFirstRun: true)
+                story = built
             } catch {
                 // §29: the detail goes to the log, never to the parent.
                 print("❌ İlk masal kurulamadı: \(storyFailureDetail(error))")

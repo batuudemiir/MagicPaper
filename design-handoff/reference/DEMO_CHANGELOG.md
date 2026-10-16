@@ -133,6 +133,57 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@3a96b50 · Masal atölyesi: ~15 sn ritim ve dolan defter
+- Batuhan'ın isteği: daha uzun bekleme, daha yüksek değer algısı. İlk masal ~15 sn, 2.-3. masal ~10 sn, sonra ~6 sn; uyku saatinde x1,2 (önce x1,3). Mürekkep temposu `MP.M.inkDuration` 1,8 → 2,8 sn.
+- Tasarım, uzun süre boş durmasın diye: her adım defterde iz bırakır. Üstte "İrem'in masal defteri · No. 1", kadro etiketleri, "Yaşına uygun kelimeler" ve mod notu ("Yumuşak bir son" / "Yeni bir kelime" / "Bir keşif" / "Bir macera yolu"), mürekkeple ilk cümle, yeşil ikonlu "Ragi okudu" mührü. Durum cümlesinin altında yüzde ya da süre göstermeyen adım noktaları. Ragi hafifçe nefes alır, Reduce Motion açıkken durur. Metin notlarda gövde ya da soluk renkte kalır, yeşil yalnızca ikonda.
+- Önceki turdan: hizalanmayan defter çizgileri kaldırıldı. Dolu defterde "Vazgeç" ekranın altına taşıyordu; Ragi 96 → 80 pt, boşluklar daraltıldı.
+- Bilerek değişmedi: ilk masal yine atlanamaz, "Vazgeç" her an görünür; bildirim, ses, geri sayım yok.
+- Test: `StoryPreparationScriptTests` 17/0 (2 yeni: adım notları, defter başlığı). Tam takım çalıştırılmadı.
+- Simülatör: iPhone 17 Pro, açık tema, sıfır kurulumla ilk masal videoyla kare kare görüldü: bütün adımlar ve kapak doğru. Ragi küçültme ve boşluk daraltma bu kayıttan sonra yapıldı; derlendi ama simülatörde görülmedi. Reduce Motion, en büyük Dynamic Type, koyu tema ve küçük ekran görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryPreparationView.swift`, `Preparation/PreparationNotebook.swift`, `Preparation/StoryPreparationScript.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/StoryPreparationScriptTests.swift`, `docs/MASAL_ATOLYESI_PLANI.md`, `docs/MagicPaper_Design_System.md`.
+
+### 2026-10-16 · main@b1850ff üstüne · Derleme düzeltmesi ve telefona kurulum
+
+- `StoryChildStep` içinde `MPRadius.lg` kullanılmıştı; ölçekte öyle bir değer yok (semantik: `tile`, `card`, `hero`…). Mod kartlarıyla aynı yarıçapa (`card`) çevrildi.
+- Bu hata, testlerin atlanması kararıyla doğrulanmadan main'e gönderilen commit'teydi (`8a13f28`); main o commit'ten bu düzeltmeye kadar derlenmiyordu. Kayıt dürüstlük için burada duruyor.
+- Cihaz derlemesi **BUILD SUCCEEDED**; uygulama iPhone 16'ya kuruldu (`com.batu.magicpaper.v1`). Uygulama testleri hâlâ çalıştırılmadı.
+- Yol üstünde: yeni worktree'de üç gitignore'lu dosya eksikti ve derlemeyi sırayla düşürdü — `Secrets.xcconfig` (hem kök hem `MagicPaper/` altında) ve `MagicPaper/GoogleService-Info.plist`. Yeni worktree açan herkesin üçünü de kopyalaması gerekiyor.
+- Etkilenen: `MagicPaper/Screens/StoryCreation/StoryChildStep.swift`, bu dosya.
+
+### 2026-10-16 · faz-21-alt-kategoriler · Yaratma akışı: çocuk adımı ve mod altında açılan alt kategoriler
+
+- **Adım 1 "Masal kimin için?"** (`StoryChildStep`, yeni): yalnızca evde birden fazla çocuk varken görünür. Tek çocuklu evde cevabı belli bir soru sormak olurdu. Seçim akışa özeldir, aktif profili değiştirmez: büyük kardeşe masal yazdırmak uygulamanın geri kalanını büyük kardeşe çevirmemeli. Bugüne kadar akış aktif profili kullanıyordu ve yanlış profil seçiliyken yazılan masal sessizce yanlış çocuğun oluyordu.
+- **Adım 2'de alt kategoriler aynı ekranda** (karar: Batuhan, 16 Ekim): mod kartına dokununca altında o modun konuları çip olarak açılır ("Neyi öğrenelim?" / "Nereye gidelim?"). Önce ayrı bir ekran olarak yazılmıştı; ürün kararı aynı adımda olması yönünde — ikinci soru ancak birincisi cevaplandıktan sonra anlam kazanıyor ve ayrı ekran ikinci bir "Devam et" bastırıyordu. `StoryTopicStep` silindi, mantık `StoryModeStep` içine alındı.
+- Konu isteğe bağlı: seçmeden devam edilebilir, seçili çipe tekrar dokunmak kaldırır — bu yüzden ayrı "Farketmez" kartı yok. Mod değişince konu düşer (meslek konusu seçip uyku moduna dönen biri farkında olmadan meslek masalı ısmarlamamalı). Sürpriz konu sormaz: ebeveyn "sen seç" dedi.
+- Köprü: `StoryTopicChoice` + `StoryChoiceSource.topicChoices(forAge:mode:)`; `OfflineStoryService` motorun `availableTopics`'ini çağırıyor. Seçilen konu `createStory(subOption:)` üzerinden niyete geçiyor — bu yol FAZ 10'dan beri boş duruyordu.
+- Adım noktaları etiket listesinden türetiliyor; konu bir adım olmadığı için nokta eklemiyor. Tek çocuklu evde "Masal → Kimler", çok çocuklu evde "Çocuk → Masal → Kimler".
+- **Doğrulama yapılmadı (Batuhan'ın kararı: testleri atla, birleştir).** Bu turda ne uygulama testleri ne de derleme tamamlandı; derleme makinedeki disk darlığı yüzünden birkaç kez yarıda kaldı (son hata: "No space left on device", ondan önce `swift-protobuf` alt modülünün yeniden indirilmesi). Motor tarafı (önceki commit `c96b804`) 795 test / 18 bilinen hatayla doğrulanmıştı; bu commit'teki arayüz kodu **derlenmemiştir**.
+- Etkilenen: `Screens/StoryCreation/StoryChildStep.swift` (yeni), `StoryModeStep.swift`, `StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryEngineBridge/StoryChoiceSource.swift`, `OfflineStoryService.swift`, `MagicPaperTests/StoryCreationStepsTests.swift`, bu dosya.
+
+### 2026-10-16 · faz-21-alt-kategoriler (271c787 üstüne) · Mod alt kategorileri motorda: söz olarak
+
+- Toplantı kararı: yaratma akışı 1) hangi çocuk 2) mod + **alt kategori** 3) yardımcı karakter. Koddaki durum: 1. adım yok (aktif profil kullanılıyor), 3. adım var ("Masal ailem" çipleri + katalog arkadaşları), 2. adımın alt kategorileri yoktu. Bu tur 2. adımın motor tarafını yazdı.
+- `CatalogStoryTopic` (yeni): mod içindeki alt seçenek. FAZ 10'da açılıp boş bırakılan `subOption` alanı artık bir konu kimliği taşıyor.
+- **Alt seçenek bir söz, bir tat değil.** İlgi alanları ağırlık verir ve asla süzmez; alt seçenek süzgeçtir, çünkü "Meslekler" seçip kayıp kedi masalı almak uygulamanın yalan söylemesidir. Süzgeç olduğu için de yalnızca gerçekten kurulabildiği yerde teklif edilir (`BlueprintSelector.availableTopics`, §29).
+- Konu sözcükleri ikinci bir taksonomi değil, ilgi alanı sözlüğünün kendisi (`InterestTag`). Fark sözcükte değil uygulanışında. Sözlüğe altı sözcük eklendi: jobs, science, history, country, city, sky.
+- Şart yuva başına (`requires.setting` / `.companion` / `.discovery`): "Hayvanlar" yol arkadaşının hayvan olmasını ister, mekânın değil. Düz tek liste "masalın bir yerinde geçsin" demek olurdu — söz değil temenni.
+- Karşılanamayan konu reddediliyor, sessizce başka masalla doldurulmuyor; gerekçe konuyu adlandırıyor. Tanınmayan alt seçenek de yok sayılmıyor (`OfflineSelectionError.unknownTopic`): yok sayılsaydı uygulamadaki yazım hatası, söz verilip tutulmamış masal üretir ve iz bırakmazdı.
+- `CatalogIntegrity`: hiçbir şey şart koşmayan konu **hata** (tanımı gereği sözünü tutamaz), şartını hiçbir içeriğin karşılamadığı konu **uyarı** (kayıt doğru, içerik yazılmamış).
+- On konu tanımlandı: Meslekler, Sporlar, Hayvanlar, Bilim, Tarih (öğrenelim); Yeni bir ülke, Yeni bir şehir, Denizin altı, Gökyüzü ve uzay, Vahşi doğa (macera). Son üç macera konusu öneri — tahtada ülke/il vardı, mevcut içerik zaten deniz/doğa/gökyüzünde geçtiği için eklendi. Uyku öncesine alt kategori yok (tahtada da yok).
+- **Bugün on konudan ikisi canlı:** Hayvanlar (5-6) ve Vahşi doğa (5-6); 3-4 bandında sıfır. Kalan sekizi karşılayacak tek bir mekân/arkadaş/nesne yok — yazılmamış içerik. Canlı liste testte sabitlendi: bir içerik turu yeni konuyu canlandırdığında test kırılıp kaydı güncellemeyi ister.
+- Yol üstünde bulunan kusur: `ContentCatalogLoader.assemble` kataloğu elle alan alan yeniden kuruyor ve `storyTopics` o listeye girmediği için yüklenen katalogdan sessizce düşüyordu. Düzeltildi; ayrıca `Mirror` ile kataloğun kendi alanlarını gezen bir koruma testi eklendi (alan adlarının kopyasını tutmuyor, yarın eklenen alan da denetlenir).
+- Bilerek yapılmadı: 1. adım (hangi çocuk) ekranı, alt kategori adımının arayüzü, ve sekiz konunun içeriği. Uygulama hedefi testleri çalıştırılmadı — değişen kodun hiçbiri uygulama hedefinde değil.
+- Test: motor 795 test / 18 hata — bilinen 10 vakanın aynısı, bugün `refrain-deneyi` HEAD'inde ölçülen tabanla birebir; yeni hata yok. 15 yeni test (13 konu + 1 katalog alanı koruması + 1 alt seçenek sözleşmesi).
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/StoryTopic.swift` (yeni), `ContentCatalog.swift`, `ContentCatalogLoader.swift`, `CatalogIntegrity.swift`, `Offline/OfflineSelection.swift`, `Offline/BlueprintSelector.swift`, `Resources/blueprints/pilot_library_v1.json`, `Tests/StoryEngineTests/StoryTopicTests.swift` (yeni), `CatalogMergeTests.swift`, `InterestCatalogTests.swift`, `ModeBandCoverageTests.swift`, bu dosya.
+### 2026-10-16 · main@7bbb3ce · Masal atölyesi: "Masal yazılıyor" ekranı
+- 21 · Masal yazılıyor ve 10 · İlk masal artık bir masal defteri. Adımlar: kadro etiketleri (çocuk, "kirpi Kestane", Masal ailem), yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesi harf harf mürekkeple, "Ragi masalı bir kez daha okuyor", sonra kapak ve "İrem'in 3. masalı hazır." künyesi. Yüzdeli halka kalktı.
+- Süre: ilk masal ~10 sn, 2.-3. masal ~8 sn, sonra ~5 sn; uyku saatinde x1,3. İlk masal atlanamaz; sonra 2 sn (4. masaldan itibaren 1 sn) içinde "Hemen aç" çıkar. Reduce Motion açıkken adımlar aynı sırayla çapraz geçişle gelir, cümle bütün halde belirir.
+- Mimari: sıra, metin ve süre saf `StoryPreparationScript`'te; veriler `PreparationFacts.gather` ile masaldan, katalogdan (`companionName(id:)` eklendi) ve kitaplıktan. `Story` modeli ve motor değişmedi. Yeni hareket sabiti `MP.M.inkDuration` (1,8 sn).
+- Bilerek yapılmadı: plandaki "sevdikleri" adımı (motor eşleşen ilgi alanını dışarı vermiyor), ses efekti, seri bölümleri.
+- Test: yeni `StoryPreparationScriptTests` 15/0. Tam takım 717 test, 716 geçti; düşen `AccountServiceTests.testAFailedSendKeepsTheEvents` (159 sn zaman aşımı) tek başına tekrarda 16/16 geçti, kararsız. Defter çizgilerinin kaldırılması (metinle hizalanmıyordu) son düzeltme; bu düzeltmeden sonra derleme ve test çalıştırılmadı (Batuhan'ın isteğiyle).
+- Simülatör: iPhone 17 Pro Max'te açık temada kadro, yaş, yazım, ikinci okuma, "Hemen aç" ve kapak videodan kare kare görüldü (açılış ve mod satırı karelerine bakılmadı). Reduce Motion, en büyük Dynamic Type, koyu tema ve iPhone 17e/SE görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryPreparationView.swift`, `Screens/StoryCreation/Preparation/` (yeni: `StoryPreparationScript`, `PreparationNotebook`, `PreparationFacts+Gather`), `StoryCreationFlow.swift`, `Onboarding/FirstRunView.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/StoryPreparationScriptTests.swift`, `docs/MASAL_ATOLYESI_PLANI.md`, `docs/MagicPaper_Design_System.md`.
+
 ### 2026-10-16 · main@8105c71 · Ana sayfa: kaydırırken kasma düzeltmesi
 - Batuhan telefonda bildirdi: ana sayfa kaydırırken kasıyor, donuyor.
 - Neden: kaydırma ölçümü (`onGeometryChange`) her karede `scrolled`/`pull` durumunu yazıyor, her yazım `HomeView`'ın tamamını yeniden hesaplatıyordu. Bu hesap içinde Günlük önizlemesi her karede bütün klasiklerin kapağını `UIImage(named:)` ile arıyor, yıldız sayısı bütün masalları tarıyordu.

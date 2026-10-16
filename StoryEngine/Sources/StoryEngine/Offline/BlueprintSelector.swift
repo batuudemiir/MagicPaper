@@ -338,6 +338,52 @@ public struct BlueprintSelector: Sendable {
         }
     }
 
+    /// Bu çocuğa, bu modda gerçekten teklif edilebilecek alt seçenekler.
+    ///
+    /// Alt seçenek bir söz olduğu için (`CatalogStoryTopic`), tutulamayacak bir
+    /// söz hiç verilmez: katalogda tanımlı olmak yetmez, o yaş bandında ve o
+    /// modda konuyu karşılayan bütün bir masal kurulabilmelidir.
+    ///
+    /// Kural burada yeniden yazılmıyor, arkadaş kartlarında olduğu gibi
+    /// BAĞLAYICIYA soruluyor: bağlanabiliyorsa teklif edilir. İkinci bir kopya
+    /// olmadığı için, konu süzgeci yarın değişirse bu liste kendiliğinden
+    /// doğru kalır. "Meslekler"i yazıp içeriğini yazmamak, ekranda ölü bir çip
+    /// değil, görünmeyen bir çip üretir — §29: kullanıcıya üretemeyeceğimiz
+    /// bir şey teklif edilmez.
+    public func availableTopics(
+        catalog: ContentCatalog,
+        intent: OfflineStoryIntent,
+        idea: CatalogStoryIdea? = nil
+    ) -> [CatalogStoryTopic] {
+        guard let mode = intent.mode else { return [] }
+        let topics = catalog.storyTopics(for: mode)
+        guard !topics.isEmpty else { return [] }
+
+        let (candidates, _) = admissible(catalog: catalog, intent: intent, idea: idea)
+        guard !candidates.isEmpty else { return [] }
+
+        let binder = OfflineContentBinder()
+        return topics.filter { topic in
+            candidates.contains { blueprint in
+                let probe = OfflineStoryIntent(
+                    childName: intent.childName,
+                    storyIdeaID: intent.storyIdeaID,
+                    seed: intent.seed,
+                    mode: intent.mode,
+                    ageBand: intent.ageBand,
+                    subOption: topic.id.rawValue,
+                    family: intent.family,
+                    interests: intent.interests,
+                    recent: intent.recent,
+                    usage: intent.usage,
+                    safety: intent.safety
+                )
+                return (try? binder.bind(
+                    blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
+            }
+        }
+    }
+
     /// The companions worth offering for this intent, best first.
     ///
     /// Step 2 of the flow asks "who should come with us?", and the answer has to
