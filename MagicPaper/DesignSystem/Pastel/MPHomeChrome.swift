@@ -420,6 +420,9 @@ struct HomeHeroCard: View {
 struct HomeSection<Leading: View, Content: View>: View {
     let title: String
     var contained: Bool = true
+    /// Başlığın sağında küçük sayaç ("3 / 8"); bağlantıyla birlikte kullanılmaz.
+    var note: String? = nil
+    var noteSpoken: String? = nil
     var link: (title: String, action: () -> Void)? = nil
     @ViewBuilder var leading: Leading
     @ViewBuilder var content: Content
@@ -434,6 +437,10 @@ struct HomeSection<Leading: View, Content: View>: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Spacer(minLength: 0)
+                if let note {
+                    Text(note).mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
+                        .accessibilityLabel(noteSpoken ?? note)
+                }
                 if let link {
                     Button(action: link.action) {
                         HStack(spacing: MPSpacing.xxs) {
@@ -465,9 +472,10 @@ struct HomeSection<Leading: View, Content: View>: View {
 }
 
 extension HomeSection where Leading == EmptyView {
-    init(title: String, contained: Bool = true,
+    init(title: String, contained: Bool = true, note: String? = nil, noteSpoken: String? = nil,
          link: (title: String, action: () -> Void)? = nil, @ViewBuilder content: () -> Content) {
-        self.init(title: title, contained: contained, link: link, leading: { EmptyView() }, content: content)
+        self.init(title: title, contained: contained, note: note, noteSpoken: noteSpoken, link: link,
+                  leading: { EmptyView() }, content: content)
     }
 }
 
