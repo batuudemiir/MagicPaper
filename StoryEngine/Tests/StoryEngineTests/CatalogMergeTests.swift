@@ -345,4 +345,44 @@ extension CatalogMergeTests {
             }
         }
     }
+    /// Derleme (`assemble`) kataloğu alan alan yeniden kuruyor; o listeye
+    /// eklenmeyen her yeni alan sessizce düşer.
+    ///
+    /// Bu tam olarak bir kez oldu ve bir kez daha olacaktı: `storyTopics`
+    /// eklendi, `merging` güncellendi, ama korpus şablonları değiştirirken
+    /// kataloğu yeniden kuran elle yazılmış liste güncellenmedi — alan
+    /// yüklenen katalogdan kayboldu, hiçbir şey hata vermedi, yalnızca
+    /// ekranda konu çıkmadı.
+    ///
+    /// Bu yüzden test alan adlarının kendi kopyasını TUTMUYOR: `Mirror` ile
+    /// kataloğun kendi alanlarını geziyor. Yarın eklenen alan da kendiliğinden
+    /// denetlenir.
+    func testAssemblyDropsNoCatalogField() throws {
+        let loaded = try ContentCatalogLoader().load().catalog
+
+        var documents: [ContentCatalog] = []
+        for name in [ContentCatalogLoader.resourceName] + ContentCatalogLoader.additionalResourceNames {
+            var searched: [String] = []
+            guard let url = ContentCatalogLoader.locate(name, searched: &searched),
+                  let data = try? Data(contentsOf: url) else { continue }
+            documents.append(try JSONDecoder().decode(ContentCatalog.self, from: data))
+        }
+        let authored = ContentCatalog.merging(documents)
+
+        let assembledFields = Dictionary(uniqueKeysWithValues:
+            Mirror(reflecting: loaded).children.compactMap { child in
+                child.label.map { ($0, child.value) }
+            })
+
+        for child in Mirror(reflecting: authored).children {
+            guard let label = child.label,
+                  let authoredCount = (child.value as? any Collection)?.count,
+                  authoredCount > 0,
+                  let assembled = assembledFields[label] as? any Collection else { continue }
+            XCTAssertFalse(assembled.isEmpty,
+                           "'\(label)' yazılmış içerikte \(authoredCount) kayıt taşıyor ama "
+                           + "derlenmiş katalogda boş — assemble'daki alan listesine eklenmemiş.")
+        }
+    }
+
 }

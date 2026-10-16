@@ -103,6 +103,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkDiscoveryModality(catalog))
         issues.append(contentsOf: checkAgeFit(catalog))
         issues.append(contentsOf: checkStoryModes(catalog))
+        issues.append(contentsOf: checkStoryTopics(catalog))
         issues.append(contentsOf: checkFamily(catalog))
         issues.append(contentsOf: checkInterests(catalog))
         issues.append(contentsOf: checkSafetyTopics(catalog))
@@ -677,6 +678,55 @@ public struct CatalogIntegrityChecker: Sendable {
     /// Her mod bir profile sahip olmalı ve o profil gerçekten kurulabilir bir
     /// blueprint'e ulaşmalı. Ulaşamayan bir mod ekranda bir kart olarak durur
     /// ve seçildiğinde hiçbir şey üretemez.
+    /// Alt seçenekler (`CatalogStoryTopic`).
+    ///
+    /// İki ayrı kusur, iki ayrı ağırlık:
+    ///
+    /// - Hiçbir yuvaya şart koymayan konu **hata**: ekranda bir seçim gibi
+    ///   görünür, her masalı kabul eder, yani verdiği sözü tanımı gereği
+    ///   tutamaz. Bu bir içerik boşluğu değil, yanlış yazılmış bir kayıt.
+    /// - Şartını hiçbir içeriğin karşılamadığı konu **uyarı**: kayıt doğru,
+    ///   içerik henüz yazılmamış. Çocuk bundan etkilenmez — `availableTopics`
+    ///   o konuyu zaten göstermez — ama içeriği yazan kişi bunu görmeli,
+    ///   yoksa "Meslekler yazdım ama hiç çıkmıyor" diye arar.
+    private func checkStoryTopics(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        guard !catalog.storyTopics.isEmpty else { return [] }
+        var issues: [CatalogIssue] = []
+
+        var seen = Set<ContentID>()
+        for topic in catalog.storyTopics {
+            if !seen.insert(topic.id).inserted {
+                issues.append(.init(severity: .error, code: "duplicate_story_topic",
+                                    recordID: topic.id,
+                                    message: "Topic '\(topic.id.rawValue)' is declared more than once."))
+            }
+            if topic.requires.isEmpty {
+                issues.append(.init(severity: .error, code: "topic_promises_nothing",
+                                    recordID: topic.id,
+                                    message: "Topic '\(topic.id.rawValue)' requires nothing, so every story satisfies it."))
+                continue
+            }
+            let settings = Set(catalog.settings.flatMap(\.interests))
+            let companions = Set(catalog.companions.flatMap(\.interests))
+            let objects = Set(catalog.objects.flatMap(\.interests))
+            let unserved = [
+                ("setting", topic.requires.setting, settings),
+                ("companion", topic.requires.companion, companions),
+                ("discovery", topic.requires.discovery, objects),
+            ].filter { _, wanted, offered in
+                !wanted.isEmpty && !wanted.contains(where: offered.contains)
+            }
+            for (slot, wanted, _) in unserved {
+                issues.append(.init(
+                    severity: .warning, code: "topic_without_content", recordID: topic.id,
+                    message: "Topic '\(topic.id.rawValue)' wants \(slot) "
+                        + wanted.map(\.rawValue).sorted().joined(separator: ", ")
+                        + "; no \(slot) carries it, so the topic is never offered."))
+            }
+        }
+        return issues
+    }
+
     private func checkStoryModes(_ catalog: ContentCatalog) -> [CatalogIssue] {
         // Modeless catalogs (the V1 library, test fixtures) are not wrong, only
         // older. Their silence is reported once, not as a fault per mode.

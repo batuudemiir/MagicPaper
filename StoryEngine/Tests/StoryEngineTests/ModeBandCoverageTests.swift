@@ -76,17 +76,34 @@ final class ModeBandCoverageTests: XCTestCase {
 
     // MARK: - Alt seçenek
 
-    /// `subOption` yalnızca yer tutucu: bugün hiçbir şeyi değiştirmemeli.
-    func testSubOptionDoesNotChangeTheStoryYet() throws {
+    /// Yer tutucu dönemi bitti (16 Ekim 2026).
+    ///
+    /// FAZ 10 `subOption`'ı açıp boş bıraktı ve buradaki test "hiçbir şeyi
+    /// değiştirmemeli" diyordu — doğru bir kayıttı, çünkü alanın ne anlama
+    /// geleceği henüz ürün kararı değildi. Karar verildi: alan artık bir konu
+    /// kimliği ve bir süzgeç (`CatalogStoryTopic`). Test o yüzden gevşetilmedi,
+    /// yeni sözleşmeye çevrildi.
+    ///
+    /// Değişmeyen tek şey: alt seçenek **yokken** masal eskisinin aynısı.
+    func testNoSubOptionStillBuildsTheSameStory() throws {
         let catalog = try catalog()
         let composer = OfflineStoryComposer()
         for seed in (0..<6).map({ "sub-\($0)" }) {
-            let plain = try composer.compose(catalog: catalog, intent: OfflineStoryIntent(
+            let once = try composer.compose(catalog: catalog, intent: OfflineStoryIntent(
                 childName: "Ece", seed: seed, mode: .learning, ageBand: b56))
-            let withOption = try composer.compose(catalog: catalog, intent: OfflineStoryIntent(
-                childName: "Ece", seed: seed, mode: .learning, ageBand: b56, subOption: "x"))
-            XCTAssertEqual(plain.fingerprint, withOption.fingerprint, seed)
+            let twice = try composer.compose(catalog: catalog, intent: OfflineStoryIntent(
+                childName: "Ece", seed: seed, mode: .learning, ageBand: b56, subOption: nil))
+            XCTAssertEqual(once.fingerprint, twice.fingerprint, seed)
         }
+    }
+
+    /// Tanınmayan bir alt seçenek artık sessizce yok sayılmıyor.
+    func testAnUnknownSubOptionIsNoLongerIgnored() throws {
+        let catalog = try catalog()
+        XCTAssertThrowsError(try OfflineStoryComposer().compose(
+            catalog: catalog,
+            intent: OfflineStoryIntent(childName: "Ece", seed: "sub-x", mode: .learning,
+                                       ageBand: b56, subOption: "x")))
     }
 
     func testSubOptionDefaultsToNil() {

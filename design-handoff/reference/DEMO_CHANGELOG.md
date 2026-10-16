@@ -133,6 +133,22 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · faz-21-alt-kategoriler (271c787 üstüne) · Mod alt kategorileri motorda: söz olarak
+
+- Toplantı kararı: yaratma akışı 1) hangi çocuk 2) mod + **alt kategori** 3) yardımcı karakter. Koddaki durum: 1. adım yok (aktif profil kullanılıyor), 3. adım var ("Masal ailem" çipleri + katalog arkadaşları), 2. adımın alt kategorileri yoktu. Bu tur 2. adımın motor tarafını yazdı.
+- `CatalogStoryTopic` (yeni): mod içindeki alt seçenek. FAZ 10'da açılıp boş bırakılan `subOption` alanı artık bir konu kimliği taşıyor.
+- **Alt seçenek bir söz, bir tat değil.** İlgi alanları ağırlık verir ve asla süzmez; alt seçenek süzgeçtir, çünkü "Meslekler" seçip kayıp kedi masalı almak uygulamanın yalan söylemesidir. Süzgeç olduğu için de yalnızca gerçekten kurulabildiği yerde teklif edilir (`BlueprintSelector.availableTopics`, §29).
+- Konu sözcükleri ikinci bir taksonomi değil, ilgi alanı sözlüğünün kendisi (`InterestTag`). Fark sözcükte değil uygulanışında. Sözlüğe altı sözcük eklendi: jobs, science, history, country, city, sky.
+- Şart yuva başına (`requires.setting` / `.companion` / `.discovery`): "Hayvanlar" yol arkadaşının hayvan olmasını ister, mekânın değil. Düz tek liste "masalın bir yerinde geçsin" demek olurdu — söz değil temenni.
+- Karşılanamayan konu reddediliyor, sessizce başka masalla doldurulmuyor; gerekçe konuyu adlandırıyor. Tanınmayan alt seçenek de yok sayılmıyor (`OfflineSelectionError.unknownTopic`): yok sayılsaydı uygulamadaki yazım hatası, söz verilip tutulmamış masal üretir ve iz bırakmazdı.
+- `CatalogIntegrity`: hiçbir şey şart koşmayan konu **hata** (tanımı gereği sözünü tutamaz), şartını hiçbir içeriğin karşılamadığı konu **uyarı** (kayıt doğru, içerik yazılmamış).
+- On konu tanımlandı: Meslekler, Sporlar, Hayvanlar, Bilim, Tarih (öğrenelim); Yeni bir ülke, Yeni bir şehir, Denizin altı, Gökyüzü ve uzay, Vahşi doğa (macera). Son üç macera konusu öneri — tahtada ülke/il vardı, mevcut içerik zaten deniz/doğa/gökyüzünde geçtiği için eklendi. Uyku öncesine alt kategori yok (tahtada da yok).
+- **Bugün on konudan ikisi canlı:** Hayvanlar (5-6) ve Vahşi doğa (5-6); 3-4 bandında sıfır. Kalan sekizi karşılayacak tek bir mekân/arkadaş/nesne yok — yazılmamış içerik. Canlı liste testte sabitlendi: bir içerik turu yeni konuyu canlandırdığında test kırılıp kaydı güncellemeyi ister.
+- Yol üstünde bulunan kusur: `ContentCatalogLoader.assemble` kataloğu elle alan alan yeniden kuruyor ve `storyTopics` o listeye girmediği için yüklenen katalogdan sessizce düşüyordu. Düzeltildi; ayrıca `Mirror` ile kataloğun kendi alanlarını gezen bir koruma testi eklendi (alan adlarının kopyasını tutmuyor, yarın eklenen alan da denetlenir).
+- Bilerek yapılmadı: 1. adım (hangi çocuk) ekranı, alt kategori adımının arayüzü, ve sekiz konunun içeriği. Uygulama hedefi testleri çalıştırılmadı — değişen kodun hiçbiri uygulama hedefinde değil.
+- Test: motor 795 test / 18 hata — bilinen 10 vakanın aynısı, bugün `refrain-deneyi` HEAD'inde ölçülen tabanla birebir; yeni hata yok. 15 yeni test (13 konu + 1 katalog alanı koruması + 1 alt seçenek sözleşmesi).
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Content/StoryTopic.swift` (yeni), `ContentCatalog.swift`, `ContentCatalogLoader.swift`, `CatalogIntegrity.swift`, `Offline/OfflineSelection.swift`, `Offline/BlueprintSelector.swift`, `Resources/blueprints/pilot_library_v1.json`, `Tests/StoryEngineTests/StoryTopicTests.swift` (yeni), `CatalogMergeTests.swift`, `InterestCatalogTests.swift`, `ModeBandCoverageTests.swift`, bu dosya.
+
 ### 2026-10-16 · main@7f695e7 · Kullanımdan öğrenme: ilk üçte birde kapatmak yarıda bırakma sayılmıyor
 - FAZ 14'ün açık kalemi kapandı. Önce: masalda bir sayfa çevirip kapatmak "yarıda bıraktı" sayılıyor ve o masalın ailesini ve yol arkadaşını sonraki seçimlerde aşağı itiyordu. Şimdi: masalın en az üçte biri (yukarı yuvarlanmış) görülmeden kapatılırsa bu bir göz atmadır; motor ne ödül ne ceza verir. 9 sayfalık masalda 3. sayfaya ulaşan çocuk bırakırsa sayılır, 2. sayfada bırakırsa sayılmaz.
 - Bilerek değişmedi: sunucuya giden okuma olayı (ulaşılan sayfa ve sayfa sayısı zaten içinde; karar sunucuda da verilebilir), Uyku öncesinde yarıda bırakmanın hiç ceza olmaması, süre bitince kapanan masal kuralı, kayıt dosyası biçimi.

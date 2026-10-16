@@ -19,7 +19,12 @@ final class InterestCatalogTests: XCTestCase {
         let catalog = try catalog()
         XCTAssertEqual(catalog.interests.map(\.id.rawValue), [
             "animals", "space", "dinosaurs", "princesses", "cars", "sea",
-            "music", "magic", "nature", "robots", "sports", "pirates"
+            "music", "magic", "nature", "robots", "sports", "pirates",
+            // 16 Ekim 2026: alt kategoriler (`CatalogStoryTopic`) konu sözcüğü
+            // olarak bu sözlüğü kullanıyor — ikinci bir taksonomi açmamak için.
+            // İçeriği olmayan sözcük ebeveyne çip olarak da görünmez;
+            // `interestCoverage` yalnızca ulaşılabilen sözcükleri sayar.
+            "jobs", "science", "history", "country", "city", "sky"
         ])
         XCTAssertEqual(catalog.interest("sea")?.name, "Deniz")
         XCTAssertEqual(catalog.interest("nature")?.name, "Doğa")

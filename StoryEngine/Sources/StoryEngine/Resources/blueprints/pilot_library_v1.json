@@ -5,7 +5,9 @@
   "settings": [
     {
       "id": "setting_whispering_forest_001",
-      "interests": ["nature"],
+      "interests": [
+        "nature"
+      ],
       "name": "Fısıldayan Orman",
       "description": "Ağaçların arasından ince bir aralık geçen, sakin bir orman.",
       "tags": [
@@ -33,8 +35,12 @@
     },
     {
       "id": "setting_night_garden_001",
-      "interests": ["nature"],
-      "topics": ["darkness"],
+      "interests": [
+        "nature"
+      ],
+      "topics": [
+        "darkness"
+      ],
       "name": "Gece Bahçesi",
       "description": "Alçak bir kapısı olan, geceleri sessizleşen bir bahçe.",
       "tags": [
@@ -62,8 +68,13 @@
     },
     {
       "id": "setting_cloud_mountain_001",
-      "interests": ["nature"],
-      "topics": ["heights", "weather"],
+      "interests": [
+        "nature"
+      ],
+      "topics": [
+        "heights",
+        "weather"
+      ],
       "name": "Bulut Dağı",
       "description": "Yolu taşlı, tepesi bulutlara değen bir dağ.",
       "tags": [
@@ -89,7 +100,9 @@
     },
     {
       "id": "setting_coral_sea_001",
-      "interests": ["sea"],
+      "interests": [
+        "sea"
+      ],
       "name": "Mercan Denizi",
       "description": "Suyu berrak, dibi mercanla kaplı bir deniz.",
       "tags": [
@@ -112,7 +125,9 @@
     },
     {
       "id": "setting_old_orchard_001",
-      "interests": ["nature"],
+      "interests": [
+        "nature"
+      ],
       "name": "Eski Meyve Bahçesi",
       "description": "Uzun otları ve alçak duvarı olan, bakımlı ama ıssız bir meyve bahçesi.",
       "tags": [
@@ -140,7 +155,9 @@
     },
     {
       "id": "setting_festival_meadow_001",
-      "interests": ["nature"],
+      "interests": [
+        "nature"
+      ],
       "name": "Şenlik Çayırı",
       "description": "Başkalarının çoktan oyuna başladığı, güneşli ve geniş bir çayır.",
       "tags": [
@@ -172,7 +189,9 @@
   "companions": [
     {
       "id": "companion_fox_pilot_001",
-      "interests": ["animals"],
+      "interests": [
+        "animals"
+      ],
       "name": "Tarçın",
       "type": "tilki",
       "personality": "Sakin ve güven veren.",
@@ -205,7 +224,9 @@
     },
     {
       "id": "companion_hedgehog_pilot_001",
-      "interests": ["animals"],
+      "interests": [
+        "animals"
+      ],
       "name": "Kestane",
       "type": "kirpi",
       "personality": "Ürkek ama cesaretlendirici.",
@@ -238,7 +259,9 @@
     },
     {
       "id": "companion_owl_pilot_001",
-      "interests": ["animals"],
+      "interests": [
+        "animals"
+      ],
       "name": "Yıldız",
       "type": "baykuş",
       "personality": "Sabırlı, az konuşan.",
@@ -272,7 +295,10 @@
     },
     {
       "id": "companion_dolphin_pilot_001",
-      "interests": ["animals", "sea"],
+      "interests": [
+        "animals",
+        "sea"
+      ],
       "name": "Köpük",
       "type": "yunus",
       "personality": "Neşeli ve yardımsever.",
@@ -303,7 +329,9 @@
     },
     {
       "id": "companion_rabbit_pilot_001",
-      "interests": ["animals"],
+      "interests": [
+        "animals"
+      ],
       "name": "Pamuk",
       "type": "tavşan",
       "personality": "Çekingen ve her şeyi düz anlayan.",
@@ -413,7 +441,9 @@
     },
     {
       "id": "object_shell_pilot_001",
-      "interests": ["sea"],
+      "interests": [
+        "sea"
+      ],
       "name": "parlak bir deniz kabuğu",
       "description": "Bir başkasına ait olduğu belli, parlak bir kabuk.",
       "compatibleThemes": [
@@ -462,7 +492,10 @@
     },
     {
       "id": "object_fallen_nest_001",
-      "interests": ["animals", "nature"],
+      "interests": [
+        "animals",
+        "nature"
+      ],
       "name": "yere düşmüş küçük bir yuva",
       "titleName": "Düşmüş Yuva",
       "keepsakeName": "küçük yuva",
@@ -489,7 +522,9 @@
     },
     {
       "id": "object_wilting_seedling_001",
-      "interests": ["nature"],
+      "interests": [
+        "nature"
+      ],
       "name": "solmaya başlamış bir fide",
       "titleName": "Solan Fide",
       "keepsakeName": "küçük fide",
@@ -1744,7 +1779,9 @@
     },
     {
       "id": "bp_charge_tending_001",
-      "interests": ["nature"],
+      "interests": [
+        "nature"
+      ],
       "schemaVersion": 2,
       "version": "2.0.0",
       "family": "charge",
@@ -2602,19 +2639,30 @@
   "storyModes": [
     {
       "mode": "learning",
-      "families": ["unexplained", "misreading", "appeal"],
+      "families": [
+        "unexplained",
+        "misreading",
+        "appeal"
+      ],
       "editorialNote": "Yeni şeyler öğrenelim (eski adı Gelişelim, `growth`): problem, keşif, deneme, küçük kazanım. Anlamadığı bir şeyi çözen (unexplained), yanlış okuduğunu düzelten (misreading) ya da bir başkası için konuşup paylaşmayı öğrenen (appeal) çocuk."
     },
     {
       "mode": "adventure",
-      "families": ["threshold", "absence"],
+      "families": [
+        "threshold",
+        "absence"
+      ],
       "editorialNote": "Maceraya çıkalım: hedef, yolculuk, engel, çözüm, dönüş. Bir eşiği geçen (threshold) ya da kaybolan bir şeyin izini süren (absence) çocuk."
     },
     {
       "mode": "bedtime",
-      "families": ["charge"],
+      "families": [
+        "charge"
+      ],
       "editorialNote": "Uyku öncesi: yavaş tempo, güven, tekrar, huzurlu son. GEÇİCİ: gerçek bir uyku arkı yazılmadı; en sakin mevcut aile küçük bir şeye bakım (charge). Uyku arkı yazıldığında bu liste ona göre değişmeli.",
-      "success": { "abandonIsPenalty": false }
+      "success": {
+        "abandonIsPenalty": false
+      }
     }
   ],
   "storyIdeas": [
@@ -2743,55 +2791,396 @@
     }
   ],
   "interests": [
-    { "id": "animals", "name": "Hayvanlar", "symbol": "hare" },
-    { "id": "space", "name": "Uzay", "symbol": "airplane.departure" },
-    { "id": "dinosaurs", "name": "Dinozorlar", "symbol": "lizard" },
-    { "id": "princesses", "name": "Prensesler", "symbol": "crown.fill" },
-    { "id": "cars", "name": "Arabalar", "symbol": "car" },
-    { "id": "sea", "name": "Deniz", "symbol": "fish" },
-    { "id": "music", "name": "Müzik", "symbol": "music.note" },
-    { "id": "magic", "name": "Sihir", "symbol": "wand.and.stars" },
-    { "id": "nature", "name": "Doğa", "symbol": "tree" },
-    { "id": "robots", "name": "Robotlar", "symbol": "cpu" },
-    { "id": "sports", "name": "Spor", "symbol": "soccerball" },
-    { "id": "pirates", "name": "Korsanlar", "symbol": "sailboat" }
+    {
+      "id": "animals",
+      "name": "Hayvanlar",
+      "symbol": "hare"
+    },
+    {
+      "id": "space",
+      "name": "Uzay",
+      "symbol": "airplane.departure"
+    },
+    {
+      "id": "dinosaurs",
+      "name": "Dinozorlar",
+      "symbol": "lizard"
+    },
+    {
+      "id": "princesses",
+      "name": "Prensesler",
+      "symbol": "crown.fill"
+    },
+    {
+      "id": "cars",
+      "name": "Arabalar",
+      "symbol": "car"
+    },
+    {
+      "id": "sea",
+      "name": "Deniz",
+      "symbol": "fish"
+    },
+    {
+      "id": "music",
+      "name": "Müzik",
+      "symbol": "music.note"
+    },
+    {
+      "id": "magic",
+      "name": "Sihir",
+      "symbol": "wand.and.stars"
+    },
+    {
+      "id": "nature",
+      "name": "Doğa",
+      "symbol": "tree"
+    },
+    {
+      "id": "robots",
+      "name": "Robotlar",
+      "symbol": "cpu"
+    },
+    {
+      "id": "sports",
+      "name": "Spor",
+      "symbol": "soccerball"
+    },
+    {
+      "id": "pirates",
+      "name": "Korsanlar",
+      "symbol": "sailboat"
+    },
+    {
+      "id": "jobs",
+      "name": "Meslekler",
+      "symbol": "hammer"
+    },
+    {
+      "id": "science",
+      "name": "Bilim",
+      "symbol": "atom"
+    },
+    {
+      "id": "history",
+      "name": "Tarih",
+      "symbol": "building.columns"
+    },
+    {
+      "id": "country",
+      "name": "Ülkeler",
+      "symbol": "globe.europe.africa"
+    },
+    {
+      "id": "city",
+      "name": "Şehirler",
+      "symbol": "building.2"
+    },
+    {
+      "id": "sky",
+      "name": "Gökyüzü",
+      "symbol": "cloud.sun"
+    }
   ],
   "safetyTopics": [
-    { "id": "darkness", "name": "Karanlık", "summary": "Karanlık ve loş yerler geçmez." },
-    { "id": "alone", "name": "Yalnız kalmak", "summary": "Bir karakterin tek başına ve korkmuş kaldığı anlar geçmez." },
-    { "id": "fear", "name": "Korkmak", "summary": "Bir karakterin korktuğunu söylediği anlar geçmez." },
-    { "id": "weather", "name": "Fırtına ve sert hava", "summary": "Sert rüzgâr ve hava olayları geçmez." },
-    { "id": "heights", "name": "Yükseklik", "summary": "Yüksek ve sarp yerler geçmez." }
+    {
+      "id": "darkness",
+      "name": "Karanlık",
+      "summary": "Karanlık ve loş yerler geçmez."
+    },
+    {
+      "id": "alone",
+      "name": "Yalnız kalmak",
+      "summary": "Bir karakterin tek başına ve korkmuş kaldığı anlar geçmez."
+    },
+    {
+      "id": "fear",
+      "name": "Korkmak",
+      "summary": "Bir karakterin korktuğunu söylediği anlar geçmez."
+    },
+    {
+      "id": "weather",
+      "name": "Fırtına ve sert hava",
+      "summary": "Sert rüzgâr ve hava olayları geçmez."
+    },
+    {
+      "id": "heights",
+      "name": "Yükseklik",
+      "summary": "Yüksek ve sarp yerler geçmez."
+    }
   ],
   "glossary": [
-    { "id": "w56_siper", "term": "siper etmek", "forms": ["siper"], "meaning": "Bir şeyi korumak için önüne elini ya da başka bir şeyi tutmak.", "bands": ["5-6"] },
-    { "id": "w56_ihtimal", "term": "ihtimal", "meaning": "Olabilecek bir şey, belki olur belki olmaz.", "bands": ["5-6"] },
-    { "id": "w56_karincalanmak", "term": "karıncalanmak", "forms": ["karıncalan"], "meaning": "Elde ya da ayakta küçük küçük iğne batıyormuş gibi bir his.", "bands": ["5-6"] },
-    { "id": "w56_usulca", "term": "usulca", "meaning": "Yavaşça ve sessizce, kimseyi rahatsız etmeden.", "bands": ["5-6"] },
-    { "id": "w56_apacik", "term": "apaçık", "meaning": "Çok net, kolayca görülen.", "bands": ["5-6"] },
-    { "id": "w56_sapasaglam", "term": "sapasağlam", "meaning": "Hiç kırılmamış, hiç zarar görmemiş.", "bands": ["5-6"] },
-    { "id": "w56_parilti", "term": "parıltı", "meaning": "Bir an görünen küçük, parlak ışık.", "bands": ["5-6"] },
-    { "id": "w56_isildamak", "term": "ışıldamak", "forms": ["ışılda", "ışıldı"], "meaning": "Hafif hafif ışık saçmak.", "bands": ["5-6"] },
-    { "id": "w56_kipirkipir", "term": "kıpır kıpır", "meaning": "Heyecandan yerinde duramayacak gibi olmak.", "bands": ["5-6"] },
-    { "id": "w56_sabir", "term": "sabır", "forms": ["sabır", "sabr"], "meaning": "Acele etmeden, kızmadan beklemeyi bilmek.", "bands": ["5-6"] },
-    { "id": "w56_bolusmek", "term": "bölüşmek", "forms": ["bölüş"], "meaning": "Bir şeyi ya da bir işi başkasıyla paylaşmak.", "bands": ["5-6"] },
-    { "id": "w56_kaynasmak", "term": "kaynaşmak", "forms": ["kaynaş"], "meaning": "Yeni tanıştığın biriyle çabucak arkadaş olmak.", "bands": ["5-6"] },
-    { "id": "w56_fisildamak", "term": "fısıldamak", "forms": ["fısılda"], "meaning": "Çok alçak sesle, neredeyse duyulmadan konuşmak.", "bands": ["5-6"] },
-    { "id": "w56_urkutmek", "term": "ürkütmek", "forms": ["ürküt"], "meaning": "Birini birden korkutup kaçmasına sebep olmak.", "bands": ["5-6"] },
-    { "id": "w56_vazgecmek", "term": "vazgeçmek", "forms": ["vazgeç"], "meaning": "Yapmak istediğin bir şeyi yapmaktan geri durmak.", "bands": ["5-6"] },
-    { "id": "w56_canlandirmak", "term": "kafasında canlandırmak", "forms": ["canlandır"], "meaning": "Bir şeyin nasıl olacağını gözünün önüne getirmek.", "bands": ["5-6"] },
-    { "id": "w56_comelmek", "term": "çömelmek", "forms": ["çömel"], "meaning": "Dizlerini kırıp yere yakın oturur gibi eğilmek.", "bands": ["5-6"] },
-    { "id": "w56_yanilmak", "term": "yanılmak", "forms": ["yanıl"], "meaning": "Bir şeyi yanlış sanmak.", "bands": ["5-6"] },
-    { "id": "w56_serin", "term": "serin", "meaning": "Biraz soğuk, ama üşütmeyen.", "bands": ["5-6"] },
-    { "id": "w56_yumusacik", "term": "yumuşacık", "meaning": "Dokununca çok yumuşak olan.", "bands": ["5-6"] },
-    { "id": "w34_comelmek", "term": "çömelmek", "forms": ["çömel"], "meaning": "Dizlerini kırıp yere yakın eğilmek.", "bands": ["3-4"] },
-    { "id": "w34_usulca", "term": "usulca", "meaning": "Yavaşça ve sessizce.", "bands": ["3-4"] },
-    { "id": "w34_fisildamak", "term": "fısıldamak", "forms": ["fısılda"], "meaning": "Çok alçak sesle konuşmak.", "bands": ["3-4"] },
-    { "id": "w34_yorgan", "term": "yorgan", "meaning": "Yatakta üstümüze örttüğümüz kalın örtü.", "bands": ["3-4"] },
-    { "id": "w34_sarilmak", "term": "sarılmak", "forms": ["sarıl"], "meaning": "Kollarınla birini sıkıca tutmak.", "bands": ["3-4"] },
-    { "id": "w34_sicacik", "term": "sıcacık", "meaning": "Çok sıcak ve rahat.", "bands": ["3-4"] },
-    { "id": "w34_yavasca", "term": "yavaşça", "meaning": "Acele etmeden, ağır ağır.", "bands": ["3-4"] },
-    { "id": "w34_sessiz", "term": "sessiz", "meaning": "Hiç ses çıkarmayan.", "bands": ["3-4"] }
+    {
+      "id": "w56_siper",
+      "term": "siper etmek",
+      "forms": [
+        "siper"
+      ],
+      "meaning": "Bir şeyi korumak için önüne elini ya da başka bir şeyi tutmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_ihtimal",
+      "term": "ihtimal",
+      "meaning": "Olabilecek bir şey, belki olur belki olmaz.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_karincalanmak",
+      "term": "karıncalanmak",
+      "forms": [
+        "karıncalan"
+      ],
+      "meaning": "Elde ya da ayakta küçük küçük iğne batıyormuş gibi bir his.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_usulca",
+      "term": "usulca",
+      "meaning": "Yavaşça ve sessizce, kimseyi rahatsız etmeden.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_apacik",
+      "term": "apaçık",
+      "meaning": "Çok net, kolayca görülen.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_sapasaglam",
+      "term": "sapasağlam",
+      "meaning": "Hiç kırılmamış, hiç zarar görmemiş.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_parilti",
+      "term": "parıltı",
+      "meaning": "Bir an görünen küçük, parlak ışık.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_isildamak",
+      "term": "ışıldamak",
+      "forms": [
+        "ışılda",
+        "ışıldı"
+      ],
+      "meaning": "Hafif hafif ışık saçmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_kipirkipir",
+      "term": "kıpır kıpır",
+      "meaning": "Heyecandan yerinde duramayacak gibi olmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_sabir",
+      "term": "sabır",
+      "forms": [
+        "sabır",
+        "sabr"
+      ],
+      "meaning": "Acele etmeden, kızmadan beklemeyi bilmek.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_bolusmek",
+      "term": "bölüşmek",
+      "forms": [
+        "bölüş"
+      ],
+      "meaning": "Bir şeyi ya da bir işi başkasıyla paylaşmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_kaynasmak",
+      "term": "kaynaşmak",
+      "forms": [
+        "kaynaş"
+      ],
+      "meaning": "Yeni tanıştığın biriyle çabucak arkadaş olmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_fisildamak",
+      "term": "fısıldamak",
+      "forms": [
+        "fısılda"
+      ],
+      "meaning": "Çok alçak sesle, neredeyse duyulmadan konuşmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_urkutmek",
+      "term": "ürkütmek",
+      "forms": [
+        "ürküt"
+      ],
+      "meaning": "Birini birden korkutup kaçmasına sebep olmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_vazgecmek",
+      "term": "vazgeçmek",
+      "forms": [
+        "vazgeç"
+      ],
+      "meaning": "Yapmak istediğin bir şeyi yapmaktan geri durmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_canlandirmak",
+      "term": "kafasında canlandırmak",
+      "forms": [
+        "canlandır"
+      ],
+      "meaning": "Bir şeyin nasıl olacağını gözünün önüne getirmek.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_comelmek",
+      "term": "çömelmek",
+      "forms": [
+        "çömel"
+      ],
+      "meaning": "Dizlerini kırıp yere yakın oturur gibi eğilmek.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_yanilmak",
+      "term": "yanılmak",
+      "forms": [
+        "yanıl"
+      ],
+      "meaning": "Bir şeyi yanlış sanmak.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_serin",
+      "term": "serin",
+      "meaning": "Biraz soğuk, ama üşütmeyen.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w56_yumusacik",
+      "term": "yumuşacık",
+      "meaning": "Dokununca çok yumuşak olan.",
+      "bands": [
+        "5-6"
+      ]
+    },
+    {
+      "id": "w34_comelmek",
+      "term": "çömelmek",
+      "forms": [
+        "çömel"
+      ],
+      "meaning": "Dizlerini kırıp yere yakın eğilmek.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_usulca",
+      "term": "usulca",
+      "meaning": "Yavaşça ve sessizce.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_fisildamak",
+      "term": "fısıldamak",
+      "forms": [
+        "fısılda"
+      ],
+      "meaning": "Çok alçak sesle konuşmak.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_yorgan",
+      "term": "yorgan",
+      "meaning": "Yatakta üstümüze örttüğümüz kalın örtü.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_sarilmak",
+      "term": "sarılmak",
+      "forms": [
+        "sarıl"
+      ],
+      "meaning": "Kollarınla birini sıkıca tutmak.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_sicacik",
+      "term": "sıcacık",
+      "meaning": "Çok sıcak ve rahat.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_yavasca",
+      "term": "yavaşça",
+      "meaning": "Acele etmeden, ağır ağır.",
+      "bands": [
+        "3-4"
+      ]
+    },
+    {
+      "id": "w34_sessiz",
+      "term": "sessiz",
+      "meaning": "Hiç ses çıkarmayan.",
+      "bands": [
+        "3-4"
+      ]
+    }
   ],
   "series": {
     "editorialNote": "FAZ 13 seri katmanı. Devam bölümleri yalnızca buradaki blueprint'lerle yazılır; tek seferlik masal bunları göremez. Her bölüm aynı yerde, aynı yol arkadaşıyla geçer, ilk masalın bulduğu şeyi (keepsake) hatırlar ve yeni bir şey bulur. Masal ailem karakteri bölümün açılışında (revisit) ve kapanışında yer alır.",
@@ -3125,5 +3514,121 @@
         ]
       }
     ]
-  }
+  },
+  "storyTopics": [
+    {
+      "id": "topic_learning_jobs",
+      "mode": "learning",
+      "name": "Meslekler",
+      "symbol": "hammer",
+      "requires": {
+        "companion": [
+          "jobs"
+        ]
+      }
+    },
+    {
+      "id": "topic_learning_sports",
+      "mode": "learning",
+      "name": "Sporlar",
+      "symbol": "figure.run",
+      "requires": {
+        "companion": [
+          "sports"
+        ],
+        "discovery": [
+          "sports"
+        ]
+      }
+    },
+    {
+      "id": "topic_learning_animals",
+      "mode": "learning",
+      "name": "Hayvanlar",
+      "symbol": "pawprint",
+      "requires": {
+        "companion": [
+          "animals"
+        ]
+      }
+    },
+    {
+      "id": "topic_learning_science",
+      "mode": "learning",
+      "name": "Bilim",
+      "symbol": "atom",
+      "requires": {
+        "discovery": [
+          "science"
+        ]
+      }
+    },
+    {
+      "id": "topic_learning_history",
+      "mode": "learning",
+      "name": "Tarih",
+      "symbol": "building.columns",
+      "requires": {
+        "setting": [
+          "history"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_country",
+      "mode": "adventure",
+      "name": "Yeni bir ülke",
+      "symbol": "globe.europe.africa",
+      "requires": {
+        "setting": [
+          "country"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_city",
+      "mode": "adventure",
+      "name": "Yeni bir şehir",
+      "symbol": "building.2",
+      "requires": {
+        "setting": [
+          "city"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_sea",
+      "mode": "adventure",
+      "name": "Denizin altı",
+      "symbol": "water.waves",
+      "requires": {
+        "setting": [
+          "sea"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_sky",
+      "mode": "adventure",
+      "name": "Gökyüzü ve uzay",
+      "symbol": "sparkles",
+      "requires": {
+        "setting": [
+          "space",
+          "sky"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_wild",
+      "mode": "adventure",
+      "name": "Vahşi doğa",
+      "symbol": "tree",
+      "requires": {
+        "setting": [
+          "nature"
+        ]
+      }
+    }
+  ]
 }
