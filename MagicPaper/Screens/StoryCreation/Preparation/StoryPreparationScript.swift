@@ -28,24 +28,24 @@ enum StoryPreparationScript {
     /// How much of the ritual a story gets: the whole of it at first, less
     /// once the family knows it (karar 16 Ekim 2026).
     enum Tier: Equatable {
-        /// The child's first story: ~10 s, no skip.
+        /// The child's first story: ~15 s, no skip (karar 16 Ekim 2026).
         case full
-        /// The 2nd and 3rd: ~8 s.
+        /// The 2nd and 3rd: ~10 s.
         case standard
-        /// From the 4th on: ~5 s, the age line folds away.
+        /// From the 4th on: ~6 s, the age line folds away.
         case short
     }
 
     /// Seconds per beat for `.full`. The other tiers scale or drop from it.
     private static let fullHolds: [Beat: Double] = [
-        .openBook: 1.2, .cast: 1.8, .ageFit: 1.2, .modeTouch: 1.4, .writing: 2.4, .reread: 1.4
+        .openBook: 2.0, .cast: 2.8, .ageFit: 2.0, .modeTouch: 2.2, .writing: 3.8, .reread: 2.2
     ]
     private static let shortHolds: [Beat: Double] = [
-        .openBook: 0.6, .cast: 1.2, .modeTouch: 0.9, .writing: 1.6, .reread: 0.8
+        .openBook: 0.8, .cast: 1.4, .modeTouch: 1.1, .writing: 1.9, .reread: 0.9
     ]
-    private static let standardScale = 0.8
+    private static let standardScale = 0.67
     /// Uyku saatinde her şey biraz daha yavaş.
-    static let bedtimeScale = 1.3
+    static let bedtimeScale = 1.2
 
     /// The first sentence is cut at a word, never inside one.
     static let firstSentenceLimit = 110
@@ -118,6 +118,46 @@ enum StoryPreparationScript {
             return facts.storyOrdinal <= 1
                 ? "\(owner) ilk masalı hazır."
                 : "\(owner) \(facts.storyOrdinal). masalı hazır."
+        }
+    }
+
+    // MARK: - Notebook
+
+    /// A mark a step leaves in the notebook, so the page fills as the story
+    /// is made instead of the screen standing still for fifteen seconds.
+    struct Note: Equatable {
+        /// `MPIcon` name.
+        let icon: String
+        let text: String
+    }
+
+    /// "Ela'nın masal defteri", the notebook's running head.
+    static func notebookTitle(_ facts: PreparationFacts) -> String {
+        "\(SeriesCopy.genitive(facts.childName)) masal defteri"
+    }
+
+    /// "No. 3": the story's place in the child's shelf.
+    static func shelfNumber(_ facts: PreparationFacts) -> String {
+        "No. \(max(facts.storyOrdinal, 1))"
+    }
+
+    /// The note a step leaves; nil for steps whose trace is the page itself
+    /// (the cast tags, the inked sentence, the cover).
+    static func note(for beat: Beat, facts: PreparationFacts) -> Note? {
+        switch beat {
+        case .ageFit:
+            return Note(icon: "textformat.size", text: "Yaşına uygun kelimeler")
+        case .modeTouch:
+            switch facts.mode {
+            case .bedtime: return Note(icon: "moon", text: "Yumuşak bir son")
+            case .learning: return Note(icon: "sparkles", text: facts.hasNewWord ? "Yeni bir kelime" : "Bir keşif")
+            case .adventure: return Note(icon: "map", text: "Bir macera yolu")
+            case nil: return nil
+            }
+        case .reread:
+            return Note(icon: "checkmark.shield", text: "Ragi okudu")
+        case .openBook, .cast, .writing, .bind:
+            return nil
         }
     }
 

@@ -32,6 +32,9 @@ struct StoryPreparationView: View {
     @State private var index = 0
     @State private var skipped = false
     @State private var showsSkip = false
+    /// Ragi'nin nefesi; yalnızca Reduce Motion kapalıyken.
+    @State private var breathing = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var steps: [StoryPreparationScript.Step] {
         facts.map(StoryPreparationScript.steps(for:)) ?? []
@@ -58,8 +61,8 @@ struct StoryPreparationView: View {
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-                VStack(spacing: MP.S.x6) {
-                    Spacer(minLength: MP.S.x5)
+                VStack(spacing: MP.S.x5) {
+                    Spacer(minLength: MP.S.x3)
 
                     Text(isDone ? (steps.last?.line ?? "Masal hazır.") : title)
                         .mpText(.title1).foregroundStyle(MPColor.textPrimary)
@@ -77,6 +80,8 @@ struct StoryPreparationView: View {
                             .id(index)
                             .transition(.opacity)
                             .accessibilityHidden(true)
+
+                        StepDots(count: max(steps.count - 1, 1), current: min(index, max(steps.count - 2, 0)))
                     }
 
                     Spacer(minLength: MP.S.x5)
@@ -123,11 +128,15 @@ struct StoryPreparationView: View {
                 .transition(.opacity)
         } else {
             VStack(spacing: MP.S.x3) {
-                MascotImage(mascot: beat == .reread ? .reading : .pencil, width: 96)
+                MascotImage(mascot: beat == .reread ? .reading : .pencil, width: 80)
+                    .offset(y: breathing ? -MP.S.x1 : 0)
+                    .animation(reduceMotion ? nil : MP.M.idle, value: breathing)
+                    .onAppear { if !reduceMotion { breathing = true } }
                     .contentTransition(.opacity)
                 PreparationNotebook(
                     facts: facts,
                     beat: beat,
+                    beats: steps.map(\.beat),
                     childColor: childColor,
                     inkDuration: min(MP.M.inkDuration, (step?.hold ?? MP.M.inkDuration) * 0.85)
                 )
@@ -197,6 +206,24 @@ struct StoryPreparationView: View {
         skipped = true
         showsSkip = false
         index = max(steps.count - 1, 0)
+    }
+}
+
+/// Sakin ilerleme: kaç adım olduğunu ve nerede olunduğunu gösterir, ne yüzde
+/// ne süre söyler. Bilgi ayrıca durum cümlesinde; noktalar süs.
+private struct StepDots: View {
+    let count: Int
+    let current: Int
+
+    var body: some View {
+        HStack(spacing: MP.S.x2) {
+            ForEach(0..<count, id: \.self) { i in
+                Capsule()
+                    .fill(i <= current ? MP.C.brand : MP.C.borderHairline)
+                    .frame(width: i == current ? MP.S.x5 : MP.S.x2, height: MP.S.x2)
+            }
+        }
+        .accessibilityHidden(true)
     }
 }
 

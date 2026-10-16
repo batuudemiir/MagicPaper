@@ -75,6 +75,25 @@ final class StoryPreparationScriptTests: XCTestCase {
         XCTAssertEqual(line(.writing, facts()), "Sayfalar yazılıyor · 8 sayfa")
     }
 
+    // MARK: - Defter
+
+    func testEachStepLeavesItsNote() {
+        typealias S = StoryPreparationScript
+        XCTAssertEqual(S.note(for: .ageFit, facts: facts())?.text, "Yaşına uygun kelimeler")
+        XCTAssertEqual(S.note(for: .modeTouch, facts: facts(mode: .bedtime))?.text, "Yumuşak bir son")
+        XCTAssertEqual(S.note(for: .modeTouch, facts: facts(mode: .learning, hasNewWord: true))?.text, "Yeni bir kelime")
+        XCTAssertEqual(S.note(for: .modeTouch, facts: facts(mode: .learning))?.text, "Bir keşif")
+        XCTAssertEqual(S.note(for: .modeTouch, facts: facts(mode: .adventure))?.text, "Bir macera yolu")
+        XCTAssertNil(S.note(for: .modeTouch, facts: facts(mode: nil)))
+        XCTAssertEqual(S.note(for: .reread, facts: facts())?.text, "Ragi okudu")
+        XCTAssertNil(S.note(for: .cast, facts: facts()))
+    }
+
+    func testTheNotebookHasTheChildsNameAndShelfNumber() {
+        XCTAssertEqual(StoryPreparationScript.notebookTitle(facts(name: "Ömer")), "Ömer'in masal defteri")
+        XCTAssertEqual(StoryPreparationScript.shelfNumber(facts(ordinal: 12)), "No. 12")
+    }
+
     // MARK: - Süre
 
     func testTheRitualShortensAsTheFamilyLearnsIt() {
@@ -83,9 +102,9 @@ final class StoryPreparationScriptTests: XCTestCase {
         let later = StoryPreparationScript.totalDuration(for: facts(ordinal: 4))
         XCTAssertGreaterThan(first, second)
         XCTAssertGreaterThan(second, later)
-        XCTAssertEqual(first, 10, accuracy: 1)
-        XCTAssertEqual(second, 8, accuracy: 1)
-        XCTAssertEqual(later, 5, accuracy: 0.6)
+        XCTAssertEqual(first, 15, accuracy: 1)
+        XCTAssertEqual(second, 10, accuracy: 1)
+        XCTAssertEqual(later, 6, accuracy: 0.6)
     }
 
     func testBedtimeIsSlower() {
