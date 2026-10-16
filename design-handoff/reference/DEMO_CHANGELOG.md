@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · anasayfa-yenileme@d6dfefb · Ana sayfa: saat çubuğunun altındaki beyaz şerit kaldırıldı
+- Batuhan: aşağı kaydırınca saat, Wi-Fi ve pilin olduğu yerde beyaz blok kalıyor. Eşiği sahnenin sonuna ertelemek yetmedi; sahneden sonra altından geçen kartlar beyaz değil (mor "bu akşam" kartı, lavanta paneller).
+- Şerit tamamen kaldırıldı: içerik iOS'un standart davranışıyla saat çubuğunun altından akar. `scrolledPastScene` durumu da kalktı; kaydırma artık ana sayfayı hiç yeniden çizdirmez (yalnızca ilk açılışta dinlenme konumu bir kez yazılır).
+- Bilerek değişmeyen: saat çubuğu metni sistemin (koyu); mor kartın üstünden geçerken okunurluğu azalabilir.
+- Test çalıştırılmadı. Telefona derlendi, kuruldu ve açıldı; Batuhan'ın gözünden henüz geçmedi.
+- Dosya: `MagicPaper/Views/HomeView.swift`.
+
 ### 2026-10-16 · anasayfa-yenileme@735cd93 · Ana sayfa: kaydırma donmasının asıl nedeni (cihaz ölçümüyle) ve saat şeridi
 - Batuhan: önceki iki düzeltmeden sonra da aşağı kaydırırken donarak iniyordu.
 - Ölçüm (iPhone 16, Debug, Time Profiler + Hitches, 30 sn kaydırma): 30 takılma; 15'i 166 ms (~10 kare), yaklaşık 1,5 sn'de bir. Takılma anlarındaki ana iş parçacığı süresinin ~%75'i `HomeView.availableModes` → `OfflineStoryService.availableModes(forAge:)` → `BlueprintSelector.admissible` / `safetyGap` / `templates`: motor yaşa uygun modları bulmak için bütün kataloğu güvenlik kurallarına karşı tarıyor, bu da çizim başına birkaç kez (`shownModes`, `emphasizedMode`, şeritteki her mod) yapılıyordu. Kaydırırken saat şeridi eşiği aşılınca tek bir yeniden çizim bu yüzden 166 ms sürüyordu.
