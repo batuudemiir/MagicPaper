@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · main@b1850ff üstüne · Derleme düzeltmesi ve telefona kurulum
+
+- `StoryChildStep` içinde `MPRadius.lg` kullanılmıştı; ölçekte öyle bir değer yok (semantik: `tile`, `card`, `hero`…). Mod kartlarıyla aynı yarıçapa (`card`) çevrildi.
+- Bu hata, testlerin atlanması kararıyla doğrulanmadan main'e gönderilen commit'teydi (`8a13f28`); main o commit'ten bu düzeltmeye kadar derlenmiyordu. Kayıt dürüstlük için burada duruyor.
+- Cihaz derlemesi **BUILD SUCCEEDED**; uygulama iPhone 16'ya kuruldu (`com.batu.magicpaper.v1`). Uygulama testleri hâlâ çalıştırılmadı.
+- Yol üstünde: yeni worktree'de üç gitignore'lu dosya eksikti ve derlemeyi sırayla düşürdü — `Secrets.xcconfig` (hem kök hem `MagicPaper/` altında) ve `MagicPaper/GoogleService-Info.plist`. Yeni worktree açan herkesin üçünü de kopyalaması gerekiyor.
+- Etkilenen: `MagicPaper/Screens/StoryCreation/StoryChildStep.swift`, bu dosya.
+
 ### 2026-10-16 · faz-21-alt-kategoriler · Yaratma akışı: çocuk adımı ve mod altında açılan alt kategoriler
 
 - **Adım 1 "Masal kimin için?"** (`StoryChildStep`, yeni): yalnızca evde birden fazla çocuk varken görünür. Tek çocuklu evde cevabı belli bir soru sormak olurdu. Seçim akışa özeldir, aktif profili değiştirmez: büyük kardeşe masal yazdırmak uygulamanın geri kalanını büyük kardeşe çevirmemeli. Bugüne kadar akış aktif profili kullanıyordu ve yanlış profil seçiliyken yazılan masal sessizce yanlış çocuğun oluyordu.

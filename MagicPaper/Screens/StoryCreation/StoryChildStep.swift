@@ -78,9 +78,9 @@ private struct ChildTile: View {
             }
             .frame(maxWidth: .infinity, minHeight: 108)
             .padding(.vertical, MPSpacing.md)
-            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.lg, style: .continuous))
+            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
             .overlay {
-                RoundedRectangle(cornerRadius: MPRadius.lg, style: .continuous)
+                RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
                     .strokeBorder(isSelected ? MPColor.actionPrimary : MPColor.borderKid,
                                   lineWidth: isSelected ? 3 : 1)
             }
