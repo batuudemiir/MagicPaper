@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · anasayfa-yenileme@9082245 · Benim köşem denetimi: yönlendirme, kapı, bulunabilirlik, büyük yazı
+- Denetim (Batuhan'ın isteği): etiketler, dokunma alanları (hepsi ≥ 48), okuma sırası ve en büyük yazı boyutu iyiydi; beş sorun bulundu ve sırayla düzeltildi.
+- **1. "Ekle" yönlendirmesi:** kapı açılınca ebeveyn özetine düşüyordu; artık doğrudan profil ekleme açılır (`MPAppState.requestProfileAdd`, kapı kapanışında `gateDismissed`; iki tam ekran üst üste açılmaz). Kapıdan vazgeçilirse bekleyen istek unutulur. Testler: `KidCornerTabTests` +3.
+- **2. Kapı tutarlılığı (Batuhan: önerilen yol):** uygulama Masal ailem ve kahraman düzenlemeyi "yalnızca ebeveyn" sayıyordu ama Benim köşem bunları kapısız açıyordu. Artık görmek ve seçmek serbest; Masal ailem'de yeni karakter, düzenle (ve düzenleyicideki silme) ile kahramanı düzenle çocuk modunda ebeveyn kapısından geçer. Simülatörde "Yeni karakter"e dokununca kapının açıldığı görüldü; kapı sonrası devam, Günlük'teki "Paylaş" kapısıyla aynı kalıp (elle çözülemedi: simülatörün metin gönderme yolu kapı kutusuna yazamadı).
+- **3. Bulunabilirlik:** "Masal dünyam" (Kahramanımı düzenle, Masal ailem, Yeni kelimelerim) Rozetlerim'in üstüne çıktı; eylemler bakılacak şeylerden önce.
+- **4. Basılabilir görünüp çalışmayan öğeler:** Benim köşem'deki üç sayı tek, düz bir bilgi panelinde (ayrı sert kenarlar kalktı). Ana sayfadaki "Yıldızların" ve "Okuma serisi" çipleri artık dokununca Benim köşem'i açar (ipucu: "Benim köşemi açar").
+- **5. En büyük yazı boyutu:** Ragi küçülüp balonun üstüne çıkar; sayılar tek satırlık yatay biçimde, alt alta.
+- Yan düzeltme: `HomeSection` birden fazla öğeli içeriği her öğe için ayrı panel çiziyordu (Masal ailem'in açıklama metni ayrı panele düşmüştü); içerik artık tek kapta.
+- Test: `KidCornerTabTests` 10/0. Tam test takımı bu commit'te çalıştırıldı ama derleme servisi ve paket indirmesi yüzünden tamamlanmadı; sonucu ayrıca yazılacak. Simülatörde görüldü (iPhone 18 Pro Max, normal ve en büyük yazı boyutu).
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `Screens/FamilyCharacters/FamilyCharactersView.swift`, `Screens/MPAppState.swift`, `ContentView.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `MagicPaperTests/KidCornerTabTests.swift`.
+
 ### 2026-10-16 · anasayfa-yenileme@ac75075 · Benim köşem: ana sayfanın tasarım dili, Ragi ön planda
 - Karar (Batuhan, 16 Ekim): Ragi her çocuk ekranında ön planda, Duolingo'daki Duo gibi; ekran başına tek Ragi ve ebeveyn alanında yok kuralı sürüyor.
 - **Zemin beyaz**; krem ve renk geçişli üst bant (`HeaderWash`, arayüz yüzeyinde gradyan) kalktı.
