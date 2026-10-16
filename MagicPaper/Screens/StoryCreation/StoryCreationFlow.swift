@@ -25,6 +25,8 @@ struct StoryCreationFlow: View {
     /// Where the flow is. Linear on purpose — one decision per screen, which is
     /// also what makes it usable by a child later (§27).
     private enum Phase: Equatable {
+        /// "Masal kimin için?" — yalnızca birden fazla çocuk varken.
+        case child
         case mode
         case idea(StoryMode)
         case companion
@@ -62,6 +64,14 @@ struct StoryCreationFlow: View {
     /// Nil means "Bana bırak" or a surprise. Stable ids, never display text.
     @State private var chosenIdeaID: String?
     @State private var chosenCompanionID: String?
+    /// Alt kategori (`CatalogStoryTopic` kimliği); nil "farketmez".
+    ///
+    /// Mod adımında, modun kendi kartının altında seçiliyor — ayrı bir adım
+    /// değil (karar: 16 Ekim 2026). İkinci soru ancak birincisi cevaplandıktan
+    /// sonra anlam kazandığı için aynı ekranda, cevabın altında beliriyor.
+    @State private var chosenTopicID: String?
+    /// Bu masalın yazılacağı çocuk. Akışa özel: aktif profili değiştirmez.
+    @State private var chosenProfileID: UUID?
     /// Masal ailem (FAZ 11). Chosen on the companion step, optional, one at
     /// most. A surprise picks the mode, never the cast: this survives it.
     @State private var chosenFamilyID: UUID?
@@ -71,7 +81,17 @@ struct StoryCreationFlow: View {
     /// mode rather than on every redraw: it walks every blueprint.
     @State private var familyRelations: Set<FamilyRelationKind> = []
 
-    private var profile: UserProfile? { profileManager.currentProfile }
+    /// Bu masalın çocuğu: akışta seçildiyse o, yoksa aktif profil.
+    ///
+    /// Akışın her yeri (yaş bandı, ad, Masal ailem, kaydetme) bunu okur; aktif
+    /// profil hiç değişmez. Büyük kardeşe masal yazdırmak uygulamanın geri
+    /// kalanını büyük kardeşe çevirmemeli.
+    private var profile: UserProfile? {
+        chosenProfileID.flatMap { id in profileManager.profiles.first { $0.id == id } }
+            ?? profileManager.currentProfile
+    }
+
+    private var profiles: [UserProfile] { profileManager.profiles }
 
     /// - Parameter preset: a mode already chosen on the home screen.
     /// - Parameter family: a Masal ailem character chosen on 14.
@@ -81,12 +101,18 @@ struct StoryCreationFlow: View {
         let available = StoryChoiceSources.current.availableModes(forAge: age)
         switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
         case .mode:
-            _phase = State(initialValue: .mode)
+            // Ana sayfadan mod seçilmeden gelindiyse ve evde birden fazla
+            // çocuk varsa, ilk soru "kimin için?". Preset ile gelindiğinde
+            // sorulmaz: ebeveyn ana sayfada aktif çocuk için karar verdi.
+            let hasChoice = StoryCreationSteps.showsChildStep(
+                profileCount: ProfileManager.shared.profiles.count)
+            _phase = State(initialValue: hasChoice ? .child : .mode)
             _chosenMode = State(initialValue: nil)
         case .companion(let mode):
             _phase = State(initialValue: .companion)
             _chosenMode = State(initialValue: mode)
         }
+        _chosenProfileID = State(initialValue: ProfileManager.shared.currentProfile?.id)
     }
 
     var body: some View {
@@ -146,7 +172,7 @@ struct StoryCreationFlow: View {
     /// ekranlarının kendi düzeni var.
     private var showsHeader: Bool {
         switch phase {
-        case .mode, .idea, .companion: return true
+        case .child, .mode, .idea, .companion: return true
         default: return false
         }
     }
@@ -184,18 +210,30 @@ struct StoryCreationFlow: View {
     private var showsBack: Bool {
         switch phase {
         case .idea, .companion: return true
+        case .mode: return childStepShown
         default: return false
         }
     }
 
-    private var stepLabels: [String] { StoryCreationSteps.stepLabels(ideaStep: ideaStepShown) }
+    /// Çocuk adımı bu akışta gösterildi mi — geri tuşunun oraya dönmesi için.
+    private var childStepShown: Bool {
+        StoryCreationSteps.showsChildStep(profileCount: profiles.count)
+    }
 
+    private var stepLabels: [String] {
+        StoryCreationSteps.stepLabels(childStep: childStepShown, ideaStep: ideaStepShown)
+    }
+
+    /// Nokta sırası etiket listesinden türetiliyor, elle sayılmıyor: iki yerde
+    /// ayrı ayrı sayılsaydı bir adım eklendiğinde biri güncellenir öbürü
+    /// unutulur ve "Adım 2 / 4" yanlış yazardı.
     private var stepIndex: Int? {
         switch phase {
-        case .mode: return 0
-        case .idea: return 1
+        case .child:     return stepLabels.firstIndex(of: "Çocuk")
+        case .mode:      return stepLabels.firstIndex(of: "Masal")
+        case .idea:      return stepLabels.firstIndex(of: "Fikir")
         case .companion: return stepLabels.count - 1
-        default: return nil
+        default:         return nil
         }
     }
 
@@ -210,6 +248,8 @@ struct StoryCreationFlow: View {
             }
         case .idea:
             resetToModes()
+        case .mode:
+            if childStepShown { phase = .child } else { dismiss() }
         default:
             dismiss()
         }
@@ -218,6 +258,7 @@ struct StoryCreationFlow: View {
     private func resetToModes() {
         chosenMode = nil
         chosenIdeaID = nil
+        chosenTopicID = nil
         strategy = .direct
         ideaStepShown = false
         phase = .mode
@@ -228,6 +269,10 @@ struct StoryCreationFlow: View {
     @ViewBuilder
     private var content: some View {
         switch phase {
+        case .child:
+            StoryChildStep(profiles: profiles, selectedID: $chosenProfileID) {
+                phase = .mode
+            }
         case .mode:
             StoryModeStep(
                 modes: allowedModes,
@@ -235,6 +280,7 @@ struct StoryCreationFlow: View {
                                                               isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
                 childName: profile?.name ?? "",
                 childColor: profile?.mpColor,
+                topics: { source.topicChoices(forAge: age, mode: $0) },
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
@@ -301,10 +347,12 @@ struct StoryCreationFlow: View {
     /// Uyku öncesi yalnızca öne çıkar.
     private var allowedModes: [StoryMode] { source.availableModes(forAge: age) }
 
-    private func chooseMode(_ mode: StoryMode) {
+    /// Mod — ve aynı ekranda seçildiyse konusu.
+    private func chooseMode(_ mode: StoryMode, topicID: String?) {
         chosenMode = mode
         strategy = .direct
         chosenIdeaID = nil
+        chosenTopicID = topicID
         let ideas = source.ideaChoices(forAge: age, mode: mode)
         // Behind a flag, off in every build. With it on and no ideas under
         // this mode for this band, the step is still skipped rather than shown
@@ -326,6 +374,10 @@ struct StoryCreationFlow: View {
             )
             strategy = .surprise
             chosenIdeaID = nil
+            // Sürpriz konuyu da sormaz: ebeveyn "sen seç" dedi, ve konuyu
+            // sormak o cümleyi yarıda kesmek olurdu. Konu boş kalınca motor
+            // bütün içerikten seçiyor — sürprizin zaten istediği şey.
+            chosenTopicID = nil
             ideaStepShown = false
             phase = .companion
         } catch {
@@ -358,6 +410,7 @@ struct StoryCreationFlow: View {
                     strategy: strategy,
                     storyIdeaID: chosenIdeaID,
                     companionID: chosenCompanionID,
+                    subOption: chosenTopicID,
                     family: chosenFamily
                 )
                 if app.isParentMode && MPSettingsStore.shared.approve {

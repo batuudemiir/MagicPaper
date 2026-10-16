@@ -31,6 +31,19 @@ struct StoryIdeaChoice: Identifiable, Hashable {
     let symbol: String
 }
 
+/// Modun içindeki bir alt kategori, adım 2'nin çizdiği hâliyle.
+///
+/// `CatalogStoryTopic`'in ekrana düşen yarısı: kimlik, ad, simge. Konunun
+/// hangi yuvada hangi sözcüğü şart koştuğu motorun işi — ekranın onu bilmesi,
+/// ekranın süzme kararı vermeye başlaması demek olurdu.
+struct StoryTopicChoice: Identifiable, Hashable {
+    /// Stable content id, handed back to the source when the story is built.
+    let id: String
+    let name: String
+    /// SF Symbol name.
+    let symbol: String
+}
+
 /// One animal kind a Masal ailem pet can be — "kedi", "köpek".
 struct FamilyAnimalKindChoice: Identifiable, Hashable {
     let id: String
@@ -63,6 +76,8 @@ struct CompanionChoice: Identifiable, Hashable {
 protocol StoryChoiceSource {
     /// The modes that have something to offer a child of this age.
     func availableModes(forAge age: Int) -> [StoryMode]
+    /// Bu modun alt kategorileri. Boş ya da tek öğeliyse akış adımı atlar.
+    func topicChoices(forAge age: Int, mode: StoryMode) -> [StoryTopicChoice]
     /// The idea cards for a mode, in the order they should be shown.
     func ideaChoices(forAge age: Int, mode: StoryMode) -> [StoryIdeaChoice]
     /// The companions that fit the chosen idea, best first.

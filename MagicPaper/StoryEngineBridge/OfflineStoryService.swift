@@ -126,6 +126,22 @@ final class OfflineStoryService {
         return selector.availableModes(catalog: catalog, ageBand: servedBand(forAge: age), safety: currentSafety)
     }
 
+    /// Bu modun bu çocuğa gerçekten sunulabilecek alt kategorileri.
+    ///
+    /// Boş ya da tek öğeli dönebilir, ve bu normaldir: alt kategori bir söz
+    /// (`CatalogStoryTopic`) olduğu için yalnızca kurulabildiği yerde teklif
+    /// edilir. İçerik yazıldıkça liste kendiliğinden büyür — ekran tarafında
+    /// değişecek bir şey yok.
+    func topicChoices(forAge age: Int, mode: StoryMode) -> [StoryTopicChoice] {
+        guard let catalog = try? catalog() else { return [] }
+        let intent = OfflineStoryIntent(
+            childName: "", seed: "topics", mode: mode,
+            ageBand: servedBand(forAge: age), safety: currentSafety)
+        return selector.availableTopics(catalog: catalog, intent: intent).map {
+            StoryTopicChoice(id: $0.id.rawValue, name: $0.name, symbol: $0.symbol ?? "sparkles")
+        }
+    }
+
     /// The optional idea cards under a mode. Empty means the flow skips them.
     func storyIdeas(forAge age: Int, mode: StoryMode) -> [CatalogStoryIdea] {
         guard let catalog = try? catalog() else { return [] }
@@ -248,8 +264,10 @@ final class OfflineStoryService {
     ///     stories were built before modes existed.
     ///   - age: the child's age; the story is written for its served band. Nil
     ///     admits every band.
-    ///   - subOption: a choice within the mode. Always nil today; the engine
-    ///     carries it but does not read it.
+    ///   - subOption: alt kategori kimliği (`CatalogStoryTopic`). Verilirse
+    ///     bağlayıcıda süzgeçtir: konuyu taşımayan içerik seçilmez ve hiçbir
+    ///     şey kurulamazsa masal üretilmez (söz, tat değil). Katalogda
+    ///     karşılığı olmayan bir kimlik reddedilir.
     ///   - usage: how this child read their stories (FAZ 14); what they
     ///     re-read weighs more, what they left weighs less. Not stored either.
     ///   - interests, recent: weigh the choice (FAZ 12). Neither is stored on

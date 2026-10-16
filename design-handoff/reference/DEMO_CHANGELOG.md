@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-16 · faz-21-alt-kategoriler · Yaratma akışı: çocuk adımı ve mod altında açılan alt kategoriler
+
+- **Adım 1 "Masal kimin için?"** (`StoryChildStep`, yeni): yalnızca evde birden fazla çocuk varken görünür. Tek çocuklu evde cevabı belli bir soru sormak olurdu. Seçim akışa özeldir, aktif profili değiştirmez: büyük kardeşe masal yazdırmak uygulamanın geri kalanını büyük kardeşe çevirmemeli. Bugüne kadar akış aktif profili kullanıyordu ve yanlış profil seçiliyken yazılan masal sessizce yanlış çocuğun oluyordu.
+- **Adım 2'de alt kategoriler aynı ekranda** (karar: Batuhan, 16 Ekim): mod kartına dokununca altında o modun konuları çip olarak açılır ("Neyi öğrenelim?" / "Nereye gidelim?"). Önce ayrı bir ekran olarak yazılmıştı; ürün kararı aynı adımda olması yönünde — ikinci soru ancak birincisi cevaplandıktan sonra anlam kazanıyor ve ayrı ekran ikinci bir "Devam et" bastırıyordu. `StoryTopicStep` silindi, mantık `StoryModeStep` içine alındı.
+- Konu isteğe bağlı: seçmeden devam edilebilir, seçili çipe tekrar dokunmak kaldırır — bu yüzden ayrı "Farketmez" kartı yok. Mod değişince konu düşer (meslek konusu seçip uyku moduna dönen biri farkında olmadan meslek masalı ısmarlamamalı). Sürpriz konu sormaz: ebeveyn "sen seç" dedi.
+- Köprü: `StoryTopicChoice` + `StoryChoiceSource.topicChoices(forAge:mode:)`; `OfflineStoryService` motorun `availableTopics`'ini çağırıyor. Seçilen konu `createStory(subOption:)` üzerinden niyete geçiyor — bu yol FAZ 10'dan beri boş duruyordu.
+- Adım noktaları etiket listesinden türetiliyor; konu bir adım olmadığı için nokta eklemiyor. Tek çocuklu evde "Masal → Kimler", çok çocuklu evde "Çocuk → Masal → Kimler".
+- **Doğrulama yapılmadı (Batuhan'ın kararı: testleri atla, birleştir).** Bu turda ne uygulama testleri ne de derleme tamamlandı; derleme makinedeki disk darlığı yüzünden birkaç kez yarıda kaldı (son hata: "No space left on device", ondan önce `swift-protobuf` alt modülünün yeniden indirilmesi). Motor tarafı (önceki commit `c96b804`) 795 test / 18 bilinen hatayla doğrulanmıştı; bu commit'teki arayüz kodu **derlenmemiştir**.
+- Etkilenen: `Screens/StoryCreation/StoryChildStep.swift` (yeni), `StoryModeStep.swift`, `StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryEngineBridge/StoryChoiceSource.swift`, `OfflineStoryService.swift`, `MagicPaperTests/StoryCreationStepsTests.swift`, bu dosya.
+
 ### 2026-10-16 · faz-21-alt-kategoriler (271c787 üstüne) · Mod alt kategorileri motorda: söz olarak
 
 - Toplantı kararı: yaratma akışı 1) hangi çocuk 2) mod + **alt kategori** 3) yardımcı karakter. Koddaki durum: 1. adım yok (aktif profil kullanılıyor), 3. adım var ("Masal ailem" çipleri + katalog arkadaşları), 2. adımın alt kategorileri yoktu. Bu tur 2. adımın motor tarafını yazdı.

@@ -17,11 +17,21 @@ struct StoryModeStep: View {
     var emphasized: StoryMode? = nil
     var childName: String = ""
     var childColor: Color? = nil
-    let onChoose: (StoryMode) -> Void
+    /// Bir modun bu çocuğa sunulabilecek alt kategorileri (16 Ekim 2026).
+    ///
+    /// Kapanış olarak veriliyor çünkü liste moda göre değişiyor ve ekran onu
+    /// yalnızca seçim yapıldığında soruyor. Boş dönmesi normaldir: alt
+    /// kategori bir söz, ve motor yalnızca kurulabilen konuları döndürüyor.
+    var topics: (StoryMode) -> [StoryTopicChoice] = { _ in [] }
+    /// Seçilen mod ve — varsa — seçilen konunun kimliği.
+    let onChoose: (StoryMode, String?) -> Void
     let onSurprise: () -> Void
 
     private enum Choice: Hashable { case mode(StoryMode), surprise }
     @State private var choice: Choice?
+    /// Seçili modun konusu. Mod değişince düşer: "Meslekler" seçip moda geri
+    /// dönüp uyku öncesini seçen biri, meslek masalı ısmarlamış olmamalı.
+    @State private var topicID: String?
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -59,6 +69,7 @@ struct StoryModeStep: View {
                         WorldTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
                                   isSelected: choice == .mode(mode)) {
                             MPHaptics.selection()
+                            if choice != .mode(mode) { topicID = nil }
                             choice = .mode(mode)
                         }
                         .accessibilityLabel(mode == emphasized
@@ -70,23 +81,31 @@ struct StoryModeStep: View {
                         WorldTile(title: "Bana sürpriz yap", systemImage: "wand.and.sparkles", tone: .pink,
                                   isSelected: choice == .surprise) {
                             MPHaptics.selection()
+                            // Sürprizin konusu sorulmaz: ebeveyn "sen seç"
+                            // dedi, konuyu sormak o cümleyi yarıda kesmek olur.
+                            topicID = nil
                             choice = .surprise
                         }
                         .accessibilityLabel("Bana sürpriz yap. Bugünün masalını biz seçelim.")
                     }
                 }
                 .padding(.top, MPSpacing.sm)
+
+                if case .mode(let mode) = choice {
+                    topicSection(for: mode)
+                }
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
         }
+        .animation(MP.M.gated(MP.M.easeOut), value: choice)
         .onAppear {
             if choice == nil, let emphasized { choice = .mode(emphasized) }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             MPButton(title: "Devam et", fullWidth: true) {
                 switch choice {
-                case .mode(let mode): onChoose(mode)
+                case .mode(let mode): onChoose(mode, topicID)
                 case .surprise: onSurprise()
                 case nil: break
                 }
@@ -94,6 +113,55 @@ struct StoryModeStep: View {
             .disabled(choice == nil)
             .padding(.horizontal, MPSpacing.xxxl)
             .padding(.vertical, MPSpacing.md)
+        }
+    }
+
+    /// Mod seçilince altında açılan konular.
+    ///
+    /// Ayrı bir ekran değil, aynı adımın devamı: mod masalın *ne işe
+    /// yaradığını* söyler, konu *neyle ilgili olduğunu*, ve ikinci soru ancak
+    /// birincisi cevaplandıktan sonra anlam kazanır. Ayrı ekran olsaydı
+    /// ebeveyn iki kez "Devam et"e basardı; burada ikinci soru, birincinin
+    /// cevabının altında beliriyor.
+    ///
+    /// Konu **isteğe bağlı**: seçilmeden devam edilebilir, ve seçili çipe
+    /// tekrar dokunmak seçimi kaldırır. Bu yüzden ayrıca bir "Farketmez"
+    /// kartı yok — seçmemek zaten farketmez demek.
+    @ViewBuilder
+    private func topicSection(for mode: StoryMode) -> some View {
+        let choices = topics(mode)
+        if !choices.isEmpty {
+            VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                Text(prompt(for: mode))
+                    .mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                Text("İstersen seç, istersen bize bırak.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                MPWrapRow(spacing: MPSpacing.sm) {
+                    ForEach(choices) { topic in
+                        MPChip(title: topic.name, systemImage: topic.symbol,
+                               isSelected: topicID == topic.id) {
+                            MPHaptics.selection()
+                            topicID = (topicID == topic.id) ? nil : topic.id
+                        }
+                        .accessibilityLabel(topic.name)
+                        .accessibilityAddTraits(topicID == topic.id ? [.isSelected] : [])
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, MPSpacing.sm)
+            .transition(.opacity)
+        }
+    }
+
+    /// Soru modun sorusunu sürdürüyor: "öğrenelim" dedikten sonra sorulacak
+    /// şey "neyi", "maceraya çıkalım" dedikten sonra "nereye". Tek bir "Konu
+    /// seç" başlığı ikisine de uymazdı.
+    private func prompt(for mode: StoryMode) -> String {
+        switch mode {
+        case .learning:  return "Neyi öğrenelim?"
+        case .adventure: return "Nereye gidelim?"
+        case .bedtime:   return "Masal neyle ilgili olsun?"
         }
     }
 }

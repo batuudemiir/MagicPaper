@@ -18,6 +18,39 @@ final class StoryCreationStepsTests: XCTestCase {
         XCTAssertEqual(StoryCreationSteps.stepLabels(ideaStep: true), ["Masal", "Fikir", "Kimler"])
     }
 
+    // MARK: - Çocuk ve konu adımları (16 Ekim 2026)
+
+    /// Tek çocuklu evde "hangi çocuk?" cevabı belli bir sorudur.
+    func testTheChildStepNeedsMoreThanOneChild() {
+        XCTAssertFalse(StoryCreationSteps.showsChildStep(profileCount: 0))
+        XCTAssertFalse(StoryCreationSteps.showsChildStep(profileCount: 1))
+        XCTAssertTrue(StoryCreationSteps.showsChildStep(profileCount: 2))
+    }
+
+    /// Konu ayrı bir adım değil: mod adımının içinde beliriyor, bu yüzden
+    /// adım noktalarına bir nokta eklemiyor.
+    func testStepLabelsGrowWithTheStepsActuallyShown() {
+        XCTAssertEqual(StoryCreationSteps.stepLabels(ideaStep: false), ["Masal", "Kimler"])
+        XCTAssertEqual(
+            StoryCreationSteps.stepLabels(childStep: true, ideaStep: false),
+            ["Çocuk", "Masal", "Kimler"])
+        XCTAssertEqual(
+            StoryCreationSteps.stepLabels(childStep: true, ideaStep: true),
+            ["Çocuk", "Masal", "Fikir", "Kimler"])
+    }
+
+    /// Sıra ekrandaki sırayla aynı olmalı: "Konu" moddan sonra, "Kimler" en
+    /// sonda. Akış adım numarasını bu listeden okuyor.
+    func testTheLastStepIsAlwaysTheCast() {
+        for child in [true, false] {
+            for idea in [true, false] {
+                let labels = StoryCreationSteps.stepLabels(childStep: child, ideaStep: idea)
+                XCTAssertEqual(labels.last, "Kimler")
+                XCTAssertEqual(labels.first, child ? "Çocuk" : "Masal")
+            }
+        }
+    }
+
     // MARK: - Sürpriz (K6)
 
     func testSurpriseNeedsAtLeastTwoModes() {
