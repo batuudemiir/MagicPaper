@@ -46,7 +46,7 @@ final class StoryReaderModelTests: XCTestCase {
         XCTAssertEqual(model(pages: 8).story.pageLeafOffset, 2)
     }
 
-    // 2b — kaydedilen sayfadan devam ithafı atlar, doğru sayfayı açar
+    // 2b: kaydedilen sayfadan devam ithafı atlar, doğru sayfayı açar
     func testResumingSkipsTheDedication() {
         let m = model(savedPage: 2)
         XCTAssertEqual(m.currentPage?.index, 2)
@@ -54,7 +54,7 @@ final class StoryReaderModelTests: XCTestCase {
         XCTAssertEqual(m.folio, "3 / 8")
     }
 
-    // 2c — sahipsiz masal (başlangıç kitabı gibi) ithaf taşımaz
+    // 2c: sahipsiz masal (başlangıç kitabı gibi) ithaf taşımaz
     func testAStoryWithoutAChildHasNoDedication() {
         var story = ReaderFixtures.textStory(pages: 3)
         story.childName = ""

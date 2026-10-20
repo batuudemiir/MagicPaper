@@ -58,7 +58,7 @@ Bileşen   MPCard, MPButton, MPAvatar …
 | Kenar (derinlik) | `MP.E` | ✅ width 3, widthLG 4 |
 | Gölge | `MP.Sh` | ✅ soft, card, lifted, sheet, brand + **art**, **knob** |
 | Hareket | `MP.M` | ✅ + `MPPressStyle`, reduce-motion farkında. `inkDuration` (2,8 sn, 16 Ekim 2026): masal atölyesinde bir cümlenin harf harf yazılma temposu |
-| Dil | — | Masal yazılır, hazırlanır, ciltlenir; üretilmez, oluşturulmaz. Hız özellik olarak sunulmaz ("saniyeler içinde", "anında"). Kural ve grep: `CLAUDE.md` › Dil (20 Ekim 2026) |
+| Dil | (token yok) | Masal yazılır, hazırlanır, ciltlenir; üretilmez, oluşturulmaz. Hız özellik olarak sunulmaz ("saniyeler içinde", "anında"). Kural ve grep: `CLAUDE.md` › Dil (20 Ekim 2026) |
 | Okuma teması | `MP.ReadTheme` | ✅ background, foreground, body, muted, **paper**, **spine** |
 
 ### Bu turda eklenen token'lar
