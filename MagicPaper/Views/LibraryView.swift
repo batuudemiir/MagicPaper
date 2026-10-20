@@ -2,8 +2,8 @@ import SwiftUI
 
 /// 16 · Kitaplık (`Kutuphane`) ve 42 · Boş kitaplık (`BosKitaplik`).
 ///
-/// Raf (sırtları görünen kitaplar), arama, filtre çipleri (Tümü · Favoriler ·
-/// Yarım kalanlar), seri bandı, iki sütun kapak ızgarası. Kapağa dokununca Masal aksiyonları (17).
+/// Arama, filtre çipleri (Tümü · Favoriler · Yarım kalanlar), seri bandı,
+/// iki sütun kapak ızgarası. Kapağa dokununca Masal aksiyonları (17).
 /// Kitaplık etkin çocuğun; çocuk Benim köşem'den değişir.
 struct LibraryView: View {
     /// En büyük yazı boyutlarında kapaklar tek sütun.
@@ -42,12 +42,7 @@ struct LibraryView: View {
                         if pendingCount > 0 { pendingNote }
                         searchField
                         chips
-                        if filter == .all, query.isEmpty {
-                            // Döndürülmüş sırt yazısı en büyük boyutlarda okunmaz;
-                            // aynı masallar aşağıdaki ızgarada tam olarak var.
-                            if !typeSize.isAccessibilitySize { shelf }
-                            seriesBand
-                        }
+                        if filter == .all, query.isEmpty { seriesBand }
                         if visibleStories.isEmpty { noMatch } else { grid }
                     }
                     .padding(.horizontal, MPSpacing.screenH)
@@ -161,16 +156,6 @@ struct LibraryView: View {
             .accessibilityElement(children: .combine)
             .accessibilityHint("Seri masalı açar")
         }
-    }
-
-    // MARK: - Raf
-
-    private var shelf: some View {
-        LibraryShelf(stories: myStories,
-                     childName: profileManager.currentProfile?.name ?? "",
-                     library: storyManager.stories,
-                     isFavorite: { favorites.contains($0.id) },
-                     onOpen: { app.actionsStory = $0 })
     }
 
     // MARK: - Izgara
