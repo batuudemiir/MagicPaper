@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · book-intelligence@5f30954 · Öğrenme sisteminin eksikleri kapatıldı
+- Otomatiklik: takılı 19 Ekim koşusu kapatıldı; proje izinlerine (`.claude/settings.local.json`, git dışı) araştırma aracı, testler, git durum komutları ve çocuk verisi indirme betiği eklendi, pazartesi koşusu artık onay beklemeyecek. Yeni perşembe görevi `magicpaper-research-questions`: yeni kitap okumadan ajan sorularını cevaplar ve açık tartışmaları ilerletir.
+- Karşılıklı kanal ilk kez kullanıldı: reader 2, parent-ux 2, story-engine 1 soru gönderdi; beşi korpustan kanıtla cevaplandı (ör. uyku kitapları uyku dışı olanlardan kısa değil; kahraman dışı karakter ortancası 3).
+- İlk UX önerisi: `p_bedtime_quiet_last_page` (uyku modunda bitiş sayfası kutlamasız, sayaçsız; yeni rozet tek sessiz satır). reader destek + etki (S, yalnız StoryEndingLeaf), privacy-safety pass (5 koşul), tavsiye: rehber olarak benimse. Karar bekliyor. Yöntem kuralı m008.
+- Çocuk verisi: `aggregateOutcomes`un main'de olmadığı bulundu (yalnız araştırma dalında). Haftalık toplamı araştırma gelen kutusuna indiren `firebase/functions/scripts/export-outcomes.mjs` yazıldı, sunucu belgesi uçtan uca kabul edildi. Açılış adımları: `docs/research/COCUK_VERISI_ACILIS.md`. Deploy, paket yayını ve deneyi canlıya alma Batuhan'da.
+- Bilerek değişmeyen: uygulama kodu; karar ve canlıya alma insanda. PR açılmadı (`gh` yok), dal main ile çakışmasız.
+- Test: araştırma 144/144, functions 16/16, `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**`, `docs/research/**`, `firebase/functions/src/outcomes.js`, `firebase/functions/scripts/export-outcomes.mjs`, `firebase/functions/test/outcomes.test.mjs`; repo dışında `.claude/settings.local.json`, iki zamanlanmış görev.
+
 ### 2026-10-21 · main@9c5fb40 · Birleştirme: kitaplık yenileme + ana sayfa kasma düzeltmeleri, telefona kurulum, gönderim
 - `kitaplik-yenileme` ve `anasayfa-yenileme` güncel main'le birleşti (akşam zarfı planı, ithaf/künye ve araştırma kayıtları dahil); çakışmalar yalnızca değişiklik günlüğündeydi, bütün kayıtlar korundu.
 - main'den gelen ithaf yaprağıyla metin masalı kapak + ithafla başlıyor; `ReaderStoryMappingTests` artık ilk yaprağın mozaik kapak olduğunu doğruluyor.
