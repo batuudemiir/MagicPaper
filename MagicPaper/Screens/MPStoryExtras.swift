@@ -32,17 +32,12 @@ extension Story {
 
     /// Kapak olarak gösterilecek varlık adı.
     ///
-    /// Metin masallarının kendi kapağı yok — motor sayfa yazıyor, resim
-    /// üretmiyor. Kapak yerine dünya ikonunu göstermek kütüphaneyi bir uygulama
-    /// listesine çeviriyordu; ortak bir illüstrasyon en azından kitap rafı gibi
-    /// duruyor.
-    ///
-    /// Görselli masallar kendi kapaklarını kullanır, bu yüzden `nil` döner.
+    /// Yalnızca Günlük masalının boyalı kapağı. Metin masallarının görseli
+    /// yok; her biri kendi kâğıt mozaik kapağını taşır (`mpMosaicCover`).
+    /// Eskiden hepsine aynı "StoryCoverDefault" illüstrasyonu konuyordu; her
+    /// masal aynı kitap gibi görünüyordu, kaldırıldı (Batuhan, 20 Ekim 2026).
     var mpDefaultCoverAsset: String? {
-        // Günlük masalı (FAZ 20): kendi boyalı kapağı.
-        if let classic = ClassicsCatalog.coverAsset(for: id) { return classic }
-        guard !isIllustrated, opensAsTextOnly || (coverImageFileName == nil && coverImageUrl == nil) else { return nil }
-        return "StoryCoverDefault"
+        ClassicsCatalog.coverAsset(for: id)
     }
 
     // MARK: - Cover System

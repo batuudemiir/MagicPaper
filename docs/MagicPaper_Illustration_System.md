@@ -347,8 +347,11 @@ reader'ın. Eksik olan kapak *illüstrasyonu*.
 
 ### 5.2 Gerçek boşluk
 
-- `StoryCover.coverAsset` → `Story.mpDefaultCoverAsset` (`Screens/MPStoryExtras.swift:38`)
-  → sabit bundle görseli `"StoryCoverDefault"`. **Her metin masalı aynı kapağı taşıyor.**
+- ~~`StoryCover.coverAsset` → `Story.mpDefaultCoverAsset` → sabit bundle görseli
+  `"StoryCoverDefault"`. Her metin masalı aynı kapağı taşıyor.~~ **Kapandı (20 Ekim
+  2026):** ortak görsel silindi; `mpDefaultCoverAsset` yalnızca Günlük klasiğinin
+  kapağını döner, her metin masalı kendi kâğıt mozaiğini taşır (okuyucu, kitaplık,
+  masal seçenekleri). Kitaplık kapağı: `MPBookCover`.
 - İllüstrasyonlu masalda `mpDefaultCoverAsset` `nil` döner → dünya işareti çizilir
   (`StoryCover.swift:83`). Yani illüstrasyonlu masalın kapağı **daha da boş**.
 - `Story.coverImageFileName` legacy yolda **çocuğun ham yüklediği fotoğrafı**

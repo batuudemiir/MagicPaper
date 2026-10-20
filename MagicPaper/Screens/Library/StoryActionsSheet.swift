@@ -123,13 +123,8 @@ struct StoryActionsSheet: View {
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.lg))
             : AnyLayout(HStackLayout(spacing: MPSpacing.lg))
         return layout {
-            MPIcon(story.mpWorld.icon, size: 44, weight: .semibold)
-                .foregroundStyle(.white)
-                .frame(width: 100, height: 124)
-                .background(LinearGradient(colors: [story.mpWorld.tone.soft, story.mpWorld.tone.deep],
-                                           startPoint: .topLeading, endPoint: .bottomTrailing),
-                            in: RoundedRectangle(cornerRadius: MPRadius.tile))
-                .accessibilityHidden(true)
+            // Kitaplıktaki kapağın aynısı (20 Ekim): degrade karo yerine.
+            MPBookCover(art: LibraryShelfModel.coverArt(story), width: 100)
             VStack(alignment: .leading, spacing: MPSpacing.sm) {
                 Text(story.title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)

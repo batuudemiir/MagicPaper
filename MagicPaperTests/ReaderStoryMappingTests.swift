@@ -9,12 +9,22 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testTextOnlyStoryHasNoImages() {
         let reader = ReaderFixtures.reader(ReaderFixtures.textStory(pages: 8))
         XCTAssertEqual(reader.pageCount, 8)
-        XCTAssertNotNil(reader.coverAsset, "metin masalı ortak kapağı alır")
+        // Ortak "StoryCoverDefault" görseli kaldırıldı (Batuhan, 20 Ekim):
+        // her metin masalı kendi mozaik kapağını taşır.
+        XCTAssertNil(reader.coverAsset, "metin masalı ortak görseli almaz")
+        XCTAssertNotNil(reader.mosaicCover, "metin masalı kendi mozaik kapağını alır")
+        XCTAssertEqual(reader.pageLeafOffset, 1, "mozaik kapak yaprağı kitabın başında")
         for leaf in reader.leaves {
             guard let page = leaf.page else { continue }
             XCTAssertNil(page.imageRef, "metin masalında görsel olmamalı")
             XCTAssertNil(page.imageLabel, "görsel yokken erişilebilirlik etiketi de olmamalı")
         }
+    }
+
+    func testTwoTextStoriesGetDifferentCovers() {
+        let a = ReaderFixtures.reader(ReaderFixtures.textStory(pages: 2))
+        let b = ReaderFixtures.reader(ReaderFixtures.textStory(pages: 2))
+        XCTAssertNotEqual(a.mosaicCover?.seed, b.mosaicCover?.seed, "her masalın kapağı kendine")
     }
 
     // 10 — çizimli masal; dosya adı URL'den önce gelir
