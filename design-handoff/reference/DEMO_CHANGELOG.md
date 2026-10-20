@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · kitaplik-yenileme@9c231db · Kitaplık yenileme: Pastel dil, mod rafları, klasikler, ortak kapak ölçüsü
+- Kitaplık Ana sayfa ve Benim köşem'in diline geçti: beyaz sayfa, okuyan Ragi ve kitaplık özeti ("8 masalın, 3 klasik burada."), arama, süzgeç çipleri, Kaldığın yerden (en fazla 2), Serim, mod rafları (Uyku öncesi · Yeni şeyler öğrenelim · Maceraya çıkalım), Favoriler, Klasikler. Çip ya da rafın "Tümü" bağlantısı iki sütun ızgara açar; seçilen çip görünür alana kayar.
+- Batuhan'ın kararları: Günlük'ten açılan klasikler de kitaplıkta; kategori ekseni modlar; kapakta bütünlük biçimden gelsin. Sırtlı/bantlı ortak çerçeve denendi, Batuhan'ın isteğiyle kaldırıldı: klasikler Günlük'teki kapağıyla, kendi masalları kâğıt mozaiğiyle; hepsi Günlük rafının ölçüsünde (128 × 176), kartlar eş boy (başlığa iki satır yer).
+- Kapak rozeti tek yerde: yarım → seri bölümü → favori (eski "Görselli her şeyi ezer" kusuru gitti). Masal aksiyonları penceresinin degrade karosu da yeni kapak oldu.
+- **StoryCoverDefault silindi (Batuhan):** her metin masalına okuyucuda da aynı boyalı görsel konuyordu; artık her masal kendi mozaiğini taşır. `ReaderStoryMappingTests` buna göre değişti; iki masalın kapağının farklı olduğu test edildi.
+- Arama başlık, çocuk adı, mod adı ve dünya adında (Türkçe katlama); arkadaş adıyla arama yok (bilerek, ayrı iş).
+- Mimari: içerik `LibraryShelfModel` (saf, testli) içinde, yalnızca veri değişince kurulur; kaydırma yeniden hesap yapmaz. DEBUG: `-mpDemoLibrary YES` örnek kitaplık kurar.
+- Değişmeyen: Masal aksiyonları akışı (kapak → seçenekler), seri mantığı, Günlük ekranları, kapak üreticisi.
+- Testler: MagicPaperTests 736 test, 735 geçti; yeni `LibraryShelfModelTests` geçti. Tek hata `StoryModeFlowTests.testASubOptionIsRemembered`: main'den gelen alt kategori işi, kitaplıkla ilgisiz (ayrı iş olarak önerildi). Son iki küçük düzeltmeden (devam kartının büyük yazı düzeni, çip kaydırma) sonra testler yeniden çalıştırılmadı; uygulama derlendi.
+- Simülatörde görüldü (iPhone 18 Pro Max): dolu kitaplık, raflar, ızgara, boş kitaplık, en büyük Dynamic Type. Koyu mod: uygulama genelinde açık tema sabit, kitaplık da öyle. iPhone SE simülatörü yok, görülmedi. Telefonda kaydırma ölçümü ve VoiceOver yapılmadı.
+- Tasarım yasası kontrolleri değişen dosyalarda boş.
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `Screens/Library/StoryActionsSheet.swift`, `DesignSystem/Pastel/MPBookCover.swift`, `Screens/MPStoryExtras.swift`, `Screens/MPDebugLaunch.swift`, `Assets.xcassets/StoryCoverDefault` (silindi), testler, `docs/superpowers/specs/2026-10-20-kitaplik-yenileme-design.md`, `docs/MagicPaper_Illustration_System.md`.
+
 ### 2026-10-16 · main@b7f04fd · Telefona kurulum: kasma düzeltmesinin ilk derlemesi
 - `main@b7f04fd` iPhone 16'ya derlendi, kuruldu ve açıldı (18:47). Kasma düzeltmesi derlenmeden gönderilmişti; derleme temiz (`BUILD SUCCEEDED`).
 - Derlemeyi yavaşlatan neden: `swift-protobuf` paketi, uygulamanın kullanmadığı `protobuf` ve `abseil` alt modüllerini her paket çözümlemesinde baştan indiriyor. Paket kopyasında alt modülleri kapatmak işe yaramadı (Xcode kopyayı yeniden oluşturdu); indirme beklendi.
