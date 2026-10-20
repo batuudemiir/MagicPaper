@@ -60,3 +60,13 @@ test('araştırmaya giden belge eşikleri ve bastırılan hücre sayısını ta�
   assert.equal(doc.cells.length, 1);
   assert.equal(doc.weights.bp_c, 1);
 });
+
+test('gelen kutusu belgesi: yalnızca createdAt metne döner, gerisi aynı kalır', async () => {
+  const { inboxDocument } = await import('../src/outcomes.js');
+  const doc = outcomeDocument(events('bp_c', { n: 60, finished: 30 }), { periodStart: '2026-10-01', periodEnd: '2026-10-28' });
+  const stamp = { toDate: () => new Date('2026-10-28T01:00:00Z') };
+  const inbox = inboxDocument({ ...doc, createdAt: stamp });
+  assert.equal(inbox.createdAt, '2026-10-28T01:00:00.000Z');
+  assert.deepEqual({ ...inbox, createdAt: undefined }, { ...doc, createdAt: undefined });
+  assert.deepEqual(inboxDocument(doc), doc);
+});

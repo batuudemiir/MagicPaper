@@ -1,0 +1,14 @@
+{
+  "agent": "privacy-safety",
+  "n": 1,
+  "id": "privacy-safety-1",
+  "stance": "support",
+  "text": "Fits Calm UX: a quieter bedtime close removes stimulation, adds no engagement loop and no data. Badge/star rules govern where rewards may appear and that they are earned only by reading; they do not require showing them on every ending. StoryEndingLeaf only displays MPStreak, word count and MPBadgeNews.fresh; earning and persistence live elsewhere, so hiding the tiles in bedtime loses nothing and new badges stay visible in Benim köşem. Conditions: display-only change; finishing a bedtime story still records the reading, streak day, star and badge exactly as today; no deferred 'you earned X' banner or push to compensate; no new analytics event, field or log (no child name or story text); no haptic or celebration on the bedtime leaf; calm Ragi copy. Note: the leaf's isBedtime is time/settings based (MPBedtime), not story mode; the owner should choose one trigger explicitly.",
+  "evidence": [
+    "c_bedtime_quiet_last_page",
+    "MagicPaper/Screens/StoryReader/StoryEndingLeaf.swift",
+    "MagicPaper/Screens/MPMilestones.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-20T21:29:50Z"
+}

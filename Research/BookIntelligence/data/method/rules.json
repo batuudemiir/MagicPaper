@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "rules": [
     {
       "rule_id": "m001",
@@ -117,6 +117,22 @@
       ],
       "active": true,
       "added_at": "2026-10-20T12:11:47Z"
+    },
+    {
+      "rule_id": "m008",
+      "kind": "note",
+      "text": "Bir öneriyi göndermeden önce 'bugün' alanını koddan doğrula: ekranın ya da motorun şu anki davranışını varsayma, dosyayı oku ve dosya adını yaz. 21 Ekim'de reader ajanı, okuyucuda otomatik sayfa geçişi olmadığını ve bitiş sayfasının uyku kararını saatten verdiğini düzeltti.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_bedtime_quiet_last_page/reader-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-20T21:30:46Z"
     }
   ],
   "history": [
@@ -161,6 +177,12 @@
       "change": "added",
       "rule_id": "m007",
       "at": "2026-10-20T12:11:47Z"
+    },
+    {
+      "version": 8,
+      "change": "added",
+      "rule_id": "m008",
+      "at": "2026-10-20T21:30:46Z"
     }
   ]
 }

@@ -109,3 +109,14 @@ export function outcomeDocument(events, { periodStart, periodEnd, ...options }) 
     weights: outcomeWeights(cells),
   };
 }
+
+// Firestore'daki bir outcomeAggregates belgesini araştırma ajanının gelen kutusuna yazılacak
+// JSON'a çevirir: createdAt (Timestamp) ISO metne döner, başka hiçbir şey eklenmez ya da çıkarılmaz.
+// Araştırma aracı (`ba usage import`) bilinmeyen anahtar ya da gizlilik eşiğinin altındaki hücre görürse
+// dosyayı reddeder; bu yüzden burada yalnızca biçim değişir.
+export function inboxDocument(doc) {
+  const { createdAt, ...rest } = doc;
+  const iso = createdAt && typeof createdAt.toDate === 'function' ? createdAt.toDate().toISOString()
+    : createdAt instanceof Date ? createdAt.toISOString() : createdAt;
+  return iso === undefined ? rest : { ...rest, createdAt: iso };
+}

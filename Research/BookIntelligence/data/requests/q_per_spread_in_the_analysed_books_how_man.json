@@ -1,0 +1,41 @@
+{
+  "request_id": "q_per_spread_in_the_analysed_books_how_man",
+  "from": "reader",
+  "question": "Per spread in the analysed books, how many words does the text carry (median, range), and how are spreads with very little text (0-5 words) distributed: how many per book, and where (turning point, peak, last spread)? Does the picture share grow when the text shrinks?",
+  "why": "StoryPageView.swift reserves a fixed 45-55% of the page for the picture and centres short text; StoryReaderView.swift auto-reads every new page via MPSpeech. The answer decides whether the layout should give a near-wordless page a full-bleed picture and whether read-aloud should hold a silent beat on such a page instead of jumping straight on.",
+  "target": "reader.layout",
+  "age_band": "5-6",
+  "status": "answered",
+  "answer": {
+    "text": "From 21 complete books with text (page = spread). 5-6 band (9 books): median words per spread 12-40 per book (Book Dash 12-23.5, African Storybook 23.5, StoryWeaver 12 and 39); spreads with 0-5 words are rare: 9 of about 110 spreads, 6 of them in one book (Good Night, Monu, where wordless spreads carry the monster sequence). 3-4 band (10 Book Dash books): median 5.5-13 words; 0-5-word spreads are common, 30 of 120, usually the turning point or the last spread (the last spread is wordless in 4 of 10). Picture share: NOT measured; we record what only the picture shows, not its size, and that field (only_in_image) measured 54% re-read agreement, so treat picture-role notes as weak. For the reader: a full-bleed rule for near-empty pages matters mainly for 3-4; at 5-6 it would rarely trigger. Read-aloud pause on a wordless spread is consistent with how these books are built (the turn is carried by the picture) but untested with children.",
+    "claims": [
+      "c_picture_only_information",
+      "c_sentence_length"
+    ],
+    "works": [
+      "w_good_night_monu_karthik",
+      "w_feathered_friends_ange",
+      "w_fifi_and_teddy_letsapa"
+    ],
+    "evidence_strength": "LOW",
+    "at": "2026-10-20T21:28:32Z"
+  },
+  "history": [
+    {
+      "status": "open",
+      "by": "reader",
+      "at": "2026-10-20T21:26:41Z"
+    },
+    {
+      "status": "researching",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:31Z"
+    },
+    {
+      "status": "answered",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    }
+  ],
+  "created_at": "2026-10-20T21:26:41Z"
+}

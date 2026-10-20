@@ -2,9 +2,13 @@
 
 One page for the product owner. Only the first section needs you.
 
-## Waiting for your decision (0)
+## Waiting for your decision (1)
 
-Nothing.
+### p_bedtime_quiet_last_page → **adopt_guidance**
+
+Two required voices heard and both support (reader owns the target, privacy-safety pass with conditions). 5 of 5 bedtime books end quieter than their average; none of 21 books has a celebration after the story. A UX target cannot be an experiment, and the change is small, reversible and display-only (StoryEndingLeaf, gate story.mode == bedtime or clock). Evidence LOW, so adopt as guidance for the bedtime ending, not as a rule for other modes.
+
+Target `reader.page_turn` · safety **pass** · cost S · [thread](exchange/p_bedtime_quiet_last_page.md)
 
 ## Still being discussed (0)
 

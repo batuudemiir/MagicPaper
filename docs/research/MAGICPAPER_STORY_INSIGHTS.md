@@ -5,6 +5,15 @@ Research → analysis → insight → **human review** → product rule → impl
 <!-- bookintel:generated:start -->
 Every entry names the engine field or content gate it would affect. The research agent can only write `proposed`; review, acceptance and implementation are separate, human-owned steps.
 
+## Proposed
+
+### c_bedtime_quiet_last_page
+
+- **Finding:** In 5 of 5 analysed books framed by bedtime or sleep the last spread is quieter than the book's average (0-1 of 5 against 2.1-3.1); in non-bedtime books this holds for 8 of 17, and many end on a joyful payoff at or above the average. None of the 21 books has a celebration after the story: they close with a picture, a vignette or credits.
+- **Evidence:** 5 of 5 works (small sample), confidence **LOW**
+- **Target:** `reader.page_turn` · current: After the last page StoryReaderView stops narration and goes straight to StoryEndingLeaf: Ragi waving, 'Masal bitti!', reading counts and a 400 ms celebration, the same in every mode. · suggested: In bedtime mode only: let the last story page stand alone as a quiet moment (no auto-advance, narration ends softly), and make the ending leaf calm: no celebration animation and no reading counts on that screen; keep today's ending for adventure and learning.
+- **Note:** Bedtime-specific; 5 bedtime books from 2 publishers.
+
 ## Reviewed
 
 ### c_bedtime_closes_circle
