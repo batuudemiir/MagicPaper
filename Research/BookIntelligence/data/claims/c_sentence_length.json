@@ -1,6 +1,6 @@
 {
   "claim_id": "c_sentence_length",
-  "statement": "Mean sentence length is between 3 and 10 words in the 14 analysed books with text; the longest sentence stays at or under 14 words in 9 of 14 (the others reach 18-21).",
+  "statement": "Mean sentence length is between 3 and 10 words in all 21 analysed books with text; the longest sentence stays at or under 14 words in 12 of 21 (the others reach 15-21, and 38 in the level-3 Kottavi Raja).",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -11,22 +11,29 @@
     "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
   },
   "supporting_works": [
-    "w_mud_waterkeyn",
-    "w_catch_that_cat_pirie",
     "w_amahle_wants_to_help_nsibande",
-    "w_best_friends_louw",
+    "w_amo_and_the_missing_mielies_phala",
     "w_bathtub_safari_chemaly",
-    "w_khumos_big_trip_sedibe",
+    "w_best_friends_louw",
+    "w_catch_that_cat_pirie",
+    "w_chicken_and_millipede_asara",
     "w_come_back_cat_rijsdijk",
+    "w_come_stay_with_me_siege",
     "w_feathered_friends_ange",
-    "w_chicken_and_millipede_asara"
+    "w_fifi_and_teddy_letsapa",
+    "w_khumos_big_trip_sedibe",
+    "w_mud_waterkeyn"
   ],
   "counterexample_works": [
-    "w_brave_bora_gicovi",
-    "w_grumpy_cloud_ditlhareng",
-    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_ann_nem_oh_nee_finds_adventure_griffiths",
     "w_bohlales_adventure_ambrosano",
-    "w_good_night_monu_karthik"
+    "w_brave_bora_gicovi",
+    "w_foxy_joxy_plays_a_trick_esmail",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_good_night_monu_karthik",
+    "w_goodnight_tinku_nambiar",
+    "w_grumpy_cloud_ditlhareng",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
@@ -41,13 +48,13 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 14,
-    "support": 9,
-    "counter": 5,
-    "support_ratio": 0.643,
+    "n_examined": 21,
+    "support": 12,
+    "counter": 9,
+    "support_ratio": 0.571,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
-    "confidence": "MEDIUM",
+    "confidence": "LOW",
     "wording": "common, not universal",
     "experiments": 0
   },
@@ -59,6 +66,10 @@
     {
       "from": "LOW",
       "to": "MEDIUM"
+    },
+    {
+      "from": "MEDIUM",
+      "to": "LOW"
     }
   ]
 }

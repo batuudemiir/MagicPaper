@@ -1,6 +1,6 @@
 {
   "claim_id": "c_length_twelve_spreads",
-  "statement": "Outside Book Dash, whose format fixes 12 spreads, 1 of 3 analysed books runs 12 pages (Chicken and Millipede, African Storybook); Good Night, Monu (StoryWeaver) runs 13 and Bohlale's adventure (African Storybook) 15. The 12-spread pattern is not yet shown beyond one publisher.",
+  "statement": "Outside Book Dash, whose format fixes 12 spreads, 1 of 5 analysed books runs 12 pages (Chicken and Millipede, African Storybook); the others run 11 (Goodnight, Tinku!), 13 (Good Night, Monu), 15 (Bohlale's adventure) and 17 (Kottavi Raja). The 12-spread pattern is not shown beyond one publisher.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -14,14 +14,16 @@
     "w_chicken_and_millipede_asara"
   ],
   "counterexample_works": [
+    "w_bohlales_adventure_ambrosano",
     "w_good_night_monu_karthik",
-    "w_bohlales_adventure_ambrosano"
+    "w_goodnight_tinku_nambiar",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Caution: all 7 are Book Dash, whose format fixes the spread count, so more Book Dash books do not answer the one-publisher objection; a second source is still required.\n2026-10-15: Rewritten to the cross-publisher question the owner asked for. The 13 Book Dash books (all 12 spreads, a format rule) are no longer counted as support because they cannot test it. Word totals also split: the six 3-4 Book Dash books added today run 60-118 words (Zuko is wordless), below the earlier 136-220; non-Book Dash books run 168-569. Sources of the new works: Chicken and Millipede and Bohlale's adventure from African Storybook, Good Night, Monu from StoryWeaver.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Caution: all 7 are Book Dash, whose format fixes the spread count, so more Book Dash books do not answer the one-publisher objection; a second source is still required.\n2026-10-15: Rewritten to the cross-publisher question the owner asked for. The 13 Book Dash books (all 12 spreads, a format rule) are no longer counted as support because they cannot test it. Word totals also split: the six 3-4 Book Dash books added today run 60-118 words (Zuko is wordless), below the earlier 136-220; non-Book Dash books run 168-569. Sources of the new works: Chicken and Millipede and Bohlale's adventure from African Storybook, Good Night, Monu from StoryWeaver. 2026-10-20: two more StoryWeaver/Pratham books, both off 12.",
   "magicpaper": {
     "target": "validator.BANDS",
     "current": "8 pages × 18-38 words (144-304 words)",
@@ -30,10 +32,10 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 3,
+    "n_examined": 5,
     "support": 1,
-    "counter": 2,
-    "support_ratio": 0.333,
+    "counter": 4,
+    "support_ratio": 0.2,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

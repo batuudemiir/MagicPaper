@@ -1,6 +1,6 @@
 {
   "claim_id": "c_bedtime_closes_circle",
-  "statement": "In 3 of 4 analysed books framed by bedtime or sleep, the last page returns to the opening place (the bed or bedroom) at low intensity (1-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap); Bohlale's adventure wakes in the same bedroom but ends on a high payoff (4 of 5).",
+  "statement": "In 4 of 6 analysed books framed by bedtime or sleep, the last page returns to the opening place (the bed or bedroom, or the same mother and moon) at low intensity (0-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap; Goodnight, Tinku!); Bohlale's adventure ends on a high payoff (4 of 5) and Kottavi Raja ends calm but in a different place (the whole city asleep), after a late second peak.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -11,12 +11,14 @@
     "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
   },
   "supporting_works": [
-    "w_good_night_monu_karthik",
     "w_bathtub_safari_chemaly",
+    "w_good_night_monu_karthik",
+    "w_goodnight_tinku_nambiar",
     "w_zuko_and_the_crying_tap_langeni"
   ],
   "counterexample_works": [
-    "w_bohlales_adventure_ambrosano"
+    "w_bohlales_adventure_ambrosano",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
@@ -26,13 +28,13 @@
     "emotion_intensity",
     "beat"
   ],
-  "analyst_note": "2026-10-15: from three sources (Book Dash: Bathtub Safari, Zuko; StoryWeaver: Good Night, Monu; African Storybook: Bohlale as counterexample). Final-page intensity 1/5 (Monu, Bathtub Safari), 2/5 (Zuko), 4/5 (Bohlale); on the engine's 0-3 scale about 0-1 for the three, 2-3 for Bohlale. Monu and Bathtub Safari peak at or before the midpoint and then descend, so this is a shape where the peak is not in the last third (see c_peak_in_last_third). Small sample; inferred from intensity judgments.",
+  "analyst_note": "2026-10-15: from three sources (Book Dash: Bathtub Safari, Zuko; StoryWeaver: Good Night, Monu; African Storybook: Bohlale as counterexample). Final-page intensity 1/5 (Monu, Bathtub Safari), 2/5 (Zuko), 4/5 (Bohlale); on the engine's 0-3 scale about 0-1 for the three, 2-3 for Bohlale. Monu and Bathtub Safari peak at or before the midpoint and then descend, so this is a shape where the peak is not in the last third (see c_peak_in_last_third). Small sample; inferred from intensity judgments. 2026-10-20 (answering q_uyku_oncesi): Goodnight, Tinku! (StoryWeaver, Pratham Books) opens and closes with the pup by his sleeping mother under the same smiling moon, final page 0/5; its excitement is a plateau p4-p8 of 11 (engine about 2), the last peak page at 0.73, so on m006's definition it would not pass a 'peak by two thirds' check. Kottavi Raja (Pratham, 7-8) is a counterexample: last peak p16 of 17.",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "bedtime mode shares beat sequences with the other modes; m004 already keeps hooks out of its last third",
     "suggested": "For bedtime blueprints only: place the emotional peak no later than about two thirds through, and let the final page return to the opening setting (bed, room, window) at the lowest intensity of the story.",
     "note": "Hypothesis from 4 books; bedtime-specific, does not apply to adventure or learning modes.",
-    "review_status": "proposed"
+    "review_status": "reviewed"
   },
   "confidence_history": [
     {
@@ -41,14 +43,17 @@
     }
   ],
   "computed": {
-    "n_examined": 4,
-    "support": 3,
-    "counter": 1,
-    "support_ratio": 0.75,
+    "n_examined": 6,
+    "support": 4,
+    "counter": 2,
+    "support_ratio": 0.667,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",
     "wording": "common, not universal",
-    "experiments": 0
+    "experiments": 0,
+    "unreliable_fields": [
+      "beat"
+    ]
   }
 }

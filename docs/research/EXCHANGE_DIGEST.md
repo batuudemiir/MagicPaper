@@ -1,21 +1,18 @@
-# Exchange digest — 2026-10-15
+# Exchange digest — 2026-10-20
 
 One page for the product owner. Only the first section needs you.
 
-## Waiting for your decision (1)
+## Waiting for your decision (0)
 
-### p_bedtime_closes_circle → **research_more**
-
-Three owners agree the direction is sound but the evidence is 4 bedtime-framed books (3 support, LOW), safety is 'concerns' with five conditions (so no experiment yet), and the peak measure was only defined in this round. Next: read at least 4 more bedtime books, then bring back an experiment on a bp_charge_tending_001 variant (peak by page 5, frame line on pages 1 and 8, privacy-safety's ceilings) as story-engine-002 and the content-library sandbox outline describe.
-
-Target `beat_sequences` · safety **concerns** · cost M · [thread](exchange/p_bedtime_closes_circle.md)
+Nothing.
 
 ## Still being discussed (0)
 
 
-## Decided (9)
+## Decided (10)
 
 - p_adult_enables_resolution: rejected — Çocuk çözer kuralı kalıyor
+- p_bedtime_closes_circle: parked — Uyku kitapları okunsun (en az 4 yeni), sonra bp_charge_tending_001 varyantıyla deney olarak geri gelsin; privacy-safety'nin 5 koşulu geçerli.
 - p_companion_mirrors_feeling: approved — Yalnızca metin hali, yazım rehberine
 - p_fear_named_and_supported: rejected — Korku sınırı kalıyor
 - p_length_twelve_spreads: parked — Başka kaynaklardan kitap gelince yeniden bakılsın

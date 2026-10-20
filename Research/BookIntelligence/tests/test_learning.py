@@ -158,3 +158,13 @@ class Learning(TestCase):
         self.assertIn("How long are bedtime books?", page)
         self.assertIn("## Ajan kendini nasıl geliştirdi", page)
         self.assertIn(f"Sıradaki kör yeniden okuma: `{self.wid}`", page)
+
+
+class OldRuns(Learning):
+    def test_scoring_attaches_to_a_run_opened_before_rechecks_existed(self):
+        from bookintel import runs
+        run = runs.start(self.store, "old run", [])
+        run.pop("rechecks_scored", None)
+        self.store.put("run", run)
+        self.reread()
+        self.assertEqual(runs.open_run(self.store)["rechecks_scored"], [f"{self.wid}.1"])

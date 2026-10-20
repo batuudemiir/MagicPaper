@@ -1,8 +1,8 @@
 # p_sentence_length
 
-**Status:** decided · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (MEDIUM, 9/14 works)
+**Status:** decided · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (LOW, 12/21 works)
 
-> Mean sentence length is between 3 and 10 words in the 14 analysed books with text; the longest sentence stays at or under 14 words in 9 of 14 (the others reach 18-21).
+> Mean sentence length is between 3 and 10 words in all 21 analysed books with text; the longest sentence stays at or under 14 words in 12 of 21 (the others reach 15-21, and 38 in the level-3 Kottavi Raja).
 
 - Current: 14
 - Suggested: No change suggested: the pilot sits around the current cap.

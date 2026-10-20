@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "rules": [
     {
       "rule_id": "m001",
@@ -99,6 +99,24 @@
       ],
       "active": true,
       "added_at": "2026-10-15T10:48:02Z"
+    },
+    {
+      "rule_id": "m007",
+      "kind": "note",
+      "text": "Tek yayınevinden çıkan bir kalıp o yayınevi hakkında bir hipotezdir: en az 2 başka yayınevinin kitaplarına bakılmadan öneriye dönüşmez. 20 Ekim'de başka yayınevleri girince tekrar eden satır ve cümle uzunluğu MEDIUM'dan LOW'a düştü.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "c_repeated_line",
+        "c_sentence_length",
+        "c_length_twelve_spreads"
+      ],
+      "active": true,
+      "added_at": "2026-10-20T12:11:47Z"
     }
   ],
   "history": [
@@ -137,6 +155,12 @@
       "change": "added",
       "rule_id": "m006",
       "at": "2026-10-15T10:48:02Z"
+    },
+    {
+      "version": 7,
+      "change": "added",
+      "rule_id": "m007",
+      "at": "2026-10-20T12:11:47Z"
     }
   ]
 }

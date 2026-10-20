@@ -1,6 +1,6 @@
 {
   "claim_id": "c_peak_in_last_third",
-  "statement": "The emotional peak falls in the last third in 9 of 16 analysed books; in 7 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).",
+  "statement": "The emotional peak falls in the last third in 16 of 24 analysed books; in 8 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -12,29 +12,37 @@
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
+    "w_amo_and_the_missing_mielies_phala",
+    "w_ann_nem_oh_nee_finds_adventure_griffiths",
+    "w_best_friends_louw",
+    "w_bohlales_adventure_ambrosano",
     "w_brave_bora_gicovi",
     "w_catch_that_cat_pirie",
-    "w_mud_waterkeyn",
-    "w_best_friends_louw",
-    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_come_stay_with_me_siege",
     "w_feathered_friends_ange",
-    "w_zuko_and_the_crying_tap_langeni",
-    "w_bohlales_adventure_ambrosano"
+    "w_fifi_and_teddy_letsapa",
+    "w_foxy_joxy_plays_a_trick_esmail",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
+    "w_mud_waterkeyn",
+    "w_red_umbrella_kritzinger",
+    "w_zuko_and_the_crying_tap_langeni"
   ],
   "counterexample_works": [
-    "w_grumpy_cloud_ditlhareng",
-    "w_unexpected_adventure_jooste",
     "w_bathtub_safari_chemaly",
-    "w_come_back_cat_rijsdijk",
-    "w_khumos_big_trip_sedibe",
     "w_chicken_and_millipede_asara",
-    "w_good_night_monu_karthik"
+    "w_come_back_cat_rijsdijk",
+    "w_good_night_monu_karthik",
+    "w_goodnight_tinku_nambiar",
+    "w_grumpy_cloud_ditlhareng",
+    "w_khumos_big_trip_sedibe",
+    "w_unexpected_adventure_jooste"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.\n2026-10-15: Counts: support 5 earlier + Ga Mohana, Feathered Friends, Zuko (Book Dash) and Bohlale (African Storybook, first 4 at 0.71). Contradict: Bathtub Safari, Come Back Cat, Khumo (Book Dash, Khumo borderline), Chicken and Millipede (African Storybook, peak 5/5 at 0.45, about 3+ on the engine's 0-3 scale) and Good Night, Monu (StoryWeaver, peak 4/5 at 0.5-0.67, about 2 on 0-3). Two of the counterexamples are bedtime books that peak mid-way and wind down; see c_bedtime_closes_circle.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.\n2026-10-15: Counts: support 5 earlier + Ga Mohana, Feathered Friends, Zuko (Book Dash) and Bohlale (African Storybook, first 4 at 0.71). Contradict: Bathtub Safari, Come Back Cat, Khumo (Book Dash, Khumo borderline), Chicken and Millipede (African Storybook, peak 5/5 at 0.45, about 3+ on the engine's 0-3 scale) and Good Night, Monu (StoryWeaver, peak 4/5 at 0.5-0.67, about 2 on 0-3). Two of the counterexamples are bedtime books that peak mid-way and wind down; see c_bedtime_closes_circle. 2026-10-20: +8 works (6 Book Dash, 2 StoryWeaver/Pratham). Goodnight, Tinku! is a plateau from p4 to p8 of 11 that winds down: counted as counterexample. Kottavi Raja peaks again at p16 of 17 after a second, city-wide problem.",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "8-beat arcs",
@@ -43,15 +51,18 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 16,
-    "support": 9,
-    "counter": 7,
-    "support_ratio": 0.562,
+    "n_examined": 24,
+    "support": 16,
+    "counter": 8,
+    "support_ratio": 0.667,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "LOW",
     "wording": "common, not universal",
-    "experiments": 0
+    "experiments": 0,
+    "unreliable_fields": [
+      "beat"
+    ]
   },
   "confidence_history": [
     {

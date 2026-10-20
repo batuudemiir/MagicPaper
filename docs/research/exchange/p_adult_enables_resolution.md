@@ -1,6 +1,6 @@
 # p_adult_enables_resolution
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 5/12 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 6/14 works)
 
 > In 5 of 12 books with a problem an adult makes the resolution possible (a tickle, an injection, a 'yes', a repairer called, a mother's instruction); in 7 the child or a peer resolves it.
 

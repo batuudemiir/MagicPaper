@@ -1,8 +1,8 @@
 # p_companion_mirrors_feeling
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_companion_mirrors_feeling` (LOW, 3/16 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_companion_mirrors_feeling` (LOW, 3/23 works)
 
-> In 3 of 16 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text; in the other 13 there is no companion or it does not mirror (Khumo's and Monu's teddies stay neutral).
+> In 3 of 23 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text; in the other 20 there is no companion or it does not mirror (Khumo's and Monu's teddies, Fifi's Teddy stay neutral).
 
 - Current: catalog companions speak and act in text
 - Suggested: Hypothesis: a companion can amplify feeling silently, through the picture; relevant to companion illustration briefs.

@@ -1,4 +1,4 @@
-# İş paketleri — 2026-10-15
+# İş paketleri — 2026-10-20
 
 Onaylanan her öneri, onu uygulayacak ajan için bir iş paketine dönüşür. Ajan kendi dalında çalışır; ana koda ürün sahibinin onayıyla girer.
 

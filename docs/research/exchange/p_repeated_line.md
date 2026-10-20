@@ -1,8 +1,8 @@
 # p_repeated_line
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (MEDIUM, 9/14 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 11/21 works)
 
-> A line returns on 2 or more spreads in 9 of 14 books with text (e.g. 'Come back, cat!', 'Are we there yet?', 'Good night, Monu.', Bohlale's 'I think I will give up because…'); the other 5 repeat a structure or a sound pattern instead of a line.
+> A line returns on 2 or more spreads in 11 of 21 books with text (e.g. 'Come back, cat!', 'Good night, Monu.', Amo's call to the mielies, Tinku's friendship question and answer on five spreads); the other 10 repeat a structure, a sound pattern or a speaker tag instead of a line.
 
 - Current: repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)
 - Suggested: Distinguish deliberate refrains (a line the listener can join, changed once at the end) from accidental repetition before treating all repetition as a defect.

@@ -67,8 +67,9 @@ def log(store: Store, field: str, item) -> None:
         run = open_run(store)
         if run is None:
             return
-        if item not in run[field]:
-            run[field].append(item)
+        entries = run.setdefault(field, [])  # runs opened before a field existed lack it
+        if item not in entries:
+            entries.append(item)
             store.put("run", run)
 
 

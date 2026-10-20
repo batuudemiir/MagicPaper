@@ -1,6 +1,6 @@
 {
   "claim_id": "c_spread_end_hook",
-  "statement": "In 11 of 14 books with text a spread ends on an unfinished line or a direct question answered on the next spread (e.g. 'And then…', 'Cat?', 'and good night, at last, to…', a step count broken off mid-way).",
+  "statement": "In 16 of 21 books with text a spread ends on an unfinished line or a direct question answered on the next spread (e.g. 'And then…', 'Cat?', 'What's wrong?', a count broken off mid-way); Goodnight, Tinku! instead carries the reader on by a repeating pattern, and Kottavi Raja by a list of remedies.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -12,27 +12,34 @@
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
-    "w_mud_waterkeyn",
-    "w_catch_that_cat_pirie",
-    "w_best_friends_louw",
+    "w_amo_and_the_missing_mielies_phala",
+    "w_ann_nem_oh_nee_finds_adventure_griffiths",
     "w_bathtub_safari_chemaly",
-    "w_khumos_big_trip_sedibe",
-    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_best_friends_louw",
+    "w_bohlales_adventure_ambrosano",
+    "w_catch_that_cat_pirie",
     "w_come_back_cat_rijsdijk",
+    "w_come_stay_with_me_siege",
     "w_feathered_friends_ange",
+    "w_fifi_and_teddy_letsapa",
+    "w_foxy_joxy_plays_a_trick_esmail",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
     "w_good_night_monu_karthik",
-    "w_bohlales_adventure_ambrosano"
+    "w_khumos_big_trip_sedibe",
+    "w_mud_waterkeyn"
   ],
   "counterexample_works": [
-    "w_grumpy_cloud_ditlhareng",
     "w_brave_bora_gicovi",
-    "w_chicken_and_millipede_asara"
+    "w_chicken_and_millipede_asara",
+    "w_goodnight_tinku_nambiar",
+    "w_grumpy_cloud_ditlhareng",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends ends its penultimate spread on a question answered after the turn. The wordless book is not counted; its turns are visual (shape transitions).\n2026-10-15: Book Dash: 5 support (Bathtub Safari strongest, 5 half-lines). African Storybook: Bohlale supports (count broken at 3 resumes at 47; cave eyes left open); Chicken and Millipede ends spreads on events, not open lines. StoryWeaver: Good Night, Monu's strongest turn is an ellipsis into a one-word reveal. Bedtime note (m004): in Monu the hook sits at 6/13 and the last third winds down with no open hooks.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends ends its penultimate spread on a question answered after the turn. The wordless book is not counted; its turns are visual (shape transitions).\n2026-10-15: Book Dash: 5 support (Bathtub Safari strongest, 5 half-lines). African Storybook: Bohlale supports (count broken at 3 resumes at 47; cave eyes left open); Chicken and Millipede ends spreads on events, not open lines. StoryWeaver: Good Night, Monu's strongest turn is an ellipsis into a one-word reveal. Bedtime note (m004): in Monu the hook sits at 6/13 and the last third winds down with no open hooks. 2026-10-20: The Red Umbrella holds a wordless reveal across the p11-p12 turn; not counted (no text).",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "page-end lines are not specified",
@@ -41,10 +48,10 @@
     "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 14,
-    "support": 11,
-    "counter": 3,
-    "support_ratio": 0.786,
+    "n_examined": 21,
+    "support": 16,
+    "counter": 5,
+    "support_ratio": 0.762,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "MEDIUM",
