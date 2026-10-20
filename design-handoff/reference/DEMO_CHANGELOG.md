@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · main, plan (kod yok) · Akşam zarfı planı
+- Yeni belge `docs/AKSAM_ZARFI_PLANI.md`: akşam Ana sayfa kartı mühürlü bir zarfa döner ("İrem'e bir masal yazıldı", "Zarfı aç"); içinde açık serinin bugünkü bölümü, yoksa cihazda yazılmış yeni masal; açılmayan zarf ertesi gün sessizce kitaplığa girer.
+- Batuhan'ın kararları (20 Ekim): yer ve zaman (akşam kartı), içerik (seri önce), açılmayan zarf (kitaplığa). Beş varsayılan onay bekliyor (§9: pencere saati, mod, onay ayarı, açılış süresi, seri başlığı).
+- Mimari: saf `EveningEnvelope` + yerel kayıt + yazıcı; `MPTonight`'a `.envelope` durumu (widget ve Siri de görür); kitaplıkta mühürlü masal süzgeci. Ortak dosyalar (ana sayfa, kitaplık) için sıra notu.
+- Kod, test ve simülatör yok.
+
 ### 2026-10-20 · book-intelligence@3ef564f · Haftalık araştırma turu: 8 kitap, uyku sorusu, ilk güvenilmez alan
 - Pazartesi koşusu (19 Ekim) ilk komutta takılı kaldı; tur bu oturumda elle yürütüldü. Takılı oturum hâlâ açık (durdurma izni verilmedi).
 - 8 yeni kitap tam analiz: 6 Book Dash (3 alt ajan, 2'şer kitap) ve 2 StoryWeaver/Pratham Books (*Goodnight, Tinku!*, *Kottavi Raja and his Sleepy Kingdom*). StoryWeaver 3 kitaptan sonra üyelik istedi; hesap açılmadı, 3. Book Dash dışı kitap okunamadı (hedef ≥3 tutmadı). Korpus 24 tam analiz.
