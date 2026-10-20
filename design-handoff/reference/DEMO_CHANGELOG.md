@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · main, kod değişikliği yok · İthaf ve künye: açık doğrulamalar kapandı
+- PDF gözle görüldü (geçici bir testle diske yazıldı, test commit edilmedi): kapak, italik ithaf sayfası ("Bu masal İrem için yazıldı." + tarih ve günün bölümü), masal sayfaları (numaralar yalnızca masal sayfalarını sayıyor), altta künye sayfası. Doğru.
+- En büyük Dynamic Type (AX5): ithaf yaprağı ve son yapraktaki künye kesilmeden, taşmadan sarıyor.
+- Gece okuma teması: ithaf metni ve tarih koyu kâğıtta okunur.
+- Bulgu, bu işten değil: okuyucuda ortaya dokununca kontroller (Aa, kalp) simülatörde görünmedi; düz masal sayfasında da aynı. Simülatör dokunuşunun UIKit jestine ulaşmaması olabilir; cihazda bakılmalı.
+- Görülmedi: koyu sistem teması, iPhone SE ve Pro Max ekranları.
+
 ### 2026-10-20 · main@18b6780 · Kitaplık rafı geri alındı
 - 20aad75'teki kitap sırtı rafı kaldırıldı: `Screens/Library/LibraryShelf.swift` silindi, `Views/LibraryView.swift` rafın öncesine döndü. Batuhan beğenmedi (Günlük'ün tasarım diliyle uyumsuz, kategorileştirme yok); kitaplık UX'i ayrı bir oturumda yeniden tasarlanıyor.
 - Bilerek değişmedi: ithaf yaprağı, künye (son yaprak ve PDF), `StoryColophon`, dil temizliği yerinde.
