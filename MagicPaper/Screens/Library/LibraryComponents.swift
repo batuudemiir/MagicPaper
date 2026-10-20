@@ -91,7 +91,9 @@ struct LibraryShelfRow: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(alignment: .top, spacing: MPSpacing.lg) {
+            // Düz HStack: raf yüksekliği en uzun kartın gerçek boyunu alır;
+            // LazyHStack iki satırlık başlığın altındaki bilgiyi kesiyordu.
+            HStack(alignment: .top, spacing: MPSpacing.lg) {
                 ForEach(items) { item in
                     MPBookCard(title: item.title, meta: item.meta, art: item.art, badge: item.badge,
                                width: width, accessibilityStatus: item.accessibilityStatus) { open(item) }

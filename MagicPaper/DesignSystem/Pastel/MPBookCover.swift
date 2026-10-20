@@ -106,9 +106,9 @@ struct MPBookCover: View {
 }
 
 /// Rafta duran kitap: kapak, altında başlık ve tek satır bilgi (kategori · süre).
-/// Başlık kapağın üstüne binmez; uzun başlık iki satıra iner. Kısa başlık da
-/// iki satırlık yer ayırır: raftaki ve ızgaradaki her kart aynı boyda durur
-/// (Batuhan, 20 Ekim: bütün kapaklar aynı boyutta).
+/// Başlık kapağın üstüne binmez; uzun başlık iki satıra iner. Kapaklar her
+/// kartta aynı boyda ve raflar/ızgara üstten hizalı; kısa başlığın altında
+/// boş satır bırakılmaz, bilgi satırı başlığa yapışır (Batuhan, 21 Ekim).
 struct MPBookCard: View {
     let title: String
     let meta: String
@@ -125,7 +125,7 @@ struct MPBookCard: View {
                 MPBookCover(art: art, badge: badge, width: width)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
+                        .lineLimit(2).multilineTextAlignment(.leading)
                         // Yatay rafta da iki satıra insin, tek satırda kesilmesin.
                         .fixedSize(horizontal: false, vertical: true)
                     Text(meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
