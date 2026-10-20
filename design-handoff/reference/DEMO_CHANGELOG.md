@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · main@18b6780 · Kitaplık rafı geri alındı
+- 20aad75'teki kitap sırtı rafı kaldırıldı: `Screens/Library/LibraryShelf.swift` silindi, `Views/LibraryView.swift` rafın öncesine döndü. Batuhan beğenmedi (Günlük'ün tasarım diliyle uyumsuz, kategorileştirme yok); kitaplık UX'i ayrı bir oturumda yeniden tasarlanıyor.
+- Bilerek değişmedi: ithaf yaprağı, künye (son yaprak ve PDF), `StoryColophon`, dil temizliği yerinde.
+- Test: `StoryColophonTests`, `StoryReaderModelTests`, `ReaderProgressTests`, `StorySceneTests` hepsi geçti (0 hata). Tam takım bu turda çalıştırılmadı. Simülatörde görülmedi.
+
 ### 2026-10-20 · main@20aad75 · Masal bir kitap: ithaf, künye, kitaplık rafı, dil
 - İthaf yaprağı: okuyucuda kapağın arkasında, "Bu masal İrem için yazıldı." ve "16 Ekim 2026, Cuma akşamı" (günün bölümü saatten). PDF'te de kapağın arkasında bir sayfa. Başlangıç kitapları ve kapaksız (görselli) masallar ithafsız.
 - Künye: son yaprakta kutucukların altında "MagicPaper Kitaplığı · İrem'in 12. masalı"; PDF'te masalın son sayfası. Sıra numarası saklanmaz, `createdAt`'ten hesaplanır (`StoryEngineBridge/StoryColophon.swift`); hazırlık ekranındaki "No." aynı fonksiyondan.
