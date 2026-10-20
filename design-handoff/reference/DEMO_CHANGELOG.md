@@ -146,6 +146,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Tasarım yasası kontrolleri değişen dosyalarda boş.
 - Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `Screens/Library/StoryActionsSheet.swift`, `DesignSystem/Pastel/MPBookCover.swift`, `Screens/MPStoryExtras.swift`, `Screens/MPDebugLaunch.swift`, `Assets.xcassets/StoryCoverDefault` (silindi), testler, `docs/superpowers/specs/2026-10-20-kitaplik-yenileme-design.md`, `docs/MagicPaper_Illustration_System.md`.
 
+### 2026-10-21 · book-intelligence@3ef564f · Research PR hazır, açılamadı (gh yok)
+- **PR açılamadı:** bu makinede `gh` CLI (ve brew) yok. PR açıklaması hazır: oturum notlarında `book-intelligence-PR-body.md`. Açmak için: https://github.com/batuudemiir/MagicPaper/compare/main...book-intelligence?expand=1 (base `main`, head `book-intelligence`). Birleştirme Batuhan'da; auto-merge açılmayacak.
+- Çakışma kontrolü: `git merge-tree --write-tree origin/main book-intelligence` temiz (merge-base 9884c9f, origin/main 3eaf7fe). Çakışma yok; dalda değişiklik, rebase ya da push yapılmadı.
+- Dalın içeriği (5 commit, 392 dosya, yalnızca ekleme): araştırma ajanı `Research/BookIntelligence/` (328), `docs/research/` (61), `firebase/functions/src/outcomes.js` + `test/outcomes.test.mjs` + `index.js`'te `aggregateOutcomes` (Pazartesi 04:00, 28 günlük okuma olaylarını blueprint × bant × mod hücrelerine toplar, küçük hücreleri yazmaz).
+- Bilerek değişmedi: uygulama kodu, StoryEngine, içerik, `firestore.rules`. `aggregateOutcomes` henüz deploy edilmedi.
+- Test: `python3 -m unittest discover -s Research/BookIntelligence/tests` → 144 test OK. `firebase/functions` `npm test` (Node 24.11.0) → 15/15 geçti; `node_modules` yoktu, testler saf modülleri yüklediği için kurulum gerekmedi (`npm install` yapılmadı). iOS testleri çalıştırılmadı (uygulama kodu değişmedi).
+- Etkilenen dosyalar: yalnızca bu günlük kaydı (main). book-intelligence dalı değişmedi.
+
 ### 2026-10-20 · main, plan (kod yok) · Akşam zarfı planı
 - Yeni belge `docs/AKSAM_ZARFI_PLANI.md`: akşam Ana sayfa kartı mühürlü bir zarfa döner ("İrem'e bir masal yazıldı", "Zarfı aç"); içinde açık serinin bugünkü bölümü, yoksa cihazda yazılmış yeni masal; açılmayan zarf ertesi gün sessizce kitaplığa girer.
 - Batuhan'ın kararları (20 Ekim): yer ve zaman (akşam kartı), içerik (seri önce), açılmayan zarf (kitaplığa). Beş varsayılan onay bekliyor (§9: pencere saati, mod, onay ayarı, açılış süresi, seri başlığı).
