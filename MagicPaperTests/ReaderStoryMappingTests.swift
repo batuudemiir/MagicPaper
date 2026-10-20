@@ -13,7 +13,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         // her metin masalı kendi mozaik kapağını taşır.
         XCTAssertNil(reader.coverAsset, "metin masalı ortak görseli almaz")
         XCTAssertNotNil(reader.mosaicCover, "metin masalı kendi mozaik kapağını alır")
-        XCTAssertEqual(reader.pageLeafOffset, 1, "mozaik kapak yaprağı kitabın başında")
+        XCTAssertEqual(reader.leaves.first?.isCover, true, "mozaik kapak yaprağı kitabın başında")
         for leaf in reader.leaves {
             guard let page = leaf.page else { continue }
             XCTAssertNil(page.imageRef, "metin masalında görsel olmamalı")
