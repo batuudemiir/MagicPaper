@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · kitaplik-yenileme@48ebc43 · Kitaplık: kapak altındaki boşluk
+- Batuhan: kapakların altındaki boşluk fazla. Neden: tek satırlık başlıkta da ikinci satır için yer ayrılıyordu. Artık bilgi satırı ("Uyku · 4 dakika") başlığın hemen altında; kapaklar yine aynı boyda ve üstten hizalı.
+- Yan bulgu ve düzeltme: yatay rafta `LazyHStack` iki satırlık başlığın altındaki bilgi satırını kesiyordu; raflar düz `HStack` oldu.
+- Simülatörde görüldü (iPhone 18 Pro Max, örnek kitaplık). Test çalıştırılmadı (yalnızca görünüm değişikliği).
+- Ayrıca üç ajanla beyin fırtınası yapıldı (moda göre kapak, masal başlıkları, bulunabilirlik/tarih sıralaması); kod değişikliği yok, kararlar Batuhan'da.
+- Dosyalar: `DesignSystem/Pastel/MPBookCover.swift`, `Screens/Library/LibraryComponents.swift`.
+
 ### 2026-10-21 · main@9c5fb40 · Birleştirme: kitaplık yenileme + ana sayfa kasma düzeltmeleri, telefona kurulum, gönderim
 - `kitaplik-yenileme` ve `anasayfa-yenileme` güncel main'le birleşti (akşam zarfı planı, ithaf/künye ve araştırma kayıtları dahil); çakışmalar yalnızca değişiklik günlüğündeydi, bütün kayıtlar korundu.
 - main'den gelen ithaf yaprağıyla metin masalı kapak + ithafla başlıyor; `ReaderStoryMappingTests` artık ilk yaprağın mozaik kapak olduğunu doğruluyor.
