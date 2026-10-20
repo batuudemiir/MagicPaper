@@ -191,6 +191,23 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Derlemeyi yavaşlatan neden: `swift-protobuf` paketi, uygulamanın kullanmadığı `protobuf` ve `abseil` alt modüllerini her paket çözümlemesinde baştan indiriyor. Paket kopyasında alt modülleri kapatmak işe yaramadı (Xcode kopyayı yeniden oluşturdu); indirme beklendi.
 - Test çalıştırılmadı. Kaydırmanın akıcılığını Batuhan telefonda deneyecek; henüz doğrulanmadı.
 
+### 2026-10-16 · anasayfa-yenileme@d6dfefb · Ana sayfa: saat çubuğunun altındaki beyaz şerit kaldırıldı
+- Batuhan: aşağı kaydırınca saat, Wi-Fi ve pilin olduğu yerde beyaz blok kalıyor. Eşiği sahnenin sonuna ertelemek yetmedi; sahneden sonra altından geçen kartlar beyaz değil (mor "bu akşam" kartı, lavanta paneller).
+- Şerit tamamen kaldırıldı: içerik iOS'un standart davranışıyla saat çubuğunun altından akar. `scrolledPastScene` durumu da kalktı; kaydırma artık ana sayfayı hiç yeniden çizdirmez (yalnızca ilk açılışta dinlenme konumu bir kez yazılır).
+- Bilerek değişmeyen: saat çubuğu metni sistemin (koyu); mor kartın üstünden geçerken okunurluğu azalabilir.
+- Test çalıştırılmadı. Telefona derlendi, kuruldu ve açıldı; Batuhan'ın gözünden henüz geçmedi.
+- Dosya: `MagicPaper/Views/HomeView.swift`.
+
+### 2026-10-16 · anasayfa-yenileme@735cd93 · Ana sayfa: kaydırma donmasının asıl nedeni (cihaz ölçümüyle) ve saat şeridi
+- Batuhan: önceki iki düzeltmeden sonra da aşağı kaydırırken donarak iniyordu.
+- Ölçüm (iPhone 16, Debug, Time Profiler + Hitches, 30 sn kaydırma): 30 takılma; 15'i 166 ms (~10 kare), yaklaşık 1,5 sn'de bir. Takılma anlarındaki ana iş parçacığı süresinin ~%75'i `HomeView.availableModes` → `OfflineStoryService.availableModes(forAge:)` → `BlueprintSelector.admissible` / `safetyGap` / `templates`: motor yaşa uygun modları bulmak için bütün kataloğu güvenlik kurallarına karşı tarıyor, bu da çizim başına birkaç kez (`shownModes`, `emphasizedMode`, şeritteki her mod) yapılıyordu. Kaydırırken saat şeridi eşiği aşılınca tek bir yeniden çizim bu yüzden 166 ms sürüyordu.
+- Düzeltme: mod listesi `@State`'te; ekran açılınca, profil ya da yaş değişince hesaplanır. "Bu akşam" vurgusu (saate bağlı, ucuz) hesaplanmaya devam eder.
+- Sonrası ölçüm (aynı koşul): 2 tek karelik takılma (≤33 ms), 100 ms üstü yok. Batuhan telefonda akıcı olduğunu doğruladı.
+- **Saat şeridi:** saat çubuğunun altındaki beyaz şerit sahnenin yarısında açılıyor, gökyüzünün üstünde beyaz blok gibi görünüyordu; artık sahne tamamen geçince açılır.
+- Not: `availableModes(forAge:)` pahalı; başka ekranlar (Yarat akışı) da gövdede çağırıyorsa aynı sorun orada da olabilir, bakılmadı.
+- Test çalıştırılmadı. Cihazda derlendi ve kuruldu; beyaz şerit düzeltmesi henüz Batuhan'ın gözünden geçmedi.
+- Dosya: `MagicPaper/Views/HomeView.swift`.
+
 ### 2026-10-16 · main@e52658d · Ana sayfa: başlık bölgesindeki kasmanın kökten düzeltmesi
 - Batuhan telefonda bildirdi: ilk düzeltmeden (`8105c71`) sonra da başlık bölgesinde kasma sürüyor, aşağısı akıcı.
 - Neden: ilk düzeltme durum yazımlarını yalnızca seyrekleştirmişti; ilk 64 pt'de ve aşağı çekerken `scrolled`/`pull` hâlâ her karede yazılıyor, `HomeView` tamamen yeniden hesaplanıyordu. Ayrıca sahne iki büyük görsel ve üç gradyan maskesinden oluşuyor, maskeler her karede ekran dışında yeniden birleştiriliyordu.
