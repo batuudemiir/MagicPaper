@@ -8,7 +8,7 @@ import SwiftUI
 /// cümlesi mürekkeple yazılır, Ragi masalı bir kez daha okur, kapak gelir.
 /// Sıra, metin ve süre `StoryPreparationScript`'ten; bu görünüm yalnızca oynatır.
 ///
-/// İlk masalda ritüelin tamamı (~10 sn), sonra kısalır ve "Hemen aç" ile
+/// İlk masalda ritüelin tamamı (~15 sn), sonra kısalır ve "Masalı aç" ile
 /// atlanabilir. Reduce Motion açıkken adımlar aynı sırayla, hareket yerine
 /// çapraz geçişle gelir.
 struct StoryPreparationView: View {
@@ -178,7 +178,7 @@ struct StoryPreparationView: View {
             HStack(spacing: MPSpacing.md) {
                 MPButton(title: cancelTitle, kind: .ghost, action: onCancel)
                 if showsSkip {
-                    MPButton(title: "Hemen aç", kind: .ghost, action: skip)
+                    MPButton(title: "Masalı aç", kind: .ghost, action: skip)
                         .accessibilityHint("Masalın yazılmasını beklemeden açar")
                         .transition(.opacity)
                 }

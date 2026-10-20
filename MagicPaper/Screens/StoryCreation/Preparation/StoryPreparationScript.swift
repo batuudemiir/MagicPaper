@@ -70,7 +70,7 @@ enum StoryPreparationScript {
         }
     }
 
-    /// When "Hemen aç" appears, counted from the screen opening. The first
+    /// When "Masalı aç" appears, counted from the screen opening. The first
     /// story is never skippable: it is the moment the ritual is learnt.
     static func skipDelay(for facts: PreparationFacts) -> Double? {
         switch tier(for: facts) {

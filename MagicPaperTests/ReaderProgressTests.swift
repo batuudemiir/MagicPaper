@@ -181,6 +181,7 @@ final class ReaderProgressTests: XCTestCase {
             progressStore: SpyProgressStore()
         )
         XCTAssertTrue(m.currentLeaf.isCover)
+        XCTAssertTrue(m.next())              // ithaf
         XCTAssertTrue(m.next())
         XCTAssertEqual(m.folio, "1 / 1")
         XCTAssertTrue(m.next())

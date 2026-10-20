@@ -29,6 +29,9 @@ struct StoryLeafView: View {
         case .cover:
             StoryCover(story: model.story, theme: app.readTheme)
 
+        case .dedication:
+            StoryDedicationLeaf(dedication: model.story.dedication, theme: app.readTheme, readSize: app.readSize)
+
         case .page(let page):
             StoryPageView(
                 page: page,

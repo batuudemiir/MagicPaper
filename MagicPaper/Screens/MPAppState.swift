@@ -156,7 +156,7 @@ final class MPAppState: ObservableObject {
     var afterReader: AfterReader?
     /// 26 · Uyku modu (v2, `MPFeatures.sleepMode`).
     @Published var sleepSession: MPSleepSession?
-    /// Uyku saatinde akşam kartının açtığı "Uyku masalı oluştur" penceresi.
+    /// Uyku saatinde akşam kartının açtığı "Uyku masalı yaz" penceresi.
     /// Yalnızca karta dokununca açılır, kendiliğinden gelmez (15 Ekim 2026).
     @Published var showBedtimeSheet = false
     /// Pencerede seçilen yol: pencere kapandıktan sonra açılır (bir sayfa
@@ -175,7 +175,7 @@ final class MPAppState: ObservableObject {
         }
     }
 
-    /// "Uyku masalı oluştur" penceresi kapandıktan sonra seçilen yol.
+    /// "Uyku masalı yaz" penceresi kapandıktan sonra seçilen yol.
     func runBedtimeChoice() {
         guard let choice = pendingBedtimeChoice else { return }
         pendingBedtimeChoice = nil
@@ -218,7 +218,7 @@ final class MPAppState: ObservableObject {
 
     /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
     /// yoksa uyku öncesi modunda yeni bir masal. Uyku modu kapalıyken (v1)
-    /// "Uyku masalı oluştur" penceresi.
+    /// "Uyku masalı yaz" penceresi.
     func openSleepMode() {
         guard MPFeatures.sleepMode else {
             showBedtimeSheet = true

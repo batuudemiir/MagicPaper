@@ -95,11 +95,11 @@ Notlar:
 | Durum | Toplam | Atlama |
 |---|---|---|
 | Çocuğun ilk masalı | ~15 sn | Yok |
-| Çocuğun 2.–3. masalı | ~10 sn | 2 sn sonra "Hemen aç" |
-| 4. masal ve sonrası | ~6 sn (yaş satırı düşer) | 1 sn sonra "Hemen aç" |
+| Çocuğun 2.–3. masalı | ~10 sn | 2 sn sonra "Masalı aç" |
+| 4. masal ve sonrası | ~6 sn (yaş satırı düşer) | 1 sn sonra "Masalı aç" |
 | Uyku saati (`MPBedtime.isBedtime`) | Yukarıdakinin 1,2 katı | Aynı |
 
-- **"Hemen aç"**, defterin altında hayalet (ghost) bir buton olur. Dokununca
+- **"Masalı aç"**, defterin altında hayalet (ghost) bir buton olur. Dokununca
   kalan adımlar tek geçişle tamamlanır ve kapağa gelinir. Adım listesi
   atlanmaz, yalnızca hızlanır.
 - **Motor gecikirse** (normalde olmaz): adım 0, hikâye gelene kadar bekler.
@@ -178,7 +178,7 @@ struct StoryPreparationScript {
 - **VoiceOver:** Ekran açılınca "Ela'nın masalı yazılıyor", bitince
   "Masal hazır, Masalı oku" duyurulur. Ara adımlar tek tek duyurulmaz (gürültü
   olur), ama defter tek bir öğe olarak o anki cümleyi okur.
-- "Hemen aç" ve "Vazgeç" Türkçe etiketlidir, ≥ `MP.S.tapMin`.
+- "Masalı aç" ve "Vazgeç" Türkçe etiketlidir, ≥ `MP.S.tapMin`.
 - En büyük Dynamic Type boyutunda defter dikey kaydırılabilir olur, kapak küçülür.
 - Bilgi yalnızca renkle verilmez. Adımın bittiğini cümlenin değişmesi gösterir.
 
@@ -217,7 +217,7 @@ modu açık bir tur. CLAUDE.md'deki beş `grep` değiştirilen dosyalarda boş d
 3. `companionName(id:)` (gerekirse) ve akışta `facts` kurulumu
    (`StoryCreationFlow`, `FirstRunView`).
 4. Görünüm: `PreparationNotebook`, `CastLine`, `InkLine`, kapak + künye,
-   "Hemen aç".
+   "Masalı aç".
 5. Reduce Motion, VoiceOver, Dynamic Type.
 6. Tasarım yasası grep'leri, simülatör ekran görüntüleri.
 7. Değişiklik günlüğü kaydı, commit.
@@ -253,7 +253,7 @@ e. **Yüzdeli halkanın kaldırılması.** Öneri: kaldırılsın.
 ## 11. Nasıl anlayacağız
 
 - Analitik yok. Bunun yerine FAZ 14'ün cihaz içi kullanım verisinde,
-  "Hemen aç"a basılma oranı yerel olarak sayılabilir (ayrı karar). Oran
+  "Masalı aç"a basılma oranı yerel olarak sayılabilir (ayrı karar). Oran
   yüksekse süreler kısaltılır.
 - 5 aileyle niteliksel test: "Bu masal sizin için mi yazıldı, yoksa hazır
   mıydı?" sorusuna verilen yanıt.

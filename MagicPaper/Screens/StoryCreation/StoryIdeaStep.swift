@@ -35,7 +35,7 @@ struct StoryIdeaStep: View {
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel("\(mode.title) seçildi")
 
-                    Text("Bugün neyin etrafında bir hikâye oluşturalım?")
+                    Text("Bugün ne hakkında bir masal yazalım?")
                         .font(MP.F.displayLG())
                         .mpTightTracking(32)
                         .foregroundStyle(MP.C.textTitle)
