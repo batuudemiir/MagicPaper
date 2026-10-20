@@ -46,7 +46,7 @@ struct BedtimeStorySheet: View {
                 }
 
                 VStack(spacing: MPSpacing.sm) {
-                    MPButton(title: "Uyku masalı oluştur", systemImage: "moon.fill", fullWidth: true) {
+                    MPButton(title: "Uyku masalı yaz", systemImage: "moon.fill", fullWidth: true) {
                         choose(.bedtimeStory)
                     }
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")

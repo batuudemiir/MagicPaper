@@ -71,7 +71,7 @@ struct ParentSafetyView: View {
                         title: "Masalları onayla",
                         subtitle: settings.approve
                             ? "Yeni masallar sen onaylayana kadar kitaplıkta görünmez"
-                            : "Yeni masallar hemen kitaplığa girer",
+                            : "Yeni masallar doğrudan kitaplığa girer",
                         isOn: Binding(get: { settings.approve }, set: setApproval)
                     )
                 }

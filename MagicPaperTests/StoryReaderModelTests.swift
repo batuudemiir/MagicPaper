@@ -19,25 +19,49 @@ final class StoryReaderModelTests: XCTestCase {
         )
     }
 
-    // 1 — hiç okunmamış masal kapaktan açılır, kapağı çevirince 1. sayfa gelir
-    func testOpensOnCoverThenFirstPage() {
+    // 1 — hiç okunmamış masal kapaktan açılır; kapağın arkasında ithaf, sonra 1. sayfa
+    func testOpensOnCoverThenDedicationThenFirstPage() {
         let m = model()
         XCTAssertTrue(m.currentLeaf.isCover, "kitap kapağından açılır")
         XCTAssertNil(m.currentPage)
         XCTAssertNil(m.folio, "kapak sayfa değildir, künyesi yoktur")
 
         m.next()
+        if case .dedication = m.currentLeaf {} else { XCTFail("kapağın arkasında ithaf yaprağı") }
+        XCTAssertNil(m.currentPage)
+        XCTAssertNil(m.folio, "ithaf sayfa değildir")
+        XCTAssertEqual(m.story.dedication?.line, "Bu masal Yeliz için yazıldı.")
+
+        m.next()
         XCTAssertEqual(m.currentPage?.index, 0)
         XCTAssertEqual(m.folio, "1 / 8", "künye kapaktan sonra 1'den başlar")
     }
 
-    // 2 — yaprak sayısı masalla uyuşur: kapak + sayfalar + kapanış
-    func testLeafCountMatchesStoryPlusCoverAndEnding() {
-        XCTAssertEqual(model(pages: 8).leafCount, 10)
-        XCTAssertEqual(model(pages: 1).leafCount, 3)
+    // 2 — yaprak sayısı masalla uyuşur: kapak + ithaf + sayfalar + kapanış
+    func testLeafCountMatchesStoryPlusCoverDedicationAndEnding() {
+        XCTAssertEqual(model(pages: 8).leafCount, 11)
+        XCTAssertEqual(model(pages: 1).leafCount, 4)
         XCTAssertEqual(model(pages: 8).story.pageCount, 8,
-                       "kapak sayfa sayısına dâhil değildir")
-        XCTAssertEqual(model(pages: 8).story.pageLeafOffset, 1)
+                       "kapak ve ithaf sayfa sayısına dâhil değildir")
+        XCTAssertEqual(model(pages: 8).story.pageLeafOffset, 2)
+    }
+
+    // 2b: kaydedilen sayfadan devam ithafı atlar, doğru sayfayı açar
+    func testResumingSkipsTheDedication() {
+        let m = model(savedPage: 2)
+        XCTAssertEqual(m.currentPage?.index, 2)
+        XCTAssertEqual(m.leafIndex, 4)
+        XCTAssertEqual(m.folio, "3 / 8")
+    }
+
+    // 2c: sahipsiz masal (başlangıç kitabı gibi) ithaf taşımaz
+    func testAStoryWithoutAChildHasNoDedication() {
+        var story = ReaderFixtures.textStory(pages: 3)
+        story.childName = ""
+        let reader = ReaderFixtures.reader(story)
+        XCTAssertNil(reader.dedication)
+        XCTAssertEqual(reader.pageLeafOffset, 1)
+        XCTAssertEqual(reader.leaves.count, 5)
     }
 
     // 3 — sonraki sayfa
@@ -71,23 +95,23 @@ final class StoryReaderModelTests: XCTestCase {
     // 6 — son yapraktan ileri gidilemez
     func testLastLeafBoundary() {
         let m = model(pages: 3)
-        for _ in 0..<4 { m.next() }          // kapak, 0, 1, 2 → kapanış
+        for _ in 0..<5 { m.next() }          // kapak, ithaf, 0, 1, 2 → kapanış
         XCTAssertTrue(m.isOnEndingLeaf)
         XCTAssertFalse(m.canGoNext)
         XCTAssertFalse(m.next())
-        XCTAssertEqual(m.leafIndex, 4)
+        XCTAssertEqual(m.leafIndex, 5)
     }
 
     // 7 — programlı gezinme, geçersiz indeksler dâhil
     func testProgrammaticNavigation() {
         let m = model()
         XCTAssertTrue(m.go(toLeaf: 5))
-        XCTAssertEqual(m.currentPage?.index, 4, "5. yaprak, kapak kaydığı için 4. sayfa")
+        XCTAssertEqual(m.currentPage?.index, 3, "5. yaprak, kapak ve ithaf kaydığı için 4. sayfa")
 
         XCTAssertFalse(m.go(toLeaf: -1), "negatif indeks reddedilmeli")
         XCTAssertFalse(m.go(toLeaf: 99), "aralık dışı indeks reddedilmeli")
         XCTAssertFalse(m.go(toLeaf: 5), "aynı yaprağa gitmek hareket değildir")
-        XCTAssertEqual(m.currentPage?.index, 4, "reddedilen istekler konumu bozmamalı")
+        XCTAssertEqual(m.currentPage?.index, 3, "reddedilen istekler konumu bozmamalı")
     }
 
     // 8 — geçerli sayfa durumu geri sayfalamada kaybolmaz
@@ -142,14 +166,14 @@ final class StoryReaderModelTests: XCTestCase {
     func testReachingEndingMarksStoryFinished() {
         let m = model(pages: 3)
         XCTAssertFalse(m.hasReachedEnding)
-        m.go(toLeaf: 4)
+        m.go(toLeaf: 5)
         XCTAssertTrue(m.hasReachedEnding)
         XCTAssertEqual(m.furthestPageReached, 2, "kapanış son sayfayı ilerleme sayar")
     }
 
     func testRestartReturnsToCover() {
         let m = model(pages: 3)
-        m.go(toLeaf: 4)
+        m.go(toLeaf: 5)
         m.restart()
         XCTAssertEqual(m.leafIndex, 0)
         XCTAssertTrue(m.currentLeaf.isCover)
@@ -160,7 +184,7 @@ final class StoryReaderModelTests: XCTestCase {
     func testEndingLeafHasNoFolio() {
         let m = model(pages: 2, savedPage: 0)
         XCTAssertNotNil(m.folio)
-        m.go(toLeaf: 3)
+        m.go(toLeaf: 4)
         XCTAssertNil(m.folio)
     }
 }

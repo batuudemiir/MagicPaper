@@ -7,6 +7,7 @@ import SwiftUI
 /// kelimeler, yeni rozet varsa o) ve iki yol: "Bir masal daha", "İyi geceler"
 /// (uyku modu). Yıldız yok; kutlama 400 ms, Reduce Motion'da yalnızca belirme.
 /// FAZ 13: masal seri olarak devam ettirilebiliyorsa "Devam ettir" burada.
+/// Çocuğun kendi masalında künye (`StoryColophon`) kutucukların altında.
 struct StoryEndingLeaf: View {
 
     let story: Story
@@ -76,6 +77,8 @@ struct StoryEndingLeaf: View {
                 }
             }
 
+            if StoryColophon.hasDedication(story) { colophon }
+
             SeriesEndingSection(story: story, theme: theme, accent: accent)
 
             // Uyku vaktinde birincil yol "İyi geceler"; gündüz "Bir masal daha".
@@ -100,6 +103,21 @@ struct StoryEndingLeaf: View {
         // Okuyucunun kapat düğmesinin altından başlar.
         .padding(.top, MP.S.navBarHeight + MPSpacing.xxxl)
         .padding(.bottom, MPSpacing.xxxl)
+    }
+
+    /// Kitabın son sayfasındaki künye: "MagicPaper Kitaplığı · İrem'in 12. masalı".
+    /// Kutucuk ya da rozet değil, ince bir çizginin altında sessiz bir satır.
+    private var colophon: some View {
+        let ordinal = StoryColophon.ordinal(of: story, among: StoryGenerationManager.shared.stories)
+        return VStack(spacing: MP.S.x3) {
+            Rectangle().fill(theme.muted.opacity(0.3))
+                .frame(width: MP.S.x9, height: 1)
+                .accessibilityHidden(true)
+            Text(StoryColophon.colophon(childName: story.childName, ordinal: ordinal))
+                .font(MP.F.labelSM(.semibold))
+                .foregroundStyle(theme.muted)
+                .multilineTextAlignment(.center)
+        }
     }
 
     private func tile(icon: String, tone: MPWorldTone, value: String, label: String) -> some View {

@@ -146,6 +146,46 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Tasarım yasası kontrolleri değişen dosyalarda boş.
 - Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `Screens/Library/StoryActionsSheet.swift`, `DesignSystem/Pastel/MPBookCover.swift`, `Screens/MPStoryExtras.swift`, `Screens/MPDebugLaunch.swift`, `Assets.xcassets/StoryCoverDefault` (silindi), testler, `docs/superpowers/specs/2026-10-20-kitaplik-yenileme-design.md`, `docs/MagicPaper_Illustration_System.md`.
 
+### 2026-10-20 · main, plan (kod yok) · Akşam zarfı planı
+- Yeni belge `docs/AKSAM_ZARFI_PLANI.md`: akşam Ana sayfa kartı mühürlü bir zarfa döner ("İrem'e bir masal yazıldı", "Zarfı aç"); içinde açık serinin bugünkü bölümü, yoksa cihazda yazılmış yeni masal; açılmayan zarf ertesi gün sessizce kitaplığa girer.
+- Batuhan'ın kararları (20 Ekim): yer ve zaman (akşam kartı), içerik (seri önce), açılmayan zarf (kitaplığa). Beş varsayılan onay bekliyor (§9: pencere saati, mod, onay ayarı, açılış süresi, seri başlığı).
+- Mimari: saf `EveningEnvelope` + yerel kayıt + yazıcı; `MPTonight`'a `.envelope` durumu (widget ve Siri de görür); kitaplıkta mühürlü masal süzgeci. Ortak dosyalar (ana sayfa, kitaplık) için sıra notu.
+- Kod, test ve simülatör yok.
+
+### 2026-10-20 · book-intelligence@3ef564f · Haftalık araştırma turu: 8 kitap, uyku sorusu, ilk güvenilmez alan
+- Pazartesi koşusu (19 Ekim) ilk komutta takılı kaldı; tur bu oturumda elle yürütüldü. Takılı oturum hâlâ açık (durdurma izni verilmedi).
+- 8 yeni kitap tam analiz: 6 Book Dash (3 alt ajan, 2'şer kitap) ve 2 StoryWeaver/Pratham Books (*Goodnight, Tinku!*, *Kottavi Raja and his Sleepy Kingdom*). StoryWeaver 3 kitaptan sonra üyelik istedi; hesap açılmadı, 3. Book Dash dışı kitap okunamadı (hedef ≥3 tutmadı). Korpus 24 tam analiz.
+- Kottavi Raja'nın lisansı kendi sayfasında görülemedi; StoryWeaver'ın CC BY 4.0 beyanına dayanılarak kaydedildi, kaynak kaydında not var, ürün sahibinin onayı bekleniyor. "I Don't Want To Sleep!" Tinku'nun kısa uyarlaması çıktığı için alınmadı.
+- Uyku sorusu (q_uyku_oncesi) cevaplandı: 6 uyku kitabının 4'ünde son sayfa başa en sakin hâlde dönüyor; "doruk üçte ikiden önce" 6'nın 2'sinde tutuyor.
+- Kör yeniden okuma (Catch That Cat): olay işlevi %58, resimde kalan bilgi %54 (24 sayfada) → güvenilmez. "Resimde kalan bilgi" iddiası otomatik olarak MEDIUM → LOW.
+- Yeni yayınevleriyle "tekrar eden satır" (11/21) ve "cümle uzunluğu" (12/21) MEDIUM → LOW. Yöntem kuralı m007: tek yayınevinin kalıbı, 2 başka yayınevine bakılmadan öneriye dönüşmez.
+- Düzeltme: `runs.log` alanı olmayan eski koşu kayıtlarında çöküyordu; düzeltildi, test eklendi.
+- Bilerek değişmeyen: kararlar (yeni öneri yok, tartışma turu gerekmedi), uygulama, StoryEngine, içerik.
+- Test: 144/144 (1 yeni), `validate` 0 hata, `method check` 0 sorun.
+- Etkilenen: `Research/BookIntelligence/data/**` (8 eser, iddialar, `rechecks/`, `requests/`, `method/rules.json`, koşu r_20261020_115333), `bookintel/runs.py`, `tests/test_learning.py`, `docs/research/**` (derin incelemeler, haftalık sayfa 2026-10-20).
+
+### 2026-10-20 · main, kod değişikliği yok · İthaf ve künye: açık doğrulamalar kapandı
+- PDF gözle görüldü (geçici bir testle diske yazıldı, test commit edilmedi): kapak, italik ithaf sayfası ("Bu masal İrem için yazıldı." + tarih ve günün bölümü), masal sayfaları (numaralar yalnızca masal sayfalarını sayıyor), altta künye sayfası. Doğru.
+- En büyük Dynamic Type (AX5): ithaf yaprağı ve son yapraktaki künye kesilmeden, taşmadan sarıyor.
+- Gece okuma teması: ithaf metni ve tarih koyu kâğıtta okunur.
+- Bulgu, bu işten değil: okuyucuda ortaya dokununca kontroller (Aa, kalp) simülatörde görünmedi; düz masal sayfasında da aynı. Simülatör dokunuşunun UIKit jestine ulaşmaması olabilir; cihazda bakılmalı.
+- Görülmedi: koyu sistem teması, iPhone SE ve Pro Max ekranları.
+
+### 2026-10-20 · main@18b6780 · Kitaplık rafı geri alındı
+- 20aad75'teki kitap sırtı rafı kaldırıldı: `Screens/Library/LibraryShelf.swift` silindi, `Views/LibraryView.swift` rafın öncesine döndü. Batuhan beğenmedi (Günlük'ün tasarım diliyle uyumsuz, kategorileştirme yok); kitaplık UX'i ayrı bir oturumda yeniden tasarlanıyor.
+- Bilerek değişmedi: ithaf yaprağı, künye (son yaprak ve PDF), `StoryColophon`, dil temizliği yerinde.
+- Test: `StoryColophonTests`, `StoryReaderModelTests`, `ReaderProgressTests`, `StorySceneTests` hepsi geçti (0 hata). Tam takım bu turda çalıştırılmadı. Simülatörde görülmedi.
+
+### 2026-10-20 · main@20aad75 · Masal bir kitap: ithaf, künye, kitaplık rafı, dil
+- İthaf yaprağı: okuyucuda kapağın arkasında, "Bu masal İrem için yazıldı." ve "16 Ekim 2026, Cuma akşamı" (günün bölümü saatten). PDF'te de kapağın arkasında bir sayfa. Başlangıç kitapları ve kapaksız (görselli) masallar ithafsız.
+- Künye: son yaprakta kutucukların altında "MagicPaper Kitaplığı · İrem'in 12. masalı"; PDF'te masalın son sayfası. Sıra numarası saklanmaz, `createdAt`'ten hesaplanır (`StoryEngineBridge/StoryColophon.swift`); hazırlık ekranındaki "No." aynı fonksiyondan.
+- Kitaplık rafı: aramanın ve filtrenin altında, "Tümü" ve boş aramada; sırtlar dünya tonunda, kalınlık sayfa sayısından, yan yazılmış başlık, sıra numarası, favori işareti. Sırta dokununca masal seçenekleri. En büyük yazı boyutlarında raf gizli, kapak ızgarası aynı.
+- Dil: "Uyku masalı oluştur" → "Uyku masalı yaz"; "Bugün ne hakkında bir masal yazalım?"; "Hemen aç" → "Masalı aç"; "Yeni masallar doğrudan kitaplığa girer"; galeri izni metni. Kural `CLAUDE.md` › Dil ve yeni grep (repo dışı dosya, commit'e girmedi); `docs/MagicPaper_Design_System.md`'ye bir satır.
+- Bilerek değişmedi: ölü `Localization.swift` / `LocalizationManager.swift` (hâlâ "oluştur" içeriyor, ayrı temizlik); App Store metni yok, yazılmadı.
+- Test: yeni `StoryColophonTests` 8/0; okuyucu testleri ithaf yaprağına göre güncellendi (+2 yeni). Tam takım 732 test, 1 hata: `StoryModeFlowTests.testASubOptionIsRemembered` (alt kategoriler işinden, c96b804; bu işin dosyalarına dokunmuyor). Tasarım yasası grep'leri yeni dosyalarda boş.
+- Simülatör (iPhone 17 Pro, açık tema, `-mpDemo`): raf, sırta dokununca seçenekler, ithaf yaprağı, son yapraktaki künye görüldü. PDF çıktısı yalnızca test ile (sayfa sayısı 7) doğrulandı, gözle bakılmadı. Reduce Motion, en büyük Dynamic Type, koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `StoryEngineBridge/StoryColophon.swift`, `Screens/StoryReader/{StoryDedicationLeaf,ReaderStory,StoryLeafView,StoryEndingLeaf}.swift`, `Screens/MPStoryPDF.swift`, `Screens/Library/LibraryShelf.swift`, `Views/LibraryView.swift`, `Screens/StoryCreation/…`, `MPHomeChrome.swift`, `BedtimeStorySheet.swift`, `MPAppState.swift`, `ParentSafetyView.swift`, `Info.plist`, testler, iki belge.
+
 ### 2026-10-16 · main@b7f04fd · Telefona kurulum: kasma düzeltmesinin ilk derlemesi
 - `main@b7f04fd` iPhone 16'ya derlendi, kuruldu ve açıldı (18:47). Kasma düzeltmesi derlenmeden gönderilmişti; derleme temiz (`BUILD SUCCEEDED`).
 - Derlemeyi yavaşlatan neden: `swift-protobuf` paketi, uygulamanın kullanmadığı `protobuf` ve `abseil` alt modüllerini her paket çözümlemesinde baştan indiriyor. Paket kopyasında alt modülleri kapatmak işe yaramadı (Xcode kopyayı yeniden oluşturdu); indirme beklendi.

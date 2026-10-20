@@ -175,7 +175,7 @@ final class StorySceneTests: XCTestCase {
 
         let docA = try XCTUnwrap(CGPDFDocument(a as CFURL))
         let docB = try XCTUnwrap(CGPDFDocument(b as CFURL))
-        XCTAssertEqual(docA.numberOfPages, 5, "kapak + 4 sayfa")
+        XCTAssertEqual(docA.numberOfPages, 7, "kapak + ithaf + 4 sayfa + künye")
         XCTAssertEqual(docA.numberOfPages, docB.numberOfPages)
 
         let size = { (url: URL) in (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int) ?? 0 }

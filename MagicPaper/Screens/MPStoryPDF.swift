@@ -42,6 +42,13 @@ enum MPStoryPDF {
     static func makePDF(stories: [Story], fileName: String, bookTitle: String? = nil) async -> URL? {
         guard !stories.isEmpty else { return nil }
         let scenes = await MainActor.run { sceneImages(for: stories) }
+        // Künyedeki sıra numarası kitaplıktan; kitaplık ana iş parçacığında.
+        let ordinals = await MainActor.run {
+            let library = StoryGenerationManager.shared.stories
+            return Dictionary(uniqueKeysWithValues: stories.map {
+                ($0.id, StoryColophon.ordinal(of: $0, among: library))
+            })
+        }
 
         let renderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: pageSize))
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
@@ -51,9 +58,14 @@ enum MPStoryPDF {
                 if let bookTitle { drawBookCover(bookTitle, stories: stories, context: context) }
                 for story in stories {
                     drawCover(story, context: context)
+                    let dedicated = StoryColophon.hasDedication(story) && !story.pages.isEmpty
+                    if dedicated { drawDedication(story, context: context) }
                     for (index, page) in story.pages.enumerated() {
                         drawPage(page, number: index + 1, total: story.pages.count,
                                  scene: scenes[page.id], context: context)
+                    }
+                    if dedicated {
+                        drawColophon(story, ordinal: ordinals[story.id] ?? 1, context: context)
                     }
                 }
             }
@@ -108,6 +120,42 @@ enum MPStoryPDF {
         _ = draw("MagicPaper", font: displayFont(13), color: muted,
                  in: CGRect(x: margin, y: pageSize.height - margin - 20,
                             width: width, height: 20), alignment: .center)
+    }
+
+    /// İthaf sayfası: kapağın arkasında, sayfanın üçte birinde iki satır.
+    private static func drawDedication(_ story: Story, context: UIGraphicsPDFRendererContext) {
+        context.beginPage()
+        paper.setFill()
+        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+
+        let dedication = StoryColophon.dedication(childName: story.childName, date: story.createdAt)
+        let width = pageSize.width - margin * 2
+        var y = pageSize.height / 3
+        y += draw(dedication.line, font: italicBodyFont(17), color: ink,
+                  in: CGRect(x: margin, y: y, width: width, height: 80), alignment: .center) + 12
+        _ = draw(dedication.date, font: bodyFont(12), color: muted,
+                 in: CGRect(x: margin, y: y, width: width, height: 30), alignment: .center)
+    }
+
+    /// Künye sayfası: kitabın son sayfası gibi, altta tek satır.
+    private static func drawColophon(_ story: Story, ordinal: Int, context: UIGraphicsPDFRendererContext) {
+        context.beginPage()
+        paper.setFill()
+        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+
+        let width = pageSize.width - margin * 2
+        let y = pageSize.height - margin * 3
+        muted.withAlphaComponent(0.4).setFill()
+        context.cgContext.fill(CGRect(x: pageSize.width / 2 - 24, y: y - 16, width: 48, height: 0.5))
+        _ = draw(StoryColophon.colophon(childName: story.childName, ordinal: ordinal),
+                 font: bodyFont(12), color: muted,
+                 in: CGRect(x: margin, y: y, width: width, height: 40), alignment: .center)
+    }
+
+    private static func italicBodyFont(_ size: CGFloat) -> UIFont {
+        let base = bodyFont(size)
+        guard let descriptor = base.fontDescriptor.withSymbolicTraits(.traitItalic) else { return base }
+        return UIFont(descriptor: descriptor, size: size)
     }
 
     /// Sahne genişliği, punto. Sayfa metin sütunuyla aynı.

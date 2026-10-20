@@ -24,6 +24,8 @@ struct ReaderStory {
     let coverAsset: String?
     let coverStyle: StoryCoverStyle
     let mosaicCover: MagicPaperCoverConfiguration?
+    /// Kapaktan sonraki ithaf yaprağının metni; yaprak yoksa `nil`.
+    let dedication: StoryColophon.Dedication?
 
     /// Gerçek masal sayfası sayısı — "3 / 8"deki 8.
     /// Kapanış yaprağı sayfa değildir, sayılmaz.
@@ -31,12 +33,12 @@ struct ReaderStory {
 
     var isEmpty: Bool { pageCount == 0 }
 
-    /// Kapak yaprağı varsa sayfalar bir kaydırılmış demektir.
+    /// Sayfalardan önce kaç yaprak var: kapak, varsa ithaf.
     ///
     /// Sayfa numarası ile yaprak numarası artık aynı şey değil: kitabın kapağı
     /// 1. sayfa değildir. Bu kayma tek yerde söyleniyor ki künye, kayıtlı
     /// ilerleme ve gezinme aynı şeyi anlasın.
-    var pageLeafOffset: Int { (coverAsset == nil && coverStyle != .magicPaperMosaic) ? 0 : 1 }
+    var pageLeafOffset: Int { leaves.firstIndex { $0.page != nil } ?? 0 }
 
     func leafIndex(forPage page: Int) -> Int { page + pageLeafOffset }
 }
@@ -51,12 +53,15 @@ struct ReaderStory {
 enum ReaderLeaf: Identifiable {
     /// Kitabın kapağı — illüstrasyon, yay biçiminde başlık, marka satırı.
     case cover
+    /// "Bu masal İrem için yazıldı." Kapaktan sonra, ilk sayfadan önce.
+    case dedication
     case page(ReaderPage)
     case ending
 
     var id: String {
         switch self {
         case .cover:       return "cover"
+        case .dedication:  return "dedication"
         case .page(let p): return "page-\(p.index)"
         case .ending:      return "ending"
         }
@@ -156,7 +161,14 @@ extension ReaderStory {
         // jeneratif mozaik kapak yaprağı olarak kitabın başına konur.
         // Görselli masal kendi kapağını taşıdığı için burada yaprak eklenmez.
         let hasCoverLeaf = cover != nil || self.coverStyle == .magicPaperMosaic
+        // İthaf kapağın arkasındadır: kapaksız (görselli) masal ithafla
+        // açılmasın, boş masal da ithaf taşımasın.
+        let dedicated = hasCoverLeaf && !pages.isEmpty && StoryColophon.hasDedication(story)
+        self.dedication = dedicated
+            ? StoryColophon.dedication(childName: story.childName, date: story.createdAt)
+            : nil
         self.leaves = (hasCoverLeaf ? [ReaderLeaf.cover] : [])
+            + (dedicated ? [ReaderLeaf.dedication] : [])
             + pages.map(ReaderLeaf.page)
             + [.ending]
     }
