@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · main@20aad75 · Masal bir kitap: ithaf, künye, kitaplık rafı, dil
+- İthaf yaprağı: okuyucuda kapağın arkasında, "Bu masal İrem için yazıldı." ve "16 Ekim 2026, Cuma akşamı" (günün bölümü saatten). PDF'te de kapağın arkasında bir sayfa. Başlangıç kitapları ve kapaksız (görselli) masallar ithafsız.
+- Künye: son yaprakta kutucukların altında "MagicPaper Kitaplığı · İrem'in 12. masalı"; PDF'te masalın son sayfası. Sıra numarası saklanmaz, `createdAt`'ten hesaplanır (`StoryEngineBridge/StoryColophon.swift`); hazırlık ekranındaki "No." aynı fonksiyondan.
+- Kitaplık rafı: aramanın ve filtrenin altında, "Tümü" ve boş aramada; sırtlar dünya tonunda, kalınlık sayfa sayısından, yan yazılmış başlık, sıra numarası, favori işareti. Sırta dokununca masal seçenekleri. En büyük yazı boyutlarında raf gizli, kapak ızgarası aynı.
+- Dil: "Uyku masalı oluştur" → "Uyku masalı yaz"; "Bugün ne hakkında bir masal yazalım?"; "Hemen aç" → "Masalı aç"; "Yeni masallar doğrudan kitaplığa girer"; galeri izni metni. Kural `CLAUDE.md` › Dil ve yeni grep (repo dışı dosya, commit'e girmedi); `docs/MagicPaper_Design_System.md`'ye bir satır.
+- Bilerek değişmedi: ölü `Localization.swift` / `LocalizationManager.swift` (hâlâ "oluştur" içeriyor, ayrı temizlik); App Store metni yok, yazılmadı.
+- Test: yeni `StoryColophonTests` 8/0; okuyucu testleri ithaf yaprağına göre güncellendi (+2 yeni). Tam takım 732 test, 1 hata: `StoryModeFlowTests.testASubOptionIsRemembered` (alt kategoriler işinden, c96b804; bu işin dosyalarına dokunmuyor). Tasarım yasası grep'leri yeni dosyalarda boş.
+- Simülatör (iPhone 17 Pro, açık tema, `-mpDemo`): raf, sırta dokununca seçenekler, ithaf yaprağı, son yapraktaki künye görüldü. PDF çıktısı yalnızca test ile (sayfa sayısı 7) doğrulandı, gözle bakılmadı. Reduce Motion, en büyük Dynamic Type, koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `StoryEngineBridge/StoryColophon.swift`, `Screens/StoryReader/{StoryDedicationLeaf,ReaderStory,StoryLeafView,StoryEndingLeaf}.swift`, `Screens/MPStoryPDF.swift`, `Screens/Library/LibraryShelf.swift`, `Views/LibraryView.swift`, `Screens/StoryCreation/…`, `MPHomeChrome.swift`, `BedtimeStorySheet.swift`, `MPAppState.swift`, `ParentSafetyView.swift`, `Info.plist`, testler, iki belge.
+
 ### 2026-10-16 · main@b7f04fd · Telefona kurulum: kasma düzeltmesinin ilk derlemesi
 - `main@b7f04fd` iPhone 16'ya derlendi, kuruldu ve açıldı (18:47). Kasma düzeltmesi derlenmeden gönderilmişti; derleme temiz (`BUILD SUCCEEDED`).
 - Derlemeyi yavaşlatan neden: `swift-protobuf` paketi, uygulamanın kullanmadığı `protobuf` ve `abseil` alt modüllerini her paket çözümlemesinde baştan indiriyor. Paket kopyasında alt modülleri kapatmak işe yaramadı (Xcode kopyayı yeniden oluşturdu); indirme beklendi.
