@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-20 · book-intelligence@3ef564f · Haftalık araştırma turu: 8 kitap, uyku sorusu, ilk güvenilmez alan
+- Pazartesi koşusu (19 Ekim) ilk komutta takılı kaldı; tur bu oturumda elle yürütüldü. Takılı oturum hâlâ açık (durdurma izni verilmedi).
+- 8 yeni kitap tam analiz: 6 Book Dash (3 alt ajan, 2'şer kitap) ve 2 StoryWeaver/Pratham Books (*Goodnight, Tinku!*, *Kottavi Raja and his Sleepy Kingdom*). StoryWeaver 3 kitaptan sonra üyelik istedi; hesap açılmadı, 3. Book Dash dışı kitap okunamadı (hedef ≥3 tutmadı). Korpus 24 tam analiz.
+- Kottavi Raja'nın lisansı kendi sayfasında görülemedi; StoryWeaver'ın CC BY 4.0 beyanına dayanılarak kaydedildi, kaynak kaydında not var, ürün sahibinin onayı bekleniyor. "I Don't Want To Sleep!" Tinku'nun kısa uyarlaması çıktığı için alınmadı.
+- Uyku sorusu (q_uyku_oncesi) cevaplandı: 6 uyku kitabının 4'ünde son sayfa başa en sakin hâlde dönüyor; "doruk üçte ikiden önce" 6'nın 2'sinde tutuyor.
+- Kör yeniden okuma (Catch That Cat): olay işlevi %58, resimde kalan bilgi %54 (24 sayfada) → güvenilmez. "Resimde kalan bilgi" iddiası otomatik olarak MEDIUM → LOW.
+- Yeni yayınevleriyle "tekrar eden satır" (11/21) ve "cümle uzunluğu" (12/21) MEDIUM → LOW. Yöntem kuralı m007: tek yayınevinin kalıbı, 2 başka yayınevine bakılmadan öneriye dönüşmez.
+- Düzeltme: `runs.log` alanı olmayan eski koşu kayıtlarında çöküyordu; düzeltildi, test eklendi.
+- Bilerek değişmeyen: kararlar (yeni öneri yok, tartışma turu gerekmedi), uygulama, StoryEngine, içerik.
+- Test: 144/144 (1 yeni), `validate` 0 hata, `method check` 0 sorun.
+- Etkilenen: `Research/BookIntelligence/data/**` (8 eser, iddialar, `rechecks/`, `requests/`, `method/rules.json`, koşu r_20261020_115333), `bookintel/runs.py`, `tests/test_learning.py`, `docs/research/**` (derin incelemeler, haftalık sayfa 2026-10-20).
+
 ### 2026-10-20 · main, kod değişikliği yok · İthaf ve künye: açık doğrulamalar kapandı
 - PDF gözle görüldü (geçici bir testle diske yazıldı, test commit edilmedi): kapak, italik ithaf sayfası ("Bu masal İrem için yazıldı." + tarih ve günün bölümü), masal sayfaları (numaralar yalnızca masal sayfalarını sayıyor), altta künye sayfası. Doğru.
 - En büyük Dynamic Type (AX5): ithaf yaprağı ve son yapraktaki künye kesilmeden, taşmadan sarıyor.
