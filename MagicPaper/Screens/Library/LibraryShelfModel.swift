@@ -5,8 +5,9 @@
 // 166 ms'lik donmanın dersi).
 //
 // İki tür kitap: çocuğun kendi masalları ve Günlük'ten açtığı klasikler.
-// Raflar modlara göre (Uyku öncesi · Yeni şeyler öğrenelim · Maceraya
-// çıkalım), sonra Favoriler ve Klasikler.
+// Tek zaman çizgisi (karar 21 Ekim 2026): son okunmaya göre yeniden eskiye,
+// "Bugün · Dün · Bu hafta · Geçen hafta · Ekim…" bölümleriyle. Her kitap bir
+// kez görünür; mod raf değil, süzgeç ve kapaktaki işarettir.
 
 import Foundation
 
@@ -70,7 +71,6 @@ struct LibraryItem: Identifiable, Equatable {
 enum LibraryFilter: Hashable, Identifiable {
     case all
     case favorites
-    case unfinished
     case mode(StoryMode)
     case classics
 
@@ -80,7 +80,6 @@ enum LibraryFilter: Hashable, Identifiable {
         switch self {
         case .all: return "Tümü"
         case .favorites: return "Favoriler"
-        case .unfinished: return "Yarım kalanlar"
         case .mode(let mode): return mode.title
         case .classics: return "Klasikler"
         }
@@ -96,18 +95,17 @@ enum LibraryFilter: Hashable, Identifiable {
         switch self {
         case .all: return true
         case .favorites: return item.isFavorite
-        case .unfinished: return item.isPartlyRead
         case .mode(let mode): return item.kind == .story && item.mode == mode
         case .classics: return item.kind == .classic
         }
     }
 }
 
-struct LibraryShelf: Identifiable, Equatable {
-    let filter: LibraryFilter
+/// Zaman çizgisinin bir bölümü: "Bugün", "Dün", "Bu hafta", "Ekim"…
+struct LibrarySection: Identifiable, Equatable {
+    let title: String
     let items: [LibraryItem]
-    var id: LibraryFilter { filter }
-    var title: String { filter.title }
+    var id: String { title }
 }
 
 struct LibraryShelfModel: Equatable {
@@ -124,27 +122,51 @@ struct LibraryShelfModel: Equatable {
     var storyCount: Int { items.filter { $0.kind == .story }.count }
     var classicCount: Int { items.filter { $0.kind == .classic }.count }
 
-    /// "Kaldığın yerden": en son açılan yarım kitaplar.
-    func continueItems(limit: Int = 2) -> [LibraryItem] {
+    /// "Kaldığın yerden": en son açılan yarım kitap(lar).
+    func continueItems(limit: Int = 1) -> [LibraryItem] {
         Array(items.filter(\.isPartlyRead).prefix(limit))
-    }
-
-    /// Ana görünümün rafları; boş raf yok.
-    var shelves: [LibraryShelf] {
-        var filters: [LibraryFilter] = StoryMode.displayOrder.map { .mode($0) }
-        filters += [.favorites, .classics]
-        return filters.compactMap { filter in
-            let list = items.filter(filter.admits)
-            return list.isEmpty ? nil : LibraryShelf(filter: filter, items: list)
-        }
     }
 
     /// Çiplerde gösterilecek süzgeçler: içi dolu olanlar, sabit sırada.
     /// "Tümü" her zaman başta.
     var availableFilters: [LibraryFilter] {
-        let candidates: [LibraryFilter] = [.favorites, .unfinished]
-            + StoryMode.displayOrder.map { .mode($0) } + [.classics]
+        let candidates: [LibraryFilter] = [.favorites] + StoryMode.displayOrder.map { .mode($0) } + [.classics]
         return [.all] + candidates.filter { filter in items.contains(where: filter.admits) }
+    }
+
+    /// Süzgeç ve aramadan geçen kitaplar, zaman bölümlerine ayrılmış.
+    /// Boş bölüm yok; sıra korunur (yeniden eskiye).
+    func sections(for filter: LibraryFilter, query: String = "",
+                  now: Date = Date(), calendar: Calendar = .current) -> [LibrarySection] {
+        var result: [LibrarySection] = []
+        for item in items(for: filter, query: query) {
+            let title = Self.sectionTitle(for: item.lastActivity, now: now, calendar: calendar)
+            if let last = result.last, last.title == title {
+                result[result.count - 1] = LibrarySection(title: title, items: last.items + [item])
+            } else {
+                result.append(LibrarySection(title: title, items: [item]))
+            }
+        }
+        return result
+    }
+
+    /// Bugün · Dün · Bu hafta · Geçen hafta · ay adı (başka yılsa yıl da).
+    static func sectionTitle(for date: Date, now: Date, calendar: Calendar) -> String {
+        if calendar.isDate(date, inSameDayAs: now) { return "Bugün" }
+        if let yesterday = calendar.date(byAdding: .day, value: -1, to: now),
+           calendar.isDate(date, inSameDayAs: yesterday) { return "Dün" }
+        if let week = calendar.dateInterval(of: .weekOfYear, for: now) {
+            if week.contains(date) { return "Bu hafta" }
+            if let last = calendar.date(byAdding: .weekOfYear, value: -1, to: week.start),
+               let lastWeek = calendar.dateInterval(of: .weekOfYear, for: last),
+               lastWeek.contains(date) { return "Geçen hafta" }
+        }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "tr_TR")
+        formatter.calendar = calendar
+        formatter.timeZone = calendar.timeZone
+        formatter.dateFormat = calendar.isDate(date, equalTo: now, toGranularity: .year) ? "LLLL" : "LLLL yyyy"
+        return formatter.string(from: date).capitalized(with: Locale(identifier: "tr_TR"))
     }
 
     /// Süzgeç ve arama birlikte; arama başlık, çocuk adı, mod ve dünya adında.

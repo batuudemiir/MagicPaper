@@ -6,44 +6,80 @@ import XCTest
 @MainActor
 final class LibraryShelfModelTests: XCTestCase {
 
-    // MARK: Raflar
+    // MARK: Zaman çizgisi (21 Ekim)
 
-    func testShelvesFollowModeOrderThenFavoritesAndClassics() {
-        let adventure = Self.story("Orman", mode: "adventure")
-        let bedtime = Self.story("Ay", mode: "bedtime")
-        let model = Self.model([adventure, bedtime], favorites: [adventure.id],
-                               classics: [Self.classic(1, "Rapunzel")])
-        XCTAssertEqual(model.shelves.map(\.filter), [.mode(.bedtime), .mode(.adventure), .favorites, .classics])
+    private static let now = Date(timeIntervalSince1970: 1792573200) // 21 Ekim 2026 Çarşamba 12:00
+    private static var calendar: Calendar {
+        var c = Calendar(identifier: .gregorian)
+        c.timeZone = TimeZone(identifier: "Europe/Istanbul")!
+        c.firstWeekday = 2
+        return c
     }
 
-    func testEmptyShelvesAreHidden() {
-        let model = Self.model([Self.story("Ay", mode: "bedtime")])
-        XCTAssertEqual(model.shelves.map(\.filter), [.mode(.bedtime)])
+    private static func daysAgo(_ n: Double) -> Date { now.addingTimeInterval(-n * 86_400) }
+
+    func testSectionTitlesTodayYesterdayWeeksAndMonths() {
+        let t = { (d: Date) in LibraryShelfModel.sectionTitle(for: d, now: Self.now, calendar: Self.calendar) }
+        XCTAssertEqual(t(Self.now.addingTimeInterval(-60)), "Bugün")
+        XCTAssertEqual(t(Self.daysAgo(1)), "Dün")
+        XCTAssertEqual(t(Self.daysAgo(2)), "Bu hafta", "Pazartesi, aynı hafta")
+        XCTAssertEqual(t(Self.daysAgo(5)), "Geçen hafta")
+        XCTAssertEqual(t(Self.daysAgo(30)), "Eylül")
+        XCTAssertEqual(t(Self.daysAgo(400)), "Eylül 2025")
     }
 
-    /// Eski "growth" kaydı Öğrenelim rafında durur.
-    func testLegacyGrowthStoryLandsOnLearningShelf() {
-        let model = Self.model([Self.story("Eski", mode: "growth")])
-        XCTAssertEqual(model.shelves.first?.filter, .mode(.learning))
+    func testEachBookAppearsOnceNewestFirstInSections() {
+        var today = Self.story("Bugünkü", mode: "bedtime"); today.lastReadAt = Self.now.addingTimeInterval(-60)
+        var yesterday = Self.story("Dünkü", mode: "adventure"); yesterday.createdAt = Self.daysAgo(1)
+        var older = Self.story("Eski", mode: "bedtime"); older.createdAt = Self.daysAgo(30)
+        let model = Self.model([older, yesterday, today], favorites: [today.id],
+                               classics: [Self.classic(1, "Rapunzel", openedAt: Self.daysAgo(1).timeIntervalSince1970 - 60)])
+        let sections = model.sections(for: .all, now: Self.now, calendar: Self.calendar)
+        XCTAssertEqual(sections.map(\.title), ["Bugün", "Dün", "Eylül"])
+        XCTAssertEqual(sections.flatMap(\.items).map(\.title), ["Bugünkü", "Dünkü", "Rapunzel", "Eski"])
+        XCTAssertEqual(Set(sections.flatMap(\.items).map(\.id)).count, 4, "favori de olsa bir kez")
     }
 
-    func testStoryWithoutModeIsOnlyUnderAll() {
+    /// Okunan eski masal en üste çıkar: sıralama son okunmaya göre.
+    func testReadingMovesABookToTheTop() {
+        var old = Self.story("Eski ama dün okundu", mode: "bedtime")
+        old.createdAt = Self.daysAgo(40); old.lastReadAt = Self.daysAgo(1)
+        var new = Self.story("Yeni", mode: "bedtime"); new.createdAt = Self.daysAgo(3)
+        let model = Self.model([new, old])
+        XCTAssertEqual(model.items.map(\.title), ["Eski ama dün okundu", "Yeni"])
+    }
+
+    func testFilterAndSearchKeepSections() {
+        var a = Self.story("Ay Dede", mode: "adventure"); a.lastReadAt = Self.now.addingTimeInterval(-60)
+        var b = Self.story("Ay", mode: "bedtime"); b.lastReadAt = Self.now.addingTimeInterval(-120)
+        let model = Self.model([a, b])
+        let sections = model.sections(for: .mode(.adventure), query: "ay", now: Self.now, calendar: Self.calendar)
+        XCTAssertEqual(sections.map(\.title), ["Bugün"])
+        XCTAssertEqual(sections.first?.items.map(\.title), ["Ay Dede"])
+        XCTAssertTrue(model.sections(for: .all, query: "zzz", now: Self.now, calendar: Self.calendar).isEmpty)
+    }
+
+    func testStoryWithoutModeIsUnderAllOnly() {
         let model = Self.model([ReaderFixtures.textStory(pages: 2)])
-        XCTAssertTrue(model.shelves.isEmpty)
         XCTAssertEqual(model.items(for: .all).count, 1)
+        XCTAssertEqual(model.availableFilters, [.all])
         XCTAssertEqual(model.items.first?.meta.hasPrefix("Masal ·"), true)
+    }
+
+    /// Eski "growth" kaydı Öğrenelim süzgecinde.
+    func testLegacyGrowthStoryIsUnderLearning() {
+        let model = Self.model([Self.story("Eski", mode: "growth")])
+        XCTAssertEqual(model.items(for: .mode(.learning)).count, 1)
     }
 
     // MARK: Süzgeçler
 
     func testFiltersListOnlyNonEmptyCategoriesInFixedOrder() {
-        var half = Self.story("Yarım", mode: "learning")
-        half.lastReadPage = 1
-        half.pages += half.pages
-        let model = Self.model([half, Self.story("Ay", mode: "bedtime")],
+        let half = Self.story("Öğren", mode: "learning")
+        let model = Self.model([half, Self.story("Ay", mode: "bedtime")], favorites: [half.id],
                                classics: [Self.classic(1, "Rapunzel")])
         XCTAssertEqual(model.availableFilters,
-                       [.all, .unfinished, .mode(.bedtime), .mode(.learning), .classics])
+                       [.all, .favorites, .mode(.bedtime), .mode(.learning), .classics])
     }
 
     func testModeFilterExcludesClassics() {
@@ -73,6 +109,7 @@ final class LibraryShelfModelTests: XCTestCase {
         done.lastReadPage = 3; done.lastReadAt = Date(timeIntervalSince1970: 30)
         let model = Self.model([a, b, done], classics: [Self.classic(1, "Rapunzel", fraction: 0.5, openedAt: 5)])
         XCTAssertEqual(model.continueItems(limit: 2).map(\.title), ["B", "A"])
+        XCTAssertEqual(model.continueItems().map(\.title), ["B"], "varsayılan: tek kart")
     }
 
     // MARK: Arama

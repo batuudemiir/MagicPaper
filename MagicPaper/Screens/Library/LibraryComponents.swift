@@ -1,6 +1,6 @@
 // LibraryComponents.swift
 // Kitaplığın yapı taşları (20 Ekim 2026): arama alanı, "Kaldığın yerden"
-// kartı, yatay kitap rafı. Dil Ana sayfa ve Günlük'le aynı: beyaz yüzey,
+// kartı, kitap ızgarası. Dil Ana sayfa ve Günlük'le aynı: beyaz yüzey,
 // sert alt kenar (`mpKidSurface`), kapaklar `MPBookCover`.
 
 import SwiftUI
@@ -80,30 +80,6 @@ struct LibraryContinueCard: View {
         .accessibilityLabel("\(item.title), \(item.meta), yüzde \(Int(item.progress * 100)) okundu")
         .accessibilityHint("Kaldığın yerden devam eder")
         .accessibilityAddTraits(.isButton)
-    }
-}
-
-/// Yatay kitap rafı: ekran kenarından kenarına kayar.
-struct LibraryShelfRow: View {
-    let items: [LibraryItem]
-    let width: CGFloat
-    let open: (LibraryItem) -> Void
-
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            // Düz HStack: raf yüksekliği en uzun kartın gerçek boyunu alır;
-            // LazyHStack iki satırlık başlığın altındaki bilgiyi kesiyordu.
-            HStack(alignment: .top, spacing: MPSpacing.lg) {
-                ForEach(items) { item in
-                    MPBookCard(title: item.title, meta: item.meta, art: item.art, badge: item.badge,
-                               width: width, accessibilityStatus: item.accessibilityStatus) { open(item) }
-                }
-            }
-            .padding(.horizontal, MPSpacing.screenH)
-            // Alt kenar (mpKidSurface) kesilmesin.
-            .padding(.bottom, MP.E.widthLG)
-        }
-        .padding(.horizontal, -MPSpacing.screenH)
     }
 }
 
