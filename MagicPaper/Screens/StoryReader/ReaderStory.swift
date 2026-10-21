@@ -30,6 +30,9 @@ struct ReaderStory {
     /// Gerçek masal sayfası sayısı — "3 / 8"deki 8.
     /// Kapanış yaprağı sayfa değildir, sayılmaz.
     let pageCount: Int
+    /// Metnin sayfada dizilişi: 3-6 yaşta nefes satırları, 7-10'da paragraf
+    /// ve sesli okumada cümle takibi (`ReaderTextLayout`).
+    var textLayout: ReaderTextLayout = .paragraphs
 
     var isEmpty: Bool { pageCount == 0 }
 
@@ -160,6 +163,7 @@ extension ReaderStory {
         }
 
         self.pageCount = pages.count
+        self.textLayout = ReaderTextLayout(ageBand: story.ageBand)
         
         let cover = story.mpDefaultCoverAsset
         self.coverAsset = cover

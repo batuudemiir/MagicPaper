@@ -42,6 +42,8 @@ struct StoryLeafView: View {
                 readSize: app.readSize,
                 spacing: settings.readSpacing,
                 easyReading: settings.easyReading,
+                layout: model.story.textLayout,
+                childName: model.story.childName,
                 folio: "\(page.index + 1) / \(model.story.pageCount)",
                 // Kontroller görünürken sayfa numarası alt çubukta ("Sayfa X / Y",
                 // 23); çekilince sayfanın altında sessiz künye.

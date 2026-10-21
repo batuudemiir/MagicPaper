@@ -362,6 +362,15 @@ enum MP {
             case .night: return MPColor.readerNightSecondary
             }
         }
+        /// Sesli okumada okunan cümlenin altındaki sıcak fosforlu kalem.
+        /// Mürekkep üstünde kalır; okunurluğu bozmaz.
+        var readAlong: Color {
+            switch self {
+            case .light, .cream: return Palette.hardal100
+            case .sepia: return Palette.hardal200.opacity(0.55)
+            case .dusk, .night: return Palette.hardal400.opacity(0.28)
+            }
+        }
         /// Yeni kelime ve vurgu rengi: kahraman adı tonu, kâğıda karşı okunur.
         var highlight: Color {
             switch self {
@@ -500,6 +509,9 @@ enum MP {
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
+        /// Masal metnindeki ses kelimeleri ("pıt pıt", 21 Ekim 2026): okuma
+        /// boyutunun bir tık büyüğü, başlık ailesinin en kalın kesiminde.
+        static func sound(_ size: CGFloat) -> Font { .custom(display, size: size * 1.12).weight(.black) }
 
         /// Glyph (SF Symbol / emoji) boyutu.
         ///
@@ -548,6 +560,13 @@ enum MP {
         }
         /// line-height 1.72
         var lineSpacing: CGFloat { points * 0.72 }
+        /// Bir üst boyut (en büyükte kendisi): 3-6 yaşın nefes satırları
+        /// seçilen boyutun bir üstünde dizilir.
+        var larger: ReadSize {
+            let all = ReadSize.allCases
+            let i = all.firstIndex(of: self) ?? 0
+            return all[min(i + 1, all.count - 1)]
+        }
     }
 
     /// Satır aralığı ayarı (karar: 21 Ekim 2026). Masal metninin satır arası

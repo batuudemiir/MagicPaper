@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Okuyucuda yeni kelimeye dokununca açılan kâğıt kart (21 Ekim 2026).
 ///
-/// Kelime (Baloo 2), tek cümlelik anlamı ve "dinle" dairesi. İçerik olduğu
+/// Kelime (başlık fontu, `MP.F.displaySM`), tek cümlelik anlamı ve "dinle" dairesi. İçerik olduğu
 /// için cam değil kâğıt: `mpEdge` ile sert alt kenar, gölge yok. Kapat düğmesi
 /// yok; kartın dışında bir yere dokununca kapanır (`StoryReaderView`), o
 /// dokunuş sayfayı çevirmez. VoiceOver'da kaçış hareketi kapatır.

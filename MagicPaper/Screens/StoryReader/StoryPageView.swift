@@ -14,6 +14,12 @@ struct StoryPageView: View {
     /// Satır aralığı ve kolay okuma (Okuma ayarları · Yazı).
     var spacing: MP.ReadSpacing = .normal
     var easyReading: Bool = false
+    /// Nefes satırları (3-6 yaş) ya da paragraf ve cümle takibi (7-10).
+    var layout: ReaderTextLayout = .paragraphs
+    /// Metinde vurgulanan ad: masal çocuğa ait.
+    var childName: String? = nil
+    /// Sesli okumada okunan yer (cümle takibi, yalnızca paragraf düzeninde).
+    @ObservedObject private var spoken = MPSpokenPosition.shared
     let folio: String?
     /// Alt künye görünür mü. Kontroller görünürken sayfa numarası alt çubukta
     /// yazılı; künye yalnızca kontroller çekilince belirir (21 Ekim 2026).
@@ -202,17 +208,9 @@ struct StoryPageView: View {
                         .padding(.bottom, MP.S.x1)
                 }
 
-                // Paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
-                // paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz
-                // ve ikinci bir yazı stili olmadan ayrılır (§15).
-                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
-                    Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
-                                                ink: theme.body, highlight: wordHighlight))
-                        .lineSpacing(readSize.points * spacing.factor)
-                        // Kolay okuma: harf arası açılır, font Nunito kalır.
-                        .tracking(easyReading ? readSize.points * 0.06 : 0)
-                        .tint(wordHighlight)
-                        .fixedSize(horizontal: false, vertical: true)
+                switch layout {
+                case .breath: breathLines
+                case .paragraphs: paragraphs
                 }
             }
             .frame(maxWidth: measure, alignment: .leading)
@@ -233,6 +231,75 @@ struct StoryPageView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.hidden)
+    }
+
+    /// 7-10 yaş: paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
+    /// paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz ve ikinci
+    /// bir yazı stili olmadan ayrılır (§15). Sesli okurken okunan cümle
+    /// fosforlu kalemle işaretlenir, öncesi söner: kelime kelime değil cümle
+    /// cümle, çünkü her kelimeyi işaretlemek dikkati dağıtır.
+    @ViewBuilder
+    private var paragraphs: some View {
+        let mark = readAlongMark
+        ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { i, paragraph in
+            Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
+                                        ink: theme.body, highlight: wordHighlight,
+                                        childName: childName,
+                                        readAlong: readAlong(for: i, mark: mark, in: paragraph)))
+                .lineSpacing(readSize.points * spacing.factor)
+                // Kolay okuma: harf arası açılır, font Nunito kalır.
+                .tracking(easyReading ? readSize.points * 0.06 : 0)
+                .tint(wordHighlight)
+                .fixedSize(horizontal: false, vertical: true)
+                // Konuşma paragrafı solda ince bir çizgiyle ayrılır.
+                .padding(.leading, ReaderText.isDialogue(paragraph) ? MP.S.x3 : 0)
+                .overlay(alignment: .leading) {
+                    if ReaderText.isDialogue(paragraph) {
+                        Capsule().fill(theme.muted.opacity(0.35))
+                            .frame(width: MP.E.width)
+                            .accessibilityHidden(true)
+                    }
+                }
+        }
+    }
+
+    /// 3-6 yaş: her cümle kendi satırında, seçilen boyutun bir üstünde ve en
+    /// az "Rahat" satır arasıyla. Sağ kenar serbest, heceleme yok. Paragraflar
+    /// arasında daha geniş bir nefes.
+    @ViewBuilder
+    private var breathLines: some View {
+        let size = readSize.larger.points
+        let lineGap = size * max(spacing.factor, MP.ReadSpacing.rahat.factor)
+        ForEach(Array(ReaderText.breathLines(of: page.paragraphs).enumerated()), id: \.offset) { _, lines in
+            VStack(alignment: .leading, spacing: size * 0.55) {
+                ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                    Text(ReaderWords.attributed(line, words: page.words, size: size,
+                                                ink: theme.body, highlight: wordHighlight,
+                                                childName: childName))
+                        .lineSpacing(lineGap)
+                        .tracking(easyReading ? size * 0.06 : 0)
+                        .tint(wordHighlight)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.bottom, size * 0.5)
+        }
+    }
+
+    /// Anlatıcı bu sayfayı okuyorsa okunan cümle.
+    private var readAlongMark: ReadAlongMark? {
+        guard layout == .paragraphs, let value = spoken.value,
+              value.text == page.spokenText.trimmingCharacters(in: .whitespacesAndNewlines) else { return nil }
+        return ReaderText.readAlongMark(paragraphs: page.paragraphs, spokenLocation: value.location)
+    }
+
+    private func readAlong(for index: Int, mark: ReadAlongMark?, in paragraph: String) -> ReaderWords.ReadAlong? {
+        guard let mark, index <= mark.paragraph else { return nil }
+        let whole = (paragraph as NSString).length
+        // Önceki paragraflar bütünüyle okunmuş; okunan paragrafta cümleye kadar.
+        return index < mark.paragraph
+            ? .init(start: whole, end: whole, fill: .clear, readInk: theme.muted)
+            : .init(start: mark.start, end: mark.end, fill: theme.readAlong, readInk: theme.muted)
     }
 
     // MARK: - Künye

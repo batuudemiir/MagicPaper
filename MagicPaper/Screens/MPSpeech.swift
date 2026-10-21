@@ -8,6 +8,21 @@ import SwiftUI
 /// FAZ 18: sayfanın ailenin sesiyle kaydı varsa (`recording`) o çalınır,
 /// yoksa masal anlatıcısı okur. Okuyucu ve Uyku modu farkı bilmez: aynı
 /// `isSpeaking`/`isPaused`/`onFinished` sözleşmesi.
+/// Anlatıcının o an okuduğu yer (21 Ekim 2026): okunan metin ve kelimenin
+/// UTF-16 konumu. Okuyucu sayfası cümle takibinde okur. Ayrı nesne, çünkü her
+/// kelimede değişir; okuyucunun geri kalanı her kelimede yeniden çizilmesin.
+/// Ailenin sesi çalarken `nil`: kayıtta kelime zamanı yok.
+@MainActor
+final class MPSpokenPosition: ObservableObject {
+    static let shared = MPSpokenPosition()
+    struct Spoken: Equatable {
+        let text: String
+        let location: Int
+    }
+    @Published fileprivate(set) var value: Spoken?
+    private init() {}
+}
+
 @MainActor
 final class MPSpeech: NSObject, ObservableObject {
     static let shared = MPSpeech()
@@ -121,6 +136,7 @@ final class MPSpeech: NSObject, ObservableObject {
         current = nil
         isSpeaking = false
         isPaused = false
+        MPSpokenPosition.shared.value = nil
         deactivateSession()
     }
 
@@ -146,6 +162,7 @@ extension MPSpeech: AVAudioPlayerDelegate {
         Task { @MainActor in
             guard self.isCurrent(finished) else { return }
             self.current = nil
+            MPSpokenPosition.shared.value = nil
             self.player = nil
             self.isSpeaking = false
             self.isPaused = false
@@ -162,6 +179,7 @@ extension MPSpeech: AVSpeechSynthesizerDelegate {
         Task { @MainActor in
             guard self.isCurrent(finished) else { return }
             self.current = nil
+            MPSpokenPosition.shared.value = nil
             self.isSpeaking = false
             self.isPaused = false
             self.deactivateSession()
@@ -175,8 +193,21 @@ extension MPSpeech: AVSpeechSynthesizerDelegate {
         Task { @MainActor in
             guard self.isCurrent(cancelled) else { return }
             self.current = nil
+            MPSpokenPosition.shared.value = nil
             self.isSpeaking = false
             self.isPaused = false
+        }
+    }
+
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer,
+                                       willSpeakRangeOfSpeechString characterRange: NSRange,
+                                       utterance: AVSpeechUtterance) {
+        let id = ObjectIdentifier(utterance)
+        let text = utterance.speechString
+        let location = characterRange.location
+        Task { @MainActor in
+            guard self.isCurrent(id) else { return }
+            MPSpokenPosition.shared.value = .init(text: text, location: location)
         }
     }
 }
