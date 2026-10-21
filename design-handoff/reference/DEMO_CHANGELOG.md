@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@ec732f5 · Birleştirme: uyku arkı main'de, gönderildi
+- `uyku-arki` (3dde158) main'e `--no-ff` ile birleşti (ec732f5): uyku öncesi modu kendi arkında, iki oda blueprint'i ve uyku devam bölümleri.
+- Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu. Kod ve içerik dosyalarında çakışma yoktu.
+- Birleşik hâlde StoryEngine: 819 test, 18 hata, 1 atlandı; hataların hepsi main'de zaten düşen aynı 10 testten (MatrixCoverage, OfflineComposition, OfflineDeterminism, PilotBlueprint, SettingAxis). Yeni hata yok.
+- Uygulama testleri ve Python içerik doğrulayıcı birleşik hâlde çalıştırılmadı; simülatörde uyku masalı açılıp görülmedi (Batuhan'da).
+- Bilerek değişmedi: book-intelligence birleştirilmedi; `MagicPaper/` checkout'u ve dalı (fix/alt-secenek-testi) dokunulmadı, birleştirme geçici bir worktree'de yapıldı.
+- Etkilenen dosyalar: `uyku-arki` kayıtlarındaki dosyalar + bu dosya.
+
 ### 2026-10-21 · book-intelligence@5f30954 · Öğrenme sisteminin eksikleri kapatıldı
 - Otomatiklik: takılı 19 Ekim koşusu kapatıldı; proje izinlerine (`.claude/settings.local.json`, git dışı) araştırma aracı, testler, git durum komutları ve çocuk verisi indirme betiği eklendi, pazartesi koşusu artık onay beklemeyecek. Yeni perşembe görevi `magicpaper-research-questions`: yeni kitap okumadan ajan sorularını cevaplar ve açık tartışmaları ilerletir.
 - Karşılıklı kanal ilk kez kullanıldı: reader 2, parent-ux 2, story-engine 1 soru gönderdi; beşi korpustan kanıtla cevaplandı (ör. uyku kitapları uyku dışı olanlardan kısa değil; kahraman dışı karakter ortancası 3).
