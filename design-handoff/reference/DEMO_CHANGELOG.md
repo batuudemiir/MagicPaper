@@ -164,6 +164,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@e5e8d4d · Derleme düzeltmesi, origin'e gönderim ve telefona kurulum
+
+- 21 Ekim akşamki işler (`3188965..c927e84`: masal sayfası, okuma ayarları, masal metni, açılır pencereler, alt çubuk) origin/main'e gönderildi.
+- İlk telefon derlemesi düştü: yaş bandı `Story.ageBand` değil `Story.origin?.ageBand`. Düzeltildi (e5e8d4d); derleme yeşil.
+- iPhone 16'ya (00008140-001E4C593CEB001C) Debug olarak kuruldu, `devicectl` "App installed". Uygulama açılıp ekranlar görülmedi; Batuhan deneyecek.
+- Derlemeye çalışma ağacındaki başka oturumun commit edilmemiş değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`) de girdi; commit'e girmedi.
+- Test: birim testleri çalıştırılmadı.
+
 ### 2026-10-21 · main@f23fa25 · Alt çubuk: şeffaf kutu gitti, Apple ölçüsü, cam Masal yaz dairesi
 
 - Hata: çubuğun arkasında tam genişlikte şeffaf bir kutu görünüyordu. Kaynağı iOS 26'nın `safeAreaBar`'ı: çubuğun arkasına kaydırma kenarı efekti çiziyordu. `mpFloatingBar` artık her sürümde `safeAreaInset`; arkada kutu yok.
