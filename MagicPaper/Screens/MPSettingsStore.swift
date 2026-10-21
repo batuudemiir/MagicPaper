@@ -25,6 +25,13 @@ final class MPSettingsStore: ObservableObject {
     @Published var speechRateRaw: String { didSet { d.set(speechRateRaw, forKey: K.speechRate) } }
     /// Okuma teması kalıcı (FAZ 17): ertesi akşam aynı kâğıtla açılır.
     @Published var readThemeRaw: String { didSet { d.set(readThemeRaw, forKey: K.readTheme) } }
+    /// Okuma ayarları, Kâğıt ve Yazı (21 Ekim 2026).
+    @Published var paperGrain: Bool { didSet { d.set(paperGrain, forKey: K.paperGrain) } }
+    /// Uyku saatinden sonra okuyucu seçilen kâğıt yerine Gece'yi kullanır.
+    @Published var autoNight: Bool { didSet { d.set(autoNight, forKey: K.autoNight) } }
+    @Published var readSpacingRaw: String { didSet { d.set(readSpacingRaw, forKey: K.readSpacing) } }
+    /// Kolay okuma: masal metninde harf arası açılır.
+    @Published var easyReading: Bool { didSet { d.set(easyReading, forKey: K.easyReading) } }
     /// Uyku saati (31 · Güvenlik): bu saatten sonra uyku masalı öne çıkar.
     @Published var bedtime: Bool { didSet { d.set(bedtime, forKey: K.bedtime) } }
     @Published var bedtimeHour: Int { didSet { d.set(bedtimeHour, forKey: K.bedtimeHour) } }
@@ -52,6 +59,10 @@ final class MPSettingsStore: ObservableObject {
 
     private enum K {
         static let readAloud = "mp_readAloud"
+        static let paperGrain = "mp_paperGrain"
+        static let autoNight = "mp_autoNight"
+        static let readSpacing = "mp_readSpacing"
+        static let easyReading = "mp_easyReading"
         static let readSize = "mp_readSize"
         static let reminder = "mp_reminder"
         static let approve = "mp_approveBeforeShow"
@@ -109,6 +120,10 @@ final class MPSettingsStore: ObservableObject {
         bedtime = d.object(forKey: K.bedtime) == nil ? true : d.bool(forKey: K.bedtime)
         speechRateRaw = d.string(forKey: K.speechRate) ?? MPSpeechRate.normal.rawValue
         readThemeRaw = d.string(forKey: K.readTheme) ?? MP.ReadTheme.light.rawValue
+        paperGrain = d.object(forKey: K.paperGrain) == nil ? true : d.bool(forKey: K.paperGrain)
+        autoNight = d.object(forKey: K.autoNight) == nil ? true : d.bool(forKey: K.autoNight)
+        readSpacingRaw = d.string(forKey: K.readSpacing) ?? MP.ReadSpacing.normal.rawValue
+        easyReading = d.bool(forKey: K.easyReading)
         bedtimeHour = d.object(forKey: K.bedtimeHour) == nil ? 20 : d.integer(forKey: K.bedtimeHour)
         bedtimeMinute = d.object(forKey: K.bedtimeMinute) == nil ? 30 : d.integer(forKey: K.bedtimeMinute)
     }
@@ -131,6 +146,17 @@ final class MPSettingsStore: ObservableObject {
     var readTheme: MP.ReadTheme {
         get { MP.ReadTheme(rawValue: readThemeRaw) ?? .light }
         set { readThemeRaw = newValue.rawValue }
+    }
+
+    var readSpacing: MP.ReadSpacing {
+        get { MP.ReadSpacing(rawValue: readSpacingRaw) ?? .normal }
+        set { readSpacingRaw = newValue.rawValue }
+    }
+
+    /// Okuyucunun şu an kullandığı kâğıt: uyku saatinde "Uyku saatinde Gece"
+    /// açıksa Gece, değilse seçilen.
+    func readingTheme(chosen: MP.ReadTheme, now: Date = Date()) -> MP.ReadTheme {
+        autoNight && MPBedtime.isBedtime(settings: self, now: now) ? .night : chosen
     }
 
     var readSize: MP.ReadSize {

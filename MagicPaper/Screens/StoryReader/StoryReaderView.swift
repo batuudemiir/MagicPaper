@@ -53,7 +53,7 @@ struct StoryReaderView: View {
         _recorder = State(initialValue: ReadingSessionRecorder(story: story))
     }
 
-    private var theme: MP.ReadTheme { app.readTheme }
+    private var theme: MP.ReadTheme { settings.readingTheme(chosen: app.readTheme) }
 
     var body: some View {
         ZStack {

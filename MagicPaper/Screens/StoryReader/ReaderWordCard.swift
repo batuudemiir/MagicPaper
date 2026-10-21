@@ -17,7 +17,7 @@ struct ReaderWordCard: View {
             HStack(alignment: .center, spacing: MP.S.x3) {
                 Text(word.term)
                     .font(MP.F.displaySM())
-                    .foregroundStyle(MP.C.textTitle)
+                    .foregroundStyle(theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: MP.S.x2)
                 Button(action: onSpeak) {
@@ -32,15 +32,17 @@ struct ReaderWordCard: View {
             }
             Text(word.meaning)
                 .font(MP.F.bodyMD())
-                .foregroundStyle(MP.C.textBody)
+                .foregroundStyle(theme.body)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.horizontal, MP.S.x4)
         .padding(.vertical, MP.S.x3)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .mpEdge(fill: MP.C.surfaceCard, edge: MP.C.edgeCard, radius: MP.R.card)
-        // Gece kâğıdında kart da koyu tona geçer.
-        .environment(\.colorScheme, theme == .night ? .dark : .light)
+        // Açık kâğıtta kart bir ton daha açık; koyu kâğıtta sayfanın kendi
+        // tonunda, kenarıyla ayrılır.
+        .mpEdge(fill: theme.isDark ? theme.paper : MP.C.surfaceCard,
+                edge: theme.isDark ? theme.muted.opacity(0.35) : MP.C.edgeCard,
+                radius: MP.R.card)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Yeni kelime: \(word.term)")
         .accessibilityAction(.escape, onClose)

@@ -18,6 +18,9 @@ struct StoryLeafView: View {
     let story: Story
     @ObservedObject var model: StoryReaderModel
     @EnvironmentObject private var app: MPAppState
+    @EnvironmentObject private var settings: MPSettingsStore
+
+    private var theme: MP.ReadTheme { settings.readingTheme(chosen: app.readTheme) }
 
     let onReadAgain: () -> Void
     let onClose: () -> Void
@@ -27,16 +30,18 @@ struct StoryLeafView: View {
     var body: some View {
         switch leaf {
         case .cover:
-            StoryCover(story: model.story, theme: app.readTheme)
+            StoryCover(story: model.story, theme: theme)
 
         case .dedication:
-            StoryDedicationLeaf(dedication: model.story.dedication, theme: app.readTheme, readSize: app.readSize)
+            StoryDedicationLeaf(dedication: model.story.dedication, theme: theme, readSize: app.readSize)
 
         case .page(let page):
             StoryPageView(
                 page: page,
-                theme: app.readTheme,
+                theme: theme,
                 readSize: app.readSize,
+                spacing: settings.readSpacing,
+                easyReading: settings.easyReading,
                 folio: "\(page.index + 1) / \(model.story.pageCount)",
                 // Kontroller görünürken sayfa numarası alt çubukta ("Sayfa X / Y",
                 // 23); çekilince sayfanın altında sessiz künye.
@@ -47,7 +52,7 @@ struct StoryLeafView: View {
         case .ending:
             StoryEndingLeaf(
                 story: story,
-                theme: app.readTheme,
+                theme: theme,
                 accent: model.story.accent,
                 onReadAgain: onReadAgain,
                 onClose: onClose,

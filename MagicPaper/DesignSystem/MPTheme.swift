@@ -128,6 +128,15 @@ enum MP {
         static let sepya700 = Color(hex: 0x503A22)
         static let sepya900 = Color(hex: 0x3B2A18)
 
+        // Okuyucunun iki ek kâğıdı (21 Ekim 2026). Krem gündüzle sepya arası
+        // sıcak beyaz; Akşam geceden önceki yumuşak mor-gri. Yalnızca
+        // `ReadTheme` okur. Kontrast: mürekkep ve ikincil yazı ≥ 4.5:1.
+        static let krem100  = Color(hex: 0xFBF3E4)
+        static let aksam25  = Color(hex: 0xEDE6F4)
+        static let aksam200 = Color(hex: 0xC2B8D3)
+        static let aksam300 = Color(hex: 0xD4C2F2)
+        static let aksam700 = Color(hex: 0x3B3450)
+
         // Dünya aksanları — gül/hardal/mercan/yeşim/gece'nin karşılamadığı
         // masal dünyaları. Tüketicileri: `MP.World.accent` ve ondan türeyen
         // kategori eşlemeleri. Marka rengi değillerdir, arayüzde tek
@@ -312,42 +321,54 @@ enum MP {
     // MARK: Okuma temaları — uygulamadaki tek tema anahtarı
 
     enum ReadTheme: String, CaseIterable, Identifiable {
-        case light, sepia, night
+        case light, cream, sepia, dusk, night
         public var id: String { rawValue }
 
         var label: String {
             switch self {
             case .light: return "Gündüz"
+            case .cream: return "Krem"
             case .sepia: return "Sepya"
+            case .dusk:  return "Akşam"
             case .night: return "Gece"
             }
         }
+        /// Koyu kâğıt: üstündeki cam ve kontroller koyu tona geçer.
+        var isDark: Bool { self == .dusk || self == .night }
+
         var background: Color {
             switch self {
             case .light: return MPColor.readerDayBackground
+            case .cream: return Palette.krem100
             case .sepia: return MPColor.readerSepiaBackground
+            case .dusk:  return Palette.aksam700
             case .night: return MPColor.readerNightBackground
             }
         }
         var foreground: Color {
             switch self {
-            case .light: return MPColor.readerDayText
+            case .light, .cream: return MPColor.readerDayText
             case .sepia: return MPColor.readerSepiaText
+            case .dusk:  return Palette.aksam25
             case .night: return MPColor.readerNightText
             }
         }
-        var body: Color {
-            switch self {
-            case .light: return MPColor.readerDayText
-            case .sepia: return MPColor.readerSepiaText
-            case .night: return MPColor.readerNightText
-            }
-        }
+        var body: Color { foreground }
         var muted: Color {
             switch self {
-            case .light: return MPColor.readerDaySecondary
+            case .light, .cream: return MPColor.readerDaySecondary
             case .sepia: return MPColor.readerSepiaSecondary
+            case .dusk:  return Palette.aksam200
             case .night: return MPColor.readerNightSecondary
+            }
+        }
+        /// Yeni kelime ve vurgu rengi: kahraman adı tonu, kâğıda karşı okunur.
+        var highlight: Color {
+            switch self {
+            case .light, .cream: return MPColor.readerDayHeroName
+            case .sepia: return MPColor.readerSepiaHeroName
+            case .dusk:  return Palette.aksam300
+            case .night: return MPColor.readerNightHeroName
             }
         }
 
@@ -358,20 +379,15 @@ enum MP {
         /// kullanır, `MPStoryPDF`'in bastığı kağıt rengiyle aynı tonu
         /// (`kagit100`) tutar. Ayrı bir property olmasının sebebi
         /// `DailyStoryReaderView`'ın `background`'ı okumaya devam etmesi.
-        var paper: Color {
-            switch self {
-            case .light: return MPColor.readerDayBackground
-            case .sepia: return MPColor.readerSepiaBackground
-            case .night: return MPColor.readerNightBackground
-            }
-        }
+        var paper: Color { background }
 
         /// Cilt payı — sayfanın iç kenarındaki ince gölge.
         /// Sistemdeki derinlik `mpEdge`'tir; bu onun kitaba özgü karşılığı.
         var spine: Color {
             switch self {
-            case .light: return Palette.kagit500.opacity(0.22)
+            case .light, .cream: return Palette.kagit500.opacity(0.22)
             case .sepia: return Palette.sepya300.opacity(0.22)
+            case .dusk:  return Palette.gece800.opacity(0.30)
             case .night: return Palette.gece800.opacity(0.38)
             }
         }
@@ -532,6 +548,27 @@ enum MP {
         }
         /// line-height 1.72
         var lineSpacing: CGFloat { points * 0.72 }
+    }
+
+    /// Satır aralığı ayarı (karar: 21 Ekim 2026). Masal metninin satır arası
+    /// `points × factor`; Normal eski sabit 0.72.
+    enum ReadSpacing: String, CaseIterable, Identifiable {
+        case normal, rahat, genis
+        public var id: String { rawValue }
+        var label: String {
+            switch self {
+            case .normal: return "Normal"
+            case .rahat:  return "Rahat"
+            case .genis:  return "Geniş"
+            }
+        }
+        var factor: CGFloat {
+            switch self {
+            case .normal: return 0.72
+            case .rahat:  return 0.9
+            case .genis:  return 1.1
+            }
+        }
     }
 
     // MARK: Boşluk

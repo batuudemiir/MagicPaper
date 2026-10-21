@@ -11,6 +11,9 @@ struct StoryPageView: View {
     let page: ReaderPage
     let theme: MP.ReadTheme
     let readSize: MP.ReadSize
+    /// Satır aralığı ve kolay okuma (Okuma ayarları · Yazı).
+    var spacing: MP.ReadSpacing = .normal
+    var easyReading: Bool = false
     let folio: String?
     /// Alt künye görünür mü. Kontroller görünürken sayfa numarası alt çubukta
     /// yazılı; künye yalnızca kontroller çekilince belirir (21 Ekim 2026).
@@ -88,10 +91,6 @@ struct StoryPageView: View {
         min(geo.size.width / StorySceneView.aspectRatio, geo.size.height * 0.55)
     }
 
-    /// Metin sütununun çizime bıraktığı yükseklik.
-    private func illustrationReserve(in geo: GeometryProxy) -> CGFloat {
-        page.scene != nil ? sceneHeight(in: geo) : geo.size.height * 0.55
-    }
 
     @ViewBuilder
     private func fileIllustration(in geo: GeometryProxy) -> some View {
@@ -178,19 +177,22 @@ struct StoryPageView: View {
     /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
     /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
     /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
-    private var wordHighlight: Color {
-        switch theme {
-        case .light: return MPColor.readerDayHeroName
-        case .sepia: return MPColor.readerSepiaHeroName
-        case .night: return MPColor.readerNightHeroName
+    private var wordHighlight: Color { theme.highlight }
+
+    /// Metin sütununun kendi yüksekliği ölçülür, sayfanınki değil. Önceden
+    /// sayfanın tam yüksekliği kullanılıyordu; sütun ise üst ve alt boşluk
+    /// kadar kısaydı, bu yüzden kısa metin bile her zaman biraz taşıyor ve
+    /// parmakla yukarı aşağı oynuyordu (21 Ekim 2026). Sığan metin artık
+    /// kıpırdamaz; kaydırma yalnızca gerçekten sığmayan eski uzun sayfalarda.
+    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
+        GeometryReader { viewport in
+            textScroll(minHeight: viewport.size.height,
+                       topAligned: reservesArt && page.hasIllustration)
         }
     }
 
-    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
-        let available = geo.size.height
-            - (reservesArt && page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
-
-        return ScrollView(.vertical) {
+    private func textScroll(minHeight available: CGFloat, topAligned: Bool) -> some View {
+        ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: readSize.points * 0.55) {
                 if !page.title.isEmpty {
                     Text(page.title)
@@ -206,7 +208,9 @@ struct StoryPageView: View {
                 ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
                     Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
                                                 ink: theme.body, highlight: wordHighlight))
-                        .lineSpacing(readSize.lineSpacing)
+                        .lineSpacing(readSize.points * spacing.factor)
+                        // Kolay okuma: harf arası açılır, font Nunito kalır.
+                        .tracking(easyReading ? readSize.points * 0.06 : 0)
                         .tint(wordHighlight)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -215,7 +219,7 @@ struct StoryPageView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             // Sığdığında ortalanır, taştığında yukarıdan başlar.
             .frame(minHeight: max(available, 0),
-                   alignment: reservesArt && page.hasIllustration ? .top : .center)
+                   alignment: topAligned ? .top : .center)
             // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
             // metin.
             .accessibilityElement(children: .ignore)

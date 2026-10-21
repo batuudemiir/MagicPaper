@@ -14,13 +14,11 @@ struct ReaderPaper: View {
 
     let theme: MP.ReadTheme
 
-    /// Kâğıt dokusu.
-    ///
-    /// Tek sabit. Cihazda §28 testini geçmezse burası `false` olur ve doku
-    /// tamamen çıkar — düz sıcak kâğıt, cilt payı ve kıvrımın kendi ışığı
-    /// etkinin çoğunu zaten veriyor.
-    static let showsGrain = true
+    /// Kâğıt dokusu: Okuma ayarlarındaki "Kâğıt dokusu" (21 Ekim 2026).
+    /// Kapalıyken düz sıcak kâğıt; cilt payı ve kıvrımın ışığı kalır.
+    @MainActor static var showsGrain: Bool { MPSettingsStore.shared.paperGrain }
 
+    @ObservedObject private var settings = MPSettingsStore.shared
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
     var body: some View {
@@ -30,8 +28,8 @@ struct ReaderPaper: View {
             if ReaderPaper.showsGrain && !reduceTransparency {
                 Image(uiImage: ReaderGrain.tile)
                     .resizable(resizingMode: .tile)
-                    .opacity(theme == .night ? 0.05 : 0.035)
-                    .blendMode(theme == .night ? .plusLighter : .multiply)
+                    .opacity(theme.isDark ? 0.05 : 0.035)
+                    .blendMode(theme.isDark ? .plusLighter : .multiply)
                     .allowsHitTesting(false)
             }
 
