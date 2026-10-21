@@ -133,6 +133,21 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · uyku-arki@39d3393 · Uyku arkı: uyku öncesi modunun kendi masal yapısı
+- Batuhan onayladı (21 Ekim): 15 Ekim'deki "deney olarak dönsün" kararı atlanıp doğrudan yapıya geçildi. Çerçeve oda ayarıyla taşınıyor.
+- Motor: yeni `NarrativeArc` (`standard | bedtime`), blueprint ve şablonda. Uyku modu artık aileyi **ve** arkı seçiyor (`families: [charge], arcs: [bedtime]`); bahçede açılan üç charge masalı bu moda girmiyor. Mod verilmeyen istek yalnızca standart arka gidiyor.
+- Yer: `isRestingPlace` taşıyan iki oda (Ay Pencereli Oda, Mavi Perdeli Oda). Bu odalar yalnızca uyku arkına bağlanıyor, uyku arkı da yalnızca bu odalara. İlk ve son sayfa aynı odayı adıyla söylüyor.
+- İçerik: 2 blueprint (`bp_bedtime_lullaby_001` 5-6/8 sayfa, eğri 0,1,1,1,1,0,0,0; `bp_bedtime_lullaby_age3_001` 3-4/6 sayfa, eğri 0,1,1,1,0,0). Ayrıca `templates/bedtime/` altında 16 dosya ve 112 satır; bunların 48'i Masal ailem satırı. Doruk hıçkırık, hapşırık ya da esneme gibi gülümseten bir şaşkınlık; karanlık, korku, yalnızlık ve gölge yok.
+- Denetleyici (fatal, yalnızca uyku arkında): doruk ≤ ⌈2n/3⌉ ve ≤ n−2, son sayfa 0, tedirgin doruk yok, son sayfada `carry_forward` yok, 3-4'te tavan 1. Son sayfa `CalmEnding`'den geçiyor. Bütünlük denetimi uyku satırında ve odada karanlık, yalnız ve korku konularını hata sayıyor.
+- `familyMoments` listesine `establish_ordinary` eklendi; aile karakteri uyku masalının ilk sayfasında da yer alıyor. Bu beat'i yalnızca uyku blueprint'leri kullanıyor.
+- Seri: uykuya özel devam bölümü henüz yok. Odada açılan masala "Devam ettir" sunulmuyor (`SeriesPlanner.isAvailable`; uygulamada `seriesAvailable(settingID:)`). 21 Ekim öncesi uyku masalları ve onların serileri eskisi gibi devam ediyor.
+- Bilerek değişmeyen: öğrenme ve macera modları. Aile fixture'ında yalnızca 8 uyku kaydı yenilendi, diğerleri birebir aynı. Eski charge blueprint'leri katalogda kaldı. 7-8 ve 9-10 bantları hâlâ en yakın banttan sunuluyor. Uyku devam bölümleri, oda için yeni keşif nesneleri ve 3-4'teki eski `patience` tavan ihlali (devam bölümlerinde) sonraki işe kaldı.
+- Test:
+  - StoryEngine paketi 819 test, 18 hata. Hepsi main'de zaten düşen aynı 10 testten geliyor; yeni hata yok. 14 yeni test (`BedtimeArcTests` 13 + seri 1) geçti; ikinci hedef 89/0.
+  - `validate_beat_corpus.py`: main'deki 12 eski hata dışında yeni hata yok; yeni `check_bedtime_lines` kapısı eklendi.
+  - Uygulama iPhone 18 Pro Max simülatörü için derlendi (BUILD SUCCEEDED). Uygulama testleri çalıştırılmadı, simülatörde masal açılıp görülmedi.
+- Etkilenen dosyalar: `StoryEngine/Sources/StoryEngine/Content/{NarrativeArc,CatalogBlueprint,CatalogTemplate,BeatCorpusLoader,BeatSequenceValidator,CatalogIntegrity,ContentTraits}.swift`, `Offline/{StoryMode,BlueprintSelector,OfflineSelection,OfflineStoryComposer,Series/SeriesPlan}.swift`, `Resources/blueprints/pilot_library_v1.json`, `Resources/templates/bedtime/*`, `Tools/validate_beat_corpus.py`, testler (+`BedtimeArcTests.swift`, aile fixture'ı), `MagicPaper/StoryEngineBridge/{OfflineStoryService,SeriesManager}.swift`, `docs/UYKU_ARKI.md`.
+
 ### 2026-10-21 · book-intelligence@3ef564f · Research PR hazır, açılamadı (gh yok)
 - **PR açılamadı:** bu makinede `gh` CLI (ve brew) yok. PR açıklaması hazır: oturum notlarında `book-intelligence-PR-body.md`. Açmak için: https://github.com/batuudemiir/MagicPaper/compare/main...book-intelligence?expand=1 (base `main`, head `book-intelligence`). Birleştirme Batuhan'da; auto-merge açılmayacak.
 - Çakışma kontrolü: `git merge-tree --write-tree origin/main book-intelligence` temiz (merge-base 9884c9f, origin/main 3eaf7fe). Çakışma yok; dalda değişiklik, rebase ya da push yapılmadı.
