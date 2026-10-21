@@ -74,7 +74,7 @@ struct StoryActionsSheet: View {
             }
             Button("Vazgeç", role: .cancel) {}
         } message: {
-            Text("\(story.title) kitaplıktan silinir. Bu işlem geri alınamaz.")
+            Text("\u{201C}\(story.title)\u{201D} kitaplıktan silinir. Bu işlem geri alınamaz.")
         }
         .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
     }

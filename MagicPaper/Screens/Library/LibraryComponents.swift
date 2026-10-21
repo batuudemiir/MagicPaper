@@ -87,11 +87,15 @@ struct LibraryContinueCard: View {
 /// durur, adı ve "Dün · 4 dk" rafın altında, kitabın etiketi gibi. Kitap
 /// sırtı yok (20 Ekim'deki sırt rafı geri alınmıştı). İki sütun; en büyük
 /// yazı boyutlarında tek sütun.
-struct LibraryShelfGrid: View {
+///
+/// Kapağa dokununca `open`; basılı tutunca kapak yükselir ve altında
+/// `menu` açılır (sistemin `contextMenu`'su, iOS 26'da sistemin camı).
+struct LibraryShelfGrid<QuickActions: View>: View {
     let items: [LibraryItem]
     let pageWidth: CGFloat
     let singleColumn: Bool
     let open: (LibraryItem) -> Void
+    @ViewBuilder let menu: (LibraryItem) -> QuickActions
 
     private var columns: Int { singleColumn ? 1 : 2 }
     private var inner: CGFloat { max(0, pageWidth - MPSpacing.screenH * 2) }
@@ -113,6 +117,7 @@ struct LibraryShelfGrid: View {
                                 MPBookCover(art: item.art, badge: item.badge, width: coverWidth)
                             }
                             .buttonStyle(MPPressStyle())
+                            .contextMenu { menu(item) }
                             .accessibilityLabel([item.title, item.meta, item.accessibilityStatus]
                                 .compactMap { $0 }.joined(separator: ", "))
                         }

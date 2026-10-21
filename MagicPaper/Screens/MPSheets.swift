@@ -223,7 +223,10 @@ struct ReaderSettingsSheet: View {
                 .padding(.horizontal, MPSpacing.xxxl)
                 .padding(.vertical, MPSpacing.md)
         }
-        .presentationDetents([.large])
+        // Yarım sayfa açılır: masal arkada görünür kalır, tema değişince
+        // kâğıt hemen arkada döner. Kalan ayarlar için yukarı çekilir.
+        // Arka plan kâğıt, cam değil (CLAUDE.md, Derinlik: sheet cam olmaz).
+        .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
         .presentationCornerRadius(MPRadius.sheet)
         .presentationBackground(MPColor.backgroundKid)
