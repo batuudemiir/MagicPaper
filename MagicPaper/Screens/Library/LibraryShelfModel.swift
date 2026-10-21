@@ -5,8 +5,10 @@
 // 166 ms'lik donmanın dersi).
 //
 // İki tür kitap: çocuğun kendi masalları ve Günlük'ten açtığı klasikler.
-// Raflar modlara göre (Uyku öncesi · Yeni şeyler öğrenelim · Maceraya
-// çıkalım), sonra Favoriler ve Klasikler.
+// Tek, başlıksız dizi (karar 21 Ekim 2026; Apple Books, Kindle, Audible
+// gibi): varsayılan son okunan önde, istenirse yeni yazılan ya da ada göre.
+// Her kitap bir kez görünür; ne zaman okunduğu kapağın altında yazar
+// ("Dün · 4 dk"). Mod raf değil, süzgeç ve kapaktaki işarettir.
 
 import Foundation
 
@@ -27,8 +29,12 @@ struct LibraryItem: Identifiable, Equatable {
     let isFavorite: Bool
     /// Seri bölümü: (kaçıncı, toplam).
     let episode: (number: Int, total: Int)?
-    /// Son okunduğu ya da yazıldığı an; raflar en yeniden eskiye.
+    /// Son okunduğu ya da yazıldığı an; varsayılan sıra en yeniden eskiye.
     let lastActivity: Date
+    /// Yazıldığı (klasikte ilk açıldığı) an: "Yeni yazılan" sırası.
+    let writtenAt: Date
+    /// Son okunmanın göreli adı: "Bugün", "Dün", "3 gün önce", "12 Ekim".
+    let when: String
     let art: MPBookCover.Art
     /// Aramada eşleşen sözcükler, katlanmış (başlık, çocuk, mod, dünya…).
     let searchText: String
@@ -43,26 +49,34 @@ struct LibraryItem: Identifiable, Equatable {
         return nil
     }
 
-    /// Kapağın altındaki satır: kategori · süre.
+    /// Kapağın altındaki satır: ne zaman · süre. Mod kapağın renginden ve
+    /// simgesinden belli; klasikte "Klasik" yazar.
     var meta: String {
-        let category = kind == .classic ? "Klasik" : (mode?.shortTitle ?? "Masal")
-        return "\(category) · \(minutes) dakika"
+        kind == .classic ? "Klasik · \(when)" : "\(when) · \(minutes) dk"
     }
 
-    /// VoiceOver: rozetin anlamı.
+    /// VoiceOver: kapakta renkle ve simgeyle verilen tür yazıyla da söylenir.
+    var kindLabel: String {
+        if kind == .classic { return "klasik masal" }
+        return mode.map { "\($0.title) masalı" } ?? "masal"
+    }
+
+    /// VoiceOver: tür ve rozetin anlamı.
     var accessibilityStatus: String? {
+        let status: String?
         switch badge {
-        case .progress(let p): return "yarım, yüzde \(Int(p * 100)) okundu"
-        case .episode(let n, let total): return "seri, \(n). bölüm, \(total) bölümden"
-        case .favorite: return "favori"
-        case nil: return progress >= 1 ? "okundu" : nil
+        case .progress(let p): status = "yarım, yüzde \(Int(p * 100)) okundu"
+        case .episode(let n, let total): status = "seri, \(n). bölüm, \(total) bölümden"
+        case .favorite: status = "favori"
+        case nil: status = progress >= 1 ? "okundu" : nil
         }
+        return [kindLabel, status].compactMap { $0 }.joined(separator: ", ")
     }
 
     static func == (lhs: LibraryItem, rhs: LibraryItem) -> Bool {
         lhs.id == rhs.id && lhs.progress == rhs.progress && lhs.isFavorite == rhs.isFavorite
             && lhs.title == rhs.title && lhs.episode?.number == rhs.episode?.number
-            && lhs.lastActivity == rhs.lastActivity && lhs.art == rhs.art
+            && lhs.lastActivity == rhs.lastActivity && lhs.art == rhs.art && lhs.when == rhs.when
     }
 }
 
@@ -70,7 +84,6 @@ struct LibraryItem: Identifiable, Equatable {
 enum LibraryFilter: Hashable, Identifiable {
     case all
     case favorites
-    case unfinished
     case mode(StoryMode)
     case classics
 
@@ -80,7 +93,6 @@ enum LibraryFilter: Hashable, Identifiable {
         switch self {
         case .all: return "Tümü"
         case .favorites: return "Favoriler"
-        case .unfinished: return "Yarım kalanlar"
         case .mode(let mode): return mode.title
         case .classics: return "Klasikler"
         }
@@ -96,18 +108,25 @@ enum LibraryFilter: Hashable, Identifiable {
         switch self {
         case .all: return true
         case .favorites: return item.isFavorite
-        case .unfinished: return item.isPartlyRead
         case .mode(let mode): return item.kind == .story && item.mode == mode
         case .classics: return item.kind == .classic
         }
     }
 }
 
-struct LibraryShelf: Identifiable, Equatable {
-    let filter: LibraryFilter
-    let items: [LibraryItem]
-    var id: LibraryFilter { filter }
-    var title: String { filter.title }
+/// Kitaplığın sırası (Apple Books ve Audible'daki gibi küçük bir menü).
+enum LibrarySort: String, CaseIterable, Identifiable {
+    case recent, newest, title
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .recent: return "Son okunan"
+        case .newest: return "Yeni yazılan"
+        case .title: return "Ada göre"
+        }
+    }
 }
 
 struct LibraryShelfModel: Equatable {
@@ -124,34 +143,45 @@ struct LibraryShelfModel: Equatable {
     var storyCount: Int { items.filter { $0.kind == .story }.count }
     var classicCount: Int { items.filter { $0.kind == .classic }.count }
 
-    /// "Kaldığın yerden": en son açılan yarım kitaplar.
-    func continueItems(limit: Int = 2) -> [LibraryItem] {
+    /// "Kaldığın yerden": en son açılan yarım kitap(lar).
+    func continueItems(limit: Int = 1) -> [LibraryItem] {
         Array(items.filter(\.isPartlyRead).prefix(limit))
-    }
-
-    /// Ana görünümün rafları; boş raf yok.
-    var shelves: [LibraryShelf] {
-        var filters: [LibraryFilter] = StoryMode.displayOrder.map { .mode($0) }
-        filters += [.favorites, .classics]
-        return filters.compactMap { filter in
-            let list = items.filter(filter.admits)
-            return list.isEmpty ? nil : LibraryShelf(filter: filter, items: list)
-        }
     }
 
     /// Çiplerde gösterilecek süzgeçler: içi dolu olanlar, sabit sırada.
     /// "Tümü" her zaman başta.
     var availableFilters: [LibraryFilter] {
-        let candidates: [LibraryFilter] = [.favorites, .unfinished]
-            + StoryMode.displayOrder.map { .mode($0) } + [.classics]
+        let candidates: [LibraryFilter] = [.favorites] + StoryMode.displayOrder.map { .mode($0) } + [.classics]
         return [.all] + candidates.filter { filter in items.contains(where: filter.admits) }
     }
 
-    /// Süzgeç ve arama birlikte; arama başlık, çocuk adı, mod ve dünya adında.
-    func items(for filter: LibraryFilter, query: String = "") -> [LibraryItem] {
+    /// Göreli gün adı: Bugün · Dün · "3 gün önce" · "12 Ekim" (başka yılsa yılıyla).
+    static func relativeLabel(for date: Date, now: Date, calendar: Calendar) -> String {
+        if calendar.isDate(date, inSameDayAs: now) { return "Bugün" }
+        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: date),
+                                           to: calendar.startOfDay(for: now)).day ?? 0
+        if days == 1 { return "Dün" }
+        if days > 1, days < 7 { return "\(days) gün önce" }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "tr_TR")
+        formatter.calendar = calendar
+        formatter.timeZone = calendar.timeZone
+        formatter.dateFormat = calendar.isDate(date, equalTo: now, toGranularity: .year) ? "d MMMM" : "d MMMM yyyy"
+        return formatter.string(from: date)
+    }
+
+    /// Süzgeç, arama ve sıra birlikte; arama başlık, çocuk adı, mod ve dünya adında.
+    func items(for filter: LibraryFilter, query: String = "", sort: LibrarySort = .recent) -> [LibraryItem] {
         let needle = Self.fold(query.trimmingCharacters(in: .whitespacesAndNewlines))
-        return items.filter { item in
+        let list = items.filter { item in
             filter.admits(item) && (needle.isEmpty || item.searchText.contains(needle))
+        }
+        switch sort {
+        case .recent: return list
+        case .newest: return list.sorted { $0.writtenAt > $1.writtenAt }
+        case .title:
+            let tr = Locale(identifier: "tr_TR")
+            return list.sorted { $0.title.compare($1.title, locale: tr) == .orderedAscending }
         }
     }
 
@@ -171,7 +201,8 @@ extension LibraryShelfModel {
                       isFavorite: (UUID) -> Bool,
                       seriesTotal: (Story) -> Int? = { _ in nil },
                       classics: [(tale: ClassicTale, fraction: Double, openedAt: Date)] = [],
-                      art: (Story) -> MPBookCover.Art = LibraryShelfModel.coverArt) -> LibraryShelfModel {
+                      art: (Story) -> MPBookCover.Art = LibraryShelfModel.coverArt,
+                      now: Date = Date(), calendar: Calendar = .current) -> LibraryShelfModel {
         var list: [LibraryItem] = stories.map { story in
             let mode = story.mpMode
             let words = [story.title, story.childName, mode?.title, mode?.shortTitle, story.mpWorld.name]
@@ -182,6 +213,8 @@ extension LibraryShelfModel {
                                minutes: story.mpReadingMinutes, progress: story.mpProgress,
                                isFavorite: isFavorite(story.id), episode: episode,
                                lastActivity: story.lastReadAt ?? story.createdAt,
+                               writtenAt: story.createdAt,
+                               when: relativeLabel(for: story.lastReadAt ?? story.createdAt, now: now, calendar: calendar),
                                art: art(story),
                                searchText: fold(words.compactMap { $0 }.joined(separator: " ")))
         }
@@ -191,6 +224,8 @@ extension LibraryShelfModel {
                                minutes: tale.minutes, progress: entry.fraction,
                                isFavorite: isFavorite(tale.id), episode: nil,
                                lastActivity: entry.openedAt,
+                               writtenAt: entry.openedAt,
+                               when: relativeLabel(for: entry.openedAt, now: now, calendar: calendar),
                                art: .image(tale.cover, focus: tale.coverFocus),
                                searchText: fold([tale.title, tale.byline, "Klasik", "Klasikler"].joined(separator: " ")))
         }
@@ -198,10 +233,12 @@ extension LibraryShelfModel {
     }
 
     /// Kendi masalının kapağı: teslim edilmiş set kapağı varsa o, yoksa
-    /// kendi kâğıt mozaiği. Ortak varsayılan görsel yok (20 Ekim).
+    /// başlık kapağı (mod tonunda kâğıt, ortada adı; 21 Ekim). Modu
+    /// bilinmeyen eski masal gökyüzü tonunda, simgesiz.
     static func coverArt(_ story: Story) -> MPBookCover.Art {
         if let asset = story.mpKitCoverAsset ?? story.mpDefaultCoverAsset { return .image(asset) }
-        if story.mpCoverStyle == .magicPaperMosaic { return .mosaic(story.mpMosaicCover) }
-        return .symbol(story.mpWorld.icon, story.mpWorld.tone)
+        let mode = story.mpMode
+        return .title(story.title, tone: mode?.tone ?? .sky, modeSymbol: mode?.symbol,
+                      worldSymbol: story.mpWorld.icon)
     }
 }

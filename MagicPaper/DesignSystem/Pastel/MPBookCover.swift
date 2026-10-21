@@ -1,12 +1,15 @@
 // MPBookCover.swift
-// Kitaplığın tek kapağı (karar 20 Ekim 2026).
+// Kitaplığın tek kapağı (karar 20 Ekim 2026; başlık kapağı 21 Ekim 2026).
 //
 // Kitaplıkta iki tür kitap yan yana durur: Günlük'ün boyalı klasikleri ve
-// çocuğun kendi masalları. Klasikler Günlük'teki kapaklarıyla durur; kendi
-// masalı okuyucudaki kâğıt mozaik kapağıyla (aynı kitap, rafta ve okuyucuda).
+// çocuğun kendi masalları. Klasikler Günlük'teki kapaklarıyla durur. Kendi
+// masalının kapağı başlık kapağıdır (Batuhan, 21 Ekim): mod renginde kâğıt,
+// ortada masalın adı, üstte mod simgesi, altta dünya simgesi ve yıldız.
+// Mozaik kapaklar birbirine çok benziyordu; masalı ayırt eden adı, kapağın
+// kendisi o. Masal setinin illüstrasyon kapağı gelirse o kullanılır.
 // Bütünlük biçimden gelir: hepsi Günlük rafının ölçüsünde (128 × 176 oranı),
-// aynı köşe ve aynı sert alt kenarla; başlık kapağın altında.
-// Sağ üstte tek rozet yeri; öncelik yarım → bölüm → favori.
+// aynı köşe ve aynı sert alt kenarla. Sağ üstte tek rozet yeri; öncelik
+// yarım → bölüm → favori.
 
 import SwiftUI
 
@@ -14,19 +17,9 @@ struct MPBookCover: View {
     enum Art: Equatable {
         /// Boyalı ya da illüstrasyon kapak.
         case image(String, focus: ClassicFocus = .center)
-        /// Metin masalının üretilmiş kâğıt mozaiği.
-        case mosaic(MagicPaperCoverConfiguration)
-        /// Kapağı olmayan masal: dünya simgesi.
-        case symbol(String, MPWorldTone)
-
-        static func == (lhs: Art, rhs: Art) -> Bool {
-            switch (lhs, rhs) {
-            case let (.image(a, fa), .image(b, fb)): return a == b && fa == fb
-            case let (.mosaic(a), .mosaic(b)): return a.seed == b.seed && a.bookID == b.bookID
-            case let (.symbol(a, ta), .symbol(b, tb)): return a == b && ta == tb
-            default: return false
-            }
-        }
+        /// Başlık kapağı: mod tonunda kâğıt, ortada masalın adı.
+        /// `modeSymbol` yoksa (modu bilinmeyen eski masal) simge çizilmez.
+        case title(String, tone: MPWorldTone, modeSymbol: String?, worldSymbol: String)
     }
 
     enum Badge: Equatable {
@@ -59,14 +52,9 @@ struct MPBookCover: View {
         switch art {
         case let .image(name, focus):
             ClassicCoverImage(asset: name, focus: focus, seed: name)
-        case let .mosaic(configuration):
-            MagicPaperCoverView(configuration: configuration, showsBrand: false, fillsProposedSize: true)
-        case let .symbol(symbol, tone):
-            ZStack {
-                tone.soft
-                MPIcon(symbol, size: width * 0.3, weight: .regular)
-                    .foregroundStyle(tone.deep)
-            }
+        case let .title(title, tone, modeSymbol, worldSymbol):
+            TitleCoverFace(title: title, tone: tone, modeSymbol: modeSymbol,
+                           worldSymbol: worldSymbol, width: width)
         }
     }
 
@@ -105,38 +93,73 @@ struct MPBookCover: View {
     }
 }
 
-/// Rafta duran kitap: kapak, altında başlık ve tek satır bilgi (kategori · süre).
-/// Başlık kapağın üstüne binmez; uzun başlık iki satıra iner. Kısa başlık da
-/// iki satırlık yer ayırır: raftaki ve ızgaradaki her kart aynı boyda durur
-/// (Batuhan, 20 Ekim: bütün kapaklar aynı boyutta).
-struct MPBookCard: View {
+extension MPBookCover.Art {
+    /// Kapak masalın adını taşıyor mu.
+    var showsTitle: Bool {
+        if case .title = self { return true }
+        return false
+    }
+}
+
+extension MPWorldTone {
+    /// Kapak başlığının rengi: büyük metin için zemine karşı en az 3:1.
+    /// Sarı ve yeşilin koyu tonu açık zeminde yetmiyor (2.0 ve 3.0).
+    var coverTitle: Color {
+        switch self {
+        case .yellow: return MPColor.yellowText
+        case .green, .mint: return MPColor.greenText
+        default: return deep
+        }
+    }
+}
+
+/// Başlık kapağının yüzü. Dar kapakta (Kaldığın yerden kartı) ad yazılmaz,
+/// yanında zaten yazıyor; yalnızca dünya simgesi büyür.
+private struct TitleCoverFace: View {
     let title: String
-    let meta: String
-    let art: MPBookCover.Art
-    var badge: MPBookCover.Badge? = nil
+    let tone: MPWorldTone
+    let modeSymbol: String?
+    let worldSymbol: String
     let width: CGFloat
-    /// VoiceOver'da rozetin anlamı.
-    var accessibilityStatus: String? = nil
-    let action: () -> Void
+
+    private var compact: Bool { width < 90 }
 
     var body: some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: MPSpacing.sm) {
-                MPBookCover(art: art, badge: badge, width: width)
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
-                        // Yatay rafta da iki satıra insin, tek satırda kesilmesin.
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
+        ZStack {
+            tone.soft
+            Image(uiImage: ReaderGrain.tile).resizable(resizingMode: .tile)
+                .opacity(0.06).blendMode(.multiply)
+            if compact {
+                MPIcon(worldSymbol, size: width * 0.4, weight: .semibold)
+                    .foregroundStyle(tone.coverTitle.opacity(0.8))
+            } else {
+                VStack(spacing: MPSpacing.sm) {
+                    HStack {
+                        if let modeSymbol {
+                            MPIcon(modeSymbol, size: MP.G.xs, weight: .bold)
+                                .foregroundStyle(tone.coverTitle)
+                                .frame(width: MP.G.xs + MPSpacing.md, height: MP.G.xs + MPSpacing.md)
+                                .background(MPColor.backgroundSurface, in: Circle())
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    Spacer(minLength: 0)
+                    Text(title)
+                        .font(MP.F.displaySM())
+                        .foregroundStyle(tone.coverTitle)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(4)
+                        .minimumScaleFactor(0.6)
+                    Spacer(minLength: 0)
+                    HStack(spacing: MPSpacing.xs) {
+                        MPIcon(worldSymbol, size: MP.G.sm, weight: .semibold)
+                            .foregroundStyle(tone.coverTitle.opacity(0.75))
+                        Spacer(minLength: 0)
+                        MPStarMark(size: MP.G.sm)
+                    }
                 }
-                .padding(.horizontal, MPSpacing.xxs / 2)
+                .padding(MPSpacing.md)
             }
-            .frame(width: width, alignment: .leading)
         }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel([title, meta, accessibilityStatus].compactMap { $0 }.joined(separator: ", "))
-        .accessibilityAddTraits(.isButton)
     }
 }

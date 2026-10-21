@@ -93,6 +93,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkUnreachableTemplates(catalog))
         issues.append(contentsOf: checkVariants(catalog))
         issues.append(contentsOf: checkBlueprintShape(catalog))
+        issues.append(contentsOf: checkTitlePatterns(catalog))
         issues.append(contentsOf: checkAggregateWeights(catalog))
         issues.append(contentsOf: checkRefrains(catalog))
         issues.append(contentsOf: checkBeatAuthoring(catalog))
@@ -1040,6 +1041,30 @@ public struct CatalogIntegrityChecker: Sendable {
         }
         return issues
     }
+
+    /// Masal başlıkları (21 Ekim 2026). Başlıklar birbirine benziyordu: 13
+    /// kalıbın 11'i çocuğun adıyla başlıyordu. Bir blueprint'in kalıplarının en
+    /// fazla yarısı adla başlar (hata); dörtten az kalıp, kitaplıkta tekrarı
+    /// önlemeye yer bırakmaz (uyarı). Boş liste `no_title_patterns`'ın işi.
+    private func checkTitlePatterns(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        for blueprint in catalog.blueprints + catalog.series.continuations {
+            let patterns = blueprint.titlePatterns
+            guard !patterns.isEmpty else { continue }
+            let led = patterns.filter(TitleComposer.isNameLed).count
+            if led * 2 > patterns.count {
+                issues.append(.init(severity: .error, code: "title_patterns_name_led", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)': \(led) of \(patterns.count) title patterns start with the child's name; at most half may."))
+            }
+            if patterns.count < Self.minimumTitlePatterns {
+                issues.append(.init(severity: .warning, code: "title_patterns_too_few", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' has \(patterns.count) title patterns; \(Self.minimumTitlePatterns) leave room to avoid a title the child already has."))
+            }
+        }
+        return issues
+    }
+
+    static let minimumTitlePatterns = 4
 
     private func checkBlueprintShape(_ catalog: ContentCatalog) -> [CatalogIssue] {
         var issues: [CatalogIssue] = []

@@ -1,17 +1,17 @@
 import SwiftUI
 
-/// Kitaplık sekmesi (yenileme: 20 Ekim 2026).
+/// Kitaplık sekmesi (yenileme: 20 Ekim 2026; zaman çizgisi: 21 Ekim 2026).
 ///
 /// Çocuğun kendi masalları ve Günlük'ten açtığı klasikler, tek yerde. Dil
-/// Ana sayfa ve Benim köşem'le aynı: beyaz sayfa, `HomeSection` başlıkları,
-/// sert alt kenarlı yüzeyler, ekranın tek Ragi'si. Kapaklar `MPBookCover`:
-/// klasik Günlük'teki kapağıyla, kendi masalı kendi mozaiğiyle, hepsi aynı
-/// ölçüde.
+/// Ana sayfa ve Benim köşem'le aynı: beyaz sayfa, sert alt kenarlı yüzeyler,
+/// ekranın tek Ragi'si. Kapaklar `MPBookCover`, hepsi aynı ölçüde.
 ///
 /// Düzen: başlık · Ragi ve arama · süzgeç çipleri · "Kaldığın yerden" ·
-/// seri · mod rafları (Uyku, Öğrenelim, Macera) · Favoriler · Klasikler.
-/// Bir çip ya da rafın "Tümü" bağlantısı seçilince raflar yerine o
-/// kategorinin iki sütun ızgarası gelir; arama da ızgarada sonuç verir.
+/// Serim · "Kitaplarım": tek, başlıksız raf dizisi (iki sütun, sıraların
+/// altında ince raf). Apple Books, Kindle ve Audible'daki gibi varsayılan
+/// sıra son okunan; küçük menüden yeni yazılan ya da ada göre. Ne zaman
+/// okunduğu kapağın altında ("Dün · 4 dk"). Tarih başlıkları denendi,
+/// Batuhan estetik bulmadı (21 Ekim). Çip ve arama aynı diziyi daraltır.
 ///
 /// Kendi masalına dokununca Masal aksiyonları (17), klasiğe dokununca okuyucu.
 /// İçerik `LibraryShelfModel`'den gelir ve yalnızca veri değişince kurulur.
@@ -29,6 +29,7 @@ struct LibraryView: View {
     @State private var pendingCount = 0
     @State private var query = ""
     @State private var filter: LibraryFilter = .all
+    @State private var sort: LibrarySort = .recent
     @State private var width: CGFloat = 390
     @FocusState private var searchFocused: Bool
 
@@ -46,7 +47,8 @@ struct LibraryView: View {
                     }
                     .homeEntrance(1)
                     chips.homeEntrance(2)
-                    if isBrowsing { browse } else { gridSection }
+                    if isBrowsing { highlights }
+                    shelf
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
@@ -91,13 +93,13 @@ struct LibraryView: View {
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
             : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.md))
         return layout {
-            RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 72 : 92)
+            RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 64 : 76)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text("Bugün hangi masalı okuyalım?").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
                 Text(summary).mpText(.callout).foregroundStyle(MPColor.textSecondary)
             }
             .fixedSize(horizontal: false, vertical: true)
-            .padding(MPSpacing.lg)
+            .padding(MPSpacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(MPWorldTone.lav.soft.opacity(0.45),
                         in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
@@ -142,18 +144,14 @@ struct LibraryView: View {
         withAnimation(MP.M.gated(MP.M.easeOut)) { filter = option }
     }
 
-    // MARK: - Raflar
+    // MARK: - Öne çıkanlar
 
+    /// Yalnızca süzgeçsiz, aramasız görünümde: yarım kalan kitap ve açık seri.
     @ViewBuilder
-    private var browse: some View {
-        let continueItems = model.continueItems()
-        if !continueItems.isEmpty {
+    private var highlights: some View {
+        if let item = model.continueItems().first {
             HomeSection(title: "Kaldığın yerden", contained: false) {
-                VStack(spacing: MPSpacing.md) {
-                    ForEach(continueItems) { item in
-                        LibraryContinueCard(item: item) { open(item, continuing: true) }
-                    }
-                }
+                LibraryContinueCard(item: item) { open(item, continuing: true) }
             }
             .homeEntrance(3)
         }
@@ -162,47 +160,55 @@ struct LibraryView: View {
             HomeSection(title: "Serim") { SeriesCard(childID: child) }
                 .homeEntrance(4)
         }
-
-        ForEach(Array(model.shelves.enumerated()), id: \.element.id) { index, shelf in
-            HomeSection(title: shelf.title, contained: false,
-                        note: "\(shelf.items.count)", noteSpoken: "\(shelf.items.count) kitap",
-                        link: shelf.items.count > 2 ? (title: "Tümü", action: { select(shelf.filter) }) : nil) {
-                LibraryShelfRow(items: shelf.items, width: shelfCardWidth) { open($0) }
-            }
-            .homeEntrance(5 + index)
-        }
     }
 
-    /// Raf kartı: ekranda iki buçuk kapak görünür, rafın kaydığı belli olur.
-    private var shelfCardWidth: CGFloat {
-        typeSize.isAccessibilitySize ? 180 : min(150, max(118, (width - MPSpacing.screenH) / 2.5))
-    }
-
-    // MARK: - Izgara
+    // MARK: - Kitaplarım
 
     @ViewBuilder
-    private var gridSection: some View {
-        let items = model.items(for: filter, query: query)
+    private var shelf: some View {
+        let items = model.items(for: filter, query: query, sort: sort)
         VStack(alignment: .leading, spacing: MPSpacing.lg) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(filter.title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
+                Text(filter == .all ? "Kitaplarım" : filter.title)
+                    .mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 Spacer(minLength: MPSpacing.sm)
-                Text("\(items.count) kitap").mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                sortMenu
             }
             if items.isEmpty {
                 noMatch
             } else {
-                LibraryGrid(items: items, pageWidth: width, singleColumn: typeSize.isAccessibilitySize) { open($0) }
+                LibraryShelfGrid(items: items, pageWidth: width,
+                                 singleColumn: typeSize.isAccessibilitySize) { open($0) }
             }
         }
+        .homeEntrance(5)
+    }
+
+    /// Küçük sıra menüsü; varsayılan son okunan.
+    private var sortMenu: some View {
+        Menu {
+            Picker("Sırala", selection: $sort) {
+                ForEach(LibrarySort.allCases) { Text($0.title).tag($0) }
+            }
+        } label: {
+            HStack(spacing: MPSpacing.xxs) {
+                Text(sort.title).mpText(.callout)
+                MPIcon("chevron.down", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+            }
+            .foregroundStyle(MPColor.actionPrimary)
+            .frame(minHeight: MP.S.tapMin)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel("Sıralama: \(sort.title)")
+        .onChange(of: sort) { _, _ in MPHaptics.selection() }
     }
 
     /// Süzgeç ya da arama boş döndü. Ragi zaten yukarıda; burada yalnızca söz.
     private var noMatch: some View {
         let searching = !query.trimmingCharacters(in: .whitespaces).isEmpty
         return VStack(spacing: MPSpacing.md) {
-            Text(searching ? "Eşleşen kitap yok" : "Bu rafta henüz kitap yok")
+            Text(searching ? "Eşleşen kitap yok" : "Burada henüz kitap yok")
                 .mpText(.title3).foregroundStyle(MPColor.textPrimary)
             Text(searching ? "\u{201C}\(query)\u{201D} için bir şey bulamadık. Başka bir sözcük dene."
                            : "Okudukça kitapların burada toplanır.")

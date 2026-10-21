@@ -37,7 +37,7 @@ final class ContentPackageTests: XCTestCase {
         return try ContentPackage.build(version: declared, libraries: libraries, beats: beats ?? sources.beats)
     }
 
-    private func bump(_ object: inout [String: Any]) { object["version"] = "2.0.1" }
+    private func bump(_ object: inout [String: Any]) { object["version"] = "2.1.1" }
 
     private func verdict(_ data: Data) -> RemoteCatalogPolicy.Verdict? {
         guard let result = try? ContentCatalogLoader().load(package: data) else { return nil }
@@ -115,7 +115,7 @@ final class ContentPackageTests: XCTestCase {
     }
 
     func testAPackageWithoutLibrariesIsRefused() throws {
-        let data = try ContentPackage.build(version: "2.0.1", libraries: [], beats: sources.beats)
+        let data = try ContentPackage.build(version: "2.1.1", libraries: [], beats: sources.beats)
         XCTAssertThrowsError(try ContentCatalogLoader().load(package: data))
     }
 
@@ -135,12 +135,12 @@ final class ContentPackageTests: XCTestCase {
     // MARK: - Policy
 
     func testTheSameVersionAsTheBundleIsNotUsed() throws {
-        XCTAssertEqual(verdict(try package()), .notNewer(package: "2.0.0", bundled: "2.0.0"))
+        XCTAssertEqual(verdict(try package()), .notNewer(package: "2.1.0", bundled: "2.1.0"))
     }
 
     func testAnOlderVersionIsNotUsed() throws {
         let data = try package(editLibrary: { $0["version"] = "1.9.0" })
-        XCTAssertEqual(verdict(data), .notNewer(package: "1.9.0", bundled: "2.0.0"))
+        XCTAssertEqual(verdict(data), .notNewer(package: "1.9.0", bundled: "2.1.0"))
     }
 
     func testANewerCleanPackageIsUsed() throws {

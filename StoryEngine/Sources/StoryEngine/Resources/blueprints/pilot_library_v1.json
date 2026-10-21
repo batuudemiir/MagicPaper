@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "note": "Canonical Schema 2 blueprint library. Fifteen blueprints: the fourteen of BLUEPRINT_CATALOG_V2.md section 3, ported 2026-09-18 under decision D3 / merge-plan D10, plus one 3-4 band charge blueprint. Schema 2 is the ONLY format a production blueprint may use. Settings, companions and objects below are order-sensitive: OfflineSelection indexes the admissible pool in array order, so records must never be reordered or removed without a product decision. See docs/MagicPaper_Content_Library.md.",
   "settings": [
     {
@@ -668,9 +668,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
+        "{{discovery.title}} Nereden Geliyor?",
+        "{{setting.name}}'ndaki {{discovery.title}}",
         "{{discovery.title}}'in Sırrı",
-        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi"
+        "{{child.name}} ve {{discovery.title}}'in Sırrı",
+        "{{child.name}} Merak Ediyor"
       ],
       "pages": [
         {
@@ -767,8 +769,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
-        "{{discovery.title}}'in Sırrı"
+        "{{discovery.title}} Nereden Geliyor?",
+        "{{discovery.title}} Ne Anlatıyor?",
+        "{{setting.name}}'ndaki {{discovery.title}}",
+        "{{child.name}} ve {{discovery.title}}",
+        "{{child.name}} Merak Ediyor"
       ],
       "pages": [
         {
@@ -872,8 +877,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi"
+        "{{discovery.title}} Nereden Geliyor?",
+        "{{companion.name}}'a Sorulan Soru",
+        "{{discovery.title}}'in Sırrı",
+        "{{child.name}}'in Büyük Sorusu",
+        "{{child.name}} Sesli Sordu"
       ],
       "pages": [
         {
@@ -978,9 +986,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki Işık",
-        "{{child.name}}'in {{setting.name}}'daki Cesur Adımı",
-        "{{setting.name}}'na Cesur Yolculuk"
+        "{{setting.name}}'na Cesur Yolculuk",
+        "{{setting.name}}'nda {{discovery.title}}",
+        "{{setting.name}}'nın Öbür Yanı",
+        "{{child.name}}'in Cesur Adımı",
+        "{{child.name}} ve {{companion.name}} Yolda"
       ],
       "pages": [
         {
@@ -1081,8 +1091,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki Oyun",
-        "{{child.name}}'in Cesur Sorusu"
+        "{{setting.name}}'ndaki Oyun",
+        "{{setting.name}}'nda Cesur Adım",
+        "{{companion.name}} ile Yeni Oyun",
+        "{{child.name}}'in Cesur Sorusu",
+        "{{child.name}} Oyuna Katıldı"
       ],
       "pages": [
         {
@@ -1185,8 +1198,11 @@
         ]
       },
       "titlePatterns": [
+        "{{companion.name}}'a Kim Yardım Eder?",
+        "{{companion.name}} Ne Söylemek İstiyor?",
+        "{{setting.name}}'nda Birlikte",
         "{{child.name}} ve {{companion.name}}",
-        "{{child.name}}'in {{setting.name}}'daki Yardımı"
+        "{{child.name}}'in Yardım Çağrısı"
       ],
       "pages": [
         {
@@ -1277,8 +1293,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}}'in {{setting.name}}'daki Yardımı"
+        "{{companion.name}} Ne Söylemek İstiyor?",
+        "{{setting.name}}'nda Kim Konuşacak?",
+        "{{companion.name}}'ın Küçük Sesi",
+        "{{child.name}} Sesini Duyurdu",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -1374,8 +1393,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}}'in {{setting.name}}'daki Yardımı"
+        "{{companion.name}}'a Kim Yardım Eder?",
+        "{{companion.name}} ile Paylaşınca",
+        "Neden Paylaşıyoruz?",
+        "{{child.name}}'in Paylaştığı Gün",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -1470,8 +1492,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve Kayıp {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Arayışı"
+        "{{discovery.title}}'in Peşinde",
+        "{{setting.name}}'nda {{discovery.title}}",
+        "{{companion.name}} ile Büyük Arayış",
+        "{{child.name}}'in Büyük Arayışı",
+        "{{child.name}} ve {{companion.name}} Arıyor"
       ],
       "pages": [
         {
@@ -1565,8 +1590,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve Kayıp {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Arayışı"
+        "{{discovery.title}}'in Peşinde",
+        "{{setting.name}}'nda İz Sürmek",
+        "{{companion.name}} ile Geriye Doğru",
+        "{{child.name}}'in Arayışı",
+        "{{child.name}} ve {{discovery.title}}"
       ],
       "pages": [
         {
@@ -1667,9 +1695,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}",
-        "{{child.name}}'in {{setting.name}}'daki Büyük Keşfi",
-        "{{discovery.title}}'in Sırrı"
+        "{{discovery.title}} Kimin Acaba?",
+        "{{setting.name}}'ndaki İpuçları",
+        "{{discovery.title}}'in Sırrı",
+        "{{child.name}} İz Sürüyor",
+        "{{child.name}} ve {{discovery.title}}"
       ],
       "pages": [
         {
@@ -1763,8 +1793,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}} ve {{setting.name}}'daki {{discovery.title}}"
+        "{{discovery.title}} Kimin Acaba?",
+        "{{companion.name}} Ne Düşünüyor?",
+        "{{discovery.title}}'e Yeniden Bakış",
+        "{{setting.name}}'ndaki {{discovery.title}}",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -1866,8 +1899,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}} Bekledi"
+        "{{companion.name}}'ın Uykulu Gecesi",
+        "{{discovery.title}}'in Başında",
+        "{{setting.name}}'nda Usulca",
+        "{{child.name}} Bekledi",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -1965,8 +2001,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}} Bekledi"
+        "{{companion.name}}'ın Uykulu Gecesi",
+        "{{discovery.title}}'e İyi Geceler",
+        "{{setting.name}}'nda Usulca",
+        "{{child.name}} Usulca Bıraktı",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -2046,8 +2085,11 @@
         ]
       },
       "titlePatterns": [
-        "{{child.name}} ve {{companion.name}}",
-        "{{child.name}} Bekledi"
+        "{{companion.name}}'ın Uykulu Gecesi",
+        "{{discovery.title}}'e İyi Geceler",
+        "{{setting.name}}'nda Usulca",
+        "{{child.name}} Bekledi",
+        "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
         {
@@ -2129,6 +2171,9 @@
       },
       "titlePatterns": [
         "{{companion.name}} Uyurken",
+        "{{companion.name}}'ın Ninnisi",
+        "{{setting.name}}'nda Sessizlik",
+        "Uykulu {{companion.name}}",
         "{{child.name}} ile {{companion.name}}"
       ],
       "pages": [
@@ -2221,6 +2266,9 @@
       },
       "titlePatterns": [
         "{{companion.name}} Uyurken",
+        "{{companion.name}}'ın Ninnisi",
+        "Uykulu {{companion.name}}",
+        "{{setting.name}}'nda Sessizlik",
         "{{child.name}} ile {{companion.name}}"
       ],
       "pages": [
@@ -3442,6 +3490,8 @@
           }
         },
         "titlePatterns": [
+          "{{companion.name}} ile Yeniden",
+          "{{setting.name}}'na Dönüş",
           "{{child.name}} Yine Geldi",
           "{{child.name}} ve {{companion.name}}"
         ],
@@ -3516,6 +3566,8 @@
           ]
         },
         "titlePatterns": [
+          "{{companion.name}} ile Eve Doğru",
+          "{{setting.name}}'na Dönüş",
           "{{child.name}} Yerine Bıraktı",
           "{{child.name}} ve {{companion.name}}"
         ],
@@ -3593,6 +3645,8 @@
           }
         },
         "titlePatterns": [
+          "{{companion.name}} ile Yine Birlikte",
+          "{{setting.name}}'na Yeniden Dönüş",
           "{{child.name}} Yine Orada",
           "{{child.name}} ile {{companion.name}}"
         ],
@@ -3680,6 +3734,8 @@
           ]
         },
         "titlePatterns": [
+          "{{companion.name}} ile Eve Doğru",
+          "{{setting.name}}'na Dönüş",
           "{{child.name}} Yerine Götürdü",
           "{{child.name}} ile {{companion.name}}"
         ],
@@ -3775,6 +3831,9 @@
         },
         "titlePatterns": [
           "{{companion.name}} Yine Pencerede",
+          "{{companion.name}} ile Bir Gece Daha",
+          "{{setting.name}}'nda Yine Sessizlik",
+          "{{companion.name}}'ın Penceresi",
           "{{child.name}} ile {{companion.name}}"
         ],
         "pages": [
@@ -3868,6 +3927,9 @@
           ]
         },
         "titlePatterns": [
+          "{{companion.name}}'e Yer Var",
+          "{{companion.name}} Yerleşti",
+          "{{setting.name}}'nda Yeni Bir Köşe",
           "{{child.name}} Ona Yer Açtı",
           "{{child.name}} ile {{companion.name}}"
         ],
@@ -3963,6 +4025,9 @@
         },
         "titlePatterns": [
           "{{companion.name}} Yine Pencerede",
+          "{{companion.name}}'ın Penceresi",
+          "{{companion.name}} ile Bir Gece",
+          "{{setting.name}}'nda Sessizlik",
           "{{child.name}} ile {{companion.name}}"
         ],
         "pages": [
@@ -4045,6 +4110,9 @@
           ]
         },
         "titlePatterns": [
+          "{{companion.name}}'e Yer Var",
+          "{{companion.name}} Yerleşti",
+          "{{setting.name}}'nda Yeni Köşe",
           "{{child.name}} Ona Yer Açtı",
           "{{child.name}} ile {{companion.name}}"
         ],

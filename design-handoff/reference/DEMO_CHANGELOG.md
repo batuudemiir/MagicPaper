@@ -140,6 +140,50 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: MagicPaperTests, iPhone 17 Pro simülatörü, 746 test, 0 hata, 1 atlanan (main'deki önceki 1 hata kapandı). StoryEngine paketi (`--scratch-path`): 819 test, 18 hata, 1 atlanan; 18 hata main'de zaten düşen aynı 10 testten (uyku arkı ölçümüyle aynı), diğer hedef 89/0. Simülatörde ekran açılmadı, iş yalnızca test.
 - origin'e gönderilmedi.
 - Dosyalar: `MagicPaperTests/StoryModeFlowTests.swift`, bu dosya.
+### 2026-10-21 · main@8d2fb05 · Birleştirme: kitaplık (tek raf dizisi, başlık kapağı) + masal başlıkları, gönderim
+- `kitaplik-yenileme` (kapak altı boşluk, tarihli ızgara denemesi → tek raf dizisi, sıra menüsü, başlık kapağı, sarı/yeşil kontrast) ve `masal-basliklari` (moda özel kalıplar, kapak uzunluğu ve tekrar denetimi, kitaplıkta tekrar önleme) güncel main'le (uyku arkı, araştırma kayıtları) birleşti. Çakışmalar yalnızca değişiklik günlüğündeydi; bütün kayıtlar korundu.
+- Birleşmenin ortaya çıkardığı tek sorun: uyku arkının altı yeni uyku planında (ninni, iki devam ve 3-4 yaş sürümleri) eski usul ikişer başlık kalıbı vardı, yeni bütünlük kuralına uymuyordu (11 test). Her birine uyku dilinde beş kalıp yazıldı, en fazla ikisi adla başlıyor ("Tarçın'ın Ninnisi", "Uykulu Tarçın", "Tarçın Yerleşti"…).
+- Test: StoryEngine paketi 837 test, 18 hata — main'deki tabanla aynı, bilinen 10 içerik açığı testi (MatrixCoverage, OfflineComposition, Pilot, SettingAxis, OfflineDeterminism). MagicPaperTests 753 test, tek hata `StoryModeFlowTests.testASubOptionIsRemembered` (bilinen, ayrı oturumda düzeltiliyor).
+- Uygulama birleşik hâlde simülatörde ve telefonda açılmadı; yeni uyku planlarının başlıkları elle görülmedi.
+- Dosyalar (bu kayıttaki düzeltme): `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`.
+
+### 2026-10-21 · kitaplik-yenileme@2ac30b1 · Kitaplık: tek raf dizisi, sıra menüsü, "Dün · 4 dk"
+- Batuhan: "Bugün / Dün / Bu hafta" başlıkları estetik değil, hepsi kitaplık gibi alt alta dursun; diğer okuma uygulamalarına bakılsın. Rakip incelemesi: Apple Books, Kindle ve Audible kitaplığı tek, başlıksız dizi olarak gösteriyor, varsayılan sıra son okunan, kategoriler sayfayı bölmüyor (süzgeç/menü); Libby tarihi ayrı geçmiş ekranında tutuyor; Yoto'nun en büyük şikâyeti dağınıklık.
+- Batuhan'ın kararları: 2 sütun, sıraların altında raf çizgisi, kapak altında ne zaman okunduğu.
+- Kitaplık tek dizi: tarih başlıkları kalktı; her kapak sırası ince bir rafın üstünde (sıcak kâğıt tonu, sert alt kenar; kitap sırtı yok), ad ve "Dün · 4 dk" rafın altında. Klasikte "Klasik · 3 gün önce". Başlık kapağında ad kapakta, altta yalnızca bilgi.
+- "Kitaplarım" başlığının yanında küçük sıra menüsü: Son okunan (varsayılan) · Yeni yazılan · Ada göre (Türkçe alfabe).
+- Mod artık alt satırda yazmıyor (kapağın renginden ve simgesinden belli); VoiceOver türü yazıyla okur ("Uyku öncesi masalı, yarım…").
+- Değişmeyen: arama, çipler, "Kaldığın yerden" kartı, Serim, kapak tasarımı.
+- Kullanılmayan `MPBookCard` kaldırıldı; tasarım belgesi güncellendi.
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 31/31 (göreli tarih, alt satır, sıra seçenekleri, tek görünme). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, iPhone SE görülmedi. Tasarım ve dil kontrolleri değişen dosyalarda boş.
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `DesignSystem/Pastel/MPBookCover.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`, `docs/superpowers/specs/2026-10-20-kitaplik-yenileme-design.md`.
+
+### 2026-10-21 · kitaplik-yenileme@a0d71f1 · Kitaplık: kendi masalına başlık kapağı, sarı/yeşil kontrast
+- Moda göre iki kapak fikri simülatörde yan yana denendi (A mod sahnesi: mozaik + mod ışığı; B başlık kapağı). A'da aynı dünyadaki masallar hâlâ birbirine benziyordu, bazı dünyalar bulanıklaşıyordu. Batuhan B'yi seçti.
+- Kendi masalının kapağı: mod tonunda kâğıt (hafif kâğıt dokusu), ortada masalın adı (Baloo, `MP.F.displaySM`), üstte mod simgesi (ay / ışıltı / çadır), altta dünya simgesi ve yıldız. Ad kapakta olduğu için kartın altında yalnızca "Uyku · 4 dakika" kalır (VoiceOver adı okur). Dar kapakta (Kaldığın yerden, 64 pt) ad yerine büyük dünya simgesi. Modu bilinmeyen eski masal gökyüzü tonunda, simgesiz. Masal setinin illüstrasyon kapağı teslim edilirse önce o kullanılır.
+- Kontrast (Batuhan: sarıyı düzelt): sarı koyu ton sarı zeminde 2.0:1, yeşil 3.0:1 idi. Başlık sarıda `MPColor.yellowText` (4.8:1), yeşilde yeni `MPColor.greenText` (5.1:1); mor 3.3:1 ve mavi 3.5:1 büyük başlık için yeterli.
+- Mozaik kapak türü kitaplıktan kalktı; okuyucunun kapak yaprağı (mozaik + kemerli başlık) bilerek değişmedi. Deneme sayfası silindi.
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 30/30 (başlık kapağı, modsuz masal, kontrast renkleri). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, iPhone SE görülmedi. Tasarım ve dil kontrolleri değişen dosyalarda boş.
+- Dosyalar: `DesignSystem/Pastel/MPBookCover.swift`, `DesignSystem/Pastel/MPColor.swift`, `Screens/Library/LibraryShelfModel.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`.
+
+### 2026-10-21 · kitaplik-yenileme@fec2407 · Kitaplık: tek zaman çizgisi (son okunmaya göre)
+- Batuhan: kitaplık hâlâ karışık, bulunabilirlik düşük; tarihe göre yeniden eskiye sıralansın. Üç ajanla beyin fırtınası (tasarım, masal motoru, ebeveyn deneyimi) sonrası Batuhan'ın kararları: tarihli tek ızgara, son okunmaya göre, kapak için iki fikir yan yana denensin, başlıklar iki aşamada iyileşsin.
+- Mod rafları ve "Yarım kalanlar" süzgeci kalktı. Kitaplık tek iki sütun ızgara: "Bugün · Dün · Bu hafta · Geçen hafta · Ekim" (başka yılsa "Eylül 2025") bölümleri. Her kitap bir kez görünür; çipler (Tümü, Favoriler, Uyku, Öğrenelim, Macera, Klasikler; yalnızca dolu olanlar) ve arama aynı çizgiyi daraltır, bölümler kalır. Çipler artık tek satıra sığıyor.
+- Üstte yalnızca süzgeçsiz görünümde tek "Kaldığın yerden" kartı ve Serim. Ragi'li karşılama küçüldü; ilk kapak daha yukarıda.
+- Yeniden okunan eski masal en üste çıkar (bilerek: "dün okuduğumuz" en üstte).
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 29/29 geçti (bölüm başlıkları, tek görünme, okumanın sırayı değiştirmesi, süzgeç + arama). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, koyu mod, iPhone SE bu turda görülmedi.
+- Kapak denemesi (A mod sahnesi / B başlık kapağı) DEBUG sayfasında, commit'lenmedi; seçim Batuhan'da. Başlık işi ayrı ajanda (`masal-basliklari`).
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`.
+
+### 2026-10-21 · kitaplik-yenileme@48ebc43 · Kitaplık: kapak altındaki boşluk
+- Batuhan: kapakların altındaki boşluk fazla. Neden: tek satırlık başlıkta da ikinci satır için yer ayrılıyordu. Artık bilgi satırı ("Uyku · 4 dakika") başlığın hemen altında; kapaklar yine aynı boyda ve üstten hizalı.
+- Yan bulgu ve düzeltme: yatay rafta `LazyHStack` iki satırlık başlığın altındaki bilgi satırını kesiyordu; raflar düz `HStack` oldu.
+- Simülatörde görüldü (iPhone 18 Pro Max, örnek kitaplık). Test çalıştırılmadı (yalnızca görünüm değişikliği).
+- Ayrıca üç ajanla beyin fırtınası yapıldı (moda göre kapak, masal başlıkları, bulunabilirlik/tarih sıralaması); kod değişikliği yok, kararlar Batuhan'da.
+- Dosyalar: `DesignSystem/Pastel/MPBookCover.swift`, `Screens/Library/LibraryComponents.swift`.
 
 ### 2026-10-21 · main@09c3dd2 · Birleştirme: book-intelligence main'de, gönderildi
 - `book-intelligence` (5f30954) main'e `--no-ff` ile birleşti (09c3dd2): `Research/BookIntelligence/`, `docs/research/`, `firebase/functions/src/outcomes.js` + `scripts/export-outcomes.mjs` + test, `index.js`'te `aggregateOutcomes`. Çakışma yoktu.
@@ -155,6 +199,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Uygulama testleri ve Python içerik doğrulayıcı birleşik hâlde çalıştırılmadı; simülatörde uyku masalı açılıp görülmedi (Batuhan'da).
 - Bilerek değişmedi: book-intelligence birleştirilmedi; `MagicPaper/` checkout'u ve dalı (fix/alt-secenek-testi) dokunulmadı, birleştirme geçici bir worktree'de yapıldı.
 - Etkilenen dosyalar: `uyku-arki` kayıtlarındaki dosyalar + bu dosya.
+
+### 2026-10-21 · masal-basliklari (main@42a66d8 üstüne) · Masal başlıkları: moda özel kalıplar, kapak denetimi, kitaplıkta tekrar yok
+- Sorun (Batuhan): başlıklar birbirine benziyordu. Katalogda 13 kalıp vardı, 11'i çocuğun adıyla başlıyordu; uyku masalı yalnızca "{çocuk} ve {arkadaş}" ya da "{çocuk} Bekledi" alıyordu.
+- Yeni kalıplar: 15 blueprint'in her birinde 5 kalıp, seri devam blueprint'lerinde 4. Uyku sakin ("Kestane'nin Uykulu Gecesi", "Solan Fideye İyi Geceler", "Gece Bahçesi'nde Usulca"), öğrenme soru ("Titrek Işık Nereden Geliyor?", "Pamuk Ne Söylemek İstiyor?"), macera keşif ("Bulut Dağı'nda Yırtık Harita", "Fısıldayan Orman'ın Öbür Yanı"). Ekler mevcut Türkçe ek mekanizmasıyla çekiliyor; her kalıp her yer × arkadaş × buluş üçlüsünde temiz çıkıyor (test).
+- Bütünlük kuralı: bir blueprint'in kalıplarının en fazla yarısı adla başlar (`title_patterns_name_led`, hata); 4'ten az kalıp uyarı (`title_patterns_too_few`). Seri devam blueprint'leri de kurala dahil.
+- Kapak denetimi (`TitleComposer`): 32 karakteri (3-4 bandında 26) aşan ya da aynı kelimeyi iki kez taşıyan başlık ("Kayıp Kayıp Eldiven", "Gece Bahçesi'nde Sessiz Gece") yazılmaz, sıradaki kalıp alınır. Yedek başlık artık ünlü uyumuna uyuyor ("Arda'nın Hikâyesi"; eskiden sabit "'in").
+- Kitaplıkta tekrar yok: uygulama çocuğun son 12 masalının başlığını motora veriyor (`OfflineStoryIntent.recentTitles`, `StoryGenerationManager.recentTitles`); motor aynı başlığı (Türkçe büyük/küçük harf ve kesme işaretinden bağımsız karşılaştırma) başka temiz kalıp varken yazmıyor, hepsi kullanıldıysa bugünkü seçim kalıyor. Aynı girdi aynı başlık; başlık seed'e ve parmak izine girmiyor, masal metni değişmiyor.
+- Deney kolu `Content/Experiments/x_refrain_bedtime.json` kontrol blueprint'leriyle aynı kalıpları aldı. Katalog sürümü 2.0.0 → 2.1.0 (`docs/REMOTE_CONTENT.md` adımı); sürümü sabitleyen testler buna göre güncellendi.
+- Bilerek değişmeyen: kitaplıktaki eski masalların başlıkları (saklanan başlık yeniden yazılmaz), kitaplık arayüz dosyaları, seri bölümleri (bölümler birbirinin başlığını henüz görmüyor; yalnızca yeni kalıplar), arayüz.
+- Test: StoryEngine paketi 823 test / 18 hata (taban 805 / 18; aynı 10 bilinen içerik testi, yeni hata yok; yeni `TitleVarietyTests` 18 test). CharacterEngine 89/0, VisualSystem 51/0, EngineFoundation 17/0, ContentPublisher 15/0. MagicPaperTests (iPhone 18 Pro Max simülatörü) 749 test / 1 hata: bilinen `StoryModeFlowTests.testASubOptionIsRemembered` (main'den gelen, başka oturumda düzeltiliyor); yeni `StoryTitleLibraryTests` 3/3 geçti. Yeniden sabitlenen başlık testleri: `OfflineDeterminismTests` (yalnızca başlık satırı; parmak izi aynı), `PilotBlueprintTests` üç başlık testi. Uygulama simülatörde açılıp elle denenmedi.
+- Etkilenen: `StoryEngine/Sources/StoryEngine/Offline/TitleComposer.swift`, `Offline/OfflineSelection.swift`, `Offline/OfflineStoryComposer.swift`, `Content/CatalogIntegrity.swift`, `Resources/blueprints/pilot_library_v1.json`, `Resources/templates/offline/v2/shared_content_library_v2.json`, `Content/Experiments/x_refrain_bedtime.json`, `MagicPaper/StoryEngineBridge/OfflineStoryService.swift`, `MagicPaper/Services/StoryGenerationManager.swift`, `docs/MagicPaper_Content_Library.md`; testler `TitleVarietyTests.swift` (yeni), `StoryTitleLibraryTests.swift` (yeni), `OfflineDeterminismTests`, `PilotBlueprintTests`, `CatalogLoadingTests`, `ContentPackageTests`, `RemoteContentTests`.
 
 ### 2026-10-21 · book-intelligence@5f30954 · Öğrenme sisteminin eksikleri kapatıldı
 - Otomatiklik: takılı 19 Ekim koşusu kapatıldı; proje izinlerine (`.claude/settings.local.json`, git dışı) araştırma aracı, testler, git durum komutları ve çocuk verisi indirme betiği eklendi, pazartesi koşusu artık onay beklemeyecek. Yeni perşembe görevi `magicpaper-research-questions`: yeni kitap okumadan ajan sorularını cevaplar ve açık tartışmaları ilerletir.
