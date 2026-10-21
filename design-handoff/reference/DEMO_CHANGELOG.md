@@ -138,7 +138,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmedi: kod. Birleşme yalnızca iki tarafı bir araya getirdi.
 - Test: Batuhan'ın isteğiyle bu birleşmeden sonra test çalıştırılmadı. Son ölçümler birleşmeden önce: uygulama 746/0 (kitaplık değişiklikleri olmadan), paket 837/18 (diğer oturumun kitaplık birleşmesinde).
 - iPhone 16'ya Debug derlendi (`BUILD SUCCEEDED`) ve kuruldu (13:15). Telefon kilitli olduğu için açılamadı; açılışta görülmedi.
-- origin'e gönderilmedi.
+- Batuhan'ın isteğiyle origin'e gönderildi (0f7a925..bdce8db); alt seçenek testi birleşmesi de bu gönderimle gitti.
 - Dosyalar: bu dosya.
 
 ### 2026-10-21 · main@4a0210c · Alt seçenek testi main'de, ana checkout main'e döndü
