@@ -1,0 +1,268 @@
+{
+  "work_id": "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
+  "analysis_version": "1",
+  "edition_id": "e_manual_sw_kottavi_raja",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-20T12:08:39Z",
+  "completeness": "full",
+  "summary_paraphrase": "A king who dozes all day and lies awake all night collects sleep remedies from his court (a rich dinner, music, a walk, a story) and tries them all in one night, each failing comically; his queen settles him with milk and a massage, a nightly routine slowly works, but his late nights have kept the whole city awake, so the people gather and a spreading wave of yawns brings sleep to everyone.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "the king's day-sleepiness, named with a joke"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 6,
+      "intensity": 2,
+      "function": "courtiers offer four remedies"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 7,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "each remedy fails comically in one night"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 12,
+      "end_page": 13,
+      "intensity": 1,
+      "function": "the queen settles him; a routine slowly works"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 14,
+      "end_page": 14,
+      "intensity": 3,
+      "function": "his nights kept the whole city awake"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 15,
+      "end_page": 16,
+      "intensity": 3,
+      "function": "the city gathers; yawns spread"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 17,
+      "end_page": 17,
+      "intensity": 1,
+      "function": "sleep blesses everyone every night"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "DISCOVERY": 0.125,
+    "COMPLICATION": 0.375,
+    "SOLUTION": 0.688,
+    "TURN": 0.812,
+    "CLIMAX": 0.875,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "kottavi_raja",
+      "name": "Kottavi Raja (Raja Nalan)",
+      "role": "protagonist",
+      "age": "adult king",
+      "desire": "to sleep at night",
+      "fear": null,
+      "change": "from impatient and sleepless to rested, then worried for his people",
+      "relation_to_protagonist": "self",
+      "humor_source": "impatience and excess"
+    },
+    {
+      "id": "queen",
+      "name": "Queen Sujata",
+      "role": "helper",
+      "relation_to_protagonist": "wife",
+      "change": "grumpy, then takes charge"
+    },
+    {
+      "id": "courtiers",
+      "name": "ministers, musician, poet, jester, cooks",
+      "role": "comic",
+      "relation_to_protagonist": "court",
+      "humor_source": "each remedy reflects its giver"
+    },
+    {
+      "id": "priest",
+      "name": "chief priest",
+      "role": "mentor",
+      "relation_to_protagonist": "adviser"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    2,
+    2,
+    2,
+    1,
+    2,
+    1,
+    2,
+    3,
+    3,
+    3,
+    2,
+    1,
+    2,
+    3,
+    2,
+    3,
+    1
+  ],
+  "humor_notes": null,
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "each courtier offers a remedy, then each remedy is tried and fails",
+      "pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "functions": [
+        "anticipation",
+        "humor"
+      ],
+      "effective": true,
+      "why": "a set-up list paid off by a failure list"
+    },
+    {
+      "type": "cumulative",
+      "description": "chains of people (the sleepless city; the spreading yawn)",
+      "pages": [
+        14,
+        16
+      ],
+      "functions": [
+        "humor",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "the yawn chain enacts the ending's contagion"
+    },
+    {
+      "type": "callback",
+      "description": "the remedies return as a routine that shortens week by week",
+      "pages": [
+        13
+      ],
+      "functions": [
+        "memory"
+      ],
+      "effective": true,
+      "why": "time compresses the earlier list"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Level 3 reader layout: long text pages, several without pictures.",
+      "The musicians asleep while the king is awake is the clearest picture joke."
+    ]
+  },
+  "strengths": [
+    "a comic failure sequence before the solution",
+    "the ending widens from one sleeper to a whole city",
+    "calm moonlit last page after a funny peak"
+  ],
+  "weaknesses": [
+    "long text pages for read-aloud",
+    "the king's own fix comes from the queen; a second resolution is needed for the city",
+    "a 7-8 book with an adult protagonist"
+  ],
+  "anti_patterns": [
+    {
+      "id": "resolves_too_quickly",
+      "pages": [
+        12
+      ],
+      "note": "the queen's milk-and-massage fixes in one line what four remedies could not"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "scores": {
+      "curiosity": 3,
+      "humor": 5,
+      "participation": 4,
+      "emotional_identification": 3,
+      "surprise": 4,
+      "character_warmth": 3,
+      "agency": 3,
+      "visual_novelty": 3,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children.",
+    "label": "Research heuristic — not validated"
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "No peril. Peak research intensity 3/5 (about 2 on the engine's 0-3 scale) is comic frustration; it sits late (pages 14-16 of 17) because the book adds a second, city-wide problem before winding down to a calm last page."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 17,
+    "total_words": 1124,
+    "words_per_page": {
+      "min": 26,
+      "median": 58,
+      "max": 148
+    },
+    "mean_sentence_words": 9.37,
+    "longest_sentence": 38,
+    "type_token_ratio": 0.405,
+    "dialogue_ratio": 0.225,
+    "questions": 8,
+    "questions_per_page": 0.47,
+    "direct_address": 6,
+    "sound_words": 1,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "a few minutes": 2,
+        "during the day": 2,
+        "full he couldn't": 2,
+        "glass of milk": 2,
+        "he asked his": 2,
+        "kottavi raja was": 2,
+        "me he said": 2,
+        "sleep at night": 2,
+        "to bless everyone": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "the": 17,
+        "he": 13,
+        "so": 9,
+        "and": 8,
+        "but": 6
+      },
+      "end_rhyme_pairs": 2,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

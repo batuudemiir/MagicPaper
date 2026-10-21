@@ -1,0 +1,75 @@
+{
+  "claim_id": "c_sentence_length",
+  "statement": "Mean sentence length is between 3 and 10 words in all 21 analysed books with text; the longest sentence stays at or under 14 words in 12 of 21 (the others reach 15-21, and 38 in the level-3 Kottavi Raja).",
+  "kind": "OBSERVED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+  },
+  "supporting_works": [
+    "w_amahle_wants_to_help_nsibande",
+    "w_amo_and_the_missing_mielies_phala",
+    "w_bathtub_safari_chemaly",
+    "w_best_friends_louw",
+    "w_catch_that_cat_pirie",
+    "w_chicken_and_millipede_asara",
+    "w_come_back_cat_rijsdijk",
+    "w_come_stay_with_me_siege",
+    "w_feathered_friends_ange",
+    "w_fifi_and_teddy_letsapa",
+    "w_khumos_big_trip_sedibe",
+    "w_mud_waterkeyn"
+  ],
+  "counterexample_works": [
+    "w_ann_nem_oh_nee_finds_adventure_griffiths",
+    "w_bohlales_adventure_ambrosano",
+    "w_brave_bora_gicovi",
+    "w_foxy_joxy_plays_a_trick_esmail",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_good_night_monu_karthik",
+    "w_goodnight_tinku_nambiar",
+    "w_grumpy_cloud_ditlhareng",
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends: mean 6.9, longest 13. The wordless book is not counted.\n2026-10-15: Added 8 books with text (Zuko is wordless, not counted). Book Dash: Bathtub Safari 4.2/10, Khumo 3.2/12, Come Back Cat 3.2/4, Feathered Friends 4.6/8 support; Ga Mohana 6.6/18 contradicts. African Storybook: Chicken and Millipede 6.8/14 supports, Bohlale 8.6/18 contradicts (7-8 band). StoryWeaver: Good Night, Monu 9.9/18 contradicts (rhymed read-aloud couplets).",
+  "magicpaper": {
+    "target": "validator.MAX_SENTENCE_WORDS",
+    "current": "14",
+    "suggested": "No change suggested: the pilot sits around the current cap.",
+    "note": null,
+    "review_status": "reviewed"
+  },
+  "computed": {
+    "n_examined": 21,
+    "support": 12,
+    "counter": 9,
+    "support_ratio": 0.571,
+    "sample_scope": "CORPUS",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
+    },
+    {
+      "from": "MEDIUM",
+      "to": "LOW"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "_comment": "Closed vocabularies for research records. Deliberately separate from StoryEngine's names so the research can see what the engine does not model yet; engine_mapping.json joins the two. Add a term here before using it in a record — the validator rejects unknown terms.",
+  "age_bands": ["0-2", "3-4", "5-6", "7-8", "9-10", "11-12"],
+  "age_band_basis": ["publisher", "library", "award_body", "educational_org", "derived_from_metrics", "analyst"],
+  "languages": ["en", "tr", "de", "fr", "es", "pt", "it", "nl", "sv", "no", "da", "fi", "ru", "ar", "fa", "hi", "zh", "ja", "ko", "sw", "zu", "xh", "af", "yo", "ha", "am", "st", "tn", "nso", "ts", "ve", "ss", "nr", "other"],
+  "confidence": ["HIGH", "MEDIUM", "LOW", "HYPOTHESIS"],
+  "sample_scopes": ["ONE_BOOK", "SMALL_SAMPLE", "CORPUS", "LARGE_CORPUS"],
+  "claim_kinds": ["OBSERVED", "INFERRED", "HYPOTHESIS"],
+  "judgment_labels": ["OBSERVED", "INFERRED"],
+  "evidence_layers": ["popularity", "quality", "adult_interpretation", "textual_mechanism", "child_response"],
+
+  "source_kinds": ["authorized_full_text", "publisher_page", "library_record", "award_listing", "professional_review", "educational_org", "book_database", "parent_review", "teacher_discussion", "community", "aggregator"],
+  "tiers": ["A", "B", "C", "D"],
+  "rights": ["public_domain", "open_license", "licensed", "publisher_preview", "metadata_only", "commentary"],
+  "page_boundary_sources": ["original_scan", "publisher_layout", "reconstructed"],
+  "creator_roles": ["author", "illustrator", "translator", "reteller", "editor", "designer"],
+  "text_origins": ["publisher_text", "plain_text_edition", "ocr", "analyst_transcription"],
+
+  "story_types": ["adventure", "friendship", "courage", "bedtime", "family", "funny", "mystery", "discovery", "imagination", "emotions", "problem-solving", "animals", "nature", "school", "growing-up", "helping-others", "independence", "fear", "belonging", "celebration", "everyday-life", "folklore", "rule-breaking", "concept"],
+  "structures": ["quest", "transformation", "problem-attempt-failure-solution", "discovery", "journey", "lost-and-found", "mystery", "repeated-pattern", "cumulative", "circular", "slice-of-life", "episodic", "character-driven", "event-driven", "home-away-home"],
+  "tones": ["calm", "warm", "funny", "chaotic", "whimsical", "suspenseful", "comforting", "energetic", "reflective", "melancholic"],
+  "visual_styles": ["picture-book-heavy", "illustration+short-text", "text-heavy", "graphic", "minimalist", "highly-decorative", "cinematic-spreads", "unknown"],
+
+  "beats": ["HOOK", "SETUP", "DESIRE", "DISCOVERY", "PROBLEM", "FIRST_ATTEMPT", "COMPLICATION", "ESCALATION", "TURN", "CLIMAX", "SOLUTION", "EMOTIONAL_PAYOFF", "ENDING"],
+  "emotions": ["curiosity", "joy", "fear", "wonder", "sadness", "frustration", "embarrassment", "excitement", "calm", "relief", "pride", "belonging", "love", "humor", "anticipation", "loneliness"],
+  "page_turn_mechanisms": ["reveal", "question", "anticipation", "danger", "humor", "transformation", "emotional_curiosity", "visual_surprise", "new_information", "pattern_continuation", "countdown", "none"],
+  "humor_types": ["physical", "misunderstanding", "repetition", "surprise", "absurdity", "wordplay", "character_behavior", "exaggeration", "rule_breaking", "unexpected_transformation", "animal_behavior", "irony_between_text_and_image"],
+  "repetition_types": ["phrase", "structure", "action", "cumulative", "predictable_pattern", "callback", "refrain"],
+  "repetition_functions": ["participation", "anticipation", "humor", "comfort", "rhythm", "memory"],
+  "character_roles": ["protagonist", "companion", "mentor", "antagonistic_force", "helper", "comic", "mysterious", "animal_companion", "family_member", "community"],
+  "protagonist_kinds": ["child", "animal", "toy", "object", "creature", "adult", "group"],
+  "protagonist_genders": ["female", "male", "unspecified", "multiple"],
+  "visual_functions": ["reveal", "joke", "expression", "environment", "scale", "mood", "contradicts_text", "extends_text", "repeats_text", "motif", "quiet_page", "energetic_page"],
+
+  "anti_patterns": ["complicated_opening", "unnecessary_exposition", "weak_ending", "repetitive_conflict", "passive_protagonist", "generic_dialogue", "vocabulary_above_age", "too_many_characters", "unclear_stakes", "resolves_too_quickly", "page_without_change", "adult_rescues_child", "moral_stated_not_shown", "boring_repetition"],
+
+  "content_flags": ["peril", "violence", "death", "death_reference", "abuse", "unsafe_behavior_imitable", "stereotype", "discriminatory_content", "sexual_content", "frightening_imagery", "punishment", "food_or_body_shaming", "dated_social_norms"],
+  "age_suitability": ["suitable", "adapt_with_care", "study_only", "unsuitable"],
+
+  "appeal_dimensions": ["curiosity", "humor", "participation", "emotional_identification", "surprise", "character_warmth", "agency", "visual_novelty", "predictability_balance", "resolution_satisfaction"],
+  "appeal_label": "Research heuristic — not validated",
+
+  "insight_targets": ["AgeBand.pageBudget", "AgeBand.pageCount", "AgeBand.maxSentenceWords", "NarrativeFamily.minimumAge", "EmotionalState.intensity", "EmotionalState.permittedLandings", "beat_sequences", "validator.BANDS", "validator.MAX_SENTENCE_WORDS", "validator.repetition", "writing_guidance", "new_validator_gate", "reader.page_turn", "reader.layout", "reader.read_aloud", "ux.parent_flow", "ux.child_area", "design.visual_language", "illustration.brief"],
+  "insight_review_status": ["proposed", "reviewed", "accepted", "implemented", "declined"]
+}

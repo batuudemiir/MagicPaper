@@ -1,0 +1,40 @@
+{
+  "request_id": "q_5_6_yas_resimli_kitaplarda_kahraman_disi",
+  "from": "parent-ux",
+  "question": "5-6 yaş resimli kitaplarda kahraman dışında kaç adlandırılmış karakter sahnede konuşuyor ya da eyleme katılıyor (1, 2, 3+)? Yanına bir yetişkin ya da aile üyesi eklenen kitaplarda bu kişi kaç sayfada görünüyor ve hikâyede rolü ne (eşlik, çözüm, yalnız açılış/kapanış)?",
+  "why": "'Masalda kimler olsun?' adımı şu an bir katalog yol arkadaşı + tek bir Masal ailem kişisi seçtiriyor (CompanionStep.swift selectedFamilyID tek; FamilyCharacter.maxPerChild=8). Tasarımdaki çoklu aile seçimini açıp açmamak ve kaç kişiyle sınırlamak bu sayıya bağlı: MagicPaper/MagicPaper/Screens/StoryCreation/CompanionStep.swift, StoryCreationFlow.swift",
+  "target": "ux.parent_flow",
+  "age_band": "5-6",
+  "status": "answered",
+  "answer": {
+    "text": "21 kitapta kahraman dışındaki karakter sayısı 2-7, ortanca 3 (5-6 bandında 2, 2, 2, 3, 3, 4, 5, 5, 7; 3-4 bandında da ortanca 3). Aile üyesi ya da yetişkin rehber 21 kitabın 17'sinde var; çoğunda tek kişi, 3 kitapta 3-4 aile üyesi (Amahle, Come stay with me, Good Night Monu). Rolleri: 14 kitaplık sayımda 6'sında çözümü yetişkin mümkün kılıyor, 8'inde çocuk ya da akran çözüyor (c_adult_enables_resolution, LOW). Kaç sayfada göründükleri ayrıca ölçülmedi; 'konuşan/eylem yapan' ayrımı da kayıtlı değil (karakter listesi analistin dökümü). Yorum: bugünkü 1 arkadaş + 1 aile üyesi (2 kişi) korpusun alt ucunda; 3 tipik. Çoklu aile seçimini 2 aile üyesiyle sınırlamak (toplam 3) korpusla uyumlu; 4+ yalnız aile temalı kitaplarda görülüyor. Kanıt LOW, tek yayınevi ağırlıklı.",
+    "claims": [
+      "c_adult_enables_resolution"
+    ],
+    "works": [
+      "w_amahle_wants_to_help_nsibande",
+      "w_come_stay_with_me_siege",
+      "w_good_night_monu_karthik"
+    ],
+    "evidence_strength": "LOW",
+    "at": "2026-10-20T21:28:32Z"
+  },
+  "history": [
+    {
+      "status": "open",
+      "by": "parent-ux",
+      "at": "2026-10-20T21:27:04Z"
+    },
+    {
+      "status": "researching",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:31Z"
+    },
+    {
+      "status": "answered",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    }
+  ],
+  "created_at": "2026-10-20T21:27:04Z"
+}

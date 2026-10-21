@@ -1,0 +1,16 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "concern",
+  "text": "Checked: today's bedtime blueprints do NOT meet the peak half of this. Bedtime mode admits only the charge family (catalog editorialNote marks it TEMPORARY, no real sleep arc yet): bp_charge_tending_001 (8p) peaks at intensity 2 on pages 5-6 (effort, patience), so the last peak is page 6 = 0.75; bp_charge_release_002 (8p) peaks on 5-6 (patience, effort) = 0.75; blueprint_charge_tending_age3_001 (6p) peaks only on page 5 (patience) = 0.83. A 2/3 cap means page <=5 of 8 and <=4 of 6, so all three would fail. The landing half already holds: all end at intensity 0 (calm, calm, relief), the validator already forces a settled landing and caps tension runs at 2 pages, and m004 already keeps hooks out of the last third. Setting return is trivially true: a story has one setting (no bedroom setting exists), so 'return to opening place' could only live in warm_close text variants, e.g. the existing replaying_it_at_bedtime move. Note the coarse 0-3 scale: page 1 is also 0, so 'lowest' is a tie, not a measurable drop.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+    "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift",
+    "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift",
+    "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+    "c_bedtime_closes_circle"
+  ],
+  "reply_to": null,
+  "at": "2026-10-15T10:47:18Z"
+}

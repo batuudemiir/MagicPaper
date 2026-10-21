@@ -1,0 +1,254 @@
+{
+  "work_id": "w_red_umbrella_kritzinger",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_the_red_umbrella",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-20T12:08:13Z",
+  "completeness": "full",
+  "summary_paraphrase": "A wordless book: Dad brings home a new red umbrella and hangs it up, out of bounds, to keep for a rainy day. One by one the children, Grandma and Mom secretly use it for everything but rain: a den, a paper-plane target, a carrot basket, a sunshade, a walking stick. When the storm finally comes and Dad needs it, the hook is empty; the family finds it upside down in the yard, full of rain, a pool for the household duck.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 3,
+      "function": "new umbrella arrives"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "rule: not to be touched"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 2,
+      "function": "first secret use"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 4,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "each family member's secret use"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "weather turns: the rainy day arrives"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 10,
+      "end_page": 11,
+      "intensity": 4,
+      "function": "umbrella missing; family stares out"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "duck's rain pool reveal"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "PROBLEM": 0.091,
+    "DISCOVERY": 0.182,
+    "ESCALATION": 0.273,
+    "TURN": 0.727,
+    "CLIMAX": 0.818,
+    "EMOTIONAL_PAYOFF": 1.0
+  },
+  "characters": [
+    {
+      "id": "dad",
+      "name": "Dad",
+      "role": "family_member",
+      "desire": "to keep the umbrella for rain",
+      "change": "(inferred) his rule fails; he ends smiling",
+      "relation_to_protagonist": "owner of the umbrella, sets the rule",
+      "tension_source": "his rule"
+    },
+    {
+      "id": "girl",
+      "name": "(unnamed girl)",
+      "role": "protagonist",
+      "age": "about 3-4 (picture)",
+      "desire": "to play with the umbrella",
+      "relation_to_protagonist": "one of the rule-breakers"
+    },
+    {
+      "id": "boy",
+      "name": "(unnamed boy)",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "to play with the umbrella",
+      "relation_to_protagonist": "one of the rule-breakers",
+      "humor_source": "guilty looks"
+    },
+    {
+      "id": "grandma",
+      "name": "Grandma",
+      "role": "family_member",
+      "relation_to_protagonist": "adult rule-breaker",
+      "humor_source": "bunny slippers; carrots in the umbrella"
+    },
+    {
+      "id": "mom",
+      "name": "Mom",
+      "role": "family_member",
+      "relation_to_protagonist": "adult rule-breaker"
+    },
+    {
+      "id": "duck",
+      "name": "(yellow duck)",
+      "role": "animal_companion",
+      "relation_to_protagonist": "household pet present on every page",
+      "humor_source": "steals a sock, hides, ends up with the umbrella",
+      "change": "none; it is the running visual gag and the final reveal"
+    }
+  ],
+  "protagonist_agency": 4,
+  "emotional_curve": [
+    3,
+    2,
+    2,
+    3,
+    3,
+    2,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3
+  ],
+  "humor_notes": "Visual irony throughout: a rain umbrella used for everything but rain, including against the sun; the adults break the rule as much as the children; the duck is a hide-and-seek gag on every page.",
+  "repetition": [
+    {
+      "type": "action",
+      "description": "the same forbidden object reappears in a new secret use on each spread",
+      "pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "functions": [
+        "anticipation",
+        "participation",
+        "humor"
+      ],
+      "effective": true,
+      "why": "a wordless pattern the child can predict and name ('now Grandma has it!')"
+    },
+    {
+      "type": "callback",
+      "description": "the empty wall hook (p2 full, p7 and p10 empty) marks the rule and its failure",
+      "pages": [
+        2,
+        7,
+        10
+      ],
+      "functions": [
+        "memory"
+      ],
+      "effective": true,
+      "why": "one recurring prop carries the story's question without words"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Wordless: all information is in the picture, so every page-turn effect is visual.",
+      "Page 9 is a four-panel time-lapse of the same skyline: a wordless countdown to the rain.",
+      "Pages 11-12 split a reveal across the turn: faces staring at the window, then what they saw.",
+      "The duck appears on every spread as a find-it companion."
+    ]
+  },
+  "strengths": [
+    "one object, many uses: a simple pattern a pre-reader can follow alone",
+    "the rule is broken by adults too, so no one is singled out",
+    "the climax reveal is held across a page turn"
+  ],
+  "weaknesses": [
+    "wordless: the 'saved for a rainy day' premise is only on the publisher's blurb; a young reader may not infer Dad's intent",
+    "pages 3-8 are a list of uses with low stakes until the rain arrives"
+  ],
+  "anti_patterns": [
+    {
+      "id": "unclear_stakes",
+      "pages": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "note": "nothing is at risk while the umbrella is borrowed; tension only comes with the rain"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 4,
+      "participation": 5,
+      "emotional_identification": 4,
+      "surprise": 4,
+      "character_warmth": 5,
+      "agency": 4,
+      "visual_novelty": 4,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children. Participation scored for wordless retelling and finding the duck."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Gentle domestic rule-breaking with no punishment shown; no peril."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 0,
+    "words_per_page": {
+      "min": 0,
+      "median": 0.0,
+      "max": 0
+    },
+    "mean_sentence_words": 0,
+    "longest_sentence": 0,
+    "type_token_ratio": 0.0,
+    "dialogue_ratio": 0.0,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 0,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {},
+      "refrains": {},
+      "top_sentence_openers": {},
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

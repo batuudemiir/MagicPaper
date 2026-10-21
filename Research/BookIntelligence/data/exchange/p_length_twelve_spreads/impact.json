@@ -1,0 +1,27 @@
+{
+  "fields": [
+    "AgeBand.pageCount",
+    "AgeBand.wordRange",
+    "validate_beat_corpus.BANDS",
+    "CatalogBlueprint.pageCount",
+    "beat_sequences"
+  ],
+  "files": [
+    "StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift",
+    "StoryEngine/Sources/StoryEngine/Content/CatalogIntegrity.swift",
+    "StoryEngine/Tools/validate_beat_corpus.py",
+    "StoryEngine/Tools/beat_sequences.json",
+    "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json"
+  ],
+  "tests": [
+    "CatalogIntegrity page-count tests",
+    "validate_beat_corpus full run",
+    "composer golden stories per band"
+  ],
+  "owner": "story-engine",
+  "cost": "L",
+  "reversible": true,
+  "notes": "Page count is bound to AgeBand and enforced by CatalogIntegrity; there is no per-blueprint override. Experiment shape: allow an explicit experimental pageCount on ONE sibling blueprint (integrity exemption keyed by id), author a 'short' length class (~10-20 words), ship it via the FAZ 15 catalog package with aggregateWeight, and compare BlueprintOutcome rows (starts/completions/rereads) against its 8-page twin. Note UsageLearner only learns per child per family/companion; population comparison needs the FAZ 16 server aggregate, which is not live. Removing the blueprint reverts fully.",
+  "by": "story-engine",
+  "at": "2026-10-08T08:07:27Z"
+}

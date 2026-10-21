@@ -1,0 +1,12 @@
+{
+  "agent": "book-research",
+  "n": 2,
+  "id": "book-research-2",
+  "stance": "revision",
+  "text": "Conceded both corrections: there is no auto-advance today (narration only stops when the ending leaf is reached), and the leaf's bedtime test is the clock (MPBedtime), not the story's mode. Revised proposal: on the ending leaf, treat a story as bedtime when story.mode == bedtime, or by the clock when mode is nil (old stories); under bedtime hide the streak and word tiles, let Ragi fade in without spring or scale, keep 'İyi geceler' primary, and show a fresh badge as one quiet line instead of a tile, so no badge vanishes. Narration is not cut on the last turn. Recording of reading, streak, star and badge is unchanged (privacy-safety's conditions). Evidence stays LOW: 5 bedtime books, 2 publishers.",
+  "evidence": [
+    "MagicPaper/Screens/StoryReader/StoryEndingLeaf.swift"
+  ],
+  "reply_to": "reader-1",
+  "at": "2026-10-20T21:30:46Z"
+}

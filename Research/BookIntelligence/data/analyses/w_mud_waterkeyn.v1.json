@@ -1,0 +1,256 @@
+{
+  "work_id": "w_mud_waterkeyn",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_mud",
+  "status": "complete",
+  "analyst": "book-research (Claude)",
+  "analyzed_at": "2026-10-08T07:29:11Z",
+  "completeness": "full",
+  "summary_paraphrase": "A girl's mud friend comes alive and makes a mess across the yard and kitchen; each time her mother arrives the girl is blamed, and when the friend finally jumps into her bath she decides it can stay there.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 1,
+      "function": "friend made"
+    },
+    {
+      "beat": "HOOK",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 3,
+      "function": "friend comes alive, wants mischief"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 4,
+      "function": "first mischief"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 4,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "trouble with Mama's washing"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 5,
+      "end_page": 5,
+      "intensity": 3,
+      "function": "blame lands on Zama"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 6,
+      "end_page": 8,
+      "intensity": 4,
+      "function": "mess spreads; blamed again"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "sent to the bath"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 2,
+      "function": "calm, then 'where is Mud?'"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 5,
+      "function": "KER-SPLASH"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "Zama's cross last word"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "HOOK": 0.091,
+    "ESCALATION": 0.182,
+    "PROBLEM": 0.273,
+    "COMPLICATION": 0.364,
+    "CLIMAX": 0.727,
+    "TURN": 0.818,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "zama",
+      "name": "Zama",
+      "role": "protagonist",
+      "age": "about 4-5 (picture)",
+      "personality": "playful, honest",
+      "desire": "fun with her new friend",
+      "fear": "being blamed",
+      "goal": "make Mama see it was Mud",
+      "problem": "nobody but her sees Mud",
+      "strengths": "imagination, honesty",
+      "weakness": "cannot control Mud",
+      "change": "from delighted partner to fed-up owner of the joke",
+      "relation_to_protagonist": "self",
+      "humor_source": "her deadpan last line",
+      "tension_source": null
+    },
+    {
+      "id": "mud",
+      "name": "Mud",
+      "role": "comic",
+      "personality": "gleeful, mischievous, silent except one line",
+      "desire": "something naughty",
+      "change": null,
+      "relation_to_protagonist": "imaginary or magical friend",
+      "humor_source": "physical mess",
+      "tension_source": "causes all the trouble"
+    },
+    {
+      "id": "mama",
+      "name": "Mama",
+      "role": "family_member",
+      "personality": "firm, ultimately amused",
+      "relation_to_protagonist": "mother",
+      "tension_source": "blame and the bath order"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    2,
+    3,
+    4,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    2,
+    5,
+    3
+  ],
+  "humor_notes": "Humor comes from physical mess, a sound-word spread, and above all from text–picture irony: Mud is never in the picture when Mama is there.",
+  "repetition": [
+    {
+      "type": "refrain",
+      "description": "'It's not me, Mama. It's Mud!' answers each accusation",
+      "pages": [
+        5,
+        7,
+        9
+      ],
+      "functions": [
+        "participation",
+        "anticipation",
+        "humor"
+      ],
+      "effective": true,
+      "why": "the reader knows the line and the truth; the third use changes to a plea, so it escalates instead of repeating"
+    },
+    {
+      "type": "structure",
+      "description": "mischief → Mama's question → blame, three times",
+      "pages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "functions": [
+        "rhythm",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "each cycle enlarges the mess"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "The picture carries the central irony: Mud vanishes whenever Mama appears, so the reader sides with the child.",
+      "Sound words (SQUELCH!, WHEEEE!, KER-SPLASH!) get their own large type and a half-spread splat.",
+      "Page 10 answers 'where is Mud?' with Mud's feet under the sheet before the next spread reveals it."
+    ]
+  },
+  "strengths": [
+    "text–picture irony that rewards the child reader",
+    "a refrain the listener can join",
+    "a calm spread (bath) placed just before the loudest one"
+  ],
+  "weaknesses": [
+    "the ending is a joke rather than a resolution; the blame is never cleared"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 5,
+      "participation": 4,
+      "emotional_identification": 4,
+      "surprise": 4,
+      "character_warmth": 3,
+      "agency": 3,
+      "visual_novelty": 4,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 3
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Mild scolding only."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 150,
+    "words_per_page": {
+      "min": 2,
+      "median": 14.0,
+      "max": 21
+    },
+    "mean_sentence_words": 4.29,
+    "longest_sentence": 13,
+    "type_token_ratio": 0.587,
+    "dialogue_ratio": 0.6,
+    "questions": 6,
+    "questions_per_page": 0.5,
+    "direct_address": 4,
+    "sound_words": 3,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "it's not me mama it's mud": 2
+      },
+      "refrains": {
+        "it's not me mama": 2
+      },
+      "top_sentence_openers": {
+        "zama": 5,
+        "it's": 5,
+        "what": 4,
+        "oh": 2,
+        "but": 2
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

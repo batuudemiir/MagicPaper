@@ -1,0 +1,270 @@
+{
+  "work_id": "w_foxy_joxy_plays_a_trick_esmail",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_foxy_joxy_plays_a_trick",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-20T12:08:12Z",
+  "completeness": "full",
+  "summary_paraphrase": "A sly fox whose watermelons are too dear for the other animals hollows them out, fills them with water, stitches them shut and sells them cheaply. When a monkey discovers the trick and the fox shrugs it off, the animals plan together, shut the fox inside an empty melon and kick it about like a ball; dizzy, he gives up cheating.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 1,
+      "function": "trickster introduced at his stall"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "buyers refuse the price"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 3,
+      "function": "the fox's 'clever idea'"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 4,
+      "end_page": 6,
+      "intensity": 3,
+      "function": "the trick is built and sold"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 7,
+      "end_page": 8,
+      "intensity": 4,
+      "function": "trick discovered; fox refuses amends"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 9,
+      "end_page": 10,
+      "intensity": 3,
+      "function": "the animals take control and plan"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 4,
+      "function": "the trick is turned back on the fox"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "dizzy fox, moral stated"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "PROBLEM": 0.091,
+    "TURN": 0.182,
+    "ESCALATION": 0.273,
+    "COMPLICATION": 0.545,
+    "CLIMAX": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "fox",
+      "name": "Foxy Joxy",
+      "role": "protagonist",
+      "personality": "sly, greedy, smug",
+      "desire": "to make money from his melons",
+      "fear": "(inferred) losing sales",
+      "change": "from cheating to (stated) never cheating again",
+      "relation_to_protagonist": "self",
+      "humor_source": "his smugness and his comeuppance",
+      "tension_source": "the reader knows the melons are fake"
+    },
+    {
+      "id": "monkey",
+      "name": "Funky Monkey",
+      "role": "community",
+      "desire": "a real melon",
+      "change": "none",
+      "relation_to_protagonist": "cheated customer who discovers the trick",
+      "humor_source": "water pouring out onto another animal"
+    },
+    {
+      "id": "elephant",
+      "name": "Ellie Elephant",
+      "role": "antagonistic_force",
+      "desire": "to teach the fox a lesson",
+      "relation_to_protagonist": "leads the punishment"
+    },
+    {
+      "id": "owl",
+      "name": "Oliver Owl",
+      "role": "mentor",
+      "desire": "a fair outcome",
+      "relation_to_protagonist": "plans the counter-trick"
+    },
+    {
+      "id": "buyers",
+      "name": "Gia Giraffe, Rabbit Jabbit and others",
+      "role": "community",
+      "relation_to_protagonist": "customers"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    1,
+    2,
+    3,
+    2,
+    3,
+    3,
+    4,
+    3,
+    3,
+    3,
+    4,
+    3
+  ],
+  "humor_notes": "Slapstick and dramatic irony: stitched melons the buyers do not see, water pouring on a bystander, the fox kicked about inside his own kind of melon. Rhyming names (Foxy Joxy, Rabbit Jabbit, Funky Monkey) carry verbal play.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "each complaint or decision is a quoted line followed by 'said/complained' + a rhyming or alliterative animal name",
+      "pages": [
+        2,
+        7,
+        8,
+        9,
+        10
+      ],
+      "functions": [
+        "rhythm",
+        "participation"
+      ],
+      "effective": true,
+      "why": "predictable speaker tags let a child guess who speaks next; the names themselves are the fun"
+    },
+    {
+      "type": "callback",
+      "description": "the fox 'had a clever idea' and later the owl 'has an idea'; the hollow melon used to cheat becomes the fox's prison",
+      "pages": [
+        3,
+        10,
+        11
+      ],
+      "functions": [
+        "humor",
+        "memory"
+      ],
+      "effective": true,
+      "why": "the punishment mirrors the trick, which makes the turnabout legible without explanation"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Picture carries the dramatic irony: stitches on every melon the buyers carry (p6) while the text only says 'cheap price'.",
+      "Close-up faces (fox p3, monkey inset p7, elephant p9) mark each shift of intent.",
+      "Multi-panel pages (p4, p11) show a process in steps inside one page turn."
+    ]
+  },
+  "strengths": [
+    "clear cause and effect: trick, discovery, counter-trick",
+    "picture and text split the joke: the child sees what the buyers miss",
+    "rhyming names give a read-aloud hook without a refrain"
+  ],
+  "weaknesses": [
+    "the moral is stated in the last line instead of being left to the picture",
+    "punishment is physical (kicked inside a melon); the ending resolves by revenge, not repair",
+    "the fox never apologises or returns the money"
+  ],
+  "anti_patterns": [
+    {
+      "id": "moral_stated_not_shown",
+      "pages": [
+        12
+      ],
+      "note": "the final sentence states the lesson outright"
+    },
+    {
+      "id": "resolves_too_quickly",
+      "pages": [
+        11,
+        12
+      ],
+      "note": "one page of punishment, one of reform; the fox's change is asserted, not shown"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 4,
+      "participation": 3,
+      "emotional_identification": 2,
+      "surprise": 3,
+      "character_warmth": 2,
+      "agency": 3,
+      "visual_novelty": 3,
+      "predictability_balance": 3,
+      "resolution_satisfaction": 3
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [
+    "violence",
+    "punishment"
+  ],
+  "age_suitability": {
+    "magicpaper": "adapt_with_care",
+    "notes": "Slapstick revenge: the group shuts the fox in a melon and kicks it; a knife is used to cut melons. Deception is the plot engine. Fine as a study of trickster structure and picture irony; not a model for MagicPaper endings (repair over retaliation)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 160,
+    "words_per_page": {
+      "min": 6,
+      "median": 14.0,
+      "max": 18
+    },
+    "mean_sentence_words": 8.42,
+    "longest_sentence": 18,
+    "type_token_ratio": 0.606,
+    "dialogue_ratio": 0.225,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 4,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "foxy joxy was": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "he": 5,
+        "foxy": 3,
+        "watermelons": 1,
+        "you": 1,
+        "your": 1
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

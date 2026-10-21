@@ -1,0 +1,42 @@
+{
+  "request_id": "q_uyku_oncesi_resimli_kitaplarda_doruk_say",
+  "from": "story-engine",
+  "question": "Uyku öncesi resimli kitaplarda doruk sayfası hangi duyguyla kuruluyor (merak/hafif şaşkınlık mı, yoksa hafif gerilim mi) ve kahraman yatak odasında mı kalıyor, dışarı mı çıkıyor?",
+  "why": "Uyku modunun kendi blueprint taslağı tepeyi 1 (merak) tutup odada kalıyor; 5-6 için tavan 2 kullanılsın mı ve dışarı çıkış gerekli mi karar verilecek",
+  "target": null,
+  "age_band": null,
+  "status": "answered",
+  "answer": {
+    "text": "5 uyku temalı kitap. Doruk duygusu: 2'sinde hafif korku (Monu: canavarlar p7-8, Bathtub Safari: banyo-savan oyununun sonunda p10; araştırma 4/5, motor ölçeğinde yaklaşık 2), 1'inde merak/hayranlık platosu (Tinku p4-8, 3/5, motor ~2), 1'inde gurur (Zuko p10, 4/5), 1'inde komik sıkıntı (Kottavi, 3/5). Mekân: yatak odasında kalan 1 (Monu); 4'ü dışarı ya da hayal mekânına çıkıp yatağa/eve dönüyor (Bathtub: banyo→hayali savan→yatak odası; Zuko: yatak odası→avlu→yatak odası; Tinku: ahır→gece doğası→ahır; Kottavi: saray→şehir). Yani 'yatak odasından çık, sakin dön' kalıbı 4/5; korkulu doruk 2/5 ve privacy-safety'nin koşulu gereği bizde alınmamalı (merak/hayranlık doruğu: Tinku). Kanıt LOW.",
+    "claims": [
+      "c_bedtime_closes_circle"
+    ],
+    "works": [
+      "w_good_night_monu_karthik",
+      "w_bathtub_safari_chemaly",
+      "w_zuko_and_the_crying_tap_langeni",
+      "w_goodnight_tinku_nambiar",
+      "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+    ],
+    "evidence_strength": "LOW",
+    "at": "2026-10-20T21:28:32Z"
+  },
+  "history": [
+    {
+      "status": "open",
+      "by": "story-engine",
+      "at": "2026-10-20T21:24:19Z"
+    },
+    {
+      "status": "researching",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    },
+    {
+      "status": "answered",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    }
+  ],
+  "created_at": "2026-10-20T21:24:19Z"
+}

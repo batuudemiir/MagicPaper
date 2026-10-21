@@ -1,0 +1,13 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "concern",
+  "text": "Feasible as content guidance, with two engine frictions. Page variants are composed independently from pools, so 'But where is X?' on page n only works if page n+1's pool always answers it, which means pairing variants across beats (today the corpus has no cross-page variant links). Second, CalmEnding forbids '?' and 'acaba' only at story/episode ends, so mid-story questions are allowed, but bedtime mode should keep them off the last two pages. Suggest a content-library prototype inside a single beat pair before any engine change.",
+  "evidence": [
+    "StoryEngine/Tools/validate_beat_corpus.py",
+    "StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:08Z"
+}

@@ -1,0 +1,291 @@
+{
+  "work_id": "w_goodnight_tinku_nambiar",
+  "analysis_version": "1",
+  "edition_id": "e_manual_sw_goodnight_tinku",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-20T12:02:13Z",
+  "completeness": "full",
+  "summary_paraphrase": "A pup on a farm cannot fall asleep, slips out into the moonlit night and meets five night animals in turn, each of which agrees to be his friend; tired out by play he goes home, his mother explains that these friends are nocturnal and that he needs sleep, and he sleeps through the night under the smiling moon.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "everyone asleep but the pup; he cannot sleep"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "he goes out and finds the night beautiful"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 5,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "one night animal per page, same friendship exchange each time"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 2,
+      "function": "play tires him; he goes home"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 1,
+      "function": "mother names nocturnal animals and hugs him"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 0,
+      "function": "sleeps through the night under the moon"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "DISCOVERY": 0.2,
+    "ESCALATION": 0.4,
+    "SOLUTION": 0.8,
+    "EMOTIONAL_PAYOFF": 0.9,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "role": "protagonist",
+      "age": "pup",
+      "desire": "something to do while everyone sleeps",
+      "fear": null,
+      "change": "from restless and alone to tired, befriended and asleep",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "ma",
+      "name": "Ma",
+      "role": "family_member",
+      "relation_to_protagonist": "mother",
+      "change": "asleep at the start, explains and comforts at the end"
+    },
+    {
+      "id": "firefly",
+      "name": "firefly",
+      "role": "companion",
+      "relation_to_protagonist": "night friend"
+    },
+    {
+      "id": "bat",
+      "name": "bat",
+      "role": "companion",
+      "relation_to_protagonist": "night friend",
+      "humor_source": "is mistaken for a bird"
+    },
+    {
+      "id": "fox",
+      "name": "fox",
+      "role": "companion",
+      "relation_to_protagonist": "night friend"
+    },
+    {
+      "id": "owl",
+      "name": "owl",
+      "role": "companion",
+      "relation_to_protagonist": "night friend",
+      "tension_source": "shiny eyes in the dark, drawn large"
+    },
+    {
+      "id": "cricket",
+      "name": "cricket",
+      "role": "companion",
+      "relation_to_protagonist": "night friend"
+    },
+    {
+      "id": "moon",
+      "name": "the moon",
+      "role": "mysterious",
+      "relation_to_protagonist": "silent smiling watcher, opens and closes the book"
+    }
+  ],
+  "protagonist_agency": 4,
+  "emotional_curve": [
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0
+  ],
+  "humor_notes": null,
+  "repetition": [
+    {
+      "type": "refrain",
+      "description": "the same question and answer about friendship closes each meeting",
+      "pages": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "functions": [
+        "participation",
+        "anticipation",
+        "rhythm",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "five returns let a listener answer before the page does; the line never changes, which suits winding down"
+    },
+    {
+      "type": "structure",
+      "description": "one new night animal per page, introduced by a sight or sound and a self-introduction",
+      "pages": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "functions": [
+        "anticipation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "predictable pattern with a new animal each time"
+    },
+    {
+      "type": "callback",
+      "description": "the smiling moon on the first and last page",
+      "pages": [
+        1,
+        3,
+        11
+      ],
+      "functions": [
+        "comfort",
+        "memory"
+      ],
+      "effective": true,
+      "why": "frames the night with the same calm watcher"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "The moon's face is a silent companion on the first, third and last page.",
+      "The owl page is the most startling image; the text keeps it friendly.",
+      "Every page has text: the story works read aloud without pictures."
+    ]
+  },
+  "strengths": [
+    "a home-away-home bedtime frame: the last page returns to the mother and the same moon at the lowest intensity",
+    "a friendship refrain repeated five times that a listener can join",
+    "the night is reframed from lonely to friendly without any danger"
+  ],
+  "weaknesses": [
+    "the middle is a list; the five meetings have no rising stakes",
+    "the mother's last speech explains a fact (nocturnal animals) and a rule (you must sleep) in words"
+  ],
+  "anti_patterns": [
+    {
+      "id": "moral_stated_not_shown",
+      "pages": [
+        10
+      ],
+      "note": "the mother states why he must sleep"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "scores": {
+      "curiosity": 4,
+      "humor": 2,
+      "participation": 5,
+      "emotional_identification": 4,
+      "surprise": 2,
+      "character_warmth": 5,
+      "agency": 4,
+      "visual_novelty": 4,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 5
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children.",
+    "label": "Research heuristic — not validated"
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "No peril. Highest research intensity 3/5 (about 2 on the engine's 0-3 scale) on pages 4-8, settling to 0 on the last page. The pup leaving home alone at night is fantasy; a MagicPaper version would keep the child near home or with a companion."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 11,
+    "total_words": 420,
+    "words_per_page": {
+      "min": 16,
+      "median": 39,
+      "max": 63
+    },
+    "mean_sentence_words": 6.89,
+    "longest_sentence": 15,
+    "type_token_ratio": 0.419,
+    "dialogue_ratio": 0.424,
+    "questions": 9,
+    "questions_per_page": 0.82,
+    "direct_address": 12,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "asked tinku yes i will said": 5,
+        "be my friend asked tinku yes": 5,
+        "friend asked tinku yes i will": 5,
+        "my friend asked tinku yes i": 5,
+        "tinku yes i will said the": 5,
+        "will you be my friend asked": 5,
+        "you be my friend asked tinku": 5,
+        "asked tinku i am": 2,
+        "dark will you be my friend": 2,
+        "during the night": 2,
+        "i am a": 2,
+        "i am not": 2,
+        "night will you be my friend": 2,
+        "who are you asked tinku": 2
+      },
+      "refrains": {
+        "will you be my friend asked tinku": 5,
+        "who are you asked tinku": 2
+      },
+      "top_sentence_openers": {
+        "i": 10,
+        "yes": 6,
+        "will": 5,
+        "he": 4,
+        "i'm": 3
+      },
+      "end_rhyme_pairs": 2,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

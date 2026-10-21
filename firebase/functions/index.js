@@ -4,6 +4,9 @@
 //   ailelere Resend ile sakin bir özet. Hiçbir şey okunmadıysa gönderilmez.
 // unsubscribe: e-postadaki tek tık bağlantısı (imzalı).
 // cleanupShares: süresi dolan paylaşım bağlantılarını ve ses kopyalarını siler.
+// aggregateOutcomes: Pazartesi 04:00, son 28 günün okuma olaylarını blueprint × bant × mod
+//   hücrelerine toplar; küçük hücreleri yazmaz (src/outcomes.js). Araştırma döngüsü ve
+//   ileride katalog paketinin aggregateWeight'i buradan beslenir.
 //
 // Log'a e-posta adresi, çocuk adı, masal metni yazılmaz (CLAUDE.md §10).
 import { initializeApp } from 'firebase-admin/app';
@@ -16,6 +19,7 @@ import { logger } from 'firebase-functions';
 import { buildWeeklySummary, renderWeeklyEmail } from './src/summary.js';
 import { unsubscribeURL, verifyFamily } from './src/unsubscribe.js';
 import { sendWithResend } from './src/resend.js';
+import { outcomeDocument } from './src/outcomes.js';
 
 initializeApp();
 const REGION = 'europe-west1';
@@ -101,3 +105,19 @@ export const cleanupShares = onSchedule(
     }
     logger.info('Süresi dolan paylaşımlar silindi', { count: expired.size });
   });
+
+export const aggregateOutcomes = onSchedule(
+  { schedule: 'every monday 04:00', timeZone: 'Europe/Istanbul', region: REGION },
+  async () => {
+    const db = getFirestore();
+    const end = new Date();
+    const start = new Date(end.getTime() - 28 * 86400 * 1000);
+    const day = (d) => d.toISOString().slice(0, 10);
+    const snapshot = await db.collection('readingEvents')
+      .where('day', '>=', day(start)).where('day', '<=', day(end)).get();
+    const doc = outcomeDocument(snapshot.docs.map((d) => d.data()), { periodStart: day(start), periodEnd: day(end) });
+    await db.collection('outcomeAggregates').doc(day(end)).set({ ...doc, createdAt: Timestamp.now() });
+    logger.info('Okuma sonuçları toplandı', { cells: doc.cells.length, suppressed: doc.suppressedCells,
+      rejected: doc.rejectedEvents });
+  },
+);

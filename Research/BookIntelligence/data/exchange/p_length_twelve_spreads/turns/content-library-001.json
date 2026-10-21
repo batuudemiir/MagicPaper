@@ -1,0 +1,13 @@
+{
+  "agent": "content-library",
+  "n": 1,
+  "id": "content-library-1",
+  "stance": "concern",
+  "text": "Concern about 12 beats: every new page needs bound cells of at least MIN_BOUND_POOL=4 variants, i.e. ~50% more corpus for the same word count. Cheaper alternative content can offer: keep 8 beats and mark a turnAfter split inside existing multi-sentence variants (paired pages already have a natural split). No new text, no pool growth; cost moves to reader and illustration count. Bedtime should not split its last two pages.",
+  "evidence": [
+    "StoryEngine/Tools/validate_beat_corpus.py",
+    "../PROSE_PRODUCTION_GUIDE.md"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:08:02Z"
+}

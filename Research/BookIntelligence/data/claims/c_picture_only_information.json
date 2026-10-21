@@ -1,0 +1,84 @@
+{
+  "claim_id": "c_picture_only_information",
+  "statement": "In 23 of 24 analysed books at least one spread carries story information only in the picture; 3 are wordless and in 4 more the turning point is carried by wordless spreads. The level-3 Kottavi Raja tells everything in its text.",
+  "kind": "OBSERVED",
+  "layers": [
+    "textual_mechanism"
+  ],
+  "scope": {
+    "age_band": null,
+    "language": "en",
+    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+  },
+  "supporting_works": [
+    "w_amahle_wants_to_help_nsibande",
+    "w_amo_and_the_missing_mielies_phala",
+    "w_ann_nem_oh_nee_finds_adventure_griffiths",
+    "w_bathtub_safari_chemaly",
+    "w_best_friends_louw",
+    "w_bohlales_adventure_ambrosano",
+    "w_brave_bora_gicovi",
+    "w_catch_that_cat_pirie",
+    "w_chicken_and_millipede_asara",
+    "w_come_back_cat_rijsdijk",
+    "w_come_stay_with_me_siege",
+    "w_feathered_friends_ange",
+    "w_fifi_and_teddy_letsapa",
+    "w_foxy_joxy_plays_a_trick_esmail",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_good_night_monu_karthik",
+    "w_goodnight_tinku_nambiar",
+    "w_grumpy_cloud_ditlhareng",
+    "w_khumos_big_trip_sedibe",
+    "w_mud_waterkeyn",
+    "w_red_umbrella_kritzinger",
+    "w_unexpected_adventure_jooste",
+    "w_zuko_and_the_crying_tap_langeni"
+  ],
+  "counterexample_works": [
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+  ],
+  "sources": [],
+  "counterexamples_reviewed": true,
+  "status": "active",
+  "rejected_reason": null,
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends shows only in the picture that the new friend now sits alone; the wordless book counts trivially and should not be weighed as independent evidence of the technique.\n2026-10-15: Holds across all three sources: African Storybook (Bohlale: the giraffe is drawn before the text needs it; Chicken and Millipede: the size gap carries the joke) and StoryWeaver (Monu: the monsters exist only in pictures). Method rule m005 still applies: today's product is text and audio, so this is evidence for the illustrated product and for what text must carry when pictures are absent. Re-read 2026-10-15 measured only_in_image at 58% on 12 pages (below the 20-page threshold, still measuring); judging it now as information a listener without pictures would lose. 2026-10-20: the blind re-read measured only_in_image at 54% agreement over 24 pages (unreliable), so this claim is capped at LOW until the field is judged more consistently.",
+  "magicpaper": {
+    "target": "writing_guidance",
+    "current": "text carries the whole story",
+    "suggested": "Hypothesis for illustrated stories: leave one fact per story to the picture; not applicable to text-only stories.",
+    "note": null,
+    "review_status": "reviewed"
+  },
+  "computed": {
+    "n_examined": 24,
+    "support": 23,
+    "counter": 1,
+    "support_ratio": 0.958,
+    "sample_scope": "CORPUS",
+    "best_source_tier": "A",
+    "confidence": "LOW",
+    "wording": "common, not universal",
+    "experiments": 0,
+    "unreliable_fields": [
+      "only_in_image"
+    ]
+  },
+  "confidence_history": [
+    {
+      "from": null,
+      "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
+    },
+    {
+      "from": "MEDIUM",
+      "to": "LOW"
+    }
+  ],
+  "judgment_fields": [
+    "only_in_image"
+  ]
+}

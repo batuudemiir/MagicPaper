@@ -1,0 +1,26 @@
+{
+  "fields": [
+    "beat_sequences (charge-family page plans served by bedtime mode)",
+    "EmotionalState per-page intensity on pages 4-7",
+    "warm_close variants (return-to-start move)",
+    "StoryModeProfile bedtime families; optional validator.bedtime_peak_position warning"
+  ],
+  "files": [
+    "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+    "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+    "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift",
+    "StoryEngine/Sources/StoryEngine/Offline/StoryMode.swift"
+  ],
+  "tests": [
+    "StoryEngine/Tests/StoryEngineTests/StoryModeTests.swift",
+    "StoryEngine/Tests/StoryEngineTests/ModeBandCoverageTests.swift",
+    "StoryEngine/Tests/StoryEngineTests/BeatVocabularyTests.swift",
+    "StoryEngine/Tests/StoryEngineTests/CatalogLoadingTests.swift"
+  ],
+  "owner": "story-engine",
+  "cost": "M",
+  "reversible": true,
+  "notes": "All 3 current bedtime blueprints fail the 2/3 peak cap (last intensity-2 page at 0.75, 0.75, 0.83); all already land at intensity 0. Experiment = one new variant blueprint of bp_charge_tending_001 (5-6, 8p, charge) via FAZ 15 remote package; no Swift change needed for the experiment. A validator rule comes only after a win, scoped to bedtime-admitted families, warning severity. AgeBand page counts unchanged. 3-4 band (6p) would need its own variant later. Setting return is text-only (single setting per story, no bedroom setting).",
+  "by": "story-engine",
+  "at": "2026-10-15T10:47:33Z"
+}

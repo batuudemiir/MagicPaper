@@ -1,0 +1,15 @@
+{
+  "agent": "privacy-safety",
+  "n": 1,
+  "id": "privacy-safety-1",
+  "stance": "concern",
+  "text": "Mostly low risk, but it targets companion illustration briefs, and illustrated stories are not live (cloud path behind CloudIllustrationAccess). A silently mirrored feeling is unvalidated: the text-side intensity ceiling cannot see a picture, so a companion drawn crying or terrified could exceed the page's EmotionalState with no check. Any brief must bind the companion's drawn emotion to the page's EmotionalState and ceiling, and go through the image safety gate (imagePolicy blocking). Not testable on children until the illustration pipeline and its validation exist.",
+  "evidence": [
+    "c_companion_mirrors_feeling",
+    "MagicPaper/StoryEngineBridge/CloudIllustrationAccess.swift",
+    "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift",
+    "StoryEngine/Sources/StoryEngine/Domain/ChildSafetyPolicy.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:01Z"
+}

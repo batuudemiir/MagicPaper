@@ -1,0 +1,42 @@
+{
+  "request_id": "q_what_is_on_the_last_spread_of_the_analys",
+  "from": "reader",
+  "question": "What is on the last spread of the analysed books (words, picture-only, a closing repeated line) and what follows it before the back cover (nothing, an endpaper picture, back matter, questions for the reader)? Is the final text spread quieter or shorter than the ones before it?",
+  "why": "StoryReaderView.swift stops narration and moves straight to StoryEndingLeaf.swift, which shows Ragi waving, 'Masal bitti!' and reading counts with a 400 ms celebration. The answer decides whether the ending leaf should be preceded by a quiet closing beat (no celebration, softer arrival) and whether bedtime stories should drop the stats panel.",
+  "target": "reader.page_turn",
+  "age_band": "5-6",
+  "status": "answered",
+  "answer": {
+    "text": "21 books with intensity data. The last spread is quieter than the book's average in 12 of 21; in all 4 bedtime-framed books it is (Bathtub Safari 1 vs 3.1, Good Night Monu 1 vs 2.7, Goodnight Tinku 0 vs 2.3, Kottavi Raja 1 vs 2.1 on the 0-5 research scale; engine 0-1). In the 17 others only 8 are quieter: many end on a joyful payoff at or above the average (Amahle, Come stay with me, Best Friends). The last spread is wordless in 4 of 21 (all Book Dash 3-4) and carries a callback or refrain in 13 of 21. What follows: Book Dash ends with a square closing vignette picture and credits, StoryWeaver with credits; no reader questions in any. None has a celebration screen. For the reader: in bedtime mode a quiet last page standing alone before StoryEndingLeaf matches 4 of 4 bedtime books; for other modes a joyful close is common. Opened as a proposal (p_bedtime_quiet_last_page). Evidence LOW (4 bedtime books).",
+    "claims": [
+      "c_bedtime_closes_circle",
+      "c_peak_in_last_third"
+    ],
+    "works": [
+      "w_bathtub_safari_chemaly",
+      "w_good_night_monu_karthik",
+      "w_goodnight_tinku_nambiar",
+      "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+    ],
+    "evidence_strength": "LOW",
+    "at": "2026-10-20T21:28:32Z"
+  },
+  "history": [
+    {
+      "status": "open",
+      "by": "reader",
+      "at": "2026-10-20T21:26:41Z"
+    },
+    {
+      "status": "researching",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    },
+    {
+      "status": "answered",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    }
+  ],
+  "created_at": "2026-10-20T21:26:41Z"
+}

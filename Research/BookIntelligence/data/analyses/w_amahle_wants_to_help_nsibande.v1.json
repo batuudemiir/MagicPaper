@@ -1,0 +1,242 @@
+{
+  "work_id": "w_amahle_wants_to_help_nsibande",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_amahle_wants_to_help",
+  "status": "complete",
+  "analyst": "book-research (Claude)",
+  "analyzed_at": "2026-10-08T07:29:11Z",
+  "completeness": "full",
+  "summary_paraphrase": "A small girl asks four family members, one after another, if she can help, and each says she is too young; when she asks to read to her teddy, her mother says yes.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 3,
+      "function": "pattern established"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "first no"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "four more asks and refusals"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 4,
+      "function": "'And Mama says...'"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 5,
+      "function": "yes"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 5,
+      "function": "colour returns"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 5,
+      "function": "reading to Teddy"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "PROBLEM": 0.091,
+    "ESCALATION": 0.182,
+    "TURN": 0.909,
+    "SOLUTION": 1.0,
+    "EMOTIONAL_PAYOFF": 1.0,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "amahle",
+      "name": "Amahle",
+      "role": "protagonist",
+      "age": "about 3 (picture)",
+      "desire": "to help like a grown-up",
+      "problem": "always 'too young'",
+      "change": "finds a way to help that fits her",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "mama",
+      "name": "Mama",
+      "role": "family_member",
+      "relation_to_protagonist": "mother"
+    },
+    {
+      "id": "baba",
+      "name": "Baba",
+      "role": "family_member",
+      "relation_to_protagonist": "father"
+    },
+    {
+      "id": "mkhulu",
+      "name": "Mkhulu",
+      "role": "family_member",
+      "relation_to_protagonist": "grandfather"
+    },
+    {
+      "id": "gogo",
+      "name": "Gogo",
+      "role": "family_member",
+      "relation_to_protagonist": "grandmother"
+    },
+    {
+      "id": "teddy",
+      "name": "Teddy",
+      "role": "companion",
+      "relation_to_protagonist": "toy; mirrors her feeling in every picture"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    3,
+    4,
+    4,
+    5
+  ],
+  "humor_notes": "Light: asking to drive the bakkie.",
+  "repetition": [
+    {
+      "type": "refrain",
+      "description": "'No, Amahle, you are too young.' — the same line on five spreads",
+      "pages": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "functions": [
+        "participation",
+        "anticipation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "the words never change but the pictures darken, so the feeling grows while the text stays predictable"
+    },
+    {
+      "type": "phrase",
+      "description": "'But <adult> says...' ends every request spread; the last one is 'And Mama says...'",
+      "pages": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "functions": [
+        "participation",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "one changed word signals the break in the pattern"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Refusal spreads reuse one composition; only the background colour and scribbles change, and they darken each time — the escalation is carried by the picture alone.",
+      "The final spread releases the blue into a full-colour sky."
+    ]
+  },
+  "strengths": [
+    "predictable pattern a pre-reader can join",
+    "escalation carried by colour",
+    "a one-word pattern break before the turn"
+  ],
+  "weaknesses": [
+    "the resolution is granted by an adult, though the child chooses the task"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 2,
+      "participation": 5,
+      "emotional_identification": 5,
+      "surprise": 3,
+      "character_warmth": 5,
+      "agency": 3,
+      "visual_novelty": 3,
+      "predictability_balance": 5,
+      "resolution_satisfaction": 5
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Unsafe requests (driving, boiling water) are refused, which models safety."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 136,
+    "words_per_page": {
+      "min": 4,
+      "median": 10.0,
+      "max": 25
+    },
+    "mean_sentence_words": 5.44,
+    "longest_sentence": 11,
+    "type_token_ratio": 0.463,
+    "dialogue_ratio": 0.53,
+    "questions": 6,
+    "questions_per_page": 0.5,
+    "direct_address": 7,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "no amahle you are too young": 5,
+        "mama can i": 3,
+        "but mama says": 2
+      },
+      "refrains": {
+        "no amahle you are too young": 5,
+        "but mama says": 2
+      },
+      "top_sentence_openers": {
+        "but": 5,
+        "no": 5,
+        "mama": 4,
+        "amahle": 3,
+        "baba": 2
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

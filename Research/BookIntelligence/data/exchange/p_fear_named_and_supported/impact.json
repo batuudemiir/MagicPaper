@@ -1,0 +1,21 @@
+{
+  "fields": [
+    "EmotionalState.intensity",
+    "BeatSequenceValidator.intensityCeiling"
+  ],
+  "files": [
+    "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift",
+    "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift",
+    "StoryEngine/Sources/StoryEngine/Content/SafetyVocabulary.swift"
+  ],
+  "tests": [
+    "intensity_over_ceiling tests",
+    "consecutive intensity-2 run tests"
+  ],
+  "owner": "story-engine",
+  "cost": "S",
+  "reversible": true,
+  "notes": "Technically a one-line ceiling change, which is why it must not be done casually: it is a child-safety gate and needs privacy-safety sign-off. Engine recommends no change. A safe experiment exists without touching the gate: a blueprint that names unease/hesitation (intensity 2) and follows it with an adult-reassurance beat, within the two-consecutive-pages rule. Note research's 'intensity 4' is not on the engine's 0-3 scale.",
+  "by": "story-engine",
+  "at": "2026-10-08T08:07:28Z"
+}
