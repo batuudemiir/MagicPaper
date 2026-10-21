@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@4a0210c · Alt seçenek testi main'de, ana checkout main'e döndü
+- Ana checkout (`MagicPaper/`) `fix/alt-secenek-testi` dalında, main'in 30 commit gerisinde duruyordu; main'e alındı. Bu klasörde açılan oturumlar artık güncel kodu görüyor.
+- `fix/alt-secenek-testi` (30a3281, 8ae5a9f) main'e `--no-ff` ile birleşti (4a0210c). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
+- Bilerek değişmedi: uygulama kodu, motor, içerik. Yalnızca `StoryModeFlowTests.swift` ve bu dosya.
+- Test: MagicPaperTests, iPhone 17 Pro simülatörü, 746 test, 0 hata, 1 atlanan (main'deki önceki 1 hata kapandı). StoryEngine paketi (`--scratch-path`): 819 test, 18 hata, 1 atlanan; 18 hata main'de zaten düşen aynı 10 testten (uyku arkı ölçümüyle aynı), diğer hedef 89/0. Simülatörde ekran açılmadı, iş yalnızca test.
+- origin'e gönderilmedi.
+- Dosyalar: `MagicPaperTests/StoryModeFlowTests.swift`, bu dosya.
+
 ### 2026-10-21 · main@09c3dd2 · Birleştirme: book-intelligence main'de, gönderildi
 - `book-intelligence` (5f30954) main'e `--no-ff` ile birleşti (09c3dd2): `Research/BookIntelligence/`, `docs/research/`, `firebase/functions/src/outcomes.js` + `scripts/export-outcomes.mjs` + test, `index.js`'te `aggregateOutcomes`. Çakışma yoktu.
 - Bilerek değişmedi: uygulama kodu, StoryEngine, masal içeriği, `firestore.rules`. `aggregateOutcomes` deploy edilmedi. `MagicPaper-research` worktree'sindeki commit edilmemiş araştırma değişiklikleri (p_bedtime_quiet_last_page) birleşmeye girmedi.
