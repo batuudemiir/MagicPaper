@@ -164,6 +164,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@f23fa25 · Alt çubuk: şeffaf kutu gitti, Apple ölçüsü, cam Masal yaz dairesi
+
+- Hata: çubuğun arkasında tam genişlikte şeffaf bir kutu görünüyordu. Kaynağı iOS 26'nın `safeAreaBar`'ı: çubuğun arkasına kaydırma kenarı efekti çiziyordu. `mpFloatingBar` artık her sürümde `safeAreaInset`; arkada kutu yok.
+- Ölçü: çubuk 64'ten 56 puntoya indi (sistemin yüzen sekme çubuğu kadar), ikon 26'dan 18'e, kenar boşluğu 12'den 20'ye. Sistemdeki gibi tek renk: seçili sekme marka renginde, dolu ikon ve nötr mercek; sekme başına ayrı renk kalktı (15 Ekim'deki renkli dolgu kararının yerine, Batuhan: "Apple gibi durmuyor").
+- Masal yaz: düz mor daire yerine marka renginde tonlu, dokununca esneyen cam (`MP.Glass.action`, iOS 26 `interactive`). Kapsülle aynı cam grubunda (`GlassEffectContainer`). Masal yazma ekranı dairenin içinden büyüyerek açılıyor (iOS 18+ yakınlaşma geçişi); yalnızca daireden açılınca, ana sayfa kartlarından açılınca olağan geçiş. Hareketi Azalt'ta yakınlaşma yok.
+- iOS 26 öncesi: daire düz marka rengi, cam grubu yok.
+- Kural (kök CLAUDE.md): esneyen cam yalnızca Masal yaz dairesinde.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş (tek isabet: yorumdaki "yanında" kelimesinin içindeki "anında").
+- Aynı klasördeki başka oturumun açık değişiklikleri bu commit'e girmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPGlass.swift`, `DesignSystem/MPTheme.swift`, `ContentView.swift`, bu dosya.
+
 ### 2026-10-21 · main@5498002 · Açılır pencereler iOS 26 düzeninde
 
 - Ortak sunum (`DesignSystem/MPSheetStyle.swift`, yeni): `mpSheet(_:area:)` — kâğıt yüzey (cam değil), görünür tutamak, sistemin kendi köşesi (iOS 26'da cihaz köşesiyle eş merkezli; elle verilen `presentationCornerRadius` kaldırıldı). Boy: içerik kadar (`fitted`, `mpMeasureHeight` ile), yarım ya da tam. En büyük yazı boyutlarında her pencere tam sayfa.
