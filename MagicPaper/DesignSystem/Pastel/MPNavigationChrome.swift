@@ -1,5 +1,5 @@
 // MPNavigationChrome.swift
-// Kid tab bar (Ana sayfa · Günlük · + Yarat · Kitaplık · Köşem), parent tab bar (Özet · Güvenlik · Ayarlar),
+// Kid tab bar (Ana sayfa · Günlük · Kitaplık · Köşem + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
 // kid header (avatar → Benim köşem, kilit → Ebeveyn kapısı), top bar, parent header.
 // Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok, BenimKosem (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
@@ -8,18 +8,18 @@ import SwiftUI
 
 enum KidTab: Hashable { case home, gunluk, library, corner }
 
-/// Çocuk modunun alt çubuğu: içeriğin üstünde yüzen cam bir kapsül
-/// (iOS 26+ Liquid Glass, öncesinde sistem materyali; `mpGlassSurface`).
+/// Çocuk modunun alt çubuğu, iOS 26 düzeninde: dört sekme içeriğin üstünde
+/// yüzen cam bir kapsülde, "Masal yaz" onun yanında ayrı, marka renginde dolu
+/// bir dairede (Apple Music'teki arama dairesi gibi). Cam yüzey
+/// `mpGlassSurface`; daire düz renk, cam üstüne cam konmaz.
 ///
-/// Özel çubuk, sistem `TabView` değil: Yarat bir yer değil eylem, sistem
+/// Özel çubuk, sistem `TabView` değil: Masal yaz bir yer değil eylem, sistem
 /// çubuğunda seçilebilir bir sekme gibi davranırdı.
 ///
-/// Çubukta yazı yok, yalnızca ikon. Her sekmenin kendi rengi var: seçilince
-/// ikonun içi o renkle dolar ve bir kez zıplar; diğer sekmeler çizgi ikon.
-/// Seçim renkle birlikte dolu/boş şekil farkıyla da belli. Ek görsel yok,
-/// hepsi SF Symbol. Sekmelerin adı VoiceOver'da ve basılı tutunca okunur.
-/// Yarat marka renginde dolu hapın içinde artı. Cam üstüne cam konmaz, hap
-/// düz renk.
+/// Her sekmenin ikonu ve altında adı var. Seçili sekmede ikonun içi sekmenin
+/// rengiyle dolar, adı koyulaşır ve arkasında o rengin hafif bir merceği
+/// belirir; seçim yalnızca renkle değil, dolu şekil ve mercekle de belli.
+/// Zıplama, ölçek ya da yaylanma yok (karar: 15 Ekim 2026).
 /// `ContentView.kidRoot` bunu `mpFloatingBar` ile yerleştirir.
 struct KidTabBar: View {
     @Binding var selection: KidTab
@@ -27,8 +27,7 @@ struct KidTabBar: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    /// Sekmenin adı (VoiceOver ve büyük içerik görüntüleyici), ikonu ve
-    /// seçiliyken ikonun içini dolduran renk.
+    /// Sekmenin adı, ikonu ve seçiliyken ikonun içini dolduran renk.
     private struct Item {
         let tab: KidTab
         let label: String
@@ -44,54 +43,61 @@ struct KidTabBar: View {
     ]
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
-            tab(items[0])
-            tab(items[1])
+        HStack(alignment: .center, spacing: MP.S.x2) {
+            HStack(spacing: 0) {
+                ForEach(items, id: \.tab) { tab($0) }
+            }
+            .padding(MP.S.x1)
+            .mpGlassSurface(in: Capsule(style: .continuous))
+
             createButton
-            tab(items[2])
-            tab(items[3])
         }
-        .padding(.horizontal, MP.S.x1)
-        .padding(.vertical, MP.S.x1)
-        // Sistem sekme çubuğu gibi: ikonlar en fazla xLarge büyür, daha
-        // büyük boyutta basılı tutunca büyük içerik görüntüleyici adı gösterir.
+        // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
+        // boyutta basılı tutunca büyük içerik görüntüleyici adı gösterir.
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
-        .mpGlassSurface(in: Capsule(style: .continuous))
         .padding(.horizontal, MP.S.x3)
     }
 
-    /// Yarat: yazısız, marka renginde dolu hapın içinde artı. Sekme değil,
-    /// eylem; adı VoiceOver'da ve basılı tutunca okunur.
+    /// Masal yaz: sekmelerin dışında, marka renginde dolu bir daire. Sekme
+    /// değil, eylem; adı VoiceOver'da ve basılı tutunca okunur.
     private var createButton: some View {
         Button(action: onCreate) {
-            MPIcon("plus", size: MP.G.lg, weight: .bold, symbolOnly: true)
+            MPIcon("pencil.and.scribble", size: MP.G.xl, weight: .semibold, symbolOnly: true)
                 .foregroundStyle(MP.C.textOnBrand)
-                .frame(width: MP.S.x10, height: MP.S.x8)
-                .background(MP.C.brand, in: Capsule(style: .continuous))
-                .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
-                .contentShape(Rectangle())
+                .frame(width: MP.S.x10, height: MP.S.x10)
+                .background(MP.C.brand, in: Circle())
+                .contentShape(Circle())
         }
         .buttonStyle(MPPressStyle())
-        .accessibilityLabel("Masal yarat")
+        .accessibilityLabel("Masal yaz")
         .accessibilityShowsLargeContentViewer {
-            MPIcon("plus", size: MP.G.lg, weight: .bold, symbolOnly: true)
-            Text("Masal yarat")
+            MPIcon("pencil.and.scribble", size: MP.G.lg, weight: .bold, symbolOnly: true)
+            Text("Masal yaz")
         }
     }
 
     private func tab(_ item: Item) -> some View {
         let on = selection == item.tab
         return Button { selection = item.tab } label: {
-            MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.xl,
-                   weight: on ? .semibold : .regular, symbolOnly: true)
-                .foregroundStyle(on ? item.tint : MP.C.textMuted)
-                // Seçilince yalnızca ikonun içi dolar ve rengi değişir:
-                // zıplama, ölçek ya da yaylanma yok (karar: 15 Ekim 2026).
-                // Hareketi Azalt'ta dolgu animasyonsuz değişir.
-                .contentTransition(reduceMotion ? .identity : .opacity)
-                .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
-                .contentShape(Rectangle())
-                .animation(MP.M.gated(MP.M.easeOut), value: on)
+            VStack(spacing: 0) {
+                MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.lg,
+                       weight: on ? .semibold : .regular, symbolOnly: true)
+                    .foregroundStyle(on ? item.tint : MP.C.textMuted)
+                    // Hareketi Azalt'ta dolgu animasyonsuz değişir.
+                    .contentTransition(reduceMotion ? .identity : .opacity)
+                Text(item.label)
+                    .font(MP.F.caption(on ? .bold : .semibold))
+                    .foregroundStyle(on ? MP.C.textTitle : MP.C.textMuted)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
+            .background {
+                Capsule(style: .continuous)
+                    .fill(item.tint.opacity(on ? 0.14 : 0))
+            }
+            .contentShape(Capsule(style: .continuous))
+            .animation(MP.M.gated(MP.M.easeOut), value: on)
         }
         .buttonStyle(MPPressStyle(.highlight))
         .accessibilityLabel(item.label)

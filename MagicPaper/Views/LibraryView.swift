@@ -179,7 +179,8 @@ struct LibraryView: View {
                 noMatch
             } else {
                 LibraryShelfGrid(items: items, pageWidth: width,
-                                 singleColumn: typeSize.isAccessibilitySize) { open($0) }
+                                 singleColumn: typeSize.isAccessibilitySize,
+                                 open: { open($0) }, menu: { quickActions($0) })
             }
         }
         .homeEntrance(5)
@@ -254,6 +255,45 @@ struct LibraryView: View {
         .padding(MPSpacing.lg)
         .mpKidSurface(MPWorldTone.lav.soft, edge: MPWorldTone.lav.edge, radius: MPRadius.card)
         .accessibilityElement(children: .combine)
+    }
+
+    // MARK: - Kapak menüsü
+
+    /// Kapağa basılı tutunca açılan kısa menü: okuma ve favori. Yazdır ve sil
+    /// burada yok: ebeveyn kapısı isteyen işlemler "Masal ayrıntıları"nda
+    /// (`StoryActionsSheet`) kalır. Sistem menüsü ikonu yalnızca
+    /// `Label(systemImage:)` ile alır, `MPIcon` burada kullanılamaz.
+    @ViewBuilder
+    private func quickActions(_ item: LibraryItem) -> some View {
+        Button { open(item, continuing: true) } label: {
+            Label(item.isPartlyRead ? "Okumaya devam et" : "Okumaya başla", systemImage: "book")
+        }
+        if item.kind == .story {
+            if item.progress > 0 {
+                Button { readFromStart(item) } label: {
+                    Label("Baştan oku", systemImage: "arrow.counterclockwise")
+                }
+            }
+            Button { toggleFavorite(item) } label: {
+                Label(item.isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
+                      systemImage: item.isFavorite ? "heart.slash" : "heart")
+            }
+            Divider()
+            Button { open(item) } label: {
+                Label("Masal ayrıntıları", systemImage: "ellipsis.circle")
+            }
+        }
+    }
+
+    private func readFromStart(_ item: LibraryItem) {
+        guard let story = storyManager.getStory(id: item.id) else { return }
+        app.read(story, fromStart: true)
+    }
+
+    private func toggleFavorite(_ item: LibraryItem) {
+        let now = favorites.toggle(item.id)
+        MPHaptics.selection()
+        app.showToast(now ? "Favorilere eklendi" : "Favorilerden çıkarıldı", symbol: "heart.fill")
     }
 
     // MARK: - Açma

@@ -155,6 +155,40 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@447535d · Alt çubuk, açılır pencereler ve okuyucu origin'e gönderildi
+
+- `35227c5..447535d` origin/main'e gitti: alt çubuk (59c74bd), açılır pencereler (095aba2), okuyucu (93c3f02) ve günlük kayıtları. Bu kayıt da ardından gönderildi.
+- Test: üç iş de derlenmeden gönderildi; Batuhan telefonda deneyecek.
+
+### 2026-10-21 · main@93c3f02 · Okuyucu iOS 26 düzeninde (1A, 2A, 3A, 3B)
+
+- 1A · Kontroller (`ReaderChrome`): kapat solda tek cam daire (48 pt), favori ve "Aa" sağda tek cam kapsül, altta tek cam çubuk: önceki · (sayfa, "Sesli oku", ince ilerleme çizgisi) · sonraki. Gece temasında cam ve yazı koyu tona geçiyor. Kapat yine hiç kaybolmuyor, diğerleri 4,5 sn sonra çekiliyor. Büyük yuvarlak oynat düğmesi çubuğun içine, ikon + yazıya indi.
+- 3A · Sayfa kaydırıcı: ilerleme çizgisine basılı tutunca (0,25 sn) çubuğun üstünde seçilen sayfanın çevresindeki küçük kâğıtlar ve o sayfanın ilk sekiz sözcüğü beliriyor; parmak kalkınca o sayfaya gidiliyor. Sayfaların çoğu çizimsiz olduğundan küçük resim yerine sözcük. Kaydırırken kontroller çekilmiyor, titreşim yok. VoiceOver'da çizgi ayarlanabilir öğe: yukarı/aşağı kaydırma bir sayfa ileri/geri.
+- 2A · Sayfa kıvrımı: kıvrılan sayfanın arka yüzünde ön yüzün mürekkebi %7 seçiliyor (`backFaceInkOpacity`). Motorun hareketi değişmedi.
+- 3B · Masal sonu: uyku vaktinde ayrı, sade yaprak: uyuyan Ragi, "Son", "İyi geceler, <ad>.", 2+ günse "N gün üst üste birlikte okudunuz.", varsa tek satır rozet; konuşma balonu, kutucuklar ve yaylanma yok. Gündüz yaprağı aynı kaldı.
+- Kural: Cam artık okuyucunun yüzen kontrollerinde de serbest (CLAUDE.md Derinlik ve `MP.Glass` notu; karar 21 Ekim, Batuhan 1A'yı seçti). Kök `CLAUDE.md` bu repoda değil, commit'e girmedi.
+- Test: derlenmedi, simülatörde ve cihazda görülmedi; Batuhan telefonda deneyecek. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/StoryReader/ReaderChrome.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryEndingLeaf.swift`, `PageTurn/MagicPaperPageTurnRenderer.swift`, `PageTurn/MagicPaperPageTurnConfiguration.swift`, `DesignSystem/MPTheme.swift`, bu dosya.
+
+### 2026-10-21 · main@095aba2 · Açılır pencereler iOS 26 düzeninde (A varyasyonları)
+
+- Kitaplık: kapağa basılı tutunca sistemin `contextMenu`'su açılıyor (iOS 26'da cam, kapak yükseliyor). İçinde "Okumaya devam et/başla", "Baştan oku" (açılmış masalda), "Favorilere ekle/çıkar" ve ayraçtan sonra "Masal ayrıntıları" var. Klasiklerde yalnızca okuma. `LibraryShelfGrid` menüyü dışarıdan alıyor (`menu:`).
+- Yazdır ve sil bilerek menüye konmadı: çocuk modunda ebeveyn kapısı istiyorlar, "Masal ayrıntıları"ndaki sheet'te (`StoryActionsSheet`) kalıyorlar. Eskizdeki ayrı "Sil" dairesi bu yüzden yok.
+- Silme onayı: mesaj masalın adını tırnak içinde söylüyor. Diyalog zaten sistemin `confirmationDialog`'u, iOS 26 görünümünü kendisi veriyor.
+- Okuma ayarları: sheet yarım sayfa açılıyor (`.medium`, yukarı çekince `.large`), masal arkada görünüyor. Arka plan kâğıt, cam değil.
+- Sıralama menüsü değişmedi: zaten sistem `Menu` + `Picker`, iOS 26'da butondan camla açılıyor. Etiketi cama alınmadı (içerik butonu cam olmaz).
+- Sistem menüsünde ikon `Label(systemImage:)` ile; `MPIcon` orada kullanılamıyor, kodda not edildi. Menü ve diyalogların sistem camı tasarım kuralında henüz yazılı değil, karar Batuhan'da.
+- Test: derlenmedi, simülatörde görülmedi; Batuhan telefonda deneyecek. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryComponents.swift`, `Screens/Library/StoryActionsSheet.swift`, `Screens/MPSheets.swift`, bu dosya.
+
+### 2026-10-21 · main@59c74bd · Alt çubuk iOS 26 düzeninde (varyasyon A)
+
+- `KidTabBar` yeniden düzenlendi: dört sekme (Ana sayfa, Günlük, Kitaplık, Köşem) tek cam kapsülde, her birinin altında adı yazıyor. "Masal yaz" çubuğun dışında, sağda marka renginde dolu ayrı bir dairede (64 pt). İkon `pencil.and.scribble`. Apple Music'teki arama dairesi düzenine benziyor.
+- Seçili sekme: ikonun içi sekmenin rengiyle doluyor, adı kalınlaşıp koyulaşıyor, arkasında o rengin %14'lük merceği beliriyor. Zıplama ve ölçek yok (15 Ekim kararı korundu). Hareketi Azalt açıkken animasyon olmadan değişiyor.
+- VoiceOver etiketi "Masal yarat" → "Masal yaz" (dil kuralı).
+- Bilerek değişmeyenler: `ContentView` yerleşimi (`mpFloatingBar`), sekme renkleri, cam ayarı `MP.Glass.bar`, Dynamic Type üst sınırı xLarge.
+- Test: derlenmedi ve simülatörde görülmedi (disk %99 dolu; derleme durduruldu). Batuhan telefonda deneyecek. Tasarım kuralı grep'leri değişen dosyada boş döndü.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/MPNavigationChrome.swift`, bu dosya.
 
 ### 2026-10-21 · main@c957e28 · origin/main yerel main'e birleşti, telefona kurulum
 - Yerel main (alt seçenek testi birleşmesi) ile başka oturumun gönderdiği origin/main (kitaplık turu 2, masal başlıkları, uyku arkı başlık kalıpları; 13 commit) ayrışmıştı. origin/main yerel main'e birleşti (c957e28). Tek çakışma bu dosyadaydı; iki tarafın kayıtları korundu.

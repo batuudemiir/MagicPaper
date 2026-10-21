@@ -119,6 +119,16 @@ struct MagicPaperPageTurnRenderer<CurrentPage: View, AdjacentPage: View>: View {
                             // Back face: Paper texture
                             theme.paper
                                 .frame(width: width, height: height)
+                                // Ön yüzün mürekkebi arkadan soluk seçilir, gerçek
+                                // kâğıttaki gibi. Aynı yaprak döndüğü için aynı
+                                // yerde çizilir; dönüş onu kendiliğinden ters gösterir.
+                                .overlay(
+                                    currentPage
+                                        .frame(width: width, height: height)
+                                        .opacity(MagicPaperPageTurnConfiguration.backFaceInkOpacity)
+                                        .allowsHitTesting(false)
+                                        .accessibilityHidden(true)
+                                )
                                 .overlay(
                                     Group {
                                         if ReaderPaper.showsGrain {
