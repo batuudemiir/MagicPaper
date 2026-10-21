@@ -155,6 +155,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@b20a4c3 · Okuma ayarları A, metnin oynaması düzeltildi
+
+- Hata: kısa masal metni bile parmakla yukarı aşağı oynuyordu. Sebep: metin sütunu taşmayı sayfanın tam yüksekliğiyle ölçüyordu, oysa sütun üst ve alt boşluk kadar kısaydı; içerik her zaman biraz taşıyordu. Artık sütun kendi yüksekliğiyle ölçülüyor (`StoryPageView.textColumn`); sığan metin kıpırdamıyor, yalnızca gerçekten uzun eski sayfalar kayıyor.
+- Ayarlar (`ReaderSettingsSheet`, A): "Kâğıt" ve "Yazı" başlıkları. Beş kâğıt "Aa" yazan küçük sayfalar: Gündüz, Krem (yeni), Sepya, Akşam (yeni), Gece. "Kâğıt dokusu" anahtarı (varsayılan açık) ve "Uyku saatinde Gece" (varsayılan açık; uyku saatinde seçilen kâğıt yerine Gece). Yazı boyutu dört duraklı sürgü; satır aralığı Normal / Rahat / Geniş; "Kolay okuma" harf arasını açıyor. Ses, hız, kim okusun ve titreşim "Daha fazla"nın altında.
+- Yeni kâğıtların kontrastı (mürekkep / ikincil / vurgu): Krem 13.9 / 5.1 / 5.9, Akşam 9.6 / 6.2 / 7.1; hepsi ≥ 4.5:1. Renkler `MP.Palette` (`krem100`, `aksam*`), tema `MP.ReadTheme`'de; `isDark` ve `highlight` eklendi.
+- Gece düzeltmesi: renk varlıkları açık/koyu moda göre değişmiyor, bu yüzden 1A'daki cam kontrollerin yazısı gece kâğıdında koyu kalacaktı. Kontroller ve kelime kartı artık renklerini temadan alıyor.
+- Kural (kök CLAUDE.md, repoda değil): satır aralığı `points × ReadSpacing.factor`; kontrast şartı beş kâğıt için.
+- Masal metninin kendisi (nefes satırları, isim vurgusu, cümle takibi) bu kayda girmedi: araştırma ve eskiz Batuhan'ın seçimini bekliyor.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş (yeni `Color(hex:)` yalnızca `MP.Palette`'te).
+- Dosyalar: `DesignSystem/MPTheme.swift`, `Screens/MPSettingsStore.swift`, `Screens/MPSheets.swift`, `Screens/StoryReader/` (`StoryPageView`, `StoryLeafView`, `StoryReaderView`, `ReaderChrome`, `ReaderWordCard`, `ReaderPaper`, `PageTurn/MagicPaperPageTurnRenderer`), `Views/DailyStoriesView.swift`, bu dosya.
+
 ### 2026-10-21 · main@55d224c · Masal sayfası ve yeni kelime kartı (1A, 2A)
 
 - 1A · Sayfa (`StoryPageView`): çizim kenardan kenara ve sayfanın en üstünden başlıyor, köşesiz; alt kenarına kâğıt hafif bir yayla biniyor (`PaperLip`). Metin kenar boşluğunda kaldı. Resimsiz sayfa değişmedi.
