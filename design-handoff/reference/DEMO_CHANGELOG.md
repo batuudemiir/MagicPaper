@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-21 · main, commit yok · Alt çubuk iOS 26 düzeninde (varyasyon A)
+### 2026-10-21 · main@59c74bd · Alt çubuk iOS 26 düzeninde (varyasyon A)
 
 - `KidTabBar` yeniden düzenlendi: dört sekme (Ana sayfa, Günlük, Kitaplık, Köşem) tek cam kapsülde, her birinin altında adı yazıyor. "Masal yaz" çubuğun dışında, sağda marka renginde dolu ayrı bir dairede (64 pt). İkon `pencil.and.scribble`. Apple Music'teki arama dairesi düzenine benziyor.
 - Seçili sekme: ikonun içi sekmenin rengiyle doluyor, adı kalınlaşıp koyulaşıyor, arkasında o rengin %14'lük merceği beliriyor. Zıplama ve ölçek yok (15 Ekim kararı korundu). Hareketi Azalt açıkken animasyon olmadan değişiyor.
