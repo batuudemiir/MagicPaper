@@ -155,6 +155,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@55d224c · Masal sayfası ve yeni kelime kartı (1A, 2A)
+
+- 1A · Sayfa (`StoryPageView`): çizim kenardan kenara ve sayfanın en üstünden başlıyor, köşesiz; alt kenarına kâğıt hafif bir yayla biniyor (`PaperLip`). Metin kenar boşluğunda kaldı. Resimsiz sayfa değişmedi.
+- Büyük baş harf bilerek yok (Batuhan: "ilk harf büyük harfle başlamaz").
+- Künye: kontroller görünürken sayfa numarası alt çubukta; çekilince sayfanın altında ortada "— 3 —". Önceden künye hiç görünmüyordu (`showsFolio: false`).
+- 2A · Yeni kelime (`ReaderWordCard`, yeni dosya): kelime Baloo 2, tek cümle anlamı, "dinle" dairesi; kâğıt kart, `mpEdge`, gölge yok, kapat düğmesi yok. Kartın dışına dokunmak kartı kapatıyor, sayfayı çevirmiyor; VoiceOver'da kaçış hareketi kapatıyor. Gece temasında koyu.
+- Bilerek değişmeyen: kart hâlâ ekranın altında açılıyor, kelimenin hemen altına bağlı değil (metin içinde kelimenin yerini bulmak ayrı iş). Eski `NewWordCard` okuyucuda artık kullanılmıyor, silinmedi.
+- Okuma ayarları (3A) bu kayda girmedi: arka plan ve tipografi seçenekleri tasarım kuralına dokunduğu için Batuhan'ın seçimini bekliyor.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/StoryReader/StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `ReaderWordCard.swift` (yeni), bu dosya.
+
 ### 2026-10-21 · main@447535d · Alt çubuk, açılır pencereler ve okuyucu origin'e gönderildi
 
 - `35227c5..447535d` origin/main'e gitti: alt çubuk (59c74bd), açılır pencereler (095aba2), okuyucu (93c3f02) ve günlük kayıtları. Bu kayıt da ardından gönderildi.
