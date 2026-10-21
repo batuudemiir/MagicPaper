@@ -164,6 +164,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@e97a371 · Masal metni: nefes satırları, cümle takibi, ad ve ses kelimeleri
+
+- Yaşa göre diziliş (`ReaderTextLayout`, `Story.ageBand`'den): 3-6 yaşta **nefes satırları**, her cümle kendi satırında, seçilen boyutun bir üstünde, en az "Rahat" satır arası, paragraflar arasında daha geniş boşluk. 7-10 yaşta paragraflar; konuşma paragrafı solda ince bir çizgiyle ayrılıyor. Bandı olmayan eski masallar paragraf düzeninde.
+- **Cümle takibi** (7-10): anlatıcı okurken o an okunan cümle sıcak fosforlu kalemle işaretleniyor, öncesi sönüyor. Kelime değil cümle: araştırmaya göre her kelimeyi işaretlemek dikkati dağıtıyor. Konum `AVSpeechSynthesizer`'ın kelime haberinden (`MPSpokenPosition`, ayrı nesne: okuyucunun geri kalanı her kelimede yeniden çizilmesin). Ailenin sesiyle kayıtlı sayfada takip yok (kayıtta kelime zamanı yok).
+- **Çocuğun adı** metinde vurgu renginde ve kalın; yalnızca tam kelime ("Can", "Canavar"da işaretlenmez), kesme işaretli ek adın dışında.
+- **Ses kelimeleri** ("pıt pıt", "şırıl şırıl"): 50 kelimelik listeden, okuma boyutunun bir tık büyüğü ve en kalın kesimde (`MP.F.sound`). Listede olmayan sıradan metin kalıyor.
+- Baloo 2 bilerek kullanılmadı: font uygulamada yok (FAZ 17'de kaldırılmış, `MP.F` başlık ailesi Nunito Black). Geri eklemek font dosyası indirmeyi gerektiriyor, Batuhan'ın onayını bekliyor.
+- Cümle bölme `NLTokenizer` ile; küçük harfle başlayan parça öncekine bağlanıyor ("“Gerçekten mi?” dedi Deniz." tek satır).
+- Test: `ReaderTextTests` (11 test) yazıldı. Uygulama testi çalıştırılmadı (disk dolu, Xcode derlemesi yapılmadı); `ReaderText.swift` tek başına `swiftc` ile derlenip aynı senaryolarla denendi, hepsi geçti. Görünüm kodu derlenmedi, cihazda görülmedi.
+- Kural (kök CLAUDE.md, repoda değil): ses kelimeleri yalnızca `MP.F.sound`, ad vurgu renginde ve kalın.
+- Dokunulmayan: aynı klasörde başka bir oturumun açık değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`, `VocabularySentenceTests`) bu commit'e girmedi.
+- Dosyalar: `Screens/StoryReader/ReaderText.swift` (yeni), `ReaderWords.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `ReaderStory.swift`, `ReaderWordCard.swift` (yorum), `Screens/MPSpeech.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/ReaderTextTests.swift` (yeni), bu dosya.
+
 ### 2026-10-21 · main@b20a4c3 · Okuma ayarları A, metnin oynaması düzeltildi
 
 - Hata: kısa masal metni bile parmakla yukarı aşağı oynuyordu. Sebep: metin sütunu taşmayı sayfanın tam yüksekliğiyle ölçüyordu, oysa sütun üst ve alt boşluk kadar kısaydı; içerik her zaman biraz taşıyordu. Artık sütun kendi yüksekliğiyle ölçülüyor (`StoryPageView.textColumn`); sığan metin kıpırdamıyor, yalnızca gerçekten uzun eski sayfalar kayıyor.
