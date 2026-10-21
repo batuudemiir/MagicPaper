@@ -8,67 +8,77 @@ import SwiftUI
 
 enum KidTab: Hashable { case home, gunluk, library, corner }
 
-/// Çocuk modunun alt çubuğu, iOS 26 düzeninde: dört sekme içeriğin üstünde
-/// yüzen cam bir kapsülde, "Masal yaz" onun yanında ayrı, marka renginde dolu
-/// bir dairede (Apple Music'teki arama dairesi gibi). Cam yüzey
-/// `mpGlassSurface`; daire düz renk, cam üstüne cam konmaz.
+/// Çocuk modunun alt çubuğu, iOS 26 sekme çubuğunun ölçüsünde (21 Ekim 2026):
+/// dört sekme içeriğin üstünde yüzen cam bir kapsülde, "Masal yaz" yanında
+/// ayrı bir cam dairede (Apple Music'teki arama dairesi gibi). İkisi tek cam
+/// grubunda (`MPGlassGroup`); daire marka renginde tonlu ve dokununca esner,
+/// masal yazma ekranı dairenin içinden büyüyerek açılır (`mpZoomSource`).
 ///
 /// Özel çubuk, sistem `TabView` değil: Masal yaz bir yer değil eylem, sistem
 /// çubuğunda seçilebilir bir sekme gibi davranırdı.
 ///
-/// Her sekmenin ikonu ve altında adı var. Seçili sekmede ikonun içi sekmenin
-/// rengiyle dolar, adı koyulaşır ve arkasında o rengin hafif bir merceği
-/// belirir; seçim yalnızca renkle değil, dolu şekil ve mercekle de belli.
-/// Zıplama, ölçek ya da yaylanma yok (karar: 15 Ekim 2026).
+/// Sistemdeki gibi tek renk: seçili sekmenin ikonu dolar, ikon ve adı marka
+/// renginde olur, arkasında nötr bir mercek belirir. Seçim renkle birlikte
+/// dolu şekil ve mercekle de belli. Zıplama, ölçek ya da yaylanma yok.
 /// `ContentView.kidRoot` bunu `mpFloatingBar` ile yerleştirir.
 struct KidTabBar: View {
     @Binding var selection: KidTab
     let onCreate: () -> Void
+    /// Masal yazma ekranının yakınlaşma kaynağı; `nil` ise olağan geçiş.
+    var zoom: Namespace.ID? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    /// Sekmenin adı, ikonu ve seçiliyken ikonun içini dolduran renk.
+    /// Kimlik: `ContentView` aynı adla yakınlaşma hedefini işaretler.
+    static let createZoomID = "masalYaz"
+
+    /// Çubuğun ve dairenin yüksekliği: sistemin yüzen sekme çubuğu kadar.
+    private let barHeight: CGFloat = MP.S.tapMin + MP.S.x2
+
     private struct Item {
         let tab: KidTab
         let label: String
         let symbol: String
-        let tint: Color
     }
 
     private let items: [Item] = [
-        Item(tab: .home,    label: "Ana sayfa", symbol: "house",          tint: MP.C.brand),
-        Item(tab: .gunluk,  label: "Günlük",    symbol: "sun.max",        tint: MP.C.reward),
-        Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical", tint: MP.C.play),
-        Item(tab: .corner,  label: "Köşem",     symbol: "face.smiling",   tint: MP.C.calm),
+        Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
+        Item(tab: .gunluk,  label: "Günlük",    symbol: "sun.max"),
+        Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
+        Item(tab: .corner,  label: "Köşem",     symbol: "face.smiling"),
     ]
 
     var body: some View {
-        HStack(alignment: .center, spacing: MP.S.x2) {
-            HStack(spacing: 0) {
-                ForEach(items, id: \.tab) { tab($0) }
-            }
-            .padding(MP.S.x1)
-            .mpGlassSurface(in: Capsule(style: .continuous))
+        MPGlassGroup(spacing: MP.S.x3) {
+            HStack(spacing: MP.S.x3) {
+                HStack(spacing: 0) {
+                    ForEach(items, id: \.tab) { tab($0) }
+                }
+                .padding(MP.S.x1)
+                .frame(height: barHeight)
+                .mpGlassSurface(in: Capsule(style: .continuous))
 
-            createButton
+                createButton
+            }
         }
         // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
         // boyutta basılı tutunca büyük içerik görüntüleyici adı gösterir.
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
-        .padding(.horizontal, MP.S.x3)
+        .padding(.horizontal, MP.S.x5)
     }
 
-    /// Masal yaz: sekmelerin dışında, marka renginde dolu bir daire. Sekme
+    /// Masal yaz: sekmelerin dışında, marka renginde tonlu cam daire. Sekme
     /// değil, eylem; adı VoiceOver'da ve basılı tutunca okunur.
     private var createButton: some View {
         Button(action: onCreate) {
-            MPIcon("pencil.and.scribble", size: MP.G.xl, weight: .semibold, symbolOnly: true)
+            MPIcon("pencil.and.scribble", size: MP.G.lg, weight: .semibold, symbolOnly: true)
                 .foregroundStyle(MP.C.textOnBrand)
-                .frame(width: MP.S.x10, height: MP.S.x10)
-                .background(MP.C.brand, in: Circle())
+                .frame(width: barHeight, height: barHeight)
+                .mpGlassAction(in: Circle())
                 .contentShape(Circle())
         }
-        .buttonStyle(MPPressStyle())
+        .buttonStyle(MPPressStyle(.highlight))
+        .mpZoomSource(Self.createZoomID, in: reduceMotion ? nil : zoom)
         .accessibilityLabel("Masal yaz")
         .accessibilityShowsLargeContentViewer {
             MPIcon("pencil.and.scribble", size: MP.G.lg, weight: .bold, symbolOnly: true)
@@ -80,21 +90,21 @@ struct KidTabBar: View {
         let on = selection == item.tab
         return Button { selection = item.tab } label: {
             VStack(spacing: 0) {
-                MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.lg,
+                MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.md,
                        weight: on ? .semibold : .regular, symbolOnly: true)
-                    .foregroundStyle(on ? item.tint : MP.C.textMuted)
                     // Hareketi Azalt'ta dolgu animasyonsuz değişir.
                     .contentTransition(reduceMotion ? .identity : .opacity)
+                    .frame(height: MP.S.x6)
                 Text(item.label)
-                    .font(MP.F.caption(on ? .bold : .semibold))
-                    .foregroundStyle(on ? MP.C.textTitle : MP.C.textMuted)
+                    .font(MP.F.caption(.semibold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
-            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid)
+            .foregroundStyle(on ? MP.C.brand : MP.C.textTitle)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
                 Capsule(style: .continuous)
-                    .fill(item.tint.opacity(on ? 0.14 : 0))
+                    .fill(MP.C.textTitle.opacity(on ? 0.07 : 0))
             }
             .contentShape(Capsule(style: .continuous))
             .animation(MP.M.gated(MP.M.easeOut), value: on)

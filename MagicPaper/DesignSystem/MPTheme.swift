@@ -697,6 +697,12 @@ enum MP {
         @available(iOS 26.0, *)
         static var bar: SwiftUI.Glass { .regular.tint(C.surfaceCard.opacity(0.25)) }
 
+        /// Yüzen eylem dairesi (Masal yaz): marka renginde tonlu ve
+        /// etkileşimli; dokununca sistem camı gibi esner (karar: 21 Ekim 2026,
+        /// yalnızca bu daire; çubuk esnemez).
+        @available(iOS 26.0, *)
+        static var action: SwiftUI.Glass { .regular.tint(C.brand).interactive() }
+
         /// iOS 26 öncesi yüzeyin dolgusu (malzemenin üstünde) ve kenarı.
         static let fallbackFill = C.surfaceCard.opacity(0.72)
         static let fallbackEdge = C.edgeGlass

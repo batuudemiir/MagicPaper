@@ -19,6 +19,11 @@ struct ContentView: View {
     @ObservedObject private var surfaceRouter = MPSurfaceRouter.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Masal yaz dairesinden masal yazma ekranına yakınlaşma.
+    @Namespace private var createZoom
+    /// Masal yazma ekranı Masal yaz dairesinden mi açıldı. Başka yerden
+    /// (ana sayfa kartları) açılınca daireden büyümez.
+    @State private var createFromBar = false
     /// 09 + 10: ilk profil oluştuktan sonra bir kez.
     @State private var firstRun: FirstRunName?
     /// İlk masal hazırsa, kapak kapandıktan sonra okunur.
@@ -119,9 +124,12 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
                 app.creationPreset = nil
                 app.creationFamilyID = nil
+                createFromBar = false
                 app.runAfterReader()
             }) {
                 StoryCreationFlow(preset: app.creationPreset, family: app.creationFamilyID).environmentObject(app).environmentObject(settings)
+                    .mpZoomDestination(KidTabBar.createZoomID,
+                                       in: createFromBar && !reduceMotion ? createZoom : nil)
             }
             .sheet(item: $app.actionsStory, onDismiss: {
                 if let next = app.pendingRead {
@@ -210,7 +218,11 @@ struct ContentView: View {
                             app.tab = MPTab(next)
                         }
                     ),
-                    onCreate: { app.startStoryCreation() }
+                    onCreate: {
+                        createFromBar = true
+                        app.startStoryCreation()
+                    },
+                    zoom: createZoom
                 )
             }
 
