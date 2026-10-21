@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · kitaplik-yenileme@2ac30b1 · Kitaplık: tek raf dizisi, sıra menüsü, "Dün · 4 dk"
+- Batuhan: "Bugün / Dün / Bu hafta" başlıkları estetik değil, hepsi kitaplık gibi alt alta dursun; diğer okuma uygulamalarına bakılsın. Rakip incelemesi: Apple Books, Kindle ve Audible kitaplığı tek, başlıksız dizi olarak gösteriyor, varsayılan sıra son okunan, kategoriler sayfayı bölmüyor (süzgeç/menü); Libby tarihi ayrı geçmiş ekranında tutuyor; Yoto'nun en büyük şikâyeti dağınıklık.
+- Batuhan'ın kararları: 2 sütun, sıraların altında raf çizgisi, kapak altında ne zaman okunduğu.
+- Kitaplık tek dizi: tarih başlıkları kalktı; her kapak sırası ince bir rafın üstünde (sıcak kâğıt tonu, sert alt kenar; kitap sırtı yok), ad ve "Dün · 4 dk" rafın altında. Klasikte "Klasik · 3 gün önce". Başlık kapağında ad kapakta, altta yalnızca bilgi.
+- "Kitaplarım" başlığının yanında küçük sıra menüsü: Son okunan (varsayılan) · Yeni yazılan · Ada göre (Türkçe alfabe).
+- Mod artık alt satırda yazmıyor (kapağın renginden ve simgesinden belli); VoiceOver türü yazıyla okur ("Uyku öncesi masalı, yarım…").
+- Değişmeyen: arama, çipler, "Kaldığın yerden" kartı, Serim, kapak tasarımı.
+- Kullanılmayan `MPBookCard` kaldırıldı; tasarım belgesi güncellendi.
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 31/31 (göreli tarih, alt satır, sıra seçenekleri, tek görünme). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, iPhone SE görülmedi. Tasarım ve dil kontrolleri değişen dosyalarda boş.
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `DesignSystem/Pastel/MPBookCover.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`, `docs/superpowers/specs/2026-10-20-kitaplik-yenileme-design.md`.
+
 ### 2026-10-21 · kitaplik-yenileme@a0d71f1 · Kitaplık: kendi masalına başlık kapağı, sarı/yeşil kontrast
 - Moda göre iki kapak fikri simülatörde yan yana denendi (A mod sahnesi: mozaik + mod ışığı; B başlık kapağı). A'da aynı dünyadaki masallar hâlâ birbirine benziyordu, bazı dünyalar bulanıklaşıyordu. Batuhan B'yi seçti.
 - Kendi masalının kapağı: mod tonunda kâğıt (hafif kâğıt dokusu), ortada masalın adı (Baloo, `MP.F.displaySM`), üstte mod simgesi (ay / ışıltı / çadır), altta dünya simgesi ve yıldız. Ad kapakta olduğu için kartın altında yalnızca "Uyku · 4 dakika" kalır (VoiceOver adı okur). Dar kapakta (Kaldığın yerden, 64 pt) ad yerine büyük dünya simgesi. Modu bilinmeyen eski masal gökyüzü tonunda, simgesiz. Masal setinin illüstrasyon kapağı teslim edilirse önce o kullanılır.
