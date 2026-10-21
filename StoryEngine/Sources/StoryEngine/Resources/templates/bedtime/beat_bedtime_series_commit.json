@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "bts_cm_01",
+      "text": "\"Ona gece için rahat bir yer bulalım,\" dedi {{child.name}} usulca.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_cm_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_cm_02",
+      "text": "{{child.name}} kararını verdi: bu küçük şey rahat etmeden hiç uyumayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_cm_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_cm_03",
+      "text": "{{child.name}} derin bir nefes aldı. \"Tamam,\" dedi. \"Önce o, sonra uyku.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_cm_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

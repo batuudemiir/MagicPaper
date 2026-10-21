@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts3_fa_01",
+      "text": "{{child.name}} onu yavaşça köşeye taşıdı. {{companion.name}} \"hık!\" diye hıçkırdı. İkisi kıkır kıkır güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_fa_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_fa_02",
+      "text": "{{child.name}} yastıktan yumuşak bir köşe yaptı. {{companion.name}} kocaman esnedi. {{child.name}} gülmemek için ağzını kapattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_fa_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_fa_03",
+      "text": "{{child.name}} onu ay ışığına taşıdı. O sırada {{companion.name}} hapşırdı: hapşu! Ne tatlı bir sürpriz!",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_fa_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    }
+  ]
+}

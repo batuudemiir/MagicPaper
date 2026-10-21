@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfayı bir başka beat ile paylaşır"
+  },
+  "variants": [
+    {
+      "id": "bt3_mc_01",
+      "text": "Pencerenin önünde {{companion.name}} vardı. Uyuyamıyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_mc_at_window",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt3_mc_02",
+      "text": "Küçük {{companion.type}} {{companion.name}} esniyordu ama uyuyamıyordu.",
+      "requiredSlots": [
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_mc_yawning",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt3_mc_03",
+      "text": "{{companion.name}} kocaman esnedi. \"Uyuyamıyorum,\" dedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_mc_cannot_sleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt3_mc_04",
+      "text": "{{companion.name}} pencerede kımıldıyor, bir türlü uyuyamıyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_mc_fidgeting",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

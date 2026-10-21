@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt3_tc_01",
+      "text": "\"Ben seni uyuturum,\" dedi {{child.name}}. Tıpkı onu her akşam uyuttukları gibi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_tc_like_every_night",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_tc_02",
+      "text": "{{child.name}} yataktan usulca kalktı. \"Merak etme,\" dedi. \"Seni ben uyutacağım.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_tc_dont_worry",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_tc_03",
+      "text": "{{child.name}} usulca pencereye yaklaştı. \"Gel, seni uyutayım,\" dedi yumuşacık bir sesle.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_tc_come_close",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_tc_04",
+      "text": "\"Sana ninni söyleyeceğim,\" dedi {{child.name}}. Yorganını omzuna alıp pencereye gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_tc_brings_blanket",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

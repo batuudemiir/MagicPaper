@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts3_td_01",
+      "text": "{{child.name}} ona yumuşak bir mendil örttü. O sırada {{companion.name}} hapşırdı: hapşu! İkisi kıkırdadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_td_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_td_02",
+      "text": "{{child.name}} ona minik bir ninni söyledi. {{companion.name}} kocaman esnedi. İkisi de güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_td_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_td_03",
+      "text": "{{child.name}} avuçlarıyla sıcak bir köşe yaptı. {{companion.name}} \"hık!\" diye hıçkırdı. Ne tatlı bir sürpriz!",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_td_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    }
+  ]
+}

@@ -357,13 +357,14 @@ final class OfflineStoryService {
 
     // MARK: - Series (FAZ 13)
 
-    /// Whether a story of this mode and band could be continued at all: some
-    /// continuation serves it. Cheap; the plan itself is made on "Devam ettir".
-    func seriesAvailable(mode: StoryMode, band: AgeBand) -> Bool {
+    /// Whether a story of this mode and band, set in this place, could be
+    /// continued at all: some continuation serves it. A story that opened in a
+    /// bedroom (uyku arkı, 21 Ekim 2026) continues only with bedtime-arc
+    /// episodes. Cheap; the plan itself is made on "Devam ettir".
+    func seriesAvailable(mode: StoryMode, band: AgeBand, settingID: String) -> Bool {
         guard let catalog = try? catalog() else { return false }
-        return catalog.series.continuations.contains {
-            $0.ageRange == band && $0.continuation?.modes.contains(mode) == true
-        }
+        return SeriesPlanner.isAvailable(
+            settingID: ContentID(settingID), mode: mode, band: band, catalog: catalog)
     }
 
     /// Plans a series from a saved story's origin and writes its four episodes.

@@ -62,6 +62,18 @@ public struct BeatCorpusLoader: Sendable {
         /// Lines written only for a series episode (FAZ 13). They load into
         /// `seriesTemplates` and never join a standalone story's pool.
         let series: Bool?
+        /// The contour these lines are written for. Absent is `standard`.
+        let arc: NarrativeArc?
+    }
+
+    /// A beat in a band, written for a non-standard arc.
+    public struct ArcBandedBeat: Hashable, Sendable {
+        public let banded: BandedBeat
+        public let arc: NarrativeArc
+        public init(_ banded: BandedBeat, _ arc: NarrativeArc) {
+            self.banded = banded
+            self.arc = arc
+        }
     }
 
     /// What a load found, including what it could not use.
@@ -72,6 +84,9 @@ public struct BeatCorpusLoader: Sendable {
         /// The word bands the series files declare, keyed like `bands`. Apart,
         /// because a series file may budget the same beat differently.
         public let seriesBands: [BandedBeat: [VariantLengthClass: WordBand]]
+        /// The word bands a non-standard arc's files declare. Apart, so the
+        /// bedtime budget for a beat never overwrites the standard one.
+        public let arcBands: [ArcBandedBeat: [VariantLengthClass: WordBand]]
         public let files: [String]
         /// The word band each beat declares, per length class.
         /// Beat VE banda göre. Yalnızca beat'e göre anahtarlamak, 3-4 için
@@ -91,12 +106,14 @@ public struct BeatCorpusLoader: Sendable {
             files: [String],
             bands: [BandedBeat: [VariantLengthClass: WordBand]],
             seriesBands: [BandedBeat: [VariantLengthClass: WordBand]] = [:],
+            arcBands: [ArcBandedBeat: [VariantLengthClass: WordBand]] = [:],
             skipped: [String],
             drifted: [String]
         ) {
             self.templates = templates
             self.seriesTemplates = seriesTemplates
             self.seriesBands = seriesBands
+            self.arcBands = arcBands
             self.files = files
             self.bands = bands
             self.skipped = skipped
@@ -118,9 +135,19 @@ public struct BeatCorpusLoader: Sendable {
     }
 
     /// A series file's template id: apart from the standalone one, so the two
-    /// templates for one beat and band never collide.
-    static func seriesTemplateID(for beat: StoryBeat, band: AgeBand?) -> ContentID {
-        ContentID("series_\(band?.description ?? "any")_" + beat.rawValue)
+    /// templates for one beat and band never collide. A non-standard arc's
+    /// episode lines (uyku arkı) are apart from the standard episode lines too.
+    static func seriesTemplateID(
+        for beat: StoryBeat, band: AgeBand?, arc: NarrativeArc = .standard
+    ) -> ContentID {
+        let prefix = arc == .standard ? "series" : "series_\(arc.rawValue)"
+        return ContentID("\(prefix)_\(band?.description ?? "any")_" + beat.rawValue)
+    }
+
+    /// A non-standard arc's template id: apart from the standard one, so the
+    /// bedtime `warm_close` and the standard one never collide.
+    static func arcTemplateID(for beat: StoryBeat, band: AgeBand?, arc: NarrativeArc) -> ContentID {
+        ContentID("\(arc.rawValue)_\(band?.description ?? "any")_" + beat.rawValue)
     }
 
     public init() {}
@@ -152,6 +179,7 @@ public struct BeatCorpusLoader: Sendable {
         var files: [String] = []
         var bands: [BandedBeat: [VariantLengthClass: WordBand]] = [:]
         var seriesBands: [BandedBeat: [VariantLengthClass: WordBand]] = [:]
+        var arcBands: [ArcBandedBeat: [VariantLengthClass: WordBand]] = [:]
         var skipped: [String] = []
         var drifted: [String] = []
 
@@ -178,14 +206,20 @@ public struct BeatCorpusLoader: Sendable {
             }
 
             let isSeries = file.series == true
+            let arc = file.arc ?? .standard
             if let declared = file.lengthClasses {
                 let parsed: [VariantLengthClass: WordBand] = declared.reduce(into: [:]) { result, entry in
                     guard let kind = VariantLengthClass(rawValue: entry.key),
                           let band = WordBand.parse(entry.value) else { return }
                     result[kind] = band
                 }
+                // Bands are keyed by beat and band alone, so a bedtime episode
+                // file is recorded nowhere rather than over the standard
+                // episode budget or the standalone bedtime one.
                 if isSeries {
-                    seriesBands[BandedBeat(file.beat, file.ageBand)] = parsed
+                    if arc == .standard { seriesBands[BandedBeat(file.beat, file.ageBand)] = parsed }
+                } else if arc != .standard {
+                    arcBands[ArcBandedBeat(BandedBeat(file.beat, file.ageBand), arc)] = parsed
                 } else {
                     bands[BandedBeat(file.beat, file.ageBand)] = parsed
                 }
@@ -193,20 +227,24 @@ public struct BeatCorpusLoader: Sendable {
 
             let template = CatalogTemplate(
                 id: isSeries
-                    ? Self.seriesTemplateID(for: file.beat, band: file.ageBand)
-                    : Self.templateID(for: file.beat, band: file.ageBand),
+                    ? Self.seriesTemplateID(for: file.beat, band: file.ageBand, arc: arc)
+                    : arc != .standard
+                        ? Self.arcTemplateID(for: file.beat, band: file.ageBand, arc: arc)
+                        : Self.templateID(for: file.beat, band: file.ageBand),
                 role: Self.role(for: file.beat),
                 realizesBeat: file.beat,
                 compatibleThemes: [],
                 variants: file.variants,
-                ageBand: file.ageBand
+                ageBand: file.ageBand,
+                arc: arc
             )
             if isSeries { seriesTemplates.append(template) } else { templates.append(template) }
             files.append(name)
         }
 
         return Report(templates: templates, seriesTemplates: seriesTemplates, files: files,
-                      bands: bands, seriesBands: seriesBands, skipped: skipped, drifted: drifted)
+                      bands: bands, seriesBands: seriesBands, arcBands: arcBands,
+                      skipped: skipped, drifted: drifted)
     }
 
     /// The page role a beat usually fills.

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_td_01",
+      "text": "{{child.name}} yastığının yanından yumuşak bir mendil aldı ve üstünü örttü. O sırada {{companion.name}} hapşırdı: hapşu! İkisi gülmemek için ağızlarını kapattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_td_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_td_02",
+      "text": "{{child.name}} ona çok alçak sesle bir ninni söyledi. Ninninin ortasında {{companion.name}} kocaman esnedi. Öyle tatlı esnedi ki ikisi kıkır kıkır güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_td_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_td_03",
+      "text": "{{child.name}} avuçlarıyla ona sıcak bir köşe yaptı. Tam o anda {{companion.name}} küçük bir \"hık!\" diye hıçkırdı. Bu hiç beklenmedik, çok tatlı bir sürprizdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_td_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    }
+  ]
+}

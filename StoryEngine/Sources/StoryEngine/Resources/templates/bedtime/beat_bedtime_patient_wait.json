@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_pw_01",
+      "text": "Sonra {{child.name}} yıldızları fısıltıyla saymaya başladı: bir, iki, üç. {{companion.name}} her sayıda biraz daha yavaş nefes aldı. Acele eden kimse yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_pw_counting_stars",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_02",
+      "text": "{{child.name}} pencerenin önünde sessizce bekledi. Hiçbir şey yapmadı, sadece orada durdu. {{companion.name}}'ın nefesi yavaşladı, yavaşladı. Gece de onlarla birlikte bekliyor gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_pw_just_stays",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_03",
+      "text": "Uyku acele etmezdi, {{child.name}} bunu bilirdi. O yüzden beklemeye karar verdi. Bildiği en yavaş ninniyi bir kez daha mırıldandı. {{companion.name}}'ın gözleri ağırlaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_pw_sleep_takes_time",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_04",
+      "text": "{{child.name}} yorganını omzuna aldı ve pencerenin yanına oturdu. Birlikte ayı izlediler. Bulutlar ağır ağır geçti. {{companion.name}} her geçen bulutla biraz daha sakinleşti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_pw_watching_clouds",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

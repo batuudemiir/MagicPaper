@@ -152,6 +152,10 @@ public struct OfflineStoryComposer: Sendable {
         if let episode { slots["keepsake.name"] = Self.keepsakeSlot(episode.keepsake) }
         let familyMoments = episode == nil ? catalog.familyMoments : catalog.series.familyMoments
         let lastPage = blueprint.pagePlan.map(\.pageNumber).max() ?? 0
+        // A series episode and a bedtime story both close without a hook: the
+        // first promised it (FAZ 13), the second is read to a child falling
+        // asleep (privacy-safety koşul 4, 21 Ekim 2026).
+        let closesCalmly = episode != nil || blueprint.arc == .bedtime
 
         // Variant choice is keyed on the whole story, not on the seed alone.
         // Keyed on the seed alone, two stories built from the same seed but
@@ -258,7 +262,7 @@ public struct OfflineStoryComposer: Sendable {
                 conflict: blueprint.family?.conflict,
                 family: intent.family?.relation,
                 familyMoment: familyMoment,
-                calmEnding: episode != nil && step.pageNumber == lastPage,
+                calmEnding: closesCalmly && step.pageNumber == lastPage,
                 safety: intent.safety,
                 episode: episode,
                 seed: storySeed,
@@ -283,7 +287,7 @@ public struct OfflineStoryComposer: Sendable {
 
         // The lines were filtered, and the page is checked again as rendered:
         // a slot value is the one thing the filter could not see.
-        if episode != nil, let last = pages.last, !CalmEnding.isCalm(last.text) {
+        if closesCalmly, let last = pages.last, !CalmEnding.isCalm(last.text) {
             throw OfflineSelectionError.noVariantSatisfying(
                 constraint: "a calm episode ending", beat: last.beats.last ?? .warmClose,
                 page: last.pageNumber)
@@ -322,10 +326,14 @@ public struct OfflineStoryComposer: Sendable {
         blueprint: CatalogBlueprint,
         series: Bool = false
     ) -> [CatalogTemplate] {
+        // The arc is matched exactly, never relaxed: a bedtime line opens in
+        // bed and a standard one in a garden, and neither is a weaker version
+        // of the other (`NarrativeArc`).
         func serving(_ templates: [CatalogTemplate]) -> [CatalogTemplate] {
             templates.filter {
                 $0.realizesBeat == beat && !$0.variants.isEmpty
                     && $0.suits(band: blueprint.ageRange)
+                    && $0.arc == blueprint.arc
             }
         }
         // An episode prefers the lines written for episodes: the standalone

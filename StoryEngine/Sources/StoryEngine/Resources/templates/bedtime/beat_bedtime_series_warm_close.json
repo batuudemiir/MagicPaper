@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-28 words — son sayfa, açılıştaki odaya dönen sakin kapanış"
+  },
+  "variants": [
+    {
+      "id": "bts_wc_01",
+      "text": "{{child.name}} yatağına döndü ve yorganını çenesine kadar çekti. {{setting.name}} sessizdi. Pencerenin önünde {{companion.name}} çoktan uyumuştu. {{child.name}} gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_02",
+      "text": "{{setting.name}}'da her şey akşamın başındaki gibiydi: yumuşak lamba, sıcak yorgan, ay ışığı. Pencerenin önünde her şey güvendeydi. Sonra {{child.name}} tatlı bir uykuya daldı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_wc_03",
+      "text": "{{child.name}} yastığına başını koydu, pencereye son bir kez baktı. {{companion.name}} uyuyordu, küçük şey de rahattı. {{setting.name}} sessizdi ve {{child.name}} uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_wc_04",
+      "text": "Lamba kısıldı, perde yarıya kadar örtüldü. {{setting.name}} yine sıcacık ve sessizdi. {{child.name}} yorganına sarındı. Bu gece de uyumak hiç zor değildi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_wc_fs_01",
+      "text": "{{child.name}} yatağına döndü. Kardeşi {{family.name}} çoktan uyumuştu. Pencerenin önünde {{companion.name}} usulca nefes alıyordu. {{setting.name}} sessizdi ve gözleri kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fs_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_fs_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yorganlarına sarındı. Pencerenin önünde her şey güvendeydi. {{setting.name}} sessizdi. İki kardeş aynı anda uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fs_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bts_wc_fs_03",
+      "text": "Kardeşi {{family.name}} yan yatakta usulca mırıldandı, sonra sustu. {{child.name}} yorganını çekti. {{setting.name}}'da artık her şey tatlı bir uykudaydı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fs_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_ff_01",
+      "text": "Arkadaşı {{family.name}} yanındaki yatakta derin derin uyuyordu. {{child.name}} pencereye son kez baktı. {{companion.name}} uyumuştu. {{setting.name}} sessizdi ve gözleri usulca kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_ff_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_ff_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} birbirine iyi geceler diledi. {{setting.name}}'da lamba kısıktı, yorgan sıcacıktı. İkisi tatlı bir uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_ff_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bts_wc_ff_03",
+      "text": "{{child.name}} arkadaşı {{family.name}}'a son bir kez gülümsedi. Pencerenin önünde {{companion.name}} uyuyordu. {{setting.name}} sıcacıktı ve ikisi tatlı bir uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_ff_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bts_wc_fa_01",
+      "text": "{{child.name}} yorganını çenesine kadar çekti. Ayakucunda {{family.possessive}} {{family.name}} yine kıvrılmıştı. Pencerenin önünde {{companion.name}} uyuyordu. {{setting.name}}'da her şey sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fa_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bts_wc_fa_02",
+      "text": "{{child.name}} yastığına başını koyunca {{family.possessive}} {{family.name}} yanına sokuldu. {{setting.name}} sıcacıktı. Pencerenin önünde her şey güvendeydi. Gözleri usulca kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fa_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_fa_03",
+      "text": "{{child.name}} gözlerini kapamadan önce {{family.possessive}} {{family.name}}'ı okşadı. {{setting.name}} sessiz ve sıcacıktı. Pencerenin önünde {{companion.name}} usulca, derin derin nefes alıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fa_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_fi_01",
+      "text": "Hayali arkadaşı {{family.name}}, uyuyan {{companion.name}}'e göz kulak oluyordu. {{child.name}} yorganına sarındı. {{setting.name}}'da her şey sakin ve sıcacıktı.",
+      "requiredSlots": [
+        "family.name",
+        "companion.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fi_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bts_wc_fi_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a göz kırptı ve yastığına uzandı. {{setting.name}} sessizdi. Pencerenin önünde her şey uykudaydı. Gözleri usulca kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fi_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_wc_fi_03",
+      "text": "Hayali arkadaşı {{family.name}} yorganın ucuna kıvrıldı. {{child.name}} pencereye son kez baktı. {{setting.name}} sessizdi ve her şey yerli yerindeydi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_wc_fi_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

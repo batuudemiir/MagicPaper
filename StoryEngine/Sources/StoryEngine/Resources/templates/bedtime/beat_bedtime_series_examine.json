@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_ex_01",
+      "text": "{{child.name}} pencereyi usulca araladı ve eğilip baktı. Ne kadar küçük, ne kadar hafifti. Ay ışığı üstüne düşmüş, onu gümüş gibi parlatıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ex_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_ex_02",
+      "text": "{{child.name}} onu iki eliyle, çok dikkatle tuttu. Hiç ağır değildi. {{companion.name}} burnunu yaklaştırıp kokladı ve memnun memnun başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ex_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_ex_03",
+      "text": "{{child.name}} onu evirip çevirdi. Belli ki biraz özene ihtiyacı vardı. {{companion.name}} yanına sokulup merakla baktı. İkisi bir süre hiç konuşmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ex_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    }
+  ]
+}

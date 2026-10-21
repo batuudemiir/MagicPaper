@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 3,
+  "beat": "establish_ordinary",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_eo_01",
+      "text": "{{child.name}} {{setting.name}}'da yorganını çenesine kadar çekti. Lamba yumuşacık yanıyordu. Pencereden ay ışığı yatağın ucuna düşmüştü. Her şey uykuya hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_blanket_to_chin",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_yumusacik"
+      ]
+    },
+    {
+      "id": "bt_eo_02",
+      "text": "Akşam yemeği bitmiş, dişler fırçalanmıştı. {{child.name}} {{setting.name}}'daki yatağına girdi. Yastığı serin, yorganı sıcacıktı. Pencereden ay, odaya tatlı bir ışık bırakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_evening_ritual_done",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_serin"
+      ]
+    },
+    {
+      "id": "bt_eo_03",
+      "text": "{{setting.name}}'da uyku saati gelmişti. {{child.name}} terliklerini yatağın yanına dizdi, yorganın altına kıvrıldı. Pencere aralıktı. Dışarıdan serin, tatlı bir gece kokusu geliyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_slippers_lined_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_eo_04",
+      "text": "{{child.name}} o akşam {{setting.name}}'daki yatağına erkenden uzandı. Yorganı çenesine kadar çekti ve tavana baktı. Ay, pencereden içeri gülümser gibi bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_moon_smiles_in",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_eo_fs_01",
+      "text": "{{child.name}} {{setting.name}}'da yorganını çenesine kadar çekti. Kardeşi {{family.name}} yan yatakta çoktan esnemeye başlamıştı. Lamba yumuşacık yanıyordu, ay pencereden bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_sibling_next_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_eo_fs_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yan yana yataklarına girdi. Dişler fırçalanmış, masal saati gelmişti. Pencereden odaya tatlı bir ay ışığı süzülüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_sibling_side_by_side",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_eo_ff_01",
+      "text": "{{child.name}} o gece çok sevinçliydi. Arkadaşı {{family.name}} {{setting.name}}'da yatıya kalıyordu. İkisi de pijamalarını giymiş, yorganlarının altına girmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_friend_sleepover",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_eo_ff_02",
+      "text": "{{child.name}} yatağına uzandı. Yatıya kalan arkadaşı {{family.name}} yer yatağına kıvrıldı. {{setting.name}}'da lamba yumuşacık yanıyordu. Pencereden ay bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_friend_floor_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_eo_fa_01",
+      "text": "{{child.name}} {{setting.name}}'daki yatağına girdi. Ayakucuna {{family.possessive}} {{family.name}} kıvrıldı. Lamba yumuşacık yanıyordu, yorgan sıcacıktı. Her şey uykuya hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_pet_curls_at_feet",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_eo_fa_02",
+      "text": "{{child.name}} yorganını çenesine çekti. Yanına {{family.possessive}} {{family.name}} sokuldu. {{setting.name}} sessizdi; pencereden süzülen ay ışığı ikisinin üstüne düşüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_pet_snuggles",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_eo_fi_01",
+      "text": "{{child.name}} {{setting.name}}'daki yatağına uzandı. Hayali arkadaşı {{family.name}} her akşamki gibi pencere kenarına oturmuştu. Lamba yumuşacık yanıyordu. Her şey sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_imaginary_window_seat",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_eo_fi_02",
+      "text": "{{child.name}} yorganına sarınırken hayali arkadaşı {{family.name}}'a göz kırptı. {{setting.name}}'da uyku saati gelmişti. Ay, pencereden ikisine gülümser gibi bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_eo_imaginary_wink",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

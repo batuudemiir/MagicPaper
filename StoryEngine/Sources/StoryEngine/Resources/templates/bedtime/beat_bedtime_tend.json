@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_td_01",
+      "text": "{{child.name}} lambayı kıstı, perdeyi yarıya çekti. Tam her şey sustu ki küçük bir \"hık!\" duyuldu. {{companion.name}} hıçkırıyordu! İkisi de kıkır kıkır güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_td_hiccup",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_td_02",
+      "text": "{{child.name}} en yumuşak sesiyle bir ninni söyledi. Ninninin ortasında kendisi kocaman esneyiverdi. {{companion.name}} buna öyle güldü ki, ikisinin de gözleri yaşardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_td_singer_yawns",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_td_03",
+      "text": "{{child.name}} pencerenin kenarına yumuşak bir yastık koydu. {{companion.name}} yastığa yerleşti ve hapşırdı: hapşu! Yastıktan küçük bir tüy havalandı. İkisi de gülmemek için ağızlarını kapattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_td_pillow_sneeze",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_td_04",
+      "text": "{{child.name}} pencereyi biraz araladı ve tatlı bir şarkı mırıldandı. Şarkının sonunda {{companion.name}} küçük bir mırıltıyla eşlik etti. Bu hiç beklenmedik, çok tatlı bir sürprizdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_td_hums_along",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

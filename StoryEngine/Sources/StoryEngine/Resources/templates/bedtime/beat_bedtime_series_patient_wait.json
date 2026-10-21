@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_pw_01",
+      "text": "Sonra beklediler. {{child.name}} pencerenin yanına oturdu, yorganını omzuna aldı. Ay ağır ağır yükseldi. Acele eden kimse yoktu, gece de onlarla birlikte bekliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_pw_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_pw_02",
+      "text": "{{child.name}} ile {{companion.name}} pencerenin önünde sessizce oturdu. Perde hafifçe kıpırdadı, bulutlar yavaşça geçti. Bazı şeyler zaman isterdi, ikisi bunu biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_pw_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_pw_03",
+      "text": "{{child.name}} hiçbir şey yapmadan bekledi. Sadece oradaydı, yumuşacık ve sabırlı. {{companion.name}} başını pencerenin kenarına dayadı. Zaman yavaş geçiyordu ama kimse sabırsızlanmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_pw_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_yumusacik"
+      ]
+    }
+  ]
+}

@@ -170,7 +170,7 @@ final class FamilyCastTests: XCTestCase {
                     id: template.id, role: template.role, realizesBeat: template.realizesBeat,
                     compatibleThemes: template.compatibleThemes,
                     variants: template.variants.filter { !$0.familyRelations.contains(.imaginary) },
-                    ageBand: template.ageBand)
+                    ageBand: template.ageBand, arc: template.arc)
             },
             blueprints: full.blueprints, storyIdeas: full.storyIdeas, storyModes: full.storyModes,
             familyMoments: full.familyMoments, familyAnimalKinds: full.familyAnimalKinds)
@@ -218,7 +218,8 @@ final class FamilyCastTests: XCTestCase {
     func testAStoryWithoutAFamilyCharacterNeverUsesAFamilyLine() throws {
         let catalog = try catalog()
         let familyLineIDs = Set(catalog.templates.flatMap(\.variants).filter(\.isFamilyLine).map(\.id))
-        XCTAssertEqual(familyLineIDs.count, 36)
+        // 36 standard lines (FAZ 11) + 48 bedtime-arc lines (21 Ekim 2026).
+        XCTAssertEqual(familyLineIDs.count, 84)
         for band in [AgeBand(lowerBound: 3, upperBound: 4), AgeBand(lowerBound: 5, upperBound: 6)] {
             for mode in BlueprintSelector().availableModes(catalog: catalog, ageBand: band) {
                 for seed in 0..<6 {

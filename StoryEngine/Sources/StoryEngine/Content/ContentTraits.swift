@@ -23,6 +23,15 @@ public enum SettingTrait: String, Codable, Sendable, Hashable, CaseIterable {
     /// the encouragement becomes bad advice, and the book is teaching something
     /// nobody meant to teach. Nothing about the generated text would look wrong.
     case isHazardous
+    /// Somewhere a child goes to sleep: a bedroom, a bed by a window.
+    ///
+    /// The place an uyku öncesi story opens and closes in (`NarrativeArc.bedtime`).
+    /// Not an affordance any other story can use: a setting offering it is
+    /// bound only for a bedtime-arc blueprint, and a bedtime-arc blueprint is
+    /// bound only to such a setting (`OfflineContentBinder.bind`). Without that
+    /// rule a forest adventure could open in a bedroom, and a bedtime story
+    /// could end in a forest.
+    case isRestingPlace
 }
 
 /// What sort of threshold a place offers.

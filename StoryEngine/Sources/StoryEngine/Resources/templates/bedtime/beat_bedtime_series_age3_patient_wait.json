@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "bts3_pw_01",
+      "text": "Sonra sessizce beklediler. Ay yavaşça yükseldi.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "bts3_pw_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_pw_02",
+      "text": "{{child.name}} pencerenin yanında sabırla, usulca bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts3_pw_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_pw_03",
+      "text": "İkisi yan yana oturdu. Acele eden yoktu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "bts3_pw_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}
