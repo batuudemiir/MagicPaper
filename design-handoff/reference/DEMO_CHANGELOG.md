@@ -133,11 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-21 · main@09c3dd2 · Birleştirme: book-intelligence main'de (push yok)
+### 2026-10-21 · main@09c3dd2 · Birleştirme: book-intelligence main'de, gönderildi
 - `book-intelligence` (5f30954) main'e `--no-ff` ile birleşti (09c3dd2): `Research/BookIntelligence/`, `docs/research/`, `firebase/functions/src/outcomes.js` + `scripts/export-outcomes.mjs` + test, `index.js`'te `aggregateOutcomes`. Çakışma yoktu.
 - Bilerek değişmedi: uygulama kodu, StoryEngine, masal içeriği, `firestore.rules`. `aggregateOutcomes` deploy edilmedi. `MagicPaper-research` worktree'sindeki commit edilmemiş araştırma değişiklikleri (p_bedtime_quiet_last_page) birleşmeye girmedi.
 - Test (birleşik hâl): Firebase functions 16/16. Python 144 testte 1 hata: `test_exchange` kanıt olarak `CLAUDE.md` arıyor, bu dosya repo içinde değil, dış `MagicPaperAPP/` klasöründe; geçici worktree'de bulunamadığı için düştü, `MagicPaper-research`'te 144/144 geçiyor. Birleştirmeden kaynaklanmıyor. iOS testleri çalıştırılmadı (uygulama kodu değişmedi).
-- Push edilmedi.
+- Aynı gün origin'e gönderildi (`b70dc4d..5263241`); bu başlık düzeltmesi ayrı commit'le gitti.
 - Etkilenen dosyalar: yukarıdakiler + bu dosya.
 
 ### 2026-10-21 · main@ec732f5 · Birleştirme: uyku arkı main'de, gönderildi
