@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@8d2fb05 · Birleştirme: kitaplık (tek raf dizisi, başlık kapağı) + masal başlıkları, gönderim
+- `kitaplik-yenileme` (kapak altı boşluk, tarihli ızgara denemesi → tek raf dizisi, sıra menüsü, başlık kapağı, sarı/yeşil kontrast) ve `masal-basliklari` (moda özel kalıplar, kapak uzunluğu ve tekrar denetimi, kitaplıkta tekrar önleme) güncel main'le (uyku arkı, araştırma kayıtları) birleşti. Çakışmalar yalnızca değişiklik günlüğündeydi; bütün kayıtlar korundu.
+- Birleşmenin ortaya çıkardığı tek sorun: uyku arkının altı yeni uyku planında (ninni, iki devam ve 3-4 yaş sürümleri) eski usul ikişer başlık kalıbı vardı, yeni bütünlük kuralına uymuyordu (11 test). Her birine uyku dilinde beş kalıp yazıldı, en fazla ikisi adla başlıyor ("Tarçın'ın Ninnisi", "Uykulu Tarçın", "Tarçın Yerleşti"…).
+- Test: StoryEngine paketi 837 test, 18 hata — main'deki tabanla aynı, bilinen 10 içerik açığı testi (MatrixCoverage, OfflineComposition, Pilot, SettingAxis, OfflineDeterminism). MagicPaperTests 753 test, tek hata `StoryModeFlowTests.testASubOptionIsRemembered` (bilinen, ayrı oturumda düzeltiliyor).
+- Uygulama birleşik hâlde simülatörde ve telefonda açılmadı; yeni uyku planlarının başlıkları elle görülmedi.
+- Dosyalar (bu kayıttaki düzeltme): `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`.
+
 ### 2026-10-21 · kitaplik-yenileme@2ac30b1 · Kitaplık: tek raf dizisi, sıra menüsü, "Dün · 4 dk"
 - Batuhan: "Bugün / Dün / Bu hafta" başlıkları estetik değil, hepsi kitaplık gibi alt alta dursun; diğer okuma uygulamalarına bakılsın. Rakip incelemesi: Apple Books, Kindle ve Audible kitaplığı tek, başlıksız dizi olarak gösteriyor, varsayılan sıra son okunan, kategoriler sayfayı bölmüyor (süzgeç/menü); Libby tarihi ayrı geçmiş ekranında tutuyor; Yoto'nun en büyük şikâyeti dağınıklık.
 - Batuhan'ın kararları: 2 sütun, sıraların altında raf çizgisi, kapak altında ne zaman okunduğu.
