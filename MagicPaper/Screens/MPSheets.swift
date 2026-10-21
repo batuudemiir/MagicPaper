@@ -211,10 +211,7 @@ struct ReaderSettingsSheet: View {
         // Yarım sayfa açılır: masal arkada görünür kalır, kâğıt ve yazı
         // değişince arkada hemen döner. Kalan ayarlar için yukarı çekilir.
         // Arka plan kâğıt, cam değil (CLAUDE.md, Derinlik: sheet cam olmaz).
-        .presentationDetents([.medium, .large])
-        .presentationDragIndicator(.visible)
-        .presentationCornerRadius(MPRadius.sheet)
-        .presentationBackground(MPColor.backgroundKid)
+        .mpSheet(.half)
     }
 
     // MARK: - Kâğıt

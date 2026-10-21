@@ -84,10 +84,7 @@ struct GunlukView: View {
                 showCategories = false
                 path = [.shelf(shelf, band)]
             }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
-            .presentationCornerRadius(MPRadius.sheet)
-            .presentationBackground(MPColor.backgroundKid)
+            .mpSheet(.full)
         }
     }
 

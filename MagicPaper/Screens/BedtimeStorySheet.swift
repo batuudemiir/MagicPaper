@@ -23,7 +23,6 @@ struct BedtimeStorySheet: View {
     let onChoose: (BedtimeChoice) -> Void
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -74,10 +73,7 @@ struct BedtimeStorySheet: View {
             .padding(.top, MPSpacing.xxl)
             .padding(.bottom, MPSpacing.lg)
         }
-        .presentationDetents(typeSize.isAccessibilitySize ? [.large] : [.medium, .large])
-        .presentationDragIndicator(.visible)
-        .presentationCornerRadius(MPRadius.sheet)
-        .presentationBackground(MPColor.backgroundKid)
+        .mpSheet(.half)
     }
 
     private func choose(_ choice: BedtimeChoice) {

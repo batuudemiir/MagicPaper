@@ -309,7 +309,7 @@ struct InviteAdultSheet: View {
             .padding(.vertical, MPSpacing.md)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .presentationDragIndicator(.visible)
+        .mpSheet(.full, area: .parent)
         .sheet(item: $shareText) { ShareSheet(items: [$0.text]) }
     }
 
@@ -461,7 +461,7 @@ struct JoinFamilySheet: View {
             .padding(.vertical, MPSpacing.md)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .presentationDragIndicator(.visible)
+        .mpSheet(.full, area: .parent)
         .confirmationDialog("Kendi verilerin silinsin mi?", isPresented: $confirmReplace, titleVisibility: .visible) {
             Button("Sil ve katıl", role: .destructive) { Task { await join() } }
             Button("Vazgeç", role: .cancel) {}
