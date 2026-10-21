@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-28 words — son sayfa, açılıştaki odaya dönen sakin kapanış"
+  },
+  "variants": [
+    {
+      "id": "bt_wc_01",
+      "text": "{{child.name}} yatağına döndü ve yorganını yine çenesine kadar çekti. {{setting.name}} sessizdi. Pencerenin önünde küçük bir nefes inip kalkıyordu. Gözleri kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_back_to_blanket",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_wc_02",
+      "text": "{{setting.name}}'da her şey başladığı gibiydi: yumuşak lamba, sıcak yorgan, pencereden süzülen ay ışığı. Tek bir fark vardı. Artık ikisi de uykudaydı.",
+      "requiredSlots": [
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_as_it_began",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_wc_03",
+      "text": "{{child.name}} yastığına başını koydu. Bir yanda {{setting.name}}'nın tanıdık sessizliği, öbür yanda uyuyan küçük dostu vardı. Gözleri ağırlaştı ve tatlı bir uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_familiar_quiet",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_wc_04",
+      "text": "Işık kısık, perde yarı açıktı; tıpkı akşamın başındaki gibi. {{child.name}} {{setting.name}}'daki yatağında yorganına sarındı. Bu kez uyumak hiç zor değildi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_easy_now",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_wc_fs_01",
+      "text": "{{child.name}} yatağına döndü. Kardeşi {{family.name}} çoktan uyumuştu. {{setting.name}}'da artık üç küçük nefes vardı. {{child.name}} yorganını çekti ve gözlerini kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_sibling_three_breaths",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_wc_fs_02",
+      "text": "Kardeşi {{family.name}} uykulu bir sesle \"İyi geceler,\" dedi. {{child.name}} yorganını çenesine çekti. {{setting.name}} sessizdi; pencerenin önünde bir dost uyuyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_sibling_goodnight",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_wc_ff_01",
+      "text": "{{child.name}} yatağına döndüğünde arkadaşı {{family.name}} uyumuştu. {{setting.name}}'da yumuşak bir sessizlik vardı. {{child.name}} yorganına sarındı ve gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_friend_already_asleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_wc_ff_02",
+      "text": "Arkadaşı {{family.name}} yanındaki yatakta derin derin uyuyordu. {{child.name}} pencereye son bir kez baktı. {{setting.name}}'da her şey yerli yerindeydi. Gözleri kendiliğinden kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_friend_last_look",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_wc_fa_01",
+      "text": "{{child.name}} yatağına döndü. Ayakucunda {{family.possessive}} {{family.name}} yine kıvrılmıştı. {{setting.name}}'da her şey akşamın başındaki gibiydi. {{child.name}} gözlerini kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_pet_at_feet",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_wc_fa_02",
+      "text": "{{child.name}} yorganını çekerken {{family.possessive}} {{family.name}} yanına sokuldu. {{setting.name}} sıcacık ve sessizdi. Pencerenin önünde bir dost, ayakucunda bir dost uyuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_pet_two_friends",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_wc_fi_01",
+      "text": "Hayali arkadaşı {{family.name}} pencere kenarındaki yerine geri oturdu. {{child.name}} ona fısıldadı: \"İyi geceler.\" {{setting.name}} sessizdi ve gözleri usulca kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_imaginary_back_to_seat",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_wc_fi_02",
+      "text": "{{child.name}} yorganına sarındı. Hayali arkadaşı {{family.name}}, uyuyan küçük dosta göz kulak oluyordu. {{setting.name}}'da her şey yine yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_wc_imaginary_keeps_watch",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

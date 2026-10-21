@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_na_01",
+      "text": "Tam gözleri kapanacaktı ki pencereden {{discovery.name}} geldi. {{child.name}} başını yastıktan kaldırdı. Ses yine geldi: minicik, yumuşacık, biraz da üzgün.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_eyes_closing",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt_na_02",
+      "text": "{{child.name}} uykuya dalmak üzereydi. O sırada pencerenin önünden {{discovery.name}} duyuldu. Tatlı, merak uyandıran bir sesti. {{child.name}} kulak kabarttı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_about_to_sleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt_na_03",
+      "text": "Oda sessizdi. Sonra pencerenin dibinden {{discovery.name}} yükseldi, bir kere, iki kere. {{child.name}} gülümsedi. Bu ses bir şey söylemek istiyordu sanki.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_twice",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt_na_04",
+      "text": "{{child.name}} tam esneyecekti ki durdu. Pencereden {{discovery.name}} geliyordu. Ne olduğunu görmek için yatakta doğruldu ve perdeyi biraz araladı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_mid_yawn",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt_na_fs_01",
+      "text": "{{child.name}} tam uykuya dalacaktı ki pencereden {{discovery.name}} geldi. Kardeşi {{family.name}} yan yataktan fısıldadı: \"Duydun mu?\" İkisi de yorganlarından başlarını çıkardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_sibling_did_you_hear",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ],
+      "words": [
+        "w56_fisildamak"
+      ]
+    },
+    {
+      "id": "bt_na_fs_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yorganın altında fısıldaşıyordu. Sonra ikisi de sustu. Pencerenin önünden {{discovery.name}} geliyordu. Minicik, yumuşacık bir sesti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_sibling_whispering",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_na_ff_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yan yana uzanmış, tavana bakıyordu. Tam o sırada pencereden {{discovery.name}} geldi. İkisi de başlarını kaldırdı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_friend_side_by_side",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_na_ff_02",
+      "text": "{{child.name}} uyanıktı ama arkadaşı {{family.name}} çoktan esnemeye başlamıştı. Pencerenin önünden gelen {{discovery.name}}, ikisinin de gözlerini açtı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_friend_yawning",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_na_fa_01",
+      "text": "{{child.name}} gözlerini kapamak üzereydi. O sırada {{family.possessive}} {{family.name}} başını kaldırdı. Pencereden {{discovery.name}} geliyordu. İkisi de kulak kabarttı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_pet_looks_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_na_fa_02",
+      "text": "{{child.name}}, yorganın üstündeki {{family.possessive}} {{family.name}}'ı okşuyordu. O sırada pencereden {{discovery.name}} geldi. {{family.name}} başını kaldırıp merakla pencereye baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_pet_stroked",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_na_fi_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diyecekti. Tam o sırada pencereden {{discovery.name}} geldi. {{family.name}} pencere kenarından merakla başını uzattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_imaginary_goodnight_interrupted",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_na_fi_02",
+      "text": "{{child.name}} yorganın altından hayali arkadaşı {{family.name}}'a fısıldıyordu. Sonra ikisi de sustu. Pencerenin önünden {{discovery.name}} geliyordu. {{family.name}} pencereyi gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_na_imaginary_points",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

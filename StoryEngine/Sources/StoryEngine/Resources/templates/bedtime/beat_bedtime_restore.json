@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_rs_01",
+      "text": "Sonunda {{companion.name}} başını göğsüne gömdü ve uykuya daldı. Minicik nefesi usulca inip kalkıyordu. {{child.name}} sessizce gülümsedi; içi sıcacık olmuştu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_rs_head_tucked",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_02",
+      "text": "{{companion.name}}'ın gözleri yavaşça kapandı. Bir esneme daha, bir kıpırtı daha, sonra derin bir sessizlik. {{companion.name}} uyuyordu. {{child.name}} onu uyandırmamak için parmak uçlarında geri çekildi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_rs_tiptoe_back",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_03",
+      "text": "Bir süre sonra pencerenin önünden ince, düzenli bir nefes sesi geldi. {{companion.name}} uyumuştu. Küçük yüzü öyle rahattı ki {{child.name}} bakmaya doyamadı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_rs_even_breathing",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_04",
+      "text": "{{companion.name}} son bir kez esnedi, kendi kendine bir şey mırıldandı ve uykuya daldı. Artık uyuyabiliyordu. {{child.name}} perdeyi yarıya kadar usulca örttü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_rs_last_yawn",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    }
+  ]
+}

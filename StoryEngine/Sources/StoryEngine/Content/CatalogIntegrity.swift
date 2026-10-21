@@ -110,6 +110,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkSafetyTopics(catalog))
         issues.append(contentsOf: checkGlossary(catalog))
         issues.append(contentsOf: checkSeries(catalog))
+        issues.append(contentsOf: checkArcs(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -159,7 +160,9 @@ public struct CatalogIntegrityChecker: Sendable {
                                     message: "Continuation '\(blueprint.id)' has \(blueprint.pagePlan.count) pages; "
                                         + "band \(blueprint.ageRange) is \(blueprint.ageRange.pageCount)."))
             }
-            let result = validator.validate(blueprint.beatSlots, conflictMechanism: blueprint.family?.conflict)
+            let result = validator.validate(
+                blueprint.beatSlots, conflictMechanism: blueprint.family?.conflict,
+                intensityCeiling: blueprint.arc.intensityCeiling(for: blueprint.ageRange), arc: blueprint.arc)
             for issue in result.issues {
                 issues.append(.init(
                     severity: issue.severity == .fatal ? .error : .warning,
@@ -191,6 +194,49 @@ public struct CatalogIntegrityChecker: Sendable {
                 if !served {
                     issues.append(.init(severity: .warning, code: "series_unavailable_in_band",
                                         message: "Mode '\(mode.rawValue)' has stories in band \(band) but no continuation; they cannot be continued."))
+                }
+            }
+        }
+        return issues
+    }
+
+    /// The bedtime arc (karar: 21 Ekim 2026) holds together on both sides.
+    ///
+    /// - A bedtime blueprint has a place to sleep to open in, and every beat it
+    ///   uses has bedtime lines in its band. Without them it is admitted by the
+    ///   mode and fails at compose time, which is the wrong end.
+    /// - Nothing a bedtime story reads — its lines or its place — touches the
+    ///   dark, being alone, or fear, whatever the parent's setting says
+    ///   (privacy-safety koşul 1).
+    private func checkArcs(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        let excluded = NarrativeArc.bedtimeExcludedTopics
+        let restingPlaces = catalog.settings.filter { $0.traits.contains(.isRestingPlace) }
+
+        for blueprint in catalog.blueprints where blueprint.arc == .bedtime {
+            if restingPlaces.isEmpty {
+                issues.append(.init(severity: .error, code: "bedtime_without_resting_place", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' is bedtime-arc and no setting offers isRestingPlace."))
+            }
+            for beat in Set(blueprint.beatSlots.flatMap(\.beats)).sorted(by: { $0.rawValue < $1.rawValue })
+            where OfflineStoryComposer.templates(for: beat, in: catalog, blueprint: blueprint).isEmpty {
+                issues.append(.init(severity: .error, code: "bedtime_beat_without_templates", recordID: blueprint.id,
+                                    message: "Blueprint '\(blueprint.id)' needs bedtime lines for '\(beat.rawValue)' in \(blueprint.ageRange) and nothing writes them."))
+            }
+        }
+        for setting in restingPlaces {
+            let touched = excluded.intersection(setting.topics).map(\.rawValue).sorted()
+            if !touched.isEmpty {
+                issues.append(.init(severity: .error, code: "bedtime_topic", recordID: setting.id,
+                                    message: "Resting place '\(setting.id)' touches \(touched); a bedtime place never does."))
+            }
+        }
+        for template in catalog.templates where template.arc == .bedtime {
+            for variant in template.variants {
+                let touched = excluded.intersection(variant.topics).map(\.rawValue).sorted()
+                if !touched.isEmpty {
+                    issues.append(.init(severity: .error, code: "bedtime_topic", recordID: variant.id,
+                                        message: "Bedtime line '\(variant.id)' touches \(touched); a bedtime line never does."))
                 }
             }
         }
@@ -394,7 +440,9 @@ public struct CatalogIntegrityChecker: Sendable {
         for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
             let result = validator.validate(
                 blueprint.beatSlots,
-                conflictMechanism: blueprint.family?.conflict
+                conflictMechanism: blueprint.family?.conflict,
+                intensityCeiling: blueprint.arc.intensityCeiling(for: blueprint.ageRange),
+                arc: blueprint.arc
             )
             for issue in result.issues {
                 // The validator now grades its own findings. A structural

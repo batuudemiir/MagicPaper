@@ -179,15 +179,16 @@ public struct SeriesPlanner: Sendable {
         guard let keepsake = catalog.object(anchor.keepsakeID) else {
             throw SeriesPlanningError.unknownContent(anchor.keepsakeID)
         }
-        guard catalog.setting(anchor.settingID) != nil else {
+        guard let setting = catalog.setting(anchor.settingID) else {
             throw SeriesPlanningError.unknownContent(anchor.settingID)
         }
+        let arc = Self.arc(of: setting)
         guard catalog.companion(anchor.companionID) != nil else {
             throw SeriesPlanningError.unknownContent(anchor.companionID)
         }
 
         let blueprints = try Self.episodeNumbers.map { number in
-            try blueprint(for: number, mode: mode, band: band, seed: seed, catalog: catalog)
+            try blueprint(for: number, mode: mode, band: band, arc: arc, seed: seed, catalog: catalog)
         }
 
         let seriesFamily = family.map {
@@ -316,11 +317,10 @@ public struct SeriesPlanner: Sendable {
     /// start, one step per episode, so two mechanisms alternate (A-B-A-B)
     /// rather than the seed landing on the same one four times.
     private func blueprint(
-        for number: Int, mode: StoryMode, band: AgeBand, seed: String, catalog: ContentCatalog
+        for number: Int, mode: StoryMode, band: AgeBand, arc: NarrativeArc, seed: String,
+        catalog: ContentCatalog
     ) throws -> CatalogBlueprint {
-        let eligible = catalog.series.continuations
-            .filter { $0.ageRange == band && $0.continuation?.modes.contains(mode) == true }
-            .sorted { $0.id.rawValue < $1.id.rawValue }
+        let eligible = Self.continuations(mode: mode, band: band, arc: arc, catalog: catalog)
         guard !eligible.isEmpty else {
             throw SeriesPlanningError.noContinuation(mode: mode, band: band, episode: number)
         }
@@ -331,6 +331,42 @@ public struct SeriesPlanner: Sendable {
             if candidate.continuation?.serves(mode: mode, episode: number) == true { return candidate }
         }
         throw SeriesPlanningError.noContinuation(mode: mode, band: band, episode: number)
+    }
+
+    /// The arc a series continues in, read from the place it is anchored to.
+    ///
+    /// A story that opened in a place to sleep was written in the bedtime arc
+    /// (`SettingTrait.isRestingPlace`), and its episodes must be too: an
+    /// episode is bound to the first story's place, and a standard episode
+    /// cannot be bound there. Read from the setting rather than the first
+    /// story's blueprint, so a saved origin needs nothing it does not already
+    /// carry.
+    static func arc(of setting: CatalogSetting) -> NarrativeArc {
+        setting.traits.contains(.isRestingPlace) ? .bedtime : .standard
+    }
+
+    /// Continuations that serve this mode, band and arc, in id order.
+    static func continuations(
+        mode: StoryMode, band: AgeBand, arc: NarrativeArc, catalog: ContentCatalog
+    ) -> [CatalogBlueprint] {
+        catalog.series.continuations
+            .filter {
+                $0.ageRange == band && $0.arc == arc && $0.continuation?.modes.contains(mode) == true
+            }
+            .sorted { $0.id.rawValue < $1.id.rawValue }
+    }
+
+    /// Whether a story anchored here could be continued at all. Cheap; the
+    /// plan itself is made on "Devam ettir".
+    ///
+    /// No bedtime-arc continuation is written yet (21 Ekim 2026), so a story
+    /// that opened in a bedroom is not offered a series; bedtime stories
+    /// written before the arc, and their saved series, continue as before.
+    public static func isAvailable(
+        settingID: ContentID, mode: StoryMode, band: AgeBand, catalog: ContentCatalog
+    ) -> Bool {
+        guard let setting = catalog.setting(settingID) else { return false }
+        return !continuations(mode: mode, band: band, arc: arc(of: setting), catalog: catalog).isEmpty
     }
 
     /// Discoveries to try for an episode, best first: new ones in a seeded

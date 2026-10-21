@@ -51,10 +51,12 @@ final class CatalogBundleTests: XCTestCase {
 
         // Merged totals.
         // 15 = the Schema 2 library alone, V1's 12 having been retired (D3).
-        XCTAssertEqual(catalog.blueprints.count, 15)
+        // 17 with the two bedtime-arc blueprints (uyku arkı, 21 Ekim 2026).
+        XCTAssertEqual(catalog.blueprints.count, 17)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
-        XCTAssertEqual(catalog.settings.count, 22)
+        // 24 with the two bedrooms the bedtime arc opens and closes in.
+        XCTAssertEqual(catalog.settings.count, 24)
         XCTAssertEqual(catalog.companions.count, 20)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
@@ -71,9 +73,11 @@ final class CatalogBundleTests: XCTestCase {
         // and the suite is being run against yesterday's corpus — a green run
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
-        XCTAssertEqual(catalog.templates.count, 93)
+        // 93 → 109 (21 Ekim 2026): 16 bedtime-arc beat files, 8 per band.
+        XCTAssertEqual(catalog.templates.count, 109)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
-        XCTAssertEqual(catalog.recordCounts["variants"], 583)
+        // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
+        XCTAssertEqual(catalog.recordCounts["variants"], 695)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

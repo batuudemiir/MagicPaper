@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_tc_01",
+      "text": "\"Ben seni uyuturum,\" dedi {{child.name}}. Her akşam ona nasıl yapılıyorsa, o da {{companion.name}}'a öyle yapacaktı. Yavaşça, sabırla, hiç acele etmeden.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_tc_mirror_the_ritual",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_tc_02",
+      "text": "{{child.name}} bir an düşündü. Uyuyamadığı gecelerde ona ne yapılırdı? Işık kısılır, bir ninni söylenir, yanında beklenirdi. \"Ben de sana öyle yapacağım,\" dedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_tc_remembers_what_helps",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_tc_03",
+      "text": "\"Merak etme,\" dedi {{child.name}} usulca. \"Uyumak bazen biraz zaman alır. Ben buradayım.\" {{companion.name}} rahat bir nefes alıp pencereye biraz daha sokuldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_tc_i_am_here",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_tc_04",
+      "text": "{{child.name}} yataktan kalktı ve pencerenin önüne diz çöktü. \"Seni uyutacağım,\" dedi. \"Tıpkı her akşam beni uyuttukları gibi.\" Bu çok önemli bir işti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_tc_kneels_at_window",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

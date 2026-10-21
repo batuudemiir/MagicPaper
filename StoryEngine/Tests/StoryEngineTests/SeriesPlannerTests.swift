@@ -19,14 +19,26 @@ final class SeriesPlannerTests: XCTestCase {
     }
 
     /// The first story, as `createStory` would write it.
+    ///
+    /// A bedtime first story is the kind saved before the bedtime arc (21 Ekim
+    /// 2026): a charge story in a garden or a forest. Those are the bedtime
+    /// stories a series can continue today; a story that opened in a bedroom
+    /// has no episodes written yet (`testABedtimeArcStoryIsNotOfferedASeries`).
     private func firstStory(
         mode: StoryMode, band: AgeBand, seed: String, family: FamilyCast? = nil,
         catalog: ContentCatalog
     ) throws -> ComposedStory {
-        try OfflineStoryComposer().compose(
-            catalog: catalog,
-            intent: OfflineStoryIntent(
-                childName: "Yeliz", seed: seed, mode: mode, ageBand: band, family: family))
+        let intent = OfflineStoryIntent(
+            childName: "Yeliz", seed: seed, mode: mode, ageBand: band, family: family)
+        guard mode == .bedtime else {
+            return try OfflineStoryComposer().compose(catalog: catalog, intent: intent)
+        }
+        let saved = catalog.blueprints.filter {
+            $0.isBeatAuthored && $0.family == .charge && $0.arc == .standard && $0.ageRange == band
+        }
+        let blueprint = try XCTUnwrap(saved.isEmpty ? nil : saved[DeterministicPicker.index(
+            count: saved.count, seed: seed, salt: "saved-bedtime")])
+        return try OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: intent)
     }
 
     private func anchor(_ story: ComposedStory) -> SeriesAnchor {
@@ -376,5 +388,32 @@ final class SeriesPlannerTests: XCTestCase {
             }
         }
         try out.write(toFile: path, atomically: true, encoding: .utf8)
+    }
+
+    // MARK: - Bedtime arc
+
+    /// A story that opened in a bedroom (uyku arkı) is not offered a series
+    /// until bedtime episodes are written: no standard episode can be set in
+    /// a place to sleep, so offering "Devam ettir" would fail at the tap.
+    func testABedtimeArcStoryIsNotOfferedASeries() throws {
+        let catalog = try catalog()
+        for band in [Self.age3, Self.age5] {
+            let story = try OfflineStoryComposer().compose(
+                catalog: catalog,
+                intent: OfflineStoryIntent(childName: "Yeliz", seed: "uyku", mode: .bedtime, ageBand: band))
+            XCTAssertEqual(catalog.blueprint(story.blueprintID)?.arc, .bedtime)
+            XCTAssertFalse(SeriesPlanner.isAvailable(
+                settingID: story.content.setting.id, mode: .bedtime, band: band, catalog: catalog))
+            XCTAssertThrowsError(try SeriesPlanner().plan(
+                anchor: anchor(story), mode: .bedtime, band: band, family: nil, familyCharacterID: nil,
+                childName: "Yeliz", seed: "uyku", catalog: catalog)) { error in
+                XCTAssertEqual(error as? SeriesPlanningError,
+                               .noContinuation(mode: .bedtime, band: band, episode: 2))
+            }
+            // A bedtime story saved before the arc still continues.
+            let saved = try firstStory(mode: .bedtime, band: band, seed: "uyku", catalog: catalog)
+            XCTAssertTrue(SeriesPlanner.isAvailable(
+                settingID: saved.content.setting.id, mode: .bedtime, band: band, catalog: catalog))
+        }
     }
 }

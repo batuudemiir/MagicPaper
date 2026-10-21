@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfayı bir başka beat ile paylaşır"
+  },
+  "variants": [
+    {
+      "id": "bt3_na_01",
+      "text": "Pencereden {{discovery.name}} geldi.",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_from_window",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt3_na_02",
+      "text": "Tam o sırada {{discovery.name}} duyuldu.",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_just_then",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt3_na_03",
+      "text": "{{child.name}} pencereden {{discovery.name}} duydu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_child_hears",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt3_na_04",
+      "text": "Pencerenin önünden {{discovery.name}} yükseldi.",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_rises",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt3_na_fs_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} bir ses duydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_sibling_hear",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_na_fs_02",
+      "text": "{{child.name}} {{discovery.name}} duydu. Kardeşi {{family.name}} doğruldu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_sibling_sits_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_na_ff_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} bir ses duydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_friend_hear",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_na_ff_02",
+      "text": "{{child.name}} {{discovery.name}} duydu. Arkadaşı {{family.name}} doğruldu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_friend_sits_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_na_fa_01",
+      "text": "{{child.name}} bir ses duydu. Ayakucundaki {{family.possessive}} {{family.name}} başını kaldırdı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_pet_looks_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_na_fa_02",
+      "text": "{{child.name}} bir ses duydu. Pencereye {{family.possessive}} {{family.name}} baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_pet_looks_first",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_na_fi_01",
+      "text": "{{child.name}} bir ses duydu. Hayali arkadaşı {{family.name}} pencereyi gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_imaginary_points",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_na_fi_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}} ile bir ses duydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_na_imaginary_hear",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

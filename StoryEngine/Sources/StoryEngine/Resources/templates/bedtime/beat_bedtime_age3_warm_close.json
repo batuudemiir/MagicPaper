@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt3_wc_01",
+      "text": "{{child.name}} yine yatağına döndü. {{setting.name}} sessizdi. Gözleri usulca kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_back_to_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w34_sessiz"
+      ]
+    },
+    {
+      "id": "bt3_wc_02",
+      "text": "{{child.name}} yorganını çenesine çekti. {{setting.name}}'da her şey sakindi. Pencerede bir dost uyuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_blanket_again",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w34_yorgan"
+      ]
+    },
+    {
+      "id": "bt3_wc_03",
+      "text": "Işık kısık, yorgan sıcacıktı. {{setting.name}} tıpkı akşamki gibiydi. {{child.name}} uykuya daldı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_as_before",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_wc_04",
+      "text": "{{child.name}} pencereye son kez baktı. {{setting.name}} sakindi. Gözleri kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_last_look",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_wc_fs_01",
+      "text": "Kardeşi {{family.name}} çoktan uyumuştu. {{child.name}} yorganına sarındı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_sibling_asleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_wc_fs_02",
+      "text": "\"İyi geceler,\" dedi kardeşi {{family.name}}. {{child.name}} gözlerini kapadı. {{setting.name}}'da her şey sakindi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_sibling_goodnight",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_wc_ff_01",
+      "text": "Arkadaşı {{family.name}} mışıl mışıl uyuyordu. {{child.name}} yorganını çekti. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_friend_asleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_wc_ff_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yan yana uzandı. {{setting.name}}'da her şey sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_friend_side_by_side",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_wc_fa_01",
+      "text": "Ayakucunda {{family.possessive}} {{family.name}} uyuyordu. {{child.name}} gözlerini kapadı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_pet_at_feet",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_wc_fa_02",
+      "text": "{{child.name}} yorganını çekti. Yanına {{family.possessive}} {{family.name}} sokuldu. {{setting.name}}'da her şey sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_pet_snuggles",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_wc_fi_01",
+      "text": "Hayali arkadaşı {{family.name}} pencerenin yanında oturdu. {{child.name}} uykuya daldı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_imaginary_by_window",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_wc_fi_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a \"İyi geceler\" dedi. {{setting.name}}'da her şey sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_wc_imaginary_goodnight",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}
