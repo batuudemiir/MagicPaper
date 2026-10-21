@@ -171,4 +171,21 @@ final class VariationBaselineTests: XCTestCase {
                   + "\(report.casts) kadro, tekrar %\(Int(report.repeatedSentenceRate * 100))")
         }
     }
+    // MARK: - Ulaşılamayan blueprint
+
+    /// Yayınlanan katalogda hiçbir moda bağlanamayan blueprint var mı.
+    ///
+    /// Bu test bugün **kırmızı başlıyor** ve bu kasıtlı: 21 Ekim'de uyku arkı
+    /// eklenirken üç blueprint sessizce ulaşılamaz oldu. Testin işi onları
+    /// görünür tutmak; düzeltildiklerinde ya da bilerek emekliye ayrıldıklarında
+    /// yeşile döner.
+    func testNoBlueprintIsStrandedWithoutAMode() throws {
+        let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
+        let stranded = report.issues(withCode: "blueprint_serves_no_mode")
+        XCTAssertTrue(
+            stranded.isEmpty,
+            "Hiçbir moda bağlanamayan blueprint:\n"
+            + stranded.map { "  " + $0.message }.joined(separator: "\n"))
+    }
+
 }

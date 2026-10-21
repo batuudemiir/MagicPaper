@@ -106,6 +106,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkAgeFit(catalog))
         issues.append(contentsOf: checkStoryModes(catalog))
         issues.append(contentsOf: checkStoryTopics(catalog))
+        issues.append(contentsOf: checkBlueprintsReachable(catalog))
         issues.append(contentsOf: checkFamily(catalog))
         issues.append(contentsOf: checkInterests(catalog))
         issues.append(contentsOf: checkSafetyTopics(catalog))
@@ -739,6 +740,34 @@ public struct CatalogIntegrityChecker: Sendable {
     ///   içerik henüz yazılmamış. Çocuk bundan etkilenmez — `availableTopics`
     ///   o konuyu zaten göstermez — ama içeriği yazan kişi bunu görmeli,
     ///   yoksa "Meslekler yazdım ama hiç çıkmıyor" diye arar.
+    /// Hiçbir modun kabul etmediği blueprint.
+    ///
+    /// 21 Ekim 2026'da üç blueprint bu duruma düştü ve kimse fark etmedi: uyku
+    /// arkı eklenirken `bedtime` profiline `arcs: ["bedtime"]` yazıldı, ama
+    /// `charge` ailesinin standart yaydaki üç masalı olduğu yerde kaldı. Charge
+    /// yalnızca bedtime'a hizmet ettiği için o üçü hiçbir moda bağlanamaz oldu —
+    /// aralarında 3-4 bandının ninni dışındaki **tek** masalı da vardı.
+    ///
+    /// Kusurun sinsiliği şurada: katalog geçerli, blueprint geçerli, testler
+    /// yeşil. Yalnızca o masallar bir daha hiçbir çocuğa ulaşmıyor.
+    ///
+    /// `error` değil `warning`: bir blueprint'i bilerek emekliye ayırmak meşru
+    /// bir karardır (yeniden yazılana kadar beklemek gibi). Uyarı o kararın
+    /// sessiz kalmamasını sağlıyor, engellemiyor.
+    private func checkBlueprintsReachable(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        guard !catalog.storyModes.isEmpty else { return [] }
+        return catalog.blueprints.filter { blueprint in
+            blueprint.isBeatAuthored
+                && !catalog.storyModes.contains { $0.admits(blueprint) }
+        }.map { blueprint in
+            CatalogIssue(
+                severity: .warning, code: "blueprint_serves_no_mode", recordID: blueprint.id,
+                message: "Blueprint '\(blueprint.id.rawValue)' (\(blueprint.family?.rawValue ?? "ailesiz"), "
+                    + "\(blueprint.arc.rawValue) yay, \(blueprint.ageRange)) hiçbir modun kabul ettiği "
+                    + "aile/yay bileşimine sahip değil; hiçbir çocuğa ulaşmıyor.")
+        }
+    }
+
     private func checkStoryTopics(_ catalog: ContentCatalog) -> [CatalogIssue] {
         guard !catalog.storyTopics.isEmpty else { return [] }
         var issues: [CatalogIssue] = []
