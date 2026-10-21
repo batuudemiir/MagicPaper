@@ -1,0 +1,19 @@
+{
+  "fields": [
+    "StoryEndingLeaf bedtime variant: gate = story.mode == .bedtime || MPBedtime clock; no spring/scale on Ragi (fade only); streak + new-word tiles hidden; fresh badge as one quiet line; İyi geceler primary"
+  ],
+  "files": [
+    "MagicPaper/Screens/StoryReader/StoryEndingLeaf.swift"
+  ],
+  "tests": [
+    "new StoryEndingLeafBedtimeTests (gate logic as a pure helper: mode bedtime",
+    "mode nil + clock",
+    "adventure at night); existing StoryReaderModelTests unchanged"
+  ],
+  "owner": "reader",
+  "cost": "S",
+  "reversible": true,
+  "notes": "No auto-advance exists today, so StoryReaderView needs no change unless narration should finish the last page instead of being cut on turn (optional, small). Badge recording in pageChanged stays as is; only presentation changes. Needs product-owner word on badge visibility at bedtime (CLAUDE.md principle 7). Simulator check: light/dark, largest Dynamic Type, Reduce Motion, SE + Pro Max.",
+  "by": "reader",
+  "at": "2026-10-20T21:30:30Z"
+}

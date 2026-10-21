@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfayı bir başka beat ile paylaşır"
+  },
+  "variants": [
+    {
+      "id": "bt3_pw_01",
+      "text": "{{child.name}} yavaşça saydı: bir, iki, üç.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_pw_counts",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w34_yavasca"
+      ]
+    },
+    {
+      "id": "bt3_pw_02",
+      "text": "{{child.name}} sessizce bekledi ve ninniyi tekrarladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_pw_waits_sings",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_pw_03",
+      "text": "Birlikte aya baktılar, hiç acele etmeden.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "bt3_pw_moon_together",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_pw_04",
+      "text": "{{child.name}} yanında durdu, hiç konuşmadan bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_pw_stays_quiet",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

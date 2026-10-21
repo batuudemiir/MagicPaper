@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt3_td_01",
+      "text": "{{child.name}} lambayı kıstı. Sonra küçük bir \"hık!\" duyuldu. {{companion.name}} hıçkırıyordu! İkisi de güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_td_hiccup",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_td_02",
+      "text": "{{child.name}} bir ninni söyledi. Ninninin ortasında kendisi esnedi. {{companion.name}} kıkır kıkır güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_td_singer_yawns",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_td_03",
+      "text": "{{child.name}} pencereye minik bir yastık koydu. {{companion.name}} yastığa oturup hapşırdı: hapşu! İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_td_pillow_sneeze",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_td_04",
+      "text": "{{child.name}} perdeyi yarıya çekti. {{companion.name}} kocaman esnedi, sonra güldü. Bu çok komikti!",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_td_yawn_then_laugh",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

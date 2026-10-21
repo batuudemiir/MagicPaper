@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "bts_ra_01",
+      "text": "\"Ben onun nerede rahat edeceğini biliyorum,\" dedi {{companion.name}} tatlı bir fısıltıyla.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_ra_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_ra_02",
+      "text": "{{companion.name}} pencerenin kenarını gösterdi. \"Orası sıcacık,\" dedi. \"Ona çok iyi gelir.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_ra_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_ra_03",
+      "text": "\"Onun biraz özene ihtiyacı var,\" dedi {{companion.name}}. \"Sonra rahat rahat uyur.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts_ra_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

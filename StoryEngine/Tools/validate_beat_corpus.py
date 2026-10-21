@@ -52,6 +52,11 @@ UNHARMONISED_CONJUNCTION = re.compile(r"\}\}(?:'[a-zçğıöşü]+)? (?:da|de|ta
 AGE3_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age3"
 # Series episodes (FAZ 13): lines only a continuation episode uses.
 SERIES_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/series"
+# Uyku arkı (21 Ekim 2026): lines only a bedtime-arc blueprint reads.
+BEDTIME_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/bedtime"
+# What no bedtime line or place may touch. Same list as
+# `NarrativeArc.bedtimeExcludedTopics` in the engine.
+BEDTIME_EXCLUDED_TOPICS = ("darkness", "alone", "fear")
 # How an episode may not end (karar: 6 Ekim 2026). The same list as
 # `CalmEnding` in the engine: word prefixes, then phrases. "ama" is allowed.
 CALM_WORD_PREFIXES = ("yarın", "acaba", "birden")
@@ -348,19 +353,77 @@ def series_bindings() -> list[dict[str, str]]:
     ]
 
 
+def _check_line_file(beat_file, label, bindings, report, *, calm_label) -> int:
+    """The per-line rules every layer outside v3 is held to (series, bedtime):
+    word band from the file, sentence ceiling from the band (3-4: 10), case
+    suffixes, declared slots, no "da/de" after a slot, family lines that name
+    the character and only they do, MIN_FAMILY_CELL lines per relation, a
+    place noun only with the setting trait that guarantees it, and a
+    `warm_close` that ends calmly. Returns the number of lines checked."""
+    band = beat_file.get("ageBand", "?")
+    ceiling = 10 if band == "3-4" else MAX_SENTENCE_WORDS
+    cells = Counter()
+    total = 0
+    for variant in beat_file["variants"]:
+        total += 1
+        vid = f"{label}/{variant['id']}"
+        text = variant["text"]
+        klass = variant.get("lengthClass")
+        low, high = band_for(beat_file, klass)
+        counts = [len(render(text, b).split()) for b in bindings]
+        if min(counts) < low or max(counts) > high:
+            report.fail(f"{vid}: {min(counts)}-{max(counts)} words, band is {low}-{high}")
+        for b in bindings:
+            sentences = [x for x in re.split(r"[.!?:]", render(text, b)) if x.strip()]
+            longest = max((len(x.split()) for x in sentences), default=0)
+            if longest > ceiling:
+                report.fail(f"{vid}: longest sentence {longest} words, max {ceiling}")
+                break
+        for match in SLOT_PATTERN.finditer(text):
+            if match.group(2) and match.group(2) not in CASE_SUFFIXES:
+                report.fail(f"{vid}: '{match.group(2)}' is not a case ending")
+        used = set(TOKEN_PATTERN.findall(text))
+        if used != set(variant.get("requiredSlots", [])):
+            report.fail(f"{vid}: requiredSlots {sorted(variant.get('requiredSlots', []))} but text uses {sorted(used)}")
+        if UNHARMONISED_CONJUNCTION.search(text):
+            report.fail(f"{vid}: 'da/de' after a slot does not follow the name's vowel harmony")
+        if "hayali varlı" in text.lower():
+            report.fail(f"{vid}: says 'hayali varlık'")
+        relations = variant.get("familyRelations", [])
+        names = "{{family.name}}" in text
+        if relations and not names:
+            report.fail(f"{vid}: written for {relations} but never names the character")
+        if names and not relations:
+            report.fail(f"{vid}: names a family character but declares no familyRelations")
+        if relations and beat_file["beat"] == "revisit":
+            first = re.split(r"(?<=[.!?…])\s", text, maxsplit=1)[0]
+            if "{{child.name}}" not in first:
+                report.fail(f"{vid}: the first sentence must name the child")
+        for relation in relations:
+            cells[relation] += 1
+        if not variant.get("settingTraits"):
+            found = PLACE_NOUNS.findall(TOKEN_PATTERN.sub("", text))
+            if found:
+                report.fail(f"{vid}: names {sorted(set(found))} but declares no settingTraits")
+        if beat_file["beat"] == "warm_close":
+            wrong = calm_violations(text)
+            if wrong:
+                report.fail(f"{vid}: {calm_label} must end calmly, found {wrong}")
+    if cells:
+        for relation in FAMILY_RELATIONS:
+            if cells[relation] < MIN_FAMILY_CELL:
+                report.fail(f"{label}: {cells[relation]} line(s) for '{relation}', need {MIN_FAMILY_CELL}")
+    return total
+
+
 def check_series_lines(report) -> None:
     """Series episode lines (FAZ 13), both bands, held to every rule the
     standalone lines are — and to the calm ending on the closing beat.
 
     - each file says `series: true`, so the engine keeps it out of standalone
       stories;
-    - word bands from the file, sentence ceiling from the band (3-4: 10);
-    - case suffixes, declared slots, no "da/de" after a slot;
-    - family lines name the character, only they do, and every relation has
-      MIN_FAMILY_CELL lines; an opening (`revisit`) names the child first;
-    - a place noun needs the setting trait that guarantees it;
-    - `warm_close` lines end calmly: no question, "yarın", "acaba", "birden",
-      "sonra ne olacak".
+    - every per-line rule in `_check_line_file`; an opening (`revisit`) names
+      the child first.
     """
     paths = sorted(SERIES_CORPUS.glob("beat_*.json"))
     if not paths:
@@ -370,62 +433,38 @@ def check_series_lines(report) -> None:
     total = 0
     for path in paths:
         beat_file = json.loads(path.read_text(encoding="utf-8"))
-        band = beat_file.get("ageBand", "?")
-        label = f"series {beat_file['beat']}[{band}]"
+        label = f"series {beat_file['beat']}[{beat_file.get('ageBand', '?')}]"
         if beat_file.get("series") is not True:
             report.fail(f"{label}: {path.name} is in the series folder but does not say series: true")
-        ceiling = 10 if band == "3-4" else MAX_SENTENCE_WORDS
-        cells = Counter()
-        for variant in beat_file["variants"]:
-            total += 1
-            vid = f"{label}/{variant['id']}"
-            text = variant["text"]
-            klass = variant.get("lengthClass")
-            low, high = band_for(beat_file, klass)
-            counts = [len(render(text, b).split()) for b in bindings]
-            if min(counts) < low or max(counts) > high:
-                report.fail(f"{vid}: {min(counts)}-{max(counts)} words, band is {low}-{high}")
-            for b in bindings:
-                sentences = [x for x in re.split(r"[.!?:]", render(text, b)) if x.strip()]
-                longest = max((len(x.split()) for x in sentences), default=0)
-                if longest > ceiling:
-                    report.fail(f"{vid}: longest sentence {longest} words, max {ceiling}")
-                    break
-            for match in SLOT_PATTERN.finditer(text):
-                if match.group(2) and match.group(2) not in CASE_SUFFIXES:
-                    report.fail(f"{vid}: '{match.group(2)}' is not a case ending")
-            used = set(TOKEN_PATTERN.findall(text))
-            if used != set(variant.get("requiredSlots", [])):
-                report.fail(f"{vid}: requiredSlots {sorted(variant.get('requiredSlots', []))} but text uses {sorted(used)}")
-            if UNHARMONISED_CONJUNCTION.search(text):
-                report.fail(f"{vid}: 'da/de' after a slot does not follow the name's vowel harmony")
-            if "hayali varlı" in text.lower():
-                report.fail(f"{vid}: says 'hayali varlık'")
-            relations = variant.get("familyRelations", [])
-            names = "{{family.name}}" in text
-            if relations and not names:
-                report.fail(f"{vid}: written for {relations} but never names the character")
-            if names and not relations:
-                report.fail(f"{vid}: names a family character but declares no familyRelations")
-            if relations and beat_file["beat"] == "revisit":
-                first = re.split(r"(?<=[.!?…])\s", text, maxsplit=1)[0]
-                if "{{child.name}}" not in first:
-                    report.fail(f"{vid}: the first sentence must name the child")
-            for relation in relations:
-                cells[relation] += 1
-            if not variant.get("settingTraits"):
-                found = PLACE_NOUNS.findall(TOKEN_PATTERN.sub("", text))
-                if found:
-                    report.fail(f"{vid}: names {sorted(set(found))} but declares no settingTraits")
-            if beat_file["beat"] == "warm_close":
-                wrong = calm_violations(text)
-                if wrong:
-                    report.fail(f"{vid}: an episode must end calmly, found {wrong}")
-        if cells:
-            for relation in FAMILY_RELATIONS:
-                if cells[relation] < MIN_FAMILY_CELL:
-                    report.fail(f"{label}: {cells[relation]} line(s) for '{relation}', need {MIN_FAMILY_CELL}")
+        total += _check_line_file(beat_file, label, bindings, report, calm_label="an episode")
     report.note(f"series: {len(paths)} beat files, {total} lines")
+
+
+def check_bedtime_lines(report) -> None:
+    """Uyku arkı lines (arc: bedtime, 21 Ekim 2026), both bands.
+
+    - each file says `arc: bedtime`, so the engine gives it only to a
+      bedtime-arc blueprint and to nothing else;
+    - every per-line rule in `_check_line_file`, and the calm ending;
+    - no line touches the dark, being alone, or fear (privacy-safety koşul 1).
+    """
+    paths = sorted(BEDTIME_CORPUS.glob("beat_*.json"))
+    if not paths:
+        report.note("bedtime: no bedtime lines yet")
+        return
+    bindings = [dict(b, **{"companion.type": t}) for b, t in zip(series_bindings(), ("kirpi", "kaplumbağa"))]
+    total = 0
+    for path in paths:
+        beat_file = json.loads(path.read_text(encoding="utf-8"))
+        label = f"bedtime {beat_file['beat']}[{beat_file.get('ageBand', '?')}]"
+        if beat_file.get("arc") != "bedtime":
+            report.fail(f"{label}: {path.name} is in the bedtime folder but does not say arc: bedtime")
+        for variant in beat_file["variants"]:
+            touched = sorted(set(t.lower() for t in variant.get("topics", [])) & set(BEDTIME_EXCLUDED_TOPICS))
+            if touched:
+                report.fail(f"{label}/{variant['id']}: a bedtime line touches {touched}")
+        total += _check_line_file(beat_file, label, bindings, report, calm_label="a bedtime story")
+    report.note(f"bedtime: {len(paths)} beat files, {total} lines")
 
 
 def check_banned(corpus, report) -> None:
@@ -472,6 +511,11 @@ def shipped_sequences() -> list[dict]:
         except (json.JSONDecodeError, OSError):
             continue
         for blueprint in document.get("blueprints", []):
+            # A bedtime-arc blueprint reads only the bedtime folder, which
+            # `check_bedtime_lines` and the Swift suite hold to account; the
+            # v3 corpus never serves it.
+            if blueprint.get("arc", "standard") != "standard":
+                continue
             beats = []
             for page in blueprint.get("pages", []):
                 slot = [b for b in (page.get("beat"), page.get("supportingBeat")) if b]
@@ -1008,9 +1052,9 @@ FORBIDDEN_SAFETY_TOPICS = ("death", "loss", "olum", "ölüm", "kayip", "kayıp")
 
 
 def _all_line_files() -> list[tuple[str, dict]]:
-    """Every beat file a story can read lines from: 5-6, 3-4 and series."""
+    """Every beat file a story can read lines from: 5-6, 3-4, series and bedtime."""
     files = []
-    for folder in (CORPUS, AGE3_CORPUS, SERIES_CORPUS):
+    for folder in (CORPUS, AGE3_CORPUS, SERIES_CORPUS, BEDTIME_CORPUS):
         for path in sorted(folder.glob("*.json")):
             files.append((f"{folder.name}/{path.name}", json.loads(path.read_text(encoding="utf-8"))))
     return files
@@ -1136,6 +1180,7 @@ def main() -> int:
         lambda: check_safety_topics(corpus, report),
         lambda: check_glossary_words(corpus, report),
         lambda: check_series_lines(report),
+        lambda: check_bedtime_lines(report),
     ]
     for gate in gates:
         gate()

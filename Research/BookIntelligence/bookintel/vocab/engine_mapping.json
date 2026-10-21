@@ -1,0 +1,41 @@
+{
+  "_comment": "Research term -> StoryEngine raw values. Many-to-many and approximate on purpose: the research vocabulary describes books, the engine's describes MagicPaper's own arcs. A test reads StoryBeat.swift and EmotionalArc.swift and fails if a target here no longer exists in the engine.",
+  "engine_files": {
+    "beats": "StoryEngine/Sources/StoryEngine/Content/StoryBeat.swift",
+    "emotions": "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift"
+  },
+  "beats": {
+    "HOOK": ["notice_anomaly", "receive_appeal"],
+    "SETUP": ["establish_ordinary", "meet_companion", "prepare"],
+    "DESIRE": ["commit", "take_charge"],
+    "DISCOVERY": ["notice_anomaly", "approach", "examine"],
+    "PROBLEM": ["obstacle_raises", "form_belief", "hesitate"],
+    "FIRST_ATTEMPT": ["first_attempt", "small_step"],
+    "COMPLICATION": ["obstacle_raises", "belief_fails"],
+    "ESCALATION": ["persist", "obstacle_raises", "patient_wait"],
+    "TURN": ["insight", "ask_for_help", "belief_fails", "exchange_views", "retrace"],
+    "CLIMAX": ["cooperative_effort", "find_own_courage", "speak_for", "give_up_something"],
+    "SOLUTION": ["succeed", "restore", "reveal_truth", "let_go", "tend"],
+    "EMOTIONAL_PAYOFF": ["self_recognize", "warm_close"],
+    "ENDING": ["warm_close", "carry_forward", "revisit"]
+  },
+  "emotions": {
+    "curiosity": ["curiosity", "puzzlement"],
+    "joy": ["joy", "delight"],
+    "fear": ["unease", "fear", "panic"],
+    "wonder": ["wonder"],
+    "sadness": ["concern", "grief", "despair"],
+    "frustration": ["frustration"],
+    "embarrassment": ["hesitation"],
+    "excitement": ["delight", "determination", "surprise"],
+    "calm": ["calm", "ease"],
+    "relief": ["relief"],
+    "pride": ["pride", "satisfaction"],
+    "belonging": ["warmth"],
+    "love": ["tenderness", "warmth"],
+    "humor": ["delight"],
+    "anticipation": ["curiosity", "determination"],
+    "loneliness": ["concern"]
+  },
+  "intensity_note": "Research intensity is 0-5 (how strongly the page carries the feeling). Engine intensity is 0-3 and is a safety ceiling per state, not a per-page measure. Compare shapes, not numbers."
+}

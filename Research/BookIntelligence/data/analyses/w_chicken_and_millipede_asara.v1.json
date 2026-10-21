@@ -1,0 +1,259 @@
+{
+  "work_id": "w_chicken_and_millipede_asara",
+  "analysis_version": "1",
+  "edition_id": "e_manual_asb_chicken_and_millipede",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-15T10:40:15Z",
+  "completeness": "full",
+  "summary_paraphrase": "Two competitive friends play football; the small millipede beats the hen five to one, the hen swallows him in a rage, his mother tells him to use his foul taste, he is coughed out, and the tale ends by explaining why chickens and millipedes are enemies.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 1,
+      "function": "competitive friends"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "Chicken keeps losing"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "shoot-out, five goals"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 5,
+      "end_page": 5,
+      "intensity": 4,
+      "function": "rage and laughter"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 6,
+      "end_page": 6,
+      "intensity": 5,
+      "function": "swallowed"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 7,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "mother searches, voice inside"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 3,
+      "function": "special power"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 10,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "coughed out"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 2,
+      "function": "why they are enemies"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "PROBLEM": 0.091,
+    "ESCALATION": 0.182,
+    "COMPLICATION": 0.364,
+    "CLIMAX": 0.455,
+    "TURN": 0.727,
+    "SOLUTION": 0.818,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "chicken",
+      "name": "Chicken",
+      "role": "antagonistic_force",
+      "personality": "competitive, a bad loser",
+      "desire": "to be the best player",
+      "change": "none; loses the friendship",
+      "relation_to_protagonist": "friend turned enemy",
+      "tension_source": "anger at losing"
+    },
+    {
+      "id": "millipede",
+      "name": "Millipede",
+      "role": "protagonist",
+      "desire": "to win the match",
+      "fear": "being eaten",
+      "change": "from friend to enemy of chickens",
+      "relation_to_protagonist": "self",
+      "humor_source": "tiny but wins five goals; laughs at the fuss"
+    },
+    {
+      "id": "mother_millipede",
+      "name": "Mother Millipede",
+      "role": "family_member",
+      "relation_to_protagonist": "mother; tells him how to save himself"
+    }
+  ],
+  "protagonist_agency": 2,
+  "emotional_curve": [
+    1,
+    2,
+    2,
+    3,
+    4,
+    5,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2
+  ],
+  "humor_notes": "Size reversal (tiny millipede outplays the hen), the five ways of scoring, the burp-spit-sneeze-cough sequence.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "'X was …, but Millipede was …-er' comparisons, then three ways of scoring",
+      "pages": [
+        2,
+        4
+      ],
+      "functions": [
+        "rhythm",
+        "humor",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "each line escalates Chicken's humiliation and builds toward the outburst"
+    },
+    {
+      "type": "action",
+      "description": "burp, swallow, spit, sneeze, cough, cough",
+      "pages": [
+        10
+      ],
+      "functions": [
+        "humor",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "a read-aloud list that turns the danger into slapstick"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "The size gap between hen and millipede is carried by the pictures and makes the result funny.",
+      "The scoreboard (1 and 5) sits beside the swallowing scene, tying the act to the score.",
+      "Close-ups of Chicken's face mark her rising anger (p5) and her sickness (p9)."
+    ]
+  },
+  "strengths": [
+    "clear escalation from competition to rage",
+    "the small character's own trait (foul taste) is the escape",
+    "strong read-aloud sound sequence on page 10"
+  ],
+  "weaknesses": [
+    "the friendship breaks and is never repaired",
+    "the protagonist is saved on his mother's instruction",
+    "aggression toward a friend is the climax"
+  ],
+  "anti_patterns": [
+    {
+      "id": "adult_rescues_child",
+      "pages": [
+        9
+      ],
+      "note": "Mother tells Millipede what to do; he only follows"
+    },
+    {
+      "id": "weak_ending",
+      "pages": [
+        12
+      ],
+      "note": "for a friendship reading the ending answers 'why are they enemies', not the friends' conflict; as a pourquoi tale it is complete"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "scores": {
+      "curiosity": 3,
+      "humor": 4,
+      "participation": 3,
+      "emotional_identification": 3,
+      "surprise": 4,
+      "character_warmth": 2,
+      "agency": 2,
+      "visual_novelty": 3,
+      "predictability_balance": 3,
+      "resolution_satisfaction": 2
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children.",
+    "label": "Research heuristic — not validated"
+  },
+  "content_flags": [
+    "violence",
+    "peril"
+  ],
+  "age_suitability": {
+    "magicpaper": "study_only",
+    "notes": "A friend swallows a friend in anger and the friendship ends in permanent enmity: research intensity 5/5 at p6, above the engine's 0-3 ceiling for 5-6 (would be 3+). Useful only as structure (competition escalation, pourquoi ending)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 257,
+    "words_per_page": {
+      "min": 9,
+      "median": 23.5,
+      "max": 29
+    },
+    "mean_sentence_words": 6.76,
+    "longest_sentence": 14,
+    "type_token_ratio": 0.502,
+    "dialogue_ratio": 0.054,
+    "questions": 1,
+    "questions_per_page": 0.08,
+    "direct_address": 2,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "millipede mother millipede": 2,
+        "they decided to play": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "chicken": 11,
+        "millipede": 6,
+        "mother": 5,
+        "then": 4,
+        "they": 2
+      },
+      "end_rhyme_pairs": 2,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

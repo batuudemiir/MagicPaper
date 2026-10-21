@@ -292,8 +292,14 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
     /// Nil "her banda uyar" demek ve yalnızca bant kavramından önce yazılmış
     /// eski kütüphane iskelesi için geçerli. Yeni içerik bandını söyler.
     public let ageBand: AgeBand?
+    /// Bu prozanın yazıldığı ark (`NarrativeArc`). Bant gibi dosyada durur:
+    /// uyku satırları yatakta başlayıp yatakta biten bir masal için yazılır ve
+    /// bahçede açılan bir masala girmez; tersi de. Seçim ikisini hiç karıştırmaz
+    /// (`OfflineStoryComposer.templates`), bu yüzden uyku satırı eklemek başka
+    /// hiçbir masalın tohumunu kaydırmaz.
+    public let arc: NarrativeArc
 
-    private enum CodingKeys: String, CodingKey { case id, role, realizesBeat, compatibleThemes, variants, ageBand }
+    private enum CodingKeys: String, CodingKey { case id, role, realizesBeat, compatibleThemes, variants, ageBand, arc }
 
     public init(
         id: ContentID,
@@ -301,7 +307,8 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
         realizesBeat: StoryBeat?,
         compatibleThemes: [String] = [],
         variants: [CatalogVariant],
-        ageBand: AgeBand? = nil
+        ageBand: AgeBand? = nil,
+        arc: NarrativeArc = .standard
     ) {
         self.id = id
         self.role = role
@@ -309,6 +316,7 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
         self.compatibleThemes = compatibleThemes
         self.variants = variants
         self.ageBand = ageBand
+        self.arc = arc
     }
 
     /// Bu şablon, bu bandın masalına yazı verebilir mi.
@@ -330,6 +338,20 @@ public struct CatalogTemplate: Codable, Sendable, Hashable, Identifiable {
         compatibleThemes = try container.decodeIfPresent([String].self, forKey: .compatibleThemes) ?? []
         variants = try container.decodeIfPresent([CatalogVariant].self, forKey: .variants) ?? []
         ageBand = try container.decodeIfPresent(AgeBand.self, forKey: .ageBand)
+        arc = try container.decodeIfPresent(NarrativeArc.self, forKey: .arc) ?? .standard
+    }
+
+    /// `arc` is written only when it says something, so a standard template
+    /// encodes exactly as it did before arcs existed.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(role, forKey: .role)
+        try container.encodeIfPresent(realizesBeat, forKey: .realizesBeat)
+        try container.encode(compatibleThemes, forKey: .compatibleThemes)
+        try container.encode(variants, forKey: .variants)
+        try container.encodeIfPresent(ageBand, forKey: .ageBand)
+        if arc != .standard { try container.encode(arc, forKey: .arc) }
     }
 
     /// Whether this template can be selected under the beat-driven model.

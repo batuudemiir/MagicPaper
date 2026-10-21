@@ -281,9 +281,17 @@ public struct OfflineContentBinder: Sendable {
         // in their seeded order and the first that yields a whole binding wins.
         // Deterministic, and it degrades to the greedy behaviour whenever the
         // first candidate already works.
+        // A place to sleep belongs to the bedtime arc and only to it, both ways
+        // (`SettingTrait.isRestingPlace`). Filtered before ordering, so a
+        // standard story sees exactly the settings — and the seeded order — it
+        // saw before bedrooms existed.
+        let wantsRest = blueprint.arc == .bedtime
+        let arcSettings = catalog.settings.filter {
+            $0.traits.contains(.isRestingPlace) == wantsRest
+        }
         var settingFailure: Error?
         for candidate in try orderedCandidates(
-            catalog.settings, requested: intent.settingID, seed: intent.seed, axis: "setting",
+            arcSettings, requested: intent.settingID, seed: intent.seed, axis: "setting",
             weight: weigher(intent, recent: \.settingID),
             offered: \.traits, required: requires.setting, forbidden: forbids.setting,
             empty: OfflineSelectionError.noSetting,

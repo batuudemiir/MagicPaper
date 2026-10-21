@@ -171,12 +171,93 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Ayrıca üç ajanla beyin fırtınası yapıldı (moda göre kapak, masal başlıkları, bulunabilirlik/tarih sıralaması); kod değişikliği yok, kararlar Batuhan'da.
 - Dosyalar: `DesignSystem/Pastel/MPBookCover.swift`, `Screens/Library/LibraryComponents.swift`.
 
+### 2026-10-21 · main@09c3dd2 · Birleştirme: book-intelligence main'de, gönderildi
+- `book-intelligence` (5f30954) main'e `--no-ff` ile birleşti (09c3dd2): `Research/BookIntelligence/`, `docs/research/`, `firebase/functions/src/outcomes.js` + `scripts/export-outcomes.mjs` + test, `index.js`'te `aggregateOutcomes`. Çakışma yoktu.
+- Bilerek değişmedi: uygulama kodu, StoryEngine, masal içeriği, `firestore.rules`. `aggregateOutcomes` deploy edilmedi. `MagicPaper-research` worktree'sindeki commit edilmemiş araştırma değişiklikleri (p_bedtime_quiet_last_page) birleşmeye girmedi.
+- Test (birleşik hâl): Firebase functions 16/16. Python 144 testte 1 hata: `test_exchange` kanıt olarak `CLAUDE.md` arıyor, bu dosya repo içinde değil, dış `MagicPaperAPP/` klasöründe; geçici worktree'de bulunamadığı için düştü, `MagicPaper-research`'te 144/144 geçiyor. Birleştirmeden kaynaklanmıyor. iOS testleri çalıştırılmadı (uygulama kodu değişmedi).
+- Aynı gün origin'e gönderildi (`b70dc4d..5263241`); bu başlık düzeltmesi ayrı commit'le gitti.
+- Etkilenen dosyalar: yukarıdakiler + bu dosya.
+
+### 2026-10-21 · main@ec732f5 · Birleştirme: uyku arkı main'de, gönderildi
+- `uyku-arki` (3dde158) main'e `--no-ff` ile birleşti (ec732f5): uyku öncesi modu kendi arkında, iki oda blueprint'i ve uyku devam bölümleri.
+- Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu. Kod ve içerik dosyalarında çakışma yoktu.
+- Birleşik hâlde StoryEngine: 819 test, 18 hata, 1 atlandı; hataların hepsi main'de zaten düşen aynı 10 testten (MatrixCoverage, OfflineComposition, OfflineDeterminism, PilotBlueprint, SettingAxis). Yeni hata yok.
+- Uygulama testleri ve Python içerik doğrulayıcı birleşik hâlde çalıştırılmadı; simülatörde uyku masalı açılıp görülmedi (Batuhan'da).
+- Bilerek değişmedi: book-intelligence birleştirilmedi; `MagicPaper/` checkout'u ve dalı (fix/alt-secenek-testi) dokunulmadı, birleştirme geçici bir worktree'de yapıldı.
+- Etkilenen dosyalar: `uyku-arki` kayıtlarındaki dosyalar + bu dosya.
+
+### 2026-10-21 · book-intelligence@5f30954 · Öğrenme sisteminin eksikleri kapatıldı
+- Otomatiklik: takılı 19 Ekim koşusu kapatıldı; proje izinlerine (`.claude/settings.local.json`, git dışı) araştırma aracı, testler, git durum komutları ve çocuk verisi indirme betiği eklendi, pazartesi koşusu artık onay beklemeyecek. Yeni perşembe görevi `magicpaper-research-questions`: yeni kitap okumadan ajan sorularını cevaplar ve açık tartışmaları ilerletir.
+- Karşılıklı kanal ilk kez kullanıldı: reader 2, parent-ux 2, story-engine 1 soru gönderdi; beşi korpustan kanıtla cevaplandı (ör. uyku kitapları uyku dışı olanlardan kısa değil; kahraman dışı karakter ortancası 3).
+- İlk UX önerisi: `p_bedtime_quiet_last_page` (uyku modunda bitiş sayfası kutlamasız, sayaçsız; yeni rozet tek sessiz satır). reader destek + etki (S, yalnız StoryEndingLeaf), privacy-safety pass (5 koşul), tavsiye: rehber olarak benimse. Karar bekliyor. Yöntem kuralı m008.
+- Çocuk verisi: `aggregateOutcomes`un main'de olmadığı bulundu (yalnız araştırma dalında). Haftalık toplamı araştırma gelen kutusuna indiren `firebase/functions/scripts/export-outcomes.mjs` yazıldı, sunucu belgesi uçtan uca kabul edildi. Açılış adımları: `docs/research/COCUK_VERISI_ACILIS.md`. Deploy, paket yayını ve deneyi canlıya alma Batuhan'da.
+- Bilerek değişmeyen: uygulama kodu; karar ve canlıya alma insanda. PR açılmadı (`gh` yok), dal main ile çakışmasız.
+- Test: araştırma 144/144, functions 16/16, `validate` 0 hata.
+- Etkilenen: `Research/BookIntelligence/data/**`, `docs/research/**`, `firebase/functions/src/outcomes.js`, `firebase/functions/scripts/export-outcomes.mjs`, `firebase/functions/test/outcomes.test.mjs`; repo dışında `.claude/settings.local.json`, iki zamanlanmış görev.
+
 ### 2026-10-21 · main@9c5fb40 · Birleştirme: kitaplık yenileme + ana sayfa kasma düzeltmeleri, telefona kurulum, gönderim
 - `kitaplik-yenileme` ve `anasayfa-yenileme` güncel main'le birleşti (akşam zarfı planı, ithaf/künye ve araştırma kayıtları dahil); çakışmalar yalnızca değişiklik günlüğündeydi, bütün kayıtlar korundu.
 - main'den gelen ithaf yaprağıyla metin masalı kapak + ithafla başlıyor; `ReaderStoryMappingTests` artık ilk yaprağın mozaik kapak olduğunu doğruluyor.
 - Test (birleşik hâl): MagicPaperTests'te tek hata `StoryModeFlowTests.testASubOptionIsRemembered` (main'den gelen bilinen hata, ayrı oturumda düzeltiliyor); geri kalanı geçti.
 - iPhone 16'ya derlendi, kuruldu ve açıldı. Kitaplık ve ana sayfa telefonda Batuhan'ın gözünden henüz geçmedi.
 - Dil kuralı (20 Ekim) kitaplık dosyalarında temiz; tek isabet "PDF oluşturulamadı" (PDF için serbest).
+
+### 2026-10-21 · uyku-arki, commit bu kayıtla · Uyku arkının devam bölümleri
+- Odada (Ay Pencereli Oda, Mavi Perdeli Oda) açılan bir uyku masalına artık "Devam ettir" sunuluyor. `SeriesPlanner.isAvailable` bu masallar için true dönüyor, çünkü artık `arc: bedtime` taşıyan devam bölümleri var. Uygulama kodu değişmedi; yalnızca `OfflineStoryService.seriesAvailable` yorumu güncellendi.
+- 4 yeni devam blueprint'i var. Her bantta iki mekanizma A-B-A-B sırasıyla dönüyor:
+  - `bp_cont_bedtime_staying_001` / `_age3_001`: bekleyen çocuk.
+  - `bp_cont_bedtime_settling_001` / `_age3_001`: yer açan çocuk.
+  - Sayfa 1 her zaman `revisit`. Yol arkadaşı pencereye yine gelir ve yeniden tanıştırılmaz.
+  - Duygu eğrisi 5-6'da 0,1,1,1,1,0,0,0, 3-4'te 0,1,1,1,0,0. Kontur `checkBedtimeContour`'dan geçiyor.
+- Keşif nesneleri: odanın yaşam alanında `impliesNeed` taşıyan 4 nesne doğrulandı (ince ses, yuva, fide, eldiven).
+  - Gereksinim `isAudible + impliesNeed` yerine `impliesNeed` oldu. Yer açan mekanizma ayrıca `isVisible` istiyor.
+  - İnce ses her zaman hatıra olduğundan bir seride 3 yeni nesne bulunur. Biri bir kez geri gelir, ama hiçbir zaman üst üste iki bölümde değil.
+  - **Yeni nesne bilerek eklenmedi:** standart masalların tohumlarını kaydırırdı.
+- İçerik: `templates/bedtime/beat_bedtime_series_*.json` altında 24 dosya ve 133 satır (`arc: bedtime`, `series: true`).
+  - Aile anlarında (revisit, warm_close) her ilişki için 3 satır var.
+  - Son sayfa `CalmEnding`'den geçiyor ve odayı adıyla söylüyor.
+  - Karanlık, korku ve yalnızlık işlenmiyor.
+- Motor:
+  - `BeatCorpusLoader`: seri + uyku şablon kimliği artık `series_bedtime_<bant>_<beat>`. Önceki biçim standart bölüm satırlarıyla çakışıyordu.
+  - `CatalogIntegrity.checkArcs`: konu denetimi seri uyku satırlarını da kapsıyor.
+- Test: `testABedtimeArcStoryIsNotOfferedASeries` testinin yerini `testABedtimeArcStoryContinuesInItsBedroom` aldı. Test iki bantta, 5 tohumla, aile karakteriyle ve onsuz şunları doğruluyor:
+  - plan kuruluyor;
+  - bölümler A-B-A-B sırasıyla geliyor;
+  - hatıra yeniden bulunmuyor;
+  - aynı keşif üst üste iki bölümde gelmiyor;
+  - yalnızca uyku satırları okunuyor;
+  - son sayfa sakin ve aynı oda;
+  - aynı mekanizmanın bölümleri birbirini tekrar etmiyor;
+  - plan aynı metni yeniden yazıyor;
+  - 21 Ekim öncesi uyku masalı standart bölümlerle sürüyor.
+- Test sonuçları:
+  - StoryEngine paketi 819 test, 18 hata. Hataların hepsi bilinen 10 testten geliyor, yeni hata yok. Diğer hedefler 89/0, 51/0, 17/0.
+  - `validate_beat_corpus.py` yalnızca bilinen 12 hatayı veriyor.
+  - Uygulama derlenmedi. Simülatörde açılıp görülmedi.
+- Bilerek değişmeyen: standart seri, öğrenme ve macera modları, nesne listesi, 7-10 bantları.
+- Etkilenen dosyalar:
+  - `StoryEngine/Sources/StoryEngine/Content/{BeatCorpusLoader,CatalogIntegrity}.swift`
+  - `Offline/Series/SeriesPlan.swift` (yorum)
+  - `Resources/blueprints/pilot_library_v1.json`
+  - `Resources/templates/bedtime/beat_bedtime_series_*` (24 dosya)
+  - `Tests/StoryEngineTests/SeriesPlannerTests.swift`
+  - `MagicPaper/StoryEngineBridge/OfflineStoryService.swift` (yorum)
+  - `docs/UYKU_ARKI.md`
+
+### 2026-10-21 · uyku-arki@39d3393 · Uyku arkı: uyku öncesi modunun kendi masal yapısı
+- Batuhan onayladı (21 Ekim): 15 Ekim'deki "deney olarak dönsün" kararı atlanıp doğrudan yapıya geçildi. Çerçeve oda ayarıyla taşınıyor.
+- Motor: yeni `NarrativeArc` (`standard | bedtime`), blueprint ve şablonda. Uyku modu artık aileyi **ve** arkı seçiyor (`families: [charge], arcs: [bedtime]`); bahçede açılan üç charge masalı bu moda girmiyor. Mod verilmeyen istek yalnızca standart arka gidiyor.
+- Yer: `isRestingPlace` taşıyan iki oda (Ay Pencereli Oda, Mavi Perdeli Oda). Bu odalar yalnızca uyku arkına bağlanıyor, uyku arkı da yalnızca bu odalara. İlk ve son sayfa aynı odayı adıyla söylüyor.
+- İçerik: 2 blueprint (`bp_bedtime_lullaby_001` 5-6/8 sayfa, eğri 0,1,1,1,1,0,0,0; `bp_bedtime_lullaby_age3_001` 3-4/6 sayfa, eğri 0,1,1,1,0,0). Ayrıca `templates/bedtime/` altında 16 dosya ve 112 satır; bunların 48'i Masal ailem satırı. Doruk hıçkırık, hapşırık ya da esneme gibi gülümseten bir şaşkınlık; karanlık, korku, yalnızlık ve gölge yok.
+- Denetleyici (fatal, yalnızca uyku arkında): doruk ≤ ⌈2n/3⌉ ve ≤ n−2, son sayfa 0, tedirgin doruk yok, son sayfada `carry_forward` yok, 3-4'te tavan 1. Son sayfa `CalmEnding`'den geçiyor. Bütünlük denetimi uyku satırında ve odada karanlık, yalnız ve korku konularını hata sayıyor.
+- `familyMoments` listesine `establish_ordinary` eklendi; aile karakteri uyku masalının ilk sayfasında da yer alıyor. Bu beat'i yalnızca uyku blueprint'leri kullanıyor.
+- Seri: uykuya özel devam bölümü henüz yok. Odada açılan masala "Devam ettir" sunulmuyor (`SeriesPlanner.isAvailable`; uygulamada `seriesAvailable(settingID:)`). 21 Ekim öncesi uyku masalları ve onların serileri eskisi gibi devam ediyor.
+- Bilerek değişmeyen: öğrenme ve macera modları. Aile fixture'ında yalnızca 8 uyku kaydı yenilendi, diğerleri birebir aynı. Eski charge blueprint'leri katalogda kaldı. 7-8 ve 9-10 bantları hâlâ en yakın banttan sunuluyor. Uyku devam bölümleri, oda için yeni keşif nesneleri ve 3-4'teki eski `patience` tavan ihlali (devam bölümlerinde) sonraki işe kaldı.
+- Test:
+  - StoryEngine paketi 819 test, 18 hata. Hepsi main'de zaten düşen aynı 10 testten geliyor; yeni hata yok. 14 yeni test (`BedtimeArcTests` 13 + seri 1) geçti; ikinci hedef 89/0.
+  - `validate_beat_corpus.py`: main'deki 12 eski hata dışında yeni hata yok; yeni `check_bedtime_lines` kapısı eklendi.
+  - Uygulama iPhone 18 Pro Max simülatörü için derlendi (BUILD SUCCEEDED). Uygulama testleri çalıştırılmadı, simülatörde masal açılıp görülmedi.
+- Etkilenen dosyalar: `StoryEngine/Sources/StoryEngine/Content/{NarrativeArc,CatalogBlueprint,CatalogTemplate,BeatCorpusLoader,BeatSequenceValidator,CatalogIntegrity,ContentTraits}.swift`, `Offline/{StoryMode,BlueprintSelector,OfflineSelection,OfflineStoryComposer,Series/SeriesPlan}.swift`, `Resources/blueprints/pilot_library_v1.json`, `Resources/templates/bedtime/*`, `Tools/validate_beat_corpus.py`, testler (+`BedtimeArcTests.swift`, aile fixture'ı), `MagicPaper/StoryEngineBridge/{OfflineStoryService,SeriesManager}.swift`, `docs/UYKU_ARKI.md`.
 
 ### 2026-10-21 · book-intelligence@3ef564f · Research PR hazır, açılamadı (gh yok)
 - **PR açılamadı:** bu makinede `gh` CLI (ve brew) yok. PR açıklaması hazır: oturum notlarında `book-intelligence-PR-body.md`. Açmak için: https://github.com/batuudemiir/MagicPaper/compare/main...book-intelligence?expand=1 (base `main`, head `book-intelligence`). Birleştirme Batuhan'da; auto-merge açılmayacak.

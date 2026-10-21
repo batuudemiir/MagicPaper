@@ -1,0 +1,188 @@
+{
+  "version": 8,
+  "rules": [
+    {
+      "rule_id": "m001",
+      "kind": "require_when",
+      "text": "Duygu yoğunluğu motorun 0-3 ölçeğinde söylenir; araştırmanın 0-5 ölçeği çevrilmeden öneriye girmez.",
+      "pattern": "0-3|engine (scale|intensity)|motor ölçeği",
+      "when": "intensity\\s*[0-9]",
+      "scope": [
+        "turn"
+      ],
+      "evidence": [
+        "p_fear_named_and_supported/story-engine-1",
+        "p_fear_named_and_supported/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m002",
+      "kind": "note",
+      "text": "Sayfa sayısı önerisi her yaş bandı için ayrı söylenir (AgeBand.pageCount: 3-4 → 6, 5-6 ve 7-8 → 8, 9-10 → 10); tek bir bandı tüm ürün gibi sunma.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_length_twelve_spreads/story-engine-1",
+        "p_length_twelve_spreads/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m003",
+      "kind": "note",
+      "text": "Tekrar önerileri genel tekrar kapısını (5-gram, RepetitionValidator) gevşetmez; yalnızca blueprint'te ilan edilmiş, katılınabilir, olumlu ya da nötr bir nakarat önerilir.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_repeated_line/story-engine-1",
+        "p_repeated_line/book-research-2"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m004",
+      "kind": "note",
+      "text": "Her öneri uyku modunu ayrıca düşünür: merak kancası gibi ilgi araçları uyku masalının son üçte birinde ve son sayfasında olmaz.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_spread_end_hook/privacy-safety-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "rule_id": "m005",
+      "kind": "note",
+      "text": "Masallar şu an yalnızca metin ve sesli okunuyor: bilgiyi resme bırakan öneriler resimli masallar canlıya çıkana kadar uygulanamaz; öneriyi bugünkü ürüne göre yaz.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_picture_only_information/content-library-1",
+        "p_picture_only_information/story-engine-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-14T14:27:20Z"
+    },
+    {
+      "rule_id": "m006",
+      "kind": "note",
+      "text": "A structural proposal names its measure before it is posted: say exactly how a 'peak' (or any position) is computed on the engine's page plan, check it against the current blueprints of that mode, and say what share already passes; a rule that every existing blueprint fails is an experiment or guidance, not a rule.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_bedtime_closes_circle/story-engine-001"
+      ],
+      "active": true,
+      "added_at": "2026-10-15T10:48:02Z"
+    },
+    {
+      "rule_id": "m007",
+      "kind": "note",
+      "text": "Tek yayınevinden çıkan bir kalıp o yayınevi hakkında bir hipotezdir: en az 2 başka yayınevinin kitaplarına bakılmadan öneriye dönüşmez. 20 Ekim'de başka yayınevleri girince tekrar eden satır ve cümle uzunluğu MEDIUM'dan LOW'a düştü.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "c_repeated_line",
+        "c_sentence_length",
+        "c_length_twelve_spreads"
+      ],
+      "active": true,
+      "added_at": "2026-10-20T12:11:47Z"
+    },
+    {
+      "rule_id": "m008",
+      "kind": "note",
+      "text": "Bir öneriyi göndermeden önce 'bugün' alanını koddan doğrula: ekranın ya da motorun şu anki davranışını varsayma, dosyayı oku ve dosya adını yaz. 21 Ekim'de reader ajanı, okuyucuda otomatik sayfa geçişi olmadığını ve bitiş sayfasının uyku kararını saatten verdiğini düzeltti.",
+      "pattern": null,
+      "when": null,
+      "scope": [
+        "claim",
+        "turn"
+      ],
+      "evidence": [
+        "p_bedtime_quiet_last_page/reader-1"
+      ],
+      "active": true,
+      "added_at": "2026-10-20T21:30:46Z"
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "change": "added",
+      "rule_id": "m001",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 2,
+      "change": "added",
+      "rule_id": "m002",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 3,
+      "change": "added",
+      "rule_id": "m003",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 4,
+      "change": "added",
+      "rule_id": "m004",
+      "at": "2026-10-14T14:27:19Z"
+    },
+    {
+      "version": 5,
+      "change": "added",
+      "rule_id": "m005",
+      "at": "2026-10-14T14:27:20Z"
+    },
+    {
+      "version": 6,
+      "change": "added",
+      "rule_id": "m006",
+      "at": "2026-10-15T10:48:02Z"
+    },
+    {
+      "version": 7,
+      "change": "added",
+      "rule_id": "m007",
+      "at": "2026-10-20T12:11:47Z"
+    },
+    {
+      "version": 8,
+      "change": "added",
+      "rule_id": "m008",
+      "at": "2026-10-20T21:30:46Z"
+    }
+  ]
+}

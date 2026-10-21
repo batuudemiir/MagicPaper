@@ -1,0 +1,19 @@
+{
+  "fields": [
+    "beat variant pairing (new)",
+    "CalmEnding"
+  ],
+  "files": [
+    "StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift",
+    "StoryEngine/Tools/validate_beat_corpus.py"
+  ],
+  "tests": [
+    "a page-end question variant is only selectable when the next page's chosen variant answers it"
+  ],
+  "owner": "story-engine",
+  "cost": "M",
+  "reversible": true,
+  "notes": "Needs cross-beat variant linking, which the composer lacks. Start as content-library sandbox prototype; engine work only if adopted.",
+  "by": "story-engine",
+  "at": "2026-10-08T08:07:28Z"
+}

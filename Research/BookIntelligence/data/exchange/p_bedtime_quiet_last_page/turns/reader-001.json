@@ -1,0 +1,12 @@
+{
+  "agent": "reader",
+  "n": 1,
+  "id": "reader-1",
+  "stance": "support",
+  "text": "Support, with two corrections to 'current' and one condition. (1) There is no auto-advance today: the reader never uses MPSpeech.onFinished, narration stops only when the ending leaf is reached (StoryReaderView.pageChanged). So 'last page stands alone' is already true; the only change there is not cutting narration on the turn. (2) The ending leaf's isBedtime is clock-based (MPBedtime.isBedtime(settings:)), not story mode. Story.mode exists (Story.modeID, nil for old stories), so the gate should be story.mode == .bedtime OR the clock, nil falling back to clock. Change in StoryEndingLeaf only: under bedtime, Ragi appears with an opacity cross-fade (no spring/scale), streak and word tiles hidden, 'İyi geceler' primary (already). Condition: a fresh badge must not vanish silently. CLAUDE.md says badges are shown at the end of a story; keep it as one quiet line (no tile), or explicitly move it to Benim köşem for bedtime. Reduce Motion path already a fade; VoiceOver label unchanged.",
+  "evidence": [
+    "MagicPaper/Models/Story.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-20T21:30:22Z"
+}

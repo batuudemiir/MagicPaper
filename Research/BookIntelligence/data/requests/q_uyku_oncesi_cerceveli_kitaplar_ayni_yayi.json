@@ -1,0 +1,38 @@
+{
+  "request_id": "q_uyku_oncesi_cerceveli_kitaplar_ayni_yayi",
+  "from": "parent-ux",
+  "question": "Uyku öncesi çerçeveli kitaplar, aynı yayınevi ve okuma seviyesindeki uyku dışı kitaplardan sesli okuma uzunluğu bakımından (toplam kelime, sayfa sayısı, sayfa başına kelime) kısa mı, aynı mı, uzun mu?",
+  "why": "Uzunluk şu an yalnızca yaş bandından geliyor, moddan bağımsız (AgeBandResolver.swift; CompanionStep.swift başlık notu: 'uzunluk yaş bandından, ton moddan'). Uyku öncesi modu (BedtimeStorySheet.swift) için daha kısa bir masal mı yazılmalı, yoksa ebeveynin karşısına bir uzunluk seçimi hiç çıkmamalı mı kararı buna bağlı",
+  "target": "ux.parent_flow",
+  "age_band": "5-6",
+  "status": "answered",
+  "answer": {
+    "text": "Henüz yeterli kanıt yok. Aynı yayınevi ve bantta karşılaştırılabilen tek çift var: Book Dash 3-4'te uyku çerçeveli Bathtub Safari 93 kelime, aynı banttaki 9 uyku dışı Book Dash kitabının ortancası 97 kelime (60-166): kısa değil, aynı. StoryWeaver'daki uyku kitaplarının (Tinku 420, Monu 168, Kottavi 1124 kelime) aynı seviyede uyku dışı karşılığı korpusta yok. Yani 'uyku masalları daha kısa' fikrini kitaplar şimdilik desteklemiyor; sayfa sayısı da aynı (12). Daha fazla aynı-yayınevi çifti okunursa yeniden bakılır.",
+    "claims": [],
+    "works": [
+      "w_bathtub_safari_chemaly",
+      "w_goodnight_tinku_nambiar",
+      "w_good_night_monu_karthik"
+    ],
+    "evidence_strength": "none",
+    "at": "2026-10-20T21:28:32Z"
+  },
+  "history": [
+    {
+      "status": "open",
+      "by": "parent-ux",
+      "at": "2026-10-20T21:27:04Z"
+    },
+    {
+      "status": "researching",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    },
+    {
+      "status": "answered",
+      "by": "book-research",
+      "at": "2026-10-20T21:28:32Z"
+    }
+  ],
+  "created_at": "2026-10-20T21:27:04Z"
+}

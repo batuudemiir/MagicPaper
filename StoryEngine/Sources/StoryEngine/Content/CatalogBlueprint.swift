@@ -176,11 +176,15 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
     public let aggregateWeight: Double
     /// A declared refrain (experimental). Nil for every shipped blueprint.
     public let refrain: RefrainSpec?
+    /// The contour this blueprint is written in (`NarrativeArc`). `standard`
+    /// for every blueprint that does not say, which is every one written
+    /// before 21 October 2026. A mode admits a blueprint by family **and** arc.
+    public let arc: NarrativeArc
 
     private enum CodingKeys: String, CodingKey {
         case id, genre, theme, ageRange, pageCount, pageRoles, pages, titlePatterns, family
         case premise, editorialName, editorialGuidance, requires, forbids, interests, topics
-        case continuation, aggregateWeight, refrain
+        case continuation, aggregateWeight, refrain, arc
     }
 
     public init(from decoder: Decoder) throws {
@@ -208,6 +212,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         continuation = try container.decodeIfPresent(ContinuationSpec.self, forKey: .continuation)
         aggregateWeight = try container.decodeIfPresent(Double.self, forKey: .aggregateWeight) ?? 1
         refrain = try container.decodeIfPresent(RefrainSpec.self, forKey: .refrain)
+        arc = try container.decodeIfPresent(NarrativeArc.self, forKey: .arc) ?? .standard
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -230,6 +235,7 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         try container.encodeIfPresent(continuation, forKey: .continuation)
         if aggregateWeight != 1 { try container.encode(aggregateWeight, forKey: .aggregateWeight) }
         try container.encodeIfPresent(refrain, forKey: .refrain)
+        if arc != .standard { try container.encode(arc, forKey: .arc) }
     }
 
     /// The roles this blueprint asks for, in page order.

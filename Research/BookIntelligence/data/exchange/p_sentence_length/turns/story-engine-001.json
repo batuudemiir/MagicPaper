@@ -1,0 +1,13 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "support",
+  "text": "Agree with no change. The cap is per band, not a single 14: AgeBand.maxSentenceWords is 10 at 3-4, 14 at 5-6/7-8, 20 at 9-10, and validate_beat_corpus.py mirrors it (10 for 3-4, MAX_SENTENCE_WORDS=14 otherwise). The pilot's longest sentences (two books at 18 and 21) argue against tightening; the doc comment on maxSentenceWords already records why MLU is a floor, not a ceiling. One honest gap: we never measure mean sentence length (the books sit at 3-11); a mean-length report line in the validator would be S cost and change no gate.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Content/ContentPrimitives.swift",
+    "StoryEngine/Tools/validate_beat_corpus.py"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:07Z"
+}

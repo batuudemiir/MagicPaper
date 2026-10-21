@@ -1,0 +1,244 @@
+{
+  "work_id": "w_catch_that_cat_pirie",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_catch_that_cat",
+  "status": "complete",
+  "analyst": "book-research (Claude)",
+  "analyzed_at": "2026-10-08T07:29:11Z",
+  "completeness": "full",
+  "summary_paraphrase": "A boy and his dog chase a cat that stole his sock through a tree, a farm and a pond; when he finally catches her he finds the sock was a bed for her kittens and takes them all home.",
+  "beats": [
+    {
+      "beat": "HOOK",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 4,
+      "function": "chase begins"
+    },
+    {
+      "beat": "DESIRE",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 4,
+      "function": "get the sock back"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 3,
+      "function": "tree"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 4,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "missed"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 5,
+      "end_page": 7,
+      "intensity": 4,
+      "function": "float, farm, duck"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 8,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "stop and think"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "plan"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 5,
+      "function": "Gotcha!"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "reveal: kittens"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "all home"
+    }
+  ],
+  "beat_positions": {
+    "HOOK": 0.0,
+    "DESIRE": 0.091,
+    "ESCALATION": 0.182,
+    "COMPLICATION": 0.273,
+    "TURN": 0.636,
+    "SOLUTION": 0.727,
+    "CLIMAX": 0.818,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "boy",
+      "name": "unnamed boy (narrator)",
+      "role": "protagonist",
+      "desire": "his sock back",
+      "change": "from chasing a thief to caring for a family",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "dog",
+      "name": "dog",
+      "role": "animal_companion",
+      "relation_to_protagonist": "silent partner; expressions echo the boy's"
+    },
+    {
+      "id": "cat",
+      "name": "calico cat",
+      "role": "mysterious",
+      "desire": "a bed for her kittens (hidden until page 11)",
+      "change": "reframed from thief to mother",
+      "tension_source": "always one step ahead",
+      "humor_source": "impossible escapes"
+    }
+  ],
+  "protagonist_agency": 5,
+  "emotional_curve": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    4,
+    3,
+    4,
+    5,
+    3,
+    3
+  ],
+  "humor_notes": "Absurd escapes (sock parachute, riding a duck) and a sideways spread.",
+  "repetition": [
+    {
+      "type": "refrain",
+      "description": "'Catch that cat!' closes most spreads; the last spread turns it into 'Catch all those cats!'",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9,
+        12
+      ],
+      "functions": [
+        "participation",
+        "rhythm",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "the callback changes meaning at the end"
+    },
+    {
+      "type": "phrase",
+      "description": "doubled imperatives: 'Hurry. Hurry!', 'Look. Look!', 'Quick. Fast.'",
+      "pages": [
+        1,
+        3,
+        4
+      ],
+      "functions": [
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "keeps read-aloud pace"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "First-person text, so the boy never describes himself; the pictures carry him and the dog.",
+      "A sideways spread makes the reader rotate the book at the moment the cat floats.",
+      "The reveal (kittens) is a picture first; the text names it after."
+    ]
+  },
+  "strengths": [
+    "a protagonist who stops and makes a plan",
+    "a final reveal that reframes the antagonist",
+    "very high read-aloud rhythm"
+  ],
+  "weaknesses": [
+    "the cat's motive is not hinted before the reveal"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 4,
+      "participation": 5,
+      "emotional_identification": 3,
+      "surprise": 5,
+      "character_warmth": 4,
+      "agency": 5,
+      "visual_novelty": 5,
+      "predictability_balance": 5,
+      "resolution_satisfaction": 5
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "'Come on, climb' — tree climbing in a chase; low concern."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 146,
+    "words_per_page": {
+      "min": 1,
+      "median": 13.0,
+      "max": 18
+    },
+    "mean_sentence_words": 3.24,
+    "longest_sentence": 9,
+    "type_token_ratio": 0.616,
+    "dialogue_ratio": 0.0,
+    "questions": 3,
+    "questions_per_page": 0.25,
+    "direct_address": 2,
+    "sound_words": 3,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "catch that cat": 7,
+        "to catch that cat": 3
+      },
+      "refrains": {
+        "catch that cat": 3
+      },
+      "top_sentence_openers": {
+        "catch": 4,
+        "look": 4,
+        "hurry": 2,
+        "she": 2,
+        "come": 2
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

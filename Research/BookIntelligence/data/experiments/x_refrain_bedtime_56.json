@@ -1,0 +1,33 @@
+{
+  "experiment_id": "x_refrain_bedtime_56",
+  "proposal_id": "p_repeated_line",
+  "claim_id": "c_repeated_line",
+  "status": "draft",
+  "control": "bp_charge_tending_001",
+  "variant": "bp_charge_tending_001_refrain",
+  "age_band": "5-6",
+  "mode": "bedtime",
+  "bedtime_specific": true,
+  "prediction": {
+    "direction": "better",
+    "min_effect": 0.03,
+    "confidence": 0.6,
+    "rationale": "4 of 6 analysed books with text carry a line that returns on several spreads; a joinable refrain should raise rereading in bedtime. Confidence kept modest: one publisher, no calibration history yet.",
+    "by": "book-research",
+    "at": "2026-10-14T14:29:10Z"
+  },
+  "preflight": {
+    "problems": [
+      "variant blueprint bp_charge_tending_001_refrain not in the catalog (pass --package with the remote package that carries it)"
+    ],
+    "at": "2026-10-20T21:26:22Z",
+    "package": null
+  },
+  "result": null,
+  "history": [
+    {
+      "status": "draft",
+      "at": "2026-10-14T14:29:10Z"
+    }
+  ]
+}

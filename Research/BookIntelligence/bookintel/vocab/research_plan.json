@@ -1,0 +1,99 @@
+{
+  "_comment": "What the corpus should contain, and how to search for what it lacks. `gaps` compares the corpus against `targets` and fills `query_templates` for every shortfall. Targets count WORKS, never editions. Raise them as the corpus grows; they are a research plan, not a quality bar.",
+  "primary": {
+    "age_band": "5-6",
+    "languages": [
+      "en",
+      "tr"
+    ]
+  },
+  "targets": {
+    "analyzed_full_per_primary_language": 10,
+    "analyzed_per_age_band": {
+      "3-4": 5,
+      "5-6": 20,
+      "7-8": 5,
+      "9-10": 5
+    },
+    "page_turn_eligible_in_primary_band": 10,
+    "per_story_type_in_primary_band": 3,
+    "per_tone_in_primary_band": 2,
+    "per_structure_in_primary_band": 2,
+    "contemporary_min_year": 1990,
+    "contemporary_share_min": 0.8,
+    "female_protagonist_share_min": 0.3,
+    "visual_analysis_share_min": 0.5,
+    "languages_min": 4
+  },
+  "story_types_of_interest": [
+    "adventure",
+    "friendship",
+    "courage",
+    "bedtime",
+    "family",
+    "funny",
+    "discovery",
+    "imagination",
+    "emotions",
+    "problem-solving",
+    "animals",
+    "nature",
+    "helping-others",
+    "fear",
+    "belonging"
+  ],
+  "tones_of_interest": [
+    "calm",
+    "warm",
+    "funny",
+    "whimsical",
+    "suspenseful",
+    "comforting"
+  ],
+  "structures_of_interest": [
+    "quest",
+    "problem-attempt-failure-solution",
+    "journey",
+    "lost-and-found",
+    "repeated-pattern",
+    "cumulative",
+    "circular",
+    "home-away-home"
+  ],
+  "query_templates": {
+    "general": [
+      "best picture books age {age}",
+      "award winning picture books {year_range}",
+      "children's books read aloud age {age}",
+      "teacher recommended picture books {story_type}",
+      "librarian recommended picture books {story_type}"
+    ],
+    "story_type": [
+      "picture books about {story_type} age {age}",
+      "children's {story_type} picture book read aloud"
+    ],
+    "tone": [
+      "{tone} picture books for {age} year olds"
+    ],
+    "structure": [
+      "{structure} structure picture book examples"
+    ],
+    "language_tr": [
+      "{age} yaş resimli çocuk kitabı önerileri",
+      "ödüllü resimli çocuk kitapları",
+      "okul öncesi sesli okuma kitapları {story_type}"
+    ],
+    "legal_full_text": [
+      "openly licensed picture books {story_type}",
+      "CC BY picture books {language}",
+      "Book Dash {story_type}",
+      "public domain picture books {story_type}"
+    ],
+    "craft": [
+      "picture book page turn analysis",
+      "children's story repetition read aloud",
+      "picture book emotional arc"
+    ]
+  },
+  "_period_note": "2026-10-08 product decision: contemporary books first (published 1990 or later). Public-domain classics (≤1930) are kept as a separate, older population for comparison, not as models."
+}

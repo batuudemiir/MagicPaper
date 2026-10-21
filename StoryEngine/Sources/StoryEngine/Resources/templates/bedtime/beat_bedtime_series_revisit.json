@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 3,
+  "beat": "revisit",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_rv_01",
+      "text": "Yine uyku saati gelmişti. {{child.name}} {{setting.name}}'daki yatağına girdi. O sırada pencerenin önünde tanıdık bir yüz belirdi. {{companion.name}} yine gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rv_02",
+      "text": "{{child.name}} yorganını çenesine çekti ve pencereye baktı. {{companion.name}} her akşamki yerindeydi. \"İyi akşamlar,\" dedi {{child.name}} usulca. İkisi birbirine sevinçle gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_rv_03",
+      "text": "{{setting.name}}'da lamba yine yumuşacık yanıyordu. {{child.name}} o ilk geceyi, {{keepsake.name}}'i ve pencereyi hatırladı. Şimdi {{companion.name}} yine pencerenin önündeydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "keepsake.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_yumusacik"
+      ]
+    },
+    {
+      "id": "bts_rv_04",
+      "text": "{{child.name}} dişlerini fırçalayıp yatağına uzandı. Pencereden tanıdık bir selam geldi: {{companion.name}} yine oradaydı. İkisi {{keepsake.name}}'i hatırlayıp sessizce güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rv_05",
+      "text": "Akşam yine sakin ve sıcacıktı. {{child.name}} {{setting.name}}'da yorganının altına kıvrıldı. {{companion.name}} pencerenin önüne gelip ona göz kırptı. \"Yine buradayım,\" der gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rv_fs_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yataklarına girdi. Pencerenin önünde {{companion.name}} yine belirdi. İkisi ona usulca el salladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fs_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bts_rv_fs_02",
+      "text": "{{child.name}} yorganını çekti, kardeşi {{family.name}} yan yatakta esnedi. O sırada pencereden {{companion.name}} göründü. \"Yine geldi,\" diye fısıldadı {{family.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fs_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bts_rv_fs_03",
+      "text": "{{child.name}} kardeşi {{family.name}} ile yorganın altında fısıldaşıyordu. Sonra ikisi de sustu, çünkü pencerenin önünde {{companion.name}} belirmişti. Tanıdık dostları yine gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fs_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bts_rv_ff_01",
+      "text": "{{child.name}} bu gece yine arkadaşı {{family.name}} ile yatıya kalmıştı. İkisi {{setting.name}}'da yan yana uzandı. Pencerenin önünde {{companion.name}} onları bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_ff_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bts_rv_ff_02",
+      "text": "{{child.name}} arkadaşı {{family.name}}'a {{companion.name}}'i anlatıyordu. Tam o sırada {{companion.name}} pencerenin önünde yine belirdi. İkisi de sevinçle yataklarında doğrulup el salladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_ff_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bts_rv_ff_03",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} pijamalarını giymiş, yorganlarının altına girmişti. O sırada pencereden {{companion.name}} göründü. İkisi ona sevinçle el salladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_ff_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bts_rv_fa_01",
+      "text": "{{child.name}} yatağına girdi, ayakucuna {{family.possessive}} {{family.name}} kıvrıldı. Az sonra pencerenin önünde {{companion.name}} yine belirdi. Üçü birbirine sessizce, sevinçle baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fa_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bts_rv_fa_02",
+      "text": "{{child.name}}, yanındaki {{family.possessive}} {{family.name}}'ı okşuyordu. O sırada {{family.name}} başını yavaşça pencereye çevirdi. Evet, {{companion.name}} yine gelmişti, gözleri sevinçle parlıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fa_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bts_rv_fa_03",
+      "text": "{{child.name}} yorganını çekerken {{family.possessive}} {{family.name}} kulaklarını dikti. Pencerenin önünde {{companion.name}} yine belirmişti. Üçü birbirine uzun uzun, tatlı tatlı baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fa_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bts_rv_fi_01",
+      "text": "{{child.name}} yorganına sarındı, hayali arkadaşı {{family.name}} pencere kenarına oturdu. Az sonra pencerenin önünde {{companion.name}} belirdi. Üçü yine bir aradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fi_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bts_rv_fi_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diyordu. O sırada pencereden {{companion.name}} göründü. \"Bak, yine geldi,\" dedi {{family.name}} sevinçle.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fi_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bts_rv_fi_03",
+      "text": "{{child.name}} yatağına uzandı. Hayali arkadaşı {{family.name}} pencereyi gösterip gülümsedi. Pencerenin önünde {{companion.name}} yine oradaydı, tıpkı o ilk geceki gibi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rv_fi_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_na_01",
+      "text": "{{child.name}} tam gözlerini kapayacaktı ki {{companion.name}} pencerenin kenarını gösterdi. Orada {{discovery.name}} vardı. Daha önce orada değildi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_na_02",
+      "text": "Bu akşam bir şey farklıydı. Pencerenin önünde {{discovery.name}} duruyordu. {{child.name}} yatakta doğruldu ve merakla baktı. {{companion.name}} usulca başını salladı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_na_03",
+      "text": "{{companion.name}} bu gece bir şey göstermeye gelmişti. Pencerenin önünde {{discovery.name}} vardı. {{child.name}} merakla yorganından başını çıkardı.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_na_04",
+      "text": "{{child.name}} perdeyi biraz araladı. Ay ışığında {{discovery.name}} görünüyordu. {{companion.name}} hemen yanında oturmuş, ona bakıyordu. İkisi bunu ilk kez görüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_na_06",
+      "text": "{{child.name}} tam esneyecekti ki durdu. Pencerenin kenarında {{discovery.name}} duruyordu. Perdenin arasından tatlı tatlı görünüyordu. {{companion.name}} ona bakıp gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_na_05",
+      "text": "Oda sessizdi. Sonra pencerenin önünden {{discovery.name}} geldi. {{child.name}} başını yastıktan yavaşça kaldırdı. {{companion.name}} hemen kulak kabarttı, merakla bekledi.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_na_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    }
+  ]
+}

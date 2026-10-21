@@ -1,0 +1,252 @@
+{
+  "work_id": "w_brave_bora_gicovi",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_brave_bora",
+  "status": "complete",
+  "analyst": "book-research (Claude)",
+  "analyzed_at": "2026-10-08T07:29:11Z",
+  "completeness": "full",
+  "summary_paraphrase": "A boy afraid of needles waits at a clinic with his father and his toy monkey; after the doctor gives the monkey a pretend injection first, he has his own and finds it was not so bad.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 1,
+      "function": "clinic"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 3,
+      "function": "fear named"
+    },
+    {
+      "beat": "SETUP",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 2,
+      "function": "support promised"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 4,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "avoidance"
+    },
+    {
+      "beat": "DESIRE",
+      "start_page": 5,
+      "end_page": 5,
+      "intensity": 2,
+      "function": "chooses to go"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 6,
+      "end_page": 6,
+      "intensity": 2,
+      "function": "monkey first"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 7,
+      "end_page": 8,
+      "intensity": 3,
+      "function": "rehearsal by proxy"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 9,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "his injection"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "not so bad"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "praised"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "lollipop"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "PROBLEM": 0.091,
+    "COMPLICATION": 0.273,
+    "DESIRE": 0.364,
+    "TURN": 0.455,
+    "ESCALATION": 0.545,
+    "CLIMAX": 0.727,
+    "SOLUTION": 0.818,
+    "EMOTIONAL_PAYOFF": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "bora",
+      "name": "Bora",
+      "role": "protagonist",
+      "age": "about 4-5 (picture)",
+      "desire": "to avoid the needle; the lollipop",
+      "fear": "needles",
+      "change": "from avoidance to 'that wasn't so bad'",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "baba",
+      "name": "Baba",
+      "role": "mentor",
+      "relation_to_protagonist": "father",
+      "personality": "calm, validating"
+    },
+    {
+      "id": "jojo",
+      "name": "Jojo",
+      "role": "companion",
+      "relation_to_protagonist": "toy monkey; stand-in who goes first",
+      "tension_source": null
+    },
+    {
+      "id": "doctor",
+      "name": "the doctor",
+      "role": "helper",
+      "personality": "playful, skilled at distraction"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    1,
+    3,
+    2,
+    3,
+    2,
+    2,
+    3,
+    2,
+    4,
+    4,
+    3,
+    3
+  ],
+  "humor_notes": "Gentle: 'Let's come back tomorrow', the 'TOOP!' sound.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "the monkey's injection rehearses Bora's: same words, 'TOOP!' twice",
+      "pages": [
+        8,
+        9
+      ],
+      "functions": [
+        "comfort",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "the proxy lowers the stakes before the real moment"
+    },
+    {
+      "type": "callback",
+      "description": "red lollipop promised on page 5, given on page 12",
+      "pages": [
+        5,
+        12
+      ],
+      "functions": [
+        "memory",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "closes the promise"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "The toy monkey's expressions track Bora's fear and relief.",
+      "The injection itself is shown in a narrow strip panel, so the needle never dominates the page."
+    ]
+  },
+  "strengths": [
+    "fear is named and accepted before it is faced",
+    "a toy companion rehearses the frightening moment"
+  ],
+  "weaknesses": [
+    "bravery is motivated by a sweet reward"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 3,
+      "participation": 2,
+      "emotional_identification": 5,
+      "surprise": 2,
+      "character_warmth": 5,
+      "agency": 3,
+      "visual_novelty": 3,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Medical setting handled gently."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 211,
+    "words_per_page": {
+      "min": 7,
+      "median": 20.5,
+      "max": 25
+    },
+    "mean_sentence_words": 7.03,
+    "longest_sentence": 18,
+    "type_token_ratio": 0.517,
+    "dialogue_ratio": 0.616,
+    "questions": 5,
+    "questions_per_page": 0.42,
+    "direct_address": 12,
+    "sound_words": 2,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "it's your turn": 3,
+        "as she gives": 2,
+        "now it's your turn": 2,
+        "says the doctor": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "bora": 3,
+        "jojo": 2,
+        "i": 2,
+        "it's": 2,
+        "let's": 2
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

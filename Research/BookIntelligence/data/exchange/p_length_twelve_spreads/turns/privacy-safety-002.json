@@ -1,0 +1,18 @@
+{
+  "agent": "privacy-safety",
+  "n": 2,
+  "id": "privacy-safety-2",
+  "stance": "concern",
+  "text": "Experiment-loop conditions (apply to every proposal). Before any arm reaches a child: owner decision recorded; arm is a catalog/content variant within existing validators (no ceiling change), off by default, killable remotely, bedtime excluded unless the proposal is bedtime-specific; no new data fields, no arm assignment per child or device identifier (assign by blueprint/catalog package so the arm is derivable from blueprintID, not a person); no push, no UI telling the child they are in a test; Kids category: no third-party analytics or SDKs (Firebase Analytics stays out). Before usage data counts as evidence: only ReadingEventWire from parents who consented (FAZ 16 consent record, sharing switch on; pre-consent events deleted), storyID never leaves the device, server-side aggregation only with a minimum cell size (e.g. at least 50 distinct reading days per arm x band x mode, no cell reported below it), no per-child or per-family profiling or joins with account data, bedtime abandonment never counted as failure, and only aggregates (not rows) enter Research/ as child_response evidence. Completion and rereads measure engagement, not wellbeing, so they cannot justify relaxing a safety rule.",
+  "evidence": [
+    "MagicPaper/StoryEngineBridge/ReadingEvent.swift",
+    "MagicPaper/StoryEngineBridge/Account/ReadingEventUploader.swift",
+    "StoryEngine/Sources/StoryEngine/Offline/Usage/BlueprintOutcome.swift",
+    "docs/MagicPaper_Faz_Plani_Ekim.md",
+    "docs/MagicPaper_Privacy_Architecture.md",
+    "docs/research/EXCHANGE_PROTOCOL.md",
+    "CLAUDE.md"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:15Z"
+}

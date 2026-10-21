@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts3_tc_01",
+      "text": "\"Buna ben bakarım,\" dedi {{child.name}}. {{companion.name}} başını salladı. Önce o rahat edecekti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_tc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_tc_02",
+      "text": "{{child.name}} düşündü. Her akşam ona nasıl bakılıyordu? Yavaşça, sabırla. O da öyle yapacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_tc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_tc_03",
+      "text": "\"Merak etme,\" dedi {{child.name}} usulca. \"Biz buradayız.\" {{companion.name}} yanına sokuldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_tc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

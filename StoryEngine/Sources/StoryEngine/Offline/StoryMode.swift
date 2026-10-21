@@ -73,9 +73,17 @@ public enum StorySelectionStrategy: String, Codable, Sendable, Hashable {
 /// ailelerinden gelir: Uyku öncesi yalnızca sakin, bakım üzerine kurulu
 /// aileleri kabul ettiği için sakin olur. Tonu değiştirmek aile listesini
 /// değiştirmektir. Uzunluk da moddan değil yaş bandından gelir (`AgeBand.pageCount`).
+///
+/// **Aile tek başına yetmez** (karar: 21 Ekim 2026). Uyku öncesi charge
+/// ailesinin mekanizmasını kullanır ama kendi konturuyla (`NarrativeArc.bedtime`)
+/// yazılmış blueprint'leri ister; dışarıda açılıp geç doruğa çıkan charge
+/// masalları uyku masalı değildir. Bu yüzden bir mod aileyi **ve** arkı seçer.
 public struct StoryModeProfile: Decodable, Sendable, Hashable {
     public let mode: StoryMode
     public let families: [NarrativeFamily]
+    /// Bu modun kabul ettiği arklar. Boşsa yalnızca `standard`: arkını
+    /// söylemeyen bir mod, uyku için yazılmış bir masalı almaz.
+    public let arcs: [NarrativeArc]
     /// Neden bu aileler — içerik yazarları için. Uygulama göstermez.
     public let editorialNote: String
     /// Bu modda bir masalın "işe yaradığı" ne demek (FAZ 14). Kullanımdan
@@ -85,27 +93,31 @@ public struct StoryModeProfile: Decodable, Sendable, Hashable {
     public init(
         mode: StoryMode,
         families: [NarrativeFamily],
+        arcs: [NarrativeArc] = [],
         editorialNote: String = "",
         success: ModeSuccessRule = .default
     ) {
         self.mode = mode
         self.families = families
+        self.arcs = arcs
         self.editorialNote = editorialNote
         self.success = success
     }
 
-    private enum CodingKeys: String, CodingKey { case mode, families, editorialNote, success }
+    private enum CodingKeys: String, CodingKey { case mode, families, arcs, editorialNote, success }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         mode = try container.decode(StoryMode.self, forKey: .mode)
         families = try container.decodeIfPresent([NarrativeFamily].self, forKey: .families) ?? []
+        arcs = try container.decodeIfPresent([NarrativeArc].self, forKey: .arcs) ?? []
         editorialNote = try container.decodeIfPresent(String.self, forKey: .editorialNote) ?? ""
         success = try container.decodeIfPresent(ModeSuccessRule.self, forKey: .success) ?? .default
     }
 
     public func admits(_ blueprint: CatalogBlueprint) -> Bool {
-        blueprint.family.map(families.contains) ?? false
+        guard blueprint.family.map(families.contains) ?? false else { return false }
+        return arcs.isEmpty ? blueprint.arc == .standard : arcs.contains(blueprint.arc)
     }
 }
 

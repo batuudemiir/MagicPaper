@@ -82,7 +82,7 @@ final class GlossaryTests: XCTestCase {
             }
             return CatalogTemplate(
                 id: template.id, role: template.role, realizesBeat: template.realizesBeat,
-                compatibleThemes: template.compatibleThemes, variants: variants, ageBand: template.ageBand)
+                compatibleThemes: template.compatibleThemes, variants: variants, ageBand: template.ageBand, arc: template.arc)
         }
         let templates = full.templates.map(teach)
         return ContentCatalog(

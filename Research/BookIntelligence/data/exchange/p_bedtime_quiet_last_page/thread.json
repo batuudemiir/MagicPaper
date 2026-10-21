@@ -1,0 +1,15 @@
+{
+  "proposal_id": "p_bedtime_quiet_last_page",
+  "claim_id": "c_bedtime_quiet_last_page",
+  "status": "ready_for_decision",
+  "opened_at": "2026-10-20T21:28:46Z",
+  "target": "reader.page_turn",
+  "current": "After the last page StoryReaderView stops narration and goes straight to StoryEndingLeaf: Ragi waving, 'Masal bitti!', reading counts and a 400 ms celebration, the same in every mode.",
+  "suggested": "In bedtime mode only: let the last story page stand alone as a quiet moment (no auto-advance, narration ends softly), and make the ending leaf calm: no celebration animation and no reading counts on that screen; keep today's ending for adventure and learning.",
+  "recommendation": {
+    "action": "adopt_guidance",
+    "rationale": "Two required voices heard and both support (reader owns the target, privacy-safety pass with conditions). 5 of 5 bedtime books end quieter than their average; none of 21 books has a celebration after the story. A UX target cannot be an experiment, and the change is small, reversible and display-only (StoryEndingLeaf, gate story.mode == bedtime or clock). Evidence LOW, so adopt as guidance for the bedtime ending, not as a rule for other modes.",
+    "by": "book-research",
+    "at": "2026-10-20T21:30:47Z"
+  }
+}

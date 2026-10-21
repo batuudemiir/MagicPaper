@@ -51,6 +51,12 @@ public struct BlueprintSelector: Sendable {
             }
             if let mode = intent.mode, !(modeProfile?.admits(blueprint) ?? false) {
                 failures.append("family '\(blueprint.family?.rawValue ?? "none")' does not serve mode '\(mode.rawValue)'")
+            } else if intent.mode == nil, blueprint.arc != .standard {
+                // A story asked for without a mode is a standard story: a
+                // bedtime blueprint is chosen only by the bedtime mode, so
+                // every request written before arcs existed picks among exactly
+                // the blueprints it always did.
+                failures.append("written for the '\(blueprint.arc.rawValue)' arc, which only its mode chooses")
             }
             // What the parent allows (FAZ 17). A rule, not a preference, so it
             // rules out here with its reason rather than lowering a weight.
@@ -293,7 +299,7 @@ public struct BlueprintSelector: Sendable {
         let profile = mode.flatMap { catalog.modeProfile($0) }
         let blueprints = catalog.blueprints.filter { blueprint in
             blueprint.isBeatAuthored
-                && (mode == nil || (profile?.admits(blueprint) ?? false))
+                && (mode == nil ? blueprint.arc == .standard : (profile?.admits(blueprint) ?? false))
                 && (ageBand.map { blueprint.ageRange == $0 } ?? true)
                 && (safety.map {
                     $0.admits(blueprint: blueprint)

@@ -153,7 +153,7 @@ final class ContentSafetyTests: XCTestCase {
             }
             return CatalogTemplate(
                 id: template.id, role: template.role, realizesBeat: template.realizesBeat,
-                compatibleThemes: template.compatibleThemes, variants: variants, ageBand: template.ageBand)
+                compatibleThemes: template.compatibleThemes, variants: variants, ageBand: template.ageBand, arc: template.arc)
         }
         XCTAssertFalse(darkLines.isEmpty)
         let catalog = rebuilt(full, templates: templates)
@@ -185,7 +185,7 @@ final class ContentSafetyTests: XCTestCase {
                 id: template.id, role: template.role, realizesBeat: template.realizesBeat,
                 compatibleThemes: template.compatibleThemes,
                 variants: try template.variants.map { try tagged($0, ["darkness"]) },
-                ageBand: template.ageBand)
+                ageBand: template.ageBand, arc: template.arc)
         }
         let catalog = rebuilt(full, templates: templates)
         let avoiding = ContentSafety(level: .someExcitement, avoided: ["darkness"])

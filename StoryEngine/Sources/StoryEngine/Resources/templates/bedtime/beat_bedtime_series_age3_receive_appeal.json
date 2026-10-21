@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa iki beat taşır"
+  },
+  "variants": [
+    {
+      "id": "bts3_ra_01",
+      "text": "\"Pencerenin köşesi sıcacık,\" dedi {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts3_ra_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_ra_02",
+      "text": "{{companion.name}} köşeyi gösterdi. \"Orası çok rahat,\" dedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts3_ra_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts3_ra_03",
+      "text": "\"Ona biraz özen gerek,\" dedi {{companion.name}} fısıltıyla.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bts3_ra_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

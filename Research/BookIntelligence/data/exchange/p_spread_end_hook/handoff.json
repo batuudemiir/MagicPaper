@@ -1,0 +1,55 @@
+{
+  "proposal_id": "p_spread_end_hook",
+  "claim_id": "c_spread_end_hook",
+  "target": "writing_guidance",
+  "kind": "adopt_guidance",
+  "owner": "content-library",
+  "with": [
+    "story-engine"
+  ],
+  "task": "Hypothesis for page-based stories: end some pages on a question or an open 'says...' and answer it after the turn.",
+  "current": "page-end lines are not specified",
+  "recommendation": "As writing guidance only, via the generic-hook route (no engine change): adventure and learning, mid-story, never bedtime / last page / episode end, never danger questions. Specific question-answer pairs wait until the corpus supports cross-beat linking.",
+  "decision_note": "Yazım rehberine girsin",
+  "touches": {
+    "fields": [
+      "beat variant pairing (new)",
+      "CalmEnding"
+    ],
+    "files": [
+      "StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift",
+      "StoryEngine/Tools/validate_beat_corpus.py"
+    ],
+    "tests": [
+      "a page-end question variant is only selectable when the next page's chosen variant answers it"
+    ],
+    "cost": "M"
+  },
+  "safety": {
+    "verdict": "concerns",
+    "notes": "Conditions: within-story only, never on the last page or episode ends; excluded from bedtime mode (or confined to its first half); hook questions not about danger or the unknown; page emotion stays within ceiling 2 and the parent's ContentSafety level."
+  },
+  "done_when": [
+    "The guidance is written into the content line's writing rules; corpus validators still pass.",
+    "Works on its own branch or worktree, never on main; nothing is merged without the product owner.",
+    "Existing tests stay green and new behaviour has tests.",
+    "A Değişiklik günlüğü entry is added (CLAUDE.md).",
+    "`ba exchange handoff p_spread_end_hook --status done --note <branch@commit>` is recorded."
+  ],
+  "status": "done",
+  "history": [
+    {
+      "status": "waiting",
+      "by": "human",
+      "note": "approved",
+      "at": "2026-10-14T14:16:45Z"
+    },
+    {
+      "status": "done",
+      "by": "content-library",
+      "note": "kitap-rehberi@e6e6bc5 (docs/MagicPaper_Content_Library.md §14; main'e birleştirilmedi)",
+      "at": "2026-10-14T14:21:15Z"
+    }
+  ],
+  "created_at": "2026-10-14T14:16:45Z"
+}

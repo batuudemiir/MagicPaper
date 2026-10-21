@@ -1,0 +1,14 @@
+{
+  "agent": "privacy-safety",
+  "n": 1,
+  "id": "privacy-safety-1",
+  "stance": "support",
+  "text": "Content-wise low risk: same total words, more page turns, no change to intensity ceiling or landings. Safety checks are per page, so 12 shorter pages must each still pass the ceiling (2) and the arc must keep a permitted landing; more pages means more beats to validate, not fewer. Bedtime: more turns lengthen interactive time before sleep; bedtime arm should hold total reading time constant or be excluded. Note the page-count change shifts pageReached/pageCount in ReadingEvent, so completion is not comparable across arms without normalising.",
+  "evidence": [
+    "c_length_twelve_spreads",
+    "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift",
+    "MagicPaper/StoryEngineBridge/ReadingEvent.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:15Z"
+}

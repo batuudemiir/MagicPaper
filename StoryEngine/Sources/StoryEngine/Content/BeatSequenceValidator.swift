@@ -93,7 +93,8 @@ public struct BeatSequenceValidator: Sendable {
     public func validate(
         _ slots: [BeatSlot],
         conflictMechanism: ConflictMechanism? = nil,
-        intensityCeiling: Int = 2
+        intensityCeiling: Int = 2,
+        arc: NarrativeArc = .standard
     ) -> BeatSequenceResult {
         var issues: [BeatSequenceIssue] = []
         var state = DerivedNarrativeState()
@@ -120,6 +121,7 @@ public struct BeatSequenceValidator: Sendable {
         issues.append(contentsOf: checkPacing(ordered, statesByPage: statesByPage, conflictMechanism: conflictMechanism))
         issues.append(contentsOf: checkEmotionalSafety(ordered, intensityCeiling: intensityCeiling))
         issues.append(contentsOf: checkLiveness(ordered))
+        if arc == .bedtime { issues.append(contentsOf: checkBedtimeContour(ordered)) }
 
         return BeatSequenceResult(issues: issues, finalState: state, statesByPage: statesByPage)
     }
@@ -273,6 +275,58 @@ public struct BeatSequenceValidator: Sendable {
                        + "the story still resolves with this page deleted."
             )
         }
+    }
+
+    /// The shape an uyku öncesi story has (karar: 21 Ekim 2026).
+    ///
+    /// Fatal, and only for blueprints that declare the bedtime arc — no
+    /// blueprint written before it is touched. The rules are privacy-safety's
+    /// conditions on `p_bedtime_closes_circle`; the books behind it (LOW, 4 of
+    /// 6) support the quiet return, not the early peak, so the peak position is
+    /// a safety rule and not a finding:
+    ///
+    /// - **Peak** is the last page at the story's highest intensity. It falls by
+    ///   two thirds of the book and leaves at least two pages after it, so the
+    ///   story spends its end settling rather than climbing.
+    /// - The last page sits at intensity 0.
+    /// - The peak is wonder or effort, never unease or doubt.
+    /// - The last page carries no `carry_forward`: nothing is promised for
+    ///   tomorrow to a child who is falling asleep.
+    private func checkBedtimeContour(_ slots: [BeatSlot]) -> [BeatSequenceIssue] {
+        var issues: [BeatSequenceIssue] = []
+        let emotions = slots.compactMap { slot in slot.emotion.map { (slot, $0) } }
+        guard let last = slots.last, emotions.count == slots.count else {
+            if let first = slots.first {
+                issues.append(.init(pageNumber: first.pageNumber, beat: first.beat, code: "bedtime_unfelt_page",
+                                    message: "A bedtime blueprint must give every page an emotion; its contour is checked page by page."))
+            }
+            return issues
+        }
+
+        let count = slots.count
+        let highest = emotions.map(\.1.intensity).max() ?? 0
+        if let (peak, feeling) = emotions.last(where: { $0.1.intensity == highest }) {
+            let position = slots.firstIndex { $0.pageNumber == peak.pageNumber }.map { $0 + 1 } ?? count
+            let latest = min(Int((Double(2 * count) / 3).rounded(.up)), count - 2)
+            if position > latest {
+                issues.append(.init(pageNumber: peak.pageNumber, beat: peak.beat, code: "bedtime_peak_too_late",
+                                    message: "The peak (intensity \(highest)) is on page \(peak.pageNumber); a bedtime story peaks by page \(latest) of \(count) and settles after."))
+            }
+            if NarrativeArc.bedtimeForbiddenPeaks.contains(feeling) {
+                issues.append(.init(pageNumber: peak.pageNumber, beat: peak.beat, code: "bedtime_uneasy_peak",
+                                    message: "The peak feels '\(feeling.rawValue)'; a bedtime peak is wonder or gentle surprise, never unease."))
+            }
+        }
+
+        if let landing = emotions.last?.1, landing.intensity != 0 {
+            issues.append(.init(pageNumber: last.pageNumber, beat: last.beat, code: "bedtime_unsettled_close",
+                                message: "The last page feels '\(landing.rawValue)' (intensity \(landing.intensity)); a bedtime story ends at 0."))
+        }
+        if last.beats.contains(.carryForward) {
+            issues.append(.init(pageNumber: last.pageNumber, beat: .carryForward, code: "bedtime_hook",
+                                message: "The last page carries 'carry_forward'; a bedtime story promises nothing for tomorrow."))
+        }
+        return issues
     }
 
     private func checkEmotionalSafety(_ slots: [BeatSlot], intensityCeiling: Int) -> [BeatSequenceIssue] {

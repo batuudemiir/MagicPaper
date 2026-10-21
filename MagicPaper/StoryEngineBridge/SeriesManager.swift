@@ -185,7 +185,7 @@ final class SeriesManager: ObservableObject {
               let childID = story.childProfileID,
               let mode = origin.mode,
               let band = origin.ageBand.flatMap(AgeBand.init),
-              service.seriesAvailable(mode: mode, band: band)
+              service.seriesAvailable(mode: mode, band: band, settingID: origin.settingID)
         else { return .unavailable }
         let all = list(for: childID)
         // A story continues once (karar: 6 Ekim 2026): after its series is

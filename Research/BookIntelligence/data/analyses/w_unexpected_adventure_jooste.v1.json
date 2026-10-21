@@ -1,0 +1,225 @@
+{
+  "work_id": "w_unexpected_adventure_jooste",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_an_unexpected_adventure",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-14T13:32:22Z",
+  "completeness": "full",
+  "summary_paraphrase": "A wordless book: a boy who does not want to go to the library opens a book and travels through it, from a dinosaur's land to the sea, to space and on an eagle's back, before finding himself back on the library floor and walking home delighted.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 2,
+      "function": "reluctant arrival"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 2,
+      "end_page": 3,
+      "intensity": 3,
+      "function": "book opens a world"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 4,
+      "end_page": 6,
+      "intensity": 4,
+      "function": "world to world"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 7,
+      "end_page": 7,
+      "intensity": 4,
+      "function": "space"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 8,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "fall and rescue ride"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 10,
+      "end_page": 11,
+      "intensity": 2,
+      "function": "back on the library floor"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 3,
+      "function": "walk home, mood reversed"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "DISCOVERY": 0.091,
+    "ESCALATION": 0.273,
+    "CLIMAX": 0.545,
+    "TURN": 0.636,
+    "SOLUTION": 0.818,
+    "EMOTIONAL_PAYOFF": 1.0
+  },
+  "characters": [
+    {
+      "id": "boy",
+      "name": "(unnamed boy)",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "(inferred) not to be at the library; then to explore",
+      "change": "from sulking to delight in books",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "carer",
+      "name": "(unnamed woman)",
+      "role": "family_member",
+      "relation_to_protagonist": "(inferred) carer or parent; brings him and takes him home",
+      "personality": "patient"
+    },
+    {
+      "id": "dinosaur",
+      "name": "dinosaur",
+      "role": "mysterious",
+      "relation_to_protagonist": "first creature met; ambiguous (friendly, then frowning)"
+    },
+    {
+      "id": "eagle",
+      "name": "eagle",
+      "role": "helper",
+      "relation_to_protagonist": "catches him as he falls"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    2,
+    2,
+    3
+  ],
+  "humor_notes": "Little humour; the dinosaur's frown as he runs off the page edge is the one comic beat.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "opening and closing walk with the same hand-hold, mood reversed",
+      "pages": [
+        1,
+        12
+      ],
+      "functions": [
+        "comfort",
+        "memory"
+      ],
+      "effective": true,
+      "why": "the frame makes the change visible without words"
+    },
+    {
+      "type": "callback",
+      "description": "open books on the floor and thought bubbles recap the dinosaur, fish and rocket",
+      "pages": [
+        3,
+        5,
+        7,
+        11,
+        12
+      ],
+      "functions": [
+        "memory"
+      ],
+      "effective": true,
+      "why": "invites retelling: the child can name each world"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Wordless: every page's information is in the picture, so all page-turn effects are visual.",
+      "Each world dissolves into the next through a shared shape (book edge, starfish into stars, feathers into floor)."
+    ]
+  },
+  "strengths": [
+    "transitions between worlds are built from shapes, so each turn has a small surprise",
+    "clear bookend: the change is shown by the same walk drawn twice"
+  ],
+  "weaknesses": [
+    "no problem or goal drives the journey; the arc is mood only",
+    "the dinosaur's frown and the shark shadow are left unexplained"
+  ],
+  "anti_patterns": [
+    {
+      "id": "unclear_stakes",
+      "pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note": "nothing can be lost on the journey; intentional for a dream-journey, but it lowers tension"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 2,
+      "participation": 4,
+      "emotional_identification": 3,
+      "surprise": 4,
+      "character_warmth": 3,
+      "agency": 3,
+      "visual_novelty": 5,
+      "predictability_balance": 3,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children. Participation scored for wordless retelling."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Wordless. A shark shadow and a fall from the sky appear, both drawn unthreatening and immediately resolved."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 0,
+    "words_per_page": {
+      "min": 0,
+      "median": 0.0,
+      "max": 0
+    },
+    "mean_sentence_words": 0,
+    "longest_sentence": 0,
+    "type_token_ratio": 0.0,
+    "dialogue_ratio": 0.0,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 0,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {},
+      "refrains": {},
+      "top_sentence_openers": {},
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  }
+}

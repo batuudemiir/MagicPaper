@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 3,
+  "beat": "establish_ordinary",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt3_eo_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına girdi. Yorganı sıcacıktı. Ay pencereden bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_into_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w34_sicacik"
+      ]
+    },
+    {
+      "id": "bt3_eo_02",
+      "text": "Uyku saati geldi. {{child.name}} {{setting.name}}'daki yatağına uzandı. Yorganını çenesine çekti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_bedtime_came",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_eo_03",
+      "text": "{{setting.name}}'da lamba yumuşacık yanıyordu. {{child.name}} yastığına başını koydu. Her şey sessizdi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_soft_lamp",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_eo_04",
+      "text": "{{child.name}} yorganına sarındı. {{setting.name}}'da uyku saatiydi. Ay pencereden bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_wrapped_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_eo_fs_01",
+      "text": "{{child.name}} yatağına girdi. Kardeşi {{family.name}} yan yatakta esniyordu. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_sibling_yawning",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_eo_fs_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yorganlarına girdi. {{setting.name}}'da uyku saatiydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_sibling_into_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_eo_ff_01",
+      "text": "{{child.name}} çok sevinçliydi. Arkadaşı {{family.name}} yatıya kalmıştı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_friend_sleepover",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_eo_ff_02",
+      "text": "{{child.name}} yatağına uzandı. Arkadaşı {{family.name}} yanındaydı. {{setting.name}}'da lamba yanıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_friend_beside",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_eo_fa_01",
+      "text": "{{child.name}} yatağına girdi. Ayakucuna {{family.possessive}} {{family.name}} kıvrıldı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_pet_curls",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_eo_fa_02",
+      "text": "{{child.name}} yastığına başını koydu. Ayakucunda {{family.possessive}} {{family.name}} esniyordu. Ay pencereden bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_pet_yawns",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_eo_fi_01",
+      "text": "{{child.name}} yatağına uzandı. Hayali arkadaşı {{family.name}} pencerenin yanındaydı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_imaginary_by_window",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_eo_fi_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a yumuşacık gülümsedi. {{setting.name}}'da uyku saati gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt3_eo_imaginary_smile",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

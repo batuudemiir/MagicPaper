@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_mc_01",
+      "text": "{{child.name}} perdeyi araladı. Pencerenin önünde {{companion.name}} adında minik bir {{companion.type}} duruyordu. Gözleri kocaman açıktı. \"Uykum var ama uyuyamıyorum,\" dedi usulca.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_mc_eyes_wide",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt_mc_02",
+      "text": "Pencerenin önünde küçük bir {{companion.type}} vardı: {{companion.name}}. Esniyor, esniyor ama gözlerini bir türlü kapatamıyordu. \"Uyuyamıyorum,\" dedi yorgun bir sesle.",
+      "requiredSlots": [
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_mc_yawning_awake",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt_mc_03",
+      "text": "{{companion.name}} adında küçük bir {{companion.type}}, pencerenin önünde ay ışığına bakıyordu. Uzun zamandır uyumaya çalışıyor ama uyuyamıyordu. Gözleri yorgun ama açıktı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_mc_moonlit_and_tired",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt_mc_04",
+      "text": "{{child.name}} pencereden dışarı baktı. Orada {{companion.name}} vardı, küçük bir {{companion.type}}. Kımıldıyor, dönüyor, yine kımıldıyordu. \"Bir türlü uyuyamıyorum,\" dedi tatlı bir sesle.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_mc_tossing_turning",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

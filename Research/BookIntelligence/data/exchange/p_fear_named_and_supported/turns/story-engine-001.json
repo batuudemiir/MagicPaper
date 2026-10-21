@@ -1,0 +1,13 @@
+{
+  "agent": "story-engine",
+  "n": 1,
+  "id": "story-engine-1",
+  "stance": "object",
+  "text": "Factual correction: the engine scale is 0-3, so 'intensity 4' maps onto nothing here; Brave Bora's peak would be our intensity 3 (fear), which BeatSequenceValidator rejects with intensityCeiling=2 in every band, not only 5-6. A narrower version is already possible without touching the ceiling: intensity-2 states (unease, hesitation, concern) followed by an adult-reassurance beat, within the existing rule of at most two consecutive intensity-2 pages. Raising the ceiling on one book is not justified, and any ceiling change is a privacy-safety decision before it is an engine one.",
+  "evidence": [
+    "StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift",
+    "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift"
+  ],
+  "reply_to": null,
+  "at": "2026-10-08T08:07:07Z"
+}

@@ -1,0 +1,18 @@
+{
+  "fields": [
+    "AgeBand.maxSentenceWords",
+    "validate_beat_corpus.MAX_SENTENCE_WORDS"
+  ],
+  "files": [
+    "StoryEngine/Tools/validate_beat_corpus.py"
+  ],
+  "tests": [
+    "validate_beat_corpus run"
+  ],
+  "owner": "story-engine",
+  "cost": "S",
+  "reversible": true,
+  "notes": "No gate change recommended. Optional: add a report-only mean-sentence-length line per band to the validator. No experiment needed.",
+  "by": "story-engine",
+  "at": "2026-10-08T08:07:27Z"
+}

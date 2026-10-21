@@ -1,0 +1,309 @@
+{
+  "run_id": "r_20261008_070359",
+  "status": "closed",
+  "started_at": "2026-10-08T07:03:59Z",
+  "finished_at": "2026-10-08T07:30:19Z",
+  "goal": "Pilot 5-6: 5 picture books with real page boundaries — public-domain scans (Internet Archive) and contemporary CC BY (Book Dash)",
+  "query_strategy": [
+    "IA: classic picture books ≤1930 with page-level OCR and pictures",
+    "Book Dash: contemporary picture books, page images + transcription",
+    "Mix structures: home-away-home, cumulative/repetitive, contemporary emotional"
+  ],
+  "queries": [
+    {
+      "adapter": "ia",
+      "query": "title:(millions of cats) AND creator:(gag)",
+      "lang": null,
+      "shelf": null,
+      "results": 3
+    },
+    {
+      "adapter": "ia",
+      "query": "title:(fierce bad rabbit)",
+      "lang": null,
+      "shelf": null,
+      "results": 2
+    },
+    {
+      "adapter": "ia",
+      "query": "title:(jemima puddle-duck)",
+      "lang": null,
+      "shelf": null,
+      "results": 5
+    },
+    {
+      "adapter": "ia",
+      "query": "title:(little red hen)",
+      "lang": null,
+      "shelf": null,
+      "results": 6
+    },
+    {
+      "adapter": "ia",
+      "query": "title:(three billy goats)",
+      "lang": null,
+      "shelf": null,
+      "results": 0
+    },
+    {
+      "adapter": "ia",
+      "query": "title:(little engine that could)",
+      "lang": null,
+      "shelf": null,
+      "results": 3
+    },
+    {
+      "adapter": "ia",
+      "query": "creator:(gag) AND mediatype:texts",
+      "lang": null,
+      "shelf": null,
+      "results": 5
+    }
+  ],
+  "candidates": [
+    {
+      "title": "Millions of Cats",
+      "creator": "Gág, Wanda, 1893-1946",
+      "url": "https://archive.org/details/millions-of-cats_202401",
+      "decision": "listed",
+      "reason": "ia: title:(millions of cats) AND creator:(gag)"
+    },
+    {
+      "title": "Millions Of Cats Urdu Billiyon Ki Baarat",
+      "creator": "Wanda Gag",
+      "url": "https://archive.org/details/BilliyonKiBaarat",
+      "decision": "listed",
+      "reason": "ia: title:(millions of cats) AND creator:(gag)"
+    },
+    {
+      "title": "Millions Of Cats",
+      "creator": "Wanda Gág",
+      "url": "https://archive.org/details/millions-of-cats-1928",
+      "decision": "listed",
+      "reason": "ia: title:(millions of cats) AND creator:(gag)"
+    },
+    {
+      "title": "~ THE TALE OF A FIERCE BAD RABBIT By BEATRIX POTTER - GUNSTON CLASSICS",
+      "creator": "BEATRIX POTTER - GUNSTON CLASSICS",
+      "url": "https://archive.org/details/the-tale-of-a-fierce-bad-rabbit-by-beatrix-potter-gunston-classics",
+      "decision": "listed",
+      "reason": "ia: title:(fierce bad rabbit)"
+    },
+    {
+      "title": "The story of a fierce bad rabbit",
+      "creator": "Potter, Beatrix, 1866-1943",
+      "url": "https://archive.org/details/storyoffiercebad00pott",
+      "decision": "listed",
+      "reason": "ia: title:(fierce bad rabbit)"
+    },
+    {
+      "title": "The tale of Jemima Puddle-Duck",
+      "creator": "Potter, Beatrix, 1866-1943",
+      "url": "https://archive.org/details/taleofjemimapudd00pottiala",
+      "decision": "listed",
+      "reason": "ia: title:(jemima puddle-duck)"
+    },
+    {
+      "title": "The Tale Of Jemima Puddle-Duck",
+      "creator": "Beatrix Potter",
+      "url": "https://archive.org/details/tale-of-jemimah-puddle-duck-1908",
+      "decision": "listed",
+      "reason": "ia: title:(jemima puddle-duck)"
+    },
+    {
+      "title": "THE TALE OF JEMIMA PUDDLE DUCK By Beatrix Potter Gunston Classics",
+      "creator": "Beatrix Potter - GUNSTON CLASSICS",
+      "url": "https://archive.org/details/the-tale-of-jemima-puddle-duck-by-beatrix-potter-gunston-classics",
+      "decision": "listed",
+      "reason": "ia: title:(jemima puddle-duck)"
+    },
+    {
+      "title": "Beatrix Potter's Beloved Tales: Includes The Tale of Tom Kitten, The Tale of Jemima Puddle-Duck, The Tale of Mr. Jeremy Fisher, The Tailor of Gloucester, and The Tale of Squirrel Nutkin",
+      "creator": "Beatrix Potter",
+      "url": "https://archive.org/details/beatrixpottersbe0000beat",
+      "decision": "listed",
+      "reason": "ia: title:(jemima puddle-duck)"
+    },
+    {
+      "title": "The tale of Jemima Puddle-Duck",
+      "creator": "Beatrix Potter",
+      "url": "https://archive.org/details/taleofjemimapudd00pott_6",
+      "decision": "listed",
+      "reason": "ia: title:(jemima puddle-duck)"
+    },
+    {
+      "title": "The Little small red hen",
+      "creator": "Byron, May Clarissa Gillington, d. 1936",
+      "url": "https://archive.org/details/cu31924012052936",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The Rooster the Mouse and the Little Red Hen",
+      "creator": "various",
+      "url": "https://archive.org/details/roostermouselitt0000unse_a5n4",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The cock, the mouse and the little red hen;",
+      "creator": "Sarg, Tony, 1882-1942, ill",
+      "url": "https://archive.org/details/cockmouselittler00sarg2",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The Little Red Hen",
+      "creator": "Berta & Elmer Hader",
+      "url": "https://archive.org/details/littleredhen0000bert",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The fox and the little red hen",
+      "creator": "Johnson, Clifton, 1865-1940",
+      "url": "https://archive.org/details/foxlittleredhen00john",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The Little Red Hen",
+      "creator": "Mara Louise Pratt -Chadwick",
+      "url": "https://archive.org/details/littleredhen00chagoog",
+      "decision": "listed",
+      "reason": "ia: title:(little red hen)"
+    },
+    {
+      "title": "The Little Engine That Could (1930)",
+      "creator": "Piper, Watty",
+      "url": "https://archive.org/details/the-little-engine-that-could_202512",
+      "decision": "listed",
+      "reason": "ia: title:(little engine that could)"
+    },
+    {
+      "title": "The Little Engine That Could (1920)",
+      "creator": "ed. Olive Beaupré Miller",
+      "url": "https://archive.org/details/the-little-engine-that-could-1920",
+      "decision": "listed",
+      "reason": "ia: title:(little engine that could)"
+    },
+    {
+      "title": "The Little Engine That Could (1930)",
+      "creator": "WATTY PIPER; LOIS L. LENSKI",
+      "url": "https://archive.org/details/little-engine-that-could-1930",
+      "decision": "listed",
+      "reason": "ia: title:(little engine that could)"
+    },
+    {
+      "title": "Millions Of Cats Urdu Billiyon Ki Baarat",
+      "creator": "Wanda Gag",
+      "url": "https://archive.org/details/BilliyonKiBaarat",
+      "decision": "listed",
+      "reason": "ia: creator:(gag) AND mediatype:texts"
+    },
+    {
+      "title": "The Funny Thing",
+      "creator": "Wanda Gag",
+      "url": "https://archive.org/details/bwb_T3-BRK-482",
+      "decision": "listed",
+      "reason": "ia: creator:(gag) AND mediatype:texts"
+    },
+    {
+      "title": "Millions of Cats",
+      "creator": "Gág, Wanda, 1893-1946",
+      "url": "https://archive.org/details/millions-of-cats_202401",
+      "decision": "listed",
+      "reason": "ia: creator:(gag) AND mediatype:texts"
+    },
+    {
+      "title": "Funny thing",
+      "creator": "Gág, Wanda",
+      "url": "https://archive.org/details/funnything00gg",
+      "decision": "listed",
+      "reason": "ia: creator:(gag) AND mediatype:texts"
+    },
+    {
+      "title": "Millions Of Cats",
+      "creator": "Wanda Gág",
+      "url": "https://archive.org/details/millions-of-cats-1928",
+      "decision": "listed",
+      "reason": "ia: creator:(gag) AND mediatype:texts"
+    }
+  ],
+  "sources_added": [
+    "s_ia_the_tale_of_peter_rabbit_202609",
+    "s_ia_millions_of_cats_202401",
+    "s_ia_littleredhen0000bert",
+    "s_ia_cockmouselittler00sarg2",
+    "s_bookdash_mud",
+    "s_bookdash_grumpy_cloud",
+    "s_bookdash_catch_that_cat",
+    "s_bookdash_brave_bora",
+    "s_bookdash_amahle_wants_to_help"
+  ],
+  "works_added": [
+    "w_tale_of_peter_rabbit_potter",
+    "w_millions_of_cats_gag",
+    "w_little_red_hen_hader",
+    "w_cock_the_mouse_and_the_little_red_hen_sarg",
+    "w_mud_waterkeyn",
+    "w_grumpy_cloud_ditlhareng",
+    "w_catch_that_cat_pirie",
+    "w_brave_bora_gicovi",
+    "w_amahle_wants_to_help_nsibande"
+  ],
+  "editions_added": [
+    "e_ia_the_tale_of_peter_rabbit_202609",
+    "e_ia_millions_of_cats_202401",
+    "e_ia_littleredhen0000bert",
+    "e_ia_cockmouselittler00sarg2",
+    "e_bookdash_mud",
+    "e_bookdash_grumpy_cloud",
+    "e_bookdash_catch_that_cat",
+    "e_bookdash_brave_bora",
+    "e_bookdash_amahle_wants_to_help"
+  ],
+  "analyses_completed": [
+    "w_mud_waterkeyn.v1",
+    "w_grumpy_cloud_ditlhareng.v1",
+    "w_catch_that_cat_pirie.v1",
+    "w_brave_bora_gicovi.v1",
+    "w_amahle_wants_to_help_nsibande.v1"
+  ],
+  "failures": [
+    {
+      "url": "https://archive.org/details/the-tale-of-peter-rabbit_202609",
+      "reason": "redirect to https://dn710300.ca.archive.org/0/items/the-tale-of-peter-rabbit_202609/The%20Tale%20of%20Peter%20Rabbit_djvu.xml leaves this adapter's allow-list",
+      "resolution": "resolved in the same run: Internet Archive now serves files from dn*.ca/eu.archive.org; the allow-list was widened to *.archive.org and the item re-ingested"
+    },
+    {
+      "url": "https://archive.org/details/millions-of-cats_202401",
+      "reason": "redirect to https://dn710205.ca.archive.org/0/items/millions-of-cats_202401/MillionsofCatsLC_djvu.xml leaves this adapter's allow-list",
+      "resolution": "resolved in the same run: Internet Archive now serves files from dn*.ca/eu.archive.org; the allow-list was widened to *.archive.org and the item re-ingested"
+    },
+    {
+      "url": "https://archive.org/details/littleredhen0000bert",
+      "reason": "redirect to https://dn711109.ca.archive.org/0/items/littleredhen0000bert/littleredhen0000bert_djvu.xml leaves this adapter's allow-list",
+      "resolution": "resolved in the same run: Internet Archive now serves files from dn*.ca/eu.archive.org; the allow-list was widened to *.archive.org and the item re-ingested"
+    },
+    {
+      "url": "https://archive.org/details/cockmouselittler00sarg2",
+      "reason": "redirect to https://dn760006.eu.archive.org/0/items/cockmouselittler00sarg2/cockmouselittler00sarg2_djvu.xml leaves this adapter's allow-list",
+      "resolution": "resolved in the same run: Internet Archive now serves files from dn*.ca/eu.archive.org; the allow-list was widened to *.archive.org and the item re-ingested"
+    }
+  ],
+  "claims_snapshot_start": {},
+  "confidence_changes": [],
+  "new_claims": [
+    "c_adult_enables_resolution",
+    "c_companion_mirrors_feeling",
+    "c_fear_named_and_supported",
+    "c_length_twelve_spreads",
+    "c_peak_in_last_third",
+    "c_picture_only_information",
+    "c_repeated_line",
+    "c_sentence_length",
+    "c_spread_end_hook"
+  ],
+  "summary": "Pilot run, re-scoped mid-run at the product owner's request from public-domain classics to contemporary books, because children's books of 1900-1930 differ too much from today's. Five contemporary picture books (Book Dash, CC BY 4.0, South Africa, 2021-2024) were transcribed from page images and analysed page by page with their pictures. Four Internet Archive classics were ingested but not analysed; they stay as a separate, older population. Everything here rests on one publisher in one country: the findings describe this population, not children's books in general. The run also found and fixed a data-quality hole: an IA 'scan' can be a user-made ebook, so uploads are no longer trusted as original page boundaries."
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfayı bir başka beat ile paylaşır"
+  },
+  "variants": [
+    {
+      "id": "bt3_rs_01",
+      "text": "Sonunda {{companion.name}} gözlerini kapadı ve uyudu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_rs_eyes_closed",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_rs_02",
+      "text": "{{companion.name}} son bir kez esnedi ve uykuya daldı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_rs_last_yawn",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_rs_03",
+      "text": "Az sonra {{companion.name}} mışıl mışıl uyuyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_rs_sound_asleep",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_rs_04",
+      "text": "{{companion.name}} derin bir nefes aldı ve uyudu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_rs_deep_breath",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}
