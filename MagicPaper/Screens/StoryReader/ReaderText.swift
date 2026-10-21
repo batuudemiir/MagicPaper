@@ -5,7 +5,7 @@ import NaturalLanguage
 ///
 /// Erken okuma kitaplarındaki gibi: 3-6 yaşta her cümle kendi satırında
 /// ("nefes satırları"), 7-10 yaşta kısa paragraflar ve sesli okurken cümle
-/// takibi. Bant masalın yazıldığı yaştan gelir (`Story.ageBand`); bandı
+/// takibi. Bant masalın yazıldığı yaştan gelir (`Story.origin?.ageBand`); bandı
 /// olmayan eski masal paragraf düzeninde açılır.
 enum ReaderTextLayout: Equatable {
     case breath

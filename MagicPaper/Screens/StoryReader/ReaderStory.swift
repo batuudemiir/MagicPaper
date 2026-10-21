@@ -163,7 +163,7 @@ extension ReaderStory {
         }
 
         self.pageCount = pages.count
-        self.textLayout = ReaderTextLayout(ageBand: story.ageBand)
+        self.textLayout = ReaderTextLayout(ageBand: story.origin?.ageBand)
         
         let cover = story.mpDefaultCoverAsset
         self.coverAsset = cover
