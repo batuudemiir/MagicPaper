@@ -53,10 +53,15 @@ final class UsageLearningTests: XCTestCase {
     }
 
     /// With no usage the live path is the old book, byte for byte.
+    ///
+    /// Parmak izi 21 Ekim 2026'da yeniden sabitlendi: v2 kütüphanesi havuza
+    /// katılınca bu seed başka bir mekân ve arkadaş bağladı. Testin koruduğu
+    /// şey değişmedi — kullanım profili NÖTR iken kitabın, kullanımdan önceki
+    /// kitapla aynı olması. Havuz değişince referans kitap da değişir.
     func testANeutralProfileKeepsThePinnedBook() throws {
         let intent = OfflineStoryIntent(childName: "Yeliz", seed: "pinned-seed-001", usage: .neutral)
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
-        XCTAssertEqual(story.fingerprint, "3ccfc0d8ebb42249")
+        XCTAssertEqual(story.fingerprint, "064729c367b9334c")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {

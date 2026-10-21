@@ -21,7 +21,22 @@
         "nature"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "habitat": [
+        "forest"
+      ],
+      "traits": [
+        "canConceal",
+        "showsTraces",
+        "isEnclosed",
+        "hasThreshold"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
     },
     {
       "id": "setting_meadow_001",
@@ -42,7 +57,19 @@
         "open"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "traits": [
+        "isOpen",
+        "isTended",
+        "showsTraces"
+      ],
+      "interests": [
+        "nature"
+      ]
     },
     {
       "id": "setting_cave_001",
@@ -65,7 +92,22 @@
         "underground"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.5
+      "noveltyWeight": 1.5,
+      "habitat": [
+        "mountain"
+      ],
+      "traits": [
+        "isEnclosed",
+        "canConceal",
+        "isHazardous",
+        "hasThreshold"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
     },
     {
       "id": "setting_mountain_001",
@@ -87,7 +129,19 @@
         "high"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "mountain"
+      ],
+      "traits": [
+        "hasHeight",
+        "hasWeather",
+        "isOpen",
+        "isHazardous"
+      ],
+      "interests": [
+        "nature"
+      ]
     },
     {
       "id": "setting_beach_001",
@@ -109,7 +163,19 @@
         "beach"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "sea"
+      ],
+      "traits": [
+        "isOpen",
+        "hasWater",
+        "showsTraces"
+      ],
+      "interests": [
+        "sea",
+        "nature"
+      ]
     },
     {
       "id": "setting_river_001",
@@ -130,7 +196,22 @@
         "river"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "traits": [
+        "hasWater",
+        "isOpen",
+        "hasThreshold"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "span"
+      ]
     },
     {
       "id": "setting_garden_001",
@@ -152,7 +233,21 @@
         "nature"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "habitat": [
+        "garden"
+      ],
+      "traits": [
+        "isTended",
+        "canConceal",
+        "hasThreshold"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
     },
     {
       "id": "setting_village_001",
@@ -173,7 +268,21 @@
         "civilization"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden"
+      ],
+      "traits": [
+        "isTended",
+        "isOpen",
+        "hasThreshold"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "social"
+      ]
     },
     {
       "id": "setting_castle_001",
@@ -194,7 +303,22 @@
         "old"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.3
+      "noveltyWeight": 1.3,
+      "habitat": [
+        "forest"
+      ],
+      "traits": [
+        "isEnclosed",
+        "canConceal",
+        "hasThreshold",
+        "showsTraces"
+      ],
+      "interests": [
+        "magic"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
     },
     {
       "id": "setting_cloud_kingdom_001",
@@ -217,7 +341,18 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.4,
-      "possessiveStem": true
+      "possessiveStem": true,
+      "habitat": [
+        "mountain"
+      ],
+      "traits": [
+        "hasHeight",
+        "hasWeather",
+        "isOpen"
+      ],
+      "interests": [
+        "magic"
+      ]
     },
     {
       "id": "setting_space_station_001",
@@ -239,7 +374,8 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.5,
-      "possessiveStem": true
+      "possessiveStem": true,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): bu dünyada burada yaşayan hiçbir yol arkadaşı yok. 'Bilim ve uzay' konusu kendi arkadaşlarıyla birlikte yazıldığında etiketlenecek."
     },
     {
       "id": "setting_moon_surface_001",
@@ -262,7 +398,8 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.2,
-      "possessiveStem": true
+      "possessiveStem": true,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): bu dünyada burada yaşayan hiçbir yol arkadaşı yok. 'Bilim ve uzay' konusu kendi arkadaşlarıyla birlikte yazıldığında etiketlenecek."
     },
     {
       "id": "setting_underwater_reef_001",
@@ -284,7 +421,18 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.1,
-      "possessiveStem": true
+      "possessiveStem": true,
+      "habitat": [
+        "sea"
+      ],
+      "traits": [
+        "hasWater",
+        "canConceal",
+        "isEnclosed"
+      ],
+      "interests": [
+        "sea"
+      ]
     },
     {
       "id": "setting_snowy_valley_001",
@@ -306,7 +454,19 @@
         "cold"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.3
+      "noveltyWeight": 1.3,
+      "habitat": [
+        "mountain"
+      ],
+      "traits": [
+        "hasWeather",
+        "isOpen",
+        "showsTraces",
+        "isHazardous"
+      ],
+      "interests": [
+        "nature"
+      ]
     },
     {
       "id": "setting_island_001",
@@ -327,7 +487,22 @@
         "island"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "sea"
+      ],
+      "traits": [
+        "isOpen",
+        "hasWater",
+        "hasThreshold"
+      ],
+      "interests": [
+        "sea",
+        "nature"
+      ],
+      "thresholdKinds": [
+        "span"
+      ]
     },
     {
       "id": "setting_bridge_001",
@@ -349,7 +524,22 @@
         "crossing"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "traits": [
+        "hasThreshold",
+        "hasWater",
+        "isOpen"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "thresholdKinds": [
+        "span"
+      ]
     }
   ],
   "companions": [
@@ -374,7 +564,8 @@
         "clever"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
     },
     {
       "id": "companion_rabbit_001",
@@ -397,7 +588,8 @@
         "shy"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
     },
     {
       "id": "companion_owl_001",
@@ -420,7 +612,8 @@
         "wise"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
     },
     {
       "id": "companion_hedgehog_001",
@@ -442,7 +635,8 @@
         "careful"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
     },
     {
       "id": "companion_dragon_001",
@@ -465,7 +659,22 @@
         "clumsy"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.5
+      "noveltyWeight": 1.5,
+      "habitat": [
+        "mountain",
+        "forest"
+      ],
+      "traits": [
+        "canFly",
+        "canCarry"
+      ],
+      "castRoles": [
+        "hesitant",
+        "guide"
+      ],
+      "interests": [
+        "magic"
+      ]
     },
     {
       "id": "companion_squirrel_001",
@@ -487,7 +696,22 @@
         "energetic"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "traits": [
+        "isSmall",
+        "isQuick"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
     },
     {
       "id": "companion_bear_001",
@@ -510,7 +734,22 @@
         "strong"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "habitat": [
+        "forest",
+        "mountain"
+      ],
+      "traits": [
+        "canCarry",
+        "isPatient"
+      ],
+      "castRoles": [
+        "reassuring",
+        "guide"
+      ],
+      "interests": [
+        "animals"
+      ]
     },
     {
       "id": "companion_penguin_001",
@@ -532,7 +771,22 @@
         "curious"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.3
+      "noveltyWeight": 1.3,
+      "habitat": [
+        "sea"
+      ],
+      "traits": [
+        "isSmall",
+        "canSwim"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals",
+        "sea"
+      ]
     },
     {
       "id": "companion_turtle_001",
@@ -555,7 +809,24 @@
         "patient"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "sea",
+        "garden"
+      ],
+      "traits": [
+        "canCarry",
+        "isPatient",
+        "canSwim"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals",
+        "sea"
+      ]
     },
     {
       "id": "companion_dolphin_001",
@@ -577,7 +848,8 @@
         "playful"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.4
+      "noveltyWeight": 1.4,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
     },
     {
       "id": "companion_firefly_001",
@@ -601,7 +873,22 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.2,
-      "typePossessiveStem": true
+      "typePossessiveStem": true,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "traits": [
+        "canFly",
+        "isSmall"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
     },
     {
       "id": "companion_robot_001",
@@ -623,7 +910,23 @@
         "logical"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.5
+      "noveltyWeight": 1.5,
+      "habitat": [
+        "garden",
+        "forest",
+        "mountain"
+      ],
+      "traits": [
+        "isLiteralMinded",
+        "canCarry"
+      ],
+      "castRoles": [
+        "hesitant",
+        "guide"
+      ],
+      "interests": [
+        "robots"
+      ]
     },
     {
       "id": "companion_frog_001",
@@ -645,11 +948,27 @@
         "jumping"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "traits": [
+        "isSmall",
+        "isQuick",
+        "canSwim"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
     },
     {
       "id": "companion_cat_001",
-      "name": "Pamuk",
+      "name": "Pati",
       "type": "kedi",
       "personality": "meraklı ama tembel",
       "description": "Beyaz kedi.",
@@ -667,7 +986,23 @@
         "domestic"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "traits": [
+        "isQuick",
+        "isPatient"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ],
+      "note": "21 Ekim 2026: adı 'Pamuk' idi; pilot kütüphanesindeki tavşan da Pamuk. Havuza katılınca çocuk iki ayrı masalda aynı adı taşıyan iki farklı hayvanla karşılaşacaktı."
     },
     {
       "id": "companion_dog_001",
@@ -690,7 +1025,23 @@
         "loyal"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest",
+        "mountain"
+      ],
+      "traits": [
+        "canCarry",
+        "hasLocalKnowledge"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "interests": [
+        "animals"
+      ]
     }
   ],
   "objects": [
@@ -707,7 +1058,12 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "emitsSignal",
+        "isVisible"
+      ],
+      "keepsakeName": "fener"
     },
     {
       "id": "object_map_001",
@@ -722,7 +1078,13 @@
         "paper"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isFragmentary",
+        "isVisible",
+        "impliesPresence"
+      ],
+      "keepsakeName": "harita"
     },
     {
       "id": "object_compass_001",
@@ -736,7 +1098,12 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "keepsakeName": "pusula"
     },
     {
       "id": "object_key_001",
@@ -751,7 +1118,13 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "traits": [
+        "isVisible",
+        "isUnexplained",
+        "impliesPresence"
+      ],
+      "keepsakeName": "altın anahtar"
     },
     {
       "id": "object_crystal_001",
@@ -766,7 +1139,17 @@
         "light"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.3
+      "noveltyWeight": 1.3,
+      "traits": [
+        "emitsSignal",
+        "isVisible",
+        "isBeautiful",
+        "isUnexplained"
+      ],
+      "interests": [
+        "magic"
+      ],
+      "keepsakeName": "kristal"
     },
     {
       "id": "object_bell_001",
@@ -780,7 +1163,16 @@
         "metal"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isAudible",
+        "emitsSignal",
+        "isVisible"
+      ],
+      "interests": [
+        "music"
+      ],
+      "keepsakeName": "gümüş çan"
     },
     {
       "id": "object_feather_001",
@@ -794,7 +1186,17 @@
         "nature"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "isFragile",
+        "impliesPresence"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "keepsakeName": "tüy"
     },
     {
       "id": "object_shell_001",
@@ -809,7 +1211,18 @@
         "nature"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "sea"
+      ],
+      "traits": [
+        "isVisible",
+        "isBeautiful"
+      ],
+      "interests": [
+        "sea"
+      ],
+      "keepsakeName": "deniz kabuğu"
     },
     {
       "id": "object_tiny_book_001",
@@ -824,7 +1237,12 @@
         "knowledge"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "traits": [
+        "isVisible",
+        "isFragmentary"
+      ],
+      "keepsakeName": "minik kitap"
     },
     {
       "id": "object_star_stone_001",
@@ -838,7 +1256,16 @@
         "stone"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.4
+      "noveltyWeight": 1.4,
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "isUnexplained"
+      ],
+      "interests": [
+        "magic"
+      ],
+      "keepsakeName": "yıldız taşı"
     },
     {
       "id": "object_ribbon_001",
@@ -852,7 +1279,14 @@
         "cloth"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isVisible",
+        "impliesPresence",
+        "impliesNeed",
+        "isFragile"
+      ],
+      "keepsakeName": "kurdele"
     },
     {
       "id": "object_magnifying_glass_001",
@@ -866,7 +1300,12 @@
         "glass"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "traits": [
+        "isVisible",
+        "isFragile"
+      ],
+      "keepsakeName": "büyüteç"
     },
     {
       "id": "object_rope_001",
@@ -880,7 +1319,11 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isVisible"
+      ],
+      "keepsakeName": "ip"
     },
     {
       "id": "object_flute_001",
@@ -895,7 +1338,15 @@
         "wood"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "traits": [
+        "isAudible",
+        "isVisible"
+      ],
+      "interests": [
+        "music"
+      ],
+      "keepsakeName": "flüt"
     },
     {
       "id": "object_seed_001",
@@ -910,7 +1361,16 @@
         "magic"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.3
+      "noveltyWeight": 1.3,
+      "traits": [
+        "impliesNeed",
+        "isFragile",
+        "isVisible"
+      ],
+      "interests": [
+        "nature"
+      ],
+      "keepsakeName": "tohum"
     },
     {
       "id": "object_coin_001",
@@ -924,7 +1384,12 @@
         "old"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "keepsakeName": "madeni para"
     },
     {
       "id": "object_mirror_001",
@@ -938,7 +1403,12 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.1
+      "noveltyWeight": 1.1,
+      "traits": [
+        "isVisible",
+        "isFragile"
+      ],
+      "keepsakeName": "ayna"
     },
     {
       "id": "object_bag_001",
@@ -952,7 +1422,13 @@
         "tool"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.0
+      "noveltyWeight": 1.0,
+      "traits": [
+        "isVisible",
+        "impliesPresence",
+        "impliesNeed"
+      ],
+      "keepsakeName": "çanta"
     },
     {
       "id": "object_stick_001",
@@ -967,7 +1443,14 @@
         "magic"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.4
+      "noveltyWeight": 1.4,
+      "traits": [
+        "isVisible"
+      ],
+      "interests": [
+        "magic"
+      ],
+      "keepsakeName": "asa"
     },
     {
       "id": "object_goggles_001",
@@ -981,7 +1464,12 @@
         "glass"
       ],
       "cooldownWeight": 1.0,
-      "noveltyWeight": 1.2
+      "noveltyWeight": 1.2,
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "keepsakeName": "gözlük"
     }
   ],
   "events": [
@@ -3709,5 +4197,5 @@
   ],
   "blueprints": [],
   "schemaVersion": 2,
-  "note": "Shared content and template layer. The blueprints key is deliberately empty since 2026-09-18: Schema 2 is the only canonical blueprint format and every production blueprint now lives in blueprints/pilot_library_v1.json. The twelve role-only V1 blueprints this key used to hold are kept verbatim in docs/retired/retired_blueprints_2026-09-18.json. Settings, companions, objects, events, challenges, endings and the 52 role-keyed templates below are still live: ContentCatalogLoader reads this document as the required base layer. Record order in settings/companions/objects is load-bearing - see docs/MagicPaper_Content_Library.md."
+  "note": "Shared content and template layer. The blueprints key is deliberately empty since 2026-09-18: Schema 2 is the only canonical blueprint format and every production blueprint now lives in blueprints/pilot_library_v1.json. The twelve role-only V1 blueprints this key used to hold are kept verbatim in docs/retired/retired_blueprints_2026-09-18.json. Settings, companions, objects, events, challenges, endings and the 52 role-keyed templates below are still live: ContentCatalogLoader reads this document as the required base layer. Record order in settings/companions/objects is load-bearing - see docs/MagicPaper_Content_Library.md. | 21 Ekim 2026: kayıtlara habitat/traits/castRoles/interests eklendi. Bu alanlar olmadan hiçbiri masala giremiyordu: 17 blueprint'in 17'si kadro, 16'sı mekân özelliği şart koşuyor."
 }

@@ -199,9 +199,11 @@ final class StoryTopicTests: XCTestCase {
         let b56 = AgeBand(lowerBound: 5, upperBound: 6)
         let b34 = AgeBand(lowerBound: 3, upperBound: 4)
 
-        // 16 Ekim 2026 ölçümü. On konu tanımlı, ikisi canlı.
+        // 21 Ekim 2026 ölçümü. On konu tanımlı, ÜÇÜ canlı: v2 kütüphanesi
+        // havuza katılınca kumsal, resif ve ada "Denizin altı" konusunu açtı.
         XCTAssertEqual(live(.learning, band: b56), ["topic_learning_animals"])
-        XCTAssertEqual(live(.adventure, band: b56), ["topic_adventure_wild"])
+        XCTAssertEqual(live(.adventure, band: b56),
+                       ["topic_adventure_sea", "topic_adventure_wild"])
 
         // 3-4 bandında tek bir blueprint var ve o uyku öncesine ait; bu bantta
         // hiçbir konu kurulamıyor, yani alt kategori adımı hiç görünmüyor.

@@ -71,22 +71,43 @@ final class InterestCatalogTests: XCTestCase {
     func testTheShippedInterestMatrix() throws {
         let catalog = try catalog()
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
-        XCTAssertEqual(coverage[b34], ["animals", "nature"])
-        XCTAssertEqual(coverage[b56], ["animals", "nature"])
+        // 21 Ekim 2026: v2 kütüphanesindeki 49 kayıt etiketlenip havuza
+        // katıldı; kapsam ikiden altıya çıktı. Liste yine birebir sabit —
+        // içerik eklendiğinde kırmızıya dönüp güncellenmesi bu testin işi.
+        XCTAssertEqual(coverage[b34], ["animals", "magic", "nature", "sea"])
+        XCTAssertEqual(coverage[b56], ["animals", "magic", "music", "nature", "robots", "sea"])
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
-                       ["Hayvanlar", "Doğa"])
+                       ["Hayvanlar", "Deniz", "Sihir", "Doğa"])
     }
 
-    /// The sea is authored but reaches no story: the coral sea, the dolphin
-    /// and the shell bind to no shipped blueprint. Listed for the content
-    /// pipeline, not hidden.
-    func testTheSeaIsTaggedButUnreachable() throws {
+    /// Deniz artık ulaşılabilir (21 Ekim 2026).
+    ///
+    /// FAZ 12'den beri mercan denizi, yunus ve deniz kabuğu katalogda duruyor
+    /// ama hiçbir masala giremiyordu: o masalları kuracak mekân/arkadaş/nesne
+    /// üçlüsü tamamlanmıyordu. v2 kütüphanesi etiketlenip havuza katılınca
+    /// (kumsal, resif, ada, penguen, kaplumbağa) deniz iki bantta da kuruldu.
+    ///
+    /// Testin eski hâli bunun tersini sabitliyordu ve şöyle yazılmıştı:
+    ///
+    ///     XCTAssertEqual(sea.count, 1)
+    ///     XCTAssertTrue(sea[0].message.contains(...))
+    ///
+    /// Önerme değişince `count` sıfıra düştü, ilk satır kırmızı yazdı, ikinci
+    /// satır boş diziyi indeksleyip **bütün demeti çökertti** — o çalıştırmada
+    /// bilinen 10 hatanın hiçbiri koşamadı. Önce doğrula sonra indeksle:
+    /// kırılan bir test yalnızca kendi sonucunu bozmalı.
+    func testTheSeaIsNowReachable() throws {
         let catalog = try catalog()
         XCTAssertEqual(catalog.setting("setting_coral_sea_001")?.interests, ["sea"])
+
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
-        let sea = report.issues(withCode: "interest_unreachable_in_band").filter { $0.message.contains("'sea'") }
-        XCTAssertEqual(sea.count, 1)
-        XCTAssertTrue(sea[0].message.contains("3-4") && sea[0].message.contains("5-6"), sea[0].message)
+        let sea = report.issues(withCode: "interest_unreachable_in_band")
+            .filter { $0.message.contains("'sea'") }
+        XCTAssertTrue(sea.isEmpty, "deniz yine ulaşılamaz: \(sea.map(\.message))")
+
+        let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
+        XCTAssertTrue(coverage[b34]?.contains("sea") ?? false, "3-4 bandında deniz yok")
+        XCTAssertTrue(coverage[b56]?.contains("sea") ?? false, "5-6 bandında deniz yok")
     }
 
     // MARK: - Integrity
@@ -131,21 +152,27 @@ final class InterestCatalogTests: XCTestCase {
 
     // MARK: - Coverage
 
-    /// Coverage asks the binder, so a tag on content no story can use reaches
-    /// nothing. The coral sea, the dolphin and the shell are such content today:
-    /// every blueprint needs something the sea does not offer (somewhere to
-    /// conceal, traces, a threshold, something tended), so the sea reaches no
-    /// band at all — a finding for the content pipeline, not an engine rule.
+    /// Kapsam bağlayıcıya sorar: hiçbir masalın kullanamadığı içerikteki etiket
+    /// hiçbir yere ulaşmaz.
+    ///
+    /// Bu testin eski hâli denizi "ulaşılamaz içerik" örneği olarak
+    /// kullanıyordu — mercan denizi, yunus ve deniz kabuğu hiçbir blueprint'e
+    /// bağlanamıyordu, çünkü her blueprint denizin sunmadığı bir şey istiyordu
+    /// (saklanacak yer, iz, eşik, bakılan bir şey). 21 Ekim 2026'da v2
+    /// kütüphanesi etiketlenince kumsal, resif ve ada havuza girdi ve deniz iki
+    /// bantta da kurulur oldu. Örnek değişti, kuralın kendisi değil: kapsam
+    /// hâlâ kurulabilenle sınırlı, 7-8 hâlâ boş.
     func testCoverageFollowsWhatCanActuallyBeBuilt() throws {
         let catalog = try InterestFixtures.testTagging(in: try catalog())
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
 
-        XCTAssertEqual(coverage[b56], ["pirates", "animals"])
-        XCTAssertEqual(coverage[b34], ["animals"], "the torn map serves no 3-4 shape")
-        XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], [])
+        XCTAssertEqual(coverage[b56], ["pirates", "animals", "sea"])
+        XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan haritası 3-4 yayına hizmet etmiyor")
+        XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], [],
+                       "7-8 bandında hiç blueprint yok")
 
         let offered = BlueprintSelector().availableInterests(catalog: catalog).map(\.id)
-        XCTAssertEqual(offered, ["animals"], "pirates misses 3-4 and the sea misses both")
+        XCTAssertEqual(offered, ["animals", "sea"], "korsanlar 3-4'e ulaşmıyor")
     }
 
     func testABlueprintTagCountsOnlyInItsOwnBand() throws {

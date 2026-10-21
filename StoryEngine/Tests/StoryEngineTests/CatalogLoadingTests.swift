@@ -40,11 +40,19 @@ final class CatalogBundleTests: XCTestCase {
         // the same arc and none declared beats, so `isBeatAuthored` was false
         // and the selector could never reach them. Schema 2 is now the single
         // canonical blueprint format, so no unauthored blueprint should remain.
-        // V1's other records are untouched and still identifiable by having no traits.
+        // V1'in diğer kayıtları 21 Ekim 2026'ya kadar "özelliği olmayan" olarak
+        // ayırt edilebiliyordu; o gün 49'u etiketlenip havuza katıldı, çünkü
+        // etiketsiz oldukları için hiçbir masala giremiyorlardı (17
+        // blueprint'in 17'si kadro, 16'sı mekân özelliği şart koşuyor).
+        // Geriye bilerek etiketlenmeyenler kaldı: uzay istasyonu ile Ay (bu
+        // dünyada orada yaşayan bir yol arkadaşı yok) ve pilot türleriyle
+        // çakışan beş arkadaş.
         XCTAssertEqual(catalog.blueprints.filter { !$0.isBeatAuthored }.count, 0)
-        XCTAssertEqual(catalog.settings.filter(\.traits.isEmpty).count, 16)
-        XCTAssertEqual(catalog.companions.filter(\.traits.isEmpty).count, 15)
-        XCTAssertEqual(catalog.objects.filter(\.traits.isEmpty).count, 20)
+        XCTAssertEqual(catalog.settings.filter(\.traits.isEmpty).count, 2)
+        // Beş arkadaş da bilerek etiketsiz: pilot kütüphanesinde aynı türden
+        // (tilki, tavşan, baykuş, kirpi, yunus) bir arkadaş zaten var.
+        XCTAssertEqual(catalog.companions.filter(\.traits.isEmpty).count, 5)
+        XCTAssertEqual(catalog.objects.filter(\.traits.isEmpty).count, 0)
         XCTAssertEqual(catalog.events.count, 20)
         XCTAssertEqual(catalog.challenges.count, 15)
         XCTAssertEqual(catalog.endings.count, 10)

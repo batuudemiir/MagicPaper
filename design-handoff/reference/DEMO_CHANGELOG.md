@@ -133,6 +133,29 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · faz-21-varyasyon · Havuz diriltildi: 44 ölü kayıt masala girdi
+
+- **A turu (plan: D1 taban → A → D1 karşılaştırma).** v2 kütüphanesindeki kayıtlara `habitat`, `traits`, `castRoles`, `interests`, `thresholdKinds`, `keepsakeName` eklendi. Bu alanlar olmadan hiçbiri masala giremiyordu: 17 blueprint'in 17'si kadro, 16'sı mekân özelliği şart koşuyor. 14 mekân + 10 arkadaş + 20 nesne canlandı.
+- **Ölçülen sonuç** (50 sabit seed, `Content/variation_baseline.json` 1. ve 3. kayıt):
+
+  | kesit | mekân | arkadaş | kadro | tekrar eden cümle |
+  |---|---|---|---|---|
+  | Öğrenelim 5-6 | 5 → 15 | 4 → 15 | 22 → 45 | %56 → %52 |
+  | Macera 5-6 | 2 → 15 | 3 → 13 | 6 → 43 | %64 → %57 |
+  | Uyku 5-6 | 2 → 2 | 3 → 7 | 6 → 14 | %88 → %85 |
+  | Uyku 3-4 | 2 → 2 | 3 → 7 | 6 → 14 | %88 → %84 |
+
+- **Mekanizma sayısı değişmedi** (8/4/1/1) ve bu dürüst tablo: havuz büyüdü, hikâye sayısı büyümedi. Çocuk aynı sekiz olay örgüsünü çok daha fazla yer ve arkadaşla yaşıyor. Yeni olay örgüsü B turunun işi.
+- **Alt kategori:** "Denizin altı" canlandı (kumsal, resif, ada). Canlı konu 2 → 3.
+- **İlgi alanları:** ebeveyne sunulan liste 2 → 4 (Hayvanlar, Deniz, Sihir, Doğa). "Deniz ölü içerik" kaydı artık geçersiz. Eşik 4 olduğu için ilgi alanı ekranının görünürlüğü değişmiş olabilir — **uygulama tarafında doğrulanmadı**.
+- **Bilerek etiketlenmedi:** uzay istasyonu ve Ay (bu dünyada orada yaşayan yol arkadaşı yok; etiketlenselerdi tilki uzay istasyonuna giderdi) ve pilot türleriyle çakışan beş arkadaş (tilki, tavşan, baykuş, kirpi, yunus — diriltilseydi çocuk aynı türün iki ayrı adını görürdü). Kayıtlara `note` olarak yazıldı.
+- v2 kedisinin adı "Pamuk"tu, pilot tavşanı da Pamuk; kedi **Pati** oldu.
+- **Yol üstünde bulunan kayıp:** üç blueprint hiçbir moda ulaşmıyor (`bp_charge_tending_001`, `bp_charge_release_002`, `blueprint_charge_tending_age3_001` — sonuncusu 3-4 bandının ninni dışındaki tek masalı). 21 Ekim'de uyku arkı eklenirken bedtime profiline `arcs:["bedtime"]` yazıldı, charge ailesinin standart yaydaki masalları dışarıda kaldı. `CatalogIntegrity` artık uyarıyor; `testNoBlueprintIsStrandedWithoutAMode` **bilerek kırmızı**. Düzeltme kararı uyku arkını yazan oturuma ait.
+- **Güncellenen sabitler** (hepsi havuz değiştiği için, gevşetilmeden): determinizm testlerinin bağladığı kitap (orman+tavşan → mağara+robot), `UsageLearningTests` parmak izi, katalog kayıt sayıları, ilgi matrisi, `testTheSeaIsTaggedButUnreachable` → `testTheSeaIsNowReachable`, konu alarmı. Masal ailem fixture'ı yeniden üretildi ve A öncesiyle birebir aynı çıktı (uyku masalları değişmedi).
+- **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
+- Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
+- Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+
 ### 2026-10-21 · main@c957e28 · origin/main yerel main'e birleşti, telefona kurulum
 - Yerel main (alt seçenek testi birleşmesi) ile başka oturumun gönderdiği origin/main (kitaplık turu 2, masal başlıkları, uyku arkı başlık kalıpları; 13 commit) ayrışmıştı. origin/main yerel main'e birleşti (c957e28). Tek çakışma bu dosyadaydı; iki tarafın kayıtları korundu.
 - Bilerek değişmedi: kod. Birleşme yalnızca iki tarafı bir araya getirdi.
