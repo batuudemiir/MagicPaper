@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · kitaplik-yenileme@a0d71f1 · Kitaplık: kendi masalına başlık kapağı, sarı/yeşil kontrast
+- Moda göre iki kapak fikri simülatörde yan yana denendi (A mod sahnesi: mozaik + mod ışığı; B başlık kapağı). A'da aynı dünyadaki masallar hâlâ birbirine benziyordu, bazı dünyalar bulanıklaşıyordu. Batuhan B'yi seçti.
+- Kendi masalının kapağı: mod tonunda kâğıt (hafif kâğıt dokusu), ortada masalın adı (Baloo, `MP.F.displaySM`), üstte mod simgesi (ay / ışıltı / çadır), altta dünya simgesi ve yıldız. Ad kapakta olduğu için kartın altında yalnızca "Uyku · 4 dakika" kalır (VoiceOver adı okur). Dar kapakta (Kaldığın yerden, 64 pt) ad yerine büyük dünya simgesi. Modu bilinmeyen eski masal gökyüzü tonunda, simgesiz. Masal setinin illüstrasyon kapağı teslim edilirse önce o kullanılır.
+- Kontrast (Batuhan: sarıyı düzelt): sarı koyu ton sarı zeminde 2.0:1, yeşil 3.0:1 idi. Başlık sarıda `MPColor.yellowText` (4.8:1), yeşilde yeni `MPColor.greenText` (5.1:1); mor 3.3:1 ve mavi 3.5:1 büyük başlık için yeterli.
+- Mozaik kapak türü kitaplıktan kalktı; okuyucunun kapak yaprağı (mozaik + kemerli başlık) bilerek değişmedi. Deneme sayfası silindi.
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 30/30 (başlık kapağı, modsuz masal, kontrast renkleri). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, iPhone SE görülmedi. Tasarım ve dil kontrolleri değişen dosyalarda boş.
+- Dosyalar: `DesignSystem/Pastel/MPBookCover.swift`, `DesignSystem/Pastel/MPColor.swift`, `Screens/Library/LibraryShelfModel.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`.
+
 ### 2026-10-21 · kitaplik-yenileme@fec2407 · Kitaplık: tek zaman çizgisi (son okunmaya göre)
 - Batuhan: kitaplık hâlâ karışık, bulunabilirlik düşük; tarihe göre yeniden eskiye sıralansın. Üç ajanla beyin fırtınası (tasarım, masal motoru, ebeveyn deneyimi) sonrası Batuhan'ın kararları: tarihli tek ızgara, son okunmaya göre, kapak için iki fikir yan yana denensin, başlıklar iki aşamada iyileşsin.
 - Mod rafları ve "Yarım kalanlar" süzgeci kalktı. Kitaplık tek iki sütun ızgara: "Bugün · Dün · Bu hafta · Geçen hafta · Ekim" (başka yılsa "Eylül 2025") bölümleri. Her kitap bir kez görünür; çipler (Tümü, Favoriler, Uyku, Öğrenelim, Macera, Klasikler; yalnızca dolu olanlar) ve arama aynı çizgiyi daraltır, bölümler kalır. Çipler artık tek satıra sığıyor.
