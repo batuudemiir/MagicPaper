@@ -153,13 +153,24 @@ final class LibraryShelfModelTests: XCTestCase {
 
     // MARK: Kapak
 
-    func testTextStoryCoverIsItsOwnMosaicNotASharedImage() {
-        let a = Self.story("A", mode: "bedtime"), b = Self.story("B", mode: "bedtime")
-        guard case .mosaic(let ca) = LibraryShelfModel.coverArt(a),
-              case .mosaic(let cb) = LibraryShelfModel.coverArt(b) else {
-            return XCTFail("metin masalı mozaik kapak almalı")
+    /// Kendi masalının kapağı başlık kapağı: adı ve modun tonu kapakta.
+    func testOwnStoryCoverIsATitleCoverInItsModeTone() {
+        let bedtime = Self.story("Ay Dede", mode: "bedtime")
+        XCTAssertEqual(LibraryShelfModel.coverArt(bedtime),
+                       .title("Ay Dede", tone: .lav, modeSymbol: StoryMode.bedtime.symbol,
+                              worldSymbol: MP.World.orman.icon))
+        guard case .title(_, let tone, let symbol, _) = LibraryShelfModel.coverArt(ReaderFixtures.textStory(pages: 2)) else {
+            return XCTFail("modsuz masal da başlık kapağı almalı")
         }
-        XCTAssertNotEqual(ca.seed, cb.seed)
+        XCTAssertEqual(tone, .sky)
+        XCTAssertNil(symbol, "modu bilinmeyen masalda mod simgesi yok")
+    }
+
+    /// Sarı ve yeşil kapakta başlık koyu tonda okunmuyordu (2.0:1, 3.0:1).
+    func testCoverTitleColorAvoidsLowContrastDeepTones() {
+        XCTAssertEqual(MPWorldTone.yellow.coverTitle, MPColor.yellowText)
+        XCTAssertEqual(MPWorldTone.green.coverTitle, MPColor.greenText)
+        XCTAssertEqual(MPWorldTone.lav.coverTitle, MPWorldTone.lav.deep)
     }
 
     // MARK: Yardımcılar
@@ -167,7 +178,7 @@ final class LibraryShelfModelTests: XCTestCase {
     private static func model(_ stories: [Story], favorites: Set<UUID> = [],
                               classics: [(tale: ClassicTale, fraction: Double, openedAt: Date)] = []) -> LibraryShelfModel {
         LibraryShelfModel.build(stories: stories, isFavorite: { favorites.contains($0) },
-                                classics: classics, art: { _ in .symbol("book", .lav) })
+                                classics: classics, art: { .title($0.title, tone: .lav, modeSymbol: nil, worldSymbol: "book") })
     }
 
     private static func story(_ title: String, mode: String, pages: Int = 2) -> Story {

@@ -220,10 +220,12 @@ extension LibraryShelfModel {
     }
 
     /// Kendi masalının kapağı: teslim edilmiş set kapağı varsa o, yoksa
-    /// kendi kâğıt mozaiği. Ortak varsayılan görsel yok (20 Ekim).
+    /// başlık kapağı (mod tonunda kâğıt, ortada adı; 21 Ekim). Modu
+    /// bilinmeyen eski masal gökyüzü tonunda, simgesiz.
     static func coverArt(_ story: Story) -> MPBookCover.Art {
         if let asset = story.mpKitCoverAsset ?? story.mpDefaultCoverAsset { return .image(asset) }
-        if story.mpCoverStyle == .magicPaperMosaic { return .mosaic(story.mpMosaicCover) }
-        return .symbol(story.mpWorld.icon, story.mpWorld.tone)
+        let mode = story.mpMode
+        return .title(story.title, tone: mode?.tone ?? .sky, modeSymbol: mode?.symbol,
+                      worldSymbol: story.mpWorld.icon)
     }
 }

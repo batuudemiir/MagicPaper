@@ -195,8 +195,10 @@ extension MPColor {
     static let coverScrim = Color(red: 20 / 255, green: 18 / 255, blue: 26 / 255)
     /// Segment ve parça izi (çocuk alanı).
     static let segmentTrack = Color(red: 0xEF / 255, green: 0xE8 / 255, blue: 0xDD / 255)
-    /// Sarı tonun okunur metni (hap, rozet).
+    /// Sarı tonun okunur metni (hap, rozet, kapak başlığı; sarı zeminde 4.77:1).
     static let yellowText = Color(red: 0x8A / 255, green: 0x64 / 255, blue: 0)
+    /// Yeşil tonun okunur metni (kapak başlığı; yeşil zeminde 5.1:1, 21 Ekim).
+    static let greenText = Color(red: 0x35 / 255, green: 0x70 / 255, blue: 0x32 / 255)
     /// Kilitli rozet: simge, daire, zemin.
     static let lockedIcon = Color(red: 0xA3 / 255, green: 0x9D / 255, blue: 0x94 / 255)
     static let lockedCircle = Color(red: 0xE4 / 255, green: 0xDE / 255, blue: 0xD4 / 255)
