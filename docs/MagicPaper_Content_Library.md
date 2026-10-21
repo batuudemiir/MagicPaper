@@ -63,7 +63,7 @@ Okuyan tip: `StoryEngine/Sources/StoryEngine/Content/CatalogBlueprint.swift`.
 | `editorialGuidance` | — | yazara talimat |
 | `requires` | ✔ | `setting` / `companion` / `discovery` / `casting` / `thresholdKind` |
 | `forbids` | ✔ | `setting` / `companion` / `discovery` — **düz küme**, disjunction yok |
-| `titlePatterns` | ✔ | `{{child.name}}`, `{{setting.name}}`, `{{companion.name}}`, `{{discovery.title}}` |
+| `titlePatterns` | ✔ | `{{child.name}}`, `{{setting.name}}`, `{{companion.name}}`, `{{discovery.title}}`. 4-6 kalıp, moda özel (uyku sakin, öğrenme soru, macera keşif); en fazla yarısı çocuğun adıyla başlar (`title_patterns_name_led`, hata; 4'ten az `title_patterns_too_few`, uyarı). `TitleComposer` kapağa sığmayan (5-6 ve üstü 32, 3-4 26 karakter) ya da aynı kelimeyi iki kez taşıyan başlığı bir sonraki kalıba bırakır; çocuğun son 12 masalındaki başlığı başka temiz kalıp varken yazmaz, hepsi kullanıldıysa bugünkü seçim kalır (21 Ekim 2026) |
 | `pages` | ✔ | `pageNumber` · `role` · `beat` · `supportingBeat?` · `emotion` |
 
 `requires.setting/companion/discovery` bir `TraitRequirement`'tır:

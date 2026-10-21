@@ -326,7 +326,9 @@ final class PilotBlueprintTests: XCTestCase {
             for pattern in blueprint.titlePatterns {
                 let result = TurkishTextRenderer.render(pattern, slots: [
                     "child.name": .init("Yeliz", isProperNoun: true),
-                    "setting.name": setting
+                    "setting.name": setting,
+                    "companion.name": .init("Tarçın", isProperNoun: true),
+                    "discovery.title": .init("Titrek Işık", isProperNoun: false)
                 ])
                 XCTAssertTrue(
                     result.isClean,
@@ -342,13 +344,18 @@ final class PilotBlueprintTests: XCTestCase {
         let blueprint = try pilot()
         let slots: [String: TurkishTextRenderer.Slot] = [
             "child.name": .init("Yeliz", isProperNoun: true),
-            "setting.name": .init("Fısıldayan Orman", isProperNoun: true)
+            "setting.name": .init("Fısıldayan Orman", isProperNoun: true),
+            "companion.name": .init("Tarçın", isProperNoun: true),
+            "discovery.title": .init("Yırtık Harita", isProperNoun: false)
         ]
         let rendered = blueprint.titlePatterns.map { TurkishTextRenderer.render($0, slots: slots).text }
+        // 2026-10-21: macera kalıpları, çoğu adsız (TitleVarietyTests).
         XCTAssertEqual(rendered, [
-            "Yeliz ve Fısıldayan Orman'daki Işık",
-            "Yeliz'in Fısıldayan Orman'daki Cesur Adımı",
-            "Fısıldayan Orman'a Cesur Yolculuk"
+            "Fısıldayan Orman'a Cesur Yolculuk",
+            "Fısıldayan Orman'da Yırtık Harita",
+            "Fısıldayan Orman'ın Öbür Yanı",
+            "Yeliz'in Cesur Adımı",
+            "Yeliz ve Tarçın Yolda"
         ])
     }
 
@@ -356,13 +363,17 @@ final class PilotBlueprintTests: XCTestCase {
         let blueprint = try pilot()
         let slots: [String: TurkishTextRenderer.Slot] = [
             "child.name": .init("Demir", isProperNoun: true),
-            "setting.name": .init("Gece Bahçesi", isProperNoun: true, hasPossessiveEnding: true)
+            "setting.name": .init("Gece Bahçesi", isProperNoun: true, hasPossessiveEnding: true),
+            "companion.name": .init("Kestane", isProperNoun: true),
+            "discovery.title": .init("Deniz Kabuğu", isProperNoun: false, hasPossessiveEnding: true)
         ]
         let rendered = blueprint.titlePatterns.map { TurkishTextRenderer.render($0, slots: slots).text }
         XCTAssertEqual(rendered, [
-            "Demir ve Gece Bahçesi'ndeki Işık",
-            "Demir'in Gece Bahçesi'ndeki Cesur Adımı",
-            "Gece Bahçesi'ne Cesur Yolculuk"
+            "Gece Bahçesi'ne Cesur Yolculuk",
+            "Gece Bahçesi'nde Deniz Kabuğu",
+            "Gece Bahçesi'nin Öbür Yanı",
+            "Demir'in Cesur Adımı",
+            "Demir ve Kestane Yolda"
         ])
     }
 

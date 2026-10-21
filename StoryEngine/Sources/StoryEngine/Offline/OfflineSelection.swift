@@ -53,6 +53,11 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// A filter, not a weight, and not part of the story's seed: where it
     /// rules nothing out, the book is the one it would have been.
     public let safety: ContentSafety?
+    /// The titles already in this child's library (21 Ekim 2026). Only the
+    /// title reads it: a pattern whose title the child already has is skipped
+    /// while another is clean (`TitleComposer`). Not part of the seed or the
+    /// fingerprint; empty is every story before it, and changes nothing.
+    public let recentTitles: Set<String>
 
     public init(
         childName: String,
@@ -68,7 +73,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         interests: [InterestTag] = [],
         recent: [RecentContent] = [],
         usage: UsageProfile = .neutral,
-        safety: ContentSafety? = nil
+        safety: ContentSafety? = nil,
+        recentTitles: Set<String> = []
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -84,6 +90,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.recent = recent
         self.usage = usage
         self.safety = safety
+        self.recentTitles = recentTitles
     }
 }
 
@@ -108,7 +115,8 @@ extension OfflineStoryIntent {
             interests: interests,
             recent: recent,
             usage: usage,
-            safety: safety
+            safety: safety,
+            recentTitles: recentTitles
         )
     }
 }
