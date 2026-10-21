@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_tc_01",
+      "text": "\"Bu gece buna biz bakarız,\" dedi {{child.name}} usulca. {{companion.name}} hemen başını salladı. Uyumadan önce yapılacak küçük, önemli bir iş vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_tc_02",
+      "text": "{{child.name}} bir an düşündü. Her akşam ona nasıl yumuşacık bakılıyorsa, o da bu küçük şeye öyle bakacaktı. {{companion.name}} yanına sokuldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_yumusacik"
+      ]
+    },
+    {
+      "id": "bts_tc_03",
+      "text": "\"Merak etme,\" dedi {{child.name}}. \"Biz buradayız.\" Sonra {{companion.name}}'e döndü. İkisi aynı şeyi düşünüyordu: önce bu küçük şey rahat edecekti, sonra uyku.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

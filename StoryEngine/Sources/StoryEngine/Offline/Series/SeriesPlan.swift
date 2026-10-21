@@ -359,9 +359,10 @@ public struct SeriesPlanner: Sendable {
     /// Whether a story anchored here could be continued at all. Cheap; the
     /// plan itself is made on "Devam ettir".
     ///
-    /// No bedtime-arc continuation is written yet (21 Ekim 2026), so a story
-    /// that opened in a bedroom is not offered a series; bedtime stories
-    /// written before the arc, and their saved series, continue as before.
+    /// Read through the arc of the place: a story that opened in a bedroom
+    /// continues only with bedtime-arc episodes (21 Ekim 2026), a garden or
+    /// forest story — bedtime ones written before the arc included — only
+    /// with standard ones.
     public static func isAvailable(
         settingID: ContentID, mode: StoryMode, band: AgeBand, catalog: ContentCatalog
     ) -> Bool {

@@ -21,9 +21,9 @@ final class SeriesPlannerTests: XCTestCase {
     /// The first story, as `createStory` would write it.
     ///
     /// A bedtime first story is the kind saved before the bedtime arc (21 Ekim
-    /// 2026): a charge story in a garden or a forest. Those are the bedtime
-    /// stories a series can continue today; a story that opened in a bedroom
-    /// has no episodes written yet (`testABedtimeArcStoryIsNotOfferedASeries`).
+    /// 2026): a charge story in a garden or a forest, continued with standard
+    /// episodes. A story that opened in a bedroom continues with bedtime-arc
+    /// episodes (`testABedtimeArcStoryContinuesInItsBedroom`).
     private func firstStory(
         mode: StoryMode, band: AgeBand, seed: String, family: FamilyCast? = nil,
         catalog: ContentCatalog
@@ -392,28 +392,80 @@ final class SeriesPlannerTests: XCTestCase {
 
     // MARK: - Bedtime arc
 
-    /// A story that opened in a bedroom (uyku arkı) is not offered a series
-    /// until bedtime episodes are written: no standard episode can be set in
-    /// a place to sleep, so offering "Devam ettir" would fail at the tap.
-    func testABedtimeArcStoryIsNotOfferedASeries() throws {
+    /// A story that opened in a bedroom (uyku arkı) continues there: every
+    /// episode is a bedtime-arc continuation in the same room with the same
+    /// friend, reads only bedtime lines, and closes calmly in that room.
+    func testABedtimeArcStoryContinuesInItsBedroom() throws {
         let catalog = try catalog()
+        let bedtimeLines = Set((catalog.templates + catalog.series.templates)
+            .filter { $0.arc == .bedtime }.flatMap(\.variants).map(\.id))
         for band in [Self.age3, Self.age5] {
-            let story = try OfflineStoryComposer().compose(
-                catalog: catalog,
-                intent: OfflineStoryIntent(childName: "Yeliz", seed: "uyku", mode: .bedtime, ageBand: band))
-            XCTAssertEqual(catalog.blueprint(story.blueprintID)?.arc, .bedtime)
-            XCTAssertFalse(SeriesPlanner.isAvailable(
-                settingID: story.content.setting.id, mode: .bedtime, band: band, catalog: catalog))
-            XCTAssertThrowsError(try SeriesPlanner().plan(
-                anchor: anchor(story), mode: .bedtime, band: band, family: nil, familyCharacterID: nil,
-                childName: "Yeliz", seed: "uyku", catalog: catalog)) { error in
-                XCTAssertEqual(error as? SeriesPlanningError,
-                               .noContinuation(mode: .bedtime, band: band, episode: 2))
+            for seed in ["uyku", "s1", "s2", "s3", "s4"] {
+                for family in [nil, sister(catalog)] {
+                    let story = try OfflineStoryComposer().compose(
+                        catalog: catalog,
+                        intent: OfflineStoryIntent(
+                            childName: "Yeliz", seed: seed, mode: .bedtime, ageBand: band, family: family))
+                    XCTAssertEqual(catalog.blueprint(story.blueprintID)?.arc, .bedtime)
+                    XCTAssertTrue(SeriesPlanner.isAvailable(
+                        settingID: story.content.setting.id, mode: .bedtime, band: band, catalog: catalog))
+                    let result = try SeriesPlanner().plan(
+                        anchor: anchor(story), mode: .bedtime, band: band, family: family,
+                        familyCharacterID: family == nil ? nil : "family-1", childName: "Yeliz",
+                        seed: SeriesPlanner.seed(storySeed: story.seed, fingerprint: story.fingerprint),
+                        catalog: catalog)
+                    let label = "\(band) \(seed) \(family == nil ? "-" : "aile")"
+
+                    let ids = result.plan.episodes.map(\.blueprintID)
+                    XCTAssertEqual(ids.count, 4, label)
+                    XCTAssertTrue(ids.allSatisfy { catalog.series.continuation($0)?.arc == .bedtime }, label)
+                    XCTAssertEqual(ids[0], ids[2], label)
+                    XCTAssertEqual(ids[1], ids[3], label)
+                    XCTAssertNotEqual(ids[0], ids[1], "\(label): A-B-A-B")
+
+                    let discoveries = result.plan.episodes.map(\.discoveryID)
+                    XCTAssertFalse(discoveries.contains(result.plan.anchor.keepsakeID), label)
+                    for (a, b) in zip(discoveries, discoveries.dropFirst()) {
+                        XCTAssertNotEqual(a, b, "\(label): the same discovery two episodes in a row")
+                    }
+
+                    let room = story.content.setting
+                    for episode in result.episodes {
+                        XCTAssertEqual(episode.content.setting.id, room.id, label)
+                        XCTAssertEqual(episode.content.companion.id, story.content.companion.id, label)
+                        XCTAssertEqual(episode.pages.count, band.pageCount, label)
+                        XCTAssertEqual(episode.pages.first?.beats.first, .revisit, label)
+                        XCTAssertTrue(episode.isClean, "\(label) \(episode.blueprintID)")
+                        let used = Set(episode.pages.flatMap(\.variantIDs))
+                        XCTAssertTrue(used.isSubset(of: bedtimeLines), "\(label): \(used.subtracting(bedtimeLines))")
+                        let last = try XCTUnwrap(episode.pages.last)
+                        XCTAssertTrue(last.text.contains(room.name), "\(label): \(last.text)")
+                        XCTAssertTrue(CalmEnding.isCalm(last.text), "\(label): \(last.text)")
+                    }
+                    // The same mechanism comes back every other episode; its
+                    // pages are where a repeat would show.
+                    if family == nil {
+                        for (a, b) in [(0, 2), (1, 3)] {
+                            let shared = zip(result.episodes[a].pages, result.episodes[b].pages)
+                                .filter { $0.text == $1.text }.map(\.0.pageNumber)
+                            XCTAssertEqual(shared, [], "\(label): episodes \(a + 2) and \(b + 2)")
+                        }
+                    }
+                    // Composing again from the plan alone gives the same text.
+                    let again = try SeriesPlanner().compose(
+                        result.plan, childName: "Yeliz", family: family, catalog: catalog)
+                    XCTAssertEqual(again.map { $0.pages.map(\.text) }, result.episodes.map { $0.pages.map(\.text) }, label)
+                }
             }
-            // A bedtime story saved before the arc still continues.
+            // A bedtime story saved before the arc still continues, with
+            // standard episodes in its garden or forest.
             let saved = try firstStory(mode: .bedtime, band: band, seed: "uyku", catalog: catalog)
             XCTAssertTrue(SeriesPlanner.isAvailable(
                 settingID: saved.content.setting.id, mode: .bedtime, band: band, catalog: catalog))
+            let continued = try plan(mode: .bedtime, band: band, seed: "uyku", catalog: catalog)
+            XCTAssertTrue(continued.plan.episodes.allSatisfy {
+                catalog.series.continuation($0.blueprintID)?.arc == .standard
+            })
         }
     }
 }

@@ -231,7 +231,7 @@ public struct CatalogIntegrityChecker: Sendable {
                                     message: "Resting place '\(setting.id)' touches \(touched); a bedtime place never does."))
             }
         }
-        for template in catalog.templates where template.arc == .bedtime {
+        for template in catalog.templates + catalog.series.templates where template.arc == .bedtime {
             for variant in template.variants {
                 let touched = excluded.intersection(variant.topics).map(\.rawValue).sorted()
                 if !touched.isEmpty {

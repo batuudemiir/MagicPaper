@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan devam bölümleri bu satırları okur. Bölüm odada, yatakta başlar; yol arkadaşı pencereye yine gelen tanıdık bir dosttur, tanıştırılmaz ve bakıma muhtaç olan o değildir. Bulunan küçük şey (yuva, fide, eldiven) çoğu satırda adıyla geçmez ('küçük şey', 'onu'), çünkü üçü de aynı cümleye oturmalı. Doruk sayfa 5'te yumuşak bir şaşkınlıktır; son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts_rs_01",
+      "text": "Bir süre sonra her şey yoluna girdi. Küçük şey artık rahattı, tam olması gerektiği gibi. {{child.name}} içinin sıcacık olduğunu hissetti ve gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rs_02",
+      "text": "Sonunda küçük şey huzur içinde duruyordu. {{child.name}} derin bir nefes verdi. {{companion.name}} rahat bir nefes aldı. Her şey artık güvendeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rs_03",
+      "text": "Ay ışığında her şey sakinleşti. Pencerenin önündeki küçük şey artık iyiydi. {{child.name}} ile {{companion.name}} birbirine bakıp sessizce gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rs_04",
+      "text": "Pencerenin kenarı ona tam göreydi. Küçük şey orada rahat rahat duruyordu. {{child.name}} bunu görünce içi ısındı. {{companion.name}} sevinçle göz kırptı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "afterBeat": [
+        "let_go"
+      ]
+    }
+  ]
+}

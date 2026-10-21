@@ -39,11 +39,16 @@
 
 ## Seri
 
-Uyku arkında devam bölümü henüz yazılmadı.
+21 Ekim 2026'dan beri odada açılan bir uyku masalına da "Devam ettir" sunulur. Seri, arkını ilk masalın yerinden okur (`SeriesPlanner.arc(of:)`): odada açılan masal yalnızca `arc: bedtime` devam bölümleriyle, bahçe/orman masalı (21 Ekim öncesi uyku masalları dahil) yalnızca standart bölümlerle sürer.
 
-- Odada açılan bir masala "Devam ettir" sunulmaz (`SeriesPlanner.isAvailable`, yer üzerinden okunur).
-- 21 Ekim öncesinde kaydedilmiş bahçe/orman uyku masalları ve onların serileri eskisi gibi devam eder.
-- Eksik olan: oda için en az 4 farklı keşif nesnesi, `revisit` satırları ve bölümlerde yol arkadaşını yeniden tanıştırmayan satırlar.
+- **Bölümün yolu:** uyku saati gelir, yol arkadaşı pencereye yine gelir (tanıştırılmaz). Pencerenin önünde bakıma muhtaç küçük bir şey vardır. Çocuk uyumadan önce ona bakar, o rahat eder, çocuk aynı odada uykuya dalar.
+- **İki mekanizma, A-B-A-B:**
+  - `bp_cont_bedtime_staying_001` / `_age3_001` (bekleyen çocuk): revisit, notice_anomaly, (5-6: approach), take_charge, tend, patient_wait, restore, warm_close.
+  - `bp_cont_bedtime_settling_001` / `_age3_001` (yer açan çocuk): revisit, notice_anomaly, (5-6: examine), commit + receive_appeal, first_attempt, let_go, restore, warm_close.
+  - Eğri 5-6'da `0,1,1,1,1,0,0,0` (doruk s.5), 3-4'te `0,1,1,1,0,0` (doruk s.4); doruk yumuşak bir şaşkınlık (`surprise`). Kontur `BeatSequenceValidator.checkBedtimeContour` ile denetlenir.
+- **Keşif nesneleri:** odanın yaşam alanında (`garden, forest`) `impliesNeed` taşıyan 4 nesne var: ince ses, düşmüş yuva, solan fide, kayıp eldiven. İnce ses her zaman ilk masalın hatırasıdır (`keepsake`), o yüzden bölümlerde 3 yeni nesne kalır; dördüncü bölümde biri geri gelir, ama hiçbir zaman üst üste iki bölümde değil. Bekleyen çocuk `impliesNeed` ister; yer açan çocuk ayrıca `isVisible` ister (ses bir köşeye konamaz).
+- **Yeni nesne eklenmedi**, bilerek: nesne listesi standart masalların keşif seçimine de girer, yeni bir nesne bahçe/orman masallarının tohumlarını kaydırırdı.
+- **Satırlar** `templates/bedtime/beat_bedtime_series_*.json` (`arc: bedtime`, `series: true`). Şablon kimliği `series_bedtime_<bant>_<beat>`, standart bölüm satırlarıyla çakışmaz. Aile anları (revisit, warm_close) için her ilişkide en az 2 satır var. Son sayfa `CalmEnding`'den geçer ve odayı adıyla söyler.
 
 ## Bilerek değişmeyen
 

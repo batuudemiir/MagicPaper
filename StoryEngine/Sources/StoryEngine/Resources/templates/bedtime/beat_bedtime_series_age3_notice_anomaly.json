@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "Uyku arkının seri bölümleri (arc: bedtime, series: true, 21 Ekim 2026), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Bölüm odada başlar ve aynı odada biter; yol arkadaşı tanıştırılmaz, bakıma muhtaç olan bulunan küçük şeydir.",
+  "lengthClasses": {
+    "solo": "10-24 words — uyku arkının seri bölümünde bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bts3_na_01",
+      "text": "{{companion.name}} pencerenin kenarını gösterdi. Orada {{discovery.name}} vardı. {{child.name}} merakla doğruldu.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_na_02",
+      "text": "{{child.name}} perdeyi araladı. Pencerenin önünde {{discovery.name}} duruyordu. Daha önce yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_na_03",
+      "text": "Bu akşam bir şey farklıydı. Ay ışığında {{discovery.name}} görünüyordu. {{child.name}} merakla baktı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_na_05",
+      "text": "{{child.name}} tam esneyecekti ki durdu. Pencerenin kenarında {{discovery.name}} vardı. Ne tatlıydı!",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_na_06",
+      "text": "{{companion.name}} burnuyla pencereyi gösterdi. {{child.name}} baktı. Orada {{discovery.name}} duruyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts3_na_04",
+      "text": "Oda sessizdi. Sonra pencereden {{discovery.name}} geldi. {{child.name}} başını kaldırdı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts3_na_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    }
+  ]
+}

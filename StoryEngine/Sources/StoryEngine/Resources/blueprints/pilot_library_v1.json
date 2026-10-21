@@ -3734,6 +3734,360 @@
             "emotion": "warmth"
           }
         ]
+      },
+      {
+        "id": "bp_cont_bedtime_staying_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeStayingWith",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Uyku saatinde yol arkadaşı pencereye yine gelir; pencerenin önünde bakıma muhtaç küçük bir şey vardır; çocuk uyumadan önce ona bakar ve o rahat edene kadar bekler.",
+        "editorialGuidance": "Uyku arkının seri bölümü, bekleyen çocuk. Doruk sayfa 5'teki yumuşak şaşkınlık; 6-8 yatışır. Sayfa 8 sayfa 1'in odasına döner; yarın için hiçbir söz verilmez.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} Yine Pencerede",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_settling_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeSettling",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Uyku saatinde yol arkadaşı pencereye yine gelir; pencerenin önünde küçük bir şey bulunur; yol arkadaşı onun nerede rahat edeceğini bilir; çocuk onu oraya koyar ve iyi geceler der.",
+        "editorialGuidance": "Uyku arkının seri bölümü, yer açan çocuk. Doruk sayfa 5'teki yumuşak şaşkınlık; sayfa 6 bırakmaktır, kayıp değil. Sayfa 8 sayfa 1'in odasına döner.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed",
+              "isVisible"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Ona Yer Açtı",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "supportingBeat": "receive_appeal",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_staying_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeStayingWithAge3",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Uyku saatinde yol arkadaşı pencereye yine gelir; pencerenin önünde küçük bir şey vardır; çocuk ona bakar, o rahat eder, çocuk da uyur.",
+        "editorialGuidance": "3-4 uyku arkının seri bölümü: hiçbir sayfa 1'i geçmez; doruk sayfa 4'teki küçük şaşkınlık. Sayfa 6 sayfa 1'in odasına döner.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} Yine Pencerede",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "patient_wait",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_settling_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeSettlingAge3",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Uyku saatinde yol arkadaşı pencereye yine gelir; pencerenin önünde küçük bir şey bulunur; çocuk onu rahat edeceği köşeye koyar ve uyur.",
+        "editorialGuidance": "3-4 uyku arkının seri bölümü, yer açan çocuk: hiçbir sayfa 1'i geçmez; doruk sayfa 4'teki küçük şaşkınlık. Sayfa 6 sayfa 1'in odasına döner.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed",
+              "isVisible"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Ona Yer Açtı",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "commit",
+            "supportingBeat": "receive_appeal",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "let_go",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
       }
     ]
   },

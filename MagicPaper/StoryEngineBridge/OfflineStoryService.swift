@@ -359,8 +359,8 @@ final class OfflineStoryService {
 
     /// Whether a story of this mode and band, set in this place, could be
     /// continued at all: some continuation serves it. A story that opened in a
-    /// bedroom (uyku arkı, 21 Ekim 2026) has no episodes written yet, so it is
-    /// not offered. Cheap; the plan itself is made on "Devam ettir".
+    /// bedroom (uyku arkı, 21 Ekim 2026) continues only with bedtime-arc
+    /// episodes. Cheap; the plan itself is made on "Devam ettir".
     func seriesAvailable(mode: StoryMode, band: AgeBand, settingID: String) -> Bool {
         guard let catalog = try? catalog() else { return false }
         return SeriesPlanner.isAvailable(

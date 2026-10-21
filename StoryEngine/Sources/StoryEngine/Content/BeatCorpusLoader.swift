@@ -135,9 +135,13 @@ public struct BeatCorpusLoader: Sendable {
     }
 
     /// A series file's template id: apart from the standalone one, so the two
-    /// templates for one beat and band never collide.
-    static func seriesTemplateID(for beat: StoryBeat, band: AgeBand?) -> ContentID {
-        ContentID("series_\(band?.description ?? "any")_" + beat.rawValue)
+    /// templates for one beat and band never collide. A non-standard arc's
+    /// episode lines (uyku arkı) are apart from the standard episode lines too.
+    static func seriesTemplateID(
+        for beat: StoryBeat, band: AgeBand?, arc: NarrativeArc = .standard
+    ) -> ContentID {
+        let prefix = arc == .standard ? "series" : "series_\(arc.rawValue)"
+        return ContentID("\(prefix)_\(band?.description ?? "any")_" + beat.rawValue)
     }
 
     /// A non-standard arc's template id: apart from the standard one, so the
@@ -209,8 +213,11 @@ public struct BeatCorpusLoader: Sendable {
                           let band = WordBand.parse(entry.value) else { return }
                     result[kind] = band
                 }
+                // Bands are keyed by beat and band alone, so a bedtime episode
+                // file is recorded nowhere rather than over the standard
+                // episode budget or the standalone bedtime one.
                 if isSeries {
-                    seriesBands[BandedBeat(file.beat, file.ageBand)] = parsed
+                    if arc == .standard { seriesBands[BandedBeat(file.beat, file.ageBand)] = parsed }
                 } else if arc != .standard {
                     arcBands[ArcBandedBeat(BandedBeat(file.beat, file.ageBand), arc)] = parsed
                 } else {
@@ -220,7 +227,7 @@ public struct BeatCorpusLoader: Sendable {
 
             let template = CatalogTemplate(
                 id: isSeries
-                    ? Self.seriesTemplateID(for: file.beat, band: file.ageBand)
+                    ? Self.seriesTemplateID(for: file.beat, band: file.ageBand, arc: arc)
                     : arc != .standard
                         ? Self.arcTemplateID(for: file.beat, band: file.ageBand, arc: arc)
                         : Self.templateID(for: file.beat, band: file.ageBand),

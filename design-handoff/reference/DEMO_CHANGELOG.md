@@ -133,6 +133,48 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · uyku-arki, commit bu kayıtla · Uyku arkının devam bölümleri
+- Odada (Ay Pencereli Oda, Mavi Perdeli Oda) açılan bir uyku masalına artık "Devam ettir" sunuluyor. `SeriesPlanner.isAvailable` bu masallar için true dönüyor, çünkü artık `arc: bedtime` taşıyan devam bölümleri var. Uygulama kodu değişmedi; yalnızca `OfflineStoryService.seriesAvailable` yorumu güncellendi.
+- 4 yeni devam blueprint'i var. Her bantta iki mekanizma A-B-A-B sırasıyla dönüyor:
+  - `bp_cont_bedtime_staying_001` / `_age3_001`: bekleyen çocuk.
+  - `bp_cont_bedtime_settling_001` / `_age3_001`: yer açan çocuk.
+  - Sayfa 1 her zaman `revisit`. Yol arkadaşı pencereye yine gelir ve yeniden tanıştırılmaz.
+  - Duygu eğrisi 5-6'da 0,1,1,1,1,0,0,0, 3-4'te 0,1,1,1,0,0. Kontur `checkBedtimeContour`'dan geçiyor.
+- Keşif nesneleri: odanın yaşam alanında `impliesNeed` taşıyan 4 nesne doğrulandı (ince ses, yuva, fide, eldiven).
+  - Gereksinim `isAudible + impliesNeed` yerine `impliesNeed` oldu. Yer açan mekanizma ayrıca `isVisible` istiyor.
+  - İnce ses her zaman hatıra olduğundan bir seride 3 yeni nesne bulunur. Biri bir kez geri gelir, ama hiçbir zaman üst üste iki bölümde değil.
+  - **Yeni nesne bilerek eklenmedi:** standart masalların tohumlarını kaydırırdı.
+- İçerik: `templates/bedtime/beat_bedtime_series_*.json` altında 24 dosya ve 133 satır (`arc: bedtime`, `series: true`).
+  - Aile anlarında (revisit, warm_close) her ilişki için 3 satır var.
+  - Son sayfa `CalmEnding`'den geçiyor ve odayı adıyla söylüyor.
+  - Karanlık, korku ve yalnızlık işlenmiyor.
+- Motor:
+  - `BeatCorpusLoader`: seri + uyku şablon kimliği artık `series_bedtime_<bant>_<beat>`. Önceki biçim standart bölüm satırlarıyla çakışıyordu.
+  - `CatalogIntegrity.checkArcs`: konu denetimi seri uyku satırlarını da kapsıyor.
+- Test: `testABedtimeArcStoryIsNotOfferedASeries` testinin yerini `testABedtimeArcStoryContinuesInItsBedroom` aldı. Test iki bantta, 5 tohumla, aile karakteriyle ve onsuz şunları doğruluyor:
+  - plan kuruluyor;
+  - bölümler A-B-A-B sırasıyla geliyor;
+  - hatıra yeniden bulunmuyor;
+  - aynı keşif üst üste iki bölümde gelmiyor;
+  - yalnızca uyku satırları okunuyor;
+  - son sayfa sakin ve aynı oda;
+  - aynı mekanizmanın bölümleri birbirini tekrar etmiyor;
+  - plan aynı metni yeniden yazıyor;
+  - 21 Ekim öncesi uyku masalı standart bölümlerle sürüyor.
+- Test sonuçları:
+  - StoryEngine paketi 819 test, 18 hata. Hataların hepsi bilinen 10 testten geliyor, yeni hata yok. Diğer hedefler 89/0, 51/0, 17/0.
+  - `validate_beat_corpus.py` yalnızca bilinen 12 hatayı veriyor.
+  - Uygulama derlenmedi. Simülatörde açılıp görülmedi.
+- Bilerek değişmeyen: standart seri, öğrenme ve macera modları, nesne listesi, 7-10 bantları.
+- Etkilenen dosyalar:
+  - `StoryEngine/Sources/StoryEngine/Content/{BeatCorpusLoader,CatalogIntegrity}.swift`
+  - `Offline/Series/SeriesPlan.swift` (yorum)
+  - `Resources/blueprints/pilot_library_v1.json`
+  - `Resources/templates/bedtime/beat_bedtime_series_*` (24 dosya)
+  - `Tests/StoryEngineTests/SeriesPlannerTests.swift`
+  - `MagicPaper/StoryEngineBridge/OfflineStoryService.swift` (yorum)
+  - `docs/UYKU_ARKI.md`
+
 ### 2026-10-21 · uyku-arki@39d3393 · Uyku arkı: uyku öncesi modunun kendi masal yapısı
 - Batuhan onayladı (21 Ekim): 15 Ekim'deki "deney olarak dönsün" kararı atlanıp doğrudan yapıya geçildi. Çerçeve oda ayarıyla taşınıyor.
 - Motor: yeni `NarrativeArc` (`standard | bedtime`), blueprint ve şablonda. Uyku modu artık aileyi **ve** arkı seçiyor (`families: [charge], arcs: [bedtime]`); bahçede açılan üç charge masalı bu moda girmiyor. Mod verilmeyen istek yalnızca standart arka gidiyor.
