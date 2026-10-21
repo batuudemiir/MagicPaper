@@ -55,7 +55,10 @@ final class OfflineDeterminismTests: XCTestCase {
         XCTAssertEqual(story.content.setting.id.rawValue, "setting_whispering_forest_001")
         XCTAssertEqual(story.content.companion.id.rawValue, "companion_rabbit_pilot_001")
         XCTAssertEqual(story.content.discovery.id.rawValue, "object_torn_map_001")
-        XCTAssertEqual(story.title, "Yeliz ve Kayıp Yırtık Harita")
+        // Re-pinned 2026-10-21: title patterns became mode-specific and mostly
+        // name-free (4-6 per blueprint). The old "Kayıp {{discovery.title}}"
+        // made "Kayıp Yırtık Harita" here. Stored stories keep their title.
+        XCTAssertEqual(story.title, "Yeliz ve Pamuk Arıyor")
 
         // The lines themselves, which is what a child would notice changing.
         XCTAssertEqual(

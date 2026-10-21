@@ -289,7 +289,8 @@ public struct OfflineStoryComposer: Sendable {
                 page: last.pageNumber)
         }
 
-        let title = titles.compose(blueprint: blueprint, slots: slots, seed: storySeed)
+        let title = titles.compose(
+            blueprint: blueprint, slots: slots, seed: storySeed, avoiding: intent.recentTitles)
 
         return ComposedStory(
             title: title,

@@ -57,7 +57,7 @@ struct TestPublisher {
         return try! encoder.encode(feed)
     }
 
-    static func reference(for package: Data, version: String = "2.0.1") -> CatalogPackageRef {
+    static func reference(for package: Data, version: String = "2.1.1") -> CatalogPackageRef {
         let digest = SHA256.hash(data: package).map { String(format: "%02x", $0) }.joined()
         return CatalogPackageRef(version: version, schemaVersion: ContentPackage.currentSchemaVersion,
                                  path: "catalog/\(version).json", sha256: digest)
@@ -68,7 +68,7 @@ struct TestPublisher {
 enum TestPackages {
     static let bundled: ContentCatalogLoader.Result = try! ContentCatalogLoader().load()
 
-    /// The bundled sources at version 2.0.1, optionally with a pilot blueprint broken.
+    /// The bundled sources at version 2.1.1, optionally with a pilot blueprint broken.
     static func newer(breakWeight: Bool = false) -> Data {
         var sources = ContentPackage.bundledSources()
         func edit(_ index: Int, _ change: (inout [String: Any]) -> Void) {
@@ -77,7 +77,7 @@ enum TestPackages {
             sources.libraries[index] = .init(name: sources.libraries[index].name,
                                              data: try! JSONSerialization.data(withJSONObject: object))
         }
-        edit(0) { $0["version"] = "2.0.1" }
+        edit(0) { $0["version"] = "2.1.1" }
         if breakWeight {
             edit(1) { pilot in
                 var blueprints = pilot["blueprints"] as! [[String: Any]]
@@ -85,7 +85,7 @@ enum TestPackages {
                 pilot["blueprints"] = blueprints
             }
         }
-        return try! ContentPackage.build(version: "2.0.1", libraries: sources.libraries, beats: sources.beats)
+        return try! ContentPackage.build(version: "2.1.1", libraries: sources.libraries, beats: sources.beats)
     }
 }
 
@@ -252,8 +252,8 @@ final class RemoteContentTests: XCTestCase {
 
     func testAPackagePathOutsideTheCatalogFolderIsRefused() {
         for path in ["../secret.json", "https://elsewhere.test/x.json", "catalog/../x.json", "catalog/x.json?u=1",
-                     "catalog/2.0.1.json/../../x", "catalog\\2.0.1.json", "catalog/%2e%2e/2.0.1.json"] {
-            let reference = CatalogPackageRef(version: "2.0.1", schemaVersion: 1, path: path,
+                     "catalog/2.1.1.json/../../x", "catalog\\2.1.1.json", "catalog/%2e%2e/2.1.1.json"] {
+            let reference = CatalogPackageRef(version: "2.1.1", schemaVersion: 1, path: path,
                                               sha256: String(repeating: "a", count: 64))
             let data = TestPublisher.feedData(version: 1, stories: [], package: reference)
             XCTAssertThrowsError(try ContentFeed.verified(data, signature: publisher.sign(data), key: config.key), path)
@@ -290,8 +290,8 @@ final class RemoteContentTests: XCTestCase {
 
         let resolved = try resolver().resolve()
         XCTAssertTrue(resolved.fromPackage)
-        XCTAssertEqual(resolved.result.catalog.version, "2.0.1")
-        XCTAssertEqual(resolved.result.report.source, .remotePackage("2.0.1"))
+        XCTAssertEqual(resolved.result.catalog.version, "2.1.1")
+        XCTAssertEqual(resolved.result.report.source, .remotePackage("2.1.1"))
         XCTAssertNil(store.stagedPackage)
         XCTAssertNotNil(store.activePackage)
     }

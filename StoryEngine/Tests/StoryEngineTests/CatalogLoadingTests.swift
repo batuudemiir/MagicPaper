@@ -19,7 +19,7 @@ final class CatalogBundleTests: XCTestCase {
         XCTAssertTrue(result.report.decoded)
         XCTAssertNil(result.report.decodeError)
         XCTAssertFalse(result.catalog.isEmpty)
-        XCTAssertEqual(result.catalog.version, "2.0.0")
+        XCTAssertEqual(result.catalog.version, "2.1.0")
     }
 
     func testLoadingReportsThePackageBundleAsItsSource() throws {

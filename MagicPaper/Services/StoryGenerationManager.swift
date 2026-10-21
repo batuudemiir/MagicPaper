@@ -386,7 +386,8 @@ extension StoryGenerationManager {
             family: family,
             interests: profile.interests,
             recent: recentOrigins(for: profile),
-            usage: StoryUsageStore().usage(of: stories.filter { $0.belongs(to: profile) }, for: profile.id)
+            usage: StoryUsageStore().usage(of: stories.filter { $0.belongs(to: profile) }, for: profile.id),
+            recentTitles: Self.recentTitles(of: stories, for: profile)
         )
 
         let mapped = OfflineStoryMapper.appStory(
@@ -429,6 +430,23 @@ extension StoryGenerationManager {
             .prefix(limit)
             .map { $0 }
     }
+
+    /// The titles of this child's newest stories, for the engine to avoid
+    /// writing again (`TitleComposer`). Only titles: nothing else of the
+    /// library reaches the engine for this.
+    static func recentTitles(
+        of stories: [Story], for profile: UserProfile, limit: Int = titleMemory
+    ) -> Set<String> {
+        Set(stories
+            .filter { $0.belongs(to: profile) }
+            .sorted { $0.createdAt > $1.createdAt }
+            .prefix(limit)
+            .map(\.title))
+    }
+
+    /// How many recent titles are avoided. A blueprint has 4-6 title
+    /// patterns; a longer memory would mark every one used and change nothing.
+    static let titleMemory = 12
 
     /// What this child's most recent stories were made of, newest first
     /// (FAZ 12). The engine cools that content down, so the next story is
