@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@447535d · Alt çubuk, açılır pencereler ve okuyucu origin'e gönderildi
+
+- `35227c5..447535d` origin/main'e gitti: alt çubuk (59c74bd), açılır pencereler (095aba2), okuyucu (93c3f02) ve günlük kayıtları. Bu kayıt da ardından gönderildi.
+- Test: üç iş de derlenmeden gönderildi; Batuhan telefonda deneyecek.
+
 ### 2026-10-21 · main@93c3f02 · Okuyucu iOS 26 düzeninde (1A, 2A, 3A, 3B)
 
 - 1A · Kontroller (`ReaderChrome`): kapat solda tek cam daire (48 pt), favori ve "Aa" sağda tek cam kapsül, altta tek cam çubuk: önceki · (sayfa, "Sesli oku", ince ilerleme çizgisi) · sonraki. Gece temasında cam ve yazı koyu tona geçiyor. Kapat yine hiç kaybolmuyor, diğerleri 4,5 sn sonra çekiliyor. Büyük yuvarlak oynat düğmesi çubuğun içine, ikon + yazıya indi.
