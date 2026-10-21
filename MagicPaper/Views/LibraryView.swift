@@ -7,9 +7,11 @@ import SwiftUI
 /// ekranın tek Ragi'si. Kapaklar `MPBookCover`, hepsi aynı ölçüde.
 ///
 /// Düzen: başlık · Ragi ve arama · süzgeç çipleri · "Kaldığın yerden" ·
-/// Serim · zaman çizgisi ("Bugün · Dün · Bu hafta · Geçen hafta · Ekim…")
-/// iki sütun ızgara. Her kitap bir kez görünür; sıralama son okunmaya göre
-/// (Batuhan, 21 Ekim). Çip ve arama aynı çizgiyi daraltır, bölümler kalır.
+/// Serim · "Kitaplarım": tek, başlıksız raf dizisi (iki sütun, sıraların
+/// altında ince raf). Apple Books, Kindle ve Audible'daki gibi varsayılan
+/// sıra son okunan; küçük menüden yeni yazılan ya da ada göre. Ne zaman
+/// okunduğu kapağın altında ("Dün · 4 dk"). Tarih başlıkları denendi,
+/// Batuhan estetik bulmadı (21 Ekim). Çip ve arama aynı diziyi daraltır.
 ///
 /// Kendi masalına dokununca Masal aksiyonları (17), klasiğe dokununca okuyucu.
 /// İçerik `LibraryShelfModel`'den gelir ve yalnızca veri değişince kurulur.
@@ -27,6 +29,7 @@ struct LibraryView: View {
     @State private var pendingCount = 0
     @State private var query = ""
     @State private var filter: LibraryFilter = .all
+    @State private var sort: LibrarySort = .recent
     @State private var width: CGFloat = 390
     @FocusState private var searchFocused: Bool
 
@@ -45,7 +48,7 @@ struct LibraryView: View {
                     .homeEntrance(1)
                     chips.homeEntrance(2)
                     if isBrowsing { highlights }
-                    timeline
+                    shelf
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
@@ -159,26 +162,46 @@ struct LibraryView: View {
         }
     }
 
-    // MARK: - Zaman çizgisi
+    // MARK: - Kitaplarım
 
     @ViewBuilder
-    private var timeline: some View {
-        let sections = model.sections(for: filter, query: query)
-        if sections.isEmpty {
-            noMatch
-        } else {
-            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                ForEach(sections) { section in
-                    VStack(alignment: .leading, spacing: MPSpacing.md) {
-                        Text(section.title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
-                            .accessibilityAddTraits(.isHeader)
-                        LibraryGrid(items: section.items, pageWidth: width,
-                                    singleColumn: typeSize.isAccessibilitySize) { open($0) }
-                    }
-                }
+    private var shelf: some View {
+        let items = model.items(for: filter, query: query, sort: sort)
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
+                Text(filter == .all ? "Kitaplarım" : filter.title)
+                    .mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: MPSpacing.sm)
+                sortMenu
             }
-            .homeEntrance(5)
+            if items.isEmpty {
+                noMatch
+            } else {
+                LibraryShelfGrid(items: items, pageWidth: width,
+                                 singleColumn: typeSize.isAccessibilitySize) { open($0) }
+            }
         }
+        .homeEntrance(5)
+    }
+
+    /// Küçük sıra menüsü; varsayılan son okunan.
+    private var sortMenu: some View {
+        Menu {
+            Picker("Sırala", selection: $sort) {
+                ForEach(LibrarySort.allCases) { Text($0.title).tag($0) }
+            }
+        } label: {
+            HStack(spacing: MPSpacing.xxs) {
+                Text(sort.title).mpText(.callout)
+                MPIcon("chevron.down", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+            }
+            .foregroundStyle(MPColor.actionPrimary)
+            .frame(minHeight: MP.S.tapMin)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel("Sıralama: \(sort.title)")
+        .onChange(of: sort) { _, _ in MPHaptics.selection() }
     }
 
     /// Süzgeç ya da arama boş döndü. Ragi zaten yukarıda; burada yalnızca söz.

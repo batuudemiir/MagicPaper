@@ -5,9 +5,10 @@
 // 166 ms'lik donmanın dersi).
 //
 // İki tür kitap: çocuğun kendi masalları ve Günlük'ten açtığı klasikler.
-// Tek zaman çizgisi (karar 21 Ekim 2026): son okunmaya göre yeniden eskiye,
-// "Bugün · Dün · Bu hafta · Geçen hafta · Ekim…" bölümleriyle. Her kitap bir
-// kez görünür; mod raf değil, süzgeç ve kapaktaki işarettir.
+// Tek, başlıksız dizi (karar 21 Ekim 2026; Apple Books, Kindle, Audible
+// gibi): varsayılan son okunan önde, istenirse yeni yazılan ya da ada göre.
+// Her kitap bir kez görünür; ne zaman okunduğu kapağın altında yazar
+// ("Dün · 4 dk"). Mod raf değil, süzgeç ve kapaktaki işarettir.
 
 import Foundation
 
@@ -28,8 +29,12 @@ struct LibraryItem: Identifiable, Equatable {
     let isFavorite: Bool
     /// Seri bölümü: (kaçıncı, toplam).
     let episode: (number: Int, total: Int)?
-    /// Son okunduğu ya da yazıldığı an; raflar en yeniden eskiye.
+    /// Son okunduğu ya da yazıldığı an; varsayılan sıra en yeniden eskiye.
     let lastActivity: Date
+    /// Yazıldığı (klasikte ilk açıldığı) an: "Yeni yazılan" sırası.
+    let writtenAt: Date
+    /// Son okunmanın göreli adı: "Bugün", "Dün", "3 gün önce", "12 Ekim".
+    let when: String
     let art: MPBookCover.Art
     /// Aramada eşleşen sözcükler, katlanmış (başlık, çocuk, mod, dünya…).
     let searchText: String
@@ -44,26 +49,34 @@ struct LibraryItem: Identifiable, Equatable {
         return nil
     }
 
-    /// Kapağın altındaki satır: kategori · süre.
+    /// Kapağın altındaki satır: ne zaman · süre. Mod kapağın renginden ve
+    /// simgesinden belli; klasikte "Klasik" yazar.
     var meta: String {
-        let category = kind == .classic ? "Klasik" : (mode?.shortTitle ?? "Masal")
-        return "\(category) · \(minutes) dakika"
+        kind == .classic ? "Klasik · \(when)" : "\(when) · \(minutes) dk"
     }
 
-    /// VoiceOver: rozetin anlamı.
+    /// VoiceOver: kapakta renkle ve simgeyle verilen tür yazıyla da söylenir.
+    var kindLabel: String {
+        if kind == .classic { return "klasik masal" }
+        return mode.map { "\($0.title) masalı" } ?? "masal"
+    }
+
+    /// VoiceOver: tür ve rozetin anlamı.
     var accessibilityStatus: String? {
+        let status: String?
         switch badge {
-        case .progress(let p): return "yarım, yüzde \(Int(p * 100)) okundu"
-        case .episode(let n, let total): return "seri, \(n). bölüm, \(total) bölümden"
-        case .favorite: return "favori"
-        case nil: return progress >= 1 ? "okundu" : nil
+        case .progress(let p): status = "yarım, yüzde \(Int(p * 100)) okundu"
+        case .episode(let n, let total): status = "seri, \(n). bölüm, \(total) bölümden"
+        case .favorite: status = "favori"
+        case nil: status = progress >= 1 ? "okundu" : nil
         }
+        return [kindLabel, status].compactMap { $0 }.joined(separator: ", ")
     }
 
     static func == (lhs: LibraryItem, rhs: LibraryItem) -> Bool {
         lhs.id == rhs.id && lhs.progress == rhs.progress && lhs.isFavorite == rhs.isFavorite
             && lhs.title == rhs.title && lhs.episode?.number == rhs.episode?.number
-            && lhs.lastActivity == rhs.lastActivity && lhs.art == rhs.art
+            && lhs.lastActivity == rhs.lastActivity && lhs.art == rhs.art && lhs.when == rhs.when
     }
 }
 
@@ -101,11 +114,19 @@ enum LibraryFilter: Hashable, Identifiable {
     }
 }
 
-/// Zaman çizgisinin bir bölümü: "Bugün", "Dün", "Bu hafta", "Ekim"…
-struct LibrarySection: Identifiable, Equatable {
-    let title: String
-    let items: [LibraryItem]
-    var id: String { title }
+/// Kitaplığın sırası (Apple Books ve Audible'daki gibi küçük bir menü).
+enum LibrarySort: String, CaseIterable, Identifiable {
+    case recent, newest, title
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .recent: return "Son okunan"
+        case .newest: return "Yeni yazılan"
+        case .title: return "Ada göre"
+        }
+    }
 }
 
 struct LibraryShelfModel: Equatable {
@@ -134,46 +155,33 @@ struct LibraryShelfModel: Equatable {
         return [.all] + candidates.filter { filter in items.contains(where: filter.admits) }
     }
 
-    /// Süzgeç ve aramadan geçen kitaplar, zaman bölümlerine ayrılmış.
-    /// Boş bölüm yok; sıra korunur (yeniden eskiye).
-    func sections(for filter: LibraryFilter, query: String = "",
-                  now: Date = Date(), calendar: Calendar = .current) -> [LibrarySection] {
-        var result: [LibrarySection] = []
-        for item in items(for: filter, query: query) {
-            let title = Self.sectionTitle(for: item.lastActivity, now: now, calendar: calendar)
-            if let last = result.last, last.title == title {
-                result[result.count - 1] = LibrarySection(title: title, items: last.items + [item])
-            } else {
-                result.append(LibrarySection(title: title, items: [item]))
-            }
-        }
-        return result
-    }
-
-    /// Bugün · Dün · Bu hafta · Geçen hafta · ay adı (başka yılsa yıl da).
-    static func sectionTitle(for date: Date, now: Date, calendar: Calendar) -> String {
+    /// Göreli gün adı: Bugün · Dün · "3 gün önce" · "12 Ekim" (başka yılsa yılıyla).
+    static func relativeLabel(for date: Date, now: Date, calendar: Calendar) -> String {
         if calendar.isDate(date, inSameDayAs: now) { return "Bugün" }
-        if let yesterday = calendar.date(byAdding: .day, value: -1, to: now),
-           calendar.isDate(date, inSameDayAs: yesterday) { return "Dün" }
-        if let week = calendar.dateInterval(of: .weekOfYear, for: now) {
-            if week.contains(date) { return "Bu hafta" }
-            if let last = calendar.date(byAdding: .weekOfYear, value: -1, to: week.start),
-               let lastWeek = calendar.dateInterval(of: .weekOfYear, for: last),
-               lastWeek.contains(date) { return "Geçen hafta" }
-        }
+        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: date),
+                                           to: calendar.startOfDay(for: now)).day ?? 0
+        if days == 1 { return "Dün" }
+        if days > 1, days < 7 { return "\(days) gün önce" }
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "tr_TR")
         formatter.calendar = calendar
         formatter.timeZone = calendar.timeZone
-        formatter.dateFormat = calendar.isDate(date, equalTo: now, toGranularity: .year) ? "LLLL" : "LLLL yyyy"
-        return formatter.string(from: date).capitalized(with: Locale(identifier: "tr_TR"))
+        formatter.dateFormat = calendar.isDate(date, equalTo: now, toGranularity: .year) ? "d MMMM" : "d MMMM yyyy"
+        return formatter.string(from: date)
     }
 
-    /// Süzgeç ve arama birlikte; arama başlık, çocuk adı, mod ve dünya adında.
-    func items(for filter: LibraryFilter, query: String = "") -> [LibraryItem] {
+    /// Süzgeç, arama ve sıra birlikte; arama başlık, çocuk adı, mod ve dünya adında.
+    func items(for filter: LibraryFilter, query: String = "", sort: LibrarySort = .recent) -> [LibraryItem] {
         let needle = Self.fold(query.trimmingCharacters(in: .whitespacesAndNewlines))
-        return items.filter { item in
+        let list = items.filter { item in
             filter.admits(item) && (needle.isEmpty || item.searchText.contains(needle))
+        }
+        switch sort {
+        case .recent: return list
+        case .newest: return list.sorted { $0.writtenAt > $1.writtenAt }
+        case .title:
+            let tr = Locale(identifier: "tr_TR")
+            return list.sorted { $0.title.compare($1.title, locale: tr) == .orderedAscending }
         }
     }
 
@@ -193,7 +201,8 @@ extension LibraryShelfModel {
                       isFavorite: (UUID) -> Bool,
                       seriesTotal: (Story) -> Int? = { _ in nil },
                       classics: [(tale: ClassicTale, fraction: Double, openedAt: Date)] = [],
-                      art: (Story) -> MPBookCover.Art = LibraryShelfModel.coverArt) -> LibraryShelfModel {
+                      art: (Story) -> MPBookCover.Art = LibraryShelfModel.coverArt,
+                      now: Date = Date(), calendar: Calendar = .current) -> LibraryShelfModel {
         var list: [LibraryItem] = stories.map { story in
             let mode = story.mpMode
             let words = [story.title, story.childName, mode?.title, mode?.shortTitle, story.mpWorld.name]
@@ -204,6 +213,8 @@ extension LibraryShelfModel {
                                minutes: story.mpReadingMinutes, progress: story.mpProgress,
                                isFavorite: isFavorite(story.id), episode: episode,
                                lastActivity: story.lastReadAt ?? story.createdAt,
+                               writtenAt: story.createdAt,
+                               when: relativeLabel(for: story.lastReadAt ?? story.createdAt, now: now, calendar: calendar),
                                art: art(story),
                                searchText: fold(words.compactMap { $0 }.joined(separator: " ")))
         }
@@ -213,6 +224,8 @@ extension LibraryShelfModel {
                                minutes: tale.minutes, progress: entry.fraction,
                                isFavorite: isFavorite(tale.id), episode: nil,
                                lastActivity: entry.openedAt,
+                               writtenAt: entry.openedAt,
+                               when: relativeLabel(for: entry.openedAt, now: now, calendar: calendar),
                                art: .image(tale.cover, focus: tale.coverFocus),
                                searchText: fold([tale.title, tale.byline, "Klasik", "Klasikler"].joined(separator: " ")))
         }

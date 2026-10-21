@@ -83,28 +83,79 @@ struct LibraryContinueCard: View {
     }
 }
 
-/// İki sütun kitap ızgarası; en büyük yazı boyutlarında tek sütun.
-struct LibraryGrid: View {
+/// Kitaplık rafı (21 Ekim 2026): kapaklar sıra sıra ince bir rafın üstünde
+/// durur, adı ve "Dün · 4 dk" rafın altında, kitabın etiketi gibi. Kitap
+/// sırtı yok (20 Ekim'deki sırt rafı geri alınmıştı). İki sütun; en büyük
+/// yazı boyutlarında tek sütun.
+struct LibraryShelfGrid: View {
     let items: [LibraryItem]
     let pageWidth: CGFloat
     let singleColumn: Bool
     let open: (LibraryItem) -> Void
 
     private var columns: Int { singleColumn ? 1 : 2 }
+    private var inner: CGFloat { max(0, pageWidth - MPSpacing.screenH * 2) }
+    private var coverWidth: CGFloat {
+        singleColumn ? min(inner, 220) : (inner - MPSpacing.lg) / 2
+    }
 
-    private var cardWidth: CGFloat {
-        let inner = max(0, pageWidth - MPSpacing.screenH * 2)
-        return singleColumn ? min(inner, 220) : (inner - MPSpacing.lg) / 2
+    private var rows: [[LibraryItem]] {
+        stride(from: 0, to: items.count, by: columns).map { Array(items[$0..<min($0 + columns, items.count)]) }
     }
 
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.lg, alignment: .top),
-                                 count: columns),
-                  spacing: MPSpacing.xl) {
-            ForEach(items) { item in
-                MPBookCard(title: item.title, meta: item.meta, art: item.art, badge: item.badge,
-                           width: cardWidth, accessibilityStatus: item.accessibilityStatus) { open(item) }
+        LazyVStack(alignment: .leading, spacing: MPSpacing.xl) {
+            ForEach(rows, id: \.first?.id) { row in
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(alignment: .bottom, spacing: MPSpacing.lg) {
+                        ForEach(row) { item in
+                            Button { open(item) } label: {
+                                MPBookCover(art: item.art, badge: item.badge, width: coverWidth)
+                            }
+                            .buttonStyle(MPPressStyle())
+                            .accessibilityLabel([item.title, item.meta, item.accessibilityStatus]
+                                .compactMap { $0 }.joined(separator: ", "))
+                        }
+                    }
+                    .padding(.horizontal, MPSpacing.xs)
+                    ShelfPlank()
+                    HStack(alignment: .top, spacing: MPSpacing.lg) {
+                        ForEach(row) { item in
+                            Button { open(item) } label: { label(item) }
+                                .buttonStyle(MPPressStyle())
+                                // VoiceOver kapağın düğmesini okur; etiket tekrar etmesin.
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .padding(.horizontal, MPSpacing.xs)
+                    .padding(.top, MPSpacing.sm)
+                }
             }
         }
+    }
+
+    /// Rafın altındaki etiket: başlık kapağında ad zaten kapakta, yalnızca
+    /// bilgi; boyalı kapakta ad ve bilgi.
+    private func label(_ item: LibraryItem) -> some View {
+        VStack(alignment: .leading, spacing: 1) {
+            if !item.art.showsTitle {
+                Text(item.title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(2).multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Text(item.meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
+        }
+        .frame(width: coverWidth, alignment: .leading)
+    }
+}
+
+/// İnce raf tahtası: sıcak kâğıt tonunda, sistemin sert alt kenarıyla.
+private struct ShelfPlank: View {
+    var body: some View {
+        Color.clear
+            .frame(height: MP.S.x2)
+            .mpKidSurface(MPColor.segmentTrack, edge: MPWorldTone.peach.edge, radius: MPRadius.xs)
+            .padding(.top, MP.E.widthLG)
+            .accessibilityHidden(true)
     }
 }

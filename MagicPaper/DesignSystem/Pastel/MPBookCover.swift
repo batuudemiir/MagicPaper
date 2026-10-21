@@ -93,44 +93,6 @@ struct MPBookCover: View {
     }
 }
 
-/// Rafta duran kitap: kapak, altında başlık ve tek satır bilgi (kategori · süre).
-/// Başlık kapağın üstüne binmez; uzun başlık iki satıra iner. Kapaklar her
-/// kartta aynı boyda ve raflar/ızgara üstten hizalı; kısa başlığın altında
-/// boş satır bırakılmaz, bilgi satırı başlığa yapışır (Batuhan, 21 Ekim).
-struct MPBookCard: View {
-    let title: String
-    let meta: String
-    let art: MPBookCover.Art
-    var badge: MPBookCover.Badge? = nil
-    let width: CGFloat
-    /// VoiceOver'da rozetin anlamı.
-    var accessibilityStatus: String? = nil
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: MPSpacing.sm) {
-                MPBookCover(art: art, badge: badge, width: width)
-                VStack(alignment: .leading, spacing: 1) {
-                    // Başlık kapağında ad zaten kapakta; altta yalnızca bilgi.
-                    if !art.showsTitle {
-                        Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
-                            .lineLimit(2).multilineTextAlignment(.leading)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    Text(meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
-                }
-                .padding(.horizontal, MPSpacing.xxs / 2)
-            }
-            .frame(width: width, alignment: .leading)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel([title, meta, accessibilityStatus].compactMap { $0 }.joined(separator: ", "))
-        .accessibilityAddTraits(.isButton)
-    }
-}
-
 extension MPBookCover.Art {
     /// Kapak masalın adını taşıyor mu.
     var showsTitle: Bool {
