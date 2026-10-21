@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@c957e28 · origin/main yerel main'e birleşti, telefona kurulum
+- Yerel main (alt seçenek testi birleşmesi) ile başka oturumun gönderdiği origin/main (kitaplık turu 2, masal başlıkları, uyku arkı başlık kalıpları; 13 commit) ayrışmıştı. origin/main yerel main'e birleşti (c957e28). Tek çakışma bu dosyadaydı; iki tarafın kayıtları korundu.
+- Bilerek değişmedi: kod. Birleşme yalnızca iki tarafı bir araya getirdi.
+- Test: Batuhan'ın isteğiyle bu birleşmeden sonra test çalıştırılmadı. Son ölçümler birleşmeden önce: uygulama 746/0 (kitaplık değişiklikleri olmadan), paket 837/18 (diğer oturumun kitaplık birleşmesinde).
+- iPhone 16'ya Debug derlendi (`BUILD SUCCEEDED`) ve kuruldu (13:15). Telefon kilitli olduğu için açılamadı; açılışta görülmedi.
+- origin'e gönderilmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-10-21 · main@4a0210c · Alt seçenek testi main'de, ana checkout main'e döndü
 - Ana checkout (`MagicPaper/`) `fix/alt-secenek-testi` dalında, main'in 30 commit gerisinde duruyordu; main'e alındı. Bu klasörde açılan oturumlar artık güncel kodu görüyor.
 - `fix/alt-secenek-testi` (30a3281, 8ae5a9f) main'e `--no-ff` ile birleşti (4a0210c). Tek çakışma bu dosyadaydı; iki tarafın kayıtları da korundu.
@@ -140,6 +148,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: MagicPaperTests, iPhone 17 Pro simülatörü, 746 test, 0 hata, 1 atlanan (main'deki önceki 1 hata kapandı). StoryEngine paketi (`--scratch-path`): 819 test, 18 hata, 1 atlanan; 18 hata main'de zaten düşen aynı 10 testten (uyku arkı ölçümüyle aynı), diğer hedef 89/0. Simülatörde ekran açılmadı, iş yalnızca test.
 - origin'e gönderilmedi.
 - Dosyalar: `MagicPaperTests/StoryModeFlowTests.swift`, bu dosya.
+
 ### 2026-10-21 · main@8d2fb05 · Birleştirme: kitaplık (tek raf dizisi, başlık kapağı) + masal başlıkları, gönderim
 - `kitaplik-yenileme` (kapak altı boşluk, tarihli ızgara denemesi → tek raf dizisi, sıra menüsü, başlık kapağı, sarı/yeşil kontrast) ve `masal-basliklari` (moda özel kalıplar, kapak uzunluğu ve tekrar denetimi, kitaplıkta tekrar önleme) güncel main'le (uyku arkı, araştırma kayıtları) birleşti. Çakışmalar yalnızca değişiklik günlüğündeydi; bütün kayıtlar korundu.
 - Birleşmenin ortaya çıkardığı tek sorun: uyku arkının altı yeni uyku planında (ninni, iki devam ve 3-4 yaş sürümleri) eski usul ikişer başlık kalıbı vardı, yeni bütünlük kuralına uymuyordu (11 test). Her birine uyku dilinde beş kalıp yazıldı, en fazla ikisi adla başlıyor ("Tarçın'ın Ninnisi", "Uykulu Tarçın", "Tarçın Yerleşti"…).
