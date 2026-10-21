@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@93c3f02 · Okuyucu iOS 26 düzeninde (1A, 2A, 3A, 3B)
+
+- 1A · Kontroller (`ReaderChrome`): kapat solda tek cam daire (48 pt), favori ve "Aa" sağda tek cam kapsül, altta tek cam çubuk: önceki · (sayfa, "Sesli oku", ince ilerleme çizgisi) · sonraki. Gece temasında cam ve yazı koyu tona geçiyor. Kapat yine hiç kaybolmuyor, diğerleri 4,5 sn sonra çekiliyor. Büyük yuvarlak oynat düğmesi çubuğun içine, ikon + yazıya indi.
+- 3A · Sayfa kaydırıcı: ilerleme çizgisine basılı tutunca (0,25 sn) çubuğun üstünde seçilen sayfanın çevresindeki küçük kâğıtlar ve o sayfanın ilk sekiz sözcüğü beliriyor; parmak kalkınca o sayfaya gidiliyor. Sayfaların çoğu çizimsiz olduğundan küçük resim yerine sözcük. Kaydırırken kontroller çekilmiyor, titreşim yok. VoiceOver'da çizgi ayarlanabilir öğe: yukarı/aşağı kaydırma bir sayfa ileri/geri.
+- 2A · Sayfa kıvrımı: kıvrılan sayfanın arka yüzünde ön yüzün mürekkebi %7 seçiliyor (`backFaceInkOpacity`). Motorun hareketi değişmedi.
+- 3B · Masal sonu: uyku vaktinde ayrı, sade yaprak: uyuyan Ragi, "Son", "İyi geceler, <ad>.", 2+ günse "N gün üst üste birlikte okudunuz.", varsa tek satır rozet; konuşma balonu, kutucuklar ve yaylanma yok. Gündüz yaprağı aynı kaldı.
+- Kural: Cam artık okuyucunun yüzen kontrollerinde de serbest (CLAUDE.md Derinlik ve `MP.Glass` notu; karar 21 Ekim, Batuhan 1A'yı seçti). Kök `CLAUDE.md` bu repoda değil, commit'e girmedi.
+- Test: derlenmedi, simülatörde ve cihazda görülmedi; Batuhan telefonda deneyecek. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/StoryReader/ReaderChrome.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryEndingLeaf.swift`, `PageTurn/MagicPaperPageTurnRenderer.swift`, `PageTurn/MagicPaperPageTurnConfiguration.swift`, `DesignSystem/MPTheme.swift`, bu dosya.
+
 ### 2026-10-21 · main@095aba2 · Açılır pencereler iOS 26 düzeninde (A varyasyonları)
 
 - Kitaplık: kapağa basılı tutunca sistemin `contextMenu`'su açılıyor (iOS 26'da cam, kapak yükseliyor). İçinde "Okumaya devam et/başla", "Baştan oku" (açılmış masalda), "Favorilere ekle/çıkar" ve ayraçtan sonra "Masal ayrıntıları" var. Klasiklerde yalnızca okuma. `LibraryShelfGrid` menüyü dışarıdan alıyor (`menu:`).
