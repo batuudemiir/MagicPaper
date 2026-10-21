@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main@095aba2 · Açılır pencereler iOS 26 düzeninde (A varyasyonları)
+
+- Kitaplık: kapağa basılı tutunca sistemin `contextMenu`'su açılıyor (iOS 26'da cam, kapak yükseliyor). İçinde "Okumaya devam et/başla", "Baştan oku" (açılmış masalda), "Favorilere ekle/çıkar" ve ayraçtan sonra "Masal ayrıntıları" var. Klasiklerde yalnızca okuma. `LibraryShelfGrid` menüyü dışarıdan alıyor (`menu:`).
+- Yazdır ve sil bilerek menüye konmadı: çocuk modunda ebeveyn kapısı istiyorlar, "Masal ayrıntıları"ndaki sheet'te (`StoryActionsSheet`) kalıyorlar. Eskizdeki ayrı "Sil" dairesi bu yüzden yok.
+- Silme onayı: mesaj masalın adını tırnak içinde söylüyor. Diyalog zaten sistemin `confirmationDialog`'u, iOS 26 görünümünü kendisi veriyor.
+- Okuma ayarları: sheet yarım sayfa açılıyor (`.medium`, yukarı çekince `.large`), masal arkada görünüyor. Arka plan kâğıt, cam değil.
+- Sıralama menüsü değişmedi: zaten sistem `Menu` + `Picker`, iOS 26'da butondan camla açılıyor. Etiketi cama alınmadı (içerik butonu cam olmaz).
+- Sistem menüsünde ikon `Label(systemImage:)` ile; `MPIcon` orada kullanılamıyor, kodda not edildi. Menü ve diyalogların sistem camı tasarım kuralında henüz yazılı değil, karar Batuhan'da.
+- Test: derlenmedi, simülatörde görülmedi; Batuhan telefonda deneyecek. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryComponents.swift`, `Screens/Library/StoryActionsSheet.swift`, `Screens/MPSheets.swift`, bu dosya.
+
 ### 2026-10-21 · main@59c74bd · Alt çubuk iOS 26 düzeninde (varyasyon A)
 
 - `KidTabBar` yeniden düzenlendi: dört sekme (Ana sayfa, Günlük, Kitaplık, Köşem) tek cam kapsülde, her birinin altında adı yazıyor. "Masal yaz" çubuğun dışında, sağda marka renginde dolu ayrı bir dairede (64 pt). İkon `pencil.and.scribble`. Apple Music'teki arama dairesi düzenine benziyor.
