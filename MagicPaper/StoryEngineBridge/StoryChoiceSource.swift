@@ -170,14 +170,40 @@ extension OfflineStoryService: StoryChoiceSource {
     }
 
     func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice] {
-        companionCandidates(forIdeaID: ideaID, mode: mode, age: age).map(CompanionChoice.init)
+        Self.drawable(companionCandidates(forIdeaID: ideaID, mode: mode, age: age).map(CompanionChoice.init))
     }
 
     func companionChoices(
         forIdeaID ideaID: String?, mode: StoryMode?, age: Int?, family: FamilyCharacter?
     ) -> [CompanionChoice] {
-        companionCandidates(forIdeaID: ideaID, mode: mode, age: age, family: family)
-            .map(CompanionChoice.init)
+        Self.drawable(companionCandidates(forIdeaID: ideaID, mode: mode, age: age, family: family)
+            .map(CompanionChoice.init))
+    }
+
+    /// Ekranda ayırt edilebilen arkadaşlar (21 Ekim 2026).
+    ///
+    /// "Kim gelsin?" ekranı resimle seçtiriyor ve beş yaşındaki çocuk resme
+    /// bakarak seçiyor. Bu yüzden ekranın tek kuralı var: **bir resim bu
+    /// ekranda en çok bir kez görünür.** Aynı resmi taşıyan ikinci aday
+    /// teklif edilmez.
+    ///
+    /// Havuz A turunda diriltilince kural iki yerden birden kırıldı: beş yeni
+    /// tür aynı pati ikonuna düştü (iOS'un simge kümesinde kirpi, sincap,
+    /// penguen ve kurbağa yok), köpek de tilkinin ikonuna oturdu — tilki
+    /// simgesi de yok. Beş farklı hayvanı tek resimle göstermek seçimi seçim
+    /// olmaktan çıkarır; "Cesur (köpek)" ile "Tarçın (tilki)" yan yana iki
+    /// özdeş karttır.
+    ///
+    /// Süzülen tür **motorun havuzunda kalır** — masalda çıkmaya devam eder,
+    /// yalnızca karttan seçilemez. Yani bu bir içerik eksiltmesi değil,
+    /// ekranın okunabilirliği.
+    ///
+    /// Doğru çözüm bu süzgeç değil, o türler için çizim. Geldiğinde
+    /// `CompanionStep.symbol(forType:)`'a eklenir ve burası kendiliğinden
+    /// onları teklif etmeye başlar.
+    static func drawable(_ choices: [CompanionChoice]) -> [CompanionChoice] {
+        var shown: Set<String> = []
+        return choices.filter { shown.insert(CompanionStep.symbol(forType: $0.kind)).inserted }
     }
 
     func familyAnimalKindChoices() -> [FamilyAnimalKindChoice] {

@@ -208,14 +208,6 @@ final class StoryModeFlowTests: XCTestCase {
         XCTAssertEqual(decoded.origin?.subOptionID, topic)
     }
 
-    // MARK: - FAZ 10: fikir adımı bayrağı
-
-    func testTheIdeaStepIsOffByDefault() throws {
-        let defaults = try XCTUnwrap(UserDefaults(suiteName: "faz10-idea-step"))
-        defaults.removePersistentDomain(forName: "faz10-idea-step")
-        XCTAssertFalse(StoryIdeaStepAccess.isEnabled(defaults: defaults))
-    }
-
     // MARK: - Yardımcılar
 
     private func storedStory(

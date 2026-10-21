@@ -188,9 +188,22 @@ final class SceneLibraryTests: XCTestCase {
 
     // MARK: - MVP kapsaması (ölçülmüş)
 
-    /// Macera, 5-6 yaş: görsel yuvası alan her sayfa bir sahne bulur ve ana
-    /// beat'inin `beatPoses`'ta açık bir karşılığı vardır. Matris, plan §1'deki
-    /// ölçümün küçültülmüş tekrarı — tahmin değil, motorun kendi çıktısı.
+    /// Macera, 5-6 yaş: kütüphanenin **çizdiği** bir zeminde geçen her masalda
+    /// görsel yuvası alan her sayfa bir sahne bulur, ve ana beat'inin
+    /// `beatPoses`'ta açık bir karşılığı vardır. Matris, plan §1'deki ölçümün
+    /// küçültülmüş tekrarı — tahmin değil, motorun kendi çıktısı.
+    ///
+    /// "Çizdiği zemin" kaydı 21 Ekim 2026'da eklendi. Önce koşulsuzdu, çünkü
+    /// havuzdaki sekiz mekânın hepsi orman, çayır ya da bahçeydi. A turunda
+    /// havuz 15 mekâna çıktı; kale, köy, mağara, kar vadisi, köprü, kumsal ve
+    /// dağ için çizim yok (B2 Faz 1 üç zemin çizdi, Faz 2 onay bekliyor). O
+    /// mekânlarda masal metin masalı olarak kalıyor — `SceneSelector`'ın
+    /// tasarlanmış davranışı, rastgele bir sahneye düşmek yerine boşluk
+    /// bildirmesi.
+    ///
+    /// Test bu yüzden boşluğun **nereden** geldiğine bakıyor: çizimi olan bir
+    /// zeminde boşluk hâlâ hata, çizimi olmayan zeminde beklenen durum. Faz 2
+    /// çizimleri geldiğinde `uncovered` küçülür ve iddia kendiliğinden sıkılır.
     func testEveryMVPAdventureStoryIsFullyIllustrated() throws {
         let lib = try library
         let catalog = try ContentCatalogLoader().load().catalog
@@ -200,7 +213,11 @@ final class SceneLibraryTests: XCTestCase {
 
         var stories = 0
         var gaps = Set<String>()
+        var uncovered = Set<String>()
         var unmappedBeats = Set<String>()
+        /// Kütüphanenin çizdiği zeminler, kütüphaneden okunuyor — elle yazılan
+        /// bir liste Faz 2 ile sessizce yanlışa düşerdi.
+        let drawnTags = Set(lib.scenes.flatMap(\.settingTags))
 
         let ideas: [CatalogStoryIdea?] = [nil] + selector.storyIdeas(catalog: catalog, mode: .adventure, ageBand: band).map { Optional($0) }
         for idea in ideas {
@@ -219,8 +236,15 @@ final class SceneLibraryTests: XCTestCase {
                     let input = IllustratedBookBinder.selectorInput(from: composed, mode: .adventure,
                                                                     ageBand: band, recentSceneIDs: [])
                     let selection = picker.select(input)
-                    for gap in selection.gaps { gaps.insert("\(gap.settingID)·\(gap.role)") }
-                    XCTAssertEqual(selection.plates.count, 4, composed.blueprintID.rawValue)
+                    let drawn = drawnTags.contains(where: { input.settingTags.contains($0) })
+                    if drawn {
+                        for gap in selection.gaps { gaps.insert("\(gap.settingID)·\(gap.role)") }
+                        XCTAssertEqual(selection.plates.count, 4, composed.blueprintID.rawValue)
+                    } else {
+                        uncovered.insert(input.settingID)
+                        XCTAssertTrue(selection.plates.isEmpty,
+                                      "\(input.settingID): çizimi olmayan zemine sahne konmuş")
+                    }
                     for page in picker.illustratedPages(input.pages, ageBand: input.ageBand) {
                         if let beat = page.beats.first, lib.direction.beatPoses[beat] == nil {
                             unmappedBeats.insert(beat)
@@ -230,7 +254,8 @@ final class SceneLibraryTests: XCTestCase {
             }
         }
         XCTAssertGreaterThan(stories, 100, "ölçüm anlamlı olacak kadar masal üretmedi")
-        XCTAssertTrue(gaps.isEmpty, "kapsama boşlukları: \(gaps.sorted())")
+        XCTAssertTrue(gaps.isEmpty, "çizimi olan zeminde kapsama boşluğu: \(gaps.sorted())")
+        print("B2 çizimi olmayan macera zeminleri: \(uncovered.sorted().joined(separator: ", "))")
         XCTAssertTrue(unmappedBeats.isEmpty, "beatPoses karşılığı olmayan beat'ler: \(unmappedBeats.sorted())")
     }
 }

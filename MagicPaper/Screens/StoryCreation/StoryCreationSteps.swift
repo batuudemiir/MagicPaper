@@ -32,22 +32,14 @@ enum StoryCreationSteps {
     /// "Devam et" bastırıyordu. Bu yüzden burada bir kural kalmadı: konular
     /// `StoryModeStep` içinde, mod seçilince beliriyor.
 
-    /// Fikir adımı yalnızca bayrak açıkken ve bu mod için fikir varken.
-    static func showsIdeaStep(hasIdeas: Bool, flag: Bool = StoryIdeaStepAccess.isEnabled()) -> Bool {
-        flag && hasIdeas
-    }
-
     /// Adım noktalarının erişilebilirlik etiketleri.
     ///
     /// Adım sayısı eve göre değişiyor: tek çocuklu evde "Çocuk" adımı yok.
     /// Etiketler tek yerden üretiliyor
     /// ki nokta sayısı ile ekran sayısı ayrışmasın — ayrıştığında kimse fark
     /// etmez, yalnızca "Adım 2 / 3" yanlış yazar.
-    static func stepLabels(childStep: Bool = false, ideaStep: Bool) -> [String] {
-        (childStep ? ["Çocuk"] : [])
-            + ["Masal"]
-            + (ideaStep ? ["Fikir"] : [])
-            + ["Kimler"]
+    static func stepLabels(childStep: Bool = false) -> [String] {
+        (childStep ? ["Çocuk"] : []) + ["Masal", "Kimler"]
     }
 
     /// "Bana sürpriz yap" en az iki kurulabilir mod varken görünür (K6). Tek

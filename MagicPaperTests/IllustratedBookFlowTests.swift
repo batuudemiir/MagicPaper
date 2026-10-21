@@ -31,7 +31,17 @@ final class IllustratedBookFlowTests: XCTestCase {
                                      hairColor: "haircolor_red", outfit: "outfit_yellow")
 
     /// Gerçek motorla, sabit seed'le bir macera masalı.
-    private func composed(seed: String = "b2-demo-001") throws -> ComposedStory {
+    ///
+    /// Seed 21 Ekim 2026'da `b2-demo-001`'den buna taşındı. Sebep testte değil
+    /// içerikte: havuz diriltilince (A turu) aynı seed artık **kaleyi**
+    /// seçiyor, B2 sahne kütüphanesinin ise yalnızca orman, çayır ve bahçe
+    /// çizimleri var (Faz 1; Faz 2 onay bekliyor). Yani eski seed'le kitap
+    /// sahnesiz kalıyor ve bu bir kapsama boşluğu, bir regresyon değil.
+    ///
+    /// Bu seed ormana düşüyor, böylece "avatar varsa kural A sayfaları sahne
+    /// alır" iddiası yine gerçekten sınanıyor. Boşluğun kendisi
+    /// `testMostAdventureSettingsHaveNoSceneYet` ile ayrıca kayıtlı.
+    private func composed(seed: String = "b2-demo-002") throws -> ComposedStory {
         let catalog = try ContentCatalogLoader().load().catalog
         return try OfflineStoryComposer().compose(
             catalog: catalog,
@@ -93,6 +103,36 @@ final class IllustratedBookFlowTests: XCTestCase {
         // Yol arkadaşı yalnızca tanışmadan sonra, türüyle birlikte.
         XCTAssertNil(out.pages[0].scene?.companionID)
         XCTAssertNotNil(out.pages[3].scene?.companionKind)
+    }
+
+    /// Bugün macera masallarının çoğu sahnesiz kalıyor — bu kayıt onu
+    /// görünür tutuyor.
+    ///
+    /// A turunda havuz 8 mekândan 15'e çıktı; B2 kütüphanesinde ise üç zemin
+    /// var (orman, çayır, bahçe). Sonuç: kale, köy, mağara, kar vadisi, köprü,
+    /// kumsal ve dağda geçen kitap metin kitabı olarak kalıyor.
+    ///
+    /// Test bu oranı **korumuyor**, çünkü havuzun büyümesi doğru yönde bir
+    /// hareket ve her yeni mekân çizim gelene kadar oranı düşürür. Yalnızca
+    /// görselli yolun tümden ölmediğini sınıyor ve rakamı loga yazıyor; çizim
+    /// kapsamını büyütmek B2 Faz 2'nin işi.
+    func testMostAdventureSettingsHaveNoSceneYet() async throws {
+        try await store.save(avatarA, for: profile.id)
+        var withScenes = 0
+        var bare: [String] = []
+        for index in 1...40 {
+            let seed = "b2-demo-\(String(format: "%03d", index))"
+            let c = try composed(seed: seed)
+            let out = await illustrate(mapped(c), c)
+            if out.pages.contains(where: { $0.scene != nil }) {
+                withScenes += 1
+            } else {
+                bare.append(c.content.setting.id.rawValue)
+            }
+        }
+        print("B2 kapsama: 40 macera seed'inin \(withScenes)'i sahne aldı. "
+              + "Çizimi olmayan mekânlar: \(Set(bare).sorted().joined(separator: ", "))")
+        XCTAssertGreaterThan(withScenes, 0, "hiçbir macera masalı sahne almıyor: görselli yol tümden kapalı")
     }
 
     /// Aynı seed her seferinde aynı sahneleri verir.

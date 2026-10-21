@@ -5,17 +5,17 @@ import StoryEngine
 /// Yaratma akışının görünümden çıkarılmış kararları (FAZ 10).
 final class StoryCreationStepsTests: XCTestCase {
 
-    // MARK: - Fikir adımı (K7)
+    // MARK: - Fikir adımı kaldırıldı (21 Ekim 2026)
 
-    func testTheIdeaStepNeedsTheFlagAndIdeas() {
-        XCTAssertFalse(StoryCreationSteps.showsIdeaStep(hasIdeas: true, flag: false))
-        XCTAssertFalse(StoryCreationSteps.showsIdeaStep(hasIdeas: false, flag: true))
-        XCTAssertTrue(StoryCreationSteps.showsIdeaStep(hasIdeas: true, flag: true))
-    }
-
-    func testStepLabelsFollowTheFlag() {
-        XCTAssertEqual(StoryCreationSteps.stepLabels(ideaStep: false), ["Masal", "Kimler"])
-        XCTAssertEqual(StoryCreationSteps.stepLabels(ideaStep: true), ["Masal", "Fikir", "Kimler"])
+    /// Akış en fazla üç adımdır ve "Fikir" artık onlardan biri değil.
+    ///
+    /// Adım bayrağın arkasında uyuyordu; bir cihazda bayrak açık kaldığı için
+    /// üründen çıkmış sayılan ekran telefonda görünüyordu. Kapalı bir özellik,
+    /// silinmiş bir özellik değildir.
+    func testThereIsNoIdeaStep() {
+        for child in [true, false] {
+            XCTAssertFalse(StoryCreationSteps.stepLabels(childStep: child).contains("Fikir"))
+        }
     }
 
     // MARK: - Çocuk ve konu adımları (16 Ekim 2026)
@@ -30,24 +30,18 @@ final class StoryCreationStepsTests: XCTestCase {
     /// Konu ayrı bir adım değil: mod adımının içinde beliriyor, bu yüzden
     /// adım noktalarına bir nokta eklemiyor.
     func testStepLabelsGrowWithTheStepsActuallyShown() {
-        XCTAssertEqual(StoryCreationSteps.stepLabels(ideaStep: false), ["Masal", "Kimler"])
-        XCTAssertEqual(
-            StoryCreationSteps.stepLabels(childStep: true, ideaStep: false),
-            ["Çocuk", "Masal", "Kimler"])
-        XCTAssertEqual(
-            StoryCreationSteps.stepLabels(childStep: true, ideaStep: true),
-            ["Çocuk", "Masal", "Fikir", "Kimler"])
+        XCTAssertEqual(StoryCreationSteps.stepLabels(), ["Masal", "Kimler"])
+        XCTAssertEqual(StoryCreationSteps.stepLabels(childStep: true),
+                       ["Çocuk", "Masal", "Kimler"])
     }
 
     /// Sıra ekrandaki sırayla aynı olmalı: "Konu" moddan sonra, "Kimler" en
     /// sonda. Akış adım numarasını bu listeden okuyor.
     func testTheLastStepIsAlwaysTheCast() {
         for child in [true, false] {
-            for idea in [true, false] {
-                let labels = StoryCreationSteps.stepLabels(childStep: child, ideaStep: idea)
-                XCTAssertEqual(labels.last, "Kimler")
-                XCTAssertEqual(labels.first, child ? "Çocuk" : "Masal")
-            }
+            let labels = StoryCreationSteps.stepLabels(childStep: child)
+            XCTAssertEqual(labels.last, "Kimler")
+            XCTAssertEqual(labels.first, child ? "Çocuk" : "Masal")
         }
     }
 

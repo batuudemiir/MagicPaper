@@ -76,11 +76,21 @@ final class InterestProfileTests: XCTestCase {
         XCTAssertTrue(ChildInterests.isShown(choices))
     }
 
-    /// Today's catalog offers two words: the screens are hidden, yet a stored
-    /// interest still reaches the engine — hiding is not forgetting.
-    func testTodaysCatalogHidesTheScreensButKeepsWeighing() throws {
+    /// 21 Ekim 2026: eşik aşıldı, ilgi ekranları açıldı.
+    ///
+    /// FAZ 12 bu ekranları bilerek bir eşiğin arkasına koydu — katalog dörtten
+    /// az kelimeyi her bantta onurlandırabiliyorsa soru sormak, tutamayacağın
+    /// bir söz vermektir. A turunda havuz diriltilince "deniz" ve "sihir"
+    /// her bantta ulaşılabilir hâle geldi ve sayı dörde çıktı, yani ekranlar
+    /// kendiliğinden göründü. Beklenen davranış bu: eşik içerik hazır olunca
+    /// açılmak için konmuştu.
+    ///
+    /// Değişmeyen taraf: gizlemek unutmak değil. Eşiğin altında kalan bir
+    /// kelime bile motora ulaşmaya devam eder.
+    func testTodaysCatalogShowsTheScreensAndStillWeighsAStoredWord() throws {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertFalse(ChildInterests.isShown(offered))
+        XCTAssertTrue(ChildInterests.isShown(offered),
+                      "katalog \(offered.count) kelime sunuyor, eşik \(ChildInterests.minimumOfferedToShow)")
         XCTAssertEqual(ChildInterests.offered(["animals"], from: offered), ["animals"])
     }
 
@@ -138,11 +148,16 @@ final class InterestProfileTests: XCTestCase {
 
     // MARK: - Köprü
 
-    /// Today's catalog offers the two words that reach every band with content.
+    /// Katalogdaki her bantta ulaşılabilen kelimeler.
+    ///
+    /// A turundan önce ikiydi (hayvanlar, doğa); havuz diriltilince dört oldu.
+    /// Liste katalog sırasında ve burada açık yazılı, çünkü bu kelimeler
+    /// ebeveyne gösterilen sözlerin tamamı: sessizce büyümesi ya da küçülmesi
+    /// bir ürün kararıdır, bir yan etki değil.
     func testTheServiceOffersWhatReachesEveryBand() {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertEqual(offered.map(\.id), ["animals", "nature"])
-        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Doğa"])
+        XCTAssertEqual(offered.map(\.id), ["animals", "sea", "magic", "nature"])
+        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Deniz", "Sihir", "Doğa"])
         XCTAssertTrue(StoryChoiceSources.current.interestChoices() == offered)
     }
 

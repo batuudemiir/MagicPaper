@@ -9,9 +9,14 @@ import StoryEngine
 ///
 /// The one required decision is the **mode** — Uyku öncesi, Yeni şeyler
 /// öğrenelim, Maceraya çıkalım — or "Bana sürpriz yap", which lets MagicPaper
-/// pick the mode. Then "Masalda kimler olsun?". Idea cards sit behind a flag
-/// (`StoryIdeaStepAccess`, off in every build); when they are on, a surprise
-/// still skips them, because the parent asked us to decide.
+/// pick the mode. Then "Masalda kimler olsun?".
+///
+/// Fikir kartları adımı ("Bir gizemin peşine düşelim", "Bana bırak") 21 Ekim
+/// 2026'da kaldırıldı. Bayrağın arkasında uyuyordu ve bayrak bir cihazda
+/// açık kaldığı için üründen çıkmış sayılan bir ekran telefonda görünüyordu:
+/// kapalı bir özellik, silinmiş bir özellik değildir. Motorun fikir yapısı
+/// (`CatalogStoryIdea`, `origin.storyIdeaID`) yerinde kaldı — kaydedilmiş
+/// masallar onu saklıyor ve temizliği ayrı bir iş.
 ///
 /// A mode chosen on the home screen opens the flow at its second step: the
 /// parent has already made the first decision there. "Back" then returns to
@@ -28,7 +33,6 @@ struct StoryCreationFlow: View {
         /// "Masal kimin için?" — yalnızca birden fazla çocuk varken.
         case child
         case mode
-        case idea(StoryMode)
         case companion
         /// 21 · Masal yazılıyor; masal hazır olunca aynı ekranda "Masalı oku".
         case preparing
@@ -60,11 +64,6 @@ struct StoryCreationFlow: View {
     /// the moment it is chosen, so the companion step can already fit it.
     @State private var chosenMode: StoryMode?
     @State private var strategy: StorySelectionStrategy = .direct
-    /// Whether step 2 was actually shown, so "back" from the companion step
-    /// returns to where the parent really was.
-    @State private var ideaStepShown = false
-    /// Nil means "Bana bırak" or a surprise. Stable ids, never display text.
-    @State private var chosenIdeaID: String?
     @State private var chosenCompanionID: String?
     /// Alt kategori (`CatalogStoryTopic` kimliği); nil "farketmez".
     ///
@@ -174,7 +173,7 @@ struct StoryCreationFlow: View {
     /// ekranlarının kendi düzeni var.
     private var showsHeader: Bool {
         switch phase {
-        case .child, .mode, .idea, .companion: return true
+        case .child, .mode, .companion: return true
         default: return false
         }
     }
@@ -211,7 +210,7 @@ struct StoryCreationFlow: View {
 
     private var showsBack: Bool {
         switch phase {
-        case .idea, .companion: return true
+        case .companion: return true
         case .mode: return childStepShown
         default: return false
         }
@@ -223,7 +222,7 @@ struct StoryCreationFlow: View {
     }
 
     private var stepLabels: [String] {
-        StoryCreationSteps.stepLabels(childStep: childStepShown, ideaStep: ideaStepShown)
+        StoryCreationSteps.stepLabels(childStep: childStepShown)
     }
 
     /// Nokta sırası etiket listesinden türetiliyor, elle sayılmıyor: iki yerde
@@ -233,7 +232,6 @@ struct StoryCreationFlow: View {
         switch phase {
         case .child:     return stepLabels.firstIndex(of: "Çocuk")
         case .mode:      return stepLabels.firstIndex(of: "Masal")
-        case .idea:      return stepLabels.firstIndex(of: "Fikir")
         case .companion: return stepLabels.count - 1
         default:         return nil
         }
@@ -243,12 +241,6 @@ struct StoryCreationFlow: View {
         switch phase {
         case .companion:
             chosenCompanionID = nil
-            if ideaStepShown, let mode = chosenMode {
-                phase = .idea(mode)
-            } else {
-                resetToModes()
-            }
-        case .idea:
             resetToModes()
         case .mode:
             if childStepShown { phase = .child } else { dismiss() }
@@ -259,10 +251,8 @@ struct StoryCreationFlow: View {
 
     private func resetToModes() {
         chosenMode = nil
-        chosenIdeaID = nil
         chosenTopicID = nil
         strategy = .direct
-        ideaStepShown = false
         phase = .mode
     }
 
@@ -286,14 +276,9 @@ struct StoryCreationFlow: View {
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
-        case .idea(let mode):
-            StoryIdeaStep(mode: mode, ideas: source.ideaChoices(forAge: age, mode: mode)) { ideaID in
-                chosenIdeaID = ideaID
-                phase = .companion
-            }
         case .companion:
             CompanionStep(
-                ideaID: chosenIdeaID, mode: chosenMode, age: age, childName: profile?.name ?? "",
+                ideaID: nil, mode: chosenMode, age: age, childName: profile?.name ?? "",
                 childColor: profile?.mpColor, source: source,
                 familyCharacters: familyCharacters,
                 availableRelations: familyRelations,
@@ -355,14 +340,8 @@ struct StoryCreationFlow: View {
     private func chooseMode(_ mode: StoryMode, topicID: String?) {
         chosenMode = mode
         strategy = .direct
-        chosenIdeaID = nil
         chosenTopicID = topicID
-        let ideas = source.ideaChoices(forAge: age, mode: mode)
-        // Behind a flag, off in every build. With it on and no ideas under
-        // this mode for this band, the step is still skipped rather than shown
-        // with only "Bana bırak" on it.
-        ideaStepShown = StoryCreationSteps.showsIdeaStep(hasIdeas: !ideas.isEmpty)
-        phase = ideaStepShown ? .idea(mode) : .companion
+        phase = .companion
     }
 
     /// "Bana sürpriz yap": MagicPaper picks the mode, looking at what this
@@ -377,13 +356,11 @@ struct StoryCreationFlow: View {
                 recent: storyManager.recentModes(for: profile)
             )
             strategy = .surprise
-            chosenIdeaID = nil
             // Sürpriz konuyu da sormaz: ebeveyn "sen seç" dedi, ve konuyu
             // sormak o cümleyi yarıda kesmek olurdu. Konu boş kalınca motor
             // bütün içerikten seçiyor — sürprizin zaten istediği şey.
             chosenTopicID = nil
-            ideaStepShown = false
-            phase = .companion
+                phase = .companion
         } catch {
             print("❌ Sürpriz mod seçilemedi: \(storyFailureDetail(error))")
             failureReason = StoryFailureReason(error)
@@ -413,7 +390,7 @@ struct StoryCreationFlow: View {
                     for: profile,
                     mode: chosenMode,
                     strategy: strategy,
-                    storyIdeaID: chosenIdeaID,
+                    storyIdeaID: nil,
                     companionID: chosenCompanionID,
                     subOption: chosenTopicID,
                     family: chosenFamily

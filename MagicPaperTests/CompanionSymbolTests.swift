@@ -18,6 +18,13 @@ final class CompanionSymbolTests: XCTestCase {
         StoryChoiceSources.current.companionChoices(forIdeaID: nil, mode: nil, age: nil)
     }
 
+    /// Everything the catalog would offer if nothing filtered it.
+    private func candidates() -> [CompanionChoice] {
+        OfflineStoryService.shared
+            .companionCandidates(forIdeaID: nil, mode: nil, age: nil)
+            .map(CompanionChoice.init)
+    }
+
     func testThereAreCompanionsToCheck() {
         XCTAssertGreaterThanOrEqual(companions().count, 4)
     }
@@ -38,17 +45,42 @@ final class CompanionSymbolTests: XCTestCase {
                 .sorted().joined(separator: "\n"))
     }
 
-    /// The fallback is allowed to exist and is not allowed to be the answer for
-    /// more than one animal at a time. This fails when the roster grows into a
-    /// type the symbol set has nothing for *and* something else is already
-    /// there — the moment the fallback stops being a fallback.
-    func testTheFallbackIsNeverCarryingTwoAnimals() {
-        let onPaw = companions()
+    /// The filter above is allowed to hide a companion for exactly one reason:
+    /// its picture is already on the screen. A companion dropped for any other
+    /// reason is content loss hiding behind a cosmetic rule, so this names the
+    /// kind and fails.
+    func testTheFilterHidesNothingButARepeatedPicture() {
+        let offered = companions()
+        let shownSymbols = Set(offered.map { CompanionStep.symbol(forType: $0.kind) })
+        let offeredIDs = Set(offered.map(\.id))
+
+        for hidden in candidates() where !offeredIDs.contains(hidden.id) {
+            XCTAssertTrue(
+                shownSymbols.contains(CompanionStep.symbol(forType: hidden.kind)),
+                "\(hidden.name) (\(hidden.kind)) ekrandan düştü ama resmi başka "
+                + "kimsede yok — bu bir tekrar süzmesi değil, içerik kaybı.")
+        }
+    }
+
+    /// What the catalog currently cannot draw, so growth is visible instead of
+    /// silent: a kind the symbol set has nothing for lands on the paw, and the
+    /// filter then hides all but one of them. This test does not fail for that
+    /// — it records it, and fails only if the paw is carrying companions the
+    /// `symbol(forType:)` map could have named.
+    func testTheFallbackCarriesOnlyUnnamedKinds() {
+        let named: Set<String> = [
+            "baykuş", "kuş", "yunus", "balık", "ejderha", "tavşan",
+            "tilki", "köpek", "kedi", "ayı", "kaplumbağa", "kertenkele",
+            "robot", "kelebek"
+        ]
+        let onPaw = candidates()
             .filter { CompanionStep.symbol(forType: $0.kind) == "pawprint" }
             .map(\.kind)
-        XCTAssertLessThanOrEqual(
-            onPaw.count, 1,
-            "More than one companion fell through to the paw: \(onPaw.sorted()). "
-            + "Give each a symbol in CompanionStep.symbol(forType:).")
+        XCTAssertTrue(
+            onPaw.allSatisfy { !named.contains($0) },
+            "Adı `symbol(forType:)`'ta olan bir tür patiye düşmüş: \(onPaw.sorted())")
+        if !onPaw.isEmpty {
+            print("Çizimi olmayan türler (ekranda en çok biri görünür): \(Set(onPaw).sorted())")
+        }
     }
 }

@@ -26,7 +26,6 @@ struct SettingsView: View {
     @State private var weeklyEmail = false
     #if DEBUG
     @State private var illustratedBooks = IllustratedBookAccess.isEnabled()
-    @State private var ideaStep = StoryIdeaStepAccess.isEnabled()
     @State private var familyFlags: [FamilyFeature: Bool] = Dictionary(
         uniqueKeysWithValues: FamilyFeature.allCases.map { ($0, FamilyFeatureAccess.isEnabled($0)) })
     #endif
@@ -328,11 +327,6 @@ struct SettingsView: View {
                             subtitle: "Kitap karakteri ve hazır sahneler",
                             isOn: Binding(get: { illustratedBooks },
                                           set: { illustratedBooks = $0; IllustratedBookAccess.setDeveloperFlag($0) }))
-            MPRowDivider(area: .parent)
-            ParentToggleRow(systemImage: "sparkles", title: "Fikir kartları adımı",
-                            subtitle: "Moddan sonra isteğe bağlı fikir kartları",
-                            isOn: Binding(get: { ideaStep },
-                                          set: { ideaStep = $0; StoryIdeaStepAccess.setDeveloperFlag($0) }))
             ForEach(FamilyFeature.allCases, id: \.self) { feature in
                 MPRowDivider(area: .parent)
                 ParentToggleRow(systemImage: "person.2", tone: .sky, title: feature.title,
