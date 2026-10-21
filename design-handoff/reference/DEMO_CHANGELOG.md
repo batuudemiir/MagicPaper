@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · kitaplik-yenileme@fec2407 · Kitaplık: tek zaman çizgisi (son okunmaya göre)
+- Batuhan: kitaplık hâlâ karışık, bulunabilirlik düşük; tarihe göre yeniden eskiye sıralansın. Üç ajanla beyin fırtınası (tasarım, masal motoru, ebeveyn deneyimi) sonrası Batuhan'ın kararları: tarihli tek ızgara, son okunmaya göre, kapak için iki fikir yan yana denensin, başlıklar iki aşamada iyileşsin.
+- Mod rafları ve "Yarım kalanlar" süzgeci kalktı. Kitaplık tek iki sütun ızgara: "Bugün · Dün · Bu hafta · Geçen hafta · Ekim" (başka yılsa "Eylül 2025") bölümleri. Her kitap bir kez görünür; çipler (Tümü, Favoriler, Uyku, Öğrenelim, Macera, Klasikler; yalnızca dolu olanlar) ve arama aynı çizgiyi daraltır, bölümler kalır. Çipler artık tek satıra sığıyor.
+- Üstte yalnızca süzgeçsiz görünümde tek "Kaldığın yerden" kartı ve Serim. Ragi'li karşılama küçüldü; ilk kapak daha yukarıda.
+- Yeniden okunan eski masal en üste çıkar (bilerek: "dün okuduğumuz" en üstte).
+- Test: `LibraryShelfModelTests` + `ReaderStoryMappingTests` 29/29 geçti (bölüm başlıkları, tek görünme, okumanın sırayı değiştirmesi, süzgeç + arama). Tam takım bu turda çalıştırılmadı.
+- Simülatörde görüldü (iPhone 18 Pro Max, açık tema). En büyük yazı, koyu mod, iPhone SE bu turda görülmedi.
+- Kapak denemesi (A mod sahnesi / B başlık kapağı) DEBUG sayfasında, commit'lenmedi; seçim Batuhan'da. Başlık işi ayrı ajanda (`masal-basliklari`).
+- Dosyalar: `Views/LibraryView.swift`, `Screens/Library/LibraryShelfModel.swift`, `Screens/Library/LibraryComponents.swift`, `MagicPaperTests/LibraryShelfModelTests.swift`.
+
 ### 2026-10-21 · kitaplik-yenileme@48ebc43 · Kitaplık: kapak altındaki boşluk
 - Batuhan: kapakların altındaki boşluk fazla. Neden: tek satırlık başlıkta da ikinci satır için yer ayrılıyordu. Artık bilgi satırı ("Uyku · 4 dakika") başlığın hemen altında; kapaklar yine aynı boyda ve üstten hizalı.
 - Yan bulgu ve düzeltme: yatay rafta `LazyHStack` iki satırlık başlığın altındaki bilgi satırını kesiyordu; raflar düz `HStack` oldu.
