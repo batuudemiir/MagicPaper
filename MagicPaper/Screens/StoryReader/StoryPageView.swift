@@ -12,7 +12,8 @@ struct StoryPageView: View {
     let theme: MP.ReadTheme
     let readSize: MP.ReadSize
     let folio: String?
-    /// Kontroller görünürken alt künye de görünür (§11).
+    /// Alt künye görünür mü. Kontroller görünürken sayfa numarası alt çubukta
+    /// yazılı; künye yalnızca kontroller çekilince belirir (21 Ekim 2026).
     let showsFolio: Bool
     /// Masalın dünya rengi.
     let accent: Color
@@ -29,18 +30,21 @@ struct StoryPageView: View {
                 if isSpread(geo) {
                     spread(in: geo)
                 } else {
+                // Çizim kenardan kenara ve sayfanın en üstünden başlar; cam
+                // kontroller onun üstünde yüzer. Metin kenar boşluğunda kalır.
                 VStack(spacing: 0) {
                     if page.hasIllustration {
                         illustration(in: geo)
+                            .overlay(alignment: .bottom) { PaperLip(theme: theme) }
                         Spacer(minLength: MP.S.x6)
                     }
                     textColumn(in: geo)
+                        .padding(.horizontal, StoryPageView.gutter)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal, StoryPageView.gutter)
-                // Üst denetimlerin (kapat, kalp, Aa) altından başlar; en büyük
-                // yazı boyutunda metin kapat düğmesinin altına akmaz.
-                .padding(.top, MP.S.navBarHeight)
+                // Resimsiz sayfada metin üst denetimlerin (kapat, kalp, Aa)
+                // altından başlar; en büyük yazı boyutunda kapatın altına akmaz.
+                .padding(.top, page.hasIllustration ? 0 : MP.S.navBarHeight)
                 .padding(.bottom, MP.S.x7)
                 }
             }
@@ -81,8 +85,7 @@ struct StoryPageView: View {
     /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
     /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
     private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
-        let column = geo.size.width - 2 * (StoryPageView.gutter)
-        return min(column / StorySceneView.aspectRatio, geo.size.height * 0.55)
+        min(geo.size.width / StorySceneView.aspectRatio, geo.size.height * 0.55)
     }
 
     /// Metin sütununun çizime bıraktığı yükseklik.
@@ -101,9 +104,11 @@ struct StoryPageView: View {
         PageIllustration(
             fileName: page.imageRef ?? "",
             label: page.imageLabel,
-            theme: theme
+            theme: theme,
+            bleeds: true
         )
         .frame(height: height)
+        .clipped()
     }
 
     // MARK: - 27 · iPad yatay açık kitap
@@ -233,7 +238,8 @@ struct StoryPageView: View {
         if let folio {
             VStack {
                 Spacer(minLength: 0)
-                Text(folio)
+                // Kitaptaki gibi yalnızca sayfa numarası, ortada ve sessiz.
+                Text("— \(page.index + 1) —")
                     .font(MP.F.caption())
                     .foregroundStyle(theme.muted)
                     .opacity(showsFolio ? 0.75 : 0)
@@ -262,6 +268,9 @@ private struct PageIllustration: View {
     let fileName: String
     let label: String?
     let theme: MP.ReadTheme
+    /// Kenardan kenara: kutuyu doldurur, köşesiz. iPad açık kitabın sol
+    /// sayfası da böyle; telefonda dikey sayfa da artık böyle (21 Ekim 2026).
+    var bleeds: Bool = true
 
     @State private var image: UIImage?
 
@@ -271,12 +280,11 @@ private struct PageIllustration: View {
                 if let image {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        // Çerçevesiz, neredeyse köşesiz: çizim kâğıdın üstünde
-                        // metinle aynı kenar boşluklarını paylaşır, listedeki
-                        // bir küçük resim gibi kutulanmaz (§12).
-                        .clipShape(RoundedRectangle(cornerRadius: MP.R.sm, style: .continuous))
+                        .aspectRatio(contentMode: bleeds ? .fill : .fit)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        // Çerçevesiz ve köşesiz: çizim kâğıdın bir parçası,
+                        // listedeki bir küçük resim gibi kutulanmaz (§12).
+                        .clipped()
                 } else {
                     Color.clear
                 }
@@ -297,6 +305,33 @@ private struct PageIllustration: View {
     }
 }
 
+
+/// Kenardan kenara çizimin alt kenarı: kâğıt, çizimin üstüne hafif bir yayla
+/// biner. Çizim kutu gibi düz bir çizgiyle bitmez, sayfaya karışır.
+private struct PaperLip: View {
+    let theme: MP.ReadTheme
+
+    var body: some View {
+        LipShape()
+            .fill(theme.paper)
+            .frame(height: MP.S.x5)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+
+    private struct LipShape: Shape {
+        func path(in rect: CGRect) -> Path {
+            var p = Path()
+            p.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+            p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height * 0.35))
+            p.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.maxY - rect.height * 0.35),
+                           control: CGPoint(x: rect.midX, y: rect.minY - rect.height * 0.6))
+            p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            p.closeSubpath()
+            return p
+        }
+    }
+}
 
 /// VoiceOver: sayfa tek parça okunur; her yeni kelime bir eylem olarak
 /// eklenir ("Yeni kelime: müjdelemek"), seçilince kartı açar.

@@ -123,14 +123,20 @@ struct StoryReaderView: View {
         // beş dakika önceden haber veriliyor.
         .overlay(alignment: .bottom) {
             if let word = words.selected {
-                NewWordCard(word: word.term, meaning: word.meaning,
-                            isSpeaking: false,
-                            onSpeak: { speech.speak("\(word.term). \(word.meaning)") },
-                            onClose: { words.selected = nil })
-                    .padding(.horizontal, MPSpacing.screenH)
-                    .padding(.bottom, model.controlsVisible ? 190 : MPSpacing.xxl)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                    .zIndex(2)
+                ZStack(alignment: .bottom) {
+                    // Kartın dışına dokunmak kartı kapatır, sayfayı çevirmez.
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .onTapGesture { words.selected = nil }
+                        .accessibilityHidden(true)
+                    ReaderWordCard(word: word, theme: theme,
+                                   onSpeak: { speech.speak("\(word.term). \(word.meaning)") },
+                                   onClose: { words.selected = nil })
+                        .padding(.horizontal, MPSpacing.screenH)
+                        .padding(.bottom, model.controlsVisible ? MP.S.x10 + MP.S.x6 : MPSpacing.xxl)
+                }
+                .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
+                .zIndex(2)
             }
         }
         .animation(MP.M.gated(MP.M.base), value: words.selected)
