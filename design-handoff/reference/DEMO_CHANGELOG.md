@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main, commit yok · Alt çubuk iOS 26 düzeninde (varyasyon A)
+
+- `KidTabBar` yeniden düzenlendi: dört sekme (Ana sayfa, Günlük, Kitaplık, Köşem) tek cam kapsülde, her birinin altında adı yazıyor. "Masal yaz" çubuğun dışında, sağda marka renginde dolu ayrı bir dairede (64 pt). İkon `pencil.and.scribble`. Apple Music'teki arama dairesi düzenine benziyor.
+- Seçili sekme: ikonun içi sekmenin rengiyle doluyor, adı kalınlaşıp koyulaşıyor, arkasında o rengin %14'lük merceği beliriyor. Zıplama ve ölçek yok (15 Ekim kararı korundu). Hareketi Azalt açıkken animasyon olmadan değişiyor.
+- VoiceOver etiketi "Masal yarat" → "Masal yaz" (dil kuralı).
+- Bilerek değişmeyenler: `ContentView` yerleşimi (`mpFloatingBar`), sekme renkleri, cam ayarı `MP.Glass.bar`, Dynamic Type üst sınırı xLarge.
+- Test: derlenmedi ve simülatörde görülmedi (disk %99 dolu; derleme durduruldu). Batuhan telefonda deneyecek. Tasarım kuralı grep'leri değişen dosyada boş döndü.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/MPNavigationChrome.swift`, bu dosya.
+
 ### 2026-10-21 · main@c957e28 · origin/main yerel main'e birleşti, telefona kurulum
 - Yerel main (alt seçenek testi birleşmesi) ile başka oturumun gönderdiği origin/main (kitaplık turu 2, masal başlıkları, uyku arkı başlık kalıpları; 13 commit) ayrışmıştı. origin/main yerel main'e birleşti (c957e28). Tek çakışma bu dosyadaydı; iki tarafın kayıtları korundu.
 - Bilerek değişmedi: kod. Birleşme yalnızca iki tarafı bir araya getirdi.
