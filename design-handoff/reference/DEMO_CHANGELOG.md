@@ -170,7 +170,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Cümle takibi** (7-10): anlatıcı okurken o an okunan cümle sıcak fosforlu kalemle işaretleniyor, öncesi sönüyor. Kelime değil cümle: araştırmaya göre her kelimeyi işaretlemek dikkati dağıtıyor. Konum `AVSpeechSynthesizer`'ın kelime haberinden (`MPSpokenPosition`, ayrı nesne: okuyucunun geri kalanı her kelimede yeniden çizilmesin). Ailenin sesiyle kayıtlı sayfada takip yok (kayıtta kelime zamanı yok).
 - **Çocuğun adı** metinde vurgu renginde ve kalın; yalnızca tam kelime ("Can", "Canavar"da işaretlenmez), kesme işaretli ek adın dışında.
 - **Ses kelimeleri** ("pıt pıt", "şırıl şırıl"): 50 kelimelik listeden, okuma boyutunun bir tık büyüğü ve en kalın kesimde (`MP.F.sound`). Listede olmayan sıradan metin kalıyor.
-- Baloo 2 bilerek kullanılmadı: font uygulamada yok (FAZ 17'de kaldırılmış, `MP.F` başlık ailesi Nunito Black). Geri eklemek font dosyası indirmeyi gerektiriyor, Batuhan'ın onayını bekliyor.
+- Baloo 2 bilerek kullanılmadı: font uygulamada yok (FAZ 17'de kaldırılmış, `MP.F` başlık ailesi Nunito Black). Karar (Batuhan, 21 Ekim): şimdilik Nunito Black kalıyor, Baloo 2 eklenmiyor.
 - Cümle bölme `NLTokenizer` ile; küçük harfle başlayan parça öncekine bağlanıyor ("“Gerçekten mi?” dedi Deniz." tek satır).
 - Test: `ReaderTextTests` (11 test) yazıldı. Uygulama testi çalıştırılmadı (disk dolu, Xcode derlemesi yapılmadı); `ReaderText.swift` tek başına `swiftc` ile derlenip aynı senaryolarla denendi, hepsi geçti. Görünüm kodu derlenmedi, cihazda görülmedi.
 - Kural (kök CLAUDE.md, repoda değil): ses kelimeleri yalnızca `MP.F.sound`, ad vurgu renginde ve kalın.
