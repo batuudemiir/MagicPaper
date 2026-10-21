@@ -164,6 +164,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-21 · main@5498002 · Açılır pencereler iOS 26 düzeninde
+
+- Ortak sunum (`DesignSystem/MPSheetStyle.swift`, yeni): `mpSheet(_:area:)` — kâğıt yüzey (cam değil), görünür tutamak, sistemin kendi köşesi (iOS 26'da cihaz köşesiyle eş merkezli; elle verilen `presentationCornerRadius` kaldırıldı). Boy: içerik kadar (`fitted`, `mpMeasureHeight` ile), yarım ya da tam. En büyük yazı boyutlarında her pencere tam sayfa.
+- Örnek, kitaplıkta kitaba basınca açılan pencere (`StoryActionsSheet`): artık tam sayfa değil, içeriğin boyu kadar. Üstte kapak, ad ve tek satır künye ("12 sayfa · Deniz · Görselli"; etiket kutucukları kalktı), yarımsa "Yarım kaldı". Altında birincil "Okumaya devam et / başla". İkincil işlemler liste yerine yazılı yuvarlak düğmeler: Favori, Baştan, Paylaş, Sil; ebeveyn onayı isteyenlerde küçük kilit ve VoiceOver ipucu. En büyük yazı boyutunda ikişerli sıra. Seri satırı kendi kartında.
+- Bilerek değişmeyen: ebeveyn kapısı, PDF, silme onayı ve seri mantığı aynı.
+- Aynı sunuma geçenler: okuma ayarları (yarım), uyku masalı penceresi (yarım), Günlük kategorileri (tam), ebeveyn onayının tam metni (tam, ebeveyn yüzeyi), aile daveti ve aileye katılma (tam, ebeveyn yüzeyi). Uygulama içi `MPSheet` (profil seçimi, profil, ilgi alanları) aynı kâğıda ve sistem ölçüsündeki tutamağa geçti.
+- Dokunulmayan: sistem paylaşım sayfası (`ShareSheet`), tam ekran açılanlar (okuyucu, ödeme, ebeveyn kapısı, masal yazma) ve eski `SimpleSubscriptionView`.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Aynı klasördeki başka oturumun açık değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`, `VocabularySentenceTests`) bu commit'e girmedi.
+- Dosyalar: `DesignSystem/MPSheetStyle.swift` (yeni), `DesignSystem/MPNavigation.swift`, `Screens/Library/StoryActionsSheet.swift`, `Screens/MPSheets.swift`, `Screens/BedtimeStorySheet.swift`, `Screens/Gunluk/GunlukView.swift`, `Screens/Account/ParentConsentView.swift`, `Screens/Family/FamilyMembersView.swift`, bu dosya.
+
 ### 2026-10-21 · main@e97a371 · Masal metni: nefes satırları, cümle takibi, ad ve ses kelimeleri
 
 - Yaşa göre diziliş (`ReaderTextLayout`, `Story.ageBand`'den): 3-6 yaşta **nefes satırları**, her cümle kendi satırında, seçilen boyutun bir üstünde, en az "Rahat" satır arası, paragraflar arasında daha geniş boşluk. 7-10 yaşta paragraflar; konuşma paragrafı solda ince bir çizgiyle ayrılıyor. Bandı olmayan eski masallar paragraf düzeninde.
