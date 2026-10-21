@@ -199,10 +199,13 @@ final class StoryModeFlowTests: XCTestCase {
     }
 
     func testASubOptionIsRemembered() throws {
-        let story = try storedStory(mode: .bedtime, seed: "with-sub", subOption: "x")
-        XCTAssertEqual(story.origin?.subOptionID, "x")
+        // Motor alt seçeneği katalog konularına karşı doğrular; 5-6 bandında
+        // canlı olan bir konu (bkz. StoryTopicTests.testWhichTopicsAreLiveToday).
+        let topic = "topic_learning_animals"
+        let story = try storedStory(mode: .learning, seed: "with-sub", subOption: topic)
+        XCTAssertEqual(story.origin?.subOptionID, topic)
         let decoded = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
-        XCTAssertEqual(decoded.origin?.subOptionID, "x")
+        XCTAssertEqual(decoded.origin?.subOptionID, topic)
     }
 
     // MARK: - FAZ 10: fikir adımı bayrağı

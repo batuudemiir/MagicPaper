@@ -267,6 +267,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bulgu, bu işten değil: okuyucuda ortaya dokununca kontroller (Aa, kalp) simülatörde görünmedi; düz masal sayfasında da aynı. Simülatör dokunuşunun UIKit jestine ulaşmaması olabilir; cihazda bakılmalı.
 - Görülmedi: koyu sistem teması, iPhone SE ve Pro Max ekranları.
 
+### 2026-10-20 · fix/alt-secenek-testi@30a3281 · Alt seçenek testi gerçek konu kullanıyor
+- `StoryModeFlowTests.testASubOptionIsRemembered` main'de düşüyordu (`noStoryForChoices`, "Sub-option 'x' is not a topic in this catalog."). FAZ 21 "Mod alt kategorileri"nden (c96b804) beri motor alt seçeneği katalog konularına karşı doğruluyor; test hâlâ yer tutucu `"x"` veriyordu.
+- Test artık `learning` modunda, 5-6 bandında canlı olan `topic_learning_animals` ile kuruluyor ve `StoryOrigin.subOptionID`'nin saklandığını, JSON'dan geri geldiğini doğruluyor. Testin amacı aynı.
+- Bilerek değişmedi: motor davranışı ve içerik. Uyku öncesi modunda canlı konu olmadığı için test o moddan çıkarıldı.
+- Test: MagicPaperTests, iPhone 17 Pro simülatörü, 732 test, 0 hata, 1 atlanan (zaten atlanıyordu).
+- Dosyalar: `MagicPaperTests/StoryModeFlowTests.swift`, bu dosya.
+
 ### 2026-10-20 · main@18b6780 · Kitaplık rafı geri alındı
 - 20aad75'teki kitap sırtı rafı kaldırıldı: `Screens/Library/LibraryShelf.swift` silindi, `Views/LibraryView.swift` rafın öncesine döndü. Batuhan beğenmedi (Günlük'ün tasarım diliyle uyumsuz, kategorileştirme yok); kitaplık UX'i ayrı bir oturumda yeniden tasarlanıyor.
 - Bilerek değişmedi: ithaf yaprağı, künye (son yaprak ve PDF), `StoryColophon`, dil temizliği yerinde.
