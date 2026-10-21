@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-21 · faz-21-varyasyon@3401772 · Fikir kartları adımı silindi, A turunun üç izi kapandı
+### 2026-10-21 · faz-21-varyasyon@3e7fe8d · Fikir kartları adımı silindi, A turunun üç izi kapandı
 
 - **Fikir kartları adımı üründen kaldırıldı.** "Bir gizemin peşine düşelim / Bana bırak" ekranı plandan ve motordan çıkmıştı ama bir geliştirici bayrağının arkasında duruyordu; bayrak bir cihazda açık kaldığı için telefonda görünüyordu. Kapalı bir özellik silinmiş bir özellik değildir, bu yüzden bayrakla birlikte silindi: `StoryIdeaStep`, `StoryIdeaStepAccess`, akıştaki `.idea` fazı, `showsIdeaStep` ve Ayarlar'daki geliştirici anahtarı. Motorun fikir yapısı (`CatalogStoryIdea`, `origin.storyIdeaID`) yerinde kaldı — kaydedilmiş masallar onu saklıyor, temizliği ayrı bir iş.
 - **"Kim gelsin?" ekranının tek kuralı yazıldı: bir resim en çok bir kez görünür.** Havuz diriltilince kural iki yerden kırıldı: beş yeni tür (kirpi, sincap, penguen, kurbağa, ateşböceği) aynı pati ikonuna düştü ve köpek tilkinin ikonuna oturdu — iOS'un simge kümesinde bu türlerin hiçbiri yok. Beş yaşındaki çocuk resme bakarak seçtiği için beş farklı hayvanı tek resimle göstermek seçimi seçim olmaktan çıkarır. Süzülen tür **motorun havuzunda kalıyor**: masalda çıkmaya devam eder, yalnızca karttan seçilemez. Doğru çözüm süzgeç değil çizim; geldiğinde `CompanionStep.symbol(forType:)`'a eklenince ekran kendiliğinden teklif etmeye başlar.
