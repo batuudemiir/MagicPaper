@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-21 · main, commit yok · Kelime planı: kitapokur incelemesi
+
+- `ka1nsha/kitapokur` (İngilizce PDF'lerden kelime öğreten okuyucu) incelendi. Repo'da lisans yok: kod alınmaz, yalnız yaklaşım ve eşik fikirleri.
+- Plan yazıldı: `docs/Kelime_Plani_kitapokur.md`. A: "Yeni kelimelerim" kartında kelimenin masalda geçtiği cümle (göç yok, `StoryPage.text` + `StoryWord.surface`). B: `Tools/` altında yaş bandına göre nadir ve açıklamasız kelime raporu (wordfreq `tr` + simplemma, Zipf kontrolü, başlangıç eşikleri 4,5 / 4,0 / 3,5 / 3,0).
+- Bilerek alınmadı: FSRS flashcard, puanlı test, seri/istatistik (ilke 7), anahtarsız Google çeviri, Tatoeba cümleleri.
+- Açık: sevk edilen katalogda sözlük kelimesi olup olmadığı (sıra A→B mi B→A mı buna bağlı); disk dolu (136 MB), derleme yapılamaz.
+- Kod değişmedi, test çalıştırılmadı.
+- Dosyalar: `docs/Kelime_Plani_kitapokur.md` (yeni), bu dosya.
+
 ### 2026-10-21 · faz-21-varyasyon · Havuz diriltildi: 44 ölü kayıt masala girdi
 
 - **A turu (plan: D1 taban → A → D1 karşılaştırma).** v2 kütüphanesindeki kayıtlara `habitat`, `traits`, `castRoles`, `interests`, `thresholdKinds`, `keepsakeName` eklendi. Bu alanlar olmadan hiçbiri masala giremiyordu: 17 blueprint'in 17'si kadro, 16'sı mekân özelliği şart koşuyor. 14 mekân + 10 arkadaş + 20 nesne canlandı.
