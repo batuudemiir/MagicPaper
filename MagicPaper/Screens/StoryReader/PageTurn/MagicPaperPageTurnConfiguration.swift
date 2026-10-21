@@ -28,6 +28,9 @@ enum MagicPaperPageTurnConfiguration {
     /// Subtle fold highlight maximum opacity.
     static let highlightMaximumOpacity: Double = 0.08
 
+    /// Kıvrılan sayfanın arkasında ön yüzün mürekkebi ne kadar seçilir.
+    static let backFaceInkOpacity: Double = 0.07
+
     /// Subtle 3D perspective multiplier.
     static let perspective: CGFloat = 0.75
 

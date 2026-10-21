@@ -41,6 +41,15 @@ struct ReaderStory {
     var pageLeafOffset: Int { leaves.firstIndex { $0.page != nil } ?? 0 }
 
     func leafIndex(forPage page: Int) -> Int { page + pageLeafOffset }
+
+    /// Sayfa kaydırıcısının önizlemesi: her masal sayfasının ilk sözcükleri.
+    var pagePreviews: [String] {
+        leaves.compactMap(\.page).map { page in
+            let words = (page.paragraphs.first ?? "").split(separator: " ")
+            let head = words.prefix(8).joined(separator: " ")
+            return words.count > 8 ? head + "…" : head
+        }
+    }
 }
 
 /// Kitabın bir yaprağı.

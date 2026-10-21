@@ -8,6 +8,10 @@ import SwiftUI
 /// (uyku modu). Yıldız yok; kutlama 400 ms, Reduce Motion'da yalnızca belirme.
 /// FAZ 13: masal seri olarak devam ettirilebiliyorsa "Devam ettir" burada.
 /// Çocuğun kendi masalında künye (`StoryColophon`) kutucukların altında.
+///
+/// Uyku vaktinde yaprak bir kitabın son sayfası kadar sade (21 Ekim 2026):
+/// uyuyan Ragi, "Son", "İyi geceler, <ad>." ve varsa tek satır rozet. Konuşma
+/// balonu, kutucuklar ve büyüme yok; yalnızca belirme.
 struct StoryEndingLeaf: View {
 
     let story: Story
@@ -33,7 +37,8 @@ struct StoryEndingLeaf: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Masal bitti")
         .onAppear {
-            withAnimation(reduceMotion ? .easeOut(duration: MPMotion.tap) : MPMotion.spring) { appeared = true }
+            let calm = reduceMotion || isBedtime
+            withAnimation(calm ? .easeOut(duration: MPMotion.tap) : MPMotion.spring) { appeared = true }
         }
     }
 
@@ -43,7 +48,72 @@ struct StoryEndingLeaf: View {
         Set(story.pages.flatMap { $0.words ?? [] }.map(\.id)).count
     }
 
+    @ViewBuilder
     private var column: some View {
+        if isBedtime { nightColumn } else { dayColumn }
+    }
+
+    // MARK: - Gece
+
+    private var nightColumn: some View {
+        VStack(spacing: MPSpacing.xl) {
+            MascotImage(mascot: .sleeping, width: 120)
+                .opacity(appeared ? 1 : 0)
+                .accessibilityHidden(true)
+
+            VStack(spacing: MPSpacing.sm) {
+                Text("Son").mpText(.display).foregroundStyle(theme.foreground)
+                    .accessibilityAddTraits(.isHeader)
+                Text("İyi geceler, \(story.childName).")
+                    .mpText(.body).foregroundStyle(theme.muted)
+                    .multilineTextAlignment(.center)
+                if streak.currentStreak > 1 {
+                    Text("\(streak.currentStreak) gün üst üste birlikte okudunuz.")
+                        .mpText(.footnote).foregroundStyle(theme.muted)
+                        .multilineTextAlignment(.center)
+                }
+            }
+
+            if let badge = news.fresh.first { badgeRow(badge.icon, tone: badge.tone, title: badge.title) }
+
+            if StoryColophon.hasDedication(story) { colophon }
+
+            SeriesEndingSection(story: story, theme: theme, accent: accent)
+
+            VStack(spacing: MPSpacing.xs) {
+                MPButton(title: "İyi geceler", systemImage: "moon", fullWidth: true, action: onGoodNight)
+                    .padding(.horizontal, MPSpacing.lg)
+                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", kind: .ghost,
+                         action: onAnother)
+                MPButton(title: "Tekrar oku", kind: .ghost, size: .small, action: onReadAgain)
+            }
+        }
+        .frame(maxWidth: 560)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, StoryPageView.gutter)
+        .padding(.top, MP.S.navBarHeight + MPSpacing.xxxl)
+        .padding(.bottom, MPSpacing.xxxl)
+    }
+
+    /// Gece yaprağında rozet: kutucuk değil, kâğıda yakın tek satır.
+    private func badgeRow(_ icon: String, tone: MPWorldTone, title: String) -> some View {
+        HStack(spacing: MPSpacing.md) {
+            MPIconTile(systemImage: icon, tone: tone, size: 42, filled: false)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: MP.S.x1) {
+                Text(title).mpText(.headline).foregroundStyle(theme.foreground)
+                Text("Yeni rozet").mpText(.footnote).foregroundStyle(theme.muted)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(MPSpacing.md)
+        .background(theme.foreground.opacity(0.06), in: RoundedRectangle(cornerRadius: MPRadius.card))
+        .accessibilityElement(children: .combine)
+    }
+
+    // MARK: - Gündüz
+
+    private var dayColumn: some View {
         VStack(spacing: MPSpacing.xl) {
             HStack(alignment: .center, spacing: MPSpacing.sm) {
                 MascotImage(mascot: .waving, width: 150)
@@ -81,19 +151,12 @@ struct StoryEndingLeaf: View {
 
             SeriesEndingSection(story: story, theme: theme, accent: accent)
 
-            // Uyku vaktinde birincil yol "İyi geceler"; gündüz "Bir masal daha".
+            // Gündüz birincil yol "Bir masal daha"; uyku vakti `nightColumn`'da.
             VStack(spacing: MPSpacing.xs) {
-                if isBedtime {
-                    MPButton(title: "İyi geceler", systemImage: "moon", fullWidth: true, action: onGoodNight)
-                        .padding(.horizontal, MPSpacing.lg)
-                    MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", kind: .ghost,
-                             action: onAnother)
-                } else {
-                    MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", fullWidth: true,
-                             action: onAnother)
-                        .padding(.horizontal, MPSpacing.lg)
-                    MPButton(title: "İyi geceler", systemImage: "moon", kind: .ghost, action: onGoodNight)
-                }
+                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", fullWidth: true,
+                         action: onAnother)
+                    .padding(.horizontal, MPSpacing.lg)
+                MPButton(title: "İyi geceler", systemImage: "moon", kind: .ghost, action: onGoodNight)
                 MPButton(title: "Tekrar oku", kind: .ghost, size: .small, action: onReadAgain)
             }
         }

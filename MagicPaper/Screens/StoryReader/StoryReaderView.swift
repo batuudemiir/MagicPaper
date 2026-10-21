@@ -95,7 +95,16 @@ struct StoryReaderView: View {
                 onToggleSpeech: toggleSpeech,
                 onOpenSettings: openSettings,
                 onPrevious: { model.previous(); scheduleAutoHide() },
-                onNext: { model.next(); scheduleAutoHide() }
+                onNext: { model.next(); scheduleAutoHide() },
+                pagePreviews: model.story.pagePreviews,
+                pageIndex: model.currentPage?.index,
+                onSeek: { page in
+                    model.go(toLeaf: model.story.leafIndex(forPage: page))
+                    scheduleAutoHide()
+                },
+                onScrubbing: { active in
+                    if active { autoHideTask?.cancel() } else { scheduleAutoHide() }
+                }
             )
             // Kontroller her zaman sayfanın üstünde dokunulur. Sıra tek başına
             // yetmiyordu: sol kenar şeridinde (genişliğin %15'i) sayfanın
