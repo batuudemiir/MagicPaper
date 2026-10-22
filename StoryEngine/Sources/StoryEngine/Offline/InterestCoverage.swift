@@ -14,13 +14,36 @@ extension BlueprintSelector {
     /// one who can be looked after lives in the sea).
     ///
     /// Bands with no blueprint of their own map to an empty set.
+    ///
+    /// **Hiçbir modun kabul etmediği blueprint sayılmaz** (22 Ekim 2026). Bu
+    /// bir incelik değil, bir düzeltme: ölçüldüğünde 3-4 bandının bütün ilgi
+    /// kapsaması (`animals`, `sea`, `magic`, `nature`) tek bir blueprint'ten
+    /// geliyordu — `blueprint_charge_tending_age3_001`, 21 Ekim'de uyku arkı
+    /// eklenirken hiçbir moda bağlanamaz hâle gelmiş olan üç blueprint'ten
+    /// biri. O bantta bir çocuğun gerçekten alabildiği tek şekil
+    /// (`bp_bedtime_lullaby_age3_001`) yalnızca `animals`'a ulaşıyor.
+    ///
+    /// Yani ebeveyne gösterilen dört çipin üçü, hiçbir çocuğa ulaşmayan bir
+    /// blueprint'in bağlayabildiği içerik yüzünden gösteriliyordu: tutulamayan
+    /// bir söz. Uygulamanın her canlı yolu moda çözüp onu geçiriyor (yaratma
+    /// akışı ve ilk çalıştırma), bu yüzden hiçbir modun almadığı bir blueprint
+    /// hiç seçilemez ve kapsama saymamalı.
+    ///
+    /// `storyModes` boşsa süzgeç uygulanmaz: mod tanımı olmayan bir katalog
+    /// (testlerdeki kısmi kataloglar) için "hiçbir mod kabul etmiyor" doğru
+    /// okuma değil.
     public func interestCoverage(catalog: ContentCatalog) -> [AgeBand: Set<InterestTag>] {
         let binder = OfflineContentBinder()
         var coverage: [AgeBand: Set<InterestTag>] = [:]
 
+        func reachable(_ blueprint: CatalogBlueprint) -> Bool {
+            catalog.storyModes.isEmpty || catalog.storyModes.contains { $0.admits(blueprint) }
+        }
+
         for band in AgeBandResolver.bands {
             var reached = Set<InterestTag>()
-            for blueprint in catalog.blueprints where blueprint.isBeatAuthored && blueprint.ageRange == band {
+            for blueprint in catalog.blueprints
+            where blueprint.isBeatAuthored && blueprint.ageRange == band && reachable(blueprint) {
                 func binds(
                     settingID: ContentID? = nil,
                     companionID: ContentID? = nil,

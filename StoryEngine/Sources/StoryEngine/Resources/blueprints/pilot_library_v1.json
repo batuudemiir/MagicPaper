@@ -475,6 +475,9 @@
         "isFragmentary",
         "isVisible"
       ],
+      "interests": [
+        "treasure"
+      ],
       "isProperNoun": false,
       "hasPossessiveEnding": true,
       "titleName": "Ayak İzleri",
@@ -531,6 +534,9 @@
         "isFragmentary",
         "isUnexplained",
         "isVisible"
+      ],
+      "interests": [
+        "treasure"
       ],
       "isProperNoun": false,
       "titleName": "Yırtık Harita",
@@ -617,6 +623,9 @@
         "impliesPresence",
         "impliesNeed",
         "isVisible"
+      ],
+      "interests": [
+        "treasure"
       ],
       "habitat": [
         "garden",
@@ -3155,6 +3164,11 @@
       "id": "sky",
       "name": "Gökyüzü",
       "symbol": "cloud.sun"
+    },
+    {
+      "id": "treasure",
+      "name": "Hazine",
+      "symbol": "map"
     }
   ],
   "safetyTopics": [
@@ -4276,6 +4290,17 @@
       "requires": {
         "setting": [
           "nature"
+        ]
+      }
+    },
+    {
+      "id": "topic_adventure_treasure",
+      "mode": "adventure",
+      "name": "Hazine avı",
+      "symbol": "map",
+      "requires": {
+        "discovery": [
+          "treasure"
         ]
       }
     }

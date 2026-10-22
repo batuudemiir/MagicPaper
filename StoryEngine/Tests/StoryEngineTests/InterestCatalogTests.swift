@@ -24,7 +24,9 @@ final class InterestCatalogTests: XCTestCase {
             // olarak bu sözlüğü kullanıyor — ikinci bir taksonomi açmamak için.
             // İçeriği olmayan sözcük ebeveyne çip olarak da görünmez;
             // `interestCoverage` yalnızca ulaşılabilen sözcükleri sayar.
-            "jobs", "science", "history", "country", "city", "sky"
+            "jobs", "science", "history", "country", "city", "sky",
+            // 22 Ekim 2026: "Hazine avı" konusunun sözcüğü.
+            "treasure"
         ])
         XCTAssertEqual(catalog.interest("sea")?.name, "Deniz")
         XCTAssertEqual(catalog.interest("nature")?.name, "Doğa")
@@ -71,21 +73,38 @@ final class InterestCatalogTests: XCTestCase {
     func testTheShippedInterestMatrix() throws {
         let catalog = try catalog()
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
-        // 21 Ekim 2026: v2 kütüphanesindeki 49 kayıt etiketlenip havuza
-        // katıldı; kapsam ikiden altıya çıktı. Liste yine birebir sabit —
-        // içerik eklendiğinde kırmızıya dönüp güncellenmesi bu testin işi.
-        XCTAssertEqual(coverage[b34], ["animals", "magic", "nature", "sea"])
-        XCTAssertEqual(coverage[b56], ["animals", "magic", "music", "nature", "robots", "sea"])
+        // 22 Ekim 2026: 3-4 satırı DÜŞTÜ, ve düşmesi bir düzeltme.
+        //
+        // 21 Ekim'de bu satır ["animals", "magic", "nature", "sea"] yazıyordu.
+        // Ölçülünce dördünün de tek bir blueprint'ten geldiği çıktı:
+        // `blueprint_charge_tending_age3_001`, uyku arkı eklenirken hiçbir
+        // moda bağlanamaz hâle gelen üç blueprint'ten biri. Yani o bantta
+        // hiçbir çocuğa ulaşmayan bir şekil üzerinden kapsama sayılıyordu.
+        // `interestCoverage` artık yalnızca bir modun kabul ettiği
+        // blueprint'leri sayıyor (`InterestReachabilityTests`), ve 3-4'te bir
+        // çocuğun gerçekten alabildiği tek şekil yalnızca hayvanlara ulaşıyor.
+        //
+        // Sonucu: sunulan kelime dörtten bire düştü, FAZ 12 eşiği (dört)
+        // aşılmıyor ve ilgi ekranları gizli — hiç meşru biçimde açılmamışlar.
+        XCTAssertEqual(coverage[b34], ["animals"])
+        XCTAssertEqual(coverage[b56],
+                       ["animals", "magic", "music", "nature", "robots", "sea", "treasure"])
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
-                       ["Hayvanlar", "Deniz", "Sihir", "Doğa"])
+                       ["Hayvanlar"])
     }
 
-    /// Deniz artık ulaşılabilir (21 Ekim 2026).
+    /// Deniz 5-6'da ulaşılabilir, 3-4'te değil (22 Ekim 2026).
     ///
     /// FAZ 12'den beri mercan denizi, yunus ve deniz kabuğu katalogda duruyor
     /// ama hiçbir masala giremiyordu: o masalları kuracak mekân/arkadaş/nesne
     /// üçlüsü tamamlanmıyordu. v2 kütüphanesi etiketlenip havuza katılınca
-    /// (kumsal, resif, ada, penguen, kaplumbağa) deniz iki bantta da kuruldu.
+    /// (kumsal, resif, ada, penguen, kaplumbağa) deniz 5-6'da kuruldu.
+    ///
+    /// 21 Ekim'de bu test denizin **iki** bantta da kurulduğunu sabitliyordu.
+    /// 22 Ekim'de ölçülünce 3-4 ayağının hiçbir moda bağlanamayan bir
+    /// blueprint üzerinden sayıldığı çıktı; kapsama onu saymayı bırakınca
+    /// deniz o bantta kalmadı. Yani iddia yanlış değil, eksik bir kapsamaya
+    /// dayanıyordu. 3-4 için macera ya da öğrenme yazıldığı gün geri gelir.
     ///
     /// Testin eski hâli bunun tersini sabitliyordu ve şöyle yazılmıştı:
     ///
@@ -96,18 +115,22 @@ final class InterestCatalogTests: XCTestCase {
     /// satır boş diziyi indeksleyip **bütün demeti çökertti** — o çalıştırmada
     /// bilinen 10 hatanın hiçbiri koşamadı. Önce doğrula sonra indeksle:
     /// kırılan bir test yalnızca kendi sonucunu bozmalı.
-    func testTheSeaIsNowReachable() throws {
+    func testTheSeaIsReachableAtFiveSixButNotThreeFour() throws {
         let catalog = try catalog()
         XCTAssertEqual(catalog.setting("setting_coral_sea_001")?.interests, ["sea"])
 
+        let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
+        XCTAssertTrue(coverage[b56]?.contains("sea") ?? false, "5-6 bandında deniz yok")
+        XCTAssertFalse(coverage[b34]?.contains("sea") ?? false,
+                       "3-4'te deniz görünüyor: ya o banda içerik yazıldı (kaydı güncelle) "
+                       + "ya da ulaşılamayan bir blueprint yeniden sayılıyor")
+
+        // Eksiklik sessiz kalmıyor: bütünlük denetimi 3-4 için uyarı veriyor.
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
         let sea = report.issues(withCode: "interest_unreachable_in_band")
             .filter { $0.message.contains("'sea'") }
-        XCTAssertTrue(sea.isEmpty, "deniz yine ulaşılamaz: \(sea.map(\.message))")
-
-        let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
-        XCTAssertTrue(coverage[b34]?.contains("sea") ?? false, "3-4 bandında deniz yok")
-        XCTAssertTrue(coverage[b56]?.contains("sea") ?? false, "5-6 bandında deniz yok")
+        XCTAssertEqual(sea.count, 1)
+        XCTAssertTrue(sea[0].message.contains("3-4"), sea[0].message)
     }
 
     // MARK: - Integrity
@@ -167,20 +190,32 @@ final class InterestCatalogTests: XCTestCase {
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
 
         XCTAssertEqual(coverage[b56], ["pirates", "animals", "sea"])
-        XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan haritası 3-4 yayına hizmet etmiyor")
+        // 22 Ekim 2026: 3-4'te deniz de düştü. Bu bandın denizi, hiçbir moda
+        // bağlanamayan `blueprint_charge_tending_age3_001` üzerinden
+        // sayılıyordu; kapsama artık yalnızca bir çocuğun gerçekten
+        // alabileceği şekilleri sayıyor.
+        XCTAssertEqual(coverage[b34], ["animals"], "korsan haritası 3-4 yayına hizmet etmiyor")
         XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], [],
                        "7-8 bandında hiç blueprint yok")
 
         let offered = BlueprintSelector().availableInterests(catalog: catalog).map(\.id)
-        XCTAssertEqual(offered, ["animals", "sea"], "korsanlar 3-4'e ulaşmıyor")
+        XCTAssertEqual(offered, ["animals"], "korsanlar ve deniz 3-4'e ulaşmıyor")
     }
 
+    /// Bir blueprint'in kendi etiketi yalnızca kendi bandına ulaşır.
+    ///
+    /// 22 Ekim 2026: vasıta blueprint değişti. Test
+    /// `blueprint_charge_tending_age3_001` üzerinden yazılmıştı, ve o blueprint
+    /// hiçbir moda bağlanamıyor — kapsama onu saymayı bıraktığı an test, test
+    /// ettiği kuralla ilgisiz bir sebepten kırmızıya döndü. Kural doğru, vasıta
+    /// yanlıştı: artık o bantta bir çocuğun gerçekten alabildiği şekil
+    /// kullanılıyor.
     func testABlueprintTagCountsOnlyInItsOwnBand() throws {
         let catalog = try InterestFixtures.retagging(
-            try catalog(), ["blueprint_charge_tending_age3_001": ["nature"]])
+            try catalog(), ["bp_bedtime_lullaby_age3_001": ["nature"]])
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
-        XCTAssertEqual(coverage[b34], ["nature"])
-        XCTAssertEqual(coverage[b56], [])
+        XCTAssertTrue(coverage[b34]?.contains("nature") ?? false)
+        XCTAssertFalse(coverage[b56]?.contains("nature") ?? false)
     }
 
     func testNothingIsOfferedWithoutContent() {

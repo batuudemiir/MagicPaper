@@ -199,11 +199,22 @@ final class StoryTopicTests: XCTestCase {
         let b56 = AgeBand(lowerBound: 5, upperBound: 6)
         let b34 = AgeBand(lowerBound: 3, upperBound: 4)
 
-        // 21 Ekim 2026 ölçümü. On konu tanımlı, ÜÇÜ canlı: v2 kütüphanesi
-        // havuza katılınca kumsal, resif ve ada "Denizin altı" konusunu açtı.
+        // 22 Ekim 2026 ölçümü. On BİR konu tanımlı, ÜÇÜ canlı. İki değişiklik
+        // aynı turda oldu ve zıt yönlerde:
+        //
+        // - "Hazine avı" eklendi ve canlandı: `absence` ailesi (IV-1, IV-2)
+        //   konuyu doğrudan taşıyor, `threshold` ailesi de (II-1, II-2)
+        //   hazine izini kendi engeliyle anlatıyor. Tek yeni blueprint
+        //   yazılmadan dört mekanizma.
+        // - "Denizin altı" **kalktı**: yalnızca iki mekanizma kurabiliyordu
+        //   (IV-1, IV-2) ve konu kapısı artık en az üç istiyor
+        //   (`CatalogStoryTopic.minimumMechanisms`). Konu katalogda duruyor;
+        //   üçüncü mekanizma yazıldığı gün kendiliğinden geri gelir ve
+        //   `TopicMechanismTests.testAThinTopicIsDefinedButNotOffered`
+        //   kırmızıya döner.
         XCTAssertEqual(live(.learning, band: b56), ["topic_learning_animals"])
         XCTAssertEqual(live(.adventure, band: b56),
-                       ["topic_adventure_sea", "topic_adventure_wild"])
+                       ["topic_adventure_treasure", "topic_adventure_wild"])
 
         // 3-4 bandında tek bir blueprint var ve o uyku öncesine ait; bu bantta
         // hiçbir konu kurulamıyor, yani alt kategori adımı hiç görünmüyor.

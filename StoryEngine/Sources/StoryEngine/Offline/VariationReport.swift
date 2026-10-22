@@ -129,17 +129,10 @@ extension VariationReport {
             failures: failures.sorted())
     }
 
-    /// `editorialName`'in mekanizma yarısı: "III-2 - advocacy" → "advocacy".
-    ///
-    /// Ad kuralı içerikte tutarlı ("<aile numarası> - <mekanizma>"); ayıraç
-    /// yoksa adın tamamı mekanizma sayılır, çünkü yanlış ayrıştırmaktansa
-    /// kaba saymak iyidir — eksik sayım çeşitliliği olduğundan AZ gösterir,
-    /// ki bu ölçümün güvenli yönü.
+    /// Bir blueprint kimliğinin mekanizması. Tanım `CatalogBlueprint.mechanism`
+    /// içinde; burası yalnızca kimlikten kayda ulaşıyor.
     static func mechanism(of id: ContentID, in catalog: ContentCatalog) -> String? {
-        guard let name = catalog.blueprints.first(where: { $0.id == id })?.editorialName,
-              !name.isEmpty else { return nil }
-        guard let dash = name.range(of: " - ") else { return name }
-        return String(name[dash.upperBound...]).trimmingCharacters(in: .whitespaces)
+        catalog.blueprints.first { $0.id == id }?.mechanism
     }
 
     /// Sayfanın cümleleri. Nakarat da bir cümledir ve sayılır: kasıtlı tekrar

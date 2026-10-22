@@ -129,3 +129,59 @@ final class CompanionNatureTests: XCTestCase {
         XCTAssertEqual(composed, 20, "tüy satırının bildirimi uyku masallarını kırdı")
     }
 }
+
+/// İlgi kapsaması yalnızca bir çocuğun gerçekten alabileceği şekilleri sayar
+/// (22 Ekim 2026).
+///
+/// Ölçüldüğünde 3-4 bandının bütün ilgi kapsaması tek bir blueprint'ten
+/// geliyordu: `blueprint_charge_tending_age3_001`, 21 Ekim'de uyku arkı
+/// eklenirken hiçbir moda bağlanamaz hâle gelmiş üç blueprint'ten biri. O
+/// bantta bir çocuğun gerçekten alabildiği tek şekil yalnızca `animals`'a
+/// ulaşıyor. Yani ebeveyne gösterilen dört çipin üçü, hiçbir çocuğa ulaşmayan
+/// bir blueprint yüzünden gösteriliyordu.
+final class InterestReachabilityTests: XCTestCase {
+
+    private var catalog: ContentCatalog!
+    private let selector = BlueprintSelector()
+
+    override func setUpWithError() throws {
+        catalog = try ContentCatalogLoader().load().catalog
+    }
+
+    /// Hiçbir modun kabul etmediği blueprint kapsamaya sayılmaz.
+    func testCoverageCountsOnlyWhatAModeAdmits() {
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        let stranded = catalog.blueprints.filter { blueprint in
+            blueprint.isBeatAuthored && blueprint.ageRange == band
+                && !catalog.storyModes.contains { $0.admits(blueprint) }
+        }
+        XCTAssertFalse(stranded.isEmpty, "ulaşılamayan 3-4 blueprint'i kalmamış: "
+                       + "bu testin premisi değişti, kapsama yeniden ölçülmeli")
+
+        let coverage = selector.interestCoverage(catalog: catalog)
+        XCTAssertEqual(coverage[band]?.map(\.rawValue).sorted(), ["animals"],
+                       "3-4 bandı yalnızca uyku şeklinden geçiyor; başka kelime "
+                       + "görünüyorsa ulaşılamayan bir blueprint sayılıyor")
+    }
+
+    /// Ebeveyne sunulan liste, her bantta gerçekten tutulabilen sözlerden
+    /// oluşuyor. Bugün tek kelime kalıyor, yani FAZ 12 eşiği (dört) aşılmıyor
+    /// ve ilgi ekranları gizli — doğru hâli bu.
+    func testTheOfferedListIsWhatEveryBandCanActuallyKeep() {
+        XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue), ["animals"])
+    }
+
+    /// Mod tanımı olmayan bir katalogda süzgeç uygulanmaz: "hiçbir mod kabul
+    /// etmiyor" o durumda doğru okuma değil, yalnızca eksik veri.
+    func testACatalogWithoutModesIsNotTreatedAsUnreachable() {
+        let withoutModes = ContentCatalog(
+            version: catalog.version, settings: catalog.settings,
+            companions: catalog.companions, objects: catalog.objects,
+            templates: catalog.templates, blueprints: catalog.blueprints,
+            interests: catalog.interests)
+        let coverage = selector.interestCoverage(catalog: withoutModes)
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        XCTAssertTrue((coverage[band] ?? []).count > 1,
+                      "mod tanımı yokken süzgeç uygulanmamalı")
+    }
+}

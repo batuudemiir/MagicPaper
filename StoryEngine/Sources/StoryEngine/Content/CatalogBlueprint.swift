@@ -238,6 +238,24 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         if arc != .standard { try container.encode(arc, forKey: .arc) }
     }
 
+    /// Bu blueprint'in olay örgüsü mekanizması: `editorialName`'in sağ yarısı.
+    ///
+    /// "III-2 - advocacy" → "advocacy". Ad kuralı içerikte tutarlı
+    /// ("<aile numarası> - <mekanizma>"); ayıraç yoksa adın tamamı mekanizma
+    /// sayılır, çünkü yanlış ayrıştırmaktansa kaba saymak iyidir — eksik sayım
+    /// çeşitliliği olduğundan AZ gösterir, ki güvenli yön o.
+    ///
+    /// Varyasyonun asıl ölçütü bu, blueprint sayısı değil: aynı mekanizmanın
+    /// iki blueprint'i çocuğa iki masal değil, bir masalın iki çekimi gibi
+    /// gelir. Hem ölçüm (`VariationReport`) hem konu kapısı
+    /// (`BlueprintSelector.availableTopics`) buradan okuyor; iki kopya tanım
+    /// bu projenin tekrar tekrar bulduğu kusur.
+    public var mechanism: String? {
+        guard let editorialName, !editorialName.isEmpty else { return nil }
+        guard let dash = editorialName.range(of: " - ") else { return editorialName }
+        return String(editorialName[dash.upperBound...]).trimmingCharacters(in: .whitespaces)
+    }
+
     /// The roles this blueprint asks for, in page order.
     public var roleSequence: [PageRole] {
         pagePlan.sorted { $0.pageNumber < $1.pageNumber }.map(\.role)

@@ -76,21 +76,25 @@ final class InterestProfileTests: XCTestCase {
         XCTAssertTrue(ChildInterests.isShown(choices))
     }
 
-    /// 21 Ekim 2026: eşik aşıldı, ilgi ekranları açıldı.
+    /// Ekranlar gizli, ve saklanan bir kelime hâlâ motora ulaşıyor.
     ///
-    /// FAZ 12 bu ekranları bilerek bir eşiğin arkasına koydu — katalog dörtten
-    /// az kelimeyi her bantta onurlandırabiliyorsa soru sormak, tutamayacağın
-    /// bir söz vermektir. A turunda havuz diriltilince "deniz" ve "sihir"
-    /// her bantta ulaşılabilir hâle geldi ve sayı dörde çıktı, yani ekranlar
-    /// kendiliğinden göründü. Beklenen davranış bu: eşik içerik hazır olunca
-    /// açılmak için konmuştu.
+    /// 21 Ekim'de bu test bir tur "ekranlar açıldı" diye yazıldı: A turunda
+    /// sunulan kelime 2'den 4'e çıkmış görünüyordu ve FAZ 12 eşiği aşılmıştı.
+    /// 22 Ekim'de ölçülünce sebebin içerik olmadığı çıktı: 3-4 bandının
+    /// kapsaması hiçbir moda bağlanamayan bir blueprint üzerinden sayılıyordu
+    /// (`InterestReachabilityTests`). Kapsama o blueprint'i saymayı bıraktığı
+    /// an sunulan kelime bire düştü, yani eşik hiç meşru biçimde aşılmamış.
+    ///
+    /// Yani doğru hâli bu: ekranlar gizli. Eşik, katalog dörtten az kelimeyi
+    /// her bantta onurlandırabiliyorsa soru sormamak için var — tutamayacağın
+    /// bir söz vermemek için.
     ///
     /// Değişmeyen taraf: gizlemek unutmak değil. Eşiğin altında kalan bir
     /// kelime bile motora ulaşmaya devam eder.
-    func testTodaysCatalogShowsTheScreensAndStillWeighsAStoredWord() throws {
+    func testTodaysCatalogHidesTheScreensButKeepsWeighing() throws {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertTrue(ChildInterests.isShown(offered),
-                      "katalog \(offered.count) kelime sunuyor, eşik \(ChildInterests.minimumOfferedToShow)")
+        XCTAssertFalse(ChildInterests.isShown(offered),
+                       "katalog \(offered.count) kelime sunuyor, eşik \(ChildInterests.minimumOfferedToShow)")
         XCTAssertEqual(ChildInterests.offered(["animals"], from: offered), ["animals"])
     }
 
@@ -148,16 +152,17 @@ final class InterestProfileTests: XCTestCase {
 
     // MARK: - Köprü
 
-    /// Katalogdaki her bantta ulaşılabilen kelimeler.
+    /// Katalogdaki her bantta **gerçekten** ulaşılabilen kelimeler.
     ///
-    /// A turundan önce ikiydi (hayvanlar, doğa); havuz diriltilince dört oldu.
-    /// Liste katalog sırasında ve burada açık yazılı, çünkü bu kelimeler
-    /// ebeveyne gösterilen sözlerin tamamı: sessizce büyümesi ya da küçülmesi
-    /// bir ürün kararıdır, bir yan etki değil.
+    /// Liste burada açık yazılı, çünkü bu kelimeler ebeveyne gösterilen
+    /// sözlerin tamamı: sessizce büyümesi ya da küçülmesi bir ürün kararıdır,
+    /// bir yan etki değil. Bugün tek kelime, çünkü 3-4 bandında bir çocuğun
+    /// gerçekten alabildiği tek masal şekli var ve o yalnızca hayvanlara
+    /// ulaşıyor. 3-4 için macera ya da öğrenme yazıldığı gün liste büyür.
     func testTheServiceOffersWhatReachesEveryBand() {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertEqual(offered.map(\.id), ["animals", "sea", "magic", "nature"])
-        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Deniz", "Sihir", "Doğa"])
+        XCTAssertEqual(offered.map(\.id), ["animals"])
+        XCTAssertEqual(offered.map(\.name), ["Hayvanlar"])
         XCTAssertTrue(StoryChoiceSources.current.interestChoices() == offered)
     }
 

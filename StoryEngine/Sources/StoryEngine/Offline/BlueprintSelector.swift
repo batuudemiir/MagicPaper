@@ -356,6 +356,13 @@ public struct BlueprintSelector: Sendable {
     /// doğru kalır. "Meslekler"i yazıp içeriğini yazmamak, ekranda ölü bir çip
     /// değil, görünmeyen bir çip üretir — §29: kullanıcıya üretemeyeceğimiz
     /// bir şey teklif edilmez.
+    ///
+    /// **Kurulabilmek yetmez** (22 Ekim 2026): konu, o bantta en az
+    /// `CatalogStoryTopic.minimumMechanisms` farklı olay örgüsü mekanizması
+    /// kurabilmeli. Tek şekli olan bir konu, aynı masalı farklı hayvanla
+    /// tekrar anlatır; bu bir söz değil, bir dekordur. Ölçüldüğünde "Denizin
+    /// altı" iki mekanizmayla kalıyordu ve bu kapı onu kendiliğinden
+    /// kaldırıyor — üçüncü mekanizma yazıldığı gün kendiliğinden geri gelir.
     public func availableTopics(
         catalog: ContentCatalog,
         intent: OfflineStoryIntent,
@@ -370,7 +377,8 @@ public struct BlueprintSelector: Sendable {
 
         let binder = OfflineContentBinder()
         return topics.filter { topic in
-            candidates.contains { blueprint in
+            var mechanisms = Set<String>()
+            for blueprint in candidates {
                 let probe = OfflineStoryIntent(
                     childName: intent.childName,
                     storyIdeaID: intent.storyIdeaID,
@@ -384,9 +392,13 @@ public struct BlueprintSelector: Sendable {
                     usage: intent.usage,
                     safety: intent.safety
                 )
-                return (try? binder.bind(
+                guard (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
+                else { continue }
+                mechanisms.insert(blueprint.mechanism ?? blueprint.id.rawValue)
+                if mechanisms.count >= CatalogStoryTopic.minimumMechanisms { return true }
             }
+            return false
         }
     }
 

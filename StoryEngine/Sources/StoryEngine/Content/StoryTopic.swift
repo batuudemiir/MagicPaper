@@ -31,6 +31,20 @@ public struct CatalogStoryTopic: Codable, Sendable, Hashable, Identifiable {
     /// Hangi yuva hangi konu sözcüğünü taşımalı.
     public let requires: Slots
 
+    /// Bir konunun bir bantta teklif edilebilmesi için gereken en az
+    /// **yapısal olarak farklı olay örgüsü mekanizması** sayısı (22 Ekim 2026).
+    ///
+    /// Kurulabilmek yetmez, çünkü kurulabilirlik tek bir şekli de kabul eder:
+    /// tek mekanizmalı bir konu, aynı masalı farklı hayvanla ve farklı mekânla
+    /// tekrar anlatır. A turu bunu ölçümle gösterdi — havuz iki katına çıktı,
+    /// mekanizma sayısı hiç değişmedi, ve çocuğun aldığı masal sayısı da
+    /// değişmedi. Bu yüzden eşik mekanizmada, blueprint sayısında değil.
+    ///
+    /// Üç, "bir şekil" ile "bir repertuar" arasındaki en küçük sayı: iki
+    /// mekanizma çocuğun iki masalda farkı görmesine yeter, üçüncüsü farkın
+    /// tesadüf olmadığını gösterir.
+    public static let minimumMechanisms = 3
+
     /// Yuva başına "bunlardan en az biri".
     ///
     /// Yuva ayrımı şart: "Hayvanlar" yol arkadaşının hayvan olmasını ister,
