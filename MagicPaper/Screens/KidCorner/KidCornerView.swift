@@ -8,7 +8,7 @@ import SwiftUI
 /// sonra doğrudan profil eklemeye gider; kahramanı düzenlemek kapıdan geçer.
 /// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
 ///
-/// 22 Ekim 2026: iOS profil sayfası düzeni. Beyaz sayfada açık gri, gölgesiz
+/// 22 Ekim 2026: iOS profil sayfası düzeni. Beyaz sayfada lavanta (`cardSoft`), gölgesiz
 /// ve kenarsız bloklar (ana sayfa ve masal yazma adımlarıyla aynı); Ragi ve
 /// karşılama balonsuz; sayılar üç ayrı kutucuk; Masal dünyam gruplu liste.
 struct KidCornerView: View {
@@ -189,7 +189,7 @@ struct KidCornerView: View {
         }
     }
 
-    /// Tek sayı kutucuğu: açık gri, gölgesiz (dokunulmuyor, düğme gibi durmaz).
+    /// Tek sayı kutucuğu: lavanta, gölgesiz (dokunulmuyor, düğme gibi durmaz).
     private func stat<Glyph: View>(value: Int, label: String, row: Bool,
                                    @ViewBuilder glyph: () -> Glyph) -> some View {
         let layout = row
@@ -204,7 +204,7 @@ struct KidCornerView: View {
         .frame(maxWidth: .infinity, alignment: row ? .leading : .center)
         .padding(.vertical, MPSpacing.md)
         .padding(.horizontal, MPSpacing.sm)
-        .background(MPColor.backgroundSunken,
+        .background(MPColor.cardSoft,
                     in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .accessibilityElement(children: .combine)
     }
@@ -254,7 +254,7 @@ struct KidCornerView: View {
                     }
                 }
                 .padding(.vertical, MPSpacing.xxs)
-                .background(MPColor.backgroundSunken,
+                .background(MPColor.cardSoft,
                             in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
             }
         }

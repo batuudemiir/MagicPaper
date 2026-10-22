@@ -31,7 +31,7 @@ struct CreationTitle: View {
 }
 
 /// Seçenek satırı: solda görsel, ad ve tek satırlık söz, sağda seçim işareti.
-/// Beyaz sayfada açık gri yüzey (ana sayfa bölümleri gibi). Seçiliyken kenarı
+/// Beyaz sayfada lavanta yüzey (`cardSoft`, ana sayfa bölümleri gibi). Seçiliyken kenarı
 /// marka renginde ve işaret dolu (seçim yalnızca renkle
 /// belli değil). `detail` yalnızca seçiliyken, aynı kartın içinde görünür.
 struct CreationChoiceRow<Leading: View, Detail: View>: View {
@@ -78,8 +78,8 @@ struct CreationChoiceRow<Leading: View, Detail: View>: View {
             }
         }
         .padding(MPSpacing.md)
-        // Ana sayfanın bölümleri gibi: beyaz zeminde açık gri, gölgesiz.
-        .background(MPColor.backgroundSunken,
+        // Ana sayfanın bölümleri gibi: beyaz zeminde lavanta, gölgesiz.
+        .background(MPColor.cardSoft,
                     in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)

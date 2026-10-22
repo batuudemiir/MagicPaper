@@ -14,7 +14,7 @@ import SwiftUI
 /// 22 Ekim 2026 (Batuhan onayı): iOS düzeni. Düz beyaz sayfa, sola yaslı büyük
 /// başlık ve altında tek satır yıldız/seri; tam genişlik sahne bu akşamın
 /// kartının içine taşındı (Ragi orada, ekranın tek maskotu). Modlar resimli
-/// kartlar yerine masal yazma adımlarıyla aynı satırlar; bölümler açık gri.
+/// kartlar yerine masal yazma adımlarıyla aynı satırlar; bölümler lavanta (`cardSoft`).
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -225,12 +225,12 @@ struct HomeView: View {
                 }
             }
             .padding(.vertical, MPSpacing.xxs)
-            .background(MPColor.backgroundSunken,
+            .background(MPColor.cardSoft,
                         in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         }
     }
 
-    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler açık gri ya da pastel.
+    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler lavanta (`cardSoft`).
     private var pageBackground: Color { MPColor.backgroundSurface }
 
     // MARK: - Günün masalı

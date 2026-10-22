@@ -313,7 +313,7 @@ struct HomeHeader<Avatar: View>: View {
 ///
 /// 22 Ekim 2026: sayfanın tepesindeki tam genişlik sahne bu kartın içine
 /// taşındı. Üstte manzara (uyku saatinde gece) ve ekranın tek Ragi'si, altta
-/// açık gri zeminde masal ve sayfanın tek birincil düğmesi. Ragi küçüldü ama
+/// lavanta zeminde masal ve sayfanın tek birincil düğmesi. Ragi küçüldü ama
 /// ön planda (16 Ekim kararı, Batuhan 22 Ekim onayı).
 struct HomeHeroCard: View {
     let state: TonightState
@@ -324,7 +324,7 @@ struct HomeHeroCard: View {
         VStack(alignment: .leading, spacing: 0) {
             scene
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text(eyebrow).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
                 Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
@@ -335,7 +335,7 @@ struct HomeHeroCard: View {
             }
             .padding(MPSpacing.lg)
         }
-        .background(MPColor.backgroundSunken)
+        .background(MPColor.cardSoft)
         .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
     }
 
@@ -431,12 +431,12 @@ struct HomeSection<Leading: View, Content: View>: View {
                 }
             }
             if contained {
-                // Panel: beyazın üstünde açık gri, kenarsız ve gölgesiz (22 Ekim
+                // Panel: beyazın üstünde lavanta (`cardSoft`), kenarsız ve gölgesiz (22 Ekim
                 // 2026; önceden hafif lavanta ve sert kenar). İçerik tek kapta.
                 VStack(alignment: .leading, spacing: MPSpacing.md) { content }
                     .padding(MPSpacing.lg)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(MPColor.backgroundSunken,
+                    .background(MPColor.cardSoft,
                                 in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
             } else {
                 content
