@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-22 · faz-21-varyasyon@COMMIT · B: "Hazine avı" canlı, kabul ölçütü motora girdi, ilgi kapsaması düzeltildi
+### 2026-10-22 · faz-21-varyasyon@c101323 · B: "Hazine avı" canlı, kabul ölçütü motora girdi, ilgi kapsaması düzeltildi
 
 - **"Hazine avı" konusu 5-6'da canlı, ve tek yeni blueprint yazılmadan.** `absence` ailesi konuyu doğrudan taşıyor (IV-1 persistence, IV-2 retracing), `threshold` ailesi de hazine izini kendi engeliyle anlatıyor (II-1 incrementalCourage, II-2 askingToJoin) — **dört mekanizma**. Plan bunu "en ucuz yeni konu" diye tahmin etmişti, ölçüm doğruladı. 10 nesne tek tek gözden geçirilip `treasure` ile etiketlendi (harita, yırtık harita, pusula, altın anahtar, madeni para, kâşif gözlüğü, ayak izleri + kayıp eşyalar: eldiven, kurdele, çanta), sözcük ilgi sözlüğüne tanımlandı, konu eklendi. **50 seed'in 50'si masal kurdu**, dördü de farklı mekanizma çıktı, ve her masalın keşfi gerçekten `treasure` taşıyor: söz tutuluyor.
 - **Kabul ölçütü teste değil motora kondu.** `CatalogStoryTopic.minimumMechanisms = 3`; `availableTopics` artık kurulabilirlikle yetinmiyor, o bantta en az üç farklı olay örgüsü mekanizması kurabilen konuyu teklif ediyor. Sebep: kurulabilirlik tek şekli de kabul eder, ve tek mekanizmalı bir konu aynı masalı farklı hayvanla tekrar anlatır. Yalnızca test olsaydı ilk kıran kişi testi güncellemeyi öğrenirdi.
