@@ -194,6 +194,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@f4150c5 · Ana sayfa iOS düzeninde
+
+- Batuhan taslağı onayladı (22 Ekim), iki kararla: Ragi tam genişlik sahnede değil, bu akşamın kartının içinde küçük ama ön planda; modların sahne resimleri yerine ikon karoları.
+- Başlık: solda selam ve çocuğun adı (büyük başlık), sağda avatar (Benim köşem) ve kilit. Altında tek satır "12 yıldız · 3 gün üst üste" (`HomeStatLine`; eski `HomeStatChips` kalktı), dokununca Benim köşem.
+- Tam genişlik sahne, üstüne binen çipler ve kaydırınca solan başlık kalktı. Manzara (gündüz/gece) ve Ragi `HomeHeroCard`'ın üstünde; altta açık gri zeminde masal, ilerleme çizgisi ve sayfanın tek mor düğmesi ("Okumaya devam et").
+- Yeni bir masal yaz: resimli `HomeModeCard`'lar yerine tek gri listede üç satır (masal yazma adımlarıyla aynı düzen); uyku saatinde öne çıkan modun alt yazısı "Bu akşam için önerilen".
+- `HomeSection`'ın paneli lavanta + sert kenar yerine açık gri, kenarsız (ortak bileşen: Kitaplık "Serim", Masal ailem ve Bu hafta kartı da gri oldu).
+- Bilerek değişmeyen: Günlük kapak şeridi, Bu hafta kartının içeriği, seri kartı, günün masalı satırı, bütün eylemler ve sıra. `HomeScene` ve `HomeModeCard` artık ana sayfada kullanılmıyor, silinmedi.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi; gece sahnesi, en büyük yazı boyutu ve koyu mod denenmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, bu dosya.
+
 ### 2026-10-22 · main@6a39b21 · Benim köşem iOS profil düzeninde
 
 - Karşılama: Ragi solda, yanında balonsuz "Merhaba Deniz!" başlığı ve tek cümle (lavanta balon ve kenarı kalktı).
