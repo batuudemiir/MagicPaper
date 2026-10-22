@@ -40,8 +40,9 @@ DOCUMENTS = [
 ]
 
 # Bu Zipf değerinin altındaki kök o bandın okuru için nadir sayılır.
-# Başlangıç değerleri; ilk raporla bir yazar kalibre eder.
-THRESHOLDS = {"3-4": 4.5, "5-6": 4.0, "7-8": 3.5, "9-10": 3.0}
+# 3-4: 22 Ekim 2026'da 4.5'ten 4.0'a (Batuhan; ilk raporda uyumak, pencere,
+# bahçe nadir çıkıyordu). Diğerleri başlangıç değeri, kalibre edilmedi.
+THRESHOLDS = {"3-4": 4.0, "5-6": 4.0, "7-8": 3.5, "9-10": 3.0}
 BANDLESS = "bantsız"
 BAND_ORDER = list(THRESHOLDS) + [BANDLESS]
 CANDIDATE_CEILING = 5.0   # bunun üstü her bantta yaygın
@@ -418,7 +419,8 @@ def render_markdown(rep: Report, date: str) -> str:
            "Kaynak: `Tools/nadir_kelime_raporu.py` (plan: `docs/Kelime_Plani_kitapokur.md` B). "
            "Öneridir; kelimeyi sadeleştirmeye ya da sözlüğe eklemeye yazar karar verir.", "",
            "Eşikler (Zipf, altı nadir): " + " · ".join(f"{b} → {t}" for b, t in THRESHOLDS.items())
-           + f". {CANDIDATE_CEILING} ve üstü her bantta yaygın sayılır. Başlangıç değerleridir, kalibre edilmedi.", ""]
+           + f". {CANDIDATE_CEILING} ve üstü her bantta yaygın sayılır. 3-4 eşiği 22 Ekim 2026'da 4.5'ten 4.0'a "
+           "çekildi; diğerleri başlangıç değeridir, kalibre edilmedi.", ""]
     if rep.files:
         out += [f"Okunan dosyalar: {len(rep.files)} (`ContentCatalogLoader` ile aynı küme).", ""]
     out += ["Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş adaylar, "

@@ -103,11 +103,17 @@ class ReportTests(unittest.TestCase):
         self.assertIn("kıpır", self.roots(rep, "3-4"))
 
     def test_the_threshold_depends_on_the_band(self):
-        rep = self.build([line("3-4", "Ada ağacın altında."), line("5-6", "Ada ağacın altında.")])
-        self.assertIn("ağaç", self.roots(rep, "3-4"))   # 4.2 < 4.5
-        self.assertNotIn("ağaç", self.roots(rep, "5-6"))  # 4.2 ≥ 4.0
-        self.assertTrue(r.is_rare(4.2, "3-4"))
-        self.assertFalse(r.is_rare(4.2, "9-10"))
+        rep = self.build([line("3-4", "Ada feneri aldı."), line("7-8", "Ada feneri aldı.")])
+        self.assertIn("fener", self.roots(rep, "3-4"))     # 3.5 < 4.0
+        self.assertNotIn("fener", self.roots(rep, "7-8"))  # 3.5 ≥ 3.5
+        self.assertTrue(r.is_rare(3.8, "3-4"))
+        self.assertFalse(r.is_rare(3.8, "9-10"))
+
+    def test_a_common_word_is_not_rare_for_the_youngest(self):
+        # 22 Ekim: 3-4 eşiği 4.5'ten 4.0'a; bahçe, pencere, uyumak artık listede değil.
+        self.assertEqual(r.THRESHOLDS["3-4"], 4.0)
+        rep = self.build([line("3-4", "Ada bahçeye çıktı.")])
+        self.assertNotIn("bahçe", self.roots(rep, "3-4"))  # 4.4
 
     def test_a_word_the_line_explains_is_not_unexplained(self):
         gloss = [r.GlossaryEntry(id="w56_usulca", term="usulca", forms=[], bands=["5-6"])]
@@ -133,12 +139,12 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(row.example, "Ada feneri aldı.")
 
     def test_a_common_glossary_word_is_flagged_as_unnecessary(self):
-        # yumuşak 5.1: 5-6 için 4.0 + 1 = 5.0'ı geçer, 3-4 için 4.5 + 1 = 5.5'i geçmez.
-        gloss = [r.GlossaryEntry(id="w34_yumusak", term="yumuşak", forms=[], bands=["3-4"]),
-                 r.GlossaryEntry(id="w56_yumusak", term="yumuşak", forms=[], bands=["5-6"]),
+        # sessiz 4.3: 9-10 için 3.0 + 1 = 4.0'ı geçer, 3-4 için 4.0 + 1 = 5.0'ı geçmez.
+        gloss = [r.GlossaryEntry(id="w34_sessiz", term="sessiz", forms=[], bands=["3-4"]),
+                 r.GlossaryEntry(id="w910_sessiz", term="sessiz", forms=[], bands=["9-10"]),
                  r.GlossaryEntry(id="w56_usulca", term="usulca", forms=[], bands=["5-6"])]
         rep = self.build([], glossary=gloss)
-        self.assertEqual([(u.entry.id, u.band) for u in rep.unnecessary], [("w56_yumusak", "5-6")])
+        self.assertEqual([(u.entry.id, u.band) for u in rep.unnecessary], [("w910_sessiz", "9-10")])
 
     def test_a_multiword_term_is_judged_by_its_rarest_word(self):
         entry = r.GlossaryEntry(id="w56_kipir", term="kıpır kıpır", forms=[], bands=["5-6"])

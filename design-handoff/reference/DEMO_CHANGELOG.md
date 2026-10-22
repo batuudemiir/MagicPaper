@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu: 3-4 eşiği 4,0
+
+- Batuhan'ın kararıyla 3-4 eşiği 4,5'ten 4,0'a çekildi (`Tools/nadir_kelime_raporu.py`). 3-4 ve 5-6 artık aynı eşiği paylaşıyor; 7-8 (3,5) ve 9-10 (3,0) değişmedi, hâlâ kalibre edilmedi.
+- Rapor yeniden üretildi (`docs/research/nadir_kelimeler_2026-10-22.md` + CSV, aynı dosyanın üzerine). 3-4: 79 → 37 nadir kök (33 açıklamasız); 42 yaygın kelime düştü (bahçe, pencere, uyumak, yürümek, oturmak, korkmak, ağlamak, yastık…), yeni kelime eklenmedi. Bantsız satırlar da 3-4 eşiğiyle ölçüldüğü için 54 → 26. 5-6 değişmedi (125 / 112).
+- Yan etki: "Gereksiz açıklama" bölümüne ilk kayıt girdi: `w34_sessiz` (Zipf 5,02 ≥ 4,0 + 1). Sözlük girdisine dokunulmadı, karar yazarın.
+- Testler: eşik farkını ölçen iki test 3-4/5-6 yerine 7-8 ve 9-10 ile yeniden kuruldu; 3-4 eşiğini ve "bahçe nadir değil" davranışını sabitleyen yeni test önce kırmızı, sonra yeşil. `python3 Tools/test_nadir_kelime_raporu.py` 23/23.
+- Dosyalar: `Tools/nadir_kelime_raporu.py`, `Tools/test_nadir_kelime_raporu.py`, `docs/research/nadir_kelimeler_2026-10-22.md` + `.csv`, bu dosya.
+
 ### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu (içerik aracı)
 
 - Plan B uygulandı (`docs/Kelime_Plani_kitapokur.md`). `Tools/nadir_kelime_raporu.py`, `ContentCatalogLoader`'ın okuduğu dosyaları (iki belge + her `beat_*.json`, 107 dosya, 1068 satır) okur; her yaş bandı için nadir kökleri, sözlükte olup olmadıklarını, geçiş sayısını, kaynak satır kimliklerini ve örnek cümleyi listeler. Ayrıca "gereksiz açıklama" (Zipf ≥ bant eşiği + 1) ve "bant dışı açıklama" (satırın `words` kimliği girdinin `bands`'inde yok) bölümleri var.

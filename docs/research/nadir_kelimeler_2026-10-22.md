@@ -2,7 +2,7 @@
 
 Kaynak: `Tools/nadir_kelime_raporu.py` (plan: `docs/Kelime_Plani_kitapokur.md` B). Öneridir; kelimeyi sadeleştirmeye ya da sözlüğe eklemeye yazar karar verir.
 
-Eşikler (Zipf, altı nadir): 3-4 → 4.5 · 5-6 → 4.0 · 7-8 → 3.5 · 9-10 → 3.0. 5.0 ve üstü her bantta yaygın sayılır. Başlangıç değerleridir, kalibre edilmedi.
+Eşikler (Zipf, altı nadir): 3-4 → 4.0 · 5-6 → 4.0 · 7-8 → 3.5 · 9-10 → 3.0. 5.0 ve üstü her bantta yaygın sayılır. 3-4 eşiği 22 Ekim 2026'da 4.5'ten 4.0'a çekildi; diğerleri başlangıç değeridir, kalibre edilmedi.
 
 Okunan dosyalar: 107 (`ContentCatalogLoader` ile aynı küme).
 
@@ -10,7 +10,7 @@ Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş
 
 ## 3-4 yaş
 
-249 satır · 79 nadir kök · 73 açıklamasız
+249 satır · 37 nadir kök · 33 açıklamasız
 
 | kök | Zipf | geçiş | sözlükte | kaynak | örnek cümle |
 |---|---:|---:|---|---|---|
@@ -41,6 +41,7 @@ Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş
 | sarın | 3.85 | 5 | **hayır** | bt3_eo_04, bt3_wc_fs_01, bts3_wc_fs_01 +2 | {…} yorganına sarındı. |
 | kıs | 3.86 | 1 | **hayır** | bt3_td_01 | {…} lambayı kıstı. |
 | sıkıca | 3.87 | 1 | **hayır** | wc3_fam_sib_01 | {…} kardeşi {…} sıkıca sarıldı. |
+| etraf | 3.89 | 1 | **hayır** | std3_01 | {…} etrafını yumuşak otlarla doldurdu. |
 | kısık | 3.89 | 2 | **hayır** | bt3_wc_03, bts3_wc_03 | Işık kısık, yorgan sıcacıktı. |
 | sar | 3.90 | 3 | **hayır** | swc3_03, swc3_fam_sib_04, wc3_fam_sib_01 | {…} {…} sarıldı. |
 | sıcacık | 3.90 | 8 | evet | bt3_eo_01, bt3_wc_03, bts3_ra_01 +5 | Yorganı sıcacıktı. |
@@ -48,51 +49,8 @@ Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş
 | mendil | 3.92 | 1 | **hayır** | bts3_td_01 | {…} ona yumuşak bir mendil örttü. |
 | sevin | 3.92 | 5 | **hayır** | bts3_rv_ff_01, sr3_fam_sib_01, sr3_fam_fr_01 +2 | İkisi çok sevindi. |
 | ılık | 3.98 | 1 | **hayır** | swc3_01 | Hava ılıktı. |
-| bura | 3.99 | 3 | **hayır** | bts3_tc_03, cm3_01, cm3_03 | "Biz buradayız." |
+| bura | 3.99 | 1 | **hayır** | bts3_tc_03 | "Biz buradayız." |
 | salla | 3.99 | 7 | **hayır** | bts3_rv_fs_01, bts3_tc_01, sfa3_01 +4 | İkisi el salladı. |
-| etraf | 4.01 | 2 | **hayır** | sn3_04, std3_01 | {…} etrafına baktı. |
-| gülümse | 4.06 | 24 | **hayır** | bt3_eo_fi_02, bt3_td_03, bts3_rs_02 +21 | {…}, hayali arkadaşı {…} yumuşacık gülümsedi. |
-| ayırmak | 4.07 | 3 | **hayır** | stc3_03, cm3_02 | Bugün buradan ayrılmayacaktı. |
-| çene | 4.07 | 3 | **hayır** | bt3_eo_02, bt3_wc_02, bts3_wc_02 | Yorganını çenesine çekti. |
-| dinlenmek | 4.08 | 3 | **hayır** | swc3_fam_an_02, swc3_fam_an_03, swc3_fam_an_04 | Sonra ikisi de dinlendi. |
-| kenar | 4.08 | 2 | **hayır** | bts3_na_01, bts3_na_05 | {…} pencerenin kenarını gösterdi. |
-| yastık | 4.09 | 5 | **hayır** | bt3_eo_03, bt3_eo_fa_02, bt3_td_03 +1 | {…} yastığına başını koydu. |
-| yavaşça | 4.10 | 12 | evet | bt3_pw_01, bts3_fa_01, bts3_pw_01 +9 | {…} yavaşça saydı: bir, iki, üç. |
-| yaklaşmak | 4.14 | 2 | **hayır** | bt3_tc_03, cm3_03 | {…} usulca pencereye yaklaştı. |
-| giymek | 4.15 | 1 | **hayır** | bts3_rv_ff_03 | {…} arkadaşı {…} ile pijamalarını giydi. |
-| rüzgâr | 4.15 | 2 | **hayır** | std3_02, td3_03 | {…} rüzgâr gelmesin diye önüne oturdu. |
-| sok | 4.15 | 3 | **hayır** | bt3_wc_fa_02, bts3_tc_03, bts3_wc_fa_02 | Yanına {…} {…} sokuldu. |
-| görmez | 4.16 | 1 | **hayır** | sr3_fam_sib_03 | {…} onları görür görmez gülümsedi. |
-| hatırla | 4.20 | 2 | **hayır** | bts3_rv_03, sr3_03 | {…} {…} hatırladı. |
-| özen | 4.21 | 1 | **hayır** | bts3_ra_03 | "Ona biraz özen gerek," dedi {…} fısıltıyla. |
-| sevinç | 4.22 | 5 | **hayır** | bt3_eo_ff_01, bts3_rs_03, srs3_03 +2 | {…} çok sevinçliydi. |
-| öylece | 4.22 | 1 | **hayır** | pw3_02 | Öylece bekledi. |
-| kaldırmak | 4.23 | 1 | **hayır** | mc3_04 | Başını kaldırıp {…} baktı. |
-| götür | 4.27 | 1 | **hayır** | scm3_01 | "Bunu yerine götürelim," dedi {…}. |
-| nöbet | 4.27 | 1 | **hayır** | bts3_wc_fi_01 | Hayali arkadaşı {…} pencerede nöbet tuttu. |
-| ağlamak | 4.29 | 1 | **hayır** | ra3_04 | Ağlamadı. |
-| dal | 4.29 | 6 | **hayır** | bt3_rs_02, bt3_wc_03, bt3_wc_fi_01 +3 | {…} son bir kez esnedi ve uykuya daldı. |
-| sabır | 4.29 | 2 | **hayır** | bts3_pw_02, bts3_tc_02 | {…} pencerenin yanında sabırla, usulca bekledi. |
-| kapa | 4.30 | 13 | **hayır** | bt3_rs_01, bt3_wc_01, bt3_wc_04 +10 | Sonunda {…} gözlerini kapadı ve uyudu. |
-| otur | 4.31 | 14 | **hayır** | bt3_wc_fi_01, bts3_pw_03, bts3_wc_fi_03 +10 | Hayali arkadaşı {…} pencerenin yanında oturdu. |
-| sessizce | 4.32 | 4 | evet | bt3_pw_02, bts3_pw_01, spw3_01 +1 | {…} sessizce bekledi ve ninniyi tekrarladı. |
-| uyu | 4.34 | 16 | **hayır** | bt3_mc_01, bt3_mc_02, bt3_mc_03 +12 | Uyuyamıyordu. |
-| yürü | 4.34 | 6 | **hayır** | sfa3_01, sfa3_03, sn3_03 +3 | {…} yavaş yavaş yürüdü. |
-| pencere | 4.35 | 49 | **hayır** | bt3_eo_01, bt3_eo_04, bt3_eo_fa_02 +46 | Ay pencereden bakıyordu. |
-| tanımak | 4.35 | 1 | **hayır** | bts3_rv_04 | Pencereden tanıdık bir yüz baktı. |
-| avuç | 4.36 | 2 | **hayır** | bts3_td_03, td3_02 | {…} avuçlarıyla sıcak bir köşe yaptı. |
-| bahçe | 4.37 | 1 | **hayır** | na3_01 | {…} o sabah bahçeye çıktı. |
-| buluşmak | 4.37 | 3 | **hayır** | sr3_03, sr3_fam_im_03, wc3_fam_fr_01 | {…} yine {…} ile buluştu. |
-| öbür | 4.41 | 1 | **hayır** | std3_02 | {…} öbür yanına oturdu. |
-| korkmak | 4.42 | 2 | **hayır** | stc3_02, cm3_03 | "Korkma," dedi usulca. |
-| say | 4.43 | 4 | **hayır** | bt3_pw_01, sfa3_01, pw3_04 | {…} yavaşça saydı: bir, iki, üç. |
-| acele | 4.46 | 6 | **hayır** | bt3_pw_03, bts3_pw_03, sfa3_02 +3 | Birlikte aya baktılar, hiç acele etmeden. |
-| ağız | 4.47 | 1 | **hayır** | bts3_fa_02 | {…} gülmemek için ağzını kapattı. |
-| burun | 4.47 | 1 | **hayır** | bts3_na_06 | {…} burnuyla pencereyi gösterdi. |
-| perde | 4.47 | 3 | **hayır** | bt3_td_04, bts3_na_02, bts3_wc_03 | {…} perdeyi yarıya çekti. |
-| uyan | 4.48 | 1 | **hayır** | sr3_fam_sib_04 | {…} bu sabah kardeşi {…} ile uyandı. |
-| göğüs | 4.49 | 1 | **hayır** | sfa3_03 | {…} onu göğsüne yakın tuttu. |
-| ora | 4.49 | 2 | **hayır** | bts3_lg_03, bts3_ra_02 | Orası tam ona göreydi. |
 
 ## 5-6 yaş
 
@@ -226,14 +184,15 @@ Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş
 | bura | 3.99 | 3 | **hayır** | bts_tc_03, mc_guide_01, wc_p_succeed_03 | "Biz buradayız." |
 | salla | 3.99 | 25 | **hayır** | bts_ex_02, bts_lg_03, bts_na_02 +22 | {…} burnunu yaklaştırıp kokladı ve memnun memnun başını salladı. |
 
-## Bantsız satırlar (4.5 eşiğiyle)
+## Bantsız satırlar (4.0 eşiğiyle)
 
-225 satır · 54 nadir kök · 45 açıklamasız
+225 satır · 26 nadir kök · 22 açıklamasız
 
 | kök | Zipf | geçiş | sözlükte | kaynak | örnek cümle |
 |---|---:|---:|---|---|---|
 | zıplayarak | 3.01 | 1 | **hayır** | c_r_1_v3 | Minik {…} {…} zıplayarak yanına geldi. |
 | beceremiyorum | 3.20 | 1 | **hayır** | pilot_t_receive_appeal_v1 | "Tek başıma beceremiyorum." |
+| durakla | 3.28 | 1 | **hayır** | pilot_t_self_recognize_v2 | Durakladığında bile devam edebiliyordu. |
 | bilmece | 3.31 | 1 | **hayır** | pilot_t_insight_v2 | {…} bir bilmece değildi; sadece eksik bir yarısı vardı. |
 | yöneltti | 3.36 | 4 | **hayır** | template_hook_1_v1, template_hook_3_v1, template_hook_3_v2 +1 | Büyük bir merakla yola çıkan {…}, adımlarını {…} doğru yöneltti. |
 | zifiri | 3.36 | 1 | **hayır** | p_r_1_v2 | Yolun sonu zifiri karanlıktı. |
@@ -253,45 +212,16 @@ Nadirlik, kelimenin en yaygın makul biçimiyle ölçülür (kök, eki soyulmuş
 | dolaşmak | 3.93 | 10 | **hayır** | h_r_1_v1, template_hook_2_v0, template_hook_4_v1 +7 | Güneşli bir sabah, {…} dışarıda dolaşırken kendini {…} girişinde buldu. |
 | karşılaştı | 3.93 | 13 | **hayır** | template_discovery_0_v0, template_discovery_0_v1, template_discovery_2_v2 +10 | Etrafı incelerken bir ses duydu ve arkasını döndüğünde {…} ile karşılaştı. |
 | vazgeç | 3.93 | 1 | evet | pilot_t_persist_v1 | Vazgeçmedi. |
-| etraf | 3.94 | 8 | **hayır** | h_r_1_v2, template_discovery_0_v0, template_discovery_0_v1 +5 | Etrafta tatlı bir sessizlik vardı. |
+| etraf | 3.94 | 1 | **hayır** | h_r_1_v2 | Etrafta tatlı bir sessizlik vardı. |
 | eğlenmek | 3.94 | 90 | **hayır** | template_companion_0_v0, template_companion_0_v1, template_companion_0_v2 +87 | {…} ve {…} birlikte çok eğlendi. |
 | apaçık | 3.95 | 1 | evet | pilot_t_reveal_truth_v3 | Meğer her şey apaçıkmış. |
 | salla | 3.99 | 1 | **hayır** | pilot_t_companion_offers_v3 | {…} başını salladı. |
-| meğer | 4.02 | 1 | **hayır** | pilot_t_reveal_truth_v3 | Meğer her şey apaçıkmış. |
-| durakla | 4.04 | 2 | **hayır** | p_r_1_v2, pilot_t_self_recognize_v2 | {…} korkuyla durakladı ve ilerlemek istemedi. |
-| gülümse | 4.06 | 1 | **hayır** | pilot_t_succeed_v3 | {…} {…} yanına vardı ve gülümsedi. |
-| azal | 4.08 | 1 | **hayır** | pilot_t_obstacle_raises_v1 | Aradaki mesafe hiç azalmıyordu. |
-| kaybolmak | 4.08 | 1 | **hayır** | pilot_t_approach_v3 | {…} hâlâ oradaydı, kaybolmamıştı. |
-| üzüntü | 4.08 | 1 | **hayır** | p_r_1_v3 | "Önümüzü göremiyoruz," dedi {…} üzüntüyle. |
-| neşe | 4.10 | 14 | **hayır** | template_hook_1_v0, template_hook_1_v2, template_hook_2_v1 +11 | {…} her zamanki gibi neşeyle oynarken, gözüne {…} ilişti. |
-| yavaşça | 4.10 | 5 | evet | pilot_t_approach_v2, pilot_t_small_step_v2, pilot_t_find_own_courage_v2 +2 | {…} yavaşça {…} doğru yürüdü ve {…} daha yakından fark etti. |
-| yaklaşmak | 4.14 | 7 | **hayır** | pilot_t_approach_v1, pilot_t_approach_v3, pilot_t_examine_v3 +3 | {…} bir adım yaklaştı, sonra bir adım daha. |
-| sevinç | 4.22 | 9 | **hayır** | template_resolution_0_v1, template_resolution_1_v0, template_resolution_1_v1 +6 | Birlikte başarmış olmanın verdiği sevinçle, {…} neşeyle güldüler. |
-| sessizlik | 4.28 | 1 | evet | h_r_1_v2 | Etrafta tatlı bir sessizlik vardı. |
-| kapla | 4.29 | 1 | **hayır** | p_r_1_v3 | Karanlık her yeri kaplamıştı. |
-| sabır | 4.29 | 1 | evet | pilot_t_persist_v2 | Aynı şeyi sabırla yeniden yaptı. |
-| sessizce | 4.32 | 2 | evet | pilot_t_approach_v3, pilot_t_warm_close_v3 | Ayaklarını sessizce oynatarak yaklaştı {…}. |
-| sade | 4.33 | 1 | **hayır** | pilot_t_reveal_truth_v2 | {…} çok daha sade bir şeydi. |
-| sandık | 4.33 | 2 | **hayır** | pilot_t_examine_v1, pilot_t_belief_fails_v2 | {…} sandığından daha tuhaftı. |
-| bura | 4.34 | 2 | **hayır** | pilot_t_companion_offers_v1, pilot_t_companion_offers_v3 | "Ben burayı bilirim," dedi {…} yumuşak bir sesle. |
-| epey | 4.34 | 1 | **hayır** | pilot_t_first_attempt_v3 | İlk denemesinde {…} epey yol aldı. |
-| yürü | 4.34 | 4 | **hayır** | h_r_1_v2, pilot_t_approach_v2, pilot_t_warm_close_v1 +1 | Yeni yerler keşfetmeyi seven {…}, adımlarını hızlandırıp {…} doğru yürüdü. |
-| ilerlemek | 4.36 | 4 | **hayır** | p_r_1_v2, pilot_t_hesitate_v2, pilot_t_small_step_v2 +1 | {…} korkuyla durakladı ve ilerlemek istemedi. |
-| macera | 4.40 | 3 | **hayır** | template_resolution_2_v1, template_resolution_3_v2, template_resolution_4_v2 | Bu unutulmaz macera, ikisi için de harika bir anı olarak kaldı. |
-| öbür | 4.41 | 1 | **hayır** | pilot_t_cooperative_effort_v1 | {…} bir yanını tuttu, {…} öbür yanını. |
-| korkmak | 4.42 | 3 | **hayır** | pilot_t_companion_offers_v2, pilot_t_find_own_courage_v1, pilot_t_reveal_truth_v1 | "Korkacak bir şey yok," dedi {…}. |
-| zorlu | 4.42 | 4 | **hayır** | template_challenge_0_v0, template_challenge_1_v0, template_challenge_1_v1 +1 | Birden karşılarına geçmeleri gereken zorlu bir yol çıktı. |
-| otur | 4.43 | 1 | **hayır** | c_r_1_v2 | Bir taşın üzerinde oturan {…} ile karşılaştılar. |
-| belirgin | 4.44 | 1 | **hayır** | pilot_t_approach_v1 | Yaklaştıkça {…} daha da belirginleşti. |
-| ihtimal | 4.44 | 1 | evet | pilot_t_form_belief_v2 | {…} bir ihtimal düşündü. |
-| perde | 4.47 | 1 | **hayır** | pilot_t_reveal_truth_v2 | Perde aralanınca {…} rahatladı. |
-| incelemek | 4.48 | 1 | **hayır** | h_r_1_v3 | Kuşların şarkı söylediği o gün, {…} heyecanla {…} incelemeye karar verdi. |
 
 ## Gereksiz açıklama
 
 Sözlükte olup o bant için çok yaygın olanlar (Zipf ≥ bant eşiği + 1).
 
-Yok.
+- `w34_sessiz` sessiz · 3-4 · Zipf 5.02
 
 ## Bant dışı açıklama
 
