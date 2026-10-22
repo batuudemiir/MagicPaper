@@ -194,6 +194,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@8ba7cdf · Alt çubukta sürükleyerek seçme
+
+- iOS 26 sekme çubuğu gibi: parmak çubuğun üstünde kayarken mercek parmağın altındaki sekmeyi gösteriyor (ikon dolu, marka renginde); bırakılan sekme seçiliyor. "Masal yaz" dairesi dahil: parmak dairede bırakılınca masal yazma, dairenin içinden büyüyerek açılıyor; dairenin üstündeyken ince beyaz halka.
+- Kısa dokunuşlar ve VoiceOver düğmelerle eskisi gibi. Sürükleme en az 8 punto hareketle başlıyor; parmak başladığı yerde bırakılırsa seçimi düğme yapıyor (çift seçim ve istemsiz "en üste kaydır" olmasın). Çubuğun dikeyde biraz dışına taşan parmak da sayılıyor.
+- Kayarken titreşim, zıplama, parlama yok; titreşim yalnızca seçim bitince (tasarım kuralı).
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Cihazda sürüklenerek denenmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, bu dosya.
+
 ### 2026-10-22 · main@946d697 · Düğmeler ve kartlar lavanta
 
 - Karar (Batuhan, 22 Ekim, seçenek A): siyah-gri düğmeler kalktı. `MPCircleButton` varsayılanı lavanta zemin (`actionSoft`), mor ikon, çerçevesiz (kilit, geri, kapat; uygulama genelinde). `MPButton(.secondary)` lavanta zemin, mor yazı, çerçevesiz.
