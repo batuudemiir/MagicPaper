@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-23 · faz-21-varyasyon@COMMIT · `charge` öğrenelime eklendi: 3-4 ikinci moduna kavuştu, D2 proza soğuması
+### 2026-10-23 · faz-21-varyasyon@47ad4a3 · `charge` öğrenelime eklendi: 3-4 ikinci moduna kavuştu, D2 proza soğuması
 
 - **Karar (Batuhan): `charge` ailesi "Yeni şeyler öğrenelim"e eklendi.** 21 Ekim'de uyku öncesi kendi arkına taşınınca (`arcs: ["bedtime"]`) standart arklı üç charge blueprint'i hiçbir moda bağlanamaz hâle gelmişti: bahçede bir fideye bakan masal yazılmıştı, korpusu tamdı, ve hiçbir çocuk ona ulaşamıyordu. Bakmak ve beklemek de öğrenmektir.
 - **3-4 bandı ikinci moduna kavuştu.** `lookingAfter` artık ulaşılabilir: 50 seed'in 50'si masal kuruyor, 16 mekân, 8 arkadaş, 39 kadro. O bant bu güne kadar tek bir uyku şeklinden ibaretti. **Öğrenelim 5-6: 8 → 10 mekanizma** (patience, release). **Ulaşılamayan blueprint: 3 → 0**, yani D1'de bilerek kırmızı eklenen `testNoBlueprintIsStrandedWithoutAMode` yeşile döndü — testi yazma sebebi bu gündü.
