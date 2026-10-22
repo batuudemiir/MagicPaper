@@ -175,6 +175,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@2cc2fb4 · Masal yazma adımları iOS düzeninde
+
+- Ortak parçalar (`Screens/StoryCreation/StoryCreationChrome.swift`, yeni): sola yaslı büyük başlık (`CreationTitle`), tam genişlikte seçenek satırı (`CreationChoiceRow`: solda görsel, ad ve tek satırlık söz, sağda yuvarlak seçim işareti; seçili satırın kenarı marka renginde), alttaki tek birincil düğme (`CreationFooter`).
+- Üst çubuk: "Adım 2 / 3" yazısı ve noktalar yerine ince ilerleme çizgisi; VoiceOver aynı cümleyi okuyor.
+- Çocuk adımı: ızgara kartlar yerine avatar, ad ve yaşla satırlar.
+- Masal türü: başlık çocuğun adıyla ("Deniz için nasıl bir masal?"); üç mod satır, konu çipleri seçili satırın içinde açılıyor. "Bana sürpriz yap" dördüncü kart değil, alttaki sakin kestirme; dokununca doğrudan ilerliyor (önceden seçip "Devam et"e basmak gerekiyordu).
+- Kimler: yol arkadaşları çip yerine adı ve huyuyla satır; önceki seçimler başlığın altında tek satır ve "Değiştir". Masal ailem çip olarak kaldı.
+- Bilerek değişmeyen: akışın sırası ve kararları (`StoryCreationSteps`), "Masal yazılıyor" ekranı, hata ekranı, okuyucuya geçiş.
+- Görsel taslak sohbette gösterildi (üç telefon ekranı).
+- Test: iPhone 16 için derleme yeşil. Telefona kurulum düştü (cihaza bağlanılamadı, CoreDevice 3002); uygulama açılıp ekranlar görülmedi. Birim testleri çalıştırılmadı. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Aynı klasördeki başka oturumun açık değişiklikleri bu commit'e girmedi.
+- Dosyalar: `StoryCreationChrome.swift` (yeni), `StoryCreationFlow.swift`, `StoryModeStep.swift`, `CompanionStep.swift`, `StoryChildStep.swift`, bu dosya.
+
 ### 2026-10-22 · main@e5e8d4d · Derleme düzeltmesi, origin'e gönderim ve telefona kurulum
 
 - 21 Ekim akşamki işler (`3188965..c927e84`: masal sayfası, okuma ayarları, masal metni, açılır pencereler, alt çubuk) origin/main'e gönderildi.
