@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · Bütünlük 6. adım: Ragi ve ebeveyn kapısı incelemesi
+
+- Kod değişmedi; inceleme ve öneri. `docs/BUTUNLUK_DENETIMI.md` sonuna "6. adım" bölümü, 7 ekran görüntüsü `docs/butunluk/` (iPhone 17 Pro, açık tema, normal yazı).
+- Ragi önerisi: mod seçimi, Masal ailem, profil seçimi ve dolu Yeni kelimelerim'e ekle; "Masalda kimler olsun?", profil oluşturma 1. adım, klasik detay/seri, okuyucu ve kapı istisna. Design law'a istisna cümlesi önerildi.
+- Ebeveyn kapısı: girişler Ana sayfa, Kitaplık, Benim köşem başlığında kilit; Günlük'te kilit yok. `MPModeSwitch` (13 Ekim kararı) hiçbir ekranda kullanılmıyor; bağlanmalı ya da kaldırılmalı, karar Batuhan'da.
+- Kapı ekranında hata: geri düğmesi saat çubuğunun altında; "üç yanlış" notu ve bekleme sayacı klavyenin altında; iki çıkış ("Geri" + "Geri dön"); kalkan dairesi gök mavisi.
+- Yan bulgu: Benim köşem kaydırılınca içerik saat çubuğunun altına giriyor; Masal ailem'in geri düğmesi zeminde kayboluyor.
+- Test çalıştırılmadı (kod değişmedi). Profil seçimi ve dolu Yeni kelimelerim simülatörde görülmedi.
+- Dosyalar: `docs/BUTUNLUK_DENETIMI.md`, `docs/butunluk/*.png` (7), bu dosya.
+
 ### 2026-10-23 · main (commit aşağıda) · Bütünlük 5. adım: Legacy arayüz bileşenleri emekli
 
 - Profil seçme ("Kim okuyacak?") ve profil sayfası (Ayarlar › çocuk) `LegacyMPListRow` yerine Ayarlar'la aynı dilde: tek kartta gruplu satırlar (`MPGroupedList` + `MPRowDivider`), ton kutusu, ileri giden satırlarda ok. Seçili profil `isSelected` taşıyor. Alt düğmeler `MPButton` ("Yeni profil ekle" ikincil, İlgi alanları "Kaydet" birincil).
