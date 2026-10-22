@@ -20,6 +20,13 @@ enum KidTab: Hashable { case home, gunluk, library, corner }
 /// Sistemdeki gibi tek renk: seçili sekmenin ikonu dolar, ikon ve adı marka
 /// renginde olur, arkasında nötr bir mercek belirir. Seçim renkle birlikte
 /// dolu şekil ve mercekle de belli. Zıplama, ölçek ya da yaylanma yok.
+/// Sürükleyerek seçme (22 Ekim 2026, iOS 26 sekme çubuğu gibi): parmak
+/// çubuğun üstünde kayarken mercek parmağı izler, bırakılan yer seçilir.
+/// "Masal yaz" dairesi de buna dahil: parmak dairede bırakılırsa masal yazma
+/// açılır. Kayarken titreşim, zıplama ya da parlama yok; titreşim yalnızca
+/// seçim bitince (`ContentView`'daki seçimle). Dokunarak seçme ve VoiceOver
+/// düğmelerle aynen çalışır.
+///
 /// `ContentView.kidRoot` bunu `mpFloatingBar` ile yerleştirir.
 struct KidTabBar: View {
     @Binding var selection: KidTab
@@ -28,6 +35,19 @@ struct KidTabBar: View {
     var zoom: Namespace.ID? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// Sürüklemenin hedefi: bir sekme ya da Masal yaz dairesi.
+    private enum Target: Hashable {
+        case tab(KidTab)
+        case create
+    }
+
+    /// Hedeflerin çubuk içindeki çerçeveleri (parmağın altında ne var).
+    @State private var frames: [Target: CGRect] = [:]
+    /// Sürüklerken parmağın altındaki hedef; mercek onu gösterir.
+    @State private var hovered: Target?
+
+    private static let space = "kidTabBar"
 
     /// Kimlik: `ContentView` aynı adla yakınlaşma hedefini işaretler.
     static let createZoomID = "masalYaz"
@@ -60,11 +80,50 @@ struct KidTabBar: View {
 
                 createButton
             }
+            .coordinateSpace(.named(Self.space))
+            .simultaneousGesture(dragToSelect)
         }
         // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
         // boyutta basılı tutunca büyük içerik görüntüleyici adı gösterir.
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .padding(.horizontal, MP.S.x5)
+    }
+
+    /// Çubuğun üstünde kaydırarak seçme. Kısa dokunuşlar düğmelere kalır
+    /// (en az 8 punto hareket). Parmak başladığı hedefte bırakılırsa seçimi
+    /// yine düğme yapar: iki kez seçilip "yeniden seç" (en üste kaydır)
+    /// tetiklenmesin.
+    private var dragToSelect: some Gesture {
+        DragGesture(minimumDistance: MP.S.x2, coordinateSpace: .named(Self.space))
+            .onChanged { value in
+                let target = target(at: value.location)
+                if target != hovered { hovered = target }
+            }
+            .onEnded { value in
+                let end = target(at: value.location)
+                let start = target(at: value.startLocation)
+                hovered = nil
+                guard let end, end != start else { return }
+                switch end {
+                case .tab(let tab): selection = tab
+                case .create: onCreate()
+                }
+            }
+    }
+
+    /// Parmağın altındaki hedef. Çubuğun dikeyde biraz dışına taşan parmak
+    /// da sayılır; yatayda en yakın hedef değil, gerçekten altındaki.
+    private func target(at point: CGPoint) -> Target? {
+        frames.first { _, frame in
+            frame.insetBy(dx: 0, dy: -MP.S.x6).contains(point)
+        }?.key
+    }
+
+    /// Mercek: sürüklerken parmağın altında, değilken seçili sekmede.
+    private func isLit(_ target: Target) -> Bool {
+        if let hovered { return hovered == target }
+        if case .tab(let tab) = target { return tab == selection }
+        return false
     }
 
     /// Masal yaz: sekmelerin dışında, marka renginde tonlu cam daire. Sekme
@@ -75,7 +134,16 @@ struct KidTabBar: View {
                 .foregroundStyle(MP.C.textOnBrand)
                 .frame(width: barHeight, height: barHeight)
                 .mpGlassAction(in: Circle())
+                // Sürüklerken parmak dairedeyse ince bir halka: bırakınca açılır.
+                .overlay {
+                    Circle().strokeBorder(MP.C.textOnBrand.opacity(isLit(.create) ? 0.7 : 0),
+                                          lineWidth: MP.E.width)
+                        .animation(MP.M.gated(MP.M.easeOut), value: isLit(.create))
+                }
                 .contentShape(Circle())
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: {
+                    frames[.create] = $0
+                }
         }
         .buttonStyle(MPPressStyle(.highlight))
         .mpZoomSource(Self.createZoomID, in: reduceMotion ? nil : zoom)
@@ -87,7 +155,8 @@ struct KidTabBar: View {
     }
 
     private func tab(_ item: Item) -> some View {
-        let on = selection == item.tab
+        let on = isLit(.tab(item.tab))
+        let selected = selection == item.tab
         return Button { selection = item.tab } label: {
             VStack(spacing: 0) {
                 MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.md,
@@ -108,10 +177,13 @@ struct KidTabBar: View {
             }
             .contentShape(Capsule(style: .continuous))
             .animation(MP.M.gated(MP.M.easeOut), value: on)
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: {
+                frames[.tab(item.tab)] = $0
+            }
         }
         .buttonStyle(MPPressStyle(.highlight))
         .accessibilityLabel(item.label)
-        .accessibilityAddTraits(on ? .isSelected : [])
+        .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {
             MPIcon("\(item.symbol).fill", size: MP.G.lg, weight: .bold, symbolOnly: true)
             Text(item.label)
