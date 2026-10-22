@@ -134,8 +134,8 @@ struct MagicPaperPageTurnRenderer<CurrentPage: View, AdjacentPage: View>: View {
                                         if ReaderPaper.showsGrain {
                                             Image(uiImage: ReaderGrain.tile)
                                                 .resizable(resizingMode: .tile)
-                                                .opacity(theme == .night ? 0.05 : 0.035)
-                                                .blendMode(theme == .night ? .plusLighter : .multiply)
+                                                .opacity(theme.isDark ? 0.05 : 0.035)
+                                                .blendMode(theme.isDark ? .plusLighter : .multiply)
                                                 .allowsHitTesting(false)
                                         }
                                     }

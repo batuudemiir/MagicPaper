@@ -72,54 +72,6 @@ struct MPPressableCard<Content: View>: View {
     }
 }
 
-// MARK: - LegacyMPSectionHeader
-
-struct LegacyMPSectionHeader: View {
-
-    /// Bölümün ekrandaki ağırlığı.
-    ///
-    /// Her başlık aynı puntodayken ekran hiyerarşisiz olur: çocuğun kendi
-    /// masalları ile en alttaki ikincil bir yol aynı sesle bağırır. Göz o zaman
-    /// sırayı konumdan çıkarmak zorunda kalır, ki en yavaş okuma biçimidir.
-    enum Emphasis { case primary, secondary }
-
-    let title: String
-    var subtitle: String? = nil
-    var emphasis: Emphasis = .primary
-    var actionLabel: String? = nil
-    var action: (() -> Void)? = nil
-
-    var body: some View {
-        HStack(alignment: .bottom, spacing: 12) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(emphasis == .primary ? MP.F.displaySM() : MP.F.bodyLG(.bold))
-                    .mpTightTracking(emphasis == .primary ? 21 : 18)
-                    .foregroundStyle(emphasis == .primary ? MP.C.textTitle : MP.C.textBody)
-                if let subtitle {
-                    Text(subtitle).font(MP.F.bodySM()).foregroundStyle(MP.C.textMuted)
-                }
-            }
-            Spacer(minLength: 0)
-            if let actionLabel, let action {
-                Button(action: action) {
-                    HStack(spacing: 3) {
-                        Text(actionLabel)
-                        MPIcon("chevron.right", size: 16, weight: .bold)
-                    }
-                    .font(MP.F.labelMD())
-                    .foregroundStyle(MP.C.textLink)
-                    // Dokunma alanı görünür boyuttan büyük, düzen değişmez.
-                    .padding(.vertical, MP.S.x3)
-                    .contentShape(Rectangle())
-                    .padding(.vertical, -MP.S.x3)
-                }
-                .buttonStyle(MPPressStyle(.highlight))
-            }
-        }
-    }
-}
-
 // MARK: - MPAvatar
 
 /// Harf madalyonu. MagicPaper bilinçli olarak çocuk fotoğrafı saklamaz.
@@ -248,6 +200,8 @@ struct MPChoiceTile: View {
         }
         .buttonStyle(MPPressStyle(scales: false))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+        // Kilit yalnızca ikon ve soluklukla görünüyordu; VoiceOver da söylesin.
+        .accessibilityValue(isLocked ? "Kilitli" : "")
     }
 
     private var rowBody: some View {
@@ -714,50 +668,6 @@ struct MPProgressRing: View {
         .animation(MP.M.gated(MP.M.base), value: value)
         .accessibilityLabel("İlerleme")
         .accessibilityValue("\(Int((value * 100).rounded())) yüzde")
-    }
-}
-
-// MARK: - MPEmptyState
-
-struct MPEmptyState: View {
-    let title: String
-    var description: String? = nil
-    var illustration: String? = nil
-    var actionLabel: String? = nil
-    var action: (() -> Void)? = nil
-    var secondaryLabel: String? = nil
-    var secondaryAction: (() -> Void)? = nil
-
-    var body: some View {
-        VStack(spacing: 16) {
-            if let illustration {
-                Image(illustration)
-                    .resizable().scaledToFit()
-                    .frame(width: 168, height: 168)
-                    .mpShadow(MP.Sh.art)
-            }
-            VStack(spacing: 6) {
-                Text(title).font(MP.F.displayMD()).foregroundStyle(MP.C.textTitle)
-                if let description {
-                    Text(description)
-                        .font(MP.F.bodyMD())
-                        .lineSpacing(16 * 0.55)
-                        .foregroundStyle(MP.C.textMuted)
-                }
-            }
-            .multilineTextAlignment(.center)
-            .frame(maxWidth: 320)
-
-            if let actionLabel, let action {
-                LegacyMPButton(title: actionLabel, icon: "wand.and.stars", action: action)
-            }
-            if let secondaryLabel, let secondaryAction {
-                LegacyMPButton(title: secondaryLabel, variant: .ghost, size: .sm, action: secondaryAction)
-            }
-        }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 40)
-        .frame(maxWidth: .infinity)
     }
 }
 

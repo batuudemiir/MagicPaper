@@ -9,6 +9,7 @@ struct DailyStoryReaderView: View {
     let story: DailyStory
 
     @EnvironmentObject private var app: MPAppState
+    @EnvironmentObject private var settings: MPSettingsStore
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var dailyManager = DailyStoryManager.shared
@@ -19,14 +20,14 @@ struct DailyStoryReaderView: View {
     @State private var streakMarked = false
     @State private var showReaderSettings = false
 
-    private var theme: MP.ReadTheme { app.readTheme }
+    private var theme: MP.ReadTheme { settings.readingTheme(chosen: app.readTheme) }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: MPSpacing.sm) {
                 MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat",
                                tint: theme.foreground,
-                               fill: theme == .night ? MPColor.readerNightTrack : MPColor.backgroundSurface) { dismiss() }
+                               fill: theme.isDark ? MPColor.readerNightTrack : MPColor.backgroundSurface) { dismiss() }
                 VStack(spacing: 0) {
                     Text(story.title).mpText(.callout).foregroundStyle(theme.foreground).lineLimit(1)
                     Text(story.mpMeta).mpText(.caption).foregroundStyle(theme.muted)
@@ -34,7 +35,7 @@ struct DailyStoryReaderView: View {
                 .frame(maxWidth: .infinity)
                 MPCircleButton(systemImage: "textformat.size", accessibilityLabel: "Okuma ayarları",
                                tint: theme.foreground,
-                               fill: theme == .night ? MPColor.readerNightTrack : MPColor.backgroundSurface) {
+                               fill: theme.isDark ? MPColor.readerNightTrack : MPColor.backgroundSurface) {
                     showReaderSettings = true
                 }
             }

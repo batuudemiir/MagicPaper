@@ -61,6 +61,14 @@ enum MPDebugLaunch {
             story.origin?.seriesEpisode = sample.4
             story.createdAt = Date().addingTimeInterval(-Double(index) * 86_400)
             if let page = sample.3 {
+                // Yeni kelimelerim için okunmuş ilk sayfaya bir sözlük kelimesi (21 Ekim).
+                story.pages[0].text = "Gece oldu. \(profile.name) feneri yakıp usulca bahçeye çıktı. Ay gülümsedi."
+                story.pages[0].words = [
+                    StoryWord(id: "demo_fener_\(index)", term: index == 0 ? "fener" : "usulca",
+                              meaning: index == 0 ? "Karanlıkta yolu aydınlatan, elde taşınan küçük ışık."
+                                                  : "Kimseyi uyandırmadan, yavaşça ve sessizce.",
+                              surface: index == 0 ? "feneri" : "usulca"),
+                ]
                 story.lastReadPage = page
                 story.lastReadAt = Date().addingTimeInterval(-Double(index) * 3_600)
             }

@@ -26,12 +26,18 @@ struct MPIcon: View {
     }
 
     var body: some View {
-        if symbolOnly {
-            Image(systemName: name)
-                .font(MP.F.glyph(size, weight))
-        } else {
-            mapped
+        Group {
+            if symbolOnly {
+                Image(systemName: name)
+                    .font(MP.F.glyph(size, weight))
+            } else {
+                mapped
+            }
         }
+        // İkon süstür: anlamı düğmenin ya da satırın Türkçe etiketi taşır.
+        // Gizlenmezse VoiceOver Lucide dosya adını ("Icons/check") ya da
+        // İngilizce sembol adını okuyordu (Design law, Erişilebilirlik).
+        .accessibilityHidden(true)
     }
 
     @ViewBuilder

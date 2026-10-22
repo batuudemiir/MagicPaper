@@ -13,8 +13,9 @@ struct SubscriptionExpiredView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ParentHeader(title: "Abonelik", onBack: onClose)
+            MPParentHeader(title: "Abonelik", onBack: onClose)
                 .padding(.horizontal, MPSpacing.screenH)
+                .padding(.top, MPSpacing.lg)
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: MPSpacing.xl) {

@@ -11,8 +11,18 @@ struct StoryPageView: View {
     let page: ReaderPage
     let theme: MP.ReadTheme
     let readSize: MP.ReadSize
+    /// Satır aralığı ve kolay okuma (Okuma ayarları · Yazı).
+    var spacing: MP.ReadSpacing = .normal
+    var easyReading: Bool = false
+    /// Nefes satırları (3-6 yaş) ya da paragraf ve cümle takibi (7-10).
+    var layout: ReaderTextLayout = .paragraphs
+    /// Metinde vurgulanan ad: masal çocuğa ait.
+    var childName: String? = nil
+    /// Sesli okumada okunan yer (cümle takibi, yalnızca paragraf düzeninde).
+    @ObservedObject private var spoken = MPSpokenPosition.shared
     let folio: String?
-    /// Kontroller görünürken alt künye de görünür (§11).
+    /// Alt künye görünür mü. Kontroller görünürken sayfa numarası alt çubukta
+    /// yazılı; künye yalnızca kontroller çekilince belirir (21 Ekim 2026).
     let showsFolio: Bool
     /// Masalın dünya rengi.
     let accent: Color
@@ -29,18 +39,21 @@ struct StoryPageView: View {
                 if isSpread(geo) {
                     spread(in: geo)
                 } else {
+                // Çizim kenardan kenara ve sayfanın en üstünden başlar; cam
+                // kontroller onun üstünde yüzer. Metin kenar boşluğunda kalır.
                 VStack(spacing: 0) {
                     if page.hasIllustration {
                         illustration(in: geo)
+                            .overlay(alignment: .bottom) { PaperLip(theme: theme) }
                         Spacer(minLength: MP.S.x6)
                     }
                     textColumn(in: geo)
+                        .padding(.horizontal, StoryPageView.gutter)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.horizontal, StoryPageView.gutter)
-                // Üst denetimlerin (kapat, kalp, Aa) altından başlar; en büyük
-                // yazı boyutunda metin kapat düğmesinin altına akmaz.
-                .padding(.top, MP.S.navBarHeight)
+                // Resimsiz sayfada metin üst denetimlerin (kapat, kalp, Aa)
+                // altından başlar; en büyük yazı boyutunda kapatın altına akmaz.
+                .padding(.top, page.hasIllustration ? 0 : MP.S.navBarHeight)
                 .padding(.bottom, MP.S.x7)
                 }
             }
@@ -81,14 +94,9 @@ struct StoryPageView: View {
     /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
     /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
     private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
-        let column = geo.size.width - 2 * (StoryPageView.gutter)
-        return min(column / StorySceneView.aspectRatio, geo.size.height * 0.55)
+        min(geo.size.width / StorySceneView.aspectRatio, geo.size.height * 0.55)
     }
 
-    /// Metin sütununun çizime bıraktığı yükseklik.
-    private func illustrationReserve(in geo: GeometryProxy) -> CGFloat {
-        page.scene != nil ? sceneHeight(in: geo) : geo.size.height * 0.55
-    }
 
     @ViewBuilder
     private func fileIllustration(in geo: GeometryProxy) -> some View {
@@ -101,9 +109,11 @@ struct StoryPageView: View {
         PageIllustration(
             fileName: page.imageRef ?? "",
             label: page.imageLabel,
-            theme: theme
+            theme: theme,
+            bleeds: true
         )
         .frame(height: height)
+        .clipped()
     }
 
     // MARK: - 27 · iPad yatay açık kitap
@@ -173,19 +183,22 @@ struct StoryPageView: View {
     /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
     /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
     /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
-    private var wordHighlight: Color {
-        switch theme {
-        case .light: return MPColor.readerDayHeroName
-        case .sepia: return MPColor.readerSepiaHeroName
-        case .night: return MPColor.readerNightHeroName
+    private var wordHighlight: Color { theme.highlight }
+
+    /// Metin sütununun kendi yüksekliği ölçülür, sayfanınki değil. Önceden
+    /// sayfanın tam yüksekliği kullanılıyordu; sütun ise üst ve alt boşluk
+    /// kadar kısaydı, bu yüzden kısa metin bile her zaman biraz taşıyor ve
+    /// parmakla yukarı aşağı oynuyordu (21 Ekim 2026). Sığan metin artık
+    /// kıpırdamaz; kaydırma yalnızca gerçekten sığmayan eski uzun sayfalarda.
+    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
+        GeometryReader { viewport in
+            textScroll(minHeight: viewport.size.height,
+                       topAligned: reservesArt && page.hasIllustration)
         }
     }
 
-    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
-        let available = geo.size.height
-            - (reservesArt && page.hasIllustration ? illustrationReserve(in: geo) + MP.S.x6 : 0)
-
-        return ScrollView(.vertical) {
+    private func textScroll(minHeight available: CGFloat, topAligned: Bool) -> some View {
+        ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: readSize.points * 0.55) {
                 if !page.title.isEmpty {
                     Text(page.title)
@@ -195,22 +208,16 @@ struct StoryPageView: View {
                         .padding(.bottom, MP.S.x1)
                 }
 
-                // Paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
-                // paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz
-                // ve ikinci bir yazı stili olmadan ayrılır (§15).
-                ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { _, paragraph in
-                    Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
-                                                ink: theme.body, highlight: wordHighlight))
-                        .lineSpacing(readSize.lineSpacing)
-                        .tint(wordHighlight)
-                        .fixedSize(horizontal: false, vertical: true)
+                switch layout {
+                case .breath: breathLines
+                case .paragraphs: paragraphs
                 }
             }
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             // Sığdığında ortalanır, taştığında yukarıdan başlar.
             .frame(minHeight: max(available, 0),
-                   alignment: reservesArt && page.hasIllustration ? .top : .center)
+                   alignment: topAligned ? .top : .center)
             // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
             // metin.
             .accessibilityElement(children: .ignore)
@@ -226,6 +233,75 @@ struct StoryPageView: View {
         .scrollIndicators(.hidden)
     }
 
+    /// 7-10 yaş: paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
+    /// paragrafı satırdan ayırt edemez; diyalog da böylece balonsuz ve ikinci
+    /// bir yazı stili olmadan ayrılır (§15). Sesli okurken okunan cümle
+    /// fosforlu kalemle işaretlenir, öncesi söner: kelime kelime değil cümle
+    /// cümle, çünkü her kelimeyi işaretlemek dikkati dağıtır.
+    @ViewBuilder
+    private var paragraphs: some View {
+        let mark = readAlongMark
+        ForEach(Array(page.paragraphs.enumerated()), id: \.offset) { i, paragraph in
+            Text(ReaderWords.attributed(paragraph, words: page.words, size: readSize.points,
+                                        ink: theme.body, highlight: wordHighlight,
+                                        childName: childName,
+                                        readAlong: readAlong(for: i, mark: mark, in: paragraph)))
+                .lineSpacing(readSize.points * spacing.factor)
+                // Kolay okuma: harf arası açılır, font Nunito kalır.
+                .tracking(easyReading ? readSize.points * 0.06 : 0)
+                .tint(wordHighlight)
+                .fixedSize(horizontal: false, vertical: true)
+                // Konuşma paragrafı solda ince bir çizgiyle ayrılır.
+                .padding(.leading, ReaderText.isDialogue(paragraph) ? MP.S.x3 : 0)
+                .overlay(alignment: .leading) {
+                    if ReaderText.isDialogue(paragraph) {
+                        Capsule().fill(theme.muted.opacity(0.35))
+                            .frame(width: MP.E.width)
+                            .accessibilityHidden(true)
+                    }
+                }
+        }
+    }
+
+    /// 3-6 yaş: her cümle kendi satırında, seçilen boyutun bir üstünde ve en
+    /// az "Rahat" satır arasıyla. Sağ kenar serbest, heceleme yok. Paragraflar
+    /// arasında daha geniş bir nefes.
+    @ViewBuilder
+    private var breathLines: some View {
+        let size = readSize.larger.points
+        let lineGap = size * max(spacing.factor, MP.ReadSpacing.rahat.factor)
+        ForEach(Array(ReaderText.breathLines(of: page.paragraphs).enumerated()), id: \.offset) { _, lines in
+            VStack(alignment: .leading, spacing: size * 0.55) {
+                ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                    Text(ReaderWords.attributed(line, words: page.words, size: size,
+                                                ink: theme.body, highlight: wordHighlight,
+                                                childName: childName))
+                        .lineSpacing(lineGap)
+                        .tracking(easyReading ? size * 0.06 : 0)
+                        .tint(wordHighlight)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.bottom, size * 0.5)
+        }
+    }
+
+    /// Anlatıcı bu sayfayı okuyorsa okunan cümle.
+    private var readAlongMark: ReadAlongMark? {
+        guard layout == .paragraphs, let value = spoken.value,
+              value.text == page.spokenText.trimmingCharacters(in: .whitespacesAndNewlines) else { return nil }
+        return ReaderText.readAlongMark(paragraphs: page.paragraphs, spokenLocation: value.location)
+    }
+
+    private func readAlong(for index: Int, mark: ReadAlongMark?, in paragraph: String) -> ReaderWords.ReadAlong? {
+        guard let mark, index <= mark.paragraph else { return nil }
+        let whole = (paragraph as NSString).length
+        // Önceki paragraflar bütünüyle okunmuş; okunan paragrafta cümleye kadar.
+        return index < mark.paragraph
+            ? .init(start: whole, end: whole, fill: .clear, readInk: theme.muted)
+            : .init(start: mark.start, end: mark.end, fill: theme.readAlong, readInk: theme.muted)
+    }
+
     // MARK: - Künye
 
     @ViewBuilder
@@ -233,7 +309,8 @@ struct StoryPageView: View {
         if let folio {
             VStack {
                 Spacer(minLength: 0)
-                Text(folio)
+                // Kitaptaki gibi yalnızca sayfa numarası, ortada ve sessiz.
+                Text("— \(page.index + 1) —")
                     .font(MP.F.caption())
                     .foregroundStyle(theme.muted)
                     .opacity(showsFolio ? 0.75 : 0)
@@ -262,6 +339,9 @@ private struct PageIllustration: View {
     let fileName: String
     let label: String?
     let theme: MP.ReadTheme
+    /// Kenardan kenara: kutuyu doldurur, köşesiz. iPad açık kitabın sol
+    /// sayfası da böyle; telefonda dikey sayfa da artık böyle (21 Ekim 2026).
+    var bleeds: Bool = true
 
     @State private var image: UIImage?
 
@@ -271,12 +351,11 @@ private struct PageIllustration: View {
                 if let image {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        // Çerçevesiz, neredeyse köşesiz: çizim kâğıdın üstünde
-                        // metinle aynı kenar boşluklarını paylaşır, listedeki
-                        // bir küçük resim gibi kutulanmaz (§12).
-                        .clipShape(RoundedRectangle(cornerRadius: MP.R.sm, style: .continuous))
+                        .aspectRatio(contentMode: bleeds ? .fill : .fit)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        // Çerçevesiz ve köşesiz: çizim kâğıdın bir parçası,
+                        // listedeki bir küçük resim gibi kutulanmaz (§12).
+                        .clipped()
                 } else {
                     Color.clear
                 }
@@ -297,6 +376,33 @@ private struct PageIllustration: View {
     }
 }
 
+
+/// Kenardan kenara çizimin alt kenarı: kâğıt, çizimin üstüne hafif bir yayla
+/// biner. Çizim kutu gibi düz bir çizgiyle bitmez, sayfaya karışır.
+private struct PaperLip: View {
+    let theme: MP.ReadTheme
+
+    var body: some View {
+        LipShape()
+            .fill(theme.paper)
+            .frame(height: MP.S.x5)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+
+    private struct LipShape: Shape {
+        func path(in rect: CGRect) -> Path {
+            var p = Path()
+            p.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+            p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height * 0.35))
+            p.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.maxY - rect.height * 0.35),
+                           control: CGPoint(x: rect.midX, y: rect.minY - rect.height * 0.6))
+            p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            p.closeSubpath()
+            return p
+        }
+    }
+}
 
 /// VoiceOver: sayfa tek parça okunur; her yeni kelime bir eylem olarak
 /// eklenir ("Yeni kelime: müjdelemek"), seçilince kartı açar.

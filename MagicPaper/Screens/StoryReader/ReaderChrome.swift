@@ -71,10 +71,10 @@ struct ReaderChrome: View {
                     HStack(spacing: 0) {
                         iconButton(symbol: isFavorite ? "heart.fill" : "heart",
                                    label: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
-                                   tint: isFavorite ? MPColor.brandPink : MPColor.textPrimary,
+                                   tint: isFavorite ? MPColor.brandPink : theme.foreground,
                                    action: onToggleFavorite)
                         iconButton(symbol: "textformat", label: "Okuma ayarları",
-                                   tint: MPColor.textPrimary, action: onOpenSettings)
+                                   tint: theme.foreground, action: onOpenSettings)
                     }
                     .padding(.horizontal, MP.S.x1)
                     .mpGlassSurface(in: Capsule(style: .continuous))
@@ -97,8 +97,9 @@ struct ReaderChrome: View {
             }
         }
         .animation(MP.M.gated(MP.M.easeOut), value: scrubPage == nil)
-        // Gece kâğıdında cam ve üstündeki yazı koyu tona geçer.
-        .environment(\.colorScheme, theme == .night ? .dark : .light)
+        // Koyu kâğıtta (Akşam, Gece) cam koyu tona geçer. Yazı ve ikon
+        // renkleri temadan gelir: renk varlıkları açık/koyu moda göre değişmiyor.
+        .environment(\.colorScheme, theme.isDark ? .dark : .light)
     }
 
     // MARK: - Üst
@@ -106,7 +107,7 @@ struct ReaderChrome: View {
     private func glassCircle(symbol: String, label: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             MPIcon(symbol, size: MP.G.md, weight: .semibold)
-                .foregroundStyle(MPColor.textPrimary)
+                .foregroundStyle(theme.foreground)
                 .frame(width: MP.S.tapMin, height: MP.S.tapMin)
                 .mpGlassSurface(in: Circle())
                 .contentShape(Circle())
@@ -137,7 +138,7 @@ struct ReaderChrome: View {
                 HStack(spacing: MPSpacing.xs) {
                     Text(scrubPage.map { "Sayfa \($0 + 1)" } ?? label)
                         .mpText(.footnote).fontWeight(.heavy)
-                        .foregroundStyle(MPColor.textSecondary)
+                        .foregroundStyle(theme.muted)
                         .lineLimit(1)
                     Spacer(minLength: MPSpacing.xs)
                     speechButton
@@ -163,7 +164,7 @@ struct ReaderChrome: View {
                     .mpText(.footnote).fontWeight(.heavy)
                     .lineLimit(1)
             }
-            .foregroundStyle(MPColor.actionPrimary)
+            .foregroundStyle(theme.highlight)
             .frame(minHeight: MP.S.tapMin)
             .contentShape(Rectangle())
         }
@@ -177,10 +178,10 @@ struct ReaderChrome: View {
         GeometryReader { geo in
             let count = max(pagePreviews.count, 1)
             let shown = scrubPage.map { Double($0 + 1) / Double(count) } ?? progress
-            Capsule().fill(MPColor.readerDayTrack)
+            Capsule().fill(theme.muted.opacity(0.25))
                 .frame(height: scrubPage == nil ? MP.S.x1 : MP.S.x2)
                 .overlay(alignment: .leading) {
-                    Capsule().fill(MPColor.actionPrimary)
+                    Capsule().fill(theme.highlight)
                         .frame(width: max(MP.S.x2, geo.size.width * shown))
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -239,12 +240,12 @@ struct ReaderChrome: View {
                         .frame(height: on ? MP.S.x9 : MP.S.x8)
                         .background(theme.paper, in: RoundedRectangle(cornerRadius: MPRadius.xs))
                         .overlay(RoundedRectangle(cornerRadius: MPRadius.xs)
-                            .strokeBorder(on ? MPColor.actionPrimary : MPColor.borderKid, lineWidth: on ? 2 : 1))
+                            .strokeBorder(on ? theme.highlight : theme.muted.opacity(0.3), lineWidth: on ? 2 : 1))
                 }
             }
             .accessibilityHidden(true)
             Text(pagePreviews[page])
-                .mpText(.body).foregroundStyle(MPColor.textPrimary)
+                .mpText(.body).foregroundStyle(theme.foreground)
                 .lineLimit(2)
         }
         .padding(MPSpacing.md)
@@ -256,7 +257,7 @@ struct ReaderChrome: View {
     private func navButton(symbol: String, label: String, enabled: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             MPIcon(symbol, size: 24, weight: .bold)
-                .foregroundStyle(enabled ? MPColor.textPrimary : MPColor.textTertiary)
+                .foregroundStyle(enabled ? theme.foreground : theme.muted.opacity(0.45))
                 .frame(width: MPSize.minTouchKid, height: MPSize.minTouchKid)
                 .contentShape(Rectangle())
         }

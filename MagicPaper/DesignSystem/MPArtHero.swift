@@ -15,16 +15,21 @@ enum MPArt: Equatable {
 /// (`StoryCover`) başlığı bilerek resmin altında tutar; burada ise başlık
 /// sahnenin içindedir, bu yüzden okunurluğu karartma (`MP.Scrim`) taşır.
 ///
-/// Yükseklik genişlikten gelir (`aspect`), ama içerik uzarsa bileşen de uzar:
-/// en büyük Dynamic Type'ta başlık kesilmez, sahne arkada büyür.
+/// Yükseklik genişlikten gelir (`aspect`) ya da sabittir (`height`, Günlük'ün
+/// boyalı sahneleri). Oranlı hâlde içerik uzarsa bileşen de uzar: en büyük
+/// Dynamic Type'ta başlık kesilmez, sahne arkada büyür. Sabit hâlde çağıran
+/// metni sınırlar (`dynamicTypeSize`, `lineLimit`).
 ///
 /// Arka plan genelde bir sanat seti görselidir (`init(art:)`). Görseli henüz
 /// olmayan bir masal kendi kapağını verebilir (`init(backdrop:)`); karartma
-/// iki durumda da aynıdır.
+/// iki durumda da aynıdır. Arka plan VoiceOver'dan gizlidir; sahneye dokununca
+/// bir şey açılıyorsa eylem içerikte ya da sahnenin üstünde durur.
 struct MPArtHero<Backdrop: View, Content: View>: View {
     let backdrop: Backdrop
     /// Genişlik / yükseklik. Sanat seti hero'su 3:4 üretilir.
     let aspect: CGFloat
+    /// Verilirse oran yerine bu yükseklik.
+    let height: CGFloat?
     let content: Content
 
     init(aspect: CGFloat = 3.0 / 4.0,
@@ -32,14 +37,30 @@ struct MPArtHero<Backdrop: View, Content: View>: View {
          @ViewBuilder content: () -> Content) {
         self.backdrop = backdrop()
         self.aspect = aspect
+        self.height = nil
+        self.content = content()
+    }
+
+    init(height: CGFloat,
+         @ViewBuilder backdrop: () -> Backdrop,
+         @ViewBuilder content: () -> Content) {
+        self.backdrop = backdrop()
+        self.aspect = 3.0 / 4.0
+        self.height = height
         self.content = content()
     }
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Color.clear
-                .aspectRatio(aspect, contentMode: .fit)
-                .frame(maxWidth: .infinity)
+            if let height {
+                Color.clear
+                    .frame(maxWidth: .infinity)
+                    .frame(height: height)
+            } else {
+                Color.clear
+                    .aspectRatio(aspect, contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+            }
 
             VStack(alignment: .leading, spacing: MP.S.x2) {
                 content
@@ -52,9 +73,10 @@ struct MPArtHero<Backdrop: View, Content: View>: View {
             .background(alignment: .top) {
                 VStack(spacing: 0) {
                     MP.Scrim.feather.frame(height: MP.Scrim.featherHeight)
-                    MP.Scrim.solid
+                    MP.Scrim.body
                 }
                 .padding(.top, -MP.Scrim.featherHeight)
+                .allowsHitTesting(false)
                 .accessibilityHidden(true)
             }
         }

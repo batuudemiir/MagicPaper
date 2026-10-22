@@ -168,13 +168,7 @@ struct LibraryView: View {
     private var shelf: some View {
         let items = model.items(for: filter, query: query, sort: sort)
         VStack(alignment: .leading, spacing: MPSpacing.lg) {
-            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
-                Text(filter == .all ? "Kitaplarım" : filter.title)
-                    .mpText(.title3).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                Spacer(minLength: MPSpacing.sm)
-                sortMenu
-            }
+            MPSectionHeader(title: filter == .all ? "Kitaplarım" : filter.title, trailing: { sortMenu })
             if items.isEmpty {
                 noMatch
             } else {

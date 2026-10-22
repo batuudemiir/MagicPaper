@@ -25,7 +25,7 @@ struct BookExportView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Masal kitabı", subtitle: "Masalları kitap haline getir", onBack: onClose)
+                MPParentHeader(title: "Masal kitabı", subtitle: "Masalları kitap haline getir", onBack: onClose)
 
                 if profileManager.profiles.count > 1 { childPicker }
 

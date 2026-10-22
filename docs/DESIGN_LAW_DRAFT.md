@@ -63,6 +63,16 @@ Token'ların tek kaynağı `DesignSystem/MPTheme.swift`. Aşağıdaki kurallar
 - Gövde metni, üç okuma temasında da (`Gündüz`, `Sepya`, `Gece`)
   kâğıda karşı en az 4.5:1 kontrast.
 
+### Üst başlık (karar: 22 Ekim 2026)
+- Ebeveyn alanında yalnızca `MPParentHeader`. Kök sayfa (Özet, Güvenlik, Ayarlar) `MPParentHeader(title:subtitle:)`: büyük başlık + "Çocuk modu". Alt sayfa `MPParentHeader(title:subtitle:onBack:)`: "Geri" + küçük başlık; "Çocuk modu" alt sayfada görünmez.
+- Çocuk alanının alt sayfalarında `MPTopBar`. Çocuk kök sekmelerinin başlıkları ve illüstrasyonlu üst bölgeler (`GunlukHeader`, klasik detay) henüz bu kurala dahil değil; hedef `MPArtHero` (`docs/BUTUNLUK_DENETIMI.md`).
+- Geri her yerde `MPCircleButton("chevron.left")` + "Geri"; başlık metni `isHeader` trait'i taşır.
+- Başlık kendi kenar boşluğunu eklemez: yatay boşluk `screenGutter`, üst boşluk sayfanın. Ekran kendi başlık satırını yazmaz, negatif boşlukla başlığı kaydırmaz.
+
+### Bölüm başlığı ve boş durum (karar: 22 Ekim 2026)
+- Bölüm başlığı yalnızca `MPSectionHeader`: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`); "Tümü ›" `link:`, sayaç `note:`, ekranın kendi denetimi `trailing:`. `HomeSection` ve `ParentSection` bunun üstüne kurulu. Kart içi bölüm (`GunlukSection`) ayrı tasarım, kural dışı.
+- Boş ve hata durumu yalnızca `MPStateView`: Ragi + bir başlık + bir cümle + tek eylem; yalnızca çocuk alanında. Ebeveyn alanında boş durum liste satırı (`MPListRow`) dilinde, Ragi'siz. Ekranda Ragi zaten görünüyorsa (Kitaplık'ta "Eşleşen kitap yok") ikinci Ragi konmaz, yalnızca söz kalır.
+
 ### İkon
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 

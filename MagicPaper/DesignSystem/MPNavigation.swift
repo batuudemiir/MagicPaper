@@ -242,11 +242,13 @@ struct MPSheet<Content: View, Footer: View>: View {
                 .ignoresSafeArea()
                 .onTapGesture { onClose?() }
                 .transition(.opacity)
+                .accessibilityHidden(true)
 
             VStack(spacing: 0) {
                 HStack(spacing: 12) {
                     if let title {
                         Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textTitle)
+                            .accessibilityAddTraits(.isHeader)
                     }
                     Spacer(minLength: 0)
                     if let onClose {
@@ -268,8 +270,11 @@ struct MPSheet<Content: View, Footer: View>: View {
                 .padding(.top, 20)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
+                // Tutamak sistem sheet'iyle aynı ölçüde (iOS 26 düzeni, 21 Ekim 2026).
                 .overlay(alignment: .top) {
-                    Capsule().fill(MP.C.borderStrong).frame(width: 44, height: 5).padding(.top, 8)
+                    Capsule().fill(MP.C.borderStrong).frame(width: MP.S.x8 - MP.S.x1, height: 5)
+                        .padding(.top, MP.S.x2)
+                        .accessibilityHidden(true)
                 }
 
                 ScrollView { content().padding(.horizontal, 20).padding(.bottom, 20).padding(.top, 4) }
@@ -277,14 +282,19 @@ struct MPSheet<Content: View, Footer: View>: View {
                 footer().padding(.horizontal, 20).padding(.bottom, 12)
             }
             .frame(maxHeight: UIScreen.main.bounds.height * 0.86)
+            // Yüzey diğer açılır pencerelerle aynı kâğıt (`mpSheet`).
             .background(
-                MP.C.surfaceCard
+                MPColor.backgroundKid
                     .clipShape(UnevenRoundedRectangle(
                         topLeadingRadius: MP.R.sheet, bottomLeadingRadius: 0,
                         bottomTrailingRadius: 0, topTrailingRadius: MP.R.sheet, style: .continuous))
             )
             .mpShadow(MP.Sh.sheet)
             .transition(.move(edge: .bottom).combined(with: .opacity))
+            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
+            .accessibilityElement(children: .contain)
+            .accessibilityAddTraits(.isModal)
+            .accessibilityAction(.escape) { onClose?() }
         }
         .animation(MP.M.gated(MP.M.spring), value: true)
     }

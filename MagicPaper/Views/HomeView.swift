@@ -10,6 +10,11 @@ import SwiftUI
 /// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
 /// sahnenin kenarında yıldız ve seri çipleri, sert alt kenarlı kartlar
 /// (`MPHomeChrome.swift`).
+///
+/// 22 Ekim 2026 (Batuhan onayı): iOS düzeni. Düz beyaz sayfa, sola yaslı büyük
+/// başlık ve altında tek satır yıldız/seri; tam genişlik sahne bu akşamın
+/// kartının içine taşındı (Ragi orada, ekranın tek maskotu). Modlar resimli
+/// kartlar yerine masal yazma adımlarıyla aynı satırlar; bölümler lavanta (`cardSoft`).
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -21,25 +26,12 @@ struct HomeView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
-                // Kaydırma ölçüsü: içerik sabitlemesinden etkilenmeyen görünmez işaret.
-                Color.clear.frame(height: 0)
-                    .onGeometryChange(for: CGFloat.self) { $0.frame(in: .global).minY } action: { y in
-                        // Kaydırma karesi başına durum YAZILMAZ: her yazım sayfanın
-                        // tamamını yeniden hesaplatır ve başlık bölgesinde kasma
-                        // yapıyordu (16 Ekim). Kaydırmaya bağlı görsel etkiler
-                        // `visualEffect` içinde çizim anında hesaplanır; burada
-                        // yalnızca bir kez dinlenme konumu yazılır.
-                        if restY == nil { restY = y }
-                    }
-                content
-            }
+            content
         }
         // Saat çubuğunun altında şerit yok: içerik iOS'un standart davranışıyla
         // altından akar. Beyaz şerit renkli kartların üstünde blok gibi
         // görünüyordu (Batuhan, 16 Ekim).
         .background(pageBackground.ignoresSafeArea())
-        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
         // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
         .onAppear(perform: refreshCaches)
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
@@ -58,34 +50,23 @@ struct HomeView: View {
 
     private var content: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-            HomeHeader(greeting: greeting, childName: activeName, isNight: isNight,
-                       avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
-                                          size: MPSize.headerAvatar) },
-                       onAvatar: { app.openKidCorner() },
-                       onLock: { app.requestParentMode() })
-                .padding(.top, MPSpacing.md)
-                // Saatin altına girmeden kaydırdıkça solar (çizim anında; durum yok).
-                .visualEffect { [restY] content, proxy in
-                    let y = proxy.frame(in: .global).minY
-                    let scrolled = max(0, (restY ?? y) - y)
-                    return content.opacity(max(0, 1 - scrolled / MP.S.x8))
-                }
-
-            // Sahnenin alt kenarına binen çipler, hemen altında bu akşamın kartı.
-            VStack(spacing: MPSpacing.md) {
-                // Çipler Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada
-                // (basılabilir görünen öğe çalışsın, 16 Ekim denetimi).
+            VStack(alignment: .leading, spacing: 0) {
+                HomeHeader(greeting: greeting, childName: activeName,
+                           avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
+                                              size: MPSize.headerAvatar) },
+                           onAvatar: { app.openKidCorner() },
+                           onLock: { app.requestParentMode() })
+                // Satır Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada.
                 Button { MPHaptics.tap(); app.openKidCorner() } label: {
-                    HomeStatChips(stars: stars, streak: streak.currentStreak)
+                    HomeStatLine(stars: stars, streak: streak.currentStreak)
                 }
                 .buttonStyle(MPPressStyle())
-                .accessibilityElement(children: .combine)
                 .accessibilityHint("Benim köşemi açar")
-                HomeHeroCard(state: tonightState, coverIcon: tonightCover?.icon,
-                             coverTone: tonightCover?.tone ?? .yellow, onPrimary: tonightAction)
             }
-            .padding(.top, sceneClearance)
-            .homeEntrance(0)
+            .padding(.top, MPSpacing.md)
+
+            HomeHeroCard(state: tonightState, isNight: isNight, onPrimary: tonightAction)
+                .homeEntrance(0)
 
             if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
 
@@ -115,25 +96,9 @@ struct HomeView: View {
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, MPSpacing.xxxl)
-        // Sahne içerikle birlikte kayar; kartlar sabit bir zeminin üstünden geçmez.
-        .background(alignment: .top) {
-            // Üst pay geniş: aşağı çekince sahne içerikle birlikte iner, açılan
-            // boşluğu gökyüzü rengi doldurur (esneme yok, karar 16 Ekim).
-            HomeScene(isNight: isNight, height: sceneHeight, bleed: 400, mascotLift: 46)
-        }
     }
 
-    /// Sahne ekran genişliğine göre ölçeklenir; çipler sahnenin alt kenarına biner.
-    @State private var width: CGFloat = 402
-    /// İçeriğin dinlenme konumu (global y); kaydırma etkileri buna göre çizilir.
-    @State private var restY: CGFloat?
-    /// Referanstaki gibi ekranın yaklaşık %40'ı (saat çubuğu dahil): çipler ve
-    /// bu akşamın kartı ilk bakışta görünür.
-    private var sceneHeight: CGFloat { min(max(width * 0.74, 270), 340) }
-    /// Başlıktan çiplere kadar: çipler sahnenin alt kenarına biner.
-    private var sceneClearance: CGFloat { sceneHeight - 132 }
-
-    /// Uyku saatinde sahne geceye döner; sayfa açık kalır.
+    /// Uyku saatinde kartın sahnesi geceye döner; sayfa açık kalır.
     private var isNight: Bool {
         if case .bedtime = tonightState { return true }
         return false
@@ -193,19 +158,6 @@ struct HomeView: View {
         return false
     }
 
-    private var tonightCover: (icon: String, tone: MPWorldTone)? {
-        let tonight = tonight
-        switch tonight.tonight() {
-        case .resume:
-            guard let story = tonight.resumeStory else { return nil }
-            return (story.mpWorld.icon, story.mpWorld.tone)
-        case .unread:
-            return ("book", .sky)
-        default:
-            return nil
-        }
-    }
-
     private func tonightAction() {
         MPHaptics.tap()
         app.openTonight()
@@ -250,39 +202,35 @@ struct HomeView: View {
         StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
-    /// Soru ve mod düğmeleri tek kartta; Ragi sahnede olduğu için kart maskotsuz.
-    /// Masal yaratmaya giriş: büyük mod kartları (Ragi sahnede; kart maskotsuz).
+    /// Masal yaratmaya giriş: masal yazma adımlarıyla aynı satırlar, tek gri
+    /// listede (22 Ekim 2026; önceden resimli büyük kartlar). Satır akışı o
+    /// modla, ikinci adımdan açar.
     private var modeStrip: some View {
         HomeSection(title: "Yeni bir masal yaz", contained: false) {
-            let wide = shownModes.count == 1 || typeSize.isAccessibilitySize
-            let layout = wide
-                ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
-                : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
-            layout {
-                ForEach(shownModes, id: \.self) { mode in
-                    HomeModeCard(title: mode.shortTitle, systemImage: mode.symbol, tone: mode.tone,
-                                 art: modeArt(mode), wide: wide, night: isNight && wide,
-                                 badge: mode == emphasizedMode ? "Bu akşam" : nil) {
+            VStack(spacing: 0) {
+                ForEach(Array(shownModes.enumerated()), id: \.element) { index, mode in
+                    if index > 0 { MPRowDivider(area: .kid) }
+                    Button {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
+                    } label: {
+                        MPListRow(systemImage: mode.symbol, tone: mode.tone, title: mode.title,
+                                  subtitle: mode == emphasizedMode ? "Bu akşam için önerilen" : mode.promise)
+                            .frame(minHeight: MPSize.minTouchKid)
                     }
+                    .buttonStyle(MPPressStyle(.highlight))
+                    .accessibilityElement(children: .combine)
                     .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
-            // "Bu akşam" etiketi kartın üst kenarına biner.
-            .padding(.top, emphasizedMode == nil ? 0 : MPSpacing.sm)
+            .padding(.vertical, MPSpacing.xxs)
+            .background(MPColor.cardSoft,
+                        in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         }
     }
 
-    /// Mod kartının sahneciği (`Assets.xcassets/Scenes`); uyku saatinde tek kart
-    /// kaldığında Uyku'nun gece hâli.
-    private func modeArt(_ mode: StoryMode) -> String {
-        mode == .bedtime && isNight && shownModes.count == 1
-            ? "Scenes/mode-bedtime-night" : "Scenes/mode-\(mode.rawValue)"
-    }
-
-    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler açık gri ya da pastel.
+    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler lavanta (`cardSoft`).
     private var pageBackground: Color { MPColor.backgroundSurface }
 
     // MARK: - Günün masalı

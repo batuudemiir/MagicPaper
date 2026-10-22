@@ -19,7 +19,6 @@ struct ParentOverviewView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Özet", subtitle: weekLabel)
-                    .padding(.horizontal, -MPSpacing.screenH)
 
                 if profileManager.profiles.count > 1 { childPicker }
                 if settings.approve && !pendingStories.isEmpty { approvalQueue }
@@ -29,6 +28,7 @@ struct ParentOverviewView: View {
                 subscriptionSection
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.lg)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
@@ -176,9 +176,8 @@ struct ParentOverviewView: View {
 
     private var recentSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: "Son masallar",
-                            actionTitle: "Kitap yap",
-                            action: { app.parentRoute = .bookExport })
+            MPSectionHeader(title: "Son masallar", area: .parent,
+                            link: ("Kitap yap", { app.parentRoute = .bookExport }))
             MPGroupedList(area: .parent) {
                 ForEach(Array(recentStories.enumerated()), id: \.element.id) { index, story in
                     if index > 0 { MPRowDivider(area: .parent) }
@@ -210,7 +209,7 @@ struct ParentOverviewView: View {
 
     private var subscriptionSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: "Abonelik")
+            MPSectionHeader(title: "Abonelik", area: .parent)
             MPCard(area: .parent) {
                 HStack(spacing: MPSpacing.md) {
                     MPIconTile(systemImage: "crown", tone: .yellow, size: 48)

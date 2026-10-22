@@ -205,7 +205,8 @@ CSS blur değeri SwiftUI `radius` değerinin yaklaşık 2 katıdır; Swift taraf
 | `MPPill`, `MPStatTile`, `MPBadgeCard`, `MPNotice` | MPCards | notice: info, success, warning, danger | Özet, Benim köşem, uyarılar |
 | `KidTabBar` | Components/MPNavigationChrome.swift | Ana sayfa · Yarat (64 pt FAB) · Kitaplık | Çocuk kökü |
 | `ParentTabs` | MPNavigationChrome | Özet · Onaylar (rozet) · Güvenlik · Ayarlar | Ebeveyn kökü |
-| `KidHeader`, `HeaderWash`, `MPTopBar`, `ParentHeader` | MPNavigationChrome | kök / alt sayfa | Üst bölgeler |
+| `KidHeader`, `HeaderWash`, `MPTopBar` | MPNavigationChrome | kök / alt sayfa | Çocuk alanı üst bölgeleri |
+| `MPParentHeader` | Screens/Parent/MPParentHeader.swift | kök (büyük başlık + Çocuk modu) / alt sayfa (Geri + başlık) | Ebeveyn alanının tek üst başlığı (22 Ekim 2026; `ParentHeader` kaldırıldı) |
 | `Mascot`, `MascotImage`, `SpeechBubble`, `MascotSays`, `MPStateView` | Components/MPMascot.swift | 14 maskot | Boş, hata, karşılama |
 | `WorldTile`, `StoryCover`, `TonightHeroCard` (4 durum), `StreakStrip`, `StoryProgressRing`, `StageRow`, `NewWordCard`, `ReaderTheme`, `HeroAvatarView` | Components/MPStory.swift | | Ana sayfa, Kitaplık, Okuyucu, Üretim |
 

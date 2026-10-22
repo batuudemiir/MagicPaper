@@ -128,6 +128,15 @@ enum MP {
         static let sepya700 = Color(hex: 0x503A22)
         static let sepya900 = Color(hex: 0x3B2A18)
 
+        // Okuyucunun iki ek kâğıdı (21 Ekim 2026). Krem gündüzle sepya arası
+        // sıcak beyaz; Akşam geceden önceki yumuşak mor-gri. Yalnızca
+        // `ReadTheme` okur. Kontrast: mürekkep ve ikincil yazı ≥ 4.5:1.
+        static let krem100  = Color(hex: 0xFBF3E4)
+        static let aksam25  = Color(hex: 0xEDE6F4)
+        static let aksam200 = Color(hex: 0xC2B8D3)
+        static let aksam300 = Color(hex: 0xD4C2F2)
+        static let aksam700 = Color(hex: 0x3B3450)
+
         // Dünya aksanları — gül/hardal/mercan/yeşim/gece'nin karşılamadığı
         // masal dünyaları. Tüketicileri: `MP.World.accent` ve ondan türeyen
         // kategori eşlemeleri. Marka rengi değillerdir, arayüzde tek
@@ -312,42 +321,63 @@ enum MP {
     // MARK: Okuma temaları — uygulamadaki tek tema anahtarı
 
     enum ReadTheme: String, CaseIterable, Identifiable {
-        case light, sepia, night
+        case light, cream, sepia, dusk, night
         public var id: String { rawValue }
 
         var label: String {
             switch self {
             case .light: return "Gündüz"
+            case .cream: return "Krem"
             case .sepia: return "Sepya"
+            case .dusk:  return "Akşam"
             case .night: return "Gece"
             }
         }
+        /// Koyu kâğıt: üstündeki cam ve kontroller koyu tona geçer.
+        var isDark: Bool { self == .dusk || self == .night }
+
         var background: Color {
             switch self {
             case .light: return MPColor.readerDayBackground
+            case .cream: return Palette.krem100
             case .sepia: return MPColor.readerSepiaBackground
+            case .dusk:  return Palette.aksam700
             case .night: return MPColor.readerNightBackground
             }
         }
         var foreground: Color {
             switch self {
-            case .light: return MPColor.readerDayText
+            case .light, .cream: return MPColor.readerDayText
             case .sepia: return MPColor.readerSepiaText
+            case .dusk:  return Palette.aksam25
             case .night: return MPColor.readerNightText
             }
         }
-        var body: Color {
-            switch self {
-            case .light: return MPColor.readerDayText
-            case .sepia: return MPColor.readerSepiaText
-            case .night: return MPColor.readerNightText
-            }
-        }
+        var body: Color { foreground }
         var muted: Color {
             switch self {
-            case .light: return MPColor.readerDaySecondary
+            case .light, .cream: return MPColor.readerDaySecondary
             case .sepia: return MPColor.readerSepiaSecondary
+            case .dusk:  return Palette.aksam200
             case .night: return MPColor.readerNightSecondary
+            }
+        }
+        /// Sesli okumada okunan cümlenin altındaki sıcak fosforlu kalem.
+        /// Mürekkep üstünde kalır; okunurluğu bozmaz.
+        var readAlong: Color {
+            switch self {
+            case .light, .cream: return Palette.hardal100
+            case .sepia: return Palette.hardal200.opacity(0.55)
+            case .dusk, .night: return Palette.hardal400.opacity(0.28)
+            }
+        }
+        /// Yeni kelime ve vurgu rengi: kahraman adı tonu, kâğıda karşı okunur.
+        var highlight: Color {
+            switch self {
+            case .light, .cream: return MPColor.readerDayHeroName
+            case .sepia: return MPColor.readerSepiaHeroName
+            case .dusk:  return Palette.aksam300
+            case .night: return MPColor.readerNightHeroName
             }
         }
 
@@ -358,20 +388,15 @@ enum MP {
         /// kullanır, `MPStoryPDF`'in bastığı kağıt rengiyle aynı tonu
         /// (`kagit100`) tutar. Ayrı bir property olmasının sebebi
         /// `DailyStoryReaderView`'ın `background`'ı okumaya devam etmesi.
-        var paper: Color {
-            switch self {
-            case .light: return MPColor.readerDayBackground
-            case .sepia: return MPColor.readerSepiaBackground
-            case .night: return MPColor.readerNightBackground
-            }
-        }
+        var paper: Color { background }
 
         /// Cilt payı — sayfanın iç kenarındaki ince gölge.
         /// Sistemdeki derinlik `mpEdge`'tir; bu onun kitaba özgü karşılığı.
         var spine: Color {
             switch self {
-            case .light: return Palette.kagit500.opacity(0.22)
+            case .light, .cream: return Palette.kagit500.opacity(0.22)
             case .sepia: return Palette.sepya300.opacity(0.22)
+            case .dusk:  return Palette.gece800.opacity(0.30)
             case .night: return Palette.gece800.opacity(0.38)
             }
         }
@@ -484,6 +509,9 @@ enum MP {
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }
+        /// Masal metnindeki ses kelimeleri ("pıt pıt", 21 Ekim 2026): okuma
+        /// boyutunun bir tık büyüğü, başlık ailesinin en kalın kesiminde.
+        static func sound(_ size: CGFloat) -> Font { .custom(display, size: size * 1.12).weight(.black) }
 
         /// Glyph (SF Symbol / emoji) boyutu.
         ///
@@ -532,6 +560,34 @@ enum MP {
         }
         /// line-height 1.72
         var lineSpacing: CGFloat { points * 0.72 }
+        /// Bir üst boyut (en büyükte kendisi): 3-6 yaşın nefes satırları
+        /// seçilen boyutun bir üstünde dizilir.
+        var larger: ReadSize {
+            let all = ReadSize.allCases
+            let i = all.firstIndex(of: self) ?? 0
+            return all[min(i + 1, all.count - 1)]
+        }
+    }
+
+    /// Satır aralığı ayarı (karar: 21 Ekim 2026). Masal metninin satır arası
+    /// `points × factor`; Normal eski sabit 0.72.
+    enum ReadSpacing: String, CaseIterable, Identifiable {
+        case normal, rahat, genis
+        public var id: String { rawValue }
+        var label: String {
+            switch self {
+            case .normal: return "Normal"
+            case .rahat:  return "Rahat"
+            case .genis:  return "Geniş"
+            }
+        }
+        var factor: CGFloat {
+            switch self {
+            case .normal: return 0.72
+            case .rahat:  return 0.9
+            case .genis:  return 1.1
+            }
+        }
     }
 
     // MARK: Boşluk
@@ -641,6 +697,12 @@ enum MP {
         @available(iOS 26.0, *)
         static var bar: SwiftUI.Glass { .regular.tint(C.surfaceCard.opacity(0.25)) }
 
+        /// Yüzen eylem dairesi (Masal yaz): marka renginde tonlu ve
+        /// etkileşimli; dokununca sistem camı gibi esner (karar: 21 Ekim 2026,
+        /// yalnızca bu daire; çubuk esnemez).
+        @available(iOS 26.0, *)
+        static var action: SwiftUI.Glass { .regular.tint(C.brand).interactive() }
+
         /// iOS 26 öncesi yüzeyin dolgusu (malzemenin üstünde) ve kenarı.
         static let fallbackFill = C.surfaceCard.opacity(0.72)
         static let fallbackEdge = C.edgeGlass
@@ -664,11 +726,18 @@ enum MP {
         /// Metnin üstünde karartmanın sıfırdan tam koyuya çıktığı mesafe.
         static let featherHeight: CGFloat = S.x10
 
-        /// Metnin arkası — tam koyu.
+        /// En koyu nokta — metin bloğunun dibi.
         static var solid: Color { ink.opacity(peak) }
-        /// Metnin üstündeki geçiş — yukarıdan aşağı saydamdan `solid`'e.
+        /// Metnin ilk satırının arkası: resim hâlâ görünür, beyaz yazı okunur.
+        static var mid: Color { ink.opacity(peak * 0.5) }
+        /// Metnin üstündeki geçiş — saydamdan `mid`'e.
         static var feather: LinearGradient {
-            LinearGradient(colors: [ink.opacity(0), solid], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [ink.opacity(0), mid], startPoint: .top, endPoint: .bottom)
+        }
+        /// Metnin arkası — `mid`'den `solid`'e. Düz koyu blok değil: boyalı
+        /// sahne altta da seçilsin (Günlük vitrini, 14 Ekim onayı; 23 Ekim 2026).
+        static var body: LinearGradient {
+            LinearGradient(colors: [mid, solid], startPoint: .top, endPoint: .bottom)
         }
     }
 }

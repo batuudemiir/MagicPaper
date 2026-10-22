@@ -73,6 +73,9 @@ enum MPColor {
     static let actionGradientBottom = Color("Colors/actionGradientBottom")
     /// #EFE6F7
     static let actionSoft = Color("Colors/actionSoft")
+    /// Beyaz sayfadaki kart ve bölüm yüzeyi: ikincil düğmelerle aynı lavanta
+    /// (karar: 22 Ekim 2026). Üstündeki küçük etiketler `actionPrimary`.
+    static let cardSoft = actionSoft
     /// #3A2458
     static let actionPressedText = Color("Colors/actionPressedText")
     /// #D9D2C7

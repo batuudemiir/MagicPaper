@@ -19,6 +19,11 @@ struct ContentView: View {
     @ObservedObject private var surfaceRouter = MPSurfaceRouter.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Masal yaz dairesinden masal yazma ekranına yakınlaşma.
+    @Namespace private var createZoom
+    /// Masal yazma ekranı Masal yaz dairesinden mi açıldı. Başka yerden
+    /// (ana sayfa kartları) açılınca daireden büyümez.
+    @State private var createFromBar = false
     /// 09 + 10: ilk profil oluştuktan sonra bir kez.
     @State private var firstRun: FirstRunName?
     /// İlk masal hazırsa, kapak kapandıktan sonra okunur.
@@ -119,9 +124,12 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
                 app.creationPreset = nil
                 app.creationFamilyID = nil
+                createFromBar = false
                 app.runAfterReader()
             }) {
                 StoryCreationFlow(preset: app.creationPreset, family: app.creationFamilyID).environmentObject(app).environmentObject(settings)
+                    .mpZoomDestination(KidTabBar.createZoomID,
+                                       in: createFromBar && !reduceMotion ? createZoom : nil)
             }
             .sheet(item: $app.actionsStory, onDismiss: {
                 if let next = app.pendingRead {
@@ -188,30 +196,10 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             MPColor.backgroundKid.ignoresSafeArea()
 
-            // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
-            // yalnızca solma.
-            ZStack {
-                switch app.tab {
-                case .home:    HomeView().transition(tabTransition)
-                case .gunluk:  GunlukView().transition(tabTransition)
-                case .library: LibraryView().transition(tabTransition)
-                case .corner:  KidCornerView().transition(tabTransition)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.tab)
-            .mpFloatingBar {
-                KidTabBar(
-                    selection: Binding(
-                        get: { app.tab.kidTab },
-                        set: { next in
-                            guard MPTab(next) != app.tab else { app.reselectTab(); return }
-                            MPHaptics.selection()
-                            app.tab = MPTab(next)
-                        }
-                    ),
-                    onCreate: { app.startStoryCreation() }
-                )
+            if #available(iOS 26.0, *) {
+                systemKidTabs
+            } else {
+                customKidTabs
             }
 
             if let child = app.seriesChildID {
@@ -221,6 +209,77 @@ struct ContentView: View {
             }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
+    }
+
+    /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
+    private enum KidTabSlot: Hashable {
+        case tab(KidTab)
+        case create
+    }
+
+    /// iOS 26: sistemin Liquid Glass sekme çubuğu (22 Ekim 2026, Batuhan).
+    ///
+    /// Sürükleyerek seçme, mercek, cam ve erişilebilirlik sistemden gelir.
+    /// "Masal yaz" `.search` rolüyle sistemin ayrı dairesinde durur (Apple'ın
+    /// ayrık sekmesi). Bir yer değil eylem olduğu için seçimi hiç tutulmaz:
+    /// bağlama ona geçmek istediğinde masal yazma açılır, seçili sekme aynı
+    /// kalır. Sistem dairesi yakınlaşma kaynağı olamadığından masal yazma
+    /// burada olağan geçişle açılır.
+    @available(iOS 26.0, *)
+    private var systemKidTabs: some View {
+        TabView(selection: Binding<KidTabSlot>(
+            get: { .tab(app.tab.kidTab) },
+            set: { next in
+                switch next {
+                case .tab(let tab): selectKidTab(tab)
+                case .create:
+                    MPHaptics.tap()
+                    app.startStoryCreation()
+                }
+            }
+        )) {
+            Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { HomeView() }
+            Tab("Günlük", systemImage: "sun.max", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
+            Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { LibraryView() }
+            Tab("Köşem", systemImage: "face.smiling", value: KidTabSlot.tab(.corner)) { KidCornerView() }
+            Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: .search) {
+                Color.clear
+            }
+        }
+        .tint(MP.C.brand)
+    }
+
+    /// iOS 26 öncesi: kendi yüzen çubuğumuz (`KidTabBar`).
+    private var customKidTabs: some View {
+        // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
+        // yalnızca solma.
+        ZStack {
+            switch app.tab {
+            case .home:    HomeView().transition(tabTransition)
+            case .gunluk:  GunlukView().transition(tabTransition)
+            case .library: LibraryView().transition(tabTransition)
+            case .corner:  KidCornerView().transition(tabTransition)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.tab)
+        .mpFloatingBar {
+            KidTabBar(
+                selection: Binding(get: { app.tab.kidTab }, set: selectKidTab),
+                onCreate: {
+                    createFromBar = true
+                    app.startStoryCreation()
+                },
+                zoom: createZoom
+            )
+        }
+    }
+
+    /// Seçili sekmeye yeniden dokunmak sayfayı başa alır.
+    private func selectKidTab(_ next: KidTab) {
+        guard MPTab(next) != app.tab else { app.reselectTab(); return }
+        MPHaptics.selection()
+        app.tab = MPTab(next)
     }
 
     private var parentRoot: some View {

@@ -211,6 +211,97 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Bilerek değişmeyen:** motor havuzu (süzgeç yalnızca ekranda), `CompanionStep.symbol(forType:)` eşlemesi, B2 sahne kütüphanesi, ilgi eşiği, kayıtlı profiller, üç ulaşılamayan uyku blueprint'i (düzeltmesi uyku arkı oturumunun).
 - **Test:** uygulama demeti `xcodebuild -scheme MagicPaper -only-testing:MagicPaperTests test` (iPhone 17 Pro simülatörü) → **753 test, 0 hata, 1 atlanan.** Tur başındaki beş kırmızı vakanın beşi kapandı. Motor demeti bu turda yeniden çalıştırılmadı (değişen dosyalar uygulama katmanında). Simülatörde ekran görüntüsü alınmadı.
 - **Dosyalar:** `MagicPaper/Screens/StoryCreation/StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryIdeaStep.swift` (silindi), `MagicPaper/StoryEngineBridge/StoryIdeaStepAccess.swift` (silindi), `StoryChoiceSource.swift`, `MagicPaper/Views/SettingsView.swift`, `MagicPaperTests/CompanionSymbolTests.swift`, `IllustratedBookFlowTests.swift`, `InterestProfileTests.swift`, `SceneLibraryTests.swift`, `StoryCreationStepsTests.swift`, `StoryModeFlowTests.swift`.
+### 2026-10-23 · main (commit aşağıda) · Bütünlük 4. adım: illüstrasyon üstü karartma tek bileşende
+
+- Günlük vitrini, klasik detay ve klasik seri sahnelerindeki elle kurulmuş `LinearGradient` karartmaları kalktı; metin ve karartma artık `MPArtHero`'dan geliyor (Design law: illüstrasyon üstü metin yalnızca `MPArtHero`).
+- `MPArtHero` sabit yükseklik aldı (`init(height:backdrop:content:)`); oranlı hâli değişmedi. Karartma dokunuşu geçiriyor (`allowsHitTesting(false)`): vitrinde sahneye dokununca masal sayfası açılmaya devam ediyor (simülatörde denendi).
+- Karartmanın biçimi değişti: metnin arkası düz `solid` blok yerine `MP.Scrim.mid` → `solid` geçişi (yeni `mid` ve `body` token'ları, `MPTheme.swift`). Gerekçe: canlıda `MPArtHero` kullanan ekran yoktu; onaylı görünüm Günlük'ün geçişiydi (14 Ekim), düz blok boyalı sahnenin altını kapatırdı. Metnin ilk satırının arkası eski Günlük geçişinden biraz daha koyu (≈%39 / ≈%20).
+- Görünen fark: sahne metni 8 pt yukarıda (alt boşluk 24 → `MP.S.x7` 32), satır arası 6 → 8. Sahne başlıkları, geri/paylaş düğmeleri ve `gunlukStage` kenarı aynı.
+- Bilerek değişmedi: vitrinin tepesindeki krem açma ("Günlük" yazısının arkası) ve seri bölüm küçük resmindeki düz karartma. Kapak sanatının kendi karartması (`MPStory`, kapak) kural gereği serbest.
+- Görülen açık: en büyük yazıda karanlık bir slaytta (Uyuyan Güzel) "Günlük" başlığı soluk; krem açma yetmiyor. Bu adımın değişikliği değil, ayrı bakılacak.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; önceki adımlarla aynı dört içerik takımı, yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema): Günlük vitrini ve klasik detay, normal ve en büyük yazı; öncesi/sonrası karşılaştırıldı. Klasik seri sayfası görülmedi (aynı kod yolu). Koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `DesignSystem/MPArtHero.swift`, `DesignSystem/MPTheme.swift`, `Screens/Gunluk/GunlukHeader.swift`, `Screens/Gunluk/ClassicDetailView.swift`, `Screens/Gunluk/ClassicSeriesView.swift`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 3. adım: tek bölüm başlığı, tek boş durum
+
+- `MPSectionHeader` bütün bölüm başlıklarının tek satırı oldu: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`), isteğe bağlı alt satır, sayaç (`note:`), "Tümü ›" bağlantısı (`link:`), sol/sağ yuva. `HomeSection` (Ana sayfa, Benim köşem) ve `ParentSection` (Ayarlar, Güvenlik, Aile) başlığını buradan alıyor; Özet'in iki başlığı, Kitaplık'taki "Kitaplarım" (sağda sıralama), masal yazmadaki "Yol arkadaşı" ve "Masal ailem", Aile davetindeki "Ne yapabilsin?" taşındı.
+- Görünen fark: masal yazma adımının iki başlığı `headline`'dan `title3`'e çıktı (çocuk alanının diğer bölümleriyle aynı). Özet'teki "Kitap yap" bağlantısı artık okla ("Kitap yap ›"). "Ne yapabilsin?" `isHeader` aldı.
+- Boş durum: Ragi'li boş durum zaten `MPStateView`'dı ve kullanılıyordu (Kitaplık, seri sonu, hata, ebeveyn onayı); denetim bunu yanlış okumuştu. Kullanılmayan eski `MPEmptyState` (Ragi'siz, Legacy butonlu) ve `LegacyMPSectionHeader` silindi.
+- İstekten bilerek sapıldı: Aile üyeleri ebeveyn ekranı, Ragi ebeveyn alanında yok (16 Ekim kararı); boş satır `MPListRow` dilinde ("Henüz çocuk profili yok · Ayarlar'dan profil ekleyebilirsin"). Kitaplık'taki "Eşleşen kitap yok" Ragi'siz kaldı: ekranın üstünde Ragi zaten var, ekran başına tek Ragi.
+- Bilerek değişmedi: `GunlukSection` (kart içinde ikon kutusu + yuvarlak ok) ayrı tasarım; sheet başlıkları (Okuma ayarları, Yetişkin davet et) bölüm başlığı değil.
+- Design law'a **Bölüm başlığı ve boş durum** kuralı eklendi (CLAUDE.md, `docs/DESIGN_LAW_DRAFT.md`).
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; önceki adımlarla aynı dört içerik takımı, yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema, normal yazı): Ana sayfa, Kitaplık (örnek kitaplık), Benim köşem, Özet, masal yazma › Masalda kimler olsun?. En büyük yazı, koyu tema, SE ve Pro Max görülmedi; Aile'nin boş satırı (profilsiz durum) görülmedi.
+- Dosyalar: `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `DesignSystem/MPSurfaces.swift`, `Screens/Parent/{MPParentHeader,ParentOverviewView}.swift`, `Screens/StoryCreation/CompanionStep.swift`, `Screens/Family/FamilyMembersView.swift`, `Views/LibraryView.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 2. adım: ebeveyn alanında tek üst başlık
+
+- `ParentHeader` silindi, `MPParentHeader` iki biçim aldı: kök sayfa `(title:subtitle:)` büyük başlık + "Çocuk modu"; alt sayfa `(title:subtitle:onBack:)` "Geri" + küçük başlık, "Çocuk modu" yok. 8 alt sayfa taşındı: Masal kitabı, Aile, Aileyle paylaş, Kendi sesin (2), Abonelik, Hesabı sil, Gizlilik ve veri.
+- Başlık kendi kenar boşluğunu eklemiyor; kök sayfalardaki `.padding(.horizontal, -MPSpacing.screenH)` hilesi kalktı, üst boşluğu her sayfa `MPSpacing.lg` ile veriyor. Abonelik, Hesabı sil ve Gizlilik ve veri sayfaları önceden üste yapışıktı, artık diğerleriyle aynı hizada.
+- En büyük yazıda alt sayfa "Geri" düğmesi başlığın üstüne hizalanıyor (ortada asılı kalıyordu). "Çocuk modu" ikonu `MPIcon` üzerinden. `MPTopBar` başlığı `isHeader` aldı.
+- Design law'a **Üst başlık** kuralı eklendi (CLAUDE.md ve `docs/DESIGN_LAW_DRAFT.md`). Çocuk kök sekmeleri ve illüstrasyonlu başlıklar (`GunlukHeader`, klasik detay) bilerek dışarıda; `KidHeader`'ın çağıranı yok. `design-handoff/docs/DESIGN_SYSTEM.md` bileşen tablosu güncellendi.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; 1. adımla aynı dört içerik takımı (`SceneLibraryTests`, `InterestProfileTests`, `CompanionSymbolTests`, `IllustratedBookFlowTests`), yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema): Özet (normal ve en büyük yazı), Aile (normal), Aileyle paylaş (en büyük yazı); kesilme yok. Koyu tema, iPhone SE ve Pro Max görülmedi; VoiceOver cihazda denenmedi.
+- Dosyalar: `Screens/Parent/MPParentHeader.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift`, `Screens/Parent/{ParentOverviewView,ParentSafetyView,BookExportView}.swift`, `Screens/Family/{FamilyMembersView,ShareLinkView,VoiceRecordingView}.swift`, `Screens/Subscription/SubscriptionExpiredView.swift`, `Screens/Account/AccountSettings.swift`, `Views/SettingsView.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, `design-handoff/docs/DESIGN_SYSTEM.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 1. adım: dokunma alanı, ölü ekran, erişilebilirlik
+
+- Ebeveyn dokunma alanı 44 → 48 pt (`MPSize.minTouchParent`, Design law `MP.S.tapMin`); 21 kullanım tek token'dan büyüdü. `ParentHeader`'daki "Çocuk modu" düğmesi sabit 36 pt'ydi, artık en az 48.
+- `SimpleSubscriptionView` silindi (yalnızca kendi Preview'ı çağırıyordu; sistem mavisi buton, `.black`, çıplak `.shadow`). Proje dosyasından 4 satır çıktı; CLAUDE.md'deki dil grep'i notundan da düştü.
+- `MPIcon` artık `accessibilityHidden(true)`: Lucide görselleri VoiceOver'da asset adıyla ("Icons/check"), SF Symbol'ler İngilizce adla okunabiliyordu. Anlam her yerde düğme/satır etiketinde; ikon-yalnız her düğmenin Türkçe etiketi olduğu tarandı.
+- Seçim kartında kilit yalnızca ikon ve soluklukla veriliyordu: `accessibilityValue("Kilitli")` eklendi.
+- `MPSheet` ve Hesap › Çıkış yap alt sayfası: VoiceOver arkadaki ekrana kaçmıyor (`.isModal`), iki parmak "Z" kapatıyor (`.escape`), arka karartma gizli, `MPSheet` başlığı `isHeader`.
+- Bilerek değişmedi: kapak galerisi zaten `#if DEBUG` içindeydi. Görsel ikon kutuları (32–42 pt süs daireleri) dokunma alanı olmadığı için büyütülmedi. `MPCircleButton` 42 pt görünür, `contentShape` ile ~54 pt dokunma alanı; düzen bozulmasın diye çerçeve büyütülmedi.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı. Başarısızların hepsi içerik testleri (`SceneLibraryTests` B2 kapsaması, `InterestProfileTests`, `CompanionSymbolTests`, `IllustratedBookFlowTests`); bu değişiklikle ilgisiz, FAZ 21'de kaydedilen içerik düşüşü. Bu turda temel çizgiyle ayrıca karşılaştırılmadı.
+- Simülatör (iPhone 17 Pro): Ayarlar ve Masal kitabı açık temada, Masal kitabı en büyük Dynamic Type'ta; kesilme yok. Koyu tema ayarı uygulamaya yansımadı (ekran açık kaldı). iPhone SE ve Pro Max görüntüsü alınmadı (SE simülatörü yok, disk %99). VoiceOver ile cihazda denenmedi.
+- Dosyalar: `DesignSystem/Pastel/MPLayout.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPIcon.swift`, `DesignSystem/MPNavigation.swift`, `DesignSystem/MPSurfaces.swift`, `Screens/Account/AccountSettings.swift`, `Views/SimpleSubscriptionView.swift` (silindi), `MagicPaper.xcodeproj/project.pbxproj`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
+### 2026-10-22 · main (commit aşağıda) · Bütünlük denetimi (marka, erişilebilirlik, bulunabilirlik)
+
+- Yeni belge: `docs/BUTUNLUK_DENETIMI.md`. Kod taramasıyla: dört ayrı üst başlık bileşeni (`MPTopBar`, `ParentHeader`, `MPParentHeader`, `GunlukHeader`), kullanılmayan `MPEmptyState`, elle yazılmış 24 bölüm başlığı, gradient'li birincil buton (Design law ile çelişiyor), iki token adı (`MP.*` ve Pastel), ölü `SimpleSubscriptionView`, 44 pt ebeveyn dokunma alanı (kural 48), 10 Dynamic Type üst sınırı, etiket denetimi gereken 7 ekran, Ragi'siz görünen çocuk ekranları.
+- Yedi adımlık sıra önerildi; iki tasarım kararı açık: birincil butonun gradient'i ve kural olacak token adı.
+- Uygulama koduna dokunulmadı. Simülatörde ekran görüntüsü alınmadı, test çalıştırılmadı.
+- Dosyalar: `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
+### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu: 3-4 eşiği 4,0
+
+- Batuhan'ın kararıyla 3-4 eşiği 4,5'ten 4,0'a çekildi (`Tools/nadir_kelime_raporu.py`). 3-4 ve 5-6 artık aynı eşiği paylaşıyor; 7-8 (3,5) ve 9-10 (3,0) değişmedi, hâlâ kalibre edilmedi.
+- Rapor yeniden üretildi (`docs/research/nadir_kelimeler_2026-10-22.md` + CSV, aynı dosyanın üzerine). 3-4: 79 → 37 nadir kök (33 açıklamasız); 42 yaygın kelime düştü (bahçe, pencere, uyumak, yürümek, oturmak, korkmak, ağlamak, yastık…), yeni kelime eklenmedi. Bantsız satırlar da 3-4 eşiğiyle ölçüldüğü için 54 → 26. 5-6 değişmedi (125 / 112).
+- Yan etki: "Gereksiz açıklama" bölümüne ilk kayıt girdi: `w34_sessiz` (Zipf 5,02 ≥ 4,0 + 1). Sözlük girdisine dokunulmadı, karar yazarın.
+- Testler: eşik farkını ölçen iki test 3-4/5-6 yerine 7-8 ve 9-10 ile yeniden kuruldu; 3-4 eşiğini ve "bahçe nadir değil" davranışını sabitleyen yeni test önce kırmızı, sonra yeşil. `python3 Tools/test_nadir_kelime_raporu.py` 23/23.
+- Dosyalar: `Tools/nadir_kelime_raporu.py`, `Tools/test_nadir_kelime_raporu.py`, `docs/research/nadir_kelimeler_2026-10-22.md` + `.csv`, bu dosya.
+
+### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu (içerik aracı)
+
+- Plan B uygulandı (`docs/Kelime_Plani_kitapokur.md`). `Tools/nadir_kelime_raporu.py`, `ContentCatalogLoader`'ın okuduğu dosyaları (iki belge + her `beat_*.json`, 107 dosya, 1068 satır) okur; her yaş bandı için nadir kökleri, sözlükte olup olmadıklarını, geçiş sayısını, kaynak satır kimliklerini ve örnek cümleyi listeler. Ayrıca "gereksiz açıklama" (Zipf ≥ bant eşiği + 1) ve "bant dışı açıklama" (satırın `words` kimliği girdinin `bands`'inde yok) bölümleri var.
+- Yöntem: wordfreq `tr` (Zipf) + simplemma `tr`, kitapokur'daki kök kontrolü (kök kelimeden 1,5'ten fazla nadirse reddedilir) ve Türkçe çekim eki soyma (ünsüz yumuşaması geri alınır). İlk denemede simplemma fiillerde çıplak gövde verdiği için "korkmak", "duymak", "burada" nadir görünüyordu; nadirlik artık kelimenin en yaygın makul biçimiyle ölçülüyor (gövde + sık fiil çekimleri, ek-fiil soyma). Yer tutucular cümle başını koruyan bir işaretle değişiyor, raporda `{…}`.
+- İlk rapor: `docs/research/nadir_kelimeler_2026-10-22.md` (+ CSV). 3-4: 79 nadir kök, 73 açıklamasız; 5-6: 125 / 112; bantsız satırlar: 54 / 45. Gereksiz ve bant dışı açıklama: yok. Katalogda yalnız 3-4 ve 5-6 bantları var.
+- Bilinen sınırlar (raporda yazıyor): eşikler başlangıç değeri ve Türkçe için yüksek görünüyor (3-4 listesinin sonunda uyumak, yürümek, pencere var; ~4,0 önerilir, karar yazarın); kök bulma kural tabanlı ("omzuna", "üşüdüm" köke inmiyor).
+- Bilerek yapılmadı: `kelime_izinleri.json` ve `CatalogIntegrity` uyarı testi (planda karar gerektiren sonraki adım). Motor, katalog ve uygulama dosyalarına dokunulmadı.
+- Bağımlılıklar yalnız `Tools/.venv` içinde (154 MB, git'e girmez; `Tools/.gitignore`). Sürümler: wordfreq 3.1.1, simplemma 1.2.0.
+- Test: `python3 Tools/test_nadir_kelime_raporu.py` 22/22 (yalnız stdlib, sahte sıklık tablosu).
+- Dosyalar: `Tools/nadir_kelime_raporu.py`, `Tools/test_nadir_kelime_raporu.py`, `Tools/requirements-nadir-kelime.txt`, `Tools/.gitignore`, `docs/research/nadir_kelimeler_2026-10-22.md` + `.csv`, `docs/Kelime_Plani_kitapokur.md` (durum), bu dosya.
+
+### 2026-10-22 · main (commit aşağıda) · Yeni kelimelerim: masaldaki cümle
+
+- Plan A uygulandı (`docs/Kelime_Plani_kitapokur.md`). Her kelime kartında kelimenin masalda geçtiği cümle, kelime cümle içinde kalın. Dinle düğmesi artık "kelime. anlam. cümle" okuyor; VoiceOver etiketi "Masalda: …".
+- Alan mantığı `MPVocabulary.sentence(containing:in:)` içinde (görünümde değil): paragraf sonu ve `. ! ? …` + büyük harf/rakam/tırnak/tire ile cümle bölme, `tr_TR` harf katlaması, 140 karakter üstü cümle kelime sınırında "…" ile kesilir. `CollectedWord.sentence` eklendi; göç yok, saklanan `StoryPage.text` + `StoryWord.surface` kullanılıyor.
+- `MPDebugLaunch` (yalnız DEBUG): demo kitaplığında okunmuş iki masala birer sözlük kelimesi eklendi, ekran görüntüsü için.
+- Bilerek değişmedi: `ReaderWordCard` (cümle zaten sayfada); `NewWordsView`'daki eski `MPSpacing`/`mpText` token'ları (eski ihlal, ayrı tur).
+- Test: temiz worktree'de `VocabularySentenceTests` 10/10 + `MVPExperienceTests` 15/15 geçti. Tam paket çalıştırılmadı. Ortak çalışma ağacı başka bir oturumun yarım okuyucu işi yüzünden derlenmiyor (`ReaderStory.swift:166`, `Story.ageBand` yok); bu iş ona dokunmadı.
+- Simülatör: iPhone 17 Pro, açık görünüm ve en büyük Dynamic Type görüldü, kesilme yok. Koyu görünüm uygulama açık görünüme kilitli olduğu için aynı. iPhone SE ve Pro Max simülatörü kurulu değil, görülmedi.
+- Dosyalar: `Screens/MPVocabulary.swift`, `Screens/KidCorner/NewWordsView.swift`, `Screens/MPDebugLaunch.swift`, `MagicPaperTests/VocabularySentenceTests.swift` (yeni), bu dosya.
+- Not: 21 Ekim'deki "Kelime planı" kaydının commit'i `572a388` (başlıkta "commit yok" yazıyor).
+
+### 2026-10-21 · main, commit yok · Kelime planı: kitapokur incelemesi
+
+- `ka1nsha/kitapokur` (İngilizce PDF'lerden kelime öğreten okuyucu) incelendi. Repo'da lisans yok: kod alınmaz, yalnız yaklaşım ve eşik fikirleri.
+- Plan yazıldı: `docs/Kelime_Plani_kitapokur.md`. A: "Yeni kelimelerim" kartında kelimenin masalda geçtiği cümle (göç yok, `StoryPage.text` + `StoryWord.surface`). B: `Tools/` altında yaş bandına göre nadir ve açıklamasız kelime raporu (wordfreq `tr` + simplemma, Zipf kontrolü, başlangıç eşikleri 4,5 / 4,0 / 3,5 / 3,0).
+- Bilerek alınmadı: FSRS flashcard, puanlı test, seri/istatistik (ilke 7), anahtarsız Google çeviri, Tatoeba cümleleri.
+- Açık: sevk edilen katalogda sözlük kelimesi olup olmadığı (sıra A→B mi B→A mı buna bağlı); disk dolu (136 MB), derleme yapılamaz.
+- Kod değişmedi, test çalıştırılmadı.
+- Dosyalar: `docs/Kelime_Plani_kitapokur.md` (yeni), bu dosya.
 
 ### 2026-10-21 · faz-21-varyasyon · Havuz diriltildi: 44 ölü kayıt masala girdi
 
@@ -234,6 +325,142 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@86b5879 · Alt çubuk iOS 26'da sistemin Liquid Glass sekme çubuğu
+
+- Batuhan: "iOS 26 ile çıkan navigation bar, drag to select". iOS 26'da çocuk alanı artık sistemin `TabView`'ı (`Tab(..., value:)`); cam, mercek, sürükleyerek seçme, büyük içerik görüntüleyici ve VoiceOver sistemden. Renk `.tint(MP.C.brand)`.
+- "Masal yaz" `Tab(..., role: .search)` ile sistemin ayrık dairesinde (Apple'ın arama sekmesinin yeri; kaynak: Donny Wals ve Swift with Majid, iOS 26 tab bar yazıları). Bir yer değil eylem: seçim bağlaması ona hiç geçmiyor, geçmek istediğinde masal yazma açılıyor ve seçili sekme aynı kalıyor. Sistem dairesi yakınlaşma kaynağı olamadığı için masal yazma iOS 26'da olağan geçişle açılıyor.
+- Seçili sekmeye yeniden dokunmak eskisi gibi sayfayı başa alıyor (`selectKidTab`).
+- iOS 26 öncesi: kendi çubuğumuz (`KidTabBar`, sürükleyerek seçme dahil) aynen kalıyor.
+- Kural (kök CLAUDE.md, cam maddesi) güncellendi.
+- Test: genel iOS hedefine derleme yeşil. Telefona kurulamadı (iPhone 16 "unavailable", CoreDevice 4016); diskte 3 GB kaldığı için simülatör derlemesi de yapılmadı. Uygulama görülmedi; arama rolündeki sekmenin seçilmeden eylem gibi davranması cihazda doğrulanmadı.
+- Dosyalar: `ContentView.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift` (yorum), bu dosya.
+
+### 2026-10-22 · main@8ba7cdf · Alt çubukta sürükleyerek seçme
+
+- iOS 26 sekme çubuğu gibi: parmak çubuğun üstünde kayarken mercek parmağın altındaki sekmeyi gösteriyor (ikon dolu, marka renginde); bırakılan sekme seçiliyor. "Masal yaz" dairesi dahil: parmak dairede bırakılınca masal yazma, dairenin içinden büyüyerek açılıyor; dairenin üstündeyken ince beyaz halka.
+- Kısa dokunuşlar ve VoiceOver düğmelerle eskisi gibi. Sürükleme en az 8 punto hareketle başlıyor; parmak başladığı yerde bırakılırsa seçimi düğme yapıyor (çift seçim ve istemsiz "en üste kaydır" olmasın). Çubuğun dikeyde biraz dışına taşan parmak da sayılıyor.
+- Kayarken titreşim, zıplama, parlama yok; titreşim yalnızca seçim bitince (tasarım kuralı).
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Cihazda sürüklenerek denenmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, bu dosya.
+
+### 2026-10-22 · main@946d697 · Düğmeler ve kartlar lavanta
+
+- Karar (Batuhan, 22 Ekim, seçenek A): siyah-gri düğmeler kalktı. `MPCircleButton` varsayılanı lavanta zemin (`actionSoft`), mor ikon, çerçevesiz (kilit, geri, kapat; uygulama genelinde). `MPButton(.secondary)` lavanta zemin, mor yazı, çerçevesiz.
+- Kartlar aynı lavantada: yeni `MPColor.cardSoft` (= `actionSoft`). Bugün griye geçen yüzeyler buna döndü: bu akşamın kartı ("Harika gidiyorsun" dahil), `HomeSection` paneli, ana sayfa mod listesi, Köşem sayı kutucukları ve Masal dünyam listesi, masal yazma seçenek satırları. Bu akşamın kartındaki üst etiket mor ve kalın.
+- Kontrast: mor yazı (#6A47B8) lavanta (#EFE6F7) üstünde yaklaşık 5:1.
+- Bilerek değişmeyen: birincil mor düğme, `.outline`, `.soft` düğmeler, rozet kartları, açıkça başka renk verilen yuvarlak düğmeler.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi; gece kâğıtları ve koyu mod denenmedi.
+- Dosyalar: `MPButtons.swift`, `MPColor.swift`, `MPHomeChrome.swift`, `HomeView.swift`, `KidCornerView.swift`, `StoryCreationChrome.swift`, bu dosya.
+
+### 2026-10-22 · main@f4150c5 · Ana sayfa iOS düzeninde
+
+- Batuhan taslağı onayladı (22 Ekim), iki kararla: Ragi tam genişlik sahnede değil, bu akşamın kartının içinde küçük ama ön planda; modların sahne resimleri yerine ikon karoları.
+- Başlık: solda selam ve çocuğun adı (büyük başlık), sağda avatar (Benim köşem) ve kilit. Altında tek satır "12 yıldız · 3 gün üst üste" (`HomeStatLine`; eski `HomeStatChips` kalktı), dokununca Benim köşem.
+- Tam genişlik sahne, üstüne binen çipler ve kaydırınca solan başlık kalktı. Manzara (gündüz/gece) ve Ragi `HomeHeroCard`'ın üstünde; altta açık gri zeminde masal, ilerleme çizgisi ve sayfanın tek mor düğmesi ("Okumaya devam et").
+- Yeni bir masal yaz: resimli `HomeModeCard`'lar yerine tek gri listede üç satır (masal yazma adımlarıyla aynı düzen); uyku saatinde öne çıkan modun alt yazısı "Bu akşam için önerilen".
+- `HomeSection`'ın paneli lavanta + sert kenar yerine açık gri, kenarsız (ortak bileşen: Kitaplık "Serim", Masal ailem ve Bu hafta kartı da gri oldu).
+- Bilerek değişmeyen: Günlük kapak şeridi, Bu hafta kartının içeriği, seri kartı, günün masalı satırı, bütün eylemler ve sıra. `HomeScene` ve `HomeModeCard` artık ana sayfada kullanılmıyor, silinmedi.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi; gece sahnesi, en büyük yazı boyutu ve koyu mod denenmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, bu dosya.
+
+### 2026-10-22 · main@6a39b21 · Benim köşem iOS profil düzeninde
+
+- Karşılama: Ragi solda, yanında balonsuz "Merhaba Deniz!" başlığı ve tek cümle (lavanta balon ve kenarı kalktı).
+- Kim okuyor: avatarlar 72'den 56'ya küçüldü; "Ekle" dairesi aynı ölçüde.
+- Sayılar: tek lavanta panel yerine üç ayrı açık gri kutucuk, gölgesiz (dokunulmuyorlar). "gün seri" yerine "gün üst üste" (sakin süreklilik dili).
+- Masal dünyam: lavanta panel yerine açık gri gruplu liste.
+- Sayfa beyaz kaldı; bloklar ana sayfa ve masal yazma adımlarıyla aynı açık gri (`backgroundSunken`).
+- Bilerek değişmeyen: rozet kartları (`MPBadgeCard`, ortak bileşen), `HomeSection` (ana sayfa da kullanıyor), ebeveyn kapısı ve bağlantıların davranışı.
+- Görsel taslak sohbette gösterildi.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, bu dosya.
+
+### 2026-10-22 · main@49f5cdc · Masal yazma: düz beyaz zemin
+
+- Masal yazma akışının zemini `mpScreenBackground` (krem) yerine ana sayfayla aynı düz beyaz (`MPColor.backgroundSurface`); alttaki düğme şeridi de beyaz.
+- Seçenek satırları ana sayfa bölümleri gibi açık gri (`backgroundSunken`), gölgesiz; seçili satırda marka renginde kenar.
+- Bilerek değişmeyen: "Masal yazılıyor" ve hata ekranlarının kendi zemini.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi.
+- Dosyalar: `StoryCreationChrome.swift`, `StoryCreationFlow.swift`, bu dosya.
+
+### 2026-10-22 · main@2cc2fb4 · Masal yazma adımları iOS düzeninde
+
+- Ortak parçalar (`Screens/StoryCreation/StoryCreationChrome.swift`, yeni): sola yaslı büyük başlık (`CreationTitle`), tam genişlikte seçenek satırı (`CreationChoiceRow`: solda görsel, ad ve tek satırlık söz, sağda yuvarlak seçim işareti; seçili satırın kenarı marka renginde), alttaki tek birincil düğme (`CreationFooter`).
+- Üst çubuk: "Adım 2 / 3" yazısı ve noktalar yerine ince ilerleme çizgisi; VoiceOver aynı cümleyi okuyor.
+- Çocuk adımı: ızgara kartlar yerine avatar, ad ve yaşla satırlar.
+- Masal türü: başlık çocuğun adıyla ("Deniz için nasıl bir masal?"); üç mod satır, konu çipleri seçili satırın içinde açılıyor. "Bana sürpriz yap" dördüncü kart değil, alttaki sakin kestirme; dokununca doğrudan ilerliyor (önceden seçip "Devam et"e basmak gerekiyordu).
+- Kimler: yol arkadaşları çip yerine adı ve huyuyla satır; önceki seçimler başlığın altında tek satır ve "Değiştir". Masal ailem çip olarak kaldı.
+- Bilerek değişmeyen: akışın sırası ve kararları (`StoryCreationSteps`), "Masal yazılıyor" ekranı, hata ekranı, okuyucuya geçiş.
+- Görsel taslak sohbette gösterildi (üç telefon ekranı).
+- Test: iPhone 16 için derleme yeşil. İlk kurulum denemesi düştü (cihaza bağlanılamadı, CoreDevice 3002); telefon bağlanınca iPhone 16'ya kuruldu ("App installed"). Uygulama açılıp ekranlar görülmedi. Birim testleri çalıştırılmadı. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Aynı klasördeki başka oturumun açık değişiklikleri bu commit'e girmedi.
+- Dosyalar: `StoryCreationChrome.swift` (yeni), `StoryCreationFlow.swift`, `StoryModeStep.swift`, `CompanionStep.swift`, `StoryChildStep.swift`, bu dosya.
+
+### 2026-10-22 · main@e5e8d4d · Derleme düzeltmesi, origin'e gönderim ve telefona kurulum
+
+- 21 Ekim akşamki işler (`3188965..c927e84`: masal sayfası, okuma ayarları, masal metni, açılır pencereler, alt çubuk) origin/main'e gönderildi.
+- İlk telefon derlemesi düştü: yaş bandı `Story.ageBand` değil `Story.origin?.ageBand`. Düzeltildi (e5e8d4d); derleme yeşil.
+- iPhone 16'ya (00008140-001E4C593CEB001C) Debug olarak kuruldu, `devicectl` "App installed". Uygulama açılıp ekranlar görülmedi; Batuhan deneyecek.
+- Derlemeye çalışma ağacındaki başka oturumun commit edilmemiş değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`) de girdi; commit'e girmedi.
+- Test: birim testleri çalıştırılmadı.
+
+### 2026-10-21 · main@f23fa25 · Alt çubuk: şeffaf kutu gitti, Apple ölçüsü, cam Masal yaz dairesi
+
+- Hata: çubuğun arkasında tam genişlikte şeffaf bir kutu görünüyordu. Kaynağı iOS 26'nın `safeAreaBar`'ı: çubuğun arkasına kaydırma kenarı efekti çiziyordu. `mpFloatingBar` artık her sürümde `safeAreaInset`; arkada kutu yok.
+- Ölçü: çubuk 64'ten 56 puntoya indi (sistemin yüzen sekme çubuğu kadar), ikon 26'dan 18'e, kenar boşluğu 12'den 20'ye. Sistemdeki gibi tek renk: seçili sekme marka renginde, dolu ikon ve nötr mercek; sekme başına ayrı renk kalktı (15 Ekim'deki renkli dolgu kararının yerine, Batuhan: "Apple gibi durmuyor").
+- Masal yaz: düz mor daire yerine marka renginde tonlu, dokununca esneyen cam (`MP.Glass.action`, iOS 26 `interactive`). Kapsülle aynı cam grubunda (`GlassEffectContainer`). Masal yazma ekranı dairenin içinden büyüyerek açılıyor (iOS 18+ yakınlaşma geçişi); yalnızca daireden açılınca, ana sayfa kartlarından açılınca olağan geçiş. Hareketi Azalt'ta yakınlaşma yok.
+- iOS 26 öncesi: daire düz marka rengi, cam grubu yok.
+- Kural (kök CLAUDE.md): esneyen cam yalnızca Masal yaz dairesinde.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş (tek isabet: yorumdaki "yanında" kelimesinin içindeki "anında").
+- Aynı klasördeki başka oturumun açık değişiklikleri bu commit'e girmedi.
+- Dosyalar: `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPGlass.swift`, `DesignSystem/MPTheme.swift`, `ContentView.swift`, bu dosya.
+
+### 2026-10-21 · main@5498002 · Açılır pencereler iOS 26 düzeninde
+
+- Ortak sunum (`DesignSystem/MPSheetStyle.swift`, yeni): `mpSheet(_:area:)` — kâğıt yüzey (cam değil), görünür tutamak, sistemin kendi köşesi (iOS 26'da cihaz köşesiyle eş merkezli; elle verilen `presentationCornerRadius` kaldırıldı). Boy: içerik kadar (`fitted`, `mpMeasureHeight` ile), yarım ya da tam. En büyük yazı boyutlarında her pencere tam sayfa.
+- Örnek, kitaplıkta kitaba basınca açılan pencere (`StoryActionsSheet`): artık tam sayfa değil, içeriğin boyu kadar. Üstte kapak, ad ve tek satır künye ("12 sayfa · Deniz · Görselli"; etiket kutucukları kalktı), yarımsa "Yarım kaldı". Altında birincil "Okumaya devam et / başla". İkincil işlemler liste yerine yazılı yuvarlak düğmeler: Favori, Baştan, Paylaş, Sil; ebeveyn onayı isteyenlerde küçük kilit ve VoiceOver ipucu. En büyük yazı boyutunda ikişerli sıra. Seri satırı kendi kartında.
+- Bilerek değişmeyen: ebeveyn kapısı, PDF, silme onayı ve seri mantığı aynı.
+- Aynı sunuma geçenler: okuma ayarları (yarım), uyku masalı penceresi (yarım), Günlük kategorileri (tam), ebeveyn onayının tam metni (tam, ebeveyn yüzeyi), aile daveti ve aileye katılma (tam, ebeveyn yüzeyi). Uygulama içi `MPSheet` (profil seçimi, profil, ilgi alanları) aynı kâğıda ve sistem ölçüsündeki tutamağa geçti.
+- Dokunulmayan: sistem paylaşım sayfası (`ShareSheet`), tam ekran açılanlar (okuyucu, ödeme, ebeveyn kapısı, masal yazma) ve eski `SimpleSubscriptionView`.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Aynı klasördeki başka oturumun açık değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`, `VocabularySentenceTests`) bu commit'e girmedi.
+- Dosyalar: `DesignSystem/MPSheetStyle.swift` (yeni), `DesignSystem/MPNavigation.swift`, `Screens/Library/StoryActionsSheet.swift`, `Screens/MPSheets.swift`, `Screens/BedtimeStorySheet.swift`, `Screens/Gunluk/GunlukView.swift`, `Screens/Account/ParentConsentView.swift`, `Screens/Family/FamilyMembersView.swift`, bu dosya.
+
+### 2026-10-21 · main@e97a371 · Masal metni: nefes satırları, cümle takibi, ad ve ses kelimeleri
+
+- Yaşa göre diziliş (`ReaderTextLayout`, `Story.ageBand`'den): 3-6 yaşta **nefes satırları**, her cümle kendi satırında, seçilen boyutun bir üstünde, en az "Rahat" satır arası, paragraflar arasında daha geniş boşluk. 7-10 yaşta paragraflar; konuşma paragrafı solda ince bir çizgiyle ayrılıyor. Bandı olmayan eski masallar paragraf düzeninde.
+- **Cümle takibi** (7-10): anlatıcı okurken o an okunan cümle sıcak fosforlu kalemle işaretleniyor, öncesi sönüyor. Kelime değil cümle: araştırmaya göre her kelimeyi işaretlemek dikkati dağıtıyor. Konum `AVSpeechSynthesizer`'ın kelime haberinden (`MPSpokenPosition`, ayrı nesne: okuyucunun geri kalanı her kelimede yeniden çizilmesin). Ailenin sesiyle kayıtlı sayfada takip yok (kayıtta kelime zamanı yok).
+- **Çocuğun adı** metinde vurgu renginde ve kalın; yalnızca tam kelime ("Can", "Canavar"da işaretlenmez), kesme işaretli ek adın dışında.
+- **Ses kelimeleri** ("pıt pıt", "şırıl şırıl"): 50 kelimelik listeden, okuma boyutunun bir tık büyüğü ve en kalın kesimde (`MP.F.sound`). Listede olmayan sıradan metin kalıyor.
+- Baloo 2 bilerek kullanılmadı: font uygulamada yok (FAZ 17'de kaldırılmış, `MP.F` başlık ailesi Nunito Black). Karar (Batuhan, 21 Ekim): şimdilik Nunito Black kalıyor, Baloo 2 eklenmiyor.
+- Cümle bölme `NLTokenizer` ile; küçük harfle başlayan parça öncekine bağlanıyor ("“Gerçekten mi?” dedi Deniz." tek satır).
+- Test: `ReaderTextTests` (11 test) yazıldı. Uygulama testi çalıştırılmadı (disk dolu, Xcode derlemesi yapılmadı); `ReaderText.swift` tek başına `swiftc` ile derlenip aynı senaryolarla denendi, hepsi geçti. Görünüm kodu derlenmedi, cihazda görülmedi.
+- Kural (kök CLAUDE.md, repoda değil): ses kelimeleri yalnızca `MP.F.sound`, ad vurgu renginde ve kalın.
+- Dokunulmayan: aynı klasörde başka bir oturumun açık değişiklikleri (`MPVocabulary`, `NewWordsView`, `MPDebugLaunch`, `VocabularySentenceTests`) bu commit'e girmedi.
+- Dosyalar: `Screens/StoryReader/ReaderText.swift` (yeni), `ReaderWords.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `ReaderStory.swift`, `ReaderWordCard.swift` (yorum), `Screens/MPSpeech.swift`, `DesignSystem/MPTheme.swift`, `MagicPaperTests/ReaderTextTests.swift` (yeni), bu dosya.
+
+### 2026-10-21 · main@b20a4c3 · Okuma ayarları A, metnin oynaması düzeltildi
+
+- Hata: kısa masal metni bile parmakla yukarı aşağı oynuyordu. Sebep: metin sütunu taşmayı sayfanın tam yüksekliğiyle ölçüyordu, oysa sütun üst ve alt boşluk kadar kısaydı; içerik her zaman biraz taşıyordu. Artık sütun kendi yüksekliğiyle ölçülüyor (`StoryPageView.textColumn`); sığan metin kıpırdamıyor, yalnızca gerçekten uzun eski sayfalar kayıyor.
+- Ayarlar (`ReaderSettingsSheet`, A): "Kâğıt" ve "Yazı" başlıkları. Beş kâğıt "Aa" yazan küçük sayfalar: Gündüz, Krem (yeni), Sepya, Akşam (yeni), Gece. "Kâğıt dokusu" anahtarı (varsayılan açık) ve "Uyku saatinde Gece" (varsayılan açık; uyku saatinde seçilen kâğıt yerine Gece). Yazı boyutu dört duraklı sürgü; satır aralığı Normal / Rahat / Geniş; "Kolay okuma" harf arasını açıyor. Ses, hız, kim okusun ve titreşim "Daha fazla"nın altında.
+- Yeni kâğıtların kontrastı (mürekkep / ikincil / vurgu): Krem 13.9 / 5.1 / 5.9, Akşam 9.6 / 6.2 / 7.1; hepsi ≥ 4.5:1. Renkler `MP.Palette` (`krem100`, `aksam*`), tema `MP.ReadTheme`'de; `isDark` ve `highlight` eklendi.
+- Gece düzeltmesi: renk varlıkları açık/koyu moda göre değişmiyor, bu yüzden 1A'daki cam kontrollerin yazısı gece kâğıdında koyu kalacaktı. Kontroller ve kelime kartı artık renklerini temadan alıyor.
+- Kural (kök CLAUDE.md, repoda değil): satır aralığı `points × ReadSpacing.factor`; kontrast şartı beş kâğıt için.
+- Masal metninin kendisi (nefes satırları, isim vurgusu, cümle takibi) bu kayda girmedi: araştırma ve eskiz Batuhan'ın seçimini bekliyor.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş (yeni `Color(hex:)` yalnızca `MP.Palette`'te).
+- Dosyalar: `DesignSystem/MPTheme.swift`, `Screens/MPSettingsStore.swift`, `Screens/MPSheets.swift`, `Screens/StoryReader/` (`StoryPageView`, `StoryLeafView`, `StoryReaderView`, `ReaderChrome`, `ReaderWordCard`, `ReaderPaper`, `PageTurn/MagicPaperPageTurnRenderer`), `Views/DailyStoriesView.swift`, bu dosya.
+
+### 2026-10-21 · main@55d224c · Masal sayfası ve yeni kelime kartı (1A, 2A)
+
+- 1A · Sayfa (`StoryPageView`): çizim kenardan kenara ve sayfanın en üstünden başlıyor, köşesiz; alt kenarına kâğıt hafif bir yayla biniyor (`PaperLip`). Metin kenar boşluğunda kaldı. Resimsiz sayfa değişmedi.
+- Büyük baş harf bilerek yok (Batuhan: "ilk harf büyük harfle başlamaz").
+- Künye: kontroller görünürken sayfa numarası alt çubukta; çekilince sayfanın altında ortada "— 3 —". Önceden künye hiç görünmüyordu (`showsFolio: false`).
+- 2A · Yeni kelime (`ReaderWordCard`, yeni dosya): kelime Baloo 2, tek cümle anlamı, "dinle" dairesi; kâğıt kart, `mpEdge`, gölge yok, kapat düğmesi yok. Kartın dışına dokunmak kartı kapatıyor, sayfayı çevirmiyor; VoiceOver'da kaçış hareketi kapatıyor. Gece temasında koyu.
+- Bilerek değişmeyen: kart hâlâ ekranın altında açılıyor, kelimenin hemen altına bağlı değil (metin içinde kelimenin yerini bulmak ayrı iş). Eski `NewWordCard` okuyucuda artık kullanılmıyor, silinmedi.
+- Okuma ayarları (3A) bu kayda girmedi: arka plan ve tipografi seçenekleri tasarım kuralına dokunduğu için Batuhan'ın seçimini bekliyor.
+- Test: derlenmedi, cihazda görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/StoryReader/StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `ReaderWordCard.swift` (yeni), bu dosya.
+
 ### 2026-10-21 · main@447535d · Alt çubuk, açılır pencereler ve okuyucu origin'e gönderildi
 
 - `35227c5..447535d` origin/main'e gitti: alt çubuk (59c74bd), açılır pencereler (095aba2), okuyucu (93c3f02) ve günlük kayıtları. Bu kayıt da ardından gönderildi.

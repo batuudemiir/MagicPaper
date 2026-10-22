@@ -133,7 +133,8 @@ struct StoryCreationFlow: View {
             if showsHeader { header }
             content
         }
-        .mpScreenBackground()
+        // Zemin ana sayfayla aynı düz beyaz (22 Ekim 2026).
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .animation(MP.M.gated(MP.M.page), value: phase)
         .overlay {
             if showsFamilyEditor, let profile {
@@ -194,20 +195,20 @@ struct StoryCreationFlow: View {
 
     // MARK: - Chrome
 
+    /// Solda geri/kapat, ortada ince ilerleme çizgisi (22 Ekim 2026). "Adım
+    /// 2 / 3" yazısı kalktı; VoiceOver aynı cümleyi okumaya devam ediyor.
     private var header: some View {
         ZStack {
             if let step = stepIndex {
-                VStack(spacing: MPSpacing.xs) {
-                    Text("Adım \(step + 1) / \(stepLabels.count)")
-                        .mpText(.callout).foregroundStyle(MPColor.textSecondary)
-                    HStack(spacing: MPSpacing.xs) {
-                        ForEach(0..<stepLabels.count, id: \.self) { i in
-                            Capsule()
-                                .fill(i == step ? MPColor.actionPrimary : MPColor.borderKid)
-                                .frame(width: i == step ? 28 : 10, height: 10)
-                        }
+                HStack(spacing: MPSpacing.xs) {
+                    ForEach(0..<stepLabels.count, id: \.self) { i in
+                        Capsule()
+                            .fill(i <= step ? MPColor.actionPrimary : MPColor.borderKid)
+                            .frame(height: MPSpacing.xxs)
                     }
                 }
+                .frame(maxWidth: MPSize.minTouchKid * 3)
+                .animation(MP.M.gated(MP.M.easeOut), value: step)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel("Adım \(step + 1) / \(stepLabels.count), \(stepLabels[step])")
             }

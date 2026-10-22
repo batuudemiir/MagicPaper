@@ -149,8 +149,7 @@ private struct ConsentFullTextSheet: View {
             }
         }
         .background(MPColor.backgroundKid.ignoresSafeArea())
-        .presentationDetents([.large])
-        .presentationCornerRadius(MPRadius.sheet)
+        .mpSheet(.full, area: .parent)
     }
 }
 

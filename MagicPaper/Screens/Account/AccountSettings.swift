@@ -79,6 +79,10 @@ struct AccountSignOutSheet: View {
             .padding(MPSpacing.xl)
             .padding(.bottom, MPSpacing.lg)
             .background(MPColor.backgroundParent, in: UnevenRoundedRectangle(topLeadingRadius: MPRadius.sheet, topTrailingRadius: MPRadius.sheet))
+            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
+            .accessibilityElement(children: .contain)
+            .accessibilityAddTraits(.isModal)
+            .accessibilityAction(.escape) { if !working { onClose() } }
         }
         .ignoresSafeArea(edges: .bottom)
     }
@@ -114,8 +118,9 @@ struct AccountDeletionSheet: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ParentHeader(title: AccountCopy.deleteAccount, onBack: step == nil ? onClose : nil)
+            MPParentHeader(title: AccountCopy.deleteAccount, onBack: step == nil ? onClose : nil)
                 .padding(.horizontal, MPSpacing.screenH)
+                .padding(.top, MPSpacing.lg)
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xl) {

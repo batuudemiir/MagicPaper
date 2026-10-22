@@ -60,8 +60,8 @@ struct MPButton: View {
     private var foreground: Color {
         switch kind {
         case .primary, .danger: MPColor.textOnAction
-        case .secondary: MPColor.textPrimary
-        case .soft, .outline, .ghost: MPColor.actionPrimary
+        // İkincil düğme lavanta zeminde mor yazı (karar: 22 Ekim 2026, A).
+        case .secondary, .soft, .outline, .ghost: MPColor.actionPrimary
         }
     }
 
@@ -78,8 +78,8 @@ struct MPButton: View {
                 }
             }
         case .danger: MPColor.statusDanger
-        case .secondary, .outline: MPColor.backgroundSurface
-        case .soft: MPColor.actionSoft
+        case .outline: MPColor.backgroundSurface
+        case .secondary, .soft: MPColor.actionSoft
         case .ghost: Color.clear
         }
     }
@@ -87,7 +87,6 @@ struct MPButton: View {
     @ViewBuilder private var border: some View {
         switch kind {
         case .outline: Capsule().strokeBorder(MPColor.borderOutline, lineWidth: 2)
-        case .secondary: Capsule().strokeBorder(MPColor.borderKid, lineWidth: 1.5)
         default: EmptyView()
         }
     }
@@ -105,10 +104,12 @@ struct MPCircleButton: View {
     let systemImage: String
     let accessibilityLabel: String
     var size: CGFloat = MPSize.circleButton
-    var bordered: Bool = true
-    var tint: Color = MPColor.textPrimary
+    /// Yuvarlak düğme lavanta zeminde mor ikon, çerçevesiz (karar: 22 Ekim
+    /// 2026, A; önceden beyaz, gri çerçeve, siyah ikon).
+    var bordered: Bool = false
+    var tint: Color = MPColor.actionPrimary
     /// Gece yüzeylerinde (Uyku modu) koyu dolgu.
-    var fill: Color = MPColor.backgroundSurface
+    var fill: Color = MPColor.actionSoft
     let action: () -> Void
 
     var body: some View {

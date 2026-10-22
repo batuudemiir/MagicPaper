@@ -26,7 +26,7 @@ struct FamilyMembersView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Aile", subtitle: "Kim neyi yönetebilir", onBack: onClose)
+                MPParentHeader(title: "Aile", subtitle: "Kim neyi yönetebilir", onBack: onClose)
 
                 if account.account == nil {
                     MPNotice(kind: .info, text: "Aile üyeleri için önce giriş yap.", systemImage: "person.crop.circle")
@@ -167,8 +167,10 @@ struct FamilyMembersView: View {
     private var childrenSection: some View {
         ParentSection(title: "Çocuklar") {
             if profileManager.profiles.isEmpty {
-                Text("Henüz çocuk profili yok.").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .padding(MPSpacing.md)
+                // Boş durum ebeveyn liste satırı dilinde; Ragi ebeveyn alanında yok (16 Ekim).
+                MPListRow(systemImage: "face.smiling", tone: .gray, title: "Henüz çocuk profili yok",
+                          subtitle: "Ayarlar'dan profil ekleyebilirsin") { EmptyView() }
+                    .accessibilityElement(children: .combine)
             }
             ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
                 if index > 0 { MPRowDivider(area: .parent) }
@@ -309,7 +311,7 @@ struct InviteAdultSheet: View {
             .padding(.vertical, MPSpacing.md)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .presentationDragIndicator(.visible)
+        .mpSheet(.full, area: .parent)
         .sheet(item: $shareText) { ShareSheet(items: [$0.text]) }
     }
 
@@ -318,7 +320,7 @@ struct InviteAdultSheet: View {
     @ViewBuilder
     private var form: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text("Ne yapabilsin?").mpText(.headline).foregroundStyle(MPColor.textPrimary)
+            MPSectionHeader(title: "Ne yapabilsin?", area: .parent)
             ForEach(FamilyRole.invitable, id: \.self) { option in
                 Button { role = option } label: {
                     MPListRow(systemImage: option == role ? "checkmark.circle.fill" : "circle",
@@ -461,7 +463,7 @@ struct JoinFamilySheet: View {
             .padding(.vertical, MPSpacing.md)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .presentationDragIndicator(.visible)
+        .mpSheet(.full, area: .parent)
         .confirmationDialog("Kendi verilerin silinsin mi?", isPresented: $confirmReplace, titleVisibility: .visible) {
             Button("Sil ve katıl", role: .destructive) { Task { await join() } }
             Button("Vazgeç", role: .cancel) {}
