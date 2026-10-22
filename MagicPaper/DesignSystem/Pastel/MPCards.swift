@@ -87,6 +87,38 @@ struct MPChevron: View {
     var body: some View { MPIcon("chevron.right", size: 15, weight: .semibold).foregroundStyle(MPColor.textChevron) }
 }
 
+/// Dokunulabilir liste satırı: `MPListRow` + basma davranışı, en az `MP.S.tapMin`.
+/// VoiceOver satırı tek düğme olarak okur (başlık, alt satır). Sağ uç
+/// verilmezse boş kalır; ilerleyen bir sayfa açıyorsa `MPChevron()` ver.
+struct MPRowButton<Trailing: View>: View {
+    let systemImage: String
+    var tone: MPWorldTone = .lav
+    let title: String
+    var subtitle: String? = nil
+    var isDestructive: Bool = false
+    let action: () -> Void
+    @ViewBuilder var trailing: Trailing
+
+    var body: some View {
+        Button(action: action) {
+            MPListRow(systemImage: systemImage, tone: tone, title: title,
+                      subtitle: subtitle, isDestructive: isDestructive) { trailing }
+                .frame(minHeight: MP.S.tapMin)
+        }
+        .buttonStyle(MPPressStyle(.highlight))
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+extension MPRowButton where Trailing == EmptyView {
+    init(systemImage: String, tone: MPWorldTone = .lav, title: String, subtitle: String? = nil,
+         isDestructive: Bool = false, action: @escaping () -> Void) {
+        self.init(systemImage: systemImage, tone: tone, title: title, subtitle: subtitle,
+                  isDestructive: isDestructive, action: action) { EmptyView() }
+    }
+}
+
 /// Grouped rows inside one card (Ayarlar, Masal aksiyonları). Put `MPRowDivider(area:)` between rows.
 /// (Kept iOS 17 compatible; on iOS 18 this can insert dividers automatically with `Group(subviews:)`.)
 struct MPGroupedList<Content: View>: View {

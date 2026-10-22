@@ -113,6 +113,11 @@ en büyük Dynamic Type, SE + Pro Max).
    Açık: Günlük vitrininin tepesindeki krem açma (başlık arkası) hâlâ elle;
    karanlık slaytta "Günlük" yazısı en büyük yazıda soluk.
 5. **Legacy kontrollerin emekliliği** — 4 dosya.
+   ✅ 23 Ekim: arayüzdeki Legacy bileşenler bitti (`LegacyMPButton`, `LegacyMPChip`,
+   `LegacyMPCard`, `MPPressableCard`, `LegacyMPListRow`, `LegacyMPRowDivider`).
+   Ölçüm düzeltmesi: `MPStreak`'teki "Legacy" eski okuma defterinin taşınması,
+   `LegacyStoryReaderContainer` okuyucunun geri dönüş anahtarı; ikisi de arayüz
+   kontrolü değil, bilerek kaldı.
 6. **Ragi ve ebeveyn kapısı** — ekran görüntüsüyle ekran ekran karar.
 7. **VoiceOver yürüyüşü** — ana akışlar: ilk açılış, masal yazma, okuma, kitaplık,
    ebeveyn alanı.

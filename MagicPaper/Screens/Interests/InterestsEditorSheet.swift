@@ -27,7 +27,7 @@ struct InterestsEditorSheet: View {
                 InterestChipGrid(choices: choices, selection: $selection)
             }
         } footer: {
-            LegacyMPButton(title: InterestCopy.save, fullWidth: true, action: save)
+            MPButton(title: InterestCopy.save, fullWidth: true, action: save)
         }
         .onAppear {
             guard !loaded else { return }

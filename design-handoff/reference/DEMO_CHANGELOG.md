@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · Bütünlük 5. adım: Legacy arayüz bileşenleri emekli
+
+- Profil seçme ("Kim okuyacak?") ve profil sayfası (Ayarlar › çocuk) `LegacyMPListRow` yerine Ayarlar'la aynı dilde: tek kartta gruplu satırlar (`MPGroupedList` + `MPRowDivider`), ton kutusu, ileri giden satırlarda ok. Seçili profil `isSelected` taşıyor. Alt düğmeler `MPButton` ("Yeni profil ekle" ikincil, İlgi alanları "Kaydet" birincil).
+- Yeni küçük bileşen `MPRowButton` (`MPCards.swift`): `MPListRow` + basma davranışı, en az `MP.S.tapMin`, VoiceOver'da tek düğme.
+- `StoryActionList` silindi: hiçbir yer çağırmıyordu (eylemler masalın kendi sayfasına taşınmıştı).
+- Kullanılmayan Legacy bileşenler silindi: `LegacyMPButton`, `LegacyMPChip`, `LegacyMPCard`, `MPCardShadow`, `MPPressableCard`, `MPCardTone`, `LegacyMPListRow`, `LegacyMPRowDivider`; DEBUG önizlemelerinden onlara ait iki önizleme ve iki satır. Arayüzde Legacy bileşen kalmadı.
+- İstekten bilerek sapıldı: `MPStreak`'teki `adoptLegacyLedgerIfNeeded` / `legacyAssignedKey` eski cihaz geneli okuma defterini çocuğa devreden veri taşımadır; silmek eski kullanıcıların serisini sıfırlar. `LegacyStoryReaderContainer` okuyucunun belgelenmiş geri dönüş anahtarıdır (`useCustomRenderer = false` → sistem `pageCurl`). İkisi de arayüz kontrolü değil, denetim adları yüzünden listelemişti; dokunulmadı.
+- Test: `MagicPaperTests` 782 test, 0 başarısız, 1 atlandı. (Önceki adımlardaki 257 içerik başarısızlığı, başka oturumun main'e aldığı FAZ 21 birleştirmesiyle (51053ab) kapanmış.)
+- Simülatör (iPhone 17 Pro, açık tema, normal yazı): Ayarlar › İrem profil sayfası. "Kim okuyacak?" ve İlgi alanları düğmesi görülmedi; en büyük yazı, koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `Screens/MPSheets.swift`, `Screens/Interests/InterestsEditorSheet.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/MPSurfaces.swift`, `DesignSystem/LegacyMPControls.swift`, `DesignSystem/MPPreviews.swift`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
 ### 2026-10-23 · faz-21-varyasyon@47ad4a3 · `charge` öğrenelime eklendi: 3-4 ikinci moduna kavuştu, D2 proza soğuması
 
 - **Karar (Batuhan): `charge` ailesi "Yeni şeyler öğrenelim"e eklendi.** 21 Ekim'de uyku öncesi kendi arkına taşınınca (`arcs: ["bedtime"]`) standart arklı üç charge blueprint'i hiçbir moda bağlanamaz hâle gelmişti: bahçede bir fideye bakan masal yazılmıştı, korpusu tamdı, ve hiçbir çocuk ona ulaşamıyordu. Bakmak ve beklemek de öğrenmektir.

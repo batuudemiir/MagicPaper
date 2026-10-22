@@ -9,28 +9,28 @@ struct ProfilePickerSheet: View {
 
     var body: some View {
         MPSheet(title: "Kim okuyacak?", onClose: { app.sheet = nil }) {
-            VStack(spacing: 8) {
-                ForEach(profileManager.profiles) { profile in
-                    LegacyMPListRow(
-                        symbol: "person.crop.circle",
-                        iconColor: profile.mpColor,
-                        title: profile.name,
-                        description: "\(profile.mpAgeRange.shortLabel) yaş · \(count(profile)) masal",
-                        action: {
-                            profileManager.switchProfile(to: profile)
-                            app.sheet = nil
-                            app.showToast("\(profile.name) seçildi", symbol: "checkmark")
-                        }
-                    ) {
-                        if profileManager.currentProfile?.id == profile.id {
-                            MPIcon("checkmark", size: 20, weight: .bold)
-                                .foregroundStyle(MP.C.brand)
+            MPGroupedList(area: .kid) {
+                ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
+                    if index > 0 { MPRowDivider(area: .kid) }
+                    let isCurrent = profileManager.currentProfile?.id == profile.id
+                    MPRowButton(systemImage: "person.crop.circle", tone: index % 2 == 0 ? .lav : .green,
+                                title: profile.name,
+                                subtitle: "\(profile.mpAgeRange.shortLabel) yaş · \(count(profile)) masal",
+                                action: {
+                                    profileManager.switchProfile(to: profile)
+                                    app.sheet = nil
+                                    app.showToast("\(profile.name) seçildi", symbol: "checkmark")
+                                }) {
+                        if isCurrent {
+                            MPIcon("checkmark", size: MP.G.sm, weight: .bold)
+                                .foregroundStyle(MPColor.actionPrimary)
                         }
                     }
+                    .accessibilityAddTraits(isCurrent ? .isSelected : [])
                 }
             }
         } footer: {
-            LegacyMPButton(title: "Yeni profil ekle", variant: .outline, icon: "plus", fullWidth: true) {
+            MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .secondary, fullWidth: true) {
                 app.sheet = nil
                 app.showProfileAdd = true
             }
@@ -39,109 +39,6 @@ struct ProfilePickerSheet: View {
 
     private func count(_ p: UserProfile) -> Int {
         storyManager.stories.filter { $0.isReadable && $0.belongs(to: p) }.count
-    }
-}
-
-// MARK: - Masalın eylemleri
-
-/// Favori, PDF, paylaş, sil — masal detayının eylemleri (03-SCREENS.md §7).
-///
-/// Eskiden ayrı bir alt sayfadaydı (`StoryActionsSheet`). Raftan ve
-/// kütüphaneden artık masalın kendi sayfası açılıyor; eylemler orada.
-struct StoryActionList: View {
-    let story: Story
-    /// Masal silindikten sonra, bulunduğu yüzeyi kapatmak için.
-    let onDeleted: () -> Void
-
-    @EnvironmentObject private var app: MPAppState
-    @ObservedObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var favorites = MPFavorites.shared
-    @ObservedObject private var series = SeriesManager.shared
-
-    @State private var exportFile: MPExportFile?
-    @State private var isExporting = false
-
-    private var isFavorite: Bool { favorites.contains(story.id) }
-
-    var body: some View {
-        VStack(spacing: 4) {
-            seriesRow
-
-            LegacyMPListRow(
-                symbol: "heart",
-                iconColor: isFavorite ? MP.C.brand : MP.C.textMuted,
-                title: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
-                action: {
-                    let now = favorites.toggle(story.id)
-                    app.showToast(now ? "Favorilere eklendi" : "Favorilerden çıkarıldı",
-                                  symbol: "heart.fill")
-                }
-            ) { EmptyView() }
-
-            LegacyMPListRow(symbol: "printer", title: "Yazdır veya PDF indir",
-                      action: { export() }) { EmptyView() }
-
-            LegacyMPListRow(symbol: "square.and.arrow.up", title: "Paylaş",
-                      action: { export() }) { EmptyView() }
-
-            LegacyMPListRow(symbol: "trash", title: "Masalı sil", isDanger: true, action: {
-                storyManager.deleteStory(id: story.id)
-                onDeleted()
-                app.showToast("Masal silindi", symbol: "trash", tone: .danger)
-            }) { EmptyView() }
-        }
-        .sheet(item: $exportFile) { file in
-            ShareSheet(items: [file.url])
-        }
-    }
-
-    /// "Devam ettir" (FAZ 13), ya da başka bir seri sürerken sakin satır.
-    @ViewBuilder
-    private var seriesRow: some View {
-        switch series.endingState(for: story) {
-        case .offer:
-            LegacyMPListRow(symbol: "sparkles", iconColor: MP.C.brand, title: SeriesCopy.continueButton,
-                      description: SeriesCopy.continueHint, action: {
-                do {
-                    try series.startSeries(from: story)
-                    MPHaptics.success()
-                    app.showToast(SeriesCopy.startedToast, symbol: "sparkles")
-                } catch {
-                    app.showToast(SeriesCopy.startFailed, symbol: "xmark")
-                }
-            }) { EmptyView() }
-            .accessibilityHint(SeriesCopy.continueAccessibilityHint)
-        case .blocked:
-            Text(SeriesCopy.blocked(child: story.childName))
-                .font(MP.F.bodySM())
-                .foregroundStyle(MP.C.textMuted)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, MP.S.x2)
-        default:
-            EmptyView()
-        }
-    }
-
-    /// Gerçek PDF üretir ve sistem paylaşım sayfasını açar
-    /// (oradan "Yazdır" da seçilebilir).
-    private func export() {
-        guard !isExporting else { return }
-        isExporting = true
-        app.showToast("PDF hazırlanıyor", symbol: "printer")
-
-        let snapshot = story
-        Task.detached(priority: .userInitiated) {
-            let url = await MPStoryPDF.makePDF(for: snapshot)
-            await MainActor.run {
-                isExporting = false
-                if let url {
-                    exportFile = MPExportFile(url: url)
-                } else {
-                    app.showToast("PDF oluşturulamadı", symbol: "xmark", tone: .danger)
-                }
-            }
-        }
     }
 }
 
@@ -352,43 +249,48 @@ struct ProfileEditSheet: View {
 
     var body: some View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
-            VStack(spacing: 4) {
-                LegacyMPListRow(symbol: "pencil", title: "Profili düzenle", action: {
+            MPGroupedList(area: .kid) {
+                MPRowButton(systemImage: "pencil", title: "Profili düzenle", action: {
                     app.sheet = nil
                     app.showProfileAdd = true
-                }) { EmptyView() }
+                }) { MPChevron() }
 
                 if IllustratedBookAccess.isEnabled() {
-                    LegacyMPListRow(symbol: "sparkles", title: "Kitap karakteri",
-                              description: "Görselli masallarda görünecek karakter", action: {
+                    MPRowDivider(area: .kid)
+                    MPRowButton(systemImage: "sparkles", title: "Kitap karakteri",
+                                subtitle: "Görselli masallarda görünecek karakter", action: {
                         app.sheet = .bookCharacter(profile.id)
-                    }) { EmptyView() }
+                    }) { MPChevron() }
                 }
 
-                LegacyMPListRow(symbol: FamilyCharacterCopy.profileRowSymbol,
-                          title: FamilyCharacterCopy.profileRowTitle,
-                          description: FamilyCharacterCopy.profileRowDescription, action: {
+                MPRowDivider(area: .kid)
+                MPRowButton(systemImage: FamilyCharacterCopy.profileRowSymbol, tone: .pink,
+                            title: FamilyCharacterCopy.profileRowTitle,
+                            subtitle: FamilyCharacterCopy.profileRowDescription, action: {
                     app.sheet = .familyCharacters(profile.id)
-                }) { EmptyView() }
+                }) { MPChevron() }
 
                 if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {
-                    LegacyMPListRow(symbol: InterestCopy.rowSymbol, title: InterestCopy.sectionTitle, action: {
+                    MPRowDivider(area: .kid)
+                    MPRowButton(systemImage: InterestCopy.rowSymbol, tone: .green, title: InterestCopy.sectionTitle, action: {
                         app.sheet = .interests(profile.id)
-                    }) { EmptyView() }
+                    }) { MPChevron() }
                 }
 
-                LegacyMPListRow(symbol: "bookmark", title: "Bu çocuğun masalları", action: {
+                MPRowDivider(area: .kid)
+                MPRowButton(systemImage: "bookmark", tone: .sky, title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
                     app.sheet = nil
                     app.tab = .library
-                }) { EmptyView() }
+                }) { MPChevron() }
 
                 if profileManager.profiles.count > 1 {
+                    MPRowDivider(area: .kid)
                     // Deletion takes the child's stories with it and cannot be
                     // undone, so the row only asks; the dialog deletes.
-                    LegacyMPListRow(symbol: "trash", title: "Profili sil", isDanger: true, action: {
+                    MPRowButton(systemImage: "trash", title: "Profili sil", isDestructive: true) {
                         pendingDeletionStoryCount = profileManager.storiesDeleted(with: profile).count
-                    }) { EmptyView() }
+                    }
                 }
             }
         }
