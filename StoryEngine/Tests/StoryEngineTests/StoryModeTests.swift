@@ -153,11 +153,40 @@ final class StoryModeTests: XCTestCase {
         }
     }
 
-    func testModeProfilesDoNotOverlap() throws {
+    /// Hiçbir blueprint iki moda birden girmiyor.
+    ///
+    /// İddia 22 Ekim 2026'da aileden blueprint'e taşındı, ve gevşetme değil
+    /// düzeltmedir. Eski hâli ailelerin ayrık olmasını istiyordu; 21 Ekim'de
+    /// uyku öncesi kendi arkına taşınınca modları ayıran şey aile olmaktan
+    /// çıkıp (aile, ark) ikilisi oldu. `charge` o günden beri iki modda:
+    /// standart arklı olanlar "Yeni şeyler öğrenelim"e, uyku arklı olanlar
+    /// uyku öncesine gidiyor (karar: Batuhan, 22 Ekim). Aileler kesişiyor ama
+    /// **masallar kesişmiyor**, ve asıl söz buydu: bir masal iki niyeti birden
+    /// karşılıyorsa modlar ayırt edilemez.
+    func testNoBlueprintServesTwoModes() throws {
         let catalog = try catalog()
-        let families = catalog.storyModes.flatMap(\.families)
-        XCTAssertEqual(families.count, Set(families).count,
-                       "A family serving two intents makes the modes indistinguishable.")
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            let modes = catalog.storyModes.filter { $0.admits(blueprint) }.map(\.mode.rawValue)
+            XCTAssertLessThanOrEqual(
+                modes.count, 1,
+                "\(blueprint.id.rawValue) iki niyeti birden karşılıyor (\(modes.sorted())); "
+                + "modlar ayırt edilemez hâle gelir")
+        }
+    }
+
+    /// Aileler artık kesişebiliyor, ve kesiştiği tek yer belgeli: `charge`.
+    /// Üçüncü bir kesişme bilinçli bir karar olmalı, kazara değil.
+    func testTheOnlySharedFamilyIsTheDocumentedOne() throws {
+        let catalog = try catalog()
+        var seen: [NarrativeFamily: [StoryMode]] = [:]
+        for profile in catalog.storyModes {
+            for family in profile.families { seen[family, default: []].append(profile.mode) }
+        }
+        let shared = seen.filter { $0.value.count > 1 }
+        XCTAssertEqual(shared.keys.map(\.rawValue).sorted(), ["charge"],
+                       "beklenmeyen paylaşılan aile: "
+                       + shared.map { "\($0.key.rawValue)=\($0.value.map(\.rawValue).sorted())" }
+                           .sorted().joined(separator: ", "))
     }
 
     func testTheShippedCatalogHasNoModeFaults() throws {

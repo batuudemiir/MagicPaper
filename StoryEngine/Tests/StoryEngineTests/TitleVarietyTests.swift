@@ -242,19 +242,24 @@ final class TitleVarietyTests: XCTestCase {
 
     /// Mode voice, kept loose on purpose: a learning story asks, a bedtime
     /// story does not, and every blueprint has a title without the child's name.
+    ///
+    /// Soru **blueprint başına** ve `admits` üzerinden soruluyor, aile üzerinden
+    /// değil (22 Ekim 2026). Eskiden aileye bakıyordu ve o gün `charge` iki
+    /// moda birden girdi: aynı blueprint'ten hem "soru sor" hem "sessiz ol"
+    /// istenmeye başlandı, yani test kendi kendiyle çelişti. Modları ayıran
+    /// şey artık yalnızca aile değil (aile, ark) ikilisi, ve bu soruyu da o
+    /// ikili cevaplamalı.
     func testEachModeSoundsLikeItself() throws {
         let catalog = try catalog()
-        func families(_ mode: StoryMode) -> Set<NarrativeFamily> {
-            Set(catalog.storyModes.first { $0.mode == mode }?.families ?? [])
-        }
         for blueprint in catalog.blueprints {
-            guard let family = blueprint.family else { continue }
+            guard blueprint.family != nil else { continue }
+            let asking = Set(catalog.storyModes.filter { $0.admits(blueprint) }.map(\.mode))
             let patterns = blueprint.titlePatterns
             XCTAssertTrue(patterns.contains { !TitleComposer.isNameLed($0) }, "\(blueprint.id)")
-            if families(.learning).contains(family) {
+            if asking.contains(.learning) {
                 XCTAssertTrue(patterns.contains { $0.hasSuffix("?") }, "\(blueprint.id): learning asks")
             }
-            if families(.bedtime).contains(family) {
+            if asking.contains(.bedtime) {
                 XCTAssertFalse(patterns.contains { $0.contains("?") || $0.contains("!") },
                                "\(blueprint.id): bedtime is quiet")
             }

@@ -1913,10 +1913,10 @@
         ]
       },
       "titlePatterns": [
-        "{{companion.name}}'ın Uykulu Gecesi",
+        "{{companion.name}} Bekleyebilir mi?",
+        "{{setting.name}}'nda Beklemek",
         "{{discovery.title}}'in Başında",
-        "{{setting.name}}'nda Usulca",
-        "{{child.name}} Bekledi",
+        "{{child.name}} Her Gün Geldi",
         "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
@@ -2015,10 +2015,10 @@
         ]
       },
       "titlePatterns": [
-        "{{companion.name}}'ın Uykulu Gecesi",
-        "{{discovery.title}}'e İyi Geceler",
-        "{{setting.name}}'nda Usulca",
-        "{{child.name}} Usulca Bıraktı",
+        "{{child.name}} Bırakabilir mi?",
+        "{{setting.name}}'nda Veda Vakti",
+        "{{discovery.title}}'e Veda",
+        "{{companion.name}} ile Son Bir Kez",
         "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
@@ -2099,10 +2099,10 @@
         ]
       },
       "titlePatterns": [
-        "{{companion.name}}'ın Uykulu Gecesi",
-        "{{discovery.title}}'e İyi Geceler",
-        "{{setting.name}}'nda Usulca",
-        "{{child.name}} Bekledi",
+        "{{companion.name}} İyileşecek mi?",
+        "{{setting.name}}'nda Küçük Bir Dost",
+        "{{discovery.title}}'in Başında",
+        "{{child.name}} Yanında Kaldı",
         "{{child.name}} ve {{companion.name}}"
       ],
       "pages": [
@@ -2922,9 +2922,10 @@
       "families": [
         "unexplained",
         "misreading",
-        "appeal"
+        "appeal",
+        "charge"
       ],
-      "editorialNote": "Yeni şeyler öğrenelim (eski adı Gelişelim, `growth`): problem, keşif, deneme, küçük kazanım. Anlamadığı bir şeyi çözen (unexplained), yanlış okuduğunu düzelten (misreading) ya da bir başkası için konuşup paylaşmayı öğrenen (appeal) çocuk."
+      "editorialNote": "Yeni şeyler öğrenelim (eski adı Gelişelim, `growth`): problem, keşif, deneme, küçük kazanım. Anlamadığı bir şeyi çözen (unexplained), yanlış okuduğunu düzelten (misreading), bir başkası için konuşup paylaşmayı öğrenen (appeal) ya da bakmayı ve beklemeyi öğrenen (charge) çocuk. charge 22 Ekim 2026'da eklendi (karar: Batuhan). 21 Ekim'de uyku öncesi kendi arkına taşınınca (arcs: bedtime) standart arklı üç charge blueprint'i hiçbir moda bağlanamaz hâle geldi: bahçede bir fideye bakan masal yazılmıştı, korpusu tamdı, ve hiçbir çocuk ona ulaşamıyordu. Bakmak ve sabır da öğrenmektir, ve bu bandın tek 3-4 şekli de bu aileden. Uyku masalları etkilenmiyor: bu modun arcs'ı boş, yani yalnızca standart ark kabul eder (`StoryModeProfile.admits`)."
     },
     {
       "mode": "adventure",

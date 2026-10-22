@@ -20,7 +20,11 @@ final class ModeBandCoverageTests: XCTestCase {
     func testTheShippedMatrix() throws {
         let coverage = BlueprintSelector().modeCoverage(catalog: try catalog())
         XCTAssertEqual(Set(coverage.keys), Set(AgeBandResolver.bands))
-        XCTAssertEqual(coverage[b34], [.bedtime])
+        // 22 Ekim 2026: `charge` "Yeni şeyler öğrenelim"e eklenince (karar:
+        // Batuhan) 3-4 bandı ikinci moduna kavuştu. O bant bu güne kadar tek
+        // bir uyku şeklinden ibaretti; `lookingAfter` yazılmıştı, korpusu
+        // tamdı ve hiçbir çocuk ona ulaşamıyordu.
+        XCTAssertEqual(coverage[b34], [.learning, .bedtime])
         XCTAssertEqual(coverage[b56], [.learning, .adventure, .bedtime])
         XCTAssertEqual(coverage[b78], [])
         XCTAssertEqual(coverage[b910], [])
@@ -42,9 +46,12 @@ final class ModeBandCoverageTests: XCTestCase {
         XCTAssertFalse(missing.isEmpty)
         XCTAssertTrue(missing.allSatisfy { $0.severity == .warning })
         let messages = missing.map(\.message).joined(separator: "\n")
-        XCTAssertTrue(messages.contains("'learning'") && messages.contains("3-4"), messages)
+        // 22 Ekim 2026: öğrenelim 3-4'e ulaştı, yani artık eksik olan tek mod
+        // macera. Bandın tüzüğü ("aşılacak engel yok") maceranın oraya
+        // yazılmasını zaten dışlıyor; uyarı o boşluğu sessiz bırakmıyor.
         XCTAssertTrue(messages.contains("'adventure'") && messages.contains("3-4"), messages)
         XCTAssertFalse(messages.contains("'bedtime'"), messages)
+        XCTAssertFalse(messages.contains("'learning'") && messages.contains("3-4"), messages)
     }
 
     func testABandWithNoContentIsReportedOnce() throws {

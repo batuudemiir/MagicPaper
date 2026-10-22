@@ -178,6 +178,11 @@ public struct OfflineStoryComposer: Sendable {
             carried[step.pageNumber] = (step.beats, step.role, step.emotion)
         }
 
+        // D2: çocuğun son masallarının satırları, en yenisi önce. Boş liste,
+        // bu alandan önce yazılmış her masal ve her test — ve o durumda seçim
+        // bit bit eskisiyle aynı kalır.
+        let recentVariants = intent.recent.map(\.variantIDs).filter { !$0.isEmpty }
+
         var currentPage = 0
         var sentences: [String] = []
         var scenes: [String] = []
@@ -265,6 +270,7 @@ public struct OfflineStoryComposer: Sendable {
                 calmEnding: closesCalmly && step.pageNumber == lastPage,
                 safety: intent.safety,
                 episode: episode,
+                recentVariants: recentVariants,
                 seed: storySeed,
                 salt: step.salt + ".v"
             )
@@ -503,6 +509,7 @@ public struct OfflineStoryComposer: Sendable {
         calmEnding: Bool = false,
         safety: ContentSafety? = nil,
         episode: EpisodeContext? = nil,
+        recentVariants: [Set<ContentID>] = [],
         seed: String,
         salt: String
     ) throws -> CatalogVariant {
@@ -512,14 +519,35 @@ public struct OfflineStoryComposer: Sendable {
             register: register, conflict: conflict,
             family: family, familyMoment: familyMoment, calmEnding: calmEnding,
             safety: safety)
-        guard let episode else {
-            return DeterministicPicker.pick(from: pool, seed: seed, salt: salt)
-        }
+
         // An episode prefers a line the series has not used yet: the child
         // hears these books in a row, and the second "Bak," dedi is noticed.
-        let fresh = pool.filter { !episode.avoiding.contains($0.id) }
-        let choices = fresh.isEmpty ? pool : fresh
-        return choices[DeterministicPicker.mixedIndex(count: choices.count, seed: seed, salt: salt)]
+        var choices = pool
+        if let episode {
+            let fresh = pool.filter { !episode.avoiding.contains($0.id) }
+            choices = fresh.isEmpty ? pool : fresh
+        }
+
+        // D2: çocuğun son masallarında geçen satır soğur. Geçmiş yoksa seçim
+        // bit bit eskisiyle aynı kalıyor — bu yüzden iki ayrı yol var, biri
+        // "eskisi gibi", öbürü ağırlıklı.
+        guard !recentVariants.isEmpty else {
+            guard episode != nil else {
+                return DeterministicPicker.pick(from: choices, seed: seed, salt: salt)
+            }
+            return choices[DeterministicPicker.mixedIndex(
+                count: choices.count, seed: seed, salt: salt)]
+        }
+        let weights = choices.map {
+            SelectionScoring.variantWeight(id: $0.id, recent: recentVariants)
+        }
+        let ordered = SelectionScoring.ordered(
+            choices, weights: weights, id: \.id, seed: seed, salt: salt + ".cool")
+        guard let best = ordered.first else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line for this page", beat: beat, page: page)
+        }
+        return best
     }
 
     /// Every line that could serve this page for this binding.

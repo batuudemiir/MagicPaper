@@ -133,6 +133,18 @@ struct StoryOrigin: Codable, Equatable {
     var seriesID: String? = nil
     /// Which episode (2…5). Nil whenever `seriesID` is.
     var seriesEpisode: Int? = nil
+    /// Bu masalın kullandığı proza satırlarının kimlikleri (D2, 22 Ekim 2026).
+    ///
+    /// Sonraki masalın aynı cümleleri seçmemesi için saklanıyor: motorda
+    /// soğuma mekân, arkadaş ve nesne eksenlerinde çalışıyordu ama cümlenin
+    /// kendisinde hiçbir hafıza yoktu, ve ölçülen tekrar oranı bunun bedelini
+    /// gösteriyordu.
+    ///
+    /// Kimlik, metin değil: metin zaten sayfalarda duruyor ve o masalın
+    /// kaydıdır. Kimlik ise havuzdaki satırı işaret eder, yani soğutulacak
+    /// şeyi. Nil, bu alandan önce yazılmış her masal — ve o masallar seçimi
+    /// hiç etkilemez.
+    var variantIDs: [String]? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }

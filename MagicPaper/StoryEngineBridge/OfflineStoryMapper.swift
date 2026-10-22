@@ -56,7 +56,8 @@ enum OfflineStoryMapper {
                 familyCharacterID: familyCharacter?.id.uuidString,
                 familyRelation: familyCharacter?.relation.kind.rawValue,
                 seriesID: series?.id.uuidString,
-                seriesEpisode: series?.episode
+                seriesEpisode: series?.episode,
+                variantIDs: composed.pages.flatMap { $0.variantIDs.map(\.rawValue) }
             )
         )
         story.currentProgress = nil

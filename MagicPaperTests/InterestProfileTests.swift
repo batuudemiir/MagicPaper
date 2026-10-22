@@ -76,24 +76,23 @@ final class InterestProfileTests: XCTestCase {
         XCTAssertTrue(ChildInterests.isShown(choices))
     }
 
-    /// Ekranlar gizli, ve saklanan bir kelime hâlâ motora ulaşıyor.
+    /// Ekranların görünme **kuralı**, bugünkü durumu değil.
     ///
-    /// 21 Ekim'de bu test bir tur "ekranlar açıldı" diye yazıldı: A turunda
-    /// sunulan kelime 2'den 4'e çıkmış görünüyordu ve FAZ 12 eşiği aşılmıştı.
-    /// 22 Ekim'de ölçülünce sebebin içerik olmadığı çıktı: 3-4 bandının
-    /// kapsaması hiçbir moda bağlanamayan bir blueprint üzerinden sayılıyordu
-    /// (`InterestReachabilityTests`). Kapsama o blueprint'i saymayı bıraktığı
-    /// an sunulan kelime bire düştü, yani eşik hiç meşru biçimde aşılmamış.
-    ///
-    /// Yani doğru hâli bu: ekranlar gizli. Eşik, katalog dörtten az kelimeyi
-    /// her bantta onurlandırabiliyorsa soru sormamak için var — tutamayacağın
-    /// bir söz vermemek için.
+    /// Bu test iki gün içinde iki kez yön değiştirdi ve ikisinde de sebep
+    /// içerik değil kapsamaydı: 21 Ekim'de "eşik aşıldı" diye yazıldı, 22
+    /// Ekim'de kapsamanın hiçbir moda bağlanamayan bir blueprint üzerinden
+    /// sayıldığı çıkınca "gizli"ye döndü, 23 Ekim'de `charge` öğrenelime
+    /// eklenince gerçekten aşıldı. Üçüncü kez pinlemek yerine artık kuralı
+    /// sınıyor: ekranlar **tam olarak** eşik kadar kelime sunulduğunda
+    /// görünür. Bugünkü liste `testTheServiceOffersWhatReachesEveryBand`'de
+    /// açık yazılı, ve pinlenecek tek yer orası.
     ///
     /// Değişmeyen taraf: gizlemek unutmak değil. Eşiğin altında kalan bir
     /// kelime bile motora ulaşmaya devam eder.
-    func testTodaysCatalogHidesTheScreensButKeepsWeighing() throws {
+    func testTheScreensAppearExactlyWhenTheThresholdIsMet() throws {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertFalse(ChildInterests.isShown(offered),
+        XCTAssertEqual(ChildInterests.isShown(offered),
+                       offered.count >= ChildInterests.minimumOfferedToShow,
                        "katalog \(offered.count) kelime sunuyor, eşik \(ChildInterests.minimumOfferedToShow)")
         XCTAssertEqual(ChildInterests.offered(["animals"], from: offered), ["animals"])
     }
@@ -156,13 +155,16 @@ final class InterestProfileTests: XCTestCase {
     ///
     /// Liste burada açık yazılı, çünkü bu kelimeler ebeveyne gösterilen
     /// sözlerin tamamı: sessizce büyümesi ya da küçülmesi bir ürün kararıdır,
-    /// bir yan etki değil. Bugün tek kelime, çünkü 3-4 bandında bir çocuğun
-    /// gerçekten alabildiği tek masal şekli var ve o yalnızca hayvanlara
-    /// ulaşıyor. 3-4 için macera ya da öğrenme yazıldığı gün liste büyür.
+    /// bir yan etki değil. Pinlenen tek yer burası (bkz.
+    /// `testTheScreensAppearExactlyWhenTheThresholdIsMet`).
+    ///
+    /// 23 Ekim 2026'da bire düştü ve beşe çıktı, aynı gün: `charge` ailesi
+    /// öğrenelime eklenince (karar: Batuhan) 3-4 bandı bir çocuğun gerçekten
+    /// alabildiği ikinci şekle kavuştu ve o şekil beş kelimeye ulaşıyor.
     func testTheServiceOffersWhatReachesEveryBand() {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertEqual(offered.map(\.id), ["animals"])
-        XCTAssertEqual(offered.map(\.name), ["Hayvanlar"])
+        XCTAssertEqual(offered.map(\.id), ["animals", "sea", "magic", "nature", "treasure"])
+        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
         XCTAssertTrue(StoryChoiceSources.current.interestChoices() == offered)
     }
 

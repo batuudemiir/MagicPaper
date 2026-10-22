@@ -330,11 +330,19 @@ final class OfflineStoryService {
         // Only what the parent is offered today reaches the engine: a stored
         // word the catalog stopped offering is kept on the profile, not used.
         let wanted = ChildInterests.offered(interests, from: interestChoices()).map { InterestTag($0) }
-        let history = recent.prefix(SelectionScoring.cooldownWindow).map {
-            RecentContent(
-                blueprintID: ContentID($0.blueprintID), settingID: ContentID($0.settingID),
-                companionID: ContentID($0.companionID), discoveryID: ContentID($0.discoveryID))
-        }
+        let history: [RecentContent] = recent
+            .prefix(SelectionScoring.cooldownWindow)
+            .map { origin -> RecentContent in
+                // D2: eski masallarda satır kimliği yok, ve olmaması seçimi
+                // etkilemiyor — boş küme "geçmiş yok" demekle aynı.
+                let lines = Set((origin.variantIDs ?? []).map { ContentID($0) })
+                return RecentContent(
+                    blueprintID: ContentID(origin.blueprintID),
+                    settingID: ContentID(origin.settingID),
+                    companionID: ContentID(origin.companionID),
+                    discoveryID: ContentID(origin.discoveryID),
+                    variantIDs: lines)
+            }
         let learned = UsageLearner.profile(from: usage, catalog: catalog)
         let seeds = seed.map { [$0] }
             ?? (0..<Self.cleanDraftAttempts).map { _ in UUID().uuidString }

@@ -128,17 +128,25 @@ public struct RecentContent: Sendable, Hashable {
     public let settingID: ContentID?
     public let companionID: ContentID?
     public let discoveryID: ContentID?
+    /// Bu masalın kullandığı proza satırları (D2, 22 Ekim 2026).
+    ///
+    /// Diğer alanların aksine tekil değil: bir masalın tek mekânı var ama
+    /// onlarca cümlesi. Boş kalması, bu alandan önce yazılmış her masal ve her
+    /// test demek, ve o durumda seçim bit bit eskisiyle aynı.
+    public let variantIDs: Set<ContentID>
 
     public init(
         blueprintID: ContentID? = nil,
         settingID: ContentID? = nil,
         companionID: ContentID? = nil,
-        discoveryID: ContentID? = nil
+        discoveryID: ContentID? = nil,
+        variantIDs: Set<ContentID> = []
     ) {
         self.blueprintID = blueprintID
         self.settingID = settingID
         self.companionID = companionID
         self.discoveryID = discoveryID
+        self.variantIDs = variantIDs
     }
 }
 

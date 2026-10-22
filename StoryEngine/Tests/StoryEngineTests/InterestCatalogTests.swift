@@ -86,25 +86,35 @@ final class InterestCatalogTests: XCTestCase {
         //
         // Sonucu: sunulan kelime dörtten bire düştü, FAZ 12 eşiği (dört)
         // aşılmıyor ve ilgi ekranları gizli — hiç meşru biçimde açılmamışlar.
-        XCTAssertEqual(coverage[b34], ["animals"])
+        //
+        // Aynı gün, ikinci değişiklik: `charge` ailesi "Yeni şeyler
+        // öğrenelim"e eklendi (karar: Batuhan). O blueprint ulaşılabilir
+        // oldu, 3-4 bandı bir çocuğun gerçekten alabildiği ikinci şekle
+        // kavuştu, ve kapsama beş kelimeye çıktı — bu kez meşru. Sunulan
+        // liste de dörtten beşe çıkınca FAZ 12 eşiği gerçekten aşıldı.
+        XCTAssertEqual(coverage[b34], ["animals", "magic", "nature", "sea", "treasure"])
         XCTAssertEqual(coverage[b56],
                        ["animals", "magic", "music", "nature", "robots", "sea", "treasure"])
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
-                       ["Hayvanlar"])
+                       ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
     }
 
-    /// Deniz 5-6'da ulaşılabilir, 3-4'te değil (22 Ekim 2026).
+    /// Deniz iki bantta da ulaşılabilir (22 Ekim 2026, ikinci ölçüm).
     ///
     /// FAZ 12'den beri mercan denizi, yunus ve deniz kabuğu katalogda duruyor
     /// ama hiçbir masala giremiyordu: o masalları kuracak mekân/arkadaş/nesne
     /// üçlüsü tamamlanmıyordu. v2 kütüphanesi etiketlenip havuza katılınca
     /// (kumsal, resif, ada, penguen, kaplumbağa) deniz 5-6'da kuruldu.
     ///
-    /// 21 Ekim'de bu test denizin **iki** bantta da kurulduğunu sabitliyordu.
-    /// 22 Ekim'de ölçülünce 3-4 ayağının hiçbir moda bağlanamayan bir
-    /// blueprint üzerinden sayıldığı çıktı; kapsama onu saymayı bırakınca
-    /// deniz o bantta kalmadı. Yani iddia yanlış değil, eksik bir kapsamaya
-    /// dayanıyordu. 3-4 için macera ya da öğrenme yazıldığı gün geri gelir.
+    /// Bu iddia bir günde iki kez döndü, ve ikisinin de sebebi aynı blueprint:
+    /// 21 Ekim'de deniz iki bantta da kurulu sayılıyordu, ama 3-4 ayağı hiçbir
+    /// moda bağlanamayan `blueprint_charge_tending_age3_001` üzerinden
+    /// sayılıyordu; kapsama onu saymayı bırakınca deniz o bantta kalmadı. Aynı
+    /// gün `charge` öğrenelime eklenince (karar: Batuhan) aynı blueprint
+    /// ulaşılabilir oldu ve deniz meşru biçimde geri geldi.
+    ///
+    /// Yani rakam baştaki gibi, dayanağı değil: ilki eksik bir kapsamaydı,
+    /// bu bir çocuğun gerçekten alabildiği masal.
     ///
     /// Testin eski hâli bunun tersini sabitliyordu ve şöyle yazılmıştı:
     ///
@@ -115,22 +125,18 @@ final class InterestCatalogTests: XCTestCase {
     /// satır boş diziyi indeksleyip **bütün demeti çökertti** — o çalıştırmada
     /// bilinen 10 hatanın hiçbiri koşamadı. Önce doğrula sonra indeksle:
     /// kırılan bir test yalnızca kendi sonucunu bozmalı.
-    func testTheSeaIsReachableAtFiveSixButNotThreeFour() throws {
+    func testTheSeaIsReachableInBothBands() throws {
         let catalog = try catalog()
         XCTAssertEqual(catalog.setting("setting_coral_sea_001")?.interests, ["sea"])
 
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
         XCTAssertTrue(coverage[b56]?.contains("sea") ?? false, "5-6 bandında deniz yok")
-        XCTAssertFalse(coverage[b34]?.contains("sea") ?? false,
-                       "3-4'te deniz görünüyor: ya o banda içerik yazıldı (kaydı güncelle) "
-                       + "ya da ulaşılamayan bir blueprint yeniden sayılıyor")
+        XCTAssertTrue(coverage[b34]?.contains("sea") ?? false, "3-4 bandında deniz yok")
 
-        // Eksiklik sessiz kalmıyor: bütünlük denetimi 3-4 için uyarı veriyor.
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
         let sea = report.issues(withCode: "interest_unreachable_in_band")
             .filter { $0.message.contains("'sea'") }
-        XCTAssertEqual(sea.count, 1)
-        XCTAssertTrue(sea[0].message.contains("3-4"), sea[0].message)
+        XCTAssertTrue(sea.isEmpty, "deniz yine ulaşılamaz: \(sea.map(\.message))")
     }
 
     // MARK: - Integrity
@@ -190,16 +196,12 @@ final class InterestCatalogTests: XCTestCase {
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
 
         XCTAssertEqual(coverage[b56], ["pirates", "animals", "sea"])
-        // 22 Ekim 2026: 3-4'te deniz de düştü. Bu bandın denizi, hiçbir moda
-        // bağlanamayan `blueprint_charge_tending_age3_001` üzerinden
-        // sayılıyordu; kapsama artık yalnızca bir çocuğun gerçekten
-        // alabileceği şekilleri sayıyor.
-        XCTAssertEqual(coverage[b34], ["animals"], "korsan haritası 3-4 yayına hizmet etmiyor")
+        XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan haritası 3-4 yayına hizmet etmiyor")
         XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], [],
                        "7-8 bandında hiç blueprint yok")
 
         let offered = BlueprintSelector().availableInterests(catalog: catalog).map(\.id)
-        XCTAssertEqual(offered, ["animals"], "korsanlar ve deniz 3-4'e ulaşmıyor")
+        XCTAssertEqual(offered, ["animals", "sea"], "korsanlar 3-4'e ulaşmıyor")
     }
 
     /// Bir blueprint'in kendi etiketi yalnızca kendi bandına ulaşır.

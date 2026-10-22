@@ -133,12 +133,17 @@ final class CompanionNatureTests: XCTestCase {
 /// İlgi kapsaması yalnızca bir çocuğun gerçekten alabileceği şekilleri sayar
 /// (22 Ekim 2026).
 ///
-/// Ölçüldüğünde 3-4 bandının bütün ilgi kapsaması tek bir blueprint'ten
-/// geliyordu: `blueprint_charge_tending_age3_001`, 21 Ekim'de uyku arkı
-/// eklenirken hiçbir moda bağlanamaz hâle gelmiş üç blueprint'ten biri. O
-/// bantta bir çocuğun gerçekten alabildiği tek şekil yalnızca `animals`'a
-/// ulaşıyor. Yani ebeveyne gösterilen dört çipin üçü, hiçbir çocuğa ulaşmayan
-/// bir blueprint yüzünden gösteriliyordu.
+/// Kuralın hikâyesi: ölçüldüğünde 3-4 bandının bütün ilgi kapsaması tek bir
+/// blueprint'ten geliyordu — `blueprint_charge_tending_age3_001`, 21 Ekim'de
+/// uyku öncesi kendi arkına taşınınca hiçbir moda bağlanamaz hâle gelen üç
+/// blueprint'ten biri. Yani ebeveyne gösterilen dört çipin üçü, hiçbir çocuğa
+/// ulaşmayan bir blueprint yüzünden gösteriliyordu.
+///
+/// Aynı gün `charge` ailesi "Yeni şeyler öğrenelim"e eklendi (karar: Batuhan)
+/// ve o blueprint ulaşılabilir oldu, yani kapsama artık meşru. Kural yine de
+/// gerekli ve bu yüzden kurgu bir katalogla sınanıyor: canlı katalogda örnek
+/// kalmaması kuralın gereksizleştiği anlamına gelmez, yalnızca bugün ihlal
+/// olmadığı anlamına gelir.
 final class InterestReachabilityTests: XCTestCase {
 
     private var catalog: ContentCatalog!
@@ -149,26 +154,50 @@ final class InterestReachabilityTests: XCTestCase {
     }
 
     /// Hiçbir modun kabul etmediği blueprint kapsamaya sayılmaz.
-    func testCoverageCountsOnlyWhatAModeAdmits() {
-        let band = AgeBand(lowerBound: 3, upperBound: 4)
-        let stranded = catalog.blueprints.filter { blueprint in
-            blueprint.isBeatAuthored && blueprint.ageRange == band
-                && !catalog.storyModes.contains { $0.admits(blueprint) }
-        }
-        XCTAssertFalse(stranded.isEmpty, "ulaşılamayan 3-4 blueprint'i kalmamış: "
-                       + "bu testin premisi değişti, kapsama yeniden ölçülmeli")
+    ///
+    /// Kurgu katalogla sınanıyor: canlı katalogda bugün ulaşılamayan blueprint
+    /// yok (`charge` öğrenelime eklendi), ama kural bir modun ailesini
+    /// değiştiren her turda yeniden geçerli olacak.
+    func testCoverageCountsOnlyWhatAModeAdmits() throws {
+        let reachable = try XCTUnwrap(catalog.blueprints.first {
+            $0.isBeatAuthored && $0.family == .charge
+                && $0.ageRange == AgeBand(lowerBound: 3, upperBound: 4)
+        })
+        // Aynı katalog, tek fark: hiçbir mod artık charge kabul etmiyor.
+        let withoutCharge = ContentCatalog(
+            version: catalog.version, settings: catalog.settings,
+            companions: catalog.companions, objects: catalog.objects,
+            templates: catalog.templates, blueprints: catalog.blueprints,
+            storyModes: catalog.storyModes.map {
+                StoryModeProfile(mode: $0.mode,
+                                 families: $0.families.filter { $0 != .charge },
+                                 arcs: $0.arcs)
+            },
+            interests: catalog.interests)
 
-        let coverage = selector.interestCoverage(catalog: catalog)
-        XCTAssertEqual(coverage[band]?.map(\.rawValue).sorted(), ["animals"],
-                       "3-4 bandı yalnızca uyku şeklinden geçiyor; başka kelime "
-                       + "görünüyorsa ulaşılamayan bir blueprint sayılıyor")
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        XCTAssertTrue(catalog.storyModes.contains { $0.admits(reachable) },
+                      "canlı katalogda charge bir moda bağlı olmalı")
+        XCTAssertFalse(withoutCharge.storyModes.contains { $0.admits(reachable) })
+
+        let before = selector.interestCoverage(catalog: catalog)[band] ?? []
+        let after = selector.interestCoverage(catalog: withoutCharge)[band] ?? []
+        XCTAssertTrue(after.isStrictSubset(of: before),
+                      "ulaşılamayan blueprint hâlâ kapsamaya sayılıyor: "
+                      + "\(after.map(\.rawValue).sorted())")
     }
 
     /// Ebeveyne sunulan liste, her bantta gerçekten tutulabilen sözlerden
-    /// oluşuyor. Bugün tek kelime kalıyor, yani FAZ 12 eşiği (dört) aşılmıyor
-    /// ve ilgi ekranları gizli — doğru hâli bu.
+    /// oluşuyor.
+    ///
+    /// 22 Ekim: `charge` öğrenelime eklenince 3-4 bandı bir çocuğun gerçekten
+    /// alabildiği ikinci bir şekle kavuştu (`lookingAfter`) ve liste beş
+    /// kelimeye çıktı. FAZ 12 eşiği (dört) **meşru biçimde** aşıldı, yani ilgi
+    /// ekranları artık görünüyor — iki tur önce aynı sayı ulaşılamayan bir
+    /// blueprint yüzünden görünmüştü, bu kez değil.
     func testTheOfferedListIsWhatEveryBandCanActuallyKeep() {
-        XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue), ["animals"])
+        XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue),
+                       ["animals", "sea", "magic", "nature", "treasure"])
     }
 
     /// Mod tanımı olmayan bir katalogda süzgeç uygulanmaz: "hiçbir mod kabul

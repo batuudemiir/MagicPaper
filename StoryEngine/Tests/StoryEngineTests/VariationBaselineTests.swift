@@ -20,7 +20,12 @@ final class VariationBaselineTests: XCTestCase {
         (.learning, AgeBand(lowerBound: 5, upperBound: 6)),
         (.adventure, AgeBand(lowerBound: 5, upperBound: 6)),
         (.bedtime, AgeBand(lowerBound: 5, upperBound: 6)),
-        (.bedtime, AgeBand(lowerBound: 3, upperBound: 4))
+        (.bedtime, AgeBand(lowerBound: 3, upperBound: 4)),
+        // 22 Ekim 2026: `charge` öğrenelime eklenince 3-4 bandı ikinci bir
+        // kesit kazandı. Yeni kesit tabanda yok, o yüzden eşik testi onu
+        // atlıyor (`baseline.report(mode:band:)` nil döner) ve ilk kaydı
+        // bu turun ölçümüyle giriyor.
+        (.learning, AgeBand(lowerBound: 3, upperBound: 4))
     ]
 
     /// Baseline dosyası repo kökünde, doğrulayıcı tabanının yanında.
@@ -175,10 +180,14 @@ final class VariationBaselineTests: XCTestCase {
 
     /// Yayınlanan katalogda hiçbir moda bağlanamayan blueprint var mı.
     ///
-    /// Bu test bugün **kırmızı başlıyor** ve bu kasıtlı: 21 Ekim'de uyku arkı
-    /// eklenirken üç blueprint sessizce ulaşılamaz oldu. Testin işi onları
-    /// görünür tutmak; düzeltildiklerinde ya da bilerek emekliye ayrıldıklarında
-    /// yeşile döner.
+    /// Bu test 21 Ekim'de **kasıtlı olarak kırmızı** eklendi: uyku öncesi kendi
+    /// arkına taşınırken üç blueprint sessizce ulaşılamaz olmuştu ve hiçbir şey
+    /// bunu söylemiyordu. 22 Ekim'de yeşile döndü — `charge` ailesi "Yeni
+    /// şeyler öğrenelim"e eklendi (karar: Batuhan) ve üçü de bir çocuğa
+    /// ulaşabilir hâle geldi.
+    ///
+    /// Testin işi bitmedi: bir modun ailelerini değiştiren her tur bu üç
+    /// blueprint'i yeniden kopartabilir, ve o gün yine burada görünür.
     func testNoBlueprintIsStrandedWithoutAMode() throws {
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
         let stranded = report.issues(withCode: "blueprint_serves_no_mode")

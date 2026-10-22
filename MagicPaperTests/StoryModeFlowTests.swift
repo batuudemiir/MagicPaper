@@ -156,9 +156,19 @@ final class StoryModeFlowTests: XCTestCase {
         }
     }
 
-    func testTheYoungestBandOffersOnlyBedtimeToday() {
-        XCTAssertEqual(service.availableModes(forAge: 3), [.bedtime])
-        XCTAssertEqual(service.availableModes(forAge: 4), [.bedtime])
+    /// 3-4 bandının bugün sunduğu modlar.
+    ///
+    /// 23 Ekim 2026'da ikiye çıktı: `charge` ailesi "Yeni şeyler öğrenelim"e
+    /// eklendi (karar: Batuhan) ve o bandın tek standart arklı şekli
+    /// (`lookingAfter`) ulaşılabilir oldu. Yazılmıştı, korpusu tamdı, ve
+    /// hiçbir çocuk ona ulaşamıyordu.
+    ///
+    /// Macera hâlâ yok ve bu bir eksiklik değil bir tüzük: 3-4 korpusunun
+    /// editoryal notu "aşılacak engel yok" diyor, yani eşik ve iz sürme
+    /// şekilleri bu banda yazılmaz.
+    func testTheYoungestBandOffersLearningAndBedtimeToday() {
+        XCTAssertEqual(service.availableModes(forAge: 3), [.learning, .bedtime])
+        XCTAssertEqual(service.availableModes(forAge: 4), [.learning, .bedtime])
     }
 
     func testElevenAndTwelveAreServedAsNineToTen() {

@@ -43,14 +43,45 @@ public enum SelectionScoring {
     ) -> Double {
         var weight = usage
         if matchesInterest { weight *= 1 + interestBoost }
-        if let index = recent.prefix(cooldownWindow).firstIndex(of: id) {
-            let full = (1 - cooldownFloor) * Double(cooldownWindow - index) / Double(cooldownWindow)
-            // Never to zero: cooled is less likely, not impossible, so a pool of
-            // one stays a pool of one rather than an error.
-            let penalty = min(full * max(0, cooldown), 0.95)
-            weight *= 1 - penalty
-        }
+        weight *= cooled(storiesAgo: recent.prefix(cooldownWindow).firstIndex(of: id),
+                         cooldown: cooldown)
         return weight
+    }
+
+    /// Soğuma eğrisi: kaç masal önce kullanıldığına göre ağırlığın ne kadarı
+    /// kalır. `nil` pencerede hiç geçmedi demek, ve hiçbir şey kaybetmez.
+    ///
+    /// Tek yerde durması şart, çünkü iki ekseni besliyor: içerik kayıtları
+    /// (eksen başına tek kimlik) ve proza satırları (masal başına onlarca).
+    /// Eğriyi iki kez yazmak, birini ayarlayıp öbürünü unutmanın en kolay yolu.
+    static func cooled(storiesAgo index: Int?, cooldown: Double) -> Double {
+        guard let index else { return 1 }
+        let full = (1 - cooldownFloor) * Double(cooldownWindow - index) / Double(cooldownWindow)
+        // Never to zero: cooled is less likely, not impossible, so a pool of
+        // one stays a pool of one rather than an error.
+        return 1 - min(full * max(0, cooldown), 0.95)
+    }
+
+    /// Bir proza satırının ağırlığı: çocuğun son masallarında geçtiyse soğur
+    /// (D2, 22 Ekim 2026).
+    ///
+    /// Buraya kadar soğuma yalnızca mekân, arkadaş ve nesne eksenlerinde
+    /// çalışıyordu; cümlenin kendisinde hiçbir hafıza yoktu. Ölçüm bunun
+    /// bedelini gösterdi: aynı çocuğun elli masalında tekrar eden cümle oranı
+    /// öğrenelim 5-6'da %52, macerada %57, uyku öncesinde %85. Havuz A turunda
+    /// iki katına çıktığında bu oran neredeyse hiç kıpırdamadı, çünkü mekân
+    /// değişse de sayfanın cümlesi aynı yerden seçiliyordu.
+    ///
+    /// `recent` masal başına bir küme, en yenisi önce: içerik eksenlerinin
+    /// aksine bir masalın onlarca satırı var, bu yüzden geçmiş kimlik değil
+    /// küme listesi. Eğri aynı (`cooled`), yani "üç masal önce geçti" iki
+    /// eksende aynı şeyi ifade ediyor.
+    ///
+    /// Süzgeç değil ağırlık: üç varyantlı bir beat'te satırı elemek masalı
+    /// kurulamaz hâle getirirdi. Soğuyan satır daha az olası, imkânsız değil.
+    public static func variantWeight(id: ContentID, recent: [Set<ContentID>]) -> Double {
+        let index = recent.prefix(cooldownWindow).firstIndex { $0.contains(id) }
+        return cooled(storiesAgo: index, cooldown: 1)
     }
 
     /// `items` best first, deterministically.

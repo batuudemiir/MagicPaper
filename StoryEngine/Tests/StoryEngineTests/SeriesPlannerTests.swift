@@ -60,14 +60,49 @@ final class SeriesPlannerTests: XCTestCase {
             catalog: catalog)
     }
 
-    /// Every mode a band can write a first story in, with a few seeds.
+    /// Every mode a band can write a first story in **and continue**, with a
+    /// few seeds.
+    ///
+    /// Devam edilebilirlik süzgeci 22 Ekim 2026'da eklendi. O gün `charge`
+    /// "Yeni şeyler öğrenelim"e eklenince öğrenelim 3-4'te açıldı, ama o
+    /// kesit için yazılmış devam blueprint'i yok: tarama her modu gezdiği için
+    /// on test birden, sınadıkları şeyle ilgisiz bir sebepten kırmızıya düştü.
+    ///
+    /// Uygulama bu boşluktan etkilenmiyor — "Devam ettir" düğmesi
+    /// `SeriesPlanner.isAvailable` ile kapılı, yani o masalda hiç görünmüyor.
+    /// Boşluğun kendisi `testWhichSectionsHaveNoSeriesYet` ile kayıtlı.
+    private func canContinue(_ mode: StoryMode, _ band: AgeBand, _ catalog: ContentCatalog) -> Bool {
+        guard let first = try? firstStory(mode: mode, band: band, seed: "s1", catalog: catalog)
+        else { return false }
+        return SeriesPlanner.isAvailable(
+            settingID: first.content.setting.id, mode: mode, band: band, catalog: catalog)
+    }
+
     private func cases(_ catalog: ContentCatalog) -> [(StoryMode, AgeBand, String)] {
         let selector = BlueprintSelector()
         return [Self.age3, Self.age5].flatMap { band in
-            selector.availableModes(catalog: catalog, ageBand: band).flatMap { mode in
-                ["s1", "s2", "s3", "s4", "s5"].map { (mode, band, $0) }
+            selector.availableModes(catalog: catalog, ageBand: band)
+                .filter { canContinue($0, band, catalog) }
+                .flatMap { mode in ["s1", "s2", "s3", "s4", "s5"].map { (mode, band, $0) } }
+        }
+    }
+
+    /// Hangi kesitlerde seri henüz yok.
+    ///
+    /// Eşitlik iddiası bilerek: devam içeriği yazıldığında bu test kırılır ve
+    /// kıran kişiye "bir kesit daha devam edebiliyor, kaydı güncelle" der.
+    func testWhichSectionsHaveNoSeriesYet() throws {
+        let catalog = try catalog()
+        let selector = BlueprintSelector()
+        var without: [String] = []
+        for band in [Self.age3, Self.age5] {
+            for mode in selector.availableModes(catalog: catalog, ageBand: band)
+            where !canContinue(mode, band, catalog) {
+                without.append("\(mode.rawValue) \(band)")
             }
         }
+        // 22 Ekim 2026: öğrenelim 3-4 aynı gün açıldı, devam içeriği yok.
+        XCTAssertEqual(without.sorted(), ["learning 3-4"])
     }
 
     // MARK: - Determinism
@@ -213,7 +248,9 @@ final class SeriesPlannerTests: XCTestCase {
     func testTheFamilyCharacterOpensAndClosesEveryEpisode() throws {
         let catalog = try catalog()
         for band in [Self.age3, Self.age5] {
-            let mode = BlueprintSelector().availableModes(catalog: catalog, ageBand: band)[0]
+            let mode = try XCTUnwrap(BlueprintSelector()
+                .availableModes(catalog: catalog, ageBand: band)
+                .first { canContinue($0, band, catalog) })
             let result = try plan(mode: mode, band: band, seed: "fam", family: sister(catalog), catalog: catalog)
             XCTAssertEqual(result.plan.family?.relation, .sibling)
             for story in result.episodes {
@@ -226,7 +263,9 @@ final class SeriesPlannerTests: XCTestCase {
     func testAPlanComposesWithoutItsFamilyCharacter() throws {
         let catalog = try catalog()
         for band in [Self.age3, Self.age5] {
-            let mode = BlueprintSelector().availableModes(catalog: catalog, ageBand: band)[0]
+            let mode = try XCTUnwrap(BlueprintSelector()
+                .availableModes(catalog: catalog, ageBand: band)
+                .first { canContinue($0, band, catalog) })
             let result = try plan(mode: mode, band: band, seed: "fam", family: sister(catalog), catalog: catalog)
             let without = result.plan.withoutFamily()
             XCTAssertNil(without.family)

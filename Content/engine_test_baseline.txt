@@ -14,18 +14,19 @@
 #     | sed "s/Test Case '-\[//;s/\]' failed//" | sort -u
 #
 # 22 Ekim 2026, faz-21-varyasyon: 852 test, 17 hata, 9 vaka, 2 atlanan.
+# 23 Ekim 2026, faz-21-varyasyon: 867 test, 16 hata, 8 vaka, 2 atlanan.
+#   `charge` ailesi "Yeni şeyler öğrenelim"e eklendi (karar: Batuhan) ve
+#   VariationBaselineTests.testNoBlueprintIsStrandedWithoutAMode YEŞİLE DÖNDÜ:
+#   D1'de bilerek kırmızı eklenmişti, üç blueprint artık bir çocuğa ulaşıyor.
 #
 # Vakaların tamamı içerik boşluğu ya da bilerek kırmızı bırakılmış denetim:
 # - MatrixCoverageTests / OfflineCompositionTests / PilotBlueprintTests:
 #   A turundan önce de kırmızıydı (bkz. 21 Ekim kaydı).
-# - VariationBaselineTests.testNoBlueprintIsStrandedWithoutAMode: D1 turunda
-#   BİLEREK kırmızı eklendi. 21 Ekim'de uyku arkı eklenirken üç blueprint
-#   sessizce ulaşılamaz oldu; test onları görünür tutuyor. Düzeltmesi uyku
-#   arkı oturumunun.
 #
-# A turundan sonra iki vaka kendiliğinden yeşile döndü ve burada artık yok:
-# OfflineDeterminismTests.testContentSelectionStillFollowsCatalogOrder ve
-# SettingAxisTests.testAskingForAnExplainedDiscoveryIsRefusedWithItsReason.
+# Kendiliğinden yeşile dönüp bu listeden çıkanlar:
+# - A turundan sonra: OfflineDeterminismTests.testContentSelectionStillFollowsCatalogOrder,
+#   SettingAxisTests.testAskingForAnExplainedDiscoveryIsRefusedWithItsReason.
+# - 23 Ekim: VariationBaselineTests.testNoBlueprintIsStrandedWithoutAMode.
 
 StoryEngineTests.MatrixCoverageTests testDiscoveryRecruitmentMatchesTheArchitecture
 StoryEngineTests.OfflineCompositionTests testAnExplicitChoiceIsHonoured
@@ -35,4 +36,3 @@ StoryEngineTests.OfflineCompositionTests testSupportingBeatsAppearOnTheirOwnPage
 StoryEngineTests.PilotBlueprintTests testPilotAgainstThePhaseFourMatrix
 StoryEngineTests.PilotBlueprintTests testPilotDeclaresWhatItNeedsAndWhatItCannotHave
 StoryEngineTests.PilotBlueprintTests testPilotIsNotTheReferenceArc
-StoryEngineTests.VariationBaselineTests testNoBlueprintIsStrandedWithoutAMode
