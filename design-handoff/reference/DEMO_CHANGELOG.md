@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-22 · faz-21-varyasyon@COMMIT · B-ön 1: insan yol arkadaşı model incelemesi
+### 2026-10-22 · faz-21-varyasyon@6aeeb81 · B-ön 1: insan yol arkadaşı model incelemesi
 
 - **İnceleme dosyası yazıldı:** `docs/INSAN_YOL_ARKADASI_INCELEMESI.md`. B turunun "Meslekler ve günlük yaşam" konusu insan arkadaş istiyor; plan inşadan önce şemanın bunu güvenle taşıyıp taşımadığının incelenmesini şart koşuyordu. **Kod değişmedi**, bu tur yalnızca inceleme.
 - **Sonuç: şema zaten taşıyor, bir eksen eksik.** `CompanionRole` (guide/needsCare/hesitant/reassuring) tamamen tür-bağımsız; `CompanionTrait`'in tamamı insana uyuyor (`canFly`/`canSwim` yalnızca `false` kalır, doğru cevap); `Habitat` A turunda `village`/`civilization` ile açıldı; `type` serbest metin ve prozada 34 yerde "bir {{companion.type}}" kalıbıyla geçiyor, "bir fırıncı" dilbilgisi olarak sorunsuz. **Migration maliyeti yok**, decode zinciri değişmiyor.
