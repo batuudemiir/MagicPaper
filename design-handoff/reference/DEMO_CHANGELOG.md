@@ -194,6 +194,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@6a39b21 · Benim köşem iOS profil düzeninde
+
+- Karşılama: Ragi solda, yanında balonsuz "Merhaba Deniz!" başlığı ve tek cümle (lavanta balon ve kenarı kalktı).
+- Kim okuyor: avatarlar 72'den 56'ya küçüldü; "Ekle" dairesi aynı ölçüde.
+- Sayılar: tek lavanta panel yerine üç ayrı açık gri kutucuk, gölgesiz (dokunulmuyorlar). "gün seri" yerine "gün üst üste" (sakin süreklilik dili).
+- Masal dünyam: lavanta panel yerine açık gri gruplu liste.
+- Sayfa beyaz kaldı; bloklar ana sayfa ve masal yazma adımlarıyla aynı açık gri (`backgroundSunken`).
+- Bilerek değişmeyen: rozet kartları (`MPBadgeCard`, ortak bileşen), `HomeSection` (ana sayfa da kullanıyor), ebeveyn kapısı ve bağlantıların davranışı.
+- Görsel taslak sohbette gösterildi.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Dosyalar: `Screens/KidCorner/KidCornerView.swift`, bu dosya.
+
 ### 2026-10-22 · main@49f5cdc · Masal yazma: düz beyaz zemin
 
 - Masal yazma akışının zemini `mpScreenBackground` (krem) yerine ana sayfayla aynı düz beyaz (`MPColor.backgroundSurface`); alttaki düğme şeridi de beyaz.
