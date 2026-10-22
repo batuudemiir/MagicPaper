@@ -31,7 +31,8 @@ struct CreationTitle: View {
 }
 
 /// Seçenek satırı: solda görsel, ad ve tek satırlık söz, sağda seçim işareti.
-/// Seçiliyken kenarı marka renginde ve işaret dolu (seçim yalnızca renkle
+/// Beyaz sayfada açık gri yüzey (ana sayfa bölümleri gibi). Seçiliyken kenarı
+/// marka renginde ve işaret dolu (seçim yalnızca renkle
 /// belli değil). `detail` yalnızca seçiliyken, aynı kartın içinde görünür.
 struct CreationChoiceRow<Leading: View, Detail: View>: View {
     let title: String
@@ -77,14 +78,13 @@ struct CreationChoiceRow<Leading: View, Detail: View>: View {
             }
         }
         .padding(MPSpacing.md)
-        .background(MPColor.backgroundSurface,
+        // Ana sayfanın bölümleri gibi: beyaz zeminde açık gri, gölgesiz.
+        .background(MPColor.backgroundSunken,
                     in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                .strokeBorder(isSelected ? MPColor.actionPrimary : MPColor.borderKid,
-                              lineWidth: isSelected ? 2 : 1)
+                .strokeBorder(isSelected ? MPColor.actionPrimary : .clear, lineWidth: 2)
         }
-        .mpShadow(.control)
     }
 }
 
@@ -126,6 +126,6 @@ struct CreationFooter<Content: View>: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.md)
-            .background(MPColor.backgroundKid)
+            .background(MPColor.backgroundSurface)
     }
 }

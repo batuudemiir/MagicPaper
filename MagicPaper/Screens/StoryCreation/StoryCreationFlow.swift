@@ -122,7 +122,8 @@ struct StoryCreationFlow: View {
             if showsHeader { header }
             content
         }
-        .mpScreenBackground()
+        // Zemin ana sayfayla aynı düz beyaz (22 Ekim 2026).
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .animation(MP.M.gated(MP.M.page), value: phase)
         .overlay {
             if showsFamilyEditor, let profile {
