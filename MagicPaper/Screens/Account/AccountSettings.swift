@@ -79,6 +79,10 @@ struct AccountSignOutSheet: View {
             .padding(MPSpacing.xl)
             .padding(.bottom, MPSpacing.lg)
             .background(MPColor.backgroundParent, in: UnevenRoundedRectangle(topLeadingRadius: MPRadius.sheet, topTrailingRadius: MPRadius.sheet))
+            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
+            .accessibilityElement(children: .contain)
+            .accessibilityAddTraits(.isModal)
+            .accessibilityAction(.escape) { if !working { onClose() } }
         }
         .ignoresSafeArea(edges: .bottom)
     }

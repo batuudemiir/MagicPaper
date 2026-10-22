@@ -40,9 +40,9 @@ enum MPSize {
     static let kidTabBarHeight: CGFloat = 86
     static let createFab: CGFloat = 64
     static let parentTabBarHeight: CGFloat = 84
-    /// Minimum hit area. Kid area 56, parent area 44.
+    /// Minimum hit area. Kid area 56, parent area 48 (Design law: `MP.S.tapMin`).
     static let minTouchKid: CGFloat = 56
-    static let minTouchParent: CGFloat = 44
+    static let minTouchParent: CGFloat = 48
     static let iconTile: CGFloat = 52
     static let segmentHeight: CGFloat = 40
     static let inputHeight: CGFloat = 52

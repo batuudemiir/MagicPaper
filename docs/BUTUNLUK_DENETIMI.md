@@ -94,6 +94,9 @@ en büyük Dynamic Type, SE + Pro Max).
 1. **Hızlı kazanımlar** — ebeveyn dokunma alanı 48; `SimpleSubscriptionView`
    silinir; kapak galerisi `#if DEBUG`; etiket eksikleri (Ayarlar, Hesap, Aile
    üyeleri, karakter düzenleyici).
+   ✅ 22 Ekim: yapıldı. Etiket taraması ilk ölçümden iyi çıktı: listedeki ekranlar
+   ortak satır bileşenlerinden etiket alıyor. Asıl açık `MPIcon`'du (Lucide dosya
+   adını okutuyordu), merkezde gizlendi. Kapak galerisi zaten `#if DEBUG` içindeydi.
 2. **Tek başlık** — `ParentHeader` → `MPParentHeader`; Design law'a başlık kuralı.
 3. **Tek boş durum + bölüm başlığı** — `MPEmptyState` (Ragi ile) Kitaplık ve Aile
    üyelerinde; elle yazılmış bölüm başlıkları `MPSectionHeader`'a.

@@ -248,6 +248,8 @@ struct MPChoiceTile: View {
         }
         .buttonStyle(MPPressStyle(scales: false))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+        // Kilit yalnızca ikon ve soluklukla görünüyordu; VoiceOver da söylesin.
+        .accessibilityValue(isLocked ? "Kilitli" : "")
     }
 
     private var rowBody: some View {

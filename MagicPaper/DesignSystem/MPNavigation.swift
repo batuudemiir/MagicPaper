@@ -242,11 +242,13 @@ struct MPSheet<Content: View, Footer: View>: View {
                 .ignoresSafeArea()
                 .onTapGesture { onClose?() }
                 .transition(.opacity)
+                .accessibilityHidden(true)
 
             VStack(spacing: 0) {
                 HStack(spacing: 12) {
                     if let title {
                         Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textTitle)
+                            .accessibilityAddTraits(.isHeader)
                     }
                     Spacer(minLength: 0)
                     if let onClose {
@@ -289,6 +291,10 @@ struct MPSheet<Content: View, Footer: View>: View {
             )
             .mpShadow(MP.Sh.sheet)
             .transition(.move(edge: .bottom).combined(with: .opacity))
+            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
+            .accessibilityElement(children: .contain)
+            .accessibilityAddTraits(.isModal)
+            .accessibilityAction(.escape) { onClose?() }
         }
         .animation(MP.M.gated(MP.M.spring), value: true)
     }

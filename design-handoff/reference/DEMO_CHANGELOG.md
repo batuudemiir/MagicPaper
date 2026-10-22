@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 1. adım: dokunma alanı, ölü ekran, erişilebilirlik
+
+- Ebeveyn dokunma alanı 44 → 48 pt (`MPSize.minTouchParent`, Design law `MP.S.tapMin`); 21 kullanım tek token'dan büyüdü. `ParentHeader`'daki "Çocuk modu" düğmesi sabit 36 pt'ydi, artık en az 48.
+- `SimpleSubscriptionView` silindi (yalnızca kendi Preview'ı çağırıyordu; sistem mavisi buton, `.black`, çıplak `.shadow`). Proje dosyasından 4 satır çıktı; CLAUDE.md'deki dil grep'i notundan da düştü.
+- `MPIcon` artık `accessibilityHidden(true)`: Lucide görselleri VoiceOver'da asset adıyla ("Icons/check"), SF Symbol'ler İngilizce adla okunabiliyordu. Anlam her yerde düğme/satır etiketinde; ikon-yalnız her düğmenin Türkçe etiketi olduğu tarandı.
+- Seçim kartında kilit yalnızca ikon ve soluklukla veriliyordu: `accessibilityValue("Kilitli")` eklendi.
+- `MPSheet` ve Hesap › Çıkış yap alt sayfası: VoiceOver arkadaki ekrana kaçmıyor (`.isModal`), iki parmak "Z" kapatıyor (`.escape`), arka karartma gizli, `MPSheet` başlığı `isHeader`.
+- Bilerek değişmedi: kapak galerisi zaten `#if DEBUG` içindeydi. Görsel ikon kutuları (32–42 pt süs daireleri) dokunma alanı olmadığı için büyütülmedi. `MPCircleButton` 42 pt görünür, `contentShape` ile ~54 pt dokunma alanı; düzen bozulmasın diye çerçeve büyütülmedi.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı. Başarısızların hepsi içerik testleri (`SceneLibraryTests` B2 kapsaması, `InterestProfileTests`, `CompanionSymbolTests`, `IllustratedBookFlowTests`); bu değişiklikle ilgisiz, FAZ 21'de kaydedilen içerik düşüşü. Bu turda temel çizgiyle ayrıca karşılaştırılmadı.
+- Simülatör (iPhone 17 Pro): Ayarlar ve Masal kitabı açık temada, Masal kitabı en büyük Dynamic Type'ta; kesilme yok. Koyu tema ayarı uygulamaya yansımadı (ekran açık kaldı). iPhone SE ve Pro Max görüntüsü alınmadı (SE simülatörü yok, disk %99). VoiceOver ile cihazda denenmedi.
+- Dosyalar: `DesignSystem/Pastel/MPLayout.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift`, `DesignSystem/MPIcon.swift`, `DesignSystem/MPNavigation.swift`, `DesignSystem/MPSurfaces.swift`, `Screens/Account/AccountSettings.swift`, `Views/SimpleSubscriptionView.swift` (silindi), `MagicPaper.xcodeproj/project.pbxproj`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
 ### 2026-10-22 · main (commit aşağıda) · Bütünlük denetimi (marka, erişilebilirlik, bulunabilirlik)
 
 - Yeni belge: `docs/BUTUNLUK_DENETIMI.md`. Kod taramasıyla: dört ayrı üst başlık bileşeni (`MPTopBar`, `ParentHeader`, `MPParentHeader`, `GunlukHeader`), kullanılmayan `MPEmptyState`, elle yazılmış 24 bölüm başlığı, gradient'li birincil buton (Design law ile çelişiyor), iki token adı (`MP.*` ve Pastel), ölü `SimpleSubscriptionView`, 44 pt ebeveyn dokunma alanı (kural 48), 10 Dynamic Type üst sınırı, etiket denetimi gereken 7 ekran, Ragi'siz görünen çocuk ekranları.

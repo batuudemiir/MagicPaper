@@ -307,7 +307,7 @@ struct ParentHeader: View {
                     Label("Çocuk modu", systemImage: "rectangle.portrait.and.arrow.right")
                         .mpText(.footnote).fontWeight(.heavy)
                         .foregroundStyle(MPColor.textPrimary)
-                        .padding(.horizontal, MPSpacing.md).frame(height: 36)
+                        .padding(.horizontal, MPSpacing.md).frame(minHeight: MPSize.minTouchParent)
                         .background(MPColor.backgroundSurface, in: Capsule())
                         .overlay(Capsule().strokeBorder(MPColor.borderParentControl, lineWidth: 1.5))
                 }
