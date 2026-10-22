@@ -1,6 +1,7 @@
 # Kelime planı: masaldaki cümle + nadir kelime raporu
 
-21 Ekim 2026 · durum: **plan, kod yok**
+21 Ekim 2026 · durum: **A ve B uygulandı (22 Ekim)**. A: `a7c6aee`. B: `Tools/nadir_kelime_raporu.py`,
+ilk rapor `docs/research/nadir_kelimeler_2026-10-22.md`. Açık: eşik kalibrasyonu (yazarla).
 
 Kaynak fikir: [ka1nsha/kitapokur](https://github.com/ka1nsha/kitapokur) (İngilizce PDF'lerden
 kelime öğreten ev sunucusu okuyucusu). Repo'da LICENSE yok: kod "tüm hakları saklı" sayılır,

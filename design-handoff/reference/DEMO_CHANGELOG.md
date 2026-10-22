@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu (içerik aracı)
+
+- Plan B uygulandı (`docs/Kelime_Plani_kitapokur.md`). `Tools/nadir_kelime_raporu.py`, `ContentCatalogLoader`'ın okuduğu dosyaları (iki belge + her `beat_*.json`, 107 dosya, 1068 satır) okur; her yaş bandı için nadir kökleri, sözlükte olup olmadıklarını, geçiş sayısını, kaynak satır kimliklerini ve örnek cümleyi listeler. Ayrıca "gereksiz açıklama" (Zipf ≥ bant eşiği + 1) ve "bant dışı açıklama" (satırın `words` kimliği girdinin `bands`'inde yok) bölümleri var.
+- Yöntem: wordfreq `tr` (Zipf) + simplemma `tr`, kitapokur'daki kök kontrolü (kök kelimeden 1,5'ten fazla nadirse reddedilir) ve Türkçe çekim eki soyma (ünsüz yumuşaması geri alınır). İlk denemede simplemma fiillerde çıplak gövde verdiği için "korkmak", "duymak", "burada" nadir görünüyordu; nadirlik artık kelimenin en yaygın makul biçimiyle ölçülüyor (gövde + sık fiil çekimleri, ek-fiil soyma). Yer tutucular cümle başını koruyan bir işaretle değişiyor, raporda `{…}`.
+- İlk rapor: `docs/research/nadir_kelimeler_2026-10-22.md` (+ CSV). 3-4: 79 nadir kök, 73 açıklamasız; 5-6: 125 / 112; bantsız satırlar: 54 / 45. Gereksiz ve bant dışı açıklama: yok. Katalogda yalnız 3-4 ve 5-6 bantları var.
+- Bilinen sınırlar (raporda yazıyor): eşikler başlangıç değeri ve Türkçe için yüksek görünüyor (3-4 listesinin sonunda uyumak, yürümek, pencere var; ~4,0 önerilir, karar yazarın); kök bulma kural tabanlı ("omzuna", "üşüdüm" köke inmiyor).
+- Bilerek yapılmadı: `kelime_izinleri.json` ve `CatalogIntegrity` uyarı testi (planda karar gerektiren sonraki adım). Motor, katalog ve uygulama dosyalarına dokunulmadı.
+- Bağımlılıklar yalnız `Tools/.venv` içinde (154 MB, git'e girmez; `Tools/.gitignore`). Sürümler: wordfreq 3.1.1, simplemma 1.2.0.
+- Test: `python3 Tools/test_nadir_kelime_raporu.py` 22/22 (yalnız stdlib, sahte sıklık tablosu).
+- Dosyalar: `Tools/nadir_kelime_raporu.py`, `Tools/test_nadir_kelime_raporu.py`, `Tools/requirements-nadir-kelime.txt`, `Tools/.gitignore`, `docs/research/nadir_kelimeler_2026-10-22.md` + `.csv`, `docs/Kelime_Plani_kitapokur.md` (durum), bu dosya.
+
 ### 2026-10-22 · main (commit aşağıda) · Yeni kelimelerim: masaldaki cümle
 
 - Plan A uygulandı (`docs/Kelime_Plani_kitapokur.md`). Her kelime kartında kelimenin masalda geçtiği cümle, kelime cümle içinde kalın. Dinle düğmesi artık "kelime. anlam. cümle" okuyor; VoiceOver etiketi "Masalda: …".
