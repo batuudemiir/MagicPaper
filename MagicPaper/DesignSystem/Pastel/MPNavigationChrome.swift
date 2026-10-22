@@ -14,8 +14,9 @@ enum KidTab: Hashable { case home, gunluk, library, corner }
 /// grubunda (`MPGlassGroup`); daire marka renginde tonlu ve dokununca esner,
 /// masal yazma ekranı dairenin içinden büyüyerek açılır (`mpZoomSource`).
 ///
-/// Özel çubuk, sistem `TabView` değil: Masal yaz bir yer değil eylem, sistem
-/// çubuğunda seçilebilir bir sekme gibi davranırdı.
+/// 22 Ekim 2026'dan beri yalnızca iOS 26 öncesinde: iOS 26'da sistemin
+/// Liquid Glass `TabView`'ı kullanılıyor (`ContentView.systemKidTabs`), Masal
+/// yaz orada `.search` rolüyle ayrı dairede.
 ///
 /// Sistemdeki gibi tek renk: seçili sekmenin ikonu dolar, ikon ve adı marka
 /// renginde olur, arkasında nötr bir mercek belirir. Seçim renkle birlikte
