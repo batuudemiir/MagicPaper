@@ -110,6 +110,41 @@ public enum CompanionRole: String, Codable, Sendable, Hashable, CaseIterable {
     case reassuring
 }
 
+/// What a companion **is** — not what it can do, and not the part it plays.
+///
+/// A third axis, and it needs to be a third one. `CompanionTrait` says what a
+/// companion is capable of; `CompanionRole` says what it is being in this
+/// story. "Is a person" is neither, and putting it in either place would undo
+/// the distinction those two types exist to draw.
+///
+/// It is here because the prose needs it and nothing else could ask. A line
+/// about a feather drifting off a pillow assumes a body, and until now had no
+/// way to say so: the corpus happened to be safe because every companion in
+/// the pool was furred or feathered. The moment a baker joins the pool for the
+/// "Meslekler ve günlük yaşam" topic, that line is offered to the baker and
+/// the book describes a baker shedding a feather. Nothing about either the
+/// line or the record is wrong; only the two together, which is exactly the
+/// class of defect no test can see.
+///
+/// The opposite direction matters as much: "Ela tezgâhın arkasından gülümsedi"
+/// cannot be offered to a fox.
+///
+/// A record that does not declare one is read as `.animal`, because that is
+/// what the whole shipped pool is. The default is a reading, not a claim:
+/// `CatalogIntegrity` warns about every record that leaves it undeclared, so a
+/// person arriving in a remote package without the field is visible rather
+/// than silently mislabelled.
+public enum CompanionNature: String, Codable, Sendable, Hashable, CaseIterable {
+    /// A fox, an owl, a dolphin. The whole pool, until now.
+    case animal
+    /// A baker, a postman, a neighbour's child. Has a job or a place in a
+    /// village rather than a habitat.
+    case person
+    /// A dragon, a robot. Neither of the above, and prose written for either
+    /// one can be wrong about it.
+    case fantastic
+}
+
 /// What the thing the child finds *implies*.
 ///
 /// The child's third choice is the most emotionally invested one. Modelled as a

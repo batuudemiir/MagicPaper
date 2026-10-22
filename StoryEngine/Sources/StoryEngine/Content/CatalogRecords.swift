@@ -121,6 +121,17 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     /// the author generalised from the subset that happened to be right.
     /// Where this belongs. Empty means anywhere.
     public let habitat: Set<Habitat>
+    /// What this companion is, as the content declared it. `nil` means the
+    /// record did not say.
+    ///
+    /// Kept separate from `nature` so "did not say" stays distinguishable from
+    /// "said animal": the integrity checker warns about the first and not the
+    /// second, and a record arriving from a remote package without the field
+    /// is then visible rather than silently mislabelled.
+    public let declaredNature: CompanionNature?
+    /// What this companion is. An undeclared record reads as `.animal`, which
+    /// is what every record in the shipped pool is.
+    public var nature: CompanionNature { declaredNature ?? .animal }
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
@@ -136,7 +147,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
         case traits, castRoles
-    , habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
+    , habitat, nature, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -152,6 +163,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         traits = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .traits) ?? []
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
+        declaredNature = try container.decodeIfPresent(CompanionNature.self, forKey: .nature)
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -174,6 +186,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
         if !castRoles.isEmpty { try container.encode(castRoles, forKey: .castRoles) }
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
+        try container.encodeIfPresent(declaredNature, forKey: .nature)
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)

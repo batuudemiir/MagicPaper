@@ -759,6 +759,7 @@ def check_variants_reachable(corpus, report) -> None:
     discoveries = [set(o.get("traits", [])) for o in library["objects"]]
     companions = [set(c.get("traits", [])) for c in library["companions"]]
     roles = {r for c in library["companions"] for r in c.get("castRoles", [])}
+    natures = {c.get("nature", "animal") for c in library["companions"]}
 
     for beat_file in corpus:
         for variant in beat_file["variants"]:
@@ -772,6 +773,11 @@ def check_variants_reachable(corpus, report) -> None:
             wanted = set(variant.get("capabilityRequire") or [])
             if wanted and not any(wanted <= held for held in companions):
                 reasons.append(f"no companion has {sorted(wanted)}")
+            # A line written for a nature nobody in the pool has is a line no
+            # child can be read. Mirrors `CatalogVariant.suits(nature:)`.
+            wanted = set(variant.get("natureRequire") or [])
+            if wanted and not (wanted & natures):
+                reasons.append(f"no companion is {sorted(wanted)}")
             wanted = set(variant.get("castRoles") or [])
             if wanted and not (wanted & roles):
                 reasons.append(f"no companion can be cast as {sorted(wanted)}")
@@ -929,6 +935,8 @@ def check_bound_pools(corpus, report) -> None:
                                     and set(v.get("settingTraits", [])) <= traits
                                     and set(v.get("discoveryTraits", [])) <= found
                                     and (not v.get("castRoles") or role in v["castRoles"])
+                                    and (not v.get("natureRequire")
+                                         or companion.get("nature", "animal") in v["natureRequire"])
                                     and set(v.get("capabilityRequire", [])) <= caps
                                     and not (set(v.get("capabilityForbid", [])) & caps)
                                     and (not v.get("afterBeat")

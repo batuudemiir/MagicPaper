@@ -107,6 +107,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkStoryModes(catalog))
         issues.append(contentsOf: checkStoryTopics(catalog))
         issues.append(contentsOf: checkBlueprintsReachable(catalog))
+        issues.append(contentsOf: checkCompanionNature(catalog))
         issues.append(contentsOf: checkFamily(catalog))
         issues.append(contentsOf: checkInterests(catalog))
         issues.append(contentsOf: checkSafetyTopics(catalog))
@@ -754,6 +755,26 @@ public struct CatalogIntegrityChecker: Sendable {
     /// `error` değil `warning`: bir blueprint'i bilerek emekliye ayırmak meşru
     /// bir karardır (yeniden yazılana kadar beklemek gibi). Uyarı o kararın
     /// sessiz kalmamasını sağlıyor, engellemiyor.
+    /// Her yol arkadaşı ne olduğunu söylemiş mi (22 Ekim 2026).
+    ///
+    /// `CompanionNature` okunurken, söylenmemiş bir kayıt `.animal` sayılıyor.
+    /// Bu bir okuma, bir iddia değil: bugünkü havuzun tamamı hayvan olduğu
+    /// için doğru okuma, ama uzak bir paket (FAZ 15) alanı yazmadan bir fırıncı
+    /// gönderdiği gün o fırıncı sessizce hayvan olur ve tüy döken bir fırıncı
+    /// anlatan sayfa yazılır. Bu uyarı tam olarak o sessizliği bozuyor.
+    ///
+    /// `error` değil `warning`: varsayılan okuma kataloğu çalışır tutuyor ve
+    /// eski bir paketi reddetmek bu kusurdan daha büyük bir kusur olurdu.
+    private func checkCompanionNature(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        catalog.companions.filter { $0.declaredNature == nil }.map { companion in
+            CatalogIssue(
+                severity: .warning, code: "companion_nature_undeclared", recordID: companion.id,
+                message: "Yol arkadaşı '\(companion.id.rawValue)' (\(companion.type)) ne olduğunu "
+                    + "söylemiyor; hayvan olarak okunuyor. İnsan ya da masal yaratığıysa "
+                    + "'nature' alanı yazılmalı.")
+        }
+    }
+
     private func checkBlueprintsReachable(_ catalog: ContentCatalog) -> [CatalogIssue] {
         guard !catalog.storyModes.isEmpty else { return [] }
         return catalog.blueprints.filter { blueprint in

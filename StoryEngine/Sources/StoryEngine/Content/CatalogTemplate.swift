@@ -86,6 +86,15 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     public let capabilityRequire: Set<CompanionTrait>
     /// Capabilities that would make the line false or silly.
     public let capabilityForbid: Set<CompanionTrait>
+    /// What the companion has to **be** for this line to make sense.
+    ///
+    /// Empty means any companion. Separate from `capabilityRequire` because it
+    /// is enforced differently and must be: a capability the line assumes can
+    /// be relaxed under pool pressure (narrowing 1 in
+    /// `OfflineStoryComposer.pool`), and a feather drifting off a baker cannot.
+    /// A line that is wrong about what someone *is* does not read as a weaker
+    /// line, it reads as a different character.
+    public let natureRequire: Set<CompanionNature>
     /// Parts this line is written for.
     ///
     /// A companion cast as `needsCare` cannot stride in offering help, and one
@@ -145,7 +154,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
-        case capabilityRequire, capabilityForbid, castRoles, register
+        case capabilityRequire, capabilityForbid, natureRequire, castRoles, register
         case conflictKinds, afterClosing, afterState
         case familyRelations
         case topics, words
@@ -183,6 +192,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         discoveryTraits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .discoveryTraits) ?? []
         capabilityRequire = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityRequire) ?? []
         capabilityForbid = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityForbid) ?? []
+        natureRequire = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .natureRequire) ?? []
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         register = try container.decodeIfPresent(VariantRegister.self, forKey: .register)
         conflictKinds = try container.decodeIfPresent(Set<ConflictMechanism>.self, forKey: .conflictKinds) ?? []
@@ -214,6 +224,14 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
             && discoveryTraits.isSubset(of: discovery.traits)
             && capabilityRequire.isSubset(of: companion.traits)
             && capabilityForbid.isDisjoint(with: companion.traits)
+    }
+
+    /// Whether this line may be told about this companion at all.
+    ///
+    /// Not part of `fits` on purpose: `fits` is relaxable and this is not. See
+    /// `natureRequire`.
+    public func suits(nature: CompanionNature) -> Bool {
+        natureRequire.isEmpty || natureRequire.contains(nature)
     }
 
     /// Whether this line suits the part the companion is playing.

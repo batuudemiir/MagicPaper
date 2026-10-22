@@ -583,6 +583,19 @@ public struct OfflineStoryComposer: Sendable {
                 role: content.castRole, beat: beat, page: page)
         }
 
+        // 0g. What the companion **is**. **Does not degrade**, and must not:
+        //     this is the one filter whose whole purpose is to survive pool
+        //     pressure. A line about a feather drifting off a pillow given to a
+        //     baker is not a weaker page, it is a page about someone else. The
+        //     same in reverse: a line about smiling from behind a counter
+        //     cannot be told about a fox.
+        let byNature = byRole.filter { $0.suits(nature: content.companion.nature) }
+        guard !byNature.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line written for a \(content.companion.nature.rawValue)",
+                beat: beat, page: page)
+        }
+
         // 0a. The Masal ailem character. **Does not degrade**, in either
         //     direction. On a family moment the character must be there: a
         //     story that opens with the child's sister and never mentions her
@@ -591,13 +604,13 @@ public struct OfflineStoryComposer: Sendable {
         //     which is what keeps every story written before FAZ 11 the same.
         let byFamily: [CatalogVariant]
         if familyMoment, let family {
-            byFamily = byRole.filter { $0.isFamilyLine && $0.suits(family: family) }
+            byFamily = byNature.filter { $0.isFamilyLine && $0.suits(family: family) }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForFamily(
                     relation: family, beat: beat, page: page)
             }
         } else {
-            byFamily = byRole.filter { !$0.isFamilyLine }
+            byFamily = byNature.filter { !$0.isFamilyLine }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForRole(
                     role: content.castRole, beat: beat, page: page)

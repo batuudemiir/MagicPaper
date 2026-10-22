@@ -1,0 +1,38 @@
+# Motor demetinin bilinen kırmızıları
+#
+# `validator_baseline.txt` ile aynı mantık: bir tur başlamadan önce neyin
+# kırmızı olduğu burada durur, böylece turun sonunda "yeni hata" ile "zaten
+# kırmızıydı" ayrılabilir.
+#
+# Bu dosya 22 Ekim 2026'da yazıldı, ve yazılma sebebi bir hata: taban /tmp'deki
+# bir dosyada tutuluyordu, oturum arasında yarısı eksik kaldı ve bir karşılaştırma
+# yanlış tabana yapıldı. Taban repoda durmazsa taban değildir.
+#
+# Alınışı:
+#   swift test --package-path StoryEngine --scratch-path /tmp/<dizin> 2>&1 \
+#     | grep -oE "Test Case '-\[[A-Za-z]+\.[A-Za-z]+ [a-zA-Z]+\]' failed" \
+#     | sed "s/Test Case '-\[//;s/\]' failed//" | sort -u
+#
+# 22 Ekim 2026, faz-21-varyasyon: 852 test, 17 hata, 9 vaka, 2 atlanan.
+#
+# Vakaların tamamı içerik boşluğu ya da bilerek kırmızı bırakılmış denetim:
+# - MatrixCoverageTests / OfflineCompositionTests / PilotBlueprintTests:
+#   A turundan önce de kırmızıydı (bkz. 21 Ekim kaydı).
+# - VariationBaselineTests.testNoBlueprintIsStrandedWithoutAMode: D1 turunda
+#   BİLEREK kırmızı eklendi. 21 Ekim'de uyku arkı eklenirken üç blueprint
+#   sessizce ulaşılamaz oldu; test onları görünür tutuyor. Düzeltmesi uyku
+#   arkı oturumunun.
+#
+# A turundan sonra iki vaka kendiliğinden yeşile döndü ve burada artık yok:
+# OfflineDeterminismTests.testContentSelectionStillFollowsCatalogOrder ve
+# SettingAxisTests.testAskingForAnExplainedDiscoveryIsRefusedWithItsReason.
+
+StoryEngineTests.MatrixCoverageTests testDiscoveryRecruitmentMatchesTheArchitecture
+StoryEngineTests.OfflineCompositionTests testAnExplicitChoiceIsHonoured
+StoryEngineTests.OfflineCompositionTests testEveryAdmissibleCombinationRendersCleanly
+StoryEngineTests.OfflineCompositionTests testNoPageAssumesTheDiscoveryCanBeSeen
+StoryEngineTests.OfflineCompositionTests testSupportingBeatsAppearOnTheirOwnPage
+StoryEngineTests.PilotBlueprintTests testPilotAgainstThePhaseFourMatrix
+StoryEngineTests.PilotBlueprintTests testPilotDeclaresWhatItNeedsAndWhatItCannotHave
+StoryEngineTests.PilotBlueprintTests testPilotIsNotTheReferenceArc
+StoryEngineTests.VariationBaselineTests testNoBlueprintIsStrandedWithoutAMode
