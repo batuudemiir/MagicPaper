@@ -195,7 +195,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Kimler: yol arkadaşları çip yerine adı ve huyuyla satır; önceki seçimler başlığın altında tek satır ve "Değiştir". Masal ailem çip olarak kaldı.
 - Bilerek değişmeyen: akışın sırası ve kararları (`StoryCreationSteps`), "Masal yazılıyor" ekranı, hata ekranı, okuyucuya geçiş.
 - Görsel taslak sohbette gösterildi (üç telefon ekranı).
-- Test: iPhone 16 için derleme yeşil. Telefona kurulum düştü (cihaza bağlanılamadı, CoreDevice 3002); uygulama açılıp ekranlar görülmedi. Birim testleri çalıştırılmadı. Tasarım kuralı grep'leri eklenen satırlarda boş.
+- Test: iPhone 16 için derleme yeşil. İlk kurulum denemesi düştü (cihaza bağlanılamadı, CoreDevice 3002); telefon bağlanınca iPhone 16'ya kuruldu ("App installed"). Uygulama açılıp ekranlar görülmedi. Birim testleri çalıştırılmadı. Tasarım kuralı grep'leri eklenen satırlarda boş.
 - Aynı klasördeki başka oturumun açık değişiklikleri bu commit'e girmedi.
 - Dosyalar: `StoryCreationChrome.swift` (yeni), `StoryCreationFlow.swift`, `StoryModeStep.swift`, `CompanionStep.swift`, `StoryChildStep.swift`, bu dosya.
 
