@@ -194,6 +194,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@86b5879 · Alt çubuk iOS 26'da sistemin Liquid Glass sekme çubuğu
+
+- Batuhan: "iOS 26 ile çıkan navigation bar, drag to select". iOS 26'da çocuk alanı artık sistemin `TabView`'ı (`Tab(..., value:)`); cam, mercek, sürükleyerek seçme, büyük içerik görüntüleyici ve VoiceOver sistemden. Renk `.tint(MP.C.brand)`.
+- "Masal yaz" `Tab(..., role: .search)` ile sistemin ayrık dairesinde (Apple'ın arama sekmesinin yeri; kaynak: Donny Wals ve Swift with Majid, iOS 26 tab bar yazıları). Bir yer değil eylem: seçim bağlaması ona hiç geçmiyor, geçmek istediğinde masal yazma açılıyor ve seçili sekme aynı kalıyor. Sistem dairesi yakınlaşma kaynağı olamadığı için masal yazma iOS 26'da olağan geçişle açılıyor.
+- Seçili sekmeye yeniden dokunmak eskisi gibi sayfayı başa alıyor (`selectKidTab`).
+- iOS 26 öncesi: kendi çubuğumuz (`KidTabBar`, sürükleyerek seçme dahil) aynen kalıyor.
+- Kural (kök CLAUDE.md, cam maddesi) güncellendi.
+- Test: genel iOS hedefine derleme yeşil. Telefona kurulamadı (iPhone 16 "unavailable", CoreDevice 4016); diskte 3 GB kaldığı için simülatör derlemesi de yapılmadı. Uygulama görülmedi; arama rolündeki sekmenin seçilmeden eylem gibi davranması cihazda doğrulanmadı.
+- Dosyalar: `ContentView.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift` (yorum), bu dosya.
+
 ### 2026-10-22 · main@8ba7cdf · Alt çubukta sürükleyerek seçme
 
 - iOS 26 sekme çubuğu gibi: parmak çubuğun üstünde kayarken mercek parmağın altındaki sekmeyi gösteriyor (ikon dolu, marka renginde); bırakılan sekme seçiliyor. "Masal yaz" dairesi dahil: parmak dairede bırakılınca masal yazma, dairenin içinden büyüyerek açılıyor; dairenin üstündeyken ince beyaz halka.
