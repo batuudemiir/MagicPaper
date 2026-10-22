@@ -63,6 +63,13 @@ struct NewWordsView: View {
                 Text(item.word.term).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                 Text(item.word.meaning).mpText(.body).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
+                if let sentence = item.sentence {
+                    Text(Self.marked(sentence, surface: item.word.surface))
+                        .foregroundStyle(MP.C.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, MP.S.x1)
+                        .accessibilityLabel("Masalda: \(sentence)")
+                }
                 Text(item.storyTitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,7 +81,8 @@ struct NewWordsView: View {
                     speakingID = nil
                 } else {
                     speakingID = item.id
-                    speech.speak("\(item.word.term). \(item.word.meaning)")
+                    speech.speak(["\(item.word.term).", item.word.meaning, item.sentence]
+                        .compactMap { $0 }.joined(separator: " "))
                 }
             } label: {
                 MPIcon("speaker.wave.2", size: 22, weight: .semibold)
@@ -88,6 +96,18 @@ struct NewWordsView: View {
         }
         .padding(MPSpacing.lg)
         .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+    }
+
+    /// Masal cümlesi; kelime sayfadaki yazılışıyla kalın (renk tek başına
+    /// bilgi taşımaz). Arama okuyucudakiyle aynı (`ReaderWords`).
+    private static func marked(_ sentence: String, surface: String) -> AttributedString {
+        var out = AttributedString(sentence)
+        out.font = MP.F.bodySM()
+        if let range = out.range(of: surface, options: [.caseInsensitive], locale: Locale(identifier: "tr_TR")) {
+            out[range].font = MP.F.bodySM(.bold)
+            out[range].foregroundColor = MP.C.textBody
+        }
+        return out
     }
 
     private func empty(hasAny: Bool) -> some View {

@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Yeni kelimelerim: masaldaki cümle
+
+- Plan A uygulandı (`docs/Kelime_Plani_kitapokur.md`). Her kelime kartında kelimenin masalda geçtiği cümle, kelime cümle içinde kalın. Dinle düğmesi artık "kelime. anlam. cümle" okuyor; VoiceOver etiketi "Masalda: …".
+- Alan mantığı `MPVocabulary.sentence(containing:in:)` içinde (görünümde değil): paragraf sonu ve `. ! ? …` + büyük harf/rakam/tırnak/tire ile cümle bölme, `tr_TR` harf katlaması, 140 karakter üstü cümle kelime sınırında "…" ile kesilir. `CollectedWord.sentence` eklendi; göç yok, saklanan `StoryPage.text` + `StoryWord.surface` kullanılıyor.
+- `MPDebugLaunch` (yalnız DEBUG): demo kitaplığında okunmuş iki masala birer sözlük kelimesi eklendi, ekran görüntüsü için.
+- Bilerek değişmedi: `ReaderWordCard` (cümle zaten sayfada); `NewWordsView`'daki eski `MPSpacing`/`mpText` token'ları (eski ihlal, ayrı tur).
+- Test: temiz worktree'de `VocabularySentenceTests` 10/10 + `MVPExperienceTests` 15/15 geçti. Tam paket çalıştırılmadı. Ortak çalışma ağacı başka bir oturumun yarım okuyucu işi yüzünden derlenmiyor (`ReaderStory.swift:166`, `Story.ageBand` yok); bu iş ona dokunmadı.
+- Simülatör: iPhone 17 Pro, açık görünüm ve en büyük Dynamic Type görüldü, kesilme yok. Koyu görünüm uygulama açık görünüme kilitli olduğu için aynı. iPhone SE ve Pro Max simülatörü kurulu değil, görülmedi.
+- Dosyalar: `Screens/MPVocabulary.swift`, `Screens/KidCorner/NewWordsView.swift`, `Screens/MPDebugLaunch.swift`, `MagicPaperTests/VocabularySentenceTests.swift` (yeni), bu dosya.
+- Not: 21 Ekim'deki "Kelime planı" kaydının commit'i `572a388` (başlıkta "commit yok" yazıyor).
+
 ### 2026-10-21 · main, commit yok · Kelime planı: kitapokur incelemesi
 
 - `ka1nsha/kitapokur` (İngilizce PDF'lerden kelime öğreten okuyucu) incelendi. Repo'da lisans yok: kod alınmaz, yalnız yaklaşım ve eşik fikirleri.
