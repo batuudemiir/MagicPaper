@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Bütünlük denetimi (marka, erişilebilirlik, bulunabilirlik)
+
+- Yeni belge: `docs/BUTUNLUK_DENETIMI.md`. Kod taramasıyla: dört ayrı üst başlık bileşeni (`MPTopBar`, `ParentHeader`, `MPParentHeader`, `GunlukHeader`), kullanılmayan `MPEmptyState`, elle yazılmış 24 bölüm başlığı, gradient'li birincil buton (Design law ile çelişiyor), iki token adı (`MP.*` ve Pastel), ölü `SimpleSubscriptionView`, 44 pt ebeveyn dokunma alanı (kural 48), 10 Dynamic Type üst sınırı, etiket denetimi gereken 7 ekran, Ragi'siz görünen çocuk ekranları.
+- Yedi adımlık sıra önerildi; iki tasarım kararı açık: birincil butonun gradient'i ve kural olacak token adı.
+- Uygulama koduna dokunulmadı. Simülatörde ekran görüntüsü alınmadı, test çalıştırılmadı.
+- Dosyalar: `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
 ### 2026-10-22 · main (commit aşağıda) · Nadir kelime raporu: 3-4 eşiği 4,0
 
 - Batuhan'ın kararıyla 3-4 eşiği 4,5'ten 4,0'a çekildi (`Tools/nadir_kelime_raporu.py`). 3-4 ve 5-6 artık aynı eşiği paylaşıyor; 7-8 (3,5) ve 9-10 (3,0) değişmedi, hâlâ kalibre edilmedi.
