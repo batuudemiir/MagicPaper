@@ -194,6 +194,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@946d697 · Düğmeler ve kartlar lavanta
+
+- Karar (Batuhan, 22 Ekim, seçenek A): siyah-gri düğmeler kalktı. `MPCircleButton` varsayılanı lavanta zemin (`actionSoft`), mor ikon, çerçevesiz (kilit, geri, kapat; uygulama genelinde). `MPButton(.secondary)` lavanta zemin, mor yazı, çerçevesiz.
+- Kartlar aynı lavantada: yeni `MPColor.cardSoft` (= `actionSoft`). Bugün griye geçen yüzeyler buna döndü: bu akşamın kartı ("Harika gidiyorsun" dahil), `HomeSection` paneli, ana sayfa mod listesi, Köşem sayı kutucukları ve Masal dünyam listesi, masal yazma seçenek satırları. Bu akşamın kartındaki üst etiket mor ve kalın.
+- Kontrast: mor yazı (#6A47B8) lavanta (#EFE6F7) üstünde yaklaşık 5:1.
+- Bilerek değişmeyen: birincil mor düğme, `.outline`, `.soft` düğmeler, rozet kartları, açıkça başka renk verilen yuvarlak düğmeler.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi; gece kâğıtları ve koyu mod denenmedi.
+- Dosyalar: `MPButtons.swift`, `MPColor.swift`, `MPHomeChrome.swift`, `HomeView.swift`, `KidCornerView.swift`, `StoryCreationChrome.swift`, bu dosya.
+
 ### 2026-10-22 · main@f4150c5 · Ana sayfa iOS düzeninde
 
 - Batuhan taslağı onayladı (22 Ekim), iki kararla: Ragi tam genişlik sahnede değil, bu akşamın kartının içinde küçük ama ön planda; modların sahne resimleri yerine ikon karoları.
