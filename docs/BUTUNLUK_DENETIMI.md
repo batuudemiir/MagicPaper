@@ -98,6 +98,8 @@ en büyük Dynamic Type, SE + Pro Max).
    ortak satır bileşenlerinden etiket alıyor. Asıl açık `MPIcon`'du (Lucide dosya
    adını okutuyordu), merkezde gizlendi. Kapak galerisi zaten `#if DEBUG` içindeydi.
 2. **Tek başlık** — `ParentHeader` → `MPParentHeader`; Design law'a başlık kuralı.
+   ✅ 22 Ekim: yapıldı. Çocuk kök sekmelerinin başlıkları (`KidHeader` çağrılmıyor, her
+   sekme kendi başlığını yazıyor) ayrı tur.
 3. **Tek boş durum + bölüm başlığı** — `MPEmptyState` (Ragi ile) Kitaplık ve Aile
    üyelerinde; elle yazılmış bölüm başlıkları `MPSectionHeader`'a.
 4. **Illüstrasyon başlıkları** — Günlük ve klasik detay/seri `MPArtHero`'ya.

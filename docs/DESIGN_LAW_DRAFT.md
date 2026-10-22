@@ -63,6 +63,12 @@ Token'ların tek kaynağı `DesignSystem/MPTheme.swift`. Aşağıdaki kurallar
 - Gövde metni, üç okuma temasında da (`Gündüz`, `Sepya`, `Gece`)
   kâğıda karşı en az 4.5:1 kontrast.
 
+### Üst başlık (karar: 22 Ekim 2026)
+- Ebeveyn alanında yalnızca `MPParentHeader`. Kök sayfa (Özet, Güvenlik, Ayarlar) `MPParentHeader(title:subtitle:)`: büyük başlık + "Çocuk modu". Alt sayfa `MPParentHeader(title:subtitle:onBack:)`: "Geri" + küçük başlık; "Çocuk modu" alt sayfada görünmez.
+- Çocuk alanının alt sayfalarında `MPTopBar`. Çocuk kök sekmelerinin başlıkları ve illüstrasyonlu üst bölgeler (`GunlukHeader`, klasik detay) henüz bu kurala dahil değil; hedef `MPArtHero` (`docs/BUTUNLUK_DENETIMI.md`).
+- Geri her yerde `MPCircleButton("chevron.left")` + "Geri"; başlık metni `isHeader` trait'i taşır.
+- Başlık kendi kenar boşluğunu eklemez: yatay boşluk `screenGutter`, üst boşluk sayfanın. Ekran kendi başlık satırını yazmaz, negatif boşlukla başlığı kaydırmaz.
+
 ### İkon
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 

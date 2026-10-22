@@ -19,7 +19,6 @@ struct ParentOverviewView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Özet", subtitle: weekLabel)
-                    .padding(.horizontal, -MPSpacing.screenH)
 
                 if profileManager.profiles.count > 1 { childPicker }
                 if settings.approve && !pendingStories.isEmpty { approvalQueue }
@@ -29,6 +28,7 @@ struct ParentOverviewView: View {
                 subscriptionSection
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.lg)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())

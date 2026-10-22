@@ -26,7 +26,7 @@ struct FamilyMembersView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Aile", subtitle: "Kim neyi yönetebilir", onBack: onClose)
+                MPParentHeader(title: "Aile", subtitle: "Kim neyi yönetebilir", onBack: onClose)
 
                 if account.account == nil {
                     MPNotice(kind: .info, text: "Aile üyeleri için önce giriş yap.", systemImage: "person.crop.circle")

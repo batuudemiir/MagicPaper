@@ -35,7 +35,6 @@ struct SettingsView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Ayarlar")
-                    .padding(.horizontal, -MPSpacing.screenH)
                 profilesSection
                 if showsFamilySection { familySection }
                 notificationsSection
@@ -48,6 +47,7 @@ struct SettingsView: View {
                 #endif
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.lg)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
@@ -389,7 +389,7 @@ struct PrivacyAndDataView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Gizlilik ve veri", onBack: { dismiss() })
+                MPParentHeader(title: "Gizlilik ve veri", onBack: { dismiss() })
 
                 MPCard(area: .parent, padding: MPSpacing.lg) {
                     VStack(alignment: .leading, spacing: MPSpacing.xs) {
@@ -432,6 +432,7 @@ struct PrivacyAndDataView: View {
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.lg)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())

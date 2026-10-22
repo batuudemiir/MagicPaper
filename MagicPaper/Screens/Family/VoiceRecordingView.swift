@@ -24,7 +24,7 @@ struct VoiceRecordingView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Kendi sesin", subtitle: "Masalı sen oku, çocuğun her akşam dinlesin", onBack: onClose)
+                MPParentHeader(title: "Kendi sesin", subtitle: "Masalı sen oku, çocuğun her akşam dinlesin", onBack: onClose)
 
                 if account.account == nil {
                     MPNotice(kind: .info, text: "Ses kaydı için önce giriş yap. Kayıtlar yalnızca aile hesabında saklanır.",
@@ -197,7 +197,7 @@ struct VoicePageRecorderView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                ParentHeader(title: "Kendi sesin", subtitle: "Masalı sen oku, çocuğun her akşam dinlesin", onBack: close)
+                MPParentHeader(title: "Kendi sesin", subtitle: "Masalı sen oku, çocuğun her akşam dinlesin", onBack: close)
 
                 MPCard(area: .parent, padding: MPSpacing.lg) {
                     HStack(spacing: MPSpacing.md) {

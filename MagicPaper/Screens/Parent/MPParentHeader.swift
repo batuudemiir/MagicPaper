@@ -1,10 +1,16 @@
 import SwiftUI
 
-/// Ebeveyn alanındaki her kök sayfanın üst satırı (29 · Özet, 31 · Güvenlik,
-/// 32 · Ayarlar): solda büyük başlık ve alt satır, sağda "Çocuk modu".
+/// Ebeveyn alanındaki her sayfanın tek üst satırı (Design law, Üst başlıklar).
 ///
-/// Çocuk moduna dönüş kapısızdır. Erişilebilirlik boyutlarında düğme
-/// başlığın üstüne çıkar, aynı satırda başlık kesiliyordu (FAZ 10).
+/// - Kök sayfa (29 · Özet, 31 · Güvenlik, 32 · Ayarlar): `MPParentHeader(title:subtitle:)`.
+///   Solda büyük başlık ve alt satır, sağda "Çocuk modu". Çocuk moduna dönüş kapısızdır.
+/// - Alt sayfa (Masal kitabı, Aile, Kendi sesin…): `MPParentHeader(title:subtitle:onBack:)`.
+///   Solda "Geri", yanında küçük başlık. `onBack` nil ise geri düğmesi gizlenir
+///   (ör. hesap silinirken), "Çocuk modu" alt sayfada hiç görünmez.
+///
+/// Yatay ve üst boşluğu sayfa verir (`MPSpacing.screenH`, `MPSpacing.lg`);
+/// başlık kendi kenar boşluğunu eklemez. Erişilebilirlik boyutlarında
+/// "Çocuk modu" başlığın üstüne çıkar, aynı satırda başlık kesiliyordu (FAZ 10).
 struct MPParentHeader: View {
     @EnvironmentObject private var app: MPAppState
 
@@ -12,10 +18,36 @@ struct MPParentHeader: View {
 
     let title: String
     var subtitle: String? = nil
+    private let isRoot: Bool
+    private let onBack: (() -> Void)?
+
+    /// Kök sayfa: büyük başlık + "Çocuk modu".
+    init(title: String, subtitle: String? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.isRoot = true
+        self.onBack = nil
+    }
+
+    /// Alt sayfa: "Geri" + başlık.
+    init(title: String, subtitle: String? = nil, onBack: (() -> Void)?) {
+        self.title = title
+        self.subtitle = subtitle
+        self.isRoot = false
+        self.onBack = onBack
+    }
 
     var body: some View {
         Group {
-            if dynamicTypeSize.isAccessibilitySize {
+            if !isRoot {
+                // Büyük yazıda başlık satırlara bölünür; "Geri" ortada asılı kalmasın.
+                HStack(alignment: dynamicTypeSize.isAccessibilitySize ? .top : .center, spacing: MPSpacing.md) {
+                    if let onBack {
+                        MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack)
+                    }
+                    titleBlock
+                }
+            } else if dynamicTypeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: MPSpacing.sm) {
                     exitButton
                     titleBlock
@@ -29,15 +61,12 @@ struct MPParentHeader: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, MPSpacing.lg)
-        .padding(.bottom, MPSpacing.xs)
     }
 
     private var titleBlock: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xxs) {
             Text(title)
-                .mpText(.largeTitle)
+                .mpText(isRoot ? .largeTitle : .title3)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
@@ -51,7 +80,11 @@ struct MPParentHeader: View {
 
     private var exitButton: some View {
         Button { app.enterChildMode() } label: {
-            Label("Çocuk modu", systemImage: "rectangle.portrait.and.arrow.right")
+            Label {
+                Text("Çocuk modu")
+            } icon: {
+                MPIcon("rectangle.portrait.and.arrow.right", size: MP.G.sm, weight: .semibold)
+            }
                 .mpText(.footnote)
                 .fontWeight(.heavy)
                 .foregroundStyle(MPColor.textPrimary)

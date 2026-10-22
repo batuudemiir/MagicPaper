@@ -22,7 +22,6 @@ struct ParentSafetyView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Güvenlik", subtitle: "Masallar iki kez kontrol edilir")
-                    .padding(.horizontal, -MPSpacing.screenH)
 
                 if let profile = profileManager.currentProfile {
                     if profileManager.profiles.count > 1 { childPicker }
@@ -89,6 +88,7 @@ struct ParentSafetyView: View {
                 .padding(.horizontal, MPSpacing.xs)
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.lg)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())

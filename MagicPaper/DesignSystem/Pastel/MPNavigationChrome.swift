@@ -273,6 +273,7 @@ struct MPTopBar<Trailing: View>: View {
             if let onBack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack) } else { Color.clear.frame(width: MPSize.circleButton, height: MPSize.circleButton) }
             VStack(spacing: 0) {
                 Text(title).mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
                 if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
             }
             .frame(maxWidth: .infinity)
@@ -285,35 +286,6 @@ struct MPTopBar<Trailing: View>: View {
 extension MPTopBar where Trailing == EmptyView {
     init(title: String, subtitle: String? = nil, onBack: (() -> Void)? = nil) {
         self.init(title: title, subtitle: subtitle, onBack: onBack) { EmptyView() }
-    }
-}
-
-/// Parent page header: big left title + subtitle; root pages show "Çocuk modu" exit, sub pages show back only.
-struct ParentHeader: View {
-    let title: String
-    var subtitle: String? = nil
-    var onBack: (() -> Void)? = nil
-    var onExitToKid: (() -> Void)? = nil
-    var body: some View {
-        HStack(spacing: 10) {
-            if let onBack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack) }
-            VStack(alignment: .leading, spacing: 0) {
-                Text(title).font(.mp(onBack == nil ? .largeTitle : .title3)).foregroundStyle(MPColor.textPrimary)
-                if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
-            }
-            Spacer()
-            if onBack == nil, let onExitToKid {
-                Button(action: onExitToKid) {
-                    Label("Çocuk modu", systemImage: "rectangle.portrait.and.arrow.right")
-                        .mpText(.footnote).fontWeight(.heavy)
-                        .foregroundStyle(MPColor.textPrimary)
-                        .padding(.horizontal, MPSpacing.md).frame(minHeight: MPSize.minTouchParent)
-                        .background(MPColor.backgroundSurface, in: Capsule())
-                        .overlay(Capsule().strokeBorder(MPColor.borderParentControl, lineWidth: 1.5))
-                }
-                .buttonStyle(MPPressStyle())
-            }
-        }
     }
 }
 

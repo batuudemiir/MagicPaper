@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 2. adım: ebeveyn alanında tek üst başlık
+
+- `ParentHeader` silindi, `MPParentHeader` iki biçim aldı: kök sayfa `(title:subtitle:)` büyük başlık + "Çocuk modu"; alt sayfa `(title:subtitle:onBack:)` "Geri" + küçük başlık, "Çocuk modu" yok. 8 alt sayfa taşındı: Masal kitabı, Aile, Aileyle paylaş, Kendi sesin (2), Abonelik, Hesabı sil, Gizlilik ve veri.
+- Başlık kendi kenar boşluğunu eklemiyor; kök sayfalardaki `.padding(.horizontal, -MPSpacing.screenH)` hilesi kalktı, üst boşluğu her sayfa `MPSpacing.lg` ile veriyor. Abonelik, Hesabı sil ve Gizlilik ve veri sayfaları önceden üste yapışıktı, artık diğerleriyle aynı hizada.
+- En büyük yazıda alt sayfa "Geri" düğmesi başlığın üstüne hizalanıyor (ortada asılı kalıyordu). "Çocuk modu" ikonu `MPIcon` üzerinden. `MPTopBar` başlığı `isHeader` aldı.
+- Design law'a **Üst başlık** kuralı eklendi (CLAUDE.md ve `docs/DESIGN_LAW_DRAFT.md`). Çocuk kök sekmeleri ve illüstrasyonlu başlıklar (`GunlukHeader`, klasik detay) bilerek dışarıda; `KidHeader`'ın çağıranı yok. `design-handoff/docs/DESIGN_SYSTEM.md` bileşen tablosu güncellendi.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; 1. adımla aynı dört içerik takımı (`SceneLibraryTests`, `InterestProfileTests`, `CompanionSymbolTests`, `IllustratedBookFlowTests`), yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema): Özet (normal ve en büyük yazı), Aile (normal), Aileyle paylaş (en büyük yazı); kesilme yok. Koyu tema, iPhone SE ve Pro Max görülmedi; VoiceOver cihazda denenmedi.
+- Dosyalar: `Screens/Parent/MPParentHeader.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift`, `Screens/Parent/{ParentOverviewView,ParentSafetyView,BookExportView}.swift`, `Screens/Family/{FamilyMembersView,ShareLinkView,VoiceRecordingView}.swift`, `Screens/Subscription/SubscriptionExpiredView.swift`, `Screens/Account/AccountSettings.swift`, `Views/SettingsView.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, `design-handoff/docs/DESIGN_SYSTEM.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
 ### 2026-10-22 · main (commit aşağıda) · Bütünlük 1. adım: dokunma alanı, ölü ekran, erişilebilirlik
 
 - Ebeveyn dokunma alanı 44 → 48 pt (`MPSize.minTouchParent`, Design law `MP.S.tapMin`); 21 kullanım tek token'dan büyüdü. `ParentHeader`'daki "Çocuk modu" düğmesi sabit 36 pt'ydi, artık en az 48.

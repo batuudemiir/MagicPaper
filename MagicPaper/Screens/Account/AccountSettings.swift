@@ -118,8 +118,9 @@ struct AccountDeletionSheet: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ParentHeader(title: AccountCopy.deleteAccount, onBack: step == nil ? onClose : nil)
+            MPParentHeader(title: AccountCopy.deleteAccount, onBack: step == nil ? onClose : nil)
                 .padding(.horizontal, MPSpacing.screenH)
+                .padding(.top, MPSpacing.lg)
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xl) {

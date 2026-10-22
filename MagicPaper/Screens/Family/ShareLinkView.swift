@@ -29,7 +29,7 @@ struct ShareLinkView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                ParentHeader(title: "Aileyle paylaş", subtitle: "Büyükler masalları kendi telefonundan okusun", onBack: onClose)
+                MPParentHeader(title: "Aileyle paylaş", subtitle: "Büyükler masalları kendi telefonundan okusun", onBack: onClose)
 
                 if account.account == nil {
                     MPNotice(kind: .info, text: "Paylaşım bağlantısı için önce giriş yap.", systemImage: "person.crop.circle")
