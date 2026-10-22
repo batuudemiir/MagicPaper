@@ -7,6 +7,10 @@ import SwiftUI
 /// "Köşem" sekmesi; kapat düğmesi yok, kilit ebeveyn kapısına, "Ekle" kapıdan
 /// sonra doğrudan profil eklemeye gider; kahramanı düzenlemek kapıdan geçer.
 /// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
+///
+/// 22 Ekim 2026: iOS profil sayfası düzeni. Beyaz sayfada açık gri, gölgesiz
+/// ve kenarsız bloklar (ana sayfa ve masal yazma adımlarıyla aynı); Ragi ve
+/// karşılama balonsuz; sayılar üç ayrı kutucuk; Masal dünyam gruplu liste.
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -80,30 +84,28 @@ struct KidCornerView: View {
     /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu
     /// (karar 16 Ekim 2026: Ragi her çocuk ekranında ön planda).
     private var greeting: some View {
-        // En büyük yazı boyutlarında Ragi küçülüp balonun üstüne çıkar; balon
-        // dar bir sütunda uzamaz.
+        // En büyük yazı boyutlarında Ragi küçülüp metnin üstüne çıkar.
         let layout = typeSize.isAccessibilitySize
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
-            : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.md))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.lg))
         return layout {
-            RagiGreeting(mascot: .waving, width: typeSize.isAccessibilitySize ? 80 : 108)
-            Text(greetingText).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(MPSpacing.lg)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(MPWorldTone.lav.soft.opacity(0.45),
-                            in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
+            RagiGreeting(mascot: .waving, width: typeSize.isAccessibilitySize ? 80 : 96)
+            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                Text("Merhaba \(profile?.name ?? "Arkadaşım")!")
+                    .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                Text(greetingText).mpText(.body).foregroundStyle(MPColor.textSecondary)
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .accessibilityElement(children: .combine)
     }
 
     /// Sakin karşılama: kazanılanı söyler, "az kaldı" demez (CLAUDE.md §7).
     private var greetingText: String {
-        let name = profile?.name ?? "Arkadaşım"
-        return earned.isEmpty
-            ? "Merhaba \(name)! Masal okudukça rozetlerin burada toplanır."
-            : "Merhaba \(name)! \(earned.count) rozetin var, hepsi burada."
+        earned.isEmpty
+            ? "Masal okudukça rozetlerin burada toplanır."
+            : "\(earned.count) rozetin var, hepsi burada."
     }
 
     // MARK: - Kim okuyor?
@@ -120,7 +122,7 @@ struct KidCornerView: View {
                             profileManager.switchProfile(to: child)
                         } label: {
                             VStack(spacing: MPSpacing.xs) {
-                                MPAvatar(name: child.name, color: child.mpColor, size: 72)
+                                MPAvatar(name: child.name, color: child.mpColor, size: MPSize.minTouchKid)
                                     .padding(MPSpacing.xxs)
                                     .overlay(Circle().strokeBorder(selected ? MPColor.actionPrimary : .clear, lineWidth: 3))
                                 Text(child.name).mpText(.callout).fontWeight(.black)
@@ -136,7 +138,7 @@ struct KidCornerView: View {
                         VStack(spacing: MPSpacing.xs) {
                             MPIcon("plus", size: MP.G.xl, weight: .semibold)
                                 .foregroundStyle(MPColor.textSecondary)
-                                .frame(width: 80, height: 80)
+                                .frame(width: MPSize.minTouchKid + MPSpacing.sm, height: MPSize.minTouchKid + MPSpacing.sm)
                                 .overlay(Circle().strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
                             Text("Ekle").mpText(.callout).fontWeight(.black).foregroundStyle(MPColor.textSecondary)
                         }
@@ -168,15 +170,15 @@ struct KidCornerView: View {
     private var statsRow: some View {
         let ax = typeSize.isAccessibilitySize
         let layout = ax
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
             : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
-        return VStack(spacing: MPSpacing.md) {
+        return VStack(spacing: MPSpacing.sm) {
             layout {
-                stat(tone: .yellow, value: stars, label: "yıldız", row: ax) { MPStarMark(size: 22) }
-                stat(tone: .peach, value: streak.currentStreak, label: "gün seri", row: ax) {
+                stat(value: stars, label: "yıldız", row: ax) { MPStarMark(size: 20) }
+                stat(value: streak.currentStreak, label: "gün üst üste", row: ax) {
                     MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.peach.deep)
                 }
-                stat(tone: .sky, value: finishedCount, label: "masal", row: ax) {
+                stat(value: finishedCount, label: "masal", row: ax) {
                     MPIcon("book", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.sky.deep)
                 }
             }
@@ -185,27 +187,25 @@ struct KidCornerView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
         }
-        .padding(MPSpacing.lg)
-        .background(MPWorldTone.lav.soft.opacity(0.45),
-                    in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
     }
 
-    private func stat<Glyph: View>(tone: MPWorldTone, value: Int, label: String, row: Bool,
+    /// Tek sayı kutucuğu: açık gri, gölgesiz (dokunulmuyor, düğme gibi durmaz).
+    private func stat<Glyph: View>(value: Int, label: String, row: Bool,
                                    @ViewBuilder glyph: () -> Glyph) -> some View {
         let layout = row
             ? AnyLayout(HStackLayout(spacing: MPSpacing.md))
-            : AnyLayout(VStackLayout(spacing: MPSpacing.xs))
+            : AnyLayout(VStackLayout(spacing: MPSpacing.xxs))
         return layout {
-            glyph()
-                .frame(width: 40, height: 40)
-                .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                .accessibilityHidden(true)
+            glyph().accessibilityHidden(true)
             Text("\(value)").mpText(.title2).monospacedDigit().foregroundStyle(MPColor.textPrimary)
             Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, alignment: row ? .leading : .center)
+        .padding(.vertical, MPSpacing.md)
+        .padding(.horizontal, MPSpacing.sm)
+        .background(MPColor.backgroundSunken,
+                    in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .accessibilityElement(children: .combine)
     }
 
@@ -233,7 +233,7 @@ struct KidCornerView: View {
     @ViewBuilder
     private var linksSection: some View {
         if let profile {
-            HomeSection(title: "Masal dünyam") {
+            HomeSection(title: "Masal dünyam", contained: false) {
                 // Satırlar tek panelde; panel tek parça olsun diye tek kap.
                 VStack(spacing: 0) {
                     if IllustratedBookAccess.isEnabled() {
@@ -253,8 +253,9 @@ struct KidCornerView: View {
                         app.sheet = .newWords(profile.id)
                     }
                 }
-                .padding(.horizontal, -MPSpacing.sm)
-                .padding(.vertical, -MPSpacing.sm)
+                .padding(.vertical, MPSpacing.xxs)
+                .background(MPColor.backgroundSunken,
+                            in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
             }
         }
     }
