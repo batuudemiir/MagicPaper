@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-22 · faz-21-varyasyon@COMMIT · CompanionNature: prozanın "bu bir hayvan mı, insan mı" diye sorabildiği eksen
+### 2026-10-22 · faz-21-varyasyon@17d50a5 · CompanionNature: prozanın "bu bir hayvan mı, insan mı" diye sorabildiği eksen
 
 - **B-ön 1'de önerilen üç dokunuş uygulandı** (inceleme: `docs/INSAN_YOL_ARKADASI_INCELEMESI.md`). Yeni `CompanionNature` ekseni (`animal`/`person`/`fantastic`), `CatalogCompanion.declaredNature` + okunan `nature`, `CatalogVariant.natureRequire`. **İnsan kaydı yazılmadı**: model hazır, havuz aynı. İnsan yol arkadaşı yazmak B turunun inşası ve güvenlik kuralı kararını bekliyor.
 - **Neden ayrı bir eksen, `CompanionTrait`'e eklenen bir bayrak değil:** "insan olmak" bir yetenek değil, oynanan bir rol de değil. `ContentTraits.swift` yetenek/rol ayrımını paragraflarca uğraşıp çözmüş; oraya `isPerson` koymak tam o ayrımı geri karıştırırdı.
