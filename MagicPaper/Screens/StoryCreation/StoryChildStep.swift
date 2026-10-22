@@ -21,73 +21,33 @@ struct StoryChildStep: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: MPSpacing.lg) {
-                VStack(spacing: MPSpacing.sm) {
-                    Text("Masal kimin için?")
-                        .mpText(.title1).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("Masalın kahramanı o olacak.")
-                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                        .multilineTextAlignment(.center)
-                }
-
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: MPSpacing.md),
-                                    GridItem(.flexible(), spacing: MPSpacing.md)],
-                          spacing: MPSpacing.lg) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                CreationTitle(title: "Masal kimin için?", subtitle: "Masalın kahramanı o olacak.")
+                VStack(spacing: MPSpacing.md) {
                     ForEach(profiles) { profile in
-                        ChildTile(profile: profile, isSelected: selectedID == profile.id) {
-                            MPHaptics.selection()
-                            selectedID = profile.id
-                        }
+                        CreationChoiceRow(
+                            title: profile.name,
+                            subtitle: "\(profile.age) yaş",
+                            isSelected: selectedID == profile.id,
+                            accessibilityLabel: "\(profile.name), \(profile.age) yaşında",
+                            action: {
+                                MPHaptics.selection()
+                                selectedID = profile.id
+                            },
+                            leading: { MPAvatar(name: profile.name, color: profile.mpColor, size: MPSize.minTouchKid - MPSpacing.xxs) }
+                        )
                     }
                 }
-                .padding(.top, MPSpacing.sm)
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            MPButton(title: "Devam et", fullWidth: true, action: onContinue)
-                .disabled(selectedID == nil)
-                .padding(.horizontal, MPSpacing.xxxl)
-                .padding(.vertical, MPSpacing.md)
-        }
-    }
-}
-
-/// Çocuk kartı: mod kartlarıyla aynı ölçü ve aynı seçim dili, ortasında
-/// avatar. `WorldTile` kullanılmadı çünkü o bir simge çiziyor; buradaki görsel
-/// çocuğun kendi rengi ve baş harfi, yani kartın konusu simge değil kişi.
-private struct ChildTile: View {
-    let profile: UserProfile
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: MPSpacing.sm) {
-                MPAvatar(name: profile.name, color: profile.mpColor, size: 56, ring: isSelected)
-                VStack(spacing: MPSpacing.xxs) {
-                    Text(profile.name)
-                        .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(1).minimumScaleFactor(0.7)
-                    Text("\(profile.age) yaş")
-                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                }
+            CreationFooter {
+                MPButton(title: "Devam et", fullWidth: true, action: onContinue)
+                    .disabled(selectedID == nil)
             }
-            .frame(maxWidth: .infinity, minHeight: 108)
-            .padding(.vertical, MPSpacing.md)
-            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                    .strokeBorder(isSelected ? MPColor.actionPrimary : MPColor.borderKid,
-                                  lineWidth: isSelected ? 3 : 1)
-            }
-            .mpShadow(.control)
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel("\(profile.name), \(profile.age) yaşında")
-        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 }

@@ -3,6 +3,10 @@ import StoryEngine
 
 /// 20 · Yarat 2 (`SihirbazNasil`): Masalda kimler olsun?
 ///
+/// 22 Ekim 2026: yol arkadaşları çip yerine adı ve tek satırlık huyuyla tam
+/// genişlikte satırlar (`CreationChoiceRow`); önceki seçimler başlığın altında
+/// tek satır ve "Değiştir". Masal ailem çip olarak kalır.
+///
 /// Teslimdeki ekranın uzunluk, ton ve serbest metin bölümleri yok: uzunluk
 /// yaş bandından, ton moddan gelir, serbest metin yok (karar 3 ve 7 Ekim
 /// 2026). Kalanlar: yol arkadaşı ve Masal ailem çipleri, "Masalı yaz".
@@ -54,19 +58,12 @@ struct CompanionStep: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: MPSpacing.section) {
-                VStack(spacing: MPSpacing.sm) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     // "Macera" değil: Uyku öncesinde de bu soru soruluyor.
-                    Text("Masalda kimler olsun?")
-                        .mpText(.title1).foregroundStyle(MPColor.textPrimary)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("Hepsi isteğe bağlı. İstersen direkt yaz.")
-                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                    CreationTitle(title: "Masalda kimler olsun?")
+                    if let mode { summary(mode) }
                 }
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-
-                if let mode { summary(mode) }
 
                 companionSection
 
@@ -75,14 +72,15 @@ struct CompanionStep: View {
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.xxxl)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
-                onChoose(selectedCompanionID)
+            CreationFooter {
+                MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
+                    onChoose(selectedCompanionID)
+                }
             }
-            .padding(.horizontal, MPSpacing.xxxl)
-            .padding(.vertical, MPSpacing.md)
         }
         // A companion the new family choice no longer allows is dropped,
         // visibly, rather than kept and refused at "Masalı yaz".
@@ -93,39 +91,40 @@ struct CompanionStep: View {
         }
     }
 
+    /// Şimdiye kadarki seçimler tek cümlede, yanında "Değiştir".
     private func summary(_ mode: StoryMode) -> some View {
-        HStack(spacing: MPSpacing.md) {
-            MPAvatar(name: childName, color: childColor, size: 40)
+        HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
             Text(childName.isEmpty ? mode.title : "\(childName) · \(mode.title)")
-                .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                .lineLimit(2)
-            Spacer(minLength: MPSpacing.sm)
+                .mpText(.body).foregroundStyle(MPColor.textSecondary)
             if let onChangeMode {
                 Button("Değiştir", action: onChangeMode)
-                    .mpText(.callout).fontWeight(.black)
+                    .mpText(.bodyStrong)
                     .foregroundStyle(MPColor.actionPrimary)
                     .frame(minHeight: MPSize.minTouchParent)
+                    .accessibilityHint("Masal türünü değiştirir")
             }
         }
-        .padding(.leading, MPSpacing.sm).padding(.trailing, MPSpacing.lg)
-        .padding(.vertical, MPSpacing.xs)
-        .background(MPColor.backgroundSurface, in: Capsule())
-        .mpShadow(.control)
     }
 
     private var companionSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             Text(FamilyCharacterCopy.stepCompanionLabel).mpText(.headline).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            MPFlowLayout(spacing: MPSpacing.sm) {
+            // Seçili satıra tekrar dokunmak seçimi kaldırır: arkadaş isteğe bağlı.
+            VStack(spacing: MPSpacing.md) {
                 ForEach(candidates) { companion in
                     let on = selectedCompanionID == companion.id
-                    MPChip(title: companion.name, systemImage: symbol(for: companion), isSelected: on) {
-                        MPHaptics.selection()
-                        selectedCompanionID = on ? nil : companion.id
-                    }
-                    .frame(minHeight: MPSize.minTouchKid)
-                    .accessibilityLabel("\(companion.name), \(description(for: companion))")
+                    CreationChoiceRow(
+                        title: companion.name,
+                        subtitle: description(for: companion),
+                        isSelected: on,
+                        accessibilityLabel: "\(companion.name), \(description(for: companion))",
+                        action: {
+                            MPHaptics.selection()
+                            selectedCompanionID = on ? nil : companion.id
+                        },
+                        leading: { MPIconTile(systemImage: symbol(for: companion), tone: .lav, size: MPSize.minTouchKid - MPSpacing.xxs) }
+                    )
                 }
             }
             if selectedCompanionID == nil {
