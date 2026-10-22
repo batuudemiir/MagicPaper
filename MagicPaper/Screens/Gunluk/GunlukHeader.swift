@@ -98,25 +98,29 @@ struct GunlukHeaderCarousel: View {
             .accessibilityLabel("\(slide.eyebrow): \(slide.tale.title). \(slide.tale.fullMeta)")
             .accessibilityHint("Masalın sayfasını açar")
 
-            VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
-                    .lineLimit(1).minimumScaleFactor(0.7)
-                Text(slide.tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
-                    .lineLimit(3).minimumScaleFactor(0.6)
-                Text(slide.tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
-                    .lineLimit(2).minimumScaleFactor(0.7)
-                MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
-                         systemImage: slide.kind == .resume ? "play.fill" : "book",
-                         kind: .secondary, size: .small) { onRead(slide.tale) }
-                    .padding(.top, MPSpacing.sm)
-                    .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
+            // Karartma ve metin `MPArtHero`'dan; sahne arkadaki düğme, karartma
+            // dokunuşu geçirir.
+            MPArtHero(height: height + topInset) {
+                Color.clear
+            } content: {
+                VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                    Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
+                        .lineLimit(1).minimumScaleFactor(0.7)
+                    Text(slide.tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                        .lineLimit(3).minimumScaleFactor(0.6)
+                    Text(slide.tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                        .lineLimit(2).minimumScaleFactor(0.7)
+                    MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
+                             systemImage: slide.kind == .resume ? "play.fill" : "book",
+                             kind: .secondary, size: .small) { onRead(slide.tale) }
+                        .padding(.top, MPSpacing.sm)
+                        .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
+                }
+                .frame(maxHeight: height - Self.titleBarClearance, alignment: .bottom)
             }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xxl)
             // Sahne sabit yükseklikte: en büyük yazı boyutlarında metin başlığın
             // üstüne binmesin diye büyüme sınırlı, sığmazsa küçülür (alt bar gibi).
             .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-            .frame(maxHeight: height - Self.titleBarClearance, alignment: .bottom)
         }
         .frame(height: height + topInset)
     }
@@ -124,17 +128,12 @@ struct GunlukHeaderCarousel: View {
     /// Başlık satırının ("Günlük" ve arama) sahnede kapladığı yer.
     private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
 
-    /// Boyalı kapak: tepesi kreme açılır (başlık), altı karartılır (metin),
-    /// en alt kenarı sayfanın kremine erir (Ana sayfa sahnesi gibi).
+    /// Boyalı kapak: tepesi kreme açılır (başlık); altın karartması metinle
+    /// birlikte `MPArtHero`'dan gelir.
     private func art(_ tale: ClassicTale) -> some View {
         ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
             .frame(height: height + topInset)
             .frame(maxWidth: .infinity)
-            .overlay {
-                LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.45),
-                                       .init(color: MP.Scrim.solid, location: 1)],
-                               startPoint: .top, endPoint: .bottom)
-            }
             .overlay(alignment: .top) {
                 // Yalnızca saat çubuğu ve "Günlük" yazısının arkası açılır; resmin
                 // geri kalanı olduğu gibi, soluklaşmadan görünür.

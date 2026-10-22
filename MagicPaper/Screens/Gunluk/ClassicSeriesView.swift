@@ -64,49 +64,43 @@ struct ClassicSeriesView: View {
         return "\(n). \(series.unitName == "masal" ? "masaldan" : "bölümden") devam et"
     }
 
+    private static let artHeight: CGFloat = 400
+
     private var art: some View {
         let saved = favorites.contains(series.id)
-        return ClassicCoverImage(asset: series.cover, focus: series.coverFocus, seed: series.title, onStage: true)
-            .frame(height: 400)
-            .frame(maxWidth: .infinity)
-            .overlay {
-                LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.45),
-                                       .init(color: MP.Scrim.solid, location: 1)],
-                               startPoint: .top, endPoint: .bottom)
-            }
-            .clipped()
-            .overlay(alignment: .bottomLeading) {
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                    Text(series.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("\(series.byline) · \(episodes.count) \(series.unitName) · \(series.ageLabel)")
-                        .mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+        return MPArtHero(height: Self.artHeight) {
+            ClassicCoverImage(asset: series.cover, focus: series.coverFocus, seed: series.title, onStage: true)
+                .frame(height: Self.artHeight)
+                .frame(maxWidth: .infinity)
+        } content: {
+            Text(series.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+            Text("\(series.byline) · \(episodes.count) \(series.unitName) · \(series.ageLabel)")
+                .mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+        }
+        // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+        .lineLimit(3)
+        .minimumScaleFactor(0.6)
+        .frame(height: Self.artHeight)
+        .overlay(alignment: .top) {
+            HStack {
+                GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
+                    if !path.isEmpty { path.removeLast() }
                 }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.bottom, MPSpacing.xxl)
-                // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
-                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-                .lineLimit(3)
-                .minimumScaleFactor(0.6)
-            }
-            .overlay(alignment: .top) {
-                HStack {
-                    GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
-                        if !path.isEmpty { path.removeLast() }
-                    }
-                    Spacer()
-                    GunlukStageButton(systemImage: saved ? "checkmark" : "plus",
-                                      label: saved ? "Listemden çıkar" : "Listeme ekle") {
-                        let now = favorites.toggle(series.id)
-                        MPHaptics.tap()
-                        app.showToast(now ? "Listene eklendi" : "Listenden çıkarıldı", symbol: now ? "checkmark" : "minus")
-                    }
+                Spacer()
+                GunlukStageButton(systemImage: saved ? "checkmark" : "plus",
+                                  label: saved ? "Listemden çıkar" : "Listeme ekle") {
+                    let now = favorites.toggle(series.id)
+                    MPHaptics.tap()
+                    app.showToast(now ? "Listene eklendi" : "Listenden çıkarıldı", symbol: now ? "checkmark" : "minus")
                 }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.top, MPSize.minTouchKid)
             }
-            .gunlukStage()
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSize.minTouchKid)
+        }
+        .gunlukStage()
     }
 }
 

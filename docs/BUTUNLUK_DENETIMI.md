@@ -108,6 +108,10 @@ en büyük Dynamic Type, SE + Pro Max).
    "24 elle yazılmış başlık"ın çoğu kart başlığıydı; gerçek bölüm başlıkları
    `MPSectionHeader`'da birleşti.
 4. **Illüstrasyon başlıkları** — Günlük ve klasik detay/seri `MPArtHero`'ya.
+   ✅ 23 Ekim: yapıldı. `MPArtHero` sabit yükseklik aldı; karartması düz koyu
+   bloktan Günlük'ün onaylı geçişine yaklaştırıldı (`MP.Scrim.mid` → `solid`).
+   Açık: Günlük vitrininin tepesindeki krem açma (başlık arkası) hâlâ elle;
+   karanlık slaytta "Günlük" yazısı en büyük yazıda soluk.
 5. **Legacy kontrollerin emekliliği** — 4 dosya.
 6. **Ragi ve ebeveyn kapısı** — ekran görüntüsüyle ekran ekran karar.
 7. **VoiceOver yürüyüşü** — ana akışlar: ilk açılış, masal yazma, okuma, kitaplık,

@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · Bütünlük 4. adım: illüstrasyon üstü karartma tek bileşende
+
+- Günlük vitrini, klasik detay ve klasik seri sahnelerindeki elle kurulmuş `LinearGradient` karartmaları kalktı; metin ve karartma artık `MPArtHero`'dan geliyor (Design law: illüstrasyon üstü metin yalnızca `MPArtHero`).
+- `MPArtHero` sabit yükseklik aldı (`init(height:backdrop:content:)`); oranlı hâli değişmedi. Karartma dokunuşu geçiriyor (`allowsHitTesting(false)`): vitrinde sahneye dokununca masal sayfası açılmaya devam ediyor (simülatörde denendi).
+- Karartmanın biçimi değişti: metnin arkası düz `solid` blok yerine `MP.Scrim.mid` → `solid` geçişi (yeni `mid` ve `body` token'ları, `MPTheme.swift`). Gerekçe: canlıda `MPArtHero` kullanan ekran yoktu; onaylı görünüm Günlük'ün geçişiydi (14 Ekim), düz blok boyalı sahnenin altını kapatırdı. Metnin ilk satırının arkası eski Günlük geçişinden biraz daha koyu (≈%39 / ≈%20).
+- Görünen fark: sahne metni 8 pt yukarıda (alt boşluk 24 → `MP.S.x7` 32), satır arası 6 → 8. Sahne başlıkları, geri/paylaş düğmeleri ve `gunlukStage` kenarı aynı.
+- Bilerek değişmedi: vitrinin tepesindeki krem açma ("Günlük" yazısının arkası) ve seri bölüm küçük resmindeki düz karartma. Kapak sanatının kendi karartması (`MPStory`, kapak) kural gereği serbest.
+- Görülen açık: en büyük yazıda karanlık bir slaytta (Uyuyan Güzel) "Günlük" başlığı soluk; krem açma yetmiyor. Bu adımın değişikliği değil, ayrı bakılacak.
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; önceki adımlarla aynı dört içerik takımı, yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema): Günlük vitrini ve klasik detay, normal ve en büyük yazı; öncesi/sonrası karşılaştırıldı. Klasik seri sayfası görülmedi (aynı kod yolu). Koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `DesignSystem/MPArtHero.swift`, `DesignSystem/MPTheme.swift`, `Screens/Gunluk/GunlukHeader.swift`, `Screens/Gunluk/ClassicDetailView.swift`, `Screens/Gunluk/ClassicSeriesView.swift`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
 ### 2026-10-22 · main (commit aşağıda) · Bütünlük 3. adım: tek bölüm başlığı, tek boş durum
 
 - `MPSectionHeader` bütün bölüm başlıklarının tek satırı oldu: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`), isteğe bağlı alt satır, sayaç (`note:`), "Tümü ›" bağlantısı (`link:`), sol/sağ yuva. `HomeSection` (Ana sayfa, Benim köşem) ve `ParentSection` (Ayarlar, Güvenlik, Aile) başlığını buradan alıyor; Özet'in iki başlığı, Kitaplık'taki "Kitaplarım" (sağda sıralama), masal yazmadaki "Yol arkadaşı" ve "Masal ailem", Aile davetindeki "Ne yapabilsin?" taşındı.

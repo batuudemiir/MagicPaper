@@ -81,41 +81,33 @@ struct ClassicDetailView: View {
     /// Vitrinle aynı sahne: tam genişlik boyalı görsel, altta karartma ve
     /// masalın adı, alt köşeler yuvarlak ve sert kenarlı (`gunlukStage`).
     private var art: some View {
-        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
-            .frame(height: artHeight)
-            .frame(maxWidth: .infinity)
-            .overlay {
-                LinearGradient(stops: [.init(color: MP.Scrim.ink.opacity(0), location: 0.5),
-                                       .init(color: MP.Scrim.solid, location: 1)],
-                               startPoint: .top, endPoint: .bottom)
-            }
-            .clipped()
-            .overlay(alignment: .bottomLeading) {
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                    Text(tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+        MPArtHero(height: artHeight) {
+            ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
+                .frame(height: artHeight)
+                .frame(maxWidth: .infinity)
+        } content: {
+            Text(tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+            Text(tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+        }
+        // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+        .lineLimit(3)
+        .minimumScaleFactor(0.6)
+        .frame(height: artHeight)
+        .overlay(alignment: .top) {
+            HStack {
+                GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
+                    if !path.isEmpty { path.removeLast() }
                 }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.bottom, MPSpacing.xxl)
-                // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
-                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-                .lineLimit(3)
-                .minimumScaleFactor(0.6)
+                Spacer()
+                GunlukStageButton(systemImage: "square.and.arrow.up", label: "Paylaş") { gate = true }
             }
-            .overlay(alignment: .top) {
-                HStack {
-                    GunlukStageButton(systemImage: "chevron.left", label: "Geri") {
-                        if !path.isEmpty { path.removeLast() }
-                    }
-                    Spacer()
-                    GunlukStageButton(systemImage: "square.and.arrow.up", label: "Paylaş") { gate = true }
-                }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.top, MPSize.minTouchKid)
-            }
-            .gunlukStage()
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSize.minTouchKid)
+        }
+        .gunlukStage()
     }
 
     // MARK: - Eylemler

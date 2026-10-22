@@ -726,11 +726,18 @@ enum MP {
         /// Metnin üstünde karartmanın sıfırdan tam koyuya çıktığı mesafe.
         static let featherHeight: CGFloat = S.x10
 
-        /// Metnin arkası — tam koyu.
+        /// En koyu nokta — metin bloğunun dibi.
         static var solid: Color { ink.opacity(peak) }
-        /// Metnin üstündeki geçiş — yukarıdan aşağı saydamdan `solid`'e.
+        /// Metnin ilk satırının arkası: resim hâlâ görünür, beyaz yazı okunur.
+        static var mid: Color { ink.opacity(peak * 0.5) }
+        /// Metnin üstündeki geçiş — saydamdan `mid`'e.
         static var feather: LinearGradient {
-            LinearGradient(colors: [ink.opacity(0), solid], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [ink.opacity(0), mid], startPoint: .top, endPoint: .bottom)
+        }
+        /// Metnin arkası — `mid`'den `solid`'e. Düz koyu blok değil: boyalı
+        /// sahne altta da seçilsin (Günlük vitrini, 14 Ekim onayı; 23 Ekim 2026).
+        static var body: LinearGradient {
+            LinearGradient(colors: [mid, solid], startPoint: .top, endPoint: .bottom)
         }
     }
 }
