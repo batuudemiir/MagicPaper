@@ -138,11 +138,28 @@ struct ProfileCreationView: View {
         }
     }
 
+    /// Masal yazılmış bantlar; liste katalogdan gelir, buradan değil.
+    private var offeredRanges: [MPAgeRange] {
+        MPAgeRange.authored(StoryChoiceSources.current.authoredBands())
+    }
+
+    /// Henüz masalı yazılmamış bantlar varsa ebeveyne söylenir.
+    ///
+    /// Sessizce dört chip'ten ikisini kaldırmak, ebeveyne 8 yaşındaki
+    /// çocuğunun bu uygulamaya ait olmadığını düşündürür. Cümle eksiği değil
+    /// sırayı anlatıyor: önce küçük yaşlar yazılıyor.
+    private var ageNote: String? {
+        offeredRanges.count < MPAgeRange.allCases.count
+            ? "Şimdilik \(offeredRanges.first?.band.lowerBound ?? 3)-\(offeredRanges.last?.band.upperBound ?? 6) yaş için masal yazıyoruz, "
+              + "daha büyük yaşların masalları hazırlanıyor."
+            : nil
+    }
+
     private var agePicker: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             Text("Yaş aralığı").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
             MPWrapRow(spacing: MPSpacing.sm) {
-                ForEach(MPAgeRange.allCases) { range in
+                ForEach(offeredRanges) { range in
                     MPChip(title: range.title, isSelected: ageRange == range) {
                         MPHaptics.selection()
                         ageRange = range
@@ -152,6 +169,19 @@ struct ProfileCreationView: View {
             Text("Masalın dili ve uzunluğu yaşa göre ayarlanır.")
                 .mpText(.caption).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
+            if let ageNote {
+                Text(ageNote)
+                    .mpText(.caption).fontWeight(.regular)
+                    .foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        // Varsayılan 5-6, ama sunulmayan bir bant seçili kalmasın: liste
+        // içerikten geldiği için varsayılanın da listede olduğu garanti değil.
+        .onAppear {
+            if !offeredRanges.contains(ageRange) {
+                ageRange = offeredRanges.first ?? .r56
+            }
         }
     }
 

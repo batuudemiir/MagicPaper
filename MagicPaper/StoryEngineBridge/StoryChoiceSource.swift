@@ -74,6 +74,13 @@ struct CompanionChoice: Identifiable, Hashable {
 /// which saves it; this is only the part that happens while the parent chooses.
 @MainActor
 protocol StoryChoiceSource {
+    /// Masal yazılmış yaş bantları, küçükten büyüğe.
+    ///
+    /// Ekranlar "hangi yaşlar destekleniyor" sorusunu buradan sorar, kendi
+    /// listesini tutmaz: desteklenen bant bir ürün vaadi değil, içeriğin
+    /// bugünkü hâli. Boş liste "henüz bilmiyorum" demektir (katalog
+    /// okunamadı), "hiçbir yaş desteklenmiyor" demek değil.
+    func authoredBands() -> [AgeBand]
     /// The modes that have something to offer a child of this age.
     func availableModes(forAge age: Int) -> [StoryMode]
     /// Bu modun alt kategorileri. Boş ya da tek öğeliyse akış adımı atlar.

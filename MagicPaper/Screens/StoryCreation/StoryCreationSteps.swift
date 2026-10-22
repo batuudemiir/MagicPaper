@@ -64,6 +64,33 @@ enum StoryCreationSteps {
         return [emphasized] + ordered.filter { $0 != emphasized }
     }
 
+    // MARK: - Desteklenen yaş
+
+    /// Bu yaş için masal yazılmış mı (C turu, 21 Ekim 2026).
+    ///
+    /// `authored` listesi katalogdan gelir, buradan değil: bu fonksiyon
+    /// "3-6 destekleniyor" kuralını bilmez, yalnızca verilen listeye bakar.
+    /// Böylece 7-8 için ilk masal yazıldığında değişecek bir satır kalmıyor.
+    ///
+    /// Liste boşsa `true` döner. Katalog okunamadığında çocuğa "senin yaşın
+    /// için masal yok" demek yanlış olur: hata içerikte değil yüklemede, ve o
+    /// hatanın kendi ekranı var.
+    static func supportsAge(_ age: Int, authored: [AgeBand]) -> Bool {
+        authored.isEmpty || authored.contains(AgeBandResolver.band(forAge: age))
+    }
+
+    /// Masal yazılabilecek **başka** çocuklar, verilen çocuk dışında.
+    ///
+    /// Açıklama ekranı yalnızca bunlar varken "başka bir çocuk seç" diyebilir;
+    /// yoksa teklif edilecek bir şey yok ve ekran yalnızca açıklar.
+    static func supportedAlternatives(
+        to childID: UUID, among profiles: [UserProfile], authored: [AgeBand]
+    ) -> [UserProfile] {
+        profiles.filter { $0.id != childID && supportsAge($0.age, authored: authored) }
+    }
+
+    // MARK: - Açılış
+
     /// Ana sayfadan bir modla gelindiyse ikinci adım, yoksa birinci.
     ///
     /// Preset bu çocuğun bandında kurulamıyorsa (profil değişti, ya da başka

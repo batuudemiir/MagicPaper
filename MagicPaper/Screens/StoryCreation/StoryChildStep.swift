@@ -16,6 +16,10 @@ import SwiftUI
 struct StoryChildStep: View {
 
     let profiles: [UserProfile]
+    /// Masal yazılmış yaş bantları (C turu). Bantı yazılmamış bir çocuk
+    /// listeden **çıkarılmaz**: profil onun, ve kaybolması bir hata gibi
+    /// görünür. Kartında durumu yazar, seçilince açıklama ekranı açılır.
+    var authoredBands: [AgeBand] = []
     @Binding var selectedID: UUID?
     let onContinue: () -> Void
 
@@ -36,7 +40,10 @@ struct StoryChildStep: View {
                                     GridItem(.flexible(), spacing: MPSpacing.md)],
                           spacing: MPSpacing.lg) {
                     ForEach(profiles) { profile in
-                        ChildTile(profile: profile, isSelected: selectedID == profile.id) {
+                        ChildTile(profile: profile,
+                                  isSelected: selectedID == profile.id,
+                                  isSupported: StoryCreationSteps.supportsAge(
+                                      profile.age, authored: authoredBands)) {
                             MPHaptics.selection()
                             selectedID = profile.id
                         }
@@ -62,6 +69,9 @@ struct StoryChildStep: View {
 private struct ChildTile: View {
     let profile: UserProfile
     let isSelected: Bool
+    /// Bu yaş için masal yazılmış mı. Kart devre dışı bırakılmıyor: durumu
+    /// söylemek, kartı kapatıp sebebini saklamaktan iyidir.
+    var isSupported: Bool = true
     let action: () -> Void
 
     var body: some View {
@@ -72,8 +82,9 @@ private struct ChildTile: View {
                     Text(profile.name)
                         .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(1).minimumScaleFactor(0.7)
-                    Text("\(profile.age) yaş")
+                    Text(isSupported ? "\(profile.age) yaş" : "\(profile.age) yaş · hazırlanıyor")
                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        .lineLimit(1).minimumScaleFactor(0.7)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: 108)
@@ -87,7 +98,9 @@ private struct ChildTile: View {
             .mpShadow(.control)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("\(profile.name), \(profile.age) yaşında")
+        .accessibilityLabel(isSupported
+                            ? "\(profile.name), \(profile.age) yaşında"
+                            : "\(profile.name), \(profile.age) yaşında, bu yaş için masallar hazırlanıyor")
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 }

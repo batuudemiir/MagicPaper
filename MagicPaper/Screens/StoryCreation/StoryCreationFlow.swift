@@ -32,6 +32,11 @@ struct StoryCreationFlow: View {
     private enum Phase: Equatable {
         /// "Masal kimin için?" — yalnızca birden fazla çocuk varken.
         case child
+        /// Bu çocuğun yaşı için masal yazılmamış (C turu, 21 Ekim 2026).
+        ///
+        /// Akışın sonu değil bir dalı: desteklenen başka bir çocuk varsa
+        /// oraya dönülebiliyor.
+        case unsupportedAge
         case mode
         case companion
         /// 21 · Masal yazılıyor; masal hazır olunca aynı ekranda "Masalı oku".
@@ -100,18 +105,25 @@ struct StoryCreationFlow: View {
         _chosenFamilyID = State(initialValue: family)
         let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
         let available = StoryChoiceSources.current.availableModes(forAge: age)
+        // Yaş kapısı moddan önce: desteklenmeyen bir bantta mod sormak,
+        // cevabı hiçbir şeye yaramayacak bir soru sormaktır. Çocuk adımı
+        // gösterilecekse kapı ona bırakılır — ebeveyn zaten orada
+        // desteklenen bir çocuk seçebilir.
+        let supported = StoryCreationSteps.supportsAge(
+            age, authored: StoryChoiceSources.current.authoredBands())
+        let hasChoice = StoryCreationSteps.showsChildStep(
+            profileCount: ProfileManager.shared.profiles.count)
+
         switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
         case .mode:
             // Ana sayfadan mod seçilmeden gelindiyse ve evde birden fazla
             // çocuk varsa, ilk soru "kimin için?". Preset ile gelindiğinde
             // sorulmaz: ebeveyn ana sayfada aktif çocuk için karar verdi.
-            let hasChoice = StoryCreationSteps.showsChildStep(
-                profileCount: ProfileManager.shared.profiles.count)
-            _phase = State(initialValue: hasChoice ? .child : .mode)
+            _phase = State(initialValue: hasChoice ? .child : (supported ? .mode : .unsupportedAge))
             _chosenMode = State(initialValue: nil)
         case .companion(let mode):
-            _phase = State(initialValue: .companion)
-            _chosenMode = State(initialValue: mode)
+            _phase = State(initialValue: supported ? .companion : .unsupportedAge)
+            _chosenMode = State(initialValue: supported ? mode : nil)
         }
         _chosenProfileID = State(initialValue: ProfileManager.shared.currentProfile?.id)
     }
@@ -174,6 +186,8 @@ struct StoryCreationFlow: View {
     private var showsHeader: Bool {
         switch phase {
         case .child, .mode, .companion: return true
+        // Açıklama ekranının kendi kapatma düğmesi var; adım noktaları ise
+        // yanlış olurdu, çünkü bu bir adım değil, akışın durduğu yer.
         default: return false
         }
     }
@@ -262,9 +276,18 @@ struct StoryCreationFlow: View {
     private var content: some View {
         switch phase {
         case .child:
-            StoryChildStep(profiles: profiles, selectedID: $chosenProfileID) {
-                phase = .mode
+            StoryChildStep(profiles: profiles, authoredBands: authoredBands,
+                           selectedID: $chosenProfileID) {
+                phase = supportsChosenChild ? .mode : .unsupportedAge
             }
+        case .unsupportedAge:
+            StoryUnsupportedAgeStep(
+                childName: profile?.name ?? "",
+                childAge: age,
+                authoredBands: authoredBands,
+                alternatives: supportedAlternatives,
+                onPickAnother: { phase = .child },
+                onClose: { dismiss() })
         case .mode:
             StoryModeStep(
                 modes: allowedModes,
@@ -335,6 +358,25 @@ struct StoryCreationFlow: View {
     /// Bu bantta kurulabilen modlar. Uyku saatinde de üçü (15 Ekim 2026);
     /// Uyku öncesi yalnızca öne çıkar.
     private var allowedModes: [StoryMode] { source.availableModes(forAge: age) }
+
+    /// Masal yazılmış bantlar, içerikten. Ekranda bir cümleye dönüşüyor.
+    private var authoredBands: [AgeBand] { source.authoredBands() }
+
+    /// Bu masalın çocuğu için masal yazılmış mı.
+    ///
+    /// Akışın her girişinde sorulur, bir kez değil: ebeveyn çocuk adımında
+    /// desteklenmeyen bir kardeşe geçebilir ve o an da aynı cevap gerekir.
+    private var supportsChosenChild: Bool {
+        StoryCreationSteps.supportsAge(age, authored: authoredBands)
+    }
+
+    /// Masal yazılabilecek diğer çocuklar. Açıklama ekranı "başka bir çocuk
+    /// seç" teklifini yalnızca bunlar varken yapıyor.
+    private var supportedAlternatives: [UserProfile] {
+        guard let id = profile?.id else { return [] }
+        return StoryCreationSteps.supportedAlternatives(
+            to: id, among: profiles, authored: authoredBands)
+    }
 
     /// Mod — ve aynı ekranda seçildiyse konusu.
     private func chooseMode(_ mode: StoryMode, topicID: String?) {

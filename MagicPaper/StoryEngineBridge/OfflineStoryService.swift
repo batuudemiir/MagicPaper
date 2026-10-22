@@ -91,16 +91,35 @@ final class OfflineStoryService {
 
     // MARK: - Age
 
+    /// İçeriğin gerçekten yazılmış olduğu bantlar, küçükten büyüğe.
+    ///
+    /// Katalogdan sayılır, elle yazılmaz: "3-6 yaş destekleniyor" bir ürün
+    /// vaadi değil, bugünkü blueprint'lerin bir sonucu. 7-8 için ilk masal
+    /// yazıldığı gün bu liste kendiliğinden büyür ve onu okuyan ekranlar da
+    /// kendiliğinden büyür.
+    ///
+    /// Boş dönerse katalog okunamıyor demektir; çağıran bunu bir içerik hatası
+    /// gibi değil, "henüz bilmiyorum" gibi ele almalı.
+    func authoredBands() -> [AgeBand] {
+        guard let catalog = try? catalog() else { return [] }
+        let authored = Set(catalog.blueprints.filter(\.isBeatAuthored).map(\.ageRange))
+        return AgeBandResolver.bands.filter(authored.contains)
+    }
+
     /// The band this child is served from.
     ///
     /// `AgeBandResolver` decides the child's band; if nothing is written for
     /// it yet, the nearest band that has content serves instead (younger on a
     /// tie). A TEMPORARY fallback, named as one: 7-8 and 9-10 have no content,
     /// and an empty first screen is a broken app.
+    ///
+    /// Yaratma akışı bu düşmeye artık **girmiyor**: desteklenmeyen bir bantta
+    /// masal yazdırmak yerine açıklayıcı bir durum gösteriyor (C turu, 21 Ekim
+    /// 2026). Burası ana sayfa vitrini gibi "bir şey göstermek zorunda olan"
+    /// yüzeyler için duruyor.
     func servedBand(forAge age: Int) -> AgeBand {
         let requested = AgeBandResolver.band(forAge: age)
-        guard let catalog = try? catalog() else { return requested }
-        let authored = Set(catalog.blueprints.filter(\.isBeatAuthored).map(\.ageRange))
+        let authored = Set(authoredBands())
         guard let served = AgeBandResolver.servedBand(for: requested, available: authored) else {
             return requested
         }

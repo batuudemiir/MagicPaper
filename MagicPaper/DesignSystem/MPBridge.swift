@@ -84,6 +84,21 @@ enum MPAgeRange: String, CaseIterable, Identifiable {
         let band = AgeBandResolver.band(forAge: age)
         return allCases.first { $0.band == band } ?? .r56
     }
+
+    /// Masal yazılmış bantların chip'leri (C turu, 21 Ekim 2026).
+    ///
+    /// Yeni profil oluştururken sunulan liste budur: tutamayacağın bir yaş
+    /// sözü vermemek için. **Kayıtlı profiller bundan etkilenmez** — 9
+    /// yaşındaki bir çocuğun yaşı `from(age:)` ile hâlâ 9-10 okunur, hiçbir
+    /// yere yazılmaz, hiçbir yerden silinmez.
+    ///
+    /// Liste boşsa (katalog okunamadı) dört chip'in hepsi döner: bilinmeyen
+    /// bir durumda ebeveyne seçenek göstermemek, yanlış bilgi vermekten daha
+    /// kötü.
+    static func authored(_ bands: [AgeBand]) -> [MPAgeRange] {
+        let authored = allCases.filter { bands.contains($0.band) }
+        return authored.isEmpty ? allCases : authored
+    }
 }
 
 // MARK: - Türkçe metin yardımcıları
