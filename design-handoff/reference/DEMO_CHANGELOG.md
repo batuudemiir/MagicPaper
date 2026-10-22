@@ -194,6 +194,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+### 2026-10-22 · main@49f5cdc · Masal yazma: düz beyaz zemin
+
+- Masal yazma akışının zemini `mpScreenBackground` (krem) yerine ana sayfayla aynı düz beyaz (`MPColor.backgroundSurface`); alttaki düğme şeridi de beyaz.
+- Seçenek satırları ana sayfa bölümleri gibi açık gri (`backgroundSunken`), gölgesiz; seçili satırda marka renginde kenar.
+- Bilerek değişmeyen: "Masal yazılıyor" ve hata ekranlarının kendi zemini.
+- Test: derleme yeşil, iPhone 16'ya kuruldu. Uygulama açılıp görülmedi.
+- Dosyalar: `StoryCreationChrome.swift`, `StoryCreationFlow.swift`, bu dosya.
+
 ### 2026-10-22 · main@2cc2fb4 · Masal yazma adımları iOS düzeninde
 
 - Ortak parçalar (`Screens/StoryCreation/StoryCreationChrome.swift`, yeni): sola yaslı büyük başlık (`CreationTitle`), tam genişlikte seçenek satırı (`CreationChoiceRow`: solda görsel, ad ve tek satırlık söz, sağda yuvarlak seçim işareti; seçili satırın kenarı marka renginde), alttaki tek birincil düğme (`CreationFooter`).
