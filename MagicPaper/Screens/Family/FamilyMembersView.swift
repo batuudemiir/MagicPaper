@@ -167,8 +167,10 @@ struct FamilyMembersView: View {
     private var childrenSection: some View {
         ParentSection(title: "Çocuklar") {
             if profileManager.profiles.isEmpty {
-                Text("Henüz çocuk profili yok.").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .padding(MPSpacing.md)
+                // Boş durum ebeveyn liste satırı dilinde; Ragi ebeveyn alanında yok (16 Ekim).
+                MPListRow(systemImage: "face.smiling", tone: .gray, title: "Henüz çocuk profili yok",
+                          subtitle: "Ayarlar'dan profil ekleyebilirsin") { EmptyView() }
+                    .accessibilityElement(children: .combine)
             }
             ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
                 if index > 0 { MPRowDivider(area: .parent) }
@@ -318,7 +320,7 @@ struct InviteAdultSheet: View {
     @ViewBuilder
     private var form: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text("Ne yapabilsin?").mpText(.headline).foregroundStyle(MPColor.textPrimary)
+            MPSectionHeader(title: "Ne yapabilsin?", area: .parent)
             ForEach(FamilyRole.invitable, id: \.self) { option in
                 Button { role = option } label: {
                     MPListRow(systemImage: option == role ? "checkmark.circle.fill" : "circle",

@@ -69,6 +69,10 @@ Token'ların tek kaynağı `DesignSystem/MPTheme.swift`. Aşağıdaki kurallar
 - Geri her yerde `MPCircleButton("chevron.left")` + "Geri"; başlık metni `isHeader` trait'i taşır.
 - Başlık kendi kenar boşluğunu eklemez: yatay boşluk `screenGutter`, üst boşluk sayfanın. Ekran kendi başlık satırını yazmaz, negatif boşlukla başlığı kaydırmaz.
 
+### Bölüm başlığı ve boş durum (karar: 22 Ekim 2026)
+- Bölüm başlığı yalnızca `MPSectionHeader`: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`); "Tümü ›" `link:`, sayaç `note:`, ekranın kendi denetimi `trailing:`. `HomeSection` ve `ParentSection` bunun üstüne kurulu. Kart içi bölüm (`GunlukSection`) ayrı tasarım, kural dışı.
+- Boş ve hata durumu yalnızca `MPStateView`: Ragi + bir başlık + bir cümle + tek eylem; yalnızca çocuk alanında. Ebeveyn alanında boş durum liste satırı (`MPListRow`) dilinde, Ragi'siz. Ekranda Ragi zaten görünüyorsa (Kitaplık'ta "Eşleşen kitap yok") ikinci Ragi konmaz, yalnızca söz kalır.
+
 ### İkon
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 

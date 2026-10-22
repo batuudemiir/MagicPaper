@@ -106,13 +106,7 @@ struct ParentSection<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                if let subtitle {
-                    Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                }
-            }
+            MPSectionHeader(title: title, subtitle: subtitle, area: .parent)
             MPGroupedList(area: .parent) { content }
         }
     }

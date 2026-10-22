@@ -104,19 +104,81 @@ struct MPRowDivider: View {
     }
 }
 
-/// "Son masallar  ·  Tümü" style section header.
-struct MPSectionHeader: View {
+/// Bütün bölüm başlıklarının tek satırı (Design law, Bölüm başlığı; 22 Ekim 2026).
+///
+/// Çocuk alanında `title3`, ebeveyn alanında `headline`; aynı alandaki her
+/// bölüm aynı sesle konuşur. İsteğe bağlı: altında kısa bir cümle, sağda
+/// sayaç ("3 / 8") ya da "Tümü ›" bağlantısı, solda küçük bir simge, sağda
+/// kendi denetimi (Kitaplık'taki sıralama). Başlık `isHeader` taşır;
+/// VoiceOver bölümler arasında atlayabilir.
+struct MPSectionHeader<Leading: View, Trailing: View>: View {
     let title: String
-    var actionTitle: String? = nil
-    var action: (() -> Void)? = nil
+    var subtitle: String? = nil
+    var area: MPArea = .kid
+    /// Başlığın sağında küçük sayaç; bağlantıyla birlikte kullanılmaz.
+    var note: String? = nil
+    var noteSpoken: String? = nil
+    var link: (title: String, action: () -> Void)? = nil
+    @ViewBuilder var leading: Leading
+    @ViewBuilder var trailing: Trailing
+
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text(title).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-            Spacer()
-            if let actionTitle, let action {
-                Button(actionTitle, action: action).mpText(.callout).foregroundStyle(MPColor.actionPrimary)
+        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
+                leading
+                Text(title)
+                    .mpText(area == .kid ? .title3 : .headline)
+                    .foregroundStyle(MPColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: MPSpacing.sm)
+                if let note {
+                    Text(note).mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
+                        .accessibilityLabel(noteSpoken ?? note)
+                }
+                if let link {
+                    Button(action: link.action) {
+                        HStack(spacing: MPSpacing.xxs) {
+                            Text(link.title).mpText(.callout)
+                            MPIcon("chevron.right", size: MP.G.xs, weight: .bold)
+                        }
+                        .foregroundStyle(MPColor.actionPrimary)
+                        // Dokunma alanı büyük, başlık satırını uzatmaz.
+                        .contentShape(Rectangle().inset(by: -MPSpacing.md))
+                    }
+                    .buttonStyle(MPPressStyle())
+                }
+                trailing
+            }
+            if let subtitle {
+                Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
+    }
+}
+
+extension MPSectionHeader where Leading == EmptyView, Trailing == EmptyView {
+    init(title: String, subtitle: String? = nil, area: MPArea = .kid, note: String? = nil,
+         noteSpoken: String? = nil, link: (title: String, action: () -> Void)? = nil) {
+        self.init(title: title, subtitle: subtitle, area: area, note: note, noteSpoken: noteSpoken,
+                  link: link, leading: { EmptyView() }, trailing: { EmptyView() })
+    }
+}
+
+extension MPSectionHeader where Leading == EmptyView {
+    init(title: String, subtitle: String? = nil, area: MPArea = .kid,
+         @ViewBuilder trailing: () -> Trailing) {
+        self.init(title: title, subtitle: subtitle, area: area, leading: { EmptyView() }, trailing: trailing)
+    }
+}
+
+extension MPSectionHeader where Trailing == EmptyView {
+    init(title: String, subtitle: String? = nil, area: MPArea = .kid, note: String? = nil,
+         noteSpoken: String? = nil, link: (title: String, action: () -> Void)? = nil,
+         @ViewBuilder leading: () -> Leading) {
+        self.init(title: title, subtitle: subtitle, area: area, note: note, noteSpoken: noteSpoken,
+                  link: link, leading: leading, trailing: { EmptyView() })
     }
 }
 

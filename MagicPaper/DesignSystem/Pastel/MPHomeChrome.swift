@@ -407,29 +407,8 @@ struct HomeSection<Leading: View, Content: View>: View {
         // Başlık içeriğine yapışık (12), bölümler birbirinden uzak (32,
         // `HomeView`): her bölüm tek bir bütün gibi okunur.
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
-                leading
-                Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityAddTraits(.isHeader)
-                Spacer(minLength: 0)
-                if let note {
-                    Text(note).mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
-                        .accessibilityLabel(noteSpoken ?? note)
-                }
-                if let link {
-                    Button(action: link.action) {
-                        HStack(spacing: MPSpacing.xxs) {
-                            Text(link.title).mpText(.callout)
-                            MPIcon("chevron.right", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
-                        }
-                        .foregroundStyle(MPColor.actionPrimary)
-                        // Dokunma alanı büyük, başlık satırını uzatmaz.
-                        .contentShape(Rectangle().inset(by: -MPSpacing.md))
-                    }
-                    .buttonStyle(MPPressStyle())
-                }
-            }
+            MPSectionHeader(title: title, area: .kid, note: note, noteSpoken: noteSpoken,
+                            link: link, leading: { leading })
             if contained {
                 // Panel: beyazın üstünde lavanta (`cardSoft`), kenarsız ve gölgesiz (22 Ekim
                 // 2026; önceden hafif lavanta ve sert kenar). İçerik tek kapta.

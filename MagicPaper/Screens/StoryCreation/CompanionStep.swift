@@ -108,8 +108,7 @@ struct CompanionStep: View {
 
     private var companionSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text(FamilyCharacterCopy.stepCompanionLabel).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                .accessibilityAddTraits(.isHeader)
+            MPSectionHeader(title: FamilyCharacterCopy.stepCompanionLabel)
             // Seçili satıra tekrar dokunmak seçimi kaldırır: arkadaş isteğe bağlı.
             VStack(spacing: MPSpacing.md) {
                 ForEach(candidates) { companion in
@@ -139,13 +138,7 @@ struct CompanionStep: View {
         let available = availableRelations
         let hasUnavailable = familyCharacters.contains { !available.contains($0.relation.kind) }
         return VStack(alignment: .leading, spacing: MPSpacing.md) {
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text("Masal ailem").mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                Text(FamilyCharacterCopy.stepFamilyHint)
-                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+            MPSectionHeader(title: "Masal ailem", subtitle: FamilyCharacterCopy.stepFamilyHint)
             MPFlowLayout(spacing: MPSpacing.sm) {
                 ForEach(familyCharacters) { character in
                     let isAvailable = available.contains(character.relation.kind)

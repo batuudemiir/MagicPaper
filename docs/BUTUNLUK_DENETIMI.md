@@ -102,6 +102,11 @@ en büyük Dynamic Type, SE + Pro Max).
    sekme kendi başlığını yazıyor) ayrı tur.
 3. **Tek boş durum + bölüm başlığı** — `MPEmptyState` (Ragi ile) Kitaplık ve Aile
    üyelerinde; elle yazılmış bölüm başlıkları `MPSectionHeader`'a.
+   ✅ 22 Ekim: yapıldı, ölçüm düzeltildi. Ragi'li boş durum zaten `MPStateView`'dı
+   (Kitaplık, seri sonu, hata, onay); kullanılmayan eski `MPEmptyState` silindi.
+   Ragi ebeveyn alanında yok (16 Ekim), Aile'nin boş satırı liste satırı oldu.
+   "24 elle yazılmış başlık"ın çoğu kart başlığıydı; gerçek bölüm başlıkları
+   `MPSectionHeader`'da birleşti.
 4. **Illüstrasyon başlıkları** — Günlük ve klasik detay/seri `MPArtHero`'ya.
 5. **Legacy kontrollerin emekliliği** — 4 dosya.
 6. **Ragi ve ebeveyn kapısı** — ekran görüntüsüyle ekran ekran karar.

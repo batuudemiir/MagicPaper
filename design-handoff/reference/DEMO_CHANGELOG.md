@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-22 · main (commit aşağıda) · Bütünlük 3. adım: tek bölüm başlığı, tek boş durum
+
+- `MPSectionHeader` bütün bölüm başlıklarının tek satırı oldu: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`), isteğe bağlı alt satır, sayaç (`note:`), "Tümü ›" bağlantısı (`link:`), sol/sağ yuva. `HomeSection` (Ana sayfa, Benim köşem) ve `ParentSection` (Ayarlar, Güvenlik, Aile) başlığını buradan alıyor; Özet'in iki başlığı, Kitaplık'taki "Kitaplarım" (sağda sıralama), masal yazmadaki "Yol arkadaşı" ve "Masal ailem", Aile davetindeki "Ne yapabilsin?" taşındı.
+- Görünen fark: masal yazma adımının iki başlığı `headline`'dan `title3`'e çıktı (çocuk alanının diğer bölümleriyle aynı). Özet'teki "Kitap yap" bağlantısı artık okla ("Kitap yap ›"). "Ne yapabilsin?" `isHeader` aldı.
+- Boş durum: Ragi'li boş durum zaten `MPStateView`'dı ve kullanılıyordu (Kitaplık, seri sonu, hata, ebeveyn onayı); denetim bunu yanlış okumuştu. Kullanılmayan eski `MPEmptyState` (Ragi'siz, Legacy butonlu) ve `LegacyMPSectionHeader` silindi.
+- İstekten bilerek sapıldı: Aile üyeleri ebeveyn ekranı, Ragi ebeveyn alanında yok (16 Ekim kararı); boş satır `MPListRow` dilinde ("Henüz çocuk profili yok · Ayarlar'dan profil ekleyebilirsin"). Kitaplık'taki "Eşleşen kitap yok" Ragi'siz kaldı: ekranın üstünde Ragi zaten var, ekran başına tek Ragi.
+- Bilerek değişmedi: `GunlukSection` (kart içinde ikon kutusu + yuvarlak ok) ayrı tasarım; sheet başlıkları (Okuma ayarları, Yetişkin davet et) bölüm başlığı değil.
+- Design law'a **Bölüm başlığı ve boş durum** kuralı eklendi (CLAUDE.md, `docs/DESIGN_LAW_DRAFT.md`).
+- Test: `MagicPaperTests` 774 test, 257 başarısız + 1 atlandı; önceki adımlarla aynı dört içerik takımı, yeni başarısızlık yok.
+- Simülatör (iPhone 17 Pro, açık tema, normal yazı): Ana sayfa, Kitaplık (örnek kitaplık), Benim köşem, Özet, masal yazma › Masalda kimler olsun?. En büyük yazı, koyu tema, SE ve Pro Max görülmedi; Aile'nin boş satırı (profilsiz durum) görülmedi.
+- Dosyalar: `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `DesignSystem/MPSurfaces.swift`, `Screens/Parent/{MPParentHeader,ParentOverviewView}.swift`, `Screens/StoryCreation/CompanionStep.swift`, `Screens/Family/FamilyMembersView.swift`, `Views/LibraryView.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
 ### 2026-10-22 · main (commit aşağıda) · Bütünlük 2. adım: ebeveyn alanında tek üst başlık
 
 - `ParentHeader` silindi, `MPParentHeader` iki biçim aldı: kök sayfa `(title:subtitle:)` büyük başlık + "Çocuk modu"; alt sayfa `(title:subtitle:onBack:)` "Geri" + küçük başlık, "Çocuk modu" yok. 8 alt sayfa taşındı: Masal kitabı, Aile, Aileyle paylaş, Kendi sesin (2), Abonelik, Hesabı sil, Gizlilik ve veri.
