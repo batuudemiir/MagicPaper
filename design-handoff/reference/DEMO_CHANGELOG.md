@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-22 · faz-21-varyasyon@COMMIT · C turu: yaş bantları dürüstleşti
+### 2026-10-22 · faz-21-varyasyon@6ac94f2 · C turu: yaş bantları dürüstleşti
 
 - **Sessiz bant düşürmesi yaratma akışından çıktı.** Buraya kadarki davranış şuydu: 9 yaşındaki bir çocuk için masal istendiğinde `servedBand` en yakın bandı (5-6) seçiyor, log'a bir uyarı yazıyor ve o masalı 9 yaşındakinin adıyla yazıyordu. Ebeveyn bunu göremez, yalnızca masalın beklediğinden basit olduğunu hisseder ve sebebini bilemez. Artık akış duruyor ve açıklıyor (`StoryUnsupportedAgeStep`): durumu söylüyor, sebebi içeriğe bağlıyor (çocuğa değil), desteklenen bir kardeş varsa "Başka bir çocuk seç" teklif ediyor, yoksa Günlük'teki klasiklere yönlendiriyor (klasikler 3-12 kapsıyor).
 - **Desteklenen bantlar içerikten türüyor, elle yazılmıyor.** `OfflineStoryService.authoredBands()` katalogdaki beat'li blueprint'lerin bantlarını sayıyor (bugün 3-4 ve 5-6); seam'e eklendi, `servedBand` de onu okuyor. Hiçbir yerde "3-6 destekleniyor" kuralı yok: 7-8 için ilk masal yazıldığı gün chip'ler ve akış kendiliğinden büyüyor, değişecek bir satır kalmıyor.
