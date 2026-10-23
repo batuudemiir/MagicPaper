@@ -43,6 +43,9 @@ struct NewWordsView: View {
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: MPSpacing.md) {
+                        // Boş hâldeki Ragi dolu listede de küçük kalır (23 Ekim 2026).
+                        MascotSays(mascot: .reading, text: "Hangisini hatırlıyorsun? Dokun, birlikte dinleyelim.",
+                                   mascotWidth: 56)
                         ForEach(Array(shown.enumerated()), id: \.element.id) { index, item in
                             card(item, tone: Self.tones[index % Self.tones.count])
                         }

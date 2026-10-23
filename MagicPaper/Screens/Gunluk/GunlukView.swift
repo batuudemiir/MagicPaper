@@ -36,7 +36,8 @@ struct GunlukView: View {
                                 screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
                             onOpen: { path.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
-                            onSearch: { path.append(.search) })
+                            onSearch: { path.append(.search) },
+                            onLock: { app.requestParentMode() })
 
                         // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
                         // kartında (beyaz, lavanta kenar, sert alt kenar).

@@ -6,7 +6,7 @@ import SwiftUI
 
 /// Kaydırılan vitrin.
 ///
-/// - Tepede "Günlük" ve arama; resmin üstü kreme açılır ki yazı ve saat çubuğu
+/// - Tepede "Günlük", arama ve kilit (ebeveyn kapısı); resmin üstü kreme açılır ki yazı ve saat çubuğu
 ///   okunsun (Ana sayfanın açık gökyüzü üstünde koyu başlık dili).
 /// - Altta karartma, etiket, masalın adı, meta ve "Oku"; alt köşeler yuvarlak,
 ///   Ana sayfanın kartları gibi sert alt kenarlı.
@@ -22,6 +22,8 @@ struct GunlukHeaderCarousel: View {
     let onOpen: (ClassicTale) -> Void
     let onRead: (ClassicTale) -> Void
     let onSearch: () -> Void
+    /// Ebeveyn kapısı: diğer çocuk sekmeleri gibi başlığın sağında kilit (23 Ekim 2026).
+    let onLock: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Döngüdeki konum (`GunlukLoop`): slayt `position % slides.count`.
@@ -150,7 +152,7 @@ struct GunlukHeaderCarousel: View {
     // MARK: - Başlık
 
     private var titleBar: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: MPSpacing.sm) {
             Text("Günlük").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
                 .lineLimit(1).minimumScaleFactor(0.6)
                 .dynamicTypeSize(...DynamicTypeSize.accessibility1)
@@ -165,6 +167,7 @@ struct GunlukHeaderCarousel: View {
             }
             .buttonStyle(MPPressStyle())
             .accessibilityLabel("Masal ara")
+            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", action: onLock)
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.top, topInset + MPSpacing.sm)

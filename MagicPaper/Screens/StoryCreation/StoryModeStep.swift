@@ -88,6 +88,10 @@ struct StoryModeStep: View {
                     .accessibilityLabel("Bana sürpriz yap")
                     .accessibilityHint("Bugünün masalını biz seçelim.")
                 }
+
+                // Masal yazmanın ilk adımı: Ragi kalemiyle hazır (23 Ekim 2026).
+                // Akışın tek Ragi'si; sonraki "Masalda kimler olsun?" sessiz.
+                MascotSays(mascot: .pencil, text: "Sen seç, masalı birlikte yazalım!", mascotWidth: 72)
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)

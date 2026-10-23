@@ -8,6 +8,10 @@ import StoryEngine
 /// `Localizable` kullanmıyor; kullanmaya başladığında anahtarlar buradan
 /// taşınır.
 enum FamilyCharacterCopy {
+    /// Ragi'nin balonu, karakter listesinin altında (23 Ekim 2026).
+    static let ragiInvite = "Masallarına kimi eklemek istersin?"
+    static let ragiFull = "Masal ailen tamam! Birini seç, onunla masal yazalım."
+
 
     // MARK: - Masal ailem sayfası
 

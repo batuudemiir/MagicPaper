@@ -15,6 +15,9 @@ struct ProfileSelectorView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: MPSpacing.md) {
+                    // Çocuğun açılışta gördüğü ilk ekran: Ragi karşılar (23 Ekim 2026).
+                    MascotSays(mascot: .waving, text: "Merhaba! Bugün masalı kim dinleyecek?", mascotWidth: 72)
+                        .padding(.bottom, MPSpacing.sm)
                     ForEach(profileManager.profiles) { profile in
                         Button { profileManager.switchProfile(to: profile) } label: {
                             HStack(spacing: MPSpacing.md) {

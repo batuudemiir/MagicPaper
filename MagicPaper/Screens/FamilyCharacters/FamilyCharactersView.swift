@@ -93,6 +93,9 @@ struct FamilyCharactersView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
+                    MascotSays(mascot: .waving,
+                               text: full ? FamilyCharacterCopy.ragiFull : FamilyCharacterCopy.ragiInvite,
+                               mascotWidth: 72)
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, MPSpacing.xxxl)

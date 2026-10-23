@@ -73,6 +73,11 @@ Token'ların tek kaynağı `DesignSystem/MPTheme.swift`. Aşağıdaki kurallar
 - Bölüm başlığı yalnızca `MPSectionHeader`: çocuk alanında `title3`, ebeveyn alanında `headline` (`area:`); "Tümü ›" `link:`, sayaç `note:`, ekranın kendi denetimi `trailing:`. `HomeSection` ve `ParentSection` bunun üstüne kurulu. Kart içi bölüm (`GunlukSection`) ayrı tasarım, kural dışı.
 - Boş ve hata durumu yalnızca `MPStateView`: Ragi + bir başlık + bir cümle + tek eylem; yalnızca çocuk alanında. Ebeveyn alanında boş durum liste satırı (`MPListRow`) dilinde, Ragi'siz. Ekranda Ragi zaten görünüyorsa (Kitaplık'ta "Eşleşen kitap yok") ikinci Ragi konmaz, yalnızca söz kalır.
 
+### Ragi (karar: 16 ve 23 Ekim 2026)
+- Her çocuk ekranında bir Ragi (karar: 16 Ekim 2026): karşılama, konuşma balonu (`MascotSays`) ya da sahne. Ekran başına en fazla bir Ragi, tek duygu; ebeveyn alanında Ragi yok.
+- İstisnalar (karar: 23 Ekim 2026): okuyucu sayfaları (masal sonunda var), klasik detay ve seri sahnesi (boyalı sahne ekranın kahramanı), ebeveyn kapısı, ve bir akışın Ragi'li adımından hemen sonraki seçim adımı ("Masalda kimler olsun?").
+- Ragi yalnızca `MascotImage` / `MascotSays` / `MPStateView` ile; poz `Mascot` kataloğundan, ekrana göre (`Mascot.usage`).
+
 ### İkon
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 

@@ -119,7 +119,9 @@ en büyük Dynamic Type, SE + Pro Max).
    `LegacyStoryReaderContainer` okuyucunun geri dönüş anahtarı; ikisi de arayüz
    kontrolü değil, bilerek kaldı.
 6. **Ragi ve ebeveyn kapısı** — ekran görüntüsüyle ekran ekran karar.
-   ✅ 23 Ekim: incelendi, öneriler aşağıda ("6. adım: Ragi ve ebeveyn kapısı"). Karar bekliyor.
+   ✅ 23 Ekim: incelendi ve onaylanan öneriler uygulandı (mod seçimi, Masal ailem,
+   profil seçimi, Yeni kelimelerim'e Ragi; Günlük'e kilit; Design law'a Ragi kuralı).
+   Açık: `MPModeSwitch` kararı.
 7. **VoiceOver yürüyüşü** — ana akışlar: ilk açılış, masal yazma, okuma, kitaplık,
    ebeveyn alanı.
 

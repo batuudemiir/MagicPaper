@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · Ragi dört çocuk ekranına, Günlük'e kilit
+
+- Batuhan'ın onayıyla (23 Ekim) Ragi `MascotSays` ile eklendi: Masal yaz › mod seçimi (`.pencil`, "Sen seç, masalı birlikte yazalım!"; "Bana sürpriz yap"ın altında, akışın tek Ragi'si), Masal ailem (`.waving`, karakterlerin altında; "Masallarına kimi eklemek istersin?", liste doluysa "Masal ailen tamam! Birini seç, onunla masal yazalım."), Kim okuyor? profil seçimi (`.waving`, "Merhaba! Bugün masalı kim dinleyecek?"), Yeni kelimelerim dolu liste (`.reading`, küçük, "Hangisini hatırlıyorsun? Dokun, birlikte dinleyelim."). `Mascot.usage` eşlemesi güncellendi.
+- Günlük başlığına aramanın yanına kilit (`MPCircleButton("lock")`, "Ebeveyn bölümü"): dört çocuk sekmesinin hepsinde ebeveyn kapısı aynı yerde. Simülatörde kapıyı açtığı görüldü.
+- Design law'a **Ragi** kuralı (CLAUDE.md, `docs/DESIGN_LAW_DRAFT.md`): her çocuk ekranında bir Ragi; istisnalar okuyucu sayfaları, klasik detay/seri sahnesi, ebeveyn kapısı ve akışın Ragi'li adımından sonraki seçim adımı; Ragi yalnız `MascotImage` / `MascotSays` / `MPStateView` ile.
+- Bilerek değişmedi: "Masalda kimler olsun?" sessiz (istisna); `MPModeSwitch` kararı açık; Masal ailem geri düğmesinin zeminde kaybolması ayrı iş.
+- Test: `MagicPaperTests` 782 test, 0 başarısız, 1 atlandı. Dil ve tasarım grep'leri yeni satırlarda boş.
+- Simülatör (iPhone 17 Pro, açık tema, normal yazı): Günlük başlığı ve kilit → kapı, mod seçimi, Masal ailem, Yeni kelimelerim. Kim okuyor? görülmedi (birden çok profil ve seçili profil yokken açılıyor; demo kancası bu durumu kurmuyor). En büyük yazı, koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `Screens/StoryCreation/StoryModeStep.swift`, `Screens/FamilyCharacters/{FamilyCharactersView,FamilyCharacterCopy}.swift`, `Views/ProfileSelectorView.swift`, `Screens/KidCorner/NewWordsView.swift`, `Screens/Gunluk/{GunlukHeader,GunlukView}.swift`, `DesignSystem/Pastel/MPMascot.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
 ### 2026-10-23 · main (commit aşağıda) · Ebeveyn kapısı ve Benim köşem saat çubuğu düzeltmesi
 
 - Ebeveyn kapısı (`ParentalGateView`): sayı klavyesi açılınca içerik ekrandan taşıyor, "Geri" saat çubuğunun altına itiliyordu. "Geri" artık güvenli alanın içinde sabit tepede, içerik `ScrollView`'da; kalkan dairesi 120×108 → 96×84, aralıklar `xl` → `lg`.
