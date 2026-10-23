@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main@45e3116 · Gönderim: bütünlük işi origin'de
+
+- Batuhan'ın onayıyla `main` origin'e gönderildi (e47f7f3..45e3116, 40 commit). 9'u bütünlük işi (denetim, 1–6. adımlar, ebeveyn kapısı, Ragi + Günlük kilidi); 31'i başka oturumların main'deki commit'leri (sistem Liquid Glass sekme çubuğu, lavanta düğmeler, ana sayfa / Benim köşem / masal yazma düzenleri, Hazine avı, charge + D2, C turu, CompanionNature, nadir kelime raporu, FAZ 21 birleştirmesi 51053ab).
+- Gönderimden önce: `MagicPaperTests` 782 test, 0 başarısız (45e3116 üstünde). Uzak dal geride değildi, birleştirme gerekmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-10-23 · main (commit aşağıda) · Ragi dört çocuk ekranına, Günlük'e kilit
 
 - Batuhan'ın onayıyla (23 Ekim) Ragi `MascotSays` ile eklendi: Masal yaz › mod seçimi (`.pencil`, "Sen seç, masalı birlikte yazalım!"; "Bana sürpriz yap"ın altında, akışın tek Ragi'si), Masal ailem (`.waving`, karakterlerin altında; "Masallarına kimi eklemek istersin?", liste doluysa "Masal ailen tamam! Birini seç, onunla masal yazalım."), Kim okuyor? profil seçimi (`.waving`, "Merhaba! Bugün masalı kim dinleyecek?"), Yeni kelimelerim dolu liste (`.reading`, küçük, "Hangisini hatırlıyorsun? Dokun, birlikte dinleyelim."). `Mascot.usage` eşlemesi güncellendi.
