@@ -194,6 +194,8 @@ Ragi'li adımından hemen sonraki seçim adımı."
 
 ### `MPModeSwitch` seçenekleri (23 Ekim 2026)
 
+✅ Karar (Batuhan, 23 Ekim): **A**. Bileşen silindi, cam kuralından adı düştü.
+
 Geçmiş: anahtar 7 Ekim'e kadar Ana sayfa ve ebeveyn başlığında sağ üstteydi;
 FAZ 17 Pastel tasarımı (ce07158, 58a7d2f) yerine kilidi ve "Çocuk modu"
 kapsülünü koydu. 13 Ekim'de yalnızca cam kuralının listesine adı yazıldı.

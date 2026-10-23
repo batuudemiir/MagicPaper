@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · MPModeSwitch kaldırıldı (karar A)
+
+- Batuhan'ın kararıyla (23 Ekim, seçenek A) `Screens/MPModeSwitch.swift` silindi; 7 Ekim'den beri hiçbir ekranda kullanılmıyordu, yalnız kendi önizlemesi vardı.
+- Kilit (çocuk sekmeleri) ve yazılı "Çocuk modu" (ebeveyn kök sayfaları) olduğu gibi kaldı.
+- Cam kuralından adı düştü (CLAUDE.md, `MP.Glass` yorumu). Ortak `mpGlassSurface` yerinde: alt çubuk ve okuyucu kullanıyor.
+- Design law, Üst başlık'a **Mod geçişi** satırı eklendi (CLAUDE.md, `docs/DESIGN_LAW_DRAFT.md`): çocuk sekmelerinde sağda kilit, ebeveyn kök sayfalarında sağda "Çocuk modu", simgeli mod anahtarı yok.
+- Bilerek değişmedi: `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` içindeki eski anışlar (tarihî plan belgesi).
+- Test: `MagicPaperTests` 782 test, 0 başarısız, 1 atlandı. Ekran değişmediği için simülatör görüntüsü alınmadı.
+- Dosyalar: `Screens/MPModeSwitch.swift` (silindi), `DesignSystem/MPTheme.swift`, `docs/DESIGN_LAW_DRAFT.md`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya; repo dışında `../CLAUDE.md`.
+
 ### 2026-10-23 · main (commit aşağıda) · MPModeSwitch seçenekleri (karar bekliyor)
 
 - İnceleme, kod değişmedi. `MPModeSwitch` 7 Ekim'de FAZ 17 Pastel tasarımıyla ekrandan kalkmış (ce07158, 58a7d2f); 13 Ekim'de yalnız cam kuralına adı yazılmış.

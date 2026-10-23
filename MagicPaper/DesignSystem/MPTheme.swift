@@ -686,7 +686,7 @@ enum MP {
     // MARK: Cam
 
     /// Liquid Glass (iOS 26+). Yalnızca içeriğin üstünde yüzen gezinme
-    /// kontrollerinde: alt sekme çubuğu, `MPModeSwitch` ve okuyucu kontrolleri
+    /// kontrollerinde: alt sekme çubuğu ve okuyucu kontrolleri
     /// (`ReaderChrome`) (CLAUDE.md, Derinlik).
     /// Yüzey `mpGlassSurface(in:)` ile kurulur; bileşenler satır içi cam kurmaz.
     enum Glass {

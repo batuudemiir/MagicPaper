@@ -66,6 +66,7 @@ Token'ların tek kaynağı `DesignSystem/MPTheme.swift`. Aşağıdaki kurallar
 ### Üst başlık (karar: 22 Ekim 2026)
 - Ebeveyn alanında yalnızca `MPParentHeader`. Kök sayfa (Özet, Güvenlik, Ayarlar) `MPParentHeader(title:subtitle:)`: büyük başlık + "Çocuk modu". Alt sayfa `MPParentHeader(title:subtitle:onBack:)`: "Geri" + küçük başlık; "Çocuk modu" alt sayfada görünmez.
 - Çocuk alanının alt sayfalarında `MPTopBar`. Çocuk kök sekmelerinin başlıkları ve illüstrasyonlu üst bölgeler (`GunlukHeader`, klasik detay) henüz bu kurala dahil değil; hedef `MPArtHero` (`docs/BUTUNLUK_DENETIMI.md`).
+- Mod geçişi (karar: 23 Ekim 2026): çocuk sekmelerinin (Ana sayfa, Günlük, Kitaplık, Benim köşem) başlığında sağda kilit (`MPCircleButton("lock")`, "Ebeveyn bölümü") ebeveyn kapısını açar; ebeveyn kök sayfalarında sağda yazılı "Çocuk modu". Simgeli mod anahtarı yok.
 - Geri her yerde `MPCircleButton("chevron.left")` + "Geri"; başlık metni `isHeader` trait'i taşır.
 - Başlık kendi kenar boşluğunu eklemez: yatay boşluk `screenGutter`, üst boşluk sayfanın. Ekran kendi başlık satırını yazmaz, negatif boşlukla başlığı kaydırmaz.
 
