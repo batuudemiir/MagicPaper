@@ -20,6 +20,8 @@ struct KidCornerView: View {
     @State private var familyNames: [String] = []
     @State private var gate = false
     @State private var afterGate: (() -> Void)?
+    /// İçerik saat çubuğunun altına girdi mi (`MPStatusBarBackdrop`).
+    @State private var scrolled = false
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var profile: UserProfile? { profileManager.currentProfile }
@@ -42,7 +44,11 @@ struct KidCornerView: View {
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
+            .mpTracksScroll($scrolled)
         }
+        // Kaydırınca yazı saatin arkasından geçmesin; zemin sayfanın beyazı,
+        // tepedeyken görünmez (23 Ekim 2026).
+        .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled, fill: MPColor.backgroundSurface) }
         .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear(perform: refresh)
         // Kahramanı düzenlemek ebeveyn kapısından geçer (Masal ailem'deki

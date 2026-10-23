@@ -170,6 +170,8 @@ Ragi'li adımından hemen sonraki seçim adımı."
 
 ### Kapı ekranının kendisi (`05_ebeveyn_kapisi.png`)
 
+✅ 23 Ekim: 1–4 düzeltildi (aşağıdaki kayıt). Benim köşem saat çubuğu taşması da kapandı; Ana sayfa ve Kitaplık 16 Ekim kararıyla şeritsiz kaldı.
+
 1. **Geri düğmesi saat çubuğunun altında** (üst güvenli alan yok sayılmış).
    Hata; düzeltilmeli.
 2. **İki çıkış:** sol üstte "Geri" ve altta "Geri dön". Tek çıkış kalmalı

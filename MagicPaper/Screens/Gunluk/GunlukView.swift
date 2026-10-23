@@ -58,7 +58,7 @@ struct GunlukView: View {
                     }
                     .padding(.bottom, GunlukLayout.bottomClearance)
                     .id(Self.top)
-                    .gunlukTracksScroll($scrolled)
+                    .mpTracksScroll($scrolled)
                 }
                 .ignoresSafeArea(edges: .top)
                 // Sekmeye yeniden dokunmak: açık sayfalar kapanır, sayfa başa döner.
@@ -72,7 +72,7 @@ struct GunlukView: View {
                 }
                 }
             }
-            .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
+            .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled) }
             .background(MPColor.backgroundKid.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: GunlukRoute.self) { route in

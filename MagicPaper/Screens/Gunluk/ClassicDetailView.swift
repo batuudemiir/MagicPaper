@@ -54,10 +54,10 @@ struct ClassicDetailView: View {
                 .padding(.horizontal, MPSpacing.screenH)
             }
             .padding(.bottom, GunlukLayout.bottomClearance)
-            .gunlukTracksScroll($scrolled)
+            .mpTracksScroll($scrolled)
         }
         .ignoresSafeArea(edges: .top)
-        .overlay(alignment: .top) { GunlukStatusBarBackdrop(visible: scrolled) }
+        .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled) }
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { narration = progress.narration(for: tale.id) }

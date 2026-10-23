@@ -587,38 +587,6 @@ extension ClassicShelf {
     }
 }
 
-
-// MARK: - Durum çubuğu
-
-/// Sahne yukarı kayınca saat çubuğunun arkası krem olur; kartlar ve yazılar
-/// saatin, Dynamic Island'ın altından geçerken okunmaz hale gelmez. Sahne
-/// tepedeyken görünmez (boyalı görsel saatin arkasına kadar uzanır).
-struct GunlukStatusBarBackdrop: View {
-    let visible: Bool
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    var body: some View {
-        // Sıfır yükseklikli şerit güvenli alanın tepesinde durur; zemini
-        // saat çubuğunun arkasına uzanır.
-        Color.clear
-            .frame(maxWidth: .infinity, maxHeight: 0)
-            .background(alignment: .top) { MPColor.backgroundKid.ignoresSafeArea(edges: .top) }
-            .opacity(visible ? 1 : 0)
-            .animation(reduceMotion ? nil : MP.M.easeOut, value: visible)
-            .allowsHitTesting(false)
-            .accessibilityHidden(true)
-    }
-}
-
-extension View {
-    /// Kaydırma içeriğinin tepesi saat çubuğunun altına girdi mi.
-    func gunlukTracksScroll(_ scrolled: Binding<Bool>) -> some View {
-        onGeometryChange(for: Bool.self) { $0.frame(in: .scrollView).minY < -MPSpacing.sm } action: {
-            scrolled.wrappedValue = $0
-        }
-    }
-}
-
 // MARK: - Kenardan geri
 
 /// Günlük sayfaları gezinme çubuğunu gizliyor; UIKit bu durumda kenardan

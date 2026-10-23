@@ -21,77 +21,79 @@ struct ParentalGateView: View {
     private let tick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
+        // Sayı klavyesi açılınca ekranın yarısı gider. Tek çıkış ("Geri")
+        // sabit tepede, güvenli alanın içinde; içerik kayar, klavye ve saat
+        // çubuğu altına itilmez (23 Ekim 2026).
         VStack(spacing: 0) {
             HStack {
                 MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: cancel)
                 Spacer()
             }
+            .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)
 
-            Spacer(minLength: MPSpacing.xl)
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: MPSpacing.lg) {
+                    MPIcon("shield", size: 34, weight: .semibold)
+                        .foregroundStyle(MPColor.actionPrimary)
+                        .frame(width: 96, height: 84)
+                        .background(MPWorldTone.lav.soft, in: Ellipse())
+                        .accessibilityHidden(true)
 
-            VStack(spacing: MPSpacing.xl) {
-                MPIcon("shield", size: 40, weight: .semibold)
-                    .foregroundStyle(MPColor.actionPrimary)
-                    .frame(width: 120, height: 108)
-                    .background(MPWorldTone.sky.soft, in: Ellipse())
-                    .accessibilityHidden(true)
-
-                VStack(spacing: MPSpacing.md) {
-                    Text("Bu bölüm büyükler için")
-                        .mpText(.title2).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("Devam etmek için işlemi çöz")
-                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                        .multilineTextAlignment(.center)
-                }
-
-                Text(quiz.question)
-                    .font(.mpNumeral)
-                    .foregroundStyle(MPColor.textPrimary)
-                    .accessibilityLabel("\(quiz.a) çarpı \(quiz.b) kaç eder?")
-
-                VStack(spacing: MPSpacing.xs) {
-                    TextField("Cevap", text: $answer)
-                        .keyboardType(.numberPad)
-                        .focused($focused)
-                        .multilineTextAlignment(.center)
-                        .mpText(.title2)
-                        .foregroundStyle(MPColor.textPrimary)
-                        .frame(width: 160, height: 54)
-                        .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
-                        .overlay(RoundedRectangle(cornerRadius: MPRadius.input)
-                            .strokeBorder(error != nil ? MPColor.statusDanger : MPColor.borderKid, lineWidth: 2))
-                        .disabled(locked)
-                        .accessibilityLabel("Cevap")
-                        .onChange(of: answer) { _, new in
-                            let digits = String(new.filter(\.isNumber).prefix(3))
-                            if digits != new { answer = digits }
-                        }
-                    if let error {
-                        Text(error).mpText(.callout).foregroundStyle(MPColor.statusDanger)
+                    VStack(spacing: MPSpacing.sm) {
+                        Text("Bu bölüm büyükler için")
+                            .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                            .multilineTextAlignment(.center)
+                            .accessibilityAddTraits(.isHeader)
+                        Text("Devam etmek için işlemi çöz")
+                            .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                            .multilineTextAlignment(.center)
                     }
-                }
 
-                VStack(spacing: MPSpacing.sm) {
+                    Text(quiz.question)
+                        .font(.mpNumeral)
+                        .foregroundStyle(MPColor.textPrimary)
+                        .accessibilityLabel("\(quiz.a) çarpı \(quiz.b) kaç eder?")
+
+                    VStack(spacing: MPSpacing.xs) {
+                        TextField("Cevap", text: $answer)
+                            .keyboardType(.numberPad)
+                            .focused($focused)
+                            .multilineTextAlignment(.center)
+                            .mpText(.title2)
+                            .foregroundStyle(MPColor.textPrimary)
+                            .frame(width: 160, height: 54)
+                            .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
+                            .overlay(RoundedRectangle(cornerRadius: MPRadius.input)
+                                .strokeBorder(error != nil ? MPColor.statusDanger : MPColor.borderKid, lineWidth: 2))
+                            .disabled(locked)
+                            .accessibilityLabel("Cevap")
+                            .onChange(of: answer) { _, new in
+                                let digits = String(new.filter(\.isNumber).prefix(3))
+                                if digits != new { answer = digits }
+                            }
+                        if let error {
+                            Text(error).mpText(.callout).foregroundStyle(MPColor.statusDanger)
+                        }
+                        // Kural ve bekleme sayacı alanın hemen altında: klavye açıkken görünür.
+                        Text(locked
+                             ? "Biraz bekleyelim: \(quiz.secondsLeft(at: now)) saniye."
+                             : "Üç yanlış denemeden sonra 30 saniye beklenir.")
+                            .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+
                     MPButton(title: "Onayla", fullWidth: true, action: check)
                         .disabled(answer.isEmpty || locked)
-                    MPButton(title: "Geri dön", kind: .ghost, action: cancel)
+                        .padding(.horizontal, MPSpacing.xxxl)
                 }
-                .padding(.horizontal, MPSpacing.xxxl)
-
-                Text(locked
-                     ? "Biraz bekleyelim: \(quiz.secondsLeft(at: now)) saniye."
-                     : "Üç yanlış denemeden sonra 30 saniye beklenir.")
-                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, MPSpacing.screenH)
+                .padding(.vertical, MPSpacing.lg)
             }
-
-            Spacer(minLength: MPSpacing.xl)
+            .scrollBounceBehavior(.basedOnSize)
         }
-        .padding(.horizontal, MPSpacing.screenH)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(MPColor.backgroundKid.ignoresSafeArea())
         .onReceive(tick) { now = $0 }
         .onAppear { focused = true }

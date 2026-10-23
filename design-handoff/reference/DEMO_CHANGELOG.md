@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · Ebeveyn kapısı ve Benim köşem saat çubuğu düzeltmesi
+
+- Ebeveyn kapısı (`ParentalGateView`): sayı klavyesi açılınca içerik ekrandan taşıyor, "Geri" saat çubuğunun altına itiliyordu. "Geri" artık güvenli alanın içinde sabit tepede, içerik `ScrollView`'da; kalkan dairesi 120×108 → 96×84, aralıklar `xl` → `lg`.
+- Tek çıkış: alttaki "Geri dön" kalktı, sol üstteki `MPCircleButton` "Geri" kaldı (Design law, Üst başlık: geri her yerde `MPCircleButton`).
+- "Üç yanlış denemeden sonra 30 saniye beklenir." ve bekleme sayacı cevap kutusunun hemen altına alındı; klavye açıkken görünür.
+- Kalkan dairesi gök mavisinden lavantaya (`MPWorldTone.lav.soft`).
+- Benim köşem kaydırılınca içerik saat çubuğunun altına giriyordu: Günlük'teki şerit ortak bileşen oldu (`DesignSystem/MPStatusBarBackdrop.swift`, `MPStatusBarBackdrop` + `.mpTracksScroll`; zemin rengi parametre) ve Benim köşem'e beyaz zeminle bağlandı. Günlük, klasik detay ve seri yeni ada taşındı (davranış aynı).
+- Bilerek değişmedi: Ana sayfa ve Kitaplık aynı yapıda ama 16 Ekim kararıyla şeritsiz (HomeView yorumu: "Beyaz şerit renkli kartların üstünde blok gibi görünüyordu").
+- Kalan: en büyük yazıda klavye açıkken cevap kutusu klavyenin kenarında, not ve "Onayla" klavyenin altında; kaydırarak ulaşılıyor.
+- Test: `MagicPaperTests` 782 test, 0 başarısız, 1 atlandı.
+- Simülatör (iPhone 17 Pro, açık tema): kapı normal yazıda klavyeli ve klavyesiz, en büyük yazıda klavyeli; Benim köşem en büyük yazıda kaydırılmış. Koyu tema, SE ve Pro Max görülmedi.
+- Dosyalar: `Views/ParentalGateView.swift`, `DesignSystem/MPStatusBarBackdrop.swift` (yeni), `Screens/KidCorner/KidCornerView.swift`, `Screens/Gunluk/{GunlukComponents,GunlukView,ClassicDetailView,ClassicSeriesView}.swift`, `docs/BUTUNLUK_DENETIMI.md`, bu dosya.
+
 ### 2026-10-23 · main (commit aşağıda) · Bütünlük 6. adım: Ragi ve ebeveyn kapısı incelemesi
 
 - Kod değişmedi; inceleme ve öneri. `docs/BUTUNLUK_DENETIMI.md` sonuna "6. adım" bölümü, 7 ekran görüntüsü `docs/butunluk/` (iPhone 17 Pro, açık tema, normal yazı).
