@@ -770,17 +770,12 @@ public struct CatalogIntegrityChecker: Sendable {
     /// Küratörlü olgular (B-ön 2, karar 23 Ekim 2026).
     ///
     /// Üç kural, üçü de **error**, ve hepsinin sebebi aynı: bir çocuk kitabına
-    /// giren gerçek bilgi, hatırlanmaya bırakılamaz.
+    /// giren gerçek bilgi, kimsenin hatırlamasına bırakılamaz.
     ///
-    /// 1. Bildirilen olgu tanımlı olmalı. Tanımsız kimlik sessizce yok sayılsa,
-    ///    satır olguyu taşıdığını sanır ve hiçbir şey taşımaz.
-    /// 2. Onaysız olgu (`review != .approved`) satıra bildirilemez. Kaynağında
-    ///    doğrulanmamış bir olgu, tutulamayan bir sözden kötüdür: yanlış bilgi.
-    /// 3. **Bir satır en çok bir olgu taşır.** Ürün kararı (23 Ekim 2026):
-    ///    MagicPaper önce bir çocuk yayıncılığı deneyimi. Olgu, çocuğun fark
-    ///    ettiği şeydir; kitabın öğrettiği şey değil. İki olgu taşıyan sayfa
-    ///    bir ders sayfasıdır, kahramanı olan bir ders. Editoryal temenni
-    ///    olarak bırakılsa ilk sıkışan turda bozulurdu.
+    /// Kurallar keşif üzerinden işliyor çünkü olgu keşfin özelliği
+    /// (`CatalogObject.factID`). "Bir masalda en çok bir olgu" kuralının ayrı
+    /// bir denetime ihtiyacı kalmadı: bir masalın bir keşfi var, o keşfin de
+    /// en çok bir olgusu.
     private func checkFacts(_ catalog: ContentCatalog) -> [CatalogIssue] {
         var issues: [CatalogIssue] = []
         var defined: [ContentID: CatalogFact] = [:]
@@ -790,31 +785,32 @@ public struct CatalogIntegrityChecker: Sendable {
                                     message: "Olgu '\(fact.id.rawValue)' birden fazla tanımlı; ilki kazanır."))
             }
         }
-        for template in catalog.templates {
-            for variant in template.variants {
-                if variant.facts.count > 1 {
-                    issues.append(.init(
-                        severity: .error, code: "line_carries_two_facts", recordID: variant.id,
-                        message: "'\(variant.id.rawValue)' \(variant.facts.count) olgu taşıyor. "
-                            + "Bir satırda en çok bir olgu: iki olgu taşıyan sayfa bir ders sayfasıdır."))
-                }
-                for id in variant.facts {
-                    guard let fact = defined[id] else {
-                        issues.append(.init(
-                            severity: .error, code: "unknown_fact", recordID: variant.id,
-                            message: "'\(variant.id.rawValue)' '\(id.rawValue)' olgusunu bildiriyor, "
-                                + "ama olgu sözlüğü onu tanımıyor."))
-                        continue
-                    }
-                    if !fact.isApproved {
-                        issues.append(.init(
-                            severity: .error, code: "unapproved_fact", recordID: variant.id,
-                            message: "'\(variant.id.rawValue)' onaylanmamış bir olgu taşıyor "
-                                + "('\(id.rawValue)', durum: \(fact.review.rawValue)). "
-                                + "Kaynağında doğrulanmamış olgu masala girmez."))
-                    }
-                }
+        for object in catalog.objects {
+            guard let id = object.factID else { continue }
+            guard let fact = defined[id] else {
+                issues.append(.init(
+                    severity: .error, code: "unknown_fact", recordID: object.id,
+                    message: "'\(object.id.rawValue)' '\(id.rawValue)' olgusunu gösteriyor, ama "
+                        + "olgu sözlüğü onu tanımıyor."))
+                continue
             }
+            if !fact.isApproved {
+                issues.append(.init(
+                    severity: .error, code: "unapproved_fact", recordID: object.id,
+                    message: "'\(object.id.rawValue)' onaylanmamış bir olguya bağlı "
+                        + "('\(id.rawValue)', durum: \(fact.review.rawValue)). Kaynağında "
+                        + "doğrulanmamış olgu masala girmez."))
+            }
+        }
+        // Hiçbir keşfe bağlanmamış olgu, A turunda temizlenen ölü içeriğin
+        // aynısı: yazılmış, kaynaklanmış, ve hiçbir çocuğa ulaşmıyor.
+        // `warning`, çünkü olgu yazıp keşfini sonra bağlamak meşru bir sıra.
+        let used = Set(catalog.objects.compactMap(\.factID))
+        for fact in catalog.facts where !used.contains(fact.id) {
+            issues.append(.init(
+                severity: .warning, code: "fact_reaches_no_discovery", recordID: fact.id,
+                message: "Olgu '\(fact.id.rawValue)' hiçbir keşfe bağlı değil; hiçbir masala "
+                    + "eşlik etmiyor."))
         }
         return issues
     }

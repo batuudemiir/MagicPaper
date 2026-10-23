@@ -99,6 +99,20 @@ kopyalanmadı. Hedef bant 5-6.
 | F7 | Gökyüzünde kayan yıldız gördüğümüzde aslında bir yıldız düşmez. Gördüğümüz, hızla gelen küçük bir taşın çevresindeki havanın kızarıp parlamasıdır. | NASA Space Place, "What Is a Meteor Shower?" | 2026-10-23 | onay bekliyor |
 | F8 | Yer çekimi gözle görülmez ama her şeyi aşağı, Dünya'nın ortasına doğru çeker. Zıpladığımızda yere geri inmemizin sebebi odur. | NASA Space Place, "What Is Gravity?" | 2026-10-23 | onay bekliyor |
 
+**Katalogda olan iki tanesi (23 Ekim 2026).** Sekizi de onaylı, ama katalog
+yalnızca bir çocuğa **ulaşabilen** olguyu taşıyor:
+
+| Olgu | Bağlı olduğu keşif |
+|---|---|
+| F7 (kayan yıldız) | `object_flickering_light_001` — titrek bir ışık |
+| F5 (Güneş bir yıldızdır) | `object_star_stone_001` — yıldız taşı |
+
+Diğer altısı burada bekliyor, ve sebebi kendileri değil **konuları**: havuzda
+Ay yok, Güneş yok, düşen bir şey yok. Konusu olmayan bir olguyu katalogda
+tutmak, A turunda temizlenen ölü içeriğin aynısı olurdu — ve `CatalogIntegrity`
+bunu zaten uyarıyor (`fact_reaches_no_discovery`). Keşif yazıldığı gün olgu
+katalogda yerini alır; onayı zaten var.
+
 Adresler:
 - https://spaceplace.nasa.gov/all-about-the-moon/en/
 - https://spaceplace.nasa.gov/all-about-the-sun/en/

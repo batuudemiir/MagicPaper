@@ -218,6 +218,29 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// A discovery the setting explains is not a discovery, and the first four
     /// pages of the book are then about nothing.
     public let explainedBy: Set<SettingTrait>
+    /// Bu keşfin açıkladığı küratörlü olgu (B-ön 2, 23 Ekim 2026).
+    ///
+    /// Olgu satırın değil **keşfin** özelliği, ve bu bir düzeltme: önce
+    /// `CatalogVariant.facts` olarak kurulmuştu, yani olguyu bir cümle
+    /// bildiriyordu. O tasarım iki soruyu cevaplayamıyordu. Birincisi
+    /// kapılama: "Ay'ın kendi ışığı yoktur" cümlesi yalnızca Ay'ı merak eden
+    /// bir masalda geçmeli, ama satır eksenlerinin hiçbiri "bu masal Ay
+    /// hakkında" diyemiyor — özellikler yapısaldır (isVisible, emitsSignal),
+    /// konusal değil. İkincisi tekillik: "bir masalda en çok bir olgu"
+    /// kuralını satır başına saymak, iki satırın iki ayrı olgu taşımasını
+    /// engellemiyordu.
+    ///
+    /// Keşfe bağlandığında ikisi de kendiliğinden çözülüyor: olgu, çocuğun
+    /// merak ettiği şeyin olgusudur; masalın bir keşfi olduğu için de en çok
+    /// bir olgusu olur. Kapılama tam: Ay olgusu yalnızca Ay bağlandığında
+    /// masala eşlik eder.
+    ///
+    /// Ve olgu **prozaya girmiyor**. Gerçek bir çocuk kitabı "Ay'ın kendi
+    /// ışığı yoktur" cümlesini anlatının içine koymaz; sonsöze koyar.
+    /// Uygulamada o sonsözün yeri zaten var: "Yeni kelimeler" yüzeyi
+    /// (FAZ 17). Olgu masalın sesini bozmadan, kaynağıyla birlikte orada
+    /// gösterilir.
+    public let factID: ContentID?
     /// The same thing, named for a title.
     ///
     /// "titrek bir ışık" is right in a sentence and wrong on a cover: a title
@@ -251,7 +274,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     public let topics: [SafetyTopic]
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, factID, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -262,6 +285,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
         explainedBy = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .explainedBy) ?? []
+        factID = try container.decodeIfPresent(ContentID.self, forKey: .factID)
         titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
         keepsakeName = try container.decodeIfPresent(String.self, forKey: .keepsakeName)
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
@@ -282,6 +306,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
         if !explainedBy.isEmpty { try container.encode(explainedBy, forKey: .explainedBy) }
+        try container.encodeIfPresent(factID, forKey: .factID)
         try container.encode(titleName, forKey: .titleName)
         try container.encodeIfPresent(keepsakeName, forKey: .keepsakeName)
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }

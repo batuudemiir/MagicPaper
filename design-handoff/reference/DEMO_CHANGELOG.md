@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · faz-21-varyasyon@COMMIT · "Bilim ve uzay" canlandı; olgu taşıyıcısı keşfe taşındı
+
+- **"Bilim ve uzay" konusu canlı** (öğrenelim 5-6, **dört mekanizma**: signal, patientObservation, seekingKnowledge, advocacy). On bir konunun dördü canlı oldu. **Tek blueprint yazılmadı:** eksik olan şey olgunun keşfe bağlanmasıydı. 30 seed'in 30'u olgu taşıyor; başlıklar yerine oturuyor ("Titrek Işığın Sırrı", "Titrek Işık Nereden Geliyor?").
+- **Tasarım düzeltmesi: olgu satırın değil KEŞFİN özelliği.** Bir gün önce `CatalogVariant.facts` olarak kurmuştum, yani olguyu bir cümle bildiriyordu. Prozasını yazmaya oturduğumda iki soruyu cevaplayamadığı çıktı:
+  - **Kapılama:** "Ay'ın kendi ışığı yoktur" yalnızca Ay'ı merak eden bir masalda geçmeli, ama satır eksenlerinin hiçbiri "bu masal Ay hakkında" diyemiyor — özellikler yapısaldır (`isVisible`, `emitsSignal`), konusal değil.
+  - **Tekillik:** "bir masalda en çok bir olgu" kuralını satır başına saymak, iki satırın iki ayrı olgu taşımasını engellemiyordu.
+  `CatalogObject.factID`'ye taşındı ve ikisi de kendiliğinden çözüldü: olgu, çocuğun merak ettiği şeyin olgusudur; masalın bir keşfi olduğu için en çok bir olgusu olur, yani kural artık ayrı bir denetim değil yapının kendisi. Varyant alanı **kaldırıldı** — tek iş için iki mekanizma, bu kod tabanının tekrar tekrar bulduğu kusur.
+- **Olgu prozaya girmiyor, ve bu da o düzeltmeden çıktı.** Gerçek bir çocuk kitabı "Ay'ın kendi ışığı yoktur" cümlesini anlatının içine koymaz, sonsöze koyar. Uygulamada o sonsözün yeri zaten var ("Yeni kelimeler", FAZ 17). Olgu masalın sesini bozmadan, kaynağıyla birlikte orada gösterilir — bu `CatalogFact`'in `sourceName`/`sourceURL` alanlarının neden olduğunu da açıklıyor.
+- **Katalogda sekiz değil iki olgu.** Havuzda Ay yok, Güneş yok, düşen bir şey yok; konusu olmayan bir olguyu katalogda tutmak A turunda temizlenen ölü içeriğin aynısı olurdu. Bağlananlar: titrek ışık → kayan yıldız olgusu, yıldız taşı → "Güneş de bir yıldızdır". Diğer altısı inceleme dosyasında onaylı bekliyor; keşifleri yazıldığı gün katalogda yerlerini alırlar. `CatalogIntegrity` bağlanmamış olguyu uyarıyor (`fact_reaches_no_discovery`, warning) ve bir test yayınlanan katalogda o uyarının hiç olmamasını sağlıyor.
+- **İki önerme güncellendi, ikisi de "bir konu canlandı" demek için yazılmıştı:** `testWhichTopicsAreLiveToday` (öğrenelim 5-6 iki konu) ve `testTheShippedInterestMatrix` (5-6 kapsamasına `science`).
+- **Bilerek değişmeyen:** proza (olgu cümlesi hiçbir satıra yazılmadı), blueprint havuzu, `unexplained` ailesi, diğer altı olgunun onayı.
+- **Test:** motor **880 test, 16 hata, 8 vaka — tabanla birebir aynı**, yeni kırmızı yok. Uygulama **782 test, 0 hata**. `validate_beat_corpus.py` tabanıyla aynı. Simülatörde görülmedi; ekran katmanı değişmedi.
+- **Dosyalar:** `StoryEngine/Sources/StoryEngine/Content/CatalogRecords.swift`, `CatalogTemplate.swift`, `CatalogIntegrity.swift`, `Resources/blueprints/pilot_library_v1.json`, `Resources/templates/offline/v2/shared_content_library_v2.json`, `docs/KURATORLU_OLGULAR_INCELEMESI.md`, `Tests/StoryEngineTests/CuratedFactTests.swift`, `InterestCatalogTests.swift`, `StoryTopicTests.swift`.
+
 ### 2026-10-23 · faz-21-varyasyon@ddeb735 · Üç karar verildi ve uygulandı: olgu taşıyıcısı, insan tanışma denetimi, 3-4 tavanı
 
 Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de verildi, gerekçeleri `docs/` altındaki üç dosyada, ve uygulanabilir kısımları yazıldı.

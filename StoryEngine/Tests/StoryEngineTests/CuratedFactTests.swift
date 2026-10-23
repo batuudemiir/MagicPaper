@@ -23,22 +23,16 @@ final class CuratedFactTests: XCTestCase {
                     verifiedOn: "2026-10-23", review: review)
     }
 
-    /// Olgu bildiren bir satırı taşıyan katalog, JSON'dan kurulur: hem
-    /// `CatalogVariant` hem `CatalogTemplate` alanları `let`, ve üretim koduna
-    /// yalnızca test için kurucu eklemek yanlış yönde bir borç olurdu.
-    private func catalogWith(_ facts: [CatalogFact], lineFacts: [[String]]) throws -> ContentCatalog {
-        let variants = lineFacts.enumerated().map { index, ids in
-            let list = ids.map { "\"\($0)\"" }.joined(separator: ", ")
-            return """
-            {"id": "v\(index)", "text": "{{child.name}} baktı.",
-             "requiredSlots": ["child.name"], "facts": [\(list)]}
-            """
-        }
+    /// Keşfi verilen olguya bağlayan katalog. JSON'dan kuruluyor çünkü
+    /// `CatalogObject` alanları `let` ve üretim koduna yalnızca test için
+    /// kurucu eklemek yanlış yönde bir borç olurdu.
+    private func catalogWith(_ facts: [CatalogFact], discoveryFact: String?) throws -> ContentCatalog {
+        let link = discoveryFact.map { ", \"factID\": \"\($0)\"" } ?? ""
         let json = """
-        {"id": "t_probe", "role": "hook", "variants": [\(variants.joined(separator: ","))]}
+        {"id": "object_probe", "name": "bir şey", "traits": ["isVisible"]\(link)}
         """
-        let template = try JSONDecoder().decode(CatalogTemplate.self, from: Data(json.utf8))
-        return ContentCatalog(version: "test", templates: [template], facts: facts)
+        let object = try JSONDecoder().decode(CatalogObject.self, from: Data(json.utf8))
+        return ContentCatalog(version: "test", objects: [object], facts: facts)
     }
 
     // MARK: - Yayınlanan sekiz olgu
@@ -49,7 +43,11 @@ final class CuratedFactTests: XCTestCase {
     /// "anlamlı" ayrı şeyler: bu test adresin gerçekten bir adres, tarihin
     /// gerçekten bir tarih olduğuna bakıyor.
     func testEveryShippedFactIsApprovedAndSourced() throws {
-        XCTAssertEqual(catalog.facts.count, 8)
+        // İkisi: inceleme dosyasında sekiz onaylı olgu var ama katalog yalnızca
+        // bir çocuğa ULAŞABİLENİ taşıyor. Diğer altısının konusu havuzda yok
+        // (Ay yok, Güneş yok, düşen bir şey yok) ve konusu olmayan olguyu
+        // katalogda tutmak ölü içeriktir. Keşif yazıldığı gün bu sayı büyür.
+        XCTAssertEqual(catalog.facts.count, 2)
         let band = AgeBand(lowerBound: 5, upperBound: 6)
         for fact in catalog.facts {
             XCTAssertTrue(fact.isApproved, fact.id.rawValue)
@@ -68,19 +66,42 @@ final class CuratedFactTests: XCTestCase {
         XCTAssertEqual(Set(catalog.facts.map { URL(string: $0.sourceURL)?.host }), ["spaceplace.nasa.gov"])
     }
 
-    /// Bugün hiçbir satır olgu bildirmiyor, ve bu bilinçli: taşıyıcı önce,
-    /// prozası sonra. Bu test o sıranın kaza olmadığını söylüyor.
-    func testNoLineCarriesAFactYet() {
-        let carrying = catalog.templates.flatMap(\.variants).filter { !$0.facts.isEmpty }
-        XCTAssertTrue(carrying.isEmpty,
-                      "satırlar olgu taşımaya başladıysa bu testin yerini kapsama ölçümü almalı: "
-                      + "\(carrying.map(\.id.rawValue))")
+    /// Her olgu bir keşfe bağlı olmalı, yoksa hiçbir masala eşlik etmez.
+    ///
+    /// Bağlanmayan olgu `warning` (olguyu yazıp keşfini sonra bağlamak meşru
+    /// bir sıra), ama yayınlanan katalogda hiç olmamalı: yazılmış, kaynaklanmış
+    /// ve hiçbir çocuğa ulaşmayan olgu, A turunda temizlenen ölü içeriğin
+    /// aynısıdır.
+    func testEveryShippedFactReachesADiscovery() throws {
+        let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
+        let orphans = report.issues(withCode: "fact_reaches_no_discovery")
+        XCTAssertTrue(orphans.isEmpty,
+                      "hiçbir keşfe bağlanmamış olgu:\n"
+                      + orphans.map { "  " + $0.message }.joined(separator: "\n"))
+    }
+
+    /// Bir masalın en çok bir olgusu var, ve bunun ayrı bir denetime ihtiyacı
+    /// yok: masalın bir keşfi var, keşfin de en çok bir olgusu.
+    ///
+    /// Ürün kararı (23 Ekim 2026) buydu ve ilk tasarımda satır başına
+    /// sayılıyordu — iki satırın iki ayrı olgu taşımasını engellemiyordu.
+    /// Olgu keşfe bağlandığında kural yapıya gömülü hâle geldi.
+    func testAStoryCarriesAtMostOneFact() throws {
+        let band = AgeBand(lowerBound: 5, upperBound: 6)
+        for index in 1...20 {
+            let story = try XCTUnwrap(try? OfflineStoryComposer().compose(
+                catalog: catalog,
+                intent: OfflineStoryIntent(childName: "Ada", seed: "tek-\(index)",
+                                           mode: .learning, ageBand: band)))
+            let facts = [story.content.discovery.factID].compactMap { $0 }
+            XCTAssertLessThanOrEqual(facts.count, 1)
+        }
     }
 
     // MARK: - Üç kural
 
     func testADeclaredFactMustExist() throws {
-        let broken = try catalogWith([], lineFacts: [["fact_missing"]])
+        let broken = try catalogWith([], discoveryFact: "fact_missing")
         let codes = CatalogIntegrityChecker().check(broken).issues.map(\.code)
         XCTAssertTrue(codes.contains("unknown_fact"), "\(codes)")
     }
@@ -90,28 +111,19 @@ final class CuratedFactTests: XCTestCase {
     func testAnUnapprovedFactCannotBeCarried() throws {
         for review in [CatalogFact.Review.draft, .sourceUnverified] {
             let broken = try catalogWith(
-                [fact("fact_x", review: review)], lineFacts: [["fact_x"]])
+                [fact("fact_x", review: review)], discoveryFact: "fact_x")
             let report = CatalogIntegrityChecker().check(broken)
             XCTAssertTrue(report.issues.map(\.code).contains("unapproved_fact"), review.rawValue)
             XCTAssertEqual(report.issues(withCode: "unapproved_fact").first?.severity, .error)
         }
     }
 
-    /// Bir satır en çok bir olgu taşır — ürün kararı, 23 Ekim 2026.
-    ///
-    /// MagicPaper önce bir çocuk yayıncılığı deneyimi: olgu, çocuğun fark
-    /// ettiği şeydir, kitabın öğrettiği şey değil. İki olgu taşıyan sayfa bir
-    /// ders sayfasıdır, kahramanı olan bir ders.
-    func testALineCarriesAtMostOneFact() throws {
-        let two = try catalogWith(
-            [fact("fact_a"), fact("fact_b")], lineFacts: [["fact_a", "fact_b"]])
-        let report = CatalogIntegrityChecker().check(two)
-        XCTAssertTrue(report.issues.map(\.code).contains("line_carries_two_facts"))
-        XCTAssertEqual(report.issues(withCode: "line_carries_two_facts").first?.severity, .error)
-
-        let one = try catalogWith([fact("fact_a")], lineFacts: [["fact_a"]])
-        XCTAssertTrue(CatalogIntegrityChecker().check(one).issues
-            .filter { $0.code.hasSuffix("_fact") || $0.code == "line_carries_two_facts" }.isEmpty)
+    /// Onaylı bir olguya bağlı bir keşif hiçbir uyarı üretmiyor.
+    func testAnApprovedFactOnADiscoveryIsClean() throws {
+        let fine = try catalogWith([fact("fact_a")], discoveryFact: "fact_a")
+        let codes = CatalogIntegrityChecker().check(fine).issues
+            .filter { $0.code.contains("fact") }.map(\.code)
+        XCTAssertTrue(codes.isEmpty, "\(codes)")
     }
 
     /// Kaynaksız olgu decode edilemiyor. Sözlükten ayrıldığı yer burası: bir

@@ -199,7 +199,9 @@ final class StoryTopicTests: XCTestCase {
         let b56 = AgeBand(lowerBound: 5, upperBound: 6)
         let b34 = AgeBand(lowerBound: 3, upperBound: 4)
 
-        // 22 Ekim 2026 ölçümü. On BİR konu tanımlı, ÜÇÜ canlı. İki değişiklik
+        // 23 Ekim 2026 ölçümü. On bir konu tanımlı, DÖRDÜ canlı (22 Ekim'de
+        // üçtü; "Bilim ve uzay" o günden sonra açıldı). 22 Ekim'in iki
+        // değişikliği
         // aynı turda oldu ve zıt yönlerde:
         //
         // - "Hazine avı" eklendi ve canlandı: `absence` ailesi (IV-1, IV-2)
@@ -212,7 +214,12 @@ final class StoryTopicTests: XCTestCase {
         //   üçüncü mekanizma yazıldığı gün kendiliğinden geri gelir ve
         //   `TopicMechanismTests.testAThinTopicIsDefinedButNotOffered`
         //   kırmızıya döner.
-        XCTAssertEqual(live(.learning, band: b56), ["topic_learning_animals"])
+        // 23 Ekim 2026: "Bilim ve uzay" canlandı. İki keşif küratörlü olguya
+        // bağlandı (titrek ışık → kayan yıldız, yıldız taşı → Güneş bir
+        // yıldızdır) ve konu dört mekanizma kurabiliyor: signal,
+        // patientObservation, seekingKnowledge, advocacy.
+        XCTAssertEqual(live(.learning, band: b56),
+                       ["topic_learning_animals", "topic_learning_science"])
         XCTAssertEqual(live(.adventure, band: b56),
                        ["topic_adventure_treasure", "topic_adventure_wild"])
 
