@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-23 · faz-21-varyasyon@COMMIT · Üç karar verildi ve uygulandı: olgu taşıyıcısı, insan tanışma denetimi, 3-4 tavanı
+### 2026-10-23 · faz-21-varyasyon@ddeb735 · Üç karar verildi ve uygulandı: olgu taşıyıcısı, insan tanışma denetimi, 3-4 tavanı
 
 Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de verildi, gerekçeleri `docs/` altındaki üç dosyada, ve uygulanabilir kısımları yazıldı.
 
