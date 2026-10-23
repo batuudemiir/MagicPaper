@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-23 · faz-21-varyasyon@COMMIT · 3-4'ün ikinci mekanizması (`lettingGo`) ve nakaratsız tekrar ölçüsü
+### 2026-10-23 · faz-21-varyasyon@93023fb · 3-4'ün ikinci mekanizması (`lettingGo`) ve nakaratsız tekrar ölçüsü
 
 - **3-4 bandı 1 → 2 mekanizmaya çıktı** (`bp_charge_release_age3_001`, `lettingGo`): çocuk küçük birine bakar, sonra gitmesine izin verir. 50 seed'in 50'si masal kuruyor. İlk mekanizma (`lookingAfter`) beklemekle çözüyor, bu bırakmakla; 5-6'da aynı ayrım zaten iki mekanizma sayılıyor (VI-1 patience, VI-2 release).
 - **Motor tasarımı iki kez düzeltti ve ikisinde de haklıydı.** Araştırma notunun önerdiği "kayıp ve bulunan" şekliyle başladım (çocuk bakar, bulamaz, sorar, bulur) ve üç yeni beat dosyası yazdım. Yükleme reddetti: `examine` hiçbir anlatı durumu **üretmiyor**, yani çözümü taşıyan sayfa olamaz (çözümü çocuğun bir eylemi getirir); `ask_for_help` ise `obstacleNamed` istiyor, yani aşılacak bir engel — 3-4 korpusunun tüzüğü tam olarak onu yasaklıyor. Üç dosya silindi: kullanılmayan beat dosyası göndermek A turunda temizlenen ölü içeriğin aynısı olurdu.
