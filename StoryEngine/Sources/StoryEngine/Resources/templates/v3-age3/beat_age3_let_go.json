@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "editorialNote": "3-4 bandı. Sayfa 5'i restore ile paylaşır, 5-12 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok.\n\n23 Ekim 2026: bandın İKİNCİ mekanizmasının çözüm adımı. Bırakmak bu bantta kayıp değil: çocuk bakmayı bırakmıyor, baktığı şeyin gitmesine izin veriyor, ve bu iyi bir şey. Hüzün yok, veda var; ağlamak yok, el sallamak var.\n\nEylem çocuğun: 'bıraktı', 'açtı', 'geri koydu'. Pasif bir olup bitme değil — motorun kuralı çözümü çocuğun bir EYLEMİnin getirmesini istiyor, ve bu doğru bir kural.\n\nSayfa 4'te `tend` geliyor, yani bakım zaten yapılmış olacak. Buradaki satırlar o bakımın bittiğini değil, meyvesini verdiğini anlatır.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 5 restore ile paylaşılır"
+  },
+  "variants": [
+    {
+      "id": "lg3_01",
+      "text": "{{child.name}} avucunu açtı. \"Hadi, git,\" dedi.",
+      "requiredSlots": ["child.name"],
+      "move": "lg3_opened_her_hand",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "lg3_02",
+      "text": "{{child.name}} usulca geri koydu. Sonra geri çekildi.",
+      "requiredSlots": ["child.name"],
+      "move": "lg3_put_it_back",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "lg3_03",
+      "text": "\"Artık hazırsın,\" dedi {{child.name}}. Ve bıraktı.",
+      "requiredSlots": ["child.name"],
+      "move": "lg3_you_are_ready_now",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "lg3_04",
+      "text": "{{child.name}} el salladı. Gitmesine izin verdi.",
+      "requiredSlots": ["child.name"],
+      "move": "lg3_waved_goodbye",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "lg3_05",
+      "text": "{{child.name}} kapıyı açtı. \"Yolun açık olsun.\"",
+      "requiredSlots": ["child.name"],
+      "move": "lg3_opened_the_door",
+      "lengthClass": "paired"
+    }
+  ]
+}

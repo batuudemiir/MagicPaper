@@ -45,8 +45,76 @@ public struct VariationReport: Sendable, Hashable, Codable {
     /// çeşitlilik değil hacim getirmiş demektir.
     public let repeatedSentenceRate: Double
 
+    /// Aynı oran, **ilan edilmiş nakarat satırları sayılmadan** (23 Ekim 2026).
+    ///
+    /// Kitap araştırma ajanının itirazı üzerine ölçüldü ve haklı çıktı: nakaratlı
+    /// bir blueprint'te masallar arası tekrarın **8'de 6'sı** nakaratın kendisiydi
+    /// (`blueprint_charge_tending_age3_001_refrain`, satır üç sayfada geçiyor,
+    /// altı masal ölçüldü). Nakarat blueprint'in bir özelliği: o blueprint'in her
+    /// masalı onu tasarım gereği tekrarlar, yani sayılması motorun prozayı ne
+    /// kadar çeşitlendirdiği hakkında hiçbir şey söylemez.
+    ///
+    /// Masal **içi** tekrar zaten sayılmıyordu (`seenSentences` masal bittikten
+    /// sonra güncelleniyor), yani itirazın o yarısında düzeltilecek bir şey yoktu.
+    ///
+    /// `repeatedSentenceRate` neden duruyor: beş taban kaydı (`variation_baseline.json`)
+    /// onunla alındı ve tanımı değiştirmek geçmişi kıyaslanamaz yapardı. İki ölçü
+    /// yan yana duruyor; nakaratsız katalogda ikisi birebir aynı.
+    ///
+    /// Araştırma dayanağı: 3-4 kitaplarının 11'inin 8'inde nakarat ya da tekrar
+    /// eden yapı var, yani bu bantta tekrar şeklin kendisi. Kanıt düzeyi LOW
+    /// (hepsi tek yayınevinden); ölçüyü değiştirme gerekçesi araştırma değil,
+    /// yukarıdaki 8'de 6 ölçümü.
+    public let repeatedSentenceRateExcludingRefrains: Double
+
     /// Kurulamayan seed'lerin gerekçeleri, tekilleştirilmiş. Boş liste sağlıklı.
     public let failures: [String]
+
+    /// Alanı olmayan eski kayıtlar çözülmeye devam ediyor.
+    ///
+    /// Elle yazılmış decoder'ın tek sebebi bu: `variation_baseline.json`'da bu
+    /// alandan önce alınmış beş kayıt var ve sentezlenmiş decoder onları
+    /// reddederdi. Reddetmesi sessiz bir felaket olurdu — `testRecordBaseline`
+    /// çözülemeyen dosyayı boş liste sayıp üstüne yazıyor, yani turların
+    /// karşılaştırma geçmişi kaybolurdu.
+    ///
+    /// Eski kayıtta nakaratsız oran, nakaratlı oranın aynısı sayılıyor: o
+    /// kayıtlar alındığında yayında nakaratlı blueprint yoktu, yani ikisi
+    /// gerçekten eşitti.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        mode = try c.decode(StoryMode.self, forKey: .mode)
+        band = try c.decode(AgeBand.self, forKey: .band)
+        requested = try c.decode(Int.self, forKey: .requested)
+        composed = try c.decode(Int.self, forKey: .composed)
+        mechanisms = try c.decode(Int.self, forKey: .mechanisms)
+        blueprints = try c.decode(Int.self, forKey: .blueprints)
+        settings = try c.decode(Int.self, forKey: .settings)
+        companions = try c.decode(Int.self, forKey: .companions)
+        discoveries = try c.decode(Int.self, forKey: .discoveries)
+        casts = try c.decode(Int.self, forKey: .casts)
+        openings = try c.decode(Int.self, forKey: .openings)
+        closings = try c.decode(Int.self, forKey: .closings)
+        repeatedSentenceRate = try c.decode(Double.self, forKey: .repeatedSentenceRate)
+        repeatedSentenceRateExcludingRefrains = try c.decodeIfPresent(
+            Double.self, forKey: .repeatedSentenceRateExcludingRefrains) ?? repeatedSentenceRate
+        failures = try c.decodeIfPresent([String].self, forKey: .failures) ?? []
+    }
+
+    init(
+        mode: StoryMode, band: AgeBand, requested: Int, composed: Int, mechanisms: Int,
+        blueprints: Int, settings: Int, companions: Int, discoveries: Int, casts: Int,
+        openings: Int, closings: Int, repeatedSentenceRate: Double,
+        repeatedSentenceRateExcludingRefrains: Double, failures: [String]
+    ) {
+        self.mode = mode; self.band = band; self.requested = requested; self.composed = composed
+        self.mechanisms = mechanisms; self.blueprints = blueprints; self.settings = settings
+        self.companions = companions; self.discoveries = discoveries; self.casts = casts
+        self.openings = openings; self.closings = closings
+        self.repeatedSentenceRate = repeatedSentenceRate
+        self.repeatedSentenceRateExcludingRefrains = repeatedSentenceRateExcludingRefrains
+        self.failures = failures
+    }
 }
 
 extension VariationReport {
@@ -78,6 +146,12 @@ extension VariationReport {
         var seenSentences = Set<String>()
         var totalSentences = 0
         var repeatedSentences = 0
+        // Nakaratsız ikizi: aynı sayım, ilan edilmiş nakarat satırları hiç
+        // girmeden. Ayrı küme şart — nakarat satırını `seenSentences`'a koymak,
+        // onu başka bir blueprint'in aynı cümlesiyle karıştırırdı.
+        var seenWithoutRefrain = Set<String>()
+        var totalWithoutRefrain = 0
+        var repeatedWithoutRefrain = 0
         var composed = 0
 
         for seed in seeds {
@@ -112,6 +186,14 @@ extension VariationReport {
                 totalSentences += 1
                 if seenSentences.contains(sentence) { repeatedSentences += 1 }
             }
+
+            let refrains = Self.refrainSentences(of: story, in: catalog)
+            let withoutRefrain = sentences.filter { !refrains.contains($0) }
+            for sentence in withoutRefrain {
+                totalWithoutRefrain += 1
+                if seenWithoutRefrain.contains(sentence) { repeatedWithoutRefrain += 1 }
+            }
+            seenWithoutRefrain.formUnion(withoutRefrain)
             // Masal bittikten sonra eklenir: aynı masalın içindeki tekrar başka
             // bir denetimin işi (`CatalogIntegrity`), burada ölçülen masallar
             // ARASINDAKİ tekrar.
@@ -126,6 +208,8 @@ extension VariationReport {
             openings: openings.count, closings: closings.count,
             repeatedSentenceRate: totalSentences == 0
                 ? 0 : Double(repeatedSentences) / Double(totalSentences),
+            repeatedSentenceRateExcludingRefrains: totalWithoutRefrain == 0
+                ? 0 : Double(repeatedWithoutRefrain) / Double(totalWithoutRefrain),
             failures: failures.sorted())
     }
 
@@ -135,10 +219,25 @@ extension VariationReport {
         catalog.blueprints.first { $0.id == id }?.mechanism
     }
 
+    /// Bu masalın ilan edilmiş nakarat cümleleri, `sentences(of:)`'in ürettiği
+    /// biçimde (noktalama ayracı atılmış, kırpılmış) — yoksa karşılaştırma
+    /// hiçbir zaman tutmaz.
+    static func refrainSentences(of story: ComposedStory, in catalog: ContentCatalog) -> Set<String> {
+        guard let refrain = catalog.blueprints.first(where: { $0.id == story.blueprintID })?.refrain
+        else { return [] }
+        return Set([refrain.line, refrain.finalLine].flatMap(Self.split))
+    }
+
     /// Sayfanın cümleleri. Nakarat da bir cümledir ve sayılır: kasıtlı tekrar
-    /// da tekrardır, ölçüde görünmeli.
+    /// da tekrardır, ölçüde görünmeli — nakaratı ayıklayan ölçü
+    /// `repeatedSentenceRateExcludingRefrains`, ve ayıklamayı o yapıyor.
     static func sentences(of page: ComposedPage) -> [String] {
-        page.text
+        split(page.text)
+    }
+
+    /// Metni cümlelere ayırmanın tek yeri: sayfa da nakarat da buradan geçiyor.
+    static func split(_ text: String) -> [String] {
+        text
             .split(whereSeparator: { $0 == "." || $0 == "!" || $0 == "?" || $0 == "\n" })
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }

@@ -198,3 +198,101 @@ final class VariationBaselineTests: XCTestCase {
     }
 
 }
+
+/// Nakaratsız tekrar oranı (23 Ekim 2026).
+///
+/// Kitap araştırma ajanının itirazıyla eklendi: ilan edilmiş bir nakarat
+/// blueprint'in özelliği, o blueprint'in her masalı onu tasarım gereği
+/// tekrarlar, ve sayılması motorun prozayı ne kadar çeşitlendirdiği hakkında
+/// hiçbir şey söylemez. Ölçüldüğünde nakaratlı bir blueprint'te masallar arası
+/// tekrarın 8'de 6'sı nakaratın kendisiydi.
+final class RefrainAwareMeasurementTests: XCTestCase {
+
+    private var catalog: ContentCatalog!
+
+    /// Nakarat deneyinin kolu: yayında nakaratlı blueprint yok, bu yüzden ölçüyü
+    /// sınamanın tek yolu deney kolunu havuza katmak.
+    private var withRefrain: ContentCatalog!
+
+    override func setUpWithError() throws {
+        catalog = try ContentCatalogLoader().load().catalog
+        let url = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Content/Experiments/x_refrain_bedtime.json")
+        let arm = try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: url))
+        withRefrain = ContentCatalog(
+            version: catalog.version, settings: catalog.settings, companions: catalog.companions,
+            objects: catalog.objects, templates: catalog.templates + arm.templates,
+            blueprints: catalog.blueprints + arm.blueprints,
+            storyModes: catalog.storyModes, interests: catalog.interests,
+            safetyTopics: catalog.safetyTopics, series: catalog.series)
+    }
+
+    /// Nakaratı olmayan katalogda iki ölçü birebir aynı: yeni ölçü eskisinin
+    /// yerine geçmiyor, yanında duruyor.
+    func testWithoutARefrainBothRatesAgree() {
+        for (mode, band) in [(StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6)),
+                             (.adventure, AgeBand(lowerBound: 5, upperBound: 6)),
+                             (.bedtime, AgeBand(lowerBound: 3, upperBound: 4))] {
+            let report = VariationReport.measure(
+                catalog: catalog, mode: mode, band: band, seeds: VariationBaseline.standardSeeds)
+            XCTAssertEqual(report.repeatedSentenceRate,
+                           report.repeatedSentenceRateExcludingRefrains,
+                           "\(mode.rawValue) \(band): yayında nakarat yok, oranlar ayrışmamalı")
+        }
+    }
+
+    /// Nakaratlı bir blueprint ölçüldüğünde nakaratsız oran belirgin biçimde
+    /// düşük: ölçü gerçekten nakaratı ayıklıyor.
+    func testARefrainIsLeftOutOfTheSecondRate() {
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        let seeds = (1...30).map { "rf-\($0)" }
+        // Nakaratlı kol standart arklı charge: 23 Ekim'den beri öğrenelim onu
+        // kabul ediyor.
+        let report = VariationReport.measure(
+            catalog: withRefrain, mode: .learning, band: band, seeds: seeds)
+        XCTAssertGreaterThan(report.composed, 0)
+        XCTAssertLessThan(report.repeatedSentenceRateExcludingRefrains,
+                          report.repeatedSentenceRate,
+                          "nakarat ayıklanmamış: \(report.repeatedSentenceRate) / "
+                          + "\(report.repeatedSentenceRateExcludingRefrains)")
+    }
+
+    /// Nakarat cümleleri, sayfa cümleleriyle **aynı** biçimde ayrıştırılıyor.
+    /// Ayrıştırma iki yerde ayrı yazılsaydı karşılaştırma hiç tutmazdı ve ölçü
+    /// sessizce eskisinin kopyası olurdu.
+    func testTheRefrainIsSplitTheSameWayAsAPage() throws {
+        let blueprint = try XCTUnwrap(withRefrain.blueprints.first { $0.refrain != nil })
+        let refrain = try XCTUnwrap(blueprint.refrain)
+        let catalogWithRefrain = withRefrain!
+        let story = try XCTUnwrap((1...30).lazy.compactMap { index in
+            try? OfflineStoryComposer().compose(
+                catalog: catalogWithRefrain,
+                intent: OfflineStoryIntent(childName: "Ada", seed: "rf-\(index)",
+                                           ageBand: blueprint.ageRange))
+        }.first { $0.blueprintID == blueprint.id }, "nakaratlı masal kurulamadı")
+
+        let sentences = Set(story.pages.flatMap(VariationReport.sentences(of:)))
+        let found = VariationReport.refrainSentences(of: story, in: catalogWithRefrain)
+        XCTAssertFalse(found.isEmpty)
+        XCTAssertTrue(found.contains(where: sentences.contains),
+                      "nakarat cümlesi sayfa cümleleriyle eşleşmiyor: \(found) / \(refrain.line)")
+    }
+
+    /// Bu alandan önce alınmış taban kayıtları çözülmeye devam ediyor.
+    ///
+    /// Sessiz felaket önleyici: çözülemeyen dosyayı `testRecordBaseline` boş
+    /// liste sayıp üstüne yazıyor, yani turların karşılaştırma geçmişi kaybolur.
+    func testABaselineRecordWithoutTheNewFieldStillDecodes() throws {
+        let json = """
+        {"band":"5-6","blueprints":8,"casts":45,"closings":9,"companions":15,"composed":50,
+         "discoveries":12,"failures":[],"mechanisms":8,"mode":"learning","openings":11,
+         "repeatedSentenceRate":0.52,"requested":50,"settings":15}
+        """
+        let report = try JSONDecoder().decode(VariationReport.self, from: Data(json.utf8))
+        XCTAssertEqual(report.repeatedSentenceRate, 0.52)
+        XCTAssertEqual(report.repeatedSentenceRateExcludingRefrains, 0.52,
+                       "eski kayıtta nakarat yoktu, iki oran eşit sayılmalı")
+    }
+}

@@ -60,7 +60,9 @@ final class CatalogBundleTests: XCTestCase {
         // Merged totals.
         // 15 = the Schema 2 library alone, V1's 12 having been retired (D3).
         // 17 with the two bedtime-arc blueprints (uyku arkı, 21 Ekim 2026).
-        XCTAssertEqual(catalog.blueprints.count, 17)
+        // 18 with 3-4'ün ikinci mekanizması (`lettingGo`, 23 Ekim 2026): o bant
+        // tek şekle kilitliydi ve tekrar oranı %83'tü.
+        XCTAssertEqual(catalog.blueprints.count, 18)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -82,10 +84,17 @@ final class CatalogBundleTests: XCTestCase {
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
         // 93 → 109 (21 Ekim 2026): 16 bedtime-arc beat files, 8 per band.
-        XCTAssertEqual(catalog.templates.count, 109)
+        // 109 → 110 (23 Ekim 2026): 3-4 için `let_go`, bandın ikinci çözüm
+        // hamlesi. Bandın tüzüğü engeli ve çıkarımı yasakladığı için
+        // `solutionKnown` üreten yalnızca iki beat kalıyor; biri `patient_wait`,
+        // bu öbürü.
+        XCTAssertEqual(catalog.templates.count, 110)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
         // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
-        XCTAssertEqual(catalog.recordCounts["variants"], 695)
+        // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
+        // sonrası için 5 satır. Mevcut restore satırları iyileşme için
+        // yazılmıştı; ayrım `afterBeat` ile yapıldı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 705)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

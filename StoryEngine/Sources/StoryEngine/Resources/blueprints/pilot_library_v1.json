@@ -2325,6 +2325,80 @@
           "emotion": "calm"
         }
       ]
+    },
+    {
+      "id": "bp_charge_release_age3_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "lettingGo",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk küçük birine bakar, sonra gitmesine izin verir.",
+      "editorialGuidance": "3-4 bandının İKİNCİ mekanizması (23 Ekim 2026). İlki `lookingAfter`: çocuk kalır ve BEKLER, o iyileşir. Bunun çözümü beklemek değil BIRAKMAK. 5-6'da bu ayrım zaten iki mekanizma sayılıyor (VI-1 patience, VI-2 release); bu, o ayrımın 3-4 karşılığı.\n\nSayfa planı `lookingAfter` ile aynı ve bu kasıtlı: 3-4'te altı sayfaya başka bir yay sığmıyor. Farkı tek sayfada, çözümü getiren beat'te — ve mekanizma tam olarak orada yaşıyor.\n\nNeden başka bir şekil denenip bırakıldı: ilk tasarım 'kayıp ve bulunan' idi (çocuk bakar, bulamaz, sorar). Motor onu reddetti ve haklıydı: `examine` hiçbir anlatı durumu üretmiyor, `ask_for_help` ise `obstacleNamed` istiyor — yani aşılacak bir engel, ki 3-4 korpusunun tüzüğü onu yasaklıyor. Engelsiz ve yanlış-inançsız bir bantta `solutionKnown` üreten yalnızca iki beat kalıyor: `patient_wait` ve `let_go`. Birincisi `lookingAfter`'ın, ikincisi bunun.",
+      "requires": {
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}} Gitmeye Hazır mı?",
+        "{{setting.name}}'nda Veda",
+        "{{companion.name}} ile Son Gün",
+        "{{child.name}} Bıraktı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "let_go",
+          "supportingBeat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "tenderness"
+        }
+      ]
     }
   ],
   "templates": [

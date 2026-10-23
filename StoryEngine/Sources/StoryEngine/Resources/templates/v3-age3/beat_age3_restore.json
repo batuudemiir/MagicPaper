@@ -3,7 +3,7 @@
   "beat": "restore",
   "locale": "tr",
   "ageBand": "3-4",
-  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
+  "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.\n\n23 Ekim 2026: dosya iki mekanizmaya hizmet ediyor ve satırlar `afterBeat` ile ayrılıyor. İlk dörtlü iyileşmeyi anlatıyor ('doğruldu', 'ısındı') ve yalnızca `patient_wait`'ten sonra okunur. İkinci dörtlü bırakmadan sonrası için: gidiyor, ve bu iyi.\n\nAyrım olmadan ne oluyordu, ölçüldü: 'Ada avucunu açtı. Hadi git, dedi. Pırıltı artık üşümüyordu. İyice ısınmıştı.' Çocuk bıraktı ve sonra o ısındı — iki cümle de kusursuz, ikisi birlikte saçma. Tam olarak bu turun aradığı kusur sınıfı.",
   "lengthClasses": {
     "paired": "5-12 words — sayfa 6 warm_close ile paylaşılır"
   },
@@ -11,12 +11,17 @@
     {
       "id": "rs3_01",
       "text": "Sonra {{companion.name}} kıpırdadı. Yavaşça doğruldu.",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [
         "companion.name"
       ],
       "move": "moved_then_rose",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "afterBeat": [
+        "patient_wait"
+      ]
     },
     {
       "id": "rs3_02",
@@ -25,7 +30,10 @@
         "companion.name"
       ],
       "move": "no_longer_cold",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "afterBeat": [
+        "patient_wait"
+      ]
     },
     {
       "id": "rs3_03",
@@ -34,7 +42,10 @@
         "companion.name"
       ],
       "move": "opened_eyes",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "afterBeat": [
+        "patient_wait"
+      ]
     },
     {
       "id": "rs3_04",
@@ -43,7 +54,66 @@
         "companion.name"
       ],
       "move": "slowly_better",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "rs3_05",
+      "text": "{{companion.name}} usulca uzaklaştı. Çok mutluydu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "went_away_happy",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "rs3_06",
+      "text": "Gitti işte. Ve her şey yolundaydı.",
+      "requiredSlots": [],
+      "move": "it_went_and_all_was_well",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "rs3_07",
+      "text": "{{companion.name}} bir kez döndü, sonra gitti.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "looked_back_once",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "rs3_08",
+      "text": "Artık kendi yolunu bulmuştu. Gitti.",
+      "requiredSlots": [],
+      "move": "found_its_own_way",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "rs3_09",
+      "text": "{{companion.name}} gitti. Ama iyi gitti.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "went_but_went_well",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "let_go"
+      ]
     }
   ]
 }
