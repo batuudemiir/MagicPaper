@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · faz-21-varyasyon@COMMIT · B-ön 2: küratörlü olgu inceleme dosyası
+
+- **İnceleme dosyası yazıldı:** `docs/KURATORLU_OLGULAR_INCELEMESI.md`. Plan, "Bilim ve uzay" ile "Yeni ülkeler ve şehirler" konularının inşasından önce kaynaklı bir inceleme dosyası şart koşuyordu ve hiçbir olgunun Batuhan onayı olmadan canlıya çıkmamasını. **Kod değişmedi, tek olgu havuza girmedi.**
+- **Sekiz bilim olgusu, kaynağında okundu** (NASA Space Place: Ay, Güneş, meteor yağmuru, yer çekimi; dördü de 23 Ekim 2026'da açıldı). Cümleler bizim; kaynak metni kopyalanmadı. Her olguda kaynak adı, adres, doğrulama tarihi, hedef bant ve inceleme durumu var.
+- **UNESCO kaynağında doğrulanamadı, ve bu dosyada açıkça yazıyor:** `whc.unesco.org` otomatik isteklere HTTP 403 döndürüyor (ülke listesi ve tek kayıt sayfası, ikisi de denendi). Elimizde kalan resmî ama **ikincil** bir kaynak (Dışişleri Bakanlığı 2018 duyurusu). Önerim: "Yeni ülkeler ve şehirler" konusu bu turda **ertelensin** — bir çocuk kitabına "UNESCO şöyle diyor" diye giren cümlenin UNESCO'da okunmuş olması gerekir. Doğrulanacak iki adres dosyada yazılı.
+- **Bir sınır daha çıktı: olgular yalnızca 5-6'ya yazılabilir.** Olgunun masala girdiği yer çocuğun bir şeyi anladığı beat (`insight`, `succeed`) ve o beat'ler `unexplained` ailesinin; 3-4'te öğrenelimin tek ailesi `charge`, ve o bandın tüzüğü çıkarımı açıkça yasaklıyor. Yani 3-4'e olgu yazmak ölü içerik üretir. 3-4 tavanı bulgusunun ikinci yüzü bu.
+- **Taşıyıcı önerildi, uygulanmadı:** `CatalogFact` + `CatalogVariant.facts`, sözlüğün (FAZ 17 "Yeni kelimeler") zaten çalışan desenini kopyalayarak — kayıt var, satır hangi kaydı öğrettiğini bildirir, hiçbir şey tahmin etmez. Artı olgunun istediği tek fazladan şey: nereden geldiği (kaynak adı + adres + doğrulama tarihi + inceleme durumu). `CatalogObject.explainedBy` kullanılmadı çünkü o başka bir soruyu cevaplıyor (hangi mekân özelliği bu keşfi açıklar); ikisini aynı alana koymak A turunda ayrılan eksenleri geri karıştırmak olurdu. Şema denetimi için iki kural önerildi, ikisi de **error**: tanımsız olgu kimliği, ve onaysız olgu bildiren satırın seçime girmesi.
+- **Bilerek alınmayan olgular ve sebepleri dosyada yazılı:** Ay'ın oluşumu (kaynak "bilim insanları buna inanıyor" diyor — masal "belki" diyemez, çocuk onu "öyle" duyar), mesafe ve büyüklük sayıları (kavranmayan sayı olgu değil süstür), 1969 (tarih olgusu, bu bandın masalında taşıyacak yeri yok).
+- **Test:** kod değişmediği için test çalıştırılmadı. Her olgu kaynağında okundu; UNESCO'ya erişilemediği yukarıda yazılı.
+- **Dosyalar:** `docs/KURATORLU_OLGULAR_INCELEMESI.md` (yeni).
+
 ### 2026-10-23 · faz-21-varyasyon@93023fb · 3-4'ün ikinci mekanizması (`lettingGo`) ve nakaratsız tekrar ölçüsü
 
 - **3-4 bandı 1 → 2 mekanizmaya çıktı** (`bp_charge_release_age3_001`, `lettingGo`): çocuk küçük birine bakar, sonra gitmesine izin verir. 50 seed'in 50'si masal kuruyor. İlk mekanizma (`lookingAfter`) beklemekle çözüyor, bu bırakmakla; 5-6'da aynı ayrım zaten iki mekanizma sayılıyor (VI-1 patience, VI-2 release).
