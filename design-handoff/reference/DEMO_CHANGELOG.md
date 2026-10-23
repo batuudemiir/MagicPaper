@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-23 · faz-21-varyasyon@COMMIT · B-ön 2: küratörlü olgu inceleme dosyası
+### 2026-10-23 · faz-21-varyasyon@d02df92 · B-ön 2: küratörlü olgu inceleme dosyası
 
 - **İnceleme dosyası yazıldı:** `docs/KURATORLU_OLGULAR_INCELEMESI.md`. Plan, "Bilim ve uzay" ile "Yeni ülkeler ve şehirler" konularının inşasından önce kaynaklı bir inceleme dosyası şart koşuyordu ve hiçbir olgunun Batuhan onayı olmadan canlıya çıkmamasını. **Kod değişmedi, tek olgu havuza girmedi.**
 - **Sekiz bilim olgusu, kaynağında okundu** (NASA Space Place: Ay, Güneş, meteor yağmuru, yer çekimi; dördü de 23 Ekim 2026'da açıldı). Cümleler bizim; kaynak metni kopyalanmadı. Her olguda kaynak adı, adres, doğrulama tarihi, hedef bant ve inceleme durumu var.
