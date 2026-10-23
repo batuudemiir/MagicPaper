@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main (commit aşağıda) · MPModeSwitch seçenekleri (karar bekliyor)
+
+- İnceleme, kod değişmedi. `MPModeSwitch` 7 Ekim'de FAZ 17 Pastel tasarımıyla ekrandan kalkmış (ce07158, 58a7d2f); 13 Ekim'de yalnız cam kuralına adı yazılmış.
+- İki seçenek simülatörde yan yana: A bugünkü kilit + "Çocuk modu", B anahtar Ana sayfa ve Ayarlar'ın sağ üstünde. B geçici örnekti, dosyalar `git checkout` ile geri alındı ve uygulama yeniden kuruldu.
+- Görüntü: `docs/butunluk/08_mod_anahtari_karsilastirma.png`; seçenekler `docs/BUTUNLUK_DENETIMI.md` sonunda. Öneri A.
+- Test çalıştırılmadı (kod değişmedi).
+- Dosyalar: `docs/BUTUNLUK_DENETIMI.md`, `docs/butunluk/08_mod_anahtari_karsilastirma.png`, bu dosya.
+
 ### 2026-10-23 · main@45e3116 · Gönderim: bütünlük işi origin'de
 
 - Batuhan'ın onayıyla `main` origin'e gönderildi (e47f7f3..45e3116, 40 commit). 9'u bütünlük işi (denetim, 1–6. adımlar, ebeveyn kapısı, Ragi + Günlük kilidi); 31'i başka oturumların main'deki commit'leri (sistem Liquid Glass sekme çubuğu, lavanta düğmeler, ana sayfa / Benim köşem / masal yazma düzenleri, Hazine avı, charge + D2, C turu, CompanionNature, nadir kelime raporu, FAZ 21 birleştirmesi 51053ab).

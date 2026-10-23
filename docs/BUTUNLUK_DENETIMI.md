@@ -191,3 +191,19 @@ Ragi'li adımından hemen sonraki seçim adımı."
   (`04_kosem_saat_cubugu.png`); Günlük'teki `GunlukStatusBarBackdrop` burada yok.
 - Masal ailem'de geri düğmesi lavanta zeminde neredeyse görünmüyor (lavanta
   üstüne lavanta daire).
+
+### `MPModeSwitch` seçenekleri (23 Ekim 2026)
+
+Geçmiş: anahtar 7 Ekim'e kadar Ana sayfa ve ebeveyn başlığında sağ üstteydi;
+FAZ 17 Pastel tasarımı (ce07158, 58a7d2f) yerine kilidi ve "Çocuk modu"
+kapsülünü koydu. 13 Ekim'de yalnızca cam kuralının listesine adı yazıldı.
+Karşılaştırma: `butunluk/08_mod_anahtari_karsilastirma.png` (B geçici örnekti,
+geri alındı).
+
+- **A · Kaldır (öneri):** kilit ve "Çocuk modu" kalır, `MPModeSwitch` silinir,
+  CLAUDE.md cam kuralından adı düşer. Yazılı etiket ebeveyn için daha açık;
+  kilit çocuğa yalnızca "kapalı" der, çocuğun dokunmaya davet edildiği bir
+  anahtar yok.
+- **B · Geri bağla:** iki modda da sağ üstte aynı cam anahtar (yüz / kalkan).
+  Tutarlı ve tek yer; ama yazısız simgeler, çocuk ekranında görünür bir
+  "ebeveyn" anahtarı, Pastel tasarımın kararını geri alır.
