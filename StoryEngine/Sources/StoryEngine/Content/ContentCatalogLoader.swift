@@ -211,6 +211,7 @@ public struct ContentCatalogLoader: Sendable {
                     interests: catalog.interests,
                     safetyTopics: catalog.safetyTopics,
                     glossary: catalog.glossary,
+                    facts: catalog.facts,
                     series: catalog.series
                 )
             ])

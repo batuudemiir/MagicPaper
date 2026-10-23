@@ -150,6 +150,13 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// `ContentCatalog.glossary`; the word itself is found in the rendered
     /// sentence, so the text stays plain prose for every other check.
     public let words: [ContentID]
+    /// Bu satırın taşıdığı küratörlü olgu(lar) (B-ön 2, 23 Ekim 2026).
+    ///
+    /// `words` ile aynı sözleşme: satır bildirir, hiçbir şey tahmin etmez.
+    /// Ürün kararı gereği **sayfa başına en çok bir** olgu bildirilebilir —
+    /// iki olgu taşıyan sayfa bir ders sayfasıdır, kahramanı olan bir ders.
+    /// Denetim `CatalogIntegrity`'de.
+    public let facts: [ContentID]
 
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
@@ -157,7 +164,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         case capabilityRequire, capabilityForbid, natureRequire, castRoles, register
         case conflictKinds, afterClosing, afterState
         case familyRelations
-        case topics, words
+        case topics, words, facts
     }
 
     /// Every key this type actually reads.
@@ -202,6 +209,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         familyRelations = try container.decodeIfPresent(Set<FamilyRelationKind>.self, forKey: .familyRelations) ?? []
         topics = try container.decodeIfPresent(Set<SafetyTopic>.self, forKey: .topics) ?? []
         words = try container.decodeIfPresent([ContentID].self, forKey: .words) ?? []
+        facts = try container.decodeIfPresent([ContentID].self, forKey: .facts) ?? []
     }
 
     /// Whether this line is the right shape for how the story's conflict works.

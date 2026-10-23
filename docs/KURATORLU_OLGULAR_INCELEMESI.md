@@ -1,7 +1,7 @@
 # Küratörlü olgular: inceleme dosyası
 
-**Tarih:** 23 Ekim 2026 · **Dal:** `faz-21-varyasyon` · **Durum:** onay bekliyor (Batuhan)
-**Kural:** bu dosyadaki hiçbir olgu, Batuhan onaylamadan canlı havuza girmez.
+**Tarih:** 23 Ekim 2026 · **Dal:** `faz-21-varyasyon` · **Durum:** **karara bağlandı** (23 Ekim)
+**Kural:** bu dosyadaki hiçbir olgu, onaylanmadan canlı havuza girmez.
 
 B turunun iki konusu gerçek bilgi istiyor: "Bilim ve uzay" (öğrenelim) ve "Yeni
 ülkeler ve şehirler" (macera). Plan, inşadan önce kaynaklı bir inceleme dosyası
@@ -165,11 +165,34 @@ kötüdür.
 
 ---
 
-## 6. Karar gereken
+## 6. Karar (23 Ekim 2026)
 
-1. Sekiz bilim olgusu (F1-F8) onaylanıyor mu?
-2. `CatalogFact` + `CatalogVariant.facts` taşıyıcısı bu şekilde kurulsun mu?
-3. "Yeni ülkeler ve şehirler" bu turda **ertelensin** mi (önerim: evet,
-   UNESCO kaynağında doğrulanana kadar)?
+Batuhan kararı ürünün vizyonuna göre vermemi istedi. Üçü de evet, ve biri bir
+kısıtla.
 
-Cevap gelmeden ne yazılacak: hiçbir şey. Taşıyıcı da olgu da bu onaya bağlı.
+**1. F1-F8 onaylandı.** Sekizi de kaynağında okundu, kendi cümlemizle yazıldı,
+belirsizlik taşımıyor ve 5-6'da taşınabilir. `review: approved`.
+
+**Ama bir kısıtla, ve kısıt üründen geliyor.** CLAUDE.md'nin ilk satırı şunu
+söylüyor: MagicPaper "önce premium bir çocuk yayıncılığı deneyimi, sonra bir
+yapay zekâ ürünü" gibi hissettirmeli — ve "genel amaçlı bir masal üretici
+değil". Buradan çıkan kural:
+
+> **Bir masalda en çok bir olgu, ve olgu masalın konusu olamaz.**
+
+Olgu, çocuğun *fark ettiği* şey olur; kitabın *öğrettiği* şey olmaz. İki olgu
+taşıyan sayfa bir ders sayfasıdır, kahramanı olan bir ders. Bu kural
+`CatalogIntegrity`'de denetlenir (sayfa başına en çok bir `facts` kimliği),
+çünkü editoryal bir temenni olarak bırakılırsa ilk sıkışan turda bozulur.
+
+**2. Taşıyıcı önerildiği gibi kurulsun:** `CatalogFact` + `CatalogVariant.facts`,
+sözlüğün çalışan deseniyle. Şema denetiminin iki kuralı da **error** seviyesinde
+kurulur (tanımsız kimlik; onaysız olguyu bildiren satırın seçime girmesi).
+
+**3. "Yeni ülkeler ve şehirler" ertelendi.** Gerekçe provenans: ikincil kaynağı
+birincil gibi göstermek, konuyu hiç açmamaktan kötü. UNESCO kaydı bir insan
+tarafından açılıp okunduğunda konu yeniden ele alınır; doğrulanacak adresler
+§4'te.
+
+**Değişmeyen kural:** `review: approved` olmayan olgu seçime girmez, ve bu kodla
+zorlanır.
