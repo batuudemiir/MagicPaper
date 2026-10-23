@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-23 · faz-21-varyasyon@COMMIT · "Bilim ve uzay" canlandı; olgu taşıyıcısı keşfe taşındı
+### 2026-10-23 · faz-21-varyasyon@e47d32f · "Bilim ve uzay" canlandı; olgu taşıyıcısı keşfe taşındı
 
 - **"Bilim ve uzay" konusu canlı** (öğrenelim 5-6, **dört mekanizma**: signal, patientObservation, seekingKnowledge, advocacy). On bir konunun dördü canlı oldu. **Tek blueprint yazılmadı:** eksik olan şey olgunun keşfe bağlanmasıydı. 30 seed'in 30'u olgu taşıyor; başlıklar yerine oturuyor ("Titrek Işığın Sırrı", "Titrek Işık Nereden Geliyor?").
 - **Tasarım düzeltmesi: olgu satırın değil KEŞFİN özelliği.** Bir gün önce `CatalogVariant.facts` olarak kurmuştum, yani olguyu bir cümle bildiriyordu. Prozasını yazmaya oturduğumda iki soruyu cevaplayamadığı çıktı:
