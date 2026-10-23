@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-10-23 · main@4e6e9c8 · Gönderim: MPModeSwitch kararı origin'de
+
+- Batuhan'ın isteğiyle iki commit origin'e gönderildi (2a9196f..4e6e9c8): 9a13a8f seçenek karşılaştırması, 4e6e9c8 `MPModeSwitch`'in kaldırılması. Uzak dal geride değildi.
+- Test (4e6e9c8 üstünde): `MagicPaperTests` 782 test, 0 başarısız.
+- Bu kayıt commit'lendi, gönderilmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-10-23 · main (commit aşağıda) · MPModeSwitch kaldırıldı (karar A)
 
 - Batuhan'ın kararıyla (23 Ekim, seçenek A) `Screens/MPModeSwitch.swift` silindi; 7 Ekim'den beri hiçbir ekranda kullanılmıyordu, yalnız kendi önizlemesi vardı.
