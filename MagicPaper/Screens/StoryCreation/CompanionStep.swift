@@ -202,6 +202,12 @@ struct CompanionStep: View {
         case "kertenkele":      return "lizard"
         case "robot":           return "cpu"
         case "kelebek":         return "ladybug"
+        // İnsan yol arkadaşları (28 Ekim 2026): mesleğin kendi simgesi.
+        // Simgesiz bir tür ekranda teklif edilmiyor (`StoryChoiceSource.drawable`),
+        // yani eşleme olmasa insan arkadaş karttan hiç seçilemezdi.
+        case "fırıncı":         return "basket"
+        case "postacı":         return "envelope"
+        case "öğretmen":        return "book"
         default:                return "pawprint"
         }
     }

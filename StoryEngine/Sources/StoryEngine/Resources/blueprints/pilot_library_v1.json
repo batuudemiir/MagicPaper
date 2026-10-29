@@ -410,6 +410,104 @@
         "hesitant",
         "needsCare"
       ]
+    },
+    {
+      "id": "companion_baker_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Fırıncı Nazlı",
+      "type": "fırıncı",
+      "personality": "Elleri hamurlu, sesi yumuşak.",
+      "description": "Köyün fırınında her sabah ekmek çıkaran, herkesi tanıyan biri.",
+      "visualDescription": "warm-faced baker in a flour-dusted apron, sleeves rolled up",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_postman_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Postacı Remzi",
+      "type": "postacı",
+      "personality": "Hep aceleyle ama hep güler yüzle.",
+      "description": "Köyün bütün sokaklarını ve bütün kapılarını bilen postacı.",
+      "visualDescription": "cheerful postman with a worn satchel, cap pushed back",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_teacher_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Öğretmen Suna",
+      "type": "öğretmen",
+      "personality": "Soruyu cevaptan çok sever.",
+      "description": "Köy okulunda ders veren, merak edeni asla aceleye getirmeyen öğretmen.",
+      "visualDescription": "teacher with a book under one arm, kind unhurried eyes",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ],
   "objects": [
@@ -1001,6 +1099,9 @@
         ],
         "discovery": [
           "impliesNeed"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1106,6 +1207,9 @@
       "forbids": {
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1507,6 +1611,9 @@
         "companion": [
           "canFly",
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1605,6 +1712,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [

@@ -218,8 +218,13 @@ final class StoryTopicTests: XCTestCase {
         // bağlandı (titrek ışık → kayan yıldız, yıldız taşı → Güneş bir
         // yıldızdır) ve konu dört mekanizma kurabiliyor: signal,
         // patientObservation, seekingKnowledge, advocacy.
+        // 29 Ekim 2026: "Meslekler ve günlük yaşam" canlandı — beş mekanizma
+        // (signal, patientObservation, seekingKnowledge, revelation,
+        // perspectiveShift). Öğrenelim böylece mod başına üç konu hedefine
+        // ulaştı; tek yeni blueprint yazılmadı, açan şey insan yol arkadaşı.
         XCTAssertEqual(live(.learning, band: b56),
-                       ["topic_learning_animals", "topic_learning_science"])
+                       ["topic_learning_animals", "topic_learning_jobs",
+                        "topic_learning_science"])
         XCTAssertEqual(live(.adventure, band: b56),
                        ["topic_adventure_treasure", "topic_adventure_wild"])
 

@@ -59,9 +59,13 @@ final class OfflineDeterminismTests: XCTestCase {
         // Yeniden sabitlendi 23 Ekim 2026 (üçüncü kez): 3-4 bandının ikinci
         // mekanizması havuza girdi ve bu seed ona düştü, yani masal artık
         // 3-4 bandında. Bağlanan içerik de onunla değişti.
-        XCTAssertEqual(story.content.setting.id.rawValue, "setting_festival_meadow_001")
-        XCTAssertEqual(story.content.companion.id.rawValue, "companion_hedgehog_pilot_001")
-        XCTAssertEqual(story.content.discovery.id.rawValue, "object_dropped_mitten_001")
+        // Yeniden sabitlendi 29 Ekim 2026 (dördüncü kez): üç insan yol arkadaşı
+        // ve Pazar Yeri havuza girdi. Şekil aynı kaldı (3-4'ün `lettingGo`'su),
+        // ona bağlanan içerik kaydı. İnsanların kendisi bu masala GİRMİYOR —
+        // 3-4 havuzunda sıraları değiştirmeleri yeterli oldu.
+        XCTAssertEqual(story.content.setting.id.rawValue, "setting_cloud_kingdom_001")
+        XCTAssertEqual(story.content.companion.id.rawValue, "companion_owl_pilot_001")
+        XCTAssertEqual(story.content.discovery.id.rawValue, "object_seed_001")
         // Yeniden sabitlendi 21 Ekim 2026 (ikinci kez, havuz diriltmesi): v2
         // kütüphanesindeki 44 kayıt etiketlenip havuza katılınca bu seed
         // orman + tavşan yerine mağara + robot bağladı. Determinizm bozulmadı
@@ -74,18 +78,20 @@ final class OfflineDeterminismTests: XCTestCase {
         //
         // Re-pinned 2026-10-23: masal 3-4'ün `lettingGo` şekline düştüğü için
         // başlık da onun kalıplarından geliyor.
-        XCTAssertEqual(story.title, "Kestane Gitmeye Hazır mı?")
+        //
+        // Yeniden sabitlendi 29 Ekim 2026: kalıp aynı, adı geçen arkadaş değişti.
+        XCTAssertEqual(story.title, "Yıldız Gitmeye Hazır mı?")
 
         // The lines themselves, which is what a child would notice changing.
         // Sekiz satır, on bir değil: 3-4 masalı altı sayfa ve bu bir eksiklik
         // değil, o bandın yayı.
         XCTAssertEqual(
             story.pages.flatMap { $0.variantIDs.map(\.rawValue) },
-            ["na3_03", "mc3_01", "ra3_03", "cm3_03", "td3_04", "lg3_02",
-             "rs3_05", "wc3_01"],
+            ["na3_03", "mc3_01", "ra3_03", "cm3_03", "td3_04", "lg3_04",
+             "rs3_07", "wc3_01"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "ffa3ab47f74bfc7a")
+        XCTAssertEqual(story.fingerprint, "4d6b1bdae71138b1")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -96,7 +102,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "ffa3ab47f74bfc7a")
+        XCTAssertEqual(again.fingerprint, "4d6b1bdae71138b1")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.

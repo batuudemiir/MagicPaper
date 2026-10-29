@@ -66,8 +66,13 @@ final class CatalogBundleTests: XCTestCase {
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
-        XCTAssertEqual(catalog.settings.count, 24)
-        XCTAssertEqual(catalog.companions.count, 20)
+        // 25 ile Pazar Yeri: "Meslekler ve günlük yaşam" konusunun zemini,
+        // kütüphanenin ikinci *yerleşik* yeri (habitat yalnızca `village`).
+        XCTAssertEqual(catalog.settings.count, 25)
+        // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
+        // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
+        // insan bir masala hayvanın girdiği her yerden giremez.
+        XCTAssertEqual(catalog.companions.count, 23)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
@@ -94,7 +99,11 @@ final class CatalogBundleTests: XCTestCase {
         // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
         // sonrası için 5 satır. Mevcut restore satırları iyileşme için
         // yazılmıştı; ayrım `afterBeat` ile yapıldı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 705)
+        // 705 → 721 (29 Ekim 2026): `meet_companion` için 16 insan satırı.
+        // Mevcut 35 satır hayvan/fantastik olana kapatıldı (satır sayısı
+        // değişmedi, kapıları değişti); insana giden satırlarda çocuk ona
+        // gidiyor, o çocuğa yaklaşmıyor.
+        XCTAssertEqual(catalog.recordCounts["variants"], 721)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

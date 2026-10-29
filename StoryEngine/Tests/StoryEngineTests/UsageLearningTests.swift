@@ -54,6 +54,10 @@ final class UsageLearningTests: XCTestCase {
 
     /// With no usage the live path is the old book, byte for byte.
     ///
+    /// Parmak izi 29 Ekim 2026'da yeniden sabitlendi (üçüncü kez): üç insan
+    /// arkadaş ve Pazar Yeri havuza girince bu seed başka bir mekân, arkadaş
+    /// ve keşif bağladı. Bkz. `OfflineDeterminismTests`.
+    ///
     /// Parmak izi 21 Ekim 2026'da yeniden sabitlendi: v2 kütüphanesi havuza
     /// katılınca bu seed başka bir mekân ve arkadaş bağladı. Testin koruduğu
     /// şey değişmedi — kullanım profili NÖTR iken kitabın, kullanımdan önceki
@@ -61,7 +65,7 @@ final class UsageLearningTests: XCTestCase {
     func testANeutralProfileKeepsThePinnedBook() throws {
         let intent = OfflineStoryIntent(childName: "Yeliz", seed: "pinned-seed-001", usage: .neutral)
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
-        XCTAssertEqual(story.fingerprint, "ffa3ab47f74bfc7a")
+        XCTAssertEqual(story.fingerprint, "4d6b1bdae71138b1")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {

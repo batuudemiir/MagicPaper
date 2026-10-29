@@ -346,24 +346,44 @@ public struct ContentExclusions: Codable, Sendable, Hashable {
     public let setting: Set<SettingTrait>
     public let companion: Set<CompanionTrait>
     public let discovery: Set<DiscoveryTrait>
+    /// Yol arkadaşının **ne olduğu** üzerinden dışlama (28 Ekim 2026).
+    ///
+    /// Özellik ekseniyle söylenemeyen tek dışlama bu: "bu masalın arkadaşı bir
+    /// yetişkin olmaz" cümlesinin yetenek karşılığı yok.
+    ///
+    /// Neden gerekti: insan yol arkadaşları eklendiğinde ("Meslekler" konusu)
+    /// macera modu da onları kabul etti, çünkü macera `guide` ve `reassuring`
+    /// kadroluyor ve insan ikisini de oynuyor. Ölçüm bedelini hemen gösterdi:
+    /// macera 5-6'da farklı mekân sayısı 16'dan 10'a düştü — insanlar yalnızca
+    /// iki yerleşim mekânında yaşadığı için bağlamalar oraya toplandı ve altı
+    /// doğa mekânı hiç seçilmez oldu (200 seed'de de).
+    ///
+    /// Editoryal olarak da doğru: "Maceraya çıkalım" bir eşiği geçmek ya da iz
+    /// sürmektir, ve o yolculuğun arkadaşı köyün fırıncısı değil.
+    public let nature: Set<CompanionNature>
 
     public init(
         setting: Set<SettingTrait> = [],
         companion: Set<CompanionTrait> = [],
-        discovery: Set<DiscoveryTrait> = []
+        discovery: Set<DiscoveryTrait> = [],
+        nature: Set<CompanionNature> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
+        self.nature = nature
     }
 
-    public var isEmpty: Bool { setting.isEmpty && companion.isEmpty && discovery.isEmpty }
+    public var isEmpty: Bool {
+        setting.isEmpty && companion.isEmpty && discovery.isEmpty && nature.isEmpty
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         setting = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .setting) ?? []
         companion = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .companion) ?? []
         discovery = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .discovery) ?? []
+        nature = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .nature) ?? []
     }
 }
 
