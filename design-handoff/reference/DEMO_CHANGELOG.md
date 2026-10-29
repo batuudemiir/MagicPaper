@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-29 · faz-21-varyasyon@COMMIT · "Meslekler ve günlük yaşam" canlandı; ölçüm aracının kırılgan eşiği kaldırıldı
+### 2026-10-29 · faz-21-varyasyon@31f193e · "Meslekler ve günlük yaşam" canlandı; ölçüm aracının kırılgan eşiği kaldırıldı
 
 - **"Meslekler ve günlük yaşam" konusu canlı** (öğrenelim 5-6, **beş mekanizma**: signal, patientObservation, seekingKnowledge, revelation, perspectiveShift), 20/20 masal kuruluyor. Öğrenelimde **mod başına üç konu** hedefine ulaşıldı (Hayvanlar, Meslekler, Bilim ve uzay). Yine **tek yeni blueprint yazılmadı**; konuyu açan şey havuzdaki eksik karakter türüydü.
 - **Kütüphanenin ilk insan yol arkadaşları:** fırıncı, postacı, öğretmen (20 → 23 kayıt) ve **Pazar Yeri** mekânı (24 → 25), habitatı yalnızca `village`.
