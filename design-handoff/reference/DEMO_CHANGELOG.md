@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-10-30 · faz-21-varyasyon@COMMIT · Konu artık olay örgüsünü de süzüyor: meslek masalı gerçekten meslek hakkında
+### 2026-10-30 · faz-21-varyasyon@8d7d33c · Konu artık olay örgüsünü de süzüyor: meslek masalı gerçekten meslek hakkında
 
 Ölçümle başladı: ebeveyn "Meslekler" seçiyor, masalda bir öğretmen çıkıyor, ve masal titrek bir ışık hakkında oluyor — mesleği hiçbir şey yapmıyor. Konu **kaydı** süzüyordu, **olay örgüsünü** süzmüyordu. Batuhan'ın dört kararıyla kuruldu (bilgi hem masalda hem sonsözde; söz önce gelir; karma kaynak; Meslekler pilot).
 
