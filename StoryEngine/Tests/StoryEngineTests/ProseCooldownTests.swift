@@ -73,21 +73,51 @@ final class ProseCooldownTests: XCTestCase {
     /// yani içerik büyüdükçe test kendiliğinden doğru kalır. İddia yön iddiası —
     /// "geçmiş işe yarıyor" — çünkü korunmak istenen şey bugünkü rakam değil
     /// mekanizmanın kendisi.
+    /// **Kaç masalda?** 30 ve 50, 12 değil (ölçüldü: 30 Ekim 2026).
+    ///
+    /// 12 masalla yazılmıştı ve öğrenelimde geçmesi ŞANSTI. Havuza üç meslek
+    /// blueprint'i girince kırmızıya döndü, ve sebebi meslek içeriği değildi:
+    /// tekrarlayan 24 satırın **sıfırı** zanaat satırıydı. Sebep, iddianın
+    /// kısa koşuda ölçülüyor olmasıydı. Öğrenelim × 5-6 için ölçüm:
+    ///
+    ///     n= 6   %3.6 → %3.7   satır  65 →  59   ✗
+    ///     n=10   %8.7 → %13.1  satır  98 →  87   ✗
+    ///     n=12  %13.1 → %16.5  satır 109 →  99   ✗
+    ///     n=20  %26.6 → %27.1  satır 149 → 146   ✗
+    ///     n=24  %32.5 → %30.5  satır 160 → 163   ✓
+    ///     n=30  %37.1 → %35.1  satır 180 → 185   ✓
+    ///     n=50  %49.0 → %48.6  satır 220 → 229   ✓
+    ///
+    /// Maceranın on üç blueprint'i yok — dördü var — ve orada mekanizma her
+    /// sayıda çalışıyor (n=6'da bile %14.1 → %2.1). Yani kırılgan olan şey
+    /// mekanizma değil, GENİŞ havuzda kısa koşu: on üç şekilden on ikisini
+    /// çeken bir koşuda hangi şeklin düştüğü, soğumanın etkisinden büyük bir
+    /// gürültü. Üç blueprint eklemek o sıralamayı yeniden karıştırdı.
+    ///
+    /// D2 turunun kendi ölçümü de elli masaldaydı. İddia uzun vadeli bir
+    /// iddia; kısa koşuda ölçmek, iddiayı test etmemek demekti.
+    ///
+    /// İki sayıda birden denetleniyor, çünkü tek bir şanslı sayı bir iddiayı
+    /// taşıyamaz — bu testin ilk hâli tam olarak öyle taşımıştı.
     func testCarryingHistoryLowersRepetition() {
-        for (mode, band) in [(StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6)),
-                             (StoryMode.adventure, AgeBand(lowerBound: 5, upperBound: 6))] {
-            let without = sequence(mode: mode, band: band, count: 12, carryHistory: false)
-            let with = sequence(mode: mode, band: band, count: 12, carryHistory: true)
+        for (mode, band, count) in [
+            (StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6), 30),
+            (StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6), 50),
+            (StoryMode.adventure, AgeBand(lowerBound: 5, upperBound: 6), 30),
+            (StoryMode.adventure, AgeBand(lowerBound: 5, upperBound: 6), 50),
+        ] {
+            let without = sequence(mode: mode, band: band, count: count, carryHistory: false)
+            let with = sequence(mode: mode, band: band, count: count, carryHistory: true)
             XCTAssertEqual(with.stories, without.stories, "\(mode.rawValue): masal sayısı değişmemeli")
             XCTAssertLessThan(
                 with.repeatedRate, without.repeatedRate,
-                "\(mode.rawValue) \(band): geçmiş tekrarı azaltmadı "
+                "\(mode.rawValue) \(band) ×\(count): geçmiş tekrarı azaltmadı "
                 + "(%\(Int(without.repeatedRate * 100)) → %\(Int(with.repeatedRate * 100)))")
             XCTAssertGreaterThan(
                 with.distinctLines, without.distinctLines,
-                "\(mode.rawValue) \(band): geçmiş daha fazla satır kullandırmadı "
+                "\(mode.rawValue) \(band) ×\(count): geçmiş daha fazla satır kullandırmadı "
                 + "(\(without.distinctLines) → \(with.distinctLines))")
-            print("D2 \(mode.rawValue) \(band): tekrar %\(Int(without.repeatedRate * 100))"
+            print("D2 \(mode.rawValue) \(band) ×\(count): tekrar %\(Int(without.repeatedRate * 100))"
                   + " → %\(Int(with.repeatedRate * 100)), farklı satır "
                   + "\(without.distinctLines) → \(with.distinctLines)")
         }

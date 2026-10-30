@@ -134,6 +134,11 @@ public enum CompanionRole: String, Codable, Sendable, Hashable, CaseIterable {
 /// `CatalogIntegrity` warns about every record that leaves it undeclared, so a
 /// person arriving in a remote package without the field is visible rather
 /// than silently mislabelled.
+/// Bir insan yol arkadaşının mesleği, katalogda `"baker"` gibi yazılı.
+///
+/// `Habitat` ile aynı desen: dizge tabanlı etiket, çünkü liste kapalı değil.
+public typealias Occupation = ContentTag
+
 public enum CompanionNature: String, Codable, Sendable, Hashable, CaseIterable {
     /// A fox, an owl, a dolphin. The whole pool, until now.
     case animal
@@ -301,24 +306,36 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
     /// the frightened companion who goes anyway, for no reason anybody would
     /// defend once it is written down.
     public let casting: Set<CompanionRole>
+    /// Yol arkadaşının **ne olması gerektiği** — bunlardan biri (30 Ekim 2026).
+    ///
+    /// `ContentExclusions.nature`'ın karşılığı. O "bu masalın arkadaşı bir
+    /// yetişkin olmaz" diyebiliyordu; bunu söyleyemiyordu: *bu masal bir
+    /// mesleğin masalı, yani arkadaşı bir insan olmak zorunda.*
+    ///
+    /// Yeteneğin yerine geçmiyor. "Fırıncı" bir yetenek değil, bir meslek;
+    /// `hasLocalKnowledge` onu taklit etmeye çalışsa da bir ayı da yerini
+    /// bilir. Meslek masalının arkadaşının insan olması bir tat değil, şart.
+    public let nature: Set<CompanionNature>
 
     public init(
         setting: TraitRequirement<SettingTrait> = [],
         companion: TraitRequirement<CompanionTrait> = [],
         discovery: TraitRequirement<DiscoveryTrait> = [],
         casting: Set<CompanionRole> = [],
-        thresholdKind: Set<ThresholdKind> = []
+        thresholdKind: Set<ThresholdKind> = [],
+        nature: Set<CompanionNature> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
         self.casting = casting
         self.thresholdKind = thresholdKind
+        self.nature = nature
     }
 
     public var isEmpty: Bool {
         setting.isEmpty && companion.isEmpty && discovery.isEmpty
-            && casting.isEmpty && thresholdKind.isEmpty
+            && casting.isEmpty && thresholdKind.isEmpty && nature.isEmpty
     }
 
     public init(from decoder: Decoder) throws {
@@ -328,6 +345,7 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
         discovery = try container.decodeIfPresent(TraitRequirement<DiscoveryTrait>.self, forKey: .discovery) ?? []
         casting = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .casting) ?? []
         thresholdKind = try container.decodeIfPresent(Set<ThresholdKind>.self, forKey: .thresholdKind) ?? []
+        nature = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .nature) ?? []
     }
 }
 

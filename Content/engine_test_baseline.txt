@@ -23,6 +23,13 @@
 # - MatrixCoverageTests / OfflineCompositionTests / PilotBlueprintTests:
 #   A turundan önce de kırmızıydı (bkz. 21 Ekim kaydı).
 #
+# 30 Ekim 2026, faz-21-varyasyon: 896 test, 8 vaka, 2 atlanan. Vaka listesi
+#   DEĞİŞMEDİ. Üç meslek blueprint'i, 38 yeni satır ve beş yeni eksen girdi;
+#   dokuz vaka kırmızıya döndü ve dokuzu da önerme/model düzeltmesiyle kapandı,
+#   hiçbiri bu listeye eklenmedi. İkisi ölçümle çözüldü (ProseCooldownTests
+#   uzun vadeli iddiayı 12 masalla ölçüyordu, UsageLearningTests istatistik
+#   eğilimi tek arkadaşla); dördü seed kayması; üçü testin kendi modeli.
+#
 # Kendiliğinden yeşile dönüp bu listeden çıkanlar:
 # - A turundan sonra: OfflineDeterminismTests.testContentSelectionStillFollowsCatalogOrder,
 #   SettingAxisTests.testAskingForAnExplainedDiscoveryIsRefusedWithItsReason.

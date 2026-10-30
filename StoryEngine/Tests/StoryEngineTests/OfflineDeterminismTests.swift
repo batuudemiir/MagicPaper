@@ -43,7 +43,11 @@ final class OfflineDeterminismTests: XCTestCase {
         // (`bp_charge_release_age3_001`) havuza girdi ve bu seed ona düştü.
         // Seed kaymasının kullanıcıya etkisi yok — saklanan masallar üretilmiş
         // metni tutuyor (K1) — ama bu testin işi tam olarak kaymayı söylemek.
-        XCTAssertEqual(story.blueprintID.rawValue, "bp_charge_release_age3_001",
+        // Yeniden sabitlendi 30 Ekim 2026: havuza üç meslek blueprint'i girdi
+        // ve sıralama değişti. Bu kez masal BANT da değiştirdi — 3-4'ün
+        // `lettingGo`'sundan 5-6'nın `cooperation`'ına geçti — çünkü bu niyet
+        // bant bildirmiyor ve bütün bantlar aday.
+        XCTAssertEqual(story.blueprintID.rawValue, "blueprint_appeal_together_001",
                        "The shape this seed resolves to moved.")
         // Re-pinned 2026-09-18 after D3 made Schema 2 canonical. The seed itself
         // did not move; the catalog it resolves against did — the five pilot
@@ -63,9 +67,9 @@ final class OfflineDeterminismTests: XCTestCase {
         // ve Pazar Yeri havuza girdi. Şekil aynı kaldı (3-4'ün `lettingGo`'su),
         // ona bağlanan içerik kaydı. İnsanların kendisi bu masala GİRMİYOR —
         // 3-4 havuzunda sıraları değiştirmeleri yeterli oldu.
-        XCTAssertEqual(story.content.setting.id.rawValue, "setting_cloud_kingdom_001")
-        XCTAssertEqual(story.content.companion.id.rawValue, "companion_owl_pilot_001")
-        XCTAssertEqual(story.content.discovery.id.rawValue, "object_seed_001")
+        XCTAssertEqual(story.content.setting.id.rawValue, "setting_whispering_forest_001")
+        XCTAssertEqual(story.content.companion.id.rawValue, "companion_hedgehog_pilot_001")
+        XCTAssertEqual(story.content.discovery.id.rawValue, "object_dropped_mitten_001")
         // Yeniden sabitlendi 21 Ekim 2026 (ikinci kez, havuz diriltmesi): v2
         // kütüphanesindeki 44 kayıt etiketlenip havuza katılınca bu seed
         // orman + tavşan yerine mağara + robot bağladı. Determinizm bozulmadı
@@ -79,19 +83,21 @@ final class OfflineDeterminismTests: XCTestCase {
         // Re-pinned 2026-10-23: masal 3-4'ün `lettingGo` şekline düştüğü için
         // başlık da onun kalıplarından geliyor.
         //
-        // Yeniden sabitlendi 29 Ekim 2026: kalıp aynı, adı geçen arkadaş değişti.
-        XCTAssertEqual(story.title, "Yıldız Gitmeye Hazır mı?")
+        // Yeniden sabitlendi 30 Ekim 2026: şekil değiştiği için kalıp kümesi de
+        // değişti; başlık artık `appeal` ailesinin kalıplarından.
+        XCTAssertEqual(story.title, "Fısıldayan Orman'da Birlikte")
 
         // The lines themselves, which is what a child would notice changing.
-        // Sekiz satır, on bir değil: 3-4 masalı altı sayfa ve bu bir eksiklik
-        // değil, o bandın yayı.
+        // On satır: 5-6 masalı sekiz sayfa ve iki sayfası destek beat'i
+        // taşıyor. 30 Ekim'e kadar bu liste sekiz satırlıktı çünkü seed 3-4'e
+        // düşüyordu; bant değişti, satır sayısı onunla değişti.
         XCTAssertEqual(
             story.pages.flatMap { $0.variantIDs.map(\.rawValue) },
-            ["na3_03", "mc3_01", "ra3_03", "cm3_03", "td3_04", "lg3_04",
-             "rs3_07", "wc3_01"],
+            ["na_neutral_05", "ap_s_06", "mc_care_04", "ra_p_07", "cm_p_07",
+             "ob_gen_02", "fa_s_01", "ce_s_08", "rs_any_05", "wc_s_both_01"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "4d6b1bdae71138b1")
+        XCTAssertEqual(story.fingerprint, "a7fd601ec0f44208")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -102,7 +108,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "4d6b1bdae71138b1")
+        XCTAssertEqual(again.fingerprint, "a7fd601ec0f44208")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.

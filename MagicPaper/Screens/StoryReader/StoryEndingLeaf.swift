@@ -147,6 +147,8 @@ struct StoryEndingLeaf: View {
                 }
             }
 
+            if let fact = story.fact { factLeaf(fact) }
+
             if StoryColophon.hasDedication(story) { colophon }
 
             SeriesEndingSection(story: story, theme: theme, accent: accent)
@@ -166,6 +168,44 @@ struct StoryEndingLeaf: View {
         // Okuyucunun kapat düğmesinin altından başlar.
         .padding(.top, MP.S.navBarHeight + MPSpacing.xxxl)
         .padding(.bottom, MPSpacing.xxxl)
+    }
+
+    /// Masalın sonunda tek bir gerçek bilgi (30 Ekim 2026).
+    ///
+    /// Kutucuk değil: yukarıdaki döşemeler sayılar için, bu bir cümle. Künyenin
+    /// diliyle yazıldı — ince bir çizgi ve sessiz bir satır — çünkü gerçek bir
+    /// çocuk kitabı da bilgiyi arkaya, sakin bir sayfaya koyar.
+    ///
+    /// Kaynak yalnızca varsa görünüyor: dışarıdan doğrulanmış bir iddianın
+    /// kaynağı vardır ve gösterilmesi gerekir; gündelik bir gözlemin yoktur
+    /// (karar: 30 Ekim 2026). Bağlantı **tıklanabilir değil**, çünkü burası
+    /// çocuğun alanı ve çocuk alanında dış bağlantı yok (CLAUDE.md).
+    ///
+    /// Yalnızca gündüz yaprağında: uyku yaprağı bilerek çıplak, ve uyku
+    /// masallarının olgusu da yok.
+    private func factLeaf(_ fact: StoryFact) -> some View {
+        VStack(spacing: MP.S.x3) {
+            Rectangle().fill(theme.muted.opacity(0.3))
+                .frame(width: MP.S.x9, height: 1)
+                .accessibilityHidden(true)
+            Text("Bunu biliyor muydun?")
+                .font(MP.F.labelSM(.semibold))
+                .foregroundStyle(theme.muted)
+            Text(fact.statement)
+                .mpText(.body)
+                .foregroundStyle(theme.foreground)
+                .multilineTextAlignment(.center)
+            if let source = fact.sourceName {
+                Text("Kaynak: \(source)")
+                    .font(MP.F.caption())
+                    .foregroundStyle(theme.muted)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "Bunu biliyor muydun? \(fact.statement)"
+            + (fact.sourceName.map { " Kaynak: \($0)." } ?? ""))
     }
 
     /// Kitabın son sayfasındaki künye: "MagicPaper Kitaplığı · İrem'in 12. masalı".

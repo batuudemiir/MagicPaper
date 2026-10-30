@@ -61,6 +61,11 @@ enum OfflineStoryMapper {
             )
         )
         story.currentProgress = nil
+        // Olgu metne değil kapanış yaprağına gidiyor; motor onu zaten onaylı ve
+        // banda uygun olarak süzmüş veriyor.
+        story.fact = composed.fact.map {
+            StoryFact(statement: $0.statement, sourceName: $0.sourceName, sourceURL: $0.sourceURL)
+        }
         return story
     }
 

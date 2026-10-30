@@ -121,19 +121,48 @@ final class StoryTopicTests: XCTestCase {
     // MARK: - Yalnızca kurulabilen teklif edilir
 
     /// Tutulamayacak söz hiç verilmez (§29).
+    ///
+    /// Önermesi 30 Ekim 2026'da düzeltildi, ve düzeltme gevşetme değil —
+    /// testin modeli yanlıştı. Eskiden kataloğun **rastgele bir** öğrenelim
+    /// blueprint'ini alıp konuyla bağlamaya çalışıyordu, yani sessizce
+    /// "her blueprint her konuyu taşıyabilmeli" diyordu. Konu olay örgüsünü de
+    /// süzmeye başlayınca (`Slots.plot`) o varsayım çöktü: meslek konusu
+    /// meslek hakkında OLMAYAN bir şekli artık reddediyor, ve reddetmesi
+    /// doğrusu.
+    ///
+    /// Korunan davranış hiç değişmedi: teklif edilen konu gerçekten masal
+    /// vermeli. Yalnızca ölçüm doğru yere taşındı — çocuğun aldığı şey bir
+    /// bağlama değil, bir masal, o yüzden artık `compose` sorulması gerekiyor.
     func testOnlyBuildableTopicsAreOffered() throws {
         let offered = BlueprintSelector().availableTopics(
             catalog: catalog, intent: intent(nil))
         let declared = catalog.storyTopics(for: .learning)
 
         XCTAssertLessThanOrEqual(offered.count, declared.count)
-        // Teklif edilen her konu gerçekten kurulabilmeli.
         for topic in offered {
             XCTAssertNoThrow(
-                try OfflineContentBinder().bind(
-                    blueprint: try blueprint(for: .learning), catalog: catalog,
-                    intent: intent(topic.id.rawValue)),
-                "\(topic.id.rawValue) teklif edildi ama kurulmuyor")
+                try OfflineStoryComposer().compose(
+                    catalog: catalog, intent: intent(topic.id.rawValue)),
+                "\(topic.id.rawValue) teklif edildi ama masal vermiyor")
+        }
+    }
+
+    /// Teklif edilmeyen konu **kurulamıyor** olmalı, yoksa kapı gereğinden
+    /// fazla kapatıyor demektir (30 Ekim 2026).
+    ///
+    /// Önceki test "teklif edilen kurulur" diyor; bu onun diğer yarısı. İkisi
+    /// birden olmadan kapı tek yönlü denetlenir: her şeyi reddeden bir kapı da
+    /// ilk testi geçer.
+    func testAnUnofferedTopicReallyCannotBeBuilt() throws {
+        let offeredIDs = Set(BlueprintSelector()
+            .availableTopics(catalog: catalog, intent: intent(nil))
+            .map(\.id))
+        let unoffered = catalog.storyTopics(for: .learning).filter { !offeredIDs.contains($0.id) }
+        for topic in unoffered {
+            XCTAssertThrowsError(
+                try OfflineStoryComposer().compose(
+                    catalog: catalog, intent: intent(topic.id.rawValue)),
+                "\(topic.id.rawValue) kurulabiliyor ama teklif edilmiyor")
         }
     }
 

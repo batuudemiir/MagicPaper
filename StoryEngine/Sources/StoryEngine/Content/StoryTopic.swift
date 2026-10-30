@@ -55,12 +55,31 @@ public struct CatalogStoryTopic: Codable, Sendable, Hashable, Identifiable {
         public let setting: [InterestTag]
         public let companion: [InterestTag]
         public let discovery: [InterestTag]
+        /// **Olay örgüsünün kendisi** (karar: 30 Ekim 2026, Batuhan).
+        ///
+        /// Üç yuva "masalda kim var, nerede, ne bulundu" diyor; hiçbiri "masal
+        /// NE HAKKINDA" demiyor. Ölçüm bu boşluğu gösterdi: "Meslekler"
+        /// seçilen bir masalda öğretmen vardı, ama masal titrek bir ışık
+        /// hakkındaydı ve öğretmenin mesleği hiçbir şey yapmıyordu. Kayıt
+        /// süzüldüğü hâlde söz tutulmuyordu.
+        ///
+        /// Bu yuva `CatalogBlueprint.interests`'e bakıyor — o alan zaten tam
+        /// bunu söylüyor: *"bağlanan içerikten bağımsız olarak masalın
+        /// kendisinin neyle ilgili olduğu"*. Yani yeni bir eksen icat
+        /// edilmedi, var olanı konu kapısına bağladı.
+        ///
+        /// Bedeli bilinçli: bir blueprint bu sözcüğü ancak PROZASI o işi
+        /// gerçekten anlatıyorsa bildirir. Bildiren üçten az blueprint
+        /// kalırsa konu `minimumMechanisms` kapısından geçmez ve ekrandan
+        /// kalkar (karar: söz önce gelir).
+        public let plot: [InterestTag]
 
         public init(setting: [InterestTag] = [], companion: [InterestTag] = [],
-                    discovery: [InterestTag] = []) {
+                    discovery: [InterestTag] = [], plot: [InterestTag] = []) {
             self.setting = setting
             self.companion = companion
             self.discovery = discovery
+            self.plot = plot
         }
 
         public init(from decoder: Decoder) throws {
@@ -68,16 +87,17 @@ public struct CatalogStoryTopic: Codable, Sendable, Hashable, Identifiable {
             setting = try c.decodeIfPresent([InterestTag].self, forKey: .setting) ?? []
             companion = try c.decodeIfPresent([InterestTag].self, forKey: .companion) ?? []
             discovery = try c.decodeIfPresent([InterestTag].self, forKey: .discovery) ?? []
+            plot = try c.decodeIfPresent([InterestTag].self, forKey: .plot) ?? []
         }
 
         /// Hiçbir yuva şart koşmuyorsa bu konu hiçbir şey vaat etmiyor demektir.
         /// Böyle bir konu her masalı kabul eder, yani ekranda bir seçim gibi
         /// görünüp hiçbir şey seçmez. `CatalogIntegrity` bunu hata sayar.
         public var isEmpty: Bool {
-            setting.isEmpty && companion.isEmpty && discovery.isEmpty
+            setting.isEmpty && companion.isEmpty && discovery.isEmpty && plot.isEmpty
         }
 
-        public var allTags: [InterestTag] { setting + companion + discovery }
+        public var allTags: [InterestTag] { setting + companion + discovery + plot }
     }
 
     public init(id: ContentID, mode: StoryMode, name: String, symbol: String? = nil,
@@ -107,6 +127,16 @@ public struct CatalogStoryTopic: Codable, Sendable, Hashable, Identifiable {
 
     public func rejection(discovery record: CatalogObject) -> String? {
         reason(requires.discovery, record.interests, slot: "bulunan şey")
+    }
+
+    /// Olay örgüsü bu konu hakkında mı?
+    ///
+    /// Diğer üçünden farkı şu: bu reddi **kayıt bağlanmadan önce**, blueprint
+    /// seçilirken veriliyor (`BlueprintSelector.admissible`). Bir şekil konu
+    /// hakkında değilse o şekille kurulacak hiçbir bağlama onu konu hakkında
+    /// yapamaz — meseleyi başka hayvanla çözmeye çalışmanın ta kendisi bu.
+    public func rejection(blueprint record: CatalogBlueprint) -> String? {
+        reason(requires.plot, record.interests, slot: "olay örgüsü")
     }
 
     private func reason(_ wanted: [InterestTag], _ offered: [InterestTag], slot: String) -> String? {

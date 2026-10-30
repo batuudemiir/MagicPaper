@@ -302,7 +302,8 @@ struct StoryCreationFlow: View {
             )
         case .companion:
             CompanionStep(
-                ideaID: nil, mode: chosenMode, age: age, childName: profile?.name ?? "",
+                ideaID: nil, mode: chosenMode, age: age, topicID: chosenTopicID,
+                childName: profile?.name ?? "",
                 childColor: profile?.mpColor, source: source,
                 familyCharacters: familyCharacters,
                 availableRelations: familyRelations,

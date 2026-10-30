@@ -62,7 +62,11 @@ final class CatalogBundleTests: XCTestCase {
         // 17 with the two bedtime-arc blueprints (uyku arkı, 21 Ekim 2026).
         // 18 with 3-4'ün ikinci mekanizması (`lettingGo`, 23 Ekim 2026): o bant
         // tek şekle kilitliydi ve tekrar oranı %83'tü.
-        XCTAssertEqual(catalog.blueprints.count, 18)
+        // 21 ile üç meslek blueprint'i (30 Ekim 2026): "Meslekler" konusu
+        // artık olay örgüsünü de şart koşuyor (`Slots.plot`), ve bir şekil o
+        // sözcüğü ancak PROZASI o işi anlatıyorsa bildirebilir. Üçü üç ayrı
+        // mekanizma: seekingKnowledge, patientObservation, perspectiveShift.
+        XCTAssertEqual(catalog.blueprints.count, 21)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -103,7 +107,9 @@ final class CatalogBundleTests: XCTestCase {
         // Mevcut 35 satır hayvan/fantastik olana kapatıldı (satır sayısı
         // değişmedi, kapıları değişti); insana giden satırlarda çocuk ona
         // gidiyor, o çocuğa yaklaşmıyor.
-        XCTAssertEqual(catalog.recordCounts["variants"], 721)
+        // 721 → 759 (30 Ekim 2026): 36 zanaat satırı (üç beat × üç meslek ×
+        // dört satır) + `succeed`'in `exchange_views` grubuna iki satır.
+        XCTAssertEqual(catalog.recordCounts["variants"], 759)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

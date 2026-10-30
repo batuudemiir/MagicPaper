@@ -37,33 +37,52 @@ final class CuratedFactTests: XCTestCase {
 
     // MARK: - Yayınlanan sekiz olgu
 
-    /// Sekizi de onaylı, 5-6 için yazılmış, ve kaynağı tam.
+    /// Hepsi onaylı, 5-6 için yazılmış, ve dayanağına uygun.
     ///
-    /// Kaynak alanları boş geçilemiyor (decoder hata veriyor), ama "var" ile
-    /// "anlamlı" ayrı şeyler: bu test adresin gerçekten bir adres, tarihin
-    /// gerçekten bir tarih olduğuna bakıyor.
-    func testEveryShippedFactIsApprovedAndSourced() throws {
-        // İkisi: inceleme dosyasında sekiz onaylı olgu var ama katalog yalnızca
-        // bir çocuğa ULAŞABİLENİ taşıyor. Diğer altısının konusu havuzda yok
-        // (Ay yok, Güneş yok, düşen bir şey yok) ve konusu olmayan olguyu
-        // katalogda tutmak ölü içeriktir. Keşif yazıldığı gün bu sayı büyür.
-        XCTAssertEqual(catalog.facts.count, 2)
+    /// "Dayanağına uygun" 30 Ekim'de iki kola ayrıldı (karar: karma kaynak).
+    /// Kaynak alanları `sourced` olguda boş geçilemiyor (decoder hata veriyor),
+    /// ama "var" ile "anlamlı" ayrı şeyler: bu test adresin gerçekten bir
+    /// adres, tarihin gerçekten bir tarih olduğuna bakıyor. `editorial` olguda
+    /// kaynağın **bulunmaması** denetleniyor — yanlış etiketlenmiş bir kaydı
+    /// kaynaksız göstermek, kaynaksızlığın yayılma yolu.
+    func testEveryShippedFactIsApprovedAndMatchesItsBasis() throws {
+        // Beş: iki bilim olgusu (NASA) + üç meslek olgusu (editoryal, onay:
+        // Batuhan, 30 Ekim). İnceleme dosyasında daha fazla onaylı bilim olgusu
+        // var ama katalog yalnızca bir çocuğa ULAŞABİLENİ taşıyor: konusu
+        // havuzda olmayan olguyu katalogda tutmak ölü içeriktir.
+        XCTAssertEqual(catalog.facts.count, 5)
         let band = AgeBand(lowerBound: 5, upperBound: 6)
         for fact in catalog.facts {
             XCTAssertTrue(fact.isApproved, fact.id.rawValue)
             XCTAssertEqual(fact.bands, [band], "\(fact.id.rawValue): olgular yalnızca 5-6'ya yazılabilir")
-            XCTAssertTrue(fact.sourceURL.hasPrefix("https://"), fact.id.rawValue)
-            XCTAssertFalse(fact.sourceName.trimmingCharacters(in: .whitespaces).isEmpty, fact.id.rawValue)
             XCTAssertNotNil(ISO8601DateFormatter.date(fromDay: fact.verifiedOn),
                             "\(fact.id.rawValue): doğrulama tarihi bir tarih değil (\(fact.verifiedOn))")
             XCTAssertFalse(fact.statement.hasSuffix(":"), fact.id.rawValue)
+            switch fact.basis {
+            case .sourced:
+                XCTAssertTrue(fact.sourceURL?.hasPrefix("https://") ?? false, fact.id.rawValue)
+                XCTAssertFalse(fact.sourceName?.trimmingCharacters(in: .whitespaces).isEmpty ?? true,
+                               fact.id.rawValue)
+            case .editorial:
+                XCTAssertNil(fact.sourceName, "\(fact.id.rawValue): editoryal olgu kaynak taşımaz")
+                XCTAssertNil(fact.sourceURL, "\(fact.id.rawValue): editoryal olgu kaynak taşımaz")
+                // Sayı bir iddiadır ve dayanak ister; denetim kuralı da bu.
+                XCTAssertFalse(fact.statement.contains(where: \.isNumber),
+                               "\(fact.id.rawValue): editoryal olgu sayı taşıyor")
+            }
         }
     }
 
-    /// Hepsi NASA Space Place'ten, ve bu kayıtlı: provenans bir turda
-    /// sessizce genişlemesin.
-    func testEveryShippedFactComesFromTheRecordedSource() {
-        XCTAssertEqual(Set(catalog.facts.map { URL(string: $0.sourceURL)?.host }), ["spaceplace.nasa.gov"])
+    /// Kaynaklı olguların hepsi NASA Space Place'ten, ve bu kayıtlı: provenans
+    /// bir turda sessizce genişlemesin. Editoryal olgular bu soruya girmiyor —
+    /// onların provenansı bizim onayımız.
+    func testEverySourcedFactComesFromTheRecordedSource() {
+        let hosts = Set(catalog.facts
+            .filter { $0.basis == .sourced }
+            .map { $0.sourceURL.flatMap(URL.init(string:))?.host })
+        XCTAssertEqual(hosts, ["spaceplace.nasa.gov"])
+        XCTAssertEqual(catalog.facts.filter { $0.basis == .editorial }.count, 3,
+                       "üç meslek olgusu editoryal; dördüncüsü eklenirse kararı yazılmalı")
     }
 
     /// Her olgu bir keşfe bağlı olmalı, yoksa hiçbir masala eşlik etmez.
@@ -74,7 +93,7 @@ final class CuratedFactTests: XCTestCase {
     /// aynısıdır.
     func testEveryShippedFactReachesADiscovery() throws {
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
-        let orphans = report.issues(withCode: "fact_reaches_no_discovery")
+        let orphans = report.issues(withCode: "fact_reaches_no_record")
         XCTAssertTrue(orphans.isEmpty,
                       "hiçbir keşfe bağlanmamış olgu:\n"
                       + orphans.map { "  " + $0.message }.joined(separator: "\n"))

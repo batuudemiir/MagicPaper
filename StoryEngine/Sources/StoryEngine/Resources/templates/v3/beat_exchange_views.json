@@ -3,7 +3,7 @@
   "beat": "exchange_views",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-2. Two people each held half the truth. NEITHER is at fault and neither is corrected — both were right about what they could see (catalog V-2 safety). The resolution is understanding, not winning, and the child listens at least as much as they explain. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family V-2. Two people each held half the truth. NEITHER is at fault and neither is corrected — both were right about what they could see (catalog V-2 safety). The resolution is understanding, not winning, and the child listens at least as much as they explain. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7. İnsan yol arkadaşı (30 Ekim 2026): bu beat'in genel satırları hayvana ve fantastik olana kapatıldı, ve her meslek için dört satır yazıldı. Sebep editoryal: bu sayfada bir yetişkin varsa, onun cevabı KENDİ İŞİNDEN gelmeli — mesleği hiçbir şey yapmayan bir yetişkin, masala girmesi gereksiz bir yetişkindir. Zanaat satırı asla mesleksiz bir arkadaşa düşmüyor (`occupationRequire`, esnemeyen süzgeç).",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared"
   },
@@ -16,7 +16,11 @@
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "each_told_their_half"
+      "move": "each_told_their_half",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_02",
@@ -25,25 +29,39 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "both_right_both_partial"
+      "move": "both_right_both_partial",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_03",
       "text": "Konuştular. Uzun uzun değil, sadece birkaç cümle. Ama o birkaç cümle aradaki her şeyi düzeltmeye yetti. Konuşmadan anlaşmak mümkün değilmiş.",
       "requiredSlots": [],
       "lengthClass": "solo",
-      "move": "a_few_sentences_was_enough"
+      "move": "a_few_sentences_was_enough",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_04",
       "text": "{{companion.name}} kendi gördüğünü anlattı. {{child.name}} dinledi ve kafasındaki resim tamamen değişti. Kimse yanılmamıştı aslında. Sadece farklı yerlerden bakmışlardı.",
-      "words": ["w56_yanilmak"],
+      "words": [
+        "w56_yanilmak"
+      ],
       "requiredSlots": [
         "child.name",
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "the_picture_changed"
+      "move": "the_picture_changed",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_05",
@@ -53,7 +71,11 @@
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "pieces_put_together"
+      "move": "pieces_put_together",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_06",
@@ -62,7 +84,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "listened_first_then_spoke"
+      "move": "listened_first_then_spoke",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_07",
@@ -72,7 +98,11 @@
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "two_halves_of_one_story"
+      "move": "two_halves_of_one_story",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ev_s_08",
@@ -82,7 +112,203 @@
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "both_apologised_at_once"
+      "move": "both_apologised_at_once",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "ev_s_bk_01",
+      "text": "{{child.name}} o an gördüğünü anlattı, {{companion.name}} hamurdan bildiğini. İkisi de doğruydu. Yan yana koyunca tek bir cevap çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_moment_and_every_morning",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ev_s_bk_02",
+      "text": "\"Ben buradan öyle gördüm,\" dedi {{child.name}}. \"Ben de fırının önünden böyle,\" dedi {{companion.name}}. İki yarım bir bütün etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "from_here_and_from_the_oven",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ev_s_bk_03",
+      "text": "{{companion.name}} her sabahı anlattı, {{child.name}} yalnızca bu sabahı. İkisi de eksikti, ikisi de haklıydı. Birbirini dinleyince ikisi birden anladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "both_partial_both_right",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ev_s_bk_04",
+      "text": "{{child.name}} önce dinledi, sonra kendi gözüyle gördüğünü anlattı. {{companion.name}} elini önlüğünde sildi. \"Bunu hiç böyle düşünmemiştim,\" dedi. İkisi güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "never_thought_of_it_that_way",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ev_s_pm_01",
+      "text": "{{child.name}} kapının önünden gördüğünü anlattı, {{companion.name}} sokağın öbür ucundan. Aynı şeyi iki yerden görmüşlerdi. İkisi yarımdı, birlikte tamdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "from_the_door_and_the_street",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ev_s_pm_02",
+      "text": "\"Bu köyün bütün sokaklarını bilirim,\" dedi {{companion.name}}, \"ama bunu hiç görmemiştim.\" {{child.name}} gülümsedi. Biri yolu biliyordu, biri o anı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "knows_the_streets_but_not_this",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ev_s_pm_03",
+      "text": "{{companion.name}} anlattı, {{child.name}} hiç sözünü kesmeden dinledi. Sonra {{child.name}} anlattı ve {{companion.name}} dinledi. İkisinin bildiği eksikti, ikisi birden tamamlandı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "each_listened_in_turn",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ev_s_pm_04",
+      "text": "{{child.name}} \"Sen buradan her gün geçiyorsun,\" dedi. \"Sen bugün durup baktın,\" dedi {{companion.name}}. Cevap ikisinin tam ortasında duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "you_pass_daily_you_stopped",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ev_s_tc_01",
+      "text": "{{child.name}} sorusunu baştan anlattı, {{companion.name}} kitaptan bildiğini. Birbirini dikkatle dinlediler. İkisi de yanılmamıştı; ikisi de yalnızca yarısını görmüştü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "neither_was_wrong",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ev_s_tc_02",
+      "text": "{{companion.name}} \"Ben bunu kitapta okudum,\" dedi. \"Ben dışarıda, kendi gözümle gördüm,\" dedi {{child.name}}. İkisi yan yana gelince cevap ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "read_in_a_book_saw_outside",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ev_s_tc_03",
+      "text": "{{child.name}} uzun uzun dinledi, sonra kendi düşüncesini söyledi. {{companion.name}} defterini açıp bir şey yazdı. \"Bunu bugün senden öğrendim,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "i_learned_this_from_you",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ev_s_tc_04",
+      "text": "İkisi sırayla konuştu, kimse sözünü kesmedi. {{child.name}} bir yarısını biliyordu, {{companion.name}} öbür yarısını. Kimse haklı çıkmaya çalışmadı, ikisi anlamaya çalıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "nobody_tried_to_win",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
     }
   ]
 }

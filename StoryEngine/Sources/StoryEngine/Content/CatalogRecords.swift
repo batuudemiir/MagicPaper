@@ -132,6 +132,36 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     /// What this companion is. An undeclared record reads as `.animal`, which
     /// is what every record in the shipped pool is.
     public var nature: CompanionNature { declaredNature ?? .animal }
+    /// Mesleği, insan yol arkadaşlarında (30 Ekim 2026).
+    ///
+    /// Planın B-ön 1'inde söz verilip ertelenen alan: *"insana meslek,
+    /// hayvana tür bilgisi gibi alanlar türe özel modellenir."*
+    ///
+    /// Neden yeteneğe (`traits`) sığmıyor: `hasLocalKnowledge` bir ayı için de
+    /// doğru. Neden ilgi sözcüğüne (`interests`) sığmıyor: ilgi sözlüğü
+    /// ebeveyne "Neleri sever?" çipi olarak gösteriliyor, oraya `baker`
+    /// koymak ürün yüzeyini kirletir. Mesleğin tek işi var ve o işi hiçbir
+    /// mevcut alan yapamıyor: **prozanın zanaatı adıyla anabilmesi.**
+    /// Fırıncı hamuru dinlendirir, postacı yolları bilir; bunu bilmeyen bir
+    /// satır meslek masalı yazamaz, yalnızca içinde bir yetişkin bulunan
+    /// masal yazar — ölçülen kusur tam olarak buydu.
+    ///
+    /// Kapalı bir enum değil `ContentTag`, çünkü meslek listesi uzaktan
+    /// büyüyebiliyor (FAZ 15) ve kapalı bir enum o paketi decode edilemez
+    /// yapardı. Yazım hatasının sessiz kalmaması `CatalogIntegrity`'nin işi.
+    public let occupation: Occupation?
+    /// Bu arkadaşın bilgisi: masala eşlik eden küratörlü olgu (30 Ekim 2026).
+    ///
+    /// Keşfin olgusuyla (`CatalogObject.factID`) aynı tip, farklı sahip. "Ay'ın
+    /// kendi ışığı yoktur" çocuğun merak ettiği şeyin olgusudur; "fırıncılar
+    /// hamuru dinlendirir" kimsenin merak ettiği bir nesnenin değil, **o
+    /// kişinin zanaatının** olgusu. Mesleği keşfe iliştirmek, 23 Ekim'de
+    /// ayrılan "kim" ve "ne bulundu" eksenlerini geri karıştırmak olurdu.
+    ///
+    /// Masal başına yine en çok bir olgu: hangisinin taşındığına
+    /// `OfflineStoryComposer` karar veriyor ve kuralı tek cümle — olgu,
+    /// blueprint'in *neyle ilgili olduğunu bildirdiği* kayıttan gelir.
+    public let factID: ContentID?
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
@@ -147,7 +177,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
         case traits, castRoles
-    , habitat, nature, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
+    , habitat, nature, occupation, factID, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -164,6 +194,8 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         declaredNature = try container.decodeIfPresent(CompanionNature.self, forKey: .nature)
+        occupation = try container.decodeIfPresent(Occupation.self, forKey: .occupation)
+        factID = try container.decodeIfPresent(ContentID.self, forKey: .factID)
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -187,6 +219,8 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         if !castRoles.isEmpty { try container.encode(castRoles, forKey: .castRoles) }
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encodeIfPresent(declaredNature, forKey: .nature)
+        try container.encodeIfPresent(occupation, forKey: .occupation)
+        try container.encodeIfPresent(factID, forKey: .factID)
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)

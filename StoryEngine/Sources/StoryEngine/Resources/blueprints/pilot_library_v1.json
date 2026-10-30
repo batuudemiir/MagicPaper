@@ -442,7 +442,9 @@
       "castRoles": [
         "guide",
         "reassuring"
-      ]
+      ],
+      "occupation": "baker",
+      "factID": "fact_baker_rests_the_dough"
     },
     {
       "id": "companion_postman_001",
@@ -475,7 +477,9 @@
       "castRoles": [
         "guide",
         "reassuring"
-      ]
+      ],
+      "occupation": "postman",
+      "factID": "fact_postman_sorts_by_street"
     },
     {
       "id": "companion_teacher_001",
@@ -507,7 +511,9 @@
       "castRoles": [
         "guide",
         "reassuring"
-      ]
+      ],
+      "occupation": "teacher",
+      "factID": "fact_teacher_writes_the_order"
     }
   ],
   "objects": [
@@ -781,6 +787,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -882,6 +891,9 @@
         "discovery": [
           "impliesNeed",
           "isFragmentary"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -990,6 +1002,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1317,6 +1332,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1412,6 +1430,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1512,6 +1533,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1820,6 +1844,9 @@
         ],
         "companion": [
           "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1918,6 +1945,9 @@
       "forbids": {
         "companion": [
           "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2024,6 +2054,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2126,6 +2159,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2210,6 +2246,9 @@
       "forbids": {
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2295,6 +2334,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2390,6 +2432,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2465,6 +2510,9 @@
       "forbids": {
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2511,6 +2559,322 @@
           "role": "emotional_ending",
           "beat": "warm_close",
           "emotion": "tenderness"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-3j - seekingKnowledge",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Cevabı bilen biri var ve o bunu her gün yapıyor; sormak gerekiyor.",
+      "editorialGuidance": "Bilen kişi cevabı KENDİ İŞİNDEN veriyor, genel bir bilgelikten değil. Çocuk sormayı seçiyor; kurtarılmıyor.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kime Sorulur?",
+        "{{companion.name}} Nasıl Biliyor?",
+        "{{setting.name}}'ndaki Soru",
+        "{{child.name}} Sormaya Gitti",
+        "{{discovery.title}}'in Cevabı Kimde?"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_craftspatience_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-2j - patientObservation",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Zanaat beklemeyi bilir; çocuk o beklemeyi birinden öğreniyor.",
+      "editorialGuidance": "Bekleme işin kuralı olduğu için bekleniyor, sabır dersi olduğu için değil. Hiçbir şey beklemeyi ödüllendirmek için gelmiyor.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Ne Zaman Olur?",
+        "Beklemeyi Bilen {{companion.name}}",
+        "{{setting.name}}'ndaki Bekleyiş",
+        "{{child.name}} Beklemeyi Öğrendi",
+        "{{discovery.title}} ve Sabır"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_twohalves_003",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "misreading",
+      "editorialName": "V-2j - perspectiveShift",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk o anı gördü, zanaat her günü biliyor; gerçek ikisinin arasında.",
+      "editorialGuidance": "İkisi de haklı ve ikisi de eksik; kimse düzeltilmiyor. Yetişkinin her günü, çocuğun o anı kadar yarımdır; 7. sayfada `succeed` kullanılıyor çünkü `restore`'un istediği yardım çağrısı bir yetişkinin ağzına yazılmamış.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kimin Acaba?",
+        "{{companion.name}} Başka Görüyor",
+        "{{setting.name}}'ndaki İki Bakış",
+        "{{child.name}} Dinledi, Sonra Anlattı",
+        "{{discovery.title}}'in İki Yarısı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "supportingBeat": "form_belief",
+          "emotion": "certainty"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "belief_fails",
+          "supportingBeat": "commit",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "exchange_views",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
         }
       ]
     }
@@ -4376,6 +4740,9 @@
       "requires": {
         "companion": [
           "jobs"
+        ],
+        "plot": [
+          "jobs"
         ]
       }
     },
@@ -4515,6 +4882,36 @@
       "sourceName": "NASA Space Place, What Is a Meteor Shower?",
       "sourceURL": "https://spaceplace.nasa.gov/meteor-shower/en/",
       "verifiedOn": "2026-10-23",
+      "review": "approved"
+    },
+    {
+      "id": "fact_baker_rests_the_dough",
+      "statement": "Fırıncı hamuru yoğurduktan sonra üstünü örtüp bekler. Hamur o beklemede kabarır.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
+      "review": "approved"
+    },
+    {
+      "id": "fact_postman_sorts_by_street",
+      "statement": "Postacı yola çıkmadan önce mektupları sokaklara göre ayırır. Aynı sokağın mektupları yan yana durur.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
+      "review": "approved"
+    },
+    {
+      "id": "fact_teacher_writes_the_order",
+      "statement": "Öğretmen anlatacağını önceden sırayla yazar. O sıraya plan denir.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
       "review": "approved"
     }
   ]

@@ -19,6 +19,15 @@ struct Story: Identifiable, Codable, Equatable {
     var language: StoryLanguage
     var status: StoryStatus
     var pages: [StoryPage]
+    /// Masalın sonunda gösterilen, dünya hakkında gerçek bir bilgi (30 Ekim 2026).
+    ///
+    /// Masalın **metninde geçmiyor**, kapanış yaprağında duruyor. Gerçek bir
+    /// çocuk kitabı "Güneş de bir yıldızdır" cümlesini anlatının içine koymaz;
+    /// koyarsa kahramanı olan bir ders sayfası olur. Bilgi arkaya, kaynağıyla.
+    ///
+    /// Optional, çünkü her masalın bilgisi yok ve bu alandan önce yazılmış
+    /// masalların hiç yok (eksik anahtar `nil` olarak decode ediliyor).
+    var fact: StoryFact?
     var coverImageFileName: String? // Changed from Data to filename
     var coverImageUrl: String?
     var createdAt: Date
@@ -248,6 +257,18 @@ struct StoryPage: Identifiable, Codable, Equatable {
 /// `surface`, kelimenin sayfa metnindeki asıl yazılışı ("müjdeliyordu"):
 /// okuyucu paragrafları yeniden dizdiği için karakter ofseti değil, yazılış
 /// taşınır ve paragrafta aranır.
+/// Masalın sonunda gösterilen küratörlü bilgi; motorun `CatalogFact`'inin
+/// ekranın ihtiyacı kadarı.
+///
+/// Kaynak alanları optional, çünkü iki tür bilgi var (karar: 30 Ekim 2026):
+/// dışarıdan doğrulanmış bir iddianın kaynağı vardır ve gösterilir, gündelik
+/// bir gözlemin yoktur. İkisi de onaydan geçmiş olmadan buraya gelmiyor.
+struct StoryFact: Codable, Equatable, Hashable {
+    let statement: String
+    let sourceName: String?
+    let sourceURL: String?
+}
+
 struct StoryWord: Codable, Equatable, Hashable {
     let id: String
     let term: String

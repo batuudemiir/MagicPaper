@@ -769,8 +769,8 @@ public struct CatalogIntegrityChecker: Sendable {
     /// eski bir paketi reddetmek bu kusurdan daha büyük bir kusur olurdu.
     /// Küratörlü olgular (B-ön 2, karar 23 Ekim 2026).
     ///
-    /// Üç kural, üçü de **error**, ve hepsinin sebebi aynı: bir çocuk kitabına
-    /// giren gerçek bilgi, kimsenin hatırlamasına bırakılamaz.
+    /// Dört kural, dördü de **error**, ve hepsinin sebebi aynı: bir çocuk
+    /// kitabına giren gerçek bilgi, kimsenin hatırlamasına bırakılamaz.
     ///
     /// Kurallar keşif üzerinden işliyor çünkü olgu keşfin özelliği
     /// (`CatalogObject.factID`). "Bir masalda en çok bir olgu" kuralının ayrı
@@ -785,32 +785,65 @@ public struct CatalogIntegrityChecker: Sendable {
                                     message: "Olgu '\(fact.id.rawValue)' birden fazla tanımlı; ilki kazanır."))
             }
         }
-        for object in catalog.objects {
-            guard let id = object.factID else { continue }
+        // Editoryal olgu sayı taşıyamaz (karar: 30 Ekim 2026).
+        //
+        // "Karma kaynak" kararının denetlenebilir yarısı. Gözlem ile iddia
+        // arasındaki ayrım editoryal ve makineyle görülemez, ama bir yapısal
+        // işaret var: sayı. "Fırıncılar hamuru dinlendirir" bir gözlemdir;
+        // "hamur 40 dakika dinlenir" bir iddiadır ve dayanak ister. Kuralı
+        // temenni olarak bırakmak, kaynaksızlığın yayılma yolu.
+        for fact in catalog.facts where fact.basis == .editorial {
+            guard fact.statement.contains(where: \.isNumber) else { continue }
+            issues.append(.init(
+                severity: .error, code: "editorial_fact_carries_a_number", recordID: fact.id,
+                message: "Editoryal olgu '\(fact.id.rawValue)' sayı taşıyor. Sayı bir iddiadır; "
+                    + "kaynak ve doğrulama tarihi ister (basis: sourced)."))
+        }
+        // İki taşıyıcı: keşif ve yol arkadaşı (30 Ekim 2026). Kurallar
+        // taşıyıcıya bakmıyor, yalnızca "kim neyi gösteriyor"a.
+        let carriers: [(ContentID, ContentID)] =
+            catalog.objects.compactMap { o in o.factID.map { (o.id, $0) } }
+            + catalog.companions.compactMap { c in c.factID.map { (c.id, $0) } }
+        for (recordID, id) in carriers {
             guard let fact = defined[id] else {
                 issues.append(.init(
-                    severity: .error, code: "unknown_fact", recordID: object.id,
-                    message: "'\(object.id.rawValue)' '\(id.rawValue)' olgusunu gösteriyor, ama "
+                    severity: .error, code: "unknown_fact", recordID: recordID,
+                    message: "'\(recordID.rawValue)' '\(id.rawValue)' olgusunu gösteriyor, ama "
                         + "olgu sözlüğü onu tanımıyor."))
                 continue
             }
             if !fact.isApproved {
                 issues.append(.init(
-                    severity: .error, code: "unapproved_fact", recordID: object.id,
-                    message: "'\(object.id.rawValue)' onaylanmamış bir olguya bağlı "
+                    severity: .error, code: "unapproved_fact", recordID: recordID,
+                    message: "'\(recordID.rawValue)' onaylanmamış bir olguya bağlı "
                         + "('\(id.rawValue)', durum: \(fact.review.rawValue)). Kaynağında "
                         + "doğrulanmamış olgu masala girmez."))
             }
         }
-        // Hiçbir keşfe bağlanmamış olgu, A turunda temizlenen ölü içeriğin
+        // Hiçbir kayda bağlanmamış olgu, A turunda temizlenen ölü içeriğin
         // aynısı: yazılmış, kaynaklanmış, ve hiçbir çocuğa ulaşmıyor.
-        // `warning`, çünkü olgu yazıp keşfini sonra bağlamak meşru bir sıra.
-        let used = Set(catalog.objects.compactMap(\.factID))
+        // `warning`, çünkü olgu yazıp taşıyıcısını sonra bağlamak meşru bir sıra.
+        let used = Set(carriers.map(\.1))
         for fact in catalog.facts where !used.contains(fact.id) {
             issues.append(.init(
-                severity: .warning, code: "fact_reaches_no_discovery", recordID: fact.id,
-                message: "Olgu '\(fact.id.rawValue)' hiçbir keşfe bağlı değil; hiçbir masala "
-                    + "eşlik etmiyor."))
+                severity: .warning, code: "fact_reaches_no_record", recordID: fact.id,
+                message: "Olgu '\(fact.id.rawValue)' hiçbir keşfe ya da yol arkadaşına bağlı "
+                    + "değil; hiçbir masala eşlik etmiyor."))
+        }
+        // Mesleği anan bir satırın o mesleği kimse taşımıyorsa, satır
+        // yazılmış ve ölü: `occupationRequire` dizge tabanlı olduğu için
+        // yazım hatası sessizce hiç eşleşmez. Bu da onun nöbetçisi.
+        let occupations = Set(catalog.companions.compactMap(\.occupation))
+        for template in catalog.templates {
+            for variant in template.variants {
+                let unknown = variant.occupationRequire.subtracting(occupations)
+                guard !unknown.isEmpty else { continue }
+                issues.append(.init(
+                    severity: .error, code: "unknown_occupation", recordID: variant.id,
+                    message: "Satır '\(variant.id.rawValue)' "
+                        + unknown.map(\.rawValue).sorted().joined(separator: ", ")
+                        + " mesleğini istiyor, ama hiçbir yol arkadaşı o mesleği bildirmiyor."))
+            }
         }
         return issues
     }

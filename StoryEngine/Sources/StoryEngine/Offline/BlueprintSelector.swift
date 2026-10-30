@@ -43,6 +43,15 @@ public struct BlueprintSelector: Sendable {
         // the substitution this engine exists to stop.
         let modeProfile = intent.mode.flatMap { catalog.modeProfile($0) }
 
+        // Alt kategori olay örgüsünü de süzüyor (30 Ekim 2026).
+        //
+        // Tanınmayan bir konu burada SESSİZCE nil kalıyor, ve bu bilinçli:
+        // reddin tek yeri `OfflineContentBinder.bind` (`unknownTopic` atıyor).
+        // Burada ikinci bir kopya yazılsa aynı kuralın iki yazılışı olurdu —
+        // bu kod tabanının tekrar tekrar bulduğu kusur. Yani yazım hatası
+        // burada masalı sessizce geçirmiyor, bir adım sonra hata veriyor.
+        let topic = intent.subOption.flatMap { catalog.storyTopic(ContentID($0)) }
+
         for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
             var failures: [String] = []
 
@@ -66,6 +75,10 @@ public struct BlueprintSelector: Sendable {
                     failures.append("every '\(gap.rawValue)' line carries a topic the parent avoids")
                 }
             }
+            // Konunun olay örgüsü sözü. Kayıt eksenleriyle aynı dilde reddediyor,
+            // yalnızca daha erken: şekil konu hakkında değilse hiçbir bağlama
+            // onu konu hakkında yapamaz.
+            if let why = topic?.rejection(blueprint: blueprint) { failures.append(why) }
 
             // The idea narrows; it never relaxes. Combining rather than
             // replacing is what keeps a blueprint's own premise intact — an
@@ -378,7 +391,11 @@ public struct BlueprintSelector: Sendable {
         let binder = OfflineContentBinder()
         return topics.filter { topic in
             var mechanisms = Set<String>()
-            for blueprint in candidates {
+            // Olay örgüsü sözünü tutmayan şekil bu konu için sayılmaz. Aynı
+            // kural `admissible`'da da işliyor; burada ayrıca süzülüyor çünkü
+            // `candidates` konusuz niyetle çıkarıldı ve her konu için
+            // yeniden `admissible` çağırmak aynı işi onlarca kez yapardı.
+            for blueprint in candidates where topic.rejection(blueprint: blueprint) == nil {
                 let probe = OfflineStoryIntent(
                     childName: intent.childName,
                     storyIdeaID: intent.storyIdeaID,
