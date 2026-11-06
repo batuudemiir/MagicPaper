@@ -132,12 +132,21 @@ extension UserProfile {
     var mpAgeRange: MPAgeRange { MPAgeRange.from(age: age) }
 
     /// Avatar rengi addan türetilir; profil ekranında elle de seçilebilir.
-    var mpColor: Color {
-        let palette = MP.C.avatarAccents
+    var mpColor: Color { MP.C.avatarAccents[mpColorIndex] }
+
+    /// `MP.C.avatarAccents` içindeki sıra: seçilmişse o, yoksa addan türeyen.
+    var mpColorIndex: Int {
+        let count = MP.C.avatarAccents.count
         let stored = UserDefaults.standard.integer(forKey: "mp_avatarColor_\(id.uuidString)")
-        if stored > 0, stored - 1 < palette.count { return palette[stored - 1] }
+        if stored > 0, stored - 1 < count { return stored - 1 }
         let sum = name.unicodeScalars.reduce(0) { $0 + Int($1.value) }
-        return palette[sum % palette.count]
+        return sum % count
+    }
+
+    /// Düzenlemeden sonraki yaş. Bant aynıysa yaş değişmez: yalnızca adı
+    /// düzeltmek çocuğun yaşını bandın temsilî yaşına çekmemeli.
+    func ageAfterEdit(to range: MPAgeRange) -> Int {
+        mpAgeRange == range ? age : range.representativeAge
     }
 
     static func storeColorIndex(_ index: Int, for id: UUID) {

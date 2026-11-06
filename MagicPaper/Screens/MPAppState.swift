@@ -73,9 +73,11 @@ enum MPParentRoute: Identifiable, Hashable {
     case shareLink        // 36 · Aileyle paylaş
     case familyCharacters(UUID)  // 14 · Masal ailem, profil düzenlemeden
     case bookCharacter(UUID)     // 13 · Kahraman oluşturucu, profil düzenlemeden
+    case profileEdit(UUID)       // Çocuğun adı, rengi ve yaş bandı
 
     var id: String {
         switch self {
+        case .profileEdit(let i): return "profileEdit-\(i)"
         case .bookExport: return "bookExport"
         case .voiceRecording: return "voiceRecording"
         case .familyMembers: return "familyMembers"
@@ -175,7 +177,14 @@ final class MPAppState: ObservableObject {
         kidPaths[tab, default: []].append(route)
     }
 
-    /// Alt sayfanın "Geri"si: katmandaysa kapanır, yığındaysa bir geri döner.
+    /// Profil sheet'inden "Profili düzenle": sheet kapanır, form ebeveyn
+    /// sekmesinin yığınına itilir.
+    func openProfileEdit(_ id: UUID) {
+        sheet = nil
+        parentRoute = .profileEdit(id)
+    }
+
+    /// Alt sayfanın "Geri"si: bir geri döner.
     func closeKidPage() {
         if isParentMode {
             parentRoute = nil

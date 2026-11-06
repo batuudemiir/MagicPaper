@@ -21,6 +21,12 @@ struct ParentRouteView: View {
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
         case .bookCharacter(let id):
             if let profile = profile(id) { BookCharacterView(profile: profile) }
+        case .profileEdit(let id):
+            if let profile = profile(id) {
+                ProfileCreationView(mode: .addAnother, onCreated: { _ in
+                    app.showToast("Profil güncellendi", symbol: "checkmark")
+                }, editing: profile)
+            }
         }
     }
 

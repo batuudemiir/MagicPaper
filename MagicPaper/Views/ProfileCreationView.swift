@@ -4,11 +4,15 @@ import SwiftUI
 /// Tasarımın yaş aralıkları (5-7, 8-10, 11-12) yerine motorun bantları
 /// (3-4 / 5-6 / 7-8 / 9-10); ilgi seçimi isteğe bağlı, en fazla üç (FAZ 12).
 /// MagicPaper çocuk fotoğrafı istemez ve saklamaz; kimlik bir harf madalyonudur.
+///
+/// `editing` verilirse aynı form mevcut profili düzenler (ebeveyn alanı, tek adım;
+/// ilgi alanlarının kendi sayfası var).
 struct ProfileCreationView: View {
     enum Mode { case first, addAnother }
 
     var mode: Mode = .first
     var onCreated: ((String) -> Void)? = nil
+    var editing: UserProfile? = nil
 
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -30,16 +34,24 @@ struct ProfileCreationView: View {
     /// 07 → 08. "Neleri sever" yalnızca katalog yeterince ilgi sunuyorsa
     /// (FAZ 12 eşiği) ikinci adım olur; yoksa 07'den profil oluşur.
     @State private var step = 1
+    /// Sayfa yeniden göründüğünde kaydedilmemiş düzenleme sıfırlanmasın.
+    @State private var seeded = false
 
-    private var hasInterestStep: Bool { ChildInterests.isShown(interestChoices) }
+    private var hasInterestStep: Bool { editing == nil && ChildInterests.isShown(interestChoices) }
     private var stepCount: Int { hasInterestStep ? 2 : 1 }
     private var title: String { mode == .first ? "Çocuk profili" : "Yeni profil" }
 
     var body: some View {
         VStack(spacing: 0) {
-            MPTopBar(title: title, subtitle: stepCount > 1 ? "\(step) / \(stepCount)" : nil,
-                     onBack: backAction) { EmptyView() }
-                .padding(.horizontal, MPSpacing.screenH)
+            if editing != nil {
+                MPParentHeader(title: "Profili düzenle", onBack: { dismiss() })
+                    .padding(.horizontal, MPSpacing.screenH)
+                    .padding(.top, MPSpacing.lg)
+            } else {
+                MPTopBar(title: title, subtitle: stepCount > 1 ? "\(step) / \(stepCount)" : nil,
+                         onBack: backAction) { EmptyView() }
+                    .padding(.horizontal, MPSpacing.screenH)
+            }
 
             ScrollView(showsIndicators: false) {
                 Group {
@@ -56,8 +68,10 @@ struct ProfileCreationView: View {
                         .foregroundStyle(MPColor.textSecondary)
                         .accessibilityAddTraits(.updatesFrequently)
                 }
-                MPButton(title: "Devam et", fullWidth: true) {
-                    if step == 1 && hasInterestStep {
+                MPButton(title: editing == nil ? "Devam et" : "Kaydet", fullWidth: true) {
+                    if editing != nil {
+                        save()
+                    } else if step == 1 && hasInterestStep {
                         withAnimation(MP.M.gated(MP.M.base)) { step = 2 }
                     } else {
                         create()
@@ -68,8 +82,16 @@ struct ProfileCreationView: View {
             .padding(.horizontal, MPSpacing.xxxl)
             .padding(.vertical, MPSpacing.md)
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
-        .onAppear { interestChoices = StoryChoiceSources.current.interestChoices() }
+        .background((editing == nil ? MPColor.backgroundKid : MPColor.backgroundParent).ignoresSafeArea())
+        .onAppear {
+            interestChoices = StoryChoiceSources.current.interestChoices()
+            if let editing, !seeded {
+                seeded = true
+                name = editing.name
+                colorIndex = editing.mpColorIndex
+                ageRange = editing.mpAgeRange
+            }
+        }
     }
 
     private var backAction: (() -> Void)? {
@@ -85,7 +107,8 @@ struct ProfileCreationView: View {
                 .frame(maxWidth: .infinity)
 
             MPTextField(label: "Çocuğunun adı ne?", placeholder: "Örn. Elif",
-                        text: $name, helper: "Masallarda bu isim geçecek")
+                        text: $name,
+                        helper: editing == nil ? "Masallarda bu isim geçecek" : "Yeni masallarda bu isim geçecek")
                 .textInputAutocapitalization(.words)
                 .onChange(of: name) { _, value in
                     if value.count > 20 { name = String(value.prefix(20)) }
@@ -138,9 +161,12 @@ struct ProfileCreationView: View {
         }
     }
 
-    /// Masal yazılmış bantlar; liste katalogdan gelir, buradan değil.
+    /// Masal yazılmış bantlar; liste katalogdan gelir, buradan değil. Düzenlenen
+    /// profilin bandı listede kalır: sunulmuyor diye sessizce değişmesin.
     private var offeredRanges: [MPAgeRange] {
-        MPAgeRange.authored(StoryChoiceSources.current.authoredBands())
+        let authored = MPAgeRange.authored(StoryChoiceSources.current.authoredBands())
+        guard let current = editing?.mpAgeRange, !authored.contains(current) else { return authored }
+        return MPAgeRange.allCases.filter { authored.contains($0) || $0 == current }
     }
 
     /// Henüz masalı yazılmamış bantlar varsa ebeveyne söylenir.
@@ -193,6 +219,16 @@ struct ProfileCreationView: View {
                        text: "\(trimmedName) neleri sever? En fazla \(ChildInterests.maxSelection) tane seç.")
             InterestChipGrid(choices: interestChoices, selection: $interests)
         }
+    }
+
+    private func save() {
+        guard let editing else { return }
+        let finalName = trimmedName
+        // Renk önce: `updateProfile` yayınlayınca satırlar yeni rengi okusun.
+        UserProfile.storeColorIndex(colorIndex, for: editing.id)
+        profileManager.updateProfile(editing, name: finalName, age: editing.ageAfterEdit(to: ageRange))
+        onCreated?(finalName)
+        dismiss()
     }
 
     private func create() {

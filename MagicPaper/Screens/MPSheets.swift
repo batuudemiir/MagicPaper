@@ -250,7 +250,7 @@ struct ProfileEditSheet: View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
             MPGroupedList(area: .kid) {
                 MPRowButton(systemImage: "pencil", title: "Profili düzenle", action: {
-                    app.closeSheet { app.showProfileAdd = true }
+                    app.openProfileEdit(profile.id)
                 }) { MPChevron() }
 
                 if IllustratedBookAccess.isEnabled() {

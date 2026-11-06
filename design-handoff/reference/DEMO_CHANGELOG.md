@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Hata: "Profili düzenle" yeni profil açıyordu
+
+- Ekranda düzenleme modu yoktu; düğme `showProfileAdd` bayrağını açıyor, ebeveyn farkında olmadan ikinci profil oluşturabiliyordu. `ProfileCreationView(editing:)` eklendi: mevcut ad, renk ve yaş bandıyla dolu tek adım, "Kaydet". Push (`MPParentRoute.profileEdit`).
+- Yaş bandı değişmedikçe yaş korunuyor (`ageAfterEdit`); düzenlenen profilin bandı sunulmasa da listede kalıyor. Renk seçilmemişse addan türeyen renkle başlıyor (`mpColorIndex`).
+- Yardım metni "Yeni masallarda bu isim geçecek": yazılmış masallar saklı metinle kalır, ad değişikliği onlara geçmez. Bilerek değiştirilmedi.
+- Test: 793 test, 0 başarısız, 1 atlandı (3'ü yeni). xcodebuild testlerden sonra kapanmadı, elle sonlandırıldı; `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): dolu form, renk değişikliği, Kaydet, "Profil güncellendi", listede tek profil. Ad ve yaş bandı değiştirme ekranda denenmedi (birim testi yaş mantığını kapsıyor).
+- Dosyalar: `ProfileCreationView`, `MPStoryExtras`, `MPAppState`, `MPSheets`, `ParentRouteView`, `KidCornerTabTests`, bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · Sheet birliği ve üst üste modallar
 
 - Tek sheet sistemi: `app.sheet` kök katmandan gerçek `.sheet(item:)`'a geçti; `MPSheet` artık yalnızca içerik düzeni (scrim, tutamak ve `UIScreen` hesabı kalktı, Kapat `MPCircleButton`). `AccountSignOutSheet` içerik boyunda sistem sheet'i; çıkış başarılı olunca kapanıyor.

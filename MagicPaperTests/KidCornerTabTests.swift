@@ -116,6 +116,37 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertNil(app.parentRoute)
     }
 
+    /// "Profili düzenle" eski hatasına dönmesin: yeni profil akışını açmaz.
+    func testEditingAProfileOpensItsFormNotTheNewProfileFlow() {
+        let app = MPAppState()
+        app.requestParentMode()
+        app.unlockParent()
+        let id = UUID()
+        app.sheet = .profileEdit(id)
+        app.openProfileEdit(id)
+        XCTAssertEqual(app.parentRoute, .profileEdit(id))
+        XCTAssertNil(app.sheet)
+        XCTAssertFalse(app.showProfileAdd)
+    }
+
+    func testEditingKeepsTheExactAgeWhileTheBandStaysTheSame() {
+        let profile = UserProfile(name: "İrem", age: 6)
+        XCTAssertEqual(profile.ageAfterEdit(to: profile.mpAgeRange), 6)
+        let other = MPAgeRange.allCases.first { $0 != profile.mpAgeRange }!
+        XCTAssertEqual(profile.ageAfterEdit(to: other), other.representativeAge)
+        XCTAssertEqual(MPAgeRange.from(age: profile.ageAfterEdit(to: other)), other)
+    }
+
+    /// Seçilmiş renk korunur; seçilmemişse addan türeyen, ekranda görünen renk.
+    func testEditingStartsFromTheColorTheAvatarAlreadyShows() {
+        let profile = UserProfile(name: "İrem")
+        let key = "mp_avatarColor_\(profile.id.uuidString)"
+        defer { UserDefaults.standard.removeObject(forKey: key) }
+        XCTAssertTrue(MP.C.avatarAccents.indices.contains(profile.mpColorIndex))
+        UserProfile.storeColorIndex(2, for: profile.id)
+        XCTAssertEqual(profile.mpColorIndex, 2)
+    }
+
     /// Sheet kapanırken açılan modal yutulur: sıradaki iş kapanış bitince çalışır.
     func testWorkAfterASheetWaitsForItsDismissal() {
         let app = MPAppState()
