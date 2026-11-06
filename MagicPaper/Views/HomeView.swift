@@ -2,9 +2,9 @@ import SwiftUI
 
 /// 11 · Ana sayfa (`AnaSayfa`).
 ///
-/// Sıra teslimdeki gibi: çocuğun başlığı, "Bu akşamın masalı" kartı (4 durum),
-/// haftalık okuma şeridi, Ragi'nin sorusu ve mod şeridi, devam eden seri,
-/// günün masalı. Dünya şeridinin yerinde modlar duruyor: dünyalar içerik
+/// Sıra: çocuğun başlığı ve tek satır yıldız/seri, "Bu akşamın masalı" kartı
+/// (4 durum), mod şeridi, Masallar, devam eden seri, günün masalı. Haftalık
+/// okuma kartı 7 Kasım 2026'da kalktı: aynı bilgi başlık satırında. Dünya şeridinin yerinde modlar duruyor: dünyalar içerik
 /// geldikçe eklenecek (karar 7 Ekim 2026).
 ///
 /// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
@@ -78,21 +78,14 @@ struct HomeView: View {
                 .homeEntrance(2)
             }
 
-            Button { MPHaptics.tap(); app.openKidCorner() } label: {
-                HomeStreakCard(done: streak.thisWeek, streak: streak.currentStreak, todayIndex: todayIndex)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityHint("Benim köşemi açar")
-            .homeEntrance(3)
-
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                    .homeEntrance(4)
+                    .homeEntrance(3)
             }
 
             // Bu akşamın kartı zaten günün masalını gösteriyorsa ikinci kez gösterilmez.
-            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily).homeEntrance(5) }
+            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily).homeEntrance(4) }
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, GunlukLayout.bottomClearance)
@@ -122,10 +115,6 @@ struct HomeView: View {
         case 17..<22: return "İyi akşamlar,"
         default:      return "İyi geceler,"
         }
-    }
-
-    private var todayIndex: Int {
-        (Calendar.current.component(.weekday, from: Date()) + 5) % 7
     }
 
     // MARK: - Bu akşamın masalı

@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Ana sayfa: yinelenen okuma kartı kalktı
+
+- Batuhan'ın kararı: "Bu hafta" kartı (`HomeStreakCard`) silindi; yıldız ve seri başlık satırında (`HomeStatLine`) zaten vardı, ikisi de Köşem'e gidiyordu.
+- Haftanın günlerini çocuk tarafında gösteren tek yer buydu; bu görünüm artık yok. Bilerek kalan: başlık satırı, Köşem'deki sayılar, ebeveyn Özet'indeki haftalık grafik, `MPStreak.thisWeek`.
+- `HomeStatLine` en büyük yazıda kesilmiyor ("0 gün üs..."), alt alta düşüyor (`ViewThatFits`).
+- Test: 793 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Ana sayfa alt bölümü normal yazıda, başlık satırı en büyük yazıda. Görülmedi: devam eden seri durumu, iOS 26 öncesi, SE, Pro Max.
+- Dosyalar: `HomeView`, `MPHomeChrome`, `docs/SAYFA_MIMARISI.md`, bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · "Günlük" sekmesi "Masallar" oldu
 
 - Batuhan'ın kararı: sekme, başlık, Ana sayfa bölümü, VoiceOver ipucu ve sekmeye verilen referanslar "Masallar". Raf alt başlığı "Bütün masallar". Sekme ikonu güneşten açık kitaba (`book`).

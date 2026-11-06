@@ -221,23 +221,41 @@ struct HomeStatLine: View {
     let streak: Int
 
     var body: some View {
+        // Büyük yazıda sığmazsa kesilmez, alt alta düşer.
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: MPSpacing.xs) {
+                starItem
+                Text("·").accessibilityHidden(true)
+                streakItem
+            }
+            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                starItem
+                streakItem
+            }
+        }
+        .mpText(.footnote)
+        .foregroundStyle(MPColor.textSecondary)
+        .frame(minHeight: MPSize.minTouchParent)
+        .animation(MP.M.gated(MP.M.easeOut), value: stars)
+        .accessibilityElement(children: .combine)
+    }
+
+    private var starItem: some View {
         HStack(spacing: MPSpacing.xs) {
             MPStarMark(size: 15).accessibilityHidden(true)
             Text("\(stars) yıldız")
                 .contentTransition(.numericText(value: Double(stars)))
-            Text("·").accessibilityHidden(true)
+        }
+    }
+
+    private var streakItem: some View {
+        HStack(spacing: MPSpacing.xs) {
             MPIcon("flame", size: MP.G.sm, weight: .semibold)
                 .foregroundStyle(MPWorldTone.peach.deep)
                 .accessibilityHidden(true)
             Text("\(streak) gün üst üste")
                 .contentTransition(.numericText(value: Double(streak)))
         }
-        .mpText(.footnote)
-        .foregroundStyle(MPColor.textSecondary)
-        .lineLimit(1).minimumScaleFactor(0.8)
-        .frame(minHeight: MPSize.minTouchParent)
-        .animation(MP.M.gated(MP.M.easeOut), value: stars)
-        .accessibilityElement(children: .combine)
     }
 }
 
@@ -410,86 +428,11 @@ extension HomeSection where Leading == EmptyView {
     }
 }
 
-// MARK: - Okuma şeridi
-
-/// Haftalık okuma şeridi: gün adları, okunan gün tikli, bugün mor halka.
-/// Sakin dil (CLAUDE.md §7): kayıp yok, geri sayım yok.
-struct HomeStreakCard: View {
-    let done: [Bool]
-    let streak: Int
-    let todayIndex: Int
-
-    /// Seri sayısı sahnenin çipinde; kart haftayı gösterir.
-    let title = "Bu hafta"
-
-    private var spokenStreak: String {
-        switch streak {
-        case 0:  return "Okuma yolculuğun burada başlıyor"
-        case 1:  return "Okuma yolculuğun devam ediyor"
-        default: return "\(streak) gün üst üste okudun"
-        }
-    }
-
-    var body: some View {
-        HomeSection(title: title) {
-            VStack(alignment: .leading, spacing: MPSpacing.md) {
-                HStack(spacing: 0) {
-                    ForEach(MPStreak.weekdayLabels.indices, id: \.self) { i in
-                        VStack(spacing: MPSpacing.xs) {
-                            dot(i)
-                            Text(MPStreak.weekdayLabels[i]).mpText(.caption)
-                                .fontWeight(i == todayIndex ? .heavy : .semibold)
-                                .foregroundStyle(i == todayIndex ? MPColor.actionPrimary : MPColor.textSecondary)
-                                .lineLimit(1).minimumScaleFactor(0.7)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                }
-                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-                Text(caption).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .animation(MP.M.gated(MP.M.spring), value: done)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(spokenStreak). Bu hafta \(done.filter { $0 }.count) gün okudunuz")
-    }
-
-    /// Sakin süreklilik cümlesi (CLAUDE.md §7 örnekleri).
-    private var caption: String {
-        let read = done.filter { $0 }.count
-        switch read {
-        case 0:  return "Okuma yolculuğunuz bu hafta başlıyor."
-        default: return "Bu hafta \(read) gün birlikte okudunuz."
-        }
-    }
-
-    @ViewBuilder private func dot(_ i: Int) -> some View {
-        let read = i < done.count && done[i]
-        let today = i == todayIndex
-        ZStack {
-            if today {
-                Circle().strokeBorder(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 2, dash: [4, 3]))
-            }
-            if read {
-                MPStarMark(size: 26)
-                    .transition(.scale.combined(with: .opacity))
-            } else {
-                // Tamamlanmamış gün soluk; bugün halkayla vurgulu.
-                StarShape().fill(MPColor.backgroundSurface)
-                    .overlay(StarShape().stroke(MPWorldTone.lav.deep.opacity(today ? 0.6 : 0.22), lineWidth: 1.5))
-                    .frame(width: today ? 20 : 24, height: today ? 20 : 24)
-            }
-        }
-        .frame(width: 32, height: 32)
-    }
-}
-
 // MARK: - Yıldız
 
 /// Markanın yıldızı (imza, 15 Ekim): tek çizim, tek sarı, ince koyu sarı
-/// kontur. Yıldız sayacı, "Bugün" kurdelesi ve okunan günler bunu kullanır;
-/// tamamlanmamış günler soluk kalır. Süs olarak çoğaltılmaz.
+/// kontur. Yıldız sayacı ve "Bugün" kurdelesi bunu kullanır. Süs olarak
+/// çoğaltılmaz.
 struct MPStarMark: View {
     var size: CGFloat
 
@@ -776,7 +719,6 @@ struct HomeModeTile: View {
             HomeHeroCard(state: .unread(title: "Ormandaki Fısıltı", meta: "5 dakika")) {}
             HomeHeroCard(state: .readToday) {}
             HomeHeroCard(state: .bedtime(time: "20.30"), isNight: true) {}
-            HomeStreakCard(done: [true, true, true, false, false, false, false], streak: 3, todayIndex: 3)
             HStack(spacing: MPSpacing.sm) {
                 HomeModeTile(title: "Uyku öncesi", systemImage: "moon", tone: .lav) {}
                 HomeModeTile(title: "Öğrenelim", systemImage: "sparkles", tone: .mint) {}

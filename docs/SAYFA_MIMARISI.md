@@ -55,7 +55,7 @@ Tam ekran akışlar: ilk açılış, okuyucu, uyku modu, masal yazma, kapı, pay
 
 | Sayfa | Tek işi | Bugünkü sorun | Durum |
 |---|---|---|---|
-| Ana sayfa | Bu akşam ne okuyoruz | Kilit gereksiz. Yıldız ve seri iki kez: başlık satırı ve okuma kartı, ikisi de Köşem'e gider | Kilit kalktı. **Karar:** biri kalksın (öneri: başlık satırı kalsın, kart gitsin) |
+| Ana sayfa | Bu akşam ne okuyoruz | Kilit gereksizdi. Yıldız ve seri iki kez görünüyordu: başlık satırı ve okuma kartı | Kilit ve okuma kartı kalktı (Batuhan onayı), başlık satırı kaldı |
 | Masallar (eski adı Günlük) | Hazır masalları keşfet | Kilit gereksizdi. "Günlük" iki anlama geliyordu: her günün masalı mı, anı defteri mi | Kilit kalktı, ad "Masallar" oldu (Batuhan onayı), ikon açık kitap. Kodda `GunlukView` adı kaldı |
 | Kitaplık | Benim masallarım | Kilit gereksiz. Raflar, arama ve süzgeç aynı anda | Kilit kalktı |
 | Köşem | Ben: kim okuyor, rozetler, karakterler | Çocuk için doğru yer ama ebeveyne giden kapı yoktu | "Büyükler için" buraya geldi |
