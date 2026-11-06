@@ -133,6 +133,39 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Token pilotu temizlendi
+
+- Batuhan'ın onayıyla dört pilot worktree (`MagicPaper-codegraph-pilot`, `-baseline-pilot`, `-serena-pilot`, `-ctxmode-pilot`), `pilot/codegraph` dalı, `~/.local/share/mp-token-pilot` (614 MB) ve pilotun oluşturduğu boş `~/.codegraph` ile `~/.serena` klasörleri kaldırıldı.
+- Aşağıdaki üç kayıt pilot dalından buraya taşındı; başlıklarındaki `pilot/codegraph` commit'leri artık yok. `main`'de başka bir oturumun kaydı bulunduğu için cherry-pick çakıştı, kayıtlar o kayda dokunulmadan elle eklendi.
+- Karar: CodeGraph, RTK, `context-mode` ve Serena kurulmadı. Uygulama kodu değişmedi, test çalıştırılmadı.
+- Bu kayıt commit'lendi, gönderilmedi.
+- Dosyalar: bu dosya.
+
+### 2026-11-07 · pilot/codegraph (00c2ae2 üstüne) · Token pilotu: context-mode ve Serena denemeleri durdu
+
+- Yarım kaldı: otomatik güvenlik denetimi `context-mode` 2.1.5 kurulum komutunu ve Serena'nın Swift referans testini reddetti, gerekçe vermedi. Reddedilen komutlar çalışmadı, başka yoldan denenmedi.
+- Serena 2.1.0 `~/.local/share/mp-token-pilot/uv` altına kuruldu (312 MB) ama çalıştırılıp test edilmedi. `MagicPaper-serena-pilot` ve `MagicPaper-ctxmode-pilot` worktree'leri açıldı, kullanılmadı.
+- Sonuç yok: iki araç için token ya da doğruluk ölçümü yapılmadı, oturum başlatılmadı. Uygulama kodu ve genel Claude ayarları değişmedi, test çalıştırılmadı.
+- Dosyalar: bu dosya.
+
+### 2026-11-07 · pilot/codegraph (6e0a9fb üstüne) · Token pilotu: CodeGraph A/B sonucu
+
+- Aynı salt okunur görev, aynı commit ve aynı modelle (Opus 5.5) iki oturum karşılaştırıldı. CodeGraph'lı kol: 104.604 token önbelleğe yazma, 648.199 okuma, 12.210 çıktı, 115 saniye, tahmini 1,16 dolar. CodeGraph'sız kol: 88.870 yazma, 638.577 okuma, 14.199 çıktı, 136 saniye, tahmini 1,05 dolar. İkisi de 6 API isteği yaptı.
+- Doğruluk: iki kol da `AgeBandResolver` (17 dosya) ve `MPHaptics.tap` (11 çağıran dosya) listelerinde dosya kaçırmadı; seri akışını da aynı temel dosya ve satırlarla anlattı. Metin aramasının öne çıktığı liste soruları nedeniyle CodeGraph'lı kol da çoğunlukla `grep` ve dosya okumaya döndü.
+- Sonuç: bu görevde token kazancı görülmedi, CodeGraph genel kurulmadı. Tek çift ölçümdür, kesin hüküm değildir; maliyetler regresyonla tahmin edildi. Kol A, CodeGraph'ın ilk denemede henüz bağlanmadığını bildirdi.
+- Bilerek yapılmadı: uygulama kodu ve genel Claude ayarları değişmedi, derleme ve test çalıştırılmadı. Karşılaştırma worktree'leri ve araçlar temizlenmedi.
+- Dosyalar: bu dosya.
+
+### 2026-11-07 · pilot/codegraph (fb1bf12 üstüne) · Token pilotu: ölçüm ve CodeGraph denemesi
+
+- Batuhan'ın isteğiyle token kullanımı ölçüldü (`ccusage` 20.0.48, çevrimdışı; 1 Ekim 2026'dan beri). Önbellekten okuma 3,46 milyar, önbelleğe yazma 64,7 milyon, çıktı 8,3 milyon token. Liste fiyatıyla toplam yaklaşık 1.563 dolar. Opus 5.5'in 1.095 dolarlık kısmında regresyon tahminiyle okuma 580, yazma 423, çıktı 94 dolar.
+- Araç çıktıları toplam 28,7 MB; bunun %80'i Bash. `xcodebuild` çıktısı yalnız 0,6 MB.
+- CodeGraph 1.6.2 yalnız pilot worktree'de denendi (719 dosya, 16.508 düğüm, yaklaşık 5 saniye, 53 MB). Metot düzeyinde `callers` 62 gerçek dosyadan 59'unu buldu (%95); ölçüt tek satırlık `Tip.metot(` taraması, kaçan 3 dosya `OfflineStoryService.compose` çağrıları. Tip düzeyinde `callers` statik çağrıları saymıyor (`MPHaptics`: 1 dosya); `impact` 35 dosya buldu ama 79 KB çıktı verdi. `explore` her sorguda yaklaşık 25 KB döndürdü. MCP sabit yükü yaklaşık 8,5 bin karakter.
+- Bilerek yapılmadı: `codegraph install` çalıştırılmadı, genel Claude ayarları ve `CLAUDE.md` değişmedi, telemetri kapalı tutuldu, uygulama kodu değişmedi. `.codegraph/` ve `.mcp.json` commit'lenmedi; araçlar `~/.local/share/mp-token-pilot` altında.
+- Gerçek bir Claude oturumunda karşılaştırma yapılmadı, token kazancı henüz kanıtlanmadı. Uygulama testi ve simülatör çalıştırılmadı (kod değişikliği yok).
+- Bu kayıt `pilot/codegraph` dalında; main'e alınmadı, gönderilmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · UX kaynak araştırması: uygulama bütünlüğü
 
 - Batuhan'ın isteğiyle GitHub ve internette App Store uygulamaları için UX, erişilebilirlik, gezinme ve yerleşim kaynakları tarandı; bulgular kodla eşlendi: `docs/UX_KAYNAK_ARASTIRMASI.md`.
