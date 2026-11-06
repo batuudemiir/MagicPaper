@@ -213,7 +213,7 @@ struct ContentView: View {
         }
     }
 
-    /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
+    /// Alt çubuğun yuvası: üç sekme ve "Masal yaz".
     private enum KidTabSlot: Hashable {
         case tab(KidTab)
         case create
@@ -222,8 +222,7 @@ struct ContentView: View {
     /// iOS 26: sistemin Liquid Glass sekme çubuğu (22 Ekim 2026, Batuhan).
     ///
     /// Sürükleyerek seçme, mercek, cam ve erişilebilirlik sistemden gelir.
-    /// "Masal yaz" `.search` rolüyle sistemin ayrı dairesinde durur (Apple'ın
-    /// ayrık sekmesi). Bir yer değil eylem olduğu için seçimi hiç tutulmaz:
+    /// "Masal yaz" `createTabRole` ile ayrı durur. Bir yer değil eylem olduğu için seçimi hiç tutulmaz:
     /// bağlama ona geçmek istediğinde masal yazma açılır, seçili sekme aynı
     /// kalır. Sistem dairesi yakınlaşma kaynağı olamadığından masal yazma
     /// burada olağan geçişle açılır.
@@ -243,11 +242,18 @@ struct ContentView: View {
             Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
             Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
             Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
-            Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: .search) {
+            Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: createTabRole) {
                 Color.clear
             }
         }
         .tint(MP.C.brand)
+    }
+
+    /// iOS 27'de öne çıkan sekme rolü; öncesinde tek yol arama rolünün dairesi.
+    @available(iOS 26.0, *)
+    private var createTabRole: TabRole {
+        if #available(iOS 27.0, *) { return .prominent }
+        return .search
     }
 
     /// iOS 26 öncesi: kendi yüzen çubuğumuz (`KidTabBar`).

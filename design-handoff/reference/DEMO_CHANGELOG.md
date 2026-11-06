@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · "Masal yaz": iOS 27'de `.prominent` rolü
+
+- `.search` rolü iOS 27'de düğmeyi sekmelerin içine alıyordu, Design law'daki ayrı daire bozuktu. iOS 27'de `TabRole.prominent`, öncesinde `.search` (`createTabRole`).
+- Dikkat: `.prominent` Xcode 27 SDK'sı ister; daha eski Xcode ile derlenmez. Xcode Cloud sürümü kontrol edilmedi.
+- Bilerek kalan: masal yazma hâlâ eylem, sekme seçimi tutulmuyor. iOS 26 denenmedi.
+- Test: bu değişiklik tek başına testle çalıştırılmadı, derlendi; bir sonraki kayıttaki koşuya bakın.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): ayrı daire, dokununca masal yazma, kapatınca Kitaplık seçili kalıyor. Görülmedi: VoiceOver okuyuşu (daire yazısız).
+- Dosyalar: `ContentView`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Köşem sekmeden çıktı, avatardan açılıyor
 
 - Batuhan'ın kararı, 13 Ekim sekme kararının yerine. Çubuk: Ana sayfa · Masallar · Kitaplık + "Masal yaz". Avatar `MPKidTabHeader`'ın parçası (`KidAvatarButton`), `HomeHeader` silindi; Benim köşem `MPKidRoute.corner` ile açık sekmeye push, başlığı `MPTopBar` + Geri.
