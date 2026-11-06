@@ -624,14 +624,14 @@ struct HomeGunlukPreview: View {
     @State private var arrived = false
 
     var body: some View {
-        HomeSection(title: "Günlük",link: ("Tümü", action)) {
+        HomeSection(title: "Masallar", link: ("Tümü", action)) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.md) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
                         Button(action: action) { tile(item, today: index == 0) }
                             .buttonStyle(MPPressStyle())
                             .accessibilityLabel(index == 0 ? "Bugünün klasiği: \(item.title)" : item.title)
-                            .accessibilityHint("Günlük sekmesini açar")
+                            .accessibilityHint("Masallar sekmesini açar")
                             .offset(y: arrived ? 0 : MP.S.x5)
                             .opacity(arrived ? 1 : 0)
                             .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)

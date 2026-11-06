@@ -14,7 +14,7 @@ enum MPTab: String, CaseIterable {
     var label: String {
         switch self {
         case .home:    return "Ana sayfa"
-        case .gunluk:  return "Günlük"
+        case .gunluk:  return "Masallar"
         case .library: return "Kitaplık"
         case .corner:  return "Köşem"
         }

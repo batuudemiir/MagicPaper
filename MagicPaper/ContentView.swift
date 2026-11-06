@@ -242,7 +242,7 @@ struct ContentView: View {
             }
         )) {
             Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
-            Tab("Günlük", systemImage: "sun.max", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
+            Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
             Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
             Tab("Köşem", systemImage: "face.smiling", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
             Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: .search) {

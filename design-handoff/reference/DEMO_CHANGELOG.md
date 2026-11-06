@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · "Günlük" sekmesi "Masallar" oldu
+
+- Batuhan'ın kararı: sekme, başlık, Ana sayfa bölümü, VoiceOver ipucu ve sekmeye verilen referanslar "Masallar". Raf alt başlığı "Bütün masallar". Sekme ikonu güneşten açık kitaba (`book`).
+- Bilerek değişmedi: "her gün" anlamındaki "Günlük okuma", "Günlük okuma süresi", "Sınırsız günlük hikaye"; kod adları (`GunlukView`, `.gunluk`); kalıcı veri; `design-handoff` ekranları; canlı olmayan `Localization` metinleri.
+- Test: 793 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): sekme ve başlık. Görülmedi: Ana sayfa bölümü, raf alt başlığı, iOS 26 öncesi çubuğu.
+- Dosyalar: `ContentView`, `MPAppState`, `MPHomeChrome`, `MPNavigationChrome`, `MPMascot`, `GunlukHeader`, `GunlukShelfView`, `StoryUnsupportedAgeStep`, `LibraryView`, `ClassicProgressTests`, `docs/SAYFA_MIMARISI.md`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Sayfa mimarisi: ebeveyn odası, tek giriş
 
 - Batuhan'ın isteği ve onayı: uygulama çocuğun, ebeveyn alanı arka planda. Her sayfanın ele alındığı harita ve kaynaklar: `docs/SAYFA_MIMARISI.md`.

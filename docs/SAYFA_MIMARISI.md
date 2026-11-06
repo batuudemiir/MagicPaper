@@ -32,7 +32,7 @@ değişiyor.
 ```
 Çocuk kökü (hep canlı)
 ├─ Ana sayfa   → Seri
-├─ Günlük      → Raf · Masal detayı · Seri · Arama │ sheet: Kategoriler
+├─ Masallar    → Raf · Masal detayı · Seri · Arama │ sheet: Kategoriler
 ├─ Kitaplık    → Seri                              │ sheet: Masal eylemleri
 ├─ Köşem       → Masal ailem → Kahraman · Yeni kelimelerim
 │                 └─ en altta sakin "Büyükler için" → Ebeveyn kapısı
@@ -56,7 +56,7 @@ Tam ekran akışlar: ilk açılış, okuyucu, uyku modu, masal yazma, kapı, pay
 | Sayfa | Tek işi | Bugünkü sorun | Durum |
 |---|---|---|---|
 | Ana sayfa | Bu akşam ne okuyoruz | Kilit gereksiz. Yıldız ve seri iki kez: başlık satırı ve okuma kartı, ikisi de Köşem'e gider | Kilit kalktı. **Karar:** biri kalksın (öneri: başlık satırı kalsın, kart gitsin) |
-| Günlük | Hazır masalları keşfet | Kilit gereksiz. Ad "günlük" iki anlama geliyor: her günün masalı mı, anı defteri mi | Kilit kalktı. **Karar:** ad (öneri: "Masallar"; alt sayfaları ve vitrini zaten bunu anlatıyor) |
+| Masallar (eski adı Günlük) | Hazır masalları keşfet | Kilit gereksizdi. "Günlük" iki anlama geliyordu: her günün masalı mı, anı defteri mi | Kilit kalktı, ad "Masallar" oldu (Batuhan onayı), ikon açık kitap. Kodda `GunlukView` adı kaldı |
 | Kitaplık | Benim masallarım | Kilit gereksiz. Raflar, arama ve süzgeç aynı anda | Kilit kalktı |
 | Köşem | Ben: kim okuyor, rozetler, karakterler | Çocuk için doğru yer ama ebeveyne giden kapı yoktu | "Büyükler için" buraya geldi |
 | Masal yaz | Yeni masal | Çubukta bir eylem (HIG'den bilinçli sapma, 22 Ekim) | Kaldı: ürünün ana eylemi |

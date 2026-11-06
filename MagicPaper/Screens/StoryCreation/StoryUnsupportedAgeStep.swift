@@ -40,7 +40,7 @@ struct StoryUnsupportedAgeStep: View {
             lines.append("Bu yaşın masalları hazırlanıyor.")
         }
         lines.append(alternatives.isEmpty
-                     ? "Günlük'teki klasik masalları şimdi de birlikte okuyabilirsiniz."
+                     ? "Masallar'daki klasik masalları şimdi de birlikte okuyabilirsiniz."
                      : "İstersen bu masalı başka bir çocuk için yazalım.")
         return lines.joined(separator: " ")
     }

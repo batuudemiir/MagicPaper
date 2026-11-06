@@ -217,7 +217,7 @@ struct LibraryView: View {
             if pendingCount > 0 { pendingNote }
             MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş",
                         message: pendingCount > 0 ? "Onaylanan masallar burada görünür."
-                                                  : "İlk masalını yarat ya da Günlük'ten bir klasik aç; burada seni beklesin.") {
+                                                  : "İlk masalını yarat ya da Masallar'dan bir klasik aç; burada seni beklesin.") {
                 MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {
                     app.startStoryCreation()
                 }

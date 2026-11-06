@@ -35,7 +35,7 @@ struct GunlukShelfView: View {
 
     private var subtitle: String {
         if startsSearching { return "Adını hatırladığın masalı bul" }
-        return shelf?.subtitle ?? "Günlük'teki her masal"
+        return shelf?.subtitle ?? "Bütün masallar"
     }
 
     private var items: [ClassicItem] {

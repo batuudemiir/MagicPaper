@@ -6,7 +6,7 @@ import SwiftUI
 
 /// Kaydırılan vitrin.
 ///
-/// - Tepede "Günlük", arama ve kilit (ebeveyn kapısı); resmin üstü kreme açılır ki yazı ve saat çubuğu
+/// - Tepede "Masallar" ve arama; resmin üstü kreme açılır ki yazı ve saat çubuğu
 ///   okunsun (Ana sayfanın açık gökyüzü üstünde koyu başlık dili).
 /// - Altta karartma, etiket, masalın adı, meta ve "Oku"; alt köşeler yuvarlak,
 ///   Ana sayfanın kartları gibi sert alt kenarlı.
@@ -125,7 +125,7 @@ struct GunlukHeaderCarousel: View {
         .frame(height: height + topInset)
     }
 
-    /// Başlık satırının ("Günlük" ve arama) sahnede kapladığı yer.
+    /// Başlık satırının ("Masallar" ve arama) sahnede kapladığı yer.
     private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
 
     /// Boyalı kapak: tepesi sayfa zeminine açılır (başlık); altın karartması
@@ -135,7 +135,7 @@ struct GunlukHeaderCarousel: View {
             .frame(height: height + topInset)
             .frame(maxWidth: .infinity)
             .overlay(alignment: .top) {
-                // Yalnızca saat çubuğu ve "Günlük" yazısının arkası açılır; resmin
+                // Yalnızca saat çubuğu ve "Masallar" yazısının arkası açılır; resmin
                 // geri kalanı olduğu gibi, soluklaşmadan görünür.
                 LinearGradient(stops: [.init(color: MPColor.backgroundSurface.opacity(0.8), location: 0),
                                        .init(color: MPColor.backgroundSurface.opacity(0.55), location: 0.55),
@@ -150,7 +150,7 @@ struct GunlukHeaderCarousel: View {
     // MARK: - Başlık
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Günlük") {
+        MPKidTabHeader(title: "Masallar") {
             MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: onSearch)
         }
         // Başlık resmin üstünde sabit bir yerde durur; satır büyümesin.

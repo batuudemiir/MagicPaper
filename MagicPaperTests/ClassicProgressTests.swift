@@ -95,7 +95,7 @@ final class ClassicProgressTests: XCTestCase {
         for tab in MPTab.allCases {
             XCTAssertEqual(MPTab(tab.kidTab), tab)
         }
-        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Günlük", "Kitaplık", "Köşem"])
+        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Masallar", "Kitaplık", "Köşem"])
     }
 
     func testKidCornerIsATab() {

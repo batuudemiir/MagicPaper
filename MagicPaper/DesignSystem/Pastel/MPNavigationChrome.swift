@@ -64,7 +64,7 @@ struct KidTabBar: View {
 
     private let items: [Item] = [
         Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
-        Item(tab: .gunluk,  label: "Günlük",    symbol: "sun.max"),
+        Item(tab: .gunluk,  label: "Masallar",  symbol: "book"),
         Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
         Item(tab: .corner,  label: "Köşem",     symbol: "face.smiling"),
     ]
