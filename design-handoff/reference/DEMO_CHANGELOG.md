@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Sekme başlıkları ve gezinme: tek düzen
+
+- Dört çocuk sekmesi tek başlık bileşeninde (`MPKidTabHeader`; çağrılmayan `KidHeader` silindi): üst boşluk `lg`, kilit her sekmede aynı boyut ve hizada. Günlük'ün araması kilitle aynı düğme, zemini diğer sekmeler gibi `backgroundSurface`.
+- Teslimdeki `SCREENS.md`'ye dönüldü: Yeni kelimelerim, Masal ailem, Kahraman, Seri ve ebeveyn alt sayfaları (Aile, Masal kitabı, Kendi sesin, Paylaş) artık push. Ana sayfa, Kitaplık, Köşem ve ebeveyn sekmelerinin kendi `NavigationStack`'i var (`MPKidRoute`, `app.kidPaths`); alt çubuk görünür, sekme değişince yol korunur, seçili sekmeye yeniden dokunmak köke döndürür.
+- Kaldırılan: `seriesChildID` katmanı, `MPSheetRoute.newWords`, `parentRoute` için `fullScreenCover`.
+- Bilerek değişmedi: Ana sayfa selamı ve Günlük vitrini; Ayarlar > profil düzenlemeden açılan Masal ailem ve Kahraman hâlâ katman; sheet türleri ve görsel sadeleşme (buton gradient'i, kart içinde kart) sonraki adım; yeniden dokununca kaydırmanın başa dönmesi hâlâ yalnızca Günlük'te.
+- Test: `MagicPaperTests` 788 test, 0 başarısız, 1 atlandı (6'sı yeni gezinme testi).
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): dört sekme normal yazı; Ana sayfa, Günlük, Kitaplık en büyük yazı; Masal ailem push, sekme değişince korunma, kenardan geri; Masal kitabı push ve Geri. Koyu tema uygulamada açık görünümle aynı çıktı.
+- Görülmedi: iPhone SE ve Pro Max (simülatör kurulu değil), iOS 26 öncesi (`kidTabBarClearance` denenmedi), Seri ve Kahraman'ın push'u, VoiceOver.
+- Fark edilen, dokunulmadı: en büyük yazıda Ana sayfa okuma satırı "0 gün üs..." diye kesiliyor; Masal ailem'de geri düğmesi zeminde kayboluyor.
+- Dosyalar: `ContentView`, `MPAppState`, `MPNavigationChrome`, `MPHomeChrome`, `HomeView`, `LibraryView`, `KidCornerView`, `GunlukView`, `GunlukHeader`, `GunlukComponents`, `FamilyCharactersView`, `BookCharacterView`, `SeriesCard`, `SeriesView`, `KidCornerTabTests`, `docs/UX_KAYNAK_ARASTIRMASI.md`, bu dosya; repo dışında `CLAUDE.md` (Design law).
+
 ### 2026-11-07 · main (commit aşağıda) · Token pilotu temizlendi
 
 - Batuhan'ın onayıyla dört pilot worktree (`MagicPaper-codegraph-pilot`, `-baseline-pilot`, `-serena-pilot`, `-ctxmode-pilot`), `pilot/codegraph` dalı, `~/.local/share/mp-token-pilot` (614 MB) ve pilotun oluşturduğu boş `~/.codegraph` ile `~/.serena` klasörleri kaldırıldı.

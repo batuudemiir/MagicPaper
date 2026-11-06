@@ -63,15 +63,27 @@ enum MPParentTab: String, CaseIterable {
 
 // MARK: - Ebeveyn alt sayfaları
 
-/// Ebeveyn alanından tam ekran açılan sayfalar (teslimdeki `ParentRoute`).
-/// FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken görünür; Masal
-/// kitabı sunucu istemediği için bayrak dışı.
-enum MPParentRoute: String, Identifiable {
+/// Ebeveyn sekmesinin yığınına itilen sayfalar (teslimdeki `ParentRoute`,
+/// SCREENS.md: push). FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken
+/// görünür; Masal kitabı sunucu istemediği için bayrak dışı.
+enum MPParentRoute: String, Identifiable, Hashable {
     case bookExport       // 35 · Masal kitabı
     case voiceRecording   // 33 · Kendi sesin
     case familyMembers    // 34 · Aile üyeleri
     case shareLink        // 36 · Aileyle paylaş
     var id: String { rawValue }
+}
+
+// MARK: - Çocuk alt sayfaları
+
+/// Çocuk sekmesinin yığınına itilen sayfalar (SCREENS.md: push). Alt çubuk
+/// görünür kalır, her sekme kendi yolunu korur. Günlük kendi rotalarını
+/// `GunlukRoute` ile yönetir.
+enum MPKidRoute: Hashable {
+    case series(UUID)            // 18 · Seri masal
+    case newWords(UUID)          // 15 · Yeni kelimelerim
+    case familyCharacters(UUID)  // 14 · Masal ailem
+    case bookCharacter(UUID)     // 13 · Kahraman oluşturucu
 }
 
 // MARK: - Alt sayfalar (sheet)
@@ -81,10 +93,9 @@ enum MPSheetRoute: Identifiable, Equatable {
     case profileEdit(UUID)
     /// Görselli kitabın karakteri (B2) — ebeveyn tarafı.
     case bookCharacter(UUID)
-    /// Masal ailem (FAZ 11), çocuk başına. Benim köşem gelince oradan açılır.
+    /// Masal ailem (FAZ 11), çocuk başına; ebeveyn tarafından. Çocuk tarafında
+    /// `MPKidRoute`.
     case familyCharacters(UUID)
-    /// 15 · Yeni kelimelerim, Benim köşem'den.
-    case newWords(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
@@ -96,7 +107,6 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .profileEdit(let i):   return "profileEdit-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
-        case .newWords(let i): return "newWords-\(i)"
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         }
@@ -118,7 +128,38 @@ final class MPAppState: ObservableObject {
     /// (Günlük'te açık detay sayfaları kapanır, iOS'un alışılmış davranışı).
     @Published private(set) var tabReselections = 0
 
-    func reselectTab() { tabReselections += 1 }
+    /// Çocuk sekmelerinin yığın yolları; sekme değişince kaybolmaz.
+    @Published var kidPaths: [MPTab: [MPKidRoute]] = [:]
+
+    func reselectTab() {
+        kidPaths[tab] = []
+        tabReselections += 1
+    }
+
+    /// Alt sayfa, açık olan sekmenin yığınına itilir. Ebeveyn tarafından gelen
+    /// karakter sayfaları katmanda açılır; ebeveyn sekmesinin rotası değiller.
+    func openKidPage(_ route: MPKidRoute) {
+        if isParentMode {
+            switch route {
+            case .bookCharacter(let id):    sheet = .bookCharacter(id); return
+            case .familyCharacters(let id): sheet = .familyCharacters(id); return
+            case .series, .newWords:        break
+            }
+        }
+        // Günlük'ün yığını kendi rotalarını taşır (`GunlukRoute`).
+        if tab == .gunluk { tab = .home }
+        guard kidPaths[tab]?.last != route else { return }
+        kidPaths[tab, default: []].append(route)
+    }
+
+    /// Alt sayfanın "Geri"si: katmandaysa kapanır, yığındaysa bir geri döner.
+    func closeKidPage() {
+        if sheet != nil {
+            sheet = nil
+        } else if kidPaths[tab]?.isEmpty == false {
+            kidPaths[tab]?.removeLast()
+        }
+    }
 
     /// Çocuk mu, ebeveyn mi. Oturumluk ve kalıcı değil: uygulama her zaman
     /// çocuk modunda açılır, arka plana gidince de çocuk moduna döner. Telefonu
@@ -196,9 +237,6 @@ final class MPAppState: ObservableObject {
         }
     }
 
-    /// 18 · Seri masal, çocuk kökünün üstünde.
-    @Published var seriesChildID: UUID?
-
     /// "Bu akşamın masalı" (`MPTonight`): Ana sayfa kartının düğmesi, widget
     /// ve Siri (FAZ 19). Dışarıdan gelindiğinde (widget, Siri) "bugün
     /// okudun" durumu yeni masal akışını açmaz, Ana sayfada kalır.
@@ -251,7 +289,7 @@ final class MPAppState: ObservableObject {
         case .series:
             guard let childID else { return }
             SeriesManager.shared.refreshUnlocks(for: childID)
-            if SeriesManager.shared.openSeries(for: childID) != nil { seriesChildID = childID }
+            if SeriesManager.shared.openSeries(for: childID) != nil { openKidPage(.series(childID)) }
         }
     }
 

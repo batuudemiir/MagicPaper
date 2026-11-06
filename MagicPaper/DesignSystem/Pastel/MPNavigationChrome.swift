@@ -216,36 +216,44 @@ struct ParentTabs<Summary: View, Safety: View, Settings: View>: View {
     }
 }
 
-/// Kid header used on Ana sayfa and İnternet yok. Yıldız sayacı yok (karar 7 Ekim 2026).
-struct KidHeader<Avatar: View>: View {
-    let greeting: String          // "İyi akşamlar,"
-    let childName: String         // "İrem"
-    @ViewBuilder var avatar: Avatar   // çocuğun avatarı, MPSize.headerAvatar boyutunda
-    let onAvatar: () -> Void      // → Benim köşem
-    let onLock: () -> Void        // → Ebeveyn kapısı
+/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, kilit
+/// (ebeveyn kapısı) sağda, sekme değişince ikisi de yerinde kalır. Üst ve yan
+/// boşluk sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
+struct MPKidTabHeader<Accessory: View>: View {
+    let title: String
+    /// Başlığın üstündeki küçük satır (Ana sayfa'nın selamı).
+    var eyebrow: String? = nil
+    let onLock: () -> Void
+    /// Kilidin solundaki denetim (Ana sayfa'nın avatarı, Günlük'ün araması).
+    @ViewBuilder var accessory: Accessory
 
     var body: some View {
-        HStack(spacing: 10) {
-            Button(action: onAvatar) {
-                HStack(spacing: 12) {
-                    avatar
-                        .dynamicTypeSize(...DynamicTypeSize.large)
-                        .frame(width: MPSize.headerAvatar, height: MPSize.headerAvatar)
-                        .clipShape(Circle())
-                        .overlay(Circle().strokeBorder(.white, lineWidth: 3))
-                        .mpShadow(.control)
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(greeting).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                        Text(childName).mpText(.navTitle).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
-                            .lineLimit(1).minimumScaleFactor(0.8)
-                    }
+        // Üste hizalı ve sabit satır yüksekliği: selamlı başlık daha uzun olsa
+        // da kilit her sekmede aynı noktada durur.
+        HStack(alignment: .top, spacing: MPSpacing.sm) {
+            VStack(alignment: .leading, spacing: 0) {
+                if let eyebrow {
+                    Text(eyebrow).mpText(.callout).foregroundStyle(MPColor.textSecondary)
                 }
+                Text(title).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(2).minimumScaleFactor(0.7)
+                    .accessibilityAddTraits(.isHeader)
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Benim köşem, \(childName)")
-            Spacer()
-            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", size: 40, action: onLock)
+            .frame(minHeight: MPSize.headerAvatar)
+            .accessibilityElement(children: .combine)
+            Spacer(minLength: MPSpacing.sm)
+            HStack(spacing: MPSpacing.sm) {
+                accessory
+                MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", action: onLock)
+            }
+            .frame(minHeight: MPSize.headerAvatar)
         }
+    }
+}
+
+extension MPKidTabHeader where Accessory == EmptyView {
+    init(title: String, eyebrow: String? = nil, onLock: @escaping () -> Void) {
+        self.init(title: title, eyebrow: eyebrow, onLock: onLock) { EmptyView() }
     }
 }
 

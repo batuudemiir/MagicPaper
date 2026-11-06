@@ -63,7 +63,7 @@ struct HomeView: View {
                 .buttonStyle(MPPressStyle())
                 .accessibilityHint("Benim köşemi açar")
             }
-            .padding(.top, MPSpacing.md)
+            .padding(.top, MPSpacing.lg)
 
             HomeHeroCard(state: tonightState, isNight: isNight, onPrimary: tonightAction)
                 .homeEntrance(0)
@@ -95,7 +95,7 @@ struct HomeView: View {
             if let daily = todaysDaily, !heroShowsDaily { dailySection(daily).homeEntrance(5) }
         }
         .padding(.horizontal, MPSpacing.screenH)
-        .padding(.bottom, MPSpacing.xxxl)
+        .padding(.bottom, GunlukLayout.bottomClearance)
     }
 
     /// Uyku saatinde kartın sahnesi geceye döner; sayfa açık kalır.

@@ -130,8 +130,8 @@ struct GunlukHeaderCarousel: View {
     /// Başlık satırının ("Günlük" ve arama) sahnede kapladığı yer.
     private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
 
-    /// Boyalı kapak: tepesi kreme açılır (başlık); altın karartması metinle
-    /// birlikte `MPArtHero`'dan gelir.
+    /// Boyalı kapak: tepesi sayfa zeminine açılır (başlık); altın karartması
+    /// metinle birlikte `MPArtHero`'dan gelir.
     private func art(_ tale: ClassicTale) -> some View {
         ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
             .frame(height: height + topInset)
@@ -139,9 +139,9 @@ struct GunlukHeaderCarousel: View {
             .overlay(alignment: .top) {
                 // Yalnızca saat çubuğu ve "Günlük" yazısının arkası açılır; resmin
                 // geri kalanı olduğu gibi, soluklaşmadan görünür.
-                LinearGradient(stops: [.init(color: MPColor.backgroundKid.opacity(0.8), location: 0),
-                                       .init(color: MPColor.backgroundKid.opacity(0.55), location: 0.55),
-                                       .init(color: MPColor.backgroundKid.opacity(0), location: 1)],
+                LinearGradient(stops: [.init(color: MPColor.backgroundSurface.opacity(0.8), location: 0),
+                                       .init(color: MPColor.backgroundSurface.opacity(0.55), location: 0.55),
+                                       .init(color: MPColor.backgroundSurface.opacity(0), location: 1)],
                                startPoint: .top, endPoint: .bottom)
                     .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg)
             }
@@ -152,25 +152,13 @@ struct GunlukHeaderCarousel: View {
     // MARK: - Başlık
 
     private var titleBar: some View {
-        HStack(alignment: .center, spacing: MPSpacing.sm) {
-            Text("Günlük").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                .lineLimit(1).minimumScaleFactor(0.6)
-                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-                .accessibilityAddTraits(.isHeader)
-            Spacer(minLength: MPSpacing.sm)
-            Button(action: onSearch) {
-                MPIcon("magnifyingglass", size: MP.G.md, weight: .semibold)
-                    .foregroundStyle(MPColor.textPrimary)
-                    .frame(width: MPSize.circleButton, height: MPSize.circleButton)
-                    .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge,
-                                  radius: MPSize.circleButton / 2)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityLabel("Masal ara")
-            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", action: onLock)
+        MPKidTabHeader(title: "Günlük", onLock: onLock) {
+            MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: onSearch)
         }
+        // Başlık resmin üstünde sabit bir yerde durur; satır büyümesin.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, topInset + MPSpacing.sm)
+        .padding(.top, topInset + MPSpacing.lg)
     }
 
     // MARK: - Kendiliğinden geçiş

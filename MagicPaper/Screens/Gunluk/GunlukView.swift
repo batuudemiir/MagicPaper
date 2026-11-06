@@ -73,8 +73,8 @@ struct GunlukView: View {
                 }
                 }
             }
-            .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled) }
-            .background(MPColor.backgroundKid.ignoresSafeArea())
+            .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled, fill: MPColor.backgroundSurface) }
+            .background(MPColor.backgroundSurface.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: GunlukRoute.self) { route in
                 destination(route)

@@ -201,6 +201,6 @@ struct BookCharacterView: View {
     }
 
     private func close() {
-        app.sheet = nil
+        app.closeKidPage()
     }
 }

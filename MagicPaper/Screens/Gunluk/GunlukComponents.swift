@@ -589,9 +589,9 @@ extension ClassicShelf {
 
 // MARK: - Kenardan geri
 
-/// Günlük sayfaları gezinme çubuğunu gizliyor; UIKit bu durumda kenardan
-/// kaydırarak geri dönmeyi kapatır. Yığında geri dönülecek sayfa varken
-/// hareketi yeniden açar (uygulamada çubuğu gizleyen yığın yalnızca Günlük).
+/// Sekme yığınları gezinme çubuğunu gizliyor (kendi başlığımız var); UIKit bu
+/// durumda kenardan kaydırarak geri dönmeyi kapatır. Yığında geri dönülecek
+/// sayfa varken hareketi yeniden açar.
 extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()

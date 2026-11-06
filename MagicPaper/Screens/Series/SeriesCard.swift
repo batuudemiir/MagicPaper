@@ -70,6 +70,6 @@ struct SeriesCard: View {
     /// 18 · Seri masal; bölüm oradan okunur.
     private func openSeries() {
         series.refreshUnlocks(for: childID)
-        withAnimation(MP.M.gated(MP.M.base)) { app.seriesChildID = childID }
+        app.openKidPage(.series(childID))
     }
 }

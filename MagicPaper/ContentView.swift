@@ -68,6 +68,8 @@ struct ContentView: View {
                 OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
             }
             .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
+                // Açık alt sayfalar önceki çocuğun; yığınlar köke döner.
+                app.kidPaths = [:]
                 MPStreak.shared.activate(profileID: id)
             // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
             OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
@@ -201,14 +203,7 @@ struct ContentView: View {
             } else {
                 customKidTabs
             }
-
-            if let child = app.seriesChildID {
-                SeriesView(childID: child)
-                    .transition(reduceMotion ? .opacity : .move(edge: .trailing))
-                    .zIndex(2)
-            }
         }
-        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.seriesChildID)
     }
 
     /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
@@ -238,10 +233,10 @@ struct ContentView: View {
                 }
             }
         )) {
-            Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { HomeView() }
+            Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
             Tab("Günlük", systemImage: "sun.max", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
-            Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { LibraryView() }
-            Tab("Köşem", systemImage: "face.smiling", value: KidTabSlot.tab(.corner)) { KidCornerView() }
+            Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
+            Tab("Köşem", systemImage: "face.smiling", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
             Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: .search) {
                 Color.clear
             }
@@ -255,10 +250,10 @@ struct ContentView: View {
         // yalnızca solma.
         ZStack {
             switch app.tab {
-            case .home:    HomeView().transition(tabTransition)
+            case .home:    KidTabStack(tab: .home) { HomeView() }.transition(tabTransition)
             case .gunluk:  GunlukView().transition(tabTransition)
-            case .library: LibraryView().transition(tabTransition)
-            case .corner:  KidCornerView().transition(tabTransition)
+            case .library: KidTabStack(tab: .library) { LibraryView() }.transition(tabTransition)
+            case .corner:  KidTabStack(tab: .corner) { KidCornerView() }.transition(tabTransition)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -288,13 +283,10 @@ struct ContentView: View {
                 get: { app.parentTab.parentTab },
                 set: { app.parentTab = MPParentTab($0) }
             ),
-            summary: { ParentOverviewView() },
-            safety: { ParentSafetyView() },
-            settings: { SettingsView() }
+            summary: { ParentTabStack(tab: .overview) { ParentOverviewView() } },
+            safety: { ParentTabStack(tab: .safety) { ParentSafetyView() } },
+            settings: { ParentTabStack(tab: .settings) { SettingsView() } }
         )
-        .fullScreenCover(item: $app.parentRoute) { route in
-            ParentRouteView(route: route).environmentObject(app).environmentObject(settings)
-        }
     }
 
     // MARK: - Alt sayfa katmanı
@@ -321,10 +313,6 @@ struct ContentView: View {
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     FamilyCharactersView(profile: profile).environmentObject(app)
                 }
-            case .newWords(let id):
-                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                    NewWordsView(profile: profile) { app.sheet = nil }
-                }
             case .interests(let id):
                 if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                     InterestsEditorSheet(profile: profile).environmentObject(app)
@@ -338,6 +326,88 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+// MARK: - Sekme yığınları
+
+/// Çocuk sekmesinin kendi yığını (7 Kasım 2026): alt sayfalar push ile açılır,
+/// alt çubuk görünür kalır, sekme değişince yol korunur (SCREENS.md, HIG). Günlük
+/// kendi yığınını `GunlukRoute` ile kurar.
+private struct KidTabStack<Root: View>: View {
+    let tab: MPTab
+    @ViewBuilder var root: Root
+
+    @EnvironmentObject private var app: MPAppState
+    @ObservedObject private var profileManager = ProfileManager.shared
+
+    var body: some View {
+        NavigationStack(path: Binding(get: { app.kidPaths[tab] ?? [] },
+                                      set: { app.kidPaths[tab] = $0 })) {
+            root
+                .toolbar(.hidden, for: .navigationBar)
+                .navigationDestination(for: MPKidRoute.self) { route in
+                    page(route)
+                        .kidTabBarClearance()
+                        .toolbar(.hidden, for: .navigationBar)
+                }
+        }
+    }
+
+    @ViewBuilder
+    private func page(_ route: MPKidRoute) -> some View {
+        switch route {
+        case .series(let child):
+            SeriesView(childID: child)
+        case .newWords(let id):
+            if let profile = profile(id) {
+                NewWordsView(profile: profile) { app.closeKidPage() }
+            }
+        case .familyCharacters(let id):
+            if let profile = profile(id) { FamilyCharactersView(profile: profile) }
+        case .bookCharacter(let id):
+            if let profile = profile(id) { BookCharacterView(profile: profile) }
+        }
+    }
+
+    private func profile(_ id: UUID) -> UserProfile? {
+        profileManager.profiles.first { $0.id == id }
+    }
+}
+
+/// Ebeveyn sekmesinin yığını: alt sayfalar (`MPParentRoute`) açık olan sekmeye
+/// itilir; "Geri" `app.parentRoute`'u temizler.
+private struct ParentTabStack<Root: View>: View {
+    let tab: MPParentTab
+    @ViewBuilder var root: Root
+
+    @EnvironmentObject private var app: MPAppState
+
+    var body: some View {
+        NavigationStack {
+            root
+                .toolbar(.hidden, for: .navigationBar)
+                .navigationDestination(item: Binding(
+                    get: { app.parentTab == tab ? app.parentRoute : nil },
+                    set: { app.parentRoute = $0 }
+                )) { route in
+                    ParentRouteView(route: route)
+                        .toolbar(.hidden, for: .navigationBar)
+                }
+        }
+    }
+}
+
+private extension View {
+    /// iOS 26 öncesinde kendi alt çubuğumuzun boşluğu yığının içine ulaşmaz
+    /// (`GunlukLayout`); itilen sayfanın alt düğmesi çubuğun altında kalmasın.
+    @ViewBuilder
+    func kidTabBarClearance() -> some View {
+        if #available(iOS 26.0, *) {
+            self
+        } else {
+            safeAreaPadding(.bottom, MPSize.kidTabBarHeight)
+        }
+    }
 }
 
 /// İlk kurulum kapağının kimliği (09 + 10).

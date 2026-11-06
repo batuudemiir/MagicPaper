@@ -55,7 +55,7 @@ struct SeriesView: View {
     }
 
     private func close() {
-        withAnimation(MP.M.gated(MP.M.base)) { app.seriesChildID = nil }
+        app.closeKidPage()
     }
 
     private var backButton: some View {

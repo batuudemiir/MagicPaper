@@ -283,15 +283,7 @@ struct HomeHeader<Avatar: View>: View {
     /// 22 Ekim 2026: iOS büyük başlığı. Solda selam ve çocuğun adı, sağda
     /// avatar (Benim köşem) ve kilit (ebeveyn bölümü).
     var body: some View {
-        HStack(alignment: .center, spacing: MPSpacing.sm) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(greeting).mpText(.callout).foregroundStyle(MPColor.textSecondary)
-                Text(childName).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                    .lineLimit(1).minimumScaleFactor(0.7)
-                    .accessibilityAddTraits(.isHeader)
-            }
-            .accessibilityElement(children: .combine)
-            Spacer(minLength: MPSpacing.sm)
+        MPKidTabHeader(title: childName, eyebrow: greeting, onLock: onLock) {
             Button { MPHaptics.tap(); onAvatar() } label: {
                 avatar
                     .dynamicTypeSize(...DynamicTypeSize.large)
@@ -302,7 +294,6 @@ struct HomeHeader<Avatar: View>: View {
             }
             .buttonStyle(MPPressStyle())
             .accessibilityLabel("Benim köşem, \(childName)")
-            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", size: 40, action: onLock)
         }
     }
 }

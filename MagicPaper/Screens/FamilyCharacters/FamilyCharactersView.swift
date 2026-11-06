@@ -72,7 +72,7 @@ struct FamilyCharactersView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                     MPTopBar(title: FamilyCharacterCopy.screenTitle, subtitle: "Masallarında tekrar görünen karakterler",
-                             onBack: { app.sheet = nil }) { EmptyView() }
+                             onBack: { app.closeKidPage() }) { EmptyView() }
                         .padding(.top, MPSpacing.sm)
                     heroCard
                     HomeSection(title: FamilyCharacterCopy.profileRowDescription) {
@@ -110,7 +110,7 @@ struct FamilyCharactersView: View {
                             .frame(minHeight: MPSize.minTouchParent)
                     }
                     MPButton(title: "Bu karakterle masal yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
-                        app.sheet = nil
+                        app.closeKidPage()
                         app.startStoryCreation(family: selected.id)
                     }
                 }
@@ -141,7 +141,7 @@ struct FamilyCharactersView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if IllustratedBookAccess.isEnabled() {
-                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.sheet = .bookCharacter(profile.id) } }
+                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.openKidPage(.bookCharacter(profile.id)) } }
                     .accessibilityLabel("Kahramanı düzenle")
             }
         }

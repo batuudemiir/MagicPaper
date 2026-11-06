@@ -45,9 +45,72 @@ final class KidCornerTabTests: XCTestCase {
     func testASurfaceLinkFromTheCornerLandsOnHome() {
         let app = MPAppState()
         app.openKidCorner()
-        app.sheet = .newWords(UUID())
+        app.sheet = .profilePicker
         app.open(.series, childID: nil)
         XCTAssertEqual(app.tab, .home)
+        XCTAssertNil(app.sheet)
+    }
+
+    // MARK: - Sekme yığınları (7 Kasım 2026)
+
+    func testAKidPageIsPushedOnTheOpenTabAndBackPopsIt() {
+        let app = MPAppState()
+        app.openKidCorner()
+        let route = MPKidRoute.newWords(UUID())
+        app.openKidPage(route)
+        XCTAssertEqual(app.kidPaths[.corner], [route])
+        XCTAssertNil(app.sheet)
+        app.closeKidPage()
+        XCTAssertEqual(app.kidPaths[.corner], [])
+    }
+
+    func testEachTabKeepsItsOwnPathAcrossTabChanges() {
+        let app = MPAppState()
+        let route = MPKidRoute.series(UUID())
+        app.tab = .library
+        app.openKidPage(route)
+        app.tab = .home
+        XCTAssertEqual(app.kidPaths[.home] ?? [], [])
+        app.tab = .library
+        XCTAssertEqual(app.kidPaths[.library], [route])
+    }
+
+    func testReselectingATabReturnsItToItsRoot() {
+        let app = MPAppState()
+        app.openKidCorner()
+        app.openKidPage(.familyCharacters(UUID()))
+        app.reselectTab()
+        XCTAssertEqual(app.kidPaths[.corner], [])
+    }
+
+    func testTheSamePageIsNotPushedTwice() {
+        let app = MPAppState()
+        let route = MPKidRoute.newWords(UUID())
+        app.openKidCorner()
+        app.openKidPage(route)
+        app.openKidPage(route)
+        XCTAssertEqual(app.kidPaths[.corner], [route])
+    }
+
+    /// Günlük'ün yığını `MPKidRoute` taşımaz; sayfa kaybolmasın diye Ana sayfada açılır.
+    func testAKidPageOpenedFromGunlukLandsOnHome() {
+        let app = MPAppState()
+        let route = MPKidRoute.series(UUID())
+        app.tab = .gunluk
+        app.openKidPage(route)
+        XCTAssertEqual(app.tab, .home)
+        XCTAssertEqual(app.kidPaths[.home], [route])
+    }
+
+    func testCharacterPagesOpenAsALayerInTheParentArea() {
+        let app = MPAppState()
+        app.requestParentMode()
+        app.unlockParent()
+        let id = UUID()
+        app.openKidPage(.familyCharacters(id))
+        XCTAssertEqual(app.sheet, .familyCharacters(id))
+        XCTAssertTrue(app.kidPaths.isEmpty)
+        app.closeKidPage()
         XCTAssertNil(app.sheet)
     }
 

@@ -43,7 +43,7 @@ struct KidCornerView: View {
                 badgesSection
             }
             .padding(.horizontal, MPSpacing.screenH)
-            .padding(.bottom, MPSpacing.xxxl)
+            .padding(.bottom, GunlukLayout.bottomClearance)
             .mpTracksScroll($scrolled)
         }
         // Kaydırınca yazı saatin arkasından geçmesin; zemin sayfanın beyazı,
@@ -73,18 +73,9 @@ struct KidCornerView: View {
 
     // MARK: - Başlık ve Ragi
 
-    /// Sekmenin büyük başlığı solda, kilit (ebeveyn kapısı) sağda: Günlük
-    /// sekmesinin başlığıyla aynı düzen.
     private var titleBar: some View {
-        HStack(alignment: .center, spacing: MPSpacing.sm) {
-            Text("Benim köşem").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                .accessibilityAddTraits(.isHeader)
-            Spacer(minLength: 0)
-            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") {
-                app.requestParentMode()
-            }
-        }
-        .padding(.top, MPSpacing.lg)
+        MPKidTabHeader(title: "Benim köşem", onLock: { app.requestParentMode() })
+            .padding(.top, MPSpacing.lg)
     }
 
     /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu
@@ -245,18 +236,18 @@ struct KidCornerView: View {
                     if IllustratedBookAccess.isEnabled() {
                         linkRow(icon: "paintpalette", tone: .sky, title: "Kahramanımı düzenle",
                                 subtitle: "Saç, ten rengi, gözlük, kıyafet") {
-                            guarded { app.sheet = .bookCharacter(profile.id) }
+                            guarded { app.openKidPage(.bookCharacter(profile.id)) }
                         }
                         MPRowDivider(area: .kid)
                     }
                     linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
                             subtitle: familySubtitle) {
-                        app.sheet = .familyCharacters(profile.id)
+                        app.openKidPage(.familyCharacters(profile.id))
                     }
                     MPRowDivider(area: .kid)
                     linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
                             subtitle: wordsSubtitle) {
-                        app.sheet = .newWords(profile.id)
+                        app.openKidPage(.newWords(profile.id))
                     }
                 }
                 .padding(.vertical, MPSpacing.xxs)

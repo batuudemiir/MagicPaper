@@ -76,15 +76,8 @@ struct LibraryView: View {
     // MARK: - Üst bölüm
 
     private var titleBar: some View {
-        HStack(alignment: .center, spacing: MPSpacing.sm) {
-            Text("Kitaplık").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
-                .accessibilityAddTraits(.isHeader)
-            Spacer(minLength: 0)
-            MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü") {
-                app.requestParentMode()
-            }
-        }
-        .padding(.top, MPSpacing.lg)
+        MPKidTabHeader(title: "Kitaplık", onLock: { app.requestParentMode() })
+            .padding(.top, MPSpacing.lg)
     }
 
     /// Ekranın tek Ragi'si: kitap okur, yanında kitaplığın sakin özeti.
