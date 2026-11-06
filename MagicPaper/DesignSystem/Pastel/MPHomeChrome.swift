@@ -271,19 +271,16 @@ struct WaveBottom: Shape {
 
 // MARK: - Başlık
 
-/// Avatar (→ Benim köşem), selam ve ad, kilit (→ ebeveyn kapısı). Yıldız
-/// sahnenin çipinde.
+/// Selam ve ad, sağda avatar (→ Benim köşem, ebeveyn girişi de orada).
 struct HomeHeader<Avatar: View>: View {
     let greeting: String
     let childName: String
     @ViewBuilder var avatar: Avatar
     let onAvatar: () -> Void
-    let onLock: () -> Void
 
-    /// 22 Ekim 2026: iOS büyük başlığı. Solda selam ve çocuğun adı, sağda
-    /// avatar (Benim köşem) ve kilit (ebeveyn bölümü).
+    /// 22 Ekim 2026: iOS büyük başlığı.
     var body: some View {
-        MPKidTabHeader(title: childName, eyebrow: greeting, onLock: onLock) {
+        MPKidTabHeader(title: childName, eyebrow: greeting) {
             Button { MPHaptics.tap(); onAvatar() } label: {
                 avatar
                     .dynamicTypeSize(...DynamicTypeSize.large)

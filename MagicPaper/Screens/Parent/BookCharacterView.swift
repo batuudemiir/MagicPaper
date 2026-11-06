@@ -134,7 +134,7 @@ struct BookCharacterView: View {
             .padding(.horizontal, MPSpacing.xxxl)
             .padding(.vertical, MPSpacing.md)
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .task { await model.load() }
     }
 

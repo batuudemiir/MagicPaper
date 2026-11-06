@@ -58,7 +58,7 @@ struct GunlukCategoriesView: View {
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, MPSpacing.xxxl)
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
     }
 
     private func row(title: String, symbol: String, tone: MPWorldTone, shelf: ClassicShelf?) -> some View {

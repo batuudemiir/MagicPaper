@@ -22,8 +22,6 @@ struct GunlukHeaderCarousel: View {
     let onOpen: (ClassicTale) -> Void
     let onRead: (ClassicTale) -> Void
     let onSearch: () -> Void
-    /// Ebeveyn kapısı: diğer çocuk sekmeleri gibi başlığın sağında kilit (23 Ekim 2026).
-    let onLock: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Döngüdeki konum (`GunlukLoop`): slayt `position % slides.count`.
@@ -152,7 +150,7 @@ struct GunlukHeaderCarousel: View {
     // MARK: - Başlık
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Günlük", onLock: onLock) {
+        MPKidTabHeader(title: "Günlük") {
             MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: onSearch)
         }
         // Başlık resmin üstünde sabit bir yerde durur; satır büyümesin.

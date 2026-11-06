@@ -40,6 +40,7 @@ struct KidCornerView: View {
                 // önce: bulunabilirlik (16 Ekim denetimi).
                 linksSection
                 badgesSection
+                grownUpsEntry
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, GunlukLayout.bottomClearance)
@@ -70,10 +71,29 @@ struct KidCornerView: View {
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
+    // MARK: - Büyükler için
+
+    /// Ebeveyn odasının tek girişi (karar: 7 Kasım 2026): sayfanın en altında,
+    /// sakin ve küçük; çocuğu çağırmaz, arayan ebeveyn bulur. Gizli hareket değil:
+    /// ebeveyn bulamazsa destek sorunu olur. Kapıdan geçer.
+    private var grownUpsEntry: some View {
+        Button { MPHaptics.tap(); app.requestParentMode() } label: {
+            HStack(spacing: MPSpacing.xs) {
+                MPIcon("lock", size: MP.G.sm, weight: .semibold).accessibilityHidden(true)
+                Text("Büyükler için").mpText(.footnote)
+            }
+            .foregroundStyle(MPColor.textSecondary)
+            .frame(maxWidth: .infinity, minHeight: MP.S.tapMin)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(MPPressStyle(.highlight))
+        .accessibilityLabel("Büyükler için, ebeveyn bölümü")
+    }
+
     // MARK: - Başlık ve Ragi
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Benim köşem", onLock: { app.requestParentMode() })
+        MPKidTabHeader(title: "Benim köşem")
             .padding(.top, MPSpacing.lg)
     }
 

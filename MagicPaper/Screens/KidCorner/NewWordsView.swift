@@ -55,7 +55,7 @@ struct NewWordsView: View {
                 }
             }
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onDisappear { if speakingID != nil { speech.stop() } }
     }
 

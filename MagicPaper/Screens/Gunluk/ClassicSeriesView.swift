@@ -53,7 +53,7 @@ struct ClassicSeriesView: View {
         }
         .ignoresSafeArea(edges: .top)
         .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled) }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
     }
 

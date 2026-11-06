@@ -460,7 +460,6 @@ final class MPAppState: ObservableObject {
     func enterChildMode() {
         guard isParentMode else { return }
         isParentMode = false
-        tab = .home
         parentRoute = nil
         showProfileAdd = false
         sheet = nil

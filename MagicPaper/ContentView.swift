@@ -3,11 +3,10 @@ import SwiftUI
 
 /// Kök ekran (FAZ 17, Pastel Masal).
 ///
-/// Çocuk modu: krem zemin, iki sekme ve ortada yükseltilmiş "Yarat"
-/// (`KidTabBar`, 11 · Ana sayfa, 16 · Kitaplık). Ebeveyn modu: gri zemin,
-/// sistem sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32).
-/// Ebeveyn moduna yalnızca kapıdan geçilir; arka plana gidince çocuk moduna
-/// dönülür.
+/// Çocuk kökü: dört sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
+/// sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32). Odaya
+/// yalnızca kapıdan girilir (Köşem > Büyükler için); uygulama arka plana gidince
+/// oda kapanır. Harita: `docs/SAYFA_MIMARISI.md`.
 struct ContentView: View {
     @StateObject private var app = MPAppState()
     @StateObject private var settings = MPSettingsStore.shared
@@ -179,14 +178,21 @@ struct ContentView: View {
 
     // MARK: - Sekme içeriği
 
-    /// Mod değişince tüm içerik çapraz geçer: ebeveyn sayfaları çocuğun
-    /// ekranlarının üstüne açılan bir katman değil, başka bir menü.
+    /// Uygulama çocuğundur; ebeveyn alanı üstüne açılan bir odadır (karar: 7 Kasım
+    /// 2026, `docs/SAYFA_MIMARISI.md`). Çocuk kökü hep canlı: oda kapanınca açık
+    /// sekme ve sayfa yerinde durur. Oda açıkken çocuk kökü dokunmaya ve
+    /// VoiceOver'a kapalı. Sunumlar (`body`) iki alanın da üstüne açılabilsin diye
+    /// oda bir `fullScreenCover` değil.
     private var content: some View {
-        Group {
+        ZStack {
+            kidRoot
+                .allowsHitTesting(!app.isParentMode)
+                .accessibilityHidden(app.isParentMode)
+
             if app.isParentMode {
-                parentRoot.transition(.opacity)
-            } else {
-                kidRoot.transition(.opacity)
+                parentRoot
+                    .transition(reduceMotion ? .opacity : .move(edge: .bottom))
+                    .zIndex(1)
             }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.isParentMode)

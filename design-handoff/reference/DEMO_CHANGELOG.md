@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Sayfa mimarisi: ebeveyn odası, tek giriş
+
+- Batuhan'ın isteği ve onayı: uygulama çocuğun, ebeveyn alanı arka planda. Her sayfanın ele alındığı harita ve kaynaklar: `docs/SAYFA_MIMARISI.md`.
+- Ebeveyn alanı çocuk kökünün yerine geçmiyor, üstüne kayıyor (`ContentView.content`); çocuk kökü canlı, dokunmaya ve VoiceOver'a kapalı. Oda kapanınca çocuk bıraktığı sekme ve sayfada (önceden hep Ana sayfa). `fullScreenCover` bilerek değil: paywall, sheet ve masal yazma iki alanın da üstüne açılabilsin.
+- 23 Ekim kilit kararı değişti: dört sekmenin başlığından kilit kalktı (`MPKidTabHeader`, `HomeHeader`, `GunlukHeaderCarousel`). Tek giriş Köşem'in en altında "Büyükler için". Bağlama bağlı kapılar aynı.
+- Alt sayfa zemini beyaz: klasik detay, klasik seri, raf, kategoriler, Yeni kelimelerim, Masal ailem, Kahraman, Seri. Sekmeden detaya renk değişmiyor. Masal ailem ebeveyn alanında Ragi göstermiyor.
+- Karar bekleyen, yapılmadı: "Günlük" sekmesinin adı, Ana sayfadaki yinelenen yıldız/seri, Ayarlar'daki "Okuma" bölümü. Ebeveyn alt çubuğu kaldı.
+- Risk: ebeveyn girişi tek yerde; bulunabilirliği gerçek kullanıcıyla denenmedi.
+- Test: 793 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık kilitsiz; Köşem sonundan "Büyükler için", kapı, oda, "Çocuk modu" ile Köşem'in aynı konumuna dönüş. Görülmedi: yeni beyaz alt sayfalar, Masal ailem'in ebeveyn hâli, odanın kayma animasyonu, en büyük yazı, VoiceOver, Reduce Motion, iOS 26 öncesi, SE, Pro Max.
+- Dosyalar: `ContentView`, `MPAppState`, `MPNavigationChrome`, `MPHomeChrome`, `MPStatusBarBackdrop`, `HomeView`, `LibraryView`, `KidCornerView`, `GunlukHeader`, `GunlukView`, `ClassicDetailView`, `ClassicSeriesView`, `GunlukCategoriesView`, `GunlukShelfView`, `NewWordsView`, `FamilyCharactersView`, `BookCharacterView`, `SeriesView`, `KidCornerTabTests`, `docs/SAYFA_MIMARISI.md`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Hata: "Profili düzenle" yeni profil açıyordu
 
 - Ekranda düzenleme modu yoktu; düğme `showProfileAdd` bayrağını açıyor, ebeveyn farkında olmadan ikinci profil oluşturabiliyordu. `ProfileCreationView(editing:)` eklendi: mevcut ad, renk ve yaş bandıyla dolu tek adım, "Kaydet". Push (`MPParentRoute.profileEdit`).

@@ -57,7 +57,7 @@ struct ClassicDetailView: View {
         }
         .ignoresSafeArea(edges: .top)
         .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled) }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { narration = progress.narration(for: tale.id) }
         .fullScreenCover(isPresented: $gate) {

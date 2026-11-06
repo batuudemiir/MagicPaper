@@ -10,7 +10,7 @@ import SwiftUI
 struct MPStatusBarBackdrop: View {
     let visible: Bool
     /// Sayfanın zemini; ayrı bir şerit gibi durmasın.
-    var fill: Color = MPColor.backgroundKid
+    var fill: Color = MPColor.backgroundSurface
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {

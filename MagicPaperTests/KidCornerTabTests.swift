@@ -18,9 +18,12 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertEqual(app.tab, .corner)
     }
 
-    func testReturningFromTheParentAreaLandsOnHome() {
+    /// Ebeveyn odası çocuğun üstüne açılır: kapanınca çocuk bıraktığı yerdedir.
+    func testLeavingTheParentRoomReturnsTheChildToWhereItWas() {
         let app = MPAppState()
+        let route = MPKidRoute.newWords(UUID())
         app.openKidCorner()
+        app.openKidPage(route)
         app.requestParentMode()
         XCTAssertTrue(app.showGate)
         app.unlockParent()
@@ -28,7 +31,8 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertTrue(app.isParentMode)
         app.enterChildMode()
         XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .home)
+        XCTAssertEqual(app.tab, .corner)
+        XCTAssertEqual(app.kidPaths[.corner], [route])
     }
 
     /// Köşem'deki kilit ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.

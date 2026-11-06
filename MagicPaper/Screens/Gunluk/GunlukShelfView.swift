@@ -111,7 +111,7 @@ struct GunlukShelfView: View {
                 .padding(.bottom, GunlukLayout.bottomClearance)
             }
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { if startsSearching { searchFocused = true } }
     }

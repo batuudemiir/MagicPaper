@@ -36,8 +36,7 @@ struct GunlukView: View {
                                 screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
                             onOpen: { path.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
-                            onSearch: { path.append(.search) },
-                            onLock: { app.requestParentMode() })
+                            onSearch: { path.append(.search) })
 
                         // Ana sayfanın dili: bölümleri kart değil boşluk ayırır; kart
                         // yalnızca dokunulan kapaklarda (karar: 7 Kasım 2026).

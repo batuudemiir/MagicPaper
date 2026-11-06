@@ -76,7 +76,7 @@ struct LibraryView: View {
     // MARK: - Üst bölüm
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Kitaplık", onLock: { app.requestParentMode() })
+        MPKidTabHeader(title: "Kitaplık")
             .padding(.top, MPSpacing.lg)
     }
 

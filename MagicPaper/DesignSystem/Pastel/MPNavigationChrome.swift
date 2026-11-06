@@ -216,20 +216,19 @@ struct ParentTabs<Summary: View, Safety: View, Settings: View>: View {
     }
 }
 
-/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, kilit
-/// (ebeveyn kapısı) sağda, sekme değişince ikisi de yerinde kalır. Üst ve yan
-/// boşluk sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
+/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, sekmenin
+/// kendi denetimi sağda. Ebeveyn girişi burada yok (Köşem > Büyükler için). Üst ve
+/// yan boşluk sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
 struct MPKidTabHeader<Accessory: View>: View {
     let title: String
     /// Başlığın üstündeki küçük satır (Ana sayfa'nın selamı).
     var eyebrow: String? = nil
-    let onLock: () -> Void
-    /// Kilidin solundaki denetim (Ana sayfa'nın avatarı, Günlük'ün araması).
+    /// Sağdaki denetim (Ana sayfa'nın avatarı, Günlük'ün araması).
     @ViewBuilder var accessory: Accessory
 
     var body: some View {
         // Üste hizalı ve sabit satır yüksekliği: selamlı başlık daha uzun olsa
-        // da kilit her sekmede aynı noktada durur.
+        // da sağdaki denetim her sekmede aynı hizada durur.
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             VStack(alignment: .leading, spacing: 0) {
                 if let eyebrow {
@@ -242,18 +241,15 @@ struct MPKidTabHeader<Accessory: View>: View {
             .frame(minHeight: MPSize.headerAvatar)
             .accessibilityElement(children: .combine)
             Spacer(minLength: MPSpacing.sm)
-            HStack(spacing: MPSpacing.sm) {
-                accessory
-                MPCircleButton(systemImage: "lock", accessibilityLabel: "Ebeveyn bölümü", action: onLock)
-            }
-            .frame(minHeight: MPSize.headerAvatar)
+            accessory
+                .frame(minHeight: MPSize.headerAvatar)
         }
     }
 }
 
 extension MPKidTabHeader where Accessory == EmptyView {
-    init(title: String, eyebrow: String? = nil, onLock: @escaping () -> Void) {
-        self.init(title: title, eyebrow: eyebrow, onLock: onLock) { EmptyView() }
+    init(title: String, eyebrow: String? = nil) {
+        self.init(title: title, eyebrow: eyebrow) { EmptyView() }
     }
 }
 

@@ -55,8 +55,7 @@ struct HomeView: View {
                 HomeHeader(greeting: greeting, childName: activeName,
                            avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
                                               size: MPSize.headerAvatar) },
-                           onAvatar: { app.openKidCorner() },
-                           onLock: { app.requestParentMode() })
+                           onAvatar: { app.openKidCorner() })
                 // Satır Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada.
                 Button { MPHaptics.tap(); app.openKidCorner() } label: {
                     HomeStatLine(stars: stars, streak: streak.currentStreak)

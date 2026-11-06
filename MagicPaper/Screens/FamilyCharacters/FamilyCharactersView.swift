@@ -93,9 +93,12 @@ struct FamilyCharactersView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
-                    MascotSays(mascot: .waving,
-                               text: full ? FamilyCharacterCopy.ragiFull : FamilyCharacterCopy.ragiInvite,
-                               mascotWidth: 72)
+                    // Ebeveyn alanında Ragi yok (Design law).
+                    if !app.isParentMode {
+                        MascotSays(mascot: .waving,
+                                   text: full ? FamilyCharacterCopy.ragiFull : FamilyCharacterCopy.ragiInvite,
+                                   mascotWidth: 72)
+                    }
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.bottom, MPSpacing.xxxl)
@@ -116,11 +119,11 @@ struct FamilyCharactersView: View {
                 }
                 .padding(.horizontal, MPSpacing.screenH)
                 .padding(.vertical, MPSpacing.md)
-                .background(MPColor.backgroundKid)
+                .background(MPColor.backgroundSurface)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .animation(MP.M.gated(MP.M.base), value: selectedID)
     }
 
