@@ -176,9 +176,8 @@ yönlendirme için yeterli, IceCubes'taki gibi tek yerden enum ile sürer.
 
 ## Önerilen sıra
 
-Durum (7 Kasım 2026): 1, 2 ve 3 yapıldı. Ayrıntı ve doğrulanmayanlar için
-`DEMO_CHANGELOG.md`. Bilerek kalan: Ana sayfa selamı ve Günlük vitrini istisna;
-Ayarlar'dan açılan Masal ailem ve Kahraman hâlâ katman.
+Durum (7 Kasım 2026): 1-5 yapıldı, 6 açık. Ayrıntı ve doğrulanmayanlar için
+`DEMO_CHANGELOG.md`.
 
 1. **Sekme başlığı birliği** (küçük, en görünür): Kitaplık ve Köşem'in kopya `titleBar`'ı
    ortak bileşene, Ana sayfa ve Günlük aynı başlık yerini paylaşır, zemin tekleşir.

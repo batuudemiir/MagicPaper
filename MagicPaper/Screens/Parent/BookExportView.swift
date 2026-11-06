@@ -55,9 +55,9 @@ struct BookExportView: View {
             if format == .pdf, let selection { bottomActions(selection) }
         }
         .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
-        .fullScreenCover(item: $shareStories) { chosen in
+        .navigationDestination(item: $shareStories) { chosen in
             ShareLinkView(preselected: chosen.ids, onClose: { shareStories = nil })
-                .environmentObject(app)
+                .toolbar(.hidden, for: .navigationBar)
         }
         .onAppear {
             if childID == nil { childID = profileManager.currentProfile?.id ?? profileManager.profiles.first?.id }
@@ -193,7 +193,7 @@ struct BookExportView: View {
 }
 
 /// Paylaşıma giden masallar (36 · Aileyle paylaş).
-struct ShareStories: Identifiable {
+struct ShareStories: Identifiable, Hashable {
     let ids: [UUID]
     var id: String { ids.map(\.uuidString).joined() }
 }

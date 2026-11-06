@@ -111,7 +111,9 @@ struct ContentView: View {
                 surfaceRouter.pending = nil
                 app.open(link, childID: profileManager.currentProfile?.id)
             }
-            .overlay { sheetLayer }
+            .sheet(item: $app.sheet, onDismiss: { app.runAfterSheet() }) { route in
+                sheetContent(route).environmentObject(app)
+            }
             .fullScreenCover(item: $app.sleepSession, onDismiss: { MPSurfaceSync.refresh() }) { session in
                 SleepModeView(session: session).environmentObject(app)
             }
@@ -289,37 +291,23 @@ struct ContentView: View {
         )
     }
 
-    // MARK: - Alt sayfa katmanı
-    //
-    // MPSheet kendi geometrisini çizer (32px üst köşe, %86 max yükseklik),
-    // bu yüzden `.sheet` yerine ekranın üstünde bir katman olarak durur.
+    // MARK: - Sheet'ler
 
     @ViewBuilder
-    private var sheetLayer: some View {
-        if let route = app.sheet {
-            switch route {
-            case .profilePicker:
-                ProfilePickerSheet()
-                    .environmentObject(app)
-            case .profileEdit(let id):
-                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                    ProfileEditSheet(profile: profile).environmentObject(app)
-                }
-            case .bookCharacter(let id):
-                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                    BookCharacterView(profile: profile).environmentObject(app)
-                }
-            case .familyCharacters(let id):
-                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                    FamilyCharactersView(profile: profile).environmentObject(app)
-                }
-            case .interests(let id):
-                if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                    InterestsEditorSheet(profile: profile).environmentObject(app)
-                }
-            case .signOut:
-                AccountSignOutSheet(onClose: { app.sheet = nil })
+    private func sheetContent(_ route: MPSheetRoute) -> some View {
+        switch route {
+        case .profilePicker:
+            ProfilePickerSheet()
+        case .profileEdit(let id):
+            if let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                ProfileEditSheet(profile: profile)
             }
+        case .interests(let id):
+            if let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                InterestsEditorSheet(profile: profile)
+            }
+        case .signOut:
+            AccountSignOutSheet(onClose: { app.sheet = nil })
         }
     }
 }

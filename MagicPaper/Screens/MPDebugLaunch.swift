@@ -20,7 +20,7 @@ enum MPDebugLaunch {
     static var startTab: MPTab? { defaults.string(forKey: "mpStartTab").flatMap(MPTab.init(rawValue:)) }
     static var parentTab: MPParentTab? { defaults.string(forKey: "mpParentTab").flatMap(MPParentTab.init(rawValue:)) }
     static var demoLibrary: Bool { defaults.bool(forKey: "mpDemoLibrary") }
-    static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(rawValue:)) }
+    static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(debugName:)) }
 
     @MainActor
     static func applyBeforeGate() {

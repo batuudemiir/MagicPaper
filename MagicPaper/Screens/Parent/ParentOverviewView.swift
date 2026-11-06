@@ -32,11 +32,15 @@ struct ParentOverviewView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .fullScreenCover(isPresented: $showsLapse, onDismiss: { subscriptionManager.acknowledgeLapse() }) {
+        .navigationDestination(isPresented: $showsLapse) {
             SubscriptionExpiredView(onRenew: {
                 showsLapse = false
                 app.openPaywall()
             }, onClose: { showsLapse = false })
+            .toolbar(.hidden, for: .navigationBar)
+        }
+        .onChange(of: showsLapse) { _, shown in
+            if !shown { subscriptionManager.acknowledgeLapse() }
         }
     }
 

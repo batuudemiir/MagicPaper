@@ -50,7 +50,9 @@ struct SettingsView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
-        .fullScreenCover(isPresented: $showPrivacy) { PrivacyAndDataView() }
+        .navigationDestination(isPresented: $showPrivacy) {
+            PrivacyAndDataView().toolbar(.hidden, for: .navigationBar)
+        }
         .fullScreenCover(isPresented: $confirmDelete) {
             AccountDeletionSheet(onClose: { confirmDelete = false })
         }

@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Sheet birliği ve üst üste modallar
+
+- Tek sheet sistemi: `app.sheet` kök katmandan gerçek `.sheet(item:)`'a geçti; `MPSheet` artık yalnızca içerik düzeni (scrim, tutamak ve `UIScreen` hesabı kalktı, Kapat `MPCircleButton`). `AccountSignOutSheet` içerik boyunda sistem sheet'i; çıkış başarılı olunca kapanıyor.
+- Sheet kapanırken açılan modal yutulmasın diye `app.closeSheet(then:)`.
+- Push'a geçen: Ayarlar > profil düzenlemeden Masal ailem ve Kahraman (`MPParentRoute`), Masal kitabı > Paylaş, Ayarlar > Gizlilik ve veri, Özet > Abonelik bitti. `MPParentRoute` artık `rawValue` taşımıyor (`init?(debugName:)`).
+- Ebeveyn modundan çıkış açık sheet'in tamamını kapatıyor (önceden `.signOut` açık kalabiliyordu).
+- Bilerek kalan: ebeveyn kapısı Masal eylemleri sheet'inin üstünde ve sistemin paylaşım penceresi sheet üstünde (Design law istisnası); Hesap sil ve Kendi sesin kaydı `fullScreenCover`.
+- Test: `MagicPaperTests` 790 test, 0 başarısız, 1 atlandı, `TEST SUCCEEDED` (3 test yeni ya da güncellendi).
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): profil sheet'i, sheet'ten Masal ailem push ve kenardan geri, "Profili düzenle" sheet kapandıktan sonra açılıyor. Görülmedi: çıkış sheet'i (demo hesapsız), Kim okuyacak?, İlgi alanları, Masal kitabı > Paylaş, Gizlilik, Abonelik bitti, iOS 26 öncesi, SE, Pro Max.
+- Fark edilen eski sorunlar, dokunulmadı: "Profili düzenle" mevcut profili düzenlemek yerine "Yeni profil" açıyor (`showProfileAdd`); Masal ailem ebeveyn alanında da Ragi gösteriyor (Design law: ebeveyn alanında Ragi yok).
+- Dosyalar: `ContentView`, `MPAppState`, `MPDebugLaunch`, `MPNavigation`, `MPSheets`, `AccountSettings`, `ParentRouteView`, `BookExportView`, `ParentOverviewView`, `SettingsView`, `KidCornerTabTests`, `docs/UX_KAYNAK_ARASTIRMASI.md`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Görsel sadeleşme: düz buton, kartsız bölüm, lavantanın rolü
 
 - Birincil düğme gradient ve parıltısız: düz `actionPrimary` + sert alt kenar (`PrimaryEdge`). `LinearGradient.mpPrimary`, `MPShadow.primaryGlow` ve `actionGradient*` kaldırıldı; `GunlukPrimaryButton` artık `MPButton`. `MPRoundActionButton` düz.

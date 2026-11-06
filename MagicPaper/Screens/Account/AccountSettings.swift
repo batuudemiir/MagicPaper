@@ -39,18 +39,16 @@ struct AccountStatusRows: View {
     }
 }
 
-/// "Çıkış yap" onayı: ebeveyn alanında alttan açılan sakin bir kart.
+/// "Çıkış yap" onayı: ebeveyn alanında içerik boyunda sistem sheet'i.
 struct AccountSignOutSheet: View {
     @ObservedObject private var account = AccountService.shared
     var onClose: () -> Void
     @State private var working = false
     @State private var message: String?
+    @State private var contentHeight: CGFloat = 0
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            MPColor.textPrimary.opacity(0.35).ignoresSafeArea()
-                .onTapGesture { if !working { onClose() } }
-                .accessibilityHidden(true)
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.lg) {
                 Text(AccountCopy.signOut).mpText(.title3).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
@@ -67,24 +65,23 @@ struct AccountSignOutSheet: View {
                         Task {
                             do {
                                 try await account.signOut()
+                                working = false
+                                onClose()
                             } catch {
                                 message = AccountCopy.message(for: error)
+                                working = false
                             }
-                            working = false
                         }
                     }
                     MPButton(title: "Vazgeç", kind: .ghost, action: onClose).disabled(working)
                 }
             }
             .padding(MPSpacing.xl)
-            .padding(.bottom, MPSpacing.lg)
-            .background(MPColor.backgroundParent, in: UnevenRoundedRectangle(topLeadingRadius: MPRadius.sheet, topTrailingRadius: MPRadius.sheet))
-            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
-            .accessibilityElement(children: .contain)
-            .accessibilityAddTraits(.isModal)
-            .accessibilityAction(.escape) { if !working { onClose() } }
+            .mpMeasureHeight($contentHeight)
         }
-        .ignoresSafeArea(edges: .bottom)
+        .scrollBounceBehavior(.basedOnSize)
+        .interactiveDismissDisabled(working)
+        .mpSheet(.fitted(contentHeight), area: .parent)
     }
 }
 

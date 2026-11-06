@@ -31,8 +31,7 @@ struct ProfilePickerSheet: View {
             }
         } footer: {
             MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .secondary, fullWidth: true) {
-                app.sheet = nil
-                app.showProfileAdd = true
+                app.closeSheet { app.showProfileAdd = true }
             }
         }
     }
@@ -251,15 +250,14 @@ struct ProfileEditSheet: View {
         MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
             MPGroupedList(area: .kid) {
                 MPRowButton(systemImage: "pencil", title: "Profili düzenle", action: {
-                    app.sheet = nil
-                    app.showProfileAdd = true
+                    app.closeSheet { app.showProfileAdd = true }
                 }) { MPChevron() }
 
                 if IllustratedBookAccess.isEnabled() {
                     MPRowDivider(area: .kid)
                     MPRowButton(systemImage: "sparkles", title: "Kitap karakteri",
                                 subtitle: "Görselli masallarda görünecek karakter", action: {
-                        app.sheet = .bookCharacter(profile.id)
+                        app.openKidPage(.bookCharacter(profile.id))
                     }) { MPChevron() }
                 }
 
@@ -267,7 +265,7 @@ struct ProfileEditSheet: View {
                 MPRowButton(systemImage: FamilyCharacterCopy.profileRowSymbol, tone: .pink,
                             title: FamilyCharacterCopy.profileRowTitle,
                             subtitle: FamilyCharacterCopy.profileRowDescription, action: {
-                    app.sheet = .familyCharacters(profile.id)
+                    app.openKidPage(.familyCharacters(profile.id))
                 }) { MPChevron() }
 
                 if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {

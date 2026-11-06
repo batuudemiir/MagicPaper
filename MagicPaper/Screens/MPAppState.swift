@@ -66,12 +66,35 @@ enum MPParentTab: String, CaseIterable {
 /// Ebeveyn sekmesinin yığınına itilen sayfalar (teslimdeki `ParentRoute`,
 /// SCREENS.md: push). FAZ 18 özellikleri `FamilyFeatureAccess` bayrağı açıkken
 /// görünür; Masal kitabı sunucu istemediği için bayrak dışı.
-enum MPParentRoute: String, Identifiable, Hashable {
+enum MPParentRoute: Identifiable, Hashable {
     case bookExport       // 35 · Masal kitabı
     case voiceRecording   // 33 · Kendi sesin
     case familyMembers    // 34 · Aile üyeleri
     case shareLink        // 36 · Aileyle paylaş
-    var id: String { rawValue }
+    case familyCharacters(UUID)  // 14 · Masal ailem, profil düzenlemeden
+    case bookCharacter(UUID)     // 13 · Kahraman oluşturucu, profil düzenlemeden
+
+    var id: String {
+        switch self {
+        case .bookExport: return "bookExport"
+        case .voiceRecording: return "voiceRecording"
+        case .familyMembers: return "familyMembers"
+        case .shareLink: return "shareLink"
+        case .familyCharacters(let i): return "familyCharacters-\(i)"
+        case .bookCharacter(let i): return "bookCharacter-\(i)"
+        }
+    }
+
+    /// `-mpParentRoute` açılış argümanı (`MPDebugLaunch`).
+    init?(debugName: String) {
+        switch debugName {
+        case "bookExport": self = .bookExport
+        case "voiceRecording": self = .voiceRecording
+        case "familyMembers": self = .familyMembers
+        case "shareLink": self = .shareLink
+        default: return nil
+        }
+    }
 }
 
 // MARK: - Çocuk alt sayfaları
@@ -91,11 +114,6 @@ enum MPKidRoute: Hashable {
 enum MPSheetRoute: Identifiable, Equatable {
     case profilePicker
     case profileEdit(UUID)
-    /// Görselli kitabın karakteri (B2) — ebeveyn tarafı.
-    case bookCharacter(UUID)
-    /// Masal ailem (FAZ 11), çocuk başına; ebeveyn tarafından. Çocuk tarafında
-    /// `MPKidRoute`.
-    case familyCharacters(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
@@ -105,8 +123,6 @@ enum MPSheetRoute: Identifiable, Equatable {
         switch self {
         case .profilePicker:        return "profilePicker"
         case .profileEdit(let i):   return "profileEdit-\(i)"
-        case .bookCharacter(let i): return "bookCharacter-\(i)"
-        case .familyCharacters(let i): return "familyCharacters-\(i)"
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         }
@@ -136,14 +152,21 @@ final class MPAppState: ObservableObject {
         tabReselections += 1
     }
 
-    /// Alt sayfa, açık olan sekmenin yığınına itilir. Ebeveyn tarafından gelen
-    /// karakter sayfaları katmanda açılır; ebeveyn sekmesinin rotası değiller.
+    /// Alt sayfa, açık olan sekmenin yığınına itilir. Ebeveyn alanında karakter
+    /// sayfaları ebeveyn sekmesinin yığınına gider; açık sheet kapanır.
     func openKidPage(_ route: MPKidRoute) {
         if isParentMode {
             switch route {
-            case .bookCharacter(let id):    sheet = .bookCharacter(id); return
-            case .familyCharacters(let id): sheet = .familyCharacters(id); return
-            case .series, .newWords:        break
+            case .bookCharacter(let id):
+                sheet = nil
+                parentRoute = .bookCharacter(id)
+                return
+            case .familyCharacters(let id):
+                sheet = nil
+                parentRoute = .familyCharacters(id)
+                return
+            case .series, .newWords:
+                break
             }
         }
         // Günlük'ün yığını kendi rotalarını taşır (`GunlukRoute`).
@@ -154,11 +177,26 @@ final class MPAppState: ObservableObject {
 
     /// Alt sayfanın "Geri"si: katmandaysa kapanır, yığındaysa bir geri döner.
     func closeKidPage() {
-        if sheet != nil {
-            sheet = nil
+        if isParentMode {
+            parentRoute = nil
         } else if kidPaths[tab]?.isEmpty == false {
             kidPaths[tab]?.removeLast()
         }
+    }
+
+    /// Sheet kapanırken başka bir modal açılamaz (iOS sunumu yutar): sıradaki iş
+    /// sheet gerçekten kapanınca çalışır (`ContentView`, `onDismiss`).
+    private var afterSheet: (() -> Void)?
+
+    func closeSheet(then next: @escaping () -> Void) {
+        afterSheet = next
+        sheet = nil
+    }
+
+    func runAfterSheet() {
+        let next = afterSheet
+        afterSheet = nil
+        next?()
     }
 
     /// Çocuk mu, ebeveyn mi. Oturumluk ve kalıcı değil: uygulama her zaman
@@ -416,10 +454,7 @@ final class MPAppState: ObservableObject {
         tab = .home
         parentRoute = nil
         showProfileAdd = false
-        if case .profileEdit = sheet { sheet = nil }
-        if case .bookCharacter = sheet { sheet = nil }
-        if case .familyCharacters = sheet { sheet = nil }
-        if case .interests = sheet { sheet = nil }
+        sheet = nil
     }
 }
 

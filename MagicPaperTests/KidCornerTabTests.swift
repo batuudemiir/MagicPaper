@@ -102,15 +102,41 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertEqual(app.kidPaths[.home], [route])
     }
 
-    func testCharacterPagesOpenAsALayerInTheParentArea() {
+    func testCharacterPagesArePushedOnTheParentStackAndCloseTheSheet() {
         let app = MPAppState()
         app.requestParentMode()
         app.unlockParent()
         let id = UUID()
+        app.sheet = .profileEdit(id)
         app.openKidPage(.familyCharacters(id))
-        XCTAssertEqual(app.sheet, .familyCharacters(id))
+        XCTAssertEqual(app.parentRoute, .familyCharacters(id))
+        XCTAssertNil(app.sheet)
         XCTAssertTrue(app.kidPaths.isEmpty)
         app.closeKidPage()
+        XCTAssertNil(app.parentRoute)
+    }
+
+    /// Sheet kapanırken açılan modal yutulur: sıradaki iş kapanış bitince çalışır.
+    func testWorkAfterASheetWaitsForItsDismissal() {
+        let app = MPAppState()
+        app.sheet = .profilePicker
+        app.closeSheet { app.showProfileAdd = true }
+        XCTAssertNil(app.sheet)
+        XCTAssertFalse(app.showProfileAdd)
+        app.runAfterSheet()
+        XCTAssertTrue(app.showProfileAdd)
+        // Yalnızca bir kez çalışır.
+        app.showProfileAdd = false
+        app.runAfterSheet()
+        XCTAssertFalse(app.showProfileAdd)
+    }
+
+    func testReturningToChildModeClosesAnyOpenSheet() {
+        let app = MPAppState()
+        app.requestParentMode()
+        app.unlockParent()
+        app.sheet = .signOut
+        app.enterChildMode()
         XCTAssertNil(app.sheet)
     }
 

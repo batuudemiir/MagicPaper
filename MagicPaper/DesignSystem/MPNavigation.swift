@@ -228,8 +228,9 @@ private extension Array {
 
 // MARK: - MPSheet
 
-/// Alt sayfa. MagicPaper'da her ikincil aksiyon ekran push etmek yerine burada açılır.
-/// `onClose` verilmezse zorunlu seçim içerir ve dokunuşla kapanmaz.
+/// Sistem sheet'inin içerik düzeni: başlık ve Kapat, kayan içerik, alt düğme
+/// (karar: 7 Kasım 2026). Sunumu, tutamağı ve karartmayı sistem yapar (`mpSheet`);
+/// kendi katmanımız yok. `onClose` verilmezse zorunlu seçim içerir, aşağı çekilmez.
 struct MPSheet<Content: View, Footer: View>: View {
     var title: String? = nil
     var onClose: (() -> Void)? = nil
@@ -237,66 +238,34 @@ struct MPSheet<Content: View, Footer: View>: View {
     @ViewBuilder var footer: () -> Footer
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            MP.C.scrim
-                .ignoresSafeArea()
-                .onTapGesture { onClose?() }
-                .transition(.opacity)
-                .accessibilityHidden(true)
-
-            VStack(spacing: 0) {
-                HStack(spacing: 12) {
-                    if let title {
-                        Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textTitle)
-                            .accessibilityAddTraits(.isHeader)
-                    }
-                    Spacer(minLength: 0)
-                    if let onClose {
-                        Button(action: onClose) {
-                            MPIcon("xmark", size: 17, weight: .bold)
-                                .foregroundStyle(MP.C.textBody)
-                                .frame(width: 34, height: 34)
-                                .background(Circle().fill(MP.C.surfaceSunken))
-                                // Görünen daire küçük kalır, dokunma alanı
-                                // ~50pt; düzen değişmez.
-                                .padding(MP.S.x2)
-                                .contentShape(Rectangle())
-                                .padding(-MP.S.x2)
-                        }
-                        .buttonStyle(MPPressStyle(.highlight))
-                        .accessibilityLabel("Kapat")
-                    }
+        VStack(spacing: 0) {
+            HStack(spacing: MP.S.x3) {
+                if let title {
+                    Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textTitle)
+                        .accessibilityAddTraits(.isHeader)
                 }
-                .padding(.top, 20)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 10)
-                // Tutamak sistem sheet'iyle aynı ölçüde (iOS 26 düzeni, 21 Ekim 2026).
-                .overlay(alignment: .top) {
-                    Capsule().fill(MP.C.borderStrong).frame(width: MP.S.x8 - MP.S.x1, height: 5)
-                        .padding(.top, MP.S.x2)
-                        .accessibilityHidden(true)
+                Spacer(minLength: 0)
+                if let onClose {
+                    MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat", action: onClose)
                 }
-
-                ScrollView { content().padding(.horizontal, 20).padding(.bottom, 20).padding(.top, 4) }
-
-                footer().padding(.horizontal, 20).padding(.bottom, 12)
             }
-            .frame(maxHeight: UIScreen.main.bounds.height * 0.86)
-            // Yüzey diğer açılır pencerelerle aynı kâğıt (`mpSheet`).
-            .background(
-                MPColor.backgroundKid
-                    .clipShape(UnevenRoundedRectangle(
-                        topLeadingRadius: MP.R.sheet, bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0, topTrailingRadius: MP.R.sheet, style: .continuous))
-            )
-            .mpShadow(MP.Sh.sheet)
-            .transition(.move(edge: .bottom).combined(with: .opacity))
-            // VoiceOver arkadaki ekrana kaçmaz; iki parmakla "Z" kapatır.
-            .accessibilityElement(children: .contain)
-            .accessibilityAddTraits(.isModal)
-            .accessibilityAction(.escape) { onClose?() }
+            .padding(.top, MP.S.x5)
+            .padding(.horizontal, MP.S.screenGutter)
+            .padding(.bottom, MP.S.x2)
+
+            ScrollView {
+                content()
+                    .padding(.horizontal, MP.S.screenGutter)
+                    .padding(.bottom, MP.S.x5)
+                    .padding(.top, MP.S.x1)
+            }
+
+            footer()
+                .padding(.horizontal, MP.S.screenGutter)
+                .padding(.bottom, MP.S.x3)
         }
-        .animation(MP.M.gated(MP.M.spring), value: true)
+        .interactiveDismissDisabled(onClose == nil)
+        .mpSheet(.half)
     }
 }
 
