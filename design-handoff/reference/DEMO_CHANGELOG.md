@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Görsel sadeleşme: düz buton, kartsız bölüm, lavantanın rolü
+
+- Birincil düğme gradient ve parıltısız: düz `actionPrimary` + sert alt kenar (`PrimaryEdge`). `LinearGradient.mpPrimary`, `MPShadow.primaryGlow` ve `actionGradient*` kaldırıldı; `GunlukPrimaryButton` artık `MPButton`. `MPRoundActionButton` düz.
+- `GunlukSection` kart çizmiyor, başlığı `MPSectionHeader`; raflar ekran kenarına kadar kayıyor, süs simge kareleri kalktı. Klasik detay, seri, raf ve kategoriler de bu dilde.
+- 22 Ekim'deki lavanta panel kararı değişti (Batuhan onayı, 7 Kasım): `HomeSection` paneli (`contained`) kaldırıldı, Ana sayfa mod listesi ve Köşem'in Masal dünyam ile sayıları zeminde. Lavanta: bu akşamın kartı, seçili öğe, ikincil düğme. `CreationChoiceRow` seçili değilken beyaz + ince kenar.
+- Bilerek değişmedi: mor marka rengi, gece bölgesi, bu akşamın kartı, `HeaderWash`'ın gradient'i (Seri, kural dışı, ayrı iş). Alt sayfaların krem, sekmelerin beyaz zemini hâlâ farklı.
+- Test: `MagicPaperTests` 788 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Ana sayfa, Köşem, Günlük (tepe ve alt), klasik detay, masal yazma ilk adımı; Köşem ve Günlük en büyük yazı. Görülmedi: seri, raf, kategoriler, iOS 26 öncesi, SE, Pro Max.
+- Dosyalar: `MPButtons`, `MPColor`, `MPLayout`, `MPStory`, `MPHomeChrome`, `HomeView`, `LibraryView`, `KidCornerView`, `GunlukComponents`, `GunlukView`, `ClassicDetailView`, `ClassicSeriesView`, `GunlukCategoriesView`, `GunlukShelfView`, `StoryCreationChrome`, `VoiceRecordingView`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Sekme başlıkları ve gezinme: tek düzen
 
 - Dört çocuk sekmesi tek başlık bileşeninde (`MPKidTabHeader`; çağrılmayan `KidHeader` silindi): üst boşluk `lg`, kilit her sekmede aynı boyut ve hizada. Günlük'ün araması kilitle aynı düğme, zemini diğer sekmeler gibi `backgroundSurface`.

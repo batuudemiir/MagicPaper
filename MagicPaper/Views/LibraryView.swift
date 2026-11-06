@@ -143,7 +143,7 @@ struct LibraryView: View {
     @ViewBuilder
     private var highlights: some View {
         if let item = model.continueItems().first {
-            HomeSection(title: "Kaldığın yerden", contained: false) {
+            HomeSection(title: "Kaldığın yerden") {
                 LibraryContinueCard(item: item) { open(item, continuing: true) }
             }
             .homeEntrance(3)

@@ -67,10 +67,6 @@ enum MPColor {
     static let borderOutline = Color("Colors/borderOutline")
     /// #6A47B8
     static let actionPrimary = Color("Colors/actionPrimary")
-    /// #9C7BE3
-    static let actionGradientTop = Color("Colors/actionGradientTop")
-    /// #5C3A8F
-    static let actionGradientBottom = Color("Colors/actionGradientBottom")
     /// #EFE6F7
     static let actionSoft = Color("Colors/actionSoft")
     /// Beyaz sayfadaki kart ve bölüm yüzeyi: ikincil düğmelerle aynı lavanta
@@ -179,11 +175,6 @@ enum MPWorldTone: String, CaseIterable, Codable {
     case lav, pink, yellow, green, sky, peach, mint, gray
     var soft: Color { Color("Colors/world\(rawValue.prefix(1).uppercased() + rawValue.dropFirst())Soft") }
     var deep: Color { Color("Colors/world\(rawValue.prefix(1).uppercased() + rawValue.dropFirst())Deep") }
-}
-
-/// Primary action gradient used by MPButton(.primary), the create FAB and the play button.
-extension LinearGradient {
-    static let mpPrimary = LinearGradient(colors: [MPColor.actionGradientTop, MPColor.actionGradientBottom], startPoint: .top, endPoint: .bottom)
 }
 
 // MARK: - Malzeme ve süs renkleri

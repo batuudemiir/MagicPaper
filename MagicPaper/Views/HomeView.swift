@@ -14,7 +14,8 @@ import SwiftUI
 /// 22 Ekim 2026 (Batuhan onayı): iOS düzeni. Düz beyaz sayfa, sola yaslı büyük
 /// başlık ve altında tek satır yıldız/seri; tam genişlik sahne bu akşamın
 /// kartının içine taşındı (Ragi orada, ekranın tek maskotu). Modlar resimli
-/// kartlar yerine masal yazma adımlarıyla aynı satırlar; bölümler lavanta (`cardSoft`).
+/// kartlar yerine masal yazma adımlarıyla aynı satırlar. 7 Kasım 2026: bölümler
+/// panelsiz, lavanta (`cardSoft`) yalnızca bu akşamın kartında.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -206,7 +207,7 @@ struct HomeView: View {
     /// listede (22 Ekim 2026; önceden resimli büyük kartlar). Satır akışı o
     /// modla, ikinci adımdan açar.
     private var modeStrip: some View {
-        HomeSection(title: "Yeni bir masal yaz", contained: false) {
+        HomeSection(title: "Yeni bir masal yaz") {
             VStack(spacing: 0) {
                 ForEach(Array(shownModes.enumerated()), id: \.element) { index, mode in
                     if index > 0 { MPRowDivider(area: .kid) }
@@ -224,13 +225,12 @@ struct HomeView: View {
                     .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
-            .padding(.vertical, MPSpacing.xxs)
-            .background(MPColor.cardSoft,
-                        in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+            // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
+            .padding(.horizontal, -MPSpacing.md)
         }
     }
 
-    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); bölümler lavanta (`cardSoft`).
+    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); lavanta yalnızca bu akşamın kartında.
     private var pageBackground: Color { MPColor.backgroundSurface }
 
     // MARK: - Günün masalı

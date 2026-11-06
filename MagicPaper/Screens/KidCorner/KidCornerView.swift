@@ -8,9 +8,8 @@ import SwiftUI
 /// sonra doğrudan profil eklemeye gider; kahramanı düzenlemek kapıdan geçer.
 /// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
 ///
-/// 22 Ekim 2026: iOS profil sayfası düzeni. Beyaz sayfada lavanta (`cardSoft`), gölgesiz
-/// ve kenarsız bloklar (ana sayfa ve masal yazma adımlarıyla aynı); Ragi ve
-/// karşılama balonsuz; sayılar üç ayrı kutucuk; Masal dünyam gruplu liste.
+/// 22 Ekim 2026: iOS profil sayfası düzeni. Ragi ve karşılama balonsuz; Masal
+/// dünyam gruplu liste. 7 Kasım 2026: panel ve kutu yok, bölümleri boşluk ayırır.
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
@@ -108,7 +107,7 @@ struct KidCornerView: View {
     // MARK: - Kim okuyor?
 
     private var whoSection: some View {
-        HomeSection(title: "Kim okuyor?", contained: false) {
+        HomeSection(title: "Kim okuyor?") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.xl) {
                     ForEach(profileManager.profiles) { child in
@@ -186,7 +185,7 @@ struct KidCornerView: View {
         }
     }
 
-    /// Tek sayı kutucuğu: lavanta, gölgesiz (dokunulmuyor, düğme gibi durmaz).
+    /// Tek sayı: zeminde, kutusuz (dokunulmuyor, düğme gibi durmaz).
     private func stat<Glyph: View>(value: Int, label: String, row: Bool,
                                    @ViewBuilder glyph: () -> Glyph) -> some View {
         let layout = row
@@ -199,10 +198,6 @@ struct KidCornerView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, alignment: row ? .leading : .center)
-        .padding(.vertical, MPSpacing.md)
-        .padding(.horizontal, MPSpacing.sm)
-        .background(MPColor.cardSoft,
-                    in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .accessibilityElement(children: .combine)
     }
 
@@ -211,7 +206,7 @@ struct KidCornerView: View {
     /// Bütün rozetler, kazanılmamışlar kilitli (karar 13 Ekim 2026). İlerleme
     /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7).
     private var badgesSection: some View {
-        HomeSection(title: "Rozetlerim", contained: false,
+        HomeSection(title: "Rozetlerim",
                     note: "\(earned.count) / \(MPMilestone.allCases.count)",
                     noteSpoken: "\(MPMilestone.allCases.count) rozetten \(earned.count) tanesi kazanıldı") {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
@@ -230,7 +225,7 @@ struct KidCornerView: View {
     @ViewBuilder
     private var linksSection: some View {
         if let profile {
-            HomeSection(title: "Masal dünyam", contained: false) {
+            HomeSection(title: "Masal dünyam") {
                 // Satırlar tek panelde; panel tek parça olsun diye tek kap.
                 VStack(spacing: 0) {
                     if IllustratedBookAccess.isEnabled() {
@@ -250,9 +245,8 @@ struct KidCornerView: View {
                         app.openKidPage(.newWords(profile.id))
                     }
                 }
-                .padding(.vertical, MPSpacing.xxs)
-                .background(MPColor.cardSoft,
-                            in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+                // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
+                .padding(.horizontal, -MPSpacing.md)
             }
         }
     }

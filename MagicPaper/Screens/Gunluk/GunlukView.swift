@@ -39,9 +39,9 @@ struct GunlukView: View {
                             onSearch: { path.append(.search) },
                             onLock: { app.requestParentMode() })
 
-                        // Ana sayfanın dili: bölümler arası `MPSpacing.xxl`, her raf kendi
-                        // kartında (beyaz, lavanta kenar, sert alt kenar).
-                        VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                        // Ana sayfanın dili: bölümleri kart değil boşluk ayırır; kart
+                        // yalnızca dokunulan kapaklarda (karar: 7 Kasım 2026).
+                        VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
                             shelfDoors
                             continueSection
                             weeklySection
@@ -115,7 +115,7 @@ struct GunlukView: View {
     /// olsun?" kartının dili; düz çiplerin yerine.
     private var shelfDoors: some View {
         GunlukSection(title: "Hangi raftan okuyalım?") {
-            GunlukRow(spacing: MPSpacing.sm, inset: MPSpacing.lg) {
+            GunlukRow(spacing: MPSpacing.sm) {
                 ForEach(Self.doorShelves) { shelf in
                     GunlukShelfTile(title: shelf.chipTitle, symbol: shelf.symbol, tone: shelf.tone,
                                     count: count(shelf)) { path.append(.shelf(shelf)) }
@@ -144,8 +144,8 @@ struct GunlukView: View {
         let shown = Set(slides.map(\.tale.id))
         let items = library.continueReading.filter { !shown.contains($0.id) }
         if !items.isEmpty {
-            GunlukSection(title: "Kaldığın yerden", symbol: "bookmark", tone: .peach) {
-                GunlukRow(inset: MPSpacing.lg) {
+            GunlukSection(title: "Kaldığın yerden") {
+                GunlukRow {
                     ForEach(items) { item in
                         ContinueClassicCard(item: item) { resume(item.id) }
                     }
@@ -164,9 +164,8 @@ struct GunlukView: View {
         let shown = Set(slides.map(\.tale.id))
         let picks = library.weeklyPicks.filter { !shown.contains($0.id) }
         if !picks.isEmpty {
-            GunlukSection(title: "Bu haftanın seçkisi", subtitle: "Editörün bu hafta için seçtikleri",
-                          symbol: "star", tone: .yellow) {
-                GunlukRow(spacing: MPSpacing.sm, inset: MPSpacing.lg) {
+            GunlukSection(title: "Bu haftanın seçkisi", subtitle: "Editörün bu hafta için seçtikleri") {
+                GunlukRow(spacing: MPSpacing.sm) {
                     ForEach(Array(picks.enumerated()), id: \.element.id) { index, item in
                         RankedPickCard(rank: index + 1, item: item) { open(item) }
                     }
@@ -179,9 +178,9 @@ struct GunlukView: View {
     private func shelfSection(_ shelf: ClassicShelf, width: CGFloat, height: CGFloat) -> some View {
         let items = library.items(in: shelf)
         if !items.isEmpty {
-            GunlukSection(title: shelf.title, subtitle: shelf.subtitle, symbol: shelf.symbol, tone: shelf.tone,
+            GunlukSection(title: shelf.title, subtitle: shelf.subtitle,
                           action: { path.append(.shelf(shelf)) }) {
-                GunlukRow(inset: MPSpacing.lg) {
+                GunlukRow {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: width, height: height) { open(item) }
                     }

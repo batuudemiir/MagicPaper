@@ -377,16 +377,15 @@ struct HomeHeroCard: View {
 // MARK: - Bölüm
 
 /// Ana sayfanın bölümü (15 Ekim, Apple düzeni): kalın başlık içeriğin üstünde,
-/// sağında isteğe bağlı bağlantı ("Tümü"); içerik hafif lavanta panelde ya da
-/// (`contained: false`) doğrudan beyaz zeminde. Bütün bölüm başlıkları aynı
+/// sağında isteğe bağlı bağlantı ("Tümü"); içerik doğrudan beyaz zeminde: bölümü
+/// panel değil boşluk ayırır (karar: 7 Kasım 2026). Bütün bölüm başlıkları aynı
 /// font, boyut ve ağırlıkta (`title3`).
 ///
-/// Köşe yarıçapı kuralı (15 Ekim): büyük yüzeyler (hero, mod kartları,
-/// paneller) `card`; küçük bilgi kartları (çipler) `input`; içerideki kutular
+/// Köşe yarıçapı kuralı (15 Ekim): büyük yüzeyler (hero, mod kartları)
+/// `card`; küçük bilgi kartları (çipler) `input`; içerideki kutular
 /// (ikon kareleri, kapaklar) `md`; rozetler hap biçiminde.
 struct HomeSection<Leading: View, Content: View>: View {
     let title: String
-    var contained: Bool = true
     /// Başlığın sağında küçük sayaç ("3 / 8"); bağlantıyla birlikte kullanılmaz.
     var note: String? = nil
     var noteSpoken: String? = nil
@@ -400,26 +399,16 @@ struct HomeSection<Leading: View, Content: View>: View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: title, area: .kid, note: note, noteSpoken: noteSpoken,
                             link: link, leading: { leading })
-            if contained {
-                // Panel: beyazın üstünde lavanta (`cardSoft`), kenarsız ve gölgesiz (22 Ekim
-                // 2026; önceden hafif lavanta ve sert kenar). İçerik tek kapta.
-                VStack(alignment: .leading, spacing: MPSpacing.md) { content }
-                    .padding(MPSpacing.lg)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(MPColor.cardSoft,
-                                in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-            } else {
-                content
-            }
+            content
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 extension HomeSection where Leading == EmptyView {
-    init(title: String, contained: Bool = true, note: String? = nil, noteSpoken: String? = nil,
+    init(title: String, note: String? = nil, noteSpoken: String? = nil,
          link: (title: String, action: () -> Void)? = nil, @ViewBuilder content: () -> Content) {
-        self.init(title: title, contained: contained, note: note, noteSpoken: noteSpoken, link: link,
+        self.init(title: title, note: note, noteSpoken: noteSpoken, link: link,
                   leading: { EmptyView() }, content: content)
     }
 }
@@ -638,7 +627,7 @@ struct HomeGunlukPreview: View {
     @State private var arrived = false
 
     var body: some View {
-        HomeSection(title: "Günlük", contained: false, link: ("Tümü", action)) {
+        HomeSection(title: "Günlük",link: ("Tümü", action)) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.md) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { index, item in

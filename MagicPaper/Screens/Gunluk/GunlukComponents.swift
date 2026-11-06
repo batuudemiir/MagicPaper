@@ -249,12 +249,11 @@ struct GunlukRow<Content: View>: View {
     }
 }
 
-// MARK: - Bölüm kartı
+// MARK: - Bölüm
 
-/// Günlük'ün her rafı Ana sayfadaki bölüm kartı gibi tek bir kart: beyaz zemin,
-/// lavanta kenar, sert alt kenar (`mpKidSurface`, `MPRadius.card`). Başlık
-/// kartın üst satırında; solunda Ana sayfadaki "Bu hafta" gibi rafın simgesi,
-/// altında kısa bir cümle, sağda "tümü" oku. Raf kartın içinde kayar.
+/// Günlük'ün bölümü: `MPSectionHeader` başlığı, altında isteğe bağlı kısa bir
+/// cümle ve sağda "Tümü"; raf ekran kenarına kadar kayar (karar: 7 Kasım 2026,
+/// önceden kart içinde kart).
 ///
 /// `night`: Uyku vakti kartı. Ana sayfanın uyku saatindeki kartıyla aynı gece
 /// laciverti; yazılar açık renk.
@@ -264,21 +263,23 @@ struct GunlukSection<Content: View>: View {
     var symbol: String? = nil
     var tone: MPWorldTone = .lav
     var night: Bool = false
-    /// `false`: kart çizilmez, bölüm doğrudan zeminin (gece bölgesi) üstünde
-    /// durur; başlık ekran kenarı boşluğuyla hizalanır.
+    /// `false`: gece bölgesinin bölümü: simgeli başlık, ekran kenarı boşluğuyla
+    /// hizalanır. `true`: sayfanın sütununda sıradan bölüm.
     var surface: Bool = true
     var action: (() -> Void)? = nil
     @ViewBuilder var content: Content
 
     var body: some View {
         if surface {
-            section
-                .padding(.vertical, MPSpacing.lg)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(alignment: .topTrailing) { if night { GunlukNightSky() } }
-                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-                .mpKidSurface(night ? MPColor.bedtimeSkyTop : MPColor.backgroundSurface,
-                              edge: night ? MPColor.brandNight : MPWorldTone.lav.edge)
+            // Kart yok (kart içinde kart olurdu): bölümü boşluk ayırır, başlık
+            // bütün çocuk bölümleriyle aynı (`MPSectionHeader`).
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                MPSectionHeader(title: title, subtitle: subtitle, area: .kid,
+                                link: action.map { (title: "Tümü", action: $0) },
+                                leading: { EmptyView() }, trailing: { EmptyView() })
+                content
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         } else {
             section
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -320,7 +321,7 @@ struct GunlukSection<Content: View>: View {
                     .accessibilityLabel("\(title): tümü")
                 }
             }
-            .padding(.horizontal, surface ? MPSpacing.lg : MPSpacing.screenH)
+            .padding(.horizontal, MPSpacing.screenH)
             content
         }
     }
@@ -494,20 +495,7 @@ struct GunlukPrimaryButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            HStack(spacing: MPSpacing.sm) {
-                MPIcon(systemImage, size: MP.G.md, weight: .bold).accessibilityHidden(true)
-                Text(title).mpText(.button)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .foregroundStyle(MPColor.textOnAction)
-            .padding(.horizontal, MPSpacing.xl)
-            .frame(maxWidth: .infinity, minHeight: MPSize.buttonHeight)
-            .mpKidSurface(MPColor.actionPrimary, edge: MPColor.brandNight, radius: MPSize.buttonHeight / 2)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel(title)
+        MPButton(title: title, systemImage: systemImage, fullWidth: true, action: action)
     }
 }
 

@@ -49,7 +49,7 @@ enum MPSize {
 }
 
 enum MPShadow {
-    case card, raised, control, primaryGlow, sheet
+    case card, raised, control, sheet
 
     fileprivate var spec: (color: Color, radius: CGFloat, y: CGFloat) {
         let ink = MPColor.shadowInk
@@ -57,7 +57,6 @@ enum MPShadow {
         case .card: return (ink.opacity(0.06), 9, 6)
         case .raised: return (ink.opacity(0.10), 14, 12)
         case .control: return (ink.opacity(0.08), 6, 4)
-        case .primaryGlow: return (MPColor.actionGradientBottom.opacity(0.32), 11, 10)
         case .sheet: return (ink.opacity(0.18), 15, -10)
         }
     }

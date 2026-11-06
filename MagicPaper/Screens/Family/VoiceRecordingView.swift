@@ -283,7 +283,7 @@ struct VoicePageRecorderView: View {
                     systemImage: recorder.state == .recording ? "stop.fill" : "mic.fill",
                     accessibilityLabel: recorder.state == .recording ? "Kaydı durdur" : "Kaydet",
                     size: 84,
-                    fill: recorder.state == .recording ? AnyShapeStyle(MPColor.statusDanger) : AnyShapeStyle(LinearGradient.mpPrimary)
+                    fill: recorder.state == .recording ? MPColor.statusDanger : MPColor.actionPrimary
                 ) { toggleRecording() }
 
                 if case .recorded = recorder.state {

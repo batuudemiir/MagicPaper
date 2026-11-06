@@ -41,7 +41,7 @@ struct MPButton: View {
             .background(background)
             .overlay(border)
             .clipShape(Capsule())
-            .modifier(PrimaryGlow(active: kind == .primary && isEnabled))
+            .modifier(PrimaryEdge(active: kind == .primary))
             .opacity(isEnabled ? 1 : 0.4)
         }
         .buttonStyle(MPPressStyle())
@@ -67,16 +67,7 @@ struct MPButton: View {
 
     @ViewBuilder private var background: some View {
         switch kind {
-        case .primary:
-            ZStack {
-                LinearGradient.mpPrimary
-                // glossy top highlight + bottom inner shade (inset shadows in the prototype)
-                VStack(spacing: 0) {
-                    Color.white.opacity(0.45).frame(height: 2)
-                    Spacer()
-                    MPColor.shadowInk.opacity(0.14).frame(height: 3)
-                }
-            }
+        case .primary: MPColor.actionPrimary
         case .danger: MPColor.statusDanger
         case .outline: MPColor.backgroundSurface
         case .secondary, .soft: MPColor.actionSoft
@@ -92,10 +83,16 @@ struct MPButton: View {
     }
 }
 
-private struct PrimaryGlow: ViewModifier {
+/// Birincil düğmenin derinliği: gradient ve parıltı yok, sert alt kenar
+/// (Design law, Derinlik; karar: 7 Kasım 2026).
+private struct PrimaryEdge: ViewModifier {
     let active: Bool
     func body(content: Content) -> some View {
-        if active { content.mpShadow(.primaryGlow) } else { content }
+        if active {
+            content.background { Capsule().fill(MPColor.brandNight).offset(y: MP.E.widthLG) }
+        } else {
+            content
+        }
     }
 }
 
@@ -126,12 +123,12 @@ struct MPCircleButton: View {
     }
 }
 
-/// Big round gradient button: reader play/pause, page turn, record.
+/// Big round button: reader play/pause, page turn, record.
 struct MPRoundActionButton: View {
     let systemImage: String
     let accessibilityLabel: String
     var size: CGFloat = 58
-    var fill: AnyShapeStyle = AnyShapeStyle(LinearGradient.mpPrimary)
+    var fill: Color = MPColor.actionPrimary
     let action: () -> Void
 
     var body: some View {
@@ -140,7 +137,6 @@ struct MPRoundActionButton: View {
                 .foregroundStyle(.white)
                 .frame(width: size, height: size)
                 .background(fill, in: Circle())
-                .mpShadow(.primaryGlow)
         }
         .buttonStyle(MPPressStyle())
         .accessibilityLabel(accessibilityLabel)

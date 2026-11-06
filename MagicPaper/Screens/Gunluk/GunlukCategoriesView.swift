@@ -76,7 +76,6 @@ struct GunlukCategoriesView: View {
                 MPIcon("chevron.right", size: MP.G.sm, weight: .bold).foregroundStyle(MPColor.textChevron)
                     .accessibilityHidden(true)
             }
-            .padding(.horizontal, MPSpacing.lg)
             .frame(minHeight: MPSize.minTouchKid)
             .contentShape(Rectangle())
         }

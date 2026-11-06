@@ -75,7 +75,7 @@ struct MPStoryCover: View {
             VStack(spacing: MPSpacing.sm) {
                 Text(actionTitle).mpText(.caption).fontWeight(.black).foregroundStyle(.white)
                     .lineLimit(1)
-                    .padding(.horizontal, MPSpacing.lg).frame(minHeight: 28).background(LinearGradient.mpPrimary, in: Capsule())
+                    .padding(.horizontal, MPSpacing.lg).frame(minHeight: 28).background(MPColor.actionPrimary, in: Capsule())
                 Text(title).mpText(.footnote).fontWeight(.heavy).foregroundStyle(.white)
                     .multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.75)
             }

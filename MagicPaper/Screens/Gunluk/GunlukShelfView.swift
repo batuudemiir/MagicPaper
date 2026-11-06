@@ -59,7 +59,7 @@ struct GunlukShelfView: View {
     var body: some View {
         GeometryReader { geo in
             // Izgara rafın kartının içinde: iki sütun, kart iç boşluğu kadar içeride.
-            let cardWidth = max((geo.size.width - MPSpacing.screenH * 2 - MPSpacing.lg * 2 - 14) / 2, 96)
+            let cardWidth = max((geo.size.width - MPSpacing.screenH * 2 - 14) / 2, 96)
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                     VStack(alignment: .leading, spacing: MPSpacing.lg) {
@@ -145,7 +145,7 @@ struct GunlukShelfView: View {
 
     private var count: Int { items.count + originals.count }
 
-    /// Sonuçlar tek kartta, başlığı sayı: "12 masal".
+    /// Sonuçlar, başlığı sayı: "12 masal".
     @ViewBuilder
     private func results(cardWidth: CGFloat) -> some View {
         let height = (cardWidth * 4 / 3).rounded()
@@ -171,7 +171,6 @@ struct GunlukShelfView: View {
                         }
                     }
                 }
-                .padding(.horizontal, MPSpacing.lg)
                 .padding(.bottom, MP.E.widthLG)
             }
         }

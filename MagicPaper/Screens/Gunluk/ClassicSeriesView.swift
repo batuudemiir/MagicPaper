@@ -44,7 +44,6 @@ struct ClassicSeriesView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                                 .padding(.top, MPSpacing.md)
                         }
-                        .padding(.horizontal, MPSpacing.lg)
                     }
                 }
                 .padding(.horizontal, MPSpacing.screenH)

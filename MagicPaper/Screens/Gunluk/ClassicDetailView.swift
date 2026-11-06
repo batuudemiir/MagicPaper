@@ -25,16 +25,16 @@ struct ClassicDetailView: View {
             VStack(spacing: MPSpacing.xxl) {
                 art
 
-                // Ana sayfanın kart dili: düz mor düğme, beyaz kartlar (lavanta
-                // kenar, sert alt kenar), pastel tonlar yalnızca kutu zeminlerinde.
-                VStack(spacing: MPSpacing.xxl) {
+                // Ana sayfanın dili: düz mor düğme, bölümleri boşluk ayırır, pastel
+                // tonlar yalnızca dokunulan kutularda.
+                VStack(spacing: MPSpacing.xxxl) {
                     GunlukPrimaryButton(title: startTitle, systemImage: "play") {
                         app.readClassic(tale)
                     }
                     .padding(.top, -MPSpacing.sm)
 
                     GunlukSection(title: "Bu masalla") {
-                        actions.padding(.horizontal, MPSpacing.lg)
+                        actions
                     }
 
                     GunlukSection(title: "Masal hakkında") {
@@ -46,7 +46,6 @@ struct ClassicDetailView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, MPSpacing.lg)
                     }
 
                     similar
@@ -165,7 +164,7 @@ struct ClassicDetailView: View {
         let items = library.catalog.similar(to: tale)
         if !items.isEmpty {
             GunlukSection(title: "Benzerleri") {
-                GunlukRow(inset: MPSpacing.lg) {
+                GunlukRow {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: 120, height: 166) {
                             switch item {

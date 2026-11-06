@@ -31,9 +31,9 @@ struct CreationTitle: View {
 }
 
 /// Seçenek satırı: solda görsel, ad ve tek satırlık söz, sağda seçim işareti.
-/// Beyaz sayfada lavanta yüzey (`cardSoft`, ana sayfa bölümleri gibi). Seçiliyken kenarı
-/// marka renginde ve işaret dolu (seçim yalnızca renkle
-/// belli değil). `detail` yalnızca seçiliyken, aynı kartın içinde görünür.
+/// Beyaz yüzey, ince kenar. Lavanta (`cardSoft`) seçimin rengidir: seçiliyken zemin
+/// lavanta, kenar marka renginde ve işaret dolu (seçim yalnızca renkle belli
+/// değil). `detail` yalnızca seçiliyken, aynı kartın içinde görünür.
 struct CreationChoiceRow<Leading: View, Detail: View>: View {
     let title: String
     var subtitle: String? = nil
@@ -78,12 +78,12 @@ struct CreationChoiceRow<Leading: View, Detail: View>: View {
             }
         }
         .padding(MPSpacing.md)
-        // Ana sayfanın bölümleri gibi: beyaz zeminde lavanta, gölgesiz.
-        .background(MPColor.cardSoft,
+        .background(isSelected ? MPColor.cardSoft : MPColor.backgroundSurface,
                     in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                .strokeBorder(isSelected ? MPColor.actionPrimary : .clear, lineWidth: 2)
+                .strokeBorder(isSelected ? MPColor.actionPrimary : MPColor.borderKid,
+                              lineWidth: isSelected ? 2 : 1)
         }
     }
 }
