@@ -71,9 +71,9 @@ final class BookCharacterModel: ObservableObject {
 
     /// VoiceOver için önizlemenin sözlü tarifi: seçili parçaların etiketleri.
     var spokenSummary: String {
-        guard let kit else { return "Kitap karakteri" }
+        guard let kit else { return "Kahraman" }
         let parts = AvatarKit.Group.allCases.compactMap { kit.option($0, id: spec.part(in: $0))?.label.lowercased() }
-        return "Kitap karakteri: " + parts.joined(separator: ", ")
+        return "Kahraman: " + parts.joined(separator: ", ")
     }
 }
 

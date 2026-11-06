@@ -72,7 +72,8 @@ struct FamilyCharactersView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                     MPTopBar(title: FamilyCharacterCopy.screenTitle, subtitle: "Masallarında tekrar görünen karakterler",
-                             onBack: { app.closeKidPage() }) { EmptyView() }
+                             onBack: { app.closeKidPage() },
+                             backFill: MPColor.backgroundSurface) { EmptyView() }
                         .padding(.top, MPSpacing.sm)
                     heroCard
                     HomeSection(title: FamilyCharacterCopy.profileRowDescription) {

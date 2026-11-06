@@ -6,6 +6,12 @@ import XCTest
 @MainActor
 final class LibraryShelfModelTests: XCTestCase {
 
+    /// Birkaç kitap için arama ve süzgeç gereksiz kalabalık (7 Kasım 2026).
+    func testSearchAndFiltersAppearOnlyWithEnoughBooks() {
+        XCTAssertFalse(LibraryShelfModel.showsFinding(itemCount: 5))
+        XCTAssertTrue(LibraryShelfModel.showsFinding(itemCount: 6))
+    }
+
     // MARK: Zaman çizgisi (21 Ekim)
 
     private static let now = Date(timeIntervalSince1970: 1792573200) // 21 Ekim 2026 Çarşamba 12:00

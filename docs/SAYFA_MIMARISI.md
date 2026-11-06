@@ -81,7 +81,7 @@ cihazda açılıp bakılmadı.
 
 ## Her sayfa tek başına: bulgular
 
-Koddan ve simülatörden; hiçbiri uygulanmadı.
+Koddan ve simülatörden. 7 Kasım'da uygulananlar: tek "bugün" ("Bugün" kurdelesi kalktı, "Günün masalı" kaldı), Kitaplık sözü ve az kitapta gizli arama/süzgeç (6 kitap eşiği), Masal ailem geri düğmesi, "Kahraman" adı, Masal kitabı ve yazı boyutu Ayarlar'dan çıktı, Masal yaz `.prominent`. Tablo önceki hâli anlatır.
 
 | Sayfa | Şimdi ne var | Bulgu | Öneri |
 |---|---|---|---|

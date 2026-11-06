@@ -246,23 +246,9 @@ struct SettingsView: View {
     // MARK: - Okuma
 
     private var readingSection: some View {
+        // Yazı boyutu okuyucunun Okuma ayarlarında (7 Kasım 2026, HIG: işe özgü
+        // ayar işin yanında).
         ParentSection(title: "Okuma") {
-            VStack(alignment: .leading, spacing: MPSpacing.md) {
-                Text("Yazı boyutu").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
-                MPFlowLayout(spacing: MPSpacing.sm) {
-                    ForEach(MP.ReadSize.allCases) { size in
-                        MPChip(title: size.rawValue, isSelected: settings.readSize == size) {
-                            settings.readSize = size
-                            // Okuyucu oturum durumundan okuyor; ikisi birlikte
-                            // değişmezse ayar bir sonraki açılışa kadar görünmez.
-                            app.readSize = size
-                        }
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(MPSpacing.lg)
-            MPRowDivider(area: .parent)
             ParentToggleRow(systemImage: "speaker.wave.2", tone: .mint, title: "Sesli okuma",
                             subtitle: "Masal sayfaları sesli okunur", isOn: $settings.readAloud)
         }
@@ -281,11 +267,6 @@ struct SettingsView: View {
             MPRowDivider(area: .parent)
             ParentRowButton(systemImage: "lock", tone: .gray, title: "Gizlilik ve veri",
                             subtitle: "Ne tuttuğumuz, nasıl sildiğimiz") { showPrivacy = true }
-            MPRowDivider(area: .parent)
-            ParentRowButton(systemImage: "book", tone: .green, title: "Masal kitabı",
-                            subtitle: "PDF ya da basılı kitap") {
-                app.parentRoute = .bookExport
-            }
         }
     }
 

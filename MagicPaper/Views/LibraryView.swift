@@ -42,11 +42,11 @@ struct LibraryView: View {
                 } else {
                     VStack(alignment: .leading, spacing: MPSpacing.lg) {
                         greeting
-                        LibrarySearchField(text: $query, focused: $searchFocused)
+                        if showsFinding { LibrarySearchField(text: $query, focused: $searchFocused) }
                         if pendingCount > 0 { pendingNote }
                     }
                     .homeEntrance(1)
-                    chips.homeEntrance(2)
+                    if showsFinding { chips.homeEntrance(2) }
                     if isBrowsing { highlights }
                     shelf
                 }
@@ -66,6 +66,11 @@ struct LibraryView: View {
         .onChange(of: profileManager.currentProfile?.id) { _, _ in refresh() }
         .onChange(of: settings.approve) { _, _ in refresh() }
         .onChange(of: settings.approvedStoryIDs) { _, _ in refresh() }
+    }
+
+    /// Az kitapta gizli; kitap azalırken açık bir arama ya da süzgeç kaybolmaz.
+    private var showsFinding: Bool {
+        LibraryShelfModel.showsFinding(itemCount: model.items.count) || !isBrowsing
     }
 
     /// Raflar mı, ızgara mı: süzgeç ya da arama yoksa raflar.
@@ -88,7 +93,7 @@ struct LibraryView: View {
         return layout {
             RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 64 : 76)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text("Bugün hangi masalı okuyalım?").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                Text("Burası senin kitaplığın.").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
                 Text(summary).mpText(.callout).foregroundStyle(MPColor.textSecondary)
             }
             .fixedSize(horizontal: false, vertical: true)

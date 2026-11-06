@@ -140,6 +140,10 @@ struct LibraryShelfModel: Equatable {
     }
 
     var isEmpty: Bool { items.isEmpty }
+
+    /// Arama ve süzgeç: birkaç kitap için gereksiz kalabalık.
+    static func showsFinding(itemCount: Int) -> Bool { itemCount >= 6 }
+
     var storyCount: Int { items.filter { $0.kind == .story }.count }
     var classicCount: Int { items.filter { $0.kind == .classic }.count }
 

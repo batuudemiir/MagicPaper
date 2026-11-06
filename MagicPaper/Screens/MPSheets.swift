@@ -255,8 +255,8 @@ struct ProfileEditSheet: View {
 
                 if IllustratedBookAccess.isEnabled() {
                     MPRowDivider(area: .kid)
-                    MPRowButton(systemImage: "sparkles", title: "Kitap karakteri",
-                                subtitle: "Görselli masallarda görünecek karakter", action: {
+                    MPRowButton(systemImage: "sparkles", title: "Kahraman",
+                                subtitle: "Görselli masallarda görünecek kahraman", action: {
                         app.openKidPage(.bookCharacter(profile.id))
                     }) { MPChevron() }
                 }

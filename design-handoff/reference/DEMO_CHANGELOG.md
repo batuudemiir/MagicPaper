@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Sayfa düzeltmeleri: tek "bugün", Kitaplık, Kahraman, Ayarlar
+
+- Ana sayfa: Masallar rafındaki "Bugün" kurdelesi kalktı; sayfada tek "bugün" "Günün masalı".
+- Kitaplık: Ragi "Burası senin kitaplığın." diyor (önceki soru Ana sayfa ve Masallar'la aynıydı). Arama ve süzgeç 6 kitaptan azsa gizli; açık arama ya da süzgeç kaybolmaz. Eşik benim seçimim, kullanıcıyla denenmedi.
+- Aynı sayfanın üç adı teke indi: "Kahraman" (profil sheet'i ve VoiceOver özeti).
+- Masal ailem'de geri dairesi beyaz, lavanta üstünde görünüyor (`MPTopBar.backFill`).
+- Ayarlar: Masal kitabı çıktı (Özet'te "Kitap yap" var; hiç masal yoksa o bağlantı da yok). Yazı boyutu çıktı: okuyucudaki kaydırıcı ayarı kalıcı yazıyor (koddan doğrulandı). Sesli okuma Ayarlar'da kaldı.
+- Sonuç: yazı boyutunu artık çocuk da okuyucudan değiştirebiliyor, ebeveyn Ayarlar'dan değiştiremiyor.
+- Test: 795 test, 0 başarısız, 1 atlandı, `TEST SUCCEEDED`.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Kitaplık (12 kitap, arama görünür), Ana sayfa rafı, Masal ailem, Ayarlar'ın alt kısmı. Görülmedi: az kitaplı Kitaplık, Ayarlar'ın Okuma ve Hesap bölümü, okuyucu kaydırıcısı.
+- Dosyalar: `MPHomeChrome`, `MPNavigationChrome`, `LibraryView`, `LibraryShelfModel`, `SettingsView`, `MPSheets`, `BookCharacterView`, `FamilyCharactersView`, `LibraryShelfModelTests`, `docs/SAYFA_MIMARISI.md`, bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · "Masal yaz": iOS 27'de `.prominent` rolü
 
 - `.search` rolü iOS 27'de düğmeyi sekmelerin içine alıyordu, Design law'daki ayrı daire bozuktu. iOS 27'de `TabRole.prominent`, öncesinde `.search` (`createTabRole`).

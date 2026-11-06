@@ -405,8 +405,7 @@ extension HomeSection where Leading == EmptyView {
 // MARK: - Yıldız
 
 /// Markanın yıldızı (imza, 15 Ekim): tek çizim, tek sarı, ince koyu sarı
-/// kontur. Yıldız sayacı ve "Bugün" kurdelesi bunu kullanır. Süs olarak
-/// çoğaltılmaz.
+/// kontur. Yıldız sayacı bunu kullanır. Süs olarak çoğaltılmaz.
 struct MPStarMark: View {
     var size: CGFloat
 
@@ -521,9 +520,9 @@ struct HomeModeCard: View {
 
 // MARK: - Günlük rafı
 
-/// Ana sayfadaki Günlük rafı (15 Ekim, Apple Books rafı gibi): başlıkta "Tümü",
-/// altında yatay kayan kapaklar, adı ve süresi; ilki günün klasiği, "Bugün"
-/// kurdeleli. Kapaklar açılışta sırayla süzülür; Reduce Motion'da yerinde.
+/// Ana sayfadaki Masallar rafı (15 Ekim, Apple Books rafı gibi): başlıkta "Tümü",
+/// altında yatay kayan kapaklar, adı ve süresi. Sayfada tek "bugün" var: "Günün
+/// masalı" (7 Kasım 2026). Kapaklar açılışta sırayla süzülür; Reduce Motion'da yerinde.
 struct HomeGunlukPreview: View {
     struct Item: Identifiable {
         let id: UUID
@@ -545,16 +544,16 @@ struct HomeGunlukPreview: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.md) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                        Button(action: action) { tile(item, today: index == 0) }
+                        Button(action: action) { tile(item) }
                             .buttonStyle(MPPressStyle())
-                            .accessibilityLabel(index == 0 ? "Bugünün klasiği: \(item.title)" : item.title)
+                            .accessibilityLabel(item.title)
                             .accessibilityHint("Masallar sekmesini açar")
                             .offset(y: arrived ? 0 : MP.S.x5)
                             .opacity(arrived ? 1 : 0)
                             .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)
                     }
                 }
-                // Kurdele ve sert kenar kırpılmasın.
+                // Sert kenar kırpılmasın.
                 .padding(.vertical, MPSpacing.sm)
                 .padding(.horizontal, MPSpacing.screenH)
             }
@@ -564,32 +563,18 @@ struct HomeGunlukPreview: View {
         .onAppear { arrived = true }
     }
 
-    private func tile(_ item: Item, today: Bool) -> some View {
+    private func tile(_ item: Item) -> some View {
         VStack(alignment: .leading, spacing: MPSpacing.xs) {
             ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
                 .frame(width: 118, height: 158)
                 .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                 .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
-                .overlay(alignment: .topLeading) { if today { todayRibbon } }
             Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
                 .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 .padding(.top, MPSpacing.xxs)
             Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
         }
         .frame(width: 118, alignment: .leading)
-    }
-
-    /// Günün klasiğinin kurdelesi: sarı hap, markanın yıldızı ve "Bugün".
-    private var todayRibbon: some View {
-        HStack(spacing: MPSpacing.xxs) {
-            MPStarMark(size: 12)
-            Text("Bugün").mpText(.caption).fontWeight(.heavy).foregroundStyle(MPColor.yellowText)
-        }
-        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-        .padding(.horizontal, MPSpacing.sm)
-        .padding(.vertical, MPSpacing.xxs)
-        .mpKidSurface(MPWorldTone.yellow.soft, edge: MPWorldTone.yellow.edge, radius: MPRadius.input)
-        .padding(MPSpacing.xs)
     }
 }
 
