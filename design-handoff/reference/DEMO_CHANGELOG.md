@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Gezinme çubuğu ve sayfalar: ikinci inceleme
+
+- Yalnızca belge: `docs/SAYFA_MIMARISI.md`'ye çubuk önerisi ve sayfa sayfa bulgular eklendi. Uygulama kodu değişmedi, test çalıştırılmadı.
+- Öneri: Köşem sekmeden çıksın, her sekmede avatarla açılsın; "Masal yaz" iOS 27'de `.prominent` rolüne geçsin. `TabRole.prominent` Xcode 27 arayüzünde görüldü, çalıştırılmadı. Karar Batuhan'da.
+- Rakip çubukları (Epic, Apple Books) doğrulanamadı; ilk açılış ve iPad gezilmedi.
+- Dosyalar: `docs/SAYFA_MIMARISI.md`, bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · Ana sayfa: yinelenen okuma kartı kalktı
 
 - Batuhan'ın kararı: "Bu hafta" kartı (`HomeStreakCard`) silindi; yıldız ve seri başlık satırında (`HomeStatLine`) zaten vardı, ikisi de Köşem'e gidiyordu.
