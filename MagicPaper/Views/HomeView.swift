@@ -53,12 +53,12 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
             VStack(alignment: .leading, spacing: 0) {
                 MPKidTabHeader(title: activeName, eyebrow: greeting)
-                // Satır Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada.
+                // Satır Profil'e götürür: yıldız ve serinin ayrıntısı orada.
                 Button { MPHaptics.tap(); app.openKidCorner() } label: {
                     HomeStatLine(stars: stars, streak: streak.currentStreak)
                 }
                 .buttonStyle(MPPressStyle())
-                .accessibilityHint("Benim köşemi açar")
+                .accessibilityHint("Profili açar")
             }
             .padding(.top, MPSpacing.lg)
 

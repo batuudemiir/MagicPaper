@@ -2,19 +2,20 @@ import SwiftUI
 
 // MARK: - Kök sekmeler
 
-/// Çocuk alanının sekmeleri (11 · Ana sayfa, Masallar, 16 · Kitaplık).
+/// Çocuk alanının sekmeleri (11 · Ana sayfa, Masallar, 16 · Kitaplık, 12 · Profil).
 ///
-/// 7 Kasım 2026: Benim köşem sekme olmaktan çıktı, her sekmenin başlığındaki
-/// avatardan açılır (`docs/SAYFA_MIMARISI.md`). "Masal yaz" bir sekme değil, bir
+/// 7 Kasım 2026 (Batuhan): Profil çubukta, çünkü profil değiştirme sık yapılan
+/// bir iş; `KidCornerView`, kodda `corner`. "Masal yaz" bir sekme değil, bir
 /// eylem: çubuk onu ayrı çizer.
 enum MPTab: String, CaseIterable {
-    case home, gunluk, library
+    case home, gunluk, library, corner
 
     var label: String {
         switch self {
         case .home:    return "Ana sayfa"
         case .gunluk:  return "Masallar"
         case .library: return "Kitaplık"
+        case .corner:  return "Profil"
         }
     }
 
@@ -23,6 +24,7 @@ enum MPTab: String, CaseIterable {
         case .home:    return .home
         case .gunluk:  return .gunluk
         case .library: return .library
+        case .corner:  return .corner
         }
     }
 
@@ -31,6 +33,7 @@ enum MPTab: String, CaseIterable {
         case .home:    self = .home
         case .gunluk:  self = .gunluk
         case .library: self = .library
+        case .corner:  self = .corner
         }
     }
 }
@@ -101,7 +104,6 @@ enum MPParentRoute: Identifiable, Hashable {
 /// görünür kalır, her sekme kendi yolunu korur. Masallar sekmesinde bunlar
 /// `GunlukRoute.kid` içinde taşınır.
 enum MPKidRoute: Hashable {
-    case corner                  // 12 · Benim köşem
     case series(UUID)            // 18 · Seri masal
     case newWords(UUID)          // 15 · Yeni kelimelerim
     case familyCharacters(UUID)  // 14 · Masal ailem
@@ -154,12 +156,11 @@ final class MPAppState: ObservableObject {
         tabReselections += 1
     }
 
-    /// Çocuk değişince önceki çocuğun sayfaları kapanır. Köşem kalır: profil
-    /// orada seçilir, seçince sayfa kapanmamalı.
+    /// Çocuk değişince önceki çocuğun sayfaları kapanır; klasikler herkesin, kalır.
     func closePagesOfPreviousChild() {
-        kidPaths = kidPaths.mapValues { $0.filter { $0 == .corner } }
+        kidPaths = [:]
         masallarPath.removeAll { route in
-            if case .kid(let page) = route { return page != .corner }
+            if case .kid = route { return true }
             return false
         }
     }
@@ -177,7 +178,7 @@ final class MPAppState: ObservableObject {
                 sheet = nil
                 parentRoute = .familyCharacters(id)
                 return
-            case .corner, .series, .newWords:
+            case .series, .newWords:
                 break
             }
         }
@@ -435,9 +436,9 @@ final class MPAppState: ObservableObject {
         showPaywall = true
     }
 
-    /// 12 · Benim köşem: sekmenin başlığındaki avatar açık sekmenin yığınına iter.
+    /// 12 · Profil: Ana sayfadaki yıldız satırı bu sekmeye geçirir.
     func openKidCorner() {
-        openKidPage(.corner)
+        tab = .corner
     }
 
     /// Ebeveyn moduna geçiş her seferinde kapıdan geçer.

@@ -1,12 +1,12 @@
 // MPNavigationChrome.swift
-// Kid tab bar (Ana sayfa · Masallar · Kitaplık + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
-// kid header (avatar → Benim köşem), top bar, parent header.
+// Kid tab bar (Ana sayfa · Masallar · Kitaplık · Profil + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
+// kid tab header, top bar, parent header.
 // Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
 
 import SwiftUI
 
-enum KidTab: Hashable { case home, gunluk, library }
+enum KidTab: Hashable { case home, gunluk, library, corner }
 
 /// Çocuk modunun alt çubuğu, iOS 26 sekme çubuğunun ölçüsünde (21 Ekim 2026):
 /// sekmeler içeriğin üstünde yüzen cam bir kapsülde, "Masal yaz" yanında
@@ -66,6 +66,7 @@ struct KidTabBar: View {
         Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
         Item(tab: .gunluk,  label: "Masallar",  symbol: "book"),
         Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
+        Item(tab: .corner,  label: "Profil",    symbol: "person.crop.circle"),
     ]
 
     var body: some View {
@@ -215,19 +216,19 @@ struct ParentTabs<Summary: View, Safety: View, Settings: View>: View {
     }
 }
 
-/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, çocuğun
-/// avatarı (→ Benim köşem, ebeveyn girişi de orada) sağda. Üst ve yan boşluk
-/// sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
+/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, sekmenin
+/// kendi denetimi sağda. Üst ve yan boşluk sayfanın: üstte `MPSpacing.lg`, yanda
+/// `screenH`.
 struct MPKidTabHeader<Accessory: View>: View {
     let title: String
     /// Başlığın üstündeki küçük satır (Ana sayfa'nın selamı).
     var eyebrow: String? = nil
-    /// Avatarın solundaki denetim (Masallar'ın araması).
+    /// Sağdaki denetim (Masallar'ın araması).
     @ViewBuilder var accessory: Accessory
 
     var body: some View {
         // Üste hizalı ve sabit satır yüksekliği: selamlı başlık daha uzun olsa
-        // da avatar her sekmede aynı noktada durur.
+        // da sağdaki denetim aynı hizada durur.
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             VStack(alignment: .leading, spacing: 0) {
                 if let eyebrow {
@@ -240,11 +241,8 @@ struct MPKidTabHeader<Accessory: View>: View {
             .frame(minHeight: MPSize.headerAvatar)
             .accessibilityElement(children: .combine)
             Spacer(minLength: MPSpacing.sm)
-            HStack(spacing: MPSpacing.sm) {
-                accessory
-                KidAvatarButton()
-            }
-            .frame(minHeight: MPSize.headerAvatar)
+            accessory
+                .frame(minHeight: MPSize.headerAvatar)
         }
     }
 }
@@ -255,25 +253,6 @@ extension MPKidTabHeader where Accessory == EmptyView {
     }
 }
 
-/// Çocuğun avatarı: dokununca Benim köşem açık sekmenin yığınına itilir.
-private struct KidAvatarButton: View {
-    @EnvironmentObject private var app: MPAppState
-    @ObservedObject private var profileManager = ProfileManager.shared
-
-    private var name: String { profileManager.currentProfile?.name ?? "Arkadaşım" }
-
-    var body: some View {
-        Button { MPHaptics.tap(); app.openKidCorner() } label: {
-            MPAvatar(name: name, color: profileManager.currentProfile?.mpColor, size: MPSize.headerAvatar)
-                .dynamicTypeSize(...DynamicTypeSize.large)
-                .frame(width: MPSize.headerAvatar, height: MPSize.headerAvatar)
-                .clipShape(Circle())
-                .contentShape(Circle())
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel("Benim köşem, \(name)")
-    }
-}
 
 /// Rainbow band behind the kid header (Ana sayfa, Benim köşem, Paywall): 150–300 pt tall, bottom corners curved.
 struct HeaderWash: View {

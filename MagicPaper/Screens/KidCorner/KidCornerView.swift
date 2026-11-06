@@ -1,12 +1,12 @@
 import SwiftUI
 
-/// 12 · Benim köşem (`BenimKosem`). FAZ 20'den beri alt barın "Köşem" sekmesi.
+/// 12 · Profil sekmesi (`BenimKosem`, kodda `corner`).
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
-/// Masal ailem, Yeni kelimelerim (15). 13 Ekim 2026'dan beri alt bardaki
-/// "Köşem" sekmesi; kapat düğmesi yok, kilit ebeveyn kapısına, "Ekle" kapıdan
-/// sonra doğrudan profil eklemeye gider; kahramanı düzenlemek kapıdan geçer.
-/// Yıldızlar yalnızca kazanılır ve gösterilir (`MPStars`).
+/// Masal ailem, Yeni kelimelerim (15). Profil değiştirme sayfanın en üstünde,
+/// tek dokunuş (7 Kasım 2026, Batuhan). "Ekle" kapıdan sonra doğrudan profil
+/// eklemeye gider; kahramanı düzenlemek kapıdan geçer. Yıldızlar yalnızca
+/// kazanılır ve gösterilir (`MPStars`).
 ///
 /// 22 Ekim 2026: iOS profil sayfası düzeni. Ragi ve karşılama balonsuz; Masal
 /// dünyam gruplu liste. 7 Kasım 2026: panel ve kutu yok, bölümleri boşluk ayırır.
@@ -27,14 +27,14 @@ struct KidCornerView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            // Ana sayfanın düzeni (16 Ekim): beyaz zemin, başlık içeriğine
-            // yapışık (12), bölümler arası 32; ekranın tek Ragi'si üstte.
+            // Ana sayfanın düzeni (16 Ekim): beyaz zemin, bölümler arası 32. Profil
+            // değiştirme en üstte; Ragi seçili çocuğu selamlar.
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
                 VStack(alignment: .leading, spacing: MPSpacing.xl) {
                     titleBar
-                    greeting
+                    whoSection
                 }
-                whoSection
+                greeting
                 statsRow
                 // Yapılacak işler (bağlantılar) bakılacak şeylerden (rozetler)
                 // önce: bulunabilirlik (16 Ekim denetimi).
@@ -93,8 +93,8 @@ struct KidCornerView: View {
     // MARK: - Başlık ve Ragi
 
     private var titleBar: some View {
-        MPTopBar(title: "Benim köşem", onBack: { app.closeKidPage() }) { EmptyView() }
-            .padding(.top, MPSpacing.sm)
+        MPKidTabHeader(title: "Profil")
+            .padding(.top, MPSpacing.lg)
     }
 
     /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu

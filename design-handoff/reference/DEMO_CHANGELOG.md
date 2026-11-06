@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Profil çubukta: profil değiştirme tek dokunuş
+
+- Batuhan'ın isteği: profil değiştirme daha pratik olsun. Sekme geri geldi, adı "Profil" (`KidCornerView`, kodda `.corner`); `f09c55a`'daki avatar düzeni geri alındı (`KidAvatarButton`, `MPKidRoute.corner` silindi).
+- "Kim okuyor?" sayfanın en üstünde; çocuğa dokununca hemen değişir, Ragi yeni çocuğu selamlar. Çubuk: Ana sayfa · Masallar · Kitaplık · Profil + "Masal yaz". Ebeveyn girişi artık bir adım daha yakın: Profil'in en altı.
+- Sayfa başlığı "Benim köşem" yerine "Profil". Sekmede avatar yok; hangi çocuğun okuduğunu Ana sayfa başlığı gösteriyor, Masallar ve Kitaplık göstermiyor.
+- Bilerek kalan: `GunlukRoute.kid` ve `app.masallarPath` (şu an kullanan ekran yok ama Masallar'ın yolunu tek yerde tutuyor).
+- Test: 795 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Profil sekmesi, "Ekle" > kapı > yeni profil, iki çocuk arasında geçiş. Simülatöre demo profili "Ada" eklendi. Görülmedi: en büyük yazı, iOS 26 ve öncesi, SE, Pro Max, VoiceOver.
+- Dosyalar: `MPAppState`, `ContentView`, `MPNavigationChrome`, `KidCornerView`, `HomeView`, `GunlukView`, `MPDebugLaunch`, `KidCornerTabTests`, `ClassicProgressTests`, `docs/SAYFA_MIMARISI.md`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Sayfa düzeltmeleri: tek "bugün", Kitaplık, Kahraman, Ayarlar
 
 - Ana sayfa: Masallar rafındaki "Bugün" kurdelesi kalktı; sayfada tek "bugün" "Günün masalı".

@@ -1,7 +1,7 @@
 import XCTest
 @testable import MagicPaper
 
-/// 12 · Benim köşem: sekmenin avatarından açılan sayfa (karar 7 Kasım 2026).
+/// 12 · Profil sekmesi (karar 7 Kasım 2026).
 @MainActor
 final class KidCornerTabTests: XCTestCase {
 
@@ -11,25 +11,24 @@ final class KidCornerTabTests: XCTestCase {
         }
     }
 
-    func testTheAvatarPushesTheCornerOnTheOpenTab() {
+    func testOpeningTheProfileSelectsItsTab() {
         let app = MPAppState()
         app.tab = .library
         app.openKidCorner()
-        XCTAssertEqual(app.tab, .library)
-        XCTAssertEqual(app.kidPaths[.library], [.corner])
+        XCTAssertEqual(app.tab, .corner)
     }
 
-    /// Profil Köşem'de seçilir: seçince Köşem kapanmaz, eski çocuğun sayfaları kapanır.
-    func testChangingChildKeepsTheCornerAndClosesTheChildsPages() {
+    /// Çocuk değişince onun sayfaları kapanır; açık klasik herkesindir, kalır.
+    func testChangingChildClosesTheChildsPages() {
         let app = MPAppState()
         app.openKidCorner()
         app.openKidPage(.newWords(UUID()))
         app.tab = .gunluk
-        app.openKidCorner()
+        app.masallarPath = [.search]
         app.openKidPage(.series(UUID()))
         app.closePagesOfPreviousChild()
-        XCTAssertEqual(app.kidPaths[.home], [.corner])
-        XCTAssertEqual(app.masallarPath, [.kid(.corner)])
+        XCTAssertEqual(app.kidPaths[.corner] ?? [], [])
+        XCTAssertEqual(app.masallarPath, [.search])
     }
 
     /// Ebeveyn odası çocuğun üstüne açılır: kapanınca çocuk bıraktığı yerdedir.
@@ -45,18 +44,18 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertTrue(app.isParentMode)
         app.enterChildMode()
         XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .home)
-        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
+        XCTAssertEqual(app.tab, .corner)
+        XCTAssertEqual(app.kidPaths[.corner], [route])
     }
 
-    /// Köşem'deki "Büyükler için" ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.
-    func testTheCornerReachesTheParentAreaOnlyThroughTheGate() {
+    /// Profil'deki "Büyükler için" ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.
+    func testTheProfileReachesTheParentAreaOnlyThroughTheGate() {
         let app = MPAppState()
         app.openKidCorner()
         app.requestParentMode()
         XCTAssertTrue(app.showGate)
         XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.kidPaths[.home], [.corner])
+        XCTAssertEqual(app.tab, .corner)
     }
 
     /// Widget ve Siri bağlantıları Köşem açıkken de Ana sayfaya döner.
@@ -76,10 +75,10 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         let route = MPKidRoute.newWords(UUID())
         app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
+        XCTAssertEqual(app.kidPaths[.corner], [route])
         XCTAssertNil(app.sheet)
         app.closeKidPage()
-        XCTAssertEqual(app.kidPaths[.home], [.corner])
+        XCTAssertEqual(app.kidPaths[.corner], [])
     }
 
     func testEachTabKeepsItsOwnPathAcrossTabChanges() {
@@ -98,7 +97,7 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         app.openKidPage(.familyCharacters(UUID()))
         app.reselectTab()
-        XCTAssertEqual(app.kidPaths[.home], [])
+        XCTAssertEqual(app.kidPaths[.corner], [])
     }
 
     func testTheSamePageIsNotPushedTwice() {
@@ -107,7 +106,7 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         app.openKidPage(route)
         app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
+        XCTAssertEqual(app.kidPaths[.corner], [route])
     }
 
     /// Masallar'ın yığını çocuk sayfalarını `GunlukRoute.kid` içinde taşır.

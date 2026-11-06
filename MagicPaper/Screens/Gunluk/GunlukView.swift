@@ -7,7 +7,7 @@ enum GunlukRoute: Hashable {
     case search
     case tale(UUID)
     case series(UUID)
-    /// Başlıktaki avatardan açılan çocuk sayfaları (Benim köşem ve altı).
+    /// Çocuk sayfaları (`MPKidRoute`) bu sekmede açılırsa.
     case kid(MPKidRoute)
 }
 

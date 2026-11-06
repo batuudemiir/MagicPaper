@@ -3,9 +3,9 @@ import SwiftUI
 
 /// Kök ekran (FAZ 17, Pastel Masal).
 ///
-/// Çocuk kökü: üç sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
+/// Çocuk kökü: dört sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
 /// sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32). Odaya
-/// yalnızca kapıdan girilir (avatar > Köşem > Büyükler için); uygulama arka plana gidince
+/// yalnızca kapıdan girilir (Profil > Büyükler için); uygulama arka plana gidince
 /// oda kapanır. Harita: `docs/SAYFA_MIMARISI.md`.
 struct ContentView: View {
     @StateObject private var app = MPAppState()
@@ -213,7 +213,7 @@ struct ContentView: View {
         }
     }
 
-    /// Alt çubuğun yuvası: üç sekme ve "Masal yaz".
+    /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
     private enum KidTabSlot: Hashable {
         case tab(KidTab)
         case create
@@ -242,6 +242,7 @@ struct ContentView: View {
             Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
             Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
             Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
+            Tab("Profil", systemImage: "person.crop.circle", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
             Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: createTabRole) {
                 Color.clear
             }
@@ -265,6 +266,7 @@ struct ContentView: View {
             case .home:    KidTabStack(tab: .home) { HomeView() }.transition(tabTransition)
             case .gunluk:  GunlukView().transition(tabTransition)
             case .library: KidTabStack(tab: .library) { LibraryView() }.transition(tabTransition)
+            case .corner:  KidTabStack(tab: .corner) { KidCornerView() }.transition(tabTransition)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -364,8 +366,6 @@ struct KidPageView: View {
     @ViewBuilder
     private var page: some View {
         switch route {
-        case .corner:
-            KidCornerView()
         case .series(let child):
             SeriesView(childID: child)
         case .newWords(let id):

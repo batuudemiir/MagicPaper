@@ -34,8 +34,9 @@ değişiyor.
 ├─ Ana sayfa   → Seri
 ├─ Masallar    → Raf · Masal detayı · Seri · Arama │ sheet: Kategoriler
 ├─ Kitaplık    → Seri                              │ sheet: Masal eylemleri
-│  Her sekmede avatar → Benim köşem → Masal ailem → Kahraman · Yeni kelimelerim
-│                        └─ en altta sakin "Büyükler için" → Ebeveyn kapısı
+├─ Profil      → Masal ailem → Kahraman · Yeni kelimelerim
+│                 en üstte "Kim okuyor?" (tek dokunuşla değişir)
+│                 en altta sakin "Büyükler için" → Ebeveyn kapısı
 └─ Masal yaz   (eylem) → tam ekran: Mod → Kimler → Hazırlanıyor → Okuyucu → Masal sonu
 
 Ebeveyn odası (kapıdan sonra üste kayar, kendi alt çubuğu)
@@ -49,7 +50,9 @@ Tam ekran akışlar: ilk açılış, okuyucu, uyku modu, masal yazma, kapı, pay
 
 ## Gezinme çubuğu: ikinci bakış
 
-Köşem'in avatara geçişi uygulandı (Batuhan onayı, 7 Kasım). İlk turda "çubuk 5 öğe kalsın" denmişti, ama çubuk sorgulanmamıştı. Sorgulanınca iki sorun çıktı.
+**Güncel karar (Batuhan, 7 Kasım): Profil çubukta.** Aşağıdaki "Köşem avatara geçsin" önerisi bir tur uygulandı, sonra geri alındı: profil değiştirme sık yapılan bir iş, "seyrek açılır" varsayımı bunu kaçırmıştı. `.prominent` kısmı geçerli. Aşağısı o önerinin kaydı.
+
+İlk turda "çubuk 5 öğe kalsın" denmişti, ama çubuk sorgulanmamıştı. Sorgulanınca iki sorun çıktı.
 
 **1. Köşem sekme olmayı hak etmiyor.** HIG'e göre çubuk en sık kullanılan bölümler içindir.
 Köşem seyrek açılır: rozet, profil, karakter. Khan Academy Kids ve Lingokids bu içeriğe avatardan
