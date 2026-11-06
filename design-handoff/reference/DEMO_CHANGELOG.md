@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · UX kaynak araştırması: uygulama bütünlüğü
+
+- Batuhan'ın isteğiyle GitHub ve internette App Store uygulamaları için UX, erişilebilirlik, gezinme ve yerleşim kaynakları tarandı; bulgular kodla eşlendi: `docs/UX_KAYNAK_ARASTIRMASI.md`.
+- Ana bulgu: dört çocuk sekmesi dört farklı başlıkla açılıyor, alt sayfalar altı ayrı yoldan geliyor. `SCREENS.md` Masal ailem, Yeni kelimelerim, Seri ve ebeveyn alt sayfalarını push diye tanımlıyor; uygulama bunlarda tasarım tesliminden sapmış.
+- Karar bekleyenler belgede: Ana sayfa ve Günlük başlık istisnaları, buton gradient'i, çocuk dokunma alanı (teslim 56, Design law 48).
+- Bilerek değişmedi: uygulama kodu ve Design law.
+- Test çalıştırılmadı (yalnızca belge). Simülatörde görülmedi; görsel yorumlar 23 Ekim görüntülerinden, geçiş bulguları koddan.
+- Dosyalar: `docs/UX_KAYNAK_ARASTIRMASI.md`, bu dosya.
+
 ### 2026-10-23 · main@4e6e9c8 · Gönderim: MPModeSwitch kararı origin'de
 
 - Batuhan'ın isteğiyle iki commit origin'e gönderildi (2a9196f..4e6e9c8): 9a13a8f seçenek karşılaştırması, 4e6e9c8 `MPModeSwitch`'in kaldırılması. Uzak dal geride değildi.
