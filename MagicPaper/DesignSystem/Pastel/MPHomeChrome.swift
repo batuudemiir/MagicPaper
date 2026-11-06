@@ -287,32 +287,6 @@ struct WaveBottom: Shape {
     }
 }
 
-// MARK: - Başlık
-
-/// Selam ve ad, sağda avatar (→ Benim köşem, ebeveyn girişi de orada).
-struct HomeHeader<Avatar: View>: View {
-    let greeting: String
-    let childName: String
-    @ViewBuilder var avatar: Avatar
-    let onAvatar: () -> Void
-
-    /// 22 Ekim 2026: iOS büyük başlığı.
-    var body: some View {
-        MPKidTabHeader(title: childName, eyebrow: greeting) {
-            Button { MPHaptics.tap(); onAvatar() } label: {
-                avatar
-                    .dynamicTypeSize(...DynamicTypeSize.large)
-                    .frame(width: MPSize.headerAvatar, height: MPSize.headerAvatar)
-                    .clipShape(Circle())
-                    .frame(minWidth: MPSize.minTouchParent, minHeight: MPSize.minTouchParent)
-                    .contentShape(Circle())
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityLabel("Benim köşem, \(childName)")
-        }
-    }
-}
-
 // MARK: - Hero kartı
 
 /// "Bu akşamın masalı", dört durum (SCREENS.md 11).

@@ -93,8 +93,8 @@ struct KidCornerView: View {
     // MARK: - Başlık ve Ragi
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Benim köşem")
-            .padding(.top, MPSpacing.lg)
+        MPTopBar(title: "Benim köşem", onBack: { app.closeKidPage() }) { EmptyView() }
+            .padding(.top, MPSpacing.sm)
     }
 
     /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu

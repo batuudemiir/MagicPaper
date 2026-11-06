@@ -7,6 +7,8 @@ enum GunlukRoute: Hashable {
     case search
     case tale(UUID)
     case series(UUID)
+    /// Başlıktaki avatardan açılan çocuk sayfaları (Benim köşem ve altı).
+    case kid(MPKidRoute)
 }
 
 /// Günlük · ücretsiz masallar (FAZ 20, `Gunluk`).
@@ -18,12 +20,11 @@ struct GunlukView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
     @EnvironmentObject private var settings: MPSettingsStore
-    @State private var path: [GunlukRoute] = []
     @State private var showCategories = false
     @State private var scrolled = false
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $app.masallarPath) {
             GeometryReader { proxy in
                 ScrollViewReader { reader in
                 ScrollView(showsIndicators: false) {
@@ -34,9 +35,9 @@ struct GunlukView: View {
                             topInset: proxy.safeAreaInsets.top,
                             height: GunlukHeaderCarousel.height(
                                 screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
-                            onOpen: { path.append(.tale($0.id)) },
+                            onOpen: { app.masallarPath.append(.tale($0.id)) },
                             onRead: { app.readClassic($0) },
-                            onSearch: { path.append(.search) })
+                            onSearch: { app.masallarPath.append(.search) })
 
                         // Ana sayfanın dili: bölümleri kart değil boşluk ayırır; kart
                         // yalnızca dokunulan kapaklarda (karar: 7 Kasım 2026).
@@ -64,10 +65,10 @@ struct GunlukView: View {
                 // Sekmeye yeniden dokunmak: açık sayfalar kapanır, sayfa başa döner.
                 .onChange(of: app.tabReselections) { _, _ in
                     guard app.tab == .gunluk else { return }
-                    if path.isEmpty {
+                    if app.masallarPath.isEmpty {
                         withAnimation(MP.M.gated(MP.M.base)) { reader.scrollTo(Self.top, anchor: .top) }
                     } else {
-                        path = []
+                        app.masallarPath = []
                     }
                 }
                 }
@@ -82,7 +83,7 @@ struct GunlukView: View {
         .sheet(isPresented: $showCategories) {
             GunlukCategoriesView { shelf, band in
                 showCategories = false
-                path = [.shelf(shelf, band)]
+                app.masallarPath = [.shelf(shelf, band)]
             }
             .mpSheet(.full)
         }
@@ -92,17 +93,19 @@ struct GunlukView: View {
     private func destination(_ route: GunlukRoute) -> some View {
         switch route {
         case .shelf(let shelf, let band):
-            GunlukShelfView(shelf: shelf, ageBand: band, path: $path)
+            GunlukShelfView(shelf: shelf, ageBand: band, path: $app.masallarPath)
         case .search:
-            GunlukShelfView(shelf: nil, startsSearching: true, path: $path)
+            GunlukShelfView(shelf: nil, startsSearching: true, path: $app.masallarPath)
         case .tale(let id):
             if let tale = library.catalog.tale(id) {
-                ClassicDetailView(tale: tale, path: $path)
+                ClassicDetailView(tale: tale, path: $app.masallarPath)
             }
         case .series(let id):
             if let series = library.catalog.series(id) {
-                ClassicSeriesView(series: series, path: $path)
+                ClassicSeriesView(series: series, path: $app.masallarPath)
             }
+        case .kid(let page):
+            KidPageView(route: page)
         }
     }
 
@@ -117,7 +120,7 @@ struct GunlukView: View {
             GunlukRow(spacing: MPSpacing.sm) {
                 ForEach(Self.doorShelves) { shelf in
                     GunlukShelfTile(title: shelf.chipTitle, symbol: shelf.symbol, tone: shelf.tone,
-                                    count: count(shelf)) { path.append(.shelf(shelf)) }
+                                    count: count(shelf)) { app.masallarPath.append(.shelf(shelf)) }
                 }
                 GunlukShelfTile(title: "Tüm raflar", symbol: "square.grid.2x2", tone: .gray, count: nil) {
                     showCategories = true
@@ -178,7 +181,7 @@ struct GunlukView: View {
         let items = library.items(in: shelf)
         if !items.isEmpty {
             GunlukSection(title: shelf.title, subtitle: shelf.subtitle,
-                          action: { path.append(.shelf(shelf)) }) {
+                          action: { app.masallarPath.append(.shelf(shelf)) }) {
                 GunlukRow {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: width, height: height) { open(item) }
@@ -194,7 +197,7 @@ struct GunlukView: View {
         let originals = library.originals(in: .uyku)
         if !items.isEmpty || !originals.isEmpty {
             GunlukSection(title: ClassicShelf.uyku.title, subtitle: ClassicShelf.uyku.subtitle, symbol: "moon",
-                          night: true, surface: false, action: { path.append(.shelf(.uyku)) }) {
+                          night: true, surface: false, action: { app.masallarPath.append(.shelf(.uyku)) }) {
                 // Boyalı kapaklar önde; çizimi bekleyen orijinaller sonda.
                 GunlukRow(inset: MPSpacing.screenH) {
                     ForEach(items) { item in
@@ -249,8 +252,8 @@ struct GunlukView: View {
 
     private func open(_ item: ClassicItem) {
         switch item {
-        case .tale(let tale): path.append(.tale(tale.id))
-        case .series(let series, _): path.append(.series(series.id))
+        case .tale(let tale): app.masallarPath.append(.tale(tale.id))
+        case .series(let series, _): app.masallarPath.append(.series(series.id))
         }
     }
 

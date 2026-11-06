@@ -95,13 +95,15 @@ final class ClassicProgressTests: XCTestCase {
         for tab in MPTab.allCases {
             XCTAssertEqual(MPTab(tab.kidTab), tab)
         }
-        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Masallar", "Kitaplık", "Köşem"])
+        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Masallar", "Kitaplık"])
     }
 
-    func testKidCornerIsATab() {
+    /// Köşem sekme değil: avatar açık sekmede kalır, Masallar'dan da açılır.
+    func testKidCornerOpensOnTheCurrentTab() {
         let app = MPAppState()
         app.tab = .gunluk
         app.openKidCorner()
-        XCTAssertEqual(app.tab, .corner)
+        XCTAssertEqual(app.tab, .gunluk)
+        XCTAssertEqual(app.masallarPath, [.kid(.corner)])
     }
 }

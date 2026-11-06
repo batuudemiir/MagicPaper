@@ -52,10 +52,7 @@ struct HomeView: View {
     private var content: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
             VStack(alignment: .leading, spacing: 0) {
-                HomeHeader(greeting: greeting, childName: activeName,
-                           avatar: { MPAvatar(name: activeName, color: profileManager.currentProfile?.mpColor,
-                                              size: MPSize.headerAvatar) },
-                           onAvatar: { app.openKidCorner() })
+                MPKidTabHeader(title: activeName, eyebrow: greeting)
                 // Satır Benim köşem'e götürür: yıldız ve serinin ayrıntısı orada.
                 Button { MPHaptics.tap(); app.openKidCorner() } label: {
                     HomeStatLine(stars: stars, streak: streak.currentStreak)

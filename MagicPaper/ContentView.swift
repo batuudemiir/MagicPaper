@@ -3,9 +3,9 @@ import SwiftUI
 
 /// Kök ekran (FAZ 17, Pastel Masal).
 ///
-/// Çocuk kökü: dört sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
+/// Çocuk kökü: üç sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
 /// sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32). Odaya
-/// yalnızca kapıdan girilir (Köşem > Büyükler için); uygulama arka plana gidince
+/// yalnızca kapıdan girilir (avatar > Köşem > Büyükler için); uygulama arka plana gidince
 /// oda kapanır. Harita: `docs/SAYFA_MIMARISI.md`.
 struct ContentView: View {
     @StateObject private var app = MPAppState()
@@ -67,8 +67,7 @@ struct ContentView: View {
                 OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
             }
             .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
-                // Açık alt sayfalar önceki çocuğun; yığınlar köke döner.
-                app.kidPaths = [:]
+                app.closePagesOfPreviousChild()
                 MPStreak.shared.activate(profileID: id)
             // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
             OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
@@ -244,7 +243,6 @@ struct ContentView: View {
             Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
             Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
             Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
-            Tab("Köşem", systemImage: "face.smiling", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
             Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: .search) {
                 Color.clear
             }
@@ -261,7 +259,6 @@ struct ContentView: View {
             case .home:    KidTabStack(tab: .home) { HomeView() }.transition(tabTransition)
             case .gunluk:  GunlukView().transition(tabTransition)
             case .library: KidTabStack(tab: .library) { LibraryView() }.transition(tabTransition)
-            case .corner:  KidTabStack(tab: .corner) { KidCornerView() }.transition(tabTransition)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -325,14 +322,13 @@ struct ContentView: View {
 // MARK: - Sekme yığınları
 
 /// Çocuk sekmesinin kendi yığını (7 Kasım 2026): alt sayfalar push ile açılır,
-/// alt çubuk görünür kalır, sekme değişince yol korunur (SCREENS.md, HIG). Günlük
+/// alt çubuk görünür kalır, sekme değişince yol korunur (SCREENS.md, HIG). Masallar
 /// kendi yığınını `GunlukRoute` ile kurar.
 private struct KidTabStack<Root: View>: View {
     let tab: MPTab
     @ViewBuilder var root: Root
 
     @EnvironmentObject private var app: MPAppState
-    @ObservedObject private var profileManager = ProfileManager.shared
 
     var body: some View {
         NavigationStack(path: Binding(get: { app.kidPaths[tab] ?? [] },
@@ -340,16 +336,30 @@ private struct KidTabStack<Root: View>: View {
             root
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: MPKidRoute.self) { route in
-                    page(route)
-                        .kidTabBarClearance()
-                        .toolbar(.hidden, for: .navigationBar)
+                    KidPageView(route: route)
                 }
         }
     }
+}
+
+/// Çocuk alt sayfası (`MPKidRoute`): her sekmenin yığınında aynı.
+struct KidPageView: View {
+    let route: MPKidRoute
+
+    @EnvironmentObject private var app: MPAppState
+    @ObservedObject private var profileManager = ProfileManager.shared
+
+    var body: some View {
+        page
+            .kidTabBarClearance()
+            .toolbar(.hidden, for: .navigationBar)
+    }
 
     @ViewBuilder
-    private func page(_ route: MPKidRoute) -> some View {
+    private var page: some View {
         switch route {
+        case .corner:
+            KidCornerView()
         case .series(let child):
             SeriesView(childID: child)
         case .newWords(let id):

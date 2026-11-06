@@ -1,15 +1,15 @@
 // MPNavigationChrome.swift
-// Kid tab bar (Ana sayfa · Günlük · Kitaplık · Köşem + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
-// kid header (avatar → Benim köşem, kilit → Ebeveyn kapısı), top bar, parent header.
-// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok, BenimKosem (kid tab bar); EbeveynPaneli,
+// Kid tab bar (Ana sayfa · Masallar · Kitaplık + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
+// kid header (avatar → Benim köşem), top bar, parent header.
+// Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
 
 import SwiftUI
 
-enum KidTab: Hashable { case home, gunluk, library, corner }
+enum KidTab: Hashable { case home, gunluk, library }
 
 /// Çocuk modunun alt çubuğu, iOS 26 sekme çubuğunun ölçüsünde (21 Ekim 2026):
-/// dört sekme içeriğin üstünde yüzen cam bir kapsülde, "Masal yaz" yanında
+/// sekmeler içeriğin üstünde yüzen cam bir kapsülde, "Masal yaz" yanında
 /// ayrı bir cam dairede (Apple Music'teki arama dairesi gibi). İkisi tek cam
 /// grubunda (`MPGlassGroup`); daire marka renginde tonlu ve dokununca esner,
 /// masal yazma ekranı dairenin içinden büyüyerek açılır (`mpZoomSource`).
@@ -66,7 +66,6 @@ struct KidTabBar: View {
         Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
         Item(tab: .gunluk,  label: "Masallar",  symbol: "book"),
         Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
-        Item(tab: .corner,  label: "Köşem",     symbol: "face.smiling"),
     ]
 
     var body: some View {
@@ -216,19 +215,19 @@ struct ParentTabs<Summary: View, Safety: View, Settings: View>: View {
     }
 }
 
-/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, sekmenin
-/// kendi denetimi sağda. Ebeveyn girişi burada yok (Köşem > Büyükler için). Üst ve
-/// yan boşluk sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
+/// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, çocuğun
+/// avatarı (→ Benim köşem, ebeveyn girişi de orada) sağda. Üst ve yan boşluk
+/// sayfanın: üstte `MPSpacing.lg`, yanda `screenH`.
 struct MPKidTabHeader<Accessory: View>: View {
     let title: String
     /// Başlığın üstündeki küçük satır (Ana sayfa'nın selamı).
     var eyebrow: String? = nil
-    /// Sağdaki denetim (Ana sayfa'nın avatarı, Günlük'ün araması).
+    /// Avatarın solundaki denetim (Masallar'ın araması).
     @ViewBuilder var accessory: Accessory
 
     var body: some View {
         // Üste hizalı ve sabit satır yüksekliği: selamlı başlık daha uzun olsa
-        // da sağdaki denetim her sekmede aynı hizada durur.
+        // da avatar her sekmede aynı noktada durur.
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             VStack(alignment: .leading, spacing: 0) {
                 if let eyebrow {
@@ -241,8 +240,11 @@ struct MPKidTabHeader<Accessory: View>: View {
             .frame(minHeight: MPSize.headerAvatar)
             .accessibilityElement(children: .combine)
             Spacer(minLength: MPSpacing.sm)
-            accessory
-                .frame(minHeight: MPSize.headerAvatar)
+            HStack(spacing: MPSpacing.sm) {
+                accessory
+                KidAvatarButton()
+            }
+            .frame(minHeight: MPSize.headerAvatar)
         }
     }
 }
@@ -250,6 +252,26 @@ struct MPKidTabHeader<Accessory: View>: View {
 extension MPKidTabHeader where Accessory == EmptyView {
     init(title: String, eyebrow: String? = nil) {
         self.init(title: title, eyebrow: eyebrow) { EmptyView() }
+    }
+}
+
+/// Çocuğun avatarı: dokununca Benim köşem açık sekmenin yığınına itilir.
+private struct KidAvatarButton: View {
+    @EnvironmentObject private var app: MPAppState
+    @ObservedObject private var profileManager = ProfileManager.shared
+
+    private var name: String { profileManager.currentProfile?.name ?? "Arkadaşım" }
+
+    var body: some View {
+        Button { MPHaptics.tap(); app.openKidCorner() } label: {
+            MPAvatar(name: name, color: profileManager.currentProfile?.mpColor, size: MPSize.headerAvatar)
+                .dynamicTypeSize(...DynamicTypeSize.large)
+                .frame(width: MPSize.headerAvatar, height: MPSize.headerAvatar)
+                .clipShape(Circle())
+                .contentShape(Circle())
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel("Benim köşem, \(name)")
     }
 }
 

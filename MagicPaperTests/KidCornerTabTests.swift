@@ -1,7 +1,7 @@
 import XCTest
 @testable import MagicPaper
 
-/// 12 · Benim köşem alt barda "Köşem" sekmesi (karar 13 Ekim 2026).
+/// 12 · Benim köşem: sekmenin avatarından açılan sayfa (karar 7 Kasım 2026).
 @MainActor
 final class KidCornerTabTests: XCTestCase {
 
@@ -9,13 +9,27 @@ final class KidCornerTabTests: XCTestCase {
         for tab in MPTab.allCases {
             XCTAssertEqual(MPTab(tab.kidTab), tab)
         }
-        XCTAssertEqual(MPTab.corner.label, "Köşem")
     }
 
-    func testOpeningTheCornerSelectsItsTab() {
+    func testTheAvatarPushesTheCornerOnTheOpenTab() {
+        let app = MPAppState()
+        app.tab = .library
+        app.openKidCorner()
+        XCTAssertEqual(app.tab, .library)
+        XCTAssertEqual(app.kidPaths[.library], [.corner])
+    }
+
+    /// Profil Köşem'de seçilir: seçince Köşem kapanmaz, eski çocuğun sayfaları kapanır.
+    func testChangingChildKeepsTheCornerAndClosesTheChildsPages() {
         let app = MPAppState()
         app.openKidCorner()
-        XCTAssertEqual(app.tab, .corner)
+        app.openKidPage(.newWords(UUID()))
+        app.tab = .gunluk
+        app.openKidCorner()
+        app.openKidPage(.series(UUID()))
+        app.closePagesOfPreviousChild()
+        XCTAssertEqual(app.kidPaths[.home], [.corner])
+        XCTAssertEqual(app.masallarPath, [.kid(.corner)])
     }
 
     /// Ebeveyn odası çocuğun üstüne açılır: kapanınca çocuk bıraktığı yerdedir.
@@ -31,18 +45,18 @@ final class KidCornerTabTests: XCTestCase {
         XCTAssertTrue(app.isParentMode)
         app.enterChildMode()
         XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .corner)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
+        XCTAssertEqual(app.tab, .home)
+        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
     }
 
-    /// Köşem'deki kilit ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.
+    /// Köşem'deki "Büyükler için" ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.
     func testTheCornerReachesTheParentAreaOnlyThroughTheGate() {
         let app = MPAppState()
         app.openKidCorner()
         app.requestParentMode()
         XCTAssertTrue(app.showGate)
         XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .corner)
+        XCTAssertEqual(app.kidPaths[.home], [.corner])
     }
 
     /// Widget ve Siri bağlantıları Köşem açıkken de Ana sayfaya döner.
@@ -62,10 +76,10 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         let route = MPKidRoute.newWords(UUID())
         app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
+        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
         XCTAssertNil(app.sheet)
         app.closeKidPage()
-        XCTAssertEqual(app.kidPaths[.corner], [])
+        XCTAssertEqual(app.kidPaths[.home], [.corner])
     }
 
     func testEachTabKeepsItsOwnPathAcrossTabChanges() {
@@ -84,7 +98,7 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         app.openKidPage(.familyCharacters(UUID()))
         app.reselectTab()
-        XCTAssertEqual(app.kidPaths[.corner], [])
+        XCTAssertEqual(app.kidPaths[.home], [])
     }
 
     func testTheSamePageIsNotPushedTwice() {
@@ -93,17 +107,19 @@ final class KidCornerTabTests: XCTestCase {
         app.openKidCorner()
         app.openKidPage(route)
         app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
+        XCTAssertEqual(app.kidPaths[.home], [.corner, route])
     }
 
-    /// Günlük'ün yığını `MPKidRoute` taşımaz; sayfa kaybolmasın diye Ana sayfada açılır.
-    func testAKidPageOpenedFromGunlukLandsOnHome() {
+    /// Masallar'ın yığını çocuk sayfalarını `GunlukRoute.kid` içinde taşır.
+    func testAKidPageOpenedFromMasallarStaysOnMasallar() {
         let app = MPAppState()
         let route = MPKidRoute.series(UUID())
         app.tab = .gunluk
         app.openKidPage(route)
-        XCTAssertEqual(app.tab, .home)
-        XCTAssertEqual(app.kidPaths[.home], [route])
+        XCTAssertEqual(app.tab, .gunluk)
+        XCTAssertEqual(app.masallarPath, [.kid(route)])
+        app.closeKidPage()
+        XCTAssertEqual(app.masallarPath, [])
     }
 
     func testCharacterPagesArePushedOnTheParentStackAndCloseTheSheet() {

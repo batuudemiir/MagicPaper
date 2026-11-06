@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Köşem sekmeden çıktı, avatardan açılıyor
+
+- Batuhan'ın kararı, 13 Ekim sekme kararının yerine. Çubuk: Ana sayfa · Masallar · Kitaplık + "Masal yaz". Avatar `MPKidTabHeader`'ın parçası (`KidAvatarButton`), `HomeHeader` silindi; Benim köşem `MPKidRoute.corner` ile açık sekmeye push, başlığı `MPTopBar` + Geri.
+- Masallar yığını `app.masallarPath`'e taşındı (`GunlukRoute.kid`): Köşem ve altı Masallar'dan da sekme değişmeden açılıyor. Yeni çocuk seçilince Köşem açık kalıyor, eski çocuğun sayfaları kapanıyor (`closePagesOfPreviousChild`).
+- Bilerek kalan: `-mpStartTab corner` artık yok; Köşem'in içeriği aynı. "Masal yaz" hâlâ `.search` rolünde.
+- Test: 794 test, 0 başarısız, 1 atlandı. xcodebuild testlerden sonra kapanmadı, süre sınırıyla sonlandı (çıkış 142), `TEST SUCCEEDED` satırı yok.
+- Simülatörde görüldü (iPhone 17 Pro, iOS 27): Ana sayfa ve Masallar başlığında avatar, üç sekmeli çubuk, Masallar'dan Köşem push. Görülmedi: Kitaplık'tan açılış, profil değiştirince Köşem'in kalması (birim testi var), en büyük yazı, iOS 26 öncesi çubuk (`KidTabBar`), SE, Pro Max, gerçek ebeveynle giriş bulunabilirliği.
+- Dosyalar: `MPAppState`, `ContentView`, `MPNavigationChrome`, `MPHomeChrome`, `HomeView`, `GunlukView`, `KidCornerView`, `MPDebugLaunch`, `KidCornerTabTests`, `ClassicProgressTests`, `docs/SAYFA_MIMARISI.md`, bu dosya; repo dışında `CLAUDE.md`.
+
 ### 2026-11-07 · main (commit aşağıda) · Gezinme çubuğu ve sayfalar: ikinci inceleme
 
 - Yalnızca belge: `docs/SAYFA_MIMARISI.md`'ye çubuk önerisi ve sayfa sayfa bulgular eklendi. Uygulama kodu değişmedi, test çalıştırılmadı.
