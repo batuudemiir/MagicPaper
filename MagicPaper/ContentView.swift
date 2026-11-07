@@ -120,9 +120,6 @@ struct ContentView: View {
                     app.pendingBedtimeChoice = choice
                 }
             }
-            .fullScreenCover(item: $app.dailyReading, onDismiss: { MPSurfaceSync.refresh() }) { story in
-                DailyStoryReaderView(story: story).environmentObject(app).environmentObject(settings)
-            }
             .fullScreenCover(isPresented: $app.showStoryCreation, onDismiss: {
                 app.creationPreset = nil
                 app.creationFamilyID = nil

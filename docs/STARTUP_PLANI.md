@@ -280,7 +280,7 @@ Yapılacaklar (kural: **dokunulan ekran taşınır**):
 
 ## Fazlar
 
-Durum (7 Kasım 2026): Faz 0, Faz 1 ve Faz 2 bitti; ayrıntı `design-handoff/reference/DEMO_CHANGELOG.md`.
+Durum (7 Kasım 2026): Faz 0, 1 ve 2 bitti; Faz 3'ün hukuk gerektirmeyen kısmı bitti (masal yazma, Ana sayfa, tek okuyucu, kenar dokunuşu), "önce masal" hukuk onayı bekliyor; ayrıntı `design-handoff/reference/DEMO_CHANGELOG.md`.
 
 Her faz ayrı commit'ler, Değişiklik günlüğü ve Design law güncellemesiyle biter.
 

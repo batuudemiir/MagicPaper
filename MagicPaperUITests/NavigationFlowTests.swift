@@ -11,7 +11,7 @@ final class NavigationFlowTests: XCTestCase {
 
     private func launch(_ arguments: [String] = []) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-mpDemo", "YES", "-mpDemoLibrary", "YES"] + arguments
+        app.launchArguments = ["-mpDemo", "YES", "-mpDemoLibrary", "YES", "-mp_approveBeforeShow", "NO"] + arguments
         app.launch()
         XCTAssertTrue(app.tabBars.buttons["Ana sayfa"].waitForExistence(timeout: 15))
         return app
@@ -58,6 +58,52 @@ final class NavigationFlowTests: XCTestCase {
         XCTAssertTrue(close.waitForExistence(timeout: 10))
         close.tap()
         XCTAssertTrue(app.tabBars.buttons["Ana sayfa"].waitForExistence(timeout: 5))
+    }
+
+    /// Çubuktan okumaya 3 dokunuş: Masal yaz, mod, Masalı yaz (`STARTUP_PLANI.md`).
+    func testStoryIsThreeTapsAway() {
+        let app = launch()
+        app.tabBars.buttons["Masal yaz"].tap()
+        let mode = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Maceraya çıkalım")).firstMatch
+        XCTAssertTrue(mode.waitForExistence(timeout: 10))
+        mode.tap()
+        let write = app.buttons["Masalı yaz"]
+        XCTAssertTrue(write.waitForExistence(timeout: 5))
+        write.tap()
+        XCTAssertTrue(app.buttons["Kapat"].waitForExistence(timeout: 20), "Masal kendiliğinden açılmalı")
+    }
+
+    /// Sürpriz 2 dokunuş ve başka soru sormaz; "Masalı aç" beklemeden açar.
+    func testSurpriseWritesWithoutMoreQuestions() {
+        let app = launch()
+        app.tabBars.buttons["Masal yaz"].tap()
+        let surprise = app.buttons["Bana sürpriz yap"]
+        XCTAssertTrue(surprise.waitForExistence(timeout: 10))
+        surprise.tap()
+        XCTAssertFalse(app.buttons["Masalı yaz"].exists)
+        let skip = app.buttons["Masalı aç"]
+        XCTAssertTrue(skip.waitForExistence(timeout: 5))
+        skip.tap()
+        XCTAssertTrue(app.buttons["Kapat"].waitForExistence(timeout: 5))
+    }
+
+    /// Kenara dokunmak sayfa çevirir; sürükleme küçük çocuğa zor (`STARTUP_PLANI.md`).
+    func testEdgeTapTurnsThePage() {
+        let app = launch()
+        app.tabBars.buttons["Masal yaz"].tap()
+        let surprise = app.buttons["Bana sürpriz yap"]
+        XCTAssertTrue(surprise.waitForExistence(timeout: 10))
+        surprise.tap()
+        let skip = app.buttons["Masalı aç"]
+        XCTAssertTrue(skip.waitForExistence(timeout: 5))
+        skip.tap()
+        XCTAssertTrue(app.buttons["Kapat"].waitForExistence(timeout: 5))
+        let folio = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Sayfa ")).firstMatch
+        XCTAssertTrue(folio.waitForExistence(timeout: 5))
+        let before = folio.label
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+        let turned = NSPredicate(format: "label BEGINSWITH %@ AND label != %@", "Sayfa ", before)
+        XCTAssertTrue(app.staticTexts.matching(turned).firstMatch.waitForExistence(timeout: 5))
     }
 
     /// "Çocuk modu" odayı kapatır, çocuk bıraktığı sekmede olur.

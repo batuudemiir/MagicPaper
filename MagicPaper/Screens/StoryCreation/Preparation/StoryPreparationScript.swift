@@ -28,9 +28,9 @@ enum StoryPreparationScript {
     /// How much of the ritual a story gets: the whole of it at first, less
     /// once the family knows it (karar 16 Ekim 2026).
     enum Tier: Equatable {
-        /// The child's first story: ~15 s, no skip (karar 16 Ekim 2026).
+        /// The child's first story: ~7,5 s (karar 7 Kasım 2026, önceden 15 sn).
         case full
-        /// The 2nd and 3rd: ~10 s.
+        /// The 2nd and 3rd: ~6,8 s.
         case standard
         /// From the 4th on: ~6 s, the age line folds away.
         case short
@@ -38,12 +38,14 @@ enum StoryPreparationScript {
 
     /// Seconds per beat for `.full`. The other tiers scale or drop from it.
     private static let fullHolds: [Beat: Double] = [
-        .openBook: 2.0, .cast: 2.8, .ageFit: 2.0, .modeTouch: 2.2, .writing: 3.8, .reread: 2.2
+        .openBook: 1.0, .cast: 1.4, .ageFit: 1.0, .modeTouch: 1.1, .writing: 2.2, .reread: 0.8
     ]
     private static let shortHolds: [Beat: Double] = [
         .openBook: 0.8, .cast: 1.4, .modeTouch: 1.1, .writing: 1.9, .reread: 0.9
     ]
-    private static let standardScale = 0.67
+    private static let standardScale = 0.9
+    /// Kapak bu kadar görünür, sonra masal kendiliğinden açılır.
+    static let coverHold = 1.6
     /// Uyku saatinde her şey biraz daha yavaş.
     static let bedtimeScale = 1.2
 
@@ -71,13 +73,9 @@ enum StoryPreparationScript {
     }
 
     /// When "Masalı aç" appears, counted from the screen opening. The first
-    /// story is never skippable: it is the moment the ritual is learnt.
-    static func skipDelay(for facts: PreparationFacts) -> Double? {
-        switch tier(for: facts) {
-        case .full: nil
-        case .standard: 2
-        case .short: 1
-        }
+    /// story too: a ritual nobody can leave is a wait (karar 7 Kasım 2026).
+    static func skipDelay(for facts: PreparationFacts) -> Double {
+        tier(for: facts) == .short ? 1 : 2
     }
 
     /// The whole run until the cover, in seconds.

@@ -36,6 +36,10 @@ struct CompanionStep: View {
     @Binding var selectedFamilyID: UUID?
     /// Opens the new-character editor (parent mode only).
     var onAddFamily: (() -> Void)? = nil
+    /// Modun konuları (karar 7 Kasım 2026: mod adımından buraya). İsteğe bağlı,
+    /// seçili çipe tekrar dokunmak seçimi kaldırır.
+    var topics: [StoryTopicChoice] = []
+    @Binding var selectedTopicID: String?
     /// "Değiştir": birinci adıma döner.
     var onChangeMode: (() -> Void)? = nil
     /// Nil means "MagicPaper chooses".
@@ -64,6 +68,8 @@ struct CompanionStep: View {
                     CreationTitle(title: "Masalda kimler olsun?")
                     if let mode { summary(mode) }
                 }
+
+                if let mode, !topics.isEmpty { topicSection(mode) }
 
                 companionSection
 
@@ -103,6 +109,33 @@ struct CompanionStep: View {
                     .frame(minHeight: MPSize.minTouchParent)
                     .accessibilityHint("Masal türünü değiştirir")
             }
+        }
+    }
+
+    private func topicSection(_ mode: StoryMode) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            MPSectionHeader(title: prompt(for: mode), subtitle: "İstersen seç, istersen bize bırak.")
+            MPWrapRow(spacing: MPSpacing.sm) {
+                ForEach(topics) { topic in
+                    MPChip(title: topic.name, systemImage: topic.symbol,
+                           isSelected: selectedTopicID == topic.id) {
+                        MPHaptics.selection()
+                        selectedTopicID = (selectedTopicID == topic.id) ? nil : topic.id
+                    }
+                    .accessibilityLabel(topic.name)
+                    .accessibilityAddTraits(selectedTopicID == topic.id ? [.isSelected] : [])
+                }
+            }
+        }
+    }
+
+    /// Soru modun sorusunu sürdürüyor: "öğrenelim" dedikten sonra sorulacak
+    /// şey "neyi", "maceraya çıkalım" dedikten sonra "nereye".
+    private func prompt(for mode: StoryMode) -> String {
+        switch mode {
+        case .learning:  return "Neyi öğrenelim?"
+        case .adventure: return "Nereye gidelim?"
+        case .bedtime:   return "Masal neyle ilgili olsun?"
         }
     }
 

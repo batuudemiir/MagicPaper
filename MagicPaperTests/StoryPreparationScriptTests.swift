@@ -102,8 +102,8 @@ final class StoryPreparationScriptTests: XCTestCase {
         let later = StoryPreparationScript.totalDuration(for: facts(ordinal: 4))
         XCTAssertGreaterThan(first, second)
         XCTAssertGreaterThan(second, later)
-        XCTAssertEqual(first, 15, accuracy: 1)
-        XCTAssertEqual(second, 10, accuracy: 1)
+        XCTAssertEqual(first, 7.5, accuracy: 0.5)
+        XCTAssertEqual(second, 6.8, accuracy: 0.5)
         XCTAssertEqual(later, 6, accuracy: 0.6)
     }
 
@@ -117,9 +117,9 @@ final class StoryPreparationScriptTests: XCTestCase {
         XCTAssertEqual(StoryPreparationScript.steps(for: facts()).last?.hold, 0)
     }
 
-    func testTheFirstStoryIsNeverSkippable() {
-        XCTAssertNil(StoryPreparationScript.skipDelay(for: facts(ordinal: 1)))
-        XCTAssertNil(StoryPreparationScript.skipDelay(for: facts(ordinal: 6, firstRun: true)))
+    func testEveryStoryIsSkippable() {
+        XCTAssertEqual(StoryPreparationScript.skipDelay(for: facts(ordinal: 1)), 2)
+        XCTAssertEqual(StoryPreparationScript.skipDelay(for: facts(ordinal: 6, firstRun: true)), 2)
         XCTAssertEqual(StoryPreparationScript.skipDelay(for: facts(ordinal: 3)), 2)
         XCTAssertEqual(StoryPreparationScript.skipDelay(for: facts(ordinal: 4)), 1)
     }

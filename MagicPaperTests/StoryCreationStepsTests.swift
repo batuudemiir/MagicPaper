@@ -13,36 +13,21 @@ final class StoryCreationStepsTests: XCTestCase {
     /// üründen çıkmış sayılan ekran telefonda görünüyordu. Kapalı bir özellik,
     /// silinmiş bir özellik değildir.
     func testThereIsNoIdeaStep() {
-        for child in [true, false] {
-            XCTAssertFalse(StoryCreationSteps.stepLabels(childStep: child).contains("Fikir"))
-        }
+        XCTAssertFalse(StoryCreationSteps.stepLabels.contains("Fikir"))
     }
 
     // MARK: - Çocuk ve konu adımları (16 Ekim 2026)
 
-    /// Tek çocuklu evde "hangi çocuk?" cevabı belli bir sorudur.
-    func testTheChildStepNeedsMoreThanOneChild() {
-        XCTAssertFalse(StoryCreationSteps.showsChildStep(profileCount: 0))
-        XCTAssertFalse(StoryCreationSteps.showsChildStep(profileCount: 1))
-        XCTAssertTrue(StoryCreationSteps.showsChildStep(profileCount: 2))
+    /// Tek çocuklu evde "kimin için?" cevabı belli bir sorudur.
+    func testTheChildPickerNeedsMoreThanOneChild() {
+        XCTAssertFalse(StoryCreationSteps.showsChildPicker(profileCount: 0))
+        XCTAssertFalse(StoryCreationSteps.showsChildPicker(profileCount: 1))
+        XCTAssertTrue(StoryCreationSteps.showsChildPicker(profileCount: 2))
     }
 
-    /// Konu ayrı bir adım değil: mod adımının içinde beliriyor, bu yüzden
-    /// adım noktalarına bir nokta eklemiyor.
-    func testStepLabelsGrowWithTheStepsActuallyShown() {
-        XCTAssertEqual(StoryCreationSteps.stepLabels(), ["Masal", "Kimler"])
-        XCTAssertEqual(StoryCreationSteps.stepLabels(childStep: true),
-                       ["Çocuk", "Masal", "Kimler"])
-    }
-
-    /// Sıra ekrandaki sırayla aynı olmalı: "Konu" moddan sonra, "Kimler" en
-    /// sonda. Akış adım numarasını bu listeden okuyor.
-    func testTheLastStepIsAlwaysTheCast() {
-        for child in [true, false] {
-            let labels = StoryCreationSteps.stepLabels(childStep: child)
-            XCTAssertEqual(labels.last, "Kimler")
-            XCTAssertEqual(labels.first, child ? "Çocuk" : "Masal")
-        }
+    /// Çocuk ve konu ayrı adım değil: iki adım, sonu "Kimler".
+    func testThereAreTwoSteps() {
+        XCTAssertEqual(StoryCreationSteps.stepLabels, ["Masal", "Kimler"])
     }
 
     // MARK: - Sürpriz (K6)

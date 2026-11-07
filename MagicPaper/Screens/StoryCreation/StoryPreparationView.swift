@@ -8,9 +8,10 @@ import SwiftUI
 /// cümlesi mürekkeple yazılır, Ragi masalı bir kez daha okur, kapak gelir.
 /// Sıra, metin ve süre `StoryPreparationScript`'ten; bu görünüm yalnızca oynatır.
 ///
-/// İlk masalda ritüelin tamamı (~15 sn), sonra kısalır ve "Masalı aç" ile
-/// atlanabilir. Reduce Motion açıkken adımlar aynı sırayla, hareket yerine
-/// çapraz geçişle gelir.
+/// Ritüel 6-8 sn, her masalda "Masalı aç" ile atlanabilir (karar 7 Kasım 2026).
+/// Kapak kısa görünür, sonra masal kendiliğinden açılır; "Sonra oku" kitaplıkta
+/// bırakır. VoiceOver açıkken kendiliğinden açılmaz: duyuruyu kesmesin.
+/// Reduce Motion açıkken adımlar aynı sırayla, hareket yerine çapraz geçişle gelir.
 struct StoryPreparationView: View {
 
     let childName: String
@@ -35,6 +36,7 @@ struct StoryPreparationView: View {
     /// Ragi'nin nefesi; yalnızca Reduce Motion kapalıyken.
     @State private var breathing = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
 
     private var steps: [StoryPreparationScript.Step] {
         facts.map(StoryPreparationScript.steps(for:)) ?? []
@@ -107,9 +109,14 @@ struct StoryPreparationView: View {
         }
         .task(id: facts) { await play() }
         .task(id: facts?.storyOrdinal) {
-            guard let facts, let delay = StoryPreparationScript.skipDelay(for: facts) else { return }
-            try? await Task.sleep(for: .seconds(delay))
+            guard let facts else { return }
+            try? await Task.sleep(for: .seconds(StoryPreparationScript.skipDelay(for: facts)))
             if !Task.isCancelled && !isDone { showsSkip = true }
+        }
+        .task(id: isDone) {
+            guard isDone, !awaitsApproval, !voiceOver else { return }
+            try? await Task.sleep(for: .seconds(StoryPreparationScript.coverHold))
+            if !Task.isCancelled { onRead() }
         }
     }
 
@@ -171,9 +178,12 @@ struct StoryPreparationView: View {
             }
             .transition(.opacity)
         } else if isDone {
-            MPButton(title: "Masalı oku", systemImage: "book", fullWidth: true, action: onRead)
-                .padding(.horizontal, MPSpacing.xxxl)
-                .transition(.opacity)
+            VStack(spacing: MPSpacing.xxs) {
+                MPButton(title: "Masalı oku", systemImage: "book", fullWidth: true, action: onRead)
+                MPButton(title: "Sonra oku", kind: .ghost, action: onCancel)
+            }
+            .padding(.horizontal, MPSpacing.xxxl)
+            .transition(.opacity)
         } else {
             HStack(spacing: MPSpacing.md) {
                 MPButton(title: cancelTitle, kind: .ghost, action: onCancel)
@@ -206,6 +216,7 @@ struct StoryPreparationView: View {
         skipped = true
         showsSkip = false
         index = max(steps.count - 1, 0)
+        if story != nil && !awaitsApproval { onRead() }
     }
 }
 

@@ -183,8 +183,3 @@ extension DailyStoryCategory {
         }
     }
 }
-
-extension DailyStory {
-    /// "5 dk · 4-6 yaş" — sayılar her zaman birim sözcüğüyle.
-    var mpMeta: String { "\(readingTime) dk · \(ageRange) yaş" }
-}

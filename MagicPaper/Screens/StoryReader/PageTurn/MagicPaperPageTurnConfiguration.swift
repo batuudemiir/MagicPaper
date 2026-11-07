@@ -35,5 +35,5 @@ enum MagicPaperPageTurnConfiguration {
     static let perspective: CGFloat = 0.75
 
     /// Tappable area at the edges.
-    static let edgeTapWidthRatio: CGFloat = 0.15
+    static let edgeTapWidthRatio: CGFloat = 0.25
 }

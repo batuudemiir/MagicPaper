@@ -53,7 +53,7 @@ struct LibraryContinueCard: View {
                 MPBookCover(art: item.art, width: typeSize.isAccessibilitySize ? 96 : 64)
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text(item.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(2).multilineTextAlignment(.leading)
+                        .lineLimit(3).multilineTextAlignment(.leading)
                     Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     GeometryReader { geo in
                         Capsule().fill(MPColor.ringTrack)

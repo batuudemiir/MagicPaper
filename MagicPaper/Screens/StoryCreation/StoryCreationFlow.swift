@@ -11,8 +11,9 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 /// six decisions that made the product feel like a form.
 ///
 /// The one required decision is the **mode** — Uyku öncesi, Yeni şeyler
-/// öğrenelim, Maceraya çıkalım — or "Bana sürpriz yap", which lets MagicPaper
-/// pick the mode. Then "Masalda kimler olsun?".
+/// öğrenelim, Maceraya çıkalım — tapped once, no "Devam et". Then "Masalda kimler
+/// olsun?". "Bana sürpriz yap" skips that step and writes the story: that is what
+/// a surprise means (karar 7 Kasım 2026).
 ///
 /// Fikir kartları adımı ("Bir gizemin peşine düşelim", "Bana bırak") 21 Ekim
 /// 2026'da kaldırıldı. Bayrağın arkasında uyuyordu ve bayrak bir cihazda
@@ -26,14 +27,14 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 /// the modes, so it is never a dead end. The decisions themselves live in
 /// `StoryCreationSteps`.
 ///
-/// The child is not asked for: the app already has a current profile, and
-/// `MainContentView` will not reach this screen without one.
+/// The child is not a step: the app already has a current profile, and a home
+/// with two children changes it in one line (`CreationChildPicker`).
 struct StoryCreationFlow: View {
 
     /// Where the flow is. Linear on purpose — one decision per screen, which is
     /// also what makes it usable by a child later (§27).
     private enum Phase: Equatable {
-        /// "Masal kimin için?" — yalnızca birden fazla çocuk varken.
+        /// "Masal kimin için?": yalnızca açıklama ekranından "başka bir çocuk seç".
         case child
         /// Bu çocuğun yaşı için masal yazılmamış (C turu, 21 Ekim 2026).
         ///
@@ -73,12 +74,11 @@ struct StoryCreationFlow: View {
     @State private var chosenMode: StoryMode?
     @State private var strategy: StorySelectionStrategy = .direct
     @State private var chosenCompanionID: String?
-    /// Alt kategori (`CatalogStoryTopic` kimliği); nil "farketmez".
-    ///
-    /// Mod adımında, modun kendi kartının altında seçiliyor — ayrı bir adım
-    /// değil (karar: 16 Ekim 2026). İkinci soru ancak birincisi cevaplandıktan
-    /// sonra anlam kazandığı için aynı ekranda, cevabın altında beliriyor.
+    /// Alt kategori (`CatalogStoryTopic` kimliği); nil "farketmez". "Kimler"
+    /// adımında isteğe bağlı (karar: 7 Kasım 2026).
     @State private var chosenTopicID: String?
+    /// Modun konuları, mod ya da çocuk değişince bir kez: katalogu tarar.
+    @State private var topicChoices: [StoryTopicChoice] = []
     /// Bu masalın yazılacağı çocuk. Akışa özel: aktif profili değiştirmez.
     @State private var chosenProfileID: UUID?
     /// Masal ailem (FAZ 11). Chosen on the companion step, optional, one at
@@ -109,20 +109,13 @@ struct StoryCreationFlow: View {
         let age = ProfileManager.shared.currentProfile?.age ?? AgeBandResolver.mvp.upperBound
         let available = StoryChoiceSources.current.availableModes(forAge: age)
         // Yaş kapısı moddan önce: desteklenmeyen bir bantta mod sormak,
-        // cevabı hiçbir şeye yaramayacak bir soru sormaktır. Çocuk adımı
-        // gösterilecekse kapı ona bırakılır — ebeveyn zaten orada
-        // desteklenen bir çocuk seçebilir.
+        // cevabı hiçbir şeye yaramayacak bir soru sormaktır.
         let supported = StoryCreationSteps.supportsAge(
             age, authored: StoryChoiceSources.current.authoredBands())
-        let hasChoice = StoryCreationSteps.showsChildStep(
-            profileCount: ProfileManager.shared.profiles.count)
 
         switch StoryCreationSteps.openingPhase(preset: preset, available: available) {
         case .mode:
-            // Ana sayfadan mod seçilmeden gelindiyse ve evde birden fazla
-            // çocuk varsa, ilk soru "kimin için?". Preset ile gelindiğinde
-            // sorulmaz: ebeveyn ana sayfada aktif çocuk için karar verdi.
-            _phase = State(initialValue: hasChoice ? .child : (supported ? .mode : .unsupportedAge))
+            _phase = State(initialValue: supported ? .mode : .unsupportedAge)
             _chosenMode = State(initialValue: nil)
         case .companion(let mode):
             _phase = State(initialValue: supported ? .companion : .unsupportedAge)
@@ -165,6 +158,12 @@ struct StoryCreationFlow: View {
             refreshFamilyRelations()
         }
         .onChange(of: chosenMode) { _, _ in refreshFamilyRelations() }
+        .onChange(of: chosenProfileID) { _, _ in
+            chosenFamilyID = nil
+            reloadFamily()
+            refreshFamilyRelations()
+            if phase == .mode && !supportsChosenChild { phase = .unsupportedAge }
+        }
     }
 
     /// A mode change can make the chosen character's relation unavailable.
@@ -172,6 +171,7 @@ struct StoryCreationFlow: View {
     /// selected), rather than kept and dropped silently at "Başla".
     private func refreshFamilyRelations() {
         familyRelations = Set(source.availableFamilyRelations(mode: chosenMode, age: age))
+        topicChoices = chosenMode.map { source.topicChoices(forAge: age, mode: $0) } ?? []
         if let character = familyCharacters.first(where: { $0.id == chosenFamilyID }),
            !familyRelations.contains(character.relation.kind) {
             chosenFamilyID = nil
@@ -229,26 +229,17 @@ struct StoryCreationFlow: View {
     private var showsBack: Bool {
         switch phase {
         case .companion: return true
-        case .mode: return childStepShown
         default: return false
         }
     }
 
-    /// Çocuk adımı bu akışta gösterildi mi — geri tuşunun oraya dönmesi için.
-    private var childStepShown: Bool {
-        StoryCreationSteps.showsChildStep(profileCount: profiles.count)
-    }
-
-    private var stepLabels: [String] {
-        StoryCreationSteps.stepLabels(childStep: childStepShown)
-    }
+    private var stepLabels: [String] { StoryCreationSteps.stepLabels }
 
     /// Nokta sırası etiket listesinden türetiliyor, elle sayılmıyor: iki yerde
     /// ayrı ayrı sayılsaydı bir adım eklendiğinde biri güncellenir öbürü
     /// unutulur ve "Adım 2 / 4" yanlış yazardı.
     private var stepIndex: Int? {
         switch phase {
-        case .child:     return stepLabels.firstIndex(of: "Çocuk")
         case .mode:      return stepLabels.firstIndex(of: "Masal")
         case .companion: return stepLabels.count - 1
         default:         return nil
@@ -260,8 +251,6 @@ struct StoryCreationFlow: View {
         case .companion:
             chosenCompanionID = nil
             resetToModes()
-        case .mode:
-            if childStepShown { phase = .child } else { dismiss() }
         default:
             dismiss()
         }
@@ -298,8 +287,9 @@ struct StoryCreationFlow: View {
                 emphasized: StoryCreationSteps.emphasizedMode(allowedModes,
                                                               isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
                 childName: profile?.name ?? "",
-                childColor: profile?.mpColor,
-                topics: { source.topicChoices(forAge: age, mode: $0) },
+                profiles: profiles,
+                authoredBands: authoredBands,
+                selectedProfileID: $chosenProfileID,
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
@@ -313,6 +303,8 @@ struct StoryCreationFlow: View {
                 // Free text is a parent's surface: in child mode the child
                 // picks from the characters the parent made, and cannot type.
                 onAddFamily: app.router.isParentMode ? { showsFamilyEditor = true } : nil,
+                topics: topicChoices,
+                selectedTopicID: $chosenTopicID,
                 onChangeMode: { goBack() }
             ) { companionID in
                 chosenCompanionID = companionID
@@ -382,11 +374,10 @@ struct StoryCreationFlow: View {
             to: id, among: profiles, authored: authoredBands)
     }
 
-    /// Mod — ve aynı ekranda seçildiyse konusu.
-    private func chooseMode(_ mode: StoryMode, topicID: String?) {
+    private func chooseMode(_ mode: StoryMode) {
         chosenMode = mode
         strategy = .direct
-        chosenTopicID = topicID
+        chosenTopicID = nil
         phase = .companion
     }
 
@@ -402,11 +393,14 @@ struct StoryCreationFlow: View {
                 recent: storyManager.recentModes(for: profile)
             )
             strategy = .surprise
-            // Sürpriz konuyu da sormaz: ebeveyn "sen seç" dedi, ve konuyu
-            // sormak o cümleyi yarıda kesmek olurdu. Konu boş kalınca motor
-            // bütün içerikten seçiyor — sürprizin zaten istediği şey.
+            // Sürpriz başka soru sormaz: ebeveyn "sen seç" dedi. Konu ve arkadaş
+            // boş kalınca motor bütün içerikten seçiyor, sürprizin istediği şey.
             chosenTopicID = nil
-                phase = .companion
+            chosenCompanionID = nil
+            // `chosenMode`'un onChange'i `begin` sonrasına kalır; aile adayı
+            // yeni moda göre şimdi süzülmeli.
+            refreshFamilyRelations()
+            begin()
         } catch {
             logger.error("Sürpriz mod seçilemedi: \(storyFailureDetail(error), privacy: .private)")
             failureReason = StoryFailureReason(error)

@@ -47,8 +47,6 @@ final class MPAppState: ObservableObject {
     /// Pencerede seçilen yol: pencere kapandıktan sonra açılır (bir sayfa
     /// açıkken tam ekran sunum açılamaz).
     var pendingBedtimeChoice: BedtimeChoice?
-    /// Günün masalı, kendi okuyucusunda.
-    @Published var dailyReading: DailyStory?
 
     /// Okuyucu kapandıktan sonra (iki tam ekran sunum üst üste açılamaz).
     func runAfterReader() {
@@ -92,7 +90,7 @@ final class MPAppState: ObservableObject {
         case .resume:
             if let story = resolved.resumeStory { read(story) }
         case .unread:
-            dailyReading = resolved.daily
+            if let daily = resolved.daily { readOriginal(daily) }
         case .readToday:
             if !fromSurface { startStoryCreation() }
         }
@@ -118,7 +116,7 @@ final class MPAppState: ObservableObject {
     /// bir tam ekran varsa ona dokunulmaz.
     func open(_ link: MPSurfaceLink, childID: UUID?) {
         router.enterChildMode()
-        guard readerStory == nil, sleepSession == nil, !showStoryCreation, dailyReading == nil else { return }
+        guard readerStory == nil, sleepSession == nil, !showStoryCreation else { return }
         router.sheet = nil
         showBedtimeSheet = false
         pendingBedtimeChoice = nil

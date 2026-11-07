@@ -219,13 +219,13 @@ struct HomeStatLine: View {
         // Büyük yazıda sığmazsa kesilmez, alt alta düşer.
         ViewThatFits(in: .horizontal) {
             HStack(spacing: MPSpacing.xs) {
-                starItem
-                Text("·").accessibilityHidden(true)
-                streakItem
+                if stars > 0 { starItem }
+                if stars > 0 && streak > 0 { Text("·").accessibilityHidden(true) }
+                if streak > 0 { streakItem }
             }
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                starItem
-                streakItem
+                if stars > 0 { starItem }
+                if streak > 0 { streakItem }
             }
         }
         .mpText(.footnote)
@@ -234,7 +234,9 @@ struct HomeStatLine: View {
         .contentShape(Rectangle())
         .animation(MP.M.gated(MP.M.easeOut), value: stars)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(stars) yıldız, \(streak) gün üst üste")
+        .accessibilityLabel([stars > 0 ? "\(stars) yıldız" : nil,
+                             streak > 0 ? "\(streak) gün üst üste" : nil]
+            .compactMap { $0 }.joined(separator: ", "))
     }
 
     private var starItem: some View {
@@ -354,8 +356,8 @@ struct HomeHeroCard: View {
     }
 
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
-    private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Harika gidiyorsun!"; case .bedtime: "Uyku masalı zamanı" } }
-    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "Yarın yeni bir masal hazır olacak. Bir tane daha yazalım mı?"; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
+    private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Yarın yeni bir masal var"; case .bedtime: "Uyku masalı zamanı" } }
+    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "İstersen bu akşam bir tane daha yazalım."; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
     private var buttonTitle: String { switch state { case .resume: "Okumaya devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yaz"; case .bedtime: "Uyku masalı yaz" } }
     private var buttonIcon: String { switch state { case .resume: "book"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
 }
@@ -531,6 +533,9 @@ struct HomeGunlukPreview: View {
 
     /// İlki günün klasiği.
     let items: [Item]
+    /// Dokunulan kapağın masalı.
+    let onOpen: (UUID) -> Void
+    /// "Tümü": Masallar sekmesi.
     let action: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -541,10 +546,10 @@ struct HomeGunlukPreview: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: MPSpacing.md) {
                     ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                        Button(action: action) { tile(item) }
+                        Button { onOpen(item.id) } label: { tile(item) }
                             .buttonStyle(MPPressStyle())
                             .accessibilityLabel(item.title)
-                            .accessibilityHint("Masallar sekmesini açar")
+                            .accessibilityHint("Masalın sayfasını açar")
                             .offset(y: arrived ? 0 : MP.S.x5)
                             .opacity(arrived ? 1 : 0)
                             .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)

@@ -3,9 +3,9 @@ import StoryEngine
 
 /// Yaratma akışının kararları, görünümün dışında ve test edilebilir.
 ///
-/// Akış (karar: 3 Ekim 2026): mod → "Masalda kimler olsun?". Fikir kartları
-/// bayrak arkasında; "Bana sürpriz yap" yalnızca seçecek bir şey varken; ana
-/// sayfada seçilen bir mod akışı doğrudan ikinci adımdan açar.
+/// Akış (karar: 3 Ekim ve 7 Kasım 2026): mod → "Masalda kimler olsun?" → masal.
+/// Çubuktan okumaya 3 dokunuş, sürprizle 2. "Bana sürpriz yap" yalnızca seçecek
+/// bir şey varken; ana sayfada seçilen bir mod akışı doğrudan ikinci adımdan açar.
 enum StoryCreationSteps {
 
     /// Akışın hangi adımdan açılacağı.
@@ -14,33 +14,19 @@ enum StoryCreationSteps {
         case companion(StoryMode)
     }
 
-    /// "Hangi çocuk?" adımı yalnızca seçilecek bir şey varken (16 Ekim 2026).
+    /// "İrem için ▾" satırı yalnızca seçilecek bir şey varken (7 Kasım 2026).
     ///
-    /// Tek çocuklu bir evde bu adım, cevabı belli bir soruyu sormaktır: tek
-    /// kart, tek seçenek, bir dokunuş fazladan. Kütüphanedeki arama kutusuyla
-    /// aynı kural — bir denetim, işe yarayabileceği kadar seçenek varken
-    /// görünür.
-    static func showsChildStep(profileCount: Int) -> Bool {
+    /// Ayrı bir adım değil: çoğu masal açık çocuk içindir ve soru yalnızca
+    /// değiştirmek isteyene dokunuş kazandırır. Tek çocuklu evde cevabı belli
+    /// bir soru olurdu.
+    static func showsChildPicker(profileCount: Int) -> Bool {
         profileCount >= 2
     }
 
-    /// Alt kategori ayrı bir adım DEĞİL (karar: 16 Ekim 2026).
-    ///
-    /// Önce ayrı bir ekran olarak yazılmıştı; ürün kararı aynı adımda, modun
-    /// kartının altında açılması yönünde. İkinci soru ancak birincisi
-    /// cevaplandıktan sonra anlam kazanıyor, ve ayrı ekran ebeveyne ikinci bir
-    /// "Devam et" bastırıyordu. Bu yüzden burada bir kural kalmadı: konular
-    /// `StoryModeStep` içinde, mod seçilince beliriyor.
-
-    /// Adım noktalarının erişilebilirlik etiketleri.
-    ///
-    /// Adım sayısı eve göre değişiyor: tek çocuklu evde "Çocuk" adımı yok.
-    /// Etiketler tek yerden üretiliyor
-    /// ki nokta sayısı ile ekran sayısı ayrışmasın — ayrıştığında kimse fark
-    /// etmez, yalnızca "Adım 2 / 3" yanlış yazar.
-    static func stepLabels(childStep: Bool = false) -> [String] {
-        (childStep ? ["Çocuk"] : []) + ["Masal", "Kimler"]
-    }
+    /// Adım noktalarının erişilebilirlik etiketleri. Tek yerden üretiliyor ki
+    /// nokta sayısı ile ekran sayısı ayrışmasın. Konu ayrı adım değil, "Kimler"in
+    /// içinde isteğe bağlı (7 Kasım 2026).
+    static let stepLabels = ["Masal", "Kimler"]
 
     /// "Bana sürpriz yap" en az iki kurulabilir mod varken görünür (K6). Tek
     /// mod kaldıysa sürprizin seçeceği bir şey yok.

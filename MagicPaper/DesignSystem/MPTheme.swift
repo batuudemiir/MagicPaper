@@ -386,8 +386,7 @@ enum MP {
         /// `background` ile aynı değil ve olmamalı: `background` gündüz modunda
         /// saf beyazdır (`kagit0`), beyaz ise kağıt değildir. Okuyucu bunu
         /// kullanır, `MPStoryPDF`'in bastığı kağıt rengiyle aynı tonu
-        /// (`kagit100`) tutar. Ayrı bir property olmasının sebebi
-        /// `DailyStoryReaderView`'ın `background`'ı okumaya devam etmesi.
+        /// (`kagit100`) tutar.
         var paper: Color { background }
 
         /// Cilt payı — sayfanın iç kenarındaki ince gölge.

@@ -129,3 +129,48 @@ struct CreationFooter<Content: View>: View {
             .background(MPColor.backgroundSurface)
     }
 }
+
+/// "İrem için ▾": masalın çocuğu, tek satır (7 Kasım 2026). Seçim akışa özeldir,
+/// aktif profili değiştirmez.
+struct CreationChildPicker: View {
+    let profiles: [UserProfile]
+    var authoredBands: [AgeBand] = []
+    @Binding var selectedID: UUID?
+
+    private var selected: UserProfile? { profiles.first { $0.id == selectedID } }
+
+    var body: some View {
+        Menu {
+            ForEach(profiles) { profile in
+                Button {
+                    MPHaptics.selection()
+                    selectedID = profile.id
+                } label: {
+                    Text(line(for: profile))
+                    if profile.id == selectedID { MPIcon("checkmark", size: MP.G.sm) }
+                }
+            }
+        } label: {
+            HStack(spacing: MPSpacing.xs) {
+                if let selected {
+                    MPAvatar(name: selected.name, color: selected.mpColor, size: MP.S.x6)
+                        .accessibilityHidden(true)
+                    Text("\(selected.name) için").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                }
+                MPIcon("chevron.down", size: MP.G.sm, weight: .bold)
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .accessibilityHidden(true)
+            }
+            .frame(minHeight: MP.S.tapMin)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel(selected.map { "Masal \($0.name) için" } ?? "Masal kimin için")
+        .accessibilityHint("Masalın çocuğunu değiştirir")
+    }
+
+    private func line(for profile: UserProfile) -> String {
+        StoryCreationSteps.supportsAge(profile.age, authored: authoredBands)
+            ? "\(profile.name), \(profile.age) yaş"
+            : "\(profile.name), \(profile.age) yaş · hazırlanıyor"
+    }
+}

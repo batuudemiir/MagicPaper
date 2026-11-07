@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Faz 3 Akış (hukuk gerektirmeyen kısım): 3 dokunuşta masal, Ana sayfa, tek okuyucu
+
+- Masal yazma: moda dokununca geçilir, "Devam et" yok. Çubuktan okumaya 3 dokunuş (Masal yaz, mod, Masalı yaz), sürprizle 2. "Bana sürpriz yap" başka soru sormadan yazar. Konu mod adımından "kimler" adımına taşındı. İki çocuklu evde ayrı adım yerine üstte tek satır "İrem için" (`CreationChildPicker`); çocuk değişince aile karakterleri de yeniden yükleniyor.
+- Hazırlık: ilk masal 15 → yaklaşık 7,5 sn, sonrakiler 6-7 sn; her masalda 2 sn sonra (4. masaldan sonra 1 sn) "Masalı aç". Kapak 1,6 sn görünür, masal kendiliğinden açılır, "Sonra oku" var. VoiceOver açıkken kendiliğinden açılmaz.
+- **Plandan sapma:** "kimler" adımında yol arkadaşı hazır seçili gelmiyor. Liste sıralı olduğu için her masalda aynı arkadaş seçilir ve çeşitlilik düşerdi; seçilmezse motor seçmeye devam ediyor.
+- Ana sayfa: sıra başlık, bu akşamın kartı, devam eden seri, üç mod, Masallar rafı. Sıfır yıldız ve "0 gün üst üste" yazılmaz. Raftaki kapak artık o masalı açıyor. "Harika gidiyorsun!" kalktı. Ayrı "Günün masalı" bölümü kalktı: kartta ve Masallar'da.
+- Tek okuyucu: `DailyStoryReaderView` silindi, günün masalı da ana okuyucuda. Ders kutusu (`moralLesson`) bu yolda gösterilmiyor; Masallar'dan açılınca da zaten gösterilmiyordu.
+- Kenar dokunuşu zaten vardı (plan yanlış yazıyordu), şerit %15 → %25 genişledi.
+- Kitaplık: dar satırda başlık üç satıra kadar iner (17 pt ile kesiliyordu).
+- UI testleri: 3 dokunuş, sürpriz ve kenar dokunuşu eklendi. Testler artık "Masalları onayla" ayarını açılış argümanıyla kapatıyor (cihazdaki ayara bağlıydı). Oda denetimi kayma bitince ölçüyor. "Yarım" rozeti bilerek sınırlı olduğu için denetim istisnası.
+- Bilerek yapılmadı: "önce masal, sonra hesap" (hukuk onayı bekliyor), Masallar başlığının koyu vitrinde okunmaması, paywall gradient'i, okuyucu oturumunun `MPRouter`/`MPAppState` bölünmesi.
+- Test: MagicPaperTests 801 test, 1 atlandı, 0 hata. MagicPaperUITests 17 test: son tam koşuda 16 geçti, tek hata test varsayımıydı; düzeltilen o test tek başına geçti, 17'si birlikte yeniden çalıştırılmadı. Batuhan'ın isteğiyle ara adımlarda test ve simülatör yok. Yeni Ana sayfa, çocuk seçici ve hazırlık ekranı gözle görülmedi; davranışları yalnızca UI testleriyle doğrulandı, çocuk seçicinin testi yok. Gönderilmedi.
+- Dosyalar: `StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryModeStep.swift`, `CompanionStep.swift`, `StoryCreationChrome.swift`, `StoryPreparationView.swift`, `StoryPreparationScript.swift`, `HomeView.swift`, `MPHomeChrome.swift`, `MPStory.swift`, `MPAppState.swift`, `ContentView.swift`, `MagicPaperPageTurnConfiguration.swift`, `LibraryComponents.swift`, `MPStoryExtras.swift`, `MPTheme.swift`, silinen `DailyStoriesView.swift`, `project.pbxproj`, ilgili testler ve iki hero referansı.
+
 ### 2026-11-07 · main (commit aşağıda) · Faz 2 Mimari: MPRouter, tek yazı rolü, tek avatar, ölü bileşenler
 
 - `MPRouter` ayrıldı (`Screens/MPRouter.swift`): sekme, yığınlar, sheet, ebeveyn odası ve kapı; route enum'ları da orada. `MPAppState` 500 → yaklaşık 240 satır, `app.router` olarak taşıyor ve değişiklikleri iletiyor. 211 çağrı `app.router.x` oldu. Davranış değişmedi; okuyucu oturumu ve akşam akışı henüz `MPAppState`'te.

@@ -17,7 +17,7 @@ final class AccessibilityAuditTests: XCTestCase {
 
     private func launch(_ arguments: [String]) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-mpDemo", "YES", "-mpDemoLibrary", "YES"] + arguments
+        app.launchArguments = ["-mpDemo", "YES", "-mpDemoLibrary", "YES", "-mp_approveBeforeShow", "NO"] + arguments
         app.launch()
         return app
     }
@@ -43,8 +43,9 @@ final class AccessibilityAuditTests: XCTestCase {
         case .dynamicType, .textClipped:
             // `HomeStatLine`, sığmazsa alt alta düşen `ViewThatFits`; denetim bunu sezemiyor.
             // Arama kutusu sistemin `TextField`'ı.
+            // "Yarım" kapak rozeti bilerek `xxLarge` ile sınırlı: kapağın üstüne oturur.
             let label = element?.label ?? ""
-            return label.hasSuffix("yıldız") || label.hasSuffix("üst üste") || label == "·"
+            return label.hasSuffix("yıldız") || label.hasSuffix("üst üste") || label == "·" || label == "Yarım"
                 || element?.elementType == .textField
         default:
             return false
@@ -61,6 +62,8 @@ final class AccessibilityAuditTests: XCTestCase {
     private func auditParentTab(_ tab: String, file: StaticString = #filePath, line: UInt = #line) throws {
         let app = launch(["-mpStartParent", "YES", "-mpParentTab", tab])
         XCTAssertTrue(app.buttons["Çocuk modu"].waitForExistence(timeout: 15), file: file, line: line)
+        // Oda kayarak açılır; hareket halindeki yazı "kesik" ölçülüyor.
+        Thread.sleep(forTimeInterval: 1)
         try audit(app)
     }
 

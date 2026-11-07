@@ -2,10 +2,9 @@ import SwiftUI
 
 /// 11 · Ana sayfa (`AnaSayfa`).
 ///
-/// Sıra: çocuğun başlığı ve tek satır yıldız/seri, "Bu akşamın masalı" kartı
-/// (4 durum), mod şeridi, Masallar, devam eden seri, günün masalı. Haftalık
-/// okuma kartı 7 Kasım 2026'da kalktı: aynı bilgi başlık satırında. Dünya şeridinin yerinde modlar duruyor: dünyalar içerik
-/// geldikçe eklenecek (karar 7 Ekim 2026).
+/// Tek soru: "Bu akşam ne okuyoruz?" (karar 7 Kasım 2026). Sıra: çocuğun başlığı,
+/// bu akşamın kartı (4 durum), varsa devam eden seri, yeni masal için üç mod,
+/// Masallar rafı. Günün masalı ayrı bölüm değil: bu akşamın kartında ve Masallar'da.
 ///
 /// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
 /// sahnenin kenarında yıldız ve seri çipleri, sert alt kenarlı kartlar
@@ -22,8 +21,6 @@ struct HomeView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @StateObject private var streak = MPStreak.shared
-    @StateObject private var dailyManager = DailyStoryManager.shared
-    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -54,35 +51,39 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 0) {
                 MPKidTabHeader(title: activeName, eyebrow: greeting)
                 // Satır Profil'e götürür: yıldız ve serinin ayrıntısı orada.
-                Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                    HomeStatLine(stars: stars, streak: streak.currentStreak)
+                // Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
+                if stars > 0 || streak.currentStreak > 0 {
+                    Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
+                        HomeStatLine(stars: stars, streak: streak.currentStreak)
+                    }
+                    .buttonStyle(MPPressStyle())
+                    .accessibilityHint("Profili açar")
                 }
-                .buttonStyle(MPPressStyle())
-                .accessibilityHint("Profili açar")
             }
             .padding(.top, MPSpacing.lg)
 
             HomeHeroCard(state: tonightState, isNight: isNight, onPrimary: tonightAction)
                 .homeEntrance(0)
 
-            if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
-
-            if !gunlukItems.isEmpty {
-                HomeGunlukPreview(items: gunlukItems) {
-                    MPHaptics.tap()
-                    app.router.tab = .gunluk
-                }
-                .homeEntrance(2)
-            }
-
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                    .homeEntrance(3)
+                    .homeEntrance(1)
             }
 
-            // Bu akşamın kartı zaten günün masalını gösteriyorsa ikinci kez gösterilmez.
-            if let daily = todaysDaily, !heroShowsDaily { dailySection(daily).homeEntrance(4) }
+            if !shownModes.isEmpty { modeStrip.homeEntrance(2) }
+
+            if !gunlukItems.isEmpty {
+                HomeGunlukPreview(items: gunlukItems, onOpen: { id in
+                    MPHaptics.tap()
+                    app.router.tab = .gunluk
+                    app.router.masallarPath = [.tale(id)]
+                }, action: {
+                    MPHaptics.tap()
+                    app.router.tab = .gunluk
+                })
+                .homeEntrance(3)
+            }
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, GunlukLayout.bottomClearance)
@@ -116,10 +117,6 @@ struct HomeView: View {
 
     // MARK: - Bu akşamın masalı
 
-    private var todaysDaily: DailyStory? {
-        dailyManager.todaysStory ?? dailyManager.dailyStories.first
-    }
-
     /// Kural `MPTonight`'ta (SCREENS.md 11): widget ve Siri de aynı masalı
     /// seçer. Görünüm yalnızca metne çevirir.
     private var tonight: MPTonightSource.Resolved { MPTonightSource.current(settings: settings) }
@@ -136,12 +133,6 @@ struct HomeView: View {
         case .readToday:
             return .readToday
         }
-    }
-
-    /// "Okunmadı" durumunda hero kartı günün masalını gösterir.
-    private var heroShowsDaily: Bool {
-        if case .unread = tonightState { return true }
-        return false
     }
 
     private func tonightAction() {
@@ -217,44 +208,6 @@ struct HomeView: View {
 
     /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); lavanta yalnızca bu akşamın kartında.
     private var pageBackground: Color { MPColor.backgroundSurface }
-
-    // MARK: - Günün masalı
-
-    private func dailySection(_ daily: DailyStory) -> some View {
-        Button { MPHaptics.tap(); app.dailyReading = daily } label: {
-            HomeSection(title: "Günün masalı") {
-                // En büyük yazı boyutlarında görsel metnin üstüne iner;
-                // başlık kelime ortasından bölünmez.
-                let layout = typeSize.isAccessibilitySize
-                    ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
-                    : AnyLayout(HStackLayout(spacing: MPSpacing.lg))
-                layout {
-                    MPIcon(daily.category.mpSymbol, size: MP.G.xl, weight: .semibold)
-                        .foregroundStyle(MPWorldTone.green.deep)
-                        .frame(width: 64, height: 64)
-                        .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                        Text("Herkes için").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                        Text(daily.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Text("\(daily.readingTime) dakika").mpText(.footnote)
-                            .foregroundStyle(MPColor.textSecondary)
-                    }
-                    if !typeSize.isAccessibilitySize { Spacer(minLength: 0) }
-                    MPIcon("play.fill", size: MP.G.md, weight: .bold)
-                        .foregroundStyle(MPColor.actionPrimary)
-                        .frame(width: 44, height: 44)
-                        .background(MPColor.backgroundSurface, in: Circle())
-                        .overlay(Circle().strokeBorder(MPColor.actionPrimary, lineWidth: 2))
-                        .accessibilityHidden(true)
-                }
-            }
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityHint("Masalı okur")
-    }
 }
 
 #Preview("11 · Ana sayfa") {
