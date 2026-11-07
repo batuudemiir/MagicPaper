@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main@c398a60 · Gönderim: UX araştırması, sayfa mimarisi ve Profil sekmesi origin'de
+
+- Batuhan'ın isteğiyle 15 commit origin'e gönderildi (4e6e9c8..c398a60), hızlı ileri. Başka bir oturumun token pilotu kaydı (`b92fdce`) ile `fb1bf12` de bu aralıkta.
+- `git fetch` yerel bozuk bir dal yüzünden başarısız (`refs/heads/main 2`, iCloud kopyası); uzak durum `ls-remote` ile doğrulandı. Bozuk dala dokunulmadı.
+- Test (c398a60 üstünde): 795 test, 0 başarısız, 1 atlandı; xcodebuild testlerden sonra kapanmadı, `TEST SUCCEEDED` satırı yok. Xcode Cloud sonucu görülmedi; `.prominent` Xcode 27 SDK'sı ister.
+- Bu kayıt commit'lendi, gönderilmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · Profil çubukta: profil değiştirme tek dokunuş
 
 - Batuhan'ın isteği: profil değiştirme daha pratik olsun. Sekme geri geldi, adı "Profil" (`KidCornerView`, kodda `.corner`); `f09c55a`'daki avatar düzeni geri alındı (`KidAvatarButton`, `MPKidRoute.corner` silindi).
