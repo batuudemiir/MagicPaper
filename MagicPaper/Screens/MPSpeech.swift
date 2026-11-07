@@ -1,5 +1,8 @@
 import AVFoundation
 import SwiftUI
+import OSLog
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "MPSpeech")
 
 /// Sesli okuma motoru.
 /// Tasarım "Sesli okuma"yı hem ayar hem okuyucu kontrolü olarak tanımlıyordu
@@ -54,7 +57,7 @@ final class MPSpeech: NSObject, ObservableObject {
                                                             options: [.duckOthers])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
-            print("⚠️ Ses oturumu açılamadı: \(error.localizedDescription)")
+            logger.error("Ses oturumu açılamadı: \(error.localizedDescription, privacy: .private)")
         }
     }
 

@@ -133,6 +133,23 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Faz 0 Korkuluk: görüntü testi, erişilebilirlik denetimi, ölü kod
+
+- Plan repoya girdi: `docs/STARTUP_PLANI.md` (Faz 0-6).
+- Görüntü testleri: swift-snapshot-testing 1.19.7 (MIT), `DesignSystemSnapshotTests`, 7 test ve 17 referans (1x, 1,7 MB): düğme, sekme başlığı, bölüm başlığı, hero kart, seçim satırı, boş durum, beş kâğıtta masal sayfası. Tam ekranlar yok (saate ve tekil servislere bağlılar). Hero referanslarında Ragi görünmüyor (giriş animasyonu başlamadan çekiliyor).
+- Erişilebilirlik denetimi: yeni `MagicPaperUITests` hedefi, 8 ekranda Apple denetimi + 1 oda testi. Kontrast denetimden çıkarıldı: piksel ölçümü resim ve cam üstünde kararsız (düz zemindeki başlık bir koşuda kaldı, diğerlerinde geçti). Otomatik kontrast testi yok.
+- Denetimin bulduğu iki gerçek hata düzeltildi: `MPSegmented`'de seçili olmayan seçenek ve `HomeStatLine`'da yalnızca yazıya dokunulabiliyordu (`contentShape`).
+- **Açık hata:** ebeveyn odası açıkken çocuk öğeleri erişilebilirlik ağacında duruyor. `accessibilityHidden` (kökte ve sekme içinde), `isModal` ve `opacity` denendi, ağaçtan düşürmedi, geri alındı. Gerçek VoiceOver'da ne okunduğu cihazda denenmedi. `testParentRoomHidesKidScreen` bunu `XCTExpectFailure` ile tutuyor.
+- Elle token ölçümü: `textSecondary` 4,62-5,59:1 geçiyor; `textTertiary` 2,09-2,53:1 eşiğin altında, Faz 1'e kaldı.
+- Ölü kod silindi: `Localization`, `LocalizationManager`, `PermissionManager`, `LocalNotificationManager`, `MPTabBar`, `MPNavBar`, `LegacyMPControls`'ta `MPBadge` dışındaki her şey. `isEnglish` dalları Türkçeye indi.
+- Günlük: `print`ler `logger.error`'a geçti (`privacy: .private`), RevenueCat anahtar öneki artık yazılmıyor. `MagicPaperCoverGenerator` içindeki `print` ve PageTurn önizlemesi kaldı.
+- `MPMetrics`: MetricKit, yalnızca çökme ve takılma sayısını günlüğe yazar; sunucuya bir şey gitmez.
+- `createTabRole`: `.prominent` derleyici koşuluna alındı, eski Xcode da derler. Xcode Cloud sürümü kontrol edilmedi.
+- CI: `ios-build.yml` artık testleri çalıştırıyor; görüntü ve UI testleri CI'da atlanıyor (iPhone 17 Pro, iOS 27'de ölçüldü). Bu iş akışı henüz CI'da hiç çalışmadı.
+- Bilerek değişmedi: görsel tasarım, yazı ölçeği, gezinme. `xcodebuild test` testten sonra kapanmıyor (çıkış 142), nedeni bulunmadı; sonuç `Executed` satırından okunuyor.
+- Test: MagicPaperTests 802 test, 1 atlandı, 0 hata. MagicPaperUITests 9 test, 0 hata (iki ardışık koşu). iPhone 17 Pro iOS 27 simülatöründe. SE, Pro Max, koyu mod ve VoiceOver denenmedi. Kontrast yorum düzeltmesinden sonra yeniden çalıştırılmadı (yalnızca yorum). Gönderilmedi.
+- Dosyalar: `docs/STARTUP_PLANI.md`, `MagicPaperTests/DesignSystemSnapshotTests.swift`, `MagicPaperTests/__Snapshots__/`, `MagicPaperUITests/`, `MagicPaper/Screens/MPMetrics.swift`, `MagicPaper/ContentView.swift`, `MagicPaperApp.swift`, `MPControls.swift`, `MPHomeChrome.swift`, `MPNavigation.swift`, `LegacyMPControls.swift`, `Story.swift`, `ProfileManager.swift`, `MPSpeech.swift`, `MPStoryPDF.swift`, `FirstRunView.swift`, `StoryCreationFlow.swift`, `project.pbxproj`, `Package.resolved`, `TestPlan.xctestplan`, `ios-build.yml`.
+
 ### 2026-11-07 · main (commit aşağıda) · Depo: bozuk `main 2` dalı silindi
 
 - Batuhan'ın onayıyla `.git/refs/heads/main 2` (iCloud kopyası, `git fetch`i bozuyordu) silindi. `fb1bf12`'yi gösteriyordu, o commit `main`'de; commit kaybı yok.

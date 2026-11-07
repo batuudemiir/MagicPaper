@@ -1,5 +1,8 @@
 import UIKit
 import SwiftUI
+import OSLog
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "MPStoryPDF")
 
 /// `.sheet(item:)` `Identifiable` istediği için üretilen PDF bu tiple taşınır.
 struct MPExportFile: Identifiable {
@@ -71,7 +74,7 @@ enum MPStoryPDF {
             }
             return url
         } catch {
-            print("❌ PDF yazılamadı: \(error.localizedDescription)")
+            logger.error("PDF yazılamadı: \(error.localizedDescription, privacy: .private)")
             return nil
         }
     }

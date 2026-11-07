@@ -236,8 +236,10 @@ struct HomeStatLine: View {
         .mpText(.footnote)
         .foregroundStyle(MPColor.textSecondary)
         .frame(minHeight: MPSize.minTouchParent)
+        .contentShape(Rectangle())
         .animation(MP.M.gated(MP.M.easeOut), value: stars)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(stars) yıldız, \(streak) gün üst üste")
     }
 
     private var starItem: some View {

@@ -1,5 +1,8 @@
 import SwiftUI
 import StoryEngine
+import OSLog
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FirstRun")
 
 /// İlk profil oluşunca bir kez: 09 · Bildirim izni, sonra 10 · İlk masal.
 ///
@@ -98,7 +101,7 @@ struct FirstRunView: View {
                 story = built
             } catch {
                 // §29: the detail goes to the log, never to the parent.
-                print("❌ İlk masal kurulamadı: \(storyFailureDetail(error))")
+                logger.error("İlk masal kurulamadı: \(storyFailureDetail(error), privacy: .private)")
                 failureReason = StoryFailureReason(error)
                 failed = true
             }

@@ -253,7 +253,10 @@ struct ContentView: View {
     /// iOS 27'de öne çıkan sekme rolü; öncesinde tek yol arama rolünün dairesi.
     @available(iOS 26.0, *)
     private var createTabRole: TabRole {
+        // `.prominent` iOS 27 SDK'sında (Swift 6.4); eski Xcode da derleyebilsin.
+        #if compiler(>=6.4)
         if #available(iOS 27.0, *) { return .prominent }
+        #endif
         return .search
     }
 

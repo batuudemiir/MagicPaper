@@ -69,6 +69,7 @@ struct MPSegmented<Value: Hashable>: View {
                         .frame(maxWidth: .infinity, minHeight: MPSize.segmentHeight)
                         .background(on ? selectedFill : .clear,
                                     in: RoundedRectangle(cornerRadius: MPSize.segmentHeight / 2, style: .continuous))
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(on ? .isSelected : [])

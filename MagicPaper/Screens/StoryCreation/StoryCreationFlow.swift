@@ -1,5 +1,8 @@
 import SwiftUI
 import StoryEngine
+import OSLog
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "StoryCreation")
 
 /// The story creation experience: an intent, then a story.
 ///
@@ -405,7 +408,7 @@ struct StoryCreationFlow: View {
             chosenTopicID = nil
                 phase = .companion
         } catch {
-            print("❌ Sürpriz mod seçilemedi: \(storyFailureDetail(error))")
+            logger.error("Sürpriz mod seçilemedi: \(storyFailureDetail(error), privacy: .private)")
             failureReason = StoryFailureReason(error)
             phase = .failed
         }
@@ -448,7 +451,7 @@ struct StoryCreationFlow: View {
                 preparedStory = story
             } catch {
                 // §29: the detail goes to the log, never to the parent.
-                print("❌ Hikâye üretilemedi: \(storyFailureDetail(error))")
+                logger.error("Masal yazılamadı: \(storyFailureDetail(error), privacy: .private)")
                 failureReason = StoryFailureReason(error)
                 phase = .failed
             }

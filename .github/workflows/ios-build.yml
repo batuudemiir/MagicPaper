@@ -35,12 +35,17 @@ jobs:
       run: |
         xcodebuild -resolvePackageDependencies -project MagicPaper.xcodeproj -scheme MagicPaper
         
-    - name: Build for Testing
+    - name: Run Tests
       run: |
-        xcodebuild clean build-for-testing \
+        # Kurulu ilk iPhone simülatörü: ad Xcode sürümüyle değişiyor.
+        DEVICE=$(xcrun simctl list devices available -j | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; print(next(x['udid'] for r in d if 'iOS' in r for x in d[r] if x['name'].startswith('iPhone')))")
+        # Görüntü testleri yalnız referansların üretildiği cihazda anlamlı (iPhone 17 Pro, iOS 27).
+        xcodebuild test \
           -project MagicPaper.xcodeproj \
           -scheme MagicPaper \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          -destination "id=$DEVICE" \
+          -skip-testing:MagicPaperTests/DesignSystemSnapshotTests \
+          -skip-testing:MagicPaperUITests \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO
           

@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D025C833055D26300BABB08 /* adventure_01.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D025C7C3055D26300BABB08 /* adventure_01.json */; };
 		2D17EC672F32095E00DE28F8 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17EC662F32095E00DE28F8 /* ParentalGateView.swift */; };
-		2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */; };
 		2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C52272F2CA9A30087A82F /* OnboardingView.swift */; };
-		2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C52292F2CABA60087A82F /* PermissionManager.swift */; };
+		5A00000000000000000001 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 5A00000000000000000002 /* SnapshotTesting */; };
 		2DB76A672F4911DA00DE621B /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2DB76A662F4911DA00DE621B /* RevenueCat */; };
 		2DB76A6B2F49130100DE621B /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2DB76A6A2F49130100DE621B /* RevenueCatUI */; };
 		2DDE500000000000000000B1 /* RevenueCatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDE500000000000000000B2 /* RevenueCatManager.swift */; };
@@ -32,7 +31,6 @@
 		A10000010000000000000041 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A10000010000000000000043 /* FirebaseStorage */; };
 		A10000010000000000000048 /* StoryGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000049 /* StoryGenerationManager.swift */; };
 		A1000001000000000000004A /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004B /* FileManagerService.swift */; };
-		A1000001000000000000004E /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000004F /* LocalNotificationManager.swift */; };
 		A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010000000000000055 /* FalAIImageGenerator.swift */; };
 		A10000010000000000000059 /* DailyStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005A /* DailyStory.swift */; };
 		A1000001000000000000005B /* DailyStoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001000000000000005C /* DailyStoryManager.swift */; };
@@ -59,6 +57,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		7E00000000000000000008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000001000000000000002D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10000010000000000000029;
+			remoteInfo = MagicPaper;
+		};
+		7F00000000000000000008 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1000001000000000000002D /* Project object */;
 			proxyType = 1;
@@ -92,12 +97,11 @@
 		2D025C7C3055D26300BABB08 /* adventure_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = adventure_01.json; sourceTree = "<group>"; };
 		2D17EC662F32095E00DE28F8 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		2D2DE9B72F49CCE80012EF4A /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = Products.storekit; path = MagicPaper/Products.storekit; sourceTree = "<group>"; };
-		2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		2D6C52272F2CA9A30087A82F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		2D6C52292F2CABA60087A82F /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		2D6C522D2F2CB4080087A82F /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		2DDE500000000000000000B2 /* RevenueCatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatManager.swift; sourceTree = "<group>"; };
 		7E00000000000000000001 /* MagicPaperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicPaperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F00000000000000000001 /* MagicPaperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicPaperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000010000000000000002 /* MagicPaperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicPaperApp.swift; sourceTree = "<group>"; };
 		A10000010000000000000004 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A10000010000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,7 +116,6 @@
 		A1000001000000000000003B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A10000010000000000000049 /* StoryGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGenerationManager.swift; sourceTree = "<group>"; };
 		A1000001000000000000004B /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
-		A1000001000000000000004F /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		A10000010000000000000055 /* FalAIImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalAIImageGenerator.swift; sourceTree = "<group>"; };
 		A1000001000000000000005A /* DailyStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStory.swift; sourceTree = "<group>"; };
 		A1000001000000000000005C /* DailyStoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStoryManager.swift; sourceTree = "<group>"; };
@@ -157,12 +160,21 @@
 		2DE729782F2E3D0100CD275E /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
 		5E00000000000000000008 /* StoryEngineBridge */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = StoryEngineBridge; sourceTree = "<group>"; };
 		7E00000000000000000002 /* MagicPaperTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MagicPaperTests; sourceTree = "<group>"; };
+		7F00000000000000000002 /* MagicPaperUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MagicPaperUITests; sourceTree = "<group>"; };
 		F19000000000000000000030 /* Surfaces */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Surfaces; sourceTree = "<group>"; };
 		F19000000000000000000031 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7E00000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A00000000000000000001 /* SnapshotTesting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F00000000000000000005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -265,6 +277,7 @@
 				F19000000000000000000010 /* MagicPaperWidgets.appex */,
 				A1000001000000000000001F /* MagicPaper.app */,
 				7E00000000000000000001 /* MagicPaperTests.xctest */,
+				7F00000000000000000001 /* MagicPaperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,12 +312,9 @@
 				A10000010000000000000049 /* StoryGenerationManager.swift */,
 				A1000001000000000000006E /* SubscriptionManager.swift */,
 				A10000010000000000000078 /* ProfileManager.swift */,
-				2D6C52292F2CABA60087A82F /* PermissionManager.swift */,
 				A10000010000000000000055 /* FalAIImageGenerator.swift */,
-				2D5D156B2F2DFDD10036DF3E /* LocalizationManager.swift */,
 				A10000010000000000000039 /* FirebaseImageUploader.swift */,
 				A1000001000000000000004B /* FileManagerService.swift */,
-				A1000001000000000000004F /* LocalNotificationManager.swift */,
 				A1000001000000000000005C /* DailyStoryManager.swift */,
 				2DDE500000000000000000B2 /* RevenueCatManager.swift */,
 				D4A0000000000000000001 /* Persistence */,
@@ -320,6 +330,7 @@
 				A10000010000000000000022 /* MagicPaper */,
 				F19000000000000000000032 /* MagicPaperWidgets */,
 				7E00000000000000000002 /* MagicPaperTests */,
+				7F00000000000000000002 /* MagicPaperUITests */,
 				2DB76A652F4911DA00DE621B /* Frameworks */,
 				A10000010000000000000024 /* Products */,
 			);
@@ -378,10 +389,34 @@
 			);
 			name = MagicPaperTests;
 			packageProductDependencies = (
+				5A00000000000000000002 /* SnapshotTesting */,
 			);
 			productName = MagicPaperTests;
 			productReference = 7E00000000000000000001 /* MagicPaperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7F00000000000000000003 /* MagicPaperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F0000000000000000000B /* Build configuration list for PBXNativeTarget "MagicPaperUITests" */;
+			buildPhases = (
+				7F00000000000000000004 /* Sources */,
+				7F00000000000000000005 /* Frameworks */,
+				7F00000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F00000000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F00000000000000000002 /* MagicPaperUITests */,
+			);
+			name = MagicPaperUITests;
+			packageProductDependencies = (
+			);
+			productName = MagicPaperUITests;
+			productReference = 7F00000000000000000001 /* MagicPaperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		A10000010000000000000029 /* MagicPaper */ = {
 			isa = PBXNativeTarget;
@@ -458,6 +493,10 @@
 						CreatedOnToolsVersion = 27.0;
 						TestTargetID = A10000010000000000000029;
 					};
+					7F00000000000000000003 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = A10000010000000000000029;
+					};
 					A10000010000000000000029 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -480,6 +519,7 @@
 				A10000010000000000000044 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 				F16000000000000000000020 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				5A00000000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = A10000010000000000000024 /* Products */;
 			projectDirPath = "";
@@ -487,6 +527,7 @@
 			targets = (
 				A10000010000000000000029 /* MagicPaper */,
 				7E00000000000000000003 /* MagicPaperTests */,
+				7F00000000000000000003 /* MagicPaperUITests */,
 				F19000000000000000000020 /* MagicPaperWidgets */,
 			);
 		};
@@ -494,6 +535,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		7E00000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F00000000000000000006 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -530,6 +578,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F00000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1000001000000000000002B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,7 +605,6 @@
 				E5A000000000000000001A /* StubEntitlementService.swift in Sources */,
 				A1000001000000000000006D /* SubscriptionManager.swift in Sources */,
 				A1000001000000000000004A /* FileManagerService.swift in Sources */,
-				A1000001000000000000004E /* LocalNotificationManager.swift in Sources */,
 				A10000010000000000000056 /* FalAIImageGenerator.swift in Sources */,
 				2D6C52282F2CA9A40087A82F /* OnboardingView.swift in Sources */,
 				A10000010000000000000038 /* FirebaseImageUploader.swift in Sources */,
@@ -559,8 +613,6 @@
 				A10000010000000000000059 /* DailyStory.swift in Sources */,
 				A1000001000000000000005B /* DailyStoryManager.swift in Sources */,
 				A1000001000000000000005D /* DailyStoriesView.swift in Sources */,
-				2D6C522A2F2CABA60087A82F /* PermissionManager.swift in Sources */,
-				2D5D156C2F2DFDD10036DF3E /* LocalizationManager.swift in Sources */,
 				2DDE500000000000000000B1 /* RevenueCatManager.swift in Sources */,
 				A10000010000000000000077 /* ProfileManager.swift in Sources */,
 				A10000010000000000000079 /* ProfileSelectorView.swift in Sources */,
@@ -582,6 +634,11 @@
 			isa = PBXTargetDependency;
 			target = A10000010000000000000029 /* MagicPaper */;
 			targetProxy = 7E00000000000000000008 /* PBXContainerItemProxy */;
+		};
+		7F00000000000000000007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10000010000000000000029 /* MagicPaper */;
+			targetProxy = 7F00000000000000000008 /* PBXContainerItemProxy */;
 		};
 		F19000000000000000000004 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -611,6 +668,25 @@
 			};
 			name = Debug;
 		};
+		7F00000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MagicPaper;
+			};
+			name = Debug;
+		};
 		7E0000000000000000000A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -628,6 +704,25 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagicPaper.app/MagicPaper";
+			};
+			name = Release;
+		};
+		7F0000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T4L7QU56YY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batu.magicpaper.v1.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MagicPaper;
 			};
 			name = Release;
 		};
@@ -897,6 +992,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		7F0000000000000000000B /* Build configuration list for PBXNativeTarget "MagicPaperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F00000000000000000009 /* Debug */,
+				7F0000000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A1000001000000000000002A /* Build configuration list for PBXNativeTarget "MagicPaper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -934,6 +1038,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5A00000000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.0;
+			};
+		};
 		2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
@@ -961,6 +1073,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A00000000000000000002 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A00000000000000000003 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		2DB76A662F4911DA00DE621B /* RevenueCat */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2DB76A642F49111400DE621B /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;

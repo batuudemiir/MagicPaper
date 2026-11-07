@@ -9,10 +9,9 @@ enum ProfileType: String, Codable {
     case parent = "parent"
     
     var displayName: String {
-        let isEnglish = LocalizationManager.shared.currentLanguage == .english
         switch self {
-        case .child: return isEnglish ? "Child" : "Çocuk"
-        case .parent: return isEnglish ? "Parent" : "Ebeveyn"
+        case .child: return "Çocuk"
+        case .parent: return "Ebeveyn"
         }
     }
     

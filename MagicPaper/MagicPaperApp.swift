@@ -12,14 +12,11 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    print("🚀 AppDelegate: didFinishLaunching başladı")
-    
     FirebaseApp.configure()
     // Ebeveyn hesabı ve senkron (FAZ 16): Firestore ayarı ilk kullanımdan
     // önce yapılmak zorunda; ardından önceki oturum varsa geri alınır.
     FirebaseBackend.configure()
     AccountService.shared.bootstrap()
-    print("✅ Firebase yapılandırıldı")
 
     // Günün masalı ve içerik paketleri arka planda da yenilenir (FAZ 15).
     // Kayıt, açılış bitmeden yapılmak zorunda.
@@ -34,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     #if canImport(RevenueCat)
     configureRevenueCat()
     #else
-    print("⚠️ RevenueCat modülü bulunamadı - Xcode'da package'ı target'a ekleyin")
+    logger.error("RevenueCat modülü bulunamadı")
     #endif
     
     // AdMob KALDIRILDI - Kids Category uyumluluğu için
@@ -50,7 +47,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // ne işe yarayacağı ekranda yazarken. iOS bir kez reddedilen izni bir daha
     // sormaz — o yüzden hangi anda sorulduğu geri alınamaz bir karar.
     
-    print("✅ AppDelegate: didFinishLaunching tamamlandı")
+    MPMetrics.shared.start()
     return true
   }
   
@@ -62,42 +59,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
       #if DEBUG
       Purchases.logLevel = .debug
-      print("🔑 RevenueCat: Debug mode enabled")
       #else
       Purchases.logLevel = .info
       #endif
       
       // API key validation
       if apiKey.hasPrefix("sk_") {
-        print("❌ HATA: Secret key (sk_) kullanılamaz! Public key (test_ veya appl_) kullanın.")
-        print("❌ RevenueCat yapılandırılamadı - API key hatası")
+        logger.error("RevenueCat yapılandırılamadı: secret key kullanılamaz, public key gerekir")
         return
       }
       
       // Test key validation - sadece DEBUG'da kullanılabilir
       #if !DEBUG
       if apiKey.hasPrefix("test_") {
-        print("❌ HATA: Test key (test_) Release build'de kullanılamaz!")
-        print("❌ Production key (appl_) kullanın veya Debug build yapın.")
-        print("❌ RevenueCat yapılandırılamadı - Test key hatası")
+        logger.error("RevenueCat yapılandırılamadı: test key Release derlemesinde kullanılamaz")
         return
       }
       #endif
       
       Purchases.configure(withAPIKey: apiKey)
-      // Only the scheme prefix, never key material: `prefix(10)` revealed five
-      // characters of the secret itself, and `print` survives into Release.
-      print("✅ RevenueCat yapılandırıldı: \(apiKey.prefix(5))… (\(apiKey.count) karakter)")
-      
     } else {
-      print("⚠️ RevenueCat API key bulunamadı - Info.plist ve Secrets.xcconfig kontrol edin")
-      // Neither the expected key nor the found one is printed. The expected one
-      // was a real test key literal sitting in source; the found one printed
-      // whatever Info.plist held, in full. Both stay diagnosable from the shape
-      // alone — which prefix arrived, and how long it was.
-      let found = Bundle.main.object(forInfoDictionaryKey: "REVENUECAT_API_KEY") as? String
-      print("⚠️ Beklenen önek: test_ (Debug) veya appl_ (Release)")
-      print("⚠️ Bulunan: \(found.map { "\($0.prefix(5))… (\($0.count) karakter)" } ?? "yok")")
+      // Anahtarın kendisi ya da öneki yazılmaz; eksik olduğu yeter.
+      logger.error("RevenueCat API key bulunamadı: Info.plist ve Secrets.xcconfig kontrol edilmeli")
     }
   }
   #endif
@@ -110,19 +93,12 @@ struct MagicPaperApp: App {
   @ObservedObject private var profileManager = ProfileManager.shared
   @State private var showSplash = true
 
-  init() {
-    print("🎬 MagicPaperApp: init() başladı")
-  }
-
   var body: some Scene {
     WindowGroup {
       ZStack {
         if showSplash {
           // Splash screen
           SplashScreenView(isActive: $showSplash)
-            .onAppear {
-              print("🎬 Splash screen görünüyor")
-            }
         } else {
           // Main app content
           MainContentView()
