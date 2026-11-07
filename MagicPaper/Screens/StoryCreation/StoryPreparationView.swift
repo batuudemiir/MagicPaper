@@ -33,8 +33,6 @@ struct StoryPreparationView: View {
     @State private var index = 0
     @State private var skipped = false
     @State private var showsSkip = false
-    /// Ragi'nin nefesi; yalnızca Reduce Motion kapalıyken.
-    @State private var breathing = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
 
@@ -114,7 +112,9 @@ struct StoryPreparationView: View {
             if !Task.isCancelled && !isDone { showsSkip = true }
         }
         .task(id: isDone) {
-            guard isDone, !awaitsApproval, !voiceOver else { return }
+            guard isDone else { return }
+            MPSound.play(.ready)
+            guard !awaitsApproval, !voiceOver else { return }
             try? await Task.sleep(for: .seconds(StoryPreparationScript.coverHold))
             if !Task.isCancelled { onRead() }
         }
@@ -136,9 +136,6 @@ struct StoryPreparationView: View {
         } else {
             VStack(spacing: MP.S.x3) {
                 MascotImage(mascot: beat == .reread ? .reading : .pencil, width: 80)
-                    .offset(y: breathing ? -MP.S.x1 : 0)
-                    .animation(reduceMotion ? nil : MP.M.idle, value: breathing)
-                    .onAppear { if !reduceMotion { breathing = true } }
                     .contentTransition(.opacity)
                 PreparationNotebook(
                     facts: facts,

@@ -48,7 +48,7 @@ struct SeriesView: View {
             }
         }
         .background(alignment: .top) {
-            HeaderWash(height: 300, colors: [MPWorldTone.peach.soft, MPWorldTone.yellow.soft, MPWorldTone.pink.soft])
+            HeaderWash(height: 300, color: MPWorldTone.peach.soft)
         }
         .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear { series.refreshUnlocks(for: childID) }

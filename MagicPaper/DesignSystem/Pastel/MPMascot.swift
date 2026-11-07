@@ -55,11 +55,10 @@ enum Mascot: String, CaseIterable {
 struct MascotImage: View {
     let mascot: Mascot
     var width: CGFloat
+    /// Boşsa pozun doğal hareketi (`Mascot.defaultAct`).
+    var act: RagiAct? = nil
     var body: some View {
-        Image(mascot.assetName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: width)
+        RagiPuppet(mascot: mascot, width: width, act: act ?? mascot.defaultAct)
             .accessibilityHidden(true)
     }
 }

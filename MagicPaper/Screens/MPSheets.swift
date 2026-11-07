@@ -211,6 +211,9 @@ struct ReaderSettingsSheet: View {
                 MPRowDivider(area: .kid)
                 toggleRow(icon: "sparkles", tone: .lav, title: "Dokunsal geri bildirim",
                           subtitle: "Sayfa çevrilince hafif bir dokunuş", isOn: $settings.haptics)
+                MPRowDivider(area: .kid)
+                toggleRow(icon: "music.note", tone: .peach, title: "Sesler",
+                          subtitle: "Masal sonunda ve sayfa çevrilince kısa sesler. Uyku vaktinde çalmaz.", isOn: $settings.sounds)
             }
         }
     }

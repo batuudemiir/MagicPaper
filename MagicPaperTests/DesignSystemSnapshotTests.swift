@@ -27,6 +27,7 @@ final class DesignSystemSnapshotTests: XCTestCase {
             .padding(MP.S.screenGutter)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(MPColor.backgroundSurface)
+            .environment(\.ragiHoldsStill, true)
 
         assertSnapshot(of: framed.environment(\.dynamicTypeSize, .large),
                        as: .image(perceptualPrecision: 0.98,

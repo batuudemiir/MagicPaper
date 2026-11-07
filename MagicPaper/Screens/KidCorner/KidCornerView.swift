@@ -26,7 +26,7 @@ struct KidCornerView: View {
     private var profile: UserProfile? { profileManager.currentProfile }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        MPTabScroll(tab: .corner) {
             // Ana sayfanın düzeni (16 Ekim): beyaz zemin, bölümler arası 32. Profil
             // değiştirme en üstte; Ragi seçili çocuğu selamlar.
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
@@ -313,12 +313,10 @@ struct RagiGreeting: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var appeared = false
-    @State private var breathing = false
     @State private var hop = false
 
     var body: some View {
         MascotImage(mascot: mascot, width: width)
-            .scaleEffect(breathing ? 1.025 : 1, anchor: .bottom)
             .offset(y: hop ? -12 : 0)
             .offset(y: appeared ? 0 : MP.S.x5)
             .opacity(appeared ? 1 : 0)
@@ -326,6 +324,7 @@ struct RagiGreeting: View {
             .onTapGesture {
                 guard !reduceMotion, !hop else { return }
                 MPHaptics.tap()
+                MPSound.play(.ragi)
                 withAnimation(MP.M.spring) { hop = true }
                 Task {
                     try? await Task.sleep(for: .milliseconds(220))
@@ -335,7 +334,6 @@ struct RagiGreeting: View {
             .onAppear {
                 if reduceMotion { appeared = true; return }
                 withAnimation(MP.M.spring.delay(0.1)) { appeared = true }
-                withAnimation(MP.M.idle.delay(0.6)) { breathing = true }
             }
             .accessibilityHidden(true)
     }

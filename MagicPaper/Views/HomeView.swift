@@ -23,7 +23,7 @@ struct HomeView: View {
     @StateObject private var streak = MPStreak.shared
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        MPTabScroll(tab: .home) {
             content
         }
         // Saat çubuğunun altında şerit yok: içerik iOS'un standart davranışıyla

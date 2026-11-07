@@ -193,10 +193,6 @@ struct StoryReaderView: View {
             index: index,
             story: story,
             model: model,
-            onReadAgain: {
-                recorder.readAgain()
-                model.restart()
-            },
             onClose: close,
             onAnother: {
                 app.afterReader = .create

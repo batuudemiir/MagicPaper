@@ -254,13 +254,12 @@ extension MPKidTabHeader where Accessory == EmptyView {
 }
 
 
-/// Rainbow band behind the kid header (Ana sayfa, Benim köşem, Paywall): 150–300 pt tall, bottom corners curved.
+/// Başlık arkasındaki düz bant (Paywall, Seri): alt köşeleri yuvarlak. Gradient yok (Design law).
 struct HeaderWash: View {
     var height: CGFloat = 170
-    var colors: [Color] = [MPColor.washPink, MPColor.washYellow,
-                           MPColor.washGreen, MPColor.washSky]
+    var color: Color = MPWorldTone.lav.soft
     var body: some View {
-        LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
+        color
             .frame(height: height)
             .clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 34, bottomTrailingRadius: 34))
             .ignoresSafeArea(edges: .top)

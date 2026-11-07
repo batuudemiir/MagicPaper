@@ -20,6 +20,8 @@ enum MPDebugLaunch {
     static var startTab: MPTab? { defaults.string(forKey: "mpStartTab").flatMap(MPTab.init(rawValue:)) }
     static var parentTab: MPParentTab? { defaults.string(forKey: "mpParentTab").flatMap(MPParentTab.init(rawValue:)) }
     static var demoLibrary: Bool { defaults.bool(forKey: "mpDemoLibrary") }
+    /// Ragi'nin hareket ve ses vitrini (`RagiStudioView`); önizleme videosu buradan kaydedilir.
+    static var ragiStudio: Bool { defaults.bool(forKey: "mpRagiStudio") }
     static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(debugName:)) }
 
     @MainActor

@@ -106,6 +106,9 @@ enum MP {
 
         // Mürekkep — tüm metin
         static let murekkep900 = Color(hex: 0x2E1E3E)
+        /// Ragi'nin göz bandı ve kirpiği (karakter sayfası).
+        static let ragiBand = Color(hex: 0x3A2458)
+        static let ragiLash = Color(hex: 0x8F6BD6)
         static let murekkep700 = Color(hex: 0x4A3640)
         static let murekkep500 = Color(hex: 0x6E5964)
         static let murekkep300 = Color(hex: 0x9B8892)
@@ -217,6 +220,8 @@ enum MP {
 
         static let focusRing = Palette.morLavanta
         static let scrim     = Palette.murekkep900.opacity(0.44)
+        static let ragiLid   = Palette.ragiBand
+        static let ragiLash  = Palette.ragiLash
 
         /// Dairesel öğelerin sert alt kenarı — `mpEdge`'in yuvarlak karşılığı.
         /// Dikdörtgen kenarlar dolu renk kullanır; daire altında çalışan tek
@@ -653,6 +658,27 @@ enum MP {
         /// Masal atölyesi: bir cümlenin mürekkeple yazılma süresi, saniye
         /// (karar 16 Ekim 2026). Harf harf ilerler; bir eğri değil, bir tempo.
         static let inkDuration: Double = 2.8
+
+        /// Ragi'nin temposu, saniye (`RagiMotion`). Ağır: Ragi kıpır kıpır değil, sakin.
+        enum RagiBeat {
+            static let frame: Double = 1.0 / 30
+            static let breath: Double = 3.4
+            static let sleepBreath: Double = 5.2
+            static let head: Double = 5.6
+            static let tail: Double = 3.1
+            static let read: Double = 4.2
+            static let write: Double = 0.8
+            static let step: Double = 1.1
+            static let blink: Double = 0.16
+            static let blinkEvery: Double = 4.4
+            static let waveSwing: Double = 0.56
+            static let waveLength: Double = 1.7
+            static let waveEvery: Double = 11
+            static let hop: Double = 0.46
+            /// Masal sonunda kazanılanların arası ve geceye kararış.
+            static let reveal: Double = 0.34
+            static let nightFade: Double = 0.9
+        }
 
         static let sink: CGFloat = 2
         static let scale: CGFloat = 0.96

@@ -114,18 +114,11 @@ struct NewWordsView: View {
     }
 
     private func empty(hasAny: Bool) -> some View {
-        VStack(spacing: MPSpacing.lg) {
-            Spacer(minLength: 0)
-            MascotImage(mascot: .reading, width: 140).accessibilityHidden(true)
-            Text(hasAny ? "Bu hafta yeni kelime yok" : "Kelimeler masallarda saklı")
-                .mpText(.section).foregroundStyle(MPColor.textPrimary)
-            Text("Masal okurken altı noktalı kelimelere dokun. Okuduğun kelimeler burada toplanır.")
-                .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-            Spacer(minLength: 0)
+        MPStateView(mascot: .reading,
+                    title: hasAny ? "Bu hafta yeni kelime yok" : "Kelimeler masallarda saklı",
+                    message: "Masal okurken altı noktalı kelimelere dokun. Okuduğun kelimeler burada toplanır.") {
+            EmptyView()
         }
-        .padding(.horizontal, MPSpacing.xxxl)
     }
 
     private func close() {

@@ -38,6 +38,7 @@ enum MPHaptics {
     /// değil: parmak hareket ederken titreten bir okuyucu kitap değil, oyuncak
     /// olur.
     static func pageTurn() {
+        MPSound.play(.page)
         guard enabled else { return }
         light.impactOccurred(intensity: 0.45)
         light.prepare()

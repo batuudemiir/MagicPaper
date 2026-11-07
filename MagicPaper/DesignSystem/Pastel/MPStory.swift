@@ -101,7 +101,7 @@ struct TonightHeroCard: View {
                 MPIcon(coverIcon, size: 64, weight: .semibold)
                     .foregroundStyle(.white)
                     .frame(width: 130, height: 150)
-                    .background(LinearGradient(colors: [coverTone.soft, coverTone.deep], startPoint: .topLeading, endPoint: .bottomTrailing),
+                    .background(coverTone.deep,
                                 in: RoundedRectangle(cornerRadius: MPRadius.tile))
                     .rotationEffect(.degrees(6))
                     .mpShadow(.raised)
@@ -110,12 +110,12 @@ struct TonightHeroCard: View {
             }
         }
     }
-    private var background: AnyShapeStyle {
+    private var background: Color {
         switch state {
-        case .resume: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.pink.soft, MPWorldTone.yellow.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
-        case .unread: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.sky.soft, MPWorldTone.lav.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
-        case .readToday: AnyShapeStyle(LinearGradient(colors: [MPWorldTone.green.soft, MPWorldTone.mint.soft], startPoint: .topLeading, endPoint: .bottomTrailing))
-        case .bedtime: AnyShapeStyle(LinearGradient(colors: [MPColor.bedtimeSkyTop, MPColor.bedtimeSkyBottom], startPoint: .top, endPoint: .bottom))
+        case .resume: MPWorldTone.pink.soft
+        case .unread: MPWorldTone.sky.soft
+        case .readToday: MPWorldTone.green.soft
+        case .bedtime: MPColor.bedtimeSkyBottom
         }
     }
 }

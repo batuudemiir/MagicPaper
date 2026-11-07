@@ -22,7 +22,6 @@ struct StoryLeafView: View {
 
     private var theme: MP.ReadTheme { settings.readingTheme(chosen: app.readTheme) }
 
-    let onReadAgain: () -> Void
     let onClose: () -> Void
     var onAnother: () -> Void = {}
     var onGoodNight: () -> Void = {}
@@ -56,7 +55,7 @@ struct StoryLeafView: View {
                 story: story,
                 theme: theme,
                 accent: model.story.accent,
-                onReadAgain: onReadAgain,
+                isCurrent: model.leafIndex == index,
                 onClose: onClose,
                 onAnother: onAnother,
                 onGoodNight: onGoodNight

@@ -67,7 +67,7 @@ Devre dışı düğme saydamlaşmaz: düz gri ve kenarsızdır.
 
 ## Ragi
 
-Bugün 14 poz 1x PNG, telefonda bulanık. Karakter kitabı, vektör pozlar ve Rive animasyonu Faz 4'te, illüstratör ve animatör bütçesine bağlı.
+Karakter kitabı, hareket ve ses: `docs/RAGI.md`. Çizimler bugün 1x PNG, telefonda yumuşak görünür; hareket kod kuklasıyla geliyor, yüksek çözünürlüklü çizim hâlâ açık.
 
 **Açık kararlar (Batuhan):** "Her çocuk ekranında Ragi" kuralı "anlamı olan ekranda"ya gevşesin mi? Paywall'dan Ragi kalksın mı? Karar verilene kadar Design law'daki kural geçerlidir.
 

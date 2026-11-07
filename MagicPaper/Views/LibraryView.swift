@@ -34,7 +34,7 @@ struct LibraryView: View {
     @FocusState private var searchFocused: Bool
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        MPTabScroll(tab: .library) {
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
                 titleBar.homeEntrance(0)
                 if model.isEmpty {

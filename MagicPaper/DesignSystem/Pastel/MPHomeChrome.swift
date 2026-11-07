@@ -177,7 +177,6 @@ struct HomeSceneMascot: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var appeared = false
-    @State private var breathing = false
     @State private var hop = false
 
     var body: some View {
@@ -185,7 +184,6 @@ struct HomeSceneMascot: View {
             MascotImage(mascot: .reading, width: 92).opacity(isNight ? 0 : 1)
             MascotImage(mascot: .sleeping, width: 104).opacity(isNight ? 1 : 0)
         }
-        .scaleEffect(breathing ? 1.025 : 1, anchor: .bottom)
         .offset(y: hop ? -14 : 0)
         .offset(y: appeared ? 0 : 24)
         .opacity(appeared ? 1 : 0)
@@ -203,7 +201,6 @@ struct HomeSceneMascot: View {
         .onAppear {
             if reduceMotion { appeared = true; return }
             withAnimation(MP.M.spring.delay(0.15)) { appeared = true }
-            withAnimation(MP.M.idle.delay(0.6)) { breathing = true }
         }
         .accessibilityHidden(true)
     }

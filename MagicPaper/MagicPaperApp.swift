@@ -91,11 +91,22 @@ struct MagicPaperApp: App {
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @ObservedObject private var profileManager = ProfileManager.shared
-  @State private var showSplash = true
+  /// Sabit bekleme yalnızca ilk açılışta: Ragi selam verir. Sonra doğrudan uygulama.
+  @State private var showSplash = !UserDefaults.standard.bool(forKey: SplashScreenView.seenKey)
 
   var body: some Scene {
     WindowGroup {
       ZStack {
+        #if DEBUG
+        if MPDebugLaunch.ragiStudio {
+          RagiStudioView()
+        } else if showSplash {
+          SplashScreenView(isActive: $showSplash)
+        } else {
+          MainContentView()
+            .environmentObject(profileManager)
+        }
+        #else
         if showSplash {
           // Splash screen
           SplashScreenView(isActive: $showSplash)
@@ -104,6 +115,7 @@ struct MagicPaperApp: App {
           MainContentView()
             .environmentObject(profileManager)
         }
+        #endif
       }
       // Uygulama Türkçe: büyük harf (İ), tarih ve saat seçicileri tr_TR.
       .environment(\.locale, Locale(identifier: "tr_TR"))
@@ -186,6 +198,7 @@ struct MainContentView: View {
 /// Açılış ekranı (01 · Marka): yazı markası ve kitaptaki Ragi, karşılamanın
 /// sabah ışığı zemininde.
 struct SplashScreenView: View {
+    static let seenKey = "mp_splash_seen"
     @Binding var isActive: Bool
     @State private var appeared = false
 
@@ -197,7 +210,7 @@ struct SplashScreenView: View {
                     .resizable().scaledToFit()
                     .frame(maxWidth: 240)
                     .accessibilityLabel("MagicPaper")
-                MascotImage(mascot: .onBook, width: 220)
+                MascotImage(mascot: .waving, width: 200)
                     .accessibilityHidden(true)
             }
             .opacity(appeared ? 1 : 0)
@@ -205,6 +218,8 @@ struct SplashScreenView: View {
         }
         .onAppear {
             withAnimation(MP.M.spring) { appeared = true }
+            UserDefaults.standard.set(true, forKey: Self.seenKey)
+            MPSound.play(.ragi)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
                 withAnimation(MP.M.base) { isActive = false }
             }

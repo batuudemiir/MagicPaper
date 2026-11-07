@@ -178,17 +178,11 @@ struct GunlukShelfView: View {
 
     /// Sonuç yok: suçlamayan, sakin bir cümle ve düşünceli Ragi (ekranda tek maskot).
     private var emptyState: some View {
-        VStack(spacing: MPSpacing.md) {
-            MascotImage(mascot: .thinking, width: 120).accessibilityHidden(true)
-            Text(startsSearching && !query.isEmpty ? "Bu adla bir masal bulamadık." : "Bu rafta henüz masal yok.")
-                .mpText(.section).foregroundStyle(MPColor.textPrimary)
-                .multilineTextAlignment(.center)
-            Text(startsSearching ? "Başka bir kelimeyle dene ya da raflara göz at." : "Yeni masallar yolda.")
-                .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                .multilineTextAlignment(.center)
+        MPStateView(mascot: .thinking,
+                    title: startsSearching && !query.isEmpty ? "Bu adla bir masal bulamadık" : "Bu rafta henüz masal yok",
+                    message: startsSearching ? "Başka bir kelimeyle dene ya da raflara göz at." : "Yeni masallar yolda.") {
+            EmptyView()
         }
-        .padding(MPSpacing.xl)
-        .frame(maxWidth: .infinity)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+        .padding(.vertical, MPSpacing.xl)
     }
 }

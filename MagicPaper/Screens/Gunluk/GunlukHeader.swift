@@ -137,11 +137,11 @@ struct GunlukHeaderCarousel: View {
             .overlay(alignment: .top) {
                 // Yalnızca saat çubuğu ve "Masallar" yazısının arkası açılır; resmin
                 // geri kalanı olduğu gibi, soluklaşmadan görünür.
-                LinearGradient(stops: [.init(color: MPColor.backgroundSurface.opacity(0.8), location: 0),
-                                       .init(color: MPColor.backgroundSurface.opacity(0.55), location: 0.55),
+                LinearGradient(stops: [.init(color: MPColor.backgroundSurface.opacity(0.94), location: 0),
+                                       .init(color: MPColor.backgroundSurface.opacity(0.88), location: 0.68),
                                        .init(color: MPColor.backgroundSurface.opacity(0), location: 1)],
                                startPoint: .top, endPoint: .bottom)
-                    .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg)
+                    .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg * 3)
             }
             .clipped()
             .accessibilityHidden(true)

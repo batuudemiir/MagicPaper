@@ -49,7 +49,7 @@ enum ReaderWords {
             for r in ReaderText.nameRanges(of: childName, in: text) {
                 guard let ar = Range<AttributedString.Index>(r, in: out) else { continue }
                 out[ar].foregroundColor = highlight
-                out[ar].inlinePresentationIntent = .stronglyEmphasized
+                out[ar].font = MP.F.read(size).weight(.bold)
             }
         }
         for r in ReaderText.soundRanges(in: text) {

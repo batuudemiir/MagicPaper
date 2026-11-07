@@ -38,6 +38,8 @@ final class MPSettingsStore: ObservableObject {
     @Published var bedtimeMinute: Int { didSet { d.set(bedtimeMinute, forKey: K.bedtimeMinute) } }
     /// Dokunsal geri bildirim — okuyucudaki sayfa çevirme dokunuşu buna bakar.
     @Published var haptics: Bool { didSet { d.set(haptics, forKey: K.haptics) } }
+    /// Kısa sesler (`MPSound`): masal sonu, sayfa, Ragi.
+    @Published var sounds: Bool { didSet { d.set(sounds, forKey: K.sounds) } }
     /// "Kim okusun?" (FAZ 18): masalın ailenin sesiyle kaydı varsa o mu okusun.
     /// Kaydı olmayan sayfayı her zaman masal anlatıcısı okur.
     @Published var familyVoice: Bool { didSet { d.set(familyVoice, forKey: K.familyVoice) } }
@@ -72,6 +74,7 @@ final class MPSettingsStore: ObservableObject {
         static let reminderMinute = "mp_reminderMinute"
         static let approved = "mp_approvedStoryIDs"
         static let haptics = "mp_haptics"
+        static let sounds = "mp_sounds"
         static let familyVoice = "mp_familyVoice"
         static let shareUsageData = "mp_shareUsageData"
         static let seeded = "mp_settingsSeeded"
@@ -102,6 +105,7 @@ final class MPSettingsStore: ObservableObject {
         // mevcut kullanıcılarda bir daha çalışmaz, dolayısıyla oraya konan yeni
         // bir varsayılan onlara hiç ulaşmaz. Anahtarın yokluğu "açık" demektir.
         haptics = d.object(forKey: K.haptics) == nil ? true : d.bool(forKey: K.haptics)
+        sounds = d.object(forKey: K.sounds) == nil ? true : d.bool(forKey: K.sounds)
         // Kayıt yapan aile bunu duymak ister: varsayılan açık.
         familyVoice = d.object(forKey: K.familyVoice) == nil ? true : d.bool(forKey: K.familyVoice)
         // Varsayılan açık (karar: 6 Ekim 2026). FAZ 16'daki ebeveyn onayı

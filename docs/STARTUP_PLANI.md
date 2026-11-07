@@ -280,7 +280,7 @@ Yapılacaklar (kural: **dokunulan ekran taşınır**):
 
 ## Fazlar
 
-Durum (7 Kasım 2026): Faz 0, 1 ve 2 bitti; Faz 3'ün hukuk gerektirmeyen kısmı bitti (masal yazma, Ana sayfa, tek okuyucu, kenar dokunuşu), "önce masal" hukuk onayı bekliyor; ayrıntı `design-handoff/reference/DEMO_CHANGELOG.md`.
+Durum (7 Kasım 2026): Faz 0, 1 ve 2 bitti; Faz 3'ün hukuk gerektirmeyen kısmı bitti (masal yazma, Ana sayfa, tek okuyucu, kenar dokunuşu), "önce masal" hukuk onayı bekliyor. Faz 4 illüstratörsüz yapıldı (Batuhan kararı): Ragi kod kuklasıyla hareket ediyor (Rive yerine), ses kodla sentezlendi, masal sonu yenilendi, Birlikte konuşalım eklendi; yüksek çözünürlüklü çizim açık (`docs/RAGI.md`). Ayrıntı `design-handoff/reference/DEMO_CHANGELOG.md`.
 
 Her faz ayrı commit'ler, Değişiklik günlüğü ve Design law güncellemesiyle biter.
 
