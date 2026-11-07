@@ -42,7 +42,7 @@ struct ClassicDetailView: View {
                             Text(tale.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                             if tale.classic != nil { narrationPicker }
-                            Text(tale.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
+                            Text(tale.creditLine).mpText(.caption).foregroundStyle(MPColor.textSecondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

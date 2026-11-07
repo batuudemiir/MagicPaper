@@ -1,6 +1,6 @@
 # Değişiklik günlüğü
 
-MagicPaper Kids'te `main`'e giren değişiklikler, en yenisi üstte. Her madde ilgili
+MagicPaper'da `main`'e giren değişiklikler, en yenisi üstte. Her madde ilgili
 commit'le eşleşir; ayrıntı commit mesajında ve bağlantılı belgede.
 
 ## 13 Ekim 2026

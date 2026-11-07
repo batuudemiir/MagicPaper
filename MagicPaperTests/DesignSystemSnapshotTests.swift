@@ -46,7 +46,7 @@ final class DesignSystemSnapshotTests: XCTestCase {
                 MPButton(title: "Masalı oku", fullWidth: true) {}
                 MPButton(title: "Masalı oku", fullWidth: true) {}.disabled(true)
                 MPButton(title: "Planlar", kind: .secondary, fullWidth: true) {}
-                MPButton(title: "Kopyala", kind: .soft, fullWidth: true) {}
+                MPButton(title: "Kopyala", kind: .secondary, fullWidth: true) {}
                 MPButton(title: "Şimdi değil", kind: .ghost) {}
                 MPButton(title: "Profili sil", kind: .danger, fullWidth: true) {}
                 MPButton(title: "Düzenle", kind: .secondary, size: .small) {}

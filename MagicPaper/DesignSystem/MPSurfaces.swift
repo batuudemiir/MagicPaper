@@ -301,7 +301,6 @@ struct MPStoryCard: View {
             .background(RoundedRectangle(cornerRadius: MP.R.card, style: .continuous).fill(MP.C.surfaceCard))
             .clipShape(RoundedRectangle(cornerRadius: MP.R.card, style: .continuous))
             .mpEdge(fill: .clear, edge: MP.C.edgeCard, radius: MP.R.card, width: MP.E.widthLG)
-            .mpShadow(MP.Sh.card)
         }
         .buttonStyle(MPPressStyle(scales: false))
     }

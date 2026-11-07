@@ -64,7 +64,7 @@ struct AccountSignInView: View {
                         }
 
                         if FirebaseBackend.emulatorHost != nil {
-                            MPButton(title: AccountCopy.emulatorSignIn, kind: .soft, size: .auth,
+                            MPButton(title: AccountCopy.emulatorSignIn, kind: .secondary, size: .auth,
                                      fullWidth: true) {
                                 Task { await signIn(.emulator) }
                             }

@@ -133,6 +133,23 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Faz 1 Marka temeli: Baloo 2, sekiz yazı rolü, düğme sistemi, sert kenar
+
+- Marka kitabı ve söz belgesi: `docs/MARKA.md`, `docs/SES_VE_SOZ.md`. Web, tanıtım filmi ve mevcut metinlerin bunlara uymadığı belgelerde açıkça yazılı (Faz 3 ve 6).
+- Baloo 2 başlıkta geri geldi. Özgün dosyanın satır kutusu 1,60 em olduğu için paketlenen kopya Latin alt kümesi ve 1,20 em (`Tools/make_baloo_latin.py`, 683 KB → 96 KB). Lisans OFL, ayrılmış ad yok. Widget'a da eklendi.
+- Yazı: 16+ stil sekiz role indi (`MPTextStyle`, plandaki tablo). Eski stil adları takma ad olarak duruyor, kaldırılmadı. Gövde 15 semibold → 17 regular. Bölüm başlığı en büyük yazıda sayfa başlığını geçiyordu, `relativeTo` bağları düzeltildi.
+- `mpEdge` hatası düzeldi: `edge` parametresini yok sayıp gölge çiziyordu, artık sert kenar çiziyor; `mpKidSurface` bunun üstüne kurulu, `MPSurfaces`'taki çift gölge kalktı.
+- Düğme: `soft` `secondary`'ye katıldı, `MPRoundActionButton` kalktı (tek kullanımı kayıt ekranının kendi düğmesi oldu). Birincil 56 pt, ikincil 52, metin 48; küçük düğmenin dokunma alanı 48. Basınca birincil düğmenin yüzü sert kenarın üstüne iner (`MPPressStyle.onEdge`). Devre dışı düz gri ve kenarsız.
+- **Plandan sapma:** `outline` kalkmadı, yalnızca Google giriş düğmesinde kaldı; Apple düğmesinin yanında lavanta durmaması için. Diğer kullanımları `secondary` oldu.
+- Tek ad: görünen ad, üç kapak yüzeyi, README, CHANGELOG ve CLAUDE.md'de "MagicPaper". `AssetCatalog` lisans kayıtlarında eski ad bilerek duruyor.
+- Plan adları: `SubscriptionManager`'daki emojiler kalktı. `Products.storekit` ve App Store Connect değişmedi.
+- `textTertiary` artık metinde kullanılmıyor: klasik künye satırları `textSecondary` oldu. Kilit simgelerinde kaldı.
+- Design law güncellendi (`CLAUDE.md`, depo dışı): font dosyası, roller, düğme kuralları, kenar.
+- Bilerek değişmedi: Ragi kuralları (karar bekliyor), masal metni fontu (`MP.F.read`), web ve yasal sayfalar, "Harika gidiyorsun!" (Faz 3). `MP.F` ölçeği taşınmadı, yalnızca ailesi Baloo 2 oldu (Faz 2).
+- Görülen, bu işin dışında: Masallar başlığı koyu vitrin slaytında okunmuyor (plan 4.2, Faz 3).
+- Test: MagicPaperTests 802 test, 1 atlandı, 0 hata. MagicPaperUITests 9 test, 0 hata. 17 görüntü referansı yenilendi, ikinci koşuda 0 fark. Ana sayfa, Masallar, Kitaplık, Profil, Özet ve Ayarlar iPhone 17 Pro simülatöründe gözle görüldü; Ana sayfa, Profil ve Ayarlar en büyük yazıda da. iPhone SE, Pro Max, widget, basma hareketi, okuyucu ekranı, masal yazma akışı ve paywall gözle görülmedi. Gönderilmedi.
+- Dosyalar: `docs/MARKA.md`, `docs/SES_VE_SOZ.md`, `Tools/make_baloo_latin.py`, `DesignSystem/Fonts/Baloo2-Latin-Variable.ttf`, `MPTypography.swift`, `MPTheme.swift`, `MPButtons.swift`, `MPLayout.swift`, `MPHomeChrome.swift`, `MPSurfaces.swift`, `SubscriptionManager.swift`, `Info.plist` (uygulama, widget), `project.pbxproj`, `__Snapshots__`, `kind:` değişen ekranlar ve ad değişen üç kapak dosyası.
+
 ### 2026-11-07 · main (commit aşağıda) · Faz 0 Korkuluk: görüntü testi, erişilebilirlik denetimi, ölü kod
 
 - Plan repoya girdi: `docs/STARTUP_PLANI.md` (Faz 0-6).

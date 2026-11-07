@@ -182,6 +182,7 @@ enum VoiceCopy {
 
 /// Bir masalın sayfaları tek tek: metni oku, kaydet, dinle, sonraki sayfa.
 struct VoicePageRecorderView: View {
+    private static let recordSize: CGFloat = 84
     let story: Story
     let onClose: () -> Void
 
@@ -279,12 +280,14 @@ struct VoicePageRecorderView: View {
                     MPCircleButton(systemImage: "play.fill", accessibilityLabel: "Kaydı dinle") { playSaved() }
                 }
 
-                MPRoundActionButton(
-                    systemImage: recorder.state == .recording ? "stop.fill" : "mic.fill",
-                    accessibilityLabel: recorder.state == .recording ? "Kaydı durdur" : "Kaydet",
-                    size: 84,
-                    fill: recorder.state == .recording ? MPColor.statusDanger : MPColor.actionPrimary
-                ) { toggleRecording() }
+                Button(action: toggleRecording) {
+                    MPIcon(recorder.state == .recording ? "stop.fill" : "mic.fill", size: Self.recordSize * 0.4, weight: .bold)
+                        .foregroundStyle(MPColor.textOnAction)
+                        .frame(width: Self.recordSize, height: Self.recordSize)
+                        .background(recorder.state == .recording ? MPColor.statusDanger : MPColor.actionPrimary, in: Circle())
+                }
+                .buttonStyle(MPPressStyle())
+                .accessibilityLabel(recorder.state == .recording ? "Kaydı durdur" : "Kaydet")
 
                 if case .recorded = recorder.state {
                     MPCircleButton(systemImage: "arrow.counterclockwise", accessibilityLabel: "Yeniden kaydet") { recorder.discard() }
@@ -297,7 +300,7 @@ struct VoicePageRecorderView: View {
                     .disabled(page == 0 || recorder.state == .recording)
                 Spacer()
                 if case .recorded = recorder.state {
-                    MPButton(title: page + 1 < pageCount ? "Kaydet, sonraki" : "Kaydet", kind: .soft, size: .small) { keep() }
+                    MPButton(title: page + 1 < pageCount ? "Kaydet, sonraki" : "Kaydet", kind: .secondary, size: .small) { keep() }
                 } else {
                     MPButton(title: "Sonraki", systemImage: "chevron.right", kind: .ghost) { go(page + 1) }
                         .disabled(page + 1 >= pageCount || recorder.state == .recording)

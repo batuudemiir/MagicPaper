@@ -42,7 +42,7 @@ struct ProfileSelectorView: View {
                 .padding(.vertical, MPSpacing.lg)
             }
 
-            MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .outline, fullWidth: true) {
+            MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .secondary, fullWidth: true) {
                 showAddProfile = true
             }
             .padding(.horizontal, MPSpacing.xl)

@@ -1,4 +1,4 @@
-# MagicPaper Kids
+# MagicPaper
 
 Kişiselleştirilmiş çocuk masalları için iOS uygulaması. Çocuk, masallarda tekrar eden bir karakter olur.
 Metin masallar cihazda, internetsiz bir masal motoruyla yazılır (LLM yok).

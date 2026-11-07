@@ -355,7 +355,7 @@ struct MagicPaperCoverView: View {
                 .minimumScaleFactor(0.55)
 
             if showsBrand {
-                Text("MagicPaper Kids")
+                Text("MagicPaper")
                     .font(.custom(MP.F.body, size: max(size.width * 0.036, 7)).weight(.bold))
                     .tracking(size.width * 0.01)
                     .foregroundStyle(Color.white.opacity(0.55))

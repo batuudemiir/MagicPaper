@@ -72,9 +72,9 @@ class SubscriptionManager: ObservableObject {
         var displayName: String {
             switch self {
             case .none: return "Ücretsiz"
-            case .basic: return "⭐ Yıldız Kaşifi"
-            case .premium: return "👑 Hikaye Kahramanı"
-            case .ultimate: return "🌟 Sihir Ustası"
+            case .basic: return "Yıldız Kaşifi"
+            case .premium: return "Hikaye Kahramanı"
+            case .ultimate: return "Sihir Ustası"
             }
         }
         
@@ -119,7 +119,7 @@ class SubscriptionManager: ObservableObject {
     static let subscriptionPackages: [SubscriptionPackage] = [
         SubscriptionPackage(
             tier: .basic,
-            title: "⭐ Yıldız Kaşifi",
+            title: "Yıldız Kaşifi",
             price: "₺89",
             priceValue: 89.0,
             features: [
@@ -131,7 +131,7 @@ class SubscriptionManager: ObservableObject {
         ),
         SubscriptionPackage(
             tier: .premium,
-            title: "👑 Hikaye Kahramanı",
+            title: "Hikaye Kahramanı",
             price: "₺149",
             priceValue: 149.0,
             features: [
@@ -143,7 +143,7 @@ class SubscriptionManager: ObservableObject {
         ),
         SubscriptionPackage(
             tier: .ultimate,
-            title: "🌟 Sihir Ustası",
+            title: "Sihir Ustası",
             price: "₺349",
             priceValue: 349.0,
             features: [

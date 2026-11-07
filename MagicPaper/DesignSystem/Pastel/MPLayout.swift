@@ -31,9 +31,10 @@ enum MPRadius {
 }
 
 enum MPSize {
-    static let buttonHeight: CGFloat = 52
+    static let buttonHeight: CGFloat = 56
+    static let buttonHeightSecondary: CGFloat = 52
     static let buttonHeightAuth: CGFloat = 54
-    static let buttonHeightSmall: CGFloat = 44
+    static let buttonHeightSmall: CGFloat = 38
     static let chipHeight: CGFloat = 38
     static let circleButton: CGFloat = 42
     static let headerAvatar: CGFloat = 48

@@ -488,10 +488,10 @@ enum MP {
     // MARK: Tipografi
 
     enum F {
-        static let display = "Nunito"
+        static let display = "Baloo 2"
         static let body    = "Nunito"
 
-        // Display: Nunito black (FAZ 17, Baloo 2 kalktı)
+        // Display: Baloo 2 (karar: 7 Kasım 2026, `docs/MARKA.md`)
         static func displayXL() -> Font { .custom(display, size: 40).weight(.black) }
         static func displayLG() -> Font { .custom(display, size: 32).weight(.black) }
         static func displayMD() -> Font { .custom(display, size: 26).weight(.black) }
@@ -748,12 +748,14 @@ extension View {
     /// CSS'teki `border-bottom: Npx solid <edge>` karşılığı.
     /// Derinlik bu modifier'dan gelir — gölge ile taklit edilmemeli.
     func mpEdge(fill: Color, edge: Color, radius: CGFloat, width: CGFloat = MP.E.width) -> some View {
-        // FAZ 17: Pastel Masal'da derinlik gölgeden gelir; `edge` artık çizilmez.
-        // Taşınmamış ekranlar bu imzayı kullanmaya devam eder.
-        self.background(
-            RoundedRectangle(cornerRadius: radius, style: .continuous).fill(fill)
-        )
-        .mpShadow(.card)
+        // Sistemin imzası (Design law, Derinlik): sert alt kenar, gölge yok.
+        let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
+        return background {
+            ZStack {
+                shape.fill(edge).offset(y: width)
+                shape.fill(fill)
+            }
+        }
     }
 
     func mpShadow(_ s: MP.ShadowSpec) -> some View {
@@ -770,9 +772,10 @@ extension View {
 
 /// Basma davranışı — sistemdeki tek kaynak.
 ///
-/// İki his var:
+/// Üç his var:
+/// - `onEdge`: birincil düğme. Yüzü, yerinde duran sert kenarın üstüne iner.
 /// - `sink`: öğe kendi alt kenarının üzerine çöker. 2px aşağı, 0.985 ölçek,
-///   biraz koyulaşma. Kenarı (`mpEdge`) olan butonlar ve kartlar içindir.
+///   biraz koyulaşma. Kenarı (`mpEdge`) olan kartlar içindir.
 /// - `highlight`: yerinden kıpırdamaz, yalnızca söner. Liste satırları,
 ///   sekmeler ve metin bağlantıları içindir. Bunlar hareket ettiğinde
 ///   satırlar birbirine çarpıyormuş gibi durur.
@@ -780,7 +783,7 @@ extension View {
 /// "Hareketi Azalt" açıkken `sink` da yerinden kıpırdamaz ve söner. Önceden
 /// hiç tepki vermiyordu, yani basıldığını gösteren bir işaret kalmıyordu.
 struct MPPressStyle: ButtonStyle {
-    enum Feel { case sink, sinkFlat, highlight }
+    enum Feel: Equatable { case onEdge(Color), sink, sinkFlat, highlight }
 
     var feel: Feel = .sink
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -795,13 +798,16 @@ struct MPPressStyle: ButtonStyle {
         let moves = feel != .highlight && !reduceMotion
         let held = pressed && moves
         let dims = pressed && !moves
+        let edge: Color? = if case .onEdge(let color) = feel { color } else { nil }
         // Basınca kendi alt kenarına çöker (kısa eğri), bırakınca yaylanarak
         // geri gelir (tek spring): "dokundum" hissi yalnızca küçülmeden gelmez.
         return configuration.label
             .scaleEffect(held && feel == .sink ? MP.M.scale : 1)
-            .offset(y: held ? MP.M.sink : 0)
+            .offset(y: held ? (edge == nil ? MP.M.sink : MP.E.widthLG) : 0)
             .brightness(held ? -0.03 : 0)
             .opacity(dims ? MP.M.pressDim : 1)
             .animation(pressed ? MP.M.press : MP.M.spring, value: pressed)
+            // Kenar kaymanın dışında: yüz iner, kenar yerinde kalır.
+            .background { if let edge { Capsule().fill(edge).offset(y: MP.E.widthLG) } }
     }
 }

@@ -150,7 +150,7 @@ private struct ReminderPrePrompt: View {
                     let time = Self.times[selected]
                     onRemind(time.hour, time.minute)
                 }
-                MPButton(title: "Şimdi değil", kind: .outline, fullWidth: true, action: onLater)
+                MPButton(title: "Şimdi değil", kind: .secondary, fullWidth: true, action: onLater)
                     .disabled(asking)
             }
             .padding(.horizontal, MPSpacing.lg)

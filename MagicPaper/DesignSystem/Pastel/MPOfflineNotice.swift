@@ -27,7 +27,7 @@ struct MPOfflineNotice: View {
                 Text(message).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
                 if let onRetry {
-                    MPButton(title: AccountCopy.retry, kind: .soft, size: .small, action: onRetry)
+                    MPButton(title: AccountCopy.retry, kind: .secondary, size: .small, action: onRetry)
                         .padding(.top, MPSpacing.xs)
                 }
             }

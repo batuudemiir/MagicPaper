@@ -71,7 +71,7 @@ struct StoryCoverFace: View {
                     }
 
                     if showsBrand && w >= 86 {
-                        Text("MagicPaper Kids")
+                        Text("MagicPaper")
                             .font(.custom(MP.F.body, size: max(w * 0.052, 6)).weight(.bold))
                             .tracking(w * 0.012)
                             .foregroundStyle(theme.muted.opacity(0.65))

@@ -17,13 +17,8 @@ extension View {
     /// Derinlik gölgeden değil bu kenardan gelir (tasarım yasası, `mpEdge`).
     func mpKidSurface(_ fill: Color, edge: Color, radius: CGFloat = MPRadius.card) -> some View {
         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
-        return background {
-            ZStack {
-                shape.fill(edge).offset(y: MP.E.widthLG)
-                shape.fill(fill)
-            }
-        }
-        .overlay(shape.strokeBorder(edge, lineWidth: 1))
+        return mpEdge(fill: fill, edge: edge, radius: radius, width: MP.E.widthLG)
+            .overlay(shape.strokeBorder(edge, lineWidth: 1))
     }
 }
 

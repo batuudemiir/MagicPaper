@@ -27,7 +27,7 @@ struct SeriesEndingSection: View {
                     .fixedSize(horizontal: false, vertical: true)
                 // Masal sonunun birincil eylemi "Bir masal daha"; devam ettir
                 // yumuşak düğme (ekranda tek birincil buton).
-                MPButton(title: SeriesCopy.continueButton, systemImage: "sparkles", kind: .soft, fullWidth: true) {
+                MPButton(title: SeriesCopy.continueButton, systemImage: "sparkles", kind: .secondary, fullWidth: true) {
                     start()
                 }
                 .accessibilityHint(SeriesCopy.continueAccessibilityHint)

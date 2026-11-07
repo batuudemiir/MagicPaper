@@ -100,7 +100,7 @@ struct ShareLinkView: View {
                     Text("\(link.count) masal · \(link.days) gün geçerli").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 Spacer(minLength: MPSpacing.sm)
-                MPButton(title: "Kopyala", systemImage: "doc.on.doc", kind: .soft, size: .small) {
+                MPButton(title: "Kopyala", systemImage: "doc.on.doc", kind: .secondary, size: .small) {
                     UIPasteboard.general.url = FamilyShareLink.url(link.token)
                     MPHaptics.success()
                     app.showToast("Bağlantı kopyalandı", symbol: "doc.on.doc")

@@ -99,7 +99,7 @@ struct ParentOverviewView: View {
                 HStack(spacing: MPSpacing.md) {
                     Text(story.title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    MPButton(title: "Onayla", kind: .soft, size: .small) {
+                    MPButton(title: "Onayla", kind: .secondary, size: .small) {
                         settings.approveStory(story.id)
                         app.showToast("Masal onaylandı", symbol: "checkmark")
                     }
@@ -227,9 +227,9 @@ struct ParentOverviewView: View {
                     }
                     Spacer(minLength: MPSpacing.sm)
                     if subscriptionManager.hasUnseenLapse && !subscriptionManager.isPremium {
-                        MPButton(title: "Ayrıntı", kind: .soft, size: .small) { showsLapse = true }
+                        MPButton(title: "Ayrıntı", kind: .secondary, size: .small) { showsLapse = true }
                     } else {
-                        MPButton(title: "Planlar", kind: .soft, size: .small) { app.openPaywall() }
+                        MPButton(title: "Planlar", kind: .secondary, size: .small) { app.openPaywall() }
                     }
                 }
             }

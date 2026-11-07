@@ -40,7 +40,7 @@ struct ClassicSeriesView: View {
                                     app.readClassic(episode)
                                 }
                             }
-                            Text(series.creditLine).mpText(.caption).foregroundStyle(MPColor.textTertiary)
+                            Text(series.creditLine).mpText(.caption).foregroundStyle(MPColor.textSecondary)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .padding(.top, MPSpacing.md)
                         }

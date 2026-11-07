@@ -1,7 +1,8 @@
 // MPTypography.swift
-// Nunito is the only family. Add assets/fonts/Nunito-Variable.ttf and Nunito-Italic-Variable.ttf
-// to the app target and list them under "Fonts provided by application" (UIAppFonts) in Info.plist.
-// Sizes scale with Dynamic Type through `relativeTo:`.
+// İki aile: Baloo 2 başlıkta, Nunito geri kalan her yerde (`docs/MARKA.md`). Fontlar
+// `DesignSystem/Fonts` içinde, Info.plist `UIAppFonts` listesinde. Baloo 2 dosyası
+// satır kutusu düzeltilmiş Latin kopyasıdır (`Tools/make_baloo_latin.py`).
+// Boyutlar `relativeTo:` ile Dynamic Type'la büyür.
 
 import SwiftUI
 
@@ -11,23 +12,17 @@ enum MPTextStyle: CaseIterable {
     case pageTitle, heroTitle
     case button, body, bodyStrong, callout, footnote, caption, eyebrow, tabLabel, story, storyLarge
 
+    /// Sekiz rol: kapak, sayfa, bölüm, kart, gövde, ikincil, dipnot, düğme.
+    /// Eski adlar rollerine iner; dokunulan ekranda rol adına taşınır (Faz 2).
     var size: CGFloat {
         switch self {
-        case .heroTitle: 38
-        case .pageTitle: 34
-        case .display: 30
-        case .largeTitle: 28
-        case .title1: 26
-        case .title2: 24
-        case .title3: 22
-        case .navTitle: 21
-        case .headline: 19
-        case .cardTitle: 17
-        case .button: 16
-        case .body, .bodyStrong: 15
-        case .callout: 14
-        case .footnote: 13
-        case .caption, .eyebrow, .tabLabel: 12
+        case .heroTitle, .pageTitle, .display: 34
+        case .largeTitle, .title1, .title2: 28
+        case .title3, .navTitle, .headline: 21
+        case .cardTitle, .bodyStrong, .button, .body: 17
+        case .callout: 15
+        case .footnote, .caption, .eyebrow: 13
+        case .tabLabel: 12
         case .story: 19
         case .storyLarge: 26
         }
@@ -35,43 +30,47 @@ enum MPTextStyle: CaseIterable {
 
     var weight: Font.Weight {
         switch self {
-        case .display, .largeTitle, .title1, .title2, .title3, .headline, .cardTitle, .eyebrow, .pageTitle, .heroTitle: .black
-        case .navTitle, .button, .bodyStrong, .callout, .caption: .heavy
-        case .footnote, .tabLabel, .storyLarge: .bold
-        case .body, .story: .semibold
+        case .heroTitle, .pageTitle, .display, .largeTitle, .title1, .title2: .bold
+        case .title3, .navTitle, .headline: .semibold
+        case .cardTitle, .bodyStrong, .button, .tabLabel, .storyLarge: .bold
+        case .body, .callout: .regular
+        case .footnote, .caption, .eyebrow, .story: .semibold
+        }
+    }
+
+    /// Başlık rolleri Baloo 2, geri kalanı Nunito.
+    var family: String {
+        switch self {
+        case .heroTitle, .pageTitle, .display, .largeTitle, .title1, .title2, .title3, .navTitle, .headline: "Baloo 2"
+        default: "Nunito"
         }
     }
 
     /// Multiplier of the font size (CSS line-height). Converted to SwiftUI lineSpacing in `mpText`.
     var lineHeight: CGFloat {
         switch self {
-        case .pageTitle, .heroTitle: 1.05
-        case .display, .largeTitle, .title1, .title2: 1.15
-        case .title3, .navTitle, .eyebrow: 1.2
-        case .headline, .cardTitle: 1.25
-        case .button, .tabLabel: 1.0
-        case .body: 1.5
-        case .bodyStrong, .footnote: 1.4
+        case .body, .bodyStrong, .footnote: 1.4
         case .callout, .caption: 1.35
         case .story, .storyLarge: 1.7
+        case .cardTitle: 1.25
+        case .button, .tabLabel: 1.0
+        default: 1.2
         }
     }
 
     var tracking: CGFloat {
-        switch self {
-        case .eyebrow: size * 0.06
-        case .pageTitle, .heroTitle: size * -0.02
-        default: 0
-        }
+        self == .eyebrow ? size * 0.06 : 0
     }
     var isUppercase: Bool { self == .eyebrow }
 
     var relativeTo: Font.TextStyle {
         switch self {
-        case .display, .largeTitle, .pageTitle, .heroTitle: .largeTitle
-        case .title1, .title2: .title
-        case .title3, .navTitle: .title2
-        case .headline, .cardTitle: .headline
+        // Büyük yazıda küçük stiller daha çok büyür: bölüm başlığı `.headline`'a bağlı
+        // olsa en büyük boyutta sayfa başlığını geçerdi.
+        case .display, .pageTitle, .heroTitle: .largeTitle
+        case .largeTitle, .title1, .title2: .title
+        case .title3, .navTitle, .headline: .title2
+        case .cardTitle: .headline
         case .button, .body, .bodyStrong: .body
         case .callout: .callout
         case .footnote: .footnote
@@ -80,7 +79,7 @@ enum MPTextStyle: CaseIterable {
         }
     }
 
-    var font: Font { .custom("Nunito", size: size, relativeTo: relativeTo).weight(weight) }
+    var font: Font { .custom(family, size: size, relativeTo: relativeTo).weight(weight) }
 }
 
 extension Font {

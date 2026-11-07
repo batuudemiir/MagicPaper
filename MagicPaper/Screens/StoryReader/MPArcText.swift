@@ -104,7 +104,7 @@ struct MPBrandLine: View {
     var color: Color = MP.C.textMuted
 
     var body: some View {
-        Text("MagicPaper Kids")
+        Text("MagicPaper")
             .font(MP.F.labelSM(.bold))
             .tracking(2.2)
             .foregroundStyle(color.opacity(0.7))

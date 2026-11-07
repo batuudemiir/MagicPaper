@@ -53,7 +53,7 @@ struct BedtimeStorySheet: View {
                     if let story = resumeStory {
                         VStack(spacing: MPSpacing.xxs) {
                             MPButton(title: "Kaldığın yerden devam et", systemImage: "play.fill",
-                                     kind: .soft, fullWidth: true) {
+                                     kind: .secondary, fullWidth: true) {
                                 choose(.resume(story))
                             }
                             .accessibilityLabel("Kaldığın yerden devam et: \(story.title)")

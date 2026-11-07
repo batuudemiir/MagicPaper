@@ -206,7 +206,7 @@ struct LibraryView: View {
             Text(searching ? "\u{201C}\(query)\u{201D} için bir şey bulamadık. Başka bir sözcük dene."
                            : "Okudukça kitapların burada toplanır.")
                 .mpText(.body).foregroundStyle(MPColor.textSecondary).multilineTextAlignment(.center)
-            MPButton(title: searching ? "Aramayı temizle" : "Bütün kitaplar", kind: .soft, size: .small) {
+            MPButton(title: searching ? "Aramayı temizle" : "Bütün kitaplar", kind: .secondary, size: .small) {
                 query = ""
                 select(.all)
             }

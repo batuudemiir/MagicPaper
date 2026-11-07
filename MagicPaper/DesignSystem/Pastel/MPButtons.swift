@@ -1,11 +1,12 @@
 // MPButtons.swift
 // Buttons used across all 45 screens. One primary button per screen.
 // Screens: every CTA ("Devam et", "Masalı yaz", "Onaylıyorum"), ghost links ("Şimdi değil"),
-// circle buttons (back, close, lock), soft buttons ("Planlar", "Kopyala").
+// circle buttons (back, close), secondary buttons ("Planlar", "Kopyala").
 
 import SwiftUI
 
-enum MPButtonKind { case primary, secondary, soft, outline, ghost, danger }
+/// Roller: `docs/MARKA.md`. `outline` yalnızca giriş sağlayıcısı içindir.
+enum MPButtonKind { case primary, secondary, outline, ghost, danger }
 enum MPButtonSize { case regular, small, auth }
 
 struct MPButton: View {
@@ -26,7 +27,7 @@ struct MPButton: View {
                     ProgressView().tint(foreground)
                 } else {
                     if let systemImage { MPIcon(systemImage, size: 16, weight: .bold).accessibilityHidden(true) }
-                    Text(title).mpText(kind == .primary || kind == .danger ? .button : .callout)
+                    label
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -41,37 +42,54 @@ struct MPButton: View {
             .background(background)
             .overlay(border)
             .clipShape(Capsule())
-            .modifier(PrimaryEdge(active: kind == .primary))
-            .opacity(isEnabled ? 1 : 0.4)
+            // Küçük düğme görünürde küçük, dokunma alanı yine tam.
+            .padding(.vertical, size == .small ? (MP.S.tapMin - MPSize.buttonHeightSmall) / 2 : 0)
+            .contentShape(Rectangle())
         }
-        .buttonStyle(MPPressStyle())
+        .buttonStyle(MPPressStyle(kind == .primary && isEnabled ? .onEdge(MPColor.brandNight) : .sink))
         .disabled(isLoading)
         .accessibilityLabel(title)
     }
 
+    @ViewBuilder private var label: some View {
+        if size == .small {
+            Text(title).mpText(.callout).fontWeight(.bold)
+        } else {
+            Text(title).mpText(.button)
+        }
+    }
+
     private var height: CGFloat {
         switch size {
-        case .regular: kind == .ghost ? MPSize.buttonHeightSmall : MPSize.buttonHeight
-        case .small: 38
+        case .small: MPSize.buttonHeightSmall
         case .auth: MPSize.buttonHeightAuth
+        case .regular:
+            switch kind {
+            case .primary: MPSize.buttonHeight
+            case .ghost: MP.S.tapMin
+            case .secondary, .outline, .danger: MPSize.buttonHeightSecondary
+            }
         }
     }
 
     private var foreground: Color {
-        switch kind {
+        guard isEnabled else { return MPColor.textSecondary }
+        return switch kind {
         case .primary, .danger: MPColor.textOnAction
         // İkincil düğme lavanta zeminde mor yazı (karar: 22 Ekim 2026, A).
-        case .secondary, .soft, .outline, .ghost: MPColor.actionPrimary
+        case .secondary, .outline, .ghost: MPColor.actionPrimary
         }
     }
 
+    /// Devre dışı düz gri ve kenarsız: saydamlık altındaki zemini bulandırıyordu.
     @ViewBuilder private var background: some View {
         switch kind {
+        case .ghost: Color.clear
+        case _ where !isEnabled: MPColor.actionDisabled
         case .primary: MPColor.actionPrimary
         case .danger: MPColor.statusDanger
         case .outline: MPColor.backgroundSurface
-        case .secondary, .soft: MPColor.actionSoft
-        case .ghost: Color.clear
+        case .secondary: MPColor.actionSoft
         }
     }
 
@@ -79,19 +97,6 @@ struct MPButton: View {
         switch kind {
         case .outline: Capsule().strokeBorder(MPColor.borderOutline, lineWidth: 2)
         default: EmptyView()
-        }
-    }
-}
-
-/// Birincil düğmenin derinliği: gradient ve parıltı yok, sert alt kenar
-/// (Design law, Derinlik; karar: 7 Kasım 2026).
-private struct PrimaryEdge: ViewModifier {
-    let active: Bool
-    func body(content: Content) -> some View {
-        if active {
-            content.background { Capsule().fill(MPColor.brandNight).offset(y: MP.E.widthLG) }
-        } else {
-            content
         }
     }
 }
@@ -123,35 +128,15 @@ struct MPCircleButton: View {
     }
 }
 
-/// Big round button: reader play/pause, page turn, record.
-struct MPRoundActionButton: View {
-    let systemImage: String
-    let accessibilityLabel: String
-    var size: CGFloat = 58
-    var fill: Color = MPColor.actionPrimary
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            MPIcon(systemImage, size: size * 0.4, weight: .bold)
-                .foregroundStyle(.white)
-                .frame(width: size, height: size)
-                .background(fill, in: Circle())
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel(accessibilityLabel)
-    }
-}
-
 #Preview("Buttons") {
     VStack(spacing: 16) {
         MPButton(title: "Devam et") {}
         MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles") {}
-        MPButton(title: "Şimdi değil", kind: .outline, fullWidth: true) {}
-        MPButton(title: "Planlar", kind: .soft, size: .small) {}
+        MPButton(title: "Planlar", kind: .secondary, fullWidth: true) {}
+        MPButton(title: "Düzenle", kind: .secondary, size: .small) {}
         MPButton(title: "Şimdi değil", kind: .ghost) {}
         MPButton(title: "Onaylıyorum") {}.disabled(true)
-        HStack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri") {}; MPRoundActionButton(systemImage: "play.fill", accessibilityLabel: "Sesli oku") {} }
+        MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri") {}
     }
     .padding()
     .background(MPColor.backgroundKid)
