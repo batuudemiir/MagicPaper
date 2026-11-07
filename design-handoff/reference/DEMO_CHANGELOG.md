@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main, b179000 üstüne · Ragi'nin çizimleri 4 kat net
+
+- Batuhan yüksek çözünürlüklü çizimleri bizim yapmamızı istedi. Önce koddan vektör Ragi denendi (iki geçiş, önden poz); özgün karakter gibi durmadı, çıkartma havası verdi, bırakıldı, kodu silindi.
+- **Yapılan:** 15 pozun tamamı cihaz içi süper çözünürlükle (VideoToolbox) 4 kat büyütüldü: `Tools/ragi/upscale_ragi.py`, `superres.swift`. Çizim yeniden çizilmedi, karakter aynı; yeni ayrıntı yok, net kenar var. macOS bunun için kendi modelini bir kez indirdi.
+- Saydamlık ayrıca büyütülüp sıkılaştırıldı. Özgün dosyalar `design-handoff/assets/brand`'de duruyor. `RagiRig` koordinatları oran olduğu için değişmedi. Brand kataloğu 8,9 MB.
+- **Bilerek değişmedi, özgün kesim kusurları:** `onBook` başının solu dik kesik (Paywall'da görünüyor), büst pozların altı keskin, `peek` kendi zeminini taşıyor. Yeni poz ve gerçek yeni çizim hâlâ illüstratör işi.
+- **Test:** MagicPaperTests 810 test, 1 atlandı, 0 hata; `testSnapshotStateView` referansı yeniden kaydedildi. UI testleri bu turda çalıştırılmadı (yalnızca görsel varlık değişti).
+- **Görüldü:** 15 pozun toplu sayfası, simülatörde Profil ekranı. **Görülmedi:** gerçek cihaz, diğer ekranlar.
+
 ### 2026-11-07 · main@73292b2 · Faz 4 Canlılık: Ragi hareketi ve sesi, masal sonu, önceki fazların kalanları
 
 - **Ragi hareketi (Batuhan: animatör yerine biz yapıyoruz):** Rive yerine mevcut çizimin üstüne Metal kukla (`RagiBones.metal`, `MPRagi.swift`): baş, kuyruk, kol ayrı oynar, göz kırpar, nefes alır. İşler: `idle`, `wave`, `cheer`, `read`, `write`, `walk`, `sleep`. `MascotImage` tek giriş, ekranların çoğu değişmedi; ekranların kendi nefes kodu kalktı. Reduce Motion ve düşük güç modunda düz çizim.

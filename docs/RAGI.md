@@ -40,7 +40,11 @@ Kurallar:
 - Yeni çizim gelirse yalnızca varlıklar ve `RagiRig` tablosu değişir, ekranlar değişmez.
 - `MascotImage` tek giriş; iş verilmezse pozun doğal hareketi (`Mascot.defaultAct`).
 
-Sınır: çizimler 1x (150 piksel civarı), telefonda hâlâ yumuşak görünür. Bu hareketle düzelmez; yüksek çözünürlüklü çizim gerekir.
+## Çizim dosyaları
+
+Katalogdaki pozlar özgün kesimlerin (`design-handoff/assets/brand/mascot*.png`) 4 kat büyütülmüşüdür: `Tools/ragi/upscale_ragi.py`, cihaz içi süper çözünürlük. Çizim yeniden çizilmedi, karakter birebir aynı; netlik arttı, yeni ayrıntı eklenmedi. Koddan vektör çizim denendi ve bırakıldı: aynı karakter gibi durmadı, çıkartma havası verdi.
+
+Yeni poz ya da gerçekten yeni çizim gerekirse illüstratör işi. Bilinen kesim kusurları özgün dosyalardan geliyor: `onBook` başının solu dik kesik, büst pozların altı keskin, `peek` kendi zeminini taşıyor.
 
 ## Ses
 

@@ -67,7 +67,7 @@ Devre dışı düğme saydamlaşmaz: düz gri ve kenarsızdır.
 
 ## Ragi
 
-Karakter kitabı, hareket ve ses: `docs/RAGI.md`. Çizimler bugün 1x PNG, telefonda yumuşak görünür; hareket kod kuklasıyla geliyor, yüksek çözünürlüklü çizim hâlâ açık.
+Karakter kitabı, hareket ve ses: `docs/RAGI.md`. Pozlar özgün çizimin 4 kat büyütülmüşü, hareket kod kuklasıyla geliyor.
 
 **Açık kararlar (Batuhan):** "Her çocuk ekranında Ragi" kuralı "anlamı olan ekranda"ya gevşesin mi? Paywall'dan Ragi kalksın mı? Karar verilene kadar Design law'daki kural geçerlidir.
 
