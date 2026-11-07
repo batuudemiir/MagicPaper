@@ -133,6 +133,10 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main@495013d · Cihaz kurulumu: Faz 4 ve net Ragi Batuhan'ın iPhone'unda
+
+- Debug derleme başarılı, iPhone'a kuruldu ve açıldı (komutlar hatasız). Uygulama içi davranış ve sesler cihazda gözle ya da kulakla kontrol edilmedi; Batuhan bakacak. Test çalıştırılmadı.
+
 ### 2026-11-07 · main@51e815c · Gönderim: Faz 4 ve net Ragi çizimleri origin'de
 
 - `main` origin'e gönderildi: Faz 4 Canlılık, net Ragi pozları ve bu kayıt.
