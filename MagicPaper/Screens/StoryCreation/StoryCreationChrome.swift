@@ -16,7 +16,7 @@ struct CreationTitle: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xs) {
             Text(title)
-                .mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                .mpText(.page).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
                 Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)

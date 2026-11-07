@@ -1,32 +1,5 @@
 import SwiftUI
 
-// MARK: - MPStepDots
-
-/// Sihirbazda her zaman 3 adım. Aktif nokta 30px'e uzar.
-struct MPStepDots: View {
-    var total: Int = 3
-    var current: Int = 0
-    var labels: [String]? = nil
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(0..<total, id: \.self) { i in
-                Capsule()
-                    .fill(i < current ? MP.C.brandTrack : (i == current ? MP.C.brand : MP.C.borderHairline))
-                    .frame(width: i == current ? 30 : 8, height: 8)
-                    .accessibilityLabel(labels?[safe: i] ?? "Adım \(i + 1)")
-            }
-        }
-        .animation(MP.M.gated(MP.M.spring), value: current)
-    }
-}
-
-private extension Array {
-    subscript(safe index: Int) -> Element? {
-        indices.contains(index) ? self[index] : nil
-    }
-}
-
 // MARK: - MPSheet
 
 /// Sistem sheet'inin içerik düzeni: başlık ve Kapat, kayan içerik, alt düğme

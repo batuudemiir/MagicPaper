@@ -40,10 +40,10 @@ struct SeriesWidgetView: View {
         let ready = series.isReady(at: entry.date)
         return VStack(alignment: .leading, spacing: MPSpacing.xxs) {
             Text(WidgetCopy.seriesEyebrow(series.episode, ready: ready))
-                .mpText(.caption)
+                .mpText(.footnote)
                 .foregroundStyle(MPColor.textSecondary)
             Text(series.title)
-                .mpText(.headline)
+                .mpText(.section)
                 .foregroundStyle(MPColor.textPrimary)
                 .lineLimit(2)
                 .minimumScaleFactor(0.85)

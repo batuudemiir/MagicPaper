@@ -52,56 +52,6 @@ struct WorldTile: View {
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
-
-// MARK: Story cover (Kitaplık grid 167 × 206, Ana sayfa / Okuyucu)
-
-struct MPStoryCover: View {
-    let title: String
-    let systemImage: String
-    let tone: MPWorldTone
-    var badge: String? = nil          // "Görselli", "Yarım", "İndirildi"
-    var actionTitle: String = "Oku"   // "Devam" for unfinished stories
-    var illustration: Image? = nil    // real cover image when the story has pictures
-
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            LinearGradient(colors: [tone.soft, tone.deep], startPoint: .topLeading, endPoint: .bottomTrailing)
-            if let illustration { illustration.resizable().scaledToFill() }
-            else {
-                MPIcon(systemImage, size: 64, weight: .light).foregroundStyle(.white.opacity(0.95))
-                    .frame(maxHeight: .infinity, alignment: .top).padding(.top, MPSpacing.xxl)
-                    .accessibilityHidden(true)
-            }
-            VStack(spacing: MPSpacing.sm) {
-                Text(actionTitle).mpText(.caption).fontWeight(.black).foregroundStyle(.white)
-                    .lineLimit(1)
-                    .padding(.horizontal, MPSpacing.lg).frame(minHeight: 28).background(MPColor.actionPrimary, in: Capsule())
-                Text(title).mpText(.footnote).fontWeight(.heavy).foregroundStyle(.white)
-                    .multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.75)
-            }
-            .padding(.horizontal, MPSpacing.md).padding(.bottom, MPSpacing.md).padding(.top, MPSpacing.xxxl)
-            .frame(maxWidth: .infinity)
-            .background(LinearGradient(colors: [MPColor.coverScrim.opacity(0), MPColor.coverScrim.opacity(0.62)], startPoint: .top, endPoint: .bottom))
-        }
-        .aspectRatio(167.0 / 206.0, contentMode: .fit)
-        // Kapak bir görsel karo: oranı sabit. Yazı en fazla xxLarge'a büyür;
-        // başlığın tamamı erişilebilirlik etiketinde.
-        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-        .clipShape(RoundedRectangle(cornerRadius: MPRadius.tile))
-        .overlay(alignment: .topLeading) {
-            if let badge {
-                Text(badge).mpText(.caption).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
-                    .lineLimit(1)
-                    .padding(.horizontal, MPSpacing.sm).padding(.vertical, MPSpacing.xxs)
-                    .background(.white.opacity(0.92), in: Capsule()).padding(MPSpacing.sm)
-                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-            }
-        }
-        .mpShadow(.card)
-        .accessibilityElement(children: .combine)
-    }
-}
-
 // MARK: Home hero ("Bu akşamın masalı"): 4 states, see docs/SCREENS.md › Ana sayfa
 
 enum TonightState { case resume(progress: Double, title: String, meta: String), unread(title: String, meta: String), readToday, bedtime(time: String) }
@@ -117,7 +67,7 @@ struct TonightHeroCard: View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 6) {
                 Text(eyebrow).mpText(.eyebrow).foregroundStyle(secondary)
-                Text(title).mpText(.title3).foregroundStyle(primary)
+                Text(title).mpText(.section).foregroundStyle(primary)
                 Text(sub).mpText(.footnote).foregroundStyle(secondary)
             }
             .frame(maxWidth: 200, minHeight: 120, alignment: .topLeading)
@@ -193,11 +143,11 @@ struct StreakStrip: View {
         HStack(spacing: 12) {
             MPIconTile(systemImage: "flame", tone: .peach, size: 42, filled: false)
             VStack(alignment: .leading, spacing: 8) {
-                Text(title).mpText(.bodyStrong).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.cardTitle).fontWeight(.black).foregroundStyle(MPColor.textPrimary)
                 HStack(spacing: 5) {
                     ForEach(Self.dayLetters.indices, id: \.self) { i in
                         let read = i < done.count && done[i]
-                        Text(Self.dayLetters[i]).mpText(.caption).fontWeight(.black)
+                        Text(Self.dayLetters[i]).mpText(.footnote).fontWeight(.black)
                             .foregroundStyle(read ? .white : MPColor.textSecondary)
                             .frame(width: 26, height: 26)
                             .background(read ? MPColor.statusStreak : (i == todayIndex ? .white : .white.opacity(0.6)), in: Circle())
@@ -224,7 +174,7 @@ struct StoryProgressRing: View {
         ZStack {
             Circle().stroke(MPColor.ringTrack, lineWidth: 14)
             Circle().trim(from: 0, to: progress).stroke(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 14, lineCap: .round)).rotationEffect(.degrees(-90))
-            Text("%\(Int(progress * 100))").mpText(.display).monospacedDigit().foregroundStyle(MPColor.textPrimary)
+            Text("%\(Int(progress * 100))").mpText(.cover).monospacedDigit().foregroundStyle(MPColor.textPrimary)
         }
         .frame(width: 150, height: 150)
         .animation(.easeInOut(duration: MPMotion.transition), value: progress)
@@ -243,7 +193,7 @@ struct StageRow: View {
                 .foregroundStyle(state == .done ? MPWorldTone.green.deep : state == .active ? MPColor.actionPrimary : MPColor.stageTodo)
                 .frame(width: 32, height: 32)
                 .background(state == .done ? MPWorldTone.green.soft : state == .active ? MPColor.actionSoft : MPWorldTone.gray.soft, in: Circle())
-            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
             Spacer()
         }
         .padding(.horizontal, MPSpacing.lg).padding(.vertical, MPSpacing.md)
@@ -273,9 +223,9 @@ struct NewWordCard: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
                 if onClose != nil { Text("Yeni kelime").mpText(.eyebrow).foregroundStyle(MPColor.actionPrimary) }
-                Text(word).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                Text(word).mpText(.section).foregroundStyle(MPColor.textPrimary)
                 Text(meaning).mpText(.body).foregroundStyle(onClose != nil ? MPColor.textSecondary : MPColor.textPrimary)
-                if let source { Text(source).mpText(.caption).foregroundStyle(MPColor.textSecondary) }
+                if let source { Text(source).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
             }
             Spacer()
             if let onSpeak {

@@ -65,7 +65,7 @@ struct StoryPreparationView: View {
                     Spacer(minLength: MP.S.x3)
 
                     Text(isDone ? (steps.last?.line ?? "Masal hazır.") : title)
-                        .mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                        .mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .multilineTextAlignment(.center)
                         .accessibilityAddTraits(.isHeader)
                         .contentTransition(.opacity)
@@ -74,7 +74,7 @@ struct StoryPreparationView: View {
 
                     if !isDone {
                         Text(step?.line ?? waitingLine)
-                            .mpText(.bodyStrong).foregroundStyle(MPColor.textSecondary)
+                            .mpText(.cardTitle).foregroundStyle(MPColor.textSecondary)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
                             .id(index)
@@ -158,7 +158,7 @@ struct StoryPreparationView: View {
                         .foregroundStyle(MPColor.actionPrimary)
                         .accessibilityHidden(true)
                     Text("Masal hazır. Okumadan önce bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
-                        .mpText(.bodyStrong)
+                        .mpText(.cardTitle)
                         .foregroundStyle(MPColor.textPrimary)
                         .fixedSize(horizontal: false, vertical: true)
                 }

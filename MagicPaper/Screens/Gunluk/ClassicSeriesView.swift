@@ -40,7 +40,7 @@ struct ClassicSeriesView: View {
                                     app.readClassic(episode)
                                 }
                             }
-                            Text(series.creditLine).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                            Text(series.creditLine).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .padding(.top, MPSpacing.md)
                         }
@@ -72,11 +72,11 @@ struct ClassicSeriesView: View {
                 .frame(height: Self.artHeight)
                 .frame(maxWidth: .infinity)
         } content: {
-            Text(series.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+            Text(series.title).mpText(.cover).foregroundStyle(MP.C.textOnArt)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
             Text("\(series.byline) · \(episodes.count) \(series.unitName) · \(series.ageLabel)")
-                .mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                .mpText(.supporting).foregroundStyle(MP.C.textOnArtMuted)
         }
         // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)
@@ -126,7 +126,7 @@ struct EpisodeRow: View {
                     .frame(width: 118, height: 70)
                     .overlay(MP.Scrim.solid.opacity(0.45))
                     .overlay {
-                        Text("\(episode.episode ?? 0)").mpText(.title2).foregroundStyle(MP.C.textOnArt)
+                        Text("\(episode.episode ?? 0)").mpText(.page).foregroundStyle(MP.C.textOnArt)
                     }
                     .overlay(alignment: .bottom) {
                         if state.fraction > 0 {
@@ -144,11 +144,11 @@ struct EpisodeRow: View {
                     .clipShape(RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(episode.title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                    Text(episode.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .multilineTextAlignment(.leading)
                     Text(episode.summary).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         .lineLimit(2).multilineTextAlignment(.leading)
-                    Text(status).mpText(.caption)
+                    Text(status).mpText(.footnote)
                         .foregroundStyle(state.status == .current ? MPColor.textPrimary : MPColor.textSecondary)
                         .padding(.top, MPSpacing.xxs / 2)
                 }

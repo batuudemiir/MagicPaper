@@ -232,9 +232,9 @@ struct MPKidTabHeader<Accessory: View>: View {
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             VStack(alignment: .leading, spacing: 0) {
                 if let eyebrow {
-                    Text(eyebrow).mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                    Text(eyebrow).mpText(.supporting).foregroundStyle(MPColor.textSecondary)
                 }
-                Text(title).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.cover).foregroundStyle(MPColor.textPrimary)
                     .lineLimit(2).minimumScaleFactor(0.7)
                     .accessibilityAddTraits(.isHeader)
             }
@@ -279,7 +279,7 @@ struct MPTopBar<Trailing: View>: View {
         HStack(spacing: 10) {
             if let onBack { MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", fill: backFill, action: onBack) } else { Color.clear.frame(width: MPSize.circleButton, height: MPSize.circleButton) }
             VStack(spacing: 0) {
-                Text(title).mpText(.navTitle).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
             }
@@ -298,4 +298,4 @@ extension MPTopBar where Trailing == EmptyView {
 
 /// Bottom sheet chrome (Masal aksiyonları, Okuma ayarları): present with
 /// `.sheet { ... .presentationDetents([.medium, .large]).presentationCornerRadius(MPRadius.sheet).presentationBackground(MPColor.backgroundKid) }`.
-/// The grabber is the system one (`.presentationDragIndicator(.visible)`); title = `.mpText(.headline)`.
+/// The grabber is the system one (`.presentationDragIndicator(.visible)`); title = `.mpText(.section)`.

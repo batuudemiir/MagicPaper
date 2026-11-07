@@ -16,7 +16,7 @@ struct LibrarySearchField: View {
                 .foregroundStyle(MPColor.textSecondary)
                 .accessibilityHidden(true)
             TextField("Masal, dünya ya da mod ara", text: $text)
-                .font(.mp(.bodyStrong))
+                .font(.mp(.cardTitle))
                 .foregroundStyle(MPColor.textPrimary)
                 .submitLabel(.search)
                 .autocorrectionDisabled()
@@ -54,7 +54,7 @@ struct LibraryContinueCard: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text(item.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(2).multilineTextAlignment(.leading)
-                    Text(item.meta).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                    Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     GeometryReader { geo in
                         Capsule().fill(MPColor.ringTrack)
                             .overlay(alignment: .leading) {
@@ -144,11 +144,11 @@ struct LibraryShelfGrid<QuickActions: View>: View {
     private func label(_ item: LibraryItem) -> some View {
         VStack(alignment: .leading, spacing: 1) {
             if !item.art.showsTitle {
-                Text(item.title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                Text(item.title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
                     .lineLimit(2).multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Text(item.meta).mpText(.caption).foregroundStyle(MPColor.textSecondary).lineLimit(1)
+            Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary).lineLimit(1)
         }
         .frame(width: coverWidth, alignment: .leading)
     }

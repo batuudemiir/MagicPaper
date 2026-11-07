@@ -30,7 +30,7 @@ struct ParentRouteView: View {
         }
     }
 
-    private func close() { app.parentRoute = nil }
+    private func close() { app.router.parentRoute = nil }
 
     private func profile(_ id: UUID) -> UserProfile? {
         profileManager.profiles.first { $0.id == id }

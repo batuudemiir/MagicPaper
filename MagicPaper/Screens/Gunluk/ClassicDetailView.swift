@@ -42,7 +42,7 @@ struct ClassicDetailView: View {
                             Text(tale.summary).mpText(.body).foregroundStyle(MPColor.textPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                             if tale.classic != nil { narrationPicker }
-                            Text(tale.creditLine).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                            Text(tale.creditLine).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -85,10 +85,10 @@ struct ClassicDetailView: View {
                 .frame(height: artHeight)
                 .frame(maxWidth: .infinity)
         } content: {
-            Text(tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+            Text(tale.title).mpText(.cover).foregroundStyle(MP.C.textOnArt)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
-            Text(tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+            Text(tale.fullMeta).mpText(.supporting).foregroundStyle(MP.C.textOnArtMuted)
         }
         // Sabit yükseklikli sahne: en büyük yazı boyutunda geri düğmesine binmez.
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)

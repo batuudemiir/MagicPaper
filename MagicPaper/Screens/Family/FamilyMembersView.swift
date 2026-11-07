@@ -155,7 +155,7 @@ struct FamilyMembersView: View {
                 MPListRow(systemImage: "envelope", tone: .lav, title: invite.code,
                           subtitle: "\(invite.role.title) · \(FamilyCopy.expiry(invite.expiresAt))") {
                     Button("Geri al") { Task { await revoke(invite) } }
-                        .mpText(.callout)
+                        .mpText(.supporting)
                         .foregroundStyle(MPColor.statusDanger)
                         .frame(minHeight: MPSize.minTouchParent)
                         .accessibilityLabel("\(invite.code) davetini geri al")
@@ -290,7 +290,7 @@ struct InviteAdultSheet: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xl) {
-                Text("Yetişkin davet et").mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text("Yetişkin davet et").mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 if let invite { created(invite) } else { form }
             }
@@ -346,7 +346,7 @@ struct InviteAdultSheet: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text("Davet kodu").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     Text(invite.code)
-                        .font(.mp(.largeTitle)).monospaced()
+                        .font(.mp(.page)).monospaced()
                         .foregroundStyle(MPColor.textPrimary)
                         .textSelection(.enabled)
                         .accessibilityLabel(invite.code.map(String.init).joined(separator: " "))
@@ -416,7 +416,7 @@ struct JoinFamilySheet: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xl) {
-                Text("Bir aileye katıl").mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text("Bir aileye katıl").mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 if let invite {
                     MPCard(area: .parent, padding: MPSpacing.lg) {

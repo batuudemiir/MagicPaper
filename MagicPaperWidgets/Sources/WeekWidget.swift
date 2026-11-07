@@ -26,19 +26,19 @@ struct WeekWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.sm) {
             Text(WidgetCopy.weekEyebrow)
-                .mpText(.caption)
+                .mpText(.footnote)
                 .foregroundStyle(MPColor.textSecondary)
             Spacer(minLength: 0)
             if count > 0 {
                 Text(WidgetCopy.weekCount(count))
-                    .mpText(.display)
+                    .mpText(.cover)
                     .foregroundStyle(MPColor.textPrimary)
                 Text(WidgetCopy.weekUnit)
                     .mpText(.footnote)
                     .foregroundStyle(MPColor.textSecondary)
             } else {
                 Text(WidgetCopy.weekStart)
-                    .mpText(.callout)
+                    .mpText(.supporting)
                     .foregroundStyle(MPColor.textPrimary)
                     .lineLimit(3)
             }

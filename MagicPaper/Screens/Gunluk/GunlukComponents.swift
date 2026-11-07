@@ -90,7 +90,7 @@ struct GunlukChip: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: MPSpacing.xxs) {
-                Text(title).mpText(.callout).lineLimit(1)
+                Text(title).mpText(.supporting).lineLimit(1)
                 if let trailingIcon {
                     MPIcon(trailingIcon, size: MP.G.xs, weight: .bold).accessibilityHidden(true)
                 }
@@ -126,10 +126,10 @@ struct ClassicShelfCard: View {
                 ClassicCoverTile(asset: cover, focus: focus, seed: title, width: width, height: height)
                 VStack(alignment: .leading, spacing: 1) {
                     // İki satır: "Kırmızı Başlıklı Kız" dar kartta kesilmesin.
-                    Text(title).mpText(.callout).foregroundStyle(onDark ? MPColor.textOnAction : MPColor.textPrimary)
+                    Text(title).mpText(.supporting).foregroundStyle(onDark ? MPColor.textOnAction : MPColor.textPrimary)
                         .lineLimit(2).multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(meta).mpText(.caption).foregroundStyle(onDark ? MPWorldTone.lav.soft : MPColor.textSecondary)
+                    Text(meta).mpText(.footnote).foregroundStyle(onDark ? MPWorldTone.lav.soft : MPColor.textSecondary)
                         .lineLimit(1)
                 }
                 .padding(.horizontal, MPSpacing.xxs / 2)
@@ -205,8 +205,8 @@ struct ContinueClassicCard: View {
                     .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(item.title).mpText(.callout).foregroundStyle(MPColor.textPrimary).lineLimit(1)
-                    Text("\(item.minutesLeft) dk kaldı").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                    Text(item.title).mpText(.supporting).foregroundStyle(MPColor.textPrimary).lineLimit(1)
+                    Text("\(item.minutesLeft) dk kaldı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 .padding(.horizontal, MPSpacing.xxs / 2)
             }
@@ -299,7 +299,7 @@ struct GunlukSection<Content: View>: View {
                         .accessibilityHidden(true)
                 }
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(title).mpText(.headline)
+                    Text(title).mpText(.section)
                         .foregroundStyle(night ? MPColor.textOnAction : MPColor.textPrimary)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibilityAddTraits(.isHeader)
@@ -367,11 +367,11 @@ struct GunlukShelfTile: View {
                                 in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
                 VStack(spacing: 0) {
-                    Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                    Text(title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                     if let count {
-                        Text("\(count) masal").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                        Text("\(count) masal").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     }
                 }
             }

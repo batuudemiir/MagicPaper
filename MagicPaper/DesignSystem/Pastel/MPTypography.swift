@@ -7,41 +7,32 @@
 import SwiftUI
 
 enum MPTextStyle: CaseIterable {
-    case display, largeTitle, title1, title2, title3, navTitle, headline, cardTitle
-    /// Günlük (FAZ 20): sola yaslı sayfa başlığı 34 ve illüstrasyon üstü masal adı 38.
-    case pageTitle, heroTitle
-    case button, body, bodyStrong, callout, footnote, caption, eyebrow, tabLabel, story, storyLarge
+    /// Sekiz rol (`docs/MARKA.md`) ve dipnotun büyük harfli çeşidi `eyebrow`.
+    case cover, page, section, cardTitle, body, supporting, footnote, eyebrow, button
 
-    /// Sekiz rol: kapak, sayfa, bölüm, kart, gövde, ikincil, dipnot, düğme.
-    /// Eski adlar rollerine iner; dokunulan ekranda rol adına taşınır (Faz 2).
     var size: CGFloat {
         switch self {
-        case .heroTitle, .pageTitle, .display: 34
-        case .largeTitle, .title1, .title2: 28
-        case .title3, .navTitle, .headline: 21
-        case .cardTitle, .bodyStrong, .button, .body: 17
-        case .callout: 15
-        case .footnote, .caption, .eyebrow: 13
-        case .tabLabel: 12
-        case .story: 19
-        case .storyLarge: 26
+        case .cover: 34
+        case .page: 28
+        case .section: 21
+        case .cardTitle, .body, .button: 17
+        case .supporting: 15
+        case .footnote, .eyebrow: 13
         }
     }
 
     var weight: Font.Weight {
         switch self {
-        case .heroTitle, .pageTitle, .display, .largeTitle, .title1, .title2: .bold
-        case .title3, .navTitle, .headline: .semibold
-        case .cardTitle, .bodyStrong, .button, .tabLabel, .storyLarge: .bold
-        case .body, .callout: .regular
-        case .footnote, .caption, .eyebrow, .story: .semibold
+        case .cover, .page, .cardTitle, .button: .bold
+        case .section, .footnote, .eyebrow: .semibold
+        case .body, .supporting: .regular
         }
     }
 
     /// Başlık rolleri Baloo 2, geri kalanı Nunito.
     var family: String {
         switch self {
-        case .heroTitle, .pageTitle, .display, .largeTitle, .title1, .title2, .title3, .navTitle, .headline: "Baloo 2"
+        case .cover, .page, .section: "Baloo 2"
         default: "Nunito"
         }
     }
@@ -49,11 +40,10 @@ enum MPTextStyle: CaseIterable {
     /// Multiplier of the font size (CSS line-height). Converted to SwiftUI lineSpacing in `mpText`.
     var lineHeight: CGFloat {
         switch self {
-        case .body, .bodyStrong, .footnote: 1.4
-        case .callout, .caption: 1.35
-        case .story, .storyLarge: 1.7
+        case .body, .footnote: 1.4
+        case .supporting: 1.35
         case .cardTitle: 1.25
-        case .button, .tabLabel: 1.0
+        case .button: 1.0
         default: 1.2
         }
     }
@@ -67,15 +57,13 @@ enum MPTextStyle: CaseIterable {
         switch self {
         // Büyük yazıda küçük stiller daha çok büyür: bölüm başlığı `.headline`'a bağlı
         // olsa en büyük boyutta sayfa başlığını geçerdi.
-        case .display, .pageTitle, .heroTitle: .largeTitle
-        case .largeTitle, .title1, .title2: .title
-        case .title3, .navTitle, .headline: .title2
+        case .cover: .largeTitle
+        case .page: .title
+        case .section: .title2
         case .cardTitle: .headline
-        case .button, .body, .bodyStrong: .body
-        case .callout: .callout
-        case .footnote: .footnote
-        case .caption, .eyebrow, .tabLabel: .caption
-        case .story, .storyLarge: .body
+        case .button, .body: .body
+        case .supporting: .callout
+        case .footnote, .eyebrow: .footnote
         }
     }
 
@@ -88,8 +76,6 @@ extension Font {
     static let mpNumeral = Font.custom("Nunito", size: 40, relativeTo: .largeTitle).weight(.black)
     /// Haftanın seçkisi sıra numarası (128 pt, süs; `accessibilityHidden`).
     static let mpRankNumeral = Font.custom("Nunito", size: 128, relativeTo: .largeTitle).weight(.black)
-    /// Harf madalyonu: daireye göre ölçeklenir.
-    static func mpInitial(size: CGFloat) -> Font { .custom("Nunito", size: size, relativeTo: .body).weight(.black) }
 }
 
 private struct MPTextModifier: ViewModifier {

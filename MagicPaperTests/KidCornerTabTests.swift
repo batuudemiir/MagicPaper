@@ -13,139 +13,139 @@ final class KidCornerTabTests: XCTestCase {
 
     func testOpeningTheProfileSelectsItsTab() {
         let app = MPAppState()
-        app.tab = .library
-        app.openKidCorner()
-        XCTAssertEqual(app.tab, .corner)
+        app.router.tab = .library
+        app.router.openKidCorner()
+        XCTAssertEqual(app.router.tab, .corner)
     }
 
     /// Çocuk değişince onun sayfaları kapanır; açık klasik herkesindir, kalır.
     func testChangingChildClosesTheChildsPages() {
         let app = MPAppState()
-        app.openKidCorner()
-        app.openKidPage(.newWords(UUID()))
-        app.tab = .gunluk
-        app.masallarPath = [.search]
-        app.openKidPage(.series(UUID()))
-        app.closePagesOfPreviousChild()
-        XCTAssertEqual(app.kidPaths[.corner] ?? [], [])
-        XCTAssertEqual(app.masallarPath, [.search])
+        app.router.openKidCorner()
+        app.router.openKidPage(.newWords(UUID()))
+        app.router.tab = .gunluk
+        app.router.masallarPath = [.search]
+        app.router.openKidPage(.series(UUID()))
+        app.router.closePagesOfPreviousChild()
+        XCTAssertEqual(app.router.kidPaths[.corner] ?? [], [])
+        XCTAssertEqual(app.router.masallarPath, [.search])
     }
 
     /// Ebeveyn odası çocuğun üstüne açılır: kapanınca çocuk bıraktığı yerdedir.
     func testLeavingTheParentRoomReturnsTheChildToWhereItWas() {
         let app = MPAppState()
         let route = MPKidRoute.newWords(UUID())
-        app.openKidCorner()
-        app.openKidPage(route)
-        app.requestParentMode()
-        XCTAssertTrue(app.showGate)
-        app.unlockParent()
-        XCTAssertFalse(app.showGate)
-        XCTAssertTrue(app.isParentMode)
-        app.enterChildMode()
-        XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .corner)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
+        app.router.openKidCorner()
+        app.router.openKidPage(route)
+        app.router.requestParentMode()
+        XCTAssertTrue(app.router.showGate)
+        app.router.unlockParent()
+        XCTAssertFalse(app.router.showGate)
+        XCTAssertTrue(app.router.isParentMode)
+        app.router.enterChildMode()
+        XCTAssertFalse(app.router.isParentMode)
+        XCTAssertEqual(app.router.tab, .corner)
+        XCTAssertEqual(app.router.kidPaths[.corner], [route])
     }
 
     /// Profil'deki "Büyükler için" ve "Ekle" yalnızca kapıyı açar; ebeveyn alanına geçmez.
     func testTheProfileReachesTheParentAreaOnlyThroughTheGate() {
         let app = MPAppState()
-        app.openKidCorner()
-        app.requestParentMode()
-        XCTAssertTrue(app.showGate)
-        XCTAssertFalse(app.isParentMode)
-        XCTAssertEqual(app.tab, .corner)
+        app.router.openKidCorner()
+        app.router.requestParentMode()
+        XCTAssertTrue(app.router.showGate)
+        XCTAssertFalse(app.router.isParentMode)
+        XCTAssertEqual(app.router.tab, .corner)
     }
 
     /// Widget ve Siri bağlantıları Köşem açıkken de Ana sayfaya döner.
     func testASurfaceLinkFromTheCornerLandsOnHome() {
         let app = MPAppState()
-        app.openKidCorner()
-        app.sheet = .profilePicker
+        app.router.openKidCorner()
+        app.router.sheet = .profilePicker
         app.open(.series, childID: nil)
-        XCTAssertEqual(app.tab, .home)
-        XCTAssertNil(app.sheet)
+        XCTAssertEqual(app.router.tab, .home)
+        XCTAssertNil(app.router.sheet)
     }
 
     // MARK: - Sekme yığınları (7 Kasım 2026)
 
     func testAKidPageIsPushedOnTheOpenTabAndBackPopsIt() {
         let app = MPAppState()
-        app.openKidCorner()
+        app.router.openKidCorner()
         let route = MPKidRoute.newWords(UUID())
-        app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
-        XCTAssertNil(app.sheet)
-        app.closeKidPage()
-        XCTAssertEqual(app.kidPaths[.corner], [])
+        app.router.openKidPage(route)
+        XCTAssertEqual(app.router.kidPaths[.corner], [route])
+        XCTAssertNil(app.router.sheet)
+        app.router.closeKidPage()
+        XCTAssertEqual(app.router.kidPaths[.corner], [])
     }
 
     func testEachTabKeepsItsOwnPathAcrossTabChanges() {
         let app = MPAppState()
         let route = MPKidRoute.series(UUID())
-        app.tab = .library
-        app.openKidPage(route)
-        app.tab = .home
-        XCTAssertEqual(app.kidPaths[.home] ?? [], [])
-        app.tab = .library
-        XCTAssertEqual(app.kidPaths[.library], [route])
+        app.router.tab = .library
+        app.router.openKidPage(route)
+        app.router.tab = .home
+        XCTAssertEqual(app.router.kidPaths[.home] ?? [], [])
+        app.router.tab = .library
+        XCTAssertEqual(app.router.kidPaths[.library], [route])
     }
 
     func testReselectingATabReturnsItToItsRoot() {
         let app = MPAppState()
-        app.openKidCorner()
-        app.openKidPage(.familyCharacters(UUID()))
-        app.reselectTab()
-        XCTAssertEqual(app.kidPaths[.corner], [])
+        app.router.openKidCorner()
+        app.router.openKidPage(.familyCharacters(UUID()))
+        app.router.reselectTab()
+        XCTAssertEqual(app.router.kidPaths[.corner], [])
     }
 
     func testTheSamePageIsNotPushedTwice() {
         let app = MPAppState()
         let route = MPKidRoute.newWords(UUID())
-        app.openKidCorner()
-        app.openKidPage(route)
-        app.openKidPage(route)
-        XCTAssertEqual(app.kidPaths[.corner], [route])
+        app.router.openKidCorner()
+        app.router.openKidPage(route)
+        app.router.openKidPage(route)
+        XCTAssertEqual(app.router.kidPaths[.corner], [route])
     }
 
     /// Masallar'ın yığını çocuk sayfalarını `GunlukRoute.kid` içinde taşır.
     func testAKidPageOpenedFromMasallarStaysOnMasallar() {
         let app = MPAppState()
         let route = MPKidRoute.series(UUID())
-        app.tab = .gunluk
-        app.openKidPage(route)
-        XCTAssertEqual(app.tab, .gunluk)
-        XCTAssertEqual(app.masallarPath, [.kid(route)])
-        app.closeKidPage()
-        XCTAssertEqual(app.masallarPath, [])
+        app.router.tab = .gunluk
+        app.router.openKidPage(route)
+        XCTAssertEqual(app.router.tab, .gunluk)
+        XCTAssertEqual(app.router.masallarPath, [.kid(route)])
+        app.router.closeKidPage()
+        XCTAssertEqual(app.router.masallarPath, [])
     }
 
     func testCharacterPagesArePushedOnTheParentStackAndCloseTheSheet() {
         let app = MPAppState()
-        app.requestParentMode()
-        app.unlockParent()
+        app.router.requestParentMode()
+        app.router.unlockParent()
         let id = UUID()
-        app.sheet = .profileEdit(id)
-        app.openKidPage(.familyCharacters(id))
-        XCTAssertEqual(app.parentRoute, .familyCharacters(id))
-        XCTAssertNil(app.sheet)
-        XCTAssertTrue(app.kidPaths.isEmpty)
-        app.closeKidPage()
-        XCTAssertNil(app.parentRoute)
+        app.router.sheet = .profileEdit(id)
+        app.router.openKidPage(.familyCharacters(id))
+        XCTAssertEqual(app.router.parentRoute, .familyCharacters(id))
+        XCTAssertNil(app.router.sheet)
+        XCTAssertTrue(app.router.kidPaths.isEmpty)
+        app.router.closeKidPage()
+        XCTAssertNil(app.router.parentRoute)
     }
 
     /// "Profili düzenle" eski hatasına dönmesin: yeni profil akışını açmaz.
     func testEditingAProfileOpensItsFormNotTheNewProfileFlow() {
         let app = MPAppState()
-        app.requestParentMode()
-        app.unlockParent()
+        app.router.requestParentMode()
+        app.router.unlockParent()
         let id = UUID()
-        app.sheet = .profileEdit(id)
-        app.openProfileEdit(id)
-        XCTAssertEqual(app.parentRoute, .profileEdit(id))
-        XCTAssertNil(app.sheet)
-        XCTAssertFalse(app.showProfileAdd)
+        app.router.sheet = .profileEdit(id)
+        app.router.openProfileEdit(id)
+        XCTAssertEqual(app.router.parentRoute, .profileEdit(id))
+        XCTAssertNil(app.router.sheet)
+        XCTAssertFalse(app.router.showProfileAdd)
     }
 
     func testEditingKeepsTheExactAgeWhileTheBandStaysTheSame() {
@@ -169,25 +169,25 @@ final class KidCornerTabTests: XCTestCase {
     /// Sheet kapanırken açılan modal yutulur: sıradaki iş kapanış bitince çalışır.
     func testWorkAfterASheetWaitsForItsDismissal() {
         let app = MPAppState()
-        app.sheet = .profilePicker
-        app.closeSheet { app.showProfileAdd = true }
-        XCTAssertNil(app.sheet)
-        XCTAssertFalse(app.showProfileAdd)
-        app.runAfterSheet()
-        XCTAssertTrue(app.showProfileAdd)
+        app.router.sheet = .profilePicker
+        app.router.closeSheet { app.router.showProfileAdd = true }
+        XCTAssertNil(app.router.sheet)
+        XCTAssertFalse(app.router.showProfileAdd)
+        app.router.runAfterSheet()
+        XCTAssertTrue(app.router.showProfileAdd)
         // Yalnızca bir kez çalışır.
-        app.showProfileAdd = false
-        app.runAfterSheet()
-        XCTAssertFalse(app.showProfileAdd)
+        app.router.showProfileAdd = false
+        app.router.runAfterSheet()
+        XCTAssertFalse(app.router.showProfileAdd)
     }
 
     func testReturningToChildModeClosesAnyOpenSheet() {
         let app = MPAppState()
-        app.requestParentMode()
-        app.unlockParent()
-        app.sheet = .signOut
-        app.enterChildMode()
-        XCTAssertNil(app.sheet)
+        app.router.requestParentMode()
+        app.router.unlockParent()
+        app.router.sheet = .signOut
+        app.router.enterChildMode()
+        XCTAssertNil(app.router.sheet)
     }
 
     func testTheBadgeGridShowsEveryBadgeEarnedOnesFirst() {
@@ -207,35 +207,35 @@ final class KidCornerTabTests: XCTestCase {
     /// ekleme açılır (16 Ekim denetimi).
     func testAddingAProfileFromTheCornerOpensProfileCreationAfterTheGate() {
         let app = MPAppState()
-        app.openKidCorner()
-        app.requestProfileAdd()
-        XCTAssertTrue(app.showGate)
-        XCTAssertFalse(app.showProfileAdd)
-        app.unlockParent()
-        app.gateDismissed()
-        XCTAssertTrue(app.isParentMode)
-        XCTAssertTrue(app.showProfileAdd)
+        app.router.openKidCorner()
+        app.router.requestProfileAdd()
+        XCTAssertTrue(app.router.showGate)
+        XCTAssertFalse(app.router.showProfileAdd)
+        app.router.unlockParent()
+        app.router.gateDismissed()
+        XCTAssertTrue(app.router.isParentMode)
+        XCTAssertTrue(app.router.showProfileAdd)
     }
 
     func testCancellingTheGateForgetsThePendingProfileAdd() {
         let app = MPAppState()
-        app.requestProfileAdd()
-        app.showGate = false
-        app.gateDismissed()
-        XCTAssertFalse(app.showProfileAdd)
+        app.router.requestProfileAdd()
+        app.router.showGate = false
+        app.router.gateDismissed()
+        XCTAssertFalse(app.router.showProfileAdd)
         // Sonraki sıradan kilit açılışı profil eklemeyi açmaz.
-        app.requestParentMode()
-        app.unlockParent()
-        app.gateDismissed()
-        XCTAssertFalse(app.showProfileAdd)
+        app.router.requestParentMode()
+        app.router.unlockParent()
+        app.router.gateDismissed()
+        XCTAssertFalse(app.router.showProfileAdd)
     }
 
     func testInTheParentAreaAddingAProfileSkipsTheGate() {
         let app = MPAppState()
-        app.requestParentMode()
-        app.unlockParent()
-        app.gateDismissed()
-        app.requestProfileAdd()
-        XCTAssertTrue(app.showProfileAdd)
+        app.router.requestParentMode()
+        app.router.unlockParent()
+        app.router.gateDismissed()
+        app.router.requestProfileAdd()
+        XCTAssertTrue(app.router.showProfileAdd)
     }
 }

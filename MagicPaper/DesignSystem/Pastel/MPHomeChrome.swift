@@ -302,7 +302,7 @@ struct HomeHeroCard: View {
             scene
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
-                Text(title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -482,7 +482,7 @@ struct HomeModeCard: View {
                 }
                 .overlay(alignment: .top) {
                     if let badge {
-                        Text(badge).mpText(.caption)
+                        Text(badge).mpText(.footnote)
                             .foregroundStyle(MPColor.textOnAction)
                             .lineLimit(1)
                             .padding(.horizontal, MPSpacing.sm)
@@ -569,7 +569,7 @@ struct HomeGunlukPreview: View {
             Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
                 .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 .padding(.top, MPSpacing.xxs)
-            Text("\(item.minutes) dakika").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+            Text("\(item.minutes) dakika").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
         }
         .frame(width: 118, alignment: .leading)
     }
@@ -633,7 +633,7 @@ struct HomeModeTile: View {
                     .frame(width: MPSize.iconTile, height: MPSize.iconTile)
                     .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
-                Text(title).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -649,7 +649,7 @@ struct HomeModeTile: View {
             }
             .overlay(alignment: .top) {
                 if let badge {
-                    Text(badge).mpText(.caption)
+                    Text(badge).mpText(.footnote)
                         .foregroundStyle(MPColor.textOnAction)
                         .lineLimit(1)
                         .padding(.horizontal, MPSpacing.sm)

@@ -35,7 +35,7 @@ struct ParentConsentView: View {
                         MascotImage(mascot: .calm, width: 80)
                             .accessibilityHidden(true)
                         Text("Çocuğunun verileri güvende")
-                            .mpText(.largeTitle)
+                            .mpText(.page)
                             .foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
                             .accessibilityAddTraits(.isHeader)
@@ -53,7 +53,7 @@ struct ParentConsentView: View {
                                         .accessibilityHidden(true)
                                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                                         Text(row.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                                        Text(row.body).mpText(.callout).fontWeight(.regular)
+                                        Text(row.body).mpText(.supporting).fontWeight(.regular)
                                             .foregroundStyle(MPColor.textSecondary)
                                             .fixedSize(horizontal: false, vertical: true)
                                     }
@@ -66,7 +66,7 @@ struct ParentConsentView: View {
                     VStack(alignment: .leading, spacing: MPSpacing.xs) {
                         MPCheckbox(isOn: $agreed, label: ParentConsentText.agreement)
                         Button("Aydınlatma metni") { showFullText = true }
-                            .mpText(.callout)
+                            .mpText(.supporting)
                             .foregroundStyle(MPColor.actionPrimary)
                             .underline()
                             .padding(.leading, (MPSpacing.xxxl + MPSpacing.xs))
@@ -78,7 +78,7 @@ struct ParentConsentView: View {
                     MPCard(padding: MPSpacing.lg) {
                         Toggle(isOn: $shareUsage) {
                             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                                Text(AccountCopy.usageRowTitle).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                                Text(AccountCopy.usageRowTitle).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                                 Text(AccountCopy.usageRowBody).mpText(.footnote).fontWeight(.regular)
                                     .foregroundStyle(MPColor.textSecondary)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -142,7 +142,7 @@ private struct ConsentFullTextSheet: View {
                         }
                     }
                     Text(AccountCopy.versionLine(ParentConsentText.version))
-                        .mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(MPSpacing.xl)
@@ -179,7 +179,7 @@ struct AccountRestoreView: View {
                     MascotImage(mascot: .reading, width: 160).accessibilityHidden(true)
                     ProgressView().controlSize(.large).tint(MPColor.actionPrimary)
                         .accessibilityHidden(true)
-                    Text(AccountCopy.restoringTitle).mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                    Text(AccountCopy.restoringTitle).mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .accessibilityAddTraits(.isHeader)
                     Text(AccountCopy.restoringBody).mpText(.body).foregroundStyle(MPColor.textSecondary)
                 }

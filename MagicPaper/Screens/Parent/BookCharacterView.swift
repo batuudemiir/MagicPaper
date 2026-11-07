@@ -127,7 +127,7 @@ struct BookCharacterView: View {
                 .disabled(model.kit == nil)
                 .accessibilityLabel("Kahramanı kaydet")
                 Text("Kahraman masal kapaklarında ve resimlerde böyle görünür.")
-                    .mpText(.caption).fontWeight(.regular)
+                    .mpText(.footnote).fontWeight(.regular)
                     .foregroundStyle(MPColor.textSecondary)
                     .multilineTextAlignment(.center)
             }
@@ -146,7 +146,7 @@ struct BookCharacterView: View {
                 .background(MPWorldTone.sky.soft, in: Circle())
                 .clipShape(Circle())
                 .mpShadow(.card)
-            Text(profile.name).mpText(.title2).foregroundStyle(MPColor.textPrimary)
+            Text(profile.name).mpText(.page).foregroundStyle(MPColor.textPrimary)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .ignore)
@@ -158,7 +158,7 @@ struct BookCharacterView: View {
         let options = kit.selectableOptions(group)
         let swatches = options.allSatisfy { $0.colorToken != nil }
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             MPWrapRow(spacing: MPSpacing.sm) {
                 if allowsNone {
@@ -201,6 +201,6 @@ struct BookCharacterView: View {
     }
 
     private func close() {
-        app.closeKidPage()
+        app.router.closeKidPage()
     }
 }

@@ -126,7 +126,7 @@ private struct ReminderPrePrompt: View {
                 .accessibilityHidden(true)
             VStack(spacing: MPSpacing.md) {
                 Text("Masal saatini hatırlatalım mı?")
-                    .mpText(.largeTitle).foregroundStyle(MPColor.textPrimary)
+                    .mpText(.page).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 Text("Her akşam seçtiğin saatte tek bir hatırlatma. Başka bildirim göndermeyiz.")
                     .mpText(.body).foregroundStyle(MPColor.textSecondary)
@@ -157,7 +157,7 @@ private struct ReminderPrePrompt: View {
 
             Spacer(minLength: MPSpacing.lg)
             Text("İzni sonra Ebeveyn bölümünden değiştirebilirsin.")
-                .mpText(.caption).fontWeight(.regular)
+                .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
         }

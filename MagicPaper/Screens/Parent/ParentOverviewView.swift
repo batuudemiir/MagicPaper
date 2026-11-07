@@ -90,14 +90,14 @@ struct ParentOverviewView: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 1) {
                     Text("\(pendingStories.count) masal onay bekliyor")
-                        .mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                        .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                     Text("Onaylayana kadar kitaplıkta görünmüyor")
                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
             }
             ForEach(pendingStories.prefix(5)) { story in
                 HStack(spacing: MPSpacing.md) {
-                    Text(story.title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                    Text(story.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     MPButton(title: "Onayla", kind: .secondary, size: .small) {
                         settings.approveStory(story.id)
@@ -156,7 +156,7 @@ struct ParentOverviewView: View {
                             RoundedRectangle(cornerRadius: MPRadius.sm)
                                 .fill(i == todayIndex ? MPColor.actionPrimary : MPColor.brandLilac.opacity(0.7))
                                 .frame(height: max(MPSpacing.lg, 100 * CGFloat(minutes[i]) / CGFloat(peak)))
-                            Text(days[i]).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                            Text(days[i]).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -181,7 +181,7 @@ struct ParentOverviewView: View {
     private var recentSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Son masallar", area: .parent,
-                            link: ("Kitap yap", { app.parentRoute = .bookExport }))
+                            link: ("Kitap yap", { app.router.parentRoute = .bookExport }))
             MPGroupedList(area: .parent) {
                 ForEach(Array(recentStories.enumerated()), id: \.element.id) { index, story in
                     if index > 0 { MPRowDivider(area: .parent) }

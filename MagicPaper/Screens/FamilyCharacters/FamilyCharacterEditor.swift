@@ -77,7 +77,7 @@ struct FamilyCharacterEditor: View {
                         }
 
                     VStack(alignment: .leading, spacing: MPSpacing.md) {
-                        Text(FamilyCharacterCopy.relationLabel).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                        Text(FamilyCharacterCopy.relationLabel).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         MPWrapRow(spacing: MPSpacing.sm) {
                             ForEach(FamilyRelationKind.allCases, id: \.self) { kind in
                                 MPChip(title: FamilyCharacterCopy.relation(kind),
@@ -92,7 +92,7 @@ struct FamilyCharacterEditor: View {
 
                     if relation == .animal {
                         VStack(alignment: .leading, spacing: MPSpacing.md) {
-                            Text(FamilyCharacterCopy.animalKindLabel).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                            Text(FamilyCharacterCopy.animalKindLabel).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                             MPWrapRow(spacing: MPSpacing.sm) {
                                 ForEach(kinds) { kind in
                                     MPChip(title: kind.name.capitalized(with: Locale(identifier: "tr_TR")),

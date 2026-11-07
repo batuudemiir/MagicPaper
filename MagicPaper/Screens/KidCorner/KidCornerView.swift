@@ -77,7 +77,7 @@ struct KidCornerView: View {
     /// sakin ve küçük; çocuğu çağırmaz, arayan ebeveyn bulur. Gizli hareket değil:
     /// ebeveyn bulamazsa destek sorunu olur. Kapıdan geçer.
     private var grownUpsEntry: some View {
-        Button { MPHaptics.tap(); app.requestParentMode() } label: {
+        Button { MPHaptics.tap(); app.router.requestParentMode() } label: {
             HStack(spacing: MPSpacing.xs) {
                 MPIcon("lock", size: MP.G.sm, weight: .semibold).accessibilityHidden(true)
                 Text("Büyükler için").mpText(.footnote)
@@ -108,7 +108,7 @@ struct KidCornerView: View {
             RagiGreeting(mascot: .waving, width: typeSize.isAccessibilitySize ? 80 : 96)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text("Merhaba \(profile?.name ?? "Arkadaşım")!")
-                    .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                    .mpText(.page).foregroundStyle(MPColor.textPrimary)
                 Text(greetingText).mpText(.body).foregroundStyle(MPColor.textSecondary)
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -141,7 +141,7 @@ struct KidCornerView: View {
                                 MPAvatar(name: child.name, color: child.mpColor, size: MPSize.minTouchKid)
                                     .padding(MPSpacing.xxs)
                                     .overlay(Circle().strokeBorder(selected ? MPColor.actionPrimary : .clear, lineWidth: 3))
-                                Text(child.name).mpText(.callout).fontWeight(.black)
+                                Text(child.name).mpText(.supporting).fontWeight(.black)
                                     .foregroundStyle(MPColor.textPrimary).lineLimit(1)
                             }
                             .frame(minWidth: MPSize.minTouchKid)
@@ -150,13 +150,13 @@ struct KidCornerView: View {
                         .accessibilityLabel(child.name)
                         .accessibilityAddTraits(selected ? .isSelected : [])
                     }
-                    Button { app.requestProfileAdd() } label: {
+                    Button { app.router.requestProfileAdd() } label: {
                         VStack(spacing: MPSpacing.xs) {
                             MPIcon("plus", size: MP.G.xl, weight: .semibold)
                                 .foregroundStyle(MPColor.textSecondary)
                                 .frame(width: MPSize.minTouchKid + MPSpacing.sm, height: MPSize.minTouchKid + MPSpacing.sm)
                                 .overlay(Circle().strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
-                            Text("Ekle").mpText(.callout).fontWeight(.black).foregroundStyle(MPColor.textSecondary)
+                            Text("Ekle").mpText(.supporting).fontWeight(.black).foregroundStyle(MPColor.textSecondary)
                         }
                     }
                     .buttonStyle(MPPressStyle())
@@ -213,7 +213,7 @@ struct KidCornerView: View {
             : AnyLayout(VStackLayout(spacing: MPSpacing.xxs))
         return layout {
             glyph().accessibilityHidden(true)
-            Text("\(value)").mpText(.title2).monospacedDigit().foregroundStyle(MPColor.textPrimary)
+            Text("\(value)").mpText(.page).monospacedDigit().foregroundStyle(MPColor.textPrimary)
             Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
         }
@@ -251,18 +251,18 @@ struct KidCornerView: View {
                     if IllustratedBookAccess.isEnabled() {
                         linkRow(icon: "paintpalette", tone: .sky, title: "Kahramanımı düzenle",
                                 subtitle: "Saç, ten rengi, gözlük, kıyafet") {
-                            guarded { app.openKidPage(.bookCharacter(profile.id)) }
+                            guarded { app.router.openKidPage(.bookCharacter(profile.id)) }
                         }
                         MPRowDivider(area: .kid)
                     }
                     linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
                             subtitle: familySubtitle) {
-                        app.openKidPage(.familyCharacters(profile.id))
+                        app.router.openKidPage(.familyCharacters(profile.id))
                     }
                     MPRowDivider(area: .kid)
                     linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
                             subtitle: wordsSubtitle) {
-                        app.openKidPage(.newWords(profile.id))
+                        app.router.openKidPage(.newWords(profile.id))
                     }
                 }
                 // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
@@ -273,7 +273,7 @@ struct KidCornerView: View {
 
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
     private func guarded(_ action: @escaping () -> Void) {
-        if app.isParentMode { action(); return }
+        if app.router.isParentMode { action(); return }
         afterGate = action
         gate = true
     }

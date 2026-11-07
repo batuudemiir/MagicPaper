@@ -8,7 +8,7 @@ struct ProfilePickerSheet: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
 
     var body: some View {
-        MPSheet(title: "Kim okuyacak?", onClose: { app.sheet = nil }) {
+        MPSheet(title: "Kim okuyacak?", onClose: { app.router.sheet = nil }) {
             MPGroupedList(area: .kid) {
                 ForEach(Array(profileManager.profiles.enumerated()), id: \.element.id) { index, profile in
                     if index > 0 { MPRowDivider(area: .kid) }
@@ -18,7 +18,7 @@ struct ProfilePickerSheet: View {
                                 subtitle: "\(profile.mpAgeRange.shortLabel) yaş · \(count(profile)) masal",
                                 action: {
                                     profileManager.switchProfile(to: profile)
-                                    app.sheet = nil
+                                    app.router.sheet = nil
                                     app.showToast("\(profile.name) seçildi", symbol: "checkmark")
                                 }) {
                         if isCurrent {
@@ -31,7 +31,7 @@ struct ProfilePickerSheet: View {
             }
         } footer: {
             MPButton(title: "Yeni profil ekle", systemImage: "plus", kind: .secondary, fullWidth: true) {
-                app.closeSheet { app.showProfileAdd = true }
+                app.router.closeSheet { app.router.showProfileAdd = true }
             }
         }
     }
@@ -61,7 +61,7 @@ struct ReaderSettingsSheet: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xl) {
-                Text("Okuma ayarları").mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text("Okuma ayarları").mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
 
                 group("Kâğıt") {
@@ -176,7 +176,7 @@ struct ReaderSettingsSheet: View {
     private var moreSection: some View {
         Button { showsMore.toggle() } label: {
             HStack {
-                Text("Daha fazla").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                Text("Daha fazla").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                 Spacer()
                 MPIcon("chevron.down", size: MP.G.sm, weight: .bold)
                     .foregroundStyle(MPColor.textSecondary)
@@ -228,7 +228,7 @@ struct ReaderSettingsSheet: View {
 
     private func group<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: MPSpacing.sm) {
-            Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
             content()
         }
     }
@@ -247,17 +247,17 @@ struct ProfileEditSheet: View {
     @State private var pendingDeletionStoryCount: Int?
 
     var body: some View {
-        MPSheet(title: profile.name, onClose: { app.sheet = nil }) {
+        MPSheet(title: profile.name, onClose: { app.router.sheet = nil }) {
             MPGroupedList(area: .kid) {
                 MPRowButton(systemImage: "pencil", title: "Profili düzenle", action: {
-                    app.openProfileEdit(profile.id)
+                    app.router.openProfileEdit(profile.id)
                 }) { MPChevron() }
 
                 if IllustratedBookAccess.isEnabled() {
                     MPRowDivider(area: .kid)
                     MPRowButton(systemImage: "sparkles", title: "Kahraman",
                                 subtitle: "Görselli masallarda görünecek kahraman", action: {
-                        app.openKidPage(.bookCharacter(profile.id))
+                        app.router.openKidPage(.bookCharacter(profile.id))
                     }) { MPChevron() }
                 }
 
@@ -265,21 +265,21 @@ struct ProfileEditSheet: View {
                 MPRowButton(systemImage: FamilyCharacterCopy.profileRowSymbol, tone: .pink,
                             title: FamilyCharacterCopy.profileRowTitle,
                             subtitle: FamilyCharacterCopy.profileRowDescription, action: {
-                    app.openKidPage(.familyCharacters(profile.id))
+                    app.router.openKidPage(.familyCharacters(profile.id))
                 }) { MPChevron() }
 
                 if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {
                     MPRowDivider(area: .kid)
                     MPRowButton(systemImage: InterestCopy.rowSymbol, tone: .green, title: InterestCopy.sectionTitle, action: {
-                        app.sheet = .interests(profile.id)
+                        app.router.sheet = .interests(profile.id)
                     }) { MPChevron() }
                 }
 
                 MPRowDivider(area: .kid)
                 MPRowButton(systemImage: "bookmark", tone: .sky, title: "Bu çocuğun masalları", action: {
                     profileManager.switchProfile(to: profile)
-                    app.sheet = nil
-                    app.tab = .library
+                    app.router.sheet = nil
+                    app.router.tab = .library
                 }) { MPChevron() }
 
                 if profileManager.profiles.count > 1 {
@@ -325,7 +325,7 @@ struct ProfileEditSheet: View {
         // the deletion was refused.
         switch profileManager.deleteProfile(profile) {
         case .success:
-            app.sheet = nil
+            app.router.sheet = nil
             app.showToast("Profil silindi", symbol: "trash", tone: .danger)
         case .failure(.lastProfile):
             app.showToast("Son profil silinemez", symbol: "exclamationmark.triangle", tone: .danger)

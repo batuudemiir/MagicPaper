@@ -45,7 +45,7 @@ struct OnboardingView: View {
                 HStack {
                     Spacer(minLength: 0)
                     Button("Geç", action: finish)
-                        .mpText(.bodyStrong)
+                        .mpText(.cardTitle)
                         .foregroundStyle(onDark ? Color.white : MPColor.textPrimary)
                         .frame(minWidth: MPSize.minTouchKid, minHeight: MPSize.minTouchParent)
                         .accessibilityHint("Karşılamayı atlar")
@@ -84,7 +84,7 @@ struct OnboardingView: View {
             Spacer(minLength: 0)
             VStack(spacing: MPSpacing.md) {
                 Text(page.title)
-                    .mpText(.largeTitle)
+                    .mpText(.page)
                     .foregroundStyle(index == 1 ? Color.white : MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 Text(page.body)

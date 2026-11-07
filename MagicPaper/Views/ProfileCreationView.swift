@@ -64,7 +64,7 @@ struct ProfileCreationView: View {
             VStack(spacing: MPSpacing.sm) {
                 if step == 2 {
                     Text("\(interests.count) seçildi")
-                        .mpText(.callout)
+                        .mpText(.supporting)
                         .foregroundStyle(MPColor.textSecondary)
                         .accessibilityAddTraits(.updatesFrequently)
                 }
@@ -126,7 +126,7 @@ struct ProfileCreationView: View {
                 .fill(color.opacity(0.18))
                 .frame(width: 150, height: 134)
                 .rotationEffect(.degrees(-18))
-            MPInitialAvatar(name: trimmedName, color: color, size: 76)
+            MPAvatar(name: trimmedName, color: color, size: 76).accessibilityHidden(true)
                 .mpShadow(.card)
         }
         .accessibilityHidden(true)
@@ -135,7 +135,7 @@ struct ProfileCreationView: View {
 
     private var colorPicker: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text("Avatar rengi").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            Text("Avatar rengi").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
             HStack(spacing: MPSpacing.md) {
                 ForEach(palette.indices, id: \.self) { i in
                     Button {
@@ -183,7 +183,7 @@ struct ProfileCreationView: View {
 
     private var agePicker: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text("Yaş aralığı").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+            Text("Yaş aralığı").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
             MPWrapRow(spacing: MPSpacing.sm) {
                 ForEach(offeredRanges) { range in
                     MPChip(title: range.title, isSelected: ageRange == range) {
@@ -193,11 +193,11 @@ struct ProfileCreationView: View {
                 }
             }
             Text("Masalın dili ve uzunluğu yaşa göre ayarlanır.")
-                .mpText(.caption).fontWeight(.regular)
+                .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
             if let ageNote {
                 Text(ageNote)
-                    .mpText(.caption).fontWeight(.regular)
+                    .mpText(.footnote).fontWeight(.regular)
                     .foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }

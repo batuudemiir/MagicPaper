@@ -79,7 +79,7 @@ struct GunlukShelfView: View {
                         .padding(.top, MPSpacing.sm)
 
                         VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                            Text(title).mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                            Text(title).mpText(.cover).foregroundStyle(MPColor.textPrimary)
                                 .accessibilityAddTraits(.isHeader)
                             Text(subtitle).mpText(.body).foregroundStyle(MPColor.textSecondary)
                         }
@@ -122,7 +122,7 @@ struct GunlukShelfView: View {
             MPIcon("magnifyingglass", size: MP.G.md, weight: .semibold).foregroundStyle(MPColor.actionPrimary)
                 .accessibilityHidden(true)
             TextField("Masal ara", text: $query)
-                .mpText(.bodyStrong)
+                .mpText(.cardTitle)
                 .foregroundStyle(MPColor.textPrimary)
                 .focused($searchFocused)
                 .submitLabel(.search)
@@ -181,7 +181,7 @@ struct GunlukShelfView: View {
         VStack(spacing: MPSpacing.md) {
             MascotImage(mascot: .thinking, width: 120).accessibilityHidden(true)
             Text(startsSearching && !query.isEmpty ? "Bu adla bir masal bulamadık." : "Bu rafta henüz masal yok.")
-                .mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                .mpText(.section).foregroundStyle(MPColor.textPrimary)
                 .multilineTextAlignment(.center)
             Text(startsSearching ? "Başka bir kelimeyle dene ya da raflara göz at." : "Yeni masallar yolda.")
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)

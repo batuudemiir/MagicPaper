@@ -21,9 +21,9 @@ struct ProfileSelectorView: View {
                     ForEach(profileManager.profiles) { profile in
                         Button { profileManager.switchProfile(to: profile) } label: {
                             HStack(spacing: MPSpacing.md) {
-                                MPInitialAvatar(name: profile.name, color: profile.mpColor)
+                                MPAvatar(name: profile.name, color: profile.mpColor, size: 52).accessibilityHidden(true)
                                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                                    Text(profile.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                                    Text(profile.name).mpText(.section).foregroundStyle(MPColor.textPrimary)
                                     Text("\(profile.mpAgeRange.shortLabel) yaş · \(storyCount(profile)) masal")
                                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                                 }

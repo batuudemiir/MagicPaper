@@ -110,13 +110,13 @@ struct StoryActionsSheet: View {
                 dismiss()
             }
             circleAction(icon: "square.and.arrow.up", title: "Paylaş", label: "Yazdır veya paylaş",
-                         locked: !app.isParentMode) {
-                if app.isParentMode { export() } else { gateFor = .export }
+                         locked: !app.router.isParentMode) {
+                if app.router.isParentMode { export() } else { gateFor = .export }
             }
             if AccountService.shared.canWriteFamily {
                 circleAction(icon: "trash", title: "Sil", label: "Masalı sil",
-                             tint: MP.C.danger, locked: !app.isParentMode) {
-                    if app.isParentMode { confirmDelete = true } else { gateFor = .delete }
+                             tint: MP.C.danger, locked: !app.router.isParentMode) {
+                    if app.router.isParentMode { confirmDelete = true } else { gateFor = .delete }
                 }
             }
         }
@@ -166,7 +166,7 @@ struct StoryActionsSheet: View {
             // Kitaplıktaki kapağın aynısı (20 Ekim): degrade karo yerine.
             MPBookCover(art: LibraryShelfModel.coverArt(story), width: 88)
             VStack(alignment: .leading, spacing: MPSpacing.sm) {
-                Text(story.title).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text(story.title).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                 // Etiket kutucukları yerine kitabın künyesi gibi tek satır.
                 Text(metaLine)

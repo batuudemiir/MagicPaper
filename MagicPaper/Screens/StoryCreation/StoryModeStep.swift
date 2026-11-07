@@ -76,7 +76,7 @@ struct StoryModeStep: View {
                         onSurprise()
                     } label: {
                         Label {
-                            Text("Bana sürpriz yap").mpText(.bodyStrong)
+                            Text("Bana sürpriz yap").mpText(.cardTitle)
                         } icon: {
                             MPIcon("wand.and.sparkles", size: MP.G.md, weight: .semibold)
                         }
@@ -131,7 +131,7 @@ struct StoryModeStep: View {
                     .padding(.bottom, MPSpacing.xxs)
                     .accessibilityHidden(true)
                 Text(prompt(for: mode))
-                    .mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                    .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                 Text("İstersen seç, istersen bize bırak.")
                     .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 MPWrapRow(spacing: MPSpacing.sm) {

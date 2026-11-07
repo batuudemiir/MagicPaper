@@ -90,7 +90,7 @@ struct PaywallView: View {
                 .accessibilityHidden(true)
             HStack(spacing: MPSpacing.xs) {
                 MPIcon("crown", size: 16, weight: .semibold)
-                Text("Premium").mpText(.callout)
+                Text("Premium").mpText(.supporting)
             }
             .foregroundStyle(MPWorldTone.yellow.deep)
             .padding(.horizontal, MPSpacing.lg)
@@ -103,7 +103,7 @@ struct PaywallView: View {
     private var valueSection: some View {
         VStack(spacing: MPSpacing.sm) {
             Text("Her akşam yeni bir masal")
-                .mpText(.largeTitle)
+                .mpText(.page)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             Text("Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.")
@@ -142,7 +142,7 @@ struct PaywallView: View {
             planCard(.premium, name: "Hikaye Kahramanı", allowance: "Ayda 5 görselli masal", recommended: true)
             planCard(.basic, name: "Yıldız Kaşifi", allowance: "Ayda 1 görselli masal", recommended: false)
             Text("İstediğin zaman iptal edebilirsin. İlk 7 gün ücretsiz.")
-                .mpText(.caption).fontWeight(.regular)
+                .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.top, MPSpacing.xs)
@@ -162,13 +162,13 @@ struct PaywallView: View {
                     .frame(width: 26, height: 26)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                    Text(name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
-                    Text(allowance).mpText(.callout).foregroundStyle(MPWorldTone.yellow.deep)
+                    Text(name).mpText(.section).foregroundStyle(MPColor.textPrimary)
+                    Text(allowance).mpText(.supporting).foregroundStyle(MPWorldTone.yellow.deep)
                     Text("Sınırsız metin masalı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text(price(tier)).mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                    Text(price(tier)).mpText(.page).foregroundStyle(MPColor.textPrimary)
                     Text(periodLabel).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
             }
@@ -179,7 +179,7 @@ struct PaywallView: View {
                 .strokeBorder(selected ? MPColor.actionPrimary : MPColor.borderKid, lineWidth: selected ? 3 : 1.5))
             .overlay(alignment: .topLeading) {
                 if recommended {
-                    Text("En çok seçilen").mpText(.caption)
+                    Text("En çok seçilen").mpText(.footnote)
                         .foregroundStyle(MPColor.textPrimary)
                         .padding(.horizontal, MPSpacing.md)
                         .padding(.vertical, MPSpacing.xxs)
@@ -251,7 +251,7 @@ struct PaywallView: View {
                 Link("Koşullar", destination: URL(string: "https://magicpaper.app/terms")!)
                 Link("Gizlilik", destination: URL(string: "https://magicpaper.app/privacy")!)
             }
-            .mpText(.caption)
+            .mpText(.footnote)
             .foregroundStyle(MPColor.actionPrimary)
             .frame(minHeight: MPSize.minTouchParent)
         }

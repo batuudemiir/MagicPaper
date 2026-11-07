@@ -67,7 +67,7 @@ struct MascotImage: View {
 /// White bubble with a small tail on the lower left, pointing at the mascot.
 struct SpeechBubble: View {
     let text: String
-    var style: MPTextStyle = .bodyStrong
+    var style: MPTextStyle = .cardTitle
     var body: some View {
         Text(text)
             .mpText(style)
@@ -115,7 +115,7 @@ struct MPStateView<Actions: View, Extra: View>: View {
                 MascotImage(mascot: mascot, width: 190).padding(.bottom, MPSpacing.md)
             }
             .frame(height: 200)
-            Text(title).mpText(.title2).multilineTextAlignment(.center).foregroundStyle(MPColor.textPrimary)
+            Text(title).mpText(.page).multilineTextAlignment(.center).foregroundStyle(MPColor.textPrimary)
             Text(message).mpText(.body).multilineTextAlignment(.center).foregroundStyle(MPColor.textSecondary).frame(maxWidth: 300)
             extra
             VStack(spacing: 6) { actions }.padding(.top, MPSpacing.xs)

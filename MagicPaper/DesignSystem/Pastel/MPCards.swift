@@ -65,7 +65,7 @@ struct MPListRow<Trailing: View>: View {
                     .accessibilityHidden(true)
             }
             VStack(alignment: .leading, spacing: 1) {
-                Text(title).mpText(.bodyStrong).foregroundStyle(isDestructive ? MPColor.statusDanger : MPColor.textPrimary)
+                Text(title).mpText(.cardTitle).foregroundStyle(isDestructive ? MPColor.statusDanger : MPColor.textPrimary)
                 if let subtitle { Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
             }
             Spacer(minLength: MPSpacing.sm)
@@ -159,19 +159,19 @@ struct MPSectionHeader<Leading: View, Trailing: View>: View {
             HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
                 leading
                 Text(title)
-                    .mpText(area == .kid ? .title3 : .headline)
+                    .mpText(area == .kid ? .section : .section)
                     .foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Spacer(minLength: MPSpacing.sm)
                 if let note {
-                    Text(note).mpText(.callout).monospacedDigit().foregroundStyle(MPColor.textSecondary)
+                    Text(note).mpText(.supporting).monospacedDigit().foregroundStyle(MPColor.textSecondary)
                         .accessibilityLabel(noteSpoken ?? note)
                 }
                 if let link {
                     Button(action: link.action) {
                         HStack(spacing: MPSpacing.xxs) {
-                            Text(link.title).mpText(.callout)
+                            Text(link.title).mpText(.supporting)
                             MPIcon("chevron.right", size: MP.G.xs, weight: .bold)
                         }
                         .foregroundStyle(MPColor.actionPrimary)
@@ -213,19 +213,6 @@ extension MPSectionHeader where Trailing == EmptyView {
                   link: link, leading: leading, trailing: { EmptyView() })
     }
 }
-
-/// Small rounded label: "Görselli", "8 sayfa", "Sihirli Krallık".
-struct MPPill: View {
-    let text: String
-    var tone: MPWorldTone = .gray
-    var body: some View {
-        Text(text).mpText(.caption)
-            .foregroundStyle(tone == .yellow ? MPColor.yellowText : tone.deep)
-            .padding(.horizontal, MPSpacing.md).padding(.vertical, MPSpacing.xxs)
-            .background(tone.soft, in: Capsule())
-    }
-}
-
 /// Number tile: Benim köşem (yıldız, seri, masal) and Özet (okuma süresi, okunan masal).
 struct MPStatTile: View {
     let systemImage: String
@@ -239,7 +226,7 @@ struct MPStatTile: View {
             VStack(alignment: .leading, spacing: 8) {
                 MPIconTile(systemImage: systemImage, tone: tone, size: 34)
                 HStack(alignment: .firstTextBaseline, spacing: 3) {
-                    Text(value).font(.mp(.largeTitle)).foregroundStyle(MPColor.textPrimary).monospacedDigit()
+                    Text(value).font(.mp(.page)).foregroundStyle(MPColor.textPrimary).monospacedDigit()
                     if let unit { Text(unit).mpText(.footnote).foregroundStyle(MPColor.textSecondary) }
                 }
                 Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
@@ -261,7 +248,7 @@ struct MPBadgeCard: View {
                 .frame(width: 50, height: 50)
                 .background(isUnlocked ? MPColor.backgroundSurface : MPColor.lockedCircle, in: Circle())
             // İki satırlık yer ayrılır: rozetler satırda eşit yükseklikte.
-            Text(title).mpText(.caption).multilineTextAlignment(.center)
+            Text(title).mpText(.footnote).multilineTextAlignment(.center)
                 .lineLimit(2, reservesSpace: true)
                 .foregroundStyle(isUnlocked ? MPColor.textPrimary : MPColor.textSecondary)
         }
@@ -297,30 +284,4 @@ struct MPNotice: View {
     }
     private var fg: Color { switch kind { case .info: MPColor.textPrimary; case .success: MPColor.statusSuccess; case .warning: MPColor.textPrimary; case .danger: MPColor.statusDanger } }
     private var bg: Color { switch kind { case .info: MPColor.actionSoft; case .success: MPColor.statusSuccessSoft; case .warning: MPColor.statusWarningSoft; case .danger: MPColor.statusDangerSoft } }
-}
-
-/// Çocuğun harf madalyonu: adın ilk harfi (Türkçe büyük harf), profil
-/// renginde daire. Harf daireye göre ölçeklenir; en büyük yazı boyutunda da
-/// taşmaz (madalyon bir görsel, metin değil; ad yanında yazılı).
-struct MPInitialAvatar: View {
-    let name: String
-    let color: Color
-    var size: CGFloat = 52
-
-    private var letter: String {
-        name.trimmingCharacters(in: .whitespaces).first
-            .map { String($0).uppercased(with: Locale(identifier: "tr_TR")) } ?? "?"
-    }
-
-    var body: some View {
-        Text(letter)
-            .font(.mpInitial(size: size * 0.45))
-            .dynamicTypeSize(...DynamicTypeSize.large)
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
-            .foregroundStyle(MPColor.textOnAction)
-            .frame(width: size, height: size)
-            .background(color, in: Circle())
-            .accessibilityHidden(true)
-    }
 }

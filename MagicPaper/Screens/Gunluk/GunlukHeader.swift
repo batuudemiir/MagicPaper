@@ -106,9 +106,9 @@ struct GunlukHeaderCarousel: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
                         .lineLimit(1).minimumScaleFactor(0.7)
-                    Text(slide.tale.title).mpText(.heroTitle).foregroundStyle(MP.C.textOnArt)
+                    Text(slide.tale.title).mpText(.cover).foregroundStyle(MP.C.textOnArt)
                         .lineLimit(3).minimumScaleFactor(0.6)
-                    Text(slide.tale.fullMeta).mpText(.callout).foregroundStyle(MP.C.textOnArtMuted)
+                    Text(slide.tale.fullMeta).mpText(.supporting).foregroundStyle(MP.C.textOnArtMuted)
                         .lineLimit(2).minimumScaleFactor(0.7)
                     MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
                              systemImage: slide.kind == .resume ? "play.fill" : "book",

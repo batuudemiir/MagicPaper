@@ -70,7 +70,7 @@ struct MPBookCover: View {
                         .rotationEffect(.degrees(-90))
                 }
                 .frame(width: MP.G.xs, height: MP.G.xs)
-                Text("Yarım").mpText(.caption)
+                Text("Yarım").mpText(.footnote)
             }
             .foregroundStyle(MPColor.textPrimary)
             .padding(.horizontal, MPSpacing.sm)
@@ -78,7 +78,7 @@ struct MPBookCover: View {
             .background(MPColor.backgroundSurface, in: Capsule())
         case let .episode(number, total):
             Text("\(number)/\(total)")
-                .mpText(.caption)
+                .mpText(.footnote)
                 .monospacedDigit()
                 .foregroundStyle(MPColor.textPrimary)
                 .padding(.horizontal, MPSpacing.sm)

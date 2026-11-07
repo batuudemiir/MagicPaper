@@ -40,10 +40,10 @@ struct ContentView: View {
             }
             #if DEBUG
             .onAppear {
-                if let tab = MPDebugLaunch.startTab { app.tab = tab }
-                if MPDebugLaunch.startsInParent { app.unlockParent() }
-                if let tab = MPDebugLaunch.parentTab { app.parentTab = tab }
-                if let route = MPDebugLaunch.parentRoute { app.parentRoute = route }
+                if let tab = MPDebugLaunch.startTab { app.router.tab = tab }
+                if MPDebugLaunch.startsInParent { app.router.unlockParent() }
+                if let tab = MPDebugLaunch.parentTab { app.router.parentTab = tab }
+                if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
             }
             #endif
             .task {
@@ -67,7 +67,7 @@ struct ContentView: View {
                 OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
             }
             .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
-                app.closePagesOfPreviousChild()
+                app.router.closePagesOfPreviousChild()
                 MPStreak.shared.activate(profileID: id)
             // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
             OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
@@ -81,7 +81,7 @@ struct ContentView: View {
             // Ebeveyn modu oturumluk: uygulama arka plana gidince çocuk moduna döner.
             .onChange(of: scenePhase) { _, phase in
                 if phase == .background {
-                    app.enterChildMode()
+                    app.router.enterChildMode()
                     RemoteContentService.scheduleBackgroundRefresh()
                     MPSurfaceSync.refresh()
                 }
@@ -97,10 +97,10 @@ struct ContentView: View {
             // Aile daveti bağlantısı (FAZ 18): kapıdan geçip Aile üyeleri'nde açılır.
             .onChange(of: account.pendingInviteCode, initial: true) { _, code in
                 guard code != nil else { return }
-                if app.isParentMode { app.parentRoute = .familyMembers } else { app.requestParentMode() }
+                if app.router.isParentMode { app.router.parentRoute = .familyMembers } else { app.router.requestParentMode() }
             }
-            .onChange(of: app.isParentMode) { _, parent in
-                if parent && account.pendingInviteCode != nil { app.parentRoute = .familyMembers }
+            .onChange(of: app.router.isParentMode) { _, parent in
+                if parent && account.pendingInviteCode != nil { app.router.parentRoute = .familyMembers }
             }
             // Widget, Live Activity ve Siri (FAZ 19): uygulama kök ekrana
             // varınca işlenir; giriş ya da profil seçimi sırasında bekler.
@@ -109,7 +109,7 @@ struct ContentView: View {
                 surfaceRouter.pending = nil
                 app.open(link, childID: profileManager.currentProfile?.id)
             }
-            .sheet(item: $app.sheet, onDismiss: { app.runAfterSheet() }) { route in
+            .sheet(item: $app.router.sheet, onDismiss: { app.router.runAfterSheet() }) { route in
                 sheetContent(route).environmentObject(app)
             }
             .fullScreenCover(item: $app.sleepSession, onDismiss: { MPSurfaceSync.refresh() }) { session in
@@ -154,8 +154,8 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $app.showPaywall) {
                 PaywallView().environmentObject(app)
             }
-            .fullScreenCover(isPresented: $app.showGate, onDismiss: { app.gateDismissed() }) {
-                ParentalGateView(onSuccess: { app.unlockParent() }, onCancel: { app.showGate = false })
+            .fullScreenCover(isPresented: $app.router.showGate, onDismiss: { app.router.gateDismissed() }) {
+                ParentalGateView(onSuccess: { app.router.unlockParent() }, onCancel: { app.router.showGate = false })
             }
             .fullScreenCover(item: $firstRun, onDismiss: {
                 if let story = firstStory {
@@ -168,7 +168,7 @@ struct ContentView: View {
                     firstRun = nil
                 }
             }
-            .fullScreenCover(isPresented: $app.showProfileAdd) {
+            .fullScreenCover(isPresented: $app.router.showProfileAdd) {
                 ProfileCreationView(mode: .addAnother) { name in
                     app.showToast("\(name) eklendi", symbol: "sparkles")
                 }
@@ -185,16 +185,16 @@ struct ContentView: View {
     private var content: some View {
         ZStack {
             kidRoot
-                .allowsHitTesting(!app.isParentMode)
-                .accessibilityHidden(app.isParentMode)
+                .allowsHitTesting(!app.router.isParentMode)
+                .accessibilityHidden(app.router.isParentMode)
 
-            if app.isParentMode {
+            if app.router.isParentMode {
                 parentRoot
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
                     .zIndex(1)
             }
         }
-        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.isParentMode)
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.router.isParentMode)
     }
 
     private var tabTransition: AnyTransition {
@@ -229,7 +229,7 @@ struct ContentView: View {
     @available(iOS 26.0, *)
     private var systemKidTabs: some View {
         TabView(selection: Binding<KidTabSlot>(
-            get: { .tab(app.tab.kidTab) },
+            get: { .tab(app.router.tab.kidTab) },
             set: { next in
                 switch next {
                 case .tab(let tab): selectKidTab(tab)
@@ -265,7 +265,7 @@ struct ContentView: View {
         // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
         // yalnızca solma.
         ZStack {
-            switch app.tab {
+            switch app.router.tab {
             case .home:    KidTabStack(tab: .home) { HomeView() }.transition(tabTransition)
             case .gunluk:  GunlukView().transition(tabTransition)
             case .library: KidTabStack(tab: .library) { LibraryView() }.transition(tabTransition)
@@ -273,10 +273,10 @@ struct ContentView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.tab)
+        .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.router.tab)
         .mpFloatingBar {
             KidTabBar(
-                selection: Binding(get: { app.tab.kidTab }, set: selectKidTab),
+                selection: Binding(get: { app.router.tab.kidTab }, set: selectKidTab),
                 onCreate: {
                     createFromBar = true
                     app.startStoryCreation()
@@ -288,16 +288,16 @@ struct ContentView: View {
 
     /// Seçili sekmeye yeniden dokunmak sayfayı başa alır.
     private func selectKidTab(_ next: KidTab) {
-        guard MPTab(next) != app.tab else { app.reselectTab(); return }
+        guard MPTab(next) != app.router.tab else { app.router.reselectTab(); return }
         MPHaptics.selection()
-        app.tab = MPTab(next)
+        app.router.tab = MPTab(next)
     }
 
     private var parentRoot: some View {
         ParentTabs(
             selection: Binding(
-                get: { app.parentTab.parentTab },
-                set: { app.parentTab = MPParentTab($0) }
+                get: { app.router.parentTab.parentTab },
+                set: { app.router.parentTab = MPParentTab($0) }
             ),
             summary: { ParentTabStack(tab: .overview) { ParentOverviewView() } },
             safety: { ParentTabStack(tab: .safety) { ParentSafetyView() } },
@@ -321,7 +321,7 @@ struct ContentView: View {
                 InterestsEditorSheet(profile: profile)
             }
         case .signOut:
-            AccountSignOutSheet(onClose: { app.sheet = nil })
+            AccountSignOutSheet(onClose: { app.router.sheet = nil })
         }
     }
 }
@@ -342,8 +342,8 @@ private struct KidTabStack<Root: View>: View {
     @EnvironmentObject private var app: MPAppState
 
     var body: some View {
-        NavigationStack(path: Binding(get: { app.kidPaths[tab] ?? [] },
-                                      set: { app.kidPaths[tab] = $0 })) {
+        NavigationStack(path: Binding(get: { app.router.kidPaths[tab] ?? [] },
+                                      set: { app.router.kidPaths[tab] = $0 })) {
             root
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: MPKidRoute.self) { route in
@@ -373,7 +373,7 @@ struct KidPageView: View {
             SeriesView(childID: child)
         case .newWords(let id):
             if let profile = profile(id) {
-                NewWordsView(profile: profile) { app.closeKidPage() }
+                NewWordsView(profile: profile) { app.router.closeKidPage() }
             }
         case .familyCharacters(let id):
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
@@ -388,7 +388,7 @@ struct KidPageView: View {
 }
 
 /// Ebeveyn sekmesinin yığını: alt sayfalar (`MPParentRoute`) açık olan sekmeye
-/// itilir; "Geri" `app.parentRoute`'u temizler.
+/// itilir; "Geri" `app.router.parentRoute`'u temizler.
 private struct ParentTabStack<Root: View>: View {
     let tab: MPParentTab
     @ViewBuilder var root: Root
@@ -400,8 +400,8 @@ private struct ParentTabStack<Root: View>: View {
             root
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(item: Binding(
-                    get: { app.parentTab == tab ? app.parentRoute : nil },
-                    set: { app.parentRoute = $0 }
+                    get: { app.router.parentTab == tab ? app.router.parentRoute : nil },
+                    set: { app.router.parentRoute = $0 }
                 )) { route in
                     ParentRouteView(route: route)
                         .toolbar(.hidden, for: .navigationBar)

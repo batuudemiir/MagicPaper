@@ -32,7 +32,7 @@ struct GunlukCategoriesView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                 HStack {
-                    Text("Kategoriler").mpText(.pageTitle).foregroundStyle(MPColor.textPrimary)
+                    Text("Kategoriler").mpText(.cover).foregroundStyle(MPColor.textPrimary)
                         .accessibilityAddTraits(.isHeader)
                     Spacer(minLength: MPSpacing.sm)
                     GunlukStageButton(systemImage: "xmark", label: "Kapat") { dismiss() }
@@ -70,7 +70,7 @@ struct GunlukCategoriesView: View {
                     .frame(width: MPSize.circleButton, height: MPSize.circleButton)
                     .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
-                Text(title).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text("\(n)").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 MPIcon("chevron.right", size: MP.G.sm, weight: .bold).foregroundStyle(MPColor.textChevron)

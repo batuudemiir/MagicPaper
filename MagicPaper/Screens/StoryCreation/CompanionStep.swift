@@ -98,7 +98,7 @@ struct CompanionStep: View {
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)
             if let onChangeMode {
                 Button("Değiştir", action: onChangeMode)
-                    .mpText(.bodyStrong)
+                    .mpText(.cardTitle)
                     .foregroundStyle(MPColor.actionPrimary)
                     .frame(minHeight: MPSize.minTouchParent)
                     .accessibilityHint("Masal türünü değiştirir")
@@ -162,7 +162,7 @@ struct CompanionStep: View {
             }
             if hasUnavailable {
                 Text(FamilyCharacterCopy.stepUnavailable)
-                    .mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }

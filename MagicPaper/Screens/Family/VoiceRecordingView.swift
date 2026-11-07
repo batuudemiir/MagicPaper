@@ -215,7 +215,7 @@ struct VoicePageRecorderView: View {
                     VStack(alignment: .leading, spacing: MPSpacing.sm) {
                         Text("BU SAYFAYI OKU").mpText(.eyebrow).foregroundStyle(MPColor.textSecondary)
                         Text(pageText)
-                            .mpText(.headline).fontWeight(.bold)
+                            .mpText(.section).fontWeight(.bold)
                             .foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -267,7 +267,7 @@ struct VoicePageRecorderView: View {
     @ViewBuilder
     private var controls: some View {
         VStack(spacing: MPSpacing.md) {
-            Text(hint).mpText(.bodyStrong).foregroundStyle(MPColor.textSecondary)
+            Text(hint).mpText(.cardTitle).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
 

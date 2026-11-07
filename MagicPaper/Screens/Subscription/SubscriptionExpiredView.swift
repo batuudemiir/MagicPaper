@@ -30,7 +30,7 @@ struct SubscriptionExpiredView: View {
                         .accessibilityHidden(true)
 
                     VStack(spacing: MPSpacing.sm) {
-                        Text("Premium süren doldu").mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                        Text("Premium süren doldu").mpText(.page).foregroundStyle(MPColor.textPrimary)
                             .accessibilityAddTraits(.isHeader)
                         Text("Hiçbir masal silinmedi. Ücretsiz planda şunlar devam ediyor:")
                             .mpText(.body).foregroundStyle(MPColor.textSecondary)
@@ -66,7 +66,7 @@ struct SubscriptionExpiredView: View {
                 .frame(width: 32, height: 32)
                 .background(kept ? MPColor.statusSuccessSoft : MPColor.backgroundSunken, in: Circle())
                 .accessibilityHidden(true)
-            Text(text).mpText(.bodyStrong)
+            Text(text).mpText(.cardTitle)
                 .foregroundStyle(kept ? MPColor.textPrimary : MPColor.textSecondary)
             Spacer(minLength: 0)
         }

@@ -63,7 +63,7 @@ struct NewWordsView: View {
         let isSpeaking = speakingID == item.id && speech.isSpeaking
         return HStack(alignment: .center, spacing: MPSpacing.md) {
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text(item.word.term).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text(item.word.term).mpText(.section).foregroundStyle(MPColor.textPrimary)
                 Text(item.word.meaning).mpText(.body).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                 if let sentence = item.sentence {
@@ -118,7 +118,7 @@ struct NewWordsView: View {
             Spacer(minLength: 0)
             MascotImage(mascot: .reading, width: 140).accessibilityHidden(true)
             Text(hasAny ? "Bu hafta yeni kelime yok" : "Kelimeler masallarda saklı")
-                .mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                .mpText(.section).foregroundStyle(MPColor.textPrimary)
             Text("Masal okurken altı noktalı kelimelere dokun. Okuduğun kelimeler burada toplanır.")
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)

@@ -19,7 +19,7 @@ struct MPChip: View {
         Button(action: action) {
             HStack(spacing: MPSpacing.xxs) {
                 if let systemImage { MPIcon(systemImage, size: 14, weight: .bold).accessibilityHidden(true) }
-                Text(title).mpText(.callout)
+                Text(title).mpText(.supporting)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -60,7 +60,7 @@ struct MPSegmented<Value: Hashable>: View {
             ForEach(options, id: \.0) { value, label in
                 let on = value == selection
                 Button { withAnimation(MPMotion.spring) { selection = value } } label: {
-                    Text(label).mpText(.callout)
+                    Text(label).mpText(.supporting)
                         .foregroundStyle(on ? selectedText : text)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -111,14 +111,14 @@ struct MPTextField: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if let label { Text(label).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary) }
+            if let label { Text(label).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary) }
             TextField(placeholder, text: $text)
                 .font(MPTextStyle.button.font).fontWeight(.bold)
                 .padding(.horizontal, MPSpacing.lg)
                 .frame(height: MPSize.inputHeight)
                 .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
                 .overlay(RoundedRectangle(cornerRadius: MPRadius.input).strokeBorder(isError ? MPColor.statusDanger : MPColor.borderKid, lineWidth: 1.5))
-            if let helper { Text(helper).mpText(.caption).foregroundStyle(isError ? MPColor.statusDanger : MPColor.textSecondary) }
+            if let helper { Text(helper).mpText(.footnote).foregroundStyle(isError ? MPColor.statusDanger : MPColor.textSecondary) }
         }
     }
 }

@@ -53,7 +53,7 @@ struct FamilyCharactersView: View {
 
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
     private func guarded(_ action: @escaping () -> Void) {
-        if app.isParentMode { action(); return }
+        if app.router.isParentMode { action(); return }
         afterGate = action
         gate = true
     }
@@ -72,7 +72,7 @@ struct FamilyCharactersView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xxl) {
                     MPTopBar(title: FamilyCharacterCopy.screenTitle, subtitle: "Masallarında tekrar görünen karakterler",
-                             onBack: { app.closeKidPage() },
+                             onBack: { app.router.closeKidPage() },
                              backFill: MPColor.backgroundSurface) { EmptyView() }
                         .padding(.top, MPSpacing.sm)
                     heroCard
@@ -95,7 +95,7 @@ struct FamilyCharactersView: View {
                         }
                     }
                     // Ebeveyn alanında Ragi yok (Design law).
-                    if !app.isParentMode {
+                    if !app.router.isParentMode {
                         MascotSays(mascot: .waving,
                                    text: full ? FamilyCharacterCopy.ragiFull : FamilyCharacterCopy.ragiInvite,
                                    mascotWidth: 72)
@@ -108,13 +108,13 @@ struct FamilyCharactersView: View {
             if let selected = characters.first(where: { $0.id == selectedID }) {
                 VStack(spacing: MPSpacing.sm) {
                     HStack(spacing: MPSpacing.lg) {
-                        Text("\(selected.name) seçili").mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                        Text("\(selected.name) seçili").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
                         Button("Düzenle") { guarded { mode = .editing(selected) } }
-                            .mpText(.callout).foregroundStyle(MPColor.actionPrimary)
+                            .mpText(.supporting).foregroundStyle(MPColor.actionPrimary)
                             .frame(minHeight: MPSize.minTouchParent)
                     }
                     MPButton(title: "Bu karakterle masal yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
-                        app.closeKidPage()
+                        app.router.closeKidPage()
                         app.startStoryCreation(family: selected.id)
                     }
                 }
@@ -133,19 +133,19 @@ struct FamilyCharactersView: View {
     /// (görselli kitap açıkken).
     private var heroCard: some View {
         HStack(spacing: MPSpacing.lg) {
-            MPInitialAvatar(name: profile.name, color: profile.mpColor, size: 64)
+            MPAvatar(name: profile.name, color: profile.mpColor, size: 64).accessibilityHidden(true)
                 .padding(MPSpacing.xxs)
                 .background(MPColor.backgroundSurface, in: Circle())
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text("Kahraman").mpText(.eyebrow).foregroundStyle(MPWorldTone.lav.soft)
-                Text(profile.name).mpText(.title3).foregroundStyle(MPColor.textOnAction)
+                Text(profile.name).mpText(.section).foregroundStyle(MPColor.textOnAction)
                     .fixedSize(horizontal: false, vertical: true)
                 Text("Her masalda").mpText(.footnote).foregroundStyle(MPWorldTone.lav.soft)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if IllustratedBookAccess.isEnabled() {
-                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.openKidPage(.bookCharacter(profile.id)) } }
+                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.router.openKidPage(.bookCharacter(profile.id)) } }
                     .accessibilityLabel("Kahramanı düzenle")
             }
         }
@@ -162,7 +162,7 @@ struct FamilyCharactersView: View {
                     .foregroundStyle(MPColor.actionPrimary)
                     .frame(width: MPSize.iconTile, height: MPSize.iconTile)
                     .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                Text(FamilyCharacterCopy.addButton).mpText(.callout).foregroundStyle(MPColor.actionPrimary)
+                Text(FamilyCharacterCopy.addButton).mpText(.supporting).foregroundStyle(MPColor.actionPrimary)
             }
             .frame(maxWidth: .infinity, minHeight: 168)
             .overlay(RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous)
@@ -187,13 +187,13 @@ struct FamilyCharactersView: View {
                     .foregroundStyle(tone.deep)
                     .frame(width: MPSize.iconTile, height: MPSize.iconTile)
                     .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                Text(character.name).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+                Text(character.name).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .lineLimit(1).minimumScaleFactor(0.8)
                 // İki ayrı satır: kareler aynı satırda aynı yükseklikte kalır.
                 VStack(spacing: 0) {
                     Text(relation).mpText(.footnote).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
-                    Text(FamilyCharacterCopy.appearances(count)).mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                    Text(FamilyCharacterCopy.appearances(count)).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         .lineLimit(typeSize.isAccessibilitySize ? nil : 2)
                 }
                 .multilineTextAlignment(.center)

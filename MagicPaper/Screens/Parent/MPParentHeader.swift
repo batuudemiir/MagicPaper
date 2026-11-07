@@ -66,7 +66,7 @@ struct MPParentHeader: View {
     private var titleBlock: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xxs) {
             Text(title)
-                .mpText(isRoot ? .largeTitle : .title3)
+                .mpText(isRoot ? .page : .section)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
@@ -79,7 +79,7 @@ struct MPParentHeader: View {
     }
 
     private var exitButton: some View {
-        Button { app.enterChildMode() } label: {
+        Button { app.router.enterChildMode() } label: {
             Label {
                 Text("Çocuk modu")
             } icon: {

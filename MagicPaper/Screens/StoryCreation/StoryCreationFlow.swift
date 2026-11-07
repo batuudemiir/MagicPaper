@@ -312,7 +312,7 @@ struct StoryCreationFlow: View {
                 selectedFamilyID: $chosenFamilyID,
                 // Free text is a parent's surface: in child mode the child
                 // picks from the characters the parent made, and cannot type.
-                onAddFamily: app.isParentMode ? { showsFamilyEditor = true } : nil,
+                onAddFamily: app.router.isParentMode ? { showsFamilyEditor = true } : nil,
                 onChangeMode: { goBack() }
             ) { companionID in
                 chosenCompanionID = companionID
@@ -441,7 +441,7 @@ struct StoryCreationFlow: View {
                     subOption: chosenTopicID,
                     family: chosenFamily
                 )
-                if app.isParentMode && MPSettingsStore.shared.approve {
+                if app.router.isParentMode && MPSettingsStore.shared.approve {
                     MPSettingsStore.shared.approveStory(story.id)
                 }
                 // Composition takes milliseconds; the preparation screen plays

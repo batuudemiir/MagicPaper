@@ -19,7 +19,7 @@ struct SleepLiveActivity: Widget {
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
                     Label {
-                        Text(WidgetCopy.sleepTitle).mpText(.callout)
+                        Text(WidgetCopy.sleepTitle).mpText(.supporting)
                     } icon: {
                         SleepMoon()
                     }
@@ -27,7 +27,7 @@ struct SleepLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     SleepRemaining(state: context.state)
-                        .mpText(.callout)
+                        .mpText(.supporting)
                         .foregroundStyle(MPColor.readerNightText)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
@@ -43,7 +43,7 @@ struct SleepLiveActivity: Widget {
                 SleepMoon()
             } compactTrailing: {
                 SleepRemaining(state: context.state)
-                    .mpText(.caption)
+                    .mpText(.footnote)
                     .foregroundStyle(MPColor.readerNightText)
                     .frame(maxWidth: MP.G.display)
             } minimal: {
@@ -89,7 +89,7 @@ private struct SleepStopButton: View {
     var body: some View {
         Button(intent: StopSleepModeIntent()) {
             Text(WidgetCopy.sleepStop)
-                .mpText(.callout)
+                .mpText(.supporting)
                 .padding(.horizontal, MPSpacing.md)
         }
         .buttonStyle(.bordered)
@@ -116,7 +116,7 @@ private struct SleepLockScreenView: View {
             VStack(alignment: .trailing, spacing: MPSpacing.xs) {
                 if !state.finished {
                     SleepRemaining(state: state)
-                        .mpText(.headline)
+                        .mpText(.section)
                         .foregroundStyle(MPColor.readerNightText)
                 }
                 SleepStopButton()

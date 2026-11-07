@@ -97,7 +97,7 @@ struct SleepModeView: View {
                         Spacer()
                     }
                     Label("Uyku modu", systemImage: "moon")
-                        .mpText(.callout).fontWeight(.heavy)
+                        .mpText(.supporting).fontWeight(.heavy)
                         .foregroundStyle(MPColor.readerNightSecondary)
                         .labelStyle(SleepLabelStyle())
                 }
@@ -115,7 +115,7 @@ struct SleepModeView: View {
                 VStack(spacing: MPSpacing.sm) {
                     Text(finished ? "İyi uykular" : "Sesli okunuyor")
                         .mpText(.eyebrow).foregroundStyle(MPColor.readerNightSecondary)
-                    Text(session.title).mpText(.title2).foregroundStyle(MPColor.readerNightText)
+                    Text(session.title).mpText(.page).foregroundStyle(MPColor.readerNightText)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Ekran yavaşça kararır, masal bitince kapanır.")
@@ -136,7 +136,7 @@ struct SleepModeView: View {
                 .accessibilityLabel(isPlaying ? "Duraklat" : "Oynat")
 
                 VStack(spacing: MPSpacing.sm) {
-                    Text("Kapanma süresi").mpText(.callout).foregroundStyle(MPColor.readerNightSecondary)
+                    Text("Kapanma süresi").mpText(.supporting).foregroundStyle(MPColor.readerNightSecondary)
                     MPSegmented(options: MPSleepTimer.choices.map { ($0, "\($0) dk") },
                                 selection: $playback.timer.minutes, track: MPColor.readerNightTrack,
                                 selectedFill: MPColor.readerNightSecondary.opacity(0.35),

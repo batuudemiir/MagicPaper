@@ -53,7 +53,7 @@ struct MPButton: View {
 
     @ViewBuilder private var label: some View {
         if size == .small {
-            Text(title).mpText(.callout).fontWeight(.bold)
+            Text(title).mpText(.supporting).fontWeight(.bold)
         } else {
             Text(title).mpText(.button)
         }

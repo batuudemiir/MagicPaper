@@ -42,7 +42,7 @@ struct ParentalGateView: View {
 
                     VStack(spacing: MPSpacing.sm) {
                         Text("Bu bölüm büyükler için")
-                            .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                            .mpText(.page).foregroundStyle(MPColor.textPrimary)
                             .multilineTextAlignment(.center)
                             .accessibilityAddTraits(.isHeader)
                         Text("Devam etmek için işlemi çöz")
@@ -60,7 +60,7 @@ struct ParentalGateView: View {
                             .keyboardType(.numberPad)
                             .focused($focused)
                             .multilineTextAlignment(.center)
-                            .mpText(.title2)
+                            .mpText(.page)
                             .foregroundStyle(MPColor.textPrimary)
                             .frame(width: 160, height: 54)
                             .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.input))
@@ -73,7 +73,7 @@ struct ParentalGateView: View {
                                 if digits != new { answer = digits }
                             }
                         if let error {
-                            Text(error).mpText(.callout).foregroundStyle(MPColor.statusDanger)
+                            Text(error).mpText(.supporting).foregroundStyle(MPColor.statusDanger)
                         }
                         // Kural ve bekleme sayacı alanın hemen altında: klavye açıkken görünür.
                         Text(locked

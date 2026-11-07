@@ -125,7 +125,7 @@ struct BookExportView: View {
                     .frame(width: 26, height: 26)
                     .accessibilityHidden(true)
                 Text(story.title)
-                    .mpText(.bodyStrong)
+                    .mpText(.cardTitle)
                     .foregroundStyle(MPColor.textPrimary)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -207,11 +207,11 @@ private struct BookCoverPreview: View {
 
     var body: some View {
         VStack(spacing: MPSpacing.lg) {
-            MPInitialAvatar(name: childName, color: color, size: 96)
+            MPAvatar(name: childName, color: color, size: 96).accessibilityHidden(true)
                 .padding(MPSpacing.md)
                 .background(MPColor.backgroundSurface.opacity(0.35), in: Circle())
             Text(title)
-                .mpText(.title3)
+                .mpText(.section)
                 .foregroundStyle(MPColor.textOnAction)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)

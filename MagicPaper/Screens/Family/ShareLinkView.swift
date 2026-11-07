@@ -147,7 +147,7 @@ struct ShareLinkView: View {
                           subtitle: "\(record.storyCount) masal · \(FamilyCopy.expiry(record.expiresAt))") {
                     if record.isActive() {
                         Button("Kapat") { Task { await revoke(record) } }
-                            .mpText(.callout)
+                            .mpText(.supporting)
                             .foregroundStyle(MPColor.statusDanger)
                             .frame(minHeight: MPSize.minTouchParent)
                             .accessibilityLabel("\(record.recipient ?? "Bağlantı") paylaşımını kapat")

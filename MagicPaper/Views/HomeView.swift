@@ -54,7 +54,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 0) {
                 MPKidTabHeader(title: activeName, eyebrow: greeting)
                 // Satır Profil'e götürür: yıldız ve serinin ayrıntısı orada.
-                Button { MPHaptics.tap(); app.openKidCorner() } label: {
+                Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
                     HomeStatLine(stars: stars, streak: streak.currentStreak)
                 }
                 .buttonStyle(MPPressStyle())
@@ -70,7 +70,7 @@ struct HomeView: View {
             if !gunlukItems.isEmpty {
                 HomeGunlukPreview(items: gunlukItems) {
                     MPHaptics.tap()
-                    app.tab = .gunluk
+                    app.router.tab = .gunluk
                 }
                 .homeEntrance(2)
             }
@@ -235,7 +235,7 @@ struct HomeView: View {
                         .background(MPWorldTone.green.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                         .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                        Text("Herkes için").mpText(.caption).foregroundStyle(MPColor.textSecondary)
+                        Text("Herkes için").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         Text(daily.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
                         Text("\(daily.readingTime) dakika").mpText(.footnote)

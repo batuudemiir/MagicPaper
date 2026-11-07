@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Faz 2 Mimari: MPRouter, tek yazı rolü, tek avatar, ölü bileşenler
+
+- `MPRouter` ayrıldı (`Screens/MPRouter.swift`): sekme, yığınlar, sheet, ebeveyn odası ve kapı; route enum'ları da orada. `MPAppState` 500 → yaklaşık 240 satır, `app.router` olarak taşıyor ve değişiklikleri iletiyor. 211 çağrı `app.router.x` oldu. Davranış değişmedi; okuyucu oturumu ve akşam akışı henüz `MPAppState`'te.
+- Yazı stilleri gerçekten sekiz role indi: `cover`, `page`, `section`, `cardTitle`, `body`, `supporting`, `footnote`, `button` ve büyük harfli `eyebrow`. Kullanılmayan `tabLabel`, `story`, `storyLarge` silindi. `bodyStrong` `cardTitle`'a, `caption` `footnote`'a katıldığı için bazı satır aralıkları küçük değişti.
+- `MP.F` boyutları aynı ölçeğe çekildi (başlık 34/28/21, gövde 17/15/13); en çok 2 pt fark. `MP.F`'in kendisi kalktı değil.
+- `MPInitialAvatar` `MPAvatar`'a katıldı: profil seçici, profil oluşturma, Masal ailem ve kitap kapağı avatarlarında artık sert alt kenar var.
+- Silinen ölü kod: `MPStatCard`, `MPChoiceTile`, `MPPill`, `MPPlanCard`, `MPProgressRing`, `MPStarPill`, `MPStepDots`, `MPStoryCard`, `MPStoryCover`, `MPBadge`, `LegacyMPControls.swift`, `MPPreviews.swift` (yalnızca bunların önizlemesiydi).
+- Yeni korkuluk: `NavigationFlowTests`, 5 akış (sekme geçişi, push ve geri, yığının sekme değişiminde kalması, masal yazmayı açıp kapatma, odadan bıraktığı sekmeye dönüş).
+- Yeni belge: `docs/ARCHITECTURE.md`. Design law'da stil adları güncellendi.
+- Bilerek yapılmadı: `.shared` taşıma, `MPColor`/`MPSpacing` takma adlarını toplu kaldırma ve performans işleri. Belgede borç olarak yazılı.
+- Görülen, bu işin dışında: paywall'da gökkuşağı gradient'i Design law'a aykırı; okuyucuda çocuğun adının geçtiği satırın altında satır aralığı açılıyor. İkisi de değiştirilmedi.
+- Test: MagicPaperTests 802 test, 1 atlandı, 0 hata. MagicPaperUITests 14 test, 0 hata. 17 görüntü referansı yenilendi, tam koşuda 0 fark. iPhone 17 Pro simülatöründe okuyucu, masal yazmanın ilk adımı, masal eylemleri sayfası, paywall, Özet ve Ayarlar gözle görüldü. iPhone SE, Pro Max, widget, basma hareketi, masal yazmanın sonraki adımları, en büyük yazıda bu ekranlar ve gerçek VoiceOver denenmedi. Gönderilmedi.
+- Dosyalar: `docs/ARCHITECTURE.md`, `Screens/MPRouter.swift`, `Screens/MPAppState.swift`, `MagicPaperUITests/NavigationFlowTests.swift`, `MPTypography.swift`, `MPTheme.swift`, `MPCards.swift`, `MPSurfaces.swift`, `MPStory.swift`, `MPNavigation.swift`, `__Snapshots__` ve `app.router` ile stil adı değişen ekranlar (yaklaşık 60 dosya).
+
 ### 2026-11-07 · main (commit aşağıda) · Faz 1 Marka temeli: Baloo 2, sekiz yazı rolü, düğme sistemi, sert kenar
 
 - Marka kitabı ve söz belgesi: `docs/MARKA.md`, `docs/SES_VE_SOZ.md`. Web, tanıtım filmi ve mevcut metinlerin bunlara uymadığı belgelerde açıkça yazılı (Faz 3 ve 6).

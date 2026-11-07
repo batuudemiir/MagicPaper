@@ -35,7 +35,7 @@ struct BedtimeStorySheet: View {
 
                 VStack(spacing: MPSpacing.xs) {
                     Text("Bu geceki masal")
-                        .mpText(.title2).foregroundStyle(MPColor.textPrimary)
+                        .mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .multilineTextAlignment(.center)
                         .accessibilityAddTraits(.isHeader)
                     Text("Kısa, sakin ve uykuya hazırlayan bir masal.")

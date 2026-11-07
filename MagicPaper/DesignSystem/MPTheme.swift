@@ -492,20 +492,20 @@ enum MP {
         static let body    = "Nunito"
 
         // Display: Baloo 2 (karar: 7 Kasım 2026, `docs/MARKA.md`)
-        static func displayXL() -> Font { .custom(display, size: 40).weight(.black) }
-        static func displayLG() -> Font { .custom(display, size: 32).weight(.black) }
-        static func displayMD() -> Font { .custom(display, size: 26).weight(.black) }
-        static func displaySM() -> Font { .custom(display, size: 21).weight(.black) }
+        static func displayXL() -> Font { .custom(display, size: 34).weight(.bold) }
+        static func displayLG() -> Font { .custom(display, size: 28).weight(.bold) }
+        static func displayMD() -> Font { .custom(display, size: 28).weight(.bold) }
+        static func displaySM() -> Font { .custom(display, size: 21).weight(.semibold) }
         /// StatCard / PlanCard fiyatı gibi ağır (800) display kullanımları
         static func displayHeavy(_ size: CGFloat) -> Font { .custom(display, size: size).weight(.heavy) }
 
         // Body — Nunito
-        static func bodyLG(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 18).weight(w) }
-        static func bodyMD(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 16).weight(w) }
-        static func bodySM(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 14).weight(w) }
+        static func bodyLG(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 17).weight(w) }
+        static func bodyMD(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 17).weight(w) }
+        static func bodySM(_ w: Font.Weight = .regular) -> Font { .custom(body, size: 15).weight(w) }
         static func labelMD(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 15).weight(w) }
         static func labelSM(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 13).weight(w) }
-        static func caption(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 12).weight(w) }
+        static func caption(_ w: Font.Weight = .bold) -> Font { .custom(body, size: 13).weight(w) }
 
         /// Masal metni. Satır yüksekliği 1.72 → lineSpacing = size * 0.72
         static func read(_ size: CGFloat) -> Font { .custom(body, size: size).weight(.semibold) }

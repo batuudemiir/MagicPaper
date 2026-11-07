@@ -50,7 +50,7 @@ struct AccountSignOutSheet: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                Text(AccountCopy.signOut).mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                Text(AccountCopy.signOut).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
                 Text(AccountCopy.signOutBody).mpText(.body).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -126,7 +126,7 @@ struct AccountDeletionSheet: View {
                         .frame(width: 64, height: 64)
                         .background(MPColor.statusDangerSoft, in: RoundedRectangle(cornerRadius: MPRadius.tile, style: .continuous))
                         .accessibilityHidden(true)
-                    Text("Her şey kalıcı olarak silinecek").mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                    Text("Her şey kalıcı olarak silinecek").mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .accessibilityAddTraits(.isHeader)
 
                     MPCard(area: .parent, padding: MPSpacing.lg) {
@@ -136,7 +136,7 @@ struct AccountDeletionSheet: View {
                                     MPIcon("xmark", size: 14, weight: .bold)
                                         .foregroundStyle(MPColor.statusDanger)
                                         .accessibilityHidden(true)
-                                    Text(line).mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
+                                    Text(line).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                                 }
                             }
                         }
@@ -149,7 +149,7 @@ struct AccountDeletionSheet: View {
 
                     if !storyManager.stories.isEmpty {
                         Button(isExporting ? "PDF hazırlanıyor" : "Önce masalları indir", action: exportBook)
-                            .mpText(.bodyStrong)
+                            .mpText(.cardTitle)
                             .foregroundStyle(MPColor.actionPrimary)
                             .disabled(isExporting || step != nil)
                             .frame(minHeight: MPSize.minTouchParent)
@@ -162,14 +162,14 @@ struct AccountDeletionSheet: View {
                         .disabled(step != nil)
 
                     Text(AccountCopy.deleteAccountBody)
-                        .mpText(.caption).fontWeight(.regular)
+                        .mpText(.footnote).fontWeight(.regular)
                         .foregroundStyle(MPColor.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
 
                     if let step {
                         HStack(spacing: MPSpacing.sm) {
                             ProgressView().tint(MPColor.actionPrimary).accessibilityHidden(true)
-                            Text(AccountCopy.deletionStep(step)).mpText(.callout).foregroundStyle(MPColor.textPrimary)
+                            Text(AccountCopy.deletionStep(step)).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
                         }
                         .accessibilityElement(children: .combine)
                     }

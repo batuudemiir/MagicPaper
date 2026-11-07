@@ -29,8 +29,8 @@ struct DailyStoryReaderView: View {
                                tint: theme.foreground,
                                fill: theme.isDark ? MPColor.readerNightTrack : MPColor.backgroundSurface) { dismiss() }
                 VStack(spacing: 0) {
-                    Text(story.title).mpText(.callout).foregroundStyle(theme.foreground).lineLimit(1)
-                    Text(story.mpMeta).mpText(.caption).foregroundStyle(theme.muted)
+                    Text(story.title).mpText(.supporting).foregroundStyle(theme.foreground).lineLimit(1)
+                    Text(story.mpMeta).mpText(.footnote).foregroundStyle(theme.muted)
                 }
                 .frame(maxWidth: .infinity)
                 MPCircleButton(systemImage: "textformat.size", accessibilityLabel: "Okuma ayarları",
@@ -61,7 +61,7 @@ struct DailyStoryReaderView: View {
                             MPIcon("sparkles", size: 22, weight: .semibold)
                                 .foregroundStyle(MPWorldTone.yellow.deep)
                                 .accessibilityHidden(true)
-                            Text(story.moralLesson).mpText(.bodyStrong)
+                            Text(story.moralLesson).mpText(.cardTitle)
                                 .foregroundStyle(MPColor.textPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }

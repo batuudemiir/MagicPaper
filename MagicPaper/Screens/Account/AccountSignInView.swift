@@ -31,7 +31,7 @@ struct AccountSignInView: View {
                             .accessibilityLabel("MagicPaper")
                         VStack(spacing: MPSpacing.md) {
                             Text(AccountCopy.signInTitle)
-                                .mpText(.largeTitle)
+                                .mpText(.page)
                                 .foregroundStyle(MPColor.textPrimary)
                                 .accessibilityAddTraits(.isHeader)
                             Text(AccountCopy.signInBody)
@@ -81,7 +81,7 @@ struct AccountSignInView: View {
                         }
 
                         Text(.init(AccountCopy.signInFootnote))
-                            .mpText(.caption)
+                            .mpText(.footnote)
                             .foregroundStyle(MPColor.textSecondary)
                             .tint(MPColor.actionPrimary)
                             .multilineTextAlignment(.center)
@@ -97,7 +97,7 @@ struct AccountSignInView: View {
                                 account.deferredSignIn = true
                             }
                             Text(AccountCopy.deferFootnote)
-                                .mpText(.caption)
+                                .mpText(.footnote)
                                 .foregroundStyle(MPColor.textSecondary)
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)

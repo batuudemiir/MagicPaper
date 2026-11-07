@@ -62,7 +62,7 @@ struct StoryEndingLeaf: View {
                 .accessibilityHidden(true)
 
             VStack(spacing: MPSpacing.sm) {
-                Text("Son").mpText(.display).foregroundStyle(theme.foreground)
+                Text("Son").mpText(.cover).foregroundStyle(theme.foreground)
                     .accessibilityAddTraits(.isHeader)
                 Text("İyi geceler, \(story.childName).")
                     .mpText(.body).foregroundStyle(theme.muted)
@@ -101,7 +101,7 @@ struct StoryEndingLeaf: View {
             MPIconTile(systemImage: icon, tone: tone, size: 42, filled: false)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MP.S.x1) {
-                Text(title).mpText(.headline).foregroundStyle(theme.foreground)
+                Text(title).mpText(.section).foregroundStyle(theme.foreground)
                 Text("Yeni rozet").mpText(.footnote).foregroundStyle(theme.muted)
             }
             Spacer(minLength: 0)
@@ -125,7 +125,7 @@ struct StoryEndingLeaf: View {
             .accessibilityLabel("Harika bir masaldı!")
 
             VStack(spacing: MPSpacing.sm) {
-                Text("Masal bitti!").mpText(.display).foregroundStyle(theme.foreground)
+                Text("Masal bitti!").mpText(.cover).foregroundStyle(theme.foreground)
                     .accessibilityAddTraits(.isHeader)
                 Text("\(story.title) burada bitiyor.")
                     .mpText(.body).foregroundStyle(theme.muted)
@@ -187,7 +187,7 @@ struct StoryEndingLeaf: View {
         VStack(spacing: MPSpacing.xs) {
             MPIconTile(systemImage: icon, tone: tone, size: 42, filled: false)
                 .accessibilityHidden(true)
-            Text(value).mpText(.headline).foregroundStyle(MPColor.textPrimary)
+            Text(value).mpText(.section).foregroundStyle(MPColor.textPrimary)
                 .multilineTextAlignment(.center)
             Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)

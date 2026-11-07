@@ -41,16 +41,16 @@ Bir ekran, adı görünmese de bu dördünden tanınır:
 
 | Rol | Font | Boyut / ağırlık | `MPTextStyle` |
 |---|---|---|---|
-| Kapak | Baloo 2 | 34 bold | `heroTitle`, `pageTitle`, `display` |
-| Sayfa başlığı | Baloo 2 | 28 bold | `largeTitle`, `title1`, `title2` |
-| Bölüm başlığı | Baloo 2 | 21 semibold | `title3`, `headline`, `navTitle` |
-| Kart başlığı | Nunito | 17 bold | `cardTitle`, `bodyStrong` |
+| Kapak | Baloo 2 | 34 bold | `cover` |
+| Sayfa başlığı | Baloo 2 | 28 bold | `page` |
+| Bölüm başlığı | Baloo 2 | 21 semibold | `section` |
+| Kart başlığı | Nunito | 17 bold | `cardTitle` |
 | Gövde | Nunito | 17 regular | `body` |
-| İkincil | Nunito | 15 regular | `callout` |
-| Dipnot | Nunito | 13 semibold | `footnote`, `caption`, `eyebrow` |
+| İkincil | Nunito | 15 regular | `supporting` |
+| Dipnot | Nunito | 13 semibold | `footnote`, büyük harfli çeşidi `eyebrow` |
 | Düğme | Nunito | 17 bold | `button` |
 
-Eski stil adları dokunulan ekranlarda bu sekiz role iner (Faz 2). Masal metni bu tablonun dışında: `MP.F.read`.
+Masal metni bu tablonun dışında: `MP.F.read`.
 
 ## Düğmeler
 

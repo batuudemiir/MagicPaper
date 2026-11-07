@@ -45,5 +45,5 @@ struct InterestsEditorSheet: View {
         close()
     }
 
-    private func close() { app.sheet = nil }
+    private func close() { app.router.sheet = nil }
 }

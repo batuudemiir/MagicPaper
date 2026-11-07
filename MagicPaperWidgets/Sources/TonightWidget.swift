@@ -28,7 +28,7 @@ struct TonightWidgetView: View {
         VStack(alignment: .leading, spacing: MPSpacing.xxs) {
             Spacer(minLength: 0)
             Text(tonight.map(WidgetCopy.eyebrow) ?? WidgetCopy.noChildEyebrow)
-                .mpText(.caption)
+                .mpText(.footnote)
                 .foregroundStyle(MP.C.textOnArtMuted)
             Text(tonight.map(WidgetCopy.title) ?? WidgetCopy.noChildTitle)
                 .mpText(.cardTitle)
@@ -37,7 +37,7 @@ struct TonightWidgetView: View {
                 .minimumScaleFactor(0.8)
             if let detail = tonight.flatMap(WidgetCopy.detail) {
                 Text(detail)
-                    .mpText(.caption)
+                    .mpText(.footnote)
                     .foregroundStyle(MP.C.textOnArtMuted)
             }
         }

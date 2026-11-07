@@ -37,12 +37,12 @@ struct LockWidgetView: View {
                     .accessibilityHidden(true)
                 if let bedtime = entry.snapshot.bedtime {
                     Text(bedtime.clockLabel)
-                        .mpText(.caption)
+                        .mpText(.footnote)
                         .minimumScaleFactor(0.7)
                         .accessibilityLabel("Yatma saati \(bedtime.clockLabel)")
                 } else {
                     Text(WidgetCopy.weekCount(count))
-                        .mpText(.headline)
+                        .mpText(.section)
                         .accessibilityLabel(WidgetCopy.weekAccessibility(count))
                 }
             }
@@ -51,7 +51,7 @@ struct LockWidgetView: View {
         default:
             VStack(alignment: .leading, spacing: 0) {
                 Text(WidgetCopy.weekEyebrow)
-                    .mpText(.caption)
+                    .mpText(.footnote)
                     .foregroundStyle(.secondary)
                 Text(WidgetCopy.weekLine(count))
                     .mpText(.cardTitle)

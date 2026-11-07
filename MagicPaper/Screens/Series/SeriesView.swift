@@ -55,7 +55,7 @@ struct SeriesView: View {
     }
 
     private func close() {
-        app.closeKidPage()
+        app.router.closeKidPage()
     }
 
     private var backButton: some View {
@@ -79,10 +79,10 @@ struct SeriesView: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                     Text("Seri masal").mpText(.eyebrow).foregroundStyle(MPColor.textSecondary)
-                    Text(s.firstStoryTitle).mpText(.title1).foregroundStyle(MPColor.textPrimary)
+                    Text(s.firstStoryTitle).mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibilityAddTraits(.isHeader)
-                    Text("\(s.childName) için").mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                    Text("\(s.childName) için").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
                 }
             }
         }
@@ -107,7 +107,7 @@ struct SeriesView: View {
     private func progressCard(_ rows: [Row]) -> some View {
         let read = rows.filter { if case .read = $0.state { return true }; return false }.count
         return HStack(spacing: MPSpacing.md) {
-            Text("\(read) / \(rows.count) bölüm").mpText(.bodyStrong).fontWeight(.black)
+            Text("\(read) / \(rows.count) bölüm").mpText(.cardTitle).fontWeight(.black)
                 .foregroundStyle(MPColor.textPrimary)
             GeometryReader { geo in
                 Capsule().fill(MPColor.backgroundSunken)
@@ -148,7 +148,7 @@ struct SeriesView: View {
                     if let story = library.getStory(id: id) { app.read(story) }
                 }
             case .tomorrow:
-                Label("Yarın", systemImage: "lock").mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                Label("Yarın", systemImage: "lock").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
             case .later:
                 MPIcon("lock", size: 18, weight: .semibold).foregroundStyle(MPColor.textTertiary)
                     .accessibilityLabel("Daha sonra")

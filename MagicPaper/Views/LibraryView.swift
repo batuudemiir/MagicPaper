@@ -93,8 +93,8 @@ struct LibraryView: View {
         return layout {
             RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 64 : 76)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text("Burası senin kitaplığın.").mpText(.bodyStrong).foregroundStyle(MPColor.textPrimary)
-                Text(summary).mpText(.callout).foregroundStyle(MPColor.textSecondary)
+                Text("Burası senin kitaplığın.").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                Text(summary).mpText(.supporting).foregroundStyle(MPColor.textSecondary)
             }
             .fixedSize(horizontal: false, vertical: true)
             .padding(MPSpacing.md)
@@ -186,7 +186,7 @@ struct LibraryView: View {
             }
         } label: {
             HStack(spacing: MPSpacing.xxs) {
-                Text(sort.title).mpText(.callout)
+                Text(sort.title).mpText(.supporting)
                 MPIcon("chevron.down", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
             }
             .foregroundStyle(MPColor.actionPrimary)
@@ -202,7 +202,7 @@ struct LibraryView: View {
         let searching = !query.trimmingCharacters(in: .whitespaces).isEmpty
         return VStack(spacing: MPSpacing.md) {
             Text(searching ? "Eşleşen kitap yok" : "Burada henüz kitap yok")
-                .mpText(.title3).foregroundStyle(MPColor.textPrimary)
+                .mpText(.section).foregroundStyle(MPColor.textPrimary)
             Text(searching ? "\u{201C}\(query)\u{201D} için bir şey bulamadık. Başka bir sözcük dene."
                            : "Okudukça kitapların burada toplanır.")
                 .mpText(.body).foregroundStyle(MPColor.textSecondary).multilineTextAlignment(.center)
@@ -239,7 +239,7 @@ struct LibraryView: View {
             Text(pendingCount == 1
                  ? "1 masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor."
                  : "\(pendingCount) masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
-                .mpText(.callout)
+                .mpText(.supporting)
                 .foregroundStyle(MPColor.textPrimary)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)

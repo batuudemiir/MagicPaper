@@ -31,7 +31,7 @@ struct ReaderTimeUpLeaf: View {
 
                 VStack(spacing: MPSpacing.sm) {
                     Text("Bugünlük bu kadar")
-                        .mpText(.display)
+                        .mpText(.cover)
                         .foregroundStyle(theme.foreground)
                         .multilineTextAlignment(.center)
                         .accessibilityAddTraits(.isHeader)

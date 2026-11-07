@@ -30,7 +30,7 @@ struct InterestChipGrid: View {
                 MPIcon(choice.symbol ?? "sparkles", size: 26, weight: .semibold)
                     .foregroundStyle(tone.deep)
                 Text(choice.name)
-                    .mpText(.callout)
+                    .mpText(.supporting)
                     .foregroundStyle(MPColor.textPrimary)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)

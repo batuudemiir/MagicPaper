@@ -100,8 +100,8 @@ final class ClassicProgressTests: XCTestCase {
 
     func testProfileIsATab() {
         let app = MPAppState()
-        app.tab = .gunluk
-        app.openKidCorner()
-        XCTAssertEqual(app.tab, .corner)
+        app.router.tab = .gunluk
+        app.router.openKidCorner()
+        XCTAssertEqual(app.router.tab, .corner)
     }
 }

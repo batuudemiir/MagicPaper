@@ -89,13 +89,13 @@ struct SettingsView: View {
                                 tone: Self.profileTones[index % Self.profileTones.count],
                                 title: profile.name,
                                 subtitle: profileLine(profile)) {
-                    app.sheet = .profileEdit(profile.id)
+                    app.router.sheet = .profileEdit(profile.id)
                 }
             }
             if account.canWriteFamily {
                 MPRowDivider(area: .parent)
                 ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
-                    app.showProfileAdd = true
+                    app.router.showProfileAdd = true
                 }
             }
         }
@@ -123,14 +123,14 @@ struct SettingsView: View {
         ParentSection(title: "Aile ve ses") {
             if FamilyFeatureAccess.isEnabled(.familyMembers) {
                 ParentRowButton(systemImage: "person.2", tone: .sky, title: "Aile üyeleri",
-                                subtitle: account.isFounder ? "Davet et, birlikte okuyun" : (account.role.map { "\($0.title) olarak katıldın" } ?? "")) { app.parentRoute = .familyMembers }
+                                subtitle: account.isFounder ? "Davet et, birlikte okuyun" : (account.role.map { "\($0.title) olarak katıldın" } ?? "")) { app.router.parentRoute = .familyMembers }
             }
             if FamilyFeatureAccess.isEnabled(.familyMembers) && FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 MPRowDivider(area: .parent)
             }
             if FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
-                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.parentRoute = .voiceRecording }
+                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.router.parentRoute = .voiceRecording }
             }
         }
     }
@@ -258,7 +258,7 @@ struct SettingsView: View {
 
     private var accountSection: some View {
         ParentSection(title: "Hesap") {
-            AccountStatusRows(onSignOut: { app.sheet = .signOut })
+            AccountStatusRows(onSignOut: { app.router.sheet = .signOut })
             MPRowDivider(area: .parent)
             ParentRowButton(systemImage: "crown", tone: .yellow, title: "Abonelik",
                             subtitle: subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan") {
