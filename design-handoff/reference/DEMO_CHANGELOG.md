@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main@51e815c · Gönderim: Faz 4 ve net Ragi çizimleri origin'de
+
+- `main` origin'e gönderildi: Faz 4 Canlılık, net Ragi pozları ve bu kayıt.
+- Önizleme videosu (`docs/media/ragi_onizleme.mp4`, 27 MB) commit dışında kaldı. Gönderim için ayrıca test çalıştırılmadı; son sonuçlar önceki kayıtlarda. Telefona kurulmadı.
+
 ### 2026-11-07 · main, b179000 üstüne · Ragi'nin çizimleri 4 kat net
 
 - Batuhan yüksek çözünürlüklü çizimleri bizim yapmamızı istedi. Önce koddan vektör Ragi denendi (iki geçiş, önden poz); özgün karakter gibi durmadı, çıkartma havası verdi, bırakıldı, kodu silindi.
