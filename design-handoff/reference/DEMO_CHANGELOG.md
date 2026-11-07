@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main (commit aşağıda) · Depo: bozuk `main 2` dalı silindi
+
+- Batuhan'ın onayıyla `.git/refs/heads/main 2` (iCloud kopyası, `git fetch`i bozuyordu) silindi. `fb1bf12`'yi gösteriyordu, o commit `main`'de; commit kaybı yok.
+- Doğrulandı: `git fetch origin main` hatasız, dal uyarısı yok, `main` değişmedi.
+- Bilerek dokunulmadı: `.git/index 2`, `index 3`, `index 4` kopyaları (`fetch`i bozmuyor).
+- Uygulama kodu değişmedi, test çalıştırılmadı. Bu kayıt commit'lendi, gönderilmedi.
+- Dosyalar: bu dosya.
+
 ### 2026-11-07 · main@c398a60 · Gönderim: UX araştırması, sayfa mimarisi ve Profil sekmesi origin'de
 
 - Batuhan'ın isteğiyle 15 commit origin'e gönderildi (4e6e9c8..c398a60), hızlı ileri. Başka bir oturumun token pilotu kaydı (`b92fdce`) ile `fb1bf12` de bu aralıkta.
