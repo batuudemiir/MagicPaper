@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main@aa4dfca · Gönderim ve cihaz kurulumu: Faz 0-3 origin'de, Batuhan'ın iPhone'unda
+
+- `main` origin'e gönderildi: Faz 0, Faz 1, Faz 2, Faz 3'ün hukuk gerektirmeyen kısmı ve bu kayıt.
+- Debug derleme Batuhan'ın iPhone'una kuruldu ve açıldı (derleme başarılı, kurulum ve açılış komutları hatasız). Uygulama içi davranış cihazda gözle görülmedi; Batuhan bakacak.
+- Kod değişmedi, test çalıştırılmadı. Faz 5'e geçiş Batuhan'ın telefon incelemesinden sonra konuşulacak.
+- Dosyalar: bu dosya.
+
 ### 2026-11-07 · main (commit aşağıda) · Faz 3 Akış (hukuk gerektirmeyen kısım): 3 dokunuşta masal, Ana sayfa, tek okuyucu
 
 - Masal yazma: moda dokununca geçilir, "Devam et" yok. Çubuktan okumaya 3 dokunuş (Masal yaz, mod, Masalı yaz), sürprizle 2. "Bana sürpriz yap" başka soru sormadan yazar. Konu mod adımından "kimler" adımına taşındı. İki çocuklu evde ayrı adım yerine üstte tek satır "İrem için" (`CreationChildPicker`); çocuk değişince aile karakterleri de yeniden yükleniyor.
