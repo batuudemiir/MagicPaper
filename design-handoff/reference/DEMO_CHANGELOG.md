@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-07 · main@73292b2 · Faz 4 Canlılık: Ragi hareketi ve sesi, masal sonu, önceki fazların kalanları
+
+- **Ragi hareketi (Batuhan: animatör yerine biz yapıyoruz):** Rive yerine mevcut çizimin üstüne Metal kukla (`RagiBones.metal`, `MPRagi.swift`): baş, kuyruk, kol ayrı oynar, göz kırpar, nefes alır. İşler: `idle`, `wave`, `cheer`, `read`, `write`, `walk`, `sleep`. `MascotImage` tek giriş, ekranların çoğu değişmedi; ekranların kendi nefes kodu kalktı. Reduce Motion ve düşük güç modunda düz çizim.
+- **Ses:** `Tools/make_ragi_sounds.py` ile beş ses sentezlendi, `MPSound` tek yüzey, Ayarlar'da "Sesler". Sessize alma anahtarına uyar, uyku vaktinde ve masal okunurken çalmaz. **Sesler kulakla dinlenmedi**, yalnızca süre ve seviye ölçüldü; Batuhan dinleyecek.
+- **Masal sonu:** gündüz Ragi zıplar, ses ve tek titreşim, kazanılanlar tek tek belirir, "Birlikte konuşalım" (`StoryTalkPrompts`, puansız iki soru), düğmeler "Bir masal daha" ve "Bitir". Gece uyuyan Ragi, sessiz, "İyi geceler" ekranı karartıp kapatır. "Tekrar oku" düğmesi kalktı.
+- **Önceki fazlardan:** Paywall ve Seri gökkuşağı gradient'i düz banda, `MPStory` kart ve kapak gradient'leri düz renge; raf ve Yeni kelimeler boş durumu `MPStateView`; Masallar başlığının arkası güçlendi; çocuğun adı okuyucuda gerçekten kalın; seçili sekmeye dokununca her sekme başa döner; 1,6 sn açılış yalnızca ilk açılışta, el sallayan Ragi ile.
+- Belgeler: `docs/RAGI.md` (karakter kitabı), `MARKA.md`, `STARTUP_PLANI.md`, Design law. Vitrin: `RagiStudioView` (yalnızca DEBUG). Önizleme videosu `docs/media/ragi_onizleme.mp4` (27 MB, commit edilmedi).
+- **Bilerek yapılmadı:** "önce masal" (hukuk görüşü bekliyor); yüksek çözünürlüklü Ragi çizimi (çizimler 1x, telefonda yumuşak; kod bunu çözmez); masal sonunda yıldız öğesi (tekrar okumada yeni yıldız gelmediği için yanlış söylerdi); `moralLesson` okuyucuda gösterilmiyor; ebeveyn odası VoiceOver.
+- **Test:** MagicPaperTests 810 test, 1 atlandı, 0 hata; UI testleri 17, 0 beklenmeyen hata. Okuyucu görüntü referansları ad kalınlığı için yeniden kaydedildi. UI testlerinde Ragi kımıldamaz (`-mpDemo`), hareket yalnız vitrinde görüldü.
+- **Görüldü:** iPhone 17 Pro simülatöründe hareket kareleri ve gündüz masal sonu (krem, normal yazı). **Görülmedi:** gerçek cihaz, gece masal sonu ve kararış, Paywall ve Seri'nin yeni bandı, Masallar başlığı, boş durumlar, koyu görünüm, en büyük yazı, iPhone SE ve Pro Max, Reduce Motion, VoiceOver.
+
 ### 2026-11-07 · main@aa4dfca · Gönderim ve cihaz kurulumu: Faz 0-3 origin'de, Batuhan'ın iPhone'unda
 
 - `main` origin'e gönderildi: Faz 0, Faz 1, Faz 2, Faz 3'ün hukuk gerektirmeyen kısmı ve bu kayıt.
