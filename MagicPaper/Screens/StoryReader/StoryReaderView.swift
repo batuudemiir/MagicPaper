@@ -84,7 +84,9 @@ struct StoryReaderView: View {
                 theme: theme,
                 isFavorite: favorites.contains(story.id),
                 isSpeaking: speech.isSpeaking && !speech.isPaused,
-                showsSecondary: model.controlsVisible,
+                familyVoice: familyRecording != nil,
+                // Masal sonu tam ekran bir an: yalnızca kapat kalır.
+                showsSecondary: model.controlsVisible && !isOnEnding,
                 pageLabel: model.folio.map { "Sayfa \($0)" },
                 progress: model.currentPage.map { Double($0.index + 1) / Double(max(story.pages.count, 1)) } ?? 0,
                 canGoPrevious: model.canGoPrevious,
@@ -446,6 +448,11 @@ struct StoryReaderView: View {
         app.showToast(now ? "Favorilere eklendi" : "Favorilerden çıkarıldı",
                       symbol: "heart.fill")
         scheduleAutoHide()
+    }
+
+    private var isOnEnding: Bool {
+        if case .ending = model.currentLeaf { return true }
+        return false
     }
 
     /// Bu sayfanın ailenin sesiyle kaydı, "Kim okusun?" ailenin sesiyse.

@@ -564,6 +564,16 @@ enum MP {
         }
         /// line-height 1.72
         var lineSpacing: CGFloat { points * 0.72 }
+        /// Yaşa göre varsayılan (Faz 5; Katzir 2013: küçük okurda büyük yazı).
+        /// Ebeveyn boyutu kendisi seçtiyse o kalır (`MPSettingsStore.readSizeChosen`).
+        static func standard(forAge age: Int?) -> ReadSize {
+            guard let age else { return .normal }
+            switch age {
+            case ...6: return .cokBuyuk
+            case 7...8: return .buyuk
+            default: return .normal
+            }
+        }
         /// Bir üst boyut (en büyükte kendisi): 3-6 yaşın nefes satırları
         /// seçilen boyutun bir üstünde dizilir.
         var larger: ReadSize {
@@ -678,6 +688,8 @@ enum MP {
             /// Masal sonunda kazanılanların arası ve geceye kararış.
             static let reveal: Double = 0.34
             static let nightFade: Double = 0.9
+            /// Masal sonundaki kâğıt yıldız patlamasının ömrü.
+            static let burst: Double = 1.8
         }
 
         static let sink: CGFloat = 2

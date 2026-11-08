@@ -159,6 +159,7 @@ struct ReaderSettingsSheet: View {
                     guard size != app.readSize else { return }
                     app.readSize = size
                     settings.readSize = size
+                    settings.readSizeChosen = true
                 }),
                    in: 0...Double(sizes.count - 1), step: 1)
                 .tint(MPColor.actionPrimary)

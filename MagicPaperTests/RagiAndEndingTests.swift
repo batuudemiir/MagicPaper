@@ -72,3 +72,33 @@ final class RagiAndEndingTests: XCTestCase {
         }
     }
 }
+
+/// Faz 5: yaşa göre yazı boyutu ve 3-6 yaşın kelime vurgusu.
+final class ReadingDepthTests: XCTestCase {
+
+    func testReadSizeFollowsAgeBand() {
+        XCTAssertEqual(MP.ReadSize.standard(forAge: 4), .cokBuyuk)
+        XCTAssertEqual(MP.ReadSize.standard(forAge: 6), .cokBuyuk)
+        XCTAssertEqual(MP.ReadSize.standard(forAge: 7), .buyuk)
+        XCTAssertEqual(MP.ReadSize.standard(forAge: 10), .normal)
+        XCTAssertEqual(MP.ReadSize.standard(forAge: nil), .normal)
+    }
+
+    func testBreathWordMarkFindsLineAndWord() {
+        let paragraphs = ["Ay doğdu. Kedi uyandı.", "Rüzgâr esti."]
+        // İlk paragrafın ikinci cümlesindeki "uyandı".
+        let first = paragraphs[0] as NSString
+        let location = first.range(of: "uyandı").location
+        let mark = ReaderText.breathWordMark(paragraphs: paragraphs, location: location, length: 6)
+        XCTAssertEqual(mark?.paragraph, 0)
+        XCTAssertEqual(mark?.line, 1)
+        let line = (paragraphs[0] as NSString).substring(from: first.range(of: "Kedi").location) as NSString
+        XCTAssertEqual(line.substring(with: NSRange(location: mark!.start, length: mark!.end - mark!.start)), "uyandı")
+
+        // İkinci paragraf: "\n\n" ile birleşmiş metindeki konum.
+        let joined = paragraphs.joined(separator: "\n\n") as NSString
+        let wind = ReaderText.breathWordMark(paragraphs: paragraphs, location: joined.range(of: "esti").location, length: 4)
+        XCTAssertEqual(wind?.paragraph, 1)
+        XCTAssertEqual(wind?.line, 0)
+    }
+}

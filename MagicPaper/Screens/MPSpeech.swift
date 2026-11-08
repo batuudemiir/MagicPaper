@@ -21,6 +21,8 @@ final class MPSpokenPosition: ObservableObject {
     struct Spoken: Equatable {
         let text: String
         let location: Int
+        /// Okunan kelimenin UTF-16 uzunluğu (3-6 yaşta kelime vurgusu).
+        var length: Int = 0
     }
     @Published fileprivate(set) var value: Spoken?
     private init() {}
@@ -208,9 +210,10 @@ extension MPSpeech: AVSpeechSynthesizerDelegate {
         let id = ObjectIdentifier(utterance)
         let text = utterance.speechString
         let location = characterRange.location
+        let length = characterRange.length
         Task { @MainActor in
             guard self.isCurrent(id) else { return }
-            MPSpokenPosition.shared.value = .init(text: text, location: location)
+            MPSpokenPosition.shared.value = .init(text: text, location: location, length: length)
         }
     }
 }

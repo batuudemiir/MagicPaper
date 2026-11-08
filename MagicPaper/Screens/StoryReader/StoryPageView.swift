@@ -270,12 +270,17 @@ struct StoryPageView: View {
     private var breathLines: some View {
         let size = readSize.larger.points
         let lineGap = size * max(spacing.factor, MP.ReadSpacing.rahat.factor)
-        ForEach(Array(ReaderText.breathLines(of: page.paragraphs).enumerated()), id: \.offset) { _, lines in
+        let word = breathWordMark
+        ForEach(Array(ReaderText.breathLines(of: page.paragraphs).enumerated()), id: \.offset) { p, lines in
             VStack(alignment: .leading, spacing: size * 0.55) {
-                ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                ForEach(Array(lines.enumerated()), id: \.offset) { l, line in
+                    // Sesli okumada okunan kelime fosforlu kalemle; satırın gerisi olduğu gibi.
+                    let mark = word.flatMap { $0.paragraph == p && $0.line == l ? $0 : nil }
                     Text(ReaderWords.attributed(line, words: page.words, size: size,
                                                 ink: theme.body, highlight: wordHighlight,
-                                                childName: childName))
+                                                childName: childName,
+                                                readAlong: mark.map { .init(start: $0.start, end: $0.end,
+                                                                            fill: theme.readAlong, readInk: theme.body) }))
                         .lineSpacing(lineGap)
                         .tracking(easyReading ? size * 0.06 : 0)
                         .tint(wordHighlight)
@@ -284,6 +289,14 @@ struct StoryPageView: View {
             }
             .padding(.bottom, size * 0.5)
         }
+    }
+
+    /// 3-6 yaş: anlatıcı bu sayfayı okuyorsa okunan kelime (Faz 5). Küçük okur
+    /// kelimeyi sesle eşler; 7-10 yaşta cümle takibi kalır.
+    private var breathWordMark: BreathWordMark? {
+        guard layout == .breath, let value = spoken.value,
+              value.text == page.spokenText.trimmingCharacters(in: .whitespacesAndNewlines) else { return nil }
+        return ReaderText.breathWordMark(paragraphs: page.paragraphs, location: value.location, length: value.length)
     }
 
     /// Anlatıcı bu sayfayı okuyorsa okunan cümle.

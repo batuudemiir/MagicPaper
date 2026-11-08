@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-08 · main, commit bu kayıtla · Masal sonu tam ekran kutlama + Faz 5 Okuma derinliği
+
+- **Masal sonu (Batuhan: kayıyordu, başarı hissi zayıftı):** tek ekrana sığan tam ekran an, kaydırma yalnızca en büyük yazıda. Ragi büyük ve zıplıyor, arkasında kâğıt yıldızlar bir kez patlıyor (`PaperBurst`, 1,8 sn, Reduce Motion'da yok), "Bravo, <ad>!", kazanılanlar sesle tek tek beliriyor. Masal ilk kez bitiyorsa dolu, dönerek oturan **+1 yıldız** (tekrar okumada yok). Ragi'nin balonu önce "Harika bir masaldı!", sonra Birlikte konuşalım sorusu. Okuyucunun alt çubuğu masal sonunda gizli, yalnızca kapat kalıyor. Gece yaprağı aynı düzende, sade.
+- **Faz 5:** yazı boyutu çocuğun yaşından (3-6: 26, 7-8: 22, 9-10: 19), ebeveyn seçtiyse onun seçimi (`readSizeChosen`; eski kurulumda "Normal" dışı kayıt seçim sayılır). 3-6 yaşın nefes satırlarında sesli okumada okunan **kelime** vurgulanır; 7-10'da cümle takibi kalır. Okuyucuda ailenin sesi varsa düğme "Ailenin sesi" der; Ebeveyn Özet'te kayıt yoksa "Masalı kendi sesinle oku" daveti.
+- **Bilerek yapılmadı:** uyku modu açılmadı. 15 Ekim kararı v2, açık kalemler duruyor (Live Activity simgesi, uyku modunda aile sesi cihaz doğrulaması, VoiceOver, süre seçenekleri).
+- **Test:** Batuhan'ın isteğiyle testler tüm fazlar bitince bir kez çalışacak; bu turda çalıştırılmadı (Faz 5 birim testleri yazıldı: `ReadingDepthTests`). Derleme başarılı.
+- **Görüldü:** iPhone 17 Pro ve 18 Pro Max simülatöründe gündüz masal sonu, patlama kareleri, en büyük yazı. **Görülmedi:** gece masal sonu, kelime vurgusu (simülatörde sesli okuma denenmedi), ailenin sesi düğmesi, ebeveyn daveti, gerçek cihaz.
+
 ### 2026-11-07 · main@495013d · Cihaz kurulumu: Faz 4 ve net Ragi Batuhan'ın iPhone'unda
 
 - Debug derleme başarılı, iPhone'a kuruldu ve açıldı (komutlar hatasız). Uygulama içi davranış ve sesler cihazda gözle ya da kulakla kontrol edilmedi; Batuhan bakacak. Test çalıştırılmadı.

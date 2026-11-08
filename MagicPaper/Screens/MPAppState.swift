@@ -136,6 +136,7 @@ final class MPAppState: ObservableObject {
     }
 
     func read(_ story: Story, fromStart: Bool = false) {
+        readSize = MPSettingsStore.shared.effectiveReadSize(forAge: ProfileManager.shared.currentProfile?.age)
         readerStartPage = fromStart ? 0 : nil
         readerListens = false
         readerStory = story

@@ -87,6 +87,19 @@ enum ReaderText {
         return nil
     }
 
+    /// 3-6 yaşın nefes satırlarında okunan kelime: paragraf, satır (cümle) ve
+    /// satırın içindeki UTF-16 aralığı. Konum metnin dışındaysa `nil`.
+    static func breathWordMark(paragraphs: [String], location: Int, length: Int) -> BreathWordMark? {
+        guard let sentence = readAlongMark(paragraphs: paragraphs, spokenLocation: location) else { return nil }
+        let lines = sentenceRanges(in: paragraphs[sentence.paragraph])
+        guard let line = lines.firstIndex(where: { $0.lowerBound == sentence.start }) else { return nil }
+        var offset = 0
+        for p in paragraphs.prefix(sentence.paragraph) { offset += (p as NSString).length + 2 }
+        let start = location - offset - sentence.start
+        let end = min(start + max(length, 1), sentence.end - sentence.start)
+        return BreathWordMark(paragraph: sentence.paragraph, line: line, start: max(start, 0), end: max(end, start))
+    }
+
     /// Paragraf bir konuşmayla mı başlıyor (tırnak ya da konuşma çizgisi).
     static func isDialogue(_ paragraph: String) -> Bool {
         guard let first = paragraph.trimmingCharacters(in: .whitespaces).first else { return false }
@@ -135,4 +148,12 @@ enum ReaderText {
         }
         return out
     }
+}
+
+/// Nefes satırında okunan kelime (Faz 5).
+struct BreathWordMark: Equatable {
+    let paragraph: Int
+    let line: Int
+    let start: Int
+    let end: Int
 }

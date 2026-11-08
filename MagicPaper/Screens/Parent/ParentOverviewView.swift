@@ -191,6 +191,15 @@ struct ParentOverviewView: View {
                     }
                 }
             }
+            // Aile sesi (Faz 5): henüz kayıt yoksa sakin bir davet.
+            if FamilyFeatureAccess.isEnabled(.voiceRecording) && VoiceRecordingStore.shared.sets.isEmpty {
+                MPGroupedList(area: .parent) {
+                    ParentRowButton(systemImage: "mic", tone: .peach, title: "Masalı kendi sesinle oku",
+                                    subtitle: "Çocuğun masalı senin sesinle dinlesin.") {
+                        app.router.parentRoute = .voiceRecording
+                    }
+                }
+            }
         }
     }
 

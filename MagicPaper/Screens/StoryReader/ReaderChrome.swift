@@ -31,6 +31,8 @@ struct ReaderChrome: View {
     let theme: MP.ReadTheme
     let isFavorite: Bool
     let isSpeaking: Bool
+    /// Bu sayfayı ailenin sesi okuyacak: düğme bunu söyler (Faz 5).
+    var familyVoice: Bool = false
     /// Geri kalan kontroller görünür mü. Kapat bundan bağımsızdır.
     var showsSecondary: Bool = true
     /// "Sayfa 2 / 8"; kapak ve kapanış yaprağında `nil`.
@@ -159,8 +161,8 @@ struct ReaderChrome: View {
     private var speechButton: some View {
         Button(action: onToggleSpeech) {
             HStack(spacing: MPSpacing.xxs) {
-                MPIcon(isSpeaking ? "pause.fill" : "play.fill", size: MP.G.md, weight: .bold)
-                Text(isSpeaking ? "Duraklat" : "Sesli oku")
+                MPIcon(isSpeaking ? "pause.fill" : (familyVoice ? "heart.fill" : "play.fill"), size: MP.G.md, weight: .bold)
+                Text(isSpeaking ? "Duraklat" : (familyVoice ? "Ailenin sesi" : "Sesli oku"))
                     .mpText(.footnote).fontWeight(.heavy)
                     .lineLimit(1)
             }
@@ -169,7 +171,7 @@ struct ReaderChrome: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle(.highlight))
-        .accessibilityLabel(isSpeaking ? "Sesli okumayı duraklat" : "Sesli oku")
+        .accessibilityLabel(isSpeaking ? "Sesli okumayı duraklat" : (familyVoice ? "Ailenin sesiyle dinle" : "Sesli oku"))
     }
 
     /// İnce ilerleme çizgisi; basılı tutunca kaydırıcı. VoiceOver'da
