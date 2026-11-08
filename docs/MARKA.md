@@ -81,7 +81,7 @@ Tek liste, emoji yok: **Yıldız Kaşifi** (`basic`), **Hikaye Kahramanı** (`pr
 |---|---|
 | Uygulama, widget | Bu kitaba uyar (Faz 1). |
 | PDF kitap | Kapakta "MagicPaper" (Faz 1); Baloo 2 başlık ve kolofon sonraya. |
-| Web, yasal sayfalar | **Henüz uymuyor:** `privacy.html` ve kardeşleri `#9449FA`, gradient, sistem fontu. Faz 6. |
+| Web, yasal sayfalar | Repodaki dört sayfa ve davet sayfaları uyuyor (Faz 6). magicpaperkids.com'daki asıl sayfalar ayrı. |
 | Tanıtım filmi, promo | **Henüz uymuyor:** başka fontlar, Ragi'nin adı yok. Faz 6. |
 | App Store görselleri | Testten üretilecek, Faz 6. |
 | `AssetCatalog` lisans kayıtları | Eski ad "MagicPaper Kids" duruyor, bilerek: üretilmiş kayıt, kullanıcıya görünmez. |

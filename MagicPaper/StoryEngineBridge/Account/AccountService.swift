@@ -281,6 +281,11 @@ final class AccountService: ObservableObject {
         let conditions = ReadingEventUploader.Conditions(
             sharingOn: shareUsageData(), consentGiven: consent != nil, signedIn: account != nil)
         await ReadingEventUploader(queue: eventQueue, sink: eventSink).flush(when: conditions)
+        // Huni (Faz 6) aynı kapıdan geçer.
+        if account != nil { MPFunnel().record(.account) }
+        await MPFunnel().flush(sharingOn: shareUsageData() && MPRemoteFlags.value(.funnelUpload, default: false),
+                               consentGiven: consent != nil, signedIn: account != nil,
+                               send: MPFunnel.firestoreSend)
     }
 
     // MARK: - Sign out

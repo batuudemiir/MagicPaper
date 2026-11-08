@@ -48,6 +48,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // sormaz — o yüzden hangi anda sorulduğu geri alınamaz bir karar.
     
     MPMetrics.shared.start()
+    MPFunnel().appOpened()
     return true
   }
   

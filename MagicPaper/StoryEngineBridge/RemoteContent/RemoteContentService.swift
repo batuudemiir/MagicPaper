@@ -144,6 +144,7 @@ final class RemoteContentService: ObservableObject {
         if fresh.feedVersion > (stored?.feedVersion ?? Int.min) {
             do {
                 try store.saveFeed(data, signature: signature)
+                MPRemoteFlags.save(fresh.flags)
                 feed = fresh
                 outcome = .updated(feedVersion: fresh.feedVersion)
                 logger.info("İçerik akışı \(fresh.feedVersion, privacy: .public) alındı")

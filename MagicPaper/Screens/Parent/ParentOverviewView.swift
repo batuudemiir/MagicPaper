@@ -19,6 +19,8 @@ struct ParentOverviewView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 MPParentHeader(title: "Özet", subtitle: weekLabel)
+                    // Huni: ebeveyn "Büyükler için"i buldu (Faz 6).
+                    .onAppear { MPFunnel().record(.parentRoom) }
 
                 if profileManager.profiles.count > 1 { childPicker }
                 if settings.approve && !pendingStories.isEmpty { approvalQueue }

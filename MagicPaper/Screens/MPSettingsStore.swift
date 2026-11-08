@@ -52,7 +52,7 @@ final class MPSettingsStore: ObservableObject {
     @Published var shareUsageData: Bool {
         didSet {
             d.set(shareUsageData, forKey: K.shareUsageData)
-            if !shareUsageData { ReadingEventQueue().eraseAll() }
+            if !shareUsageData { ReadingEventQueue().eraseAll(); MPFunnel().discardPending() }
         }
     }
 

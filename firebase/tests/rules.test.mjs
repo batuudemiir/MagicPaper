@@ -207,6 +207,26 @@ test('giriş yapmamış biri olay ekleyemez', async () => {
   await assertFails(addDoc(collection(db(null), 'readingEvents'), event()));
 });
 
+// --- Huni (Faz 6) -----------------------------------------------------------
+
+const funnel = (extra = {}) => ({ schemaVersion: 1, step: 'firstStory', days: 0, value: 120, ...extra });
+
+test('giriş yapmış uygulama huni adımı ekler; okunamaz, değişmez', async () => {
+  await assertSucceeds(addDoc(collection(db(ALICE), 'funnelEvents'), funnel()));
+  await assertSucceeds(addDoc(collection(db(ALICE), 'funnelEvents'), { schemaVersion: 1, step: 'firstOpen', days: 0 }));
+  await assertFails(getDocs(collection(db(ALICE), 'funnelEvents')));
+});
+
+test('huni kimlik, tarih ya da bilinmeyen adım taşıyamaz', async () => {
+  const events = collection(db(ALICE), 'funnelEvents');
+  await assertFails(addDoc(events, funnel({ uid: ALICE })));
+  await assertFails(addDoc(events, funnel({ day: '2026-11-08' })));
+  await assertFails(addDoc(events, funnel({ childName: 'Ada' })));
+  await assertFails(addDoc(events, funnel({ step: 'purchase' })));
+  await assertFails(addDoc(events, funnel({ days: -1 })));
+  await assertFails(addDoc(collection(db(null), 'funnelEvents'), funnel()));
+});
+
 // --- Hesap silme ------------------------------------------------------------
 
 test('sahibi bütün aile belgelerini silebilir; geriye bir şey kalmaz', async () => {

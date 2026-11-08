@@ -391,6 +391,7 @@ struct StoryReaderView: View {
         if model.isOnEndingLeaf {
             speech.stop()
             recorder.reachedEnding()
+            MPFunnel().storyFinished()
             // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
             if let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) {
                 let fresh = MPBadgeStore().recordFinished(story, profile: profile,

@@ -5,95 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="0; url=https://www.magicpaperkids.com/erisilebilirlik">
     <title>Erişilebilirlik - MagicPaper</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #9449FA 0%, #D959D9 50%, #FF738C 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-        }
-        
-        .logo {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            color: #9449FA;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        
-        p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            margin: 20px auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #9449FA;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #9449FA, #D959D9);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-        
-        .link:hover {
-            transform: scale(1.05);
-        }
+        /* MagicPaper markası (docs/MARKA.md): krem kâğıt, mürekkep, tek eylem moru #6A47B8,
+           Baloo 2 başlık, Nunito metin. Gradient ve gölge yok; derinlik sert alt kenardan. */
+        :root { --paper: #FFF8EE; --surface: #FFFFFF; --ink: #2E1E3E; --muted: #6E6478;
+                --track: #ECE5DA; --action: #6A47B8; --action-edge: #4E3390; --soft: #EFE8FA; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Nunito", ui-rounded, system-ui, sans-serif; font-size: 17px; line-height: 1.65;
+               color: var(--ink); background: var(--paper); min-height: 100vh; padding: 32px 16px; }
+        .container { max-width: 760px; margin: 0 auto; background: var(--surface); border-radius: 24px;
+                     padding: 48px 32px; border-bottom: 4px solid var(--track); text-align: left; }
+        .header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid var(--track); }
+        .logo { font-family: "Baloo 2", system-ui, sans-serif; font-weight: 700; font-size: 22px;
+                color: var(--action); margin-bottom: 8px; }
+        h1 { font-family: "Baloo 2", system-ui, sans-serif; font-weight: 700; font-size: 34px; line-height: 1.2;
+             color: var(--ink); margin-bottom: 8px; }
+        h2 { font-family: "Baloo 2", system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 1.25;
+             color: var(--ink); margin: 32px 0 12px; }
+        h3 { font-weight: 800; font-size: 17px; color: var(--ink); margin: 20px 0 8px; }
+        p { margin-bottom: 14px; }
+        ul, ol { margin: 0 0 14px 24px; }
+        li { margin-bottom: 6px; }
+        a { color: var(--action); font-weight: 700; }
+        .last-updated { color: var(--muted); font-size: 15px; }
+        .highlight { background: var(--soft); border-radius: 16px; padding: 20px; margin: 20px 0; }
+        .contact { background: var(--paper); border-radius: 16px; padding: 20px; margin-top: 32px; }
+        .allowed, .forbidden, .pricing { background: var(--paper); border-radius: 16px; padding: 16px 20px; margin: 16px 0; }
+        .forbidden { border-left: 4px solid #C0453A; }
+        .allowed { border-left: 4px solid #2F8F5B; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--track); color: var(--muted); font-size: 15px; }
+        .link { display: inline-block; margin-top: 12px; padding: 14px 24px; border-radius: 999px; background: var(--action);
+                color: #fff; text-decoration: none; border-bottom: 4px solid var(--action-edge); }
+        .spinner { width: 36px; height: 36px; margin: 20px 0; border-radius: 50%; border: 4px solid var(--track);
+                   border-top-color: var(--action); animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+        @media (max-width: 480px) { .container { padding: 32px 20px; } h1 { font-size: 28px; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">♿️</div>
+        <div class="logo">MagicPaper</div>
         <h1>Erişilebilirlik</h1>
         <p>Erişilebilirlik sayfamıza yönlendiriliyorsunuz...</p>
         <div class="spinner"></div>
-        <p style="font-size: 14px; color: #999;">
+        <p style="color: var(--muted); font-size: 15px;">
             Otomatik yönlendirme çalışmazsa:
         </p>
         <a href="https://www.magicpaperkids.com/erisilebilirlik" class="link">

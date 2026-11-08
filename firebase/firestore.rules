@@ -130,6 +130,17 @@ service cloud.firestore {
       return !(key in d) || (d[key] is string && d[key].size() <= maxSize);
     }
 
+    // Huni (Faz 6): adım, kurulumdan beri gün ve kaba değer. Kimlik, tarih, ad yok.
+    function validFunnel() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['schemaVersion', 'step', 'days', 'value'])
+        && d.keys().hasAll(['schemaVersion', 'step', 'days'])
+        && d.schemaVersion is int
+        && d.step in ['firstOpen', 'firstStory', 'firstFinish', 'account', 'parentRoom', 'firstWeek']
+        && d.days is int && d.days >= 0 && d.days <= 400
+        && (!('value' in d) || (d.value is int && d.value >= 0 && d.value <= 1209600));
+    }
+
     function validEvent() {
       let d = request.resource.data;
       return d.keys().hasOnly(['schemaVersion', 'mode', 'blueprintID', 'contentIDs', 'companionKind',
@@ -312,6 +323,10 @@ service cloud.firestore {
 
     match /readingEvents/{eventId} {
       allow create: if signedIn() && validEvent();
+    }
+
+    match /funnelEvents/{eventId} {
+      allow create: if signedIn() && validFunnel();
     }
   }
 }

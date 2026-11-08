@@ -415,6 +415,7 @@ extension StoryGenerationManager {
 
         stories.insert(story, at: 0)
         saveStories()
+        MPFunnel().record(.firstStory)
         return story
     }
 

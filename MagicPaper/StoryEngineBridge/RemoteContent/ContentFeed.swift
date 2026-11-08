@@ -20,18 +20,21 @@ struct ContentFeed: Codable, Equatable {
     let stories: [FeedStory]
     /// `nil` takes any downloaded package out of use: the bundle serves again.
     let catalogPackage: CatalogPackageRef?
+    /// Uzaktan bayraklar (Faz 6): yalnızca `MPRemoteFlags.known` içindekiler okunur.
+    let flags: [String: Bool]?
 
     enum CodingKeys: String, CodingKey {
-        case schemaVersion, feedVersion, publishedAt, stories, catalogPackage
+        case schemaVersion, feedVersion, publishedAt, stories, catalogPackage, flags
     }
 
     init(schemaVersion: Int = supportedSchemaVersion, feedVersion: Int, publishedAt: String,
-         stories: [FeedStory], catalogPackage: CatalogPackageRef?) {
+         stories: [FeedStory], catalogPackage: CatalogPackageRef?, flags: [String: Bool]? = nil) {
         self.schemaVersion = schemaVersion
         self.feedVersion = feedVersion
         self.publishedAt = publishedAt
         self.stories = stories
         self.catalogPackage = catalogPackage
+        self.flags = flags
     }
 
     init(from decoder: Decoder) throws {
@@ -43,6 +46,8 @@ struct ContentFeed: Codable, Equatable {
         // skipped, not allowed to take the whole feed down with it.
         stories = try container.decode([Lossy<FeedStory>].self, forKey: .stories).compactMap(\.value)
         catalogPackage = try container.decodeIfPresent(CatalogPackageRef.self, forKey: .catalogPackage)
+        // Okunamayan bayrak akışı düşürmez.
+        flags = (try? container.decodeIfPresent([String: Bool].self, forKey: .flags)) ?? nil
     }
 
     enum Rejection: Error, Equatable {

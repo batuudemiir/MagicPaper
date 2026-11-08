@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-08 · main, commit bu kayıtla · Faz 6 Yayın ve ölçüm (kod kısmı) + planın tek test koşusu
+
+- **Onaylı anonim huni** (`StoryEngineBridge/MPFunnel.swift`): kurulum başına birer kez `firstOpen`, `firstStory`, `firstFinish`, `account`, `parentRoom`, `firstWeek`; giden yalnızca adım, gün ve kaba değer (süre kovası, ilk haftada okunan gün). Ad, yaş, kimlik, tarih yok. Okuma olaylarıyla aynı kapı (paylaşım anahtarı + onay + hesap). Firestore kuralı `validFunnel` ve kural testleri.
+- **Gönderim bilerek kapalı** (`MPRemoteFlags.funnelUpload`): gizlilik politikası ve onay metni huniyi anlatmıyor. Olaylar cihazda bekler; açmak için dört adım `docs/YAYIN.md`'de. Fark edilen tutarsızlık: politika "ses kaydı toplanmaz" diyor, FAZ 18'den beri aile sesi kaydediliyor.
+- **Uzaktan bayrak:** imzalı içerik akışına isteğe bağlı `flags`; yalnızca bilinen adlar (`sleepMode`, `funnelUpload`) okunur, varsayılan kapalı. `MPFeatures.sleepMode` artık bayraktan.
+- **Web ve yasal sayfalar:** `privacy.html`, `privacy_policy.html`, `terms_of_service.html`, `accessibility.html` markada (krem, Baloo 2 + Nunito, #6A47B8, gradient yok); metinlere dokunulmadı. magicpaperkids.com'daki asıl sayfalar ayrı.
+- **Belge:** `docs/YAYIN.md` (durum, huni, bayraklar, Kids Category önerisi: ilk sürüm kategori dışında, TestFlight planı, ertelenenler). String Catalog ve iPad bilerek ertelendi.
+- **App Store görselleri:** 6,9 inç (1320×2868) beş ekran `marketing/appstore-2026-11-08/` içinde, commit edilmedi (13 MB). Yazı ve çerçeve eklenmedi.
+- **Test (planın tek koşusu, Faz 4-6 dahil):** MagicPaperTests 819 test, 1 atlandı, 0 hata; UI testleri 17 (8 + 9), 0 beklenmeyen hata (ebeveyn odası testi bilinen `XCTExpectFailure`); Firestore kuralları 53/53.
+- **Görülmedi:** gerçek cihaz, huni olaylarının sunucuya gidişi (kapalı), uzaktan bayrağın canlı akışla açılması.
+
 ### 2026-11-08 · main, commit bu kayıtla · Masal sonu tam ekran kutlama + Faz 5 Okuma derinliği
 
 - **Masal sonu (Batuhan: kayıyordu, başarı hissi zayıftı):** tek ekrana sığan tam ekran an, kaydırma yalnızca en büyük yazıda. Ragi büyük ve zıplıyor, arkasında kâğıt yıldızlar bir kez patlıyor (`PaperBurst`, 1,8 sn, Reduce Motion'da yok), "Bravo, <ad>!", kazanılanlar sesle tek tek beliriyor. Masal ilk kez bitiyorsa dolu, dönerek oturan **+1 yıldız** (tekrar okumada yok). Ragi'nin balonu önce "Harika bir masaldı!", sonra Birlikte konuşalım sorusu. Okuyucunun alt çubuğu masal sonunda gizli, yalnızca kapat kalıyor. Gece yaprağı aynı düzende, sade.
