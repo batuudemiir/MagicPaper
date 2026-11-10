@@ -113,6 +113,7 @@ enum MPKidRoute: Hashable {
     case stickers(UUID)          // Faz 9 · Çıkartma albümüm
     case decor(UUID)             // Faz 9 · Süsler
     case wardrobe(UUID)          // Faz 9 · Dolap (kahraman)
+    case storyMap(UUID)          // Faz 10 · Masal haritam
 }
 
 // MARK: - Alt sayfalar (sheet)
@@ -181,7 +182,7 @@ final class MPRouter: ObservableObject {
                 sheet = nil
                 parentRoute = .familyCharacters(id)
                 return
-            case .series, .newWords, .stickers, .decor, .wardrobe:
+            case .series, .newWords, .stickers, .decor, .wardrobe, .storyMap:
                 break
             }
         }

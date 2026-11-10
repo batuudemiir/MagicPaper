@@ -378,6 +378,8 @@ struct KidPageView: View {
             if let profile = profile(id) { DecorShopView(profile: profile) }
         case .wardrobe(let id):
             if let profile = profile(id) { HeroWardrobeView(profile: profile) }
+        case .storyMap(let id):
+            if let profile = profile(id) { StoryMapView(profile: profile) }
         }
     }
 

@@ -234,6 +234,12 @@ struct KidCornerView: View {
             HomeSection(title: "Masal dünyam") {
                 // Satırlar tek panelde; panel tek parça olsun diye tek kap.
                 VStack(spacing: 0) {
+                    // Faz 10: masal dünyası hatırlar.
+                    linkRow(icon: "map", tone: .mint, title: "Masal haritam",
+                            subtitle: "Masallarda gittiğin yerler") {
+                        app.router.openKidPage(.storyMap(profile.id))
+                    }
+                    MPRowDivider(area: .kid)
                     // Faz 9: Odam'ın koleksiyonu.
                     linkRow(icon: "star", tone: .yellow, title: "Çıkartma albümüm",
                             subtitle: stickerSubtitle) {

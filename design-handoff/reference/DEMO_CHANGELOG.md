@@ -132,6 +132,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-12 · main, commit bu kayıtla · Faz 10: masal dünyası hatırlar (yer ve anı hafızası, Masal haritam)
+
+- **Hatırlama cümlesi** (`StoryEngineBridge/StoryMemory.swift`): yeni masalın yol arkadaşıyla çocuk daha önce tanıştıysa ilk sayfaya "Tarçın ile Yeliz eski dostlardı. İlk kez Gece Bahçesi'nde tanışmışlardı.", aynı yere dönüldüyse "Yeliz Gece Bahçesi'ne daha önce de gelmişti. Burayı hemen hatırladı." eklenir. Deterministik; ekler motorun `TurkishGrammar`'ından. Yalnızca biten masallar sayılır; seri bölümleri hatırlanmaz (seri kendi devamlılığını taşır). `StoryOrigin.recalled` cümlenin eklendiğini kaydeder (eski kayıtlarda nil).
+- **Bağlantı:** `StoryGenerationManager.createStory` cümleyi bağlamadan önce ekler; `OfflineStoryService.place(id:)` ve `allPlaces()` yer adlarını katalogdan verir.
+- **Masal haritam** (`Screens/Collection/StoryMapView.swift`, rota `.storyMap`, Odam'da "Masal haritam" satırı): gidilen her yer bir kart (dünya simgesi, kaç masal, orada tanışılan dostlar), en çok gidilen başta; gidilmemiş yerler kesikli "?" kartı, sayı ve "kaldı" sözü yok (ilke 7). Boş durum `MPStateView`, tek Ragi.
+- **Bilerek değişmedi:** motorun olay örgüsü ve satır seçimi; cümle masal metnine eklenir, saklanan masallar yeniden yazılmaz.
+- **Test:** `StoryMemoryTests` (7 test) yazıldı ve derlendi (`build-for-testing` başarılı); Batuhan'ın kuralı gereği testler fazlar bitince bir kez çalıştırılacak, **çalıştırılmadı**. Simülatörde görülmedi.
+- Dosyalar: `StoryEngineBridge/StoryMemory.swift` (yeni), `Screens/Collection/StoryMapView.swift` (yeni), `MagicPaperTests/StoryMemoryTests.swift` (yeni), `Models/Story.swift`, `Services/StoryGenerationManager.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `Screens/MPRouter.swift`, `ContentView.swift`, `Screens/KidCorner/KidCornerView.swift`.
+
 ### 2026-11-12 · main, commit bu kayıtla · Faz 9: Duolingo tarzı kahraman ve Dolap
 
 - **Batuhan kararı (12 Kasım):** "Duolingo tarzı avatar ve avatar türleri." Açık kaynak setler (DiceBear ve çocuk setleri) yetişkin ya da uyumsuz çıkınca kahraman kodla, Duolingo dilinde baştan çizildi.

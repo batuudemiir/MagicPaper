@@ -402,10 +402,24 @@ extension StoryGenerationManager {
             subOption: subOption,
             familyCharacter: family
         )
+        // Masal dünyası hatırlar (Faz 10): yol arkadaşı ya da yer daha önce
+        // görüldüyse ilk sayfaya tek bir cümle. Seri bölümünde yok.
+        let setting = composed.story.content.setting
+        let line = StoryMemory.recallLine(
+            childName: profile.name,
+            settingID: setting.id.rawValue,
+            place: StoryMemory.Place(name: setting.name, isProperNoun: setting.isProperNoun,
+                                     hasPossessiveEnding: setting.hasPossessiveEnding,
+                                     blocksSoftening: setting.blocksSoftening),
+            companionID: composed.story.content.companion.id.rawValue,
+            companionName: composed.story.content.companion.name,
+            previous: stories.filter { $0.belongs(to: profile) },
+            placeNamed: { service.place(id: $0) })
+        let remembered = StoryMemory.remember(line, in: mapped)
         // Görselli kitap (B2): kayıtlı bir kitap karakteri varsa ve bayrak
         // açıksa hazır sahneler eklenir; yoksa masal bugünkü gibi metin çıkar.
         let story = await IllustratedBookBinder.illustrateIfEnabled(
-            mapped,
+            remembered,
             composed: composed.story,
             profile: profile,
             mode: mode,

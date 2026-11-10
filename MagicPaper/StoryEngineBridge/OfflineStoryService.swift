@@ -260,6 +260,24 @@ final class OfflineStoryService {
         (try? catalog())?.companions.first { $0.id.rawValue == id }?.type
     }
 
+    /// A setting by id, with what its name needs to inflect (Faz 10 memory, map).
+    func place(id: String) -> StoryMemory.Place? {
+        guard let s = (try? catalog())?.settings.first(where: { $0.id.rawValue == id }) else { return nil }
+        return StoryMemory.Place(name: s.name, isProperNoun: s.isProperNoun,
+                                 hasPossessiveEnding: s.hasPossessiveEnding, blocksSoftening: s.blocksSoftening)
+    }
+
+    /// Every setting in the catalog, for the story map.
+    func allPlaces() -> [(id: String, place: StoryMemory.Place, tags: [String])] {
+        guard let catalog = try? catalog() else { return [] }
+        return catalog.settings.map {
+            ($0.id.rawValue,
+             StoryMemory.Place(name: $0.name, isProperNoun: $0.isProperNoun,
+                               hasPossessiveEnding: $0.hasPossessiveEnding, blocksSoftening: $0.blocksSoftening),
+             $0.tags.map(\.rawValue))
+        }
+    }
+
     /// A companion's name ("Tarçın"), for the masal atölyesi cast line.
     func companionName(id: String) -> String? {
         (try? catalog())?.companions.first { $0.id.rawValue == id }?.name

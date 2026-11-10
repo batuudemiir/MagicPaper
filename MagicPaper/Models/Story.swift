@@ -154,6 +154,9 @@ struct StoryOrigin: Codable, Equatable {
     /// şeyi. Nil, bu alandan önce yazılmış her masal — ve o masallar seçimi
     /// hiç etkilemez.
     var variantIDs: [String]? = nil
+    /// İlk sayfaya bir hatırlama cümlesi eklendi mi (Faz 10, `StoryMemory`).
+    /// Nil, bu alandan önce yazılmış her masal.
+    var recalled: Bool? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }
