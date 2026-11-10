@@ -60,12 +60,23 @@ final class CatalogBundleTests: XCTestCase {
         // Merged totals.
         // 15 = the Schema 2 library alone, V1's 12 having been retired (D3).
         // 17 with the two bedtime-arc blueprints (uyku arkı, 21 Ekim 2026).
-        XCTAssertEqual(catalog.blueprints.count, 17)
+        // 18 with 3-4'ün ikinci mekanizması (`lettingGo`, 23 Ekim 2026): o bant
+        // tek şekle kilitliydi ve tekrar oranı %83'tü.
+        // 21 ile üç meslek blueprint'i (30 Ekim 2026): "Meslekler" konusu
+        // artık olay örgüsünü de şart koşuyor (`Slots.plot`), ve bir şekil o
+        // sözcüğü ancak PROZASI o işi anlatıyorsa bildirebilir. Üçü üç ayrı
+        // mekanizma: seekingKnowledge, patientObservation, perspectiveShift.
+        XCTAssertEqual(catalog.blueprints.count, 21)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
-        XCTAssertEqual(catalog.settings.count, 24)
-        XCTAssertEqual(catalog.companions.count, 20)
+        // 25 ile Pazar Yeri: "Meslekler ve günlük yaşam" konusunun zemini,
+        // kütüphanenin ikinci *yerleşik* yeri (habitat yalnızca `village`).
+        XCTAssertEqual(catalog.settings.count, 25)
+        // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
+        // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
+        // insan bir masala hayvanın girdiği her yerden giremez.
+        XCTAssertEqual(catalog.companions.count, 23)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
@@ -82,10 +93,23 @@ final class CatalogBundleTests: XCTestCase {
         // proves nothing about content the tests never loaded. When they fail
         // after an authoring change, read the new number and move the pin.
         // 93 → 109 (21 Ekim 2026): 16 bedtime-arc beat files, 8 per band.
-        XCTAssertEqual(catalog.templates.count, 109)
+        // 109 → 110 (23 Ekim 2026): 3-4 için `let_go`, bandın ikinci çözüm
+        // hamlesi. Bandın tüzüğü engeli ve çıkarımı yasakladığı için
+        // `solutionKnown` üreten yalnızca iki beat kalıyor; biri `patient_wait`,
+        // bu öbürü.
+        XCTAssertEqual(catalog.templates.count, 110)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
         // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
-        XCTAssertEqual(catalog.recordCounts["variants"], 695)
+        // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
+        // sonrası için 5 satır. Mevcut restore satırları iyileşme için
+        // yazılmıştı; ayrım `afterBeat` ile yapıldı.
+        // 705 → 721 (29 Ekim 2026): `meet_companion` için 16 insan satırı.
+        // Mevcut 35 satır hayvan/fantastik olana kapatıldı (satır sayısı
+        // değişmedi, kapıları değişti); insana giden satırlarda çocuk ona
+        // gidiyor, o çocuğa yaklaşmıyor.
+        // 721 → 759 (30 Ekim 2026): 36 zanaat satırı (üç beat × üç meslek ×
+        // dört satır) + `succeed`'in `exchange_views` grubuna iki satır.
+        XCTAssertEqual(catalog.recordCounts["variants"], 759)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

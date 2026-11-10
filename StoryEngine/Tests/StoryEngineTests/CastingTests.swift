@@ -309,22 +309,42 @@ final class SettingAxisTests: XCTestCase {
         }
     }
 
+    /// Ölçüm 30 Ekim 2026'da bağlayıcıya taşındı, ve bu gevşetme değil.
+    ///
+    /// Eskiden `compose` ile ölçülüyordu, yani hangi adayın ÖNCE sıraya
+    /// girdiğine bağlıydı: havuza üç meslek blueprint'i girince en iyi aday
+    /// değişti ve yüzeye çıkan gerekçe "arkadaş bulunamadı" oldu — ikisi de
+    /// meşru red, ama test açıklanmış keşif kuralını ölçmek için yazılmıştı,
+    /// sıralamayı değil.
+    ///
+    /// Yeni biçim kuralı doğrudan ölçüyor ve iki şeyi birden söylüyor: hiçbir
+    /// şekil bu isteği sessizce BAŞKA bir masalla doldurmuyor, ve reddedenler
+    /// arasında gerekçeyi adıyla söyleyen var. İkincisi olmadan birincisi
+    /// "her şeyi reddet" ile de geçilir.
     func testAskingForAnExplainedDiscoveryIsRefusedWithItsReason() throws {
         let catalog = try catalog()
         // A flickering light is explained by water, and the sea is the one
         // place in the library that has it.
-        XCTAssertThrowsError(
-            try OfflineStoryComposer().compose(
-                catalog: catalog,
-                intent: OfflineStoryIntent(
-                    childName: "Yeliz",
-                    settingID: ContentID("setting_coral_sea_001"),
-                    discoveryID: ContentID("object_flickering_light_001"),
-                    seed: "explained"))
-        ) { error in
-            XCTAssertTrue("\(error)".contains("explained"),
-                          "The refusal must name the reason, not just fail: \(error)")
+        let intent = OfflineStoryIntent(
+            childName: "Yeliz",
+            settingID: ContentID("setting_coral_sea_001"),
+            discoveryID: ContentID("object_flickering_light_001"),
+            seed: "explained")
+
+        var refusals: [String] = []
+        for blueprint in catalog.blueprints where blueprint.isBeatAuthored {
+            do {
+                _ = try OfflineContentBinder().bind(
+                    blueprint: blueprint, catalog: catalog, intent: intent, idea: nil)
+                XCTFail("\(blueprint.id.rawValue) açıklanmış keşfi yine de bağladı")
+            } catch {
+                refusals.append("\(error)")
+            }
         }
+        XCTAssertFalse(refusals.isEmpty)
+        XCTAssertTrue(refusals.contains { $0.contains("explained") },
+                      "Hiçbir red gerekçeyi adıyla söylemiyor:\n"
+                      + refusals.joined(separator: "\n"))
     }
 
     /// Their F6, as a load-time report rather than a rule of thumb in a

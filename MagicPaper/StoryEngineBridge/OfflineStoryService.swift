@@ -205,6 +205,7 @@ final class OfflineStoryService {
         forIdeaID ideaID: String?,
         mode: StoryMode? = nil,
         age: Int? = nil,
+        topicID: String? = nil,
         family: FamilyCharacter? = nil
     ) -> [CatalogCompanion] {
         guard let catalog = try? catalog() else { return [] }
@@ -217,6 +218,7 @@ final class OfflineStoryService {
                 seed: "candidates",
                 mode: mode,
                 ageBand: age.map(servedBand(forAge:)),
+                subOption: topicID,
                 family: family.flatMap { familyCast(for: $0, in: catalog) },
                 safety: currentSafety
             ),

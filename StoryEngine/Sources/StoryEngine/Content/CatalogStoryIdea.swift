@@ -126,7 +126,12 @@ extension ContentRequirements {
             // Same rule for the same reason: "one of" narrowed by "one of".
             thresholdKind: thresholdKind.isEmpty ? other.thresholdKind
                 : other.thresholdKind.isEmpty ? thresholdKind
-                : thresholdKind.intersection(other.thresholdKind)
+                : thresholdKind.intersection(other.thresholdKind),
+            // Üçüncüsü, aynı kural: "bunlardan biri", "bunlardan biri" ile
+            // daraltılıyor.
+            nature: nature.isEmpty ? other.nature
+                : other.nature.isEmpty ? nature
+                : nature.intersection(other.nature)
         )
     }
 }
@@ -137,7 +142,15 @@ extension ContentExclusions {
         ContentExclusions(
             setting: setting.union(other.setting),
             companion: companion.union(other.companion),
-            discovery: discovery.union(other.discovery)
+            discovery: discovery.union(other.discovery),
+            // 30 Ekim 2026'da eklendi, ve eksikliği benim kendi kusurumdu:
+            // `nature` 28 Ekim'de `ContentExclusions`'a girdi ama burada
+            // unutuldu. Sonucu sessizdi — bir fikirle birleşen macera
+            // blueprint'i "arkadaşı insan olmaz" şartını kaybediyordu, yani
+            // o eksen tam da birleştirmenin olduğu yerde çalışmıyordu.
+            // Elle yazılmış alan listesi bu kod tabanında üçüncü kez
+            // sessizce alan düşürdü (`assemble` iki kez).
+            nature: nature.union(other.nature)
         )
     }
 }

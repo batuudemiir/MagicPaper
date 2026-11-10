@@ -54,6 +54,15 @@ final class UsageLearningTests: XCTestCase {
 
     /// With no usage the live path is the old book, byte for byte.
     ///
+    /// Parmak izi 30 Ekim 2026'da yeniden sabitlendi (dördüncü kez): üç meslek
+    /// blueprint'i havuza girdi ve bu seed başka bir banda, başka bir şekle
+    /// düştü. Testin koruduğu şey değişmedi — kullanım profili NÖTR iken
+    /// kitabın kullanımdan önceki kitapla aynı olması.
+    ///
+    /// Parmak izi 29 Ekim 2026'da yeniden sabitlendi (üçüncü kez): üç insan
+    /// arkadaş ve Pazar Yeri havuza girince bu seed başka bir mekân, arkadaş
+    /// ve keşif bağladı. Bkz. `OfflineDeterminismTests`.
+    ///
     /// Parmak izi 21 Ekim 2026'da yeniden sabitlendi: v2 kütüphanesi havuza
     /// katılınca bu seed başka bir mekân ve arkadaş bağladı. Testin koruduğu
     /// şey değişmedi — kullanım profili NÖTR iken kitabın, kullanımdan önceki
@@ -61,7 +70,7 @@ final class UsageLearningTests: XCTestCase {
     func testANeutralProfileKeepsThePinnedBook() throws {
         let intent = OfflineStoryIntent(childName: "Yeliz", seed: "pinned-seed-001", usage: .neutral)
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
-        XCTAssertEqual(story.fingerprint, "064729c367b9334c")
+        XCTAssertEqual(story.fingerprint, "a7fd601ec0f44208")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {
@@ -220,24 +229,77 @@ final class UsageLearningTests: XCTestCase {
         XCTAssertLessThan(learned, 200)
     }
 
+    /// Sevilen arkadaş daha sık başa geçiyor — **bir eğilim olarak** (ölçüldü:
+    /// 30 Ekim 2026).
+    ///
+    /// İlk hâli tek bir arkadaşla ölçüyordu: bir prob masalı kuruyor, onun
+    /// arkadaşını tavan ağırlığa çıkarıyor, ve kesin artış bekliyordu.
+    /// İstatistik bir eğilimi tek örnekle ölçmek demekti ve havuz değişince
+    /// kırmızıya döndü — prob seed'inin verdiği arkadaş yunustu, 17 şeklin
+    /// yalnızca 6'sına girebiliyor ve taban oranı 4/100, yani ölçülen şey
+    /// mekanizma değil gürültüydü.
+    ///
+    /// Ölçüm (öğrenelim + macera havuzu, modsuz, 100 seed, erişim ≥ 6 olan
+    /// bütün hayvanlar):
+    ///
+    ///     sincap     13 şekil    6 → 10  ✓     penguen    10 şekil    8 →  8  ✗
+    ///     kirpi      13 şekil   11 → 10  ✗     ateşböceği 10 şekil    6 → 14  ✓
+    ///     kurbağa    12 şekil    7 → 13  ✓     kedi        9 şekil    5 →  6  ✓
+    ///     tavşan     12 şekil    9 → 17  ✓     ayı         7 şekil    5 →  4  ✗
+    ///                                          kaplumbağa  7 şekil    4 →  7  ✓
+    ///                                          yunus       6 şekil    4 →  2  ✗
+    ///
+    /// Yani mekanizma çalışıyor ve erişim arttıkça güçleniyor, ama tek tek her
+    /// arkadaşta çalışmıyor: mekân ve habitat şartları kısıtlı bir arkadaş için
+    /// ağırlıktan baskın. Bu bir kusur değil, bağlamanın sırası — arkadaş,
+    /// mekân seçildikten sonra seçiliyor.
+    ///
+    /// Bu yüzden iddia toplamda ölçülüyor: ağırlık, geniş erişimli arkadaşların
+    /// TOPLAM payını artırıyor. Tek bir çekilişe dayanan bir iddia, bir sonraki
+    /// içerik turunda yine şansa kalır.
     func testALearnedCompanionLeadsMoreOftenButNotAlways() throws {
         let catalog = try catalog()
         let composer = OfflineStoryComposer()
-        let first = try composer.compose(
-            catalog: catalog, intent: OfflineStoryIntent(childName: "Can", seed: "c-probe", ageBand: b56))
-        let favourite = first.content.companion.id
-        let loved = UsageProfile(families: [:], companions: [favourite: UsageLearner.ceiling])
+        let binder = OfflineContentBinder()
+        let shapes = catalog.blueprints.filter {
+            $0.isBeatAuthored && $0.ageRange == b56 && $0.arc == .standard
+        }
 
-        func picks(_ usage: UsageProfile) throws -> Int {
-            try (0..<100).filter { index in
-                let intent = OfflineStoryIntent(childName: "Can", seed: "c-\(index)", ageBand: b56, usage: usage)
-                return try composer.compose(catalog: catalog, intent: intent).content.companion.id == favourite
+        /// Erişimi geniş arkadaşlar: ağırlığın görünebildiği yer.
+        let broad = catalog.companions.filter { companion in
+            shapes.filter { blueprint in
+                (try? binder.bind(
+                    blueprint: blueprint, catalog: catalog,
+                    intent: OfflineStoryIntent(childName: "Can", companionID: companion.id,
+                                               seed: "reach", ageBand: b56),
+                    idea: nil)) != nil
+            }.count >= 9
+        }
+        XCTAssertGreaterThanOrEqual(broad.count, 5, "ölçüm için yeterli geniş erişimli arkadaş yok")
+
+        func share(of companion: CatalogCompanion, usage: UsageProfile) -> Int {
+            (0..<100).filter { index in
+                (try? composer.compose(
+                    catalog: catalog,
+                    intent: OfflineStoryIntent(childName: "Can", seed: "c-\(index)",
+                                               ageBand: b56, usage: usage)))?
+                    .content.companion.id == companion.id
             }.count
         }
-        let neutral = try picks(.neutral)
-        let learned = try picks(loved)
-        XCTAssertGreaterThan(learned, neutral)
-        XCTAssertLessThan(learned, 100)
+
+        var neutralTotal = 0, learnedTotal = 0
+        for companion in broad {
+            neutralTotal += share(of: companion, usage: .neutral)
+            let learned = share(of: companion, usage: UsageProfile(
+                families: [:], companions: [companion.id: UsageLearner.ceiling]))
+            learnedTotal += learned
+            // Hiçbir arkadaş tavanda bile masalı ele geçirmiyor: öğrenme bir
+            // ağırlık, bir kilit değil.
+            XCTAssertLessThan(learned, 100, companion.id.rawValue)
+        }
+        XCTAssertGreaterThan(learnedTotal, neutralTotal,
+                             "sevilen arkadaş toplamda daha sık başa geçmedi "
+                             + "(\(neutralTotal) → \(learnedTotal))")
     }
 
     // MARK: - Catalog fields

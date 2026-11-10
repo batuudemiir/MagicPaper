@@ -34,6 +34,22 @@ public struct ComposedStory: Sendable, Hashable {
     public let blueprintID: ContentID
     public let family: NarrativeFamily?
     public let content: BoundContent
+    /// Masala eşlik eden küratörlü olgu, varsa (30 Ekim 2026).
+    ///
+    /// Keşfin özelliği olduğu için masal başına **en çok bir** tane: bir
+    /// masalın bir keşfi var, o keşfin de en çok bir olgusu. Kural ayrı bir
+    /// denetim değil, yapının kendisi.
+    ///
+    /// Prozaya girmiyor, ve bu 23 Ekim'in kararı: gerçek bir çocuk kitabı
+    /// "Güneş de bir yıldızdır" cümlesini anlatının içine koymaz, arkaya
+    /// koyar. Masalın sesi bozulmadan, kaynağıyla birlikte kapanış
+    /// yaprağında gösteriliyor.
+    ///
+    /// Olgu burada **onaylı ve banda uygun** olarak süzülmüş geliyor:
+    /// katalogda onaysız bir olgu bütünlük hatası, ama paket uzaktan da
+    /// gelebiliyor (FAZ 15), ve onaysız bir olgunun çocuğa ulaşmasının tek
+    /// güvenli engeli onu taşımamaktır.
+    public let fact: CatalogFact?
     public let seed: String
     /// Stable over the inputs that determine the text, so two runs can be
     /// compared and a regenerate can be recognised as a no-op.
@@ -302,12 +318,44 @@ public struct OfflineStoryComposer: Sendable {
         let title = titles.compose(
             blueprint: blueprint, slots: slots, seed: storySeed, avoiding: intent.recentTitles)
 
+        // Masalın olgusu, **masalın neyle ilgili olduğundan** geliyor.
+        //
+        // Olgu artık iki yerden gelebiliyor: keşiften ("Güneş de bir
+        // yıldızdır") ve yol arkadaşından ("fırıncılar hamuru dinlendirir").
+        // "Bir masalda en çok bir olgu" kuralı keşfin tekliğinden geliyordu;
+        // ikinci bir taşıyıcı eklenince o kural kendiliğinden korunmuyor, bir
+        // sıra gerekiyor. Sıranın gerekçesi tek cümle: **blueprint masalın
+        // neyle ilgili olduğunu bildirir** (`CatalogBlueprint.interests`),
+        // ve olgu o bildirimi karşılayan kayıttan gelir.
+        //
+        // Meslek masalında bunu bildiren yol arkadaşı (`jobs`), bilim
+        // masalında keşif (`science`). Hiçbir şey bildirmeyen yapısal
+        // blueprint'lerde — çoğunluk — keşif, yani 23 Ekim'den beri olan
+        // davranış hiç değişmiyor.
+        let carriedFact: CatalogFact? = {
+            let declared = Set(blueprint.interests)
+            let carriers: [ContentID?] = declared.isEmpty
+                ? [content.discovery.factID]
+                : [Set(content.companion.interests).isDisjoint(with: declared)
+                     ? nil : content.companion.factID,
+                   Set(content.discovery.interests).isDisjoint(with: declared)
+                     ? nil : content.discovery.factID,
+                   content.discovery.factID]
+            for id in carriers.compactMap({ $0 }) {
+                guard let fact = catalog.fact(id),
+                      fact.isApproved, fact.suits(band: blueprint.ageRange) else { continue }
+                return fact
+            }
+            return nil
+        }()
+
         return ComposedStory(
             title: title,
             pages: pages,
             blueprintID: blueprint.id,
             family: blueprint.family,
             content: content,
+            fact: carriedFact,
             seed: intent.seed,
             fingerprint: StableHash.fingerprint(
                 [blueprint.id.rawValue, content.setting.id.rawValue,
@@ -624,6 +672,19 @@ public struct OfflineStoryComposer: Sendable {
                 beat: beat, page: page)
         }
 
+        // 0h. Hangi **mesleğin** satırı. **Esnemiyor**, 0g ile aynı sebeple:
+        //     "hamuru dinlendirmek gerek" cümlesi postacının ağzında daha
+        //     zayıf bir sayfa değil, saçma bir sayfa. Mesleğe bakmayan genel
+        //     satırlar her arkadaşta kalıyor, yalnızca zanaatı anan satır
+        //     mesleğine bağlı.
+        let byOccupation = byNature.filter { $0.suits(occupation: content.companion.occupation) }
+        guard !byOccupation.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line written for the occupation "
+                    + "'\(content.companion.occupation?.rawValue ?? "none")'",
+                beat: beat, page: page)
+        }
+
         // 0a. The Masal ailem character. **Does not degrade**, in either
         //     direction. On a family moment the character must be there: a
         //     story that opens with the child's sister and never mentions her
@@ -632,13 +693,13 @@ public struct OfflineStoryComposer: Sendable {
         //     which is what keeps every story written before FAZ 11 the same.
         let byFamily: [CatalogVariant]
         if familyMoment, let family {
-            byFamily = byNature.filter { $0.isFamilyLine && $0.suits(family: family) }
+            byFamily = byOccupation.filter { $0.isFamilyLine && $0.suits(family: family) }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForFamily(
                     relation: family, beat: beat, page: page)
             }
         } else {
-            byFamily = byNature.filter { !$0.isFamilyLine }
+            byFamily = byOccupation.filter { !$0.isFamilyLine }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForRole(
                     role: content.castRole, beat: beat, page: page)

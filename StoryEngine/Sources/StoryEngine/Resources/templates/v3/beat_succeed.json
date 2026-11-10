@@ -3,7 +3,7 @@
   "beat": "succeed",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 7 in seven blueprints. The resolution must be EARNED — it works because of the specific thing the child did on page 6, and the text must say so. 'Sonunda her şey yoluna girdi' is the exact failure this beat exists to prevent; it is a banned construction. Variants declare `afterBeat`, so a story that resolved by asking does not get a page 7 about working something out. Always solo — page 7 is never shared. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 7 in seven blueprints. The resolution must be EARNED — it works because of the specific thing the child did on page 6, and the text must say so. 'Sonunda her şey yoluna girdi' is the exact failure this beat exists to prevent; it is a banned construction. Variants declare `afterBeat`, so a story that resolved by asking does not get a page 7 about working something out. Always solo — page 7 is never shared. Flavouring by afterBeat divides the pool: with only flavoured variants a blueprint sees two options for its payoff page. The sc_any_/rs_any_ variants work after any resolution beat and bring every blueprint's page-7 pool to eight. They still name causation ('kendi sayesinde', 'yardımı olmasa bu olmazdı') so the resolution stays earned. `exchange_views` grubu eklendi (30 Ekim 2026): V-2'nin meslek kardeşi (`bp_jobs_twohalves_003`) 7. sayfada `restore` yerine `succeed` kullanıyor, çünkü `restore`'un gerektirdiği `needKnown` yalnızca `receive_appeal`'den gelebiliyor ve o beat'in satırları bir YETİŞKİN için yazılmamış — \"Benimle gelir misin?\" ve \"Sensiz olmuyor\" bir yetişkinin çocuğa söyleyeceği cümleler değil. Altı ortak satıra bu grup da eklendi, iki satır bu gruba özel.",
   "bannedConstructions": [
     "her şey yoluna girdi",
     "sihirli bir şekilde",
@@ -52,7 +52,9 @@
     {
       "id": "sc_wait_02",
       "text": "Sabretmek kolay değildi ama {{child.name}} sabretti. Sonunda beklediği an geldi. Beklemeye değermiş, şimdi anlıyordu. Gördüğünü hiç ama hiç unutmayacaktı.",
-      "words": ["w56_sabir"],
+      "words": [
+        "w56_sabir"
+      ],
       "requiredSlots": [
         "child.name"
       ],
@@ -125,7 +127,9 @@
     {
       "id": "sc_retrace_02",
       "text": "{{child.name}} kendi izinden geri yürüdü. Ve buldu. Aradığı şey ilk baktığı yerdeydi, sadece o an görememişti. Şimdi apaçık ortadaydı.",
-      "words": ["w56_apacik"],
+      "words": [
+        "w56_apacik"
+      ],
       "requiredSlots": [
         "child.name"
       ],
@@ -172,7 +176,8 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "the_thing_they_did_worked"
     },
@@ -189,7 +194,8 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "stepping_back_to_look"
     },
@@ -206,7 +212,8 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "could_see_it_now"
     },
@@ -223,7 +230,8 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "disbelief_then_belief"
     },
@@ -240,7 +248,8 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "tired_but_changed_it"
     },
@@ -257,9 +266,36 @@
         "ask_for_help",
         "find_own_courage",
         "retrace",
-        "reveal_truth"
+        "reveal_truth",
+        "exchange_views"
       ],
       "move": "arrived_where_they_wanted"
+    },
+    {
+      "id": "sc_exchange_01",
+      "text": "{{child.name}} ile {{companion.name}} birbirini anladıktan sonra iş kolaylaştı. İkisinin bildiği birleşince olacak şey oldu. Yan yana durup baktılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "exchange_views"
+      ],
+      "move": "understanding_made_it_easy"
+    },
+    {
+      "id": "sc_exchange_02",
+      "text": "Anlaşınca oldu. {{child.name}} bir yarısını, {{companion.name}} öbür yarısını getirdi ve ikisi tam oturdu. Kimse tek başına yapamazdı, ikisi birden yaptı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "exchange_views"
+      ],
+      "move": "each_brought_a_half"
     }
   ]
 }

@@ -95,6 +95,16 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// A line that is wrong about what someone *is* does not read as a weaker
     /// line, it reads as a different character.
     public let natureRequire: Set<CompanionNature>
+    /// Bu satırın yazıldığı **meslek(ler)** (30 Ekim 2026).
+    ///
+    /// `natureRequire` ile aynı sertlikte ve aynı sebeple: bir satır birinin
+    /// ne olduğu konusunda yanlışsa daha zayıf bir satır olmaz, başka bir
+    /// karakterin satırı olur. "Hamuru dinlendirmek gerek" cümlesi postacının
+    /// ağzında yanlış değil, saçmadır.
+    ///
+    /// Boş küme "her meslek" demek değil, **mesleğe bakmıyor** demek: zanaatı
+    /// anmayan genel satırlar böyle. Mesleği anan satır onu bildirmek zorunda.
+    public let occupationRequire: Set<Occupation>
     /// Parts this line is written for.
     ///
     /// A companion cast as `needsCare` cannot stride in offering help, and one
@@ -154,7 +164,8 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
-        case capabilityRequire, capabilityForbid, natureRequire, castRoles, register
+        case capabilityRequire, capabilityForbid, natureRequire, occupationRequire
+        case castRoles, register
         case conflictKinds, afterClosing, afterState
         case familyRelations
         case topics, words
@@ -193,6 +204,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         capabilityRequire = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityRequire) ?? []
         capabilityForbid = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .capabilityForbid) ?? []
         natureRequire = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .natureRequire) ?? []
+        occupationRequire = try container.decodeIfPresent(Set<Occupation>.self, forKey: .occupationRequire) ?? []
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         register = try container.decodeIfPresent(VariantRegister.self, forKey: .register)
         conflictKinds = try container.decodeIfPresent(Set<ConflictMechanism>.self, forKey: .conflictKinds) ?? []
@@ -232,6 +244,17 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// `natureRequire`.
     public func suits(nature: CompanionNature) -> Bool {
         natureRequire.isEmpty || natureRequire.contains(nature)
+    }
+
+    /// Bu satır bu mesleğin satırı mı?
+    ///
+    /// Mesleksiz bir arkadaş (hayvan, ya da mesleği yazılmamış biri) yalnızca
+    /// mesleğe bakmayan satırları alır. Yani zanaat satırı asla bir ayının
+    /// ağzına düşmüyor.
+    public func suits(occupation: Occupation?) -> Bool {
+        guard !occupationRequire.isEmpty else { return true }
+        guard let occupation else { return false }
+        return occupationRequire.contains(occupation)
     }
 
     /// Whether this line suits the part the companion is playing.

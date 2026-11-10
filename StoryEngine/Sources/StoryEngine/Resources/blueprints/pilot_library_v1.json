@@ -410,6 +410,110 @@
         "hesitant",
         "needsCare"
       ]
+    },
+    {
+      "id": "companion_baker_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Fırıncı Nazlı",
+      "type": "fırıncı",
+      "personality": "Elleri hamurlu, sesi yumuşak.",
+      "description": "Köyün fırınında her sabah ekmek çıkaran, herkesi tanıyan biri.",
+      "visualDescription": "warm-faced baker in a flour-dusted apron, sleeves rolled up",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "baker",
+      "factID": "fact_baker_rests_the_dough"
+    },
+    {
+      "id": "companion_postman_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Postacı Remzi",
+      "type": "postacı",
+      "personality": "Hep aceleyle ama hep güler yüzle.",
+      "description": "Köyün bütün sokaklarını ve bütün kapılarını bilen postacı.",
+      "visualDescription": "cheerful postman with a worn satchel, cap pushed back",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "postman",
+      "factID": "fact_postman_sorts_by_street"
+    },
+    {
+      "id": "companion_teacher_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Öğretmen Suna",
+      "type": "öğretmen",
+      "personality": "Soruyu cevaptan çok sever.",
+      "description": "Köy okulunda ders veren, merak edeni asla aceleye getirmeyen öğretmen.",
+      "visualDescription": "teacher with a book under one arm, kind unhurried eyes",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "teacher",
+      "factID": "fact_teacher_writes_the_order"
     }
   ],
   "objects": [
@@ -429,11 +533,15 @@
         "isUnexplained",
         "isVisible"
       ],
+      "factID": "fact_shooting_star_is_not_a_star",
       "isProperNoun": false,
       "titleName": "Titrek Işık",
       "keepsakeName": "titrek ışık",
       "explainedBy": [
         "hasWater"
+      ],
+      "interests": [
+        "science"
       ]
     },
     {
@@ -679,6 +787,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -780,6 +891,9 @@
         "discovery": [
           "impliesNeed",
           "isFragmentary"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -888,6 +1002,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -997,6 +1114,9 @@
         ],
         "discovery": [
           "impliesNeed"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1102,6 +1222,9 @@
       "forbids": {
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1209,6 +1332,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1304,6 +1430,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1404,6 +1533,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1503,6 +1635,9 @@
         "companion": [
           "canFly",
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1601,6 +1736,9 @@
         ],
         "companion": [
           "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1706,6 +1844,9 @@
         ],
         "companion": [
           "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1804,6 +1945,9 @@
       "forbids": {
         "companion": [
           "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -1910,6 +2054,9 @@
       "forbids": {
         "companion": [
           "canCarry"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2012,6 +2159,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2096,6 +2246,9 @@
       "forbids": {
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2181,6 +2334,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2276,6 +2432,9 @@
         ],
         "setting": [
           "isHazardous"
+        ],
+        "nature": [
+          "person"
         ]
       },
       "titlePatterns": [
@@ -2323,6 +2482,399 @@
           "role": "emotional_ending",
           "beat": "warm_close",
           "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_charge_release_age3_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "charge",
+      "editorialName": "lettingGo",
+      "genre": "gentle_adventure",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk küçük birine bakar, sonra gitmesine izin verir.",
+      "editorialGuidance": "3-4 bandının İKİNCİ mekanizması (23 Ekim 2026). İlki `lookingAfter`: çocuk kalır ve BEKLER, o iyileşir. Bunun çözümü beklemek değil BIRAKMAK. 5-6'da bu ayrım zaten iki mekanizma sayılıyor (VI-1 patience, VI-2 release); bu, o ayrımın 3-4 karşılığı.\n\nSayfa planı `lookingAfter` ile aynı ve bu kasıtlı: 3-4'te altı sayfaya başka bir yay sığmıyor. Farkı tek sayfada, çözümü getiren beat'te — ve mekanizma tam olarak orada yaşıyor.\n\nNeden başka bir şekil denenip bırakıldı: ilk tasarım 'kayıp ve bulunan' idi (çocuk bakar, bulamaz, sorar). Motor onu reddetti ve haklıydı: `examine` hiçbir anlatı durumu üretmiyor, `ask_for_help` ise `obstacleNamed` istiyor — yani aşılacak bir engel, ki 3-4 korpusunun tüzüğü onu yasaklıyor. Engelsiz ve yanlış-inançsız bir bantta `solutionKnown` üreten yalnızca iki beat kalıyor: `patient_wait` ve `let_go`. Birincisi `lookingAfter`'ın, ikincisi bunun.",
+      "requires": {
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}} Gitmeye Hazır mı?",
+        "{{setting.name}}'nda Veda",
+        "{{companion.name}} ile Son Gün",
+        "{{child.name}} Bıraktı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "let_go",
+          "supportingBeat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "tenderness"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-3j - seekingKnowledge",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Cevabı bilen biri var ve o bunu her gün yapıyor; sormak gerekiyor.",
+      "editorialGuidance": "Bilen kişi cevabı KENDİ İŞİNDEN veriyor, genel bir bilgelikten değil. Çocuk sormayı seçiyor; kurtarılmıyor.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kime Sorulur?",
+        "{{companion.name}} Nasıl Biliyor?",
+        "{{setting.name}}'ndaki Soru",
+        "{{child.name}} Sormaya Gitti",
+        "{{discovery.title}}'in Cevabı Kimde?"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_craftspatience_002",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-2j - patientObservation",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Zanaat beklemeyi bilir; çocuk o beklemeyi birinden öğreniyor.",
+      "editorialGuidance": "Bekleme işin kuralı olduğu için bekleniyor, sabır dersi olduğu için değil. Hiçbir şey beklemeyi ödüllendirmek için gelmiyor.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Ne Zaman Olur?",
+        "Beklemeyi Bilen {{companion.name}}",
+        "{{setting.name}}'ndaki Bekleyiş",
+        "{{child.name}} Beklemeyi Öğrendi",
+        "{{discovery.title}} ve Sabır"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "supportingBeat": "obstacle_raises",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_twohalves_003",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "misreading",
+      "editorialName": "V-2j - perspectiveShift",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk o anı gördü, zanaat her günü biliyor; gerçek ikisinin arasında.",
+      "editorialGuidance": "İkisi de haklı ve ikisi de eksik; kimse düzeltilmiyor. Yetişkinin her günü, çocuğun o anı kadar yarımdır; 7. sayfada `succeed` kullanılıyor çünkü `restore`'un istediği yardım çağrısı bir yetişkinin ağzına yazılmamış.",
+      "interests": [
+        "jobs"
+      ],
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kimin Acaba?",
+        "{{companion.name}} Başka Görüyor",
+        "{{setting.name}}'ndaki İki Bakış",
+        "{{child.name}} Dinledi, Sonra Anlattı",
+        "{{discovery.title}}'in İki Yarısı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "supportingBeat": "form_belief",
+          "emotion": "certainty"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "belief_fails",
+          "supportingBeat": "commit",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "exchange_views",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "warmth"
         }
       ]
     }
@@ -4188,6 +4740,9 @@
       "requires": {
         "companion": [
           "jobs"
+        ],
+        "plot": [
+          "jobs"
         ]
       }
     },
@@ -4304,6 +4859,60 @@
           "treasure"
         ]
       }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact_sun_is_a_star",
+      "statement": "Güneş de bir yıldızdır. Bize en yakın yıldız olduğu için bu kadar büyük ve parlak görünür.",
+      "bands": [
+        "5-6"
+      ],
+      "sourceName": "NASA Space Place, All About the Sun",
+      "sourceURL": "https://spaceplace.nasa.gov/all-about-the-sun/en/",
+      "verifiedOn": "2026-10-23",
+      "review": "approved"
+    },
+    {
+      "id": "fact_shooting_star_is_not_a_star",
+      "statement": "Gökyüzünde kayan yıldız gördüğümüzde aslında bir yıldız düşmez. Gördüğümüz, hızla gelen küçük bir taşın çevresindeki havanın kızarıp parlamasıdır.",
+      "bands": [
+        "5-6"
+      ],
+      "sourceName": "NASA Space Place, What Is a Meteor Shower?",
+      "sourceURL": "https://spaceplace.nasa.gov/meteor-shower/en/",
+      "verifiedOn": "2026-10-23",
+      "review": "approved"
+    },
+    {
+      "id": "fact_baker_rests_the_dough",
+      "statement": "Fırıncı hamuru yoğurduktan sonra üstünü örtüp bekler. Hamur o beklemede kabarır.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
+      "review": "approved"
+    },
+    {
+      "id": "fact_postman_sorts_by_street",
+      "statement": "Postacı yola çıkmadan önce mektupları sokaklara göre ayırır. Aynı sokağın mektupları yan yana durur.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
+      "review": "approved"
+    },
+    {
+      "id": "fact_teacher_writes_the_order",
+      "statement": "Öğretmen anlatacağını önceden sırayla yazar. O sıraya plan denir.",
+      "bands": [
+        "5-6"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-10-30",
+      "review": "approved"
     }
   ]
 }

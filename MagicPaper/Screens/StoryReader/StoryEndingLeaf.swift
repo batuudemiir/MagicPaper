@@ -166,6 +166,9 @@ struct StoryEndingLeaf: View {
 
             earnedRow
 
+            // Faz 21: masalın tek gerçek bilgisi, yalnızca gündüz.
+            if let fact = story.fact { factLeaf(fact) }
+
             if StoryColophon.hasDedication(story) { colophon }
 
             SeriesEndingSection(story: story, theme: theme, accent: accent)
@@ -299,6 +302,31 @@ struct StoryEndingLeaf: View {
         .padding(MPSpacing.md)
         .background(theme.foreground.opacity(0.06), in: RoundedRectangle(cornerRadius: MPRadius.card))
         .accessibilityElement(children: .combine)
+    }
+
+    /// Masalın sonunda tek bir gerçek bilgi (30 Ekim 2026). Kutucuk değil, sessiz
+    /// bir satır. Kaynak yalnızca varsa görünür ve tıklanmaz (çocuk alanında dış
+    /// bağlantı yok). Uyku yaprağında yok.
+    private func factLeaf(_ fact: StoryFact) -> some View {
+        VStack(spacing: MP.S.x2) {
+            Text("Bunu biliyor muydun?")
+                .font(MP.F.labelSM(.semibold))
+                .foregroundStyle(theme.muted)
+            Text(fact.statement)
+                .mpText(.supporting)
+                .foregroundStyle(theme.foreground)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            if let source = fact.sourceName {
+                Text("Kaynak: \(source)")
+                    .font(MP.F.caption())
+                    .foregroundStyle(theme.muted)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .opacity(revealed >= earned.count + 2 ? 1 : 0)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Bunu biliyor muydun? \(fact.statement)" + (fact.sourceName.map { " Kaynak: \($0)." } ?? ""))
     }
 
     /// Kitabın son sayfasındaki künye: "MagicPaper Kitaplığı · İrem'in 12. masalı".

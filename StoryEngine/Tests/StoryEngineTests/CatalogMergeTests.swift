@@ -298,11 +298,27 @@ extension CatalogMergeTests {
             let story = try OfflineStoryComposer().compose(
                 catalog: catalog,
                 intent: OfflineStoryIntent(childName: "Yeliz", seed: seed))
+            // Beat'ler OKUMA SIRASINDA geziliyor, sayfa sayfa değil (23 Ekim
+            // 2026). Eski hâli her sayfanın satırlarını ÖNCEKİ SAYFANIN son
+            // beat'iyle karşılaştırıyordu; paired bir sayfanın ikinci satırı
+            // için bu yanlış cevap, çünkü o satırın hemen öncesi aynı
+            // sayfadaki ilk beat. Motor da böyle hesaplıyor
+            // (`OfflineStoryComposer.plan`, `previous = current`) ve
+            // `afterClosing`'in kendi yorumu bunu açıkça söylüyor: "paired bir
+            // sayfada kapanış satırının hemen öncesi, yanındaki beat'tir."
+            //
+            // Yaklaşım o güne kadar doğru cevap veriyordu çünkü hiçbir
+            // destekleyici satır `afterBeat` bildirmiyordu. 3-4'ün ikinci
+            // mekanizması ilkini getirdi: `restore` satırları artık
+            // `patient_wait` ile `let_go` arasında ayrılıyor.
             let ordered = story.pages.sorted { $0.pageNumber < $1.pageNumber }
-            for (index, page) in ordered.enumerated() where index > 0 {
-                let previous = ordered[index - 1].beats.last
-                for id in page.variantIDs {
-                    guard let after = byID[id]?.afterBeat, !after.isEmpty, let previous else { continue }
+            var previous: StoryBeat?
+            for page in ordered {
+                for (offset, beat) in page.beats.enumerated() {
+                    defer { previous = beat }
+                    guard offset < page.variantIDs.count else { continue }
+                    guard let after = byID[page.variantIDs[offset]]?.afterBeat,
+                          !after.isEmpty, let previous else { continue }
                     XCTAssertTrue(after.contains(previous),
                         "p\(page.pageNumber) used a line for \(after.map(\.rawValue)) after \(previous.rawValue)")
                 }

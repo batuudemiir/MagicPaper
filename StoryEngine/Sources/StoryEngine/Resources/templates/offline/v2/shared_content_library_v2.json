@@ -270,7 +270,8 @@
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.0,
       "habitat": [
-        "garden"
+        "garden",
+        "village"
       ],
       "traits": [
         "isTended",
@@ -540,6 +541,43 @@
       "thresholdKinds": [
         "span"
       ]
+    },
+    {
+      "id": "setting_market_001",
+      "name": "Pazar Yeri",
+      "description": "Köyün ortasında, sabahtan akşama kadar herkesin geçtiği pazar.",
+      "visualKeywords": [
+        "köy",
+        "ev"
+      ],
+      "compatibleGenres": [
+        "adventure"
+      ],
+      "compatibleThemes": [
+        "helping_others"
+      ],
+      "tags": [
+        "village",
+        "civilization"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "village"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isOpen",
+        "isTended",
+        "showsTraces"
+      ],
+      "interests": [
+        "jobs"
+      ],
+      "thresholdKinds": [
+        "social"
+      ],
+      "visualDescription": "village market with cloth awnings, crates, footprints in the dust"
     }
   ],
   "companions": [
@@ -1286,8 +1324,10 @@
         "isBeautiful",
         "isUnexplained"
       ],
+      "factID": "fact_sun_is_a_star",
       "interests": [
-        "magic"
+        "magic",
+        "science"
       ],
       "keepsakeName": "yıldız taşı"
     },

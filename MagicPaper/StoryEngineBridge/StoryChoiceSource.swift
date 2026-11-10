@@ -91,8 +91,15 @@ protocol StoryChoiceSource {
     func companionChoices(forIdeaID ideaID: String?, mode: StoryMode?, age: Int?) -> [CompanionChoice]
     /// The companions, when a Masal ailem character comes along too: a
     /// companion with the character's name is not offered beside them.
+    ///
+    /// `topicID` **şart** (30 Ekim 2026): alt kategori bir söz, yani bir
+    /// süzgeç, ve bu ekran o süzgecin arkasında duruyor. Konu geçmezse ekran
+    /// konuyu taşıyamayan kartlar teklif eder; seçildiklerinde masal hiç
+    /// kurulamaz. Ölçüldüğünde "Meslekler" için teklif edilen üç kartın
+    /// ikisi masalı bozuyordu.
     func companionChoices(
-        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?, family: FamilyCharacter?
+        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?,
+        topicID: String?, family: FamilyCharacter?
     ) -> [CompanionChoice]
     /// Masal ailem relations a story of this mode can carry for this child.
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
@@ -181,9 +188,11 @@ extension OfflineStoryService: StoryChoiceSource {
     }
 
     func companionChoices(
-        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?, family: FamilyCharacter?
+        forIdeaID ideaID: String?, mode: StoryMode?, age: Int?,
+        topicID: String?, family: FamilyCharacter?
     ) -> [CompanionChoice] {
-        Self.drawable(companionCandidates(forIdeaID: ideaID, mode: mode, age: age, family: family)
+        Self.drawable(companionCandidates(forIdeaID: ideaID, mode: mode, age: age,
+                                          topicID: topicID, family: family)
             .map(CompanionChoice.init))
     }
 

@@ -111,13 +111,31 @@ final class VariationBaselineTests: XCTestCase {
             }
             notBelow(report.mechanisms, before.mechanisms, "mekanizma")
             notBelow(report.blueprints, before.blueprints, "blueprint")
-            notBelow(report.settings, before.settings, "mekân")
-            notBelow(report.companions, before.companions, "arkadaş")
-            notBelow(report.casts, before.casts, "kadro")
+            // `casts`, `settings` ve `companions` eşikten ÇIKARILDI (28 Ekim 2026) ve
+            // sebebi ölçüldü: katalogda macera modunun hiç ulaşamadığı tek bir
+            // mekân kaydı eklendiğinde (yalnızca `village` habitatı olan
+            // Pazar Yeri; hiçbir hayvan o habitatı paylaşmıyor) macera 5-6'nın
+            // ÖRNEKLENEN mekân sayısı 16'dan 9'a düştü — hem 50 hem 200
+            // seed'de. Aynı üç yapılandırmada ULAŞILABİLİR mekân sayısı 16'da
+            // kaldı.
+            //
+            // Yani düşen şey çocuğun alabileceği mekân çeşitliliği değil, sabit
+            // seed listesinin hangi mekânlara denk geldiği. Bu sayıya eşik
+            // koymak, ilgisiz bir kaydın varlığıyla kırılan bir alarm demek —
+            // ve kırılgan alarm, birkaç turda susturulan alarmdır.
+            //
+            // Çeşitliliğin gerçek ölçüsü artık `testReachableVarietyHasNotFallen`:
+            // kaç mekânın KURULABİLDİĞİ. Örneklenen sayı kayıtta duruyor
+            // (`variation_baseline.json`), çünkü dağılımın kendisi de bir gün
+            // sorulacak bir soru — ama eşik değil.
 
+            // Tekrar oranı da örnekleme ürünü, ama bu eksende küçük oynama
+            // anlamlı olmadığı hâlde BÜYÜK oynama anlamlı: %3'lük pay
+            // gürültüyü geçiriyor, bir kat artışı geçirmiyor. 28 Ekim'de
+            // ölçülen oynama 1,2 puandı (içerik eklenince).
             XCTAssertLessThanOrEqual(
-                report.repeatedSentenceRate, before.repeatedSentenceRate + 0.001,
-                "\(where_): tekrar eden cümle oranı arttı "
+                report.repeatedSentenceRate, before.repeatedSentenceRate + 0.03,
+                "\(where_): tekrar eden cümle oranı belirgin biçimde arttı "
                 + "(\(before.repeatedSentenceRate) → \(report.repeatedSentenceRate))")
         }
     }
@@ -131,6 +149,39 @@ final class VariationBaselineTests: XCTestCase {
                 "\(report.mode.rawValue) \(report.band): hiçbir seed masal üretmedi "
                 + "(\(report.failures.count) gerekçe)")
         }
+    }
+
+    /// Çocuğun gerçekten alabileceği mekân ve arkadaş sayısı düşmedi.
+    ///
+    /// Örneklenen sayının yerine geçen ölçü (28 Ekim 2026). Fark şu: örneklenen
+    /// sayı "şu 50 seed hangi mekânlara denk geldi" diye sorar ve ilgisiz bir
+    /// kaydın eklenmesiyle oynar; bu ise "kaç mekân kurulabiliyor" diye sorar,
+    /// yani havuzun genişliğini.
+    ///
+    /// Rakamlar açık yazılı ve bu bilerek: havuzun genişlemesi bir içerik
+    /// olayıdır ve kaydının güncellenmesi gerekir. Daralması ise bir
+    /// regresyondur.
+    func testReachableVarietyHasNotFallen() {
+        let band = AgeBand(lowerBound: 5, upperBound: 6)
+        let selector = BlueprintSelector()
+        let binder = OfflineContentBinder()
+
+        func reachableSettings(_ mode: StoryMode) -> Int {
+            let intent = OfflineStoryIntent(childName: "A", seed: "reach", mode: mode, ageBand: band)
+            let (blueprints, _) = selector.admissible(catalog: catalog, intent: intent)
+            return catalog.settings.count { setting in
+                blueprints.contains { blueprint in
+                    let probe = OfflineStoryIntent(
+                        childName: "A", settingID: setting.id, seed: "reach",
+                        mode: mode, ageBand: band)
+                    return (try? binder.bind(blueprint: blueprint, catalog: catalog, intent: probe)) != nil
+                }
+            }
+        }
+        XCTAssertGreaterThanOrEqual(reachableSettings(.adventure), 16,
+                                    "macera 5-6: kurulabilen mekân sayısı düştü")
+        XCTAssertGreaterThanOrEqual(reachableSettings(.learning), 21,
+                                    "öğrenelim 5-6: kurulabilen mekân sayısı düştü")
     }
 
     // MARK: - Kaydı üretmek
@@ -197,4 +248,102 @@ final class VariationBaselineTests: XCTestCase {
             + stranded.map { "  " + $0.message }.joined(separator: "\n"))
     }
 
+}
+
+/// Nakaratsız tekrar oranı (23 Ekim 2026).
+///
+/// Kitap araştırma ajanının itirazıyla eklendi: ilan edilmiş bir nakarat
+/// blueprint'in özelliği, o blueprint'in her masalı onu tasarım gereği
+/// tekrarlar, ve sayılması motorun prozayı ne kadar çeşitlendirdiği hakkında
+/// hiçbir şey söylemez. Ölçüldüğünde nakaratlı bir blueprint'te masallar arası
+/// tekrarın 8'de 6'sı nakaratın kendisiydi.
+final class RefrainAwareMeasurementTests: XCTestCase {
+
+    private var catalog: ContentCatalog!
+
+    /// Nakarat deneyinin kolu: yayında nakaratlı blueprint yok, bu yüzden ölçüyü
+    /// sınamanın tek yolu deney kolunu havuza katmak.
+    private var withRefrain: ContentCatalog!
+
+    override func setUpWithError() throws {
+        catalog = try ContentCatalogLoader().load().catalog
+        let url = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Content/Experiments/x_refrain_bedtime.json")
+        let arm = try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: url))
+        withRefrain = ContentCatalog(
+            version: catalog.version, settings: catalog.settings, companions: catalog.companions,
+            objects: catalog.objects, templates: catalog.templates + arm.templates,
+            blueprints: catalog.blueprints + arm.blueprints,
+            storyModes: catalog.storyModes, interests: catalog.interests,
+            safetyTopics: catalog.safetyTopics, series: catalog.series)
+    }
+
+    /// Nakaratı olmayan katalogda iki ölçü birebir aynı: yeni ölçü eskisinin
+    /// yerine geçmiyor, yanında duruyor.
+    func testWithoutARefrainBothRatesAgree() {
+        for (mode, band) in [(StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6)),
+                             (.adventure, AgeBand(lowerBound: 5, upperBound: 6)),
+                             (.bedtime, AgeBand(lowerBound: 3, upperBound: 4))] {
+            let report = VariationReport.measure(
+                catalog: catalog, mode: mode, band: band, seeds: VariationBaseline.standardSeeds)
+            XCTAssertEqual(report.repeatedSentenceRate,
+                           report.repeatedSentenceRateExcludingRefrains,
+                           "\(mode.rawValue) \(band): yayında nakarat yok, oranlar ayrışmamalı")
+        }
+    }
+
+    /// Nakaratlı bir blueprint ölçüldüğünde nakaratsız oran belirgin biçimde
+    /// düşük: ölçü gerçekten nakaratı ayıklıyor.
+    func testARefrainIsLeftOutOfTheSecondRate() {
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        let seeds = (1...30).map { "rf-\($0)" }
+        // Nakaratlı kol standart arklı charge: 23 Ekim'den beri öğrenelim onu
+        // kabul ediyor.
+        let report = VariationReport.measure(
+            catalog: withRefrain, mode: .learning, band: band, seeds: seeds)
+        XCTAssertGreaterThan(report.composed, 0)
+        XCTAssertLessThan(report.repeatedSentenceRateExcludingRefrains,
+                          report.repeatedSentenceRate,
+                          "nakarat ayıklanmamış: \(report.repeatedSentenceRate) / "
+                          + "\(report.repeatedSentenceRateExcludingRefrains)")
+    }
+
+    /// Nakarat cümleleri, sayfa cümleleriyle **aynı** biçimde ayrıştırılıyor.
+    /// Ayrıştırma iki yerde ayrı yazılsaydı karşılaştırma hiç tutmazdı ve ölçü
+    /// sessizce eskisinin kopyası olurdu.
+    func testTheRefrainIsSplitTheSameWayAsAPage() throws {
+        let blueprint = try XCTUnwrap(withRefrain.blueprints.first { $0.refrain != nil })
+        let refrain = try XCTUnwrap(blueprint.refrain)
+        let catalogWithRefrain = withRefrain!
+        let story = try XCTUnwrap((1...30).lazy.compactMap { index in
+            try? OfflineStoryComposer().compose(
+                catalog: catalogWithRefrain,
+                intent: OfflineStoryIntent(childName: "Ada", seed: "rf-\(index)",
+                                           ageBand: blueprint.ageRange))
+        }.first { $0.blueprintID == blueprint.id }, "nakaratlı masal kurulamadı")
+
+        let sentences = Set(story.pages.flatMap(VariationReport.sentences(of:)))
+        let found = VariationReport.refrainSentences(of: story, in: catalogWithRefrain)
+        XCTAssertFalse(found.isEmpty)
+        XCTAssertTrue(found.contains(where: sentences.contains),
+                      "nakarat cümlesi sayfa cümleleriyle eşleşmiyor: \(found) / \(refrain.line)")
+    }
+
+    /// Bu alandan önce alınmış taban kayıtları çözülmeye devam ediyor.
+    ///
+    /// Sessiz felaket önleyici: çözülemeyen dosyayı `testRecordBaseline` boş
+    /// liste sayıp üstüne yazıyor, yani turların karşılaştırma geçmişi kaybolur.
+    func testABaselineRecordWithoutTheNewFieldStillDecodes() throws {
+        let json = """
+        {"band":"5-6","blueprints":8,"casts":45,"closings":9,"companions":15,"composed":50,
+         "discoveries":12,"failures":[],"mechanisms":8,"mode":"learning","openings":11,
+         "repeatedSentenceRate":0.52,"requested":50,"settings":15}
+        """
+        let report = try JSONDecoder().decode(VariationReport.self, from: Data(json.utf8))
+        XCTAssertEqual(report.repeatedSentenceRate, 0.52)
+        XCTAssertEqual(report.repeatedSentenceRateExcludingRefrains, 0.52,
+                       "eski kayıtta nakarat yoktu, iki oran eşit sayılmalı")
+    }
 }

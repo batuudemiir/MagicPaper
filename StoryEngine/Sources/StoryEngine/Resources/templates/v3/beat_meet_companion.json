@@ -3,7 +3,7 @@
   "beat": "meet_companion",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3 of every blueprint. The companion must arrive with its OWN reason to be here — it lives nearby, it crosses often, it is in trouble, it was passing. 'The fox appeared' is the failure this beat exists to prevent. Variants are cast-specific: a companion cast as needsCare cannot stride in offering help, and one cast as guide cannot be trembling. The need itself is NOT voiced here — receive_appeal does that on page 3 or 4. No body-part assumptions: the roster includes a robot. Both classes are authored because page 3 is shared in 14 blueprints and solo in 5. This beat's real constraint is the PAGE total rather than the line: its partner is always short (8-14), so a 16-22 line pairs safely and an 18-24 line stands alone safely. Supply is counted per CELL, not per beat: this beat partitions by cast role AND length class at once, so 16 variants were eight pools of one to four. A binding whose cell held one variant got the same page 3 in every book. Each of the eight cells now holds at least four.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3 of every blueprint. The companion must arrive with its OWN reason to be here — it lives nearby, it crosses often, it is in trouble, it was passing. 'The fox appeared' is the failure this beat exists to prevent. Variants are cast-specific: a companion cast as needsCare cannot stride in offering help, and one cast as guide cannot be trembling. The need itself is NOT voiced here — receive_appeal does that on page 3 or 4. No body-part assumptions: the roster includes a robot. Both classes are authored because page 3 is shared in 14 blueprints and solo in 5. This beat's real constraint is the PAGE total rather than the line: its partner is always short (8-14), so a 16-22 line pairs safely and an 18-24 line stands alone safely. Supply is counted per CELL, not per beat: this beat partitions by cast role AND length class at once, so 16 variants were eight pools of one to four. A binding whose cell held one variant got the same page 3 in every book. Each of the eight cells now holds at least four.\n\n--- İNSAN YOL ARKADAŞI (28 Ekim 2026, karar 23 Ekim) ---\n\nKonuşan bir tilkinin ormanda bir çocuğa yaklaşması masaldır. Tanımadığı bir YETİŞKİNİN yalnız bir çocuğa yaklaşması başka bir şeydir, ve kitap bunu normalleştirmemeli. Bu yüzden:\n\n**İnsanla kendi yerinde tanışılır. Çocuk oraya gider.** Fırıncıyla fırında, postacıyla kapıda, öğretmenle okulda. Tanışma hiçbir zaman yetişkinin çocuğa yaklaşması, seslenmesi ya da onu fark etmesi olarak kurulmaz; çocuk gelir, yetişkin oradadır ve işini yapmaktadır.\n\nMevcut 35 satırın tamamı `natureRequire: [animal, fantastic]` taşıyor. Tek tek ayıklamak yerine hepsi kapatıldı, çünkü satırların çoğu 'çıkageldi', 'yanına geldi', 'iki göz baktı' diliyle yazılmış ve hangisi bir yetişkin için kabul edilebilir sorusunu satır satır tartışmak, ilk sıkışan turda gevşeyecek bir ayrım üretir. Hayvanlar hiçbir şey kaybetmiyor: 35 satır onların.\n\nİnsan satırları `natureRequire: [person]` ile ayrı yazıldı. Rol olarak insan **needsCare oynamaz**: bakıma muhtaç bir yetişkin, çocuğun taşıyacağı bir yük olur ve bu hiçbir bandın masalı değil.\n\nBu kural yapısal olarak da denetleniyor ama yalnızca yarısı: `CatalogIntegrity` insanın yerleşim habitatı bildirmesini ve saklanılabilir/tehlikeli bir mekânla aynı habitatta olmamasını zorunlu kılıyor. 'Tanışma nasıl yazıldı' sorusunu makine cevaplayamaz; o yüzden bu not burada, yazarın okuduğu yerde.",
   "castings": [
     "guide",
     "needsCare",
@@ -24,7 +24,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "emerges_and_claims_the_place",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_02",
@@ -39,7 +43,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "routine_of_its_own",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_03",
@@ -57,7 +65,11 @@
       ],
       "capabilityForbid": [],
       "move": "arrives_from_above",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_04",
@@ -73,7 +85,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "speaks_first_from_behind",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_05",
@@ -88,7 +104,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "was_passing_and_saw_it_too",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_01",
@@ -104,13 +124,22 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "movement_on_the_ground",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_02",
       "text": "Ses yine geldi, bu kez çok yakından. {{child.name}} usulca yaklaştı. {{companion.name}} oradaydı, küçücük bir {{companion.type}}, tek başına ve korkmuş.",
-      "topics": ["alone", "fear"],
-      "words": ["w56_usulca"],
+      "topics": [
+        "alone",
+        "fear"
+      ],
+      "words": [
+        "w56_usulca"
+      ],
       "requiredSlots": [
         "child.name",
         "companion.type",
@@ -122,7 +151,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "sound_leads_to_someone",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_03",
@@ -138,12 +171,19 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "trembling_stillness",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_04",
       "text": "{{companion.name}} çok küçüktü ve çok yorgundu. {{child.name}} onu hemen fark etti. Yanına çömeldi ve usulca seslendi. \"Merhaba,\" dedi.",
-      "words": ["w56_usulca", "w56_comelmek"],
+      "words": [
+        "w56_usulca",
+        "w56_comelmek"
+      ],
       "requiredSlots": [
         "companion.name",
         "child.name"
@@ -154,7 +194,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "child_crouches_and_greets",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_05",
@@ -171,7 +215,11 @@
         "isLiteralMinded"
       ],
       "move": "one_eye_opens",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_01",
@@ -188,7 +236,11 @@
         "isLiteralMinded"
       ],
       "move": "watched_before_seen",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_02",
@@ -202,7 +254,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "both_stuck_at_the_same_place",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_03",
@@ -217,7 +273,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "admits_it_first",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_01",
@@ -232,7 +292,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "sits_down_and_waits",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_02",
@@ -248,7 +312,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "no_hurry",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_03",
@@ -263,7 +331,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "looks_the_same_way",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_06",
@@ -278,7 +350,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "knows_the_paths_by_heart",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_p06",
@@ -293,7 +369,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "already_beside_them",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_p07",
@@ -308,7 +388,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "grew_up_here_stranger_is_new",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_guide_p08",
@@ -322,7 +406,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "walked_without_inviting",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_06",
@@ -337,7 +425,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "did_not_run_or_hide",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_07",
@@ -353,7 +445,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "heard_it_only_the_second_time",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_p06",
@@ -368,7 +464,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "almost_stepped_on_it",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_care_p07",
@@ -384,7 +484,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "stopped_short_of_approaching",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_04",
@@ -399,12 +503,18 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "forward_then_back_repeatedly",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_05",
       "text": "\"Ben de biraz korkuyorum,\" dedi {{companion.name}}. Söylemesi kolay olmadı. {{child.name}} şaşırdı, çünkü yalnız olmadığını yeni öğrenmişti. İkisi de rahatladı.",
-      "topics": ["fear"],
+      "topics": [
+        "fear"
+      ],
       "requiredSlots": [
         "companion.name",
         "child.name"
@@ -415,7 +525,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "admits_being_afraid_too",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_06",
@@ -431,7 +545,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "closed_the_distance_slowly",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_07",
@@ -446,12 +564,18 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "long_there_never_crossed",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_p04",
       "text": "Yakınlarda biri daha vardı. {{companion.name}} çıkageldi ama hemen durdu. \"Ben de duruyorum burada,\" dedi usulca, sesi çok alçaktı.",
-      "words": ["w56_usulca"],
+      "words": [
+        "w56_usulca"
+      ],
       "requiredSlots": [
         "companion.name"
       ],
@@ -461,12 +585,18 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "someone_else_was_stuck_too",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_hesitant_p05",
       "text": "{{companion.name}} yaklaştı, sonra vazgeçti, sonra yine yaklaştı. {{child.name}} hiç kıpırdamadı. Beklemek doğru olan şeydi, {{child.name}} bunu biliyordu.",
-      "words": ["w56_vazgecmek"],
+      "words": [
+        "w56_vazgecmek"
+      ],
       "requiredSlots": [
         "companion.name",
         "child.name"
@@ -477,7 +607,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "approached_gave_up_approached",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_04",
@@ -492,7 +626,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "being_there_was_enough",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_05",
@@ -508,7 +646,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "says_i_am_here",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_06",
@@ -523,7 +665,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "saw_it_and_did_not_name_it",
-      "lengthClass": "solo"
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_p04",
@@ -538,7 +684,11 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "relaxed_without_knowing_why",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "mc_calm_p05",
@@ -553,7 +703,270 @@
       "settingTraits": [],
       "capabilityForbid": [],
       "move": "came_here_often_not_alone_today",
-      "lengthClass": "paired"
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "mc_person_guide_s01",
+      "text": "{{child.name}} kapıyı araladı. İçeride {{companion.name}} vardı, her zamanki gibi işinin başında. Başını kaldırdı, {{child.name}}'i gördü ve gülümsedi. \"Hoş geldin,\" dedi. \"Bir şey mi arıyorsun?\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "solo",
+      "move": "child_opens_the_door",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_s02",
+      "text": "{{child.name}} doğru {{companion.name}}'e gitti, çünkü burada bir şeyi en iyi o bilirdi. {{companion.name}} elindeki işi bırakmadı ama dinledi. Sonra başını salladı. \"Haa,\" dedi. \"Onu biliyorum.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "solo",
+      "move": "child_goes_to_the_one_who_knows",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_s03",
+      "text": "Köyde bir {{companion.type}} vardı ve {{child.name}} nerede olduğunu biliyordu. Gidip orada bekledi. {{companion.name}} işini bitirince ona döndü. \"Anlat bakalım,\" dedi, hiç acele ettirmeden.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "solo",
+      "move": "child_waits_until_they_finish",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_s04",
+      "text": "{{setting.name}}'nda herkesin bir yeri vardı. {{child.name}} tam {{companion.name}}'in yerine gitti. \"Sen bilirsin,\" dedi. {{companion.name}} güldü. \"Bilirim,\" dedi. \"Gel, göstereyim.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "solo",
+      "move": "everyone_has_a_place",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_p01",
+      "text": "{{child.name}} {{companion.name}}'in kapısını çaldı ve biraz bekledi. \"Bunu sana sormaya geldim,\" dedi hemen içeri girer girmez.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "paired",
+      "move": "knocked_on_their_door",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_p02",
+      "text": "{{child.name}} doğru {{companion.name}}'e gitti, hiç düşünmeden. Burayı en iyi o bilirdi, köyde zaten herkes böyle derdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "paired",
+      "move": "went_straight_to_them",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_p03",
+      "text": "Bir {{companion.type}} aranıyordu ve {{child.name}} tam olarak nereye gideceğini çok iyi biliyordu. Yolu yarılamadan oraya varmıştı bile.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "paired",
+      "move": "knew_where_to_go",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_guide_p04",
+      "text": "{{companion.name}} işinin başındaydı ve elleri doluydu. {{child.name}} yanına gidip sessizce beklemeye başladı, onu hiç acele ettirmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "lengthClass": "paired",
+      "move": "waited_beside_their_work",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_s01",
+      "text": "{{child.name}} {{companion.name}}'in yanına oturdu, çünkü orası sakin bir yerdi. {{companion.name}} bir şey sormadı. Yalnızca elindeki işe devam etti. Bir süre ikisi de konuşmadı, ve bu iyi geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "solo",
+      "move": "sat_down_beside_them",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_s02",
+      "text": "{{child.name}} içeri girdiğinde {{companion.name}} başını kaldırdı ama telaşlanmadı. \"Otur istersen,\" dedi. {{child.name}} oturdu. {{companion.name}} işini yapmaya devam etti, {{child.name}} sessizce izledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "solo",
+      "move": "sit_if_you_like",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_s03",
+      "text": "Köyde insanın sakinleşebileceği bir yer vardı: {{companion.name}}'in yanı. {{child.name}} oraya gitti. {{companion.name}} her zaman olduğu gibi oradaydı ve acelesi yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "solo",
+      "move": "the_calm_place_in_the_village",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_s04",
+      "text": "{{child.name}} eşikte durdu. {{companion.name}} onu gördü, \"gel\" demedi, kapıyı biraz daha açtı. {{child.name}} girdi ve bir sandalyeye oturdu. Hiçbir şey sorulmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "solo",
+      "move": "opened_the_door_wider",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_p01",
+      "text": "{{child.name}} {{companion.name}}'in yanına gitti ve usulca oturdu. Orada acele eden kimse olmazdı, zaten hiç de olmamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "paired",
+      "move": "nobody_hurries_there",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_p02",
+      "text": "{{companion.name}} eşikte durup sessizce bekledi, hiçbir şey sormadı. {{child.name}} içeri girdi ve derin bir nefes aldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "paired",
+      "move": "waited_at_the_threshold",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_p03",
+      "text": "{{child.name}} geldiğinde {{companion.name}} yalnızca gülümsedi. Soru sormadı, yorum da yapmadı; yanında ona hemen sessizce yer açtı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "paired",
+      "move": "made_room_without_asking",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "mc_person_calm_p04",
+      "text": "{{setting.name}}'nda {{child.name}}'in her gün gittiği bir yer vardı. {{companion.name}} oradaydı, her zamanki gibi, her zamanki sakinliğiyle.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "lengthClass": "paired",
+      "move": "the_place_she_goes",
+      "natureRequire": [
+        "person"
+      ]
     }
   ],
   "lengthClasses": {

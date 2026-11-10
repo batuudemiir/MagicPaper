@@ -93,8 +93,13 @@ final class InterestCatalogTests: XCTestCase {
         // kavuştu, ve kapsama beş kelimeye çıktı — bu kez meşru. Sunulan
         // liste de dörtten beşe çıkınca FAZ 12 eşiği gerçekten aşıldı.
         XCTAssertEqual(coverage[b34], ["animals", "magic", "nature", "sea", "treasure"])
+        // 23 Ekim 2026: `science` eklendi — titrek ışık ve yıldız taşı küratörlü
+        // olgulara bağlandı ve "Bilim ve uzay" konusu açıldı.
+        // 29 Ekim 2026: `jobs` eklendi — üç insan yol arkadaşı ve Pazar Yeri
+        // ile "Meslekler ve günlük yaşam" konusu açıldı.
         XCTAssertEqual(coverage[b56],
-                       ["animals", "magic", "music", "nature", "robots", "sea", "treasure"])
+                       ["animals", "magic", "music", "nature", "robots", "sea",
+                        "science", "treasure", "jobs"])
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
                        ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
     }

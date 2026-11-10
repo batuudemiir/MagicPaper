@@ -334,7 +334,20 @@ def calm_violations(text: str) -> list[str]:
 def series_bindings() -> list[dict[str, str]]:
     """The shortest and longest names the pilot library can bind, since the
     series is only ever written from the pilot's beat-model content."""
-    library = _pilot_library() or {}
+    # Kelime bandı ölçüsü BİLEREK yalnızca pilot kütüphaneyi kullanıyor.
+    #
+    # Ölçü "bu satır en kısa ve en uzun hâliyle kaç kelime" sorusunun cevabı, ve
+    # doğru cevap KATMAN BAŞINA değişir: uyku satırları yalnızca yatak odası
+    # mekânlarına bağlanıyor (`SettingTrait.isRestingPlace`), seri satırları
+    # kendi kesitine. Tek bir küresel ad çiftiyle ölçmek, uyku satırını asla
+    # alamayacağı bir mekân adına karşı sayar — havuzu birleştirince tam bu
+    # oldu ve 14 satır "kısa" göründü, oysa o adı hiç görmeyecekler.
+    #
+    # Katman başına ölçü ayrı bir iş; o yazılana kadar ölçü değişmiyor, yani
+    # 30 Ekim'deki havuz birleştirmesi bu sayıları KAYDIRMIYOR. Bağlama
+    # denetimleri (ulaşılabilirlik, yasal bağlama, bağlı havuz) birleşmiş
+    # havuzu kullanmaya devam ediyor, çünkü oradaki soru katmandan bağımsız.
+    library = _pilot_library(merged=False) or {}
     settings = [s["name"] for s in library.get("settings", [])] or ["Minik Köy"]
     companions = library.get("companions", []) or [{"name": "Zip"}]
     objects = [o for o in library.get("objects", []) if o.get("traits")] or [{"name": "bir şey"}]
@@ -965,26 +978,78 @@ def check_bound_pools(corpus, report) -> None:
 
 
 def _satisfies(held: set, requirement) -> bool:
-    """A TraitRequirement is either a flat list (all of) or {allOf, anyOf}."""
+    """A TraitRequirement is either a flat list (all of) or {allOf, anyOf}.
+
+    Mirrors `TraitRequirement.isSatisfied(by:)` exactly:
+
+        allOf.isSubset(of: offered) && anyOf.allSatisfy { !$0.isDisjoint(with: offered) }
+
+    EVERY choice group must be met, and a group is met by holding AT LEAST ONE
+    of its members. This function had both halves backwards until 30 Ekim 2026:
+    it asked whether SOME group was FULLY contained, so `anyOf: [[a, b, c]]` —
+    read by the engine as "a or b or c" — was read here as "a and b and c".
+
+    The cost was not a wrong number, it was wrong blueprints: a shape needing
+    "fragmentary OR signalling" was reported as matching no content at all,
+    and six of those reports sat in `validator_baseline.txt` as accepted
+    content gaps. They were never content gaps. Found by writing a blueprint
+    the composer binds twelve times out of twelve and the validator called
+    unbuildable; between the two the engine is the authority, so the validator
+    was wrong — and had been, quietly, for every blueprint that offered a
+    choice.
+    """
     if not requirement:
         return True
     if isinstance(requirement, list):
         return set(requirement) <= held
     if set(requirement.get("allOf") or []) - held:
         return False
-    groups = requirement.get("anyOf") or []
-    return not groups or any(set(g) <= held for g in groups)
+    return all(set(group) & held for group in (requirement.get("anyOf") or []))
 
 
-def _pilot_library() -> dict | None:
-    for path in sorted(SHIPPED_BLUEPRINTS.glob("*.json")):
+def _pilot_library(merged: bool = True) -> dict | None:
+    """Every content record the engine ships, merged — not just the pilot file.
+
+    This read HALF the content until 30 Ekim 2026, and the half it missed was
+    the half A turu revived: `pilot_library_v1.json` carries 8 settings in four
+    habitats (forest, garden, mountain, sea), while `shared_content_library_v2`
+    carries 17 more and the only `village` ones. Every check built on this
+    function — reachability, legal bindings, bound pools — was therefore
+    answering "can this blueprint be built?" against a pool the engine does not
+    use, and reporting blueprints as unbuildable that the composer builds 12
+    times out of 12.
+
+    Found by writing a blueprint whose companion lives in a village: the
+    validator said NO LEGAL BINDING EXISTS and the engine bound it every time.
+    Of the two, the engine is the authority, so the validator was wrong — and it
+    had been wrong, quietly, for every blueprint needing a v2 record.
+
+    Merged by id, first file wins, so a pilot record still shadows a v2 record
+    with the same id exactly as the engine's own loader does.
+    """
+    out: dict = {}
+    seen: dict[str, set] = {}
+    paths = sorted(SHIPPED_BLUEPRINTS.glob("*.json")) + ([LIBRARY] if merged else [])
+    for path in paths:
         try:
             document = json.loads(path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             continue
-        if {"settings", "companions", "objects"} <= document.keys():
-            return document
-    return None
+        if not {"settings", "companions", "objects"} <= document.keys():
+            continue
+        if not out:
+            out = {k: list(v) if isinstance(v, list) else v for k, v in document.items()}
+            seen = {k: {r["id"] for r in out[k] if isinstance(r, dict) and "id" in r}
+                    for k in ("settings", "companions", "objects")}
+            continue
+        for key in ("settings", "companions", "objects"):
+            for record in document.get(key, []):
+                rid = record.get("id")
+                if rid in seen[key]:
+                    continue
+                seen[key].add(rid)
+                out[key].append(record)
+    return out or None
 
 
 def check_effective_pools(corpus, report) -> None:

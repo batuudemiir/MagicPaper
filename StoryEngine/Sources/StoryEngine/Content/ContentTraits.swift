@@ -134,6 +134,11 @@ public enum CompanionRole: String, Codable, Sendable, Hashable, CaseIterable {
 /// `CatalogIntegrity` warns about every record that leaves it undeclared, so a
 /// person arriving in a remote package without the field is visible rather
 /// than silently mislabelled.
+/// Bir insan yol arkadaşının mesleği, katalogda `"baker"` gibi yazılı.
+///
+/// `Habitat` ile aynı desen: dizge tabanlı etiket, çünkü liste kapalı değil.
+public typealias Occupation = ContentTag
+
 public enum CompanionNature: String, Codable, Sendable, Hashable, CaseIterable {
     /// A fox, an owl, a dolphin. The whole pool, until now.
     case animal
@@ -301,24 +306,36 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
     /// the frightened companion who goes anyway, for no reason anybody would
     /// defend once it is written down.
     public let casting: Set<CompanionRole>
+    /// Yol arkadaşının **ne olması gerektiği** — bunlardan biri (30 Ekim 2026).
+    ///
+    /// `ContentExclusions.nature`'ın karşılığı. O "bu masalın arkadaşı bir
+    /// yetişkin olmaz" diyebiliyordu; bunu söyleyemiyordu: *bu masal bir
+    /// mesleğin masalı, yani arkadaşı bir insan olmak zorunda.*
+    ///
+    /// Yeteneğin yerine geçmiyor. "Fırıncı" bir yetenek değil, bir meslek;
+    /// `hasLocalKnowledge` onu taklit etmeye çalışsa da bir ayı da yerini
+    /// bilir. Meslek masalının arkadaşının insan olması bir tat değil, şart.
+    public let nature: Set<CompanionNature>
 
     public init(
         setting: TraitRequirement<SettingTrait> = [],
         companion: TraitRequirement<CompanionTrait> = [],
         discovery: TraitRequirement<DiscoveryTrait> = [],
         casting: Set<CompanionRole> = [],
-        thresholdKind: Set<ThresholdKind> = []
+        thresholdKind: Set<ThresholdKind> = [],
+        nature: Set<CompanionNature> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
         self.casting = casting
         self.thresholdKind = thresholdKind
+        self.nature = nature
     }
 
     public var isEmpty: Bool {
         setting.isEmpty && companion.isEmpty && discovery.isEmpty
-            && casting.isEmpty && thresholdKind.isEmpty
+            && casting.isEmpty && thresholdKind.isEmpty && nature.isEmpty
     }
 
     public init(from decoder: Decoder) throws {
@@ -328,6 +345,7 @@ public struct ContentRequirements: Codable, Sendable, Hashable {
         discovery = try container.decodeIfPresent(TraitRequirement<DiscoveryTrait>.self, forKey: .discovery) ?? []
         casting = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .casting) ?? []
         thresholdKind = try container.decodeIfPresent(Set<ThresholdKind>.self, forKey: .thresholdKind) ?? []
+        nature = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .nature) ?? []
     }
 }
 
@@ -346,24 +364,44 @@ public struct ContentExclusions: Codable, Sendable, Hashable {
     public let setting: Set<SettingTrait>
     public let companion: Set<CompanionTrait>
     public let discovery: Set<DiscoveryTrait>
+    /// Yol arkadaşının **ne olduğu** üzerinden dışlama (28 Ekim 2026).
+    ///
+    /// Özellik ekseniyle söylenemeyen tek dışlama bu: "bu masalın arkadaşı bir
+    /// yetişkin olmaz" cümlesinin yetenek karşılığı yok.
+    ///
+    /// Neden gerekti: insan yol arkadaşları eklendiğinde ("Meslekler" konusu)
+    /// macera modu da onları kabul etti, çünkü macera `guide` ve `reassuring`
+    /// kadroluyor ve insan ikisini de oynuyor. Ölçüm bedelini hemen gösterdi:
+    /// macera 5-6'da farklı mekân sayısı 16'dan 10'a düştü — insanlar yalnızca
+    /// iki yerleşim mekânında yaşadığı için bağlamalar oraya toplandı ve altı
+    /// doğa mekânı hiç seçilmez oldu (200 seed'de de).
+    ///
+    /// Editoryal olarak da doğru: "Maceraya çıkalım" bir eşiği geçmek ya da iz
+    /// sürmektir, ve o yolculuğun arkadaşı köyün fırıncısı değil.
+    public let nature: Set<CompanionNature>
 
     public init(
         setting: Set<SettingTrait> = [],
         companion: Set<CompanionTrait> = [],
-        discovery: Set<DiscoveryTrait> = []
+        discovery: Set<DiscoveryTrait> = [],
+        nature: Set<CompanionNature> = []
     ) {
         self.setting = setting
         self.companion = companion
         self.discovery = discovery
+        self.nature = nature
     }
 
-    public var isEmpty: Bool { setting.isEmpty && companion.isEmpty && discovery.isEmpty }
+    public var isEmpty: Bool {
+        setting.isEmpty && companion.isEmpty && discovery.isEmpty && nature.isEmpty
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         setting = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .setting) ?? []
         companion = try container.decodeIfPresent(Set<CompanionTrait>.self, forKey: .companion) ?? []
         discovery = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .discovery) ?? []
+        nature = try container.decodeIfPresent(Set<CompanionNature>.self, forKey: .nature) ?? []
     }
 }
 

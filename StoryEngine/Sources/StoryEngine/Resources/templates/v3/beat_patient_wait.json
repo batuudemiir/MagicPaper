@@ -3,7 +3,7 @@
   "beat": "patient_wait",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-2 and VI-1 — a RESOLVING beat. Waiting is the act, not the absence of one: the child chooses to stay, and that choice is what makes the story resolve. Never framed as passivity or as luck. Nothing arrives to reward the waiting; the waiting is what lets the child be there when it happens. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-2 and VI-1 — a RESOLVING beat. Waiting is the act, not the absence of one: the child chooses to stay, and that choice is what makes the story resolve. Never framed as passivity or as luck. Nothing arrives to reward the waiting; the waiting is what lets the child be there when it happens. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere. İnsan yol arkadaşı (30 Ekim 2026): bu beat'in genel satırları hayvana ve fantastik olana kapatıldı, ve her meslek için dört satır yazıldı. Sebep editoryal: bu sayfada bir yetişkin varsa, onun cevabı KENDİ İŞİNDEN gelmeli — mesleği hiçbir şey yapmayan bir yetişkin, masala girmesi gereksiz bir yetişkindir. Zanaat satırı asla mesleksiz bir arkadaşa düşmüyor (`occupationRequire`, esnemeyen süzgeç).",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared (2 of 2)"
   },
@@ -15,27 +15,43 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "waiting_is_doing"
+      "move": "waiting_is_doing",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_02",
       "text": "Zaman geçti. {{child.name}} kıpırdamadan bekledi, gözünü bile ayırmadı. Tam vazgeçecekken değil, tam beklerken oldu her şey. Tam orada.",
-      "words": ["w56_vazgecmek"],
+      "words": [
+        "w56_vazgecmek"
+      ],
       "requiredSlots": [
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "happened_while_waiting"
+      "move": "happened_while_waiting",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_03",
       "text": "{{child.name}} sabırla bekledi. Bir kez gökyüzüne baktı, sonra sadece bekledi. Beklemek gerçekten zordu ama yapabiliyordu, şimdi bunu biliyordu.",
-      "words": ["w56_sabir"],
+      "words": [
+        "w56_sabir"
+      ],
       "requiredSlots": [
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "looked_up_once_then_waited"
+      "move": "looked_up_once_then_waited",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_04",
@@ -44,7 +60,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "nearly_got_up_but_did_not"
+      "move": "nearly_got_up_but_did_not",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_05",
@@ -54,7 +74,11 @@
         "companion.name"
       ],
       "lengthClass": "solo",
-      "move": "waited_together_in_silence"
+      "move": "waited_together_in_silence",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_06",
@@ -63,7 +87,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "everything_has_its_time"
+      "move": "everything_has_its_time",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_07",
@@ -72,7 +100,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "counted_then_stopped_counting"
+      "move": "counted_then_stopped_counting",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "pw_s_08",
@@ -81,7 +113,203 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "leaving_would_not_have_hurried_it"
+      "move": "leaving_would_not_have_hurried_it",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "pw_s_bk_01",
+      "text": "{{companion.name}} hamurun üstünü bir bezle örttü. \"Şimdi bekleyeceğiz,\" dedi. {{child.name}} yanına oturdu ve bekledi. Beklemek de işin parçasıydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "covered_the_dough",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "pw_s_bk_02",
+      "text": "{{child.name}} önce saate baktı, sonra bakmayı bıraktı. {{companion.name}} her sabah böyle beklerdi, hiç acele etmezdi. Acele edilen hamur kabarmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "a_hurried_dough_wont_rise",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "pw_s_bk_03",
+      "text": "Fırının önünde yan yana oturdular ve {{child.name}} hiç kıpırdamadı. {{companion.name}} \"Erken açarsan söner,\" demişti. O yüzden {{child.name}} sabırla bekledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "opening_early_makes_it_sink",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "pw_s_bk_04",
+      "text": "{{child.name}} beklemeyi {{companion.name}} sayesinde öğrendi: oturmak, saate bakmamak, sabretmek. Kolay değildi ama bir süre sonra oluyordu. Bekleyince hep oluyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "learned_waiting_from_the_baker",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "pw_s_pm_01",
+      "text": "{{companion.name}} acelesini bıraktı ve eşiğe oturdu. {{child.name}} yanına ilişti, hiç konuşmadan. Bazı kapılar hemen açılmazdı; bunu {{companion.name}} çok iyi bilirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "some_doors_dont_open_at_once",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "pw_s_pm_02",
+      "text": "{{child.name}} bekledi, çantanın yanında, hiç kıpırdamadan. {{companion.name}} \"Beklemek de yolun bir parçası,\" dedi. Bekledikçe {{child.name}} çevresini daha iyi gördü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waiting_is_part_of_the_route",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "pw_s_pm_03",
+      "text": "Sokak sessizdi. {{child.name}} sabırla bekledi, kalkıp gitmedi. {{companion.name}} her gün bir kapının önünde böyle beklerdi. Sonunda beklediği şey oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waited_in_a_quiet_street",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "pw_s_pm_04",
+      "text": "{{child.name}} oturup bekledi. Hiçbir şey yapmıyor gibiydi ama yapıyordu. {{companion.name}} her sabah aynı yerde, aynı sabırla beklerdi. Bugün bekleyen {{child.name}} oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "looked_like_doing_nothing",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "pw_s_tc_01",
+      "text": "{{companion.name}} \"Acele etmeyelim,\" dedi ve sustu. {{child.name}} bekledi, soruyu kafasında tuttu, bırakmadı. Beklerken soru hiç küçülmedi; büyüyen {{child.name}} oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_question_stayed_in_mind",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "pw_s_tc_02",
+      "text": "{{child.name}} cevabı hemen istemedi. {{companion.name}} hemen söylemedi, beklemeyi seçti. İkisi birlikte sessizce beklediler ve cevabı {{child.name}} kendi buldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "neither_hurried_the_answer",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "pw_s_tc_03",
+      "text": "Sıra beklemek gibiydi. {{child.name}} bekledi, hiç sıkılmadı, kıpırdamadı. {{companion.name}} her dersi böyle başlatırdı: önce sessizlik, sonra anlamak gelirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "first_silence_then_understanding",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "pw_s_tc_04",
+      "text": "{{child.name}} beklemeyi sürdürdü, bir kez olsun sormadı. {{companion.name}} saatine bile bakmadı. Beklemek boşa geçen zaman değildi; {{child.name}} bunu o gün anladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waiting_was_not_wasted",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
     }
   ]
 }

@@ -132,6 +132,36 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
     /// What this companion is. An undeclared record reads as `.animal`, which
     /// is what every record in the shipped pool is.
     public var nature: CompanionNature { declaredNature ?? .animal }
+    /// Mesleği, insan yol arkadaşlarında (30 Ekim 2026).
+    ///
+    /// Planın B-ön 1'inde söz verilip ertelenen alan: *"insana meslek,
+    /// hayvana tür bilgisi gibi alanlar türe özel modellenir."*
+    ///
+    /// Neden yeteneğe (`traits`) sığmıyor: `hasLocalKnowledge` bir ayı için de
+    /// doğru. Neden ilgi sözcüğüne (`interests`) sığmıyor: ilgi sözlüğü
+    /// ebeveyne "Neleri sever?" çipi olarak gösteriliyor, oraya `baker`
+    /// koymak ürün yüzeyini kirletir. Mesleğin tek işi var ve o işi hiçbir
+    /// mevcut alan yapamıyor: **prozanın zanaatı adıyla anabilmesi.**
+    /// Fırıncı hamuru dinlendirir, postacı yolları bilir; bunu bilmeyen bir
+    /// satır meslek masalı yazamaz, yalnızca içinde bir yetişkin bulunan
+    /// masal yazar — ölçülen kusur tam olarak buydu.
+    ///
+    /// Kapalı bir enum değil `ContentTag`, çünkü meslek listesi uzaktan
+    /// büyüyebiliyor (FAZ 15) ve kapalı bir enum o paketi decode edilemez
+    /// yapardı. Yazım hatasının sessiz kalmaması `CatalogIntegrity`'nin işi.
+    public let occupation: Occupation?
+    /// Bu arkadaşın bilgisi: masala eşlik eden küratörlü olgu (30 Ekim 2026).
+    ///
+    /// Keşfin olgusuyla (`CatalogObject.factID`) aynı tip, farklı sahip. "Ay'ın
+    /// kendi ışığı yoktur" çocuğun merak ettiği şeyin olgusudur; "fırıncılar
+    /// hamuru dinlendirir" kimsenin merak ettiği bir nesnenin değil, **o
+    /// kişinin zanaatının** olgusu. Mesleği keşfe iliştirmek, 23 Ekim'de
+    /// ayrılan "kim" ve "ne bulundu" eksenlerini geri karıştırmak olurdu.
+    ///
+    /// Masal başına yine en çok bir olgu: hangisinin taşındığına
+    /// `OfflineStoryComposer` karar veriyor ve kuralı tek cümle — olgu,
+    /// blueprint'in *neyle ilgili olduğunu bildirdiği* kayıttan gelir.
+    public let factID: ContentID?
     public let isProperNoun: Bool
     public let hasPossessiveEnding: Bool
     public let blocksSoftening: Bool
@@ -147,7 +177,7 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         case id, name, type, personality, description, visualDescription
         case compatibleSettings, compatibleThemes, tags
         case traits, castRoles
-    , habitat, nature, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
+    , habitat, nature, occupation, factID, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics}
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -164,6 +194,8 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         castRoles = try container.decodeIfPresent(Set<CompanionRole>.self, forKey: .castRoles) ?? []
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
         declaredNature = try container.decodeIfPresent(CompanionNature.self, forKey: .nature)
+        occupation = try container.decodeIfPresent(Occupation.self, forKey: .occupation)
+        factID = try container.decodeIfPresent(ContentID.self, forKey: .factID)
         isProperNoun = try container.decodeIfPresent(Bool.self, forKey: .isProperNoun) ?? true
         hasPossessiveEnding = try container.decodeIfPresent(Bool.self, forKey: .hasPossessiveEnding) ?? false
         blocksSoftening = try container.decodeIfPresent(Bool.self, forKey: .blocksSoftening) ?? false
@@ -187,6 +219,8 @@ public struct CatalogCompanion: Codable, Sendable, Hashable, Identifiable {
         if !castRoles.isEmpty { try container.encode(castRoles, forKey: .castRoles) }
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }
         try container.encodeIfPresent(declaredNature, forKey: .nature)
+        try container.encodeIfPresent(occupation, forKey: .occupation)
+        try container.encodeIfPresent(factID, forKey: .factID)
         try container.encode(isProperNoun, forKey: .isProperNoun)
         try container.encode(hasPossessiveEnding, forKey: .hasPossessiveEnding)
         try container.encode(blocksSoftening, forKey: .blocksSoftening)
@@ -218,6 +252,29 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     /// A discovery the setting explains is not a discovery, and the first four
     /// pages of the book are then about nothing.
     public let explainedBy: Set<SettingTrait>
+    /// Bu keşfin açıkladığı küratörlü olgu (B-ön 2, 23 Ekim 2026).
+    ///
+    /// Olgu satırın değil **keşfin** özelliği, ve bu bir düzeltme: önce
+    /// `CatalogVariant.facts` olarak kurulmuştu, yani olguyu bir cümle
+    /// bildiriyordu. O tasarım iki soruyu cevaplayamıyordu. Birincisi
+    /// kapılama: "Ay'ın kendi ışığı yoktur" cümlesi yalnızca Ay'ı merak eden
+    /// bir masalda geçmeli, ama satır eksenlerinin hiçbiri "bu masal Ay
+    /// hakkında" diyemiyor — özellikler yapısaldır (isVisible, emitsSignal),
+    /// konusal değil. İkincisi tekillik: "bir masalda en çok bir olgu"
+    /// kuralını satır başına saymak, iki satırın iki ayrı olgu taşımasını
+    /// engellemiyordu.
+    ///
+    /// Keşfe bağlandığında ikisi de kendiliğinden çözülüyor: olgu, çocuğun
+    /// merak ettiği şeyin olgusudur; masalın bir keşfi olduğu için de en çok
+    /// bir olgusu olur. Kapılama tam: Ay olgusu yalnızca Ay bağlandığında
+    /// masala eşlik eder.
+    ///
+    /// Ve olgu **prozaya girmiyor**. Gerçek bir çocuk kitabı "Ay'ın kendi
+    /// ışığı yoktur" cümlesini anlatının içine koymaz; sonsöze koyar.
+    /// Uygulamada o sonsözün yeri zaten var: "Yeni kelimeler" yüzeyi
+    /// (FAZ 17). Olgu masalın sesini bozmadan, kaynağıyla birlikte orada
+    /// gösterilir.
+    public let factID: ContentID?
     /// The same thing, named for a title.
     ///
     /// "titrek bir ışık" is right in a sentence and wrong on a cover: a title
@@ -251,7 +308,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
     public let topics: [SafetyTopic]
     public let weights: SelectionWeights
 
-    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics }
+    private enum CodingKeys: String, CodingKey { case id, name, titleName, keepsakeName, description, compatibleThemes, tags, traits, explainedBy, factID, habitat, isProperNoun, hasPossessiveEnding, blocksSoftening, interests, topics }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -262,6 +319,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         tags = try container.decodeIfPresent([ContentTag].self, forKey: .tags) ?? []
         traits = try container.decodeIfPresent(Set<DiscoveryTrait>.self, forKey: .traits) ?? []
         explainedBy = try container.decodeIfPresent(Set<SettingTrait>.self, forKey: .explainedBy) ?? []
+        factID = try container.decodeIfPresent(ContentID.self, forKey: .factID)
         titleName = try container.decodeIfPresent(String.self, forKey: .titleName) ?? name
         keepsakeName = try container.decodeIfPresent(String.self, forKey: .keepsakeName)
         habitat = try container.decodeIfPresent(Set<Habitat>.self, forKey: .habitat) ?? []
@@ -282,6 +340,7 @@ public struct CatalogObject: Codable, Sendable, Hashable, Identifiable {
         try container.encode(tags, forKey: .tags)
         if !traits.isEmpty { try container.encode(traits, forKey: .traits) }
         if !explainedBy.isEmpty { try container.encode(explainedBy, forKey: .explainedBy) }
+        try container.encodeIfPresent(factID, forKey: .factID)
         try container.encode(titleName, forKey: .titleName)
         try container.encodeIfPresent(keepsakeName, forKey: .keepsakeName)
         if !habitat.isEmpty { try container.encode(habitat, forKey: .habitat) }

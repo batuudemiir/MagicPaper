@@ -22,6 +22,15 @@ struct CompanionStep: View {
     var mode: StoryMode? = nil
     /// The child's age, so candidates come from the band the story is written for.
     var age: Int? = nil
+    /// Seçilen alt kategori. Bir söz olduğu için adayları süzüyor: "Meslekler"
+    /// seçilmişken konuyu taşıyamayan bir kart teklif edilmez.
+    ///
+    /// **Varsayılanı yok, bilerek.** Kusurun kendisi bu alanın unutulmasıydı:
+    /// ekran adayları konuyu geçmeden istiyordu ve teklif ettiği üç karttan
+    /// ikisi masalı bozuyordu. `= nil` yazılsa aynı unutma bir daha sessizce
+    /// olurdu; şimdi derleme hatası. Konu yoksa çağıran `nil` yazar ve bunu
+    /// bilerek yazmış olur.
+    var topicID: String?
     /// Üstteki özet kartı için.
     var childName: String = ""
     var childColor: Color? = nil
@@ -56,7 +65,8 @@ struct CompanionStep: View {
     }
 
     private var candidates: [CompanionChoice] {
-        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age, family: selectedFamily)
+        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age,
+                                      topicID: topicID, family: selectedFamily)
             .prefix(Self.shown))
     }
 
@@ -235,6 +245,12 @@ struct CompanionStep: View {
         case "kertenkele":      return "lizard"
         case "robot":           return "cpu"
         case "kelebek":         return "ladybug"
+        // İnsan yol arkadaşları (28 Ekim 2026): mesleğin kendi simgesi.
+        // Simgesiz bir tür ekranda teklif edilmiyor (`StoryChoiceSource.drawable`),
+        // yani eşleme olmasa insan arkadaş karttan hiç seçilemezdi.
+        case "fırıncı":         return "basket"
+        case "postacı":         return "envelope"
+        case "öğretmen":        return "book"
         default:                return "pawprint"
         }
     }

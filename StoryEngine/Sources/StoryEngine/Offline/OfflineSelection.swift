@@ -370,6 +370,19 @@ public struct OfflineContentBinder: Sendable {
             also: { companion in
                 if let reason = intent.safety?.rejection(of: companion) { return reason }
                 if let reason = topic?.rejection(companion: companion) { return reason }
+                // Ne olduğu üzerinden dışlama (28 Ekim 2026): macera masalının
+                // arkadaşı köyün fırıncısı değil. Gerekçe listeye giriyor,
+                // önceden süzülmüyor — bu tipin bütün alışkanlığı o.
+                if forbids.nature.contains(companion.nature) {
+                    return "is a \(companion.nature.rawValue), which this story does not take"
+                }
+                // Ve tersi (30 Ekim 2026): meslek masalının arkadaşı insan
+                // olmak zorunda. "Bunlardan biri", kadro ekseniyle aynı
+                // mantıkta; boş küme "fark etmez" demek.
+                if !requires.nature.isEmpty, !requires.nature.contains(companion.nature) {
+                    return "is a \(companion.nature.rawValue), but this story needs "
+                        + requires.nature.map(\.rawValue).sorted().joined(separator: " or ")
+                }
                 if let reason = TraitMatch.castingRejection(
                     offered: companion.castRoles, casting: requires.casting) {
                     return reason

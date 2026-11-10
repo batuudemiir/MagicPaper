@@ -45,6 +45,9 @@ public struct ContentCatalog: Decodable, Sendable {
     /// Words stories teach, with their meanings (FAZ 17). Lines refer to
     /// entries by id (`CatalogVariant.words`).
     public let glossary: [CatalogGlossaryEntry]
+    /// Masalda geçen küratörlü olgular (B-ön 2). Sözlüğün yanında duruyor
+    /// çünkü aynı deseni paylaşıyorlar: kayıt yazarın kararı, satır bildirir.
+    public let facts: [CatalogFact]
     /// Everything only a series episode uses (FAZ 13). Kept out of
     /// `blueprints` and `templates` so no standalone story can reach it, and
     /// every book written before the series existed stays the same book.
@@ -65,7 +68,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case storyTopics
         case familyMoments, familyAnimalKinds
         case interests
-        case safetyTopics, glossary
+        case safetyTopics, glossary, facts
         case series
         case resolutions
     }
@@ -90,6 +93,7 @@ public struct ContentCatalog: Decodable, Sendable {
         interests = try container.decodeIfPresent([CatalogInterest].self, forKey: .interests) ?? []
         safetyTopics = try container.decodeIfPresent([CatalogSafetyTopic].self, forKey: .safetyTopics) ?? []
         glossary = try container.decodeIfPresent([CatalogGlossaryEntry].self, forKey: .glossary) ?? []
+        facts = try container.decodeIfPresent([CatalogFact].self, forKey: .facts) ?? []
         series = try container.decodeIfPresent(SeriesCatalog.self, forKey: .series) ?? SeriesCatalog()
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
@@ -112,6 +116,7 @@ public struct ContentCatalog: Decodable, Sendable {
         interests: [CatalogInterest] = [],
         safetyTopics: [CatalogSafetyTopic] = [],
         glossary: [CatalogGlossaryEntry] = [],
+        facts: [CatalogFact] = [],
         series: SeriesCatalog = SeriesCatalog(),
         declaredResolutionCount: Int = 0
     ) {
@@ -132,6 +137,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.interests = interests
         self.safetyTopics = safetyTopics
         self.glossary = glossary
+        self.facts = facts
         self.series = series
         self.declaredResolutionCount = declaredResolutionCount
     }
@@ -149,6 +155,7 @@ public struct ContentCatalog: Decodable, Sendable {
     public func interest(_ id: InterestTag) -> CatalogInterest? { interests.first { $0.id == id } }
     public func safetyTopic(_ id: SafetyTopic) -> CatalogSafetyTopic? { safetyTopics.first { $0.id == id } }
     public func glossaryEntry(_ id: ContentID) -> CatalogGlossaryEntry? { glossary.first { $0.id == id } }
+    public func fact(_ id: ContentID) -> CatalogFact? { facts.first { $0.id == id } }
     public func templates(for role: PageRole) -> [CatalogTemplate] { templates.filter { $0.role == role } }
 
     /// Every setting tag in the catalog — the vocabulary other records may
@@ -310,6 +317,7 @@ extension ContentCatalog {
             interests: catalogs.flatMap(\.interests),
             safetyTopics: catalogs.flatMap(\.safetyTopics),
             glossary: catalogs.flatMap(\.glossary),
+            facts: catalogs.flatMap(\.facts),
             series: SeriesCatalog.merging(catalogs.map(\.series)),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
         )
@@ -324,7 +332,8 @@ extension ContentCatalog {
             events: events, challenges: challenges, endings: endings, templates: templates,
             blueprints: blueprints, storyIdeas: storyIdeas, storyModes: storyModes,
             storyTopics: storyTopics, familyMoments: familyMoments, familyAnimalKinds: familyAnimalKinds,
-            interests: interests, safetyTopics: safetyTopics, glossary: glossary, series: series,
+            interests: interests, safetyTopics: safetyTopics, glossary: glossary,
+            facts: facts, series: series,
             declaredResolutionCount: declaredResolutionCount)
     }
 }

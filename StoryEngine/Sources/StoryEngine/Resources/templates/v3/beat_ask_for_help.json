@@ -3,7 +3,7 @@
   "beat": "ask_for_help",
   "locale": "tr",
   "ageBand": "5-6",
-  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-3 and II-2 — a RESOLVING beat. Asking IS the child's act, and at five it is a real skill, harder than trying alone. The difficulty is saying you do not know. Never framed as giving up, never as the companion rescuing: the child chooses to ask, and the choosing is the page. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere.",
+  "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Families I-3 and II-2 — a RESOLVING beat. Asking IS the child's act, and at five it is a real skill, harder than trying alone. The difficulty is saying you do not know. Never framed as giving up, never as the companion rescuing: the child chooses to ask, and the choosing is the page. Pool raised from six to eight: four blueprints use this beat as their page-6 resolution, and at six they shared that page 16.7% of the time. The tiered allocation counted beat exposure and was blind to a low-exposure beat carrying an identity page. Eight brings it to 12.5%, matching pages 6 and 7 elsewhere. İnsan yol arkadaşı (30 Ekim 2026): bu beat'in genel satırları hayvana ve fantastik olana kapatıldı, ve her meslek için dört satır yazıldı. Sebep editoryal: bu sayfada bir yetişkin varsa, onun cevabı KENDİ İŞİNDEN gelmeli — mesleği hiçbir şey yapmayan bir yetişkin, masala girmesi gereksiz bir yetişkindir. Zanaat satırı asla mesleksiz bir arkadaşa düşmüyor (`occupationRequire`, esnemeyen süzgeç).",
   "lengthClasses": {
     "solo": "18-38 words — page 6 is never shared (2 of 2)"
   },
@@ -15,7 +15,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "saying_you_dont_know"
+      "move": "saying_you_dont_know",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_02",
@@ -24,7 +28,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "said_i_dont_know"
+      "move": "said_i_dont_know",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_03",
@@ -33,7 +41,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "realised_and_asked"
+      "move": "realised_and_asked",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_04",
@@ -42,17 +54,27 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "deciding_is_harder_than_asking"
+      "move": "deciding_is_harder_than_asking",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_05",
       "text": "{{child.name}} yanındakine döndü. \"Sen bilir misin?\" diye sordu. Sesi biraz titredi ama sorusunu sonuna kadar sordu, yarıda bırakmadı.",
-      "topics": ["fear"],
+      "topics": [
+        "fear"
+      ],
       "requiredSlots": [
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "voice_shook_asked_anyway"
+      "move": "voice_shook_asked_anyway",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_06",
@@ -61,7 +83,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "hardest_and_most_useful"
+      "move": "hardest_and_most_useful",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_07",
@@ -70,7 +96,11 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "one_word_the_hardest_word"
+      "move": "one_word_the_hardest_word",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
     },
     {
       "id": "ah_s_08",
@@ -79,7 +109,203 @@
         "child.name"
       ],
       "lengthClass": "solo",
-      "move": "asking_continues_the_trying"
+      "move": "asking_continues_the_trying",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "ah_s_bk_01",
+      "text": "\"Bilmiyorum,\" dedi {{child.name}} sonunda. Söylemesi zordu. {{companion.name}} elindeki hamuru bıraktı, ellerini sildi. \"Ben de her sabah bilmiyorum,\" dedi. \"Hamura sorarım, o bana söyler.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "asked_and_the_dough_answers",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ah_s_bk_02",
+      "text": "{{child.name}} sormak için sırasını bekledi, sonra sordu. {{companion.name}} unlu elini önlüğüne sildi ve tezgâhın yanına çağırdı. \"İyi soru,\" dedi. \"Gel, burada gösterelim.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "waited_a_turn_then_asked",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ah_s_bk_03",
+      "text": "Sormak zordu ama {{child.name}} sordu. {{companion.name}} fırının kapağını araladı. \"Bak,\" dedi. \"Cevap burada duruyor, görmek için eğilmek gerekiyor.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "the_answer_is_in_the_oven",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ah_s_bk_04",
+      "text": "{{child.name}} bilmediğini söyledi, saklamaya çalışmadı. {{companion.name}} başını salladı. \"Ben de bu işe bilmeden başladım,\" dedi. \"Sorarak öğrendim, başka yolu yoktu.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "i_started_without_knowing_too",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "baker"
+      ]
+    },
+    {
+      "id": "ah_s_pm_01",
+      "text": "\"Bilmiyorum,\" dedi {{child.name}}. Sesi biraz titredi. {{companion.name}} çantasını yere koydu. \"Ben bütün sokakları sorarak öğrendim,\" dedi. \"Sormayan kaybolur, bunu unutma.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "learned_streets_by_asking",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ah_s_pm_02",
+      "text": "{{child.name}} sonunda sordu, sesini yükseltmeden. {{companion.name}} elindeki mektupları bir kenara ayırdı ve eşiğe oturdu. \"Otur şöyle,\" dedi. \"Bu yolu baştan anlatayım.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "set_the_letters_aside",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ah_s_pm_03",
+      "text": "Sormak kolay olmadı, {{child.name}} yine de sordu. {{companion.name}} güldü ve çantasının kapağını kapattı. \"Doğru kapıyı bulmak için önce doğru soruyu sorarsın,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "right_door_right_question",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ah_s_pm_04",
+      "text": "{{child.name}} bilmediğini saklamadı. {{companion.name}} durdu, acelesini bıraktı, çantasını omzundan indirdi. \"Benim işim sormakla başlar,\" dedi. \"Kimin mektubu, nerede oturuyor.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "my_work_begins_with_asking",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "postman"
+      ]
+    },
+    {
+      "id": "ah_s_tc_01",
+      "text": "\"Bilmiyorum,\" dedi {{child.name}} usulca. {{companion.name}} gülümsedi, hiç şaşırmış görünmedi. \"En sevdiğim cümle bu,\" dedi. \"Bilmiyorum demeden öğrenmek hiç başlamaz.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "my_favourite_sentence",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ah_s_tc_02",
+      "text": "{{child.name}} elini kaldırdı ve sordu. {{companion.name}} tahtaya kısa bir çizgi çizdi. \"Soruyu buraya yazalım,\" dedi. \"Yazınca daha kolay düşünürüz.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "write_the_question_down",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ah_s_tc_03",
+      "text": "Sormak zordu. {{child.name}} yutkundu ve sordu. {{companion.name}} defterini kapattı, kalemini bıraktı. \"Dersi bırakalım,\" dedi. \"Senin sorun bugünün dersi olsun.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "your_question_is_the_lesson",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
+    },
+    {
+      "id": "ah_s_tc_04",
+      "text": "{{child.name}} bilmediğini söyledi. {{companion.name}} hiç şaşırmadı, defterinden bir sayfa çevirdi. \"Sırayla gidelim,\" dedi. \"Önce sen ne biliyorsun? Gerisini birlikte bulalım.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "what_do_you_know_already",
+      "natureRequire": [
+        "person"
+      ],
+      "occupationRequire": [
+        "teacher"
+      ]
     }
   ]
 }

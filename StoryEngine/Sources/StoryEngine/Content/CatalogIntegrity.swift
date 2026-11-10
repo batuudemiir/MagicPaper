@@ -112,6 +112,8 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkInterests(catalog))
         issues.append(contentsOf: checkSafetyTopics(catalog))
         issues.append(contentsOf: checkGlossary(catalog))
+        issues.append(contentsOf: checkFacts(catalog))
+        issues.append(contentsOf: checkPersonCompanions(catalog))
         issues.append(contentsOf: checkSeries(catalog))
         issues.append(contentsOf: checkArcs(catalog))
 
@@ -765,6 +767,129 @@ public struct CatalogIntegrityChecker: Sendable {
     ///
     /// `error` değil `warning`: varsayılan okuma kataloğu çalışır tutuyor ve
     /// eski bir paketi reddetmek bu kusurdan daha büyük bir kusur olurdu.
+    /// Küratörlü olgular (B-ön 2, karar 23 Ekim 2026).
+    ///
+    /// Dört kural, dördü de **error**, ve hepsinin sebebi aynı: bir çocuk
+    /// kitabına giren gerçek bilgi, kimsenin hatırlamasına bırakılamaz.
+    ///
+    /// Kurallar keşif üzerinden işliyor çünkü olgu keşfin özelliği
+    /// (`CatalogObject.factID`). "Bir masalda en çok bir olgu" kuralının ayrı
+    /// bir denetime ihtiyacı kalmadı: bir masalın bir keşfi var, o keşfin de
+    /// en çok bir olgusu.
+    private func checkFacts(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        var defined: [ContentID: CatalogFact] = [:]
+        for fact in catalog.facts {
+            if defined.updateValue(fact, forKey: fact.id) != nil {
+                issues.append(.init(severity: .error, code: "duplicate_fact", recordID: fact.id,
+                                    message: "Olgu '\(fact.id.rawValue)' birden fazla tanımlı; ilki kazanır."))
+            }
+        }
+        // Editoryal olgu sayı taşıyamaz (karar: 30 Ekim 2026).
+        //
+        // "Karma kaynak" kararının denetlenebilir yarısı. Gözlem ile iddia
+        // arasındaki ayrım editoryal ve makineyle görülemez, ama bir yapısal
+        // işaret var: sayı. "Fırıncılar hamuru dinlendirir" bir gözlemdir;
+        // "hamur 40 dakika dinlenir" bir iddiadır ve dayanak ister. Kuralı
+        // temenni olarak bırakmak, kaynaksızlığın yayılma yolu.
+        for fact in catalog.facts where fact.basis == .editorial {
+            guard fact.statement.contains(where: \.isNumber) else { continue }
+            issues.append(.init(
+                severity: .error, code: "editorial_fact_carries_a_number", recordID: fact.id,
+                message: "Editoryal olgu '\(fact.id.rawValue)' sayı taşıyor. Sayı bir iddiadır; "
+                    + "kaynak ve doğrulama tarihi ister (basis: sourced)."))
+        }
+        // İki taşıyıcı: keşif ve yol arkadaşı (30 Ekim 2026). Kurallar
+        // taşıyıcıya bakmıyor, yalnızca "kim neyi gösteriyor"a.
+        let carriers: [(ContentID, ContentID)] =
+            catalog.objects.compactMap { o in o.factID.map { (o.id, $0) } }
+            + catalog.companions.compactMap { c in c.factID.map { (c.id, $0) } }
+        for (recordID, id) in carriers {
+            guard let fact = defined[id] else {
+                issues.append(.init(
+                    severity: .error, code: "unknown_fact", recordID: recordID,
+                    message: "'\(recordID.rawValue)' '\(id.rawValue)' olgusunu gösteriyor, ama "
+                        + "olgu sözlüğü onu tanımıyor."))
+                continue
+            }
+            if !fact.isApproved {
+                issues.append(.init(
+                    severity: .error, code: "unapproved_fact", recordID: recordID,
+                    message: "'\(recordID.rawValue)' onaylanmamış bir olguya bağlı "
+                        + "('\(id.rawValue)', durum: \(fact.review.rawValue)). Kaynağında "
+                        + "doğrulanmamış olgu masala girmez."))
+            }
+        }
+        // Hiçbir kayda bağlanmamış olgu, A turunda temizlenen ölü içeriğin
+        // aynısı: yazılmış, kaynaklanmış, ve hiçbir çocuğa ulaşmıyor.
+        // `warning`, çünkü olgu yazıp taşıyıcısını sonra bağlamak meşru bir sıra.
+        let used = Set(carriers.map(\.1))
+        for fact in catalog.facts where !used.contains(fact.id) {
+            issues.append(.init(
+                severity: .warning, code: "fact_reaches_no_record", recordID: fact.id,
+                message: "Olgu '\(fact.id.rawValue)' hiçbir keşfe ya da yol arkadaşına bağlı "
+                    + "değil; hiçbir masala eşlik etmiyor."))
+        }
+        // Mesleği anan bir satırın o mesleği kimse taşımıyorsa, satır
+        // yazılmış ve ölü: `occupationRequire` dizge tabanlı olduğu için
+        // yazım hatası sessizce hiç eşleşmez. Bu da onun nöbetçisi.
+        let occupations = Set(catalog.companions.compactMap(\.occupation))
+        for template in catalog.templates {
+            for variant in template.variants {
+                let unknown = variant.occupationRequire.subtracting(occupations)
+                guard !unknown.isEmpty else { continue }
+                issues.append(.init(
+                    severity: .error, code: "unknown_occupation", recordID: variant.id,
+                    message: "Satır '\(variant.id.rawValue)' "
+                        + unknown.map(\.rawValue).sorted().joined(separator: ", ")
+                        + " mesleğini istiyor, ama hiçbir yol arkadaşı o mesleği bildirmiyor."))
+            }
+        }
+        return issues
+    }
+
+    /// İnsan yol arkadaşının nerede tanıştığı (karar 23 Ekim 2026).
+    ///
+    /// Konuşan bir tilkinin ormanda bir çocuğa yaklaşması masaldır. Tanımadığı
+    /// bir **yetişkinin** yalnız bir çocuğa yaklaşması başka bir şeydir, ve
+    /// kitap bunu normalleştirmemeli.
+    ///
+    /// Burada denetlenen şey "tanışma nasıl yazıldı" değil — o makineyle
+    /// tespit edilemez ve editoryal kural olarak beat dosyasında duruyor.
+    /// Denetlenen, **nerede tanışıldığı**: yapısal bir vekil. Tam bir güvence
+    /// değil ve öyle sunulmuyor; ama yanlış yerde geçen bir tanışmayı paket
+    /// reddeder.
+    ///
+    /// CLAUDE.md'nin çocuk güvenliği kuralları yapısaldır, tavsiye değil:
+    /// satın alma ve paylaşma ebeveyn kapısının arkasındadır, "dikkat
+    /// edilmesi gereken" değil. Aynı duruş burada da geçerli.
+    private func checkPersonCompanions(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        /// İnsanın yeri kendi yeridir: yerleşim.
+        let settled: Set<Habitat> = ["village", "civilization", "city", "town"]
+        var issues: [CatalogIssue] = []
+        for companion in catalog.companions where companion.nature == .person {
+            if companion.habitat.isDisjoint(with: settled) {
+                issues.append(.init(
+                    severity: .error, code: "person_without_settled_habitat", recordID: companion.id,
+                    message: "İnsan yol arkadaşı '\(companion.id.rawValue)' yerleşim habitatı "
+                        + "bildirmiyor (\(settled.map(\.rawValue).sorted().joined(separator: "/"))). "
+                        + "İnsanla kendi yerinde tanışılır; ıssız bir yerde tanışılmaz."))
+            }
+            let unsafe = catalog.settings.filter { setting in
+                !setting.habitat.isDisjoint(with: companion.habitat)
+                    && !setting.traits.isDisjoint(with: [.canConceal, .isHazardous])
+            }
+            for setting in unsafe {
+                issues.append(.init(
+                    severity: .error, code: "person_in_concealing_setting", recordID: companion.id,
+                    message: "İnsan yol arkadaşı '\(companion.id.rawValue)' ile "
+                        + "'\(setting.id.rawValue)' aynı habitatta, ama o mekân saklanılabilir ya "
+                        + "da tehlikeli. Çocuğun yalnız olduğu bir yerde yetişkinle tanışılmaz."))
+            }
+        }
+        return issues
+    }
+
     private func checkCompanionNature(_ catalog: ContentCatalog) -> [CatalogIssue] {
         catalog.companions.filter { $0.declaredNature == nil }.map { companion in
             CatalogIssue(

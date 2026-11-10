@@ -1,6 +1,6 @@
 # İnsan yol arkadaşı: model incelemesi
 
-**Tarih:** 22 Ekim 2026 · **Dal:** `faz-21-varyasyon` · **Durum:** karar bekliyor (Batuhan)
+**Tarih:** 22 Ekim 2026 · **Dal:** `faz-21-varyasyon` · **Durum:** **karara bağlandı** (23 Ekim)
 
 B turunun "Meslekler ve günlük yaşam" konusu insan yol arkadaşı istiyor: fırıncı,
 postacı, öğretmen, balıkçı. Bu dosya inşaya başlamadan önce şu soruyu cevaplıyor:
@@ -141,9 +141,36 @@ zaten sahne yok, bu yüzden engel değil. B2 Faz 2'ye not.
 
 ---
 
-## Karar gereken tek şey
+## Karar (23 Ekim 2026)
 
-Yukarıdaki üç dokunuş uygulanabilir (migration yok, decode bozulmuyor). Açık
-kalan soru **1. madde**: insan tanışmasının güvenlik kuralı editoryal bir
-kural olarak mı kalsın, yoksa `CatalogIntegrity`'de denetlenen bir kural mı
-olsun. Cevap gelmeden "Meslekler ve günlük yaşam" konusu canlıya açılmayacak.
+Batuhan kararı ürünün vizyonuna göre vermemi istedi.
+
+**Karar: ikisi birden, ama yalnızca denetlenebilir olan denetlenir.**
+
+Gerekçe ürünün duruşundan geliyor. CLAUDE.md'nin çocuk güvenliği kuralları
+yapısaldır, tavsiye değil: satın alma, dış bağlantı ve paylaşma ebeveyn
+kapısının arkasındadır — "dikkat edilmesi gereken" değil, geçilemeyen. Aynı
+duruş burada da geçerli: güvenlik, yazarın hatırlamasına bırakılmaz.
+
+Ama "tanışma bir yetişkinin çocuğa yaklaşması olarak kurulmuş" cümlesini
+makineyle tespit etmek mümkün değil. Bu yüzden kural ikiye ayrılıyor:
+
+**Denetlenen (yapısal vekil).** `nature == .person` olan bir yol arkadaşı:
+- `civilization` ya da `village` gibi **yerleşim** habitatı bildirmek zorunda
+  (`error`): insanın yeri kendi yeridir.
+- `canConceal` ya da `isHazardous` özelliği olan bir mekâna bağlanamaz
+  (`error`): çocuğun yalnız olduğu, saklanılabilir ya da tehlikeli bir yerde
+  tanışılmaz.
+
+Bu kurallar "tanışma nasıl yazıldı" sorusunu cevaplamıyor; "nerede tanışıldı"
+sorusunu cevaplıyor. Yapısal vekil tam bir güvence değildir ve öyle
+sunulmuyor — ama yanlış yerde geçen bir tanışmayı paket reddeder.
+
+**Editoryal (yazarın okuduğu yerde).** "İnsan yol arkadaşı kendi yerinde
+tanışır; çocuk oraya gider; tanışma bir yetişkinin çocuğa yaklaşması olarak
+kurulmaz" kuralı, bu belgede değil **beat dosyasının `editorialNote`'unda**
+duracak — korpus yazarı orayı okur, belgeyi okumaz. Dosya yazılana kadar kural
+burada bekler.
+
+**Sıra:** denetim önce, insan kaydı sonra. Kuralsız girmiş bir insan kaydını
+sonradan denetime uydurmak, denetimi kaydın etrafında eğmekle aynı şey.

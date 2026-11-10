@@ -39,7 +39,15 @@ final class OfflineDeterminismTests: XCTestCase {
         let story = try OfflineStoryComposer().compose(
             catalog: catalog(), intent: pinnedIntent)
 
-        XCTAssertEqual(story.blueprintID.rawValue, "blueprint_absence_looking_001",
+        // Re-pinned 2026-10-23: 3-4 bandının ikinci mekanizması
+        // (`bp_charge_release_age3_001`) havuza girdi ve bu seed ona düştü.
+        // Seed kaymasının kullanıcıya etkisi yok — saklanan masallar üretilmiş
+        // metni tutuyor (K1) — ama bu testin işi tam olarak kaymayı söylemek.
+        // Yeniden sabitlendi 30 Ekim 2026: havuza üç meslek blueprint'i girdi
+        // ve sıralama değişti. Bu kez masal BANT da değiştirdi — 3-4'ün
+        // `lettingGo`'sundan 5-6'nın `cooperation`'ına geçti — çünkü bu niyet
+        // bant bildirmiyor ve bütün bantlar aday.
+        XCTAssertEqual(story.blueprintID.rawValue, "blueprint_appeal_together_001",
                        "The shape this seed resolves to moved.")
         // Re-pinned 2026-09-18 after D3 made Schema 2 canonical. The seed itself
         // did not move; the catalog it resolves against did — the five pilot
@@ -52,9 +60,16 @@ final class OfflineDeterminismTests: XCTestCase {
         // app, and `compose` is called only on the creation path. So a book
         // already in a child's library is not rebuilt from its seed and cannot
         // change under it. See docs/MagicPaper_Wave0_Stabilization.md §1.
-        XCTAssertEqual(story.content.setting.id.rawValue, "setting_cave_001")
-        XCTAssertEqual(story.content.companion.id.rawValue, "companion_robot_001")
-        XCTAssertEqual(story.content.discovery.id.rawValue, "object_torn_map_001")
+        // Yeniden sabitlendi 23 Ekim 2026 (üçüncü kez): 3-4 bandının ikinci
+        // mekanizması havuza girdi ve bu seed ona düştü, yani masal artık
+        // 3-4 bandında. Bağlanan içerik de onunla değişti.
+        // Yeniden sabitlendi 29 Ekim 2026 (dördüncü kez): üç insan yol arkadaşı
+        // ve Pazar Yeri havuza girdi. Şekil aynı kaldı (3-4'ün `lettingGo`'su),
+        // ona bağlanan içerik kaydı. İnsanların kendisi bu masala GİRMİYOR —
+        // 3-4 havuzunda sıraları değiştirmeleri yeterli oldu.
+        XCTAssertEqual(story.content.setting.id.rawValue, "setting_whispering_forest_001")
+        XCTAssertEqual(story.content.companion.id.rawValue, "companion_hedgehog_pilot_001")
+        XCTAssertEqual(story.content.discovery.id.rawValue, "object_dropped_mitten_001")
         // Yeniden sabitlendi 21 Ekim 2026 (ikinci kez, havuz diriltmesi): v2
         // kütüphanesindeki 44 kayıt etiketlenip havuza katılınca bu seed
         // orman + tavşan yerine mağara + robot bağladı. Determinizm bozulmadı
@@ -64,17 +79,25 @@ final class OfflineDeterminismTests: XCTestCase {
         // Re-pinned 2026-10-21: title patterns became mode-specific and mostly
         // name-free (4-6 per blueprint). The old "Kayıp {{discovery.title}}"
         // made "Kayıp Yırtık Harita" here. Stored stories keep their title.
-        XCTAssertEqual(story.title, "Yeliz'in Büyük Arayışı")
+        //
+        // Re-pinned 2026-10-23: masal 3-4'ün `lettingGo` şekline düştüğü için
+        // başlık da onun kalıplarından geliyor.
+        //
+        // Yeniden sabitlendi 30 Ekim 2026: şekil değiştiği için kalıp kümesi de
+        // değişti; başlık artık `appeal` ailesinin kalıplarından.
+        XCTAssertEqual(story.title, "Fısıldayan Orman'da Birlikte")
 
         // The lines themselves, which is what a child would notice changing.
+        // On satır: 5-6 masalı sekiz sayfa ve iki sayfası destek beat'i
+        // taşıyor. 30 Ekim'e kadar bu liste sekiz satırlıktı çünkü seed 3-4'e
+        // düşüyordu; bant değişti, satır sayısı onunla değişti.
         XCTAssertEqual(
             story.pages.flatMap { $0.variantIDs.map(\.rawValue) },
-            ["na_neutral_05", "ex_s_any_02", "mc_guide_p06", "ra_p_08", "cm_p_08",
-             "ob_gen_04", "fa_s_04", "ps_s_03", "rs_persist_02", "wc_p_restore_04",
-             "cf_p_07"],
+            ["na_neutral_05", "ap_s_06", "mc_care_04", "ra_p_07", "cm_p_07",
+             "ob_gen_02", "fa_s_01", "ce_s_08", "rs_any_05", "wc_s_both_01"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "064729c367b9334c")
+        XCTAssertEqual(story.fingerprint, "a7fd601ec0f44208")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -85,7 +108,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "064729c367b9334c")
+        XCTAssertEqual(again.fingerprint, "a7fd601ec0f44208")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.
@@ -173,11 +196,19 @@ final class OfflineDeterminismTests: XCTestCase {
             intent: OfflineStoryIntent(childName: "Yeliz", seed: "age-check"))
 
         let blueprint = try XCTUnwrap(catalog.blueprints.first { $0.id == story.blueprintID })
-        XCTAssertEqual(
-            blueprint.ageRange.description, "5-6",
-            "Surprise resolved outside the 5-6 band. If the corpus grew, this is "
-            + "good news — but age still is not an input, so which band a child "
-            + "gets is still an accident of the seed.")
+        // 23 Ekim 2026: korpus büyüdü ve bu seed 3-4'e düştü. Testin kendi
+        // notu bu günü öngörüyordu ("if the corpus grew, this is good news"),
+        // bu yüzden iddia tek bir banda değil **yazılmış bir banda** bağlandı.
+        // Korunan şey asıl söz: yaş motora girmiyor, yani çocuğun hangi bandı
+        // aldığı hâlâ seed'in tesadüfü — ve rakamı sabitlemek o gerçeği
+        // gizlerdi.
+        let authored = Set(catalog.blueprints.filter(\.isBeatAuthored).map(\.ageRange))
+        XCTAssertTrue(
+            authored.contains(blueprint.ageRange),
+            "Surprise, içerik yazılmamış bir banda düştü: \(blueprint.ageRange)")
+        XCTAssertGreaterThan(
+            authored.count, 1,
+            "Tek yazılmış bant kaldıysa bu test bir şey sınamıyor demektir")
     }
 
     /// The bands the profile editor offers against the bands the corpus serves.
