@@ -2486,6 +2486,288 @@
       ]
     },
     {
+      "id": "bp_bedtime_nightwalk_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "night walk",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk yatağındadır; bir sesin peşinden pencereye gider, gecenin güzelliğini görür, orada uyuyamayan küçük birini bulur, onu uyutur ve aynı odada kendisi de uykuya dalar.",
+      "editorialGuidance": "Gece yürüyüşü (Faz 10, Book Intelligence'ın 'evden eve' şekli): sayfa 3 hayranlıktır, tehlike değil. Doruk sayfa 6'da gülümseten bir şaşkınlık; 7-8 yatışır. Sayfa 8 sayfa 1'in odasına ve yorganına döner; yarın için söz yok.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Pencereden Gelen Ses",
+        "{{companion.name}} ile Ay Işığı",
+        "Gece Yürüyüşü",
+        "{{child.name}} ile {{companion.name}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "patient_wait",
+          "supportingBeat": "restore",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_goodnight_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "goodnight place",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk yatağındadır; pencerede uyuyamayan küçük biri vardır; çocuk ona kendi uyku yerini hazırlar, iyi geceler deyip onu orada bırakır, sonra kendisi de uyur.",
+      "editorialGuidance": "İyi geceler (Faz 10): bırakmak kayıp değil, herkesin kendi uyku yeri vardır. Doruk sayfa 5'te; 6-8 yatışır. Sayfa 8 sayfa 1'in odasına döner.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'ın Uyku Yeri",
+        "Herkesin Bir Yuvası Var",
+        "{{companion.name}}'a İyi Geceler",
+        "{{child.name}} ile {{companion.name}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "let_go",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_goodnight_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "goodnight place",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk yatağındadır; pencerede uyuyamayan küçük biri vardır; çocuk ona minik bir yer yapar, iyi geceler der ve kendisi de uyur.",
+      "editorialGuidance": "İyi geceler, 3-4 (Faz 10): hiçbir sayfa yoğunluk 1'i geçmez; doruk sayfa 4'te. Bırakmak kayıp değildir.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'ın Minik Yeri",
+        "{{companion.name}}'a İyi Geceler",
+        "Herkesin Bir Yuvası Var",
+        "{{child.name}} ile {{companion.name}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "supportingBeat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "let_go",
+          "supportingBeat": "restore",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
       "id": "bp_charge_release_age3_001",
       "schemaVersion": 2,
       "version": "2.0.0",

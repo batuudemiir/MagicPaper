@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 5-6 bandı; Faz 10 (12 Kasım 2026) ikinci ve üçüncü uyku mekanizması için. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk en geç sayfa 6'da yumuşak bir şaşkınlıktır, son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık acısı yok; çocuk her çözümün öznesidir. İyi geceler: çocuk küçük dosta kendi uyku yerini hazırlar ve onu orada bırakır. Bırakmak kayıp değildir; herkesin kendi uyku yeri vardır.",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_lg_own_place",
+      "text": "{{child.name}} pencerenin köşesine yumuşacık bir yer hazırladı. \"Burası senin yerin,\" dedi {{companion.name}}'a. Sonra ellerini usulca çekti. Herkesin kendi uyku yeri vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_lg_own_place",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_lg_last_look",
+      "text": "\"Artık kendi yerinde uyuyabilirsin,\" dedi {{child.name}}. Küçük dostunu pencerenin kenarındaki yuvasına yerleştirdi ve ona uzun uzun baktı. Ona alışmıştı, ama orası tam ona göreydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_lg_last_look",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_lg_whisper_goodnight",
+      "text": "{{child.name}} eğilip {{companion.name}}'a \"İyi geceler,\" diye fısıldadı. Sonra bir adım geri çekildi. Onu yanında tutmak istemişti, ama uyumak için herkesin kendi yuvası gerekirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_lg_whisper_goodnight",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_lg_blanket_corner",
+      "text": "{{child.name}} ona yorganının küçük bir köşesini verdi, sonra elini usulca çekti. \"Şimdi sıra sende,\" dedi gülümseyerek. {{companion.name}} kendi yerinde rahatça kıvrıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_lg_blanket_corner",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

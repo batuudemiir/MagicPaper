@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "10-16 words — gece yürüyüşünde sayfa 7'yi bir başka beat ile paylaşır (Faz 10)"
   },
   "variants": [
     {
@@ -62,6 +63,54 @@
       ],
       "words": [
         "w56_usulca"
+      ]
+    },
+    {
+      "id": "bt_rs_p_eyes_close",
+      "text": "Sonunda {{companion.name}}'ın gözleri kapandı, minicik nefesi usulca inip kalkmaya başladı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_eyes_close",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_p_one_more_yawn",
+      "text": "Bir esneme daha, bir kıpırtı daha; sonra {{companion.name}} mışıl mışıl uyudu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_one_more_yawn",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_p_curls_up",
+      "text": "{{companion.name}} kıvrılıp tatlı bir uykuya daldı, yüzü rahat ve sakindi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_curls_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_rs_p_even_breath",
+      "text": "Pencerenin önünden ince, düzenli bir nefes geldi: {{companion.name}} sonunda uyumuştu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_even_breath",
+      "settingTraits": [
+        "isRestingPlace"
       ]
     }
   ]

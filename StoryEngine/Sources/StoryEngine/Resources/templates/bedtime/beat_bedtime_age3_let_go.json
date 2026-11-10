@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı; Faz 10 (12 Kasım 2026). Cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter. İyi geceler: çocuk küçük dosta kendi yerini yapar ve onu bırakır; sayfayı restore ile paylaşır.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfayı bir başka beat ile paylaşır"
+  },
+  "variants": [
+    {
+      "id": "bt3_lg_little_bed",
+      "text": "{{child.name}} ona pencerede minik bir yer yaptı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_lg_little_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_lg_goodnight",
+      "text": "\"İyi geceler,\" dedi {{child.name}} ve elini usulca çekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_lg_goodnight",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_lg_your_bed",
+      "text": "\"Burası senin yatağın,\" dedi {{child.name}} yumuşacık.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_lg_your_bed",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3_lg_step_back",
+      "text": "{{child.name}} ona son kez baktı, sonra geri çekildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt3_lg_step_back",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

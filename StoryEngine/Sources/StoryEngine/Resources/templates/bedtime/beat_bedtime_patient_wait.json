@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "10-16 words — gece yürüyüşünde sayfa 7'yi bir başka beat ile paylaşır (Faz 10)"
   },
   "variants": [
     {
@@ -57,6 +58,52 @@
       ],
       "lengthClass": "solo",
       "move": "bt_pw_watching_clouds",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_p_slow_hum",
+      "text": "{{child.name}} hiç acele etmeden bekledi; ninnisini bir kez daha, daha yavaş mırıldandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_pw_p_slow_hum",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_p_moon",
+      "text": "İkisi birlikte aya baktılar ve hiç konuşmadan, uzun uzun beklediler.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "bt_pw_p_moon",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_p_sit_by",
+      "text": "{{child.name}} pencerenin önünde sessizce oturdu, küçük dostunun nefesi yavaş yavaş ağırlaştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_pw_p_sit_by",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_pw_p_patience",
+      "text": "Uyku acele etmezdi; {{child.name}} sabırla bekledi, bir yandan da usulca mırıldandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_pw_p_patience",
       "settingTraits": [
         "isRestingPlace"
       ]

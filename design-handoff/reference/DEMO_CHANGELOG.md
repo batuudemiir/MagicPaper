@@ -132,6 +132,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-12 · main, commit bu kayıtla · Faz 10: uyku arkına iki yeni mekanizma
+
+- **Sorun:** uyku öncesinin her bantta tek olay örgüsü vardı (`lullaby`); ölçülen cümle tekrarı %85.
+- **5-6 bandı 1 → 3 mekanizma:** `bp_bedtime_nightwalk_001` (gece yürüyüşü: çocuk sesin peşinden pencereye gider, gecenin güzelliğini görür, küçük dostu uyutur; Book Intelligence'ın "evden eve" şekli, doruk sayfa 6) ve `bp_bedtime_goodnight_001` (iyi geceler: çocuk küçük dosta kendi uyku yerini hazırlar ve onu orada bırakır; doruk sayfa 5).
+- **3-4 bandı 1 → 2 mekanizma:** `bp_bedtime_goodnight_age3_001` (6 sayfa, hiçbir sayfa yoğunluk 1'i geçmez, doruk sayfa 4).
+- **Yeni satırlar:** `beat_bedtime_approach.json` (4), `beat_bedtime_let_go.json` (4), `beat_bedtime_age3_let_go.json` (4, paired); 5-6 `patient_wait` ve `restore` dosyalarına sayfa paylaşan (paired, 10-16 kelime) 4'er satır. Uzunluk, slot ve 3-4 cümle sınırı betikle denetlendi. Uyku sözleşmesi korunuyor: yatakta açılış, aynı odada kapanış, karanlık/yalnızlık/korku yok, son sayfada söz yok; çözümün öznesi çocuk.
+- **Bilerek yapılmadı:** 3-4 için gece yürüyüşü (doruk sayfa 4 sınırına sığmadı); 7-8 bandı (içerik yazımı, ayrı iş); `x_refrain_bedtime` deneyi canlıya alınmadı (deney kararı ürün sahibinde).
+- **Test:** motor testleri (`BedtimeArcTests`, `CatalogIntegrity`, `VariationReport`) **çalıştırılmadı**; Batuhan'ın kuralı gereği fazlar bitince bir kez. Sözleşme kodla (beat ön koşulları, uyku konturu) okunarak kuruldu.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`, `templates/bedtime/beat_bedtime_approach.json` (yeni), `beat_bedtime_let_go.json` (yeni), `beat_bedtime_age3_let_go.json` (yeni), `beat_bedtime_patient_wait.json`, `beat_bedtime_restore.json`.
+
 ### 2026-11-12 · main, commit bu kayıtla · Faz 10: masal dünyası hatırlar (yer ve anı hafızası, Masal haritam)
 
 - **Hatırlama cümlesi** (`StoryEngineBridge/StoryMemory.swift`): yeni masalın yol arkadaşıyla çocuk daha önce tanıştıysa ilk sayfaya "Tarçın ile Yeliz eski dostlardı. İlk kez Gece Bahçesi'nde tanışmışlardı.", aynı yere dönüldüyse "Yeliz Gece Bahçesi'ne daha önce de gelmişti. Burayı hemen hatırladı." eklenir. Deterministik; ekler motorun `TurkishGrammar`'ından. Yalnızca biten masallar sayılır; seri bölümleri hatırlanmaz (seri kendi devamlılığını taşır). `StoryOrigin.recalled` cümlenin eklendiğini kaydeder (eski kayıtlarda nil).

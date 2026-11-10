@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 5-6 bandı; Faz 10 (12 Kasım 2026) ikinci ve üçüncü uyku mekanizması için. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk en geç sayfa 6'da yumuşak bir şaşkınlıktır, son sayfa aynı odaya döner. Karanlık, yalnızlık, korku, gölge ve ayrılık acısı yok; çocuk her çözümün öznesidir. Gece yürüyüşü: çocuk sesin peşinden yataktan pencereye gider; sayfa merak ve hayranlıktır, tehlike değil.",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt_ap_tiptoe",
+      "text": "{{child.name}} yorganı usulca kenara itti. Parmak uçlarında pencereye yürüdü, çünkü ses oradan geliyordu. Camın ardında gece, ay ışığıyla yumuşacık parlıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_ap_tiptoe",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_ap_follow_sound",
+      "text": "{{child.name}} yataktan yavaşça kalktı ve sesin peşinden gitti. Halının üstünden geçip pencerenin kenarına dayandı. Dışarıda yıldızlar pırıl pırıldı. Gece hiç bu kadar güzel görünmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_ap_follow_sound",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_ap_silver_garden",
+      "text": "{{child.name}} kalkıp pencerenin önüne oturdu. Ay, bahçeyi gümüşe boyamıştı. Ses yine geldi, bu kez daha yakından. {{child.name}} gülümseyerek, sessizce dinledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_ap_silver_garden",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt_ap_blanket_shoulder",
+      "text": "{{child.name}} yorganını omzuna alıp pencereye gitti. Cam serindi, gökyüzü yıldız doluydu. Arkasında {{setting.name}} sıcacık duruyordu. Ses pencerenin hemen dibinden geliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_ap_blanket_shoulder",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}
