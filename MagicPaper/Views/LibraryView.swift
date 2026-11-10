@@ -31,6 +31,8 @@ struct LibraryView: View {
     @State private var filter: LibraryFilter = .all
     @State private var sort: LibrarySort = .recent
     @State private var width: CGFloat = 390
+    /// Arama kutusu yalnızca büyütece dokununca açılır (Faz 7).
+    @State private var searching = false
     @FocusState private var searchFocused: Bool
 
     var body: some View {
@@ -40,13 +42,13 @@ struct LibraryView: View {
                 if model.isEmpty {
                     emptyLibrary.homeEntrance(1)
                 } else {
+                    // Faz 7: Ragi ve kısa özet, sonra "Kaldığın yerden"in tek evi;
+                    // arama ve süzgeç Kitaplarım'ın başlığında.
                     VStack(alignment: .leading, spacing: MPSpacing.lg) {
                         greeting
-                        if showsFinding { LibrarySearchField(text: $query, focused: $searchFocused) }
                         if pendingCount > 0 { pendingNote }
                     }
                     .homeEntrance(1)
-                    if showsFinding { chips.homeEntrance(2) }
                     if isBrowsing { highlights }
                     shelf
                 }
@@ -92,16 +94,10 @@ struct LibraryView: View {
             : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.md))
         return layout {
             RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 64 : 76)
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text("Burası senin kitaplığın.").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                Text(summary).mpText(.supporting).foregroundStyle(MPColor.textSecondary)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(MPSpacing.md)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(MPWorldTone.lav.soft.opacity(0.45),
-                        in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge.opacity(0.5))
+            // Dokunulmayan söz kart değil, konuşma balonu (Faz 7: kart içinde kart yok).
+            SpeechBubble(text: summary, style: .supporting)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
         }
         .accessibilityElement(children: .combine)
     }
@@ -147,9 +143,15 @@ struct LibraryView: View {
     /// Yalnızca süzgeçsiz, aramasız görünümde: yarım kalan kitap ve açık seri.
     @ViewBuilder
     private var highlights: some View {
-        if let item = model.continueItems().first {
+        // "Kaldığın yerden"in tek evi (Faz 7): en çok üç kitap.
+        let continuing = Array(model.continueItems().prefix(3))
+        if !continuing.isEmpty {
             HomeSection(title: "Kaldığın yerden") {
-                LibraryContinueCard(item: item) { open(item, continuing: true) }
+                VStack(spacing: MPSpacing.md) {
+                    ForEach(continuing) { item in
+                        LibraryContinueCard(item: item) { open(item, continuing: true) }
+                    }
+                }
             }
             .homeEntrance(3)
         }
@@ -166,7 +168,16 @@ struct LibraryView: View {
     private var shelf: some View {
         let items = model.items(for: filter, query: query, sort: sort)
         VStack(alignment: .leading, spacing: MPSpacing.lg) {
-            MPSectionHeader(title: filter == .all ? "Kitaplarım" : filter.title, trailing: { sortMenu })
+            MPSectionHeader(title: filter == .all ? "Kitaplarım" : filter.title, trailing: {
+                HStack(spacing: MPSpacing.xs) {
+                    if LibraryShelfModel.showsFinding(itemCount: model.items.count) { searchButton }
+                    sortMenu
+                }
+            })
+            if searching || !query.isEmpty {
+                LibrarySearchField(text: $query, focused: $searchFocused)
+            }
+            if showsFinding { chips }
             if items.isEmpty {
                 noMatch
             } else {
@@ -176,6 +187,17 @@ struct LibraryView: View {
             }
         }
         .homeEntrance(5)
+    }
+
+    /// Büyüteç: arama kutusunu açar ya da kapatıp aramayı temizler.
+    private var searchButton: some View {
+        MPCircleButton(systemImage: searching ? "xmark" : "magnifyingglass",
+                       accessibilityLabel: searching ? "Aramayı kapat" : "Kitap ara") {
+            withAnimation(MP.M.gated(MP.M.easeOut)) {
+                if searching { query = ""; searching = false } else { searching = true }
+            }
+            searchFocused = searching
+        }
     }
 
     /// Küçük sıra menüsü; varsayılan son okunan.

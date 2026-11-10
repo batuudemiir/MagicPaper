@@ -13,9 +13,8 @@ enum GunlukRoute: Hashable {
 
 /// Günlük · ücretsiz masallar (FAZ 20, `Gunluk`).
 ///
-/// Sıra İrem'in tasarımında: başlık ve arama, çipler, Günün masalı,
-/// Kaldığın yerden, Bu haftanın seçkisi, Anadolu'dan, Dünya klasikleri,
-/// Uyku vakti, "Kahramanı sen ol".
+/// Faz 7 (11 Kasım 2026): vitrin, raf kapıları, haftanın seçkisi, Dünya
+/// klasikleri, gece bölgesi (Uyku vakti, "Kendi masalını yaz").
 struct GunlukView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
@@ -42,10 +41,10 @@ struct GunlukView: View {
                         // Ana sayfanın dili: bölümleri kart değil boşluk ayırır; kart
                         // yalnızca dokunulan kapaklarda (karar: 7 Kasım 2026).
                         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
+                            // Faz 7: 8 bölüm 5'e. "Kaldığın yerden" yalnızca
+                            // Kitaplık'ta; Anadolu raf kapısından açılır.
                             shelfDoors
-                            continueSection
                             weeklySection
-                            shelfSection(.anadolu, width: 128, height: 176)
                             shelfSection(.klasikler, width: 128, height: 176)
                         }
                         .padding(.horizontal, MPSpacing.screenH)
@@ -140,21 +139,6 @@ struct GunlukView: View {
 
     // MARK: - Raflar
 
-    @ViewBuilder
-    private var continueSection: some View {
-        // Vitrindeki masal burada tekrar etmez ("Kaldığın yerden" slaytı).
-        let shown = Set(slides.map(\.tale.id))
-        let items = library.continueReading.filter { !shown.contains($0.id) }
-        if !items.isEmpty {
-            GunlukSection(title: "Kaldığın yerden") {
-                GunlukRow {
-                    ForEach(items) { item in
-                        ContinueClassicCard(item: item) { resume(item.id) }
-                    }
-                }
-            }
-        }
-    }
 
     /// Vitrinin slaytları; seçki bunları tekrarlamaz.
     private var slides: [ClassicHeaderSlide] {
@@ -214,7 +198,7 @@ struct GunlukView: View {
         }
     }
 
-    // MARK: - Kahramanı sen ol
+    // MARK: - Kendi masalını yaz
 
     /// Markanın çağrısı: Ana sayfanın hero kartı gibi dolgun mor, sert gece
     /// kenarı. Ragi kartta değil, altındaki manzarada (ekranda tek maskot).
@@ -227,7 +211,7 @@ struct GunlukView: View {
                     .background(MPWorldTone.lav.soft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Kahramanı sen ol").mpText(.section).foregroundStyle(MPColor.textOnAction)
+                    Text("Kendi masalını yaz").mpText(.section).foregroundStyle(MPColor.textOnAction)
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Adınla, sevdiklerinle yepyeni bir masal").mpText(.footnote)
                         .foregroundStyle(MPWorldTone.lav.soft)
@@ -254,15 +238,6 @@ struct GunlukView: View {
         switch item {
         case .tale(let tale): app.router.masallarPath.append(.tale(tale.id))
         case .series(let series, _): app.router.masallarPath.append(.series(series.id))
-        }
-    }
-
-    /// "Kaldığın yerden": doğrudan okuyucuya.
-    private func resume(_ id: UUID) {
-        if let tale = library.catalog.tale(id) {
-            app.readClassic(tale)
-        } else if let original = library.original(id) {
-            app.readOriginal(original.story)
         }
     }
 }

@@ -57,6 +57,23 @@ Hata suçlamaz, bir sonraki adımı söyler. Boş durum bir başlık, bir cümle
 - Ürün adı **MagicPaper**, maskot **Ragi**, plan adları `docs/MARKA.md` listesinden.
 - Sağlık iddiası yok: "daha iyi uyku", "mavi ışık" yazılmaz.
 
+## Ad tablosu (Faz 7, 11 Kasım 2026)
+
+Her şeyin tek adı var; ekran, bildirim ve belge aynı adı kullanır.
+
+| Ad | Ne | Kullanılmaz |
+|---|---|---|
+| Odam | Çocuğun sekmesi (eski Profil, kodda `KidCornerView`) | Profil, Benim köşem |
+| Seri masal | Beş bölümlük devam eden masal | Okuma serisi için "seri" |
+| Üst üste gün | Ard arda okunan günler (`MPStreak`) | Seri, streak, okuma serisi |
+| Favorilerim | Kalbe eklenen masallar | Listem |
+| Kahraman | Çocuğun görselli masallardaki çizimi | |
+| Kendi masalını yaz | Masallar'daki masal yazma çağrısı | Kahramanı sen ol |
+| Yıldız kumbarası | Yıldız sayısının durduğu yer | Puan, para |
+| Çıkartma | Biten masalın albümdeki izi (Faz 9) | Ödül, ganimet |
+| Dolap | Kahramanın kıyafetleri (Faz 9) | Dükkân, mağaza |
+| Uyku kapısı | Ses öncelikli kararan uyku ekranı (Faz 11) | Uyku modu (kodda kalır) |
+
 ## Durum
 
 Mevcut metinlerin bu belgeye göre tek geçişte gözden geçirilmesi henüz yapılmadı. `readToday` kartındaki "Harika gidiyorsun!" gibi bilinen örnekler Faz 3'te ana sayfa ile birlikte değişir.

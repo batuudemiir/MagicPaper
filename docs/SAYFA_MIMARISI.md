@@ -4,6 +4,29 @@
 düşünülsün, her sayfa tek başına ele alınsın; ebeveyn bölümü arka planda dursun,
 görünür olmasın. Kaynak listesi: `UX_KAYNAK_ARASTIRMASI.md`.
 
+## Faz 7 düzeni (11 Kasım 2026)
+
+Ayrıntı ve tel çerçeveler: `docs/VIZYON_PLANI.md`, "Sayfa düzenleri". Bu tablo her sayfanın tek işini söyler; aşağıdaki eski bölümlerle çelişirse bu tablo geçerlidir.
+
+| Sayfa | Tek işi | Birincil eylem | Giriş · çıkış | Boş durum |
+|---|---|---|---|---|
+| Ana sayfa | Bu akşam ne okuyoruz? | Bu akşamın kartı (64 pt) | Sekme | Bu akşamın klasiği |
+| Masallar | Hazır masal keşfi | Yok: vitrin `secondary`, raf kapıları | Sekme · push | Vitrin boşsa raflar |
+| Kitaplık | Benim masallarım; "Kaldığın yerden"in tek evi | Devam kartı | Sekme | `MPStateView`, "Masal yaz" |
+| Odam | Çocuğun köşesi: kim okuyor, yıldız kumbarası, Masal dünyam, rozetler | Yok | Sekme | Kumbara 0, rozetler kilitli |
+| Masal yaz | 3 dokunuşta masal | Moda dokunmak; "Masalı yaz" (64 pt) | Tam ekran, X | - |
+| Okuyucu | Okumak | Sayfa çevirmek | Tam ekran, X | - |
+| Masal sonu | Başarı anı | "Bir masal daha" ya da "İyi geceler" (64 pt) | Son sayfadan | Klasikte ad yoksa "Bravo!" |
+| Özet | Bu hafta ne oldu | Yok | Oda kökü | "Bu hafta henüz masal okunmadı." |
+| Ayarlar | Hesap ve cihaz | Yok | Oda kökü | - |
+| Çocuk profil sayfası | Bir çocukla ilgili her şey | Yok | Ayarlar'dan push, "Geri" | - |
+
+Kurallar:
+
+- **Tek kapı:** çocuk alanında kapı isteyen her iş `app.router.requestGate(then:)`. Kapı tek yerden açılır (`ContentView`). Kapı geçilince odaya girilmez, iş çalışır. İstisna: sheet içindeki kapılar (`StoryActionsSheet`) ve hesap öncesi akış (`AccountSignInView`).
+- **Ebeveyn yığını çok seviyeli** (`MPRouter.parentPath`): profil sayfasından form ve Masal ailem itilir; sekme değişince ve çocuk moduna dönünce yığın boşalır.
+- Kaldırılanlar: Masallar'daki "Kaldığın yerden" ve "Anadolu'dan" rafı (kapı var); Ana sayfa kartındaki ilerleme çubuğu; Ayarlar'daki "Okuma" bölümü; profil sheet'i ve kullanılmayan profil seçici sheet'i; ölü `HomeScene`, `HomeModeCard`.
+
 ## Tek cümlede mimari
 
 **Uygulama çocuğundur; ebeveyn alanı ona bir kapıdan girilen, üstüne açılıp kapanan

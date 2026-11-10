@@ -66,7 +66,7 @@ struct KidTabBar: View {
         Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
         Item(tab: .gunluk,  label: "Masallar",  symbol: "book"),
         Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
-        Item(tab: .corner,  label: "Profil",    symbol: "person.crop.circle"),
+        Item(tab: .corner,  label: "Odam",      symbol: "person.crop.circle"),
     ]
 
     var body: some View {

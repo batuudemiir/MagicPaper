@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// 12 · Profil sekmesi (`BenimKosem`, kodda `corner`).
+/// 12 · Odam sekmesi (eski Profil, `BenimKosem`, kodda `corner`; ad: 11 Kasım 2026).
 ///
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). Profil değiştirme sayfanın en üstünde,
@@ -14,11 +14,8 @@ struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
-    @StateObject private var streak = MPStreak.shared
     @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
-    @State private var gate = false
-    @State private var afterGate: (() -> Void)?
     /// İçerik saat çubuğunun altına girdi mi (`MPStatusBarBackdrop`).
     @State private var scrolled = false
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -35,7 +32,7 @@ struct KidCornerView: View {
                     whoSection
                 }
                 greeting
-                statsRow
+                starBank
                 // Yapılacak işler (bağlantılar) bakılacak şeylerden (rozetler)
                 // önce: bulunabilirlik (16 Ekim denetimi).
                 linksSection
@@ -51,15 +48,6 @@ struct KidCornerView: View {
         .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled, fill: MPColor.backgroundSurface) }
         .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear(perform: refresh)
-        // Kahramanı düzenlemek ebeveyn kapısından geçer (Masal ailem'deki
-        // düzenleme gibi); görmek ve seçmek serbest.
-        .fullScreenCover(isPresented: $gate, onDismiss: {
-            let action = afterGate
-            afterGate = nil
-            action?()
-        }) {
-            ParentalGateView(onSuccess: { gate = false }, onCancel: { afterGate = nil; gate = false })
-        }
         .onChange(of: profile?.id) { _, _ in refresh() }
         // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.
         .onChange(of: storyManager.stories) { _, _ in refresh() }
@@ -93,7 +81,7 @@ struct KidCornerView: View {
     // MARK: - Başlık ve Ragi
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Profil")
+        MPKidTabHeader(title: "Odam")
             .padding(.top, MPSpacing.lg)
     }
 
@@ -171,53 +159,27 @@ struct KidCornerView: View {
 
     // MARK: - Sayılar
 
-    private var finishedCount: Int {
-        storyManager.stories.filter { $0.isFinished && $0.belongs(to: profile) }.count
-    }
-
     private var stars: Int {
         guard let profile else { return 0 }
         return MPStars.count(for: profile, stories: storyManager.stories)
     }
 
-    /// Sayılar tek, düz bir bilgi panelinde: kutuların ayrı sert kenarı yok,
-    /// çünkü dokunulmuyorlar (basılabilir görünen ama çalışmayan öğe olmasın).
-    /// En büyük yazı boyutlarında her sayı tek satır, alt alta.
-    private var statsRow: some View {
-        let ax = typeSize.isAccessibilitySize
-        let layout = ax
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
-            : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
-        return VStack(spacing: MPSpacing.sm) {
-            layout {
-                stat(value: stars, label: "yıldız", row: ax) { MPStarMark(size: 20) }
-                stat(value: streak.currentStreak, label: "gün üst üste", row: ax) {
-                    MPIcon("flame", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.peach.deep)
-                }
-                stat(value: finishedCount, label: "masal", row: ax) {
-                    MPIcon("book", size: MP.G.md, weight: .semibold).foregroundStyle(MPWorldTone.sky.deep)
-                }
+    /// Yıldız kumbarası (Faz 7): tek satır, sayı ve nasıl kazanıldığı. Üst üste
+    /// gün buradan kalktı, Ana sayfanın satırında; masal sayısı Kitaplık'ta.
+    /// Harcama Faz 9'da (Dolap); o zamana kadar satır dokunulmaz.
+    private var starBank: some View {
+        HStack(spacing: MPSpacing.md) {
+            MPStarMark(size: 28).accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: MP.S.x1) {
+                Text("\(stars) yıldız").mpText(.section).monospacedDigit()
+                    .foregroundStyle(MPColor.textPrimary)
+                Text("Her sabah 1, her masal 1.").mpText(.supporting)
+                    .foregroundStyle(MPColor.textSecondary)
             }
-            Text("Her sabah 1 yıldız gelir. Her masal 1 yıldız.")
-                .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
+            .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
         }
-    }
-
-    /// Tek sayı: zeminde, kutusuz (dokunulmuyor, düğme gibi durmaz).
-    private func stat<Glyph: View>(value: Int, label: String, row: Bool,
-                                   @ViewBuilder glyph: () -> Glyph) -> some View {
-        let layout = row
-            ? AnyLayout(HStackLayout(spacing: MPSpacing.md))
-            : AnyLayout(VStackLayout(spacing: MPSpacing.xxs))
-        return layout {
-            glyph().accessibilityHidden(true)
-            Text("\(value)").mpText(.page).monospacedDigit().foregroundStyle(MPColor.textPrimary)
-            Text(label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity, alignment: row ? .leading : .center)
+        .frame(minHeight: MPSize.minTouchHero)
         .accessibilityElement(children: .combine)
     }
 
@@ -273,9 +235,7 @@ struct KidCornerView: View {
 
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
     private func guarded(_ action: @escaping () -> Void) {
-        if app.router.isParentMode { action(); return }
-        afterGate = action
-        gate = true
+        app.router.requestGate(then: action)
     }
 
     private var wordsSubtitle: String {

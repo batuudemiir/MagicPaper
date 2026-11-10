@@ -99,76 +99,6 @@ struct HomeSky: View {
 
 // MARK: - Sahne (illüstrasyonlu başlık)
 
-/// Ana sayfanın üstündeki masal manzarası (13 Ekim, referans: editoryal uygulama
-/// hero sahneleri). Görsel bir taslak: kalıcı sürümü illüstratör çizecek.
-/// Uyku saatinde aynı sahnenin gece hâline çapraz geçer; alt kenarı sayfanın
-/// krem zeminine karışır (malzeme maskesi, arayüz gradyanı değil). Süs:
-/// erişilebilirlikten gizli.
-struct HomeScene: View {
-    let isNight: Bool
-    var height: CGFloat = 300
-    /// Kayan içeriğin içinde saat çubuğunun altına taşan pay.
-    var bleed: CGFloat = 0
-    /// Ragi'nin ayaklarının sahnenin alt kenarından yüksekliği: çiplerin üstünde kalır.
-    var mascotLift: CGFloat = 44
-    var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            backdrop
-            HomeSceneMascot(isNight: isNight)
-                .padding(.trailing, MPSpacing.screenH)
-                .padding(.bottom, mascotLift)
-        }
-        .frame(height: height + bleed)
-        .offset(y: -bleed)
-    }
-
-    /// Maskotsuz manzara: gündüz ve gece aynı kompozisyon, çapraz geçişle.
-    /// Görsel ekran genişliğine sığar (kule ve ay kırpılmaz); üstündeki boşluk
-    /// görselin en üst gökyüzü rengiyle devam eder.
-    private var backdrop: some View {
-        ZStack {
-            layer(image: "Scenes/homeSceneDay", sky: MPColor.sceneSkyDay)
-            layer(image: "Scenes/homeSceneNight", sky: MPColor.sceneSkyNight)
-                .opacity(isNight ? 1 : 0)
-        }
-        .frame(height: height + bleed)
-        .frame(maxWidth: .infinity)
-        .clipped()
-        .mask {
-            VStack(spacing: 0) {
-                Rectangle()
-                LinearGradient(colors: [MPColor.backgroundSurface, MPColor.backgroundSurface.opacity(0)],
-                               startPoint: .top, endPoint: .bottom)
-                    .frame(height: 56)
-            }
-        }
-        // İki görsel ve üç gradyan maskesi tek dokuya düzleşir: maskeler her
-        // kaydırma karesinde ekran dışında yeniden birleştirilmez, hazır görüntü
-        // taşınır (başlık bölgesindeki kasma, 16 Ekim).
-        .drawingGroup()
-        .animation(MP.M.gated(MP.M.slow), value: isNight)
-        .accessibilityHidden(true)
-    }
-
-    /// Görsel tam genişlikte, doğal oranında; üst kenarı gökyüzü rengine
-    /// yumuşakça karışır, dikiş görünmez.
-    private func layer(image: String, sky: Color) -> some View {
-        ZStack(alignment: .bottom) {
-            sky
-            Image(image).resizable().aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity)
-                .mask {
-                    VStack(spacing: 0) {
-                        LinearGradient(colors: [MPColor.backgroundSurface.opacity(0), MPColor.backgroundSurface],
-                                       startPoint: .top, endPoint: .bottom)
-                            .frame(height: 110)
-                        Rectangle()
-                    }
-                }
-        }
-    }
-}
-
 /// Sahnenin üstündeki Ragi: markanın kendi görseli, ayrı katman. Gündüz kitap
 /// okur ve yavaşça nefes alır; gece uyur. Açılışta tepeye süzülür, dokununca
 /// bir kez zıplar. Reduce Motion açıkken yerinde durur. Süs: erişilebilirlikten gizli.
@@ -292,6 +222,7 @@ struct WaveBottom: Shape {
 /// lavanta zeminde masal ve sayfanın tek birincil düğmesi. Ragi küçüldü ama
 /// ön planda (16 Ekim kararı, Batuhan 22 Ekim onayı).
 struct HomeHeroCard: View {
+    static let sceneHeight: CGFloat = 180
     let state: TonightState
     var isNight: Bool = false
     let onPrimary: () -> Void
@@ -305,8 +236,7 @@ struct HomeHeroCard: View {
                     .fixedSize(horizontal: false, vertical: true)
                 Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
-                if case let .resume(progress, _, _) = state { progressBar(progress) }
-                MPButton(title: buttonTitle, systemImage: buttonIcon, fullWidth: true, action: onPrimary)
+                MPButton(title: buttonTitle, systemImage: buttonIcon, size: .hero, fullWidth: true, action: onPrimary)
                     .padding(.top, MPSpacing.md)
             }
             .padding(MPSpacing.lg)
@@ -339,18 +269,6 @@ struct HomeHeroCard: View {
         .clipped()
     }
 
-    private func progressBar(_ progress: Double) -> some View {
-        GeometryReader { geo in
-            Capsule().fill(MPColor.borderKid)
-                .overlay(alignment: .leading) {
-                    Capsule().fill(MPColor.actionPrimary)
-                        .frame(width: geo.size.width * min(max(progress, 0), 1))
-                }
-        }
-        .frame(height: MP.S.x1)
-        .padding(.top, MPSpacing.sm)
-        .accessibilityHidden(true)
-    }
 
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Yarın yeni bir masal var"; case .bedtime: "Uyku masalı zamanı" } }
@@ -431,88 +349,6 @@ struct StarShape: Shape {
 }
 
 // MARK: - Mod kartı (yeni masal)
-
-/// "Yeni bir masal yaz" bölümündeki büyük mod kartı: pastel zemin, mod adı,
-/// sağ altta taşan küçük sahnecik (15 Ekim); anlatımı resim taşır. Az yazı,
-/// büyük hedef (araştırma: okumayan çocuk resimden seçer). Sahneciğin görseli
-/// henüz yoksa beyaz daire içinde ikon gösterilir. Tek mod kaldığında (uyku
-/// saati) yatay ve tam genişlik; gece görseli varsa gece göğü zemininde.
-struct HomeModeCard: View {
-    let title: String
-    let systemImage: String
-    let tone: MPWorldTone
-    /// Sahneciğin varlık adı (`Scenes/mode-…`); yoksa ikon.
-    var art: String? = nil
-    var wide: Bool = false
-    var night: Bool = false
-    /// Öne çıkan mod (uyku saatinde "Bu akşam"): mor çerçeve ve üst kenara
-    /// binen etiket, `HomeModeTile` ile aynı dil. Bilgi yalnızca renkle verilmez.
-    var badge: String? = nil
-    let action: () -> Void
-
-    @State private var badgeHeight: CGFloat = 0
-
-    private var artImage: UIImage? { art.flatMap { UIImage(named: $0) } }
-    private var onNight: Bool { night && artImage != nil }
-
-    var body: some View {
-        Button(action: action) {
-            label
-                .frame(maxWidth: .infinity, alignment: .topLeading)
-                .padding(MPSpacing.lg)
-                .frame(maxWidth: .infinity, minHeight: wide ? 120 : 166, alignment: .topLeading)
-                // Sahnecik düzeni etkilemez: sağ altta, kenardan hafifçe taşar; kart kırpar.
-                .background(alignment: .bottomTrailing) {
-                    if let artImage {
-                        Image(uiImage: artImage).resizable().scaledToFit()
-                            .frame(width: wide ? 150 : 124, height: wide ? 112 : 98, alignment: .bottomTrailing)
-                            .offset(x: MPSpacing.xs, y: MPSpacing.xs)
-                            .accessibilityHidden(true)
-                    }
-                }
-                .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-                .mpKidSurface(onNight ? MPColor.bedtimeSkyTop : tone.soft,
-                              edge: onNight ? MPColor.brandNight : tone.edge)
-                .overlay {
-                    if badge != nil {
-                        RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
-                            .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
-                    }
-                }
-                .overlay(alignment: .top) {
-                    if let badge {
-                        Text(badge).mpText(.footnote)
-                            .foregroundStyle(MPColor.textOnAction)
-                            .lineLimit(1)
-                            .padding(.horizontal, MPSpacing.sm)
-                            .padding(.vertical, MPSpacing.xxs)
-                            .background(MPColor.actionPrimary, in: Capsule())
-                            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-                            .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { badgeHeight = $0 }
-                            .offset(y: -badgeHeight / 2)
-                            .accessibilityHidden(true)
-                    }
-                }
-        }
-        .buttonStyle(MPPressStyle())
-    }
-
-    private var label: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-            if artImage == nil {
-                MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
-                    .foregroundStyle(tone.deep)
-                    .frame(width: 56, height: 56)
-                    .background(MPColor.backgroundSurface, in: Circle())
-                    .padding(.bottom, MPSpacing.sm)
-                    .accessibilityHidden(true)
-            }
-            Text(title).mpText(.cardTitle)
-                .foregroundStyle(onNight ? MPColor.textOnAction : MPColor.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-    }
-}
 
 // MARK: - Günlük rafı
 

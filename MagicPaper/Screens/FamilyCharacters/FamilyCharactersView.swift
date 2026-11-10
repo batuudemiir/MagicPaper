@@ -23,8 +23,6 @@ struct FamilyCharactersView: View {
     @State private var mode: Mode = .list
     /// Görmek ve seçmek serbest; ekleme, düzenleme ve silme çocuk modunda
     /// ebeveyn kapısından geçer (karar 16 Ekim 2026, FAZ 11 kuralıyla uyumlu).
-    @State private var gate = false
-    @State private var afterGate: (() -> Void)?
     @State private var characters: [FamilyCharacter] = []
 
     private let store = FamilyCharacterStore()
@@ -42,20 +40,11 @@ struct FamilyCharactersView: View {
             }
         }
         .onAppear(perform: reload)
-        .fullScreenCover(isPresented: $gate, onDismiss: {
-            let action = afterGate
-            afterGate = nil
-            action?()
-        }) {
-            ParentalGateView(onSuccess: { gate = false }, onCancel: { afterGate = nil; gate = false })
-        }
     }
 
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
     private func guarded(_ action: @escaping () -> Void) {
-        if app.router.isParentMode { action(); return }
-        afterGate = action
-        gate = true
+        app.router.requestGate(then: action)
     }
 
     /// 14: bir masal tek bir Masal ailem karakteri taşır, seçim tek.

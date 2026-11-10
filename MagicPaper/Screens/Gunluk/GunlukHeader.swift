@@ -29,10 +29,10 @@ struct GunlukHeaderCarousel: View {
     @State private var userTookOver = false
 
 
-    /// Büyük telefonlarda 520 pt (Batuhan, 14 Ekim); küçük ekranda (iPhone SE)
-    /// ekranın %60'ı, ki altındaki çipler ve ilk raf da görünsün.
+    /// En çok 400 pt (Faz 7; 14 Ekim'de 520): vitrin ilk ekranın tamamını
+    /// kaplamasın, raf kapıları kıvrımın üstünde görünsün. SE'de ekranın %45'i.
     static func height(screen: CGFloat) -> CGFloat {
-        min(520, (screen * 0.6).rounded())
+        min(400, (screen * 0.45).rounded())
     }
 
     private static let autoAdvance: UInt64 = 7_000_000_000

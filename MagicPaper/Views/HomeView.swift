@@ -57,7 +57,7 @@ struct HomeView: View {
                         HomeStatLine(stars: stars, streak: streak.currentStreak)
                     }
                     .buttonStyle(MPPressStyle())
-                    .accessibilityHint("Profili açar")
+                    .accessibilityHint("Odamı açar")
                 }
             }
             .padding(.top, MPSpacing.lg)
@@ -65,13 +65,15 @@ struct HomeView: View {
             HomeHeroCard(state: tonightState, isNight: isNight, onPrimary: tonightAction)
                 .homeEntrance(0)
 
+            // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
+            // onları aşağı itiyordu.
+            if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
+
             if let child = profileManager.currentProfile?.id,
                SeriesManager.shared.cardState(for: child) != nil {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                    .homeEntrance(1)
+                    .homeEntrance(2)
             }
-
-            if !shownModes.isEmpty { modeStrip.homeEntrance(2) }
 
             if !gunlukItems.isEmpty {
                 HomeGunlukPreview(items: gunlukItems, onOpen: { id in
@@ -144,7 +146,7 @@ struct HomeView: View {
 
     private var classics: ClassicsLibrary { .shared }
 
-    /// Çizimi gelmiş klasikler (en çok 8); günün klasiği başta.
+    /// Çizimi gelmiş klasikler (en çok 4; keşif Masallar'da); günün klasiği başta.
     @State private var gunlukItems: [HomeGunlukPreview.Item] = []
 
     private static func makeGunlukItems(_ classics: ClassicsLibrary) -> [HomeGunlukPreview.Item] {
@@ -152,7 +154,7 @@ struct HomeView: View {
         if let today = classics.todaysTale, let i = tales.firstIndex(where: { $0.id == today.id }) {
             tales.insert(tales.remove(at: i), at: 0)
         }
-        return tales.prefix(8).map {
+        return tales.prefix(4).map {
             .init(id: $0.id, title: $0.title, minutes: $0.minutes, asset: $0.cover, focus: $0.coverFocus)
         }
     }
@@ -193,7 +195,7 @@ struct HomeView: View {
                     } label: {
                         MPListRow(systemImage: mode.symbol, tone: mode.tone, title: mode.title,
                                   subtitle: mode == emphasizedMode ? "Bu akşam için önerilen" : mode.promise)
-                            .frame(minHeight: MPSize.minTouchKid)
+                            .frame(minHeight: MPSize.minTouchHero)
                     }
                     .buttonStyle(MPPressStyle(.highlight))
                     .accessibilityElement(children: .combine)

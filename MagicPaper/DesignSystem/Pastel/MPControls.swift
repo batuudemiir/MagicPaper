@@ -11,6 +11,8 @@ struct MPChip: View {
     var systemImage: String? = nil
     var isSelected: Bool = false
     var style: Style = .solid
+    /// Çocuk akışında `MPSize.chipHeightKid`.
+    var height: CGFloat = MPSize.chipHeight
     let action: () -> Void
 
     enum Style { case solid, dashed }
@@ -27,11 +29,11 @@ struct MPChip: View {
             .padding(.horizontal, MPSpacing.lg)
             .padding(.vertical, MPSpacing.xs)
             // En büyük yazı boyutunda çip uzar, metin kesilmez.
-            .frame(minHeight: MPSize.chipHeight)
+            .frame(minHeight: height)
             .background(isSelected ? MPColor.actionPrimary : (style == .dashed ? Color.clear : MPColor.backgroundSurface),
-                        in: RoundedRectangle(cornerRadius: MPSize.chipHeight / 2, style: .continuous))
+                        in: RoundedRectangle(cornerRadius: height / 2, style: .continuous))
             .overlay {
-                RoundedRectangle(cornerRadius: MPSize.chipHeight / 2, style: .continuous).strokeBorder(isSelected ? MPColor.actionPrimary : (style == .dashed ? MPColor.borderDashed : MPColor.borderKid),
+                RoundedRectangle(cornerRadius: height / 2, style: .continuous).strokeBorder(isSelected ? MPColor.actionPrimary : (style == .dashed ? MPColor.borderDashed : MPColor.borderKid),
                                        style: StrokeStyle(lineWidth: 1.5, dash: style == .dashed ? [5, 4] : []))
             }
         }

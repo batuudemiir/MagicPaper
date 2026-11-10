@@ -36,6 +36,10 @@ enum MPSize {
     static let buttonHeightAuth: CGFloat = 54
     static let buttonHeightSmall: CGFloat = 38
     static let chipHeight: CGFloat = 38
+    /// Çocuk akışında seçim çipi (Faz 7, Sesame 2012: büyük ve ayrık hedef).
+    static let chipHeightKid: CGFloat = 44
+    /// Masal yazmada seçenek satırı.
+    static let choiceRowKid: CGFloat = 72
     static let circleButton: CGFloat = 42
     static let headerAvatar: CGFloat = 48
     static let kidTabBarHeight: CGFloat = 86
@@ -44,6 +48,8 @@ enum MPSize {
     /// Minimum hit area. Kid area 56, parent area 48 (Design law: `MP.S.tapMin`).
     static let minTouchKid: CGFloat = 56
     static let minTouchParent: CGFloat = 48
+    /// Çocuk ekranının tek birincil öğesi (Faz 7): düğme ve ana kart eylemi.
+    static let minTouchHero: CGFloat = 64
     static let iconTile: CGFloat = 52
     static let segmentHeight: CGFloat = 40
     static let inputHeight: CGFloat = 52

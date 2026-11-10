@@ -14,7 +14,6 @@ struct ClassicDetailView: View {
     @ObservedObject private var progress = ClassicProgressStore.shared
     @ObservedObject private var favorites = MPFavorites.shared
     @State private var narration: ClassicNarration = .soft
-    @State private var gate = false
     @State private var sharing = false
     @State private var scrolled = false
 
@@ -60,9 +59,6 @@ struct ClassicDetailView: View {
         .background(MPColor.backgroundSurface.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { narration = progress.narration(for: tale.id) }
-        .fullScreenCover(isPresented: $gate) {
-            ParentalGateView(onSuccess: { gate = false; sharing = true }, onCancel: { gate = false })
-        }
         .sheet(isPresented: $sharing) {
             ShareSheet(items: ["Bu akşam MagicPaper'da \"\(tale.title)\" masalını okuduk."])
         }
@@ -101,7 +97,9 @@ struct ClassicDetailView: View {
                     if !path.isEmpty { path.removeLast() }
                 }
                 Spacer()
-                GunlukStageButton(systemImage: "square.and.arrow.up", label: "Paylaş") { gate = true }
+                GunlukStageButton(systemImage: "square.and.arrow.up", label: "Paylaş") {
+                    app.router.requestGate { sharing = true }
+                }
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSize.minTouchKid)

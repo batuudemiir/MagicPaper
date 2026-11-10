@@ -15,7 +15,7 @@ enum MPTab: String, CaseIterable {
         case .home:    return "Ana sayfa"
         case .gunluk:  return "Masallar"
         case .library: return "Kitaplık"
-        case .corner:  return "Profil"
+        case .corner:  return "Odam"
         }
     }
 
@@ -73,10 +73,12 @@ enum MPParentRoute: Identifiable, Hashable {
     case familyCharacters(UUID)  // 14 · Masal ailem, profil düzenlemeden
     case bookCharacter(UUID)     // 13 · Kahraman oluşturucu, profil düzenlemeden
     case profileEdit(UUID)       // Çocuğun adı, rengi ve yaş bandı
+    case profileHub(UUID)        // Çocuk profil sayfası (Faz 7; önceden sheet)
 
     var id: String {
         switch self {
         case .profileEdit(let i): return "profileEdit-\(i)"
+        case .profileHub(let i): return "profileHub-\(i)"
         case .bookExport: return "bookExport"
         case .voiceRecording: return "voiceRecording"
         case .familyMembers: return "familyMembers"
@@ -113,8 +115,6 @@ enum MPKidRoute: Hashable {
 // MARK: - Alt sayfalar (sheet)
 
 enum MPSheetRoute: Identifiable, Equatable {
-    case profilePicker
-    case profileEdit(UUID)
     /// İlgi alanları (FAZ 12), çocuk başına; Ebeveyn > Çocuklar'dan.
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
@@ -122,8 +122,6 @@ enum MPSheetRoute: Identifiable, Equatable {
 
     var id: String {
         switch self {
-        case .profilePicker:        return "profilePicker"
-        case .profileEdit(let i):   return "profileEdit-\(i)"
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         }
@@ -190,8 +188,7 @@ final class MPRouter: ObservableObject {
         kidPaths[tab, default: []].append(route)
     }
 
-    /// Profil sheet'inden "Profili düzenle": sheet kapanır, form ebeveyn
-    /// sekmesinin yığınına itilir.
+    /// Profil sayfasından "Profili düzenle": form yığına itilir.
     func openProfileEdit(_ id: UUID) {
         sheet = nil
         parentRoute = .profileEdit(id)
@@ -229,14 +226,34 @@ final class MPRouter: ObservableObject {
     /// gerekmez.
     @Published private(set) var isParentMode = false
     /// Ebeveyn menüsünde açık sayfa. Her girişte Özet'ten başlar.
-    @Published var parentTab: MPParentTab = .overview
+    @Published var parentTab: MPParentTab = .overview {
+        didSet { if parentTab != oldValue { parentPath = [] } }
+    }
 
     /// Ebeveyn alanından açılan tam ekran sayfa.
-    @Published var parentRoute: MPParentRoute?
+    /// Ebeveyn sekmesinin yığını (Faz 7: profil sayfasından form ve Masal ailem
+    /// itilebilsin diye çok seviyeli).
+    @Published var parentPath: [MPParentRoute] = []
+
+    /// En üstteki sayfa. Atamak iter, `nil` bir geri döner.
+    var parentRoute: MPParentRoute? {
+        get { parentPath.last }
+        set {
+            if let newValue {
+                if parentPath.last != newValue { parentPath.append(newValue) }
+            } else if !parentPath.isEmpty {
+                parentPath.removeLast()
+            }
+        }
+    }
     @Published var showGate = false
     @Published var showProfileAdd = false
     /// Kapı açılınca doğrudan profil ekleme açılsın (Benim köşem "Ekle", 16 Ekim).
     private(set) var profileAddAfterGate = false
+    /// Tek kapı (Faz 7): çocuk alanında kapı isteyen iş (kahraman, Masal ailem,
+    /// paylaşma). Kapı geçilince odaya girilmez, iş çalışır.
+    private var gateAction: (() -> Void)?
+    private var gatePassed = false
     @Published var sheet: MPSheetRoute?
 
     /// 12 · Profil: Ana sayfadaki yıldız satırı bu sekmeye geçirir.
@@ -248,6 +265,26 @@ final class MPRouter: ObservableObject {
     func requestParentMode() {
         guard !isParentMode else { return }
         showGate = true
+    }
+
+    /// Bir işi ebeveyn kapısının arkasına koyar. Ebeveyn odasındayken doğrudan
+    /// çalışır. Kapı tek yerden açılır (`ContentView`), ekranlar kendi kapısını tutmaz.
+    func requestGate(then action: @escaping () -> Void) {
+        if isParentMode { action(); return }
+        gateAction = action
+        gatePassed = false
+        showGate = true
+    }
+
+    /// Kapı geçildi: iş bekliyorsa yalnızca kapı kapanır, yoksa oda açılır.
+    func gateSucceeded() {
+        if gateAction != nil {
+            gatePassed = true
+            showGate = false
+            MPHaptics.tap()
+        } else {
+            unlockParent()
+        }
     }
 
     func unlockParent() {
@@ -268,7 +305,12 @@ final class MPRouter: ObservableObject {
     /// Kapı ekranı kapandıktan sonra (iki tam ekran üst üste açılmasın diye
     /// kapanışta): kapı açıldıysa bekleyen profil eklemeyi açar, vazgeçildiyse unutur.
     func gateDismissed() {
-        defer { profileAddAfterGate = false }
+        defer {
+            profileAddAfterGate = false
+            gateAction = nil
+            gatePassed = false
+        }
+        if let action = gateAction, gatePassed { action() }
         if profileAddAfterGate && isParentMode { showProfileAdd = true }
     }
 
@@ -279,7 +321,7 @@ final class MPRouter: ObservableObject {
     func enterChildMode() {
         guard isParentMode else { return }
         isParentMode = false
-        parentRoute = nil
+        parentPath = []
         showProfileAdd = false
         sheet = nil
     }

@@ -82,7 +82,10 @@ struct StoryEndingLeaf: View {
             items.append(.init(id: "streak", icon: "flame", tone: .peach, value: "\(streak.currentStreak) gün",
                                label: streak.currentStreak > 1 ? "üst üste" : "okuma günü"))
         }
-        let words = Set(story.pages.flatMap { $0.words ?? [] }.map(\.id)).count
+        let others = StoryGenerationManager.shared.stories.filter {
+            $0.id != story.id && $0.childProfileID == story.childProfileID
+        }
+        let words = MPVocabulary.newWordCount(in: story, comparedTo: others)
         if words > 0 {
             items.append(.init(id: "words", icon: "book.closed", tone: .mint, value: "\(words)", label: "yeni kelime"))
         }
@@ -150,7 +153,7 @@ struct StoryEndingLeaf: View {
             if typeSize.isAccessibilitySize { bubble }
 
             VStack(spacing: MPSpacing.xs) {
-                Text("Bravo, \(story.childName)!").mpText(.cover).foregroundStyle(theme.foreground)
+                Text(StoryEndingCopy.bravo(story.childName)).mpText(.cover).foregroundStyle(theme.foreground)
                     .multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
                 Text("\(story.title) masalını bitirdin.")
@@ -168,7 +171,7 @@ struct StoryEndingLeaf: View {
             Spacer(minLength: MPSpacing.md)
 
             VStack(spacing: MPSpacing.xs) {
-                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", fullWidth: true,
+                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", size: .hero, fullWidth: true,
                          action: onAnother)
                     .padding(.horizontal, MPSpacing.lg)
                 MPButton(title: "Bitir", kind: .ghost, action: onClose)
@@ -249,7 +252,7 @@ struct StoryEndingLeaf: View {
             VStack(spacing: MPSpacing.sm) {
                 Text("Son").mpText(.cover).foregroundStyle(theme.foreground)
                     .accessibilityAddTraits(.isHeader)
-                Text("İyi geceler, \(story.childName).")
+                Text(StoryEndingCopy.goodNight(story.childName))
                     .mpText(.body).foregroundStyle(theme.muted)
                     .multilineTextAlignment(.center)
                 if streak.currentStreak > 1 {
@@ -267,7 +270,7 @@ struct StoryEndingLeaf: View {
 
             Spacer(minLength: MPSpacing.md)
 
-            MPButton(title: "İyi geceler", systemImage: "moon", fullWidth: true, action: sayGoodNight)
+            MPButton(title: "İyi geceler", systemImage: "moon", size: .hero, fullWidth: true, action: sayGoodNight)
                 .padding(.horizontal, MPSpacing.lg)
         }
         .frame(maxWidth: 560)
@@ -369,5 +372,18 @@ struct PaperStar: Shape {
         }
         p.closeSubpath()
         return p.strokedPath(StrokeStyle(lineWidth: r * 0.12, lineJoin: .round)).union(p)
+    }
+}
+
+/// Masal sonunun sözleri. Klasiklerde çocuğun adı yok: "Bravo, !" yazılmaz.
+enum StoryEndingCopy {
+    static func bravo(_ name: String) -> String {
+        let n = name.trimmingCharacters(in: .whitespaces)
+        return n.isEmpty ? "Bravo!" : "Bravo, \(n)!"
+    }
+
+    static func goodNight(_ name: String) -> String {
+        let n = name.trimmingCharacters(in: .whitespaces)
+        return n.isEmpty ? "İyi geceler." : "İyi geceler, \(n)."
     }
 }

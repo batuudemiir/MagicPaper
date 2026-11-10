@@ -37,7 +37,6 @@ struct SettingsView: View {
                 profilesSection
                 if showsFamilySection { familySection }
                 notificationsSection
-                readingSection
                 accountSection
                 supportSection
                 deleteSection
@@ -89,7 +88,7 @@ struct SettingsView: View {
                                 tone: Self.profileTones[index % Self.profileTones.count],
                                 title: profile.name,
                                 subtitle: profileLine(profile)) {
-                    app.router.sheet = .profileEdit(profile.id)
+                    app.router.parentRoute = .profileHub(profile.id)
                 }
             }
             if account.canWriteFamily {
@@ -241,17 +240,6 @@ struct SettingsView: View {
     private func openSystemSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
-    }
-
-    // MARK: - Okuma
-
-    private var readingSection: some View {
-        // Yazı boyutu okuyucunun Okuma ayarlarında (7 Kasım 2026, HIG: işe özgü
-        // ayar işin yanında).
-        ParentSection(title: "Okuma") {
-            ParentToggleRow(systemImage: "speaker.wave.2", tone: .mint, title: "Sesli okuma",
-                            subtitle: "Masal sayfaları sesli okunur", isOn: $settings.readAloud)
-        }
     }
 
     // MARK: - Hesap

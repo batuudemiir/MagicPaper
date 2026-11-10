@@ -7,7 +7,8 @@ import SwiftUI
 
 /// Roller: `docs/MARKA.md`. `outline` yalnızca giriş sağlayıcısı içindir.
 enum MPButtonKind { case primary, secondary, outline, ghost, danger }
-enum MPButtonSize { case regular, small, auth }
+/// `hero`: çocuk ekranının tek birincil düğmesi, 64 pt (Faz 7).
+enum MPButtonSize { case regular, small, auth, hero }
 
 struct MPButton: View {
     let title: String
@@ -63,6 +64,7 @@ struct MPButton: View {
         switch size {
         case .small: MPSize.buttonHeightSmall
         case .auth: MPSize.buttonHeightAuth
+        case .hero: MPSize.minTouchHero
         case .regular:
             switch kind {
             case .primary: MPSize.buttonHeight

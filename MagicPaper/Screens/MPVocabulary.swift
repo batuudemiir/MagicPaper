@@ -109,6 +109,13 @@ enum MPVocabulary {
     /// Bunlar bir yazarın bu bant için "yeni" diye işaretlediği kelimelerdir;
     /// çocuğun gerçekten bilmediğini iddia etmez. Okunmamış sayfanın kelimesi
     /// sayılmaz: hiç karşılaşılmamış bir kelime toplanmış olamaz.
+    /// Masalda çocuğun ilk kez karşılaştığı kelimeler (Faz 7). Önceki masallarda
+    /// okunmuş sayfalarda geçen kelime "yeni" sayılmaz.
+    static func newWordCount(in story: Story, comparedTo others: [Story]) -> Int {
+        let seen = Set(collectedWords(in: others).map(\.word.id))
+        return Set(story.pages.flatMap { $0.words ?? [] }.map(\.id)).subtracting(seen).count
+    }
+
     static func collectedWords(in stories: [Story]) -> [CollectedWord] {
         var earliest: [String: CollectedWord] = [:]
         for story in stories {

@@ -96,12 +96,32 @@ struct ReaderChrome: View {
                     controlBar(pageLabel)
                 }
                 .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
+            } else if pageLabel != nil {
+                // Kontroller çekilince çocuk nerede olduğunu kaybetmesin (Faz 7):
+                // dokunulmayan ince ilerleme çizgisi.
+                hiddenProgress
+                    .transition(.opacity)
             }
         }
         .animation(MP.M.gated(MP.M.easeOut), value: scrubPage == nil)
         // Koyu kâğıtta (Akşam, Gece) cam koyu tona geçer. Yazı ve ikon
         // renkleri temadan gelir: renk varlıkları açık/koyu moda göre değişmiyor.
         .environment(\.colorScheme, theme.isDark ? .dark : .light)
+    }
+
+    private var hiddenProgress: some View {
+        GeometryReader { geo in
+            Capsule().fill(theme.muted.opacity(0.25))
+                .overlay(alignment: .leading) {
+                    Capsule().fill(theme.highlight.opacity(0.7))
+                        .frame(width: geo.size.width * min(max(progress, 0), 1))
+                }
+        }
+        .frame(height: MP.E.width)
+        .padding(.horizontal, MPSpacing.screenH * 2)
+        .padding(.bottom, MPSpacing.sm)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 
     // MARK: - Üst

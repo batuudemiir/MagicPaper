@@ -24,6 +24,11 @@ struct ParentOverviewView: View {
 
                 if profileManager.profiles.count > 1 { childPicker }
                 if settings.approve && !pendingStories.isEmpty { approvalQueue }
+                // Sayılardan önce tek cümle (Faz 7).
+                Text(ParentInsight.sentence(stories: readThisWeek, minutes: streak.minutesThisWeek,
+                                            streak: streak.currentStreak))
+                    .mpText(.body).foregroundStyle(MPColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
                 statsGrid
                 dailyChart
                 if !recentStories.isEmpty { recentSection }
@@ -120,9 +125,10 @@ struct ParentOverviewView: View {
         storyManager.stories.filter { $0.isReadable && $0.belongs(to: profileManager.currentProfile) }
     }
 
+    /// Başlıktaki haftayla aynı: Pazartesi-Pazar (Faz 7; önceden kayan 7 gün).
     private var readThisWeek: Int {
-        let start = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? .distantPast
-        return childStories.filter { ($0.lastReadAt ?? .distantPast) >= start }.count
+        guard let week = ParentInsight.weekInterval() else { return 0 }
+        return childStories.filter { week.contains($0.lastReadAt ?? .distantPast) }.count
     }
 
     private var statsGrid: some View {
@@ -133,7 +139,7 @@ struct ParentOverviewView: View {
             MPStatTile(systemImage: "book", tone: .lav, value: "\(readThisWeek)",
                        label: "Okunan masal", area: .parent)
             MPStatTile(systemImage: "flame", tone: .peach, value: "\(streak.currentStreak)",
-                       unit: "gün", label: "Okuma serisi", area: .parent)
+                       unit: "gün", label: "Üst üste gün", area: .parent)
             MPStatTile(systemImage: "book.closed", tone: .mint,
                        value: "\(MPVocabulary.summary(for: childStories).uniqueThisMonth)",
                        label: "Bu ay farklı kelime", area: .parent)

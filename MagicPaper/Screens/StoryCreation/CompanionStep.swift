@@ -83,7 +83,7 @@ struct CompanionStep: View {
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             CreationFooter {
-                MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", fullWidth: true) {
+                MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", size: .hero, fullWidth: true) {
                     onChoose(selectedCompanionID)
                 }
             }
@@ -118,7 +118,7 @@ struct CompanionStep: View {
             MPWrapRow(spacing: MPSpacing.sm) {
                 ForEach(topics) { topic in
                     MPChip(title: topic.name, systemImage: topic.symbol,
-                           isSelected: selectedTopicID == topic.id) {
+                           isSelected: selectedTopicID == topic.id, height: MPSize.chipHeightKid) {
                         MPHaptics.selection()
                         selectedTopicID = (selectedTopicID == topic.id) ? nil : topic.id
                     }
@@ -177,7 +177,7 @@ struct CompanionStep: View {
                     let isAvailable = available.contains(character.relation.kind)
                     MPChip(title: character.name,
                            systemImage: FamilyCharacterCopy.relationSymbol(character.relation.kind),
-                           isSelected: selectedFamilyID == character.id) {
+                           isSelected: selectedFamilyID == character.id, height: MPSize.chipHeightKid) {
                         MPHaptics.selection()
                         selectedFamilyID = selectedFamilyID == character.id ? nil : character.id
                     }
@@ -188,7 +188,7 @@ struct CompanionStep: View {
                     .accessibilityHint(isAvailable ? "" : FamilyCharacterCopy.stepUnavailableAccessibility)
                 }
                 if let onAddFamily, familyCharacters.count < FamilyCharacter.maxPerChild {
-                    MPChip(title: "Masal ailem", systemImage: "plus", style: .dashed) { onAddFamily() }
+                    MPChip(title: "Masal ailem", systemImage: "plus", style: .dashed, height: MPSize.chipHeightKid) { onAddFamily() }
                         .frame(minHeight: MPSize.minTouchKid)
                         .accessibilityLabel(FamilyCharacterCopy.addButton)
                 }

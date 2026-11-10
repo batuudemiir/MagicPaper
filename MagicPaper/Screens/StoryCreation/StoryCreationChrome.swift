@@ -64,7 +64,7 @@ struct CreationChoiceRow<Leading: View, Detail: View>: View {
                     Spacer(minLength: MPSpacing.sm)
                     CreationCheckmark(isOn: isSelected)
                 }
-                .frame(maxWidth: .infinity, minHeight: MPSize.minTouchKid, alignment: .leading)
+                .frame(maxWidth: .infinity, minHeight: MPSize.choiceRowKid, alignment: .leading)
                 .contentShape(Rectangle())
             }
             .buttonStyle(MPPressStyle())

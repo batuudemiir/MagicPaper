@@ -62,7 +62,7 @@ final class KidCornerTabTests: XCTestCase {
     func testASurfaceLinkFromTheCornerLandsOnHome() {
         let app = MPAppState()
         app.router.openKidCorner()
-        app.router.sheet = .profilePicker
+        app.router.sheet = .interests(UUID())
         app.open(.series, childID: nil)
         XCTAssertEqual(app.router.tab, .home)
         XCTAssertNil(app.router.sheet)
@@ -126,13 +126,14 @@ final class KidCornerTabTests: XCTestCase {
         app.router.requestParentMode()
         app.router.unlockParent()
         let id = UUID()
-        app.router.sheet = .profileEdit(id)
+        app.router.parentRoute = .profileHub(id)
+        app.router.sheet = .interests(id)
         app.router.openKidPage(.familyCharacters(id))
-        XCTAssertEqual(app.router.parentRoute, .familyCharacters(id))
+        XCTAssertEqual(app.router.parentPath, [.profileHub(id), .familyCharacters(id)])
         XCTAssertNil(app.router.sheet)
         XCTAssertTrue(app.router.kidPaths.isEmpty)
         app.router.closeKidPage()
-        XCTAssertNil(app.router.parentRoute)
+        XCTAssertEqual(app.router.parentRoute, .profileHub(id))
     }
 
     /// "Profili düzenle" eski hatasına dönmesin: yeni profil akışını açmaz.
@@ -141,9 +142,9 @@ final class KidCornerTabTests: XCTestCase {
         app.router.requestParentMode()
         app.router.unlockParent()
         let id = UUID()
-        app.router.sheet = .profileEdit(id)
+        app.router.parentRoute = .profileHub(id)
         app.router.openProfileEdit(id)
-        XCTAssertEqual(app.router.parentRoute, .profileEdit(id))
+        XCTAssertEqual(app.router.parentPath, [.profileHub(id), .profileEdit(id)])
         XCTAssertNil(app.router.sheet)
         XCTAssertFalse(app.router.showProfileAdd)
     }
@@ -169,7 +170,7 @@ final class KidCornerTabTests: XCTestCase {
     /// Sheet kapanırken açılan modal yutulur: sıradaki iş kapanış bitince çalışır.
     func testWorkAfterASheetWaitsForItsDismissal() {
         let app = MPAppState()
-        app.router.sheet = .profilePicker
+        app.router.sheet = .interests(UUID())
         app.router.closeSheet { app.router.showProfileAdd = true }
         XCTAssertNil(app.router.sheet)
         XCTAssertFalse(app.router.showProfileAdd)
@@ -237,5 +238,86 @@ final class KidCornerTabTests: XCTestCase {
         app.router.gateDismissed()
         app.router.requestProfileAdd()
         XCTAssertTrue(app.router.showProfileAdd)
+    }
+}
+
+/// Faz 7: tek kapı ve çok seviyeli ebeveyn yığını.
+@MainActor
+final class SingleGateTests: XCTestCase {
+
+    func testGatedWorkRunsAfterTheGateWithoutOpeningTheRoom() {
+        let app = MPAppState()
+        var ran = false
+        app.router.requestGate { ran = true }
+        XCTAssertTrue(app.router.showGate)
+        app.router.gateSucceeded()
+        XCTAssertFalse(app.router.showGate)
+        XCTAssertFalse(app.router.isParentMode)
+        XCTAssertFalse(ran, "İş kapı ekranı kapanınca çalışır")
+        app.router.gateDismissed()
+        XCTAssertTrue(ran)
+    }
+
+    func testCancelledGateForgetsTheWork() {
+        let app = MPAppState()
+        var ran = false
+        app.router.requestGate { ran = true }
+        app.router.showGate = false
+        app.router.gateDismissed()
+        XCTAssertFalse(ran)
+        app.router.requestParentMode()
+        app.router.gateSucceeded()
+        XCTAssertTrue(app.router.isParentMode, "Bekleyen iş yoksa oda açılır")
+    }
+
+    func testInsideTheRoomGatedWorkRunsDirectly() {
+        let app = MPAppState()
+        app.router.requestParentMode()
+        app.router.unlockParent()
+        var ran = false
+        app.router.requestGate { ran = true }
+        XCTAssertTrue(ran)
+        XCTAssertFalse(app.router.showGate)
+    }
+
+    func testLeavingTheRoomClearsTheWholeParentStack() {
+        let app = MPAppState()
+        app.router.requestParentMode()
+        app.router.unlockParent()
+        let id = UUID()
+        app.router.parentRoute = .profileHub(id)
+        app.router.parentRoute = .profileEdit(id)
+        app.router.enterChildMode()
+        XCTAssertTrue(app.router.parentPath.isEmpty)
+    }
+
+    func testSwitchingParentTabsClearsTheStack() {
+        let app = MPAppState()
+        app.router.parentRoute = .bookExport
+        app.router.parentTab = .settings
+        XCTAssertTrue(app.router.parentPath.isEmpty)
+    }
+}
+
+/// Faz 7: masal sonu sözü ve Özet cümlesi.
+final class PageStructureCopyTests: XCTestCase {
+
+    func testClassicEndingWithoutANameStaysGrammatical() {
+        XCTAssertEqual(StoryEndingCopy.bravo(""), "Bravo!")
+        XCTAssertEqual(StoryEndingCopy.bravo("İrem"), "Bravo, İrem!")
+        XCTAssertEqual(StoryEndingCopy.goodNight(" "), "İyi geceler.")
+    }
+
+    func testOverviewSentence() {
+        XCTAssertEqual(ParentInsight.sentence(stories: 0, minutes: 0, streak: 0), "Bu hafta henüz masal okunmadı.")
+        XCTAssertEqual(ParentInsight.sentence(stories: 4, minutes: 38, streak: 3), "Bu hafta 4 masal, 38 dakika, 3 akşam üst üste.")
+        XCTAssertEqual(ParentInsight.sentence(stories: 1, minutes: 0, streak: 1), "Bu hafta 1 masal.")
+    }
+
+    func testOverviewWeekStartsOnMonday() throws {
+        // 12 Kasım 2026 Perşembe; hafta 9 Kasım Pazartesi başlar.
+        let thursday = try XCTUnwrap(Calendar(identifier: .gregorian).date(from: DateComponents(year: 2026, month: 11, day: 12, hour: 12)))
+        let week = try XCTUnwrap(ParentInsight.weekInterval(containing: thursday))
+        XCTAssertEqual(Calendar(identifier: .gregorian).component(.weekday, from: week.start), 2)
     }
 }

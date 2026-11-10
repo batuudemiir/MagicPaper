@@ -133,6 +133,24 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · Vizyon planı ve Faz 7 Omurga (sayfa yapısı)
+
+- **Plan:** yedi araştırmayla (açık kaynak kod, çocuk uygulaması araştırması, denetim, ödül ve koleksiyon, pazar ve zanaat, motor denetimi, ekran düzeni) Faz 7-14 vizyon planı: `docs/VIZYON_PLANI.md`. Kuzey yıldızı: akşam ritüelini taşıyan, büyüyen masal dünyası; yapay zekâ oyuncağı değil yayınevi. Ödeme bu planın dışında. Batuhan kararları: sakin koleksiyon ekonomisi, bütün uygulama, aile özellikleri kapalı, Dolap'ta kozmetik serbest kimlik kapılı, ilk açılış tek ekran (sıra hukuk onayıyla bayraktan).
+- **Faz 7, sayfa yapısı:**
+  - Ana sayfa: üç mod kartın hemen altında, seri kartı modların altında; kartın ilerleme çubuğu kalktı ("Sayfa 3 / 5" kaldı); sahne en çok 180 pt; Masallar önizlemesi 8'den 4'e; mod satırları ve kart düğmesi 64 pt. Ölü `HomeScene`, `HomeModeCard` silindi.
+  - Masallar: 8 bölüm 5'e. "Kaldığın yerden" ve "Anadolu'dan" rafı kalktı (kapı var); vitrin en çok 400 pt (önceden 520); "Kahramanı sen ol" → "Kendi masalını yaz".
+  - Kitaplık: "Kaldığın yerden"in tek evi, en çok üç kitap; lavanta kart içinde kart yerine düz konuşma balonu; arama kutusu Kitaplarım başlığındaki büyütece, süzgeç çipleri başlığın altına.
+  - Profil → **Odam**: sekme, başlık, erişilebilirlik ve UI testleri; üç sayaçlı satır yerine yıldız kumbarası (üst üste gün Ana sayfada kaldı).
+  - Masal yaz: seçenek satırı 72, çocuk çipi 44, "Masalı yaz" 64.
+  - Okuyucu: kontroller gizliyken ince ilerleme çizgisi.
+  - Masal sonu: "Bir masal daha" ve "İyi geceler" 64 pt. **Hata:** klasiklerde "Bravo, !" yerine "Bravo!" ve "İyi geceler."; "yeni kelime" artık yalnızca daha önce okunmamış kelimeleri sayıyor (`MPVocabulary.newWordCount`).
+  - Özet: sayılardan önce tek cümle (`ParentInsight`), "Okunan masal" artık başlıktaki Pazartesi-Pazar haftası (önceden kayan 7 gün), "Okuma serisi" → "Üst üste gün".
+  - Ayarlar: çocuk profili sheet yerine itilen **profil sayfası** (`ProfileHubView`: ad ve yaş, Kahraman, Masal ailem, ilgi alanları, masalları, Kitap yap, sil); "Okuma" bölümü kalıntısı kalktı; kullanılmayan `ProfilePickerSheet` silindi.
+- **Altyapı:** tek ebeveyn kapısı `MPRouter.requestGate(then:)` (Odam, Masal ailem, klasik paylaşma kendi kapağını tutmuyor; kapı geçilince odaya girilmez, iş çalışır); ebeveyn yığını çok seviyeli (`parentPath`); yeni token'lar `minTouchHero` 64, `chipHeightKid` 44, `choiceRowKid` 72, `MPButton(size: .hero)`.
+- **Belgeler:** `docs/VIZYON_PLANI.md`, `docs/SAYFA_MIMARISI.md` (Faz 7 düzeni tablosu), `docs/SES_VE_SOZ.md` (ad tablosu), CLAUDE.md Design law (Odam, okul öncesi ölçüleri, tek kapı).
+- **Bilerek ertelendi:** Odam'ın kahraman sahnesi, Dolap, çıkartma albümü ve masal sonu çıkartma anı (Faz 9); Kitaplık devam kartındaki ilerleme çubuğu (değişmedi); okuyucu alt çubuğunun 64 pt'e büyümesi.
+- **Test:** derleme ve test derlemesi başarılı. Batuhan'ın kuralıyla testler fazlar bitince bir kez çalışacak; bu turda **çalıştırılmadı**. Yeni testler: `SingleGateTests`, `PageStructureCopyTests`, router testleri çok seviyeli yığına göre güncellendi. Simülatörde ve cihazda **görülmedi**.
+
 ### 2026-11-08 · main, commit bu kayıtla · Faz 6 Yayın ve ölçüm (kod kısmı) + planın tek test koşusu
 
 - **Onaylı anonim huni** (`StoryEngineBridge/MPFunnel.swift`): kurulum başına birer kez `firstOpen`, `firstStory`, `firstFinish`, `account`, `parentRoom`, `firstWeek`; giden yalnızca adım, gün ve kaba değer (süre kovası, ilk haftada okunan gün). Ad, yaş, kimlik, tarih yok. Okuma olaylarıyla aynı kapı (paylaşım anahtarı + onay + hesap). Firestore kuralı `validFunnel` ve kural testleri.

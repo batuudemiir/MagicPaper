@@ -152,7 +152,7 @@ struct ContentView: View {
                 PaywallView().environmentObject(app)
             }
             .fullScreenCover(isPresented: $app.router.showGate, onDismiss: { app.router.gateDismissed() }) {
-                ParentalGateView(onSuccess: { app.router.unlockParent() }, onCancel: { app.router.showGate = false })
+                ParentalGateView(onSuccess: { app.router.gateSucceeded() }, onCancel: { app.router.showGate = false })
             }
             .fullScreenCover(item: $firstRun, onDismiss: {
                 if let story = firstStory {
@@ -239,7 +239,7 @@ struct ContentView: View {
             Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
             Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
             Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
-            Tab("Profil", systemImage: "person.crop.circle", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
+            Tab("Odam", systemImage: "person.crop.circle", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
             Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: createTabRole) {
                 Color.clear
             }
@@ -307,12 +307,6 @@ struct ContentView: View {
     @ViewBuilder
     private func sheetContent(_ route: MPSheetRoute) -> some View {
         switch route {
-        case .profilePicker:
-            ProfilePickerSheet()
-        case .profileEdit(let id):
-            if let profile = profileManager.profiles.first(where: { $0.id == id }) {
-                ProfileEditSheet(profile: profile)
-            }
         case .interests(let id):
             if let profile = profileManager.profiles.first(where: { $0.id == id }) {
                 InterestsEditorSheet(profile: profile)
@@ -393,13 +387,13 @@ private struct ParentTabStack<Root: View>: View {
     @EnvironmentObject private var app: MPAppState
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: Binding(
+            get: { app.router.parentTab == tab ? app.router.parentPath : [] },
+            set: { if app.router.parentTab == tab { app.router.parentPath = $0 } }
+        )) {
             root
                 .toolbar(.hidden, for: .navigationBar)
-                .navigationDestination(item: Binding(
-                    get: { app.router.parentTab == tab ? app.router.parentRoute : nil },
-                    set: { app.router.parentRoute = $0 }
-                )) { route in
+                .navigationDestination(for: MPParentRoute.self) { route in
                     ParentRouteView(route: route)
                         .toolbar(.hidden, for: .navigationBar)
                 }
