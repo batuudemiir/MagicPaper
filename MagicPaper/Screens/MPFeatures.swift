@@ -22,6 +22,8 @@ enum MPRemoteFlags {
         /// Huni olaylarının gönderimi (Faz 6). Gizlilik politikası ve onay metni huniyi
         /// anlatana kadar kapalı; olaylar o zamana kadar yalnızca cihazda bekler.
         case funnelUpload
+        /// "Önce masal" (Faz 8): ilk masal girişten önce. Hukuk onayına kadar kapalı.
+        case storyBeforeAccount
     }
 
     private static let key = "mp_remoteFlags"

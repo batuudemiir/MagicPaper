@@ -119,11 +119,14 @@ enum MPSheetRoute: Identifiable, Equatable {
     case interests(UUID)
     /// "Çıkış yap" onayı (FAZ 16), Ebeveyn > Ayarlar'dan.
     case signOut
+    /// Masal saati hatırlatması ön sorusu (Faz 8): ilk biten masaldan sonra bir kez.
+    case reminder
 
     var id: String {
         switch self {
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
+        case .reminder: return "reminder"
         }
     }
 }

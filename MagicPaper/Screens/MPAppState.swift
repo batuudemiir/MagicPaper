@@ -50,11 +50,27 @@ final class MPAppState: ObservableObject {
 
     /// Okuyucu kapandıktan sonra (iki tam ekran sunum üst üste açılamaz).
     func runAfterReader() {
+        noteFirstFinishedStory()
         guard let next = afterReader else { return }
         afterReader = nil
         switch next {
         case .create: startStoryCreation()
         case .sleep(let story): sleepSession = MPSleepSession(story: story)
+        }
+    }
+
+    /// İlk biten masaldan sonra (Faz 8): "önce masal" sırası girişe geçer ve
+    /// hatırlatma bir kez, değeri görüldükten sonra sorulur. Okuyucudan sonra
+    /// başka bir iş varsa ("Bir masal daha") soru bekler.
+    private func noteFirstFinishedStory() {
+        let profile = ProfileManager.shared.currentProfile
+        guard StoryGenerationManager.shared.stories.contains(where: { $0.isFinished && $0.belongs(to: profile) })
+        else { return }
+        UserDefaults.standard.set(true, forKey: MPWelcome.firstStoryDoneKey)
+        let settings = MPSettingsStore.shared
+        if !settings.reminderAsked && afterReader == nil {
+            settings.reminderAsked = true
+            router.sheet = .reminder
         }
     }
 
@@ -224,6 +240,9 @@ final class MPAppState: ObservableObject {
 
 enum MPWelcome {
     static let pendingKey = "mp_pendingWelcomeName"
+    /// İlk masal bitip okuyucu kapandı (Faz 8): "önce masal" sırasında girişin
+    /// zamanı ve hatırlatma sorusunun anı.
+    static let firstStoryDoneKey = "mp_firstStoryDone"
 
     /// Bekleyen karşılama adını okuyup temizler.
     static func consume() -> String? {

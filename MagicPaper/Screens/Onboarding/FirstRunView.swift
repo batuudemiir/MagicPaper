@@ -4,9 +4,10 @@ import OSLog
 
 private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "FirstRun")
 
-/// İlk profil oluşunca bir kez: 09 · Bildirim izni, sonra 10 · İlk masal.
+/// İlk profil oluşunca bir kez: 10 · İlk masal.
 ///
-/// İzin yalnızca "Hatırlat"a basınca istenir; "Şimdi değil" eşit ağırlıkta.
+/// Faz 8 (11 Kasım 2026): bildirim izni artık önce değil, ilk masal bitip okuyucu
+/// kapanınca bir kez sorulur (`ReminderSheet`, `MPAppState.noteFirstFinishedStory`).
 /// İlk masal "Bana sürpriz yap" yoluyla kurulur (çocuk için mod motor seçer).
 struct FirstRunView: View {
     let childName: String
@@ -16,22 +17,18 @@ struct FirstRunView: View {
     @ObservedObject private var settings = MPSettingsStore.shared
     @ObservedObject private var profileManager = ProfileManager.shared
 
-    private enum Step { case reminder, firstStory }
-    @State private var step: Step = .reminder
+    private enum Step { case firstStory }
+    @State private var step: Step = .firstStory
     @State private var story: Story?
     @State private var modeTitle: String?
     @State private var failed = false
     @State private var facts: PreparationFacts?
     @State private var failureReason: StoryFailureReason = .general
-    @State private var asking = false
 
     var body: some View {
         ZStack {
             MPColor.backgroundKid.ignoresSafeArea()
             switch step {
-            case .reminder:
-                ReminderPrePrompt(asking: asking, onRemind: remind, onLater: later)
-                    .transition(.opacity)
             case .firstStory:
                 if failed {
                     StoryCreationFailureView(onRetry: { failed = false; buildFirstStory() },
@@ -54,31 +51,11 @@ struct FirstRunView: View {
             }
         }
         .animation(MP.M.gated(MP.M.base), value: step)
-    }
-
-    // MARK: 09
-
-    private func remind(hour: Int, minute: Int) {
-        asking = true
-        Task {
-            let result = await MPReminder.enable(hour: hour, minute: minute, childName: childName)
-            settings.reminderHour = hour
-            settings.reminderMinute = minute
-            settings.reminder = (result == .scheduled)
-            asking = false
-            next()
+        .onAppear {
+            // Yeni kurulum: hatırlatma ilk masal bitince sorulacak.
+            settings.reminderAsked = false
+            buildFirstStory()
         }
-    }
-
-    private func later() {
-        settings.reminder = false
-        MPReminder.disable()
-        next()
-    }
-
-    private func next() {
-        step = .firstStory
-        buildFirstStory()
     }
 
     // MARK: 10
@@ -110,7 +87,7 @@ struct FirstRunView: View {
 }
 
 /// 09 · Bildirim izni ön ekranı.
-private struct ReminderPrePrompt: View {
+struct ReminderPrePrompt: View {
     let asking: Bool
     let onRemind: (Int, Int) -> Void
     let onLater: () -> Void
@@ -163,5 +140,38 @@ private struct ReminderPrePrompt: View {
         }
         .padding(.horizontal, MPSpacing.xl)
         .padding(.bottom, MPSpacing.lg)
+    }
+}
+
+/// Masal saati hatırlatması, ilk biten masaldan sonra sheet olarak (Faz 8): önce
+/// değer görüldü, sonra izin. Sistem izni yalnızca "Hatırlat"ta istenir.
+struct ReminderSheet: View {
+    let childName: String
+    @EnvironmentObject private var app: MPAppState
+    @ObservedObject private var settings = MPSettingsStore.shared
+    @State private var asking = false
+
+    var body: some View {
+        ReminderPrePrompt(asking: asking, onRemind: remind, onLater: later)
+            .background(MPColor.backgroundKid.ignoresSafeArea())
+            .mpSheet(.full)
+    }
+
+    private func remind(hour: Int, minute: Int) {
+        asking = true
+        Task {
+            let result = await MPReminder.enable(hour: hour, minute: minute, childName: childName)
+            settings.reminderHour = hour
+            settings.reminderMinute = minute
+            settings.reminder = (result == .scheduled)
+            asking = false
+            app.router.sheet = nil
+        }
+    }
+
+    private func later() {
+        settings.reminder = false
+        MPReminder.disable()
+        app.router.sheet = nil
     }
 }

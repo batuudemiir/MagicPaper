@@ -8,7 +8,8 @@ import SwiftUI
 /// the default the product chose is a default the parent saw.
 struct ParentConsentView: View {
     @ObservedObject private var account = AccountService.shared
-    @State private var shareUsage = true
+    /// Varsayılan kapalı (Faz 8; COPPA 2025, AB DSA md. 28): ebeveyn açıkça seçer.
+    @State private var shareUsage = false
     @State private var agreed = false
     @State private var saving = false
     @State private var showFullText = false

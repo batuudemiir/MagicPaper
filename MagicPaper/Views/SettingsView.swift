@@ -358,8 +358,9 @@ struct PrivacyAndDataView: View {
 
                 MPCard(area: .parent, padding: MPSpacing.lg) {
                     VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                        Text("Çocuk fotoğrafı toplanmaz").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        Text("Profiller ve masallar cihazında ve yalnızca senin erişebildiğin ebeveyn hesabında saklanır. Çocuk fotoğrafı hiçbir yere gönderilmez.")
+                        // Güven bloğu (Faz 8): yalnızca doğru olanlar.
+                        Text("Sözümüz").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        Text("Reklam yok. Masallar cihazda yazılır. Çocuğun verisi satılmaz, çocuk fotoğrafı toplanmaz. Profiller ve masallar cihazında ve yalnızca senin erişebildiğin ebeveyn hesabında saklanır. Her şeyi bu sayfadan silebilirsin.")
                             .mpText(.footnote).fontWeight(.regular)
                             .foregroundStyle(MPColor.textSecondary)
                             .fixedSize(horizontal: false, vertical: true)

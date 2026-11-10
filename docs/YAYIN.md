@@ -8,7 +8,7 @@ Yol haritası: `docs/STARTUP_PLANI.md`. Marka: `docs/MARKA.md`. Bu belge yayına
 |---|---|---|
 | Onaylı anonim huni | Kod ve Firestore kuralı hazır; gönderim kapalı (`funnelUpload` bayrağı) | Batuhan: politika ve onay metni, kural deploy, bayrak |
 | Uzaktan bayrak | Hazır: imzalı içerik akışındaki `flags` | Batuhan: akışı imzalayıp yayınlamak |
-| Web ve yasal sayfalar | Repodaki dört sayfa markada | Batuhan: magicpaperkids.com'daki asıl sayfalar |
+| Web ve yasal sayfalar | Repodaki dört sayfa markada; yasal bağlantılar `magicpaper.app` (canlı, 11 Kasım `curl` ile denendi) | Batuhan: `magicpaperkids.com` web sitesi her yolda 404 (e-posta çalışıyor); erişilebilirlik sayfası hiçbir alan adında yok |
 | App Store görselleri | Testlerle birlikte, tüm fazlar bitince | Biz |
 | TestFlight 5-10 aile | Bekliyor | Batuhan: App Store Connect, aileler |
 | Kids Category | Öneri aşağıda | Batuhan karar verir |

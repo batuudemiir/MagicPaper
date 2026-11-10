@@ -1,133 +1,105 @@
 import SwiftUI
+import StoryEngine
 
-/// 02-04 · Karşılama (`Main`, `Onboarding2`, `Onboarding3`).
+/// 02 · Karşılama (Faz 8, 11 Kasım 2026): tek ekran.
 ///
-/// Üç sayfa, yana kaydırılır ya da "Devam et" ile ilerler. "Geç" ve son
-/// sayfanın "Başlayalım"ı girişe geçer. Her sayfada tek maskot, tek birincil
-/// buton. Metinler `docs/SCREENS.md`'den aynen; 03'teki dünya listesi
-/// tasarımın sözü, motor bugün modları sunuyor (İrem'e not).
+/// Üç parıltılı sayfa yerine tek, düz krem bir ekran: Ragi, markanın vaadi, güven
+/// cümlesi, tek birincil düğme. Eski 2. sayfanın "uzay, korsanlar" vaadi motorda
+/// olmadığı için kalktı. `MPGlowBackground` gradient olduğu için kullanılmaz.
+///
+/// "Önce masal" (`MPRemoteFlags.storyBeforeAccount`, hukuk onayına kadar kapalı):
+/// açıkken çocuğun adı ve yaşı burada sorulur, ilk masal girişten önce yazılır.
+/// Kapalıyken bugünkü sıra: karşılama → giriş → onay → profil → ilk masal.
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
 
     @ObservedObject private var profileManager = ProfileManager.shared
-    @State private var page = 0
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @State private var name = ""
+    @State private var band: AgeBand = AgeBandResolver.bands[1]
+    @FocusState private var nameFocused: Bool
 
-    private struct Page {
-        let title: String
-        let body: String
-        let cta: String
-        let background: MPGlowBackground.Style
-    }
-
-    private let pages: [Page] = [
-        Page(title: "Kahramanı çocuğun olan masallar",
-             body: "Adını ve sevdiği dünyayı seç, masalı birlikte yazalım.",
-             cta: "Devam et", background: .dawn),
-        Page(title: "Her akşam başka bir dünya",
-             body: "Uzay, orman, deniz altı, korsanlar. Masal her gece yeniden yazılır.",
-             cta: "Devam et", background: .night),
-        Page(title: "Kontrol her zaman sende",
-             body: "Reklam yok, satın alma çocuğa kapalı. Her masal güvenlik kontrolünden geçer.",
-             cta: "Başlayalım", background: .lilac)
-    ]
-
-    private var onDark: Bool { page == 1 }
+    private var storyFirst: Bool { MPRemoteFlags.value(.storyBeforeAccount, default: false) }
 
     var body: some View {
-        ZStack {
-            ForEach(pages.indices, id: \.self) { index in
-                MPGlowBackground(style: pages[index].background)
-                    .opacity(index == page ? 1 : 0)
-            }
-            .animation(MP.M.gated(MP.M.base), value: page)
-
-            VStack(spacing: 0) {
-                HStack {
-                    Spacer(minLength: 0)
-                    Button("Geç", action: finish)
-                        .mpText(.cardTitle)
-                        .foregroundStyle(onDark ? Color.white : MPColor.textPrimary)
-                        .frame(minWidth: MPSize.minTouchKid, minHeight: MPSize.minTouchParent)
-                        .accessibilityHint("Karşılamayı atlar")
-                }
-                .padding(.horizontal, MPSpacing.screenH)
-
-                TabView(selection: $page) {
-                    ForEach(pages.indices, id: \.self) { index in
-                        pageView(index).tag(index)
-                    }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-
-                VStack(spacing: MPSpacing.xxl) {
-                    MPPageDots(count: pages.count, current: page, onDark: onDark)
-                    MPButton(title: pages[page].cta, fullWidth: true) {
-                        if page < pages.count - 1 {
-                            withAnimation(MP.M.gated(MP.M.base)) { page += 1 }
-                        } else {
-                            finish()
-                        }
-                    }
-                    .padding(.horizontal, MPSpacing.xxxl)
-                }
-                .padding(.bottom, MPSpacing.lg)
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func pageView(_ index: Int) -> some View {
-        let page = pages[index]
-        VStack(spacing: MPSpacing.xl) {
-            Spacer(minLength: 0)
-            art(index)
-            Spacer(minLength: 0)
-            VStack(spacing: MPSpacing.md) {
-                Text(page.title)
-                    .mpText(.page)
-                    .foregroundStyle(index == 1 ? Color.white : MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                Text(page.body)
-                    .mpText(.body)
-                    .foregroundStyle(index == 1 ? Color.white.opacity(0.82) : MPColor.textSecondary)
-            }
-            .multilineTextAlignment(.center)
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal, MPSpacing.xxxl)
-        }
-        .padding(.bottom, MPSpacing.xxl)
-    }
-
-    @ViewBuilder
-    private func art(_ index: Int) -> some View {
-        switch index {
-        case 0:
-            VStack(spacing: MPSpacing.xxl) {
-                Image("Brand/wordmarkLight")
-                    .resizable().scaledToFit()
-                    .frame(maxWidth: 230)
-                    .accessibilityLabel("MagicPaper")
-                MascotImage(mascot: .onBook, width: 270)
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: MPSpacing.xl) {
+                MascotImage(mascot: .onBook, width: typeSize.isAccessibilitySize ? 80 : 160)
+                    .padding(.top, MPSpacing.xxl)
                     .accessibilityHidden(true)
+
+                VStack(spacing: MPSpacing.md) {
+                    Text("Her çocuğun kendi masal dünyası")
+                        .mpText(.cover).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(storyFirst ? "Adını söyle, ilk masalı birlikte yazalım. Kahramanı o olsun."
+                                    : "Kahramanı çocuğun olan masallar. Her akşam yeniden yazılır, kitaplığında kalır.")
+                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                }
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+
+                if storyFirst { childFields }
+
+                VStack(spacing: MPSpacing.sm) {
+                    MPButton(title: storyFirst ? "Masalı yaz" : "Başlayalım",
+                             systemImage: storyFirst ? "wand.and.sparkles" : nil,
+                             size: .hero, fullWidth: true, action: start)
+                        .disabled(storyFirst && trimmedName.isEmpty)
+                    Text(OnboardingCopy.trust)
+                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
-        case 1:
-            Image("Brand/sceneNight")
-                .resizable().scaledToFill()
-                .frame(width: 300, height: 246)
-                .clipShape(RoundedRectangle(cornerRadius: MPRadius.hero, style: .continuous))
-                .mpShadow(.card)
-                .accessibilityHidden(true)
-        default:
-            MascotImage(mascot: .walking, width: 200)
-                .frame(width: 260, height: 260)
-                .background(MPColor.backgroundSurface, in: Circle())
-                .mpShadow(.card)
-                .accessibilityHidden(true)
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.bottom, MPSpacing.xxl)
+            .frame(maxWidth: 560)
+            .frame(maxWidth: .infinity)
+        }
+        .scrollDismissesKeyboard(.interactively)
+        .background(MPColor.backgroundKid.ignoresSafeArea())
+    }
+
+    // MARK: - Önce masal: ad ve yaş
+
+    private var trimmedName: String { name.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+    private var childFields: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+            MPTextField(label: nil, placeholder: "Çocuğun adı", text: $name)
+                .focused($nameFocused)
+                .textContentType(.givenName)
+                .submitLabel(.done)
+                .accessibilityLabel("Çocuğun adı")
+            MPFlowLayout(spacing: MPSpacing.sm) {
+                ForEach(AgeBandResolver.bands, id: \.self) { option in
+                    MPChip(title: "\(option.lowerBound)-\(option.upperBound) yaş",
+                           isSelected: option == band, height: MPSize.chipHeightKid) {
+                        MPHaptics.selection()
+                        band = option
+                    }
+                }
+            }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel("Yaş")
         }
     }
 
-    private func finish() {
+    private func start() {
+        MPHaptics.tap()
+        if storyFirst {
+            // İlk profil burada kurulur; ilk masal ContentView'da, karşılama adıyla açılır.
+            let profile = profileManager.createProfile(name: trimmedName, age: band.upperBound, profileType: .child)
+            profileManager.switchProfile(to: profile)
+            UserDefaults.standard.set(profile.name, forKey: MPWelcome.pendingKey)
+        }
         profileManager.completeOnboarding()
         isOnboardingComplete = true
     }
+}
+
+/// Karşılamanın güven cümlesi: yalnızca doğru olanlar (Faz 8).
+enum OnboardingCopy {
+    static let trust = "Reklam yok, satın alma çocuğa kapalı. Masallar cihazda yazılır."
 }

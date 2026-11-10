@@ -145,6 +145,8 @@ struct MainContentView: View {
     @ObservedObject private var account = AccountService.shared
     @ObservedObject private var sync = AccountService.shared.sync
     @Environment(\.scenePhase) private var scenePhase
+    /// İlk masal okunup okuyucu kapandı mı (Faz 8, "önce masal" sırası).
+    @AppStorage(MPWelcome.firstStoryDoneKey) private var firstStoryDone = false
 
     /// Karşılama → Giriş → Ebeveyn onayı → Profil → Neleri sever → İlk masal
     /// (FAZ 16). Already-installed apps meet Giriş and Onay once, on the first
@@ -158,7 +160,8 @@ struct MainContentView: View {
             consentCurrent: account.consent != nil,
             restoreSettled: sync.restored,
             hasProfiles: !profileManager.profiles.isEmpty,
-            hasCurrentProfile: profileManager.currentProfile != nil))
+            hasCurrentProfile: profileManager.currentProfile != nil,
+            storyFirst: MPRemoteFlags.value(.storyBeforeAccount, default: false) && !firstStoryDone))
     }
 
     var body: some View {

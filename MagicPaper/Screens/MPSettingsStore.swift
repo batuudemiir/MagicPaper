@@ -14,6 +14,9 @@ final class MPSettingsStore: ObservableObject {
     /// Ebeveyn yazı boyutunu kendisi seçti mi. Seçmediyse boyut çocuğun yaşından gelir.
     @Published var readSizeChosen: Bool { didSet { d.set(readSizeChosen, forKey: K.readSizeChosen) } }
     @Published var reminder: Bool { didSet { d.set(reminder, forKey: K.reminder) } }
+    /// Hatırlatma ön sorusu soruldu mu (Faz 8: ilk masaldan sonra bir kez). Eski
+    /// kurulumlarda kayıt yoksa soruldu sayılır: onlara ilk açılışta sorulmuştu.
+    @Published var reminderAsked: Bool { didSet { d.set(reminderAsked, forKey: K.reminderAsked) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
     /// Günlük okuma bütçesi, dakika. Ekrandaki "Günde 30 dakika" sabit bir
@@ -70,6 +73,7 @@ final class MPSettingsStore: ObservableObject {
         static let readSize = "mp_readSize"
         static let readSizeChosen = "mp_readSizeChosen"
         static let reminder = "mp_reminder"
+        static let reminderAsked = "mp_reminderAsked"
         static let approve = "mp_approveBeforeShow"
         static let screenLimit = "mp_screenLimit"
         static let screenLimitMinutes = "mp_screenLimitMinutes"
@@ -106,6 +110,7 @@ final class MPSettingsStore: ObservableObject {
             ? storedSize != MP.ReadSize.normal.rawValue
             : d.bool(forKey: K.readSizeChosen)
         reminder = d.bool(forKey: K.reminder)
+        reminderAsked = d.object(forKey: K.reminderAsked) == nil ? true : d.bool(forKey: K.reminderAsked)
         approve = d.bool(forKey: K.approve)
         screenLimit = d.bool(forKey: K.screenLimit)
         approvedStoryIDs = Set(d.stringArray(forKey: K.approved) ?? [])

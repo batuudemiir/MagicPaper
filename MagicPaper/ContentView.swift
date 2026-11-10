@@ -313,6 +313,8 @@ struct ContentView: View {
             }
         case .signOut:
             AccountSignOutSheet(onClose: { app.router.sheet = nil })
+        case .reminder:
+            ReminderSheet(childName: profileManager.currentProfile?.name ?? "")
         }
     }
 }

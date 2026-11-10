@@ -71,14 +71,22 @@ enum AppGate: Equatable {
         var restoreSettled: Bool
         var hasProfiles: Bool
         var hasCurrentProfile: Bool
+        /// "Önce masal" açık ve ilk masal henüz bitmedi (Faz 8): giriş ilk masaldan
+        /// sonraya kalır. Varsayılan kapalı; hukuk onayıyla bayraktan açılır.
+        var storyFirst: Bool = false
     }
 
     static func resolve(_ i: Inputs) -> AppGate {
         guard i.onboardingDone else { return .intro }
         if !i.signedIn {
-            // Only a device that already has its children may wait for a
-            // connection; a new one has nothing to open.
-            guard i.deferredSignIn && i.hasProfiles else { return .signIn }
+            if i.storyFirst {
+                // Karşılama çocuğu kurar; kurulmadıysa profil formu.
+                guard i.hasProfiles else { return .createProfile }
+            } else {
+                // Only a device that already has its children may wait for a
+                // connection; a new one has nothing to open.
+                guard i.deferredSignIn && i.hasProfiles else { return .signIn }
+            }
         } else {
             guard i.consentCurrent else { return .consent }
             if !i.hasProfiles && !i.restoreSettled { return .restoring }

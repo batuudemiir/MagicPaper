@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · Faz 8 İlk açılış, güven ve hız
+
+- **Tek karşılama:** üç parıltılı tanıtım sayfası (gradient `MPGlowBackground`) yerine tek, düz krem ekran: Ragi, "Her çocuğun kendi masal dünyası", güven cümlesi, tek 64 pt düğme. Motorda olmayan "uzay, korsanlar" vaadi kalktı.
+- **"Önce masal" bayrağı** (`MPRemoteFlags.storyBeforeAccount`, **varsayılan kapalı**, hukuk onayıyla açılır): açıkken karşılama çocuğun adını ve yaş bandını sorar, ilk masal girişten önce yazılır; ilk masal bitip okuyucu kapanınca giriş istenir (`AppGate.Inputs.storyFirst`, `MPWelcome.firstStoryDoneKey`). Kapalıyken sıra bugünkü gibi. Açık sorular: KVKK onayının addan önce gelmesi ve yerel profilin hesaba bağlanması hukuk ve cihazda doğrulanmadı.
+- **Bildirim izni ilk masaldan sonra:** ilk açılış artık doğrudan ilk masala gider; hatırlatma sorusu ilk biten masaldan sonra okuyucu kapanınca bir kez, sheet olarak (`ReminderSheet`). Eski kurulumlara yeniden sorulmaz.
+- **Kullanım paylaşımı onay ekranında varsayılan kapalı** (COPPA 2025, AB DSA md. 28).
+- **Güven bloğu:** karşılamada ("Reklam yok, satın alma çocuğa kapalı. Masallar cihazda yazılır.") ve Gizlilik ve veri'de ("Sözümüz").
+- **Yasal bağlantılar:** `curl` ile denendi: `magicpaper.app/terms` ve `/privacy` canlı (200), uygulama zaten oraya gidiyor; `magicpaperkids.com` her yolda 404, e-posta alanı çalışıyor (MX var). Repodaki `privacy.html` yönlendirmesi ve iki sayfanın "Web:" bağlantısı `magicpaper.app`'e çevrildi. **Açık:** erişilebilirlik sayfası hiçbir alan adında yok (Batuhan).
+- **Hız:** açılış ekranı krem (`UILaunchScreen` `Colors/backgroundKid`), beyaz parlama gitti. **Bilerek değişmedi:** ilerlemenin her sayfada diske yazılması; kod bunu belgelenmiş bir karar olarak tutuyor (kitaplık ~37 KB, "kaldığın yer" kaybolmasın). Planın "kitaplık açılışta ağır" bulgusu bu boyutta abartılıydı.
+- **Test:** derleme ve test derlemesi başarılı; yeni `FirstRunFlowTests`. Batuhan'ın kuralıyla testler fazlar bitince bir kez; bu turda **çalıştırılmadı**. Simülatörde ve cihazda **görülmedi**.
+
 ### 2026-11-11 · main, commit bu kayıtla · Vizyon planı ve Faz 7 Omurga (sayfa yapısı)
 
 - **Plan:** yedi araştırmayla (açık kaynak kod, çocuk uygulaması araştırması, denetim, ödül ve koleksiyon, pazar ve zanaat, motor denetimi, ekran düzeni) Faz 7-14 vizyon planı: `docs/VIZYON_PLANI.md`. Kuzey yıldızı: akşam ritüelini taşıyan, büyüyen masal dünyası; yapay zekâ oyuncağı değil yayınevi. Ödeme bu planın dışında. Batuhan kararları: sakin koleksiyon ekonomisi, bütün uygulama, aile özellikleri kapalı, Dolap'ta kozmetik serbest kimlik kapılı, ilk açılış tek ekran (sıra hukuk onayıyla bayraktan).
