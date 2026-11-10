@@ -59,6 +59,8 @@ struct ProfileHubView: View {
                     }
                 }
 
+                collectionSection
+
                 if profileManager.profiles.count > 1 {
                     MPGroupedList(area: .parent) {
                         // Silme masalları da götürür ve geri alınamaz: satır sorar, onay siler.
@@ -85,6 +87,29 @@ struct ProfileHubView: View {
             Button("Vazgeç", role: .cancel) {}
         } message: {
             Text(deletionMessage)
+        }
+    }
+
+    /// Yıldız ve çıkartmalar (Faz 9): ebeveyn ekonominin ne yaptığını görür.
+    /// Salt okunur; değiştirme yok.
+    private var collectionSection: some View {
+        let stories = StoryGenerationManager.shared.stories
+        let earned = MPStars.count(for: profile, stories: stories)
+        let wallet = MPStarWalletStore().wallet(for: profile.id)
+        let stickers = MPStickerAlbum.stickers(for: profile, stories: stories).count
+        return ParentSection(title: "Yıldız ve çıkartmalar",
+                             subtitle: "Yıldızlar yalnızca okuyarak kazanılır, parayla alınamaz, kaybolmaz.") {
+            MPListRow(systemImage: "star", tone: .yellow, title: "\(earned) yıldız kazanıldı",
+                      subtitle: "\(wallet.spent) harcandı, \(wallet.balance(earned: earned)) kumbarada") { EmptyView() }
+            MPRowDivider(area: .parent)
+            MPListRow(systemImage: "book.closed", tone: .lav, title: "\(stickers) çıkartma",
+                      subtitle: "Her biten masal albüme bir çıkartma bırakır") { EmptyView() }
+            ForEach(Array(wallet.purchases.reversed().prefix(5).enumerated()), id: \.offset) { _, purchase in
+                MPRowDivider(area: .parent)
+                MPListRow(systemImage: "sparkles", tone: .gray,
+                          title: (MPDecor.item(purchase.itemID)?.title ?? "Süs") + " raf",
+                          subtitle: "\(purchase.date.formatted(.dateTime.day().month(.abbreviated).locale(Locale(identifier: "tr_TR")))) · \(purchase.price) yıldız") { EmptyView() }
+            }
         }
     }
 

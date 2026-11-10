@@ -17,6 +17,10 @@ final class MPSettingsStore: ObservableObject {
     /// Hatırlatma ön sorusu soruldu mu (Faz 8: ilk masaldan sonra bir kez). Eski
     /// kurulumlarda kayıt yoksa soruldu sayılır: onlara ilk açılışta sorulmuştu.
     @Published var reminderAsked: Bool { didSet { d.set(reminderAsked, forKey: K.reminderAsked) } }
+    /// Yıldızla süs alma (Faz 9). Kapalıyken yalnızca masal çıkartmaları kalır.
+    @Published var collectionEnabled: Bool { didSet { d.set(collectionEnabled, forKey: K.collectionEnabled) } }
+    /// 3-5 yaş için yarı fiyat (Faz 9); ebeveyn açar.
+    @Published var easyPrices: Bool { didSet { d.set(easyPrices, forKey: K.easyPrices) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
     /// Günlük okuma bütçesi, dakika. Ekrandaki "Günde 30 dakika" sabit bir
@@ -74,6 +78,8 @@ final class MPSettingsStore: ObservableObject {
         static let readSizeChosen = "mp_readSizeChosen"
         static let reminder = "mp_reminder"
         static let reminderAsked = "mp_reminderAsked"
+        static let collectionEnabled = "mp_collectionEnabled"
+        static let easyPrices = "mp_easyPrices"
         static let approve = "mp_approveBeforeShow"
         static let screenLimit = "mp_screenLimit"
         static let screenLimitMinutes = "mp_screenLimitMinutes"
@@ -111,6 +117,8 @@ final class MPSettingsStore: ObservableObject {
             : d.bool(forKey: K.readSizeChosen)
         reminder = d.bool(forKey: K.reminder)
         reminderAsked = d.object(forKey: K.reminderAsked) == nil ? true : d.bool(forKey: K.reminderAsked)
+        collectionEnabled = d.object(forKey: K.collectionEnabled) == nil ? true : d.bool(forKey: K.collectionEnabled)
+        easyPrices = d.bool(forKey: K.easyPrices)
         approve = d.bool(forKey: K.approve)
         screenLimit = d.bool(forKey: K.screenLimit)
         approvedStoryIDs = Set(d.stringArray(forKey: K.approved) ?? [])

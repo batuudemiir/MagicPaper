@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Faz 9 (ilk kısım): çıkartma albümü, yıldız cüzdanı, süsler
+
+- **Kahraman kiti değerlendirildi:** bugünkü kit gerçek çizim değil, kodla çizilen yer tutucu vektör (simülatörde görüldü). Batuhan: "çok basit, baştan tasarla, açık kaynak araştır". İki araştırma: DiceBear stilleri (lisanslar paketlerden doğrulandı) ve çocuklara özel açık setler (OpenGameArt, itch.io, Wikimedia, Revoy). Sonuç: çocuk oranlı, tam boy, katmanlı **ve** Ragi'nin boyalı diline uyan açık bir set yok; en yakınlar CC0 düz vektör (anarres, nonemo) ve kamu malı 1920'ler kâğıt bebekleri (Delalain, Drayton). Kahraman ve Dolap karar bekliyor.
+- **Çıkartma albümü** (`MPStickerAlbum`, `StickerAlbumView`): biten her masal ve biten her klasik albüme bir çıkartma bırakır; ayrı depo yok, biten masallardan türer; ay ay gruplu; son hücre kesikli "Sıradaki masal"; eksik sayısı yok. Odam'da "Çıkartma albümüm" satırı.
+- **Yıldız cüzdanı** (`MPStarWallet`, `MPStarWalletStore`): kumbara = kazanılan − harcanan; eksiye düşmez; alınan süs kaybolmaz; iki cihazın defteri birleşince alımlar korunur (hesap eşitlemesi henüz yok, cihazda tutuluyor). Odam'ın kumbarası artık bakiyeyi gösterir.
+- **Süsler** (`MPDecor`, `DecorShopView`): ilk süs kitaplık rafının rengi (6 renk, 8 yıldız, varsayılan ahşap ücretsiz); her süs fiyatıyla görünür, yetmeyende önizleme serbest ve "★ 8 gerekiyor, 3 yıldızın var" yazar; "az kaldı" ve geri sayım yok. Kitaplık rafı seçilen rengi alır.
+- **Masal sonu:** ilk kez biten masalda önce masalın çıkartması ("albümüne eklendi"), sonra +1 yıldız. Uçma animasyonu yapılmadı.
+- **Ebeveyn:** Güvenlik'te "Yıldız ve koleksiyon": süs almayı kapatma ve "kolay fiyatlar" (yarı fiyat). Çocuk profil sayfasında salt okunur "Yıldız ve çıkartmalar" (kazanılan, harcanan, kumbara, son alımlar). Tüm verileri silmek cüzdanı da siler.
+- **Kurallar:** CLAUDE.md ilke 7'de yıldız harcama kararı yazıldı (sakin koleksiyon; parayla yıldız, şans, süre yok; çıkartma satın alınmaz; Dolap gerçek kahraman çizimini bekler).
+- **Bilerek yapılmadı:** kahraman sahnesi ve Dolap (çizim kararı), cüzdanın hesapla eşitlenmesi (Firestore kuralı ve `SyncCollection` sonraki adım), çıkartmanın Odam'a uçması, "taze çıkartma" noktası.
+- **Test:** derleme ve test derlemesi başarılı; yeni `CollectionTests`. Kuralla testler fazlar bitince bir kez; bu turda **çalıştırılmadı**. Albüm ve süsler simülatörde **görülmedi**.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 8 İlk açılış, güven ve hız
 
 - **Tek karşılama:** üç parıltılı tanıtım sayfası (gradient `MPGlowBackground`) yerine tek, düz krem ekran: Ragi, "Her çocuğun kendi masal dünyası", güven cümlesi, tek 64 pt düğme. Motorda olmayan "uzay, korsanlar" vaadi kalktı.

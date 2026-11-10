@@ -183,7 +183,8 @@ struct LibraryView: View {
             } else {
                 LibraryShelfGrid(items: items, pageWidth: width,
                                  singleColumn: typeSize.isAccessibilitySize,
-                                 open: { open($0) }, menu: { quickActions($0) })
+                                 open: { open($0) }, menu: { quickActions($0) },
+                                 shelfTone: shelfTone)
             }
         }
         .homeEntrance(5)
@@ -198,6 +199,13 @@ struct LibraryView: View {
             }
             searchFocused = searching
         }
+    }
+
+    /// Çocuğun yıldızla aldığı raf rengi (Faz 9); varsayılan ahşapsa `nil`.
+    private var shelfTone: MPWorldTone? {
+        guard settings.collectionEnabled, let id = profileManager.currentProfile?.id else { return nil }
+        let item = MPStarWalletStore().wallet(for: id).equippedItem(.shelf)
+        return item == .defaultShelf ? nil : item.tone
     }
 
     /// Küçük sıra menüsü; varsayılan son okunan.

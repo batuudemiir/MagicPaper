@@ -12,6 +12,7 @@ import SwiftUI
 /// dünyam gruplu liste. 7 Kasım 2026: panel ve kutu yok, bölümleri boşluk ayırır.
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
+    @ObservedObject private var settings = MPSettingsStore.shared
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @State private var earned: Set<MPMilestone> = []
@@ -159,9 +160,11 @@ struct KidCornerView: View {
 
     // MARK: - Sayılar
 
+    /// Kumbaradaki yıldız: kazanılan eksi süslere harcanan (Faz 9).
     private var stars: Int {
         guard let profile else { return 0 }
-        return MPStars.count(for: profile, stories: storyManager.stories)
+        let earned = MPStars.count(for: profile, stories: storyManager.stories)
+        return MPStarWalletStore().wallet(for: profile.id).balance(earned: earned)
     }
 
     /// Yıldız kumbarası (Faz 7): tek satır, sayı ve nasıl kazanıldığı. Üst üste
@@ -217,6 +220,19 @@ struct KidCornerView: View {
                         }
                         MPRowDivider(area: .kid)
                     }
+                    // Faz 9: Odam'ın koleksiyonu.
+                    linkRow(icon: "star", tone: .yellow, title: "Çıkartma albümüm",
+                            subtitle: stickerSubtitle) {
+                        app.router.openKidPage(.stickers(profile.id))
+                    }
+                    MPRowDivider(area: .kid)
+                    if settings.collectionEnabled {
+                        linkRow(icon: "sparkles", tone: .lav, title: "Süsler",
+                                subtitle: "Yıldızlarınla kitaplığını süsle") {
+                            app.router.openKidPage(.decor(profile.id))
+                        }
+                        MPRowDivider(area: .kid)
+                    }
                     linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
                             subtitle: familySubtitle) {
                         app.router.openKidPage(.familyCharacters(profile.id))
@@ -236,6 +252,11 @@ struct KidCornerView: View {
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
     private func guarded(_ action: @escaping () -> Void) {
         app.router.requestGate(then: action)
+    }
+
+    private var stickerSubtitle: String {
+        let count = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories).count
+        return count == 0 ? "Her masal bir çıkartma bırakır" : "\(count) çıkartma"
     }
 
     private var wordsSubtitle: String {

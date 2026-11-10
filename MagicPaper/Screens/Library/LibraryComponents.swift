@@ -96,6 +96,8 @@ struct LibraryShelfGrid<QuickActions: View>: View {
     let singleColumn: Bool
     let open: (LibraryItem) -> Void
     @ViewBuilder let menu: (LibraryItem) -> QuickActions
+    /// Çocuğun seçtiği raf (`MPDecor`); `nil` varsayılan ahşap.
+    var shelfTone: MPWorldTone? = nil
 
     private var columns: Int { singleColumn ? 1 : 2 }
     private var inner: CGFloat { max(0, pageWidth - MPSpacing.screenH * 2) }
@@ -123,7 +125,7 @@ struct LibraryShelfGrid<QuickActions: View>: View {
                         }
                     }
                     .padding(.horizontal, MPSpacing.xs)
-                    ShelfPlank()
+                    ShelfPlank(tone: shelfTone)
                     HStack(alignment: .top, spacing: MPSpacing.lg) {
                         ForEach(row) { item in
                             Button { open(item) } label: { label(item) }
@@ -155,11 +157,14 @@ struct LibraryShelfGrid<QuickActions: View>: View {
 }
 
 /// İnce raf tahtası: sıcak kâğıt tonunda, sistemin sert alt kenarıyla.
-private struct ShelfPlank: View {
+/// Faz 9: çocuk yıldızla başka renkte raf alabilir (`MPDecor`); varsayılan ahşap.
+struct ShelfPlank: View {
+    var tone: MPWorldTone? = nil
     var body: some View {
         Color.clear
             .frame(height: MP.S.x2)
-            .mpKidSurface(MPColor.segmentTrack, edge: MPWorldTone.peach.edge, radius: MPRadius.xs)
+            .mpKidSurface(tone.map { $0.soft } ?? MPColor.segmentTrack,
+                          edge: (tone ?? .peach).edge, radius: MPRadius.xs)
             .padding(.top, MP.E.widthLG)
             .accessibilityHidden(true)
     }

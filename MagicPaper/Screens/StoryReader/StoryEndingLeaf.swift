@@ -76,6 +76,8 @@ struct StoryEndingLeaf: View {
     private var earned: [Earned] {
         var items: [Earned] = []
         if !story.isFinished {
+            // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül), sonra yıldız.
+            items.append(.init(id: "sticker", icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi"))
             items.append(.init(id: "star", icon: "star.fill", tone: .yellow, value: "+1", label: "yıldız"))
         }
         if streak.currentStreak > 0 {
@@ -218,7 +220,11 @@ struct StoryEndingLeaf: View {
     private func tile(_ item: Earned, shown: Bool) -> some View {
         VStack(spacing: MP.S.x1) {
             Group {
-                if item.id == "star" {
+                if item.id == "sticker" {
+                    StickerView(sticker: MPSticker(id: story.id.uuidString, title: story.title,
+                                                   art: LibraryShelfModel.coverArt(story), date: Date()),
+                                size: 56)
+                } else if item.id == "star" {
                     // Yıldız dolu ve büyük: kazanılanın en parlak anı. Yerine dönerek oturur.
                     PaperStar().fill(MPWorldTone.yellow.deep)
                         .frame(width: 44, height: 44)

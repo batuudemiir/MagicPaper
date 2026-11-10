@@ -28,7 +28,28 @@ struct RagiStudioView: View {
     @StateObject private var app = MPAppState()
 
     var body: some View {
-        if UserDefaults.standard.bool(forKey: "mpRagiEnding") { endingPreview } else { stage }
+        if UserDefaults.standard.bool(forKey: "mpAvatarPreview") { avatarPreview }
+        else if UserDefaults.standard.bool(forKey: "mpRagiEnding") { endingPreview } else { stage }
+    }
+
+    /// Kahraman kiti (`-mpAvatarPreview YES`): Faz 9'un kalite kararı için.
+    private var avatarPreview: some View {
+        let specs: [AvatarSpec] = [
+            .init(skinTone: "skin_light", hairStyle: "hair_short", hairColor: "haircolor_brown", outfit: "outfit_blue"),
+            .init(skinTone: "skin_olive", hairStyle: "hair_ponytail", hairColor: "haircolor_black", outfit: "outfit_purple", accessory: "acc_glasses"),
+            .init(skinTone: "skin_brown", hairStyle: "hair_curly", hairColor: "haircolor_black", outfit: "outfit_yellow", accessory: "acc_beanie"),
+            .init(skinTone: "skin_dark", hairStyle: "hair_braided", hairColor: "haircolor_black", outfit: "outfit_green", accessory: "acc_backpack"),
+            .init(skinTone: "skin_light", hairStyle: "hair_shoulder", hairColor: "haircolor_red", outfit: "outfit_red"),
+            .init(skinTone: "skin_olive", hairStyle: "hair_short", hairColor: "haircolor_blonde", outfit: "outfit_orange")
+        ]
+        return LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: MPSpacing.lg) {
+            ForEach(Array(specs.enumerated()), id: \.offset) { _, spec in
+                AvatarView(spec: spec).frame(height: 220)
+            }
+        }
+        .padding(MPSpacing.screenH)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(MPColor.backgroundKid.ignoresSafeArea())
     }
 
     /// Masal sonu örnek masalla (`-mpRagiEnding YES`).

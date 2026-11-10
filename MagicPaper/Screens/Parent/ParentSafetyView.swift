@@ -75,6 +75,19 @@ struct ParentSafetyView: View {
                     )
                 }
 
+                // Faz 9: sakin koleksiyon. Yıldız parayla alınmaz, alınan süs kaybolmaz.
+                ParentSection(title: "Yıldız ve koleksiyon") {
+                    ParentToggleRow(systemImage: "sparkles", tone: .yellow, title: "Yıldızla süs alma",
+                                    subtitle: settings.collectionEnabled
+                                        ? "Çocuk okuyarak kazandığı yıldızlarla kitaplığını süsler. Parayla yıldız yok."
+                                        : "Kapalı. Masal çıkartmaları yine albüme girer.",
+                                    isOn: $settings.collectionEnabled)
+                    MPRowDivider(area: .parent)
+                    ParentToggleRow(systemImage: "tortoise", tone: .mint, title: "Kolay fiyatlar",
+                                    subtitle: "Süsler yarı fiyat; küçük çocuklar için uzun biriktirme olmaz.",
+                                    isOn: $settings.easyPrices)
+                }
+
                 HStack(alignment: .top, spacing: MPSpacing.sm) {
                     Image(systemName: "checkmark.shield")
                         .font(.mp(.footnote))
