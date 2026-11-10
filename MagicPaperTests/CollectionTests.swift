@@ -83,3 +83,59 @@ final class CollectionTests: XCTestCase {
         XCTAssertTrue(groups[0].title.hasPrefix("Kasım"))
     }
 }
+
+/// Faz 9: kahraman ve Dolap kuralları.
+final class HeroWardrobeTests: XCTestCase {
+
+    func testIdentityAndFaithItemsAreFree() {
+        XCTAssertEqual(HeroShop.price(.hijab), 0, "Başörtüsü kimliğin parçası: hep ücretsiz")
+        XCTAssertEqual(HeroShop.price(.round), 0, "Gözlük kimliğin parçası: ücretsiz")
+        XCTAssertEqual(HeroShop.price(.tshirt), 0)
+        XCTAssertTrue(HeroShop.paidItems(in: .standard).isEmpty)
+    }
+
+    func testPaidCosmeticsAreListedOnce() {
+        var look = HeroLook.standard
+        look.headwear = .crown
+        look.top = .hoodie
+        look.glasses = .sun
+        let items = HeroShop.paidItems(in: look)
+        XCTAssertEqual(items.map(\.price), [14, 8, 6])
+    }
+
+    func testBuyingSeveralItemsIsAllOrNothing() {
+        var wallet = MPStarWallet()
+        XCTAssertEqual(wallet.buy(itemIDs: ["a", "b"], total: 20, earned: 10), .notEnough(missing: 10))
+        XCTAssertTrue(wallet.purchases.isEmpty)
+        XCTAssertEqual(wallet.buy(itemIDs: ["a", "b"], total: 15, earned: 20), .bought)
+        XCTAssertEqual(wallet.spent, 15, "Fiyat eşyalara bölünür, toplam korunur")
+        XCTAssertTrue(wallet.owns(itemID: "a") && wallet.owns(itemID: "b"))
+    }
+
+    func testIdentityChangeNeedsAGrownUp() {
+        var look = HeroLook.standard
+        look.headwear = .crown
+        XCTAssertFalse(HeroShop.identityChanged(from: .standard, to: look), "Şapka kozmetik")
+        look.kind = .fox
+        XCTAssertTrue(HeroShop.identityChanged(from: .standard, to: look))
+    }
+
+    func testLookRoundTripsAndOldDataStillDecodes() throws {
+        let data = try JSONEncoder().encode(HeroLook.samples[3])
+        XCTAssertEqual(try JSONDecoder().decode(HeroLook.self, from: data), HeroLook.samples[3])
+        // Eski ya da eksik kayıt: tanınan alanlar kalır, gerisi varsayılan.
+        let partial = Data(#"{"kind":"fox","hair":"unknownStyle"}"#.utf8)
+        let decoded = try JSONDecoder().decode(HeroLook.self, from: partial)
+        XCTAssertEqual(decoded.kind, .fox)
+        XCTAssertEqual(decoded.hair, HeroLook.standard.hair)
+    }
+
+    func testPalettesCoverEverySample() {
+        for look in HeroLook.samples {
+            XCTAssertLessThan(look.skin, MP.C.heroSkin.count)
+            XCTAssertLessThan(look.hairColor, MP.C.heroHair.count)
+            XCTAssertLessThan(look.topColor, MP.C.heroCloth.count)
+            XCTAssertLessThan(look.fur, MP.C.heroFur.count)
+        }
+    }
+}

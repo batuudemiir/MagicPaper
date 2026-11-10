@@ -88,7 +88,9 @@ struct MPDecor: Identifiable, Equatable, Hashable {
     static func item(_ id: String) -> MPDecor? { catalog.first { $0.id == id } }
 
     /// 3-5 yaş için ebeveynin açtığı "kolay fiyatlar": yarı fiyat, yukarı yuvarlanır.
-    func price(easy: Bool) -> Int { easy ? (price + 1) / 2 : price }
+    func price(easy: Bool) -> Int { Self.easy(price, easy) }
+
+    static func easy(_ price: Int, _ on: Bool) -> Int { on ? (price + 1) / 2 : price }
 }
 
 // MARK: - Yıldız cüzdanı
@@ -109,8 +111,10 @@ struct MPStarWallet: Codable, Equatable {
     var spent: Int { purchases.reduce(0) { $0 + $1.price } }
 
     func owns(_ item: MPDecor) -> Bool {
-        item.price == 0 || purchases.contains { $0.itemID == item.id }
+        item.price == 0 || owns(itemID: item.id)
     }
+
+    func owns(itemID: String) -> Bool { purchases.contains { $0.itemID == itemID } }
 
     func balance(earned: Int) -> Int { max(0, earned - spent) }
 
@@ -119,10 +123,21 @@ struct MPStarWallet: Codable, Equatable {
     /// Yıldız eksiye düşmez: yetmiyorsa alım olmaz, kaç yıldız gerektiği söylenir.
     mutating func buy(_ item: MPDecor, earned: Int, easyPrices: Bool, now: Date = Date()) -> BuyResult {
         if owns(item) { return .alreadyOwned }
-        let price = item.price(easy: easyPrices)
+        return buy(itemIDs: [item.id], total: item.price(easy: easyPrices), earned: earned, now: now)
+    }
+
+    /// Birden çok eşya tek seferde (Dolap: şapka + kıyafet). Ya hepsi alınır ya
+    /// hiçbiri; fiyat eşyalara bölünür ki defter doğru toplasın.
+    mutating func buy(itemIDs: [String], total: Int, earned: Int, now: Date = Date()) -> BuyResult {
+        let fresh = itemIDs.filter { !owns(itemID: $0) }
+        guard !fresh.isEmpty else { return .alreadyOwned }
         let available = balance(earned: earned)
-        guard available >= price else { return .notEnough(missing: price - available) }
-        purchases.append(Purchase(itemID: item.id, price: price, date: now))
+        guard available >= total else { return .notEnough(missing: total - available) }
+        let share = total / fresh.count
+        for (i, id) in fresh.enumerated() {
+            let price = i == 0 ? total - share * (fresh.count - 1) : share
+            purchases.append(Purchase(itemID: id, price: price, date: now))
+        }
         return .bought
     }
 

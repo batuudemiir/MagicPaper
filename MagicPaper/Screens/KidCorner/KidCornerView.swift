@@ -17,6 +17,9 @@ struct KidCornerView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
+    /// Çocuğun kahramanı (Faz 9); kurulmadıysa `nil`.
+    @State private var heroLook: HeroLook?
+    @State private var heroLooks: [UUID: HeroLook] = [:]
     /// İçerik saat çubuğunun altına girdi mi (`MPStatusBarBackdrop`).
     @State private var scrolled = false
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -33,6 +36,12 @@ struct KidCornerView: View {
                     whoSection
                 }
                 greeting
+                if let profile {
+                    HeroStageCard(look: heroLook) {
+                        MPHaptics.tap()
+                        app.router.openKidPage(.wardrobe(profile.id))
+                    }
+                }
                 starBank
                 // Yapılacak işler (bağlantılar) bakılacak şeylerden (rozetler)
                 // önce: bulunabilirlik (16 Ekim denetimi).
@@ -50,11 +59,16 @@ struct KidCornerView: View {
         .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear(perform: refresh)
         .onChange(of: profile?.id) { _, _ in refresh() }
+        .onReceive(NotificationCenter.default.publisher(for: .mpHeroLookChanged)) { _ in refresh() }
         // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.
         .onChange(of: storyManager.stories) { _, _ in refresh() }
     }
 
     private func refresh() {
+        heroLooks = Dictionary(uniqueKeysWithValues: profileManager.profiles.compactMap { p in
+            HeroLookStore().look(for: p.id).map { (p.id, $0) }
+        })
+        heroLook = profile.flatMap { heroLooks[$0.id] }
         guard let profile else { earned = []; familyNames = []; return }
         earned = Set(MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones)
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
@@ -127,7 +141,14 @@ struct KidCornerView: View {
                             profileManager.switchProfile(to: child)
                         } label: {
                             VStack(spacing: MPSpacing.xs) {
-                                MPAvatar(name: child.name, color: child.mpColor, size: MPSize.minTouchKid)
+                                Group {
+                                    if let hero = heroLooks[child.id] {
+                                        HeroAvatarView(look: hero, backdrop: MPWorldTone.lav.soft)
+                                            .frame(width: MPSize.minTouchKid, height: MPSize.minTouchKid)
+                                    } else {
+                                        MPAvatar(name: child.name, color: child.mpColor, size: MPSize.minTouchKid)
+                                    }
+                                }
                                     .padding(MPSpacing.xxs)
                                     .overlay(Circle().strokeBorder(selected ? MPColor.actionPrimary : .clear, lineWidth: 3))
                                 Text(child.name).mpText(.supporting).fontWeight(.black)
@@ -213,13 +234,6 @@ struct KidCornerView: View {
             HomeSection(title: "Masal dünyam") {
                 // Satırlar tek panelde; panel tek parça olsun diye tek kap.
                 VStack(spacing: 0) {
-                    if IllustratedBookAccess.isEnabled() {
-                        linkRow(icon: "paintpalette", tone: .sky, title: "Kahramanımı düzenle",
-                                subtitle: "Saç, ten rengi, gözlük, kıyafet") {
-                            guarded { app.router.openKidPage(.bookCharacter(profile.id)) }
-                        }
-                        MPRowDivider(area: .kid)
-                    }
                     // Faz 9: Odam'ın koleksiyonu.
                     linkRow(icon: "star", tone: .yellow, title: "Çıkartma albümüm",
                             subtitle: stickerSubtitle) {

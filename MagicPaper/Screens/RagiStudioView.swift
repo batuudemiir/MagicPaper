@@ -28,8 +28,26 @@ struct RagiStudioView: View {
     @StateObject private var app = MPAppState()
 
     var body: some View {
-        if UserDefaults.standard.bool(forKey: "mpAvatarPreview") { avatarPreview }
+        if UserDefaults.standard.bool(forKey: "mpHeroWardrobe"), let profile = ProfileManager.shared.currentProfile {
+            HeroWardrobeView(profile: profile).environmentObject(app)
+        }
+        else if UserDefaults.standard.bool(forKey: "mpHeroPreview") { heroPreview }
+        else if UserDefaults.standard.bool(forKey: "mpAvatarPreview") { avatarPreview }
         else if UserDefaults.standard.bool(forKey: "mpRagiEnding") { endingPreview } else { stage }
+    }
+
+    /// Yeni kahraman (`-mpHeroPreview YES`): Duolingo dili, çocuklar ve hayvan dostları.
+    private var heroPreview: some View {
+        let tones: [MPWorldTone] = [.lav, .sky, .mint, .peach, .yellow, .pink]
+        return ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3), spacing: MPSpacing.md) {
+                ForEach(Array(HeroLook.samples.enumerated()), id: \.offset) { i, look in
+                    HeroAvatarView(look: look, backdrop: tones[i % tones.count].soft).frame(height: 120)
+                }
+            }
+            .padding(MPSpacing.screenH)
+        }
+        .background(MPColor.backgroundKid.ignoresSafeArea())
     }
 
     /// Kahraman kiti (`-mpAvatarPreview YES`): Faz 9'un kalite kararı için.

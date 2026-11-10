@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Faz 9: Duolingo tarzı kahraman ve Dolap
+
+- **Batuhan kararı (12 Kasım):** "Duolingo tarzı avatar ve avatar türleri." Açık kaynak setler (DiceBear ve çocuk setleri) yetişkin ya da uyumsuz çıkınca kahraman kodla, Duolingo dilinde baştan çizildi.
+- **Kahraman** (`HeroLook`, `HeroAvatarView`, `Screens/Hero/`): düz renk, kontursuz büst, büyük yuvarlak baş, ifadeli yüz. **Türler:** çocuk ve hayvan dostu (kedi, ayı, tavşan, tilki, panda). **Parçalar:** 6 ten, 6 kürk, 11 saç biçimi, 8 saç rengi, 5 göz, 5 ağız, çil, 4 gözlük, 7 başlık (bere, şapka, taç, başörtüsü, çiçek tacı, büyücü şapkası), 6 kıyafet, 8 renk. Renkler `MP.Palette.hero*` ve `MP.C.hero*` üzerinden. Eksik ya da yeni alanlı kayıt varsayılana düşer, kahraman kaybolmaz.
+- **Dolap** (`HeroWardrobeView`, Odam'dan): canlı önizleme; sekmeler Ben, Kıyafet, Şapka, Gözlük; her seçenek kahramanın o parçayla küçük resmi (okuyamayan çocuk da seçer). **Kimlik** (tür, ten, kürk, saç, yüz) ücretsiz, ebeveyn kapısıyla kaydedilir. **Kozmetik** çocuğun: bere ve şapka 6, çiçek tacı 8, taç ve büyücü 14, kazak ve çizgili 6, kapüşonlu 8, tulum 10, güneş gözlüğü 6 yıldız. **Başörtüsü ve gözlük hep ücretsiz.** Birden çok eşya tek seferde, ya hepsi ya hiçbiri (`MPStarWallet.buy(itemIDs:)`). Ebeveyn süsü kapattıysa yalnızca ücretsizler görünür.
+- **Odam:** "Kahramanım" kartı (dokununca Dolap); "Kim okuyor?" dairesinde kahramanı olan çocuğun yüzü. Eski yer tutucu kahraman editörü Odam'dan kalktı (kod duruyor, görselli masal yolu için).
+- **Kurallar:** CLAUDE.md ilke 7'ye kahraman kuralı yazıldı.
+- **Bilerek yapılmadı:** kahramanın hesapla eşitlenmesi (cihazda, `HeroLookStore`); görselli masalın eski `AvatarSpec`'i ile kahramanın birleşmesi (iki kimlik kaynağı şimdilik, borç); masal sonunda kahramanın görünmesi.
+- **Görüldü:** iPhone 17 Pro simülatöründe 13 örnek kahraman, Dolap (Kıyafet sekmesi) ve Odam kartı. **Görülmedi:** diğer sekmeler, en büyük yazı, iPhone SE, kapı akışı, gerçek cihaz.
+- **Test:** derleme ve test derlemesi başarılı; yeni `HeroWardrobeTests`. Kuralla testler fazlar bitince bir kez; bu turda **çalıştırılmadı**.
+
 ### 2026-11-12 · main, commit bu kayıtla · Faz 9 (ilk kısım): çıkartma albümü, yıldız cüzdanı, süsler
 
 - **Kahraman kiti değerlendirildi:** bugünkü kit gerçek çizim değil, kodla çizilen yer tutucu vektör (simülatörde görüldü). Batuhan: "çok basit, baştan tasarla, açık kaynak araştır". İki araştırma: DiceBear stilleri (lisanslar paketlerden doğrulandı) ve çocuklara özel açık setler (OpenGameArt, itch.io, Wikimedia, Revoy). Sonuç: çocuk oranlı, tam boy, katmanlı **ve** Ragi'nin boyalı diline uyan açık bir set yok; en yakınlar CC0 düz vektör (anarres, nonemo) ve kamu malı 1920'ler kâğıt bebekleri (Delalain, Drayton). Kahraman ve Dolap karar bekliyor.

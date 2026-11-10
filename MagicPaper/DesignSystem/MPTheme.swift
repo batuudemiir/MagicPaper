@@ -164,6 +164,21 @@ enum MP {
         static let sacKumral = Color(hex: 0x8A4B2A)
         static let sacSari   = Color(hex: 0xD9B26A)
         static let sacKizil  = Color(hex: 0xB5502E)
+
+        // Kahraman (Faz 9, Duolingo dili): düz renkler, kontur yok. Sıra sabit:
+        // seçim `HeroLook`'ta indeks olarak saklanır; yeni renk yalnızca sona.
+        static let heroSkin: [Color] = [Color(hex: 0xFBE3D0), tenAcik, tenBugday,
+                                        Color(hex: 0xC08A5E), tenEsmer, tenKoyu]
+        static let heroHair: [Color] = [sacSiyah, sacKahve, sacKumral, sacSari, sacKizil,
+                                        Color(hex: 0xF0DCAE), Color(hex: 0x8F6BD6), Color(hex: 0x4F7FD8)]
+        static let heroFur: [Color] = [Color(hex: 0xF2A65A), Color(hex: 0xB9A999), Color(hex: 0x9A6A44),
+                                       Color(hex: 0xF6EFE6), Color(hex: 0xE9CDA6), Color(hex: 0x8F6BD6)]
+        static let heroCloth: [Color] = [deniz400, yesim400, hardal300, mercan400, lila400, gul500,
+                                         Color(hex: 0x6A47B8), Color(hex: 0x3E6FB5)]
+        static let heroCheek = Color(hex: 0xF29BA8)
+        static let heroMouth = Color(hex: 0x7A2E3B)
+        static let heroTongue = Color(hex: 0xE8707E)
+        static let heroGold = Color(hex: 0xF4B735)
     }
 
     // MARK: Semantik renkler — bileşenlerde YALNIZCA bunları kullan
@@ -221,6 +236,17 @@ enum MP {
         static let focusRing = Palette.morLavanta
         static let scrim     = Palette.murekkep900.opacity(0.44)
         static let ragiLid   = Palette.ragiBand
+        // Kahraman (`HeroAvatarView`).
+        static let heroSkin = Palette.heroSkin
+        static let heroHair = Palette.heroHair
+        static let heroFur = Palette.heroFur
+        static let heroCloth = Palette.heroCloth
+        static let heroCheek = Palette.heroCheek
+        static let heroMouth = Palette.heroMouth
+        static let heroTongue = Palette.heroTongue
+        static let heroGold = Palette.heroGold
+        static let heroInk = Palette.murekkep900
+        static let heroWhite = Palette.kagit0
         static let ragiLash  = Palette.ragiLash
 
         /// Dairesel öğelerin sert alt kenarı — `mpEdge`'in yuvarlak karşılığı.
