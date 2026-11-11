@@ -12,10 +12,16 @@ import UserNotifications
 ///
 /// İzin artık ebeveyn anahtarı açtığı anda isteniyor — yani istenen şeyin ne
 /// işe yarayacağı ekranda yazarken.
+///
+/// Faz 14 (akıllı hatırlatma): her gün tekrarlayan tek bildirim yerine önümüzdeki
+/// yedi akşam tek tek planlanır (`MPReminderPlan`). Masal okunan akşamın
+/// bildirimi gitmez; bu akşamınki o akşamın masalını söyler. Yeni kurulumda
+/// varsayılan kapalı. Plan her açılışta ve her okumadan sonra yenilenir.
 @MainActor
 enum MPReminder {
 
-    /// Tek bir kimlik: her planlama öncekinin yerine geçer, birikmez.
+    /// Eski tek kimlik (her gün tekrarlayan bildirim). Yeni planda her akşamın
+    /// kendi kimliği var (`identifier(for:)`); eskisi her planlamada silinir.
     static let identifier = "mp_story_reminder"
 
     enum Result: Equatable {
@@ -31,9 +37,26 @@ enum MPReminder {
         return .scheduled
     }
 
-    static func disable() {
+    /// Eşzamanlı siler: plan her zaman önümüzdeki günlerde olduğu için o
+    /// günlerin kimlikleri bilinir. (Bekleyenleri sorup sonra silmek, hemen
+    /// ardından eklenen yeni planı da silebilirdi.)
+    static func disable(now: Date = Date(), calendar: Calendar = .current) {
+        let start = calendar.startOfDay(for: now)
+        let days = (-1...14).compactMap { calendar.date(byAdding: .day, value: $0, to: start) }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(
+            withIdentifiers: [identifier] + days.map { identifier(for: $0, calendar: calendar) })
+    }
+
+    /// Bu akşam masal okundu: bu akşamın bildirimi gitmez.
+    static func readTonight(now: Date = Date()) {
         UNUserNotificationCenter.current()
-            .removePendingNotificationRequests(withIdentifiers: [identifier])
+            .removePendingNotificationRequests(withIdentifiers: [identifier(for: now)])
+    }
+
+    /// Bir akşamın bildirim kimliği: `mp_story_reminder_2026-11-11`.
+    static func identifier(for date: Date, calendar: Calendar = .current) -> String {
+        let d = calendar.dateComponents([.year, .month, .day], from: date)
+        return String(format: "%@_%04d-%02d-%02d", identifier, d.year ?? 0, d.month ?? 0, d.day ?? 0)
     }
 
     /// Açılışta çağrılır.
@@ -81,38 +104,69 @@ enum MPReminder {
     }
 
     private static func schedule(hour: Int, minute: Int, childName: String?) {
+        disable()
         let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: [identifier])
+        let calendar = Calendar.current
+        let now = Date()
+        let evenings = MPReminderPlan.evenings(from: now, hour: hour, minute: minute,
+                                               readToday: MPStreak.shared.readToday, calendar: calendar)
+        let tonightTitle = tonightStoryTitle()
+        for evening in evenings {
+            let content = UNMutableNotificationContent()
+            content.title = "Masal saati"
+            let isTonight = calendar.isDate(evening, inSameDayAs: now)
+            content.body = body(childName: childName, tonightTitle: isTonight ? tonightTitle : nil)
+            content.sound = .default
+            let when = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: evening)
+            center.add(UNNotificationRequest(
+                identifier: identifier(for: evening, calendar: calendar),
+                content: content,
+                trigger: UNCalendarNotificationTrigger(dateMatching: when, repeats: false)
+            ))
+        }
+    }
 
-        let content = UNMutableNotificationContent()
-        content.title = "Masal saati"
-        content.body = body(childName: childName)
-        content.sound = .default
-
-        var when = DateComponents()
-        when.hour = hour
-        when.minute = minute
-
-        center.add(UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: UNCalendarNotificationTrigger(dateMatching: when, repeats: true)
-        ))
+    /// Bu akşamın masalı: yarım kalan masal, yoksa günün masalı.
+    private static func tonightStoryTitle() -> String? {
+        let source = MPTonightSource.current()
+        return source.resumeStory?.title ?? source.daily?.title
     }
 
     /// Bildirimi okuyan ebeveyn; masalı dinleyen çocuk.
     ///
     /// Metin çocuğun adını taşır ama çocuğa seslenmez: kilit ekranındaki
     /// bildirimi açan el ebeveynin eli.
-    static func body(childName: String?) -> String {
-        guard let name = childName?.trimmingCharacters(in: .whitespaces), !name.isEmpty else {
-            return "Bu akşamın masalı için iyi bir zaman."
+    static func body(childName: String?, tonightTitle: String? = nil) -> String {
+        let name = childName?.trimmingCharacters(in: .whitespaces) ?? ""
+        if let title = tonightTitle?.trimmingCharacters(in: .whitespaces), !title.isEmpty {
+            return name.isEmpty ? "Bu akşamın masalı: \(title)." : "\(name) için bu akşamın masalı: \(title)."
         }
+        guard !name.isEmpty else { return "Bu akşamın masalı için iyi bir zaman." }
         return "\(name) için bu akşamın masalı."
     }
 
     /// Ekranda gösterilecek saat — "20.30".
     static func clockLabel(hour: Int, minute: Int) -> String {
         MPTonight.clockLabel(hour: hour, minute: minute)
+    }
+}
+
+/// Akıllı hatırlatmanın saf planı (Faz 14): hangi akşamlar.
+enum MPReminderPlan {
+    /// Önümüzdeki `count` akşam. Saati geçmiş ya da masalı okunmuş bu akşam
+    /// atlanır; yerine bir sonraki gün eklenir, hep `count` akşam kalır.
+    static func evenings(from now: Date, hour: Int, minute: Int, readToday: Bool,
+                         count: Int = 7, calendar: Calendar = .current) -> [Date] {
+        var result: [Date] = []
+        var day = calendar.startOfDay(for: now)
+        while result.count < count {
+            if let evening = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: day) {
+                let isToday = calendar.isDate(day, inSameDayAs: now)
+                if evening > now && !(isToday && readToday) { result.append(evening) }
+            }
+            guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
+            day = next
+        }
+        return result
     }
 }

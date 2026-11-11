@@ -132,6 +132,28 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Faz 14: ebeveyn değeri, sakin geri dönüş
+
+- **Akıllı hatırlatma (`MPReminder`, `MPReminderPlan`):**
+  - Her gün tekrarlayan tek bildirim yerine önümüzdeki 7 akşam tek tek planlanır; plan her açılışta yenilenir.
+  - Masal okunan akşamın bildirimi gitmez: okuma sayılınca o akşamınki silinir.
+  - Bu akşamınki o akşamın masalını söyler: "İrem için bu akşamın masalı: Uykucu Ay."
+  - Yeni kurulumda varsayılan kapalı (Faz 8'de ilk masaldan sonra soruluyor). Silme eşzamanlı: yeni planı silebilecek yarış kapandı.
+  - Ayarlar'daki alt yazı: "Akşamları 20.30, masal okunan akşam gelmez".
+- **Değerlendirme isteği (`MPReviewPolicy`):**
+  - Yalnızca ebeveyn Özet'inde, sayfa açıldıktan 2 sn sonra.
+  - Koşullar: en az 3 biten masal, son istekten 60 gün, son çökmeden 1 gün.
+  - Çökme, önceki oturumun ön plandayken bitmesinden anlaşılır; uygulama değiştiriciden kapatmak çökme sayılmaz. Ayarlar'daki "Değerlendir" satırı aynen duruyor.
+- **TipKit:** ebeveyn alanında üç ipucu, haftada en fazla bir: Yıllık (Masal kitabı), Konuşalım (Güvenlik), sakin hatırlatma (Ayarlar). Çocuk alanında ipucu yok.
+- **Erişilebilirlik:**
+  - Hesap geri yükleme ekranı (`AccountRestoreView`) ebeveyn diline geçti: iki Ragi ve `MPStateView` kalktı, ebeveyn zemini, simge kutusu, tek cümle.
+  - Taranan dokunma hareketlerinden ikisi Ragi'nin süs zıplaması (erişilebilirlikten gizli, eylemsiz), geri kalanı okuyucunun sayfa alanları (erişilebilirlik eylemleri var). Düğmeye çevrilecek öğe çıkmadı.
+- **Yapılmayan:** durum görüntü testleri (13 düzen × normal ve AX3) ve testten App Store görselleri. Görüntü testi kütüphanesi ve kayıt düzeni ister, ayrı bir iş.
+- **Doğrulama:** `xcodebuild build-for-testing` başarılı. Yeni `ParentValueTests` (6 test) bu kayıttan sonraki tam koşuda çalışacak.
+- **Dosyalar:**
+  - Yeni: `Screens/MPReviewPolicy.swift`, `Screens/Parent/MPTips.swift`, `MagicPaperTests/ParentValueTests.swift`.
+  - Değişen: `MPReminder.swift`, `MPSettingsStore.swift`, `StoryReaderView.swift`, `ParentOverviewView.swift`, `MagicPaperApp.swift`, `BookExportView.swift`, `ParentSafetyView.swift`, `SettingsView.swift`, `ParentConsentView.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 13: zanaat (tipografi, dokunsallık, ses, Ragi, geçiş, kâğıt)
 
 - **Tipografi:** masal metninde "fi" ve "fl" ligatürleri kapandı.

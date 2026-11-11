@@ -155,41 +155,43 @@ private struct ConsentFullTextSheet: View {
 }
 
 /// Signed in on a device without children: the account's are on their way.
-/// Bağlantı yoksa 44 · İnternet yok durumu (düşünceli Ragi, "Tekrar dene").
+/// Ebeveyn alanı (Faz 14): Ragi yok, `MPStateView` yok (CLAUDE.md, boş ve hata
+/// durumu ebeveynde Ragi'siz). Bağlantı yoksa tek cümle ve "Tekrar dene".
 struct AccountRestoreView: View {
     @ObservedObject private var account = AccountService.shared
     @State private var failed = false
 
     var body: some View {
-        Group {
+        VStack(spacing: MPSpacing.lg) {
+            MPIconTile(systemImage: failed ? "wifi.exclamationmark" : "icloud.and.arrow.down",
+                       tone: .sky, size: MPSize.iconTile, filled: false)
+                .accessibilityHidden(true)
+            if !failed {
+                ProgressView().controlSize(.large).tint(MPColor.actionPrimary)
+                    .accessibilityHidden(true)
+            }
+            Text(failed ? AccountCopy.restoreFailedTitle : AccountCopy.restoringTitle)
+                .mpText(.section).foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Text(failed ? AccountCopy.restoreFailedBody : AccountCopy.restoringBody)
+                .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
             if failed {
-                MPStateView(mascot: .thinking, tone: .sky,
-                            title: AccountCopy.restoreFailedTitle,
-                            message: AccountCopy.restoreFailedBody) {
+                VStack(spacing: MPSpacing.sm) {
                     MPButton(title: AccountCopy.retry, systemImage: "arrow.counterclockwise", fullWidth: true) {
                         failed = false
                         Task { await attempt() }
                     }
-                    .padding(.horizontal, MPSpacing.xl)
                     MPButton(title: AccountCopy.startFresh, kind: .ghost) {
                         account.sync.settleRestoreWithoutPull()
                     }
                 }
-            } else {
-                VStack(spacing: MPSpacing.lg) {
-                    MascotImage(mascot: .reading, width: 160).accessibilityHidden(true)
-                    ProgressView().controlSize(.large).tint(MPColor.actionPrimary)
-                        .accessibilityHidden(true)
-                    Text(AccountCopy.restoringTitle).mpText(.page).foregroundStyle(MPColor.textPrimary)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(AccountCopy.restoringBody).mpText(.body).foregroundStyle(MPColor.textSecondary)
-                }
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, MPSpacing.xl)
-        .background(MPColor.backgroundKid.ignoresSafeArea())
+        .background(MPColor.backgroundParent.ignoresSafeArea())
         .task { await attempt() }
     }
 

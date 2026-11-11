@@ -107,7 +107,8 @@ final class MPSettingsStore: ObservableObject {
     private init() {
         // Tasarımdaki varsayılanlar: hatırlatma açık, onay kapalı, ekran süresi açık.
         if !d.bool(forKey: K.seeded) {
-            d.set(true, forKey: K.reminder)
+            // Faz 14: varsayılan kapalı. İlk masal bittikten sonra sorulur (Faz 8).
+            d.set(false, forKey: K.reminder)
             d.set(false, forKey: K.approve)
             d.set(true, forKey: K.screenLimit)
             d.set(false, forKey: K.readAloud)

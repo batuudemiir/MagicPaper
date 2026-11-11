@@ -1,4 +1,5 @@
 import SwiftUI
+import TipKit
 import StoreKit
 
 /// 32 · Ebeveyn · Ayarlar (`Ayarlar`).
@@ -136,7 +137,9 @@ struct SettingsView: View {
 
     // MARK: - Bildirimler
 
+    @ViewBuilder
     private var notificationsSection: some View {
+        TipView(SmartReminderTip())
         ParentSection(title: "Bildirimler") {
             ParentToggleRow(systemImage: "bell", tone: .yellow, title: "Masal saati hatırlatması",
                             subtitle: reminderDescription,
@@ -185,7 +188,7 @@ struct SettingsView: View {
 
     private var reminderDescription: String {
         guard settings.reminder, !notificationsDenied else { return "Kapalı" }
-        return "Her akşam \(MPReminder.clockLabel(hour: settings.reminderHour, minute: settings.reminderMinute))"
+        return "Akşamları \(MPReminder.clockLabel(hour: settings.reminderHour, minute: settings.reminderMinute)), masal okunan akşam gelmez"
     }
 
     /// DatePicker saat/dakika ile çalışır; sakladığımız şey iki sayı.

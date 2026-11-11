@@ -323,7 +323,11 @@ struct StoryReaderView: View {
     /// yalnızca "bir kez" garantisi var.
     private func markStreakIfEarned() {
         guard !streakMarked else { return }
-        if streak.markReadingSession(readingSession) { streakMarked = true }
+        if streak.markReadingSession(readingSession) {
+            streakMarked = true
+            // Faz 14: okunan akşam hatırlatma gitmez.
+            if settings.reminder { MPReminder.readTonight() }
+        }
     }
 
     // MARK: - Günlük okuma bütçesi

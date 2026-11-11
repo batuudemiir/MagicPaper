@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 
 /// 29 · Ebeveyn · Özet (`EbeveynPaneli`).
 ///
@@ -14,6 +15,7 @@ struct ParentOverviewView: View {
     @StateObject private var streak = MPStreak.shared
 
     @State private var showsLapse = false
+    @Environment(\.requestReview) private var requestReview
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -21,6 +23,8 @@ struct ParentOverviewView: View {
                 MPParentHeader(title: "Özet", subtitle: weekLabel)
                     // Huni: ebeveyn "Büyükler için"i buldu (Faz 6).
                     .onAppear { MPFunnel().record(.parentRoom) }
+                    // Faz 14: değerlendirme isteği yalnızca burada, kurallar `MPReviewPolicy`'de.
+                    .task { await askForReviewIfDue() }
 
                 if profileManager.profiles.count > 1 { childPicker }
                 if settings.approve && !pendingStories.isEmpty { approvalQueue }
@@ -54,6 +58,16 @@ struct ParentOverviewView: View {
     // MARK: - Üst bölüm
 
     /// "Bu hafta · 29 Eylül - 5 Ekim"
+    /// Özet açıldıktan kısa süre sonra, sayfa yerleşince.
+    private func askForReviewIfDue() async {
+        let finished = storyManager.stories.filter(\.isFinished).count
+        guard MPReviewPolicy.shouldAskNow(finished: finished) else { return }
+        try? await Task.sleep(for: .seconds(2))
+        guard !Task.isCancelled else { return }
+        MPReviewPolicy.recordAsked()
+        requestReview()
+    }
+
     private var weekLabel: String {
         var cal = Calendar(identifier: .gregorian)
         cal.firstWeekday = 2

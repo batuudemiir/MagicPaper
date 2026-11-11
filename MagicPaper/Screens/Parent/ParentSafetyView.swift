@@ -1,5 +1,6 @@
 import StoryEngine
 import SwiftUI
+import TipKit
 
 /// 31 · Ebeveyn · Güvenlik (`IcerikGuvenligi`).
 ///
@@ -76,6 +77,7 @@ struct ParentSafetyView: View {
                 }
 
                 // Faz 11: akşam ritüeli.
+                TipView(TalkPromptsTip())
                 ParentSection(title: "Akşam ve birlikte okuma") {
                     ParentToggleRow(systemImage: "checklist", tone: .lav, title: "Akşam sırası",
                                     subtitle: settings.bedtimeRoutine

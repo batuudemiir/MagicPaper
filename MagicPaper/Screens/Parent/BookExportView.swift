@@ -1,4 +1,5 @@
 import SwiftUI
+import TipKit
 
 /// 35 · Masal kitabı (`KitapSiparisi`, FAZ 18).
 ///
@@ -40,6 +41,7 @@ struct BookExportView: View {
 
                     MPSegmented(options: [(Format.book, "Masal kitabı"), (Format.yearbook, "Yıllık")],
                                 selection: $format, track: MPColor.borderParent)
+                    TipView(YearbookTip())
 
                     switch format {
                     case .book: pdfContent(selection)

@@ -47,6 +47,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // ne işe yarayacağı ekranda yazarken. iOS bir kez reddedilen izni bir daha
     // sormaz — o yüzden hangi anda sorulduğu geri alınamaz bir karar.
     
+    // Değerlendirme isteği çökmeden hemen sonra gelmesin (Faz 14).
+    MPReviewPolicy.markLaunch()
+    // Ebeveyn alanının ipuçları (Faz 14).
+    MPTips.configure()
     MPMetrics.shared.start()
     MPFunnel().appOpened()
     return true
