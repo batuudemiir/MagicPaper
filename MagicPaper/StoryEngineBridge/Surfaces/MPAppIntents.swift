@@ -21,7 +21,8 @@ struct ReadTonightIntent: AppIntent {
 }
 
 /// "Uyku modu": son uyku masalı sesli okunur, ekran yavaşça kararır.
-/// v2'de çıkar (`MPFeatures.sleepMode`); o zamana kadar Kısayollar'da görünmez.
+/// Faz 11'de açıldı (`MPFeatures.sleepMode`). Bayrak uzaktan kapatılırsa
+/// dokunuş bu akşamın masalına düşer (`MPAppState.open(_:childID:)`).
 struct StartSleepModeIntent: AppIntent {
     static let title: LocalizedStringResource = "Uyku modunu aç"
     static let description = IntentDescription("Son uyku masalını sesli okur; ekran yavaşça kararır.")
@@ -49,9 +50,16 @@ struct MagicPaperShortcuts: AppShortcutsProvider {
             shortTitle: "Masal oku",
             systemImageName: "book"
         )
-        // "Uyku modu" kısayolu v2'de geri gelir (`StartSleepModeIntent`,
-        // ifadeler "… uyku modu", "… ile uyku modunu aç"). Kısayollar derleme
-        // anında okunur; çalışma anı bayrağı onları gizleyemez.
+        // Faz 11: uyku kapısı açıldı. Kısayollar derleme anında okunur.
+        AppShortcut(
+            intent: StartSleepModeIntent(),
+            phrases: [
+                "\(.applicationName) uyku modu",
+                "\(.applicationName) ile uyku modunu aç",
+            ],
+            shortTitle: "Uyku modu",
+            systemImageName: "moon.zzz"
+        )
     }
 
     static let shortcutTileColor: ShortcutTileColor = .purple

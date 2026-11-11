@@ -9,8 +9,9 @@ import Foundation
 /// "İyi geceler" okuyucuyu kapatır, `magicpaper://sleep` bu akşamın
 /// masalına düşer.
 enum MPFeatures {
-    /// Varsayılan kapalı; imzalı içerik akışı açabilir (`MPRemoteFlags`, Faz 6).
-    static var sleepMode: Bool { MPRemoteFlags.value(.sleepMode, default: false) }
+    /// Faz 11 (11 Kasım 2026, `docs/VIZYON_PLANI.md`): uyku kapısı açıldı,
+    /// varsayılan açık. İmzalı içerik akışı yine kapatabilir (`MPRemoteFlags`).
+    static var sleepMode: Bool { MPRemoteFlags.value(.sleepMode, default: true) }
 }
 
 /// Uzaktan bayraklar (Faz 6): imzalı içerik akışından (`ContentFeed.flags`) gelir,

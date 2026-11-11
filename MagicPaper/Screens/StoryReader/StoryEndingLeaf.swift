@@ -273,6 +273,11 @@ struct StoryEndingLeaf: View {
 
             if let badge = news.fresh.first { badgeRow(badge.icon, tone: badge.tone, title: badge.title) }
 
+            // Faz 11: akşam sırası yankılanır; masal az önce işaretlendi.
+            if settings.bedtimeRoutine {
+                BedtimeRoutineCard(interactive: false, foreground: theme.foreground, muted: theme.muted)
+            }
+
             if StoryColophon.hasDedication(story) { colophon }
 
             SeriesEndingSection(story: story, theme: theme, accent: accent)

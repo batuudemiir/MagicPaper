@@ -89,6 +89,18 @@ final class MPSleepPlayback: ObservableObject {
         publishActivity()
     }
 
+    /// Masal biterken ekranın sönmesi (Faz 11): son sayfada yarıya, masal
+    /// bitince tam. Süre kararmasıyla birlikte büyüğü geçerli.
+    var closingDim: Double {
+        if finished { return MPSleepTimer.maxDim }
+        return page == session.pages.count - 1 ? MPSleepTimer.maxDim / 2 : 0
+    }
+
+    /// Kapanmaya kalan dakika, yukarı yuvarlanmış.
+    var remainingMinutes: Int {
+        Int((max(0, timer.duration - elapsed) / 60).rounded(.up))
+    }
+
     // MARK: - Sayfalar
 
     private func readCurrentPage() {

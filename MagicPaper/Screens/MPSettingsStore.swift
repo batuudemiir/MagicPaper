@@ -21,6 +21,10 @@ final class MPSettingsStore: ObservableObject {
     @Published var collectionEnabled: Bool { didSet { d.set(collectionEnabled, forKey: K.collectionEnabled) } }
     /// 3-5 yaş için yarı fiyat (Faz 9); ebeveyn açar.
     @Published var easyPrices: Bool { didSet { d.set(easyPrices, forKey: K.easyPrices) } }
+    /// Faz 11: okuyucuda 2-3 sayfada "Konuşalım" sorusu (ebeveyn dokunur). Varsayılan açık.
+    @Published var talkPrompts: Bool { didSet { d.set(talkPrompts, forKey: K.talkPrompts) } }
+    /// Faz 11: akşam sırası kartı (diş, pijama, masal, ışık). Varsayılan açık.
+    @Published var bedtimeRoutine: Bool { didSet { d.set(bedtimeRoutine, forKey: K.bedtimeRoutine) } }
     @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
     /// Günlük okuma bütçesi, dakika. Ekrandaki "Günde 30 dakika" sabit bir
@@ -80,6 +84,8 @@ final class MPSettingsStore: ObservableObject {
         static let reminderAsked = "mp_reminderAsked"
         static let collectionEnabled = "mp_collectionEnabled"
         static let easyPrices = "mp_easyPrices"
+        static let talkPrompts = "mp_talkPrompts"
+        static let bedtimeRoutine = "mp_bedtimeRoutine"
         static let approve = "mp_approveBeforeShow"
         static let screenLimit = "mp_screenLimit"
         static let screenLimitMinutes = "mp_screenLimitMinutes"
@@ -119,6 +125,8 @@ final class MPSettingsStore: ObservableObject {
         reminderAsked = d.object(forKey: K.reminderAsked) == nil ? true : d.bool(forKey: K.reminderAsked)
         collectionEnabled = d.object(forKey: K.collectionEnabled) == nil ? true : d.bool(forKey: K.collectionEnabled)
         easyPrices = d.bool(forKey: K.easyPrices)
+        talkPrompts = d.object(forKey: K.talkPrompts) == nil ? true : d.bool(forKey: K.talkPrompts)
+        bedtimeRoutine = d.object(forKey: K.bedtimeRoutine) == nil ? true : d.bool(forKey: K.bedtimeRoutine)
         approve = d.bool(forKey: K.approve)
         screenLimit = d.bool(forKey: K.screenLimit)
         approvedStoryIDs = Set(d.stringArray(forKey: K.approved) ?? [])

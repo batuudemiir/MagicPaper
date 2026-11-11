@@ -9,6 +9,8 @@ enum BedtimeChoice: Equatable {
     case resume(Story)
     /// Mod adımından, üç mod da seçilebilir.
     case otherStory
+    /// Uyku modunda dinlemek (Faz 11, `MPFeatures.sleepMode`).
+    case sleepMode
 }
 
 /// "Bu geceki masal": uyku saatinde Ana sayfa kartının açtığı pencere
@@ -20,9 +22,12 @@ enum BedtimeChoice: Equatable {
 struct BedtimeStorySheet: View {
     /// Yarım kalan masal, varsa (`MPTonightSource`).
     let resumeStory: Story?
+    /// Uyku modunda dinlenecek bir masal var ve uyku modu açık (Faz 11).
+    var canListen = false
     let onChoose: (BedtimeChoice) -> Void
 
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject private var settings = MPSettingsStore.shared
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -44,6 +49,11 @@ struct BedtimeStorySheet: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
+                // Faz 11: akşam sırası. Ebeveyn Güvenlik'ten kapatabilir.
+                if settings.bedtimeRoutine {
+                    BedtimeRoutineCard()
+                }
+
                 VStack(spacing: MPSpacing.sm) {
                     MPButton(title: "Uyku masalı yaz", systemImage: "moon.fill", fullWidth: true) {
                         choose(.bedtimeStory)
@@ -63,6 +73,14 @@ struct BedtimeStorySheet: View {
                         }
                     }
 
+                    if canListen {
+                        MPButton(title: "Uyku modunda dinle", systemImage: "headphones",
+                                 kind: .secondary, fullWidth: true) {
+                            choose(.sleepMode)
+                        }
+                        .accessibilityHint("Son uyku masalı sesli okunur, ekran yavaşça kararır")
+                    }
+
                     MPButton(title: "Başka bir masal seçeyim", kind: .ghost) {
                         choose(.otherStory)
                     }
@@ -73,7 +91,7 @@ struct BedtimeStorySheet: View {
             .padding(.top, MPSpacing.xxl)
             .padding(.bottom, MPSpacing.lg)
         }
-        .mpSheet(.half)
+        .mpSheet(.full)
     }
 
     private func choose(_ choice: BedtimeChoice) {

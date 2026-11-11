@@ -19,6 +19,47 @@ enum StoryTalkPrompts {
         return [pool[first], pool[second]]
     }
 
+    /// Okuyucuda "Konuşalım" (Faz 11): sayfa dizini → soru. Kısa masalda iki,
+    /// uzunda üç sayfa; ilk ve son sayfada hiç. Soru türleri sayfanın yerine
+    /// göre değişir (Strouse ve Troseth 2023; PEER, CROWD): başta tahmin,
+    /// ortada duygu ve neden, sonda çocuğun kendi hayatı. Masallar bugün
+    /// resimsiz, bu yüzden "resimde ne görüyorsun" sorusu yok.
+    static func pagePrompts(for story: Story) -> [Int: String] {
+        let count = story.pages.count
+        guard count >= 4 else { return [:] }
+        let name = story.childName
+        let young = story.origin?.ageBand.map { $0.hasPrefix("3") } ?? false
+        let fractions = count >= 7 ? [0.3, 0.55, 0.8] : [0.35, 0.7]
+        let pools = young ? youngPagePools(name: name) : pagePools(name: name)
+        let key = story.id.uuidString.utf8.reduce(0) { ($0 &* 31 &+ Int($1)) & 0xFFFF }
+        var result: [Int: String] = [:]
+        for (slot, fraction) in fractions.enumerated() {
+            let index = min(max(Int(Double(count) * fraction), 1), count - 2)
+            guard result[index] == nil else { continue }
+            let pool = pools[min(slot * pools.count / fractions.count, pools.count - 1)]
+            result[index] = pool[(key + slot) % pool.count]
+        }
+        return result
+    }
+
+    private static func pagePools(name: String) -> [[String]] {
+        [
+            ["Sence şimdi ne olacak?", "Sence bu ne olabilir?", "\(name) şimdi ne yapmalı sence?"],
+            ["\(name) şu an nasıl hissediyor sence?", "Sence neden böyle oldu?",
+             "Sen olsan şimdi ne yapardın?"],
+            ["Sen hiç böyle bir şey yaşadın mı?", "Sence masal nasıl bitecek?",
+             "Bu sana neyi hatırlattı?"]
+        ]
+    }
+
+    private static func youngPagePools(name: String) -> [[String]] {
+        [
+            ["Sence şimdi ne olacak?", "Bu ne olabilir sence?"],
+            ["\(name) nasıl hissediyor?", "Sen de böyle yapar mısın?"],
+            ["Sence masal nasıl bitecek?", "Sen olsan ne yapardın?"]
+        ]
+    }
+
     private static func youngPool(name: String) -> [String] {
         [
             "Masalda en çok neyi sevdin?",

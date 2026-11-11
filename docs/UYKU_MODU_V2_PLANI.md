@@ -15,6 +15,12 @@ karta dokununca açılır (Batuhan). Uygulamada plandan sapmalar: Yarat 1'de Uyk
 değiştir." satırı durur; Ana sayfa karosunda "Bu akşam" etiketi (Dynamic Type
 tavanı xxLarge) ve mor çerçeve; Siri intent'i silinmedi, `isDiscoverable` bayrağa bağlı.
 
+**Durum (11 Kasım 2026, Faz 11):** uyku modu açıldı (`MPFeatures.sleepMode` varsayılan
+açık, uzaktan kapatılabilir). Akşam kartı hep "Bu geceki masal" penceresini açar; pencerede
+akşam sırası ve "Uyku modunda dinle" seçeneği var. Uyku modu açılınca parlaklık düşer,
+"Ekranı karart" tek dokunuşla neredeyse siyah yapar, son sayfada ekran sönmeye başlar.
+Siri "Uyku modu" kısayolu geri geldi. Açık kalanlar aşağıdaki V2 listesinde.
+
 "Uyku öncesi" **masal modu** v1'de kalır; v2'ye giden yalnızca **uyku modu**
 (oynatma ekranı) özelliğidir.
 

@@ -132,6 +132,37 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Faz 11: akşam ritüeli
+
+- **Uyku kapısı (`SleepModeView`, `MPSleepPlayback`):**
+  - Açılınca ekran parlaklığı düşer (`MPScreenBrightness`, Chang 2015); kapanınca eski hâline döner, açılıştakinden parlak hiç olmaz.
+  - Sağ üstteki ay düğmesi ("Ekranı karart") ekranı tek dokunuşla neredeyse siyah yapar; dokununca uyanır.
+  - Oynat düğmesi ekranın tek büyük kontrolü (64 + `lg`). Alt yazı kalan dakikayı söyler: "… dk sonra kapanır".
+  - Son sayfada ekran yarıya kadar söner, masal bitince tama (`closingDim`).
+- **Bayrak açıldı:** `MPFeatures.sleepMode` varsayılan açık, imzalı akıştan yine kapatılabilir. Siri "Uyku modu" kısayolu geri geldi. Akşam kartı artık doğrudan uyku modunu değil, hep "Bu geceki masal" penceresini açar; uyku modu oradaki "Uyku modunda dinle" seçeneği. Pencere `.full` boya geçti.
+- **Akşam sırası (`MPBedtimeRoutine`, `BedtimeRoutineCard`):**
+  - Diş, pijama, masal, ışık. Çocuk başına ve akşam başına tutulur, sabah 05.00'te boşalır. Yalnızca cihazda.
+  - Diş ve pijamayı çocuk işaretler. Akşam biten masal "masal", "İyi geceler" ya da uyku modu "ışık" adımını kendiliğinden işaretler.
+  - Gece masal sonunda kart yalnızca yankılanır.
+  - Sayı, "kaldı" sözü ya da ilerleme çubuğu yok; söz sıradaki adımı söyler.
+- **Konuşalım (`StoryTalkPrompts.pagePrompts`, `ReaderTalkCard`):**
+  - Okuyucuda kısa masalda 2, uzun masalda 3 orta sayfada "Konuşalım" düğmesi çıkar. İlk ve son sayfada hiç çıkmaz.
+  - Dokununca soru kartı açılır ve sesli okuma durur. Soru sırası: başta tahmin, ortada duygu ve neden, sonda çocuğun kendi hayatı (PEER, CROWD). 3-4 yaş için ayrı sorular var.
+  - Masal başına sabit; cevap kaydedilmez. Masallar resimsiz olduğu için "resimde ne görüyorsun" sorusu yok.
+- **Plandan sapma:** vizyon planı "Ragi'nin Konuşalım dokunuşu" diyordu. Okuyucu sayfaları CLAUDE.md'deki Ragi istisnası olduğu için düğme Ragi'siz, konuşma simgeli.
+- **Ebeveyn:** Güvenlik'te yeni "Akşam ve birlikte okuma" bölümü, iki anahtar: "Akşam sırası" ve "Konuşalım soruları". İkisi de varsayılan açık.
+- **Yapılmayan:**
+  - Aile sesi cihazda doğrulanmadı; açma kararı Batuhan'da.
+  - Ses için yeni bir şey yapılmadı: Personal Voice cihaz ve izin ister, ortam sesi gerçek kayıt ister. En iyi Türkçe sesin seçimi FAZ 17'den beri var.
+  - Live Activity ay simgesi açık.
+- **Doğrulama:**
+  - `xcodebuild build-for-testing` başarılı; değişen dosyalarda Design law taramaları boş.
+  - Yeni `EveningRitualTests` (7 test) yazıldı, çalıştırılmadı. Testler bütün fazlar bitince bir kez çalışacak.
+  - Simülatörde ve cihazda görülmedi: parlaklık simülatörde zaten ölçülemez. VoiceOver turu yok.
+- **Dosyalar:**
+  - Yeni: `Screens/MPBedtimeRoutine.swift`, `Screens/BedtimeRoutineCard.swift`, `Screens/StoryReader/ReaderTalkCard.swift`, `MagicPaperTests/EveningRitualTests.swift`.
+  - Değişen: `SleepModeView.swift`, `MPSleepPlayback.swift`, `MPFeatures.swift`, `MPAppIntents.swift`, `MPAppState.swift`, `BedtimeStorySheet.swift`, `ContentView.swift`, `MPSettingsStore.swift`, `ParentSafetyView.swift`, `StoryReaderView.swift`, `StoryEndingLeaf.swift`, `StoryTalkPrompts.swift`, `docs/UYKU_MODU_V2_PLANI.md`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 10: 7-8 yaş bandı yazıldı
 
 - **Sorun:** 7-8 yaşındaki çocuklar 5-6 masalları okuyordu (`AgeBandResolver.servedBand` düşmesi); bant tamamen boştu.

@@ -55,7 +55,9 @@ final class MPAppState: ObservableObject {
         afterReader = nil
         switch next {
         case .create: startStoryCreation()
-        case .sleep(let story): sleepSession = MPSleepSession(story: story)
+        case .sleep(let story):
+            MPBedtimeRoutine.shared.mark(.light, for: ProfileManager.shared.currentProfile?.id)
+            sleepSession = MPSleepSession(story: story)
         }
     }
 
@@ -82,12 +84,15 @@ final class MPAppState: ObservableObject {
         case .bedtimeStory: startStoryCreation(mode: .bedtime)
         case .resume(let story): read(story)
         case .otherStory: startStoryCreation()
+        case .sleepMode: openSleepMode()
         }
     }
 
     /// Masal sonu "İyi geceler": uyku modu açıksa masal orada sürer; kapalıyken
     /// okuyucu kapanır ve Ana sayfa iyi geceler der.
     func sayGoodNight(after story: Story) {
+        // Faz 11: "İyi geceler" akşam sırasının ışık adımıdır.
+        MPBedtimeRoutine.shared.mark(.light, for: ProfileManager.shared.currentProfile?.id)
         if MPFeatures.sleepMode {
             afterReader = .sleep(story)
         } else {
@@ -102,7 +107,10 @@ final class MPAppState: ObservableObject {
         let resolved = MPTonightSource.current()
         switch resolved.tonight(at: now) {
         case .bedtime:
-            openSleepMode()
+            // Faz 11: akşam kartı hep pencereyi açar; uyku modu oradaki
+            // seçeneklerden biri ("Uyku modunda dinle"). Widget ve Siri'nin
+            // uyku bağlantısı doğrudan `openSleepMode()`'a gider.
+            showBedtimeSheet = true
         case .resume:
             if let story = resolved.resumeStory { read(story) }
         case .unread:
@@ -121,6 +129,7 @@ final class MPAppState: ObservableObject {
             return
         }
         if let session = MPTonightSource.sleepSession() {
+            MPBedtimeRoutine.shared.mark(.light, for: ProfileManager.shared.currentProfile?.id)
             sleepSession = session
         } else {
             startStoryCreation(mode: .bedtime)

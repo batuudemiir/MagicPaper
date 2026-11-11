@@ -36,6 +36,8 @@ struct MPSleepTimer: Equatable {
     static let choices = [10, 15, 20]
     static let dimWindow: TimeInterval = 120
     static let maxDim: Double = 0.85
+    /// "Ekranı karart" ile (Faz 11): neredeyse siyah, yine de dokunulur.
+    static let handDim: Double = 0.97
 
     var minutes: Int = 15
 
@@ -69,6 +71,8 @@ struct SleepModeView: View {
     @StateObject private var playback: MPSleepPlayback
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    /// "Ekranı karart" (Faz 11): tek dokunuşla neredeyse siyah; dokununca uyanır.
+    @State private var handDimmed = false
 
     init(session: MPSleepSession) {
         self.session = session
@@ -95,6 +99,9 @@ struct SleepModeView: View {
                                        bordered: false, tint: MPColor.readerNightText,
                                        fill: MPColor.readerNightTrack, action: close)
                         Spacer()
+                        MPCircleButton(systemImage: "moon.zzz", accessibilityLabel: "Ekranı karart",
+                                       bordered: false, tint: MPColor.readerNightText,
+                                       fill: MPColor.readerNightTrack, action: dimByHand)
                     }
                     Label("Uyku modu", systemImage: "moon")
                         .mpText(.supporting).fontWeight(.heavy)
@@ -118,7 +125,8 @@ struct SleepModeView: View {
                     Text(session.title).mpText(.page).foregroundStyle(MPColor.readerNightText)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text("Ekran yavaşça kararır, masal bitince kapanır.")
+                    Text(finished ? "Ekran yavaşça kararır, masal bitince kapanır."
+                         : "Ekran yavaşça kararır. \(playback.remainingMinutes) dk sonra kapanır.")
                         .mpText(.body).foregroundStyle(MPColor.readerNightSecondary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -129,7 +137,9 @@ struct SleepModeView: View {
                 Button(action: playback.togglePlay) {
                     MPIcon(isPlaying ? "pause.fill" : "play.fill", size: 30, weight: .bold)
                         .foregroundStyle(MPColor.readerNightText)
-                        .frame(width: 72, height: 72)
+                        // Ekranın tek büyük kontrolü (Faz 11, uyku kapısı).
+                        .frame(width: MPSize.minTouchHero + MPSpacing.lg,
+                               height: MPSize.minTouchHero + MPSpacing.lg)
                         .background(MPColor.readerNightTrack, in: Circle())
                 }
                 .buttonStyle(MPPressStyle())
@@ -153,12 +163,24 @@ struct SleepModeView: View {
             .scrollBounceBehavior(.basedOnSize)
             }
 
-            // Kararma: ekranın üstünde, dokunuşları engellemez.
+            // Kararma: ekranın üstünde. Süre ve masalın sonu dokunuşları
+            // engellemez; elle karartılan ekran dokununca uyanır.
             MPColor.backgroundNight
-                .opacity(timer.dim(after: elapsed, stepped: reduceMotion))
+                .opacity(dimLevel)
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
-                .animation(MP.M.gated(MP.M.slow), value: elapsed)
+                .animation(MP.M.gated(MP.M.slow), value: dimLevel)
+
+            if handDimmed {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .ignoresSafeArea()
+                    .onTapGesture(perform: wake)
+                    .accessibilityElement()
+                    .accessibilityLabel("Ekranı aydınlat")
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityAction(.default, wake)
+            }
         }
         .onAppear(perform: start)
         .onDisappear(perform: stop)
@@ -181,19 +203,71 @@ struct SleepModeView: View {
         .accessibilityHidden(true)
     }
 
+    /// Süre, masalın sonu ya da el: hangisi daha karanlıksa.
+    private var dimLevel: Double {
+        if handDimmed { return MPSleepTimer.handDim }
+        return max(timer.dim(after: elapsed, stepped: reduceMotion), playback.closingDim)
+    }
+
+    private func dimByHand() {
+        handDimmed = true
+        MPScreenBrightness.set(MPScreenBrightness.night)
+    }
+
+    private func wake() {
+        handDimmed = false
+        MPScreenBrightness.set(MPScreenBrightness.evening)
+    }
+
     private func start() {
         UIApplication.shared.isIdleTimerDisabled = true
+        // Sıcak renk yetmez, parlaklık da düşmeli (Chang 2015).
+        MPScreenBrightness.save()
+        MPScreenBrightness.set(MPScreenBrightness.evening)
         playback.onClose = { dismiss() }
         playback.start()
     }
 
     private func stop() {
         playback.stop()
+        MPScreenBrightness.restore()
         UIApplication.shared.isIdleTimerDisabled = false
     }
 
     private func close() {
         playback.close()
+    }
+}
+
+/// Uyku modunda ekran parlaklığı (Faz 11). Açılışta kaydedilir, kapanışta
+/// geri verilir; yalnızca düşürür, asla açılıştakinden parlak yapmaz.
+@MainActor
+enum MPScreenBrightness {
+    /// Uyku modu açıkken.
+    static let evening: CGFloat = 0.35
+    /// "Ekranı karart" ile.
+    static let night: CGFloat = 0.02
+
+    private static var saved: CGFloat?
+
+    private static var screen: UIScreen? {
+        UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.screen }.first
+    }
+
+    static func save() {
+        guard saved == nil, let screen else { return }
+        saved = screen.brightness
+    }
+
+    static func set(_ level: CGFloat) {
+        guard let screen else { return }
+        screen.brightness = min(level, saved ?? screen.brightness)
+    }
+
+    static func restore() {
+        guard let saved, let screen else { return }
+        screen.brightness = saved
+        self.saved = nil
     }
 }
 

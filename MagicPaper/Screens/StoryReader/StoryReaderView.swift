@@ -41,6 +41,10 @@ struct StoryReaderView: View {
     @State private var budgetSpent = false
     /// "Az kaldı" bir kez söylenir.
     @State private var warnedAboutBudget = false
+    /// "Konuşalım" kartı açık mı (Faz 11).
+    @State private var talkOpen = false
+    /// Sayfa dizini → soru; masal açılırken bir kez (`StoryTalkPrompts`).
+    @State private var talkPrompts: [Int: String] = [:]
 
     init(story: Story, startingPage: Int? = nil) {
         self.story = story
@@ -142,6 +146,30 @@ struct StoryReaderView: View {
             }
         }
         .animation(MP.M.gated(MP.M.base), value: words.selected)
+        // Faz 11: "Konuşalım". Kelime kartı açıkken görünmez; ikisi üst üste binmez.
+        .overlay(alignment: .bottomTrailing) {
+            if let question = talkQuestion, words.selected == nil {
+                if talkOpen {
+                    ZStack(alignment: .bottom) {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture { closeTalk() }
+                            .accessibilityHidden(true)
+                        ReaderTalkCard(question: question, theme: theme, onClose: closeTalk)
+                            .padding(.horizontal, MPSpacing.screenH)
+                            .padding(.bottom, talkBottomInset)
+                    }
+                    .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
+                    .zIndex(2)
+                } else {
+                    ReaderTalkButton(action: openTalk)
+                        .padding(.trailing, MPSpacing.screenH)
+                        .padding(.bottom, talkBottomInset)
+                        .transition(.opacity)
+                }
+            }
+        }
+        .animation(MP.M.gated(MP.M.base), value: talkOpen)
         .overlay {
             if budgetSpent {
                 ReaderTimeUpLeaf(theme: theme, onClose: close)
@@ -232,6 +260,7 @@ struct StoryReaderView: View {
         // İki defter, iki farklı soru.
         StoryGenerationManager.shared.markOpened(storyId: story.id)
         openedAt = Date()
+        talkPrompts = StoryTalkPrompts.pagePrompts(for: story)
         MPHaptics.prepare()
         if settings.readAloud || app.readerListens, let text = model.currentPage?.spokenText {
             speech.speak(text, recording: familyRecording)
@@ -380,6 +409,7 @@ struct StoryReaderView: View {
     private func pageChanged() {
         model.persistProgress()
         words.selected = nil
+        talkOpen = false
 
         // Bir yaprağın çevrilmesi, o masalın okunduğunun kitaba ait kanıtıdır.
         // Süre eşiğini beklemeden günü işaretler: çocuk okurken serinin
@@ -401,6 +431,10 @@ struct StoryReaderView: View {
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
             SeriesManager.shared.markRead(story)
+            // Faz 11: akşam biten masal, akşam sırasının masal adımıdır.
+            if MPBedtime.isBedtime(settings: settings) {
+                MPBedtimeRoutine.shared.mark(.story, for: ProfileManager.shared.currentProfile?.id)
+            }
             return
         }
 
@@ -459,6 +493,30 @@ struct StoryReaderView: View {
     /// Bu sayfanın ailenin sesiyle kaydı, "Kim okusun?" ailenin sesiyse.
     private var familyRecording: URL? {
         model.currentPage.flatMap { MPNarration.recording(story.id, page: $0.index) }
+    }
+
+    // MARK: - Konuşalım (Faz 11)
+
+    private var talkQuestion: String? {
+        guard settings.talkPrompts, let index = model.currentPage?.index else { return nil }
+        return talkPrompts[index]
+    }
+
+    /// Kart ve düğme, kontroller görünürken alt çubuğun üstünde durur.
+    private var talkBottomInset: CGFloat {
+        model.controlsVisible ? MP.S.x10 + MP.S.x6 : MPSpacing.xxl
+    }
+
+    private func openTalk() {
+        MPHaptics.tap()
+        if speech.isSpeaking && !speech.isPaused { speech.pause() }
+        autoHideTask?.cancel()
+        talkOpen = true
+    }
+
+    private func closeTalk() {
+        talkOpen = false
+        scheduleAutoHide()
     }
 
     private func toggleSpeech() {

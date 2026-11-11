@@ -116,7 +116,8 @@ struct ContentView: View {
                 SleepModeView(session: session).environmentObject(app)
             }
             .sheet(isPresented: $app.showBedtimeSheet, onDismiss: { app.runBedtimeChoice() }) {
-                BedtimeStorySheet(resumeStory: MPTonightSource.current().resumeStory) { choice in
+                BedtimeStorySheet(resumeStory: MPTonightSource.current().resumeStory,
+                                  canListen: MPFeatures.sleepMode && MPTonightSource.sleepSession() != nil) { choice in
                     app.pendingBedtimeChoice = choice
                 }
             }

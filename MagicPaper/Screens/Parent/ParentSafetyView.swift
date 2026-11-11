@@ -75,6 +75,22 @@ struct ParentSafetyView: View {
                     )
                 }
 
+                // Faz 11: akşam ritüeli.
+                ParentSection(title: "Akşam ve birlikte okuma") {
+                    ParentToggleRow(systemImage: "checklist", tone: .lav, title: "Akşam sırası",
+                                    subtitle: settings.bedtimeRoutine
+                                        ? "Uyku saatinde diş, pijama, masal, ışık sırası görünür."
+                                        : "Kapalı",
+                                    isOn: $settings.bedtimeRoutine)
+                    MPRowDivider(area: .parent)
+                    ParentToggleRow(systemImage: "bubble.left.and.bubble.right", tone: .mint,
+                                    title: "Konuşalım soruları",
+                                    subtitle: settings.talkPrompts
+                                        ? "Okurken birkaç sayfada size bir soru önerilir. Cevabı yok, kaydedilmez."
+                                        : "Kapalı",
+                                    isOn: $settings.talkPrompts)
+                }
+
                 // Faz 9: sakin koleksiyon. Yıldız parayla alınmaz, alınan süs kaybolmaz.
                 ParentSection(title: "Yıldız ve koleksiyon") {
                     ParentToggleRow(systemImage: "sparkles", tone: .yellow, title: "Yıldızla süs alma",
