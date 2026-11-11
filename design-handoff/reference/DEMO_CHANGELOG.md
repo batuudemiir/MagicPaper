@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · İlk açılış: ajan takımının dört düzeltmesi uygulamaya taşındı
+
+- Ne değişti: üç modelli ajan takımının UX denetimindeki dört P1 düzeltmesi repoya taşındı. Dosyalar takımın gördüğü sürümle birebir aynıydı, değişiklikler olduğu gibi kopyalandı.
+  - Ebeveyn onayı başlığının yanındaki Ragi kaldırıldı (ebeveyn alanında Ragi yok).
+  - Açılış ve giriş ekranlarında `MPGlowBackground` yerine karşılamayla aynı düz krem zemin (`MPColor.backgroundKid`) kullanılıyor. Açılış ekranının açıklama yorumu buna göre düzeltildi.
+  - "Önce masal" sırasında hatırlatma sorusu artık kaybolmuyor: hesap yoksa ve giriş de ertelenmediyse soru kaydedilmeden bekletiliyor ve girişten sonra okuyucu ilk kapandığında soruluyor.
+  - Karşılamadaki yaş çipleri yalnızca masalı yazılmış bantları gösteriyor (bugün 3-4, 5-6, 7-8). Eksik bant varsa "Şimdilik 3-8 yaş için masal yazıyoruz" notu çıkıyor.
+- Bilerek değişmedi: "Bir masal daha"nın çocuğu giriş ekranına düşürmesi ve dönen ebeveyn için "Hesabım var" yolu (ikisi de yönlendirme kararı bekliyor; o zamana kadar `storyBeforeAccount` kapalı kalmalı). Artık kullanılmayan `MPGlowBackground` bileşeni silinmedi. P2 ve P3 bulguları taşınmadı.
+- Doğrulama: tasarım yasası grep'leri değişen dosyalarda boş döndü. Derleme yeşil (iPhone 17 Pro, iOS 27 simülatörü). Temiz kurulumla simülatörde görüldü: düz krem açılış ekranı, Ragi'siz onay ekranı, bayrak açılış argümanıyla açıkken üç yaş çipi ve not; bu ekran en büyük yazı boyutunda da kesilmeden kayıyor. Hatırlatma sorusu düzeltmesi simülatörde denenmedi (giriş ve tam bir masal gerekiyor). Giriş ekranı, koyu tema ve iPhone SE görülmedi. Birim testleri çalıştırılmadı.
+- Dosyalar: `MagicPaper/MagicPaperApp.swift`, `MagicPaper/Screens/Account/AccountSignInView.swift`, `MagicPaper/Screens/Account/ParentConsentView.swift`, `MagicPaper/Screens/MPAppState.swift`, `MagicPaper/Views/OnboardingView.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Üç modelli ajan takımı kuruldu, ilk açılış UX denetimi yapıldı
 
 - Ne yapıldı: `selmakcby/fable-ajan-takimi` reposu `~/Desktop/fable-ajan-takimi` klasörüne kuruldu (MagicPaper reposunun dışında). Takımda Fable 5.2 lider, Opus 5.5 geliştirici, Sonnet 5.5 testçi. `claude` CLI'ı 2.1.131'den 2.1.322'ye güncellendi, çünkü Fable 5.2 bunu istiyor. `orkestra.py` dosyasına `--gorev <ad>` seçeneği eklendi: görev ve akış `kurulum/gorevler/<ad>/` altından okunuyor, MagicPaper dosyaları proje klasörüne iki kopya halinde yazılıyor (`kaynak/` düzeltmeler için, `orijinal/` karşılaştırma için).

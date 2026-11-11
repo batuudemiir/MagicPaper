@@ -203,8 +203,8 @@ struct MainContentView: View {
 
 // MARK: - Splash Screen View
 
-/// Açılış ekranı (01 · Marka): yazı markası ve kitaptaki Ragi, karşılamanın
-/// sabah ışığı zemininde.
+/// Açılış ekranı (01 · Marka): yazı markası ve kitaptaki Ragi, karşılamayla
+/// aynı düz krem zeminde.
 struct SplashScreenView: View {
     static let seenKey = "mp_splash_seen"
     @Binding var isActive: Bool
@@ -212,7 +212,8 @@ struct SplashScreenView: View {
 
     var body: some View {
         ZStack {
-            MPGlowBackground(style: .dawn)
+            // Düz krem zemin, karşılamayla aynı: arayüz yüzeyinde gradient yok.
+            MPColor.backgroundKid.ignoresSafeArea()
             VStack(spacing: MPSpacing.xxl) {
                 Image("Brand/wordmarkLight")
                     .resizable().scaledToFit()

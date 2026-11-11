@@ -32,15 +32,12 @@ struct ParentConsentView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xl) {
-                    HStack(spacing: MPSpacing.lg) {
-                        MascotImage(mascot: .calm, width: 80)
-                            .accessibilityHidden(true)
-                        Text("Çocuğunun verileri güvende")
-                            .mpText(.page)
-                            .foregroundStyle(MPColor.textPrimary)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityAddTraits(.isHeader)
-                    }
+                    // Ebeveyn alanı: Ragi yok (CLAUDE.md, Design law · Ragi).
+                    Text("Çocuğunun verileri güvende")
+                        .mpText(.page)
+                        .foregroundStyle(MPColor.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
                     Text("Masal yazabilmek için çok az şey bilmemiz gerekiyor. Neyi neden tuttuğumuz aşağıda.")
                         .mpText(.body)
                         .foregroundStyle(MPColor.textSecondary)

@@ -73,9 +73,9 @@ struct OnboardingView: View {
                 .submitLabel(.done)
                 .accessibilityLabel("Çocuğun adı")
             MPFlowLayout(spacing: MPSpacing.sm) {
-                ForEach(AgeBandResolver.bands, id: \.self) { option in
+                ForEach(offeredBands, id: \.self) { option in
                     MPChip(title: "\(option.lowerBound)-\(option.upperBound) yaş",
-                           isSelected: option == band, height: MPSize.chipHeightKid) {
+                           isSelected: option == chosenBand, height: MPSize.chipHeightKid) {
                         MPHaptics.selection()
                         band = option
                     }
@@ -83,14 +83,30 @@ struct OnboardingView: View {
             }
             .accessibilityElement(children: .contain)
             .accessibilityLabel("Yaş")
+            if offeredBands.count < MPAgeRange.allCases.count {
+                Text("Şimdilik \(offeredBands.first?.lowerBound ?? 3)-\(offeredBands.last?.upperBound ?? 6) yaş için masal yazıyoruz, "
+                     + "daha büyük yaşların masalları hazırlanıyor.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
+    }
+
+    /// Yalnızca masalı yazılmış bantlar (ProfileCreationView ile aynı kaynak):
+    /// ilk masal, içeriği olmayan bir bant yüzünden hata ekranına düşmesin.
+    private var offeredBands: [AgeBand] {
+        MPAgeRange.authored(StoryChoiceSources.current.authoredBands()).map(\.band)
+    }
+
+    private var chosenBand: AgeBand {
+        offeredBands.contains(band) ? band : (offeredBands.first ?? band)
     }
 
     private func start() {
         MPHaptics.tap()
         if storyFirst {
             // İlk profil burada kurulur; ilk masal ContentView'da, karşılama adıyla açılır.
-            let profile = profileManager.createProfile(name: trimmedName, age: band.upperBound, profileType: .child)
+            let profile = profileManager.createProfile(name: trimmedName, age: chosenBand.upperBound, profileType: .child)
             profileManager.switchProfile(to: profile)
             UserDefaults.standard.set(profile.name, forKey: MPWelcome.pendingKey)
         }

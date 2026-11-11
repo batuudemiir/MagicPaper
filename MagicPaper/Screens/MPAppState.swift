@@ -73,7 +73,12 @@ final class MPAppState: ObservableObject {
         else { return }
         UserDefaults.standard.set(true, forKey: MPWelcome.firstStoryDoneKey)
         let settings = MPSettingsStore.shared
-        if !settings.reminderAsked && afterReader == nil {
+        // "Önce masal": giriş yoksa kapı şimdi girişe döner, bu sheet'i
+        // taşıyan ContentView kapanır. Soru harcanmaz; girişten sonra biten
+        // ilk masalda sorulur.
+        let account = AccountService.shared
+        let staysInApp = account.account != nil || account.deferredSignIn
+        if staysInApp && !settings.reminderAsked && afterReader == nil {
             settings.reminderAsked = true
             router.sheet = .reminder
         }
