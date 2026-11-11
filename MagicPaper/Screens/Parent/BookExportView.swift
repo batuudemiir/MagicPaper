@@ -2,18 +2,21 @@ import SwiftUI
 
 /// 35 · Masal kitabı (`KitapSiparisi`, FAZ 18).
 ///
-/// Bir çocuğun masallarından PDF kitap. "Basılı kitap" sekmesi görünür ama
-/// sipariş yok: basılı kitabın iş modeli kararlaşana kadar sakin bir "yakında"
-/// durumu gösterir. Seçim mantığı `BookExportSelection`'da.
+/// Bir çocuğun masallarından PDF kitap ya da yılın kitabı (Faz 12, `MPYearbook`).
+/// "Basılı kitap yakında" sekmesi kalktı (vizyon planı: gerçek olana kadar
+/// yok); yerine "Baskıya hazır" anahtarı A5, taşma paylı ve kesim işaretli bir
+/// PDF verir (`MPPrintSpec`). Seçim mantığı `BookExportSelection`'da.
 struct BookExportView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var profileManager = ProfileManager.shared
     @Environment(\.dynamicTypeSize) private var typeSize
 
-    enum Format: Hashable { case pdf, printed }
+    enum Format: Hashable { case book, yearbook }
 
-    @State private var format: Format = .pdf
+    @State private var format: Format = .book
+    /// Baskıya hazır PDF (Faz 12).
+    @State private var forPrint = false
     @State private var childID: UUID?
     @State private var selection: BookExportSelection?
     @State private var isExporting = false
@@ -35,12 +38,20 @@ struct BookExportView: View {
                                      color: profile?.mpColor ?? MPColor.actionPrimary)
                         .frame(maxWidth: .infinity)
 
-                    MPSegmented(options: [(Format.pdf, "PDF"), (Format.printed, "Basılı kitap")],
+                    MPSegmented(options: [(Format.book, "Masal kitabı"), (Format.yearbook, "Yıllık")],
                                 selection: $format, track: MPColor.borderParent)
 
                     switch format {
-                    case .pdf: pdfContent(selection)
-                    case .printed: printedContent
+                    case .book: pdfContent(selection)
+                    case .yearbook: yearbookContent
+                    }
+
+                    ParentSection(title: "Baskı") {
+                        ParentToggleRow(systemImage: "printer", tone: .sky, title: "Baskıya hazır",
+                                        subtitle: forPrint
+                                            ? "A5, 3 mm taşma payı ve kesim işaretleri. Matbaaya verilebilir."
+                                            : "Evde yazdırmak ve ekranda okumak için.",
+                                        isOn: $forPrint)
                     }
                 } else {
                     MPNotice(kind: .info, text: "Kitap için önce bir çocuk profili ekle.", systemImage: "person")
@@ -52,7 +63,7 @@ struct BookExportView: View {
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            if format == .pdf, let selection { bottomActions(selection) }
+            if let selection { bottomActions(selection) }
         }
         .sheet(item: $exportFile) { file in ShareSheet(items: [file.url]) }
         .navigationDestination(item: $shareStories) { chosen in
@@ -144,24 +155,54 @@ struct BookExportView: View {
         .accessibilityHint(isOn ? "Kitaptan çıkarır" : "Kitaba ekler")
     }
 
-    private var printedContent: some View {
-        MPCard(area: .parent, padding: MPSpacing.lg) {
-            VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                Text("Basılı kitap yakında").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                Text("Masallarını ciltli bir kitap olarak basmanın yolunu hazırlıyoruz. Hazır olduğunda burada göreceksin. O zamana kadar PDF'i evde ya da bir kırtasiyede yazdırabilirsin.")
-                    .mpText(.footnote).fontWeight(.regular)
-                    .foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
+    // MARK: - Yıllık (Faz 12)
+
+    private var yearbook: MPYearbook? {
+        guard let profile else { return nil }
+        let service = OfflineStoryService.shared
+        return MPYearbook(year: Calendar.current.component(.year, from: Date()),
+                          childName: profile.name,
+                          stories: storyManager.stories.filter { $0.belongs(to: profile) },
+                          placeName: { service.place(id: $0)?.name },
+                          companionName: { service.companionName(id: $0) })
+    }
+
+    @ViewBuilder
+    private var yearbookContent: some View {
+        if let book = yearbook, !book.isEmpty {
+            Text(book.summaryLine)
+                .mpText(.footnote)
+                .foregroundStyle(MPColor.textSecondary)
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
+            ParentSection(title: book.title) {
+                ForEach(Array(book.sections.enumerated()), id: \.offset) { index, section in
+                    if index > 0 { MPRowDivider(area: .parent) }
+                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                        Text(section.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                        ForEach(section.lines, id: \.self) { line in
+                            Text(line).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(MPSpacing.md)
+                    .accessibilityElement(children: .combine)
+                }
             }
+        } else {
+            MPNotice(kind: .info, text: "Bu yıl henüz biten masal yok. İlk masal bitince yıllık burada büyümeye başlar.",
+                     systemImage: "calendar")
         }
     }
 
     private func bottomActions(_ selection: BookExportSelection) -> some View {
         VStack(spacing: MPSpacing.xs) {
-            MPButton(title: isExporting ? "PDF hazırlanıyor" : "PDF oluştur", systemImage: "book",
+            MPButton(title: isExporting ? "PDF hazırlanıyor" : (format == .book ? "PDF oluştur" : "Yıllığı oluştur"),
+                     systemImage: format == .book ? "book" : "calendar",
                      fullWidth: true, isLoading: isExporting) { export(selection) }
-                .disabled(!selection.canExport)
-            if FamilyFeatureAccess.isEnabled(.shareLink), selection.canExport {
+                .disabled(format == .book ? !selection.canExport : (yearbook?.isEmpty ?? true))
+            if format == .book, FamilyFeatureAccess.isEnabled(.shareLink), selection.canExport {
                 MPButton(title: "Aileyle paylaş", systemImage: "square.and.arrow.up", kind: .ghost) {
                     shareStories = ShareStories(ids: selection.selected.map(\.id))
                 }
@@ -173,12 +214,26 @@ struct BookExportView: View {
     }
 
     private func export(_ selection: BookExportSelection) {
-        guard !isExporting, selection.canExport else { return }
+        guard !isExporting else { return }
+        let spec: MPPrintSpec? = forPrint ? .a5 : nil
+        let stories: [Story]
+        let name: String
+        let title: String
+        let book: MPYearbook?
+        switch format {
+        case .book:
+            guard selection.canExport else { return }
+            (stories, name, title, book) = (selection.selected, selection.fileName, selection.bookTitle, nil)
+        case .yearbook:
+            guard let yearbook, !yearbook.isEmpty else { return }
+            (stories, name, title, book) = (yearbook.stories,
+                                            MPStoryPDF.fileName(for: yearbook.title), yearbook.title, yearbook)
+        }
+        let fileName = spec == nil ? name : name.replacingOccurrences(of: ".pdf", with: "-baski.pdf")
         isExporting = true
-        let stories = selection.selected
-        let (name, title) = (selection.fileName, selection.bookTitle)
         Task.detached(priority: .userInitiated) {
-            let url = await MPStoryPDF.makePDF(stories: stories, fileName: name, bookTitle: title)
+            let url = await MPStoryPDF.makePDF(stories: stories, fileName: fileName, bookTitle: title,
+                                               print: spec, yearbook: book)
             await MainActor.run {
                 isExporting = false
                 if let url {

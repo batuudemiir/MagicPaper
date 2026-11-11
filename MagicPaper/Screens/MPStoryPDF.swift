@@ -15,8 +15,31 @@ struct MPExportFile: Identifiable {
 /// gösteriliyordu; bu tip gerçek, paylaşılabilir bir kitap üretir.
 enum MPStoryPDF {
 
-    /// A5 dikey (kitap oranı), 72 dpi punto biriminde.
+    /// A5 dikey (kitap oranı), 72 dpi punto biriminde. Kesim boyu: baskıda
+    /// sayfanın kesildikten sonraki hâli (`MPPrintSpec`).
     private static let pageSize = CGSize(width: 420, height: 595)
+
+    /// Baskıya hazır mı çiziliyor (Faz 12). Görev yerel: aynı anda çizilen
+    /// iki PDF birbirinin ayarını görmez.
+    @TaskLocal static var printSpec: MPPrintSpec?
+
+    /// Kâğıdı sayfanın tamamına (baskıda taşma payıyla) serer. Baskıda önce
+    /// kesim işaretleri çizilir, sonra çizim kesim kutusunun köşesine kayar;
+    /// sayfa fonksiyonları hep `pageSize` içinde çizer ve farkı bilmez.
+    private static func beginPage(_ context: UIGraphicsPDFRendererContext, fill: UIColor) {
+        guard let spec = printSpec else {
+            context.beginPage()
+            fill.setFill()
+            context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+            return
+        }
+        context.beginPage(withBounds: spec.mediaBox(trim: pageSize), pageInfo: spec.pageInfo(trim: pageSize))
+        let cg = context.cgContext
+        fill.setFill()
+        cg.fill(spec.bleedBox(trim: pageSize))
+        spec.drawCropMarks(in: cg, trim: pageSize)
+        cg.translateBy(x: spec.offset, y: spec.offset)
+    }
     private static let margin: CGFloat = 40
 
     private static func displayFont(_ size: CGFloat, weight: UIFont.Weight = .bold) -> UIFont {
@@ -42,7 +65,8 @@ enum MPStoryPDF {
     /// Görselli kitabın sahneleri (B2) önce ana iş parçacığında görüntüye
     /// çevrilir — `ImageRenderer` bunu ister — sonra çizim burada, arka planda
     /// sürer.
-    static func makePDF(stories: [Story], fileName: String, bookTitle: String? = nil) async -> URL? {
+    static func makePDF(stories: [Story], fileName: String, bookTitle: String? = nil,
+                        print spec: MPPrintSpec? = nil, yearbook: MPYearbook? = nil) async -> URL? {
         guard !stories.isEmpty else { return nil }
         let scenes = await MainActor.run { sceneImages(for: stories) }
         // Künyedeki sıra numarası kitaplıktan; kitaplık ana iş parçacığında.
@@ -53,12 +77,19 @@ enum MPStoryPDF {
             })
         }
 
-        let renderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: pageSize))
+        let bounds = spec?.mediaBox(trim: pageSize) ?? CGRect(origin: .zero, size: pageSize)
+        let renderer = UIGraphicsPDFRenderer(bounds: bounds)
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
 
         do {
+            try $printSpec.withValue(spec) {
             try renderer.writePDF(to: url) { context in
-                if let bookTitle { drawBookCover(bookTitle, stories: stories, context: context) }
+                if let yearbook {
+                    drawBookCover(yearbook.title, stories: [], context: context)
+                    drawYearSummary(yearbook, context: context)
+                } else if let bookTitle {
+                    drawBookCover(bookTitle, stories: stories, context: context)
+                }
                 for story in stories {
                     drawCover(story, context: context)
                     let dedicated = StoryColophon.hasDedication(story) && !story.pages.isEmpty
@@ -72,6 +103,7 @@ enum MPStoryPDF {
                     }
                 }
             }
+            }
             return url
         } catch {
             logger.error("PDF yazılamadı: \(error.localizedDescription, privacy: .private)")
@@ -83,9 +115,7 @@ enum MPStoryPDF {
 
     /// Kitabın kapağı: "İrem'in Masal Kitabı" ve içindekiler.
     private static func drawBookCover(_ title: String, stories: [Story], context: UIGraphicsPDFRendererContext) {
-        context.beginPage()
-        paper.setFill()
-        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+        beginPage(context, fill: paper)
 
         let width = pageSize.width - margin * 2
         var y: CGFloat = 140
@@ -102,9 +132,7 @@ enum MPStoryPDF {
     }
 
     private static func drawCover(_ story: Story, context: UIGraphicsPDFRendererContext) {
-        context.beginPage()
-        paper.setFill()
-        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+        beginPage(context, fill: paper)
 
         let width = pageSize.width - margin * 2
         var y: CGFloat = 120
@@ -125,11 +153,30 @@ enum MPStoryPDF {
                             width: width, height: 20), alignment: .center)
     }
 
+    /// Yıllığın özet sayfası (Faz 12): sayılar değil, o yılın anıları. Bir
+    /// satır sayı ("12 masal, 4 yer"), sonra yerler, dostlar, ilk ve son masal.
+    private static func drawYearSummary(_ yearbook: MPYearbook, context: UIGraphicsPDFRendererContext) {
+        beginPage(context, fill: paper)
+        let width = pageSize.width - margin * 2
+        var y: CGFloat = margin + 20
+        y += draw(yearbook.summaryLine, font: displayFont(20), color: ink,
+                  in: CGRect(x: margin, y: y, width: width, height: 80), alignment: .center) + 24
+        for section in yearbook.sections {
+            guard y < pageSize.height - margin * 3 else { break }
+            y += draw(section.title, font: displayFont(14), color: muted,
+                      in: CGRect(x: margin, y: y, width: width, height: 30), alignment: .left) + 6
+            y += draw(section.lines.joined(separator: "\n"), font: bodyFont(12.5), color: ink,
+                      in: CGRect(x: margin, y: y, width: width, height: pageSize.height - y - margin * 2),
+                      alignment: .left, lineSpacing: 4) + 18
+        }
+        _ = draw("MagicPaper", font: displayFont(13), color: muted,
+                 in: CGRect(x: margin, y: pageSize.height - margin - 20,
+                            width: width, height: 20), alignment: .center)
+    }
+
     /// İthaf sayfası: kapağın arkasında, sayfanın üçte birinde iki satır.
     private static func drawDedication(_ story: Story, context: UIGraphicsPDFRendererContext) {
-        context.beginPage()
-        paper.setFill()
-        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+        beginPage(context, fill: paper)
 
         let dedication = StoryColophon.dedication(childName: story.childName, date: story.createdAt)
         let width = pageSize.width - margin * 2
@@ -142,9 +189,7 @@ enum MPStoryPDF {
 
     /// Künye sayfası: kitabın son sayfası gibi, altta tek satır.
     private static func drawColophon(_ story: Story, ordinal: Int, context: UIGraphicsPDFRendererContext) {
-        context.beginPage()
-        paper.setFill()
-        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+        beginPage(context, fill: paper)
 
         let width = pageSize.width - margin * 2
         let y = pageSize.height - margin * 3
@@ -180,9 +225,7 @@ enum MPStoryPDF {
 
     private static func drawPage(_ page: StoryPage, number: Int, total: Int, scene: UIImage? = nil,
                                  context: UIGraphicsPDFRendererContext) {
-        context.beginPage()
-        UIColor.white.setFill()
-        context.cgContext.fill(CGRect(origin: .zero, size: pageSize))
+        beginPage(context, fill: .white)
 
         let width = pageSize.width - margin * 2
         var y = margin
@@ -245,8 +288,8 @@ enum MPStoryPDF {
         return min(ceil(bounding.height), rect.height)
     }
 
-    /// Dosya adı — Türkçe karakterler ve boşluklar temizlenir.
-    private static func fileName(for title: String) -> String {
+    /// Dosya adı: Türkçe karakterler ve boşluklar temizlenir.
+    static func fileName(for title: String) -> String {
         let base = title.folding(options: .diacriticInsensitive, locale: Locale(identifier: "tr_TR"))
             .replacingOccurrences(of: " ", with: "-")
             .filter { $0.isLetter || $0.isNumber || $0 == "-" }

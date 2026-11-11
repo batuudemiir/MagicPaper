@@ -132,6 +132,31 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Faz 12: yayınevi (baskıya hazır PDF, yıllık)
+
+- **Baskıya hazır PDF (`MPPrintSpec`):**
+  - Masal kitabı ekranında yeni "Baskıya hazır" anahtarı. A5 kesim, 3 mm taşma payı, dört köşede kesim işaretleri; her sayfada TrimBox ve BleedBox.
+  - `MPStoryPDF`'in sayfa çizimi değişmedi. Sayfa başlatma tek yerde (`beginPage`): kâğıt taşma payına serilir, işaretler çizilir, çizim kesim kutusuna kayar. Ayar görev yerel (`@TaskLocal`).
+  - Renk RGB kaldı: UIKit CMYK yazamaz, dönüşüm basım ortağında.
+- **Yıllık (`MPYearbook`):**
+  - Aynı ekranda "Yıllık" sekmesi: "Bu yıl İrem'in dünyasında".
+  - Kapak, özet sayfası (tek satır sayı, gidilen yerler, tanışılan dostlar, ilk ve son masal), sonra yılın bütün biten masalları okunduğu sırayla. Faz 10 hafızasından kurulur.
+  - Boş yılda sakin bir not gösterilir.
+- **Kalkan:** "Basılı kitap yakında" sekmesi. Vizyon planı: gerçek olana kadar vaat yok.
+- **Belge:** `docs/YAYINEVI.md`.
+  - Baskı özellikleri tablosu.
+  - 10 kitaplık basılı kitap pilotu (Batuhan'da).
+  - Hediye kutusu tasarımı (ödeme turuyla, çocuğa satış yok).
+  - Haftalık içerik ritmi: `ContentFeed` ile pazartesi seçkisi, bildirimsiz.
+- **Yapılmayan:** basım ortağı, prova ve pilot (uygulama dışı); basılı kapak sanatı ve sırt; sipariş ve ödeme.
+- **Doğrulama:**
+  - `xcodebuild build-for-testing` başarılı; değişen dosyalarda Design law taramaları boş.
+  - Yeni `PublishingTests` (3 test) yazıldı, çalıştırılmadı. Testler bütün fazlar bitince bir kez çalışacak.
+  - Baskıya hazır bir PDF henüz üretilip açılmadı: kesim işaretleri gözle görülmedi.
+- **Dosyalar:**
+  - Yeni: `Screens/MPPrintSpec.swift`, `Screens/MPYearbook.swift`, `MagicPaperTests/PublishingTests.swift`, `docs/YAYINEVI.md`.
+  - Değişen: `Screens/MPStoryPDF.swift`, `Screens/Parent/BookExportView.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 11: akşam ritüeli
 
 - **Uyku kapısı (`SleepModeView`, `MPSleepPlayback`):**
