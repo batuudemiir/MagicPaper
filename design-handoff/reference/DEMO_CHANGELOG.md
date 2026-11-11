@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · Masallar vitrini yine tam ekran, beyaz geçiş yerine koyu karartma
+
+- Ne değişti: bir önceki kayıttaki (c16d415) krem başlık bandı geri alındı. Batuhan sahnenin eskisi gibi ekranın tepesinden başlamasını istedi, yalnızca beyaz geçiş olmadan. Sahne yine saat çubuğunun altına kadar uzanıyor. Tepedeki kreme açılan geçişin yerine hafif bir koyu karartma geldi (`MP.Scrim.mid` → saydam, altın karartmasının tersi). "Masallar" başlığı artık açık renk: `MPKidTabHeader`'a `onArt` eklendi (`MP.C.textOnArt`, varsayılan kapalı, öbür sekmeler değişmedi).
+- Saat çubuğu koyu zeminde kendiliğinden açık renge döndü (iOS 27 simülatörü). Eski iOS sürümlerinde böyle olmayabilir, bu görülmedi.
+- Doğrulama: derleme yeşil. iPhone 17 Pro simülatöründe açık temada görüldü. Testler çalıştırılmadı. Açık renkli kapaklarda başlık kontrastı, koyu tema, en büyük yazı ve iPhone SE görülmedi.
+- Dosyalar: `MagicPaper/Screens/Gunluk/GunlukHeader.swift`, `MagicPaper/DesignSystem/Pastel/MPNavigationChrome.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Masallar vitrininin tepesindeki beyaz geçiş kalktı
 
 - Ne değişti: Masallar vitrininde saat çubuğu ve "Masallar" başlığı boyalı kapağın üstündeydi. Resmin tepesi kreme açılan bir `LinearGradient` ile soluklaşıyordu. Bu geçiş kalktı. Başlık ve arama artık düz krem zeminde, öbür sekmeler gibi. Sahne başlığın altından başlıyor, resim hiç soluklaşmıyor. Sahne yüksekliği başlık satırı kadar kısaldı (`height - titleBarClearance`), bu yüzden vitrinin toplam yüksekliği ve kıvrım değişmedi.

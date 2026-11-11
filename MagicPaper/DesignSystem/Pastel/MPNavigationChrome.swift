@@ -234,6 +234,8 @@ struct MPKidTabHeader<Accessory: View>: View {
     let title: String
     /// Başlığın üstündeki küçük satır (Ana sayfa'nın selamı).
     var eyebrow: String? = nil
+    /// Başlık boyalı sahnenin üstünde mi (Masallar vitrini): açık yazı.
+    var onArt: Bool = false
     /// Sağdaki denetim (Masallar'ın araması).
     @ViewBuilder var accessory: Accessory
 
@@ -243,9 +245,10 @@ struct MPKidTabHeader<Accessory: View>: View {
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             VStack(alignment: .leading, spacing: 0) {
                 if let eyebrow {
-                    Text(eyebrow).mpText(.supporting).foregroundStyle(MPColor.textSecondary)
+                    Text(eyebrow).mpText(.supporting)
+                        .foregroundStyle(onArt ? MP.C.textOnArtMuted : MPColor.textSecondary)
                 }
-                Text(title).mpText(.cover).foregroundStyle(MPColor.textPrimary)
+                Text(title).mpText(.cover).foregroundStyle(onArt ? MP.C.textOnArt : MPColor.textPrimary)
                     .lineLimit(2).minimumScaleFactor(0.7)
                     .accessibilityAddTraits(.isHeader)
             }
