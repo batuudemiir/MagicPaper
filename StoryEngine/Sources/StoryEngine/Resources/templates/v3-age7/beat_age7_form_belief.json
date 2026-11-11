@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 3,
+  "beat": "form_belief",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 2 ya da 4. Kayıt aileden gelir: Aile I (unexplained) belki der, sayfa 6'ya yer bırakır; Aile V (misreading) kesin konuşur, çünkü sonra yumuşakça çürüyecek bir inanç gerekir. Korkutucu inanç yok.",
+  "lengthClasses": {
+    "paired": "10-16 words — shares its page with examine or commit"
+  },
+  "variants": [
+    {
+      "id": "a7_fb_01",
+      "text": "\"Belki bir işarettir,\" dedi {{child.name}}. \"Ama kimin işareti, ne için?\" Emin değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_01",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_02",
+      "text": "{{child.name}}'in aklında bir fikir belirdi. Doğru olabilirdi, yanlış da. Denemeden bilemezdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_02",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_03",
+      "text": "{{child.name}} bir tahmin yürüttü, sonra ona hemen inanmadı. Tahmin, kanıt değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_03",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_04",
+      "text": "\"Bir düşüncem var,\" dedi {{child.name}}. \"Ama önce yanılıp yanılmadığımı görmem gerek.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_04",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_05",
+      "text": "\"Bu kesin bir hazine işareti,\" dedi {{child.name}}. Hiç şüphesi yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_05",
+      "register": "certain"
+    },
+    {
+      "id": "a7_fb_06",
+      "text": "{{child.name}} hemen karar verdi: bunu kocaman, yaşlı bir hayvan bırakmıştı. Başka türlü olamazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_06",
+      "register": "certain"
+    },
+    {
+      "id": "a7_fb_07",
+      "text": "{{child.name}} her şeyi çözdüğünü düşünüyordu. Cevap apaçıktı, üstüne düşünmeye bile gerek yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_07",
+      "register": "certain"
+    },
+    {
+      "id": "a7_fb_08",
+      "text": "\"Biliyorum, bu bir mesaj,\" dedi {{child.name}} kendinden emin. \"Biri bize bir şey anlatıyor.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_08",
+      "register": "certain"
+    }
+  ]
+}

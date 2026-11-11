@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 4. Çocuk sürüklenmez, seçer; seçim görünür. Kimse onun yerine karar vermez.",
+  "lengthClasses": {
+    "paired": "10-16 words — page 4 also carries obstacle_raises, belief_fails or form_belief"
+  },
+  "variants": [
+    {
+      "id": "a7_cm_01",
+      "text": "{{child.name}} kararını çoktan vermişti. Bunun aslını öğrenmeden asla eve dönmeyecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_01"
+    },
+    {
+      "id": "a7_cm_02",
+      "text": "\"Bunu çözeceğim,\" dedi {{child.name}}, biraz da kendine söz verir gibi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_02"
+    },
+    {
+      "id": "a7_cm_03",
+      "text": "{{child.name}} kimseye sormadan karar verdi: sonuna kadar gidecekti. Merakı, yorgunluğundan büyüktü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_03"
+    },
+    {
+      "id": "a7_cm_04",
+      "text": "Vazgeçmek kolaydı ama {{child.name}} kolay olanı seçmedi. Hemen kollarını sıvadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_04"
+    },
+    {
+      "id": "a7_cm_05",
+      "text": "{{child.name}} derin bir nefes aldı. Ne olursa olsun, bunun peşini bırakmayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_05"
+    }
+  ]
+}

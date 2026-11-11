@@ -110,7 +110,8 @@ final class OfflineStoryService {
     ///
     /// `AgeBandResolver` decides the child's band; if nothing is written for
     /// it yet, the nearest band that has content serves instead (younger on a
-    /// tie). A TEMPORARY fallback, named as one: 7-8 and 9-10 have no content,
+    /// tie). A TEMPORARY fallback, named as one: 9-10 has no content (7-8 was
+    /// written in Faz 10),
     /// and an empty first screen is a broken app.
     ///
     /// Yaratma akışı bu düşmeye artık **girmiyor**: desteklenmeyen bir bantta

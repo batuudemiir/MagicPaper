@@ -132,6 +132,35 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Faz 10: 7-8 yaş bandı yazıldı
+
+- **Sorun:** 7-8 yaşındaki çocuklar 5-6 masalları okuyordu (`AgeBandResolver.servedBand` düşmesi); bant tamamen boştu.
+- **Kapsam:** üç modun her birine iki olay örgüsü, toplam 6 blueprint ve 220 cümle. Bant kısmen yazılsaydı, eksik kalan mod 7-8 çocuğundan tamamen kalkardı (`servedBand` yalnızca bant düzeyinde düşüyor). Bu yüzden üç mod birlikte yazıldı.
+  - Öğrenelim: `bp_misreading_tracks_age7_001` (yanlış okunan iz) ve `bp_unexplained_reading_age7_001` (iki ipucundan bir cevap).
+  - Macera: `bp_absence_retracing_age7_001` (geri dönüp izi yeniden okumak) ve `bp_absence_looking_age7_001` (yöntemli, halka halka arama).
+  - Uyku öncesi: `bp_bedtime_lullaby_age7_001` ve `bp_bedtime_goodnight_age7_001`.
+- **Bilerek değişmeyen:** beat dizileri 5-6'daki kanıtlanmış dizilerin kopyası; yalnızca kimlik, bant ve başlık kalıpları yeni. Motorun 7-8 ölçüleri de değişmedi (8 sayfa, sayfa 18-38 kelime, cümle en çok 14). Fark seste: çocuk akıl yürütmesini kendi söylüyor ("demek ki", "oysa"), yanılgısına ilk o gülüyor, hafif mizah var, yol arkadaşı çözmüyor. 5-6 ve 3-4 içeriğine dokunulmadı. Blueprint dosyasına yalnızca ekleme yapıldı.
+- **İçerik:** standart ark `templates/v3-age7/` altında 19 beat dosyası, 159 cümle; uyku arkı `templates/bedtime/beat_bedtime_age7_*` altında 9 dosya, 61 cümle. Masal ailem satırları her aile anında ve dört ilişkinin her birinde en az 2.
+- **Denetim:** `validate_beat_corpus.py` dosyasına 7-8 kapısı (`check_age7_lines`) eklendi.
+  - Bütün cümleler geçiyor: uzunluk, cümle sınırı, ek, yuva, sakin kapanış, yasak yapı.
+  - Betiğin bugünkü 10 hatası bu işten önce de vardı ve hepsi 3-4 ile pilot fikstürüne ait.
+  - Her 7-8 sayfa hücresinde seçilebilir cümle sayısı betikle sayıldı: en küçük hücre 4, yani `BoundPoolTests`'in tabanında.
+- **Testler:** üç test güncellendi.
+  - `ModeBandCoverageTests`: 7-8 artık üç modda, boş bant sayısı 2'den 1'e indi.
+  - `InterestCatalogTests`: 7-8'in kendi uyarıları serbest.
+  - `BeatCorpusRenderTests`: `v3-age7`'yi de gerçek Türkçe dilbilgisinden geçiriyor.
+- **Doğrulanan / doğrulanmayan:**
+  - `xcodebuild build-for-testing` başarılı; motor paketi `swift build --build-tests` ile derleniyor.
+  - Testler çalıştırılmadı (kural: bütün fazlar bitince bir kez). Simülatörde 7-8 masalı okunmadı.
+  - Seri devamı 7-8'de yok; uygulama bunu `seriesAvailable` ile zaten gizliyor.
+- **Dosyalar:**
+  - `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`
+  - `templates/v3-age7/*` (yeni)
+  - `templates/bedtime/beat_bedtime_age7_*` (yeni)
+  - `StoryEngine/Tools/validate_beat_corpus.py`
+  - `AgeBandResolver.swift` ve `OfflineStoryService.swift` (yorum)
+  - Üç test dosyası
+
 ### 2026-11-12 · main, commit bu kayıtla · Faz 10: uyku arkına iki yeni mekanizma
 
 - **Sorun:** uyku öncesinin her bantta tek olay örgüsü vardı (`lullaby`); ölçülen cümle tekrarı %85.

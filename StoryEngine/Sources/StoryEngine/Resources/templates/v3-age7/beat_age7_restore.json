@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 7, Aile IV. Başkasının rahatlaması, çocuğun başarısı değil. Yol arkadaşı taşınmaz; aradığına kendi gücüyle kavuşur. Ödül yok, borç gibi teşekkür yok.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 7 is never shared"
+  },
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "ödül olarak",
+    "teşekkür borcu"
+  ],
+  "variants": [
+    {
+      "id": "a7_rs_01",
+      "text": "{{companion.name}} aradığı şeye kavuştu. Sevincini saklayamadı, olduğu yerde dönüp durdu. {{child.name}} onu izlerken anladı: bu sevinç, sabırla aramanın sonucuydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_rs_01",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a7_rs_02",
+      "text": "Kaybolan şey sahibine döndü. {{companion.name}} onu iyice yanına aldı ve bir süre kıpırdamadı. {{child.name}} bir şey söylemedi; söylenecek her şey zaten ortadaydı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_rs_02",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a7_rs_03",
+      "text": "{{companion.name}} sonunda rahatladı. Yer yer, adım adım, birlikte aramışlardı. {{child.name}} onun ne kadar rahatladığını görünce kendi yorgunluğunu unuttu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_rs_03",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a7_rs_04",
+      "text": "Aranan şey artık tam yerindeydi. {{companion.name}} onu bir daha kaybetmemek için iyice yerleştirdi. {{child.name}} gülümsedi. Uzun bir arayışın sonu böyle sessiz ve güzeldi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_rs_04",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a7_rs_05",
+      "text": "{{companion.name}} kaybettiğini buldu. {{child.name}} ise başka bir şey buldu: sabrın da bir yöntemi olduğunu. İkisi yan yana oturup biraz soluklandılar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_rs_05",
+      "afterBeat": [
+        "persist"
+      ]
+    }
+  ]
+}

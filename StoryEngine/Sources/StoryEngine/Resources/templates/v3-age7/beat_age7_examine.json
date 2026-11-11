@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 2. Çocuk TEK somut şey fark eder: ne zaman, hangi yöne, kaç tane. Sayfa 6 buna dayanır; 'tuhaftı' bir gözlem değildir. Yol arkadaşı henüz gelmemiştir. Koşulsuz satırlar tabandır.",
+  "lengthClasses": {
+    "solo": "18-38 words — examine is the whole page",
+    "paired": "10-16 words — page 2 also carries form_belief (V-1)"
+  },
+  "variants": [
+    {
+      "id": "a7_ex_01",
+      "text": "{{child.name}} hemen dokunmadı; önce dikkatle inceledi. Acele eden bir şeyleri kaçırırdı. Sonunda bir şey fark etti: {{discovery.name}} hep aynı yöne dönüktü. Bu bir rastlantı olamazdı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_01"
+    },
+    {
+      "id": "a7_ex_02",
+      "text": "{{child.name}} parmaklarıyla saymaya başladı. Bir, iki, üç... Saydıkça bir düzen ortaya çıktı. Her şey belli bir sırayla tekrar ediyordu. Bunu aklının en güvenli köşesine yazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_02"
+    },
+    {
+      "id": "a7_ex_03",
+      "text": "{{child.name}} bir süre hiç kıpırdamadan bekledi. Beklemek de incelemenin bir parçasıydı. Sonunda bir şeyi yakaladı: her şey ancak ortalık sessizleşince belli oluyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_03"
+    },
+    {
+      "id": "a7_ex_04",
+      "text": "{{child.name}} kendi kendine sorular sordu. Ne zamandan beri buradaydı? Hangi yönden gelmişti? Cevapları bilmiyordu. Ama bir şeyi fark etti: hepsi aynı tarafı gösteriyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_04"
+    },
+    {
+      "id": "a7_ex_05",
+      "text": "{{child.name}} bildiği her şeyi aklından geçirdi. Pek bir şey bilmiyordu aslında. Ama bir şey kesindi: dün akşam burada değildi, bu sabah buradaydı. Arada bir şey olmuştu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_05"
+    },
+    {
+      "id": "a7_ex_06",
+      "text": "{{child.name}} çömelip yakından inceledi. Bir kenarı ötekinden daha belirgindi, sanki biri aceleyle bırakmış gibi. Bu küçük ayrıntıyı aklının bir köşesine yazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_06",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a7_ex_07",
+      "text": "{{child.name}} parçaları tek tek saydı. Bazıları tamdı, bazılarının ucu eksikti. Eksikler hep aynı taraftaydı. Bunu bir dedektif gibi aklına not etti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_07",
+      "discoveryTraits": [
+        "isFragmentary",
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a7_ex_08",
+      "text": "{{child.name}} gözünü ayırmadan bekledi ve saydı. Bir, iki, üç, sonra kısa bir ara. Yine bir, iki, üç. Bu bir düzendi ve düzenin bir anlamı olmalıydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_ex_08",
+      "discoveryTraits": [
+        "emitsSignal",
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a7_ex_09",
+      "text": "{{child.name}} eğilip dikkatle baktı. Bir ucu çok belirgindi, öbür ucu silik.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ex_09"
+    },
+    {
+      "id": "a7_ex_10",
+      "text": "{{child.name}} her ayrıntıyı tek tek inceledi. Sanki biri burada aceleyle bir şey bırakmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ex_10"
+    },
+    {
+      "id": "a7_ex_11",
+      "text": "{{child.name}} saydı, bir daha saydı. Her seferinde aynı sayı çıkıyordu: tam yedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ex_11"
+    },
+    {
+      "id": "a7_ex_12",
+      "text": "{{child.name}} hiçbir şeye dokunmadan, yalnızca bakarak iz sürdü. Her şey bir yöne işaret ediyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ex_12"
+    },
+    {
+      "id": "a7_ex_13",
+      "text": "{{child.name}} yanına çömeldi. Yakından bakınca biri buradan geçmiş gibi duruyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ex_13"
+    }
+  ]
+}

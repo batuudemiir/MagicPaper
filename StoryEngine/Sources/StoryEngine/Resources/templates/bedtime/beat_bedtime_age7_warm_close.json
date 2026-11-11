@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-28 words — son sayfa, açılıştaki odaya dönen sakin kapanış"
+  },
+  "variants": [
+    {
+      "id": "bt7_wc_01",
+      "text": "{{child.name}} yatağına döndü ve yorganını çenesine kadar çekti. {{setting.name}} yine sessizdi. Pencerenin önünde küçük bir nefes inip kalkıyordu. Gözleri kendiliğinden kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_wc_02",
+      "text": "{{setting.name}}'da her şey başladığı gibiydi: kısık lamba, sıcak yorgan, pencereden süzülen ay. Tek bir fark vardı. Bu gece ikisi de huzurla uyuyordu.",
+      "requiredSlots": [
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_wc_03",
+      "text": "{{child.name}} son bir kez pencereye baktı. Küçük dostu uyuyordu. Sonra yastığına gömüldü. Birini uyutmak insanı da uyuturmuş meğer.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_wc_04",
+      "text": "Lamba kısıldı, ay ışığı yorgana yayıldı. {{child.name}} gözlerini kapattı ve aklından son bir düşünce geçti: bugün de güzel bir gündü. Sonra uykuya daldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_wc_05",
+      "text": "{{child.name}} yatağına döndüğünde kardeşi {{family.name}} çoktan uyumuştu. {{setting.name}}'da artık üç küçük nefes vardı. {{child.name}} yorganını çekti ve gözlerini kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_wc_06",
+      "text": "Kardeşi {{family.name}} uykulu bir sesle \"İyi geceler,\" dedi. {{child.name}} aynı sözle karşılık verdi. {{setting.name}} sessizdi; pencerenin önünde bir dost uyuyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_wc_07",
+      "text": "Arkadaşı {{family.name}} yer yatağında derin derin uyuyordu. {{child.name}} onun söz verip de uyuduğunu görünce gülümsedi. Sonra kendi gözleri de kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_wc_08",
+      "text": "{{child.name}} yatağına döndü. Arkadaşı {{family.name}} uykulu uykulu \"Bu geceyi unutmayacağım,\" diye mırıldandı. {{setting.name}} sessizleşti ve ikisi de uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_wc_09",
+      "text": "{{child.name}} yatağına döndü. {{family.possessive}} {{family.name}} ayakucunda yine kıvrılmıştı. {{setting.name}}'da her şey akşamın başındaki gibiydi. Gözleri usulca kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_09",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_wc_10",
+      "text": "{{family.possessive}} {{family.name}} başını {{child.name}}'in yanına koydu ve uykuya daldı. {{setting.name}} sıcacıktı. Bu gece odada uyuyan dostların sayısı ikiye çıkmıştı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_10",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_wc_11",
+      "text": "Hayali arkadaşı {{family.name}} pencere kenarına oturdu ve uyuyan küçük dosta göz kulak oldu. {{child.name}} ona \"İyi geceler,\" diye fısıldadı. Sonra gözleri kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_11",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_wc_12",
+      "text": "{{child.name}} yorganına sarındı. Hayali arkadaşı {{family.name}} ona göz kırptı. {{setting.name}}'da her şey yine yerli yerindeydi ve uyku en sonunda gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_wc_12",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

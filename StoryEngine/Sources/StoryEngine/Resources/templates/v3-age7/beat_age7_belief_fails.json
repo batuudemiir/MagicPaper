@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 3,
+  "beat": "belief_fails",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 4, Aile V. Emin olunan şey artık uymaz. Çocuk asla aptal durumuna düşmez, kimse onu düzeltmez; dünya yalnızca başka ve daha sıcak çıkar. Gülen olursa önce çocuk güler.",
+  "lengthClasses": {
+    "paired": "10-16 words — always beside commit"
+  },
+  "variants": [
+    {
+      "id": "a7_bf_01",
+      "text": "Ama bir şey tutmuyordu. Düşündüğü doğruysa, bu ayrıntı burada ne arıyordu?",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_01"
+    },
+    {
+      "id": "a7_bf_02",
+      "text": "{{child.name}} bir daha baktı ve kaşlarını çattı. Kendi fikri gözünün önünde dağılıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_02"
+    },
+    {
+      "id": "a7_bf_03",
+      "text": "Fikri ilk anda çok güzel görünmüştü. Ama yakından bakınca bazı parçalar yerine oturmuyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_03"
+    },
+    {
+      "id": "a7_bf_04",
+      "text": "{{child.name}} yanıldığını anladı ve buna biraz güldü bile. Yanılmak, yeni bir soru demekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_04"
+    },
+    {
+      "id": "a7_bf_05",
+      "text": "\"Hımm,\" dedi {{child.name}}. \"Demek öyle değilmiş.\" Yine de merakı hiç azalmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_05"
+    }
+  ]
+}

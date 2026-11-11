@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 5. İlk deneme tam işlemez ve NASIL işlemediği eksik olanı gösterir. Kimse suçlu değil, bir şey kaybolmaz; çocuk önce davranır, yol arkadaşı yardım edebilir ama önderlik etmez.",
+  "lengthClasses": {
+    "solo": "18-38 words — first_attempt is the whole page",
+    "paired": "10-16 words — page 5 also carries obstacle_raises (I-1)"
+  },
+  "variants": [
+    {
+      "id": "a7_fa_01",
+      "text": "{{child.name}} önce en akla yatkın şeyi denedi. Bir yöne gitti, orada aradı, durdu. Hiçbir şey çıkmadı. Ama boşuna değildi: artık nerede olmadığını biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_fa_01"
+    },
+    {
+      "id": "a7_fa_02",
+      "text": "İlk fikri basitti: biraz daha yakından bakmak. {{child.name}} baktı, eğildi, bir şeyi kenara çekti. Sonuç sıfırdı. \"Peki,\" dedi kendi kendine. \"Demek ki başka bir yol lazım.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_fa_02"
+    },
+    {
+      "id": "a7_fa_03",
+      "text": "{{child.name}} bir plan yaptı ve planı adım adım uyguladı. Birinci adım tuttu, ikinci adım tutmadı. Bir şey eksikti. Neyin eksik olduğunu bilmek bile bir ilerlemeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_fa_03"
+    },
+    {
+      "id": "a7_fa_04",
+      "text": "{{companion.name}} bir öneride bulundu, {{child.name}} başka bir öneride. İkisini de denediler. İkisi de tam olmadı. Yine de {{child.name}} bir şey fark etti: ikisinde de aynı yerde takılıyorlardı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_fa_04"
+    },
+    {
+      "id": "a7_fa_05",
+      "text": "{{child.name}} sabırla bir deneme yaptı. Sonuç düşündüğü gibi çıkmadı, ama hiç de kötü değildi. Neyin işe yaramadığını öğrenmişti. Bir dedektif için bu da bir ipucuydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_fa_05"
+    },
+    {
+      "id": "a7_fa_06",
+      "text": "{{child.name}} hemen ilk fikrini denedi. Yarısı tuttu, öbür yarısı tutmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fa_06"
+    },
+    {
+      "id": "a7_fa_07",
+      "text": "{{child.name}} yaklaştı, bekledi, sonra bir şey denedi. Ama sonuç belirsiz kaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fa_07"
+    },
+    {
+      "id": "a7_fa_08",
+      "text": "İlk denemede {{child.name}} hiçbir şey öğrenemedi. Ya da öğrendiğini sonradan anlayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fa_08"
+    },
+    {
+      "id": "a7_fa_09",
+      "text": "{{child.name}} aklındaki ilk yolu denedi. Bir an olacak gibi oldu, sonra olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fa_09"
+    }
+  ]
+}

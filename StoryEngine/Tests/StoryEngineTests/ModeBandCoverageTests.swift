@@ -26,7 +26,8 @@ final class ModeBandCoverageTests: XCTestCase {
         // tamdı ve hiçbir çocuk ona ulaşamıyordu.
         XCTAssertEqual(coverage[b34], [.learning, .bedtime])
         XCTAssertEqual(coverage[b56], [.learning, .adventure, .bedtime])
-        XCTAssertEqual(coverage[b78], [])
+        // Faz 10 (11 Kasım 2026): 7-8 kendi korpusuyla üç moda da kavuştu.
+        XCTAssertEqual(coverage[b78], [.learning, .adventure, .bedtime])
         XCTAssertEqual(coverage[b910], [])
     }
 
@@ -57,7 +58,8 @@ final class ModeBandCoverageTests: XCTestCase {
     func testABandWithNoContentIsReportedOnce() throws {
         let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
         let empty = report.issues(withCode: "band_without_content")
-        XCTAssertEqual(empty.count, 2, empty.map(\.message).joined(separator: "\n"))
+        // 7-8 yazıldı (Faz 10); boş kalan tek bant 9-10.
+        XCTAssertEqual(empty.count, 1, empty.map(\.message).joined(separator: "\n"))
         XCTAssertTrue(empty.allSatisfy { $0.severity == .warning })
         // Boş bant, mod başına ayrıca raporlanmaz.
         let perMode = report.issues(withCode: "mode_unavailable_in_band").map(\.message)

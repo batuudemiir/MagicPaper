@@ -50,6 +50,8 @@ MIN_FAMILY_CELL = 2
 FAMILY_RELATIONS = ("sibling", "friend", "animal", "imaginary")
 UNHARMONISED_CONJUNCTION = re.compile(r"\}\}(?:'[a-zçğıöşü]+)? (?:da|de|ta|te)\b")
 AGE3_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age3"
+# 7-8 bandı (Faz 10, 11 Kasım 2026): the standard arc's lines for 7-8.
+AGE7_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age7"
 # Series episodes (FAZ 13): lines only a continuation episode uses.
 SERIES_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/series"
 # Uyku arkı (21 Ekim 2026): lines only a bedtime-arc blueprint reads.
@@ -478,6 +480,26 @@ def check_bedtime_lines(report) -> None:
                 report.fail(f"{label}/{variant['id']}: a bedtime line touches {touched}")
         total += _check_line_file(beat_file, label, bindings, report, calm_label="a bedtime story")
     report.note(f"bedtime: {len(paths)} beat files, {total} lines")
+
+
+def check_age7_lines(report) -> None:
+    """7-8 bandının standart ark satırları (Faz 10). Her dosya `ageBand: 7-8`
+    der; her satır `_check_line_file` kurallarından ve dosyanın yasak
+    yapılarından geçer. Uyku satırları bedtime klasöründe, orada denetlenir."""
+    paths = sorted(AGE7_CORPUS.glob("beat_*.json"))
+    if not paths:
+        report.note("7-8: no lines yet")
+        return
+    bindings = [dict(b, **{"companion.type": t}) for b, t in zip(series_bindings(), ("kirpi", "kaplumbağa"))]
+    total = 0
+    for path in paths:
+        beat_file = json.loads(path.read_text(encoding="utf-8"))
+        label = f"7-8 {beat_file['beat']}"
+        if beat_file.get("ageBand") != "7-8":
+            report.fail(f"{label}: {path.name} is in the 7-8 folder but does not say ageBand: 7-8")
+        total += _check_line_file(beat_file, label, bindings, report, calm_label="a 7-8 story")
+    check_banned([json.loads(p.read_text(encoding="utf-8")) for p in paths], report)
+    report.note(f"7-8: {len(paths)} beat files, {total} lines")
 
 
 def check_banned(corpus, report) -> None:
@@ -1127,7 +1149,7 @@ FORBIDDEN_SAFETY_TOPICS = ("death", "loss", "olum", "ölüm", "kayip", "kayıp")
 def _all_line_files() -> list[tuple[str, dict]]:
     """Every beat file a story can read lines from: 5-6, 3-4, series and bedtime."""
     files = []
-    for folder in (CORPUS, AGE3_CORPUS, SERIES_CORPUS, BEDTIME_CORPUS):
+    for folder in (CORPUS, AGE3_CORPUS, AGE7_CORPUS, SERIES_CORPUS, BEDTIME_CORPUS):
         for path in sorted(folder.glob("*.json")):
             files.append((f"{folder.name}/{path.name}", json.loads(path.read_text(encoding="utf-8"))))
     return files
@@ -1254,6 +1276,7 @@ def main() -> int:
         lambda: check_glossary_words(corpus, report),
         lambda: check_series_lines(report),
         lambda: check_bedtime_lines(report),
+        lambda: check_age7_lines(report),
     ]
     for gate in gates:
         gate()

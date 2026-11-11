@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "self_recognize",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 8. İÇSEL ve tanıksız: kimse çocuğa cesur ya da akıllı olduğunu söylemez; çocuk kendisi fark eder.",
+  "lengthClasses": {
+    "paired": "10-16 words — always beside warm_close"
+  },
+  "variants": [
+    {
+      "id": "a7_sr_01",
+      "text": "{{child.name}} kendi kendine düşündü: demek ki ben, ipuçlarını okuyabilen biriymişim.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_01"
+    },
+    {
+      "id": "a7_sr_02",
+      "text": "Kimse söylemedi ama {{child.name}} fark etti. Bugün kendi aklına güvenmişti ve işe yaramıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_02"
+    },
+    {
+      "id": "a7_sr_03",
+      "text": "{{child.name}} içinden gülümsedi. Zor bir şeyi kendi başına çözebildiğini artık biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_03"
+    },
+    {
+      "id": "a7_sr_04",
+      "text": "Geri dönmeyi seçen kendisiydi. {{child.name}} bunu hatırlayınca kendisiyle biraz gurur duydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_04"
+    },
+    {
+      "id": "a7_sr_05",
+      "text": "{{child.name}} bugün yeni bir şey öğrenmişti, ama en çok da kendisi hakkında.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_05"
+    }
+  ]
+}

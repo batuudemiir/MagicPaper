@@ -32,8 +32,8 @@ public enum AgeBandResolver {
 
     /// İstenen bant için içerik yoksa hangi banttan sunulacağı.
     ///
-    /// Bir GEÇİCİ ÇÖZÜM ve adıyla duruyor: 7-8 ve 9-10 için yazılmış içerik
-    /// yok. Boş bir ekran bozuk bir uygulamadır; bu yüzden en yakın bant
+    /// Bir GEÇİCİ ÇÖZÜM ve adıyla duruyor: 9-10 için yazılmış içerik yok
+    /// (7-8 Faz 10'da, 11 Kasım 2026'da yazıldı). Boş bir ekran bozuk bir uygulamadır; bu yüzden en yakın bant
     /// seçilir. Eşit uzaklıkta **küçük** bant tercih edilir — biraz basit bir
     /// masal, çocuğun takip edemeyeceği bir masaldan iyidir.
     ///

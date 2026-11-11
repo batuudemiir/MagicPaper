@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 1. Çocuk sıradan bir şey yaparken bir şey dikkatini çeker; sayfa sorar, açıklamaz. Görme ya da duyma iddiası taşıyan satır modalitesini bildirir; bildirmeyenler her keşfe uyar.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 1 is never shared in any blueprint"
+  },
+  "variants": [
+    {
+      "id": "a7_na_01",
+      "text": "{{child.name}} o gün {{setting.name}}'a kitap okumak için gelmişti. Üç sayfa okudu, dördüncüde durdu. Dikkati kitaptan kaydı, çünkü {{discovery.name}} dün orada değildi. Bundan emindi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_01"
+    },
+    {
+      "id": "a7_na_02",
+      "text": "Her şeyi aklına not eden bir çocuktu {{child.name}}. {{setting.name}}'da hangi taşın nerede durduğunu bile bilirdi. Bu yüzden {{discovery.name}} onu hemen düşündürdü. Bu, listesinde yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_02"
+    },
+    {
+      "id": "a7_na_03",
+      "text": "{{child.name}} {{setting.name}}'da bir saattir sıkılıyordu. Sıkılmak bile sıkıcı gelmeye başlamıştı. Tam eve dönecekti ki {{discovery.name}} dikkatini çekti. Sıkıntısı bir anda uçup gitti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_03"
+    },
+    {
+      "id": "a7_na_04",
+      "text": "{{setting.name}} her zamanki kadar sessizdi. {{child.name}} ise her zamanki kadar meraklıydı. Bu yüzden {{discovery.name}} onun dikkatinden kaçmadı. Kimse fark etmemişti, ama o fark etti.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_04"
+    },
+    {
+      "id": "a7_na_05",
+      "text": "{{child.name}} bir şeyi sormadan önce hep iki kez düşünürdü. Ama {{setting.name}}'da {{discovery.name}} ile karşılaşınca düşünmeyi unuttu. Olduğu yerde kalakaldı. Bu da neydi şimdi?",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_05"
+    },
+    {
+      "id": "a7_na_06",
+      "text": "Bir bilmece gibiydi. {{child.name}} {{setting.name}}'da her gün aynı yoldan geçerdi ve her şeyi ezbere bilirdi. Bugün ezberinde olmayan bir şey vardı: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_06"
+    },
+    {
+      "id": "a7_na_07",
+      "text": "{{child.name}} gözlerini kısıp baktı, sonra bir daha baktı. Gözleri ona oyun oynamıyordu. {{setting.name}}'da, yolun tam kenarında {{discovery.name}} duruyordu. Bunun bir açıklaması olmalıydı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_07",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a7_na_08",
+      "text": "{{child.name}} {{setting.name}}'da yürürken kulağı bir şeye takıldı. Rüzgâr değildi, bundan emindi; rüzgârın sesini iyi tanırdı. Bu başka bir şeydi: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_08",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "a7_na_09",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'a erkenden geldiler. {{family.name}} her zamanki gibi bin tane soru soruyordu. Sonra {{child.name}} durdu ve parmağını dudağına götürdü. Bir şey değişmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_09",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children arriving early, the elder raising a finger to their lips"
+    },
+    {
+      "id": "a7_na_10",
+      "text": "Kardeşi {{family.name}} önden koşturuyor, {{child.name}} arkadan yetişmeye çalışıyordu. Sonra yavaşladı. {{setting.name}}'da bir şey yerinde değildi ve {{family.name}} bunu hiç fark etmemişti.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_10",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "one child running ahead, the other slowing down, attentive"
+    },
+    {
+      "id": "a7_na_11",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da zıplama yarışı yapıyordu. Üçüncü zıplayıştan sonra {{child.name}} durdu ve dikkat kesildi. Yarış orada unutuldu, çünkü bir şey tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_11",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends mid-game, one stopping to listen"
+    },
+    {
+      "id": "a7_na_12",
+      "text": "Arkadaşı {{family.name}} o gün {{setting.name}}'a bir dürbünle gelmişti. Dürbünle her şeye bakıyordu, en yakındakine bile. Tuhaf olan şeyi ise dürbünsüz fark eden {{child.name}} oldu.",
+      "requiredSlots": [
+        "family.name",
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_12",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "a friend peering through toy binoculars, the child noticing something nearby"
+    },
+    {
+      "id": "a7_na_13",
+      "text": "{{child.name}} çıkmadan önce {{family.possessive}} {{family.name}}'a durumu anlattı: \"Bugün keşif günü.\" {{family.name}} pek ilgilenmedi. Ama {{setting.name}}'da gerçekten keşfedilecek bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_13",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child talking seriously to a sleepy pet before heading out"
+    },
+    {
+      "id": "a7_na_14",
+      "text": "{{family.possessive}} {{family.name}} bütün sabah {{child.name}}'in peşinden ayrılmadı. {{setting.name}}'a varınca ikisi aynı anda durdu. Demek ki tuhaflığı hisseden yalnızca {{child.name}} değildi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_14",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet stopping at the same moment, both alert"
+    },
+    {
+      "id": "a7_na_15",
+      "text": "Hayali arkadaşı {{family.name}} her şeyi bildiğini söylerdi. {{child.name}} ona inanıyormuş gibi yapardı. O gün {{setting.name}}'da öyle bir şey vardı ki {{family.name}} bile şaşırdı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_15",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking with a faint soft shape that looks surprised"
+    },
+    {
+      "id": "a7_na_16",
+      "text": "{{child.name}} yolda hayali arkadaşı {{family.name}} ile tartışıyordu. Bulutlar mı daha hızlıydı, kaplumbağalar mı? Sonra ikisi birden sustu. {{setting.name}}'da bir şey tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_na_16",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child arguing cheerfully with the air, then falling silent"
+    }
+  ]
+}

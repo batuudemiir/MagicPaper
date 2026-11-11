@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 3. İhtiyaç bir kez, sade ve sakin söylenir; yalvarma, gözyaşı yok.",
+  "lengthClasses": {
+    "paired": "8-14 words — always beside meet_companion"
+  },
+  "variants": [
+    {
+      "id": "a7_ra_01",
+      "text": "\"Bir şeyimi kaybettim,\" dedi {{companion.name}}. \"Yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_01"
+    },
+    {
+      "id": "a7_ra_02",
+      "text": "{{companion.name}} sakin bir sesle anlattı: \"Aradığımı bulamıyorum. Benimle bakar mısın?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_02"
+    },
+    {
+      "id": "a7_ra_03",
+      "text": "\"Yalnız arayınca hiç bulamıyorum,\" dedi {{companion.name}}. \"İkimiz belki buluruz.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_03"
+    },
+    {
+      "id": "a7_ra_04",
+      "text": "{{companion.name}} ona baktı ve basitçe sordu: \"Bana yardım edebilir misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_04"
+    },
+    {
+      "id": "a7_ra_05",
+      "text": "\"Bunu tek başıma çözemedim,\" dedi {{companion.name}}. \"Sen benden iyi bakıyorsun.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_05"
+    }
+  ]
+}

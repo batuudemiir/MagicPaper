@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 3,
+  "beat": "establish_ordinary",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt7_eo_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına uzandı ve günün listesini aklından geçirdi. Okul, oyun, akşam yemeği, diş fırçalama. Hepsi tamamdı. Sıra en güzel maddedeydi: uyku.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_eo_02",
+      "text": "{{setting.name}}'da lamba kısılmıştı. {{child.name}} yorganın altında kitabının son sayfasını bitirdi ve kapağını usulca kapattı. Pencereden ay, odaya süt beyazı bir ışık bırakıyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_eo_03",
+      "text": "{{child.name}} yastığını iki kez kabarttı, çünkü yastıklar ancak öyle rahat olurdu. {{setting.name}} sessiz ve sıcacıktı. Her akşam olduğu gibi uyku yavaş yavaş yaklaşıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_eo_04",
+      "text": "Pijamalar giyilmiş, su içilmiş, son soru da sorulmuştu. {{child.name}} {{setting.name}}'daki yatağına kıvrıldı. Ay ışığı yorganın üstünde ince bir çizgi çiziyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_eo_05",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yataklarına girdi. {{family.name}} her akşamki gibi \"Bir soru daha,\" dedi. {{child.name}} güldü; o soru hiçbir zaman tek olmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_eo_06",
+      "text": "{{setting.name}}'da iki yatak yan yanaydı. Birinde {{child.name}}, ötekinde kardeşi {{family.name}} yatıyordu. Lamba kısılmış, ay pencereden bakıyordu. Gün bitmek üzereydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_eo_07",
+      "text": "Arkadaşı {{family.name}} o gece {{setting.name}}'da yatıya kalıyordu. {{child.name}} buna bütün gün sevinmişti. Şimdi ikisi de pijamalarıyla yorganın altındaydı ve fısıldaşıyordu.",
+      "requiredSlots": [
+        "family.name",
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_eo_08",
+      "text": "{{child.name}} yatağında, arkadaşı {{family.name}} yer yatağındaydı. İkisi de uyumayacaklarına söz vermişti. Ama {{setting.name}} o kadar sıcaktı ki söz yavaş yavaş unutuluyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_eo_09",
+      "text": "{{child.name}} {{setting.name}}'daki yatağına girdi. {{family.possessive}} {{family.name}} her akşamki gibi ayakucundaki yerini aldı. Lamba kısılmıştı. Oda, uykunun kokusunu almış gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_09",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_eo_10",
+      "text": "{{family.possessive}} {{family.name}} yorganın üstünde tam üç tur döndü, sonra yattı. {{child.name}} buna her akşam gülerdi. {{setting.name}} sessizdi, lamba yumuşacık yanıyordu.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_10",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_eo_11",
+      "text": "{{child.name}} {{setting.name}}'da yorganına sarındı. Hayali arkadaşı {{family.name}} her akşamki gibi pencere kenarına oturmuştu. {{child.name}} ona iyi geceler demeden asla uyumazdı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_11",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_eo_12",
+      "text": "Hayali arkadaşı {{family.name}}, {{child.name}}'e gün boyu neler yaptığını anlatıyordu. {{child.name}} dinlerken kocaman esnedi. {{setting.name}}'da uyku saati çoktan gelmişti.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_eo_12",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

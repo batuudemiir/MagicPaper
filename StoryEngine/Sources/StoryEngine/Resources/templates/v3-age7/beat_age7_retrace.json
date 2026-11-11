@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 3,
+  "beat": "retrace",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 6, Aile IV. İleri değil, geri: çocuk geçtiği yolu yeniden okur. Geri dönmek bir seçimdir, yenilgi değil. Dönüşte yeni bir şey çıkmaz; şey hep oradaydı, görülmemişti.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "a7_re_01",
+      "text": "{{child.name}} ileri gitmek yerine durdu. \"Belki de gözümden kaçan şey geride,\" diye düşündü. Geldiği yolu bu kez yavaş yavaş, her adımda dikkatle yürüdü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_re_01"
+    },
+    {
+      "id": "a7_re_02",
+      "text": "Geri dönmek vazgeçmek demek değildi. {{child.name}} bunu biliyordu. Başladığı yere döndü ve her şeye ilk kez görüyormuş gibi baktı. Bu sefer acele etmedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_re_02"
+    },
+    {
+      "id": "a7_re_03",
+      "text": "{{child.name}} yolu önce aklında baştan sona yürüdü, sonra gerçekten yürüdü. Üçüncü dönemeçte durdu. İlk geçişte orayı fark etmemişti, oysa her şey oradaydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_re_03"
+    },
+    {
+      "id": "a7_re_04",
+      "text": "\"Baştan alalım,\" dedi {{child.name}}. {{companion.name}} ile birlikte ilk ipucuna kadar geri yürüdüler. Bu kez {{child.name}} her ayrıntıyı tek tek saydı ve hiçbirini atlamadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_re_04"
+    },
+    {
+      "id": "a7_re_05",
+      "text": "{{child.name}} arkasına dönüp geldiği yola baktı. Bütün ipuçları orada, sırayla diziliydi. İlerlerken onları teker teker görmüştü; şimdi ise hepsini bir arada görüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_re_05"
+    }
+  ]
+}

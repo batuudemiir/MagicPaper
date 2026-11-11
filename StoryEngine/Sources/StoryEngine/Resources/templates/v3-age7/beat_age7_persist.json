@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "beat": "persist",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 6, Aile IV. Deneme başarısız olduktan sonra arama sürer ve YÖNTEMLİdir: her başarısızlık kalanı daraltır. Şans ödüllendirilmez; bulmak, aramak sürdüğü için olur.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "a7_pe_01",
+      "text": "{{child.name}} aramayı bırakmadı ama rastgele de aramadı. Bakılan her yeri aklında işaretledi. Liste kısaldıkça umudu büyüdü. Sonunda geriye tek bir yer kaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_pe_01"
+    },
+    {
+      "id": "a7_pe_02",
+      "text": "Bir yerde yoktu. {{child.name}} bir sonrakine baktı, orada da yoktu. Ama her \"yok\" bir sonraki adımı gösteriyordu. Beşinci yerde aradığı şey onu bekliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_pe_02"
+    },
+    {
+      "id": "a7_pe_03",
+      "text": "{{child.name}} bir yöntem buldu: önce yakına, sonra biraz uzağa, sonra daha uzağa. Halka halka genişleyen bir arama. Sonunda o halkalardan biri doğru çıktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_pe_03"
+    },
+    {
+      "id": "a7_pe_04",
+      "text": "{{child.name}} vazgeçmedi, çünkü vazgeçmek için bir sebep yoktu. Henüz bakmadıkları yerler vardı. Her yere sırayla baktı. Aramak, bir bilmece çözmek gibiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_pe_04"
+    },
+    {
+      "id": "a7_pe_05",
+      "text": "Üçüncü denemede de olmadı. {{child.name}} durdu, düşündü ve yöntemini değiştirdi. Bu kez aşağıdan yukarıya baktı. Dördüncü denemede sabrı karşılığını buldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_pe_05"
+    }
+  ]
+}

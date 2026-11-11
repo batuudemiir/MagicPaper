@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 8. Duygusal iniş; 'mutlu mesut yaşadılar' yok. warm_close yalnızca inişi taşır; kendini tanıma ve yanında götürme ayrı beat'lerdir. 7-8 kapanışları da sakin biter: soru ve 'yarın' yok.",
+  "lengthClasses": {
+    "paired": "12-18 words — page 8 also carries self_recognize or carry_forward",
+    "solo": "18-28 words — warm_close is the whole page (V-1)"
+  },
+  "variants": [
+    {
+      "id": "a7_wc_01",
+      "text": "Eve dönerken {{child.name}} aklından bütün ipuçlarını bir kez daha geçirdi. Her biri yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_01",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a7_wc_02",
+      "text": "{{companion.name}} ile {{child.name}} vedalaştı. Ayrılırken ikisi de aynı şeyi düşünüyordu: iyi bir gündü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_02",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a7_wc_03",
+      "text": "Akşam olunca {{child.name}} epey yorgundu, ama bu çözülmüş bir bilmecenin tatlı yorgunluğuydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_03",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a7_wc_04",
+      "text": "{{setting.name}} yavaş yavaş akşama döndü. {{child.name}} son bir kez etrafına baktı ve içi ısındı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_04",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_05",
+      "text": "Güneş iyice alçaldı. {{child.name}} eve doğru yürürken adımları sabahkinden çok daha hafifti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_05",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_06",
+      "text": "{{companion.name}} kendi yoluna gitti. {{child.name}} arkasından el salladı ve ses çıkarmadan gülümsedi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_06",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_07",
+      "text": "{{companion.name}} artık rahattı. {{child.name}} onu bir süre uzaktan izledi, sonra o da evine döndü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_07",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_08",
+      "text": "Ayrılırken {{companion.name}} bir kez dönüp baktı. {{child.name}} başını salladı; ikisi de birbirini anlamıştı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_08",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_09",
+      "text": "O akşam {{child.name}} yatağında bütün günü baştan düşündü. Yanıldığı anı bile seviyordu artık. O an olmasa, bu kadar güzel bir şey öğrenemezdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_09",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a7_wc_10",
+      "text": "Dönüş yolunda {{child.name}} her şeye biraz daha dikkatle baktı. Dünya ipuçlarıyla doluydu ve o, onları okumayı yeni yeni öğreniyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_10",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_11",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} durup bir kez daha arkasına baktı. Sabah gelen çocukla şimdi giden çocuk aynı değildi. Giden biraz daha meraklıydı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_11",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_12",
+      "text": "Akşam yemeğinde {{child.name}} olanları anlatmak istedi ama nereden başlayacağını bilemedi. Sonunda en sona sakladı. Bazı hikâyeler önce biraz demlenmeliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_12",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a7_wc_13",
+      "text": "O akşam {{child.name}}, kardeşi {{family.name}}'a bütün günü anlattı. {{family.name}} her cümlede biraz daha meraklandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_13",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children at a dinner table, one telling a story"
+    },
+    {
+      "id": "a7_wc_14",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yan yana uzandı. {{family.name}} sordu, {{child.name}} anlattı, sonunda ikisi de uyudu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_14",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children lying side by side, whispering"
+    },
+    {
+      "id": "a7_wc_15",
+      "text": "Akşam yemeğinde kardeşi {{family.name}} bugün neler olduğunu sordu. {{child.name}} gülümsedi ve anlatmaya başladı. Hikâye uzundu ama {{family.name}} bir an bile sıkılmadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_15",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child telling a long story at dinner, sibling listening wide-eyed"
+    },
+    {
+      "id": "a7_wc_16",
+      "text": "Arkadaşı {{family.name}} ile eve kadar birlikte yürüdüler. {{child.name}} anlattı, {{family.name}} dinledi, yol kısacık geldi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_16",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends walking home at dusk, talking"
+    },
+    {
+      "id": "a7_wc_17",
+      "text": "Ayrılırken arkadaşı {{family.name}} el salladı. {{child.name}} o gün olanları ona sonra uzun uzun anlatacaktı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_17",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends waving goodbye at dusk"
+    },
+    {
+      "id": "a7_wc_18",
+      "text": "Akşamüstü arkadaşı {{family.name}} kapıya geldi. {{child.name}} onu görünce sevindi, çünkü anlatacak çok şeyi vardı. İkisi merdivene oturdu ve {{child.name}} her şeyi en baştan anlattı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_18",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends sitting on front steps, one telling the day"
+    },
+    {
+      "id": "a7_wc_19",
+      "text": "Eve gelince {{family.possessive}} {{family.name}} kapıda onu bekliyordu. {{child.name}} onun yanına oturdu ve günü anlattı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_19",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "pet waiting at the door, child sitting beside it"
+    },
+    {
+      "id": "a7_wc_20",
+      "text": "O akşam {{child.name}}, {{family.possessive}} {{family.name}}'ın yanına kıvrıldı. Bugün olanları ona fısıltıyla anlattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_20",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child curled up beside a pet, whispering"
+    },
+    {
+      "id": "a7_wc_21",
+      "text": "{{child.name}} eve döndüğünde {{family.possessive}} {{family.name}} onu her zamanki yerinde bekliyordu. {{child.name}} yanına oturdu ve her şeyi anlattı. {{family.name}} pek anlamadı belki, ama çok güzel dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_21",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child talking to an attentive pet in the evening"
+    },
+    {
+      "id": "a7_wc_22",
+      "text": "Eve dönerken hayali arkadaşı {{family.name}} yine yanındaydı. İkisi bütün yol boyunca günü konuştu.",
+      "requiredSlots": [
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_22",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking home at dusk, a faint soft shape beside them"
+    },
+    {
+      "id": "a7_wc_23",
+      "text": "O gece {{child.name}}, hayali arkadaşı {{family.name}}'a fısıldadı: \"Bugünü hiç unutmayacağım.\" {{family.name}} gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_wc_23",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child in bed whispering to the air"
+    },
+    {
+      "id": "a7_wc_24",
+      "text": "Akşam olunca hayali arkadaşı {{family.name}} pencerenin kenarına oturdu. {{child.name}} ona bütün günü anlattı. {{family.name}} her şeyi zaten biliyormuş gibi yaptı, ama yine de dikkatle dinledi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_wc_24",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child in their room, a soft shape by the window"
+    }
+  ]
+}

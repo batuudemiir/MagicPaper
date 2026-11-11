@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 3,
+  "beat": "succeed",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 7. Başarı KAZANILIR: sayfa 6'da çocuğun yaptığı şey yüzünden olur ve metin bunu söyler. afterBeat ile ayrılır; ortak satırlar da nedenselliği adlandırır.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 7 is never shared"
+  },
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "sihirli bir şekilde",
+    "birden her şey düzeldi"
+  ],
+  "variants": [
+    {
+      "id": "a7_sc_01",
+      "text": "{{child.name}} bulduğu cevabı denedi ve bu kez oldu. Şans değildi; dikkatle bakmanın ve vazgeçmemenin sonucuydu. {{companion.name}} sevinçten yerinde duramadı. {{child.name}} ise sessizce gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_01",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_02",
+      "text": "Her şey yerine oturdu. {{child.name}} bunu kendi aklıyla, kendi dikkatiyle bulmuştu. Kimse ona söylememişti. Bu yüzden sevinci de tamamen kendisine aitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_02",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_03",
+      "text": "Ve işte oradaydı. {{child.name}} bir süre hiçbir şey söylemeden baktı. Bunu, doğru yere doğru zamanda baktığı için bulmuştu. Kalbi küt küt atıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_03",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_04",
+      "text": "Sonunda bilmece çözüldü. {{child.name}} kendi kendine başını salladı: evet, tam böyleydi. Az önce yaptığı şey olmasa bu cevaba asla ulaşamazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_04",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_05",
+      "text": "{{child.name}} cevaba kendi yoluyla ulaşmıştı: adım adım, ipucu ipucu. {{companion.name}} hayranlıkla baktı. \"Ben bunu hiç düşünmemiştim,\" dedi. {{child.name}} omuz silkti ama içi içine sığmıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_05",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_06",
+      "text": "{{child.name}}'in aklındaki bağlantı doğru çıktı. İki küçük bilgiyi birleştirince koca bir bilmece çözülmüştü. Bunu yapan kendisiydi ve bu düşünce içini ısıttı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_06",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "a7_sc_07",
+      "text": "Tahmini doğruydu! Fark ettiği düzen ile duyduğu bilgi birbirini tamamlamıştı. {{child.name}} kendini bir dedektif gibi hissetti, hem de iyi bir dedektif.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_07",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "a7_sc_08",
+      "text": "Geri dönmek işe yaradı. {{child.name}} ilk geçişte kaçırdığı şeyi şimdi açıkça görüyordu. Aradığı şey baştan beri oradaydı, sadece biraz daha dikkat istiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_08",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "a7_sc_09",
+      "text": "{{child.name}} doğru dönemeçte durdu ve buldu. İleri koşmak onu hiçbir yere götürmemişti; geri dönmek ise doğrudan cevaba götürdü. Bunu hiç unutmayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_09",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "a7_sc_10",
+      "text": "Gerçeği anlayınca {{child.name}} her şeyi yeniden düşündü ve bu kez doğru yaptı. Yanlış fikri bir kenara bıraktı, doğrusuyla ilerledi. Bilmece tamamen çözülmüştü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_10",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a7_sc_11",
+      "text": "{{child.name}} yanıldığı yerden dönmeyi bildi. Doğru cevabı bulunca kimseye bir şey kanıtlaması gerekmedi. Kendi gözüyle görmüştü ve bu ona yetiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_11",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    }
+  ]
+}

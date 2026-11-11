@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 3,
+  "beat": "insight",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 6, Aile I. Sayfa 2'deki TEK gözlem ile sayfa 3'teki TEK bilgi birleşir, başka hiçbir şey. Tek çıkarım adımı; onu çocuk söyler, yol arkadaşı önce varmaz.",
+  "lengthClasses": {
+    "solo": "18-38 words — page 6 is never shared"
+  },
+  "variants": [
+    {
+      "id": "a7_in_01",
+      "text": "{{child.name}} durdu. İki şey aklında yan yana geldi: fark ettiği düzen ve {{companion.name}}'in küçük bilgisi. İkisi birleşince cevap kendiliğinden ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_in_01"
+    },
+    {
+      "id": "a7_in_02",
+      "text": "\"Bir dakika,\" dedi {{child.name}}. Sabah fark ettiği şeyle {{companion.name}}'in sözü aynı şeyi anlatıyordu. Demek ki cevap baştan beri gözünün önündeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_in_02"
+    },
+    {
+      "id": "a7_in_03",
+      "text": "{{child.name}} kafasındaki parçaları sıraya dizdi. Birincisi kendi gözlemiydi, ikincisi {{companion.name}}'in bildiği şey. Arada tek bir adım vardı ve o adımı kendisi attı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_in_03"
+    },
+    {
+      "id": "a7_in_04",
+      "text": "Bazen cevap yeni bir ipucunda değil, eski ipuçlarının yan yana gelişindedir. {{child.name}} bunu o gün öğrendi. İki bilgiyi birleştirdi ve her şey anlam kazandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_in_04"
+    },
+    {
+      "id": "a7_in_05",
+      "text": "{{child.name}} gözlerini kapattı ve baştan düşündü. Ne fark etmişti? {{companion.name}} ne demişti? İkisini yan yana koyunca yüzüne kocaman bir gülümseme yayıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_in_05"
+    }
+  ]
+}

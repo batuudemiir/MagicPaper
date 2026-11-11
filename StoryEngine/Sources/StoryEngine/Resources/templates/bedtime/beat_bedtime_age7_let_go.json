@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt7_lg_01",
+      "text": "{{child.name}} pencerenin köşesine yumuşacık bir yer hazırladı. \"Burası senin yerin,\" dedi. {{companion.name}} oraya kıvrıldı. Ayrılmak biraz zordu, ama herkesin kendi uyku yeri vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_lg_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_lg_02",
+      "text": "\"Sen kendi yuvanda daha rahat uyursun,\" dedi {{child.name}}. Onu yanında tutmak isterdi ama doğrusu buydu. Pencere kenarındaki yuvayı gösterdi ve geri çekildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_lg_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_lg_03",
+      "text": "{{child.name}} {{companion.name}}'in pencere kenarındaki yuvasını düzeltti, kenarlarını yumuşattı. Sonra elini yavaşça çekti. Sevdiğin birini kendi yerine bırakmak da bir iyilikti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_lg_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_lg_04",
+      "text": "{{child.name}} onu bir süre daha yanında tutmayı düşündü. Sonra vazgeçti, çünkü {{companion.name}}'in kendi uyku yeri pencerenin önündeydi. \"İyi geceler,\" diyerek onu oraya bıraktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_lg_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

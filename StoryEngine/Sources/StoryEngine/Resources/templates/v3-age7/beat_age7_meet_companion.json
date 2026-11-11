@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 3. Yol arkadaşı KENDİ sebebiyle oradadır. Satırlar rol başınadır: bakıma muhtaç olan yardım teklif ederek gelmez, rehber titremez. İhtiyaç burada söylenmez. Beden varsayımı yok.",
+  "lengthClasses": {
+    "paired": "16-22 words — page 3 also carries companion_offers or receive_appeal, both 8-14, so the page lands 24-36"
+  },
+  "variants": [
+    {
+      "id": "a7_mc_01",
+      "text": "{{child.name}} başını kaldırdığında {{companion.name}} adında bir {{companion.type}} onu izliyordu. \"Sen de mi fark ettin?\" dedi. \"Ben haftalardır bakıyorum.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_01",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a7_mc_02",
+      "text": "Arkadan neşeli bir ses geldi. {{companion.name}} adında bir {{companion.type}} ona bakıyordu. \"Ben de bunun peşindeyim,\" dedi. \"İki meraklı, bir meraklıdan iyidir.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_02",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a7_mc_03",
+      "text": "{{companion.name}} adında bir {{companion.type}} yanına geldi. \"Demek sen de buradasın,\" dedi, eski bir tanıdık gibi. \"Güzel. Bakacak çok şey var.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_03",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a7_mc_04",
+      "text": "{{child.name}} yalnız değildi. {{companion.name}} adında bir {{companion.type}} biraz ötede aynı şeyi inceliyordu. Birbirlerini görünce ikisi de güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_04",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a7_mc_05",
+      "text": "\"Acele etme,\" dedi bir ses. {{companion.name}} adında bir {{companion.type}} yanında belirdi. \"İpuçları kaçmaz, ama acele eden onları kaçırır.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_05",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a7_mc_06",
+      "text": "Biraz ötede {{companion.name}} adında bir {{companion.type}} durmuş, ne yapacağını bilemiyordu. Bir adım atıyor, sonra geri alıyordu. {{child.name}} onu hemen anladı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_06",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a7_mc_07",
+      "text": "\"Ben de fark ettim,\" dedi çekingen bir ses. {{companion.name}} adında küçük bir {{companion.type}} saklandığı yerden çıktı. \"Ama yaklaşmaya cesaret edemedim.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_07",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a7_mc_08",
+      "text": "{{companion.name}} adında bir {{companion.type}} uzun zamandır oradaymış meğer. Konuşmaya pek alışık değildi. \"Merhaba,\" dedi sonunda, neredeyse fısıltıyla.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_08",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a7_mc_09",
+      "text": "{{child.name}} birinin kendisini izlediğini hissetti. İzleyen, {{companion.name}} adında utangaç bir {{companion.type}}. Yaklaşmak istiyor ama bir türlü karar veremiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_09",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a7_mc_10",
+      "text": "{{companion.name}} adında bir {{companion.type}} sakin sakin yanına geldi. Hiçbir şey sormadı, sadece yanında durdu. {{child.name}} kendini daha az aceleci hissetti.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_10",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_11",
+      "text": "\"Burada beklemek iyi gelir,\" dedi {{companion.name}} adında bir {{companion.type}}. Sesi o kadar sakindi ki {{child.name}} farkında olmadan yavaşladı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_11",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_12",
+      "text": "{{companion.name}} adında yaşlıca bir {{companion.type}} telaşsızca yanına geldi. \"Önce bir nefes al,\" dedi. \"Sonra birlikte bakarız.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_12",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_13",
+      "text": "Bir anda {{companion.name}} adında bir {{companion.type}} belirdi. Ne çok konuşuyordu ne de acele ediyordu. Yanında olmak {{child.name}}'e tuhaf biçimde iyi geldi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_13",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_14",
+      "text": "Bir kenarda {{companion.name}} adında küçük bir {{companion.type}} oturuyordu. Etrafına dikkatle bakıyor, bir şey arıyor gibiydi. {{child.name}} yavaşça yanına gitti.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_14",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_15",
+      "text": "{{child.name}} neredeyse fark etmeden geçecekti. Sonra {{companion.name}} adında minik bir {{companion.type}} gördü. Çok yorgun ve biraz da kararsız görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_15",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_16",
+      "text": "{{companion.name}} adında küçük bir {{companion.type}} olduğu yerde dönüp duruyordu. Belli ki bir şeyini kaybetmişti. {{child.name}} ona usulca yaklaştı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_16",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_17",
+      "text": "Biri ince bir sesle iç çekti. {{child.name}} eğilince {{companion.name}} adında küçük bir {{companion.type}} gördü. Endişeli değildi ama düşünceliydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_mc_17",
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

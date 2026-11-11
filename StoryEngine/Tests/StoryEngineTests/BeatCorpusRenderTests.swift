@@ -51,12 +51,15 @@ final class BeatCorpusRenderTests: XCTestCase {
         ]
     }
 
-    /// Every authored beat file in the v3 corpus.
+    /// Every authored beat file in the v3 corpus and its 7-8 sibling (Faz 10).
     private func loadAllCorpora() throws -> [BeatFile] {
-        let dir = URL(fileURLWithPath: #filePath)
+        let root = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-            .appendingPathComponent("Sources/StoryEngine/Resources/templates/v3")
-        let files = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)
+            .appendingPathComponent("Sources/StoryEngine/Resources/templates")
+        let files = try ["v3", "v3-age7"].flatMap { folder in
+            try FileManager.default.contentsOfDirectory(
+                at: root.appendingPathComponent(folder), includingPropertiesForKeys: nil)
+        }
             .filter { $0.lastPathComponent.hasPrefix("beat_") && $0.pathExtension == "json" }
             .sorted { $0.lastPathComponent < $1.lastPathComponent }
         XCTAssertFalse(files.isEmpty, "no beat files found")

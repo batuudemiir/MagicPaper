@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt7_mc_01",
+      "text": "{{child.name}} perdeyi araladı. Pencerenin önünde {{companion.name}} adında minik bir {{companion.type}} duruyordu. Gözleri yarı kapalıydı. \"Uykum var ama uyuyamıyorum,\" dedi mahcup bir sesle.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_mc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt7_mc_02",
+      "text": "Pencerenin kenarında {{companion.name}} adında küçük bir {{companion.type}} vardı. Esniyor, esniyor, ama bir türlü uyuyamıyordu. \"Her şey çok heyecanlı,\" dedi. \"Kafam hiç durmuyor.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_mc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt7_mc_03",
+      "text": "{{child.name}} pencereye yaklaştı. {{companion.name}} adında küçücük bir {{companion.type}} orada kıvrılmış, kendi kendine mırıldanıyordu. \"Uykum kaçtı,\" dedi. \"Nereye kaçtığını da bilmiyorum.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_mc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "bt7_mc_04",
+      "text": "Ses, {{companion.name}} adında minik bir {{companion.type}}'den geliyordu. Pencerenin önünde oturmuş, gökyüzünü seyrediyordu. \"Uyumak istiyorum,\" dedi, \"ama nasıl yapıldığını unuttum.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_mc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

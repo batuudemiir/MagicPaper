@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt7_na_01",
+      "text": "Tam gözleri kapanacaktı ki pencereden {{discovery.name}} geldi. {{child.name}} dikkatle dinledi. Küçük, uykulu bir sesti; sanki biri esnemeye çalışıyordu.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt7_na_02",
+      "text": "{{child.name}} uykuya dalmak üzereydi. O sırada pencerenin önünden {{discovery.name}} duyuldu. Bir kez, sonra bir kez daha. Minicik ve tatlı bir sesti, yardım ister gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt7_na_03",
+      "text": "{{setting.name}} sessizdi, o yüzden {{discovery.name}} hemen duyuldu. {{child.name}} başını yastıktan kaldırdı. Ses pencereden geliyordu ve kulağa tatlı mı tatlı geliyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt7_na_04",
+      "text": "{{child.name}} koyun saymaya başlamıştı. Yedinci koyunda pencereden {{discovery.name}} geldi. Saymayı bıraktı. Bu ses, koyunlardan çok daha ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "bt7_na_05",
+      "text": "{{child.name}} tam uyuyacaktı ki kardeşi {{family.name}} fısıldadı: \"Duydun mu?\" Pencereden {{discovery.name}} geliyordu. İkisi de yorganlarından başlarını çıkarıp dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_na_06",
+      "text": "Kardeşi {{family.name}} çoktan uyuklamaya başlamıştı. {{child.name}} ise pencereden gelen {{discovery.name}} yüzünden gözlerini açtı. {{family.name}}'ı uyandırmamak için kıpırdamadan dinledi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_na_07",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} fısıltıyla konuşuyordu ki ikisi aynı anda sustu. Pencereden {{discovery.name}} geliyordu. Birbirlerine baktılar, sonra yine dinlediler.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_na_08",
+      "text": "Arkadaşı {{family.name}} \"Bu ne sesi?\" diye fısıldadı. {{child.name}} dinledi. Pencerenin önünden {{discovery.name}} geliyordu, minicik ve tatlı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_na_09",
+      "text": "{{family.possessive}} {{family.name}} başını kaldırdı ve kulak kabarttı. {{child.name}} onun neden uyanık olduğunu hemen anladı: pencereden {{discovery.name}} geliyordu.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_09",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_na_10",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ı okşarken bir ses duydu. Pencerenin önünden {{discovery.name}} geliyordu. {{family.name}} bile duymuştu; başını pencereye çevirmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_10",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_na_11",
+      "text": "Hayali arkadaşı {{family.name}} pencereyi işaret etti. {{child.name}} dinledi ve o da duydu: pencerenin önünden {{discovery.name}} geliyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_11",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_na_12",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diyordu. Tam o sırada pencereden {{discovery.name}} geldi. {{family.name}} merakla pencereye döndü. Sonra {{child.name}} yavaşça doğruldu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_na_12",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

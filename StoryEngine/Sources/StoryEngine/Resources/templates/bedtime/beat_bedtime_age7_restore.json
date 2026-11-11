@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "bt7_rs_01",
+      "text": "Sonunda {{companion.name}} derin bir iç çekti ve uykuya daldı. Minicik nefesi inip kalkıyordu. {{child.name}} işini iyi yaptığını biliyordu; bunu kimse söylemese de.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_rs_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_rs_02",
+      "text": "{{companion.name}}'in gözleri kapandı. Bir esneme, bir kıpırtı, sonra derin bir sessizlik. {{child.name}} onu uyandırmamak için parmak uçlarında bir adım geri çekildi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_rs_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_rs_03",
+      "text": "{{companion.name}} uyudu. Hem de öyle tatlı uyudu ki {{child.name}} bir süre onu izlemekten kendini alamadı. Uyutmak, uyumaktan bile güzelmiş, diye düşündü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_rs_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7_rs_04",
+      "text": "Bir süre sonra {{companion.name}} hiç kıpırdamadı. Uyumuştu. {{child.name}} içinden sevindi ama sesini çıkarmadı. Bazı sevinçler fısıltıyla bile fazla gürültülüydü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_bt7_rs_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

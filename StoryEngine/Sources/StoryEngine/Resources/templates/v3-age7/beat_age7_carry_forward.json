@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 3,
+  "beat": "carry_forward",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 8. Çocuk bir şeyi yanında götürür: nesne değil, fark etme alışkanlığı ya da saklanan bir soru. Ödül değil.",
+  "lengthClasses": {
+    "paired": "10-16 words — always beside warm_close"
+  },
+  "variants": [
+    {
+      "id": "a7_cf_01",
+      "text": "{{child.name}} o günden sonra her yere biraz daha dikkatle bakmaya karar verdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cf_01"
+    },
+    {
+      "id": "a7_cf_02",
+      "text": "Aklında yeni bir soru vardı. {{child.name}} onu bir sonraki keşfe saklamaya karar verdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cf_02"
+    },
+    {
+      "id": "a7_cf_03",
+      "text": "{{child.name}} defterine küçük bir not düştü: \"Önce dikkatle bak, sonra karar ver.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cf_03"
+    },
+    {
+      "id": "a7_cf_04",
+      "text": "Cebinde hiçbir şey yoktu ama aklında yepyeni bir alışkanlık vardı: fark etmek.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age7_a7_cf_04"
+    },
+    {
+      "id": "a7_cf_05",
+      "text": "{{child.name}} bugün öğrendiğini bir sır gibi sakladı: her ipucu bir hikâye anlatır.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_cf_05"
+    }
+  ]
+}
