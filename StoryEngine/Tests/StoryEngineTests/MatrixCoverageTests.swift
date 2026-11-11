@@ -188,17 +188,23 @@ final class MatrixCoverageTests: XCTestCase {
     func testDiscoveryRecruitmentMatchesTheArchitecture() throws {
         let catalog = try library()
         // §8.2, restricted to the five families the library implements.
+        // Yeniden sabitlendi 11 Kasım 2026. Bu test 23 Eylül'den beri kırmızıydı:
+        // D3'te pilotlar kataloğun arklarına yükseltildi ve kütüphane büyüdü.
+        // Genişlemeler beklenen: keşif şartı koymayan (`bp_appeal_speakingup_002`)
+        // ve "sosyal eşik" (`bp_threshold_joining_002`) blueprint'leri her izi,
+        // ışığı ve haritayı da çağırabiliyor.
         XCTAssertEqual(try recruits("object_flickering_light_001", in: catalog),
-                       [.unexplained, .threshold], "a light")
+                       [.unexplained, .threshold, .appeal], "a light")
         XCTAssertEqual(try recruits("object_footprints_001", in: catalog),
-                       [.absence, .misreading], "footprints")
-        // İnce bir ses artık `charge`'ı da çağırıyor: 3-4 bandının bakım
-        // blueprint'i `impliesNeed` istiyor ve sesin ihtiyacı ima etmesi zaten
-        // onu Appeal'a çağıran şeydi. İçerik büyüdü, cevap büyüdü.
+                       [.absence, .misreading, .threshold, .appeal], "footprints")
+        // Tek daralma bilinçli: ihtiyaç bildiren ses artık `unexplained`'ı
+        // çağırmıyor. Bütün `unexplained` blueprint'leri `impliesNeed`'i yasaklıyor,
+        // çünkü bir ihtiyacı ima eden ses yardım (`appeal`) ya da bakım (`charge`)
+        // masalıdır; "bu ne?" masalı onu çözmez, yardım eder.
         XCTAssertEqual(try recruits("object_faint_sound_001", in: catalog),
-                       [.unexplained, .threshold, .appeal, .charge], "a sound")
+                       [.threshold, .appeal, .charge], "a sound")
         XCTAssertEqual(try recruits("object_torn_map_001", in: catalog),
-                       [.unexplained, .absence, .misreading], "a torn map")
+                       [.unexplained, .absence, .misreading, .threshold, .appeal], "a torn map")
     }
 
     // MARK: - Exclusions still bite

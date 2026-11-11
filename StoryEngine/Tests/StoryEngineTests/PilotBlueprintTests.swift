@@ -114,18 +114,19 @@ final class PilotBlueprintTests: XCTestCase {
     /// A pilot has to be a *blueprint*, not a copy of the document's worked
     /// example. If it were identical, it would prove only that the fixture
     /// round-trips.
-    func testPilotIsNotTheReferenceArc() throws {
+    /// Pilot A bir varyant olarak başladı (arkadaş teklif eder, çocuk
+    /// tereddüt yenilmeden önce karar verir). D3'te (18 Eylül 2026) beş pilot
+    /// kataloğun arklarına yükseltildi ve bu blueprint Aile II'nin referans
+    /// arkının kendisi oldu; varyantlar artık ayrı blueprint'ler
+    /// (`bp_threshold_joining_002`). Test o kararı sabitler: referanstan sessizce
+    /// uzaklaşırsa bu bir karardır, kaza değil.
+    func testPilotIsTheReferenceArcSinceD3() throws {
         let referenceFamilyTwo: [StoryBeat] = [
             .noticeAnomaly, .approach, .meetCompanion, .hesitate,
             .smallStep, .findOwnCourage, .succeed, .selfRecognize, .warmClose
         ]
         let pilotBeats = try pilot().beatSlots.flatMap(\.beats)
-        XCTAssertNotEqual(pilotBeats, referenceFamilyTwo)
-        // It differs by the two beats that make it a distinct variant: the
-        // companion offers, and the child commits before the hesitation is
-        // overcome rather than after.
-        XCTAssertTrue(pilotBeats.contains(.companionOffers))
-        XCTAssertTrue(pilotBeats.contains(.commit))
+        XCTAssertEqual(pilotBeats, referenceFamilyTwo)
     }
 
     // MARK: - Emotional arc
@@ -157,7 +158,13 @@ final class PilotBlueprintTests: XCTestCase {
     func testPilotDeclaresWhatItNeedsAndWhatItCannotHave() throws {
         let blueprint = try pilot()
         XCTAssertEqual(blueprint.requires.setting, [.hasThreshold])
-        XCTAssertEqual(blueprint.requires.discovery, [.isUnexplained, .emitsSignal])
+        // D3 (18 Eylül 2026): pilot kataloğun Aile II arkına yükseltildi. Keşif
+        // artık "biri yeter": güzel, işaret veren ya da açıklanamayan bir şey
+        // çocuğu eşiğe çağırabilir. İhtiyaç bildiren keşif (ince ses) aşağıda
+        // yasak: o masal yardım (`appeal`) masalıdır, eşik masalı değil.
+        XCTAssertEqual(blueprint.requires.discovery,
+                       TraitRequirement(anyOf: [[.isBeautiful, .emitsSignal, .isUnexplained]]))
+        XCTAssertEqual(blueprint.forbids.discovery, [.impliesNeed])
         // The companion is *cast*, not required. A crossing story needs someone
         // emotionally legible about the crossing, and the companion who is
         // frightened too and goes anyway is that as much as the steady one is —
@@ -167,7 +174,8 @@ final class PilotBlueprintTests: XCTestCase {
         XCTAssertTrue(
             blueprint.requires.companion.isEmpty,
             "Capability is what a blueprint forbids; the part it casts belongs in `casting`.")
-        XCTAssertEqual(blueprint.forbids.companion, [.canFly, .canCarry])
+        // Yüzen de taşır: suyu kendisi geçiren bir arkadaş eşiği eritir.
+        XCTAssertEqual(blueprint.forbids.companion, [.canFly, .canCarry, .canSwim])
         XCTAssertTrue(blueprint.contradictoryTraits.isEmpty)
     }
 
@@ -287,7 +295,10 @@ final class PilotBlueprintTests: XCTestCase {
             if reasons.isEmpty { admitted.append(row.name) } else { rejected[row.name] = reasons }
         }
 
-        XCTAssertEqual(admitted, ["forest+fox+light", "garden+hedgehog+sound"])
+        // D3'ten beri yalnızca biri: ince ses ihtiyaç bildiriyor (`impliesNeed`)
+        // ve o masal yardım masalı. Bahçe + kirpi + ses artık `appeal`'ın.
+        XCTAssertEqual(admitted, ["forest+fox+light"])
+        XCTAssertEqual(rejected["garden+hedgehog+sound"], ["discovery offers forbidden impliesNeed"])
         // Three now, not two. The third is the setting: a mountain is somewhere
         // a child can actually be hurt, and this blueprint's premise is that the
         // barrier is *not* the obstacle — the fear is. Set the same story
@@ -295,13 +306,15 @@ final class PilotBlueprintTests: XCTestCase {
         // companion's encouragement becomes bad advice, and nothing about the
         // generated text would look wrong.
         XCTAssertEqual(rejected["mountain+owl+footprints"]?.count, 3)   // hazardous place, flying companion, a discovery that does not signal
-        XCTAssertEqual(rejected["sea+dolphin+shell"]?.count, 3)         // no threshold, a carrying companion, a silent discovery
+        // İki: eşik yok, taşıyan arkadaş. Kabuk artık güzel olduğu için keşif ekseninde geçer.
+        XCTAssertEqual(rejected["sea+dolphin+shell"]?.count, 2)
         // One reason, not two. The rabbit used to be rejected both for the map
         // and for "nothing reassures" — and that second rejection was the rule
         // being wrong, not the content: a rabbit that is frightened and crosses
         // anyway is exactly what a threshold story wants. Only the map's silence
         // survives the split, and it survives for a reason about the map.
-        XCTAssertEqual(rejected["forest+rabbit+map"], ["discovery lacks emitsSignal, isUnexplained"])
+        XCTAssertEqual(rejected["forest+rabbit+map"],
+                       ["discovery lacks one of emitsSignal or isBeautiful or isUnexplained"])
         XCTAssertFalse(admitted.isEmpty, "§8.4: a blueprint no content can satisfy is a build failure.")
     }
 

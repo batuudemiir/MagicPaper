@@ -27,6 +27,20 @@ final class OfflineCompositionTests: XCTestCase {
         })
     }
 
+    /// Kataloğun herhangi bir blueprint'iyle (ince sesi kabul eden pilot artık
+    /// yok). Gerçek yükleyiciden: uyku satırları pilot JSON'da değil, kendi beat
+    /// dosyalarında.
+    private func compose(blueprintID: String, seed: String, setting: String,
+                         companion: String, discovery: String) throws -> ComposedStory {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let blueprint = try XCTUnwrap(catalog.blueprints.first { $0.id.rawValue == blueprintID })
+        return try OfflineStoryComposer().compose(
+            blueprint: blueprint, catalog: catalog,
+            intent: OfflineStoryIntent(childName: "Yeliz", settingID: ContentID(setting),
+                                       companionID: ContentID(companion), discoveryID: ContentID(discovery),
+                                       seed: seed))
+    }
+
     private func compose(
         child: String = "Yeliz",
         seed: String = "seed-1",
@@ -66,6 +80,7 @@ final class OfflineCompositionTests: XCTestCase {
     func testEveryAdmissibleCombinationRendersCleanly() throws {
         let catalog = try pilotCatalog()
         let blueprint = try pilotBlueprint()
+        var rendered = 0
         for setting in catalog.settings {
             for companion in catalog.companions {
                 for discovery in catalog.objects {
@@ -82,12 +97,21 @@ final class OfflineCompositionTests: XCTestCase {
                     guard admissible else { continue }
 
                     for seed in ["a", "b", "c", "d", "e", "f"] {
-                        let story = try compose(
-                            child: "Yeliz", seed: seed,
-                            setting: setting.id.rawValue,
-                            companion: companion.id.rawValue,
-                            discovery: discovery.id.rawValue
-                        )
+                        // Yasallığa bağlayıcı karar verir (habitat, uyumlu mekân,
+                        // kadro); üç eksen yetmez. Reddedilen bir istek bir
+                        // cevaptır, hata değil (`BoundPoolTests` ile aynı ilke).
+                        let story: ComposedStory
+                        do {
+                            story = try compose(
+                                child: "Yeliz", seed: seed,
+                                setting: setting.id.rawValue,
+                                companion: companion.id.rawValue,
+                                discovery: discovery.id.rawValue
+                            )
+                        } catch OfflineSelectionError.requestedContentRejected {
+                            continue
+                        }
+                        rendered += 1
                         let defects = story.pages
                             .filter { !$0.missingSlots.isEmpty || !$0.unrecognisedSuffixes.isEmpty }
                             .map { "p\($0.pageNumber) missing=\($0.missingSlots) unknown=\($0.unrecognisedSuffixes)" }
@@ -100,16 +124,19 @@ final class OfflineCompositionTests: XCTestCase {
                 }
             }
         }
+        XCTAssertGreaterThan(rendered, 0, "Hiçbir yasal bağlama bulunamadı; test hiçbir şey ölçmüyor.")
     }
 
     /// A discovery may be a light or a sound, so no page may assume a modality.
     /// The first draft read "ince bir sesi … görebildi" — it saw a sound.
     func testNoPageAssumesTheDiscoveryCanBeSeen() throws {
         let sighted = ["gördü", "görebildi", "görünüyordu", "baktı ve gördü"]
+        // Ses ancak sesi kabul eden bir masala girer: D3'ten beri pilot değil,
+        // uyku öncesi ninnisi (`isAudible` + `impliesNeed` istiyor).
         for seed in ["a", "b", "c", "d", "e", "f", "g", "h"] {
             let story = try compose(
-                seed: seed,
-                setting: "setting_night_garden_001",
+                blueprintID: "bp_bedtime_lullaby_001", seed: seed,
+                setting: "setting_moon_window_room_001",
                 companion: "companion_hedgehog_pilot_001",
                 discovery: "object_faint_sound_001"
             )
@@ -151,15 +178,17 @@ final class OfflineCompositionTests: XCTestCase {
 
     // MARK: - Selection
 
+    /// D3'ten beri pilot (Aile II) ihtiyaç bildiren keşfi yasaklıyor; ince ses
+    /// yerine eşiğe çağıran titrek ışıkla.
     func testAnExplicitChoiceIsHonoured() throws {
         let story = try compose(
             setting: "setting_night_garden_001",
             companion: "companion_hedgehog_pilot_001",
-            discovery: "object_faint_sound_001"
+            discovery: "object_flickering_light_001"
         )
         XCTAssertEqual(story.content.setting.name, "Gece Bahçesi")
         XCTAssertEqual(story.content.companion.name, "Kestane")
-        XCTAssertEqual(story.content.discovery.name, "ince bir ses")
+        XCTAssertEqual(story.content.discovery.name, "titrek bir ışık")
     }
 
     /// The rule the old engine broke: an unusable request is **explained**, not
@@ -276,7 +305,11 @@ final class OfflineCompositionTests: XCTestCase {
     func testSupportingBeatsAppearOnTheirOwnPage() throws {
         let story = try compose()
         let pagesWithTwo = story.pages.filter { $0.beats.count == 2 }.map(\.pageNumber)
-        XCTAssertEqual(pagesWithTwo, [3, 4, 8])
+        // Beklenti blueprint'in kendi beyanından: D3'ten önce [3, 4, 8] idi,
+        // referans arkta yalnızca 8 (`selfRecognize` + `warmClose`).
+        let declared = try pilotBlueprint().pagePlan.filter { $0.supportingBeat != nil }.map(\.pageNumber).sorted()
+        XCTAssertFalse(declared.isEmpty)
+        XCTAssertEqual(pagesWithTwo, declared)
         for page in story.pages where page.beats.count == 2 {
             XCTAssertEqual(page.variantIDs.count, 2)
         }

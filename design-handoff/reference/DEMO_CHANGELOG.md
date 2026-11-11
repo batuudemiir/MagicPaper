@@ -132,6 +132,21 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Motorun eski 8 kırmızısı: eskimiş testler D3 kararına göre
+
+- **Ne oldu:** `PilotBlueprintTests` (3), `MatrixCoverageTests` (1), `OfflineCompositionTests` (4) 23 Eylül'den beri kırmızıydı. Pilot dosyasının commit geçmişinden ölçüldü: değişiklik `a2e84b2`'de.
+- **Neden:** D3 (18 Eylül 2026) kararıyla beş pilot blueprint kataloğun arklarına yükseltildi. `OfflineDeterminismTests`'te bu kayıtlı: "pilotlar kataloğun arklarına yükseltildi, requires/forbids değişti". `blueprint_threshold_crossing_001` Aile II'nin referans arkının kendisi oldu. Keşif şartı "işaret veren ve açıklanamayan"dan "güzel, işaret veren ya da açıklanamayan biri"ne genişledi; ihtiyaç bildiren keşif (ince ses) yasaklandı. Testler o güne göre güncellenmemişti. **İçerik doğru, testler eskimişti; içerik değişmedi.**
+- **Güncellenen testler (korudukları özellik duruyor):**
+  - **Pilot:** gereksinimleri ve yasakları bugünkü hâliyle sabitlendi (yüzen arkadaş da yasak). "Referans ark değil" testi "D3'ten beri referans ark" oldu; referanstan sessizce uzaklaşma yine yakalanır. Eşleşme matrisinde bahçe + kirpi + ses artık `impliesNeed` yüzünden reddediliyor, gerekçesiyle.
+  - **Keşif aileleri:** ışık, iz ve harita sosyal eşiği ve yardım masalını da çağırıyor. Tek daralma bilinçli: ihtiyaç bildiren ses `unexplained`'ı çağırmıyor, çünkü o masal yardım ya da bakım masalı.
+  - **Kompozisyon:**
+    - Açık seçim testi pilotun kabul ettiği titrek ışıkla çalışıyor.
+    - "Ses görülmez" testi sesin gerçekten girdiği uyku ninnisinde, gerçek yükleyiciyle.
+    - Kombinasyon testinde yasallığa artık bağlayıcı karar veriyor (`BoundPoolTests` ilkesi); hiçbir kombinasyon ölçülmezse test kırmızı yanıyor.
+    - Destek beat'i beklentisi blueprint'in kendi beyanından geliyor.
+- **Sonuç:** motor paketi **896 test, 0 hata** (2 atlanan). Uygulama son koşuda 874/0. Python içerik denetleyicisinin aynı döneme ait 10 bulgusu (pilot fikstürü ve 3-4 eşleşmeleri) ayrı bir iş olarak duruyor; test değil, ve bu turda dokunulmadı.
+- **Dosyalar:** `StoryEngine/Tests/StoryEngineTests/PilotBlueprintTests.swift`, `MatrixCoverageTests.swift`, `OfflineCompositionTests.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Vizyon planı sayfa düzenleri: açık kalanlar
 
 - **Denetim:** planın 13 düzeni koda karşı tek tek denendi. Ana sayfa, Masallar, Odam, Dolap, Masal yaz ve ilk açılış büyük ölçüde Faz 7-9'da uygulanmıştı. Açık kalanlar bu turda yapıldı.
