@@ -96,10 +96,10 @@
     },
     {
       "id": "bt7_na_06",
-      "text": "Kardeşi {{family.name}} çoktan uyuklamaya başlamıştı. {{child.name}} ise pencereden gelen {{discovery.name}} yüzünden gözlerini açtı. {{family.name}}'ı uyandırmamak için kıpırdamadan dinledi.",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yatmıştı; {{family.name}} çoktan uyuklamaya başlamıştı. {{child.name}} ise pencereden gelen {{discovery.name}} yüzünden gözlerini açtı. {{family.name}}'ı uyandırmamak için kıpırdamadan dinledi.",
       "requiredSlots": [
-        "family.name",
         "child.name",
+        "family.name",
         "discovery.name"
       ],
       "lengthClass": "solo",
@@ -136,10 +136,10 @@
     },
     {
       "id": "bt7_na_08",
-      "text": "Arkadaşı {{family.name}} \"Bu ne sesi?\" diye fısıldadı. {{child.name}} dinledi. Pencerenin önünden {{discovery.name}} geliyordu, minicik ve tatlı.",
+      "text": "{{child.name}}'in arkadaşı {{family.name}} \"Bu ne sesi?\" diye fısıldadı. {{child.name}} dinledi. Pencerenin önünden {{discovery.name}} geliyordu, minicik ve tatlı.",
       "requiredSlots": [
-        "family.name",
         "child.name",
+        "family.name",
         "discovery.name"
       ],
       "lengthClass": "solo",
@@ -156,11 +156,11 @@
     },
     {
       "id": "bt7_na_09",
-      "text": "{{family.possessive}} {{family.name}} başını kaldırdı ve kulak kabarttı. {{child.name}} onun neden uyanık olduğunu hemen anladı: pencereden {{discovery.name}} geliyordu.",
+      "text": "{{child.name}} fark etti ki {{family.possessive}} {{family.name}} başını kaldırmış, kulak kabartmıştı. Neden uyanık olduğu hemen belli oldu: pencereden {{discovery.name}} geliyordu.",
       "requiredSlots": [
+        "child.name",
         "family.possessive",
         "family.name",
-        "child.name",
         "discovery.name"
       ],
       "lengthClass": "solo",
@@ -198,10 +198,10 @@
     },
     {
       "id": "bt7_na_11",
-      "text": "Hayali arkadaşı {{family.name}} pencereyi işaret etti. {{child.name}} dinledi ve o da duydu: pencerenin önünden {{discovery.name}} geliyordu.",
+      "text": "{{child.name}}'in hayali arkadaşı {{family.name}} pencereyi işaret etti. Dikkatle dinleyince o da duydu: pencerenin önünden minicik {{discovery.name}} geliyordu.",
       "requiredSlots": [
-        "family.name",
         "child.name",
+        "family.name",
         "discovery.name"
       ],
       "lengthClass": "solo",

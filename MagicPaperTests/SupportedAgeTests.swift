@@ -28,14 +28,15 @@ final class SupportedAgeTests: XCTestCase {
     /// ürün olayıdır: 7-8 için ilk masal yazıldığı gün bu test kırmızıya döner
     /// ve kıran kişi tam olarak doğru soruyu sorar.
     func testTodaysContentIsAuthoredForThreeToSix() {
-        XCTAssertEqual(OfflineStoryService.shared.authoredBands(), [band34, band56])
-        XCTAssertEqual(StoryChoiceSources.current.authoredBands(), [band34, band56])
+        // Faz 10: 7-8 yazıldı.
+        XCTAssertEqual(OfflineStoryService.shared.authoredBands(), [band34, band56, band78])
+        XCTAssertEqual(StoryChoiceSources.current.authoredBands(), [band34, band56, band78])
     }
 
     /// Yeni profil ekranı yalnızca masalı yazılmış bantları sunar.
     func testTheAgeChipsOfferOnlyAuthoredBands() {
         let offered = MPAgeRange.authored(StoryChoiceSources.current.authoredBands())
-        XCTAssertEqual(offered.map(\.title), ["3-4 yaş", "5-6 yaş"])
+        XCTAssertEqual(offered.map(\.title), ["3-4 yaş", "5-6 yaş", "7-8 yaş"])
     }
 
     /// Katalog okunamadığında ebeveyne yanlış bilgi verilmez: dört chip de
@@ -134,13 +135,13 @@ final class SupportedAgeTests: XCTestCase {
     /// Desteklenen bir bantta sessiz bant düşürmesi tetiklenmiyor: istenen
     /// bant ne ise o sunuluyor.
     func testASupportedBandIsNeverQuietlyDowngraded() {
-        for age in [3, 4, 5, 6] {
+        for age in [3, 4, 5, 6, 7, 8] {
             XCTAssertEqual(OfflineStoryService.shared.servedBand(forAge: age),
                            AgeBandResolver.band(forAge: age))
         }
-        // 7-8 hâlâ düşüyor, ve bu bilinçli: ana sayfa vitrini gibi bir şey
-        // göstermek zorunda olan yüzeyler için duruyor. Yaratma akışı bu yola
-        // artık girmiyor (`supportsAge` yukarıda).
-        XCTAssertNotEqual(OfflineStoryService.shared.servedBand(forAge: 8), band78)
+        // 9-10 hâlâ düşüyor (Faz 10'dan beri 7-8'e), ve bu bilinçli: ana sayfa
+        // vitrini gibi bir şey göstermek zorunda olan yüzeyler için duruyor.
+        // Yaratma akışı bu yola artık girmiyor (`supportsAge` yukarıda).
+        XCTAssertNotEqual(OfflineStoryService.shared.servedBand(forAge: 10), AgeBand(lowerBound: 9, upperBound: 10))
     }
 }

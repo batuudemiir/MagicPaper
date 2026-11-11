@@ -36,9 +36,10 @@
     },
     {
       "id": "bt7_wc_03",
-      "text": "{{child.name}} son bir kez pencereye baktı. Küçük dostu uyuyordu. Sonra yastığına gömüldü. Birini uyutmak insanı da uyuturmuş meğer.",
+      "text": "{{child.name}} {{setting.name}}'da son bir kez pencereye baktı. Küçük dostu uyuyordu. Sonra yastığına gömüldü. Birini uyutmak insanı da uyuturmuş meğer.",
       "requiredSlots": [
-        "child.name"
+        "child.name",
+        "setting.name"
       ],
       "lengthClass": "solo",
       "move": "age7_bt7_wc_03",
@@ -48,8 +49,9 @@
     },
     {
       "id": "bt7_wc_04",
-      "text": "Lamba kısıldı, ay ışığı yorgana yayıldı. {{child.name}} gözlerini kapattı ve aklından son bir düşünce geçti: bugün de güzel bir gündü. Sonra uykuya daldı.",
+      "text": "{{setting.name}}'da lamba kısıldı, ay ışığı yorgana yayıldı. {{child.name}} gözlerini kapattı ve aklından son bir düşünce geçti: bugün de güzel bir gündü. Sonra uykuya daldı.",
       "requiredSlots": [
+        "setting.name",
         "child.name"
       ],
       "lengthClass": "solo",
@@ -94,9 +96,10 @@
     },
     {
       "id": "bt7_wc_07",
-      "text": "Arkadaşı {{family.name}} yer yatağında derin derin uyuyordu. {{child.name}} onun söz verip de uyuduğunu görünce gülümsedi. Sonra kendi gözleri de kapandı.",
+      "text": "Arkadaşı {{family.name}} {{setting.name}}'daki yer yatağında derin derin uyuyordu. {{child.name}} onun söz verip de uyuduğunu görünce gülümsedi. Sonra kendi gözleri de kapandı.",
       "requiredSlots": [
         "family.name",
+        "setting.name",
         "child.name"
       ],
       "lengthClass": "solo",
@@ -163,9 +166,10 @@
     },
     {
       "id": "bt7_wc_11",
-      "text": "Hayali arkadaşı {{family.name}} pencere kenarına oturdu ve uyuyan küçük dosta göz kulak oldu. {{child.name}} ona \"İyi geceler,\" diye fısıldadı. Sonra gözleri kapandı.",
+      "text": "Hayali arkadaşı {{family.name}} {{setting.name}}'da pencere kenarına oturdu. Küçük dosta o göz kulak olacaktı. {{child.name}} ona \"İyi geceler,\" diye fısıldadı. Sonra gözleri kapandı.",
       "requiredSlots": [
         "family.name",
+        "setting.name",
         "child.name"
       ],
       "lengthClass": "solo",

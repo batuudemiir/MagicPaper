@@ -95,7 +95,7 @@ final class ClassicProgressTests: XCTestCase {
         for tab in MPTab.allCases {
             XCTAssertEqual(MPTab(tab.kidTab), tab)
         }
-        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Masallar", "Kitaplık", "Profil"])
+        XCTAssertEqual(MPTab.allCases.map(\.label), ["Ana sayfa", "Masallar", "Kitaplık", "Odam"])
     }
 
     func testProfileIsATab() {

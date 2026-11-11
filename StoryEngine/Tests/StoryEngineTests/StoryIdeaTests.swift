@@ -35,8 +35,8 @@ final class StoryIdeaTests: XCTestCase {
         // §33: a small curated set, not a menu. Three plus Surprise.
         // Dört: üçü 5-6 bandı, biri 3-4. Ekranda yine üç kart görünüyor —
         // kaç tanesinin gösterileceği ekranın kararı, kaç tanesinin var olduğu
-        // içeriğin.
-        XCTAssertEqual(ideas.count, 4, ideas.map(\.id.rawValue).description)
+        // içeriğin. Altı (Faz 10): 7-8 bandına iki kart.
+        XCTAssertEqual(ideas.count, 6, ideas.map(\.id.rawValue).description)
         for idea in ideas {
             XCTAssertFalse(idea.display.isEmpty)
             XCTAssertFalse(idea.supportingText.isEmpty)
@@ -59,7 +59,7 @@ final class StoryIdeaTests: XCTestCase {
     /// pilot file directly — otherwise the app cannot see them.
     func testIdeasSurviveTheMergedLoad() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(catalog.storyIdeas.count, 4)
+        XCTAssertEqual(catalog.storyIdeas.count, 6)
     }
 
     // MARK: - A promise, not a preset

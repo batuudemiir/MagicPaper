@@ -149,11 +149,11 @@
     },
     {
       "id": "a7_na_12",
-      "text": "Arkadaşı {{family.name}} o gün {{setting.name}}'a bir dürbünle gelmişti. Dürbünle her şeye bakıyordu, en yakındakine bile. Tuhaf olan şeyi ise dürbünsüz fark eden {{child.name}} oldu.",
+      "text": "{{child.name}}'in arkadaşı {{family.name}} o gün {{setting.name}}'a bir dürbünle gelmişti. Dürbünle her şeye bakıyordu, en yakındakine bile. Tuhaf olan şeyi ise dürbünsüz fark eden {{child.name}} oldu.",
       "requiredSlots": [
+        "child.name",
         "family.name",
-        "setting.name",
-        "child.name"
+        "setting.name"
       ],
       "lengthClass": "solo",
       "move": "age7_a7_na_12",
@@ -196,10 +196,10 @@
     },
     {
       "id": "a7_na_15",
-      "text": "Hayali arkadaşı {{family.name}} her şeyi bildiğini söylerdi. {{child.name}} ona inanıyormuş gibi yapardı. O gün {{setting.name}}'da öyle bir şey vardı ki {{family.name}} bile şaşırdı.",
+      "text": "{{child.name}}'in hayali arkadaşı {{family.name}} her şeyi bildiğini söylerdi. O da ona inanıyormuş gibi yapardı. O gün {{setting.name}}'da öyle bir şey vardı ki {{family.name}} bile şaşırdı.",
       "requiredSlots": [
-        "family.name",
         "child.name",
+        "family.name",
         "setting.name"
       ],
       "lengthClass": "solo",

@@ -2546,25 +2546,25 @@
         },
         {
           "pageNumber": 3,
-          "role": "discovery",
+          "role": "companion",
           "beat": "approach",
           "emotion": "wonder"
         },
         {
           "pageNumber": 4,
-          "role": "companion",
+          "role": "problem",
           "beat": "meet_companion",
           "emotion": "tenderness"
         },
         {
           "pageNumber": 5,
-          "role": "problem",
+          "role": "attempt",
           "beat": "take_charge",
           "emotion": "duty"
         },
         {
           "pageNumber": 6,
-          "role": "attempt",
+          "role": "challenge",
           "beat": "tend",
           "emotion": "surprise"
         },
@@ -4476,6 +4476,48 @@
       "preferredFamilies": [
         "charge"
       ]
+    },
+    {
+      "id": "idea_two_clues_age7_001",
+      "display": "İki ipucundan bir cevap bulalım",
+      "supportingText": "Bir şey kendini belli ediyor. Dikkatle bakan çözer.",
+      "illustration": "sparkles",
+      "ageRange": "7-8",
+      "requires": {
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "preferredFamilies": [
+        "unexplained"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_read_the_traces_age7_001",
+      "display": "Geride kalan izleri okuyalım",
+      "supportingText": "Birileri buradan geçmiş. İzler ne anlatıyor?",
+      "illustration": "magnifyingglass",
+      "ageRange": "7-8",
+      "requires": {
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "preferredFamilies": [
+        "absence",
+        "misreading"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
     }
   ],
   "familyMoments": [
@@ -4921,6 +4963,62 @@
       "meaning": "Hiç ses çıkarmayan.",
       "bands": [
         "3-4"
+      ]
+    },
+    {
+      "id": "w78_yontem",
+      "term": "yöntem",
+      "forms": [
+        "yöntem"
+      ],
+      "meaning": "Bir işi yapmanın sırayla düşünülmüş yolu.",
+      "bands": [
+        "7-8"
+      ]
+    },
+    {
+      "id": "w78_ayrinti",
+      "term": "ayrıntı",
+      "forms": [
+        "ayrıntı"
+      ],
+      "meaning": "Bir şeyin ilk bakışta fark edilmeyen küçük parçası.",
+      "bands": [
+        "7-8"
+      ]
+    },
+    {
+      "id": "w78_ipucu",
+      "term": "ipucu",
+      "forms": [
+        "ipucu",
+        "ipuçlar"
+      ],
+      "meaning": "Bir sorunun cevabını bulmaya yardım eden küçük işaret.",
+      "bands": [
+        "7-8"
+      ]
+    },
+    {
+      "id": "w78_tahmin",
+      "term": "tahmin",
+      "forms": [
+        "tahmin"
+      ],
+      "meaning": "Kesin bilmeden, akla en yatkın gelen cevabı düşünmek.",
+      "bands": [
+        "7-8"
+      ]
+    },
+    {
+      "id": "w78_duzen",
+      "term": "düzen",
+      "forms": [
+        "düzen"
+      ],
+      "meaning": "Bir şeyin hep aynı sırayla tekrar etmesi.",
+      "bands": [
+        "7-8"
       ]
     }
   ],

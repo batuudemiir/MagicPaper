@@ -203,8 +203,8 @@ final class InterestCatalogTests: XCTestCase {
 
         XCTAssertEqual(coverage[b56], ["pirates", "animals", "sea"])
         XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan haritası 3-4 yayına hizmet etmiyor")
-        XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], [],
-                       "7-8 bandında hiç blueprint yok")
+        // Faz 10: 7-8 kendi blueprint'leriyle; kapsam 5-6'nın kurabildiğiyle aynı.
+        XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], ["pirates", "animals", "sea"])
 
         let offered = BlueprintSelector().availableInterests(catalog: catalog).map(\.id)
         XCTAssertEqual(offered, ["animals", "sea"], "korsanlar 3-4'e ulaşmıyor")

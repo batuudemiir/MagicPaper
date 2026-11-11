@@ -66,7 +66,10 @@ final class CatalogBundleTests: XCTestCase {
         // artık olay örgüsünü de şart koşuyor (`Slots.plot`), ve bir şekil o
         // sözcüğü ancak PROZASI o işi anlatıyorsa bildirebilir. Üçü üç ayrı
         // mekanizma: seekingKnowledge, patientObservation, perspectiveShift.
-        XCTAssertEqual(catalog.blueprints.count, 21)
+        // 24 ile uyku arkının iki yeni mekanizması 5-6'da ve biri 3-4'te
+        // (Faz 10, 11 Kasım 2026: gece yürüyüşü, iyi geceler).
+        // 30 ile 7-8 bandı: üç modda ikişer blueprint (Faz 10).
+        XCTAssertEqual(catalog.blueprints.count, 30)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -97,7 +100,9 @@ final class CatalogBundleTests: XCTestCase {
         // hamlesi. Bandın tüzüğü engeli ve çıkarımı yasakladığı için
         // `solutionKnown` üreten yalnızca iki beat kalıyor; biri `patient_wait`,
         // bu öbürü.
-        XCTAssertEqual(catalog.templates.count, 110)
+        // 110 → 113 (Faz 10): uyku arkına `approach`, `let_go` ve 3-4 `let_go`.
+        // 113 → 141 (Faz 10): 7-8 bandı, 19 standart + 9 uyku beat dosyası.
+        XCTAssertEqual(catalog.templates.count, 141)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
         // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
         // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
@@ -109,7 +114,9 @@ final class CatalogBundleTests: XCTestCase {
         // gidiyor, o çocuğa yaklaşmıyor.
         // 721 → 759 (30 Ekim 2026): 36 zanaat satırı (üç beat × üç meslek ×
         // dört satır) + `succeed`'in `exchange_views` grubuna iki satır.
-        XCTAssertEqual(catalog.recordCounts["variants"], 759)
+        // 759 → 779 (Faz 10): uyku arkının iki yeni mekanizmasının satırları.
+        // 779 → 999 (Faz 10): 7-8 bandının 220 satırı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 999)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

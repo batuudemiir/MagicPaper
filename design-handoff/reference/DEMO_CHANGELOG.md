@@ -132,6 +132,35 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Plan sonu: tek test koşusu (Faz 7-14) ve düzeltmeler
+
+- **Kural gereği tek koşu**, bütün fazlar bitince.
+- **İlk koşu:**
+  - Uygulama: 874 testten 15'i kırmızı.
+  - Motor: 896 testten 20'si kırmızı.
+- **Sınıflandırma ölçümle yapıldı:** motor testleri Faz 10 öncesi commit'te (7f54560) ayrı bir kopyada çalıştırıldı.
+  - 8 kırmızı orada da vardı; bu turdaki işlerle ilgisi yok, dokunulmadı: `MatrixCoverageTests`, `OfflineCompositionTests` (4), `PilotBlueprintTests` (3). Python denetleyicisinin 10 hatası da aynı dönemden.
+  - 12 kırmızı bu turun işlerinden geliyordu.
+- **Gerçek kusurlar (içerik düzeltildi):**
+  - Faz 10'daki `bp_bedtime_nightwalk_001`'in sayfa rolleri kaymıştı ("discovery" iki kez); sekiz sayfalık standart sıraya dizildi.
+  - Altı 7-8 aile açılışı ilk cümlede çocuğun adını anmıyordu.
+  - Uyku kapanışlarından ikisi (artı aynı kurala uymayan iki aile kapanışı) yatak odasının adını anmıyordu.
+  - 7-8 masalları hiç kelime öğretmiyordu. 7-8 sözlüğüne beş kelime eklendi (yöntem, ayrıntı, ipucu, tahmin, düzen); geçtikleri cümlelere bağlandı.
+  - 7-8'de fikir kartı yoktu; iki kart eklendi ("İki ipucundan bir cevap bulalım", "Geride kalan izleri okuyalım").
+- **Beklentiler güncellendi:**
+  - 7-8'in boş olduğunu varsayan testler: bantlar, kapsam, desteklenen yaşlar, en yakın banda düşme (artık yalnızca 9-10 düşüyor).
+  - Kayıt sayıları: 30 blueprint, 141 şablon, 999 satır, 128 aile satırı, 6 fikir kartı.
+  - Sekme adı "Odam".
+- **Yeniden sabitlendi:**
+  - Belirlenimcilik değerleri, gerekçesiyle: havuz büyüdü, bant bildirmeyen tohum başka masala düştü. Saklanan masallar metinlerini tuttuğu için çocuğu etkilemez (K1).
+  - Aile masalı altın fikstürü: 3-4 uyku masalları artık "iyi geceler" mekanizmasını da seçiyor.
+- **Görüntü referansları yeniden kaydedildi** (9): okuyucu sayfası beş kâğıtta (Faz 13 harf aralığı ve Metal kâğıt), bu akşamın kartı (Faz 7: çubuk yok), seçenek satırı (Faz 7: 72 pt). Yeni görüntüler kaydedilmeden önce gözle kontrol edildi.
+- **İkinci koşu:**
+  - Uygulama: **874 test, 0 hata** (1 atlanan).
+  - Motor: yalnızca önceden var olan **8 kırmızı** kaldı; bu tura ait kırmızı yok.
+  - Son metin düzeltmelerinden sonra etkilenen motor grupları yeniden koşuldu ve yeşil.
+- **Görülmedi:** simülatörde elle gezinme, iPhone SE, en büyük yazı, VoiceOver, gerçek cihaz.
+
 ### 2026-11-11 · main, commit bu kayıtla · Sesli okuma: daha insansı ses araştırması ve kör dinleme seti
 
 - **Sorun:** Sesli okuma (`MPSpeech`, `AVSpeechSynthesizer`) robot gibi duyuluyor. Geliştirilmiş Yelda indirilmemişse sıkıştırılmış ses kalıyor ve sayfa tek parça okunuyor.
