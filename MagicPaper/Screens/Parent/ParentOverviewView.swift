@@ -145,6 +145,13 @@ struct ParentOverviewView: View {
         return childStories.filter { week.contains($0.lastReadAt ?? .distantPast) }.count
     }
 
+    /// Bu hafta albüme giren çıkartmalar: biten masallar ve klasikler.
+    private var stickersThisWeek: Int {
+        guard let week = ParentInsight.weekInterval() else { return 0 }
+        return MPStickerAlbum.stickers(for: profileManager.currentProfile, stories: storyManager.stories)
+            .filter { week.contains($0.date) }.count
+    }
+
     private var statsGrid: some View {
         let columns = [GridItem(.flexible(), spacing: MPSpacing.md), GridItem(.flexible(), spacing: MPSpacing.md)]
         return LazyVGrid(columns: columns, spacing: MPSpacing.md) {
@@ -154,9 +161,10 @@ struct ParentOverviewView: View {
                        label: "Okunan masal", area: .parent)
             MPStatTile(systemImage: "flame", tone: .peach, value: "\(streak.currentStreak)",
                        unit: "gün", label: "Üst üste gün", area: .parent)
-            MPStatTile(systemImage: "book.closed", tone: .mint,
-                       value: "\(MPVocabulary.summary(for: childStories).uniqueThisMonth)",
-                       label: "Bu ay farklı kelime", area: .parent)
+            // Vizyon planı düzen 11: ebeveyn çocuğun bu hafta ne topladığını görür.
+            // Kelimeler çocuğun "Yeni kelimelerim" sayfasında duruyor.
+            MPStatTile(systemImage: "star", tone: .yellow, value: "\(stickersThisWeek)",
+                       label: "Bu hafta çıkartma", area: .parent)
         }
     }
 

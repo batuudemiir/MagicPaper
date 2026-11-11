@@ -178,3 +178,40 @@ struct MPStarWalletStore {
         defaults.set(data, forKey: Self.keyPrefix + profileID.uuidString)
     }
 }
+
+/// "Taze çıkartma" (vizyon planı düzen 10): ilk kez biten masalın çıkartması
+/// albüme girince Odam'da bir kez sessiz bir nokta. Sayı yok, kırmızı yok,
+/// bildirim yok; albüm açılınca kaybolur. Çocuk başına, cihazda.
+@MainActor
+final class MPStickerNews: ObservableObject {
+    static let shared = MPStickerNews()
+
+    @Published private(set) var freshChildren: Set<UUID>
+    private let defaults: UserDefaults
+    private static let key = "mp_freshStickerChildren"
+
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        freshChildren = Set((defaults.stringArray(forKey: Self.key) ?? []).compactMap(UUID.init(uuidString:)))
+    }
+
+    func isFresh(_ childID: UUID?) -> Bool {
+        childID.map(freshChildren.contains) ?? false
+    }
+
+    func mark(_ childID: UUID?) {
+        guard let childID, !freshChildren.contains(childID) else { return }
+        freshChildren.insert(childID)
+        save()
+    }
+
+    func clear(_ childID: UUID?) {
+        guard let childID, freshChildren.contains(childID) else { return }
+        freshChildren.remove(childID)
+        save()
+    }
+
+    private func save() {
+        defaults.set(freshChildren.map(\.uuidString), forKey: Self.key)
+    }
+}

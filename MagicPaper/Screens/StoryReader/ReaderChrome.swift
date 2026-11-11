@@ -187,7 +187,7 @@ struct ReaderChrome: View {
                     .lineLimit(1)
             }
             .foregroundStyle(theme.highlight)
-            .frame(minHeight: MP.S.tapMin)
+            .frame(minHeight: MPSize.minTouchHero)
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle(.highlight))
@@ -280,7 +280,8 @@ struct ReaderChrome: View {
         Button(action: action) {
             MPIcon(symbol, size: 24, weight: .bold)
                 .foregroundStyle(enabled ? theme.foreground : theme.muted.opacity(0.45))
-                .frame(width: MPSize.minTouchKid, height: MPSize.minTouchKid)
+                // Vizyon planı düzen 9: geri ve ileri 64 pt, okul öncesi parmağı için.
+                .frame(width: MPSize.minTouchHero, height: MPSize.minTouchHero)
                 .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle())

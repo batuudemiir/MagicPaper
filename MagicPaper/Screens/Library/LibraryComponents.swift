@@ -36,7 +36,8 @@ struct LibrarySearchField: View {
     }
 }
 
-/// "Kaldığın yerden": küçük kapak, başlık, ilerleme çubuğu, "Devam".
+/// "Kaldığın yerden": küçük kapak, başlık, "Sayfa 2 / 6", "Devam". İlerleme
+/// çubuğu yok (vizyon planı düzen 3): sayfa sayısı yeter, çubuk yarışı çağırır.
 struct LibraryContinueCard: View {
     let item: LibraryItem
     let action: () -> Void
@@ -54,16 +55,8 @@ struct LibraryContinueCard: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text(item.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(3).multilineTextAlignment(.leading)
-                    Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    GeometryReader { geo in
-                        Capsule().fill(MPColor.ringTrack)
-                            .overlay(alignment: .leading) {
-                                Capsule().fill(MPColor.actionPrimary)
-                                    .frame(width: geo.size.width * item.progress)
-                            }
-                    }
-                    .frame(height: 6)
-                    .accessibilityHidden(true)
+                    Text("\(item.meta) · \(item.pageLabel)")
+                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 MPIcon("play.fill", size: MP.G.sm, weight: .bold)
@@ -77,7 +70,7 @@ struct LibraryContinueCard: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(item.title), \(item.meta), yüzde \(Int(item.progress * 100)) okundu")
+        .accessibilityLabel("\(item.title), \(item.meta), \(item.pageLabel)")
         .accessibilityHint("Kaldığın yerden devam eder")
         .accessibilityAddTraits(.isButton)
     }

@@ -15,6 +15,7 @@ struct KidCornerView: View {
     @ObservedObject private var settings = MPSettingsStore.shared
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
+    @ObservedObject private var stickerNews = MPStickerNews.shared
     @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
     /// Çocuğun kahramanı (Faz 9); kurulmadıysa `nil`.
@@ -242,7 +243,8 @@ struct KidCornerView: View {
                     MPRowDivider(area: .kid)
                     // Faz 9: Odam'ın koleksiyonu.
                     linkRow(icon: "star", tone: .yellow, title: "Çıkartma albümüm",
-                            subtitle: stickerSubtitle) {
+                            subtitle: stickerNews.isFresh(profile.id) ? "Yeni çıkartma" : stickerSubtitle,
+                            fresh: stickerNews.isFresh(profile.id)) {
                         app.router.openKidPage(.stickers(profile.id))
                     }
                     MPRowDivider(area: .kid)
@@ -294,9 +296,17 @@ struct KidCornerView: View {
     }
 
     private func linkRow(icon: String, tone: MPWorldTone, title: String, subtitle: String,
-                         action: @escaping () -> Void) -> some View {
+                         fresh: Bool = false, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             MPListRow(systemImage: icon, tone: tone, title: title, subtitle: subtitle)
+                // Taze çıkartma: renk tek başına bilgi taşımaz, alt yazı da "Yeni çıkartma" der.
+                .overlay(alignment: .topLeading) {
+                    if fresh {
+                        Circle().fill(MP.C.brand)
+                            .frame(width: MP.S.x2, height: MP.S.x2)
+                            .accessibilityHidden(true)
+                    }
+                }
                 .frame(minHeight: MPSize.minTouchKid)
         }
         .buttonStyle(MPPressStyle(.highlight))

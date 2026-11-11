@@ -132,6 +132,32 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Vizyon planı sayfa düzenleri: açık kalanlar
+
+- **Denetim:** planın 13 düzeni koda karşı tek tek denendi. Ana sayfa, Masallar, Odam, Dolap, Masal yaz ve ilk açılış büyük ölçüde Faz 7-9'da uygulanmıştı. Açık kalanlar bu turda yapıldı.
+- **Kitaplık (düzen 3):** devam kartında ilerleme çubuğu kalktı, yerine "Dün · 6 dk · Sayfa 2 / 6". Klasikte sayfa sayısı modelde yok; "Okumaya başladın" ya da "Yarısından çoğu okundu" yazar. Faz 7'den beri ertelenmişti.
+- **Okuyucu (düzen 9):**
+  - Alt çubukta geri, ileri ve sesli okuma 64 pt (`MPSize.minTouchHero`); Faz 7'den ertelenmişti.
+  - Kapakta "Kendim okuyorum / Ragi okusun" seçimi var (Nosy Crow deseni). Seçim yalnızca bu okumaya ait (`MPAppState.readerVoiceChoice`), ayar değişmez. Ayardaki sesli okuma yalnızca varsayılanı belirler, çocuk kapakta değiştirebilir.
+- **Masal sonu (düzen 10):** "taze çıkartma" (`MPStickerNews`). İlk kez biten masaldan sonra Odam'da bir kez sessiz bir nokta; albüm açılınca kalkar. Çocuk başına, cihazda.
+  - Kendi sekme çubuğumuzda (iOS 26 öncesi) Odam simgesinin yanında.
+  - Her sürümde Odam'daki "Çıkartma albümüm" satırında "Yeni çıkartma" yazısı ve nokta.
+  - iOS 26'nın sistem çubuğunda yalnızca kırmızı sayı rozeti konabildiği için orada nokta yok (ilke 7).
+  - Çıkartmanın Odam'a uçma animasyonu yapılmadı.
+- **Çıkartma albümü (düzen 6):** çıkartma penceresine künye satırı ("İrem'in 9. masalı") ve "Masalı aç" geldi. Okuyucu pencere kapandıktan sonra açılır (iki modal üst üste açılmaz).
+- **Özet (düzen 11):** dördüncü kutu "Bu hafta çıkartma" ("Bu ay farklı kelime" yerine; kelimeler çocuğun "Yeni kelimelerim" sayfasında duruyor).
+- **Ayarlar (düzen 12):** "Destek" penceresi (`SupportSheet`).
+  - Bize yaz: konu satırı ve sürümle; Mail açılmazsa adres kopyalanır.
+  - Adresi kopyala.
+  - Dört soruluk SSS, yalnızca doğru olanlar.
+  - Seçilebilir sürüm satırı: "MagicPaper 1.2 (45) · iOS 18.2".
+- **Bilerek yapılmadı:**
+  - Ana sayfa ve Masallar'ın SE (sahne 140, vitrin 300) ve AX5 uyarlamaları.
+  - Masal yaz mod satırının 80 pt'e çıkması (bugün 72).
+  - Odam'da masal bittiği gün sahnenin 2 sn sevinç pozu.
+- **Doğrulama:** derleme başarılı; uygulama testleri 874/0 (bu değişikliklerle birlikte). Değişen ekranlar simülatörde **görülmedi**.
+- **Dosyalar:** `LibraryComponents.swift`, `LibraryShelfModel.swift`, `ReaderChrome.swift`, `StoryCover.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `MPAppState.swift`, `MPCollection.swift`, `CollectionViews.swift`, `KidCornerView.swift`, `MPNavigationChrome.swift`, `ParentOverviewView.swift`, `SettingsView.swift`, yeni `Screens/Parent/SupportSheet.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Plan sonu: tek test koşusu (Faz 7-14) ve düzeltmeler
 
 - **Kural gereği tek koşu**, bütün fazlar bitince.

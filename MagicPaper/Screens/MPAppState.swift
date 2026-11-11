@@ -167,7 +167,17 @@ final class MPAppState: ObservableObject {
         readSize = MPSettingsStore.shared.effectiveReadSize(forAge: ProfileManager.shared.currentProfile?.age)
         readerStartPage = fromStart ? 0 : nil
         readerListens = false
+        readerVoiceChoice = nil
         readerStory = story
+    }
+
+    /// Kapaktaki "Kim okusun?" seçimi (vizyon planı düzen 9). `nil` seçilmedi:
+    /// ayar ve "Dinle" geçerli. Seçim yalnızca bu okumaya ait, ayar değişmez.
+    @Published var readerVoiceChoice: Bool?
+
+    /// Bu okumada anlatıcı okusun mu.
+    func readerShouldSpeak(settings: MPSettingsStore) -> Bool {
+        readerVoiceChoice ?? (settings.readAloud || readerListens)
     }
 
     /// Okuyucu açılır açılmaz sesli okusun mu (Günlük detayındaki "Dinle").

@@ -59,6 +59,10 @@ struct StoryCover: View {
     /// Generative mosaic cover for text-only stories.
     var mosaicCover: MagicPaperCoverConfiguration? = nil
     var theme: MP.ReadTheme = .light
+    /// "Kim okusun?" (vizyon planı düzen 9, Nosy Crow deseni): okuyucunun
+    /// kapağında, ayarlarda değil. `nil` ise seçim gösterilmez (yaratma akışı).
+    var listens: Bool? = nil
+    var onChooseListening: (Bool) -> Void = { _ in }
 
     var body: some View {
         ZStack {
@@ -85,6 +89,22 @@ struct StoryCover: View {
                     Spacer(minLength: MP.S.x3)
 
                     MPBrandLine(color: theme.muted)
+
+                    if let listens {
+                        Spacer(minLength: MP.S.x4)
+                        HStack(spacing: MP.S.x2) {
+                            MPChip(title: "Kendim okuyorum", systemImage: "book",
+                                   isSelected: !listens, height: MPSize.chipHeightKid) {
+                                onChooseListening(false)
+                            }
+                            MPChip(title: "Ragi okusun", systemImage: "speaker.wave.2",
+                                   isSelected: listens, height: MPSize.chipHeightKid) {
+                                onChooseListening(true)
+                            }
+                        }
+                        .accessibilityElement(children: .contain)
+                        .accessibilityLabel("Kim okusun?")
+                    }
 
                     Spacer(minLength: 0)
 
@@ -144,7 +164,8 @@ struct StoryCover: View {
 
 extension StoryCover {
     /// Okuyucunun kapak yaprağı.
-    init(story: ReaderStory, theme: MP.ReadTheme) {
+    init(story: ReaderStory, theme: MP.ReadTheme, listens: Bool? = nil,
+         onChooseListening: @escaping (Bool) -> Void = { _ in }) {
         self.init(title: story.title,
                   childName: story.childName,
                   pageCount: story.pageCount,
@@ -152,7 +173,9 @@ extension StoryCover {
                   symbol: story.symbol,
                   accent: story.accent,
                   mosaicCover: story.mosaicCover,
-                  theme: theme)
+                  theme: theme,
+                  listens: listens,
+                  onChooseListening: onChooseListening)
     }
 
     /// Yaratma akışının kapak ekranı.

@@ -262,7 +262,7 @@ struct StoryReaderView: View {
         openedAt = Date()
         talkPrompts = StoryTalkPrompts.pagePrompts(for: story)
         MPHaptics.prepare()
-        if settings.readAloud || app.readerListens, let text = model.currentPage?.spokenText {
+        if app.readerShouldSpeak(settings: settings), let text = model.currentPage?.spokenText {
             speech.speak(text, recording: familyRecording)
         }
         // Ailenin sesi başka cihazda kaydedildiyse sayfalar şimdi iner (FAZ 18).
@@ -424,6 +424,8 @@ struct StoryReaderView: View {
 
         if model.isOnEndingLeaf {
             speech.stop()
+            // Düzen 10: ilk kez biten masalın çıkartması; Odam'da bir kez nokta.
+            if !story.isFinished { MPStickerNews.shared.mark(story.childProfileID) }
             recorder.reachedEnding()
             MPFunnel().storyFinished()
             // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
@@ -444,7 +446,7 @@ struct StoryReaderView: View {
 
         // Sesli okuma açıksa yeni sayfa kendiliğinden okunur.
         let wasSpeaking = speech.isSpeaking && !speech.isPaused
-        if let text = model.currentPage?.spokenText, wasSpeaking || settings.readAloud {
+        if let text = model.currentPage?.spokenText, wasSpeaking || app.readerShouldSpeak(settings: settings) {
             speech.speak(text, recording: familyRecording)
         }
 

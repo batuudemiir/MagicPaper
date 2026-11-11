@@ -47,6 +47,7 @@ struct KidTabBar: View {
     @State private var frames: [Target: CGRect] = [:]
     /// Sürüklerken parmağın altındaki hedef; mercek onu gösterir.
     @State private var hovered: Target?
+    @ObservedObject private var stickerNews = MPStickerNews.shared
 
     private static let space = "kidTabBar"
 
@@ -165,6 +166,15 @@ struct KidTabBar: View {
                     // Hareketi Azalt'ta dolgu animasyonsuz değişir.
                     .contentTransition(reduceMotion ? .identity : .opacity)
                     .frame(height: MP.S.x6)
+                    // Düzen 10: taze çıkartma, Odam'da bir kez sessiz nokta.
+                    .overlay(alignment: .topTrailing) {
+                        if item.tab == .corner && stickerNews.isFresh(ProfileManager.shared.currentProfile?.id) {
+                            Circle().fill(MP.C.brand)
+                                .frame(width: MP.S.x2, height: MP.S.x2)
+                                .offset(x: MP.S.x1)
+                                .accessibilityHidden(true)
+                        }
+                    }
                 Text(item.label)
                     .font(MP.F.caption(.semibold))
                     .lineLimit(1)
@@ -183,7 +193,8 @@ struct KidTabBar: View {
             }
         }
         .buttonStyle(MPPressStyle(.highlight))
-        .accessibilityLabel(item.label)
+        .accessibilityLabel(item.tab == .corner && stickerNews.isFresh(ProfileManager.shared.currentProfile?.id)
+                            ? "\(item.label), yeni çıkartma" : item.label)
         .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {
             MPIcon("\(item.symbol).fill", size: MP.G.lg, weight: .bold, symbolOnly: true)

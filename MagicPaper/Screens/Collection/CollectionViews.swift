@@ -34,6 +34,8 @@ struct StickerAlbumView: View {
     @ObservedObject private var classics = ClassicProgressStore.shared
     @Environment(\.dynamicTypeSize) private var typeSize
     @State private var opened: MPSticker?
+    /// Pencerede "Masalı aç" seçildi: pencere kapanınca okunur (iki modal üst üste açılmaz).
+    @State private var pendingRead: Story?
 
     private var stickers: [MPSticker] {
         MPStickerAlbum.stickers(for: profile, stories: storyManager.stories, classics: classics.entries)
@@ -76,8 +78,22 @@ struct StickerAlbumView: View {
             .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .background(MPColor.backgroundSurface.ignoresSafeArea())
-        .sheet(item: $opened) { sticker in
-            StickerSheet(sticker: sticker, onClose: { opened = nil })
+        // Düzen 10: albüm açılınca Odam'daki taze çıkartma noktası kalkar.
+        .onAppear { MPStickerNews.shared.clear(profile.id) }
+        .sheet(item: $opened, onDismiss: {
+            if let story = pendingRead {
+                pendingRead = nil
+                app.read(story)
+            }
+        }) { sticker in
+            let story = storyManager.stories.first { $0.id.uuidString == sticker.id }
+            StickerSheet(sticker: sticker,
+                         colophon: story.map {
+                             StoryColophon.colophon(childName: $0.childName,
+                                                    ordinal: StoryColophon.ordinal(of: $0, among: storyManager.stories))
+                         },
+                         onOpen: story.map { story in { pendingRead = story; opened = nil } },
+                         onClose: { opened = nil })
         }
     }
 
@@ -107,6 +123,10 @@ struct StickerAlbumView: View {
 /// Çıkartmaya dokununca: büyük çıkartma, ad ve tarih.
 private struct StickerSheet: View {
     let sticker: MPSticker
+    /// Künye satırı (düzen 6): "İrem'in 9. masalı". Klasikte yok.
+    var colophon: String? = nil
+    /// "Masalı aç"; klasik çıkartmada yok.
+    var onOpen: (() -> Void)? = nil
     let onClose: () -> Void
 
     var body: some View {
@@ -115,9 +135,17 @@ private struct StickerSheet: View {
                 StickerView(sticker: sticker, size: 180)
                 Text(sticker.date.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "tr_TR"))))
                     .mpText(.supporting).foregroundStyle(MPColor.textSecondary)
+                if let colophon {
+                    Text(colophon).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        .multilineTextAlignment(.center)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, MPSpacing.lg)
+        } footer: {
+            if let onOpen {
+                MPButton(title: "Masalı aç", systemImage: "book", fullWidth: true, action: onOpen)
+            }
         }
         .mpSheet(.half)
     }

@@ -17,6 +17,8 @@ struct SettingsView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var account = AccountService.shared
     @State private var showPrivacy = false
+    /// Destek penceresi (düzen 12).
+    @State private var showSupport = false
     @State private var confirmDelete = false
     @State private var confirmClear = false
     @State private var interestChoices: [InterestChoice] = []
@@ -50,6 +52,9 @@ struct SettingsView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
+        .sheet(isPresented: $showSupport) {
+            SupportSheet(onClose: { showSupport = false }).environmentObject(app)
+        }
         .navigationDestination(isPresented: $showPrivacy) {
             PrivacyAndDataView().toolbar(.hidden, for: .navigationBar)
         }
@@ -265,9 +270,8 @@ struct SettingsView: View {
 
     private var supportSection: some View {
         ParentSection(title: "Destek") {
-            ParentRowButton(systemImage: "message", tone: .lav, title: "Bize yaz") {
-                if let url = URL(string: "mailto:support@magicpaperkids.com") { UIApplication.shared.open(url) }
-            }
+            ParentRowButton(systemImage: "message", tone: .lav, title: "Destek",
+                            subtitle: "Bize yaz, sık sorulanlar, sürüm") { showSupport = true }
             MPRowDivider(area: .parent)
             ParentRowButton(systemImage: "star", tone: .yellow, title: "Uygulamayı değerlendir") {
                 requestReview()

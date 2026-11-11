@@ -38,6 +38,15 @@ struct LibraryItem: Identifiable, Equatable {
     let art: MPBookCover.Art
     /// Aramada eşleşen sözcükler, katlanmış (başlık, çocuk, mod, dünya…).
     let searchText: String
+    /// Kaldığı sayfa ve toplam (vizyon planı düzen 3: "Sayfa 2 / 6"). Klasikte
+    /// sayfa sayısı modelde yok, `nil`.
+    var page: (current: Int, total: Int)? = nil
+
+    /// Devam kartının satırı: "Sayfa 2 / 6", klasikte "Yarısı okundu" gibi.
+    var pageLabel: String {
+        if let page { return "Sayfa \(page.current) / \(page.total)" }
+        return progress >= 0.5 ? "Yarısından çoğu okundu" : "Okumaya başladın"
+    }
 
     var isPartlyRead: Bool { progress > 0 && progress < 1 }
 
@@ -75,6 +84,7 @@ struct LibraryItem: Identifiable, Equatable {
 
     static func == (lhs: LibraryItem, rhs: LibraryItem) -> Bool {
         lhs.id == rhs.id && lhs.progress == rhs.progress && lhs.isFavorite == rhs.isFavorite
+            && lhs.page?.current == rhs.page?.current
             && lhs.title == rhs.title && lhs.episode?.number == rhs.episode?.number
             && lhs.lastActivity == rhs.lastActivity && lhs.art == rhs.art && lhs.when == rhs.when
     }
@@ -220,7 +230,9 @@ extension LibraryShelfModel {
                                writtenAt: story.createdAt,
                                when: relativeLabel(for: story.lastReadAt ?? story.createdAt, now: now, calendar: calendar),
                                art: art(story),
-                               searchText: fold(words.compactMap { $0 }.joined(separator: " ")))
+                               searchText: fold(words.compactMap { $0 }.joined(separator: " ")),
+                               page: story.pages.isEmpty ? nil
+                                   : (min((story.lastReadPage ?? 0) + 1, story.pages.count), story.pages.count))
         }
         list += classics.map { entry in
             let tale = entry.tale

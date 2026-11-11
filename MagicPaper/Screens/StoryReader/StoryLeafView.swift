@@ -29,7 +29,13 @@ struct StoryLeafView: View {
     var body: some View {
         switch leaf {
         case .cover:
-            StoryCover(story: model.story, theme: theme)
+            StoryCover(story: model.story, theme: theme,
+                       listens: app.readerShouldSpeak(settings: settings)) { listen in
+                MPHaptics.selection()
+                app.readerVoiceChoice = listen
+                // Ayarın kendisi değişmez: seçim bu okumaya ait.
+                if !listen { MPSpeech.shared.stop() }
+            }
 
         case .dedication:
             StoryDedicationLeaf(dedication: model.story.dedication, theme: theme, readSize: app.readSize)
