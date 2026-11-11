@@ -222,7 +222,10 @@ struct WaveBottom: Shape {
 /// lavanta zeminde masal ve sayfanın tek birincil düğmesi. Ragi küçüldü ama
 /// ön planda (16 Ekim kararı, Batuhan 22 Ekim onayı).
 struct HomeHeroCard: View {
-    static let sceneHeight: CGFloat = 180
+    /// Vizyon planı düzen 1 (11 Kasım 2026, simülatörde ölçüldü): üç mod
+    /// alt çubuğun üstünde görünsün diye 130 pt. Plan 180 diyordu, ama gerçek
+    /// yazı yükseklikleriyle 402 pt genişlikte üçüncü mod çubuğun altında kalıyordu.
+    static let sceneHeight: CGFloat = 130
     let state: TonightState
     var isNight: Bool = false
     let onPrimary: () -> Void
@@ -237,7 +240,7 @@ struct HomeHeroCard: View {
                 Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
                 MPButton(title: buttonTitle, systemImage: buttonIcon, size: .hero, fullWidth: true, action: onPrimary)
-                    .padding(.top, MPSpacing.md)
+                    .padding(.top, MPSpacing.sm)
             }
             .padding(MPSpacing.lg)
         }
@@ -245,16 +248,19 @@ struct HomeHeroCard: View {
         .clipShape(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
     }
 
-    /// Manzara doğal oranında (kule ve ay kırpılmaz), gündüz ve gece
-    /// çapraz geçişle; Ragi sağ altta.
+    /// Manzara sabit yükseklikte, üstten hizalı: kule, güneş ve ay hep
+    /// görünür, kırpılan yalnızca alttaki çayır. Gündüz ve gece çapraz
+    /// geçişle; Ragi sağ altta.
     private var scene: some View {
         ZStack(alignment: .bottomTrailing) {
             ZStack {
                 MPColor.sceneSkyDay
-                Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fit)
+                Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
+                    .frame(height: Self.sceneHeight, alignment: .top).clipped()
                 ZStack {
                     MPColor.sceneSkyNight
-                    Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fit)
+                    Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
+                        .frame(height: Self.sceneHeight, alignment: .top).clipped()
                 }
                 .opacity(isNight ? 1 : 0)
             }
@@ -266,6 +272,7 @@ struct HomeHeroCard: View {
                 .padding(.bottom, MPSpacing.sm)
         }
         .frame(maxWidth: .infinity)
+        .frame(height: Self.sceneHeight)
         .clipped()
     }
 

@@ -132,6 +132,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Ana sayfa kıvrımı: üç mod alt çubuğun üstünde
+
+- **Sorun:** simülatörde (iPhone 17 Pro, 402 × 874 pt) "Maceraya çıkalım" alt çubuğun altında kalıyordu, "Yeni şeyler öğrenelim" de yarıya kadar. `HomeHeroCard.sceneHeight = 180` tanımlıydı ama hiç kullanılmıyordu: sahne tam genişlikte doğal oranında çiziliyor, ~203 pt oluyordu.
+- **Değişen:**
+  - Sahne sabit **130 pt**, resim üstten hizalı kırpılıyor: kule, güneş ve gece ayı hep görünür, kırpılan yalnızca alttaki çayır.
+  - Kart düğmesinin üst boşluğu `md`'den `sm`'e indi.
+- **Plandan sapma:** vizyon planı düzen 1 sahneyi 180 pt diye çiziyordu. Gerçek yazı yükseklikleriyle 180'de üçüncü mod çubuğun altında kalıyor; planın asıl kuralı ("üç mod kıvrımın üstünde") korundu.
+- **Doğrulama:**
+  - Simülatörde üç mod da görünüyor; üçüncünün alt yazısı çubuğun hemen üstünde, yani pay az.
+  - `testSnapshotHeroCardStates` referansları bilinçli olarak yeniden kaydedildi ve gözle kontrol edildi. `DesignSystemSnapshotTests` ve `PastelHomeRulesTests` 21/21 yeşil.
+- **Görülmedi:** gece sahnesi (uyku saati değildi), iPhone SE, en büyük yazı. SE'de üç mod büyük olasılıkla yine sığmaz; planın SE notu ("önizleme kalkar") ayrı iş.
+- **Dosyalar:** `DesignSystem/Pastel/MPHomeChrome.swift`, iki görüntü referansı.
+
 ### 2026-11-11 · main, commit bu kayıtla · Simülatör turu: Faz 7-14 ekranları ve bulunan hatalar
 
 - **Görüldü (iPhone 17 Pro simülatörü, iOS 27, açık tema, normal yazı):**
