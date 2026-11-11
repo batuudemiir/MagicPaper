@@ -711,6 +711,10 @@ enum MP {
             static let waveLength: Double = 1.7
             static let waveEvery: Double = 11
             static let hop: Double = 0.46
+            /// Zıplamadan önceki çömelme ve yere indikten sonraki kuyruk
+            /// salınımı (Faz 13: hazırlık ve takip).
+            static let anticipate: Double = 0.14
+            static let settle: Double = 0.7
             /// Masal sonunda kazanılanların arası ve geceye kararış.
             static let reveal: Double = 0.34
             static let nightFade: Double = 0.9

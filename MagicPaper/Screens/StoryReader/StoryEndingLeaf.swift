@@ -106,7 +106,7 @@ struct StoryEndingLeaf: View {
             withAnimation(MP.M.slow) { revealed = total }
             return
         }
-        MPHaptics.success()
+        MPHaptics.storyEnding()
         MPSound.play(.ending)
         burst = true
         withAnimation(MP.M.spring) { revealed = 1 }

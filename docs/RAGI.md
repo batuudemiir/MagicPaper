@@ -58,6 +58,8 @@ Kod: `DesignSystem/MPSound.swift`. Dosyalar kodla sentezlenir: `Tools/make_ragi_
 | `mp_page` | Çok kısık kâğıt hışırtısı | Sayfa çevrilince |
 | `mp_ragi` | Küçük mırıltı | İlk açılış, Profil'de Ragi'ye dokununca |
 
+Perde-anlam haritası (Faz 13, sabit): bütün notalar Sol majör pentatonik (G5-G6). Yukarı giden nota "tamamlandı, kazanıldı" der; aşağı inen nota yok, çünkü hiçbir şey kaybedilmez. Ragi notasız bir cıvıltı, kâğıt notasız bir hışırtı. Hafif stereo: sayfa biraz solda, kazanılan öğe biraz sağda (Odam sekmesine uçar). Dokunsal desenler yalnızca iki anda: sayfa (`mp_page.ahap`) ve masal sonu (`mp_ending.ahap`, sesin üç notasıyla aynı ritim).
+
 Kurallar: sessize alma anahtarına uyar, başka uygulamanın sesini kesmez, uyku vaktinde ve masal okunurken çalmaz, Ayarlar'da "Sesler" ile kapanır. Bildirimle ses gönderilmez.
 
 ## Önizleme

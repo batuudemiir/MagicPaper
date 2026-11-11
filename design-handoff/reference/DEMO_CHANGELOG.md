@@ -132,6 +132,35 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Faz 13: zanaat (tipografi, dokunsallık, ses, Ragi, geçiş, kâğıt)
+
+- **Tipografi:** masal metninde "fi" ve "fl" ligatürleri kapandı.
+  - Nunito'da ikisi de var (fontTools ile doğrulandı) ve "i"nin noktasını yutuyor; Türkçede "i" ile "ı" ayrımı kayboluyordu.
+  - Yöntem: 0,01 pt harf arası (`ReaderText.tracking`). CoreText sıfırdan farklı harf aralığında zorunlu olmayan ligatürleri kapatır (`CTStringAttributes.h`); Dynamic Type bozulmaz.
+  - Kapsam: okuyucu sayfaları, ithaf, "Masal yazılıyor" defteri. "Kolay okuma" eskisi gibi harf arasını açar.
+- **Dokunsallık:**
+  - İki AHAP deseni: `mp_page.ahap` (yumuşak sayfa vuruşu) ve `mp_ending.ahap` (masal sonu sesinin üç notasıyla aynı ritim, yükselen üç vuruş).
+  - Yalnızca `MPHaptics` üzerinden; Core Haptics yoksa eski jeneratöre düşer. Yeni `MPHaptics.storyEnding()`.
+- **Ses:**
+  - Sabit perde-anlam haritası (`MPSound`, `docs/RAGI.md`): tek dizi Sol majör pentatonik, yukarı giden nota "tamamlandı" der, aşağı inen nota yok.
+  - Hafif stereo: sayfa biraz solda, kazanılan öğe biraz sağda.
+  - Plan "uyku modunda kısık" diyordu; CLAUDE.md uyku vaktinde hiç ses çalmamayı söylüyor, o kural korundu.
+- **Ragi:** sevinç zıplamasına hazırlık (çömelme) ve takip (kuyruk ve baş sönerek salınır) eklendi; el sallamadan önce kol bir an ters yöne çekilir. Yeni süreler `MP.M.RagiBeat.anticipate` ve `settle`; `RagiAndEndingTests` yeni süreye uyarlandı.
+- **Geçiş:** kitaplıkta kapağa dokununca okuyucu o kapaktan büyüyerek açılır (iOS 18 yakınlaşma, mevcut `mpZoomSource`/`mpZoomDestination`).
+  - iOS 17'de ve Hareketi Azalt açıkken olağan geçiş.
+  - Başka yerden açılan okuyucu yakınlaşmaz (`MPAppState.readerZoomID`).
+- **Kâğıt:**
+  - Okuyucu kâğıdının greni Metal'de (`PaperGrain.metal`, `colorEffect`): karo tekrarı yok, kenarlarda çok hafif koyulaşma, zamana bağlı değil.
+  - Kapak ve kıvrımın arka yüzü eski karoda kaldı.
+- **Yapılmayan:** `TextRenderer` (iOS 18) ile glif düzeyinde okuma eşliği, "kelimeye dokun, duy", 3-4 yaş seçeneklerinin sesli okunması. Ayrı bir tur ister.
+- **Doğrulama:**
+  - `xcodebuild build-for-testing` başarılı. AHAP dosyaları ve `paperGrain` shader'ı uygulama paketinde.
+  - Testler çalıştırılmadı (kural: fazlar bitince bir kez).
+  - Simülatörde ve cihazda görülmedi: titreşim, stereo ve yakınlaşma hissedilmedi.
+- **Dosyalar:**
+  - Yeni: `DesignSystem/Haptics/mp_page.ahap`, `DesignSystem/Haptics/mp_ending.ahap`, `Screens/StoryReader/PaperGrain.metal`.
+  - Değişen: `MPHaptics.swift`, `MPSound.swift`, `MPRagi.swift`, `MPTheme.swift`, `MPGlass.swift`, `ReaderText.swift`, `StoryPageView.swift`, `StoryDedicationLeaf.swift`, `PreparationNotebook.swift`, `ReaderPaper.swift`, `StoryEndingLeaf.swift`, `LibraryComponents.swift`, `MPAppState.swift`, `ContentView.swift`, `RagiAndEndingTests.swift`, `docs/RAGI.md`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 12: yayınevi (baskıya hazır PDF, yıllık)
 
 - **Baskıya hazır PDF (`MPPrintSpec`):**

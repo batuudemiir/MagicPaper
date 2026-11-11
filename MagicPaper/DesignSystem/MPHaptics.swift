@@ -1,3 +1,4 @@
+import CoreHaptics
 import UIKit
 
 /// Dokunsal geri bildirim.
@@ -26,6 +27,43 @@ enum MPHaptics {
 
     private static var enabled: Bool { MPSettingsStore.shared.haptics }
 
+    // MARK: - Desenler (Faz 13)
+
+    /// İki imza an için AHAP deseni: sayfa ve masal sonu. Dosyalar
+    /// `DesignSystem/Haptics`; cihaz Core Haptics desteklemiyorsa ya da dosya
+    /// açılmazsa bugünkü jeneratör çalar. Başka hiçbir an desen almaz.
+    enum Pattern: String {
+        case page = "mp_page"
+        case ending = "mp_ending"
+    }
+
+    private static var engine: CHHapticEngine?
+
+    private static func hapticEngine() -> CHHapticEngine? {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return nil }
+        if let engine { return engine }
+        guard let made = try? CHHapticEngine() else { return nil }
+        made.isAutoShutdownEnabled = true
+        made.playsHapticsOnly = true
+        made.resetHandler = { try? made.start() }
+        try? made.start()
+        engine = made
+        return made
+    }
+
+    /// Deseni çalar; çalamazsa `false` döner ve çağıran yedeğe düşer.
+    private static func play(_ pattern: Pattern) -> Bool {
+        guard let engine = hapticEngine(),
+              let url = Bundle.main.url(forResource: pattern.rawValue, withExtension: "ahap") else { return false }
+        do {
+            try engine.start()
+            try engine.playPattern(from: url)
+            return true
+        } catch {
+            return false
+        }
+    }
+
     /// Okuyucuya girerken çağrılır. Jeneratörler kısa süre "sıcak" kalır.
     static func prepare() {
         guard enabled else { return }
@@ -40,6 +78,7 @@ enum MPHaptics {
     static func pageTurn() {
         MPSound.play(.page)
         guard enabled else { return }
+        if play(.page) { return }
         light.impactOccurred(intensity: 0.45)
         light.prepare()
     }
@@ -60,7 +99,15 @@ enum MPHaptics {
         medium.impactOccurred()
     }
 
-    /// Bir şey tamamlandığında — masalın sonu gibi.
+    /// Masal sonu (Faz 13): `mp_ending` sesinin üç notasıyla aynı ritim.
+    /// Masal başına bir kez; desen yoksa `success()`.
+    static func storyEnding() {
+        guard enabled else { return }
+        if play(.ending) { return }
+        notice.notificationOccurred(.success)
+    }
+
+    /// Bir şey tamamlandığında: kayıt, paylaşım, ciltleme.
     static func success() {
         guard enabled else { return }
         notice.notificationOccurred(.success)

@@ -80,6 +80,12 @@ extension View {
         }
     }
 
+    /// Kitaplıkta kapaktan okuyucuya yakınlaşmanın ad alanı (Faz 13).
+    /// `ContentView` koyar; Hareketi Azalt açıkken nil.
+    func mpReaderZoom(_ namespace: Namespace.ID?) -> some View {
+        environment(\.mpReaderZoom, namespace)
+    }
+
     /// `mpZoomSource` ile işaretlenmiş düğmeden büyüyerek açılan ekran.
     @ViewBuilder
     func mpZoomDestination(_ id: String, in namespace: Namespace.ID?) -> some View {
@@ -110,5 +116,17 @@ extension View {
             let bottom = inset > MP.S.x4 ? -(inset - MP.S.x4) : MP.S.x2
             self.safeAreaInset(edge: .bottom, spacing: 0) { bar().padding(.bottom, bottom) }
         }
+    }
+}
+
+private struct MPReaderZoomKey: EnvironmentKey {
+    static let defaultValue: Namespace.ID? = nil
+}
+
+extension EnvironmentValues {
+    /// Kapaktan okuyucuya yakınlaşma (Faz 13, iOS 18+).
+    var mpReaderZoom: Namespace.ID? {
+        get { self[MPReaderZoomKey.self] }
+        set { self[MPReaderZoomKey.self] = newValue }
     }
 }

@@ -159,6 +159,7 @@ struct InkLine: View {
         Text(attributed)
             .font(MP.F.read(MP.ReadSize.normal.points))
             .lineSpacing(MP.ReadSize.normal.lineSpacing)
+            .tracking(ReaderText.noLigatures)
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityLabel(text)
             .task(id: text) {

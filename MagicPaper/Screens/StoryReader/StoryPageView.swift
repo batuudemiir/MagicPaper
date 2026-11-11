@@ -248,7 +248,7 @@ struct StoryPageView: View {
                                         readAlong: readAlong(for: i, mark: mark, in: paragraph)))
                 .lineSpacing(readSize.points * spacing.factor)
                 // Kolay okuma: harf arası açılır, font Nunito kalır.
-                .tracking(easyReading ? readSize.points * 0.06 : 0)
+                .tracking(ReaderText.tracking(readSize.points, easyReading: easyReading))
                 .tint(wordHighlight)
                 .fixedSize(horizontal: false, vertical: true)
                 // Konuşma paragrafı solda ince bir çizgiyle ayrılır.
@@ -282,7 +282,7 @@ struct StoryPageView: View {
                                                 readAlong: mark.map { .init(start: $0.start, end: $0.end,
                                                                             fill: theme.readAlong, readInk: theme.body) }))
                         .lineSpacing(lineGap)
-                        .tracking(easyReading ? size * 0.06 : 0)
+                        .tracking(ReaderText.tracking(size, easyReading: easyReading))
                         .tint(wordHighlight)
                         .fixedSize(horizontal: false, vertical: true)
                 }

@@ -11,10 +11,13 @@ final class RagiAndEndingTests: XCTestCase {
     }
 
     func testCheerHopsThenCalms() {
-        let hops = stride(from: 0.0, to: MP.M.RagiBeat.hop * 2, by: 0.02)
+        let hops = stride(from: 0.0, to: RagiMotion.cheerHopsEnd, by: 0.02)
             .map { RagiMotion.frame(act: .cheer, t: $0, seed: 0).hop }
         XCTAssertGreaterThan(hops.max() ?? 0, 0.05)
-        for t in stride(from: MP.M.RagiBeat.hop * 2, to: 30, by: 0.5) {
+        // Faz 13: hazırlıkta yerden kalkmaz, yalnızca çömelir.
+        XCTAssertEqual(RagiMotion.frame(act: .cheer, t: MP.M.RagiBeat.anticipate / 2, seed: 0).hop, 0)
+        XCTAssertLessThan(RagiMotion.frame(act: .cheer, t: MP.M.RagiBeat.anticipate / 2, seed: 0).squash, 0)
+        for t in stride(from: RagiMotion.cheerHopsEnd, to: 30, by: 0.5) {
             XCTAssertEqual(RagiMotion.frame(act: .cheer, t: t, seed: 0).hop, 0, "Ragi sürekli zıplamaz")
         }
     }

@@ -25,12 +25,19 @@ struct ReaderPaper: View {
         ZStack {
             theme.paper
 
+            // Faz 13: gren ve kenar Metal'de (`PaperGrain.metal`); karo tekrarı yok.
+            // Kapak ve kıvrımın arka yüzü hâlâ `ReaderGrain` karosunu kullanır;
+            // yüzde 3-4'lük grende iki yüz ayırt edilmez.
             if ReaderPaper.showsGrain && !reduceTransparency {
-                Image(uiImage: ReaderGrain.tile)
-                    .resizable(resizingMode: .tile)
-                    .opacity(theme.isDark ? 0.05 : 0.035)
-                    .blendMode(theme.isDark ? .plusLighter : .multiply)
-                    .allowsHitTesting(false)
+                GeometryReader { geo in
+                    Rectangle()
+                        .fill(theme.paper)
+                        .colorEffect(ShaderLibrary.paperGrain(
+                            .float2(geo.size),
+                            .float(theme.isDark ? 0.03 : 0.04),
+                            .float(theme.isDark ? 1 : 0)))
+                }
+                .allowsHitTesting(false)
             }
 
             // Cilt payı — kitabın dikişe yakın kenarındaki ince gölge.

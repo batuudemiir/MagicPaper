@@ -1,0 +1,14 @@
+{
+  "Version": 1.0,
+  "Metadata": { "Project": "MagicPaper", "Description": "Sayfa yerine oturur: kısa, yumuşak, kâğıdın masaya değmesi." },
+  "Pattern": [
+    { "Event": { "Time": 0.0, "EventType": "HapticTransient", "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.42 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.18 } ] } },
+    { "Event": { "Time": 0.02, "EventType": "HapticContinuous", "EventDuration": 0.07, "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.14 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.05 },
+      { "ParameterID": "DecayTime", "ParameterValue": 0.06 },
+      { "ParameterID": "Sustained", "ParameterValue": 0.0 } ] } }
+  ]
+}

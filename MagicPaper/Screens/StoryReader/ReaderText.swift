@@ -32,6 +32,18 @@ enum ReaderText {
 
     private static let locale = Locale(identifier: "tr_TR")
 
+    /// Masal metninin harf arası (Faz 13). Sıfır değil, çünkü CoreText'te
+    /// sıfırdan farklı harf arası zorunlu olmayan ligatürleri kapatır
+    /// (`kCTTrackingAttributeName`): Nunito'nun "fi" ve "fl" ligatürü "i"nin
+    /// noktasını yutar, Türkçede "i" ile "ı" ayrımı kaybolur. 0,01 pt gözle
+    /// görülmez. "Kolay okuma" yalnızca harf arasını açar, font Nunito kalır.
+    static func tracking(_ points: CGFloat, easyReading: Bool) -> CGFloat {
+        easyReading ? points * 0.06 : noLigatures
+    }
+
+    /// Ligatürsüz okuma için en küçük harf arası.
+    static let noLigatures: CGFloat = 0.01
+
     // MARK: - Cümleler
 
     /// Paragrafın cümleleri, UTF-16 aralıkları olarak. Boşluklar cümleye

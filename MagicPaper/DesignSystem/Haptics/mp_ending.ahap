@@ -1,0 +1,20 @@
+{
+  "Version": 1.0,
+  "Metadata": { "Project": "MagicPaper", "Description": "Masal sonu: mp_ending'in üç notasıyla aynı anda üç yükselen, yumuşak vuruş; sonuncusu kısa süre kalır." },
+  "Pattern": [
+    { "Event": { "Time": 0.0, "EventType": "HapticTransient", "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.35 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.25 } ] } },
+    { "Event": { "Time": 0.13, "EventType": "HapticTransient", "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.5 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.35 } ] } },
+    { "Event": { "Time": 0.26, "EventType": "HapticTransient", "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.65 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.4 } ] } },
+    { "Event": { "Time": 0.27, "EventType": "HapticContinuous", "EventDuration": 0.35, "EventParameters": [
+      { "ParameterID": "HapticIntensity", "ParameterValue": 0.2 },
+      { "ParameterID": "HapticSharpness", "ParameterValue": 0.1 },
+      { "ParameterID": "DecayTime", "ParameterValue": 0.3 },
+      { "ParameterID": "Sustained", "ParameterValue": 0.0 } ] } }
+  ]
+}

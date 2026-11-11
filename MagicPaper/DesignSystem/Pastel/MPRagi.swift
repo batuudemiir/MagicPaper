@@ -47,21 +47,35 @@ enum RagiMotion {
         switch act {
         case .wave:
             // İki kez sallar, sonra kolu yavaşça dinlenir; ara ara yeniden selam verir.
+            // Hazırlık (Faz 13): kol sallamadan önce bir an ters yöne çekilir.
             let local = t.truncatingRemainder(dividingBy: beat.waveEvery)
-            if local < beat.waveLength {
-                let envelope = sin(.pi * local / beat.waveLength)
-                f.arm = wave(local, period: beat.waveSwing) * 0.2 * envelope
+            if local < beat.anticipate {
+                f.arm = -0.05 * sin(.pi * local / beat.anticipate)
+            } else if local < beat.anticipate + beat.waveLength {
+                let swing = local - beat.anticipate
+                let envelope = sin(.pi * swing / beat.waveLength)
+                f.arm = wave(swing, period: beat.waveSwing) * 0.2 * envelope
                 f.head += 0.03 * envelope
             }
         case .cheer:
-            // İki küçük zıplama; sonra sakin nefes. Sürekli zıplamaz.
-            if t < beat.hop * 2 {
-                let phase = (t / beat.hop).truncatingRemainder(dividingBy: 1)
-                let height = t < beat.hop ? 0.085 : 0.05
+            // Hazırlık, iki küçük zıplama, takip; sonra sakin nefes. Sürekli zıplamaz.
+            if t < beat.anticipate {
+                // Çömelir: zıplamanın gücü buradan gelir gibi görünür.
+                f.squash = -0.045 * sin(.pi / 2 * t / beat.anticipate)
+            } else if t < cheerHopsEnd {
+                let local = t - beat.anticipate
+                let phase = (local / beat.hop).truncatingRemainder(dividingBy: 1)
+                let height = local < beat.hop ? 0.085 : 0.05
                 f.hop = sin(.pi * phase) * height
                 // Yere değerken kısa basılır, havada uzar.
                 f.squash = (phase < 0.12 || phase > 0.88) ? -0.03 : 0.02
-                f.head += wave(t, period: beat.hop) * 0.04
+                f.head += wave(local, period: beat.hop) * 0.04
+            } else if t < cheerHopsEnd + beat.settle {
+                // Takip: gövde durur, kuyruk ve baş biraz daha gider, sönerek oturur.
+                let local = t - cheerHopsEnd
+                let decay = 1 - local / beat.settle
+                f.tail += wave(local, period: beat.settle / 2) * 0.09 * decay
+                f.head += wave(local, period: beat.settle / 2) * 0.015 * decay
             }
         case .read:
             f.head += wave(t, period: beat.read) * 0.022
@@ -75,6 +89,9 @@ enum RagiMotion {
         }
         return f
     }
+
+    /// Sevinç zıplamasının bittiği an: hazırlık + iki zıplama.
+    static var cheerHopsEnd: Double { MP.M.RagiBeat.anticipate + MP.M.RagiBeat.hop * 2 }
 
     /// Her `blinkEvery` civarı bir kırpma; `seed` iki Ragi'yi aynı anda kırptırmaz.
     static func blink(t: Double, seed: Double) -> Double {

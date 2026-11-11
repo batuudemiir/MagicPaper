@@ -99,6 +99,9 @@ struct LibraryShelfGrid<QuickActions: View>: View {
     /// Çocuğun seçtiği raf (`MPDecor`); `nil` varsayılan ahşap.
     var shelfTone: MPWorldTone? = nil
 
+    @Environment(\.mpReaderZoom) private var readerZoom
+    @EnvironmentObject private var app: MPAppState
+
     private var columns: Int { singleColumn ? 1 : 2 }
     private var inner: CGFloat { max(0, pageWidth - MPSpacing.screenH * 2) }
     private var coverWidth: CGFloat {
@@ -115,8 +118,13 @@ struct LibraryShelfGrid<QuickActions: View>: View {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(alignment: .bottom, spacing: MPSpacing.lg) {
                         ForEach(row) { item in
-                            Button { open(item) } label: {
+                            Button {
+                                // Faz 13: okuyucu bu kapaktan büyüyerek açılır.
+                                app.readerZoomID = item.id
+                                open(item)
+                            } label: {
                                 MPBookCover(art: item.art, badge: item.badge, width: coverWidth)
+                                    .mpZoomSource(item.id.uuidString, in: readerZoom)
                             }
                             .buttonStyle(MPPressStyle())
                             .contextMenu { menu(item) }

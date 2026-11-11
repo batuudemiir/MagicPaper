@@ -30,6 +30,9 @@ final class MPAppState: ObservableObject {
 
     @Published var showPaywall = false
     @Published var readerStory: Story?
+    /// Okuyucu kitaplıktaki bu kapaktan açıldı: kapaktan büyüyerek gelir
+    /// (Faz 13). Başka yerden açılınca nil, olağan geçiş.
+    var readerZoomID: UUID?
     /// Okuyucu hangi sayfadan açılsın; `nil` kaldığı yerden.
     @Published var readerStartPage: Int?
     /// 17 · Masal aksiyonları: kitaplıkta kapağa dokununca açılan sayfa.

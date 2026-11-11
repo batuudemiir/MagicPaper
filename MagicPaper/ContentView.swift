@@ -20,6 +20,8 @@ struct ContentView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Masal yaz dairesinden masal yazma ekranına yakınlaşma.
     @Namespace private var createZoom
+    /// Kitaplıktaki kapaktan okuyucuya yakınlaşma (Faz 13).
+    @Namespace private var readerZoom
     /// Masal yazma ekranı Masal yaz dairesinden mi açıldı. Başka yerden
     /// (ana sayfa kartları) açılınca daireden büyümez.
     @State private var createFromBar = false
@@ -30,6 +32,7 @@ struct ContentView: View {
 
     var body: some View {
         content
+            .mpReaderZoom(reduceMotion ? nil : readerZoom)
             .ignoresSafeArea(.keyboard)
             .environmentObject(app)
             .environmentObject(settings)
@@ -144,10 +147,13 @@ struct ContentView: View {
             }
             .fullScreenCover(item: $app.readerStory, onDismiss: {
                 app.readerStartPage = nil
+                app.readerZoomID = nil
                 MPSurfaceSync.refresh()
                 app.runAfterReader()
             }) { story in
                 StoryReaderView(story: story, startingPage: app.readerStartPage).environmentObject(app).environmentObject(settings)
+                    .mpZoomDestination(story.id.uuidString,
+                                       in: app.readerZoomID == story.id && !reduceMotion ? readerZoom : nil)
             }
             .fullScreenCover(isPresented: $app.showPaywall) {
                 PaywallView().environmentObject(app)

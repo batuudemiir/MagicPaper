@@ -19,6 +19,7 @@ struct StoryDedicationLeaf: View {
                     Text(dedication.line)
                         .font(MP.F.read(readSize.points))
                         .lineSpacing(readSize.lineSpacing)
+                        .tracking(ReaderText.noLigatures)
                         .italic()
                         .foregroundStyle(theme.foreground)
                     Text(dedication.date)
