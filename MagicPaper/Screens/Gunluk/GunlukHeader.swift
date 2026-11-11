@@ -6,15 +6,16 @@ import SwiftUI
 
 /// Kaydırılan vitrin.
 ///
-/// - Tepede "Masallar" ve arama; resmin üstü kreme açılır ki yazı ve saat çubuğu
-///   okunsun (Ana sayfanın açık gökyüzü üstünde koyu başlık dili).
+/// - Tepede "Masallar" ve arama düz krem zeminde, öbür sekmeler gibi; boyalı
+///   sahne başlığın altından başlar (11 Kasım 2026: resmin tepesini kreme açan
+///   beyaz geçiş kalktı, saat çubuğu ve başlık kâğıt üstünde okunur).
 /// - Altta karartma, etiket, masalın adı, meta ve "Oku"; alt köşeler yuvarlak,
 ///   Ana sayfanın kartları gibi sert alt kenarlı.
 /// - Kendiliğinden geçiş yavaş (7 sn) ve tek yönlü; kullanıcı kaydırınca durur,
 ///   Hareketi Azalt açıkken hiç başlamaz (sakin UX, tasarım yasası: hareket).
 struct GunlukHeaderCarousel: View {
     let slides: [ClassicHeaderSlide]
-    /// Saat çubuğunun yüksekliği: vitrin onun altına taşar, başlık altında kalır.
+    /// Saat çubuğunun yüksekliği: başlık onun altından başlar.
     var topInset: CGFloat = 0
     /// Saat çubuğunun altındaki görünen yükseklik: boyalı sahne olayı anlatacak
     /// kadar büyük (Batuhan, 14 Ekim: %45'e küçültülmüş hali görseli kesiyordu).
@@ -46,19 +47,19 @@ struct GunlukHeaderCarousel: View {
         // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
         // yuvarlak, sert alt kenarlı bir sahne olarak biter. Sayfa noktaları
         // sahnenin içinde, resmin üstünde: vitrinden ayrı bir parça durmaz.
-        ZStack(alignment: .top) {
-            pager
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
             titleBar
+            pager
+                .overlay(alignment: .bottomTrailing) {
+                    if slides.count > 1 {
+                        MPPageDots(count: slides.count, current: current, onDark: true)
+                            .padding(.trailing, MPSpacing.screenH)
+                            .padding(.bottom, MPSpacing.xxl + MPSpacing.md)
+                    }
+                }
+                .frame(height: artHeight)
+                .gunlukStage()
         }
-        .overlay(alignment: .bottomTrailing) {
-            if slides.count > 1 {
-                MPPageDots(count: slides.count, current: current, onDark: true)
-                    .padding(.trailing, MPSpacing.screenH)
-                    .padding(.bottom, MPSpacing.xxl + MPSpacing.md)
-            }
-        }
-        .frame(height: height + topInset)
-        .gunlukStage()
         .task(id: selection) { await advanceLater() }
         .onAppear { if selection == nil { selection = GunlukLoop.start(count: slides.count) } }
         // Kenara yaklaşınca ortadaki aynı slayta görünmeden atlar: sondan sonra
@@ -100,7 +101,7 @@ struct GunlukHeaderCarousel: View {
 
             // Karartma ve metin `MPArtHero`'dan; sahne arkadaki düğme, karartma
             // dokunuşu geçirir.
-            MPArtHero(height: height + topInset) {
+            MPArtHero(height: artHeight) {
                 Color.clear
             } content: {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
@@ -116,33 +117,27 @@ struct GunlukHeaderCarousel: View {
                         .padding(.top, MPSpacing.sm)
                         .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
                 }
-                .frame(maxHeight: height - Self.titleBarClearance, alignment: .bottom)
+                .frame(maxHeight: artHeight, alignment: .bottom)
             }
             // Sahne sabit yükseklikte: en büyük yazı boyutlarında metin başlığın
             // üstüne binmesin diye büyüme sınırlı, sığmazsa küçülür (alt bar gibi).
             .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         }
-        .frame(height: height + topInset)
+        .frame(height: artHeight)
     }
 
-    /// Başlık satırının ("Masallar" ve arama) sahnede kapladığı yer.
+    /// Başlık satırının ("Masallar" ve arama) kapladığı yer: sahne bu kadar
+    /// kısalır, vitrinin toplam yüksekliği ve kıvrım değişmez.
     private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
 
-    /// Boyalı kapak: tepesi sayfa zeminine açılır (başlık); altın karartması
-    /// metinle birlikte `MPArtHero`'dan gelir.
+    private var artHeight: CGFloat { height - Self.titleBarClearance }
+
+    /// Boyalı kapak, soluklaşmadan; altın karartması metinle birlikte
+    /// `MPArtHero`'dan gelir.
     private func art(_ tale: ClassicTale) -> some View {
         ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
-            .frame(height: height + topInset)
+            .frame(height: artHeight)
             .frame(maxWidth: .infinity)
-            .overlay(alignment: .top) {
-                // Yalnızca saat çubuğu ve "Masallar" yazısının arkası açılır; resmin
-                // geri kalanı olduğu gibi, soluklaşmadan görünür.
-                LinearGradient(stops: [.init(color: MPColor.backgroundSurface.opacity(0.94), location: 0),
-                                       .init(color: MPColor.backgroundSurface.opacity(0.88), location: 0.68),
-                                       .init(color: MPColor.backgroundSurface.opacity(0), location: 1)],
-                               startPoint: .top, endPoint: .bottom)
-                    .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg * 3)
-            }
             .clipped()
             .accessibilityHidden(true)
     }
@@ -153,7 +148,7 @@ struct GunlukHeaderCarousel: View {
         MPKidTabHeader(title: "Masallar") {
             MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: onSearch)
         }
-        // Başlık resmin üstünde sabit bir yerde durur; satır büyümesin.
+        // Başlık sahnenin üstünde sabit bir yer kaplar; satır büyümesin.
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.top, topInset + MPSpacing.lg)

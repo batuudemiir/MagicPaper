@@ -132,6 +132,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+
+### 2026-11-11 · main, commit bu kayıtla · Masallar vitrininin tepesindeki beyaz geçiş kalktı
+
+- Ne değişti: Masallar vitrininde saat çubuğu ve "Masallar" başlığı boyalı kapağın üstündeydi. Resmin tepesi kreme açılan bir `LinearGradient` ile soluklaşıyordu. Bu geçiş kalktı. Başlık ve arama artık düz krem zeminde, öbür sekmeler gibi. Sahne başlığın altından başlıyor, resim hiç soluklaşmıyor. Sahne yüksekliği başlık satırı kadar kısaldı (`height - titleBarClearance`), bu yüzden vitrinin toplam yüksekliği ve kıvrım değişmedi.
+- Bilerek değişmeyenler: altın karartması (`MPArtHero`), sayfa noktaları, kendiliğinden geçiş, sahnenin yuvarlak alt köşeleri ve sert alt kenarı.
+- Doğrulama: derleme yeşil. iPhone 17 Pro simülatöründe açık temada görüldü: başlık kremde, sahne temiz, raf kapıları kıvrımın üstünde. Testler çalıştırılmadı. Koyu tema, en büyük yazı ve iPhone SE görülmedi. Design law grep'leri bu dosyada boş.
+- Dosya: `MagicPaper/Screens/Gunluk/GunlukHeader.swift`.
 ### 2026-11-11 · main, commit bu kayıtla · Ana sayfa kıvrımı: üç mod alt çubuğun üstünde
 
 - **Sorun:** simülatörde (iPhone 17 Pro, 402 × 874 pt) "Maceraya çıkalım" alt çubuğun altında kalıyordu, "Yeni şeyler öğrenelim" de yarıya kadar. `HomeHeroCard.sceneHeight = 180` tanımlıydı ama hiç kullanılmıyordu: sahne tam genişlikte doğal oranında çiziliyor, ~203 pt oluyordu.
