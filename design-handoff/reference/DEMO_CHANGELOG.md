@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · Üç modelli ajan takımı kuruldu, ilk açılış UX denetimi yapıldı
+
+- Ne yapıldı: `selmakcby/fable-ajan-takimi` reposu `~/Desktop/fable-ajan-takimi` klasörüne kuruldu (MagicPaper reposunun dışında). Takımda Fable 5.2 lider, Opus 5.5 geliştirici, Sonnet 5.5 testçi. `claude` CLI'ı 2.1.131'den 2.1.322'ye güncellendi, çünkü Fable 5.2 bunu istiyor. `orkestra.py` dosyasına `--gorev <ad>` seçeneği eklendi: görev ve akış `kurulum/gorevler/<ad>/` altından okunuyor, MagicPaper dosyaları proje klasörüne iki kopya halinde yazılıyor (`kaynak/` düzeltmeler için, `orijinal/` karşılaştırma için).
+- Görev `magicpaper-ilk-acilis`: karşılamadan Ana sayfa'ya kadar ilk açılış yolculuğunun UX denetimi. 7 tur, 4,95 $ (Fable 3,39 $, Opus 1,27 $, Sonnet 0,29 $). Çıktı `kurulum/kayit/mp-ilk-acilis/proje/`: `UX_DENETIMI.md` (6 P1, 3 P2, 1 P3), 5 dosyada Swift düzeltmesi, `kontrol.js`.
+- Takımın düzelttikleri (yalnızca kopyada): ebeveyn onayından Ragi kaldırıldı; giriş ve açılış ekranında `MPGlowBackground` yerine düz krem zemin; "önce masal" sırasında hatırlatma sorusu artık boşa harcanmıyor; karşılamadaki yaş çipleri yalnızca masalı yazılmış bantları gösteriyor.
+- Açık bırakılanlar (yönlendirme kararı gerekiyor): "önce masal" sırasında "Bir masal daha" çocuğu giriş ekranına düşürüyor; dönen ebeveyn için "Hesabım var" yolu yok. Lider, bu ikisi çözülmeden `storyBeforeAccount` bayrağının açılmamasını öneriyor.
+- Bilerek değişmedi: MagicPaper reposunda hiçbir kod değişmedi; takımın düzeltmeleri taşınmadı. Denetimdeki bir öncül yanlış: 7-8 bandı Faz 10'da yazıldı, boş olan 9-10. Yaş çipi düzeltmesi bu yüzden de geçerli.
+- Doğrulama: `node kontrol.js` geçti (5 dosya, 15 satır referansı). Kullanılan tipler (`MPAgeRange.authored`, `authoredBands`, `MPColor.backgroundKid`, `deferredSignIn`) repoda var. Derlenmedi, testler çalıştırılmadı, simülatörde görülmedi.
+- Dosyalar: bu kayıt. Takımın dosyaları repo dışında, `~/Desktop/fable-ajan-takimi/`.
+
 ### 2026-11-11 · main@aea7fc8 · Vizyon planı gönderildi ve telefona kuruldu
 
 - `main` origin'e gönderildi: 35 commit, 495013d..aea7fc8 (Faz 7-14, 7-8 bandı içeriği, 13 sayfa düzeni, 8 eski kırmızının düzeltilmesi, ana sayfa kıvrımı, Masallar vitrini).
