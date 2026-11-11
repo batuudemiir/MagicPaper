@@ -132,6 +132,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Sesli okuma: daha insansı ses araştırması ve kör dinleme seti
+
+- **Sorun:** Sesli okuma (`MPSpeech`, `AVSpeechSynthesizer`) robot gibi duyuluyor. Geliştirilmiş Yelda indirilmemişse sıkıştırılmış ses kalıyor ve sayfa tek parça okunuyor.
+- **Araştırma (yalnızca kaynak ve model kartı, dinleme yok):**
+  - Türkçe açık modellerin dinleyici puanı (FreyaTTS raporu, 24 dinleyici, 5 üzerinden) 3,5-3,8 bandında: XTTS-v2 3,82 (ticari kapalı), FreyaTTS 3,68 (Apache-2.0), MMS 3,58 (ticari kapalı), Piper 3,47.
+  - Ticari kullanıma kapalı: XTTS-v2, Meta MMS, Anka-TTS ağırlıkları. Ticari serbest: FreyaTTS-small (Apache-2.0), Ahenk ve Ahenk Cep (CC BY 4.0, ad anılmalı), Chatterbox Multilingual (MIT, filigranlı).
+  - İnsana en yakın adaylar ticari ve sunucuda: ElevenLabs v3, Gemini TTS (üslup talimatıyla), Google Chirp 3 HD (tr-TR, milyon karakter 30 $), Azure tr-TR.
+  - Önerilen yön: sabit masallar için ses bir kez hazırlanır, uzaktan içerikle gelir ve mevcut kayıt oynatıcıyla çalınır. Kişisel masal sesi masal başına bir kez sunucuda hazırlanırsa çocuğun adı sağlayıcıya gider: ebeveyn onayı ve gizlilik metni gerekir. Sistem sesi internetsiz yedek kalır.
+- **Kör dinleme seti:** repo dışında `MagicPaperAPP/ses-deneme/`: `metin.txt` (soru, ses kelimesi, sayı ve çocuğun adı geçen uyku masalı parçası), `hazirla.py` (anahtarı ya da paketi olan adayları hazırlar, dosyaları rastgele adlandırır), `index.html` (1-5 puan, "Sesleri göster" ile sonuç). Anahtarlar yalnızca ortam değişkeninden okunur.
+- **Durum:** Yalnızca Apple Yelda'nın iki örneği hazır (tek parça, cümle cümle). Gemini, Chirp, ElevenLabs ve Azure anahtar bekliyor. FreyaTTS ve Ahenk Cep kurulumu izin denetiminde durdu, kurulmadı.
+- **Bilerek değişmedi:** Uygulama kodu ve `MPSpeech`. Hiçbir ses dinlenmedi, test çalıştırılmadı.
+- Dosyalar: `design-handoff/reference/DEMO_CHANGELOG.md` (repo içi); `ses-deneme/` repo dışı.
+
 ### 2026-11-11 · main, commit bu kayıtla · Faz 14: ebeveyn değeri, sakin geri dönüş
 
 - **Akıllı hatırlatma (`MPReminder`, `MPReminderPlan`):**
