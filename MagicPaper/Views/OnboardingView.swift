@@ -9,6 +9,7 @@ import StoryEngine
 ///
 /// "Önce masal" (`MPRemoteFlags.storyBeforeAccount`, hukuk onayına kadar kapalı):
 /// açıkken çocuğun adı ve yaşı burada sorulur, ilk masal girişten önce yazılır.
+/// Dönen ebeveyn "Hesabım var" ile ad sorulmadan girişe gider (`MPWelcome.signInFirstKey`).
 /// Kapalıyken bugünkü sıra: karşılama → giriş → onay → profil → ilk masal.
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
@@ -50,6 +51,10 @@ struct OnboardingView: View {
                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
+                    if storyFirst {
+                        // Dönen ebeveyn adı yeniden yazmaz: çocuklar hesaptan gelir.
+                        MPButton(title: OnboardingCopy.haveAccount, kind: .ghost, action: signInFirst)
+                    }
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
@@ -113,9 +118,17 @@ struct OnboardingView: View {
         profileManager.completeOnboarding()
         isOnboardingComplete = true
     }
+
+    private func signInFirst() {
+        MPHaptics.tap()
+        UserDefaults.standard.set(true, forKey: MPWelcome.signInFirstKey)
+        profileManager.completeOnboarding()
+        isOnboardingComplete = true
+    }
 }
 
 /// Karşılamanın güven cümlesi: yalnızca doğru olanlar (Faz 8).
 enum OnboardingCopy {
     static let trust = "Reklam yok, satın alma çocuğa kapalı. Masallar cihazda yazılır."
+    static let haveAccount = "Hesabım var, giriş yap"
 }

@@ -411,6 +411,12 @@ class ProfileManager: ObservableObject {
         userDefaults.set(true, forKey: onboardingKey)
         Self.log.debug("Onboarding marked complete")
     }
+
+    /// "Önce masal": "Hesabım var" yanlışlıkla seçildiyse karşılama yeniden açılır.
+    func reopenOnboarding() {
+        hasCompletedOnboarding = false
+        userDefaults.removeObject(forKey: onboardingKey)
+    }
     
     func hasProfile() -> Bool {
         return !profiles.isEmpty && currentProfile != nil

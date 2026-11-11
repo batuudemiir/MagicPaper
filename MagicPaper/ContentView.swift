@@ -54,6 +54,10 @@ struct ContentView: View {
                 if let name = MPWelcome.consume() {
                     firstRun = FirstRunName(name: name)
                 }
+                // "Önce masal": ilk masalın sonundaki "Bir masal daha" girişten sonra sürer.
+                if MPWelcome.consumeContinue() {
+                    app.startStoryCreation()
+                }
                 // Hatırlatma planı iOS'ta kalıcı ama izin Sistem Ayarları'ndan geri
                 // alınabilir; ayrıca aktif çocuk değişmiş olabilir ve bildirimde
                 // onun adı yazıyor. Her açılışta plan gerçeğe göre yenilenir.

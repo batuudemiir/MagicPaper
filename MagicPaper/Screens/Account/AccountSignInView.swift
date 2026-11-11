@@ -12,6 +12,13 @@ struct AccountSignInView: View {
     @State private var working: SignInProvider?
     @State private var message: String?
     @State private var wasOffline = false
+    @AppStorage(MPWelcome.firstStoryDoneKey) private var firstStoryDone = false
+    @AppStorage(MPWelcome.signInFirstKey) private var signInFirst = false
+
+    /// "Önce masal": çocuk ilk masalını okudu, giriş şimdi geldi.
+    private var afterFirstStory: Bool {
+        MPRemoteFlags.value(.storyBeforeAccount, default: false) && firstStoryDone && !profiles.profiles.isEmpty
+    }
 
     var body: some View {
         ZStack {
@@ -35,7 +42,7 @@ struct AccountSignInView: View {
                                 .mpText(.page)
                                 .foregroundStyle(MPColor.textPrimary)
                                 .accessibilityAddTraits(.isHeader)
-                            Text(AccountCopy.signInBody)
+                            Text(afterFirstStory ? AccountCopy.afterFirstStoryBody : AccountCopy.signInBody)
                                 .mpText(.body)
                                 .foregroundStyle(MPColor.textSecondary)
                         }
@@ -102,6 +109,14 @@ struct AccountSignInView: View {
                                 .foregroundStyle(MPColor.textSecondary)
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+
+                    // "Hesabım var" yanlışlıkla seçildiyse karşılamaya, ad ve yaşa dönülür.
+                    if signInFirst && profiles.profiles.isEmpty {
+                        MPButton(title: AccountCopy.backToFirstStory, kind: .ghost) {
+                            signInFirst = false
+                            profiles.reopenOnboarding()
                         }
                     }
                 }

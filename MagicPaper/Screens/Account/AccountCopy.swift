@@ -15,6 +15,10 @@ enum AccountCopy {
     static let offlineNotice = "Masallar cihazda yazılır ve okunur. Giriş için bağlantı gerekir; bağlanınca tekrar dene."
     static let failedMessage = "Giriş yapılamadı. Biraz sonra tekrar dene."
     static let googleUnavailable = "Google ile giriş bu sürümde henüz açık değil."
+    /// "Önce masal": giriş ilk masaldan sonra geldiğinde (Faz 8).
+    static let afterFirstStoryBody = "İlk masal kitaplıkta. Masallarını saklamak ve yenilerini yazmak için hesabını bağla."
+    /// "Önce masal": karşılamada "Hesabım var" diyen ebeveynin dönüş yolu.
+    static let backToFirstStory = "Hesabım yok, önce masalı yazalım"
     static let deferSignIn = "Şimdilik masallara dön"
     static let deferFootnote = "Masalların cihazda. Bağlantı gelince giriş yapabilirsin."
 

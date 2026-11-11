@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main, commit bu kayıtla · "Önce masal": "Bir masal daha" ve "Hesabım var"
+
+- Ne değişti: UX denetiminde açık kalan iki P1 kapandı. İkisi de yalnızca `storyBeforeAccount` açıkken devreye giriyor; varsayılan sıra değişmedi.
+  - "Bir masal daha": ilk masalın sonunda hesap yokken çocuğun isteği kaybolmuyor (`MPWelcome.continueAfterSignInKey`). Giriş ekranı bu durumda "İlk masal kitaplıkta. Masallarını saklamak ve yenilerini yazmak için hesabını bağla." diyor; giriş ve onaydan sonra ikinci masal kendiliğinden açılıyor (`ContentView`). Hesap zorunlu kalıyor.
+  - "Hesabım var, giriş yap": karşılamada sade bir düğme. Ad ve yaş sorulmadan girişe gidiliyor, çocuklar hesaptan geri geliyor (`MPWelcome.signInFirstKey`, `AppGate`'in `storyFirst` girdisi). Yanlışlıkla basan ebeveyn için giriş ekranında "Hesabım yok, önce masalı yazalım" karşılamaya döndürüyor (`ProfileManager.reopenOnboarding()`).
+  - Yeni iki anahtar `LocalDataEraser`'ın sildiği listeye eklendi.
+- Bilerek değişmedi: `AppGate.resolve` ve testleri; masal sonu ekranı; varsayılan (bayrak kapalı) sıra. Bayrak hâlâ kapalı, açılması hukuk onayına bağlı.
+- Doğrulama: tasarım yasası grep'leri boş, derleme yeşil (iPhone 17 Pro, iOS 27). Simülatörde görüldü: karşılamada "Hesabım var, giriş yap" düğmesi; basınca ad sorulmadan hesap akışına geçiliyor. Simülatörün anahtar zincirinde eski bir hesap olduğu için giriş ekranı atlandı: yeni giriş metni ve dönüş düğmesi görülmedi. "Bir masal daha" akışı (girişsiz cihaz ve tam bir masal gerekiyor) denenmedi. Birim testleri çalıştırılmadı.
+- Dosyalar: `MagicPaper/MagicPaperApp.swift`, `MagicPaper/ContentView.swift`, `MagicPaper/Screens/MPAppState.swift`, `MagicPaper/Screens/Account/AccountSignInView.swift`, `MagicPaper/Screens/Account/AccountCopy.swift`, `MagicPaper/Services/ProfileManager.swift`, `MagicPaper/StoryEngineBridge/Account/LocalDataEraser.swift`, `MagicPaper/Views/OnboardingView.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · İlk açılış: ajan takımının dört düzeltmesi uygulamaya taşındı
 
 - Ne değişti: üç modelli ajan takımının UX denetimindeki dört P1 düzeltmesi repoya taşındı. Dosyalar takımın gördüğü sürümle birebir aynıydı, değişiklikler olduğu gibi kopyalandı.

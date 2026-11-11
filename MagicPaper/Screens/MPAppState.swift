@@ -78,6 +78,12 @@ final class MPAppState: ObservableObject {
         // ilk masalda sorulur.
         let account = AccountService.shared
         let staysInApp = account.account != nil || account.deferredSignIn
+        // "Bir masal daha" de giriş ekranında kesilmez: istek saklanır, giriş ve
+        // onaydan sonra ikinci masal kendiliğinden açılır (ContentView).
+        if !staysInApp, case .create = afterReader {
+            afterReader = nil
+            UserDefaults.standard.set(true, forKey: MPWelcome.continueAfterSignInKey)
+        }
         if staysInApp && !settings.reminderAsked && afterReader == nil {
             settings.reminderAsked = true
             router.sheet = .reminder
@@ -270,6 +276,20 @@ enum MPWelcome {
     /// İlk masal bitip okuyucu kapandı (Faz 8): "önce masal" sırasında girişin
     /// zamanı ve hatırlatma sorusunun anı.
     static let firstStoryDoneKey = "mp_firstStoryDone"
+    /// "Önce masal": çocuk ilk masalın sonunda "Bir masal daha" dedi, giriş araya
+    /// girdi. Girişten sonra ikinci masal açılır.
+    static let continueAfterSignInKey = "mp_continueAfterSignIn"
+    /// "Önce masal": dönen ebeveyn karşılamada "Hesabım var" dedi; ad sorulmadan
+    /// girişe gidilir, çocuklar hesaptan gelir.
+    static let signInFirstKey = "mp_signInFirst"
+
+    /// Girişten sonra bekleyen "Bir masal daha" isteğini okuyup temizler.
+    static func consumeContinue() -> Bool {
+        let d = UserDefaults.standard
+        guard d.bool(forKey: continueAfterSignInKey) else { return false }
+        d.removeObject(forKey: continueAfterSignInKey)
+        return true
+    }
 
     /// Bekleyen karşılama adını okuyup temizler.
     static func consume() -> String? {

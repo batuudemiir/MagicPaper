@@ -17,6 +17,7 @@ enum LocalDataEraser {
         "stories", "user_profiles", "current_profile_id",
         "mp_favoriteStoryIDs", "mp_readDays", "mp_readSeconds",
         "mp_approvedStoryIDs", MPWelcome.pendingKey,
+        MPWelcome.continueAfterSignInKey, MPWelcome.signInFirstKey,
     ]
 
     /// Engine folders under `Documents/StoryEngine` that hold a family's
