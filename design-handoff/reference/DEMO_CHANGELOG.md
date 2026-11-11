@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-11 · main@aea7fc8 · Vizyon planı gönderildi ve telefona kuruldu
+
+- `main` origin'e gönderildi: 35 commit, 495013d..aea7fc8 (Faz 7-14, 7-8 bandı içeriği, 13 sayfa düzeni, 8 eski kırmızının düzeltilmesi, ana sayfa kıvrımı, Masallar vitrini).
+- Debug yapısı Batuhan'ın iPhone 16'sına kuruldu ve açıldı (`devicectl`). Telefonda gezilmedi; cihaz denetimi (VoiceOver, uyku kapısı kilitli ekranda, aile sesi mikrofon) hâlâ açık.
+- Son test durumu (bu turdan önce): motor 896/0, uygulama 874/0. Masallar vitrini değişikliğinden sonra testler yeniden çalıştırılmadı.
+
 ### 2026-11-11 · main, commit bu kayıtla · Masallar vitrini yine tam ekran, beyaz geçiş yerine koyu karartma
 
 - Ne değişti: bir önceki kayıttaki (c16d415) krem başlık bandı geri alındı. Batuhan sahnenin eskisi gibi ekranın tepesinden başlamasını istedi, yalnızca beyaz geçiş olmadan. Sahne yine saat çubuğunun altına kadar uzanıyor. Tepedeki kreme açılan geçişin yerine hafif bir koyu karartma geldi (`MP.Scrim.mid` → saydam, altın karartmasının tersi). "Masallar" başlığı artık açık renk: `MPKidTabHeader`'a `onArt` eklendi (`MP.C.textOnArt`, varsayılan kapalı, öbür sekmeler değişmedi).
