@@ -55,8 +55,9 @@ struct LibraryContinueCard: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text(item.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(3).multilineTextAlignment(.leading)
-                    Text("\(item.meta) · \(item.pageLabel)")
-                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    // Sayfa satırı ayrı: tek satıra sıkıştırınca "·" satır sonunda asılı kalıyordu.
+                    Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    Text(item.pageLabel).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 MPIcon("play.fill", size: MP.G.sm, weight: .bold)

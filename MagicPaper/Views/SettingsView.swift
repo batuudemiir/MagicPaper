@@ -270,7 +270,7 @@ struct SettingsView: View {
 
     private var supportSection: some View {
         ParentSection(title: "Destek") {
-            ParentRowButton(systemImage: "message", tone: .lav, title: "Destek",
+            ParentRowButton(systemImage: "message", tone: .lav, title: "Yardım ve iletişim",
                             subtitle: "Bize yaz, sık sorulanlar, sürüm") { showSupport = true }
             MPRowDivider(area: .parent)
             ParentRowButton(systemImage: "star", tone: .yellow, title: "Uygulamayı değerlendir") {

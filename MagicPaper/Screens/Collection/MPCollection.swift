@@ -28,8 +28,13 @@ enum MPStickerAlbum {
                          catalog: ClassicsCatalog? = nil) -> [MPSticker] {
         let classics = classics ?? ClassicProgressStore.shared.entries
         let catalog = catalog ?? ClassicsLibrary.shared.catalog
+        // Bir kez biten masalın çıkartması kalır (CLAUDE.md ilke 7: kazanılan
+        // kaybolmaz). `isFinished` o anki ilerlemedir; masal yeniden okunmaya
+        // başlanınca düşer ve çıkartma albümden gidiyordu. Rozet defteri biten
+        // masalları kalıcı tutar; yıldızlar da oradan sayılır (`MPStars`).
+        let everFinished = profile.flatMap { MPBadgeStore().storedLedger(for: $0.id)?.finished } ?? []
         var out: [MPSticker] = stories
-            .filter { $0.isFinished && $0.belongs(to: profile) }
+            .filter { ($0.isFinished || everFinished.contains($0.id.uuidString)) && $0.belongs(to: profile) }
             .map { MPSticker(id: $0.id.uuidString, title: $0.title,
                              art: LibraryShelfModel.coverArt($0), date: $0.lastReadAt ?? $0.createdAt) }
         for (id, entry) in classics {

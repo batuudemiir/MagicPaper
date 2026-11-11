@@ -12,13 +12,30 @@ struct StickerView: View {
     }
 
     var body: some View {
-        MPBookCover(art: sticker.art, width: size)
+        face
             .frame(width: size, height: size, alignment: .top)
             .clipShape(Circle())
             .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: size * 0.07))
             .mpShadow(MP.Sh.card)
             .rotationEffect(.degrees(tilt))
             .accessibilityHidden(true)
+    }
+
+    /// Boyalı kapak daireye kırpılır. Başlık kapağı kırpılmaz: içindeki ad
+    /// dairenin kenarına düşüp kesiliyordu ve ad zaten çıkartmanın altında
+    /// yazıyor; çıkartma mod tonunda ve mod simgesiyle çizilir.
+    @ViewBuilder
+    private var face: some View {
+        switch sticker.art {
+        case .title(_, let tone, let modeSymbol, let worldSymbol):
+            ZStack {
+                tone.soft
+                MPIcon(modeSymbol ?? worldSymbol, size: size * 0.38, weight: .semibold)
+                    .foregroundStyle(tone.deep)
+            }
+        default:
+            MPBookCover(art: sticker.art, width: size)
+        }
     }
 }
 
@@ -83,7 +100,8 @@ struct StickerAlbumView: View {
         .sheet(item: $opened, onDismiss: {
             if let story = pendingRead {
                 pendingRead = nil
-                app.read(story)
+                // Bitmiş masal albümden baştan, kapaktan açılır; yarım kalan kaldığı yerden.
+                app.read(story, fromStart: story.isFinished)
             }
         }) { sticker in
             let story = storyManager.stories.first { $0.id.uuidString == sticker.id }
@@ -147,7 +165,6 @@ private struct StickerSheet: View {
                 MPButton(title: "Masalı aç", systemImage: "book", fullWidth: true, action: onOpen)
             }
         }
-        .mpSheet(.half)
     }
 }
 

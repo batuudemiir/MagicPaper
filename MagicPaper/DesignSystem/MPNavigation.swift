@@ -8,6 +8,8 @@ import SwiftUI
 struct MPSheet<Content: View, Footer: View>: View {
     var title: String? = nil
     var onClose: (() -> Void)? = nil
+    /// Ebeveyn alanında açılan pencere ebeveyn zeminini alır (`mpSheet(area:)`).
+    var area: MPArea = .kid
     @ViewBuilder var content: () -> Content
     @ViewBuilder var footer: () -> Footer
 
@@ -39,12 +41,13 @@ struct MPSheet<Content: View, Footer: View>: View {
                 .padding(.bottom, MP.S.x3)
         }
         .interactiveDismissDisabled(onClose == nil)
-        .mpSheet(.half)
+        .mpSheet(area == .parent ? .full : .half, area: area)
     }
 }
 
 extension MPSheet where Footer == EmptyView {
-    init(title: String? = nil, onClose: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content) {
-        self.init(title: title, onClose: onClose, content: content) { EmptyView() }
+    init(title: String? = nil, onClose: (() -> Void)? = nil, area: MPArea = .kid,
+         @ViewBuilder content: @escaping () -> Content) {
+        self.init(title: title, onClose: onClose, area: area, content: content) { EmptyView() }
     }
 }

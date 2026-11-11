@@ -139,3 +139,22 @@ final class HeroWardrobeTests: XCTestCase {
         }
     }
 }
+
+/// Plan sonu simülatör turu (11 Kasım 2026): bitmiş masalı yeniden okumak
+/// çıkartmasını albümden düşürüyordu.
+@MainActor
+final class StickerPersistenceTests: XCTestCase {
+    func testAReReadStoryKeepsItsSticker() {
+        let profile = UserProfile(name: "Test Çıkartma", age: 6)
+        let defaults = UserDefaults.standard
+        defer { MPBadgeStore().erase(for: profile.id) }
+        var story = ReaderFixtures.textStory(pages: 3)
+        story.childProfileID = profile.id
+        story.lastReadPage = 2
+        _ = MPBadgeStore(defaults: defaults).recordFinished(story, profile: profile, stories: [story])
+        story.lastReadPage = 0   // yeniden okunmaya başlandı
+        XCTAssertFalse(story.isFinished)
+        let stickers = MPStickerAlbum.stickers(for: profile, stories: [story], classics: [:])
+        XCTAssertEqual(stickers.map(\.id), [story.id.uuidString])
+    }
+}

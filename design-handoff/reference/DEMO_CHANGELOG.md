@@ -132,6 +132,30 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+### 2026-11-11 · main, commit bu kayıtla · Simülatör turu: Faz 7-14 ekranları ve bulunan hatalar
+
+- **Görüldü (iPhone 17 Pro simülatörü, iOS 27, açık tema, normal yazı):**
+  - Ana sayfa, Kitaplık, Odam, Masal ailem, çıkartma albümü ve çıkartma penceresi.
+  - Okuyucu: kapakta "Kendim okuyorum / Ragi okusun", 64 pt alt çubuk, gizliyken ilerleme çizgisi, Metal kâğıt, 3. sayfada "Konuşalım" ve soru kartı.
+  - Ebeveyn: Özet, Güvenlik (TipKit ipucu ve "Akşam ve birlikte okuma"), Ayarlar ve Destek penceresi.
+- **Bulunan ve düzeltilen hatalar:**
+  - **Çıkartma kayboluyordu (Faz 9'dan beri):** "bitti" bilgisi o anki ilerlemeden türetiliyor (`mpProgress >= 1`). Bitmiş masal yeniden okunmaya başlanınca çıkartması albümden düşüyor, Özet'te "Bu hafta çıkartma 0" görünüyordu. Bu, ilke 7'deki "kazanılan kaybolmaz" sözüne aykırıydı. Artık çıkartma kalıcı rozet defterinden de türüyor (`MPBadgeLedger.finished`, yıldızlar da oradan sayılıyor). Yeni `StickerPersistenceTests`.
+  - **Albümden açılan bitmiş masal son sayfada açılıyordu:** artık baştan açılıyor.
+  - **Başlık kapaklı çıkartmalarda ad daireden taşıp kesiliyordu** ("arlayan kr"). Bu çıkartmalar artık mod tonunda ve mod simgesiyle çiziliyor; ad zaten altında yazıyor.
+  - **Kitaplık devam kartı:** "Klasik · Bugün ·" satırında nokta satır sonunda asılı kalıyordu; sayfa bilgisi kendi satırına alındı.
+  - **Destek penceresi çocuk kremiyle açılıyordu:** `MPSheet` kendi içinde çocuk alanı sheet'i uyguluyordu. Bileşene `area` parametresi geldi (varsayılan çocuk, mevcut kullanımlar değişmedi).
+  - **Destek metinleri:** silme cevabı yanlış satır adı ve konum söylüyordu, düzeltildi. "Destek" bölümündeki "Destek" satırı "Yardım ve iletişim" oldu.
+- **Kusur sanılıp olmadığı anlaşılan:** Baloo 2'de büyük "İ" süssüz bir çubuk ve nokta. Font ölçüldü: cap yüksekliğinde, küçük "i"den uzun. Hata değil.
+- **Görülen, düzeltilmeyen:**
+  - Ana sayfada üçüncü mod satırı alt çubuğun altında kalıyor; sahne ~203 pt, plan 180 diyor.
+  - Okuyucu kapağında kapat düğmesi kapak resminin köşesine biniyor.
+  - "Konuşalım" kartı sayfanın son satırının üstüne biniyor; dokununca kapandığı için bırakıldı.
+- **Görülmedi:**
+  - Akşam sırası ve uyku kapısı: simülatör saati 14.00 civarıydı, uyku saati 20.30.
+  - Koyu tema, en büyük yazı, iPhone SE, VoiceOver, gerçek cihaz.
+- **Test:** `CollectionTests`, `StickerPersistenceTests` ve `DesignSystemSnapshotTests`: 17/17 yeşil.
+- **Dosyalar:** `MPNavigation.swift`, `CollectionViews.swift`, `MPCollection.swift`, `LibraryComponents.swift`, `SupportSheet.swift`, `SettingsView.swift`, `MagicPaperTests/CollectionTests.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Motorun eski 8 kırmızısı: eskimiş testler D3 kararına göre
 
 - **Ne oldu:** `PilotBlueprintTests` (3), `MatrixCoverageTests` (1), `OfflineCompositionTests` (4) 23 Eylül'den beri kırmızıydı. Pilot dosyasının commit geçmişinden ölçüldü: değişiklik `a2e84b2`'de.

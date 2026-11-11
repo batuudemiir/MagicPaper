@@ -19,11 +19,11 @@ struct SupportSheet: View {
         ("Hatırlatma ne zaman gelir?",
          "Seçtiğiniz saatte, akşamları. Masal okunan akşam hatırlatma gelmez."),
         ("Verilerimizi nasıl sileriz?",
-         "Ayarlar'ın en altındaki \"Tüm verileri sil\" çocuk profillerini, masalları ve kayıtları siler.")
+         "Ayarlar'daki veri silme satırı çocuk profillerini, masalları ve kayıtları siler. Geri alınamaz.")
     ]
 
     var body: some View {
-        MPSheet(title: "Destek", onClose: onClose) {
+        MPSheet(title: "Destek", onClose: onClose, area: .parent) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
                 ParentSection(title: "Bize ulaşın") {
                     ParentRowButton(systemImage: "message", tone: .lav, title: "Bize yaz",
@@ -50,8 +50,7 @@ struct SupportSheet: View {
                     .frame(maxWidth: .infinity)
                     .textSelection(.enabled)
             }
-        } footer: { EmptyView() }
-        .mpSheet(.full, area: .parent)
+        }
     }
 
     /// "MagicPaper 1.2 (45) · iOS 18.2": destek yazışmasında ilk sorulan.
