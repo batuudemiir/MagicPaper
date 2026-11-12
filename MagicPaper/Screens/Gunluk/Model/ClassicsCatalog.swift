@@ -85,7 +85,7 @@ struct ClassicsCatalog: Equatable {
             onShelf = file.series.map { .series($0, episodeCount: episodes(of: $0.id).count) }
         case .besDakika:
             onShelf = standaloneTales.filter { $0.minutes <= 5 }.map(ClassicItem.tale)
-        case .sesli:
+        case .sesli, .orijinal:
             onShelf = []
         case let written?:
             onShelf = standaloneTales.filter { $0.shelves.contains(written) }.map(ClassicItem.tale)

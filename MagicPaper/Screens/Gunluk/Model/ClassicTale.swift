@@ -17,13 +17,14 @@ enum ClassicOrigin: String, Codable, CaseIterable {
 
 /// Günlük'ün rafları ve Kategoriler listesi, tasarımdaki sırayla.
 enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
-    case klasikler, anadolu, fabllar, seriler, uyku, besDakika, hayvanlar, sesli
+    case orijinal, klasikler, anadolu, fabllar, seriler, uyku, besDakika, hayvanlar, sesli
 
     var id: String { rawValue }
 
     /// Kategoriler listesindeki ve raf ekranının başlığı.
     var title: String {
         switch self {
+        case .orijinal:  return "MagicPaper Original"
         case .klasikler: return "Dünya klasikleri"
         case .anadolu:   return "Anadolu'dan"
         case .fabllar:   return "Fabllar"
@@ -48,6 +49,7 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
     /// Raf ekranındaki alt başlık.
     var subtitle: String {
         switch self {
+        case .orijinal:  return "Yalnızca burada okunan masallar"
         case .klasikler: return "Yüz yıldır okunan masallar"
         case .anadolu:   return "Ninelerimizin anlattığı masallar"
         case .fabllar:   return "Hayvanların dilinden kısa dersler"
@@ -60,9 +62,10 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
     }
 
     /// Bu raflar kataloğa yazılmaz; masalın başka alanlarından çıkarılır.
-    /// "Seriler" seri olmaktan, "5 dakikalık" süreden. "Sesli" için henüz
-    /// seslendirilmiş masal yok, bu yüzden hep boş ve gizli.
-    var isDerived: Bool { self == .seriler || self == .besDakika || self == .sesli }
+    /// "Seriler" seri olmaktan, "5 dakikalık" süreden, "MagicPaper Original"
+    /// uzaktan akıştan. "Sesli" için henüz seslendirilmiş masal yok, bu
+    /// yüzden hep boş ve gizli.
+    var isDerived: Bool { self == .seriler || self == .besDakika || self == .sesli || self == .orijinal }
 }
 
 /// Kapağın odak noktası, CSS `object-position` gibi: 0…1.
@@ -132,8 +135,10 @@ struct ClassicTale: Codable, Identifiable, Equatable {
 
     func fits(age: Int) -> Bool { (ageMin...ageMax).contains(age) }
 
-    /// Detay ekranının en altındaki satır.
-    var creditLine: String { "\(attribution) \(coverCredit) MagicPaper uyarlaması." }
+    /// Detay ekranının en altındaki satır. Original uyarlama değildir.
+    var creditLine: String {
+        origin == .orijinal ? "\(attribution) \(coverCredit)" : "\(attribution) \(coverCredit) MagicPaper uyarlaması."
+    }
 }
 
 struct ClassicSeries: Codable, Identifiable, Equatable {

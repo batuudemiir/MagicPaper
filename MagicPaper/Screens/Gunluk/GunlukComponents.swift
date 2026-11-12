@@ -550,6 +550,7 @@ enum GunlukLoop {
 extension ClassicShelf {
     var symbol: String {
         switch self {
+        case .orijinal:  return "sparkle"
         case .klasikler: return "crown"
         case .anadolu:   return "building.columns"
         case .fabllar:   return "sparkles"
@@ -563,6 +564,7 @@ extension ClassicShelf {
 
     var tone: MPWorldTone {
         switch self {
+        case .orijinal:  return .yellow
         case .klasikler: return .lav
         case .anadolu:   return .peach
         case .fabllar:   return .mint
