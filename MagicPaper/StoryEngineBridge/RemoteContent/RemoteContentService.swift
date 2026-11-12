@@ -33,7 +33,9 @@ final class RemoteContentService: ObservableObject {
     /// The last verified feed. `nil` before the first one arrives.
     @Published private(set) var feed: ContentFeed?
     /// Kapağı cihazda olan ve imzalı özete uyan MagicPaper Original masalları.
-    @Published private(set) var originals: [FeedOriginal] = []
+    @Published private(set) var originals: [FeedOriginal] = [] {
+        didSet { OriginalIndex.update(originals) }
+    }
 
     enum Outcome: Equatable {
         /// No key or address in this build.
@@ -77,6 +79,8 @@ final class RemoteContentService: ObservableObject {
         self.bundledCatalog = bundledCatalog
         if let key = config?.key { feed = store.feed(key: key) }
         originals = Self.verifiedOriginals(feed?.originals ?? [], store: store)
+        // didSet init içindeki atamada çalışmaz.
+        OriginalIndex.update(originals)
     }
 
     nonisolated static func makeSession() -> URLSession {

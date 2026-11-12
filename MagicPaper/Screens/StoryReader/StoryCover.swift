@@ -127,13 +127,19 @@ struct StoryCover: View {
         childName.isEmpty ? "\(pageCount) sayfa" : "\(childName) için · \(pageCount) sayfa"
     }
 
+    /// Original kapakları asset kataloğunda değil, cihazda (`OriginalCovers`).
+    private static func coverImage(_ name: String) -> Image {
+        if UIImage(named: name) == nil, let file = OriginalCovers.image(named: name) { return Image(uiImage: file) }
+        return Image(name)
+    }
+
     /// Kapağın ağırlık merkezi: illüstrasyon, mozaik kapak, veya dünya ikonu.
     @ViewBuilder
     private func artwork(width: CGFloat, height: CGFloat) -> some View {
         let side = min(width * 1.32, height * 0.56)
 
         if let coverAsset {
-            Image(coverAsset)
+            Self.coverImage(coverAsset)
                 .resizable()
                 .scaledToFill()
                 .frame(width: width, height: side)

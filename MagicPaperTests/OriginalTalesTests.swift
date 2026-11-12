@@ -58,4 +58,12 @@ final class OriginalTalesTests: XCTestCase {
         XCTAssertTrue(ClassicShelf.orijinal.isDerived)
         XCTAssertEqual(ClassicsCatalog(file: ClassicsCatalogTests.file).items(in: .orijinal), [])
     }
+
+    func testTheReaderRecognisesAnOriginalAndItsCover() {
+        let original = TestPublisher.original("fener")
+        OriginalIndex.update([original])
+        defer { OriginalIndex.update([]) }
+        XCTAssertTrue(ClassicsCatalog.contains(original.id))
+        XCTAssertEqual(ClassicsCatalog.coverAsset(for: original.id), original.classicTale.cover)
+    }
 }

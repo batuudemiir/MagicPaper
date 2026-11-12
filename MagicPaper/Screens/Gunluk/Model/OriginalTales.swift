@@ -40,3 +40,21 @@ enum OriginalCovers {
         return image
     }
 }
+
+/// Okuyucunun main-actor dışı sorguları için Original masalların kapak adları.
+/// `RemoteContentService.originals` her değiştiğinde güncellenir.
+enum OriginalIndex {
+    private static let lock = NSLock()
+    nonisolated(unsafe) private static var covers: [UUID: String] = [:]
+
+    static func update(_ originals: [FeedOriginal]) {
+        let map = Dictionary(originals.map { ($0.id, OriginalCovers.name(slug: $0.slug, sha256: $0.cover.sha256)) },
+                             uniquingKeysWith: { first, _ in first })
+        lock.lock(); covers = map; lock.unlock()
+    }
+
+    static func cover(for id: UUID) -> String? {
+        lock.lock(); defer { lock.unlock() }
+        return covers[id]
+    }
+}

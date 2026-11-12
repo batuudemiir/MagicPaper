@@ -40,11 +40,11 @@ struct ClassicsCatalog: Equatable {
 
     /// Okuyucunun kapak yaprağı için: bu id bir Günlük masalıysa kapağı.
     static func coverAsset(for id: UUID) -> String? {
-        bundled.tale(id)?.cover ?? bundled.originalCover(feedID: id)?.cover
+        bundled.tale(id)?.cover ?? bundled.originalCover(feedID: id)?.cover ?? OriginalIndex.cover(for: id)
     }
 
     static func contains(_ id: UUID) -> Bool {
-        bundled.tale(id) != nil || bundled.originalCover(feedID: id) != nil
+        bundled.tale(id) != nil || bundled.originalCover(feedID: id) != nil || OriginalIndex.cover(for: id) != nil
     }
 
     // MARK: - Arama

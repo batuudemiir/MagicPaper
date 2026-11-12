@@ -123,7 +123,7 @@ final class ClassicsLibrary: ObservableObject {
     var originalTales: [ClassicTale] {
         let today = TodaysStoryPicker.day(now(), calendar: calendar)
         return remoteOriginals().filter { $0.publishDate <= today }
-            .sorted { $0.publishDate > $1.publishDate }
+            .sorted { ($0.publishDate, $0.slug) > ($1.publishDate, $1.slug) }
             .map(\.classicTale)
     }
 
