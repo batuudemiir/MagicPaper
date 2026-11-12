@@ -27,7 +27,11 @@ Masallar sekmesindeki "MagicPaper Original" rafının kaynağı. Tasarım:
 
 Denetim her zaman: `swift run content-publisher originals check [<slug>]`.
 
-## Yayından önce bir kez
+## Rafın görünmesi için
 
-Uzaktan içerik bugün kapalı: `Info.plist`'te `MPContentSigningKey` boş. Original rafı ancak
-`docs/REMOTE_CONTENT.md` "İlk kurulum" adımları yapılıp anahtarlı bir sürüm yayımlanınca görünür.
+- Uygulamanın `Info.plist`'inde `MPContentBaseURL` ve `MPContentSigningKey` dolu olmalı; boşsa raf hiç görünmez.
+- `~/.magicpaper/content-signing.key`'in açık yarısı (`swift run content-publisher public-key`) `Info.plist`'teki
+  anahtarla aynı olmalı; değilse cihaz akışı reddeder.
+- Original rafını taşıyan uygulama sürümü yayımlanmış olmalı. Eski sürümler `originals`'ı yok sayar.
+
+Kapağı ajan çizer: `python3 Tools/originals_cover.py <slug>` (anahtar `Secrets.xcconfig`'teki `GEMINI_API_KEY`).
