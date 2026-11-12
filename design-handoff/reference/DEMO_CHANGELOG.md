@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main@6023ae4 · MagicPaper Original: ilk masal ve kapak aracı düzeltmesi
+
+- İlk masal turu (elle, Batuhan isteğiyle) "Saatin İçindeki Ninni"yi yazdı (`8424965`): uyku, 5-6 yaş, 7 sayfa, 323 kelime, Mısra ana karakter; `originals check` metinde temiz. Kapak çizilemedi: python.org Python'unda sertifika paketi yok (SSL hatası) ve `Secrets.xcconfig`'teki `GEMINI_API_KEY` Gemini'de `API_KEY_INVALID`.
+- Düzeltme: `Tools/originals_cover.py` artık `/etc/ssl/cert.pem` ile bağlanıyor. Ajanın denetim komutu `swift run --scratch-path "$TMPDIR/mp-publisher-build"` (iCloud'lu Masaüstü'nde yerinde derleme imzalamada düşüyor).
+- Açık: Gemini anahtarı Batuhan'da yenilenmeli; sonra `python3 Tools/originals_cover.py saatin-icindeki-ninni`. Masal kapaksız onaylanamaz.
+- Test: kapak aracı 7/7. Gerçek Gemini çağrısı denenmedi (anahtar geçersiz).
+- Dosyalar: `Tools/originals_cover.py`, `.claude/agents/original-writer.md`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: Saatin İçindeki Ninni onaya kondu
 
 - Ne değişti: original-writer'ın zamanlanmış turu, Bulut Durağı'nın ilk masalı. `Content/Originals/drafts/saatin-icindeki-ninni/` (`tale.json`, `review.md`): uyku modu, 5-6 yaş, 7 sayfa, 323 kelime, 9 dk; Mısra (ana), Minik, Ayşe Teyze, Yıldız Treni, Profesör Ayı. Mısra istasyonun seslerinden dört satırlık kafiyeli bir ninni yazar; tren gelir, gider, sessizlik. `publishDate` 2026-11-16.
