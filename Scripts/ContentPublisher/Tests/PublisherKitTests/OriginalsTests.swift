@@ -80,7 +80,7 @@ final class OriginalsTests: XCTestCase {
 
     func testEachBrokenRuleIsNamed() throws {
         func problems(_ edit: (inout [String: Any]) -> Void, cover: Data? = OriginalsTests.jpeg) throws -> [String] {
-            try Self.tale(edit).problems(folder: "fener-masali", characters: known, cover: cover)
+            try Self.tale { edit(&$0) }.problems(folder: "fener-masali", characters: known, cover: cover)
         }
         XCTAssertFalse(try problems { $0["id"] = "1" }.isEmpty)
         XCTAssertFalse(try problems { $0["mode"] = "spooky" }.isEmpty)
