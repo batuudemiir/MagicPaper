@@ -189,8 +189,12 @@ final class AccountService: ObservableObject {
 
     // MARK: - Launch
 
+    /// Set on the first launch of this install; UserDefaults goes with the app.
+    static let installMarkKey = "mp_installSeen"
+
     /// Picks up a session kept from an earlier launch.
     func bootstrap() {
+        dropSessionFromEarlierInstall()
         guard let current = auth.current else { return }
         account = current
         membership = membershipCache.load(for: current.uid) ?? .founder(current.uid)
@@ -204,6 +208,20 @@ final class AccountService: ObservableObject {
                 await lookUpConsent(for: current.uid)
             }
         }
+    }
+
+    /// Firebase keeps its session in the keychain, which outlives deleting the
+    /// app. A fresh install would then skip the sign-in page and try to
+    /// restore with a session the parent never chose here. On the first launch
+    /// of an install that never finished onboarding, that session is dropped.
+    /// An installed app updating to this build has finished onboarding and
+    /// keeps its session.
+    private func dropSessionFromEarlierInstall() {
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: Self.installMarkKey) else { return }
+        defaults.set(true, forKey: Self.installMarkKey)
+        guard !defaults.bool(forKey: "has_completed_onboarding"), auth.current != nil else { return }
+        try? auth.signOut()
     }
 
     // MARK: - Sign in

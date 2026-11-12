@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Yeni kurulumda eski oturum kapanıyor, giriş sayfası geliyor
+
+- Sorun (Batuhan): karşılamada "Hesabım var"a basınca Apple ve Google giriş sayfası gelmiyor, onaydan sonra "Şu an getirilemedi" çıkıyordu. Sebep: Firebase oturumu anahtar zincirinde duruyor ve uygulama silinse de kalıyor. Yeni kurulum bu eski oturumu "giriş yapılmış" sayıyor, giriş sayfasını atlıyor ve geri yüklemeye çalışıyordu.
+- Ne değişti: `AccountService.bootstrap()`, bu kurulumun ilk açılışında (`mp_installSeen` yoksa) ve karşılama hiç geçilmemişse eski oturumu kapatıyor (`dropSessionFromEarlierInstall`). Uygulamayı güncelleyen kurulumlar karşılamayı geçmiş olduğu için oturumunu koruyor. Bu, bayrağa bağlı değil: varsayılan sırada da yeniden kurulan uygulama artık giriş sayfasıyla açılıyor.
+- Bilerek değişmedi: geri yüklemenin kendisi. Simülatördeki "getirilemedi", sahipsiz eski oturumun sonucuydu; Firebase proje kurulumu ayrı bir açık iş.
+- Doğrulama: derleme yeşil. Simülatörde temiz kurulum, bayrak açık: "Hesabım var, giriş yap" → Apple ve Google düğmeli giriş sayfası; "Hesabım yok, önce masalı yazalım" → karşılamaya dönüş. Gerçek bir giriş ve geri yükleme denenmedi. Birim testleri çalıştırılmadı.
+- Dosyalar: `MagicPaper/StoryEngineBridge/Account/AccountService.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · "Önce masal": "Bir masal daha" ve "Hesabım var"
 
 - Ne değişti: UX denetiminde açık kalan iki P1 kapandı. İkisi de yalnızca `storyBeforeAccount` açıkken devreye giriyor; varsayılan sıra değişmedi.
