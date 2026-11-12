@@ -69,6 +69,39 @@ tales.sort(key=lambda t: (t["seriesID"] is not None, rank.get(t["slug"], 999), t
 series_order = ["keloglan", "nasreddin-hoca", "dede-korkut-bamsi-beyrek", "karagoz-ile-hacivat", "kelile-ve-dimne"]
 series_list.sort(key=lambda s: series_order.index(s["slug"]) if s["slug"] in series_order else 999)
 
+# MagicPaper Original (karar: 13 Kasım 2026, Batuhan: şimdilik uzaktan akış yok, masallar uygulamayla
+# gelir). Onaylanmış masallar Content/Originals/published/<slug>/ altında: tale.json + cover.jpg.
+# Id masalın kendi id'si (okuma defteri onunla tutulur); kapak asset kataloğuna kopyalanır.
+ORIGINALS = os.path.join(ROOT, "Content", "Originals", "published")
+ASSETS = os.path.join(ROOT, "MagicPaper", "Assets.xcassets", "Originals")
+original_count = 0
+for folder in sorted(glob.glob(os.path.join(ORIGINALS, "*", "tale.json"))):
+    o = load(folder)
+    slug = o["slug"]
+    cover_src = os.path.join(os.path.dirname(folder), "cover.jpg")
+    if not os.path.exists(cover_src): sys.exit(f"{folder}: cover.jpg yok")
+    asset = "original-" + slug
+    imageset = os.path.join(ASSETS, asset + ".imageset")
+    os.makedirs(imageset, exist_ok=True)
+    with open(cover_src, "rb") as src, open(os.path.join(imageset, asset + ".jpg"), "wb") as dst:
+        dst.write(src.read())
+    json.dump({"images": [{"filename": asset + ".jpg", "idiom": "universal"}],
+               "info": {"author": "xcode", "version": 1}},
+              open(os.path.join(imageset, "Contents.json"), "w"), indent=2)
+    focus = o.get("coverFocus", [0.5, 0.5])
+    tales.append({"id": o["id"].upper(), "slug": slug, "title": o["title"], "origin": "orijinal",
+                  "byline": "Original", "ageMin": o["ageMin"], "ageMax": o["ageMax"], "minutes": o["minutes"],
+                  "summary": o["summary"], "shelves": ["uyku"] if o["mode"] == "bedtime" else [],
+                  "cover": asset, "coverFocus": {"x": focus[0], "y": focus[1]},
+                  "coverCredit": "Kapak: MagicPaper.", "attribution": "MagicPaper Original.",
+                  "soft": {"pages": o["pages"]}, "classic": None, "seriesID": None, "episode": None})
+    original_count += 1
+if original_count:
+    folder_meta = os.path.join(ASSETS, "Contents.json")
+    if not os.path.exists(folder_meta):
+        json.dump({"info": {"author": "xcode", "version": 1}, "properties": {"provides-namespace": False}},
+                  open(folder_meta, "w"), indent=2)
+
 known = {t["slug"]: t["id"] for t in tales} | series_ids
 picks = [known[s] for s in covers["weeklyPicks"]["slugs"] if s in known]
 
@@ -82,6 +115,7 @@ if covers.get("featured"):
     catalog["featuredID"] = known[covers["featured"]]
 json.dump(catalog, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(f"{len(tales)} masal ({sum(1 for t in tales if not t['seriesID'])} tek), {len(series_list)} seri, "
-      f"{len(picks)} seçki, {len(originals)} orijinal -> {os.path.relpath(OUT, ROOT)}")
+      f"{len(picks)} seçki, {len(originals)} orijinal kapak, {original_count} MagicPaper Original"
+      f" -> {os.path.relpath(OUT, ROOT)}")
 missing = [s for s in covers["weeklyPicks"]["slugs"] if s not in known]
 if missing: print("UYARI: seçkide henüz yazılmamış:", ", ".join(missing))

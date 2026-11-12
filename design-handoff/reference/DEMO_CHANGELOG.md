@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · MagicPaper Original uygulamanın içinde
+
+- Karar (Batuhan): uzaktan sistem şimdilik kurulmayacak, Original masallar uygulamayla gelir.
+- `Scripts/ClassicsCatalog/build_classics_catalog.py` artık `Content/Originals/published/*/` masallarını da `classics_catalog.json`'a ekliyor (kaynak `orijinal`, yazar satırı "Original", uyku modu "Uyku vakti" rafına da girer, id masalın kendi id'si) ve kapağı `Assets.xcassets/Originals/original-<slug>.imageset`'e kopyalıyor. Katalog farkı yalnız bu masal (35 satır).
+- Uygulama: `ClassicsCatalog.items(in: .orijinal)` katalogdaki Original'leri gösteriyor; uzaktan akıştaki aynı id katalogda varsa ikinci kez çıkmıyor. Uzaktan akış kodu yerinde ama kapalı.
+- İş akışı: `originals approve <slug>` → `build_classics_catalog.py` → uygulama sürümü. README, spec karar tablosu ve `approve` mesajı buna göre.
+- Test: OriginalTalesTests 11, ClassicsCatalogTests 27 (paket kataloğu geçerli, Original asset'i var), RemoteContentTests 31, ClassicProgressTests 8: 77/77. Simülatör (iPhone 17 Pro, temiz kurulum, uzaktan akış yok): Masallar'da bölüm ve "Saatin İçindeki Ninni · Original · 9 dk" kartı ChatGPT kapağıyla görüldü. Koyu tema, büyük yazı, SE ve Pro Max görülmedi.
+- Dosyalar: `Scripts/ClassicsCatalog/build_classics_catalog.py`, `MagicPaper/Screens/Gunluk/Model/{classics_catalog.json,ClassicsCatalog.swift,ClassicsLibrary.swift}`, `MagicPaper/Assets.xcassets/Originals/`, `MagicPaperTests/OriginalTalesTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Originals.swift`, `Content/Originals/README.md`, spec, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Masallar ekranı: yeniden tasarım önerisi (yalnızca sohbet görseli)
 
 - Ne yapıldı: `GunlukView` ve bileşenleri okundu; Masallar için yeni bir düzen önerisi sohbette iki telefon çerçevesiyle görselleştirildi. Karar bekliyor (Batuhan).

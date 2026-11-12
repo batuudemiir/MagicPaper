@@ -59,6 +59,34 @@ final class OriginalTalesTests: XCTestCase {
         XCTAssertEqual(ClassicsCatalog(file: ClassicsCatalogTests.file).items(in: .orijinal), [])
     }
 
+    // MARK: - Uygulamayla gelen Original'ler (13 Kasım 2026)
+
+    func testBundledOriginalsFillTheOriginalShelfFromTheirOrigin() {
+        var file = ClassicsCatalogTests.file
+        let original = ClassicsCatalogTests.tale(90, "Saatin İçindeki Ninni", origin: .orijinal, shelves: [.uyku])
+        file = catalogFile(adding: original, to: file)
+        let catalog = ClassicsCatalog(file: file)
+
+        XCTAssertEqual(catalog.items(in: .orijinal).map(\.id), [original.id])
+        XCTAssertTrue(catalog.items(in: .uyku).contains { $0.id == original.id })
+        XCTAssertFalse(catalog.items(in: .klasikler).contains { $0.id == original.id })
+    }
+
+    func testTheShippedCatalogCarriesTheFirstOriginal() {
+        let titles = ClassicsCatalog.bundled.items(in: .orijinal).map(\.title)
+        XCTAssertTrue(titles.contains("Saatin İçindeki Ninni"))
+    }
+
+    func testAnOriginalInBothCatalogAndFeedAppearsOnce() {
+        let feed = TestPublisher.original("fener")
+        var file = ClassicsCatalogTests.file
+        file = catalogFile(adding: feed.classicTale, to: file)
+        let suite = "OriginalTalesTests-\(UUID().uuidString)"
+        let library = ClassicsLibrary(catalog: ClassicsCatalog(file: file), defaults: UserDefaults(suiteName: suite)!,
+                                      currentAge: { nil }, dailyStories: { [] }, remoteOriginals: { [feed] })
+        XCTAssertEqual(library.items(in: .orijinal).filter { $0.id == feed.id }.count, 1)
+    }
+
     func testTheReaderRecognisesAnOriginalAndItsCover() {
         let original = TestPublisher.original("fener")
         OriginalIndex.update([original])
@@ -66,4 +94,11 @@ final class OriginalTalesTests: XCTestCase {
         XCTAssertTrue(ClassicsCatalog.contains(original.id))
         XCTAssertEqual(ClassicsCatalog.coverAsset(for: original.id), original.classicTale.cover)
     }
+}
+
+/// Örnek katalog dosyasına bir masal ekler.
+private func catalogFile(adding tale: ClassicTale, to file: ClassicsCatalogFile) -> ClassicsCatalogFile {
+    ClassicsCatalogFile(version: file.version, tales: file.tales + [tale], series: file.series,
+                        weeklyPicks: file.weeklyPicks, originals: file.originals,
+                        pendingCovers: file.pendingCovers, featuredID: file.featuredID)
 }

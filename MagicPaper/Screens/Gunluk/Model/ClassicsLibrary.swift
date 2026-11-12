@@ -119,10 +119,12 @@ final class ClassicsLibrary: ObservableObject {
         return items.filter { $0.ageMin <= ageBand.band.upperBound && $0.ageMax >= ageBand.band.lowerBound }
     }
 
-    /// MagicPaper Original: günü gelmiş, kapağı cihazda olan masallar, en yeni önce.
+    /// Uzaktan akışın MagicPaper Original masalları: günü gelmiş, kapağı cihazda olan, en yeni önce.
+    /// Uygulamayla gelenler katalogda (`ClassicsCatalog.items(in: .orijinal)`); aynı masal akışta da
+    /// varsa katalogdaki kullanılır, iki kez görünmez. Uzaktan akış şimdilik kapalı (13 Kasım 2026).
     var originalTales: [ClassicTale] {
         let today = TodaysStoryPicker.day(now(), calendar: calendar)
-        return remoteOriginals().filter { $0.publishDate <= today }
+        return remoteOriginals().filter { $0.publishDate <= today && catalog.tale($0.id) == nil }
             .sorted { ($0.publishDate, $0.slug) > ($1.publishDate, $1.slug) }
             .map(\.classicTale)
     }

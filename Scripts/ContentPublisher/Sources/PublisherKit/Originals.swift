@@ -214,7 +214,7 @@ public enum OriginalLibrary {
             throw error
         }
         try FileManager.default.removeItem(at: draft)
-        log("Onaylandı: \(tale.title) (published/\(slug)). Yayın: `content-publisher publish --deploy`.")
+        log("Onaylandı: \(tale.title) (published/\(slug)). Uygulamaya eklemek için: `python3 Scripts/ClassicsCatalog/build_classics_catalog.py`.")
     }
 
     static func folders(in directory: URL) -> [URL] {

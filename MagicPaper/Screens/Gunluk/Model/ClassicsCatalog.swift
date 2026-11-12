@@ -85,8 +85,11 @@ struct ClassicsCatalog: Equatable {
             onShelf = file.series.map { .series($0, episodeCount: episodes(of: $0.id).count) }
         case .besDakika:
             onShelf = standaloneTales.filter { $0.minutes <= 5 }.map(ClassicItem.tale)
-        case .sesli, .orijinal:
+        case .sesli:
             onShelf = []
+        case .orijinal:
+            // Uygulamayla gelen MagicPaper Original masalları (13 Kasım 2026); raf kaynaktan türer.
+            onShelf = standaloneTales.filter { $0.origin == .orijinal }.map(ClassicItem.tale)
         case let written?:
             onShelf = standaloneTales.filter { $0.shelves.contains(written) }.map(ClassicItem.tale)
                 + file.series.filter { $0.shelves.contains(written) }

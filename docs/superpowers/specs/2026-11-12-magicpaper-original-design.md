@@ -10,7 +10,7 @@ Masallar sekmesinde (kodda `GunlukView`) "MagicPaper Original" adında bir marka
 
 | Konu | Karar |
 |---|---|
-| Yayın yolu | Uzaktan, güncellemesiz: mevcut imzalı akış (`feed.json`, FAZ 15) genişler |
+| Yayın yolu | 13 Kasım 2026 güncellemesi: şimdilik uygulamayla gelir. Onaylanan masal `build_classics_catalog.py` ile `classics_catalog.json`'a (kaynak `orijinal`) ve kapağı asset kataloğuna girer. Uzaktan akış kodu (aşağıdaki bölüm 4) hazır ama kapalı |
 | Onay | İnsan onayı zorunlu. Ajan yayımlamaz, yalnız taslak bırakır |
 | Sıklık | Haftada 2 masal: pazartesi ve perşembe 09:00 (Mac'te zamanlanmış görev) |
 | Kapak | Ajan (Claude) SVG olarak kendisi çizer, `Tools/render_cover.py` JPEG'e çevirir; Batuhan onaylar. Görsel üretim servisi yok (12 Kasım: Gemini kaldırıldı). Klasiklerde kamu malı plakalar kuralı geçerli |

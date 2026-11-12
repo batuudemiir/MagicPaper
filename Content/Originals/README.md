@@ -15,24 +15,25 @@ Masallar sekmesindeki "MagicPaper Original" rafının kaynağı. Tasarım:
 ## Batuhan'ın işi
 
 1. Bildirim gelince `drafts/<slug>/review.md`'yi ve `tale.json`'u okuyun, `cover.jpg`'ye bakın.
-2. Beğendiyseniz:
+2. Beğendiyseniz (karar: 13 Kasım 2026, şimdilik uzaktan akış yok, masallar uygulamayla gelir):
    ```bash
    cd Scripts/ContentPublisher
-   swift run content-publisher originals approve <slug>
-   swift run content-publisher publish --deploy
+   swift run --scratch-path "$TMPDIR/mp-publisher-build" content-publisher originals approve <slug>
+   cd ../..
+   python3 Scripts/ClassicsCatalog/build_classics_catalog.py
    ```
-   Ardından `Content/Originals/published/<slug>` ve `hosting/public/content/` değişikliklerini commit'leyin.
+   Derleyici masalı `classics_catalog.json`'a, kapağı `Assets.xcassets/Originals/`'a ekler. Masal bir sonraki
+   uygulama sürümüyle gelir. `Content/Originals/published/<slug>`, katalog ve asset değişikliklerini commit'leyin.
 3. Beğenmediyseniz `review.md`'nin en altındaki `## Notlar`'a yazın. Ajan sonraki turda önce onu düzeltir.
 4. Hiç istemiyorsanız klasörü silin.
 
 Denetim her zaman: `swift run content-publisher originals check [<slug>]`.
 
-## Rafın görünmesi için
+## Uzaktan akış (şimdilik kapalı)
 
-- Uygulamanın `Info.plist`'inde `MPContentBaseURL` ve `MPContentSigningKey` dolu olmalı; boşsa raf hiç görünmez.
-- `~/.magicpaper/content-signing.key`'in açık yarısı (`swift run content-publisher public-key`) `Info.plist`'teki
-  anahtarla aynı olmalı; değilse cihaz akışı reddeder.
-- Original rafını taşıyan uygulama sürümü yayımlanmış olmalı. Eski sürümler `originals`'ı yok sayar.
+Uzaktan yol (`content-publisher publish --deploy`, imzalı `feed.json`) kodda hazır ama kullanılmıyor: uygulamanın
+içerik adresi (`magicpaper-393a7.web.app`) ile Firebase sitesi (`magicpaper-393a7-f2d31`) uyuşmuyor ve uzaktan sistem
+şimdilik kurulmayacak. Açılırsa aynı masal hem katalogda hem akışta olsa da rafta bir kez görünür.
 
-Kapağı ajan (Claude) SVG olarak kendisi çizer: `drafts/<slug>/cover.svg` → `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
+Kapak: ajan (Claude) SVG çizer ya da Batuhan ChatGPT'den getirir (COVER_GUIDE.md): `drafts/<slug>/cover.svg` → `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
 Görsel üretim servisi kullanılmaz. Kılavuz: `COVER_GUIDE.md`. Kapağı beğenmezseniz `review.md` Notlar'a yazın.
