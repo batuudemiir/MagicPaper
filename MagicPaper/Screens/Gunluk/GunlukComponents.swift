@@ -10,6 +10,7 @@ import SwiftUI
 /// Boyalı kapak: yüzeyi doldurur, `focus` CSS `object-position` gibi neyin
 /// görünür kalacağını seçer. Çizimi henüz gelmemiş kapak düz renkli bir yedek
 /// olur (Rapunzel kuralının tek istisnası, `pendingCovers`).
+/// Original kapakları cihazdaki dosyadan gelir (`OriginalCovers`).
 struct ClassicCoverImage: View {
     let asset: String
     var focus: ClassicFocus = .center
@@ -21,7 +22,7 @@ struct ClassicCoverImage: View {
 
     var body: some View {
         GeometryReader { geo in
-            if let image = UIImage(named: asset) {
+            if let image = UIImage(named: asset) ?? OriginalCovers.image(named: asset) {
                 let size = Self.fillSize(image: image.size, frame: geo.size)
                 Image(uiImage: image)
                     .resizable()

@@ -43,6 +43,8 @@ struct GunlukView: View {
                         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
                             // Faz 7: 8 bölüm 5'e. "Kaldığın yerden" yalnızca
                             // Kitaplık'ta; Anadolu raf kapısından açılır.
+                            // MagicPaper Original: vitrinin hemen altı; boşsa hiç çizilmez.
+                            shelfSection(.orijinal, width: 128, height: 176)
                             shelfDoors
                             weeklySection
                             shelfSection(.klasikler, width: 128, height: 176)
