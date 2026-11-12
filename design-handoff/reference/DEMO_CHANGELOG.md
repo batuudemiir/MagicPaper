@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Masallar ekranı: yeniden tasarım önerisi (yalnızca sohbet görseli)
+
+- Ne yapıldı: `GunlukView` ve bileşenleri okundu; Masallar için yeni bir düzen önerisi sohbette iki telefon çerçevesiyle görselleştirildi. Karar bekliyor (Batuhan).
+- Öneri: tam ekran vitrin yerine `MPKidTabHeader` ("Masallar" + arama dairesi) ve tek "Bugünün masalı" sahnesi, üstünde tek birincil "Oku"; raf kapıları kıvrımın üstünde; "Bu haftanın seçkisi" sıra numarasız, `choiceRowKid` satırları; gece bölgesi (Uyku vakti, "Kendi masalını yaz", Ragi) yerinde.
+- Bilerek değişmedi: uygulama kodu, canvas, içerik. Hiçbir Swift dosyasına dokunulmadı.
+- Test: çalıştırılmadı (kod değişmedi). Görsel HTML taslağıdır; simülatörde görülmedi, kapaklar ve Ragi yer tutucu çizimdir.
+- Etkilenen dosyalar: yalnızca bu kayıt.
+
 ### 2026-11-13 · main, commit bu kayıtla · MagicPaper Original: ilk kapak ChatGPT'den, akış 3
 
 - Batuhan SVG kapağı beğenmedi. Claude üç ChatGPT promptu yazdı (saatin içindeki fareler / sade düz / trenin geldiği an); Batuhan 3. yönü ChatGPT'de üretip gönderdi: karlı dağda taş istasyon, gelen Yıldız Treni, rasathane kubbesi, pencerede kırmızı ve mavi bereli fareler.
