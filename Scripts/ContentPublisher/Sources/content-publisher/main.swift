@@ -14,6 +14,8 @@ content-publisher — MagicPaper uzaktan içerik yayını (FAZ 15)
       --date yyyy-MM-dd                    (varsayılan bugün)
       --deploy                             Yazdıktan sonra `firebase deploy --only hosting`.
       --first                              Yalnız ilk yayında: önceki feed.json yokken.
+  originals check [<slug>]   Taslağı (ya da hepsini) denetler: kurallar, karakterler, dil, kapak.
+  originals approve <slug>   Denetler, drafts/<slug> → published/<slug>. Yayın için ardından publish.
   fallback               Uygulamanın yedek masal dosyasını stories'ten yeniden yazar.
   verify --public-key K  Yazılmış akışın imzasını ve paket özetini denetler.
 
@@ -75,6 +77,21 @@ do {
         let first = flag("--first")
         try publisher.publishFeed(signer: try Signer(contentsOf: keyPath), package: choice, today: date, first: first)
         if deploy { try publisher.deploy() }
+    case "originals":
+        guard let sub = arguments.first else { throw PublishError.message("originals check|approve") }
+        arguments.removeFirst()
+        switch sub {
+        case "check":
+            let problems = arguments.first.map { OriginalLibrary.check(slug: $0, repo: repo) }
+                ?? OriginalLibrary.checkAllDrafts(repo: repo)
+            guard problems.isEmpty else { throw PublishError.invalid(problems) }
+            print("Denetim temiz.")
+        case "approve":
+            guard let slug = arguments.first else { throw PublishError.message("originals approve <slug>") }
+            try OriginalLibrary.approve(slug: slug, repo: repo)
+        default:
+            throw PublishError.message("originals check|approve")
+        }
     case "fallback":
         try publisher.writeFallback()
     case "verify":
@@ -87,7 +104,14 @@ do {
             let data = try Data(contentsOf: repo.content.appendingPathComponent(package.path))
             guard Digest.sha256(data) == package.sha256 else { throw PublishError.message("Paket özeti uyuşmuyor.") }
         }
-        print("Akış \(decoded.feedVersion): imza geçerli, \(decoded.stories.count) masal, paket \(decoded.catalogPackage?.version ?? "yok").")
+        for original in decoded.originals ?? [] {
+            guard let cover = original.cover,
+                  let data = try? Data(contentsOf: repo.content.appendingPathComponent(cover.path)),
+                  Digest.sha256(data) == cover.sha256 else {
+                throw PublishError.message("Original kapağı uyuşmuyor: \(original.slug)")
+            }
+        }
+        print("Akış \(decoded.feedVersion): imza geçerli, \(decoded.stories.count) masal, \(decoded.originals?.count ?? 0) Original, paket \(decoded.catalogPackage?.version ?? "yok").")
     default:
         print(usage)
         exit(2)
