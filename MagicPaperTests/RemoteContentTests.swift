@@ -49,12 +49,23 @@ struct TestPublisher {
     }
 
     static func feedData(version: Int, stories: [FeedStory], package: CatalogPackageRef? = nil,
-                         schema: Int = ContentFeed.supportedSchemaVersion) -> Data {
+                         schema: Int = ContentFeed.supportedSchemaVersion, originals: [FeedOriginal] = []) -> Data {
         let feed = ContentFeed(schemaVersion: schema, feedVersion: version, publishedAt: "2026-10-06",
-                               stories: stories, catalogPackage: package)
+                               stories: stories, catalogPackage: package, originals: originals)
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         return try! encoder.encode(feed)
+    }
+
+    static let cover = Data([0xFF, 0xD8, 0xFF, 0xE0]) + Data(repeating: 3, count: 32)
+
+    static func original(_ slug: String, cover: Data = TestPublisher.cover, day: String = "2026-10-01",
+                         mode: String = "bedtime", id: UUID = UUID()) -> FeedOriginal {
+        let digest = SHA256.hash(data: cover).map { String(format: "%02x", $0) }.joined()
+        return FeedOriginal(id: id, slug: slug, title: "Fenerin Sesi", mode: mode, ageMin: 5, ageMax: 7,
+                            minutes: 4, summary: "Lale feneri yakar.", characters: ["Lale"],
+                            pages: ["Bir.", "İki.", "Üç."], publishDate: day,
+                            cover: .init(path: "originals/\(slug).jpg", sha256: digest))
     }
 
     static func reference(for package: Data, version: String = "2.1.1") -> CatalogPackageRef {
@@ -422,5 +433,71 @@ final class RemoteContentTests: XCTestCase {
 
         let resolved = try CatalogSourceResolver(store: store, key: nil).resolve()
         XCTAssertFalse(resolved.fromPackage)
+    }
+
+    // MARK: - MagicPaper Original
+
+    func testAFeedWithoutOriginalsStillReads() throws {
+        let json = #"{"schemaVersion":1,"feedVersion":3,"publishedAt":"2026-10-06","stories":[]}"#
+        XCTAssertEqual(try JSONDecoder().decode(ContentFeed.self, from: Data(json.utf8)).originals, [])
+    }
+
+    func testAMalformedOriginalIsDroppedNotTheFeed() throws {
+        let good = TestPublisher.original("fener")
+        var object = try JSONSerialization.jsonObject(
+            with: TestPublisher.feedData(version: 1, stories: [], originals: [good])) as! [String: Any]
+        var originals = object["originals"] as! [[String: Any]]
+        var bad = originals[0]
+        bad["slug"] = "../kacak"
+        bad["id"] = UUID().uuidString
+        originals.append(bad)
+        object["originals"] = originals
+        let feed = try JSONDecoder().decode(ContentFeed.self, from: JSONSerialization.data(withJSONObject: object))
+        XCTAssertEqual(feed.originals.map(\.slug), ["fener"])
+    }
+
+    func testOriginalCoversAreDownloadedAndVerified() async {
+        let original = TestPublisher.original("fener")
+        serve(TestPublisher.feedData(version: 1, stories: [], originals: [original]))
+        StubContentProtocol.responses["/content/originals/fener.jpg"] = (200, TestPublisher.cover)
+        let content = service()
+
+        await content.refresh()
+
+        XCTAssertEqual(content.originals.map(\.slug), ["fener"])
+        XCTAssertEqual(store.originalCover(slug: "fener"), TestPublisher.cover)
+    }
+
+    func testAnOriginalWhoseCoverDoesNotMatchStaysHidden() async {
+        serve(TestPublisher.feedData(version: 1, stories: [], originals: [TestPublisher.original("fener")]))
+        StubContentProtocol.responses["/content/originals/fener.jpg"] = (200, Data([0xFF, 0xD8, 0x00]))
+        let content = service()
+
+        await content.refresh()
+
+        XCTAssertEqual(content.originals, [])
+        XCTAssertNil(store.originalCover(slug: "fener"))
+    }
+
+    func testAnOriginalLeavingTheFeedTakesItsCoverAlong() async {
+        serve(TestPublisher.feedData(version: 1, stories: [], originals: [TestPublisher.original("fener")]))
+        StubContentProtocol.responses["/content/originals/fener.jpg"] = (200, TestPublisher.cover)
+        let content = service()
+        await content.refresh()
+
+        serve(TestPublisher.feedData(version: 2, stories: []))
+        await content.refresh()
+
+        XCTAssertEqual(content.originals, [])
+        XCTAssertNil(store.originalCover(slug: "fener"))
+    }
+
+    func testStoredCoversServeOfflineFromTheNextLaunch() async {
+        serve(TestPublisher.feedData(version: 1, stories: [], originals: [TestPublisher.original("fener")]))
+        StubContentProtocol.responses["/content/originals/fener.jpg"] = (200, TestPublisher.cover)
+        await service().refresh()
+
+        StubContentProtocol.responses = [:]
+        XCTAssertEqual(service().originals.map(\.slug), ["fener"])
     }
 }

@@ -22,19 +22,23 @@ struct ContentFeed: Codable, Equatable {
     let catalogPackage: CatalogPackageRef?
     /// Uzaktan bayraklar (Faz 6): yalnızca `MPRemoteFlags.known` içindekiler okunur.
     let flags: [String: Bool]?
+    /// MagicPaper Original masalları (spec 2026-11-12). Eski akışlarda yok: boş.
+    let originals: [FeedOriginal]
 
     enum CodingKeys: String, CodingKey {
-        case schemaVersion, feedVersion, publishedAt, stories, catalogPackage, flags
+        case schemaVersion, feedVersion, publishedAt, stories, catalogPackage, flags, originals
     }
 
     init(schemaVersion: Int = supportedSchemaVersion, feedVersion: Int, publishedAt: String,
-         stories: [FeedStory], catalogPackage: CatalogPackageRef?, flags: [String: Bool]? = nil) {
+         stories: [FeedStory], catalogPackage: CatalogPackageRef?, flags: [String: Bool]? = nil,
+         originals: [FeedOriginal] = []) {
         self.schemaVersion = schemaVersion
         self.feedVersion = feedVersion
         self.publishedAt = publishedAt
         self.stories = stories
         self.catalogPackage = catalogPackage
         self.flags = flags
+        self.originals = originals
     }
 
     init(from decoder: Decoder) throws {
@@ -48,6 +52,12 @@ struct ContentFeed: Codable, Equatable {
         catalogPackage = try container.decodeIfPresent(CatalogPackageRef.self, forKey: .catalogPackage)
         // Okunamayan bayrak akışı düşürmez.
         flags = (try? container.decodeIfPresent([String: Bool].self, forKey: .flags)) ?? nil
+        // Bozuk bir Original akışı düşürmez; aynı id ya da slug ikinci kez gelmez.
+        let decoded = ((try? container.decodeIfPresent([Lossy<FeedOriginal>].self, forKey: .originals)) ?? nil)?
+            .compactMap(\.value).filter(\.isWellFormed) ?? []
+        var ids: Set<UUID> = []
+        var slugs: Set<String> = []
+        originals = decoded.filter { ids.insert($0.id).inserted && slugs.insert($0.slug).inserted }
     }
 
     enum Rejection: Error, Equatable {
@@ -74,6 +84,44 @@ struct ContentFeed: Codable, Equatable {
         guard Set(feed.stories.map(\.id)).count == feed.stories.count else { throw Rejection.duplicateStory }
         if let package = feed.catalogPackage, !package.isWellFormed { throw Rejection.badPackageReference }
         return feed
+    }
+}
+
+/// Bir MagicPaper Original masalı. Yayıncının `OriginalFile`'ı ile aynı
+/// alanlar; ikisini birlikte değiştirin. Metin akışta, kapak yanında:
+/// `cover.path`'teki dosya `cover.sha256`'ya uymuyorsa masal gösterilmez.
+struct FeedOriginal: Codable, Equatable {
+    struct Cover: Codable, Equatable {
+        let path: String
+        let sha256: String
+    }
+
+    let id: UUID
+    let slug: String
+    let title: String
+    /// `bedtime` | `learning` | `adventure`. Bilinmeyen mod masalı düşürmez.
+    let mode: String
+    let ageMin: Int
+    let ageMax: Int
+    let minutes: Int
+    let summary: String
+    let characters: [String]
+    let pages: [String]
+    /// `yyyy-MM-dd`; o günden önce gösterilmez.
+    let publishDate: String
+    let cover: Cover
+
+    /// Yayıncının yazdığı biçim: slug güvenli, kapak `originals/<slug>.jpg`.
+    var isWellFormed: Bool {
+        slug.range(of: #"^[a-z0-9]+(-[a-z0-9]+)*$"#, options: .regularExpression) != nil
+            && cover.path == "originals/\(slug).jpg"
+            && cover.sha256.count == 64 && cover.sha256.allSatisfy { $0.isHexDigit && !$0.isUppercase }
+            && publishDate.range(of: #"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"#, options: .regularExpression) != nil
+            && !pages.isEmpty && ageMin <= ageMax
+    }
+
+    func matches(_ data: Data) -> Bool {
+        SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined() == cover.sha256
     }
 }
 
