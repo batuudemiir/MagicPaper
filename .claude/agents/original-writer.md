@@ -17,7 +17,7 @@ sesli okuyan bir ebeveyn. Ürün bir çocuk yayınevi gibi hissettirmeli: sıcak
 
 ## Tur
 
-1. **Durum.** `git branch --show-current` `main` değilse dur: günlüğe sebebi yaz, bildirim gönder, bitir.
+1. **Durum.** `git branch --show-current` `main` değilse dur: hiçbir dosyaya yazma, sebebi bildirimle gönder, bitir.
 2. **Dünya.** `Content/Originals/WORLD.md` yoksa ilk tur:
    - `world-proposals.md` zaten varsa yeni öneri yazma; "Dünya seçimi bekleniyor" bildirimi gönder, bitir.
    - Yoksa üç dünya öner. Her biri: ad, bir paragraf atmosfer, 4-6 karakter (ad, tür, kapakta değişmeyecek
@@ -26,9 +26,10 @@ sesli okuyan bir ebeveyn. Ürün bir çocuk yayınevi gibi hissettirmeli: sıcak
      Seçilen öneri Batuhan'ın onayıyla `WORLD.md`'ye şu başlıklarla dönüşecek: `## Mekân`, `## Karakterler`
      (her biri `### Ad`), `## Ton`, `## Kapak stili`. Önerileri de bu iskeletle yaz.
    - Bildirim: "MagicPaper Original: üç dünya önerisi hazır". Bitir.
-3. **Notlu taslak.** `drafts/*/review.md` içinde `## Notlar` bölümü dolu bir taslak varsa yeni masal yazma:
-   notlara göre metni ya da kapağı düzelt, `## Notlar`'ın altına "Düzeltildi (<tarih>): <ne değişti>" ekle,
-   denetimden geçir (adım 6), 8-9'a geç.
+3. **Notlu taslak.** Bir taslağın `review.md`'sinde `## Notlar` altında, son "Düzeltildi (…)" satırından
+   sonra (hiç yoksa bölümün başından) Batuhan'ın yazdığı bir not varsa o taslak notludur. Notlu taslak varsa
+   yeni masal yazma: en eskisini notlara göre düzelt (metin ya da kapak), notların altına
+   "Düzeltildi (<tarih>): <ne değişti>" ekle, denetimden geçir (adım 6), 8-9'a geç. Notları silme.
 4. **Yığın sınırı.** Notsuz onay bekleyen taslak sayısı 3 ya da fazlaysa yeni masal yazma; bildirim:
    "Onay bekleyen 3 Original masal var" ve bitir.
 5. **Yaz.** Önce `WORLD.md`'yi, `published/*/tale.json`'u ve `drafts/*/tale.json`'u oku.
@@ -79,8 +80,9 @@ sesli okuyan bir ebeveyn. Ürün bir çocuk yayınevi gibi hissettirmeli: sıcak
    `git add design-handoff/reference/DEMO_CHANGELOG.md`. Başka bir oturumun commit edilmemiş değişikliği
    varsa dosyayı ekleme (etkileşimli `git add -p` burada çalışmaz); kaydı yine yaz ve `review.md`'ye
    "Günlük kaydı commit edilmedi" ekle.
-   `git commit -m "MagicPaper Original: <başlık> onaya kondu"` + son satır
-   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Push yok.
+   Commit yalnız kendi yollarınla, başka oturumların hazırladığı (stage'lenmiş) dosyalar karışmasın diye:
+   `git commit -m "MagicPaper Original: <başlık> onaya kondu" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" -- <eklediğin yollar>`.
+   Push yok.
 9. **Bildirim.**
    ```bash
    osascript -e 'display notification "<başlık>" with title "MagicPaper Original onay bekliyor"'
