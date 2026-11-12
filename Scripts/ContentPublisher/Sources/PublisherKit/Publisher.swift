@@ -21,6 +21,11 @@ public struct Repo {
     }
 
     public var stories: URL { root.appendingPathComponent("Content/DailyFeed/stories") }
+    /// MagicPaper Original (spec 2026-11-12).
+    public var originals: URL { root.appendingPathComponent("Content/Originals") }
+    public var world: URL { originals.appendingPathComponent("WORLD.md") }
+    public var originalDrafts: URL { originals.appendingPathComponent("drafts") }
+    public var originalsPublished: URL { originals.appendingPathComponent("published") }
     /// Deney kolları (`Content/Experiments/<id>.json`). Uygulamanın paketiyle
     /// GELMEZ: motorun `Bundle.module`'ü bu klasörü görmez, dolayısıyla buradaki
     /// bir blueprint çocuğa yalnızca `build-package --experiment <id>` ile
@@ -33,6 +38,7 @@ public struct Repo {
     public var catalogFolder: URL { content.appendingPathComponent("catalog") }
     public var feed: URL { content.appendingPathComponent("feed.json") }
     public var signature: URL { content.appendingPathComponent("feed.json.sig") }
+    public var hostedOriginals: URL { content.appendingPathComponent("originals") }
     public var appFallback: URL {
         root.appendingPathComponent("MagicPaper/StoryEngineBridge/RemoteContent/daily_feed_fallback.json")
     }

@@ -111,4 +111,52 @@ final class OriginalsTests: XCTestCase {
         XCTAssertEqual(WorldBook.characters(in: Self.world), ["Lale", "Pırpır"])
         XCTAssertEqual(WorldBook.characters(in: "# Boş\n"), [])
     }
+
+    // MARK: - Library
+
+    func testCheckReportsADraftsProblems() throws {
+        try writeDraft(try Self.tale { $0["characters"] = ["Ejderha"] })
+        let problems = OriginalLibrary.check(slug: "fener-masali", repo: Repo(root: temp))
+        XCTAssertTrue(problems.contains { $0.contains("Ejderha") })
+    }
+
+    func testCheckWithoutAWorldBookFails() throws {
+        try FileManager.default.removeItem(at: Repo(root: temp).world)
+        try writeDraft(try Self.tale())
+        XCTAssertFalse(OriginalLibrary.check(slug: "fener-masali", repo: Repo(root: temp)).isEmpty)
+    }
+
+    func testApproveMovesTaleAndCoverButNotTheReview() throws {
+        let repo = Repo(root: temp)
+        try writeDraft(try Self.tale())
+        try OriginalLibrary.approve(slug: "fener-masali", repo: repo)
+
+        let published = repo.originalsPublished.appendingPathComponent("fener-masali")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: published.appendingPathComponent("tale.json").path))
+        XCTAssertEqual(try Data(contentsOf: published.appendingPathComponent("cover.jpg")), Self.jpeg)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: published.appendingPathComponent("review.md").path))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: repo.originalDrafts.appendingPathComponent("fener-masali").path))
+    }
+
+    func testApproveRefusesABrokenDraftAndLeavesItInPlace() throws {
+        let repo = Repo(root: temp)
+        try writeDraft(try Self.tale(), cover: nil)
+        XCTAssertThrowsError(try OriginalLibrary.approve(slug: "fener-masali", repo: repo))
+        XCTAssertTrue(FileManager.default.fileExists(
+            atPath: repo.originalDrafts.appendingPathComponent("fener-masali/tale.json").path))
+    }
+
+    func testApproveRefusesAnIDThatIsAlreadyPublished() throws {
+        let repo = Repo(root: temp)
+        let id = UUID().uuidString
+        try writeDraft(try Self.tale("birinci", id: id))
+        try OriginalLibrary.approve(slug: "birinci", repo: repo)
+        try writeDraft(try Self.tale("ikinci", id: id))
+        XCTAssertThrowsError(try OriginalLibrary.approve(slug: "ikinci", repo: repo))
+    }
+
+    func testNothingPublishedLoadsAsEmpty() throws {
+        try FileManager.default.removeItem(at: Repo(root: temp).originalsPublished)
+        XCTAssertEqual(try OriginalLibrary.loadPublished(repo: Repo(root: temp)).count, 0)
+    }
 }

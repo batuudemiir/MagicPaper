@@ -116,3 +116,99 @@ public enum WorldBook {
         return names
     }
 }
+
+/// Yayımlanmış ya da onay bekleyen bir masal, kapağıyla.
+public struct OriginalEntry {
+    public let tale: OriginalFile
+    public let cover: Data
+}
+
+/// `Content/Originals` üzerindeki işler. Ajan yalnız `check` çalıştırır;
+/// `approve` ve yayın Batuhan'ındır.
+public enum OriginalLibrary {
+
+    static func knownCharacters(repo: Repo) -> Set<String>? {
+        guard let text = try? String(contentsOf: repo.world, encoding: .utf8) else { return nil }
+        return WorldBook.characters(in: text)
+    }
+
+    /// Bir klasördeki masalın sorunları; boşsa geçer.
+    static func problems(in folder: URL, known: Set<String>?) -> [String] {
+        guard let known else { return ["WORLD.md yok: önce dünya kitabı (Content/Originals/README.md)"] }
+        let tale: OriginalFile
+        do {
+            tale = try JSONDecoder().decode(OriginalFile.self, from: Data(contentsOf: folder.appendingPathComponent("tale.json")))
+        } catch {
+            return ["tale.json okunamadı: \(error)"]
+        }
+        let cover = try? Data(contentsOf: folder.appendingPathComponent("cover.jpg"))
+        return tale.problems(folder: folder.lastPathComponent, characters: known, cover: cover)
+    }
+
+    /// `drafts/<slug>`'ı denetler.
+    public static func check(slug: String, repo: Repo) -> [String] {
+        problems(in: repo.originalDrafts.appendingPathComponent(slug), known: knownCharacters(repo: repo))
+    }
+
+    /// Tüm taslakların sorunları, klasör adıyla.
+    public static func checkAllDrafts(repo: Repo) -> [String] {
+        let known = knownCharacters(repo: repo)
+        return folders(in: repo.originalDrafts).flatMap { folder in
+            problems(in: folder, known: known).map { "\(folder.lastPathComponent): \($0)" }
+        }
+    }
+
+    /// Yayımlanmış masalların hepsi, denetlenmiş. Biri bile bozuksa hiçbiri.
+    public static func loadPublished(repo: Repo) throws -> [OriginalEntry] {
+        let known = knownCharacters(repo: repo)
+        var entries: [OriginalEntry] = []
+        var problems: [String] = []
+        for folder in folders(in: repo.originalsPublished) {
+            let found = Self.problems(in: folder, known: known)
+            guard found.isEmpty,
+                  let tale = try? JSONDecoder().decode(OriginalFile.self, from: Data(contentsOf: folder.appendingPathComponent("tale.json"))),
+                  let cover = try? Data(contentsOf: folder.appendingPathComponent("cover.jpg")) else {
+                problems += found.map { "\(folder.lastPathComponent): \($0)" }
+                continue
+            }
+            entries.append(OriginalEntry(tale: tale, cover: cover))
+        }
+        var ids: Set<String> = []
+        for entry in entries where !ids.insert(entry.tale.id.uppercased()).inserted {
+            problems.append("\(entry.tale.slug): id başka bir Original ile aynı")
+        }
+        guard problems.isEmpty else { throw PublishError.invalid(problems) }
+        return entries
+    }
+
+    /// `drafts/<slug>` → `published/<slug>`: yalnız `tale.json` ve `cover.jpg`.
+    /// `review.md` taşınmaz; git geçmişinde kalır.
+    public static func approve(slug: String, repo: Repo, log: (String) -> Void = { print($0) }) throws {
+        let draft = repo.originalDrafts.appendingPathComponent(slug)
+        let found = check(slug: slug, repo: repo)
+        guard found.isEmpty else { throw PublishError.invalid(found) }
+        let target = repo.originalsPublished.appendingPathComponent(slug)
+        guard !FileManager.default.fileExists(atPath: target.path) else {
+            throw PublishError.message("published/\(slug) zaten var.")
+        }
+        let tale = try JSONDecoder().decode(OriginalFile.self, from: Data(contentsOf: draft.appendingPathComponent("tale.json")))
+        let published = try loadPublished(repo: repo)
+        if published.contains(where: { $0.tale.id.uppercased() == tale.id.uppercased() }) {
+            throw PublishError.message("\(slug): id yayımlanmış bir Original ile aynı.")
+        }
+        try FileManager.default.createDirectory(at: target, withIntermediateDirectories: true)
+        for name in ["tale.json", "cover.jpg"] {
+            try FileManager.default.moveItem(at: draft.appendingPathComponent(name), to: target.appendingPathComponent(name))
+        }
+        try FileManager.default.removeItem(at: draft)
+        log("Onaylandı: \(tale.title) (published/\(slug)). Yayın: `content-publisher publish --deploy`.")
+    }
+
+    static func folders(in directory: URL) -> [URL] {
+        let names = (try? FileManager.default.contentsOfDirectory(atPath: directory.path)) ?? []
+        return names.sorted().map { directory.appendingPathComponent($0) }.filter {
+            var isDirectory: ObjCBool = false
+            return FileManager.default.fileExists(atPath: $0.path, isDirectory: &isDirectory) && isDirectory.boolValue
+        }
+    }
+}
