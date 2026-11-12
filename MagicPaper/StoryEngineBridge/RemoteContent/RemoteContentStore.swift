@@ -119,21 +119,48 @@ struct RemoteContentStore: Sendable {
 
     func eraseAll() { try? FileManager.default.removeItem(at: directory) }
 
+    // MARK: Original covers
+
+    /// `Originals/<slug>.jpg`. Akışın imzalı özetine göre denetlenir; burada
+    /// yalnız okunur ve yazılır.
+    private var originalsDirectory: URL { directory.appendingPathComponent("Originals", isDirectory: true) }
+
+    func originalCoverURL(slug: String) -> URL { originalsDirectory.appendingPathComponent("\(slug).jpg") }
+
+    func originalCover(slug: String) -> Data? { try? Data(contentsOf: originalCoverURL(slug: slug)) }
+
+    func saveOriginalCover(_ data: Data, slug: String) throws {
+        try ensureDirectory()
+        try FileManager.default.createDirectory(at: originalsDirectory, withIntermediateDirectories: true)
+        try data.write(to: originalCoverURL(slug: slug), options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+    }
+
+    /// Akışta artık olmayan masalların kapakları gider.
+    func removeOriginalCovers(keeping slugs: Set<String>) {
+        let names = (try? FileManager.default.contentsOfDirectory(atPath: originalsDirectory.path)) ?? []
+        for name in names where !slugs.contains(String(name.dropLast(".jpg".count))) || !name.hasSuffix(".jpg") {
+            try? FileManager.default.removeItem(at: originalsDirectory.appendingPathComponent(name))
+        }
+    }
+
     // MARK: Files
 
     private func url(_ name: String) -> URL { directory.appendingPathComponent(name) }
 
     private func read(_ name: String) -> Data? { try? Data(contentsOf: url(name)) }
 
-    private func write(_ data: Data, _ name: String) throws {
+    private func ensureDirectory() throws {
         let manager = FileManager.default
-        if !manager.fileExists(atPath: directory.path) {
-            try manager.createDirectory(at: directory, withIntermediateDirectories: true)
-            var folder = directory
-            var values = URLResourceValues()
-            values.isExcludedFromBackup = true
-            try? folder.setResourceValues(values)
-        }
+        guard !manager.fileExists(atPath: directory.path) else { return }
+        try manager.createDirectory(at: directory, withIntermediateDirectories: true)
+        var folder = directory
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try? folder.setResourceValues(values)
+    }
+
+    private func write(_ data: Data, _ name: String) throws {
+        try ensureDirectory()
         try data.write(to: url(name), options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
     }
 }

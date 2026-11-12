@@ -28,9 +28,12 @@ final class RemoteContentService: ObservableObject {
 
     static let maxFeedBytes = 2 * 1024 * 1024
     static let maxPackageBytes = 16 * 1024 * 1024
+    static let maxCoverBytes = 2 * 1024 * 1024
 
     /// The last verified feed. `nil` before the first one arrives.
     @Published private(set) var feed: ContentFeed?
+    /// Kapağı cihazda olan ve imzalı özete uyan MagicPaper Original masalları.
+    @Published private(set) var originals: [FeedOriginal] = []
 
     enum Outcome: Equatable {
         /// No key or address in this build.
@@ -73,6 +76,7 @@ final class RemoteContentService: ObservableObject {
         self.now = now
         self.bundledCatalog = bundledCatalog
         if let key = config?.key { feed = store.feed(key: key) }
+        originals = Self.verifiedOriginals(feed?.originals ?? [], store: store)
     }
 
     nonisolated static func makeSession() -> URLSession {
@@ -157,6 +161,7 @@ final class RemoteContentService: ObservableObject {
         }
 
         await syncPackage((feed ?? stored)?.catalogPackage, config: config)
+        await syncOriginalCovers((feed ?? stored)?.originals ?? [], config: config)
         return outcome
     }
 
@@ -214,6 +219,32 @@ final class RemoteContentService: ObservableObject {
         } catch {
             logger.error("🛑 İçerik paketi yazılamadı")
         }
+    }
+
+    nonisolated static func verifiedOriginals(_ list: [FeedOriginal], store: RemoteContentStore) -> [FeedOriginal] {
+        list.filter { original in store.originalCover(slug: original.slug).map(original.matches) ?? false }
+    }
+
+    /// Akıştaki her Original'in kapağı: yoksa ya da özeti tutmuyorsa indirilir.
+    /// Özeti tutmayan indirme saklanmaz; masal gizli kalır, sonraki çalışmada
+    /// yeniden denenir.
+    private func syncOriginalCovers(_ list: [FeedOriginal], config: RemoteContentConfig) async {
+        store.removeOriginalCovers(keeping: Set(list.map(\.slug)))
+        for original in list {
+            if let local = store.originalCover(slug: original.slug), original.matches(local) { continue }
+            do {
+                let data = try await download(config.contentRoot.appendingPathComponent(original.cover.path),
+                                              limit: Self.maxCoverBytes)
+                guard original.matches(data) else {
+                    logger.notice("Original kapağı özete uymadı: \(original.slug, privacy: .public)")
+                    continue
+                }
+                try store.saveOriginalCover(data, slug: original.slug)
+            } catch {
+                logger.notice("Original kapağı indirilemedi: \(Self.brief(error), privacy: .public)")
+            }
+        }
+        originals = Self.verifiedOriginals(list, store: store)
     }
 
     /// A failure in a few words: the code, not the whole error with its URL.
