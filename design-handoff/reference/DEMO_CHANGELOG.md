@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main@7971bc5 · MagicPaper Original: dünya seçildi, Bulut Durağı
+
+- Ne değişti: original-writer'ın ilk turu (elle başlatıldı) üç dünya önerdi (`8b138d1`); Batuhan Bulut Durağı'nı seçti. Öneri `Content/Originals/WORLD.md`'ye dönüştü: Mekân, Karakterler (Tozkar, Ayşe Teyze, Profesör Ayı, Minik, Mısra, Yıldız Treni), Ton, Kapak stili.
+- Bilerek değişti: öneride tek başlık olan "Minik ile Mısra" iki ayrı karakter oldu; yayıncı adları `###` başlıklarından okuyor.
+- Bilerek değişmedi: `world-proposals.md` yerinde kalıyor (diğer iki dünya kayıt olarak). Örnek ilk sayfa WORLD.md'ye taşınmadı.
+- Test: WORLD.md'nin karakter başlıkları ve `## Kapak stili` bölümü elle okundu. Masal turu henüz çalışmadı; ilk masal pazartesi 09:00'da.
+- Dosyalar: `Content/Originals/WORLD.md`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: üç dünya önerisi onaya kondu
 
 - Ne değişti: original-writer ajanının ilk turu. `WORLD.md` olmadığı için masal yazılmadı; `Content/Originals/world-proposals.md`'ye üç dünya önerildi: Çınaraltı (yaşlı bir çınarda hayvan köyü), Fenerli Koy (fenerli deniz koyu, insan çocuk kahraman Lale) ve Bulut Durağı (karlı dağda tren istasyonu ve rasathane). Her biri `## Mekân`, `## Karakterler` (beş karakter, sabit görünüş, konuşma, sevdiği ve korktuğu), `## Ton` (üç mod), İngilizce `## Kapak stili` ve örnek ilk sayfa taşıyor.
