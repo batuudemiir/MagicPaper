@@ -48,21 +48,17 @@ struct HomeView: View {
 
     private var content: some View {
         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
+            // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
+            // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
             VStack(alignment: .leading, spacing: 0) {
-                MPKidTabHeader(title: activeName, eyebrow: greeting)
-                // Satır Profil'e götürür: yıldız ve serinin ayrıntısı orada.
-                // Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
-                if stars > 0 || streak.currentStreak > 0 {
-                    Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                        HomeStatLine(stars: stars, streak: streak.currentStreak)
-                    }
-                    .buttonStyle(MPPressStyle())
-                    .accessibilityHint("Odamı açar")
+                MPKidTabHeader(title: activeName, eyebrow: greeting) {
+                    if !typeSize.isAccessibilitySize { statLine(compact: true) }
                 }
+                if typeSize.isAccessibilitySize { statLine(compact: false) }
             }
             .padding(.top, MPSpacing.lg)
 
-            HomeHeroCard(state: tonightState, isNight: isNight, onPrimary: tonightAction)
+            HomeHeroCard(state: tonightState, isNight: isNight, cover: tonightCover, onPrimary: tonightAction)
                 .homeEntrance(0)
 
             // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
@@ -89,6 +85,21 @@ struct HomeView: View {
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, GunlukLayout.bottomClearance)
+    }
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// Satır Odam'a götürür: yıldız ve serinin ayrıntısı orada.
+    /// Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
+    @ViewBuilder
+    private func statLine(compact: Bool) -> some View {
+        if stars > 0 || streak.currentStreak > 0 {
+            Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
+                HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact)
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityHint("Odamı açar")
+        }
     }
 
     /// Uyku saatinde kartın sahnesi geceye döner; sayfa açık kalır.
@@ -137,6 +148,15 @@ struct HomeView: View {
         }
     }
 
+    /// Okunmamış günün masalı bir klasikse kapağı sahneye konur. Yarım kalan
+    /// masalın kapağı `MPTonight`'ta taşınmıyor; o durumda sahne kapaksız.
+    private var tonightCover: (asset: String, focus: ClassicFocus)? {
+        guard case .unread(let title, _) = tonightState,
+              let tale = classics.todaysTale, tale.title == title,
+              UIImage(named: tale.cover) != nil else { return nil }
+        return (tale.cover, tale.coverFocus)
+    }
+
     private func tonightAction() {
         MPHaptics.tap()
         app.openTonight()
@@ -181,11 +201,33 @@ struct HomeView: View {
         StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
-    /// Masal yaratmaya giriş: masal yazma adımlarıyla aynı satırlar, tek gri
-    /// listede (22 Ekim 2026; önceden resimli büyük kartlar). Satır akışı o
-    /// modla, ikinci adımdan açar.
+    /// Masal yaratmaya giriş (13 Kasım 2026, Batuhan): yan yana üç karo, öne
+    /// çıkan mod "Bu akşam" etiketli. Karo akışı o modla, ikinci adımdan açar.
+    /// En büyük yazı boyutlarında 22 Ekim'in satırları: karoya ad sığmaz.
     private var modeStrip: some View {
         HomeSection(title: "Yeni bir masal yaz") {
+            if typeSize.isAccessibilitySize { modeRows } else { modeTiles }
+        }
+    }
+
+    private var modeTiles: some View {
+        HStack(alignment: .top, spacing: MPSpacing.sm) {
+            ForEach(shownModes, id: \.self) { mode in
+                HomeModeTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
+                             badge: mode == emphasizedMode ? "Bu akşam" : nil, fillHeight: true) {
+                    MPHaptics.tap()
+                    app.startStoryCreation(mode: mode)
+                }
+                .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
+                .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
+            }
+        }
+        .fixedSize(horizontal: false, vertical: true)
+        // Etiket karonun üst kenarına biner: başlığa değmesin.
+        .padding(.top, emphasizedMode == nil ? 0 : MPSpacing.xs)
+    }
+
+    private var modeRows: some View {
             VStack(spacing: 0) {
                 ForEach(Array(shownModes.enumerated()), id: \.element) { index, mode in
                     if index > 0 { MPRowDivider(area: .kid) }
@@ -205,7 +247,6 @@ struct HomeView: View {
             }
             // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
             .padding(.horizontal, -MPSpacing.md)
-        }
     }
 
     /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); lavanta yalnızca bu akşamın kartında.

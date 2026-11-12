@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Ana sayfa yeni düzen: büyük sahne, üç mod karosu, yıldız başlıkta
+
+- Karar (Batuhan, 13 Kasım): 9b4519f'teki öneri uygulandı. "Modlar satır" (22 Ekim) kararının yerine yan yana üç karo geçti.
+- Ne değişti: (1) yıldız ve gün satırı `MPKidTabHeader`'ın `accessory`'sinde, kısa yazımla ("1", "3 gün"; sesli okuma tam cümle), dokununca yine Odam; (2) `HomeHeroCard.sceneHeight` 130 → 188; (3) "Yeni bir masal yaz" mevcut `HomeModeTile` ile üç karo (`fillHeight` ile eşit boy), uyku saatinde önerilen karo "Bu akşam" etiketli; (4) okunmamış günün masalı bir klasikse kapağı sahnede sol altta (`HomeHeroCard.cover`).
+- Öneriden fark: karolar çizimdeki beyaz kenarlı kart değil, var olan pastel `HomeModeTile` (yeni bileşen açılmadı). Yarım kalan masalın kapağı sahnede yok: `MPTonight.Resume` kapak taşımıyor, paylaşılan model değiştirilmedi.
+- Erişilebilirlik boyutlarında (`isAccessibilitySize`) eski düzen: yıldız satırı başlığın altında, modlar satır.
+- Bilerek değişmedi: bölüm sırası, kartın dört durumu ve metinleri, seri kartı, Masallar rafı, alt çubuk.
+- Doğrulama: derleme başarılı. Simülatör (iPhone 17 Pro, açık tema, `-mpDemo`): uyku saati ve "Kaldığın yerden" durumları görüldü; üç karo alt çubuğun üstünde, Masallar başlığı da görünüyor. Görülmedi: sahnedeki kapak (okunmamış durum demo veride çıkmadı), koyu tema, en büyük Dynamic Type, SE ve Pro Max. Birim ve arayüz testleri çalıştırılmadı. Tasarım yasası grep'leri iki dosyada boş.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Ana sayfa yeniden düzen önerisi (yalnızca sohbet görseli)
 
 - Ne yapıldı: `HomeView` ve `MPHomeChrome` okundu, ana sayfa için yeni düzen sohbette iki telefon çizimiyle gösterildi (gündüz · okunmamış masal, uyku saati). Uygulama kodu değişmedi.

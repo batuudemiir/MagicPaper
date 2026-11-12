@@ -141,6 +141,9 @@ struct HomeSceneMascot: View {
 struct HomeStatLine: View {
     let stars: Int
     let streak: Int
+    /// Başlığın sağında (13 Kasım 2026): yalnızca sayılar ("12 · 3 gün"),
+    /// sığmazsa sağa yaslı alt alta. Sesli okuma tam cümleyi söyler.
+    var compact: Bool = false
 
     var body: some View {
         // Büyük yazıda sığmazsa kesilmez, alt alta düşer.
@@ -150,12 +153,13 @@ struct HomeStatLine: View {
                 if stars > 0 && streak > 0 { Text("·").accessibilityHidden(true) }
                 if streak > 0 { streakItem }
             }
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+            VStack(alignment: compact ? .trailing : .leading, spacing: MPSpacing.xxs) {
                 if stars > 0 { starItem }
                 if streak > 0 { streakItem }
             }
         }
         .mpText(.footnote)
+        .fontWeight(compact ? .bold : nil)
         .foregroundStyle(MPColor.textSecondary)
         .frame(minHeight: MPSize.minTouchParent)
         .contentShape(Rectangle())
@@ -169,7 +173,7 @@ struct HomeStatLine: View {
     private var starItem: some View {
         HStack(spacing: MPSpacing.xs) {
             MPStarMark(size: 15).accessibilityHidden(true)
-            Text("\(stars) yıldız")
+            Text(compact ? "\(stars)" : "\(stars) yıldız")
                 .contentTransition(.numericText(value: Double(stars)))
         }
     }
@@ -179,7 +183,7 @@ struct HomeStatLine: View {
             MPIcon("flame", size: MP.G.sm, weight: .semibold)
                 .foregroundStyle(MPWorldTone.peach.deep)
                 .accessibilityHidden(true)
-            Text("\(streak) gün üst üste")
+            Text(compact ? "\(streak) gün" : "\(streak) gün üst üste")
                 .contentTransition(.numericText(value: Double(streak)))
         }
     }
@@ -222,12 +226,16 @@ struct WaveBottom: Shape {
 /// lavanta zeminde masal ve sayfanın tek birincil düğmesi. Ragi küçüldü ama
 /// ön planda (16 Ekim kararı, Batuhan 22 Ekim onayı).
 struct HomeHeroCard: View {
-    /// Vizyon planı düzen 1 (11 Kasım 2026, simülatörde ölçüldü): üç mod
-    /// alt çubuğun üstünde görünsün diye 130 pt. Plan 180 diyordu, ama gerçek
-    /// yazı yükseklikleriyle 402 pt genişlikte üçüncü mod çubuğun altında kalıyordu.
-    static let sceneHeight: CGFloat = 130
+    /// 13 Kasım 2026: modlar üç satırdan yan yana üç karoya geçince sahne
+    /// 130'dan 188'e çıktı (11 Kasım'da üçüncü satır alt çubuğun altında
+    /// kaldığı için 130'a inmişti).
+    static let sceneHeight: CGFloat = 188
+    /// Sahnedeki kapağın ölçüsü (raf kapağıyla aynı oran).
+    static let coverSize = CGSize(width: 66, height: 88)
     let state: TonightState
     var isNight: Bool = false
+    /// Bu akşamın masalının kapağı: sahnede, Ragi'nin karşısında. Gece sahnesinde yok.
+    var cover: (asset: String, focus: ClassicFocus)? = nil
     let onPrimary: () -> Void
 
     var body: some View {
@@ -253,7 +261,7 @@ struct HomeHeroCard: View {
     /// geçişle; Ragi sağ altta.
     private var scene: some View {
         ZStack(alignment: .bottomTrailing) {
-            ZStack {
+            ZStack(alignment: .bottomLeading) {
                 MPColor.sceneSkyDay
                 Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
                     .frame(height: Self.sceneHeight, alignment: .top).clipped()
@@ -263,6 +271,16 @@ struct HomeHeroCard: View {
                         .frame(height: Self.sceneHeight, alignment: .top).clipped()
                 }
                 .opacity(isNight ? 1 : 0)
+                if let cover, !isNight {
+                    ClassicCoverImage(asset: cover.asset, focus: cover.focus, seed: cover.asset)
+                        .frame(width: Self.coverSize.width, height: Self.coverSize.height)
+                        .clipShape(RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
+                        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.deep, radius: MPRadius.sm)
+                        .rotationEffect(.degrees(-5))
+                        .padding(.leading, MPSpacing.xl)
+                        .padding(.bottom, MPSpacing.md)
+                        .transition(.opacity)
+                }
             }
             .animation(MP.M.gated(MP.M.slow), value: isNight)
             .accessibilityHidden(true)
@@ -465,6 +483,8 @@ struct HomeModeTile: View {
     let systemImage: String
     let tone: MPWorldTone
     var badge: String? = nil
+    /// Yan yana karolar aynı boyda dursun (ana sayfanın mod sırası).
+    var fillHeight: Bool = false
     let action: () -> Void
 
     /// Etiketin yüksekliği: yarısı kadar yukarı çıkıp kenara biner (Dynamic Type ile büyür).
@@ -484,7 +504,7 @@ struct HomeModeTile: View {
             }
             .padding(.vertical, MPSpacing.md)
             .padding(.horizontal, MPSpacing.sm)
-            .frame(maxWidth: .infinity, minHeight: 104)
+            .frame(maxWidth: .infinity, minHeight: 104, maxHeight: fillHeight ? .infinity : nil)
             .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
             .overlay {
                 if badge != nil {
