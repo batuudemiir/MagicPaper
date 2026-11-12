@@ -17,6 +17,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -87,6 +88,9 @@ def main(argv):
         print(__doc__)
         return 2
     slug = argv[1]
+    if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", slug):
+        print(f"HATA: geçersiz slug: {slug}", file=sys.stderr)
+        return 2
     draft = ORIGINALS / "drafts" / slug
     world = (ORIGINALS / "WORLD.md").read_text(encoding="utf-8")
     review = (draft / "review.md").read_text(encoding="utf-8")
@@ -99,8 +103,16 @@ def main(argv):
     request = urllib.request.Request(
         ENDPOINT.format(model=model), data=json.dumps(request_body(prompt)).encode("utf-8"),
         headers={"Content-Type": "application/json", "x-goog-api-key": key}, method="POST")
-    with urllib.request.urlopen(request, timeout=180) as response:
-        image = image_bytes(json.load(response))
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            image = image_bytes(json.load(response))
+    except urllib.error.HTTPError as error:
+        # Gövde güvenlik filtresi ya da kota mesajını taşır; anahtar başlıkta, burada yok.
+        print(f"HATA: Gemini {error.code}: {error.read()[:300].decode('utf-8', 'replace')}", file=sys.stderr)
+        return 1
+    except (urllib.error.URLError, RuntimeError) as error:
+        print(f"HATA: {error}", file=sys.stderr)
+        return 1
     with tempfile.TemporaryDirectory() as temp:
         raw = pathlib.Path(temp) / "raw.png"
         raw.write_bytes(image)
