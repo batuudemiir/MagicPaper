@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Dört yeni klasiğin kapakları
+
+- Batuhan'ın onayıyla Wikimedia Commons'tan dört görsel indirildi, kırpılıp `Assets.xcassets/Classics` altına kondu; `covers.json` içinde `pending`'den çıktılar, künyeleri ve odak noktaları yazıldı.
+- Çirkin Ördek Yavrusu: Theo van Hoytema'nın 1893 kitap kapağı (başlık yazısı kırpıldı). Ayakkabıcı ile Cüceler: Otto Kubel kartpostalı. Bremen Mızıkacıları: Oskar Herrfurth kartpostalı (bahçe kapısında dört arkadaş). Zümrüdüanka: Safevî Şehname minyatürü "Zal'ı Simurg kurtarıyor" (16. yüzyıl, yazı panelleri kırpıldı).
+- Açık konular: iki kartpostalın basım yılı kaynakta yok, ABD için "1930 öncesi" koşulu doğrulanmadı (ressamlar 1934 ve 1951'de ölmüş, TR ve AB'de serbest). Tarama MCAD Library'nin CC BY 2.0 lisansıyla geldiği için künyede anılıyor. Minyatürde küçük Zal çıplak çizilmiş. Pogány'nin Türk masalları çizimleri Commons'ta tek tek bulunmadığı için kullanılmadı.
+- Bilerek değişmedi: masal metinleri, seçki, günün masalı.
+- Test: ClassicsCatalogTests + ClassicProgressTests 35/0, asset kataloğu derlendi. Kapaklar simülatörde gözle görülmedi.
+- Dosyalar: `MagicPaper/Assets.xcassets/Classics/classic-{ayakkabici-ile-cuceler,bremen-mizikacilari,cirkin-ordek-yavrusu,zumruduanka}.imageset`, `Content/Classics/covers.json`, `Content/Classics/COVER_SOURCES.md`, `MagicPaper/Screens/Gunluk/Model/classics_catalog.json`.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: uygulama planı
 
 - Ne değişti: spec'ten 14 görevlik uygulama planı yazıldı (`docs/superpowers/plans/2026-11-12-magicpaper-original.md`): yayıncı modeli ve kuralları, `originals check/approve`, akışta Original'ler ve kapak özetleri, uygulamada kapak indirme ve doğrulama, `ClassicShelf.orijinal`, Masallar bölümü, Gemini kapak aracı, `original-writer` ajanı, pazartesi/perşembe 09:00 zamanlanmış görev.

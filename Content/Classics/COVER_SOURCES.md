@@ -41,3 +41,19 @@ Batuhan 13 Ekim'de görsel üretimini onaylamadı. Bu kapaklar `pendingCovers` l
 | nasreddin-hoca, kelile-ve-dimne | Aday: Osmanlı ve İran minyatürleri (kamu malı, boyalı). Üslubu farklı, karar Batuhan'da. |
 | karagoz-ile-hacivat | Aday: tarihî tasvir (kamu malı). Fotoğraf olmamalı. |
 | orijinal uyku masalları (3) | Üretim onaylanırsa yapılacak. |
+
+### 12 Kasım 2026 eklemesi
+
+İndirmeyi Batuhan onayladı (12 Kasım 2026). Kırpma: kart kenarı ve alt yazı, kitap başlığı, minyatürün yazı panelleri çıkarıldı; yükseklik en çok 1500 px, JPEG kalitesi 78-80.
+
+| slug | ressam (ölüm) | eser, yıl | Commons dosyası |
+|---|---|---|---|
+| cirkin-ordek-yavrusu | Theo van Hoytema (1917) | Het leelijke jonge eendje, kapak, 1893 | File:Theo van Hoytema Het lelijke jonge eendje.jpg |
+| ayakkabici-ile-cuceler | Otto Kubel (1951) | "Die Heinzelmännchen" kartpostalı, tarih yazmıyor | File:Elves and the Shoemaker - Jack Zipes Historic Fairy Tale Postcard Collection - Kubel, Otto (German, 1868-1951).jpg |
+| bremen-mizikacilari | Oskar Herrfurth (1934) | "Die Bremer Stadtmusikanten" kartpostalı, tarih yazmıyor | File:Bremen Town Musicians - 53063696894 - Jack Zipes Historic Fairy Tale Postcard Collection - Herrfurth, Oskar (German, 1862-1934).jpg |
+| zumruduanka | adı bilinmeyen Safevî ressam | "Zal'ı Simurg kurtarıyor", Şehname, İsfahan, 16. yüzyılın ikinci yarısı | File:Zal rescued by the Simurgh, from a Shahnama of Firdawsi, Safavid Isfahan, Iran, second half 16th century.jpg |
+
+Notlar:
+- Kubel ve Herrfurth kartpostallarının basım yılı kaynakta yok. İki ressam da 70 yıldan önce öldüğü için TR ve AB'de serbest; "1930'dan önce basılmış" koşulu (ABD) doğrulanmadı. Commons taramayı MCAD Library adına CC BY 2.0 ile veriyor, bu yüzden künyede tarama da anılıyor.
+- Kubel kartı Heinzelmännchen adını taşıyor ama arka yazısı Grimm'in ayakkabıcı masalını anlatıyor.
+- Zümrüdüanka için Pogány'nin 1913 çizimleri Commons'ta tek tek yok (yalnızca kitabın PDF'i); onun yerine Simurg minyatürü seçildi. Minyatürde küçük Zal çıplak çizilmiş.
