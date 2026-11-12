@@ -13,7 +13,7 @@ Masallar sekmesinde (kodda `GunlukView`) "MagicPaper Original" adında bir marka
 | Yayın yolu | Uzaktan, güncellemesiz: mevcut imzalı akış (`feed.json`, FAZ 15) genişler |
 | Onay | İnsan onayı zorunlu. Ajan yayımlamaz, yalnız taslak bırakır |
 | Sıklık | Haftada 2 masal: pazartesi ve perşembe 09:00 (Mac'te zamanlanmış görev) |
-| Kapak | Ajan çizdirir (Gemini görsel), Batuhan onaylar. 13 Ekim'deki "görsel üretimi yok" kararı yalnız Original masallar için değişti; klasiklerde geçerli |
+| Kapak | Ajan (Claude) SVG olarak kendisi çizer, `Tools/render_cover.py` JPEG'e çevirir; Batuhan onaylar. Görsel üretim servisi yok (12 Kasım: Gemini kaldırıldı). Klasiklerde kamu malı plakalar kuralı geçerli |
 | Dünya | Ortak bir dünya, 4-6 tekrar eden karakter. İlk tur ajan üç dünya önerir, Batuhan seçer |
 
 Seçilmeyen yollar: `DailyStory`'ye kapak adresi eklemek (metin tek parça kalır, Günün masalı seçimine karışır) ve ayrı imzalı `originals.json` (yayın ve doğrulama kodunun ikinci kopyası).
@@ -115,7 +115,7 @@ Bir tur:
 4. Yayınlanmış ve taslaktaki masalları okur. Seçim: son dört masalda en az kullanılan mod ve yaş bandı (3-4 / 5-6 / 7-8 / 9-10), son sekiz masalda geçmeyen konu, karakterlerde dönüşüm.
 5. Yazar. Kurallar: `WRITING_BRIEF.md`'nin dil ve güvenlik bölümleri, CLAUDE.md "Dil", dünya kitabı. Kişiselleştirme yok, çocuğun adı yok.
 6. Öz denetim: yüksek sesle okuma ritmi, `originals check <slug>`.
-7. Kapak: `python3 Tools/originals_cover.py <slug>` → `WORLD.md`'nin stil gövdesi + `review.md`'deki sahne. Anahtar `Secrets.xcconfig`'teki `GEMINI_API_KEY`; istekte çocuk verisi yok, sahne yalnız dünya karakterleri. Ajan kapağa bakar (Read), stil ya da karakter tutmuyorsa en çok iki kez yeniden çizdirir, sonra `review.md`'ye not düşer.
+7. Kapak: ajan `cover.svg`'yi WORLD.md'nin kapak stiline göre elle yazar, `python3 Tools/render_cover.py <slug>` ile `cover.jpg`'ye çevirir (qlmanage + sips, ağ yok). Kılavuz `Content/Originals/COVER_GUIDE.md`. Ajan kapağa ve 176 px hâline bakar (Read), tutmuyorsa en çok üç kez düzeltir, sonra `review.md`'ye not düşer.
 8. Değişiklik günlüğüne kayıt, yalnız kendi dosyalarını commit'ler (`git add -p`), push yok.
 9. Bildirim: "Onay bekleyen masal: <başlık>".
 
@@ -131,7 +131,7 @@ Ajan asla: `published/`'a yazmaz, `approve` ya da `publish` çalıştırmaz, uyg
 
 | Durum | Davranış |
 |---|---|
-| Gemini hatası ya da anahtar yok | Masal kapaksız taslak olarak kalır, `review.md`'ye yazılır; `check` kapaksız masalı onaylatmaz |
+| SVG çizilemedi (qlmanage çıktı vermedi) | Masal kapaksız taslak olarak kalır, `review.md`'ye yazılır; `check` kapaksız masalı onaylatmaz |
 | `check` hatası | Ajan düzeltir; üç denemede geçmezse taslak "Notlar"da sebebiyle kalır |
 | Kapak indirilemedi ya da özet tutmadı | Masal o cihazda görünmez, sonraki çekişte tekrar denenir |
 | Akış imzası tutmadı | Bugünkü davranış: akış alınmaz |

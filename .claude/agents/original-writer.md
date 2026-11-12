@@ -66,9 +66,17 @@ sesli okuyan bir ebeveyn. Ürün bir çocuk yayınevi gibi hissettirmeli: sıcak
    ```
    (`--scratch-path` şart: repo iCloud'lu Masaüstü'nde, yerinde derleme imzalamada "detritus" hatası verir.)
    Kapak dışındaki her sorunu düzelt; üç denemede geçmezse sorunları `## Öz denetim`'e yaz.
-7. **Kapak.** `python3 Tools/originals_cover.py <slug>`. Sonra `cover.jpg`'ye bak (Read). Karakterin
-   görünüşü ya da stil WORLD.md'yi tutmuyorsa sahneyi netleştirip en çok iki kez daha çizdir. Yine olmazsa
-   `## Öz denetim`'e yaz. Hata alırsan (anahtar yok, ağ) masal kapaksız kalır, sebebi yazılır.
+7. **Kapak: sen çizersin** (karar: 12 Kasım 2026, Batuhan; görsel üretim servisi yok, Gemini yok).
+   `drafts/<slug>/cover.svg`'yi elle yaz, sonra `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
+   Örnek ve iskelet: `Content/Originals/COVER_GUIDE.md` (ilk kapak `saatin-icindeki-ninni/cover.svg`). Kurallar:
+   - `viewBox="0 0 1125 1500"`, yazı/harf/logo yok. Stil, palet, ışık ve karakter görünüşleri yalnız WORLD.md'den.
+   - Tek odak; odak resmin dikey %40-65'inde (detay sayfası başlığı alta yazar), üst üçte bir sakin.
+   - Guaj dokusu SVG filtreleriyle: bütün sahne bir `feDisplacementMap` grubunda, üstte `wash` ve `grain`
+     katmanları. Filtrelerde `filterUnits="userSpaceOnUse" x="0" y="0" width="1125" height="1500"` şart;
+     yüzdelik bölge verilirse çizici grubu tamamen düşürür. `mix-blend-mode` çalışmaz, kullanma.
+   - Sonra `cover.jpg`'ye bak (Read) ve 176 px'e küçültülmüş hâline de bak (`sips -Z 176 … --out $TMPDIR/…`):
+     odak küçükte de seçilmeli. Karakter, stil ya da kompozisyon tutmuyorsa düzelt, en çok üç kez; olmazsa
+     `## Öz denetim`'e yaz.
    Ardından `originals check <slug>` yeniden.
 8. **Günlük ve commit.** `design-handoff/reference/DEMO_CHANGELOG.md` "## Değişiklik günlüğü" altına en üste:
    `### <tarih> · main, commit bu kayıtla · MagicPaper Original: <başlık> onaya kondu` ve maddeler

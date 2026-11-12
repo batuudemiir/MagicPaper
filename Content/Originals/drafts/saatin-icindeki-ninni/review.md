@@ -9,7 +9,7 @@
 - Ton: WORLD.md'deki uyku kuralı tutuyor: tren gelir ve gider (kısa düdük "geldim", uzun düdük "gidiyorum"), Ayşe Teyze feneri söndürür, Profesör Ayı kubbeyi kapatır, saat tıkırdar, kar yağar, uzaklaşan düdük ve sessizlik.
 - Korku yok; fareler saatin durmasından korkar ama masalda saat hiç durmaz.
 - `originals check` sonucu (12 Kasım 2026): metinde sorun yok; tek hata "kapak yok (cover.jpg)". Not: paket iCloud klasöründe codesign "detritus" hatası veriyor, denetim `swift run --scratch-path <geçici klasör>` ile çalıştırıldı.
-- Kapak: çizilemedi, masal kapaksız. `python3 Tools/originals_cover.py` önce SSL sertifika hatası verdi (python.org Python'unun sertifika paketi yok; `SSL_CERT_FILE=/etc/ssl/cert.pem` ile aşıldı), ardından Gemini `API_KEY_INVALID` döndü: `Secrets.xcconfig`'teki `GEMINI_API_KEY` geçersiz ya da süresi dolmuş. Anahtar yenilenince aynı komutla çizilebilir.
+- Kapak (12 Kasım 2026, Batuhan kararıyla Claude çizdi; Gemini kullanılmadı): `cover.svg` → `Tools/render_cover.py` → `cover.jpg` 1125 × 1500. Kemerli istasyon penceresinin orta direğine asılı duvar saati; camından Minik (kırmızı bere) ve Mısra (mavi bere, kalem ucu) bakıyor. Pencerede gece, kar, rasathane kubbesi, lambası yanan Yıldız Treni; sol altta soba ve çaydanlık, sağ altta Ayşe Teyze'nin bordo paltosu ve şapkası. Yazı yok. 176 px'te saat ve bereler seçiliyor. `originals check` temiz.
 
 ## Kapak sahnesi
 

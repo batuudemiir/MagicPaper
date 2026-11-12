@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: kapakları Claude çiziyor, ilk kapak
+
+- Karar (Batuhan): Original kapaklarını Gemini değil Claude yapar. Gemini aracı (`Tools/originals_cover.py` ve testi) silindi; anahtar gerekmiyor.
+- Yeni yol: ajan `drafts/<slug>/cover.svg`'yi elle yazar, `Tools/render_cover.py` macOS `qlmanage` + `sips` ile 1125 × 1500 JPEG'e çevirir (kare tuvale ortalayıp kırpar). `Content/Originals/COVER_GUIDE.md`: resimli kitap kapağı ilkeleri (tek odak, küçükte okunur, boşluk, odak dikeyde %40-65 çünkü detay başlığı alta yazar, yazı yok) ve çizicide denenmiş guaj dokusu filtreleri (`userSpaceOnUse` şart, `mix-blend-mode` yok sayılıyor).
+- İlk kapak "Saatin İçindeki Ninni": istasyon penceresinin orta direğinde duvar saati, camından Minik ve Mısra; pencerede gece, kar, rasathane, Yıldız Treni; soba ve Ayşe Teyze'nin paltosu. Üç sürümde düzeltildi (filtre bölgesi, gece karı, ray perspektifi, fare boyu, hâle). 176 px'te okunuyor. `originals check` temiz: masal onaya hazır.
+- Güncellenen: ajan adım 7, spec karar tablosu ve hata tablosu, README.
+- Test: `originals check saatin-icindeki-ninni` temiz. Kapak yalnız gözle değerlendirildi; simülatörde görülmedi.
+- Dosyalar: `Tools/render_cover.py`, `Content/Originals/COVER_GUIDE.md`, `drafts/saatin-icindeki-ninni/{cover.svg,cover.jpg,review.md}`, `.claude/agents/original-writer.md`, `Content/Originals/README.md`, spec, bu dosya; silinen `Tools/originals_cover.py`, `Tools/test_originals_cover.py`.
+
 ### 2026-11-12 · main@6023ae4 · MagicPaper Original: ilk masal ve kapak aracı düzeltmesi
 
 - İlk masal turu (elle, Batuhan isteğiyle) "Saatin İçindeki Ninni"yi yazdı (`8424965`): uyku, 5-6 yaş, 7 sayfa, 323 kelime, Mısra ana karakter; `originals check` metinde temiz. Kapak çizilemedi: python.org Python'unda sertifika paketi yok (SSL hatası) ve `Secrets.xcconfig`'teki `GEMINI_API_KEY` Gemini'de `API_KEY_INVALID`.

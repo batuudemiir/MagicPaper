@@ -34,4 +34,5 @@ Denetim her zaman: `swift run content-publisher originals check [<slug>]`.
   anahtarla aynı olmalı; değilse cihaz akışı reddeder.
 - Original rafını taşıyan uygulama sürümü yayımlanmış olmalı. Eski sürümler `originals`'ı yok sayar.
 
-Kapağı ajan çizer: `python3 Tools/originals_cover.py <slug>` (anahtar `Secrets.xcconfig`'teki `GEMINI_API_KEY`).
+Kapağı ajan (Claude) SVG olarak kendisi çizer: `drafts/<slug>/cover.svg` → `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
+Görsel üretim servisi kullanılmaz. Kılavuz: `COVER_GUIDE.md`. Kapağı beğenmezseniz `review.md` Notlar'a yazın.
