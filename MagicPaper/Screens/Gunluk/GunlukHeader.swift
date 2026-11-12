@@ -1,28 +1,21 @@
 // GunlukHeader.swift
-// Günlük'ün başlık vitrini: Ana sayfadaki sahne gibi ekranın tepesinden başlayan,
-// kaydırılan boyalı kapaklar. Sıra `ClassicsCatalog.headerSlides`'ta.
+// Masallar'ın öne çıkan kitabı: sayfa başlığının altında, kapağı bütün
+// görünen bir kitap kartı. Sıra `ClassicsCatalog.headerSlides`'ta.
 
 import SwiftUI
 
-/// Kaydırılan vitrin.
+/// Kaydırılan "öne çıkan kitap" kartı (13 Kasım 2026: tam ekran vitrinin yerine).
 ///
-/// - Tepede "Masallar" ve arama resmin üstünde, açık renk; arkalarında hafif bir
-///   koyu karartma (`MP.Scrim`). Resmin tepesi kreme açılmaz (11 Kasım 2026:
-///   beyaz geçiş kalktı, sahne yine ekranın tepesinden başlar).
-/// - Altta karartma, etiket, masalın adı, meta ve "Oku"; alt köşeler yuvarlak,
-///   Ana sayfanın kartları gibi sert alt kenarlı.
+/// - Kapak kırpılmış bir sahne değil, raflardaki gibi dik bir kitap: çocuk
+///   aynı kapağı rafta da tanır (Batuhan, 13 Kasım: slaytta kapak belirsizdi).
+/// - Yanında etiket, ad, meta ve küçük "Oku"; kart beyaz, sert alt kenarlı.
+/// - Sayfa noktaları kartın altında.
 /// - Kendiliğinden geçiş yavaş (7 sn) ve tek yönlü; kullanıcı kaydırınca durur,
 ///   Hareketi Azalt açıkken hiç başlamaz (sakin UX, tasarım yasası: hareket).
 struct GunlukHeaderCarousel: View {
     let slides: [ClassicHeaderSlide]
-    /// Saat çubuğunun yüksekliği: vitrin onun altına taşar, başlık altında kalır.
-    var topInset: CGFloat = 0
-    /// Saat çubuğunun altındaki görünen yükseklik: boyalı sahne olayı anlatacak
-    /// kadar büyük (Batuhan, 14 Ekim: %45'e küçültülmüş hali görseli kesiyordu).
-    var height: CGFloat = 520
     let onOpen: (ClassicTale) -> Void
     let onRead: (ClassicTale) -> Void
-    let onSearch: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Döngüdeki konum (`GunlukLoop`): slayt `position % slides.count`.
@@ -30,11 +23,8 @@ struct GunlukHeaderCarousel: View {
     @State private var userTookOver = false
 
 
-    /// En çok 400 pt (Faz 7; 14 Ekim'de 520): vitrin ilk ekranın tamamını
-    /// kaplamasın, raf kapıları kıvrımın üstünde görünsün. SE'de ekranın %45'i.
-    static func height(screen: CGFloat) -> CGFloat {
-        min(400, (screen * 0.45).rounded())
-    }
+    private static let coverWidth: CGFloat = 120
+    private static let coverHeight: CGFloat = 168
 
     private static let autoAdvance: UInt64 = 7_000_000_000
 
@@ -44,22 +34,13 @@ struct GunlukHeaderCarousel: View {
     }
 
     var body: some View {
-        // Koyu alt kenar kreme erimez (gri bant olurdu): sahne alt köşeleri
-        // yuvarlak, sert alt kenarlı bir sahne olarak biter. Sayfa noktaları
-        // sahnenin içinde, resmin üstünde: vitrinden ayrı bir parça durmaz.
-        ZStack(alignment: .top) {
+        VStack(spacing: MPSpacing.md) {
             pager
-            titleBar
-        }
-        .overlay(alignment: .bottomTrailing) {
             if slides.count > 1 {
-                MPPageDots(count: slides.count, current: current, onDark: true)
-                    .padding(.trailing, MPSpacing.screenH)
-                    .padding(.bottom, MPSpacing.xxl + MPSpacing.md)
+                MPPageDots(count: slides.count, current: current)
+                    .accessibilityHidden(true)
             }
         }
-        .frame(height: height + topInset)
-        .gunlukStage()
         .task(id: selection) { await advanceLater() }
         .onAppear { if selection == nil { selection = GunlukLoop.start(count: slides.count) } }
         // Kenara yaklaşınca ortadaki aynı slayta görünmeden atlar: sondan sonra
@@ -76,7 +57,7 @@ struct GunlukHeaderCarousel: View {
 
     private var pager: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 0) {
+            LazyHStack(alignment: .top, spacing: MPSpacing.md) {
                 ForEach(0..<GunlukLoop.length(count: slides.count), id: \.self) { position in
                     slideView(slides[position % slides.count])
                         .containerRelativeFrame(.horizontal)
@@ -84,78 +65,53 @@ struct GunlukHeaderCarousel: View {
                 }
             }
             .scrollTargetLayout()
+            // Kartın sert alt kenarı kesilmesin.
+            .padding(.bottom, MP.E.widthLG + MPSpacing.xxs)
         }
-        .scrollTargetBehavior(.paging)
+        .scrollTargetBehavior(.viewAligned)
         .scrollPosition(id: $selection)
         .simultaneousGesture(DragGesture(minimumDistance: 8).onChanged { _ in userTookOver = true })
+        // Kartlar aynı yükseklikte kalsın diye yazı büyümesi sınırlı.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
     }
 
     private func slideView(_ slide: ClassicHeaderSlide) -> some View {
-        ZStack(alignment: .bottomLeading) {
+        HStack(alignment: .center, spacing: MPSpacing.lg) {
             Button { onOpen(slide.tale) } label: {
-                art(slide.tale)
+                ClassicCoverTile(asset: slide.tale.cover, focus: slide.tale.coverFocus, seed: slide.tale.title,
+                                 width: Self.coverWidth, height: Self.coverHeight)
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel("\(slide.eyebrow): \(slide.tale.title). \(slide.tale.fullMeta)")
-            .accessibilityHint("Masalın sayfasını açar")
-
-            // Karartma ve metin `MPArtHero`'dan; sahne arkadaki düğme, karartma
-            // dokunuşu geçirir.
-            MPArtHero(height: height + topInset) {
-                Color.clear
-            } content: {
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                    Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MP.C.textOnArtMuted)
-                        .lineLimit(1).minimumScaleFactor(0.7)
-                    Text(slide.tale.title).mpText(.cover).foregroundStyle(MP.C.textOnArt)
-                        .lineLimit(3).minimumScaleFactor(0.6)
-                    Text(slide.tale.fullMeta).mpText(.supporting).foregroundStyle(MP.C.textOnArtMuted)
-                        .lineLimit(2).minimumScaleFactor(0.7)
-                    MPButton(title: slide.kind == .resume ? "Devam et" : "Masalı oku",
-                             systemImage: slide.kind == .resume ? "play.fill" : "book",
-                             kind: .secondary, size: .small) { onRead(slide.tale) }
-                        .padding(.top, MPSpacing.sm)
-                        .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
-                }
-                .frame(maxHeight: height - Self.titleBarClearance, alignment: .bottom)
-            }
-            // Sahne sabit yükseklikte: en büyük yazı boyutlarında metin başlığın
-            // üstüne binmesin diye büyüme sınırlı, sığmazsa küçülür (alt bar gibi).
-            .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-        }
-        .frame(height: height + topInset)
-    }
-
-    /// Başlık satırının ("Masallar" ve arama) sahnede kapladığı yer.
-    private static let titleBarClearance: CGFloat = MPSize.minTouchKid + MPSpacing.xxl
-
-    /// Boyalı kapak: tepede başlığın arkası hafifçe kararır; altın karartması
-    /// metinle birlikte `MPArtHero`'dan gelir.
-    private func art(_ tale: ClassicTale) -> some View {
-        ClassicCoverImage(asset: tale.cover, focus: tale.coverFocus, seed: tale.title, onStage: true)
-            .frame(height: height + topInset)
-            .frame(maxWidth: .infinity)
-            .overlay(alignment: .top) {
-                // Yalnızca saat çubuğu ve "Masallar" yazısının arkası kararır (altın
-                // karartmasının tersi); resmin geri kalanı soluklaşmadan görünür.
-                LinearGradient(colors: [MP.Scrim.mid, MP.Scrim.ink.opacity(0)],
-                               startPoint: .top, endPoint: .bottom)
-                    .frame(height: topInset + MPSize.minTouchKid + MPSpacing.lg * 3)
-            }
-            .clipped()
+            .buttonStyle(MPPressStyle())
             .accessibilityHidden(true)
-    }
 
-    // MARK: - Başlık
+            VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                Button { onOpen(slide.tale) } label: {
+                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                        Text(slide.eyebrow).mpText(.eyebrow).foregroundStyle(MPColor.actionPrimary)
+                            .lineLimit(1).minimumScaleFactor(0.7)
+                        Text(slide.tale.title).mpText(.section).foregroundStyle(MPColor.textPrimary)
+                            .lineLimit(3).minimumScaleFactor(0.7)
+                            .multilineTextAlignment(.leading)
+                        Text(slide.tale.fullMeta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                            .lineLimit(2).minimumScaleFactor(0.7)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(slide.eyebrow): \(slide.tale.title). \(slide.tale.fullMeta)")
+                .accessibilityHint("Masalın sayfasını açar")
 
-    private var titleBar: some View {
-        MPKidTabHeader(title: "Masallar", onArt: true) {
-            MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: onSearch)
+                MPButton(title: slide.kind == .resume ? "Devam et" : "Oku",
+                         systemImage: slide.kind == .resume ? "play.fill" : "book",
+                         kind: .secondary, size: .small) { onRead(slide.tale) }
+                    .accessibilityHint("\(slide.tale.title) masalını okuyucuda açar")
+            }
         }
-        // Başlık resmin üstünde sabit bir yerde durur; satır büyümesin.
-        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-        .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, topInset + MPSpacing.lg)
+        .padding(MPSpacing.lg)
+        .frame(height: Self.coverHeight + MP.E.widthLG + MPSpacing.lg * 2)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
     }
 
     // MARK: - Kendiliğinden geçiş

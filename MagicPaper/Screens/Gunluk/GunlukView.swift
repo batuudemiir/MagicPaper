@@ -13,8 +13,8 @@ enum GunlukRoute: Hashable {
 
 /// Günlük · ücretsiz masallar (FAZ 20, `Gunluk`).
 ///
-/// Faz 7 (11 Kasım 2026): vitrin, raf kapıları, haftanın seçkisi, Dünya
-/// klasikleri, gece bölgesi (Uyku vakti, "Kendi masalını yaz").
+/// 13 Kasım 2026: başlık, raf çipleri, öne çıkan kitap, aynı ölçüde kapak
+/// rafları (Original, seçki, klasikler, Anadolu, fabllar), gece bölgesi (Uyku vakti, "Kendi masalını yaz").
 struct GunlukView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var library = ClassicsLibrary.shared
@@ -24,30 +24,29 @@ struct GunlukView: View {
 
     var body: some View {
         NavigationStack(path: $app.router.masallarPath) {
-            GeometryReader { proxy in
-                ScrollViewReader { reader in
+            ScrollViewReader { reader in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                        // Ana sayfanın sahnesi gibi: vitrin ekranın tepesinden başlar.
-                        GunlukHeaderCarousel(
-                            slides: slides,
-                            topInset: proxy.safeAreaInsets.top,
-                            height: GunlukHeaderCarousel.height(
-                                screen: proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom),
-                            onOpen: { app.router.masallarPath.append(.tale($0.id)) },
-                            onRead: { app.readClassic($0) },
-                            onSearch: { app.router.masallarPath.append(.search) })
-
-                        // Ana sayfanın dili: bölümleri kart değil boşluk ayırır; kart
-                        // yalnızca dokunulan kapaklarda (karar: 7 Kasım 2026).
+                        // Bölümleri kart değil boşluk ayırır; kart yalnızca
+                        // dokunulan öğelerde (karar: 7 Kasım 2026).
                         VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                            // Faz 7: 8 bölüm 5'e. "Kaldığın yerden" yalnızca
-                            // Kitaplık'ta; Anadolu raf kapısından açılır.
-                            // MagicPaper Original: vitrinin hemen altı; boşsa hiç çizilmez.
-                            shelfSection(.orijinal, width: 128, height: 176)
-                            shelfDoors
+                            // 13 Kasım 2026: tam ekran vitrin yerine başlık, raf
+                            // çipleri ve öne çıkan kitap; altında hep aynı ölçüde
+                            // kapak rafları (kitap her yerde aynı kitap).
+                            VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                                titleBar
+                                shelfChips
+                                GunlukHeaderCarousel(
+                                    slides: slides,
+                                    onOpen: { app.router.masallarPath.append(.tale($0.id)) },
+                                    onRead: { app.readClassic($0) })
+                            }
+                            // MagicPaper Original: boşsa hiç çizilmez.
+                            shelfSection(.orijinal)
                             weeklySection
-                            shelfSection(.klasikler, width: 128, height: 176)
+                            shelfSection(.klasikler)
+                            shelfSection(.anadolu)
+                            shelfSection(.fabllar)
                         }
                         .padding(.horizontal, MPSpacing.screenH)
 
@@ -62,7 +61,6 @@ struct GunlukView: View {
                     .id(Self.top)
                     .mpTracksScroll($scrolled)
                 }
-                .ignoresSafeArea(edges: .top)
                 // Sekmeye yeniden dokunmak: açık sayfalar kapanır, sayfa başa döner.
                 .onChange(of: app.router.tabReselections) { _, _ in
                     guard app.router.tab == .gunluk else { return }
@@ -71,7 +69,6 @@ struct GunlukView: View {
                     } else {
                         app.router.masallarPath = []
                     }
-                }
                 }
             }
             .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled, fill: MPColor.backgroundSurface) }
@@ -112,21 +109,30 @@ struct GunlukView: View {
 
     private static let top = "gunluk-top"
 
-    // MARK: - Raf kapıları
+    private var titleBar: some View {
+        MPKidTabHeader(title: "Masallar") {
+            MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara") {
+                app.router.masallarPath.append(.search)
+            }
+        }
+        .padding(.top, MPSpacing.lg)
+    }
 
-    /// "Hangi raftan okuyalım?": Ana sayfadaki "Bu akşam nasıl bir masal
-    /// olsun?" kartının dili; düz çiplerin yerine.
-    private var shelfDoors: some View {
-        GunlukSection(title: "Hangi raftan okuyalım?") {
-            GunlukRow(spacing: MPSpacing.sm) {
-                ForEach(Self.doorShelves) { shelf in
-                    GunlukShelfTile(title: shelf.chipTitle, symbol: shelf.symbol, tone: shelf.tone,
-                                    count: count(shelf)) { app.router.masallarPath.append(.shelf(shelf)) }
+    // MARK: - Raf çipleri
+
+    /// Bütün raflar başlığın altında tek satırda; "Tüm raflar" kategorileri
+    /// ve yaş seçimini açar.
+    private var shelfChips: some View {
+        GunlukRow(spacing: MPSpacing.sm) {
+            GunlukShelfChip(title: "Tüm raflar", symbol: "square.grid.2x2", tone: .gray) {
+                showCategories = true
+            }
+            .accessibilityHint("Kategorileri ve yaş seçimini açar")
+            ForEach(Self.doorShelves) { shelf in
+                GunlukShelfChip(title: shelf.chipTitle, symbol: shelf.symbol, tone: shelf.tone) {
+                    app.router.masallarPath.append(.shelf(shelf))
                 }
-                GunlukShelfTile(title: "Tüm raflar", symbol: "square.grid.2x2", tone: .gray, count: nil) {
-                    showCategories = true
-                }
-                .accessibilityHint("Kategorileri ve yaş seçimini açar")
+                .accessibilityLabel("\(shelf.chipTitle), \(count(shelf)) masal")
             }
         }
     }
@@ -153,24 +159,28 @@ struct GunlukView: View {
         let picks = library.weeklyPicks.filter { !shown.contains($0.id) }
         if !picks.isEmpty {
             GunlukSection(title: "Bu haftanın seçkisi", subtitle: "Editörün bu hafta için seçtikleri") {
-                GunlukRow(spacing: MPSpacing.sm) {
-                    ForEach(Array(picks.enumerated()), id: \.element.id) { index, item in
-                        RankedPickCard(rank: index + 1, item: item) { open(item) }
+                GunlukRow {
+                    ForEach(picks) { item in
+                        ClassicShelfCard(item: item, width: Self.coverWidth, height: Self.coverHeight) { open(item) }
                     }
                 }
             }
         }
     }
 
+    /// Bütün rafların kapak ölçüsü: kitap her rafta aynı boyda durur.
+    private static let coverWidth: CGFloat = 128
+    private static let coverHeight: CGFloat = 176
+
     @ViewBuilder
-    private func shelfSection(_ shelf: ClassicShelf, width: CGFloat, height: CGFloat) -> some View {
+    private func shelfSection(_ shelf: ClassicShelf) -> some View {
         let items = library.items(in: shelf)
         if !items.isEmpty {
             GunlukSection(title: shelf.title, subtitle: shelf.subtitle,
                           action: { app.router.masallarPath.append(.shelf(shelf)) }) {
                 GunlukRow {
                     ForEach(items) { item in
-                        ClassicShelfCard(item: item, width: width, height: height) { open(item) }
+                        ClassicShelfCard(item: item, width: Self.coverWidth, height: Self.coverHeight) { open(item) }
                     }
                 }
             }

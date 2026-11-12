@@ -142,6 +142,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: OriginalTalesTests 11, ClassicsCatalogTests 27 (paket kataloğu geçerli, Original asset'i var), RemoteContentTests 31, ClassicProgressTests 8: 77/77. Simülatör (iPhone 17 Pro, temiz kurulum, uzaktan akış yok): Masallar'da bölüm ve "Saatin İçindeki Ninni · Original · 9 dk" kartı ChatGPT kapağıyla görüldü. Koyu tema, büyük yazı, SE ve Pro Max görülmedi.
 - Dosyalar: `Scripts/ClassicsCatalog/build_classics_catalog.py`, `MagicPaper/Screens/Gunluk/Model/{classics_catalog.json,ClassicsCatalog.swift,ClassicsLibrary.swift}`, `MagicPaper/Assets.xcassets/Originals/`, `MagicPaperTests/OriginalTalesTests.swift`, `Scripts/ContentPublisher/Sources/PublisherKit/Originals.swift`, `Content/Originals/README.md`, spec, bu dosya.
 
+### 2026-11-13 · main, commit bu kayıtla · Masallar ekranı yeniden kuruldu: raf çipleri, kitap kartı, eşit raflar
+
+- Ne değişti: tam ekran vitrin kalktı. Sayfa artık `MPKidTabHeader` ("Masallar" + arama) ile başlıyor; altında bütün rafların çipleri (`GunlukShelfChip`, "Tüm raflar" başta), sonra öne çıkan kitap kartı: kapak raflardaki gibi dik ve bütün (120 × 168), yanında etiket, ad, meta ve küçük ikincil "Oku". Altında hepsi aynı kapak ölçüsünde (128 × 176) raflar: MagicPaper Original, Bu haftanın seçkisi (sıra numarası yok), Dünya klasikleri, Anadolu'dan, Fabllar. Gece bölgesi aynı.
+- Ara tur (aynı gün, Batuhan reddetti): boyalı sahne kartı + 64 pt "Oku" + raf kapıları + seçki satırları. Geri bildirim: slaytta kapak belirsiz, düğme çok büyük, kitapların bütünlüğü ve bulunabilirliği düşük. Bu kayıt o geri bildirimden sonraki hâli anlatır.
+- Silinen: `RankedPickCard`, `GunlukShelfTile` (kullanan kalmadı). `mpRankNumeral` ve `MPColor.classicRank` token'ları duruyor, artık kullanılmıyor.
+- Bilerek değişmedi: `MPButton`, model (`ClassicsLibrary`, katalog), detay ve seri sahneleri, gece bölgesi. "Hangi raftan okuyalım?" başlığı çip satırına dönüştüğü için kalktı.
+- Faz 7 notu: Faz 7 bölümleri 8'den 5'e indirmişti; bu düzen Anadolu ve Fabllar raflarını geri getirdi (kitaplar sayfada görünsün diye). Karar Batuhan'da.
+- Test: birim testleri çalıştırılmadı. Derleme başarılı; simülatörde iPhone 17 Pro, açık görünümde sayfanın üstü ve rafları görüldü. Görülmeyen: yeni düzende en büyük Dynamic Type, iPhone SE, Pro Max, koyu görünüm, VoiceOver.
+- Tasarım yasası grep'leri üç dosyada boş.
+- Etkilenen dosyalar: `Screens/Gunluk/GunlukView.swift`, `GunlukHeader.swift`, `GunlukComponents.swift`.
+
 ### 2026-11-13 · main, commit bu kayıtla · Masallar ekranı: yeniden tasarım önerisi (yalnızca sohbet görseli)
 
 - Ne yapıldı: `GunlukView` ve bileşenleri okundu; Masallar için yeni bir düzen önerisi sohbette iki telefon çerçevesiyle görselleştirildi. Karar bekliyor (Batuhan).

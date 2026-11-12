@@ -1,6 +1,6 @@
 // GunlukComponents.swift
 // Günlük (FAZ 20) yapı taşları: odak noktalı boyalı kapak, koyu seçimli çip,
-// raf başlığı, raf kartı, sıralı seçki kartı, "Kaldığın yerden" kartı.
+// raf başlığı, raf kartı, raf çipi, "Kaldığın yerden" kartı.
 // Ekranlar: Gunluk, GunlukRaf, KlasikDetay, SeriKlasik (İrem'in demo canvas'ı).
 
 import SwiftUI
@@ -147,37 +147,6 @@ extension ClassicShelfCard {
     init(item: ClassicItem, width: CGFloat, height: CGFloat, onDark: Bool = false, action: @escaping () -> Void) {
         self.init(title: item.title, meta: item.meta, cover: item.cover, focus: item.coverFocus,
                   width: width, height: height, onDark: onDark, action: action)
-    }
-}
-
-/// "Bu haftanın seçkisi": kapağın arkasında büyük sıra numarası.
-struct RankedPickCard: View {
-    let rank: Int
-    let item: ClassicItem
-    let action: () -> Void
-
-    private let coverWidth: CGFloat = 112
-    private let coverHeight: CGFloat = 168
-
-    var body: some View {
-        Button(action: action) {
-            ZStack(alignment: .topTrailing) {
-                Text("\(rank)")
-                    .font(.mpRankNumeral)
-                    .tracking(-9)
-                    .foregroundStyle(MPColor.classicRank)
-                    .dynamicTypeSize(.large)
-                    .fixedSize()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-                    .offset(y: 14)
-                    .accessibilityHidden(true)
-                ClassicCoverTile(asset: item.cover, focus: item.coverFocus, seed: item.title,
-                                 width: coverWidth, height: coverHeight)
-            }
-            .frame(width: rank >= 10 ? 176 : 150, height: coverHeight)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityLabel("\(rank). \(item.title)")
     }
 }
 
@@ -349,42 +318,29 @@ struct GunlukNightSky: View {
 
 // MARK: - Raf kapıları
 
-/// "Hangi raftan okuyalım?": Ana sayfadaki mod kartlarının dili. Pastel kutu,
-/// beyaz kare içinde rafın simgesi, adı ve masal sayısı.
-struct GunlukShelfTile: View {
+/// Raf çipi: başlığın hemen altında, rafın simgesi ve adı. Bütün raflar tek
+/// satırda, sayfanın en üstünde bulunur (13 Kasım 2026: bulunabilirlik).
+struct GunlukShelfChip: View {
     let title: String
     let symbol: String
     let tone: MPWorldTone
-    let count: Int?
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: MPSpacing.sm) {
-                MPIcon(symbol, size: MP.G.xl, weight: .semibold)
+            HStack(spacing: MPSpacing.xs) {
+                MPIcon(symbol, size: MP.G.sm, weight: .semibold)
                     .foregroundStyle(tone.deep)
-                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
-                    .background(MPColor.backgroundSurface,
-                                in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
-                VStack(spacing: 0) {
-                    Text(title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                    if let count {
-                        Text("\(count) masal").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    }
-                }
+                Text(title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(1)
             }
-            .padding(.vertical, MPSpacing.md)
-            .padding(.horizontal, MPSpacing.sm)
-            .frame(width: 112)
-            .frame(minHeight: 128)
-            .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+            .padding(.horizontal, MPSpacing.lg)
+            .frame(minHeight: MPSize.chipHeightKid)
+            .background(tone.soft, in: Capsule())
+            .contentShape(Capsule().inset(by: -(MP.S.tapMin - MPSize.chipHeightKid) / 2))
         }
         .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(count.map { "\(title), \($0) masal" } ?? title)
     }
 }
 
