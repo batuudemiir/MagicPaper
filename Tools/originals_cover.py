@@ -14,6 +14,7 @@ import json
 import os
 import pathlib
 import re
+import ssl
 import subprocess
 import sys
 import tempfile
@@ -103,8 +104,10 @@ def main(argv):
     request = urllib.request.Request(
         ENDPOINT.format(model=model), data=json.dumps(request_body(prompt)).encode("utf-8"),
         headers={"Content-Type": "application/json", "x-goog-api-key": key}, method="POST")
+    # python.org Python'u macOS'ta kendi sertifika paketini taşımaz; sistemin paketini kullan.
+    context = ssl.create_default_context(cafile="/etc/ssl/cert.pem" if os.path.exists("/etc/ssl/cert.pem") else None)
     try:
-        with urllib.request.urlopen(request, timeout=180) as response:
+        with urllib.request.urlopen(request, timeout=180, context=context) as response:
             image = image_bytes(json.load(response))
     except urllib.error.HTTPError as error:
         # Gövde güvenlik filtresi ya da kota mesajını taşır; anahtar başlıkta, burada yok.

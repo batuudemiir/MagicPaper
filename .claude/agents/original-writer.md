@@ -62,8 +62,9 @@ sesli okuyan bir ebeveyn. Ürün bir çocuk yayınevi gibi hissettirmeli: sıcak
      ```
 6. **Denetim.** Metni yüksek sesle okuyormuş gibi bir kez baştan sona oku, takılan cümleyi düzelt. Sonra:
    ```bash
-   cd Scripts/ContentPublisher && swift run content-publisher originals check <slug>
+   cd Scripts/ContentPublisher && swift run --scratch-path "$TMPDIR/mp-publisher-build" content-publisher originals check <slug>
    ```
+   (`--scratch-path` şart: repo iCloud'lu Masaüstü'nde, yerinde derleme imzalamada "detritus" hatası verir.)
    Kapak dışındaki her sorunu düzelt; üç denemede geçmezse sorunları `## Öz denetim`'e yaz.
 7. **Kapak.** `python3 Tools/originals_cover.py <slug>`. Sonra `cover.jpg`'ye bak (Read). Karakterin
    görünüşü ya da stil WORLD.md'yi tutmuyorsa sahneyi netleştirip en çok iki kez daha çizdir. Yine olmazsa
