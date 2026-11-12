@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: Saatin İçindeki Ninni onaya kondu
+
+- Ne değişti: original-writer'ın zamanlanmış turu, Bulut Durağı'nın ilk masalı. `Content/Originals/drafts/saatin-icindeki-ninni/` (`tale.json`, `review.md`): uyku modu, 5-6 yaş, 7 sayfa, 323 kelime, 9 dk; Mısra (ana), Minik, Ayşe Teyze, Yıldız Treni, Profesör Ayı. Mısra istasyonun seslerinden dört satırlık kafiyeli bir ninni yazar; tren gelir, gider, sessizlik. `publishDate` 2026-11-16.
+- Seçim: yayımlanmış ya da taslak masal yoktu, mod ve bantlar eşit; dünyayı en iyi tanıtan uyku modu ve 5-6 bandı seçildi.
+- Denetim: `originals check` metinde sorun bulmadı; tek hata "kapak yok". Paket iCloud klasöründe codesign hatası verdiği için `--scratch-path` ile çalıştırıldı.
+- Kapak: yok. `Tools/originals_cover.py` SSL sertifika hatasından sonra (`SSL_CERT_FILE=/etc/ssl/cert.pem` ile aşıldı) Gemini `API_KEY_INVALID` döndü; `Secrets.xcconfig`'teki anahtarın yenilenmesi gerek. Onaydan önce kapak çizilmeli.
+- Bilerek değişmedi: `WORLD.md`, `published/`, uygulama kodu. Onay ve yayım yapılmadı, push yok. Uygulamada ya da simülatörde görülmedi.
+- Dosyalar: `Content/Originals/drafts/saatin-icindeki-ninni/tale.json`, `review.md`, bu dosya.
+
 ### 2026-11-12 · main@7971bc5 · MagicPaper Original: dünya seçildi, Bulut Durağı
 
 - Ne değişti: original-writer'ın ilk turu (elle başlatıldı) üç dünya önerdi (`8b138d1`); Batuhan Bulut Durağı'nı seçti. Öneri `Content/Originals/WORLD.md`'ye dönüştü: Mekân, Karakterler (Tozkar, Ayşe Teyze, Profesör Ayı, Minik, Mısra, Yıldız Treni), Ton, Kapak stili.
