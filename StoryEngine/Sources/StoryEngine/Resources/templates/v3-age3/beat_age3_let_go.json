@@ -11,37 +11,74 @@
     {
       "id": "lg3_01",
       "text": "{{child.name}} avucunu açtı. \"Hadi, git,\" dedi.",
-      "requiredSlots": ["child.name"],
+      "requiredSlots": [
+        "child.name"
+      ],
       "move": "lg3_opened_her_hand",
       "lengthClass": "paired"
     },
     {
       "id": "lg3_02",
       "text": "{{child.name}} usulca geri koydu. Sonra geri çekildi.",
-      "requiredSlots": ["child.name"],
+      "requiredSlots": [
+        "child.name"
+      ],
       "move": "lg3_put_it_back",
       "lengthClass": "paired"
     },
     {
       "id": "lg3_03",
       "text": "\"Artık hazırsın,\" dedi {{child.name}}. Ve bıraktı.",
-      "requiredSlots": ["child.name"],
+      "requiredSlots": [
+        "child.name"
+      ],
       "move": "lg3_you_are_ready_now",
       "lengthClass": "paired"
     },
     {
       "id": "lg3_04",
       "text": "{{child.name}} el salladı. Gitmesine izin verdi.",
-      "requiredSlots": ["child.name"],
+      "requiredSlots": [
+        "child.name"
+      ],
       "move": "lg3_waved_goodbye",
       "lengthClass": "paired"
     },
     {
       "id": "lg3_05",
       "text": "{{child.name}} kapıyı açtı. \"Yolun açık olsun.\"",
-      "requiredSlots": ["child.name"],
+      "requiredSlots": [
+        "child.name"
+      ],
       "move": "lg3_opened_the_door",
       "lengthClass": "paired"
+    },
+    {
+      "id": "lg3_06",
+      "text": "{{child.name}} onu sevdiği yere bıraktı. Gülümsedi.",
+      "move": "lg3_set_it_where_it_likes",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "lg3_07",
+      "text": "{{child.name}} yolu gösterdi. \"Bak, evin orada.\"",
+      "move": "lg3_pointed_the_way_home",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "lg3_08",
+      "text": "{{child.name}} ellerini arkasına koydu. \"Hadi bakalım,\" dedi.",
+      "move": "lg3_hands_behind_back",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

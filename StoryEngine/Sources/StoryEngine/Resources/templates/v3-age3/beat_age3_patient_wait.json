@@ -27,7 +27,9 @@
     {
       "id": "pw3_03",
       "text": "Güneş yavaşça döndü. Beklemek zordu.",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [],
       "move": "sun_turned",
       "lengthClass": "paired"
@@ -40,6 +42,42 @@
       ],
       "move": "counted",
       "lengthClass": "paired"
+    },
+    {
+      "id": "pw3_05",
+      "text": "{{child.name}} gözünü hiç ayırmadı. Hep oraya baktı.",
+      "move": "eyes_never_left",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "pw3_06",
+      "text": "{{child.name}} esnedi, sonra gülümsedi. Az kalmıştı.",
+      "move": "yawned_and_smiled",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "pw3_07",
+      "text": "{{child.name}} çenesini avucuna dayadı. Hiç sıkılmadı.",
+      "move": "chin_in_palm",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "pw3_08",
+      "text": "Etraf çok sessizdi. {{child.name}} hâlâ oradaydı.",
+      "move": "quiet_still_there",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

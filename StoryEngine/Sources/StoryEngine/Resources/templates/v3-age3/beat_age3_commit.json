@@ -29,7 +29,9 @@
     {
       "id": "cm3_03",
       "text": "{{child.name}} yavaşça yaklaştı. Elini uzattı ve bekledi. \"Korkma,\" dedi. \"Ben buradayım.\"",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [
         "child.name"
       ],
@@ -45,6 +47,45 @@
       ],
       "move": "decides_today",
       "lengthClass": "solo"
+    },
+    {
+      "id": "cm3_05",
+      "text": "\"Sana bakabilir miyim?\" diye sordu {{child.name}}. {{companion.name}} başını salladı. Böylece başladılar.",
+      "move": "asks_first",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "cm3_06",
+      "text": "{{child.name}} oyununu bir kenara bıraktı. Oyun bekleyebilirdi. Şimdi {{companion.name}} vardı.",
+      "move": "sets_play_aside",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "cm3_07",
+      "text": "{{child.name}} kollarını sıvadı. Sonra {{companion.name}}'e döndü. \"Şimdi sıra bende,\" dedi.",
+      "move": "rolls_up_sleeves",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "cm3_08",
+      "text": "{{child.name}} bir an durdu, düşündü. Sonra başını salladı. \"Tamam. Bu iş bende.\"",
+      "move": "nods_this_is_mine",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

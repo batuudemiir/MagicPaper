@@ -52,6 +52,24 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_cm_05"
+    },
+    {
+      "id": "a7_cm_06",
+      "text": "{{child.name}} iki yolu tarttı ve kendi seçtiğini gösterdi: \"Buradan gidiyoruz.\"",
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_06",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "a7_cm_07",
+      "text": "Geri dönmek de bir seçenekti. {{child.name}} onu düşündü, tarttı ve istemediğine karar verdi.",
+      "lengthClass": "paired",
+      "move": "age7_a7_cm_07",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

@@ -44,6 +44,27 @@
       ],
       "lengthClass": "paired",
       "move": "sra3_04"
+    },
+    {
+      "id": "sra3_05",
+      "text": "\"Ona yardım edelim mi?\" dedi {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra3_05"
+    },
+    {
+      "id": "sra3_06",
+      "text": "\"Ona bizim bakmamız lazım,\" dedi {{companion.name}} usulca.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sra3_06",
+      "words": [
+        "w34_usulca"
+      ]
     }
   ]
 }

@@ -551,6 +551,11 @@ def shipped_sequences() -> list[dict]:
             # v3 corpus never serves it.
             if blueprint.get("arc", "standard") != "standard":
                 continue
+            # Nor does it serve another band: a 3-4 or 7-8 blueprint reads its
+            # own folder (v3-age3, v3-age7). Read against v3, a 3-4 page asked
+            # 5-6 lines for a `paired` let_go that only v3-age3 owes.
+            if blueprint.get("ageRange", "5-6") != "5-6":
+                continue
             beats = []
             for page in blueprint.get("pages", []):
                 slot = [b for b in (page.get("beat"), page.get("supportingBeat")) if b]

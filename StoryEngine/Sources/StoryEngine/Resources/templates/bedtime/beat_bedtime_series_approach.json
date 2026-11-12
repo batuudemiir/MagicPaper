@@ -59,6 +59,68 @@
       "words": [
         "w56_usulca"
       ]
+    },
+    {
+      "id": "bts_ap_04",
+      "text": "{{child.name}} yorganını omzuna aldı ve yatağın ucuna doğru kaydı. Pencere yanı başındaydı. Küçük şey oradaydı, ay ışığının içinde sessizce bekliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ap_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_ap_05",
+      "text": "{{companion.name}} pervazda ona yer açtı. {{child.name}} yastığını pencereye yasladı ve yüzünü cama yaklaştırdı. Küçük şey buradan daha da sevimli görünüyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ap_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_ap_06",
+      "text": "Oda öyle sessizdi ki {{child.name}} kendi nefesini işitiyordu. Yatağının kenarından pencereye doğru eğildi. Orada, pervazın köşesinde, küçücük bir şey uslu uslu duruyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ap_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "bts_ap_07",
+      "text": "{{child.name}} ile {{companion.name}} başlarını aynı anda pencereye uzattı. Burunları neredeyse cama değiyordu. Aralarındaki küçük şeye çok yumuşak bir sesle iyi geceler dediler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_ap_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
     }
   ]
 }

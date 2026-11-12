@@ -79,13 +79,19 @@ final class CatalogBundleTests: XCTestCase {
         // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
         // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
         // insan bir masala hayvanın girdiği her yerden giremez.
-        XCTAssertEqual(catalog.companions.count, 23)
+        // 24 ile Cıvıl (serçe, 12 Kasım 2026): `bp_appeal_reunion_001`
+        // bahçede bakım isteyen küçük bir yol arkadaşı bulamadığı için hiç
+        // seçilemiyordu.
+        XCTAssertEqual(catalog.companions.count, 24)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
         // being tended, so a second creature as the discovery would give the
         // book two things to care for and split the charge in half.
-        XCTAssertEqual(catalog.objects.count, 28)
+        // 30 ile müzik kutusu ve kâğıt fener (12 Kasım 2026): iki blueprint
+        // (`bp_unexplained_signal_001`, `bp_threshold_joining_002`) eşleşecek
+        // bir keşif bulamadığı için hiç seçilemiyordu.
+        XCTAssertEqual(catalog.objects.count, 30)
         // 85 with the corpus complete at 33 beat files, each replacing the
         // library's thinner scaffolding for the beat it covers.
         //
@@ -116,7 +122,9 @@ final class CatalogBundleTests: XCTestCase {
         // dört satır) + `succeed`'in `exchange_views` grubuna iki satır.
         // 759 → 779 (Faz 10): uyku arkının iki yeni mekanizmasının satırları.
         // 779 → 999 (Faz 10): 7-8 bandının 220 satırı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 999)
+        // 999 → 1045 (12 Kasım 2026): 3-4 ve 7-8 havuzları büyüdü (vuruş başına
+        // en az 8 ve 7). Seri ve uyku satırları bu sayıya girmiyor.
+        XCTAssertEqual(catalog.recordCounts["variants"], 1045)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

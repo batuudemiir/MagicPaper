@@ -63,6 +63,44 @@
       "afterBeat": [
         "let_go"
       ]
+    },
+    {
+      "id": "bts_rs_05",
+      "text": "Pencerenin önünde küçük şey sıcacık bir köşede duruyordu. Gecenin serinliği artık ona dokunmuyordu. {{child.name}} yastığına yaslandı; kalbi de o köşe kadar sıcaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rs_06",
+      "text": "{{companion.name}} küçük şeyin yanında huzurla kıvrılmıştı. İkisi de rahattı. {{child.name}} bu manzaraya gülümseyerek iç çekti: gece tam istediği gibi olmuştu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_rs_07",
+      "text": "Lambanın yumuşak ışığı küçük şeyin üstüne düşüyordu. Artık ne üşüyordu ne de yorgundu. {{child.name}} mutlulukla yorganına sarındı, {{companion.name}} yanına kıvrıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_rs_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
     }
   ]
 }

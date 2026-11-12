@@ -52,6 +52,24 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_ra_05"
+    },
+    {
+      "id": "a7_ra_06",
+      "text": "\"Dört göz iki gözden iyi görür,\" dedi {{companion.name}}. \"Kaybettiğimi birlikte arar mıyız?\"",
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_06",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "a7_ra_07",
+      "text": "{{companion.name}} kısaca anlattı: \"Dün buradaydı, bugün yok. Bir göz atar mısın?\"",
+      "lengthClass": "paired",
+      "move": "age7_a7_ra_07_here_yesterday",
+      "requiredSlots": [
+        "companion.name"
+      ]
     }
   ]
 }

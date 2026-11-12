@@ -47,6 +47,48 @@
       "settingTraits": [
         "isRestingPlace"
       ]
+    },
+    {
+      "id": "bts3_tc_04",
+      "text": "{{child.name}} odaya şöyle bir baktı. En sıcak köşe yastığın yanıydı. {{companion.name}} göz kırptı.",
+      "lengthClass": "solo",
+      "move": "bts3_tc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "bts3_tc_05",
+      "text": "{{child.name}} pijamasının kollarını sıvadı. \"Önce ona bir yer,\" dedi. {{companion.name}} sessizce izledi.",
+      "lengthClass": "solo",
+      "move": "bts3_tc_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "bts3_tc_06",
+      "text": "{{child.name}} küçük şeyi iki elinin arasına aldı. \"Şimdi bende,\" dedi usulca. {{companion.name}} rahatladı.",
+      "lengthClass": "solo",
+      "move": "bts3_tc_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
     }
   ]
 }

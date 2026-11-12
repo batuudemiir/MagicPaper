@@ -12,7 +12,7 @@
   "variants": [
     {
       "id": "bts_tc_01",
-      "text": "\"Bu gece buna biz bakarız,\" dedi {{child.name}} usulca. {{companion.name}} hemen başını salladı. Uyumadan önce yapılacak küçük, önemli bir iş vardı.",
+      "text": "\"Bu gece buna biz bakarız,\" dedi {{child.name}} usulca. {{companion.name}} başını salladı. Uyumadan önce yapılacak küçük, önemli bir iş vardı.",
       "requiredSlots": [
         "child.name",
         "companion.name"
@@ -51,6 +51,61 @@
       ],
       "lengthClass": "solo",
       "move": "bts_tc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_tc_04",
+      "text": "{{child.name}} yorganını düzeltti. Bir plan yaptı: önce sıcak bir köşe, sonra yumuşak bir örtü, en son da bir ninni. {{companion.name}} planı çok beğendi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_tc_05",
+      "text": "\"Sen yanında dur, ben de ona usulca masal anlatırım,\" dedi {{child.name}}. {{companion.name}} usulca yerini aldı. İkisi birlikte, sessizce, küçük bir ekip olmuştu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "words": [
+        "w56_usulca"
+      ]
+    },
+    {
+      "id": "bts_tc_06",
+      "text": "{{child.name}} başını yastığa koydu ve gülümsedi. Bu gece küçük şeyin bekçisi oydu. {{companion.name}}'e göz kırptı; ikisi de usulca nöbete hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bts_tc_07",
+      "text": "Küçük şeyin neye ihtiyacı vardı? {{child.name}} parmaklarıyla tek tek saydı: biraz sıcaklık, biraz sessizlik, bir de tatlı bir uyku. {{companion.name}} başını ağır ağır eğdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bts_tc_07",
       "settingTraits": [
         "isRestingPlace"
       ]

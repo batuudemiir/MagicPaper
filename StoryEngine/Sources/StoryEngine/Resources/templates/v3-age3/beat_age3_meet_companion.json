@@ -57,6 +57,55 @@
       ],
       "move": "looked_up",
       "lengthClass": "paired"
+    },
+    {
+      "id": "mc3_05",
+      "text": "Bir kenarda {{companion.name}} büzülmüştü. Minicik görünüyordu.",
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "curled_in_corner",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "mc3_06",
+      "text": "Önce bir kıpırtı oldu. Sonra {{companion.name}} göründü.",
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "a_stir_then_seen",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "mc3_07",
+      "text": "{{child.name}} eğildi. {{companion.name}} ile göz göze geldiler.",
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "eyes_met",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ]
+    },
+    {
+      "id": "mc3_08",
+      "text": "İki küçük göz ona bakıyordu. Kimdi bu? {{companion.name}}!",
+      "castRoles": [
+        "needsCare"
+      ],
+      "move": "two_small_eyes",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
     }
   ]
 }

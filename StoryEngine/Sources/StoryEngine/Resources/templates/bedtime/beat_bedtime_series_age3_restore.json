@@ -53,6 +53,28 @@
       "settingTraits": [
         "isRestingPlace"
       ]
+    },
+    {
+      "id": "bts3_rs_05",
+      "text": "Küçük şey yumuşacık nefes alıyordu. Uyumuştu.",
+      "lengthClass": "paired",
+      "move": "bts3_rs_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "requiredSlots": []
+    },
+    {
+      "id": "bts3_rs_06",
+      "text": "{{child.name}} baktı: küçük şey artık sıcacıktı.",
+      "lengthClass": "paired",
+      "move": "bts3_rs_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

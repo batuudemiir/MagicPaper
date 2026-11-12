@@ -29,7 +29,9 @@
     {
       "id": "ra3_03",
       "text": "{{companion.name}} çok yorgundu. Tek başınaydı.",
-      "topics": ["alone"],
+      "topics": [
+        "alone"
+      ],
       "requiredSlots": [
         "companion.name"
       ],
@@ -44,6 +46,42 @@
       ],
       "move": "says_without_crying",
       "lengthClass": "paired"
+    },
+    {
+      "id": "ra3_05",
+      "text": "{{companion.name}} yaklaştı. \"Yanımda kalır mısın?\" dedi.",
+      "move": "asks_to_stay",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "ra3_06",
+      "text": "\"Çok susadım,\" dedi {{companion.name}}. Sonra yutkundu.",
+      "move": "thirsty",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "ra3_07",
+      "text": "{{companion.name}} hiçbir şey demedi. Sadece sokuldu.",
+      "move": "nestles_without_words",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
+    },
+    {
+      "id": "ra3_08",
+      "text": "\"Biraz dinlenmem lazım,\" dedi {{companion.name}}. Gözleri kapanıyordu.",
+      "move": "needs_rest",
+      "lengthClass": "paired",
+      "requiredSlots": [
+        "companion.name"
+      ]
     }
   ]
 }

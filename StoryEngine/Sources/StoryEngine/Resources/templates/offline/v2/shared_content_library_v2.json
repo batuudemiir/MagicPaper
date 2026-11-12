@@ -1095,6 +1095,47 @@
       "interests": [
         "animals"
       ]
+    },
+    {
+      "id": "companion_sparrow_001",
+      "name": "Cıvıl",
+      "type": "serçe",
+      "personality": "çevik ve sabırlı",
+      "description": "Bahçenin her köşesini bilen küçük serçe.",
+      "visualDescription": "kahverengi benekli küçük serçe",
+      "compatibleSettings": [
+        "garden",
+        "forest",
+        "meadow"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "kindness"
+      ],
+      "tags": [
+        "animal",
+        "bird"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.1,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isSmall",
+        "isQuick",
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "castRoles": [
+        "needsCare",
+        "hesitant"
+      ],
+      "interests": [
+        "animals"
+      ]
     }
   ],
   "objects": [
@@ -1546,6 +1587,58 @@
         "treasure"
       ],
       "keepsakeName": "gözlük"
+    },
+    {
+      "id": "object_music_box_001",
+      "name": "eski bir müzik kutusu",
+      "titleName": "Eski Müzik Kutusu",
+      "hasPossessiveEnding": true,
+      "description": "Ezgisinin yalnızca bir parçasını çalan küçük kutu.",
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "sound",
+        "wood"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.2,
+      "traits": [
+        "isVisible",
+        "isAudible",
+        "emitsSignal",
+        "isFragmentary",
+        "isUnexplained"
+      ],
+      "interests": [
+        "music"
+      ],
+      "keepsakeName": "müzik kutusu"
+    },
+    {
+      "id": "object_paper_lantern_001",
+      "name": "renkli bir kâğıt fener",
+      "titleName": "Renkli Kâğıt Fener",
+      "description": "Birinin kapısının önüne astığı, içi ışıklı kâğıt fener.",
+      "compatibleThemes": [
+        "friendship"
+      ],
+      "tags": [
+        "light",
+        "paper"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.1,
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "emitsSignal",
+        "impliesPresence"
+      ],
+      "interests": [
+        "magic"
+      ],
+      "keepsakeName": "kâğıt fener"
     }
   ],
   "events": [

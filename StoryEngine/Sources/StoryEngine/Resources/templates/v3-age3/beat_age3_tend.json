@@ -20,7 +20,9 @@
     {
       "id": "td3_02",
       "text": "{{child.name}} avucuyla biraz su getirdi. Yavaşça döktü. Hiç acele etmedi.",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [
         "child.name"
       ],
@@ -39,12 +41,53 @@
     {
       "id": "td3_04",
       "text": "{{child.name}} yanına oturdu. Usulca bir şarkı söyledi. Çok yavaş söyledi.",
-      "words": ["w34_usulca"],
+      "words": [
+        "w34_usulca"
+      ],
       "requiredSlots": [
         "child.name"
       ],
       "move": "sings_quietly",
       "lengthClass": "solo"
+    },
+    {
+      "id": "td3_05",
+      "text": "{{child.name}} ellerini birbirine sürttü. Elleri ısındı. Sonra o sıcacık ellerle usulca sardı.",
+      "words": [
+        "w34_usulca"
+      ],
+      "move": "warms_hands_first",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "td3_06",
+      "text": "{{child.name}} atkısını çıkardı. Üstüne nazikçe örttü. Atkı yumuşacık ve sıcacıktı.",
+      "move": "covers_with_scarf",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "td3_07",
+      "text": "{{child.name}} yanına sokuldu. Onunla birlikte nefes aldı, nefes verdi. Yavaş yavaş.",
+      "move": "breathes_together",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "td3_08",
+      "text": "{{child.name}} parmağının ucuyla dokundu. Çok hafifçe okşadı. Tüy gibi, usul usul.",
+      "move": "strokes_like_a_feather",
+      "lengthClass": "solo",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }

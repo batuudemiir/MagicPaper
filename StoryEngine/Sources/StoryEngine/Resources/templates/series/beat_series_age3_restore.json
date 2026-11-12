@@ -42,6 +42,23 @@
       "afterBeat": [
         "patient_wait"
       ]
+    },
+    {
+      "id": "srs3_05",
+      "text": "Küçük şey yerine kavuştu. Ne güzel oldu!",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "srs3_05"
+    },
+    {
+      "id": "srs3_06",
+      "text": "{{child.name}} ile {{companion.name}} el çırptı. Her şey tamamdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "srs3_06"
     }
   ]
 }

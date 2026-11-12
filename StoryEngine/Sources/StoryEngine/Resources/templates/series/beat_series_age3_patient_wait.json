@@ -42,6 +42,25 @@
       ],
       "lengthClass": "paired",
       "move": "spw3_04"
+    },
+    {
+      "id": "spw3_05",
+      "text": "{{companion.name}} oturdu. Yanına {{child.name}} oturdu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "spw3_05"
+    },
+    {
+      "id": "spw3_06",
+      "text": "{{child.name}} parmaklarıyla saydı. Bir, iki, üç, dört...",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "spw3_06"
     }
   ]
 }

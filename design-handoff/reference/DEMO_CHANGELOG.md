@@ -133,6 +133,22 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Çevrimdışı masal havuzu büyüdü (ajan takımı, iki tur)
+
+- Ne değişti: üç modelli ajan takımı (Fable 5.2 lider, Opus 5.5 yazar, Sonnet 5.5 testçi) motorun kopyası üzerinde iki tur çalıştı; çıktı okunup doğrulandıktan sonra repoya taşındı. 126 yeni cümle varyantı:
+  - 3-4 (`v3-age3`): `commit`, `let_go`, `meet_companion`, `patient_wait`, `receive_appeal`, `tend` 4-5 → 8.
+  - 3-4 uyku serisi (`bedtime/beat_bedtime_series_age3_*`): sekiz vuruş 3-4 → 6.
+  - 7-8 (`v3-age7`): on üç vuruş 5-6 → 7.
+  - 5-6 uyku serisi (`bedtime/beat_bedtime_series_*`): on vuruş 3-4 → 7. `SeriesPlannerTests` bu havuzda 3. ve 5. bölümün aynı sayfayı paylaştığını yakalamıştı; büyüyünce kapandı.
+  - 3-4 seri (`series/beat_series_age3_*`): dokuz vuruş 4 → 6.
+- Hiç seçilemeyen üç blueprint seçilebilir oldu: kütüphaneye Cıvıl (serçe), eski müzik kutusu ve renkli kâğıt fener eklendi. Takım iki nesneye başlık adı koymamıştı, başlıklar "Eski bir müzik kutusuyu Aramak" diye çıkıyordu; `titleName` ve `hasPossessiveEnding` eklendi.
+- Doğrulayıcı (`Tools/validate_beat_corpus.py`) 10 hatadan 1'e indi. Altısı doğrulayıcının 3-4 ve 7-8 blueprint'lerini 5-6 havuzunda aramasıydı; `shipped_sequences` artık yalnızca 5-6 blueprint'lerini okuyor. Kalan tek hata doğrulayıcının kendi alarmı ("check_bound_pools'u sil"); denetim kodu silmek Batuhan'ın onayını bekliyor.
+- Testler bilerek güncellendi: `CatalogLoadingTests` sabitleri (yol arkadaşı 24, nesne 30, varyant 1045) ve `family_stories_01.json` (kütüphane büyüyünce aynı tohum Pamuk yerine Pırıltı'yı seçiyor).
+- Bilerek değişmedi: motor kodu, 9-10 bandı (hâlâ içeriksiz), 5-6 ana korpus (`v3`).
+- Doğrulama: motor testleri 896/0 (2 atlanan). Yeni varyantlardan 22'lik bir örneklem okundu. Uygulama derlenmedi, simülatörde masal okunmadı.
+- Maliyet: 10,75 $ (tur 1: 6,36 $; tur 2: 3,98 $ ve kullanım sınırına takılan deneme 0,41 $).
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/templates/` altında 44 vuruş dosyası ve `offline/v2/shared_content_library_v2.json`, `StoryEngine/Tools/validate_beat_corpus.py`, `StoryEngine/Tests/StoryEngineTests/CatalogLoadingTests.swift`, `StoryEngine/Tests/StoryEngineTests/Fixtures/family_stories_01.json`.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: raf, akış, kapak aracı ve yazar ajanı
 
 - Ne değişti (plan `docs/superpowers/plans/2026-11-12-magicpaper-original.md`, 14 görev, alt ajanlarla, her grup gözden geçirildi):

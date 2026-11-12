@@ -55,6 +55,24 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_sr_05"
+    },
+    {
+      "id": "a7_sr_06",
+      "text": "{{child.name}} fark etti: bugün sormayı da, dinlemeyi de bilmişti. İkisi de işe yaramıştı.",
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_06_asked_and_listened",
+      "requiredSlots": [
+        "child.name"
+      ]
+    },
+    {
+      "id": "a7_sr_07",
+      "text": "Yanıldığı an aklına geldi ve {{child.name}} gülümsedi. Demek ki yanılmak onu durdurmuyordu.",
+      "lengthClass": "paired",
+      "move": "age7_a7_sr_07",
+      "requiredSlots": [
+        "child.name"
+      ]
     }
   ]
 }
