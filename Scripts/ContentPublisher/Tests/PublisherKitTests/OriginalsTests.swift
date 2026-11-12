@@ -138,10 +138,13 @@ final class OriginalsTests: XCTestCase {
     func testApproveMovesTaleAndCoverButNotTheReview() throws {
         let repo = Repo(root: temp)
         try writeDraft(try Self.tale())
+        let svg = Data("<svg/>".utf8)
+        try svg.write(to: repo.originalDrafts.appendingPathComponent("fener-masali/cover.svg"))
         try OriginalLibrary.approve(slug: "fener-masali", repo: repo)
 
         let published = repo.originalsPublished.appendingPathComponent("fener-masali")
         XCTAssertTrue(FileManager.default.fileExists(atPath: published.appendingPathComponent("tale.json").path))
+        XCTAssertEqual(try Data(contentsOf: published.appendingPathComponent("cover.svg")), svg)
         XCTAssertEqual(try Data(contentsOf: published.appendingPathComponent("cover.jpg")), Self.jpeg)
         XCTAssertFalse(FileManager.default.fileExists(atPath: published.appendingPathComponent("review.md").path))
         XCTAssertFalse(FileManager.default.fileExists(atPath: repo.originalDrafts.appendingPathComponent("fener-masali").path))

@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: ilk masal onaylandı, akış 2 yazıldı (gönderilmedi)
+
+- Batuhan onayıyla `originals approve saatin-icindeki-ninni` → `published/`. `publish` (deploy'suz) akış 2'yi yazdı: 12 günlük masal, 1 Original, paket yok; `verify` uygulamanın anahtarıyla imzayı ve kapak özetini doğruladı. Yerel imza anahtarının açık yarısı `Info.plist`'teki `MPContentSigningKey` ile aynı.
+- **Gönderilmedi:** uygulama `MPContentBaseURL = https://magicpaper-393a7.web.app/content/` okuyor, Firebase hesabındaki tek proje ve site ise `magicpaper-393a7-f2d31` (`.firebaserc` de onu gösteriyor). Gönderilseydi akış uygulamanın bakmadığı adrese giderdi. İki adres de 404: uzaktan içerik hiç yayımlanmamış. Karar Batuhan'da (adres ya da site).
+- Düzeltme: `approve` artık `cover.svg`'yi (kapak kaynağı) da taşıyor; bu masalın SVG'si git geçmişinden `published/`'a geri kondu. Test: OriginalsTests 14/14.
+- Dosyalar: `Content/Originals/published/saatin-icindeki-ninni/`, `hosting/public/content/{feed.json,feed.json.sig,originals/}`, `Scripts/ContentPublisher/Sources/PublisherKit/Originals.swift`, `OriginalsTests.swift`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: kapakları Claude çiziyor, ilk kapak
 
 - Karar (Batuhan): Original kapaklarını Gemini değil Claude yapar. Gemini aracı (`Tools/originals_cover.py` ve testi) silindi; anahtar gerekmiyor.

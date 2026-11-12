@@ -204,7 +204,9 @@ public enum OriginalLibrary {
         }
         try FileManager.default.createDirectory(at: target, withIntermediateDirectories: true)
         do {
-            for name in ["tale.json", "cover.jpg"] {
+            // cover.svg kapağın kaynağı (Claude çizer, COVER_GUIDE.md): varsa onunla birlikte gider.
+            let svg = FileManager.default.fileExists(atPath: draft.appendingPathComponent("cover.svg").path)
+            for name in ["tale.json", "cover.jpg"] + (svg ? ["cover.svg"] : []) {
                 try FileManager.default.copyItem(at: draft.appendingPathComponent(name), to: target.appendingPathComponent(name))
             }
         } catch {
