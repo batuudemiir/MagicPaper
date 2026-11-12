@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Alt çubuk A2: Masal yaz ortada, kapsülün içinde; bütün sürümlerde kendi çubuğumuz
+
+- Karar (Batuhan, 13 Kasım): 3185669'daki A2 uygulandı. 22 Ekim'deki "iOS 26'da sistemin `TabView`'ı" kararının yerine bütün sürümlerde `KidTabBar`; 7 Kasım sırası Ana sayfa · Masallar · Masal yaz · Kitaplık · Odam oldu.
+- `KidTabBar`: tek cam kapsül, beş eşit sütun. Ortada marka renginde sert kenarlı daire (`mpEdge`, cam değil), simge `wand.and.sparkles`, adı yazmaz (VoiceOver ve büyük içerik görüntüleyicide "Masal yaz"); dokunma alanı sütunun tamamı. Odam simgesi `teddybear`. Seçili sekme lavanta yastıkta (`cardSoft`) ve mor, diğerleri çizgi ve `textMuted`. Çubuk 56 → 64 pt, `MPSize.kidTabBarHeight` 86 → 94. Sürükleyerek seçme ve yakınlaşma kaynağı aynı.
+- `ContentView`: `systemKidTabs`, `KidTabSlot`, `createTabRole` silindi; `kidTabBarClearance` ve `GunlukLayout.bottomClearance` artık sürüm ayırmıyor.
+- Belge: kök `CLAUDE.md` tasarım yasasında cam ve alt çubuk maddeleri güncellendi (dosya bu deponun dışında, commit'te yok).
+- Bilerek değişmedi: ebeveyn çubuğu, sekme adları, `MPGlass.swift` (`MPGlassGroup` ve `mpGlassAction` artık kullanılmıyor, silinmedi).
+- Doğrulama: derleme başarılı. Simülatör (iPhone 17 Pro, iOS 27, açık tema, `-mpDemo`): ana sayfada çubuk görüldü, daire kapsülün içinde. Görülmedi: diğer sekmeler ve seçim, sürükleyerek seçme, itilen sayfalarda alt boşluk, masal yazmaya yakınlaşma, koyu tema, büyük yazı, SE ve Pro Max, VoiceOver. Birim ve arayüz testleri çalıştırılmadı (arayüz testleri sistem sekme çubuğunu arıyorsa kırılabilir). Tasarım yasası grep'leri değişen dosyalarda boş.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/{MPNavigationChrome,MPLayout}.swift`, `MagicPaper/ContentView.swift`, `MagicPaper/Screens/Gunluk/GunlukComponents.swift`, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Alt çubuk: Masal yaz ortada ve çubuğun içinde, A1 ve A2 (yalnızca sohbet görseli)
 
 - Geri bildirim (Batuhan): "Masal yaz" ortada kalsın ama çubuktan taşmasın. 90fb733'teki A'nın taşan dairesi kalktı. Uygulama kodu değişmedi.

@@ -213,62 +213,12 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             MPColor.backgroundKid.ignoresSafeArea()
 
-            if #available(iOS 26.0, *) {
-                systemKidTabs
-            } else {
-                customKidTabs
-            }
+            customKidTabs
         }
     }
 
-    /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
-    private enum KidTabSlot: Hashable {
-        case tab(KidTab)
-        case create
-    }
-
-    /// iOS 26: sistemin Liquid Glass sekme çubuğu (22 Ekim 2026, Batuhan).
-    ///
-    /// Sürükleyerek seçme, mercek, cam ve erişilebilirlik sistemden gelir.
-    /// "Masal yaz" `createTabRole` ile ayrı durur. Bir yer değil eylem olduğu için seçimi hiç tutulmaz:
-    /// bağlama ona geçmek istediğinde masal yazma açılır, seçili sekme aynı
-    /// kalır. Sistem dairesi yakınlaşma kaynağı olamadığından masal yazma
-    /// burada olağan geçişle açılır.
-    @available(iOS 26.0, *)
-    private var systemKidTabs: some View {
-        TabView(selection: Binding<KidTabSlot>(
-            get: { .tab(app.router.tab.kidTab) },
-            set: { next in
-                switch next {
-                case .tab(let tab): selectKidTab(tab)
-                case .create:
-                    MPHaptics.tap()
-                    app.startStoryCreation()
-                }
-            }
-        )) {
-            Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) { KidTabStack(tab: .home) { HomeView() } }
-            Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) { GunlukView() }
-            Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) { KidTabStack(tab: .library) { LibraryView() } }
-            Tab("Odam", systemImage: "person.crop.circle", value: KidTabSlot.tab(.corner)) { KidTabStack(tab: .corner) { KidCornerView() } }
-            Tab("Masal yaz", systemImage: "pencil.and.scribble", value: KidTabSlot.create, role: createTabRole) {
-                Color.clear
-            }
-        }
-        .tint(MP.C.brand)
-    }
-
-    /// iOS 27'de öne çıkan sekme rolü; öncesinde tek yol arama rolünün dairesi.
-    @available(iOS 26.0, *)
-    private var createTabRole: TabRole {
-        // `.prominent` iOS 27 SDK'sında (Swift 6.4); eski Xcode da derleyebilsin.
-        #if compiler(>=6.4)
-        if #available(iOS 27.0, *) { return .prominent }
-        #endif
-        return .search
-    }
-
-    /// iOS 26 öncesi: kendi yüzen çubuğumuz (`KidTabBar`).
+    /// Bütün sürümlerde kendi yüzen çubuğumuz (`KidTabBar`; 13 Kasım 2026:
+    /// "Masal yaz" ortada ve kapsülün içinde, sistemin `TabView`'ı bunu yapamıyor).
     private var customKidTabs: some View {
         // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
         // yalnızca solma.
@@ -423,15 +373,10 @@ private struct ParentTabStack<Root: View>: View {
 }
 
 private extension View {
-    /// iOS 26 öncesinde kendi alt çubuğumuzun boşluğu yığının içine ulaşmaz
-    /// (`GunlukLayout`); itilen sayfanın alt düğmesi çubuğun altında kalmasın.
-    @ViewBuilder
+    /// Kendi alt çubuğumuzun boşluğu yığının içine ulaşmaz (`GunlukLayout`);
+    /// itilen sayfanın alt düğmesi çubuğun altında kalmasın.
     func kidTabBarClearance() -> some View {
-        if #available(iOS 26.0, *) {
-            self
-        } else {
-            safeAreaPadding(.bottom, MPSize.kidTabBarHeight)
-        }
+        safeAreaPadding(.bottom, MPSize.kidTabBarHeight)
     }
 }
 

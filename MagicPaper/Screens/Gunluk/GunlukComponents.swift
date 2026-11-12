@@ -413,11 +413,7 @@ struct GunlukNightZone<Content: View>: View {
 /// boşluğu (`safeAreaInset`) kaydırma alanına ulaşmıyor; sayfalar bu kadar
 /// alt boşlukla biter ki son kart barın altında kalmasın.
 enum GunlukLayout {
-    /// iOS 26'da alt bar `safeAreaBar` ile kaydırma alanına kendi boşluğunu
-    /// verir; burada yalnızca Ana sayfadaki kadar nefes payı kalır (yoksa son
-    /// kartın altında barın iki katı boşluk açılıyordu).
     static var bottomClearance: CGFloat {
-        if #available(iOS 26.0, *) { return MPSpacing.xxxl }
         return MPSize.kidTabBarHeight + MPSize.minTouchKid
     }
 }

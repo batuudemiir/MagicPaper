@@ -42,7 +42,7 @@ enum MPSize {
     static let choiceRowKid: CGFloat = 72
     static let circleButton: CGFloat = 42
     static let headerAvatar: CGFloat = 48
-    static let kidTabBarHeight: CGFloat = 86
+    static let kidTabBarHeight: CGFloat = 94
     static let createFab: CGFloat = 64
     static let parentTabBarHeight: CGFloat = 84
     /// Minimum hit area. Kid area 56, parent area 48 (Design law: `MP.S.tapMin`).
