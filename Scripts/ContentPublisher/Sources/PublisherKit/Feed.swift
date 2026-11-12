@@ -66,12 +66,17 @@ public struct FeedFile: Codable, Equatable {
     public var publishedAt: String
     public var stories: [StoryFile]
     public var catalogPackage: PackageReference?
+    /// MagicPaper Original masalları. Yokken `nil`: anahtar hiç yazılmaz ve
+    /// Original'siz bir akışın baytları önceki sürümün yazdığıyla aynı kalır.
+    public var originals: [OriginalFile]?
 
-    public init(feedVersion: Int, publishedAt: String, stories: [StoryFile], catalogPackage: PackageReference?) {
+    public init(feedVersion: Int, publishedAt: String, stories: [StoryFile], catalogPackage: PackageReference?,
+                originals: [OriginalFile]? = nil) {
         self.feedVersion = feedVersion
         self.publishedAt = publishedAt
         self.stories = stories
         self.catalogPackage = catalogPackage
+        self.originals = originals
     }
 
     /// The bytes that get signed. Stable for the same feed.

@@ -323,8 +323,10 @@ public struct Publisher {
             package = try packageReference(path: "catalog/\(version).json")
         }
 
+        let originals = try publishOriginalCovers()
         let feed = FeedFile(feedVersion: (previous?.feedVersion ?? 0) + 1, publishedAt: today,
-                            stories: stories, catalogPackage: package)
+                            stories: stories, catalogPackage: package,
+                            originals: originals.isEmpty ? nil : originals)
         let data = try feed.encoded()
         try FileManager.default.createDirectory(at: repo.content, withIntermediateDirectories: true)
         try data.write(to: repo.feed, options: .atomic)
@@ -332,8 +334,27 @@ public struct Publisher {
 
         let future = stories.filter { $0.publishDate > today }.count
         log("Akış \(feed.feedVersion) yazıldı: \(stories.count) masal (\(future) ileri tarihli), "
-            + "paket \(package?.version ?? "yok").")
+            + "\(originals.count) Original, paket \(package?.version ?? "yok").")
         return feed
+    }
+
+    /// Yayımlanmış Original'lerin kapaklarını `content/originals/`'a yazar,
+    /// akıştan çıkanları siler. Akışa girecek kayıtları kapak özetiyle döndürür.
+    func publishOriginalCovers() throws -> [OriginalFile] {
+        let entries = try OriginalLibrary.loadPublished(repo: repo)
+        let folder = repo.hostedOriginals
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let keep = Set(entries.map { "\($0.tale.slug).jpg" })
+        for name in (try? FileManager.default.contentsOfDirectory(atPath: folder.path)) ?? [] where !keep.contains(name) {
+            try FileManager.default.removeItem(at: folder.appendingPathComponent(name))
+        }
+        return try entries.map { entry in
+            let path = "originals/\(entry.tale.slug).jpg"
+            try entry.cover.write(to: repo.content.appendingPathComponent(path), options: .atomic)
+            var tale = entry.tale
+            tale.cover = CoverReference(path: path, sha256: Digest.sha256(entry.cover))
+            return tale
+        }
     }
 
     func packageReference(path: String) throws -> PackageReference {

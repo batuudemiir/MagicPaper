@@ -168,4 +168,43 @@ final class OriginalsTests: XCTestCase {
         try FileManager.default.removeItem(at: Repo(root: temp).originalsPublished)
         XCTAssertEqual(try OriginalLibrary.loadPublished(repo: Repo(root: temp)).count, 0)
     }
+
+    // MARK: - Feed
+
+    private func publish() throws -> (feed: FeedFile, data: Data, signer: Signer) {
+        let signer = Signer(key: Curve25519.Signing.PrivateKey())
+        let publisher = Publisher(repo: Repo(root: temp))
+        let feed = try publisher.publishFeed(signer: signer, package: .none, today: "2026-11-20", first: true)
+        return (feed, try Data(contentsOf: Repo(root: temp).feed), signer)
+    }
+
+    func testAFeedWithoutOriginalsHasNoOriginalsKey() throws {
+        let (_, data, _) = try publish()
+        let object = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+        XCTAssertNil(object["originals"], "Original yokken akış baytları eskisiyle aynı kalmalı")
+    }
+
+    func testPublishedOriginalsGoIntoTheSignedFeedWithTheirCoverDigest() throws {
+        let repo = Repo(root: temp)
+        try writeDraft(try Self.tale())
+        try OriginalLibrary.approve(slug: "fener-masali", repo: repo)
+
+        let (feed, data, signer) = try publish()
+
+        XCTAssertEqual(feed.originals?.map(\.slug), ["fener-masali"])
+        let cover = try XCTUnwrap(feed.originals?.first?.cover)
+        XCTAssertEqual(cover.path, "originals/fener-masali.jpg")
+        XCTAssertEqual(cover.sha256, Digest.sha256(Self.jpeg))
+        XCTAssertEqual(try Data(contentsOf: repo.content.appendingPathComponent(cover.path)), Self.jpeg)
+        XCTAssertTrue(Signer.verify(try Data(contentsOf: repo.signature), for: data, publicKey: signer.publicKeyBase64))
+    }
+
+    func testACoverThatLeftTheFeedIsRemovedFromHosting() throws {
+        let repo = Repo(root: temp)
+        try FileManager.default.createDirectory(at: repo.hostedOriginals, withIntermediateDirectories: true)
+        let stale = repo.hostedOriginals.appendingPathComponent("eski.jpg")
+        try Self.jpeg.write(to: stale)
+        _ = try publish()
+        XCTAssertFalse(FileManager.default.fileExists(atPath: stale.path))
+    }
 }
