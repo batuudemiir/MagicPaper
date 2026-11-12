@@ -2,8 +2,12 @@
 
 Karar (12 Kasım 2026, Batuhan): Original kapaklarını görsel üretim servisi değil, ajan (Claude) kendisi
 çizer. Kapak elle yazılmış bir SVG'dir (`drafts/<slug>/cover.svg`); `python3 Tools/render_cover.py <slug>`
-onu `cover.jpg`'ye (1125 × 1500, JPEG) çevirir. Ağ yok, anahtar yok. İlk örnek:
-`drafts/saatin-icindeki-ninni/cover.svg` (yayımlanınca `published/` altında).
+onu `cover.jpg`'ye (1125 × 1500, JPEG) çevirir. Ağ yok, anahtar yok. SVG örneği git geçmişinde
+(`905a6ea`, `drafts/saatin-icindeki-ninni/cover.svg`).
+
+İkinci yol (13 Kasım 2026): Batuhan kapağı ChatGPT'de üretip gönderir; ilk yayımlanan kapak
+("Saatin İçindeki Ninni") böyle geldi. O durumda ajan çizmez, `review.md`'ye bir prompt yazar.
+Promptta rakam, harf ve yazıyı açıkça yasakla (saat kadranı dahil).
 
 ## Kompozisyon
 

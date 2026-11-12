@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · MagicPaper Original: ilk kapak ChatGPT'den, akış 3
+
+- Batuhan SVG kapağı beğenmedi. Claude üç ChatGPT promptu yazdı (saatin içindeki fareler / sade düz / trenin geldiği an); Batuhan 3. yönü ChatGPT'de üretip gönderdi: karlı dağda taş istasyon, gelen Yıldız Treni, rasathane kubbesi, pencerede kırmızı ve mavi bereli fareler.
+- Görsel 1086 × 1448 WebP'den 1125 × 1500 JPEG'e çevrildi (682 KB), `published/saatin-icindeki-ninni/cover.jpg`. Eski `cover.svg` silindi (git geçmişinde `905a6ea`).
+- Akış 3 yazıldı ve uygulamanın anahtarıyla doğrulandı (12 masal, 1 Original). Gönderilmedi: içerik adresi uyuşmazlığı (uygulama `magicpaper-393a7.web.app`, Firebase sitesi `magicpaper-393a7-f2d31`) Batuhan kararında.
+- Bilinen kusurlar: saat kadranında küçük rakamlar var (prompt yasaklamamıştı); fareler 176 px kartta çok küçük, kartta odak tren ve pencere.
+- `COVER_GUIDE.md`'ye ikinci yol (ChatGPT, prompta rakam yasağı) eklendi. Ajan tanımı henüz değişmedi: hâlâ kendisi SVG çiziyor.
+- Dosyalar: `Content/Originals/published/saatin-icindeki-ninni/{cover.jpg,cover.svg}`, `hosting/public/content/{feed.json,feed.json.sig,originals/saatin-icindeki-ninni.jpg}`, `Content/Originals/COVER_GUIDE.md`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: ilk masal onaylandı, akış 2 yazıldı (gönderilmedi)
 
 - Batuhan onayıyla `originals approve saatin-icindeki-ninni` → `published/`. `publish` (deploy'suz) akış 2'yi yazdı: 12 günlük masal, 1 Original, paket yok; `verify` uygulamanın anahtarıyla imzayı ve kapak özetini doğruladı. Yerel imza anahtarının açık yarısı `Info.plist`'teki `MPContentSigningKey` ile aynı.
