@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Masallar'a dört yeni klasik
+
+- Telif araştırması (Batuhan'ın listesi, 8 kaynak): hepsi kamu malı. Giese 1944'te, Kúnos 1945'te, Gökalp 1924'te, Ömer Seyfettin 1920'de ölmüş; Grimm ve Andersen zaten serbest. Telifli olan Türkçe yayınevi çevirileri ve sadeleştirilmiş baskılar, onlardan cümle alınmadı; metinler `WRITING_BRIEF.md` kuralıyla baştan yazıldı.
+- Eklenen tek masallar (yumuşak anlatım, klasik anlatım yok): Ayakkabıcı ile Cüceler (Grimm, 3-6, 7 dk; eşler birlikte diker), Bremen Mızıkacıları (Grimm, 3-6, 8 dk; kesilme tehdidi yok, hırsızlar kaçar), Çirkin Ördek Yavrusu (Andersen, 5-8, 8 dk; av sahnesi yok), Zümrüdüanka (Anadolu, 6-9, 12 dk; dev öldürülmez, yılan kovalanır, kahraman kuşu kendi etiyle değil son kuru üzümüyle besler).
+- Kapaklar `covers.json` içinde `pending`: düz renkli yedek kapakla görünüyor. Kapak indirme Batuhan'ın onayını bekliyor; Zümrüdüanka için aday Willy Pogány'nin 1913 çizimleri (Pogány 1955'te öldü, 2026'dan beri serbest).
+- Bilerek değişmedi: Kaşağı alınmadı (özü kardeş ölümü, yumuşatılamıyor). Cesur Terzi, Keloğlan 2. Kitap ve Giese derlemesinden seçim sonraki tura kaldı. Haftanın seçkisi ve günün masalı değişmedi.
+- Test: ClassicsCatalogTests + ClassicProgressTests 35/0 (iPhone 17 Pro simülatörü). Tam takım çalıştırılmadı; masallar simülatörde açılıp okunmadı.
+- Dosyalar: `Content/Classics/tales/{ayakkabici-ile-cuceler,bremen-mizikacilari,cirkin-ordek-yavrusu,zumruduanka}.json`, `Content/Classics/covers.json`, `Scripts/ClassicsCatalog/build_classics_catalog.py` (raf sırası), `MagicPaper/Screens/Gunluk/Model/classics_catalog.json`.
+
 ### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: tasarım belgesi
 
 - Ne değişti: Masallar sekmesinde "MagicPaper Original" markası ve düzenli masal yazan ajanın tasarımı yazıldı (`docs/superpowers/specs/2026-11-12-magicpaper-original-design.md`).

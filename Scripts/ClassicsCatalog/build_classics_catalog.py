@@ -61,8 +61,9 @@ for p in sorted(glob.glob(os.path.join(SRC, "tales", "*.json")), key=order):
 tales.sort(key=lambda t: (t["seriesID"] is not None, t["seriesID"] or "", t["episode"] or 0))
 standalone_order = ["rapunzel", "kirmizi-baslikli-kiz", "pamuk-prenses", "kulkedisi", "hansel-ile-gretel",
                     "kurbaga-prens", "uyuyan-guzel", "alti-kugu", "pamuk-ile-gul", "rumpelstiltskin",
-                    "kaz-cobani-kiz", "ormandaki-ev", "tavsan-ile-kaplumbaga", "kadife-tavsan",
-                    "uc-turunclar", "billur-kosk"]
+                    "kaz-cobani-kiz", "ormandaki-ev", "ayakkabici-ile-cuceler", "bremen-mizikacilari",
+                    "cirkin-ordek-yavrusu", "tavsan-ile-kaplumbaga", "kadife-tavsan",
+                    "uc-turunclar", "billur-kosk", "zumruduanka"]
 rank = {s: i for i, s in enumerate(standalone_order)}
 tales.sort(key=lambda t: (t["seriesID"] is not None, rank.get(t["slug"], 999), t["seriesID"] or "", t["episode"] or 0))
 series_order = ["keloglan", "nasreddin-hoca", "dede-korkut-bamsi-beyrek", "karagoz-ile-hacivat", "kelile-ve-dimne"]
