@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · Doğrulayıcı yeşil: eski bağlı havuz kontrolü silindi
+
+- Ne değişti: `Tools/validate_beat_corpus.py` içinden `check_bound_pools`, kapı listesindeki satırı ve onu silmeyi isteyen alarm kaldırıldı (Batuhan'ın onayıyla). Kontrol, motorun bağlama kuralının Python'da ikinci bir kopyasıydı; 9 katalog blueprint'i motora girdiğinden beri aynı işi motorun kendi bağlayıcısıyla `BoundPoolTests` (Swift) yapıyor. `check_blueprints_satisfiable` açıklaması buna yönlendirildi.
+- Bilerek değişmedi: `beat_sequences.json` ve içindeki `requires`/`forbids` blokları (alarm onları da silmeyi öneriyordu); `check_blueprints_satisfiable` hâlâ okuyor ve hiç seçilemeyen üç blueprint'i bu kontrol yakalamıştı.
+- Doğrulama: doğrulayıcı PASS, 22 kapı. Motor testleri bu değişiklikten önce 896/0'dı; doğrulayıcı motor testlerinin parçası değil, yeniden çalıştırılmadı.
+- Dosyalar: `StoryEngine/Tools/validate_beat_corpus.py`.
+
 ### 2026-11-12 · main, commit bu kayıtla · Çevrimdışı masal havuzu büyüdü (ajan takımı, iki tur)
 
 - Ne değişti: üç modelli ajan takımı (Fable 5.2 lider, Opus 5.5 yazar, Sonnet 5.5 testçi) motorun kopyası üzerinde iki tur çalıştı; çıktı okunup doğrulandıktan sonra repoya taşındı. 126 yeni cümle varyantı:

@@ -694,28 +694,7 @@ def check_deferrals_still_hold(corpus, report) -> None:
             f"{MAX_SENTENCE_WORDS}-word sentence cap and the vocabulary in this corpus are "
             f"calibrated for 5-6 only. A second band needs its own bands, not these.")
 
-    # 2. `check_bound_pools` reimplements the composer's filtering. That is a
-    #    second copy of a rule, tolerated only because the 14 catalog blueprints
-    #    live in a fixture the engine cannot see. Once they ship, the engine's
-    #    own BoundPoolTests covers this from the authoritative side.
-    shipped = set()
-    for path in sorted(SHIPPED_BLUEPRINTS.glob("*.json")):
-        try:
-            document = json.loads(path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-        shipped |= {b.get("id") for b in document.get("blueprints", [])}
-    if SEQUENCES.exists():
-        fixture = {b["id"] for b in json.loads(SEQUENCES.read_text(encoding="utf-8"))["blueprints"]}
-        landed = fixture & shipped
-        if landed:
-            report.fail(
-                f"{len(landed)} catalog blueprint(s) now ship in the engine "
-                f"(e.g. {sorted(landed)[0]}) — delete check_bound_pools and this fixture's "
-                f"constraint blocks; BoundPoolTests covers them from the composer itself, and "
-                f"two copies of the filtering rule is the defect this project keeps finding.")
-
-    # 3. `check_modality_claims` knows two senses. A third would be under-checked
+    # 2. `check_modality_claims` knows two senses. A third would be under-checked
     #    in silence, which is how `isVisible` shipping without `isAudible` went
     #    unnoticed: one modality declared reads as modality handled.
     if TRAITS_SOURCE.exists():
@@ -830,7 +809,7 @@ def check_blueprints_satisfiable(corpus, report) -> None:
     """
     A blueprint that matches no content is a silent hole, not a thin cell.
 
-    `check_bound_pools` reports empty CELLS. A blueprint with no legal binding
+    BoundPoolTests (Swift) reports empty CELLS. A blueprint with no legal binding
     contributes no cells at all, so it passes that check by producing nothing —
     the failure mode is absence, and absence is what a walk cannot see.
 
@@ -893,115 +872,6 @@ def check_blueprints_satisfiable(corpus, report) -> None:
                 f"{blueprint['id']}: only {legal} legal binding(s) — every book of this blueprint "
                 f"draws from the same handful of settings, companions and discoveries"
             )
-
-
-def check_bound_pools(corpus, report) -> None:
-    """
-    Count supply per CELL, not per beat.
-
-    `check_effective_pools` above was written after `afterBeat` was found to
-    divide a beat's supply. It fixed one instance of the defect and named it too
-    narrowly: EVERY declared filter partitions a pool, and they compose. A beat
-    with 16 variants that declares `castRoles` and carries both length classes
-    is eight pools of one to four, not one pool of sixteen — and the story is
-    bound to exactly one cell before a single variant is eligible.
-
-    So this walks real bindings: blueprint x setting x companion x cast role x
-    discovery, applying every filter the composer applies, and asks what is
-    actually left for each page. An empty cell is a page that cannot render. A
-    cell of one is a page every book of that binding shares.
-
-    The length-class gate cannot see this: it checks that a class EXISTS for a
-    beat, never that the class survives the filters alongside it.
-    """
-    library = _pilot_library()
-    if not library:
-        report.note("bound-pool check skipped: no content library found")
-        return
-    sequences = shipped_sequences()
-    if SEQUENCES.exists():
-        sequences += json.loads(SEQUENCES.read_text(encoding="utf-8"))["blueprints"]
-    if not sequences:
-        report.note("bound-pool check skipped: no blueprints found")
-        return
-
-    by_beat = {bf["beat"]: bf["variants"] for bf in corpus}
-    all_roles = {"guide", "needsCare", "hesitant", "reassuring"}
-    worst: dict[tuple, tuple] = {}
-
-    unconstrained = [b["id"] for b in sequences if not b.get("requires") and not b.get("forbids")]
-
-    for blueprint in sequences:
-        if blueprint["id"] in unconstrained:
-            continue
-        beats = blueprint["beats"]
-        requires = blueprint.get("requires") or {}
-        forbids = blueprint.get("forbids") or {}
-        for setting in library["settings"]:
-            if not _satisfies(set(setting.get("traits", [])), requires.get("setting")):
-                continue
-            if set(setting.get("traits", [])) & set(forbids.get("setting") or []):
-                continue
-            wanted_kinds = set(requires.get("thresholdKind") or [])
-            if wanted_kinds and not (wanted_kinds & set(setting.get("thresholdKinds", []))):
-                continue
-            for companion in library["companions"]:
-                if not (set(companion.get("habitat", [])) & set(setting.get("habitat", []))):
-                    continue
-                if not _satisfies(set(companion.get("traits", [])), requires.get("companion")):
-                    continue
-                if set(companion.get("traits", [])) & set(forbids.get("companion") or []):
-                    continue
-                for discovery in library["objects"]:
-                    if not _satisfies(set(discovery.get("traits", [])), requires.get("discovery")):
-                        continue
-                    if set(discovery.get("traits", [])) & set(forbids.get("discovery") or []):
-                        continue
-                    traits = set(setting.get("traits", []))
-                    caps = set(companion.get("traits", []))
-                    found = set(discovery.get("traits", []))
-                    cast = set(requires.get("casting") or []) or all_roles
-                    for role in ((set(companion.get("castRoles", [])) or all_roles) & cast):
-                        for index, slot in enumerate(beats):
-                            wanted = "paired" if len(slot) > 1 else "solo"
-                            previous = beats[index - 1][0] if index else None
-                            for beat in slot:
-                                variants = by_beat.get(beat)
-                                if not variants:
-                                    continue
-                                pool = [
-                                    v for v in variants
-                                    if (v.get("lengthClass") or "solo") == wanted
-                                    and set(v.get("settingTraits", [])) <= traits
-                                    and set(v.get("discoveryTraits", [])) <= found
-                                    and (not v.get("castRoles") or role in v["castRoles"])
-                                    and (not v.get("natureRequire")
-                                         or companion.get("nature", "animal") in v["natureRequire"])
-                                    and set(v.get("capabilityRequire", [])) <= caps
-                                    and not (set(v.get("capabilityForbid", [])) & caps)
-                                    and (not v.get("afterBeat")
-                                         or (previous and previous in v["afterBeat"]))
-                                ]
-                                key = (index + 1, beat, wanted)
-                                binding = (f"{blueprint['id']} | {setting['name']} | "
-                                           f"{companion['name']} as {role} | {discovery['name']}")
-                                if key not in worst or len(pool) < worst[key][0]:
-                                    worst[key] = (len(pool), binding)
-
-    empty = [(k, v) for k, v in worst.items() if v[0] == 0]
-    thin = [(k, v) for k, v in worst.items() if 0 < v[0] < MIN_BOUND_POOL]
-    for (page, beat, cls), (_, binding) in sorted(empty):
-        report.fail(f"page {page} {beat} [{cls}]: NO variant survives binding — {binding}")
-    for (page, beat, cls), (size, binding) in sorted(thin, key=lambda x: x[1][0]):
-        report.fail(f"page {page} {beat} [{cls}]: bound pool is {size} — two books of this "
-                    f"binding share the page {1 / size:.0%} of the time — {binding}")
-    report.note(f"bound pools: {len(worst)} cells walked across "
-                f"{len(sequences) - len(unconstrained)} constrained blueprint(s), "
-                f"{len(empty)} empty, {len(thin)} under {MIN_BOUND_POOL}")
-    if unconstrained:
-        report.note(f"bound pools: {len(unconstrained)} blueprint(s) skipped — no requires/forbids "
-                    f"declared, so every binding would look legal and the check would invent "
-                    f"defects (e.g. {sorted(unconstrained)[0]})")
 
 
 def _satisfies(held: set, requirement) -> bool:
@@ -1271,7 +1141,6 @@ def main() -> int:
         lambda: check_modality_claims(corpus, report),
         lambda: check_variants_reachable(corpus, report),
         lambda: check_blueprints_satisfiable(corpus, report),
-        lambda: check_bound_pools(corpus, report),
         lambda: check_partitioned_pools(corpus, report),
         lambda: check_family_lines(corpus, report),
         lambda: check_conjunctions(corpus, report),
