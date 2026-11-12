@@ -133,6 +133,21 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: raf, akış, kapak aracı ve yazar ajanı
+
+- Ne değişti (plan `docs/superpowers/plans/2026-11-12-magicpaper-original.md`, 14 görev, alt ajanlarla, her grup gözden geçirildi):
+  - Yayıncı (`Scripts/ContentPublisher`): `OriginalFile` ve kuralları (sayfa/kelime/süre, WORLD.md karakterleri, dil, uzun tire, emoji, JPEG kapak), `originals check`, `originals approve` (kopyala, sonra taşı), akışa `originals` + kapak SHA-256'sı, `content/originals/<slug>.jpg`, akıştan çıkan kapak silinir, `verify` kapakları denetler. Original yokken `originals` anahtarı hiç yazılmaz.
+  - Uygulama: `FeedOriginal`, bozuk kayıt akışı düşürmez; kapaklar indirilir, özetle doğrulanır, `Application Support/RemoteContent/Originals/`'ta saklanır. `ClassicShelf.orijinal`, Masallar'da vitrinin altında "MagicPaper Original" bölümü, uyku Original'leri "Uyku vakti"nda da, detay ve okuyucu klasiklerinki. Okuyucunun ilerlemesi ve kapağı `OriginalIndex` ile Original'i tanıyor (gözden geçirmenin bulduğu boşluk).
+  - `Tools/originals_cover.py` (Gemini görsel, 3:4, `sips` ile 1500 px JPEG; anahtar `Secrets.xcconfig`), `Content/Originals/` (README, drafts, published), `docs/REMOTE_CONTENT.md` bölümü.
+  - `.claude/agents/original-writer.md`: ilk tur üç dünya önerisi; sonra mod ve yaş bandı dönüşümlü masal, öz denetim, kapak, günlük, yalnız kendi yollarıyla commit, bildirim. Onaylamaz, yayımlamaz.
+  - Zamanlanmış görev "MagicPaper Original yazımı": pazartesi ve perşembe 09:00 (`magicpaper-original-writer`).
+- Bilerek değişmedi: arama Original bulmaz, `MPCollection` sayımı, vitrine koyma, Günün masalı seçimi.
+- Düzeltilen yanlış bilgi: planda "Info.plist'te imza anahtarı boş" yazıyordu; anahtar ve adres dolu (README düzeltildi).
+- Test: PublisherKit 29/29 (`swift test --scratch-path` Masaüstü dışında; iCloud xattr imzalamayı bozuyor), kapak aracı 7/7, uygulama: OriginalTalesTests 8, RemoteContentTests 31, ClassicsCatalogTests 27, hepsi geçti. Tüm MagicPaperTests'te tek hata `ReadingEventTests.testDeleteProfileReachesTheLiveStores` ("deleteProfile refused"): simülatörde profil yokken son profili silme reddi; bu işle ilgisiz.
+- Simülatör (iPhone 17 Pro, açık tema, yerel test akışı ve test anahtarı): Masallar'da bölüm, kart "Original · 4 dk", detay "MagicPaper Original. Kapak: MagicPaper.", okuyucu 3 sayfa görüldü. Koyu tema, en büyük Dynamic Type, iPhone SE ve Pro Max görüntüsü alınmadı.
+- Açık: ajanın ilk turu (dünya önerisi) çalıştırılmadı; zamanlanmış görev ilk turda izin sorabilir. Akışın 2 MB sınırı Original metinleriyle bir iki yılda dolabilir.
+- Dosyalar: yukarıdakiler; commit'ler `82b89f7`..bu kayıt.
+
 ### 2026-11-12 · main, commit bu kayıtla · Dört yeni klasiğin kapakları
 
 - Batuhan'ın onayıyla Wikimedia Commons'tan dört görsel indirildi, kırpılıp `Assets.xcassets/Classics` altına kondu; `covers.json` içinde `pending`'den çıktılar, künyeleri ve odak noktaları yazıldı.
