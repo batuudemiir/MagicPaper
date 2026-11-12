@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Ana sayfa yeniden düzen önerisi (yalnızca sohbet görseli)
+
+- Ne yapıldı: `HomeView` ve `MPHomeChrome` okundu, ana sayfa için yeni düzen sohbette iki telefon çizimiyle gösterildi (gündüz · okunmamış masal, uyku saati). Uygulama kodu değişmedi.
+- Öneri: (1) yıldız ve gün satırı başlığın altından sağına, tek kapsüle (`MPKidTabHeader` `accessory`); (2) bu akşamın kartında sahne 130 → ~188 pt, okunmamış ya da yarım masalda kapak sahnede Ragi'nin yanında; (3) "Yeni bir masal yaz" üç satır yerine yan yana üç kenarlı karo (~110 pt, önceki 192 pt), uyku saatinde önerilen karo lavanta + "Bu akşam" etiketi; (4) devam eden seri ve Masallar rafı yerinde.
+- Açık karar (Batuhan): üç karo, 22 Ekim'deki "modlar satır" kararını geri alır. En büyük Dynamic Type'ta karolar alt alta dizilmeli (`ViewThatFits`); ölçülmedi.
+- Bilerek değişmedi: bölüm sırası, dört kart durumu ve metinleri, alt çubuk, sayfa zemini.
+- Test çalıştırılmadı; simülatörde görülmedi (kod yok). Kıvrım hesabı kâğıt üstünde, 402 pt genişlik için.
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · MagicPaper Original uygulamanın içinde
 
 - Karar (Batuhan): uzaktan sistem şimdilik kurulmayacak, Original masallar uygulamayla gelir.
