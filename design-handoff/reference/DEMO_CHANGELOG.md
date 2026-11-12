@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: uygulama planı
+
+- Ne değişti: spec'ten 14 görevlik uygulama planı yazıldı (`docs/superpowers/plans/2026-11-12-magicpaper-original.md`): yayıncı modeli ve kuralları, `originals check/approve`, akışta Original'ler ve kapak özetleri, uygulamada kapak indirme ve doğrulama, `ClassicShelf.orijinal`, Masallar bölümü, Gemini kapak aracı, `original-writer` ajanı, pazartesi/perşembe 09:00 zamanlanmış görev.
+- Planlarken bulunan: `Info.plist`'te `MPContentSigningKey` hâlâ boş, yani uzaktan içerik bugün kapalı; Original rafı ilk kurulum ve anahtarlı bir sürümden sonra görünecek.
+- Bilerek değişmedi: henüz kod yok. Testler Batuhan tercihiyle plan sonunda bir kez çalışacak.
+- Test: çalıştırılmadı (yalnız belge).
+- Dosyalar: `docs/superpowers/plans/2026-11-12-magicpaper-original.md`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · Masallar'a dört yeni klasik
 
 - Telif araştırması (Batuhan'ın listesi, 8 kaynak): hepsi kamu malı. Giese 1944'te, Kúnos 1945'te, Gökalp 1924'te, Ömer Seyfettin 1920'de ölmüş; Grimm ve Andersen zaten serbest. Telifli olan Türkçe yayınevi çevirileri ve sadeleştirilmiş baskılar, onlardan cümle alınmadı; metinler `WRITING_BRIEF.md` kuralıyla baştan yazıldı.
