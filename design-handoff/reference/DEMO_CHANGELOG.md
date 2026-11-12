@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: üç dünya önerisi onaya kondu
+
+- Ne değişti: original-writer ajanının ilk turu. `WORLD.md` olmadığı için masal yazılmadı; `Content/Originals/world-proposals.md`'ye üç dünya önerildi: Çınaraltı (yaşlı bir çınarda hayvan köyü), Fenerli Koy (fenerli deniz koyu, insan çocuk kahraman Lale) ve Bulut Durağı (karlı dağda tren istasyonu ve rasathane). Her biri `## Mekân`, `## Karakterler` (beş karakter, sabit görünüş, konuşma, sevdiği ve korktuğu), `## Ton` (üç mod), İngilizce `## Kapak stili` ve örnek ilk sayfa taşıyor.
+- Bilerek değişmedi: `WORLD.md`, `drafts/`, `published/`, uygulama kodu. Kapak çizilmedi (dünya seçilmeden kapak yok). Push yok.
+- Doğrulama: öneri dosyasında uzun tire 0, yasaklı sözcük yok. `originals check` çalıştırılmadı (denetlenecek masal yok). Sıradaki adım Batuhan'ın seçimi.
+- Dosyalar: `Content/Originals/world-proposals.md`, bu günlük.
+
 ### 2026-11-12 · main, commit bu kayıtla · Doğrulayıcı yeşil: eski bağlı havuz kontrolü silindi
 
 - Ne değişti: `Tools/validate_beat_corpus.py` içinden `check_bound_pools`, kapı listesindeki satırı ve onu silmeyi isteyen alarm kaldırıldı (Batuhan'ın onayıyla). Kontrol, motorun bağlama kuralının Python'da ikinci bir kopyasıydı; 9 katalog blueprint'i motora girdiğinden beri aynı işi motorun kendi bağlayıcısıyla `BoundPoolTests` (Swift) yapıyor. `check_blueprints_satisfiable` açıklaması buna yönlendirildi.
