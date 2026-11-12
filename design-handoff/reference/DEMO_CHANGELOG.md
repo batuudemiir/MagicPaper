@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Alt çubuk: Masal yaz ortada ve çubuğun içinde, A1 ve A2 (yalnızca sohbet görseli)
+
+- Geri bildirim (Batuhan): "Masal yaz" ortada kalsın ama çubuktan taşmasın. 90fb733'teki A'nın taşan dairesi kalktı. Uygulama kodu değişmedi.
+- A1 (önerilen): tek cam kapsül, beş eşit sütun; ortadaki "Masal yaz" sekme yastığıyla aynı ölçüde mor yastık (sert alt kenar, beyaz değnek ve ad), çubuğun içinde.
+- A2: aynı yerleşim, ortada yalnızca simgeli mor daire; adı yazmaz, sesli okumada "Masal yaz".
+- Açık karar aynı: iOS 26'da sistem `TabView`'ı yerine kendi çubuğumuz (`KidTabBar`) gerekir (22 Ekim kararını geri alır); "Masal yaz" ortaya geçer (7 Kasım sırası değişir).
+- Test çalıştırılmadı; simülatörde görülmedi (kod yok).
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Alt çubuk yerleşim seçenekleri A ve B (yalnızca sohbet görseli)
 
 - Ne yapıldı: 9ba0dff'teki öneri yalnızca simge ve renk değiştiriyordu; Batuhan yerleşimin de yeniden düşünülmesini istedi. Sohbette iki yerleşim çizildi. Uygulama kodu değişmedi.
