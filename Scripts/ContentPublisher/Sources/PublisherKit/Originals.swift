@@ -42,7 +42,7 @@ public struct OriginalFile: Codable, Equatable {
     public var wordsPerPage: ClosedRange<Int> { ageMin <= 4 ? 25...45 : 40...80 }
 
     /// CLAUDE.md "Dil": masal yazılır, üretilmez; hız ve yapay zeka anlatılmaz.
-    static let bannedPattern = "[Üü]ret|[Oo]luştur|saniyeler içinde|anında|[Yy]apay zeka"
+    static let bannedPattern = #"\b(anında|saniyeler içinde)\b|\b[Üü]ret|\b[Oo]luştur|[Yy]apay zeka"#
 
     /// Yazara Türkçe, her sorun ayrı satır. Boşsa masal yayımlanabilir.
     public func problems(folder: String, characters known: Set<String>, cover: Data?) -> [String] {
@@ -86,7 +86,7 @@ public struct OriginalFile: Codable, Equatable {
         if let match = text.range(of: Self.bannedPattern, options: .regularExpression) {
             problems.append("dil kuralı: \"\(text[match])\" geçiyor (CLAUDE.md Dil)")
         }
-        if text.unicodeScalars.contains(where: { $0.properties.isEmojiPresentation }) { problems.append("emoji var") }
+        if text.unicodeScalars.contains(where: { $0.properties.isEmojiPresentation || $0.value == 0xFE0F }) { problems.append("emoji var") }
 
         if let cover {
             if cover.count > Self.maxCoverBytes { problems.append("kapak \(cover.count / 1024) KB, en çok 1500 KB") }
@@ -106,11 +106,11 @@ public enum WorldBook {
         var names: Set<String> = []
         for line in text.components(separatedBy: "\n") {
             if line.hasPrefix("## ") {
-                inside = line.trimmingCharacters(in: .whitespaces) == "## Karakterler"
+                inside = line.trimmingCharacters(in: .whitespacesAndNewlines) == "## Karakterler"
                 continue
             }
             if inside, line.hasPrefix("### ") {
-                names.insert(String(line.dropFirst(4)).trimmingCharacters(in: .whitespaces))
+                names.insert(String(line.dropFirst(4)).trimmingCharacters(in: .whitespacesAndNewlines))
             }
         }
         return names
@@ -145,9 +145,14 @@ public enum OriginalLibrary {
         return tale.problems(folder: folder.lastPathComponent, characters: known, cover: cover)
     }
 
+    static func isValidSlug(_ slug: String) -> Bool {
+        slug.range(of: #"^[a-z0-9]+(-[a-z0-9]+)*$"#, options: .regularExpression) != nil
+    }
+
     /// `drafts/<slug>`'ı denetler.
     public static func check(slug: String, repo: Repo) -> [String] {
-        problems(in: repo.originalDrafts.appendingPathComponent(slug), known: knownCharacters(repo: repo))
+        guard isValidSlug(slug) else { return ["geçersiz slug: \(slug)"] }
+        return problems(in: repo.originalDrafts.appendingPathComponent(slug), known: knownCharacters(repo: repo))
     }
 
     /// Tüm taslakların sorunları, klasör adıyla.
@@ -181,9 +186,10 @@ public enum OriginalLibrary {
         return entries
     }
 
-    /// `drafts/<slug>` → `published/<slug>`: yalnız `tale.json` ve `cover.jpg`.
+    /// `drafts/<slug>` → `published/<slug>`: önce kopyalanır, yalnız `tale.json` ve `cover.jpg`.
     /// `review.md` taşınmaz; git geçmişinde kalır.
     public static func approve(slug: String, repo: Repo, log: (String) -> Void = { print($0) }) throws {
+        guard isValidSlug(slug) else { throw PublishError.message("geçersiz slug: \(slug)") }
         let draft = repo.originalDrafts.appendingPathComponent(slug)
         let found = check(slug: slug, repo: repo)
         guard found.isEmpty else { throw PublishError.invalid(found) }
@@ -197,8 +203,13 @@ public enum OriginalLibrary {
             throw PublishError.message("\(slug): id yayımlanmış bir Original ile aynı.")
         }
         try FileManager.default.createDirectory(at: target, withIntermediateDirectories: true)
-        for name in ["tale.json", "cover.jpg"] {
-            try FileManager.default.moveItem(at: draft.appendingPathComponent(name), to: target.appendingPathComponent(name))
+        do {
+            for name in ["tale.json", "cover.jpg"] {
+                try FileManager.default.copyItem(at: draft.appendingPathComponent(name), to: target.appendingPathComponent(name))
+            }
+        } catch {
+            try? FileManager.default.removeItem(at: target)
+            throw error
         }
         try FileManager.default.removeItem(at: draft)
         log("Onaylandı: \(tale.title) (published/\(slug)). Yayın: `content-publisher publish --deploy`.")

@@ -103,8 +103,17 @@ final class OriginalsTests: XCTestCase {
         let short = try Self.tale { $0["ageMin"] = 3; $0["ageMax"] = 4; $0["minutes"] = 3
             $0["pages"] = [Self.page(30), Self.page(30), Self.page(30)] }
         XCTAssertEqual(short.problems(folder: "fener-masali", characters: known, cover: Self.jpeg), [])
-        let long = try Self.tale { $0["ageMin"] = 3; $0["ageMax"] = 4 }
+        let long = try Self.tale { $0["ageMin"] = 3; $0["ageMax"] = 4
+            $0["pages"] = [Self.page(50), Self.page(50), Self.page(50)] }
         XCTAssertFalse(long.problems(folder: "fener-masali", characters: known, cover: Self.jpeg).isEmpty)
+    }
+
+    func testBannedWordsMatchWholeWordsOnly() throws {
+        func problems(_ summary: String) throws -> [String] {
+            try Self.tale { $0["summary"] = summary }.problems(folder: "fener-masali", characters: known, cover: Self.jpeg)
+        }
+        XCTAssertEqual(try problems("Lale kedinin yanında oturdu."), [])
+        XCTAssertFalse(try problems("Masal anında hazır.").isEmpty)
     }
 
     func testWorldBookReadsCharacterHeadingsOnly() {
