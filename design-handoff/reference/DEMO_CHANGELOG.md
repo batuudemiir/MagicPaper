@@ -157,7 +157,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Ara tur (aynı gün, Batuhan reddetti): boyalı sahne kartı + 64 pt "Oku" + raf kapıları + seçki satırları. Geri bildirim: slaytta kapak belirsiz, düğme çok büyük, kitapların bütünlüğü ve bulunabilirliği düşük. Bu kayıt o geri bildirimden sonraki hâli anlatır.
 - Silinen: `RankedPickCard`, `GunlukShelfTile` (kullanan kalmadı). `mpRankNumeral` ve `MPColor.classicRank` token'ları duruyor, artık kullanılmıyor.
 - Bilerek değişmedi: `MPButton`, model (`ClassicsLibrary`, katalog), detay ve seri sahneleri, gece bölgesi. "Hangi raftan okuyalım?" başlığı çip satırına dönüştüğü için kalktı.
-- Faz 7 notu: Faz 7 bölümleri 8'den 5'e indirmişti; bu düzen Anadolu ve Fabllar raflarını geri getirdi (kitaplar sayfada görünsün diye). Karar Batuhan'da.
+- Faz 7 notu: Faz 7 bölümleri 8'den 5'e indirmişti; bu düzen Anadolu ve Fabllar raflarını geri getirdi (kitaplar sayfada görünsün diye). Karar: kalsın (Batuhan, 13 Kasım 2026).
 - Test: birim testleri çalıştırılmadı. Derleme başarılı; simülatörde iPhone 17 Pro, açık görünümde sayfanın üstü ve rafları görüldü. Görülmeyen: yeni düzende en büyük Dynamic Type, iPhone SE, Pro Max, koyu görünüm, VoiceOver.
 - Tasarım yasası grep'leri üç dosyada boş.
 - Etkilenen dosyalar: `Screens/Gunluk/GunlukView.swift`, `GunlukHeader.swift`, `GunlukComponents.swift`.
