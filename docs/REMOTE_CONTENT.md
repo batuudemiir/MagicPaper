@@ -11,6 +11,8 @@ Bu belge yayın sürecini ve uygulamanın neye nasıl güvendiğini anlatır.
 | Uygulamayla gelen yedek (ilk akış gelene kadar) | `MagicPaper/StoryEngineBridge/RemoteContent/daily_feed_fallback.json` — elle düzenlenmez, `fallback` komutu yazar |
 | Yayın aracı | `Scripts/ContentPublisher` (`content-publisher`) |
 | Yayımlanan dosyalar | `hosting/public/content/feed.json`, `feed.json.sig`, `catalog/<sürüm>.json` |
+| MagicPaper Original masalları (bir masal = bir klasör) | `Content/Originals/published/<slug>/` (`Content/Originals/README.md`) |
+| Original kapakları (yayımlanan) | `hosting/public/content/originals/<slug>.jpg`, özeti `feed.json` içinde |
 | Barındırma | Firebase Hosting, proje `magicpaper-393a7` → `https://magicpaper-393a7.web.app/content/` |
 | Uygulama ayarı | `Info.plist`: `MPContentBaseURL`, `MPContentSigningKey` |
 
@@ -60,6 +62,17 @@ swift run content-publisher keygen
 Günün masalı kuralı (`TodaysStoryPicker`): günü gelmiş masallardan çocuğun yaşına uyanlar (yoksa hepsi),
 okunmamış önce, en yeni `publishDate` önce. Gün içinde seçilen masal okunsa da gün boyu kalır; aynı gün
 yayımlanan yeni masal onu geçer.
+
+## MagicPaper Original yayımlamak
+
+1. `swift run content-publisher originals approve <slug>` (önce denetler, sonra `drafts/` → `published/`).
+2. `swift run content-publisher publish --deploy`: akış `originals` dizisini, her kaydın kapak yolu ve
+   SHA-256'sıyla taşır; kapaklar `content/originals/`'a yazılır, akıştan çıkanlar silinir.
+3. `Content/Originals/published/`, `hosting/public/content/feed.json`, `.sig` ve `originals/`'ı commit'leyin.
+
+Uygulama kapağı indirir ve imzalı özetle karşılaştırır; tutmayan kapağın masalı o cihazda görünmez.
+Original yokken akışta `originals` anahtarı hiç yazılmaz. Eski uygulamalar anahtarı yok sayar;
+`schemaVersion` artmaz.
 
 ## Katalog paketi yayımlamak
 
