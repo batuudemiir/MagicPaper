@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Alt çubuk yeniden tasarım önerisi (yalnızca sohbet görseli)
+
+- Ne yapıldı: `KidTabBar` (`MPNavigationChrome.swift`) ve iOS 26 `systemKidTabs` (`ContentView.swift`) okundu; alt çubuk için öneri sohbette üç çizimle gösterildi (bugün, öneri · Ana sayfa seçili, öneri · Odam seçili). Uygulama kodu değişmedi.
+- Öneri: (1) seçili olmayan simgeler dolu siyah yerine çizgi ve sıcak mürekkep; seçili simge dolu mor, lavanta yastıkta; (2) "Masal yaz" dairesi marka morunda, simge `pencil.and.scribble` yerine `wand.and.sparkles` (ana sayfadaki "Yeni masal yaz" ile aynı); (3) Odam simgesi `person.crop.circle` yerine `teddybear`; (4) etiketler Nunito kalın. Sekme sayısı, sırası ve adları aynı.
+- Açık: iOS 26'da çubuk sistemin `TabView`'ı. Simge değişiklikleri kesin yapılır; simge rengi, etiket fontu ve dairenin mor dolgusu sistemin izin verdiği kadar olur, denenmedi. Kendi çubuğumuzda (`KidTabBar`, iOS 26 öncesi) hepsi yapılabilir.
+- Test çalıştırılmadı; simülatörde görülmedi (kod yok).
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Ana sayfa yeni düzen: büyük sahne, üç mod karosu, yıldız başlıkta
 
 - Karar (Batuhan, 13 Kasım): 9b4519f'teki öneri uygulandı. "Modlar satır" (22 Ekim) kararının yerine yan yana üç karo geçti.
