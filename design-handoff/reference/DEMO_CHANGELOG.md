@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-12 · main, commit bu kayıtla · MagicPaper Original: tasarım belgesi
+
+- Ne değişti: Masallar sekmesinde "MagicPaper Original" markası ve düzenli masal yazan ajanın tasarımı yazıldı (`docs/superpowers/specs/2026-11-12-magicpaper-original-design.md`).
+- Batuhan kararları: masallar imzalı akışla güncellemesiz gelir; her masal insan onayından geçer; haftada 2 masal (pazartesi, perşembe 09:00); kapağı ajan Gemini ile çizdirir, Batuhan onaylar (13 Ekim'deki "görsel üretimi yok" kararı yalnız Original'ler için değişti); masallar ortak bir dünyada geçer, ilk tur ajan üç dünya önerir.
+- Bilerek değişmedi: kod, içerik, ajan tanımı ve zamanlanmış görev henüz yok; sıradaki adım uygulama planı.
+- Test: çalıştırılmadı (yalnız belge).
+- Dosyalar: `docs/superpowers/specs/2026-11-12-magicpaper-original-design.md`, bu dosya.
+
 ### 2026-11-12 · main, commit bu kayıtla · Yeni kurulumda eski oturum kapanıyor, giriş sayfası geliyor
 
 - Sorun (Batuhan): karşılamada "Hesabım var"a basınca Apple ve Google giriş sayfası gelmiyor, onaydan sonra "Şu an getirilemedi" çıkıyordu. Sebep: Firebase oturumu anahtar zincirinde duruyor ve uygulama silinse de kalıyor. Yeni kurulum bu eski oturumu "giriş yapılmış" sayıyor, giriş sayfasını atlıyor ve geri yüklemeye çalışıyordu.
