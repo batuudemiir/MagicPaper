@@ -19,6 +19,7 @@ final class ClassicsLibrary: ObservableObject {
     private let calendar: Calendar
     private let currentAge: () -> Int?
     private let dailyStories: () -> [DailyStory]
+    private let remoteOriginals: () -> [FeedOriginal]
     private var cancellables: Set<AnyCancellable> = []
 
     enum Key {
@@ -33,7 +34,8 @@ final class ClassicsLibrary: ObservableObject {
         now: @escaping () -> Date = Date.init,
         calendar: Calendar = .current,
         currentAge: (() -> Int?)? = nil,
-        dailyStories: (() -> [DailyStory])? = nil
+        dailyStories: (() -> [DailyStory])? = nil,
+        remoteOriginals: (() -> [FeedOriginal])? = nil
     ) {
         self.catalog = catalog
         self.progress = progress ?? .shared
@@ -42,6 +44,13 @@ final class ClassicsLibrary: ObservableObject {
         self.calendar = calendar
         self.currentAge = currentAge ?? { ProfileManager.shared.currentProfile?.age }
         self.dailyStories = dailyStories ?? { DailyStoryManager.shared.dailyStories }
+        self.remoteOriginals = remoteOriginals ?? { RemoteContentService.shared.originals }
+        if remoteOriginals == nil {
+            // Kapaklar inince raflar yenilensin.
+            RemoteContentService.shared.$originals
+                .sink { [weak self] _ in self?.objectWillChange.send() }
+                .store(in: &cancellables)
+        }
         // Defter değişince ekranlar yenilensin.
         self.progress.objectWillChange
             .sink { [weak self] _ in self?.objectWillChange.send() }
@@ -88,7 +97,7 @@ final class ClassicsLibrary: ObservableObject {
 
     var continueReading: [InProgress] {
         progress.inProgress().compactMap { id, entry in
-            if let tale = catalog.tale(id) {
+            if let tale = tale(id) {
                 let left = max(1, Int((Double(tale.minutes) * (1 - entry.fraction)).rounded(.up)))
                 return InProgress(id: id, title: tale.title, cover: tale.cover, coverFocus: tale.coverFocus,
                                   fraction: entry.fraction, minutesLeft: left)
@@ -105,9 +114,31 @@ final class ClassicsLibrary: ObservableObject {
     // MARK: - Raflar
 
     func items(in shelf: ClassicShelf?, ageBand: MPAgeRange? = nil) -> [ClassicItem] {
-        let items = catalog.items(in: shelf)
+        let items = catalog.items(in: shelf) + originalItems(in: shelf)
         guard let ageBand else { return items }
         return items.filter { $0.ageMin <= ageBand.band.upperBound && $0.ageMax >= ageBand.band.lowerBound }
+    }
+
+    /// MagicPaper Original: günü gelmiş, kapağı cihazda olan masallar, en yeni önce.
+    var originalTales: [ClassicTale] {
+        let today = TodaysStoryPicker.day(now(), calendar: calendar)
+        return remoteOriginals().filter { $0.publishDate <= today }
+            .sorted { $0.publishDate > $1.publishDate }
+            .map(\.classicTale)
+    }
+
+    private func originalItems(in shelf: ClassicShelf?) -> [ClassicItem] {
+        let tales = originalTales
+        switch shelf {
+        case nil: return tales.map(ClassicItem.tale)
+        case .besDakika?: return tales.filter { $0.minutes <= 5 }.map(ClassicItem.tale)
+        case let written?: return tales.filter { $0.shelves.contains(written) }.map(ClassicItem.tale)
+        }
+    }
+
+    /// Katalogdaki ya da Original masal.
+    func tale(_ id: UUID) -> ClassicTale? {
+        catalog.tale(id) ?? originalTales.first { $0.id == id }
     }
 
     var weeklyPicks: [ClassicItem] { catalog.weeklyPicks }

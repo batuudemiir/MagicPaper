@@ -96,7 +96,7 @@ struct GunlukView: View {
         case .search:
             GunlukShelfView(shelf: nil, startsSearching: true, path: $app.router.masallarPath)
         case .tale(let id):
-            if let tale = library.catalog.tale(id) {
+            if let tale = library.tale(id) {
                 ClassicDetailView(tale: tale, path: $app.router.masallarPath)
             }
         case .series(let id):

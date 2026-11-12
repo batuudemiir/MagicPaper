@@ -327,7 +327,7 @@ struct LibraryView: View {
             // Devam kartı doğrudan okuyucuya; raftaki kapak seçenekleri açar.
             if continuing { app.read(story) } else { app.actionsStory = story }
         case .classic:
-            guard let tale = ClassicsLibrary.shared.catalog.tale(item.id) else { return }
+            guard let tale = ClassicsLibrary.shared.tale(item.id) else { return }
             app.readClassic(tale)
         }
     }
@@ -344,9 +344,9 @@ struct LibraryView: View {
         pendingCount = MPStoryGate.pending(storyManager.stories, approvalRequired: settings.approve, isApproved: gate)
             .filter { $0.belongs(to: profile) }
             .count
-        let catalog = ClassicsLibrary.shared.catalog
+        let library = ClassicsLibrary.shared
         let classics = classicProgress.entries.compactMap { id, entry in
-            catalog.tale(id).map { (tale: $0, fraction: entry.isFinished ? 1 : entry.fraction, openedAt: entry.openedAt) }
+            library.tale(id).map { (tale: $0, fraction: entry.isFinished ? 1 : entry.fraction, openedAt: entry.openedAt) }
         }
         let next = LibraryShelfModel.build(
             stories: stories,
