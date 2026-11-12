@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Alt çubuk yerleşim seçenekleri A ve B (yalnızca sohbet görseli)
+
+- Ne yapıldı: 9ba0dff'teki öneri yalnızca simge ve renk değiştiriyordu; Batuhan yerleşimin de yeniden düşünülmesini istedi. Sohbette iki yerleşim çizildi. Uygulama kodu değişmedi.
+- A (önerilen), "Masal yaz ortada": tek cam kapsül, beş eşit sütun: Ana sayfa · Masallar · Masal yaz · Kitaplık · Odam. Mor değnek dairesi (60 pt, sert kenar) kapsülün üstüne taşar, adı altında yazar. Seçili sekme lavanta yastıkta, mor.
+- B, "yalnızca simge": seçili sekme adıyla açılır, diğer üçü büyük simge; "Masal yaz" sağda yazılı mor kapsül.
+- İki seçenekte ortak: çizgi simgeler sıcak mürekkepte, Odam `teddybear`, `wand.and.sparkles`, Nunito kalın.
+- Açık karar (Batuhan): ikisi de sistemin `TabView`'ıyla yapılamaz; iOS 26'da da kendi çubuğumuz (`KidTabBar`, gerçek `glassEffect` ile) kullanılır. Bu, 22 Ekim'deki "iOS 26'da sistem çubuğu" kararını geri alır. A ayrıca 7 Kasım'daki sekme sırasını değiştirir (Masal yaz ortada).
+- Test çalıştırılmadı; simülatörde görülmedi (kod yok).
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Alt çubuk yeniden tasarım önerisi (yalnızca sohbet görseli)
 
 - Ne yapıldı: `KidTabBar` (`MPNavigationChrome.swift`) ve iOS 26 `systemKidTabs` (`ContentView.swift`) okundu; alt çubuk için öneri sohbette üç çizimle gösterildi (bugün, öneri · Ana sayfa seçili, öneri · Odam seçili). Uygulama kodu değişmedi.
