@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Profil sekmesi yeniden düzen önerisi (yalnızca sohbet görseli)
+
+- Ne yapıldı: `KidCornerView` ve `HeroStageCard` okundu, sayfanın bugünkü hâline simülatörde bakıldı; yeni düzen sohbette iki telefon çizimiyle gösterildi (sayfanın üstü, aşağı kaydırınca). Uygulama kodu değişmedi.
+- Sorun: çocuğun kimliği ilk ekranda üç kez geçiyor ("Kim okuyor?" avatarı, "Merhaba İrem!", "Kahramanım" kartı); yıldız tek başına bir satır; koleksiyonlar ayar listesi gibi beş satır ve ilk ekranda görünmüyor.
+- Öneri: (1) "Kim okuyor?" başlığın altında tek sıra çip (seçili çocuk çerçeveli ve onay işaretli, "Ekle" sonda); (2) tek kimlik kartı: kahraman, ad, yıldız sayısı ve ikincil "Dolabı aç" (karşılama, kahraman kartı ve yıldız satırı birleşti); (3) Ragi küçük, konuşma balonuyla rozet cümlesini söyler; (4) "Masal dünyam" satır yerine karo: üstte geniş "Çıkartma albümüm", altında ikişerli Masal haritam, Masal ailem, Yeni kelimelerim, Süsler; (5) Rozetlerim ve "Büyükler için" yerinde.
+- Açık kararlar (Batuhan): "Kim okuyor?" başlığı kalkıp çipe dönüşüyor (7 Kasım: "sayfanın en üstünde, tek dokunuş" korunuyor, ama avatarlar küçülüyor); yıldızın "Her sabah 1, her masal 1." açıklaması karttan çıkıyor; karolar pastel dolgulu (22 Ekim ve 7 Kasım'daki "gruplu liste, panel yok" yerine).
+- Test çalıştırılmadı; yeni düzen simülatörde görülmedi (kod yok).
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Alt çubuk: ayrı mor daire, kayan seçim yastığı; Odam → Profil
 
 - Geri bildirim (Batuhan, telefonda A2'yi gördükten sonra): çubuk 9ba0dff'teki ilk önerideki gibi olsun (dört sekme kapsülde, "Masal yaz" sağda ayrı mor dairede), sürükleyerek seçme eskisi gibi olsun, Odam'ın adı Profil olsun ve simgesi değişsin. fc65fc6'daki A2 (daire ortada, kapsülün içinde) geri alındı.
