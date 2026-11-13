@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Kitaplık rafsız yeniden düzen önerisi (yalnızca sohbet görseli)
+
+- İstek (Batuhan): Kitaplık yeniden düşünülsün, raf sistemi kalksın. `LibraryView` ve `LibraryShelfModel` okundu; yeni düzen sohbette iki telefon çizimiyle gösterildi (sayfanın üstü, Favoriler seçili). Uygulama kodu değişmedi.
+- Öneri: (1) arama başlığın sağında daire (`MPKidTabHeader` `accessory`); (2) Ragi küçük, balonla özet; (3) "Kaldığın yerden" alçak tek satır kart (küçük kapak, ad, sayfa, oynat dairesi); (4) süzgeç çipleri doğrudan kartın altında, "Kitaplarım" başlığı yerine "11 kitap" sayacı ve sağında sıralama menüsü; (5) raf çizgisi olmayan üç sütunlu kapak duvarı: kapak sert alt kenarlı, altında ad ve ne zaman okunduğu, "Yarım" ve favori kalbi kapağın üstünde. İki sütun yerine üç: ilk ekranda 4 yerine 6 kitap.
+- Açık kararlar (Batuhan): (a) yıldızla alınan raf renkleri (`MPDecor`, Süsler) raf kalkınca yersiz kalır; öneri: renk kapakların alt kenarına taşınsın, alınan hiçbir şey kaybolmasın (ilke 7). (b) Üç sütunda kapak küçülür (yaklaşık 112 × 150 pt); erişilebilirlik boyutlarında iki sütun. (c) "Kitaplarım" bölüm başlığı kalkar.
+- Test çalıştırılmadı; yeni düzen simülatörde görülmedi (kod yok).
+- Dosyalar: yalnızca bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Profil sekmesi yeni kurgu: çip sırası, tek kimlik kartı, karolar
 
 - Karar (Batuhan, 13 Kasım): 024c962'deki öneri uygulandı. 22 Ekim'deki "Masal dünyam gruplu liste" düzeninin yerine karolar geçti.
