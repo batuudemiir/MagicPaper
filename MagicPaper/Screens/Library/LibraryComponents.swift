@@ -1,6 +1,6 @@
 // LibraryComponents.swift
-// Kitaplığın yapı taşları (20 Ekim 2026): arama alanı, "Kaldığın yerden"
-// kartı, kitap ızgarası. Dil Ana sayfa ve Günlük'le aynı: beyaz yüzey,
+// Kitaplığın yapı taşları (20 Ekim 2026; rafsız düzen 13 Kasım 2026): arama
+// alanı, "Kaldığın yerden" kartı, kapak duvarı. Dil Ana sayfa ve Günlük'le aynı: beyaz yüzey,
 // sert alt kenar (`mpKidSurface`), kapaklar `MPBookCover`.
 
 import SwiftUI
@@ -38,8 +38,11 @@ struct LibrarySearchField: View {
 
 /// "Kaldığın yerden": küçük kapak, başlık, "Sayfa 2 / 6", "Devam". İlerleme
 /// çubuğu yok (vizyon planı düzen 3): sayfa sayısı yeter, çubuk yarışı çağırır.
+/// 13 Kasım 2026: alçak tek satır; bölüm başlığı yerine kartın içinde küçük
+/// üst yazı (`eyebrow`, yalnızca ilk kartta).
 struct LibraryContinueCard: View {
     let item: LibraryItem
+    var eyebrow: String? = nil
     let action: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
 
@@ -51,12 +54,13 @@ struct LibraryContinueCard: View {
             : AnyLayout(HStackLayout(spacing: MPSpacing.lg))
         Button(action: action) {
             layout {
-                MPBookCover(art: item.art, width: typeSize.isAccessibilitySize ? 96 : 64)
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                MPBookCover(art: item.art, width: typeSize.isAccessibilitySize ? 96 : 52)
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    if let eyebrow {
+                        Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
+                    }
                     Text(item.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        .lineLimit(3).multilineTextAlignment(.leading)
-                    // Sayfa satırı ayrı: tek satıra sıkıştırınca "·" satır sonunda asılı kalıyordu.
-                    Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        .lineLimit(2).multilineTextAlignment(.leading)
                     Text(item.pageLabel).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -71,103 +75,76 @@ struct LibraryContinueCard: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(item.title), \(item.meta), \(item.pageLabel)")
+        .accessibilityLabel([eyebrow, item.title, item.meta, item.pageLabel].compactMap { $0 }.joined(separator: ", "))
         .accessibilityHint("Kaldığın yerden devam eder")
         .accessibilityAddTraits(.isButton)
     }
 }
 
-/// Kitaplık rafı (21 Ekim 2026): kapaklar sıra sıra ince bir rafın üstünde
-/// durur, adı ve "Dün · 4 dk" rafın altında, kitabın etiketi gibi. Kitap
-/// sırtı yok (20 Ekim'deki sırt rafı geri alınmıştı). İki sütun; en büyük
-/// yazı boyutlarında tek sütun.
+/// Kitaplığın kapak duvarı (13 Kasım 2026, Batuhan: raf sistemi kalktı).
+/// Üç sütun, raf çizgisi yok; her kapak sert alt kenarıyla kendi başına durur,
+/// adı ve "Dün · 4 dk" altında. En büyük yazı boyutlarında iki sütun.
+/// Çocuğun yıldızla aldığı renk (`MPDecor`) kapakların alt kenarında.
 ///
 /// Kapağa dokununca `open`; basılı tutunca kapak yükselir ve altında
-/// `menu` açılır (sistemin `contextMenu`'su, iOS 26'da sistemin camı).
-struct LibraryShelfGrid<QuickActions: View>: View {
+/// `menu` açılır (sistemin `contextMenu`'su).
+struct LibraryCoverGrid<QuickActions: View>: View {
     let items: [LibraryItem]
     let pageWidth: CGFloat
-    let singleColumn: Bool
+    /// En büyük yazı boyutları: iki sütun.
+    let wide: Bool
     let open: (LibraryItem) -> Void
     @ViewBuilder let menu: (LibraryItem) -> QuickActions
-    /// Çocuğun seçtiği raf (`MPDecor`); `nil` varsayılan ahşap.
-    var shelfTone: MPWorldTone? = nil
+    /// Çocuğun seçtiği renk; `nil` sistemin lavanta kenarı.
+    var tone: MPWorldTone? = nil
 
     @Environment(\.mpReaderZoom) private var readerZoom
     @EnvironmentObject private var app: MPAppState
 
-    private var columns: Int { singleColumn ? 1 : 2 }
-    private var inner: CGFloat { max(0, pageWidth - MPSpacing.screenH * 2) }
+    private var columns: Int { wide ? 2 : 3 }
+    private var gap: CGFloat { MPSpacing.md }
     private var coverWidth: CGFloat {
-        singleColumn ? min(inner, 220) : (inner - MPSpacing.lg) / 2
-    }
-
-    private var rows: [[LibraryItem]] {
-        stride(from: 0, to: items.count, by: columns).map { Array(items[$0..<min($0 + columns, items.count)]) }
+        let inner = max(0, pageWidth - MPSpacing.screenH * 2)
+        return (inner - gap * CGFloat(columns - 1)) / CGFloat(columns)
     }
 
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: MPSpacing.xl) {
-            ForEach(rows, id: \.first?.id) { row in
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .bottom, spacing: MPSpacing.lg) {
-                        ForEach(row) { item in
-                            Button {
-                                // Faz 13: okuyucu bu kapaktan büyüyerek açılır.
-                                app.readerZoomID = item.id
-                                open(item)
-                            } label: {
-                                MPBookCover(art: item.art, badge: item.badge, width: coverWidth)
-                                    .mpZoomSource(item.id.uuidString, in: readerZoom)
-                            }
-                            .buttonStyle(MPPressStyle())
-                            .contextMenu { menu(item) }
-                            .accessibilityLabel([item.title, item.meta, item.accessibilityStatus]
-                                .compactMap { $0 }.joined(separator: ", "))
-                        }
+        LazyVGrid(columns: Array(repeating: GridItem(.fixed(coverWidth), spacing: gap, alignment: .top), count: columns),
+                  alignment: .leading, spacing: MPSpacing.xl) {
+            ForEach(items) { item in
+                Button {
+                    // Faz 13: okuyucu bu kapaktan büyüyerek açılır.
+                    app.readerZoomID = item.id
+                    open(item)
+                } label: {
+                    VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                        MPBookCover(art: item.art, badge: item.badge, width: coverWidth, edge: tone?.coverEdge)
+                            .mpZoomSource(item.id.uuidString, in: readerZoom)
+                        label(item)
                     }
-                    .padding(.horizontal, MPSpacing.xs)
-                    ShelfPlank(tone: shelfTone)
-                    HStack(alignment: .top, spacing: MPSpacing.lg) {
-                        ForEach(row) { item in
-                            Button { open(item) } label: { label(item) }
-                                .buttonStyle(MPPressStyle())
-                                // VoiceOver kapağın düğmesini okur; etiket tekrar etmesin.
-                                .accessibilityHidden(true)
-                        }
-                    }
-                    .padding(.horizontal, MPSpacing.xs)
-                    .padding(.top, MPSpacing.sm)
                 }
+                .buttonStyle(MPPressStyle())
+                .contextMenu { menu(item) }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel([item.title, item.meta, item.accessibilityStatus]
+                    .compactMap { $0 }.joined(separator: ", "))
+                .accessibilityAddTraits(.isButton)
             }
         }
     }
 
-    /// Rafın altındaki etiket: başlık kapağında ad zaten kapakta, yalnızca
+    /// Kapağın altındaki etiket: başlık kapağında ad zaten kapakta, yalnızca
     /// bilgi; boyalı kapakta ad ve bilgi.
     private func label(_ item: LibraryItem) -> some View {
         VStack(alignment: .leading, spacing: 1) {
             if !item.art.showsTitle {
-                Text(item.title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
+                Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
                     .lineLimit(2).multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary).lineLimit(1)
+            Text(item.meta).mpText(.footnote).foregroundStyle(MPColor.textSecondary).lineLimit(2)
+                .multilineTextAlignment(.leading)
         }
         .frame(width: coverWidth, alignment: .leading)
-    }
-}
-
-/// İnce raf tahtası: sıcak kâğıt tonunda, sistemin sert alt kenarıyla.
-/// Faz 9: çocuk yıldızla başka renkte raf alabilir (`MPDecor`); varsayılan ahşap.
-struct ShelfPlank: View {
-    var tone: MPWorldTone? = nil
-    var body: some View {
-        Color.clear
-            .frame(height: MP.S.x2)
-            .mpKidSurface(tone.map { $0.soft } ?? MPColor.segmentTrack,
-                          edge: (tone ?? .peach).edge, radius: MPRadius.xs)
-            .padding(.top, MP.E.widthLG)
-            .accessibilityHidden(true)
     }
 }

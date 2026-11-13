@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Kitaplık rafsız: kapak duvarı, alçak devam kartı, arama başlıkta
+
+- Karar (Batuhan, 13 Kasım): 9fba009'daki öneri uygulandı; raf sistemi kalktı, yıldızla alınan renk kapakların alt kenarına taşındı.
+- `LibraryView`: arama dairesi `MPKidTabHeader`'ın `accessory`'sinde; Ragi 64 pt; "Kaldığın yerden" bölüm başlığı kalktı, üst yazı kartın içinde (yalnızca ilk kartta); "Kitaplarım" başlığı yerine "11 kitap" sayacı ve sıra menüsü; çipler sayacın üstünde.
+- `LibraryCoverGrid` (eski `LibraryShelfGrid`): üç sütun, raf çizgisi yok; kapak ve etiketi tek düğme. En büyük yazı boyutlarında iki sütun. `ShelfPlank` silindi.
+- `LibraryContinueCard`: kapak 64 → 52, `eyebrow`, tür ve tarih satırı görünümden kalktı (sesli okumada duruyor).
+- `MPBookCover`: `edge` parametresi (çocuğun rengi, `MPWorldTone.coverEdge`); 120 pt'den dar kapakta "Yarım" rozeti yazısız, yalnızca halka (yazı üç sütunda kapağın üst yarısını örtüyordu; sesli okuma "yarım" der).
+- Süsler (`CollectionViews`): "Kitaplığının rafı" → "Kitaplığının rengi", "Rafın bu renkte." → "Kitapların bu renkte duruyor.", önizleme raf yerine üç kapağın alt kenarını gösterir. Süs kimlikleri (`shelf_*`) ve cüzdan aynı: alınan hiçbir şey kaybolmadı.
+- Açık: varsayılan süsün adı hâlâ "Ahşap" (önizlemede şeftali kenar, Kitaplık'ta sistemin lavanta kenarı); ad ve varsayılan renk kararı Batuhan'da. Kök `CLAUDE.md` ilke 7'de "shelf colours" ifadesi güncellendi (dosya bu deponun dışında).
+- Doğrulama: derleme başarılı. Simülatör (iPhone 17 Pro, iOS 27, açık tema, `-mpDemo -mpDemoLibrary`): sayfanın üstü ve aşağı kaydırılmış hâli görüldü; 11 kitap üç sütunda, boyalı ve başlık kapakları düzgün. Görülmedi: arama ve süzgeç, sıra menüsü, kapağa dokunma ve basılı tutma, satın alınmış renk, Süsler önizlemesi, Serim, boş kitaplık, koyu tema, büyük yazı, SE ve Pro Max, VoiceOver. Birim ve arayüz testleri çalıştırılmadı. Tasarım yasası grep'leri değişen dosyalarda boş.
+- Dosyalar: `MagicPaper/Views/LibraryView.swift`, `MagicPaper/Screens/Library/LibraryComponents.swift`, `MagicPaper/DesignSystem/Pastel/{MPBookCover,MPHomeChrome}.swift`, `MagicPaper/Screens/Collection/CollectionViews.swift`, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Kitaplık rafsız yeniden düzen önerisi (yalnızca sohbet görseli)
 
 - İstek (Batuhan): Kitaplık yeniden düşünülsün, raf sistemi kalksın. `LibraryView` ve `LibraryShelfModel` okundu; yeni düzen sohbette iki telefon çizimiyle gösterildi (sayfanın üstü, Favoriler seçili). Uygulama kodu değişmedi.

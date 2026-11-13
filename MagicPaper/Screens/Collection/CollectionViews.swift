@@ -200,7 +200,7 @@ struct DecorShopView: View {
                     }
 
                     VStack(alignment: .leading, spacing: MPSpacing.sm) {
-                        Text("Kitaplığının rafı").mpText(.section).foregroundStyle(MPColor.textPrimary)
+                        Text("Kitaplığının rengi").mpText(.section).foregroundStyle(MPColor.textPrimary)
                         ShelfPreview(tone: selected.tone)
                     }
 
@@ -258,7 +258,7 @@ struct DecorShopView: View {
         let owned = wallet.owns(selected)
         let price = selected.price(easy: settings.easyPrices)
         if wallet.equippedItem(.shelf) == selected {
-            Text("Rafın bu renkte.").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
+            Text("Kitapların bu renkte duruyor.").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
                 .frame(maxWidth: .infinity, minHeight: MPSize.minTouchHero)
         } else if owned {
             MPButton(title: "Kullan", size: .hero, fullWidth: true) { equip() }
@@ -277,7 +277,7 @@ struct DecorShopView: View {
         MPStarWalletStore().save(wallet, for: profile.id)
         MPHaptics.success()
         MPSound.play(.earned)
-        app.showToast("\(selected.title) raf senin", symbol: "star.fill")
+        app.showToast("\(selected.title) renk senin", symbol: "star.fill")
     }
 
     private func equip() {
@@ -287,29 +287,27 @@ struct DecorShopView: View {
     }
 
     private func accessibility(_ item: MPDecor) -> String {
-        if wallet.equippedItem(.shelf) == item { return "\(item.title) raf, kullanılıyor" }
-        if wallet.owns(item) { return "\(item.title) raf, senin" }
-        return "\(item.title) raf, \(item.price(easy: settings.easyPrices)) yıldız"
+        if wallet.equippedItem(.shelf) == item { return "\(item.title) renk, kullanılıyor" }
+        if wallet.owns(item) { return "\(item.title) renk, senin" }
+        return "\(item.title) renk, \(item.price(easy: settings.easyPrices)) yıldız"
     }
 }
 
-/// Süs önizlemesi: iki kapak ve altında raf.
+/// Süs önizlemesi: üç kapak, alt kenarları seçilen renkte (Kitaplık'taki gibi).
 private struct ShelfPreview: View {
     let tone: MPWorldTone
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: .bottom, spacing: MPSpacing.md) {
-                ForEach(0..<3, id: \.self) { i in
-                    RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous)
-                        .fill([MPWorldTone.lav, .sky, .mint][i].soft)
-                        .frame(width: 64, height: 88)
-                }
-                Spacer(minLength: 0)
+        HStack(alignment: .bottom, spacing: MPSpacing.md) {
+            ForEach(0..<3, id: \.self) { i in
+                Color.clear
+                    .frame(width: 64, height: 88)
+                    .mpKidSurface([MPWorldTone.lav, .sky, .mint][i].soft, edge: tone.coverEdge, radius: MPRadius.md)
             }
-            .padding(.horizontal, MPSpacing.sm)
-            ShelfPlank(tone: tone)
+            Spacer(minLength: 0)
         }
+        .padding(.horizontal, MPSpacing.sm)
+        .padding(.bottom, MP.E.widthLG)
         .accessibilityHidden(true)
     }
 }

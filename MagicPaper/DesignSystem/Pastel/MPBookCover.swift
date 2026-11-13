@@ -31,6 +31,12 @@ struct MPBookCover: View {
     let art: Art
     var badge: Badge? = nil
     let width: CGFloat
+    /// Alt kenarın rengi. Kitaplıkta çocuğun yıldızla aldığı renk (`MPDecor`);
+    /// `nil` sistemin lavanta kenarı.
+    var edge: Color? = nil
+
+    /// Bu genişliğin altında "Yarım" rozeti yazısız, yalnızca halka.
+    static let wideBadgeWidth: CGFloat = 120
 
     /// Günlük rafının kapak oranı (128 × 176).
     static let aspect: CGFloat = 176.0 / 128.0
@@ -43,7 +49,7 @@ struct MPBookCover: View {
                 if let badge { badgeView(badge).padding(MPSpacing.xs) }
             }
             .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
+            .mpKidSurface(MPColor.backgroundSurface, edge: edge ?? MPWorldTone.lav.edge, radius: MPRadius.md)
             .accessibilityHidden(true)
     }
 
@@ -70,10 +76,12 @@ struct MPBookCover: View {
                         .rotationEffect(.degrees(-90))
                 }
                 .frame(width: MP.G.xs, height: MP.G.xs)
-                Text("Yarım").mpText(.footnote)
+                // Dar kapakta (Kitaplık'ın üç sütunu) yalnızca halka: yazı
+                // kapağın üst yarısını örtüyordu. Sesli okuma "yarım" der.
+                if width >= Self.wideBadgeWidth { Text("Yarım").mpText(.footnote) }
             }
             .foregroundStyle(MPColor.textPrimary)
-            .padding(.horizontal, MPSpacing.sm)
+            .padding(.horizontal, width >= Self.wideBadgeWidth ? MPSpacing.sm : MPSpacing.xxs)
             .padding(.vertical, MPSpacing.xxs)
             .background(MPColor.backgroundSurface, in: Capsule())
         case let .episode(number, total):

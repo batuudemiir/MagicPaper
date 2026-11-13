@@ -10,6 +10,9 @@ import SwiftUI
 extension MPWorldTone {
     /// Kartın alt kenarı ve çerçevesi: tonun koyusundan ince bir iz.
     var edge: Color { deep.opacity(0.22) }
+    /// Kitaplık kapağının alt kenarı: çocuğun seçtiği renk (`MPDecor`) burada
+    /// görünür, bu yüzden `edge`'den belirgin.
+    var coverEdge: Color { deep.opacity(0.55) }
 }
 
 extension View {

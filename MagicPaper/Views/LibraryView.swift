@@ -6,12 +6,11 @@ import SwiftUI
 /// Ana sayfa ve Benim köşem'le aynı: beyaz sayfa, sert alt kenarlı yüzeyler,
 /// ekranın tek Ragi'si. Kapaklar `MPBookCover`, hepsi aynı ölçüde.
 ///
-/// Düzen: başlık · Ragi ve arama · süzgeç çipleri · "Kaldığın yerden" ·
-/// Serim · "Kitaplarım": tek, başlıksız raf dizisi (iki sütun, sıraların
-/// altında ince raf). Apple Books, Kindle ve Audible'daki gibi varsayılan
-/// sıra son okunan; küçük menüden yeni yazılan ya da ada göre. Ne zaman
-/// okunduğu kapağın altında ("Dün · 4 dk"). Tarih başlıkları denendi,
-/// Batuhan estetik bulmadı (21 Ekim). Çip ve arama aynı diziyi daraltır.
+/// Düzen (13 Kasım 2026, Batuhan: raf sistemi kalktı): başlık ve arama ·
+/// Ragi'nin özeti · "Kaldığın yerden" · Serim · süzgeç çipleri · sayaç ve
+/// sıra menüsü · üç sütunlu kapak duvarı. Varsayılan sıra son okunan; küçük
+/// menüden yeni yazılan ya da ada göre. Ne zaman okunduğu kapağın altında
+/// ("Dün · 4 dk"). Çip ve arama aynı diziyi daraltır.
 ///
 /// Kendi masalına dokununca Masal aksiyonları (17), klasiğe dokununca okuyucu.
 /// İçerik `LibraryShelfModel`'den gelir ve yalnızca veri değişince kurulur.
@@ -54,7 +53,7 @@ struct LibraryView: View {
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
-            // Son raf yüzen alt çubuğun arkasında kalmasın.
+            // Son sıra yüzen alt çubuğun arkasında kalmasın.
             .padding(.bottom, GunlukLayout.bottomClearance)
         }
         .scrollDismissesKeyboard(.immediately)
@@ -75,7 +74,7 @@ struct LibraryView: View {
         LibraryShelfModel.showsFinding(itemCount: model.items.count) || !isBrowsing
     }
 
-    /// Raflar mı, ızgara mı: süzgeç ya da arama yoksa raflar.
+    /// Süzgeç ve arama yokken öne çıkanlar ("Kaldığın yerden", Serim) görünür.
     private var isBrowsing: Bool {
         filter == .all && query.trimmingCharacters(in: .whitespaces).isEmpty
     }
@@ -83,8 +82,10 @@ struct LibraryView: View {
     // MARK: - Üst bölüm
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Kitaplık")
-            .padding(.top, MPSpacing.lg)
+        MPKidTabHeader(title: "Kitaplık") {
+            if !model.isEmpty, LibraryShelfModel.showsFinding(itemCount: model.items.count) { searchButton }
+        }
+        .padding(.top, MPSpacing.lg)
     }
 
     /// Ekranın tek Ragi'si: kitap okur, yanında kitaplığın sakin özeti.
@@ -93,7 +94,7 @@ struct LibraryView: View {
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
             : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.md))
         return layout {
-            RagiGreeting(mascot: .reading, width: typeSize.isAccessibilitySize ? 64 : 76)
+            RagiGreeting(mascot: .reading, width: 64)
             // Dokunulmayan söz kart değil, konuşma balonu (Faz 7: kart içinde kart yok).
             SpeechBubble(text: summary, style: .supporting)
                 .fixedSize(horizontal: false, vertical: true)
@@ -146,10 +147,10 @@ struct LibraryView: View {
         // "Kaldığın yerden"in tek evi (Faz 7): en çok üç kitap.
         let continuing = Array(model.continueItems().prefix(3))
         if !continuing.isEmpty {
-            HomeSection(title: "Kaldığın yerden") {
-                VStack(spacing: MPSpacing.md) {
-                    ForEach(continuing) { item in
-                        LibraryContinueCard(item: item) { open(item, continuing: true) }
+            VStack(spacing: MPSpacing.md) {
+                ForEach(continuing) { item in
+                    LibraryContinueCard(item: item, eyebrow: item.id == continuing.first?.id ? "Kaldığın yerden" : nil) {
+                        open(item, continuing: true)
                     }
                 }
             }
@@ -167,24 +168,26 @@ struct LibraryView: View {
     @ViewBuilder
     private var shelf: some View {
         let items = model.items(for: filter, query: query, sort: sort)
-        VStack(alignment: .leading, spacing: MPSpacing.lg) {
-            MPSectionHeader(title: filter == .all ? "Kitaplarım" : filter.title, trailing: {
-                HStack(spacing: MPSpacing.xs) {
-                    if LibraryShelfModel.showsFinding(itemCount: model.items.count) { searchButton }
-                    sortMenu
-                }
-            })
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
             if searching || !query.isEmpty {
                 LibrarySearchField(text: $query, focused: $searchFocused)
             }
             if showsFinding { chips }
+            // Bölüm başlığı yok: hangi kitapların göründüğünü seçili çip söyler.
+            HStack(alignment: .firstTextBaseline) {
+                Text("\(items.count) kitap").mpText(.supporting).fontWeight(.bold).monospacedDigit()
+                    .foregroundStyle(MPColor.textSecondary)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: MPSpacing.sm)
+                sortMenu
+            }
             if items.isEmpty {
                 noMatch
             } else {
-                LibraryShelfGrid(items: items, pageWidth: width,
-                                 singleColumn: typeSize.isAccessibilitySize,
+                LibraryCoverGrid(items: items, pageWidth: width,
+                                 wide: typeSize.isAccessibilitySize,
                                  open: { open($0) }, menu: { quickActions($0) },
-                                 shelfTone: shelfTone)
+                                 tone: shelfTone)
             }
         }
         .homeEntrance(5)
@@ -201,7 +204,8 @@ struct LibraryView: View {
         }
     }
 
-    /// Çocuğun yıldızla aldığı raf rengi (Faz 9); varsayılan ahşapsa `nil`.
+    /// Çocuğun yıldızla aldığı kitaplık rengi (Faz 9; raf kalkınca kapakların
+    /// alt kenarında); varsayılansa `nil`.
     private var shelfTone: MPWorldTone? {
         guard settings.collectionEnabled, let id = profileManager.currentProfile?.id else { return nil }
         let item = MPStarWalletStore().wallet(for: id).equippedItem(.shelf)
@@ -324,7 +328,7 @@ struct LibraryView: View {
         switch item.kind {
         case .story:
             guard let story = storyManager.getStory(id: item.id) else { return }
-            // Devam kartı doğrudan okuyucuya; raftaki kapak seçenekleri açar.
+            // Devam kartı doğrudan okuyucuya; duvardaki kapak seçenekleri açar.
             if continuing { app.read(story) } else { app.actionsStory = story }
         case .classic:
             guard let tale = ClassicsLibrary.shared.tale(item.id) else { return }
