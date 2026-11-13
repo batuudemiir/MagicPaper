@@ -8,8 +8,10 @@ import SwiftUI
 /// eklemeye gider; kahramanı düzenlemek kapıdan geçer. Yıldızlar yalnızca
 /// kazanılır ve gösterilir (`MPStars`).
 ///
-/// 22 Ekim 2026: iOS profil sayfası düzeni. Ragi ve karşılama balonsuz; Masal
-/// dünyam gruplu liste. 7 Kasım 2026: panel ve kutu yok, bölümleri boşluk ayırır.
+/// 13 Kasım 2026 (Batuhan): yeni kurgu. Çocuğun kimliği tek yerde: "Kim
+/// okuyor?" başlığın altında tek sıra çip, altında tek kimlik kartı (kahraman,
+/// ad, yıldız, Dolap). Ragi küçük, balonla. "Masal dünyam" satır yerine karo:
+/// koleksiyonlar ilk ekranda görünsün. 22 Ekim'in gruplu listesi kalktı.
 struct KidCornerView: View {
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var settings = MPSettingsStore.shared
@@ -18,6 +20,8 @@ struct KidCornerView: View {
     @ObservedObject private var stickerNews = MPStickerNews.shared
     @State private var earned: Set<MPMilestone> = []
     @State private var familyNames: [String] = []
+    /// Albümün son çıkartmaları (en yenisi başta); karoda üçü görünür.
+    @State private var stickers: [MPSticker] = []
     /// Çocuğun kahramanı (Faz 9); kurulmadıysa `nil`.
     @State private var heroLook: HeroLook?
     @State private var heroLooks: [UUID: HeroLook] = [:]
@@ -29,22 +33,15 @@ struct KidCornerView: View {
 
     var body: some View {
         MPTabScroll(tab: .corner) {
-            // Ana sayfanın düzeni (16 Ekim): beyaz zemin, bölümler arası 32. Profil
-            // değiştirme en üstte; Ragi seçili çocuğu selamlar.
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                VStack(alignment: .leading, spacing: MPSpacing.xl) {
+                // Kimlik tek blok: kim okuyor, kahramanı, Ragi'nin sözü.
+                VStack(alignment: .leading, spacing: MPSpacing.lg) {
                     titleBar
-                    whoSection
+                    whoRow
+                    if let profile { identityCard(profile) }
+                    greeting
                 }
-                greeting
-                if let profile {
-                    HeroStageCard(look: heroLook) {
-                        MPHaptics.tap()
-                        app.router.openKidPage(.wardrobe(profile.id))
-                    }
-                }
-                starBank
-                // Yapılacak işler (bağlantılar) bakılacak şeylerden (rozetler)
+                // Yapılacak işler (karolar) bakılacak şeylerden (rozetler)
                 // önce: bulunabilirlik (16 Ekim denetimi).
                 linksSection
                 badgesSection
@@ -70,7 +67,9 @@ struct KidCornerView: View {
             HeroLookStore().look(for: p.id).map { (p.id, $0) }
         })
         heroLook = profile.flatMap { heroLooks[$0.id] }
-        guard let profile else { earned = []; familyNames = []; return }
+        guard let profile else { earned = []; familyNames = []; stickers = []; return }
+        stickers = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories)
+            .sorted { $0.date > $1.date }
         earned = Set(MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones)
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
@@ -101,24 +100,10 @@ struct KidCornerView: View {
             .padding(.top, MPSpacing.lg)
     }
 
-    /// Ekranın tek Ragi'si: el sallar, yanında sakin bir karşılama balonu
-    /// (karar 16 Ekim 2026: Ragi her çocuk ekranında ön planda).
+    /// Ekranın tek Ragi'si: küçük, balonla rozetleri söyler (karar 16 Ekim
+    /// 2026: Ragi her çocuk ekranında).
     private var greeting: some View {
-        // En büyük yazı boyutlarında Ragi küçülüp metnin üstüne çıkar.
-        let layout = typeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.sm))
-            : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.lg))
-        return layout {
-            RagiGreeting(mascot: .waving, width: typeSize.isAccessibilitySize ? 80 : 96)
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text("Merhaba \(profile?.name ?? "Arkadaşım")!")
-                    .mpText(.page).foregroundStyle(MPColor.textPrimary)
-                Text(greetingText).mpText(.body).foregroundStyle(MPColor.textSecondary)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .accessibilityElement(children: .combine)
+        MascotSays(mascot: .waving, text: greetingText)
     }
 
     /// Sakin karşılama: kazanılanı söyler, "az kaldı" demez (CLAUDE.md §7).
@@ -130,57 +115,68 @@ struct KidCornerView: View {
 
     // MARK: - Kim okuyor?
 
-    private var whoSection: some View {
-        HomeSection(title: "Kim okuyor?") {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: MPSpacing.xl) {
-                    ForEach(profileManager.profiles) { child in
-                        let selected = child.id == profile?.id
-                        Button {
-                            guard !selected else { return }
-                            MPHaptics.selection()
-                            profileManager.switchProfile(to: child)
-                        } label: {
-                            VStack(spacing: MPSpacing.xs) {
-                                Group {
-                                    if let hero = heroLooks[child.id] {
-                                        HeroAvatarView(look: hero, backdrop: MPWorldTone.lav.soft)
-                                            .frame(width: MPSize.minTouchKid, height: MPSize.minTouchKid)
-                                    } else {
-                                        MPAvatar(name: child.name, color: child.mpColor, size: MPSize.minTouchKid)
-                                    }
+    /// Profil değiştirme: başlığın hemen altında tek sıra çip, tek dokunuş
+    /// (7 Kasım 2026). Seçili çocuk çerçeveli ve onay işaretli; renk tek
+    /// başına bilgi taşımaz.
+    private var whoRow: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: MPSpacing.sm) {
+                ForEach(profileManager.profiles) { child in
+                    let selected = child.id == profile?.id
+                    Button {
+                        guard !selected else { return }
+                        MPHaptics.selection()
+                        profileManager.switchProfile(to: child)
+                    } label: {
+                        HStack(spacing: MPSpacing.xs) {
+                            Group {
+                                if let hero = heroLooks[child.id] {
+                                    HeroAvatarView(look: hero, backdrop: MPWorldTone.lav.soft)
+                                        .frame(width: MPSize.circleButton, height: MPSize.circleButton)
+                                } else {
+                                    MPAvatar(name: child.name, color: child.mpColor, size: MPSize.circleButton)
                                 }
-                                    .padding(MPSpacing.xxs)
-                                    .overlay(Circle().strokeBorder(selected ? MPColor.actionPrimary : .clear, lineWidth: 3))
-                                Text(child.name).mpText(.supporting).fontWeight(.black)
-                                    .foregroundStyle(MPColor.textPrimary).lineLimit(1)
                             }
-                            .frame(minWidth: MPSize.minTouchKid)
+                            .accessibilityHidden(true)
+                            Text(child.name).mpText(.supporting).fontWeight(.bold).lineLimit(1)
+                            if selected {
+                                MPIcon("checkmark", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
+                            }
                         }
-                        .buttonStyle(MPPressStyle())
-                        .accessibilityLabel(child.name)
-                        .accessibilityAddTraits(selected ? .isSelected : [])
-                    }
-                    Button { app.router.requestProfileAdd() } label: {
-                        VStack(spacing: MPSpacing.xs) {
-                            MPIcon("plus", size: MP.G.xl, weight: .semibold)
-                                .foregroundStyle(MPColor.textSecondary)
-                                .frame(width: MPSize.minTouchKid + MPSpacing.sm, height: MPSize.minTouchKid + MPSpacing.sm)
-                                .overlay(Circle().strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
-                            Text("Ekle").mpText(.supporting).fontWeight(.black).foregroundStyle(MPColor.textSecondary)
-                        }
+                        .foregroundStyle(selected ? MPColor.actionPrimary : MPColor.textPrimary)
+                        .padding(.leading, MPSpacing.xxs)
+                        .padding(.trailing, MPSpacing.md)
+                        .frame(minHeight: MP.S.tapMin)
+                        .background(selected ? MPColor.cardSoft : MPWorldTone.gray.soft, in: Capsule())
+                        .overlay(Capsule().strokeBorder(selected ? MPColor.actionPrimary : .clear, lineWidth: 2))
                     }
                     .buttonStyle(MPPressStyle())
-                    .accessibilityLabel("Profil ekle")
-                    .accessibilityHint("Önce bir büyüğün kapıyı açması gerekir")
+                    .accessibilityLabel(child.name)
+                    .accessibilityAddTraits(selected ? .isSelected : [])
                 }
-                .padding(.horizontal, MPSpacing.screenH)
+                Button { app.router.requestProfileAdd() } label: {
+                    HStack(spacing: MPSpacing.xs) {
+                        MPIcon("plus", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
+                        Text("Ekle").mpText(.supporting).fontWeight(.bold)
+                    }
+                    .foregroundStyle(MPColor.textSecondary)
+                    .padding(.horizontal, MPSpacing.md)
+                    .frame(minHeight: MP.S.tapMin)
+                    .overlay(Capsule().strokeBorder(MPColor.borderDashed, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
+                    .contentShape(Capsule())
+                }
+                .buttonStyle(MPPressStyle())
+                .accessibilityLabel("Profil ekle")
+                .accessibilityHint("Önce bir büyüğün kapıyı açması gerekir")
             }
-            .padding(.horizontal, -MPSpacing.screenH)
+            .padding(.horizontal, MPSpacing.screenH)
         }
+        .padding(.horizontal, -MPSpacing.screenH)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Kim okuyor?")
     }
 
-    // MARK: - Sayılar
+    // MARK: - Kimlik kartı
 
     /// Kumbaradaki yıldız: kazanılan eksi süslere harcanan (Faz 9).
     private var stars: Int {
@@ -189,23 +185,49 @@ struct KidCornerView: View {
         return MPStarWalletStore().wallet(for: profile.id).balance(earned: earned)
     }
 
-    /// Yıldız kumbarası (Faz 7): tek satır, sayı ve nasıl kazanıldığı. Üst üste
-    /// gün buradan kalktı, Ana sayfanın satırında; masal sayısı Kitaplık'ta.
-    /// Harcama Faz 9'da (Dolap); o zamana kadar satır dokunulmaz.
-    private var starBank: some View {
-        HStack(spacing: MPSpacing.md) {
-            MPStarMark(size: 28).accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: MP.S.x1) {
-                Text("\(stars) yıldız").mpText(.section).monospacedDigit()
-                    .foregroundStyle(MPColor.textPrimary)
-                Text("Her sabah 1, her masal 1.").mpText(.supporting)
-                    .foregroundStyle(MPColor.textSecondary)
+    /// Çocuğun tek kimlik kartı: kahraman, ad, yıldız ve Dolap. Kartın tamamı
+    /// Dolap'ı açar; "Dolabı aç" ikincil düğme görünümünde ama ayrı hedef değil
+    /// (kart içinde düğme olmaz). En büyük yazı boyutlarında kahraman üste çıkar.
+    private func identityCard(_ profile: UserProfile) -> some View {
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.lg))
+        return Button {
+            MPHaptics.tap()
+            app.router.openKidPage(.wardrobe(profile.id))
+        } label: {
+            layout {
+                HeroAvatarView(look: heroLook ?? .standard, backdrop: MPWorldTone.lav.soft)
+                    .frame(width: 104, height: 104)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    Text(profile.name).mpText(.page).foregroundStyle(MPColor.textPrimary)
+                        .lineLimit(2).minimumScaleFactor(0.7)
+                    HStack(spacing: MPSpacing.xs) {
+                        MPStarMark(size: 16)
+                        Text("\(stars) yıldız").mpText(.supporting).fontWeight(.bold).monospacedDigit()
+                            .foregroundStyle(MPColor.textSecondary)
+                    }
+                    HStack(spacing: MPSpacing.xs) {
+                        MPIcon("sparkles", size: MP.G.sm, weight: .bold)
+                        Text(heroLook == nil ? "Kahramanını giydir" : "Dolabı aç").mpText(.button)
+                    }
+                    .foregroundStyle(MPColor.actionPrimary)
+                    .frame(maxWidth: .infinity, minHeight: MPSize.chipHeightKid)
+                    .background(MPColor.cardSoft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
+                    .padding(.top, MPSpacing.xs)
+                }
+                .fixedSize(horizontal: false, vertical: true)
             }
-            .fixedSize(horizontal: false, vertical: true)
-            Spacer(minLength: 0)
+            .padding(MPSpacing.md)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
         }
-        .frame(minHeight: MPSize.minTouchHero)
-        .accessibilityElement(children: .combine)
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(profile.name), \(stars) yıldız")
+        .accessibilityHint("Dolabı açar")
+        .accessibilityAddTraits(.isButton)
     }
 
     // MARK: - Rozetlerim
@@ -227,48 +249,95 @@ struct KidCornerView: View {
         }
     }
 
-    // MARK: - Bağlantılar
+    // MARK: - Masal dünyam
 
+    /// Koleksiyonlar karolarda (13 Kasım 2026): üstte geniş çıkartma albümü,
+    /// altında ikişerli diğerleri. En büyük yazı boyutlarında tek sütun.
     @ViewBuilder
     private var linksSection: some View {
         if let profile {
             HomeSection(title: "Masal dünyam") {
-                // Satırlar tek panelde; panel tek parça olsun diye tek kap.
-                VStack(spacing: 0) {
-                    // Faz 10: masal dünyası hatırlar.
-                    linkRow(icon: "map", tone: .mint, title: "Masal haritam",
-                            subtitle: "Masallarda gittiğin yerler") {
-                        app.router.openKidPage(.storyMap(profile.id))
-                    }
-                    MPRowDivider(area: .kid)
-                    // Faz 9: Odam'ın koleksiyonu.
-                    linkRow(icon: "star", tone: .yellow, title: "Çıkartma albümüm",
-                            subtitle: stickerNews.isFresh(profile.id) ? "Yeni çıkartma" : stickerSubtitle,
-                            fresh: stickerNews.isFresh(profile.id)) {
-                        app.router.openKidPage(.stickers(profile.id))
-                    }
-                    MPRowDivider(area: .kid)
-                    if settings.collectionEnabled {
-                        linkRow(icon: "sparkles", tone: .lav, title: "Süsler",
-                                subtitle: "Yıldızlarınla kitaplığını süsle") {
-                            app.router.openKidPage(.decor(profile.id))
+                VStack(spacing: MPSpacing.sm) {
+                    stickerTile(profile)
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.sm, alignment: .top),
+                                             count: typeSize.isAccessibilitySize ? 1 : 2),
+                              spacing: MPSpacing.sm) {
+                        // Faz 10: masal dünyası hatırlar.
+                        worldTile(icon: "map", tone: .mint, title: "Masal haritam",
+                                  subtitle: "Masallarda gittiğin yerler") {
+                            app.router.openKidPage(.storyMap(profile.id))
                         }
-                        MPRowDivider(area: .kid)
-                    }
-                    linkRow(icon: "heart", tone: .peach, title: "Masal ailem",
-                            subtitle: familySubtitle) {
-                        app.router.openKidPage(.familyCharacters(profile.id))
-                    }
-                    MPRowDivider(area: .kid)
-                    linkRow(icon: "book.closed", tone: .mint, title: "Yeni kelimelerim",
-                            subtitle: wordsSubtitle) {
-                        app.router.openKidPage(.newWords(profile.id))
+                        worldTile(icon: "heart", tone: .peach, title: "Masal ailem", subtitle: familySubtitle) {
+                            app.router.openKidPage(.familyCharacters(profile.id))
+                        }
+                        worldTile(icon: "book.closed", tone: .sky, title: "Yeni kelimelerim", subtitle: wordsSubtitle) {
+                            app.router.openKidPage(.newWords(profile.id))
+                        }
+                        if settings.collectionEnabled {
+                            worldTile(icon: "sparkles", tone: .lav, title: "Süsler",
+                                      subtitle: "Yıldızlarınla kitaplığını süsle") {
+                                app.router.openKidPage(.decor(profile.id))
+                            }
+                        }
                     }
                 }
-                // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
-                .padding(.horizontal, -MPSpacing.md)
             }
         }
+    }
+
+    /// Faz 9: albüm. Son üç çıkartma karonun sağında; taze çıkartmayı alt yazı
+    /// da söyler (renk tek başına bilgi taşımaz).
+    private func stickerTile(_ profile: UserProfile) -> some View {
+        let fresh = stickerNews.isFresh(profile.id)
+        return Button {
+            MPHaptics.tap()
+            app.router.openKidPage(.stickers(profile.id))
+        } label: {
+            HStack(spacing: MPSpacing.md) {
+                VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                    Text("Çıkartma albümüm").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    Text(fresh ? "Yeni çıkartma" : stickerSubtitle).mpText(.footnote)
+                        .fontWeight(fresh ? .bold : .regular)
+                        .foregroundStyle(fresh ? MPColor.actionPrimary : MPColor.textSecondary)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 0)
+                if !typeSize.isAccessibilitySize {
+                    HStack(spacing: -MPSpacing.sm) {
+                        ForEach(stickers.prefix(3)) { StickerView(sticker: $0, size: MPSize.circleButton) }
+                    }
+                }
+            }
+            .padding(MPSpacing.md)
+            .frame(maxWidth: .infinity, minHeight: MPSize.choiceRowKid, alignment: .leading)
+            .background(MPWorldTone.yellow.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Çıkartma albümüm, \(fresh ? "yeni çıkartma" : stickerSubtitle)")
+        .accessibilityAddTraits(.isButton)
+    }
+
+    private func worldTile(icon: String, tone: MPWorldTone, title: String, subtitle: String,
+                           action: @escaping () -> Void) -> some View {
+        Button { MPHaptics.tap(); action() } label: {
+            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                MPIcon(icon, size: MP.G.lg, weight: .semibold).foregroundStyle(tone.deep)
+                    .padding(.bottom, MPSpacing.xs)
+                    .accessibilityHidden(true)
+                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                // İki satır ayrılır: yan yana karolar aynı boyda dursun.
+                Text(subtitle).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .lineLimit(2, reservesSpace: true)
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(MPSpacing.md)
+            .frame(maxWidth: .infinity, minHeight: 112, alignment: .topLeading)
+            .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
     }
 
     /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
@@ -277,7 +346,7 @@ struct KidCornerView: View {
     }
 
     private var stickerSubtitle: String {
-        let count = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories).count
+        let count = stickers.count
         return count == 0 ? "Her masal bir çıkartma bırakır" : "\(count) çıkartma"
     }
 
@@ -295,24 +364,6 @@ struct KidCornerView: View {
         }
     }
 
-    private func linkRow(icon: String, tone: MPWorldTone, title: String, subtitle: String,
-                         fresh: Bool = false, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            MPListRow(systemImage: icon, tone: tone, title: title, subtitle: subtitle)
-                // Taze çıkartma: renk tek başına bilgi taşımaz, alt yazı da "Yeni çıkartma" der.
-                .overlay(alignment: .topLeading) {
-                    if fresh {
-                        Circle().fill(MP.C.brand)
-                            .frame(width: MP.S.x2, height: MP.S.x2)
-                            .accessibilityHidden(true)
-                    }
-                }
-                .frame(minHeight: MPSize.minTouchKid)
-        }
-        .buttonStyle(MPPressStyle(.highlight))
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isButton)
-    }
 }
 
 /// Ekranın Ragi'si: açılışta süzülerek gelir, yavaşça nefes alır, dokununca

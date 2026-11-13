@@ -233,37 +233,3 @@ struct HeroWardrobeView: View {
         }
     }
 }
-
-/// Odam'ın kahraman kartı: kahraman büyük, dokununca Dolap.
-struct HeroStageCard: View {
-    let look: HeroLook?
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: MPSpacing.lg) {
-                HeroAvatarView(look: look ?? .standard, backdrop: MPWorldTone.lav.soft)
-                    .frame(width: 120, height: 132)
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                    Text("Kahramanım").mpText(.section).foregroundStyle(MPColor.textPrimary)
-                    Text(look == nil ? "Kahramanını giydirelim mi?" : "Dolabı aç, yeni bir şey dene.")
-                        .mpText(.supporting).foregroundStyle(MPColor.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    HStack(spacing: MPSpacing.xxs) {
-                        MPIcon("sparkles", size: MP.G.sm, weight: .bold)
-                        Text("Dolap").mpText(.button)
-                    }
-                    .foregroundStyle(MPColor.actionPrimary)
-                    .padding(.top, MP.S.x1)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(MPSpacing.md)
-            .frame(minHeight: MPSize.minTouchHero)
-            .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
-        }
-        .buttonStyle(MPPressStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Kahramanım, dolabı aç")
-    }
-}

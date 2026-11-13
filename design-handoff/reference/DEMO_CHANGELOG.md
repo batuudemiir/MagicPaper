@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Profil sekmesi yeni kurgu: çip sırası, tek kimlik kartı, karolar
+
+- Karar (Batuhan, 13 Kasım): 024c962'deki öneri uygulandı. 22 Ekim'deki "Masal dünyam gruplu liste" düzeninin yerine karolar geçti.
+- `KidCornerView`: (1) "Kim okuyor?" başlığın altında tek sıra çip (`whoRow`): seçili çocuk çerçeveli ve onay işaretli, "Ekle" sonda; bölüm başlığı kalktı, sesli okumada grup adı "Kim okuyor?". (2) Tek kimlik kartı (`identityCard`): kahraman 104 pt, ad, yıldız sayısı, "Dolabı aç" / "Kahramanını giydir"; kartın tamamı Dolap'ı açar. Karşılama başlığı ("Merhaba İrem!"), `HeroStageCard` ve yıldız satırı bu kartta birleşti; "Her sabah 1, her masal 1." kalktı. (3) Ragi `MascotSays` ile küçük, rozet cümlesini söyler. (4) "Masal dünyam": üstte geniş "Çıkartma albümüm" (son üç çıkartma sağında), altında ikişerli Masal haritam, Masal ailem, Yeni kelimelerim, Süsler. (5) Rozetlerim ve "Büyükler için" aynı.
+- Çıkartmalar gövdede değil `refresh()` içinde hesaplanıp saklanıyor (önceden alt yazı her çizimde albümü yeniden kuruyordu).
+- Silindi: `HeroStageCard` (`HeroWardrobeView.swift`), `linkRow`, `starBank`. `RagiGreeting` Kitaplık'ta kullanıldığı için duruyor.
+- Erişilebilirlik boyutlarında: kimlik kartında kahraman üste çıkar, karolar tek sütun, çıkartma önizlemesi gizlenir.
+- Doğrulama: derleme başarılı. Simülatör (iPhone 17 Pro, iOS 27, açık tema, `-mpDemo`): sayfanın üstü ve aşağı kaydırılmış hâli görüldü; karolar eşit boyda, ilk ikisi ilk ekranda. Görülmedi: birden fazla çocuk ve profil değiştirme, kurulmuş kahraman, çıkartma önizlemesi (demo veride çıkartma yok), taze çıkartma durumu, karolara dokunma, koyu tema, büyük yazı, SE ve Pro Max, VoiceOver. Birim ve arayüz testleri çalıştırılmadı. Tasarım yasası grep'leri değişen dosyada boş.
+- Dosyalar: `MagicPaper/Screens/KidCorner/KidCornerView.swift`, `MagicPaper/Screens/Hero/HeroWardrobeView.swift`, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Profil sekmesi yeniden düzen önerisi (yalnızca sohbet görseli)
 
 - Ne yapıldı: `KidCornerView` ve `HeroStageCard` okundu, sayfanın bugünkü hâline simülatörde bakıldı; yeni düzen sohbette iki telefon çizimiyle gösterildi (sayfanın üstü, aşağı kaydırınca). Uygulama kodu değişmedi.
