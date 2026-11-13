@@ -19,7 +19,7 @@ final class NavigationFlowTests: XCTestCase {
 
     func testTabsSwitch() {
         let app = launch()
-        for (tab, title) in [("Masallar", "Masallar"), ("Kitaplık", "Kitaplık"), ("Odam", "Odam")] {
+        for (tab, title) in [("Masallar", "Masallar"), ("Kitaplık", "Kitaplık"), ("Profil", "Profil")] {
             app.tabBars.buttons[tab].tap()
             XCTAssertTrue(app.staticTexts[title].waitForExistence(timeout: 5), tab)
         }
@@ -47,7 +47,7 @@ final class NavigationFlowTests: XCTestCase {
         XCTAssertTrue(app.buttons["Geri"].waitForExistence(timeout: 5))
         app.tabBars.buttons["Kitaplık"].tap()
         XCTAssertFalse(app.buttons["Geri"].waitForExistence(timeout: 2))
-        app.tabBars.buttons["Odam"].tap()
+        app.tabBars.buttons["Profil"].tap()
         XCTAssertTrue(app.buttons["Geri"].waitForExistence(timeout: 5))
     }
 

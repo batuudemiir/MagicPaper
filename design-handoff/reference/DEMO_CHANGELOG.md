@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · Alt çubuk: ayrı mor daire, kayan seçim yastığı; Odam → Profil
+
+- Geri bildirim (Batuhan, telefonda A2'yi gördükten sonra): çubuk 9ba0dff'teki ilk önerideki gibi olsun (dört sekme kapsülde, "Masal yaz" sağda ayrı mor dairede), sürükleyerek seçme eskisi gibi olsun, Odam'ın adı Profil olsun ve simgesi değişsin. fc65fc6'daki A2 (daire ortada, kapsülün içinde) geri alındı.
+- `KidTabBar`: dört sekme cam kapsülde; yanında 61 pt mor daire, sert alt kenar (`mpEdge`, cam değil), `wand.and.sparkles`. Seçim yastığı tek parça (`matchedGeometryEffect`): sürüklerken parmağın altındaki sekmeye kayar, bırakılan sekme seçilir; zıplama yok, Hareketi Azalt'ta yer değiştirir. Etiket kalın, seçili olmayan simge `medium`. Bütün sürümlerde kendi çubuğumuz kararı aynı.
+- Ad ve simge: sekme, sayfa başlığı ve `MPTab.label` "Profil"; simge `person.crop.circle` (seçiliyken dolu). Ana sayfadaki ipucu "Profili açar". Kod adları (`KidCornerView`, `.corner`, `openKidCorner`) değişmedi.
+- Testler metinde güncellendi (`ClassicProgressTests`, `NavigationFlowTests`), çalıştırılmadı. `NavigationFlowTests` `app.tabBars` arıyor; kendi çubuğumuzla büyük olasılıkla kırık, düzeltilmedi.
+- Belge: kök `CLAUDE.md`'de cam ve alt çubuk maddeleri (dosya bu deponun dışında). `docs/` altındaki "Odam" geçen belgeler güncellenmedi.
+- Doğrulama: derleme başarılı. Simülatör (iPhone 17 Pro, iOS 27, açık tema, `-mpDemo`): Ana sayfa'dan Kitaplık'a sürükleyerek seçme çalıştı, yastık Kitaplık'a geçti ve sayfa açıldı; daire ve "Profil" görüldü. Görülmedi: daireye sürükleyip bırakma, yakınlaşma, Profil sayfası, koyu tema, büyük yazı, SE ve Pro Max, VoiceOver.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/MPNavigationChrome.swift`, `MagicPaper/Screens/MPRouter.swift`, `MagicPaper/Screens/KidCorner/KidCornerView.swift`, `MagicPaper/Views/HomeView.swift`, `MagicPaperTests/ClassicProgressTests.swift`, `MagicPaperUITests/NavigationFlowTests.swift`, bu dosya.
+
 ### 2026-11-13 · main, commit bu kayıtla · Alt çubuk A2: Masal yaz ortada, kapsülün içinde; bütün sürümlerde kendi çubuğumuz
 
 - Karar (Batuhan, 13 Kasım): 3185669'daki A2 uygulandı. 22 Ekim'deki "iOS 26'da sistemin `TabView`'ı" kararının yerine bütün sürümlerde `KidTabBar`; 7 Kasım sırası Ana sayfa · Masallar · Masal yaz · Kitaplık · Odam oldu.

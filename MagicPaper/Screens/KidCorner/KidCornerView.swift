@@ -97,7 +97,7 @@ struct KidCornerView: View {
     // MARK: - Başlık ve Ragi
 
     private var titleBar: some View {
-        MPKidTabHeader(title: "Odam")
+        MPKidTabHeader(title: "Profil")
             .padding(.top, MPSpacing.lg)
     }
 

@@ -15,7 +15,7 @@ enum MPTab: String, CaseIterable {
         case .home:    return "Ana sayfa"
         case .gunluk:  return "Masallar"
         case .library: return "Kitaplık"
-        case .corner:  return "Odam"
+        case .corner:  return "Profil"
         }
     }
 

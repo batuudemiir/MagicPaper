@@ -1,5 +1,5 @@
 // MPNavigationChrome.swift
-// Kid tab bar (Ana sayfa · Masallar · Masal yaz · Kitaplık · Odam), parent tab bar (Özet · Güvenlik · Ayarlar),
+// Kid tab bar (Ana sayfa · Masallar · Kitaplık · Profil + ayrı Masal yaz dairesi), parent tab bar (Özet · Güvenlik · Ayarlar),
 // kid tab header, top bar, parent header.
 // Screens: AnaSayfa, Kutuphane, BosKitaplik, InternetYok (kid tab bar); EbeveynPaneli,
 // IcerikGuvenligi, Ayarlar (parent tab bar).
@@ -8,18 +8,18 @@ import SwiftUI
 
 enum KidTab: Hashable { case home, gunluk, library, corner }
 
-/// Çocuk modunun alt çubuğu (13 Kasım 2026, Batuhan): içeriğin üstünde
-/// yüzen tek cam kapsül, beş eşit sütun. "Masal yaz" ortada, kapsülün içinde
-/// marka renginde sert kenarlı bir daire; çubuktan taşmaz, adı yazmaz
-/// (VoiceOver'da ve basılı tutunca okunur). Masal yazma ekranı dairenin
-/// içinden büyüyerek açılır (`mpZoomSource`).
+/// Çocuk modunun alt çubuğu (13 Kasım 2026, Batuhan): dört sekme içeriğin
+/// üstünde yüzen cam bir kapsülde, "Masal yaz" yanında ayrı, marka renginde
+/// sert kenarlı bir dairede (cam değil; adı VoiceOver'da ve basılı tutunca
+/// okunur). Masal yazma ekranı dairenin içinden büyüyerek açılır (`mpZoomSource`).
 ///
 /// Bütün iOS sürümlerinde bu çubuk: 22 Ekim 2026'daki "iOS 26'da sistemin
-/// `TabView`'ı" kararının yerine geçti, çünkü sistem çubuğu eylemi ortaya
-/// ve kapsülün içine koyamıyor. Cam yine sistemin (`mpGlassSurface`).
+/// `TabView`'ı" kararının yerine geçti, çünkü sistem dairesi marka rengini ve
+/// sert kenarı taşıyamıyor. Kapsülün camı yine sistemin (`mpGlassSurface`).
 ///
 /// Seçili sekmenin ikonu dolar, ikon ve adı marka renginde olur, arkasında
-/// lavanta bir yastık belirir; diğerleri çizgi ve ikincil mürekkepte. Seçim renkle birlikte
+/// lavanta bir yastık durur; diğerleri çizgi ve ikincil mürekkepte. Yastık
+/// tek parça: sekmeden sekmeye kayar (Hareketi Azalt'ta yer değiştirir). Seçim renkle birlikte
 /// dolu şekil ve mercekle de belli. Zıplama, ölçek ya da yaylanma yok.
 /// Sürükleyerek seçme (22 Ekim 2026, iOS 26 sekme çubuğu gibi): parmak
 /// çubuğun üstünde kayarken mercek parmağı izler, bırakılan yer seçilir.
@@ -56,8 +56,10 @@ struct KidTabBar: View {
 
     /// Çubuğun yüksekliği (`MPSize.kidTabBarHeight` bunun üstüne alt boşluğu ekler).
     private let barHeight: CGFloat = MP.S.tapMin + MP.S.x4
-    /// Dairenin çapı: sert kenarıyla birlikte kapsülün içinde kalır.
-    private var createSize: CGFloat { barHeight - MP.S.x3 - MP.E.width }
+    /// Dairenin çapı: sert kenarıyla birlikte kapsül kadar yüksek.
+    private var createSize: CGFloat { barHeight - MP.E.width }
+    /// Seçim yastığının tek kimliği: sekmeden sekmeye kayar.
+    @Namespace private var pad
     private static let createSymbol = "wand.and.sparkles"
 
     private struct Item {
@@ -70,18 +72,22 @@ struct KidTabBar: View {
         Item(tab: .home,    label: "Ana sayfa", symbol: "house"),
         Item(tab: .gunluk,  label: "Masallar",  symbol: "book"),
         Item(tab: .library, label: "Kitaplık",  symbol: "books.vertical"),
-        Item(tab: .corner,  label: "Odam",      symbol: "teddybear"),
+        Item(tab: .corner,  label: "Profil",    symbol: "person.crop.circle"),
     ]
 
     var body: some View {
-        HStack(spacing: 0) {
-            ForEach(items.prefix(2), id: \.tab) { tab($0) }
+        HStack(spacing: MP.S.x3) {
+            HStack(spacing: 0) {
+                ForEach(items, id: \.tab) { tab($0) }
+            }
+            .padding(MP.S.x1)
+            .frame(height: barHeight)
+            .mpGlassSurface(in: Capsule(style: .continuous))
+            // Yastık parmağı izler: zıplama yok, yalnızca kayma.
+            .animation(MP.M.gated(MP.M.easeOut), value: litTab)
+
             createButton
-            ForEach(items.suffix(2), id: \.tab) { tab($0) }
         }
-        .padding(MP.S.x1)
-        .frame(height: barHeight)
-        .mpGlassSurface(in: Capsule(style: .continuous))
         .coordinateSpace(.named(Self.space))
         .simultaneousGesture(dragToSelect)
         // Sistem sekme çubuğu gibi: yazı en fazla xLarge büyür, daha büyük
@@ -127,9 +133,15 @@ struct KidTabBar: View {
         return false
     }
 
-    /// Masal yaz: ortadaki sütunda, marka renginde sert kenarlı daire. Sekme
-    /// değil, eylem; adı VoiceOver'da ve basılı tutunca okunur. Dokunma alanı
-    /// sütunun tamamı.
+    /// Yastığın durduğu sekme: sürüklerken parmağın altındaki, değilken seçili.
+    /// Parmak dairedeyken ya da hedeflerin arasındayken yastık yerinde kalır.
+    private var litTab: KidTab {
+        if case .tab(let tab) = hovered { return tab }
+        return selection
+    }
+
+    /// Masal yaz: sekmelerin yanında, marka renginde sert kenarlı daire. Sekme
+    /// değil, eylem; adı VoiceOver'da ve basılı tutunca okunur.
     private var createButton: some View {
         Button(action: onCreate) {
             MPIcon(Self.createSymbol, size: MP.G.lg, weight: .semibold, symbolOnly: true)
@@ -143,8 +155,7 @@ struct KidTabBar: View {
                         .animation(MP.M.gated(MP.M.easeOut), value: isLit(.create))
                 }
                 .padding(.bottom, MP.E.width)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .contentShape(Rectangle())
+                .contentShape(Circle())
                 .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: {
                     frames[.create] = $0
                 }
@@ -159,12 +170,12 @@ struct KidTabBar: View {
     }
 
     private func tab(_ item: Item) -> some View {
-        let on = isLit(.tab(item.tab))
+        let on = litTab == item.tab
         let selected = selection == item.tab
         return Button { selection = item.tab } label: {
             VStack(spacing: 0) {
                 MPIcon(on ? "\(item.symbol).fill" : item.symbol, size: MP.G.md,
-                       weight: on ? .semibold : .regular, symbolOnly: true)
+                       weight: on ? .semibold : .medium, symbolOnly: true)
                     // Hareketi Azalt'ta dolgu animasyonsuz değişir.
                     .contentTransition(reduceMotion ? .identity : .opacity)
                     .frame(height: MP.S.x6)
@@ -178,18 +189,19 @@ struct KidTabBar: View {
                         }
                     }
                 Text(item.label)
-                    .font(MP.F.caption(.semibold))
+                    .font(MP.F.caption(.bold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             .foregroundStyle(on ? MP.C.brand : MP.C.textMuted)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
-                Capsule(style: .continuous)
-                    .fill(MPColor.cardSoft.opacity(on ? 1 : 0))
+                if on {
+                    Capsule(style: .continuous).fill(MPColor.cardSoft)
+                        .matchedGeometryEffect(id: "pad", in: pad)
+                }
             }
             .contentShape(Capsule(style: .continuous))
-            .animation(MP.M.gated(MP.M.easeOut), value: on)
             .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: {
                 frames[.tab(item.tab)] = $0
             }

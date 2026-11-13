@@ -98,7 +98,7 @@ struct HomeView: View {
                 HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact)
             }
             .buttonStyle(MPPressStyle())
-            .accessibilityHint("Odamı açar")
+            .accessibilityHint("Profili açar")
         }
     }
 
