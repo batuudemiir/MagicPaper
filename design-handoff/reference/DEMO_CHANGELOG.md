@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-13 · main, commit bu kayıtla · 9-10 yaş bandı yazıldı (ajan takımı, üç tur)
+
+- Ne değişti: 9-10 bandı artık boş değil; dört bandın dördü de kendi içeriğiyle. Üç modlu ajan takımı (Fable 5.2 lider, Opus 5.5 yazar, Sonnet 5.5 testçi) motorun kopyasında üç tur çalıştı, çıktı okunup doğrulandıktan sonra repoya taşındı.
+  - 6 olay kurgusu (`pilot_library_v1.json`, `bp_*_age9_001`, onar sayfa): öğrenelim ve macera için dört standart (misreading, unexplained, iki absence), uyku öncesi için iki (`bp_bedtime_lullaby_age9_001`, `bp_bedtime_goodnight_age9_001`).
+  - 322 satır: `templates/v3-age9/` 21 vuruş dosyasında 210, `templates/bedtime/beat_bedtime_age9_*` 11 dosyada 112; 44'ü Masal ailem satırı (dört ilişki türü).
+  - Yeni kelimeler sözlüğüne üç 9-10 girdisi (`w910_gozlem`, `w910_kanit`, `w910_sabir`) ve iki 9-10 masal fikri (`idea_two_clues_age9_001`, `idea_read_the_traces_age9_001`; fikir metinleri ana oturumdan).
+  - Doğrulayıcıya 9-10 kapısı (`check_age9_lines`, cümle tavanı 20).
+- Turlarda yakalananlar: A turunun ilk taslağında 181 varyantın 99'u 7-8'den kopya ya da yakın kopyaydı, düzeltildi (son ölçüm 621 cümlede 2 birebir eşleşme). Uyku satırlarındaki "yalnızca", testin "yalnız" yasağına takıldığı için "sadece" oldu. Üç standart kurguda 7-8. sayfalar ölü sayfaydı (`inert_page`); C turunda vuruş sıraları yeniden kuruldu ve `approach` dosyası eklendi.
+- Testler bilerek güncellendi: kayıt sayıları (blueprint 36, template 173, varyant 1367, aile satırı 172, fikir 8), belirlenimcilik parmak izi `1d80933ff9a54cd5` (seed artık 5-6'nın `absence` şekline düşüyor; saklanan masallar metnini tuttuğu için çocuğu etkilemez, K1), yazılmış bant listeleri, uyku konturu bantları, ilgi alanı uyarısı, 9-10'u 8 sayfa ya da boş varsayan testler (`StoryIdeaTests`, `OfflineStoryMappingTests`, `SupportedAgeTests`, `StoryModeFlowTests`).
+- Bilerek değişmedi: en yakın banda düşme kodu (`AgeBandResolver.servedBand`, `OfflineStoryService.servedBand`) duruyor ama hiçbir yaş için çalışmıyor; açıklamaları buna göre. Motor kodu değişmedi. `OfflineStoryService.swift`'in açıklama değişikliği bu commit'te.
+- Doğrulama: doğrulayıcı PASS (23 kapı). Motor testleri 896/0 (2 atlanan; fikir sayısı düzeltmesinden sonra `StoryIdeaTests` 17/0 yeniden koşuldu). Uygulama testleri 892 test, tek kırık `DesignSystemSnapshotTests.testSnapshotHeroCardStates` (normal ve büyük): kahraman kartı 00ce5ef ve 81beecd'de değişti, referans görüntüsü 9f29cc4'ten beri yenilenmedi; bu işle ilgisiz, ana sayfa işinin sahibine. 9-10 masalı simülatörde okunmadı.
+- Maliyet: yaklaşık 31 $ (A 17,45 $; B 6,31 $; C 7,1 $ ve zaman aşımına uğrayan bir Opus turunun ölçülemeyen bedeli).
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/` (`blueprints/pilot_library_v1.json`, `templates/v3-age9/*`, `templates/bedtime/beat_bedtime_age9_*`), `StoryEngine/Sources/StoryEngine/Content/AgeBandResolver.swift`, `StoryEngine/Tools/validate_beat_corpus.py`, `StoryEngine/Tests/StoryEngineTests/` (11 dosya), `MagicPaper/StoryEngineBridge/OfflineStoryService.swift`, `MagicPaperTests/{SupportedAgeTests,StoryModeFlowTests,OfflineStoryMappingTests}.swift`.
+
 ### 2026-11-13 · main, commit bu kayıtla · Kitaplık rafsız: kapak duvarı, alçak devam kartı, arama başlıkta
 
 - Karar (Batuhan, 13 Kasım): 9fba009'daki öneri uygulandı; raf sistemi kalktı, yıldızla alınan renk kapakların alt kenarına taşındı.

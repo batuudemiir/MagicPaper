@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 3,
+  "beat": "retrace",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 7 (IV-1) ya da 8 (IV-2). Cevap ileride değil, geride: çocuk geçtiği yolu yeniden, bu kez yavaş okur. Yol arkadaşı yanındadır ama dönmeyi öneren ve ayrıntıyı gören çocuktur. Bu bir bulmaca, kurtarma değil.",
+  "lengthClasses": {
+    "solo": "30-60 words — retrace is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_rc_01",
+      "text": "\"Geri dönelim,\" dedi {{child.name}}. {{companion.name}} şaşırdı, çünkü geri dönmek pek kimsenin aklına gelmezdi. Ama {{child.name}} emindi: ilk geçişte çok hızlı yürümüşlerdi. Bu kez yavaş yürüdüler, her adımda durarak. Gelirken önlerinden geçip gittikleri yerler, şimdi tek tek konuşmaya başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_01"
+    },
+    {
+      "id": "a9_rc_02",
+      "text": "{{child.name}} yürüdükleri yolu baştan, ama ters yönden yürüdü. Tersinden yürünen yol, bambaşka bir yol gibiydi. Gelirken arkalarında kalan şeyler şimdi tam önlerindeydi. {{companion.name}} yanında sessizce yürüyordu. Ve bir köşede, ilk geçişte hiç dikkat etmedikleri küçük bir ayrıntı duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_02",
+      "words": [
+        "w78_ayrinti"
+      ]
+    },
+    {
+      "id": "a9_rc_03",
+      "text": "{{child.name}} aklında bir harita çizdi: nereden geldiler, nerede durdular, nerede acele ettiler. Acele ettikleri yer haritanın tam ortasındaydı. \"Orası,\" dedi {{companion.name}}'a. \"Orayı iyi görmedik.\" Geri dönüp oraya gittiler ve bu kez gerçekten baktılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_03"
+    },
+    {
+      "id": "a9_rc_04",
+      "text": "İleri gitmek bir şey getirmemişti. {{child.name}} bunu bir başarısızlık olarak değil, bir bilgi olarak gördü. Demek ki aradıkları şey ileride değildi. {{companion.name}} ile birlikte geriye, ilk adımlara döndüler. {{child.name}} her adımı yeniden, sanki ilk kez görüyormuş gibi okudu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_04"
+    },
+    {
+      "id": "a9_rc_05",
+      "text": "{{child.name}} en baştaki yere döndü, bütün hikâyenin başladığı yere. {{companion.name}} biraz geride bekledi. {{child.name}} sabahki gibi baktı, ama sabahki gözlerle değil. Artık neyi aradığını biliyordu ve bu bilgi, aynı yeri bambaşka bir yer yapıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_05"
+    },
+    {
+      "id": "a9_rc_06",
+      "text": "Geri dönüş yolunda {{child.name}} kendi adımlarını saydı. Yirmi, otuz, kırk. Kırk birinci adımda durdu. Gelirken orada bir şey dikkatini çekmiş, ama aldırmadan geçmişti. Şimdi aldırdı. {{companion.name}} merakla yaklaştı. {{child.name}} eğildi, baktı ve bakmaya değdiğini anladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_06"
+    },
+    {
+      "id": "a9_rc_07",
+      "text": "{{child.name}} gelirken nerede acele ettiğini hatırlamaya çalıştı. Bir yer vardı: {{companion.name}} orada bir şey sormuş, kendisi dalgın cevap vermişti. Dalgın cevaplar, dalgın bakışların işaretiydi. {{child.name}} oraya geri döndü ve bu kez gözlerini ayırmadan baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rc_07"
+    }
+  ]
+}

@@ -21,6 +21,7 @@ final class SupportedAgeTests: XCTestCase {
     private let band34 = AgeBand(lowerBound: 3, upperBound: 4)
     private let band56 = AgeBand(lowerBound: 5, upperBound: 6)
     private let band78 = AgeBand(lowerBound: 7, upperBound: 8)
+    private let band910 = AgeBand(lowerBound: 9, upperBound: 10)
 
     // MARK: - Desteklenen bant içerikten gelir
 
@@ -28,15 +29,15 @@ final class SupportedAgeTests: XCTestCase {
     /// ürün olayıdır: 7-8 için ilk masal yazıldığı gün bu test kırmızıya döner
     /// ve kıran kişi tam olarak doğru soruyu sorar.
     func testTodaysContentIsAuthoredForThreeToSix() {
-        // Faz 10: 7-8 yazıldı.
-        XCTAssertEqual(OfflineStoryService.shared.authoredBands(), [band34, band56, band78])
-        XCTAssertEqual(StoryChoiceSources.current.authoredBands(), [band34, band56, band78])
+        // Faz 10: 7-8 yazıldı. 13 Kasım 2026: 9-10 da; dört bant tamam.
+        XCTAssertEqual(OfflineStoryService.shared.authoredBands(), [band34, band56, band78, band910])
+        XCTAssertEqual(StoryChoiceSources.current.authoredBands(), [band34, band56, band78, band910])
     }
 
     /// Yeni profil ekranı yalnızca masalı yazılmış bantları sunar.
     func testTheAgeChipsOfferOnlyAuthoredBands() {
         let offered = MPAgeRange.authored(StoryChoiceSources.current.authoredBands())
-        XCTAssertEqual(offered.map(\.title), ["3-4 yaş", "5-6 yaş", "7-8 yaş"])
+        XCTAssertEqual(offered.map(\.title), ["3-4 yaş", "5-6 yaş", "7-8 yaş", "9-10 yaş"])
     }
 
     /// Katalog okunamadığında ebeveyne yanlış bilgi verilmez: dört chip de
@@ -78,7 +79,9 @@ final class SupportedAgeTests: XCTestCase {
         manager.profiles = savedProfiles + [big, small]
         manager.currentProfile = big
 
-        let authored = StoryChoiceSources.current.authoredBands()
+        // 13 Kasım 2026'dan beri dört bant da yazılı; desteklenmeyen dal ancak
+        // eksik bir bant listesiyle kurulabiliyor. Dalın kendisi aynı.
+        let authored = [band34, band56]
         XCTAssertFalse(StoryCreationSteps.supportsAge(big.age, authored: authored))
         // Akışın bu daldaki bütün kararları, yan etkisiz olmalı.
         _ = StoryCreationSteps.supportedAlternatives(
@@ -135,13 +138,10 @@ final class SupportedAgeTests: XCTestCase {
     /// Desteklenen bir bantta sessiz bant düşürmesi tetiklenmiyor: istenen
     /// bant ne ise o sunuluyor.
     func testASupportedBandIsNeverQuietlyDowngraded() {
-        for age in [3, 4, 5, 6, 7, 8] {
+        // 13 Kasım 2026: 9-10 yazıldı, dört bandın hiçbiri artık düşmüyor.
+        for age in [3, 4, 5, 6, 7, 8, 9, 10] {
             XCTAssertEqual(OfflineStoryService.shared.servedBand(forAge: age),
                            AgeBandResolver.band(forAge: age))
         }
-        // 9-10 hâlâ düşüyor (Faz 10'dan beri 7-8'e), ve bu bilinçli: ana sayfa
-        // vitrini gibi bir şey göstermek zorunda olan yüzeyler için duruyor.
-        // Yaratma akışı bu yola artık girmiyor (`supportsAge` yukarıda).
-        XCTAssertNotEqual(OfflineStoryService.shared.servedBand(forAge: 10), AgeBand(lowerBound: 9, upperBound: 10))
     }
 }

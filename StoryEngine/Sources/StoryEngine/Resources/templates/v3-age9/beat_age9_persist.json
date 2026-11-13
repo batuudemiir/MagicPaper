@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 3,
+  "beat": "persist",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 7 (I-1) ya da 8 (IV-1). Vazgeçmemek, ama aynı şeyi tekrarlamak değil: çocuk yöntemini inceltir ve yöntem bir şeyi görünür kılar. Yeni bir fikir gökten düşmez. 9-10'da sıkıcı ama sağlam yöntemin değeri, çocuğun kendi kuru esprisiyle anlatılır.",
+  "lengthClasses": {
+    "solo": "30-60 words — persist is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ps_01",
+      "text": "{{child.name}} vazgeçmedi, ama aynı şeyi aynı biçimde de tekrar etmedi. Her turda bir şeyi değiştirdi: önce bakış yüksekliğini, sonra hızını, sonra yönünü. Bulunan bir şey yoktu henüz. Ama her tur, bir ihtimali daha masadan kaldırıyordu; bu da bir çeşit ilerlemeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_01"
+    },
+    {
+      "id": "a9_ps_02",
+      "text": "Yorgunluk gelip {{child.name}}'in omzuna kondu, ama o aldırmadı. \"Son bir tur,\" dedi; sonra bunu bir kez daha söyledi. {{companion.name}} saymayı bıraktı, çünkü \"son\" kelimesinin anlamı bugün biraz esnemişti. Henüz ellerinde bir şey yoktu. Ama {{child.name}}'in aklında bir soru kıpırdamaya başlamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_02"
+    },
+    {
+      "id": "a9_ps_03",
+      "text": "{{child.name}} bir yöntem kurdu: soldan sağa, yakından uzağa, alttan üste. Yöntem sıkıcıydı, bunu kabul ediyordu. Ama sıkıcı yöntemler hiçbir yeri atlamazdı. Turlar birbirini izledi ve aradıkları hâlâ ortada yoktu. Yine de bir şey birikiyordu: nerede olmadığına dair uzun, sağlam bir liste.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_03",
+      "words": [
+        "w78_yontem"
+      ]
+    },
+    {
+      "id": "a9_ps_04",
+      "text": "Vazgeçmek için çok sebep vardı: hava serinlemişti, karnı acıkmıştı, ayakları ağrımıştı. Devam etmek için tek bir sebep vardı: merak. {{child.name}} sebepleri saydı ve tekini seçti. Tek sebep, çok sebepten ağır geldi. Aradıkları hâlâ görünürde yoktu, ama {{child.name}} bunu bir ret değil, bir \"henüz\" olarak duydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_04"
+    },
+    {
+      "id": "a9_ps_05",
+      "text": "İlk turda {{child.name}} yalnızca büyük şeyleri görmüştü. İkincide küçükleri. Üçüncüde küçüklerin arasındaki boşlukları. Aradıkları hiçbir boşlukta yoktu. Ama gözleri artık başka türlü bakıyordu; daha yavaş, daha seçici. {{companion.name}} bile bunu fark etti ve kendi bakışını yavaşlattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_05"
+    },
+    {
+      "id": "a9_ps_06",
+      "text": "\"Bir kez daha,\" dedi {{child.name}}. {{companion.name}} biraz şaşırdı; oraya zaten iki kez bakmışlardı. Ama {{child.name}}'e göre üçüncü bakış ötekilere benzemeyecekti. Artık neyi aramadıklarını da biliyordu ve bu, göze bir süzgeç takmak gibiydi. Üçüncü bakış da boş çıktı, ama bu boşluk öncekilerden daha bilgiliydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_06"
+    },
+    {
+      "id": "a9_ps_07",
+      "text": "Zaman geçti, epey zaman. {{child.name}} bir an bile acele etmedi. Bir yere baktı, aklına not etti, ötekine geçti. Notlar birikti, ama henüz hiçbiri ötekine bir şey söylemiyordu. {{child.name}} bundan yılmadı; bazı notlar konuşmaya başlamak için kalabalık beklerdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ps_07"
+    }
+  ]
+}

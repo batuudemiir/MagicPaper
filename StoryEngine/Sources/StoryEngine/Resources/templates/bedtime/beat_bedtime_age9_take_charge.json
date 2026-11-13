@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_tc_01",
+      "text": "{{child.name}} düşündü. Kendisi uyuyamadığı gecelerde ne olurdu? Işık kısılır, ses alçalır, biri gelip yatağın kenarına otururdu. Bunun büyük bir sırrı yoktu, sadece sabır isterdi. Sabır da bu akşam {{child.name}}'de bol bol vardı. \"Tamam,\" dedi {{companion.name}}'e. \"Bu gece o kişi ben olayım.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_02",
+      "text": "\"Bu işi biliyorum,\" dedi {{child.name}}. Doğrusu hiç denememişti, ama yıllardır her akşam izliyordu. Bir şeyi yüzlerce kez izleyen, onu biraz da öğrenmiş sayılırdı. {{companion.name}} ikna olmuş gibi başını salladı. Belki de sadece çok uykusu vardı ve itiraz edecek hâli kalmamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_03",
+      "text": "{{child.name}} kendine küçük bir görev verdi: {{companion.name}}'i uyutmak. Görev küçüktü ama ciddiydi. Acele etmeye gerek yoktu; gece uzundu ve kimse saat tutmuyordu. {{child.name}} yorganı düzeltti, yastığını dikleştirdi. Bu iş yataktan yapılacaktı, çünkü bütün odada uykuya en yakın yer orasıydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_04",
+      "text": "\"Sana yardım edebilirim,\" dedi {{child.name}}. \"Ama bir şartım var: ben konuşurken sen sadece dinleyeceksin.\" {{companion.name}} şartı biraz düşündü, sonra kabul etti; konuşacak hâli zaten yoktu. {{child.name}} kendisine her akşam nasıl yapılıyorsa öyle yapacaktı: adım adım, alçak sesle ve yavaşça.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_05",
+      "text": "{{child.name}} akşamları kendisine yapılanları aklından tek tek geçirdi. Önce lamba kısılırdı. Sonra yorgan düzeltilirdi. En sonunda biri alçak sesle konuşur, konuştukça daha da alçalırdı. \"Planım hazır,\" dedi {{companion.name}}'e. \"Üç adımlık, ama üçü de yavaş. Aceleci bir uyku planı işe yaramaz.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_06",
+      "text": "{{companion.name}} uyuyamıyordu ve bunun için yapılacak şey belliydi. {{child.name}} bu işi bir yetişkin ciddiyetiyle üstlendi. Sonra fark etti ki yetişkin ciddiyeti, ay desenli pijamalarla biraz komik duruyordu. Olsun, dedi kendi kendine. Önemli olan ciddiyet değil, sabırdı; sabır da her pijamaya yakışırdı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_07",
+      "text": "{{child.name}} pencereye dönüp fısıldadı: \"Sen orada kal, ben burada kalayım. Aramızdaki mesafe tam bir ninni boyu.\" {{companion.name}} mesafeyi ölçer gibi baktı ve razı oldu. {{child.name}} yastığını dikleştirdi. Uyutma işi böylece, kimse yerinden kıpırdamadan ve tek bir ses yükselmeden başlamış oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_tc_08",
+      "text": "{{child.name}} bir şey fark etti: uyutmak, uyumaktan daha kolay görünüyordu. Kendi uykusu için yapamadığı her şeyi başkası için rahatça yapabilirdi. \"Merak etme,\" dedi {{companion.name}}'e. \"Bu işin ustası değilim, ama çırağıyım. Çıraklar da hangi işin önce, hangisinin sonra geldiğini bilir.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_tc_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

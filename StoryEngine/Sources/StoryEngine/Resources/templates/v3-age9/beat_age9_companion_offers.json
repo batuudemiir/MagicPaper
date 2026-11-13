@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3, hep meet_companion'ın yanında. Yol arkadaşı TEK, SIRADAN bir bilgi verir; yorum yapmaz, çözmez. 9-10'da bilginin sınırını kendisi söyler: bildiği bu kadardır.",
+  "lengthClasses": {
+    "paired": "15-30 words — always beside meet_companion"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_co_01",
+      "text": "{{companion.name}} bir şey hatırladı: \"Ben buraya öğle sularında uğrarım. O saatte böyle değildi, buna eminim.\" Neden değiştiğini o da bilmiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_01"
+    },
+    {
+      "id": "a9_co_02",
+      "text": "\"Benim bildiğim tek şey şu,\" dedi {{companion.name}}, \"buranın en sessiz köşesi hep orasıdır.\" Bunun işe yarayıp yaramayacağına {{child.name}} karar verecekti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_02"
+    },
+    {
+      "id": "a9_co_03",
+      "text": "{{companion.name}}'ın bir huyu vardı: gördüğü her şeyi sayardı. \"Dünkü sayım tutmuyor,\" dedi. \"Bir fazlalık var, ama neyin fazlası, çıkaramadım.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_03"
+    },
+    {
+      "id": "a9_co_04",
+      "text": "{{companion.name}} omuz silkti. \"Buradan pek kimse geçmez,\" dedi. \"Geçen de dikkat etmez.\" Bu bir bilgiydi, açıklama değil; ama {{child.name}} onu aklına yazdı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_04"
+    },
+    {
+      "id": "a9_co_05",
+      "text": "\"Son yağmurdan önce böyle bir şey yoktu,\" dedi {{companion.name}}, düşünceli düşünceli. \"Yağmur mu getirdi, yoksa yağmura mı denk geldi, orası bende değil.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_05",
+      "settingTraits": [
+        "hasWeather"
+      ]
+    },
+    {
+      "id": "a9_co_06",
+      "text": "{{companion.name}} küçük bir bilgi ekledi: buraya hep aynı yoldan gelir, aynı yoldan dönerdi. Bugün ilk kez yolunu değiştirmek zorunda kalmıştı. Nedenini o da merak ediyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_06"
+    },
+    {
+      "id": "a9_co_07",
+      "text": "{{companion.name}} yalnızca bir şey hatırlıyordu: \"Geçen hafta da benzeri vardı, ama daha küçüktü.\" Ne olduğunu sorsalar söyleyemezdi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_co_07"
+    }
+  ]
+}

@@ -179,10 +179,10 @@ final class InterestCatalogTests: XCTestCase {
         XCTAssertTrue(unreachable.allSatisfy { $0.severity == .warning })
         XCTAssertTrue(report.issues(withCode: "unknown_interest").isEmpty)
         XCTAssertTrue(report.issues(withCode: "duplicate_interest").isEmpty)
-        // Bantlar içerikli olanlarla sınırlı; boş 9-10 ayrıca sayılmaz.
-        // 7-8 Faz 10'da içerik aldı, artık kendi uyarılarını verebilir.
+        // Bantlar içerikli olanlarla sınırlı. 7-8 Faz 10'da, 9-10 13 Kasım
+        // 2026'da içerik aldı; ikisi de artık kendi uyarılarını verebilir.
         let messages = unreachable.map(\.message).joined(separator: "\n")
-        XCTAssertFalse(messages.contains("9-10"), messages)
+        XCTAssertTrue(messages.contains("9-10"), messages)
     }
 
     // MARK: - Coverage

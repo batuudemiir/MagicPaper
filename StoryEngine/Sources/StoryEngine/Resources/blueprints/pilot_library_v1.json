@@ -3777,6 +3777,690 @@
           "emotion": "calm"
         }
       ]
+    },
+    {
+      "id": "bp_bedtime_lullaby_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "lullaby (9-10)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk yatağındadır; pencerede uyuyamayan küçük biri vardır; çocuk ona her akşam kendisine yapılanı yapar, o uyur, çocuk da aynı yerde uykuya dalar.",
+      "editorialGuidance": "Uyku arkı: doruk sayfa 6'da ve yalnızca merak ya da gülümseten bir şaşkınlık; 7-10 yatışır, ritim yavaşlar. Sayfa 10 sayfa 1'in odasına ve yorganına döner; yarın için hiçbir söz verilmez. Koşma, heyecan, korku, yataktan kalkıp uzağa gitme yok. 9-10 (13 Kasım 2026): 7-8'in dizisi, iki ek sayfa gerilim kurmaz: sayfa 3 çocuk yatağından dinleyip bakar (examine), sayfa 8 uykulu dostun küçük karşılığıdır (companion_offers). Korpus: templates/v3-age9, bedtime/beat_bedtime_age9_*. Dil daha zengin, mizah ince; ama ses sayfa sayfa alçalır.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}} Uyurken",
+        "{{companion.name}} İçin Bir Ninni",
+        "{{setting.name}}'nda Bir Gece",
+        "Uykusu Kaçan {{companion.name}}",
+        "{{child.name}} Nöbette"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 8,
+          "role": "resolution",
+          "beat": "companion_offers",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_goodnight_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "goodnight place (9-10)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk yatağındadır; pencerede uyuyamayan küçük biri vardır; çocuk ona kendi uyku yerini hazırlar, iyi geceler deyip onu orada bırakır, sonra kendisi de uyur.",
+      "editorialGuidance": "İyi geceler: bırakmak kayıp değil, herkesin kendi uyku yeri vardır. Doruk sayfa 6'da ve yalnızca merak ya da gülümseten bir şaşkınlık; 7-10 yatışır, ritim yavaşlar. Sayfa 10 sayfa 1'in odasına ve yorganına döner; yarın için hiçbir söz verilmez. Koşma, heyecan, korku, yataktan kalkıp uzağa gitme yok. 9-10 (13 Kasım 2026): 7-8'in dizisi, iki ek sayfa gerilim kurmaz: sayfa 3 çocuk yatağından dinleyip bakar (examine), sayfa 8 uykulu dostun küçük karşılığıdır (companion_offers). Korpus: templates/v3-age9, bedtime/beat_bedtime_age9_*. Dil daha zengin, mizah ince; ama ses sayfa sayfa alçalır.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'ın Uyku Yeri",
+        "Herkesin Bir Yuvası Var",
+        "{{companion.name}}'a İyi Geceler",
+        "Pencere Kenarındaki Yuva",
+        "{{child.name}} ile {{companion.name}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "let_go",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 8,
+          "role": "resolution",
+          "beat": "companion_offers",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_misreading_tracks_age9_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "misreading",
+      "editorialName": "V-1 - revelation (9-10)",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuğun emin olduğu şey başka bir şey çıkar, ve daha güzeldir.",
+      "editorialGuidance": "Yanlış inanç asla korkutucu olmamalı ve çocuk onu taşıdığı için asla aptal durumuna düşmemeli. Gerçek, varsayımdan daha sıcaktır. 9-10 (A turu, 12 Kasım 2026): 7-8 kurgusunun on sayfaya yayılmış hâli; orta bölüm ikinci bir deneme ve bir engel daha taşır. Korpus templates/v3-age9; çocuk çok adımlı akıl yürütmesini kendi kurar, yol arkadaşı yardım eder ama çözmez.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "isUnexplained"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kimin?",
+        "{{setting.name}}'ndaki İpuçları",
+        "{{discovery.title}}'in Gerçeği",
+        "Yanlış İz, Doğru Cevap",
+        "{{child.name}} Yanılınca"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "form_belief",
+          "emotion": "certainty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "belief_fails",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "exchange_views",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_unexplained_reading_age9_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "unexplained",
+      "editorialName": "I-1 - signal (9-10)",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "İki ayrı gözlem birleşince çocuk anlamı kendi çıkarır.",
+      "editorialGuidance": "Cevap ÇALIŞILARAK bulunur, beklenerek değil. Sayfa 6 iki olguyu birleştirmeli; yeni bilgi getirmemeli. 9-10 (A turu, 12 Kasım 2026): 7-8 kurgusunun on sayfaya yayılmış hâli; orta bölüm ikinci bir deneme ve bir engel daha taşır. Korpus templates/v3-age9; çocuk çok adımlı akıl yürütmesini kendi kurar, yol arkadaşı yardım eder ama çözmez.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal",
+              "isFragmentary"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Ne Anlatıyor?",
+        "{{setting.name}}'ndaki {{discovery.title}}",
+        "{{discovery.title}}'in Sırrı",
+        "İki İpucu, Tek Cevap",
+        "{{child.name}} ve {{discovery.title}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "form_belief",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "obstacle_raises",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "insight",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "carry_forward",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_retracing_age9_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "absence",
+      "editorialName": "IV-2 - retracing (9-10)",
+      "genre": "adventure",
+      "theme": "problem_solving",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Cevap ileride değil, geride: çocuk geçtiği yeri yeniden okur.",
+      "editorialGuidance": "IV-1 ileri arar, bu geri döner. Bu bir bulmaca, kurtarma değil - kimsenin yardıma ihtiyacı yok. 9-10 (A turu, 12 Kasım 2026): 7-8 kurgusunun on sayfaya yayılmış hâli; orta bölüm ikinci bir deneme ve bir engel daha taşır. Korpus templates/v3-age9; çocuk çok adımlı akıl yürütmesini kendi kurar, yol arkadaşı yardım eder ama çözmez.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "showsTraces"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}}'in Peşinde",
+        "{{setting.name}}'nda Geriye Doğru",
+        "{{companion.name}} ile İz Sürmek",
+        "Kaçırılan Ayrıntı",
+        "{{child.name}}'in Dönüşü"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "companion_offers",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "retrace",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "self_recognize",
+          "emotion": "satisfaction"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_looking_age9_001",
+      "schemaVersion": 2,
+      "version": "2.0.0",
+      "family": "absence",
+      "editorialName": "IV-1 - persistence (9-10)",
+      "genre": "adventure",
+      "theme": "trying_again",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "İlk deneme sonuç vermez; çocuk yöntemli biçimde aramayı sürdürür.",
+      "editorialGuidance": "İzlerin evi. Yukarıdan bakmak aramayı bitirir, bu yüzden uçan arkadaş yasak. Sayfa 6 vazgeçmemek, yeni bir fikir değil. 9-10 (A turu, 12 Kasım 2026): 7-8 kurgusunun on sayfaya yayılmış hâli; orta bölüm ikinci bir deneme ve bir engel daha taşır. Korpus templates/v3-age9; çocuk çok adımlı akıl yürütmesini kendi kurar, yol arkadaşı yardım eder ama çözmez.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare",
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence",
+            "isFragmentary"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canFly",
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{setting.name}}'nda Büyük Arayış",
+        "{{companion.name}} ile Halka Halka",
+        "{{discovery.title}}'i Aramak",
+        "Sabırlı Arayış",
+        "Vazgeçmeyen {{child.name}}"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "supportingBeat": "receive_appeal",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "persist",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "supportingBeat": "carry_forward",
+          "emotion": "warmth"
+        }
+      ]
     }
   ],
   "templates": [
@@ -4518,6 +5202,48 @@
       ],
       "cooldownWeight": 1.0,
       "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_two_clues_age9_001",
+      "display": "Parçaları birleştirip cevabı bulalım",
+      "supportingText": "Bir şey kendini belli ediyor ama hepsini göstermiyor. Parçaları birleştiren çözer.",
+      "illustration": "sparkles",
+      "ageRange": "9-10",
+      "requires": {
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "preferredFamilies": [
+        "unexplained"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
+    },
+    {
+      "id": "idea_read_the_traces_age9_001",
+      "display": "İzlerin anlattığını çözelim",
+      "supportingText": "Birileri buradan geçmiş ve ardında küçük bir hikâye bırakmış.",
+      "illustration": "magnifyingglass",
+      "ageRange": "9-10",
+      "requires": {
+        "discovery": [
+          "impliesPresence"
+        ]
+      },
+      "preferredFamilies": [
+        "absence",
+        "misreading"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0
     }
   ],
   "familyMoments": [
@@ -4973,7 +5699,8 @@
       ],
       "meaning": "Bir işi yapmanın sırayla düşünülmüş yolu.",
       "bands": [
-        "7-8"
+        "7-8",
+        "9-10"
       ]
     },
     {
@@ -4984,7 +5711,8 @@
       ],
       "meaning": "Bir şeyin ilk bakışta fark edilmeyen küçük parçası.",
       "bands": [
-        "7-8"
+        "7-8",
+        "9-10"
       ]
     },
     {
@@ -4996,7 +5724,8 @@
       ],
       "meaning": "Bir sorunun cevabını bulmaya yardım eden küçük işaret.",
       "bands": [
-        "7-8"
+        "7-8",
+        "9-10"
       ]
     },
     {
@@ -5007,7 +5736,8 @@
       ],
       "meaning": "Kesin bilmeden, akla en yatkın gelen cevabı düşünmek.",
       "bands": [
-        "7-8"
+        "7-8",
+        "9-10"
       ]
     },
     {
@@ -5018,7 +5748,42 @@
       ],
       "meaning": "Bir şeyin hep aynı sırayla tekrar etmesi.",
       "bands": [
-        "7-8"
+        "7-8",
+        "9-10"
+      ]
+    },
+    {
+      "id": "w910_gozlem",
+      "term": "gözlem",
+      "forms": [
+        "gözlem"
+      ],
+      "meaning": "Bir şeye dikkatle bakıp fark ettiklerini aklında tutmak.",
+      "bands": [
+        "9-10"
+      ]
+    },
+    {
+      "id": "w910_kanit",
+      "term": "kanıt",
+      "forms": [
+        "kanıt"
+      ],
+      "meaning": "Bir şeyin doğru olduğunu gösteren işaret ya da bilgi.",
+      "bands": [
+        "9-10"
+      ]
+    },
+    {
+      "id": "w910_sabir",
+      "term": "sabır",
+      "forms": [
+        "sabır",
+        "sabr"
+      ],
+      "meaning": "Acele etmeden, vazgeçmeden beklemeyi ya da sürdürmeyi bilmek.",
+      "bands": [
+        "9-10"
       ]
     }
   ],

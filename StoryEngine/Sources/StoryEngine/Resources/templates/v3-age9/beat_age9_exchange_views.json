@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 3,
+  "beat": "exchange_views",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 7 (V-1, IV-2). Çocuk dinler ve aynı şeyi başka bir yerden görür. Yol arkadaşı bir bakış açısı ya da sıradan bir soru getirir, cevabı değil; iki görüşü birleştiren, yeni ihtimali gören çocuktur. Sayfa bir sonraki çözüm sayfasına kapı açar, kapıyı kapatmaz. Yol arkadaşı yerel bilgi vermez (IV-2 bunu yasaklar).",
+  "lengthClasses": {
+    "solo": "30-60 words — exchange_views is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ev_01",
+      "text": "\"Sen buna nasıl bakıyorsun?\" diye sordu {{child.name}}. {{companion.name}} biraz düşündü. \"Ben hep yandan bakarım,\" dedi, \"alışkanlık.\" {{child.name}} eğildi ve onun baktığı yerden baktı. Aynı şey, yandan bambaşka görünüyordu. Yeni bir ihtimal belirdi; {{child.name}} onu evirip çevirmeye başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_01"
+    },
+    {
+      "id": "a9_ev_02",
+      "text": "{{companion.name}} kendi gördüğünü anlattı, {{child.name}} kendi gördüğünü. İkisi aynı şeyden söz ediyordu ama iki farklı hikâye anlatıyorlardı. {{child.name}} iki hikâyeyi yan yana koydu. Tam ortalarında, ikisinin de söylemediği bir şey duruyordu. Asıl ilginç olan oydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_02"
+    },
+    {
+      "id": "a9_ev_03",
+      "text": "{{companion.name}}'ın kendi kuramı vardı ve epey iddialıydı: \"Bu iş kendiliğinden olmuş.\" {{child.name}} kuramı bildiği her şeyle tek tek karşılaştırdı. Biri hariç hepsine uydu. O tek uymayan şey, kendi ilk açıklamasını da devirmişti. Demek ki iki açıklamanın ortak bir yanlışı vardı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_03"
+    },
+    {
+      "id": "a9_ev_04",
+      "text": "{{child.name}} kendi fikrini anlattı, {{companion.name}} ise kendininkini. İki fikir aynı yerde başlıyor, farklı yerlerde bitiyordu. {{child.name}} ikisinin ayrıldığı noktaya geri döndü. Orada ikisi de bir şeyi varsaymıştı, hiç sınamadan. \"Belki asıl soru orası,\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_04"
+    },
+    {
+      "id": "a9_ev_05",
+      "text": "Tartışmadılar, konuştular; arada bir fark vardı. {{companion.name}} kendi gözlemini söyledi, {{child.name}} kendininkini. Hiçbiri tek başına yetmiyordu. Ama {{child.name}} ikisini üst üste koyunca, iki eksik resim tek bir resme dönüşmeye başladı. Resmin bir köşesi hâlâ boştu ve {{child.name}} gözünü oraya dikti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_05"
+    },
+    {
+      "id": "a9_ev_06",
+      "text": "\"Senin yerinde olsam ne yapardım, biliyor musun?\" dedi {{companion.name}}. \"Biraz uyurdum. Ben her şeyi uyuyarak düşünürüm.\" {{child.name}} güldü. Ama gülerken aklına bir şey takıldı: belki bu bilmecenin de bir uyku saati vardı. Belki her şey yalnızca belli bir saatte oluyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_06"
+    },
+    {
+      "id": "a9_ev_07",
+      "text": "{{child.name}} sustu ve dinledi, ki bu onun için kolay bir iş değildi. {{companion.name}} az önce yürüdükleri yolu kendi gözünden anlattı. {{child.name}} anlatılanla kendi hatırladığını karşılaştırdı. Değişen tek bir şey vardı ve o tek şey, bütün bilmecenin anahtarı olabilirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ev_07"
+    }
+  ]
+}

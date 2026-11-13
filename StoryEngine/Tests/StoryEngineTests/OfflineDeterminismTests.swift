@@ -51,7 +51,10 @@ final class OfflineDeterminismTests: XCTestCase {
         // bandına altı blueprint girdi. Bu niyet bant bildirmediği için bütün
         // bantlar aday; havuz büyüdü, seed 5-6'nın `unexplained` şekline düştü.
         // Saklanan masallar metinlerini tuttuğu için çocuğu etkilemez (K1).
-        XCTAssertEqual(story.blueprintID.rawValue, "bp_unexplained_askingout_003",
+        // Yeniden sabitlendi 13 Kasım 2026: 9-10 bandının altı blueprint'i ve
+        // kütüphanenin üç yeni kaydı (Cıvıl, müzik kutusu, kâğıt fener) havuza
+        // girdi; seed 5-6'nın `absence` şekline düştü. Çocuğu etkilemez (K1).
+        XCTAssertEqual(story.blueprintID.rawValue, "blueprint_absence_looking_001",
                        "The shape this seed resolves to moved.")
         // Re-pinned 2026-09-18 after D3 made Schema 2 canonical. The seed itself
         // did not move; the catalog it resolves against did — the five pilot
@@ -71,8 +74,9 @@ final class OfflineDeterminismTests: XCTestCase {
         // ve Pazar Yeri havuza girdi. Şekil aynı kaldı (3-4'ün `lettingGo`'su),
         // ona bağlanan içerik kaydı. İnsanların kendisi bu masala GİRMİYOR —
         // 3-4 havuzunda sıraları değiştirmeleri yeterli oldu.
-        XCTAssertEqual(story.content.setting.id.rawValue, "setting_beach_001")
-        XCTAssertEqual(story.content.companion.id.rawValue, "companion_penguin_001")
+        // 13 Kasım 2026: şekille birlikte bağlanan mekân ve arkadaş da değişti.
+        XCTAssertEqual(story.content.setting.id.rawValue, "setting_whispering_forest_001")
+        XCTAssertEqual(story.content.companion.id.rawValue, "companion_frog_001")
         XCTAssertEqual(story.content.discovery.id.rawValue, "object_torn_map_001")
         // Yeniden sabitlendi 21 Ekim 2026 (ikinci kez, havuz diriltmesi): v2
         // kütüphanesindeki 44 kayıt etiketlenip havuza katılınca bu seed
@@ -89,7 +93,8 @@ final class OfflineDeterminismTests: XCTestCase {
         //
         // Yeniden sabitlendi 30 Ekim 2026: şekil değiştiği için kalıp kümesi de
         // değişti; başlık artık `appeal` ailesinin kalıplarından.
-        XCTAssertEqual(story.title, "Yeliz Sesli Sordu")
+        // 13 Kasım 2026: başlık artık `absence` ailesinin kalıplarından.
+        XCTAssertEqual(story.title, "Yeliz ve Zıpzıp Arıyor")
 
         // The lines themselves, which is what a child would notice changing.
         // On satır: 5-6 masalı sekiz sayfa ve iki sayfası destek beat'i
@@ -97,11 +102,12 @@ final class OfflineDeterminismTests: XCTestCase {
         // düşüyordu; bant değişti, satır sayısı onunla değişti.
         XCTAssertEqual(
             story.pages.flatMap { $0.variantIDs.map(\.rawValue) },
-            ["na_any_01", "ex_s_light_02", "mc_hesitant_06", "cm_p_06", "ob_think_03",
-             "fa_s_02", "ah_s_02", "sc_any_04", "wc_s_both_04"],
+            // 13 Kasım 2026: `absence` şekli on bir satır taşıyor.
+            ["na_neutral_05", "ex_s_trace_02", "mc_care_04", "ra_p_01", "cm_p_05", "ob_gen_02",
+             "fa_s_05", "ps_s_04", "rs_any_03", "wc_p_succeed_02", "cf_p_08"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "fbd9488a8a54b2e2")
+        XCTAssertEqual(story.fingerprint, "1d80933ff9a54cd5")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -112,7 +118,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "fbd9488a8a54b2e2")
+        XCTAssertEqual(again.fingerprint, "1d80933ff9a54cd5")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.
@@ -223,14 +229,17 @@ final class OfflineDeterminismTests: XCTestCase {
     func testTheAuthoredBandsAreStillOnlyThreeToFourAndFiveToSix() throws {
         let catalog = try catalog()
         let banded = Set(catalog.blueprints.map(\.ageRange.description))
-        // Faz 10 (11 Kasım 2026): 7-8 yazıldı; boş kalan yalnızca 9-10.
-        XCTAssertEqual(banded, ["3-4", "5-6", "7-8"],
+        // Faz 10 (11 Kasım 2026): 7-8 yazıldı. 13 Kasım 2026: 9-10 da; dört
+        // bandın hepsi blueprint taşıyor.
+        XCTAssertEqual(banded, ["3-4", "5-6", "7-8", "9-10"],
                        "Authored bands moved; AgeBandCoverageTests and the "
                        + "nearest-band fallback in OfflineStoryService both "
                        + "assume this set.")
 
-        // Faz 10: 8 yaşın kendi fikirleri var; düşme yalnızca 9-10 için kaldı.
-        for age in [9, 11, 12] {
+        // Faz 10: 8 yaşın kendi fikirleri var. 13 Kasım 2026: 9 ve 10 yaşın da.
+        // En yakın banda düşme kodu duruyor ama hiçbir yaş için çalışmıyor
+        // (`AgeBandResolver.servedBand` notu); yalnızca bant dışı yaşlar kaldı.
+        for age in [11, 12] {
             XCTAssertTrue(
                 catalog.storyIdeas.filter { $0.suits(age: age) }.isEmpty,
                 "Age \(age) now has authored ideas — remove the nearest-band "

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_lg_01",
+      "text": "{{child.name}} perdenin ucunu tutan elini yavaşça bıraktı. Perde, pencerenin önünde kıvrılmış {{companion.name}}'in üstüne yumuşacık bir örtü gibi indi. \"Burası senin yerin,\" diye fısıldadı {{child.name}}. \"Benimki de şu yastık.\" Herkesin kendi uyku yeri vardı ve bu gece ikisi de tam yerindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_02",
+      "text": "\"Sen kendi köşende daha rahat uyursun,\" dedi {{child.name}}. {{companion.name}}'i biraz daha konuşturmayı düşündü, ama pervaz ona tam göreydi ve gözleri ağırdı. Konuşturmadı. Bazen yardım, birinden hiçbir şey istememekti. Bu gece {{companion.name}}'ten istenecek tek şey, derin ve rahat bir uykuydu. O da yolda görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_03",
+      "text": "{{child.name}} pencereye son bir kez döndü. {{companion.name}} pervazda kendine bir yer açmış, oraya yerleşiyordu. Bir döndü, bir daha döndü, üçüncüde durdu. {{child.name}} gülümsedi. Demek ki üç kere kabartılan tek yastık kendi yastığı değildi. Gözünü pencereden çekti ve kendi yerine döndü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_04",
+      "text": "{{child.name}} biraz daha konuşmak istedi. Sonra vazgeçti, çünkü {{companion.name}} pencerenin önünde, tam kendi yerinde gözlerini kapamıştı. \"İyi geceler,\" dedi alçak sesle. {{companion.name}} cevap vermeye çalıştı, ama cevabın sadece ilk hecesi çıktı. Gerisi uykunun içinde, yumuşak bir yerde kaldı ve orada rahatça dinlendi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_05",
+      "text": "\"Herkesin bir uyku yeri vardır,\" dedi {{child.name}}. \"Benimki bu yatak, seninki o pervaz.\" {{companion.name}} pervazına baktı, sonra {{child.name}}'in yatağına. İkisini karşılaştırdı ve kendi yerinin daha küçük ama daha serin olduğuna karar verdi. Bu karar onu memnun etti. Olduğu yere biraz daha gömüldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_06",
+      "text": "{{child.name}} iyi geceler demenin bir yolunu buldu. Yorganından kaçmış küçük bir tüyü pencereye doğru üfledi. Tüy havada yavaşça süzüldü ve {{companion.name}}'in yanına kondu. \"Bu bizden bir parça,\" dedi. {{companion.name}} tüyü yanına çekti ve rahat bir iç çekerek gözlerini kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_07",
+      "text": "{{child.name}} perdeyi yarıya kadar bıraktı. Böylece {{companion.name}} ay ışığını görebilecek, ama ışık gözüne girmeyecekti. \"İyi uykular,\" dedi. Sonra konuşmayı bıraktı ve başını kendi yastığına çevirdi. Bazı iyi geceler, söylendikten sonra susulunca tamamlanırdı. Bu da onlardan biriydi; kısa, alçak ve tam yerinde.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_lg_08",
+      "text": "\"Sana iyi geceler demem gerek,\" dedi {{child.name}}. \"Ama sen çoktan yarısını uyudun bile.\" {{companion.name}} uykulu bir sesle mırıldandı: \"Öbür yarısını da şimdi uyurum.\" {{child.name}} onu kendi köşesinde bıraktı. Kendisi de yastığına döndü. İkisinin arasında iki adım ve tatlı bir sessizlik vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_lg_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

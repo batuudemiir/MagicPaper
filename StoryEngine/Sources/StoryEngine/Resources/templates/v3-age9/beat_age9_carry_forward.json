@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 3,
+  "beat": "carry_forward",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 10, warm_close ile. Çocuk günden bir alışkanlık ya da bakış taşır; ders verilmez, çocuk kendi kararını söyler. Sakin biter: soru, 'yarın', 'acaba', 'birden' yok.",
+  "lengthClasses": {
+    "paired": "15-30 words — page 10 beside warm_close"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_cf_01",
+      "text": "{{child.name}} o günden bir şey öğrendi: acele etmeden bakan göz, başkalarının kaçırdığını görür. Bunu kolay kolay unutmayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_01"
+    },
+    {
+      "id": "a9_cf_02",
+      "text": "Artık nereye gitse küçük ayrıntılara biraz daha uzun bakacaktı. Dünya, dikkatle bakana sırlarını yavaş yavaş açıyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_02",
+      "words": [
+        "w78_ayrinti"
+      ]
+    },
+    {
+      "id": "a9_cf_03",
+      "text": "Bundan sonra bir şey tuhaf göründüğünde {{child.name}} önce soracak, sonra bakacak, en son karar verecekti. Bu sıralama ona iyi gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_03"
+    },
+    {
+      "id": "a9_cf_04",
+      "text": "{{child.name}} cebinde görünmez bir defter taşımaya karar verdi. İçine fark ettiği her şeyi yazacaktı, en küçüğünü bile.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_04"
+    },
+    {
+      "id": "a9_cf_05",
+      "text": "Bir sonraki bilmecenin nerede çıkacağı bilinmezdi. Ama {{child.name}} artık ona nasıl yaklaşacağını biliyordu: sabırla, dikkatle ve biraz da gülerek.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_05"
+    },
+    {
+      "id": "a9_cf_06",
+      "text": "O günden sonra {{child.name}} ilk aklına gelen açıklamaya aceleyle sarılmadı. Önce ikincisini, sonra üçüncüsünü dinledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_06"
+    },
+    {
+      "id": "a9_cf_07",
+      "text": "{{child.name}} vazgeçmemenin de bir yöntem olduğunu öğrenmişti. Bu yöntemi, ihtiyaç duyduğu her güne yanında götürecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cf_07",
+      "words": [
+        "w78_yontem"
+      ]
+    }
+  ]
+}

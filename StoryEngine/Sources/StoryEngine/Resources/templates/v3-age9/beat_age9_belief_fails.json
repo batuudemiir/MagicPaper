@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 3,
+  "beat": "belief_fails",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 6 (V-1). Kesin inanç bir ayrıntıya takılır ve çatlar. Çocuk asla aptal durumuna düşmez; yanılgısına ilk o güler, uymayan parçayı sever. Gerçek henüz söylenmez, yalnızca eski açıklamanın tutmadığı görülür.",
+  "lengthClasses": {
+    "solo": "30-60 words — belief_fails is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_bf_01",
+      "text": "Bir şey uymuyordu. {{child.name}}'in kesin dediği açıklama, karşısındaki şeyle bir türlü örtüşmüyordu. Tıpkı yanlış kavanoza takılmış bir kapak gibi: yakındı, ama olmuyordu. \"Galiba yanıldım,\" dedi ve ilk gülen kendisi oldu. Yanılmak da bilmecenin bir parçasıydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_01"
+    },
+    {
+      "id": "a9_bf_02",
+      "text": "{{child.name}} kurduğu açıklamayı bir kez daha baştan sona düşündü ve bir delik buldu. Küçük bir delikti, ama bütün açıklama içinden akıp gidiyordu. {{companion.name}} merakla baktı. \"Bir şey mi oldu?\" dedi. \"Oldu,\" dedi {{child.name}}. \"Fikrim az önce emekliye ayrıldı.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_02"
+    },
+    {
+      "id": "a9_bf_03",
+      "text": "Az önce o kadar emin olduğu şey, şimdi {{child.name}}'in ellerinde dağılıyordu. Ama bu üzücü değildi; tuhaf biçimde heyecan vericiydi. İlk açıklama yanlışsa, doğrusu hâlâ bir yerlerdeydi. Üstelik henüz kimse onu bulmamıştı. {{child.name}} bu düşünceden pek hoşlandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_03"
+    },
+    {
+      "id": "a9_bf_04",
+      "text": "{{child.name}} kanıtları yan yana koydu ve birinin yerinde durmadığını gördü. Onu görmezden gelebilirdi; çoğu insan öyle yapardı. Ama {{child.name}} uymayan parçaları severdi. Uymayan parça, bulmacanın aslında başka bir resim olduğunu söylerdi. Şimdi o resmi bulmak gerekiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_04",
+      "words": [
+        "w910_kanit"
+      ]
+    },
+    {
+      "id": "a9_bf_05",
+      "text": "\"Hımm,\" dedi {{child.name}}, bu sesin anlamını bilenler için çok şey söyleyerek. Kesin dediği fikir bir yerinden çatlamıştı. Önce bir an bozuldu, sonra omuz silkti. Yanlış bir fikre sarılmaktansa onu nazikçe bırakmak daha iyiydi. Hem yer açılırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_05"
+    },
+    {
+      "id": "a9_bf_06",
+      "text": "Gerçek, {{child.name}}'in tahminine hiç benzemiyordu. Ne iz o izdi, ne yön o yöndü. {{child.name}} bir an durdu ve sonra güldü, çünkü az önce ne kadar emin konuştuğunu hatırladı. \"Bundan sonra kesin derken iki kez düşüneceğim,\" dedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_06",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_bf_07",
+      "text": "{{companion.name}} bir şey göstermedi, bir şey söylemedi; yalnızca bekledi. Bu bekleyişin içinde {{child.name}} kendi açıklamasının açığını kendisi buldu. Olaylar, onun anlattığı sırayla dizilmiyordu; arada bir adım eksikti. Demek ki baştan beri yanlış soruyu soruyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_bf_07"
+    }
+  ]
+}

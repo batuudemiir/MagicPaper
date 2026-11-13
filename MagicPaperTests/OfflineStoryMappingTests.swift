@@ -20,11 +20,12 @@ final class OfflineStoryMappingTests: XCTestCase {
         ideaID: String? = nil,
         companionID: String? = nil,
         seed: String = "test-seed",
-        child: UserProfile? = nil
+        child: UserProfile? = nil,
+        age: Int? = nil
     ) throws -> MagicPaper.Story {
         let profile = child ?? self.profile()
         let composed = try service.compose(
-            childName: profile.name, ideaID: ideaID, companionID: companionID, seed: seed)
+            childName: profile.name, ideaID: ideaID, companionID: companionID, age: age, seed: seed)
         return OfflineStoryMapper.appStory(
             from: composed.story,
             childName: profile.name,
@@ -70,7 +71,9 @@ final class OfflineStoryMappingTests: XCTestCase {
     // MARK: - The mapped story
 
     func testAComposedStoryBecomesACompleteAppStory() throws {
-        let story = try compose(ideaID: "idea_mysterious_signal_001")
+        // 13 Kasım 2026: yaş verilmeyen istek her banttan kurgu seçebiliyor ve
+        // 9-10 on sayfa; 5-6'nın yayını sınamak için yaş açıkça veriliyor.
+        let story = try compose(ideaID: "idea_mysterious_signal_001", age: 6)
         XCTAssertEqual(story.pages.count, 8, "5-6 bandının yayı sekiz sayfa.")
         XCTAssertEqual(story.status, .completed, "An offline story is finished when it exists.")
         XCTAssertEqual(story.language, .turkish)

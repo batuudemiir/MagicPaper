@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 3,
+  "beat": "form_belief",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 2 (V-1, examine ile), sayfa 4 (I-1, commit ile) ya da sayfa 6 (IV-2, tek başına). Kayıt aileden gelir: yanılgı ailesi (V-1) 'certain' ister, çünkü sonra devrilecek bir kesinlik gerekir; ötekiler 'tentative' ister, soru açık kalır. 9-10'da çocuk tahminini bir hipotez gibi tartar ve kendine bir pay bırakır.",
+  "lengthClasses": {
+    "solo": "30-60 words — form_belief is the whole page (IV-2) is the whole page",
+    "paired": "15-30 words — shares its page with examine or commit"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_fb_01",
+      "text": "{{child.name}} kendinden o kadar emindi ki üstüne düşünmeye gerek görmedi. \"Bunu büyük, yaşlı bir hayvan bıraktı,\" dedi. \"Başka açıklaması yok.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_01",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_02",
+      "text": "\"Bu bir hazine işareti,\" dedi {{child.name}}, bir dedektifin ciddiyetiyle. İçinden itiraz eden küçük bir ses olsaydı bile onu duymazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_02",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_03",
+      "text": "{{child.name}} bütün parçaları birleştirdi ve tek bir sonuca vardı: biri buraya bilerek bir mesaj bırakmıştı. Bu, kafasında kalemle değil mürekkeple yazılmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_03",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_04",
+      "text": "{{child.name}} kararını verdi: bu, birinin kaybettiği bir şeydi ve sahibi geri gelecekti. O kadar emindi ki sahibine bir isim bile buldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_04",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_05",
+      "text": "\"Belki bir işarettir,\" dedi {{child.name}}, ama sesinde bir soru vardı. \"Öyleyse kim, kime bırakmış? Önce bunu bilmem lazım.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_05",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_06",
+      "text": "{{child.name}}'in aklında bir fikir kıpırdadı, ama ona henüz ad koymadı. Ad konan fikirler inatçı olurdu; o, önce fikrin sağlam olup olmadığını görmek istiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_06",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_07",
+      "text": "{{child.name}} bir tahmin yürüttü ama ona inanmakta acele etmedi. Tahmin bir kapı gibiydi; açmadan ardında ne olduğunu bilemezdin.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_07",
+      "register": "tentative",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_fb_08",
+      "text": "\"Aklımda bir açıklama var,\" dedi {{child.name}}, \"ama şimdilik kurşun kalemle yazılı.\" Silgisi de yanındaydı, her ihtimale karşı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_fb_08",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_09",
+      "text": "İlk deneme boşa çıkınca {{child.name}} oturup düşündü. Belki aradığı şey hiç ileri gitmemişti. Belki yerinden kıpırdamamıştı da kendisi yanlış yöne bakmıştı. Bu bir tahmindi, kanıt değil. Ama tahminler de bir yerden başlardı ve {{child.name}} bu tahmini sevmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_09",
+      "register": "tentative",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_fb_10",
+      "text": "\"Bir fikrim var,\" dedi {{child.name}}, \"ama henüz yarım.\" {{companion.name}} merakla baktı. {{child.name}} fikri yüksek sesle söyledi: belki ipucu ileride değil, geride bir yerdeydi. Söyleyince fikir biraz büyüdü. Yine de emin olmak için bir şeye daha bakması gerekiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_10",
+      "register": "tentative",
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_fb_11",
+      "text": "{{child.name}} bildiklerini yan yana dizdi, sonra bilmediklerini. İkinci liste daha uzundu. Ama iki listenin arasında küçük bir bağlantı belirdi: her şey, en başta durdukları yerin yakınında başlamıştı. Belki de cevap oradaydı. Belki, dedi kendine; henüz yalnızca belki.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_11",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_12",
+      "text": "{{child.name}} kendi kendine konuştu, çünkü bazı düşünceler ancak sesli söylenince toparlanırdı. \"Burada değil. Şurada da değil. O hâlde ya hiç yok, ya da çoktan yanından geçtim.\" İkinci ihtimal daha akla yatkındı. Ama {{child.name}} henüz ona tam güvenmiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_12",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_13",
+      "text": "{{companion.name}} bir şey demedi, {{child.name}} bir süre sustu. Sonra yavaşça başını kaldırdı. Aklına bir ihtimal gelmişti: belki iz kaybolmamıştı, yalnızca beklemedikleri bir yere sapmıştı. Doğru muydu, bilmiyordu. Ama denemeye değecek kadar ilginçti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_13",
+      "register": "tentative"
+    },
+    {
+      "id": "a9_fb_14",
+      "text": "{{child.name}} bir tahmin kurdu ve onu dikkatle tarttı, tıpkı pazarda bir karpuzu tartar gibi. Ağır mıydı, hafif mi? Biraz ikisi de. Belki aradıkları şey geride kalmıştı. Belki de değildi. Ama yol göstermesi yeterdi; gerisini görünce anlayacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_14",
+      "register": "tentative",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_fb_15",
+      "text": "Yorgunluk {{child.name}}'i yavaşlatınca düşünceleri hızlandı. İlk denemede neyi atlamış olabilirdi? Bir yeri aceleyle geçtiklerini hatırladı. Belki cevap tam oradaydı, gözlerinin önünde. Henüz yalnızca bir ihtimaldi, ama {{child.name}} ihtimallere bayılırdı, özellikle de ilginç olanlara.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fb_15",
+      "register": "tentative"
+    }
+  ]
+}

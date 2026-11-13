@@ -35,8 +35,9 @@ final class StoryIdeaTests: XCTestCase {
         // §33: a small curated set, not a menu. Three plus Surprise.
         // Dört: üçü 5-6 bandı, biri 3-4. Ekranda yine üç kart görünüyor —
         // kaç tanesinin gösterileceği ekranın kararı, kaç tanesinin var olduğu
-        // içeriğin. Altı (Faz 10): 7-8 bandına iki kart.
-        XCTAssertEqual(ideas.count, 6, ideas.map(\.id.rawValue).description)
+        // içeriğin. Altı (Faz 10): 7-8 bandına iki kart. Sekiz (13 Kasım
+        // 2026): 9-10 bandına iki kart.
+        XCTAssertEqual(ideas.count, 8, ideas.map(\.id.rawValue).description)
         for idea in ideas {
             XCTAssertFalse(idea.display.isEmpty)
             XCTAssertFalse(idea.supportingText.isEmpty)
@@ -59,7 +60,7 @@ final class StoryIdeaTests: XCTestCase {
     /// pilot file directly — otherwise the app cannot see them.
     func testIdeasSurviveTheMergedLoad() throws {
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(catalog.storyIdeas.count, 6)
+        XCTAssertEqual(catalog.storyIdeas.count, 8)
     }
 
     // MARK: - A promise, not a preset
@@ -186,7 +187,9 @@ final class StoryIdeaTests: XCTestCase {
         for seed in ["a", "b", "c", "d", "e"] {
             let story = try OfflineStoryComposer().compose(
                 catalog: catalog, intent: intent(idea: nil, seed: seed))
-            XCTAssertEqual(story.pages.count, 8)
+            // Bant verilmeyen istek her banttan kurgu seçebilir; 9-10 (13 Kasım
+            // 2026) 10 sayfa olduğundan sayı kurgunun kendisinden okunur.
+            XCTAssertEqual(story.pages.count, catalog.blueprint(story.blueprintID)?.pageCount)
             XCTAssertTrue(story.isClean)
         }
     }

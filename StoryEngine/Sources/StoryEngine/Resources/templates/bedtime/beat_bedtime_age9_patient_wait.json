@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_pw_01",
+      "text": "Sonra {{child.name}} hiçbir şey yapmadı. Yastığına yaslandı ve bekledi. Beklemek de bir çeşit yardımdı; kimsenin görmediği ama herkesin hissettiği bir yardım. {{companion.name}}'in nefesi yavaşladı. Bir süre daha yavaşladı. Sonra öyle yavaşladı ki {{child.name}} saymayı bırakıp sadece o yumuşak sesi dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_02",
+      "text": "{{child.name}} pencereden görünen yıldızları fısıltıyla saydı: bir, iki, üç. Sayılar giderek uzadı, sesi giderek alçaldı. {{companion.name}} her sayıda biraz daha derin nefes aldı. Acele eden yoktu. Gece de onlarla birlikte yavaşlıyor, yıldızlar bile sayılmak için sırasını sabırla bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_03",
+      "text": "{{child.name}} acele etmedi. Uyku zorla gelmezdi; çağrıldığını duyunca kendi bildiği yoldan gelirdi. {{child.name}} lambanın ışığını en kısığa indirdi ve tavandaki soluk halkaya baktı. Pencerenin önünde {{companion.name}} aynı yere bakıyordu. İkisi de ne zaman bakmayı bırakıp gözlerini dinlendirdiğini fark etmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_04",
+      "text": "{{setting.name}} sessizdi. {{child.name}} konuşmayı bıraktı ve sadece bekledi. Beklerken bir şey fark etti: kendi göz kapakları da ağırlaşmaya başlamıştı. Birini uyutmaya çalışmak, meğer iki yöne birden işliyordu. {{child.name}} buna itiraz etmedi; uykunun hangi yönden geldiği pek önemli değildi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_05",
+      "text": "{{child.name}} perdenin kıpırtısını izledi. Perde bir öne, bir arkaya gidiyordu; tıpkı bir salıncak gibi, ama çok yavaş bir salıncak. Pervazdaki {{companion.name}} ona bakmaya başladı. Bir öne, bir arkaya. Bir süre sonra ikisinin de gözleri perdeyle aynı yavaşlıkta kırpışıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_06",
+      "text": "Ay ışığı yorganın üstünde bir parmak kadar yer değiştirdi. {{child.name}} onu izleyerek bekledi. Işık öyle yavaş ilerliyordu ki ona bakmak bile insanı sakinleştiriyordu. {{companion.name}} bir süre ışığa baktı, sonra bakmayı unuttu. Başı yavaşça önüne düştü ve orada, rahatça kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_07",
+      "text": "{{child.name}} fısıltıyla bir şey anlatmaya başladı, ama ne anlattığının pek önemi yoktu. Önemli olan sesin alçalmasıydı. Her cümle bir öncekinden biraz daha kısa, biraz daha yumuşaktı. Sonunda cümleler birer kelimeye indi. {{companion.name}} son kelimeyi duymadı bile; çoktan uykunun eşiğine varmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_pw_08",
+      "text": "{{child.name}} sessizliği bozmamaya özen gösterdi. Bir kolunu yorganın altına soktu, sonra ötekini. Saatin tıkırtısı odada yavaş yavaş dolaştı. {{companion.name}} her tıkırtıda biraz daha kıvrıldı, küçüldü, yumuşadı. Bu gece beklemekten başka yapılacak iş yoktu ve bu hiç fena değildi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_pw_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

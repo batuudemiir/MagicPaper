@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 3,
+  "beat": "insight",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 8 (I-1). Cevap ÇALIŞILARAK bulunur, beklenerek değil. Sayfa iki olguyu birleştirir: baştaki gözlem ve denemeden ya da engelden öğrenilen; yeni bilgi getirmez. 9-10'da birleştirme çok adımlıdır ve çocuk onu kendi cümlesiyle kurar.",
+  "lengthClasses": {
+    "solo": "30-60 words — insight is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_in_01",
+      "text": "{{child.name}} iki şeyi yan yana koydu: en başta fark ettiği düzen ve denemelerinden öğrendiği ders. Tek başına ikisi de bir şey söylemiyordu. Ama birlikte okununca bir cümle oluyordu, açık ve net bir cümle. {{child.name}} o cümleyi yüksek sesle söyledi ve cevap yerine oturdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_01",
+      "words": [
+        "w78_duzen"
+      ]
+    },
+    {
+      "id": "a9_in_02",
+      "text": "Ve bağlantı kuruldu. En baştaki gözlemiyle ilk denemenin neden tutmadığı, aynı şeyi iki ayrı dilde anlatıyordu. {{child.name}} bunu daha önce görmemişti, çünkü ikisine aynı anda hiç bakmamıştı. Şimdi bakınca iki parça birbirine sessizce kenetlendi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_02",
+      "words": [
+        "w910_gozlem"
+      ]
+    },
+    {
+      "id": "a9_in_03",
+      "text": "\"Bir dakika,\" dedi {{child.name}} ve parmağını havaya kaldırdı. {{companion.name}} ne olduğunu sormadı, bekledi. {{child.name}} ilk gözlemini düşündü, sonra boşa çıkan denemeyi. Biri neyin olduğunu, öbürü neyin olmadığını söylüyordu. İkisi birlikte, geriye tek bir ihtimal bırakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_03",
+      "words": [
+        "w910_gozlem"
+      ]
+    },
+    {
+      "id": "a9_in_04",
+      "text": "{{child.name}} bildiği her şeyi yeniden sıraladı, bu kez başka bir düzende. Önce gözlem, sonra deneme, en son engel. Böyle dizilince aralarındaki ip görünür oldu. Engel tesadüf değildi; ilk gözlemde fark ettiği şeyin doğal bir sonucuydu. Cevap baştan beri oradaydı, yalnızca doğru sırayla okunmayı bekliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_04",
+      "words": [
+        "w78_duzen"
+      ]
+    },
+    {
+      "id": "a9_in_05",
+      "text": "{{child.name}} engelin kendisine baktı ve bir şey fark etti: engel, aslında bir ipucuydu. Onları durduran şey, aradıklarının nasıl davrandığını gösteriyordu. {{child.name}} bunu ilk gözlemiyle yan yana koydu; ikisi aynı yöne bakıyordu. Ters giden şey, doğru yolu gösteren işaret çıkmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_05",
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_in_06",
+      "text": "Bazen cevap yeni bir bilgide değil, eski bilgilerin yeni bir okunuşundadır. {{child.name}}'in elinde zaten iki ipucu vardı: biri en baştan, öbürü takıldıkları yerden. Onları yan yana getirdi ve sordu: ikisi birden doğruysa, geriye ne kalır? Geriye tek bir cevap kaldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_06",
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_in_07",
+      "text": "{{child.name}} kendine sorular sordu ve her soruyu bir öncekinin cevabıyla yanıtladı. İlk deneme neden tutmamıştı? Çünkü bir şeyi hesaba katmamışlardı. Neyi? En başta gördüğü, ama önemsiz saydığı şeyi. O hâlde ne yapmak gerekiyordu? O şeyi bu kez hesaba katmak. Cevap artık apaçıktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_in_07"
+    }
+  ]
+}

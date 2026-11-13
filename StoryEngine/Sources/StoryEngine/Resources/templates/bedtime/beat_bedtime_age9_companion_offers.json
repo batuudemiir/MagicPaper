@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_co_01",
+      "text": "{{companion.name}} gözlerini yarı açtı ve uykulu bir sesle mırıldandı: \"Sana bir ninni borçluyum.\" Ninni sadece iki kelimeydi ve ikincisi yolda kayboldu. {{child.name}} yine de onu baştan sona dinledi. Kısa ninniler de ninniydi; bazen uzunlardan daha çabuk işe yarardı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_02",
+      "text": "{{companion.name}} uyumadan önce son bir şey söylemek istedi. \"Bir sırrım var,\" diye fısıldadı. \"Ay, sen uyuyunca biraz daha parlıyor.\" Bunu nereden bildiğini söylemedi; belki de bilmiyordu. {{child.name}} sırrı aklının yumuşak bir köşesine koydu. Orası, sırların sabaha kadar rahatça uyuduğu yerdi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_03",
+      "text": "{{companion.name}} karşılık vermek istedi, ama verecek bir şeyi yoktu. Biraz düşündü, sonra {{child.name}}'e doğru küçük bir esneme gönderdi. Esneme odayı yavaşça geçti ve yatağa ulaştı. {{child.name}} onu aldı ve kocaman bir esnemeyle geri verdi. Takas adil sayılırdı; ikisi de aldığından fazlasını vermişti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_04",
+      "text": "\"Teşekkür ederim,\" dedi {{companion.name}}, ama kelimeler birbirine yapışmıştı ve ancak yarısı çıktı. Gerisini tatlı bir mırıltıyla tamamladı. {{child.name}} hepsini anladı. Uykulu teşekkürler kısaydı ama sıcaktı. {{child.name}} bu teşekkürü, kaybolmasın diye, yorganın altına, en sıcak tarafa koydu. Orada güvendeydi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_05",
+      "text": "{{companion.name}} kendi gecelerinden bir şey anlatmaya başladı, ama çok yavaş. \"Benim oralarda... rüzgâr... ninni söyler,\" dedi. Her kelimenin arasına uzun bir nefes girdi. Cümlenin sonuna varmadan ne anlattığını unuttu. {{child.name}} gülümsedi ve sonunu sormadı. Bazı hikâyeler uykuda biterdi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_06",
+      "text": "{{companion.name}} uykulu bir sesle \"Sen de uyu,\" dedi. \"Ben buradan bakarım.\" Gözleri çoktan kapalıydı, yani bakacağı pek bir şey yoktu. {{child.name}} bu nöbetçinin ne kadar dayanacağını merak etti. Cevap çabuk geldi: tam üç nefes. Dördüncü nefes artık bir horultuya benziyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_07",
+      "text": "{{companion.name}} kendi pervazından {{child.name}}'e fısıldadı: \"Senin yastığın benimkinden büyük.\" Bu bir şikâyet değildi, sadece bir tespitti. Sonra ekledi: \"Ama benimki de bana yetiyor.\" {{child.name}} başını salladı. Bir yastığın büyüklüğü santimle değil, içine sığan uykuyla ölçülürdü. {{companion.name}}'in yastığına bu gece kocaman bir uyku sığmıştı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_co_08",
+      "text": "{{companion.name}} uykulu bir sesle {{child.name}}'e yeni bir kelime öğretti; kendi dilinde iyi geceler demekmiş. Kelime yumuşaktı, biraz da hışırtılıydı. {{child.name}} onu bir kez fısıltıyla tekrarladı. Söyleyişi pek doğru değildi, ama {{companion.name}} buna itiraz edecek kadar uyanık değildi. Kelime, odada küçük bir hışırtı olarak kaldı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_co_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

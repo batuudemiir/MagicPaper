@@ -52,6 +52,8 @@ UNHARMONISED_CONJUNCTION = re.compile(r"\}\}(?:'[a-zçğıöşü]+)? (?:da|de|ta
 AGE3_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age3"
 # 7-8 bandı (Faz 10, 11 Kasım 2026): the standard arc's lines for 7-8.
 AGE7_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age7"
+# 9-10 bandı (12 Kasım 2026): the standard arc's lines for 9-10.
+AGE9_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/v3-age9"
 # Series episodes (FAZ 13): lines only a continuation episode uses.
 SERIES_CORPUS = ROOT / "Sources/StoryEngine/Resources/templates/series"
 # Uyku arkı (21 Ekim 2026): lines only a bedtime-arc blueprint reads.
@@ -376,7 +378,8 @@ def _check_line_file(beat_file, label, bindings, report, *, calm_label) -> int:
     place noun only with the setting trait that guarantees it, and a
     `warm_close` that ends calmly. Returns the number of lines checked."""
     band = beat_file.get("ageBand", "?")
-    ceiling = 10 if band == "3-4" else MAX_SENTENCE_WORDS
+    # Same ceilings as `AgeBand.maxSentenceWords`: 3-4 is 10, 9-10 is 20.
+    ceiling = {"3-4": 10, "9-10": 20}.get(band, MAX_SENTENCE_WORDS)
     cells = Counter()
     total = 0
     for variant in beat_file["variants"]:
@@ -500,6 +503,26 @@ def check_age7_lines(report) -> None:
         total += _check_line_file(beat_file, label, bindings, report, calm_label="a 7-8 story")
     check_banned([json.loads(p.read_text(encoding="utf-8")) for p in paths], report)
     report.note(f"7-8: {len(paths)} beat files, {total} lines")
+
+
+def check_age9_lines(report) -> None:
+    """9-10 bandının standart ark satırları (12 Kasım 2026). 7-8'in kuralları,
+    ama sayfa 30-60 kelime ve cümle en çok 20 (`AgeBand` 9-10). Uyku satırları
+    bedtime klasöründe, orada denetlenir."""
+    paths = sorted(AGE9_CORPUS.glob("beat_*.json"))
+    if not paths:
+        report.note("9-10: no lines yet")
+        return
+    bindings = [dict(b, **{"companion.type": t}) for b, t in zip(series_bindings(), ("kirpi", "kaplumbağa"))]
+    total = 0
+    for path in paths:
+        beat_file = json.loads(path.read_text(encoding="utf-8"))
+        label = f"9-10 {beat_file['beat']}"
+        if beat_file.get("ageBand") != "9-10":
+            report.fail(f"{label}: {path.name} is in the 9-10 folder but does not say ageBand: 9-10")
+        total += _check_line_file(beat_file, label, bindings, report, calm_label="a 9-10 story")
+    check_banned([json.loads(p.read_text(encoding="utf-8")) for p in paths], report)
+    report.note(f"9-10: {len(paths)} beat files, {total} lines")
 
 
 def check_banned(corpus, report) -> None:
@@ -1024,7 +1047,7 @@ FORBIDDEN_SAFETY_TOPICS = ("death", "loss", "olum", "ölüm", "kayip", "kayıp")
 def _all_line_files() -> list[tuple[str, dict]]:
     """Every beat file a story can read lines from: 5-6, 3-4, series and bedtime."""
     files = []
-    for folder in (CORPUS, AGE3_CORPUS, AGE7_CORPUS, SERIES_CORPUS, BEDTIME_CORPUS):
+    for folder in (CORPUS, AGE3_CORPUS, AGE7_CORPUS, AGE9_CORPUS, SERIES_CORPUS, BEDTIME_CORPUS):
         for path in sorted(folder.glob("*.json")):
             files.append((f"{folder.name}/{path.name}", json.loads(path.read_text(encoding="utf-8"))))
     return files
@@ -1151,6 +1174,7 @@ def main() -> int:
         lambda: check_series_lines(report),
         lambda: check_bedtime_lines(report),
         lambda: check_age7_lines(report),
+        lambda: check_age9_lines(report),
     ]
     for gate in gates:
         gate()

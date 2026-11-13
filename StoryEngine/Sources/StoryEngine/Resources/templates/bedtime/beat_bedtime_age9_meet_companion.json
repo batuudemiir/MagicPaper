@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_mc_01",
+      "text": "{{child.name}} yataktan doğrulmadan perdenin ucunu araladı. Pencerenin önünde {{companion.name}} adında minik bir {{companion.type}} oturuyordu. Gözleri yarı kapalıydı ama inatla açık kalmaya çalışıyordu. \"Uykum var,\" dedi mahcup bir sesle. \"Ama uyku bende kalmak istemiyor galiba. Gelip gelip kapıdan dönüyor.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_02",
+      "text": "Pencere kenarında {{companion.name}} adında küçük bir {{companion.type}} vardı. Gözlerini kapatıyor, sonra yine açıyordu. \"Kafamın içi bir pazar yeri gibi,\" dedi. \"Herkes bir şey bağırıyor, kimse tezgâhını toplamıyor.\" {{child.name}} o pazarı çok iyi tanıyordu. Bazı geceler orada saatlerce dolaşırdı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_03",
+      "text": "{{child.name}} başını yastıktan kaldırıp pencereye baktı. {{companion.name}} adında küçücük bir {{companion.type}} pervazda kıvrılmış, kendi kendine mırıldanıyordu. \"Uykum kaçtı,\" dedi. \"Hangi yöne kaçtığını görseydim seslenirdim.\" Sesi öyle ciddiydi ki {{child.name}} gülmemek için dudağını ısırdı. Kaçan uykular, bildiği kadarıyla, pek uzağa gitmezdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_04",
+      "text": "Pencerenin pervazında {{companion.name}} adında minik bir {{companion.type}} oturmuş, gökyüzünü seyrediyordu. \"Uyumak istiyorum,\" dedi, \"ama nasıl yapıldığını unuttum. Önce göz mü kapanıyor, yoksa önce kafa mı susuyor?\" {{child.name}} bunu hiç düşünmemişti. Düşününce kendisi de emin olamadı. Her gece yaptığı bir şeyi anlatmak zordu.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_05",
+      "text": "{{child.name}} perdeyi bir parmak kadar araladı. Ay ışığında {{companion.name}} adında bir {{companion.type}} belirdi; uykusuzluktan biraz dağınık görünüyordu. \"İyi akşamlar,\" dedi kibarca. \"Rahatsız ettiysem kusura bakma. Uyuyamayınca insan biraz gürültücü oluyor. Ben insan sayılmam, ama bende de öyle oluyor.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_06",
+      "text": "Pencerenin önünde {{companion.name}} adında minik bir {{companion.type}} vardı ve az önceki sesin sahibi oydu. {{child.name}}'i görünce biraz utandı. \"Bütün akşam gözlerimi kapadım,\" dedi, \"ama göz kapamakla uyumak aynı şey değilmiş. Bunu bu gece, epey uğraşarak öğrendim. Keşke biri önceden söyleseydi.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_07",
+      "text": "Perdenin kenarında küçük bir kıpırtı belirdi. {{companion.name}} adında bir {{companion.type}}, pervazın üstüne yorgun bir yastık gibi yayılmıştı. \"Merhaba,\" dedi. \"Aslında çoktan uyumuş olmalıydım. Saatim bunu bana iki kez söyledi.\" {{child.name}} saatlerin konuşmadığını biliyordu. Yine de itiraz etmek içinden gelmedi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "b9_mc_08",
+      "text": "{{child.name}} sesin sahibini buldu: pencerenin önünde {{companion.name}} adında bir {{companion.type}} oturuyordu. Küçüktü, yumuşaktı ve belli ki çok uykusuzdu. \"Bütün mahalle uyudu,\" dedi, bir sır verir gibi alçak sesle. \"Sıra bendeydi ama sıramı kaçırdım.\" {{child.name}} gülümsedi. \"Benim sıram da daha gelmedi,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_mc_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

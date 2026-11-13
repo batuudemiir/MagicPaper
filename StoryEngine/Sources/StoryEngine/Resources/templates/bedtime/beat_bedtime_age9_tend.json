@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_te_01",
+      "text": "{{child.name}} en yumuşak sesiyle bir ninni tutturdu. Daha ikinci dizede kendisi kocaman esnedi. {{companion.name}} öyle şaşırdı ki gözleri iyice açıldı. \"Ninni bana mıydı, sana mı?\" diye sordu. İkisi bir an bakıştı. Sonra {{child.name}} yorganı ağzına bastırdı ve sessizce güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_02",
+      "text": "{{child.name}} {{companion.name}}'e bir uyku hikâyesi anlatmaya başladı. Hikâyenin kahramanı, uyuyamayan küçük bir {{companion.type}} idi. {{companion.name}} kulak kabarttı, sonra itiraz etti: \"Bir dakika, bu benim!\" \"Tesadüf,\" dedi {{child.name}} ciddi bir yüzle. Ama yüzü bu ciddiliğe fazla dayanamadı ve yanakları kendiliğinden gevşedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_03",
+      "text": "{{child.name}} lambayı biraz daha kıstı ve perdeyi yarıya kadar çekti. Tam derin bir sessizlik kurulmuştu ki {{companion.name}} hapşırdı. Hem de üç kez, art arda, her biri bir öncekinden daha kibar. Sessizlik ise kibarlıktan hiç anlamadı ve dağılıverdi. {{child.name}} yastığa gömülüp güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_04",
+      "text": "{{child.name}} uykunun sırrını fısıldadı: \"Gözlerini kapat ve sevdiğin bir şeyi düşün.\" {{companion.name}} uzun uzun düşündü. Sonra bir gözünü açtı. \"Uykuyu düşünsem olur mu? Onu çok seviyorum, ama bir türlü yanıma gelmiyor.\" {{child.name}} gülümsemeden edemedi. Bu, doğrusu çok mantıklı bir soruydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_05",
+      "text": "{{child.name}} yıldızları saymayı önerdi. {{companion.name}} saymaya başladı ama aynı yıldızı her seferinde yeniden sayıyordu. Kırk ikiye gelince durdu. \"Bu gökyüzünde kırk iki tane aynı yıldız var galiba,\" dedi şaşkınlıkla. {{child.name}} yüzünü yastığa gömüp sessizce güldü. Yıldız ise yerinden kıpırdamadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_06",
+      "text": "{{child.name}} koyun saymayı önerdi. {{companion.name}} ise koyunların adını sormakta ısrar etti. \"Adını bilmediğim birini sayamam,\" dedi. {{child.name}} ilk koyuna bir ad buldu, ikincisine de. Üçüncüde ikisi de saymayı unutmuştu. Dördüncü koyunun adı Pazartesi oldu; o da buna pek sevinmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_07",
+      "text": "{{child.name}} {{companion.name}}'e derin nefesi gösterdi: içeri dört say, dışarı dört say. {{companion.name}} denedi ve tam üçte minicik bir hıçkırık çıkardı. Öyle beklenmedik oldu ki ikisi bir an bakıştı. Sonra gülümseme, hıçkırıktan daha çabuk yayıldı. Hıçkırık da utanıp sustu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_te_08",
+      "text": "{{child.name}} uykunun nasıl geldiğini anlattı: \"Önce ayak parmakları uyur, sonra dizler, en son düşünceler.\" {{companion.name}} dikkatle dinledi. \"Benimkiler sırayı karıştırmış,\" dedi. \"Düşüncelerim uyumak istiyor, ayaklarım ise dans etmek.\" {{child.name}} kıkırdamamak için yastığını sıkıca tuttu. Yastık da ona yardım etmek için elinden geleni yaptı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_te_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (C turu, 13 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Sayfa 2, IV ailesinin iki kurgusunda (notice ile examine arasında). Çocuk mesafeyi kendi ayağıyla kapatır; uzaktaki şey yakında bir ayrıntı kazanır. Bu vuruş durum üretmez, sayfasını yalnızca somut ayrıntıyla hak eder. Yol arkadaşı henüz gelmemiştir. Çocuk yaklaşırken de bir yöntem izler (sayar, yay çizer, not alır) ve kendi temkinine hafifçe güler. Kimse çocuğu övmez; 'hemen', 'anında' yok.",
+  "lengthClasses": {
+    "solo": "30-60 words — approach is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ap_01",
+      "text": "{{child.name}} yaklaşmadan önce mesafeyi gözüyle ölçtü: yirmi adım kadar vardı. Yirmi adım, bir fikri değiştirmeye yeterdi. İlk on adımda her şey uzaktan göründüğü gibiydi. Sonraki onda ise her adım yeni bir şey ekledi. Sonunda öyle yakındı ki eğilse burnu değecekti.",
+      "requiredSlots": ["child.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_01"
+    },
+    {
+      "id": "a9_ap_02",
+      "text": "{{child.name}} dosdoğru yürümek yerine geniş bir yay çizerek yaklaştı. Bunu bir belgeselde görmüştü; aslanlar avına böyle sokuluyordu. Kendisi aslan değildi, karşısındaki de av değildi, ama yöntem yöntemdi. Her adımda {{discovery.name}} biraz daha büyüdü. Uzaktan bir fikirdi, yakından gerçek bir şey oldu.",
+      "requiredSlots": ["child.name", "discovery.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_02",
+      "words": ["w78_yontem"]
+    },
+    {
+      "id": "a9_ap_03",
+      "text": "{{child.name}} ayaklarını tek tek, sessizce bastı. Bir ara durdu ve kendine sordu: Neden parmak uçlarımda yürüyorum? Cevabı bilmiyordu ama yavaşlamayı da bırakmadı. Sonunda yeterince yakındı. Uzaktan görülmeyen şeyler artık görünüyordu ve hiçbiri tahmin ettiği gibi değildi.",
+      "requiredSlots": ["child.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_03",
+      "words": ["w78_tahmin"]
+    },
+    {
+      "id": "a9_ap_04",
+      "text": "{{child.name}} her beş adımda bir durup kafasındaki deftere not düştü. Beş adım: sandığından küçük. On adım: kenarları düzgün değil. On beş adım: rengi uzaktakinden koyu. Yirminci adımda durdu. Defter doluyordu, merakı ise hiç azalmıyordu.",
+      "requiredSlots": ["child.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_04"
+    },
+    {
+      "id": "a9_ap_05",
+      "text": "Yaklaşmak, {{child.name}} için küçük bir sabır sınavıydı. İçinden bir ses \"koş\" diyordu, başka bir ses \"dur\". {{child.name}} ikisinin ortasını seçti ve ağır ağır yürüdü. Yaklaştıkça {{discovery.name}} uzaktan sandığı şeye hiç benzemiyordu. Bu da işi daha ilginç yapıyordu.",
+      "requiredSlots": ["child.name", "discovery.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_05"
+    },
+    {
+      "id": "a9_ap_06",
+      "text": "{{child.name}} önce çevresine baktı. Etrafta kimse yoktu; bir o vardı, bir de merakı. Ayak uçlarında ilerledi ve bir yandan kendine güldü, çünkü kimden saklandığını bilmiyordu. Son birkaç adımda nefesini tuttu. Şimdi elini uzatsa dokunabilirdi.",
+      "requiredSlots": ["child.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_06"
+    },
+    {
+      "id": "a9_ap_07",
+      "text": "Uzaktaki şeyler yaklaştıkça büyür, bunu herkes bilir. {{child.name}} ise başka bir şey fark etti: yaklaştıkça o şey büyümüyor, ayrıntıları çoğalıyordu. Her adımda yeni bir çizgi, yeni bir kıvrım çıkıyordu ortaya. {{child.name}} sonunda dizlerinin üstüne çöktü. Bu kadar yakından bakınca dünya biraz sessizleşmişti.",
+      "requiredSlots": ["child.name"],
+      "lengthClass": "solo",
+      "move": "age9_a9_ap_07",
+      "words": ["w78_ayrinti"]
+    }
+  ]
+}

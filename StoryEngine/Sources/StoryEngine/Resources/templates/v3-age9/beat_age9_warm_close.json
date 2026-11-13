@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 10. Duygusal iniş; 'mutlu mesut yaşadılar' yok. Sakin biter: soru işareti, 'yarın', 'acaba', 'birden' yok. Satır, masalın nasıl bittiğine göre seçilir (afterClosing): succeed ya da restore. 9-10'da iniş biraz düşünceli, biraz esprili; çocuk günü kendi içinde tartar.",
+  "lengthClasses": {
+    "solo": "30-60 words — warm_close is the whole page (V-1) is the whole page",
+    "paired": "15-30 words — page 10 also carries self_recognize or carry_forward"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_wc_01",
+      "text": "O akşam {{child.name}} yatağa uzanınca gün kafasında bir film gibi yeniden oynadı. Bu kez sonunu bildiği için heyecanlı yerlerde rahat, sakin yerlerde dikkatliydi. Filmin en komik sahnesi, kendi ciddi ciddi yanıldığı sahneydi. {{child.name}} o sahneyi iki kez izledi, sonra uyudu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_01",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_02",
+      "text": "Eve giderken {{child.name}} gözlerini bir türlü dinlendiremedi. Bir taşın duruşu, bir gölgenin yönü, bir sesin saati; her şey bir ipucuna benziyordu. Belki hepsi ipucuydu, belki hiçbiri. {{child.name}} bunu bugün çözmemeye karar verdi. Bir günde bir bilmece yeterdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_02",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ],
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_wc_03",
+      "text": "{{setting.name}}'dan ayrılmadan önce {{child.name}} {{companion.name}}'a döndü. \"Buraya bir gün yine gelirim,\" dedi. \"Ben de buradayım,\" dedi {{companion.name}}, \"ama bundan sonra başka türlü bakacağım.\" {{child.name}} güldü; aynı şeyi o da düşünüyordu. El sallaştılar ve her biri kendi yoluna döndü.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_03",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_04",
+      "text": "Akşam yemeğinde biri ona gününü sordu. {{child.name}} bir an düşündü. Kısa cevap \"Hiç\" olurdu, uzun cevap bütün yemeği alırdı. Uzun cevabı seçti. Gün, anlatıldıkça ikinci kez yaşandı; bu kez çatal bıçak sesleri eşliğinde.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_04",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_05",
+      "text": "Güneş yavaş yavaş alçalırken {{child.name}} ile {{companion.name}} yan yana oturdu. İkisi de konuşmadı. Konuşacak çok şey vardı aslında, ama hiçbiri acele değildi. Gün bitiyordu, bıraktığı his bitmiyordu. {{child.name}} o hissi cebine koyar gibi sakladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_05",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_06",
+      "text": "Eve vardığında {{child.name}} defterini açtı ve günün özetini yazdı. Üç cümle yazdı, sonra üçünü de sildi. Sonunda tek bir cümlede karar kıldı: \"Bugün yanıldım ve çok güzeldi.\" Defteri kapattı. Şimdiye kadar yazdığı en kısa ve en doğru özetti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_06",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_07",
+      "text": "Akşam olunca {{setting.name}} sessizliğe büründü. {{child.name}} gitmeden etrafa son bir göz attı. Sabahki gizem artık bir gizem değildi; tanıdık, sevimli bir bilgiydi. Ama yerini boş bırakmamıştı. O boşluğa küçük, sıcak bir merak yerleşmişti.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_07",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_08",
+      "text": "{{child.name}} ipuçlarını kafasında son kez sıraladı, kitapları rafa dizer gibi. Bir gün yine lazım olabilirlerdi; iyi ipucu atılmazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_08",
+      "afterClosing": [
+        "succeed"
+      ],
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_wc_09",
+      "text": "{{companion.name}} ile vedalaşırken {{child.name}} bir şey söylemek istedi, ama doğru kelimeyi bulamadı. Karşısındaki de bulamadı. İkisi de güldü; bulunamayan kelime bile bugüne yakışıyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_09",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_10",
+      "text": "Akşam olunca {{child.name}} epey yorgundu. Ama bu, çözülmüş bir bilmecenin tatlı ve tanıdık yorgunluğuydu, iyi bir uykunun habercisi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_10",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_11",
+      "text": "O gece {{child.name}} gözlerini kapatmadan önce günü bir kez daha düşündü. Düşündükçe gülümsedi, gülümsedikçe uykusu geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_11",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "a9_wc_12",
+      "text": "Akşamın ışığı {{setting.name}}'ın üstüne yavaşça yayıldı. {{child.name}} gitmeden önce her şeyin başladığı yere son bir selam verdi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_12",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_13",
+      "text": "Güneş iyice alçaldı. {{child.name}} eve yürüdü; ayakları yorgun, kafası ise tıka basa, ama hoş bir biçimde doluydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_13",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_14",
+      "text": "{{companion.name}} bulduğu şeyi yanından hiç ayırmadan yoluna koyuldu. Birkaç adımda bir dönüp bakıyor, {{child.name}} her seferinde el sallayarak karşılık veriyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_14",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_15",
+      "text": "Eve dönerken {{child.name}} kendi eşyalarını yokladı: hepsi yerindeydi. Bu sıradan durum, bugün ona garip biçimde değerli göründü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_15",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_16",
+      "text": "\"Bir daha kaybedersem seni çağırırım,\" dedi {{companion.name}}. {{child.name}} güldü: \"Bence hiç kaybetme. Ama yine de çağır, bir şey bulmak için kaybetmek şart değil.\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_16",
+      "afterClosing": [
+        "restore"
+      ]
+    },
+    {
+      "id": "a9_wc_17",
+      "text": "O akşam {{child.name}}, kardeşi {{family.name}}'a bütün günü anlattı. {{family.name}} en heyecanlı yerde araya girdi; {{child.name}} en güzel kısmı yine de sona sakladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_17",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_18",
+      "text": "{{child.name}} ile kardeşi {{family.name}} yatmadan önce günü bir kez daha konuştu. {{family.name}} her şeyi ikinci kez dinledi ve ilkinden çok güldü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_18",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_19",
+      "text": "Akşam yemeğinde kardeşi {{family.name}} neler olduğunu sordu. {{child.name}} anlatmaya başladı, ama bu kez en baştan değil, en komik yerden. {{family.name}} kahkahayı bastı, sonra her şeyi sırayla dinlemek istedi. {{child.name}} gülümsedi. Bazı hikâyeler iki kez anlatılmayı hak ediyordu ve bu onlardan biriydi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_19",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_20",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} eve kadar birlikte yürüdü. {{child.name}} anlattı, {{family.name}} dinledi ve yol her zamankinden kısa geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_20",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_21",
+      "text": "Ayrılırken arkadaşı {{family.name}} el salladı. {{child.name}} ona anlatacaklarını kafasında sıraya koyarken listenin fazla uzadığını fark etti; iki buluşmaya bölmeye karar verdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_21",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_22",
+      "text": "Akşamüstü arkadaşı {{family.name}} kapıya geldi ve merdivene oturdu. {{child.name}} günü baştan anlattı, hiçbir ayrıntıyı atlamadan. {{family.name}} iki kez \"Sonra\" dedi, bir kez de \"Dur, onu tekrar anlat.\" Üçüncü anlatışta hikâye biraz büyümüştü. İkisi de bunu fark etti, ikisi de bir şey demedi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_22",
+      "words": [
+        "w78_ayrinti"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_23",
+      "text": "Eve gelince {{family.possessive}} {{family.name}} kapıda bekliyordu, sanki bütün gün saati izlemiş gibi. {{child.name}} günü anlattı; {{family.name}} en çok atıştırmalık geçen yerlerle ilgilendi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_23",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_24",
+      "text": "O akşam {{child.name}}, {{family.possessive}} {{family.name}}'ın yanına kıvrıldı ve bugünü fısıltıyla anlattı. {{family.name}} hiç itiraz etmedi; o gece bundan iyi bir yorum beklenemezdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_24",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_25",
+      "text": "{{child.name}} eve döndüğünde {{family.possessive}} {{family.name}} onu her zamanki yerinde bekliyordu. {{child.name}} yanına oturdu ve her şeyi en ince ayrıntısına kadar anlattı. {{family.name}} belki pek bir şey anlamadı. Ama iyi bir dinleyicinin bütün işaretlerini verdi: kıpırdamadı, araya girmedi, sıkılmadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_25",
+      "words": [
+        "w78_ayrinti"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_26",
+      "text": "Eve dönerken hayali arkadaşı {{family.name}} yine onunla birlikteydi. İkisi bütün yol boyunca günü konuştu, en çok da komik yerlerini.",
+      "requiredSlots": [
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_26",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_27",
+      "text": "O gece {{child.name}}, hayali arkadaşı {{family.name}}'a fısıldadı: \"Bugünü unutmayacağım.\" {{family.name}} bunu zaten bildiğini söyledi, ama yine gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_wc_27",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_28",
+      "text": "Akşam olunca hayali arkadaşı {{family.name}} pencerenin kenarına oturdu. {{child.name}} ona bütün günü anlattı. {{family.name}} her şeyi zaten biliyormuş gibi yaptı, çünkü uzmanlık onun işiydi. Ama dikkatle dinledi ve en güzel yerde tek kelime etmedi. {{child.name}} bunu bir saygı işareti saydı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_wc_28",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

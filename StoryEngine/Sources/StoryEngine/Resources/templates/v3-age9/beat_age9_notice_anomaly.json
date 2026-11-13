@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 1, hiç paylaşılmaz. Çocuk sıradan bir şey yaparken bir şey dikkatini çeker; sayfa sorar, açıklamaz. 9-10'da merak bir düşünce zinciri olarak görünür: neyin değiştiğini bilir, neden değiştiğini bilmez.",
+  "lengthClasses": {
+    "solo": "30-60 words — page 1 is never shared in any blueprint is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_na_01",
+      "text": "{{child.name}} o sabah {{setting.name}}'a yalnızca biraz kafa dinlemek için gelmişti. Planı basitti: oturmak, etrafı izlemek, hiçbir şey düşünmemek. Plan tam dört dakika sürdü. Çünkü {{discovery.name}} oradaydı ve dün aynı yere baktığında orada hiçbir şey yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_01"
+    },
+    {
+      "id": "a9_na_02",
+      "text": "{{child.name}}'in tuhaf bir yeteneği vardı: bir yerde neyin değiştiğini, ne olduğunu anlamadan önce sezerdi. {{setting.name}}'a adımını atar atmaz o tanıdık kıpırtıyı hissetti. Gözleri yavaşça dolaştı ve sonunda durdu. {{discovery.name}}, sanki hep oradaymış gibi duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_02",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a9_na_03",
+      "text": "Herkes {{setting.name}}'ı ezbere bildiğini sanırdı, {{child.name}} dahil. Oysa o gün, her zamanki yoldan geçerken, ezberin bir satırı tutmadı. Bir şey eksik değildi, tersine fazlaydı: {{discovery.name}}. Küçük bir ayrıntıydı belki, ama {{child.name}} ayrıntıları önemserdi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_03",
+      "words": [
+        "w78_ayrinti"
+      ]
+    },
+    {
+      "id": "a9_na_04",
+      "text": "{{child.name}} sorular sormayı severdi, cevaplardan bile çok. {{setting.name}}'da {{discovery.name}} dikkatini çekince kafasında aynı anda üç soru belirdi. Ne zaman gelmişti, nereden gelmişti, neden tam buradaydı? Üçünün de cevabı yoktu ve bu, günün en güzel haberiydi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_04"
+    },
+    {
+      "id": "a9_na_05",
+      "text": "Bazı günler sıradan başlar ve sıradan devam edecekmiş gibi görünür. {{child.name}} için o gün de öyleydi, ta ki {{setting.name}}'da {{discovery.name}} dikkatini çekene kadar. {{child.name}} adımlarını yavaşlattı. Sıradan günlerin en sevdiği yanı buydu: arada bir sıradan olmaktan vazgeçmeleri.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_05"
+    },
+    {
+      "id": "a9_na_06",
+      "text": "{{child.name}} {{setting.name}}'da gördüklerini not etmeyi alışkanlık hâline getirmişti. Defterinde neyin nerede durduğu, hangi saatte hangi sesin geldiği yazardı. O gün deftere bakmasına gerek kalmadı. {{discovery.name}} hiçbir sayfada yoktu, bundan emindi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_06"
+    },
+    {
+      "id": "a9_na_07",
+      "text": "Bir kitapta okumuştu: dikkatli bakan göz, her şeyi iki kez görür. {{child.name}} o gün bunun ne demek olduğunu anladı. {{setting.name}}'da herkesin yanından geçip gittiği yerde {{discovery.name}} duruyordu. Bir kez gördü, sonra durup bir kez daha baktı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_07",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a9_na_08",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'a aynı anda vardılar, ama aynı şeyi görmediler. {{family.name}} yol boyunca bir taşı tekmelemiş, şimdi onun nereye gittiğini arıyordu. {{child.name}} ise durmuştu. Dün burada olmayan bir şey vardı. Taş bekleyebilirdi; bu bekleyemezdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_08",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_na_09",
+      "text": "{{child.name}}, kardeşi {{family.name}} ile {{setting.name}}'da bir oyun kuruyordu. Kuralları {{family.name}} koyuyor, her beş dakikada bir değiştiriyordu. {{child.name}} yedinci değişiklikte itiraz etmek üzereydi ki sustu. Bir şey yerinde değildi. Oyun, kurallarıyla birlikte, kendiliğinden askıya alındı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_09",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_na_10",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da kimin daha uzun susabileceğine dair iddiaya girmişti. {{family.name}} on saniyede kaybetti, çünkü bir kuş gördü. {{child.name}} kazandı ama sevinemedi. Sessizlikte bir şey fark etmişti ve bu, iddiadan çok daha ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_10",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_na_11",
+      "text": "{{child.name}}'in arkadaşı {{family.name}}, {{setting.name}}'a bir defter ve üç kalemle gelmişti. Haritaları o çizerdi, yönleri {{child.name}} bulurdu. O gün harita yarıda kaldı. {{child.name}} kalemini bırakmış, bir noktaya bakıyordu. {{family.name}} sebebini sorduğunda cevap veremedi; henüz bir cevabı yoktu, sadece bir sorusu vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_11",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_na_12",
+      "text": "{{child.name}} o sabah {{setting.name}}'a {{family.possessive}} {{family.name}} ile birlikte geldi. {{family.name}} her zamanki gibi önce her şeyi kokladı, sonra her şeyden sıkıldı. Ama bir noktada durdu ve kıpırdamadı. {{child.name}} onun baktığı yere baktı. Orada dün olmayan bir şey vardı. Demek ki bunu ilk fark eden o değildi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_12",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_na_13",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'a günün planını anlattı: yürüyüş, biraz keşif, eve dönüş. {{family.name}} planı esneyerek onayladı. {{setting.name}}'a vardıklarında planın ikinci maddesi beklenenden erken başladı. Çünkü orada bir şey vardı ve açıklama bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_13",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_na_14",
+      "text": "{{child.name}}'in hayali arkadaşı {{family.name}} kendini her konuda uzman sayardı. {{child.name}} ona bu yüzden bazen \"Profesör\" derdi. O sabah {{setting.name}}'da Profesör'ün bile söyleyecek sözü kalmadı. Orada, ikisinin de daha önce rastlamadığı bir şey vardı. {{child.name}} ilk kez bir şeyi ondan önce fark etmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_14",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_na_15",
+      "text": "{{child.name}} yürürken hayali arkadaşı {{family.name}} ile ciddi bir tartışmaya dalmıştı: bulutların ağırlığı var mıydı? {{family.name}} vardı diyordu, {{child.name}} yoktu. {{setting.name}}'a varınca ikisi birden sustu. Tartışma bitmemişti ama orada daha acil bir soru duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_na_15",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

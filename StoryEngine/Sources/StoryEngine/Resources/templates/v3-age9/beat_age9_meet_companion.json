@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 3,
+  "beat": "meet_companion",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3, hep companion_offers ya da receive_appeal ile. Yol arkadaşı KENDİ sebebiyle oradadır. Satırlar rol başınadır (castRoles): rehber kendinden emin ama bilgiç değil, çekingen yavaş açılır, sakinleştiren telaşı alır, bakıma muhtaç olan bir şey arar. 9-10'da ilk karşılaşma küçük bir esprili cümle taşıyabilir.",
+  "lengthClasses": {
+    "paired": "15-30 words — page 3 also carries companion_offers or receive_appeal"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_mc_01",
+      "text": "Yakından kibar bir öksürük geldi. {{companion.name}} adlı {{companion.type}}, burayı her gün dolaşan biriydi. \"Ezberimde olmayan bir şey,\" dedi. \"Bunu hiç sevmem, ama merak ederim.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_01",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a9_mc_02",
+      "text": "\"Bu da nereden çıktı?\" dedi bir ses, {{child.name}}'in aklından geçeni aynen söyleyerek. Ses, {{companion.name}} adında kendinden emin bir {{companion.type}}'a aitti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_02",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a9_mc_03",
+      "text": "{{companion.name}} oraya {{child.name}}'den önce gelmişti ve bunu belli etmekten hoşlanıyordu. \"Ben buranın müdavimiyim,\" dedi bu {{companion.type}}, \"ama bunu ilk kez görüyorum.\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_03",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a9_mc_04",
+      "text": "Bir {{companion.type}} yan tarafta durmuş, başını iki yana eğerek aynı şeye bakıyordu. \"Ben {{companion.name}},\" dedi. \"Her gün buradan geçerim; bugüne kadar hep aynı şeyi görürdüm.\"",
+      "requiredSlots": [
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_04",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "a9_mc_05",
+      "text": "Köşeden biri önce yarısıyla göründü. Öbür yarısı gelmekte epey nazlandı. Sonunda {{companion.name}} adlı {{companion.type}} tamamıyla ortaya çıktı ve özür diler gibi baktı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_05",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a9_mc_06",
+      "text": "\"Ben bir şey demedim,\" dedi biri, {{child.name}} daha bir şey sormadan. Sesin sahibi {{companion.name}} adlı çekingen bir {{companion.type}}; bir süredir bu tuhaflığı uzaktan izliyormuş.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_06",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a9_mc_07",
+      "text": "{{child.name}} selam verince {{companion.name}} adlı {{companion.type}} öyle irkildi ki ikisi de güldü. \"Kusura bakma,\" dedi {{companion.name}}. \"Biri benimle konuşunca hep böyle olurum, sonra geçer.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_07",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a9_mc_08",
+      "text": "Yakında biri, sorusunu sormaya cesaret edemeyen birinin sessizliğiyle bekliyordu. {{child.name}} önce davrandı: \"Merhaba.\" {{companion.name}} adlı {{companion.type}} rahatlayarak karşılık verdi; ilk kelime hep en zoruydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_08",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "a9_mc_09",
+      "text": "{{companion.name}} adlı {{companion.type}} hiç acele etmeyen biriydi; acele edenleri de bir bakışta yavaşlatırdı. \"Merak güzel şey,\" dedi. \"Ama oturarak da merak edilir.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_09",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_10",
+      "text": "Yanına biri sessizce oturdu: {{companion.name}}, ağırbaşlı bir {{companion.type}}. Bir süre ikisi de konuşmadan baktı. {{child.name}} fark etti ki sessizlikte düşünceleri daha düzgün sıraya giriyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_10",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_11",
+      "text": "\"Telaşlanma, tuhaf şeyler beklemeyi bilir,\" dedi {{companion.name}} adlı yaşlı bir {{companion.type}}. \"Ben burada çok tuhaflık gördüm. Hepsi, sakin bakana sonunda kendini anlattı.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_11",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_12",
+      "text": "{{child.name}}'in yanında usulca bir {{companion.type}} belirdi. Adının {{companion.name}} olduğunu söyledi; sesi ılık bir battaniye gibiydi. {{child.name}}, farkına varmadan omuzlarını gevşetti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_12",
+      "castRoles": [
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_13",
+      "text": "Biri yere eğilmiş, bir şeyi arıyor ve kendi kendine söyleniyordu: \"Buradaydı, buradaydı...\" {{child.name}} yaklaşınca {{companion.name}} adlı {{companion.type}} başını kaldırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_13",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_14",
+      "text": "{{child.name}}'in dikkatini bir {{companion.type}} çekti: {{companion.name}}, aynı köşeye üçüncü kez bakıyordu. Orada da bulamayınca iç çekti ve dördüncü bakışa hazırlandı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_14",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_15",
+      "text": "\"Kayıp bir şeye benzer bir şey gördün mü?\" diye sordu {{companion.name}} adlı {{companion.type}}. Sonra sorusunun ne kadar belirsiz olduğunu fark edip kendine güldü.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_15",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_16",
+      "text": "{{companion.name}}, bir {{companion.type}}, olduğu yerde oturmuş, etrafa hesap yapar gibi bakıyordu. Bir şeyi eksikti ve bu eksik, yüzünü epey ciddileştirmişti.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_mc_16",
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

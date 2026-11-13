@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3 (IV-1), meet_companion ile. Yol arkadaşı neye ihtiyacı olduğunu kendi söyler: bir şeyini kaybetmiştir. Rica sakin ve dürüsttür; ağlamak, korku, acil durum yok. 9-10'da rica kendi küçük ironisini taşıyabilir.",
+  "lengthClasses": {
+    "paired": "15-30 words — always beside meet_companion"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ra_01",
+      "text": "\"Galiba bir şeyimi kaybettim,\" dedi {{companion.name}}, \"ya da o beni kaybetti, emin değilim. Bütün sabah aradım. Bir de sen bakar mısın?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_01"
+    },
+    {
+      "id": "a9_ra_02",
+      "text": "{{companion.name}} biraz durakladı, sonra sordu: \"Sana bir şey sorabilir miyim? Önemli bir şeyimi kaybettim ve nereden başlayacağımı bilmiyorum.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_02"
+    },
+    {
+      "id": "a9_ra_03",
+      "text": "\"Burada bir yerde olmalı,\" dedi {{companion.name}}, sesi biraz kısık. \"Yardım edersen çok sevinirim. Tek başıma her yere bakamıyorum.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_03"
+    },
+    {
+      "id": "a9_ra_04",
+      "text": "{{companion.name}} çekinerek sordu: \"Aramama yardım eder misin? Kaybolan şey küçük, ama benim için hiç de küçük değil.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_04"
+    },
+    {
+      "id": "a9_ra_05",
+      "text": "\"Dün buradaydı, bugün yok,\" dedi {{companion.name}}. \"Nereye gitmiş olabilir, hiç bilmiyorum. Birlikte bakarsak belki buluruz.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_05"
+    },
+    {
+      "id": "a9_ra_06",
+      "text": "{{companion.name}}'ın sesi alçaktı. \"Kaybettiğim şeyi her yerde aradım,\" dedi. \"Ama belki her yer dediğim yer, yeterince her yer değildi.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_06"
+    },
+    {
+      "id": "a9_ra_07",
+      "text": "\"Bunu tek başıma bulamayacağım,\" dedi {{companion.name}} dürüstçe. \"Bana yardım eder misin? İki kişi bakınca belki gözümden kaçanı görürüz.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ra_07"
+    }
+  ]
+}

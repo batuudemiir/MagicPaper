@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 3,
+  "beat": "establish_ordinary",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında sayfa 1, açılış odası"
+  },
+  "variants": [
+    {
+      "id": "b9_eo_01",
+      "text": "{{child.name}} {{setting.name}}'da yorganını çenesine kadar çekti ve günün hesabını kapattı. Ödev bitmiş, kitap ayracı yerine konmuş, diş fırçası da ıslanmıştı. Islak bir diş fırçası, dişlerin fırçalandığının en sağlam kanıtıydı. Lamba kısıktı, perde usulca kıpırdıyordu. Geriye tek bir iş kalıyordu: uyumak.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_02",
+      "text": "{{setting.name}}'da lamba kısılmıştı ve ay ışığı yorganın üstüne ince bir şerit çiziyordu. {{child.name}} kitabını kapattı ama son cümlesini aklında tuttu. İyi bir cümleyi uykuya götürmek, cebinde ılık bir taş taşımaya benzerdi. Taş küçüktü, ama bütün gece avucu ısıtırdı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_03",
+      "text": "{{child.name}} yastığını üç kez kabarttı. İkisi yastık içindi, üçüncüsü alışkanlıktan. {{setting.name}} her akşamki gibi sessizdi; sadece duvardaki saat kendi kendine tıkırdıyordu. Saat hiç uyumazdı, o yüzden {{child.name}} ona biraz acırdı. Bütün gece nöbet tutmak, kimseye kolay gelmezdi; hele kimse teşekkür etmiyorsa.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_04",
+      "text": "Pijamalar giyilmiş, su içilmiş, günün son sorusu da sorulup cevabını almıştı. {{child.name}} {{setting.name}}'daki yatağına kıvrıldı. Yorgan tam kıvamındaydı: ne fazla sıcak ne fazla serin. Böyle akşamlarda uyku kapıyı çalmazdı. Usulca içeri süzülür, yatağın ayak ucuna oturur ve sabırla beklerdi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_05",
+      "text": "{{child.name}} yatağında sırtüstü uzanmış, tavana bakıyordu. Tavanda hiçbir şey yoktu, zaten bakmanın amacı da buydu. Boş bir tavan, düşünceleri birer birer yavaşlatırdı; dolu bir tavan ise insanı sabaha kadar oyalardı. {{setting.name}} ılıktı, perde hafifçe kıpırdıyordu. Gün, arkasından kapıyı nazikçe çekip geride kalıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_06",
+      "text": "{{setting.name}}'da her şey yerli yerindeydi: terlikler yatağın dibinde, çanta kapının yanında, yorgan {{child.name}}'in üstünde. {{child.name}} bu düzene bakıp memnun bir iç çekti. Bütün gün oradan oraya taşınan şeyler durmuştu. Çanta bile kapının yanında, kayışlarını salıp dinleniyordu. Sıra artık kendisinin durmasındaydı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_07",
+      "text": "{{child.name}} yorganın altında ayak parmaklarını oynattı, sonra onları tek tek uyuttu. Bu, her akşamki küçük bir törendi: önce parmaklar, sonra dizler, en son kafadaki düşünceler. {{setting.name}} sessizdi. Düşünceler ise her zamanki gibi en geç yatanlardı; hep son bir şey söylemek isterlerdi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_08",
+      "text": "Gün uzun ve kalabalık geçmişti. Şimdi {{setting.name}}, bütün o kalabalığı kapının dışında bırakmış gibiydi. {{child.name}} yastığın serin tarafını buldu ve yanağını oraya yasladı. Serin tarafı bulmak, akşamın küçük bir zaferiydi. Kimse alkışlamazdı, ama yanak her seferinde teşekkür ederdi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_eo_09",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yataklarına girdi. {{family.name}} her akşamki gibi \"Son bir soru,\" dedi. {{child.name}} bu cümlenin geçmişini iyi bilirdi: son soru hiçbir gece son olmamıştı. Yine de bekledi. Bu gecenin sorusu, insanın neden iki kez diş çıkardığıydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_09",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_eo_10",
+      "text": "{{setting.name}}'da iki yatak yan yanaydı. Birinde {{child.name}}, ötekinde kardeşi {{family.name}} yatıyordu. Lamba kısılmış, perde ay ışığını süzüyordu. {{family.name}} çoktan esnemeye başlamıştı. {{child.name}} ise günün son sayfasını kafasında bir kez daha okudu, sonra o sayfayı usulca kapattı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_10",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_eo_11",
+      "text": "{{child.name}} bütün gün bu akşamı beklemişti: arkadaşı {{family.name}} {{setting.name}}'da yatıya kalıyordu. Şimdi ikisi de pijamalarıyla yorganın altındaydı. Fısıltıyla konuşuyorlardı, çünkü fısıltı her şeyi daha önemli gösteriyordu. Lamba kısıktı ve oda sıcacıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_11",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_eo_12",
+      "text": "{{child.name}} yatağında, arkadaşı {{family.name}} yer yatağındaydı. İkisi de bu gece hiç uyumayacaklarına dair ciddi bir anlaşma yapmıştı. Anlaşmanın maddeleri sağlamdı. Ama {{setting.name}} o kadar sıcak, yorgan o kadar yumuşaktı ki maddeler birer birer gevşiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_12",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_eo_13",
+      "text": "{{child.name}} {{setting.name}}'daki yatağına girdi. {{family.possessive}} {{family.name}} her akşamki gibi ayakucundaki yerini aldı ve orayı kimseye bırakmayacağını belli etti. Lamba kısılmıştı. {{child.name}} ayaklarını biraz kenara çekti, ev sahibinin konuğa yer açması gibi. Oda uykunun kokusunu almıştı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_13",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_eo_14",
+      "text": "{{child.name}} yorganı düzeltirken {{family.possessive}} {{family.name}} yatağın üstünde tam üç tur döndü, sonra yattı. {{child.name}} bu töreni her akşam izlerdi ve neden üç olduğunu hâlâ çözememişti. {{setting.name}} sessizdi, lamba yumuşacık yanıyordu. Tören tamamlanmıştı; gün de bitmek üzereydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_14",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_eo_15",
+      "text": "{{child.name}} {{setting.name}}'da yorganına sarındı. Hayali arkadaşı {{family.name}} her akşamki gibi pencere kenarına oturmuş, bacaklarını sallıyordu. {{child.name}} ona iyi geceler demeden asla uyumazdı. Bu bir kuraldı. Kuralı kimin koyduğunu ikisi de hatırlamıyordu, ama ikisi de kurala uyuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_15",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9_eo_16",
+      "text": "{{child.name}} yatağına uzandığında hayali arkadaşı {{family.name}} kendi gününü anlatmaya başladı. {{family.name}}'ın günleri her akşam biraz daha maceralı çıkardı, ne tuhaf. {{child.name}} dinlerken kocaman esnedi. {{setting.name}}'da uyku saati çoktan gelmişti ve lamba bunu biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_eo_16",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

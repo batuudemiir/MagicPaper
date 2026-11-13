@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 3,
+  "beat": "obstacle_raises",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 4 (IV-2, commit ile), 5 (IV-1, denemeden önce) ya da 6 (I-1, denemeden sonra). Engel bir şeyi durdurmaz, zorlaştırır: iki ihtimal, azalan ışık, benzer şeylerin kalabalığı, kesilen bir iz. Tehlike, korku, şiddet yok. Satırlar denemeden önce de sonra da okunabilir. 9-10'da çocuk engeli hesaplar: bedeli ne, neye ihtiyacı var.",
+  "lengthClasses": {
+    "solo": "30-60 words — obstacle_raises is the whole page (I-1, IV-1) is the whole page",
+    "paired": "15-30 words — page 4 also carries commit (IV-2)"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ob_01",
+      "text": "Sonra işler karıştı. Önlerinde iki yol vardı ve ikisi de aynı derecede doğru görünüyordu. {{child.name}} birinden ötekine baktı. Yanlış olanı seçerse bütün öğleden sonra boşa gidecekti. Doğru olanı seçmek içinse elinde olmayan bir bilgiye ihtiyacı vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_01"
+    },
+    {
+      "id": "a9_ob_02",
+      "text": "Işık değişmeye başladı. Gölgeler uzadı, renkler soldu ve az önce açıkça görünen şeyler belirsizleşti. {{child.name}} bunun ne demek olduğunu biliyordu: bakmak her dakika biraz daha zorlaşacaktı. Zaman artık onların tarafında değildi, ama henüz karşılarında da sayılmazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_02"
+    },
+    {
+      "id": "a9_ob_03",
+      "text": "Aradıkları şeye benzeyen tek bir şey yoktu; bir sürü vardı. Her köşede biraz benzeri, biraz yakını duruyordu. {{child.name}} iç geçirdi. Bir şeyi bulmak zordu, ama bir sürü yanlış şeyin arasında doğru olanı bulmak çok daha zordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_03"
+    },
+    {
+      "id": "a9_ob_04",
+      "text": "{{companion.name}} bir an durdu ve itiraf etti: hatırladığı şey, sandığı kadar net değildi. Belki burada, belki biraz ötedeydi. {{child.name}} başını salladı. Bulanık bir hatıra, hiç hatıra olmamasından iyiydi, ama işi epey zorlaştırıyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_04"
+    },
+    {
+      "id": "a9_ob_05",
+      "text": "İlk bakışta küçük görünen yer, içine girince büyüdü. Her köşenin bir köşesi, her saklı yerin bir saklı yeri daha vardı. {{child.name}} durup hesap yaptı. Hepsine tek tek bakmak bütün günü alırdı. Daha akıllıca bir yol bulmaları gerekiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_05",
+      "settingTraits": [
+        "canConceal"
+      ]
+    },
+    {
+      "id": "a9_ob_06",
+      "text": "Bir yerde iz kesildi. Ne ileride bir devamı vardı, ne de yana sapan bir işaret. Sanki ip bir yerde düğümlenmiş, sonra makasla kesilmiş gibiydi. {{child.name}} kesilen ucun başında durdu. Buradan sonrası tahmin işiydi ve tahmin dikkatli yürütülmeliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_06",
+      "settingTraits": [
+        "showsTraces"
+      ],
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_ob_07",
+      "text": "Tam o sırada ortalık kalabalıklaştı. Gelip geçenler, kımıldayan gölgeler, birbirine karışan sesler. Her şey aynı anda ilgi isteyen bir şeye dönüştü. {{child.name}} dikkatinin dağıldığını hissetti. Aradıkları şey bu kalabalığın içinde kolayca gözden kaçabilirdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ob_07"
+    },
+    {
+      "id": "a9_ob_08",
+      "text": "Ama yol kolay olmayacaktı. Önlerinde iki ihtimal vardı ve ikisi de aynı derecede doğru görünüyordu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age9_a9_ob_08"
+    },
+    {
+      "id": "a9_ob_09",
+      "text": "Bir sorun vardı: ışık azalıyordu. Az sonra en belirgin şey bile gölgelerin arasında yavaşça kaybolacaktı.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age9_a9_ob_09"
+    },
+    {
+      "id": "a9_ob_10",
+      "text": "İşin zor yanı şuydu: ortada aradıklarına benzeyen bir sürü şey vardı. Doğrusunu yanlışlardan ayırmak sabır isteyecekti.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age9_a9_ob_10"
+    },
+    {
+      "id": "a9_ob_11",
+      "text": "Üstelik iz bir yerde kesiliyordu. Ötesi bilinmezdi; oradan sonrasını ancak dikkatli bir akıl yürütme taşıyabilirdi.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age9_a9_ob_11",
+      "settingTraits": [
+        "showsTraces"
+      ]
+    }
+  ]
+}

@@ -70,7 +70,8 @@ final class UsageLearningTests: XCTestCase {
     func testANeutralProfileKeepsThePinnedBook() throws {
         let intent = OfflineStoryIntent(childName: "Yeliz", seed: "pinned-seed-001", usage: .neutral)
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
-        XCTAssertEqual(story.fingerprint, "fbd9488a8a54b2e2")
+        // 13 Kasım 2026: 9-10 havuza girince referans kitap değişti.
+        XCTAssertEqual(story.fingerprint, "1d80933ff9a54cd5")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {

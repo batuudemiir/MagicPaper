@@ -10,7 +10,7 @@ final class BedtimeArcTests: XCTestCase {
 
     /// Faz 10: 7-8 de kendi uyku arkıyla.
     private static let bands = [AgeBand(lowerBound: 3, upperBound: 4), AgeBand(lowerBound: 5, upperBound: 6),
-                                AgeBand(lowerBound: 7, upperBound: 8)]
+                                AgeBand(lowerBound: 7, upperBound: 8), AgeBand(lowerBound: 9, upperBound: 10)]
     private static let seeds = ["a", "b", "c", "d", "e", "f"]
 
     private func catalog() throws -> ContentCatalog {

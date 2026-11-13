@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 5 ya da 6, hep tek başına. Çocuk bir yöntemle dener; sonuç tam bir başarısızlık değil, eksik ya da kararsız bir sonuçtur. Hiçbir şey çözülmez. 9-10'da 'neyin işe yaramadığını bilmek de bilgidir' düşüncesi çocuğun kendi ağzından gelir.",
+  "lengthClasses": {
+    "solo": "30-60 words — first_attempt is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_fa_01",
+      "text": "{{child.name}} ilk fikrini sahaya çıkardı. Plan sağlamdı, en azından kâğıt üstünde: izlerin geldiği yönü bulacak, o yönde yürüyecekti. Yirmi adım attı, sonra otuz. {{companion.name}} arkasından geliyordu. Ama izler bir yerde inceldi, sonra seçilmez oldu. Plan, kâğıdın dışında biraz zorlanıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_01",
+      "settingTraits": [
+        "showsTraces"
+      ]
+    },
+    {
+      "id": "a9_fa_02",
+      "text": "{{child.name}} işe en akla yatkın yerden başladı. Önce yakına baktı, sonra biraz daha uzağa. Her baktığı yeri aklında işaretledi, iki kez bakmamak için. {{companion.name}} sessizce yardım etti. Bir saat sonra aklındaki harita kalabalıklaşmıştı, ama aradıkları hâlâ hiçbir yerde yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_02"
+    },
+    {
+      "id": "a9_fa_03",
+      "text": "\"Küçükten başlayalım,\" dedi {{child.name}}. Fikrini sınamak için bir şey yaptı ve bekledi. Bir şey oldu, ama tam beklediği şey değil. Ne tamamen yanlıştı ne de tamamen doğru. {{child.name}} kaşlarını çattı. Yarım cevaplar, hiç cevap olmamasından daha kafa karıştırıcıydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_03"
+    },
+    {
+      "id": "a9_fa_04",
+      "text": "{{child.name}} yöntemli davrandı: aramayı küçük parçalara böldü ve her parçayı sırayla taradı. {{companion.name}} bir ucu tuttu, o öbür ucu. Yöntem iyiydi, bundan şüphesi yoktu. Sorun, yöntemin sonunda ellerinde hiçbir şeyin olmamasıydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_04",
+      "words": [
+        "w78_yontem"
+      ]
+    },
+    {
+      "id": "a9_fa_05",
+      "text": "{{child.name}} tahminine güvenerek ilerledi. Her adımda doğru yolda olduğunu düşündü, çünkü her şey düşündüğü gibi görünüyordu. Derken bir şey ters düştü. Küçük bir şeydi, ama inatçı bir küçüklüğü vardı. {{child.name}} durdu ve geriye dönüp baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_05",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_fa_06",
+      "text": "İlk deneme, {{child.name}}'in umduğu kadar parlak geçmedi. Her şeyi doğru sırayla yaptı, hiçbir adımı atlamadı. Yine de sonuç, beklediğinin yanından geçip gitti. {{companion.name}} bir şey demedi, {{child.name}} bir şey demedi. Ama ikisi de aynı şeyi düşünüyordu: bir şey eksikti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_06"
+    },
+    {
+      "id": "a9_fa_07",
+      "text": "{{child.name}} ilk denemeyi ciddiyetle yaptı, bir bilim insanı gibi. Ne yaptığını, ne gördüğünü aklına not etti. Sonuç ne evet dedi ne hayır. \"En azından neyin işe yaramadığını biliyoruz,\" dedi {{companion.name}}'a. Bu da bir bilgiydi, hem de hiç küçümsenmeyecek bir bilgi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_fa_07"
+    }
+  ]
+}

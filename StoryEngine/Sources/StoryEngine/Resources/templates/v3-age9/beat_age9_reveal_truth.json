@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 3,
+  "beat": "reveal_truth",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 8 (V-1). Gerçek ortaya çıkar ve varsayımdan daha sade, daha sıcaktır. Çocuk onu kendi ilk gözlemini yeniden okuyarak bulur; yeni bilgi gökten düşmez. Korkutucu, tehlikeli ya da üzücü bir gerçek yok.",
+  "lengthClasses": {
+    "solo": "30-60 words — reveal_truth is the whole page is the whole page"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_rt_01",
+      "text": "Ve sonra {{child.name}} anladı. Kurduğu açıklama bir romana yakışırdı; gerçek ise bir alışveriş listesine. Sade, gündelik, biraz da sevimli. Tahmini yanlış değil, fazla süslüydü. {{child.name}} süsleri tek tek söktü ve geriye kalan gerçeğe gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_01",
+      "words": [
+        "w78_tahmin"
+      ]
+    },
+    {
+      "id": "a9_rt_02",
+      "text": "{{child.name}} bütün parçaları yeniden dizdi, bu kez doğru sırayla. Resim kendiliğinden belirdi. Baştan beri gizlenen ya da kaybolan bir şey yoktu; yalnızca anlaşılacak bir şey vardı. {{child.name}} gülümsedi, çünkü anlamak çözmekten bile güzel geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_02"
+    },
+    {
+      "id": "a9_rt_03",
+      "text": "Gerçek, {{child.name}}'in burnunun dibindeydi. En başta gördüğü şeyler baştan beri aynı cevabı fısıldıyordu. Yalnızca yanlış soruyu sorduğu için onu duyamamıştı. \"Bu ne?\" yerine \"Bu neden burada?\" diye sorunca cevap, kapıyı çalmadan içeri girdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_03"
+    },
+    {
+      "id": "a9_rt_04",
+      "text": "{{child.name}}'in kafasında sessiz bir taşınma oldu. Eski açıklama eşyalarını toplayıp kenara çekildi, yerine yenisi yerleşti. Yeni açıklama daha küçüktü, daha sıcaktı ve her parçaya uyuyordu. {{companion.name}} onun yüzüne baktı ve bir şey sormadı; sormaya gerek yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_04"
+    },
+    {
+      "id": "a9_rt_05",
+      "text": "\"Aaa,\" dedi {{child.name}}, ve bu iki harf bütün bir sabahın özeti oldu. Aradığı açıklama başka bir yerde değil, kendi ilk gözleminin içindeydi. O gözlemi bir kez daha, bu kez önyargısız okudu. Okuyunca her parça kendi yerine yerleşti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_05"
+    },
+    {
+      "id": "a9_rt_06",
+      "text": "Sonunda gerçek ortaya çıktı ve hiç de {{child.name}}'in sandığı gibi değildi. Ne büyüktü, ne gizemli, ne de karmaşık. Basit, sevimli ve biraz da komikti. {{child.name}} az önceki ciddiyetini hatırlayınca kendine güldü. Bazı sırlar, kaş çatarak değil, gülümseyerek çözülürdü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_06"
+    },
+    {
+      "id": "a9_rt_07",
+      "text": "{{child.name}} doğru cevabın ilk düşündüğüne hiç benzemediğini gördü. İlk fikir yanlış değildi aslında; yalnızca yarımdı. Öbür yarısını yanlış yerde aramıştı. Şimdi iki yarım bir araya gelince ortaya bütün, sakin ve açık bir gerçek çıkmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rt_07"
+    }
+  ]
+}

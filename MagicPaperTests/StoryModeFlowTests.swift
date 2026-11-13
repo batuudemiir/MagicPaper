@@ -33,10 +33,14 @@ final class StoryModeFlowTests: XCTestCase {
 
     func testABandWithoutContentIsServedFromTheNearestOne() {
         XCTAssertEqual(service.servedBand(forAge: 6), AgeBandResolver.mvp)
-        // Faz 10: 7-8 kendi içeriğiyle; boş kalan 9-10 en yakın banttan, 7-8'den.
         XCTAssertEqual(service.servedBand(forAge: 8), AgeBand(lowerBound: 7, upperBound: 8))
-        XCTAssertEqual(service.servedBand(forAge: 10), AgeBand(lowerBound: 7, upperBound: 8),
-                       "9-10 has no content yet; it is served from 7-8.")
+        // 13 Kasım 2026: 9-10 kendi içeriğiyle. Düşme kuralı hâlâ duruyor;
+        // boş bir bant onu yalnızca eksik bir listeyle tetikler.
+        XCTAssertEqual(service.servedBand(forAge: 10), AgeBand(lowerBound: 9, upperBound: 10))
+        let withoutNineTen: Set<AgeBand> = [AgeBand(lowerBound: 3, upperBound: 4), AgeBand(lowerBound: 5, upperBound: 6),
+                                             AgeBand(lowerBound: 7, upperBound: 8)]
+        XCTAssertEqual(AgeBandResolver.servedBand(for: AgeBand(lowerBound: 9, upperBound: 10), available: withoutNineTen),
+                       AgeBand(lowerBound: 7, upperBound: 8), "A band without content is served from the nearest one.")
     }
 
     // MARK: - Modlar

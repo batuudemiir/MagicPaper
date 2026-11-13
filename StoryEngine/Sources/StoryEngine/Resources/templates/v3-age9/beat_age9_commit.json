@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 4. Çocuk sürüklenmez, seçer; seçim görünür ve gerekçelidir. Kimse onun yerine karar vermez. 9-10'da çocuk seçenekleri tartar, vazgeçmeyi de bir seçenek olarak görür ve bilerek bırakır.",
+  "lengthClasses": {
+    "solo": "30-60 words — commit is the whole page (V-1, IV-1) is the whole page",
+    "paired": "15-30 words — page 4 also carries form_belief or obstacle_raises"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_cm_01",
+      "text": "{{child.name}} bir süre düşündü. Eve dönmek, olanları akşam yemeğinde anlatmak, sonra unutup gitmek kolaydı. Ama kolay olan her zaman iyi olan değildi. \"Ben bunun aslını öğreneceğim,\" dedi. Söylediği anda kararın ağırlığını hissetti ve bu ağırlık hoşuna gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_01"
+    },
+    {
+      "id": "a9_cm_02",
+      "text": "Bir yanda sıcak bir öğle yemeği vardı, öbür yanda çözülmemiş bir bilmece. {{child.name}} ikisini tarttı. Yemek bekleyebilirdi, bilmece ise beklerse soğuyabilirdi. \"Tamam,\" dedi {{companion.name}}'a, \"işe başlıyoruz.\" {{companion.name}} itiraz etmedi; öğle yemeğini ertelemeye o da gönüllüydü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_02"
+    },
+    {
+      "id": "a9_cm_03",
+      "text": "{{child.name}} kararını sessizce verdi, kimseye sormadan. Belki zaman alacaktı, belki yorulacaktı, belki de hiçbir şey bulamayacaktı. Bunların hepsini düşündü. Ama düşündükçe merakı küçülmedi, büyüdü. Demek ki karar zaten verilmişti; ona yalnızca adını koymak kalıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_03"
+    },
+    {
+      "id": "a9_cm_04",
+      "text": "\"Bak,\" dedi {{child.name}}, \"iki seçeneğimiz var. Ya burada durup merak ederiz ya da gidip öğreniriz.\" {{companion.name}} cevap vermeden önce {{child.name}} kendi seçimini yapmıştı bile. Ayakkabısının bağını sıktı. Bu, onun 'gidiyoruz' deme biçimiydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_04"
+    },
+    {
+      "id": "a9_cm_05",
+      "text": "Vazgeçmek de bir seçenekti, {{child.name}} bunu iyi biliyordu. Onu dikkatle düşündü, bir kitabı ilk sayfasından sonra kapatmayı düşünür gibi. Sonra kitabı kapatmadı. \"Devam ediyorum,\" dedi, daha çok kendine. Bu sözü bozmamaya kararlıydı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_05"
+    },
+    {
+      "id": "a9_cm_06",
+      "text": "{{child.name}} kafasında üç maddelik bir plan yaptı: bakmak, düşünmek, sonra bir daha bakmak. Plan kısaydı ama eksiği yoktu. \"Sonuna kadar gideceğim,\" dedi. {{companion.name}} başını salladı ve ilk maddenin nereden başlayacağını sordu. İyi bir soruydu; {{child.name}} biraz düşünmek zorunda kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_06"
+    },
+    {
+      "id": "a9_cm_07",
+      "text": "Gün daha yarısına gelmemişti, yani zaman vardı. {{child.name}} bunu bir işaret saydı, gerçi işaretlere pek inanmazdı. \"Bakalım nereye çıkacak,\" dedi ve ilk adımı attı. {{companion.name}} arkasından geldi; o, işaretlere çok daha fazla inanırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_cm_07"
+    },
+    {
+      "id": "a9_cm_08",
+      "text": "{{child.name}} kararını çoktan vermişti: bunun aslını öğrenmeden eve dönmeyecekti. Akşam yemeği biraz bekleyebilirdi, merak ise bekleyemezdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cm_08"
+    },
+    {
+      "id": "a9_cm_09",
+      "text": "{{child.name}} kendine bir söz verdi ama onu yüksek sesle söylemedi; bozarsa kimse duymamış olacaktı. Gerçi bozmaya hiç niyeti yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cm_09"
+    },
+    {
+      "id": "a9_cm_10",
+      "text": "{{child.name}} içinde iki sesin tartıştığını duydu. Biri \"Yarın da bakarsın\" diyordu, öbürü \"Yarın çok uzak.\" İkincisi daha ikna ediciydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cm_10"
+    },
+    {
+      "id": "a9_cm_11",
+      "text": "\"Peki,\" dedi {{child.name}}, \"buna bir öğleden sonra ayırıyorum.\" Sonra düşündü ve cümlesini düzeltti: \"Gerekirse iki öğleden sonra.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_cm_11"
+    }
+  ]
+}

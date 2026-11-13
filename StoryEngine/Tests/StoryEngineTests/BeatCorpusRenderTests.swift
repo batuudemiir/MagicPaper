@@ -51,12 +51,13 @@ final class BeatCorpusRenderTests: XCTestCase {
         ]
     }
 
-    /// Every authored beat file in the v3 corpus and its 7-8 sibling (Faz 10).
+    /// Every authored beat file in the v3 corpus and its 7-8 (Faz 10) and
+    /// 9-10 (13 Kasım 2026) siblings.
     private func loadAllCorpora() throws -> [BeatFile] {
         let root = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Sources/StoryEngine/Resources/templates")
-        let files = try ["v3", "v3-age7"].flatMap { folder in
+        let files = try ["v3", "v3-age7", "v3-age9"].flatMap { folder in
             try FileManager.default.contentsOfDirectory(
                 at: root.appendingPathComponent(folder), includingPropertiesForKeys: nil)
         }

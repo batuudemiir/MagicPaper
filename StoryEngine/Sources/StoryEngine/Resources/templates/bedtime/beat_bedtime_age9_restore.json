@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_rs_01",
+      "text": "Sonunda {{companion.name}} derin bir iç çekti ve uykuya daldı. Minicik nefesi düzenli düzenli inip kalkıyordu. {{child.name}} bir süre onu izledi. Bir işi bitirmenin iyi yanı, bittiğini kimseye söylemeye gerek olmamasıydı. {{child.name}} söylemedi; sadece yorganını biraz daha yukarı çekti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_02",
+      "text": "{{companion.name}}'in gözleri kapandı. Küçük bir kıpırtı, uzun bir nefes, sonra derin bir sessizlik. {{child.name}} onu uyandırmamak için yastığının üstünde çok yavaş döndü. Yastık bile bu kez hışırdamamak için elinden geleni yapıyor gibiydi. Yorgan da ona katıldı ve hiç kımıldamadı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_03",
+      "text": "{{companion.name}} uyudu. Hem de öyle tatlı uyudu ki {{child.name}} bir süre gözlerini ondan ayıramadı. Uyutmak, uyumaktan bile güzelmiş, diye düşündü. Sonra bu düşünceyi de usulca bir kenara bıraktı. Düşünceler de dinlenmeliydi; hem sıra artık kendi uykusundaydı ve o da kapıda bekliyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_04",
+      "text": "Bir süre sonra {{companion.name}} hiç kıpırdamadı. Uyumuştu. {{child.name}} içinden sevindi, ama sesini çıkarmadı. Sevincini yorganın altında, ayak parmaklarını oynatarak kutladı. Kimse görmedi, kimse duymadı. Zaten bu, sadece ayak parmaklarının bildiği küçük ve sessiz bir kutlamaydı. Sonra onlar da durdu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_05",
+      "text": "Pencerenin önünde artık hiçbir ses yoktu. {{companion.name}} pervazın köşesine sokulmuş, uyuyordu. Az önceki {{discovery.name}} yerini yavaş ve düzenli bir nefese bırakmıştı. {{child.name}} bu değişikliği bir süre dinledi. Bir ses susmuştu, yerine ondan da küçük, çok daha rahat bir ses gelmişti.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_06",
+      "text": "{{child.name}} başını çevirip pencereye baktı. {{companion.name}} küçük bir top gibi kıvrılmış, derin derin uyuyordu. Akşamın bütün telaşı onun üstünden kalkmış gibiydi. {{child.name}} başını yastığa geri koydu. Oda da sanki onunla birlikte rahat bir nefes verdi ve biraz daha ısındı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_07",
+      "text": "Pervazdan artık sadece uykunun sesi geliyordu: incecik, düzenli, sabırlı. {{companion.name}} uykusunda bir kez gülümsedi; belki tatlı bir rüyanın kapısından girmişti. {{child.name}} bu rüyanın ne olduğunu bilmiyordu. Bilmesine gerek de yoktu. Başkasının tatlı rüyası, insanın içini yine de ısıtırdı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_rs_08",
+      "text": "{{companion.name}} uyuyordu ve pencerenin önü eski hâline dönmüştü. Ay ışığı pervazda duruyor, perde arada bir kıpırdıyordu. Tek fark, oradaki küçük ve yuvarlak uykuydu. {{child.name}} gözlerini kırpıştırdı. Odanın bir köşesi tamamlanmıştı. Sıra, yorganın altındaki öteki köşedeydi; orası da hazırdı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_rs_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

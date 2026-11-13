@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 9 (IV-1), kalıcı aramadan sonra (afterBeat: persist). Başkasının rahatlaması, çocuğun başarısı değil: yol arkadaşı kaybettiğine kavuşur, son adımı çoğu kez kendi atar. Ödül, teşekkür borcu, övgü yok.",
+  "lengthClasses": {
+    "solo": "30-60 words — page 9 is never shared is the whole page"
+  },
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "ödül olarak",
+    "teşekkür borcu",
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_rs_01",
+      "text": "Sonunda {{child.name}}'in aklına bir soru takıldı. Kaybolan bir şey sahibinin hiç bakmadığı yerde mi olurdu, yoksa en çok baktığı yerde mi? En çok bakılan yer, en az görülen yerdi çünkü. Oraya baktılar. Oradaydı. {{companion.name}} onu yanına aldı ve uzun uzun, rahat rahat güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_01",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a9_rs_02",
+      "text": "{{child.name}} kaybolan şeyin yolculuğunu tersinden düşündü: en son nerede görülmüştü, oradan nereye gitmiş olabilirdi? Gidebileceği tek bir yer vardı. {{companion.name}} oraya bakınca sesi titredi, ama bu kez sevinçten. Aradığı şey oradaydı, tek parça. {{companion.name}} onu iki kez kontrol etti, sonra bir kez daha.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_02",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a9_rs_03",
+      "text": "\"Bir de şuraya bakalım,\" dedi {{child.name}}, \"çünkü başka hiçbir yer kalmadı.\" Elenen yerlerin listesi o kadar uzundu ki geriye kalan tek yer kendini adeta gösteriyordu. {{companion.name}} baktı ve sevinçle bir ses çıkardı. Kayıp şey, sabırla daraltılmış bir çemberin tam ortasındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_03",
+      "afterBeat": [
+        "persist"
+      ],
+      "words": [
+        "w910_sabir"
+      ]
+    },
+    {
+      "id": "a9_rs_04",
+      "text": "{{child.name}}'in son tahmini tuttu ve kayıp şey ortaya çıktı. {{companion.name}} ona kavuşunca önce sustu, sonra konuşmaya başladı ve uzun süre susmadı. Nerede aradığını, nerede aramadığını, ne kadar endişelendiğini tek tek anlattı. {{child.name}} dinledi. Bulmak bir sevinçti; anlatmak ise belli ki ikinci bir sevinçti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_04",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a9_rs_05",
+      "text": "{{child.name}} yöntemini son bir kez uyguladı: en olası yerden en az olası yere. Listenin sonuna gelmeden, ortalarında bir yerde, kayıp şey çıktı. {{companion.name}} kaybını sıkıca tuttu ve rahat bir soluk verdi. Sonra yorgunluk gelip ikisinin arasına oturdu, ama kimse ona aldırmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_05",
+      "afterBeat": [
+        "persist"
+      ],
+      "words": [
+        "w78_yontem"
+      ]
+    },
+    {
+      "id": "a9_rs_06",
+      "text": "\"Bir dakika,\" dedi {{child.name}}. \"Onu en son ne yaparken görmüştün?\" {{companion.name}} düşündü ve bir yer söyledi. {{child.name}} o yeri, baktıkları yerlerin listesinde aradı; yoktu. İkisi oraya gitti. Kayıp şey, orada, sahibini sabırla bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_06",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a9_rs_07",
+      "text": "{{child.name}} sıradan yerleri en sona bırakmıştı; sonra bunun bir hata olduğunu düşündü, çünkü kimse sıradan yerde aramazdı. Kayıp şey de tam oradan çıktı. {{companion.name}} onu uzun uzun süzdü, sanki yokluğunda değişmiş mi diye. Değişmemişti; yalnızca biraz yer değiştirmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_rs_07",
+      "afterBeat": [
+        "persist"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 2. Çocuk TEK somut şey fark eder: ne zaman, hangi yöne, kaç tane. Sonraki çözüm sayfası buna dayanır; 'tuhaftı' bir gözlem değildir. Yol arkadaşı henüz gelmemiştir. 9-10'da çocuk gözlemini bir yöntemle yapar (sayar, bekler, liste kurar) ve kendi sabırsızlığına hafifçe güler.",
+  "lengthClasses": {
+    "solo": "30-60 words — examine is the whole page is the whole page",
+    "paired": "15-30 words — page 2 also carries form_belief (V-1)"
+  },
+  "bannedConstructions": [
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_ex_01",
+      "text": "{{child.name}} dokunmak için elini uzattı, sonra vazgeçti. Önce bakmak gerekiyordu; dokunmak her zaman bekleyebilirdi. Çömeldi, başını yana eğdi ve sabırla inceledi. Sonunda gözüne bir şey takıldı: {{discovery.name}} gelişigüzel bırakılmamıştı. Hep aynı yöne, güneşin doğduğu yana dönüktü. Bu, rastlantı olamayacak kadar düzgündü.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_01",
+      "words": [
+        "w910_sabir"
+      ]
+    },
+    {
+      "id": "a9_ex_02",
+      "text": "{{child.name}} saymaya başladı, çünkü saymak düşünmenin en sakin yoluydu. Bir, iki, üç... Yedincide de düzen bozulmadı. Aralıklar eşitti, sıra hiç şaşmıyordu. Düzeni olan şeyin bir sebebi de olurdu. {{child.name}} bu cümleyi aklının en sağlam rafına koydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_02",
+      "words": [
+        "w78_duzen"
+      ]
+    },
+    {
+      "id": "a9_ex_03",
+      "text": "{{child.name}} bir heykel kadar hareketsiz durmaya karar verdi. Bunu yapmak sanıldığından zordu; burnu kaşındı, ayağı uyuştu. Ama sabrının karşılığını aldı. Ortalık iyice durulunca fark etti: her şey yalnızca etraf sessizken belli oluyordu. En küçük kıpırtıda kayboluyor, sessizlik dönünce geri geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_03"
+    },
+    {
+      "id": "a9_ex_04",
+      "text": "{{child.name}} kendine üç soru sordu ve her birini dürüstçe cevapladı. Birincisi: ne zamandır buradaydı? Bilmiyordu. İkincisi: nereden gelmişti? Onu da bilmiyordu. Üçüncüsü: kesin bildiği bir şey var mıydı? Vardı: ne olursa olsun, hep aynı tarafa doğru uzanıyordu. Az şeydi, ama sağlamdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_04"
+    },
+    {
+      "id": "a9_ex_05",
+      "text": "{{child.name}} bildiklerini bir listeye döktü. Liste kısaydı, hatta biraz utanılacak kadar kısaydı. Ama ilk maddesinden şüphe yoktu: dün akşamla bu sabah arasında burada bir şey değişmişti. Demek ki ne olduysa, kimse bakmazken olmuştu. Kısa listeler de bazen işe yarardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_05"
+    },
+    {
+      "id": "a9_ex_06",
+      "text": "{{child.name}} eğildi ve yakından baktı, burnu neredeyse değecekti. Bir yanı öbür yanından daha özenliydi; sanki işin yarısında birinin çayı soğumuş da kalkıp gitmiş gibi. Bu küçük ayrıntı, {{child.name}}'in aklına çengel gibi takıldı. Kim yarım bırakırdı ki bunu, hem de neden?",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_06",
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "words": [
+        "w78_ayrinti"
+      ]
+    },
+    {
+      "id": "a9_ex_07",
+      "text": "{{child.name}} parçaları tek tek saydı ve bir şey fark etti. Kimi eksiksizdi, kimininse bir ucu yoktu. Ama eksikler gelişigüzel değildi; hepsi aynı taraftaydı. Gelişigüzel olmayan bir şey, bir hikâye anlatıyor demekti. {{child.name}} o hikâyenin ilk cümlesini bulduğunu hissetti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_ex_07",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "a9_ex_08",
+      "text": "{{child.name}} önce uzaktan, sonra yakından baktı; iki bakış aynı şeyi söylemiyordu. Uzaktan düzgün görünen şey, yakından küçük bir sapma gösteriyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ex_08"
+    },
+    {
+      "id": "a9_ex_09",
+      "text": "{{child.name}} saymaya başladı. Yedi kez saydı, yedisinde de aynı aralık çıktı. Düzenli bir şeyin mutlaka bir sebebi olurdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ex_09",
+      "words": [
+        "w78_duzen"
+      ]
+    },
+    {
+      "id": "a9_ex_10",
+      "text": "{{child.name}} kenarlarına baktı, çünkü bir şeyin hikâyesi çoğu zaman kenarda yazardı. Gerçekten de bir kenarda, gözden kolay kaçan bir ayrıntı vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ex_10",
+      "discoveryTraits": [
+        "isVisible"
+      ],
+      "words": [
+        "w78_ayrinti"
+      ]
+    },
+    {
+      "id": "a9_ex_11",
+      "text": "{{child.name}} bildiklerini parmaklarıyla saydı ve bir parmakta kaldı. Tek bilgi şuydu: burası düne göre değişmişti. Az, ama başlangıç için yeterliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age9_a9_ex_11"
+    }
+  ]
+}

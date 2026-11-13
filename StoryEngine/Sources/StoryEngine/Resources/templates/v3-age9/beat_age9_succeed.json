@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 3,
+  "beat": "succeed",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 9, hiç paylaşılmaz. Başarı KAZANILIR: bir önceki sayfada çocuğun yaptığı şey yüzünden olur ve metin bunu söyler (afterBeat). Kimse çocuğu övmez; sevinç onun kendi bilgisidir. 'Her şey yoluna girdi', 'sihirli bir şekilde' yok.",
+  "lengthClasses": {
+    "solo": "30-60 words — page 9 is never shared is the whole page"
+  },
+  "bannedConstructions": [
+    "her şey yoluna girdi",
+    "sihirli bir şekilde",
+    "birden her şey düzeldi",
+    "hemen",
+    " anında",
+    "yapay zeka",
+    "üret",
+    "oluştur"
+  ],
+  "variants": [
+    {
+      "id": "a9_sc_01",
+      "text": "Bu kez {{child.name}} acele etmedi; adım adım, sırayla denedi. Ve işledi. {{companion.name}} önce inanamadı, sonra iki kez kontrol etti, sonra yine inanamadı. {{child.name}} gülmemek için dudağını ısırdı. Sabahtan beri kafasını kurcalayan soru, sonunda yerine oturmuştu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_01",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth",
+        "exchange_views"
+      ]
+    },
+    {
+      "id": "a9_sc_02",
+      "text": "{{child.name}} son parçayı yerine koydu; ortalığa garip bir sessizlik çöktü, bilmecesini kaybeden bir yerin sessizliği. {{companion.name}} etrafa baktı, sanki başka bir bilmece kalmış mı diye. Ardından {{child.name}} baktı. Kalmamıştı, en azından bugünlük.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_02",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth",
+        "exchange_views"
+      ]
+    },
+    {
+      "id": "a9_sc_03",
+      "text": "Cevap, {{child.name}} onu yüksek sesle söylediği anda gerçek oldu. {{companion.name}} ağzını açtı, kapadı, sonra yeniden açtı. \"Peki,\" dedi sonunda, \"bu gerçekten bu kadar basit miydi?\" {{child.name}} omuz silkti. Basitti; yalnızca basit olduğunu görmek uzun sürmüştü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_03",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth",
+        "exchange_views"
+      ]
+    },
+    {
+      "id": "a9_sc_04",
+      "text": "{{child.name}} ipuçlarını son bir kez sıraya dizdi, bu kez sınamak için değil, keyif için. Her biri yerindeydi ve her biri ötekini açıklıyordu. Sabahki karmaşa, şimdi bir yemek tarifi kadar düzenliydi. {{companion.name}} tarifi baştan duymak istedi; {{child.name}} en başından anlattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_04",
+      "afterBeat": [
+        "insight",
+        "retrace",
+        "reveal_truth",
+        "exchange_views"
+      ],
+      "words": [
+        "w78_ipucu"
+      ]
+    },
+    {
+      "id": "a9_sc_05",
+      "text": "{{child.name}} iki ucu birleştirdi ve sınadı: bağlantı tuttu. Birbirinden habersiz iki küçük bilgi, yan yana gelince koca bir bilmeceyi çözmüştü. {{companion.name}} bunu duyunca uzun uzun düşündü. \"İki küçük bilgi bir büyük bilgi ediyor demek,\" dedi. \"Matematik buna ne der acaba?\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_05",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "a9_sc_06",
+      "text": "{{child.name}} tahminini sınadı ve tahmin ayakta kaldı. Fark ettiği düzen ile sonradan öğrendiği şey, anahtarla kilit gibi birbirine geçti. Kilit açılınca {{child.name}} kitaplardaki dedektifleri düşündü; onlar bu anda hep kahve içerdi. O ise kahveyi hiç sevmezdi; bir bardak suyla yetindi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_06",
+      "afterBeat": [
+        "insight"
+      ],
+      "words": [
+        "w78_tahmin",
+        "w78_duzen"
+      ]
+    },
+    {
+      "id": "a9_sc_07",
+      "text": "İlk geçişte gözden kaçan şey, ikinci geçişte yerli yerinde duruyordu. {{child.name}} onu dikkatle inceledi; bu kez yanılmak istemiyordu. Yanılmadı. {{companion.name}} geldikleri yola baktı, sonra {{child.name}}'e. \"Bütün o yolu,\" dedi, \"geri gelmek için mi yürüdük?\" Öyle görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_07",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "a9_sc_08",
+      "text": "{{child.name}} bir noktada durdu, eğildi ve aradıklarını gördü. Gelirken tam bunun yanından geçmişlerdi. {{companion.name}} buna o kadar şaşırdı ki bir süre konuşamadı. {{child.name}} ise içinden bir not düştü: en zor bulunan şeyler, bazen en çok yanından geçilenlerdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_08",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "a9_sc_09",
+      "text": "Gerçeği bilince gerisi kolaydı. {{child.name}} yanlış fikri nazikçe rafa kaldırdı ve doğrusuyla yeniden başladı. Bu kez her adım bir öncekine uydu. Rafa kalkan fikir oradan biraz küskün bakıyordu; {{child.name}} ona göz kırptı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_09",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a9_sc_10",
+      "text": "{{child.name}} doğru açıklamayla her şeyi bir kez daha sınadı, bu kez yanılmayı bekleyerek. Ama hiçbir parça itiraz etmedi. {{companion.name}} kendi eski fikrini hatırlayıp kıkırdadı; o da yanılanlar kulübündendi. Sonra ikisi de sustu, keyifle. Doğru cevabın yanında oturmak, sandıklarından rahattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_10",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "a9_sc_11",
+      "text": "{{child.name}} iki bakışı birleştirip son kez sınadı ve bu kez hiçbir şey dışarıda kalmadı. Kendi ilk fikri de {{companion.name}}'ın kuramı da yarı yarıya haklıydı; doğru cevap tam ortalarındaydı. {{companion.name}} buna pek sevindi. \"Yarı haklı olmak,\" dedi ciddiyetle, \"hiç haklı olmamaktan iyidir.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_11",
+      "afterBeat": [
+        "exchange_views"
+      ]
+    },
+    {
+      "id": "a9_sc_12",
+      "text": "Cevap ikisi konuşurken belirmişti, ama onu sınamak {{child.name}}'e düştü. Sınadı ve tuttu. {{companion.name}} kendi gözleminin de işe yaradığını duyunca biraz kabardı. {{child.name}} bunu ona çok görmedi. O gözlem gerçekten işe yaramıştı; eksik olan sadece son adımdı, onu da kendisi atmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_a9_sc_12",
+      "afterBeat": [
+        "exchange_views"
+      ],
+      "words": [
+        "w910_gozlem"
+      ]
+    }
+  ]
+}

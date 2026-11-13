@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkında bu beat sayfanın tamamı"
+  },
+  "variants": [
+    {
+      "id": "b9_ex_01",
+      "text": "{{child.name}} yataktan kalkmadı; dinlemek için kalkmaya gerek yoktu. Gözlerini kapadı ve sesi dikkatle dinledi. {{discovery.name}} hep pencerenin sol köşesinden geliyordu ve her seferinde biraz daha kısıktı. Yorulan birinin sesiydi bu. Büyükler yorgunluklarını hiç bu kadar kibar ilan etmezdi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_02",
+      "text": "{{child.name}} yorganı omuzlarına çekti ve sesi saymaya başladı, çünkü saymak düşünmenin en sakin yoluydu. Bir {{discovery.name}}, kısa bir sessizlik, bir tane daha. Aralar giderek uzuyordu. Demek ki sesin sahibi yoruluyordu. Ama tıpkı ödevini bitirip kalemini bırakamayan biri gibi, bir türlü dinlenemiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_03",
+      "text": "{{child.name}} yastığın üstünde başını çevirip pencereye baktı. Perdenin ardında, ay ışığına karışmış minik bir kıpırtı vardı. Kıpırtı her {{discovery.name}} ile biraz büyüyor, sonra yine küçülüyordu. {{child.name}} bir süre izledi. Bu kadar küçük birinin bu kadar uykusuz olması, doğrusu biraz tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_03",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_04",
+      "text": "{{child.name}} kendine üç soru sordu. Ses nereden geliyordu? Pencereden. Tatsız mıydı? Hiç değildi. Ne istiyordu? İşte onu bilmiyordu. Ama {{discovery.name}} öyle uykulu çıkıyordu ki üçüncü sorunun cevabı da yavaş yavaş belirdi. Biri uyumak istiyordu, ama nereden başlayacağını bilmiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_04",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_05",
+      "text": "{{setting.name}}'da dinlemek kolaydı, çünkü ses çıkaran başka hiçbir şey yoktu. {{child.name}} kendi nefesi araya girmesin diye nefesini yavaşlattı. {{discovery.name}} yine geldi, hep aynı yerden, hep aynı yumuşaklıkta. Sesin sahibi pencerenin önünde oturuyordu. Belli ki bir yere gitmek değil, sadece uyumak istiyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_05",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_06",
+      "text": "{{child.name}} sesi bildiği seslerle karşılaştırdı. Damlayan musluk değildi, onun ritmi daha sıkıcıydı. Gıcırdayan dolap kapağı da değildi, o hiç bu kadar tatlı olmazdı. Geriye tek bir ihtimal kalıyordu. {{discovery.name}} canlı birinden geliyordu, hem de uykusunu bir türlü yakalayamamış birinden.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_06",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_07",
+      "text": "{{child.name}} yataktan çıkmadan dirseğinin üstünde doğruldu. Pencere iki adım ötedeydi, ama bakmak için yürümek gerekmiyordu. Ay ışığı camı aydınlatıyordu. {{discovery.name}} her duyulduğunda camın alt köşesinde bir şey hafifçe kıpırdıyordu. Merak, uykunun bir adım önüne geçmişti. Uyku buna alınmadı; kenarda sabırla bekledi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_07",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9_ex_08",
+      "text": "{{child.name}} kafasının içinde sesin küçük bir haritasını çıkardı. Pencere sağdaydı, ses pervazın tam ortasından geliyordu. {{discovery.name}} her seferinde biraz daha alçalıyordu. Harita küçüktü ama yeterliydi. Pervazda uykusu gelmiş biri vardı ve o biri, en az {{child.name}} kadar yorgundu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age9_b9_ex_08",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

@@ -220,7 +220,8 @@ final class FamilyCastTests: XCTestCase {
         let familyLineIDs = Set(catalog.templates.flatMap(\.variants).filter(\.isFamilyLine).map(\.id))
         // 36 standard lines (FAZ 11) + 48 bedtime-arc lines (21 Ekim 2026).
         // 84 + 44 (Faz 10, 7-8 bandı: standart ve uyku aile anları).
-        XCTAssertEqual(familyLineIDs.count, 128)
+        // 128 + 44 (13 Kasım 2026, 9-10 bandı: standart ve uyku aile anları).
+        XCTAssertEqual(familyLineIDs.count, 172)
         for band in [AgeBand(lowerBound: 3, upperBound: 4), AgeBand(lowerBound: 5, upperBound: 6)] {
             for mode in BlueprintSelector().availableModes(catalog: catalog, ageBand: band) {
                 for seed in 0..<6 {
