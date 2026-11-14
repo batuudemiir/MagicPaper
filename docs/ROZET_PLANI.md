@@ -1,4 +1,4 @@
-# Rozet planı: 8 rozetten 41 rozete
+# Rozet planı: 8 rozetten 69 rozete
 
 **Tarih:** 15 Kasım 2026 · **Durum:** R0 kararları verildi (Batuhan, 15 Kasım 2026); sıradaki R1
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
@@ -26,11 +26,11 @@ Sorun: 8 rozetin 5'i ilk 10 masalda biter. Ondan sonra çocuk aylarca yeni rozet
 
 | Duolingo | MagicPaper | Neden |
 |---|---|---|
-| Çok sayıda rozet, aileler hâlinde | ✅ 41 rozet, 10 aile | Yol uzar, her hafta bir şey olur |
+| Çok sayıda rozet, aileler hâlinde | ✅ 69 rozet, 12 aile | Yol uzar, her hafta bir şey olur |
 | Kademeli rozet (seviye 1-10) | ✅ "kat": aynı rozetin büyüyen hâli | Tek kartta derinlik, ızgara kalabalıklaşmaz |
 | Büyük kutlama anı | ✅ gündüz masal sonunda tek an; gece sessiz satır | Uyku vakti sakin kalır |
 | Karakterin sevinci | ✅ Ragi'nin `cheer` pozu + tek cümle | Zaten var, rozete bağlanır |
-| Gizli rozetler | ✅ 3 tane, "?" ile kilitli | Sürpriz merak yaratır, baskı yaratmaz |
+| Gizli rozetler | ✅ 4 tane, "?" ile kilitli | Sürpriz merak yaratır, baskı yaratmaz |
 | Rozet detayı (tarih) | ✅ "12 Kasım'da kazandın" | Aile anısı (ürün sütunu 7) |
 | XP, puan, lig, sıralama | ❌ | İlke 7 yasaklar |
 | Ardışık gün (streak) rozeti, seri dondurma | ❌ yerine **toplam okuma günü** | Ardışık gün kırılır ve suçluluk üretir; toplam gün asla kaybolmaz |
@@ -39,67 +39,118 @@ Sorun: 8 rozetin 5'i ilk 10 masalda biter. Ondan sonra çocuk aylarca yeni rozet
 | Push bildirimiyle rozet duyurusu | ❌ | İlke 7 |
 | Rozetle yıldız/ödül verme | ❌ | Yıldız ekonomisi ayrı kalır; rozet ödül değil anı |
 
-## 3. Katalog (41 rozet)
+## 2b. Duolingo araştırması (15 Kasım 2026)
 
-Eşikler ve adlar R0'da onaylandı. ✱ = bugünkü rozet (id korunur).
+Kaynaklar: Duolingo blogu ([rozet yenilemesi, Aralık 2023](https://blog.duolingo.com/achievement-badges), [seri kilometre taşı animasyonu, Ocak 2022](https://blog.duolingo.com/streak-milestone-design-animation)) ve iki hayran rehberi ([duoplanet](https://duoplanet.com/duolingo-achievements-guide/), [lingoly](https://lingoly.io/duolingo-achievements/)). Rehberler eşiklerde ve hangi rozetin kaldırıldığında birbirini tutmuyor; Duolingo sistemi birkaç kez değiştirdi. Aşağıdaki sayılar yaklaşık, tasarım dersi için yeterli.
 
-### A. Masal yolu (kademeli, 8 kat): her bitirilen farklı masal
+**Sistemin yapısı**
+- **Ödüller (Awards):** kademeli başarılar, çoğu 5 ya da 10 kat. Wildfire (seri günü, 3 → 365), Sage/XP Olympian (XP, 100 → 30.000), Scholar/Word Collector (öğrenilen kelime, 50 → 2.000), Sharpshooter/Flawless Finisher (hatasız ders, 1 → 100), Regal (taç), Champion (lig), Challenger (süreli meydan okuma XP'si), Conqueror (kursu bitirme), Quest Champion (görev), Nocturnal (gece 22-24 arası ders), Early Rise (sabah 9'dan önce ders).
+- **Tek seferlik:** Photogenic (profil fotoğrafı), Weekend Warrior (cumartesi ve pazar ikisinde ders), Friendly (3 kişiyi takip), Strategist (dersten önce ipuçlarına bakmak), Winner (ligde birinci), Unrivaled (Elmas ligi birincisi), Page Turner (hikâye okuma).
+- **Kişisel rekorlar (2023 yenilemesi):** En uzun seri, bir günde en çok XP, hatasız ders sayısı, en yüksek lig.
+- **Sınırlı rozetler:** aylık meydan okuma rozetleri, Ejderha Yılı gibi tarih aralığına bağlı rozetler.
+
+**Sunuş**
+- Rozetler profilde "raftaki kupalar gibi" toplanıyor (blog). Kilitli rozet şartını ve bir ilerleme çubuğunu gösteriyor; kazanılan altına dönüyor (rehberler).
+- 2023 yenilemesinde rozet çizimlerinde dünyanın karakterleri var; amaç başarıları "kutlanacak, paylaşılacak" yapmak.
+- Seri kilometre taşlarında (1 hafta, 1 ay, 100 gün, 1 yıl) karakter "güçlenir": alev yerine anka kuşu, balonlar "yeterince kutlama değil" bulunmuş. Paylaşım kartı var.
+- Tasarım gerekçesi: kolay ilk rozetler yeni başlayanı, nadir son katlar sadık kullanıcıyı besler.
+
+**MagicPaper'a çevirisi**
+
+| Duolingo | Karar | MagicPaper karşılığı |
+|---|---|---|
+| Wildfire (seri günü, 10 kat) | 🔁 çevrildi | E. Okuma günleri, 7 kat, toplam gün (ardışık değil); tavan 100 (R0) |
+| Scholar / Word Collector | ✅ | F. Kelime avcısı, 6 kat (1 → 200) |
+| Page Turner, Conqueror | ✅ | A. Masal yolu 11 kat; G. Seri |
+| Weekend Warrior | ✅ | J. Hafta sonu masalı: aynı hafta sonu cumartesi ve pazar ikisinde de masal |
+| Early Rise | ✅ tek, gizli | J. Sabah masalı |
+| Strategist (ipucuna bakmak) | 🔁 | H. Meraklı parmak: masal içinde bir kelime kartını açmak (okurken) |
+| Friendly (takip) | 🔁 | I. Ailemle: sosyal ağ değil, Masal ailem |
+| Dünya karakterleri rozet çiziminde | ✅ | Armalarda Ragi ve yol arkadaşları (4.1) |
+| Kilometre taşında karakterin güçlenmesi | ✅ | Masal yolu 10, 50, 100, 200'de Ragi'nin armadaki hâli değişir (4.1) |
+| Kişisel rekorlar | 🔁 rekor değil anı | "Masal anıları" kartları (4.3): ilk masal, en çok okunan masal, en sık gidilen yer, en yakın yol arkadaşı. Sayılmaz, rozet değil |
+| Paylaşım kartı | ⏳ sonra | Ebeveyn tarafında, çarpma kapısıyla (R5 sonrası) |
+| XP, Sage, lig, Champion, Winner, Unrivaled | ❌ | İlke 7: puan ve sıralama yok |
+| Challenger (süreli meydan okuma), aylık rozet, Ejderha Yılı | ❌ | Geri sayım ve kaçırma korkusu |
+| Sharpshooter (hatasız) | ❌ | Masalda sınav yok; mükemmeliyetçiliği ödüllendirmeyiz |
+| Nocturnal (gece 22-24) | ❌ | Geç yatmayı ödüllendirir |
+| Photogenic (fotoğraf) | ❌ | Çocuk fotoğrafı toplanmaz (ilke 10) |
+| Quest Champion, günlük görevler | ❌ | Yapay etkileşim döngüsü |
+| "Bir günde en çok XP" | ❌ | Bir oturumda çok masal okumayı (binge) ödüllendirir |
+| Kilitli rozette ilerleme çubuğu | ❌ | 13 Ekim kararı; yalnızca eylem cümlesi (R0) |
+
+## 3. Katalog (69 rozet, 12 aile)
+
+R0'da onaylanan 41 rozet korunur; Duolingo araştırmasıyla 28 rozet eklendi (➕). Okuma günü tavanı 100 olarak kaldı. ✱ = bugünkü rozet (id korunur).
+
+### A. Masal yolu (kademeli, 11 kat): her bitirilen farklı masal
 | Kat | Eşik | Ad |
 |---|---|---|
 | 1 | 1 | İlk masal ✱ |
 | 2 | 3 | Üç masal |
 | 3 | 5 | 5 masal ✱ |
-| 4 | 10 | 10 masal ✱ |
-| 5 | 25 | 25 masal ✱ |
-| 6 | 50 | 50 masal |
-| 7 | 100 | 100 masal |
-| 8 | 200 | Masal ustası |
+| 4 | 10 | 10 masal ✱ (Ragi armada ilk kez değişir) |
+| 5 | 15 | 15 masal ➕ |
+| 6 | 25 | 25 masal ✱ |
+| 7 | 50 | 50 masal (Ragi değişir) |
+| 8 | 75 | 75 masal ➕ |
+| 9 | 100 | 100 masal (Ragi değişir) |
+| 10 | 150 | 150 masal ➕ |
+| 11 | 200 | Masal ustası (Ragi değişir) |
 
-### B. Ay arkadaşı (kademeli, 4): uyku masalı
-1 İlk uyku masalı · 7 uyku masalı ✱ · 30 uyku masalı · 100 uyku masalı
+### B. Ay arkadaşı (kademeli, 6): uyku masalı
+İlk uyku masalı · 7 ✱ · 15 ➕ · 30 · 50 ➕ · 100
 
-### C. Yol açan (kademeli, 3): macera
-İlk macera ✱ · 10 macera · 30 macera
+### C. Yol açan (kademeli, 5): macera
+İlk macera ✱ · 5 ➕ · 10 · 20 ➕ · 30
 
-### D. Meraklı (kademeli, 3): öğrenelim
-İlk öğrenelim masalı ✱ · 10 öğrenelim · 30 öğrenelim
+### D. Meraklı (kademeli, 5): öğrenelim
+İlk öğrenelim masalı ✱ · 5 ➕ · 10 · 20 ➕ · 30
 
-### E. Okuma günleri (kademeli, 4): masal bitirilen **farklı** gün sayısı, ardışık değil
-3 gün · 7 gün · 30 gün · 100 gün okuduk
-Metin: "7 ayrı günde birlikte okudunuz." Bir gün kaçınca hiçbir şey kaybolmaz.
+### E. Okuma günleri (kademeli, 7): masal bitirilen **farklı** gün sayısı, ardışık değil
+3 · 7 · 14 ➕ · 30 · 50 ➕ · 75 ➕ · 100 gün okuduk
+Metin: "7 ayrı günde birlikte okudunuz." Bir gün kaçınca hiçbir şey kaybolmaz. Duolingo'nun 1 hafta / 1 ay / 100 gün kilometre taşları 7, 30, 100'e denk gelir; bu üç katta tam ekran an Ragi'nin bir sonraki hâliyle gelir.
 
-### F. Kelime avcısı (kademeli, 4): Yeni kelimelerim'e giren kelime
-İlk yeni kelime · 10 · 25 · 50 kelime
+### F. Kelime avcısı (kademeli, 6): Yeni kelimelerim'e giren kelime
+İlk yeni kelime · 10 · 25 · 50 · 100 ➕ · 200 ➕
 
-### G. Seri (3)
-İlk devam (bir serinin 2. bölümü bitti) · İlk seri tamamlandı ✱ · 3 seri
+### G. Seri (4)
+İlk devam (bir serinin 2. bölümü bitti) · İlk seri tamamlandı ✱ · 3 seri · 5 seri ➕
 
-### H. Keşif (6, tek)
+### H. Keşif (8, tek)
 - Üç kapı: üç moddan da en az bir masal
-- İlk klasik · 5 klasik
-- Bulut Durağı: ilk MagicPaper Original
-- Yeni arkadaşlar: 5 farklı yol arkadaşıyla masal
+- İlk klasik · 5 klasik · 10 klasik ➕
+- Bulut Durağı: ilk MagicPaper Original · 5 Original ➕
 - Sürprizci: "Bana sürpriz yap" ile yazılan bir masal bitti
+- Meraklı parmak ➕: masal okunurken bir kelime kartı açıldı (Duolingo Strategist karşılığı)
 
-### I. Ailemle (3)
+### K. Gezgin ➕ (kademeli, 4): masal haritasında gidilen farklı yer (`StoryMapView`, `origin.settingID`)
+3 · 5 · 10 · 15 yer. Eşikler R1'de katalogdaki yer sayısına göre ayarlanır; en üst kat katalogdaki yer sayısını geçmez. Metin: "Haritanda 5 yer var."
+
+### L. Dostlar ➕ (kademeli, 4): masallarda tanışılan farklı yol arkadaşı (`companionID`)
+3 · 5 · 10 · 20 dost. (R0'daki tek "Yeni arkadaşlar" rozeti bu ailenin 2. katı oldu.)
+
+### I. Ailemle (5)
 - Ailem masalda: Masal ailem'den biri masala girdi
-- Büyük aile: 3 farklı aile üyesi masallarda
-- Annemin sesi / Babamın sesi (ad: "Tanıdık ses"): ebeveynin kaydettiği sesle bir masal dinlendi
+- Büyük aile: 3 farklı aile üyesi masallarda · Kocaman aile ➕: 5 farklı üye
+- Tanıdık ses: ebeveynin kaydettiği sesle bir masal dinlendi · Sesli kitaplık ➕: 5 farklı masal tanıdık sesle
 
-### J. Gizli (3): kazanılana kadar "?" ve "Gizli rozet"
+### J. Gizli (4): kazanılana kadar "?" ve "Gizli rozet"
 - Tekrar tekrar: aynı masal üç kez sonuna kadar okundu (tekrar okuma yıldız vermez, rozet verebilir; okuma sayılır)
-- Sabah masalı: öğleden önce bitirilen bir masal
-- Hafta sonu masalı: cumartesi ya da pazar bitirilen bir masal
+- Sabah masalı: öğleden önce bitirilen bir masal (Duolingo Early Rise)
+- Hafta sonu masalı: aynı hafta sonu cumartesi ve pazar ikisinde de masal bitti (Duolingo Weekend Warrior)
+- Masal yıldönümü ➕: ilk masaldan bir yıl sonra (ya da daha sonra) bir masal okundu. Zamana bağlı ama kaçırılamaz: tarih geçince de ilk masalda kazanılır. Gizli rozet sayısı R0'da üçtü; dördüncüsü onay bekliyor (bkz. 7)
 
-Bilerek dışarıda: gece geç saat rozeti (geç yatmayı ödüllendirir), doğum günü rozeti (profilde doğum günü yok, istemek ilke 8'e aykırı), mevsim rozetleri (zamana bağlı, kaçırma hissi), uygulamada geçen süre, kahraman giydirme (okuma değil).
+Bilerek dışarıda: gece geç saat rozeti (geç yatmayı ödüllendirir), doğum günü rozeti (profilde doğum günü yok, istemek ilke 8'e aykırı), mevsim rozetleri (zamana bağlı, kaçırma hissi), uygulamada geçen süre, kahraman giydirme (okuma değil), bir günde çok masal (binge), hatasız okuma.
 
-Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk ay 12-15, sonra ayda 1-3. 200 masal ve 100 gün yaklaşık bir yıl. "Sürekli destek" bu dağılımdan gelir.
+Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 6-8 rozet (İlk masal, Üç masal, ilk mod rozetleri, 3 gün, ilk kelime, Üç kapı), ilk ay 18-22, sonra ayda 2-4; 200 masal ve 100 gün yaklaşık bir yıl. 41 rozetlik planda ilk aydan sonra ayda 1-3 rozet düşüyordu; ara katlar (15, 75, 150 masal; 14, 50, 75 gün; 5 ve 20 macera) "uzun boşluk" aylarını dolduruyor.
 
 ## 4. Görünüm
 
 ### 4.1 Rozet arması
 - `MPBadgeCard` SF simgeden **arma**ya geçer: kâğıt kesik / nakış yama dili (el yapımı, ilke 9), parlak 3B ve metal yok.
 - Kat, armanın etrafındaki dikiş halkası ve küçük yıldız sayısıyla gösterilir (1-8), renk ya da metalle değil (bilgi yalnızca renkle verilmez).
+- Duolingo'nun 2023 yenilemesi gibi armalarda karakter var: mod ailelerinde o modun dünyası, Dostlar'da yol arkadaşları, Masal yolu'nda Ragi. Masal yolu 10, 50, 100 ve 200. katlarda armadaki Ragi "güçlenir" (yeni bir aksesuar), Duolingo'nun anka kuşu dersi.
 - Çizim illüstratör işi (Ragi kıyafetleri gibi). Çizim gelene kadar bugünkü simge + ton + kat halkası kodla çizilir; yer tutucu `MPBadgeArt` tek yerden değişir.
 
 ### 4.2 Masal sonu (karar: tam ekran an, 15 Kasım 2026)
@@ -113,9 +164,10 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 - Geriye dönük kazanılan rozetler tam ekran an açmaz (bkz. 5).
 
 ### 4.3 Profil → Rozetlerim
-- Profil bölümü ilk 6 armayı gösterir (önce son kazanılanlar), başlık `MPSectionHeader` "Rozetlerim", `note:` "12 / 41", `link:` "Tümü ›".
+- Profil bölümü ilk 6 armayı gösterir (önce son kazanılanlar), başlık `MPSectionHeader` "Rozetlerim", `note:` "12 / 69", `link:` "Tümü ›".
 - Yeni push sayfa `MPKidRoute.badges`: aileler `MPSectionHeader` ile; kademeli aile tek kart (en yüksek kazanılan kat), tek rozetler ızgara. Ragi bir kez, balonla.
 - Kilitli rozet gri + kilit; gizli rozet "?".
+- Sayfanın sonunda "Masal anıları" (Duolingo'nun kişisel rekorlarının sakin karşılığı): İlk masal, En çok okunan masal, En sık gidilen yer, En yakın yol arkadaşı. Rekor ve sayı değil, kapakla bir anı; `MPYearbook`'un verisinden.
 
 ### 4.4 Rozet detayı (`mpSheet`)
 - Kazanılan: büyük arma, ad, tek cümle anı: "İlk macera masalını 12 Kasım'da okudun: *Ormanın Feneri*." Kademeli rozette bütün katlar tarihleriyle.
@@ -130,13 +182,14 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 
 ## 5. Mimari
 
-- **Katalog tablo olur:** `MPBadge` (id, aile, kat, ölçü, eşik, gizli mi, ad, simge, ton) ve `MPBadgeCatalog.all`. `isMet` tek bir `metric(of: ledger)` + eşik karşılaştırmasına iner; 41 `case` yazılmaz. Bugünkü 8 rozetin `rawValue`'ları id olarak korunur, kazanılmış rozet kaybolmaz.
+- **Katalog tablo olur:** `MPBadge` (id, aile, kat, ölçü, eşik, gizli mi, ad, simge, ton) ve `MPBadgeCatalog.all`. `isMet` tek bir `metric(of: ledger)` + eşik karşılaştırmasına iner; 69 `case` yazılmaz. Bugünkü 8 rozetin `rawValue`'ları id olarak korunur, kazanılmış rozet kaybolmaz.
 - **Defter büyür** (`MPBadgeLedger`), hepsi birleşebilir kalır:
   - `readingDays: Set<String>` (yerel takvim günü `yyyy-MM-dd`)
   - `words: Set<String>`, `classics`, `originals`, `companions`, `familyMembers`, `surpriseStories`, `voiceStories`: `Set<String>`
   - `seriesSecondEpisodes: Set<String>`
   - `finishCounts: [String: Int]` (tekrar tekrar için, birleşmede `max`)
-  - `morningStories`, `weekendStories`: `Set<String>`
+  - `morningStories`, `weekendDays` (hafta sonu tarihleri, `readingDays`'ten türetilebilir): `Set<String>`
+  - `places`, `wordCardOpened` (Bool, birleşmede `||`), `firstFinishedAt: Date?` (birleşmede `min`, yıldönümü için)
   - `seen: Set<String>` (kutlanmış/görülmüş rozetler; birleşmede birleşim)
 - **Göç:** sentezlenmiş `Codable` eksik anahtarda hata verir; `init(from:)` `decodeIfPresent` ile yazılır. Yoksa eski defter okunamaz ve kitaplıktan baştan kurulur (rozet tarihleri kaybolur).
 - **Geriye dönük kazanım:** güncellemeden sonra ilk açılışta defter kitaplık, kelime defteri, seri ve aile verisinden doldurulur. Bu rozetler **sessizce** verilir (`seen`'e girer), on beş kutlama arka arkaya patlamaz. Profil'de Ragi bir kez: "Yeni rozetler geldi, bak!"
@@ -151,12 +204,12 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 |---|---|---|---|
 | **R0** ✅ | Kararlar verildi (bkz. 7) | Batuhan | 15 Kasım 2026 |
 | **R1** | Model: `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
-| **R2** | Kazanma: okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, aile, ses, sürpriz, seri bölümü, gün bilgisi | builder | Testler: her ölçü doğru masaldan dolar |
+| **R2** | Kazanma: okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, yer, aile, ses, sürpriz, seri bölümü, gün bilgisi; kelime kartı açılınca tek bayrak | builder | Testler: her ölçü doğru masaldan dolar |
 | **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet | ui-agent brif → builder | Tasarım yasası grep'leri boş |
 | **R4** | Anlar: tam ekran rozet anı (gündüz) ve gece satırı, Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
 | **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
 | **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
-| **Sonra** | Arma çizimleri (41 + 8 kat halkası) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
+| **Sonra** | Arma çizimleri (69 + 11 kat halkası, Masal yolu'nda 4 Ragi hâli) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
 
 ## 7. R0 kararları (Batuhan, 15 Kasım 2026)
 
@@ -168,9 +221,15 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 6. **Adlar:** bu belgedeki adlar kalır; İrem turu beklenmez. ✅
 7. **Arma:** önce kodla çizilen arma (simge + ton + kat halkası, `MPBadgeArt`), çizimler gelince tek yerden değişir. ✅
 
+**Duolingo araştırmasından sonra açık (15 Kasım):**
+
+8. **69 rozet:** 28 ek rozet (ara katlar, Gezgin, Dostlar, Kocaman aile, Sesli kitaplık, 10 klasik, 5 Original, Meraklı parmak) kabul mü?
+9. **Dördüncü gizli rozet:** Masal yıldönümü eklensin mi?
+10. **Masal anıları:** Rozetlerim sayfasının sonunda dört anı kartı (rekor değil) olsun mu?
+
 ## 8. Riskler
 
-- **Oyunlaşma kayması:** 41 rozet tek başına baskı değil; baskıyı sayaç ve kayıp yaratır. Bu plan ikisini de içermez. Her yeni metin ilke 7'nin "Never like" listesine karşı okunur.
+- **Oyunlaşma kayması:** 69 rozet tek başına baskı değil; baskıyı sayaç ve kayıp yaratır. Bu plan ikisini de içermez. Her yeni metin ilke 7'nin "Never like" listesine karşı okunur.
 - **Göç hatası** rozetleri silerse güven kaybolur: R1'in ilk testi eski 8 rozetli JSON'un okunması.
 - **Kutlama yorgunluğu:** geriye dönük rozetler sessiz, aynı anda en çok bir büyük kutlama.
 - **Senkron:** eski sürüm cihaz yeni alanları silmemeli; birleşme yalnızca büyür, eski istemci bilinmeyen alanı yazmadığı için uzak defter `merge` ile korunur (R5'te kural testiyle doğrulanır).

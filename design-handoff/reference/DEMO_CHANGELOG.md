@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı: Duolingo araştırması, 69 rozet önerisi
+
+- Ne değişti (Batuhan, 15 Kasım: "Duolingo'nun rozet sistemini tamamen araştır, daha fazla rozetle planı destekle"): `docs/ROZET_PLANI.md`'ye 2b bölümü eklendi: Duolingo'nun ödülleri, tek seferlik rozetleri, kişisel rekorları, sınırlı rozetleri, sunuşu ve tasarım gerekçesi; her biri için alındı / çevrildi / reddedildi tablosu. Kaynak: Duolingo blogu (2022, 2023) ve iki hayran rehberi (eşikler tutarsız, yaklaşık).
+- Katalog 41'den 69'a: ara katlar (Masal yolu 11 kat, uyku 6, macera ve öğrenelim 5, okuma günleri 7, kelime 6, seri 4), yeni aileler Gezgin (masal haritası yerleri) ve Dostlar (yol arkadaşları), Kocaman aile, Sesli kitaplık, 10 klasik, 5 Original, Meraklı parmak, gizli Masal yıldönümü. Hafta sonu masalı Duolingo Weekend Warrior gibi iki güne çevrildi. Armada Ragi'nin 10/50/100/200. masalda "güçlenmesi" ve Rozetlerim sonunda "Masal anıları" (kişisel rekorların sakin karşılığı) eklendi.
+- Bilerek değişmedi: R0 kararları (okuma günü tavanı 100, toplam gün, ilerleme çubuğu yok). Reddedilenler: XP, lig, süreli meydan okuma, aylık rozet, hatasız ders, gece rozeti, fotoğraf, görevler. 69 rozet, dördüncü gizli rozet ve Masal anıları onay bekliyor (7. bölüm, 8-10). Uygulama kodu değişmedi.
+- Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ROZET_PLANI.md`, bu günlük, `../CLAUDE.md` (repo dışı).
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R0 kararları
 
 - Ne değişti (Batuhan, 15 Kasım): `docs/ROZET_PLANI.md` 7. bölüm karar listesine döndü. Okuma günü rozeti toplam farklı gün; kilitli rozette eylem cümlesi (13 Ekim'deki ipucusuz kilidin yerine); üç gizli rozet; tavan 200 masal / 100 gün; adlar belgedeki gibi; arma önce kodla. Kutlama: gündüz masal sonunda tam ekran rozet anı (4.2 yeniden yazıldı: okuyucunun içinde sahne, tek "Devam", tek titreşim, birden çok rozet tek ekranda), gece sessiz satır.
