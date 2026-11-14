@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-14 · main, commit bu kayıtla · ProseCooldownTests ölçütü güncellendi
+
+- Ne değişti: `testCarryingHistoryLowersRepetition`'ın satır koşulu "geçmiş daha fazla farklı satır kullandırır" (kesin artış) yerine "geçmiş farklı satır sayısını düşürmez" (≥) oldu. Tekrar oranı için kesin düşüş şartı aynen duruyor. Gerekçe test belgesine 14 Kasım notu olarak yazıldı.
+- Neden: 5-6 havuzuna 84 satır girince (2a2ce73) geçmişsiz koşu da genişledi. Macera ×50'de geçmişsiz koşuda farklı satır 176'dan 195'e çıktı. Geçmişli koşuda farklı satır yine 195; tekrar oranı %54'ten %53'e düşüyor. Batuhan "Ölçütü güncelle" dedi.
+- Bilerek değişmedi: motorun soğuma ve geçmiş kodu, ölçülen dört koşu (öğrenelim ve macera, 30 ve 50).
+- Test: `swift test --filter ProseCooldownTests` 5/5 geçti. Tam motor koşusu bu değişiklikten önce 896 testte yalnızca bu testi kırık gösteriyordu; tam koşu yeniden çalıştırılmadı.
+- Dosyalar: `StoryEngine/Tests/StoryEngineTests/ProseCooldownTests.swift`, bu günlük.
+
 ### 2026-11-14 · main, commit bu kayıtla · 5-6 ana havuzunun ince vuruşları büyüdü (ajan takımı)
 
 - Ne değişti: `templates/v3/` içinde 21 ince vuruşa 84 yeni satır (korpus 432 → 516). Tek sınıflı vuruşlar en az 12 varyant (`belief_fails` ve `tend` 6'dan, on altı vuruş 8'den); `take_charge`, `approach` ve `hesitate`'te her uzunluk sınıfı en az 6. Var olan satırlara dokunulmadı; 7-8 ve 9-10'dan taşınan cümle yok (birebir eşleşme 0).

@@ -99,6 +99,14 @@ final class ProseCooldownTests: XCTestCase {
     ///
     /// İki sayıda birden denetleniyor, çünkü tek bir şanslı sayı bir iddiayı
     /// taşıyamaz — bu testin ilk hâli tam olarak öyle taşımıştı.
+    ///
+    /// **Farklı satır: "artar" değil "gerilemez"** (14 Kasım 2026). 5-6 havuzuna
+    /// 84 satır girince geçmişsiz koşu da kendiliğinden genişledi: macera ×50'de
+    /// geçmişsiz 176 → 195 satır, tekrar %57 → %54. Geçmişli koşu da 195'te kaldı
+    /// (tekrar %54 → %53). Havuz çeşitliliği tavana yaklaştıkça geçmişin satır
+    /// sayısına ek katkısı sıfıra iner; mekanizmanın işi o zaman tekrarı
+    /// düşürmektir, o da hâlâ kesin düşüş olarak denetleniyor. Satır sayısı için
+    /// korunan şey artık "geçmiş çeşitliliği daraltmaz".
     func testCarryingHistoryLowersRepetition() {
         for (mode, band, count) in [
             (StoryMode.learning, AgeBand(lowerBound: 5, upperBound: 6), 30),
@@ -113,7 +121,9 @@ final class ProseCooldownTests: XCTestCase {
                 with.repeatedRate, without.repeatedRate,
                 "\(mode.rawValue) \(band) ×\(count): geçmiş tekrarı azaltmadı "
                 + "(%\(Int(without.repeatedRate * 100)) → %\(Int(with.repeatedRate * 100)))")
-            XCTAssertGreaterThan(
+            // Tekrar yukarıda kesin düşmek zorunda; satır sayısının yalnızca
+            // gerilememesi istenir (bkz. 14 Kasım 2026 notu).
+            XCTAssertGreaterThanOrEqual(
                 with.distinctLines, without.distinctLines,
                 "\(mode.rawValue) \(band) ×\(count): geçmiş daha fazla satır kullandırmadı "
                 + "(\(without.distinctLines) → \(with.distinctLines))")
