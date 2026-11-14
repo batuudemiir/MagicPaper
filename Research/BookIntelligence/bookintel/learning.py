@@ -2,7 +2,8 @@
 
 Three loops, each leaving a record the weekly page reports:
 
-    data/requests/<q_id>.json      another agent (or the owner) asks; book-research answers with evidence
+    data/requests/<q_id>.json      another agent (or the owner) asks; book-research answers with evidence.
+                                   book-research and original-writer also ask each other (`to`)
     data/rechecks/<work>.<n>.json  a complete book read again without its first analysis; the
                                    agreement per judgment field is the agent's measured reliability
     data/method/rules.json         a mistake someone caught becomes a rule `validate` enforces,
@@ -25,7 +26,10 @@ from .analyze import PAGE_JUDGMENTS
 from .store import Store, dumps, write_if_changed
 
 ASKERS = {"story-engine", "content-library", "privacy-safety", "reader", "parent-ux", "ui-agent",
-          "illustration-system", "design-system", "reviewer", "human"}
+          "illustration-system", "design-system", "reviewer", "human", "original-writer", "book-research"}
+# who answers: book-research answers everyone; original-writer answers book-research's questions about
+# the MagicPaper Original tales (why an ending, what the writer needs) with the tale it wrote as evidence
+ANSWERERS = ("book-research", "original-writer")
 REQUEST_STATUSES = ("open", "researching", "answered", "declined")
 
 
@@ -53,9 +57,15 @@ def _requests_dir(store: Store) -> Path:
 
 
 def ask(store: Store, agent: str, question: str, why: str, *, target: str | None = None,
-        age_band: str | None = None) -> dict:
+        age_band: str | None = None, to: str = "book-research") -> dict:
     if agent not in ASKERS:
         raise LearningError(f"{agent!r} cannot ask; askers: {', '.join(sorted(ASKERS))}")
+    if to not in ANSWERERS:
+        raise LearningError(f"{to!r} does not answer requests; answerers: {', '.join(ANSWERERS)}")
+    if agent == to:
+        raise LearningError(f"{agent} cannot ask itself")
+    if to == "original-writer" and agent != "book-research":
+        raise LearningError("only book-research asks original-writer; other agents ask book-research")
     if not question.strip() or not why.strip():
         raise LearningError("a request needs a question and why it matters to your work")
     base, n = "q_" + _slug(question), 1
@@ -63,7 +73,7 @@ def ask(store: Store, agent: str, question: str, why: str, *, target: str | None
     while (_requests_dir(store) / f"{rid}.json").exists():
         n += 1
         rid = f"{base}_{n}"
-    record = {"request_id": rid, "from": agent, "question": question.strip(), "why": why.strip(),
+    record = {"request_id": rid, "from": agent, "to": to, "question": question.strip(), "why": why.strip(),
               "target": target, "age_band": age_band, "status": "open", "answer": None,
               "history": [{"status": "open", "by": agent, "at": runs.now()}], "created_at": runs.now()}
     write_if_changed(_requests_dir(store) / f"{rid}.json", dumps(record))
@@ -82,9 +92,14 @@ def all_requests(store: Store) -> list[dict]:
     return [_read(p) for p in sorted(folder.glob("q_*.json"))] if folder.exists() else []
 
 
-def open_requests(store: Store) -> list[dict]:
-    """Oldest first: the research agent works the queue before its own gaps."""
-    rows = [r for r in all_requests(store) if r["status"] in ("open", "researching")]
+def addressee(record: dict) -> str:
+    return record.get("to") or "book-research"
+
+
+def open_requests(store: Store, to: str | None = None) -> list[dict]:
+    """Oldest first: each answerer works its queue before its own work."""
+    rows = [r for r in all_requests(store) if r["status"] in ("open", "researching")
+            and (to is None or addressee(r) == to)]
     return sorted(rows, key=lambda r: r["created_at"])
 
 
@@ -95,20 +110,39 @@ def _move(store: Store, record: dict, status: str, by: str, note: str = "") -> d
     return record
 
 
-def take(store: Store, rid: str) -> dict:
+def _for(record: dict, by: str | None) -> str:
+    """Only the addressee moves a request; `by` defaults to it."""
+    who = by or addressee(record)
+    if who != addressee(record):
+        raise LearningError(f"{record['request_id']} is addressed to {addressee(record)}, not {who}")
+    return who
+
+
+def take(store: Store, rid: str, by: str | None = None) -> dict:
     record = get_request(store, rid)
+    who = _for(record, by)
     if record["status"] != "open":
         raise LearningError(f"{rid} is {record['status']}")
-    return _move(store, record, "researching", "book-research")
+    return _move(store, record, "researching", who)
 
 
-def answer(store: Store, rid: str, text: str, *, claims: list[str], works: list[str]) -> dict:
-    """An answer cites what it rests on; 'not enough evidence yet' is an answer too (no citations)."""
+def answer(store: Store, rid: str, text: str, *, claims: list[str], works: list[str],
+           by: str | None = None, tales: list[str] | None = None) -> dict:
+    """An answer cites what it rests on; 'not enough evidence yet' is an answer too (no citations).
+    original-writer cites the tale(s) it wrote (slugs under Content/Originals) instead of claims."""
     record = get_request(store, rid)
+    who = _for(record, by)
     if record["status"] not in ("open", "researching"):
         raise LearningError(f"{rid} is {record['status']}")
     if not text.strip():
         raise LearningError("an answer needs text")
+    tales = [t for t in (tales or []) if t]
+    if any(not re.fullmatch(r"[a-z0-9-]+", t) for t in tales):
+        raise LearningError(f"a tale is cited by its slug: {tales}")
+    if who == "original-writer":
+        record["answer"] = {"text": text.strip(), "claims": [], "works": [], "tales": tales,
+                            "evidence_strength": "writer", "at": runs.now()}
+        return _move(store, record, "answered", who)
     known_claims = {c["claim_id"] for c in store.all("claim")}
     known_works = {w["work_id"] for w in store.all("work")}
     bad = [c for c in claims if c not in known_claims] + [w for w in works if w not in known_works]
@@ -116,14 +150,15 @@ def answer(store: Store, rid: str, text: str, *, claims: list[str], works: list[
         raise LearningError(f"unknown evidence: {bad}")
     record["answer"] = {"text": text.strip(), "claims": claims, "works": works,
                         "evidence_strength": _strength(store, claims), "at": runs.now()}
-    return _move(store, record, "answered", "book-research")
+    return _move(store, record, "answered", who)
 
 
-def decline(store: Store, rid: str, reason: str) -> dict:
+def decline(store: Store, rid: str, reason: str, by: str | None = None) -> dict:
     record = get_request(store, rid)
+    who = _for(record, by)
     if not reason.strip():
         raise LearningError("say why the question cannot be researched (e.g. no legal source)")
-    return _move(store, record, "declined", "book-research", reason.strip())
+    return _move(store, record, "declined", who, reason.strip())
 
 
 def _strength(store: Store, claims: list[str]) -> str:
@@ -391,6 +426,8 @@ def validate(store: Store) -> list[str]:
             errors.append(f"{r['request_id']}: unknown status {r['status']}")
         if r["status"] == "answered" and not (r.get("answer") or {}).get("text"):
             errors.append(f"{r['request_id']}: answered without an answer")
+        if addressee(r) not in ANSWERERS:
+            errors.append(f"{r['request_id']}: addressed to {addressee(r)!r}, who does not answer requests")
     return errors
 
 
@@ -419,8 +456,8 @@ def weekly_lines(s: dict) -> list[str]:
     states = {"reliable": "güvenilir", "uncertain": "belirsiz", "unreliable": "güvenilmez — bu alana dayanan "
               "iddialar LOW'u geçemez", "measuring": f"ölçülüyor (en az {MIN_PAGES} sayfa gerekli)"}
     out = ["## Ajanlardan gelen sorular", ""]
-    out += [f"- `{r['request_id']}` ({r['from']}, {r['status']}): {r['question']}" for r in s["requests"]] \
-        or ["- Açık soru yok."]
+    out += [f"- `{r['request_id']}` ({r['from']} → {addressee(r)}, {r['status']}): {r['question']}"
+            for r in s["requests"]] or ["- Açık soru yok."]
     out += [f"- Cevaplandı: `{r['request_id']}` → {r['answer']['text']} (kanıt gücü: {r['answer']['evidence_strength']})"
             for r in s["answered"]]
     out += ["", "## Ajan kendini nasıl geliştirdi", ""]

@@ -97,7 +97,9 @@ Claude Code'da: *"book-research ajanıyla bu haftanın kitabını incele"* ya da
 | `usage import <dosya>` | Sunucunun toplu sonuç belgesi (yalnızca toplamlar, mahremiyet eşiği zorunlu) | yok |
 | `evaluate` | Canlı deneyleri içe aktarılmış kullanıma göre değerlendirir | yok |
 | `calibration` | Ajanın tahmin isabeti ve Brier puanı | yok |
-| `cycle` | Haftalık döngü: gelen kutusu → metrikler → deneyler → güven → kalibrasyon → boşluklar → özet → haftalık sayfa | yok |
+| `cycle` | Haftalık döngü: gelen kutusu → metrikler → deneyler → güven → kalibrasyon → boşluklar → özet → haftalık sayfa + ORIGINALS_CRAFT.md | yok |
+| `craft brief [--write]` / `craft todo` | MagicPaper Original için yazım dersleri (neden-sonuç zinciri, final) → `ORIGINALS_CRAFT.md`; `todo` craft bloğu eksik kitaplar | yok |
+| `request ask … --to original-writer` / `request answer <id> --by original-writer --tale <slug>` | book-research ↔ original-writer soru-cevap | yok |
 
 Belirsiz bir eşleşmede (`aynı başlık, farklı yazar` gibi) ingest durur ve çifti
 `data/review/dedup.json`'a yazar. Karar insanın: `--work <id>` ya da `--new-work` ile tekrar çalıştır.
@@ -151,6 +153,9 @@ Ajan üç yoldan iyileşir; her biri haftalık sayfada "Ajanlardan gelen sorular
   `ba recheck pick` · `ba recheck start <work>` · `ba recheck score <work>` · `ba recheck reliability`
 - **Yöntem kuralları** (`data/method/rules.json`): başka bir ajanın yakaladığı ve araştırma ajanının kabul ettiği her hata bir kurala dönüşür. `note` kuralları her oturumda okunur; `forbid` ve `require_when` kuralları `validate` tarafından denetlenir. Kurallar sürümlenir, gerekçesiz kaldırılmaz, uygulamayı değil yalnızca araştırma yöntemini değiştirir.
   `ba method show` · `ba method add --kind … --text … --evidence <öneri>/<tur>` · `ba method retire <id> --text …` · `ba method check`
+
+- **MagicPaper Original ile ortak çalışma** (13 Kasım 2026): her tamamlanmış analize bir `craft` bloğu eklenir: neden-sonuç zinciri (`causal_chain`: neden, sonuç, sayfalar, onu kim yürütüyor), final (`ending`: türü, hangi soruyu cevapladığı, son sayfanın hamlesi, açılışa dönüp dönmediği, çözümden sonra kaç sayfa) ve yazara bir not. `craft brief --write` bunları moda göre `ORIGINALS_CRAFT.md`'ye toplar; original-writer yazmadan önce okur. İki ajan birbirine soru sorar: original-writer `request ask --agent original-writer`, book-research `request ask --agent book-research --to original-writer`; yazar kendi masalına dayanarak `request answer <id> --by original-writer --tale <slug>` ile cevaplar. Yazarın cevabı kendi yazımımız hakkında kanıttır, çocuklar hakkında değil.
+  `ba craft todo` · `ba craft brief --write` · `ba request list --to original-writer`
 
 Sınır: kör okumayı CLI zorlayamaz; ajanın ilk analizi açmaması talimatla sağlanır. Tutarlılık doğruluk değildir; doğruluğu yalnızca çocuklardan gelen deney sonuçları ölçer.
 

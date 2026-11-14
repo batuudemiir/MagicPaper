@@ -195,11 +195,34 @@ def validate_analysis(analysis: dict) -> list[str]:
             e.one_of(dimension, terms("appeal_dimensions"), f"{key}.child_appeal_heuristic")
             e.int_range(score, 1, 5, f"{key}.child_appeal_heuristic.{dimension}", nullable=True)
 
+    craft = analysis.get("craft")
+    if craft is not None:   # optional: older analyses are backfilled over time (`craft todo`)
+        _validate_craft(e, craft, key)
+
     if complete:
         e.need(bool(analysis.get("beats")), f"{key}: a complete analysis has a beat map")
         e.need(bool(analysis.get("characters")), f"{key}: a complete analysis lists characters")
         e.need(bool(analysis.get("summary_paraphrase")), f"{key}: a complete analysis has summary_paraphrase")
     return e
+
+
+def _validate_craft(e, craft: dict, key: str) -> None:
+    """Writing lessons for MagicPaper Original: how causes lead to effects, how the ending works.
+    Paraphrase only; no book text (the claim and deep-dive rule applies here too)."""
+    chain = craft.get("causal_chain") or []
+    e.need(bool(chain), f"{key}.craft.causal_chain: at least one cause → effect link")
+    for i, link in enumerate(chain):
+        e.need(bool(link.get("cause")) and bool(link.get("effect")), f"{key}.craft.causal_chain[{i}]: cause and effect")
+        e.one_of(link.get("driver"), terms("causal_drivers"), f"{key}.craft.causal_chain[{i}].driver")
+        for page in link.get("pages") or []:
+            e.int_range(page, 1, 500, f"{key}.craft.causal_chain[{i}].pages")
+    ending = craft.get("ending") or {}
+    e.one_of(ending.get("type"), terms("ending_types"), f"{key}.craft.ending.type")
+    e.need(bool(ending.get("answers")), f"{key}.craft.ending.answers: which opening question the ending answers")
+    e.need(bool(ending.get("last_page_move")), f"{key}.craft.ending.last_page_move")
+    e.need(isinstance(ending.get("returns_to_opening"), bool), f"{key}.craft.ending.returns_to_opening: true or false")
+    e.int_range(ending.get("pages_after_resolution"), 0, 50, f"{key}.craft.ending.pages_after_resolution")
+    e.need(bool(craft.get("writer_note")), f"{key}.craft.writer_note: one transferable move, paraphrased")
 
 
 # -- claims and runs ------------------------------------------------------------
