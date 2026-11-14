@@ -1,6 +1,6 @@
 # Rozet planı: 8 rozetten 41 rozete
 
-**Tarih:** 15 Kasım 2026 · **Durum:** taslak, Batuhan'ın onayını bekliyor (R0)
+**Tarih:** 15 Kasım 2026 · **Durum:** R0 kararları verildi (Batuhan, 15 Kasım 2026); sıradaki R1
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
 **Bağlı kurallar:** `CLAUDE.md` ilke 7 (sakin kilometre taşları, karar 3 ve 13 Ekim), `docs/VIZYON_PLANI.md` (yıldız, çıkartma, masal sonu düzeni).
 
@@ -41,7 +41,7 @@ Sorun: 8 rozetin 5'i ilk 10 masalda biter. Ondan sonra çocuk aylarca yeni rozet
 
 ## 3. Katalog (41 rozet)
 
-Eşik sayıları ilk öneri; R0'da Batuhan ve İrem onaylar. ✱ = bugünkü rozet (id korunur).
+Eşikler ve adlar R0'da onaylandı. ✱ = bugünkü rozet (id korunur).
 
 ### A. Masal yolu (kademeli, 8 kat): her bitirilen farklı masal
 | Kat | Eşik | Ad |
@@ -102,10 +102,15 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 - Kat, armanın etrafındaki dikiş halkası ve küçük yıldız sayısıyla gösterilir (1-8), renk ya da metalle değil (bilgi yalnızca renkle verilmez).
 - Çizim illüstratör işi (Ragi kıyafetleri gibi). Çizim gelene kadar bugünkü simge + ton + kat halkası kodla çizilir; yer tutucu `MPBadgeArt` tek yerden değişir.
 
-### 4.2 Masal sonu
-- **Gündüz:** yeni rozet varsa çıkartmadan sonra bir vuruş, arma `MP.M.spring` ile büyür, Ragi `cheer`, tek cümle ("Ay arkadaşı rozetin büyüdü!"), `MPSound` bir kez, `MPHaptics` tek titreşim (çıkartmanınkiyle birleşir, ikinci titreşim yok). Birden çok rozet: ilki büyük, kalanı alt satırda "+1 rozet". Reduce Motion: çapraz geçiş.
-- **Gece / uyku vakti:** bugünkü sessiz satır kalır; ses, zıplama yok.
-- Kutlama kapatılabilir değil, ama kısa: ≤ 1,5 sn, "Bir masal daha" düğmesi hiç gizlenmez.
+### 4.2 Masal sonu (karar: tam ekran an, 15 Kasım 2026)
+- **Gündüz:** yeni rozet varsa masal sonu yaprağından önce **tam ekran bir rozet anı** gelir. Okuyucu zaten `fullScreenCover` olduğu için bu yeni bir modal değil, okuyucunun içinde bir sahne (bir modal açıkken başka modal açılmaz kuralı korunur).
+  - Krem zemin, ortada büyük arma `MP.M.spring` ile büyür, altında Ragi `cheer`, `page` rolünde ad, tek cümle ("Ay arkadaşı rozetin büyüdü!"), tek birincil düğme "Devam" (`MPButton(size: .hero)`). Ekrana herhangi bir yere dokunmak da geçer.
+  - `MPSound` bir kez, `MPHaptics` tek titreşim. Masal sonundaki çıkartma titreşimi bu anda verilmez (eylem başına bir titreşim).
+  - Birden çok rozet: tek ekranda, büyük arma ilk rozet, altında küçük armalar sırayla ("ve 1 rozet daha"). Arka arkaya ekran yok.
+  - Reduce Motion: büyüme yerine çapraz geçiş. VoiceOver: "Yeni rozet: Ay arkadaşı, 2. kat."
+  - Otomatik kapanma yok, geri sayım yok; "Devam" masal sonu yaprağına geçer, orada rozet satırı tekrar görünmez.
+- **Gece / uyku vakti:** tam ekran an yok; bugünkü sessiz satır kalır, ses ve zıplama yok.
+- Geriye dönük kazanılan rozetler tam ekran an açmaz (bkz. 5).
 
 ### 4.3 Profil → Rozetlerim
 - Profil bölümü ilk 6 armayı gösterir (önce son kazanılanlar), başlık `MPSectionHeader` "Rozetlerim", `note:` "12 / 41", `link:` "Tümü ›".
@@ -114,7 +119,7 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 
 ### 4.4 Rozet detayı (`mpSheet`)
 - Kazanılan: büyük arma, ad, tek cümle anı: "İlk macera masalını 12 Kasım'da okudun: *Ormanın Feneri*." Kademeli rozette bütün katlar tarihleriyle.
-- Kilitli: **nasıl açıldığı**, sayı olmadan: "Bir macera masalı okuyunca açılır." Kalan sayı, yüzde, çubuk yok. (R0 kararı: bu ipucu ilke 7'nin "almost there" yasağına girmiyor sayılıyor mu?)
+- Kilitli: **nasıl açıldığı**, sayı olmadan: "Bir macera masalı okuyunca açılır." Kalan sayı, yüzde, çubuk yok.
 - Gizli: "Bu rozet bir sürpriz. Okudukça bulacaksın."
 
 ### 4.5 Sürekli destek (rozet dışı, aynı dil)
@@ -144,24 +149,24 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 4-6 rozet, ilk
 
 | Faz | İş | Sahip ajan | Çıktı |
 |---|---|---|---|
-| **R0** | Karar: katalog, eşikler, adlar, okuma günü rozeti, gizli rozetler, kilitli ipucu metni | Batuhan, İrem (metin) | Bu belgede ✅ işaretli liste |
+| **R0** ✅ | Kararlar verildi (bkz. 7) | Batuhan | 15 Kasım 2026 |
 | **R1** | Model: `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
 | **R2** | Kazanma: okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, aile, ses, sürpriz, seri bölümü, gün bilgisi | builder | Testler: her ölçü doğru masaldan dolar |
 | **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet | ui-agent brif → builder | Tasarım yasası grep'leri boş |
-| **R4** | Anlar: masal sonu kutlaması (gündüz/gece), Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
+| **R4** | Anlar: tam ekran rozet anı (gündüz) ve gece satırı, Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
 | **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
 | **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
 | **Sonra** | Arma çizimleri (41 + 8 kat halkası) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
 
-## 7. R0'da karar bekleyenler
+## 7. R0 kararları (Batuhan, 15 Kasım 2026)
 
-1. **Okuma günü rozetleri (E):** toplam farklı gün, ardışık değil. İlke 7'nin "üst üste gün sayılmaz" notuna uyuyor; kabul mü?
-2. **Kilitli rozette "nasıl açılır" cümlesi:** sayı yok, yalnızca eylem ("Bir macera masalı okuyunca açılır"). 13 Ekim kararı kilitliyi ipucusuz gösteriyordu.
-3. **Gizli rozetler (J):** üçü de mi, hiç mi?
-4. **Eşikler:** 200 masal ve 100 gün tavanı uygun mu?
-5. **Kutlama ses ve süresi:** gündüz `MPSound` + 1,5 sn arma.
-6. **Adlar:** İrem'in metin turu (özellikle "Tanıdık ses", "Masal ustası", "Yol açan").
-7. **Arma çizimi:** illüstratör işi mi, yoksa kodla çizilen kâğıt kesik arma kalıcı mı?
+1. **Okuma günü rozetleri:** toplam farklı gün sayılır, ardışık değil. ✅
+2. **Kilitli rozet:** dokununca eylem cümlesi ("Bir macera masalı okuyunca açılır"); sayı, çubuk, "kaldı" yok. 13 Ekim'deki ipucusuz kilit kararının yerine. ✅
+3. **Gizli rozetler:** üçü de (Tekrar tekrar, Sabah masalı, Hafta sonu masalı). ✅
+4. **Tavan:** 200 masal, 100 okuma günü. ✅
+5. **Kutlama:** gündüz masal sonunda tam ekran an (4.2); gece sessiz satır. ✅
+6. **Adlar:** bu belgedeki adlar kalır; İrem turu beklenmez. ✅
+7. **Arma:** önce kodla çizilen arma (simge + ton + kat halkası, `MPBadgeArt`), çizimler gelince tek yerden değişir. ✅
 
 ## 8. Riskler
 

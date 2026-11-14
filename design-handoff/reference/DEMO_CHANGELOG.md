@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R0 kararları
+
+- Ne değişti (Batuhan, 15 Kasım): `docs/ROZET_PLANI.md` 7. bölüm karar listesine döndü. Okuma günü rozeti toplam farklı gün; kilitli rozette eylem cümlesi (13 Ekim'deki ipucusuz kilidin yerine); üç gizli rozet; tavan 200 masal / 100 gün; adlar belgedeki gibi; arma önce kodla. Kutlama: gündüz masal sonunda tam ekran rozet anı (4.2 yeniden yazıldı: okuyucunun içinde sahne, tek "Devam", tek titreşim, birden çok rozet tek ekranda), gece sessiz satır.
+- `CLAUDE.md` ilke 7'ye kararların özet satırı eklendi (dosya bu reponun dışında, commit'e girmedi).
+- Bilerek değişmedi: uygulama kodu. Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ROZET_PLANI.md`, bu günlük, `../CLAUDE.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı taslağı (8 → 41 rozet)
 
 - Ne değişti (Batuhan, 15 Kasım: "bir çok rozet olsun, Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin"): `docs/ROZET_PLANI.md` yazıldı. 10 aile, 41 rozet (7'si kademeli "kat"), 3 gizli rozet; Duolingo'dan alınan ve ilke 7 yüzünden alınmayan mekanikler tablosu; masal sonu kutlaması (gündüz büyük an, gece sessiz satır), Rozetlerim sayfası, rozet detayı; defter göçü (`decodeIfPresent`), geriye dönük sessiz kazanım; R0-R6 fazları ve R0'da Batuhan'ın vereceği yedi karar.
