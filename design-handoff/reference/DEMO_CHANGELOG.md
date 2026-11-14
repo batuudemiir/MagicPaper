@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı: 8-13 kararları kabul
+
+- Ne değişti (Batuhan, 15 Kasım: "önerileri kabul et"): `docs/ROZET_PLANI.md` 7. bölümde 8-13 ✅. 69 rozet, dördüncü gizli rozet (Masal yıldönümü), Masal anıları; sabah yıldızı yalnızca masal bitirilen günde (13 Ekim kuralının yerine), rozet yıldız vermez, 12 Yıldız katı tablodaki gibi. Puan formülü göçle yazıldı: geçiş gününe kadarki sabahlar korunur, hiçbir çocuğun puanı düşmez (`morningRuleSince`). Ritim tahmini yeni kurala göre düzeltildi. R2'ye sabah yıldızı işi eklendi.
+- `CLAUDE.md`: rozet satırı 69 rozet / 4 gizli; yıldız satırı yeni sabah kuralıyla (repo dışı).
+- Bilerek değişmedi: uygulama kodu; `MPStars.swift` hâlâ eski sabah kuralıyla sayıyor (R2'de değişecek). Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ROZET_PLANI.md`, bu günlük, `../CLAUDE.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı: yıldız puanı ve Yıldız katı
 
 - Ne değişti (Batuhan, 15 Kasım: "yıldızlar kullanıcının toplam puanı gibi olsun, profil puan arttıkça rozet alsın"): `docs/ROZET_PLANI.md`'ye 5b bölümü. Yıldız puanı = ömür boyu kazanılan yıldız, harcamayla düşmez; harcama "cepteki yıldız"dan gider. Profil puanla 12 Yıldız katı alır (10 → 2000: Kıvılcım, Yıldız tozu, Parıltı, Küçük yıldız, Parlak yıldız, Kayan yıldız, Takımyıldız, Ay ışığı, Kuyruklu yıldız, Samanyolu, Gökada, Masal göğü). Kat arması Profil'de kahramanın köşesinde; kat atlama gündüz rozet anıyla aynı tam ekran sahnede, gece sessiz satır. Veri: `MPStars.score` / `balance`, defterde `starLevels`. Fazlar R1, R3, R4, R5 buna göre genişledi.
