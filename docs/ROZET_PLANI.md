@@ -1,4 +1,4 @@
-# Rozet planı: 8 rozetten 69 rozete
+# Rozet planı: 8 rozetten 69 rozete, yıldız puanı ve Yıldız katı
 
 **Tarih:** 15 Kasım 2026 · **Durum:** R0 kararları verildi (Batuhan, 15 Kasım 2026); sıradaki R1
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
@@ -32,12 +32,13 @@ Sorun: 8 rozetin 5'i ilk 10 masalda biter. Ondan sonra çocuk aylarca yeni rozet
 | Karakterin sevinci | ✅ Ragi'nin `cheer` pozu + tek cümle | Zaten var, rozete bağlanır |
 | Gizli rozetler | ✅ 4 tane, "?" ile kilitli | Sürpriz merak yaratır, baskı yaratmaz |
 | Rozet detayı (tarih) | ✅ "12 Kasım'da kazandın" | Aile anısı (ürün sütunu 7) |
-| XP, puan, lig, sıralama | ❌ | İlke 7 yasaklar |
+| Lig, sıralama | ❌ | İlke 7 yasaklar (puan 5b'de yıldızla geldi) |
 | Ardışık gün (streak) rozeti, seri dondurma | ❌ yerine **toplam okuma günü** | Ardışık gün kırılır ve suçluluk üretir; toplam gün asla kaybolmaz |
 | İlerleme çubuğu, "2 ders kaldı" | ❌ | 13 Ekim kararı |
 | Süreli meydan okuma, sınırlı etkinlik rozeti | ❌ | Geri sayım ve kaçırma korkusu |
 | Push bildirimiyle rozet duyurusu | ❌ | İlke 7 |
-| Rozetle yıldız/ödül verme | ❌ | Yıldız ekonomisi ayrı kalır; rozet ödül değil anı |
+| Rozetle yıldız/ödül verme | ❌ (karar 12 açık) | Rozet ödül değil anı |
+| Toplam puan ve seviye (XP + lig yerine) | ✅ Yıldız puanı + Yıldız katı (5b, 15 Kasım isteği) | Puan düşmez, kıyas ve sıralama yok |
 
 ## 2b. Duolingo araştırması (15 Kasım 2026)
 
@@ -70,7 +71,8 @@ Kaynaklar: Duolingo blogu ([rozet yenilemesi, Aralık 2023](https://blog.duoling
 | Kilometre taşında karakterin güçlenmesi | ✅ | Masal yolu 10, 50, 100, 200'de Ragi'nin armadaki hâli değişir (4.1) |
 | Kişisel rekorlar | 🔁 rekor değil anı | "Masal anıları" kartları (4.3): ilk masal, en çok okunan masal, en sık gidilen yer, en yakın yol arkadaşı. Sayılmaz, rozet değil |
 | Paylaşım kartı | ⏳ sonra | Ebeveyn tarafında, çarpma kapısıyla (R5 sonrası) |
-| XP, Sage, lig, Champion, Winner, Unrivaled | ❌ | İlke 7: puan ve sıralama yok |
+| Sage (XP katları) | 🔁 | Yıldız katı (5b): yıldız puanıyla 12 kat |
+| Lig, Champion, Winner, Unrivaled | ❌ | Sıralama ve kıyas yok |
 | Challenger (süreli meydan okuma), aylık rozet, Ejderha Yılı | ❌ | Geri sayım ve kaçırma korkusu |
 | Sharpshooter (hatasız) | ❌ | Masalda sınav yok; mükemmeliyetçiliği ödüllendirmeyiz |
 | Nocturnal (gece 22-24) | ❌ | Geç yatmayı ödüllendirir |
@@ -195,19 +197,75 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 6-8 rozet (İl
 - **Geriye dönük kazanım:** güncellemeden sonra ilk açılışta defter kitaplık, kelime defteri, seri ve aile verisinden doldurulur. Bu rozetler **sessizce** verilir (`seen`'e girer), on beş kutlama arka arkaya patlamaz. Profil'de Ragi bir kez: "Yeni rozetler geldi, bak!"
 - **Kazanma noktaları:** hepsi okuyucunun masal sonundaki tek çağrıdan (`MPBadgeStore.recordFinished`) geçer; kelime ve aile verisi o anda masaldan okunur. Uygulama içinde başka yerde rozet verilmez (rozet yalnızca okuyarak).
 - **Eşitleme:** `SyncCollection.badges` aynı; Firestore kuralı yeni alanları kabul eder, kural testi eklenir.
-- **Yıldızla ilişki yok:** rozet yıldız vermez, yıldız rozet açmaz.
+- **Yıldızla ilişki:** rozet yıldız vermez (karar 12 açık). Yıldız puanı yalnızca Yıldız katını açar (5b), rozet ızgarasını değil.
 - Domain mantığı görünümde değil: `MPMilestones.swift` → `Services/Badges/` (`MPBadgeCatalog`, `MPBadgeLedger`, `MPBadgeStore`); görünümler yalnızca okur.
+
+## 5b. Yıldız puanı ve Yıldız katı (profil rozeti)
+
+**İstek (Batuhan, 15 Kasım 2026):** "Yıldızlar kullanıcının toplam puanı gibi olsun, yani puan sistemi olsun. Profil puan arttıkça rozet alsın."
+
+**İlkeyle ilişkisi:** `CLAUDE.md` ilke 7 "points" ve "reward economies" yasaklıyor. Bu istek o yasağı yıldız için kaldırıyor; ilke 7'ye karar satırı olarak işlenir. Puanı sakin tutan sınırlar aşağıda: puan düşmez, kıyaslanmaz, sıralanmaz, satın alınmaz.
+
+### Bugün
+Yıldız türetiliyor (`MPStars.count`): profilin açıldığı günden bu yana her sabah 1 yıldız (uygulamayı açmak gerekmez) + bitirilen her farklı masal 1 yıldız. Harcama `MPCollection` satın alımlarından (`spent`); bakiye = kazanılan − harcanan.
+
+### Yeni model: iki sayı
+| Sayı | Ne | Düşer mi | Nerede görünür |
+|---|---|---|---|
+| **Yıldız puanı** | Ömür boyu kazanılan bütün yıldızlar | Hiç düşmez; harcama ve fiyat yarılama puanı etkilemez | Profil kimlik bloğu, masal sonu, ebeveyn profil sayfası |
+| **Cepteki yıldız** | Puan − harcanan | Harcayınca düşer | Yalnızca Kitaplık renkleri ve gardırop (harcama yerleri) |
+
+Kod: `MPStars.count` zaten ömür boyu kazanılanı veriyor, adı `MPStars.score` olur; `balance = score - spent` ayrı. Puan defterden türediği için iki cihaz birleşince de düşmez.
+
+### Yıldız katı (profilin rozeti, 12 kat)
+Puan eşiği geçince profil bir kat atlar. Kat, Profil sekmesinde kahramanın (`HeroAvatarView`) köşesinde küçük arma ve adın altında tek satır: "Parlak yıldız · 168 yıldız".
+
+| Kat | Puan | Ad |
+|---|---|---|
+| 1 | 10 | Kıvılcım |
+| 2 | 25 | Yıldız tozu |
+| 3 | 50 | Parıltı |
+| 4 | 100 | Küçük yıldız |
+| 5 | 150 | Parlak yıldız |
+| 6 | 250 | Kayan yıldız |
+| 7 | 400 | Takımyıldız |
+| 8 | 600 | Ay ışığı |
+| 9 | 800 | Kuyruklu yıldız |
+| 10 | 1000 | Samanyolu |
+| 11 | 1500 | Gökada |
+| 12 | 2000 | Masal göğü |
+
+Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıvılcım, ilk ay Parıltı, 2. ay Küçük yıldız, 5. ay Kayan yıldız, 1. yıl Ay ışığı, ~2. yıl Samanyolu, Masal göğü 3-4 yıllık okur. Sabah yıldızı yalnızca okunan günlere bağlanırsa (karar 11) haftada ~8 yıldız, katlar ~%40 geç gelir.
+
+### Sınırlar
+- Puan ve kat yalnızca yıldızdan gelir; yıldız yalnızca okumadan (karar 11'e bağlı) gelir. Parayla puan yok, abonelikle puan yok.
+- Puan ve kat **asla düşmez**: harcama, masal silme, profil değiştirme, cihaz değiştirme etkilemez.
+- **Kıyas yok:** "Kim okuyor?" seçicisinde ve ebeveyn odasında kardeşlerin puanı ya da katı yan yana gösterilmez; her çocuk kendi Profil sayfasında kendi katını görür. Liderlik tablosu yok.
+- Kilitli katta eşik yazar ("100 yıldızda açılır"), kalan yazmaz: "12 yıldız kaldı", ilerleme çubuğu, yüzde yok (R0 kararı 2'nin aynısı).
+- Kat atlama bildirimle duyurulmaz.
+
+### Görünüm
+- **Profil:** kimlik bloğunda kahraman + kat arması, ad, "Parlak yıldız · 168 yıldız". Dokununca `mpSheet`: büyük arma, 12 kat listesi, kazanılanlar tarihli ("Parıltı · 3 Aralık"), kilitliler eşikle.
+- **Masal sonu:** bugünkü "+1 yıldız" satırı "+1 yıldız · toplam 168" olur.
+- **Kat atlama anı:** gündüz masal sonunda rozet anıyla aynı tam ekran sahne (4.2). Hem rozet hem kat aynı anda gelirse tek ekran: üstte kat arması büyük, altta rozet(ler) küçük. Gece sessiz satır: "Yeni katın: Parlak yıldız."
+- Sabah yıldızıyla kat atlanırsa (masal sonu yoksa) an, bir sonraki masal sonunda gösterilir; ana sayfada ayrı kutlama yok, selamda bir kez: "Yıldızın Parlak yıldız oldu."
+- **Ebeveyn:** çocuğun profil sayfasında puan, kat, kazanılan/harcanan (bugünkü satır genişler). Harcamayı kapatma ve fiyat yarılama puanı etkilemez.
+
+### Veri
+- `MPBadgeLedger.starLevels: [String: Date]` (kat → ilk ulaşıldığı an, birleşmede `min`). Puan türetilmiş olduğu için kat tarihi ancak defterle tutulur.
+- Göçte bugünkü puana göre ulaşılmış katlar bugünün tarihiyle **sessizce** işlenir (`seen`), kutlama açılmaz.
+- Kat kataloğu `MPBadgeCatalog` içinde ayrı aile (`starLevel`); rozet ızgarasındaki "12 / 69" sayısına girmez, profilin kendi arması olarak durur.
 
 ## 6. Fazlar
 
 | Faz | İş | Sahip ajan | Çıktı |
 |---|---|---|---|
 | **R0** ✅ | Kararlar verildi (bkz. 7) | Batuhan | 15 Kasım 2026 |
-| **R1** | Model: `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
+| **R1** | Model: `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen`; `MPStars.score` / `balance`, `starLevels` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, puan harcamayla düşmez, kat eşikleri, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
 | **R2** | Kazanma: okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, yer, aile, ses, sürpriz, seri bölümü, gün bilgisi; kelime kartı açılınca tek bayrak | builder | Testler: her ölçü doğru masaldan dolar |
-| **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet | ui-agent brif → builder | Tasarım yasası grep'leri boş |
-| **R4** | Anlar: tam ekran rozet anı (gündüz) ve gece satırı, Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
-| **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
+| **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
+| **R4** | Anlar: tam ekran rozet ve kat anı (gündüz) ve gece satırı, "+1 yıldız · toplam", Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
+| **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi, puan ve kat; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
 | **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
 | **Sonra** | Arma çizimleri (69 + 11 kat halkası, Masal yolu'nda 4 Ragi hâli) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
 
@@ -226,6 +284,12 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 6-8 rozet (İl
 8. **69 rozet:** 28 ek rozet (ara katlar, Gezgin, Dostlar, Kocaman aile, Sesli kitaplık, 10 klasik, 5 Original, Meraklı parmak) kabul mü?
 9. **Dördüncü gizli rozet:** Masal yıldönümü eklensin mi?
 10. **Masal anıları:** Rozetlerim sayfasının sonunda dört anı kartı (rekor değil) olsun mu?
+
+**Yıldız puanı (5b) için açık:**
+
+11. **Sabah yıldızı:** bugün profil açıldığından beri her gün kendiliğinden geliyor; puan okumadan da artıyor. Öneri: sabah yıldızı yalnızca o gün bir masal bitince gelsin ("okuma sabahı"), böylece puan ve kat yalnızca okumayla büyür. 13 Ekim kararını değiştirir.
+12. **Rozet puan versin mi?** R0'da "rozet yıldız vermez" dendi. Duolingo rozetle mücevher veriyor. Öneri: vermesin, puan yalnızca okumadan gelsin.
+13. **Kat adları ve eşikleri:** 12 kat, 10'dan 2000'e.
 
 ## 8. Riskler
 

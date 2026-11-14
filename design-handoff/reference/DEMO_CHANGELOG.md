@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı: yıldız puanı ve Yıldız katı
+
+- Ne değişti (Batuhan, 15 Kasım: "yıldızlar kullanıcının toplam puanı gibi olsun, profil puan arttıkça rozet alsın"): `docs/ROZET_PLANI.md`'ye 5b bölümü. Yıldız puanı = ömür boyu kazanılan yıldız, harcamayla düşmez; harcama "cepteki yıldız"dan gider. Profil puanla 12 Yıldız katı alır (10 → 2000: Kıvılcım, Yıldız tozu, Parıltı, Küçük yıldız, Parlak yıldız, Kayan yıldız, Takımyıldız, Ay ışığı, Kuyruklu yıldız, Samanyolu, Gökada, Masal göğü). Kat arması Profil'de kahramanın köşesinde; kat atlama gündüz rozet anıyla aynı tam ekran sahnede, gece sessiz satır. Veri: `MPStars.score` / `balance`, defterde `starLevels`. Fazlar R1, R3, R4, R5 buna göre genişledi.
+- `CLAUDE.md` ilke 7'ye yıldız puanı karar satırı eklendi: "points" yasağının yalnızca yıldız için istisnası (repo dışı dosya).
+- Bilerek değişmedi: kıyas, sıralama, lig yok; puan düşmez; kilitli katta "kaldı" ve çubuk yok. Açık kararlar: sabah yıldızı yalnızca okunan günde mi (11), rozet puan versin mi (12), kat adları ve eşikleri (13). Uygulama kodu değişmedi.
+- Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ROZET_PLANI.md`, bu günlük, `../CLAUDE.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı: Duolingo araştırması, 69 rozet önerisi
 
 - Ne değişti (Batuhan, 15 Kasım: "Duolingo'nun rozet sistemini tamamen araştır, daha fazla rozetle planı destekle"): `docs/ROZET_PLANI.md`'ye 2b bölümü eklendi: Duolingo'nun ödülleri, tek seferlik rozetleri, kişisel rekorları, sınırlı rozetleri, sunuşu ve tasarım gerekçesi; her biri için alındı / çevrildi / reddedildi tablosu. Kaynak: Duolingo blogu (2022, 2023) ve iki hayran rehberi (eşikler tutarsız, yaklaşık).
