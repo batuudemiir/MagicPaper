@@ -1,6 +1,6 @@
 {
   "claim_id": "c_bedtime_quiet_last_page",
-  "statement": "In 5 of 5 analysed books framed by bedtime or sleep the last spread is quieter than the book's average (0-2 of 5 against an average of 2.1-3.1); in non-bedtime books this holds for 8 of 17, and many end on a joyful payoff at or above the average. None of the 21 books has a celebration after the story: they close with a picture, a vignette or credits.",
+  "statement": "In 7 of 7 analysed books framed by bedtime or sleep the last spread is quieter than the book's average (0-2 of 5); in non-bedtime books this holds for about half, and many end on a joyful payoff at or above the average. None of the analysed books has a celebration after the story: they close with a picture, a vignette or credits.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -11,31 +11,34 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash, StoryWeaver/Pratham Books, African Storybook; 2014-2026"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_bathtub_safari_chemaly",
     "w_good_night_monu_karthik",
     "w_goodnight_tinku_nambiar",
     "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
-    "w_zuko_and_the_crying_tap_langeni"
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_house_for_mouse_fry",
+    "w_clever_pig_koenig",
+    "w_sweet_dreams_amaya"
   ],
   "counterexample_works": [],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-21: answers the reader agent's question q_what_is_on_the_last_spread_of_the_analys. Two publishers among the 5. Intensity is on the 0-5 research scale; on the engine's 0-3 scale the last bedtime pages are 0-1 (Zuko about 1). Emotion intensity measured 100% re-read agreement (24 pages).",
+  "analyst_note": "2026-10-21: answers the reader agent's question q_what_is_on_the_last_spread_of_the_analys. Two publishers among the 5. Intensity is on the 0-5 research scale; on the engine's 0-3 scale the last bedtime pages are 0-1 (Zuko about 1). Emotion intensity measured 100% re-read agreement (24 pages).\n2026-10-28: +2 Book Dash bedtime books, both support: A House for Mouse ends on its smallest picture with a three-word good night (1/5); Clever Pig's last spread is 2 words at 1/5 and the only night-palette spread. Engine scale 0-3: about 0-1. Still mostly Book Dash plus StoryWeaver; the non-bedtime comparison was not recounted this week. Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-11-13: +1 support: Sweet Dreams (bedtime-framed) ends at 2/5 against a book average of 2.1; its quietest page is the one before (eyes shut, 1/5). Not bedtime-framed but worth noting: I Can Do It! ends on a calm bedtime page (1/5). Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "reader.page_turn",
     "current": "After the last page StoryReaderView stops narration and goes straight to StoryEndingLeaf: Ragi waving, 'Masal bitti!', reading counts and a 400 ms celebration, the same in every mode.",
     "suggested": "In bedtime mode only: let the last story page stand alone as a quiet moment (no auto-advance, narration ends softly), and make the ending leaf calm: no celebration animation and no reading counts on that screen; keep today's ending for adventure and learning.",
     "note": "Bedtime-specific; 5 bedtime books from 2 publishers.",
-    "review_status": "proposed"
+    "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 5,
-    "support": 5,
+    "n_examined": 8,
+    "support": 8,
     "counter": 0,
     "support_ratio": 1.0,
     "sample_scope": "SMALL_SAMPLE",

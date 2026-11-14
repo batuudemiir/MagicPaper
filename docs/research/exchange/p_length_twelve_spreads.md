@@ -1,8 +1,8 @@
 # p_length_twelve_spreads
 
-**Status:** decided · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 1/5 works)
+**Status:** decided · **Target:** `validator.BANDS` · claim `c_length_twelve_spreads` (LOW, 1/8 works)
 
-> Outside Book Dash, whose format fixes 12 spreads, 1 of 5 analysed books runs 12 pages (Chicken and Millipede, African Storybook); the others run 11 (Goodnight, Tinku!), 13 (Good Night, Monu), 15 (Bohlale's adventure) and 17 (Kottavi Raja). The 12-spread pattern is not shown beyond one publisher.
+> Outside Book Dash, whose format fixes 12 spreads, 1 of 8 analysed books runs 12 pages (Chicken and Millipede, African Storybook); the others run 11 (Goodnight, Tinku!; Get Down, Rocky!), 13 (Good Night, Monu), 14 (Sweet Dreams), 15 (Bohlale's adventure), 17 (Kottavi Raja) and 18 (The Lost Ball). The 12-spread pattern is not shown beyond one publisher.
 
 - Current: 8 pages × 18-38 words (144-304 words)
 - Suggested: Similar total length, but these books spend it on ~12 page turns of ~10-20 words. Worth testing shorter pages and more turns once the corpus is larger.

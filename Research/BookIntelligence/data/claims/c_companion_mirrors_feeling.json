@@ -1,6 +1,6 @@
 {
   "claim_id": "c_companion_mirrors_feeling",
-  "statement": "In 3 of 23 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text; in the other 20 there is no companion or it does not mirror (Khumo's and Monu's teddies, Fifi's Teddy stay neutral).",
+  "statement": "In 6 of 42 books a toy or animal companion is drawn mirroring the protagonist's feeling while saying nothing in the text (a cat in The Lost Ball, a toy rhino in Dudu's Hat, a blue frog on every spread of Play with Me); in the other 36 there is no companion or it does not mirror.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,12 +8,15 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
     "w_brave_bora_gicovi",
-    "w_catch_that_cat_pirie"
+    "w_catch_that_cat_pirie",
+    "w_the_lost_ball_mustafa",
+    "w_dudus_hat_mcgregor",
+    "w_play_with_me_seldon"
   ],
   "counterexample_works": [
     "w_amo_and_the_missing_mielies_phala",
@@ -35,13 +38,29 @@
     "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
     "w_mud_waterkeyn",
     "w_unexpected_adventure_jooste",
-    "w_zuko_and_the_crying_tap_langeni"
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_get_down_rocky_besant",
+    "w_day_out_brain",
+    "w_who_ate_my_hat_shea",
+    "w_lets_go_looking_ngaba",
+    "w_clever_pig_koenig",
+    "w_house_for_mouse_fry",
+    "w_goldfish_genius_wilson",
+    "w_trip_to_the_tap_mandoyi",
+    "w_going_places_reeves",
+    "w_aaaaahhh_mmawe_mcgregor",
+    "w_can_we_eat_a_rainbow_drew",
+    "w_i_can_do_it_mathe",
+    "w_banzis_busy_bees_zazela",
+    "w_dance_khuzwayo_dance_nyirongo",
+    "w_alexs_super_medicine_rex",
+    "w_sweet_dreams_amaya"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Neither new book has a silent mirroring companion (Best Friends' companion speaks; the wordless book has none).\n2026-10-15: No new support from any source. Khumo (Book Dash) and Good Night, Monu (StoryWeaver) carry a teddy on most spreads but its face does not track the child's. 2026-10-20: The Red Umbrella's duck hides when the children hide but reads as a running find-it joke; not counted either way.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Neither new book has a silent mirroring companion (Best Friends' companion speaks; the wordless book has none).\n2026-10-15: No new support from any source. Khumo (Book Dash) and Good Night, Monu (StoryWeaver) carry a teddy on most spreads but its face does not track the child's. 2026-10-20: The Red Umbrella's duck hides when the children hide but reads as a running find-it joke; not counted either way.\n2026-10-28: +2 support, +7 counter. First non-Book Dash support: The Lost Ball (Room to Read) — a cat never mentioned in the text copies Jami's dismay and worry. Book Dash: Dudu's Hat's rhino supports; A Day Out's dog and Goldfish Genius's cat react but mostly to others, not counted as mirroring. Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-11-13: +1 support (Play with Me: an unnamed frog hides, cries when Jabu is alone and leaps when he plays), +9 counter (dogs in Can We Eat a Rainbow? and Alex's Super Medicine and the cat in Sweet Dreams act or sleep but do not mirror). Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "catalog companions speak and act in text",
@@ -50,10 +69,10 @@
     "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 23,
-    "support": 3,
-    "counter": 20,
-    "support_ratio": 0.13,
+    "n_examined": 42,
+    "support": 6,
+    "counter": 36,
+    "support_ratio": 0.143,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "LOW",

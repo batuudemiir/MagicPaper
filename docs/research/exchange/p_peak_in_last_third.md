@@ -1,8 +1,8 @@
 # p_peak_in_last_third
 
-**Status:** decided · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (LOW, 16/24 works)
+**Status:** decided · **Target:** `beat_sequences` · claim `c_peak_in_last_third` (MEDIUM, 28/43 works)
 
-> The emotional peak falls in the last third in 16 of 24 analysed books; in 8 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).
+> The emotional peak (first page at the book's highest intensity) falls in the last third in 28 of 43 analysed books; in the other 15 the first peak comes earlier (mid-book reveals, plateaus, bedtime books that peak mid-way and wind down, or books whose last-third high only matches an earlier one).
 
 - Current: 8-beat arcs
 - Suggested: Check where MagicPaper arcs place their most intense page; compare after the corpus grows.

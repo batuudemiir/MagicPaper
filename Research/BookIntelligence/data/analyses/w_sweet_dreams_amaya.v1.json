@@ -1,0 +1,290 @@
+{
+  "work_id": "w_sweet_dreams_amaya",
+  "analysis_version": "1",
+  "edition_id": "e_manual_sw_sweet_dreams",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-11-13T15:33:13Z",
+  "completeness": "full",
+  "summary_paraphrase": "A boy dreams of a parade of Indian sweets. Each sweet gets a short rhyming verse that hands over to the next one, often through a question. After the warmest sweet he wakes with a start on a rooftop cot at night, calls the sweets back, shuts his eyes and returns to the dream to dance with them.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 1,
+      "function": "enter the dream; the parade is called"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 3,
+      "end_page": 10,
+      "intensity": 2,
+      "function": "chain of sweets, each verse naming the next"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "the warmest sweet, a close-up; rhyme left open"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 2,
+      "function": "waking with a start; real night on the rooftop"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 13,
+      "end_page": 13,
+      "intensity": 1,
+      "function": "calls the sweets back, eyes shut"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 14,
+      "end_page": 14,
+      "intensity": 2,
+      "function": "back into the dream"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "ESCALATION": 0.154,
+    "CLIMAX": 0.769,
+    "TURN": 0.846,
+    "EMOTIONAL_PAYOFF": 0.923,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "faizu",
+      "name": "Faizu",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "to stay in the sweet dream",
+      "fear": "losing the dream on waking",
+      "change": "from losing the dream to choosing to go back to it",
+      "relation_to_protagonist": "self"
+    },
+    {
+      "id": "cat",
+      "name": "the cat",
+      "role": "animal_companion",
+      "desire": "play",
+      "change": "blue in the dream, grey and real on the rooftop",
+      "relation_to_protagonist": "his cat (picture only)",
+      "humor_source": "plays in the sweets"
+    },
+    {
+      "id": "sweets",
+      "name": "the sweets",
+      "role": "community",
+      "relation_to_protagonist": "dream characters; one speaks (halwa)"
+    }
+  ],
+  "protagonist_agency": 3,
+  "emotional_curve": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    2,
+    3,
+    2,
+    2,
+    2,
+    3,
+    2,
+    1,
+    2
+  ],
+  "humor_notes": "Wordplay and absurd images of sweets as royalty and vehicles; the cat's play is a picture joke.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "each sweet gets a verse opening with its name said twice, then hands over to the next sweet",
+      "pages": [
+        3,
+        4,
+        5,
+        7,
+        9,
+        10,
+        11
+      ],
+      "functions": [
+        "rhythm",
+        "anticipation",
+        "participation"
+      ],
+      "effective": true,
+      "why": "a predictable chant that a listener can join; the hand-over makes each page turn expected"
+    },
+    {
+      "type": "cumulative",
+      "description": "the waking page lists all the sweets again",
+      "pages": [
+        13
+      ],
+      "functions": [
+        "memory",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "gathers the whole dream back before sleep"
+    },
+    {
+      "type": "callback",
+      "description": "the last page returns to the dream world of the first",
+      "pages": [
+        1,
+        14
+      ],
+      "functions": [
+        "comfort"
+      ],
+      "effective": true,
+      "why": "closes the circle: dream, wake, dream"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "Only the waking picture shows the real setting: a rope cot on a rooftop at night, and that the dream cat is his own cat.",
+      "The two night pages (12-13) are the only dark pages; colour carries the dream/waking change.",
+      "On p9 Faizu already floats with closed eyes: the picture prepares the waking."
+    ]
+  },
+  "strengths": [
+    "A chant structure that hands each page to the next (question or named next sweet): strong anticipation for a read-aloud.",
+    "The real-world turn comes late (p12 of 14) and is quickly soothed; the book ends inside sleep.",
+    "A rhyme that completes across the page turn (p11 to p12) makes the waking the strongest turn."
+  ],
+  "weaknesses": [
+    "Almost no story problem until p12; the middle is a list.",
+    "Food words (Indian sweets) need context for readers outside India."
+  ],
+  "anti_patterns": [
+    {
+      "id": "page_without_change",
+      "pages": [
+        5,
+        7
+      ],
+      "note": "verse pages that only add a sweet without moving anything"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "scores": {
+      "curiosity": 3,
+      "humor": 3,
+      "participation": 4,
+      "emotional_identification": 3,
+      "surprise": 4,
+      "character_warmth": 4,
+      "agency": 2,
+      "visual_novelty": 5,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children.",
+    "label": "Research heuristic — not validated"
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Bedtime dream book; brief waking start (research 2/5, about 1 on the engine's 0-3 scale). As a text-only model the rooftop and the real cat would need to be told in words (m005)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 14,
+    "total_words": 205,
+    "words_per_page": {
+      "min": 8,
+      "median": 13.0,
+      "max": 24
+    },
+    "mean_sentence_words": 6.03,
+    "longest_sentence": 14,
+    "type_token_ratio": 0.59,
+    "dialogue_ratio": 0.02,
+    "questions": 7,
+    "questions_per_page": 0.5,
+    "direct_address": 4,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {},
+      "refrains": {},
+      "top_sentence_openers": {
+        "a": 2,
+        "peda": 1,
+        "first": 1,
+        "enter": 1,
+        "mysore": 1
+      },
+      "end_rhyme_pairs": 5,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  },
+  "craft": {
+    "causal_chain": [
+      {
+        "cause": "he falls asleep",
+        "effect": "a parade of sweets fills the dream",
+        "pages": [
+          1,
+          2
+        ],
+        "driver": "chance"
+      },
+      {
+        "cause": "each sweet's verse names the next",
+        "effect": "the dream moves from sweet to sweet",
+        "pages": [
+          3,
+          10
+        ],
+        "driver": "chance"
+      },
+      {
+        "cause": "the warmest sweet touches him",
+        "effect": "he wakes with a start on the rooftop",
+        "pages": [
+          11,
+          12
+        ],
+        "driver": "chance"
+      },
+      {
+        "cause": "he shuts his eyes on purpose",
+        "effect": "he goes back into the dream",
+        "pages": [
+          13,
+          14
+        ],
+        "driver": "protagonist"
+      }
+    ],
+    "ending": {
+      "type": "settling_to_sleep",
+      "answers": "will the sweets come back after he wakes",
+      "last_page_move": "he dances back into the dream world of the first page",
+      "returns_to_opening": true,
+      "pages_after_resolution": 1
+    },
+    "writer_note": "A bedtime list can carry its own turn: break the dream once late in the book, then let the child choose to go back to sleep; the last move is the child's."
+  }
+}

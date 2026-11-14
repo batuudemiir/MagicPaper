@@ -1,8 +1,8 @@
 # p_picture_only_information
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_picture_only_information` (LOW, 23/24 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_picture_only_information` (MEDIUM, 42/43 works)
 
-> In 23 of 24 analysed books at least one spread carries story information only in the picture; 3 are wordless and in 4 more the turning point is carried by wordless spreads. The level-3 Kottavi Raja tells everything in its text.
+> In 42 of 43 analysed books at least one spread carries story information only in the picture; 5 are wordless or have a wordless reveal spread and in several more the turning point, a rescue plan or the real cause is carried by the pictures alone. The level-3 Kottavi Raja tells everything in its text.
 
 - Current: text carries the whole story
 - Suggested: Hypothesis for illustrated stories: leave one fact per story to the picture; not applicable to text-only stories.

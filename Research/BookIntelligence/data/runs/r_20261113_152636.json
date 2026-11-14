@@ -1,0 +1,89 @@
+{
+  "run_id": "r_20261113_152636",
+  "status": "closed",
+  "started_at": "2026-11-13T15:26:36Z",
+  "finished_at": "2026-11-13T15:40:43Z",
+  "goal": "weekly increment",
+  "query_strategy": [
+    "5-6 gaps (adventure, bedtime, helping-others, belonging, female protagonist); newest Book Dash 2023-2026 + up to 3 StoryWeaver/African Storybook by manual route"
+  ],
+  "queries": [],
+  "candidates": [],
+  "sources_added": [
+    "s_bookdash_a_trip_to_the_tap",
+    "s_bookdash_can_we_eat_a_rainbow",
+    "s_bookdash_going_places",
+    "s_bookdash_aaaaahhh_mmawe",
+    "s_bookdash_i_can_do_it",
+    "s_bookdash_play_with_me",
+    "s_bookdash_banzis_busy_bees",
+    "s_manual_sw_sweet_dreams",
+    "s_bookdash_dance_khuzwayo_dance",
+    "s_bookdash_alexs_super_medicine"
+  ],
+  "works_added": [
+    "w_trip_to_the_tap_mandoyi",
+    "w_can_we_eat_a_rainbow_drew",
+    "w_going_places_reeves",
+    "w_aaaaahhh_mmawe_mcgregor",
+    "w_i_can_do_it_mathe",
+    "w_play_with_me_seldon",
+    "w_banzis_busy_bees_zazela",
+    "w_sweet_dreams_amaya",
+    "w_dance_khuzwayo_dance_nyirongo",
+    "w_alexs_super_medicine_rex"
+  ],
+  "editions_added": [
+    "e_bookdash_a_trip_to_the_tap",
+    "e_bookdash_can_we_eat_a_rainbow",
+    "e_bookdash_going_places",
+    "e_bookdash_aaaaahhh_mmawe",
+    "e_bookdash_i_can_do_it",
+    "e_bookdash_play_with_me",
+    "e_bookdash_banzis_busy_bees",
+    "e_manual_sw_sweet_dreams",
+    "e_bookdash_dance_khuzwayo_dance",
+    "e_bookdash_alexs_super_medicine"
+  ],
+  "analyses_completed": [
+    "w_trip_to_the_tap_mandoyi.v1",
+    "w_sweet_dreams_amaya.v1",
+    "w_going_places_reeves.v1",
+    "w_aaaaahhh_mmawe_mcgregor.v1",
+    "w_can_we_eat_a_rainbow_drew.v1",
+    "w_i_can_do_it_mathe.v1",
+    "w_play_with_me_seldon.v1",
+    "w_banzis_busy_bees_zazela.v1",
+    "w_alexs_super_medicine_rex.v1",
+    "w_dance_khuzwayo_dance_nyirongo.v1"
+  ],
+  "failures": [],
+  "claims_snapshot_start": {
+    "c_adult_enables_resolution": "LOW",
+    "c_bedtime_closes_circle": "LOW",
+    "c_bedtime_quiet_last_page": "LOW",
+    "c_companion_mirrors_feeling": "LOW",
+    "c_fear_named_and_supported": "HYPOTHESIS",
+    "c_length_twelve_spreads": "LOW",
+    "c_peak_in_last_third": "MEDIUM",
+    "c_picture_only_information": "LOW",
+    "c_picture_tells_reader_first": "LOW",
+    "c_repeated_line": "LOW",
+    "c_sentence_length": "MEDIUM",
+    "c_spread_end_hook": "MEDIUM"
+  },
+  "confidence_changes": [
+    {
+      "claim_id": "c_picture_only_information",
+      "from": "LOW",
+      "to": "MEDIUM"
+    },
+    {
+      "claim_id": "c_sentence_length",
+      "from": "MEDIUM",
+      "to": "LOW"
+    }
+  ],
+  "new_claims": [],
+  "summary": "10 new books, all complete: 9 Book Dash (2022-2026) and 1 StoryWeaver (Sweet Dreams, Pratham Books, year not shown); African Storybook failed with a server database error on the English filter and StoryWeaver showed its sign-up wall on a second pass, so only 1 non-Book Dash book (2 Book Dash taken instead). Claims updated: picture_only_information LOW to MEDIUM, sentence_length MEDIUM to LOW (longest-sentence half now 23 of 39); both proposals were already decided, no new proposal. Child data not downloaded (no node_modules, no gcloud credentials). Blind re-read of Ann-Nem-Oh-Nee: beat 0.75, only_in_image 0.83; only_in_image is now judged strictly as a fact the text never states, null when the picture only illustrates."
+}

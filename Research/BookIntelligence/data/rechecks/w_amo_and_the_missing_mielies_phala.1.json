@@ -1,0 +1,337 @@
+{
+  "recheck_id": "w_amo_and_the_missing_mielies_phala.1",
+  "work_id": "w_amo_and_the_missing_mielies_phala",
+  "against_version": "1",
+  "status": "scored",
+  "started_at": "2026-10-28T17:28:34Z",
+  "instructions": "Read the book again from the page images and this text only. Do not open data/pages/ or data/analyses/ for this work until `recheck score`.",
+  "pages": [
+    {
+      "page": 1,
+      "spread": false,
+      "text": "Amo loves playing in the mielie garden and listening to the birds sing.",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "joy",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "Amo's place and her love of the garden and its birds are set",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "A bird swoops at a ripe cob beside Amo: the later culprit is in the picture before the text names it."
+      }
+    },
+    {
+      "page": 2,
+      "spread": false,
+      "text": "Every day after school, she goes to count the mielies.\n“Mielies! Mielies!”\nShe calls out.",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "joy",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "Her daily after-school ritual of counting the mielies is introduced",
+      "page_turn_mechanism": [
+        "pattern_continuation"
+      ],
+      "humor": [],
+      "repetition": [
+        "phrase"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 3,
+      "spread": false,
+      "text": "1 … 2 … 3 … 4 … 5 … 6",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "joy",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "She counts six; the baseline number is fixed",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [
+        "structure"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Six cobs stand in a row so the reader can count along and check the number."
+      }
+    },
+    {
+      "page": 4,
+      "spread": false,
+      "text": "“Come on, Amo! Let’s have lunch!”\nKoko calls her.",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "calm",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "Koko calls her in for lunch, ending the day's visit",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Koko is shown as an older woman in a headscarf; the text never says who Koko is."
+      }
+    },
+    {
+      "page": 5,
+      "spread": false,
+      "text": "“When can we eat the mielies, Koko?” Amo asks.\n“Soon,” Koko always answers.",
+      "source_leaves": null,
+      "beat": "DESIRE",
+      "emotion": "anticipation",
+      "emotion_intensity": 1,
+      "label": "INFERRED",
+      "change": "Amo's wish to eat the mielies is stated and deferred with 'soon'",
+      "page_turn_mechanism": [
+        "anticipation"
+      ],
+      "humor": [],
+      "repetition": [
+        "predictable_pattern"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 6,
+      "spread": false,
+      "text": "The next afternoon Amo goes to count the mielies.\n1 … 2 … 3 … 4 … 5 …\nOh no!",
+      "source_leaves": null,
+      "beat": "DISCOVERY",
+      "emotion": "fear",
+      "emotion_intensity": 2,
+      "label": "INFERRED",
+      "change": "The count stops at five: something is wrong",
+      "page_turn_mechanism": [
+        "question"
+      ],
+      "humor": [],
+      "repetition": [
+        "structure"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "A bird's tail at the top of the frame and scattered kernels hint at who took the cob."
+      }
+    },
+    {
+      "page": 7,
+      "spread": false,
+      "text": "She counts again.\n1\n2\n3\n4\n5",
+      "source_leaves": null,
+      "beat": "FIRST_ATTEMPT",
+      "emotion": "frustration",
+      "emotion_intensity": 2,
+      "label": "INFERRED",
+      "change": "She recounts on her fingers and the count is still five",
+      "page_turn_mechanism": [
+        "anticipation"
+      ],
+      "humor": [],
+      "repetition": [
+        "action"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Bird feathers and loose kernels surround her counting hand: the thief's trace."
+      }
+    },
+    {
+      "page": 8,
+      "spread": false,
+      "text": "“Koko!\nOne mielie is missing!”\n“Let’s have lunch now, we’ll check the mielies tomorrow.”",
+      "source_leaves": null,
+      "beat": "PROBLEM",
+      "emotion": "fear",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Amo names the loss; Koko postpones checking to tomorrow",
+      "page_turn_mechanism": [
+        "question"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 9,
+      "spread": false,
+      "text": "Amo goes to the garden with Koko the next day.\n“Mielies! Mielies!” she calls out.\n1 … 2 … 3 … 4 …\nShe stops.",
+      "source_leaves": null,
+      "beat": "ESCALATION",
+      "emotion": "anticipation",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Next day, with Koko, the call and count repeat and stop at four",
+      "page_turn_mechanism": [
+        "question"
+      ],
+      "humor": [],
+      "repetition": [
+        "phrase",
+        "structure"
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Brown feathers drift among the cobs: birds have been there."
+      }
+    },
+    {
+      "page": 10,
+      "spread": false,
+      "text": "“Koko! Now two mielies are missing! What happened?”\n“Hmm … I think the birds ate them,” says Koko.\nAmo is sad.\n“Do we have to chase them away?”",
+      "source_leaves": null,
+      "beat": "COMPLICATION",
+      "emotion": "sadness",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Two are gone; Koko suspects the birds; Amo is sad and asks if they must chase them",
+      "page_turn_mechanism": [
+        "question"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "A bird perches on a cob and pecks it, confirming Koko's guess."
+      }
+    },
+    {
+      "page": 11,
+      "spread": false,
+      "text": "“I have an idea!” says Koko.\n“Let’s get some plastic bottles.”",
+      "source_leaves": null,
+      "beat": "TURN",
+      "emotion": "curiosity",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "Koko has an idea and asks for plastic bottles",
+      "page_turn_mechanism": [
+        "anticipation"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 12,
+      "spread": false,
+      "text": "“See! Now the mielies are safe, and you can still see the birds.”",
+      "source_leaves": null,
+      "beat": "SOLUTION",
+      "emotion": "calm",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "The mielies are protected and the birds can still be watched",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Each cob wears a clear bottle sleeve; how the idea works is shown only in the picture."
+      }
+    }
+  ],
+  "score": {
+    "beat": {
+      "agree": 10,
+      "total": 12,
+      "differ": [
+        10,
+        12
+      ],
+      "rate": 0.833
+    },
+    "emotion": {
+      "agree": 7,
+      "total": 12,
+      "differ": [
+        3,
+        6,
+        7,
+        8,
+        12
+      ],
+      "rate": 0.583
+    },
+    "emotion_intensity": {
+      "agree": 9,
+      "total": 12,
+      "differ": [
+        9,
+        10,
+        11
+      ],
+      "rate": 0.75
+    },
+    "page_turn_mechanism": {
+      "agree": 8,
+      "total": 12,
+      "differ": [
+        3,
+        6,
+        8,
+        9
+      ],
+      "rate": 0.667
+    },
+    "humor": {
+      "agree": 12,
+      "total": 12,
+      "differ": [],
+      "rate": 1.0
+    },
+    "repetition": {
+      "agree": 7,
+      "total": 12,
+      "differ": [
+        4,
+        5,
+        8,
+        11,
+        12
+      ],
+      "rate": 0.583
+    },
+    "only_in_image": {
+      "agree": 8,
+      "total": 12,
+      "differ": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "rate": 0.667
+    }
+  },
+  "scored_at": "2026-10-28T17:29:29Z"
+}

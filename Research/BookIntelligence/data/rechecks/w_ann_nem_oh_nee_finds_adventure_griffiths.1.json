@@ -1,0 +1,334 @@
+{
+  "recheck_id": "w_ann_nem_oh_nee_finds_adventure_griffiths.1",
+  "work_id": "w_ann_nem_oh_nee_finds_adventure_griffiths",
+  "against_version": "1",
+  "status": "scored",
+  "started_at": "2026-11-13T15:23:15Z",
+  "instructions": "Read the book again from the page images and this text only. Do not open data/pages/ or data/analyses/ for this work until `recheck score`.",
+  "pages": [
+    {
+      "page": 1,
+      "spread": false,
+      "text": "Ann-Nem-Oh-Nee lived in the ocean. All day long she clung to the same slippery rock with her single big foot. Her tiny tentacles caught tasty treats.",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "calm",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "We meet a sea anemone fixed to one rock, feeding with her tentacles.",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Her face is smiling and content; she is pink on a large brown-green rock."
+      }
+    },
+    {
+      "page": 2,
+      "spread": false,
+      "text": "On days when she felt cross, her stinging tentacles kept the other creatures away.",
+      "source_leaves": null,
+      "beat": "SETUP",
+      "emotion": "frustration",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Her stinging tentacles show she can push others away when cross.",
+      "page_turn_mechanism": [
+        "new_information"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Her frowning eyes and one long tentacle swatting toward fish who swim off."
+      }
+    },
+    {
+      "page": 3,
+      "spread": false,
+      "text": "But today her rock felt lonely.",
+      "source_leaves": null,
+      "beat": "PROBLEM",
+      "emotion": "loneliness",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Today the rock feels lonely: the want for company is named.",
+      "page_turn_mechanism": [
+        "emotional_curiosity"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "She is tiny in a crowded reef full of other creatures moving about, which makes the loneliness visible."
+      }
+    },
+    {
+      "page": 4,
+      "spread": false,
+      "text": "“I have no fins.\nI have no feet.\nI am different to every other creature.”",
+      "source_leaves": null,
+      "beat": "DESIRE",
+      "emotion": "sadness",
+      "emotion_intensity": 3,
+      "label": "OBSERVED",
+      "change": "She lists what she lacks and feels different from every creature.",
+      "page_turn_mechanism": [
+        "emotional_curiosity"
+      ],
+      "humor": [],
+      "repetition": [
+        {
+          "type": "structure",
+          "note": "I have no ... list"
+        }
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Each creature with fins or feet is placed beside the matching line; her face is sad."
+      }
+    },
+    {
+      "page": 5,
+      "spread": false,
+      "text": "“Even that hermit crab is off having adventures!”\n“Save me! That fish wants to pluck me out of my shell!”",
+      "source_leaves": null,
+      "beat": "COMPLICATION",
+      "emotion": "fear",
+      "emotion_intensity": 3,
+      "label": "OBSERVED",
+      "change": "She envies the crab's adventures; then the crab cries for help from a fish.",
+      "page_turn_mechanism": [
+        "danger"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "A toothy fish's mouth enters at the top corner: the threat appears in the picture before the text names it fully."
+      }
+    },
+    {
+      "page": 6,
+      "spread": false,
+      "text": "Ann-Nem-Oh-Nee whipped up her stinging tentacles and hid the hermit underneath them.\n“Go away, you big bully!”\nThe big fish bared his teeth, but was afraid of being stung.",
+      "source_leaves": null,
+      "beat": "CLIMAX",
+      "emotion": "excitement",
+      "emotion_intensity": 4,
+      "label": "OBSERVED",
+      "change": "She uses her stings to shelter the crab and faces the big fish down.",
+      "page_turn_mechanism": [
+        "new_information"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 7,
+      "spread": false,
+      "text": "He gave up and swam away with a cheeky flick of his tail.\n“That was close!” said the crab. “Is it safe now?”\n“You can come out, Crab. What’s your name?”\n“Herman. I’m a hermit, but I think I need a bodyguard. I wish I was as brave as you!”",
+      "source_leaves": null,
+      "beat": "SOLUTION",
+      "emotion": "relief",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "The fish leaves; the crab, Herman, wishes he were as brave as her.",
+      "page_turn_mechanism": [
+        "anticipation"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Her face stays grumpy while the crab snuggles in; only the fish's tail remains."
+      }
+    },
+    {
+      "page": 8,
+      "spread": false,
+      "text": "“I’m Ann-Nem-Oh-Nee. I wish I had amazing adventures like you.”\n“But why don’t you?” He asked.\n“I’m stuck to my rock. And I don’t have legs!” She replied.\n“Well, I don’t have stings, but I do have an idea!”",
+      "source_leaves": null,
+      "beat": "TURN",
+      "emotion": "curiosity",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "She confides her wish and her limits; Herman says he has an idea.",
+      "page_turn_mechanism": [
+        "question"
+      ],
+      "humor": [],
+      "repetition": [
+        {
+          "type": "structure",
+          "note": "I don't have ... mirrors her earlier list"
+        }
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    },
+    {
+      "page": 9,
+      "spread": false,
+      "text": "Herman took Ann-Nem-Oh-Nee by the tentacle and danced around her, pulling silly faces.\nFirst Ann-Nem-Oh-Nee snorted, and then she giggled — and then she laughed so hard she popped right off her rock.",
+      "source_leaves": null,
+      "beat": "TURN",
+      "emotion": "joy",
+      "emotion_intensity": 3,
+      "label": "OBSERVED",
+      "change": "Herman makes her laugh so hard she pops off her rock.",
+      "page_turn_mechanism": [
+        "transformation"
+      ],
+      "humor": [
+        "physical",
+        "character_behavior"
+      ],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "She floats free in mid-water, eyes shut laughing."
+      }
+    },
+    {
+      "page": 10,
+      "spread": false,
+      "text": "Herman gently picked her up and settled her on his shell.\n“Are you ready? I feel an adventure coming on.” He said.",
+      "source_leaves": null,
+      "beat": "EMOTIONAL_PAYOFF",
+      "emotion": "anticipation",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "Herman settles her on his shell; they set off together.",
+      "page_turn_mechanism": [
+        "anticipation"
+      ],
+      "humor": [],
+      "repetition": [],
+      "illustration": {
+        "available": true,
+        "only_in_image": "White background; the two are now one shape, anemone sitting atop the shell."
+      }
+    },
+    {
+      "page": 11,
+      "spread": false,
+      "text": "Ann-Nem-Oh-Nee adventures all over the ocean, catching tasty treats.\nNow she only uses her stinging tentacles to keep the nasty fish away from Herman.",
+      "source_leaves": null,
+      "beat": "ENDING",
+      "emotion": "joy",
+      "emotion_intensity": 2,
+      "label": "OBSERVED",
+      "change": "She travels the ocean and now guards Herman: the stings have a new purpose.",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [
+        {
+          "type": "callback",
+          "note": "tasty treats and stinging tentacles from the opening"
+        }
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": "Bubble vignettes show places she visits: fish school, eel in kelp, turtle, octopus."
+      }
+    },
+    {
+      "page": 12,
+      "spread": false,
+      "text": "And she never, ever feels lonely.",
+      "source_leaves": null,
+      "beat": "ENDING",
+      "emotion": "belonging",
+      "emotion_intensity": 1,
+      "label": "OBSERVED",
+      "change": "She is never lonely again: the opening want is answered.",
+      "page_turn_mechanism": [
+        "none"
+      ],
+      "humor": [],
+      "repetition": [
+        {
+          "type": "callback",
+          "note": "lonely answers page 3"
+        }
+      ],
+      "illustration": {
+        "available": true,
+        "only_in_image": null
+      }
+    }
+  ],
+  "score": {
+    "beat": {
+      "agree": 9,
+      "total": 12,
+      "differ": [
+        5,
+        10,
+        11
+      ],
+      "rate": 0.75
+    },
+    "emotion": {
+      "agree": 11,
+      "total": 12,
+      "differ": [
+        9
+      ],
+      "rate": 0.917
+    },
+    "emotion_intensity": {
+      "agree": 11,
+      "total": 12,
+      "differ": [
+        9
+      ],
+      "rate": 0.917
+    },
+    "page_turn_mechanism": {
+      "agree": 10,
+      "total": 12,
+      "differ": [
+        6,
+        7
+      ],
+      "rate": 0.833
+    },
+    "humor": {
+      "agree": 11,
+      "total": 12,
+      "differ": [
+        7
+      ],
+      "rate": 0.917
+    },
+    "repetition": {
+      "agree": 12,
+      "total": 12,
+      "differ": [],
+      "rate": 1.0
+    },
+    "only_in_image": {
+      "agree": 10,
+      "total": 12,
+      "differ": [
+        6,
+        8
+      ],
+      "rate": 0.833
+    }
+  },
+  "scored_at": "2026-11-13T15:23:55Z"
+}

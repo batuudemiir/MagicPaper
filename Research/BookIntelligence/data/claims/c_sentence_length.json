@@ -1,6 +1,6 @@
 {
   "claim_id": "c_sentence_length",
-  "statement": "Mean sentence length is between 3 and 10 words in all 21 analysed books with text; the longest sentence stays at or under 14 words in 12 of 21 (the others reach 15-21, and 38 in the level-3 Kottavi Raja).",
+  "statement": "Mean sentence length is between 3 and 10 words in 38 of 39 analysed books with text (A Day Out, a 3-4 book of one-line cries, averages 2.4); the longest sentence stays at or under 14 words in 23 of 39 (the others reach 15-27, and 38 in the level-3 Kottavi Raja).",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
@@ -22,7 +22,18 @@
     "w_feathered_friends_ange",
     "w_fifi_and_teddy_letsapa",
     "w_khumos_big_trip_sedibe",
-    "w_mud_waterkeyn"
+    "w_mud_waterkeyn",
+    "w_the_lost_ball_mustafa",
+    "w_day_out_brain",
+    "w_who_ate_my_hat_shea",
+    "w_lets_go_looking_ngaba",
+    "w_clever_pig_koenig",
+    "w_house_for_mouse_fry",
+    "w_trip_to_the_tap_mandoyi",
+    "w_aaaaahhh_mmawe_mcgregor",
+    "w_can_we_eat_a_rainbow_drew",
+    "w_play_with_me_seldon",
+    "w_sweet_dreams_amaya"
   ],
   "counterexample_works": [
     "w_ann_nem_oh_nee_finds_adventure_griffiths",
@@ -33,13 +44,20 @@
     "w_good_night_monu_karthik",
     "w_goodnight_tinku_nambiar",
     "w_grumpy_cloud_ditlhareng",
-    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
+    "w_get_down_rocky_besant",
+    "w_dudus_hat_mcgregor",
+    "w_going_places_reeves",
+    "w_i_can_do_it_mathe",
+    "w_banzis_busy_bees_zazela",
+    "w_dance_khuzwayo_dance_nyirongo",
+    "w_alexs_super_medicine_rex"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends: mean 6.9, longest 13. The wordless book is not counted.\n2026-10-15: Added 8 books with text (Zuko is wordless, not counted). Book Dash: Bathtub Safari 4.2/10, Khumo 3.2/12, Come Back Cat 3.2/4, Feathered Friends 4.6/8 support; Ga Mohana 6.6/18 contradicts. African Storybook: Chicken and Millipede 6.8/14 supports, Bohlale 8.6/18 contradicts (7-8 band). StoryWeaver: Good Night, Monu 9.9/18 contradicts (rhymed read-aloud couplets).",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends: mean 6.9, longest 13. The wordless book is not counted.\n2026-10-15: Added 8 books with text (Zuko is wordless, not counted). Book Dash: Bathtub Safari 4.2/10, Khumo 3.2/12, Come Back Cat 3.2/4, Feathered Friends 4.6/8 support; Ga Mohana 6.6/18 contradicts. African Storybook: Chicken and Millipede 6.8/14 supports, Bohlale 8.6/18 contradicts (7-8 band). StoryWeaver: Good Night, Monu 9.9/18 contradicts (rhymed read-aloud couplets).\n2026-10-28: +6 support, +2 counter. StoryWeaver: The Lost Ball 5.2/9 supports; Get Down, Rocky! 6.3/17 contradicts. Book Dash: Who Ate My Hat 4.3/6, Let's Go Looking 3.4/6, Clever Pig 3.2/6, A House for Mouse 6.5/9, A Day Out 2.4/5 support the longest-sentence half; Dudu's Hat 8.1/24 contradicts. A Day Out breaks the 'mean at least 3' half, so the statement no longer says 'all'. Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-10-28 older-book observation, NOT counted (SOURCES.md keeps populations apart): Millions of Cats (Internet Archive, 1928, Gág, study_only) contradicts (several 25-40-word sentences read from the scans; CLI metrics are inflated by OCR noise).\n2026-11-13: +5 support (A Trip to the Tap 7.8/14, Mmawe 4.2/12, Rainbow 4.2/12, Play with Me 6.3/10, Sweet Dreams 6.0/14), +5 counter (Going Places 8.7/18, I Can Do It! 10.0/27, Banzi 5.9/21, Khuzwayo 6.9/18, Alex 5.4/15). All 10 means fall in 3-10; the longest-sentence half now holds in fewer than 60%: the 14-word cap is tighter than many recent Book Dash books, but four of the five over-cap books are 5-6 and the cap applies to 5-6 too, so no change is suggested from this alone. Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "validator.MAX_SENTENCE_WORDS",
     "current": "14",
@@ -48,10 +66,10 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 21,
-    "support": 12,
-    "counter": 9,
-    "support_ratio": 0.571,
+    "n_examined": 39,
+    "support": 23,
+    "counter": 16,
+    "support_ratio": 0.59,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "LOW",
@@ -61,6 +79,14 @@
   "confidence_history": [
     {
       "from": null,
+      "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
+    },
+    {
+      "from": "MEDIUM",
       "to": "LOW"
     },
     {

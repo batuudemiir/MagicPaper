@@ -1,8 +1,8 @@
 # p_adult_enables_resolution
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 6/14 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_adult_enables_resolution` (LOW, 10/29 works)
 
-> In 5 of 12 books with a problem an adult makes the resolution possible (a tickle, an injection, a 'yes', a repairer called, a mother's instruction); in 7 the child or a peer resolves it.
+> In 10 of 29 books with a problem an adult makes the resolution possible (a tickle, an injection, a 'yes', a repairer called, a carpenter's ramp, a grandmother's new bucket, a garden replanted, a scare explained away); in 19 the child, a peer or an animal resolves it.
 
 - Current: MagicPaper beats favour the child acting (take_charge, find_own_courage)
 - Suggested: No change; record that adult-enabled endings are common in this population, and track agency as the corpus grows.

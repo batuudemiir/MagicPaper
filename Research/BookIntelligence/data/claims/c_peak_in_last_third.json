@@ -1,6 +1,6 @@
 {
   "claim_id": "c_peak_in_last_third",
-  "statement": "The emotional peak falls in the last third in 16 of 24 analysed books; in 8 the first peak comes at or before the midpoint (plateaus, or bedtime books that peak mid-way and wind down).",
+  "statement": "The emotional peak (first page at the book's highest intensity) falls in the last third in 28 of 43 analysed books; in the other 15 the first peak comes earlier (mid-book reveals, plateaus, bedtime books that peak mid-way and wind down, or books whose last-third high only matches an earlier one).",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
@@ -26,7 +26,19 @@
     "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
     "w_mud_waterkeyn",
     "w_red_umbrella_kritzinger",
-    "w_zuko_and_the_crying_tap_langeni"
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_get_down_rocky_besant",
+    "w_the_lost_ball_mustafa",
+    "w_day_out_brain",
+    "w_lets_go_looking_ngaba",
+    "w_dudus_hat_mcgregor",
+    "w_goldfish_genius_wilson",
+    "w_going_places_reeves",
+    "w_aaaaahhh_mmawe_mcgregor",
+    "w_can_we_eat_a_rainbow_drew",
+    "w_play_with_me_seldon",
+    "w_banzis_busy_bees_zazela",
+    "w_dance_khuzwayo_dance_nyirongo"
   ],
   "counterexample_works": [
     "w_bathtub_safari_chemaly",
@@ -36,13 +48,20 @@
     "w_goodnight_tinku_nambiar",
     "w_grumpy_cloud_ditlhareng",
     "w_khumos_big_trip_sedibe",
-    "w_unexpected_adventure_jooste"
+    "w_unexpected_adventure_jooste",
+    "w_clever_pig_koenig",
+    "w_who_ate_my_hat_shea",
+    "w_house_for_mouse_fry",
+    "w_trip_to_the_tap_mandoyi",
+    "w_i_can_do_it_mathe",
+    "w_alexs_super_medicine_rex",
+    "w_sweet_dreams_amaya"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.\n2026-10-15: Counts: support 5 earlier + Ga Mohana, Feathered Friends, Zuko (Book Dash) and Bohlale (African Storybook, first 4 at 0.71). Contradict: Bathtub Safari, Come Back Cat, Khumo (Book Dash, Khumo borderline), Chicken and Millipede (African Storybook, peak 5/5 at 0.45, about 3+ on the engine's 0-3 scale) and Good Night, Monu (StoryWeaver, peak 4/5 at 0.5-0.67, about 2 on 0-3). Two of the counterexamples are bedtime books that peak mid-way and wind down; see c_bedtime_closes_circle. 2026-10-20: +8 works (6 Book Dash, 2 StoryWeaver/Pratham). Goodnight, Tinku! is a plateau from p4 to p8 of 11 that winds down: counted as counterexample. Kottavi Raja peaks again at p16 of 17 after a second, city-wide problem.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. The wordless journey peaks at page 6 and holds through page 9 before a quiet return: a second plateau shape.\n2026-10-15: Counts: support 5 earlier + Ga Mohana, Feathered Friends, Zuko (Book Dash) and Bohlale (African Storybook, first 4 at 0.71). Contradict: Bathtub Safari, Come Back Cat, Khumo (Book Dash, Khumo borderline), Chicken and Millipede (African Storybook, peak 5/5 at 0.45, about 3+ on the engine's 0-3 scale) and Good Night, Monu (StoryWeaver, peak 4/5 at 0.5-0.67, about 2 on 0-3). Two of the counterexamples are bedtime books that peak mid-way and wind down; see c_bedtime_closes_circle. 2026-10-20: +8 works (6 Book Dash, 2 StoryWeaver/Pratham). Goodnight, Tinku! is a plateau from p4 to p8 of 11 that winds down: counted as counterexample. Kottavi Raja peaks again at p16 of 17 after a second, city-wide problem.\n2026-10-28: +6 support, +3 counter. StoryWeaver: Get Down, Rocky! peaks at the ramp (0.70) and The Lost Ball when the friends leave (0.71). Book Dash: A Day Out 0.73, Let's Go Looking 0.82, Dudu's Hat 0.82 and Goldfish Genius (plateau 0.64-0.91, climax 0.82) support; Who Ate My Hat (reveal at 0.55), Clever Pig (plateau from 0.55) and the bedtime A House for Mouse (plateau 0.42-0.67) count against. Peak position measured as (page-1)/(pages-1). Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-10-28 older-book observation, NOT counted (SOURCES.md keeps populations apart): Millions of Cats (Internet Archive, 1928, Gág, study_only) supports (peak at 0.76).\n2026-11-13: +6 support, +4 counter, measured as the first page at the maximum of the CLI emotional curve. I Can Do It! (p5 downhill ride = p10 tug-of-war, 4/5), Alex's Super Medicine (p5 = p11, 4/5) and Sweet Dreams (p5 = p7 = p11, 3/5) reach their high early and only match it later; A Trip to the Tap peaks at the lost bucket mid-book (3/5, about 2 on the engine's 0-3 scale). Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "8-beat arcs",
@@ -51,23 +70,24 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 24,
-    "support": 16,
-    "counter": 8,
-    "support_ratio": 0.667,
+    "n_examined": 43,
+    "support": 28,
+    "counter": 15,
+    "support_ratio": 0.651,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
-    "confidence": "LOW",
+    "confidence": "MEDIUM",
     "wording": "common, not universal",
-    "experiments": 0,
-    "unreliable_fields": [
-      "beat"
-    ]
+    "experiments": 0
   },
   "confidence_history": [
     {
       "from": null,
       "to": "LOW"
+    },
+    {
+      "from": "LOW",
+      "to": "MEDIUM"
     }
   ],
   "judgment_fields": [
