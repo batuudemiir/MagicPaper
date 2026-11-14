@@ -5,7 +5,7 @@ import SwiftUI
 /// Çocuğun kendi sayfası: kim okuyor, okuma sayıları, rozetler, kahraman,
 /// Masal ailem, Yeni kelimelerim (15). Profil değiştirme sayfanın en üstünde,
 /// tek dokunuş (7 Kasım 2026, Batuhan). "Ekle" kapıdan sonra doğrudan profil
-/// eklemeye gider; kahramanı düzenlemek kapıdan geçer. Yıldızlar yalnızca
+/// eklemeye gider; kahraman kapısız (14 Kasım 2026). Yıldızlar yalnızca
 /// kazanılır ve gösterilir (`MPStars`).
 ///
 /// 13 Kasım 2026 (Batuhan): yeni kurgu. Çocuğun kimliği tek yerde: "Kim
@@ -40,12 +40,14 @@ struct KidCornerView: View {
                     whoRow
                     if let profile { identityCard(profile) }
                     greeting
+                    // Ebeveynin kapısı ilk ekranda (14 Kasım 2026): en alttaki
+                    // küçük yazıyı bulan olmuyordu.
+                    grownUpsEntry
                 }
                 // Yapılacak işler (karolar) bakılacak şeylerden (rozetler)
                 // önce: bulunabilirlik (16 Ekim denetimi).
                 linksSection
                 badgesSection
-                grownUpsEntry
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.bottom, GunlukLayout.bottomClearance)
@@ -76,21 +78,16 @@ struct KidCornerView: View {
 
     // MARK: - Büyükler için
 
-    /// Ebeveyn odasının tek girişi (karar: 7 Kasım 2026): sayfanın en altında,
-    /// sakin ve küçük; çocuğu çağırmaz, arayan ebeveyn bulur. Gizli hareket değil:
-    /// ebeveyn bulamazsa destek sorunu olur. Kapıdan geçer.
+    /// Ebeveyn odasının tek girişi. 14 Kasım 2026: sayfanın en altındaki küçük
+    /// gri yazıdan, kimlik bloğunun hemen altında tam bir satıra taşındı;
+    /// ebeveyn ilk ekranda görür. Kilit simgesi yok, alt satır ne olduğunu
+    /// söyler. Giriş basılı tutmayla açılır (`ParentalGateView.Kind.hold`).
     private var grownUpsEntry: some View {
-        Button { MPHaptics.tap(); app.router.requestParentMode() } label: {
-            HStack(spacing: MPSpacing.xs) {
-                MPIcon("lock", size: MP.G.sm, weight: .semibold).accessibilityHidden(true)
-                Text("Büyükler için").mpText(.footnote)
-            }
-            .foregroundStyle(MPColor.textSecondary)
-            .frame(maxWidth: .infinity, minHeight: MP.S.tapMin)
-            .contentShape(Rectangle())
+        MPGroupedList(area: .kid) {
+            MPRowButton(systemImage: "person.2", tone: .sky, title: "Büyükler için",
+                        subtitle: "Ayarlar, abonelik ve okuma özeti",
+                        action: { MPHaptics.tap(); app.router.requestParentMode() }) { MPChevron() }
         }
-        .buttonStyle(MPPressStyle(.highlight))
-        .accessibilityLabel("Büyükler için, ebeveyn bölümü")
     }
 
     // MARK: - Başlık ve Ragi
@@ -338,11 +335,6 @@ struct KidCornerView: View {
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
-    }
-
-    /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
-    private func guarded(_ action: @escaping () -> Void) {
-        app.router.requestGate(then: action)
     }
 
     private var stickerSubtitle: String {

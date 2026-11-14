@@ -44,8 +44,7 @@ struct FirstRunView: View {
                         onRead: { onFinish(story) },
                         onCancel: { onFinish(nil) },
                         title: "\(SeriesCopy.genitive(childName)) ilk masalı yazılıyor",
-                        cancelTitle: "Sonra oku",
-                        awaitsApproval: story.map { settings.approve && !settings.isApproved($0.id) } ?? false)
+                        cancelTitle: "Sonra oku")
                     .transition(.opacity)
                 }
             }

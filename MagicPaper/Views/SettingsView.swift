@@ -33,10 +33,15 @@ struct SettingsView: View {
         uniqueKeysWithValues: FamilyFeature.allCases.map { ($0, FamilyFeatureAccess.isEnabled($0)) })
     #endif
 
+    /// "Büyükler için" sayfasından itilir (14 Kasım 2026); "Geri" oraya döner.
+    var onBack: (() -> Void)? = nil
+
+    init(onBack: (() -> Void)? = nil) { self.onBack = onBack }
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                MPParentHeader(title: "Ayarlar")
+                MPParentHeader(title: "Ayarlar", onBack: onBack)
                 profilesSection
                 if showsFamilySection { familySection }
                 notificationsSection

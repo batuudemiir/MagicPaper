@@ -217,30 +217,6 @@ struct KidTabBar: View {
     }
 }
 
-enum ParentTab: Hashable, CaseIterable {
-    // Onaylar sekmesi yok (karar 7 Ekim 2026: serbest metin ve onay kuyruğu kapalı).
-    case summary, safety, settings
-    var title: String { switch self { case .summary: "Özet"; case .safety: "Güvenlik"; case .settings: "Ayarlar" } }
-    var icon: String { switch self { case .summary: "square.grid.2x2"; case .safety: "checkmark.shield"; case .settings: "gearshape" } }
-}
-
-/// Parent area uses the system TabView with these items, tint = actionPrimary, background white.
-struct ParentTabs<Summary: View, Safety: View, Settings: View>: View {
-    @Binding var selection: ParentTab
-    @ViewBuilder var summary: Summary
-    @ViewBuilder var safety: Safety
-    @ViewBuilder var settings: Settings
-
-    var body: some View {
-        TabView(selection: $selection) {
-            summary.tabItem { Label(ParentTab.summary.title, systemImage: ParentTab.summary.icon) }.tag(ParentTab.summary)
-            safety.tabItem { Label(ParentTab.safety.title, systemImage: ParentTab.safety.icon) }.tag(ParentTab.safety)
-            settings.tabItem { Label(ParentTab.settings.title, systemImage: ParentTab.settings.icon) }.tag(ParentTab.settings)
-        }
-        .tint(MPColor.actionPrimary)
-    }
-}
-
 /// Çocuk sekmelerinin tek başlığı (karar: 7 Kasım 2026): başlık solda, sekmenin
 /// kendi denetimi sağda. Üst ve yan boşluk sayfanın: üstte `MPSpacing.lg`, yanda
 /// `screenH`.

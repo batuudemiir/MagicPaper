@@ -59,14 +59,15 @@ değişiyor.
 ├─ Kitaplık    → Seri                              │ sheet: Masal eylemleri
 ├─ Profil      → Masal ailem → Kahraman · Yeni kelimelerim
 │                 en üstte "Kim okuyor?" (tek dokunuşla değişir)
-│                 en altta sakin "Büyükler için" → Ebeveyn kapısı
+│                 kimlik bloğunun altında "Büyükler için" satırı → basılı tut (2 sn)
 └─ Masal yaz   (eylem) → tam ekran: Mod → Kimler → Hazırlanıyor → Okuyucu → Masal sonu
 
-Ebeveyn odası (kapıdan sonra üste kayar, kendi alt çubuğu)
-├─ Özet      → Masal kitabı → Paylaş · Abonelik bitti
-├─ Güvenlik
-└─ Ayarlar   → Aile · Kendi sesin · Paylaş · Gizlilik → Hesabı sil
-               profil sheet'i → Profili düzenle · Masal ailem · Kahraman │ sheet: İlgi alanları
+Ebeveyn odası (14 Kasım 2026'dan beri tek sayfa, alt çubuk yok)
+Büyükler için: bu hafta · son masallar · okuma ve uyku · abonelik · daha fazla
+├─ Masal kitabı → Paylaş · Abonelik bitti
+├─ Masal güvenliği (itilir)
+└─ Ayarlar (itilir) → Aile · Kendi sesin · Paylaş · Gizlilik → Hesabı sil
+               profil sayfası → Profili düzenle · Masal ailem · Kahraman │ sheet: İlgi alanları
 ```
 
 Tam ekran akışlar: ilk açılış, okuyucu, uyku modu, masal yazma, kapı, paywall.

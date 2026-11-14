@@ -25,7 +25,6 @@ final class MPSettingsStore: ObservableObject {
     @Published var talkPrompts: Bool { didSet { d.set(talkPrompts, forKey: K.talkPrompts) } }
     /// Faz 11: akşam sırası kartı (diş, pijama, masal, ışık). Varsayılan açık.
     @Published var bedtimeRoutine: Bool { didSet { d.set(bedtimeRoutine, forKey: K.bedtimeRoutine) } }
-    @Published var approve: Bool { didSet { d.set(approve, forKey: K.approve) } }
     @Published var screenLimit: Bool { didSet { d.set(screenLimit, forKey: K.screenLimit) } }
     /// Günlük okuma bütçesi, dakika. Ekrandaki "Günde 30 dakika" sabit bir
     /// metindi; artık seçilen değerin kendisi.
@@ -67,11 +66,6 @@ final class MPSettingsStore: ObservableObject {
         }
     }
 
-    /// Okunmuş masal id'leri — "seri" ve onay kuyruğu için.
-    @Published var approvedStoryIDs: Set<String> {
-        didSet { d.set(Array(approvedStoryIDs), forKey: K.approved) }
-    }
-
     private enum K {
         static let readAloud = "mp_readAloud"
         static let paperGrain = "mp_paperGrain"
@@ -91,7 +85,6 @@ final class MPSettingsStore: ObservableObject {
         static let screenLimitMinutes = "mp_screenLimitMinutes"
         static let reminderHour = "mp_reminderHour"
         static let reminderMinute = "mp_reminderMinute"
-        static let approved = "mp_approvedStoryIDs"
         static let haptics = "mp_haptics"
         static let sounds = "mp_sounds"
         static let familyVoice = "mp_familyVoice"
@@ -105,11 +98,10 @@ final class MPSettingsStore: ObservableObject {
     }
 
     private init() {
-        // Tasarımdaki varsayılanlar: hatırlatma açık, onay kapalı, ekran süresi açık.
+        // Tasarımdaki varsayılanlar: hatırlatma kapalı, ekran süresi açık.
         if !d.bool(forKey: K.seeded) {
             // Faz 14: varsayılan kapalı. İlk masal bittikten sonra sorulur (Faz 8).
             d.set(false, forKey: K.reminder)
-            d.set(false, forKey: K.approve)
             d.set(true, forKey: K.screenLimit)
             d.set(false, forKey: K.readAloud)
             d.set(MP.ReadSize.normal.rawValue, forKey: K.readSize)
@@ -128,9 +120,10 @@ final class MPSettingsStore: ObservableObject {
         easyPrices = d.bool(forKey: K.easyPrices)
         talkPrompts = d.object(forKey: K.talkPrompts) == nil ? true : d.bool(forKey: K.talkPrompts)
         bedtimeRoutine = d.object(forKey: K.bedtimeRoutine) == nil ? true : d.bool(forKey: K.bedtimeRoutine)
-        approve = d.bool(forKey: K.approve)
+        // Masal onayı kaldırıldı (14 Kasım 2026): eski anahtar açık kalmışsa
+        // gizli masallar rafa döner, anahtar da silinir.
+        d.removeObject(forKey: K.approve)
         screenLimit = d.bool(forKey: K.screenLimit)
-        approvedStoryIDs = Set(d.stringArray(forKey: K.approved) ?? [])
         // `seeded` bloğuna eklenemez: o blok yalnızca ilk kurulumda çalışır ve
         // mevcut kullanıcılarda bir daha çalışmaz, dolayısıyla oraya konan yeni
         // bir varsayılan onlara hiç ulaşmaz. Anahtarın yokluğu "açık" demektir.
@@ -160,16 +153,6 @@ final class MPSettingsStore: ObservableObject {
         easyReading = d.bool(forKey: K.easyReading)
         bedtimeHour = d.object(forKey: K.bedtimeHour) == nil ? 20 : d.integer(forKey: K.bedtimeHour)
         bedtimeMinute = d.object(forKey: K.bedtimeMinute) == nil ? 30 : d.integer(forKey: K.bedtimeMinute)
-    }
-
-    /// Var olan masalları toplu onaylar.
-    ///
-    /// Onay kapısı açıldığı anda kütüphanedeki her şey birden görünmez olsaydı,
-    /// ebeveyn bir anahtara dokunup çocuğun rafını boşaltmış olurdu — üstelik
-    /// o masalların hepsi zaten okunmuştu. Kapı ileriye doğru çalışır: bundan
-    /// sonra üretilen masallar onay bekler.
-    func approveStories(_ ids: [UUID]) {
-        approvedStoryIDs.formUnion(ids.map(\.uuidString))
     }
 
     var speechRate: MPSpeechRate {
@@ -203,13 +186,6 @@ final class MPSettingsStore: ObservableObject {
         readSizeChosen ? readSize : .standard(forAge: age)
     }
 
-    func approveStory(_ id: UUID) {
-        approvedStoryIDs.insert(id.uuidString)
-    }
-
-    func isApproved(_ id: UUID) -> Bool {
-        approvedStoryIDs.contains(id.uuidString)
-    }
 }
 
 

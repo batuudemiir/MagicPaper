@@ -38,26 +38,12 @@ enum MPTab: String, CaseIterable {
     }
 }
 
-/// Ebeveyn alanının sekmeleri: Özet · Güvenlik · Ayarlar.
-/// Çocuk profilleri Ayarlar'ın ilk bölümünde (FAZ 17).
+/// Ebeveyn alanının eski sekmeleri. 14 Kasım 2026'dan beri oda tek sayfa
+/// ("Büyükler için"); Güvenlik ve Ayarlar o sayfadan itilen alt sayfalar
+/// (`MPParentRoute.safety`, `.settings`). Değer yalnızca açılış argümanı ve
+/// yığını sıfırlamak için kalıyor.
 enum MPParentTab: String, CaseIterable {
     case overview, safety, settings
-
-    var parentTab: ParentTab {
-        switch self {
-        case .overview: return .summary
-        case .safety:   return .safety
-        case .settings: return .settings
-        }
-    }
-
-    init(_ tab: ParentTab) {
-        switch tab {
-        case .summary:  self = .overview
-        case .safety:   self = .safety
-        case .settings: self = .settings
-        }
-    }
 }
 
 // MARK: - Ebeveyn alt sayfaları
@@ -74,6 +60,8 @@ enum MPParentRoute: Identifiable, Hashable {
     case bookCharacter(UUID)     // 13 · Kahraman oluşturucu, profil düzenlemeden
     case profileEdit(UUID)       // Çocuğun adı, rengi ve yaş bandı
     case profileHub(UUID)        // Çocuk profil sayfası (Faz 7; önceden sheet)
+    case safety                  // 31 · Masal güvenliği (14 Kasım 2026'ya kadar sekme)
+    case settings                // 32 · Ayarlar (14 Kasım 2026'ya kadar sekme)
 
     var id: String {
         switch self {
@@ -85,6 +73,8 @@ enum MPParentRoute: Identifiable, Hashable {
         case .shareLink: return "shareLink"
         case .familyCharacters(let i): return "familyCharacters-\(i)"
         case .bookCharacter(let i): return "bookCharacter-\(i)"
+        case .safety: return "safety"
+        case .settings: return "settings"
         }
     }
 
@@ -95,6 +85,8 @@ enum MPParentRoute: Identifiable, Hashable {
         case "voiceRecording": self = .voiceRecording
         case "familyMembers": self = .familyMembers
         case "shareLink": self = .shareLink
+        case "safety": self = .safety
+        case "settings": self = .settings
         default: return nil
         }
     }
@@ -267,6 +259,11 @@ final class MPRouter: ObservableObject {
     func openKidCorner() {
         tab = .corner
     }
+
+    /// Kapı yalnızca odaya girmek için açıldıysa hafif biçimi (basılı tut)
+    /// kullanır; bir iş ya da profil ekleme bekliyorsa çarpma sorusu
+    /// (karar: 14 Kasım 2026).
+    var gateIsRoomEntry: Bool { gateAction == nil && !profileAddAfterGate }
 
     /// Ebeveyn moduna geçiş her seferinde kapıdan geçer.
     func requestParentMode() {

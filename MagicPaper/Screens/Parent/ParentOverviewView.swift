@@ -1,10 +1,14 @@
 import SwiftUI
 import StoreKit
 
-/// 29 · Ebeveyn · Özet (`EbeveynPaneli`).
+/// 29 · Büyükler için (eski Özet, `EbeveynPaneli`).
 ///
-/// Ebeveynin sorusu "işe yarıyor mu?". Yapılacak tek iş, onay bekleyen
-/// masallar, sayıların önünde durur. Yıldız sayacı yok (karar 7 Ekim 2026).
+/// 14 Kasım 2026: ebeveyn odası tek sayfa. Sırası: bu hafta (cümle, sayılar,
+/// grafik, son masallar) → okuma ve uyku → abonelik → daha fazla (Masal
+/// güvenliği ve Ayarlar, itilen alt sayfalar). Sekme çubuğu yok.
+///
+/// Ebeveynin sorusu "işe yarıyor mu?". Onay kuyruğu yok (masal onayı 14 Kasım
+/// 2026'da kalktı). Yıldız sayacı yok (karar 7 Ekim 2026).
 struct ParentOverviewView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -20,14 +24,13 @@ struct ParentOverviewView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.section) {
-                MPParentHeader(title: "Özet", subtitle: weekLabel)
+                MPParentHeader(title: "Büyükler için", subtitle: weekLabel)
                     // Huni: ebeveyn "Büyükler için"i buldu (Faz 6).
                     .onAppear { MPFunnel().record(.parentRoom) }
                     // Faz 14: değerlendirme isteği yalnızca burada, kurallar `MPReviewPolicy`'de.
                     .task { await askForReviewIfDue() }
 
                 if profileManager.profiles.count > 1 { childPicker }
-                if settings.approve && !pendingStories.isEmpty { approvalQueue }
                 // Sayılardan önce tek cümle (Faz 7).
                 Text(ParentInsight.sentence(stories: readThisWeek, minutes: streak.minutesThisWeek,
                                             streak: streak.currentStreak))
@@ -36,7 +39,9 @@ struct ParentOverviewView: View {
                 statsGrid
                 dailyChart
                 if !recentStories.isEmpty { recentSection }
+                ParentReadingRules()
                 subscriptionSection
+                moreSection
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.lg)
@@ -93,44 +98,6 @@ struct ParentOverviewView: View {
                 .accessibilityLabel("\(profile.name) için özet")
             }
         }
-    }
-
-    // MARK: - Onay kuyruğu
-
-    private var pendingStories: [Story] {
-        storyManager.stories.filter { $0.isReadable && !settings.isApproved($0.id) }
-    }
-
-    private var approvalQueue: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(spacing: MPSpacing.md) {
-                MPIcon("tray", size: 20, weight: .semibold)
-                    .foregroundStyle(MPColor.statusWarning)
-                    .frame(width: 40, height: 40)
-                    .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.sm))
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 1) {
-                    Text("\(pendingStories.count) masal onay bekliyor")
-                        .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                    Text("Onaylayana kadar kitaplıkta görünmüyor")
-                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                }
-            }
-            ForEach(pendingStories.prefix(5)) { story in
-                HStack(spacing: MPSpacing.md) {
-                    Text(story.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    MPButton(title: "Onayla", kind: .secondary, size: .small) {
-                        settings.approveStory(story.id)
-                        app.showToast("Masal onaylandı", symbol: "checkmark")
-                    }
-                    .accessibilityLabel("\(story.title) masalını onayla")
-                }
-            }
-        }
-        .padding(MPSpacing.lg)
-        .background(MPColor.statusWarningSoft, in: RoundedRectangle(cornerRadius: 20))
-        .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(MPColor.statusWarningBorder, lineWidth: 1.5))
     }
 
     // MARK: - Sayılar
@@ -248,6 +215,22 @@ struct ParentOverviewView: View {
         return "\(story.childName) · \(day) · " + (unfinished ? "yarım kaldı" : "\(story.pages.count) sayfa")
     }
 
+    // MARK: - Daha fazla
+
+    private var moreSection: some View {
+        ParentSection(title: "Daha fazla") {
+            ParentRowButton(systemImage: "checkmark.shield", tone: .mint, title: "Masal güvenliği",
+                            subtitle: "Heyecan sınırı, kaçınılacak konular, yıldızlar") {
+                app.router.parentRoute = .safety
+            }
+            MPRowDivider(area: .parent)
+            ParentRowButton(systemImage: "gearshape", tone: .lav, title: "Ayarlar",
+                            subtitle: "Profiller, aile, bildirimler, hesap, destek") {
+                app.router.parentRoute = .settings
+            }
+        }
+    }
+
     // MARK: - Abonelik
 
     private var subscriptionSection: some View {
@@ -276,7 +259,7 @@ struct ParentOverviewView: View {
     }
 }
 
-#Preview("29 · Özet") {
+#Preview("29 · Büyükler için") {
     ParentOverviewView()
         .environmentObject(MPAppState())
         .environmentObject(MPSettingsStore.shared)

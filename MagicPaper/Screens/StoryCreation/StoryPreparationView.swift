@@ -26,9 +26,6 @@ struct StoryPreparationView: View {
     /// 10 · İlk masal: "Elif'in ilk masalı yazılıyor", "Sonra oku".
     var title: String = "Masal yazılıyor"
     var cancelTitle: String = "Vazgeç"
-    /// "Masalları onayla" açıksa masal hazır olunca okunmaz: ebeveyn
-    /// bölümünden onaylanması gerektiği söylenir (karar 8 Ekim 2026).
-    var awaitsApproval: Bool = false
 
     @State private var index = 0
     @State private var skipped = false
@@ -100,7 +97,7 @@ struct StoryPreparationView: View {
         .onChange(of: isDone) { _, done in
             guard done else { return }
             MPHaptics.success()
-            AccessibilityNotification.Announcement(awaitsApproval ? "Masal hazır, onay bekliyor." : "Masal hazır.").post()
+            AccessibilityNotification.Announcement("Masal hazır.").post()
         }
         .onAppear {
             AccessibilityNotification.Announcement(title).post()
@@ -114,7 +111,7 @@ struct StoryPreparationView: View {
         .task(id: isDone) {
             guard isDone else { return }
             MPSound.play(.ready)
-            guard !awaitsApproval, !voiceOver else { return }
+            guard !voiceOver else { return }
             try? await Task.sleep(for: .seconds(StoryPreparationScript.coverHold))
             if !Task.isCancelled { onRead() }
         }
@@ -155,26 +152,7 @@ struct StoryPreparationView: View {
 
     @ViewBuilder
     private var actions: some View {
-        if isDone && awaitsApproval {
-            VStack(spacing: MPSpacing.md) {
-                HStack(alignment: .top, spacing: MPSpacing.sm) {
-                    MPIcon("lock", size: MP.G.md, weight: .semibold)
-                        .foregroundStyle(MPColor.actionPrimary)
-                        .accessibilityHidden(true)
-                    Text("Masal hazır. Okumadan önce bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
-                        .mpText(.cardTitle)
-                        .foregroundStyle(MPColor.textPrimary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding(MPSpacing.lg)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(MPColor.actionSoft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-                .accessibilityElement(children: .combine)
-                MPButton(title: "Tamam", fullWidth: true, action: onCancel)
-                    .padding(.horizontal, MPSpacing.xxxl)
-            }
-            .transition(.opacity)
-        } else if isDone {
+        if isDone {
             VStack(spacing: MPSpacing.xxs) {
                 MPButton(title: "Masalı oku", systemImage: "book", fullWidth: true, action: onRead)
                 MPButton(title: "Sonra oku", kind: .ghost, action: onCancel)
@@ -213,7 +191,7 @@ struct StoryPreparationView: View {
         skipped = true
         showsSkip = false
         index = max(steps.count - 1, 0)
-        if story != nil && !awaitsApproval { onRead() }
+        if story != nil { onRead() }
     }
 }
 

@@ -42,7 +42,9 @@ struct FamilyCharactersView: View {
         .onAppear(perform: reload)
     }
 
-    /// Ebeveyn modunda doğrudan, çocuk modunda kapı açılınca çalışır.
+    /// Masal ailem'e ekleme ve düzenleme kapıdan geçer: ad yazmak ve silmek
+    /// ebeveynin işi. Kitap karakterinin görünüşü kapısız (14 Kasım 2026).
+    /// Ebeveyn modunda doğrudan çalışır.
     private func guarded(_ action: @escaping () -> Void) {
         app.router.requestGate(then: action)
     }
@@ -134,7 +136,7 @@ struct FamilyCharactersView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if IllustratedBookAccess.isEnabled() {
-                MPButton(title: "Düzenle", kind: .secondary, size: .small) { guarded { app.router.openKidPage(.bookCharacter(profile.id)) } }
+                MPButton(title: "Düzenle", kind: .secondary, size: .small) { app.router.openKidPage(.bookCharacter(profile.id)) }
                     .accessibilityLabel("Kahramanı düzenle")
             }
         }

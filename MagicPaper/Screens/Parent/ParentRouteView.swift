@@ -23,6 +23,10 @@ struct ParentRouteView: View {
             if let profile = profile(id) { BookCharacterView(profile: profile) }
         case .profileHub(let id):
             if let profile = profile(id) { ProfileHubView(profile: profile) }
+        case .safety:
+            ParentSafetyView(onBack: close)
+        case .settings:
+            SettingsView(onBack: close)
         case .profileEdit(let id):
             if let profile = profile(id) {
                 ProfileCreationView(mode: .addAnother, onCreated: { _ in

@@ -17,8 +17,8 @@ final class StalledStoryTests: XCTestCase {
         return s
     }
 
-    private func gate(_ stories: [Story], approval: Bool = false) -> [Story] {
-        MPStoryGate.visible(stories, approvalRequired: approval, isApproved: { _ in true })
+    private func gate(_ stories: [Story]) -> [Story] {
+        MPStoryGate.visible(stories)
     }
 
     func testCompletedIsReadableAndNotTextOnly() {
@@ -38,22 +38,14 @@ final class StalledStoryTests: XCTestCase {
         }
     }
 
-    func testStalledWithoutTextIsHiddenEvenWhenApprovalIsOff() {
+    func testStalledWithoutTextIsHidden() {
         for texts in [[], [""], ["  \n\t "]] {
             for status in [StoryStatus.uploading, .writingStory] {
                 let s = stalled(status, texts: texts)
                 XCTAssertFalse(s.isReadable)
-                XCTAssertTrue(gate([s], approval: false).isEmpty)
-                XCTAssertTrue(gate([s], approval: true).isEmpty)
+                XCTAssertTrue(gate([s]).isEmpty)
             }
         }
-    }
-
-    func testReadableStalledStoryFollowsTheApprovalGateLikeCompleted() {
-        let s = stalled(.generatingImages)
-        let hidden = MPStoryGate.visible([s], approvalRequired: true, isApproved: { _ in false })
-        XCTAssertTrue(hidden.isEmpty)
-        XCTAssertEqual(gate([s], approval: true).count, 1)
     }
 
     func testReaderGetsNoImagesAndStoryIsNotIllustrated() {

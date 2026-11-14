@@ -25,7 +25,6 @@ struct LibraryView: View {
     @ObservedObject private var favorites = MPFavorites.shared
 
     @State private var model = LibraryShelfModel.empty
-    @State private var pendingCount = 0
     @State private var query = ""
     @State private var filter: LibraryFilter = .all
     @State private var sort: LibrarySort = .recent
@@ -43,11 +42,8 @@ struct LibraryView: View {
                 } else {
                     // Faz 7: Ragi ve kısa özet, sonra "Kaldığın yerden"in tek evi;
                     // arama ve süzgeç Kitaplarım'ın başlığında.
-                    VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                        greeting
-                        if pendingCount > 0 { pendingNote }
-                    }
-                    .homeEntrance(1)
+                    greeting
+                        .homeEntrance(1)
                     if isBrowsing { highlights }
                     shelf
                 }
@@ -65,8 +61,6 @@ struct LibraryView: View {
         .onChange(of: favorites.ids) { _, _ in refresh() }
         .onChange(of: classicProgress.entries) { _, _ in refresh() }
         .onChange(of: profileManager.currentProfile?.id) { _, _ in refresh() }
-        .onChange(of: settings.approve) { _, _ in refresh() }
-        .onChange(of: settings.approvedStoryIDs) { _, _ in refresh() }
     }
 
     /// Az kitapta gizli; kitap azalırken açık bir arama ya da süzgeç kaybolmaz.
@@ -253,34 +247,13 @@ struct LibraryView: View {
 
     private var emptyLibrary: some View {
         VStack(spacing: MPSpacing.lg) {
-            if pendingCount > 0 { pendingNote }
             MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş",
-                        message: pendingCount > 0 ? "Onaylanan masallar burada görünür."
-                                                  : "İlk masalını yarat ya da Masallar'dan bir klasik aç; burada seni beklesin.") {
+                        message: "İlk masalını yarat ya da Masallar'dan bir klasik aç; burada seni beklesin.") {
                 MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {
                     app.startStoryCreation()
                 }
             }
         }
-    }
-
-    /// Sakin bir not: masal kaybolmadı, bir büyüğün onayını bekliyor.
-    private var pendingNote: some View {
-        HStack(alignment: .top, spacing: MPSpacing.sm) {
-            MPIcon("lock", size: MP.G.sm, weight: .semibold)
-                .foregroundStyle(MPColor.actionPrimary)
-                .accessibilityHidden(true)
-            Text(pendingCount == 1
-                 ? "1 masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor."
-                 : "\(pendingCount) masal onay bekliyor. Bir büyüğün Ebeveyn bölümünden onaylaması gerekiyor.")
-                .mpText(.supporting)
-                .foregroundStyle(MPColor.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
-            Spacer(minLength: 0)
-        }
-        .padding(MPSpacing.lg)
-        .mpKidSurface(MPWorldTone.lav.soft, edge: MPWorldTone.lav.edge, radius: MPRadius.card)
-        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Kapak menüsü
@@ -338,16 +311,12 @@ struct LibraryView: View {
 
     // MARK: - Veri
 
-    /// Onay kapısı en başta: "hangi masallar var" sorusunun cevabını o verir;
+    /// Raf süzgeci en başta: "hangi masallar var" sorusunun cevabını o verir;
     /// raflar, süzgeç ve arama o cevabın üstünde çalışır.
     private func refresh() {
         let profile = profileManager.currentProfile
-        let gate: (UUID) -> Bool = { settings.isApproved($0) }
-        let stories = MPStoryGate.visible(storyManager.stories, approvalRequired: settings.approve, isApproved: gate)
+        let stories = MPStoryGate.visible(storyManager.stories)
             .filter { $0.belongs(to: profile) }
-        pendingCount = MPStoryGate.pending(storyManager.stories, approvalRequired: settings.approve, isApproved: gate)
-            .filter { $0.belongs(to: profile) }
-            .count
         let library = ClassicsLibrary.shared
         let classics = classicProgress.entries.compactMap { id, entry in
             library.tale(id).map { (tale: $0, fraction: entry.isFinished ? 1 : entry.fraction, openedAt: entry.openedAt) }

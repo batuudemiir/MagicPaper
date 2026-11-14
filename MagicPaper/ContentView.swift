@@ -3,8 +3,8 @@ import SwiftUI
 
 /// Kök ekran (FAZ 17, Pastel Masal).
 ///
-/// Çocuk kökü: dört sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, sistem
-/// sekme çubuğuyla Özet · Güvenlik · Ayarlar (`ParentTabs`, 29, 31, 32). Odaya
+/// Çocuk kökü: dört sekme ve "Masal yaz". Ebeveyn odası üstüne açılır, tek
+/// sayfa "Büyükler için" (29); Güvenlik (31) ve Ayarlar (32) oradan itilir. Odaya
 /// yalnızca kapıdan girilir (Profil > Büyükler için); uygulama arka plana gidince
 /// oda kapanır. Harita: `docs/SAYFA_MIMARISI.md`.
 struct ContentView: View {
@@ -45,7 +45,11 @@ struct ContentView: View {
             .onAppear {
                 if let tab = MPDebugLaunch.startTab { app.router.tab = tab }
                 if MPDebugLaunch.startsInParent { app.router.unlockParent() }
-                if let tab = MPDebugLaunch.parentTab { app.router.parentTab = tab }
+                switch MPDebugLaunch.parentTab {
+                case .safety: app.router.parentRoute = .safety
+                case .settings: app.router.parentRoute = .settings
+                case .overview, nil: break
+                }
                 if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
             }
             #endif
@@ -163,7 +167,8 @@ struct ContentView: View {
                 PaywallView().environmentObject(app)
             }
             .fullScreenCover(isPresented: $app.router.showGate, onDismiss: { app.router.gateDismissed() }) {
-                ParentalGateView(onSuccess: { app.router.gateSucceeded() }, onCancel: { app.router.showGate = false })
+                ParentalGateView(kind: app.router.gateIsRoomEntry ? .hold : .quiz,
+                                 onSuccess: { app.router.gateSucceeded() }, onCancel: { app.router.showGate = false })
             }
             .fullScreenCover(item: $firstRun, onDismiss: {
                 if let story = firstStory {
@@ -251,16 +256,10 @@ struct ContentView: View {
         app.router.tab = MPTab(next)
     }
 
+    /// Ebeveyn odası tek sayfa (14 Kasım 2026): "Büyükler için". Güvenlik ve
+    /// Ayarlar oradan itilen alt sayfalar; sekme çubuğu yok.
     private var parentRoot: some View {
-        ParentTabs(
-            selection: Binding(
-                get: { app.router.parentTab.parentTab },
-                set: { app.router.parentTab = MPParentTab($0) }
-            ),
-            summary: { ParentTabStack(tab: .overview) { ParentOverviewView() } },
-            safety: { ParentTabStack(tab: .safety) { ParentSafetyView() } },
-            settings: { ParentTabStack(tab: .settings) { SettingsView() } }
-        )
+        ParentTabStack(tab: .overview) { ParentOverviewView() }
     }
 
     // MARK: - Sheet'ler

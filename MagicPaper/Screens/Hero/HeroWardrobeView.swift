@@ -4,7 +4,7 @@ import SwiftUI
 /// sekmeler: Ben (tür, ten ya da kürk, saç, yüz), Kıyafet, Şapka, Gözlük. Her
 /// seçenek kahramanın o parçayla küçük bir resmi: okuyamayan çocuk da seçer.
 ///
-/// Kimlik (Ben) ebeveyn kapısıyla kaydedilir; kozmetik serbest, bir kısmı yıldızla.
+/// Kimlik (Ben) ve kozmetik kapısız kaydedilir (14 Kasım 2026); kozmetiğin bir kısmı yıldızla.
 /// Yetmeyen eşya önizlenir, yalnızca "kaç yıldız gerekiyor" yazar. Geri sayım,
 /// "az kaldı", parayla yıldız yok; alınan eşya kaybolmaz.
 struct HeroWardrobeView: View {
@@ -225,11 +225,7 @@ struct HeroWardrobeView: View {
             MPHaptics.success()
             app.showToast("Kahramanın hazır", symbol: "sparkles")
         }
-        // Kimlik değiştiyse bir büyük onaylar; kozmetik doğrudan.
-        if HeroShop.identityChanged(from: saved, to: look) {
-            app.router.requestGate(then: commit)
-        } else {
-            commit()
-        }
+        // Kapı yok (14 Kasım 2026): görünüş geri alınabilir, çocuğun kendisi değiştirir.
+        commit()
     }
 }

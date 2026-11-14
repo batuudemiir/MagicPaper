@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Ebeveyn tarafı sadeleşti: masal onayı kalktı, oda tek sayfa
+
+- Ne değişti (Batuhan, 14 Kasım: "yeni kitap ebeveyn onayına gitmesin, ebeveyn olayını rahatlatalım"):
+  - Masal onayı kalktı. "Masalları onayla" anahtarı, Özet'teki onay kuyruğu, hazırlık ekranındaki "onay bekliyor" hâli ve Kitaplık'taki "N masal onay bekliyor" notu silindi. `MPStoryGate` artık yalnızca okunabilir masalları süzüyor. Açılışta eski `mp_approveBeforeShow` anahtarı siliniyor; anahtar açık kalmış cihazlarda gizlenen masallar rafa dönüyor.
+  - Kapı yalnızca dışarı çıkan ya da geri alınamayan işlerde soruluyor. Kahramanın kimlik parçaları ve kitap karakterinin görünüşü artık kapısız. Masal ailem'e ekleme ve düzenleme kapıda kaldı, çünkü düzenleyicide ad alanı ve silme var.
+  - Odaya giriş artık iki saniye basılı tutmayla açılıyor (`ParentalGateView(kind: .hold)`; halka geçen süreyle doluyor, VoiceOver'da varsayılan eylem). Çarpma sorusu silme, paylaşma, dışa aktarma, giriş, profil ekleme ve satın alma için kaldı (`MPRouter.gateIsRoomEntry`). Sistemin uzun basma hareketi kaydırma alanında tamamlanmıyordu (simülatörde görüldü); basma `DragGesture` ile izleniyor.
+  - "Büyükler için" Profil'in en altındaki küçük gri yazıdan, kimlik bloğunun hemen altında tam bir satıra taşındı. Kilit simgesi yok; alt satırda "Ayarlar, abonelik ve okuma özeti" yazıyor.
+  - Ebeveyn odası tek sayfa oldu ve sekme çubuğu kalktı. Sıra: "Büyükler için" (bu hafta, son masallar) → Okuma ve uyku (yeni `ParentReadingRules`: günlük süre, uyku saati) → Abonelik → Daha fazla. "Daha fazla"daki Masal güvenliği ve Ayarlar artık itilen alt sayfalar (`MPParentRoute.safety`, `.settings`). `ParentTabs` ve `ParentTab` silindi. `mpParentTab` açılış argümanı alt sayfayı açıyor.
+- Bilerek değişmedi: `LibraryMigration`'ın eski onay listesi göçü (`FlagList.approvals`) ve `HeroShop.identityChanged` (testi var, artık kapı için kullanılmıyor). Kapının kendisi (`MPGateQuiz`) ve Masal ailem kapısı da aynı kaldı.
+- Belgeler: CLAUDE.md (Ebeveyn odası, Üst başlık, kahraman kararı) ve `docs/SAYFA_MIMARISI.md` haritası güncellendi.
+- Test: uygulama testleri 888, 1 atlanan. Tek kırık `DesignSystemSnapshotTests.testSnapshotHeroCardStates`; bu önceden de kırıktı ve bu işle ilgisiz (ana sayfa referansı). `ParentControlsTests` ve `StalledStoryTests` yeni süzgece göre güncellendi. Basılı tutma düzeltmesinden sonra yalnızca derleme yapıldı, testler yeniden koşulmadı.
+- Simülatör (iPhone 17 Pro, açık tema): Profil'deki satır, basılı tutma kapısı, odanın tek sayfası, Masal güvenliği alt sayfası ve "Geri" görüldü. Yazılan yeni bir masalın onaysız açılışı simülatörde denenmedi. Koyu tema, en büyük yazı, SE ve Pro Max görülmedi. VoiceOver denenmedi.
+- Dosyalar: `ContentView.swift`, `MPNavigationChrome.swift`, `MPRouter.swift`, `MPSettingsStore.swift`, `MPParentControls.swift`, `MPSurfaceSync.swift`, `LibraryView.swift`, `ParentalGateView.swift`, `SettingsView.swift`, `KidCornerView.swift`, `HeroWardrobeView.swift`, `FamilyCharactersView.swift`, `StoryCreationFlow.swift`, `StoryPreparationView.swift`, `FirstRunView.swift`, `ParentOverviewView.swift`, `ParentSafetyView.swift`, `ParentRouteView.swift`, yeni `ParentReadingRules.swift`, iki test dosyası, `docs/SAYFA_MIMARISI.md`, bu günlük.
+
 ### 2026-11-14 · main, commit bu kayıtla · ProseCooldownTests ölçütü güncellendi
 
 - Ne değişti: `testCarryingHistoryLowersRepetition`'ın satır koşulu "geçmiş daha fazla farklı satır kullandırır" (kesin artış) yerine "geçmiş farklı satır sayısını düşürmez" (≥) oldu. Tekrar oranı için kesin düşüş şartı aynen duruyor. Gerekçe test belgesine 14 Kasım notu olarak yazıldı.

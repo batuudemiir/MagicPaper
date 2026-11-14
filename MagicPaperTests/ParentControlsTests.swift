@@ -54,43 +54,12 @@ final class ParentControlsTests: XCTestCase {
         }
     }
 
-    // MARK: - Onay kapısı
+    // MARK: - Raf süzgeci
 
-    func testGateIsOpenWhenApprovalIsOff() {
-        let stories = [story(.completed), story(.completed)]
-        let visible = MPStoryGate.visible(stories, approvalRequired: false,
-                                          isApproved: { _ in false })
-        XCTAssertEqual(visible.count, 2)
-    }
-
-    /// Kuyruk vardı, kapı yoktu: onaylanmamış masal kütüphanede duruyordu.
-    func testUnapprovedCompletedStoryIsHidden() {
-        let approved = story(.completed)
-        let waiting = story(.completed)
-        let visible = MPStoryGate.visible([approved, waiting],
-                                          approvalRequired: true,
-                                          isApproved: { $0 == approved.id })
-        XCTAssertEqual(visible.map(\.id), [approved.id])
-    }
-
-    /// Karar değişti (Faz 9 takip): metni olan takılı masal okunabilir sayılır
-    /// ve onay kapısında tamamlanmış gibi davranır; onaylanmamışsa gizlenir.
-    func testReadableStalledStoryIsGatedLikeCompleted() {
-        let stalled = story(.writingStory)
-        let visible = MPStoryGate.visible([stalled], approvalRequired: true,
-                                          isApproved: { _ in false })
-        XCTAssertTrue(visible.isEmpty)
-    }
-
-    /// Gizlenen masal kaybolmuş gibi görünmesin: çocuğa "onay bekliyor"
-    /// denir (karar 8 Ekim 2026). Bekleyen ve görünen birbirini tamamlar.
-    func testPendingIsWhatTheGateHides() {
-        let approved = story(.completed)
-        let waiting = story(.completed)
-        let isApproved: (UUID) -> Bool = { $0 == approved.id }
-        XCTAssertEqual(MPStoryGate.pending([approved, waiting], approvalRequired: true, isApproved: isApproved).map(\.id),
-                       [waiting.id])
-        XCTAssertTrue(MPStoryGate.pending([waiting], approvalRequired: false, isApproved: isApproved).isEmpty)
+    /// Masal onayı kalktı (14 Kasım 2026): okunabilen her masal rafta.
+    func testEveryReadableStoryIsVisible() {
+        let stories = [story(.completed), story(.completed), story(.writingStory)]
+        XCTAssertEqual(MPStoryGate.visible(stories).count, 3)
     }
 
     private func story(_ status: StoryStatus) -> Story {

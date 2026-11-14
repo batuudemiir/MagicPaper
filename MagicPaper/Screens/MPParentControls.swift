@@ -46,41 +46,17 @@ struct MPReadingBudget: Equatable {
     var minutesUsedToday: Int { Int((max(0, secondsBeforeSession) / 60).rounded()) }
 }
 
-// MARK: - Onay kapısı
+// MARK: - Raf süzgeci
 
-/// "Masalları onaylamadan gösterme" anahtarının arkasındaki kural.
+/// Çocuğun rafında görünen masallar: okunacak metni olanlar.
 ///
-/// Onay kuyruğu Ebeveyn panelinde vardı ve çalışıyordu — ama onaylanmamış
-/// masal hiçbir yerden gizlenmiyordu. Çocuk masalı kütüphaneden açıp okuyor,
-/// ebeveyn de günler sonra paneldeki kuyruktan "onaylıyordu". Kuyruk gerçek,
-/// kapı hayalîydi.
+/// Burada eskiden bir "onay kapısı" da vardı (Masalları onayla). 14 Kasım
+/// 2026'da kaldırıldı: masallar cihazda, denetlenmiş kütüphaneden yazılıyor,
+/// serbest metin yok; onay yalnızca çocuğu bekletiyordu. Okunacak metni
+/// olmayan, takılı kalmış eski masal yine hiçbir yerde görünmez.
 enum MPStoryGate {
-
-    /// Çocuğun görmeye hakkı olan masallar.
-    ///
-    /// Önce okunabilirlik: okunacak metni olmayan, takılı kalmış eski masal
-    /// onay ayarından bağımsız olarak hiçbir yerde görünmez. Sonra onay kapısı:
-    /// metni olan takılı masal, tamamlanmış gibi davranır (onaylanmadıkça
-    /// gizlenir) — ebeveynin onay kuyruğunda da aynı masallar görünür.
-    static func visible(
-        _ stories: [Story],
-        approvalRequired: Bool,
-        isApproved: (UUID) -> Bool
-    ) -> [Story] {
-        let readable = stories.filter(\.isReadable)
-        guard approvalRequired else { return readable }
-        return readable.filter { isApproved($0.id) }
-    }
-
-    /// Okunabilir ama onay bekleyen masallar: çocuğa "onay bekliyor" denir,
-    /// masal kaybolmuş gibi görünmez. Onay kapalıyken hiçbiri.
-    static func pending(
-        _ stories: [Story],
-        approvalRequired: Bool,
-        isApproved: (UUID) -> Bool
-    ) -> [Story] {
-        guard approvalRequired else { return [] }
-        return stories.filter { $0.isReadable && !isApproved($0.id) }
+    static func visible(_ stories: [Story]) -> [Story] {
+        stories.filter(\.isReadable)
     }
 }
 

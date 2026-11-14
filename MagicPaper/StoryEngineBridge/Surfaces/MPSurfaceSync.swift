@@ -22,15 +22,12 @@ enum MPTonightSource {
         func tonight(at date: Date = Date()) -> MPTonight { MPTonight.resolve(inputs, now: date) }
     }
 
-    /// Çocuğun görmeye hakkı olan masalları. Onay kapısı burada da geçerli:
-    /// kitaplıktan gizlenen bir masal bu kartta, widget'ta duramaz.
+    /// Çocuğun rafındaki masallar: kitaplıkla aynı süzgeç (`MPStoryGate`).
     static func visibleStories(settings: MPSettingsStore? = nil,
                                library: StoryGenerationManager? = nil,
                                profiles: ProfileManager? = nil) -> [Story] {
-        let settings = settings ?? .shared
         let profile = (profiles ?? .shared).currentProfile
-        return MPStoryGate.visible((library ?? .shared).stories, approvalRequired: settings.approve,
-                                   isApproved: { settings.isApproved($0) })
+        return MPStoryGate.visible((library ?? .shared).stories)
             .filter { $0.belongs(to: profile) }
     }
 
