@@ -147,6 +147,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Maliyet: yaklaşık 31 $ (A 17,45 $; B 6,31 $; C 7,1 $ ve zaman aşımına uğrayan bir Opus turunun ölçülemeyen bedeli).
 - Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/` (`blueprints/pilot_library_v1.json`, `templates/v3-age9/*`, `templates/bedtime/beat_bedtime_age9_*`), `StoryEngine/Sources/StoryEngine/Content/AgeBandResolver.swift`, `StoryEngine/Tools/validate_beat_corpus.py`, `StoryEngine/Tests/StoryEngineTests/` (11 dosya), `MagicPaper/StoryEngineBridge/OfflineStoryService.swift`, `MagicPaperTests/{SupportedAgeTests,StoryModeFlowTests,OfflineStoryMappingTests}.swift`.
 
+### 2026-11-13 · main, commit bu kayıtla; book-intelligence@d2b178c + d8c35d7 · Araştırma ajanı ile MagicPaper Original yazarı birlikte çalışıyor
+
+- Karar (Batuhan, 13 Kasım): book-research okuduğu kitaplardan neden-sonuç ve final derslerini çıkarıp original-writer'la paylaşır; iki ajan birbirine soru sorar.
+- book-intelligence (MagicPaper-research): analizlere `craft` bloğu (neden-sonuç zinciri ve onu kimin yürüttüğü, final türü, açılışa dönüş, yazara not; sözlükte kapalı terimler, `validate` denetler); yeni `ba craft brief --write | todo` → `docs/research/ORIGINALS_CRAFT.md` (moda göre, `cycle` her hafta yeniler); istekler iki yönlü: `request ask … --to original-writer`, `request answer … --by original-writer --tale <slug>`. Testler 144 → 149, hepsi geçti; `validate` 0 hata.
+- Bu haftanın 10 kitabına craft notu yazıldı (34 eski kitap `craft todo` ile haftada 3 tamamlanacak). İlk soru yazara soruldu: Saatin İçindeki Ninni'de son satırı neden Minik buluyor.
+- `.claude/agents/original-writer.md` (main): "Araştırma ajanıyla birlikte" bölümü, turun başında gelen soruları cevaplama, yazmadan önce ORIGINALS_CRAFT.md, en çok bir soru, `review.md`'ye `## Araştırmadan`. Üst klasördeki `book-research.md` ajan tanımı ve üç zamanlanmış görev (öğrenme döngüsü, araştırma soruları, Original yazımı) buna göre güncellendi.
+- Bilerek değişmedi: masal metinleri, yayımlanmış Original, motor ve uygulama kodu. Yazarın gerçek bir turu henüz çalışmadı (soru-cevap yazarın sonraki pazartesi/perşembe turunda denenecek).
+- Dosyalar: MagicPaper-research `Research/BookIntelligence/bookintel/{craft,learning,schema,cycle}.py`, `book_agent.py`, `vocab/research_vocab.json`, `tests/test_craft_dialogue.py`, `docs/research/{ORIGINALS_CRAFT,BOOK_RESEARCH_AGENT}.md`; main `.claude/agents/original-writer.md`.
+
 ### 2026-11-13 · main, commit bu kayıtla · Kitaplık rafsız: kapak duvarı, alçak devam kartı, arama başlıkta
 
 - Karar (Batuhan, 13 Kasım): 9fba009'daki öneri uygulandı; raf sistemi kalktı, yıldızla alınan renk kapakların alt kenarına taşındı.
