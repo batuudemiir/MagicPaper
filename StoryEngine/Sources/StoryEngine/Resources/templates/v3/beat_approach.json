@@ -100,6 +100,24 @@
       ],
       "lengthClass": "paired",
       "move": "hesitated_once_then_all_the_way"
+    },
+    {
+      "id": "ap_p_05",
+      "text": "{{child.name}} sessizce yaklaştı. Yakında hava biraz daha serin, biraz daha nemliydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "air_cooler_up_close"
+    },
+    {
+      "id": "ap_p_06",
+      "text": "Her adımda {{child.name}}'in gölgesi biraz daha uzandı, sonunda ona değdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "shadow_reached_it"
     }
   ]
 }

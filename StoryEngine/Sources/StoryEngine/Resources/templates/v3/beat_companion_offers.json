@@ -21,6 +21,42 @@
     { "id": "co_p_07", "text": "{{companion.name}} bir yeri gösterdi. \"Şuraya bak,\" dedi. Başka bir şey demedi.",
       "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "points_without_explaining" },
     { "id": "co_p_08", "text": "\"Burası akşamları başka olur,\" dedi {{companion.name}}. Sesi çok sakindi.",
-      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "different_in_the_evening" }
+      "requiredSlots": ["companion.name"], "lengthClass": "paired", "move": "different_in_the_evening" },
+    {
+      "id": "co_p_09",
+      "text": "\"Buradan herkes geçer,\" dedi {{companion.name}}, sıradan bir şey söyler gibi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "everyone_passes_here"
+    },
+    {
+      "id": "co_p_10",
+      "text": "{{companion.name}} yalnızca yönü söyledi. \"Şu taraf daha kısa,\" dedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "that_side_is_shorter"
+    },
+    {
+      "id": "co_p_11",
+      "text": "\"Burada hiçbir şey kolay kolay değişmez,\" dedi {{companion.name}}. Sonra sustu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "nothing_usually_changes"
+    },
+    {
+      "id": "co_p_12",
+      "text": "\"Bu ilk değil,\" dedi {{companion.name}}. \"Geçen hafta da olmuştu.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "happened_before_last_week"
+    }
   ]
 }

@@ -128,7 +128,8 @@ final class CatalogBundleTests: XCTestCase {
         // en az 8 ve 7). Seri satırları bu sayıya girmiyor.
         // 1045 → 1367 (13 Kasım 2026): 9-10 bandının 322 satırı (210 standart,
         // 112 uyku; 44'ü Masal ailem satırı).
-        XCTAssertEqual(catalog.recordCounts["variants"], 1367)
+        // 1367 → 1451 (14 Kasım 2026): 5-6 havuzunun 21 ince vuruşuna 84 satır.
+        XCTAssertEqual(catalog.recordCounts["variants"], 1451)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

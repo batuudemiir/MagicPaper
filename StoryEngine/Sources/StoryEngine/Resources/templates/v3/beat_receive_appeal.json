@@ -80,6 +80,43 @@
       ],
       "lengthClass": "paired",
       "move": "listened_to_the_end"
+    },
+    {
+      "id": "ra_p_09",
+      "text": "\"Bunu taşıyamıyorum,\" dedi {{companion.name}}. \"Bir el atar mısın?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "too_heavy_to_carry"
+    },
+    {
+      "id": "ra_p_10",
+      "text": "\"Oraya uzanamıyorum,\" dedi {{companion.name}}. Sesinde ne telaş vardı ne şikâyet.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "cannot_reach_it"
+    },
+    {
+      "id": "ra_p_11",
+      "text": "\"{{child.name}}, bir dakikan var mı?\" diye sordu {{companion.name}}. Sonra derdini söyledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "asks_for_a_minute"
+    },
+    {
+      "id": "ra_p_12",
+      "text": "\"Bir şey takıldı, çıkaramıyorum,\" dedi {{companion.name}}. Bir kez söyledi, yeterdi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "something_stuck_said_once"
     }
   ]
 }

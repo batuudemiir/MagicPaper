@@ -71,7 +71,8 @@ final class UsageLearningTests: XCTestCase {
         let intent = OfflineStoryIntent(childName: "Yeliz", seed: "pinned-seed-001", usage: .neutral)
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
         // 13 Kasım 2026: 9-10 havuza girince referans kitap değişti.
-        XCTAssertEqual(story.fingerprint, "1d80933ff9a54cd5")
+        // 14 Kasım 2026: 5-6 havuzu büyüyünce üç satırı değişti.
+        XCTAssertEqual(story.fingerprint, "71ed541c151ded40")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {

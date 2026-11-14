@@ -88,6 +88,46 @@
       "lengthClass": "paired",
       "register": "certain",
       "move": "no_questions_left"
+    },
+    {
+      "id": "fb_p_tent_05",
+      "text": "{{child.name}} kendine bir soru sordu. Ya böyleyse? Belki de tam böyleydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "tentative",
+      "move": "what_if_question"
+    },
+    {
+      "id": "fb_p_tent_06",
+      "text": "Bir fikir yavaş yavaş belirdi {{child.name}}'in aklında. Henüz küçüktü, belki yanlıştı da.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "tentative",
+      "move": "idea_still_small"
+    },
+    {
+      "id": "fb_p_cert_05",
+      "text": "{{child.name}} parçaları birleştirdi ve sonuca vardı. Başka türlüsünü düşünmedi bile.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "certain",
+      "move": "pieces_point_one_way"
+    },
+    {
+      "id": "fb_p_cert_06",
+      "text": "Her şey tek bir yeri gösteriyordu. {{child.name}} bundan adı gibi emindi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "register": "certain",
+      "move": "sure_as_own_name"
     }
   ]
 }

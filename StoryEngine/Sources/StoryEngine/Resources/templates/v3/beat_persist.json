@@ -81,6 +81,42 @@
       ],
       "lengthClass": "solo",
       "move": "one_more_place_then_one_more"
+    },
+    {
+      "id": "ps_s_09",
+      "text": "{{child.name}} bu kez başka bir yöntem denedi. Soldan başladı, sağa doğru ilerledi, hiçbir yeri atlamadı. Aradığı en sağdaydı. Sırayla bakmasaydı belki hiç bulamazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "left_to_right_no_gaps"
+    },
+    {
+      "id": "ps_s_10",
+      "text": "Her boş yerden sonra {{child.name}} kendine \"orası değil\" dedi. Sonra bir sonrakine geçti. Her \"orası değil\" onu yanıta yaklaştırdı. En sonunda \"işte burası\" diyebildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "not_there_said_aloud"
+    },
+    {
+      "id": "ps_s_11",
+      "text": "{{child.name}} biraz durdu ve düşündü. Hep aynı biçimde arıyordu, o yüzden hep aynı yerlere bakıyordu. Arama biçimini değiştirdi. Değiştirince aradığını buldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "changed_how_they_looked"
+    },
+    {
+      "id": "ps_s_12",
+      "text": "Yorgunluk geldi, sıkıntı geldi, {{child.name}} ikisine de \"biraz bekle\" dedi. Bakmaya devam etti. Bulduğunda şans değildi bu. Bakmayı sürdürdüğü için bulmuştu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "not_luck_kept_looking"
     }
   ]
 }

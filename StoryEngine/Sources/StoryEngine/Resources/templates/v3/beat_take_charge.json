@@ -82,6 +82,42 @@
       ],
       "lengthClass": "paired",
       "move": "saying_it_made_it_a_promise"
+    },
+    {
+      "id": "tc_s_05",
+      "text": "{{child.name}} etrafına baktı. Yardım edecek başka kimse görünmüyordu. \"O zaman ben,\" dedi kendi kendine. Büyük laflar etmedi, sadece işe koyuldu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "then_it_is_me"
+    },
+    {
+      "id": "tc_s_06",
+      "text": "Bu iş kimsenin değildi, o yüzden {{child.name}} kendine aldı. İçinden küçük bir söz verdi, sesli söylemeden. Bundan sonra her gün bakacaktı, yorulsa da bakacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "an_unspoken_promise"
+    },
+    {
+      "id": "tc_p_05",
+      "text": "{{child.name}} doğruldu ve derin bir soluk aldı. Bu işi kendisi seçmişti, kendisi yapacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "chose_it_and_will_do_it"
+    },
+    {
+      "id": "tc_p_06",
+      "text": "Kimse bakmıyordu, kimse beklemiyordu. Yine de {{child.name}} \"bu benim işim\" dedi içinden.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "claimed_it_inside"
     }
   ]
 }

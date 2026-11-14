@@ -86,6 +86,46 @@
       ],
       "lengthClass": "solo",
       "move": "not_for_themselves_but_for_them"
+    },
+    {
+      "id": "sf_s_09",
+      "text": "{{child.name}} konuşmadan önce {{companion.name}}'e döndü. \"Söyleyeyim mi?\" diye sordu usulca. {{companion.name}} evet dedi. Ancak o zaman {{child.name}} herkese dönüp anlattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "asked_permission_first"
+    },
+    {
+      "id": "sf_s_10",
+      "text": "{{child.name}} tek bir cümle söyledi, ama doğru cümleydi. \"{{companion.name}} bunu istiyor, sadece söyleyemiyor.\" Dinleyenler birbirine baktı ve anlayışla gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_true_sentence"
+    },
+    {
+      "id": "sf_s_11",
+      "text": "{{child.name}} yavaş konuştu, herkes anlasın diye. Kendi fikrini eklemedi, sadece {{companion.name}}'in istediğini söyledi. Arada bir {{companion.name}}'e dönüp \"doğru mu?\" diye sordu. Doğruydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "checked_it_was_right"
+    },
+    {
+      "id": "sf_s_12",
+      "text": "{{child.name}} önce {{companion.name}}'i herkese tanıttı. Adını söyledi, nereden geldiğini söyledi. Bunu yaptıktan sonra ne istediğini anlattı. Tanıyınca dinlemek de kolaylaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "introduced_them_first"
     }
   ]
 }

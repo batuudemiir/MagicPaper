@@ -103,11 +103,13 @@ final class OfflineDeterminismTests: XCTestCase {
         XCTAssertEqual(
             story.pages.flatMap { $0.variantIDs.map(\.rawValue) },
             // 13 Kasım 2026: `absence` şekli on bir satır taşıyor.
-            ["na_neutral_05", "ex_s_trace_02", "mc_care_04", "ra_p_01", "cm_p_05", "ob_gen_02",
-             "fa_s_05", "ps_s_04", "rs_any_03", "wc_p_succeed_02", "cf_p_08"],
+            // 14 Kasım 2026: 5-6 havuzu büyüdü; şekil ve içerik aynı, üç satır
+            // (`receive_appeal`, `persist`, `carry_forward`) yeni varyantlara geçti.
+            ["na_neutral_05", "ex_s_trace_02", "mc_care_04", "ra_p_09", "cm_p_05", "ob_gen_02",
+             "fa_s_05", "ps_s_12", "rs_any_03", "wc_p_succeed_02", "cf_p_04"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "1d80933ff9a54cd5")
+        XCTAssertEqual(story.fingerprint, "71ed541c151ded40")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -118,7 +120,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "1d80933ff9a54cd5")
+        XCTAssertEqual(again.fingerprint, "71ed541c151ded40")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.

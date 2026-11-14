@@ -88,6 +88,46 @@
       ],
       "lengthClass": "solo",
       "move": "the_order_mattered"
+    },
+    {
+      "id": "ce_s_09",
+      "text": "{{child.name}} bir yol fark etti ama oraya sığmıyordu. {{companion.name}} sığıyordu ama yolu görmemişti. {{child.name}} gösterdi, {{companion.name}} girdi. Biri bulmasa, öbürü giremese olmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "one_sees_the_way_other_fits"
+    },
+    {
+      "id": "ce_s_10",
+      "text": "{{companion.name}} tutuyordu ama nereye çekeceğini bilmiyordu. {{child.name}} biraz düşündü, sonra \"Yukarı değil, yana,\" dedi. Yana çektiler. İkisinden biri eksik olsa yerinden oynamazdı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sideways_not_up"
+    },
+    {
+      "id": "ce_s_11",
+      "text": "\"Üç deyince birlikte,\" dedi {{child.name}}. Saymak onun fikriydi. {{companion.name}} bekledi, üçte o da itti. Ayrı ayrı itseler bir şey olmazdı, aynı anda itince oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "counted_to_three_together"
+    },
+    {
+      "id": "ce_s_12",
+      "text": "{{companion.name}} bir ip buldu ama ne yapacağını bilmiyordu. {{child.name}} ipe baktı ve aklına bir fikir geldi. İpi bağladılar, iki uçtan birlikte çektiler. Biri ipi bulmuştu, öteki ne işe yarayacağını.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "found_rope_found_use"
     }
   ]
 }

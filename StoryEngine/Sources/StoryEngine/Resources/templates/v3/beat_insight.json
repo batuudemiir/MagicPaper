@@ -79,6 +79,42 @@
       ],
       "lengthClass": "solo",
       "move": "checked_before_saying"
+    },
+    {
+      "id": "in_s_09",
+      "text": "{{child.name}} duyduğu o tek cümleyi hatırladı. Sonra kendi fark ettiği şeyi. İkisi birleşince ağzından \"Ha!\" çıktı. Bu kadar basitti demek.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "remembered_the_one_sentence"
+    },
+    {
+      "id": "in_s_10",
+      "text": "{{child.name}} yüksek sesle düşünmeye başladı. \"Şöyle oldu, sonra böyle oldu, demek ki...\" Cümlesini bitirmeden cevabı buldu. Kendi sesinden duymak yetmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "thinking_aloud_found_it"
+    },
+    {
+      "id": "in_s_11",
+      "text": "{{child.name}} parmağıyla havada iki nokta çizdi. Birini gördüğü şey, öbürünü duyduğu şey yaptı. Sonra iki noktayı birleştirdi. Çizgi tam cevabı gösteriyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "two_dots_in_the_air"
+    },
+    {
+      "id": "in_s_12",
+      "text": "{{child.name}} yanlış soruyu soruyormuş. \"Nerede?\" değil, \"neden?\" diye sormalıymış. Soruyu değiştirince cevap kendiliğinden çıkıp geldi. Meğer bu kadarmış.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "asked_a_different_question"
     }
   ]
 }

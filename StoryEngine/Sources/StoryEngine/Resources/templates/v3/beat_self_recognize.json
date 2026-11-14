@@ -21,6 +21,42 @@
     { "id": "sr_p_07", "text": "{{child.name}} kendi kendine gülümsedi. Başkasına değil, kendine gülümsüyordu. Hak etmişti.",
       "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "smiled_at_self" },
     { "id": "sr_p_08", "text": "Bundan sonrası daha kolay olacaktı. {{child.name}} bunu içinde bir yerde hissetti.",
-      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "next_time_will_be_easier" }
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "next_time_will_be_easier" },
+    {
+      "id": "sr_p_09",
+      "text": "{{child.name}} bugünü düşündü, sonra kendini. İkisi de biraz büyümüş gibiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "day_and_self_both_grew"
+    },
+    {
+      "id": "sr_p_10",
+      "text": "{{child.name}} vazgeçmek istediği anı hatırladı. Vazgeçmemişti. Bunu kendi kendine fısıldadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "recalled_almost_quitting"
+    },
+    {
+      "id": "sr_p_11",
+      "text": "{{child.name}} kendine biraz şaşırdı. İçinde daha önce bilmediği bir yer varmış meğer.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "found_an_unknown_room_inside"
+    },
+    {
+      "id": "sr_p_12",
+      "text": "Yine olsa yine yapardım, diye düşündü {{child.name}}. Bunu düşünmeden biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "would_do_it_again"
+    }
   ]
 }

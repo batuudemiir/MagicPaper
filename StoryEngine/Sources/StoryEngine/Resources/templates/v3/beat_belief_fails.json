@@ -62,6 +62,60 @@
       ],
       "lengthClass": "paired",
       "move": "looks_twice_still_wrong"
+    },
+    {
+      "id": "bf_p_07",
+      "text": "Ama küçük bir ayrıntı yerine oturmadı. {{child.name}} durdu ve bir daha düşündü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "small_detail_does_not_match"
+    },
+    {
+      "id": "bf_p_08",
+      "text": "Dünya {{child.name}}'in sandığından başka çıktı. Hem de daha yumuşak, daha sıcak.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_turned_out_softer"
+    },
+    {
+      "id": "bf_p_09",
+      "text": "{{child.name}} kafasında bir kez daha saydı. Parçalar bu sefer aynı sonucu vermedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "counted_again_came_out_different"
+    },
+    {
+      "id": "bf_p_10",
+      "text": "Az önce çok açık görünen şey şimdi bulanıklaşmıştı. {{child.name}} sessizce bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "clear_thing_blurs"
+    },
+    {
+      "id": "bf_p_11",
+      "text": "{{child.name}} fikrini yavaşça bir kenara bıraktı. Bu fikir burada işe yaramıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "sets_idea_aside_gently"
+    },
+    {
+      "id": "bf_p_12",
+      "text": "Emin olduğu yerde şimdi bir soru duruyordu. {{child.name}} bu soruyu sevdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "question_where_certainty_was"
     }
   ]
 }

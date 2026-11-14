@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-14 · main, commit bu kayıtla · 5-6 ana havuzunun ince vuruşları büyüdü (ajan takımı)
+
+- Ne değişti: `templates/v3/` içinde 21 ince vuruşa 84 yeni satır (korpus 432 → 516). Tek sınıflı vuruşlar en az 12 varyant (`belief_fails` ve `tend` 6'dan, on altı vuruş 8'den); `take_charge`, `approach` ve `hesitate`'te her uzunluk sınıfı en az 6. Var olan satırlara dokunulmadı; 7-8 ve 9-10'dan taşınan cümle yok (birebir eşleşme 0).
+- Ana oturumun düzeltmeleri: `tend`'in "asla montaj" notuna aykırı üç satırı (`td_s_07`, `td_s_09`, `td_s_10`; "dün de, yarın da", "sabah… akşam", "zamanla") tek anda geçen bakım hareketine çevrildi; `sf_s_10`'da fiil uyumu ("gülümsedi").
+- Testler bilerek güncellendi: varyant sayısı 1451; belirlenimcilik parmak izi `71ed541c151ded40` (şekil ve içerik aynı, `receive_appeal`, `persist`, `carry_forward` satırları yeni varyantlara geçti; saklanan masallar metnini tuttuğu için çocuğu etkilemez, K1).
+- Açık: `ProseCooldownTests.testCarryingHistoryLowersRepetition` kırmızı. Havuz büyüyünce geçmişsiz çeşitlilik arttı (macera 5-6 ×50: farklı satır 176 → 195, tekrar %57 → %54), ama geçmiş taşınınca o ölçümde farklı satır artık artmıyor (195 → 195; tekrar yine %54 → %53 düşüyor). Diğer üç ölçüm geçiyor. Test gevşetilmedi; karar Batuhan'da.
+- Doğrulama: doğrulayıcı PASS (23 kapı). Motor 896 test, 1 kırık (yukarıdaki), 2 atlanan. Uygulama 892 test, tek kırık `DesignSystemSnapshotTests.testSnapshotHeroCardStates` (ana sayfa işinin referans görüntüsü, bu işle ilgisiz). Simülatörde masal okunmadı.
+- Maliyet: 4,71 $ (Opus'un ilk yazma turu ağ hatasıyla düştü, 5. turda yeniden yazdı; bu yüzden inceleme döngüsü bir kez eksik çalıştı).
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/templates/v3/` (21 dosya), `StoryEngine/Tests/StoryEngineTests/{CatalogLoadingTests,OfflineDeterminismTests,UsageLearningTests}.swift`.
+
 ### 2026-11-13 · main, commit bu kayıtla · 9-10 yaş bandı yazıldı (ajan takımı, üç tur)
 
 - Ne değişti: 9-10 bandı artık boş değil; dört bandın dördü de kendi içeriğiyle. Üç modlu ajan takımı (Fable 5.2 lider, Opus 5.5 yazar, Sonnet 5.5 testçi) motorun kopyasında üç tur çalıştı, çıktı okunup doğrulandıktan sonra repoya taşındı.

@@ -21,6 +21,43 @@
     { "id": "cf_p_07", "text": "O günden sonra {{child.name}} hiçbir izin yanından öylece geçip gitmedi.",
       "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "never_walks_past_a_trace" },
     { "id": "cf_p_08", "text": "{{child.name}} eve bir soruyla döndü. Yarın onu da çözecekti, bundan emindi.",
-      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "went_home_with_a_question" }
+      "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "went_home_with_a_question" },
+    {
+      "id": "cf_p_09",
+      "text": "Ertesi sabah {{child.name}} pencereden dışarı baktı. Bu kez acele etmeden, uzun uzun.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "next_morning_looked_slowly"
+    },
+    {
+      "id": "cf_p_10",
+      "text": "\"Bu neden böyle?\" diye sormak {{child.name}}'in yeni alışkanlığı oldu. Her gün soracaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "why_became_a_habit"
+    },
+    {
+      "id": "cf_p_11",
+      "text": "{{child.name}} o günden sonra biraz daha yavaş yürüdü. Acele etmeyince daha çok şey görünüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "walks_slower_sees_more"
+    },
+    {
+      "id": "cf_p_12",
+      "text": "{{child.name}} bir dahaki sefere {{companion.name}}'i arayacaktı. Nerede bulacağını artık biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "knows_where_to_find_them"
+    }
   ]
 }
