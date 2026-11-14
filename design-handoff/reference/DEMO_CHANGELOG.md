@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı taslağı (8 → 41 rozet)
+
+- Ne değişti (Batuhan, 15 Kasım: "bir çok rozet olsun, Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin"): `docs/ROZET_PLANI.md` yazıldı. 10 aile, 41 rozet (7'si kademeli "kat"), 3 gizli rozet; Duolingo'dan alınan ve ilke 7 yüzünden alınmayan mekanikler tablosu; masal sonu kutlaması (gündüz büyük an, gece sessiz satır), Rozetlerim sayfası, rozet detayı; defter göçü (`decodeIfPresent`), geriye dönük sessiz kazanım; R0-R6 fazları ve R0'da Batuhan'ın vereceği yedi karar.
+- Bilerek değişmedi: uygulama kodu, `CLAUDE.md` ilke 7. Ardışık gün rozeti yerine toplam okuma günü önerildi; ilerleme çubuğu, "az kaldı", bildirim ve rozet-yıldız bağı yok.
+- Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ROZET_PLANI.md` (yeni), bu günlük.
+
 ### 2026-11-15 · main, commit bu kayıtla · Ebeveyn tarafı sadeleşti: masal onayı kalktı, oda tek sayfa
 
 - Ne değişti (Batuhan, 14 Kasım: "yeni kitap ebeveyn onayına gitmesin, ebeveyn olayını rahatlatalım"):
