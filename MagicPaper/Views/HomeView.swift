@@ -3,8 +3,8 @@ import SwiftUI
 /// 11 · Ana sayfa (`AnaSayfa`).
 ///
 /// Tek soru: "Bu akşam ne okuyoruz?" (karar 7 Kasım 2026). Sıra: çocuğun başlığı,
-/// bu akşamın kartı (4 durum), varsa devam eden seri, yeni masal için üç mod,
-/// Masallar rafı. Günün masalı ayrı bölüm değil: bu akşamın kartında ve Masallar'da.
+/// bu akşamın kartı (4 durum), yeni masal için üç mod, varsa devam eden seri.
+/// Günün masalı ayrı bölüm değil: bu akşamın kartında ve Masallar'da.
 ///
 /// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
 /// sahnenin kenarında yıldız ve seri çipleri, sert alt kenarlı kartlar
@@ -15,6 +15,11 @@ import SwiftUI
 /// kartının içine taşındı (Ragi orada, ekranın tek maskotu). Modlar resimli
 /// kartlar yerine masal yazma adımlarıyla aynı satırlar. 7 Kasım 2026: bölümler
 /// panelsiz, lavanta (`cardSoft`) yalnızca bu akşamın kartında.
+///
+/// 14 Kasım 2026 (Batuhan): iki kademe (`KidLevel`). Okul öncesi çocukta selam
+/// ve yıldız satırı yok, mod karoları büyük; sayfa ad, bu akşamın kartı ve üç
+/// karodan ibaret. Masallar önizlemesi iki kademede de kalktı: keşfin yeri
+/// Masallar sekmesi.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -47,7 +52,6 @@ struct HomeView: View {
         let modes = Self.modes(for: profileManager.currentProfile)
         if modes != availableModes { availableModes = modes }
         stars = profileManager.currentProfile.map { MPStars.score(for: $0, stories: storyManager.stories) } ?? 0
-        gunlukItems = Self.makeGunlukItems(classics)
     }
 
     private var content: some View {
@@ -55,11 +59,13 @@ struct HomeView: View {
             // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
             // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
             VStack(alignment: .leading, spacing: 0) {
+                // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
                 MPKidTabHeader(title: activeName,
-                               eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id) ?? greeting) {
-                    if !typeSize.isAccessibilitySize { statLine(compact: true) }
+                               eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
+                                   ?? (level == .little ? nil : greeting)) {
+                    if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
                 }
-                if typeSize.isAccessibilitySize { statLine(compact: false) }
+                if showsStats, typeSize.isAccessibilitySize { statLine(compact: false) }
             }
             .padding(.top, MPSpacing.lg)
 
@@ -75,24 +81,18 @@ struct HomeView: View {
                 HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
                     .homeEntrance(2)
             }
-
-            if !gunlukItems.isEmpty {
-                HomeGunlukPreview(items: gunlukItems, onOpen: { id in
-                    MPHaptics.tap()
-                    app.router.tab = .gunluk
-                    app.router.masallarPath = [.tale(id)]
-                }, action: {
-                    MPHaptics.tap()
-                    app.router.tab = .gunluk
-                })
-                .homeEntrance(3)
-            }
         }
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, GunlukLayout.bottomClearance)
     }
 
     @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// Açık çocuğun kademesi; profil yokken okuyan çocuğun düzeni.
+    private var level: KidLevel { profileManager.currentProfile?.kidLevel ?? .big }
+
+    /// Okul öncesi çocuk sayıyı okuyamaz: yıldız ve gün satırı Profil'de kalır.
+    private var showsStats: Bool { level == .big }
 
     /// Satır Odam'a götürür: yıldız ve serinin ayrıntısı orada.
     /// Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
@@ -167,22 +167,7 @@ struct HomeView: View {
         app.openTonight()
     }
 
-    // MARK: - Günlük önizlemesi
-
     private var classics: ClassicsLibrary { .shared }
-
-    /// Çizimi gelmiş klasikler (en çok 4; keşif Masallar'da); günün klasiği başta.
-    @State private var gunlukItems: [HomeGunlukPreview.Item] = []
-
-    private static func makeGunlukItems(_ classics: ClassicsLibrary) -> [HomeGunlukPreview.Item] {
-        var tales = classics.catalog.standaloneTales.filter { UIImage(named: $0.cover) != nil }
-        if let today = classics.todaysTale, let i = tales.firstIndex(where: { $0.id == today.id }) {
-            tales.insert(tales.remove(at: i), at: 0)
-        }
-        return tales.prefix(4).map {
-            .init(id: $0.id, title: $0.title, minutes: $0.minutes, asset: $0.cover, focus: $0.coverFocus)
-        }
-    }
 
     // MARK: - Mod şeridi
 
@@ -219,7 +204,8 @@ struct HomeView: View {
         HStack(alignment: .top, spacing: MPSpacing.sm) {
             ForEach(shownModes, id: \.self) { mode in
                 HomeModeTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
-                             badge: mode == emphasizedMode ? "Bu akşam" : nil, fillHeight: true) {
+                             badge: mode == emphasizedMode ? "Bu akşam" : nil, fillHeight: true,
+                             large: level == .little) {
                     MPHaptics.tap()
                     app.startStoryCreation(mode: mode)
                 }

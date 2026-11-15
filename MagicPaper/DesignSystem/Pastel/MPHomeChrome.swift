@@ -378,69 +378,6 @@ struct StarShape: Shape {
 
 // MARK: - Mod kartı (yeni masal)
 
-// MARK: - Günlük rafı
-
-/// Ana sayfadaki Masallar rafı (15 Ekim, Apple Books rafı gibi): başlıkta "Tümü",
-/// altında yatay kayan kapaklar, adı ve süresi. Sayfada tek "bugün" var: "Günün
-/// masalı" (7 Kasım 2026). Kapaklar açılışta sırayla süzülür; Reduce Motion'da yerinde.
-struct HomeGunlukPreview: View {
-    struct Item: Identifiable {
-        let id: UUID
-        let title: String
-        let minutes: Int
-        let asset: String
-        let focus: ClassicFocus
-    }
-
-    /// İlki günün klasiği.
-    let items: [Item]
-    /// Dokunulan kapağın masalı.
-    let onOpen: (UUID) -> Void
-    /// "Tümü": Masallar sekmesi.
-    let action: () -> Void
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var arrived = false
-
-    var body: some View {
-        HomeSection(title: "Masallar", link: ("Tümü", action)) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: MPSpacing.md) {
-                    ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                        Button { onOpen(item.id) } label: { tile(item) }
-                            .buttonStyle(MPPressStyle())
-                            .accessibilityLabel(item.title)
-                            .accessibilityHint("Masalın sayfasını açar")
-                            .offset(y: arrived ? 0 : MP.S.x5)
-                            .opacity(arrived ? 1 : 0)
-                            .animation(reduceMotion ? nil : MP.M.spring.delay(0.1 + Double(index) * 0.06), value: arrived)
-                    }
-                }
-                // Sert kenar kırpılmasın.
-                .padding(.vertical, MPSpacing.sm)
-                .padding(.horizontal, MPSpacing.screenH)
-            }
-            .padding(.horizontal, -MPSpacing.screenH)
-            .padding(.vertical, -MPSpacing.sm)
-        }
-        .onAppear { arrived = true }
-    }
-
-    private func tile(_ item: Item) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xs) {
-            ClassicCoverImage(asset: item.asset, focus: item.focus, seed: item.asset)
-                .frame(width: 118, height: 158)
-                .clipShape(RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge, radius: MPRadius.md)
-            Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
-                .lineLimit(2).fixedSize(horizontal: false, vertical: true)
-                .padding(.top, MPSpacing.xxs)
-            Text("\(item.minutes) dakika").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-        }
-        .frame(width: 118, alignment: .leading)
-    }
-}
-
 // MARK: - Giriş
 
 extension View {
@@ -488,6 +425,9 @@ struct HomeModeTile: View {
     var badge: String? = nil
     /// Yan yana karolar aynı boyda dursun (ana sayfanın mod sırası).
     var fillHeight: Bool = false
+    /// Okul öncesi kademe (`KidLevel.little`): simge ve karo büyür, çünkü
+    /// çocuk karoyu yazısından değil resminden tanır.
+    var large: Bool = false
     let action: () -> Void
 
     /// Etiketin yüksekliği: yarısı kadar yukarı çıkıp kenara biner (Dynamic Type ile büyür).
@@ -496,9 +436,10 @@ struct HomeModeTile: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: MPSpacing.sm) {
-                MPIcon(systemImage, size: MP.G.xl, weight: .semibold)
+                MPIcon(systemImage, size: large ? MP.G.xxl : MP.G.xl, weight: .semibold)
                     .foregroundStyle(tone.deep)
-                    .frame(width: MPSize.iconTile, height: MPSize.iconTile)
+                    .frame(width: large ? MPSize.minTouchHero : MPSize.iconTile,
+                           height: large ? MPSize.minTouchHero : MPSize.iconTile)
                     .background(MPColor.backgroundSurface, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
                     .accessibilityHidden(true)
                 Text(title).mpText(.supporting).foregroundStyle(MPColor.textPrimary)
@@ -507,7 +448,8 @@ struct HomeModeTile: View {
             }
             .padding(.vertical, MPSpacing.md)
             .padding(.horizontal, MPSpacing.sm)
-            .frame(maxWidth: .infinity, minHeight: 104, maxHeight: fillHeight ? .infinity : nil)
+            .frame(maxWidth: .infinity, minHeight: large ? MPSize.minTouchHero * 2 : 104,
+                   maxHeight: fillHeight ? .infinity : nil)
             .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.input, style: .continuous))
             .overlay {
                 if badge != nil {

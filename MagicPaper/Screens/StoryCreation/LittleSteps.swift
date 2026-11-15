@@ -1,0 +1,163 @@
+import SwiftUI
+import StoryEngine
+
+// Okul öncesi kademe (`KidLevel.little`) için masal yazma adımları
+// (karar: 14 Kasım 2026, Batuhan).
+//
+// Aynı iki soru, aynı sıra: "Nasıl bir masal olsun?" ve "Kim gelsin?". Fark
+// seçimin biçiminde: okuyamayan çocuk büyük resme dokunur ve dokunuş adımı
+// geçer. Alt satır, konu çipi, "Masalı yaz" düğmesi yok; konuyu ve seçilmeyen
+// her şeyi MagicPaper seçer. Kurallar (`StoryCreationSteps`, aday süzme,
+// Masal ailem ilişkileri) okuyan çocuğun adımlarıyla ortak.
+
+/// Büyük resimli seçim karosu: simge, altında tek kısa ad.
+struct LittleChoiceTile: View {
+    let title: String
+    let systemImage: String
+    var tone: MPWorldTone = .lav
+    /// Karonun altındaki tek kısa not ("Bu akşam").
+    var note: String? = nil
+    var accessibilityLabel: String? = nil
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: MPSpacing.sm) {
+                MPIcon(systemImage, size: MP.G.hero, weight: .semibold)
+                    .foregroundStyle(tone.deep)
+                    // Simgelerin boyu farklı: sabit kutu, yan yana karolar eşit dursun.
+                    .frame(width: MPSize.minTouchHero, height: MPSize.minTouchHero)
+                    .accessibilityHidden(true)
+                Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                if let note {
+                    Text(note).mpText(.footnote).foregroundStyle(MPColor.actionPrimary)
+                }
+            }
+            .padding(MPSpacing.md)
+            .frame(maxWidth: .infinity, minHeight: MPSize.minTouchHero * 2)
+            .mpKidSurface(tone.soft, edge: tone.edge)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel(accessibilityLabel ?? title)
+    }
+}
+
+/// Birinci adım: üç mod, üç büyük karo. Dokununca geçilir.
+struct LittleModeStep: View {
+    let modes: [StoryMode]
+    var emphasized: StoryMode? = nil
+    var profiles: [UserProfile] = []
+    var authoredBands: [AgeBand] = []
+    @Binding var selectedProfileID: UUID?
+    let onChoose: (StoryMode) -> Void
+
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                    if StoryCreationSteps.showsChildPicker(profileCount: profiles.count) {
+                        CreationChildPicker(profiles: profiles, authoredBands: authoredBands,
+                                            selectedID: $selectedProfileID)
+                    }
+                    CreationTitle(title: "Nasıl bir masal olsun?")
+                }
+
+                VStack(spacing: MPSpacing.md) {
+                    ForEach(StoryCreationSteps.shownModes(modes, emphasized: emphasized), id: \.self) { mode in
+                        LittleChoiceTile(
+                            title: mode.title, systemImage: mode.symbol, tone: mode.tone,
+                            note: mode == emphasized ? "Bu akşam" : nil,
+                            accessibilityLabel: mode == emphasized
+                                ? "\(mode.title), bu akşam için önerilen" : mode.title
+                        ) {
+                            MPHaptics.selection()
+                            onChoose(mode)
+                        }
+                    }
+                }
+
+                // Akışın tek Ragi'si; "Kim gelsin?" adımı sessiz (23 Ekim 2026).
+                MascotSays(mascot: .pencil, text: "Birine dokun!", mascotWidth: 72)
+            }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.sm)
+            .padding(.bottom, MPSpacing.xxxl)
+        }
+    }
+}
+
+/// İkinci adım: "Kim gelsin?". Yol arkadaşları, Masal ailem ve sürpriz aynı
+/// ızgarada; bir karoya dokunmak masalı yazdırır.
+struct LittleCompanionStep: View {
+    var mode: StoryMode? = nil
+    var age: Int? = nil
+    var source: any StoryChoiceSource = StoryChoiceSources.current
+    var familyCharacters: [FamilyCharacter] = []
+    var availableRelations: Set<FamilyRelationKind> = []
+    /// Yol arkadaşı ya da Masal ailem'den biri; ikisi de `nil` ise MagicPaper seçer.
+    let onChoose: (_ companionID: String?, _ familyID: UUID?) -> Void
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// Izgara altı karoyu geçmesin: üç arkadaş, en çok iki aile, bir sürpriz.
+    private static let shownCompanions = 3
+    private static let shownFamily = 2
+
+    /// Konu seçilmediği için adaylar yalnızca moda ve yaşa göre süzülür.
+    private var candidates: [CompanionChoice] {
+        Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: nil, family: nil)
+            .prefix(Self.shownCompanions))
+    }
+
+    /// Yalnızca bu modun taşıyabildiği karakterler: seçilemeyen karo gösterilmez.
+    private var family: [FamilyCharacter] {
+        Array(familyCharacters.filter { availableRelations.contains($0.relation.kind) }
+            .prefix(Self.shownFamily))
+    }
+
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+              count: typeSize.isAccessibilitySize ? 1 : 2)
+    }
+
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
+                CreationTitle(title: "Kim gelsin?")
+
+                LazyVGrid(columns: columns, spacing: MPSpacing.md) {
+                    ForEach(candidates) { companion in
+                        LittleChoiceTile(title: companion.name,
+                                         systemImage: CompanionStep.symbol(forType: companion.kind),
+                                         tone: .lav) {
+                            MPHaptics.selection()
+                            onChoose(companion.id, nil)
+                        }
+                    }
+                    ForEach(family) { character in
+                        LittleChoiceTile(
+                            title: character.name,
+                            systemImage: FamilyCharacterCopy.relationSymbol(character.relation.kind),
+                            tone: .peach,
+                            accessibilityLabel: "\(character.name), \(FamilyCharacterCopy.relation(character.relation.kind))"
+                        ) {
+                            MPHaptics.selection()
+                            onChoose(nil, character.id)
+                        }
+                    }
+                    LittleChoiceTile(title: "Sürpriz", systemImage: "wand.and.sparkles", tone: .yellow,
+                                     accessibilityLabel: "Sürpriz, arkadaşı biz seçelim") {
+                        MPHaptics.selection()
+                        onChoose(nil, nil)
+                    }
+                }
+            }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, MPSpacing.sm)
+            .padding(.bottom, MPSpacing.xxxl)
+        }
+    }
+}

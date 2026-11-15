@@ -102,6 +102,13 @@ struct StoryCreationFlow: View {
 
     private var profiles: [UserProfile] { profileManager.profiles }
 
+    /// Adımların biçimi (`KidLevel`): okul öncesi çocukta resimli karolar.
+    /// Ebeveyn alanında yazılan masalda hep yazılı adımlar: orada seçen ebeveyn
+    /// ve konu ile "Yeni karakter" yalnızca o adımlarda var.
+    private var level: KidLevel {
+        app.router.isParentMode ? .big : (profile?.kidLevel ?? .big)
+    }
+
     /// - Parameter preset: a mode already chosen on the home screen.
     /// - Parameter family: a Masal ailem character chosen on 14.
     init(preset: StoryMode? = nil, family: UUID? = nil) {
@@ -281,6 +288,16 @@ struct StoryCreationFlow: View {
                 alternatives: supportedAlternatives,
                 onPickAnother: { phase = .child },
                 onClose: { dismiss() })
+        case .mode where level == .little:
+            LittleModeStep(
+                modes: allowedModes,
+                emphasized: StoryCreationSteps.emphasizedMode(allowedModes,
+                                                              isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
+                profiles: profiles,
+                authoredBands: authoredBands,
+                selectedProfileID: $chosenProfileID,
+                onChoose: chooseMode
+            )
         case .mode:
             StoryModeStep(
                 modes: allowedModes,
@@ -293,6 +310,17 @@ struct StoryCreationFlow: View {
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
+        case .companion where level == .little:
+            LittleCompanionStep(
+                mode: chosenMode, age: age, source: source,
+                familyCharacters: familyCharacters,
+                availableRelations: familyRelations
+            ) { companionID, familyID in
+                chosenCompanionID = companionID
+                // Aile karosu seçilmediyse 14'ten gelen ön seçim yerinde kalır.
+                if let familyID { chosenFamilyID = familyID }
+                begin()
+            }
         case .companion:
             CompanionStep(
                 ideaID: nil, mode: chosenMode, age: age, topicID: chosenTopicID,

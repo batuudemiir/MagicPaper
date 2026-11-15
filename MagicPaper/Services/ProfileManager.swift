@@ -39,6 +39,9 @@ struct UserProfile: Codable, Identifiable {
     /// İçerik güvenliği (FAZ 17, 31 · Güvenlik): korku seviyesi ve kaçınılan
     /// konular. `nil` = hiç ayarlanmadı = en korumacı (`effectiveSafety`).
     var safety: ContentSafety?
+    /// "Kendi okuyor" (14 Kasım 2026): ebeveynin arayüz kademesi seçimi.
+    /// `nil` = seçilmedi, kademeyi yaş belirler (`KidLevel`).
+    var readsAlone: Bool?
 
     /// Motora giden ayar: hiç seçilmediyse en korumacı.
     var effectiveSafety: ContentSafety { safety ?? .mostProtective }
@@ -55,7 +58,7 @@ struct UserProfile: Codable, Identifiable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, age, profileType, imageFileName, createdAt, interests, safety
+        case id, name, age, profileType, imageFileName, createdAt, interests, safety, readsAlone
     }
 
     /// Hand-written so a profile saved before FAZ 12 still loads.
@@ -74,6 +77,7 @@ struct UserProfile: Codable, Identifiable {
         interests = try container.decodeIfPresent([String].self, forKey: .interests) ?? []
         // FAZ 17 öncesi profil: alan yok, en korumacı ayarla açılır.
         safety = try? container.decodeIfPresent(ContentSafety.self, forKey: .safety)
+        readsAlone = try? container.decodeIfPresent(Bool.self, forKey: .readsAlone)
     }
 }
 
@@ -270,6 +274,16 @@ class ProfileManager: ObservableObject {
             currentProfile = profiles[index]
         }
         Self.log.debug("Safety updated: \(safety.level.rawValue, privacy: .public)")
+    }
+
+    /// "Kendi okuyor": çocuğun arayüz kademesini ebeveyn seçer (`KidLevel`).
+    func setReadsAlone(_ readsAlone: Bool, for profileID: UUID) {
+        guard let index = profiles.firstIndex(where: { $0.id == profileID }) else { return }
+        profiles[index].readsAlone = readsAlone
+        saveProfiles()
+        if currentProfile?.id == profileID {
+            currentProfile = profiles[index]
+        }
     }
 
     /// Why a deletion did not happen, when it did not.

@@ -31,6 +31,13 @@ struct ProfileHubView: View {
                         }
                     }
                     MPRowDivider(area: .parent)
+                    // Arayüz kademesi (`KidLevel`): yaştan türer, ebeveyn değiştirir.
+                    ParentToggleRow(systemImage: "book", tone: .sky, title: "Kendi okuyor",
+                                    subtitle: "Açıkken ekranlar yazıyla, kapalıyken resimle seçilir.",
+                                    isOn: Binding(
+                                        get: { liveProfile.effectiveReadsAlone },
+                                        set: { profileManager.setReadsAlone($0, for: profile.id) }))
+                    MPRowDivider(area: .parent)
                     ParentRowButton(systemImage: FamilyCharacterCopy.profileRowSymbol, tone: .pink,
                                     title: FamilyCharacterCopy.profileRowTitle,
                                     subtitle: FamilyCharacterCopy.profileRowDescription) {
@@ -89,6 +96,11 @@ struct ProfileHubView: View {
         } message: {
             Text(deletionMessage)
         }
+    }
+
+    /// Sayfa profilin bir kopyasıyla açılır; anahtar güncel değeri göstersin.
+    private var liveProfile: UserProfile {
+        profileManager.profiles.first { $0.id == profile.id } ?? profile
     }
 
     /// Yıldız ve çıkartmalar (Faz 9): ebeveyn ekonominin ne yaptığını görür.

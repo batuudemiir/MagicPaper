@@ -46,6 +46,22 @@ Kazananların ortak dersi: **ses + uyku + aile** sevgiyi yaratır; **tüketilen 
 - **Gradient:** `MPGlowBackground` (ilk açılış zemini) kalkar; düz krem.
 - **Dil:** `docs/SES_VE_SOZ.md`'ye ad tablosu: seri masal, üst üste gün, Favorilerim, Kahraman, Odam, yıldız kumbarası, çıkartma, Dolap, uyku kapısı.
 
+## İki kademe (karar: 14 Kasım 2026, Batuhan)
+
+Yaş bandı masalın metnini belirler; arayüzü çocuğun okuyup okuyamadığı belirler. Bu yüzden dört değil iki kademe (`KidLevel`, `Screens/KidLevel.swift`):
+
+| | Küçük (`little`: 3-4, 5-6) | Büyük (`big`: 7-8, 9-10) |
+|---|---|---|
+| Ana sayfa | Ad, bu akşamın kartı, üç büyük mod karosu; selam ve yıldız satırı yok | Selam, yıldız satırı, kart, üç karo |
+| Masal yaz 1 | Üç büyük resimli karo, dokununca geçilir; alt satır ve "Bana sürpriz yap" yok | Yazılı satırlar |
+| Masal yaz 2 | "Kim gelsin?": arkadaşlar, Masal ailem ve "Sürpriz" tek ızgarada, dokunuş masalı yazdırır; konuyu MagicPaper seçer | Konu çipleri, arkadaş satırları, Masal ailem, "Masalı yaz" |
+
+- Kademe yaştan türer (7'den küçük: Küçük). Ebeveyn çocuğun profil sayfasında "Kendi okuyor" anahtarıyla değiştirir; yeni soru sorulmaz. Kademenin adı çocuğa gösterilmez.
+- Ebeveyn alanında yazılan masal hep Büyük adımlarla.
+- Masallar önizlemesi Ana sayfa'dan iki kademede de kalktı (aşağıdaki 1. düzenin son satırı geçersiz): keşfin yeri Masallar sekmesi.
+- Kaynak: NN/g (yaşa özel tasarım), Sesame Workshop 2012 (dokunma, sesli ve görsel yönerge), YouTube Kids 2017 (yaşa göre düzen).
+- **Açık:** sesli etiket (Ragi seçeneği söyler; `MPSound` uyku vaktinde çalmıyor, karar gerek), alt çubuk Küçük'te de dört sekme, Kitaplık ve Profil henüz tek düzen.
+
 ## Sayfa düzenleri (13 ekran)
 
 Ölçüler 390 pt telefon için pt; "kıvrım" ~700.
