@@ -17,6 +17,7 @@
 | Göç: yaz → doğrula → işaretle | ✅ uygulandı ve koşuyor |
 | Göç: beklet (gölge kopya) | ✅ uygulandı |
 | Göç: sil (emeklilik) | ✅ **yazıldı**, kapılı — §6 |
+| E1 (15 Kasım 2026): kesişim, disk doğruluk kaynağı | ✅ kapı açık, emeklilik kesişimden 14 gün sonra; §4 ve §6 |
 | Test | ✅ `MagicPaperTests/LibraryMigrationTests.swift` |
 | StoryMemory / seri alanları | tasarım yazıldı (§7), **kod eklenmedi** |
 
@@ -114,16 +115,28 @@ göç işareti, tam ihtiyaç duyulduğu anda okunamaz olurdu.
 çocuğunun masallarını diskte bırakırdı.
 
 **5. sil** — `retireLegacyIfDue()`. **Bu turda yazıldı** (§6'daki kapıyla birlikte),
-sonraki tura bırakılmadı. Emeklilikten hemen önce doğrulama bir kez daha koşuyor: hiçbir
-şey yalnızca bir işaretin gücüyle silinmiyor.
+sonraki tura bırakılmadı. E1'den beri yalnızca `diskAuthoritative`'den, `cutoverAt`'ten
+14 gün sonra ve disk hatasız okunuyorsa koşuyor; kesişimin kendisi son bir eşitleme ve
+bayt bayt doğrulamayla işaretleniyor (§6). Hiçbir şey yalnızca bir işaretin gücüyle
+silinmiyor.
 
 ### Faz makinesi
 
-| Faz | Anlam | Okuma kaynağı |
-|---|---|---|
-| `pending` | Hiçbir şey doğrulanmadı | UserDefaults |
-| `verified` | Her kayıt kopyalandı ve sağlam geri okundu | UserDefaults (disk gölge) |
-| `legacyRetired` | Eski anahtarlar gitti | Disk |
+| Faz | Anlam | Okuma kaynağı | Yazma |
+|---|---|---|---|
+| `pending` | Hiçbir şey doğrulanmadı | UserDefaults | UserDefaults |
+| `verified` | Her kayıt kopyalandı ve sağlam geri okundu | UserDefaults (disk gölge) | UserDefaults, sonra gölge eşitlenir |
+| `diskAuthoritative` | Kesişim yapıldı (E1); eski yığın dondurulmuş yedek | Disk | Yalnızca disk, yalnızca değişen dosya |
+| `legacyRetired` | Eski anahtarlar gitti | Disk | Yalnızca disk |
+
+Sıra: `pending → verified → diskAuthoritative → legacyRetired`, her geçiş ayrı bir
+açılışta. `State.cutoverAt` kesişim anıdır; emeklilik oradan sayılır.
+
+İşaretin çözümü (E1) hoşgörülü: eksik alan varsayılanını alır (E1 öncesi kayıtta
+`cutoverAt` yok), bu sürümün tanımadığı bir evre `diskAuthoritative` okunur, hiç
+çözülemeyen bir işaret de `diskAuthoritative` (ama `cutoverAt` yok, yani emeklilik hiç
+olmaz) okunur. Hiçbiri `pending`'e düşmez: kesişimden sonra `pending` donmuş yığını
+canlı dosyaların üstüne kopyalayan tek evredir.
 
 `run()` her açılışta çağrılabilir, idempotent. Hiçbir hata `run()`'dan dışarı çıkmıyor:
 başarısız bir göç eski depoyu bulduğu gibi bırakıyor, nedeni kaydediyor ve uygulama eski
@@ -164,29 +177,68 @@ doğrulama bayt karşılaştırması yapıyor.
 
 ---
 
-## 6. ⚠️ Emeklilik neden kapılı — açık dikişler
+## 6. Kesişim ve emeklilik (E1, 15 Kasım 2026)
 
-`LibraryMigration.readPathIsAuthoritative = false`.
+`LibraryMigration.readPathIsAuthoritative = true` (testi:
+`testTheShippedBuildCutsOverToDisk`).
 
-Okuma yolu bu turda **diske taşınmadı**, dolayısıyla eski anahtarlar hâlâ canlı kopya ve
-onları silmek kütüphaneyi göç ettirmek değil silmek olurdu. İki dikiş kapanmadan
-`true` olamaz ve **ikisi de bu agent'ın dosyası değil**:
+### Kapının önkoşulları, ikisi de kapandı
 
-1. **`SettingsView.clearAll()` (`Views/SettingsView.swift:459`)** — parent-ux'in alanı.
-   "Tüm veriyi sil" bugün yalnızca `UserDefaults` anahtarlarını kaldırıyor. Okuma yolu
-   diske geçtiğinde bu akışın `LibraryPersistence.eraseAll()` çağırması **zorunlu**,
-   aksi hâlde silindiği söylenen masallar diskte kalır. Tek satır; API hazır.
-   *Bu tur için hafifletme:* `reconcile()` her açılışta diski eskiye eşitlediği için
-   silme bir sonraki açılışta gölgeye de geçiyor — test edilmiş
-   (`testErasingTheLegacyStoreErasesTheShadowOnTheNextRun`).
-2. **Favori / onay yazıcıları** — `Screens/MPStoryExtras.swift` (`MPFavorites`) ve
-   `Screens/MPSettingsStore.swift` (`approvedStoryIDs`) doğrudan `UserDefaults`'a yazıyor.
-   Bu turda **dokunulmadı** (paylaşılan dosya kuralı; parent-ux 2B'de bu ekranların
-   sahibi). Gölge kopya açılışta ve her `saveStories()` sonrasında yakınsıyor; okuma yolu
-   taşınmadan önce bu iki yazıcının depoya yönlendirilmesi gerekiyor.
+1. **"Tüm verileri sil"** artık `LocalDataEraser` üzerinden `LibraryPersistence.eraseAll()`
+   çağırıyor; dosya deposu (kenara konan bozuk dosyalar dahil) siliniyor. Göç işareti
+   kalıyor: kesişmiş bir kütüphane silindikten sonra da diske yazıyor.
+2. **Favoriler** `LibraryShelf` üstünden yazılıyor: kesişimden önce bugünkü gibi
+   `UserDefaults["mp_favoriteStoryIDs"]`, sonra `Flags/favorites.json`. **Onaylar**:
+   masal onayı 14 Kasım 2026'da kalktı, `mp_approvedStoryIDs`'e yazan kod yok (yalnızca
+   `LocalDataEraser` siliyor). Liste olduğu gibi taşınıyor, okunmuyor.
 
-Kapı bir zevk meselesi değil, eksik bir önkoşul. Testi var:
-`testTheShippedBuildKeepsTheLegacyStore`.
+### Kesişim
+
+`verified` evresinde, kapı açıkken, açılışta: son bir eşitleme (`sync`) ve kaynağa karşı
+bayt bayt `verify`. İkisi de geçerse `diskAuthoritative` ve `cutoverAt` işaretlenir.
+Geçmezse (örneğin diskte adı masal kimliği olmayan, çözülemeyen bir dosya) neden
+`lastFailure`'a yazılır ve eski yol aynen sürer. Kesişim doğrulamayla aynı açılışta
+olmaz.
+
+### Kesişimden sonra
+
+- **Okuma** diskten: `readAllStories()`, `createdAt` azalan, eşitlikte kimlik
+  (`LibraryFileStore.shelfOrder`).
+- **Yazma** yalnızca diske: değişen masal yazılır (SHA-256 özeti eşleşirse yazılmaz,
+  okunan dosyaların özeti yüklemede alınır), raftan çıkan masalın dosyası silinir.
+  Silme "rafta bilinen ama artık olmayan" kimliklerdir; "diskte olup rafta olmayan"
+  değil, çünkü o küme bozuk ve okunamayan dosyaları da içerir.
+- **Eski yığın** bir daha yazılmaz; dondurulmuş yedek. `sync` kesişimden sonra çalışmayı
+  reddeder (`testTheLegacySyncNeverRunsAfterCutover`).
+- **Bozuk dosya** (okunuyor ama çözülmüyor): rafta görünmez, `DamagedStories/`
+  klasörüne taşınır (üstüne yazılmaz, silinmez, budanmaz), adı `quarantinedFiles`'a
+  eklenir. Taşınamazsa yerinde kalır ve o oturumda ne yazılır ne silinir. Log'a yalnızca
+  dosya adı yazılır.
+- **Okunamayan dosya** (kilitli cihaz: `.completeUnlessOpen` kilitliyken soğuk okumayı
+  reddeder, arka plan yenilemesi uygulamayı o sırada açabilir): bozuk sayılmaz, yerinde
+  kalır, dokunulmaz; cihaz açılınca (`protectedDataDidBecomeAvailable`) rafa eklenir.
+- Raf bozuk ya da okunamayan dosya yüzünden boşsa **örnek masal konmaz**.
+- **Depo kurulamazsa** (Documents yok): eski yedek varsa raf ondan gösterilir, o oturumda
+  hiçbir şey kaydedilmez, evre değişmez.
+- `StoryGenerationManager`'ın dış API'si aynı; karar `LibraryShelf`'te
+  (`Services/Persistence/LibraryShelf.swift`).
+
+### Emeklilik
+
+`cutoverAt`'ten `graceInterval` (14 gün) sonra, açılışta, disk hatasız okunuyorsa: her
+masal dosyası çözülüyor, `DamagedStories/` boş (donmuş yedek o masalın tek sağlam kopyası
+olabilir) ve iki bayrak listesi okunuyor. Bayat yığına karşı `verify` **yapılmaz**:
+kesişimden sonra silinen bir masal o doğrulamayı sonsuza dek düşürürdü. `verified`
+evresinden emeklilik yok.
+
+### Bilinen sınırlar
+
+- Favori listesi kesişimden sonra okunamazsa (bozuk ya da kilitli) o oturumda donmuş
+  eski liste gösterilir ve dosyanın üstüne yazılmaz; okunur hâle gelince ilk dokunuşta
+  diskteki liste alınır.
+- "Tüm verileri sil" `MPFavorites`'in bellekteki listesini boşaltmıyor (E1 öncesinden
+  kalan durum); silmeden sonraki ilk favori dokunuşu eski kimlikleri de yazar. Masal
+  verisi değil, yalnızca kimlik listesi.
 
 ---
 
@@ -265,6 +317,7 @@ Documents/MPLibrary/
   Flags/favorites.json     {version, ids}
   Flags/approvals.json     {version, ids}
   Quarantine/              kurtarılan yığınlar, en yeni 3 tutulur
+  DamagedStories/          çözülemeyen masal dosyaları (E1), budanmaz
 ```
 
 `Documents/StoryEngine/` (motorun `FileStores`'u) ayrı kalıyor ve ayrı kalmalı: oradaki
@@ -278,3 +331,9 @@ arasındaki köprü henüz canlı değil (Wave0 §4); bir göçün içinde icat 
 `MagicPaper/MagicPaperTests/LibraryMigrationTests.swift` — boş durum, dolu durum,
 yarıda kesilen göç, bozuk kaynak, bozuk hedef dosyası, idempotanlık, gölge eşitleme,
 silme yayılımı, emeklilik kapısı, yedek sınırı, tam silme.
+
+`MagicPaper/MagicPaperTests/LibraryCutoverTests.swift` (E1): kesişim, kapı kapalıyken
+kesişim yok, okunamayan diskte kesişim ertelenir, işaretin eski ve bilinmeyen
+biçimleri, diskten okuma sırası, kesişimden sonra eski yığının değişmemesi, tek masal
+tek dosya, silme, `StoryGenerationManager` üstünden sayfa çevirme, bozuk dosyanın
+kenara konması ve kaybolmaması, kilitli dosya, emeklilik, depo yokken açılış, favoriler.

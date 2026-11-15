@@ -1,6 +1,7 @@
 import Foundation
 import OSLog
 import SwiftUI
+import UIKit
 import Combine
 import StoryEngine
 
@@ -13,84 +14,56 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 @MainActor
 class StoryGenerationManager: ObservableObject {
     
-    static let shared = StoryGenerationManager()
-    
+    static let shared = StoryGenerationManager(library: LibraryPersistence.shelf)
+
     // MARK: - Published Properties
-    
+
     @Published var stories: [Story] = []
     @Published var isGenerating: Bool = false
-    
+
     // MARK: - Private Properties
-    
+
     private let fileManager = FileManagerService.shared
-    
-    private init() {
-        // Before anything reads the library: the migration needs the legacy
-        // store exactly as the last launch left it, and it is the only thing
-        // allowed to touch the `stories` key besides `save`/`load` below.
-        LibraryPersistence.bootstrap()
+
+    /// Where the library lives: the legacy `UserDefaults` blob before the
+    /// cutover, one file per story after it (E1, `LibraryShelf`). Built
+    /// after the migration has run, so it reads the phase this launch ends in.
+    private let library: LibraryShelf
+    private var cancellables = Set<AnyCancellable>()
+
+    init(library: LibraryShelf, notifications: NotificationCenter = .default) {
+        self.library = library
         loadStories()
         auditStoriesMissingImageURLs()
         createSampleStoriesIfNeeded()
-    }
-    
-    // MARK: - Persistence
-    
-    private func saveStories() {
-        do {
-            let encoded = try JSONEncoder().encode(stories)
-            let dataSize = encoded.count
-            logger.debug("💾 Saving stories to UserDefaults: \(dataSize) bytes (\(dataSize / 1024) KB)")
-
-            // Check if size is reasonable (< 1MB for UserDefaults)
-            if dataSize > 1_000_000 {
-                logger.warning("⚠️ WARNING: Stories data is large (\(dataSize / 1024 / 1024) MB). Consider cleanup.")
+        // A background launch on a locked device cannot read the story files
+        // (`.completeUnlessOpen`); they join the shelf once the device unlocks.
+        notifications.publisher(for: UIApplication.protectedDataDidBecomeAvailableNotification)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                Task { @MainActor in self.recoverUnreadableStories() }
             }
-
-            UserDefaults.standard.set(encoded, forKey: "stories")
-            // Keep the verified copy on disk in step with the write that just
-            // happened, deletions included. Does nothing until the migration
-            // has verified; never the source of a failure here, because this
-            // store is still the authoritative one.
-            LibraryPersistence.reconcileAfterWrite(stories: stories)
-        } catch {
-            // Önceden `try?` idi: kodlama başarısız olduğunda hiçbir şey
-            // yazılmıyor ve hiçbir şey söylenmiyordu. Kütüphane o andan sonra
-            // sessizce kalıcılığını yitiriyor, uygulama kusursuz çalışmaya
-            // devam ediyor ve kayıp ancak bir sonraki açılışta görülüyordu.
-            assertionFailure("Masallar kaydedilemedi: \(error)")
-            logger.error("🛑 Masallar KAYDEDİLEMEDİ, bu oturumdaki değişiklikler kaybolacak: \(String(describing: error))")
-        }
+            .store(in: &cancellables)
     }
-    
+
+    // MARK: - Persistence
+
+    /// Every mutation of `stories` ends here. Before cutover this writes the
+    /// whole blob as it always did; after, only the files that changed.
+    private func saveStories() {
+        library.save(stories)
+    }
+
     private func loadStories() {
-        guard let data = UserDefaults.standard.data(forKey: "stories") else { return }
-        do {
-            stories = try JSONDecoder().decode([Story].self, from: data)
-            logger.debug("✅ Loaded \(self.stories.count) stories from UserDefaults")
-        } catch {
-            // Bu, uygulamadaki en pahalı sessiz arıza yoluydu.
-            //
-            // Çözümleme başarısız olunca `stories` boş kalıyor, hemen ardından
-            // `createSampleStoriesIfNeeded()` örnekleri kuruyor ve ilk kayıtta
-            // gerçek kütüphanenin üstüne yazıyordu. Tek bir bozuk kayıt —
-            // tanınmayan bir enum değeri yeter — bir çocuğun bütün masallarını
-            // götürüyor, yerine üç örnek koyuyor ve kimseye bir şey söylemiyor.
-            //
-            // Ham veri artık tarihli bir anahtara alınıyor. Hâlâ ekranda
-            // görünmüyor, ama geri getirilebilir: kurtarılamayan bir kayıp ile
-            // kurtarılabilir bir kayıp arasındaki fark, kullanıcının o çocuğun
-            // ebeveyni olması.
-            //
-            // The backup itself had no second half. Each failure minted a new
-            // dated key and nothing ever read one, pruned one, or told anyone
-            // they existed — a store that only grows, inside the store whose
-            // size is already the problem. It is capped now.
-            let backupKey = "stories.undecodable.\(Int(Date().timeIntervalSince1970))"
-            UserDefaults.standard.set(data, forKey: backupKey)
-            Self.pruneUndecodableBackups(keeping: Self.undecodableBackupLimit)
-            assertionFailure("Masallar çözümlenemedi: \(error)")
-            logger.error("🛑 Masallar ÇÖZÜMLENEMEDİ. Ham veri '\(backupKey)' altına alındı: \(String(describing: error))")
+        stories = library.load()
+    }
+
+    /// Adds the stories whose files a locked device could not read at launch.
+    /// Each goes where `applySyncedStory` would put it; nothing else moves.
+    func recoverUnreadableStories() {
+        for story in library.recoverUnreadable() where !stories.contains(where: { $0.id == story.id }) {
+            let index = stories.firstIndex(where: { $0.createdAt < story.createdAt }) ?? stories.endIndex
+            stories.insert(story, at: index)
         }
     }
 
@@ -253,7 +226,9 @@ class StoryGenerationManager: ObservableObject {
         // Tembel yazımı zorla indir. `synchronize()` kullanımdan kaldırıldı
         // sayılır ve çoğu yerde gereksizdir; burada gereklidir, çünkü bu değeri
         // yazan an ile sürecin öldüğü an arasında saniyeler olabiliyor.
-        UserDefaults.standard.synchronize()
+        // Kesişimden sonra (E1) dosya yazımı zaten anında iner; `flush` yalnızca
+        // eski yolda `synchronize()` çağırır.
+        library.flush()
 
         logger.debug("📖 Updated reading progress for story \(storyId): page \(page)")
     }
@@ -281,8 +256,9 @@ class StoryGenerationManager: ObservableObject {
     // MARK: - Sample Stories
     
     private func createSampleStoriesIfNeeded() {
-        // Sadece hiç hikaye yoksa örnek hikayeler oluştur
-        guard stories.isEmpty else { return }
+        // Sadece hiç hikaye yoksa örnek hikayeler oluştur. Raf, dosyalar
+        // okunamadığı ya da bozuk çıktığı için boşsa örnek konmaz (E1).
+        guard stories.isEmpty, library.canSeedSampleStories else { return }
         
         logger.debug("📚 Creating sample stories...")
         
@@ -503,9 +479,9 @@ extension StoryGenerationManager {
         saveStories()
     }
 
-    /// After `LocalDataEraser`: an empty shelf, on disk and on screen. The
-    /// empty write also carries the erasure to the file copy
-    /// (`LibraryPersistence.reconcileAfterWrite`).
+    /// After `LocalDataEraser`: an empty shelf, on disk and on screen. Before
+    /// cutover the empty write also carries the erasure to the shadow copy;
+    /// after it, the shelf deletes every file it knew of.
     func resetAfterErase() {
         stories = []
         saveStories()

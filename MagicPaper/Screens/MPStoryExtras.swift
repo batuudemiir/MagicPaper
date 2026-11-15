@@ -96,18 +96,21 @@ extension Story {
 
 // MARK: - Favoriler
 //
-// `Story` modelinde favori alanı yok; kalıcılık ayrı bir anahtar üzerinden
-// yürütülür ki mevcut kayıtlı masalların kod çözümü bozulmasın.
+// `Story` modelinde favori alanı yok; kalıcılık ayrı bir liste üzerinden
+// yürütülür ki mevcut kayıtlı masalların kod çözümü bozulmasın. Kesişimden
+// önce `UserDefaults["mp_favoriteStoryIDs"]`, sonra `Flags/favorites.json`
+// (E1); hangisi olduğuna `LibraryShelf` karar verir.
 
 @MainActor
 final class MPFavorites: ObservableObject {
-    static let shared = MPFavorites()
+    static let shared = MPFavorites(library: LibraryPersistence.shelf)
 
-    private let key = "mp_favoriteStoryIDs"
+    private let library: LibraryShelf
     @Published private(set) var ids: Set<String>
 
-    private init() {
-        ids = Set(UserDefaults.standard.stringArray(forKey: key) ?? [])
+    init(library: LibraryShelf) {
+        self.library = library
+        ids = library.loadFavorites()
     }
 
     func contains(_ id: UUID) -> Bool { ids.contains(id.uuidString) }
@@ -115,13 +118,15 @@ final class MPFavorites: ObservableObject {
     /// Döndürülen değer: yeni favori durumu.
     @discardableResult
     func toggle(_ id: UUID) -> Bool {
+        // Açılışta okunamayan liste (kilitli cihaz) şimdi okunuyorsa önce o alınır.
+        if let recovered = library.favoritesIfRecovered() { ids = recovered }
         let key = id.uuidString
         if ids.contains(key) {
             ids.remove(key)
         } else {
             ids.insert(key)
         }
-        UserDefaults.standard.set(Array(ids), forKey: self.key)
+        library.saveFavorites(ids)
         return ids.contains(key)
     }
 }
