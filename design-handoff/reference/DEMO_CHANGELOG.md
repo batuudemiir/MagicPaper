@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: kapak için ajan ChatGPT promptu yazıyor
+
+- Karar (Batuhan): original-writer kapak çizmez; `review.md`'deki yeni "Kapak promptu (ChatGPT)" bölümüne İngilizce, olduğu gibi kopyalanabilir tek prompt yazar. Stil WORLD.md'den, karakterler görünüşleriyle, odak dikeyde %40-65, sabit yasak satırı (saat kadranı dahil rakam ve yazı yok), ilk kapak stil referansı. Masal kapak gelene kadar kapaksız bekler; bildirim "kapak bekliyor".
+- Yeni `Tools/place_cover.py <slug> <görsel>`: ChatGPT görselini (PNG/JPEG/WebP/HEIC) ortadan 3:4'e kırpıp `drafts/<slug>/cover.jpg`'ye (yoksa `published/`) 1125 × 1500 JPEG yazar.
+- `COVER_GUIDE.md` ChatGPT yolunu ana yol yaptı: prompt kalıbı ve stil referansı (`published/saatin-icindeki-ninni/cover.jpg`); SVG yolu yedek olarak kaldı (`render_cover.py` silinmedi). README ve spec karar satırı güncellendi.
+- Test: `place_cover` kırpım hesabı (2:3, 3:2, 3:4) ve 1024 × 1536 PNG → 1125 × 1500 JPEG elle denendi. Ajanın yeni adımı henüz bir turda çalışmadı (sonraki pazartesi/perşembe turu).
+- Dosyalar: `.claude/agents/original-writer.md`, `Tools/place_cover.py`, `Content/Originals/COVER_GUIDE.md`, `Content/Originals/README.md`, spec, bu dosya.
+
 ### 2026-11-16 · main, commit bu kayıtla · İki kademeli çocuk arayüzü origin'e gönderildi
 
 - Ne değişti (Batuhan, 16 Kasım: "evet, gönder"): `cf77ba5`, `921d019` ve bu kayıt origin/main'e gönderildi. Kod değişmedi.

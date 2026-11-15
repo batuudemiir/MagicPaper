@@ -14,7 +14,12 @@ Masallar sekmesindeki "MagicPaper Original" rafının kaynağı. Tasarım:
 
 ## Batuhan'ın işi
 
-1. Bildirim gelince `drafts/<slug>/review.md`'yi ve `tale.json`'u okuyun, `cover.jpg`'ye bakın.
+1. Bildirim gelince `drafts/<slug>/review.md`'yi ve `tale.json`'u okuyun.
+   Kapak: `review.md`'deki "Kapak promptu (ChatGPT)" bloğunu ChatGPT'ye yapıştırın, referans kapağı
+   (`published/saatin-icindeki-ninni/cover.jpg`) ekleyin. Gelen görseli yerleştirin:
+   ```bash
+   python3 Tools/place_cover.py <slug> ~/Downloads/<görsel>
+   ```
 2. Beğendiyseniz (karar: 13 Kasım 2026, şimdilik uzaktan akış yok, masallar uygulamayla gelir):
    ```bash
    cd Scripts/ContentPublisher
@@ -35,5 +40,4 @@ Uzaktan yol (`content-publisher publish --deploy`, imzalı `feed.json`) kodda ha
 içerik adresi (`magicpaper-393a7.web.app`) ile Firebase sitesi (`magicpaper-393a7-f2d31`) uyuşmuyor ve uzaktan sistem
 şimdilik kurulmayacak. Açılırsa aynı masal hem katalogda hem akışta olsa da rafta bir kez görünür.
 
-Kapak: ajan (Claude) SVG çizer ya da Batuhan ChatGPT'den getirir (COVER_GUIDE.md): `drafts/<slug>/cover.svg` → `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
-Görsel üretim servisi kullanılmaz. Kılavuz: `COVER_GUIDE.md`. Kapağı beğenmezseniz `review.md` Notlar'a yazın.
+Kapak: ajan prompt yazar, görseli Batuhan ChatGPT'de üretir (karar: 16 Kasım 2026). Ayrıntı: `COVER_GUIDE.md`.

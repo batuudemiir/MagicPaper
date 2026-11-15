@@ -50,7 +50,7 @@ Sen yazarsın, o okur; birbirinize soru sorarak birlikte öğrenirsiniz.
    - Bildirim: "MagicPaper Original: üç dünya önerisi hazır". Bitir.
 3. **Notlu taslak.** Bir taslağın `review.md`'sinde `## Notlar` altında, son "Düzeltildi (…)" satırından
    sonra (hiç yoksa bölümün başından) Batuhan'ın yazdığı bir not varsa o taslak notludur. Notlu taslak varsa
-   yeni masal yazma: en eskisini notlara göre düzelt (metin ya da kapak), notların altına
+   yeni masal yazma: en eskisini notlara göre düzelt (metin ya da kapak promptu), notların altına
    "Düzeltildi (<tarih>): <ne değişti>" ekle, denetimden geçir (adım 6), 8-9'a geç. Notları silme.
 4. **Yığın sınırı.** Notsuz onay bekleyen taslak sayısı 3 ya da fazlaysa yeni masal yazma; bildirim:
    "Onay bekleyen 3 Original masal var" ve bitir.
@@ -83,8 +83,8 @@ Sen yazarsın, o okur; birbirinize soru sorarak birlikte öğrenirsiniz.
      ## Araştırmadan
      <ORIGINALS_CRAFT.md'den hangi notu kullandın, hangisini bilerek kullanmadın ve neden; sorduğun soru>
 
-     ## Kapak sahnesi
-     <İngilizce, 2-4 cümle: kim, nerede, ne yapıyor; karakterlerin WORLD.md'deki sabit görünüşü>
+     ## Kapak promptu (ChatGPT)
+     <adım 7'deki kalıpla, kod bloğu içinde, İngilizce, olduğu gibi kopyalanabilir tek prompt>
 
      ## Notlar
      ```
@@ -94,18 +94,20 @@ Sen yazarsın, o okur; birbirinize soru sorarak birlikte öğrenirsiniz.
    ```
    (`--scratch-path` şart: repo iCloud'lu Masaüstü'nde, yerinde derleme imzalamada "detritus" hatası verir.)
    Kapak dışındaki her sorunu düzelt; üç denemede geçmezse sorunları `## Öz denetim`'e yaz.
-7. **Kapak: sen çizersin** (karar: 12 Kasım 2026, Batuhan; görsel üretim servisi yok, Gemini yok).
-   `drafts/<slug>/cover.svg`'yi elle yaz, sonra `python3 Tools/render_cover.py <slug>` → `cover.jpg`.
-   Örnek ve iskelet: `Content/Originals/COVER_GUIDE.md` (ilk kapak `saatin-icindeki-ninni/cover.svg`). Kurallar:
-   - `viewBox="0 0 1125 1500"`, yazı/harf/logo yok. Stil, palet, ışık ve karakter görünüşleri yalnız WORLD.md'den.
-   - Tek odak; odak resmin dikey %40-65'inde (detay sayfası başlığı alta yazar), üst üçte bir sakin.
-   - Guaj dokusu SVG filtreleriyle: bütün sahne bir `feDisplacementMap` grubunda, üstte `wash` ve `grain`
-     katmanları. Filtrelerde `filterUnits="userSpaceOnUse" x="0" y="0" width="1125" height="1500"` şart;
-     yüzdelik bölge verilirse çizici grubu tamamen düşürür. `mix-blend-mode` çalışmaz, kullanma.
-   - Sonra `cover.jpg`'ye bak (Read) ve 176 px'e küçültülmüş hâline de bak (`sips -Z 176 … --out $TMPDIR/…`):
-     odak küçükte de seçilmeli. Karakter, stil ya da kompozisyon tutmuyorsa düzelt, en çok üç kez; olmazsa
-     `## Öz denetim`'e yaz.
-   Ardından `originals check <slug>` yeniden.
+7. **Kapak: ChatGPT promptu yazarsın, çizmezsin** (karar: 16 Kasım 2026, Batuhan). Batuhan kapağı ChatGPT'de
+   üretir ve gönderir; yerleştirme `python3 Tools/place_cover.py <slug> <görsel>` ile yapılır. Masal kapak
+   gelene kadar kapaksız bekler (`originals check`'in "kapak yok" hatası bu turda beklenen tek hatadır).
+   `review.md`'nin `## Kapak promptu (ChatGPT)` bölümüne, `Content/Originals/COVER_GUIDE.md`'deki kalıpla tek bir
+   İngilizce prompt yaz:
+   - Stil paragrafı WORLD.md `## Kapak stili`'nden olduğu gibi; karakterlerin "kapakta değişmeyen görünüşü"
+     WORLD.md'den birebir (ad yerine görünüşle tarif et; ChatGPT adı bilmez).
+   - Masalın en sakin ve en tanınır anı tek sahne olarak: kim, nerede, ne yapıyor, ışık nereden geliyor.
+   - Kompozisyon: portre 3:4; tek odak dikeyde %40-65 arasında; üst üçte bir sakin; küçük boyutta okunur.
+   - Sabit yasaklar (her promptta aynen): "No text, no letters, no numbers anywhere (including clock faces,
+     signs and books), no logos, no signature. No photorealism, no 3D render, no glossy CGI, no neon, nothing scary."
+   - Stil sürekliliği satırı (aynen): "Match the style, palette and character designs of the attached reference
+     cover." Hangi referans görselin eklenmesi gerektiğini prompt bloğunun hemen altına yaz (COVER_GUIDE.md'deki
+     referans kapak).
 8. **Günlük ve commit.** `design-handoff/reference/DEMO_CHANGELOG.md` "## Değişiklik günlüğü" altına en üste:
    `### <tarih> · main, commit bu kayıtla · MagicPaper Original: <başlık> onaya kondu` ve maddeler
    (mod, yaş, denetim sonucu, kapak durumu, dosyalar). Commit:
@@ -122,5 +124,5 @@ Sen yazarsın, o okur; birbirinize soru sorarak birlikte öğrenirsiniz.
    Push yok.
 9. **Bildirim.**
    ```bash
-   osascript -e 'display notification "<başlık>" with title "MagicPaper Original onay bekliyor"'
+   osascript -e 'display notification "<başlık>: kapak promptu review.md içinde" with title "MagicPaper Original kapak bekliyor"'
    ```
