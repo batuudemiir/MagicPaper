@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main@ed176cd + bu kayıt · E1-E3 birleşti, origin'e gitti, telefona kuruldu
+
+- Ne değişti (Batuhan, 15 Kasım: "tamam uygun, tüm herşeyi pushla ve telefonuma kur"):
+  - E1-E3 dalı (`worktree-agent-a4d762b8b86a0f234`, 4 commit) main'e birleşti (`ed176cd`). Tek çakışma bu günlükteydi; iki tarafın kayıtları da korundu, E kayıtlarının başlıkları gerçek commit'lerle düzeltildi.
+  - E3'ün 38 hatırlama satırı Batuhan'ın onayından geçti ("tamam uygun"). Satırlardaki `editorialNote: "taslak, Batuhan okuyacak"` notları değiştirilmedi.
+  - İlk kez derlendi: Debug, iPhone 16 (fiziksel cihaz), `BUILD SUCCEEDED`, hata yok. Yeni kodda iki Swift 6 uyarısı (`readPathIsAuthoritative` ve `titleMemory` ana aktörde, yalıtılmamış bağlamdan okunuyor); Swift 5 modunda engel değil.
+  - Uygulama Batuhan'ın iPhone'una kuruldu (`devicectl`, `com.batu.magicpaper.v1`).
+- Bilerek değişmedi: Swift 6 uyarıları düzeltilmedi.
+- Test: derleme geçti; birim testler çalıştırılmadı (karar: plan sonunda bir kez). Uygulama telefonda açılıp denenmedi; kitaplığın diske geçişi ikinci açılışta olur, ilk açılışta göç yalnızca doğrular.
+- Dosyalar: bu günlük.
+
 ### 2026-11-15 · main@d3aca77 (dal worktree-agent-a4d762b8b86a0f234) · E3: hatırlama motorun içinde
 
 - Ne değişti (`docs/EVREN_PLANI.md` E3):
