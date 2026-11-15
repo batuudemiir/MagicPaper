@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R4: masal sonunda tam ekran rozet ve kat anı
+
+- Ne değişti (Batuhan, 15 Kasım: "R4'e geç"):
+  - `MPAwardMoment`: gündüz yeni rozet ya da Yıldız katı varsa masal sonu yaprağından önce tam ekran an. Yeni modal değil, kapanış yaprağının üstünde bir sahne. Büyük arma `MP.M.spring` ile büyür (Reduce Motion'da yalnızca belirir), Ragi `happy` sevinir, tek ses (`MPSound .ending`), tek titreşim; başlık "Yeni rozet: İlk masal!", "Ay arkadaşı rozetin büyüdü!" ya da "Yıldızın Parlak yıldız oldu!"; birden çok rozet aynı ekranda küçük armalarla ("ve 1 rozet daha"). Otomatik kapanma yok: "Devam" (hero) ya da ekrana dokunmak geçer. VoiceOver: "Yeni rozet: Ay arkadaşı, 2. kat."
+  - Masal sonu yaprağı: an gösterildiyse kutlama titreşimi ve sesi tekrar verilmez (eylem başına bir titreşim); rozet karosu gündüz kaldırıldı (anda söylendi). Yıldız karosu "+1 · yıldız · toplam 168" (puan). Gece: an yok, sessiz satırlar "Yeni yıldız katın" ve "Yeni rozet" (birden çoksa "N tane daha"). Gösterilen rozet ve katlar `seen`'e yazılır.
+  - `MPBadgeNews.announce`: Profil sekmesinde bir kez sessiz nokta (Profil açılınca kalkar; çıkartma noktasıyla aynı yer, VoiceOver "Profil, yeni rozet") ve ana sayfa selamının üst satırında bir kez not ("Yeni bir rozet buldun," / "Yıldızın Parlak yıldız oldu,"; ana sayfadan çıkınca düşer).
+- Bilerek değişmedi: Masal sonundaki Ragi balonu ("Harika bir masaldı!" → soru) aynı kaldı; plandaki "Bu senin 10. masalın!" cümlesi yazılmadı, çünkü aynı bilgi artık tam ekran anda. Bildirim yok. Ebeveyn sayfası R5'te.
+- Test: derlenmedi, testler çalıştırılmadı, simülatörde görülmedi (karar: yalnızca plan sonunda, R6). Tasarım yasası grep'leri değişen dosyalarda boş. `BadgePlanTests`'e 4 test (toplam 28).
+- Dosyalar: `MagicPaper/Screens/Badges/MPAwardMoment.swift` (yeni), `MPBadgeStore.swift`, `MPBadgeMemories.swift`, `Screens/StoryReader/StoryEndingLeaf.swift`, `StoryReaderView.swift`, `Screens/KidCorner/KidCornerView.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPNavigationChrome.swift` (yalnızca Profil noktası), `MagicPaperTests/BadgePlanTests.swift`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R3: arma, Rozetlerim sayfası, Profil'de kat
 
 - Ne değişti (Batuhan, 15 Kasım: "R3'e geç"):

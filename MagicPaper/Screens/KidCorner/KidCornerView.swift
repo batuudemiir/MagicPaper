@@ -59,7 +59,12 @@ struct KidCornerView: View {
         // tepedeyken görünmez (23 Ekim 2026).
         .overlay(alignment: .top) { MPStatusBarBackdrop(visible: scrolled, fill: MPColor.backgroundSurface) }
         .background(MPColor.backgroundSurface.ignoresSafeArea())
-        .onAppear(perform: refresh)
+        .onAppear {
+            refresh()
+            // Profil açıldı: yeni rozetler burada görünüyor, sekmedeki nokta kalkar.
+            // Yalnızca açılınca: sekme arkada canlı kalıp yenilenebilir.
+            MPBadgeNews.shared.clearDot(profile?.id)
+        }
         .onChange(of: profile?.id) { _, _ in refresh() }
         .onReceive(NotificationCenter.default.publisher(for: .mpHeroLookChanged)) { _ in refresh() }
         // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.

@@ -20,6 +20,8 @@ struct HomeView: View {
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
+    /// Rozet planı R4: yeni rozet ya da kat, selamın üst satırında bir kez.
+    @ObservedObject private var badgeNews = MPBadgeNews.shared
     @StateObject private var streak = MPStreak.shared
 
     var body: some View {
@@ -32,6 +34,8 @@ struct HomeView: View {
         .background(pageBackground.ignoresSafeArea())
         // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
         .onAppear(perform: refreshCaches)
+        // Rozet notu bir kez söylenir: ana sayfadan çıkınca düşer.
+        .onDisappear { badgeNews.consumeHomeNote(profileManager.currentProfile?.id) }
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
         .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches() }
         .onChange(of: profileManager.currentProfile?.age) { _, _ in
@@ -51,7 +55,8 @@ struct HomeView: View {
             // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
             // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
             VStack(alignment: .leading, spacing: 0) {
-                MPKidTabHeader(title: activeName, eyebrow: greeting) {
+                MPKidTabHeader(title: activeName,
+                               eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id) ?? greeting) {
                     if !typeSize.isAccessibilitySize { statLine(compact: true) }
                 }
                 if typeSize.isAccessibilitySize { statLine(compact: false) }

@@ -35,6 +35,8 @@ struct StoryEndingLeaf: View {
     @State private var celebrated = false
     @State private var burst = false
     @State private var fadingToNight = false
+    /// Gündüz rozet/kat anı geçildi mi (rozet planı R4).
+    @State private var momentDone = false
 
     var body: some View {
         ZStack {
@@ -42,6 +44,12 @@ struct StoryEndingLeaf: View {
             ViewThatFits(in: .vertical) {
                 column
                 ScrollView(showsIndicators: false) { column }
+            }
+            // Rozet planı R4: gündüz yeni rozet ya da kat varsa önce tam ekran an.
+            if showsMoment {
+                MPAwardMoment(badges: news.fresh, levels: news.freshStarLevels, theme: theme,
+                              isCurrent: isCurrent, onContinue: finishMoment)
+                    .transition(.opacity)
             }
             if fadingToNight {
                 MP.Palette.murekkep900.ignoresSafeArea()
@@ -51,14 +59,39 @@ struct StoryEndingLeaf: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Masal bitti")
-        .task(id: isCurrent) {
-            guard isCurrent, !celebrated else { return }
+        .task(id: "\(isCurrent)-\(momentDone)") {
+            guard isCurrent, !celebrated, !showsMoment else { return }
             celebrated = true
-            await celebrate()
+            // Gece sessiz satır da bir kez gösterilmiş sayılır.
+            if isBedtime { markAwardsSeen() }
+            await celebrate(fanfare: !hadMoment)
         }
     }
 
     private var isBedtime: Bool { MPBedtime.isBedtime(settings: settings) }
+
+    private var hasAwards: Bool { !news.fresh.isEmpty || !news.freshStarLevels.isEmpty }
+    /// Anın yalnızca gündüz ve yalnızca bir kez gösterildiği.
+    private var hadMoment: Bool { hasAwards && !isBedtime }
+    private var showsMoment: Bool { hadMoment && !momentDone }
+
+    private func finishMoment() {
+        guard !momentDone else { return }
+        markAwardsSeen()
+        withAnimation(MP.M.gated(MP.M.base) ?? MP.M.slow) { momentDone = true }
+    }
+
+    private func markAwardsSeen() {
+        guard let child = story.childProfileID, hasAwards else { return }
+        MPBadgeStore().markSeen(news.fresh.map(\.id) + news.freshStarLevels.map(\.id), for: child)
+    }
+
+    /// Yıldız puanı (rozet planı 5b): harcamayla düşmez.
+    private var starScore: Int? {
+        ProfileManager.shared.currentProfile.map {
+            MPStars.score(for: $0, stories: StoryGenerationManager.shared.stories)
+        }
+    }
 
     @ViewBuilder
     private var column: some View {
@@ -78,7 +111,8 @@ struct StoryEndingLeaf: View {
         if !story.isFinished {
             // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül), sonra yıldız.
             items.append(.init(id: "sticker", icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi"))
-            items.append(.init(id: "star", icon: "star.fill", tone: .yellow, value: "+1", label: "yıldız"))
+            items.append(.init(id: "star", icon: "star.fill", tone: .yellow, value: "+1",
+                               label: starScore.map { "yıldız · toplam \($0)" } ?? "yıldız"))
         }
         if streak.currentStreak > 0 {
             items.append(.init(id: "streak", icon: "flame", tone: .peach, value: "\(streak.currentStreak) gün",
@@ -91,23 +125,25 @@ struct StoryEndingLeaf: View {
         if words > 0 {
             items.append(.init(id: "words", icon: "book.closed", tone: .mint, value: "\(words)", label: "yeni kelime"))
         }
-        if let badge = news.fresh.first {
-            items.append(.init(id: "badge", icon: badge.icon, tone: badge.tone, value: badge.title, label: "yeni rozet"))
-        }
+        // Rozet ve kat gündüz tam ekran anda söylendi; burada tekrar edilmez (R4).
         return items
     }
 
     private var question: String? { StoryTalkPrompts.questions(for: story).first }
 
     /// Sıra: 1 Ragi ve başlık, sonra her kazanılan, en son Ragi'nin sorusu.
-    private func celebrate() async {
+    /// Rozet anı az önce titreşimi ve sesi verdiyse burada tekrar verilmez:
+    /// eylem başına bir titreşim.
+    private func celebrate(fanfare: Bool = true) async {
         let total = earned.count + 2
         if reduceMotion || isBedtime {
             withAnimation(MP.M.slow) { revealed = total }
             return
         }
-        MPHaptics.storyEnding()
-        MPSound.play(.ending)
+        if fanfare {
+            MPHaptics.storyEnding()
+            MPSound.play(.ending)
+        }
         burst = true
         withAnimation(MP.M.spring) { revealed = 1 }
         try? await Task.sleep(for: .seconds(MP.M.RagiBeat.reveal * 2))
@@ -271,7 +307,13 @@ struct StoryEndingLeaf: View {
                 }
             }
 
-            if let badge = news.fresh.first { badgeRow(badge.icon, tone: badge.tone, title: badge.title) }
+            if let level = news.freshStarLevels.last {
+                badgeRow("star.fill", tone: .yellow, title: level.title, caption: "Yeni yıldız katın")
+            }
+            if let badge = news.fresh.first {
+                badgeRow(badge.icon, tone: badge.tone, title: badge.title,
+                         caption: news.fresh.count > 1 ? "Yeni rozet, \(news.fresh.count - 1) tane daha" : "Yeni rozet")
+            }
 
             // Faz 11: akşam sırası yankılanır; masal az önce işaretlendi.
             if settings.bedtimeRoutine {
@@ -294,13 +336,13 @@ struct StoryEndingLeaf: View {
     }
 
     /// Gece yaprağında rozet: kutucuk değil, kâğıda yakın tek satır.
-    private func badgeRow(_ icon: String, tone: MPWorldTone, title: String) -> some View {
+    private func badgeRow(_ icon: String, tone: MPWorldTone, title: String, caption: String) -> some View {
         HStack(spacing: MPSpacing.md) {
             MPIconTile(systemImage: icon, tone: tone, size: 42, filled: false)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MP.S.x1) {
                 Text(title).mpText(.section).foregroundStyle(theme.foreground)
-                Text("Yeni rozet").mpText(.footnote).foregroundStyle(theme.muted)
+                Text(caption).mpText(.footnote).foregroundStyle(theme.muted)
             }
             Spacer(minLength: 0)
         }

@@ -48,6 +48,15 @@ struct KidTabBar: View {
     /// Sürüklerken parmağın altındaki hedef; mercek onu gösterir.
     @State private var hovered: Target?
     @ObservedObject private var stickerNews = MPStickerNews.shared
+    @ObservedObject private var badgeNews = MPBadgeNews.shared
+
+    /// Profil'de bir kez sessiz nokta: taze çıkartma ya da yeni rozet/kat.
+    private var cornerNews: String? {
+        let child = ProfileManager.shared.currentProfile?.id
+        if stickerNews.isFresh(child) { return "yeni çıkartma" }
+        if badgeNews.hasDot(child) { return "yeni rozet" }
+        return nil
+    }
 
     private static let space = "kidTabBar"
 
@@ -181,7 +190,7 @@ struct KidTabBar: View {
                     .frame(height: MP.S.x6)
                     // Düzen 10: taze çıkartma, Odam'da bir kez sessiz nokta.
                     .overlay(alignment: .topTrailing) {
-                        if item.tab == .corner && stickerNews.isFresh(ProfileManager.shared.currentProfile?.id) {
+                        if item.tab == .corner && cornerNews != nil {
                             Circle().fill(MP.C.brand)
                                 .frame(width: MP.S.x2, height: MP.S.x2)
                                 .offset(x: MP.S.x1)
@@ -207,8 +216,7 @@ struct KidTabBar: View {
             }
         }
         .buttonStyle(MPPressStyle(.highlight))
-        .accessibilityLabel(item.tab == .corner && stickerNews.isFresh(ProfileManager.shared.currentProfile?.id)
-                            ? "\(item.label), yeni çıkartma" : item.label)
+        .accessibilityLabel(item.tab == .corner ? cornerNews.map { "\(item.label), \($0)" } ?? item.label : item.label)
         .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityShowsLargeContentViewer {
             MPIcon("\(item.symbol).fill", size: MP.G.lg, weight: .bold, symbolOnly: true)

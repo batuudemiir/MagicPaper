@@ -99,6 +99,27 @@ enum MPBadgeCopy {
         "\(formatter.string(from: date)) tarihinde ulaştın."
     }
 
+    /// Tam ekran anın başlığı: kat önce, sonra ilk rozet.
+    static func momentHeadline(badge: MPBadge?, level: MPStarLevel?) -> String {
+        if let level { return "Yıldızın \(level.title) oldu!" }
+        guard let badge else { return "" }
+        if badge.family.isTiered, badge.tier > 1 { return "\(badge.family.title) rozetin büyüdü!" }
+        return "Yeni rozet: \(badge.title)!"
+    }
+
+    /// Başlığın altındaki tek satır (kademeli rozetin katı); yoksa nil.
+    static func momentDetail(badge: MPBadge?, level: MPStarLevel?) -> String? {
+        if level != nil, let badge { return "Yeni rozet: \(badge.title)" }
+        guard let badge, badge.family.isTiered, badge.tier > 1 else { return nil }
+        return badge.title
+    }
+
+    /// Ana sayfa selamının üst satırı, bir kez; arkasından çocuğun adı gelir.
+    static func homeNote(_ awards: MPBadgeAwards) -> String {
+        if let level = awards.starLevels.last { return "Yıldızın \(level.title) oldu," }
+        return "Yeni bir rozet buldun,"
+    }
+
     /// Sayfanın Ragi cümlesi: kazanılanı söyler, "az kaldı" demez (ilke 7).
     static func greeting(earned: Int) -> String {
         earned == 0

@@ -170,11 +170,62 @@ struct MPBadgeStore {
     }
 }
 
-/// Masal sonunda gösterilecek yeniler (okuyucu yazar, kapanış yaprağı okur).
+/// Rozet ve kat haberleri (rozet planı R4).
+/// - `fresh` / `freshStarLevels`: bu masal sonunda kazanılanlar; okuyucu yazar,
+///   masal sonu yaprağı okur (gündüz tam ekran an, gece tek satır).
+/// - Profil sekmesinde bir kez sessiz nokta: Profil açılınca kalkar.
+/// - Ana sayfa selamının üst satırında bir kez not ("Yeni bir rozet buldun,").
+/// Bildirim yok, sayaç yok (ilke 7).
 @MainActor
 final class MPBadgeNews: ObservableObject {
     static let shared = MPBadgeNews()
+
     @Published var fresh: [MPBadge] = []
     @Published var freshStarLevels: [MPStarLevel] = []
-    private init() {}
+    @Published private(set) var dotChildren: Set<UUID>
+    @Published private(set) var homeNotes: [UUID: String]
+
+    private let defaults: UserDefaults
+    private static let dotKey = "mp_freshBadgeChildren"
+    private static let noteKey = "mp_badgeHomeNotes"
+
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        dotChildren = Set((defaults.stringArray(forKey: Self.dotKey) ?? []).compactMap(UUID.init(uuidString:)))
+        let notes = defaults.dictionary(forKey: Self.noteKey) as? [String: String] ?? [:]
+        homeNotes = Dictionary(uniqueKeysWithValues: notes.compactMap { key, value in
+            UUID(uuidString: key).map { ($0, value) }
+        })
+    }
+
+    /// Masal sonunda kazanılanlar.
+    func announce(_ awards: MPBadgeAwards, for childID: UUID?) {
+        fresh = awards.badges
+        freshStarLevels = awards.starLevels
+        guard let childID, !awards.isEmpty else { return }
+        dotChildren.insert(childID)
+        homeNotes[childID] = MPBadgeCopy.homeNote(awards)
+        save()
+    }
+
+    func hasDot(_ childID: UUID?) -> Bool { childID.map(dotChildren.contains) ?? false }
+
+    func clearDot(_ childID: UUID?) {
+        guard let childID, dotChildren.remove(childID) != nil else { return }
+        save()
+    }
+
+    func homeNote(for childID: UUID?) -> String? { childID.flatMap { homeNotes[$0] } }
+
+    /// Not bir kez söylenir: ana sayfa kapanınca düşer.
+    func consumeHomeNote(_ childID: UUID?) {
+        guard let childID, homeNotes.removeValue(forKey: childID) != nil else { return }
+        save()
+    }
+
+    private func save() {
+        defaults.set(dotChildren.map(\.uuidString), forKey: Self.dotKey)
+        defaults.set(Dictionary(uniqueKeysWithValues: homeNotes.map { ($0.key.uuidString, $0.value) }),
+                     forKey: Self.noteKey)
+    }
 }

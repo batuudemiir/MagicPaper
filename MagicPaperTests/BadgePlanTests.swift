@@ -296,4 +296,42 @@ final class BadgePlanTests: XCTestCase {
         XCTAssertEqual(MPBadgeMemories.mostFrequent(["b", "a", "b", "a"]), "a")
         XCTAssertNil(MPBadgeMemories.mostFrequent(["", ""]))
     }
+
+    // MARK: - R4: masal sonu anı ve haberler
+
+    func testNewsLeaveOneDotAndOneHomeNote() {
+        let news = MPBadgeNews(defaults: UserDefaults(suiteName: "BadgePlanTests-\(UUID().uuidString)")!)
+        let child = UUID()
+        news.announce(MPBadgeAwards(badges: [.firstStory], starLevels: []), for: child)
+        XCTAssertTrue(news.hasDot(child))
+        XCTAssertEqual(news.homeNote(for: child), "Yeni bir rozet buldun,")
+        news.consumeHomeNote(child)
+        XCTAssertNil(news.homeNote(for: child), "not bir kez söylenir")
+        news.clearDot(child)
+        XCTAssertFalse(news.hasDot(child))
+    }
+
+    func testARereadWithoutAwardsLeavesNoNews() {
+        let news = MPBadgeNews(defaults: UserDefaults(suiteName: "BadgePlanTests-\(UUID().uuidString)")!)
+        let child = UUID()
+        news.announce(MPBadgeAwards(), for: child)
+        XCTAssertFalse(news.hasDot(child))
+        XCTAssertNil(news.homeNote(for: child))
+        XCTAssertTrue(news.fresh.isEmpty)
+    }
+
+    func testAStarLevelLeadsTheMomentAndTheHomeNote() {
+        let level = MPStarLevel.all[4]
+        let awards = MPBadgeAwards(badges: [.tenStories], starLevels: [level])
+        XCTAssertEqual(MPBadgeCopy.homeNote(awards), "Yıldızın Parlak yıldız oldu,")
+        XCTAssertEqual(MPBadgeCopy.momentHeadline(badge: .tenStories, level: level), "Yıldızın Parlak yıldız oldu!")
+        XCTAssertEqual(MPBadgeCopy.momentDetail(badge: .tenStories, level: level), "Yeni rozet: 10 masal")
+    }
+
+    func testATierThatGrowsSaysSoAndAFirstBadgeSaysItsName() {
+        XCTAssertEqual(MPBadgeCopy.momentHeadline(badge: .sevenBedtime, level: nil), "Ay arkadaşı rozetin büyüdü!")
+        XCTAssertEqual(MPBadgeCopy.momentDetail(badge: .sevenBedtime, level: nil), "7 uyku masalı")
+        XCTAssertEqual(MPBadgeCopy.momentHeadline(badge: .firstStory, level: nil), "Yeni rozet: İlk masal!")
+        XCTAssertNil(MPBadgeCopy.momentDetail(badge: .firstStory, level: nil))
+    }
 }

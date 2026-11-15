@@ -437,8 +437,7 @@ struct StoryReaderView: View {
                 let awards = MPBadgeStore().recordFinished(story, profile: profile,
                                                            stories: StoryGenerationManager.shared.stories,
                                                            heardFamilyVoice: heardFamilyVoice)
-                MPBadgeNews.shared.fresh = awards.badges
-                MPBadgeNews.shared.freshStarLevels = awards.starLevels
+                MPBadgeNews.shared.announce(awards, for: profile.id)
             }
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
