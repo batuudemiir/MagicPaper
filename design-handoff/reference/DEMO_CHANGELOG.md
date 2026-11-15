@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · main, commit bu kayıtla · İki kademeli çocuk arayüzü origin'e gönderildi
+
+- Ne değişti (Batuhan, 16 Kasım: "evet, gönder"): `cf77ba5`, `921d019` ve bu kayıt origin/main'e gönderildi. Kod değişmedi.
+- Test: bu adımda çalıştırılmadı; son koşu bir alttaki kayıtta (953/950).
+
 ### 2026-11-15 · main@cf77ba5 (iki-kademe dalından, push yok) · İki kademeli çocuk arayüzü: Ana sayfa ve masal yazma
 
 - Neden (Batuhan, 14 Kasım): çocuk kullandığında uygulama karışık görünüyor; yaşa göre arayüz. Araştırma (NN/g, Sesame Workshop 2012, Google çocuk rehberi, YouTube Kids) ve iki sohbet taslağından sonra "önerdiğin şekilde yap".
