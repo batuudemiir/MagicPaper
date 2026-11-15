@@ -1,6 +1,6 @@
 # Rozet planı: 8 rozetten 69 rozete, yıldız puanı ve Yıldız katı
 
-**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1 ve R2 kodu yazıldı, sıradaki R3
+**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1, R2 ve R3 kodu yazıldı, sıradaki R4
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
 **Bağlı kurallar:** `CLAUDE.md` ilke 7 (sakin kilometre taşları, karar 3 ve 13 Ekim), `docs/VIZYON_PLANI.md` (yıldız, çıkartma, masal sonu düzeni).
 
@@ -245,7 +245,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 - Kat atlama bildirimle duyurulmaz.
 
 ### Görünüm
-- **Profil:** kimlik bloğunda kahraman + kat arması, ad, "Parlak yıldız · 168 yıldız". Dokununca `mpSheet`: büyük arma, 12 kat listesi, kazanılanlar tarihli ("Parıltı · 3 Aralık"), kilitliler eşikle.
+- **Profil:** kimlik bloğunda kahraman + kat arması, ad, "Parlak yıldız · 168 yıldız". Kimlik kartının tamamı Dolap'ı açtığı için (kart içinde düğme olmaz) katların listesi Rozetlerim'in en üstündeki Yıldız katı kartından açılır (`mpSheet`: 12 kat, ulaşılanlar tarihli, kilitliler eşikle). R3'te böyle uygulandı.
 - **Masal sonu:** bugünkü "+1 yıldız" satırı "+1 yıldız · toplam 168" olur.
 - **Kat atlama anı:** gündüz masal sonunda rozet anıyla aynı tam ekran sahne (4.2). Hem rozet hem kat aynı anda gelirse tek ekran: üstte kat arması büyük, altta rozet(ler) küçük. Gece sessiz satır: "Yeni katın: Parlak yıldız."
 - Sabah yıldızı artık masal bitince geldiği için kat her zaman bir masal sonunda atlanır; ana sayfa selamı ertesi gün bir kez: "Yıldızın Parlak yıldız oldu."
@@ -264,7 +264,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 | **R0** ✅ | Kararlar verildi (bkz. 7) | Batuhan | 15 Kasım 2026 |
 | **R1** ✅ | Model (15 Kasım 2026, `Screens/Badges/`; derlenmedi, test çalıştırılmadı): `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen`; `MPStars.score` / `balance`, `starLevels` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, puan harcamayla düşmez, kat eşikleri, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
 | **R2** ✅ | (15 Kasım 2026; derlenmedi, test çalıştırılmadı) Kazanma: sabah yıldızı okunan güne bağlanır (`MPStars`: `readingDays` + göç öncesi sabahlar); okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, yer, aile, ses, sürpriz, seri bölümü, gün bilgisi; kelime kartı açılınca tek bayrak | builder | Testler: her ölçü doğru masaldan dolar |
-| **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
+| **R3** ✅ | (15 Kasım 2026; derlenmedi, simülatörde görülmedi) Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
 | **R4** | Anlar: tam ekran rozet ve kat anı (gündüz) ve gece satırı, "+1 yıldız · toplam", Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
 | **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi, puan ve kat; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
 | **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |

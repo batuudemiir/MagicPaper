@@ -35,7 +35,7 @@ enum Mascot: String, CaseIterable {
     /// Where the prototype uses it (keep this mapping when adding screens).
     var usage: String {
         switch self {
-        case .happy: "Masal sonu, rozet kazanınca"
+        case .happy: "Masal sonu, rozet kazanınca, Rozetlerim"
         case .curious: "Ana sayfa dünya sorusu, Neleri sever"
         case .calm: "Ebeveyn onayı"
         case .sleepy: "Bildirim izni, Yıldız bitti"

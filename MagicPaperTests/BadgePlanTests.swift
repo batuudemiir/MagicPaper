@@ -262,4 +262,38 @@ final class BadgePlanTests: XCTestCase {
         let awards = store.recordFinished(story, profile: profile, stories: [], now: at(11, 16))
         XCTAssertTrue(awards.badges.contains { $0.id == "wordCard" })
     }
+
+    // MARK: - R3: Masal anıları
+
+    func testMemoriesNameTheStoryPlaceAndFriendNotACount() {
+        var a = engineStory(); a.title = "Orman Feneri"
+        var b = engineStory(); b.title = "Deniz Kabuğu"
+        var ledger = MPBadgeLedger()
+        ledger.recordFinished(MPBadgeStore.facts(for: a), at: at(11, 1), calendar: calendar)
+        ledger.recordFinished(MPBadgeStore.facts(for: b), at: at(11, 2), calendar: calendar)
+        ledger.recordFinished(MPBadgeStore.facts(for: b), at: at(11, 5), calendar: calendar)
+        let memories = MPBadgeMemories.build(ledger: ledger, stories: [a, b],
+                                             placeName: { $0 == "orman" ? "Fısıltı Ormanı" : nil },
+                                             companionName: { $0 == "baykus" ? "Baykuş" : nil })
+        let byKind = Dictionary(uniqueKeysWithValues: memories.map { ($0.kind, $0.value) })
+        XCTAssertEqual(byKind[.firstStory], "Orman Feneri")
+        XCTAssertEqual(byKind[.mostRead], "Deniz Kabuğu")
+        XCTAssertEqual(byKind[.favoritePlace], "Fısıltı Ormanı")
+        XCTAssertEqual(byKind[.closestFriend], "Baykuş")
+        XCTAssertFalse(memories.contains { $0.value.contains { $0.isNumber } })
+    }
+
+    func testAStoryReadOnceIsNotTheMostRead() {
+        let a = engineStory()
+        var ledger = MPBadgeLedger()
+        ledger.recordFinished(MPBadgeStore.facts(for: a), at: at(11, 1), calendar: calendar)
+        let memories = MPBadgeMemories.build(ledger: ledger, stories: [a], placeName: { _ in nil },
+                                             companionName: { _ in nil })
+        XCTAssertEqual(memories.map(\.kind), [.firstStory], "adı bilinmeyen yer ve dost da çıkmaz")
+    }
+
+    func testMostFrequentIsStableOnATie() {
+        XCTAssertEqual(MPBadgeMemories.mostFrequent(["b", "a", "b", "a"]), "a")
+        XCTAssertNil(MPBadgeMemories.mostFrequent(["", ""]))
+    }
 }

@@ -19,6 +19,8 @@ struct KidCornerView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var stickerNews = MPStickerNews.shared
     @State private var earned: Set<String> = []
+    /// Rozet → kazanıldığı an; Profil'de son kazanılanlar önce.
+    @State private var earnedDates: [String: Date] = [:]
     @State private var familyNames: [String] = []
     /// Albümün son çıkartmaları (en yenisi başta); karoda üçü görünür.
     @State private var stickers: [MPSticker] = []
@@ -69,10 +71,12 @@ struct KidCornerView: View {
             HeroLookStore().look(for: p.id).map { (p.id, $0) }
         })
         heroLook = profile.flatMap { heroLooks[$0.id] }
-        guard let profile else { earned = []; familyNames = []; stickers = []; return }
+        guard let profile else { earned = []; earnedDates = [:]; familyNames = []; stickers = []; return }
         stickers = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories)
             .sorted { $0.date > $1.date }
-        earned = MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedIDs
+        let ledger = MPBadgeStore().ledger(for: profile, stories: storyManager.stories)
+        earned = ledger.earnedIDs
+        earnedDates = ledger.earned
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
@@ -107,7 +111,7 @@ struct KidCornerView: View {
     private var greetingText: String {
         earned.isEmpty
             ? "Masal okudukça rozetlerin burada toplanır."
-            : "\(earned.count) rozetin var, hepsi burada."
+            : "\(earned.count) rozetin var. Hepsi Rozetlerim'de."
     }
 
     // MARK: - Kim okuyor?
@@ -175,11 +179,18 @@ struct KidCornerView: View {
 
     // MARK: - Kimlik kartı
 
-    /// Kumbaradaki yıldız: kazanılan eksi süslere harcanan (Faz 9).
+    /// Yıldız puanı: ömür boyu kazanılan, harcamayla düşmez (rozet planı 5b).
+    /// Cepteki yıldız yalnızca Dolap ve süslerde görünür.
     private var stars: Int {
         guard let profile else { return 0 }
-        let earned = MPStars.score(for: profile, stories: storyManager.stories)
-        return MPStarWalletStore().wallet(for: profile.id).balance(earned: earned)
+        return MPStars.score(for: profile, stories: storyManager.stories)
+    }
+
+    private var starLevel: MPStarLevel? { MPStarLevel.current(score: stars) }
+
+    /// "Parlak yıldız · 168 yıldız"; kat yoksa yalnızca yıldız.
+    private var starLine: String {
+        starLevel.map { "\($0.title) · \(stars) yıldız" } ?? "\(stars) yıldız"
     }
 
     /// Çocuğun tek kimlik kartı: kahraman, ad, yıldız ve Dolap. Kartın tamamı
@@ -196,13 +207,18 @@ struct KidCornerView: View {
             layout {
                 HeroAvatarView(look: heroLook ?? .standard, backdrop: MPWorldTone.lav.soft)
                     .frame(width: 104, height: 104)
+                    // Yıldız katının arması kahramanın köşesinde (plan 5b).
+                    // Kartın tamamı Dolap'ı açar; katların listesi Rozetlerim'de.
+                    .overlay(alignment: .bottomTrailing) {
+                        if let starLevel { MPStarLevelArt(level: starLevel, size: 40) }
+                    }
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                     Text(profile.name).mpText(.page).foregroundStyle(MPColor.textPrimary)
                         .lineLimit(2).minimumScaleFactor(0.7)
                     HStack(spacing: MPSpacing.xs) {
                         MPStarMark(size: 16)
-                        Text("\(stars) yıldız").mpText(.supporting).fontWeight(.bold).monospacedDigit()
+                        Text(starLine).mpText(.supporting).fontWeight(.bold).monospacedDigit()
                             .foregroundStyle(MPColor.textSecondary)
                     }
                     HStack(spacing: MPSpacing.xs) {
@@ -222,29 +238,35 @@ struct KidCornerView: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(profile.name), \(stars) yıldız")
+        .accessibilityLabel("\(profile.name), \(starLine)")
         .accessibilityHint("Dolabı açar")
         .accessibilityAddTraits(.isButton)
     }
 
     // MARK: - Rozetlerim
 
-    /// Bütün rozetler, kazanılmamışlar kilitli (karar 13 Ekim 2026). İlerleme
-    /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7). Rozet planı R3'te
-    /// bu bölüm altı armaya ve "Tümü ›" sayfasına iner; gizli rozet "?" kalır.
+    /// Son kazanılan altı arma; altıdan azsa sıradaki kilitliler (katalog
+    /// sırasıyla). Hepsi "Tümü ›" ile Rozetlerim'de (rozet planı R3). İlerleme
+    /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7).
+    private var shownBadges: [MPBadge] {
+        let recent = earnedDates.sorted { ($0.value, $1.key) > ($1.value, $0.key) }
+            .compactMap { MPBadgeCatalog.badge($0.key) }
+        let locked = MPBadgeCatalog.all.filter { earnedDates[$0.id] == nil && !$0.isSecret }
+        return Array((recent + locked).prefix(6))
+    }
+
     private var badgesSection: some View {
-        let total = MPBadgeCatalog.all.count
-        return HomeSection(title: "Rozetlerim",
-                    note: "\(earned.count) / \(total)",
-                    noteSpoken: "\(total) rozetten \(earned.count) tanesi kazanıldı") {
+        HomeSection(title: "Rozetlerim",
+                    link: profile.map { p -> (title: String, action: () -> Void) in
+                        (title: "Tümü", action: { app.router.openKidPage(.badges(p.id)) })
+                    }) {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
                       spacing: MPSpacing.md) {
-                ForEach(MPBadgeCatalog.gridOrder(earned: earned)) { badge in
-                    let unlocked = earned.contains(badge.id)
-                    MPBadgeCard(systemImage: badge.displayIcon(unlocked: unlocked),
-                                title: badge.displayTitle(unlocked: unlocked), tone: badge.tone,
-                                isUnlocked: unlocked)
+                ForEach(shownBadges) { badge in
+                    MPBadgeTile(badge: badge, unlocked: earned.contains(badge.id)) {
+                        if let profile { app.router.openKidPage(.badges(profile.id)) }
+                    }
                 }
             }
         }

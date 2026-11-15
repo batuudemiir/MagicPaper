@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R3: arma, Rozetlerim sayfası, Profil'de kat
+
+- Ne değişti (Batuhan, 15 Kasım: "R3'e geç"):
+  - `MPBadgeArt` (kodla çizilen yer tutucu arma: simge, dünya tonu, kademeli rozette nakış halkası + kat numarası; çizimler gelince yalnızca bu dosya değişir), `MPStarLevelArt` (Yıldız katı arması), `MPBadgeTile` (dokunulan rozet kartı; kilitli gri + kilit, gizli "?" ve "Gizli rozet").
+  - Yeni push sayfa Rozetlerim (`MPKidRoute.badges`, `BadgesView`): üstte "x / 69", Ragi (`happy`) tek balon; Yıldız katı kartı; "Yollar" (kademeli aile başına tek kart, en yüksek kazanılan kat); Seri, Keşif, Ailemle, Gizli ızgaraları; sonunda Masal anıları (ilk masal, en çok okunan, en sık gidilen yer, en yakın yol arkadaşı; sayı yok).
+  - Ayrıntı sistem sheet'i (`MPBadgeDetailSheet`, `MPSheet`): rozet (kazanıldıysa tarih, kilitliyse yalnızca eylem cümlesi), kademeli yolun bütün katları, 12 Yıldız katı (ulaşılanlar tarihli, kilitliler eşikle) ve "Süslere harcadığın yıldızlar bu sayıdan düşmez."
+  - Profil: kimlik kartında kahramanın köşesinde kat arması ve "Parlak yıldız · 168 yıldız" (artık cepteki değil puan); Rozetlerim bölümü son kazanılan altı arma (altıdan azsa sıradaki kilitliler, gizliler hariç) + "Tümü". Ragi: "N rozetin var. Hepsi Rozetlerim'de."
+- Bilerek değişmedi / plandan sapma: Kat sheet'i kimlik kartından değil Rozetlerim'deki Yıldız katı kartından açılıyor, çünkü kimlik kartının tamamı Dolap'ı açan tek düğme (kart içinde düğme olmaz); plan 5b buna göre düzeltildi. Cepteki yıldız Dolap ve süslerde görünmeye devam ediyor. Masal sonu kutlaması R4'te. Ebeveyn sayfası R5'te.
+- Test: derlenmedi, testler çalıştırılmadı, simülatörde görülmedi (karar: yalnızca plan sonunda, R6). Tasarım yasası grep'leri değişen dosyalarda boş (tek isabet bir yorum satırı). `BadgePlanTests`'e Masal anıları için 3 test (toplam 24).
+- Dosyalar: `MagicPaper/Screens/Badges/MPBadgeArt.swift`, `BadgesView.swift`, `MPBadgeMemories.swift` (yeni), `Screens/KidCorner/KidCornerView.swift`, `Screens/MPRouter.swift`, `ContentView.swift`, `DesignSystem/Pastel/MPMascot.swift` (yalnızca `happy` kullanım notu), `MagicPaperTests/BadgePlanTests.swift`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R2: rozetler masalın bilgisinden dolar
 
 - Ne değişti (Batuhan, 15 Kasım: "R2'ye geç"):
