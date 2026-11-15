@@ -1,6 +1,6 @@
 # Rozet planı: 8 rozetten 69 rozete, yıldız puanı ve Yıldız katı
 
-**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); sıradaki R1
+**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1 kodu yazıldı, sıradaki R2
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
 **Bağlı kurallar:** `CLAUDE.md` ilke 7 (sakin kilometre taşları, karar 3 ve 13 Ekim), `docs/VIZYON_PLANI.md` (yıldız, çıkartma, masal sonu düzeni).
 
@@ -138,7 +138,7 @@ Metin: "7 ayrı günde birlikte okudunuz." Bir gün kaçınca hiçbir şey kaybo
 - Tanıdık ses: ebeveynin kaydettiği sesle bir masal dinlendi · Sesli kitaplık ➕: 5 farklı masal tanıdık sesle
 
 ### J. Gizli (4): kazanılana kadar "?" ve "Gizli rozet"
-- Tekrar tekrar: aynı masal üç kez sonuna kadar okundu (tekrar okuma yıldız vermez, rozet verebilir; okuma sayılır)
+- Tekrar tekrar: aynı masal üç ayrı günde sonuna kadar okundu (aynı gün sayfayı ileri geri çevirmek sayılmaz) (tekrar okuma yıldız vermez, rozet verebilir; okuma sayılır)
 - Sabah masalı: öğleden önce bitirilen bir masal (Duolingo Early Rise)
 - Hafta sonu masalı: aynı hafta sonu cumartesi ve pazar ikisinde de masal bitti (Duolingo Weekend Warrior)
 - Masal yıldönümü ➕: ilk masaldan bir yıl sonra (ya da daha sonra) bir masal okundu. Zamana bağlı ama kaçırılamaz: tarih geçince de ilk masalda kazanılır. Gizli rozet sayısı R0'da üçtü; dördüncüsü 15 Kasım'da kabul edildi
@@ -198,7 +198,7 @@ Ritim tahmini (haftada 4 masal okuyan 5-6 yaş çocuk): ilk hafta 6-8 rozet (İl
 - **Kazanma noktaları:** hepsi okuyucunun masal sonundaki tek çağrıdan (`MPBadgeStore.recordFinished`) geçer; kelime ve aile verisi o anda masaldan okunur. Uygulama içinde başka yerde rozet verilmez (rozet yalnızca okuyarak).
 - **Eşitleme:** `SyncCollection.badges` aynı; Firestore kuralı yeni alanları kabul eder, kural testi eklenir.
 - **Yıldızla ilişki:** rozet yıldız vermez (karar 12). Yıldız puanı yalnızca Yıldız katını açar (5b), rozet ızgarasını değil.
-- Domain mantığı görünümde değil: `MPMilestones.swift` → `Services/Badges/` (`MPBadgeCatalog`, `MPBadgeLedger`, `MPBadgeStore`); görünümler yalnızca okur.
+- Domain mantığı görünümde değil: `MPMilestones.swift` → `Screens/Badges/` (`MPBadgeCatalog`, `MPBadgeLedger`, `MPBadgeStore`); görünümler yalnızca okur.
 
 ## 5b. Yıldız puanı ve Yıldız katı (profil rozeti)
 
@@ -262,7 +262,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 | Faz | İş | Sahip ajan | Çıktı |
 |---|---|---|---|
 | **R0** ✅ | Kararlar verildi (bkz. 7) | Batuhan | 15 Kasım 2026 |
-| **R1** | Model: `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen`; `MPStars.score` / `balance`, `starLevels` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, puan harcamayla düşmez, kat eşikleri, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
+| **R1** ✅ | Model (15 Kasım 2026, `Screens/Badges/`; derlenmedi, test çalıştırılmadı): `MPBadge` tablo, defter alanları, `decodeIfPresent` göçü, geriye dönük doldurma, `seen`; `MPStars.score` / `balance`, `starLevels` | builder (library-memory danışır) | Birim testleri: her rozetin eşiği, puan harcamayla düşmez, kat eşikleri, birleşme kaybetmez, eski JSON okunur, tekrar okuma ikinci kez saymaz |
 | **R2** | Kazanma: sabah yıldızı okunan güne bağlanır (`MPStars`: `readingDays` + göç öncesi sabahlar); okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, yer, aile, ses, sürpriz, seri bölümü, gün bilgisi; kelime kartı açılınca tek bayrak | builder | Testler: her ölçü doğru masaldan dolar |
 | **R3** | Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
 | **R4** | Anlar: tam ekran rozet ve kat anı (gündüz) ve gece satırı, "+1 yıldız · toplam", Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |

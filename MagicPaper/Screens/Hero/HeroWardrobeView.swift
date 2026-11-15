@@ -33,7 +33,7 @@ struct HeroWardrobeView: View {
     @State private var saved = HeroLook.standard
     @State private var wallet = MPStarWallet()
 
-    private var earned: Int { MPStars.count(for: profile, stories: storyManager.stories) }
+    private var earned: Int { MPStars.score(for: profile, stories: storyManager.stories) }
     private var balance: Int { wallet.balance(earned: earned) }
     private var unpaid: (items: [HeroShop.Item], total: Int) {
         HeroShop.unpaid(in: look, wallet: wallet, easyPrices: settings.easyPrices)

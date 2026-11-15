@@ -182,7 +182,7 @@ struct DecorShopView: View {
     @State private var wallet = MPStarWallet()
     @State private var selected: MPDecor = .defaultShelf
 
-    private var earned: Int { MPStars.count(for: profile, stories: storyManager.stories) }
+    private var earned: Int { MPStars.score(for: profile, stories: storyManager.stories) }
     private var balance: Int { wallet.balance(earned: earned) }
 
     var body: some View {

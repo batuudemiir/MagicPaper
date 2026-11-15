@@ -18,7 +18,7 @@ struct KidCornerView: View {
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     @ObservedObject private var stickerNews = MPStickerNews.shared
-    @State private var earned: Set<MPMilestone> = []
+    @State private var earned: Set<String> = []
     @State private var familyNames: [String] = []
     /// Albümün son çıkartmaları (en yenisi başta); karoda üçü görünür.
     @State private var stickers: [MPSticker] = []
@@ -72,7 +72,7 @@ struct KidCornerView: View {
         guard let profile else { earned = []; familyNames = []; stickers = []; return }
         stickers = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories)
             .sorted { $0.date > $1.date }
-        earned = Set(MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedMilestones)
+        earned = MPBadgeStore().ledger(for: profile, stories: storyManager.stories).earnedIDs
         familyNames = FamilyCharacterStore().characters(for: profile.id).map(\.name)
     }
 
@@ -178,7 +178,7 @@ struct KidCornerView: View {
     /// Kumbaradaki yıldız: kazanılan eksi süslere harcanan (Faz 9).
     private var stars: Int {
         guard let profile else { return 0 }
-        let earned = MPStars.count(for: profile, stories: storyManager.stories)
+        let earned = MPStars.score(for: profile, stories: storyManager.stories)
         return MPStarWalletStore().wallet(for: profile.id).balance(earned: earned)
     }
 
@@ -230,17 +230,21 @@ struct KidCornerView: View {
     // MARK: - Rozetlerim
 
     /// Bütün rozetler, kazanılmamışlar kilitli (karar 13 Ekim 2026). İlerleme
-    /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7).
+    /// çubuğu ya da "az kaldı" metni yok (CLAUDE.md ilke 7). Rozet planı R3'te
+    /// bu bölüm altı armaya ve "Tümü ›" sayfasına iner; gizli rozet "?" kalır.
     private var badgesSection: some View {
-        HomeSection(title: "Rozetlerim",
-                    note: "\(earned.count) / \(MPMilestone.allCases.count)",
-                    noteSpoken: "\(MPMilestone.allCases.count) rozetten \(earned.count) tanesi kazanıldı") {
+        let total = MPBadgeCatalog.all.count
+        return HomeSection(title: "Rozetlerim",
+                    note: "\(earned.count) / \(total)",
+                    noteSpoken: "\(total) rozetten \(earned.count) tanesi kazanıldı") {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
                                      count: typeSize.isAccessibilitySize ? 1 : 3),
                       spacing: MPSpacing.md) {
-                ForEach(MPMilestone.gridOrder(earned: earned)) { badge in
-                    MPBadgeCard(systemImage: badge.icon, title: badge.title, tone: badge.tone,
-                                isUnlocked: earned.contains(badge))
+                ForEach(MPBadgeCatalog.gridOrder(earned: earned)) { badge in
+                    let unlocked = earned.contains(badge.id)
+                    MPBadgeCard(systemImage: badge.displayIcon(unlocked: unlocked),
+                                title: badge.displayTitle(unlocked: unlocked), tone: badge.tone,
+                                isUnlocked: unlocked)
                 }
             }
         }

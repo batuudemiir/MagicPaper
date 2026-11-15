@@ -179,7 +179,7 @@ final class MVPExperienceTests: XCTestCase {
         let profile = UserProfile(name: "Ada", age: 6)
         let story = finishedStory(for: profile)
         let posted = expectation(forNotification: .mpFamilyDataChanged, object: nil)
-        XCTAssertEqual(badgeStore().recordFinished(story, profile: profile, stories: []), [.firstStory])
+        XCTAssertTrue(badgeStore().recordFinished(story, profile: profile, stories: []).badges.contains(.firstStory))
         wait(for: [posted], timeout: 1)
     }
 
@@ -190,7 +190,7 @@ final class MVPExperienceTests: XCTestCase {
         let store = badgeStore()
         let story = finishedStory(for: profile)
         _ = store.recordFinished(story, profile: profile, stories: [story])
-        XCTAssertEqual(store.ledger(for: profile, stories: []).earnedMilestones, [.firstStory])
+        XCTAssertTrue(store.ledger(for: profile, stories: []).earnedBadges.contains(.firstStory))
     }
 
     // MARK: - Üretim başarısız (43)

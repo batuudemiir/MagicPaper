@@ -94,7 +94,7 @@ struct ProfileHubView: View {
     /// Salt okunur; değiştirme yok.
     private var collectionSection: some View {
         let stories = StoryGenerationManager.shared.stories
-        let earned = MPStars.count(for: profile, stories: stories)
+        let earned = MPStars.score(for: profile, stories: stories)
         let wallet = MPStarWalletStore().wallet(for: profile.id)
         let stickers = MPStickerAlbum.stickers(for: profile, stories: stories).count
         return ParentSection(title: "Yıldız ve çıkartmalar",

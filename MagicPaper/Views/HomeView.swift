@@ -42,7 +42,7 @@ struct HomeView: View {
     private func refreshCaches() {
         let modes = Self.modes(for: profileManager.currentProfile)
         if modes != availableModes { availableModes = modes }
-        stars = profileManager.currentProfile.map { MPStars.count(for: $0, stories: storyManager.stories) } ?? 0
+        stars = profileManager.currentProfile.map { MPStars.score(for: $0, stories: storyManager.stories) } ?? 0
         gunlukItems = Self.makeGunlukItems(classics)
     }
 

@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R1: katalog, defter, yıldız puanı
+
+- Ne değişti (Batuhan, 15 Kasım: "R1'e başla"):
+  - `Screens/MPMilestones.swift` silindi; yerine `Screens/Badges/`: `MPBadgeCatalog` (69 rozet, 12 aile, 4 gizli; FAZ 17'nin 8 kimliği aynen; kilitli rozet için sayısız eylem cümlesi; 12 `MPStarLevel`), `MPBadgeLedger` (yeni alanlar: okuma günleri, masal başına okuma günleri, sabah masalları, ilk masal tarihi, seri 2. bölüm, klasik, Original, sürpriz, yer, dost, aile, ses, kelime, kelime kartı, Yıldız katları, `seen`, `morningRuleSince`, `catalogVersion`; elle yazılmış `Codable`, eski defter `decodeIfPresent` ile okunur; birleşme hiçbir şeyi düşürmez), `MPBadgeStore` (eski defter katalog sürümü 2'ye göçerken kitaplıktan doldurulur, yeni rozet ve katlar sessizce `seen`'e girer; masal sonunda `MPBadgeAwards` döner), `MPFinishFacts` (R2'de yer, dost, aile, ses, kelime, klasik, Original burada dolacak).
+  - `MPStars.count` → `MPStars.score`: okuma sabahı kuralı. Cihazın ilk açılışı geçiş anı (`mp_morningRuleSince`); o güne kadarki sabahlar korunur, sonra yalnızca masal bitirilen günlerin sabahı. Puan hiç düşmez.
+  - Okuyucu masal sonunda rozetleri ve Yıldız katlarını `MPBadgeNews`'e yazar (`freshStarLevels` R4'te gösterilecek). Profil'deki Rozetlerim 69 rozeti gösteriyor ("x / 69", gizliler "Gizli rozet" + "?"); altı arma + "Tümü ›" R3'te.
+  - "Tekrar tekrar" üç ayrı gün ister (masal sonu yaprağına ileri geri gitmek sayılmasın); plan buna göre düzeltildi.
+- Bilerek değişmedi: Dosyalar planın dediği `Services/Badges/` yerine `Screens/Badges/`'te, çünkü `Services/` Xcode'da eşitlenen grup değil ve proje dosyasına elle eklemek gerekirdi. Masal sonu görünümü, rozet kartı, ebeveyn sayfası (R3-R5). Rozet yıldız vermez.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda, R6). Yeni `BadgePlanTests` (17 test), `StarCountTests` yeni kurala göre yeniden yazıldı; `PastelHomeRulesTests`, `KidCornerTabTests`, `MVPExperienceTests` yeni API'ye geçirildi.
+- Dosyalar: `MagicPaper/Screens/Badges/MPBadgeCatalog.swift`, `MPBadgeLedger.swift`, `MPBadgeStore.swift` (yeni), `Screens/MPMilestones.swift` (silindi), `Screens/MPStars.swift`, `Screens/KidCorner/KidCornerView.swift`, `Screens/StoryReader/StoryReaderView.swift`, `Screens/Collection/CollectionViews.swift`, `Screens/Hero/HeroWardrobeView.swift`, `Screens/Parent/ProfileHubView.swift`, `Views/HomeView.swift`, `MagicPaperTests/BadgePlanTests.swift` (yeni), `StarCountTests.swift`, `PastelHomeRulesTests.swift`, `KidCornerTabTests.swift`, `MVPExperienceTests.swift`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı: 8-13 kararları kabul
 
 - Ne değişti (Batuhan, 15 Kasım: "önerileri kabul et"): `docs/ROZET_PLANI.md` 7. bölümde 8-13 ✅. 69 rozet, dördüncü gizli rozet (Masal yıldönümü), Masal anıları; sabah yıldızı yalnızca masal bitirilen günde (13 Ekim kuralının yerine), rozet yıldız vermez, 12 Yıldız katı tablodaki gibi. Puan formülü göçle yazıldı: geçiş gününe kadarki sabahlar korunur, hiçbir çocuğun puanı düşmez (`morningRuleSince`). Ritim tahmini yeni kurala göre düzeltildi. R2'ye sabah yıldızı işi eklendi.

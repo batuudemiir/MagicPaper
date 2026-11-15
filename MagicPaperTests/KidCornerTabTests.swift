@@ -192,16 +192,16 @@ final class KidCornerTabTests: XCTestCase {
     }
 
     func testTheBadgeGridShowsEveryBadgeEarnedOnesFirst() {
-        let earned: Set<MPMilestone> = [.sevenBedtime, .firstStory]
-        let grid = MPMilestone.gridOrder(earned: earned)
-        XCTAssertEqual(grid.count, MPMilestone.allCases.count)
-        XCTAssertEqual(Set(grid), Set(MPMilestone.allCases))
+        let earned: Set<String> = [MPBadge.sevenBedtime.id, MPBadge.firstStory.id]
+        let grid = MPBadgeCatalog.gridOrder(earned: earned)
+        XCTAssertEqual(grid.count, MPBadgeCatalog.all.count)
+        XCTAssertEqual(Set(grid), Set(MPBadgeCatalog.all))
         XCTAssertEqual(Array(grid.prefix(2)), [.firstStory, .sevenBedtime])
-        XCTAssertFalse(grid.dropFirst(2).contains { earned.contains($0) })
+        XCTAssertFalse(grid.dropFirst(2).contains { earned.contains($0.id) })
     }
 
     func testWithNothingEarnedEveryBadgeIsLockedInListOrder() {
-        XCTAssertEqual(MPMilestone.gridOrder(earned: []), MPMilestone.allCases)
+        XCTAssertEqual(MPBadgeCatalog.gridOrder(earned: []), MPBadgeCatalog.all)
     }
 
     /// "Ekle" kapıdan geçer; kapı açılınca ebeveyn özetinde kalmadan profil

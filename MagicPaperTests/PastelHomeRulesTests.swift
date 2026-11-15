@@ -52,22 +52,36 @@ final class PastelHomeRulesTests: XCTestCase {
 
     // MARK: - Rozetler
 
+    /// Sabit saat: öğleden sonra, sabah rozeti karışmasın.
+    private var badgeCalendar: Calendar {
+        var c = Calendar(identifier: .gregorian)
+        c.timeZone = TimeZone(identifier: "Europe/Istanbul")!
+        return c
+    }
+
+    private func afternoon(_ day: Int = 11) -> Date {
+        badgeCalendar.date(from: DateComponents(year: 2026, month: 11, day: day, hour: 15))!
+    }
+
     func testTheFirstFinishedStoryEarnsTheFirstBadgeOnce() {
         var ledger = MPBadgeLedger()
-        XCTAssertEqual(ledger.recordFinished(storyID: "a", mode: .bedtime), [.firstStory])
-        XCTAssertTrue(ledger.recordFinished(storyID: "a", mode: .bedtime).isEmpty, "aynı masal ikinci kez sayılmaz")
+        let first = ledger.recordFinished(storyID: "a", mode: .bedtime, at: afternoon(), calendar: badgeCalendar)
+        XCTAssertEqual(Set(first), [.firstStory, MPBadgeCatalog.badge("firstBedtime")!])
+        XCTAssertTrue(ledger.recordFinished(storyID: "a", mode: .bedtime, at: afternoon(), calendar: badgeCalendar)
+            .isEmpty, "aynı masal ikinci kez sayılmaz")
         XCTAssertEqual(ledger.finished.count, 1)
     }
 
     func testModeBadgesAndThresholds() {
         var ledger = MPBadgeLedger()
-        ledger.recordFinished(storyID: "l", mode: .learning)
-        ledger.recordFinished(storyID: "a", mode: .adventure)
-        XCTAssertEqual(Set(ledger.earnedMilestones), [.firstStory, .firstLearning, .firstAdventure])
-        for i in 0..<7 { ledger.recordFinished(storyID: "b\(i)", mode: .bedtime) }
-        XCTAssertTrue(ledger.earnedMilestones.contains(.sevenBedtime))
-        XCTAssertTrue(ledger.earnedMilestones.contains(.fiveStories))
-        XCTAssertFalse(ledger.earnedMilestones.contains(.tenStories))
+        ledger.recordFinished(storyID: "l", mode: .learning, at: afternoon(), calendar: badgeCalendar)
+        ledger.recordFinished(storyID: "a", mode: .adventure, at: afternoon(), calendar: badgeCalendar)
+        XCTAssertEqual(Set(ledger.earnedBadges), [.firstStory, .firstLearning, .firstAdventure])
+        for i in 0..<7 { ledger.recordFinished(storyID: "b\(i)", mode: .bedtime, at: afternoon(), calendar: badgeCalendar) }
+        XCTAssertTrue(ledger.earnedBadges.contains(.sevenBedtime))
+        XCTAssertTrue(ledger.earnedBadges.contains(.fiveStories))
+        XCTAssertTrue(ledger.earnedIDs.contains("allThreeModes"))
+        XCTAssertFalse(ledger.earnedBadges.contains(.tenStories))
     }
 
     func testTheFifthEpisodeCompletesASeriesBadge() {
@@ -82,20 +96,20 @@ final class PastelHomeRulesTests: XCTestCase {
         var b = MPBadgeLedger(); b.recordFinished(storyID: "y", mode: .adventure, at: early)
         let merged = a.merged(with: b)
         XCTAssertEqual(merged.finished, ["x", "y"])
-        XCTAssertEqual(merged.earned[MPMilestone.firstStory.rawValue], early)
-        XCTAssertNotNil(merged.earned[MPMilestone.firstLearning.rawValue])
-        XCTAssertNotNil(merged.earned[MPMilestone.firstAdventure.rawValue])
+        XCTAssertEqual(merged.earned[MPBadge.firstStory.id], early)
+        XCTAssertNotNil(merged.earned[MPBadge.firstLearning.id])
+        XCTAssertNotNil(merged.earned[MPBadge.firstAdventure.id])
     }
 
     func testLedgersArePerChildAndErasable() {
         let defaults = UserDefaults(suiteName: "PastelHomeRulesTests-\(UUID().uuidString)")!
         let store = MPBadgeStore(defaults: defaults)
         let a = UUID(), b = UUID()
-        var ledger = MPBadgeLedger(); ledger.recordFinished(storyID: "x", mode: nil)
+        var ledger = MPBadgeLedger(); ledger.recordFinished(storyID: "x", mode: nil, at: afternoon(), calendar: badgeCalendar)
         store.save(ledger, for: a)
         XCTAssertNil(store.storedLedger(for: b))
         store.merge(MPBadgeLedger(), for: a)
-        XCTAssertEqual(store.storedLedger(for: a)?.earnedMilestones, [.firstStory])
+        XCTAssertEqual(store.storedLedger(for: a)?.earnedBadges, [.firstStory])
         MPBadgeStore.eraseAll(in: defaults)
         XCTAssertNil(store.storedLedger(for: a))
     }

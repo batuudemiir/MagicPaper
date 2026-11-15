@@ -430,9 +430,10 @@ struct StoryReaderView: View {
             MPFunnel().storyFinished()
             // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
             if let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) {
-                let fresh = MPBadgeStore().recordFinished(story, profile: profile,
-                                                          stories: StoryGenerationManager.shared.stories)
-                MPBadgeNews.shared.fresh = fresh
+                let awards = MPBadgeStore().recordFinished(story, profile: profile,
+                                                           stories: StoryGenerationManager.shared.stories)
+                MPBadgeNews.shared.fresh = awards.badges
+                MPBadgeNews.shared.freshStarLevels = awards.starLevels
             }
             // The last page was reached: for a series episode, that is what
             // the next episode waits on (FAZ 13).
