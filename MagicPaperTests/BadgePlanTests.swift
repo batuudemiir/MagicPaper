@@ -1,4 +1,5 @@
 import XCTest
+import StoryEngine
 @testable import MagicPaper
 
 /// Rozet planı R1 (15 Kasım 2026, `docs/ROZET_PLANI.md`): 69 rozetlik katalog,
@@ -186,5 +187,79 @@ final class BadgePlanTests: XCTestCase {
         XCTAssertTrue(awards.badges.contains(.firstStory))
         XCTAssertFalse(store.storedLedger(for: profile.id)!.seen.contains(MPBadge.firstStory.id),
                        "masal sonu anı kutlayacak (R4)")
+    }
+
+    // MARK: - R2: masalın bilgisi
+
+    private func engineStory(strategy: String = "direct", family: String? = nil) -> MagicPaper.Story {
+        var story = MagicPaper.Story(title: "Bir", childName: "Ada", theme: .fantasy, language: .turkish,
+                                     status: .completed,
+                                     pages: [MagicPaper.StoryPage(title: "", text: "a", imagePrompt: ""),
+                                             MagicPaper.StoryPage(title: "", text: "b", imagePrompt: "")])
+        story.origin = StoryOrigin(seed: "s", storyIdeaID: nil, blueprintID: "bp", settingID: "orman",
+                                   companionID: "baykus", discoveryID: "d", fingerprint: "f",
+                                   catalogVersion: "c", worldID: nil, modeID: "adventure",
+                                   selectionStrategy: strategy, ageBand: "5-6")
+        story.origin?.familyCharacterID = family
+        story.pages[0].words = [StoryWord(id: "w1", term: "fener", meaning: "m", surface: "fener")]
+        story.pages[1].words = [StoryWord(id: "w1", term: "fener", meaning: "m", surface: "fener"),
+                                StoryWord(id: "w2", term: "patika", meaning: "m", surface: "patika")]
+        return story
+    }
+
+    func testFactsComeFromTheStoryOrigin() {
+        let facts = MPBadgeStore.facts(for: engineStory(family: "anneanne"))
+        XCTAssertEqual(facts.placeID, "orman")
+        XCTAssertEqual(facts.companionIDs, ["baykus"])
+        XCTAssertEqual(facts.familyMemberIDs, ["anneanne"])
+        XCTAssertEqual(Set(facts.newWords), ["w1", "w2"], "aynı kelime bir kez")
+        XCTAssertFalse(facts.isSurprise)
+        XCTAssertFalse(facts.heardFamilyVoice)
+        XCTAssertNil(facts.classicID)
+        XCTAssertNil(facts.originalID)
+    }
+
+    func testASurpriseStoryAndTheFamilyVoiceAreRecorded() {
+        let facts = MPBadgeStore.facts(for: engineStory(strategy: "surprise"), heardFamilyVoice: true)
+        XCTAssertTrue(facts.isSurprise)
+        XCTAssertTrue(facts.heardFamilyVoice)
+        XCTAssertTrue(facts.familyMemberIDs.isEmpty)
+    }
+
+    func testAStoryWithoutOriginGivesOnlyItsWords() {
+        var story = ReaderFixtures.textStory(pages: 2)
+        story.origin = nil
+        let facts = MPBadgeStore.facts(for: story)
+        XCTAssertNil(facts.placeID)
+        XCTAssertTrue(facts.companionIDs.isEmpty)
+        XCTAssertFalse(facts.isSurprise)
+    }
+
+    func testFinishingARealStoryFillsTheNewFamilies() {
+        let defaults = UserDefaults(suiteName: "BadgePlanTests-\(UUID().uuidString)")!
+        let store = MPBadgeStore(defaults: defaults)
+        let profile = UserProfile(name: "Ada", age: 6)
+        var story = engineStory(strategy: "surprise", family: "dede")
+        story.childProfileID = profile.id
+        let awards = store.recordFinished(story, profile: profile, stories: [], heardFamilyVoice: true,
+                                          now: at(11, 16))
+        let ids = Set(awards.badges.map(\.id))
+        XCTAssertTrue(ids.isSuperset(of: ["firstStory", "firstAdventure", "firstWord", "surprise",
+                                         "familyInStory", "familiarVoice"]))
+        let ledger = store.storedLedger(for: profile.id)!
+        XCTAssertEqual(ledger.places, ["orman"])
+        XCTAssertEqual(ledger.companions, ["baykus"])
+    }
+
+    func testTheWordCardFlagWaitsForTheStoryEnding() {
+        let defaults = UserDefaults(suiteName: "BadgePlanTests-\(UUID().uuidString)")!
+        let store = MPBadgeStore(defaults: defaults)
+        let profile = UserProfile(name: "Ada", age: 6)
+        store.markWordCardOpened(for: profile.id)
+        XCTAssertNil(store.storedLedger(for: profile.id)?.earned["wordCard"], "masal ortasında kutlama yok")
+        var story = ReaderFixtures.textStory(pages: 2)
+        story.childProfileID = profile.id
+        let awards = store.recordFinished(story, profile: profile, stories: [], now: at(11, 16))
+        XCTAssertTrue(awards.badges.contains { $0.id == "wordCard" })
     }
 }

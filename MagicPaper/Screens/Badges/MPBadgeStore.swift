@@ -43,6 +43,16 @@ struct MPBadgeStore {
             let day = story.lastReadAt ?? story.createdAt
             ledger.recordFinished(Self.facts(for: story), at: day)
         }
+        // Masallar'ın klasikleri ve Original'leri kitaplıkta durmaz; FAZ 17'den
+        // beri defterin `finished` kümesinde dururlar.
+        for id in ledger.finished {
+            guard let uuid = UUID(uuidString: id) else { continue }
+            switch Self.tellingKind(of: uuid) {
+            case .original: ledger.originals.insert(id)
+            case .classic:  ledger.classics.insert(id)
+            case nil:       break
+            }
+        }
         ledger.morningRuleSince = ledger.morningRuleSince ?? MPStars.ruleSince(in: defaults, now: now)
         // `recordFinished` tarihleri geçmiş günlere yazdı; geriye dönük
         // rozetlerin tarihi bugün olur (FAZ 17 de böyle yapıyordu).
@@ -62,10 +72,10 @@ struct MPBadgeStore {
     /// Okuyucu masal sonuna varınca. Yeni kazanılan rozetleri ve katları döndürür.
     @MainActor
     func recordFinished(_ story: Story, profile: UserProfile, stories: [Story],
-                        now: Date = Date()) -> MPBadgeAwards {
+                        heardFamilyVoice: Bool = false, now: Date = Date()) -> MPBadgeAwards {
         var ledger = ledger(for: profile, stories: stories, now: now)
         let before = ledger
-        let badges = ledger.recordFinished(Self.facts(for: story), at: now)
+        let badges = ledger.recordFinished(Self.facts(for: story, heardFamilyVoice: heardFamilyVoice), at: now)
         let levels = ledger.awardStarLevels(score: MPStars.score(createdAt: profile.createdAt, ledger: ledger, now: now),
                                             at: now)
         save(ledger, for: profile.id)
@@ -84,14 +94,63 @@ struct MPBadgeStore {
         save(ledger, for: profileID)
     }
 
-    /// Masalın deftere yazılan bilgisi. R1: kimlik, mod, seri. Yer, dost,
-    /// aile, ses, kelime, klasik ve Original R2'de buradan dolar.
-    static func facts(for story: Story) -> MPFinishFacts {
-        let episode = story.origin?.seriesEpisode
-        let seriesID = story.origin?.seriesID
-        return MPFinishFacts(storyID: story.id.uuidString, mode: story.mpMode,
-                             seriesCompletedID: episode == SeriesCopy.episodeCount ? seriesID : nil,
-                             seriesSecondID: episode == 2 ? seriesID : nil)
+    /// Masalın deftere yazılan bilgisi (rozet planı R2). Hepsi masalın kendi
+    /// kaydından okunur, kimlikle; ad ya da metin deftere girmez.
+    /// - yer, dost, Masal ailem: `StoryOrigin` (motor masalı)
+    /// - sürpriz: "Bana sürpriz yap" ile yazıldı (`selectionStrategy`)
+    /// - kelimeler: sayfalardaki öğretilen kelimeler; masal sonuna kadar okundu
+    /// - klasik ve Original: Masallar'ın okuyucudan geçen masalları
+    /// - ailenin sesi: okuyucu bu masalda ailenin kaydını gerçekten çaldı
+    @MainActor
+    static func facts(for story: Story, heardFamilyVoice: Bool = false) -> MPFinishFacts {
+        let id = story.id.uuidString
+        let origin = story.origin
+        let episode = origin?.seriesEpisode
+        let seriesID = origin?.seriesID
+        var facts = MPFinishFacts(storyID: id, mode: story.mpMode,
+                                  seriesCompletedID: episode == SeriesCopy.episodeCount ? seriesID : nil,
+                                  seriesSecondID: episode == 2 ? seriesID : nil)
+        switch tellingKind(of: story.id) {
+        case .original: facts.originalID = id
+        case .classic:  facts.classicID = id
+        case nil:       break
+        }
+        facts.isSurprise = origin?.selectionStrategy == StorySelectionStrategy.surprise.rawValue
+        facts.placeID = origin.map(\.settingID).flatMap(nonEmpty)
+        facts.companionIDs = origin.map(\.companionID).flatMap(nonEmpty).map { [$0] } ?? []
+        facts.familyMemberIDs = origin?.familyCharacterID.flatMap(nonEmpty).map { [$0] } ?? []
+        facts.heardFamilyVoice = heardFamilyVoice
+        facts.newWords = Array(Set(story.pages.flatMap { $0.words ?? [] }.map(\.id)))
+        return facts
+    }
+
+    private enum TellingKind { case classic, original }
+
+    /// Masallar'ın masalı mı (klasik ya da MagicPaper Original), motorun mu?
+    @MainActor
+    private static func tellingKind(of id: UUID) -> TellingKind? {
+        guard ClassicsCatalog.contains(id) else { return nil }
+        let catalog = ClassicsCatalog.bundled
+        if catalog.originalCover(feedID: id) != nil || OriginalIndex.cover(for: id) != nil
+            || catalog.tale(id)?.origin == .orijinal {
+            return .original
+        }
+        return .classic
+    }
+
+    private static func nonEmpty(_ value: String) -> String? {
+        let trimmed = value.trimmingCharacters(in: .whitespaces)
+        return trimmed.isEmpty || trimmed == "none" ? nil : trimmed
+    }
+
+    /// Masal okunurken kelime kartı açıldı ("Meraklı parmak"). Rozet burada
+    /// verilmez: masal sonunda verilir ve orada kutlanır.
+    func markWordCardOpened(for profileID: UUID) {
+        // Defter yoksa boş kurulur (sürüm 0): ilk `ledger(for:)` onu yine kitaplıktan doldurur.
+        var ledger = storedLedger(for: profileID) ?? MPBadgeLedger()
+        guard !ledger.wordCardOpened else { return }
+        ledger.wordCardOpened = true
+        save(ledger, for: profileID)
     }
 
     /// Hesaptan gelen defter: birleşir, kaybolmaz.

@@ -45,6 +45,8 @@ struct StoryReaderView: View {
     @State private var talkOpen = false
     /// Sayfa dizini → soru; masal açılırken bir kez (`StoryTalkPrompts`).
     @State private var talkPrompts: [Int: String] = [:]
+    /// Bu açılışta ailenin kaydı en az bir sayfada çaldı ("Tanıdık ses" rozeti).
+    @State private var heardFamilyVoice = false
 
     init(story: Story, startingPage: Int? = nil) {
         self.story = story
@@ -138,6 +140,8 @@ struct StoryReaderView: View {
                     ReaderWordCard(word: word, theme: theme,
                                    onSpeak: { speech.speak("\(word.term). \(word.meaning)") },
                                    onClose: { words.selected = nil })
+                        // "Meraklı parmak": rozet masal sonunda verilir.
+                        .onAppear { markWordCardOpened() }
                         .padding(.horizontal, MPSpacing.screenH)
                         .padding(.bottom, model.controlsVisible ? MP.S.x10 + MP.S.x6 : MPSpacing.xxl)
                 }
@@ -263,7 +267,7 @@ struct StoryReaderView: View {
         talkPrompts = StoryTalkPrompts.pagePrompts(for: story)
         MPHaptics.prepare()
         if app.readerShouldSpeak(settings: settings), let text = model.currentPage?.spokenText {
-            speech.speak(text, recording: familyRecording)
+            speakPage(text)
         }
         // Ailenin sesi başka cihazda kaydedildiyse sayfalar şimdi iner (FAZ 18).
         Task { await VoiceRecordingStore.shared.prefetch(story.id) }
@@ -431,7 +435,8 @@ struct StoryReaderView: View {
             // Rozetler (FAZ 17): yalnızca okuyarak, aynı masal bir kez.
             if let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) {
                 let awards = MPBadgeStore().recordFinished(story, profile: profile,
-                                                           stories: StoryGenerationManager.shared.stories)
+                                                           stories: StoryGenerationManager.shared.stories,
+                                                           heardFamilyVoice: heardFamilyVoice)
                 MPBadgeNews.shared.fresh = awards.badges
                 MPBadgeNews.shared.freshStarLevels = awards.starLevels
             }
@@ -448,7 +453,7 @@ struct StoryReaderView: View {
         // Sesli okuma açıksa yeni sayfa kendiliğinden okunur.
         let wasSpeaking = speech.isSpeaking && !speech.isPaused
         if let text = model.currentPage?.spokenText, wasSpeaking || app.readerShouldSpeak(settings: settings) {
-            speech.speak(text, recording: familyRecording)
+            speakPage(text)
         }
 
         if let folio = model.folio {
@@ -502,6 +507,18 @@ struct StoryReaderView: View {
         model.currentPage.flatMap { MPNarration.recording(story.id, page: $0.index) }
     }
 
+    /// Sayfayı sesli okur; kayıt ailenin sesiyse rozet için not edilir.
+    private func speakPage(_ text: String) {
+        let recording = familyRecording
+        speech.speak(text, recording: recording)
+        if recording != nil { heardFamilyVoice = true }
+    }
+
+    private func markWordCardOpened() {
+        guard let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) else { return }
+        MPBadgeStore().markWordCardOpened(for: profile.id)
+    }
+
     // MARK: - Konuşalım (Faz 11)
 
     private var talkQuestion: String? {
@@ -527,7 +544,9 @@ struct StoryReaderView: View {
     }
 
     private func toggleSpeech() {
-        speech.toggle(model.currentPage?.spokenText ?? "", recording: familyRecording)
+        let recording = familyRecording
+        speech.toggle(model.currentPage?.spokenText ?? "", recording: recording)
+        if recording != nil, speech.isSpeaking { heardFamilyVoice = true }
         scheduleAutoHide()
     }
 }

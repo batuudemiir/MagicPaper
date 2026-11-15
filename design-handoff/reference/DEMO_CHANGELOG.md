@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R2: rozetler masalın bilgisinden dolar
+
+- Ne değişti (Batuhan, 15 Kasım: "R2'ye geç"):
+  - `MPBadgeStore.facts(for:heardFamilyVoice:)` masalın kendi kaydından okuyor: yer (`origin.settingID`), yol arkadaşı (`companionID`), Masal ailem (`familyCharacterID`), sürpriz (`selectionStrategy == "surprise"`), sayfalardaki öğretilen kelimeler, klasik ya da MagicPaper Original (`ClassicsCatalog`). Deftere yalnızca kimlikler girer, ad ya da metin girmez.
+  - Okuyucu: ailenin kaydı bu açılışta en az bir sayfada çaldıysa masal sonunda "Tanıdık ses"e sayılır (`speakPage`, `heardFamilyVoice`). Kelime kartı açılınca defterde bir bayrak (`markWordCardOpened`); "Meraklı parmak" masal sonunda verilir ve orada kutlanır, masal ortasında değil.
+  - Göç: defterin `finished` kümesindeki klasik ve Original'ler (FAZ 17'den beri oraya yazılıyordu) klasik/Original kümelerine ayrılır.
+- Bilerek değişmedi: Klasikler ve Original'ler bugün olduğu gibi Masal yolu'na ve yıldıza sayılmaya devam ediyor (aynı okuyucudan geçip `finished`'a yazılıyorlardı). "Tanıdık ses" kaydın en az bir sayfada çalmasıyla sayılıyor, bütün masalın sesle dinlenmesi aranmıyor. Görünüm yok (R3-R4).
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda, R6). `BadgePlanTests`'e 5 test eklendi (toplam 21).
+- Dosyalar: `MagicPaper/Screens/Badges/MPBadgeStore.swift`, `Screens/StoryReader/StoryReaderView.swift`, `MagicPaperTests/BadgePlanTests.swift`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · 7-8 havuzunun ince vuruşları büyüdü (ajan takımı)
 
 - Ne değişti: `templates/v3-age7/` içinde 16 vuruşa 71 yeni satır eklendi (7-8 havuzu 182 → 253). Yedi varyantlı on iki vuruş artık 12'şer. `form_belief` 12'ye çıktı (`tentative` 6, `certain` 6). `first_attempt`'te her uzunluk sınıfı 6, `examine`'de paired 6. `succeed` 14'e çıktı; her tekli `afterBeat` kapısında en az 3 satır var. Yeni `restore` satırları `afterBeat: persist` taşıyor. Ses 7-8'in sesi: çocuk akıl yürütüyor ("demek ki", "oysa", "çünkü"), yanılgısına ilk o gülüyor, kimse onu övmüyor.
