@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Vizyon ve mimari denetimi, Masal evreni planı (E1-E8)
+
+- Ne değişti (Batuhan, 15 Kasım: "Product Vision, Architecture & Strategic Project Audit", sonra "planı oluştur, kodlamaya başla"):
+  - Denetim `main@e9deb03` okunarak yapıldı (motor, köprü, kalıcılık, sync, yetki, karakter, gezinme). Sonuç: vizyonun çoğu kodda var (`StoryMemory`, `StoryMapView`, `MPYearbook`, `UsageLearner`, seri, Masal ailem, `MPPrintSpec`); açıklar içerik hacmi (8 mekân, 8 yol arkadaşı, 36 blueprint), `UserDefaults` kitaplık yığını, iki ayrı kahraman kimliği (`HeroLook`, `AvatarSpec`) ve hiçbir yerden çağrılmayan `EntitlementPolicy.decide`.
+  - `docs/EVREN_PLANI.md` (yeni): kararlar (hafıza türetilir, yeni paket ve orkestratör yok, "dünya" tek katalog kavramı, aile anısı "Özel günler" olarak yapılandırılmış) ve sekiz faz. E1 dosya deposunun doğruluk kaynağı olması; tasarımı planda.
+- Bilerek değişmedi: uygulama kodu. Universe Engine, karakter grafiği ve genel hafıza deposu açılmadı (planın "yapılmayacaklar"ı). Diğer worktree'ler okunmadı.
+- Test: çalıştırılmadı; simülatörde bakılmadı (yalnızca okuma ve belge). Sayılar grep ve katalog JSON'undan.
+- Dosyalar: `docs/EVREN_PLANI.md`, bu günlük.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R1: katalog, defter, yıldız puanı
 
 - Ne değişti (Batuhan, 15 Kasım: "R1'e başla"):
