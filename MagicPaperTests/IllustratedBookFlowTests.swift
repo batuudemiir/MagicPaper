@@ -3,7 +3,8 @@ import StoryEngine
 @testable import MagicPaper
 
 /// Görselli kitabın akışa bağlanması (B2, Faz 4): bayrak, avatar deposu,
-/// masal üretimine ek olma, anlık görüntü, cooldown ve kurulum ekranının modeli.
+/// masal üretimine ek olma, anlık görüntü, cooldown ve kahramandan türetilen
+/// kitap karakteri (E4).
 @MainActor
 final class IllustratedBookFlowTests: XCTestCase {
 
@@ -219,41 +220,44 @@ final class IllustratedBookFlowTests: XCTestCase {
         #endif
     }
 
-    // MARK: - Kurulum ekranının modeli
+    // MARK: - Tek kahraman kimliği (E4)
 
-    func testTheSetupModelStartsFromAPreviewAndSavesOnlyOnSave() async throws {
-        let model = BookCharacterModel(profileID: profile.id, store: store)
-        await model.load()
-        XCTAssertFalse(model.hasSaved)
-        XCTAssertEqual(model.spec, AvatarKit.bundled?.previewDefault)
+    /// Kahraman varsa kitap ondan çizilir; eski kayıtlı karakter kullanılmaz.
+    func testAHeroIsDrawnFromTheHeroLook() async throws {
+        let suite = "HeroBookTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let heroes = HeroLookStore(defaults: defaults)
+        let look = HeroLook(skin: 5, hair: .braids, hairColor: 4, topColor: 1)
+        heroes.save(look, for: profile.id)
+        try await store.save(avatarB, for: profile.id)
 
-        model.select(.skinTone, "skin_brown")
-        model.select(.accessory, "acc_beanie")
-        let unsaved = await store.avatar(for: profile.id)
-        XCTAssertNil(unsaved, "seçim kaydedilmeden hiçbir yere yazılmamalı")
-
-        let saved = await model.save()
-        XCTAssertTrue(saved)
-        XCTAssertTrue(model.hasSaved)
-        let stored = await store.avatar(for: profile.id)
-        XCTAssertEqual(stored?.skinTone, "skin_brown")
-        XCTAssertEqual(stored?.accessory, "acc_beanie")
-
-        model.select(.accessory, nil)
-        XCTAssertNil(model.spec.accessory, "aksesuar 'yok' seçilebilmeli")
-
-        await model.remove()
-        XCTAssertFalse(model.hasSaved)
-        let removed = await store.avatar(for: profile.id)
-        XCTAssertNil(removed)
+        let c = try composed()
+        let out = await IllustratedBookBinder.illustrateIfEnabled(
+            mapped(c), composed: c, profile: profile, mode: .adventure,
+            ageBand: AgeBand(lowerBound: 5, upperBound: 6), existing: [],
+            isEnabled: true, avatars: store, heroes: heroes)
+        XCTAssertEqual(out.illustration?.avatar, HeroBookCharacter.spec(for: look, kit: .bundled))
+        XCTAssertEqual(out.illustration?.avatar.skinTone, "skin_dark")
+        XCTAssertEqual(out.illustration?.avatar.hairStyle, "hair_braided")
     }
 
-    func testTheSetupModelReopensWithTheSavedAvatar() async throws {
-        try await store.save(avatarB, for: profile.id)
-        let model = BookCharacterModel(profileID: profile.id, store: store)
-        await model.load()
-        XCTAssertTrue(model.hasSaved)
-        XCTAssertEqual(model.spec, kitResolved(avatarB))
-        XCTAssertTrue(model.spokenSummary.contains("kızıl"))
+    /// Hayvan kahramanda kitap metin kalır, eski kayıtlı karakter olsa bile.
+    func testAnAnimalHeroWritesATextBook() async throws {
+        let suite = "HeroBookTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let heroes = HeroLookStore(defaults: defaults)
+        heroes.save(HeroLook(kind: .fox, fur: 0), for: profile.id)
+        try await store.save(avatarA, for: profile.id)
+
+        let c = try composed()
+        let story = mapped(c)
+        let out = await IllustratedBookBinder.illustrateIfEnabled(
+            story, composed: c, profile: profile, mode: .adventure,
+            ageBand: AgeBand(lowerBound: 5, upperBound: 6), existing: [],
+            isEnabled: true, avatars: store, heroes: heroes)
+        XCTAssertNil(out.illustration)
+        XCTAssertEqual(try json(out), try json(story))
     }
 }

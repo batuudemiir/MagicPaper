@@ -99,19 +99,72 @@ final class AppFamilyLocalStore: FamilyLocalStore {
     private let avatars: AvatarStore
     private let family: FamilyCharacterStore
     private let series: StorySeriesStore
+    private let heroes: HeroLookStore
+    private let wallets: MPStarWalletStore
 
     init(
         profiles: ProfileManager = .shared,
         library: StoryGenerationManager = .shared,
         avatars: AvatarStore = .shared,
         family: FamilyCharacterStore = FamilyCharacterStore(),
-        series: StorySeriesStore = StorySeriesStore()
+        series: StorySeriesStore = StorySeriesStore(),
+        heroes: HeroLookStore = HeroLookStore(),
+        wallets: MPStarWalletStore = MPStarWalletStore()
     ) {
         self.profiles = profiles
         self.library = library
         self.avatars = avatars
         self.family = family
         self.series = series
+        self.heroes = heroes
+        self.wallets = wallets
+    }
+
+    /// The hero and the wallet of one child, as records (E4).
+    ///
+    /// A hero made by the one-time migration and not changed since carries
+    /// the oldest possible time: a hero the child made on another device wins
+    /// over this approximation.
+    static func heroRecords(
+        for profileID: UUID, heroes: HeroLookStore, wallets: MPStarWalletStore
+    ) -> [LocalSyncRecord] {
+        let id = profileID.uuidString
+        var records: [LocalSyncRecord] = []
+        if let look = heroes.look(for: profileID), let payload = try? SyncCoding.encode(look) {
+            let migrated = heroes.isUnchangedSinceMigration(for: profileID)
+            records.append(LocalSyncRecord(
+                key: SyncKey(collection: .heroes, id: id), payload: payload,
+                changedAt: migrated ? Date(timeIntervalSince1970: 0) : nil))
+        }
+        if let wallet = wallets.storedWallet(for: profileID), let payload = try? SyncCoding.encode(wallet) {
+            records.append(LocalSyncRecord(key: SyncKey(collection: .starWallets, id: id), payload: payload))
+        }
+        return records
+    }
+
+    /// A hero or wallet record from the account, onto this device.
+    static func applyHeroRecord(
+        _ record: RemoteSyncRecord, heroes: HeroLookStore, wallets: MPStarWalletStore
+    ) throws {
+        guard let id = UUID(uuidString: record.key.id) else { return }
+        switch record.key.collection {
+        case .heroes:
+            if let payload = record.payload {
+                heroes.save(try SyncCoding.decode(HeroLook.self, from: payload), for: id)
+            } else {
+                heroes.delete(for: id)
+            }
+        case .starWallets:
+            if let payload = record.payload {
+                let incoming = try SyncCoding.decode(MPStarWallet.self, from: payload)
+                // Merged, never replaced: both devices' purchases stay.
+                wallets.save(wallets.wallet(for: id).merged(with: incoming), for: id)
+            } else {
+                wallets.delete(for: id)
+            }
+        default:
+            return
+        }
     }
 
     func records() async -> [LocalSyncRecord] {
@@ -126,6 +179,7 @@ final class AppFamilyLocalStore: FamilyLocalStore {
                let payload = try? SyncCoding.encode(avatar) {
                 records.append(LocalSyncRecord(key: SyncKey(collection: .avatars, id: id), payload: payload))
             }
+            records += Self.heroRecords(for: profile.id, heroes: heroes, wallets: wallets)
             let characters = family.characters(for: profile.id)
             if !characters.isEmpty, let payload = try? SyncCoding.encode(characters) {
                 records.append(LocalSyncRecord(key: SyncKey(collection: .family, id: id), payload: payload))
@@ -194,9 +248,14 @@ final class AppFamilyLocalStore: FamilyLocalStore {
             guard let id = UUID(uuidString: key.id) else { return }
             if let payload = record.payload {
                 try await avatars.save(try SyncCoding.decode(AvatarSpec.self, from: payload), for: id)
+                // E4: an older device's book character becomes this child's
+                // hero only if the child has none yet.
+                await HeroIdentityMigration(heroes: heroes, avatars: avatars).migrateIfNeeded(profileID: id)
             } else {
                 await avatars.delete(for: id)
             }
+        case .heroes, .starWallets:
+            try Self.applyHeroRecord(record, heroes: heroes, wallets: wallets)
         case .family:
             guard let id = UUID(uuidString: key.id) else { return }
             if let payload = record.payload {

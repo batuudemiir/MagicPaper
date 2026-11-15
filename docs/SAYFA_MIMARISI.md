@@ -117,7 +117,7 @@ Koddan ve simülatörden. 7 Kasım'da uygulananlar: tek "bugün" ("Bugün" kurde
 | Kitaplık | Ragi, arama, onay notu, süzgeç, kaldığın yerden, seri, kitaplarım | Ragi "Bugün hangi masalı okuyalım?" diyor: Ana sayfa ve Masallar'la aynı soru. Görevi "benim masallarım" | Söz değişsin. Az kitapta arama ve süzgeç gizlensin |
 | Köşem | Kim okuyor, sayılar, Masal dünyam, rozetler, Büyükler için | Rozet ve profil yerinde | Avatarla açılan sayfa olsun |
 | Masal ailem, Yeni kelimelerim, Seri | Push | Masal ailem'de geri düğmesi lavanta üstünde lavanta, görünmüyor | Düğme zemini düzelsin |
-| Kahraman | Push | Aynı sayfanın üç adı: "Kahramanımı düzenle", "Kitap karakteri", "Kahraman" | Tek ad: "Kahraman" |
+| Kahraman | Push | Aynı sayfanın üç adı: "Kahramanımı düzenle", "Kitap karakteri", "Kahraman" | Tek ad: "Kahraman". E4 (16 Kasım 2026): ayrı "Kitap karakteri" sayfası kalktı; `MPKidRoute.bookCharacter` ve `MPParentRoute.bookCharacter` kahraman düzenleyicisini (`HeroWardrobeView`) açar. Görselli kitabın karakteri kahramandan türetilir |
 | Masal yazma | Çocuk, mod, kimler, hazırlanıyor, okuyucu | Sağlam | Kaldı |
 | Okuyucu, masal sonu | Tam ekran | Yazı boyutu Okuma ayarlarında da var, Ayarlar'da da | Ayarlar'dan kalksın; sesli okuma düğmesi ayrı karar |
 | Özet | Sayılar, grafik, onay, son masallar, abonelik | Amacı net | Kaldı |

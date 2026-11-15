@@ -23,7 +23,8 @@ service cloud.firestore {
     }
 
     function syncCollections() {
-      return ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges', 'recordings'];
+      return ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges', 'recordings',
+              'heroes', 'starWallets'];
     }
 
     // --- Aile üyeliği (FAZ 18) ---------------------------------------------

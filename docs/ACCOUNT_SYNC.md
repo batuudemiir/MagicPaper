@@ -36,7 +36,16 @@ Karşılama → **Giriş** → **Ebeveyn onayı** → Profil → Neleri sever �
 `families/{uid}/{koleksiyon}/{kimlik}` — koleksiyonlar: `children` (UserProfile, fotoğrafsız),
 `avatars` (AvatarSpec), `family` (çocuğun Masal ailem listesi), `stories` (Story, ilerlemesiz),
 `progress` (`lastReadPage`, `lastReadAt`), `series` (çocuğun serileri), `badges` (rozet defteri, FAZ 17),
-`recordings` (ailenin sesiyle kaydedilen sayfalar, FAZ 18; ses dosyası Storage'da).
+`recordings` (ailenin sesiyle kaydedilen sayfalar, FAZ 18; ses dosyası Storage'da),
+`heroes` (çocuğun kahramanı `HeroLook`, E4; son yazan kazanır), `starWallets` (yıldız cüzdanı `MPStarWallet`, E4;
+uygulanırken birleşir, iki cihazın alımları da kalır).
+
+**E4 (16 Kasım 2026):** `heroes` ve `starWallets` profil kimliğiyle, `applyOrder`'da `children` ve `avatars`'tan sonra.
+`avatars` kalıyor (eski uygulamalar okuyor) ama yeni yazım yok: kitap karakteri artık kahramandan türetiliyor, kayıtlı
+`AvatarSpec` olduğu gibi eşitlenmeye devam ediyor (kaybolursa eski cihazlara silme olarak giderdi). Taşımayla kurulan,
+sonra değişmemiş bir kahraman en eski zamanla gider: başka cihazda çocuğun yaptığı kahraman kazanır. Kurallar deploy
+edilene kadar sunucu iki yeni koleksiyonu reddeder; ret yalıtılmıştır (`SyncCollection.isIsolated`,
+`SyncRejection`): o koleksiyon cihazda bekler, öbürleri eşitlenir, hesap silme durmaz.
 
 **FAZ 18:** `{uid}` artık ailenin kimliği (`familyID`, kurucunun uid'i). Davetle katılan yetişkinler aynı
 aileyi eşitler; sadece okuma rolü yalnızca çeker. Üyelik, davet, paylaşım, ses ve haftalık özet:

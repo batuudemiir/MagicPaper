@@ -62,7 +62,14 @@ struct FirestoreFamilyRemote: FamilyRemote {
             }
             // From the server, never a cache: a sync that reads its own
             // cache believes it is up to date.
-            let snapshot = try await query.getDocuments(source: .server)
+            let snapshot: QuerySnapshot
+            do {
+                snapshot = try await query.getDocuments(source: .server)
+            } catch _ where collection.isIsolated {
+                // E4: a rule not yet deployed refuses this collection alone.
+                // Nothing is read from it this time; its mark does not move.
+                continue
+            }
             for document in snapshot.documents {
                 let data = document.data()
                 let deleted = data["deleted"] as? Bool ?? false
@@ -76,7 +83,24 @@ struct FirestoreFamilyRemote: FamilyRemote {
         return records
     }
 
+    /// Writes the records. The isolated collections (E4) go last, each in
+    /// batches of its own, so a refusal of one never undoes the others; the
+    /// refused ones are reported as a `SyncRejection` after the rest is in.
     func push(_ records: [RemoteSyncRecord]) async throws {
+        let (core, isolated) = SyncPushPlan.split(records)
+        try await write(core)
+        var refused: Set<SyncCollection> = []
+        for (collection, group) in isolated {
+            do {
+                try await write(group)
+            } catch {
+                refused.insert(collection)
+            }
+        }
+        if !refused.isEmpty { throw SyncRejection(collections: refused) }
+    }
+
+    private func write(_ records: [RemoteSyncRecord]) async throws {
         let db = Firestore.firestore()
         for chunk in stride(from: 0, to: records.count, by: 400).map({ Array(records[$0..<min($0 + 400, records.count)]) }) {
             let batch = db.batch()
@@ -119,8 +143,15 @@ struct FirestoreFamilyRemote: FamilyRemote {
             }
         }
         let names = SyncCollection.allCases.map(\.rawValue) + [Self.consentsCollection]
+        let isolated = Set(SyncCollection.allCases.filter(\.isIsolated).map(\.rawValue))
         for name in names {
-            let snapshot = try await family.collection(name).getDocuments(source: .server)
+            let snapshot: QuerySnapshot
+            do {
+                snapshot = try await family.collection(name).getDocuments(source: .server)
+            } catch _ where isolated.contains(name) {
+                // A refused collection holds nothing the server let in.
+                continue
+            }
             for chunk in stride(from: 0, to: snapshot.documents.count, by: 400)
                 .map({ Array(snapshot.documents[$0..<min($0 + 400, snapshot.documents.count)]) }) {
                 let batch = db.batch()

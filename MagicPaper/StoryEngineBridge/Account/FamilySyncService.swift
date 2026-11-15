@@ -160,7 +160,15 @@ final class FamilySyncService: ObservableObject {
                 applying = false
             }
             if !plan.push.isEmpty {
-                try await remote.push(plan.push)
+                do {
+                    try await remote.push(plan.push)
+                } catch let rejection as SyncRejection {
+                    // E4: a collection whose rule is not deployed yet waits
+                    // on the device; everything else went through.
+                    plan.ledger = SyncPushPlan.ledger(
+                        plan.ledger, before: ledger, pushed: plan.push, refused: rejection.collections)
+                    logger.notice("Eşitleme: \(rejection.collections.count, privacy: .public) koleksiyon sunucuda bekliyor")
+                }
             }
             guard self.uid == uid else { return false }
             var settled = plan.ledger

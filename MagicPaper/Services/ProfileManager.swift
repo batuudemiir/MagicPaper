@@ -346,6 +346,10 @@ class ProfileManager: ObservableObject {
         // copy and go with `storiesDeleted` above.
         let profileID = profile.id
         Task { await AvatarStore.shared.delete(for: profileID) }
+        // The hero and the star wallet (E4): the account sync sends their
+        // deletion when they leave the device.
+        HeroLookStore().delete(for: profileID)
+        MPStarWalletStore().delete(for: profileID)
         // Masal ailem belongs to the child; their stories keep the names as written.
         FamilyCharacterStore().delete(for: profileID)
         // So do their series (FAZ 13); the episodes already on the shelf went

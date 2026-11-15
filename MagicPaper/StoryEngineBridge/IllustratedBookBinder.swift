@@ -14,12 +14,14 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 /// kaydı okunur.
 enum IllustratedBookBinder {
 
-    /// `createStory`'nin tek çağrısı: bayrak açık ve ebeveyn bir kitap karakteri
-    /// kaydetmişse sahneleri ekler; değilse masalı **dokunmadan** döndürür —
+    /// `createStory`'nin tek çağrısı: bayrak açık ve çocuğun çizilebilir bir
+    /// kahramanı varsa sahneleri ekler; değilse masalı **dokunmadan** döndürür,
     /// bugünkü metin masalının aynısı.
     ///
-    /// Görselli kitap ebeveynin en az bir kez "Kaydet" dediği bir avatar ister;
-    /// uygulama çocuğun tenini ya da saçını ebeveyn adına seçmez (plan §8.1).
+    /// E4'ten beri karakter kahramandan türetilir (`BookCharacterSource`):
+    /// `HeroLook` varsa ondan (hayvan kahramanda kitap yok), yoksa eski
+    /// kurulumun kayıtlı `AvatarSpec`'inden. Uygulama çocuğun tenini ya da
+    /// saçını kendisi seçmez (plan §8.1): kahraman da kayıt da yoksa metin.
     @MainActor
     static func illustrateIfEnabled(
         _ story: MagicPaper.Story,
@@ -30,11 +32,13 @@ enum IllustratedBookBinder {
         existing: [MagicPaper.Story],
         isEnabled: Bool = IllustratedBookAccess.isEnabled(),
         avatars: AvatarStore = .shared,
+        heroes: HeroLookStore = HeroLookStore(),
         kit: AvatarKit? = .bundled,
         library: SceneLibrary? = .bundled
     ) async -> MagicPaper.Story {
+        let source = BookCharacterSource(heroes: heroes, avatars: avatars, kit: kit)
         guard isEnabled, let kit, let library,
-              let avatar = await avatars.avatar(for: profile.id) else { return story }
+              let avatar = await source.avatar(for: profile.id) else { return story }
 
         let illustrated = illustrate(
             story, composed: composed, avatar: avatar, kit: kit, library: library,

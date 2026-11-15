@@ -41,6 +41,11 @@ struct ContentView: View {
                 // İçerik akışı (FAZ 15): yeni günün masalı yeniden başlatmadan gelir.
                 await RemoteContentService.shared.refresh()
             }
+            .task {
+                // E4: eski kurulumda ebeveynin kitap karakteri, kahramanı olmayan
+                // çocukların kahramanı olur. Bir kez; var olan kahramana dokunmaz.
+                await HeroIdentityMigration().run(profileIDs: profileManager.profiles.map(\.id))
+            }
             #if DEBUG
             .onAppear {
                 if let tab = MPDebugLaunch.startTab { app.router.tab = tab }
@@ -331,7 +336,8 @@ struct KidPageView: View {
         case .familyCharacters(let id):
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
         case .bookCharacter(let id):
-            if let profile = profile(id) { BookCharacterView(profile: profile) }
+            // E4: kitap karakteri ayrı bir kimlik değil; kahraman düzenleyicisine gider.
+            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
         case .stickers(let id):
             if let profile = profile(id) { StickerAlbumView(profile: profile) }
         case .decor(let id):

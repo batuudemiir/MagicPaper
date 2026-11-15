@@ -11,7 +11,10 @@ import CryptoKit
 enum SyncCollection: String, CaseIterable, Codable, Sendable {
     /// `UserProfile`, keyed by profile id. No photo, no photo file name.
     case children
-    /// `AvatarSpec`, keyed by profile id.
+    /// `AvatarSpec`, keyed by profile id. Since E4 the book character is
+    /// derived from the hero and nothing new writes here; the record still
+    /// syncs as it is, because older apps read it and a missing record would
+    /// travel to them as a deletion.
     case avatars
     /// The child's Masal ailem (`[FamilyCharacter]`), keyed by profile id.
     case family
@@ -28,6 +31,12 @@ enum SyncCollection: String, CaseIterable, Codable, Sendable {
     /// Which pages of a story have the family's own voice (FAZ 18), keyed by
     /// story id (`VoiceRecordingSet`). The audio itself is in Storage.
     case recordings
+    /// The child's hero (`HeroLook`, E4), keyed by profile id: the one record
+    /// of what the child looks like. Last writer wins.
+    case heroes
+    /// The child's star wallet (`MPStarWallet`, E4), keyed by profile id.
+    /// Merged on apply, like `badges`: a purchase is never lost.
+    case starWallets
 
     /// How two devices that both changed a record are reconciled.
     var policy: SyncConflictPolicy {
@@ -37,8 +46,53 @@ enum SyncCollection: String, CaseIterable, Codable, Sendable {
         }
     }
 
-    /// Children first: everything else hangs off a child.
-    static let applyOrder: [SyncCollection] = [.children, .avatars, .family, .series, .badges, .stories, .progress, .recordings]
+    /// Collections whose server rule is newer than the app (E4). Until the
+    /// rules are deployed the server refuses them; a refusal keeps only that
+    /// collection waiting on the device and never stops the others.
+    var isIsolated: Bool {
+        self == .heroes || self == .starWallets
+    }
+
+    /// Children first: everything else hangs off a child. `avatars` before
+    /// `heroes`: a migrated hero made from an arriving avatar is replaced by
+    /// a hero arriving in the same pull.
+    static let applyOrder: [SyncCollection] = [
+        .children, .avatars, .heroes, .starWallets, .family, .series, .badges, .stories, .progress, .recordings
+    ]
+}
+
+/// Collections the server refused while the rest of the sync went through.
+struct SyncRejection: Error, Equatable {
+    let collections: Set<SyncCollection>
+}
+
+/// How a push is cut so one refused collection cannot take the rest with it.
+enum SyncPushPlan {
+    /// Everything that is not isolated, as it came; then each isolated
+    /// collection on its own, in `SyncCollection.allCases` order.
+    static func split(
+        _ records: [RemoteSyncRecord]
+    ) -> (core: [RemoteSyncRecord], isolated: [(SyncCollection, [RemoteSyncRecord])]) {
+        let core = records.filter { !$0.key.collection.isIsolated }
+        let isolated = SyncCollection.allCases.filter(\.isIsolated).compactMap { collection -> (SyncCollection, [RemoteSyncRecord])? in
+            let group = records.filter { $0.key.collection == collection }
+            return group.isEmpty ? nil : (collection, group)
+        }
+        return (core, isolated)
+    }
+
+    /// The ledger after a push the server partly refused: the refused records
+    /// go back to what was agreed before, so they are sent again next time
+    /// and stay marked as waiting.
+    static func ledger(
+        _ planned: SyncLedger, before: SyncLedger, pushed: [RemoteSyncRecord], refused: Set<SyncCollection>
+    ) -> SyncLedger {
+        var ledger = planned
+        for record in pushed where refused.contains(record.key.collection) {
+            ledger[record.key] = before[record.key]
+        }
+        return ledger
+    }
 }
 
 enum SyncConflictPolicy: Sendable {

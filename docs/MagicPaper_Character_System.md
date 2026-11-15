@@ -27,6 +27,17 @@ ve **üretimde hiçbir kod yolu ona dokunmuyor**. Çocuğun kimliği bugün
 
 ---
 
+## 0.1 Tek kahraman kimliği (E4, 16 Kasım 2026)
+
+Çocuğun görünüşünün tek kaynağı `HeroLook` (`Screens/Hero/HeroLook.swift`, depo `HeroLookStore`). Ayrı "Kitap
+karakteri" sayfası kalktı; o rotalar kahraman düzenleyicisini açar. Görselli kitabın `AvatarSpec`'i kahramandan
+türetilir (`StoryEngineBridge/HeroIdentity.swift`, `HeroBookCharacter`; eşleme tablosu orada ve testli). Hayvan kahraman
+ve başörtülü kahraman için türetme yok: kitte karşılıkları olmadığı için kitap metin kalır. Eski kurulumda kayıtlı
+`AvatarSpec` varsa ve kahraman yoksa bir kez kahramana taşınır (`HeroIdentityMigration`); kahraman olmayan eski
+kurulumda kitap kayıtlı karaktere düşer. Kitaplardaki anlık görüntü (`StoryIllustration`) değişmez.
+
+---
+
 ## 1. İsim eşlemesi (agent metinleri ↔ kod)
 
 | Rol tanımının aradığı | Koddaki gerçek karşılık |

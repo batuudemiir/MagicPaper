@@ -142,6 +142,21 @@ test('rozet defteri yalnızca sahibine açık ve güncellenebilir (FAZ 17)', asy
   await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'badges', 'c1')));
 });
 
+test('kahraman ve yıldız cüzdanı yalnızca sahibine açık, güncellenir ve silinir (E4, 16 Kasım 2026)', async () => {
+  const hero = doc(db(ALICE), 'families', ALICE, 'heroes', 'c1');
+  await assertSucceeds(setDoc(hero, record('{"hair":"curly","kind":"child","skin":4}')));
+  await assertSucceeds(updateDoc(hero, { payload: '{"hair":"braids","kind":"child","skin":4}', updatedAt: 1759780000900, serverUpdatedAt: serverTimestamp() }));
+  await assertSucceeds(getDoc(hero));
+  await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'heroes', 'c1')));
+  await assertFails(setDoc(doc(db(BOB), 'families', ALICE, 'heroes', 'c1'), record('{"kind":"cat"}')));
+
+  const wallet = doc(db(ALICE), 'families', ALICE, 'starWallets', 'c1');
+  await assertSucceeds(setDoc(wallet, record('{"equipped":{},"purchases":[{"date":0,"itemID":"hero.top.hoodie","price":8}]}')));
+  await assertSucceeds(setDoc(wallet, tombstone()));
+  await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'starWallets', 'c1')));
+  await assertFails(getDoc(doc(db(null), 'families', ALICE, 'starWallets', 'c1')));
+});
+
 test('rozet planı defteri (69 rozet, Yıldız katı) aynı kayıtta büyür (15 Kasım 2026)', async () => {
   const badges = doc(db(ALICE), 'families', ALICE, 'badges', 'c2');
   const ledger = {
@@ -245,7 +260,7 @@ test('huni kimlik, tarih ya da bilinmeyen adım taşıyamaz', async () => {
 
 test('sahibi bütün aile belgelerini silebilir; geriye bir şey kalmaz', async () => {
   const alice = db(ALICE);
-  const collections = ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges'];
+  const collections = ['children', 'avatars', 'family', 'stories', 'progress', 'series', 'badges', 'heroes', 'starWallets'];
   const batch = writeBatch(alice);
   for (const name of collections) {
     for (const id of ['a', 'b']) batch.set(doc(alice, 'families', ALICE, name, id), record(`{"${name}":"${id}"}`));

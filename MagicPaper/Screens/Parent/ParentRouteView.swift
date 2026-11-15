@@ -20,7 +20,8 @@ struct ParentRouteView: View {
         case .familyCharacters(let id):
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
         case .bookCharacter(let id):
-            if let profile = profile(id) { BookCharacterView(profile: profile) }
+            // E4: kitap karakteri ayrı bir kimlik değil; kahraman düzenleyicisine gider.
+            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
         case .profileHub(let id):
             if let profile = profile(id) { ProfileHubView(profile: profile) }
         case .safety:

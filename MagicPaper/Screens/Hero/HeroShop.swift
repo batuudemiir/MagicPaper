@@ -64,10 +64,14 @@ enum HeroShop {
     }
 }
 
-/// Kahramanın cihazdaki yeri, çocuk başına. Hesap eşitlemesi sonraki adım.
+/// Kahramanın cihazdaki yeri, çocuk başına. Çocuğun görünüşünün tek kaynağı
+/// (E4); hesapla `heroes` koleksiyonunda eşitlenir.
 struct HeroLookStore {
     var defaults: UserDefaults = .standard
     static let keyPrefix = "mp_herolook_"
+    /// Taşımayla kurulan kahramanın işareti. Aynı önek: "Tüm verileri sil"
+    /// onu da siler.
+    static let migratedPrefix = keyPrefix + "migrated_"
 
     func look(for profileID: UUID) -> HeroLook? {
         guard let data = defaults.data(forKey: Self.keyPrefix + profileID.uuidString) else { return nil }
@@ -78,6 +82,31 @@ struct HeroLookStore {
         guard let data = try? JSONEncoder().encode(look) else { return }
         defaults.set(data, forKey: Self.keyPrefix + profileID.uuidString)
         NotificationCenter.default.post(name: .mpHeroLookChanged, object: profileID)
+        // Hesap eşitlemesi (E4) bunu izler.
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
+    }
+
+    /// Profil silinince ya da başka bir cihaz silince.
+    func delete(for profileID: UUID) {
+        defaults.removeObject(forKey: Self.keyPrefix + profileID.uuidString)
+        defaults.removeObject(forKey: Self.migratedPrefix + profileID.uuidString)
+        NotificationCenter.default.post(name: .mpHeroLookChanged, object: profileID)
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
+    }
+
+    /// Bu kahraman eski kitap karakterinden taşındı (`HeroIdentityMigration`).
+    func markMigrated(_ look: HeroLook, for profileID: UUID) {
+        guard let data = try? JSONEncoder().encode(look) else { return }
+        defaults.set(data, forKey: Self.migratedPrefix + profileID.uuidString)
+    }
+
+    /// Taşımadan beri kimse değiştirmedi mi. Öyleyse eşitlemede başka bir
+    /// cihazın kahramanına yenilir: çocuğun kendi yaptığı kahraman, bir
+    /// yaklaşık çeviriden önce gelir.
+    func isUnchangedSinceMigration(for profileID: UUID) -> Bool {
+        guard let data = defaults.data(forKey: Self.migratedPrefix + profileID.uuidString),
+              let migrated = try? JSONDecoder().decode(HeroLook.self, from: data) else { return false }
+        return look(for: profileID) == migrated
     }
 }
 

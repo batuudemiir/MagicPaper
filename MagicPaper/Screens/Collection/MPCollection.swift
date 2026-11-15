@@ -181,6 +181,22 @@ struct MPStarWalletStore {
     func save(_ wallet: MPStarWallet, for profileID: UUID) {
         guard let data = try? JSONEncoder().encode(wallet) else { return }
         defaults.set(data, forKey: Self.keyPrefix + profileID.uuidString)
+        // Hesap eşitlemesi (E4, `starWallets`) bunu izler.
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
+    }
+
+    /// Kayıtlı defter; hiç alım ya da süs yoksa nil (eşitlenecek bir şey yok).
+    func storedWallet(for profileID: UUID) -> MPStarWallet? {
+        guard let data = defaults.data(forKey: Self.keyPrefix + profileID.uuidString),
+              let wallet = try? JSONDecoder().decode(MPStarWallet.self, from: data),
+              !wallet.purchases.isEmpty || !wallet.equipped.isEmpty else { return nil }
+        return wallet
+    }
+
+    /// Profil silinince ya da başka bir cihaz silince.
+    func delete(for profileID: UUID) {
+        defaults.removeObject(forKey: Self.keyPrefix + profileID.uuidString)
+        NotificationCenter.default.post(name: .mpFamilyDataChanged, object: nil)
     }
 }
 

@@ -133,6 +133,24 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E4: tek kahraman kimliği
+
+- Ne değişti (`docs/EVREN_PLANI.md` E4):
+  - Çocuğun görünüşünün tek kaynağı `HeroLook`. Görselli kitabın `AvatarSpec`'i ondan türetiliyor: `StoryEngineBridge/HeroIdentity.swift` (`HeroBookCharacter`, eşleme tablosu tek yerde, testli). Kitte karşılığı olmayan değer grubun varsayılanına düşüyor (`AvatarKit.resolved`).
+  - Hayvan kahramanda türetme yok, kitap metin. Başörtülü kahramanda da yok (karardan bir adım öte, raporda): kitte başörtüsü parçası olmadığı için çocuğu başörtüsüz çizmemek için.
+  - `IllustratedBookBinder` karakteri `BookCharacterSource`'tan okuyor: kahraman varsa ondan, yoksa (eski kurulum) kayıtlı `AvatarSpec`'ten. Kitaplardaki anlık görüntü değişmedi.
+  - Tek seferlik taşıma (`HeroIdentityMigration`): `AvatarSpec` var, `HeroLook` yoksa ters eşlemeyle kahraman kuruluyor; açılışta ve hesaptan eski bir cihazın `avatars` kaydı geldiğinde. Var olan kahramanın üstüne yazmıyor. Yıldızla alınan bere taşımayla verilmiyor.
+  - "Kitap karakteri" sayfası (`BookCharacterView`) silindi; `MPKidRoute.bookCharacter` ve `MPParentRoute.bookCharacter` kahraman düzenleyicisini (`HeroWardrobeView`) açıyor.
+  - Senkron: `heroes` (son yazan kazanır) ve `starWallets` (uygulanırken `merged(with:)`) eklendi, `applyOrder`'da `children` ve `avatars`'tan sonra. Taşınmış ve değişmemiş kahraman en eski zamanla gidiyor, başka cihazdaki gerçek kahraman kazanıyor. `avatars` olduğu gibi eşitlenmeye devam ediyor, yeni yazım yok.
+  - Ret yalıtımı: kod okununca deploy edilmemiş bir koleksiyonun reddinin bütün eşitlemeyi düşürdüğü görüldü (çekme tek döngüde, gönderim 400'lük toplu yazmada). Yeni iki koleksiyon artık ayrı çekiliyor ve ayrı toplu yazmada gönderiliyor; ret `SyncRejection` olarak dönüyor, o kayıtlar cihazda bekliyor, öbürleri eşitleniyor, hesap silme durmuyor.
+  - Silme: profil silme kahramanı, taşıma işaretini ve cüzdanı da siliyor; "Tüm verileri sil" önekle zaten siliyordu. Senkrona silme kaydı olarak gidiyor.
+  - `firestore.rules` `syncCollections()` listesine `heroes`, `starWallets`; kural testi eklendi.
+- Bilerek değişmedi: `HeroLook` alanları, `HeroAvatarView` çizimi, Ragi, rozetler, yıldız sayımı, `StoryIllustration`, `AvatarStore` biçimi.
+- **Kurallar deploy edilmedi.** Deploy edilene kadar sunucu `heroes` ve `starWallets`'ı reddeder; kahraman ve cüzdan cihazda bekler ("gönderilmemiş değişiklik" olarak görünür).
+- Belgeler: `docs/SAYFA_MIMARISI.md`, `docs/MagicPaper_Character_System.md` §0.1, `docs/ACCOUNT_SYNC.md`.
+- Test: derlenmedi, testler ve kural testleri çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse` ve `node --check`. Yeni `MagicPaperTests/HeroIdentityTests.swift` (19), `IllustratedBookFlowTests`'te kurulum modelinin iki testi yerine kahraman testleri (2), `firebase/tests/rules.test.mjs`'e bir kural testi ve silme testine iki koleksiyon.
+- Dosyalar: yeni `StoryEngineBridge/HeroIdentity.swift`, `StoryEngineBridge/IllustratedBookBinder.swift`, `StoryEngineBridge/Account/SyncModel.swift`, `FamilyLocalStore.swift`, `FamilySyncService.swift`, `FirestoreFamilyRemote.swift`, `Screens/Hero/HeroShop.swift`, `Screens/Collection/MPCollection.swift`, `Screens/Parent/ParentRouteView.swift`, `ContentView.swift`, `Services/ProfileManager.swift`, silinen `Screens/Parent/BookCharacterView.swift`, `firebase/firestore.rules`, `firebase/tests/rules.test.mjs`, testler, belgeler, bu günlük.
+
 ### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: kapak için ajan ChatGPT promptu yazıyor
 
 - Karar (Batuhan): original-writer kapak çizmez; `review.md`'deki yeni "Kapak promptu (ChatGPT)" bölümüne İngilizce, olduğu gibi kopyalanabilir tek prompt yazar. Stil WORLD.md'den, karakterler görünüşleriyle, odak dikeyde %40-65, sabit yasak satırı (saat kadranı dahil rakam ve yazı yok), ilk kapak stil referansı. Masal kapak gelene kadar kapaksız bekler; bildirim "kapak bekliyor".
