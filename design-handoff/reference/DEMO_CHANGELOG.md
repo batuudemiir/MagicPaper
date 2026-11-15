@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main@cf77ba5 (iki-kademe dalından, push yok) · İki kademeli çocuk arayüzü: Ana sayfa ve masal yazma
+
+- Neden (Batuhan, 14 Kasım): çocuk kullandığında uygulama karışık görünüyor; yaşa göre arayüz. Araştırma (NN/g, Sesame Workshop 2012, Google çocuk rehberi, YouTube Kids) ve iki sohbet taslağından sonra "önerdiğin şekilde yap".
+- Ne değişti:
+  - `KidLevel` (`Screens/KidLevel.swift`): iki kademe, yaştan türer (7'den küçük Küçük). `UserProfile.readsAlone` (isteğe bağlı, eski profil yüklenir); ebeveyn çocuğun profil sayfasında "Kendi okuyor" anahtarıyla değiştirir (`ProfileHubView`, `ProfileManager.setReadsAlone`). Yeni soru sorulmuyor.
+  - Ana sayfa: Küçük'te selam ve yıldız satırı yok, mod karoları büyük (`HomeModeTile(large:)`). Masallar önizlemesi iki kademede de kalktı; `HomeGunlukPreview` silindi.
+  - Masal yaz (`LittleSteps.swift`): Küçük'te üç büyük karo ("Nasıl bir masal olsun?"), sonra "Kim gelsin?" ızgarası (üç yol arkadaşı, en çok iki Masal ailem, "Sürpriz"); dokunuş masalı yazdırır, konuyu MagicPaper seçer. Ebeveyn alanında yazılan masal hep yazılı adımlarla.
+  - `docs/VIZYON_PLANI.md`: "İki kademe" bölümü.
+- Bilerek değişmedi: alt çubuk (Küçük'te de dört sekme), Kitaplık, Masallar ve Profil sekmeleri, sesli etiket (`MPSound` uyku vaktinde çalmıyor, karar gerek), seri kartının bu akşamın kartına katılması. `CLAUDE.md`'ye karar satırı eklenmedi.
+- Birleştirme (Batuhan, 15 Kasım: "evet, birleştir"): dal rozet planı R2-R5 ve E1-E3'ün (9d32115) üstüne taşındı. `HomeView` çakışması iki tarafı koruyarak çözüldü: yıldız puanı (`MPStars.score`) ve rozet notu kaldı; rozet notu iki kademede de bir kez görünür, selam yalnızca Büyük'te. `ProfileHubView`'da "Kendi okuyor" ile R5'in rozet bölümü çakışmasız birleşti.
+- Test: birleşik halde `MagicPaperTests` 953 testin 950'si geçti (iPhone Air simülatörü), yeni `KidLevelTests` 5/5. Üç hata bu işin dosyalarına dokunmayan, bugün main'e giren testlerde ve tek başına koşunca da kırmızı: `BadgePlanTests.testTheWordCardFlagWaitsForTheStoryEnding` (rozet deposu) ile `LibraryCutoverTests.testBeforeCutoverTheShelfWritesTheLegacyBlobAsBefore` ve `testWithoutAStoreBeforeCutoverTheLegacyPathContinues` (aynı boyda ama farklı JSON baytları; kodlama sırası olabilir). Sahiplerine bırakıldı. `DesignSystemSnapshotTests` atlandı: `testSnapshotButtons` 10 dakika takılıp koşuyu kesiyor. iCloud'un yarattığı `LittleSteps 2.swift` kopyası derlemeyi kırdı, silindi.
+- Simülatör (birleştirmeden önce): iPhone Air, açık tema, demo profili (İrem, 6): Ana sayfa, iki adım ve "Masal yazılıyor" görüldü. Birleşik hal simülatörde açılmadı. Görülmedi: koyu tema, en büyük Dynamic Type, SE ve Pro Max, Büyük kademe, "Kendi okuyor" anahtarı, VoiceOver. Çocukla denenmedi.
+- Dosyalar: `Screens/KidLevel.swift`, `Screens/StoryCreation/LittleSteps.swift`, `StoryCreationFlow.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Screens/Parent/ProfileHubView.swift`, `Services/ProfileManager.swift`, `MagicPaperTests/KidLevelTests.swift`, `docs/VIZYON_PLANI.md`.
+
 ### 2026-11-15 · main@ed176cd + bu kayıt · E1-E3 birleşti, origin'e gitti, telefona kuruldu
 
 - Ne değişti (Batuhan, 15 Kasım: "tamam uygun, tüm herşeyi pushla ve telefonuma kur"):
