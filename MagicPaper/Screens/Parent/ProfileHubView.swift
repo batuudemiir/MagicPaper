@@ -60,6 +60,7 @@ struct ProfileHubView: View {
                 }
 
                 collectionSection
+                badgesSection
 
                 if profileManager.profiles.count > 1 {
                     MPGroupedList(area: .parent) {
@@ -97,10 +98,16 @@ struct ProfileHubView: View {
         let earned = MPStars.score(for: profile, stories: stories)
         let wallet = MPStarWalletStore().wallet(for: profile.id)
         let stickers = MPStickerAlbum.stickers(for: profile, stories: stories).count
+        let level = MPStarLevel.current(score: earned)
         return ParentSection(title: "Yıldız ve çıkartmalar",
-                             subtitle: "Yıldızlar yalnızca okuyarak kazanılır, parayla alınamaz, kaybolmaz.") {
-            MPListRow(systemImage: "star", tone: .yellow, title: "\(earned) yıldız kazanıldı",
+                             subtitle: "Yıldızlar yalnızca okuyarak kazanılır, parayla alınamaz, kaybolmaz. Harcamak puanı düşürmez.") {
+            MPListRow(systemImage: "star", tone: .yellow, title: "Yıldız puanı: \(earned)",
                       subtitle: "\(wallet.spent) harcandı, \(wallet.balance(earned: earned)) kumbarada") { EmptyView() }
+            MPRowDivider(area: .parent)
+            MPListRow(systemImage: "star.circle", tone: .yellow,
+                      title: level.map { "Yıldız katı: \($0.title)" } ?? "Yıldız katı yok",
+                      subtitle: level.map { "\(MPStarLevel.all.count) kattan \($0.tier). kat" }
+                        ?? "İlk kat \(MPStarLevel.all[0].threshold) yıldızda açılır") { EmptyView() }
             MPRowDivider(area: .parent)
             MPListRow(systemImage: "book.closed", tone: .lav, title: "\(stickers) çıkartma",
                       subtitle: "Her biten masal albüme bir çıkartma bırakır") { EmptyView() }
@@ -111,6 +118,39 @@ struct ProfileHubView: View {
                           subtitle: "\(purchase.date.formatted(.dateTime.day().month(.abbreviated).locale(Locale(identifier: "tr_TR")))) · \(purchase.price) yıldız") { EmptyView() }
             }
         }
+    }
+
+    /// Rozetler (rozet planı R5): kazanılanlar tarih sırasıyla, en yenisi önce.
+    /// Salt okunur; ebeveyn alanında Ragi ve boş durum görseli yok (`MPListRow`).
+    private var badgesSection: some View {
+        let ledger = MPBadgeStore().ledger(for: profile, stories: StoryGenerationManager.shared.stories)
+        let earned = ledger.earned
+            .compactMap { id, date in MPBadgeCatalog.badge(id).map { ($0, date) } }
+            .sorted { ($0.1, $1.0.id) > ($1.1, $0.0.id) }
+        let shown = earned.prefix(10)
+        return ParentSection(title: "Rozetler",
+                             subtitle: "\(MPBadgeCatalog.all.count) rozetten \(earned.count) tanesi kazanıldı. Rozetler yalnızca okuyarak gelir ve kaybolmaz.") {
+            if shown.isEmpty {
+                MPListRow(systemImage: "rosette", tone: .gray, title: "Henüz rozet yok",
+                          subtitle: "İlk masal bitince ilk rozet gelir") { EmptyView() }
+            }
+            ForEach(Array(shown.enumerated()), id: \.offset) { index, item in
+                if index > 0 { MPRowDivider(area: .parent) }
+                MPListRow(systemImage: item.0.icon, tone: item.0.tone, title: item.0.title,
+                          subtitle: ProfileHubView.badgeSubtitle(item.0, date: item.1)) { EmptyView() }
+            }
+            if earned.count > shown.count {
+                MPRowDivider(area: .parent)
+                MPListRow(systemImage: "ellipsis", tone: .gray,
+                          title: "\(earned.count - shown.count) rozet daha",
+                          subtitle: "Hepsi çocuğun Profil sayfasında, Rozetlerim'de") { EmptyView() }
+            }
+        }
+    }
+
+    static func badgeSubtitle(_ badge: MPBadge, date: Date) -> String {
+        let day = date.formatted(.dateTime.day().month(.wide).locale(Locale(identifier: "tr_TR")))
+        return "\(badge.family.title) · \(day)"
     }
 
     private var deleteButtonTitle: String {

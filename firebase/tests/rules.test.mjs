@@ -142,6 +142,20 @@ test('rozet defteri yalnızca sahibine açık ve güncellenebilir (FAZ 17)', asy
   await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'badges', 'c1')));
 });
 
+test('rozet planı defteri (69 rozet, Yıldız katı) aynı kayıtta büyür (15 Kasım 2026)', async () => {
+  const badges = doc(db(ALICE), 'families', ALICE, 'badges', 'c2');
+  const ledger = {
+    finished: Array.from({ length: 200 }, (_, i) => `story-${i}`),
+    earned: { firstStory: 1, twoHundredStories: 2, readingDays100: 3 },
+    readingDays: Array.from({ length: 365 }, (_, i) => `2027-01-${String(i).padStart(3, '0')}`),
+    words: Array.from({ length: 500 }, (_, i) => `w${i}`),
+    starLevels: { starLevel1: 1, starLevel12: 2 },
+    seen: ['firstStory'], morningRuleSince: 1, catalogVersion: 2,
+  };
+  await assertSucceeds(setDoc(badges, record(JSON.stringify(ledger))));
+  await assertFails(getDoc(doc(db(BOB), 'families', ALICE, 'badges', 'c2')));
+});
+
 // --- Ebeveyn onayı ----------------------------------------------------------
 
 const consent = (version, extra = {}) => ({

@@ -1,6 +1,6 @@
 # Rozet planı: 8 rozetten 69 rozete, yıldız puanı ve Yıldız katı
 
-**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1-R4 kodu yazıldı, sıradaki R5
+**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1-R5 kodu yazıldı, sıradaki R6 (tek derleme, bütün testler, simülatör)
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
 **Bağlı kurallar:** `CLAUDE.md` ilke 7 (sakin kilometre taşları, karar 3 ve 13 Ekim), `docs/VIZYON_PLANI.md` (yıldız, çıkartma, masal sonu düzeni).
 
@@ -266,7 +266,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 | **R2** ✅ | (15 Kasım 2026; derlenmedi, test çalıştırılmadı) Kazanma: sabah yıldızı okunan güne bağlanır (`MPStars`: `readingDays` + göç öncesi sabahlar); okuyucu masal sonu çağrısına kelime, klasik, Original, arkadaş, yer, aile, ses, sürpriz, seri bölümü, gün bilgisi; kelime kartı açılınca tek bayrak | builder | Testler: her ölçü doğru masaldan dolar |
 | **R3** ✅ | (15 Kasım 2026; derlenmedi, simülatörde görülmedi) Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
 | **R4** ✅ | (15 Kasım 2026; derlenmedi, simülatörde görülmedi) Anlar: tam ekran rozet ve kat anı (gündüz) ve gece satırı, "+1 yıldız · toplam", Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
-| **R5** | Ebeveyn: çocuk profil sayfasında rozet listesi, puan ve kat; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
+| **R5** ✅ | (15 Kasım 2026; derlenmedi, kural testi çalıştırılmadı) Ebeveyn: çocuk profil sayfasında rozet listesi, puan ve kat; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
 | **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
 | **Sonra** | Arma çizimleri (69 + 11 kat halkası, Masal yolu'nda 4 Ragi hâli) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
 

@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · Rozet planı R5: ebeveyn tarafında puan, kat ve rozetler
+
+- Ne değişti (Batuhan, 15 Kasım: "R5'e geç"):
+  - Çocuk profil sayfası (`ProfileHubView`), "Yıldız ve çıkartmalar": "Yıldız puanı: N" (harcanan ve kumbaradaki altında), yeni "Yıldız katı" satırı ("12 kattan 5. kat" ya da "İlk kat 10 yıldızda açılır"); bölüm notuna "Harcamak puanı düşürmez." eklendi.
+  - Yeni "Rozetler" bölümü: "69 rozetten N tanesi kazanıldı", en yeni 10 rozet aile adı ve tarihle (`MPListRow`, Ragi'siz), fazlası tek satırda "N rozet daha · Hepsi çocuğun Profil sayfasında". Hiç yoksa "Henüz rozet yok". Salt okunur.
+  - Eşitleme: kod değişmedi. Kurallar defteri tek JSON metni olarak saklıyor (900 KB sınırı), yeni alanlar onun içinde; birleşme R1'de yazıldı. `firebase/tests/rules.test.mjs`'e büyük, yeni biçimde bir defterin yazılıp başkasına kapalı kaldığını sınayan test eklendi.
+- Bilerek değişmedi: Firestore kuralları. Kardeşlerin puan ve katı yan yana gösterilmiyor (her çocuk kendi sayfasında). Bilinen etki: haftalık e-posta özeti (`functions/src/summary.js`) o hafta kazanılan rozetleri sayıyor; güncellemeden sonraki ilk açılışta geriye dönük verilen rozetlerin tarihi o gün olduğu için ilk haftanın e-postası "N yeni rozet" diyebilir.
+- Test: derlenmedi, uygulama testleri ve kural testleri çalıştırılmadı (karar: yalnızca plan sonunda, R6). Tasarım yasası grep'leri boş.
+- Dosyalar: `MagicPaper/Screens/Parent/ProfileHubView.swift`, `firebase/tests/rules.test.mjs`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R4: masal sonunda tam ekran rozet ve kat anı
 
 - Ne değişti (Batuhan, 15 Kasım: "R4'e geç"):
