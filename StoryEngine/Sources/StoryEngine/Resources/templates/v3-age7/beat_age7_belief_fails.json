@@ -69,6 +69,49 @@
       "requiredSlots": [
         "child.name"
       ]
+    },
+    {
+      "id": "a7_bf_08",
+      "text": "{{child.name}} parmaklarıyla saydı: iki şey tutuyordu, üç şey tutmuyordu. Demek ki fikri topallıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_08"
+    },
+    {
+      "id": "a7_bf_09",
+      "text": "{{child.name}} kendi kendine güldü: \"Az önce ne kadar emindim, şimdi bak!\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_09"
+    },
+    {
+      "id": "a7_bf_10",
+      "text": "Bir şey yanlış sıradaydı. Fikir doğruysa bu önce olmalıydı, oysa sonra olmuştu.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_10"
+    },
+    {
+      "id": "a7_bf_11",
+      "text": "{{child.name}} başını yana yatırıp sustu. Gördüğü şey, kafasındaki resme hiç benzemiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_11"
+    },
+    {
+      "id": "a7_bf_12",
+      "text": "\"Demek ki bir yerde yanlış saptım,\" dedi {{child.name}}. Bu düşünce onu daha da meraklandırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_bf_12"
     }
   ]
 }

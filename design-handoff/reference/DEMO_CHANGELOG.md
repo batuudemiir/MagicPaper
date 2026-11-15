@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main, commit bu kayıtla · 7-8 havuzunun ince vuruşları büyüdü (ajan takımı)
+
+- Ne değişti: `templates/v3-age7/` içinde 16 vuruşa 71 yeni satır eklendi (7-8 havuzu 182 → 253). Yedi varyantlı on iki vuruş artık 12'şer. `form_belief` 12'ye çıktı (`tentative` 6, `certain` 6). `first_attempt`'te her uzunluk sınıfı 6, `examine`'de paired 6. `succeed` 14'e çıktı; her tekli `afterBeat` kapısında en az 3 satır var. Yeni `restore` satırları `afterBeat: persist` taşıyor. Ses 7-8'in sesi: çocuk akıl yürütüyor ("demek ki", "oysa", "çünkü"), yanılgısına ilk o gülüyor, kimse onu övmüyor.
+- Nasıl: fable-ajan-takimi (Fable 5.2 lider, Opus 5.5 yazar, Sonnet 5.5 testçi) yedi tur çalıştı, maliyet 4,88 $. İlk koşu Opus'un turunda oturum kapanınca kesildi ve `--devam 2` ile sürdürüldü. Testçinin kontrolü ve liderin incelemesi 23 satırı yeniden yazdırdı: slot ve `words` ihlalleri, başka korpustan taşınan iki cümle, tekrar eden hamleler, sayma tiki. 71 satırın hepsini ana oturum da okudu.
+- Bilerek değişmedi: var olan satırlar ve dosya başlıkları (orijinalle karşılaştırıldı). 5-6, 3-4 ve 9-10 havuzları da değişmedi. `a7_sr_10` 5-6'daki bir satırla "kendine güldü" kalıbını paylaşıyor; birebir değil, bırakıldı.
+- Test: doğrulayıcının 23 kapısı geçti. Motor testleri 896 test, 2 atlandı. Tek kırık, bilerek değişen varyant sayısıydı (`CatalogLoadingTests` 1451 → 1522); güncellendi, `CatalogBundleTests` 10/10 geçti. Parmak izleri ve `ProseCooldownTests` değişmeden geçti: sabit masal 5-6. Tam motor koşusu sabit güncellendikten sonra yeniden çalıştırılmadı. Uygulama testleri çalıştırılmadı, çünkü ağaçta başka bir oturumun commit edilmemiş uygulama değişiklikleri vardı. Masallar simülatörde okunmadı.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/` (16 dosya), `StoryEngine/Tests/StoryEngineTests/CatalogLoadingTests.swift`, bu günlük.
+
 ### 2026-11-15 · main, commit bu kayıtla · Vizyon ve mimari denetimi, Masal evreni planı (E1-E8)
 
 - Ne değişti (Batuhan, 15 Kasım: "Product Vision, Architecture & Strategic Project Audit", sonra "planı oluştur, kodlamaya başla"):

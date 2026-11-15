@@ -90,6 +90,46 @@
       "lengthClass": "paired",
       "move": "age7_a7_fb_08",
       "register": "certain"
+    },
+    {
+      "id": "a7_fb_09",
+      "text": "{{child.name}} kendine sordu: \"Ya biri bunu bilerek bıraktıysa? Ya da hiç bilmeden?\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_09",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_10",
+      "text": "{{child.name}} bir fikri aklının kenarına koydu. Belki doğruydu; şimdilik orada bekleyecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_10",
+      "register": "tentative"
+    },
+    {
+      "id": "a7_fb_11",
+      "text": "{{child.name}} parmağını şıklattı: \"Tamam, bu bir yol işareti. Başka ne olabilir ki?\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_11",
+      "register": "certain"
+    },
+    {
+      "id": "a7_fb_12",
+      "text": "\"Bunun cevabı belli,\" dedi {{child.name}}, kollarını kavuşturarak. \"Biri bunu saklamak istemiş.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "age7_a7_fb_12",
+      "register": "certain"
     }
   ]
 }

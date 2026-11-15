@@ -163,6 +163,43 @@
       "afterBeat": [
         "reveal_truth"
       ]
+    },
+    {
+      "id": "a7_sc_12",
+      "text": "{{child.name}} çıkarımını denedi ve tuttu. Tuttu, çünkü iki küçük bilgiyi doğru sırayla bağlamıştı. {{companion.name}} sevinçle zıpladı. {{child.name}} ise kendi kendine fısıldadı: \"Demek ki düşünmek de bir yol.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_12",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "a7_sc_13",
+      "text": "Dönüş yolunun yarısında {{child.name}} durdu, eğildi ve buldu. Bulmuştu, çünkü ileri koşmak yerine geri yürümeyi seçmişti. Kendine güldü: aradığı şeyin yanından iki kez geçmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_13",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "a7_sc_14",
+      "text": "Yanlış fikri bıraktığı an {{child.name}} doğru yere baktı. Doğru yere bakınca gerisi kolaydı. Bu, eski fikrine inatla tutunmadığı için olmuştu. {{child.name}} içinden \"İyi ki yanılmışım\" dedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "age7_a7_sc_14",
+      "afterBeat": [
+        "reveal_truth"
+      ]
     }
   ]
 }
