@@ -133,7 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-16 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E4: tek kahraman kimliği
+### 2026-11-16 · main@8ff0fd8 + bu kayıt · E4 main'e girdi, derlendi, origin'e gitti, telefona kuruldu
+
+- Ne değişti (Batuhan, 16 Kasım: "devam et"): E4 dalı main'e ileri sarıldı (`8ff0fd8`, çakışma yok). Debug, iPhone 16 (fiziksel cihaz): `BUILD SUCCEEDED`, hata yok; E4 dosyalarında yalnızca eski desenden gelen `.shared` Swift 6 uyarıları. Uygulama telefona kuruldu (`com.batu.magicpaper.v1`).
+- Bilerek değişmedi: Firestore kuralları deploy edilmedi (Batuhan'da); o güne kadar kahraman ve cüzdan cihazda bekler, öbür veriler eşitlenir. Derleme, main'de başka bir oturumun commit edilmemiş rozet ve okuyucu değişikliklerini de içeriyordu; onlar bu commit'e girmedi.
+- Test: birim testler ve kural testleri çalıştırılmadı (karar: plan sonunda bir kez). Telefonda açılıp denenmedi.
+- Dosyalar: bu günlük.
+
+### 2026-11-16 · main@8ff0fd8 (dal worktree-agent-a4d762b8b86a0f234) · E4: tek kahraman kimliği
 
 - Ne değişti (`docs/EVREN_PLANI.md` E4):
   - Çocuğun görünüşünün tek kaynağı `HeroLook`. Görselli kitabın `AvatarSpec`'i ondan türetiliyor: `StoryEngineBridge/HeroIdentity.swift` (`HeroBookCharacter`, eşleme tablosu tek yerde, testli). Kitte karşılığı olmayan değer grubun varsayılanına düşüyor (`AvatarKit.resolved`).
