@@ -58,6 +58,12 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// while another is clean (`TitleComposer`). Not part of the seed or the
     /// fingerprint; empty is every story before it, and changes nothing.
     public let recentTitles: Set<String>
+    /// What the child met before, as ids and counts (E3). Nil means no recall
+    /// may be written for this story: there is no history, or the app keeps
+    /// recall rare (a recall in one of the two newest stories). Read only
+    /// after the content is bound; not part of the seed. Nil is every story
+    /// before E3, and its book does not change.
+    public let recall: RecallHistory?
 
     public init(
         childName: String,
@@ -74,7 +80,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         recent: [RecentContent] = [],
         usage: UsageProfile = .neutral,
         safety: ContentSafety? = nil,
-        recentTitles: Set<String> = []
+        recentTitles: Set<String> = [],
+        recall: RecallHistory? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -91,6 +98,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.usage = usage
         self.safety = safety
         self.recentTitles = recentTitles
+        self.recall = recall
     }
 }
 
@@ -116,7 +124,8 @@ extension OfflineStoryIntent {
             recent: recent,
             usage: usage,
             safety: safety,
-            recentTitles: recentTitles
+            recentTitles: recentTitles,
+            recall: recall
         )
     }
 }

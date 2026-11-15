@@ -27,8 +27,12 @@ struct StoryContext: Equatable {
     var usage: [StoryUsage]
     /// This child's newest titles, at most `StoryGenerationManager.titleMemory`.
     var recentTitles: Set<String>
-    /// This child's stories, in library order. What `StoryMemory` looks at.
+    /// This child's stories, in library order.
     var childStories: [Story]
+    /// What the engine may recall (E3): companions and places from this
+    /// child's finished standalone stories, as ids and counts. Nil when there
+    /// is nothing to recall or one of the two newest stories already recalled.
+    var recall: RecallHistory? = nil
 }
 
 /// A context never prints what it holds: `"\(context)"` in a log line would
@@ -39,7 +43,8 @@ extension StoryContext: CustomStringConvertible, CustomDebugStringConvertible, C
         "StoryContext(mode: \(mode?.rawValue ?? "-"), idea: \(storyIdeaID ?? "-"), "
             + "companion: \(companionID ?? "-"), family: \(family == nil ? 0 : 1), "
             + "interests: \(interests.count), recent: \(recent.count), usage: \(usage.count), "
-            + "titles: \(recentTitles.count), stories: \(childStories.count))"
+            + "titles: \(recentTitles.count), stories: \(childStories.count), "
+            + "recall: \(recall == nil ? 0 : 1))"
     }
     var debugDescription: String { description }
     var customMirror: Mirror {
@@ -90,8 +95,41 @@ struct StoryContextBuilder {
             recent: Self.recentOrigins(of: library, for: profile),
             usage: usageStore.usage(of: own, for: profile.id),
             recentTitles: Self.recentTitles(of: library, for: profile),
-            childStories: own
+            childStories: own,
+            recall: Self.recallHistory(of: own)
         )
+    }
+
+    /// How many of the child's newest stories are looked at for an earlier
+    /// recall. One in either keeps this story without one: at most one recall
+    /// in three stories, so the memory stays a surprise and not a formula.
+    static let recallSpacing = 2
+
+    /// What the engine may recall from this child's stories (E3), or nil.
+    ///
+    /// Counted from finished standalone stories only, as `StoryMemory` did
+    /// (Faz 10): an unfinished story was not lived through, a series episode
+    /// carries its own continuity, and a story without an origin says nothing.
+    /// "First met" is the earliest by when it was read.
+    static func recallHistory(of childStories: [Story]) -> RecallHistory? {
+        let newest = childStories.sorted { $0.createdAt > $1.createdAt }.prefix(recallSpacing)
+        guard !newest.contains(where: { $0.origin?.recalled == true }) else { return nil }
+
+        let earlier = childStories
+            .filter { $0.isFinished && $0.origin != nil && $0.origin?.seriesEpisode == nil }
+            .sorted { ($0.lastReadAt ?? $0.createdAt) < ($1.lastReadAt ?? $1.createdAt) }
+        var companions: [ContentID: RecallHistory.Companion] = [:]
+        var visited: Set<ContentID> = []
+        for origin in earlier.compactMap(\.origin) {
+            let companion = ContentID(origin.companionID)
+            let setting = ContentID(origin.settingID)
+            let count = (companions[companion]?.storyCount ?? 0) + 1
+            let first = companions[companion]?.firstSettingID ?? setting
+            companions[companion] = .init(storyCount: count, firstSettingID: first)
+            visited.insert(setting)
+        }
+        let history = RecallHistory(companions: companions, visitedSettings: visited)
+        return history.isEmpty ? nil : history
     }
 
     /// The child's stories, in library order: by profile id, and by name for

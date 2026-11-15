@@ -47,8 +47,10 @@ final class ContentPackageTests: XCTestCase {
     // MARK: - The same road
 
     func testThePackageCarriesEveryBundledDocument() {
-        XCTAssertEqual(sources.libraries.map(\.name), ["shared_content_library_v2.json", "pilot_library_v1.json"])
-        XCTAssertEqual(sources.beats.count, bundled.report.mergedSources.count - 2)
+        // E3: the recall lines travel as a third library document.
+        XCTAssertEqual(sources.libraries.map(\.name),
+                       ["shared_content_library_v2.json", "pilot_library_v1.json", "recall_lines_v1.json"])
+        XCTAssertEqual(sources.beats.count, bundled.report.mergedSources.count - 3)
     }
 
     func testAPackageOfTheBundledSourcesBuildsTheSameCatalog() throws {

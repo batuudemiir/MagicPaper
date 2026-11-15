@@ -1,8 +1,12 @@
 import XCTest
+import StoryEngine
 @testable import MagicPaper
 
-/// Faz 10: masal dünyası hatırlar. Cümle deterministik, seri bölümleri ve
-/// bitmemiş masallar hatırlanmaz; harita gidilmemiş yerleri saymaz.
+/// Faz 10: masal dünyası hatırlar. E3'ten beri cümleyi motor yazıyor; burada
+/// uygulamanın payı kalıyor: geçmişi kimlik ve sayı olarak kuran
+/// `StoryContextBuilder.recallHistory` ve harita. Seri bölümleri, bitmemiş ve
+/// kökensiz masallar hatırlanmaz; son iki masaldan birinde hatırlama varsa
+/// bu masalda yok.
 final class StoryMemoryTests: XCTestCase {
 
     private let garden = StoryMemory.Place(name: "Gece Bahçesi", isProperNoun: true,
@@ -11,59 +15,76 @@ final class StoryMemoryTests: XCTestCase {
                                            hasPossessiveEnding: false, blocksSoftening: false)
 
     private func finished(setting: String, companion: String, episode: Int? = nil,
-                          readAt: Date = Date()) -> Story {
+                          readAt: Date = Date(), createdDaysAgo: Double = 10,
+                          recalled: Bool? = nil) -> MagicPaper.Story {
         var story = ReaderFixtures.textStory(pages: 3)
         story.lastReadPage = 2
         story.lastReadAt = readAt
+        story.createdAt = Date(timeIntervalSinceNow: -createdDaysAgo * 86_400)
         story.origin = StoryOrigin(seed: "s", storyIdeaID: nil, blueprintID: "b", settingID: setting,
                                    companionID: companion, discoveryID: "d", fingerprint: "f",
                                    catalogVersion: "1", seriesEpisode: episode)
+        story.origin?.recalled = recalled
         return story
     }
 
-    private func line(setting: String, place: StoryMemory.Place, companion: String,
-                      previous: [Story]) -> String? {
-        StoryMemory.recallLine(childName: "Yeliz", settingID: setting, place: place,
-                               companionID: companion, companionName: "Tarçın", previous: previous,
-                               placeNamed: { [garden, forest] in $0 == "garden" ? garden : $0 == "forest" ? forest : nil })
+    @MainActor
+    private func history(_ stories: [MagicPaper.Story]) -> RecallHistory? {
+        StoryContextBuilder.recallHistory(of: stories)
     }
 
+    @MainActor
     func testNothingToRememberOnFirstStory() {
-        XCTAssertNil(line(setting: "garden", place: garden, companion: "fox", previous: []))
+        XCTAssertNil(history([]))
     }
 
-    func testOldFriendNamesWhereTheyMet() {
-        let previous = [finished(setting: "garden", companion: "fox")]
-        let text = line(setting: "forest", place: forest, companion: "fox", previous: previous)
-        XCTAssertEqual(text, "Tarçın ile Yeliz eski dostlardı. İlk kez Gece Bahçesi'nde tanışmışlardı.")
+    /// Kademe yol arkadaşıyla biten masal sayısından: 1 tanıştı, 2-3 dost,
+    /// 4 ve üstü eski dost. Kademeyi motor seçer; burada sayı doğru gitmeli.
+    @MainActor
+    func testTheCompanionIsCountedForTheTier() throws {
+        let one = try XCTUnwrap(history([finished(setting: "garden", companion: "fox")]))
+        XCTAssertEqual(one.companions[ContentID("fox")]?.storyCount, 1)
+        XCTAssertEqual(RecallTier.forCompanion(storyCount: 1), .metOnce)
+
+        let three = try XCTUnwrap(history((0..<3).map { _ in finished(setting: "garden", companion: "fox") }))
+        XCTAssertEqual(three.companions[ContentID("fox")]?.storyCount, 3)
+        XCTAssertEqual(RecallTier.forCompanion(storyCount: 3), .friends)
+
+        let five = try XCTUnwrap(history((0..<5).map { _ in finished(setting: "garden", companion: "fox") }))
+        XCTAssertEqual(RecallTier.forCompanion(storyCount: five.companions[ContentID("fox")]!.storyCount), .oldFriends)
     }
 
-    func testFirstMeetingWinsOverLaterOnes() {
+    @MainActor
+    func testFirstMeetingWinsOverLaterOnes() throws {
         let previous = [finished(setting: "forest", companion: "fox", readAt: Date()),
                         finished(setting: "garden", companion: "fox", readAt: Date(timeIntervalSinceNow: -86_400))]
-        let text = line(setting: "other", place: forest, companion: "fox", previous: previous)
-        XCTAssertTrue(text?.contains("Gece Bahçesi'nde") == true, text ?? "nil")
+        let recall = try XCTUnwrap(history(previous))
+        XCTAssertEqual(recall.companions[ContentID("fox")]?.firstSettingID, ContentID("garden"))
+        XCTAssertEqual(recall.visitedSettings, [ContentID("garden"), ContentID("forest")])
     }
 
-    func testReturningToAPlace() {
-        let previous = [finished(setting: "garden", companion: "owl")]
-        let text = line(setting: "garden", place: garden, companion: "fox", previous: previous)
-        XCTAssertEqual(text, "Yeliz Gece Bahçesi'ne daha önce de gelmişti. Burayı hemen hatırladı.")
-    }
-
-    func testSeriesEpisodesAndUnfinishedStoriesAreNotMemories() {
+    @MainActor
+    func testSeriesEpisodesUnfinishedAndOriginlessStoriesAreNotMemories() {
         var unfinished = finished(setting: "garden", companion: "fox")
         unfinished.lastReadPage = 0
         let episode = finished(setting: "garden", companion: "fox", episode: 2)
-        XCTAssertNil(line(setting: "garden", place: garden, companion: "fox", previous: [unfinished, episode]))
+        var originless = finished(setting: "garden", companion: "fox")
+        originless.origin = nil
+        XCTAssertNil(history([unfinished, episode, originless]))
     }
 
-    func testRememberAppendsToFirstPageAndMarksOrigin() {
-        let story = finished(setting: "garden", companion: "fox")
-        let remembered = StoryMemory.remember("Bir anı.", in: story)
-        XCTAssertTrue(remembered.pages[0].text.hasSuffix("\n\nBir anı."))
-        XCTAssertEqual(remembered.origin?.recalled, true)
-        XCTAssertEqual(StoryMemory.remember(nil, in: story), story)
+    /// En çok üç masalda bir: en yeni iki masaldan biri hatırladıysa bu yok.
+    @MainActor
+    func testARecallInOneOfTheTwoNewestStoriesKeepsThisOneWithout() {
+        let older = finished(setting: "garden", companion: "fox", createdDaysAgo: 5)
+        let recalledSecond = finished(setting: "forest", companion: "owl", createdDaysAgo: 2, recalled: true)
+        let newest = finished(setting: "forest", companion: "owl", createdDaysAgo: 1)
+        XCTAssertNil(history([older, recalledSecond, newest]))
+
+        let recalledThird = finished(setting: "forest", companion: "owl", createdDaysAgo: 3, recalled: true)
+        let second = finished(setting: "forest", companion: "owl", createdDaysAgo: 2)
+        XCTAssertNotNil(history([older, recalledThird, second, newest]),
+                        "Üçüncü masaldaki hatırlama bu masalı engellemez.")
     }
 
     func testMapListsVisitedFirstAndKeepsUnvisitedUncounted() {

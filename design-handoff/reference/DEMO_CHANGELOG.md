@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E3: hatırlama motorun içinde
+
+- Ne değişti (`docs/EVREN_PLANI.md` E3):
+  - Hatırlama cümlesini artık motor yazıyor (`StoryEngine/Offline/RecallLines.swift`): içerik bağlandıktan sonra, yalnızca bağımsız masalda, ilk sayfanın sonuna ayrı paragraf. Kademeli: yol arkadaşı 1 masal `metOnce`, 2-3 `friends`, 4+ `oldFriends`; yol arkadaşı yeni ama yer tanıdıksa `placeAgain`. Aynı yerde tanıştılarsa "burada", değilse ilk yerin adı.
+  - Uygulama motora ipucu değil geçmiş veriyor: `RecallHistory` (yol arkadaşı kimliği → masal sayısı ve ilk yer; gidilen yerler), yalnızca kimlik ve sayı. Kademeyi motor bağlamadan sonra seçiyor, böylece sürpriz masalda da çalışıyor. Seyreklik uygulamada: çocuğun en yeni iki masalından birinde hatırlama varsa geçmiş hiç gitmiyor (en çok üç masalda bir).
+  - Satırlar katalogda: yeni `Resources/blueprints/recall_lines_v1.json` (`ContentCatalog.recallLines`, üçüncü kütüphane belgesi, paketle de taşınıyor). 38 satır: her kademede 6 bantsız (`placeAgain` 4) ve 3-4 bandına 4'er kısa satır. **Bütün satırlar taslak, Batuhan okuyacak.** Faz 10'un üç cümlesi başlangıç; "hemen" çıkarıldı.
+  - Satır slotları doldurulup `isClean`'den geçiyor, dolmazsa hatırlama düşüyor, masal düşmüyor. Seçim seed'le deterministik; son masallarda geçen satır başka biri varken seçilmiyor. Satırın kimliği ilk sayfanın `variantIDs`'ine giriyor: soğuyor ve parmak izine yalnızca satır varken giriyor. Geçmiş yoksa masal, seed ve parmak izi bit bit aynı.
+  - `CatalogIntegrityChecker.checkRecallLines`: tanınmayan slot, yer slotu ile `firstMet` uyumu, yinelenen kimlik, her bantta her kademe.
+  - Uygulama: `createStory`'deki `StoryMemory.recallLine` + `remember` kalktı; `origin.recalled` `OfflineStoryMapper`'da motorun sonucundan yazılıyor. `StoryMemory`'de yalnızca haritanın `Place`'i kaldı.
+- Bilerek değişmedi: `Story` modeli, seri yolu (bölümde hatırlama yok), ekranlar, `templates/v3-age7/*`, `pilot_library_v1.json`. Bu belgeyi taşımayan eski bir uzak paket etkinse hatırlama yazılmaz.
+- Belgeler: `docs/MagicPaper_Content_Library.md` §15 (şema).
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse` (motor kaynakları dahil) ve JSON geçerlilik denetimi. Yeni motor testi `RecallLineTests` (15); `ContentPackageTests` üç kütüphane belgesine güncellendi; `StoryMemoryTests` geçmiş kuralına taşındı.
+- Dosyalar: motor `Offline/RecallLines.swift` (yeni), `Offline/OfflineStoryComposer.swift`, `Offline/OfflineSelection.swift`, `Content/ContentCatalog.swift`, `Content/ContentCatalogLoader.swift`, `Content/CatalogIntegrity.swift`, `Resources/blueprints/recall_lines_v1.json` (yeni), `Tests/.../RecallLineTests.swift` (yeni), `Tests/.../ContentPackageTests.swift`; uygulama `StoryContextBuilder.swift`, `OfflineStoryService.swift`, `OfflineStoryMapper.swift`, `StoryMemory.swift`, `StoryGenerationManager.swift`, `MagicPaperTests/StoryMemoryTests.swift`; `docs/MagicPaper_Content_Library.md`, bu günlük.
+
 ### 2026-11-15 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E2: StoryContextBuilder
 
 - Ne değişti (`docs/EVREN_PLANI.md` E2, saf çıkarma):

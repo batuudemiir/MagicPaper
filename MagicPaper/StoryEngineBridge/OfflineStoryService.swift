@@ -335,7 +335,8 @@ final class OfflineStoryService {
         interests: [String] = [],
         recent: [StoryOrigin] = [],
         usage: [StoryUsage] = [],
-        recentTitles: Set<String> = []
+        recentTitles: Set<String> = [],
+        recall: RecallHistory? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         let familyCast = try family.map { character -> FamilyCast in
@@ -383,7 +384,8 @@ final class OfflineStoryService {
                 recent: Array(history),
                 usage: learned,
                 safety: currentSafety,
-                recentTitles: recentTitles
+                recentTitles: recentTitles,
+                recall: recall
             )
             let composed: ComposedStory
             do {
@@ -422,7 +424,8 @@ final class OfflineStoryService {
             interests: context.interests,
             recent: context.recent,
             usage: context.usage,
-            recentTitles: context.recentTitles
+            recentTitles: context.recentTitles,
+            recall: context.recall
         )
     }
 

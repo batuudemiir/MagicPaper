@@ -114,7 +114,11 @@ public struct ContentCatalogLoader: Sendable {
     ///
     /// Optional rather than required: a host that ships only the V1 document
     /// keeps working, and says so in the report rather than failing to launch.
-    public static let additionalResourceNames = ["pilot_library_v1"]
+    ///
+    /// `recall_lines_v1` (E3): the recall lines, in their own document so the
+    /// pilot library is not touched. Absent, there is no recall and every
+    /// story is the one it was.
+    public static let additionalResourceNames = ["pilot_library_v1", "recall_lines_v1"]
 
     public static let resourceExtension = "json"
 
@@ -212,7 +216,8 @@ public struct ContentCatalogLoader: Sendable {
                     safetyTopics: catalog.safetyTopics,
                     glossary: catalog.glossary,
                     facts: catalog.facts,
-                    series: catalog.series
+                    series: catalog.series,
+                    recallLines: catalog.recallLines
                 )
             ])
         }
