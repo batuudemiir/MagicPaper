@@ -185,18 +185,68 @@ final class LibraryCutoverTests: XCTestCase {
         XCTAssertEqual(try makeStore().readStory(id: live.id)?.lastReadPage, 5, "Donmuş yedek canlı dosyanın üstüne yazıldı.")
     }
 
-    func testAnUnreadableMarkerNeverFallsBackToPending() throws {
-        try seedLegacy(stories: [story("Deniz Feneri")])
+    /// Unreadable marker, story files on disk: disk is read, the legacy blob
+    /// is frozen and, with no cutover date, never retired.
+    func testAnUnreadableMarkerWithStoryFilesOnDiskReadsFromDisk() throws {
+        let legacyOnly = story("Yalnızca eski yığında")
+        let onDisk = story("Diskteki")
+        try seedLegacy(stories: [legacyOnly])
+        try makeStore().writeStory(onDisk)
         defaults.set(Data("çöp".utf8), forKey: LibraryMigration.State.key)
+        let blob = legacyBlob
 
         let migration = try launch()
         XCTAssertEqual(migration.state.phase, .diskAuthoritative)
         XCTAssertNil(migration.state.cutoverAt)
 
+        let shelf = LibraryShelf(defaults: defaults, migration: migration)
+        XCTAssertEqual(shelf.mode, .disk)
+        var stories = shelf.load()
+        XCTAssertEqual(stories.map(\.id), [onDisk.id])
+        stories[0].lastReadPage = 2
+        shelf.save(stories)
+        XCTAssertEqual(legacyBlob, blob, "Kesişim işareti okunamazken eski yığına yazıldı.")
+
         // Without a cutover date nothing is ever retired.
         clock = clock.addingTimeInterval(LibraryMigration.graceInterval * 10)
         _ = try launch()
-        XCTAssertNotNil(legacyBlob)
+        XCTAssertEqual(legacyBlob, blob)
+    }
+
+    /// Unreadable marker, no story file on disk, legacy blob present: the
+    /// blob is the only copy, so the legacy path is taken and the migration
+    /// starts again. The shelf is the child's, not the sample stories.
+    func testAnUnreadableMarkerWithAnEmptyDiskReturnsToTheLegacyPath() throws {
+        let stories = [story("Bir"), story("İki")]
+        try seedLegacy(stories: stories)
+        defaults.set(Data("çöp".utf8), forKey: LibraryMigration.State.key)
+        let blob = legacyBlob
+
+        let fresh = LibraryMigration(defaults: defaults, store: try makeStore(), now: { [unowned self] in self.clock })
+        XCTAssertEqual(fresh.state.phase, .pending)
+
+        let migration = try launch()
+        XCTAssertEqual(migration.state.phase, .verified)
+        let shelf = LibraryShelf(defaults: defaults, migration: migration)
+        XCTAssertEqual(shelf.mode, .legacy)
+
+        let manager = StoryGenerationManager(library: shelf, notifications: NotificationCenter())
+        XCTAssertEqual(manager.stories.map(\.id), stories.map(\.id), "Raf örnek masallarla doldu.")
+        XCTAssertEqual(legacyBlob, blob)
+    }
+
+    /// Unreadable marker and no store this launch: read-only, frozen copy.
+    func testAnUnreadableMarkerWithoutAStoreShowsTheFrozenCopy() throws {
+        let stories = [story("Bir")]
+        try seedLegacy(stories: stories)
+        defaults.set(Data("çöp".utf8), forKey: LibraryMigration.State.key)
+        let blob = legacyBlob
+
+        let shelf = LibraryShelf(defaults: defaults, migration: nil)
+        XCTAssertEqual(shelf.mode, .readOnly)
+        XCTAssertEqual(shelf.load().map(\.id), stories.map(\.id))
+        shelf.save([])
+        XCTAssertEqual(legacyBlob, blob)
     }
 
     // MARK: - Reading after cutover

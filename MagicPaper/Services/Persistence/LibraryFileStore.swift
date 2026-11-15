@@ -286,6 +286,16 @@ final class LibraryFileStore {
             .compactMap(Self.storyID(of:)))
     }
 
+    /// Whether the shelf's folder holds any story file at all, readable or
+    /// not, named after a story or not.
+    func containsAnyStoryFile() -> Bool {
+        let urls = (try? fileManager.contentsOfDirectory(
+            at: directory(.stories),
+            includingPropertiesForKeys: nil
+        )) ?? []
+        return urls.contains { $0.pathExtension == "json" }
+    }
+
     func deleteStory(id: UUID) {
         try? fileManager.removeItem(at: storyURL(id))
         writtenDigests[id] = nil

@@ -133,10 +133,13 @@ Sıra: `pending → verified → diskAuthoritative → legacyRetired`, her geçi
 açılışta. `State.cutoverAt` kesişim anıdır; emeklilik oradan sayılır.
 
 İşaretin çözümü (E1) hoşgörülü: eksik alan varsayılanını alır (E1 öncesi kayıtta
-`cutoverAt` yok), bu sürümün tanımadığı bir evre `diskAuthoritative` okunur, hiç
-çözülemeyen bir işaret de `diskAuthoritative` (ama `cutoverAt` yok, yani emeklilik hiç
-olmaz) okunur. Hiçbiri `pending`'e düşmez: kesişimden sonra `pending` donmuş yığını
-canlı dosyaların üstüne kopyalayan tek evredir.
+`cutoverAt` yok), bu sürümün tanımadığı bir evre `diskAuthoritative` okunur; kesişimden
+sonra `pending` donmuş yığını canlı dosyaların üstüne kopyalayan tek evredir. Hiç
+çözülemeyen bir işarete kanıta bakılarak karar verilir (`storedState(in:store:)`):
+diskte en az bir masal dosyası varsa ya da eski `stories` anahtarı yoksa
+`diskAuthoritative` (`cutoverAt` yok, emeklilik hiç olmaz); diskte masal dosyası yok ve
+eski yığın duruyorsa `pending` (kaybedecek dosya yok, göç baştan koşar, raf eski
+yığından okunur); depo hiç kurulamadıysa salt okunur raf (donmuş yedek, kayıt yok).
 
 `run()` her açılışta çağrılabilir, idempotent. Hiçbir hata `run()`'dan dışarı çıkmıyor:
 başarısız bir göç eski depoyu bulduğu gibi bırakıyor, nedeni kaydediyor ve uygulama eski

@@ -139,23 +139,49 @@ final class LibraryMigration {
         self.store = store
         self.now = now
         self.cutoverEnabled = cutoverEnabled
-        self.state = Self.storedState(in: defaults)
+        self.state = Self.storedState(in: defaults, store: store)
     }
 
-    /// The marker as the last launch left it.
+    /// The marker as the last launch left it, when the store cannot be seen.
     ///
     /// No marker is a library nothing has touched yet: `.pending`. A marker
     /// that is there but is not a record at all reads as `.diskAuthoritative`
-    /// with no `cutoverAt`: shelf from disk, legacy keys frozen and never
-    /// retired. Not `.pending`, which after cutover would copy the stale
-    /// legacy blob over the live files. Before cutover disk is a verified
-    /// shadow kept in step, so reading it loses nothing either.
+    /// with no `cutoverAt`. Without a store that means the read-only shelf:
+    /// the frozen legacy copy is shown and nothing is saved, which is safe
+    /// whichever phase the lost marker held.
     static func storedState(in defaults: UserDefaults) -> State {
         guard let data = defaults.data(forKey: State.key) else { return State() }
         if let state = try? JSONDecoder().decode(State.self, from: data) { return state }
         var state = State()
         state.phase = .diskAuthoritative
         state.lastFailure = "Göç işareti okunamadı; eski kopya donduruldu."
+        return state
+    }
+
+    /// The marker, with the store in view to settle an unreadable one.
+    ///
+    /// An unreadable marker is decided by evidence, never by default:
+    /// * at least one story file on disk (readable or not), or no legacy
+    ///   blob at all: `.diskAuthoritative` with no `cutoverAt` (disk is live
+    ///   or a shadow kept in step; the legacy keys are frozen, never retired);
+    /// * no story file on disk and a legacy blob present: `.pending`. Nothing
+    ///   on disk can be lost and the legacy blob is the only copy, so the
+    ///   migration simply starts again. Reading disk here would show an empty
+    ///   shelf and seed sample stories over a child's library for good.
+    ///
+    /// A phase this build does not know is not unreadable: it is decoded as
+    /// `.diskAuthoritative` by `State.init(from:)`.
+    static func storedState(in defaults: UserDefaults, store: LibraryFileStore) -> State {
+        guard let data = defaults.data(forKey: State.key),
+              (try? JSONDecoder().decode(State.self, from: data)) == nil else {
+            return storedState(in: defaults)
+        }
+        let legacyPresent = defaults.object(forKey: LegacyKeys.stories) != nil
+        guard legacyPresent, !store.containsAnyStoryFile() else {
+            return storedState(in: defaults)
+        }
+        var state = State()
+        state.lastFailure = "Göç işareti okunamadı; diskte masal yok, göç baştan koşuyor."
         return state
     }
 
