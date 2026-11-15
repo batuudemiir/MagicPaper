@@ -351,20 +351,12 @@ extension StoryGenerationManager {
         defer { isGenerating = false }
 
         let service = OfflineStoryService.shared
-        let composed = try service.compose(
-            childName: profile.name,
-            ideaID: storyIdeaID,
-            companionID: companionID,
-            mode: mode,
-            age: profile.age,
-            seed: seed,
-            subOption: subOption,
-            family: family,
-            interests: profile.interests,
-            recent: recentOrigins(for: profile),
-            usage: StoryUsageStore().usage(of: stories.filter { $0.belongs(to: profile) }, for: profile.id),
-            recentTitles: Self.recentTitles(of: stories, for: profile)
-        )
+        // E2: everything the story is written from, gathered in one place.
+        let context = StoryContextBuilder().build(
+            for: profile, library: stories, mode: mode, strategy: strategy,
+            storyIdeaID: storyIdeaID, companionID: companionID,
+            subOption: subOption, family: family)
+        let composed = try service.compose(context, seed: seed)
 
         let mapped = OfflineStoryMapper.appStory(
             from: composed.story,
@@ -389,7 +381,7 @@ extension StoryGenerationManager {
                                      blocksSoftening: setting.blocksSoftening),
             companionID: composed.story.content.companion.id.rawValue,
             companionName: composed.story.content.companion.name,
-            previous: stories.filter { $0.belongs(to: profile) },
+            previous: context.childStories,
             placeNamed: { service.place(id: $0) })
         let remembered = StoryMemory.remember(line, in: mapped)
         // Görselli kitap (B2): kayıtlı bir kitap karakteri varsa ve bayrak
@@ -413,26 +405,18 @@ extension StoryGenerationManager {
     ///
     /// What "Bana sürpriz yap" looks at so it does not repeat itself. Only
     /// stories that recorded a mode count; older ones say nothing.
+    /// Delegates to `StoryContextBuilder`, the single source.
     func recentModes(for profile: UserProfile, limit: Int = StoryModeResolver.historyWindow) -> [StoryMode] {
-        stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .compactMap { $0.origin?.mode }
-            .prefix(limit)
-            .map { $0 }
+        StoryContextBuilder.recentModes(of: stories, for: profile, limit: limit)
     }
 
     /// The titles of this child's newest stories, for the engine to avoid
     /// writing again (`TitleComposer`). Only titles: nothing else of the
-    /// library reaches the engine for this.
+    /// library reaches the engine for this. Delegates to `StoryContextBuilder`.
     static func recentTitles(
         of stories: [Story], for profile: UserProfile, limit: Int = titleMemory
     ) -> Set<String> {
-        Set(stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .prefix(limit)
-            .map(\.title))
+        StoryContextBuilder.recentTitles(of: stories, for: profile, limit: limit)
     }
 
     /// How many recent titles are avoided. A blueprint has 4-6 title
@@ -443,14 +427,9 @@ extension StoryGenerationManager {
     /// (FAZ 12). The engine cools that content down, so the next story is
     /// less likely to repeat the last ones — for every child, interests or not.
     /// Stories without an origin (written before the offline engine) say
-    /// nothing and are skipped.
+    /// nothing and are skipped. Delegates to `StoryContextBuilder`.
     func recentOrigins(for profile: UserProfile, limit: Int = SelectionScoring.cooldownWindow) -> [StoryOrigin] {
-        stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .compactMap(\.origin)
-            .prefix(limit)
-            .map { $0 }
+        StoryContextBuilder.recentOrigins(of: stories, for: profile, limit: limit)
     }
 
 }

@@ -405,6 +405,27 @@ final class OfflineStoryService {
         throw Failure.defectiveDraft(detail: defects.joined(separator: " | "))
     }
 
+    /// Builds a story from a `StoryContext` (E2). The same book as the
+    /// field-by-field `compose` with the same inputs; that call is what runs.
+    func compose(
+        _ context: StoryContext, seed: String? = nil
+    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
+        try compose(
+            childName: context.childName,
+            ideaID: context.storyIdeaID,
+            companionID: context.companionID,
+            mode: context.mode,
+            age: context.age,
+            seed: seed,
+            subOption: context.subOption,
+            family: context.family,
+            interests: context.interests,
+            recent: context.recent,
+            usage: context.usage,
+            recentTitles: context.recentTitles
+        )
+    }
+
     // MARK: - Series (FAZ 13)
 
     /// Whether a story of this mode and band, set in this place, could be

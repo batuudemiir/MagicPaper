@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E2: StoryContextBuilder
+
+- Ne değişti (`docs/EVREN_PLANI.md` E2, saf çıkarma):
+  - Yeni `StoryEngineBridge/StoryContextBuilder.swift`: `StoryContext` (seçimler, ad, profil kimliği, yaş, ilgiler, son kökenler, okuma sonuçları, son başlıklar, çocuğun masalları) ve onu seçimler + profil + bütün kitaplıktan kuran `StoryContextBuilder`. Kullanım deposu başlatıcıdan gelir; pencereler yerinden okunur (`SelectionScoring.cooldownWindow`, `StoryGenerationManager.titleMemory`, `StoryModeResolver.historyWindow`). `StoryContext` loglanınca yalnızca sayı ve katalog kimliği yazar (ad, ilgi, metin yok).
+  - `OfflineStoryService.compose(_ context:seed:)` eklendi; içeride eski `compose(childName:...)` imzasını çağırıyor, o imza duruyor.
+  - `createStory` bağlamı kurucudan alıyor; hatırlama `context.childStories`'i kullanıyor. Eşleme, `StoryMemory`, görselli kitap, kayıt ve `MPFunnel` sırası aynı.
+  - `recentOrigins(for:)`, `recentTitles(of:for:)`, `recentModes(for:)` imzaları duruyor, mantık kurucuda; üçü de ona devrediyor.
+- Bilerek değişmedi: motor paketi, `Story` modeli, ekranlar, hatırlama cümlesinin mantığı (E3'e kaldı), seri yolu.
+- Belgeler: `docs/ARCHITECTURE.md` katman tablosuna "Bağlam kurucu" satırı.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca değişen dosyalarda `swiftc -frontend -parse`. Yeni `MagicPaperTests/StoryContextBuilderTests.swift` (9 test), eski satır arası hesabı açıkça yeniden yazan altın test ve sabit seed ile iki `compose` girişinin aynı `fingerprint`'i verdiği test dahil.
+- Dosyalar: yeni `StoryEngineBridge/StoryContextBuilder.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `Services/StoryGenerationManager.swift`, yeni `MagicPaperTests/StoryContextBuilderTests.swift`, `docs/ARCHITECTURE.md`, bu günlük.
+
 ### 2026-11-15 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E1: dosya deposu doğruluk kaynağı
 
 - Ne değişti (`docs/EVREN_PLANI.md` E1):
