@@ -54,6 +54,10 @@ public struct ComposedStory: Sendable, Hashable {
     /// Stable over the inputs that determine the text, so two runs can be
     /// compared and a regenerate can be recognised as a no-op.
     public let fingerprint: String
+    /// The recall line added to page 1 (E3), nil when none was. Its id is
+    /// also among page 1's `variantIDs`, so it cools like any line and is
+    /// part of the fingerprint only when it is there.
+    public var recallLineID: ContentID? = nil
 
     /// Whether every page rendered without a missing slot or an unknown suffix.
     public var isClean: Bool {
@@ -315,6 +319,19 @@ public struct OfflineStoryComposer: Sendable {
                 page: last.pageNumber)
         }
 
+        // E3: hatırlama, içerik bağlandıktan sonra ve yalnızca bağımsız
+        // masalda. Seed'e girmiyor; satır kimliği ilk sayfanın `variantIDs`'ine
+        // girdiği için parmak izine yalnızca satır varken giriyor. Nakaratlı
+        // sayfa atlanır: nakarat sayfanın sonunda kalmalı.
+        var recallLineID: ContentID?
+        if episode == nil, let history = intent.recall, let first = pages.first, first.refrain == nil,
+           let recall = RecallComposer.line(
+               history: history, content: content, catalog: catalog, band: blueprint.ageRange,
+               slots: slots, recent: recentVariants, seed: storySeed) {
+            pages[0] = first.appendingRecall(id: recall.id, text: recall.text)
+            recallLineID = recall.id
+        }
+
         let title = titles.compose(
             blueprint: blueprint, slots: slots, seed: storySeed, avoiding: intent.recentTitles)
 
@@ -364,7 +381,8 @@ public struct OfflineStoryComposer: Sendable {
                 + Self.familyKey(intent.family)
                 + Self.episodeKey(episode)
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
-            )
+            ),
+            recallLineID: recallLineID
         )
     }
 

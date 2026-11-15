@@ -510,3 +510,34 @@ Resimli masallar canlı olmadığı için yalnızca **metin hali** onaylandı.
 - `{{companion.name}}` sonrası "da/de" uyumu çözümleyiciye bırakılır; elle yazılmaz (`check_conjunctions`).
 - Resim tarafı (arkadaşın çizilen duygusu) resimli masallar kendi bayrağıyla canlıya çıkana ve görsel güvenlik kapısı
   arkadaşın duygusunu sayfanın tavanına bağlayana kadar **bekliyor**.
+
+## 15. Hatırlama satırları (E3, 15 Kasım 2026)
+
+Yol arkadaşı ya da yer çocuğun daha önceki bir masalından tanıdıksa ilk sayfanın sonuna ayrı paragraf olarak tek bir
+cümle eklenir. Cümleyi motor yazar (`Offline/RecallLines.swift`), içerik bağlandıktan sonra; seri bölümünde yazılmaz.
+Satırlar ayrı bir kütüphane belgesinde: `Resources/blueprints/recall_lines_v1.json` (`ContentCatalog.recallLines`).
+Bu belgeyi taşımayan eski bir paket hatırlama yazmaz; masal aynı kalır.
+
+```json
+{ "recallLines": [
+  { "id": "recall_old_friends_here_01", "tier": "oldFriends", "firstMet": "here", "ageBand": "3-4",
+    "text": "{{companion.name}} ile {{child.name}} eski dostlardı. …",
+    "editorialNote": "taslak, Batuhan okuyacak" } ] }
+```
+
+- `tier`: `metOnce` (yol arkadaşı 1 masalda), `friends` (2-3), `oldFriends` (4 ve üstü), `placeAgain` (yol arkadaşı
+  yeni, yer tanıdık). Yol arkadaşı yere göre önce gelir.
+- `firstMet` (isteğe bağlı, yalnızca yol arkadaşı kademelerinde): `here` aynı yerde tanıştılar, `elsewhere` başka
+  yerde (o zaman `{{recall.place.name}}` zorunlu ve yalnızca orada). Yoksa satır nerede tanıştıklarını söylemez ve iki
+  durumda da kullanılır.
+- `ageBand` (isteğe bağlı): kendi satırı olan bant yalnızca onları kullanır (bugün 3-4, daha kısa ve somut), öbür
+  bantlar bantsız satırları.
+- Slotlar: `child.name`, `companion.name`, `companion.type`, `setting.name`, `recall.place.name`; ekler bilinen
+  sözdizimiyle (`{{setting.name}}'da`). Ekle biten bir satır `isClean` kapısından geçmezse hatırlama düşer, masal düşmez.
+- Seçim seed'le deterministik; çocuğun son masallarında geçen satır (aynı soğuma penceresi) başka biri varken
+  seçilmez. Satırın kimliği ilk sayfanın `variantIDs`'ine girer: soğur ve parmak izine yalnızca satır varken girer.
+- Seyreklik uygulamada: çocuğun en yeni iki masalından birinde hatırlama varsa (`origin.recalled`) bu masalda yok.
+  Sayılan masallar bitmiş, kökenli ve seri bölümü olmayanlar (`StoryContextBuilder.recallHistory`).
+- Doğrulama (`CatalogIntegrityChecker.checkRecallLines`): tanınmayan slot, `recall.place.name` ile `firstMet` uyumu,
+  yinelenen kimlik, her bantta her kademe için (yol arkadaşında hem `here` hem `elsewhere` durumu) en az bir satır.
+- Bütün satırlar taslak; içerik onayı Batuhan'da.

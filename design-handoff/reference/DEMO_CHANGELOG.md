@@ -133,6 +133,48 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-15 · main@d3aca77 (dal worktree-agent-a4d762b8b86a0f234) · E3: hatırlama motorun içinde
+
+- Ne değişti (`docs/EVREN_PLANI.md` E3):
+  - Hatırlama cümlesini artık motor yazıyor (`StoryEngine/Offline/RecallLines.swift`): içerik bağlandıktan sonra, yalnızca bağımsız masalda, ilk sayfanın sonuna ayrı paragraf. Kademeli: yol arkadaşı 1 masal `metOnce`, 2-3 `friends`, 4+ `oldFriends`; yol arkadaşı yeni ama yer tanıdıksa `placeAgain`. Aynı yerde tanıştılarsa "burada", değilse ilk yerin adı.
+  - Uygulama motora ipucu değil geçmiş veriyor: `RecallHistory` (yol arkadaşı kimliği → masal sayısı ve ilk yer; gidilen yerler), yalnızca kimlik ve sayı. Kademeyi motor bağlamadan sonra seçiyor, böylece sürpriz masalda da çalışıyor. Seyreklik uygulamada: çocuğun en yeni iki masalından birinde hatırlama varsa geçmiş hiç gitmiyor (en çok üç masalda bir).
+  - Satırlar katalogda: yeni `Resources/blueprints/recall_lines_v1.json` (`ContentCatalog.recallLines`, üçüncü kütüphane belgesi, paketle de taşınıyor). 38 satır: her kademede 6 bantsız (`placeAgain` 4) ve 3-4 bandına 4'er kısa satır. **Bütün satırlar taslak, Batuhan okuyacak.** Faz 10'un üç cümlesi başlangıç; "hemen" çıkarıldı.
+  - Satır slotları doldurulup `isClean`'den geçiyor, dolmazsa hatırlama düşüyor, masal düşmüyor. Seçim seed'le deterministik; son masallarda geçen satır başka biri varken seçilmiyor. Satırın kimliği ilk sayfanın `variantIDs`'ine giriyor: soğuyor ve parmak izine yalnızca satır varken giriyor. Geçmiş yoksa masal, seed ve parmak izi bit bit aynı.
+  - `CatalogIntegrityChecker.checkRecallLines`: tanınmayan slot, yer slotu ile `firstMet` uyumu, yinelenen kimlik, her bantta her kademe.
+  - Uygulama: `createStory`'deki `StoryMemory.recallLine` + `remember` kalktı; `origin.recalled` `OfflineStoryMapper`'da motorun sonucundan yazılıyor. `StoryMemory`'de yalnızca haritanın `Place`'i kaldı.
+- Bilerek değişmedi: `Story` modeli, seri yolu (bölümde hatırlama yok), ekranlar, `templates/v3-age7/*`, `pilot_library_v1.json`. Bu belgeyi taşımayan eski bir uzak paket etkinse hatırlama yazılmaz.
+- Belgeler: `docs/MagicPaper_Content_Library.md` §15 (şema).
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse` (motor kaynakları dahil) ve JSON geçerlilik denetimi. Yeni motor testi `RecallLineTests` (15); `ContentPackageTests` üç kütüphane belgesine güncellendi; `StoryMemoryTests` geçmiş kuralına taşındı.
+- Dosyalar: motor `Offline/RecallLines.swift` (yeni), `Offline/OfflineStoryComposer.swift`, `Offline/OfflineSelection.swift`, `Content/ContentCatalog.swift`, `Content/ContentCatalogLoader.swift`, `Content/CatalogIntegrity.swift`, `Resources/blueprints/recall_lines_v1.json` (yeni), `Tests/.../RecallLineTests.swift` (yeni), `Tests/.../ContentPackageTests.swift`; uygulama `StoryContextBuilder.swift`, `OfflineStoryService.swift`, `OfflineStoryMapper.swift`, `StoryMemory.swift`, `StoryGenerationManager.swift`, `MagicPaperTests/StoryMemoryTests.swift`; `docs/MagicPaper_Content_Library.md`, bu günlük.
+
+### 2026-11-15 · main@b44682d (dal worktree-agent-a4d762b8b86a0f234) · E2: StoryContextBuilder
+
+- Ne değişti (`docs/EVREN_PLANI.md` E2, saf çıkarma):
+  - Yeni `StoryEngineBridge/StoryContextBuilder.swift`: `StoryContext` (seçimler, ad, profil kimliği, yaş, ilgiler, son kökenler, okuma sonuçları, son başlıklar, çocuğun masalları) ve onu seçimler + profil + bütün kitaplıktan kuran `StoryContextBuilder`. Kullanım deposu başlatıcıdan gelir; pencereler yerinden okunur (`SelectionScoring.cooldownWindow`, `StoryGenerationManager.titleMemory`, `StoryModeResolver.historyWindow`). `StoryContext` loglanınca yalnızca sayı ve katalog kimliği yazar (ad, ilgi, metin yok).
+  - `OfflineStoryService.compose(_ context:seed:)` eklendi; içeride eski `compose(childName:...)` imzasını çağırıyor, o imza duruyor.
+  - `createStory` bağlamı kurucudan alıyor; hatırlama `context.childStories`'i kullanıyor. Eşleme, `StoryMemory`, görselli kitap, kayıt ve `MPFunnel` sırası aynı.
+  - `recentOrigins(for:)`, `recentTitles(of:for:)`, `recentModes(for:)` imzaları duruyor, mantık kurucuda; üçü de ona devrediyor.
+- Bilerek değişmedi: motor paketi, `Story` modeli, ekranlar, hatırlama cümlesinin mantığı (E3'e kaldı), seri yolu.
+- Belgeler: `docs/ARCHITECTURE.md` katman tablosuna "Bağlam kurucu" satırı.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca değişen dosyalarda `swiftc -frontend -parse`. Yeni `MagicPaperTests/StoryContextBuilderTests.swift` (9 test), eski satır arası hesabı açıkça yeniden yazan altın test ve sabit seed ile iki `compose` girişinin aynı `fingerprint`'i verdiği test dahil.
+- Dosyalar: yeni `StoryEngineBridge/StoryContextBuilder.swift`, `StoryEngineBridge/OfflineStoryService.swift`, `Services/StoryGenerationManager.swift`, yeni `MagicPaperTests/StoryContextBuilderTests.swift`, `docs/ARCHITECTURE.md`, bu günlük.
+
+### 2026-11-15 · main@fed8984 + c0c77ed (dal worktree-agent-a4d762b8b86a0f234) · E1: dosya deposu doğruluk kaynağı
+
+- Ne değişti (`docs/EVREN_PLANI.md` E1):
+  - `LibraryMigration`'a `diskAuthoritative` evresi ve `State.cutoverAt` eklendi; sıra `pending → verified → diskAuthoritative → legacyRetired`. Kapı açıldı (`readPathIsAuthoritative = true`). `verified` bir kütüphane bir sonraki açılışta son eşitleme ve bayt bayt doğrulamayla kesişiyor; geçmezse eski yol aynen sürüyor.
+  - İşaret çözümü hoşgörülü: E1 öncesi kayıt çözülüyor, bilinmeyen evre `pending`'e değil `diskAuthoritative`'e düşüyor. Çözülemeyen işarete kanıta bakılarak karar veriliyor (ikinci commit, inceleme düzeltmesi): diskte masal dosyası yok ve eski yığın duruyorsa `pending` (eski yol, göç baştan), yoksa `diskAuthoritative` (`cutoverAt` yok, emeklilik olmaz), depo kurulamadıysa salt okunur.
+  - Yeni `LibraryShelf` (`Services/Persistence/LibraryShelf.swift`, Xcode projesine eklendi): kesişimden önce eski yığın aynen (kod `StoryGenerationManager`'dan taşındı), sonra diskten okuma (`createdAt` azalan, eşitlikte kimlik) ve yalnızca değişen dosyayı yazma, raftan çıkanı silme. Depo kurulamazsa ve evre diskteyse donmuş yedek gösteriliyor, kayıt yapılmıyor.
+  - Bozuk masal dosyası rafta görünmüyor, `MPLibrary/DamagedStories/` klasörüne taşınıyor; üstüne yazılmıyor, silinmiyor, budanmıyor. Taşınamazsa yerinde kalıyor ve o oturumda dokunulmuyor. Okunamayan dosya (kilitli cihaz) bozuk sayılmıyor, cihaz açılınca rafa ekleniyor. Raf bu yüzden boşsa örnek masal konmuyor. Log'a yalnızca kimlik ve dosya adı.
+  - Emeklilik `cutoverAt`'ten 14 gün sonra, disk hatasız okunuyorsa ve kenara konmuş bozuk dosya yoksa. Bayat yığına karşı doğrulama yok; `verified`'dan emeklilik kalktı; eşitleme (`sync`) kesişimden sonra çalışmayı reddediyor.
+  - `MPFavorites` raf üstünden okuyup yazıyor: kesişimden önce `UserDefaults`, sonra `Flags/favorites.json`. Onay listesine yazan kod yok (14 Kasım'da kalktı); liste olduğu gibi taşınıyor.
+  - Düzeltilen kusur: `LibraryFileStore.writeStory`'nin özeti `Data.hashValue` idi; Foundation bunu uzunluk + ilk 80 bayttan hesaplıyor, aynı uzunlukta bir ilerleme değişikliği yazılmıyordu. Özet artık SHA-256 ve okunan dosyalar için yüklemede alınıyor.
+  - Doğrulama ve göç işaretindeki hata metinlerinde masal başlığı yerine kimlik, dosya hatalarında yalnızca dosya adı.
+- Bilerek değişmedi: `Story` modeli, `user_profiles`, seri, Masal ailem ve rozet depoları, `StoryEngineBridge/FileStores.swift`, `LocalDataEraser`. `StoryGenerationManager`'ın dış API'si aynı (yalnızca `init(library:notifications:)` açıldı ve `recoverUnreadableStories()` eklendi). Kesişim öncesi yazma ve okuma bit bit aynı.
+- Belgeler: `docs/MagicPaper_Persistence_Migration.md` §1, §4 evre tablosu, §6 (yeniden yazıldı), §8, §9.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca değişen dosyalarda `swiftc -frontend -parse` (sözdizimi) koşuldu. Yeni `MagicPaperTests/LibraryCutoverTests.swift` (27 test, ikinci commit dahil); `LibraryMigrationTests`'te eski kapıyı sabitleyen dört test yeni davranışa göre güncellendi. Simülatörde görülmedi.
+- Dosyalar: `Services/Persistence/LibraryMigration.swift`, `Services/Persistence/LibraryFileStore.swift`, yeni `Services/Persistence/LibraryShelf.swift`, `Services/StoryGenerationManager.swift`, `Screens/MPStoryExtras.swift`, `MagicPaper.xcodeproj/project.pbxproj`, `MagicPaperTests/LibraryMigrationTests.swift`, yeni `MagicPaperTests/LibraryCutoverTests.swift`, `docs/MagicPaper_Persistence_Migration.md`, bu günlük.
+
 ### 2026-11-15 · main, commit bu kayıtla · Rozet planı R5: ebeveyn tarafında puan, kat ve rozetler
 
 - Ne değişti (Batuhan, 15 Kasım: "R5'e geç"):

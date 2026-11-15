@@ -373,8 +373,9 @@ final class LibraryMigrationTests: XCTestCase {
 
     // MARK: - Retirement
 
-    /// Step five is written now and gated, not written later. This is the test
-    /// that it exists at all.
+    /// Step five, through the cutover (E1): pending → verified →
+    /// diskAuthoritative → legacyRetired, the grace window counted from the
+    /// cutover.
     func testTheLegacyStoreIsRetiredOnceTheGraceWindowHasPassed() throws {
         try seedLegacy(stories: [story("Deniz Feneri")], favorites: ["x"])
 
@@ -384,6 +385,8 @@ final class LibraryMigrationTests: XCTestCase {
         let migration = makeMigration(store: store, now: { clock }, cutoverEnabled: true)
         migration.run()
         XCTAssertEqual(migration.state.phase, .verified)
+        migration.run()
+        XCTAssertEqual(migration.state.phase, .diskAuthoritative)
         XCTAssertNotNil(defaults.data(forKey: LibraryMigration.LegacyKeys.stories))
 
         clock = start.addingTimeInterval(LibraryMigration.graceInterval + 1)
@@ -402,16 +405,18 @@ final class LibraryMigrationTests: XCTestCase {
         var clock = start
         let migration = makeMigration(store: try makeStore(), now: { clock }, cutoverEnabled: true)
         migration.run()
+        migration.run()
+        XCTAssertEqual(migration.state.phase, .diskAuthoritative)
 
         clock = start.addingTimeInterval(LibraryMigration.graceInterval - 60)
         migration.run()
 
-        XCTAssertEqual(migration.state.phase, .verified)
+        XCTAssertEqual(migration.state.phase, .diskAuthoritative)
         XCTAssertNotNil(defaults.data(forKey: LibraryMigration.LegacyKeys.stories))
     }
 
-    /// The gate itself. This wave ships with the read path still on
-    /// `UserDefaults`, so retirement must not fire however much time passes.
+    /// The gate closed: no cutover, so nothing is retired however much time
+    /// passes, and the legacy store stays the live copy.
     func testNothingIsRetiredWhileTheReadPathIsStillTheLegacyStore() throws {
         try seedLegacy(stories: [story("Deniz Feneri")])
 
@@ -427,30 +432,27 @@ final class LibraryMigrationTests: XCTestCase {
         XCTAssertNotNil(defaults.data(forKey: LibraryMigration.LegacyKeys.stories))
     }
 
-    func testTheShippedBuildKeepsTheLegacyStore() {
-        XCTAssertFalse(
+    /// E1 opened the gate: "delete all data" erases the file store and
+    /// favourites write through the shelf after cutover.
+    func testTheShippedBuildCutsOverToDisk() {
+        XCTAssertTrue(
             LibraryMigration.readPathIsAuthoritative,
-            "Okuma yolu diske taşınmadan eski kopya emekliye ayrılamaz: "
-            + "SettingsView.clearAll ve favori/onay yazıcıları henüz bu depoyu bilmiyor."
+            "E1: doğrulanmış kütüphane açılışta diske geçmeli."
         )
     }
 
-    /// Nothing is removed on the strength of a marker alone.
-    func testRetirementIsRefusedIfTheShadowNoLongerMatches() throws {
-        let shelf = [story("Deniz Feneri")]
-        try seedLegacy(stories: shelf)
+    /// Retirement from `.verified` is gone: before cutover the legacy store is
+    /// the live copy, and removing it would delete the library.
+    func testNothingIsRetiredStraightFromVerified() throws {
+        try seedLegacy(stories: [story("Deniz Feneri")])
 
         let start = Date(timeIntervalSince1970: 1_700_000_000)
         var clock = start
-        let store = try makeStore()
-        let migration = makeMigration(store: store, now: { clock }, cutoverEnabled: true)
+        let migration = makeMigration(store: try makeStore(), now: { clock }, cutoverEnabled: true)
         migration.run()
+        XCTAssertEqual(migration.state.phase, .verified)
 
-        // A book appears in the legacy store that never reached disk, and the
-        // sync is skipped: retirement must not delete the only copy of it.
-        try seedLegacy(stories: shelf + [story("Sonradan")])
-        clock = start.addingTimeInterval(LibraryMigration.graceInterval + 1)
-
+        clock = start.addingTimeInterval(LibraryMigration.graceInterval * 10)
         XCTAssertFalse(migration.retireLegacyIfDue())
         XCTAssertNotNil(defaults.data(forKey: LibraryMigration.LegacyKeys.stories))
     }

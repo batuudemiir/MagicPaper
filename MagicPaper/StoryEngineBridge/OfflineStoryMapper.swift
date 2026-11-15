@@ -61,6 +61,8 @@ enum OfflineStoryMapper {
             )
         )
         story.currentProgress = nil
+        // E3: hatırlama cümlesini motor yazdı; yazmadıysa alan eskisi gibi nil.
+        if composed.recallLineID != nil { story.origin?.recalled = true }
         // Olgu metne değil kapanış yaprağına gidiyor; motor onu zaten onaylı ve
         // banda uygun olarak süzmüş veriyor.
         story.fact = composed.fact.map {

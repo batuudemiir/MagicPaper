@@ -335,7 +335,8 @@ final class OfflineStoryService {
         interests: [String] = [],
         recent: [StoryOrigin] = [],
         usage: [StoryUsage] = [],
-        recentTitles: Set<String> = []
+        recentTitles: Set<String> = [],
+        recall: RecallHistory? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         let familyCast = try family.map { character -> FamilyCast in
@@ -383,7 +384,8 @@ final class OfflineStoryService {
                 recent: Array(history),
                 usage: learned,
                 safety: currentSafety,
-                recentTitles: recentTitles
+                recentTitles: recentTitles,
+                recall: recall
             )
             let composed: ComposedStory
             do {
@@ -403,6 +405,28 @@ final class OfflineStoryService {
             defects.append(Self.defectReport(composed))
         }
         throw Failure.defectiveDraft(detail: defects.joined(separator: " | "))
+    }
+
+    /// Builds a story from a `StoryContext` (E2). The same book as the
+    /// field-by-field `compose` with the same inputs; that call is what runs.
+    func compose(
+        _ context: StoryContext, seed: String? = nil
+    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
+        try compose(
+            childName: context.childName,
+            ideaID: context.storyIdeaID,
+            companionID: context.companionID,
+            mode: context.mode,
+            age: context.age,
+            seed: seed,
+            subOption: context.subOption,
+            family: context.family,
+            interests: context.interests,
+            recent: context.recent,
+            usage: context.usage,
+            recentTitles: context.recentTitles,
+            recall: context.recall
+        )
     }
 
     // MARK: - Series (FAZ 13)

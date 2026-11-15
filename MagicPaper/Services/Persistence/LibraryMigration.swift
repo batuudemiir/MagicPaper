@@ -32,25 +32,65 @@ final class LibraryMigration {
         /// Every record was copied and read back intact. The legacy store is
         /// still authoritative; disk is a verified shadow kept in step.
         case verified
+        /// Disk is the live copy (E1). The legacy keys are a frozen backup:
+        /// never written again, never compared against, removed after
+        /// `graceInterval`.
+        case diskAuthoritative
         /// The legacy keys are gone. Disk is the only copy.
         case legacyRetired
+
+        /// Whether the library is read from and written to disk.
+        var readsFromDisk: Bool {
+            self == .diskAuthoritative || self == .legacyRetired
+        }
     }
 
     struct State: Codable, Equatable {
         var schemaVersion: Int = 1
         var phase: Phase = .pending
         var verifiedAt: Date?
+        /// When disk became the live copy. Retirement counts from here.
+        var cutoverAt: Date?
         var retiredAt: Date?
         /// Why the last attempt did not reach `.verified`. Kept so a support
         /// question has an answer that is not "it just didn't".
         var lastFailure: String?
-        /// Records that were on disk but unreadable at verification time.
+        /// Records that were on disk but unreadable at verification time, and
+        /// after cutover the damaged story files set aside (file names only).
         var quarantinedFiles: [String] = []
         /// Size of the oversized legacy blob already copied to quarantine, so
         /// the copy happens once rather than on every launch.
         var oversizedBlobBytes: Int?
 
         static let key = "mp_libraryMigration"
+
+        enum CodingKeys: String, CodingKey {
+            case schemaVersion, phase, verifiedAt, cutoverAt, retiredAt
+            case lastFailure, quarantinedFiles, oversizedBlobBytes
+        }
+
+        init() {}
+
+        /// Lenient on purpose. A marker that failed to decode used to read as
+        /// "nothing done yet", and after cutover `.pending` is the one phase
+        /// that is dangerous: it copies the frozen legacy blob over the live
+        /// files. Missing fields (a marker written before E1 has no
+        /// `cutoverAt`) take their defaults; a phase this build does not know
+        /// (written by a newer build) reads as `.diskAuthoritative`, the phase
+        /// that writes nothing but the shelf and deletes nothing on its own.
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            schemaVersion = (try? c.decodeIfPresent(Int.self, forKey: .schemaVersion)) ?? 1
+            if let raw = try? c.decodeIfPresent(String.self, forKey: .phase) {
+                phase = Phase(rawValue: raw) ?? .diskAuthoritative
+            }
+            verifiedAt = try? c.decodeIfPresent(Date.self, forKey: .verifiedAt)
+            cutoverAt = try? c.decodeIfPresent(Date.self, forKey: .cutoverAt)
+            retiredAt = try? c.decodeIfPresent(Date.self, forKey: .retiredAt)
+            lastFailure = try? c.decodeIfPresent(String.self, forKey: .lastFailure)
+            quarantinedFiles = (try? c.decodeIfPresent([String].self, forKey: .quarantinedFiles)) ?? []
+            oversizedBlobBytes = try? c.decodeIfPresent(Int.self, forKey: .oversizedBlobBytes)
+        }
     }
 
     /// How long the legacy copy is kept after verification.
@@ -63,21 +103,25 @@ final class LibraryMigration {
     /// How many quarantined blobs to keep.
     static let quarantineLimit = 3
 
-    /// Whether disk is the read path yet.
+    /// Whether a verified library may cut over to disk.
     ///
-    /// **False this wave, deliberately.** Two things must land before it can be
-    /// true, and neither is this agent's file: Settings' "delete all data"
-    /// (`SettingsView.clearAll`) has to erase the file store too, and the
-    /// favourites/approval writers have to write through this store rather than
-    /// straight to `UserDefaults`. Until then the legacy keys are the live copy
-    /// and retiring them would delete the library rather than migrate it.
+    /// Open since E1 (15 Kasım 2026). Both preconditions are closed: "delete
+    /// all data" erases the file store (`LocalDataEraser` calls
+    /// `LibraryPersistence.eraseAll()`), and favourites are written through
+    /// the store once the shelf reads from disk (`LibraryShelf`). Approvals
+    /// have had no writer since the parent approval step was removed
+    /// (14 Kasım 2026); their list is carried as it is.
     /// See `docs/MagicPaper_Persistence_Migration.md` §6.
-    static let readPathIsAuthoritative = false
+    ///
+    /// The gate controls the transition only. A library that has cut over
+    /// stays on disk even under a build with the gate closed: its legacy copy
+    /// is stale from that moment, and reading it would lose what came after.
+    static let readPathIsAuthoritative = true
 
     // MARK: - Dependencies
 
     private let defaults: UserDefaults
-    private let store: LibraryFileStore
+    let store: LibraryFileStore
     private let now: () -> Date
     private let cutoverEnabled: Bool
 
@@ -95,12 +139,50 @@ final class LibraryMigration {
         self.store = store
         self.now = now
         self.cutoverEnabled = cutoverEnabled
-        self.state = Self.readState(from: defaults) ?? State()
+        self.state = Self.storedState(in: defaults, store: store)
     }
 
-    private static func readState(from defaults: UserDefaults) -> State? {
-        guard let data = defaults.data(forKey: State.key) else { return nil }
-        return try? JSONDecoder().decode(State.self, from: data)
+    /// The marker as the last launch left it, when the store cannot be seen.
+    ///
+    /// No marker is a library nothing has touched yet: `.pending`. A marker
+    /// that is there but is not a record at all reads as `.diskAuthoritative`
+    /// with no `cutoverAt`. Without a store that means the read-only shelf:
+    /// the frozen legacy copy is shown and nothing is saved, which is safe
+    /// whichever phase the lost marker held.
+    static func storedState(in defaults: UserDefaults) -> State {
+        guard let data = defaults.data(forKey: State.key) else { return State() }
+        if let state = try? JSONDecoder().decode(State.self, from: data) { return state }
+        var state = State()
+        state.phase = .diskAuthoritative
+        state.lastFailure = "Göç işareti okunamadı; eski kopya donduruldu."
+        return state
+    }
+
+    /// The marker, with the store in view to settle an unreadable one.
+    ///
+    /// An unreadable marker is decided by evidence, never by default:
+    /// * at least one story file on disk (readable or not), or no legacy
+    ///   blob at all: `.diskAuthoritative` with no `cutoverAt` (disk is live
+    ///   or a shadow kept in step; the legacy keys are frozen, never retired);
+    /// * no story file on disk and a legacy blob present: `.pending`. Nothing
+    ///   on disk can be lost and the legacy blob is the only copy, so the
+    ///   migration simply starts again. Reading disk here would show an empty
+    ///   shelf and seed sample stories over a child's library for good.
+    ///
+    /// A phase this build does not know is not unreadable: it is decoded as
+    /// `.diskAuthoritative` by `State.init(from:)`.
+    static func storedState(in defaults: UserDefaults, store: LibraryFileStore) -> State {
+        guard let data = defaults.data(forKey: State.key),
+              (try? JSONDecoder().decode(State.self, from: data)) == nil else {
+            return storedState(in: defaults)
+        }
+        let legacyPresent = defaults.object(forKey: LegacyKeys.stories) != nil
+        guard legacyPresent, !store.containsAnyStoryFile() else {
+            return storedState(in: defaults)
+        }
+        var state = State()
+        state.lastFailure = "Göç işareti okunamadı; diskte masal yok, göç baştan koşuyor."
+        return state
     }
 
     /// The **mark** step. The only place `state` reaches disk.
@@ -129,9 +211,10 @@ final class LibraryMigration {
         switch state.phase {
         case .legacyRetired:
             return
-        case .verified:
-            reconcile()
+        case .diskAuthoritative:
             retireLegacyIfDue()
+        case .verified:
+            reconcileAndCutOverIfReady()
         case .pending:
             copyVerifyAndMark()
         }
@@ -235,7 +318,7 @@ final class LibraryMigration {
 
     private func verify(against source: LegacySnapshot) -> Verification {
         let onDisk = store.readAllStories()
-        let damaged = onDisk.failures.map(\.description)
+        let damaged = onDisk.failures.map(\.fileOnlyDescription)
 
         if !onDisk.failures.isEmpty {
             return Verification(ok: false, reason: "Diskte çözümlenemeyen dosya var.", damagedFiles: damaged)
@@ -260,10 +343,10 @@ final class LibraryMigration {
         encoder.outputFormatting = [.sortedKeys]
         for story in source.stories {
             guard let restored = byID[story.id] else {
-                return Verification(ok: false, reason: "'\(story.title)' diskte bulunamadı.")
+                return Verification(ok: false, reason: "'\(story.id.uuidString)' diskte bulunamadı.")
             }
             guard let a = try? encoder.encode(story), let b = try? encoder.encode(restored), a == b else {
-                return Verification(ok: false, reason: "'\(story.title)' diske eksik yazıldı.")
+                return Verification(ok: false, reason: "'\(story.id.uuidString)' diske eksik yazıldı.")
             }
         }
 
@@ -313,7 +396,11 @@ final class LibraryMigration {
         return sync(to: source)
     }
 
+    /// Only while the legacy store is the live copy. Disk files the legacy
+    /// store does not list are deleted here, damaged ones included; after
+    /// cutover that would delete books, so it refuses.
     private func sync(to source: LegacySnapshot) -> Bool {
+        guard state.phase == .verified else { return false }
         do {
             let wanted = Set(source.stories.map(\.id))
             for id in store.storyIDsOnDisk().subtracting(wanted) {
@@ -331,26 +418,82 @@ final class LibraryMigration {
         }
     }
 
+    // MARK: - Cutover (E1)
+
+    /// The launch-time step from `.verified` to `.diskAuthoritative`.
+    ///
+    /// A last sync from the legacy store and a byte-for-byte verification of
+    /// the result; only when both pass does disk become the live copy. With
+    /// the gate closed, or when either fails, this is the old `reconcile()`
+    /// and the legacy path carries on exactly as before.
+    private func reconcileAndCutOverIfReady() {
+        let source = readLegacy()
+        guard source.failure == nil, sync(to: source) else { return }
+        guard cutoverEnabled else { return }
+
+        let verification = verify(against: source)
+        guard verification.ok else {
+            mark {
+                $0.lastFailure = "Kesişim: \(verification.reason ?? "?")"
+                $0.quarantinedFiles = verification.damagedFiles
+            }
+            logger.error("🛑 Kesişim ertelendi: \(verification.reason ?? "?", privacy: .public) Eski yol sürüyor.")
+            return
+        }
+
+        mark {
+            $0.phase = .diskAuthoritative
+            $0.cutoverAt = now()
+            $0.lastFailure = nil
+            $0.quarantinedFiles = []
+        }
+        logger.debug("✅ Kütüphane artık diskten okunuyor: \(source.stories.count) masal. Eski kopya donduruldu.")
+    }
+
+    /// Moves the story files that would not decode out of the shelf's folder
+    /// and records their names. Returns the ids of damaged files that could
+    /// not be moved: the caller must neither write nor delete those.
+    ///
+    /// Only `.undecodable` files are set aside. An `.unreadable` file is most
+    /// likely a locked device (`.completeUnlessOpen` refuses a cold read while
+    /// locked, and background refresh can launch the app then); its bytes are
+    /// fine and it stays where it is.
+    func setAsideDamagedStories(_ failures: [LibraryFileStore.Failure]) -> Set<UUID> {
+        var stuck: Set<UUID> = []
+        var names: [String] = []
+        let stamp = Int(now().timeIntervalSince1970)
+        for failure in failures {
+            guard case .undecodable(let url, _) = failure else { continue }
+            do {
+                names.append(try store.setAsideDamagedStory(at: url, stamp: stamp))
+                logger.error("🛑 Çözümlenemeyen masal dosyası raftan çekildi, kenara kondu: \(url.lastPathComponent, privacy: .public)")
+            } catch {
+                if let id = LibraryFileStore.storyID(of: url) { stuck.insert(id) }
+                logger.error("🛑 Çözümlenemeyen masal dosyası kenara konamadı, yerinde duruyor: \(url.lastPathComponent, privacy: .public)")
+            }
+        }
+        if !names.isEmpty {
+            mark { $0.quarantinedFiles.append(contentsOf: names) }
+        }
+        return stuck
+    }
+
     // MARK: - Step 5 — delete
 
     /// Removes the legacy keys, once and only once it is safe to.
     ///
-    /// Written in the same change as the write step even though it cannot fire
-    /// yet. `cutoverEnabled` is the missing precondition, not a feature flag
-    /// for taste: while reads still come from `UserDefaults`, deleting those
-    /// keys deletes the library.
+    /// Counts from `cutoverAt`, not `verifiedAt`: before cutover the legacy
+    /// keys were the live copy. And it does not verify against them: they are
+    /// frozen at cutover, so a story deleted since would fail that check for
+    /// ever. What it asks instead is that disk reads cleanly: every story file
+    /// decodes, no damaged file is set aside (the frozen copy may hold the
+    /// only intact version of that book), and both flag lists read.
     @discardableResult
     func retireLegacyIfDue() -> Bool {
-        guard cutoverEnabled else { return false }
-        guard state.phase == .verified, let verifiedAt = state.verifiedAt else { return false }
-        guard now().timeIntervalSince(verifiedAt) >= Self.graceInterval else { return false }
-
-        // Last look before the point of no return: the shadow must still hold
-        // everything the legacy store does.
-        let source = readLegacy()
-        guard source.failure == nil else { return false }
-        guard verify(against: source).ok else {
-            logger.error("🛑 Emeklilik iptal: doğrulama artık geçmiyor. Eski veri duruyor.")
+        guard state.phase == .diskAuthoritative, let cutoverAt = state.cutoverAt else { return false }
+        guard now().timeIntervalSince(cutoverAt) >= Self.graceInterval else { return false }
+        guard diskReadsCleanly() else {
+            logger.error("🛑 Emeklilik ertelendi: disk hatasız okunmuyor. Eski kopya duruyor.")
             return false
         }
 
@@ -363,6 +506,18 @@ final class LibraryMigration {
             $0.retiredAt = now()
         }
         logger.debug("✅ Eski UserDefaults kopyası emekliye ayrıldı. Kütüphane artık yalnızca diskte.")
+        return true
+    }
+
+    private func diskReadsCleanly() -> Bool {
+        guard store.readAllStories().failures.isEmpty else { return false }
+        guard store.damagedStoryFileNames().isEmpty else { return false }
+        do {
+            _ = try store.readFlagList(.favorites)
+            _ = try store.readFlagList(.approvals)
+        } catch {
+            return false
+        }
         return true
     }
 
@@ -414,9 +569,21 @@ final class LibraryMigration {
 enum LibraryPersistence {
     private(set) static var store: LibraryFileStore?
     private(set) static var migration: LibraryMigration?
+    private static var cachedShelf: LibraryShelf?
 
-    /// Called once, from `StoryGenerationManager`'s initialiser, before the
-    /// library is loaded.
+    /// The shelf the app reads and writes the library through.
+    ///
+    /// Built on first use, by whichever comes first (`StoryGenerationManager`
+    /// or `MPFavorites`), after the migration has run: the shelf decides
+    /// where to read from by the phase the migration leaves behind.
+    static var shelf: LibraryShelf {
+        if let cachedShelf { return cachedShelf }
+        let shelf = LibraryShelf(defaults: .standard, migration: bootstrap())
+        cachedShelf = shelf
+        return shelf
+    }
+
+    /// Runs the migration once, before the library is loaded.
     @discardableResult
     static func bootstrap() -> LibraryMigration? {
         if let migration { return migration }
@@ -437,19 +604,10 @@ enum LibraryPersistence {
         }
     }
 
-    /// Keeps the shadow copy in step after a write to the legacy store.
-    ///
-    /// Takes the shelf the caller just wrote rather than re-reading it, and
-    /// does nothing at all until the migration has verified.
-    static func reconcileAfterWrite(stories: [Story]) {
-        migration?.reconcile(stories: stories)
-    }
-
-    /// Everything this app keeps on disk about a family's library.
-    ///
-    /// Settings' "delete all data" must call this once it owns the seam; until
-    /// then `reconcile()` carries erasures across. Kept here so the call site
-    /// is one line when that lands.
+    /// Everything this app keeps on disk about a family's library, the
+    /// damaged files set aside included. Called by `LocalDataEraser`; the
+    /// migration marker stays, so an erased library that had cut over keeps
+    /// reading and writing disk.
     static func eraseAll() {
         do { try store?.eraseEverything() }
         catch { logger.error("🛑 Kütüphane dosyaları silinemedi: \(String(describing: error))") }

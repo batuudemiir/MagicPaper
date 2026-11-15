@@ -10,6 +10,7 @@ Uygulamanın kod düzeni ve yeni kodun uyacağı kurallar. Ürün kararları: `C
 |---|---|---|
 | Masal motoru | `StoryEngine` paketi | Cihazda masal yazma, bulut yok. |
 | Köprü | `MagicPaper/StoryEngineBridge` | Motoru uygulama modellerine bağlar. |
+| Bağlam kurucu | `StoryEngineBridge/StoryContextBuilder.swift` | Seçimler + profil + kitaplık → `StoryContext` (E2). Saf; masalın yazıldığı her şey tek yerde. `createStory` ve `OfflineStoryService.compose(_:seed:)` bunu kullanır. |
 | Servisler | `MagicPaper/Services` | Kalıcı veri, hesap, abonelik. Çoğu bugün `.shared`. |
 | Oturum | `MPAppState` | Okuyucu, masal yazma, akşam akışı, bildirim. Kalıcı veri tutmaz. |
 | Gezinme | `MPRouter` | Sekme, yığın, sheet, ebeveyn odası. İş mantığı tutmaz. |

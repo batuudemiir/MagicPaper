@@ -41,6 +41,7 @@
 		C05D06A737E1EB8539799A1D /* shared_content_library_v2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */; };
 		D4A0000000000000000010 /* LibraryFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000011 /* LibraryFileStore.swift */; };
 		D4A0000000000000000012 /* LibraryMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000013 /* LibraryMigration.swift */; };
+		D4A0000000000000000014 /* LibraryShelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0000000000000000015 /* LibraryShelf.swift */; };
 		E5A0000000000000000010 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000011 /* Capability.swift */; };
 		E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */; };
 		E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0000000000000000015 /* EntitlementPolicy.swift */; };
@@ -125,6 +126,7 @@
 		B7487ED8E9BF040483AC57EB /* shared_content_library_v2.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = shared_content_library_v2.json; sourceTree = "<group>"; };
 		D4A0000000000000000011 /* LibraryFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileStore.swift; sourceTree = "<group>"; };
 		D4A0000000000000000013 /* LibraryMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMigration.swift; sourceTree = "<group>"; };
+		D4A0000000000000000015 /* LibraryShelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryShelf.swift; sourceTree = "<group>"; };
 		E5A0000000000000000011 /* Capability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
 		E5A0000000000000000013 /* EntitlementPlan+SubscriptionTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntitlementPlan+SubscriptionTier.swift"; sourceTree = "<group>"; };
 		E5A0000000000000000015 /* EntitlementPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementPolicy.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			children = (
 				D4A0000000000000000011 /* LibraryFileStore.swift */,
 				D4A0000000000000000013 /* LibraryMigration.swift */,
+				D4A0000000000000000015 /* LibraryShelf.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				A10000010000000000000048 /* StoryGenerationManager.swift in Sources */,
 				D4A0000000000000000010 /* LibraryFileStore.swift in Sources */,
 				D4A0000000000000000012 /* LibraryMigration.swift in Sources */,
+				D4A0000000000000000014 /* LibraryShelf.swift in Sources */,
 				E5A0000000000000000010 /* Capability.swift in Sources */,
 				E5A0000000000000000012 /* EntitlementPlan+SubscriptionTier.swift in Sources */,
 				E5A0000000000000000014 /* EntitlementPolicy.swift in Sources */,

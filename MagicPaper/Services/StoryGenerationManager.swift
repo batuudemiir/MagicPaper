@@ -1,6 +1,7 @@
 import Foundation
 import OSLog
 import SwiftUI
+import UIKit
 import Combine
 import StoryEngine
 
@@ -13,84 +14,56 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magi
 @MainActor
 class StoryGenerationManager: ObservableObject {
     
-    static let shared = StoryGenerationManager()
-    
+    static let shared = StoryGenerationManager(library: LibraryPersistence.shelf)
+
     // MARK: - Published Properties
-    
+
     @Published var stories: [Story] = []
     @Published var isGenerating: Bool = false
-    
+
     // MARK: - Private Properties
-    
+
     private let fileManager = FileManagerService.shared
-    
-    private init() {
-        // Before anything reads the library: the migration needs the legacy
-        // store exactly as the last launch left it, and it is the only thing
-        // allowed to touch the `stories` key besides `save`/`load` below.
-        LibraryPersistence.bootstrap()
+
+    /// Where the library lives: the legacy `UserDefaults` blob before the
+    /// cutover, one file per story after it (E1, `LibraryShelf`). Built
+    /// after the migration has run, so it reads the phase this launch ends in.
+    private let library: LibraryShelf
+    private var cancellables = Set<AnyCancellable>()
+
+    init(library: LibraryShelf, notifications: NotificationCenter = .default) {
+        self.library = library
         loadStories()
         auditStoriesMissingImageURLs()
         createSampleStoriesIfNeeded()
-    }
-    
-    // MARK: - Persistence
-    
-    private func saveStories() {
-        do {
-            let encoded = try JSONEncoder().encode(stories)
-            let dataSize = encoded.count
-            logger.debug("💾 Saving stories to UserDefaults: \(dataSize) bytes (\(dataSize / 1024) KB)")
-
-            // Check if size is reasonable (< 1MB for UserDefaults)
-            if dataSize > 1_000_000 {
-                logger.warning("⚠️ WARNING: Stories data is large (\(dataSize / 1024 / 1024) MB). Consider cleanup.")
+        // A background launch on a locked device cannot read the story files
+        // (`.completeUnlessOpen`); they join the shelf once the device unlocks.
+        notifications.publisher(for: UIApplication.protectedDataDidBecomeAvailableNotification)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                Task { @MainActor in self.recoverUnreadableStories() }
             }
-
-            UserDefaults.standard.set(encoded, forKey: "stories")
-            // Keep the verified copy on disk in step with the write that just
-            // happened, deletions included. Does nothing until the migration
-            // has verified; never the source of a failure here, because this
-            // store is still the authoritative one.
-            LibraryPersistence.reconcileAfterWrite(stories: stories)
-        } catch {
-            // Önceden `try?` idi: kodlama başarısız olduğunda hiçbir şey
-            // yazılmıyor ve hiçbir şey söylenmiyordu. Kütüphane o andan sonra
-            // sessizce kalıcılığını yitiriyor, uygulama kusursuz çalışmaya
-            // devam ediyor ve kayıp ancak bir sonraki açılışta görülüyordu.
-            assertionFailure("Masallar kaydedilemedi: \(error)")
-            logger.error("🛑 Masallar KAYDEDİLEMEDİ, bu oturumdaki değişiklikler kaybolacak: \(String(describing: error))")
-        }
+            .store(in: &cancellables)
     }
-    
+
+    // MARK: - Persistence
+
+    /// Every mutation of `stories` ends here. Before cutover this writes the
+    /// whole blob as it always did; after, only the files that changed.
+    private func saveStories() {
+        library.save(stories)
+    }
+
     private func loadStories() {
-        guard let data = UserDefaults.standard.data(forKey: "stories") else { return }
-        do {
-            stories = try JSONDecoder().decode([Story].self, from: data)
-            logger.debug("✅ Loaded \(self.stories.count) stories from UserDefaults")
-        } catch {
-            // Bu, uygulamadaki en pahalı sessiz arıza yoluydu.
-            //
-            // Çözümleme başarısız olunca `stories` boş kalıyor, hemen ardından
-            // `createSampleStoriesIfNeeded()` örnekleri kuruyor ve ilk kayıtta
-            // gerçek kütüphanenin üstüne yazıyordu. Tek bir bozuk kayıt —
-            // tanınmayan bir enum değeri yeter — bir çocuğun bütün masallarını
-            // götürüyor, yerine üç örnek koyuyor ve kimseye bir şey söylemiyor.
-            //
-            // Ham veri artık tarihli bir anahtara alınıyor. Hâlâ ekranda
-            // görünmüyor, ama geri getirilebilir: kurtarılamayan bir kayıp ile
-            // kurtarılabilir bir kayıp arasındaki fark, kullanıcının o çocuğun
-            // ebeveyni olması.
-            //
-            // The backup itself had no second half. Each failure minted a new
-            // dated key and nothing ever read one, pruned one, or told anyone
-            // they existed — a store that only grows, inside the store whose
-            // size is already the problem. It is capped now.
-            let backupKey = "stories.undecodable.\(Int(Date().timeIntervalSince1970))"
-            UserDefaults.standard.set(data, forKey: backupKey)
-            Self.pruneUndecodableBackups(keeping: Self.undecodableBackupLimit)
-            assertionFailure("Masallar çözümlenemedi: \(error)")
-            logger.error("🛑 Masallar ÇÖZÜMLENEMEDİ. Ham veri '\(backupKey)' altına alındı: \(String(describing: error))")
+        stories = library.load()
+    }
+
+    /// Adds the stories whose files a locked device could not read at launch.
+    /// Each goes where `applySyncedStory` would put it; nothing else moves.
+    func recoverUnreadableStories() {
+        for story in library.recoverUnreadable() where !stories.contains(where: { $0.id == story.id }) {
+            let index = stories.firstIndex(where: { $0.createdAt < story.createdAt }) ?? stories.endIndex
+            stories.insert(story, at: index)
         }
     }
 
@@ -253,7 +226,9 @@ class StoryGenerationManager: ObservableObject {
         // Tembel yazımı zorla indir. `synchronize()` kullanımdan kaldırıldı
         // sayılır ve çoğu yerde gereksizdir; burada gereklidir, çünkü bu değeri
         // yazan an ile sürecin öldüğü an arasında saniyeler olabiliyor.
-        UserDefaults.standard.synchronize()
+        // Kesişimden sonra (E1) dosya yazımı zaten anında iner; `flush` yalnızca
+        // eski yolda `synchronize()` çağırır.
+        library.flush()
 
         logger.debug("📖 Updated reading progress for story \(storyId): page \(page)")
     }
@@ -281,8 +256,9 @@ class StoryGenerationManager: ObservableObject {
     // MARK: - Sample Stories
     
     private func createSampleStoriesIfNeeded() {
-        // Sadece hiç hikaye yoksa örnek hikayeler oluştur
-        guard stories.isEmpty else { return }
+        // Sadece hiç hikaye yoksa örnek hikayeler oluştur. Raf, dosyalar
+        // okunamadığı ya da bozuk çıktığı için boşsa örnek konmaz (E1).
+        guard stories.isEmpty, library.canSeedSampleStories else { return }
         
         logger.debug("📚 Creating sample stories...")
         
@@ -375,20 +351,12 @@ extension StoryGenerationManager {
         defer { isGenerating = false }
 
         let service = OfflineStoryService.shared
-        let composed = try service.compose(
-            childName: profile.name,
-            ideaID: storyIdeaID,
-            companionID: companionID,
-            mode: mode,
-            age: profile.age,
-            seed: seed,
-            subOption: subOption,
-            family: family,
-            interests: profile.interests,
-            recent: recentOrigins(for: profile),
-            usage: StoryUsageStore().usage(of: stories.filter { $0.belongs(to: profile) }, for: profile.id),
-            recentTitles: Self.recentTitles(of: stories, for: profile)
-        )
+        // E2: everything the story is written from, gathered in one place.
+        let context = StoryContextBuilder().build(
+            for: profile, library: stories, mode: mode, strategy: strategy,
+            storyIdeaID: storyIdeaID, companionID: companionID,
+            subOption: subOption, family: family)
+        let composed = try service.compose(context, seed: seed)
 
         let mapped = OfflineStoryMapper.appStory(
             from: composed.story,
@@ -402,20 +370,9 @@ extension StoryGenerationManager {
             subOption: subOption,
             familyCharacter: family
         )
-        // Masal dünyası hatırlar (Faz 10): yol arkadaşı ya da yer daha önce
-        // görüldüyse ilk sayfaya tek bir cümle. Seri bölümünde yok.
-        let setting = composed.story.content.setting
-        let line = StoryMemory.recallLine(
-            childName: profile.name,
-            settingID: setting.id.rawValue,
-            place: StoryMemory.Place(name: setting.name, isProperNoun: setting.isProperNoun,
-                                     hasPossessiveEnding: setting.hasPossessiveEnding,
-                                     blocksSoftening: setting.blocksSoftening),
-            companionID: composed.story.content.companion.id.rawValue,
-            companionName: composed.story.content.companion.name,
-            previous: stories.filter { $0.belongs(to: profile) },
-            placeNamed: { service.place(id: $0) })
-        let remembered = StoryMemory.remember(line, in: mapped)
+        // Masal dünyası hatırlar: E3'ten beri motorun içinde. Hatırlama
+        // cümlesi ilk sayfada zaten var, `origin.recalled` eşlemeden geliyor.
+        let remembered = mapped
         // Görselli kitap (B2): kayıtlı bir kitap karakteri varsa ve bayrak
         // açıksa hazır sahneler eklenir; yoksa masal bugünkü gibi metin çıkar.
         let story = await IllustratedBookBinder.illustrateIfEnabled(
@@ -437,26 +394,18 @@ extension StoryGenerationManager {
     ///
     /// What "Bana sürpriz yap" looks at so it does not repeat itself. Only
     /// stories that recorded a mode count; older ones say nothing.
+    /// Delegates to `StoryContextBuilder`, the single source.
     func recentModes(for profile: UserProfile, limit: Int = StoryModeResolver.historyWindow) -> [StoryMode] {
-        stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .compactMap { $0.origin?.mode }
-            .prefix(limit)
-            .map { $0 }
+        StoryContextBuilder.recentModes(of: stories, for: profile, limit: limit)
     }
 
     /// The titles of this child's newest stories, for the engine to avoid
     /// writing again (`TitleComposer`). Only titles: nothing else of the
-    /// library reaches the engine for this.
+    /// library reaches the engine for this. Delegates to `StoryContextBuilder`.
     static func recentTitles(
         of stories: [Story], for profile: UserProfile, limit: Int = titleMemory
     ) -> Set<String> {
-        Set(stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .prefix(limit)
-            .map(\.title))
+        StoryContextBuilder.recentTitles(of: stories, for: profile, limit: limit)
     }
 
     /// How many recent titles are avoided. A blueprint has 4-6 title
@@ -467,14 +416,9 @@ extension StoryGenerationManager {
     /// (FAZ 12). The engine cools that content down, so the next story is
     /// less likely to repeat the last ones — for every child, interests or not.
     /// Stories without an origin (written before the offline engine) say
-    /// nothing and are skipped.
+    /// nothing and are skipped. Delegates to `StoryContextBuilder`.
     func recentOrigins(for profile: UserProfile, limit: Int = SelectionScoring.cooldownWindow) -> [StoryOrigin] {
-        stories
-            .filter { $0.belongs(to: profile) }
-            .sorted { $0.createdAt > $1.createdAt }
-            .compactMap(\.origin)
-            .prefix(limit)
-            .map { $0 }
+        StoryContextBuilder.recentOrigins(of: stories, for: profile, limit: limit)
     }
 
 }
@@ -503,9 +447,9 @@ extension StoryGenerationManager {
         saveStories()
     }
 
-    /// After `LocalDataEraser`: an empty shelf, on disk and on screen. The
-    /// empty write also carries the erasure to the file copy
-    /// (`LibraryPersistence.reconcileAfterWrite`).
+    /// After `LocalDataEraser`: an empty shelf, on disk and on screen. Before
+    /// cutover the empty write also carries the erasure to the shadow copy;
+    /// after it, the shelf deletes every file it knew of.
     func resetAfterErase() {
         stories = []
         saveStories()

@@ -116,11 +116,69 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkPersonCompanions(catalog))
         issues.append(contentsOf: checkSeries(catalog))
         issues.append(contentsOf: checkArcs(catalog))
+        issues.append(contentsOf: checkRecallLines(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
 
     // MARK: - Checks
+
+    /// Recall lines (E3).
+    ///
+    /// Each line uses only the slots a recall can fill, and `recall.place.name`
+    /// exactly when it says they met elsewhere. Every tier has a line in every
+    /// band, for every place a companion may have been met. A catalog with no
+    /// recall lines (a package written before E3) has nothing to check: it
+    /// simply writes no recall.
+    ///
+    /// Errors, not fatals: a line that cannot render drops the recall, never
+    /// the story.
+    func checkRecallLines(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let lines = catalog.recallLines
+        guard !lines.isEmpty else { return [] }
+        var issues: [CatalogIssue] = []
+
+        var seen: Set<ContentID> = []
+        for line in lines where !seen.insert(line.id).inserted {
+            issues.append(.init(severity: .error, code: "duplicate_id", recordID: line.id,
+                                message: "Two recall lines share the id '\(line.id)'."))
+        }
+
+        for line in lines {
+            let slots = Set(ContentSlot.tokens(in: line.text).map(\.rawValue))
+            let unknown = slots.subtracting(CatalogRecallLine.allowedSlots)
+            if !unknown.isEmpty {
+                issues.append(.init(severity: .error, code: "recall_unknown_slot", recordID: line.id,
+                                    message: "Recall line uses slots it cannot fill: \(unknown.sorted())."))
+            }
+            let namesPlace = slots.contains(RecallComposer.placeSlot)
+            if namesPlace != (line.firstMet == .elsewhere) {
+                issues.append(.init(severity: .error, code: "recall_place_slot", recordID: line.id,
+                                    message: "'\(RecallComposer.placeSlot)' belongs in, and only in, a line that met elsewhere."))
+            }
+            if line.tier == .placeAgain && line.firstMet != nil {
+                issues.append(.init(severity: .error, code: "recall_place_first_met", recordID: line.id,
+                                    message: "A placeAgain line has no companion to have met."))
+            }
+        }
+
+        let elsewhere = catalog.settings.first
+        for band in AgeBandResolver.bands {
+            for tier in RecallTier.allCases {
+                let cues: [RecallComposer.Cue] = tier.isCompanionTier
+                    ? [.init(tier: tier, firstMet: .here, firstSetting: nil),
+                       .init(tier: tier, firstMet: .elsewhere, firstSetting: elsewhere)]
+                    : [.init(tier: tier, firstMet: nil, firstSetting: nil)]
+                for cue in cues where RecallComposer.pool(for: cue, band: band, in: lines).isEmpty {
+                    issues.append(.init(
+                        severity: .error, code: "recall_tier_gap",
+                        message: "No recall line for \(tier.rawValue) "
+                            + "(\(cue.firstMet?.rawValue ?? "place")) in band \(band)."))
+                }
+            }
+        }
+        return issues
+    }
 
     /// The series layer (FAZ 13).
     ///

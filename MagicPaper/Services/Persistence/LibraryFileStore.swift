@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 
 /// The app's own domain records on disk, one JSON file per record.
@@ -34,6 +35,29 @@ final class LibraryFileStore {
                 return "'\(url.lastPathComponent)' çözümlenemedi: \(error)"
             }
         }
+
+        /// The file a read failure is about.
+        var url: URL? {
+            switch self {
+            case .rootUnavailable: return nil
+            case .directoryNotCreated(let url, _), .notWritten(let url, _),
+                 .unreadable(let url, _), .undecodable(let url, _):
+                return url
+            }
+        }
+
+        /// The failure with the file name only, for logs and the migration
+        /// marker. The underlying error can quote the record it failed on,
+        /// and a story record carries a child's name and text.
+        var fileOnlyDescription: String {
+            switch self {
+            case .rootUnavailable: return description
+            case .directoryNotCreated: return "'\(url?.lastPathComponent ?? "?")' dizini kurulamadı."
+            case .notWritten: return "'\(url?.lastPathComponent ?? "?")' yazılamadı."
+            case .unreadable: return "'\(url?.lastPathComponent ?? "?")' okunamadı."
+            case .undecodable: return "'\(url?.lastPathComponent ?? "?")' çözümlenemedi."
+            }
+        }
     }
 
     /// A set of story ids kept beside the library: favourites, parent approval.
@@ -55,7 +79,13 @@ final class LibraryFileStore {
         case stories = "Stories"
         case flags = "Flags"
         case quarantine = "Quarantine"
+        /// Story files that were on the shelf but would not decode (E1).
+        /// Kept apart from `quarantine` on purpose: that folder is pruned to
+        /// the newest few blobs, and a damaged book is never pruned.
+        case damagedStories = "DamagedStories"
     }
+
+    private static let allKinds: [Kind] = [.stories, .flags, .quarantine, .damagedStories]
 
     /// Named id-set files under `Flags`.
     enum FlagList: String, CaseIterable {
@@ -79,15 +109,20 @@ final class LibraryFileStore {
     private let decoder: JSONDecoder
     private let fileManager = FileManager.default
 
-    /// Digests of what this process has already written, so a page turn does
+    /// Digests of what this process knows to be on disk, so a page turn does
     /// not rewrite the whole shelf.
     ///
     /// `saveStories()` runs on every page turn and used to re-encode one blob;
     /// naively replacing that with "write every story file" would turn one
-    /// write into one per book. In-process only — `hashValue` is seeded per
-    /// launch — so the first sync after a launch writes every record once and
-    /// every sync after that writes only what changed.
-    private var writtenDigests: [UUID: Int] = [:]
+    /// write into one per book. Filled by every write and by every read, so
+    /// after the library is loaded only a changed story is written again.
+    ///
+    /// SHA-256 rather than `Data.hashValue`: Foundation hashes a `Data` by its
+    /// length and its first 80 bytes, so a reading-progress change (same
+    /// length, deep in the JSON) compared equal and was not written. Harmless
+    /// while disk was a shadow rewritten on every launch; a lost page once
+    /// disk is the only copy.
+    private var writtenDigests: [UUID: SHA256Digest] = [:]
 
     /// The default location: `Documents/MPLibrary`.
     static func documentsRoot() -> URL? {
@@ -111,7 +146,7 @@ final class LibraryFileStore {
 
         self.decoder = JSONDecoder()
 
-        for kind in [Kind.stories, .flags, .quarantine] {
+        for kind in Self.allKinds {
             try createDirectory(directory(kind))
         }
     }
@@ -164,7 +199,7 @@ final class LibraryFileStore {
     @discardableResult
     func writeStory(_ story: Story) throws -> Bool {
         let data = try encoder.encode(story)
-        let digest = data.hashValue
+        let digest = SHA256.hash(data: data)
         if writtenDigests[story.id] == digest, fileManager.fileExists(atPath: storyURL(story.id).path) {
             return false
         }
@@ -206,13 +241,39 @@ final class LibraryFileStore {
         for url in urls where url.pathExtension == "json" {
             do {
                 let data = try Data(contentsOf: url)
-                do { stories.append(try decoder.decode(Story.self, from: data)) }
-                catch { failures.append(.undecodable(url, error)) }
+                do {
+                    let story = try decoder.decode(Story.self, from: data)
+                    noteOnDisk(story)
+                    stories.append(story)
+                } catch {
+                    failures.append(.undecodable(url, error))
+                }
             } catch {
                 failures.append(.unreadable(url, error))
             }
         }
-        return (stories.sorted { $0.createdAt > $1.createdAt }, failures)
+        return (stories.sorted(by: Self.shelfOrder), failures)
+    }
+
+    /// The shelf's order: newest first, and by id when two stories share a
+    /// moment, so the same files always load in the same order.
+    static func shelfOrder(_ a: Story, _ b: Story) -> Bool {
+        if a.createdAt != b.createdAt { return a.createdAt > b.createdAt }
+        return a.id.uuidString < b.id.uuidString
+    }
+
+    /// Records that `story` is what its file holds, so the next save skips it
+    /// unless it changed. Re-encoded rather than hashing the file's bytes:
+    /// `writeStory` compares encoder output, and an older file may differ from
+    /// it byte for byte while holding the same record.
+    private func noteOnDisk(_ story: Story) {
+        guard let data = try? encoder.encode(story) else { return }
+        writtenDigests[story.id] = SHA256.hash(data: data)
+    }
+
+    /// The id a story file is named after, if it is named after one.
+    static func storyID(of url: URL) -> UUID? {
+        UUID(uuidString: url.deletingPathExtension().lastPathComponent)
     }
 
     func storyIDsOnDisk() -> Set<UUID> {
@@ -222,7 +283,17 @@ final class LibraryFileStore {
         )) ?? []
         return Set(urls
             .filter { $0.pathExtension == "json" }
-            .compactMap { UUID(uuidString: $0.deletingPathExtension().lastPathComponent) })
+            .compactMap(Self.storyID(of:)))
+    }
+
+    /// Whether the shelf's folder holds any story file at all, readable or
+    /// not, named after a story or not.
+    func containsAnyStoryFile() -> Bool {
+        let urls = (try? fileManager.contentsOfDirectory(
+            at: directory(.stories),
+            includingPropertiesForKeys: nil
+        )) ?? []
+        return urls.contains { $0.pathExtension == "json" }
     }
 
     func deleteStory(id: UUID) {
@@ -287,6 +358,35 @@ final class LibraryFileStore {
         return urls.map(\.lastPathComponent).sorted()
     }
 
+    // MARK: - Damaged story files (E1)
+
+    /// Moves a story file that would not decode out of the shelf's folder and
+    /// returns the name it was kept under.
+    ///
+    /// A move, never a copy-and-delete and never a replace: the bytes stay as
+    /// they were, nothing is written over them, and an existing file of the
+    /// same name is never overwritten (a second damage gets its own name).
+    /// Not pruned, and not counted by `storyIDsOnDisk()`, so no sync can
+    /// delete it.
+    @discardableResult
+    func setAsideDamagedStory(at url: URL, stamp: Int) throws -> String {
+        let stem = url.deletingPathExtension().lastPathComponent
+        var name = "\(stem).\(stamp).json"
+        var attempt = 1
+        while fileManager.fileExists(atPath: directory(.damagedStories).appendingPathComponent(name).path) {
+            attempt += 1
+            name = "\(stem).\(stamp)-\(attempt).json"
+        }
+        try fileManager.moveItem(at: url, to: directory(.damagedStories).appendingPathComponent(name))
+        if let id = Self.storyID(of: url) { writtenDigests[id] = nil }
+        return name
+    }
+
+    func damagedStoryFileNames() -> [String] {
+        let urls = (try? fileManager.contentsOfDirectory(at: directory(.damagedStories), includingPropertiesForKeys: nil)) ?? []
+        return urls.map(\.lastPathComponent).sorted()
+    }
+
     // MARK: - Erasure
 
     /// Removes everything this store holds.
@@ -301,7 +401,7 @@ final class LibraryFileStore {
         if fileManager.fileExists(atPath: root.path) {
             try fileManager.removeItem(at: root)
         }
-        for kind in [Kind.stories, .flags, .quarantine] {
+        for kind in Self.allKinds {
             try createDirectory(directory(kind))
         }
     }

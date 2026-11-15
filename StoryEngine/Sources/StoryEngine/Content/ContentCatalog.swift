@@ -52,6 +52,11 @@ public struct ContentCatalog: Decodable, Sendable {
     /// `blueprints` and `templates` so no standalone story can reach it, and
     /// every book written before the series existed stays the same book.
     public let series: SeriesCatalog
+    /// Hatırlama satırları (E3, 15 Kasım 2026): yol arkadaşı ya da yer daha
+    /// önceki bir masaldan tanıdıksa ilk sayfanın sonuna eklenen tek cümle.
+    /// Ayrı bir belgede (`recall_lines_v1.json`); bu alandan önce yazılmış bir
+    /// paket onu taşımaz ve o zaman hatırlama yoktur, masal aynıdır.
+    public let recallLines: [CatalogRecallLine]
 
     /// How many `resolutions` the file declares.
     ///
@@ -70,6 +75,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case interests
         case safetyTopics, glossary, facts
         case series
+        case recallLines
         case resolutions
     }
 
@@ -95,6 +101,7 @@ public struct ContentCatalog: Decodable, Sendable {
         glossary = try container.decodeIfPresent([CatalogGlossaryEntry].self, forKey: .glossary) ?? []
         facts = try container.decodeIfPresent([CatalogFact].self, forKey: .facts) ?? []
         series = try container.decodeIfPresent(SeriesCatalog.self, forKey: .series) ?? SeriesCatalog()
+        recallLines = try container.decodeIfPresent([CatalogRecallLine].self, forKey: .recallLines) ?? []
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -118,7 +125,8 @@ public struct ContentCatalog: Decodable, Sendable {
         glossary: [CatalogGlossaryEntry] = [],
         facts: [CatalogFact] = [],
         series: SeriesCatalog = SeriesCatalog(),
-        declaredResolutionCount: Int = 0
+        declaredResolutionCount: Int = 0,
+        recallLines: [CatalogRecallLine] = []
     ) {
         self.version = version
         self.settings = settings
@@ -140,6 +148,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.facts = facts
         self.series = series
         self.declaredResolutionCount = declaredResolutionCount
+        self.recallLines = recallLines
     }
 
     // MARK: - Lookups
@@ -319,7 +328,8 @@ extension ContentCatalog {
             glossary: catalogs.flatMap(\.glossary),
             facts: catalogs.flatMap(\.facts),
             series: SeriesCatalog.merging(catalogs.map(\.series)),
-            declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount }
+            declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount },
+            recallLines: catalogs.flatMap(\.recallLines)
         )
     }
 }
@@ -334,6 +344,7 @@ extension ContentCatalog {
             storyTopics: storyTopics, familyMoments: familyMoments, familyAnimalKinds: familyAnimalKinds,
             interests: interests, safetyTopics: safetyTopics, glossary: glossary,
             facts: facts, series: series,
-            declaredResolutionCount: declaredResolutionCount)
+            declaredResolutionCount: declaredResolutionCount,
+            recallLines: recallLines)
     }
 }
