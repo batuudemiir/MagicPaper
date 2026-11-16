@@ -12,6 +12,7 @@
 - Korku ve tehlike yok; erime bir hayal kırıklığı değil, sebebi bulunan bir ipucu.
 - Kurallar: uzun tire yok, emoji yok, yasak sözcükler yok, sayfada en çok 3 paragraf.
 - `originals check` (16 Kasım 2026): metinde sorun yok; tek hata "kapak yok (cover.jpg)", bu turda beklenen.
+- Kapak (16 Kasım 2026, Batuhan ChatGPT'de üretti): `place_cover.py` ile `cover.jpg` 1125 × 1500, 714 KB. Kontrol: kar tilkisi WORLD.md görünüşünde (beyaz kürk, gri kulak ve kuyruk ucu, deri çanta, kırmızı ekose atkı çitte serili), altı kollu tek kar tanesi atkının üstünde; yazı, harf ve rakam yok. Odak (tilkinin başı, kar tanesi, atkı) dikeyde yaklaşık %40-65'te; üst üçte birde gece göğü ve rasathane kubbesi, sakin. 176 px küçük hâlde beyaz tilki ve kırmızı atkı seçiliyor. Masaldan küçük fark: tilki çitin önünde oturmuyor, çite yaslanmış; metinle çelişmiyor. `originals check` temiz.
 
 ## Araştırmadan
 

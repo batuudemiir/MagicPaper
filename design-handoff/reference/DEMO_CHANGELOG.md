@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi kapağı yerleşti
+
+- Ne değişti: Batuhan'ın ChatGPT'de ürettiği kapak `python3 Tools/place_cover.py kirmizi-atkidaki-kar-tanesi <görsel>` ile `drafts/kirmizi-atkidaki-kar-tanesi/cover.jpg` oldu (1125 × 1500, 714 KB). `review.md` `## Öz denetim`'e kapak kontrolü eklendi: karakter WORLD.md görünüşünde, yazı ve rakam yok, odak ortada, 176 px'te okunuyor.
+- Denetim: `content-publisher originals check kirmizi-atkidaki-kar-tanesi` temiz.
+- Bilerek değişmedi: masal metni, `published/`, `WORLD.md`; onay ve yayım çalıştırılmadı (Batuhan'da), push yok.
+- Test: uygulama testi çalıştırılmadı (yalnız içerik); uygulamada ya da simülatörde görülmedi.
+
 ### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi onaya kondu
 
 - Ne değişti (zamanlanmış original-writer turu): yeni taslak `Content/Originals/drafts/kirmizi-atkidaki-kar-tanesi/` (`tale.json`, `review.md`). Mod `learning`, yaş 3-4, 6 dk, 7 sayfa / 213 kelime, karakterler Tozkar (ana) ve Profesör Ayı; tek bilgi: kar tanesinin altı kolu olur. Çözümü Tozkar yürütüyor (soğutulmuş atkı, tutulan nefes, sayma); son sayfa soruyu dinleyen çocuğa veriyor. `publishDate` 2026-11-19.
