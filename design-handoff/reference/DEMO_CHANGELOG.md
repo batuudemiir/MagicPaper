@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi onaya kondu
+
+- Ne değişti (zamanlanmış original-writer turu): yeni taslak `Content/Originals/drafts/kirmizi-atkidaki-kar-tanesi/` (`tale.json`, `review.md`). Mod `learning`, yaş 3-4, 6 dk, 7 sayfa / 213 kelime, karakterler Tozkar (ana) ve Profesör Ayı; tek bilgi: kar tanesinin altı kolu olur. Çözümü Tozkar yürütüyor (soğutulmuş atkı, tutulan nefes, sayma); son sayfa soruyu dinleyen çocuğa veriyor. `publishDate` 2026-11-19.
+- Denetim: `content-publisher originals check` metinde temiz; tek hata "kapak yok (cover.jpg)", beklenen.
+- Kapak: çizilmedi; ChatGPT promptu `review.md` > `## Kapak promptu (ChatGPT)` içinde, referans `published/saatin-icindeki-ninni/cover.jpg`. Kapak gelince `python3 Tools/place_cover.py kirmizi-atkidaki-kar-tanesi <görsel>`.
+- Araştırma: `q_saatin_icindeki_ninni_de_ninninin_son_sa` cevaplandı (Minik'in son satırı bulması için kayıtlı karar yok; sonraki uyku masalında son halka kahramanın). Yeni soru: `q_3_4_yas_ogrenme_kitaplarinda_okura_acik` (3-4 öğrenme kitaplarında davet finali ayrı sayfada mı).
+- Bilerek değişmedi: `published/`, `WORLD.md`, uygulama kodu; onay ya da yayım çalıştırılmadı, push yok.
+- Test: uygulama testi çalıştırılmadı (yalnız içerik); simülatörde görülmedi.
+
 ### 2026-11-16 · main@8ff0fd8 + bu kayıt · E4 main'e girdi, derlendi, origin'e gitti, telefona kuruldu
 
 - Ne değişti (Batuhan, 16 Kasım: "devam et"): E4 dalı main'e ileri sarıldı (`8ff0fd8`, çakışma yok). Debug, iPhone 16 (fiziksel cihaz): `BUILD SUCCEEDED`, hata yok; E4 dosyalarında yalnızca eski desenden gelen `.shared` Swift 6 uyarıları. Uygulama telefona kuruldu (`com.batu.magicpaper.v1`).
