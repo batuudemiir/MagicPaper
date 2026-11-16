@@ -142,7 +142,7 @@ enum MPBadgeCatalog {
             ("hundredFiftyStories", 150, "150 masal"),
             ("twoHundredStories", 200, "Masal ustası"),
         ])
-        out += tiered(.bedtime, .bedtime, icon: "moon.stars", tone: .sky,
+        out += tiered(.bedtime, .bedtime, icon: "moon", tone: .sky,
                       first: "Bir uyku masalı okuyunca açılır.",
                       later: "Uyku masalları okudukça açılır.", [
             ("firstBedtime", 1, "İlk uyku masalı"),

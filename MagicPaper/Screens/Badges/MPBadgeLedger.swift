@@ -42,7 +42,8 @@ struct MPBadgeLedger: Equatable {
     var readingDays: Set<String> = []
     /// Masal → sonuna kadar okunduğu günler ("Tekrar tekrar").
     var finishDays: [String: Set<String>] = [:]
-    /// Öğleden önce bitirilen masallar.
+    /// Sabah (05.00-12.00) bitirilen masallar. Gece yarısından sonrası sabah
+    /// sayılmaz: geç saatte okumak ödüllendirilmez (rozet planı 3).
     var morningStories: Set<String> = []
     var firstFinishedAt: Date?
     var seriesSecond: Set<String> = []
@@ -89,7 +90,7 @@ struct MPBadgeLedger: Equatable {
         }
         readingDays.insert(day)
         finishDays[id, default: []].insert(day)
-        if calendar.component(.hour, from: now) < 12 { morningStories.insert(id) }
+        if (5..<12).contains(calendar.component(.hour, from: now)) { morningStories.insert(id) }
         firstFinishedAt = min(firstFinishedAt ?? now, now)
         if let s = facts.seriesCompletedID { completedSeries.insert(s) }
         if let s = facts.seriesSecondID { seriesSecond.insert(s) }

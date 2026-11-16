@@ -145,12 +145,15 @@ struct MPBadgeStore {
 
     /// Masal okunurken kelime kartı açıldı ("Meraklı parmak"). Rozet burada
     /// verilmez: masal sonunda verilir ve orada kutlanır.
-    func markWordCardOpened(for profileID: UUID) {
-        // Defter yoksa boş kurulur (sürüm 0): ilk `ledger(for:)` onu yine kitaplıktan doldurur.
-        var ledger = storedLedger(for: profileID) ?? MPBadgeLedger()
+    ///
+    /// Defter önce güncel sürüme getirilir: boş bir sürüm-0 defter bırakılsaydı
+    /// masal sonundaki göç rozeti sessizce verir ve hiç kutlanmazdı.
+    @MainActor
+    func markWordCardOpened(for profile: UserProfile, stories: [Story], now: Date = Date()) {
+        var ledger = ledger(for: profile, stories: stories, now: now)
         guard !ledger.wordCardOpened else { return }
         ledger.wordCardOpened = true
-        save(ledger, for: profileID)
+        save(ledger, for: profile.id)
     }
 
     /// Hesaptan gelen defter: birleşir, kaybolmaz.

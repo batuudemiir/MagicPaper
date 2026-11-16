@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main, commit bu kayıtla · Rozet planı R6: derleme, testler, simülatör ve üç düzeltme
+
+- Ne yapıldı (Batuhan, 16 Kasım: "devam et"):
+  - Tek derleme ve bütün testler (iPhone Air simülatörü, `DesignSystemSnapshotTests` ve UI testleri atlandı): 953 test, 951 geçti. Düşen 2 test `LibraryCutoverTests` (başka işin JSON bayt karşılaştırması, rozet planıyla ilgisiz). Düzeltmelerden sonra rozet testleri ayrıca: 90/90 (`BadgePlanTests` 28, `KidCornerTabTests`, `StarCountTests`, `PastelHomeRulesTests`, `MVPExperienceTests`, `StickerPersistenceTests`). Firestore kural testleri emülatörde 55/55 (yeni rozet defteri testi dahil).
+  - Simülatörde görüldü (iPhone Air, açık tema, `-mpDemo`): Profil (puan satırı, Rozetlerim altı kart + "Tümü"), Rozetlerim sayfası (0 / 69, Yıldız katı kartı, Yollar, Seri, Keşif, Ailemle, Gizli "?"), rozet ayrıntı penceresi (kilitli: yalnızca eylem cümlesi), gece masal sonu ("İlk masal · Yeni rozet, 3 tane daha", ses ve kutlama yok).
+- Düzeltilen üç hata:
+  - "Meraklı parmak": çocuğun defteri yokken kelime kartı açılınca boş bir eski sürüm defter kuruluyordu; masal sonundaki göç rozeti sessizce verip hiç kutlamıyordu (`BadgePlanTests` wordCard testi yakaladı). Artık defter önce güncel sürüme getiriliyor.
+  - "Sabah masalı" saat 00:27'de bitirilen masala verildi ("öğleden önce" gece yarısını da kapsıyordu); geç saatte okumayı ödüllendirmeme kararına aykırıydı. Artık yalnızca 05.00-12.00 arası; test eklendi.
+  - "Ay arkadaşı" armasında simge görünmüyordu (`moon.stars` çizilmedi); `moon` oldu. Profil'de hiç rozet yokken altı kilitli kartın hepsi Masal yolu'ndan geliyordu; artık her aileden sıradaki rozet.
+- Görülmedi (dürüst kayıt): gündüz tam ekran rozet anı (test saati geceydi), koyu tema, en büyük Dynamic Type, iPhone SE ve Pro Max, ebeveyn profil sayfası.
+- Dosyalar: `MagicPaper/Screens/Badges/MPBadgeCatalog.swift`, `MPBadgeLedger.swift`, `MPBadgeStore.swift`, `Screens/KidCorner/KidCornerView.swift`, `Screens/StoryReader/StoryReaderView.swift`, `MagicPaperTests/BadgePlanTests.swift`, `docs/ROZET_PLANI.md`.
+
 ### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi onaylandı, kataloğa girdi
 
 - Ne değişti (Batuhan, 16 Kasım: "onaylıyorum"): `content-publisher originals approve kirmizi-atkidaki-kar-tanesi` masalı `drafts/`'tan `published/`'a taşıdı; `build_classics_catalog.py` masalı `classics_catalog.json`'a (62 masal, 2 MagicPaper Original) ve kapağı `Assets.xcassets/Originals/original-kirmizi-atkidaki-kar-tanesi.imageset`'e ekledi. Katalog farkı yalnız bu masal (+33 satır).

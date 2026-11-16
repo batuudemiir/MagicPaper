@@ -256,7 +256,11 @@ struct KidCornerView: View {
     private var shownBadges: [MPBadge] {
         let recent = earnedDates.sorted { ($0.value, $1.key) > ($1.value, $0.key) }
             .compactMap { MPBadgeCatalog.badge($0.key) }
-        let locked = MPBadgeCatalog.all.filter { earnedDates[$0.id] == nil && !$0.isSecret }
+        // Kilitliler her aileden sıradaki rozet: hiç rozet yokken altı kart aynı
+        // yoldan ("İlk masal", "Üç masal"...) gelip tekdüze durmasın.
+        let locked = MPBadgeFamily.allCases.filter { $0 != .secret }.compactMap { family in
+            MPBadgeCatalog.badges(in: family).first { earnedDates[$0.id] == nil }
+        }
         return Array((recent + locked).prefix(6))
     }
 

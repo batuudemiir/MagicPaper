@@ -80,6 +80,8 @@ final class BadgePlanTests: XCTestCase {
         var ledger = MPBadgeLedger()
         ledger.recordFinished(storyID: "a", mode: nil, at: at(11, 2, 15), calendar: calendar)
         XCTAssertFalse(ledger.earnedIDs.contains("morningStory"))
+        ledger.recordFinished(storyID: "n", mode: nil, at: at(11, 2, 0), calendar: calendar)
+        XCTAssertFalse(ledger.earnedIDs.contains("morningStory"), "gece yarısından sonrası sabah değil")
         ledger.recordFinished(storyID: "b", mode: nil, at: at(11, 3, 9), calendar: calendar)
         XCTAssertTrue(ledger.earnedIDs.contains("morningStory"))
     }
@@ -255,7 +257,7 @@ final class BadgePlanTests: XCTestCase {
         let defaults = UserDefaults(suiteName: "BadgePlanTests-\(UUID().uuidString)")!
         let store = MPBadgeStore(defaults: defaults)
         let profile = UserProfile(name: "Ada", age: 6)
-        store.markWordCardOpened(for: profile.id)
+        store.markWordCardOpened(for: profile, stories: [], now: at(11, 16))
         XCTAssertNil(store.storedLedger(for: profile.id)?.earned["wordCard"], "masal ortasında kutlama yok")
         var story = ReaderFixtures.textStory(pages: 2)
         story.childProfileID = profile.id

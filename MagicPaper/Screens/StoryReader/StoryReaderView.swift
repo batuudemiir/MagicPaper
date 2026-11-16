@@ -515,7 +515,7 @@ struct StoryReaderView: View {
 
     private func markWordCardOpened() {
         guard let profile = ProfileManager.shared.currentProfile, story.belongs(to: profile) else { return }
-        MPBadgeStore().markWordCardOpened(for: profile.id)
+        MPBadgeStore().markWordCardOpened(for: profile, stories: StoryGenerationManager.shared.stories)
     }
 
     // MARK: - Konuşalım (Faz 11)

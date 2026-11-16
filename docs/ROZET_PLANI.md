@@ -1,6 +1,6 @@
 # Rozet planı: 8 rozetten 69 rozete, yıldız puanı ve Yıldız katı
 
-**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1-R5 kodu yazıldı, sıradaki R6 (tek derleme, bütün testler, simülatör)
+**Tarih:** 15 Kasım 2026 · **Durum:** bütün kararlar verildi (R0 ve 8-13, Batuhan, 15 Kasım 2026); R1-R6 bitti; sıradaki iş arma çizimleri (illüstratör)
 **İstek (Batuhan, 15 Kasım):** "Bir çok rozet olsun. Duolingo tarzında rozetlerle kullanıcı sürekli desteklensin."
 **Bağlı kurallar:** `CLAUDE.md` ilke 7 (sakin kilometre taşları, karar 3 ve 13 Ekim), `docs/VIZYON_PLANI.md` (yıldız, çıkartma, masal sonu düzeni).
 
@@ -139,7 +139,7 @@ Metin: "7 ayrı günde birlikte okudunuz." Bir gün kaçınca hiçbir şey kaybo
 
 ### J. Gizli (4): kazanılana kadar "?" ve "Gizli rozet"
 - Tekrar tekrar: aynı masal üç ayrı günde sonuna kadar okundu (aynı gün sayfayı ileri geri çevirmek sayılmaz) (tekrar okuma yıldız vermez, rozet verebilir; okuma sayılır)
-- Sabah masalı: öğleden önce bitirilen bir masal (Duolingo Early Rise)
+- Sabah masalı: sabah 05.00-12.00 arasında bitirilen bir masal; gece yarısından sonrası sayılmaz (Duolingo Early Rise)
 - Hafta sonu masalı: aynı hafta sonu cumartesi ve pazar ikisinde de masal bitti (Duolingo Weekend Warrior)
 - Masal yıldönümü ➕: ilk masaldan bir yıl sonra (ya da daha sonra) bir masal okundu. Zamana bağlı ama kaçırılamaz: tarih geçince de ilk masalda kazanılır. Gizli rozet sayısı R0'da üçtü; dördüncüsü 15 Kasım'da kabul edildi
 
@@ -267,7 +267,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 | **R3** ✅ | (15 Kasım 2026; derlenmedi, simülatörde görülmedi) Görünüm: `MPBadgeArt` yer tutucu + kat halkası, `MPBadgeCard` v2, `MPKidRoute.badges` sayfası, Profil bölümü, detay sheet; Profil kimlik bloğunda kat arması + puan satırı, kat sheet'i | ui-agent brif → builder | Tasarım yasası grep'leri boş |
 | **R4** ✅ | (15 Kasım 2026; derlenmedi, simülatörde görülmedi) Anlar: tam ekran rozet ve kat anı (gündüz) ve gece satırı, "+1 yıldız · toplam", Ragi cümleleri, ana sayfa selamı, sessiz nokta | builder, reader | Uyku vaktinde ses yok testi |
 | **R5** ✅ | (15 Kasım 2026; derlenmedi, kural testi çalıştırılmadı) Ebeveyn: çocuk profil sayfasında rozet listesi, puan ve kat; eşitleme kuralları | builder, privacy-safety | Firestore kural testi |
-| **R6** | Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
+| **R6** ✅ | (16-17 Kasım 2026; derlendi, 953 test: 951 geçti, 2 başka işin `LibraryCutoverTests`'i; rozet testleri 90/90; kurallar 55/55; iPhone Air'de açık tema ve gece masal sonu görüldü, gündüz anı, koyu tema, AX5, SE ve Pro Max görülmedi) Doğrulama: bütün testler, simülatörde açık/koyu, AX5, SE + Pro Max; değişiklik günlüğü | yok | Test ve simülatör yalnızca burada, bir kez |
 | **Sonra** | Arma çizimleri (69 + 11 kat halkası, Masal yolu'nda 4 Ragi hâli) | illüstratör | `MPBadgeArt` yer tutucusunun yerine |
 
 ## 7. R0 kararları (Batuhan, 15 Kasım 2026)
