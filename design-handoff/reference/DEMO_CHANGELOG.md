@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi onaylandı, kataloğa girdi
+
+- Ne değişti (Batuhan, 16 Kasım: "onaylıyorum"): `content-publisher originals approve kirmizi-atkidaki-kar-tanesi` masalı `drafts/`'tan `published/`'a taşıdı; `build_classics_catalog.py` masalı `classics_catalog.json`'a (62 masal, 2 MagicPaper Original) ve kapağı `Assets.xcassets/Originals/original-kirmizi-atkidaki-kar-tanesi.imageset`'e ekledi. Katalog farkı yalnız bu masal (+33 satır).
+- Bilerek değişmedi: uygulama kodu, `WORLD.md`, ilk masal. Push yok. Çalışma ağacındaki başka oturumun rozet değişiklikleri commit'e girmedi.
+- Test: uygulama testi çalıştırılmadı; derleme ve simülatör kontrolü bu kayıttan sonra (aşağıdaki sonuç sohbette).
+
 ### 2026-11-16 · main, commit bu kayıtla · MagicPaper Original: Kırmızı Atkıdaki Kar Tanesi kapağı yerleşti
 
 - Ne değişti: Batuhan'ın ChatGPT'de ürettiği kapak `python3 Tools/place_cover.py kirmizi-atkidaki-kar-tanesi <görsel>` ile `drafts/kirmizi-atkidaki-kar-tanesi/cover.jpg` oldu (1125 × 1500, 714 KB). `review.md` `## Öz denetim`'e kapak kontrolü eklendi: karakter WORLD.md görünüşünde, yazı ve rakam yok, odak ortada, 176 px'te okunuyor.
