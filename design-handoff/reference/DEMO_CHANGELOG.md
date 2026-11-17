@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main · Özel günler takvimi (Kasım 2026 – Kasım 2027)
+
+- Tema planlaması için Türkiye'deki milli, dini, okul ve çocuk/okuma günleri araştırıldı; tarih, gün, çocuğa uygunluk, A/B/C/sessiz kademe önerisi ve hazırlık başlangıç tarihleriyle tek belgede toplandı.
+- MagicPaper kurallarından çıkan sınırlar yazıldı: tarihe kilitli rozet yok, sezonluk süs satışı yok, tema geçici masal kalıcı, sessiz günler (10 Kasım, 18 Mart, 15 Temmuz). Kandiller için varsayılan kapalı + ebeveyn ayarı önerisi (karar değil).
+- Dini tarihler haberlerden; Kurban, Hicri yılbaşı, Aşure ve Mevlid tek kaynakta, yayın öncesi Diyanet'ten doğrulanmalı. Yarıyıl tatili MEB genelgesiyle doğrulanmalı. 2027-28 okul takvimi henüz yok.
+- Uygulama kodu, içerik ve tema değişmedi. Test çalıştırılmadı (belge işi).
+- Dosya: docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md.
+
 ### 2026-11-17 · main + bu kayıt · Proje Codex'e aktarıldı
 
 - Ne değişti (Batuhan, 17 Kasım: "ChatGPT Pro Codex aldım, MagicPaper'ı tamamen aktarmak istiyorum"):
