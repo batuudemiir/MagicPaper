@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · Okuyucu guaj görsel örneği — iki ardışık sayfa
+
+- Onaylı sosyal sanat yönü referansıyla yerleşik ChatGPT image_gen üzerinden sahne ve saydam küçük anlatı resmi hazırlandı: bahçede filizi fark eden kurmaca demo kız; sulama kabı, filiz ve iki damla. Ragi yok; gerçek çocuk profili kullanılmadı.
+- Sohbette iki sayfa arasında geçilen okuyucu yerleşimi hazırlandı. Metin ayrı, ilk sayfa sahneli, ikinci metin ağırlıklı; beyaz varsayılan ve isteğe bağlı kâğıt renkleri. Uygulama entegrasyonu yapılmadı; tasarım onay bekliyor.
+- Kalıcı dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/reader/scene-v1.png, spot-v1.png, PROMPTS.md. Çıktılar araçta incelendi; PNG saydamlığı kontrol edildi. Önizleme JavaScript sözdizimi kontrolü geçti; uygulama testi/derleme/simülatör çalıştırılmadı.
+
 ### 2026-11-17 · Karşılama illüstrasyonu v2 — sade kitap ve filiz
 
 - Kullanıcı ilk panoyu fazla AI/jenerik buldu; önerilen kitap + mevcut Ragi pozu + tek turkuaz filiz yönünü kabul etti. Onaylı guaj stil ve resmî onBook karakter referanslarıyla yerleşik ChatGPT image_gen üzerinden ikinci ekran konsepti hazırlandı.
