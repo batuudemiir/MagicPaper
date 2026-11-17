@@ -47,7 +47,7 @@ CLAUDE.md'deki sakin UX kuralları özel gün temalarını doğrudan sınırlıy
 | 10 Ara | Per | Üç aylar başlangıcı + Regaib Kandili | Düşük-orta | Dini (aşağıya bak) | |
 | 12–18 Ara | | Yerli Malı Haftası | Yüksek (okullarda kutlanır) | B | Meyve, kuruyemiş, pazar, paylaşma masalı. |
 | 21 Ara | Pzt | Kış gündönümü · **yılın en uzun gecesi** | Yüksek | **A** | Uyku öncesi modunun doğal bayramı: "En uzun gece masalı", yıldızlar, battaniye. Laik ve herkese açık. |
-| 31 Ara | Per | Yılbaşı gecesi | Yüksek | **A** | "Yeni yıl" ve kış ışıkları olarak; Noel Baba/Noel imgesi yok (aile hassasiyeti). Uyku saatinde sakin. |
+| 31 Ara | Per | Yılbaşı gecesi | Yüksek | **A** | Yeni yıl, Noel Baba, yılbaşı ağacı ve kış ışıkları serbest (karar: 17 Kasım 2026, Batuhan). Uyku saatinde sakin. |
 
 ### Ocak 2027
 
@@ -144,11 +144,11 @@ CLAUDE.md'deki sakin UX kuralları özel gün temalarını doğrudan sınırlıy
 
 ## Dini günler: öneri
 
-Türkiye'de aileler dinî günlere farklı yakınlıkta. Ebeveyn önceliği ve "ebeveynden bildiğimizi bir daha sorma" ilkesiyle:
+Karar (17 Kasım 2026, Batuhan): özel gün temaları için ebeveyn ayarı yok, temalar herkeste görünür. Buna göre:
 
 - **Ramazan ve Kurban Bayramı** kültürel aile bayramı olarak herkese: bayram sabahı, el öpme, şeker, ziyaret, sofra, paylaşma. Kurban imgesi yok.
 - **Ramazan ayı** (8 Şubat–8 Mart): küçük dokunuş. İftar sofrası, davulcu, akşam sofrası masalları; oruç anlatılmaz (çocuk oruç tutmaz).
-- **Kandiller, Kadir Gecesi, Hicri yılbaşı:** varsayılan kapalı. İstenirse Büyükler için'de tek bir ayar ("Dinî günleri de an"). Bu yeni bir ebeveyn ayarı demek; ayrı ürün kararı ister.
+- **Kandiller, Kadir Gecesi, Hicri yılbaşı:** herkese, en fazla B kademesi (Ragi'nin bir cümlesi ve rafta bir masal). Kıyafet ve gökyüzü süsü yok.
 
 ## Yıl haritası: önerilen A temaları
 

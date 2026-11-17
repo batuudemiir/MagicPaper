@@ -1,6 +1,6 @@
 # Özel gün temaları: tasarım ve UX planı
 
-Hazırlanma: 17 Kasım 2026. Durum: **öneri, karar bekliyor.** Uygulamada henüz hiçbir şey değişmedi.
+Hazırlanma: 17 Kasım 2026. Durum: **plan; üç ana karar verildi** (17 Kasım 2026, Batuhan): temaya özel Ragi aksesuarı serbest, ebeveyn ayarı yok (temalar herkeste), Noel Baba ve yılbaşı ağacı serbest. Uygulamada henüz hiçbir şey değişmedi.
 Tarihler: `docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md`. Kişisel özel günler (doğum günü, okulun ilk günü, yeni kardeş, ilk düşen diş) zaten var: E6, `StoryEngineBridge/SpecialDays.swift`, main `7b6d5df`.
 
 ## 1. Tek cümle
@@ -26,7 +26,7 @@ Tarihler: `docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md`. Kişisel özel günl
 - Gezinme, alt çubuk (`KidTabBar`), sayfa düzeni, düğme stilleri, tipografi, eylem rengi `#6A47B8`
 - Okuyucu kâğıdı ve masal metni (kontrast kuralı). Özel gün masalı da aynı kâğıtta okunur.
 - Uyku modu ve gece masal sonu. Uyku saatinde süs söner (bkz. 5).
-- Ebeveyn alanı. Tek istisna, bir ayar satırı (bkz. 7).
+- Ebeveyn alanı. Tema için ayar satırı da yok (karar D2).
 - Ödeme duvarı. Bayram indirimi, geri sayım, "yalnızca bugün" teklifi yok. Yıldız fiyatları da değişmez.
 
 Yasak olanlar (CLAUDE.md ilke 7 ile rozet ve yıldız kuralları):
@@ -45,7 +45,7 @@ Her tema bu katmanlardan **bazılarını** kullanır. Kademe A hepsini, kademe B
 |---|---|---|---|---|---|
 | K1 | **Söz** | Ana sayfa selamı (`MPKidTabHeader` eyebrow), Ragi balonu (`MascotSays`), gündüz masal sonu cümlesi | "Bayramın kutlu olsun, İrem!" Tek cümle, sen dili, çocuğun adıyla. | Yazar | Var |
 | K2 | **Gökyüzü** | Ana sayfa gökyüzü bandı (`HomeSky`) | Bandın içine süs: 23 Nisan'da bayrak ve kurdele, bayramda fener zinciri, en uzun gecede ek yıldız ve kar, Hıdırellez'de dilek kurdeleleri. Kartlara ve içeriğe taşmaz. | İllüstratör | `HomeSky` var. Süs yuvası yok. |
-| K3 | **Ragi aksesuarı** | Ana sayfa ve masal sonu Ragi'si | Pozun üstüne binen tek aksesuar: kurdele, küçük bayrak, atkı, fener, parti şapkası. Kukla kemiğine bağlanır, Ragi ile birlikte oynar. | İllüstratör | **`RAGI.md` "yeni kıyafet yok" diyor: karar gerekir (D1).** |
+| K3 | **Ragi aksesuarı** | Ana sayfa ve masal sonu Ragi'si | Pozun üstüne binen tek aksesuar: kurdele, küçük bayrak, atkı, fener, parti şapkası. Kukla kemiğine bağlanır, Ragi ile birlikte oynar. | İllüstratör | `RAGI.md` istisnası (karar D1, 17 Kasım 2026) |
 | K4 | **Raf** | Masallar vitrini, Ana sayfa "bu akşam" önerisi | O günün masalı vitrinin başında. Tarih geçince normal rafına döner. | Masal motoru ve içerik | Uzaktan akış ve E6 occasion yolu var |
 | K5 | **Masal** | Motor (`occasion_library`) ya da Original | Çocuğun kahraman olduğu özel gün masalı. Metin cihazdaki motorla yazılır, LLM yok. | İçerik | E6 dört kişisel occasion ile var |
 | K6 | **Çıkartma** | Masal sonu, Çıkartma albümü (`MPStickerAlbum`) | Özel gün masalı bitince albüme o günün çıkartması girer. Masal yıl boyu okunabildiği için çıkartma da yıl boyu kazanılabilir. | İllüstratör | Albüm var |
@@ -94,15 +94,15 @@ Kurallar:
 - Profilde ve Masal ailem'de kardeşin doğum günü **ileride** olabilir. Şimdilik yalnızca çocuğun kendi E6 kayıtları (gelecek özellik erken yapılmaz).
 - Rozet ailesinde zaten gizli "Masal yıldönümü" var. Doğum günü için tarihe kilitli bir rozet açılmaz.
 
-## 7. Ebeveyn kontrolü
+## 7. Herkese aynı tema (karar D2)
 
-"Büyükler için → Ayarlar" içinde tek satır: **Özel günler**. Üç seçenek:
+Özel gün temaları için ebeveyn ayarı yok: temalar her ailede görünür. Ebeveyn alanına satır eklenmez.
 
-1. **Açık** (varsayılan): milli günler, bayramlar kültürel aile bayramı olarak, evrensel çocuk ve okuma günleri ve çocuğun kendi günleri.
-2. **Dinî günleri de an:** kandiller, Kadir Gecesi ve Hicri yılbaşı da K1 ve K4 alır. K3 kıyafet yok.
-3. **Kapalı:** hiçbir tema yok. Çocuğun kendi günleri E6'daki gibi yalnızca masal önerisi olarak kalır.
-
-Ramazan ve Kurban Bayramı 1. seçenekte de var, ama kültürel dille: bayram sabahı, el öpme, şeker, ziyaret, sofra. İbadet anlatısı ve kurban imgesi yok. Ramazan ayı boyunca yalnızca B kademesi: iftar sofrası ya da davulcu masalı rafta. Oruç anlatılmaz.
+- **Milli günler, evrensel çocuk ve okuma günleri, yeni yıl:** kademesine göre (A ya da B). Yılbaşında Noel Baba, yılbaşı ağacı ve kış ışıkları serbest (karar D3).
+- **Ramazan ve Kurban Bayramı:** A kademesi, kültürel aile bayramı diliyle: bayram sabahı, el öpme, şeker, ziyaret, sofra. İbadet anlatısı ve kurban imgesi yok.
+- **Ramazan ayı:** B kademesi. İftar sofrası ya da davulcu masalı rafta. Oruç anlatılmaz.
+- **Kandiller, Kadir Gecesi, Hicri yılbaşı:** en fazla B kademesi (Ragi'nin bir cümlesi ve rafta bir masal). Kıyafet ve gökyüzü süsü yok. Ayar olmadığı için dil, her ailenin rahat okuyacağı kadar sade tutulur.
+- **Çocuğun kendi günleri** (E6) zaten ebeveynin girdiği kayda bağlı. Kayıt yoksa o tema da yok.
 
 ## 8. Erişilebilirlik
 
@@ -114,7 +114,7 @@ Ramazan ve Kurban Bayramı 1. seçenekte de var, ama kültürel dille: bayram sa
 
 ## 9. Teknik yön (öneri, karar değil)
 
-1. **Saf çözücü:** `SeasonalThemeResolver`, girdileri tarih, saat dilimi, ebeveyn ayarı, uyku saati ve çocuğun E6 kayıtları; çıktısı `SeasonalLook?` (hangi katman, hangi varlık, hangi söz). UI'dan bağımsız, tamamen birim testli. Test edilecekler: çakışma sırası, sessiz gün, gece hâli, saat dilimi sınırı, "Kapalı" ayarı.
+1. **Saf çözücü:** `SeasonalThemeResolver`, girdileri tarih, saat dilimi, uyku saati ve çocuğun E6 kayıtları; çıktısı `SeasonalLook?` (hangi katman, hangi varlık, hangi söz). UI'dan bağımsız, tamamen birim testli. Test edilecekler: çakışma sırası, sessiz gün, gece hâli, saat dilimi sınırı.
 2. **Takvim verisi uygulamaya gömülmez.** Dinî tarihler her yıl kayar. Yıllık tema tablosu imzalı uzaktan akışın (`feed.json`, FAZ 15) yeni bir `seasons` bölümünde durur. Uygulamayla bir yedek dosya gelir. Böylece güncelleme yayınlamadan tarih düzeltilir ya da tema kapatılır.
 3. **Görseller:** K3 aksesuarları ve K2 süsleri uygulamayla gelir (küçük PNG'ler, sürümle). Uzaktan yalnızca Original kapakları gibi masal görselleri iner. İlk yıl için bütün temaların varlıkları tek sürümde gelebilir. Akış yalnızca hangisinin ne zaman açılacağını söyler.
 4. **Ragi aksesuarı** `MascotImage`'ın içinde ayrı bir katman. `RagiRig` baş kemiğine bağlı, poz başına bir bağlanma noktası. Ekranlar değişmez (`RAGI.md`: "Yeni çizim gelirse yalnızca varlıklar ve `RagiRig` tablosu değişir").
@@ -126,7 +126,7 @@ Ramazan ve Kurban Bayramı 1. seçenekte de var, ama kültürel dille: bayram sa
 | Faz | Ne | İllüstratör gerekir mi | Hedef |
 |---|---|---|---|
 | **T0** | Kararlar (bölüm 11) | Hayır | Bu hafta |
-| **T1** | Çözücü + K1 söz + K4 raf + ebeveyn ayarı + sessiz gün. Çizimsiz ilk tema: **21 Aralık en uzun gece** (söz + raf + motor masalı) ve **yeni yıl**. | Hayır | 18 Aralık |
+| **T1** | Çözücü + K1 söz + K4 raf + sessiz gün. Çizimsiz ilk tema: **21 Aralık en uzun gece** (söz + raf + motor masalı) ve **yeni yıl**. Yeni yıla Noel Baba şapkalı Ragi istenirse illüstratör bu hafta başlamalı; yetişmezse T2'ye kalır. | Hayır | 18 Aralık |
 | **T2** | K3 Ragi aksesuar katmanı + K2 gökyüzü süs yuvası. İllüstratöre ilk paket: Ramazan Bayramı (fener), 23 Nisan (kurdele ve bayrak), doğum günü (parti şapkası). | Evet | Çizim 20 Ocak'ta başlar, tema 6 Mart'ta açılır |
 | **T3** | K6 çıkartma + K7 kapak işareti. Her A teması için bir çıkartma. | Evet | 23 Nisan'a kadar |
 | **T4** | Çocuğun kendi günü ekranda: doğum günü K1, K2 ve K3 (E6'ya bağlanır) | Parti şapkası T2'de | Mart |
@@ -134,13 +134,13 @@ Ramazan ve Kurban Bayramı 1. seçenekte de var, ama kültürel dille: bayram sa
 
 T1 çizim istemez. Bu yüzden takvimdeki "bu hafta başlamalı" sıkışıklığını çözer: aralık temaları çizimsiz çıkar, kıyafetli ilk tema Ramazan Bayramı olur.
 
-## 11. Batuhan'ın vereceği kararlar
+## 11. Kararlar
 
 | # | Karar | Öneri |
 |---|---|---|
-| D1 | `RAGI.md` "yeni kıyafet yok" kuralı, temaya özel **tek aksesuar** için gevşesin mi? | Evet: tek aksesuar, kontursuz, aynı boya dili, bayram bitince çıkar. Ragi'nin kendi kıyafetleri (CLAUDE.md'de illüstratör işi) bundan ayrı kalır. |
-| D2 | Dinî günler için üç seçenekli ebeveyn ayarı | Evet, varsayılan "Açık" (bayramlar kültürel, kandiller kapalı) |
-| D3 | Yılbaşı nasıl anlatılsın? | "Yeni yıl" ve kış ışıkları; Noel Baba ve Noel ağacı yok |
+| D1 | Temaya özel Ragi aksesuarı | **Karar: evet** (17 Kasım 2026). Tek aksesuar, kontursuz, aynı boya dili, tema bitince çıkar. `RAGI.md` güncellendi. |
+| D2 | Ebeveyn ayarı | **Karar: yok**, temalar herkeste (17 Kasım 2026). Kandiller en fazla B kademesi. |
+| D3 | Yılbaşı | **Karar: Noel Baba ve yılbaşı ağacı serbest** (17 Kasım 2026). |
 | D4 | Kişisel gün takvim temasının önüne geçsin mi? | Evet |
 | D5 | Sessiz günlerde çocuk alanı | Süs kapalı, anma içeriği yok, gerisi normal |
 | D6 | A temalarının yıllık sayısı ve bütçe | 5-6 kıyafetli tema; gerisi B kademesi |

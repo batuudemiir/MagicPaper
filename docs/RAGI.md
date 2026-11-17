@@ -14,6 +14,7 @@ Mor bir rakun, sırtında sarı yıldızlı çanta. Meraklı, sakin, kitap seven
 | Renk | Tüy `#8F6BD6`, koyu `#5C3A8F`, göz bandı `#3A2458`, krem `#F6E8DC`, çanta `#F4B735` |
 | Kontur | Siyah kontur yok, boyalı yumuşak kenar |
 | Yapılmaz | Yeni kıyafet, başka çanta rengi, parıltı, 3B parlaklık, başka sanat stili |
+| İstisna | Özel gün teması sırasında tek aksesuar (kurdele, bayrak, fener, parti şapkası, Noel Baba şapkası gibi): kontursuz, aynı boya dili, `RagiRig` baş kemiğine bağlı, tema bitince çıkar. İllüstratör işi. Karar: 17 Kasım 2026, Batuhan; plan `docs/OZEL_GUN_TEMA_PLANI.md` |
 
 ## Duygu ve poz
 

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · ozel-gun-tema-plani · Özel gün temaları: kararlar işlendi
+
+- Batuhan'ın kararları plana, takvime ve Ragi kitabına işlendi: temaya özel tek Ragi aksesuarı serbest (`RAGI.md` "Yapılmaz" satırına istisna), özel gün için ebeveyn ayarı yok ve temalar herkeste, yılbaşında Noel Baba ve yılbaşı ağacı serbest.
+- Ayar kalktığı için kandiller, Kadir Gecesi ve Hicri yılbaşı herkese en fazla B kademesiyle (söz + raf) gösterilecek; bayramlar kültürel dilde A kademesi olarak kaldı. Plandaki 7. bölüm, T1 kapsamı ve çözücü girdileri buna göre sadeleşti.
+- Ana dizindeki CLAUDE.md "Current product decisions" bölümüne tek satır karar eklendi (izlenmeyen dosya, commit'e girmez).
+- Kod değişmedi. Test çalıştırılmadı (belge işi).
+- Dosyalar: docs/OZEL_GUN_TEMA_PLANI.md, docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md, docs/RAGI.md.
+
 ### 2026-11-17 · ozel-gun-tema-plani · Özel gün temaları: tasarım ve UX planı
 
 - Özel günlerde arayüzün nasıl değişeceği için plan yazıldı: düzen ve gezinme sabit, değişen yedi katman (söz, gökyüzü bandı, Ragi aksesuarı, vitrin rafı, masal, çıkartma, kapak işareti). Zaman akışı geri sayımsız; çakışma sırası sessiz gün > çocuğun kendi günü > A > B; gece hâli; sessiz günler.
