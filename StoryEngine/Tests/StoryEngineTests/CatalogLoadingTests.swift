@@ -76,14 +76,17 @@ final class CatalogBundleTests: XCTestCase {
         // 24 with the two bedrooms the bedtime arc opens and closes in.
         // 25 ile Pazar Yeri: "Meslekler ve günlük yaşam" konusunun zemini,
         // kütüphanenin ikinci *yerleşik* yeri (habitat yalnızca `village`).
-        XCTAssertEqual(catalog.settings.count, 25)
+        // 28 ile Gökyüzü ve uzay (E5, 16 Kasım 2026): Ay Kıyısı, Gümüş Kubbe,
+        // Bulut Limanı. Dizinin sonuna eklendi; önceki 25 kaydın yeri aynı.
+        XCTAssertEqual(catalog.settings.count, 28)
         // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
         // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
         // insan bir masala hayvanın girdiği her yerden giremez.
         // 24 ile Cıvıl (serçe, 12 Kasım 2026): `bp_appeal_reunion_001`
         // bahçede bakım isteyen küçük bir yol arkadaşı bulamadığı için hiç
         // seçilemiyordu.
-        XCTAssertEqual(catalog.companions.count, 24)
+        // 26 ile Vida (robot) ve Ayçörek (kedi), yalnızca gökyüzü yerlerinde (E5).
+        XCTAssertEqual(catalog.companions.count, 26)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
@@ -92,7 +95,8 @@ final class CatalogBundleTests: XCTestCase {
         // 30 ile müzik kutusu ve kâğıt fener (12 Kasım 2026): iki blueprint
         // (`bp_unexplained_signal_001`, `bp_threshold_joining_002`) eşleşecek
         // bir keşif bulamadığı için hiç seçilemiyordu.
-        XCTAssertEqual(catalog.objects.count, 30)
+        // 33 ile yıldız tozu izi, küçük kuyruklu yıldız ve yıldız haritası (E5).
+        XCTAssertEqual(catalog.objects.count, 33)
         // 85 with the corpus complete at 33 beat files, each replacing the
         // library's thinner scaffolding for the beat it covers.
         //

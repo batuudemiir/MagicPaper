@@ -97,9 +97,11 @@ final class InterestCatalogTests: XCTestCase {
         // olgulara bağlandı ve "Bilim ve uzay" konusu açıldı.
         // 29 Ekim 2026: `jobs` eklendi — üç insan yol arkadaşı ve Pazar Yeri
         // ile "Meslekler ve günlük yaşam" konusu açıldı.
+        // 16 Kasım 2026 (E5): `space` ve `sky` eklendi: gökyüzü yerleri,
+        // Vida, Ayçörek ve üç gökyüzü nesnesi 5-6 masallarına giriyor.
         XCTAssertEqual(coverage[b56],
                        ["animals", "magic", "music", "nature", "robots", "sea",
-                        "science", "treasure", "jobs"])
+                        "science", "treasure", "jobs", "space", "sky"])
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
                        ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
     }

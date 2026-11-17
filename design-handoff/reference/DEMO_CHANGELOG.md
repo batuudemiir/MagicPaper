@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-16 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E5: ilk dünya, Gökyüzü ve uzay
+
+- Ne değişti:
+  - Plan düzeltildi: dünya = konu içerik paketi, `worlds` kaydı yok (`docs/EVREN_PLANI.md` E5).
+  - `pilot_library_v1.json` dizilerinin sonuna: Ay Kıyısı, Gümüş Kubbe, Bulut Limanı (mekân); Vida (robot), Ayçörek (kedi) (yol arkadaşı); yıldız tozundan bir iz, küçük bir kuyruklu yıldız, yarım kalmış bir yıldız haritası (nesne). Mevcut kayıtlara dokunulmadı; yeni satır yazılmadı. **İçerik taslak, Batuhan okuyacak.**
+  - "Gökyüzü ve uzay" konusu 5-6 macerada canlandı: dört mekanizma da kuruluyor. 7-8 ve 9-10'da iki macera mekanizması olduğu için çip görünmüyor (üçüncü mekanizma bekliyor); 3-4'te macera yok.
+  - En korumacı güvenlik ayarında (varsayılan) gergin sayfalı `threshold` şekilleri düştüğü için bugün hiçbir macera konusu çipi görünmüyor; bu dünyaya özgü değil, raporlandı.
+  - Uyku arkı yatak odalarında kalıyor; yeni yol arkadaşları `needsCare` olmadığı için bakım masalları uzaya taşınmıyor; seri devamı bu yerlerde `isAvailable` ile açık, plan kurulabiliyor mu testi yazıldı.
+- Bilerek değişmedi: blueprint'ler, satırlar, uygulama kodu, seri, hatırlama, rozet.
+- Belgeler: `docs/EVREN_PLANI.md` (E5 ve "Dünya" kararı), `docs/MagicPaper_Content_Library.md` §16.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca JSON ayrıştırma, `swiftc -frontend -parse` ve bağlayıcının Python yaklaşık benzetimi. Yeni `SkyWorldTests` (10); `CatalogLoadingTests` sayıları (28/26/33), `StoryTopicTests` canlı konular, `InterestCatalogTests` 5-6 matrisi güncellendi. Yeni mekânlar konusuz macera ve öğrenme havuzlarına da girdiği için sabit seed'li altın testlerin bir kısmının kırılması bekleniyor (`OfflineDeterminismTests`, altın fikstürler, varyasyon tabanı, uygulamada `IllustratedBookFlowTests`'in orman seed'i); koşulmadığı için hangileri bilinmiyor, fikstürler güncellenmedi.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`, `StoryEngine/Tests/StoryEngineTests/{SkyWorldTests,CatalogLoadingTests,StoryTopicTests,InterestCatalogTests}.swift`, iki belge, bu günlük.
+
 ### 2026-11-16 · main@8ff0fd8 + bu kayıt · E4 main'e girdi, derlendi, origin'e gitti, telefona kuruldu
 
 - Ne değişti (Batuhan, 16 Kasım: "devam et"): E4 dalı main'e ileri sarıldı (`8ff0fd8`, çakışma yok). Debug, iPhone 16 (fiziksel cihaz): `BUILD SUCCEEDED`, hata yok; E4 dosyalarında yalnızca eski desenden gelen `.shared` Swift 6 uyarıları. Uygulama telefona kuruldu (`com.batu.magicpaper.v1`).

@@ -254,8 +254,11 @@ final class StoryTopicTests: XCTestCase {
         XCTAssertEqual(live(.learning, band: b56),
                        ["topic_learning_animals", "topic_learning_jobs",
                         "topic_learning_science"])
+        // 16 Kasım 2026 (E5): "Gökyüzü ve uzay" canlandı. Üç yeni mekân (Ay
+        // Kıyısı, Gümüş Kubbe, Bulut Limanı) dört macera mekanizmasını da
+        // kuruyor: incrementalCourage, askingToJoin, persistence, retracing.
         XCTAssertEqual(live(.adventure, band: b56),
-                       ["topic_adventure_treasure", "topic_adventure_wild"])
+                       ["topic_adventure_sky", "topic_adventure_treasure", "topic_adventure_wild"])
 
         // 3-4 bandında tek bir blueprint var ve o uyku öncesine ait; bu bantta
         // hiçbir konu kurulamıyor, yani alt kategori adımı hiç görünmüyor.
