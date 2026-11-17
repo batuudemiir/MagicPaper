@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main, commit bu kayıtla · Motor ve havuz genişletme planı (H0-H5)
+
+- Ne değişti (Batuhan, 17 Kasım: "motor engineyi ve havuzu genişletmeliyiz, sonra diğer işlere bakarız"): `docs/HAVUZ_PLANI.md` (yeni). Katalogdan sayılan bant × mod tablosu: 3-4 yaşta macera yok; en korumacı ayarda (varsayılan) hiçbir bantta macera konusu çipi görünmüyor (5-6'da sakin macera 2, kapı 3 ister); 7-10 yaşta her mod iki blueprint; 7-10 yaşta seri devamı yok. Fazlar: H0 kapsam raporu (test olarak taban kilidi), H1 sakin macera her bantta, H2 öğrenme, H3 uyku, H4 seri devamı 7-10, H5 cümle tekrarı.
+- Bilerek değişmedi: kod. E7 (yetkiler) ve E8 (yayınevi) bu planın arkasına kaldı.
+- Not: ortak checkout başka bir oturumun dalındaydı (`codex/design-system-catalog`); ilk commit oraya düştü ve o oturumun commit edilmemiş günlük satırlarını da aldı. Commit geri alındı (`git reset --soft`), o dal `e262eb1`'de, satırları çalışma kopyasında duruyor. Bu kayıt geçici bir main worktree'sinden yazıldı.
+- Test: çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/HAVUZ_PLANI.md`, bu günlük.
+
 ### 2026-11-17 · main · Özel günler takvimi (Kasım 2026 – Kasım 2027)
 
 - Tema planlaması için Türkiye'deki milli, dini, okul ve çocuk/okuma günleri araştırıldı; tarih, gün, çocuğa uygunluk, A/B/C/sessiz kademe önerisi ve hazırlık başlangıç tarihleriyle tek belgede toplandı.
