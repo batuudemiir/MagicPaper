@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · ozel-gun-tema-plani · Özel gün temaları: tasarım ve UX planı
+
+- Özel günlerde arayüzün nasıl değişeceği için plan yazıldı: düzen ve gezinme sabit, değişen yedi katman (söz, gökyüzü bandı, Ragi aksesuarı, vitrin rafı, masal, çıkartma, kapak işareti). Zaman akışı geri sayımsız; çakışma sırası sessiz gün > çocuğun kendi günü > A > B; gece hâli; sessiz günler.
+- Bugünkü E6 kişisel özel günleri (`SpecialDays.swift`) aynı katmanlara bağlandı; doğum günü en güçlü tema olarak öne alındı. Ebeveyn için üç seçenekli tek "Özel günler" satırı önerildi (dinî günler isteğe bağlı).
+- Araştırma: Duolingo maskot kıyafetleri, sezonda arayüzü yeniden tasarlamama önerisi, Apple 4.6 (simge tarihe göre kendiliğinden değişemez). Çocuk uygulamasına özgü kaynak bulunamadı; çocuk kuralları MagicPaper yasasına dayanıyor.
+- T0-T5 sıra: aralık temaları çizimsiz (T1), ilk kıyafetli tema Ramazan Bayramı. Yedi karar Batuhan'da (D1: `RAGI.md` "yeni kıyafet yok" kuralının tek aksesuar için gevşemesi).
+- Kod değişmedi. Test çalıştırılmadı (belge işi).
+- Dosya: docs/OZEL_GUN_TEMA_PLANI.md.
+
 ### 2026-11-17 · main, commit bu kayıtla · Motor ve havuz genişletme planı (H0-H5)
 
 - Ne değişti (Batuhan, 17 Kasım: "motor engineyi ve havuzu genişletmeliyiz, sonra diğer işlere bakarız"): `docs/HAVUZ_PLANI.md` (yeni). Katalogdan sayılan bant × mod tablosu: 3-4 yaşta macera yok; en korumacı ayarda (varsayılan) hiçbir bantta macera konusu çipi görünmüyor (5-6'da sakin macera 2, kapı 3 ister); 7-10 yaşta her mod iki blueprint; 7-10 yaşta seri devamı yok. Fazlar: H0 kapsam raporu (test olarak taban kilidi), H1 sakin macera her bantta, H2 öğrenme, H3 uyku, H4 seri devamı 7-10, H5 cümle tekrarı.
