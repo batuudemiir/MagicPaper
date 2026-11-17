@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · Karşılama illüstrasyonu v2 — sade kitap ve filiz
+
+- Kullanıcı ilk panoyu fazla AI/jenerik buldu; önerilen kitap + mevcut Ragi pozu + tek turkuaz filiz yönünü kabul etti. Onaylı guaj stil ve resmî onBook karakter referanslarıyla yerleşik ChatGPT image_gen üzerinden ikinci ekran konsepti hazırlandı.
+- Şato, ay, yol ve çevre bitkileri kaldırıldı. Beyaz alan artırıldı. Görsel ve yerleşim onayı bekleniyor; uygulamaya entegrasyon yapılmadı. Ragi referanstan yeniden çizimdir, nihai kimlik doğrulaması gerekir; gerçek metin/düğme uygulama bileşenleriyle kurulacak.
+- Dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/welcome-concept-v2.png ve PROMPT-v2.md. Çıktı gözle incelendi; test/derleme/simülatör çalıştırılmadı.
+
 ### 2026-11-17 · Karşılama illüstrasyon konsepti — onay bekliyor
 
 - Repo kuralları, ilgili proje hafızası, Ragi kitabı, onaylı sosyal görsel yönü ve üç mobil tanıtım örneği incelendi. Karşılama, mod seçimi, boş durum ve küçük sahneler için ölçek önerileri yazıldı.
