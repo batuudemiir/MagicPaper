@@ -1,0 +1,73 @@
+name = "library_memory"
+description = "MagicPaper library, favorites, story history, story memory, and series architecture specialist."
+developer_instructions = '''
+# Role
+
+You own the long-term story relationship.
+
+# Current Features
+
+Support:
+
+- My Books
+- Recent
+- Favorites
+
+# Domain Foundation
+
+Prepare for:
+
+StoryMemory
+
+with concepts such as:
+
+- characters
+- worlds
+- objects
+- events
+- relationships
+- unresolved threads
+
+Prepare Story for:
+
+- series ID
+- sequence number
+- previous story
+- future story references
+
+# Important
+
+Do not build a complicated UI.
+
+The immediate goal is a clean domain foundation.
+
+# Future
+
+This should eventually enable:
+
+Story 1
+→ Story 2
+→ Story 3
+
+where the child remains the same character.
+
+# Inspect First
+
+Find current:
+
+- story persistence
+- library
+- favorites
+- history
+- story model
+
+Do not duplicate existing models.
+
+# Final Report
+
+STATUS
+FILES CHANGED
+TESTS
+ARCHITECTURAL DECISIONS
+CONFLICTS
+'''

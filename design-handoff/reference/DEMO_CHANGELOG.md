@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main + bu kayıt · Proje Codex'e aktarıldı
+
+- Ne değişti (Batuhan, 17 Kasım: "ChatGPT Pro Codex aldım, MagicPaper'ı tamamen aktarmak istiyorum"):
+  - `AGENTS.md` (repo kökü): üst klasördeki `CLAUDE.md`'nin tamamı, yollar repo köküne göre düzeltildi (`MagicPaper/MagicPaper` → `MagicPaper`, `MagicPaper/docs/` → `docs/`). 23,9 KB, Codex'in 32 KiB sınırının altında.
+  - `.codex/agents/*.toml`: `.claude/agents/` altındaki 16 ajan + `original-writer` Codex'in özel ajan biçimine çevrildi (`name`, `description`, `developer_instructions`); talimatlardaki `CLAUDE.md` → `AGENTS.md`. Ajan adları alt çizgili (`story_engine`).
+  - `docs/PROJE_HAFIZASI.md`: Claude Code'un proje hafızasındaki 46 not tek belgede (karar, kaldığı yer, tuzaklar).
+  - `design-handoff/AGENTS.md`: `design-handoff/CLAUDE.md`'nin kopyası.
+- Bilerek değişmedi: `CLAUDE.md` ve `.claude/` yerinde, Claude Code çalışmaya devam eder. Kurallar artık iki yerde; yeni karar ikisine de yazılmalı (ya da biri kaynak seçilmeli).
+- Test: uygulama kodu değişmedi, test çalıştırılmadı. TOML dosyaları Codex'te açılıp denenmedi.
+
 ### 2026-11-17 · main + bu kayıt · TestFlight hazırlığı: dSYM hatası, sürüm, gizlilik manifesti
 
 - Ne değişti (Batuhan, 17 Kasım: "GenerateDSYMFile hatası var, build dene, TestFlight kontrollerini yap"):
