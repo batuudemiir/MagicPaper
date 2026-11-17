@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main + bu kayıt · TestFlight hazırlığı: dSYM hatası, sürüm, gizlilik manifesti
+
+- Ne değişti (Batuhan, 17 Kasım: "GenerateDSYMFile hatası var, build dene, TestFlight kontrollerini yap"):
+  - `GenerateDSYMFile` hatasının nedeni diskin dolu olmasıydı (117 MB boş). Proje ayarlarında sorun yoktu. Yer açıldıktan sonra Release archive başarılı oldu; uygulama ve widget dSYM'leri üretildi, UUID'leri binary ile eşleşiyor.
+  - Sürüm: `MagicPaper/Info.plist` sürümü elle 1.0 (1) olarak tutuyordu ve proje ayarındaki 2.0 (4)'ü eziyordu (önceki yedi archive'ın hepsi 1.0 (1)). İki Info.plist artık `$(MARKETING_VERSION)` / `$(CURRENT_PROJECT_VERSION)` okuyor; widget'ın proje ayarı da 2.0 (4) yapıldı. Archive: uygulama ve widget 2.0 (4).
+  - `MagicPaper/Helpers/PrivacyInfo.xcprivacy` eklendi: UserDefaults (CA92.1) ve dosya tarihi (C617.1), izleme yok. Toplanan veri listesi boş; App Store Connect gizlilik etiketleri ayrıca doldurulmalı.
+  - `ITSAppUsesNonExemptEncryption = NO` eklendi (yalnızca HTTPS ve SHA256 özeti var).
+  - `project.pbxproj`'daki diğer satırlar xcodebuild'in test hedefi bloklarını yeniden sıralamasından geliyor; içerik değişmedi.
+- Doğrulama: `xcodebuild archive` Release `ARCHIVE SUCCEEDED`; yüklemesiz yerel App Store export'u `EXPORT SUCCEEDED`, IPA 59 MB, `get-task-allow` false, `beta-reports-active` true.
+- Bilerek değişmedi: RevenueCat anahtarı `test_`; Release'de satın alma kapalı kalır (`MagicPaperApp.swift` yapılandırmayı atlar, çökme yok). Production `appl_` anahtarı Batuhan'da. 70 derleyici uyarısı (Swift 6 eşzamanlılık) dokunulmadı.
+- Test: birim testler çalıştırılmadı, simülatörde ve cihazda açılmadı. TestFlight'a yükleme yapılmadı.
+- Dosyalar: `MagicPaper.xcodeproj/project.pbxproj`, `MagicPaper/Info.plist`, `MagicPaperWidgets/Info.plist`, `MagicPaper/Helpers/PrivacyInfo.xcprivacy`.
+
 ### 2026-11-17 · main@6182211 + bu kayıt · E5-E6 main'e girdi, derlendi, origin'e gitti
 
 - Ne değişti (Batuhan, 17 Kasım: "sıradaki faza geç"): E5 ve E6 dalı main'e birleşti (`6182211`); tek çakışma bu günlükteydi, iki tarafın kayıtları korundu.
