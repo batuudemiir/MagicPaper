@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main@6182211 + bu kayıt · E5-E6 main'e girdi, derlendi, origin'e gitti
+
+- Ne değişti (Batuhan, 17 Kasım: "sıradaki faza geç"): E5 ve E6 dalı main'e birleşti (`6182211`); tek çakışma bu günlükteydi, iki tarafın kayıtları korundu.
+  - E6 satırlarında ses uyumu hatası düzeltildi (`0f28112`): `{{occasion.sibling}} de` ve `{{child.name}} de` ("Ela de", "Ali de") adın ünlüsüne göre çözülmüyordu. Dört satır bağlaçsız yeniden yazıldı; örnek: "Evdeki herkes uyudu. En son {{child.name}} gözlerini kapadı."
+  - Debug, genel iOS cihazı: `BUILD SUCCEEDED`, hata yok.
+- Bilerek değişmedi: mevcut korpusta da iki `{{child.name}} de` satırı var (aynı hata türü); E6 kapsamı dışında, dokunulmadı. Yeni metinlerin hepsi Batuhan onayını bekliyor.
+- Test: birim testler çalıştırılmadı; E5 sabit seed'li altın testleri muhtemelen kırıyor (yeni mekânlar konusuz havuza girdi), fikstürler güncellenmedi. Telefon bağlı olmadığı için kurulmadı.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/occasion_library_v1.json`, bu günlük.
+
 ### 2026-11-17 · main@7b6d5df + 0f28112 (dal worktree-agent-a4d762b8b86a0f234) · E6: Özel günler
 
 - Ne değişti:
