@@ -103,6 +103,11 @@ public struct OfflineStoryComposer: Sendable {
         catalog: ContentCatalog,
         intent: OfflineStoryIntent
     ) throws -> ComposedStory {
+        // E6: a special day picks only from its own blueprints, and says so
+        // when none can be written; it never falls back to an ordinary story.
+        if let occasion = intent.occasion {
+            return try composeOccasion(catalog: catalog, intent: intent, occasion: occasion)
+        }
         let idea = try selector.storyIdea(catalog: catalog, intent: intent)
         let candidates = try selector.ranked(catalog: catalog, intent: intent)
 
@@ -170,6 +175,7 @@ public struct OfflineStoryComposer: Sendable {
             blueprint: blueprint, catalog: catalog, intent: intent, idea: idea)
         var slots = Self.slots(childName: intent.childName, content: content, family: intent.family)
         if let episode { slots["keepsake.name"] = Self.keepsakeSlot(episode.keepsake) }
+        if let occasion = intent.occasion { slots[Self.occasionSiblingSlot] = Self.occasionSlot(occasion) }
         let familyMoments = episode == nil ? catalog.familyMoments : catalog.series.familyMoments
         let lastPage = blueprint.pagePlan.map(\.pageNumber).max() ?? 0
         // A series episode and a bedtime story both close without a hook: the
@@ -190,7 +196,7 @@ public struct OfflineStoryComposer: Sendable {
             intent.seed, intent.childName, blueprint.id.rawValue,
             content.setting.id.rawValue, content.companion.id.rawValue,
             content.discovery.id.rawValue
-        ] + Self.familyKey(intent.family) + Self.episodeKey(episode))
+        ] + Self.familyKey(intent.family) + Self.episodeKey(episode) + Self.occasionKey(intent.occasion))
 
         var pages: [ComposedPage] = []
         var carried: [Int: (beats: [StoryBeat], role: PageRole, emotion: EmotionalState?)] = [:]
@@ -240,15 +246,22 @@ public struct OfflineStoryComposer: Sendable {
                 flush()
                 currentPage = step.pageNumber
             }
-            let candidates = Self.templates(
-                for: step.beat, in: catalog, blueprint: blueprint, series: episode != nil)
+            // E6: a special day's own lines take its opening and closing beats.
+            let occasionLines = intent.occasion.map {
+                Self.occasionTemplates(for: step.beat, in: catalog, blueprint: blueprint, occasion: $0.kind)
+            } ?? []
+            let candidates = occasionLines.isEmpty
+                ? Self.templates(for: step.beat, in: catalog, blueprint: blueprint, series: episode != nil)
+                : occasionLines
             guard !candidates.isEmpty else {
                 throw OfflineSelectionError.noTemplate(beat: step.beat, page: step.pageNumber)
             }
             // On a family moment only a template that has a line for this
             // relation can serve; picking among all of them would let the seed
             // land on one that cannot, and the page would fail for no reason.
-            let familyMoment = intent.family != nil && familyMoments.contains(step.beat)
+            // A beat the special day writes is not a family moment: its lines
+            // are the day's.
+            let familyMoment = occasionLines.isEmpty && intent.family != nil && familyMoments.contains(step.beat)
             let serving = familyMoment
                 ? candidates.filter { Self.hasFamilyLine($0, for: intent.family?.relation) }
                 : candidates
@@ -324,7 +337,8 @@ public struct OfflineStoryComposer: Sendable {
         // girdiği için parmak izine yalnızca satır varken giriyor. Nakaratlı
         // sayfa atlanır: nakarat sayfanın sonunda kalmalı.
         var recallLineID: ContentID?
-        if episode == nil, let history = intent.recall, let first = pages.first, first.refrain == nil,
+        if episode == nil, intent.occasion == nil, let history = intent.recall,
+           let first = pages.first, first.refrain == nil,
            let recall = RecallComposer.line(
                history: history, content: content, catalog: catalog, band: blueprint.ageRange,
                slots: slots, recent: recentVariants, seed: storySeed) {
@@ -380,6 +394,7 @@ public struct OfflineStoryComposer: Sendable {
                  intent.childName, intent.seed]
                 + Self.familyKey(intent.family)
                 + Self.episodeKey(episode)
+                + Self.occasionKey(intent.occasion)
                 + pages.flatMap { $0.variantIDs.map(\.rawValue) }
             ),
             recallLineID: recallLineID

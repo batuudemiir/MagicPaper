@@ -541,3 +541,26 @@ Bu belgeyi taşımayan eski bir paket hatırlama yazmaz; masal aynı kalır.
 - Doğrulama (`CatalogIntegrityChecker.checkRecallLines`): tanınmayan slot, `recall.place.name` ile `firstMet` uyumu,
   yinelenen kimlik, her bantta her kademe için (yol arkadaşında hem `here` hem `elsewhere` durumu) en az bir satır.
 - Bütün satırlar taslak; içerik onayı Batuhan'da.
+
+## 16. Gökyüzü ve uzay dünyası (E5, 16 Kasım 2026)
+
+Bir dünya bir konunun içerik paketidir (`topic_adventure_sky`, ilgi sözcükleri `space` ve `sky`). Kayıtlar
+`pilot_library_v1.json` dizilerinin sonunda; mevcut kayıtlara dokunulmadı. Hepsi taslak, Batuhan okuyacak.
+
+| Kayıt | Ad | Tanım | Özellikler |
+|---|---|---|---|
+| `setting_moon_shore_001` | Ay Kıyısı | Gümüş renkli tozun yumuşacık durduğu, yıldızlara yakın sakin bir kıyı. Toz üstünde her adım iz bırakır. | `hasThreshold`, `isOpen`, `showsTraces`; eşik `span`; habitat `sky`; ilgi `space` |
+| `setting_silver_dome_001` | Gümüş Kubbe | Kocaman bir dürbünün yıldızlara baktığı, raflarında eski yıldız haritaları saklanan yuvarlak bir gözlemevi. | `hasThreshold`, `canConceal`; eşik `opening`; habitat `sky`; ilgi `space` |
+| `setting_cloud_harbor_001` | Bulut Limanı | Renkli balonların bulutlara bağlanıp dinlendiği, kalabalık ve neşeli bir liman. | `hasThreshold`, `isOpen`, `isTended`; eşik `social`; habitat `sky`; ilgi `sky`; güvenlik konusu `heights` |
+| `companion_robot_sky_001` | Vida (robot) | Ay Kıyısı'nda yaşayan, ışıklarıyla göz kırpan küçük bir robot. Meraklı ve biraz çekingen. | `fantastic`; `isSmall`, `isPatient`; roller `hesitant`, `reassuring`; habitat `sky` |
+| `companion_space_cat_001` | Ayçörek (kedi) | Yıldızların arasında gezmeyi seven, minik şeffaf kasklı bir kedi. Sakin ve yol bilen. | `animal`; `isQuick`, `isPlayful`; roller `guide`, `reassuring`; habitat `sky` |
+| `object_stardust_trail_001` | yıldız tozundan bir iz | Biri geçmiş gibi, yer yer kesilen parlak bir toz izi. | `impliesPresence`, `isFragmentary`, `isBeautiful`, `isVisible` |
+| `object_little_comet_001` | küçük bir kuyruklu yıldız | Avuç kadar, kuyruğu yumuşak yumuşak parlayan bir kuyruklu yıldız. | `emitsSignal`, `isBeautiful`, `isUnexplained`, `isVisible` |
+| `object_star_map_001` | yarım kalmış bir yıldız haritası | Birinin çizmeye başlayıp bitiremediği, köşesi eksik bir yıldız haritası. | `impliesPresence`, `isFragmentary`, `isUnexplained`, `isVisible`; iyelik ekli |
+
+Bilerek seçilmeyen özellikler: Gümüş Kubbe `isEnclosed` değil (o satır "gözleri karanlığa alıştı" diyor) ve
+`showsTraces` değil (o satır "toprak yumuşacıktı" diyor); Bulut Limanı `showsTraces` değil (bulutta toprak yok);
+hiçbiri `hasWeather`, `hasHeight`, `isHazardous` değil. Yol arkadaşları `needsCare` değil ve `canFly` değil.
+Bilinen hafif uyumsuzluk (kabul edildi, masalsı): 7-8 satırlarında "rüzgâr", "taş" geçen genel cümleler bu yerlerde
+de seçilebilir.
+

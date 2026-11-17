@@ -28,7 +28,7 @@ Açık olan dört dikiş ve bir içerik sorunu:
 - **Hafıza türetilir, saklanmaz.** Ayrı bir hafıza deposu, olay tablosu ya da ilişki grafiği açılmaz; kaynak biten masalların `StoryOrigin`'idir. Masal silinince hafızası da gider.
 - **Yeni paket yok.** Tek yeni soyutlama `StoryContextBuilder` (köprüde, saf).
 - **Yeni orkestratör yok.** `createStory` orkestratördür; motordaki eski `StoryOrchestrator` (bulut işi) dokunulmadan kalır.
-- **"Dünya" tek kavram olur:** katalogda mekânları gruplayan bir kayıt. Ev dünyası / bağımsız dünya o kaydın bir alanıdır.
+- **"Dünya" tek kavram olur:** bir dünya, bir konunun (`storyTopics`) içerik paketidir. Yeni kayıt türü yok (E5'te düzeltildi, 16 Kasım 2026).
 - **Aile anısı serbest metin değildir.** "Özel günler": yazılmış blueprint'ler (ilk okul günü, yeni kardeş, doğum günü, düşen diş), doğrulanmış alanlarla. "Serbest metin yok" kuralı kalır.
 - **Saklanan metin kayıttır.** Seed tanı içindir; ilgi ve geçmiş saklanmadığı için yeniden kurmak aynı kitabı garanti etmez.
 - **Yapılmayacaklar:** Universe Engine, karakter grafiği, genel hafıza deposu, LLM ile masal, dallanan anlatı, sohbet, sayfa başına üretilen görsel, uygulama içi baskı siparişi.
@@ -83,11 +83,26 @@ Tür, ten, saç ve yüz tek kayıtta; büst (`HeroAvatarView`) ve sahne figürü
 
 ### E5: Dünyalar
 
-Katalogda `worlds` kaydı mekânları gruplar. Seçim "Masalda kimler olsun?" adımında, konu çiplerinin yanında, isteğe bağlı; yeni adım yok. `StoryTheme.isPremium` ve `MP.World.isPremium` tek yere iner. İlk paketler: uzay, dinozorlar (`MP.World`'ün zaten söz verdiği). Asıl iş yazı: her dünya mekân, yol arkadaşı, nesne ve dört bantta satır ister.
+**Düzeltme (16 Kasım 2026):** `worlds` kaydına gerek yok. Dünya mekanizması zaten var: `storyTopics` "Masalda kimler olsun?" adımında çip olarak görünüyor (`CompanionStep.topicSection`) ve yalnızca kurulabildiği yerde teklif ediliyor (`BlueprintSelector.availableTopics`, en az üç mekanizma). Bir dünya = bir konunun içerik paketi: mekân, yol arkadaşı, nesne; yeni kayıt türü, adım ya da ekran yok. `MP.World.from(settingTags:)` `space`, `sky`, `moon`'u zaten `.uzay` kapağına çeviriyor.
+
+**Uygulanan: ilk dünya, "Gökyüzü ve uzay"** (`topic_adventure_sky`). `pilot_library_v1.json`'un sonuna üç mekân (Ay Kıyısı, Gümüş Kubbe, Bulut Limanı), iki yol arkadaşı (Vida, Ayçörek) ve üç nesne (yıldız tozundan bir iz, küçük bir kuyruklu yıldız, yarım kalmış bir yıldız haritası). Yeni satır yazılmadı.
+
+- 5-6'da dört macera mekanizması da kuruluyor; çip görünüyor (konu kapısı hiç güvenlik süzgeci yokken ya da "biraz heyecan" seçiliyken; en korumacı ayarda gergin sayfalı `threshold` şekilleri düştüğü için bugün hiçbir macera konusu görünmüyor, bu dünyaya özgü değil).
+- 7-8 ve 9-10'da yalnızca iki macera mekanizması var (persistence, retracing); mekânlar o bantların masallarına giriyor ama çip üçüncü mekanizmayı bekliyor. 3-4'te macera blueprint'i yok.
+- Uyku arkı yatak odalarında kalıyor (`isRestingPlace`). Yeni yol arkadaşları bakım isteyen (`needsCare`) değil; bahçe ve bakım masalları (`charge`, `appeal`) uzaya taşınmıyor.
+
+Sıradaki dünyalar: Tarih (`topic_learning_history`), Yeni bir ülke, Yeni bir şehir, Denizin altı'nı genişletmek (bugün iki mekanizma kuruyor). `StoryTheme.isPremium` ve `MP.World.isPremium`'un birleşmesi ödeme turuna (E7) kaldı.
 
 ### E6: Özel günler
 
-Ebeveyn odasında "Özel günler" satırı, çarpma kapısıyla. Dört blueprint. Kayıt yapılandırılmış alanlardır, ad `FamilyNameValidator`'dan geçer, tek tek silinir, kendi blueprint'i dışında kullanılmaz, log'a girmez.
+**Uygulanan (17 Kasım 2026).** Dört özel gün: doğum günü, okulun ilk günü, yeni kardeş, ilk düşen diş.
+
+- **Ebeveyn:** çocuk profil sayfasında Masal ailem'in altında "Özel günler" satırı → `MPParentRoute.specialDays` (`SpecialDaysView`, `MPParentHeader` alt sayfa, `MPListRow` dili, Ragi yok). Kayıt yapılandırılmış: tür, isteğe bağlı gün, "Yeni kardeş" için isteğe bağlı Masal ailem kardeşi; ad yazdırılmaz, serbest metin yok; çocuk başına tür başına bir kayıt. Ekleme odanın içinde; kaldırma onay penceresi ve `requestGate` ile (odada kapı doğrudan geçer, `MPRouter` kuralı). Yalnızca cihazda (`SpecialDayStore`, `mp_specialdays_<id>`); senkron yok. Profil silme ve "Tüm verileri sil" siler.
+- **Masal yazma:** "Masalda kimler olsun?" adımında konu çiplerinin üstünde "Özel bir gün" bölümü; yalnızca etkin (tarihsiz ya da 14 gün önce ile 7 gün sonra arası) ve bu mod ile yaşta yazılabilen günler (`BlueprintSelector.availableOccasions`). Seçilen gün blueprint'i kilitler; konu ve yol arkadaşı seçimi geçerli kalır. Küçük kademede (`LittleCompanionStep`) bu turda yok.
+- **Motor:** `OfflineStoryIntent.occasion` (tür + isteğe bağlı kardeş `FamilyCast`); nil iken seed ve parmak izi aynı. Ayrı katman `ContentCatalog.occasions` (`occasion_library_v1.json`, seri katmanı deseni): normal havuz bu blueprint'lere ulaşamaz; özel gün kurulamazsa `OfflineSelectionError.noOccasionStory`. Sekiz blueprint, mevcut ve kurulduğu bilinen şekillerin kopyası; ilk ve son sayfa günün kendi satırlarıyla (`occasion.sibling` slotu: kardeşin adı ya da "küçük kardeşi").
+- **Mod ve bant:** 5-6'da doğum günü ve okulun ilk günü macera (`absence`, gergin sayfası olmadığı için en korumacı ayarda da görünür), yeni kardeş ve ilk diş uyku öncesi. 3-4'te macera şekli olmadığı için dördü de uyku öncesi (gün akşamı ya da bir önceki akşam). 7-8 ve 9-10 sonraki tur.
+- Özel gün masalı devam ettirilmez (`origin.occasionID`), hatırlama cümlesi almaz; yıldız ve rozet her masal gibi.
+- Metinler taslak, Batuhan okuyacak.
 
 ### E7: Yetkiler
 

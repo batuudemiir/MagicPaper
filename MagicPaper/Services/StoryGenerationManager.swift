@@ -345,7 +345,8 @@ extension StoryGenerationManager {
         companionID: String?,
         subOption: String? = nil,
         seed: String? = nil,
-        family: FamilyCharacter? = nil
+        family: FamilyCharacter? = nil,
+        occasion: OccasionRequest? = nil
     ) async throws -> Story {
         isGenerating = true
         defer { isGenerating = false }
@@ -355,7 +356,7 @@ extension StoryGenerationManager {
         let context = StoryContextBuilder().build(
             for: profile, library: stories, mode: mode, strategy: strategy,
             storyIdeaID: storyIdeaID, companionID: companionID,
-            subOption: subOption, family: family)
+            subOption: subOption, family: family, occasion: occasion)
         let composed = try service.compose(context, seed: seed)
 
         let mapped = OfflineStoryMapper.appStory(
@@ -368,7 +369,8 @@ extension StoryGenerationManager {
             selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: profile.age),
             subOption: subOption,
-            familyCharacter: family
+            familyCharacter: family,
+            occasion: occasion
         )
         // Masal dünyası hatırlar: E3'ten beri motorun içinde. Hatırlama
         // cümlesi ilk sayfada zaten var, `origin.recalled` eşlemeden geliyor.

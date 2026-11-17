@@ -228,6 +228,97 @@
         "garden",
         "forest"
       ]
+    },
+    {
+      "id": "setting_moon_shore_001",
+      "interests": [
+        "space"
+      ],
+      "name": "Ay Kıyısı",
+      "description": "Gümüş renkli tozun yumuşacık durduğu, yıldızlara yakın sakin bir kıyı. Toz üstünde her adım iz bırakır.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Eşik: ay tozunun üstünden geçen dar, parlak bir yol (span). Karanlık, boşluk ya da kaybolma yok; ışık hep gümüş.",
+      "tags": [
+        "space",
+        "moon"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isOpen",
+        "showsTraces"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "sky"
+      ],
+      "thresholdKinds": [
+        "span"
+      ]
+    },
+    {
+      "id": "setting_silver_dome_001",
+      "interests": [
+        "space"
+      ],
+      "name": "Gümüş Kubbe",
+      "description": "Kocaman bir dürbünün yıldızlara baktığı, raflarında eski yıldız haritaları saklanan yuvarlak bir gözlemevi.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Eşik: kubbenin dürbün odasına açılan kapı (opening). Bilerek isEnclosed değil: o satır 'gözleri karanlığa alıştı' diyor. showsTraces değil: o satır 'toprak yumuşacıktı' diyor.",
+      "tags": [
+        "space",
+        "sky"
+      ],
+      "traits": [
+        "hasThreshold",
+        "canConceal"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "sky"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
+    },
+    {
+      "id": "setting_cloud_harbor_001",
+      "interests": [
+        "sky"
+      ],
+      "name": "Bulut Limanı",
+      "description": "Renkli balonların bulutlara bağlanıp dinlendiği, kalabalık ve neşeli bir liman.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Eşik: balon kaptanlarının toplandığı halkaya katılmak (social). Bulutların üstünde olduğu için 'heights' konusunu taşır; yükseklikten kaçınan ebeveynin çocuğuna seçilmez. showsTraces değil: bulutta toprak yok.",
+      "tags": [
+        "sky"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isOpen",
+        "isTended"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "sky"
+      ],
+      "thresholdKinds": [
+        "social"
+      ],
+      "topics": [
+        "heights"
+      ]
     }
   ],
   "companions": [
@@ -514,6 +605,80 @@
       ],
       "occupation": "teacher",
       "factID": "fact_teacher_writes_the_order"
+    },
+    {
+      "id": "companion_robot_sky_001",
+      "interests": [
+        "robots",
+        "space"
+      ],
+      "name": "Vida",
+      "type": "robot",
+      "personality": "Meraklı ve biraz çekingen.",
+      "description": "Ay Kıyısı'nda yaşayan, ışıklarıyla göz kırpan küçük bir robot.",
+      "visualDescription": "small round silver robot, soft blue eye lights, one short antenna",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Rolleri hesitant ve reassuring: bakım isteyen (needsCare) değil, ki bahçe ve bakım masalları uzaya taşınmasın.",
+      "compatibleSettings": [
+        "space",
+        "sky"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space"
+      ],
+      "traits": [
+        "isSmall",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "sky"
+      ],
+      "nature": "fantastic",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_space_cat_001",
+      "interests": [
+        "animals",
+        "space"
+      ],
+      "name": "Ayçörek",
+      "type": "kedi",
+      "personality": "Sakin ve yol bilen.",
+      "description": "Yıldızların arasında gezmeyi seven, minik şeffaf kasklı bir kedi.",
+      "visualDescription": "small cream-colored cat wearing a tiny clear bubble helmet, calm green eyes",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Rolleri guide ve reassuring. hasLocalKnowledge bilerek yok: iz süren masallar (absence) onu yasaklıyor.",
+      "compatibleSettings": [
+        "space",
+        "sky"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "sky"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ],
   "objects": [
@@ -739,6 +904,93 @@
         "garden",
         "forest",
         "mountain"
+      ]
+    },
+    {
+      "id": "object_stardust_trail_001",
+      "name": "yıldız tozundan bir iz",
+      "description": "Biri geçmiş gibi, yer yer kesilen parlak bir toz izi.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isBeautiful",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "titleName": "Yıldız Tozu",
+      "keepsakeName": "yıldız tozu",
+      "habitat": [
+        "sky"
+      ],
+      "interests": [
+        "space"
+      ]
+    },
+    {
+      "id": "object_little_comet_001",
+      "name": "küçük bir kuyruklu yıldız",
+      "description": "Avuç kadar, kuyruğu yumuşak yumuşak parlayan bir kuyruklu yıldız.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space",
+        "light"
+      ],
+      "traits": [
+        "emitsSignal",
+        "isBeautiful",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "titleName": "Kuyruklu Yıldız",
+      "keepsakeName": "kuyruklu yıldız",
+      "habitat": [
+        "sky"
+      ],
+      "interests": [
+        "space"
+      ]
+    },
+    {
+      "id": "object_star_map_001",
+      "name": "yarım kalmış bir yıldız haritası",
+      "description": "Birinin çizmeye başlayıp bitiremediği, köşesi eksik bir yıldız haritası.",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space",
+        "map"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": true,
+      "titleName": "Yıldız Haritası",
+      "keepsakeName": "yıldız haritası",
+      "habitat": [
+        "sky"
+      ],
+      "interests": [
+        "space"
       ]
     }
   ],

@@ -85,6 +85,8 @@ protocol StoryChoiceSource {
     func availableModes(forAge age: Int) -> [StoryMode]
     /// Bu modun alt kategorileri. Boş ya da tek öğeliyse akış adımı atlar.
     func topicChoices(forAge age: Int, mode: StoryMode) -> [StoryTopicChoice]
+    /// Bu yaşta ve modda yazılabilen özel günlerin motor kimlikleri (E6).
+    func occasionChoices(forAge age: Int, mode: StoryMode) -> [String]
     /// The idea cards for a mode, in the order they should be shown.
     func ideaChoices(forAge age: Int, mode: StoryMode) -> [StoryIdeaChoice]
     /// The companions that fit the chosen idea, best first.
@@ -247,4 +249,9 @@ extension CompanionChoice {
             personality: companion.personality
         )
     }
+}
+
+extension StoryChoiceSource {
+    /// Özel gün bilmeyen bir kaynak (örnekler, testler) çip göstermez.
+    func occasionChoices(forAge age: Int, mode: StoryMode) -> [String] { [] }
 }

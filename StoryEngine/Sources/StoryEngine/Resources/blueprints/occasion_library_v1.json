@@ -1,0 +1,1188 @@
+{
+  "schemaVersion": 1,
+  "note": "Özel günler (E6). Bu belgedeki blueprint'ler ve satırlar yalnızca bir özel gün istendiğinde kullanılır; normal masal havuzuna girmez. Hepsi taslak, Batuhan okuyacak.",
+  "occasions": {
+    "kinds": [
+      {
+        "id": "occasion_birthday",
+        "name": "Doğum günü"
+      },
+      {
+        "id": "occasion_first_school_day",
+        "name": "Okulun ilk günü"
+      },
+      {
+        "id": "occasion_new_sibling",
+        "name": "Yeni kardeş"
+      },
+      {
+        "id": "occasion_first_lost_tooth",
+        "name": "İlk düşen diş"
+      }
+    ],
+    "blueprints": [
+      {
+        "occasion": "occasion_birthday",
+        "id": "bp_occasion_birthday_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion birthday - lullabyAge3",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Doğum günü akşamı. Çocuk yatağında günü hatırlar; pencerede uyuyamayan küçük biri vardır, onu uyutur.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_lullaby_age3_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}}'in Doğum Günü",
+          "Doğum Günü Masalı",
+          "{{child.name}} Bir Yaş Büyüdü"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "supportingBeat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "patient_wait",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "bp_occasion_school_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion school - goodnight place",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Okulun ilk gününden önceki akşam. Çocuğun içi biraz kıpır kıpır; odadaki küçük bir şeye iyi geceler der ve sakinleşir.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_goodnight_age3_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Okula Başlıyor",
+          "Okulun İlk Günü",
+          "{{child.name}} ve Okul Çantası"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "supportingBeat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "let_go",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "bp_occasion_sibling_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion sibling - lullabyAge3",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Evde yeni bir kardeş var. Çocuk pencerede uyuyamayan küçük birini uyutur, büyük kardeş gibi.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_lullaby_age3_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} ve Yeni Kardeş",
+          "Evde Yeni Biri Var",
+          "Büyük Kardeş {{child.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "supportingBeat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "patient_wait",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "bp_occasion_tooth_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion tooth - goodnight place",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "İlk dişin düştüğü akşam. Diş küçük bir kutuda; çocuk odaya iyi geceler der.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_goodnight_age3_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}}'in İlk Dişi",
+          "Düşen Diş",
+          "Minik Diş Kutusu"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "supportingBeat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 3,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 4,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "let_go",
+            "supportingBeat": "restore",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_birthday",
+        "id": "bp_occasion_birthday_001",
+        "schemaVersion": 2,
+        "version": "2.0.0",
+        "family": "absence",
+        "editorialName": "occasion birthday - IV-2 - retracing",
+        "genre": "adventure",
+        "theme": "problem_solving",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Doğum günü sabahı çocuk bir iz fark eder ve geçtiği yeri yeniden okuyarak çözer; akşam pastanın başında günü hatırlar.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_absence_retracing_002 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "showsTraces"
+            ]
+          },
+          "casting": [
+            "guide",
+            "hesitant",
+            "reassuring"
+          ],
+          "discovery": {
+            "allOf": [
+              "impliesPresence"
+            ]
+          }
+        },
+        "forbids": {
+          "discovery": [
+            "impliesNeed"
+          ],
+          "companion": [
+            "hasLocalKnowledge"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}}'in Doğum Günü",
+          "Doğum Günü Masalı",
+          "{{child.name}} Bir Yaş Büyüdü"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "notice_anomaly",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 3,
+            "role": "companion",
+            "beat": "meet_companion",
+            "supportingBeat": "companion_offers",
+            "emotion": "concern"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "supportingBeat": "obstacle_raises",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "doubt"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "retrace",
+            "emotion": "insight"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "succeed",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "supportingBeat": "self_recognize",
+            "emotion": "satisfaction"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "bp_occasion_school_001",
+        "schemaVersion": 2,
+        "version": "2.0.0",
+        "family": "absence",
+        "editorialName": "occasion school - IV-1 - persistence",
+        "genre": "adventure",
+        "theme": "trying_again",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Okula başlamadan önceki gün. Çocuğun içi kıpır kıpır; bir izin peşinde sabırla arar, akşam çantasının yanında kıpırtıya alışmaya başlar.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı blueprint_absence_looking_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "anyOf": [
+              [
+                "showsTraces",
+                "canConceal"
+              ]
+            ]
+          },
+          "casting": [
+            "needsCare",
+            "guide"
+          ],
+          "discovery": {
+            "allOf": [
+              "impliesPresence",
+              "isFragmentary"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canFly",
+            "hasLocalKnowledge"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} Okula Başlıyor",
+          "Okulun İlk Günü",
+          "{{child.name}} ve Okul Çantası"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "notice_anomaly",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 3,
+            "role": "companion",
+            "beat": "meet_companion",
+            "supportingBeat": "receive_appeal",
+            "emotion": "concern"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "supportingBeat": "obstacle_raises",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "doubt"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "persist",
+            "emotion": "patience"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "supportingBeat": "carry_forward",
+            "emotion": "tenderness"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "bp_occasion_sibling_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion sibling - lullaby",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "Eve yeni bir kardeş gelmiştir; herkes ona bakar. Çocuk o gece uyuyamayan küçük birine bakar ve büyük kardeş olmanın tadına varır.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_lullaby_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}} ve Yeni Kardeş",
+          "Evde Yeni Biri Var",
+          "Büyük Kardeş {{child.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "companion",
+            "beat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "bp_occasion_tooth_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "occasion tooth - goodnight place",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "5-6",
+        "pageCount": 8,
+        "premise": "İlk dişin düştüğü akşam. Çocuk biraz şaşkın, biraz gururlu; odaya iyi geceler der ve kutudaki dişe son kez bakar.",
+        "editorialGuidance": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak. Yapısı bp_bedtime_goodnight_001 ile aynı; ilk ve son sayfa özel günün satırlarıyla yazılır.",
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "casting": [
+            "needsCare"
+          ],
+          "discovery": {
+            "allOf": [
+              "isAudible",
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ],
+          "nature": [
+            "person"
+          ]
+        },
+        "titlePatterns": [
+          "{{child.name}}'in İlk Dişi",
+          "Düşen Diş",
+          "Minik Diş Kutusu"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "establish_ordinary",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "companion",
+            "beat": "meet_companion",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      }
+    ],
+    "templates": [
+      {
+        "occasion": "occasion_birthday",
+        "id": "occ_tpl_birthday_age3_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_birthday_age3_open_01",
+            "text": "Bugün {{child.name}}'in doğum günüydü. Akşam olunca {{setting.name}}'da yatağına uzandı. Gün hâlâ içinde ışıl ışıldı.",
+            "requiredSlots": [
+              "child.name",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_birthday_age3_open_02",
+            "text": "{{child.name}} bir yaş büyümüştü. Doğum günü akşamıydı ve {{setting.name}} sessizdi. Yastığına başını koydu, gülümsedi.",
+            "requiredSlots": [
+              "child.name",
+              "setting.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_birthday",
+        "id": "occ_tpl_birthday_age3_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_birthday_age3_close_01",
+            "text": "{{child.name}} doğum gününü bir kez daha düşündü. Sonra gözlerini kapadı ve mışıl mışıl uyudu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_birthday_age3_close_02",
+            "text": "Doğum günü yavaş yavaş bitti. {{child.name}} gülümseyerek uykuya daldı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "occ_tpl_school_age3_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_school_age3_open_01",
+            "text": "Yarın {{child.name}} okula başlayacaktı. Çantası kapının yanında hazır duruyordu. {{setting.name}} sessizdi.",
+            "requiredSlots": [
+              "child.name",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_school_age3_open_02",
+            "text": "{{child.name}} yatağına uzandı. Okulun ilk günü yaklaşıyordu ve içi biraz kıpır kıpırdı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "occ_tpl_school_age3_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_school_age3_close_01",
+            "text": "{{child.name}} çantasına bir kez daha baktı. İçindeki kıpırtı küçüldü ve uyudu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_school_age3_close_02",
+            "text": "Okul çantası kapının yanında bekliyordu. {{child.name}} gözlerini kapadı ve uyudu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "occ_tpl_sibling_age3_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_sibling_age3_open_01",
+            "text": "{{child.name}}'in artık bir kardeşi vardı. {{occasion.sibling}} yan odada uyuyordu. {{setting.name}} sessizdi.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_sibling_age3_open_02",
+            "text": "Evde yeni biri vardı. {{child.name}} yatağından {{occasion.sibling}}'in minik sesini dinledi.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "occ_tpl_sibling_age3_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_sibling_age3_close_01",
+            "text": "{{child.name}} {{occasion.sibling}}'i düşündü ve gülümsedi. Sonra o da uyudu.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling"
+            ]
+          },
+          {
+            "id": "occ_sibling_age3_close_02",
+            "text": "Evdeki herkes uyudu. En son {{child.name}} gözlerini kapadı.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "occ_tpl_tooth_age3_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_tooth_age3_open_01",
+            "text": "Bugün {{child.name}}'in ilk dişi düştü. Dişini küçük bir kutuya koydu. Dili hep o boşluğa gidiyordu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_tooth_age3_open_02",
+            "text": "{{child.name}} gülümseyince ağzında minik bir boşluk görünüyordu. İlk dişi bugün düşmüştü.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "occ_tpl_tooth_age3_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "3-4",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_tooth_age3_close_01",
+            "text": "{{child.name}} dişinin durduğu kutuya baktı, gülümsedi ve uyudu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_tooth_age3_close_02",
+            "text": "Minik diş kutusunda dinlendi. {{child.name}} kendi yatağında uyudu.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_birthday",
+        "id": "occ_tpl_birthday_age5_open",
+        "role": "hook",
+        "realizesBeat": "notice_anomaly",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_birthday_age5_open_01",
+            "text": "Bugün {{child.name}}'in doğum günüydü. Sabah erkenden {{setting.name}}'a gitti, çünkü doğum günlerinde her yer biraz daha parlak görünürdü. Orada durdu ve {{discovery.name}}'i fark etti.",
+            "requiredSlots": [
+              "child.name",
+              "discovery.name",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_birthday_age5_open_02",
+            "text": "{{child.name}} bu sabah bir yaş büyümüş olarak uyandı. Kutlamadan önce {{setting.name}}'da biraz dolaşmak istedi. Yürürken {{discovery.name}}'i fark etti ve durdu.",
+            "requiredSlots": [
+              "child.name",
+              "discovery.name",
+              "setting.name"
+            ]
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_birthday",
+        "id": "occ_tpl_birthday_age5_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_birthday_age5_close_01",
+            "text": "Akşam pastanın başında herkes toplandığında {{child.name}} bugünü düşündü ve içi ısındı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_birthday_age5_close_02",
+            "text": "Doğum günü akşamı {{child.name}} sabah olanları evdekilere anlattı. Herkes gülümseyerek dinledi.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "occ_tpl_school_age5_open",
+        "role": "hook",
+        "realizesBeat": "notice_anomaly",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_school_age5_open_01",
+            "text": "Okulun ilk günü yaklaşıyordu. {{child.name}}'in çantası hazırdı ama içi biraz kıpır kıpırdı. Biraz yürümek için {{setting.name}}'a gitti ve orada {{discovery.name}}'i fark etti.",
+            "requiredSlots": [
+              "child.name",
+              "discovery.name",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_school_age5_open_02",
+            "text": "{{child.name}} yeni okulunu çok merak ediyordu, biraz da çekiniyordu. Kafasını dinlemek için {{setting.name}}'a gitti. Tam orada {{discovery.name}}'i fark etti.",
+            "requiredSlots": [
+              "child.name",
+              "discovery.name",
+              "setting.name"
+            ]
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_first_school_day",
+        "id": "occ_tpl_school_age5_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_school_age5_close_01",
+            "text": "O akşam {{child.name}} okul çantasının yanına oturdu. İçindeki kıpırtı hâlâ biraz oradaydı, ama artık ona alışmaya başlamıştı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_school_age5_close_02",
+            "text": "{{child.name}} çantasını kapının yanına koydu. Yeni yerler de zamanla tanıdık olurdu, bugün bunu kendi gözüyle görmüştü.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ]
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "occ_tpl_sibling_age5_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_sibling_age5_open_01",
+            "text": "Eve küçük bir kardeş geleli birkaç gün olmuştu. Herkes {{occasion.sibling}}'e bakıyordu ve {{child.name}} bazen kendini biraz kenarda hissediyordu. O gece {{setting.name}}'da yatağına uzandı.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling",
+              "setting.name"
+            ]
+          },
+          {
+            "id": "occ_sibling_age5_open_02",
+            "text": "{{child.name}} artık büyük kardeşti. {{occasion.sibling}} çok küçüktü ve çok uyuyordu. Bu akşam evde herkes fısıltıyla konuşuyordu. {{child.name}} yatağına uzandı.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_new_sibling",
+        "id": "occ_tpl_sibling_age5_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_sibling_age5_close_01",
+            "text": "{{child.name}} yan odadan gelen minik nefesi dinledi. Büyük kardeş olmak biraz yeni, biraz da güzeldi. Gözlerini kapadı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_sibling_age5_close_02",
+            "text": "{{child.name}} uykuya dalmadan önce {{occasion.sibling}}'i düşündü. Evde artık iki kişilik bir sıcaklık vardı.",
+            "requiredSlots": [
+              "child.name",
+              "occasion.sibling"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "occ_tpl_tooth_age5_open",
+        "role": "hook",
+        "realizesBeat": "establish_ordinary",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_tooth_age5_open_01",
+            "text": "Bugün {{child.name}}'in ilk dişi düştü. Biraz şaşırdı, biraz da gururlandı. Dişini küçük bir kutuya koydu ve yatağının yanına bıraktı. Kimi çocuk dişini saklar, kimi bir dilek tutar.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_tooth_age5_open_02",
+            "text": "{{child.name}} aynada gülümsedi ve ağzındaki minik boşluğu gördü. İlk dişi bugün düşmüştü. Büyüdüğünü ilk kez bu kadar açık görüyordu. O akşam {{setting.name}}'da yatağına uzandı.",
+            "requiredSlots": [
+              "child.name",
+              "setting.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      },
+      {
+        "occasion": "occasion_first_lost_tooth",
+        "id": "occ_tpl_tooth_age5_close",
+        "role": "emotional_ending",
+        "realizesBeat": "warm_close",
+        "ageBand": "5-6",
+        "editorialNote": "E6 (17 Kasım 2026): özel gün. Taslak, Batuhan okuyacak.",
+        "variants": [
+          {
+            "id": "occ_tooth_age5_close_01",
+            "text": "{{child.name}} dişinin durduğu kutuya son kez baktı. İçinden bir dilek tuttu, kimseye söylemedi. Sonra gözlerini kapadı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          },
+          {
+            "id": "occ_tooth_age5_close_02",
+            "text": "Kutudaki minik diş sessizce bekliyordu. {{child.name}} gülümsedi ve uykuya daldı.",
+            "requiredSlots": [
+              "child.name"
+            ]
+          }
+        ],
+        "arc": "bedtime"
+      }
+    ]
+  }
+}

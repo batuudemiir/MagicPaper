@@ -67,7 +67,7 @@ Büyükler için: bu hafta · son masallar · okuma ve uyku · abonelik · daha 
 ├─ Masal kitabı → Paylaş · Abonelik bitti
 ├─ Masal güvenliği (itilir)
 └─ Ayarlar (itilir) → Aile · Kendi sesin · Paylaş · Gizlilik → Hesabı sil
-               profil sayfası → Profili düzenle · Masal ailem · Kahraman │ sheet: İlgi alanları
+               profil sayfası → Profili düzenle · Masal ailem · Özel günler · Kahraman │ sheet: İlgi alanları
 ```
 
 Tam ekran akışlar: ilk açılış, okuyucu, uyku modu, masal yazma, kapı, paywall.
@@ -169,6 +169,7 @@ Koddan ve simülatörden. 7 Kasım'da uygulananlar: tek "bugün" ("Bugün" kurde
 | Güvenlik | İçerik sınırları | Yok | Kaldı |
 | Ayarlar | Geri kalan her şey | 7 bölüm. HIG ayarları azaltmayı, işe özgü ayarı işin yanına koymayı öneriyor. "Okuma" okuyucuda da var | **Karar:** "Okuma" bölümü okuyucu ayarlarına taşınsın |
 | Masal ailem (buradan) | Karakterler | Ebeveyn alanında Ragi | Ragi kalktı |
+| Özel günler (E6, 17 Kasım 2026) | Doğum günü, okulun ilk günü, yeni kardeş, ilk düşen diş; isteğe bağlı gün ve kardeş | Yeni alt sayfa: `MPParentRoute.specialDays`, `MPParentHeader` + `MPListRow`, Ragi yok; masal yazmada "Özel bir gün" çipleri | Eklendi |
 | Profili düzenle, Aile, Ses, Kitap, Paylaş, Gizlilik, Abonelik bitti | Push | Yapıldı | Kaldı |
 
 ## Bilerek yapılmayanlar

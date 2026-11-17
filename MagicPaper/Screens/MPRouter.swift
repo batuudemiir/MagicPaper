@@ -60,6 +60,7 @@ enum MPParentRoute: Identifiable, Hashable {
     case bookCharacter(UUID)     // 13 · Kahraman oluşturucu, profil düzenlemeden
     case profileEdit(UUID)       // Çocuğun adı, rengi ve yaş bandı
     case profileHub(UUID)        // Çocuk profil sayfası (Faz 7; önceden sheet)
+    case specialDays(UUID)       // E6 · Özel günler, profil sayfasından
     case safety                  // 31 · Masal güvenliği (14 Kasım 2026'ya kadar sekme)
     case settings                // 32 · Ayarlar (14 Kasım 2026'ya kadar sekme)
 
@@ -67,6 +68,7 @@ enum MPParentRoute: Identifiable, Hashable {
         switch self {
         case .profileEdit(let i): return "profileEdit-\(i)"
         case .profileHub(let i): return "profileHub-\(i)"
+        case .specialDays(let i): return "specialDays-\(i)"
         case .bookExport: return "bookExport"
         case .voiceRecording: return "voiceRecording"
         case .familyMembers: return "familyMembers"

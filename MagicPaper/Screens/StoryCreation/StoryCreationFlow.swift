@@ -79,6 +79,9 @@ struct StoryCreationFlow: View {
     @State private var chosenTopicID: String?
     /// Modun konuları, mod ya da çocuk değişince bir kez: katalogu tarar.
     @State private var topicChoices: [StoryTopicChoice] = []
+    /// Özel günler (E6): bu çocuğun bugün etkin ve bu modda yazılabilen günleri.
+    @State private var occasionChoices: [SpecialDayKind] = []
+    @State private var chosenOccasion: SpecialDayKind?
     /// Bu masalın yazılacağı çocuk. Akışa özel: aktif profili değiştirmez.
     @State private var chosenProfileID: UUID?
     /// Masal ailem (FAZ 11). Chosen on the companion step, optional, one at
@@ -179,6 +182,10 @@ struct StoryCreationFlow: View {
     private func refreshFamilyRelations() {
         familyRelations = Set(source.availableFamilyRelations(mode: chosenMode, age: age))
         topicChoices = chosenMode.map { source.topicChoices(forAge: age, mode: $0) } ?? []
+        occasionChoices = Self.occasionChoices(
+            active: profile.map { SpecialDayStore().activeKinds(for: $0.id) } ?? [],
+            writable: chosenMode.map { source.occasionChoices(forAge: age, mode: $0) } ?? [])
+        if let chosen = chosenOccasion, !occasionChoices.contains(chosen) { chosenOccasion = nil }
         if let character = familyCharacters.first(where: { $0.id == chosenFamilyID }),
            !familyRelations.contains(character.relation.kind) {
             chosenFamilyID = nil
@@ -334,6 +341,8 @@ struct StoryCreationFlow: View {
                 onAddFamily: app.router.isParentMode ? { showsFamilyEditor = true } : nil,
                 topics: topicChoices,
                 selectedTopicID: $chosenTopicID,
+                occasions: occasionChoices,
+                selectedOccasion: $chosenOccasion,
                 onChangeMode: { goBack() }
             ) { companionID in
                 chosenCompanionID = companionID
@@ -399,6 +408,7 @@ struct StoryCreationFlow: View {
         chosenMode = mode
         strategy = .direct
         chosenTopicID = nil
+        chosenOccasion = nil
         phase = .companion
     }
 
@@ -418,6 +428,8 @@ struct StoryCreationFlow: View {
             // boş kalınca motor bütün içerikten seçiyor, sürprizin istediği şey.
             chosenTopicID = nil
             chosenCompanionID = nil
+            // Sürpriz özel gün yazmaz: gün ebeveynin ya da çocuğun seçimidir.
+            chosenOccasion = nil
             // `chosenMode`'un onChange'i `begin` sonrasına kalır; aile adayı
             // yeni moda göre şimdi süzülmeli.
             refreshFamilyRelations()
@@ -439,6 +451,21 @@ struct StoryCreationFlow: View {
         return familyRelations.contains(character.relation.kind) ? character : nil
     }
 
+    /// The chosen special day for the engine; a new sibling carries the
+    /// sibling the parent picked, if it is still in the child's Masal ailem.
+    private var chosenOccasionRequest: OccasionRequest? {
+        guard let kind = chosenOccasion, let profile else { return nil }
+        let day = SpecialDayStore().days(for: profile.id).first { $0.kind == kind }
+        let sibling = day?.siblingID.flatMap { id in familyCharacters.first { $0.id == id } }
+        return kind.request(sibling: sibling)
+    }
+
+    /// Chips: the child's active days the engine can write in this mode and
+    /// age, in the store's order.
+    static func occasionChoices(active: [SpecialDayKind], writable: [String]) -> [SpecialDayKind] {
+        active.filter { writable.contains($0.occasionID) }
+    }
+
     private func begin() {
         guard let profile else { return dismiss() }
         preparedStory = nil
@@ -454,7 +481,8 @@ struct StoryCreationFlow: View {
                     storyIdeaID: nil,
                     companionID: chosenCompanionID,
                     subOption: chosenTopicID,
-                    family: chosenFamily
+                    family: chosenFamily,
+                    occasion: chosenOccasionRequest
                 )
                 // Composition takes milliseconds; the preparation screen plays
                 // the masal atölyesi and offers "Masalı oku" at the cover.
