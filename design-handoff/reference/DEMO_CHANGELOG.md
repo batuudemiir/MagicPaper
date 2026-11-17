@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · Karşılama illüstrasyon konsepti — onay bekliyor
+
+- Repo kuralları, ilgili proje hafızası, Ragi kitabı, onaylı sosyal görsel yönü ve üç mobil tanıtım örneği incelendi. Karşılama, mod seçimi, boş durum ve küçük sahneler için ölçek önerileri yazıldı.
+- Yerleşik ChatGPT image_gen ile onaylı stil ve resmî onBook Ragi referanslarından tek ekran konsept panosu hazırlandı. Panodaki Ragi yeniden çizimdir; entegrasyonda mevcut varlık ayrı katman kalacak. Panodaki düğme geçişi gerçek uygulamada kullanılmayacak.
+- Dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/REVIEW.md ve welcome-concept-v1.png. Uygulama kodu/varlık kataloğu değiştirilmedi; entegrasyon kullanıcı onayını bekliyor.
+- Görsel araç çıktısı gözle incelendi. Test, derleme ve simülatör çalıştırılmadı; bu bir tasarım önerisidir.
+
 ### 2026-11-17 · main + bu kayıt · Proje Codex'e aktarıldı
 
 - Ne değişti (Batuhan, 17 Kasım: "ChatGPT Pro Codex aldım, MagicPaper'ı tamamen aktarmak istiyorum"):
