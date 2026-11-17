@@ -182,6 +182,8 @@ final class SeriesManager: ObservableObject {
               let origin = story.origin,
               origin.selectionStrategy == StorySelectionStrategy.direct.rawValue,
               origin.seriesID == nil,
+              // E6: a special day's story is one day's, like a surprise.
+              origin.occasionID == nil,
               let childID = story.childProfileID,
               let mode = origin.mode,
               let band = origin.ageBand.flatMap(AgeBand.init),

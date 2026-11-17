@@ -118,7 +118,9 @@ public struct ContentCatalogLoader: Sendable {
     /// `recall_lines_v1` (E3): the recall lines, in their own document so the
     /// pilot library is not touched. Absent, there is no recall and every
     /// story is the one it was.
-    public static let additionalResourceNames = ["pilot_library_v1", "recall_lines_v1"]
+    ///
+    /// `occasion_library_v1` (E6): special days, a layer of their own.
+    public static let additionalResourceNames = ["pilot_library_v1", "recall_lines_v1", "occasion_library_v1"]
 
     public static let resourceExtension = "json"
 
@@ -217,7 +219,8 @@ public struct ContentCatalogLoader: Sendable {
                     glossary: catalog.glossary,
                     facts: catalog.facts,
                     series: catalog.series,
-                    recallLines: catalog.recallLines
+                    recallLines: catalog.recallLines,
+                    occasions: catalog.occasions
                 )
             ])
         }

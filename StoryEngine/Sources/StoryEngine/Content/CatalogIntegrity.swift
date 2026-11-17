@@ -117,11 +117,91 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkSeries(catalog))
         issues.append(contentsOf: checkArcs(catalog))
         issues.append(contentsOf: checkRecallLines(catalog))
+        issues.append(contentsOf: checkOccasions(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
 
     // MARK: - Checks
+
+    /// The special-day layer (E6).
+    ///
+    /// Every blueprint names a known day, is beat-authored, has its band's page
+    /// count and a mode that admits it, and has the day's own lines for its
+    /// opening and closing beats (otherwise the day would not appear in the
+    /// text). Every line names a known day, a beat, and only slots a special
+    /// day can fill; closing lines are calm. A catalog without the layer (a
+    /// package written before E6) has nothing to check.
+    func checkOccasions(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        let layer = catalog.occasions
+        guard !layer.isEmpty else { return [] }
+        var issues: [CatalogIssue] = []
+        func fail(_ code: String, _ id: ContentID?, _ message: String) {
+            issues.append(.init(severity: .error, code: code, recordID: id, message: message))
+        }
+
+        var seen: Set<ContentID> = []
+        for kind in layer.kinds where !seen.insert(kind.id).inserted {
+            fail("duplicate_id", kind.id, "Two special days share the id '\(kind.id)'.")
+        }
+        let known = Set(layer.kinds.map(\.id))
+        let allowed: Set<String> = [
+            "child.name", "setting.name", "companion.name", "companion.type", "discovery.name",
+            OfflineStoryComposer.occasionSiblingSlot,
+        ]
+
+        for entry in layer.templates {
+            let template = entry.template
+            if !known.contains(entry.occasion) {
+                fail("occasion_unknown", template.id, "Lines for an unknown special day '\(entry.occasion)'.")
+            }
+            if template.realizesBeat == nil {
+                fail("occasion_template_without_beat", template.id, "Special-day lines name no beat.")
+            }
+            for variant in template.variants {
+                let unknown = Set(variant.actualSlots.map(\.rawValue)).subtracting(allowed)
+                if !unknown.isEmpty {
+                    fail("occasion_unknown_slot", variant.id, "Special-day line uses \(unknown.sorted()).")
+                }
+                if template.realizesBeat == .warmClose && !CalmEnding.isCalm(variant.text) {
+                    fail("occasion_open_ending", variant.id, "A special day's closing line must close calmly.")
+                }
+            }
+        }
+
+        var seenBlueprints: Set<ContentID> = []
+        for entry in layer.blueprints {
+            let blueprint = entry.blueprint
+            if !seenBlueprints.insert(blueprint.id).inserted {
+                fail("duplicate_id", blueprint.id, "Two special-day blueprints share the id '\(blueprint.id)'.")
+            }
+            if !known.contains(entry.occasion) {
+                fail("occasion_unknown", blueprint.id, "Blueprint for an unknown special day '\(entry.occasion)'.")
+            }
+            guard blueprint.isBeatAuthored else {
+                fail("occasion_not_beat_authored", blueprint.id, "Special-day blueprint declares no beats.")
+                continue
+            }
+            if blueprint.pageCount != blueprint.ageRange.pageCount {
+                fail("page_count_off_band", blueprint.id, "Special-day blueprint has the wrong page count for its band.")
+            }
+            if !catalog.storyModes.isEmpty && !catalog.storyModes.contains(where: { $0.admits(blueprint) }) {
+                fail("occasion_serves_no_mode", blueprint.id, "No mode admits this special-day blueprint.")
+            }
+            let pages = blueprint.pagePlan.sorted { $0.pageNumber < $1.pageNumber }
+            for beat in [pages.first?.beat, pages.last?.beat].compactMap({ $0 })
+            where OfflineStoryComposer.occasionTemplates(
+                for: beat, in: catalog, blueprint: blueprint, occasion: entry.occasion).isEmpty {
+                fail("occasion_beat_without_lines", blueprint.id,
+                     "No '\(entry.occasion)' line for '\(beat.rawValue)' in band \(blueprint.ageRange).")
+            }
+        }
+        for kind in layer.kinds where !layer.blueprints.contains(where: { $0.occasion == kind.id }) {
+            issues.append(.init(severity: .warning, code: "occasion_without_blueprint", recordID: kind.id,
+                                message: "Special day '\(kind.id)' has no blueprint yet."))
+        }
+        return issues
+    }
 
     /// Recall lines (E3).
     ///

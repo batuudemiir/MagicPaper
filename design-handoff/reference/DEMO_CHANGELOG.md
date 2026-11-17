@@ -133,6 +133,20 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E6: Özel günler
+
+- Ne değişti:
+  - Ebeveyn odasında çocuk profil sayfasına "Özel günler" satırı ve alt sayfası (`SpecialDaysView`, `MPParentRoute.specialDays`): doğum günü, okulun ilk günü, yeni kardeş, ilk düşen diş; isteğe bağlı gün, yeni kardeş için isteğe bağlı Masal ailem kardeşi. Ad ve serbest metin yok; tür başına bir kayıt; kaldırma onay penceresi ve `requestGate` ile. Yalnızca cihazda (`SpecialDayStore`); profil silme ve "Tüm verileri sil" siliyor; senkron yok.
+  - Masal yazmada "Masalda kimler olsun?" adımında "Özel bir gün" çipleri: yalnızca etkin (tarihsiz ya da 14 gün önce ile 7 gün sonra arası) ve o mod ile yaşta yazılabilen günler. Seçilen gün blueprint'i kilitliyor; konu ve yol arkadaşı yerinde.
+  - Motor: `OfflineStoryIntent.occasion`, ayrı katman `ContentCatalog.occasions` ve yeni belge `occasion_library_v1.json` (4 gün, 8 blueprint, 32 satır). Normal masal bu katmana ulaşamıyor; özel gün kurulamazsa tipli hata (`noOccasionStory`). Özel günsüz masalda seed ve parmak izi aynı.
+  - Blueprint'ler kurulduğu bilinen şekillerin kopyası; ilk ve son sayfa günün kendi satırlarıyla, ortası mevcut satırlarla. 5-6: doğum günü ve okul macera, kardeş ve diş uyku öncesi. 3-4: dördü de uyku öncesi (bu bantta macera şekli yok). 7-8 ve 9-10'da çip görünmüyor.
+  - Özel gün masalı `origin.occasionID` taşıyor (eski masallar çözülüyor), devam ettirilmiyor, hatırlama almıyor.
+  - **Bütün metinler taslak, Batuhan okuyacak.**
+- Bilerek değişmedi: rozet dosyaları, seri, normal havuz, `MPRouter.requestGate` (odada kapı doğrudan geçiyor), küçük kademenin kimler adımı.
+- Belgeler: `docs/EVREN_PLANI.md` E6, `docs/SAYFA_MIMARISI.md`, `docs/ACCOUNT_SYNC.md` ("henüz yok" notu).
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse` ve JSON ayrıştırma. Yeni motor testi `OccasionTests` (10), yeni uygulama testi `SpecialDayTests` (8); `ContentPackageTests` dört kütüphane belgesine güncellendi. Simülatörde görülmedi.
+- Dosyalar: motor `Offline/OccasionLayer.swift` (yeni), `Offline/OfflineStoryComposer.swift`, `Offline/OfflineSelection.swift`, `Content/ContentCatalog.swift`, `Content/ContentCatalogLoader.swift`, `Content/CatalogIntegrity.swift`, `Resources/blueprints/occasion_library_v1.json` (yeni), testler; uygulama `StoryEngineBridge/SpecialDays.swift` (yeni), `Screens/Parent/SpecialDaysView.swift` (yeni), `ProfileHubView.swift`, `ParentRouteView.swift`, `MPRouter.swift`, `CompanionStep.swift`, `StoryCreationFlow.swift`, `StoryChoiceSource.swift`, `OfflineStoryService.swift`, `StoryContextBuilder.swift`, `OfflineStoryMapper.swift`, `SeriesManager.swift`, `LocalDataEraser.swift`, `Services/StoryGenerationManager.swift`, `Services/ProfileManager.swift`, `Models/Story.swift`; belgeler; bu günlük.
+
 ### 2026-11-16 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · E5: ilk dünya, Gökyüzü ve uzay
 
 - Ne değişti:

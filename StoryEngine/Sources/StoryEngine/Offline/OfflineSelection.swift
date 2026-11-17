@@ -64,6 +64,10 @@ public struct OfflineStoryIntent: Sendable, Hashable {
     /// after the content is bound; not part of the seed. Nil is every story
     /// before E3, and its book does not change.
     public let recall: RecallHistory?
+    /// A special day the story is written for (E6). Nil is every story before
+    /// E6: no occasion blueprint is ever chosen, nothing joins the seed, and
+    /// the book is the one it was.
+    public let occasion: OccasionRequest?
 
     public init(
         childName: String,
@@ -81,7 +85,8 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         usage: UsageProfile = .neutral,
         safety: ContentSafety? = nil,
         recentTitles: Set<String> = [],
-        recall: RecallHistory? = nil
+        recall: RecallHistory? = nil,
+        occasion: OccasionRequest? = nil
     ) {
         self.childName = childName
         self.storyIdeaID = storyIdeaID
@@ -99,6 +104,7 @@ public struct OfflineStoryIntent: Sendable, Hashable {
         self.safety = safety
         self.recentTitles = recentTitles
         self.recall = recall
+        self.occasion = occasion
     }
 }
 
@@ -125,7 +131,8 @@ extension OfflineStoryIntent {
             usage: usage,
             safety: safety,
             recentTitles: recentTitles,
-            recall: recall
+            recall: recall,
+            occasion: occasion
         )
     }
 }
@@ -186,6 +193,9 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
     case blueprintNotBeatAuthored(id: ContentID)
     /// Katalogda karşılığı olmayan bir alt seçenek istendi.
     case unknownTopic(String)
+    /// Bir özel gün istendi ama bu bant, mod ve seçimlerle o özel günün hiçbir
+    /// blueprint'i kurulamadı (E6). Sessizce normal masala düşülmez.
+    case noOccasionStory(occasion: String, reasons: [String])
 
     public var explanation: String {
         switch self {
@@ -227,6 +237,9 @@ public enum OfflineSelectionError: Error, Sendable, Equatable {
                 + "than quietly dropped."
         case .blueprintNotBeatAuthored(let id):
             return "Blueprint '\(id.rawValue)' declares no beats and cannot be composed."
+        case .noOccasionStory(let occasion, let reasons):
+            return "No '\(occasion)' story can be written for these choices:\n"
+                + reasons.joined(separator: "\n")
         }
     }
 }

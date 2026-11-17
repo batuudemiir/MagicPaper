@@ -57,6 +57,10 @@ public struct ContentCatalog: Decodable, Sendable {
     /// Ayrı bir belgede (`recall_lines_v1.json`); bu alandan önce yazılmış bir
     /// paket onu taşımaz ve o zaman hatırlama yoktur, masal aynıdır.
     public let recallLines: [CatalogRecallLine]
+    /// Özel günler (E6): kendi blueprint'leri ve satırları, `series` gibi ayrı
+    /// bir katmanda, ki hiçbir normal masal onlara ulaşamasın. Ayrı bir
+    /// belgede (`occasion_library_v1.json`); yoksa özel gün çipi görünmez.
+    public let occasions: OccasionCatalog
 
     /// How many `resolutions` the file declares.
     ///
@@ -76,6 +80,7 @@ public struct ContentCatalog: Decodable, Sendable {
         case safetyTopics, glossary, facts
         case series
         case recallLines
+        case occasions
         case resolutions
     }
 
@@ -102,6 +107,7 @@ public struct ContentCatalog: Decodable, Sendable {
         facts = try container.decodeIfPresent([CatalogFact].self, forKey: .facts) ?? []
         series = try container.decodeIfPresent(SeriesCatalog.self, forKey: .series) ?? SeriesCatalog()
         recallLines = try container.decodeIfPresent([CatalogRecallLine].self, forKey: .recallLines) ?? []
+        occasions = try container.decodeIfPresent(OccasionCatalog.self, forKey: .occasions) ?? OccasionCatalog()
         declaredResolutionCount = (try? container.decode([AnyIgnored].self, forKey: .resolutions).count) ?? 0
     }
 
@@ -126,7 +132,8 @@ public struct ContentCatalog: Decodable, Sendable {
         facts: [CatalogFact] = [],
         series: SeriesCatalog = SeriesCatalog(),
         declaredResolutionCount: Int = 0,
-        recallLines: [CatalogRecallLine] = []
+        recallLines: [CatalogRecallLine] = [],
+        occasions: OccasionCatalog = OccasionCatalog()
     ) {
         self.version = version
         self.settings = settings
@@ -149,6 +156,7 @@ public struct ContentCatalog: Decodable, Sendable {
         self.series = series
         self.declaredResolutionCount = declaredResolutionCount
         self.recallLines = recallLines
+        self.occasions = occasions
     }
 
     // MARK: - Lookups
@@ -329,7 +337,8 @@ extension ContentCatalog {
             facts: catalogs.flatMap(\.facts),
             series: SeriesCatalog.merging(catalogs.map(\.series)),
             declaredResolutionCount: catalogs.reduce(0) { $0 + $1.declaredResolutionCount },
-            recallLines: catalogs.flatMap(\.recallLines)
+            recallLines: catalogs.flatMap(\.recallLines),
+            occasions: OccasionCatalog.merging(catalogs.map(\.occasions))
         )
     }
 }
@@ -345,6 +354,6 @@ extension ContentCatalog {
             interests: interests, safetyTopics: safetyTopics, glossary: glossary,
             facts: facts, series: series,
             declaredResolutionCount: declaredResolutionCount,
-            recallLines: recallLines)
+            recallLines: recallLines, occasions: occasions)
     }
 }

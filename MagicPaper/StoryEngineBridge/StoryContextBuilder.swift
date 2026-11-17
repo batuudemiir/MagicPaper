@@ -33,6 +33,8 @@ struct StoryContext: Equatable {
     /// child's finished standalone stories, as ids and counts. Nil when there
     /// is nothing to recall or one of the two newest stories already recalled.
     var recall: RecallHistory? = nil
+    /// The special day this story is written for (E6), nil for every other.
+    var occasion: OccasionRequest? = nil
 }
 
 /// A context never prints what it holds: `"\(context)"` in a log line would
@@ -44,7 +46,7 @@ extension StoryContext: CustomStringConvertible, CustomDebugStringConvertible, C
             + "companion: \(companionID ?? "-"), family: \(family == nil ? 0 : 1), "
             + "interests: \(interests.count), recent: \(recent.count), usage: \(usage.count), "
             + "titles: \(recentTitles.count), stories: \(childStories.count), "
-            + "recall: \(recall == nil ? 0 : 1))"
+            + "recall: \(recall == nil ? 0 : 1), occasion: \(occasion?.kind.rawValue ?? "-"))"
     }
     var debugDescription: String { description }
     var customMirror: Mirror {
@@ -78,7 +80,8 @@ struct StoryContextBuilder {
         storyIdeaID: String?,
         companionID: String?,
         subOption: String?,
-        family: FamilyCharacter?
+        family: FamilyCharacter?,
+        occasion: OccasionRequest? = nil
     ) -> StoryContext {
         let own = Self.stories(of: profile, in: library)
         return StoryContext(
@@ -96,7 +99,8 @@ struct StoryContextBuilder {
             usage: usageStore.usage(of: own, for: profile.id),
             recentTitles: Self.recentTitles(of: library, for: profile),
             childStories: own,
-            recall: Self.recallHistory(of: own)
+            recall: Self.recallHistory(of: own),
+            occasion: occasion
         )
     }
 

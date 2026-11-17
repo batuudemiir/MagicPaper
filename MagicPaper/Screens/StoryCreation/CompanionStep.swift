@@ -49,6 +49,11 @@ struct CompanionStep: View {
     /// seçili çipe tekrar dokunmak seçimi kaldırır.
     var topics: [StoryTopicChoice] = []
     @Binding var selectedTopicID: String?
+    /// Özel günler (E6): çocuğun etkin ve bu modda yazılabilen günleri. Boşsa
+    /// bölüm hiç görünmez. Seçilen gün yalnızca blueprint'i kilitler; konu ve
+    /// yol arkadaşı seçimi yerinde kalır.
+    var occasions: [SpecialDayKind] = []
+    var selectedOccasion: Binding<SpecialDayKind?> = .constant(nil)
     /// "Değiştir": birinci adıma döner.
     var onChangeMode: (() -> Void)? = nil
     /// Nil means "MagicPaper chooses".
@@ -78,6 +83,8 @@ struct CompanionStep: View {
                     CreationTitle(title: "Masalda kimler olsun?")
                     if let mode { summary(mode) }
                 }
+
+                if !occasions.isEmpty { occasionSection }
 
                 if let mode, !topics.isEmpty { topicSection(mode) }
 
@@ -134,6 +141,25 @@ struct CompanionStep: View {
                     }
                     .accessibilityLabel(topic.name)
                     .accessibilityAddTraits(selectedTopicID == topic.id ? [.isSelected] : [])
+                }
+            }
+        }
+    }
+
+    /// "Özel bir gün": gün başına bir çip; seçili çipe tekrar dokunmak seçimi kaldırır.
+    private var occasionSection: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            MPSectionHeader(title: SpecialDayCopy.stepSection, subtitle: SpecialDayCopy.stepHint)
+            MPWrapRow(spacing: MPSpacing.sm) {
+                ForEach(occasions) { kind in
+                    let on = selectedOccasion.wrappedValue == kind
+                    MPChip(title: kind.chipTitle, systemImage: kind.symbol,
+                           isSelected: on, height: MPSize.chipHeightKid) {
+                        MPHaptics.selection()
+                        selectedOccasion.wrappedValue = on ? nil : kind
+                    }
+                    .accessibilityLabel(kind.chipTitle)
+                    .accessibilityAddTraits(on ? [.isSelected] : [])
                 }
             }
         }

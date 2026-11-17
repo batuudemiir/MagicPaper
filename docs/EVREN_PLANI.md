@@ -95,7 +95,14 @@ Sıradaki dünyalar: Tarih (`topic_learning_history`), Yeni bir ülke, Yeni bir 
 
 ### E6: Özel günler
 
-Ebeveyn odasında "Özel günler" satırı, çarpma kapısıyla. Dört blueprint. Kayıt yapılandırılmış alanlardır, ad `FamilyNameValidator`'dan geçer, tek tek silinir, kendi blueprint'i dışında kullanılmaz, log'a girmez.
+**Uygulanan (17 Kasım 2026).** Dört özel gün: doğum günü, okulun ilk günü, yeni kardeş, ilk düşen diş.
+
+- **Ebeveyn:** çocuk profil sayfasında Masal ailem'in altında "Özel günler" satırı → `MPParentRoute.specialDays` (`SpecialDaysView`, `MPParentHeader` alt sayfa, `MPListRow` dili, Ragi yok). Kayıt yapılandırılmış: tür, isteğe bağlı gün, "Yeni kardeş" için isteğe bağlı Masal ailem kardeşi; ad yazdırılmaz, serbest metin yok; çocuk başına tür başına bir kayıt. Ekleme odanın içinde; kaldırma onay penceresi ve `requestGate` ile (odada kapı doğrudan geçer, `MPRouter` kuralı). Yalnızca cihazda (`SpecialDayStore`, `mp_specialdays_<id>`); senkron yok. Profil silme ve "Tüm verileri sil" siler.
+- **Masal yazma:** "Masalda kimler olsun?" adımında konu çiplerinin üstünde "Özel bir gün" bölümü; yalnızca etkin (tarihsiz ya da 14 gün önce ile 7 gün sonra arası) ve bu mod ile yaşta yazılabilen günler (`BlueprintSelector.availableOccasions`). Seçilen gün blueprint'i kilitler; konu ve yol arkadaşı seçimi geçerli kalır. Küçük kademede (`LittleCompanionStep`) bu turda yok.
+- **Motor:** `OfflineStoryIntent.occasion` (tür + isteğe bağlı kardeş `FamilyCast`); nil iken seed ve parmak izi aynı. Ayrı katman `ContentCatalog.occasions` (`occasion_library_v1.json`, seri katmanı deseni): normal havuz bu blueprint'lere ulaşamaz; özel gün kurulamazsa `OfflineSelectionError.noOccasionStory`. Sekiz blueprint, mevcut ve kurulduğu bilinen şekillerin kopyası; ilk ve son sayfa günün kendi satırlarıyla (`occasion.sibling` slotu: kardeşin adı ya da "küçük kardeşi").
+- **Mod ve bant:** 5-6'da doğum günü ve okulun ilk günü macera (`absence`, gergin sayfası olmadığı için en korumacı ayarda da görünür), yeni kardeş ve ilk diş uyku öncesi. 3-4'te macera şekli olmadığı için dördü de uyku öncesi (gün akşamı ya da bir önceki akşam). 7-8 ve 9-10 sonraki tur.
+- Özel gün masalı devam ettirilmez (`origin.occasionID`), hatırlama cümlesi almaz; yıldız ve rozet her masal gibi.
+- Metinler taslak, Batuhan okuyacak.
 
 ### E7: Yetkiler
 

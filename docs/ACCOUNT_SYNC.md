@@ -47,6 +47,10 @@ sonra değişmemiş bir kahraman en eski zamanla gider: başka cihazda çocuğun
 edilene kadar sunucu iki yeni koleksiyonu reddeder; ret yalıtılmıştır (`SyncCollection.isIsolated`,
 `SyncRejection`): o koleksiyon cihazda bekler, öbürleri eşitlenir, hesap silme durmaz.
 
+**Özel günler (E6, 17 Kasım 2026): henüz eşitlenmiyor.** `SpecialDayStore` (`mp_specialdays_<profil>`) yalnızca cihazda;
+bir koleksiyon olması Firestore kuralı ve `SyncCollection` vakası gerektirir. Masalın kendisi (`origin.occasionID` ile)
+her masal gibi eşitlenir.
+
 **FAZ 18:** `{uid}` artık ailenin kimliği (`familyID`, kurucunun uid'i). Davetle katılan yetişkinler aynı
 aileyi eşitler; sadece okuma rolü yalnızca çeker. Üyelik, davet, paylaşım, ses ve haftalık özet:
 `docs/FAMILY_FEATURES.md`.

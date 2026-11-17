@@ -26,7 +26,8 @@ enum OfflineStoryMapper {
         ageBand: AgeBand? = nil,
         subOption: String? = nil,
         familyCharacter: FamilyCharacter? = nil,
-        series: (id: UUID, episode: Int)? = nil
+        series: (id: UUID, episode: Int)? = nil,
+        occasion: OccasionRequest? = nil
     ) -> MagicPaper.Story {
         var story = MagicPaper.Story(
             title: composed.title,
@@ -63,6 +64,8 @@ enum OfflineStoryMapper {
         story.currentProgress = nil
         // E3: hatırlama cümlesini motor yazdı; yazmadıysa alan eskisi gibi nil.
         if composed.recallLineID != nil { story.origin?.recalled = true }
+        // E6: the special day, by id; nil for every other story.
+        story.origin?.occasionID = occasion?.kind.rawValue
         // Olgu metne değil kapanış yaprağına gidiyor; motor onu zaten onaylı ve
         // banda uygun olarak süzmüş veriyor.
         story.fact = composed.fact.map {

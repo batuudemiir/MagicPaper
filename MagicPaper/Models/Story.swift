@@ -157,6 +157,10 @@ struct StoryOrigin: Codable, Equatable {
     /// İlk sayfaya bir hatırlama cümlesi eklendi mi (Faz 10, `StoryMemory`).
     /// Nil, bu alandan önce yazılmış her masal.
     var recalled: Bool? = nil
+    /// Hangi özel gün için yazıldı (E6, `SpecialDayKind.occasionID`). Nil, her
+    /// sıradan masal ve bu alandan önce yazılmış her masal. Özel gün masalı
+    /// devam ettirilmez.
+    var occasionID: String? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }

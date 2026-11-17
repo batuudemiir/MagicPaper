@@ -350,6 +350,8 @@ class ProfileManager: ObservableObject {
         // deletion when they leave the device.
         HeroLookStore().delete(for: profileID)
         MPStarWalletStore().delete(for: profileID)
+        // Special days (E6) are the child's too.
+        SpecialDayStore().deleteAll(for: profileID)
         // Masal ailem belongs to the child; their stories keep the names as written.
         FamilyCharacterStore().delete(for: profileID)
         // So do their series (FAZ 13); the episodes already on the shelf went

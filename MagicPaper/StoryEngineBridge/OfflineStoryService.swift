@@ -162,6 +162,16 @@ final class OfflineStoryService {
         }
     }
 
+    /// Özel günler (E6): bu yaşta ve modda yazılabilen günlerin motor
+    /// kimlikleri. Çip yalnızca burada olan ve çocuğun etkin günü olan için.
+    func occasionChoices(forAge age: Int, mode: StoryMode) -> [String] {
+        guard let catalog = try? catalog() else { return [] }
+        let intent = OfflineStoryIntent(
+            childName: "", seed: "occasions", mode: mode,
+            ageBand: servedBand(forAge: age), safety: currentSafety)
+        return selector.availableOccasions(catalog: catalog, intent: intent).map(\.id.rawValue)
+    }
+
     /// The optional idea cards under a mode. Empty means the flow skips them.
     func storyIdeas(forAge age: Int, mode: StoryMode) -> [CatalogStoryIdea] {
         guard let catalog = try? catalog() else { return [] }
@@ -336,7 +346,8 @@ final class OfflineStoryService {
         recent: [StoryOrigin] = [],
         usage: [StoryUsage] = [],
         recentTitles: Set<String> = [],
-        recall: RecallHistory? = nil
+        recall: RecallHistory? = nil,
+        occasion: OccasionRequest? = nil
     ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
         let catalog = try catalog()
         let familyCast = try family.map { character -> FamilyCast in
@@ -385,7 +396,8 @@ final class OfflineStoryService {
                 usage: learned,
                 safety: currentSafety,
                 recentTitles: recentTitles,
-                recall: recall
+                recall: recall,
+                occasion: occasion
             )
             let composed: ComposedStory
             do {
@@ -425,7 +437,8 @@ final class OfflineStoryService {
             recent: context.recent,
             usage: context.usage,
             recentTitles: context.recentTitles,
-            recall: context.recall
+            recall: context.recall,
+            occasion: context.occasion
         )
     }
 

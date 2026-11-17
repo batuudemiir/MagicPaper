@@ -43,6 +43,11 @@ struct ProfileHubView: View {
                                     subtitle: FamilyCharacterCopy.profileRowDescription) {
                         app.router.parentRoute = .familyCharacters(profile.id)
                     }
+                    MPRowDivider(area: .parent)
+                    ParentRowButton(systemImage: "calendar", tone: .peach, title: SpecialDayCopy.rowTitle,
+                                    subtitle: SpecialDayCopy.rowSubtitle) {
+                        app.router.parentRoute = .specialDays(profile.id)
+                    }
                     if ChildInterests.isShown(StoryChoiceSources.current.interestChoices()) {
                         MPRowDivider(area: .parent)
                         ParentRowButton(systemImage: InterestCopy.rowSymbol, tone: .green,
