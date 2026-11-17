@@ -40,6 +40,8 @@ Her bantta, en korumacı ayarda: macera ≥ 4, öğrenme ≥ 4, uyku ≥ 3 bluep
 
 Motor paketinde saf bir rapor (`CoverageReport`): her bant, mod, güvenlik seviyesi ve konu için kurulabilen blueprint, mekanizma ve konu görünürlüğü. Testte iki iş: matrisi yazdırır (insan okur), ve hedefleri **taban** olarak kilitler: bir içerik değişikliği bir hücreyi düşürürse test kırılır. Hedefe henüz ulaşmamış hücreler bugünkü değerde kilitlenir, her faz kendi hücresini hedefe çeker.
 
+**Uygulanan (17 Kasım 2026).** `StoryEngine/Sources/StoryEngine/Offline/CoverageReport.swift`: her bant × mod × ayar (en korumacı, süzgeçsiz) için `BlueprintSelector.admissible` + `OfflineContentBinder` ile kurulabilen blueprint'ler, mekanizmalar (`CatalogBlueprint.mechanismKey`; konu kapısı da artık bunu sayıyor, tek tanım), `availableTopics`'in teklif ettiği konular ve seri devamı var mı (`SeriesPlanner.continuations`). `CoverageReportTests` matrisi yazdırır ve en korumacı ayardaki tabanları kilitler; H0 tabanları bugünkü tablo. Testler henüz koşulmadı: ilk koşuda yazdırılan tablo bu belgeye geçirilmeli.
+
 ### H1: Sakin macera
 
 Gergin sayfası olmayan (`unease`, `hesitation` yok) macera blueprint'leri. Merak, keşif, yardım, bulmak; korku ve kaybolma yok.

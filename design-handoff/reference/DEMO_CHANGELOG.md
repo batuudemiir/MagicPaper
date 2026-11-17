@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H0: kapsam raporu
+
+- Ne değişti: motor paketinde saf `CoverageReport` (bant × mod × en korumacı/süzgeçsiz ayar: kurulabilen blueprint'ler, mekanizmalar, teklif edilen konular, seri devamı), gerçek seçici ve bağlayıcıyla hesaplanıyor. Mekanizma anahtarı tek yere çıktı (`CatalogBlueprint.mechanismKey`); `availableTopics` artık onu kullanıyor, davranış aynı. `CoverageReportTests` matrisi yazdırıyor ve en korumacı ayardaki tabanları bugünkü değerde kilitliyor.
+- Bilerek değişmedi: içerik, seçim kuralları, uygulama.
+- Belgeler: `docs/HAVUZ_PLANI.md` H0.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse`. Tabanlar plandaki tablodan ve kataloğun Python yaklaşık hesabından; ilk koşudaki gerçek tablo bunlardan yüksekse sorun yok, düşükse taban ya da hesap gözden geçirilmeli.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Offline/CoverageReport.swift` (yeni), `Content/CatalogBlueprint.swift`, `Offline/BlueprintSelector.swift`, `Tests/StoryEngineTests/CoverageReportTests.swift` (yeni), `docs/HAVUZ_PLANI.md`, bu günlük.
+
 ### 2026-11-17 · main, commit bu kayıtla · Motor ve havuz genişletme planı (H0-H5)
 
 - Ne değişti (Batuhan, 17 Kasım: "motor engineyi ve havuzu genişletmeliyiz, sonra diğer işlere bakarız"): `docs/HAVUZ_PLANI.md` (yeni). Katalogdan sayılan bant × mod tablosu: 3-4 yaşta macera yok; en korumacı ayarda (varsayılan) hiçbir bantta macera konusu çipi görünmüyor (5-6'da sakin macera 2, kapı 3 ister); 7-10 yaşta her mod iki blueprint; 7-10 yaşta seri devamı yok. Fazlar: H0 kapsam raporu (test olarak taban kilidi), H1 sakin macera her bantta, H2 öğrenme, H3 uyku, H4 seri devamı 7-10, H5 cümle tekrarı.
