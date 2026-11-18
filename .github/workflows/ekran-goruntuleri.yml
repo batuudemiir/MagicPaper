@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir -p design-preview/screens
           set -o pipefail
-          bash Scripts/ci_screenshots.sh 2>&1 | tee design-preview/screens/ci.log
+          bash Scripts/ci_screenshots.sh 2>&1 | tee design-preview/screens/ci-gunlugu.txt
 
       - name: Görüntüleri sakla (indirilebilir kopya)
         if: always()

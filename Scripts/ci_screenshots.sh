@@ -89,10 +89,19 @@ fi
 echo "Küçük: ${SMALL#*|} · Büyük: ${LARGE#*|}"
 
 # --- Derleme ----------------------------------------------------------------
-xcodebuild build \
+# Tam derleme günlüğü dala yazılır; hata satırları ayrıca özetlenir.
+BUILD_LOG="$ROOT/design-preview/screens/derleme-gunlugu.txt"
+mkdir -p "$(dirname "$BUILD_LOG")"
+xcodebuild -version
+if ! xcodebuild build \
   -project MagicPaper.xcodeproj -scheme MagicPaper -configuration Debug \
   -destination "id=${SMALL%%|*}" -derivedDataPath "$DERIVED" \
-  CODE_SIGNING_ALLOWED=NO | tail -n 25
+  CODE_SIGNING_ALLOWED=NO > "$BUILD_LOG" 2>&1; then
+  echo "DERLEME BAŞARISIZ. Hatalar:"
+  grep -E "error:|fatal error|\*\* BUILD FAILED" "$BUILD_LOG" | sort -u | head -80
+  exit 65
+fi
+tail -n 5 "$BUILD_LOG"
 APP="$(find "$DERIVED/Build/Products/Debug-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)"
 [ -d "$APP" ] || { echo "Derlenen .app bulunamadı." >&2; exit 1; }
 
