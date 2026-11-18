@@ -4,7 +4,8 @@
   "locale": "tr",
   "ageBand": "3-4",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır (H2)"
+    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır (H2)",
+    "solo": "10-24 words — sayfa 2 yalnız (Sporlar)"
   },
   "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
   "variants": [
@@ -87,6 +88,35 @@
       "move": "h2_fb3_c04",
       "lengthClass": "paired",
       "register": "certain"
+    },
+    {
+      "id": "s34_fb_01",
+      "text": "{{child.name}} {{discovery.name}}'e baktı. \"Bununla nasıl oynanır acaba?\" diye düşündü. Belki zıplayarak, belki koşarak.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_fb_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fb_02",
+      "text": "\"Belki rüzgâr yardım eder,\" dedi {{child.name}}. Emin değildi. Ama denemek çok eğlenceli görünüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_fb_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fb_03",
+      "text": "{{child.name}} bir fikir buldu: \"Belki yavaş yavaş yaparsam olur.\" {{companion.name}} başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_fb_03",
+      "lengthClass": "solo"
     }
   ]
 }

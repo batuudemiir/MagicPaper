@@ -273,6 +273,44 @@
       "afterBeat": [
         "patient_wait"
       ]
+    },
+    {
+      "id": "s910_sc_ps_01",
+      "text": "Ve sonunda oldu: {{child.name}} hareketi baştan sona, hiç durmadan yaptı. Bunu ilk kez becermişti ve bu duygu, beklediğinden bile güzeldi. {{companion.name}} sevinçle etrafında döndü, sanki kendisi becermiş gibi. {{child.name}} bir kez daha yaptı; emin olmak için değil, sadece keyfinden.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_sc_ps_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s910_sc_ps_02",
+      "text": "Bir, iki, üç... ve bu kez takılmadı. {{child.name}} ne yaptığını anlamak için durup nefeslendi, sonra hareketi yavaşça bir kez daha yaptı. Olmuştu. Bedeni, tekrar ettikçe öğreniyordu; kafası ise bunu ancak şimdi fark ediyordu. Bu keşif, hareketin kendisi kadar hoşuna gitti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_sc_ps_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s910_sc_ps_03",
+      "text": "{{child.name}} kendi bedenine şaşırdı: biraz önce olmayan şey şimdi kolayca oluyordu. Sırrı basitti, ama sabır istiyordu: tekrar tekrar denemek, her seferinde küçük bir şeyi düzeltmek. {{companion.name}} zıplayarak onu kutladı, {{child.name}} ise gülerek yanına oturdu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_sc_ps_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
     }
   ]
 }

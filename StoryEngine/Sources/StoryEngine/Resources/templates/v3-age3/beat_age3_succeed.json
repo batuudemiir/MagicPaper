@@ -184,6 +184,44 @@
       "afterBeat": [
         "reveal_truth"
       ]
+    },
+    {
+      "id": "s34_sc_pw_01",
+      "text": "Rüzgâr esti ve oyun başladı! {{child.name}} koştu, {{companion.name}} zıpladı. İkisi de kahkahalarla güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_sc_pw_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s34_sc_pw_02",
+      "text": "Beklemeye değmişti. Rüzgârla birlikte her şey kolaylaştı. {{child.name}} bir uçtan öbür uca koştu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_sc_pw_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s34_sc_pw_03",
+      "text": "İşte şimdi oldu! {{child.name}} ile {{companion.name}} rüzgârla birlikte koştu, durdu, yine koştu. Çok eğlenceliydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_sc_pw_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
     }
   ]
 }

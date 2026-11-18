@@ -5,7 +5,8 @@
   "ageBand": "5-6",
   "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-1. TWO contributions, both necessary and both visible on the page. The child's half must include a CHOICE or an IDEA, never only labour — 'child = body, companion = directions' satisfies the letter of the agency rule and inverts its spirit (catalog §2.3). If either could have managed alone, the obstacle on page 4 is wrong, not this page. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
-    "solo": "18-38 words — page 6 is never shared"
+    "solo": "18-38 words — page 6 is never shared",
+    "paired": "10-16 words — sayfa 6, persist ile paylaşılır (Sporlar)"
   },
   "variants": [
     {
@@ -128,6 +129,30 @@
       ],
       "lengthClass": "solo",
       "move": "found_rope_found_use"
+    },
+    {
+      "id": "s56_ce_01",
+      "text": "Biri ritmi tuttu, öbürü zıpladı; sonra hiç konuşmadan yer değiştirdiler.",
+      "requiredSlots": [],
+      "move": "spor_s56_ce_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_02",
+      "text": "{{child.name}} sayıyı söyledi, {{companion.name}} adımı attı; birlikte bir düzen kurdular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ce_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_03",
+      "text": "Tek başına olmayan şey, ikisi aynı anda başlayınca kendiliğinden yürümeye başladı.",
+      "requiredSlots": [],
+      "move": "spor_s56_ce_03",
+      "lengthClass": "paired"
     }
   ]
 }

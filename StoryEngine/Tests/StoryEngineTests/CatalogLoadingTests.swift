@@ -78,7 +78,8 @@ final class CatalogBundleTests: XCTestCase {
         // 7-8 ve 9-10'a ikişer uyku blueprint'i (sesleri dinlemek, günü geri
         // saymak, aya konuşmak).
         // 66 ile Meslekler 7-10 (H2b, 19 Kasım 2026): 7-8 ve 9-10'a üçer.
-        XCTAssertEqual(catalog.blueprints.count, 66)
+        // 78 ile Sporlar (19 Kasım 2026): dört bantta üçer spor şekli.
+        XCTAssertEqual(catalog.blueprints.count, 78)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -86,7 +87,8 @@ final class CatalogBundleTests: XCTestCase {
         // kütüphanenin ikinci *yerleşik* yeri (habitat yalnızca `village`).
         // 28 ile Gökyüzü ve uzay (E5, 16 Kasım 2026): Ay Kıyısı, Gümüş Kubbe,
         // Bulut Limanı. Dizinin sonuna eklendi; önceki 25 kaydın yeri aynı.
-        XCTAssertEqual(catalog.settings.count, 28)
+        // 29 ile Köy Çayırı (Sporlar, 19 Kasım 2026).
+        XCTAssertEqual(catalog.settings.count, 29)
         // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
         // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
         // insan bir masala hayvanın girdiği her yerden giremez.
@@ -94,7 +96,8 @@ final class CatalogBundleTests: XCTestCase {
         // bahçede bakım isteyen küçük bir yol arkadaşı bulamadığı için hiç
         // seçilemiyordu.
         // 26 ile Vida (robot) ve Ayçörek (kedi), yalnızca gökyüzü yerlerinde (E5).
-        XCTAssertEqual(catalog.companions.count, 26)
+        // 28 ile Beden Öğretmeni Defne ve keçi Zıpzıp (Sporlar).
+        XCTAssertEqual(catalog.companions.count, 28)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
@@ -104,7 +107,8 @@ final class CatalogBundleTests: XCTestCase {
         // (`bp_unexplained_signal_001`, `bp_threshold_joining_002`) eşleşecek
         // bir keşif bulamadığı için hiç seçilemiyordu.
         // 33 ile yıldız tozu izi, küçük kuyruklu yıldız ve yıldız haritası (E5).
-        XCTAssertEqual(catalog.objects.count, 33)
+        // 36 ile top, atlama ipi ve uçurtma (Sporlar).
+        XCTAssertEqual(catalog.objects.count, 36)
         // 85 with the corpus complete at 33 beat files, each replacing the
         // library's thinner scaffolding for the beat it covers.
         //
@@ -160,7 +164,8 @@ final class CatalogBundleTests: XCTestCase {
         // 1676 → 1719 (H3, 18 Kasım 2026): uykunun 43 satırı (3-4'te 14,
         // 5-6'da 7, 7-8'de 13, 9-10'da 9). Var olan satırlara dokunulmadı.
         // 1719 → 1786 (H2b, 19 Kasım 2026): Meslekler 7-10'un 67 satırı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 1786)
+        // 1786 → 1869 (Sporlar, 19 Kasım 2026): 83 satır.
+        XCTAssertEqual(catalog.recordCounts["variants"], 1869)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

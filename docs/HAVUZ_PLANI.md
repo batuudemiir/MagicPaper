@@ -225,6 +225,8 @@ Açık: 3-4 macera ve öğrenme bölümlerinin son sayfası var olan `age3` `war
 - Spor olguları gerekirse `facts`'e: doğru, sade, kaynaklı (ör. "Kalp koşarken daha hızlı atar"). "hızlı" kelimesi yalnızca olgu içinde, masal anlatısında hız övülmez.
 - Hedef: dört bantta en korumacı ayarda Sporlar konusu görünür; `CoverageReportTests` kilitler.
 
+**Uygulanan (19 Kasım 2026).** Köy Çayırı (yeni mekân), Beden Öğretmeni Defne (`coach`, insan) ve keçi Zıpzıp, üç nesne (top, atlama ipi, kâğıt uçurtma), her banta üç `sports` blueprint'i (`learning`, gergin sayfa yok), 83 satır, sona ekleme. Defne dördüncü meslek olduğu için zanaat beat'lerinde dörder satırı var ve editoryal bir olgu (`fact_coach_shows_slowly`, 5-10) aldı; `JobsTopicTests`'teki iki "tam 3" "en az 3" oldu. `CoverageReportTests` Sporlar'ı dört bantta kilitler. Python yaklaşığı: dört bantta görünür; testler plan sonunda.
+
 ### H5: Tekrar ölçümü ve ince havuzlar
 
 Derleme yapılamadığı için ölçüm Python yaklaşığıyla: her bant × beat × ark için kapılardan (bant, ark, rol, uzunluk sınıfı, `afterClosing`, `afterBeat`, aile ilişkisi) geçen satır sayısı. Rapor `docs/HAVUZ_RAPORU.md`'ye yazılır (tablo + en ince 20 havuz).

@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "solo": "10-24 words — sayfa 1 hiç paylaşılmaz"
+    "solo": "10-24 words — sayfa 1 hiç paylaşılmaz",
+    "paired": "5-12 words — sayfa 1, meet_companion ile paylaşılır (Sporlar)"
   },
   "variants": [
     {
@@ -172,6 +173,32 @@
       "move": "fam3_imaginary_always_there",
       "lengthClass": "solo",
       "visualScene": "small child with a faint soft shape, noticing something"
+    },
+    {
+      "id": "s34_na_01",
+      "text": "Yerde {{discovery.name}} duruyordu. Kimindi bu?",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "move": "spor_s34_na_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s34_na_02",
+      "text": "{{child.name}} bir şey gördü: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_na_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s34_na_03",
+      "text": "Bugün oyun için güzel bir gündü. Hem de çok.",
+      "requiredSlots": [],
+      "move": "spor_s34_na_03",
+      "lengthClass": "paired"
     }
   ]
 }

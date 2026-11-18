@@ -5,7 +5,8 @@
   "ageBand": "7-8",
   "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 6, Aile I. Sayfa 2'deki TEK gözlem ile sayfa 3'teki TEK bilgi birleşir, başka hiçbir şey. Tek çıkarım adımı; onu çocuk söyler, yol arkadaşı önce varmaz.",
   "lengthClasses": {
-    "solo": "18-38 words — page 6 is never shared"
+    "solo": "18-38 words — page 6 is never shared",
+    "paired": "10-16 words — sayfa 6, examine ile paylaşılır (Sporlar)"
   },
   "variants": [
     {
@@ -132,6 +133,31 @@
       ],
       "lengthClass": "solo",
       "move": "age7_a7_in_12"
+    },
+    {
+      "id": "s78_in_01",
+      "text": "Sonra {{child.name}} fark etti: dizlerini bükünce daha yükseğe çıkıyordu, hem de çok daha kolay.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_in_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_in_02",
+      "text": "Rüzgâra doğru koşunca her şey değişti; demek ki sır rüzgârın yönündeydi.",
+      "requiredSlots": [],
+      "move": "spor_s78_in_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_in_03",
+      "text": "{{child.name}} anladı: kollarını sallayınca dengesi yerine geliyordu, sallamayınca hep aynı yerde düşüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_in_03",
+      "lengthClass": "paired"
     }
   ]
 }

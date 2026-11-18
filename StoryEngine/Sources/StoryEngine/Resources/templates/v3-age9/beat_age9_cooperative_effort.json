@@ -4,7 +4,8 @@
   "locale": "tr",
   "ageBand": "9-10",
   "lengthClasses": {
-    "solo": "30-60 words — sayfa 8 hiç paylaşılmaz"
+    "solo": "30-60 words — sayfa 8 hiç paylaşılmaz",
+    "paired": "15-30 words — sayfa 8, persist ile paylaşılır (Sporlar)"
   },
   "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
   "variants": [
@@ -112,6 +113,30 @@
       "natureRequire": [
         "person"
       ]
+    },
+    {
+      "id": "s910_ce_01",
+      "text": "Biri ritmi tuttu, öbürü zıpladı; sonra hiç konuşmadan yer değiştirdiler, çünkü artık birbirlerinin ne yapacağını biliyorlardı.",
+      "requiredSlots": [],
+      "move": "spor_s910_ce_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_02",
+      "text": "{{child.name}} sayıyı yüksek sesle söyledi, {{companion.name}} adımı tam o anda attı; birlikte küçük ama sağlam bir düzen kurdular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ce_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_03",
+      "text": "Tek başına bir türlü olmayan şey, ikisi aynı anda başlayınca kendiliğinden yürümeye başladı; oyun, iki kişilikti.",
+      "requiredSlots": [],
+      "move": "spor_s910_ce_03",
+      "lengthClass": "paired"
     }
   ]
 }

@@ -319,6 +319,32 @@
       "topics": [
         "heights"
       ]
+    },
+    {
+      "id": "setting_village_green_001",
+      "interests": [
+        "sports"
+      ],
+      "name": "Köy Çayırı",
+      "description": "Köyün kenarında, çocukların koşup zıpladığı geniş, yumuşak otlu bir çayır. Rüzgâr hep biraz eser.",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak. Saklanacak yer yok (canConceal değil): insan yol arkadaşı burada da tanışılabilir.",
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isOpen",
+        "isTended",
+        "hasWeather"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "village"
+      ]
     }
   ],
   "companions": [
@@ -679,6 +705,79 @@
         "guide",
         "reassuring"
       ]
+    },
+    {
+      "id": "companion_coach_001",
+      "interests": [
+        "sports",
+        "jobs"
+      ],
+      "name": "Beden Öğretmeni Defne",
+      "type": "beden öğretmeni",
+      "personality": "Sabırlı, düdüğünü nadiren çalar.",
+      "description": "Köyün çocuklarına koşmayı, zıplamayı ve dengede durmayı oyunla öğreten öğretmen.",
+      "visualDescription": "friendly sports teacher in a tracksuit, whistle on a cord, relaxed smile",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak. İnsan yol arkadaşı, meslek: coach. Meslekler masallarına da girer; zanaat satırları occupationRequire: coach.",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "coach",
+      "factID": "fact_coach_shows_slowly"
+    },
+    {
+      "id": "companion_goat_001",
+      "interests": [
+        "sports",
+        "animals"
+      ],
+      "name": "Zıpzıp",
+      "type": "keçi",
+      "personality": "Yerinde duramaz, zıplamayı her şeyden çok sever.",
+      "description": "Köy çayırında kayadan kayaya sekmeyi seven, kıvırcık tüylü küçük bir keçi.",
+      "visualDescription": "small curly-haired white goat mid-hop, tiny horns, cheerful eyes",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak. Spor masallarının yol arkadaşı (isQuick + isPlayful, yalnızca köyde).",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ],
   "objects": [
@@ -991,6 +1090,88 @@
       ],
       "interests": [
         "space"
+      ]
+    },
+    {
+      "id": "object_ball_001",
+      "name": "kırmızı bir top",
+      "description": "Çayırın ortasında unutulmuş, yuvarlak, kırmızı bir top.",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "sports"
+      ],
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Kırmızı Top",
+      "keepsakeName": "kırmızı top",
+      "habitat": [
+        "village"
+      ],
+      "interests": [
+        "sports"
+      ]
+    },
+    {
+      "id": "object_jump_rope_001",
+      "name": "renkli bir atlama ipi",
+      "description": "Saplarından biri mavi, öbürü sarı, uzun bir atlama ipi.",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "sports"
+      ],
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": true,
+      "titleName": "Atlama İpi",
+      "keepsakeName": "atlama ipi",
+      "habitat": [
+        "village"
+      ],
+      "interests": [
+        "sports"
+      ]
+    },
+    {
+      "id": "object_kite_001",
+      "name": "kâğıt bir uçurtma",
+      "description": "Kuyruğunda renkli kurdeleler olan, kâğıttan bir uçurtma.",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "sports"
+      ],
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "impliesPresence"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Kâğıt Uçurtma",
+      "keepsakeName": "kâğıt uçurtma",
+      "habitat": [
+        "village"
+      ],
+      "interests": [
+        "sports"
       ]
     }
   ],
@@ -7843,6 +8024,1364 @@
           "supportingBeat": "self_recognize"
         }
       ]
+    },
+    {
+      "id": "bp_sports_howitmoves_age3_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-1 - howItMoves (3-4)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk bir hareketin nasıl kolaylaştığını kendi bedeninde keşfeder (dizleri bükmek, rüzgâra doğru koşmak).",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bununla Nasıl Oynanır?",
+        "{{companion.name}} ile Oyun",
+        "Bir Fikir Daha",
+        "Çayırda Bir Oyun",
+        "{{child.name}} Deniyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity",
+          "supportingBeat": "meet_companion"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "form_belief",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "insight",
+          "supportingBeat": "insight"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_wind_age3_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-2 - waitingForTheWind (3-4)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Oyun için rüzgâr gerekir; çocuk bekler, rüzgâr gelince oyun başlar.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Rüzgâr Ne Zaman Gelir?",
+        "Rüzgârı Beklerken",
+        "{{companion.name}} ile Koşmak",
+        "Biraz Daha Bekle",
+        "{{child.name}} Bekliyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity",
+          "supportingBeat": "meet_companion"
+        },
+        {
+          "pageNumber": 2,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 3,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_together_age3_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "S-3 - playingTogether (3-4)",
+      "genre": "gentle_adventure",
+      "theme": "friendship",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Yol arkadaşı iki kişilik bir oyuna davet eder; tek başına olmayan oyun birlikte olur.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Benimle Oynar mısın?",
+        "İki Kişilik Oyun",
+        "{{companion.name}} ile Sırayla",
+        "Önce Sen, Sonra Ben",
+        "{{child.name}} Katıldı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity",
+          "supportingBeat": "meet_companion"
+        },
+        {
+          "pageNumber": 2,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort",
+          "supportingBeat": "cooperative_effort"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_tryagain_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-4 - tryingAgain",
+      "genre": "gentle_adventure",
+      "theme": "courage",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk bir hareketi dener, olmaz; nefes alır, tekrar dener ve bir şeyi ilk kez becerir.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bir Kez Daha mı?",
+        "{{companion.name}} ile Denemek",
+        "İlk Kez Oldu",
+        "Tekrar Tekrar",
+        "{{child.name}} Becerdi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "obstacle_raises",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_together_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "S-3 - playingTogether",
+      "genre": "gentle_adventure",
+      "theme": "friendship",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Yol arkadaşı iki kişilik bir oyuna davet eder; tek başına olmayan oyun birlikte olur.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Benimle Oynar mısın?",
+        "İki Kişilik Oyun",
+        "{{companion.name}} ile Sırayla",
+        "Önce Sen, Sonra Ben",
+        "{{child.name}} Katıldı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_howitmoves_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-1 - howItMoves",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk bir hareketin nasıl kolaylaştığını kendi bedeninde keşfeder (dizleri bükmek, rüzgâra doğru koşmak).",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Nasıl Kolaylaşır?",
+        "Bedenin Bildiği",
+        "{{companion.name}} ile Çayırda",
+        "Bir Sır Daha",
+        "{{child.name}} Fark Etti"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "obstacle_raises",
+          "emotion": "effort",
+          "supportingBeat": "first_attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "examine",
+          "emotion": "insight",
+          "supportingBeat": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_tryagain_age7_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-4 - tryingAgain (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "courage",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Çocuk bir hareketi dener, olmaz; nefes alır, tekrar dener ve bir şeyi ilk kez becerir.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bir Kez Daha mı?",
+        "{{companion.name}} ile Denemek",
+        "İlk Kez Oldu",
+        "Tekrar Tekrar",
+        "{{child.name}} Becerdi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "obstacle_raises",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_together_age7_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "S-3 - playingTogether (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "friendship",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Yol arkadaşı iki kişilik bir oyuna davet eder; tek başına olmayan oyun birlikte olur.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Benimle Oynar mısın?",
+        "İki Kişilik Oyun",
+        "{{companion.name}} ile Sırayla",
+        "Önce Sen, Sonra Ben",
+        "{{child.name}} Katıldı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_howitmoves_age7_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-1 - howItMoves (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Çocuk bir hareketin nasıl kolaylaştığını kendi bedeninde keşfeder (dizleri bükmek, rüzgâra doğru koşmak).",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Nasıl Kolaylaşır?",
+        "Bedenin Bildiği",
+        "{{companion.name}} ile Çayırda",
+        "Bir Sır Daha",
+        "{{child.name}} Fark Etti"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "obstacle_raises",
+          "emotion": "effort",
+          "supportingBeat": "first_attempt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "examine",
+          "emotion": "insight",
+          "supportingBeat": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_tryagain_age9_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-4 - tryingAgain (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "courage",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk bir hareketi dener, olmaz; nefes alır, tekrar dener ve bir şeyi ilk kez becerir.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bir Kez Daha mı?",
+        "{{companion.name}} ile Denemek",
+        "İlk Kez Oldu",
+        "Tekrar Tekrar",
+        "{{child.name}} Becerdi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "obstacle_raises",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_together_age9_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "S-3 - playingTogether (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "friendship",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Yol arkadaşı iki kişilik bir oyuna davet eder; tek başına olmayan oyun birlikte olur.",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Benimle Oynar mısın?",
+        "İki Kişilik Oyun",
+        "{{companion.name}} ile Sırayla",
+        "Önce Sen, Sonra Ben",
+        "{{child.name}} Katıldı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "joy"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_sports_howitmoves_age9_001",
+      "interests": [
+        "sports"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "S-1 - howItMoves (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk bir hareketin nasıl kolaylaştığını kendi bedeninde keşfeder (dizleri bükmek, rüzgâra doğru koşmak).",
+      "editorialGuidance": "Sporlar (19 Kasım 2026): spor hareket oyunu olarak yazılır. Kazanan, kaybeden, skor, rekor, \"en hızlı\" ve çocuklar arası kıyas yok; bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek. Keşif nesnesi oyunun bir parçası ya da işaretidir; satırlar nesnenin adına yaslanmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isOpen",
+            "hasWeather"
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "companion": {
+          "allOf": [
+            "isQuick",
+            "isPlayful"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isVisible"
+          ]
+        }
+      },
+      "forbids": {
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed",
+          "emitsSignal",
+          "isUnexplained",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Nasıl Kolaylaşır?",
+        "Bedenin Bildiği",
+        "{{companion.name}} ile Çayırda",
+        "Bir Sır Daha",
+        "{{child.name}} Fark Etti"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "examine",
+          "emotion": "insight",
+          "supportingBeat": "insight"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
     }
   ],
   "templates": [
@@ -11017,6 +12556,18 @@
       ],
       "basis": "editorial",
       "verifiedOn": "2026-10-30",
+      "review": "approved"
+    },
+    {
+      "id": "fact_coach_shows_slowly",
+      "statement": "Beden öğretmeni yeni bir hareketi önce yavaşça gösterir. Çocuklar onu parça parça dener.",
+      "bands": [
+        "5-6",
+        "7-8",
+        "9-10"
+      ],
+      "basis": "editorial",
+      "verifiedOn": "2026-11-19",
       "review": "approved"
     }
   ]

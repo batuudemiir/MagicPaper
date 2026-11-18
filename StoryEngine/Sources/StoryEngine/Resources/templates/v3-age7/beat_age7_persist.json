@@ -5,7 +5,8 @@
   "ageBand": "7-8",
   "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 6, Aile IV. Deneme başarısız olduktan sonra arama sürer ve YÖNTEMLİdir: her başarısızlık kalanı daraltır. Şans ödüllendirilmez; bulmak, aramak sürdüğü için olur.",
   "lengthClasses": {
-    "solo": "18-38 words — page 6 is never shared"
+    "solo": "18-38 words — page 6 is never shared",
+    "paired": "10-16 words — sayfa 6, obstacle_raises ya da cooperative_effort ile (Sporlar)"
   },
   "variants": [
     {
@@ -119,6 +120,33 @@
       ],
       "lengthClass": "solo",
       "move": "age7_a7_pe_12"
+    },
+    {
+      "id": "s78_ps_01",
+      "text": "Ama {{child.name}} vazgeçmedi; bir kez daha denedi, sonra bir kez daha.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_ps_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_ps_02",
+      "text": "{{child.name}} derin bir nefes aldı, dizlerini büktü ve yeniden başladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_ps_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_ps_03",
+      "text": "Her denemede biraz daha iyi oldu; {{child.name}} bunu bedeninde hissediyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_ps_03",
+      "lengthClass": "paired"
     }
   ]
 }

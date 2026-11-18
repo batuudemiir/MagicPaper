@@ -91,10 +91,13 @@ final class CoverageReportTests: XCTestCase {
     }
 
     /// Topics locked as visible at the most protective setting, per band and
-    /// mode. H2b (19 Kasım 2026): Meslekler in 7-8 and 9-10.
+    /// mode. H2b (19 Kasım 2026): Meslekler in 7-8 and 9-10. Sporlar
+    /// (19 Kasım 2026): Sporlar in every band.
     private static let lockedTopics: [String: [String]] = [
-        "7-8 learning": ["topic_learning_jobs"],
-        "9-10 learning": ["topic_learning_jobs"],
+        "3-4 learning": ["topic_learning_sports"],
+        "5-6 learning": ["topic_learning_sports"],
+        "7-8 learning": ["topic_learning_jobs", "topic_learning_sports"],
+        "9-10 learning": ["topic_learning_jobs", "topic_learning_sports"],
     ]
 
     func testLockedTopicsStayVisible() throws {

@@ -5,7 +5,8 @@
   "ageBand": "9-10",
   "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 7 (I-1) ya da 8 (IV-1). Vazgeçmemek, ama aynı şeyi tekrarlamak değil: çocuk yöntemini inceltir ve yöntem bir şeyi görünür kılar. Yeni bir fikir gökten düşmez. 9-10'da sıkıcı ama sağlam yöntemin değeri, çocuğun kendi kuru esprisiyle anlatılır.",
   "lengthClasses": {
-    "solo": "30-60 words — persist is the whole page is the whole page"
+    "solo": "30-60 words — persist is the whole page is the whole page",
+    "paired": "15-30 words — sayfa 8, obstacle_raises ya da cooperative_effort ile (Sporlar)"
   },
   "bannedConstructions": [
     "hemen",
@@ -83,6 +84,33 @@
       ],
       "lengthClass": "solo",
       "move": "age9_a9_ps_07"
+    },
+    {
+      "id": "s910_ps_01",
+      "text": "Ama {{child.name}} vazgeçmedi. Bir kez daha denedi, sonra bir kez daha; her seferinde bedeninin neyi doğru yaptığını biraz daha iyi anladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_ps_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ps_02",
+      "text": "{{child.name}} derin bir nefes aldı, dizlerini hafifçe büktü ve yeniden başladı; bu kez acele etmeden, ritmi içinden sayarak.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_ps_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ps_03",
+      "text": "Her denemede bir şey biraz daha yerine oturdu: önce ayaklar, sonra kollar, en son da nefes. {{child.name}} bunu bedeninde hissediyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_ps_03",
+      "lengthClass": "paired"
     }
   ]
 }
