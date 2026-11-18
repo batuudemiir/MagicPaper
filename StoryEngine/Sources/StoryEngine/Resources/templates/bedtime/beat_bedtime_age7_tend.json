@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "10-16 words — sayfa 6, patient_wait ile paylaşılır (H3)"
   },
   "variants": [
     {
@@ -73,6 +74,52 @@
       "move": "age7_bt7_te_05",
       "settingTraits": [
         "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt7l_01",
+      "text": "{{child.name}} yorganı {{companion.name}}'in omzuna kadar çekti; sesler artık yabancı değildi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bt7l_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt7l_02",
+      "text": "Sonra bildiği en yavaş sesle, her sesin adını bir kez daha fısıldadı.",
+      "requiredSlots": [],
+      "move": "h3_bt7l_02",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt7c_01",
+      "text": "{{child.name}} sayarken {{companion.name}}'in yastığını düzeltti, sonra kendi yastığını da yavaşça kabarttı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bt7c_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt7c_02",
+      "text": "Her güzel şeyi sayınca yorganı biraz daha çekti, ta ki ikisi de sıcacık olana kadar.",
+      "requiredSlots": [],
+      "move": "h3_bt7c_02",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
       ]
     }
   ]

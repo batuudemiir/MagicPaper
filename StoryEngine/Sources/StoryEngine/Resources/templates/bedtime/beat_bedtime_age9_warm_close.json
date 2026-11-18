@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime), 9-10 bandı; B turu (13 Kasım 2026). Sadece arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk (sayfa 6) yumuşak ve gülümseten bir şaşkınlıktır, ikinci yarı yatışır, son sayfa aynı odaya döner. 9-10 sesi: dil daha zengin, mizah ince, ama ses sayfa sayfa alçalır; çocuk yataktan uzağa gitmez. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; kimse çocuğu övmez; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "30-60 words — son sayfa, açılıştaki odaya dönen sakin kapanış"
+    "solo": "30-60 words — son sayfa, açılıştaki odaya dönen sakin kapanış",
+    "paired": "15-30 words — son sayfa, self_recognize ile paylaşılır (H3)"
   },
   "variants": [
     {
@@ -250,6 +251,36 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bw9c_01",
+      "text": "{{setting.name}} artık iyice sessizdi. {{child.name}} yorganın altında günü bir kez daha, bu sefer sondan başa doğru saydı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "move": "h3_bw9c_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bw9c_02",
+      "text": "{{setting.name}}'nda ışıklar söndü. {{child.name}} gözlerini kapadı ve günün güzel anlarını, birer birer, yavaşça yerlerine koydu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "move": "h3_bw9c_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bw9c_03",
+      "text": "Ay {{setting.name}}'nın penceresinden içeri bakarken {{child.name}} günü baştan sona bir kez daha geçirdi, ama artık her şey çok uzaktaydı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "move": "h3_bw9c_03",
+      "lengthClass": "paired"
     }
   ]
 }

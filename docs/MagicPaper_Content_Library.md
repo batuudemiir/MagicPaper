@@ -603,3 +603,33 @@ retrace, cooperative_effort, ask_for_help, succeed}.json`, `v3-age7/beat_age7_co
 Bilinen gerilim: 3-4 dosyalarının `editorialNote`'u "geriye dönüş yok, aşılacak engel yok" diyor. Plan bu bandı maceraya
 açtı; yeni satırlarda engel küçük ve arkadaşla aşılıyor, `retrace` geçmişe dönüş değil, yürünen yola bakmak. Not
 değiştirilmedi.
+
+## 18. Uyku çeşitliliği (H3, 18 Kasım 2026)
+
+`docs/HAVUZ_PLANI.md` H3. Yedi uyku blueprint'i, `blueprints` dizisinin sonunda; hepsi `family: charge`, `arc: bedtime`,
+`genre: bedtime`, şartları var olan uyku blueprint'leriyle aynı (yer `isRestingPlace`, keşif `isAudible` + `impliesNeed`,
+casting `needsCare`). Yeni aile, beat ya da mekân yok; mekanizma `editorialName`'den sayılıyor. Hepsi taslak, Batuhan okuyacak.
+
+| Kimlik | Bant | Mekanizma (`editorialName`) | İmza sayfası |
+|---|---|---|---|
+| `bp_bedtime_listening_age3_001` | 3-4 | listeningSounds (3-4) | s.4 `examine` + `tend` |
+| `bp_bedtime_countingday_age3_001` | 3-4 | countingTheDay (3-4) | s.4 `companion_offers` + `tend` |
+| `bp_bedtime_listening_001` | 5-6 | listeningSounds | s.5 `examine`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_listening_age7_001` | 7-8 | listeningSounds (7-8) | s.5 `examine`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_countingday_age7_001` | 7-8 | countingTheDay (7-8) | s.5 `companion_offers`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_moontalk_age9_001` | 9-10 | moonTalk (9-10) | s.8 `approach` |
+| `bp_bedtime_countingday_age9_001` | 9-10 | countingTheDay (9-10) | s.10 `warm_close` + `self_recognize` |
+
+Mekanizmayı imza sayfası taşıyor ve imza satırları yalnızca o mekanizmaya ulaşıyor: imza beat'i kendi bandının uyku arkında
+yeni bir dosya (3-4, 5-6, 7-8 `examine`; 3-4, 7-8 `companion_offers`; 9-10 `approach`, `self_recognize`), ya da var olan
+bir dosyada yeni bir uzunluk sınıfı (`tend`, 7-8 `patient_wait`, 9-10 `warm_close` için `paired`; eski uyku blueprint'leri
+bu beat'leri `solo` okuyor). İmzadan sonraki `tend` satırları `afterBeat` ile mekanizmaya bağlı.
+
+Tekrar ve yavaşlama satırların içinde: sesler kalıpla sayılıyor ("Tik tak, dedi saat."), gün sırayla ve sondan başa
+sayılıyor, nefes sayılıyor ve sayım unutuluyor. `refrain` alanı kullanılmadı: nakarat bugün bir deney
+(`x_refrain_bedtime`), ve `RefrainExperimentTests.testNoShippedBlueprintCarriesARefrain` gönderilen blueprint'te nakaratı
+yasaklıyor; deneyi kapatmak Batuhan'ın kararı.
+
+Satırlar: 43 varyant, hepsi `move: "h3_…"`. Uyku testinin yasak kelimeleri (`karanlık`, `kork`, `yalnız`, `gölge`,
+`canavar`) alt dize olarak arandığı için "yalnızca" da yazılmadı.
+

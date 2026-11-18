@@ -37,6 +37,19 @@
   - Hiçbir uyku satırı ya da yeri `darkness`, `alone` ya da `fear` konusuna değmez.
 - **Masal ailem:** `familyMoments` listesine `establish_ordinary` eklendi; aile karakteri ilk sayfada da yer alır. Bu beat'i yalnızca uyku blueprint'leri kullanır.
 
+## Mekanizmalar (H3, 18 Kasım 2026)
+
+Uyku arkı tek ailede (`charge`) kalıyor; mekanizmalar imza sayfasıyla ayrılıyor. Bugün altı mekanizma:
+
+- **Ninni** (`lullaby`): çocuk uyuyamayan küçük birini uyutur, bekler (`patient_wait`). Her bantta.
+- **İyi geceler** (`goodnight place`): küçük biri kendi uyku yerine gider (`let_go`). Her bantta.
+- **Gece yürüyüşü** (`night walk`): pencereye yaklaşmak (`approach`). 5-6.
+- **Sesleri dinlemek** (`listeningSounds`, H3): evin gece sesleri tek tek tanınır ve adı konan ses küçülür (`examine`). 3-4, 5-6, 7-8.
+- **Günü geri saymak** (`countingTheDay`, H3): küçük biri gününü sayar, çocuk da kendininkini; 7-8'de sondan başa; 9-10'da son sayfada sayım ve küçük bir fark ediş (`warm_close` + `self_recognize`). 3-4, 7-8, 9-10.
+- **Aya konuşmak** (`moonTalk`, H3): çocuk pencereye gider, aya içinden konuşur, yıldızlara iyi geceler der (`approach`). 9-10.
+
+İmza satırları ya bandın uyku arkında yeni bir dosyada ya da eski uyku blueprint'lerinin okumadığı bir uzunluk sınıfında (`paired`); bu yüzden lullaby, goodnight ve nightwalk masallarının havuzu değişmedi. Kontur kuralları aynı: 3-4'te doruk s.4 (yoğunluk 1), 5-8'de s.5, 9-10'da s.6; son sayfa 0. Yeni mekân eklenmedi: iki oda yetiyor, ve yeni bir dinlenme yeri var olan uyku masallarının yer seçimini kaydırırdı. Nakarat (`refrain`) kullanılmadı, deney açık (`x_refrain_bedtime`).
+
 ## Seri
 
 21 Ekim 2026'dan beri odada açılan bir uyku masalına da "Devam ettir" sunulur. Seri, arkını ilk masalın yerinden okur (`SeriesPlanner.arc(of:)`): odada açılan masal yalnızca `arc: bedtime` devam bölümleriyle, bahçe/orman masalı (21 Ekim öncesi uyku masalları dahil) yalnızca standart bölümlerle sürer.
@@ -54,4 +67,4 @@
 
 - Öğrenme ve macera modları ile onların masalları. Tohumlar ve aile fixture'ının bu modlardaki kayıtları birebir aynı.
 - Eski üç charge blueprint'i katalogda duruyor ama hiçbir moda girmiyor; kayıtlı masallar için gerekli.
-- 7-8 ve 9-10 bantları hâlâ en yakın banttan sunuluyor.
+- 7-8 ve 9-10 bantlarının uyku masallarının devamı yok (H4); "Devam ettir" `SeriesPlanner.isAvailable` ile gizli.

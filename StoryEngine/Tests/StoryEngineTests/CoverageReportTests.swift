@@ -31,20 +31,23 @@ final class CoverageReportTests: XCTestCase {
     /// continuation stays where it was, H1 wrote no series. H2 (18 Kasım 2026)
     /// raised every learning cell to the target: 3-4 gained one shape each of
     /// `unexplained`, `misreading` and `appeal` (5/5 by the Python estimate),
-    /// 7-8 and 9-10 one `appeal` and one `charge` (4/4).
+    /// 7-8 and 9-10 one `appeal` and one `charge` (4/4). H3 (18 Kasım 2026)
+    /// raised every bedtime cell to 4 blueprints (4/4 by the Python estimate):
+    /// listening to the house, counting the day back, talking to the moon.
+    /// 7-8 and 9-10 still have no bedtime continuation (H4).
     private static let mostProtective: [String: Floor] = [
         "3-4 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "3-4 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "3-4 bedtime": .init(blueprints: 2, mechanisms: 2, continues: true),
+        "3-4 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
         "5-6 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
         "5-6 learning": .init(blueprints: 12, mechanisms: 3, continues: true),
-        "5-6 bedtime": .init(blueprints: 3, mechanisms: 3, continues: true),
+        "5-6 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
         "7-8 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "7-8 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "7-8 bedtime": .init(blueprints: 2, mechanisms: 2, continues: false),
+        "7-8 bedtime": .init(blueprints: 4, mechanisms: 3, continues: false),
         "9-10 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "9-10 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "9-10 bedtime": .init(blueprints: 2, mechanisms: 2, continues: false),
+        "9-10 bedtime": .init(blueprints: 4, mechanisms: 3, continues: false),
     ]
 
     private func report() throws -> CoverageReport {

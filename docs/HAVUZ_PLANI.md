@@ -124,7 +124,39 @@ Karar: Batuhan, 18 Kasım 2026. Meslekler konusu blueprint'in `jobs` etiketini v
 
 **Sporlar:** hiç içerik yok. `topic_learning_sports` `companion: sports` ve `discovery: sports` istiyor; katalogda bu etiketi taşıyan tek kayıt yok, hiçbir bantta görünmüyor. Ayrı bir içerik kararı gerektiriyor.
 
-### H3-H5
+### H3: Uyku çeşitliliği
+
+**Uygulanan (18 Kasım 2026).** Yedi uyku blueprint'i, `pilot_library_v1.json`'un sonuna; hepsi `charge`/`bedtime`, iki yatak odasında. Yeni mekân, aile ya da beat yok.
+
+| Kimlik | Bant | Mekanizma (`editorialName`) | İmza sayfası |
+|---|---|---|---|
+| `bp_bedtime_listening_age3_001` | 3-4 | listeningSounds (3-4) | s.4 `examine` + `tend` |
+| `bp_bedtime_countingday_age3_001` | 3-4 | countingTheDay (3-4) | s.4 `companion_offers` + `tend` |
+| `bp_bedtime_listening_001` | 5-6 | listeningSounds | s.5 `examine`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_listening_age7_001` | 7-8 | listeningSounds (7-8) | s.5 `examine`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_countingday_age7_001` | 7-8 | countingTheDay (7-8) | s.5 `companion_offers`, s.6 `tend` + `patient_wait` |
+| `bp_bedtime_moontalk_age9_001` | 9-10 | moonTalk (9-10) | s.8 `approach` |
+| `bp_bedtime_countingday_age9_001` | 9-10 | countingTheDay (9-10) | s.10 `warm_close` + `self_recognize` |
+
+Satırlar: 43 yeni varyant (`move: "h3_…"`), yedi yeni uyku beat dosyası, beş dosyaya `paired` sınıfıyla sona ekleme. Ayrıntı `docs/UYKU_ARKI.md` ve `docs/MagicPaper_Content_Library.md` §18.
+
+Bilerek yapılmayan:
+- **Yeni mekân yok.** İki oda yetti; yeni bir dinlenme yeri var olan uyku masallarının yer seçimini (ve sabit seed'li testleri) kaydırırdı. Çeşitlilik mekanizmadan geliyor.
+- **Nakarat (`refrain`) yok.** Motor destekliyor, ama `x_refrain_bedtime` deneyi açık ve gönderilen blueprint'te nakarat test ile yasak. Tekrar satırların içinde yazıldı. Deneyi kapatıp nakaratı açmak ayrı bir karar.
+- **7-10 uyku devamı yok** (H4). "Devam ettir" `SeriesPlanner.isAvailable` ile gizli kalıyor. 3-4 ve 5-6'da yeni blueprint'ler aynı odalarda ve aynı keşifle açıldığı için var olan uyku devamları (`bp_cont_bedtime_staying`, `settling`) değişmeden bağlanıyor.
+
+Beklenen tablo (Python yaklaşığı, en korumacı ayar; ilk test koşusunda `CoverageReportTests`'in yazdırdığıyla değiştirilecek):
+
+| Bant | Uyku (blueprint/mekanizma) | Seri devamı |
+|---|---|---|
+| 3-4 | **4/4** (önce 2/2) | var |
+| 5-6 | **4/4** (önce 3/3) | var |
+| 7-8 | **4/4** (önce 2/2) | yok (H4) |
+| 9-10 | **4/4** (önce 2/2) | yok (H4) |
+
+`CoverageReportTests` uyku tabanlarını hedefe çekti (≥4 blueprint, ≥3 mekanizma).
+
+### H4-H5
 
 Her faz H0 raporundan başlar, hedef hücreyi gösterir, biter. Ayrıntı başladığında buraya yazılır.
 

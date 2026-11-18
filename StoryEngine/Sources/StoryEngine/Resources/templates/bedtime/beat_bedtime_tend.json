@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime, karar 21 Ekim 2026), 5-6 bandı. Yalnızca arkı bedtime olan blueprint'ler bu satırları okur; başka hiçbir masal görmez. Masal yatakta başlar, doruk sayfa 5'te yumuşak bir şaşkınlıktır, son sayfa aynı odaya ve aynı yorgana döner. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "10-16 words — sayfa 6, patient_wait ile paylaşılır (H3)"
   },
   "variants": [
     {
@@ -62,6 +63,44 @@
       "move": "bt_td_hums_along",
       "settingTraits": [
         "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt5l_01",
+      "text": "Sonra {{companion.name}}'in yanına uzandı ve sesleri bir kez daha, daha yavaş saydı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bt5l_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt5l_02",
+      "text": "{{child.name}} yorganın ucunu {{companion.name}}'in üstüne örttü. \"Hepsi bizim sesimiz,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bt5l_02",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt5l_03",
+      "text": "\"Artık hepsini tanıyorsun,\" dedi {{child.name}} ve {{companion.name}}'i yumuşacık bir elle usulca sıvazladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bt5l_03",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
       ]
     }
   ]

@@ -74,7 +74,10 @@ final class CatalogBundleTests: XCTestCase {
         // ikişer; gergin sayfası yok, en korumacı ayarda da kurulur.
         // 53 ile öğrenme (H2, 18 Kasım 2026): 3-4'e üç (unexplained,
         // misreading, appeal), 7-8 ve 9-10'a ikişer (appeal, charge).
-        XCTAssertEqual(catalog.blueprints.count, 53)
+        // 60 ile uyku çeşitliliği (H3, 18 Kasım 2026): 3-4'e iki, 5-6'ya bir,
+        // 7-8 ve 9-10'a ikişer uyku blueprint'i (sesleri dinlemek, günü geri
+        // saymak, aya konuşmak).
+        XCTAssertEqual(catalog.blueprints.count, 60)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -125,7 +128,10 @@ final class CatalogBundleTests: XCTestCase {
         // 182 → 192 (H2, 18 Kasım 2026): 3-4 için `form_belief`,
         // `belief_fails`, `reveal_truth`, `insight`; 7-8 ve 9-10 için
         // `take_charge`, `tend`, `patient_wait`.
-        XCTAssertEqual(catalog.templates.count, 192)
+        // 192 → 199 (H3, 18 Kasım 2026): yedi uyku beat dosyası (`examine`
+        // 3-4, 5-6, 7-8; `companion_offers` 3-4, 7-8; `approach` ve
+        // `self_recognize` 9-10).
+        XCTAssertEqual(catalog.templates.count, 199)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
         // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
         // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
@@ -149,7 +155,9 @@ final class CatalogBundleTests: XCTestCase {
         // 45, 5-6'da 7, 7-8 ve 9-10'da altışar). Var olan satırlara dokunulmadı.
         // 1586 → 1676 (H2, 18 Kasım 2026): öğrenmenin 90 satırı (3-4'te 43,
         // 7-8'de 24, 9-10'da 23). Var olan satırlara dokunulmadı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 1676)
+        // 1676 → 1719 (H3, 18 Kasım 2026): uykunun 43 satırı (3-4'te 14,
+        // 5-6'da 7, 7-8'de 13, 9-10'da 9). Var olan satırlara dokunulmadı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 1719)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.
