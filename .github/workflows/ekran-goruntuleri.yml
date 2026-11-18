@@ -14,13 +14,13 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: ekran-goruntuleri
-  cancel-in-progress: true
-
 jobs:
   screenshots:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[ekran]')
+    # Sıra iş düzeyinde: [ekran]'sız gönderimler (belge, README) çalışan turu iptal etmez.
+    concurrency:
+      group: ekran-cek
+      cancel-in-progress: false
     runs-on: macos-latest
     timeout-minutes: 60
     steps:
