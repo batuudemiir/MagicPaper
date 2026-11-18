@@ -46,14 +46,15 @@ final class SkyWorldTests: XCTestCase {
         XCTAssertTrue(offered(catalog, band: Self.b56, safety: heightsAvoided).contains(Self.topic))
     }
 
-    /// Recorded, not wished away: 3-4 has no adventure blueprint, and 7-8 and
-    /// 9-10 have two adventure mechanisms each (persistence, retracing),
-    /// below `CatalogStoryTopic.minimumMechanisms`. The places do reach those
-    /// bands' stories; the chip waits for a third mechanism.
-    func testWhereTheSkyTopicIsNotYetOffered() throws {
+    /// E5 recorded the chip as missing at 3-4 (no adventure blueprint), 7-8
+    /// and 9-10 (two mechanisms each). H1 (17 Kasım 2026) wrote calm
+    /// adventure shapes for those bands, and every band now has at least
+    /// `CatalogStoryTopic.minimumMechanisms`, at the most protective setting too.
+    func testTheSkyTopicIsOfferedInEveryBandSinceH1() throws {
         let catalog = try catalog()
         for band in [Self.b34, Self.b78, Self.b910] {
-            XCTAssertFalse(offered(catalog, band: band).contains(Self.topic), "\(band)")
+            XCTAssertTrue(offered(catalog, band: band).contains(Self.topic), "\(band)")
+            XCTAssertTrue(offered(catalog, band: band, safety: .mostProtective).contains(Self.topic), "\(band)")
         }
     }
 

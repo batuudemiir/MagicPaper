@@ -133,6 +133,25 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · main@8692010 (dal worktree-agent-a4d762b8b86a0f234) · H1: sakin macera
+
+- Ne değişti: `pilot_library_v1.json`'un sonuna on sakin macera blueprint'i (3-4'e dört, 5-6, 7-8 ve 9-10'a ikişer); hiçbirinde `unease`/`hesitation` sayfası yok, yani en korumacı ayarda da sunuluyor. 3-4 bandında macera modu ilk kez açıldı. Aileler `absence` ve `threshold`; yeni aile ya da beat gerekmedi, mekanizmalar `editorialName`'den ayrı sayılıyor (aramayı sürdürmek, geriye bakmak, birlikte geçmek, yolu sormak, işaretleri okumak). 64 yeni satır (`move: "h1_…"`): 3-4'te yedi yeni beat dosyası, 7-8 ve 9-10'da birer `cooperative_effort` dosyası, var olan yedi dosyaya yalnızca sona ekleme. Yeni satırlar rol, uzunluk sınıfı, `afterClosing`, `afterBeat` ve `conflictKinds` kapılarıyla eski masallara karışmıyor.
+- Beklenen kapsam (Python yaklaşığı): en korumacı ayarda macera her bantta 4 blueprint / 4 mekanizma (5-6 süzgeçsiz 6/6). Macera konuları (Denizin altı, Gökyüzü ve uzay, Vahşi doğa, Hazine avı) dört bantta da görünür. `CoverageReportTests` macera tabanları hedefe çekildi (≥4 / ≥3).
+- Ürün etkisi: ebeveyne sunulan ilgi kelimeleri beşten ona çıktı (Uzay, Müzik, Robotlar, Bilim, Gökyüzü eklendi).
+- Sabitlenen testler güncellendi: `CatalogLoadingTests` (46 blueprint, 182 şablon, 1586 varyant), `ModeBandCoverageTests` (3-4 üç mod; eksik mod uyarısı artık 3-4 macerası çıkarılmış katalogla sınanıyor), `StoryTopicTests`, `TopicMechanismTests`, `InterestCatalogTests` (korsan fikstürü haritadan mağaraya taşındı), `CompanionNatureTests`, `SkyWorldTests` (gökyüzü çipi artık her bantta), `SeriesPlannerTests` (macera 3-4'ün devamı yok), uygulama testleri `StoryModeFlowTests` ve `InterestProfileTests`.
+- Bilerek değişmedi: var olan kayıtlar ve satırlar, 3-4 dosyalarının "aşılacak engel yok" notu (plan bandı maceraya açtı; Batuhan okumalı), seri içeriği, uygulama kodu.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse` ve JSON ayrıştırma. Sabit seed'li altın testler (`OfflineDeterminismTests`, altın fikstürler, çeşitlilik tabanı, `IllustratedBookFlowTests`) yeni blueprint'ler havuza girdiği için büyük olasılıkla kırılacak; ilk koşuda neden bu olduğu doğrulanıp fikstürler güncellenmeli.
+- Metinler taslaktır, Batuhan okuyacak.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`, `Resources/templates/v3-age3/` (7 yeni, 3 ekleme), `v3/beat_obstacle_raises.json`, `v3/beat_succeed.json`, `v3-age7/` (1 yeni, 1 ekleme), `v3-age9/` (1 yeni, 1 ekleme), yukarıdaki testler, `docs/HAVUZ_PLANI.md`, `docs/MagicPaper_Content_Library.md` (§17), bu günlük.
+
+### 2026-11-17 · main@1bf31bb (dal worktree-agent-a4d762b8b86a0f234) · H0: kapsam raporu
+
+- Ne değişti: motor paketinde saf `CoverageReport` (bant × mod × en korumacı/süzgeçsiz ayar: kurulabilen blueprint'ler, mekanizmalar, teklif edilen konular, seri devamı), gerçek seçici ve bağlayıcıyla hesaplanıyor. Mekanizma anahtarı tek yere çıktı (`CatalogBlueprint.mechanismKey`); `availableTopics` artık onu kullanıyor, davranış aynı. `CoverageReportTests` matrisi yazdırıyor ve en korumacı ayardaki tabanları bugünkü değerde kilitliyor.
+- Bilerek değişmedi: içerik, seçim kuralları, uygulama.
+- Belgeler: `docs/HAVUZ_PLANI.md` H0.
+- Test: derlenmedi, testler çalıştırılmadı (karar: yalnızca plan sonunda). Yalnızca `swiftc -frontend -parse`. Tabanlar plandaki tablodan ve kataloğun Python yaklaşık hesabından; ilk koşudaki gerçek tablo bunlardan yüksekse sorun yok, düşükse taban ya da hesap gözden geçirilmeli.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Offline/CoverageReport.swift` (yeni), `Content/CatalogBlueprint.swift`, `Offline/BlueprintSelector.swift`, `Tests/StoryEngineTests/CoverageReportTests.swift` (yeni), `docs/HAVUZ_PLANI.md`, bu günlük.
+
 ### 2026-11-17 · ozel-gun-tema-plani · Özel gün temaları: kararlar işlendi
 
 - Batuhan'ın kararları plana, takvime ve Ragi kitabına işlendi: temaya özel tek Ragi aksesuarı serbest (`RAGI.md` "Yapılmaz" satırına istisna), özel gün için ebeveyn ayarı yok ve temalar herkeste, yılbaşında Noel Baba ve yılbaşı ağacı serbest.

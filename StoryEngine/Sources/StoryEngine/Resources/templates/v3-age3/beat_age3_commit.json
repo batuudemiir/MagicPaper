@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "solo": "10-24 words — sayfa 3 hiç paylaşılmaz"
+    "solo": "10-24 words — sayfa 3 hiç paylaşılmaz",
+    "paired": "5-12 words: macera masallarında sayfa 3 obstacle_raises ile paylaşılır (H1)"
   },
   "variants": [
     {
@@ -86,6 +87,43 @@
       "requiredSlots": [
         "child.name"
       ]
+    },
+    {
+      "id": "cm3h_01",
+      "text": "\"Hadi gidip bakalım,\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_cm3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "cm3h_02",
+      "text": "{{child.name}} karar verdi. Gidip bakacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_cm3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "cm3h_03",
+      "text": "\"Birlikte bakalım mı?\" dedi {{child.name}}. {{companion.name}} başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_cm3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "cm3h_04",
+      "text": "{{child.name}} kalktı. \"Haydi,\" dedi. \"Birlikte gidelim.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_cm3h_04",
+      "lengthClass": "paired"
     }
   ]
 }

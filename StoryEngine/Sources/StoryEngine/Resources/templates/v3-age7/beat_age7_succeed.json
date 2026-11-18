@@ -200,6 +200,31 @@
       "afterBeat": [
         "reveal_truth"
       ]
+    },
+    {
+      "id": "a7_sc_ce_01",
+      "text": "Sonunda vardılar. {{child.name}} ilk kez gördüğü yere uzun uzun baktı. Tek başına gelemezdi belki, ama birlikte gelmişlerdi ve bu ona çok doğru geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_a7_sc_ce_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_sc_ce_02",
+      "text": "Öbür tarafa geçtiklerinde {{child.name}} derin bir nefes aldı. Yol uzundu ama işi bölüşmek onu kısaltmıştı. {{companion.name}} ile göz göze gelip güldüler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a7_sc_ce_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

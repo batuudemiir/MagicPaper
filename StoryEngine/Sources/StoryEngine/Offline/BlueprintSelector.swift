@@ -412,7 +412,7 @@ public struct BlueprintSelector: Sendable {
                 guard (try? binder.bind(
                     blueprint: blueprint, catalog: catalog, intent: probe, idea: idea)) != nil
                 else { continue }
-                mechanisms.insert(blueprint.mechanism ?? blueprint.id.rawValue)
+                mechanisms.insert(blueprint.mechanismKey)
                 if mechanisms.count >= CatalogStoryTopic.minimumMechanisms { return true }
             }
             return false

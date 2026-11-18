@@ -296,6 +296,44 @@
         "exchange_views"
       ],
       "move": "each_brought_a_half"
+    },
+    {
+      "id": "sc_together_01",
+      "text": "Birlikte başardılar. {{child.name}} bir yandan, {{companion.name}} öbür yandan, adım adım ilerlediler ve sonunda öbür tarafa vardılar. {{child.name}} arkasına dönüp baktı ve gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc_together_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc_together_02",
+      "text": "Ve işte oradaydılar. Tek başına uzun görünen yol, ikisi birlikte yürüyünce kısalmıştı. {{child.name}} ilk kez gördüğü bu yere uzun uzun baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_sc_together_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc_together_03",
+      "text": "{{child.name}} ile {{companion.name}} son adımı birlikte attı. Karşılarında ilk kez gördükleri bir yer duruyordu. İkisi de bir süre hiç konuşmadan baktılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc_together_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

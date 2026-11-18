@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 2 receive_appeal ile paylaşılır"
+    "paired": "5-12 words — sayfa 2 receive_appeal ile paylaşılır",
+    "solo": "10-24 words: macera masallarında sayfa 2 yalnız (H1)"
   },
   "variants": [
     {
@@ -105,6 +106,77 @@
       "lengthClass": "paired",
       "requiredSlots": [
         "companion.name"
+      ]
+    },
+    {
+      "id": "mc3h_01",
+      "text": "O sırada {{companion.name}} geldi. {{child.name}}'in yanında durdu, gülümsedi ve \"Merhaba,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_02",
+      "text": "Yanına küçük bir {{companion.type}} yaklaştı. Adı {{companion.name}}. O da merakla {{child.name}}'e bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h1_mc3h_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_03",
+      "text": "{{companion.name}} bir kenardan bakıyordu, biraz utangaçtı. {{child.name}} el salladı. {{companion.name}} yavaşça yanına geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_03",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3h_04",
+      "text": "{{companion.name}} oradaydı. \"Ne buldun?\" diye sordu. {{child.name}} gösterdi, {{companion.name}} dikkatle baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_04",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_05",
+      "text": "Bir {{companion.type}} yaklaştı. Adı {{companion.name}}. \"Ben de bakabilir miyim?\" diye sordu.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h1_mc3h_05",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
       ]
     }
   ]

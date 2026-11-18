@@ -70,7 +70,9 @@ final class CatalogBundleTests: XCTestCase {
         // (Faz 10, 11 Kasım 2026: gece yürüyüşü, iyi geceler).
         // 30 ile 7-8 bandı: üç modda ikişer blueprint (Faz 10).
         // 36 ile 9-10 bandı (13 Kasım 2026): dört standart, iki uyku; onar sayfa.
-        XCTAssertEqual(catalog.blueprints.count, 36)
+        // 46 ile sakin macera (H1, 17 Kasım 2026): 3-4'e dört, öbür bantlara
+        // ikişer; gergin sayfası yok, en korumacı ayarda da kurulur.
+        XCTAssertEqual(catalog.blueprints.count, 46)
         // 22 with Şenlik Çayırı, the library's only *occupied* place and so the
         // only one that can afford a threshold you join rather than cross.
         // 24 with the two bedrooms the bedtime arc opens and closes in.
@@ -114,7 +116,11 @@ final class CatalogBundleTests: XCTestCase {
         // 110 → 113 (Faz 10): uyku arkına `approach`, `let_go` ve 3-4 `let_go`.
         // 113 → 141 (Faz 10): 7-8 bandı, 19 standart + 9 uyku beat dosyası.
         // 141 → 173 (13 Kasım 2026): 9-10 bandı, 21 standart + 11 uyku beat dosyası.
-        XCTAssertEqual(catalog.templates.count, 173)
+        // 173 → 182 (H1, 17 Kasım 2026): 3-4 için yedi macera beat dosyası
+        // (obstacle_raises, first_attempt, persist, retrace,
+        // cooperative_effort, ask_for_help, succeed), 7-8 ve 9-10 için
+        // `cooperative_effort`.
+        XCTAssertEqual(catalog.templates.count, 182)
         // 547 → 583 (FAZ 11): 36 Masal ailem lines on the opening and closing beats.
         // 583 → 695 (21 Ekim 2026): 112 bedtime-arc lines, 48 of them family lines.
         // 695 → 705 (23 Ekim 2026): 5 `let_go` satırı + `restore`'a bırakmadan
@@ -134,7 +140,9 @@ final class CatalogBundleTests: XCTestCase {
         // 112 uyku; 44'ü Masal ailem satırı).
         // 1367 → 1451 (14 Kasım 2026): 5-6 havuzunun 21 ince vuruşuna 84 satır.
         // 1451 → 1522 (15 Kasım 2026): 7-8 havuzunun 16 ince vuruşuna 71 satır.
-        XCTAssertEqual(catalog.recordCounts["variants"], 1522)
+        // 1522 → 1586 (H1, 17 Kasım 2026): sakin maceranın 64 satırı (3-4'te
+        // 45, 5-6'da 7, 7-8 ve 9-10'da altışar). Var olan satırlara dokunulmadı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 1586)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

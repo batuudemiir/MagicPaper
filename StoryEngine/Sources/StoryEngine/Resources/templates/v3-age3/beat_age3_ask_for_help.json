@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "ask_for_help",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "ah3h_01",
+      "text": "\"Bana yardım eder misin?\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ah3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ah3h_02",
+      "text": "{{child.name}} {{companion.name}}'e sordu. {{companion.name}} düşündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_ah3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ah3h_03",
+      "text": "Sormak iyi bir fikirdi. {{child.name}} sordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ah3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ah3h_04",
+      "text": "\"Sen biliyor musun?\" diye sordu {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ah3h_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

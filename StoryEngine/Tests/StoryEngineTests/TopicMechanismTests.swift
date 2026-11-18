@@ -71,18 +71,19 @@ final class TopicMechanismTests: XCTestCase {
     /// Ölçütü karşılamayan bir konu teklif edilmiyor, ama katalogdan da
     /// silinmiyor: üçüncü mekanizma yazıldığı gün kendiliğinden geri gelsin.
     ///
-    /// Bugünün örneği "Denizin altı": iki mekanizma (IV-1, IV-2). Kayıt burada
-    /// duruyor ki eksiklik görünür olsun; sayı üçe çıktığında bu test
-    /// kırmızıya döner ve kıran kişi konuyu canlı listeye alır.
+    /// Örnek 17 Kasım 2026'ya kadar "Denizin altı"ydı (iki mekanizma). H1'in
+    /// sakin macera şekilleri onu üçün üstüne taşıdı ve konu canlı listeye
+    /// girdi (`StoryTopicTests.testWhichTopicsAreLiveToday`). Bugünün örneği
+    /// "Yeni bir ülke": hiçbir mekân `country` taşımıyor, mekanizma sıfır.
     func testAThinTopicIsDefinedButNotOffered() throws {
         let band = AgeBand(lowerBound: 5, upperBound: 6)
-        let sea = try XCTUnwrap(
-            catalog.storyTopics.first { $0.id.rawValue == "topic_adventure_sea" },
+        let country = try XCTUnwrap(
+            catalog.storyTopics.first { $0.id.rawValue == "topic_adventure_country" },
             "konu katalogdan silinmiş olabilir")
-        let found = mechanisms(of: sea, .adventure, band)
-        XCTAssertEqual(found.count, 2, "Denizin altı artık \(found.sorted()) kuruyor; "
+        let found = mechanisms(of: country, .adventure, band)
+        XCTAssertEqual(found.count, 0, "Yeni bir ülke artık \(found.sorted()) kuruyor; "
                        + "üçe çıktıysa konu canlı listeye alınmalı")
-        XCTAssertFalse(offeredTopics(.adventure, band).contains(sea))
+        XCTAssertFalse(offeredTopics(.adventure, band).contains(country))
     }
 
     // MARK: - Hazine avı
@@ -98,7 +99,9 @@ final class TopicMechanismTests: XCTestCase {
         let treasure = try XCTUnwrap(
             catalog.storyTopics.first { $0.id.rawValue == "topic_adventure_treasure" })
         XCTAssertTrue(offeredTopics(.adventure, band).contains(treasure))
-        XCTAssertEqual(mechanisms(of: treasure, .adventure, band).count, 4)
+        // H1 (17 Kasım 2026): sakin iki şekil (crossingTogether, askingAround)
+        // eklendi; yırtık harita ikisinde de bağlanıyor.
+        XCTAssertEqual(mechanisms(of: treasure, .adventure, band).count, 6)
     }
 
     /// Söz tutuluyor: konu seçildiğinde kurulan her masalın keşfi `treasure`

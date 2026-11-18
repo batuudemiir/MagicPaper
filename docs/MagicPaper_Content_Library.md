@@ -564,3 +564,42 @@ hiçbiri `hasWeather`, `hasHeight`, `isHazardous` değil. Yol arkadaşları `nee
 Bilinen hafif uyumsuzluk (kabul edildi, masalsı): 7-8 satırlarında "rüzgâr", "taş" geçen genel cümleler bu yerlerde
 de seçilebilir.
 
+
+## 17. Sakin macera (H1, 17 Kasım 2026)
+
+`docs/HAVUZ_PLANI.md` H1. On blueprint, `pilot_library_v1.json` `blueprints` dizisinin sonunda; hepsi `genre: adventure`,
+sürüm 1.0.0, hiçbir sayfada `unease` ya da `hesitation` yok, yani en korumacı ayarda da sunuluyor. Yeni aile ya da beat
+yok: mekanizma `editorialName`'in " - " sonrasından sayılıyor (`CatalogBlueprint.mechanismKey`). Hepsi taslak,
+Batuhan okuyacak.
+
+| Kimlik | Bant | Aile | Mekanizma (`editorialName`) | Çözüm sayfası |
+|---|---|---|---|---|
+| `bp_adventure_lookingtogether_age3_001` | 3-4 | absence | IV-3 - lookingTogether (3-4) | `persist` |
+| `bp_adventure_lookingback_age3_001` | 3-4 | absence | IV-4 - lookingBack (3-4) | `retrace` |
+| `bp_adventure_together_age3_001` | 3-4 | threshold | II-3 - crossingTogether (3-4) | `cooperative_effort` |
+| `bp_adventure_asking_age3_001` | 3-4 | absence | IV-5 - askingTheWay (3-4) | `ask_for_help` |
+| `bp_threshold_together_003` | 5-6 | threshold | II-3 - crossingTogether | `cooperative_effort` |
+| `bp_absence_asking_003` | 5-6 | absence | IV-5 - askingAround | `ask_for_help` |
+| `bp_absence_signs_age7_001` | 7-8 | absence | IV-6 - readingTheSigns (7-8) | `insight` |
+| `bp_threshold_together_age7_001` | 7-8 | threshold | II-3 - crossingTogether (7-8) | `cooperative_effort` |
+| `bp_absence_signs_age9_001` | 9-10 | absence | IV-6 - readingTheSigns (9-10) | `insight` |
+| `bp_threshold_together_age9_001` | 9-10 | threshold | II-3 - crossingTogether (9-10) | `cooperative_effort` |
+
+Şartlar: absence `setting anyOf[showsTraces, canConceal]`, keşif `impliesPresence`; threshold `setting hasThreshold`,
+keşif `anyOf[isBeautiful, emitsSignal, isUnexplained, impliesPresence]`. İkisi de `isHazardous` yeri, `impliesNeed`
+keşfi ve `person` yol arkadaşını dışlıyor; casting `guide`, `hesitant`, `reassuring`.
+
+3-4'ün altı sayfası hepsinde aynı iskelet: merak (`notice_anomaly`) / arkadaş gelir (`meet_companion`) / birlikte karar
+ve küçük, içsel bir engel (`commit` + `obstacle_raises`) / çözüm beat'i / bulmak ya da geçmek (`succeed`) / akşam sıcak
+kapanış (`warm_close`).
+
+Satırlar: 64 varyant, hepsi `move: "h1_…"`. Yeni dosyalar `v3-age3/beat_age3_{obstacle_raises, first_attempt, persist,
+retrace, cooperative_effort, ask_for_help, succeed}.json`, `v3-age7/beat_age7_cooperative_effort.json`,
+`v3-age9/beat_age9_cooperative_effort.json`. Var olan dosyalara yalnızca sona ekleme: 3-4 `meet_companion` (roller
+`guide`/`hesitant`/`reassuring`; eskiler yalnızca `needsCare`), 3-4 `commit`, 3-4 `warm_close` (`afterClosing:
+["succeed"]`; eskiler `restore` sonrası), 5-6 `obstacle_raises` (`conflictKinds: ["internal"]`), 5-6/7-8/9-10 `succeed`
+(`afterBeat: ["cooperative_effort"]`). Bu kapılar yeni satırların var olan masallara karışmasını engelliyor.
+
+Bilinen gerilim: 3-4 dosyalarının `editorialNote`'u "geriye dönüş yok, aşılacak engel yok" diyor. Plan bu bandı maceraya
+açtı; yeni satırlarda engel küçük ve arkadaşla aşılıyor, `retrace` geçmişe dönüş değil, yürünen yola bakmak. Not
+değiştirilmedi.
