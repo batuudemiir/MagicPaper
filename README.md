@@ -1,5 +1,29 @@
 # MagicPaper
 
+> ## 📌 Batuhan için: `irem` dalından notlar
+>
+> Bu bölüm yalnızca `irem` dalında. Açık olan maddeler burada durur, tamamlananlar silinir.
+> `main`'e birleştirmeden önce bu bölüm kaldırılmalı.
+> Son güncelleme: 18 Kasım 2026.
+>
+> **Karar bekleyenler**
+>
+> 1. **Abonelik ve Paywall.** Bugün Premium hiçbir şeyi kilitlemiyor: `Capability` / `EntitlementPolicy` kurulu ama hiçbir ekran çağırmıyor, `canCreateStory` kullanılmıyor; ücretsiz kullanıcı her şeye sahip. Paywall ise Release'te kapalı olan görselli masalı satıyor ("Ayda 5 görselli masal"). "İlk 7 gün ücretsiz" StoreKit'e bakılmadan yazıyor. App Store 3.1.2 için otomatik yenileme metni ve "Aboneliği yönet" yok. Ret ve ebeveyn güveni riski.
+>    Öneri: ritüel ücretsiz (her akşam bir masal, zaten 12 saat kuralı var); Premium = gün boyu masal, seriler, Masal ailem, kendi sesinle okuma, bütün klasikler ve PDF; tek plan aylık + yıllık; basılı kitap ve hediye ayrı satış. Taslak: `design-preview/mockups/paywall-oneri.html` (bugünkü hali `paywall-bugun.html`). Onaylarsan İrem kodlar.
+>
+> **Bilgi / düzeltilecek**
+>
+> 2. **`ios-build.yml` CI'da derlenemez.** `MagicPaper/Secrets.xcconfig` ve `GoogleService-Info.plist` depoda yok (doğru olarak), ama iş akışı bunları üretmiyor. Ayrıca `actions/upload-artifact@v3` ve `download-artifact@v3` GitHub'da kaldırıldı. `ekran-goruntuleri.yml` boş anahtar ve sahte Firebase dosyasıyla derliyor; aynı yol buraya da uygulanabilir.
+> 3. **README eskimiş:** "Proje kuralları: üst klasördeki `CLAUDE.md`" diyor; depoda `CLAUDE.md` yok, kurallar `AGENTS.md`'de.
+> 4. **`design-handoff/` eski tasarımı gösteriyor** (3 sekmeli alt çubuk, kilit simgesi, gradient düğme) ama `design-handoff/CLAUDE.md` kendini "doğruluk kaynağı" ilan ediyor. Bir ajan ona uyarsa tasarım geri gider. Öneri: başına "tarihsel, AGENTS.md kararları geçerli" notu.
+>
+> **`irem` dalında neler var**
+>
+> - `design-preview/`: Windows'ta iPhone çerçeveli önizleyici. Renk ve ölçüler uygulamanın kendi dosyalarından üretiliyor (`tools/sync-tokens.mjs`). Ayrıntı: `design-preview/README.md`.
+> - `.github/workflows/ekran-goruntuleri.yml` + `Scripts/ci_screenshots.sh`: `irem` dalında `[ekran]` geçen commit'te gerçek uygulamayı simülatörde açıp ekranları çeker. Senin Mac'inde de çalışır: `bash Scripts/ci_screenshots.sh`.
+> - Uygulama kodunda tek değişiklik: DEBUG açılış kancası `mpOpenPaywall` (iki satır).
+> - Tasarım sistemi bulgularını (çift token kaynağı, Reduce Motion geçidi olmayan iki animasyon, 40 pt segment, sabit yükseklikli metin alanı) İrem düzeltecek; her biri değişiklik günlüğüne yazılır.
+
 Kişiselleştirilmiş çocuk masalları için iOS uygulaması. Çocuk, masallarda tekrar eden bir karakter olur.
 Metin masallar cihazda, internetsiz bir masal motoruyla yazılır (LLM yok).
 
