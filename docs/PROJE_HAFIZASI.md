@@ -4,6 +4,7 @@ Claude Code oturumlarının 17 Kasım 2026'ya kadar biriktirdiği notlar (karar,
 
 ## İçindekiler
 
+- [Semantik görsel havuzu](#semantik-gorsel-havuzu) — 19 Kasım: motor/seri/havuz incelemesi, 33 nesne envanteri, 12 guaj konu çizimi; üretim entegrasyonu tasarım onayı sonrası
 - [Okuyucu guaj tasarımı](#okuyucu-guaj-tasarimi) — 18 Kasım: kullanıcı koddan önce GPT‑6.1 ile sahne/spot okuyucu önizlemesi istedi; onaylanan sahne/spot/metin okuyucusu SwiftUI’ye uygulanıyor
 - [Offline guaj pilotu](#offline-guaj-pilotu) — 18 Kasım: 24 gerçek motor çıktısı, iki çizim/48 eşleme; altı ışık dili uyumsuzluğu ve bakım hedefi incelemesi; üretim entegrasyonu yok
 - [Blueprint & v3 corpus realignment](#blueprint-corpus-realignment) — D3/D10 kapandı; K1 de kapandı: saklanan hikâyeler üretilmiş metni tutuyor, seed drift kullanıcıyı etkilemiyor.
@@ -1081,3 +1082,16 @@ _18 Kasım 2026 — kullanıcı, kodlamadan önce GPT‑6.1 ile okuyucunun önce
 **18 Kasım uygulama onayı:** kullanıcı önizlemeyi beğenip kodlamayı istedi. SwiftUI okuyucu sahne/spot/metin olarak ayrıldı; görselsiz sayfa üstten başlar, uzun metin kayar; eksik dosya metne döner. Gündüz beyaz; Yazı→Kâğıt sırası ve canlı örnek eklendi. `StoryPage.art` isteğe bağlı role/altText/sourceID taşır; eski kayıtlar korunur, bilinmeyen rol eski sahne düzenine döner. B2 sahnesi önceliklidir; hazırlanan masal metin olarak açılırken sanat bastırılır. Motor ve Assets değiştirilmedi. Doğrulama sonucu aşağıdaki uygulama kaydında tutulur. Kestane karşılaştırması taslağı (`2026-11-18-character-comparison`) korunuyor ama kullanıcı testi/onayı sayılmıyor. Okuyucu örneğinin metni ve kızı kurmaca yerleşim örneği, motorun gerçek kişiselleştirilmiş çıktısı değil. Sözdizimi/kaynak kontrolü yapıldı; app test/simülatör ve tarayıcı görsel matrisi yapılmadı.
 
 **Okuyucu uygulama doğrulaması (18 Kasım):** Swift kaynakları derlendi/bağlandı; test yürütmesi önce disk dolmasıyla dSYM, ardından yerel CodeSign internal error nedeniyle başlayamadı. Başarılı test iddiası yok. Görsel simülatör matrisi açık; ayrıntı `docs/READER_LAYOUT_2026-11-18.md`.
+
+
+## semantik-gorsel-havuzu
+
+_19 Kasım 2026 — kullanıcı using-superpowers + imagegen ile geniş motor/seri/havuz incelemesi, planlama ve mevcut modele uygun çizimler istedi._
+
+Üç salt-okunur ajan motor/binder, içerik envanteri ve seri/uzak havuzu ayrı inceledi. Statik ham toplam: 36 blueprint, 33 nesne, 26 companion, 28 setting (eski trait’siz kayıtların hepsi seçilebilir değil). Tasarım: `docs/superpowers/specs/2026-11-19-semantic-story-art-design.md`; set: `design-handoff/proposals/2026-11-19-story-art-library/`.
+
+**Karar önerisi:** kelime arama yerine seçilmiş varyant/sayfa provenance + subject/presence/state semantiği; önce dar incelenmiş allowlist, sonra yazılmış görsel bildirimleri. Kaydedilmiş asset+revision+altText+policy kararı reader’da yeniden seçilmez. Nötr spot bağlaması B2 bayrak/kit/library/avatar guard’ının dışında olmalı; Release B2 kapısı açılmaz. ReaderImageLoader bundled art adı çözmez; yerel kaynak çözümlemesi ayrıca yapılmalı.
+
+**Seri tuzağı:** dört devam bölümü başta compose edilir; SeriesEpisode pages/origin saklar ama StoryIllustration saklamaz. Page art yaşar; book-level continuity yeni sözleşmede açıkça saklanmalı. Unlock’ta tekrar seçme yok. Aile silinmesi açılmamış bölümleri güncel katalogla yeniden yazar; sanat da yalnız o bölümlerde yeniden bağlanmalı.
+
+12 saydam konu çizimi yerleşik image_gen ile onaylı referans verilerek hazırlandı: yırtık harita, boş yuva, tek eldiven, altın anahtar, açık müzik kutusu, ışıklı kâğıt fener, deniz kabuğu, mavi kristal, eski el feneri, büyüteç, renkli tüy, sağlam ip. Haritada seçilen v5 üçgen yarım pafta; v2–v4 hale nedeniyle elendi. v1 tarihçe için korundu. Katalogda deniz feneri yok. Çocuk/Ragi veya kanonik hayvan kimliği çizilmedi. Bunlar review taslaklarıdır; blueprint/varyant ilişkileri henüz gerçek compose çıktısıyla doğrulanmış runtime eşleşmeleri değildir. App/motor/Assets değişmedi; build/test/simülatör çalıştırılmadı.

@@ -1,0 +1,78 @@
+{
+  "mode": "built-in image_gen",
+  "reference": "marketing/social/brand/references/instagram-art-direction-v1.png",
+  "transparent_background": true,
+  "basePrompt": "Use case: illustration-story. Asset type: reusable small spot illustration for MagicPaper personalized OFFLINE children's book pages, NOT a social poster. Input image 1 is STYLE REFERENCE ONLY: match its matte gouache, visible dry brush pigment texture, softly painted cut-paper forms, contemporary editorial children's book art. Do not copy its layout, text, people or fox. Palette: purple #6A47B8, lilac, restrained turquoise and coral; natural material hues allowed only on subject. Composition: one coherent isolated subject, complete silhouette and generous transparent margin, centered, approximately square canvas, substantial readable shapes when shown at 160px. Background genuinely TRANSPARENT alpha; no white rectangle, no cream/beige background, no sticker outline, no drop shadow, no UI, no border, no logo, no writing, no watermark, no glitter, no glossy 3D. No people, no mascot, no extra characters. Subject: ",
+  "assets": [
+    {
+      "id": "torn-map",
+      "subject": "A single torn half of a small map, visibly about half missing with one irregular torn edge. Abstract winding ink path and a few tiny geographic marks only, no readable lettering, no X treasure mark, no completed route or solved destination. Open unfolded flat fragment, slightly angled. The paper fragment itself may be muted pale lilac; no surrounding scenery."
+    },
+    {
+      "id": "fallen-nest",
+      "subject": "One small EMPTY bird nest woven from softly painted twigs and a few muted turquoise fibers, intact despite having fallen. Resting low and level, seen from a gentle three-quarter angle; no branch, tree, eggs, chicks, birds, hands or airborne motion. Do not show it repaired or returned to a tree."
+    },
+    {
+      "id": "dropped-mitten",
+      "subject": "One SINGLE small child's mitten, soft coral knitted wool with a muted plum cuff, lying on its side with the thumb visible. No hand inside, no child, no second mitten, no snow, ground or scenery. Simple rounded knitted form with subtle painted stitch texture, no lettering."
+    },
+    {
+      "id": "golden-key",
+      "subject": "One small antique GOLDEN KEY, warm muted ochre gold painted matte, a simple rounded bow and unmistakable short toothed shaft, gently diagonal. No lock, door, chest, holder, ribbon, jewelry or other objects. No magical glow; readable simple silhouette."
+    },
+    {
+      "id": "music-box",
+      "subject": "One small old WOODEN MUSIC BOX, simple box with a small winding handle on the side, lid modestly open showing a tiny simple metal musical cylinder. Rounded softly worn wood, muted lilac lid detail, muted coral accent. No ballerina, no figurine, no printed musical notes, no floating notes, no emitted light, no extra scene."
+    },
+    {
+      "id": "paper-lantern",
+      "subject": "One colorful hanging PAPER LANTERN, rounded pleated paper shell with alternating muted lilac and coral panels, deep purple thin hanging loop, soft restrained warm light contained INSIDE the paper. Entire single lantern visible, no doorway, house, child or hand, no flame, no ocean or lighthouse, no beams or sparkle cloud."
+    },
+    {
+      "id": "sea-shell",
+      "subject": "One empty seashell with broad curved ribs, a simple recognisable shell, muted lilac outside, restrained turquoise shadow and soft coral interior. Entire shell visible, no creature inside, no pearl, no beach or ocean scene, no hand, no sound lines, no glowing magic."
+    },
+    {
+      "id": "blue-crystal",
+      "subject": "One small BLUE glowing crystal stone. A softly faceted blue mineral, blue is the dominant color, with a soft restrained internal luminosity confined to the object, a little lilac shading. No pedestal, no magic explosion, no stars, no radiating beams, no hands, no scenery."
+    },
+    {
+      "id": "old-lantern",
+      "subject": "One OLD portable handheld lantern, softly weathered deep purple metal frame with a top carry handle, simple turquoise-tinted glass chamber containing a soft warm restrained light. Matte painted material, old but intact, not rusty dangerous. No visible flame, no human, no ground, no doorway, no scenery, no lighthouse or paper lantern. No light rays beyond the silhouette."
+    },
+    {
+      "id": "magnifying-glass",
+      "subject": "One simple small magnifying glass with a rounded muted purple handle, circular frame, softly turquoise tinted clear glass lens with subtle gouache reflection. Single object, complete silhouette, three-quarter tilted view, no insect, no magnified drawing or text, no hand, no scenery, no extra objects."
+    },
+    {
+      "id": "colorful-feather",
+      "subject": "One soft fallen BIRD FEATHER, gently curved, with natural feather structure painted in restrained turquoise and lilac sections with a tiny coral accent. Entire feather visible, delicate soft barbs, no bird, no wing, no ground, no wind motion or sparkle, no other objects."
+    },
+    {
+      "id": "sturdy-rope",
+      "subject": "One long THICK STURDY ROPE resting as a simple loose coil with two visible intact ends. Muted natural ochre woven fiber with plum shadows, clearly rope not a ribbon or snake. No knot, no broken/frayed ends, no trap, no noose, no hands, no characters, no scenery or objects being tied."
+    }
+  ],
+  "iterations": [
+    {
+      "id": "torn-map-v2",
+      "prompt": "Use case: precise-object-edit. Edit target image 1 is the torn-map draft. Image 2 is the approved STYLE REFERENCE only. Change ONLY the map fragment geometry and its tiny drawn markings: it must unmistakably be HALF of a map, with about 50 percent missing, a tall narrow left-hand fragment with a long strongly irregular torn edge down its right side. The missing half must be TRANSPARENT, not folded behind it and not drawn as a second piece. Show only a few incomplete abstract ink curves which are visibly cut off by the torn edge. Remove mountain, tree, river pictograms and any solved path; no readable labels, X, destinations or symbols. Keep the existing matte gouache, lilac paper, purple ink, soft hand-painted edges and isolated entire subject with transparent margin. No people, no scenery, no shadow or white outline. This is a reusable story object whose authored description is 'a torn map with half missing'; the absence of the other half must read clearly at 160px. Genuine transparent alpha background.",
+      "source": "/Users/batudemir/.codex/generated_images/01a1eaf7-23ab-7fc3-98ab-fc6950591be3/exec-3a737eae-68fe-4b7a-8f08-1ae930536e2c.png"
+    },
+    {
+      "id": "torn-map-v3",
+      "prompt": "Use case: illustration-story. Image 1 is the approved MagicPaper matte gouache STYLE REFERENCE only. Create ONE isolated torn map fragment for a children's story. It is the LEFT HALF of a roughly square sheet: a broad upright rectangle roughly 2 units wide by 3 units tall, with a straight left outer edge and a strongly jagged torn right edge; the entire right half of the original sheet is missing. Show only TWO short imperfect curving purple ink route segments, abruptly cut off at the jagged torn edge; no frame, grid, labels, text, icons, mountains, trees, destination or X. Soft pale lilac paper, matte dry gouache pigment with gentle irregular painted edges, subtle fold. Complete fragment centered with clear margins on all sides. CRITICAL: absolutely NO glow, halo, shadow, vignette, blur, lighting spill, white outline or surrounding paint. All pixels OUTSIDE the actual paper silhouette must be genuinely fully transparent, not a fog or translucent haze. The torn paper edge itself may be subtly warm fiber color. No beige/cream background. No additional object or scenery, no child, mascot, logo. Preserve contemporary children's book texture and readable simple shape at 160px.",
+      "source": "/Users/batudemir/.codex/generated_images/01a1eaf7-23ab-7fc3-98ab-fc6950591be3/exec-8811cff8-b5f7-4072-b2ee-a039a08ee045.png"
+    },
+    {
+      "id": "torn-map-v4",
+      "prompt": "Use case: background-extraction. Edit this exact map image. Remove ALL surrounding purple/white glow, haze and shadow. Keep ONLY the solid lilac paper silhouette and its ink and torn fibers unchanged. Every pixel outside the physical paper edge must have alpha=0. The background must be genuinely transparent, with no vignette, glow, drop shadow, pale cloud, soft halo, blur or light spill. Do not redraw, resize, rotate or recolor the paper or markings. Do not add anything. Preserve the physical map silhouette and its texture exactly; cut away only the unwanted cloudy background.",
+      "source": "/Users/batudemir/.codex/generated_images/01a1eaf7-23ab-7fc3-98ab-fc6950591be3/exec-9e72371d-e43e-420a-b94c-3f764c952d60.png"
+    },
+    {
+      "id": "torn-map-v5",
+      "prompt": "Illustration-story, one reusable MagicPaper storybook spot asset. Style reference: attached approved gouache illustration, texture and color language only. Draw ONE TRIANGULAR HALF OF A TORN MAP: start from a square lilac map sheet torn diagonally from upper left to lower right, keep only the lower-left triangular half; the upper-right half is completely absent. One rough diagonal paper tear, two straight outer paper edges. A short dashed purple route stops abruptly at the diagonal tear. Matte gouache pigment, soft shapes, simple broad silhouette; natural pale paper fibers along the tear. Center the entire triangle with generous clear margins on a square transparent canvas. Only the actual paper object has color; transparent empty space everywhere else. No typography, pictograms, people or extra objects. No glow, shadows, haze, background or outline.",
+      "source": "/Users/batudemir/.codex/generated_images/01a1eaf7-23ab-7fc3-98ab-fc6950591be3/exec-571526a2-6106-4858-9ea1-1b6aedf7817a.png"
+    }
+  ]
+}

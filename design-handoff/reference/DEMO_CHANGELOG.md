@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · codex/design-system-catalog, commit yok · Story Engine görsel havuzu araştırması ve 12 guaj konu
+
+- Ne değişti: üç uzmanla motor/binder, mevcut içerik ve seri/uzak havuz incelendi. 36 blueprint/33 nesne ham envanteri, mimari seçenekler, varyant/presence/state eşleşme sözleşmesi, seri pinleri ve uzak paket büyüme aşamaları yazıldı. 33 nesnenin her birine üretim/erteleme durumu verildi.
+- Görseller: yerleşik image_gen + onaylı referansla 12 saydam konu çizimi; harita v5 seçildi, v1 tarihçe, v2–v4 elendi. Promptlar, kaynaklar, subject/state/revision/altText ve dosya hashleri kaydedildi. Hepsi review taslağıdır, üretim eşlemesi değildir.
+- Bilerek değişmedi: app/motor/Assets, kişiselleştirilmiş metin, kanonik çocuk/Ragi/hayvan kimliği ve B2 Release kapısı. Üretim entegrasyonu bu turda yapılmadı; somut mimari ve görsel seti incelemesi sonraki kod aşamasının girdisidir.
+- Doğrulama: 12 seçili dosyada RGBA/alfa ve SHA-256 kontrolü geçti; gerçek resimler gözle incelendi, ilk altı içerik uzmanıyla ayrıca karşılaştırıldı. Mimari çapraz incelemede olgusal bloklayıcı yok; diff kontrolü temiz. App build/test/simülatör çalıştırılmadı; aday blueprint/variant ilişkileri gerçek composer çıktısı değildir.
+- Dosyalar: `design-handoff/proposals/2026-11-19-story-art-library/`, `docs/superpowers/specs/2026-11-19-semantic-story-art-design.md`, proje hafızası. Büyüme ve uygulama kabul planı spec içinde.
+
 ### 2026-11-18 · codex/design-system-catalog, commit yok · Onaylanan okuyucu düzeninin uygulaması
 
 - Ne değişti: sahne/spot/metin kompozisyonları, üstten başlayan kaydırılabilir görselsiz sayfa, eksik resimde metin yedeği, beyaz Gündüz, Yazı→Kâğıt ayar sırası ve canlı örnek. İsteğe bağlı `StoryPage.art` rol/açıklama/kaynak bilgisini saklar; eski kayıtlar korunur.
