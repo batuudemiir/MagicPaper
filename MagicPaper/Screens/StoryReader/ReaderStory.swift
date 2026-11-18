@@ -120,6 +120,13 @@ struct ReaderPage: Equatable {
     var scene: ResolvedScene? = nil
     /// Sayfanın yeni kelimeleri (FAZ 17). Eski masallarda boş.
     var words: [StoryWord] = []
+    var art: StoryPageArt? = nil
+
+    var composition: ReaderPageComposition {
+        if scene != nil { return .scene }
+        guard imageRef != nil else { return .text }
+        return art?.isSpot == true ? .spot : .scene
+    }
 
     /// Sayfada çizim var mı — dosyadan ya da hazır sahneden.
     var hasIllustration: Bool { imageRef != nil || scene != nil }
@@ -148,17 +155,19 @@ extension ReaderStory {
         let textOnly = story.opensAsTextOnly
         let pages = story.pages.enumerated().map { index, page in
             let scene = textOnly ? nil : ResolvedScene.resolve(page.scene, illustration: story.illustration)
+            let imageRef = textOnly ? nil : ReaderStory.imageRef(for: page)
             return ReaderPage(
                 index: index,
                 title: page.title,
                 paragraphs: ReaderStory.paragraphs(of: page.text),
-                imageRef: textOnly ? nil : ReaderStory.imageRef(for: page),
+                imageRef: imageRef,
                 // Hazır sahnenin Türkçe tarifi; `visualScene` İngilizce olduğu
                 // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
-                imageLabel: textOnly ? nil : (scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index)),
+                imageLabel: scene?.altText ?? (imageRef == nil ? nil : (page.art?.description ?? ReaderStory.imageLabel(for: page, in: story, at: index))),
                 sceneHint: page.imagePrompt,
                 scene: scene,
-                words: page.words ?? []
+                words: page.words ?? [],
+                art: textOnly ? nil : page.art
             )
         }
 

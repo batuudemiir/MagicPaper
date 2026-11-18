@@ -8,6 +8,7 @@ import SwiftUI
 struct ReaderSettingsSheet: View {
     /// Bu masalın ailenin sesiyle kaydı var mı (FAZ 18).
     var hasFamilyVoice = false
+    var textLayout: ReaderTextLayout = .paragraphs
     let onClose: () -> Void
 
     @EnvironmentObject private var app: MPAppState
@@ -23,6 +24,27 @@ struct ReaderSettingsSheet: View {
                 Text("Okuma ayarları").mpText(.section).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
 
+                readingSample
+
+                group("Yazı") {
+                    HStack {
+                        Text("Yazı boyutu").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                        Spacer()
+                        Text(app.readSize.rawValue).mpText(.footnote).fontWeight(.bold)
+                            .foregroundStyle(MPColor.actionPrimary)
+                    }
+                    sizeSlider
+                    Text("Satır aralığı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    MPSegmented(options: MP.ReadSpacing.allCases.map { ($0, $0.label) },
+                                selection: Binding(get: { settings.readSpacing },
+                                                   set: { settings.readSpacing = $0 }))
+                    MPGroupedList(area: .kid) {
+                        toggleRow(icon: "textformat.alt", tone: .sky, title: "Kolay okuma",
+                                  subtitle: "Harflerin arası açılır",
+                                  isOn: $settings.easyReading)
+                    }
+                }
+
                 group("Kâğıt") {
                     paperSwatches
                     if settings.autoNight && MPBedtime.isBedtime(settings: settings) {
@@ -36,19 +58,6 @@ struct ReaderSettingsSheet: View {
                         toggleRow(icon: "moon", tone: .lav, title: "Uyku saatinde Gece",
                                   subtitle: "Uyku saatinden sonra kâğıt kendiliğinden kararır",
                                   isOn: $settings.autoNight)
-                    }
-                }
-
-                group("Yazı") {
-                    sizeSlider
-                    Text("Satır aralığı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    MPSegmented(options: MP.ReadSpacing.allCases.map { ($0, $0.label) },
-                                selection: Binding(get: { settings.readSpacing },
-                                                   set: { settings.readSpacing = $0 }))
-                    MPGroupedList(area: .kid) {
-                        toggleRow(icon: "textformat.alt", tone: .sky, title: "Kolay okuma",
-                                  subtitle: "Harflerin arası açılır",
-                                  isOn: $settings.easyReading)
                     }
                 }
 
@@ -67,6 +76,26 @@ struct ReaderSettingsSheet: View {
         // değişince arkada hemen döner. Kalan ayarlar için yukarı çekilir.
         // Arka plan kâğıt, cam değil (CLAUDE.md, Derinlik: sheet cam olmaz).
         .mpSheet(.half)
+    }
+
+    /// Ayar değişince masalın sayfasıyla aynı tipografi hemen görünür.
+    /// Yükseklik sabit değil; en büyük yazıda örnek ve ayarlar kaydırılır.
+    private var readingSample: some View {
+        let theme = settings.readingTheme(chosen: app.readTheme)
+        let points = (textLayout == .breath ? app.readSize.larger : app.readSize).points
+        let gap = textLayout == .breath ? max(settings.readSpacing.factor, MP.ReadSpacing.rahat.factor) : settings.readSpacing.factor
+        return VStack(alignment: .leading, spacing: MP.S.x2) {
+            Text("Yazı önizlemesi").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+            Text("Birlikte okuyalım.\nBir sayfa daha.")
+                .font(MP.F.read(points))
+                .lineSpacing(points * gap)
+                .tracking(ReaderText.tracking(points, easyReading: settings.easyReading))
+                .foregroundStyle(theme.body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(MP.S.x4)
+                .background(theme.paper, in: RoundedRectangle(cornerRadius: MP.R.card))
+                .accessibilityLabel("Okuma yazısı örneği. Birlikte okuyalım. Bir sayfa daha.")
+        }
     }
 
     // MARK: - Kâğıt

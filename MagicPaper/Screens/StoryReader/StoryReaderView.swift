@@ -182,6 +182,7 @@ struct StoryReaderView: View {
         }
         .sheet(isPresented: $showReaderSettings, onDismiss: scheduleAutoHide) {
             ReaderSettingsSheet(hasFamilyVoice: MPNarration.isAvailable(for: story.id),
+                                textLayout: model.story.textLayout,
                                 onClose: { showReaderSettings = false })
                 .environmentObject(app)
                 .environmentObject(settings)

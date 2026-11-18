@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog, commit yok · Onaylanan okuyucu düzeninin uygulaması
+
+- Ne değişti: sahne/spot/metin kompozisyonları, üstten başlayan kaydırılabilir görselsiz sayfa, eksik resimde metin yedeği, beyaz Gündüz, Yazı→Kâğıt ayar sırası ve canlı örnek. İsteğe bağlı `StoryPage.art` rol/açıklama/kaynak bilgisini saklar; eski kayıtlar korunur.
+- Bilerek değişmedi: motor, çocuk/Ragi kimliği, B2 kapısı ve masal içeriği; demo çizimler gerçek masallara atanmadı. Mevcut kapat/favori/ses/kelime/sayfa/ilerleme sözleşmeleri korundu.
+- Doğrulama: Swift kaynakları derlenip bağlandı; testler disk dolması (dSYM), ardından tekrarlanan yerel CodeSign internal error nedeniyle başlamadı. Test başarısı ve simülatör görsel matrisi doğrulanmadı. Sözdizimi, diff ve yeni okuyucu kodu tasarım yasası kontrolü temiz. İncelemede kritik/yüksek bulgu yok.
+- Dosyalar: Story.swift, MPTheme.swift, MPSheets.swift, ReaderStory/ReaderPageComposition/StoryPageView/StoryReaderView, okuyucu mapping/layout/theme testleri, plan, tasarım REVIEW ve `docs/READER_LAYOUT_2026-11-18.md` ile proje hafızası. Doğrulama açık işleri bu belgede.
+
 ### 2026-11-18 · codex/design-system-catalog · Yeni Ragi çizimleri katalog pozlarına yerleşti
 
 - Ragi kütüphanesinden (`design-handoff/proposals/2026-11-18-ragi-asset-library`) 15 görsel `Assets.xcassets/Brand/mascot*` yerlerine kondu: front 01, threeQuarter 02, happy 06, calm 07, sleepy 08, surprised 10, curious 11, waving 12, onBook 14, reading 15, sleeping 18, thinking 19, walking 20, pencil 43, mascotPeek 25. Görsel boyanmadı; saydam kenar kırpıldı, uzun kenar 1024 px.

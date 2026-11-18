@@ -103,3 +103,7 @@ In that same final simulator window verify: text-only short/long/breath/paragrap
 - Dependencies: existing MPTheme, MPAppState, MPSettingsStore, ReaderImageLoader, LibraryShelf, MPSpeech/MPSpokenPosition, ReaderWords and existing page-turn renderer. No new package or service.
 - Cost: zero remote AI calls, zero runtime generation; deterministic presentation of already available local images.
 - Scope estimate: M (1–2 days including accessibility matrix and review). One phase; later semantic art integration is explicitly separate.
+
+## Implementation record · 18 November 2026
+
+The lead implemented the reader after the builder stopped before edits. Optional metadata uses nested `StoryPage.art: StoryPageArt?`, rather than three top-level keys. Scene/spot/text rules, missing-file fallback, white paper and live settings sample are in place. GPT‑6.1 review found no critical/high issues; B2 precedence and text-only suppression tests were added. The remaining acceptance matrix is explicitly tracked in `docs/READER_LAYOUT_2026-11-18.md`; unchecked items above describe the original checklist and do not imply verified runtime behavior.

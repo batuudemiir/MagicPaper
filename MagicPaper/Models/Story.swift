@@ -230,6 +230,36 @@ enum StoryStatus: String, Codable {
     }
 }
 
+/// İsteğe bağlı, kitapla saklanan resim yönergesi. Rol ham metin tutulur:
+/// gelecekte eklenen bir rol eski uygulamada bütün kitaplığı bozamaz.
+struct StoryPageArt: Codable, Equatable {
+    let role: String
+    let altText: String?
+    let sourceID: String?
+
+    init(role: String, altText: String?, sourceID: String?) {
+        self.role = role
+        self.altText = altText
+        self.sourceID = sourceID
+    }
+
+    private enum CodingKeys: String, CodingKey { case role, altText, sourceID }
+
+    init(from decoder: Decoder) throws {
+        let values = try? decoder.container(keyedBy: CodingKeys.self)
+        role = (try? values?.decode(String.self, forKey: .role)) ?? ""
+        altText = try? values?.decode(String.self, forKey: .altText)
+        sourceID = try? values?.decode(String.self, forKey: .sourceID)
+    }
+
+    var description: String? {
+        guard let text = altText?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { return nil }
+        return text
+    }
+
+    var isSpot: Bool { role == "spot" && description != nil }
+}
+
 struct StoryPage: Identifiable, Codable, Equatable {
     let id: UUID
     var title: String
@@ -239,6 +269,8 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var imageUrl: String?
     /// Sayfanın hazır sahnesi (B2). `nil` = metin sayfası.
     var scene: ScenePlate?
+    /// Eski kayıtlarda yoktur; yokken mevcut üst-sahne düzeni korunur.
+    var art: StoryPageArt?
     /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
     /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
     var words: [StoryWord]?

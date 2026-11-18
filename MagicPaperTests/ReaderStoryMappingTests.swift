@@ -10,20 +10,16 @@ final class ReaderStoryMappingTests: XCTestCase {
         {"id":"00000000-0000-0000-0000-000000000001","title":"","text":"Metin.","imagePrompt":""}
         """
         let page = try JSONDecoder().decode(StoryPage.self, from: Data(json.utf8))
-        XCTAssertNil(page.illustrationRole)
-        XCTAssertNil(page.illustrationAltText)
-        XCTAssertNil(page.illustrationSourceID)
+        XCTAssertNil(page.art)
     }
 
     func testArtMetadataRoundTripsAndUnknownRoleRemainsReadable() throws {
         var page = StoryPage(title: "", text: "Metin.", imagePrompt: "", imageFileName: "spot.png")
-        page.illustrationRole = "future-role"
-        page.illustrationAltText = "Bir filiz."
-        page.illustrationSourceID = "page-specific-art"
+        page.art = StoryPageArt(role: "future-role", altText: "Bir filiz.", sourceID: "page-specific-art")
         let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONEncoder().encode(page))
-        XCTAssertEqual(decoded.illustrationRole, "future-role")
-        XCTAssertEqual(decoded.illustrationAltText, "Bir filiz.")
-        XCTAssertEqual(decoded.illustrationSourceID, "page-specific-art")
+        XCTAssertEqual(decoded.art?.role, "future-role")
+        XCTAssertEqual(decoded.art?.altText, "Bir filiz.")
+        XCTAssertEqual(decoded.art?.sourceID, "page-specific-art")
         var story = ReaderFixtures.illustratedStory(pages: 1)
         story.pages = [decoded]
         XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .scene)
@@ -31,9 +27,7 @@ final class ReaderStoryMappingTests: XCTestCase {
 
     func testSpotRequiresArtAndSemanticMetadata() throws {
         var story = ReaderFixtures.illustratedStory(pages: 1)
-        story.pages[0].illustrationRole = "spot"
-        story.pages[0].illustrationAltText = "Bir filiz."
-        story.pages[0].illustrationSourceID = "page-specific-art"
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "Bir filiz.", sourceID: "page-specific-art")
         let reader = ReaderStory(from: story)
         let page = try XCTUnwrap(reader.leaves.compactMap(\.page).first)
         XCTAssertEqual(page.composition, .spot)
@@ -45,11 +39,11 @@ final class ReaderStoryMappingTests: XCTestCase {
         XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .text)
     }
 
-    func testUnlabelledSpotFallsBackToTextAndLegacyArtToScene() {
+    func testUnlabelledSpotKeepsLegacyScene() {
         var story = ReaderFixtures.illustratedStory(pages: 1)
         XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .scene)
-        story.pages[0].illustrationRole = "spot"
-        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .text)
+        story.pages[0].art = StoryPageArt(role: "spot", altText: nil, sourceID: nil)
+        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .scene)
     }
 
     // 9 — yalnızca metin masalı
@@ -174,4 +168,84 @@ final class ReaderStoryMappingTests: XCTestCase {
         let reader = ReaderFixtures.reader(ReaderFixtures.textStory(pages: 3))
         XCTAssertTrue(reader.leaves.compactMap(\.page).allSatisfy { $0.title.isEmpty })
     }
+    func testLegacyPageDecodesWithoutArtMetadata() throws {
+        let page = StoryPage(title: "", text: "Metin.", imagePrompt: "")
+        let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONEncoder().encode(page))
+        XCTAssertEqual(decoded.text, "Metin.")
+        XCTAssertNil(decoded.art)
+    }
+
+    func testSpotMetadataSurvivesSavingAndMapping() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "Küçük bir sulama kabı.", sourceID: "watering-v1")
+        let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONEncoder().encode(story.pages[0]))
+        XCTAssertEqual(decoded.art?.sourceID, "watering-v1")
+        XCTAssertEqual(decoded.art?.role, "spot")
+        story.pages[0] = decoded
+        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.first?.page)
+        XCTAssertEqual(page.composition, .spot)
+        XCTAssertEqual(page.imageLabel, "Küçük bir sulama kabı.")
+    }
+
+    func testUnknownFutureArtRoleKeepsLegacyScene() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.pages[0].art = StoryPageArt(role: "future-layout", altText: "Çizim.", sourceID: nil)
+        let data = try JSONEncoder().encode(story.pages[0])
+        story.pages[0] = try JSONDecoder().decode(StoryPage.self, from: data)
+        XCTAssertEqual(ReaderFixtures.reader(story).leaves.first?.page?.composition, .scene)
+    }
+
+    func testSpotWithoutFileOrDescriptionCannotInventArt() {
+        var story = ReaderFixtures.textStory(pages: 1)
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "Çizim.", sourceID: "test")
+        XCTAssertEqual(ReaderFixtures.reader(story).leaves.compactMap(\.page).first?.composition, .text)
+        XCTAssertNil(ReaderFixtures.reader(story).leaves.compactMap(\.page).first?.imageLabel)
+        story.pages[0].imageFileName = "a.png"
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "   ", sourceID: "test")
+        XCTAssertEqual(ReaderFixtures.reader(story).leaves.compactMap(\.page).first?.composition, .scene)
+    }
+
+    func testResolvedSceneTakesPrecedenceOverSpotMetadata() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.illustration = StoryIllustration(
+            avatar: AvatarSpec(skinTone: "skin_olive", hairStyle: "hair_short", hairColor: "haircolor_brown", outfit: "outfit_blue"),
+            avatarKitVersion: "1.0.0", avatarArtVersion: 1, sceneLibraryVersion: "1.0.0")
+        story.pages[0].scene = ScenePlate(sceneID: "scene_forest_hook_01", sceneVersion: 1,
+                                         pose: "standing", facing: "right", companionID: nil)
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "Küçük resim.", sourceID: "spot-v1")
+        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.compactMap(\.page).first)
+        XCTAssertNotNil(page.scene)
+        XCTAssertEqual(page.composition, .scene)
+        XCTAssertEqual(page.imageLabel, page.scene?.altText)
+        XCTAssertEqual(page.spokenText, story.pages[0].text)
+    }
+
+    func testUnfinishedStorySuppressesArtWithoutLosingWordsOrText() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.status = .generatingImages
+        story.pages[0].art = StoryPageArt(role: "spot", altText: "Küçük resim.", sourceID: "spot-v1")
+        let word = StoryWord(id: "test", term: "Sayfa", meaning: "Kitabın bir yüzü.", surface: "Sayfa")
+        story.pages[0].words = [word]
+        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.compactMap(\.page).first)
+        XCTAssertEqual(page.composition, .text)
+        XCTAssertNil(page.scene)
+        XCTAssertNil(page.imageRef)
+        XCTAssertNil(page.imageLabel)
+        XCTAssertNil(page.art)
+        XCTAssertEqual(page.words, [word])
+        XCTAssertEqual(page.spokenText, story.pages[0].text)
+    }
+
+    func testMalformedArtMetadataCannotMakeThePageUnreadable() throws {
+        let page = StoryPage(title: "", text: "Metin korunur.", imagePrompt: "", imageFileName: "a.png")
+        let data = try JSONEncoder().encode(page)
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        object["art"] = ["role": 42, "altText": ["unexpected": true]]
+        let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONSerialization.data(withJSONObject: object))
+        XCTAssertEqual(decoded.text, page.text)
+        XCTAssertEqual(decoded.imageFileName, "a.png")
+        XCTAssertFalse(decoded.art?.isSpot ?? true)
+        XCTAssertNil(decoded.art?.description)
+    }
+
 }

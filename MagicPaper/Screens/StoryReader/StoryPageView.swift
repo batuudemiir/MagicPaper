@@ -26,10 +26,18 @@ struct StoryPageView: View {
     let showsFolio: Bool
     /// Masalın dünya rengi.
     let accent: Color
-    /// Masalın dünya işareti — iPad açık kitabın resimsiz sol sayfası bunu kullanır.
+    /// Masalın dünya işareti; çağıranların ortak sunum sözleşmesinde kalır.
     let symbol: String
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var unavailableImageRef: String?
+
+    private var composition: ReaderPageComposition {
+        if page.scene == nil, let ref = page.imageRef, unavailableImageRef == ref { return .text }
+        return page.composition
+    }
+
+    private var bottomClearance: CGFloat { MP.S.navBarHeight + MP.S.x10 }
 
     var body: some View {
         ZStack {
@@ -42,7 +50,7 @@ struct StoryPageView: View {
                 // Çizim kenardan kenara ve sayfanın en üstünden başlar; cam
                 // kontroller onun üstünde yüzer. Metin kenar boşluğunda kalır.
                 VStack(spacing: 0) {
-                    if page.hasIllustration {
+                    if composition == .scene {
                         illustration(in: geo)
                             .overlay(alignment: .bottom) { PaperLip(theme: theme) }
                         Spacer(minLength: MP.S.x6)
@@ -53,8 +61,8 @@ struct StoryPageView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 // Resimsiz sayfada metin üst denetimlerin (kapat, kalp, Aa)
                 // altından başlar; en büyük yazı boyutunda kapatın altına akmaz.
-                .padding(.top, page.hasIllustration ? 0 : MP.S.navBarHeight)
-                .padding(.bottom, MP.S.x7)
+                .padding(.top, composition == .scene ? 0 : MP.S.navBarHeight + MP.S.x6)
+                .padding(.bottom, bottomClearance)
                 }
             }
 
@@ -91,26 +99,24 @@ struct StoryPageView: View {
     }
 
     /// Hazır sahnenin yüksekliği (B2): sütun genişliğinde 4:3, ama hiçbir
-    /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
+    /// zaman normal yazıda kullanılabilir yüksekliğin %40'ından fazla değil. Kare kutuyu
     /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
     private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
-        min(geo.size.width / StorySceneView.aspectRatio, geo.size.height * 0.55)
+        ReaderPageLayout.sceneHeight(width: geo.size.width, height: geo.size.height,
+                                     readPoints: readSize.points, accessibility: typeSize.isAccessibilitySize)
     }
 
 
     @ViewBuilder
     private func fileIllustration(in geo: GeometryProxy) -> some View {
-        // §8'in hedefi kullanılabilir yüksekliğin %45–55'i. Hedef, katı kural
-        // değil: yazı boyutu büyüdükçe önce çizim yer verir, çünkü §14 hiçbir
-        // durumda okunabilirliğin feda edilmemesini söylüyor.
-        let height = min(max(geo.size.height * 0.50, geo.size.height * 0.34),
-                         geo.size.height * 0.55)
+        let height = sceneHeight(in: geo)
 
         PageIllustration(
             fileName: page.imageRef ?? "",
             label: page.imageLabel,
             theme: theme,
-            bleeds: true
+            bleeds: true,
+            onUnavailable: { unavailableImageRef = page.imageRef }
         )
         .frame(height: height)
         .clipped()
@@ -122,7 +128,8 @@ struct StoryPageView: View {
     /// solda resim, sağda metin, ortada sırt gölgesi. En büyük yazı
     /// boyutlarında metin tüm genişliği alır.
     private func isSpread(_ geo: GeometryProxy) -> Bool {
-        sizeClass == .regular && geo.size.width > geo.size.height * 1.15 && !typeSize.isAccessibilitySize
+        composition == .scene && sizeClass == .regular
+            && geo.size.width > geo.size.height * 1.15 && !typeSize.isAccessibilitySize
     }
 
     private func spread(in geo: GeometryProxy) -> some View {
@@ -133,10 +140,10 @@ struct StoryPageView: View {
                 .clipped()
                 .accessibilityHidden(page.imageLabel == nil)
             GeometryReader { right in
-                textColumn(in: right, reservesArt: false)
+                textColumn(in: right)
                     .padding(.horizontal, StoryPageView.gutter + MP.S.x4)
                     .padding(.top, MP.S.navBarHeight)
-                    .padding(.bottom, MP.S.x7)
+                    .padding(.bottom, bottomClearance)
             }
             .frame(width: half, height: geo.size.height)
             // Kitabın sırtı: kâğıt gölgelemesi (malzeme taklidi).
@@ -150,22 +157,16 @@ struct StoryPageView: View {
         }
     }
 
-    /// Sol sayfa: masalın resmi; resimsiz masalda dünyanın işareti, dünya
-    /// renginde bir kapak sanatı gibi.
+    /// Açık kitabın sol sayfası yalnızca gerçek bir sahne taşır.
     @ViewBuilder
     private var spreadArt: some View {
         if let scene = page.scene {
             StorySceneView(scene: scene)
                 .aspectRatio(StorySceneView.aspectRatio, contentMode: .fill)
         } else if let file = page.imageRef {
-            PageIllustration(fileName: file, label: page.imageLabel, theme: theme)
-        } else {
-            ZStack {
-                LinearGradient(colors: [accent.opacity(0.22), accent.opacity(0.55)],
-                               startPoint: .top, endPoint: .bottom)
-                MPIcon(symbol, size: 120, weight: .light)
-                    .foregroundStyle(.white.opacity(0.9))
-            }
+            PageIllustration(fileName: file, label: page.imageLabel, theme: theme,
+                             onUnavailable: { unavailableImageRef = page.imageRef })
+
         }
     }
 
@@ -180,7 +181,7 @@ struct StoryPageView: View {
     /// `.basedOnSize` içerik sığdığında sekmeyi de kapatır, yani sığan sayfa
     /// sabit bir sayfa gibi davranır.
     ///
-    /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
+    /// Metin üstten başlar; uzun metin aynı sütunda kaydırılabilir.
     /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
     /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
     private var wordHighlight: Color { theme.highlight }
@@ -190,47 +191,57 @@ struct StoryPageView: View {
     /// kadar kısaydı, bu yüzden kısa metin bile her zaman biraz taşıyor ve
     /// parmakla yukarı aşağı oynuyordu (21 Ekim 2026). Sığan metin artık
     /// kıpırdamaz; kaydırma yalnızca gerçekten sığmayan eski uzun sayfalarda.
-    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
+    private func textColumn(in geo: GeometryProxy) -> some View {
         GeometryReader { viewport in
-            textScroll(minHeight: viewport.size.height,
-                       topAligned: reservesArt && page.hasIllustration)
+            textScroll(available: viewport.size)
         }
     }
 
-    private func textScroll(minHeight available: CGFloat, topAligned: Bool) -> some View {
+    private func textScroll(available: CGSize) -> some View {
         ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: readSize.points * 0.55) {
-                if !page.title.isEmpty {
-                    Text(page.title)
-                        .font(MP.F.displaySM())
-                        .mpTightTracking(21)
-                        .foregroundStyle(theme.foreground)
-                        .padding(.bottom, MP.S.x1)
-                }
-
-                switch layout {
-                case .breath: breathLines
-                case .paragraphs: paragraphs
+            VStack(alignment: .leading, spacing: MP.S.x6) {
+                narrative
+                if composition == .spot, let file = page.imageRef {
+                    let size = ReaderPageLayout.spotSize(width: available.width, height: available.height,
+                                                         accessibility: typeSize.isAccessibilitySize)
+                    if size.height > 0 {
+                        PageIllustration(fileName: file, label: page.imageLabel, theme: theme, bleeds: false,
+                                         onUnavailable: { unavailableImageRef = page.imageRef })
+                            .frame(width: size.width, height: size.height)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
             }
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
-            // Sığdığında ortalanır, taştığında yukarıdan başlar.
-            .frame(minHeight: max(available, 0),
-                   alignment: topAligned ? .top : .center)
-            // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
-            // metin.
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(page.spokenText)
-            .accessibilityAddTraits(.isStaticText)
-            .accessibilityTextContentType(.narrative)
-            .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
-            .environment(\.openURL, OpenURLAction { url in
-                ReaderWordSelection.shared.handle(url, in: page.words)
-            })
+            .frame(minHeight: max(available.height, 0), alignment: .top)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.hidden)
+    }
+
+    private var narrative: some View {
+        VStack(alignment: .leading, spacing: readSize.points * 0.55) {
+            if !page.title.isEmpty {
+                Text(page.title)
+                    .font(MP.F.displaySM())
+                    .mpTightTracking(21)
+                    .foregroundStyle(theme.foreground)
+                    .padding(.bottom, MP.S.x1)
+            }
+            switch layout {
+            case .breath: breathLines
+            case .paragraphs: paragraphs
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(page.spokenText)
+        .accessibilityAddTraits(.isStaticText)
+        .accessibilityTextContentType(.narrative)
+        .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
+        .environment(\.openURL, OpenURLAction { url in
+            ReaderWordSelection.shared.handle(url, in: page.words)
+        })
     }
 
     /// 7-10 yaş: paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
@@ -355,6 +366,8 @@ private struct PageIllustration: View {
     /// Kenardan kenara: kutuyu doldurur, köşesiz. iPad açık kitabın sol
     /// sayfası da böyle; telefonda dikey sayfa da artık böyle (21 Ekim 2026).
     var bleeds: Bool = true
+    var onUnavailable: () -> Void = {}
+    @Environment(\.displayScale) private var displayScale
 
     @State private var image: UIImage?
 
@@ -374,12 +387,14 @@ private struct PageIllustration: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .task(id: fileName) {
+            .task(id: "\(fileName)@\(Int(geo.size.width * displayScale))") {
                 guard !fileName.isEmpty else { return }
-                let width = geo.size.width * UIScreen.main.scale
+                let width = geo.size.width * displayScale
                 let loaded = await ReaderImageLoader.shared.image(
                     named: fileName, targetPixelWidth: width
                 )
+                guard !Task.isCancelled else { return }
+                if loaded == nil { onUnavailable() }
                 withAnimation(MP.M.gated(MP.M.easeOut)) { image = loaded }
             }
         }
