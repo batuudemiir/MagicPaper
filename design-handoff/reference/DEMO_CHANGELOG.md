@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog · Karakter merkezli resimleme fikri: araştırma ve öneri
+
+- Kullanıcının karakterleri önceden çizip isimleri geçen sayfalarda gösterme fikri, yedi yaklaşım ve önerilen ifade/poz + nesne + seçili ikili düzen modeliyle genişletildi. Eng/Godwin/Fisher 2020, Greenhoot/Beyer/Curtis 2014 ve Liu/Keller 2023 birincil araştırmaları incelendi; kanıt sınırları ve ürün çıkarımları ayrıldı.
+- Kimlik/isim ayrımı, zamirler, sahnede bulunmama, karakter başına duygu ve eylem hedefi, sürüm sabitleme ele alındı. Mevcut Binder/Mapper/StoryPage ve corpus alanlarıyla ilişki incelendi. Önerilen yeni alanlar mevcut özellikmiş gibi sunulmadı.
+- Sonraki pilot önerisi: aynı metin üzerinde tek Kestane vinyeti / üç poz / poz + nesne karşılaştırması. Bu bir öneri, onaylanmış uygulama kararı değil. Uygulama kodu, içerik ve görseller değiştirilmedi; test/derleme/simülatör çalıştırılmadı.
+- Dosyalar: design-handoff/proposals/2026-11-18-offline-art-pilot/CHARACTER_DIRECTION.md; bu günlük.
+
 ### 2026-11-17 · codex/design-system-catalog · Yapay ses temizliği: motor satırları, arayüz, DailyFeed
 
 - Motor (v3-age7, v3-age9, seri): dersi açıkça söyleyen ya da "X değil, Y" kuruluşlu yedi satır yeniden yazıldı: `a7_sr_05`, `a7_cf_12`, `a9_sr_06`, `a9_cf_07` (sözlük kelimesi "yöntem" korundu), `a9_ps_04`, `a9_rc_04`, `srs_01`. Slotlar, uzunluk sınıfları ve hareket kimlikleri aynı. `srs_01`'deki "derin bir nefes" de gitti.
