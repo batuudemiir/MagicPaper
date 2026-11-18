@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-18 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H4: seri devamı 7-10 ve 3-4 macera/öğrenme
+### 2026-11-18 · main@2d76b6e (dal worktree-agent-a4d762b8b86a0f234) · H4: seri devamı 7-10 ve 3-4 macera/öğrenme
 
 - Ne değişti: `series.continuations`'ın sonuna on devam blueprint'i. 7-8 ve 9-10'a dörder (düz arkta `stayingWith` ve `takingItHome` karşılığı, üç mod; uyku arkında `bedtimeStayingWith` ve `bedtimeSettling` karşılığı), 3-4'e iki düz ark devamı yalnızca öğrenme ve macera için (`lookingAgain`, `askingAgain`). Hiçbirinde `unease`/`hesitation` yok.
 - Satırlar: 196 yeni satır (`move: "h4_…"`). 7-10 düz ark `templates/series/beat_series_age7_*` ve `_age9_*` (23 dosya), 7-10 uyku arkı `templates/bedtime/beat_bedtime_series_age7_*` ve `_age9_*` (14 dosya, var olan uyku seri dosyalarının yeri). 3-4: var olan beş `age3` seri dosyasına yalnızca sona ekleme; uzunluk sınıfı ve `afterClosing` kapılarıyla var olan 3-4 devamlarına karışmıyor. Seri aile anlarında (`revisit`, `warm_close`) dört ilişkinin her biri için ikişer satır.
