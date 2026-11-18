@@ -107,7 +107,7 @@ enum MP {
         // Mürekkep — tüm metin
         static let murekkep900 = Color(hex: 0x2E1E3E)
         /// Ragi'nin göz bandı ve kirpiği (karakter sayfası).
-        static let ragiBand = Color(hex: 0x3A2458)
+        static let ragiBand = Color(hex: 0x65306E)
         static let ragiLash = Color(hex: 0x8F6BD6)
         static let murekkep700 = Color(hex: 0x4A3640)
         static let murekkep500 = Color(hex: 0x6E5964)

@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog · Yeni Ragi çizimleri katalog pozlarına yerleşti
+
+- Ragi kütüphanesinden (`design-handoff/proposals/2026-11-18-ragi-asset-library`) 15 görsel `Assets.xcassets/Brand/mascot*` yerlerine kondu: front 01, threeQuarter 02, happy 06, calm 07, sleepy 08, surprised 10, curious 11, waving 12, onBook 14, reading 15, sleeping 18, thinking 19, walking 20, pencil 43, mascotPeek 25. Görsel boyanmadı; saydam kenar kırpıldı, uzun kenar 1024 px.
+- `reading` için 17-seated-reading yerine 15-reading seçildi: 17'nin gözleri kapalı, uyanık pozların göz kırpma kuralına (`testEveryAwakePoseHasEyes`) uymaz.
+- `RagiRig` tablosu yeni çizime göre yeniden ölçüldü (göz, baş, kuyruk, kol); ölçüler ızgara üstünde görsel olarak denetlendi. Göz kapağı rengi `ragiBand` 0x3A2458 → 0x65306E (yeni göz bandının medyanı). `docs/RAGI.md` kaynak ve poz eşlemesiyle güncellendi.
+- Bilerek değişmedi: ekranlar, `Mascot` kataloğu ve kullanım tablosu, hareket ve ses. 39-42 (hale taşıyor) ve kataloğa bağlı olmayan diğer pozlar uygulamaya alınmadı.
+- Doğrulama: koyu gece zemininde kenar/hale kontrolü yapıldı, temiz. Derleme, test ve simülatör çalıştırılmadı (disk %100 dolu, 1,9 GB boş). Göz kırpma ve kemik hareketi cihazda görülmedi; Ragi Stüdyosu'nda (`-mpRagiStudio YES`) bakılmalı.
+- Dosyalar: `MagicPaper/Assets.xcassets/Brand/mascot*.imageset/*.png` (15), `DesignSystem/Pastel/MPRagi.swift`, `DesignSystem/MPTheme.swift`, `docs/RAGI.md`, bu günlük.
+
 ### 2026-11-18 · codex/design-system-catalog · GPT‑6.1 ile okuyucu tasarım önizlemesi
 
 - Kullanıcının açık isteğiyle gpt-6.1-sol tasarım ajanı mevcut okuyucuyu inceleyip BRIEF.md hazırladı. Önceki beğenilen guaj sahne/spot örnekleriyle iki sayfalık etkileşimli okuyucu önerisi hazırlandı. Kalıcı X, ikincil araçları gizleme/gösterme, sayfa seçimi, favori, canlı yazı/aralık/kolay okuma/kâğıt ayarları gösteriliyor. Beyaz Gündüz ve spot yerleşimi öneri; mevcut token/kod değişmedi.
