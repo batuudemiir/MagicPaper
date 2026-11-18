@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · main + bu kayıt · H2 main'e birleşti, derlenmedi
+
+- Ne değişti (Batuhan, 18 Kasım: "Yer açtım, başlat"): H2 dalı yerel main'e birleşti (çakışma yok). Yaş kuralı değişikliği okundu: `minimumAge` 4 olan iki aileyi (`unexplained`, `misreading`) yalnızca 3-4 bandına açıyor, başka bant ya da aile etkilenmiyor (öbür aileler 3).
+- Bilerek değişmedi: origin'e gönderilmedi, Batuhan'ın onayını bekliyor. Derleme yok, disk 2,5 GB boş (derleme 6-8 GB istiyor).
+- Test: çalıştırılmadı. Kapsam sayıları Python yaklaşığı.
+- Dosyalar: bu günlük.
+
 ### 2026-11-18 · worktree-agent-a4d762b8b86a0f234 (main@53a34f4 üstünde tek commit, push yok) · H2: öğrenme 3-4 ve 7-10
 
 - Ne değişti (Batuhan'ın 18 Kasım kararlarıyla): `pilot_library_v1.json`'un sonuna yedi öğrenme blueprint'i. 3-4'e üç (`unexplained` "nasıl çalıştığını görmek", `misreading` "yakından bakınca", `appeal` "birlikte yardım"), 7-8 ve 9-10'a ikişer (`appeal` birlikte yardım, `charge` bakmak ve beklemek). Hiçbirinde `unease`/`hesitation` sayfası yok; yeni aile ya da beat yok. 90 yeni satır (`move: "h2_…"`): 3-4'te dört yeni beat dosyası (`form_belief`, `belief_fails`, `reveal_truth`, `insight`), 7-8 ve 9-10'da üçer (`take_charge`, `tend`, `patient_wait`), var olan dosyalara yalnızca sona ekleme.
