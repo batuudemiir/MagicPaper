@@ -156,9 +156,33 @@ Beklenen tablo (Python yaklaşığı, en korumacı ayar; ilk test koşusunda `Co
 
 `CoverageReportTests` uyku tabanlarını hedefe çekti (≥4 blueprint, ≥3 mekanizma).
 
-### H4-H5
+### H4: Seri devamı 7-10 (ve 3-4 macera/öğrenme)
 
-Her faz H0 raporundan başlar, hedef hücreyi gösterir, biter. Ayrıntı başladığında buraya yazılır.
+Bugün devam blueprint'leri (`series.continuations`) yalnızca 3-4 ve 5-6'da. 7-8 ve 9-10'da hiç yok: bu bantlarda sevilen masalda "Devam ettir" `SeriesPlanner.isAvailable` ile gizli. 3-4'te düz arkın iki devamı (`bp_cont_waiting_age3_001`, `bp_cont_homeward_age3_001`) yalnızca `bedtime` modunu taşıyor; H1 ve H2 ile gelen 3-4 macera ve öğrenme masalları devam edemiyor.
+
+Hedef (her hücrede en az iki mekanizma, çünkü planlayıcı bölümleri A-B-A-B dolaştırır):
+
+| Bant | Düz ark (bedtime, learning, adventure) | Uyku arkı (bedtime) |
+|---|---|---|
+| 3-4 | +2 yeni, yalnız `learning` + `adventure` (var olan iki kayıt değişmez) | var |
+| 5-6 | var | var |
+| 7-8 | +2 yeni (`stayingWith`, `takingItHome` karşılığı), 8 sayfa | +2 yeni (`bedtimeStayingWith`, `bedtimeSettling` karşılığı) |
+| 9-10 | +2 yeni, 10 sayfa | +2 yeni |
+
+Toplam 10 devam blueprint'i, `series.continuations` dizisinin sonuna. Satırlar `templates/series/` altında bant önekli yeni beat dosyalarında (`beat_series_age7_*`, `beat_series_age9_*`), 3-4 için var olan `age3` dosyalarına yalnızca sona ekleme; macera ve öğrenme tonunda, uyku sözcüğü yok.
+
+Kurallar:
+- Hiçbir devamda `unease`/`hesitation` sayfası yok; en korumacı ayarda da seri açılır.
+- Hatıra (`{{keepsake.name}}`) her bölümde hatırlanır, yeniden bulunmaz; keşif her bölümde yeni (planlayıcı bunu zaten sağlar, satırlar buna göre yazılır).
+- 7-10'da cümle uzunluğu ve kelime düzeyi o bandın var olan v3-age7 / v3-age9 satırlarıyla aynı.
+- Yaş kuralı: `ageRange` bandın kendisi; `CatalogIntegrity` ve `NarrativeFamily.minimumAge` değişmez.
+- `CoverageReportTests`: 7-8 ve 9-10'da seri devamı "var" olarak kilitlenir (dört mod-ark hücresi), 3-4'te macera ve öğrenme için de.
+
+Dokunulmayan: `SeriesPlanner` mantığı, plan şeması (`SeriesPlan.currentSchemaVersion` 1 kalır), uygulama tarafı. Var olan devam kayıtları değişmez.
+
+### H5
+
+Cümle tekrarı ölçümü ve ince satır havuzlarını kalınlaştırma. Ayrıntı başladığında buraya yazılır.
 
 ## Kurallar
 
