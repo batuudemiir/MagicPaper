@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog · GPT‑6.1 ile okuyucu tasarım önizlemesi
+
+- Kullanıcının açık isteğiyle gpt-6.1-sol tasarım ajanı mevcut okuyucuyu inceleyip BRIEF.md hazırladı. Önceki beğenilen guaj sahne/spot örnekleriyle iki sayfalık etkileşimli okuyucu önerisi hazırlandı. Kalıcı X, ikincil araçları gizleme/gösterme, sayfa seçimi, favori, canlı yazı/aralık/kolay okuma/kâğıt ayarları gösteriliyor. Beyaz Gündüz ve spot yerleşimi öneri; mevcut token/kod değişmedi.
+- Kapsam ve ses/viewport sınırları REVIEW.md içinde. Önizleme demo metindir; gerçek çocuk profili değil. Uygulama entegrasyonu kullanıcı görsel değerlendirmesini bekliyor.
+- Doğrulama: HTML gömülü görselleri/dosya boyutu ve JavaScript sözdizimi kontrol edildi. Tarayıcı otomasyonu başlatılamadı; tarayıcı görsel matrisi, app build/test ve simülatör çalıştırılmadı. Uygulama/Assets/motor/içerik değiştirilmedi.
+- Dosyalar: design-handoff/proposals/2026-11-18-reader-concept/BRIEF.md ve REVIEW.md; bu günlük. Sohbet önizlemesi reader-concept-61.html.
+
+### 2026-11-18 · codex/design-system-catalog · Kestane poz karşılaştırması taslağı
+
+- Önceki “deneyelim” isteği için yerleşik image_gen ve karakter/stil referanslarıyla nötr, başını kaldırmış, bekleyen Kestane ve su ayrıntısı hazırlandı. Dört gerçek motor paragrafından, metinleri değiştirmeden editoryal bölüm kuruldu; kaynakları JSON'da. Üç koşul aynı metin/yerleşimi kullanıyor, nesne yalnızca ilgili sayfada.
+- Kullanıcı okuyucuyu yeniden tasarlamaya yöneldiği için bu taslak kullanıcı testi/onayı veya kazanmış varyant sayılmadı. Dört paragrafın kaynakla birebirliği ve JS sözdizimi doğrulandı; app kod/test/entegrasyon yok.
+- Dosyalar: design-handoff/proposals/2026-11-18-character-comparison/; bu günlük.
+
 ### 2026-11-18 · codex/design-system-catalog · Örnek masal temizliğinin artıkları
 
 - `ProfileCreationView.create()` yorumu güncellendi: yeni kurulumda örnek masal yok, `adoptSampleStories` yalnızca eski cihazlarda kalmış örnekleri yeni ada uyarlıyor. Kod davranışı değişmedi.
