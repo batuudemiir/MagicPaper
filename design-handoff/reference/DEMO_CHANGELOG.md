@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog · Örnek masal temizliğinin artıkları
+
+- `ProfileCreationView.create()` yorumu güncellendi: yeni kurulumda örnek masal yok, `adoptSampleStories` yalnızca eski cihazlarda kalmış örnekleri yeni ada uyarlıyor. Kod davranışı değişmedi.
+- 3018bff'te düzenlenen yedi beat dosyasının yanında iCloud'un bıraktığı " 2.json" kopyaları silindi. Kopyalar git'te izlenmiyordu, eski metni taşıyordu (3018bff~1 ile birebir aynı) ve katalog yükleyicisinin yanlışlıkla okuyabileceği yerdeydi.
+- Test çalıştırılmadı; derleme ve simülatör yok (yalnızca yorum değişikliği).
+- Dosyalar: `MagicPaper/Views/ProfileCreationView.swift`, bu günlük.
+
 ### 2026-11-18 · codex/design-system-catalog · Karakter merkezli resimleme fikri: araştırma ve öneri
 
 - Kullanıcının karakterleri önceden çizip isimleri geçen sayfalarda gösterme fikri, yedi yaklaşım ve önerilen ifade/poz + nesne + seçili ikili düzen modeliyle genişletildi. Eng/Godwin/Fisher 2020, Greenhoot/Beyer/Curtis 2014 ve Liu/Keller 2023 birincil araştırmaları incelendi; kanıt sınırları ve ürün çıkarımları ayrıldı.
