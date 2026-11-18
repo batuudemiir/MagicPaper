@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 3,
+  "beat": "belief_fails",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 3 commit ile paylaşılır (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "bf3_01",
+      "text": "Ama bir şey uymadı. {{child.name}} durdu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_bf3_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bf3_02",
+      "text": "Ama etrafta kimse yoktu. {{child.name}} şaşırdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_bf3_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bf3_03",
+      "text": "{{child.name}} bir daha baktı. Bir şey tutmuyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_bf3_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bf3_04",
+      "text": "\"Ama olamaz,\" dedi {{child.name}}. \"Bir şey yanlış.\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_bf3_04",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bf3_05",
+      "text": "Ama yakından bakınca öyle görünmüyordu.",
+      "requiredSlots": [],
+      "move": "h2_bf3_05",
+      "lengthClass": "paired"
+    }
+  ]
+}

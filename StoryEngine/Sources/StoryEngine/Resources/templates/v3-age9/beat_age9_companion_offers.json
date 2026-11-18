@@ -5,7 +5,8 @@
   "ageBand": "9-10",
   "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3, hep meet_companion'ın yanında. Yol arkadaşı TEK, SIRADAN bir bilgi verir; yorum yapmaz, çözmez. 9-10'da bilginin sınırını kendisi söyler: bildiği bu kadardır.",
   "lengthClasses": {
-    "paired": "15-30 words — always beside meet_companion"
+    "paired": "15-30 words — always beside meet_companion",
+    "solo": "30-60 words — sayfa 5 yalnız, bakılan kişi ne istediğini gösterir (H2)"
   },
   "bannedConstructions": [
     "hemen",
@@ -82,6 +83,46 @@
       ],
       "lengthClass": "paired",
       "move": "age9_a9_co_07"
+    },
+    {
+      "id": "a9_co_h2_01",
+      "text": "{{companion.name}} konuşmayı pek sevmiyordu, ama göstermeyi biliyordu. Başını {{discovery.name}} tarafına çevirdi ve bir süre öyle kaldı. {{child.name}} anladı: {{companion.name}}'in derdi yalnızca kendisi değildi; yanındaki {{discovery.name}} ona en az kendisi kadar önemliydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h2_a9_co_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_co_h2_02",
+      "text": "\"Bana böyle iyi geliyor,\" dedi {{companion.name}} usulca ve {{child.name}}'e neyi nasıl sevdiğini gösterdi: biraz gölge, biraz sessizlik, bir de yanında birinin olduğunu bilmek. {{child.name}} hepsini aklına yazdı. Bakmak, önce dinlemekle başlıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_co_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_co_h2_03",
+      "text": "{{companion.name}} biraz cesaret toplayınca anlatmaya başladı. Kısa cümlelerle, ara vererek anlattı: neye ihtiyacı vardı, neyden hoşlanmazdı, en çok neyi özlemişti. {{child.name}} hiç sözünü kesmedi. Her cümleyle {{companion.name}}'i biraz daha iyi tanıdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_co_h2_03",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

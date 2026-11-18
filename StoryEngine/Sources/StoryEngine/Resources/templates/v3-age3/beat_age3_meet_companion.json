@@ -178,6 +178,71 @@
         "hesitant",
         "reassuring"
       ]
+    },
+    {
+      "id": "mc3u_01",
+      "text": "O sırada {{companion.name}} geldi. O da merakla baktı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_01",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_02",
+      "text": "Yanına küçük bir {{companion.type}} geldi. Adı {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_mc3u_02",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_03",
+      "text": "{{companion.name}} utana utana yanına geldi. O da bakmak istiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_03",
+      "lengthClass": "paired",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3u_04",
+      "text": "{{companion.name}} yaklaştı. \"Ne var orada?\" diye sordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_04",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mc3u_05",
+      "text": "{{companion.name}} sessizce yanına oturdu. Birlikte baktılar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_05",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ]
 }

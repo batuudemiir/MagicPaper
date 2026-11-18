@@ -263,9 +263,17 @@ final class StoryTopicTests: XCTestCase {
                        ["topic_adventure_sea", "topic_adventure_sky", "topic_adventure_treasure",
                         "topic_adventure_wild"])
 
-        // 3-4 bandında tek bir blueprint var ve o uyku öncesine ait; bu bantta
-        // hiçbir konu kurulamıyor, yani alt kategori adımı hiç görünmüyor.
-        XCTAssertEqual(live(.learning, band: b34), [])
+        // H2 (18 Kasım 2026): 3-4 öğrenme beş şekle çıktı (iki charge +
+        // unexplained, misreading, appeal); hayvan yol arkadaşı beşinde de
+        // bağlanıyor, "Hayvanlar" canlandı. Önceden bu bantta konu yoktu.
+        XCTAssertEqual(live(.learning, band: b34), ["topic_learning_animals"])
+        // H2: 7-8 ve 9-10'da da dört şekil (appeal ve charge eklendi);
+        // "Hayvanlar" ikisinde de canlı. Bilim üç mekanizmaya ulaşmıyor
+        // (yalnızca iki keşif `science` taşıyor), Meslekler 7-10'da ayrı faz.
+        XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 7, upperBound: 8)),
+                       ["topic_learning_animals"])
+        XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 9, upperBound: 10)),
+                       ["topic_learning_animals"])
         // H1 (17 Kasım 2026): 3-4'ün dört macera şekli dört konuyu açtı.
         XCTAssertEqual(live(.adventure, band: b34),
                        ["topic_adventure_sea", "topic_adventure_sky", "topic_adventure_treasure",

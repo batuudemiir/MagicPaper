@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5 hiç paylaşılmaz (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "a7_td_01",
+      "text": "{{child.name}} işe küçük şeylerden başladı. Önce yerini rahatlattı, sonra ona biraz su getirdi. Her şeyi yavaş ve dikkatle yaptı, çünkü acele etmek burada hiçbir şeye yaramazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_a7_td_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_td_02",
+      "text": "Ertesi gün {{child.name}} yine geldi, ondan sonraki gün de. Her gelişinde aynı şeyleri yaptı: baktı, düzeltti, biraz konuştu. Değişen pek bir şey yoktu, ama o yine de geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_a7_td_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_td_03",
+      "text": "{{child.name}} {{companion.name}}'e neyin iyi geldiğini öğrenmeye çalıştı. Gölge mi, güneş mi? Sessizlik mi, biraz şarkı mı? Her gün bir şeyi denedi ve neyin işe yaradığını aklına yazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_td_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_td_04",
+      "text": "Bakmak sandığından çok işti. {{child.name}} {{companion.name}}'in yanını düzeltti, rüzgârı kesmek için önüne bir taş koydu, sonra oturup izledi. Yorulmuştu, ama içi rahattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_td_04",
+      "lengthClass": "solo"
+    }
+  ]
+}

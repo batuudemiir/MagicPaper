@@ -47,6 +47,32 @@
       ],
       "move": "h1_a9_ce_04",
       "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_h2_01",
+      "text": "{{child.name}} önce {{companion.name}}'i dinledi, çünkü onun bildiği bir şey vardı: nereye bakılacağını. Kendisinin de bildiği bir şey vardı: nasıl uzanılacağını. İki bilgiyi bir araya getirdiler. {{companion.name}} yönü gösterdi, {{child.name}} adımı attı, ve iş ilk kez ilerlemeye başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_ce_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_ce_h2_02",
+      "text": "\"Bunu ikimiz yapalım,\" dedi {{child.name}}. \"Sen nereye bakacağımızı söyle, ben de oraya uzanayım.\" {{companion.name}} başını salladı; bu iyi bir plandı. İşi paylaştılar ve her biri kendi payını yaptı, öbürünü bekleyerek, acele etmeden.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_ce_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

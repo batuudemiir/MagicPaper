@@ -5,7 +5,8 @@
   "ageBand": "7-8",
   "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 3. Yol arkadaşı KENDİ sebebiyle oradadır. Satırlar rol başınadır: bakıma muhtaç olan yardım teklif ederek gelmez, rehber titremez. İhtiyaç burada söylenmez. Beden varsayımı yok.",
   "lengthClasses": {
-    "paired": "16-22 words — page 3 also carries companion_offers or receive_appeal, both 8-14, so the page lands 24-36"
+    "paired": "16-22 words — page 3 also carries companion_offers or receive_appeal, both 8-14, so the page lands 24-36",
+    "solo": "18-38 words — sayfa 3 yalnız, bakım masalı (H2)"
   },
   "variants": [
     {
@@ -236,6 +237,48 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_mc_17",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_h2_01",
+      "text": "Biraz ötede {{companion.name}} adında küçük bir {{companion.type}} vardı. Yerinden kıpırdamıyor, yalnızca {{child.name}}'e bakıyordu. Belli ki biraz yardıma ihtiyacı vardı, ama bunu söylemeye utanıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a7_mc_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_h2_02",
+      "text": "{{child.name}} eğilince onu gördü: {{companion.name}} adında minicik bir {{companion.type}}. Yorgun görünüyordu ve tek başınaydı. {{child.name}} yavaşça yanına oturdu, onu ürkütmemeye dikkat ederek.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a7_mc_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_mc_h2_03",
+      "text": "Orada {{companion.name}} adında küçük bir {{companion.type}} duruyordu. Biraz üşümüş, gözleri yorgundu. {{child.name}} ona elini uzatmadı; önce yanında sessizce beklemeyi seçti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a7_mc_h2_03",
+      "lengthClass": "solo",
       "castRoles": [
         "needsCare"
       ]

@@ -124,6 +124,30 @@
       ],
       "move": "h1_cm3h_04",
       "lengthClass": "paired"
+    },
+    {
+      "id": "cm3a_01",
+      "text": "\"Sana yardım edeceğim,\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_cm3a_01",
+      "lengthClass": "paired",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "cm3a_02",
+      "text": "{{child.name}} yanına çömeldi. \"Ben yardım ederim,\" dedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_cm3a_02",
+      "lengthClass": "paired",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

@@ -833,7 +833,7 @@ public struct CatalogIntegrityChecker: Sendable {
     /// Bir blueprint, ailesinin istediği yaştan küçük bir banda sunulamaz.
     ///
     /// Aileler bilişsel olarak eşit değil: bir yanlış okumayı çürütmek, biri
-    /// yardım istediğinde yardım etmekle aynı iş değil. Dört yaşındaki bir
+    /// yardım istediğinde yardım etmekle aynı iş değil. Üç yaşındaki bir
     /// çocuğa Aile V vermek, hikâyeyi zorlaştırmaz — onu İKİ KOPUK OLAYA
     /// çevirir, çünkü çürütülen inanç hiç tutulamamıştır. Ortada bir hata da
     /// görünmez: metin kusursuzdur, çocuk yalnızca anlamaz.
@@ -841,11 +841,16 @@ public struct CatalogIntegrityChecker: Sendable {
     /// Sayfa bütçesi de aynı yerden denetleniyor: bir blueprint'in sayfa sayısı
     /// bandının sayfa sayısıyla uyuşmalı, yoksa kelime bütçesi hesabı bir
     /// bandın sayfa sayısına, prova ise başkasınınkine göre yapılır.
+    ///
+    /// 18 Kasım 2026 (H2, karar: Batuhan): bant ailenin yaşına **uzanmalı**,
+    /// yani üst ucu tabanın altında kalmamalı. Önceden alt uca bakıyordu; o
+    /// hâliyle taban 4'e inince bile 3-4 bandı kapalı kalırdı, ve kararın
+    /// tamamı 3-4'ü bu ailelere açmaktı (`NarrativeFamily.minimumAge`).
     private func checkAgeFit(_ catalog: ContentCatalog) -> [CatalogIssue] {
         var issues: [CatalogIssue] = []
         for blueprint in catalog.blueprints {
             guard let family = blueprint.family else { continue }
-            if blueprint.ageRange.lowerBound < family.minimumAge {
+            if blueprint.ageRange.upperBound < family.minimumAge {
                 issues.append(.init(
                     severity: .error, code: "blueprint_below_family_age", recordID: blueprint.id,
                     message: "Blueprint '\(blueprint.id)' \(blueprint.ageRange) bandına sunuluyor "
