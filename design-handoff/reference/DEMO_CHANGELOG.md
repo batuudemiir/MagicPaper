@@ -133,7 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-18 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H3: uyku çeşitliliği
+### 2026-11-18 · main + bu kayıt · H3 yerel main'e birleşti; H2 origin'e gitti
+
+- Ne değişti: H2, Batuhan'ın onayıyla ("Evet, gönder") derlenmeden origin'e gönderildi (`53a34f4..1a42b5a`); aşağıdaki H2 birleşme kaydındaki "gönderilmedi" notu gönderimden önce yazılmıştı. H3 dalı (`b6a0cde`, yedi uyku blueprint'i) yerel main'e birleşti, çakışma yok.
+- Bilerek değişmedi: H3 origin'e gönderilmedi, Batuhan'ın onayını bekliyor. Nakarat açılmadı: `x_refrain_bedtime` deneyi açık ve gönderilen blueprint'te nakaratı yasaklıyor; açma kararı Batuhan'da.
+- Test: derleme ve test yok (disk). Kapsam sayıları Python yaklaşığı.
+- Dosyalar: bu günlük.
+
+### 2026-11-18 · main@b6a0cde (dal worktree-agent-a4d762b8b86a0f234) · H3: uyku çeşitliliği
 
 - Ne değişti: `pilot_library_v1.json`'un sonuna yedi uyku blueprint'i (`charge`, `arc: bedtime`): 3-4'e iki (sesleri dinlemek, günü geri saymak), 5-6'ya bir (sesleri dinlemek), 7-8'e iki (sesleri dinlemek, günü geri saymak), 9-10'a iki (aya konuşmak, günü geri saymak). 43 yeni satır (`move: "h3_…"`): yedi yeni uyku beat dosyası (`examine` 3-4/5-6/7-8, `companion_offers` 3-4/7-8, `approach` ve `self_recognize` 9-10), beş dosyaya yeni `paired` sınıfıyla sona ekleme. İmza satırları yeni dosyalarda ya da eski uyku blueprint'lerinin okumadığı uzunluk sınıfında; lullaby, goodnight ve nightwalk masallarının havuzu değişmedi.
 - Beklenen kapsam (Python yaklaşığı, motor değil): uyku her bantta 4 blueprint / 4 mekanizma (önce 2/2, 5-6'da 3/3). Seri devamı 3-4 ve 5-6'da var olanlarla sürüyor; 7-10'da yok (H4), "Devam ettir" gizli.
@@ -142,7 +149,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: çalıştırılmadı (talimat: `swift build`/`swift test`/`xcodebuild` yok). JSON ayrıştırıldı, değişen iki test dosyası `swiftc -frontend -parse`'tan geçti. Dizi, uyku konturu, satır kapıları, kelime bantları, yasak kelimeler ve başlıklar Python doğrulayıcısıyla denetlendi. İlk koşuda bakılacaklar: `CoverageReportTests` tablosu, `BedtimeArcTests`, `VariationBaselineTests` (uyku 3-4 ve 5-6 tekrar oranı), `TitleVarietyTests`.
 - Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`, `Resources/templates/bedtime/` (7 yeni, 5 değişen), `CoverageReportTests.swift`, `CatalogLoadingTests.swift`, `docs/HAVUZ_PLANI.md`, `docs/UYKU_ARKI.md`, `docs/MagicPaper_Content_Library.md`, bu günlük.
 
-### 2026-11-18 · main + bu kayıt · H2 main'e birleşti, derlenmedi
+### 2026-11-18 · main@1a42b5a · H2 main'e birleşti, derlenmedi
 
 - Ne değişti (Batuhan, 18 Kasım: "Yer açtım, başlat"): H2 dalı yerel main'e birleşti (çakışma yok). Yaş kuralı değişikliği okundu: `minimumAge` 4 olan iki aileyi (`unexplained`, `misreading`) yalnızca 3-4 bandına açıyor, başka bant ya da aile etkilenmiyor (öbür aileler 3).
 - Bilerek değişmedi: origin'e gönderilmedi, Batuhan'ın onayını bekliyor. Derleme yok, disk 2,5 GB boş (derleme 6-8 GB istiyor).
