@@ -206,9 +206,31 @@ Beklenen kapsam (Python yaklaşığı): her bant × mod hücresinde seri devamı
 
 Açık: 3-4 macera ve öğrenme bölümlerinin son sayfası var olan `age3` `warm_close` satırlarını da çekebilir; bunlardan biri ("… Uyudu.") uyku diliyle bitiyor. Ayırmak var olan kayda kapı eklemeyi gerektirir, yapılmadı. 3-4'te s.4 (`persist`, `ask_for_help`) yalnızca `paired` satır buluyor; sayfa kısa kalır.
 
-### H5
+### H2b uygulama planı (19 Kasım 2026, "tümünü yap")
 
-Cümle tekrarı ölçümü ve ince satır havuzlarını kalınlaştırma. Ayrıntı başladığında buraya yazılır.
+- 7-8 ve 9-10'a üçer `jobs` blueprint'i, üç ayrı mekanizma (`editorialName` " - " sonrası), `learning` modunda, gergin sayfa yok. Mekân Minik Köy ve Pazar Yeri; yol arkadaşı fırıncı, postacı, öğretmen.
+- Satırlar o bandın v3-age7 / v3-age9 dosyalarına, sona ekleme; insan yol arkadaşı kapısıyla (`natureRequire: person`, gerekirse `occupationRequire`).
+- Meslek olguları 7-10'a açılır (NASA olgularında olduğu gibi `ageRange` genişletmesi, metin değişmez). Bu, plandaki "ayrı onay" maddesidir; "tümünü yap" ile açıldı, Batuhan okuyunca geri alınabilir.
+- Hedef: 7-8 ve 9-10'da en korumacı ayarda Meslekler konusu görünür. `CoverageReportTests` bunu kilitler.
+
+### Sporlar (19 Kasım 2026, "tümünü yap")
+
+İlke 7 (yarış ve sıralama yok) burada da geçerli: spor **hareket oyunu** olarak yazılır. Kazanan, kaybeden, skor, rekor, "en hızlı" yok. Bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek.
+
+- İçerik, sona ekleme: en az iki `sports` etiketli yol arkadaşı (biri insan: ör. yüzme ya da jimnastik öğretmeni; biri hayvan: ör. zıplamayı seven bir keçi) ve en az üç `sports` etiketli keşif nesnesi (top, atlama ipi, uçurtma gibi). Var olan kayıtlara etiket eklenmez.
+- Mekân: var olan açık alanlar (bahçe, çayır, park benzeri) kullanılır; gerekirse bir yeni mekân.
+- Blueprint: dört bantta da `learning` modunda en az üç `sports` blueprint'i, üç ayrı mekanizma (konu kapısı ≥3). Gergin sayfa yok.
+- Spor olguları gerekirse `facts`'e: doğru, sade, kaynaklı (ör. "Kalp koşarken daha hızlı atar"). "hızlı" kelimesi yalnızca olgu içinde, masal anlatısında hız övülmez.
+- Hedef: dört bantta en korumacı ayarda Sporlar konusu görünür; `CoverageReportTests` kilitler.
+
+### H5: Tekrar ölçümü ve ince havuzlar
+
+Derleme yapılamadığı için ölçüm Python yaklaşığıyla: her bant × beat × ark için kapılardan (bant, ark, rol, uzunluk sınıfı, `afterClosing`, `afterBeat`, aile ilişkisi) geçen satır sayısı. Rapor `docs/HAVUZ_RAPORU.md`'ye yazılır (tablo + en ince 20 havuz).
+
+- Bir masalın bir sayfasını dolduran havuz 3 satırın altındaysa, en az 4'e çıkarılır (sona ekleme).
+- Aynı bandda iki ayrı beat dosyasında birebir aynı cümle varsa raporlanır, silinmez.
+- Bilinen kusurlar raporda listelenir, değiştirilmez: 7-8 `a7_na_02`'deki "hemen", 3-4 `swc3_fam_sib_03`'teki "hemen", ad yuvasından sonra "de/da" bağlacı olan iki eski satır. Bunlar mevcut kayıt; Batuhan karar verir.
+- Motorun içindeki ölçüm (`CoverageReport`'a satır sayısı) derleme açılınca eklenir.
 
 ## Kurallar
 
