@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · codex/design-system-catalog · Offline motor + guaj görsel pilotu
+
+- Gerçek ContentCatalogLoader/OfflineStoryComposer ile 5–6 yaş charge/bakım blueprint'i, Eski Meyve Bahçesi, solan fide ve Kestane sabitlenerek 12 tohum × iki kurmaca isimden 24 kitap/192 sayfa çıkarıldı. Export.swift ve yeniden çalıştırma betiği uygulama dışında, pilot klasöründe.
+- Yerleşik ChatGPT image_gen + onaylı referansla iki nesne/karşılaşma çizimi hazırlandı. İncelenmiş varyant izin listeleri iki çizimi 48 sayfaya eşliyor; 144 sayfa metin. Varlıklar review, üretim onayı değil; uygulama/motor kaynakları ve Release bayrağı değiştirilmedi.
+- Bulgular: 6/24 örnekte fideye ışık/parlaklık dili; 7. sayfalarda hedef Kestane; aynı tohumda isim çiftleri 12/12 varyant dizisini değiştiriyor. Anlamsal içerik incelemesi gerekli; karakterli katman denemesi henüz yapılmadı. Rapor, ham metinler, eşlemeler, sorun listesi ve kaynak hashleri kaydedildi; proje hafızası güncellendi.
+- Doğrulama: geçici SwiftPM çalıştırıcısı derlendi, 24/24 isClean; ikinci export cmp ile birebir eşit. audit.py, önizleme JS ve kabuk sözdizimi kontrolleri geçti. Uygulama testleri/simülatör ve tarayıcı görsel matrisi çalıştırılmadı. Sohbet önizlemesinde 24 gerçek metin ve sekiz sayfalık gezinme var.
+- Dosyalar: design-handoff/proposals/2026-11-18-offline-art-pilot/; docs/PROJE_HAFIZASI.md; bu günlük.
+
 ### 2026-11-17 · Okuyucu guaj görsel örneği — iki ardışık sayfa
 
 - Onaylı sosyal sanat yönü referansıyla yerleşik ChatGPT image_gen üzerinden sahne ve saydam küçük anlatı resmi hazırlandı: bahçede filizi fark eden kurmaca demo kız; sulama kabı, filiz ve iki damla. Ragi yok; gerçek çocuk profili kullanılmadı.
