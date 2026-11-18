@@ -55,7 +55,10 @@ final class CuratedFactTests: XCTestCase {
         // H2 (18 Kasım 2026, karar: Batuhan): iki NASA olgusu 7-8 ve 9-10'a
         // da açıldı (mevcut kaydın değişmesi, sıra kuralının istisnası).
         // Meslek olguları yalnızca 5-6'da kalıyor.
-        let widened: Set<String> = ["fact_sun_is_a_star", "fact_shooting_star_is_not_a_star"]
+        // H2b (19 Kasım 2026): meslek olguları da 7-10'a açıldı; artık beşi de 5-10.
+        let widened: Set<String> = ["fact_sun_is_a_star", "fact_shooting_star_is_not_a_star",
+                                    "fact_baker_rests_the_dough", "fact_postman_sorts_by_street",
+                                    "fact_teacher_writes_the_order"]
         let upper = [band, AgeBand(lowerBound: 7, upperBound: 8), AgeBand(lowerBound: 9, upperBound: 10)]
         for fact in catalog.facts {
             XCTAssertTrue(fact.isApproved, fact.id.rawValue)

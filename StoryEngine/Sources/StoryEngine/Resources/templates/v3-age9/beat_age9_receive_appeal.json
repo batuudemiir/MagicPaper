@@ -77,6 +77,42 @@
       ],
       "lengthClass": "paired",
       "move": "age9_a9_ra_07"
+    },
+    {
+      "id": "a9_ra_j_01",
+      "text": "\"Bunu biri sabah buralarda unutmuş,\" dedi {{companion.name}}, işini bir an bırakarak. \"Sahibi kim, bilmiyorum. Bulmama yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_ra_j_01",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ra_j_02",
+      "text": "\"Bunu yolda buldum,\" dedi {{companion.name}}, çantasını yere bırakarak. \"Adresi yok, ama bir sahibi mutlaka var. Bulalım mı?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_ra_j_02",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ra_j_03",
+      "text": "\"Bunun mutlaka bir sahibi var,\" dedi {{companion.name}}. \"Birlikte arayıp bulalım mı? Benim işim de biraz böyledir zaten.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_ra_j_03",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

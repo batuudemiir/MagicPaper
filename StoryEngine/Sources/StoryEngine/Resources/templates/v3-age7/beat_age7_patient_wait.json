@@ -4,7 +4,8 @@
   "locale": "tr",
   "ageBand": "7-8",
   "lengthClasses": {
-    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2)"
+    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2)",
+    "paired": "10-16 words — sayfa 6, companion_offers ile paylaşılır (H2b)"
   },
   "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
   "variants": [
@@ -45,6 +46,33 @@
       ],
       "move": "h2_a7_pw_04",
       "lengthClass": "solo"
+    },
+    {
+      "id": "a7_pw_j_01",
+      "text": "{{child.name}} sabırla bekledi; arada bir baktı, ama bir kez bile kurcalamadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2b_a7_pw_j_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "a7_pw_j_02",
+      "text": "İkisi yan yana oturup beklediler; {{companion.name}} bu arada işine devam etti.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_pw_j_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "a7_pw_j_03",
+      "text": "Zaman yavaş geçti, ama {{child.name}} bu kez beklemenin de bir iş olduğunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2b_a7_pw_j_03",
+      "lengthClass": "paired"
     }
   ]
 }

@@ -219,6 +219,60 @@
       "afterBeat": [
         "cooperative_effort"
       ]
+    },
+    {
+      "id": "a9_sc_j_ah_01",
+      "text": "Soru doğru kişiye sorulunca cevap yerine oturdu. {{child.name}} ipucunu kendi gözleriyle denedi ve {{discovery.name}}'in sırrını çözdü. Sonra koşmadan, ama sevinçle, {{companion.name}}'e döndü ve anlattı. İkisi de memnundu: biri öğretmişti, öbürü öğrenmişti, ve ikisi de bunun tadını çıkardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a9_sc_j_ah_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a9_sc_j_ah_02",
+      "text": "İpucu işe yaradı. {{child.name}} şunu fark etti: bilmek bazen her şeyi tek başına çözmek değil, bilen birine doğru soruyu sorabilmekti. {{companion.name}} uzaktan izledi ve hiçbir şey söylemeden gülümsedi; o da yıllar önce aynı şeyi birine sorarak öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_sc_j_ah_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a9_sc_j_pw_01",
+      "text": "Bekleyiş karşılığını verdi. Tam zamanı gelince {{discovery.name}} kendini gösterdi, ne bir dakika erken ne bir dakika geç. {{child.name}} anladı ki bazı işler acele ile değil, doğru anı beklemekle yapılırdı; {{companion.name}}'in her gün yaptığı da tam olarak buydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a9_sc_j_pw_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a9_sc_j_pw_02",
+      "text": "Ve oldu. {{child.name}} beklediği şeyi sonunda gördü ve sevinçle {{companion.name}}'e döndü. \"Sen haklıymışsın,\" dedi. {{companion.name}} omuz silkti; işinde her gün bunu yaşıyordu, ama {{child.name}}'in sevincini görmek yine de hoşuna gitti. Sabır, öğrenilince insanın elinde kalan bir beceriydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_sc_j_pw_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
     }
   ]
 }

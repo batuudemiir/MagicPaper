@@ -90,6 +90,28 @@ final class CoverageReportTests: XCTestCase {
         }
     }
 
+    /// Topics locked as visible at the most protective setting, per band and
+    /// mode. H2b (19 Kasım 2026): Meslekler in 7-8 and 9-10.
+    private static let lockedTopics: [String: [String]] = [
+        "7-8 learning": ["topic_learning_jobs"],
+        "9-10 learning": ["topic_learning_jobs"],
+    ]
+
+    func testLockedTopicsStayVisible() throws {
+        let report = try report()
+        for band in [Self.b34, Self.b56, Self.b78, Self.b910] {
+            for mode in StoryMode.allCases {
+                let key = "\(band) \(mode.rawValue)"
+                guard let wanted = Self.lockedTopics[key] else { continue }
+                let cell = try XCTUnwrap(report.cell(band: band, mode: mode, safety: .mostProtective), key)
+                let offered = Set(cell.topics.map(\.rawValue))
+                for topic in wanted {
+                    XCTAssertTrue(offered.contains(topic), "\(key): \(topic) not offered (\(offered.sorted()))")
+                }
+            }
+        }
+    }
+
     /// The topic gate and the report count mechanisms the same way: a topic
     /// is offered only where its cell has at least three.
     func testOfferedTopicsSitInCellsWithEnoughMechanisms() throws {

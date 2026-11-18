@@ -250,6 +250,37 @@
       "afterBeat": [
         "cooperative_effort"
       ]
+    },
+    {
+      "id": "a7_rs_j_01",
+      "text": "Sahibi, unuttuğu şeyi görünce gözlerine inanamadı. {{companion.name}} ile {{child.name}} birbirine baktı; işi birlikte bitirmişlerdi. Bir şeyi sahibine ulaştırmak, onu bulmaktan bile güzeldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_rs_j_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_rs_j_02",
+      "text": "Sonunda sahibini buldular. Teşekkürler, gülümsemeler, bir de sıcak bir el sıkışma. {{child.name}} eve dönerken bugün bir işin nasıl yapıldığını, içinden yaparak öğrendiğini düşündü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2b_a7_rs_j_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

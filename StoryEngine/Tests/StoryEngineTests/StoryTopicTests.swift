@@ -270,10 +270,13 @@ final class StoryTopicTests: XCTestCase {
         // H2: 7-8 ve 9-10'da da dört şekil (appeal ve charge eklendi);
         // "Hayvanlar" ikisinde de canlı. Bilim üç mekanizmaya ulaşmıyor
         // (yalnızca iki keşif `science` taşıyor), Meslekler 7-10'da ayrı faz.
+        // H2b (19 Kasım 2026): üç meslek şekli 7-8 ve 9-10'da "Meslekler"i
+        // açtı; ikisi (seekingKnowledge, patientObservation) bilim keşfini de
+        // bağladığı için "Bilim" de üç mekanizmaya ulaştı.
         XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 7, upperBound: 8)),
-                       ["topic_learning_animals"])
+                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science"])
         XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 9, upperBound: 10)),
-                       ["topic_learning_animals"])
+                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science"])
         // H1 (17 Kasım 2026): 3-4'ün dört macera şekli dört konuyu açtı.
         XCTAssertEqual(live(.adventure, band: b34),
                        ["topic_adventure_sea", "topic_adventure_sky", "topic_adventure_treasure",

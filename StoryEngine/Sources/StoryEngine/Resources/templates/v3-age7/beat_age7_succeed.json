@@ -225,6 +225,59 @@
       "afterBeat": [
         "cooperative_effort"
       ]
+    },
+    {
+      "id": "a7_sc_j_ah_01",
+      "text": "Soru doğru kişiye sorulunca cevap kolaylaştı. {{child.name}} {{discovery.name}}'in sırrını çözdü ve bunu {{companion.name}}'e anlattı. İkisi de memnundu: biri öğretmiş, öbürü öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a7_sc_j_ah_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_ah_02",
+      "text": "{{child.name}} ipucunu kendi gözleriyle denedi ve işe yaradı. Bilmek, bazen bilen birine sormaktan geçiyordu. {{companion.name}} uzaktan izledi ve hiçbir şey söylemeden gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_sc_j_ah_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_01",
+      "text": "Bekleyiş karşılığını verdi. Tam zamanı gelince {{discovery.name}} kendini gösterdi, ne erken ne geç. {{child.name}} anladı ki bazı işler acele ile değil, doğru anı beklemekle yapılırdı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a7_sc_j_pw_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_02",
+      "text": "Ve oldu. {{child.name}} beklediği şeyi sonunda gördü ve sevinçle {{companion.name}}'e döndü. \"Sen haklıymışsın,\" dedi. {{companion.name}} omuz silkti: işinde her gün bunu yaşıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_sc_j_pw_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
     }
   ]
 }

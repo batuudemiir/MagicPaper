@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H2b: Meslekler 7-10
+
+- Ne değişti: 7-8 ve 9-10'a üçer `jobs` öğrenme blueprint'i (`seekingKnowledge`, `patientObservation`, `helpingAtWork`), insan yol arkadaşıyla (fırıncı, postacı, öğretmen). 67 yeni satır (`move: "h2b_…"`): iki yeni `ask_for_help` dosyası (her meslekte dört zanaat satırı, `occupationRequire` + `natureRequire: person`), var olan v3-age7/age9 dosyalarına sona ekleme; öbür insan satırları (tanışma, rica, birlikte çalışma, bekleme) `natureRequire: person` ile kapılı.
+- Mevcut kaydın onaylı değişmesi: üç meslek olgusunun `bands` alanı `["5-6"]` → `["5-6", "7-8", "9-10"]` (plandaki "ayrı onay", "tümünü yap" ile açıldı; metin aynı).
+- Beklenen (Python yaklaşığı): 7-8 ve 9-10 öğrenmede Meslekler görünür; Bilim de bu iki bantta görünür oldu (iki meslek şekli bilim keşfini bağlıyor).
+- Testler güncellendi: `CoverageReportTests` (Meslekler 7-8 ve 9-10'da kilitli), `StoryTopicTests`, `CuratedFactTests`, `CatalogLoadingTests` (66 blueprint, 201 şablon, 1786 varyant).
+- Test: çalıştırılmadı (disk dolu: ~250 MB). JSON ayrıştırıldı, değişen test dosyaları `swiftc -frontend -parse`'tan geçti; dizi, satır kapıları (insan + her meslek), kelime bantları ve dil kuralları Python ile denetlendi.
+- Dosyalar: `pilot_library_v1.json`, `templates/v3-age7/` ve `v3-age9/` (2 yeni, 14 değişen), dört test dosyası, `docs/HAVUZ_PLANI.md`, bu günlük.
+
 ### 2026-11-18 · main (merge commit) · codex/design-system-catalog main'e birleşti
 
 - `codex/design-system-catalog` dalı (10 commit: Ragi yeni çizimleri ve kukla ölçüsü, tasarım sistemi kataloğu, beyaz/lila yüzey renkleri, okuyucu ve karşılama illüstrasyon önerileri, örnek masal ve yapay ses temizliği) main'in H0-H4 havuz commit'leriyle birleşti.

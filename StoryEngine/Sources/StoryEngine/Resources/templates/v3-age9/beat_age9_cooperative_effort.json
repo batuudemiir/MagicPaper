@@ -73,6 +73,45 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a9_ce_j_01",
+      "text": "İşi bölüştüler. {{companion.name}} bugün kimlerin buradan geçtiğini, kimin neyle uğraştığını sırayla saydı; {{child.name}} ise o kapıları tek tek çaldı ve her birine aynı soruyu sordu. Birinin hafızası ile öbürünün ayakları birleşince arama, tek başına hiçbirinin yapamayacağı kadar kolaylaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ce_j_02",
+      "text": "{{companion.name}} köyde kimin nerede oturduğunu bir bir anlattı, {{child.name}} ise bulduklarındaki küçük ipuçlarını aradı: bir renk, bir iz, bir harf. Biri adresleri biliyordu, öbürü ayrıntıları görüyordu. Birlikte yürüdükçe ihtimaller azaldı ve sonunda tek bir kapı kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ce_j_03",
+      "text": "{{companion.name}} o sabah buraya kimlerin uğradığını sırayla yazdı; {{child.name}} ise listedeki her isme tek tek gidip sordu. Düzen ile sabır birleşince arama bir oyuna döndü, ve listenin ortasına gelmeden sahibi bulundu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

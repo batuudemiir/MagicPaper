@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 3,
+  "beat": "ask_for_help",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "editorialNote": "H2b (19 Kasım 2026): Meslekler 7-10. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2b)"
+  },
+  "variants": [
+    {
+      "id": "a7_ah_bk_01",
+      "text": "\"Sen olsan ne yapardın?\" diye sordu {{child.name}}. {{companion.name}} unlu ellerini sildi ve düşündü. \"Hamurdan öğrendim,\" dedi, \"bazı şeyleri zorlayamazsın; beklersin ve bakarsın. Belki bu da öyledir.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_bk_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_bk_02",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e götürdü. Fırıncı önce dinledi, sonra fırının kapağını gösterdi: \"Her sabah önce ısıya bakarım. Sen de önce neyin değiştiğine bak.\" Bu küçük ipucu yolu açtı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_bk_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_pm_01",
+      "text": "{{child.name}} sordu, {{companion.name}} çantasını omzundan indirip düşündü. \"Mektupları sokak sokak ayırırım,\" dedi. \"Karışık bir şeyi küçük parçalara bölünce sırası kendiliğinden belli olur.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_pm_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_pm_02",
+      "text": "\"Bunu kime sorabilirim?\" diye düşünürken {{child.name}} {{companion.name}}'i gördü. Postacı köyün her köşesini bilirdi. Dinledi, gülümsedi ve \"Önce nereden geldiğine bak,\" dedi. \"Her şeyin bir adresi vardır.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_pm_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_tc_01",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e anlattı. Öğretmen cevabı söylemedi; onun yerine bir soru sordu: \"Sence ilk ne oldu, sonra ne oldu?\" {{child.name}} sırayı düşününce cevap kendiliğinden geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_tc_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_tc_02",
+      "text": "\"Bilmediğin bir şeyi önce yazarsın,\" dedi {{companion.name}}, ve {{child.name}}'e bir kâğıt uzattı. {{child.name}} gördüklerini sırayla yazdı. Yazdıkça dağınık parçalar yan yana geldi ve bir anlam taşımaya başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_tc_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_bk_03",
+      "text": "{{companion.name}} tezgâhı silerken dinledi. \"Ekmek yaparken bir şey ters giderse en baştan düşünürüm,\" dedi. \"Unu, suyu, sıcaklığı tek tek. Sen de baştan say.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_bk_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_bk_04",
+      "text": "{{companion.name}} soruyu duyunca güldü. \"Her sabah aynı şeyi sorarım: dün neyi farklı yaptım?\" {{child.name}} aynı soruyu kendine sordu ve cevabın ucunu yakaladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_bk_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_pm_03",
+      "text": "{{companion.name}} haritasını açtı. \"Bir mektubun nereye gideceğini bilmezsem önce üstündeki işaretlere bakarım,\" dedi. \"Senin bulduğunun da işaretleri vardır.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_pm_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_pm_04",
+      "text": "\"Sorunu bana anlat, ama sırayla,\" dedi {{companion.name}}. Postacı her şeyi sırayla dinlerdi, sokak sokak. {{child.name}} anlattıkça eksik parça kendiliğinden ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_pm_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_tc_03",
+      "text": "{{companion.name}} tahtaya iki sütun çizdi: \"Bildiklerin ve bilmediklerin.\" {{child.name}} sütunları kendi eliyle doldurdu. Bilmedikleri sütunu kısaldıkça soru da küçüldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_tc_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ah_tc_04",
+      "text": "\"Bunu sana söylemeyeceğim,\" dedi {{companion.name}} gülümseyerek, \"ama nasıl bulacağını göstereceğim.\" Sonra {{child.name}}'e küçük bir soru sordu; o soru, büyük sorunun kapısını açtı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ah_tc_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    }
+  ]
+}

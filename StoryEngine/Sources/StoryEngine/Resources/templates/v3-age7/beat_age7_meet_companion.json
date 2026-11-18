@@ -282,6 +282,74 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a7_mc_j_01",
+      "text": "{{child.name}} sormak için çevresine bakındı ve {{companion.name}}'i gördü. Ona doğru yürüdü, selam verdi. {{companion.name}} işini bir an bıraktı ve gülümseyerek {{child.name}}'i dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_mc_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_j_02",
+      "text": "{{child.name}} bu işi en iyi kimin bileceğini düşündü. Cevap belliydi: {{companion.name}}. Onun yanına gitti; {{companion.name}} elindeki işi bitirince ona döndü ve \"Buyur,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_mc_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_j_03",
+      "text": "{{companion.name}}'i köyde herkes tanırdı. {{child.name}} ona gidip ne bulduğunu gösterdi. {{companion.name}} eğilip dikkatle baktı; acele etmeyen biriydi, soruları severdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_mc_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a7_mc_j_04",
+      "text": "{{child.name}} {{companion.name}}'in çalıştığı yere uğradı. Kapı açıktı, içerisi tanıdık kokular ve seslerle doluydu. {{companion.name}} onu görünce başıyla selam verdi ve gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_mc_j_04",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ]
 }

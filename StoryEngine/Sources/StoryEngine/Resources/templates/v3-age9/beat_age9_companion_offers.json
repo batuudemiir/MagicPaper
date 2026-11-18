@@ -123,6 +123,42 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a9_co_j_01",
+      "text": "{{companion.name}} usulca söyledi: \"Bazı işler acele kaldırmaz; zorlarsan olmaz. Bakar, beklersin; zamanı gelince kendiliğinden olur.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_co_j_01",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_co_j_02",
+      "text": "{{companion.name}} gülümsedi: \"Benim işimde de böyledir. Her şeyin bir zamanı var, ve o zamanı beklemeyi bilen işini iyi yapar.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_co_j_02",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_co_j_03",
+      "text": "\"Ben her gün beklerim,\" dedi {{companion.name}}. \"Beklemek boş durmak değil; dikkatle izlemek, işin en sessiz parçası.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_co_j_03",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

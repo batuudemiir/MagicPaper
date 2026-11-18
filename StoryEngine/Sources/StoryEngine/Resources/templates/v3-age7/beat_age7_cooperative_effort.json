@@ -86,6 +86,45 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a7_ce_j_01",
+      "text": "İşi bölüştüler: {{companion.name}} bugün kimlerin buradan geçtiğini sırayla saydı, {{child.name}} ise o kapıları tek tek çaldı. Birinin hafızası ile öbürünün ayakları birleşince sahibini bulmak çok kolaylaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ce_j_02",
+      "text": "{{companion.name}} köyde kimin nerede oturduğunu bir bir anlattı, {{child.name}} ise bulduklarına uyan ipuçlarını aradı. Biri adresleri biliyordu, öbürü dikkatle bakıyordu; birlikte yürüyünce sahibinin izine düştüler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ce_j_03",
+      "text": "{{companion.name}} o sabah buraya kimlerin uğradığını sırayla yazdı, {{child.name}} ise listedeki her isme tek tek sordu. Düzen ile sabır birleşince sahibi kısa sürede bulundu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

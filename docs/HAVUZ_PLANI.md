@@ -213,6 +213,8 @@ Açık: 3-4 macera ve öğrenme bölümlerinin son sayfası var olan `age3` `war
 - Meslek olguları 7-10'a açılır (NASA olgularında olduğu gibi `ageRange` genişletmesi, metin değişmez). Bu, plandaki "ayrı onay" maddesidir; "tümünü yap" ile açıldı, Batuhan okuyunca geri alınabilir.
 - Hedef: 7-8 ve 9-10'da en korumacı ayarda Meslekler konusu görünür. `CoverageReportTests` bunu kilitler.
 
+**Uygulanan (19 Kasım 2026).** Altı `jobs` blueprint'i (`learning`, `nature: person`, gergin sayfa yok): 7-8 ve 9-10'a üçer, mekanizmalar `seekingKnowledge` (çocuk işini bilene sorar, `ask_for_help`), `patientObservation` (iş zamanını bekler, `companion_offers` + `patient_wait`), `helpingAtWork` (bulunan bir şeyin sahibini birlikte ararlar, `appeal`, `cooperative_effort`). 67 satır (`move: "h2b_…"`): 7-8 ve 9-10'a birer yeni `ask_for_help` dosyası, var olan dosyalara sona ekleme. Zanaat satırları yalnızca `ask_for_help`'te ve `occupationRequire` + `natureRequire: person` ile mesleğine bağlı, her meslekte dörder (`JobsTopicTests` kuralı); öbür sayfalardaki insan satırları mesleksiz (`natureRequire: person`); insanla tanışma satırları `natureRequire: person` ve `solo` sınıfında, böylece eski `paired` tanışma satırları (yol arkadaşının çocuğa yaklaştığı) insana gitmiyor. Üç meslek olgusu `bands` 5-10'a açıldı. Python yaklaşığı: 7-8 ve 9-10'da Meslekler görünür; iki meslek şekli bilim keşfini de bağladığı için Bilim de bu iki bantta üç mekanizmaya ulaştı.
+
 ### Sporlar (19 Kasım 2026, "tümünü yap")
 
 İlke 7 (yarış ve sıralama yok) burada da geçerli: spor **hareket oyunu** olarak yazılır. Kazanan, kaybeden, skor, rekor, "en hızlı" yok. Bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek.

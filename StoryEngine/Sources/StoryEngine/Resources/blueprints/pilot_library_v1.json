@@ -7175,6 +7175,674 @@
           "supportingBeat": "self_recognize"
         }
       ]
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_age7_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "I-3j - seekingKnowledge (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Çocuk anlamadığı bir şeyi işini bilen birine sorar; cevabı onun zanaatından gelen bir ipucuyla kendisi bulur.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kime Sorulur?",
+        "{{companion.name}} Nasıl Biliyor?",
+        "{{setting.name}}'ndaki Soru",
+        "İşini Bilen Birine",
+        "{{child.name}} Sormaya Gitti"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_craftspatience_age7_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "I-2j - patientObservation (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Bir şey kendi zamanında olur; işini bilen biri çocuğa beklemenin de bir yöntem olduğunu gösterir.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Ne Zaman Olur?",
+        "Beklemeyi Bilen {{companion.name}}",
+        "{{setting.name}}'ndaki Bekleyiş",
+        "Zamanı Gelince",
+        "{{child.name}} Beklemeyi Öğrendi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "companion_offers",
+          "emotion": "patience",
+          "supportingBeat": "patient_wait"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_helpingatwork_age7_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "III-1j - helpingAtWork (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "İşini yapan biri bulunmuş bir şeyin sahibini arar; çocuk ile işi bölüşür ve sahibini birlikte bulurlar.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Kimin?",
+        "{{companion.name}} ile Sahibini Aramak",
+        "{{setting.name}}'nda Bir Emanet",
+        "Doğru Kapıyı Bulmak",
+        "{{child.name}} Yardıma Koştu"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "determination",
+          "supportingBeat": "commit"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_age9_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "I-3j - seekingKnowledge (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk anlamadığı bir şeyi işini bilen birine sorar; cevabı onun zanaatından gelen bir ipucuyla kendisi bulur.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kime Sorulur?",
+        "{{companion.name}} Nasıl Biliyor?",
+        "{{setting.name}}'ndaki Soru",
+        "İşini Bilen Birine",
+        "{{child.name}} Sormaya Gitti"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_craftspatience_age9_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "I-2j - patientObservation (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "discovery",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Bir şey kendi zamanında olur; işini bilen biri çocuğa beklemenin de bir yöntem olduğunu gösterir.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Ne Zaman Olur?",
+        "Beklemeyi Bilen {{companion.name}}",
+        "{{setting.name}}'ndaki Bekleyiş",
+        "Zamanı Gelince",
+        "{{child.name}} Beklemeyi Öğrendi"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "puzzlement"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "companion_offers",
+          "emotion": "patience",
+          "supportingBeat": "patient_wait"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_jobs_helpingatwork_age9_001",
+      "interests": [
+        "jobs"
+      ],
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "III-1j - helpingAtWork (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "İşini yapan biri bulunmuş bir şeyin sahibini arar; çocuk ile işi bölüşür ve sahibini birlikte bulurlar.",
+      "editorialGuidance": "H2b (19 Kasım 2026): Meslekler 7-10. Yol arkadaşı insan; çocuk ona kendi işinin başında gider, o çocuğa yaklaşmaz. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Kimin?",
+        "{{companion.name}} ile Sahibini Aramak",
+        "{{setting.name}}'nda Bir Emanet",
+        "Doğru Kapıyı Bulmak",
+        "{{child.name}} Yardıma Koştu"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "receive_appeal",
+          "emotion": "determination",
+          "supportingBeat": "commit"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
     }
   ],
   "templates": [
@@ -10319,7 +10987,9 @@
       "id": "fact_baker_rests_the_dough",
       "statement": "Fırıncı hamuru yoğurduktan sonra üstünü örtüp bekler. Hamur o beklemede kabarır.",
       "bands": [
-        "5-6"
+        "5-6",
+        "7-8",
+        "9-10"
       ],
       "basis": "editorial",
       "verifiedOn": "2026-10-30",
@@ -10329,7 +10999,9 @@
       "id": "fact_postman_sorts_by_street",
       "statement": "Postacı yola çıkmadan önce mektupları sokaklara göre ayırır. Aynı sokağın mektupları yan yana durur.",
       "bands": [
-        "5-6"
+        "5-6",
+        "7-8",
+        "9-10"
       ],
       "basis": "editorial",
       "verifiedOn": "2026-10-30",
@@ -10339,7 +11011,9 @@
       "id": "fact_teacher_writes_the_order",
       "statement": "Öğretmen anlatacağını önceden sırayla yazar. O sıraya plan denir.",
       "bands": [
-        "5-6"
+        "5-6",
+        "7-8",
+        "9-10"
       ],
       "basis": "editorial",
       "verifiedOn": "2026-10-30",

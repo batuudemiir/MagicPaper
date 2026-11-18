@@ -274,6 +274,57 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a9_mc_j_01",
+      "text": "{{child.name}} bu sorunun cevabını kendi başına bulamayacağını anladı ve kimin bileceğini düşündü. Aklına ilk {{companion.name}} geldi. Onun çalıştığı yere gitti, kapıda durup selam verdi. {{companion.name}} elindeki işi bir kenara bıraktı ve gülümseyerek, acele etmeden onu dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_02",
+      "text": "{{companion.name}}'i köyde herkes tanırdı; işini iyi yapan, soruları geri çevirmeyen biri olarak. {{child.name}} bulduğu şeyi ona götürdü ve ne gördüğünü baştan sona anlattı. {{companion.name}} eğilip dikkatle baktı, sonra kısa bir süre sessizce düşündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_03",
+      "text": "{{child.name}} {{companion.name}}'in çalıştığı yere uğradı. İçerisi tanıdık seslerle doluydu: bir şeylerin yerine konduğu, bir işin sırayla yapıldığı sesler. {{companion.name}} onu görünce başıyla selam verdi; {{child.name}} işin bitmesini sabırla, sessizce bekledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ]
 }
