@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · main@dcb86b5 + bu kayıt · H0-H1 derlenmeden origin'e gönderildi
+
+- Ne değişti (Batuhan, 18 Kasım: "Derlemeden gönder"): main origin'e gönderildi (`f9fc0d6..dcb86b5`), H0 ve H1 dahil.
+- Bilerek değişmedi: derleme yok; disk dolu (boş alan 215 MB), paket çözümü yer bulamıyor. Yeni Swift dosyalarını (`CoverageReport.swift`, `BlueprintSelector`'daki `mechanismKey`) derleyici görmedi.
+- Test: çalıştırılmadı. İlk derleme ve test koşusunda bakılacaklar: `CoverageReportTests`'in yazdırdığı gerçek kapsam tablosu, sabit seed'li altın testler.
+- Dosyalar: bu günlük.
+
 ### 2026-11-18 · main@2e9fb8c + bu kayıt · H0-H1 main'e birleşti, derlenemedi
 
 - Ne değişti (Batuhan, 17 Kasım: "motor engineyi ve havuzu genişletmeliyiz"): H0 (kapsam raporu) ve H1 (her bantta sakin macera, 10 blueprint, 64 satır) dalı main'e birleşti (`2e9fb8c`); tek çakışma bu günlükteydi, iki tarafın kayıtları korundu.
