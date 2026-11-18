@@ -50,20 +50,42 @@ EOF
 fi
 
 # --- Simülatörler -----------------------------------------------------------
-pick() { # $1: ad deseni → en yeni iOS çalışma ortamındaki ilk eşleşen cihazın UDID'si
-  xcrun simctl list devices available -j | python3 -c "
-import json, sys, re
-d = json.load(sys.stdin)['devices']
-runtimes = sorted((r for r in d if 'iOS' in r), key=lambda r: [int(x) for x in re.findall(r'\d+', r)], reverse=True)
-for r in runtimes:
-    for x in d[r]:
-        if re.search(sys.argv[1], x['name']):
-            print(x['udid'], x['name'], sep='|'); sys.exit()
-" "$1"
+# $1: cihaz türü desenleri (| ile, sırayla denenir). Önce var olan bir simülatör
+# aranır; yoksa en yeni iOS çalışma ortamında o türden yenisi oluşturulur.
+# Yeni Xcode'larda hazır "iPhone SE" gelmeyebilir; o zaman "e" modeli (16e, 17e).
+pick() {
+  python3 - "$1" <<'PY'
+import json, subprocess, sys, re
+def j(*a): return json.loads(subprocess.check_output(["xcrun", "simctl", "list", *a, "-j"]))
+patterns = sys.argv[1].split("|")
+ver = lambda s: [int(x) for x in re.findall(r"\d+", s)]
+runtimes = sorted((r for r in j("runtimes")["runtimes"] if r["platform"] == "iOS" and r["isAvailable"]),
+                  key=lambda r: ver(r["version"]), reverse=True)
+if not runtimes: sys.exit("iOS çalışma ortamı yok")
+devices = j("devices", "available")["devices"]
+types = j("devicetypes")["devicetypes"]
+for pat in patterns:
+    for rt in runtimes:
+        for d in devices.get(rt["identifier"], []):
+            if re.search(pat, d["name"]):
+                print(d["udid"] + "|" + d["name"]); sys.exit()
+    for t in sorted(types, key=lambda t: ver(t["identifier"]), reverse=True):
+        if re.search(pat, t["name"]):
+            try:  # tür bu iOS sürümünü desteklemiyorsa sıradaki desene geç
+                udid = subprocess.check_output(["xcrun", "simctl", "create", t["name"], t["identifier"],
+                                                runtimes[0]["identifier"]], stderr=subprocess.DEVNULL).decode().strip()
+            except subprocess.CalledProcessError:
+                break
+            print(udid + "|" + t["name"]); sys.exit()
+PY
 }
-SMALL="$(pick 'iPhone SE')"
-LARGE="$(pick 'iPhone .* Pro Max')"
-[ -n "$SMALL" ] && [ -n "$LARGE" ] || { echo "Simülatör bulunamadı (SE / Pro Max)." >&2; exit 1; }
+SMALL="$(pick '^iPhone SE|^iPhone 1[0-9]e$|^iPhone 1[0-9]$')" || true
+LARGE="$(pick 'Pro Max$|Plus$')" || true
+if [ -z "$SMALL" ] || [ -z "$LARGE" ]; then
+  echo "Simülatör bulunamadı (küçük: '$SMALL', büyük: '$LARGE'). Mevcut olanlar:" >&2
+  xcrun simctl list runtimes >&2; xcrun simctl list devices available >&2
+  exit 1
+fi
 echo "Küçük: ${SMALL#*|} · Büyük: ${LARGE#*|}"
 
 # --- Derleme ----------------------------------------------------------------

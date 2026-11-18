@@ -33,7 +33,11 @@ jobs:
       - name: Ekranları çek
         env:
           GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
-        run: bash Scripts/ci_screenshots.sh
+        # Günlük dala da yazılır: hata olursa GitHub girişi olmadan okunabilsin.
+        run: |
+          mkdir -p design-preview/screens
+          set -o pipefail
+          bash Scripts/ci_screenshots.sh 2>&1 | tee design-preview/screens/ci.log
 
       - name: Görüntüleri sakla (indirilebilir kopya)
         if: always()
@@ -43,7 +47,8 @@ jobs:
           path: design-preview/screens
           retention-days: 14
 
-      - name: Görüntüleri irem dalına yaz
+      - name: Görüntüleri ve günlüğü irem dalına yaz
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
