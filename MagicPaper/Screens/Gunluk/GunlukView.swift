@@ -241,7 +241,7 @@ struct GunlukView: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .combine)
-        .accessibilityHint("Yeni bir masal yaratır")
+        .accessibilityHint("Yeni bir masal yazar")
     }
 
     // MARK: - Gezinme

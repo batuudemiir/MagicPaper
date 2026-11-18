@@ -62,7 +62,7 @@ struct StoryMapView: View {
 
                 if visitedCount == 0 {
                     MPStateView(mascot: .walking, title: "Haritan seni bekliyor",
-                                message: "Her masal bir yere götürür. İlk masalını yaz, ilk iğne buraya düşsün.") {
+                                message: "Masalda gittiğin yerler bu haritada toplanır. İlk masalını yaz, ilk iğne buraya düşsün.") {
                         MPButton(title: "Masal yaz", systemImage: "wand.and.sparkles") { app.startStoryCreation() }
                     }
                 } else {

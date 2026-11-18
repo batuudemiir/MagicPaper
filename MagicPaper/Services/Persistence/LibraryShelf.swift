@@ -49,7 +49,6 @@ final class LibraryShelf {
     /// folder. Never written over, never deleted.
     private var stuckDamagedIDs: Set<UUID> = []
     private var hasUnreadableFiles = false
-    private var foundDamage = false
     private var favoritesReadFailed = false
     private var reportedReadOnlySave = false
 
@@ -68,20 +67,6 @@ final class LibraryShelf {
             mode = .disk
         } else {
             mode = .readOnly
-        }
-    }
-
-    /// Whether an empty shelf may be filled with the sample stories.
-    ///
-    /// Not when the shelf is empty because files could not be read or were
-    /// set aside: that is the old "decode failed, samples written over the
-    /// library" shape, and a parent would see two strangers' stories where
-    /// their child's were. Before cutover the behaviour is unchanged.
-    var canSeedSampleStories: Bool {
-        switch mode {
-        case .legacy: return true
-        case .disk: return !foundDamage && !hasUnreadableFiles
-        case .readOnly: return false
         }
     }
 
@@ -137,7 +122,7 @@ final class LibraryShelf {
             // Bu, uygulamadaki en pahalı sessiz arıza yoluydu.
             //
             // Çözümleme başarısız olunca `stories` boş kalıyor, hemen ardından
-            // `createSampleStoriesIfNeeded()` örnekleri kuruyor ve ilk kayıtta
+            // eski örnek masal kurulumu devreye giriyor ve ilk kayıtta
             // gerçek kütüphanenin üstüne yazıyordu. Ham veri artık tarihli bir
             // anahtara alınıyor; kurtarılabilir. Yedekler sınırlı
             // (`StoryGenerationManager.undecodableBackupLimit`).
@@ -225,7 +210,6 @@ final class LibraryShelf {
             return false
         }
         guard damaged, let migration else { return }
-        foundDamage = true
         stuckDamagedIDs.formUnion(migration.setAsideDamagedStories(failures))
     }
 

@@ -133,6 +133,24 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-17 · codex/design-system-catalog · Yapay ses temizliği: motor satırları, arayüz, DailyFeed
+
+- Motor (v3-age7, v3-age9, seri): dersi açıkça söyleyen ya da "X değil, Y" kuruluşlu yedi satır yeniden yazıldı: `a7_sr_05`, `a7_cf_12`, `a9_sr_06`, `a9_cf_07` (sözlük kelimesi "yöntem" korundu), `a9_ps_04`, `a9_rc_04`, `srs_01`. Slotlar, uzunluk sınıfları ve hareket kimlikleri aynı. `srs_01`'deki "derin bir nefes" de gitti.
+- Arayüz: "İlk masalını yarat" (Kitaplık boş durumu ve önizlemesi), "Yeni masal yarat" (bu akşamın kartı) ve Masallar'daki "Yeni bir masal yaratır" ipucu "yaz" oldu. Harita boş durumundaki "Her masal bir yere götürür." yerine "Masalda gittiğin yerler bu haritada toplanır." yazıldı.
+- DailyFeed 07, 08 ve 11: "muhteşem", "Fındık anladı ki...", "Çünkü gerçek arkadaşlar..." gibi ders cümleleri sahneye çevrildi; 07'deki "el ele tutu" yazım hatası ve metindeki tireler düzeltildi. Kaynak (`Content/DailyFeed/stories`) ile uygulamaya gömülü `daily_feed_fallback.json` eşleşiyor. İmzalı `hosting/public/content/feed.json`'a dokunulmadı: 08 orada eski hâliyle duruyor, `content-publisher publish` ve yayın anahtarı Batuhan'da.
+- Bilerek değişmeyenler: Paywall'daki "her ay görselli maceralar" cümlesi (plan kartlarıyla birlikte ürün kararı), "sorun sende değil" hata metni, diğer beat'lerdeki "derin bir nefes" satırları, `moralLesson` alanları (ekranda gösterilmiyor), eski `promo/` sayfaları (yayında değil) ve `templates/offline` şablonları (`isSelectable` beat'siz şablonu dışarıda bırakıyor, okura gitmiyor).
+- Test: `validate_beat_corpus.py` PASS (23 kapı). Motor paketi `swift test` scratch kopyada iki kez koştu, biri bu değişikliklerle biri HEAD ile: ikisi de aynı 18 testte düşüyor (MatrixCoverage, Occasion dil kuralı "anında", OfflineDeterminism, ProseCooldown, SkyWorld, UsageLearning vb.), yani bu iş yeni hata eklemedi; o 18 hata önceden var. `xcodebuild test` (LibraryCutoverTests, AccountSyncTests, StoryColophonTests) derlemeye ulaşmadı: DerivedData'daki Google/Firebase paketleri açılamadı (`Could not resolve package dependencies`, disk dolu). Uygulama testi çalışmadı, derleme doğrulanmadı, simülatörde görülmedi. Not: yedi beat dosyasının yanında iCloud'un " 2.json" kopyaları duruyor (eski içerik); silinmeleri gerekiyor, bu oturumda silme izni verilmedi.
+- Dosyalar: yedi beat JSON'u (`StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7`, `v3-age9`, `series`), `MagicPaper/Views/LibraryView.swift`, `MagicPaper/DesignSystem/Pastel/MPMascot.swift`, `MagicPaper/DesignSystem/Pastel/MPStory.swift`, `MagicPaper/Screens/Gunluk/GunlukView.swift`, `MagicPaper/Screens/Collection/StoryMapView.swift`, `Content/DailyFeed/stories/07.json`, `08.json`, `11.json`, `MagicPaper/StoryEngineBridge/RemoteContent/daily_feed_fallback.json`.
+
+### 2026-11-17 · codex/design-system-catalog · İlk açılıştaki örnek masallar kaldırıldı
+
+- Yeni kurulum artık kitaplığa iki örnek masal ("Zephyr'in Sihirli Macerası", "Luna'nın Uzay Yolculuğu") koymuyor. Metinler koda gömülüydü, motorla yazılmamıştı ve yapay ses taşıyordu: "Her şey muhteşemdi", açıkça söylenen dersler, "kötü büyücü", "Karanlık Orman", her çocuğa anne varsayımı. Karar: Batuhan, 17 Kasım 2026 (kaldır; yeniden yazma ve motorla yazma seçenekleri seçilmedi).
+- `StoryGenerationManager`: `createSampleStoriesIfNeeded` ve `createSampleStory` silindi. `LibraryShelf.canSeedSampleStories` ile yalnızca onun okuduğu `foundDamage` de gitti; `LibraryCutoverTests` içindeki üç `canSeedSampleStories` doğrulaması kaldırıldı.
+- Bilerek değişmeyenler: `adoptSampleStories` ve `SampleStoryRecognizer` duruyor. Önceki sürümün cihazda bıraktığı kopyalar yeniden adlandırılmaya ve senkrondan uzak kalmaya devam ediyor. Eski kopyalar silinmiyor.
+- Etki: "Masalı önce yaz" bayrağı kapalıyken yeni ailenin kitaplığı ilk masal yazılana kadar boş durum ekranını gösterir.
+- Test: `xcodebuild test` (LibraryCutoverTests, AccountSyncTests, StoryColophonTests) derlemeye ulaşmadı: DerivedData'daki Google/Firebase paketleri açılamadı (`Could not resolve package dependencies`, disk dolu). Uygulama testi çalışmadı, derleme doğrulanmadı, simülatörde görülmedi.
+- Dosyalar: `MagicPaper/Services/StoryGenerationManager.swift`, `MagicPaper/Services/Persistence/LibraryShelf.swift`, `MagicPaper/StoryEngineBridge/Account/FamilyLocalStore.swift` (yorum), `MagicPaperTests/LibraryCutoverTests.swift`.
+
 ### 2026-11-18 · codex/design-system-catalog · Offline motor + guaj görsel pilotu
 
 - Gerçek ContentCatalogLoader/OfflineStoryComposer ile 5–6 yaş charge/bakım blueprint'i, Eski Meyve Bahçesi, solan fide ve Kestane sabitlenerek 12 tohum × iki kurmaca isimden 24 kitap/192 sayfa çıkarıldı. Export.swift ve yeniden çalıştırma betiği uygulama dışında, pilot klasöründe.

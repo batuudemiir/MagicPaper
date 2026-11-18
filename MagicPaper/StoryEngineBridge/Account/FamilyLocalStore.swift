@@ -36,9 +36,10 @@ enum SyncCoding {
     }
 }
 
-/// The starter books every new device makes for itself
-/// (`StoryGenerationManager.createSampleStoriesIfNeeded`). Each device has its
-/// own copies; syncing them would put two of each on every shelf.
+/// The starter books earlier versions made on every new device. New installs
+/// no longer get them (17 Kasım 2026), but devices that already have them keep
+/// them. Each device has its own copies; syncing them would put two of each on
+/// every shelf.
 enum SampleStoryRecognizer {
     static let firstPageTitles: Set<String> = ["Sihirli Başlangıç", "Yıldızlara Bakış"]
 

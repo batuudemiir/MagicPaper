@@ -248,8 +248,8 @@ struct LibraryView: View {
     private var emptyLibrary: some View {
         VStack(spacing: MPSpacing.lg) {
             MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş",
-                        message: "İlk masalını yarat ya da Masallar'dan bir klasik aç; burada seni beklesin.") {
-                MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {
+                        message: "İlk masalını yaz ya da Masallar'dan bir klasik aç. Okuduğun masallar burada durur.") {
+                MPButton(title: "İlk masalını yaz", systemImage: "wand.and.sparkles") {
                     app.startStoryCreation()
                 }
             }

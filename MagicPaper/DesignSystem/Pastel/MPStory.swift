@@ -90,7 +90,7 @@ struct TonightHeroCard: View {
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Yarın yeni bir masal var"; case .bedtime: "Uyku masalı zamanı" } }
     private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "İstersen bu akşam bir tane daha yazalım."; case .bedtime: "Kısa, sakin bir masal ve kısılan ışıklar." } }
-    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yarat"; case .bedtime: "Uyku modunu aç" } }
+    private var buttonTitle: String { switch state { case .resume: "Devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yaz"; case .bedtime: "Uyku modunu aç" } }
     private var buttonIcon: String { switch state { case .resume: "play.fill"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
     @ViewBuilder private var art: some View {
         switch state {
