@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Ekran hattı düzeltmeleri ve Xcode 26.6 derleme hatası
+
+- Ekran görüntüsü hattı: SE simülatörü yoksa oluşturuluyor; `Secrets.xcconfig` doğru yerde (`MagicPaper/`); derleme günlüğü ve hatalar dala ve GitHub açıklamalarına yazılıyor (`.log` uzantısı `.gitignore`'da olduğu için `.txt`); sıra iş düzeyinde, [ekran]'sız gönderim çalışan turu iptal etmiyor.
+- Derleme hatası (uygulama kodu): `MagicPaperPageTurnRenderer.swift:48` Xcode 26.6'da `ambiguous use of 'pi'`. `CGFloat.pi` ve `Double(...)` ile tür açık yazıldı; davranış aynı. `main`'de de var, README'deki Batuhan notlarına yazıldı.
+- README: "Batuhan için" bölümü (yalnızca `irem` dalı; açık maddeler, tamamlananlar silinir).
+- Test: derleme GitHub'ın Mac'inde bu commit'le deneniyor (önceki tur bu tek hatayla durdu). Yerelde derleme yok (Windows).
+- Dosyalar: `Scripts/ci_screenshots.sh`, `.github/workflows/ekran-goruntuleri.yml`, `MagicPaper/Screens/StoryReader/PageTurn/MagicPaperPageTurnRenderer.swift`, `README.md`, bu günlük.
+
 ### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Windows önizleyici ve gerçek ekran görüntüsü hattı
 
 - Ne değişti: `design-preview/` eklendi. iPhone SE ve Pro Max çerçeveli önizleyici (`index.html`), uygulamanın renk dosyalarından ve `MPLayout.swift`'ten üretilen `tokens.css` (`tools/sync-tokens.mjs`, 82 renk ve 37 ölçü), iki Paywall taslağı: `paywall-bugun.html` (bugünkü `PaywallView`'un kopyası) ve `paywall-oneri.html` (öneri: Ragi yok, çocuğun kitaplığı, deneme zaman çizelgesi, 3.1.2 metni, "Aboneliği yönet").

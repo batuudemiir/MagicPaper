@@ -14,8 +14,9 @@
 > **Bilgi / düzeltilecek**
 >
 > 2. **`ios-build.yml` CI'da derlenemez.** `MagicPaper/Secrets.xcconfig` ve `GoogleService-Info.plist` depoda yok (doğru olarak), ama iş akışı bunları üretmiyor. Ayrıca `actions/upload-artifact@v3` ve `download-artifact@v3` GitHub'da kaldırıldı. `ekran-goruntuleri.yml` boş anahtar ve sahte Firebase dosyasıyla derliyor; aynı yol buraya da uygulanabilir.
-> 3. **README eskimiş:** "Proje kuralları: üst klasördeki `CLAUDE.md`" diyor; depoda `CLAUDE.md` yok, kurallar `AGENTS.md`'de.
-> 4. **`design-handoff/` eski tasarımı gösteriyor** (3 sekmeli alt çubuk, kilit simgesi, gradient düğme) ama `design-handoff/CLAUDE.md` kendini "doğruluk kaynağı" ilan ediyor. Bir ajan ona uyarsa tasarım geri gider. Öneri: başına "tarihsel, AGENTS.md kararları geçerli" notu.
+> 3. **`main` Xcode 26.6'da derlenmiyor** (GitHub'ın `macos-latest`'i). `MagicPaperPageTurnRenderer.swift:48`: `ambiguous use of 'pi'` (`CGFloat` × `Double`). `irem`'de tür açık yazılarak düzeltildi, davranış aynı. Senin Xcode'un daha yeniyse hatayı görmüyorsundur; bu tek satır `main`'e de alınabilir.
+> 4. **README eskimiş:** "Proje kuralları: üst klasördeki `CLAUDE.md`" diyor; depoda `CLAUDE.md` yok, kurallar `AGENTS.md`'de.
+> 5. **`design-handoff/` eski tasarımı gösteriyor** (3 sekmeli alt çubuk, kilit simgesi, gradient düğme) ama `design-handoff/CLAUDE.md` kendini "doğruluk kaynağı" ilan ediyor. Bir ajan ona uyarsa tasarım geri gider. Öneri: başına "tarihsel, AGENTS.md kararları geçerli" notu.
 >
 > **`irem` dalında neler var**
 >
