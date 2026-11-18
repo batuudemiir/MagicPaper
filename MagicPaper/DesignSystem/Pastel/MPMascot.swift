@@ -131,8 +131,8 @@ extension MPStateView where Extra == EmptyView {
 }
 
 #Preview("State views") {
-    MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş", message: "İlk masalını yarat, burada seni beklesin.") {
-        MPButton(title: "İlk masalını yarat", systemImage: "wand.and.sparkles") {}
+    MPStateView(mascot: .reading, tone: .lav, title: "Kitaplığın henüz boş", message: "İlk masalını yaz. Okuduğun masallar burada durur.") {
+        MPButton(title: "İlk masalını yaz", systemImage: "wand.and.sparkles") {}
     }
     .background(MPColor.backgroundKid)
 }

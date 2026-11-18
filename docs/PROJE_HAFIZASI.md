@@ -4,6 +4,8 @@ Claude Code oturumlarının 17 Kasım 2026'ya kadar biriktirdiği notlar (karar,
 
 ## İçindekiler
 
+- [Okuyucu guaj tasarımı](#okuyucu-guaj-tasarimi) — 18 Kasım: kullanıcı koddan önce GPT‑6.1 ile sahne/spot okuyucu önizlemesi istedi; BRIEF/REVIEW var, uygulama onayı bekleniyor
+- [Offline guaj pilotu](#offline-guaj-pilotu) — 18 Kasım: 24 gerçek motor çıktısı, iki çizim/48 eşleme; altı ışık dili uyumsuzluğu ve bakım hedefi incelemesi; üretim entegrasyonu yok
 - [Blueprint & v3 corpus realignment](#blueprint-corpus-realignment) — D3/D10 kapandı; K1 de kapandı: saklanan hikâyeler üretilmiş metni tutuyor, seed drift kullanıcıyı etkilemiyor.
 - [MagicPaper Grup 1 + 1.5](#magicpaper-group1-integration) — build yeşil, 761/23 test; kalan hatalar tek içerik boşluğundan; Grup 2 önkoşulları ve dosya sahipliği kuralları.
 - [Faz 0 kapandı](#phase0-closed-2026-09-30) — Entitlements target'ta, 248/0 + 647/18; paket testi scratch-path ile; açık gizlilik kalemleri
@@ -1053,3 +1055,27 @@ Product owner decisions (2026-09-23), binding for Story Mode / creation-flow / s
 
 **Why:** product is a premium personal storybook, not a story configurator or gamified app; child identity is the core entity.
 **How to apply:** follow these when designing mode/intent types, the creation UI, age handling, Daily tab and streak storage. Related: [[blueprint-corpus-realignment]], [[magicpaper-group1-integration]].
+
+
+---
+
+## offline-guaj-pilotu
+
+_18 Kasım 2026 — Onaylı sosyal guaj yönünü offline kişiselleştirilmiş masallara uygulama pilotu._
+
+Kaynak: `design-handoff/proposals/2026-11-18-offline-art-pilot/REPORT.md`. Gerçek paket yükleyicisi/composer ile explicit blueprint `bp_charge_tending_001`, 5–6 yaş, Eski Meyve Bahçesi + solan fide + Kestane sabitlendi. 12 tohum × iki kurmaca isim = 24 kitap/192 sayfa, 24/24 isClean; tekrarlanan export byte-identical. İki onay bekleyen guaj çizim (fide ve kirpi), incelenmiş varyant izin listeleriyle toplam 48 sayfaya eşlendi; 144 metin kaldı. App/motor kodu ve Release bayrağı değiştirilmedi.
+
+**Tuzak:** isClean semantik doğrulama değil. 6/24 kitapta fideye ışık/parlaklık/görünüp kaybolma dili geliyor (`ex_s_light_02/04`); bütün 7. sayfa örneklerinde sonuç Kestane'ye dönüyor. Fidenin iyileştiğini çizmek metne sadık değil. Aynı tohumun Ela/Deniz çiftlerinin 12/12'sinde en az bir varyant kimliği değişti; görseli yalnızca seed/sayfa ya da ada göre bağlama.
+
+**Sonraki adım:** Önce bu ailede eylemin ve bakımın hedefini, nesne-özellik eşleşmesini içerik incelemesiyle netleştir; sonra varyant düzeyinde görsel koşullar, en son tek kanonik çocuk ve iki pozla katmanlı guaj deneyi. Pilot bütün katalog kapsaması, otomatik anlam denetimi, çocuk kimliği/poz tutarlılığı veya uygulama entegrasyonu kanıtı değil. Çizimler yerleşik image_gen + onaylı referansla üretildi. İnceleme/audit ve JS sözdizimi kontrolü yapıldı; app test/simülatör ve tarayıcı görsel matrisi yapılmadı.
+
+
+---
+
+## okuyucu-guaj-tasarimi
+
+_18 Kasım 2026 — kullanıcı, kodlamadan önce GPT‑6.1 ile okuyucunun önceki beğenilen sahne/spot örneğine göre yeniden düşünülmesini istedi._
+
+`gpt-6.1-sol` uzmanı mevcut okuyucuyu okuyup `design-handoff/proposals/2026-11-18-reader-concept/BRIEF.md` hazırladı. `REVIEW.md` önizleme kapsamı/sınırları; sohbet önizlemesi `reader-concept-61.html`. Öneri: üstte guaj sahne ve temiz metin; sonraki sayfada metin ardından küçük spot; kalıcı X, mevcut işlevleri koruyan sakin üst/alt chrome, Yazı→Kâğıt ayar sırası ve canlı yazı örneği. Beyaz Gündüz mevcut sıcak asset'in aynısı değil, önerilen değişikliktir. Spot yerleşimi mevcut hasIllustration akışında ayrı rol gerektirir.
+
+**Henüz uygulama kararı yok:** kullanıcı önce görüp beğenecek; SwiftUI/Assets/motor değiştirilmedi. Kestane karşılaştırması taslağı (`2026-11-18-character-comparison`) korunuyor ama kullanıcı testi/onayı sayılmıyor. Okuyucu örneğinin metni ve kızı kurmaca yerleşim örneği, motorun gerçek kişiselleştirilmiş çıktısı değil. Sözdizimi/kaynak kontrolü yapıldı; app test/simülatör ve tarayıcı görsel matrisi yapılmadı.

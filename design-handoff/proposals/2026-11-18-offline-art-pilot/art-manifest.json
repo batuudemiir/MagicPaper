@@ -1,0 +1,47 @@
+{
+  "schema": "pilot-only-1",
+  "scope": {
+    "blueprintID": "bp_charge_tending_001",
+    "settingID": "setting_old_orchard_001",
+    "companionID": "companion_hedgehog_pilot_001",
+    "discoveryID": "object_wilting_seedling_001"
+  },
+  "assets": [
+    {
+      "id": "wilting-seedling-v1",
+      "file": "wilting-seedling-v1.png",
+      "page": 1,
+      "role": "hook",
+      "variantAllowlist": [
+        "na_any_01",
+        "na_any_02",
+        "na_any_03",
+        "na_neutral_01",
+        "na_neutral_02",
+        "na_neutral_03",
+        "na_neutral_04",
+        "na_neutral_05"
+      ],
+      "depictsChild": false,
+      "depictsCompanion": false,
+      "status": "review"
+    },
+    {
+      "id": "kestane-meeting-v1",
+      "file": "kestane-meeting-v1.png",
+      "page": 3,
+      "role": "companion",
+      "variantAllowlist": [
+        "mc_care_02",
+        "mc_care_03",
+        "mc_care_06",
+        "mc_care_07"
+      ],
+      "depictsChild": false,
+      "depictsCompanion": true,
+      "status": "review"
+    }
+  ],
+  "fallback": "text-only",
+  "note": "Review-only proposal, NOT the production SceneLibrary schema. Sample allowlists cover observed variants only. No runtime AI, keyword guess, or random fallback."
+}

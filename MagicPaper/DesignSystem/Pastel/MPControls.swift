@@ -103,7 +103,7 @@ struct MPSwitchStyle: ToggleStyle {
     }
 }
 
-/// 52 pt rounded field. Kid: sunken cream border; parent: #E2E5EA border.
+/// 52 pt rounded field. Kid: sunken lilac border; parent: #E2E5EA border.
 struct MPTextField: View {
     let label: String?
     let placeholder: String

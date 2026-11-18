@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · main (merge commit) · codex/design-system-catalog main'e birleşti
+
+- `codex/design-system-catalog` dalı (10 commit: Ragi yeni çizimleri ve kukla ölçüsü, tasarım sistemi kataloğu, beyaz/lila yüzey renkleri, okuyucu ve karşılama illüstrasyon önerileri, örnek masal ve yapay ses temizliği) main'in H0-H4 havuz commit'leriyle birleşti.
+- Tek çakışma bu günlükteydi: iki tarafın kayıtları da korundu, H kayıtları üstte, dal kayıtları altta.
+- Derlenmedi, test edilmedi (disk dolu). Origin'e gönderilmedi.
+
 ### 2026-11-18 · main@2d76b6e (dal worktree-agent-a4d762b8b86a0f234) · H4: seri devamı 7-10 ve 3-4 macera/öğrenme
 
 - Ne değişti: `series.continuations`'ın sonuna on devam blueprint'i. 7-8 ve 9-10'a dörder (düz arkta `stayingWith` ve `takingItHome` karşılığı, üç mod; uyku arkında `bedtimeStayingWith` ve `bedtimeSettling` karşılığı), 3-4'e iki düz ark devamı yalnızca öğrenme ve macera için (`lookingAgain`, `askingAgain`). Hiçbirinde `unease`/`hesitation` yok.
@@ -243,6 +249,187 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Dini tarihler haberlerden; Kurban, Hicri yılbaşı, Aşure ve Mevlid tek kaynakta, yayın öncesi Diyanet'ten doğrulanmalı. Yarıyıl tatili MEB genelgesiyle doğrulanmalı. 2027-28 okul takvimi henüz yok.
 - Uygulama kodu, içerik ve tema değişmedi. Test çalıştırılmadı (belge işi).
 - Dosya: docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md.
+
+### 2026-11-18 · codex/design-system-catalog · Yeni Ragi çizimleri katalog pozlarına yerleşti
+
+- Ragi kütüphanesinden (`design-handoff/proposals/2026-11-18-ragi-asset-library`) 15 görsel `Assets.xcassets/Brand/mascot*` yerlerine kondu: front 01, threeQuarter 02, happy 06, calm 07, sleepy 08, surprised 10, curious 11, waving 12, onBook 14, reading 15, sleeping 18, thinking 19, walking 20, pencil 43, mascotPeek 25. Görsel boyanmadı; saydam kenar kırpıldı, uzun kenar 1024 px.
+- `reading` için 17-seated-reading yerine 15-reading seçildi: 17'nin gözleri kapalı, uyanık pozların göz kırpma kuralına (`testEveryAwakePoseHasEyes`) uymaz.
+- `RagiRig` tablosu yeni çizime göre yeniden ölçüldü (göz, baş, kuyruk, kol); ölçüler ızgara üstünde görsel olarak denetlendi. Göz kapağı rengi `ragiBand` 0x3A2458 → 0x65306E (yeni göz bandının medyanı). `docs/RAGI.md` kaynak ve poz eşlemesiyle güncellendi.
+- Bilerek değişmedi: ekranlar, `Mascot` kataloğu ve kullanım tablosu, hareket ve ses. 39-42 (hale taşıyor) ve kataloğa bağlı olmayan diğer pozlar uygulamaya alınmadı.
+- Doğrulama: koyu gece zemininde kenar/hale kontrolü yapıldı, temiz. Derleme, test ve simülatör çalıştırılmadı (disk %100 dolu, 1,9 GB boş). Göz kırpma ve kemik hareketi cihazda görülmedi; Ragi Stüdyosu'nda (`-mpRagiStudio YES`) bakılmalı.
+- Dosyalar: `MagicPaper/Assets.xcassets/Brand/mascot*.imageset/*.png` (15), `DesignSystem/Pastel/MPRagi.swift`, `DesignSystem/MPTheme.swift`, `docs/RAGI.md`, bu günlük.
+
+### 2026-11-18 · codex/design-system-catalog, commit yok · Ragi ayrı görsel kütüphanesi
+
+- Kullanıcının karakter paftasına dayanarak yerleşik image_gen ile 45 ayrı Ragi görseli hazırlandı: 5 açı, 6 ifade, 21 poz, 10 aksesuar ve 3 yeni uygulama pozu. Temiz çıkan önden çizim ikinci tur kimlik referansı oldu; hale taşıyan birçok sürüm yenilendi. Yeni pozlar masal yazma, rehberlik ve nazik yeniden deneme.
+- 39–42 (kuyruk, pati izi, uyku ve heyecan işaretleri) çevre halesi tekrar üretimlerle giderilemedi; katalogda düzeltme gerekiyor olarak işaretli, yayın için uygun değil. Paket görsel inceleme teslimidir; tüm set yayın hazır değildir. Kanonik çanta ayrıntılarında küçük üretim farkları son seçimde tekleştirilmeli.
+- Uygulama varlık kataloğu, SwiftUI ekranları ve RagiRig değiştirilmedi; entegrasyon ve cihazda ölçü/hareket kontrolü yapılmadı. Önceki oturumların değişikliklerine dokunulmadı.
+- Doğrulama: 45 PNG açıldı, RGBA ve boş alfa alanı kontrol edildi, boyutlar ve SHA-256 kaydedildi; ZIP bütünlüğü ve 45 PNG içeriği doğrulandı. Görseller araç çıktılarında incelendi. Uygulama testi/derleme/simülatör çalıştırılmadı.
+- Dosyalar: design-handoff/proposals/2026-11-18-ragi-asset-library/ (assets, index.html, README, PROMPTS, REFINEMENT, SOURCES, VALIDATION), ragi-45-gorsel-inceleme-seti.zip; bu günlük.
+
+
+### 2026-11-18 · codex/design-system-catalog · GPT‑6.1 ile okuyucu tasarım önizlemesi
+
+- Kullanıcının açık isteğiyle gpt-6.1-sol tasarım ajanı mevcut okuyucuyu inceleyip BRIEF.md hazırladı. Önceki beğenilen guaj sahne/spot örnekleriyle iki sayfalık etkileşimli okuyucu önerisi hazırlandı. Kalıcı X, ikincil araçları gizleme/gösterme, sayfa seçimi, favori, canlı yazı/aralık/kolay okuma/kâğıt ayarları gösteriliyor. Beyaz Gündüz ve spot yerleşimi öneri; mevcut token/kod değişmedi.
+- Kapsam ve ses/viewport sınırları REVIEW.md içinde. Önizleme demo metindir; gerçek çocuk profili değil. Uygulama entegrasyonu kullanıcı görsel değerlendirmesini bekliyor.
+- Doğrulama: HTML gömülü görselleri/dosya boyutu ve JavaScript sözdizimi kontrol edildi. Tarayıcı otomasyonu başlatılamadı; tarayıcı görsel matrisi, app build/test ve simülatör çalıştırılmadı. Uygulama/Assets/motor/içerik değiştirilmedi.
+- Dosyalar: design-handoff/proposals/2026-11-18-reader-concept/BRIEF.md ve REVIEW.md; bu günlük. Sohbet önizlemesi reader-concept-61.html.
+
+### 2026-11-18 · codex/design-system-catalog · Kestane poz karşılaştırması taslağı
+
+- Önceki “deneyelim” isteği için yerleşik image_gen ve karakter/stil referanslarıyla nötr, başını kaldırmış, bekleyen Kestane ve su ayrıntısı hazırlandı. Dört gerçek motor paragrafından, metinleri değiştirmeden editoryal bölüm kuruldu; kaynakları JSON'da. Üç koşul aynı metin/yerleşimi kullanıyor, nesne yalnızca ilgili sayfada.
+- Kullanıcı okuyucuyu yeniden tasarlamaya yöneldiği için bu taslak kullanıcı testi/onayı veya kazanmış varyant sayılmadı. Dört paragrafın kaynakla birebirliği ve JS sözdizimi doğrulandı; app kod/test/entegrasyon yok.
+- Dosyalar: design-handoff/proposals/2026-11-18-character-comparison/; bu günlük.
+
+### 2026-11-18 · main, commit yok · İlk iki özel gün için sosyal medya taslakları
+
+- 20 Kasım Çocuk Hakları Günü ve 24 Kasım Öğretmenler Günü için onaylı referansla yerleşik image_gen kullanılarak iki ayrı yaklaşık 4:5 ana görsel hazırlandı. Açıklama, alternatif metin, kaynak ve üçer Story metni CONTENT_PACK.md içinde; tam görsel promptları PROMPTS.json içinde.
+- Çocuk hakları içeriğinde satış çağrısı yok; öğretmen içeriğinde kurumsal iş birliği veya uydurma alıntı yok. Altı Story’nin tekil görselleri/video dosyaları üretilmedi. Uygulama kodu değiştirilmedi; yayın/otomasyon yapılmadı.
+- Doğrulama: görseller araç çıktılarında incelendi; Türkçe başlıklar/tarihler ve ortak görsel yön kontrol edildi. İki kopya SHA-256 ve boyut/oran kontrolünden geçti; kaynaklar UNICEF ve MEB’den okundu. git diff --check geçti; kod testi/derleme çalıştırılmadı.
+- Dosyalar: marketing/social/campaigns/2026-11-special-days-v1/ (iki PNG, CONTENT_PACK.md, PROMPTS.json); marketing/social/calendar/SPECIAL_DAYS_TR_2026-2027.md ve .json; bu günlük.
+
+
+### 2026-11-18 · codex/design-system-catalog · Örnek masal temizliğinin artıkları
+
+- `ProfileCreationView.create()` yorumu güncellendi: yeni kurulumda örnek masal yok, `adoptSampleStories` yalnızca eski cihazlarda kalmış örnekleri yeni ada uyarlıyor. Kod davranışı değişmedi.
+- 3018bff'te düzenlenen yedi beat dosyasının yanında iCloud'un bıraktığı " 2.json" kopyaları silindi. Kopyalar git'te izlenmiyordu, eski metni taşıyordu (3018bff~1 ile birebir aynı) ve katalog yükleyicisinin yanlışlıkla okuyabileceği yerdeydi.
+- Test çalıştırılmadı; derleme ve simülatör yok (yalnızca yorum değişikliği).
+- Dosyalar: `MagicPaper/Views/ProfileCreationView.swift`, bu günlük.
+
+### 2026-11-18 · codex/design-system-catalog · Karakter merkezli resimleme fikri: araştırma ve öneri
+
+- Kullanıcının karakterleri önceden çizip isimleri geçen sayfalarda gösterme fikri, yedi yaklaşım ve önerilen ifade/poz + nesne + seçili ikili düzen modeliyle genişletildi. Eng/Godwin/Fisher 2020, Greenhoot/Beyer/Curtis 2014 ve Liu/Keller 2023 birincil araştırmaları incelendi; kanıt sınırları ve ürün çıkarımları ayrıldı.
+- Kimlik/isim ayrımı, zamirler, sahnede bulunmama, karakter başına duygu ve eylem hedefi, sürüm sabitleme ele alındı. Mevcut Binder/Mapper/StoryPage ve corpus alanlarıyla ilişki incelendi. Önerilen yeni alanlar mevcut özellikmiş gibi sunulmadı.
+- Sonraki pilot önerisi: aynı metin üzerinde tek Kestane vinyeti / üç poz / poz + nesne karşılaştırması. Bu bir öneri, onaylanmış uygulama kararı değil. Uygulama kodu, içerik ve görseller değiştirilmedi; test/derleme/simülatör çalıştırılmadı.
+- Dosyalar: design-handoff/proposals/2026-11-18-offline-art-pilot/CHARACTER_DIRECTION.md; bu günlük.
+
+### 2026-11-18 · codex/design-system-catalog · Offline motor + guaj görsel pilotu
+
+- Gerçek ContentCatalogLoader/OfflineStoryComposer ile 5–6 yaş charge/bakım blueprint'i, Eski Meyve Bahçesi, solan fide ve Kestane sabitlenerek 12 tohum × iki kurmaca isimden 24 kitap/192 sayfa çıkarıldı. Export.swift ve yeniden çalıştırma betiği uygulama dışında, pilot klasöründe.
+- Yerleşik ChatGPT image_gen + onaylı referansla iki nesne/karşılaşma çizimi hazırlandı. İncelenmiş varyant izin listeleri iki çizimi 48 sayfaya eşliyor; 144 sayfa metin. Varlıklar review, üretim onayı değil; uygulama/motor kaynakları ve Release bayrağı değiştirilmedi.
+- Bulgular: 6/24 örnekte fideye ışık/parlaklık dili; 7. sayfalarda hedef Kestane; aynı tohumda isim çiftleri 12/12 varyant dizisini değiştiriyor. Anlamsal içerik incelemesi gerekli; karakterli katman denemesi henüz yapılmadı. Rapor, ham metinler, eşlemeler, sorun listesi ve kaynak hashleri kaydedildi; proje hafızası güncellendi.
+- Doğrulama: geçici SwiftPM çalıştırıcısı derlendi, 24/24 isClean; ikinci export cmp ile birebir eşit. audit.py, önizleme JS ve kabuk sözdizimi kontrolleri geçti. Uygulama testleri/simülatör ve tarayıcı görsel matrisi çalıştırılmadı. Sohbet önizlemesinde 24 gerçek metin ve sekiz sayfalık gezinme var.
+- Dosyalar: design-handoff/proposals/2026-11-18-offline-art-pilot/; docs/PROJE_HAFIZASI.md; bu günlük.
+
+### 2026-11-18 · main, commit yok · Türkiye için bir yıllık özel gün araştırması
+
+- 18 Kasım 2026–17 Kasım 2027 aralığında 92 gün/dönem araştırıldı; 26 ana kampanya adayı, 48 destek içerik ve 18 anma/farkındalık/isteğe bağlı selam kaydı oluşturuldu. Her kayıtta tarih, kaynak, marka önceliği, özgün tasarım fikri ve hazırlık süresi var.
+- Diyanet 2026/2027, MEB çalışma takvimi ve gün çizelgeleri, BM/UNESCO/UNICEF, IBBY, LitWorld ve ilgili düzenleyicilerden toplam 38 kaynak sayfası kullanıldı. Beş tekrarlama kuralı hesapla doğrulandı; 2027–2028 okul tarihleri ve yerel fuarlar doğrulanmadığı için tarih atanmadı.
+- 23 Nisan/kitap günü, Kurban Bayramı/19 Mayıs, 4 Ekim çocuk/hayvan/uzay ve Kasım kitap haftası/10 Kasım çakışmaları için editoryal öneriler eklendi. Mevcut Instagram planına kaynak bağlantısı kondu.
+- Uygulama kodu değiştirilmedi; paylaşım/otomasyon/reklam kurulmadı. Tarihler kaynakla, kayıt sayısı/benzersizlik/aralık/kaynak alanları ve önemli değişken tarihler Python ile doğrulandı; git diff --check geçti. Kod testi/derleme çalıştırılmadı.
+- Dosyalar: marketing/social/calendar/SPECIAL_DAYS_TR_2026-2027.md ve .json; marketing/social/strategy/INSTAGRAM_PRELAUNCH_PLAN_V1.md; bu günlük.
+
+
+### 2026-11-17 · codex/design-system-catalog · Yapay ses temizliği: motor satırları, arayüz, DailyFeed
+
+- Motor (v3-age7, v3-age9, seri): dersi açıkça söyleyen ya da "X değil, Y" kuruluşlu yedi satır yeniden yazıldı: `a7_sr_05`, `a7_cf_12`, `a9_sr_06`, `a9_cf_07` (sözlük kelimesi "yöntem" korundu), `a9_ps_04`, `a9_rc_04`, `srs_01`. Slotlar, uzunluk sınıfları ve hareket kimlikleri aynı. `srs_01`'deki "derin bir nefes" de gitti.
+- Arayüz: "İlk masalını yarat" (Kitaplık boş durumu ve önizlemesi), "Yeni masal yarat" (bu akşamın kartı) ve Masallar'daki "Yeni bir masal yaratır" ipucu "yaz" oldu. Harita boş durumundaki "Her masal bir yere götürür." yerine "Masalda gittiğin yerler bu haritada toplanır." yazıldı.
+- DailyFeed 07, 08 ve 11: "muhteşem", "Fındık anladı ki...", "Çünkü gerçek arkadaşlar..." gibi ders cümleleri sahneye çevrildi; 07'deki "el ele tutu" yazım hatası ve metindeki tireler düzeltildi. Kaynak (`Content/DailyFeed/stories`) ile uygulamaya gömülü `daily_feed_fallback.json` eşleşiyor. İmzalı `hosting/public/content/feed.json`'a dokunulmadı: 08 orada eski hâliyle duruyor, `content-publisher publish` ve yayın anahtarı Batuhan'da.
+- Bilerek değişmeyenler: Paywall'daki "her ay görselli maceralar" cümlesi (plan kartlarıyla birlikte ürün kararı), "sorun sende değil" hata metni, diğer beat'lerdeki "derin bir nefes" satırları, `moralLesson` alanları (ekranda gösterilmiyor), eski `promo/` sayfaları (yayında değil) ve `templates/offline` şablonları (`isSelectable` beat'siz şablonu dışarıda bırakıyor, okura gitmiyor).
+- Test: `validate_beat_corpus.py` PASS (23 kapı). Motor paketi `swift test` scratch kopyada iki kez koştu, biri bu değişikliklerle biri HEAD ile: ikisi de aynı 18 testte düşüyor (MatrixCoverage, Occasion dil kuralı "anında", OfflineDeterminism, ProseCooldown, SkyWorld, UsageLearning vb.), yani bu iş yeni hata eklemedi; o 18 hata önceden var. `xcodebuild test` (LibraryCutoverTests, AccountSyncTests, StoryColophonTests) derlemeye ulaşmadı: DerivedData'daki Google/Firebase paketleri açılamadı (`Could not resolve package dependencies`, disk dolu). Uygulama testi çalışmadı, derleme doğrulanmadı, simülatörde görülmedi. Not: yedi beat dosyasının yanında iCloud'un " 2.json" kopyaları duruyor (eski içerik); silinmeleri gerekiyor, bu oturumda silme izni verilmedi.
+- Dosyalar: yedi beat JSON'u (`StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7`, `v3-age9`, `series`), `MagicPaper/Views/LibraryView.swift`, `MagicPaper/DesignSystem/Pastel/MPMascot.swift`, `MagicPaper/DesignSystem/Pastel/MPStory.swift`, `MagicPaper/Screens/Gunluk/GunlukView.swift`, `MagicPaper/Screens/Collection/StoryMapView.swift`, `Content/DailyFeed/stories/07.json`, `08.json`, `11.json`, `MagicPaper/StoryEngineBridge/RemoteContent/daily_feed_fallback.json`.
+
+### 2026-11-17 · codex/design-system-catalog · İlk açılıştaki örnek masallar kaldırıldı
+
+- Yeni kurulum artık kitaplığa iki örnek masal ("Zephyr'in Sihirli Macerası", "Luna'nın Uzay Yolculuğu") koymuyor. Metinler koda gömülüydü, motorla yazılmamıştı ve yapay ses taşıyordu: "Her şey muhteşemdi", açıkça söylenen dersler, "kötü büyücü", "Karanlık Orman", her çocuğa anne varsayımı. Karar: Batuhan, 17 Kasım 2026 (kaldır; yeniden yazma ve motorla yazma seçenekleri seçilmedi).
+- `StoryGenerationManager`: `createSampleStoriesIfNeeded` ve `createSampleStory` silindi. `LibraryShelf.canSeedSampleStories` ile yalnızca onun okuduğu `foundDamage` de gitti; `LibraryCutoverTests` içindeki üç `canSeedSampleStories` doğrulaması kaldırıldı.
+- Bilerek değişmeyenler: `adoptSampleStories` ve `SampleStoryRecognizer` duruyor. Önceki sürümün cihazda bıraktığı kopyalar yeniden adlandırılmaya ve senkrondan uzak kalmaya devam ediyor. Eski kopyalar silinmiyor.
+- Etki: "Masalı önce yaz" bayrağı kapalıyken yeni ailenin kitaplığı ilk masal yazılana kadar boş durum ekranını gösterir.
+- Test: `xcodebuild test` (LibraryCutoverTests, AccountSyncTests, StoryColophonTests) derlemeye ulaşmadı: DerivedData'daki Google/Firebase paketleri açılamadı (`Could not resolve package dependencies`, disk dolu). Uygulama testi çalışmadı, derleme doğrulanmadı, simülatörde görülmedi.
+- Dosyalar: `MagicPaper/Services/StoryGenerationManager.swift`, `MagicPaper/Services/Persistence/LibraryShelf.swift`, `MagicPaper/StoryEngineBridge/Account/FamilyLocalStore.swift` (yorum), `MagicPaperTests/LibraryCutoverTests.swift`.
+
+### 2026-11-17 · Okuyucu guaj görsel örneği — iki ardışık sayfa
+
+- Onaylı sosyal sanat yönü referansıyla yerleşik ChatGPT image_gen üzerinden sahne ve saydam küçük anlatı resmi hazırlandı: bahçede filizi fark eden kurmaca demo kız; sulama kabı, filiz ve iki damla. Ragi yok; gerçek çocuk profili kullanılmadı.
+- Sohbette iki sayfa arasında geçilen okuyucu yerleşimi hazırlandı. Metin ayrı, ilk sayfa sahneli, ikinci metin ağırlıklı; beyaz varsayılan ve isteğe bağlı kâğıt renkleri. Uygulama entegrasyonu yapılmadı; tasarım onay bekliyor.
+- Kalıcı dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/reader/scene-v1.png, spot-v1.png, PROMPTS.md. Çıktılar araçta incelendi; PNG saydamlığı kontrol edildi. Önizleme JavaScript sözdizimi kontrolü geçti; uygulama testi/derleme/simülatör çalıştırılmadı.
+
+### 2026-11-17 · Karşılama illüstrasyonu v2 — sade kitap ve filiz
+
+- Kullanıcı ilk panoyu fazla AI/jenerik buldu; önerilen kitap + mevcut Ragi pozu + tek turkuaz filiz yönünü kabul etti. Onaylı guaj stil ve resmî onBook karakter referanslarıyla yerleşik ChatGPT image_gen üzerinden ikinci ekran konsepti hazırlandı.
+- Şato, ay, yol ve çevre bitkileri kaldırıldı. Beyaz alan artırıldı. Görsel ve yerleşim onayı bekleniyor; uygulamaya entegrasyon yapılmadı. Ragi referanstan yeniden çizimdir, nihai kimlik doğrulaması gerekir; gerçek metin/düğme uygulama bileşenleriyle kurulacak.
+- Dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/welcome-concept-v2.png ve PROMPT-v2.md. Çıktı gözle incelendi; test/derleme/simülatör çalıştırılmadı.
+
+### 2026-11-17 · main, commit yok · Instagram lansman öncesi hesap planı
+
+- Türkiye/Türkçe için profil adı, 116 karakterlik biyografi, Ragi portresi önerisi, beş öne çıkan, kapak tarifleri, sabit içerikler, görsel/fotoğraf/video dili ve 4 haftalık 12 yayın takvimi hazırlandı. Üretim, ölçüm ve eski fiziksel kitap içeriklerinden geçiş işleyişi belgelendi.
+- Resmî AppIcon ve onaylı illüstrasyon referansıyla yerleşik image_gen üzerinden profil/kapak konsept panosu üretildi. Pano son tekil dosyalar değildir; Ragi karakter eşleşmesi ve küçük boyut kontrolü bekliyor.
+- Instagram hesabına yazılmadı, gönderi arşivlenmedi/yayınlanmadı; otomasyon, reklam bütçesi ve lansman tarihi atanmadı. Uygulama kodu değişmedi.
+- Doğrulama: biyografi 116 karakter; 4×3 yayın tutarlı; görsel kopyası SHA-256 ile doğrulandı, pano araç çıktısında incelendi. Kod testi/derleme çalıştırılmadı.
+- Dosyalar: marketing/social/strategy/INSTAGRAM_PRELAUNCH_PLAN_V1.md, instagram-profile-concept-v1.png, PROFILE_CONCEPT_PROMPT.md; bu günlük.
+
+
+### 2026-11-17 · Karşılama illüstrasyon konsepti — onay bekliyor
+
+- Repo kuralları, ilgili proje hafızası, Ragi kitabı, onaylı sosyal görsel yönü ve üç mobil tanıtım örneği incelendi. Karşılama, mod seçimi, boş durum ve küçük sahneler için ölçek önerileri yazıldı.
+- Yerleşik ChatGPT image_gen ile onaylı stil ve resmî onBook Ragi referanslarından tek ekran konsept panosu hazırlandı. Panodaki Ragi yeniden çizimdir; entegrasyonda mevcut varlık ayrı katman kalacak. Panodaki düğme geçişi gerçek uygulamada kullanılmayacak.
+- Dosyalar: design-handoff/proposals/2026-11-17-app-illustrations/REVIEW.md ve welcome-concept-v1.png. Uygulama kodu/varlık kataloğu değiştirilmedi; entegrasyon kullanıcı onayını bekliyor.
+- Görsel araç çıktısı gözle incelendi. Test, derleme ve simülatör çalıştırılmadı; bu bir tasarım önerisidir.
+
+### 2026-11-17 · main, commit yok · Mobil uygulama için üç Instagram gönderisi
+
+- Onaylı illüstrasyon referansıyla üç ayrı 4:5 Türkçe lansman öncesi görsel hazırlandı: Masal dünyası cebine geliyor, Bu akşam birlikte okuyalım, Bugün nasıl bir masal okuyalım. Yerleşik image_gen kullanıldı.
+- Mobil cihazlar tanıtım illüstrasyonudur; gerçek arayüz uydurulmadı. Tarih/mağaza bağlantısı verilmedi, paylaşım yapılmadı; uygulama kodu değiştirilmedi.
+- Açıklama metinleri CAPTIONS.md içinde. Referans stile, Türkçe yazılara ve cihaz çizimlerine araç çıktılarında görsel bakıldı; üç kopya SHA-256 ile doğrulandı, 4:5 oranları kontrol edildi. Kod testi/derleme çalıştırılmadı. Logo/fontlar son şablon öncesi kontrol bekliyor.
+- Dosyalar: marketing/social/prelaunch-mobile-v1/ altındaki üç PNG ve CAPTIONS.md; varsa PROMPTS.json; bu günlük.
+
+
+### 2026-11-17 · main, commit yok · Sosyal medya illüstrasyon yönü onayı
+
+- Beğenilen üçlü Instagram konsepti kalıcı referans olarak kaydedildi; Türkiye/Türkçe hedefi, guaj dokusu, beyaz-mor-lila kimlik, yardımcı turkuaz/mercan ve tekrar kullanılabilir görsel promptu belgelendi.
+- Uygulama illüstrasyonları, Ragi kimliği ve yayınlama yetkileri değiştirilmedi. Günlük otomasyon henüz kurulmadı.
+- Doğrulama: referans kullanıcı tarafından beğenildi; görsel kopyası SHA-256 ile doğrulandı ve belge bağlantısı kontrol edildi. Kod değişikliği yok; test/derleme çalıştırılmadı. Önceki arayüz çalışmasının geçici derleme klasörü disk alanı için temizlendi.
+- Dosyalar: marketing/social/brand/ART_DIRECTION.md; marketing/social/brand/references/instagram-art-direction-v1.png; docs/MARKA.md; bu günlük.
+
+
+### 2026-11-17 · codex/design-system-catalog, commit yok · Canlı bileşen kataloğu
+
+- DEBUG-only katalog eklendi: Düğmeler, Kontroller, Yüzeyler, Tipografi, Durumlar; kategori/tema/yazı boyutu menüleri, AX5 ve açık/koyu Preview'lar. Gerçek bileşenler geçici yerel seçimlerle çalışır, `-mpDesignSystemCatalog YES` ile açılır.
+- Token kaynak haritası ve bileşen erişilebilirlik sözleşmesi belgelendi; tarihsel envantere güncellik bağlantısı eklendi.
+- Ortak bileşen davranışları, ürün gezinmesi ve servis bootstrap'ı bilerek değiştirilmedi. Diğer oturumun renk/yüzey değişiklikleri korundu.
+- Doğrulama: Debug/Release Swift sözdizimi kontrolü ve diff kontrolü geçti; bağımsız statik incelemede kritik/yüksek bulgu yok. Tam Debug derleme RevenueCatUI aşamasında disk dolmasıyla başarısız (`No space left on device`). Bu denemede oluşan Build/Products temizlendi. Simülatör görselleri/etkileşim, VoiceOver ve Reduce Motion doğrulanmadı; test çalıştırılmadı.
+- Dosyalar: `MagicPaper/Screens/DesignSystemCatalog/` (4 Swift dosyası), `MagicPaper/Screens/MPDebugLaunch.swift`, `MagicPaper/MagicPaperApp.swift` (DEBUG katalog dalı), `docs/DESIGN_SYSTEM_CATALOG.md`, `docs/MagicPaper_Design_System.md`, ilgili `docs/superpowers/specs/2026-11-17-design-system-catalog-design.md` ve `docs/superpowers/plans/2026-11-17-design-system-catalog.md`, bu günlük.
+
+
+### 2026-11-17 · main, commit yok · Üyelik akışı onayı ve uygulama planı
+
+- Ne değişti: onaylanan ilk kurulum teklifi → üç ücretsiz masal → yeni masal girişinde çocuk durumu → ebeveyn kapısı → paywall → seçim akışına dönüş tasarıma kaydedildi. Sekiz görevlik dosya bazlı uygulama planı yazıldı.
+- Plan ayrıntıları: ilk masalın hak sayılması, kalıcı kayıt sonrası tek tüketim, çökme sonrası rezervasyon uzlaştırması, mevcut kullanıcı/kitap/seri hakları ve tek modal zinciri.
+- Bilerek değişmedi: uygulama kodu, canlı ürün/fiyat, bayraklar ve katalog erişimi. Teslim tasarım ve plandır.
+- Doğrulama: kod bağlantıları ve belge kapsamı incelendi; test/derleme/simülatör/satın alma çalıştırılmadı.
+- Dosyalar: `docs/superpowers/specs/2026-11-17-membership-entry-design.md`, `docs/superpowers/plans/2026-11-17-membership-entry.md`, bu günlük.
+
+### 2026-11-17 · main, commit yok · Arayüzde krem yerine beyaz ve lila
+
+- Batuhan’ın kararı: ana uygulama zemini beyaz (#FFFFFF), gömük yüzey çok açık lila (#F6F3FC); bej kenarlar ve devre dışı denetimler morla uyumlu nötrlere çevrildi. Ortak renk varlıkları üzerinden bütün tüketicilere uygulanır.
+- Okuyucunun Krem/Sepya dahil tüm kâğıtları, kapak ve illüstrasyon renkleri, ebeveyn zemini ve mor marka rengi korundu.
+- Doğrulama: 14 uygulama/handoff renk varlığı token kaynağıyla eşleşiyor; okuyucu token/varlıkları HEAD ile aynı. Ana, ikincil ve mor yazı beyaz/lila üzerinde 5,10:1–15,31:1 kontrast sağlıyor. Birim/UI testleri çalıştırılmadı. İlk derleme ağ kısıtına takıldı; yerel önbellekle ikinci derleme başladı. Batuhan’ın isteğiyle doğrulama sonraya bırakıldı; derleme ve simülatörde görsel kontrol tamamlanmadı.
+- Etkilenenler: uygulama ve handoff Colors kataloglarındaki backgroundKid/backgroundSunken/borderKid/borderKidInput/borderKidDivider/borderDashed/actionDisabled; iki MPColor.swift; MPControls.swift; uygulamadaki eski krem yüzey yorumları; tokens.json; docs/MARKA.md; docs/superpowers/plans/2026-11-17-interface-white-surfaces.md; bu günlük.
+
+
+### 2026-11-17 · main, commit yok · Güncel ürün için monetizasyon araştırması
+
+- Ne değişti: eski fiyat/kota/huni kararları yeni gereksinim sayılmadan Release özellik matrisi, Kidly/Moshi/Readmio ve RevenueCat araştırması, üç gelir modeli, ücretsiz/ücretli kapsam önerisi, maliyet formülü ve yeni ölçüm protokolü yazıldı. Lansman planı güncel E4 ve özellik bayrağı kanıtıyla düzeltildi.
+- Bulgular: aile özellikleri ve B2 Release'te kapalı; ana masal oluşturma yolunda entitlement tüketicisi görülmedi; StoreKit/RevenueCat kimlik ayrışması, yıllık kademe eşlemesi ve bilgi yenilemede kota sıfırlama riski kaydedildi. Canlı panel davranışı doğrulanmadı.
+- Bilerek değişmedi: uygulama, fiyatlar, mağaza/RevenueCat ayarları, bayraklar ve mevcut haklar. Öneriler henüz yürürlükte değil.
+- Doğrulama: statik inceleme, birincil web kaynakları ve belge tutarlılık kontrolü; test/derleme/simülatör/satın alma çalıştırılmadı.
+- Dosyalar: `docs/research/MONETIZASYON_ARASTIRMASI_2026-11-17.md`, `docs/LANSMAN_KALITE_PLANI_2026-11-17.md`, bu günlük.
+
+### 2026-11-17 · main, commit yok · Tasarım sistemi statik denetimi
+
+- 273 Swift dosyasında tarama ve 8 ortak bileşende odaklı inceleme yapıldı; 6 bulgu grubu, token kaynakları ve önerilen düzeltme sırası raporlandı.
+- Uygulama kodu ve görsel değerler bilerek değiştirilmedi; önceki tasarım envanteri tarihsel içeriğiyle korundu.
+- Doğrulama: kaynak incelemesi ve metin taraması; build/test/simülatör/VoiceOver çalıştırılmadı.
+- Dosyalar: `docs/DESIGN_SYSTEM_AUDIT_2026-11-17.md`, `design-handoff/reference/DEMO_CHANGELOG.md`.
+
+
+### 2026-11-17 · main, commit yok · Lansman kalite ve ürün stratejisi taslağı
+
+- Ne değişti: mevcut kod, startup/vizyon/evren planları ve birincil web kaynaklarından lansman odaklı plan yazıldı. L0–L4 sırası, içerik korpusu, aile pilotu, kabul eşikleri ve 90 günlük karar takvimi tanımlandı.
+- Bulgular: Release'te kapalı görsel yolunun paywall vaadi; anonim huninin kohort/geri dönmeyen aile sınırı; tarihsel yetki çağrısı notunun güncel kodla örtüşmemesi.
+- Bilerek değişmedi: uygulama, içerik, bayraklar, fiyatlar ve mevcut ürün kararları. Yeni belge öneri taslağıdır.
+- Doğrulama: statik kod/belge incelemesi ve web araştırması yapıldı; test, derleme, simülatör ve canlı servis denemesi çalıştırılmadı.
+- Dosyalar: `docs/LANSMAN_KALITE_PLANI_2026-11-17.md`, bu günlük.
 
 ### 2026-11-17 · main + bu kayıt · Proje Codex'e aktarıldı
 

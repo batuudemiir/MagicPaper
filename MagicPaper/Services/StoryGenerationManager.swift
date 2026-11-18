@@ -35,7 +35,6 @@ class StoryGenerationManager: ObservableObject {
         self.library = library
         loadStories()
         auditStoriesMissingImageURLs()
-        createSampleStoriesIfNeeded()
         // A background launch on a locked device cannot read the story files
         // (`.completeUnlessOpen`); they join the shelf once the device unlocks.
         notifications.publisher(for: UIApplication.protectedDataDidBecomeAvailableNotification)
@@ -170,9 +169,10 @@ class StoryGenerationManager: ObservableObject {
         logger.debug("✅ Story added to library: \(story.id)")
     }
     
-    /// İlk profil oluşturulduğunda örnek masallar yeni çocuğun adına uyarlanır
-    /// (04-STATE-INTERACTIONS.md, akış 1) — aksi hâlde yeni kullanıcının ana
-    /// sayfası boş görünür.
+    /// İlk profil oluşturulduğunda eski örnek masallar yeni çocuğun adına
+    /// uyarlanır (04-STATE-INTERACTIONS.md, akış 1). Yeni kurulum artık örnek
+    /// masal kurmuyor (17 Kasım 2026); bu yalnızca önceki sürümün cihazda
+    /// bıraktığı Zephyr ve Luna kopyaları için duruyor.
     func adoptSampleStories(childName: String, childProfileID: UUID? = nil) {
         guard !childName.isEmpty else { return }
         let samples = ["Zephyr", "Luna"]
@@ -253,70 +253,6 @@ class StoryGenerationManager: ObservableObject {
         return stories.first { $0.id == id }
     }
     
-    // MARK: - Sample Stories
-    
-    private func createSampleStoriesIfNeeded() {
-        // Sadece hiç hikaye yoksa örnek hikayeler oluştur. Raf, dosyalar
-        // okunamadığı ya da bozuk çıktığı için boşsa örnek konmaz (E1).
-        guard stories.isEmpty, library.canSeedSampleStories else { return }
-        
-        logger.debug("📚 Creating sample stories...")
-        
-        let sampleStories = [
-            createSampleStory(
-                title: "Zephyr'in Sihirli Macerası",
-                childName: "Zephyr",
-                theme: .fantasy,
-                pages: [
-                    ("Sihirli Başlangıç", "Zephyr sabah güneşinin ışıklarıyla uyandı. Pencereden içeri süzülen altın renkli ışınlar, odanın her köşesini aydınlatıyordu. Kuşların cıvıltıları ve uzaktan gelen çiçek kokuları, güzel bir günün başlangıcını müjdeliyordu. Zephyr yataktan kalktı ve pencereye koştu. Dışarıda, arka bahçedeki eski meşe ağacının arkasında garip bir ışıltı gördü. 'Bu ne olabilir?' diye düşündü merakla. Kahvaltıda annesine bu konuda bir şey söylemek istedi ama kelimeler boğazında düğümlendi. Belki de önce kendisi keşfetmeliydi. Kahvaltısını hızla bitirip bahçeye koştu. Meşe ağacının arkasına vardığında, gözlerine inanamadı. Orada, ağacın gövdesinde parlayan, mor ve mavi ışıklarla çevrili sihirli bir kapı vardı."),
-                    ("Sihirli Krallık", "Zephyr titreyen elleriyle kapının tokmağına dokundu. Kapı yavaşça açıldı ve içeriden tatlı bir melodi duyuldu. Cesaret toplayarak içeri adım attı. Gözlerini açtığında kendini bambaşka bir dünyada buldu. Etrafı konuşan hayvanlarla doluydu. Tavşanlar şapka takıyor, sincaplar dans ediyor, kuşlar şarkı söylüyordu. Uzakta, bulutların arasında yükselen ışıltılı bir kale görünüyordu. 'Hoş geldin Zephyr!' dedi yanından geçen kırmızı bir tilki. Zephyr şaşkınlıkla etrafına bakındı. 'Burası neresi?' diye sordu. 'Burası Sihirli Krallık,' dedi tilki gülümseyerek. 'Seni bekliyorduk. Krallığımızın sana ihtiyacı var.' Zephyr'in aklı karışmıştı ama aynı zamanda heyecan doluydu."),
-                    ("Bilge Baykuş", "Yolda ilerlerken, Zephyr etrafındaki muhteşem manzarayı izliyordu. Ağaçlar gökkuşağı renklerindeydi, çiçekler müzik çalıyordu, nehir kristal gibi berraktı. Her şey o kadar güzeldi ki gözlerine inanamıyordu. Kaleye yaklaştıklarında, büyük bir baykuş onları karşıladı. 'Ben Bilge Baykuş,' dedi derin bir sesle. 'Krallığımız büyük bir tehlike altında. Kötü büyücü, krallığın gücünü veren Altın Taç'ı çaldı ve Karanlık Orman'da sakladı. Sadece saf kalpli bir çocuk onu bulabilir.' Zephyr derin bir nefes aldı. 'Ben bulabilirim,' dedi kararlılıkla. Baykuş gülümsedi. 'Biliyordum. İşte sana yardımcı olacak sihirli bir harita ve bir fener.'"),
-                    ("Işıltı ile Tanışma", "Zephyr Karanlık Orman'a doğru yola çıktı. Orman gerçekten de karanlıktı ama feneri her şeyi aydınlatıyordu. Yolda ilerlerken, bir ağacın arkasından küçük bir peri çıktı. 'Merhaba! Ben Işıltı,' dedi neşeyle. 'Sana yardım edebilir miyim?' Zephyr gülümsedi. 'Altın Taç'ı arıyorum,' dedi. 'Ah, o çok tehlikeli bir yer!' dedi Işıltı. 'Ama ben sana yol gösterebilirim. Birlikte gidelim!' İkili birlikte yürümeye başladı. Işıltı, Zephyr'e ormanın sırlarını anlattı. Hangi mantarların yenilebileceğini, hangi yolların güvenli olduğunu öğretti. Zephyr yeni arkadaşına çok minnettar oldu. Birlikte her engeli aşabileceklerini biliyordu."),
-                    ("Kristal Mağara", "Mağaraya girdiklerinde, her yer karanlıktı. Fener ışığı duvarlarda dans ediyordu. Birden, önlerinde büyük bir uçurum belirdi. 'Nasıl geçeceğiz?' diye sordu Zephyr endişeyle. Işıltı düşündü. 'Sihirli köprü büyüsü yapabilirim ama senin inancına ihtiyacım var. Gözlerini kapat ve geçebileceğimize inan.' Zephyr gözlerini kapattı ve derin bir nefes aldı. İnandı. Işıltı büyüyü yaptı ve aniden altın bir köprü belirdi. Birlikte köprüden geçtiler. Mağaranın derinliklerinde, bir kaide üzerinde parlayan Altın Taç duruyordu. Zephyr heyecanla koştu ama Işıltı onu durdurdu. 'Bekle! Etrafında koruma büyüsü var.' Zephyr yavaşça yaklaştı ve taca dokundu."),
-                    ("Zafer Kutlaması", "Zephyr ve Işıltı tacı alıp kaleye geri döndüler. Tüm krallık onları bekliyordu. Kral, tahtından kalktı ve Zephyr'e doğru yürüdü. 'Krallığımızı kurtardın genç kahraman,' dedi gururla. 'Sana nasıl teşekkür etsek az.' Tüm hayvanlar alkışladı ve şarkılar söyledi. Kral, Zephyr'in başına küçük bir taç koydu. 'Bundan böyle sen bu krallığın onursal kahramanısın. İstediğin zaman buraya gelebilirsin.' Zephyr'in gözleri doldu. Hayatının en güzel gününü yaşıyordu. Işıltı ve diğer arkadaşlarıyla dans etti, şarkılar söyledi. Ama yavaş yavaş eve dönme zamanı geliyordu. Vedalaştı ve sihirli kapıdan geçti."),
-                    ("Eve Dönüş", "O gece, Zephyr yatağına uzandı ve gününü düşündü. Ne kadar inanılmaz bir macera yaşamıştı! Sihirli bir krallık, konuşan hayvanlar, cesur bir görev... Hepsi gerçekti. Annesi gelip onu öptü. 'İyi geceler tatlım,' dedi. 'Güzel rüyalar gör.' Zephyr gülümsedi. 'Anneciğim, bugün harika bir macera yaşadım,' dedi. Annesi saçlarını okşadı. 'Eminim öyle olmuştur,' dedi sevgiyle. Zephyr gözlerini kapadı. Yarın yine Sihirli Krallık'a gidebileceğini biliyordu. Işıltı ve diğer arkadaşları onu bekliyordu. Belki de yeni bir macera yaşarlardı. Kim bilir, belki de ejderhalarla tanışırdı ya da uçan bir atla gökyüzünde gezinirdi. Mutlu bir gülümsemeyle uykuya daldı.")
-                ]
-            ),
-            
-            createSampleStory(
-                title: "Luna'nın Uzay Yolculuğu",
-                childName: "Luna",
-                theme: .space,
-                pages: [
-                    ("Yıldızlara Bakış", "Luna her gece penceresinden yıldızları izlerdi. Gökyüzündeki sayısız ışık noktası onu büyülerdi. 'Acaba oralarda neler var?' diye düşünürdü. Bir gece, bahçede garip bir ışık gördü. Dışarı çıktığında, küçük ama parlak bir uzay gemisi buldu. Geminin kapısı açıktı ve içeriden davetkar bir ışık sızıyordu. Luna merakla içeri girdi. Kokpit koltuğuna oturduğunda, tüm düğmeler ve ekranlar canlandı. 'Hoş geldin Luna,' dedi geminin bilgisayarı. 'Uzay macerasına hazır mısın?' Luna heyecanla başını salladı. Kemer taktı ve büyük kırmızı butona bastı. Gemi yavaşça yerden kalktı ve gökyüzüne doğru hızla yükselmeye başladı."),
-                    ("İlk Gezegen", "Luna ilk gezegenine indi. Her yer mor ve pembe renklerle doluydu. Ağaçlar kristalden, çiçekler ışık saçıyordu. Birden, üç gözlü yeşil bir yaratık belirdi. 'Merhaba! Ben Zyx,' dedi dostça. 'Hoş geldin gezegenmize!' Luna başta korkmuştu ama Zyx'in gülümsemesi onu rahatlattı. 'Ben Luna, Dünya'dan geliyorum,' dedi. Zyx heyecanlandı. 'Dünya! Orası hakkında çok şey duydum. Gel, sana gezegenmizi göstereyim!' İkili birlikte yürüdüler. Zyx, Luna'ya yüzen şehirlerini, müzik çalan çiçeklerini ve gökkuşağı renkli nehirlerini gösterdi. Luna her şeye hayran kalmıştı. Uzayın ne kadar muhteşem olduğunu şimdi anlıyordu."),
-                    ("Asteroid Fırtınası", "Bir sonraki gezegene giderken, Luna büyük bir sorunla karşılaştı. Önünde dev bir asteroid fırtınası vardı. Kayalar her yöne savruluyordu. 'Ne yapacağım?' diye düşündü endişeyle. Geminin bilgisayarı devreye girdi. 'Sakin ol Luna. Sensörlerini kullan ve kayaların arasından geç.' Luna derin bir nefes aldı. Ellerini kumandaya koydu ve dikkatle ilerlemeye başladı. Sağa, sola, yukarı, aşağı... Her hareketi önemliydi. Bir kaya gemiye çarpmak üzereyken, Luna hızla manevra yaptı. Kalbi hızla çarpıyordu ama başarıyordu. Sonunda fırtınadan çıktı. 'Başardın Luna!' dedi bilgisayar. Luna gururla gülümsedi."),
-                    ("Uzay İstasyonu", "Luna büyük bir uzay istasyonuna vardı. İçerisi farklı gezegenlerden gelen yaratıklarla doluydu. Herkes barış içinde yaşıyor, bilgi paylaşıyor ve birlikte çalışıyordu. Luna bir robot, bir peri ve bir bulut yaratığıyla tanıştı. Hepsi ona kendi dünyalarından bahsetti. Robot, teknoloji gezegeninden geliyordu. Peri, sihir diyarından. Bulut yaratığı ise gaz gezegeninden. 'Uzay çok büyük,' dedi robot. 'Ama hepimiz arkadaşız.' Luna mutluydu. Farklılıkların ne kadar güzel olduğunu öğrenmişti. Birlikte yemek yediler, oyunlar oynadılar ve hikayeler anlattılar. Luna Dünya'dan bahsetti ve herkes büyülenmiş dinledi."),
-                    ("Kayıp Gezegen", "Uzay istasyonunda bir alarm çaldı. Bir gezegen yardım istiyordu. Güneşleri sönmek üzereydi ve her yer karanlığa gömülüyordu. 'Yardım etmeliyiz!' dedi Luna. Arkadaşları da katıldı. Hep birlikte o gezegene gittiler. Gezegen gerçekten de karanlıktı ve soğuktu. Halk üzgün ve korkmuştu. Luna düşündü. 'Belki güneşi yeniden ateşleyebiliriz!' Robot teknik bilgisini, peri sihirini, bulut yaratığı enerjisini kullandı. Luna da cesaretini ve umudunu ekledi. Hep birlikte güneşin etrafında bir enerji halkası oluşturdular. Yavaş yavaş güneş parlamaya başladı. Işık geri döndü! Gezegen halkı sevinçle bağırdı. Luna ve arkadaşları kahramandı."),
-                    ("Yıldız Festivali", "Gezegeni kurtardıkları için büyük bir festival düzenlendi. Tüm uzaydan yaratıklar geldi. Müzik, dans, ışık gösterileri... Her şey muhteşemdi. Luna hiç bu kadar mutlu olmamıştı. Yeni arkadaşlarıyla dans etti, uzay yemekleri tattı ve yıldızların altında şarkılar söyledi. Kral, Luna'ya özel bir madalya verdi. 'Sen gerçek bir uzay kahramanısın,' dedi. 'Cesaretin ve kalbin sayesinde bir gezegeni kurtardın.' Luna'nın gözleri doldu. Bu macera ona çok şey öğretmişti. Cesaret, dostluk, yardımlaşma... Hepsi çok önemliydi. Gece sonunda, Luna gemisine bindi. Eve dönme zamanı gelmişti."),
-                    ("Dünya'ya Dönüş", "Luna Dünya'ya dönerken, pencereden gezegenini izledi. Mavi ve yeşil, bulutlarla kaplı... Ne kadar güzeldi. Bahçeye yumuşak bir şekilde indi. Gemi ışıklarını söndürdü. 'Teşekkürler Luna,' dedi bilgisayar. 'Harika bir pilottun. İstediğin zaman geri gel.' Luna gemiye veda etti ve evine koştu. Yatağına uzandığında, tüm macera bir rüya gibi geldi. Ama cebindeki yıldız madalyası gerçekti. Annesi gelip onu öptü. 'İyi geceler Luna,' dedi. Luna gülümsedi. 'Anneciğim, bugün uzaya gittim,' dedi. Annesi saçlarını okşadı. 'Ne güzel bir hayal,' dedi. Luna gözlerini kapadı. Biliyordu ki bu sadece başlangıçtı. Uzay onu bekliyordu ve daha nice maceralar yaşayacaktı.")
-                ]
-            )
-        ]
-        
-        stories = sampleStories
-        saveStories()
-        logger.debug("✅ Sample stories created: \(self.stories.count)")
-    }
-    
-    private func createSampleStory(title: String, childName: String, theme: StoryTheme, pages: [(String, String)]) -> Story {
-        let storyPages = pages.map { (pageTitle, pageText) in
-            StoryPage(
-                title: pageTitle,
-                text: pageText,
-                imagePrompt: pageText
-            )
-        }
-        
-        return Story(
-            title: title,
-            childName: childName,
-            theme: theme,
-            language: .turkish,
-            status: .completed,
-            pages: storyPages
-        )
-    }
     
 }
 

@@ -368,7 +368,6 @@ final class LibraryCutoverTests: XCTestCase {
         let loaded = shelf.load()
 
         XCTAssertEqual(Set(loaded.map(\.id)), Set(good.map(\.id)), "Bozuk dosya rafı düşürdü.")
-        XCTAssertFalse(shelf.canSeedSampleStories)
         XCTAssertFalse(FileManager.default.fileExists(atPath: storyFile(damagedID).path))
         let setAside = migration.store.damagedStoryFileNames()
         XCTAssertEqual(setAside.count, 1)
@@ -462,7 +461,6 @@ final class LibraryCutoverTests: XCTestCase {
         let shelf = LibraryShelf(defaults: defaults, migration: migration)
         let loaded = shelf.load()
         XCTAssertEqual(loaded.map(\.id), [open.id])
-        XCTAssertFalse(shelf.canSeedSampleStories)
 
         shelf.save(loaded)
         XCTAssertTrue(FileManager.default.fileExists(atPath: storyFile(locked.id).path))
@@ -484,7 +482,6 @@ final class LibraryCutoverTests: XCTestCase {
         let shelf = LibraryShelf(defaults: defaults, migration: nil)
         XCTAssertEqual(shelf.mode, .readOnly)
         XCTAssertEqual(shelf.load().map(\.id), stories.map(\.id))
-        XCTAssertFalse(shelf.canSeedSampleStories)
 
         shelf.save([])
         shelf.saveFavorites([])

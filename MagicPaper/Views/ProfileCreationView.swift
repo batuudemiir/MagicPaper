@@ -247,8 +247,9 @@ struct ProfileCreationView: View {
         }
 
         if mode == .first {
-            // Akış 1: örnek masallar yeni ada uyarlanır ve ana sayfada
-            // "{Ad} için hazırız" toast'ı gösterilir.
+            // Akış 1: ana sayfada "{Ad} için hazırız" toast'ı gösterilir.
+            // Yeni kurulumda örnek masal yok (17 Kasım 2026); bu çağrı yalnızca
+            // eski cihazlarda kalmış örnek masalları yeni ada uyarlar.
             StoryGenerationManager.shared.adoptSampleStories(
                 childName: finalName,
                 childProfileID: created.id

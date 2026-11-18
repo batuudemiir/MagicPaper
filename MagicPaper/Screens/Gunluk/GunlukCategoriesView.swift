@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Günlük · Kategoriler (`GunlukKategoriler`): alt sayfa.
 ///
-/// Ana sayfanın dili: krem zemin, yaş bandı segmenti, rafların listesi tek
+/// Ana sayfanın dili: beyaz zemin, yaş bandı segmenti, rafların listesi tek
 /// beyaz kartta (pastel simge kutusu, ad, masal sayısı). Bir rafa dokunmak
 /// sayfayı kapatır ve o rafı seçili yaşla açar.
 struct GunlukCategoriesView: View {

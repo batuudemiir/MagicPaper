@@ -10,11 +10,13 @@ import Foundation
 /// - `mpStartTab`: `home`, `gunluk`, `library` ya da `corner`.
 /// - `mpParentTab`: `overview`, `safety` ya da `settings`.
 /// - `mpParentRoute`: ebeveyn alt sayfası, ör. `bookExport`, `familyMembers` (FAZ 18).
+/// - `mpDesignSystemCatalog`: canlı bileşen kataloğunu açar; `mpDemo` gerekmez.
 /// - `mpDemoLibrary`: kitaplığa örnek masallar ve açılmış klasikler (yalnızca
 ///   kitaplık boşsa; kitaplık ekran görüntüleri için, 20 Ekim).
 enum MPDebugLaunch {
     private static var defaults: UserDefaults { .standard }
 
+    static var designSystemCatalog: Bool { defaults.bool(forKey: "mpDesignSystemCatalog") }
     static var isDemo: Bool { defaults.bool(forKey: "mpDemo") }
     static var startsInParent: Bool { defaults.bool(forKey: "mpStartParent") }
     static var startTab: MPTab? { defaults.string(forKey: "mpStartTab").flatMap(MPTab.init(rawValue:)) }

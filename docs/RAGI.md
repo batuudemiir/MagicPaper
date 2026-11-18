@@ -1,6 +1,6 @@
 # Ragi karakter kitabı
 
-Ragi'nin görünüşü, hareketi ve sesi. Ekran kuralları `CLAUDE.md` Design law'da (Ragi bölümü), marka `docs/MARKA.md`. Kaynak çizim: `design-handoff/assets/brand/_source-mascot-sheet.png`.
+Ragi'nin görünüşü, hareketi ve sesi. Ekran kuralları `CLAUDE.md` Design law'da (Ragi bölümü), marka `docs/MARKA.md`. Kaynak çizim: 18 Kasım 2026'dan beri 45 görsellik kütüphane `design-handoff/proposals/2026-11-18-ragi-asset-library/` (eski pafta: `design-handoff/assets/brand/_source-mascot-sheet.png`).
 
 ## Kim
 
@@ -43,9 +43,29 @@ Kurallar:
 
 ## Çizim dosyaları
 
-Katalogdaki pozlar özgün kesimlerin (`design-handoff/assets/brand/mascot*.png`) 4 kat büyütülmüşüdür: `Tools/ragi/upscale_ragi.py`, cihaz içi süper çözünürlük. Çizim yeniden çizilmedi, karakter birebir aynı; netlik arttı, yeni ayrıntı eklenmedi. Koddan vektör çizim denendi ve bırakıldı: aynı karakter gibi durmadı, çıkartma havası verdi.
+Katalogdaki 15 poz 18 Kasım 2026'da yeni Ragi kütüphanesinden alındı (`design-handoff/proposals/2026-11-18-ragi-asset-library/assets`). Görsel boyanmadı; yalnızca saydam kenar boşluğu kırpıldı ve uzun kenar 1024 px'e indirildi. `RagiRig` tablosu yeni çizime göre yeniden ölçüldü, kapak rengi (`ragiBand`) yeni göz bandından alındı.
 
-Yeni poz ya da gerçekten yeni çizim gerekirse illüstratör işi. Bilinen kesim kusurları özgün dosyalardan geliyor: `onBook` başının solu dik kesik, büst pozların altı keskin, `peek` kendi zeminini taşıyor.
+| Poz | Kütüphane dosyası |
+|---|---|
+| `front` | 01-front |
+| `threeQuarter` | 02-three-quarter |
+| `happy` | 06-face-happy |
+| `calm` | 07-face-calm |
+| `sleepy` | 08-face-content |
+| `surprised` | 10-face-surprised |
+| `curious` | 11-face-thinking |
+| `waving` | 12-wave |
+| `onBook` | 14-magic-book |
+| `reading` | 15-reading (17-seated-reading'in gözleri kapalı, göz kırpamaz) |
+| `sleeping` | 18-curled-sleep |
+| `thinking` | 19-seated-thinking |
+| `walking` | 20-walking |
+| `pencil` | 43-writing-new |
+| `mascotPeek` (katalog dışı) | 25-peek |
+
+Kütüphanenin geri kalanı (uyku battaniyesi, kutlama, dedektif, kalp, aksesuarlar) henüz bir katalog rolüne bağlı değil. 39-42 (kuyruk, pati, uyku ve ünlem işaretleri) hale taşıyor, uygulamada kullanılmaz.
+
+Yeni poz ya da gerçekten yeni çizim gerekirse illüstratör işi. Büst pozların (06-10) altı düz kesik; `peek` ahşap kenarı çizimin parçası.
 
 ## Ses
 

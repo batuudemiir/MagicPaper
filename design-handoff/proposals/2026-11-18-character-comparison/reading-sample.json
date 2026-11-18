@@ -1,0 +1,69 @@
+{
+  "status": "review",
+  "kind": "editorial-excerpt",
+  "name": "Ela",
+  "note": "Four unchanged real engine paragraphs assembled from four different seeds; not a single uninterrupted engine output. Same text and layout in all three conditions. No production content edits.",
+  "pages": [
+    {
+      "number": 1,
+      "label": "Başını kaldırma",
+      "text": "Bir şey titriyordu, çok hafifçe. Ela yavaşça yanına gitti. Kestane adında küçük bir kirpi kıpırdamadan duruyordu. Sonra başını kaldırdı.",
+      "pose": "looking-up",
+      "object": null,
+      "source": {
+        "seed": "gouache-pilot-3",
+        "originalPage": 3,
+        "variantIDs": [
+          "mc_care_03"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "label": "Bakımı üstlenme",
+      "text": "Kestane çok küçüktü ve yardıma ihtiyacı vardı. Ela bunu gördü ve sorumluluğu aldı. Artık onun işiydi bu, başkasının değil.",
+      "pose": "neutral",
+      "object": null,
+      "source": {
+        "seed": "gouache-pilot-8",
+        "originalPage": 4,
+        "variantIDs": [
+          "tc_s_04"
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "label": "Küçük bakım",
+      "text": "Her şeyi küçük küçük yaptı Ela. Biraz su, biraz gölge, biraz sabır. Büyük bir şey yapmadı ama hiçbirini aksatmadı.",
+      "pose": "waiting",
+      "object": "water",
+      "source": {
+        "seed": "gouache-pilot-9",
+        "originalPage": 5,
+        "variantIDs": [
+          "td_s_06"
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "label": "Birlikte bekleme",
+      "text": "Ela ile Kestane yan yana bekledi. İkisi de tek kelime etmedi. Bekleyince olan şeyler vardır, bu da onlardan biriydi.",
+      "pose": "waiting",
+      "object": null,
+      "source": {
+        "seed": "gouache-pilot-0",
+        "originalPage": 6,
+        "variantIDs": [
+          "pw_s_05"
+        ]
+      }
+    }
+  ],
+  "conditions": {
+    "fixed": "neutral on all pages",
+    "poses": "looking-up, neutral, waiting, waiting",
+    "poses-object": "same poses, water spot on page 3 only; no drinking or recovery depicted"
+  }
+}

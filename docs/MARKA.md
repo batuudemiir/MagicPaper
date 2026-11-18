@@ -21,7 +21,7 @@ Bir ekran, adı görünmese de bu dördünden tanınır:
 1. **Sert alt kenar:** dokunulan kart ve birincil düğme gölgeyle değil, altındaki sert kenarla yükselir. Düğmeye basınca yüzü kenarın üstüne iner.
 2. **Ragi:** ekran başına en fazla bir tane, tek duygu.
 3. **Kitap ve kâğıt dili:** kapak, sayfa, cilt, ithaf, künye.
-4. **Mor ve krem:** eylem moru `#6A47B8`, çocuk zemini krem.
+4. **Mor ve beyaz:** eylem moru `#6A47B8`, çocuk zemini beyaz (`#FFFFFF`), gömük yüzey çok açık lila (`#F6F3FC`).
 
 ## Renk
 
@@ -85,3 +85,11 @@ Tek liste, emoji yok: **Yıldız Kaşifi** (`basic`), **Hikaye Kahramanı** (`pr
 | Tanıtım filmi, promo | **Henüz uymuyor:** başka fontlar, Ragi'nin adı yok. Faz 6. |
 | App Store görselleri | Testten üretilecek, Faz 6. |
 | `AssetCatalog` lisans kayıtları | Eski ad "MagicPaper Kids" duruyor, bilerek: üretilmiş kayıt, kullanıcıya görünmez. |
+
+## Arayüz yüzeyleri · 17 Kasım 2026
+
+Batuhan’ın kararı: ana uygulama arayüzünde krem kullanılmaz. Çocuk zemini beyaz, gömük yüzey açık lila; bej kenar ve devre dışı denetimler morla uyumlu nötrlere döner. Mor marka rengi korunur. Okuyucunun isteğe bağlı Krem ve Sepya kâğıtları, masal kapakları ve illüstrasyonlar bu kararın dışındadır.
+
+## Sosyal medya illüstrasyonu · 17 Kasım 2026
+
+Batuhan’ın onayladığı yön: mat guaj dokulu, yumuşak hatlı çağdaş çocuk kitabı illüstrasyonu; beyaz ve mor/lila ana kimlik, çizimde ölçülü turkuaz ve mercan. Referans ve kurallar: [Sosyal medya görsel yönü](../marketing/social/brand/ART_DIRECTION.md). Bu onay uygulama illüstrasyonlarını değiştirmez.
