@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — son sayfa, açılıştaki odaya dönen sakin kapanış (H4)"
+  },
+  "variants": [
+    {
+      "id": "b9swc_01",
+      "text": "{{setting.name}} yine sessizdi. {{child.name}} yorganını çenesine kadar çekti ve önce {{keepsake.name}}'i, sonra bu akşamı düşündü. İkisi yan yana durunca bir hikâyenin iki sayfası gibi göründüler. Pencerede küçük bir nefes inip kalkıyordu; {{child.name}}'in gözleri kendiliğinden, usulca kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9swc_02",
+      "text": "Pencerede {{companion.name}} usulca kıvrıldı. {{child.name}} {{setting.name}}'da yorganın altına iyice gömüldü. Lamba kısıktı, oda sıcaktı, ve dışarıdaki ay her şeyi yerli yerinde gördüğü için memnun görünüyordu. Uyku yavaşça, kimseyi acele ettirmeden geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9swc_03",
+      "text": "{{setting.name}}'da her şey yerli yerindeydi: {{companion.name}} pencerede, {{child.name}} yatağında. Günün hesabı çoktan kapanmıştı; geriye tek bir iş kalıyordu, onu da uyku halledecekti. {{child.name}} bir süre ay ışığını izledi, sonra usulca uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_03",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9swc_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yan yana uzandı. Pencerede {{companion.name}} uyuyordu. İkisi bir süre bu akşamı fısıldaştı, kimin daha çok şaşırdığını tartıştı; sonra sesleri yavaşça kesildi ve oda sessizliğe teslim oldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_sib_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_sib_02",
+      "text": "{{setting.name}} sessizdi. Kardeşi {{family.name}} çoktan uyumuştu, bir eli yorganın dışında. {{child.name}} onu usulca içeri koydu, yorganını düzeltti, sonra kendi yastığına döndü. Pencerede her şey yerli yerindeydi; {{child.name}} gözlerini kapadı ve bu akşamı, yarım bir gülümsemeyle, uykusuna götürdü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_sib_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_fr_01",
+      "text": "{{setting.name}}'da bu gece iki yorgan, iki yastık vardı. {{child.name}} ile arkadaşı {{family.name}} son bir kez pencereye baktılar: {{companion.name}} uyuyordu. \"Her şey tamam,\" diye fısıldadı {{child.name}}. Sonra ikisi de, birbirinden habersiz, aynı anda uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_fr_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_fr_02",
+      "text": "Arkadaşı {{family.name}} esnedi, ardından {{child.name}} esnedi; esneme bulaşıcıydı, bunu ikisi de biliyordu. {{setting.name}}'da lamba söndü, ay ışığı içeri doldu. Bir süre daha fısıldaşmayı denediler, ama kelimeler giderek seyreldi, ve sonunda ikisi aynı anda uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_fr_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_an_01",
+      "text": "Ayakucunda {{family.possessive}} {{family.name}} derin derin uyuyordu, arada bir rüyasında bir şey kovalar gibi kıpırdayarak. {{child.name}} {{setting.name}}'da yorganını çekti ve pencereye son bir kez baktı; {{companion.name}} uyuyordu. Sonra gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_an_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_an_02",
+      "text": "{{setting.name}} sakindi. {{child.name}}, {{family.possessive}} {{family.name}}'ın sıcaklığını ayaklarında hissederek yorganına gömüldü. Pencerede {{companion.name}} çoktan uyumuştu. Bu akşam herkes bir yere sığmıştı; {{child.name}} bunu düşünerek gülümsedi ve usulca uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_an_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diledi; bu, her gecenin değişmeyen son cümlesiydi. {{setting.name}}'da lamba söndü, pencerede {{companion.name}} uyuyordu. {{child.name}} bir süre ay ışığının tavanda çizdiği şekilleri izledi, sonra gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_im_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9swc_im_02",
+      "text": "Hayali arkadaşı {{family.name}} esnedi; en azından {{child.name}} öyle olduğuna karar verdi, ve bu ona da uyku vaktini hatırlattı. {{setting.name}} sessizdi, yorgan sıcaktı, pencerede her şey yerli yerindeydi. Gözleri kendiliğinden, hiç acele etmeden kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b9swc_im_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

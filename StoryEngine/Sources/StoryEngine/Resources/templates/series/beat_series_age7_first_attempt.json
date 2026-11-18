@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7fa_01",
+      "text": "{{child.name}} onu iki eliyle, hiç sallamadan taşıdı. {{companion.name}} önden gidip yolu gösterdi. Bir yerde yol daralınca durdular, nasıl geçeceklerine birlikte karar verdiler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7fa_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7fa_02",
+      "text": "Yol sandığından uzundu. {{child.name}} adımlarını küçük tuttu ve aklından saydı. Her yirmi adımda bir durup yükünü kontrol etti; hepsi yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s7fa_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7fa_03",
+      "text": "İkisi yola çıktı. {{child.name}} taşıdı, {{companion.name}} yolu gösterdi. Bir ara doğru yolda olup olmadıklarından emin olamadılar, ama durup etrafa bakınca yönlerini buldular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7fa_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 3,
+  "beat": "warm_close",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — son sayfa, kapalı ve sakin (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9wc_01",
+      "text": "Akşam olunca {{child.name}} eve doğru yürüdü. Yolda {{keepsake.name}}'i ve bugünü yan yana düşündü, iki ayrı gün gibi değil, aynı hikâyenin iki sayfası gibi. {{setting.name}}'dan getirdiği şey bu kez elinde değil, aklındaydı, ve bu ona hiç de az gelmedi.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9wc_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9wc_02",
+      "text": "{{child.name}} ile {{companion.name}} bir süre daha yan yana oturdular. Kimse konuşmadı, gerek de yoktu; gün söylenmesi gereken her şeyi zaten söylemişti. Sonra vedalaştılar, her biri kendi yoluna döndü, ve {{setting.name}} akşamın sakinliğine büründü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "move": "h4_s9wc_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9wc_03",
+      "text": "Ayrılırken {{companion.name}} bir kez dönüp el salladı. {{child.name}} gülümseyerek karşılık verdi ve eve doğru yürürken bugünü kafasında sıraladı: bir keşif, verilen bir söz, sabırla atılan adımlar ve sonunda gelen o sessiz sevinç. Liste kısaydı, ama her maddesi yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9wc_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9wc_sib_01",
+      "text": "Akşam yemeğinde {{child.name}} ile kardeşi {{family.name}} bugünü anlattı, ama her biri kendi gördüğünü. {{family.name}} en çok {{companion.name}}'i anlattı, {{child.name}} ise işin nasıl bittiğini. İki hikâye birleşince gün, ikisinin de hatırladığından daha güzel göründü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_sib_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9wc_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} el ele eve döndüler. Yolda pek konuşmadılar, ama ikisi de aynı şeyi düşünüyordu: bugün birlikte bir işi baştan sona götürmüşlerdi. {{child.name}} kardeşinin elini biraz daha sıkı tuttu, ve {{family.name}} buna gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_sib_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9wc_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} kapının önünde biraz daha oyalandılar. Bugünü baştan sona andılar, en çok da {{companion.name}}'in o sakin gülüşünü. Sonra vedalaştılar; ikisi de bu günün, aralarındaki ortak hikâyelere yeni bir sayfa eklediğini biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_fr_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9wc_fr_02",
+      "text": "Arkadaşı {{family.name}} evine giderken bir kez dönüp el salladı. {{child.name}} gülümseyerek karşılık verdi. İçeri girerken bugünü düşündü: bir şeyi bir arkadaşla paylaşmak, onu iki kez yaşamak gibiydi. Bu düşünce akşam boyunca içini ısıttı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_fr_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9wc_an_01",
+      "text": "Eve dönünce {{child.name}}, {{family.possessive}} {{family.name}} ile yan yana oturdu. Bugün çok yürümüşlerdi; ikisi de yorgundu, ama bu tatlı bir yorgunluktu. {{child.name}} bugünü ona baştan sona anlattı, {{family.name}} ise sessizce, gözlerini kırpıştırarak dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "family.possessive"
+      ],
+      "move": "h4_s9wc_an_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9wc_an_02",
+      "text": "Akşam oldu. {{child.name}}, {{family.possessive}} {{family.name}}'ın başını okşarken günü kafasında sıraladı: {{setting.name}}, {{companion.name}}, yeni bir keşif ve sabırla tamamlanan bir iş. {{family.name}} bu listeyi bilmiyordu, ama hepsinde yanındaydı, ve bu yeterliydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_s9wc_an_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9wc_im_01",
+      "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}} ile bugünü bir kez daha konuştu. {{family.name}} en çok {{companion.name}}'i sevmişti; bu, {{child.name}}'in anlattıklarından belliydi. İkisi günün en güzel anı üzerinde anlaşamadılar, ama bu tartışma da güzeldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_im_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "s9wc_im_02",
+      "text": "Eve dönerken {{child.name}}, hayali arkadaşı {{family.name}} ile bugünün kısa bir özetini çıkardı: bir yolculuk, bir keşif, bir dostla paylaşılan bir iş. {{family.name}} hiçbir maddeye itiraz etmedi. {{child.name}} gülümsedi; özet tamamdı ve gün de öyle.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "move": "h4_s9wc_im_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

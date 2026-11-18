@@ -9205,6 +9205,956 @@
             "emotion": "calm"
           }
         ]
+      },
+      {
+        "id": "bp_cont_lookingagain_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "absence",
+        "editorialName": "lookingAgain",
+        "genre": "adventure",
+        "theme": "discovery",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Çocuk yine aynı yere gelir; yeni bir şey görür, ilk bakışta bulamaz, aramayı sürdürür ve bulur.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "anyOf": [
+              [
+                "isVisible",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{companion.name}} ile Yine",
+          "Yeni Bir Şey",
+          "{{setting.name}}'na Yeniden",
+          "Yine Birlikte",
+          "{{child.name}} Yine Arıyor"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "curiosity",
+            "supportingBeat": "notice_anomaly"
+          },
+          {
+            "pageNumber": 2,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 3,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "determination",
+            "supportingBeat": "obstacle_raises"
+          },
+          {
+            "pageNumber": 4,
+            "role": "challenge",
+            "beat": "persist",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "succeed",
+            "emotion": "joy"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_askingagain_age3_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "absence",
+        "editorialName": "askingAgain",
+        "genre": "adventure",
+        "theme": "friendship",
+        "ageRange": "3-4",
+        "pageCount": 6,
+        "premise": "Çocuk yine aynı yere gelir; yeni bir şey görür, tek başına çözemez, dostuna sorar ve birlikte bulurlar.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "anyOf": [
+              [
+                "isVisible",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{companion.name}} Biliyor",
+          "Birine Sormak",
+          "{{setting.name}}'nda Bir Soru",
+          "Yine Birlikte Bulduk",
+          "{{child.name}} Soruyor"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "curiosity",
+            "supportingBeat": "notice_anomaly"
+          },
+          {
+            "pageNumber": 2,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 3,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "determination",
+            "supportingBeat": "obstacle_raises"
+          },
+          {
+            "pageNumber": 4,
+            "role": "challenge",
+            "beat": "ask_for_help",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "resolution",
+            "beat": "succeed",
+            "emotion": "joy"
+          },
+          {
+            "pageNumber": 6,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_waiting_age7_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "stayingWith (7-8)",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "7-8",
+        "pageCount": 8,
+        "premise": "Çocuk yine aynı yere gelir; tanıdık dostuyla yeni bir küçük şey bulur, ona bakar ve bekler.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ],
+            "anyOf": [
+              [
+                "isFragile",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{companion.name}} ile Yine Birlikte",
+          "{{setting.name}}'na Yeniden Dönüş",
+          "Bir Kez Daha Beklemek",
+          "Yeni Bir Küçük Dost",
+          "{{child.name}} Yine Orada"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "patience"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_homeward_age7_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "takingItHome (7-8)",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "7-8",
+        "pageCount": 8,
+        "premise": "Çocuk yine aynı yere gelir; evinden uzak düşmüş bir şeyi dostuyla birlikte yerine götürür.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "isVisible",
+              "impliesPresence"
+            ]
+          }
+        },
+        "forbids": {
+          "discovery": [
+            "isFragmentary"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} ile Eve Doğru",
+          "{{setting.name}}'na Dönüş",
+          "Ait Olduğu Yere",
+          "Yerine Götürmek",
+          "{{child.name}} Yerine Götürdü"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder",
+            "supportingBeat": "receive_appeal"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "effort"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_staying_age7_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeStayingWith (7-8)",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "7-8",
+        "pageCount": 8,
+        "premise": "Uyku vakti dost yine pencerededir; pencerenin önündeki küçük şeye bakılır, beklenir, çocuk aynı odada uyur.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} Yine Pencerede",
+          "{{companion.name}} ile Bir Gece Daha",
+          "{{setting.name}}'nda Yine Sessizlik",
+          "Pencere Kenarında Nöbet",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_settling_age7_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeSettling (7-8)",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "7-8",
+        "pageCount": 8,
+        "premise": "Uyku vakti dost yine pencerededir; küçük bir misafire odada yer açılır, çocuk aynı odada uyur.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed",
+              "isVisible"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}}'a Yer Var",
+          "Odada Yeni Bir Köşe",
+          "{{setting.name}}'nda Bir Misafir",
+          "Herkese Yer Var",
+          "{{child.name}} Ona Yer Açtı"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "duty",
+            "supportingBeat": "receive_appeal"
+          },
+          {
+            "pageNumber": 5,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 6,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 7,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 8,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_waiting_age9_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "stayingWith (9-10)",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "9-10",
+        "pageCount": 10,
+        "premise": "Çocuk yine aynı yere gelir; tanıdık dostuyla yeni bir küçük şey bulur, ona bakar ve bekler.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ],
+            "anyOf": [
+              [
+                "isFragile",
+                "isAudible"
+              ]
+            ]
+          }
+        },
+        "titlePatterns": [
+          "{{companion.name}} ile Yine Birlikte",
+          "{{setting.name}}'na Yeniden Dönüş",
+          "Bir Kez Daha Beklemek",
+          "Yeni Bir Küçük Dost",
+          "{{child.name}} Yine Orada"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 5,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 6,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 7,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "patience"
+          },
+          {
+            "pageNumber": 8,
+            "role": "companion",
+            "beat": "companion_offers",
+            "emotion": "warmth"
+          },
+          {
+            "pageNumber": 9,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 10,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_homeward_age9_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "editorialName": "takingItHome (9-10)",
+        "genre": "gentle_adventure",
+        "theme": "kindness",
+        "ageRange": "9-10",
+        "pageCount": 10,
+        "premise": "Çocuk yine aynı yere gelir; evinden uzak düşmüş bir şeyi dostuyla birlikte yerine götürür.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime",
+            "learning",
+            "adventure"
+          ]
+        },
+        "requires": {
+          "discovery": {
+            "allOf": [
+              "isVisible",
+              "impliesPresence"
+            ]
+          }
+        },
+        "forbids": {
+          "discovery": [
+            "isFragmentary"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} ile Eve Doğru",
+          "{{setting.name}}'na Dönüş",
+          "Ait Olduğu Yere",
+          "Yerine Götürmek",
+          "{{child.name}} Yerine Götürdü"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 4,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "wonder",
+            "supportingBeat": "receive_appeal"
+          },
+          {
+            "pageNumber": 5,
+            "role": "companion",
+            "beat": "companion_offers",
+            "emotion": "warmth"
+          },
+          {
+            "pageNumber": 6,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "determination"
+          },
+          {
+            "pageNumber": 7,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "tenderness"
+          },
+          {
+            "pageNumber": 8,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "effort"
+          },
+          {
+            "pageNumber": 9,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 10,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "warmth"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_staying_age9_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeStayingWith (9-10)",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "9-10",
+        "pageCount": 10,
+        "premise": "Uyku vakti dost yine pencerededir; pencerenin önündeki küçük şeye bakılır, beklenir, çocuk aynı odada uyur.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}} Yine Pencerede",
+          "{{companion.name}} ile Bir Gece Daha",
+          "{{setting.name}}'nda Yine Sessizlik",
+          "Pencere Kenarında Nöbet",
+          "{{child.name}} ile {{companion.name}}"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 4,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 5,
+            "role": "problem",
+            "beat": "take_charge",
+            "emotion": "duty"
+          },
+          {
+            "pageNumber": 6,
+            "role": "attempt",
+            "beat": "tend",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 7,
+            "role": "challenge",
+            "beat": "patient_wait",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 8,
+            "role": "companion",
+            "beat": "companion_offers",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 9,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 10,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
+      },
+      {
+        "id": "bp_cont_bedtime_settling_age9_001",
+        "schemaVersion": 2,
+        "version": "1.0.0",
+        "family": "charge",
+        "arc": "bedtime",
+        "editorialName": "bedtimeSettling (9-10)",
+        "genre": "bedtime",
+        "theme": "kindness",
+        "ageRange": "9-10",
+        "pageCount": 10,
+        "premise": "Uyku vakti dost yine pencerededir; küçük bir misafire odada yer açılır, çocuk aynı odada uyur.",
+        "editorialGuidance": "H4 (18 Kasım 2026): seri devamı. Taslak, Batuhan okuyacak.",
+        "continuation": {
+          "modes": [
+            "bedtime"
+          ]
+        },
+        "requires": {
+          "setting": {
+            "allOf": [
+              "isRestingPlace"
+            ]
+          },
+          "discovery": {
+            "allOf": [
+              "impliesNeed",
+              "isVisible"
+            ]
+          }
+        },
+        "forbids": {
+          "companion": [
+            "canCarry"
+          ],
+          "setting": [
+            "isHazardous"
+          ]
+        },
+        "titlePatterns": [
+          "{{companion.name}}'a Yer Var",
+          "Odada Yeni Bir Köşe",
+          "{{setting.name}}'nda Bir Misafir",
+          "Herkese Yer Var",
+          "{{child.name}} Ona Yer Açtı"
+        ],
+        "pages": [
+          {
+            "pageNumber": 1,
+            "role": "hook",
+            "beat": "revisit",
+            "emotion": "ease"
+          },
+          {
+            "pageNumber": 2,
+            "role": "discovery",
+            "beat": "notice_anomaly",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 3,
+            "role": "discovery",
+            "beat": "examine",
+            "emotion": "curiosity"
+          },
+          {
+            "pageNumber": 4,
+            "role": "discovery",
+            "beat": "approach",
+            "emotion": "wonder"
+          },
+          {
+            "pageNumber": 5,
+            "role": "problem",
+            "beat": "commit",
+            "emotion": "duty",
+            "supportingBeat": "receive_appeal"
+          },
+          {
+            "pageNumber": 6,
+            "role": "attempt",
+            "beat": "first_attempt",
+            "emotion": "surprise"
+          },
+          {
+            "pageNumber": 7,
+            "role": "challenge",
+            "beat": "let_go",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 8,
+            "role": "companion",
+            "beat": "companion_offers",
+            "emotion": "calm"
+          },
+          {
+            "pageNumber": 9,
+            "role": "resolution",
+            "beat": "restore",
+            "emotion": "relief"
+          },
+          {
+            "pageNumber": 10,
+            "role": "emotional_ending",
+            "beat": "warm_close",
+            "emotion": "calm"
+          }
+        ]
       }
     ]
   },

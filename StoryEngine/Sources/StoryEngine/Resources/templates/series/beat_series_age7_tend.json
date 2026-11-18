@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7td_01",
+      "text": "{{child.name}} işe küçük şeylerden başladı: önce yerini düzeltti, sonra rüzgârı kesmek için önüne bir taş koydu. {{companion.name}} gerekenleri getirdi. Acele eden olmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7td_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7td_02",
+      "text": "Geçen seferden öğrendiği bir şey vardı: bakmak, sık sık ve az az yapılırdı. {{child.name}} öyle yaptı. {{companion.name}} ise sırası gelince onun yerine baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7td_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7td_03",
+      "text": "{{child.name}} ona neyin iyi geldiğini anlamaya çalıştı. Gölge mi, güneş mi? Sessizlik mi, biraz konuşmak mı? Her birini denedi, işe yarayanı aklına yazdı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s7td_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

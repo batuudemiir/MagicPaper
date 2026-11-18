@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 3,
+  "beat": "restore",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 9 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9rs_st_01",
+      "text": "Ve sonunda oldu. Küçük şey kendine geldi, sanki uzun bir uykudan uyanır gibi yeniden canlandı. {{child.name}} ile {{companion.name}} birbirine baktılar; ne bir şey söylemeye gerek vardı ne de acele etmeye. Günlerdir süren bakım, bu sessiz anın içinde karşılığını bulmuştu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9rs_st_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "s9rs_st_02",
+      "text": "Bekleyiş karşılığını verdi: {{discovery.name}} artık iyiydi. {{child.name}} içinden uzun bir oh çekti. Bu his, {{keepsake.name}}'i bulduğu günkü sevince çok benziyordu, ama biraz daha büyüktü; çünkü bu kez sevinç, emek vererek kazanılmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s9rs_st_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "s9rs_lg_01",
+      "text": "Küçük şey yerine kavuştu. {{child.name}} bir adım geri çekilip baktı; her şey olması gerektiği gibiydi, sanki o şey hep orada bekliyormuş gibi. {{companion.name}} sevinçle yanına geldi. Bir şeyi ait olduğu yere götürmek, onu bulmaktan bile güzel geliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9rs_lg_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s9rs_lg_02",
+      "text": "Yerine bırakılan şey orada öyle doğal duruyordu ki {{child.name}} bir an onun hiç oradan ayrılmadığını düşündü. {{companion.name}} başını salladı: iş tamamdı. İkisi biraz daha durup izlediler; acele etmek için hiçbir sebep yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9rs_lg_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "let_go"
+      ]
+    }
+  ]
+}

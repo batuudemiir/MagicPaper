@@ -180,6 +180,32 @@ Kurallar:
 
 Dokunulmayan: `SeriesPlanner` mantığı, plan şeması (`SeriesPlan.currentSchemaVersion` 1 kalır), uygulama tarafı. Var olan devam kayıtları değişmez.
 
+**Uygulanan (18 Kasım 2026).** On devam blueprint'i `series.continuations`'ın sonuna; hiçbirinde `unease`/`hesitation` yok, var olan kayıtlara dokunulmadı.
+
+| Kimlik | Bant | Ark / modlar | Bölüm |
+|---|---|---|---|
+| `bp_cont_lookingagain_age3_001` | 3-4 | düz / learning, adventure | Yeni bir şey görülür, ilk bakışta bulunmaz, aramayı sürdürüp bulurlar (`persist`). |
+| `bp_cont_askingagain_age3_001` | 3-4 | düz / learning, adventure | Yeni bir şey görülür, tek başına çözülmez, dosta sorulur (`ask_for_help`). |
+| `bp_cont_waiting_age7_001` | 7-8 | düz / üç mod | Yeni bir küçük şeye bakılır ve beklenir (`stayingWith`). |
+| `bp_cont_homeward_age7_001` | 7-8 | düz / üç mod | Evinden uzak düşmüş bir şey yerine götürülür (`takingItHome`). |
+| `bp_cont_bedtime_staying_age7_001` | 7-8 | uyku / bedtime | Dost yine pencerede; pencere önündeki küçük şeye bakılır, çocuk uyur. |
+| `bp_cont_bedtime_settling_age7_001` | 7-8 | uyku / bedtime | Küçük bir misafire odada yer açılır, çocuk uyur. |
+| `bp_cont_waiting_age9_001` | 9-10 | düz / üç mod | `stayingWith`, 10 sayfa; s.8'de dost bildiğini paylaşır. |
+| `bp_cont_homeward_age9_001` | 9-10 | düz / üç mod | `takingItHome`, 10 sayfa. |
+| `bp_cont_bedtime_staying_age9_001` | 9-10 | uyku / bedtime | Uyku arkında bekleyen çocuk, 10 sayfa. |
+| `bp_cont_bedtime_settling_age9_001` | 9-10 | uyku / bedtime | Uyku arkında yer açan çocuk, 10 sayfa. |
+
+Satırlar: 196 yeni satır (`move: "h4_…"`).
+- 7-8 ve 9-10 düz ark: `templates/series/beat_series_age7_*` (11 dosya) ve `beat_series_age9_*` (12 dosya).
+- 7-8 ve 9-10 uyku arkı: var olan uyku seri dosyalarının düzeniyle `templates/bedtime/beat_bedtime_series_age7_*` ve `_age9_*` (yedişer dosya). Uyku seri satırları 21 Ekim'den beri `bedtime/` altında; plan `series/` diyordu, düzen korundu.
+- Seri katmanında satırı olmayan beat'ler bandın tek seferlik satırlarına düşer (planlayıcının bugünkü davranışı): düz arkta `examine`, `approach` (9-10), 3-4'te `obstacle_raises`, `persist`, `ask_for_help`, `succeed`; uyku arkında `take_charge`, `tend`, `patient_wait`, `let_go`, `restore`, `examine` ve 9-10 `companion_offers`.
+- 3-4: var olan beş `age3` dosyasına yalnızca sona ekleme. Yeni satırlar var olan 3-4 devamlarına uzunluk sınıfı (`revisit`, `notice_anomaly`, `first_attempt` için `paired`, `commit` için `solo`) ve `afterClosing: ["succeed"]` (`warm_close`) ile karışmıyor.
+- `revisit` ve `warm_close` (seri aile anları) her yeni dosyada dört ilişkinin her biri için iki satır taşıyor.
+
+Beklenen kapsam (Python yaklaşığı): her bant × mod hücresinde seri devamı "var". `CoverageReportTests` bunu kilitliyor; `SeriesPlannerTests`'te "devamı olmayan kesit" listesi boşaldı ve "devamı olmayan mod" sınaması yatak odasında açılan bir masalın öğrenme moduna taşındı.
+
+Açık: 3-4 macera ve öğrenme bölümlerinin son sayfası var olan `age3` `warm_close` satırlarını da çekebilir; bunlardan biri ("… Uyudu.") uyku diliyle bitiyor. Ayırmak var olan kayda kapı eklemeyi gerektirir, yapılmadı. 3-4'te s.4 (`persist`, `ask_for_help`) yalnızca `paired` satır buluyor; sayfa kısa kalır.
+
 ### H5
 
 Cümle tekrarı ölçümü ve ince satır havuzlarını kalınlaştırma. Ayrıntı başladığında buraya yazılır.

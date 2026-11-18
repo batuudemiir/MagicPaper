@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 3,
+  "beat": "revisit",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümü, sayfa 1 (H4)"
+  },
+  "variants": [
+    {
+      "id": "b7sr_01",
+      "text": "Uyku vakti geldi. {{child.name}} {{setting.name}}'da yatağına uzandı ve pencereye baktı. {{companion.name}} yine oradaydı, her zamanki yerinde. İkisi {{keepsake.name}}'i hatırlayıp sessizce gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sr_02",
+      "text": "{{child.name}} yorganını çenesine kadar çekmişti ki pencerede tanıdık bir kıpırtı gördü: {{companion.name}} gelmişti. {{setting.name}} yine sakin, lamba yine kısıktı. Bu akşam da kısa, sessiz bir ziyaret olacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sr_03",
+      "text": "{{setting.name}}'da akşamın son ışığı söndü ve lamba yandı. {{child.name}} pencereye döndüğünde {{companion.name}}'i gördü. \"Yine geldin,\" diye fısıldadı. İkisi {{keepsake.name}}'i bir kez daha andı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_03",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sr_sib_01",
+      "text": "Uyku vakti {{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yan yana uzandılar. Pencerede {{companion.name}} belirince {{family.name}} fısıldadı: \"İşte o!\" İkisi sessizce el salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_sib_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b7sr_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}}'a {{companion.name}}'i anlatmıştı; bu akşam {{family.name}} onu görmek için uyanık kaldı. {{setting.name}}'da pencere aralanınca {{companion.name}} yine geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_sib_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b7sr_fr_01",
+      "text": "Bu akşam arkadaşı {{family.name}} misafirdi. İkisi {{setting.name}}'da yorganlarına girdiğinde pencerede {{companion.name}} belirdi. {{child.name}} arkadaşına fısıltıyla onu tanıttı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_fr_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b7sr_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da fısıl fısıl konuşurken pencereye tanıdık biri geldi: {{companion.name}}. {{family.name}} gülümsedi; hikâyelerdeki dost gerçekten oradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_fr_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b7sr_an_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına uzandı; {{family.possessive}} {{family.name}} ayakucunda kıvrılmıştı. Pencerede {{companion.name}} belirince ikisi de başını kaldırdı ve sessizce baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_an_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b7sr_an_02",
+      "text": "Uyku vakti {{family.possessive}} {{family.name}}, {{child.name}}'in yanına sokuldu. {{setting.name}} sakindi. Pencerede yine {{companion.name}} vardı; üçü bir süre birbirine baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_an_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b7sr_im_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına girdi ve hayali arkadaşı {{family.name}}'a yer açtı. Pencerede {{companion.name}} belirince fısıldadı: \"Bak, yine geldi.\" İkisi sessizce gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_im_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b7sr_im_02",
+      "text": "Uyku vakti {{child.name}}, hayali arkadaşı {{family.name}} ile {{setting.name}}'da fısıldaşıyordu. Pencereye {{companion.name}} geldi. {{child.name}} ona {{keepsake.name}}'i hatırlattı, {{family.name}} ise sessizce dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_b7sr_im_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

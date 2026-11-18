@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 7 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9fa_01",
+      "text": "{{child.name}} onu iki eliyle, hiç sallamadan taşıdı. {{companion.name}} önden gidip yolu gösterdi. Bir yerde yol daralınca durdular ve nasıl geçeceklerini birlikte tartıştılar; sonunda {{child.name}} yan yan yürümeyi önerdi, ve işe yaradı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9fa_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9fa_02",
+      "text": "Yol sandığından uzundu. {{child.name}} adımlarını küçük tuttu ve aklından saydı; her yirmi adımda bir durup yükünü kontrol etti. Hepsi yerli yerindeydi. Bu düzen işi yavaşlatıyordu, ama {{child.name}} geçen seferden biliyordu: dikkatli bir yavaşlık, telaşlı bir koşturmacadan iyiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s9fa_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9fa_03",
+      "text": "İkisi yola çıktı: {{child.name}} taşıdı, {{companion.name}} yolu gösterdi. Bir ara doğru yolda olup olmadıklarından emin olamadılar. Durup etrafa baktılar, bildikleri işaretleri tek tek saydılar ve yönlerini yeniden buldular. Bu küçük duraklama, yolun geri kalanını kolaylaştırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9fa_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — uyku arkının seri bölümü, sayfa 6, doruk (H4)"
+  },
+  "variants": [
+    {
+      "id": "b9sfa_01",
+      "text": "{{child.name}} rafın alt köşesine yumuşak bir yastık koydu ve onu oraya, ağırlığını hiç hissettirmeden yerleştirdi. Tam o sırada küçük bir hapşırık duyuldu: hapşu! İkisi de gülmemek için ağızlarını kapattı, ama omuzları sarsılmaktan kendini alamadı. Gece yarısı kahkahaları en zor tutulanlardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_b9sfa_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9sfa_02",
+      "text": "{{child.name}} yorganın kenarından küçük bir yuva yaptı; kıvrımları tek tek düzeltti, sanki bir mimar gibi. Onu oraya koyduğunda {{companion.name}} şaşırdı, sonra kocaman esnedi. Belli ki burası, dışarıdan bakan biri için bile, fazlasıyla rahat görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_b9sfa_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9sfa_03",
+      "text": "{{child.name}} pencerenin önüne katlanmış bir hırka serdi ve üstüne koyduğu şeyi izledi. Sanki hep oraya aitmiş gibi, hiç itiraz etmeden yerleşti. {{companion.name}} buna öyle şaşırdı ki küçük bir kıkırtı kaçırdı; {{child.name}} parmağını dudaklarına götürdü, ama kendisi de gülüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_b9sfa_03",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

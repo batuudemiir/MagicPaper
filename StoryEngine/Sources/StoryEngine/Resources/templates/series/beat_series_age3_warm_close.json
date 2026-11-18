@@ -279,6 +279,45 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "swc3h_01",
+      "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Bugün yeni bir şey öğrenmişlerdi. İkisi de çok mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_swc3h_01",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "swc3h_02",
+      "text": "Akşam {{child.name}} eve döndü. Yolda {{keepsake.name}}'i düşündü, sonra bugünü. İkisi de güzeldi.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "move": "h4_swc3h_02",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "swc3h_03",
+      "text": "\"Ne güzel bir maceraydı,\" dedi {{child.name}}. {{companion.name}} gülümsedi. Her şey yerli yerindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_swc3h_03",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
     }
   ]
 }

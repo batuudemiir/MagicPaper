@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 6 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7lg_01",
+      "text": "Sonunda vardılar. {{child.name}} onu yerine, çok dikkatle bıraktı. Ellerini çekmeden önce bir an bekledi; sonra yavaşça geri çekildi, ki ürkmesin.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s7lg_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7lg_02",
+      "text": "İşte yeri burasıydı. {{child.name}} onu bırakırken içinde küçük bir burukluk hissetti; ama bırakmak, onu sevdiğini göstermenin en doğru yoluydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s7lg_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7lg_03",
+      "text": "\"Hoşça kal,\" dedi {{child.name}} usulca ve onu evine bıraktı. {{companion.name}} yanında sessizce durdu. İkisi de bir süre hiç kıpırdamadan izledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7lg_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

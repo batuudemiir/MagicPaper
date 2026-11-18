@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 3,
+  "beat": "revisit",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 1, bölümün açılışı (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9r_01",
+      "text": "{{child.name}} {{setting.name}}'a yine geldiğinde ilk iş olarak {{companion.name}}'i aradı, ama aramasına gerek kalmadı: {{companion.name}} her zamanki yerinde, sanki hiç ayrılmamış gibi onu bekliyordu. İkisi selamlaştı ve ilk tanıştıkları günü, o gün bulunan {{keepsake.name}}'i kısaca andılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9r_02",
+      "text": "Yol artık {{child.name}} için bir harita gibiydi; hangi taşın nerede durduğunu, hangi köşede durup soluklanacağını biliyordu. {{setting.name}}'a varınca {{companion.name}} karşısına çıktı. \"Geleceğini tahmin etmiştim,\" dedi, \"sen bir işi yarım bırakan biri değilsin.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9r_03",
+      "text": "{{child.name}} {{setting.name}}'a döndüğünde her şeyi bıraktığı gibi buldu, bir şey dışında: artık burası ona yabancı değildi. {{companion.name}} ile önce {{keepsake.name}}'i konuştular, ilk günün küçük ayrıntılarını birbirlerine hatırlattılar. Sonra yeni bir güne, yeni bir merakla başladılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9r_sib_01",
+      "text": "{{child.name}} bu kez kardeşi {{family.name}} ile birlikte {{setting.name}}'a geldi. Yol boyunca ona {{companion.name}}'i ve {{keepsake.name}}'i anlatmıştı; {{family.name}} her şeyi dikkatle dinlemiş, birkaç soru sormuştu. {{companion.name}} ikisini görünce sevindi: \"Bugün iki meraklı göz var,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_sib_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9r_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} sabah erkenden yola çıktılar. {{family.name}} ilk kez geliyordu ve her köşeye bakmak istiyordu; {{child.name}} ise ona yolu bir rehber gibi gösterdi. {{setting.name}}'a vardıklarında {{companion.name}} onları her zamanki yerde bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_sib_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9r_fr_01",
+      "text": "{{child.name}} bugün arkadaşı {{family.name}} ile {{setting.name}}'a geldi. {{family.name}}, {{companion.name}}'i şimdiye kadar yalnızca hikâyelerden tanıyordu ve biraz heyecanlıydı. {{companion.name}} ise yeni misafiri öyle sakin karşıladı ki tanışmaları birkaç dakikada eski bir dostluğa döndü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_fr_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9r_fr_02",
+      "text": "Yolda {{child.name}}, arkadaşı {{family.name}}'a geçen seferi baştan sona anlattı, en çok da {{keepsake.name}}'i. {{family.name}} dinledikçe merakı arttı. {{setting.name}}'a vardıklarında {{companion.name}} ikisine de el salladı, ve üçü birlikte yola koyuldu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_fr_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9r_an_01",
+      "text": "{{child.name}} bu sabah {{family.possessive}} {{family.name}} ile yola çıktı. {{family.name}} her şeyi koklamak, her köşeye bakmak istiyordu; {{child.name}} ona sabırla eşlik etti. {{setting.name}}'a vardıklarında {{companion.name}} yeni misafiri merakla süzdü, sonra ikisini sevinçle karşıladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_s9r_an_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9r_an_02",
+      "text": "{{child.name}} kapıdan çıkarken {{family.possessive}} {{family.name}} peşine takıldı ve geri dönmeye hiç niyeti yoktu. {{child.name}} güldü ve onu yanına aldı. {{setting.name}}'a vardıklarında {{companion.name}} ikisini her zamanki yerde bekliyordu; üçü bir süre yan yana durup birbirini tanıdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "family.possessive",
+        "setting.name"
+      ],
+      "move": "h4_s9r_an_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9r_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yine {{setting.name}}'a geldi. {{companion.name}}, {{family.name}}'ı göremiyordu, ama {{child.name}} anlattıkça ona da bir yer açtı, sanki üç kişilermiş gibi. Bu, {{child.name}}'in çok hoşuna gitti ve gün böyle, üçü birlikte başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_im_01",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "s9r_im_02",
+      "text": "Yol boyunca {{child.name}}, hayali arkadaşı {{family.name}} ile fısıldaşarak yürüdü; ona geçen seferi, {{companion.name}}'i ve {{keepsake.name}}'i anlattı. {{setting.name}}'a vardıklarında {{companion.name}} onları bekliyordu. Kimse {{family.name}}'ı görmedi, ama herkes onun orada olduğunu kabul etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "family.name",
+        "keepsake.name",
+        "setting.name"
+      ],
+      "move": "h4_s9r_im_02",
+      "lengthClass": "solo",
+      "familyRelations": [
+        "imaginary"
+      ]
+    }
+  ]
+}

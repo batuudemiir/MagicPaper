@@ -67,4 +67,4 @@ Uyku arkı tek ailede (`charge`) kalıyor; mekanizmalar imza sayfasıyla ayrıl�
 
 - Öğrenme ve macera modları ile onların masalları. Tohumlar ve aile fixture'ının bu modlardaki kayıtları birebir aynı.
 - Eski üç charge blueprint'i katalogda duruyor ama hiçbir moda girmiyor; kayıtlı masallar için gerekli.
-- 7-8 ve 9-10 bantlarının uyku masallarının devamı yok (H4); "Devam ettir" `SeriesPlanner.isAvailable` ile gizli.
+- 7-8 ve 9-10 uyku masalları H4 (18 Kasım 2026) ile devam ediyor: `bp_cont_bedtime_staying_age7_001`, `_settling_age7_001`, `_staying_age9_001`, `_settling_age9_001`; satırlar `templates/bedtime/beat_bedtime_series_age7_*` ve `_age9_*`, seri katmanında olmayan beat'ler bandın uyku satırlarına düşer.

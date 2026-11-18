@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H4: seri devamı 7-10 ve 3-4 macera/öğrenme
+
+- Ne değişti: `series.continuations`'ın sonuna on devam blueprint'i. 7-8 ve 9-10'a dörder (düz arkta `stayingWith` ve `takingItHome` karşılığı, üç mod; uyku arkında `bedtimeStayingWith` ve `bedtimeSettling` karşılığı), 3-4'e iki düz ark devamı yalnızca öğrenme ve macera için (`lookingAgain`, `askingAgain`). Hiçbirinde `unease`/`hesitation` yok.
+- Satırlar: 196 yeni satır (`move: "h4_…"`). 7-10 düz ark `templates/series/beat_series_age7_*` ve `_age9_*` (23 dosya), 7-10 uyku arkı `templates/bedtime/beat_bedtime_series_age7_*` ve `_age9_*` (14 dosya, var olan uyku seri dosyalarının yeri). 3-4: var olan beş `age3` seri dosyasına yalnızca sona ekleme; uzunluk sınıfı ve `afterClosing` kapılarıyla var olan 3-4 devamlarına karışmıyor. Seri aile anlarında (`revisit`, `warm_close`) dört ilişkinin her biri için ikişer satır.
+- Bilerek değişmedi: `SeriesPlanner` mantığı, plan şeması, uygulama kodu, var olan devam kayıtları ve satırları. Seri katmanında satırı olmayan beat'ler bandın tek seferlik satırlarına düşüyor (bugünkü davranış).
+- Testler: `CoverageReportTests` 3-4 öğrenme ve macera ile 7-8 ve 9-10'un üç modunda seri devamını kilitliyor. `SeriesPlannerTests`: devamı olmayan kesit listesi boşaldı; "devamı olmayan mod" sınaması yatak odasında açılan bir masalın öğrenme moduna taşındı.
+- Test: çalıştırılmadı (disk; `swift test`/`xcodebuild` yok). JSON ayrıştırıldı, iki test dosyası `swiftc -frontend -parse`'tan geçti. Dizi, canlılık, uyku konturu, satır kapıları, aile anları, kelime bantları ve dil kuralları Python doğrulayıcısıyla denetlendi. Python kapsam tablosunda her hücrede devam "var".
+- Açık: 3-4 macera/öğrenme bölümünün son sayfası var olan bir `age3` `warm_close` satırını ("… Uyudu.") çekebilir; 3-4'te s.4 yalnızca kısa (`paired`) satır buluyor.
+- Dosyalar: `pilot_library_v1.json`, `templates/series/` (23 yeni, 5 değişen), `templates/bedtime/` (14 yeni), `CoverageReportTests.swift`, `SeriesPlannerTests.swift`, `docs/HAVUZ_PLANI.md`, `docs/UYKU_ARKI.md`, bu günlük.
+
 ### 2026-11-18 · main + bu kayıt · H3 yerel main'e birleşti; H2 origin'e gitti
 
 - Ne değişti: H2, Batuhan'ın onayıyla ("Evet, gönder") derlenmeden origin'e gönderildi (`53a34f4..1a42b5a`); aşağıdaki H2 birleşme kaydındaki "gönderilmedi" notu gönderimden önce yazılmıştı. H3 dalı (`b6a0cde`, yedi uyku blueprint'i) yerel main'e birleşti, çakışma yok.

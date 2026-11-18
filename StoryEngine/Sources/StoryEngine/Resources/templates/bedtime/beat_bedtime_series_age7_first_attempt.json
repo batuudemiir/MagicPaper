@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümü, sayfa 5, doruk (H4)"
+  },
+  "variants": [
+    {
+      "id": "b7sfa_01",
+      "text": "{{child.name}} rafın alt köşesine yumuşak bir yastık koydu ve onu oraya yerleştirdi. Tam o sırada küçük bir hapşırık duyuldu: hapşu! İkisi de gülmemek için ağızlarını kapattı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_b7sfa_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sfa_02",
+      "text": "{{child.name}} yorganın kenarından küçük bir yuva yaptı ve onu oraya koydu. {{companion.name}} yuvayı görünce şaşırdı, sonra kocaman esnedi. Belli ki burası çok rahat görünüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_b7sfa_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sfa_03",
+      "text": "{{child.name}} pencerenin önüne katlanmış bir hırka serdi. Üstüne koyduğu şey, sanki hep oraya aitmiş gibi yerleşti. {{companion.name}} buna öyle şaşırdı ki küçük bir kıkırtı kaçırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_b7sfa_03",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

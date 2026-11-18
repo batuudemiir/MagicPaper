@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 2 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7n_01",
+      "text": "Biraz yürüdükten sonra {{child.name}} durdu. Az ileride {{discovery.name}} vardı. Geçen sefer orada değildi; {{child.name}} bundan emindi, çünkü bu yolu ezbere biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h4_s7n_01",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "s7n_02",
+      "text": "{{companion.name}} durup dinledi, {{child.name}} nefesini tuttu. Yakından {{discovery.name}} geliyordu. İkisi de bunu daha önce burada hiç duymamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h4_s7n_02",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "s7n_03",
+      "text": "Her şey geçen seferki gibiydi, tek bir şey dışında. {{child.name}} bunu ilk bakışta fark etti; {{companion.name}} ise ikinci bakışta. İkisi aynı noktaya döndü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7n_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

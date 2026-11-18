@@ -34,20 +34,22 @@ final class CoverageReportTests: XCTestCase {
     /// 7-8 and 9-10 one `appeal` and one `charge` (4/4). H3 (18 Kasım 2026)
     /// raised every bedtime cell to 4 blueprints (4/4 by the Python estimate):
     /// listening to the house, counting the day back, talking to the moon.
-    /// 7-8 and 9-10 still have no bedtime continuation (H4).
+    /// H4 (18 Kasım 2026) locked a series continuation in every cell: 3-4
+    /// learning and adventure, and all three modes in 7-8 and 9-10 (standard
+    /// arc for learning and adventure, bedtime arc for bedtime).
     private static let mostProtective: [String: Floor] = [
-        "3-4 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "3-4 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
+        "3-4 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "3-4 learning": .init(blueprints: 4, mechanisms: 3, continues: true),
         "3-4 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
         "5-6 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
         "5-6 learning": .init(blueprints: 12, mechanisms: 3, continues: true),
         "5-6 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
-        "7-8 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "7-8 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "7-8 bedtime": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "9-10 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "9-10 learning": .init(blueprints: 4, mechanisms: 3, continues: false),
-        "9-10 bedtime": .init(blueprints: 4, mechanisms: 3, continues: false),
+        "7-8 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "7-8 learning": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "7-8 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "9-10 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "9-10 learning": .init(blueprints: 4, mechanisms: 3, continues: true),
+        "9-10 bedtime": .init(blueprints: 4, mechanisms: 3, continues: true),
     ]
 
     private func report() throws -> CoverageReport {
