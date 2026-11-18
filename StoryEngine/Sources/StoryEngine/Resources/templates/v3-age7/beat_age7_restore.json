@@ -171,6 +171,85 @@
       "afterBeat": [
         "persist"
       ]
+    },
+    {
+      "id": "a7_rs_h2_01",
+      "text": "Ve bir sabah {{companion.name}} kendi ayakları üstünde duruyordu. Gözleri parlıyordu, sesi de güçlenmişti. {{child.name}} bir şey söylemedi; yalnızca gülümsedi. Bütün o bekleyiş, bu anın içindeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_rs_h2_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_02",
+      "text": "{{companion.name}} iyileşmişti. Bunu ilk fark eden {{child.name}} oldu, çünkü her gün buradaydı. Küçük {{companion.type}} etrafında bir tur attı, sonra gelip yanına oturdu, sanki teşekkür eder gibi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a7_rs_h2_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_03",
+      "text": "Bir gün {{child.name}} geldiğinde {{companion.name}} onu bekliyordu, dipdiri ve neşeli. Günlerdir süren bakım sonunda yerini bulmuştu. {{child.name}} gururla derin bir nefes aldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_rs_h2_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_04",
+      "text": "Birlikte başardılar. {{companion.name}} aradığına sonunda kavuştu ve sevinçle {{child.name}}'e döndü. \"Tek başıma yapamazdım,\" dedi. {{child.name}} gülümsedi; o da tek başına yapamazdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_rs_h2_04",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_05",
+      "text": "İşi bölüşünce her şey yerine oturdu. {{companion.name}}'in derdi bitti, yüzü aydınlandı. {{child.name}} onun ne kadar rahatladığını görünce kendi yorgunluğunu bile unuttu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_rs_h2_05",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_06",
+      "text": "Son çabayı ikisi birlikte yaptı ve oldu. {{companion.name}} olduğu yerde sevinçle döndü. {{child.name}} onu izlerken anladı: bazı işler iki kişilikti, ve bu da onlardan biriydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_rs_h2_06",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

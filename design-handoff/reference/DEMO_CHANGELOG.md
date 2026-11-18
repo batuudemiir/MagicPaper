@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · worktree-agent-a4d762b8b86a0f234 (main@53a34f4 üstünde tek commit, push yok) · H2: öğrenme 3-4 ve 7-10
+
+- Ne değişti (Batuhan'ın 18 Kasım kararlarıyla): `pilot_library_v1.json`'un sonuna yedi öğrenme blueprint'i. 3-4'e üç (`unexplained` "nasıl çalıştığını görmek", `misreading` "yakından bakınca", `appeal` "birlikte yardım"), 7-8 ve 9-10'a ikişer (`appeal` birlikte yardım, `charge` bakmak ve beklemek). Hiçbirinde `unease`/`hesitation` sayfası yok; yeni aile ya da beat yok. 90 yeni satır (`move: "h2_…"`): 3-4'te dört yeni beat dosyası (`form_belief`, `belief_fails`, `reveal_truth`, `insight`), 7-8 ve 9-10'da üçer (`take_charge`, `tend`, `patient_wait`), var olan dosyalara yalnızca sona ekleme.
+- Motor değişikliği: `NarrativeFamily.minimumAge` `unexplained` ve `misreading` için 5'ten 4'e indi (karar: Batuhan), `CatalogIntegrity.checkAgeFit` artık bandın üst ucuna bakıyor (alt uca baksaydı 3-4 kapalı kalırdı). Gerekçe yorumu güncellendi: bu bir ürün kararı, kanıt değişmedi; 3-4 sürümleri tek somut sanı + tek görünür düzeltme ile yazıldı.
+- Sıra kuralının onaylı istisnası: `fact_sun_is_a_star` ve `fact_shooting_star_is_not_a_star`'ın `bands` alanı `["5-6"]`'dan `["5-6", "7-8", "9-10"]`'a genişledi (mevcut kayıt değişti; onay: Batuhan, 18 Kasım). Yeni olgu yazılmadı.
+- Beklenen kapsam (Python yaklaşığı, motor değil): en korumacı ayarda öğrenme 3-4 5/5, 7-8 4/4, 9-10 4/4 (önce 2/2). "Hayvanlar" 3-4, 7-8 ve 9-10'da canlandı; Bilim 7-10'da hâlâ üç mekanizmaya ulaşmıyor.
+- Bilerek değişmedi: Meslekler 7-10 bu turda yok, `docs/HAVUZ_PLANI.md`'ye H2b olarak yazıldı; Sporlar'ın hiç içeriği olmadığı plana not edildi. 7-8 ve 9-10'da `warm_close`'a satır eklenmedi (var olan masalların havuzuna girerdi). 7-10'un `needsCare` tanışma ve yardım isteği satırları "kaybettim" üzerine yazılı; `appeal` masalları bu yüzden kaybolanı birlikte bulmaya yaslanıyor, Batuhan okumalı.
+- Sabit testler güncellendi: `CoverageReportTests` (öğrenme tabanları hedefe: ≥4 / ≥3), `StoryTopicTests` (Hayvanlar 3-4, 7-8, 9-10'da canlı), `CuratedFactTests` (iki NASA olgusu 5-10), `CatalogLoadingTests` (53 blueprint, 192 şablon, 1676 varyant).
+- Test: çalıştırılmadı (talimat: `swift build`/`swift test`/`xcodebuild` yok; disk ~2 GB). Sayılar ve kapı denetimi Python doğrulayıcısından (dizi kuralları, satır kapıları, kelime bantları, başlık uzunluğu). İlk koşuda bakılacaklar: `CoverageReportTests`'in tablosu, `VariationBaselineTests` (öğrenme 3-4 tekrar oranı), `TitleVarietyTests`, `PageBudgetTests`.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Content/EmotionalArc.swift`, `CatalogIntegrity.swift`, `Resources/blueprints/pilot_library_v1.json`, `Resources/templates/v3-age3|v3-age7|v3-age9/…` (10 yeni, 12 değişen dosya), dört test dosyası, `docs/HAVUZ_PLANI.md`, bu günlük.
+
 ### 2026-11-18 · main@dcb86b5 + bu kayıt · H0-H1 derlenmeden origin'e gönderildi
 
 - Ne değişti (Batuhan, 18 Kasım: "Derlemeden gönder"): main origin'e gönderildi (`f9fc0d6..dcb86b5`), H0 ve H1 dahil.

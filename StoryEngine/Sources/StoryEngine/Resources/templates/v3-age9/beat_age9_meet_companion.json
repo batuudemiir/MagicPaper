@@ -5,7 +5,8 @@
   "ageBand": "9-10",
   "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3, hep companion_offers ya da receive_appeal ile. Yol arkadaşı KENDİ sebebiyle oradadır. Satırlar rol başınadır (castRoles): rehber kendinden emin ama bilgiç değil, çekingen yavaş açılır, sakinleştiren telaşı alır, bakıma muhtaç olan bir şey arar. 9-10'da ilk karşılaşma küçük bir esprili cümle taşıyabilir.",
   "lengthClasses": {
-    "paired": "15-30 words — page 3 also carries companion_offers or receive_appeal"
+    "paired": "15-30 words — page 3 also carries companion_offers or receive_appeal",
+    "solo": "30-60 words — sayfa 4 yalnız, bakım masalı (H2)"
   },
   "bannedConstructions": [
     "hemen",
@@ -228,6 +229,48 @@
       ],
       "lengthClass": "paired",
       "move": "age9_a9_mc_16",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_01",
+      "text": "Bir kenarda {{companion.name}} adında küçük bir {{companion.type}} oturuyordu. Yorgundu, bu belliydi; ama {{child.name}}'i görünce kaçmadı, yalnızca başını biraz eğdi. {{child.name}} ona yaklaşmadan önce durdu ve bekledi, çünkü güvenin acele ile kazanılmadığını bir yerden biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_02",
+      "text": "{{child.name}} önce bir kıpırtı gördü, sonra kıpırtının sahibini: {{companion.name}} adında minicik bir {{companion.type}}. Kendi başının çaresine bakmaya çalışıyordu ama pek başaramıyordu. {{child.name}} yanına çömeldi ve sesini alçaltarak merhaba dedi; {{companion.name}} biraz düşündü, sonra o da merhaba dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_03",
+      "text": "Orada biri vardı: {{companion.name}}, küçük ve biraz üşümüş bir {{companion.type}}. Etrafına sessizce bakıyor, sanki birinin gelmesini bekliyordu. {{child.name}} onun gözlerinde bir soru gördü. Cevabı henüz bilmiyordu, ama soruyu duymazdan gelmeyeceğini biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_03",
+      "lengthClass": "solo",
       "castRoles": [
         "needsCare"
       ]

@@ -5749,6 +5749,736 @@
           "supportingBeat": "self_recognize"
         }
       ]
+    },
+    {
+      "id": "bp_unexplained_howitworks_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "unexplained",
+      "editorialName": "I-4 - howItWorks (3-4)",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Bir şey kendi kendine oluyor; çocuk bir tahminde bulunur, izler ve ne zaman olduğunu görür.",
+      "editorialGuidance": "H2 (18 Kasım 2026, karar: Batuhan): 3-4 bandı bu aileye açıldı (`NarrativeFamily.minimumAge` 4). Bu yüzden en basit biçimi: tek bir somut sanı, tek bir görünür düzeltme, iç dünyayı anlatan uzun cümle yok. Taslak, Batuhan okuyacak. Çözüm bir kural cümlesi değil, görülen bir şey: \"Rüzgâr esince başlıyor.\"",
+      "requires": {
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "Bu Nasıl Oluyor?",
+        "Bak, Yine Oldu!",
+        "{{discovery.title}} Ne Yapıyor?",
+        "{{companion.name}} ile Bakalım",
+        "{{child.name}} Anladı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "insight",
+          "supportingBeat": "insight"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "satisfaction"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_misreading_closerlook_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "misreading",
+      "editorialName": "V-3 - closerLook (3-4)",
+      "genre": "adventure",
+      "theme": "discovery",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk bir şeyin kime ait olduğundan emindir; yakından bakınca öyle olmadığını görür.",
+      "editorialGuidance": "H2 (18 Kasım 2026, karar: Batuhan): 3-4 bandı bu aileye açıldı (`NarrativeFamily.minimumAge` 4). Bu yüzden en basit biçimi: tek bir somut sanı, tek bir görünür düzeltme, iç dünyayı anlatan uzun cümle yok. Taslak, Batuhan okuyacak. Yanlış sanı somut ve tek (\"Bunu bir kuş bırakmış!\"), düzeltme gözle görülür (yakından bakmak). Çocuk yanıldığı için asla aptal durumuna düşmez; gerçek, sanıdan daha sıcaktır.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "canConceal",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "isUnexplained"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "isLiteralMinded"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "Bunu Kim Bırakmış?",
+        "Yakından Bakınca",
+        "Meğer Öyle Değilmiş!",
+        "{{companion.name}} ile Yakından",
+        "{{child.name}} Bir Daha Baktı"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "certainty",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "belief_fails",
+          "emotion": "puzzlement",
+          "supportingBeat": "commit"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "surprise",
+          "supportingBeat": "reveal_truth"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "delight"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_appeal_together_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "III-4 - helpingTogether (3-4)",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Küçük biri yardım ister; çocuk tek başına deneyince olmaz, birlikte yapınca olur.",
+      "editorialGuidance": "H2 (18 Kasım 2026, karar: Batuhan): appeal ailesi 3-4 için zaten açıktı; H2 onu bu banda yazdı. en basit biçimi: tek bir somut sanı, tek bir görünür düzeltme, iç dünyayı anlatan uzun cümle yok. Taslak, Batuhan okuyacak. Engel ne arkadaşın kendi becerisiyle ne de çocuğun onu taşımasıyla çözülür; ikisi işi bölüşür. Arkadaşın bedeni asla yük değildir.",
+      "requires": {
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'a Kim Yardım Eder?",
+        "Birlikte Daha Kolay",
+        "{{companion.name}}'a Yardım",
+        "{{child.name}} Yardım Ediyor",
+        "İkimiz Birlikte"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy",
+          "supportingBeat": "receive_appeal"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort",
+          "supportingBeat": "cooperative_effort"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_appeal_together_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "III-1 - cooperation (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Biri yardım ister; iki ayrı beceri gerekir ve ikisi de şarttır.",
+      "editorialGuidance": "H2 (18 Kasım 2026): öğrenme modu bu bantta. Taslak, Batuhan okuyacak. Engel ne arkadaşın kendi becerisiyle ne de çocuğun onu taşımasıyla çözülür; ikisi işi bölüşür. Arkadaşın bedeni asla yük değildir.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "hasThreshold",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "anyOf": [
+            [
+              "hasLocalKnowledge",
+              "isQuick",
+              "isPatient"
+            ]
+          ]
+        },
+        "discovery": {
+          "anyOf": [
+            [
+              "impliesNeed",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'a Kim Yardım Eder?",
+        "İki Kişilik Bir İş",
+        "{{setting.name}}'nda Birlikte",
+        "{{child.name}} ve {{companion.name}}",
+        "Birlikte Bulmak"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy",
+          "supportingBeat": "receive_appeal"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_charge_tending_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "editorialName": "VI-1 - patience (7-8)",
+      "genre": "gentle_adventure",
+      "theme": "responsibility",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Hiçbir şey çocuğu engellemiyor; iş yalnızca zaman ve her gün geri gelmek istiyor.",
+      "editorialGuidance": "H2 (18 Kasım 2026): öğrenme modu bu bantta. Taslak, Batuhan okuyacak. Çatışma SÜRE, zorluk değil: adlandırılmış bir engel yok. Çözüm sayfasından önceki sayfa beklemek, uğraşmak değil.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isFragile",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}} İyileşecek mi?",
+        "Her Gün Biraz",
+        "{{discovery.title}}'in Başında",
+        "{{child.name}} Her Gün Geldi",
+        "Beklemeyi Bilmek"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "pride"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_appeal_together_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "appeal",
+      "editorialName": "III-1 - cooperation (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "helping_others",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Biri yardım ister; iki ayrı beceri gerekir, çocuk işi doğru bölmeyi öğrenir.",
+      "editorialGuidance": "H2 (18 Kasım 2026): öğrenme modu bu bantta. Taslak, Batuhan okuyacak. Engel ne arkadaşın kendi becerisiyle ne de çocuğun onu taşımasıyla çözülür; ikisi işi bölüşür. Arkadaşın bedeni asla yük değildir.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "hasThreshold",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "anyOf": [
+            [
+              "hasLocalKnowledge",
+              "isQuick",
+              "isPatient"
+            ]
+          ]
+        },
+        "discovery": {
+          "anyOf": [
+            [
+              "impliesNeed",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}}'a Kim Yardım Eder?",
+        "İki Kişilik Bir İş",
+        "{{setting.name}}'nda Birlikte",
+        "{{child.name}} ve {{companion.name}}",
+        "İşi Bölüşmek"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "sympathy",
+          "supportingBeat": "receive_appeal"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "concern"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_charge_tending_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "editorialName": "VI-1 - patience (9-10)",
+      "genre": "gentle_adventure",
+      "theme": "responsibility",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Hiçbir şey çocuğu engellemiyor; iş zaman, düzen ve sabır istiyor.",
+      "editorialGuidance": "H2 (18 Kasım 2026): öğrenme modu bu bantta. Taslak, Batuhan okuyacak. Çatışma SÜRE, zorluk değil: adlandırılmış bir engel yok. Çözüm sayfasından önceki sayfa beklemek, uğraşmak değil. Sayfa 5 bakılan kişinin neye ihtiyacı olduğunu kendisinin göstermesi (companion_offers): bakmak önce dinlemekle başlar.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "companion": {
+          "allOf": [
+            "isSmall"
+          ]
+        },
+        "discovery": {
+          "allOf": [
+            "isFragile",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{companion.name}} İyileşecek mi?",
+        "Her Gün Biraz",
+        "{{discovery.title}}'in Başında",
+        "{{child.name}} Her Gün Geldi",
+        "Beklemenin Bir Yolu"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "companion",
+          "beat": "companion_offers",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "patience"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "pride"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
     }
   ],
   "templates": [
@@ -7917,7 +8647,9 @@
       "id": "fact_sun_is_a_star",
       "statement": "Güneş de bir yıldızdır. Bize en yakın yıldız olduğu için bu kadar büyük ve parlak görünür.",
       "bands": [
-        "5-6"
+        "5-6",
+        "7-8",
+        "9-10"
       ],
       "sourceName": "NASA Space Place, All About the Sun",
       "sourceURL": "https://spaceplace.nasa.gov/all-about-the-sun/en/",
@@ -7928,7 +8660,9 @@
       "id": "fact_shooting_star_is_not_a_star",
       "statement": "Gökyüzünde kayan yıldız gördüğümüzde aslında bir yıldız düşmez. Gördüğümüz, hızla gelen küçük bir taşın çevresindeki havanın kızarıp parlamasıdır.",
       "bands": [
-        "5-6"
+        "5-6",
+        "7-8",
+        "9-10"
       ],
       "sourceName": "NASA Space Place, What Is a Meteor Shower?",
       "sourceURL": "https://spaceplace.nasa.gov/meteor-shower/en/",

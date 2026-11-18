@@ -146,11 +146,22 @@ public enum NarrativeFamily: String, Codable, Sendable, Hashable, CaseIterable {
     /// değiştirmedim; sayıyı kanıtın söylediği yere çektim ve fazladan
     /// söylediğim şeyi geri aldım.
     ///
-    /// Beşin ALTI yine de ayrı: orada ne çıkarım ne inanç düzeltmesi güvenilir,
-    /// ve o eşik kaynakların gerçekten söylediği şey.
+    /// **18 Kasım 2026: 5'ten 4'e indi (karar: Batuhan, H2).** Bu bir ürün
+    /// kararı, kanıtın değiştiği bir yer değil, ve öyle yazılıyor: yukarıdaki
+    /// gerekçe 4 yaş için zayıflıyor, ortadan kalkmıyor. Yanlış inanç
+    /// kavrayışı 4-5 civarında oturmaya başlıyor; 4 o aralığın alt ucu.
+    /// Bu yüzden 3-4 bandındaki sürümler bilerek en basit biçimde yazılıyor:
+    /// tek bir somut sanı ("Bunu bir kuş bırakmış!"), tek bir görünür
+    /// düzeltme (yakından bakmak), ve iç dünyayı anlatan uzun cümle yok.
+    /// Kural bandın ÜST ucuna bakıyor (`CatalogIntegrity.checkAgeFit`): 3-4
+    /// bandı 4 yaşına uzandığı için bu ailelere açık; 3 yaşındaki bir
+    /// çocuğun bu masalı okuyabilmesi, bandın tek tip olmasının bedeli.
+    ///
+    /// Dördün ALTI ayrı kalıyor: orada ne çıkarım ne inanç düzeltmesi
+    /// güvenilir.
     public var minimumAge: Int {
         switch resolution {
-        case .revelation, .insight: return 5   // ikinci katman: çıkarım ve inanç
+        case .revelation, .insight: return 4   // ikinci katman: çıkarım ve inanç (18 Kasım 2026: 5 → 4)
         default:                    return 3   // doğrusal zincir: iste, yap, olsun
         }
     }

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "a7_pw_01",
+      "text": "Sonra beklemek gerekti. {{child.name}} beklemeyi hiç sevmezdi, ama bu kez farklıydı. Her gün biraz daha az kaygılanıyor, biraz daha çok fark ediyordu: küçük değişiklikler oluyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_a7_pw_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_pw_02",
+      "text": "{{child.name}} günleri saydı. Bir, iki, üç... Dördüncü gün bir şey fark etti: {{companion.name}} dün olduğundan biraz daha iyi görünüyordu. Beklemek işe yarıyordu, yavaş yavaş da olsa.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_pw_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_pw_03",
+      "text": "Hiçbir şey bir anda olmadı. {{child.name}} bunu öğrendi: bazı işler yalnızca zamanla biter. Yanına oturdu, kitabını açtı ve acele etmeden bekledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_a7_pw_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a7_pw_04",
+      "text": "Beklemek de bir işti, belki en zoru. {{child.name}} her sabah geldi, baktı ve sessizce oturdu. Bir sabah {{companion.name}} başını kaldırdı ve ona baktı. İşte, zamanı geliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_pw_04",
+      "lengthClass": "solo"
+    }
+  ]
+}

@@ -47,6 +47,45 @@
       ],
       "move": "h1_a7_ce_04",
       "lengthClass": "solo"
+    },
+    {
+      "id": "a7_ce_h2_01",
+      "text": "\"Sen bana yolu göster, ben de uzanayım,\" dedi {{child.name}}. {{companion.name}} nereye bakılacağını biliyordu, {{child.name}} ise oraya nasıl uzanılacağını. İkisi birleşince eksik bir şey kalmadı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_ce_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_ce_h2_02",
+      "text": "{{companion.name}} ne yapılması gerektiğini anlattı, {{child.name}} dikkatle dinledi. Sonra işi paylaştılar: biri tuttu, öbürü itti. Yavaş yavaş, birbirlerini bekleyerek ilerlediler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_ce_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a7_ce_h2_03",
+      "text": "{{child.name}} tek başına denediğinde olmamıştı. Bu kez {{companion.name}}'e döndü: \"Birlikte deneyelim mi?\" {{companion.name}} başını salladı. İkisi aynı anda başladılar ve bu kez iş ilerledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a7_ce_h2_03",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

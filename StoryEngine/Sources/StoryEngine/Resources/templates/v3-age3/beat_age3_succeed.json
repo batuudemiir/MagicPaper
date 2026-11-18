@@ -108,6 +108,82 @@
       "afterBeat": [
         "ask_for_help"
       ]
+    },
+    {
+      "id": "sc3u_01",
+      "text": "{{child.name}} anlamıştı! {{discovery.name}} nasıl çalışıyordu, artık biliyordu. Çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h2_sc3u_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "sc3u_02",
+      "text": "\"Ben buldum!\" dedi {{child.name}}. {{companion.name}} bakıp güldü. İkisi de çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_sc3u_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "sc3u_03",
+      "text": "Artık {{discovery.name}} hiç tuhaf gelmiyordu. {{child.name}} nasıl olduğunu görmüştü. Yüzü güldü.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h2_sc3u_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ]
+    },
+    {
+      "id": "sc3m_01",
+      "text": "{{child.name}} kıkır kıkır güldü. Sandığı gibi değildi. Ama bu daha da güzeldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_sc3m_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "sc3m_02",
+      "text": "Yanılmıştı, ama olsun. {{child.name}} yakından bakmayı çok sevdi. Bir dahaki sefere yine bakacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_sc3m_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "sc3m_03",
+      "text": "\"Meğer öyle değilmiş!\" dedi {{child.name}}. {{companion.name}} başını salladı. İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_sc3m_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ]
     }
   ]
 }

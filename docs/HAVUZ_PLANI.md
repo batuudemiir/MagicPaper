@@ -32,6 +32,7 @@ Her bantta, en korumacı ayarda: macera ≥ 4, öğrenme ≥ 4, uyku ≥ 3 bluep
 | H0 | Kapsam raporu: bant × mod × güvenlik × konu matrisi, test olarak | K |
 | H1 | Sakin macera, her bantta (3-4 sıfırdan) | B (içerik) |
 | H2 | Öğrenme 3-4 ve 7-10 | B (içerik) |
+| H2b | Meslekler 7-10 (ayrı faz, karar: Batuhan 18 Kasım 2026) | O (içerik) |
 | H3 | Uyku çeşitliliği 3-4 ve 7-10 | O (içerik) |
 | H4 | Seri devamı 7-8 ve 9-10 | O |
 | H5 | Cümle tekrarı ölçümü, ince satır havuzlarını kalınlaştırma | O |
@@ -82,7 +83,48 @@ En korumacı ayarda görünen macera konuları, dört bantta da: Denizin altı, 
 
 Yan etkiler: ilgi kelimeleri beşten ona çıktı (Uzay, Müzik, Robotlar, Bilim, Gökyüzü eklendi; sınırlayan bant 3-4'tü). 3-4 korpusunun dosya notu "aşılacak engel yok" diyor; plan bu bandı maceraya açtığı için yeni 3-4 satırlarında engel küçük, içsel ve arkadaşla aşılıyor. Not dosyalarda değişmedi (yalnızca ekleme kuralı); Batuhan'ın okuması gerekiyor.
 
-### H2-H5
+### H2: Öğrenme 3-4 ve 7-10
+
+**Uygulanan (18 Kasım 2026).** Batuhan'ın üç kararıyla (18 Kasım):
+
+1. **3-4'te yaş kuralı gevşedi.** `NarrativeFamily.minimumAge` `unexplained` ve `misreading` için 5'ten 4'e indi, ve `CatalogIntegrity.checkAgeFit` artık bandın **üst** ucuna bakıyor (alt uca baksaydı taban 4'e inse de 3-4 kapalı kalırdı). Gerekçe yorumu dürüstçe güncellendi: bu bir ürün kararı, kanıt değişmedi; 4 yaş yanlış inanç kavrayışının oturmaya başladığı aralığın alt ucu. Bu yüzden 3-4 sürümleri en basit biçimde: tek bir somut sanı ("Bunu bir kuş bırakmış!"), tek bir görünür düzeltme (yakından bakmak), iç dünyayı anlatan uzun cümle yok.
+2. **İki NASA olgusu 7-8 ve 9-10'a açıldı:** `fact_sun_is_a_star` ve `fact_shooting_star_is_not_a_star`'ın `bands` alanı `["5-6", "7-8", "9-10"]`. Mevcut kaydın değişmesi; "yalnızca sona ekleme" kuralının onaylı istisnası. Yeni olgu yazılmadı.
+3. **Meslekler 7-10 bu turda yok** (H2b, aşağıda).
+
+Yedi blueprint, `pilot_library_v1.json`'un sonuna; hiçbirinde `unease`/`hesitation` sayfası yok, yeni aile ya da beat yok.
+
+| Kimlik | Bant | Aile | Olay örgüsü |
+|---|---|---|---|
+| `bp_unexplained_howitworks_age3_001` | 3-4 | unexplained | Bir şey kendi kendine oluyor; çocuk tahmin eder, izler, ne zaman olduğunu görür (`insight`). |
+| `bp_misreading_closerlook_age3_001` | 3-4 | misreading | "Bunu bir kuş bırakmış!"; yakından bakınca öyle değil (`reveal_truth`). |
+| `bp_appeal_together_age3_001` | 3-4 | appeal | Küçük biri yardım ister; tek başına olmaz, birlikte olur (`cooperative_effort` → `restore`). |
+| `bp_appeal_together_age7_001` | 7-8 | appeal | Biri yardım ister, iki beceri gerekir, işi bölüşürler. |
+| `bp_charge_tending_age7_001` | 7-8 | charge | Bakmak ve beklemek (`take_charge`, `tend`, `patient_wait`). |
+| `bp_appeal_together_age9_001` | 9-10 | appeal | 7-8'in 10 sayfalık hâli. |
+| `bp_charge_tending_age9_001` | 9-10 | charge | Bakmak ve beklemek; sayfa 5'te bakılan kişi ne istediğini gösterir (`companion_offers`). |
+
+Satırlar: 90 yeni varyant (`move: "h2_…"`). Yeni dosyalar: 3-4'te `form_belief`, `belief_fails`, `reveal_truth`, `insight`; 7-8 ve 9-10'da `take_charge`, `tend`, `patient_wait`. Var olan dosyalara yalnızca sona ekleme (ve gereken yerde `lengthClasses`'a yeni bir sınıf: 3-4 `restore` `solo`, 7-8 ve 9-10 `meet_companion` `solo`, 9-10 `companion_offers` `solo`). Yeni satırlar var olan masallara rol, uzunluk sınıfı ve `afterBeat` kapılarıyla karışmıyor; 7-8 ve 9-10'da `warm_close`'a bu yüzden satır eklenmedi.
+
+7-8 ve 9-10'un `needsCare` satırları (tanışma, yardım isteği) var olan korpusta "kaybettim" üzerine yazılı; `appeal` masalları bu yüzden kaybolan bir şeyi birlikte bulmaya yaslanıyor. Batuhan'ın okuması gerekiyor.
+
+Beklenen tablo (Python yaklaşığı, en korumacı ve süzgeçsiz aynı; ilk test koşusunda `CoverageReportTests`'in yazdırdığıyla değiştirilecek):
+
+| Bant | Öğrenme (blueprint/mekanizma) | Öğrenme konuları |
+|---|---|---|
+| 3-4 | **5/5** (önce 2/2) | Hayvanlar (önce yok) |
+| 5-6 | 13/10 (değişmedi) | Meslekler, Hayvanlar, Bilim |
+| 7-8 | **4/4** (önce 2/2) | Hayvanlar (önce yok) |
+| 9-10 | **4/4** (önce 2/2) | Hayvanlar (önce yok) |
+
+`CoverageReportTests` öğrenme tabanlarını hedefe çekti (≥4 blueprint, ≥3 mekanizma). Bilim 7-10'da hâlâ görünmüyor: yalnızca iki keşif `science` taşıyor (`object_flickering_light_001`, `object_star_stone_001`) ve üç mekanizmaya ulaşmıyor; açılan NASA olguları bu yüzden bugün yalnızca bilim konusu seçilmeden gelen masallarda görünür.
+
+### H2b: Meslekler 7-10 (ayrı faz)
+
+Karar: Batuhan, 18 Kasım 2026. Meslekler konusu blueprint'in `jobs` etiketini ve insan yol arkadaşını istiyor (`topic_learning_jobs`: `companion: jobs`, `plot: jobs`). Üç insan yol arkadaşı var (fırıncı, postacı, öğretmen), hepsi köyde; mekân olarak yalnızca Minik Köy ve Pazar Yeri. Faz: 7-8 ve 9-10'a her birine en az üç `jobs` blueprint'i (üç ayrı mekanizma) ve o bandın satır dosyalarında insan yol arkadaşına uyan satırlar (`natureRequire: person`, gerekiyorsa `occupationRequire`). Meslek olguları (`fact_baker_rests_the_dough` vb.) 5-6'da; 7-10'a açılmaları ayrı bir onay ister.
+
+**Sporlar:** hiç içerik yok. `topic_learning_sports` `companion: sports` ve `discovery: sports` istiyor; katalogda bu etiketi taşıyan tek kayıt yok, hiçbir bantta görünmüyor. Ayrı bir içerik kararı gerektiriyor.
+
+### H3-H5
 
 Her faz H0 raporundan başlar, hedef hücreyi gösterir, biter. Ayrıntı başladığında buraya yazılır.
 

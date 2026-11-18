@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 3,
+  "beat": "insight",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "in3_01",
+      "text": "{{child.name}} iyice baktı. Rüzgâr esince başlıyor, durunca duruyordu!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_in3_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "in3_02",
+      "text": "{{companion.name}} yaklaşınca oldu, uzaklaşınca durdu. İşte buydu!",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_in3_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "in3_03",
+      "text": "Güneş vurunca başlıyordu! {{child.name}} bunu kendi gördü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_in3_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "in3_04",
+      "text": "Bir, iki, üç... Bak, yine oldu! Hep aynı sırayla.",
+      "requiredSlots": [],
+      "move": "h2_in3_04",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "in3_05",
+      "text": "{{child.name}} sessizce izledi ve anladı. Gölge gelince duruyordu!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_in3_05",
+      "lengthClass": "paired"
+    }
+  ]
+}
