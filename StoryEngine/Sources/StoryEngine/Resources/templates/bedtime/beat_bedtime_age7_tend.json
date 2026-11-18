@@ -121,6 +121,56 @@
       "afterBeat": [
         "companion_offers"
       ]
+    },
+    {
+      "id": "bt7l_h5_01",
+      "text": "{{child.name}}, {{companion.name}}'in yanına bir yastık daha koydu; artık ikisi de rahattı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt7l_01",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt7l_h5_02",
+      "text": "Ne olduğunu anlayınca {{child.name}} yorganın ucunu açtı ve {{companion.name}}'e yer verdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt7l_02",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt7c_h5_01",
+      "text": "{{child.name}} onun önerisini dinledi ve ikisinin yorganını birlikte, yavaş yavaş düzeltti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt7c_01",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt7c_h5_02",
+      "text": "{{companion.name}}'in dediği gibi derin bir nefes aldı, sonra yastığı onun için kabarttı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt7c_02",
+      "afterBeat": [
+        "companion_offers"
+      ]
     }
   ]
 }

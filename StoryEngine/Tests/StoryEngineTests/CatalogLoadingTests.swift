@@ -165,7 +165,10 @@ final class CatalogBundleTests: XCTestCase {
         // 5-6'da 7, 7-8'de 13, 9-10'da 9). Var olan satırlara dokunulmadı.
         // 1719 → 1786 (H2b, 19 Kasım 2026): Meslekler 7-10'un 67 satırı.
         // 1786 → 1869 (Sporlar, 19 Kasım 2026): 83 satır.
-        XCTAssertEqual(catalog.recordCounts["variants"], 1869)
+        // 1869 → 2091 (H5, 19 Kasım 2026): 3 satırın altındaki havuzlar 4'e
+        // çıktı, 222 satır (196'sı Masal ailem satırı). Seri katmanına giden
+        // 72 satır bu sayıya girmiyor. Var olan satırlara dokunulmadı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 2091)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

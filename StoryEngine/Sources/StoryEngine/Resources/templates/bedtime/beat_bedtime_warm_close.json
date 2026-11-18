@@ -197,6 +197,144 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt_wc_h5_sib_01",
+      "text": "{{child.name}} yatağına döndü. Kardeşi {{family.name}} yarı uykulu gülümsedi. {{setting.name}}'da lamba söndü ve ikisi aynı sessizliğe gömüldü. Pencerenin önündeki dost da uyuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_sib_02",
+      "text": "Kardeşi {{family.name}}'ın nefesi yavaşlamıştı. {{child.name}} onun yorganını düzeltti, sonra kendi yastığına döndü. {{setting.name}} sıcacıktı. Gözleri kendiliğinden, usulca kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} birbirine iyi geceler diledi. {{setting.name}}'da lamba söndü. Pencerenin önündeki dost da uyuyordu artık.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} çoktan uykuya dalmıştı. {{child.name}} bir süre ay ışığına baktı. {{setting.name}} sessizdi ve onun gözleri de usulca kapandı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_an_01",
+      "text": "{{family.possessive}} {{family.name}} yanında derin derin uyuyordu. {{child.name}} yorganını usulca düzeltti. {{setting.name}}'da her şey akşamki gibiydi. Gözleri kapandı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_an_02",
+      "text": "{{child.name}} yatağına döndü ve {{family.possessive}} {{family.name}}'a son bir kez baktı. İkisi de rahattı. {{setting.name}} sessizdi; uyku yavaşça geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_im_01",
+      "text": "Hayali arkadaşı {{family.name}} yorganın ucuna kıvrıldı. {{child.name}} ona gülümsedi. {{setting.name}}'da lamba söndü ve gece usulca yerleşti. Pencerenin önündeki küçük dost da dinleniyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_wc_h5_im_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a \"Bu gece de iyi iş çıkardık,\" diye fısıldadı. {{setting.name}} sessizdi ve pencerede her şey yerli yerindeydi. Gözleri kapandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_wc_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

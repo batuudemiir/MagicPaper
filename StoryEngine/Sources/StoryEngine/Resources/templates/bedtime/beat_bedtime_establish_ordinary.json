@@ -204,6 +204,144 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt_eo_h5_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yorganlarına girdi. {{family.name}} bugün gördüğü bir kuşu anlatıyordu. {{child.name}} dinlerken gözleri ağırlaşmaya başladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_sib_02",
+      "text": "{{child.name}} yastığını kabarttı, sonra kardeşi {{family.name}}'ın yastığını düzeltti. {{setting.name}}'da lamba kısıktı. Pencereden ay ışığı süzülüyordu ve ev yavaş yavaş sessizleşiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da yorganın altında fısıldaşıyordu. Bütün gün oynamışlardı. Şimdi sesleri yavaşlamış, kelimeler birbirine karışmaya başlamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_fr_02",
+      "text": "{{child.name}} bu akşam yatağının yanına bir yer yatağı serdi. Arkadaşı {{family.name}} oraya kıvrıldı. {{setting.name}} sıcacıktı ve lamba yumuşacık yanıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_an_01",
+      "text": "{{child.name}} {{setting.name}}'da yorganına sarındı. {{family.possessive}} {{family.name}} her akşamki yerindeydi, gözleri yarı kapalı. Lamba kısılmıştı ve oda sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_an_02",
+      "text": "{{child.name}} yatmadan önce {{family.possessive}} {{family.name}}'a iyi geceler dedi. {{family.name}} sessizce ona baktı. {{setting.name}}'da gece usulca başlıyordu. Lamba kısıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_im_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına uzandı. Hayali arkadaşı {{family.name}} yastığın ucuna oturmuş, ayaklarını sallıyordu. Lamba kısıktı, her şey uykuya hazırdı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_eo_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yorganın altında bir çadır kurdu. Çadır biraz eğriydi ama çok rahattı. {{setting.name}}'da gece usulca başlamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_eo_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

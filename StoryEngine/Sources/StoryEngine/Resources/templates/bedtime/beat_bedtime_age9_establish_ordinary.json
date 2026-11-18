@@ -250,6 +250,143 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "b9_eo_h5_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yataklarına girdiklerinde ev çoktan sessizleşmişti. {{family.name}} bugün öğrendiği bir kelimeyi tekrar ediyordu, her seferinde biraz daha yavaş. {{child.name}} kelimenin anlamını biliyordu ama söylemedi; kardeşinin onu kendi kendine bulmasını istiyordu. Lamba kısıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_sib_02",
+      "text": "{{child.name}} yorganını düzeltirken kardeşi {{family.name}} yatağından ona doğru döndü. Gece konuşmaları hep böyle başlardı: önce bir soru, sonra bir anı, sonra uzun bir esneme. {{setting.name}}'da lamba yumuşacık yanıyordu. Bu akşam da sıra aynıydı ve ikisi de bundan memnundu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_fr_01",
+      "text": "Arkadaşı {{family.name}} bu gece misafirdi. {{setting.name}}'da iki yastık yan yanaydı ve aralarında bir el feneri duruyordu. İkisi feneri yakıp tavana gölgeler çizdi: bir kuş, bir dağ, bir yelkenli. Gölgeler yavaş yavaş silikleşti, çünkü çizenlerin elleri de ağırlaşıyordu.",
+      "requiredSlots": [
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da sırtüstü yatmış, tavana bakıyordu. Gün boyu söyleyecek o kadar çok şeyleri olmuştu ki şimdi söyleyecek pek bir şey kalmamıştı. Bu sessizlik garip değildi; iyi arkadaşlar arasında olan, rahat bir sessizlikti. Lamba kısıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_an_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına girdi. {{family.possessive}} {{family.name}} her akşamki yerine yerleşmiş, gözlerini yarı yarıya kapamıştı. {{child.name}} ona günün kısa bir özetini anlattı; {{family.name}} özeti hiç sorgulamadan kabul etti. Lamba kısıldı ve oda, uykuya hazırlanan bir evin sesleriyle doldu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_an_02",
+      "text": "{{setting.name}}'da gece başlıyordu. {{child.name}} yorganını çekerken {{family.possessive}} {{family.name}}'ın sakin nefesini dinledi. Evin herkesinin kendine göre bir akşam düzeni vardı; {{family.name}}'ın düzeni şuydu: yakında durmak, sessiz kalmak, gözlerini yavaş yavaş kapamak. {{child.name}} bu düzeni çok severdi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_im_01",
+      "text": "{{child.name}} yatağına uzandığında hayali arkadaşı {{family.name}} çoktan yorganın ucuna yerleşmişti. Bu gece nöbet onundaydı; en azından {{family.name}} öyle söylüyordu. {{child.name}} itiraz etmedi. {{setting.name}} sessizdi, lamba kısıktı ve bir nöbetçinin varlığı her şeyi biraz daha güvenli gösteriyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9_eo_h5_im_02",
+      "text": "{{child.name}} {{setting.name}}'da lambayı kısarken hayali arkadaşı {{family.name}} uzun uzun esnedi. {{child.name}} hayali arkadaşların da uykusu gelip gelmediğini hep merak ederdi; demek ki geliyordu. Bu bilgiyi aklının bir köşesine koydu ve yorganına sarındı. Gece usulca başlıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_eo_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

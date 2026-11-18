@@ -61,6 +61,59 @@
       "afterBeat": [
         "let_go"
       ]
+    },
+    {
+      "id": "s9rs_lg_h5_01",
+      "text": "{{child.name}} onu yerine bıraktı ve elini yavaşça çekti. Küçük şey olduğu yerde huzurla duruyordu, sanki bir yolculuktan dönmüş de dinleniyormuş gibi. {{companion.name}} yanına geldi. İkisi bir süre sessizce izlediler; bu sessizlik, söylenebilecek her şeyden daha doğruydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9rs_lg_01",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s9rs_lg_h5_02",
+      "text": "Her şey yerine dönmüştü. {{child.name}} geri çekilip baktı ve içinde tatlı bir hafiflik duydu. Bir şeyi elinde tutmak kolaydı; onu ait olduğu yere bırakmak ise başka bir cesaret istiyordu. {{companion.name}} bunu biliyordu, ve {{child.name}} artık biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9rs_lg_02",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s9rs_st_h5_01",
+      "text": "{{companion.name}} yanında kaldıkça bekleyiş kısaldı. Ve sonunda {{discovery.name}} yavaş yavaş kendine geldi. {{child.name}} gülümsedi. Bu kez yalnız beklememişti; birinin yanında beklemek, beklemenin kendisini de değiştiriyordu. {{companion.name}} hiçbir şey söylemedi, yalnızca başını salladı.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9rs_st_01",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "s9rs_st_h5_02",
+      "text": "Bir süre sonra küçük şey kıpırdadı, sonra güçlendi, sonra tamamen iyileşti. {{child.name}} ile {{companion.name}} birbirine baktı. {{companion.name}}'in önerisi doğru çıkmıştı: acele etmeden, yanında durarak. {{child.name}} bu yolu aklının bir köşesine yazdı; bir gün yine gerekebilirdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9rs_st_02",
+      "afterBeat": [
+        "companion_offers"
+      ]
     }
   ]
 }

@@ -59,6 +59,58 @@
       "afterBeat": [
         "let_go"
       ]
+    },
+    {
+      "id": "s7rs_lg_h5_01",
+      "text": "{{child.name}} onu yerine bıraktı ve elini yavaşça çekti. Küçük şey olduğu yerde huzurla duruyordu. {{companion.name}} yanına geldi; ikisi bir süre sessizce izledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_lg_01",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s7rs_lg_h5_02",
+      "text": "Her şey yerine dönmüştü. {{child.name}} geri çekilip baktı ve içinde tatlı bir hafiflik duydu. Bırakmak da bir çeşit vermekti; bunu ilk kez bu kadar açık hissetti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_lg_02",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s7rs_pw_h5_01",
+      "text": "Bekleyiş bitti ve {{discovery.name}} yavaş yavaş kendine geldi. {{child.name}} gülümsedi; sabır yine sessizce işini yapmıştı. {{companion.name}} başını salladı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_pw_01",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s7rs_pw_h5_02",
+      "text": "Bir süre sonra küçük şey kıpırdadı, sonra güçlendi. {{child.name}} ile {{companion.name}} göz göze geldi. Bu kez de beklemek, yapılabilecek en iyi şeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_pw_02",
+      "afterBeat": [
+        "patient_wait"
+      ]
     }
   ]
 }

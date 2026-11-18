@@ -151,6 +151,117 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "s9wc_h5_sib_01",
+      "text": "Eve dönünce {{child.name}} ile kardeşi {{family.name}} günü sırayla anlattı. {{family.name}} en çok yolu anlattı, {{child.name}} ise {{companion.name}}'in sakin sesini. Sonunda ikisi de aynı yere vardı: bugün, birlikte yapılmış küçük ve güzel bir işti. Akşam sakin ve sıcaktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_sib_01",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9wc_h5_sib_02",
+      "text": "O akşam kardeşi {{family.name}} erkenden uyudu, yorgun ama mutlu. {{child.name}} onun yorganını düzeltti ve bugünü bir kez daha düşündü. Geçen sefer yalnızdı, bu kez yanında kardeşi vardı. İkisi de aynı günü yaşamış, ama her biri onu biraz farklı hatırlayacaktı. Bu da güzeldi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_sib_02",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "s9wc_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yolun ayrıldığı yerde biraz oyalandılar. Bugünü ikisi de aynı şekilde anlatacaktı, en çok da {{companion.name}}'in sakin sesini. El sallaştılar ve evlerine döndüler. {{child.name}} içinden bir oh çekti; paylaşılmış bir gün, insanın içinde daha uzun kalıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_fr_01",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9wc_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} ayrılmadan önce defterini {{child.name}}'e gösterdi. Bugünün her anı oradaydı: yol, {{setting.name}}, {{companion.name}} ve sabırla tamamlanan iş. {{child.name}} sayfaları çevirirken gülümsedi. Bir günü yazıya geçirmek, onu ikinci kez yaşamak gibiydi. İkisinin de yüreği doluydu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_fr_02",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "s9wc_h5_an_01",
+      "text": "Eve dönünce {{family.possessive}} {{family.name}} en sevdiği yere kıvrıldı ve gözlerini yumdu. {{child.name}} yanına oturdu ve bugünü sessizce düşündü: yol, {{companion.name}}, sabırla yapılan iş. {{family.name}} bunların hepsinde yanındaydı. Bu düşünce {{child.name}}'in içini ısıttı. Her şey yerli yerindeydi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_an_01",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9wc_h5_an_02",
+      "text": "{{child.name}} akşam {{family.possessive}} {{family.name}}'a bugünün kısa bir hikâyesini anlattı. Hikâye kısaydı, çünkü {{family.name}} çoğunu zaten yaşamıştı. {{family.name}} dinledi, sonra gözlerini yumdu. {{child.name}} gülümsedi ve onun yanında biraz daha oturdu. Gün tamamlanmıştı, sakin ve eksiksiz.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_an_02",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "s9wc_h5_im_01",
+      "text": "Eve dönerken {{child.name}}, hayali arkadaşı {{family.name}} ile bugünün en güzel anını seçmeye çalıştı. Geçen sefer bu konuda anlaşamamışlardı; bu kez ikisi de aynı anı seçti. {{child.name}} buna şaşırmadı. Birlikte yaşanan günler, sonunda ikisinin de aynı şeyi hatırlamasıyla biterdi. Gün güzel bitmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_im_01",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "s9wc_h5_im_02",
+      "text": "Akşam hayali arkadaşı {{family.name}} pencere kenarına oturdu. {{child.name}} ona bugünü anlattı; {{family.name}} her şeyi zaten biliyordu, ama yine de dikkatle dinledi. İkisi de bunun bir alışkanlık olduğunu biliyordu, ve ikisi de bu alışkanlığı seviyordu. Her şey sakin ve yerli yerindeydi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s9wc_im_02",
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

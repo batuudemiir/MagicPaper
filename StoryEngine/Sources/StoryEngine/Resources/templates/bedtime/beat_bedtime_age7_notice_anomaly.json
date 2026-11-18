@@ -235,6 +235,168 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt7_na_h5_sib_01",
+      "text": "{{child.name}} uykuya dalmak üzereydi. Kardeşi {{family.name}} yatağında doğruldu ve parmağını dudağına götürdü. Pencereden {{discovery.name}} geliyordu. İkisi kıpırdamadan dinlediler.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}}'a son bir soruyu cevaplıyordu ki ikisi aynı anda sustu. Pencerenin önünden {{discovery.name}} geliyordu. Ses küçüktü ve sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_fr_01",
+      "text": "{{child.name}} el fenerini söndürmüştü. Karanlıkta arkadaşı {{family.name}} fısıldadı: \"Dinle.\" Pencereden {{discovery.name}} geliyordu. İkisi yorganın altından başlarını çıkardılar.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} kimin önce uyuyacağını konuşuyordu. Sonra konuşma kendiliğinden kesildi. Pencerenin önünden {{discovery.name}} geliyordu ve ikisi de onu dinlemek istedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_an_01",
+      "text": "{{child.name}} yorganını çekiyordu ki {{family.possessive}} {{family.name}} kıpırdadı. Pencereden {{discovery.name}} geliyordu. {{child.name}} dikkatle dinledi; ses tatlıydı, korkutucu hiçbir yanı yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_an_02",
+      "text": "{{child.name}} uyumak üzereyken {{family.possessive}} {{family.name}}'ın pencereye döndüğünü fark etti. Dikkatle dinleyince o da duydu: pencerenin önünden {{discovery.name}} geliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_im_01",
+      "text": "{{child.name}} gözlerini kapamıştı. Hayali arkadaşı {{family.name}} kulağına \"Bir misafirimiz var,\" diye fısıldadı. Pencereden {{discovery.name}} geliyordu. {{child.name}} yavaşça gözlerini açtı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_na_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yıldız sayıyordu. Tam on ikide durdular. Pencerenin önünden {{discovery.name}} geliyordu ve bu, yıldızlardan daha ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_na_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

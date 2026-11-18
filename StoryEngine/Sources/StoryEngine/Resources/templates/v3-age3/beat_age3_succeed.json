@@ -222,6 +222,109 @@
       "afterBeat": [
         "patient_wait"
       ]
+    },
+    {
+      "id": "sc3h_h5_01",
+      "text": "{{child.name}} bir kez daha aradı. Sonra bir kez daha. Ve buldu: {{discovery.name}} tam oradaydı!",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_01",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc3h_h5_02",
+      "text": "{{child.name}} vazgeçmedi. Aradı, baktı, yine aradı. Sonunda {{discovery.name}}'i gördü. Çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_02",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc3h_h5_03",
+      "text": "{{child.name}} geri dönünce gördü. Aradığı şey yolun kenarındaydı. Sevinçle güldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_03",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "sc3h_h5_04",
+      "text": "{{child.name}} son bir kez etrafına baktı. Sonra durdu. Aradığı şey tam ayağının dibindeydi!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_04",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "sc3h_h5_05",
+      "text": "Bir adım {{child.name}}, bir adım {{companion.name}}. Sonunda vardılar! İkisi birlikte güldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_05",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc3h_h5_06",
+      "text": "Birlikte daha kolaydı. {{child.name}} ile {{companion.name}} işi bitirdi. İkisi de çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_06",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc3h_h5_07",
+      "text": "{{child.name}}, {{companion.name}}'in dediği yere baktı. Ve buldu! Sormak iyi gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_07",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "sc3h_h5_08",
+      "text": "{{companion.name}} biliyordu. {{child.name}} gösterilen yere gitti ve {{discovery.name}}'i buldu. Çok sevindi.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_sc3h_08",
+      "afterBeat": [
+        "ask_for_help"
+      ]
     }
   ]
 }

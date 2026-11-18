@@ -311,6 +311,85 @@
       "afterBeat": [
         "persist"
       ]
+    },
+    {
+      "id": "a9_sc_ce_h5_01",
+      "text": "Ve sonunda oradaydılar. {{child.name}} arkasına dönüp geldikleri yola baktı. Tek başına bu yol ne kadar uzun görünürdü; ikisi birlikte yürüyünce yol kısalmış, yorgunluk bölünmüştü. {{companion.name}} soluklanırken {{child.name}}'e baktı ve ikisi aynı anda gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_ce_01",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a9_sc_ce_h5_02",
+      "text": "Vardılar. {{child.name}} ile {{companion.name}} biraz soluklandı ve geldikleri yere baktılar. {{child.name}} işin hangi kısmını kimin yaptığını düşünmeye çalıştı ve ayıramadığını fark etti. Belki de birlikte çalışmanın en güzel yanı buydu: sonunda kimin ne yaptığı önemini yitiriyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_ce_02",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a9_sc_j_ah_h5_01",
+      "text": "{{child.name}} öğrendiğini aceleyle değil, dikkatle denedi, ve işe yaradı. Aradığı cevap artık elindeydi, hem de kendi elleriyle bulduğu bir cevap. {{companion.name}}'e dönüp teşekkür etti. {{companion.name}} yalnızca omuz silkti; ona göre asıl işi {{child.name}} yapmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_j_ah_01",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a9_sc_j_ah_h5_02",
+      "text": "Doğru soru, doğru kişiye sorulunca her şey yerine oturdu. {{child.name}} {{discovery.name}}'in nasıl çalıştığını kendi gözleriyle gördü ve bunun, birinin söylemesinden çok farklı bir his olduğunu fark etti. {{companion.name}} gülümsedi. Öğretmek de, öğrenmek kadar insanın içini ısıtan bir şeydi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_j_ah_02",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a9_sc_j_pw_h5_01",
+      "text": "Beklenen an sonunda geldi. {{child.name}} gözlerini ayırmadan izledi; bir saniye bile kaçırmak istemiyordu. Her şey, tam olması gereken zamanda oldu, ne önce ne sonra. {{companion.name}} ona dönüp yavaşça başını salladı. {{child.name}} beklemenin de bir iş olduğunu artık biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_j_pw_01",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a9_sc_j_pw_h5_02",
+      "text": "{{child.name}} bekledi, bekledi, ve sonunda gördü. İçi sevinçle doldu, ama bu sevinç gürültülü değildi; sakin ve derindi. Sabırla gelen bir şey, insanın içinde daha uzun kalıyordu. {{companion.name}} bunu çoktan öğrenmişti; {{child.name}} ise bugün, kendi gözleriyle öğrendi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_sc_j_pw_02",
+      "afterBeat": [
+        "patient_wait"
+      ]
     }
   ]
 }

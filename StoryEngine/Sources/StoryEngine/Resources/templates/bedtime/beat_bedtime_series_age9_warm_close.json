@@ -194,6 +194,150 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "b9swc_h5_sib_01",
+      "text": "Kardeşi {{family.name}} uykusunda gülümsüyordu. {{child.name}} bu gülümsemenin bu geceye ait olduğunu düşündü ve bundan memnun oldu. Pencereye son bir kez baktı: {{companion.name}} uyuyordu. {{setting.name}} sessizdi. {{child.name}} yorganını düzeltti ve gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_h5_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}}'ın elini bir an tuttu, sonra bıraktı. Bu akşam birlikte sabretmiş, birlikte beklemişlerdi; bu da bir çeşit yolculuktu. {{setting.name}}'da lamba söndü. Pencerede {{companion.name}} dinleniyordu. Gece yerli yerindeydi ve uyku sessizce geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_h5_fr_01",
+      "text": "Arkadaşı {{family.name}} çoktan uykuya dalmıştı; hiç uyumayacağına dair verdiği söz de onunla birlikte uyumuştu. {{child.name}} pencerede uyuyan {{companion.name}}'e baktı ve gülümsedi. {{setting.name}} sakindi. Sonra onun da gözleri kapandı ve gece, iki yastığa eşit bölündü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} birbirine iyi geceler dedi. {{family.name}} bu akşamı hiç unutmayacağını fısıldadı; {{child.name}} buna inandı. {{setting.name}} karardı. Pencerede {{companion.name}} uyuyordu ve odada üç sakin nefes vardı, her biri kendi ritminde.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_h5_an_01",
+      "text": "{{family.possessive}} {{family.name}} {{child.name}}'in yanında derin derin uyuyordu. Pencerede {{companion.name}} dinleniyordu. {{child.name}} ikisine de baktı: bu evde dostlar çoğalmıştı ve herkes bir yere sığmıştı. {{setting.name}}'da lamba söndü. {{child.name}} gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_h5_an_02",
+      "text": "{{child.name}} yorganını çekti. {{family.possessive}} {{family.name}} sessizce uyuyordu, arada bir kıpırdayarak. {{setting.name}} sıcacıktı ve pencerede her şey yerli yerindeydi. {{child.name}} bu akşamı aklından bir kez daha geçirdi, en güzel anını seçti ve onu da yanına alarak uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_h5_im_01",
+      "text": "Hayali arkadaşı {{family.name}} pencerenin yanında nöbet tutuyordu; bu görevi kendisi istemişti. {{child.name}} ona ve uyuyan {{companion.name}}'e iyi geceler dedi. {{family.name}} ciddi ciddi başını salladı. {{setting.name}} sessizdi. {{child.name}} nöbetçisine güvendi ve gözlerini kapadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9swc_h5_im_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}} ile bu akşamı fısıltıyla andı: pencere, misafir, uzun ve sakin bir bekleyiş. {{family.name}} hiçbir ayrıntıyı unutmamıştı. Sonra ikisi de sustu. {{setting.name}}'da lamba söndü ve uyku, kimseyi rahatsız etmeden, usulca geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

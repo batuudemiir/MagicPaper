@@ -237,6 +237,168 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt_na_h5_sib_01",
+      "text": "{{child.name}} gözlerini kapamıştı ki pencereden {{discovery.name}} geldi. Kardeşi {{family.name}} yastığından başını kaldırdı. İkisi de nefeslerini tutup dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}}'a masalın sonunu anlatıyordu. Sonra durdu. Pencerenin dibinden {{discovery.name}} yükseliyordu. {{family.name}} kocaman gözlerle pencereye baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt_na_h5_fr_01",
+      "text": "{{child.name}} uykuya dalmak üzereydi. Arkadaşı {{family.name}} onun koluna dokundu. Pencereden {{discovery.name}} geliyordu. İkisi de yorganlarına sarınıp dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_na_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yıldızları sayıyordu. Sekize gelmişlerdi ki pencereden {{discovery.name}} duyuldu. Sayı unutuldu, ikisi de kulak kabarttı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt_na_h5_an_01",
+      "text": "{{child.name}} uykuya dalmak üzereydi. {{family.possessive}} {{family.name}} kıpırdadı ve pencereye döndü. Oradan {{discovery.name}} geliyordu. {{child.name}} yavaşça doğruldu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_na_h5_an_02",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'a iyi geceler diyordu. Pencereden usulca {{discovery.name}} geldi. İkisi aynı anda sustu ve dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt_na_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile fısıldaşıyordu. Sonra {{family.name}} yavaşça susup pencereyi gösterdi. Oradan minicik {{discovery.name}} geliyordu. İkisi dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt_na_h5_im_02",
+      "text": "{{child.name}} gözlerini yummuştu. Hayali arkadaşı {{family.name}} kulağına \"Dinle,\" diye fısıldadı. Pencerenin önünden {{discovery.name}} geliyordu, minicik ve yumuşacık.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt_na_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

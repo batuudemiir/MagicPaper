@@ -198,6 +198,144 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt7_eo_h5_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yan yana yatıyordu. {{family.name}} tavandaki gölgelere isim veriyordu: bu bir fil, bu bir gemi. {{child.name}} her isme gülümsedi ve esnedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_sib_02",
+      "text": "{{child.name}} yorganını düzeltirken kardeşi {{family.name}} yastığını ona doğru çevirdi. Gece konuşmaları böyle başlardı. {{setting.name}}'da lamba kısıktı ve ikisinin de sesi yavaş yavaş alçalıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_fr_01",
+      "text": "Arkadaşı {{family.name}} bu gece {{child.name}} ile kalıyordu. {{setting.name}}'da iki yastık yan yanaydı. İkisi bir süre gülüştü, sonra gülüşler yerini uzun esnemelere bıraktı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} yatmadan önce el fenerini bir kez yakıp söndürdüler. Bu onların iyi geceler işaretiydi. {{setting.name}} karanlık ve sıcaktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_an_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına girdi. {{family.possessive}} {{family.name}} her akşamki gibi yakınındaydı. {{child.name}} ona bugünün en güzel anını anlattı. Lamba kısıktı, oda sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_an_02",
+      "text": "{{setting.name}}'da gece başlıyordu. {{child.name}} yorganını çekerken {{family.possessive}} {{family.name}} sessizce onu izliyordu. İkisinin de akşam alışkanlıkları vardı ve ikisi de onlara sadık kaldı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_im_01",
+      "text": "{{child.name}} yatağına uzandı. Hayali arkadaşı {{family.name}} bu gece yorganın ucunda nöbet tutacağını söyledi. {{child.name}} buna çok sevindi. {{setting.name}} sessiz ve sıcacıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_eo_h5_im_02",
+      "text": "{{child.name}} {{setting.name}}'da lambayı kısarken hayali arkadaşı {{family.name}} esnedi. Hayali arkadaşların da uykusu gelirdi demek. {{child.name}} gülümsedi ve yorganına sarındı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_eo_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

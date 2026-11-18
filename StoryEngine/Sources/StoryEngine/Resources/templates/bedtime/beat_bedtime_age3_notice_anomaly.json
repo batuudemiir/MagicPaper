@@ -207,6 +207,136 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt3_na_h5_sib_01",
+      "text": "{{child.name}} pencereye baktı. Kardeşi {{family.name}} fısıldadı: \"Bak!\"",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}} ile pencereye döndü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_fr_01",
+      "text": "{{child.name}} sustu. Arkadaşı {{family.name}} pencereyi gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} aynı anda pencereye baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_an_01",
+      "text": "{{child.name}} kıpırdamadı. {{family.possessive}} {{family.name}} uyanmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_an_02",
+      "text": "{{child.name}} bir şey fark etti. {{family.possessive}} {{family.name}} kıpırdadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_im_01",
+      "text": "{{child.name}} pencereye baktı. Hayali arkadaşı {{family.name}} gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_na_h5_im_02",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a \"Şşş,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_bt3_na_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

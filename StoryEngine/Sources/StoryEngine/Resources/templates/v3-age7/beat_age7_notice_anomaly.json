@@ -223,6 +223,128 @@
         "imaginary"
       ],
       "visualScene": "child arguing cheerfully with the air, then falling silent"
+    },
+    {
+      "id": "a7_na_h5_sib_01",
+      "text": "{{child.name}} kardeşi {{family.name}}'a {{setting.name}}'ı gezdiriyordu. {{family.name}} her şeyi soruyor, {{child.name}} her şeyi biliyordu. Ama bir noktada {{child.name}} sustu; orada bilmediği bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child guiding a younger sibling, then falling silent"
+    },
+    {
+      "id": "a7_na_h5_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da adım sayarak yürüyordu. Kırk ikinci adımda {{child.name}} durdu. {{family.name}} saymaya devam etti, ama {{child.name}} başka bir şeye bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children counting steps, one stopping"
+    },
+    {
+      "id": "a7_na_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da gizli bir işaret dili uyduruyordu. Üçüncü işarette {{child.name}} elini indirdi. Az ilerideki bir şey, işaretlerden çok daha ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends making hand signs, one lowering a hand"
+    },
+    {
+      "id": "a7_na_h5_fr_02",
+      "text": "{{child.name}}, arkadaşı {{family.name}} ile {{setting.name}}'ın haritasını çiziyordu. Haritada her şey vardı, bir şey hariç. {{child.name}} o şeyi şimdi, tam karşısında görüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends drawing a map, one looking up"
+    },
+    {
+      "id": "a7_na_h5_an_01",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da yavaşça yürüyordu. {{family.name}} bir yerde durdu ve oradan ayrılmak istemedi. {{child.name}} eğilip baktı. Dün orada olmayan bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet walking, the pet refusing to move on"
+    },
+    {
+      "id": "a7_na_h5_an_02",
+      "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a kahvaltısını verdi ve {{setting.name}}'a çıktı. Her şey her günkü gibi görünüyordu. Ama birkaç adım sonra {{child.name}} yavaşladı. Bir şey eksikti, ya da fazlaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child feeding a pet, then walking out and slowing down"
+    },
+    {
+      "id": "a7_na_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'da bir şarkı uyduruyordu. Şarkının ikinci kıtası yarım kaldı. {{child.name}} gördüğü şeyi önce {{family.name}}'a gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child singing, then pointing, a faint soft shape beside them"
+    },
+    {
+      "id": "a7_na_h5_im_02",
+      "text": "{{child.name}} yolda hayali arkadaşı {{family.name}} ile bir bilmece çözmeye çalışıyordu. Cevap tam dilinin ucundaydı ki {{setting.name}}'a vardılar. Orada bilmeceden daha zor bir soru duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child thinking hard, a faint soft shape beside them"
     }
   ]
 }

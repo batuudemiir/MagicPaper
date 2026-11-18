@@ -199,6 +199,120 @@
       "requiredSlots": [],
       "move": "spor_s34_na_03",
       "lengthClass": "paired"
+    },
+    {
+      "id": "na3_h5_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} bahçeye koştu. Sonra ikisi de durdu. Orada yeni bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children running out, then stopping"
+    },
+    {
+      "id": "na3_h5_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}} ile el ele yürüyordu. Sonra bir şey gördü. Durdular.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children holding hands, one pointing"
+    },
+    {
+      "id": "na3_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} top oynuyordu. Top durdu. {{child.name}} eğildi. Yerde tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends with a ball, both looking down"
+    },
+    {
+      "id": "na3_h5_fr_02",
+      "text": "{{child.name}} arkadaşı {{family.name}} ile el ele yürüdü. Bir ses duydular. İkisi birlikte baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends hand in hand, turning their heads"
+    },
+    {
+      "id": "na3_h5_an_01",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile dışarı çıktı. {{family.name}} durdu. {{child.name}} baktı. Bir şey değişmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child outside with a pet, both stopping"
+    },
+    {
+      "id": "na3_h5_an_02",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}}'ın yanına çömeldi. Sonra pencereden baktı. Dışarıda yeni bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child stroking a pet, looking out of a window"
+    },
+    {
+      "id": "na3_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile saklambaç oynuyordu. Sonra durdu. Ortada tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child playing alone, a faint soft shape nearby"
+    },
+    {
+      "id": "na3_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a bir şarkı söyledi. Şarkı bitince etrafına baktı. Bir şey başkaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child singing, a faint soft shape listening"
     }
   ]
 }

@@ -197,6 +197,144 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt7_wc_h5_sib_01",
+      "text": "{{child.name}} yatağına döndü. Kardeşi {{family.name}} uykusunda gülümsüyordu. {{setting.name}}'da lamba söndü. {{child.name}} yorganına sarındı ve gözlerini usulca yumdu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_sib_02",
+      "text": "Kardeşi {{family.name}} \"Yine anlatırsın,\" diye mırıldandı ve uyudu. {{child.name}} gülümsedi. {{setting.name}} sessizdi, pencerenin önünde küçük dost dinleniyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} birbirine son bir kez iyi geceler dedi. {{setting.name}} karardı. Biraz sonra iki yastıkta iki sakin nefes vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} uykusunda bir şeyler mırıldandı. {{child.name}} yorganını düzeltti. {{setting.name}}'da her şey akşamın başındaki gibiydi ve uyku sonunda geldi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_an_01",
+      "text": "{{family.possessive}} {{family.name}} {{child.name}}'in yanında uyuyordu. {{child.name}} onun sakin nefesini dinledi. {{setting.name}}'da lamba söndü ve gözleri kendiliğinden kapandı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_an_02",
+      "text": "{{child.name}} yatağına döndüğünde {{family.possessive}} {{family.name}} çoktan uykudaydı. {{child.name}} ona bakıp gülümsedi. {{setting.name}} sıcacıktı. Sonra kendisi de uyudu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_im_01",
+      "text": "Hayali arkadaşı {{family.name}} nöbet yerine geçti. {{child.name}} ona teşekkür etti ve yorganına sarındı. {{setting.name}} sessizdi; gece herkese yetecek kadar uzundu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt7_wc_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a bugünün son sırrını fısıldadı. {{family.name}} sırrı saklayacağına söz verdi. {{setting.name}} karardı ve uyku geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt7_wc_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

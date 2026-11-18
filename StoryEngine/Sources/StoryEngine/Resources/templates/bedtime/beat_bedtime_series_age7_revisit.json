@@ -200,6 +200,152 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "b7sr_h5_sib_01",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da lambayı kısmıştı. {{family.name}} pencereye bakıp \"Bu gece de gelir,\" diye fısıldadı. Az sonra {{companion.name}} gerçekten geldi ve sessizce yerine yerleşti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b7sr_h5_sib_02",
+      "text": "Kardeşi {{family.name}} bu akşam {{child.name}}'den önce yatağa girmişti, gözleri pencerede. {{setting.name}} sakindi. {{companion.name}} belirince {{family.name}} kardeşine döndü ve ikisi birlikte gülümsedi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b7sr_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da yorganlarına girdiklerinde pencere aralıktı. {{companion.name}} her zamanki saatinde geldi. {{family.name}} onu ilk kez bu kadar yakından görüyordu ve nefesini tuttu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b7sr_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} bu gece misafirdi ve {{child.name}} ona bir sürpriz vaat etmişti. {{setting.name}}'da lamba kısılınca sürpriz pencerede belirdi: {{companion.name}}. {{family.name}} sessizce el salladı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b7sr_h5_an_01",
+      "text": "{{child.name}} {{setting.name}}'da lambayı kıstı. {{family.possessive}} {{family.name}} yakınında dinleniyordu. Pencerede {{companion.name}} belirince {{family.name}} kıpırdadı, sonra tanıdık birini görmüş gibi sakinleşti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.possessive",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b7sr_h5_an_02",
+      "text": "Uyku vakti {{setting.name}} sessizdi. {{child.name}} yanındaki {{family.possessive}} {{family.name}}'ı okşarken pencereye baktı. {{companion.name}} oradaydı, her zamanki gibi. Üçü bir süre hiç konuşmadan durdu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b7sr_h5_im_01",
+      "text": "{{child.name}} {{setting.name}}'da yatağına girerken hayali arkadaşı {{family.name}} pencerenin yanına oturmuştu. \"Geliyor,\" dedi {{family.name}}. Gerçekten de {{companion.name}} az sonra pencerede belirdi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "family.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b7sr_h5_im_02",
+      "text": "Uyku vakti {{child.name}}, hayali arkadaşı {{family.name}}'a {{companion.name}}'i anlatıyordu. Anlatmasına gerek kalmadı: {{companion.name}} pencereye geldi. {{setting.name}} sakindi ve üçü yine bir aradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b7sr_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

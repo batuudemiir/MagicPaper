@@ -339,6 +339,291 @@
         "imaginary"
       ],
       "visualScene": "child in their room, a soft shape by the window"
+    },
+    {
+      "id": "a7_wc_h5_sib_01",
+      "text": "Akşam kardeşi {{family.name}}, {{child.name}}'in anlattıklarını resme döktü. Resim biraz eğriydi ama doğruydu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "younger sibling drawing while the child watches"
+    },
+    {
+      "id": "a7_wc_h5_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}}'a bugünü anlattı; en güzel yeri iki kez anlatması gerekti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child telling a story, sibling asking for more"
+    },
+    {
+      "id": "a7_wc_h5_sib_03",
+      "text": "Eve dönünce kardeşi {{family.name}} kapıya koştu. {{child.name}} ona bugünü baştan anlattı, hiçbir şeyi atlamadan. {{family.name}} dinledikçe gözleri büyüdü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_sib_03",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "sibling running to the door, wide-eyed"
+    },
+    {
+      "id": "a7_wc_h5_sib_04",
+      "text": "{{child.name}} ile kardeşi {{family.name}} akşam balkonda oturdu. {{child.name}} bugünü anlattı, {{family.name}} sorular sordu. Gökyüzü yavaş yavaş kararırken ikisi de gülümsüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_sib_04",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children on a balcony at dusk"
+    },
+    {
+      "id": "a7_wc_h5_sib_05",
+      "text": "Akşam yemeğinden sonra {{child.name}}, kardeşi {{family.name}} için bugünü küçük bir oyuna çevirdi. {{family.name}} her rolü oynamak istedi. İkisi de çok güldü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_sib_05",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children acting out a story in the living room"
+    },
+    {
+      "id": "a7_wc_h5_fr_01",
+      "text": "Arkadaşı {{family.name}} ile {{child.name}} kapının önünde biraz daha oyalandı. Söyleyecek çok şey vardı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends lingering at a front door"
+    },
+    {
+      "id": "a7_wc_h5_fr_02",
+      "text": "{{child.name}} o akşam arkadaşı {{family.name}}'a bugünü yazdı. Mektup uzundu, ama hiç sıkıcı değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "child writing a long letter at a desk"
+    },
+    {
+      "id": "a7_wc_h5_fr_03",
+      "text": "Arkadaşı {{family.name}} akşamüstü bisikletiyle geldi. {{child.name}} ona bugünü anlattı, {{family.name}} her ayrıntıyı sordu. Hava kararınca ikisi de evine döndü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_fr_03",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "friend arriving by bicycle, two children talking"
+    },
+    {
+      "id": "a7_wc_h5_fr_04",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} eve dönerken bugünü sırayla anlattı. Her biri başka bir şeyi hatırlıyordu. İki hatıra birleşince gün tamamlandı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_fr_04",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends walking home at dusk, talking in turns"
+    },
+    {
+      "id": "a7_wc_h5_fr_05",
+      "text": "Akşam {{child.name}}, arkadaşı {{family.name}} ile bahçe duvarına oturdu. Bugünü konuştular, sonra bir süre sustular. İyi arkadaşlar susmayı da bilirdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_fr_05",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends sitting on a garden wall, quiet"
+    },
+    {
+      "id": "a7_wc_h5_an_01",
+      "text": "Akşam {{family.possessive}} {{family.name}} {{child.name}}'in yanına sokuldu ve hikâyenin sonunu sessizce, sabırla bekledi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "pet snuggled beside a child, listening"
+    },
+    {
+      "id": "a7_wc_h5_an_02",
+      "text": "{{child.name}} eve gelince önce {{family.possessive}} {{family.name}}'ı selamladı, sonra ona bugünü baştan anlattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child greeting a pet first thing at home"
+    },
+    {
+      "id": "a7_wc_h5_an_03",
+      "text": "{{child.name}} eve döndüğünde {{family.possessive}} {{family.name}} onu kapıda karşıladı. {{child.name}} yanına oturdu ve bugünü anlattı. {{family.name}} sakin sakin dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_an_03",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "pet greeting a child at the door, then listening"
+    },
+    {
+      "id": "a7_wc_h5_an_04",
+      "text": "Akşam {{child.name}}, {{family.possessive}} {{family.name}} ile pencerenin önünde oturdu. Dışarısı yavaş yavaş kararıyordu. {{child.name}} bugünü düşündü, {{family.name}} ise usulca uyukladı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_an_04",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet by a window at dusk, the pet dozing"
+    },
+    {
+      "id": "a7_wc_h5_an_05",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ın yemeğini verdi ve yanına oturdu. Bugün çok şey görmüştü. Hepsini ona anlattı, sırasıyla ve yavaşça.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_an_05",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child feeding a pet, then sitting beside it, talking"
+    },
+    {
+      "id": "a7_wc_h5_im_01",
+      "text": "Akşam hayali arkadaşı {{family.name}} bugünün en güzel anını sordu. {{child.name}} hiç düşünmeden cevap verdi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child answering the air with a smile"
+    },
+    {
+      "id": "a7_wc_h5_im_02",
+      "text": "{{child.name}} eve dönerken hayali arkadaşı {{family.name}} ile bugünü baştan sona, gülerek andı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a7_wc_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking home, a faint soft shape beside them"
+    },
+    {
+      "id": "a7_wc_h5_im_03",
+      "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}} için masaya bir sandalye daha çekti. Yemekte bugünü konuştular. {{family.name}} en güzel yerde gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_im_03",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child pulling out an extra chair at the dinner table"
+    },
+    {
+      "id": "a7_wc_h5_im_04",
+      "text": "{{child.name}} odasında bugünü defterine yazdı. Hayali arkadaşı {{family.name}} omzunun üstünden dikkatle okudu. Bir yeri düzeltti, gerisini ise çok beğendi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_im_04",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child writing in a notebook, a soft shape at the shoulder"
+    },
+    {
+      "id": "a7_wc_h5_im_05",
+      "text": "Eve dönerken hayali arkadaşı {{family.name}} bugünü kendi gözünden anlattı. {{child.name}} bazı yerlerin biraz abartıldığını fark etti. Ama hiç itiraz etmedi; hikâye böyle daha güzeldi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_wc_im_05",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking home and smiling, a soft shape beside them"
     }
   ]
 }

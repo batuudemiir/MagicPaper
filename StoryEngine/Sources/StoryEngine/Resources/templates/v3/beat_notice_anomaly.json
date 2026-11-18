@@ -404,6 +404,128 @@
       "move": "fam_imaginary_talking_walk",
       "lengthClass": "solo",
       "visualScene": "child talking to the air while walking, then falling silent"
+    },
+    {
+      "id": "na_h5_sib_01",
+      "text": "{{child.name}} kardeşi {{family.name}} ile {{setting.name}}'da taş topluyordu. {{family.name}} en parlak taşı arıyordu. {{child.name}} ise bir anda durdu. Burada dün olmayan bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children collecting stones, one stopping"
+    },
+    {
+      "id": "na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}}'ın ayakkabı bağlarını bağlıyordu. Başını kaldırınca {{setting.name}}'a gözü takıldı. Orada bir şey her zamanki gibi değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child tying a sibling's shoes, looking up"
+    },
+    {
+      "id": "na_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da bulut seyrediyordu. Bir bulut tavşana benziyordu, öbürü gemiye. Sonra {{child.name}} gözünü buluttan ayırdı. Yakında tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends lying on the grass, one sitting up"
+    },
+    {
+      "id": "na_h5_fr_02",
+      "text": "{{child.name}} arkadaşı {{family.name}}'a yeni bir oyun öğretiyordu. Kuralları tam anlatmıştı ki sustu. {{setting.name}}'da bir şey yerinde değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends playing, one falling silent"
+    },
+    {
+      "id": "na_h5_an_01",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da gezintiye çıktı. {{family.name}} bir yerde durdu ve kıpırdamadı. {{child.name}} onun baktığı yere baktı. Orada bir tuhaflık vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet out walking, the pet stopping first"
+    },
+    {
+      "id": "na_h5_an_02",
+      "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a su verdi. Sonra {{setting.name}}'a doğru yürüdü. Yolun ortasında durdu. Bir şey alışılmışın dışındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child giving water to a pet, then walking out"
+    },
+    {
+      "id": "na_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'a yürüyordu. {{family.name}} bugün çok konuşkandı. Sonra ikisi aynı anda sustu. Bir şey tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking and talking, a faint soft shape beside them"
+    },
+    {
+      "id": "na_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a {{setting.name}}'ı gösteriyordu. \"Burayı çok iyi bilirim,\" dedi. Ama o gün orada bilmediği bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child pointing out a place, a faint soft shape listening"
     }
   ],
   "lengthClasses": {

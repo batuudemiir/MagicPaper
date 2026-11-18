@@ -391,6 +391,271 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "a9_wc_h5_sib_01",
+      "text": "Akşam kardeşi {{family.name}}, {{child.name}}'in anlattıklarını resme döktü. Resim biraz eğriydi, ama bütün önemli şeyler yerli yerindeydi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_sib_01",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_sib_02",
+      "text": "{{child.name}} kardeşi {{family.name}}'a bugünü anlattı. {{family.name}} en güzel yeri üç kez dinlemek istedi, {{child.name}} üçünde de sabırla anlattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_sib_02",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_sib_03",
+      "text": "Eve dönünce kardeşi {{family.name}} kapıya koştu ve neler olduğunu sordu. {{child.name}} anlatmaya başladı, ama bu kez en sondan. {{family.name}} önce şaşırdı, sonra geriye doğru giden hikâyeye bayıldı. Sonunda başlangıca varınca ikisi de güldü. Hikâye, tersinden de güzeldi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_sib_03",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_sib_04",
+      "text": "{{child.name}} ile kardeşi {{family.name}} akşam balkonda oturdu. {{child.name}} bugünü anlattı, {{family.name}} her cümleden sonra bir soru sordu. Soruların bazıları o kadar iyiydi ki {{child.name}} bile cevabı bilmiyordu. Birlikte düşündüler. Gökyüzü yavaş yavaş karardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_sib_04",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_sib_05",
+      "text": "Akşam yemeğinden sonra {{child.name}}, kardeşi {{family.name}} için bugünü küçük bir oyuna çevirdi. {{family.name}} bütün rolleri oynamak istedi, sırayla ve büyük bir ciddiyetle. Oyun asıl günden biraz uzun sürdü. İkisi de buna hiç itiraz etmedi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_sib_05",
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_fr_01",
+      "text": "Arkadaşı {{family.name}} ile {{child.name}} kapının önünde biraz daha oyalandı. Söylenecek çok şey vardı ve hiçbiri sonraya bırakılmak istemiyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_fr_01",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_fr_02",
+      "text": "{{child.name}} o akşam arkadaşı {{family.name}}'a bugünü yazdı. Mektup üç sayfa tuttu; her sayfanın sonunda bir çizim vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_fr_02",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_fr_03",
+      "text": "Arkadaşı {{family.name}} akşamüstü bisikletiyle geldi ve bisikleti duvara dayadı. {{child.name}} ona bugünü anlattı; {{family.name}} her ayrıntıyı sordu, bazılarını iki kez. Hava kararmaya başladığında hikâye hâlâ bitmemişti. Geri kalanını başka bir güne sakladılar, ikisi de memnun.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_fr_03",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_fr_04",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} eve dönerken bugünü sırayla anlattı. İlginçtir, her biri başka bir şeyi hatırlıyordu. {{family.name}} en çok yolu, {{child.name}} en çok sonunu. İki hatıra birleşince gün tamamlandı, tek bir kişinin anlatabileceğinden daha eksiksiz.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_fr_04",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_fr_05",
+      "text": "Akşam {{child.name}}, arkadaşı {{family.name}} ile bahçe duvarına oturdu. Önce bugünü konuştular, sonra bir süre hiç konuşmadılar. Bu sessizlikte tuhaf bir şey yoktu; iyi arkadaşlar susmayı da bilirdi. Gökyüzü kararınca ikisi de evine döndü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_fr_05",
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_an_01",
+      "text": "Akşam {{family.possessive}} {{family.name}} {{child.name}}'in yanına sokuldu ve hikâyenin sonunu sabırla bekledi, sanki nasıl bittiğini merak ediyormuş gibi.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_an_01",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_an_02",
+      "text": "{{child.name}} eve gelince önce {{family.possessive}} {{family.name}}'ı selamladı. Bugünü anlatmaya ondan başlamak, çok doğru bir sıralamaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_an_02",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_an_03",
+      "text": "{{child.name}} eve döndüğünde {{family.possessive}} {{family.name}} onu kapıda karşıladı, sanki dönüş saatini biliyormuş gibi. {{child.name}} yanına oturdu ve bugünü anlattı. {{family.name}} sakin sakin dinledi. Bazı dinleyiciler soru sormazdı; yalnızca orada olurdu, ve bu da yeterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_an_03",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_an_04",
+      "text": "Akşam {{child.name}}, {{family.possessive}} {{family.name}} ile pencerenin önünde oturdu. Dışarısı yavaş yavaş kararıyordu. {{child.name}} bugünü kafasında baştan sona geçirdi. {{family.name}} ise bu sırada usulca uyukladı. İkisi de günü kendi yöntemleriyle kapatıyordu, ve iki yöntem de iyiydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_an_04",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_an_05",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ın yemeğini verdi ve yanına oturdu. Bugün çok şey görmüştü. Hepsini ona anlattı, sırasıyla ve yavaşça. {{family.name}} hikâyenin çoğunu kaçırdı, çünkü yemeğiyle meşguldü. {{child.name}} bunu dert etmedi; iyi hikâyeler ikinci kez de anlatılabilirdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_an_05",
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_im_01",
+      "text": "Akşam hayali arkadaşı {{family.name}} bugünün en güzel anını sordu. {{child.name}} hiç düşünmeden cevap verdi; {{family.name}} hiç şaşırmadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_im_01",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_im_02",
+      "text": "{{child.name}} eve dönerken hayali arkadaşı {{family.name}} ile bugünü baştan sona andı. Bazı yerleri birlikte biraz büyüttüler.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_a9_wc_im_02",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_im_03",
+      "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}} için masaya bir sandalye daha çekti. Bu, ikisi arasında eski bir alışkanlıktı. Yemekte bugünü konuştular. {{family.name}} en güzel yerde gülümsedi, en komik yerde ise {{child.name}}'den önce güldü. Gün, iyi bir sofrada iyi bir sonla bitti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_im_03",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_im_04",
+      "text": "{{child.name}} odasında bugünü defterine yazdı. Hayali arkadaşı {{family.name}} omzunun üstünden okudu ve bir yeri düzeltmek istedi. {{child.name}} düzeltmeyi kabul etti, çünkü {{family.name}} haklıydı. Sonra defteri kapattı. Gün artık yazılmıştı, ve yazılan şey kolay kolay unutulmazdı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_im_04",
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "a9_wc_h5_im_05",
+      "text": "Eve dönerken hayali arkadaşı {{family.name}} bugünü kendi gözünden anlattı. {{child.name}} bazı yerlerin biraz abartıldığını fark etti; örneğin hiçbir şey o kadar büyük değildi. Ama hiç itiraz etmedi. Bir hikâyeyi iki kişi anlatınca, biri onu her zaman biraz büyütürdü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a9_wc_im_05",
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

@@ -223,6 +223,120 @@
       "afterClosing": [
         "succeed"
       ]
+    },
+    {
+      "id": "wc3_h5_sib_01",
+      "text": "{{child.name}} eve geldi. Kardeşi {{family.name}} kapıda bekliyordu. İkisi el ele içeri girdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children at a door, holding hands"
+    },
+    {
+      "id": "wc3_h5_sib_02",
+      "text": "Akşam yemeğinde {{child.name}} kardeşi {{family.name}}'a bugünü anlattı. {{family.name}} çok güldü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children at a dinner table, laughing"
+    },
+    {
+      "id": "wc3_h5_fr_01",
+      "text": "{{child.name}} arkadaşı {{family.name}} ile kurabiye yedi. İkisi de yorgundu. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends sharing a biscuit"
+    },
+    {
+      "id": "wc3_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} eve giderken döndü. {{child.name}} el salladı. İkisi de gülümsüyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "small friend turning back to wave at dusk"
+    },
+    {
+      "id": "wc3_h5_an_01",
+      "text": "{{child.name}} eve geldi. {{family.possessive}} {{family.name}} onu görünce sevindi. {{child.name}} onu okşadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child coming home, a happy pet"
+    },
+    {
+      "id": "wc3_h5_an_02",
+      "text": "Akşam oldu. {{child.name}} {{family.possessive}} {{family.name}}'a bugünü fısıldadı. İkisi de rahattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child whispering to a pet in the evening"
+    },
+    {
+      "id": "wc3_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile eve yürüdü. Yol kısacık geldi. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child walking home, a faint soft shape beside them"
+    },
+    {
+      "id": "wc3_h5_im_02",
+      "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}}'a sıkıca sarıldı. İkisi de çok mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child hugging the air, smiling"
     }
   ]
 }
