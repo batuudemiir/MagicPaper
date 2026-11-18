@@ -22,7 +22,7 @@ struct AccountSignInView: View {
 
     var body: some View {
         ZStack {
-            // Düz krem zemin, karşılamayla aynı: arayüz yüzeyinde gradient yok.
+            // Düz beyaz zemin, karşılamayla aynı: arayüz yüzeyinde gradient yok.
             MPColor.backgroundKid.ignoresSafeArea()
             ScrollView(showsIndicators: false) {
                 VStack(spacing: MPSpacing.xxl) {

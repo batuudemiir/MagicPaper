@@ -1,5 +1,7 @@
 # MagicPaper — Tasarım Sistemi
 
+> **Güncellik notu — 17 Kasım 2026:** Aşağıdaki envanter ve ölçümler tarihsel turlara aittir; güncel bileşenlerin tam listesi değildir. Canlı katalog, gerçek token kaynak haritası ve erişilebilirlik sözleşmesi için [DESIGN_SYSTEM_CATALOG.md](DESIGN_SYSTEM_CATALOG.md); mevcut borçlar için [17 Kasım denetimi](DESIGN_SYSTEM_AUDIT_2026-11-17.md).
+
 > **Faz 9 durumu (3 Ekim 2026):** Bulut metin yolu kaldırıldı — `AIService`, `GeminiStoryAIProvider`,
 > `createCustomStory` / `createCategoryBasedStory`, `TextStoryManager`, `TextStory`, `TextOnlyStory`, eski 4 adımlı
 > sihirbaz (`StoryWizardView`, `StoryGeneratingView`, `MPAppState.startWizard`), `FirebaseTestView`, `LocalImageView`,

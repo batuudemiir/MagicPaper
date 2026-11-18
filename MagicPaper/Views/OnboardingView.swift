@@ -3,7 +3,7 @@ import StoryEngine
 
 /// 02 · Karşılama (Faz 8, 11 Kasım 2026): tek ekran.
 ///
-/// Üç parıltılı sayfa yerine tek, düz krem bir ekran: Ragi, markanın vaadi, güven
+/// Üç parıltılı sayfa yerine tek, düz beyaz bir ekran: Ragi, markanın vaadi, güven
 /// cümlesi, tek birincil düğme. Eski 2. sayfanın "uzay, korsanlar" vaadi motorda
 /// olmadığı için kalktı. `MPGlowBackground` gradient olduğu için kullanılmaz.
 ///

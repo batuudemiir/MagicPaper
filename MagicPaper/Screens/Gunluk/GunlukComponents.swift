@@ -80,7 +80,7 @@ struct ClassicCoverTile: View {
 
 // MARK: - Çip
 
-/// Günlük'ün çipi: seçili olan mürekkep rengi, diğerleri gömük krem.
+/// Günlük'ün çipi: seçili olan mürekkep rengi, diğerleri gömük lila.
 struct GunlukChip: View {
     let title: String
     var isSelected: Bool = false
@@ -387,7 +387,7 @@ struct GunlukSceneFooter<Card: View>: View {
 
 /// Sayfanın gece bölgesi: vitrinin aynası. Üst köşeleri yuvarlak, rengi
 /// manzaranın gece göğü; aşağıya, alt barın arkasına ve sayfa sonundaki
-/// esnemeye kadar uzanır ki krem bir şerit görünmesin.
+/// esnemeye kadar uzanır ki beyaz bir şerit görünmesin.
 struct GunlukNightZone<Content: View>: View {
     @ViewBuilder var content: Content
 

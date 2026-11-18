@@ -103,7 +103,9 @@ struct MagicPaperApp: App {
     WindowGroup {
       ZStack {
         #if DEBUG
-        if MPDebugLaunch.ragiStudio {
+        if MPDebugLaunch.designSystemCatalog {
+          MPDesignSystemCatalogView()
+        } else if MPDebugLaunch.ragiStudio {
           RagiStudioView()
         } else if showSplash {
           SplashScreenView(isActive: $showSplash)
@@ -206,7 +208,7 @@ struct MainContentView: View {
 // MARK: - Splash Screen View
 
 /// Açılış ekranı (01 · Marka): yazı markası ve kitaptaki Ragi, karşılamayla
-/// aynı düz krem zeminde.
+/// aynı düz beyaz zeminde.
 struct SplashScreenView: View {
     static let seenKey = "mp_splash_seen"
     @Binding var isActive: Bool
@@ -214,7 +216,7 @@ struct SplashScreenView: View {
 
     var body: some View {
         ZStack {
-            // Düz krem zemin, karşılamayla aynı: arayüz yüzeyinde gradient yok.
+            // Düz beyaz zemin, karşılamayla aynı: arayüz yüzeyinde gradient yok.
             MPColor.backgroundKid.ignoresSafeArea()
             VStack(spacing: MPSpacing.xxl) {
                 Image("Brand/wordmarkLight")

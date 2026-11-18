@@ -25,13 +25,13 @@ enum MPColor {
     static let brandBagBrown = Color("Colors/brandBagBrown")
     /// #2E1E3E
     static let brandInk = Color("Colors/brandInk")
-    /// #FFF8EE
+    /// #FFFFFF
     static let backgroundKid = Color("Colors/backgroundKid")
     /// #F6F7F9
     static let backgroundParent = Color("Colors/backgroundParent")
     /// #FFFFFF
     static let backgroundSurface = Color("Colors/backgroundSurface")
-    /// #F2EEE8
+    /// #F6F3FC
     static let backgroundSunken = Color("Colors/backgroundSunken")
     /// #161A2E
     static let backgroundNight = Color("Colors/backgroundNight")
@@ -49,11 +49,11 @@ enum MPColor {
     static let textOnAction = Color("Colors/textOnAction")
     /// #8E8A94
     static let textParentInactiveTab = Color("Colors/textParentInactiveTab")
-    /// #E6DED2
+    /// #E3DDED
     static let borderKid = Color("Colors/borderKid")
-    /// #EDE5D9
+    /// #E8E2F1
     static let borderKidInput = Color("Colors/borderKidInput")
-    /// #F0E8DC
+    /// #EEE9F5
     static let borderKidDivider = Color("Colors/borderKidDivider")
     /// #E7E9EE
     static let borderParent = Color("Colors/borderParent")
@@ -61,7 +61,7 @@ enum MPColor {
     static let borderParentControl = Color("Colors/borderParentControl")
     /// #EEF0F3
     static let borderParentDivider = Color("Colors/borderParentDivider")
-    /// #CFC6BA
+    /// #BEB4CE
     static let borderDashed = Color("Colors/borderDashed")
     /// #E6D3F2
     static let borderOutline = Color("Colors/borderOutline")
@@ -74,7 +74,7 @@ enum MPColor {
     static let cardSoft = actionSoft
     /// #3A2458
     static let actionPressedText = Color("Colors/actionPressedText")
-    /// #D9D2C7
+    /// #DCD7E5
     static let actionDisabled = Color("Colors/actionDisabled")
     /// #4E9A4A
     static let statusSuccess = Color("Colors/statusSuccess")
