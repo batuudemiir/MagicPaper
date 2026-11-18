@@ -102,7 +102,9 @@ final class SeriesPlannerTests: XCTestCase {
             }
         }
         // 22 Ekim 2026: öğrenelim 3-4 aynı gün açıldı, devam içeriği yok.
-        XCTAssertEqual(without.sorted(), ["learning 3-4"])
+        // H1 (17 Kasım 2026): macera 3-4 açıldı, devam içeriği yok (H1 seri
+        // yazmadı; düğme `isAvailable` ile gizli kalır).
+        XCTAssertEqual(without.sorted(), ["adventure 3-4", "learning 3-4"])
     }
 
     // MARK: - Determinism

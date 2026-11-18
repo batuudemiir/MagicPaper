@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "cooperative_effort",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 8 hiç paylaşılmaz"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "a9_ce_01",
+      "text": "{{child.name}} durumu baştan düşündü ve bir plan çıkardı. Bir kişinin tek başına yapamayacağı bir işti bu, ama iki kişinin, işi doğru bölüşürse yapabileceği bir iş. {{companion.name}}'e kendi payını anlattı, kendi payını da üstlendi. Sonra ikisi aynı anda başladılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_02",
+      "text": "\"Sen önü gözle, ben adımları sayayım,\" dedi {{child.name}}. {{companion.name}} kabul etti. Bir süre hiç konuşmadan çalıştılar; biri durunca öbürü de durdu, biri ilerleyince öbürü de ilerledi. Yavaş ama düzenliydi, ve her adım bir öncekinden biraz daha kolaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_03",
+      "text": "{{child.name}} fark etti ki tek başına uğraşırken hep aynı yerde takılıyordu. Bu kez {{companion.name}} ile işi ikiye ayırdılar. {{companion.name}} kendi bildiği yeri üstlendi, {{child.name}} ise kendi gördüğü yeri. Parçalar birleşince yol kendiliğinden açıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_04",
+      "text": "İkisi birlikte çalıştı. Kimi zaman {{child.name}} öne geçti, kimi zaman {{companion.name}}. Ne biri ötekine yük oldu, ne de iş yarım kaldı. Birlikte bakınca, tek başına görülmeyen şeyler görünüyordu. {{child.name}} bunu hiç unutmayacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_04",
+      "lengthClass": "solo"
+    }
+  ]
+}

@@ -52,6 +52,36 @@ Gergin sayfası olmayan (`unease`, `hesitation` yok) macera blueprint'leri. Mera
 
 Mevcut beat ve satır mimarisiyle; yeni aile gerekirse motorun `NarrativeFamily` sözlüğüne eklenir. Yeni kayıtlar dizilerin sonuna.
 
+**Uygulanan (17 Kasım 2026).** On blueprint, `pilot_library_v1.json`'un sonuna; hepsi `absence` ya da `threshold` ailesinde, hiçbirinde `unease`/`hesitation` sayfası yok. Yeni aile ya da beat gerekmedi: mekanizma `editorialName`'den sayıldığı için (H0, `mechanismKey`) aynı ailede farklı çözüm beat'i farklı bir olay örgüsü sayılıyor.
+
+| Kimlik | Bant | Aile | Olay örgüsü |
+|---|---|---|---|
+| `bp_adventure_lookingtogether_age3_001` | 3-4 | absence | Bir iz görür, arkadaşıyla aramayı sürdürür, bulur (`persist`). |
+| `bp_adventure_lookingback_age3_001` | 3-4 | absence | Bir iz görür, geldikleri yola dönüp bakar, orada bulur (`retrace`). |
+| `bp_adventure_together_age3_001` | 3-4 | threshold | Yeni bir yerin girişinde durur, arkadaşıyla el ele geçer (`cooperative_effort`). |
+| `bp_adventure_asking_age3_001` | 3-4 | absence | Bir iz görür, yolu birine sorar, cevapla bulur (`ask_for_help`). |
+| `bp_threshold_together_003` | 5-6 | threshold | Sakin eşik: ilk deneme yetmez, arkadaşıyla birlikte geçer. |
+| `bp_absence_asking_003` | 5-6 | absence | İzin kime ait olduğunu sorarak bulur. |
+| `bp_absence_signs_age7_001` | 7-8 | absence | Bir tahminde bulunur, işaretleri okuyarak düzeltir ve bulur (`insight`). |
+| `bp_threshold_together_age7_001` | 7-8 | threshold | Eşiği arkadaşıyla birlikte geçer. |
+| `bp_absence_signs_age9_001` | 9-10 | absence | İşaretleri okuyarak bulur (10 sayfa). |
+| `bp_threshold_together_age9_001` | 9-10 | threshold | Eşiği arkadaşıyla birlikte geçer (10 sayfa). |
+
+Satırlar: 64 yeni varyant (`move: "h1_…"`), 3-4'te yedi yeni beat dosyası (`obstacle_raises`, `first_attempt`, `persist`, `retrace`, `cooperative_effort`, `ask_for_help`, `succeed`), 7-8 ve 9-10'da birer `cooperative_effort` dosyası; var olan dosyalara yalnızca sona ekleme. Yeni satırlar var olan masallara rol (`castRoles`), uzunluk sınıfı, `afterClosing`, `afterBeat` ve `conflictKinds` kapılarıyla karışmıyor.
+
+Beklenen tablo (Python yaklaşığı; ilk test koşusunda `CoverageReportTests`'in yazdırdığıyla değiştirilecek). Blueprint / mekanizma, en korumacı ve süzgeçsiz:
+
+| Bant | Macera | Öğrenme | Uyku | Seri devamı (macera) |
+|---|---|---|---|---|
+| 3-4 | **4/4** (4/4) | 2/2 (2/2) | 2/2 | yok |
+| 5-6 | **4/4** (6/6) | 12+ (aynı) | 3/3 | var |
+| 7-8 | **4/4** (4/4) | 2/2 | 2/2 | yok |
+| 9-10 | **4/4** (4/4) | 2/2 | 2/2 | yok |
+
+En korumacı ayarda görünen macera konuları, dört bantta da: Denizin altı, Gökyüzü ve uzay, Vahşi doğa, Hazine avı (Yeni bir ülke ve Yeni bir şehir henüz yok). Öğrenme konuları yalnızca 5-6'da (Meslekler, Hayvanlar, Bilim). `CoverageReportTests` macera tabanlarını hedefe çekti (≥4 blueprint, ≥3 mekanizma).
+
+Yan etkiler: ilgi kelimeleri beşten ona çıktı (Uzay, Müzik, Robotlar, Bilim, Gökyüzü eklendi; sınırlayan bant 3-4'tü). 3-4 korpusunun dosya notu "aşılacak engel yok" diyor; plan bu bandı maceraya açtığı için yeni 3-4 satırlarında engel küçük, içsel ve arkadaşla aşılıyor. Not dosyalarda değişmedi (yalnızca ekleme kuralı); Batuhan'ın okuması gerekiyor.
+
 ### H2-H5
 
 Her faz H0 raporundan başlar, hedef hücreyi gösterir, biter. Ayrıntı başladığında buraya yazılır.

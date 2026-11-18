@@ -195,9 +195,12 @@ final class InterestReachabilityTests: XCTestCase {
     /// kelimeye çıktı. FAZ 12 eşiği (dört) **meşru biçimde** aşıldı, yani ilgi
     /// ekranları artık görünüyor — iki tur önce aynı sayı ulaşılamayan bir
     /// blueprint yüzünden görünmüştü, bu kez değil.
+    ///
+    /// H1 (17 Kasım 2026): 3-4'ün sakin macera şekilleri o bandı genişletti;
+    /// liste beşten ona çıktı (sınırlayan bant 3-4'tü).
     func testTheOfferedListIsWhatEveryBandCanActuallyKeep() {
         XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue),
-                       ["animals", "sea", "magic", "nature", "treasure"])
+                       ["animals", "space", "sea", "music", "magic", "nature", "robots", "science", "sky", "treasure"])
     }
 
     /// Mod tanımı olmayan bir katalogda süzgeç uygulanmaz: "hiçbir mod kabul

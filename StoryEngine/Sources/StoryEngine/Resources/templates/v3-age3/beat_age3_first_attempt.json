@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 çözüm beat'i ile paylaşılır"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "fa3h_01",
+      "text": "{{child.name}} önce şuraya baktı. Olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_fa3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_02",
+      "text": "Önce tek başına denedi. Olmadı.",
+      "requiredSlots": [],
+      "move": "h1_fa3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_03",
+      "text": "{{child.name}} bir yol denedi. İşe yaramadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_fa3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_04",
+      "text": "Önce biraz acele etti. Olmadı.",
+      "requiredSlots": [],
+      "move": "h1_fa3h_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 3,
+  "beat": "succeed",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "solo": "10-24 words — sayfa 5 hiç paylaşılmaz"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "sc3h_01",
+      "text": "Ve işte oradaydı! {{child.name}} sonunda {{discovery.name}}'i buldu. Aramaya değmişti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h1_sc3h_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc3h_02",
+      "text": "{{child.name}} bir kez daha baktı ve gördü. Aradığı şey oradaydı. Yüzü güldü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_sc3h_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc3h_03",
+      "text": "Meğer hep oradaymış! {{child.name}} geri dönünce {{discovery.name}}'i buldu. Çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h1_sc3h_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "sc3h_04",
+      "text": "Aradığı şey ilk baktığı yerin yanındaymış. {{child.name}} gülümsedi ve onu aldı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_sc3h_04",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "retrace"
+      ]
+    },
+    {
+      "id": "sc3h_05",
+      "text": "Birlikte başardılar! {{child.name}} ile {{companion.name}} öbür tarafa vardı. İkisi de gülüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc3h_05",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc3h_06",
+      "text": "Ve geçtiler! {{child.name}} arkasına dönüp baktı. Birlikte ne kolay olmuştu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_sc3h_06",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc3h_07",
+      "text": "Sormak işe yaradı. {{child.name}} {{discovery.name}}'i buldu. Tam oradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h1_sc3h_07",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "sc3h_08",
+      "text": "{{companion.name}} yolu gösterdi, {{child.name}} baktı ve buldu. Aradığı şey tam oradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc3h_08",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    }
+  ]
+}

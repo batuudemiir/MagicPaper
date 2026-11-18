@@ -4713,6 +4713,1042 @@
           "emotion": "warmth"
         }
       ]
+    },
+    {
+      "id": "bp_adventure_lookingtogether_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-3 - lookingTogether (3-4)",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk bir iz görür; yol arkadaşıyla birlikte aramaya devam eder ve bulur.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ve {{companion.name}} Arıyor",
+        "{{discovery.title}}'i Bulmak",
+        "Birlikte Aramak",
+        "Aradık, Bulduk",
+        "{{companion.name}} ile Arayış"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "patience",
+          "supportingBeat": "persist"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_adventure_lookingback_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-4 - lookingBack (3-4)",
+      "genre": "adventure",
+      "theme": "problem_solving",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Aranan şey ileride değil, geride: çocuk geldiği yola bir kez daha bakar ve bulur.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} Geriye Bakıyor",
+        "{{companion.name}} ile Geldiğimiz Yol",
+        "{{discovery.title}} Neredeydi?",
+        "Geldiğimiz Yoldan",
+        "Dönüp Bakınca"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "insight",
+          "supportingBeat": "retrace"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_adventure_together_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "threshold",
+      "editorialName": "II-3 - crossingTogether (3-4)",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Bir yere ilk kez gidilecek; yol biraz zordur, çocuk ile yol arkadaşı birlikte geçer.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "hasThreshold"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "isUnexplained",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} ile {{companion.name}} Birlikte",
+        "{{setting.name}}'na İlk Kez",
+        "Öbür Taraf",
+        "El Ele Öbür Yana",
+        "{{companion.name}} ile Karşıya"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "determination",
+          "supportingBeat": "cooperative_effort"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_adventure_asking_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-5 - askingTheWay (3-4)",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Çocuk aradığını tek başına bulamaz; sormayı seçer ve birlikte bulurlar.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{child.name}} Soruyor",
+        "{{companion.name}} Biliyor mu?",
+        "{{setting.name}}'nda Bir Soru",
+        "Yolu Sormak",
+        "Sorunca Bulduk"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "determination",
+          "supportingBeat": "ask_for_help"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth"
+        }
+      ]
+    },
+    {
+      "id": "bp_threshold_together_003",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "threshold",
+      "editorialName": "II-3 - crossingTogether",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Bir yere ilk kez gidilecek. Yol uzun ve biraz zor; çocuk ile yol arkadaşı adım adım, birlikte geçer.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "hasThreshold"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "isUnexplained",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{setting.name}}'nın Öbür Yanı",
+        "{{child.name}} ile {{companion.name}} Birlikte",
+        "{{discovery.title}}'e Doğru",
+        "{{child.name}} İlk Kez Orada"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "pride",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_asking_003",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-5 - askingAround",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Çocuk bir şeyin izini bulur; tek başına çözemez, sormayı seçer ve cevap birlikte gelir.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}} Kimin?",
+        "{{child.name}} Soruyor",
+        "{{companion.name}} ile Bir Soru",
+        "{{setting.name}}'nda Bir İz"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "curiosity",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "ask_for_help",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "warmth",
+          "supportingBeat": "carry_forward"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_signs_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-6 - readingTheSigns (7-8)",
+      "genre": "adventure",
+      "theme": "problem_solving",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Çocuk izlerden bir tahmin kurar, dener, ve iki şeyi yan yana koyunca aradığını bulur.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}}'in Söyledikleri",
+        "{{child.name}} İşaretleri Okuyor",
+        "{{setting.name}}'nda İpuçları",
+        "İzler Ne Diyor?",
+        "Küçük İşaretler"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "curiosity",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "insight",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "satisfaction",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_threshold_together_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "threshold",
+      "editorialName": "II-3 - crossingTogether (7-8)",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Bir yere ilk kez gidilecek; yol emek ister, çocuk ile yol arkadaşı işi bölüşür ve birlikte geçer.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "hasThreshold"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "isUnexplained",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{setting.name}}'nın Öbür Yanı",
+        "{{child.name}} ile {{companion.name}} Birlikte",
+        "İlk Kez Orada",
+        "{{companion.name}} ile Öbür Yana",
+        "{{discovery.title}}'e Doğru"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "wonder",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "obstacle_raises"
+        },
+        {
+          "pageNumber": 5,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 6,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "pride",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_absence_signs_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "absence",
+      "editorialName": "IV-6 - readingTheSigns (9-10)",
+      "genre": "adventure",
+      "theme": "problem_solving",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Çocuk gözlemlerinden bir tahmin kurar, denemenin söylediğini dinler ve parçaları birleştirince bulur.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "showsTraces",
+              "canConceal"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ],
+        "companion": [
+          "hasLocalKnowledge"
+        ],
+        "nature": [
+          "person"
+        ],
+        "setting": [
+          "isHazardous"
+        ]
+      },
+      "titlePatterns": [
+        "{{discovery.title}}'in Söyledikleri",
+        "{{child.name}} İşaretleri Okuyor",
+        "{{setting.name}}'nda İpuçları",
+        "Okunan İzler",
+        "İşaretlerin Peşinde"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "curiosity",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination",
+          "supportingBeat": "form_belief"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "doubt"
+        },
+        {
+          "pageNumber": 7,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "insight",
+          "emotion": "insight"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "satisfaction",
+          "supportingBeat": "self_recognize"
+        }
+      ]
+    },
+    {
+      "id": "bp_threshold_together_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "threshold",
+      "editorialName": "II-3 - crossingTogether (9-10)",
+      "genre": "adventure",
+      "theme": "friendship",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Bir yere ilk kez gidilecek; yol plan ister, çocuk ile yol arkadaşı işi bölüşür ve birlikte geçer.",
+      "editorialGuidance": "H1 (17 Kasım 2026): sakin macera, gergin sayfa yok. Taslak, Batuhan okuyacak.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "hasThreshold"
+          ]
+        },
+        "casting": [
+          "guide",
+          "hesitant",
+          "reassuring"
+        ],
+        "discovery": {
+          "anyOf": [
+            [
+              "isBeautiful",
+              "emitsSignal",
+              "isUnexplained",
+              "impliesPresence"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "setting": [
+          "isHazardous"
+        ],
+        "discovery": [
+          "impliesNeed"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "{{setting.name}}'nın Öbür Yanı",
+        "{{child.name}} ile {{companion.name}} Birlikte",
+        "İlk Kez Orada",
+        "Eşiğin Ötesi",
+        "{{discovery.title}}'e Doğru"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "approach",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "wonder"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "curiosity",
+          "supportingBeat": "companion_offers"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "commit",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 6,
+          "role": "problem",
+          "beat": "obstacle_raises",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 7,
+          "role": "attempt",
+          "beat": "first_attempt",
+          "emotion": "effort"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "cooperative_effort",
+          "emotion": "determination"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "succeed",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "pride",
+          "supportingBeat": "self_recognize"
+        }
+      ]
     }
   ],
   "templates": [

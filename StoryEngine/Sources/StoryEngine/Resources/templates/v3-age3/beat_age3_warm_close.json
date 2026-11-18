@@ -11,7 +11,9 @@
     {
       "id": "wc3_01",
       "text": "{{child.name}} gülümsedi. Sonra yavaşça eve gitti. Yolda hep {{companion.name}}'i düşündü.",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [
         "child.name",
         "companion.name"
@@ -59,7 +61,9 @@
     {
       "id": "wc3_fam_sib_01",
       "text": "Akşam oldu. {{child.name}} kardeşi {{family.name}}'a sıkıca sarıldı. İkisi de çok mutluydu.",
-      "words": ["w34_sarilmak"],
+      "words": [
+        "w34_sarilmak"
+      ],
       "requiredSlots": [
         "child.name",
         "family.name"
@@ -168,6 +172,57 @@
       "move": "fam3_imaginary_good_night",
       "lengthClass": "solo",
       "visualScene": "small child in bed saying good night to the air"
+    },
+    {
+      "id": "wc3h_01",
+      "text": "Akşam olunca {{child.name}} bugünü düşündü. {{companion.name}} ile çok güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_01",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_02",
+      "text": "İkisi yan yana oturdu. Güneş yavaşça batıyordu. {{child.name}} çok mutluydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_wc3h_02",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_03",
+      "text": "{{child.name}} akşam eve döndü. Yolda hep {{companion.name}}'i düşündü ve gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_03",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_04",
+      "text": "\"Bugün çok güzeldi,\" dedi {{child.name}}. {{companion.name}} başını salladı. İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_04",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
     }
   ]
 }

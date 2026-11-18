@@ -26,18 +26,20 @@ final class CoverageReportTests: XCTestCase {
 
     /// The most protective setting (the default). H0 values: today's, from
     /// the plan's table (17 Kasım 2026); none of these cells is at target yet
-    /// except 5-6 learning and 5-6 bedtime.
+    /// except 5-6 learning and 5-6 bedtime. H1 (17 Kasım 2026) raised every
+    /// adventure cell to the target's blueprints and mechanisms (calm shapes);
+    /// continuation stays where it was, H1 wrote no series.
     private static let mostProtective: [String: Floor] = [
-        "3-4 adventure": .init(blueprints: 0, mechanisms: 0, continues: false),
+        "3-4 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "3-4 learning": .init(blueprints: 2, mechanisms: 2, continues: false),
         "3-4 bedtime": .init(blueprints: 2, mechanisms: 2, continues: true),
-        "5-6 adventure": .init(blueprints: 2, mechanisms: 2, continues: true),
+        "5-6 adventure": .init(blueprints: 4, mechanisms: 3, continues: true),
         "5-6 learning": .init(blueprints: 12, mechanisms: 3, continues: true),
         "5-6 bedtime": .init(blueprints: 3, mechanisms: 3, continues: true),
-        "7-8 adventure": .init(blueprints: 2, mechanisms: 2, continues: false),
+        "7-8 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "7-8 learning": .init(blueprints: 2, mechanisms: 2, continues: false),
         "7-8 bedtime": .init(blueprints: 2, mechanisms: 2, continues: false),
-        "9-10 adventure": .init(blueprints: 2, mechanisms: 2, continues: false),
+        "9-10 adventure": .init(blueprints: 4, mechanisms: 3, continues: false),
         "9-10 learning": .init(blueprints: 2, mechanisms: 2, continues: false),
         "9-10 bedtime": .init(blueprints: 2, mechanisms: 2, continues: false),
     ]

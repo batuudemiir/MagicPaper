@@ -191,6 +191,50 @@
         "duration"
       ],
       "move": "time_passing_nothing_changing"
+    },
+    {
+      "id": "ob_calm_01",
+      "text": "Ama yol düşündüğünden uzundu. Tek başına gitmek {{child.name}} için biraz zor olacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ob_calm_01",
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "internal"
+      ]
+    },
+    {
+      "id": "ob_calm_02",
+      "text": "Arada aşılması gereken bir yer vardı. Tek başına bakınca epey zor görünüyordu.",
+      "requiredSlots": [],
+      "move": "h1_ob_calm_02",
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "internal"
+      ]
+    },
+    {
+      "id": "ob_calm_03",
+      "text": "Ama oraya varmak için önce bir şeyi aşmak gerekiyordu, ve bu hiç kolay değildi.",
+      "requiredSlots": [],
+      "move": "h1_ob_calm_03",
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "internal"
+      ]
+    },
+    {
+      "id": "ob_calm_04",
+      "text": "{{child.name}} baktı ve gördü ki yol sandığından çok daha uzundu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ob_calm_04",
+      "lengthClass": "paired",
+      "conflictKinds": [
+        "internal"
+      ]
     }
   ]
 }

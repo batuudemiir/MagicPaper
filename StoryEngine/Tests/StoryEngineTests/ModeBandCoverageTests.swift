@@ -24,7 +24,8 @@ final class ModeBandCoverageTests: XCTestCase {
         // Batuhan) 3-4 bandı ikinci moduna kavuştu. O bant bu güne kadar tek
         // bir uyku şeklinden ibaretti; `lookingAfter` yazılmıştı, korpusu
         // tamdı ve hiçbir çocuk ona ulaşamıyordu.
-        XCTAssertEqual(coverage[b34], [.learning, .bedtime])
+        // H1 (17 Kasım 2026): 3-4 maceraya kavuştu; dört sakin şekil.
+        XCTAssertEqual(coverage[b34], [.learning, .adventure, .bedtime])
         XCTAssertEqual(coverage[b56], [.learning, .adventure, .bedtime])
         // Faz 10 (11 Kasım 2026): 7-8 kendi korpusuyla üç moda da kavuştu.
         XCTAssertEqual(coverage[b78], [.learning, .adventure, .bedtime])
@@ -42,18 +43,29 @@ final class ModeBandCoverageTests: XCTestCase {
     }
 
     /// Bir bantta ulaşılamayan mod uyarıdır, hata değil: mod o bant için düşer.
+    ///
+    /// H1 (17 Kasım 2026): 3-4 maceraya kavuştu ve gönderilen katalogda eksik
+    /// mod kalmadı. Uyarının kendisi hâlâ sınanıyor: 3-4'ün dört macera şekli
+    /// çıkarılmış bir katalogda uyarı geri gelir, yalnızca o kesit için.
     func testAModeMissingFromABandIsAWarning() throws {
-        let report = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
-        let missing = report.issues(withCode: "mode_unavailable_in_band")
+        let shipped = try XCTUnwrap(ContentCatalogLoader().load().report.integrity)
+        let shippedMissing = shipped.issues(withCode: "mode_unavailable_in_band")
+        XCTAssertTrue(shippedMissing.isEmpty, shippedMissing.map(\.message).joined(separator: "\n"))
+
+        let youngAdventure: Set<String> = [
+            "bp_adventure_lookingtogether_age3_001", "bp_adventure_lookingback_age3_001",
+            "bp_adventure_together_age3_001", "bp_adventure_asking_age3_001",
+        ]
+        let full = try catalog()
+        let reduced = InterestFixtures.rebuilding(
+            full, blueprints: full.blueprints.filter { !youngAdventure.contains($0.id.rawValue) })
+        let missing = CatalogIntegrityChecker().check(reduced).issues(withCode: "mode_unavailable_in_band")
         XCTAssertFalse(missing.isEmpty)
         XCTAssertTrue(missing.allSatisfy { $0.severity == .warning })
         let messages = missing.map(\.message).joined(separator: "\n")
-        // 22 Ekim 2026: öğrenelim 3-4'e ulaştı, yani artık eksik olan tek mod
-        // macera. Bandın tüzüğü ("aşılacak engel yok") maceranın oraya
-        // yazılmasını zaten dışlıyor; uyarı o boşluğu sessiz bırakmıyor.
         XCTAssertTrue(messages.contains("'adventure'") && messages.contains("3-4"), messages)
         XCTAssertFalse(messages.contains("'bedtime'"), messages)
-        XCTAssertFalse(messages.contains("'learning'") && messages.contains("3-4"), messages)
+        XCTAssertFalse(messages.contains("'learning'"), messages)
     }
 
     func testABandWithNoContentIsReportedOnce() throws {

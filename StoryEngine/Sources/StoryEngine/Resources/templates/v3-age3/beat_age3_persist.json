@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 3,
+  "beat": "persist",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "ps3h_01",
+      "text": "Ama vazgeçmedi. Bir daha baktı, bir daha.",
+      "requiredSlots": [],
+      "move": "h1_ps3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ps3h_02",
+      "text": "{{child.name}} yine denedi, yavaş yavaş, dikkatle.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_ps3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ps3h_03",
+      "text": "{{companion.name}} ile bir kez daha aradılar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h1_ps3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ps3h_04",
+      "text": "Durmadı. Sabırla biraz daha baktı.",
+      "requiredSlots": [],
+      "move": "h1_ps3h_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

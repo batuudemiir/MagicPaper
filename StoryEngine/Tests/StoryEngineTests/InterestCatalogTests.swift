@@ -92,7 +92,10 @@ final class InterestCatalogTests: XCTestCase {
         // oldu, 3-4 bandı bir çocuğun gerçekten alabildiği ikinci şekle
         // kavuştu, ve kapsama beş kelimeye çıktı — bu kez meşru. Sunulan
         // liste de dörtten beşe çıkınca FAZ 12 eşiği gerçekten aşıldı.
-        XCTAssertEqual(coverage[b34], ["animals", "magic", "nature", "sea", "treasure"])
+        // H1 (17 Kasım 2026): 3-4'ün sakin macera şekilleri `music`, `robots`,
+        // `science`, `sky` ve `space`'i de bu banda taşıdı.
+        XCTAssertEqual(coverage[b34], ["animals", "magic", "music", "nature", "robots", "science",
+                                       "sea", "sky", "space", "treasure"])
         // 23 Ekim 2026: `science` eklendi — titrek ışık ve yıldız taşı küratörlü
         // olgulara bağlandı ve "Bilim ve uzay" konusu açıldı.
         // 29 Ekim 2026: `jobs` eklendi — üç insan yol arkadaşı ve Pazar Yeri
@@ -102,8 +105,11 @@ final class InterestCatalogTests: XCTestCase {
         XCTAssertEqual(coverage[b56],
                        ["animals", "magic", "music", "nature", "robots", "sea",
                         "science", "treasure", "jobs", "space", "sky"])
+        // H1 (17 Kasım 2026): her bantta ulaşılan kelimeler beşten ona çıktı;
+        // sınırlayan 3-4 bandıydı.
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
-                       ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
+                       ["Hayvanlar", "Uzay", "Deniz", "Müzik", "Sihir", "Doğa", "Robotlar", "Bilim",
+                        "Gökyüzü", "Hazine"])
     }
 
     /// Deniz iki bantta da ulaşılabilir (22 Ekim 2026, ikinci ölçüm).
@@ -204,7 +210,7 @@ final class InterestCatalogTests: XCTestCase {
         let coverage = BlueprintSelector().interestCoverage(catalog: catalog)
 
         XCTAssertEqual(coverage[b56], ["pirates", "animals", "sea"])
-        XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan haritası 3-4 yayına hizmet etmiyor")
+        XCTAssertEqual(coverage[b34], ["animals", "sea"], "korsan mağarası 3-4 yayına hizmet etmiyor")
         // Faz 10: 7-8 kendi blueprint'leriyle; kapsam 5-6'nın kurabildiğiyle aynı.
         XCTAssertEqual(coverage[AgeBand(lowerBound: 7, upperBound: 8)], ["pirates", "animals", "sea"])
 
@@ -280,7 +286,11 @@ enum InterestFixtures {
             "setting_coral_sea_001": ["sea"],
             "companion_dolphin_pilot_001": ["sea"],
             "object_shell_pilot_001": ["sea"],
-            "object_torn_map_001": ["pirates"],
+            // H1 (17 Kasım 2026): korsan etiketi yırtık haritadan mağaraya
+            // taşındı. 3-4'ün sakin "iz arama" masalları haritayı da çağırınca
+            // harita her banda ulaşır oldu ve test, sınadığı kuralla ilgisiz bir
+            // sebepten kırmızıya dönecekti. Mağara 3-4'te hâlâ kurulamıyor.
+            "setting_cave_001": ["pirates"],
             "companion_hedgehog_pilot_001": ["animals"]
         ])
     }
