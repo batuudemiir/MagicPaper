@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · main@2e9fb8c + bu kayıt · H0-H1 main'e birleşti, derlenemedi
+
+- Ne değişti (Batuhan, 17 Kasım: "motor engineyi ve havuzu genişletmeliyiz"): H0 (kapsam raporu) ve H1 (her bantta sakin macera, 10 blueprint, 64 satır) dalı main'e birleşti (`2e9fb8c`); tek çakışma bu günlükteydi, iki tarafın kayıtları korundu.
+- Bilerek değişmedi: origin'e gönderilmedi, çünkü kod derlenemedi.
+- Test: derleme disk dolduğu için yarıda kaldı (Firebase/gRPC paket arşivi açılırken "No space left on device"; boş alan 118 MB'a düştü). Derleyici yeni Swift dosyalarını görmedi; yalnızca `swiftc -frontend -parse` geçti. Birim testler çalıştırılmadı. Kapsam sayıları Python yaklaşığından, motordan değil.
+- Dosyalar: bu günlük.
+
 ### 2026-11-17 · main@8692010 (dal worktree-agent-a4d762b8b86a0f234) · H1: sakin macera
 
 - Ne değişti: `pilot_library_v1.json`'un sonuna on sakin macera blueprint'i (3-4'e dört, 5-6, 7-8 ve 9-10'a ikişer); hiçbirinde `unease`/`hesitation` sayfası yok, yani en korumacı ayarda da sunuluyor. 3-4 bandında macera modu ilk kez açıldı. Aileler `absence` ve `threshold`; yeni aile ya da beat gerekmedi, mekanizmalar `editorialName`'den ayrı sayılıyor (aramayı sürdürmek, geriye bakmak, birlikte geçmek, yolu sormak, işaretleri okumak). 64 yeni satır (`move: "h1_…"`): 3-4'te yedi yeni beat dosyası, 7-8 ve 9-10'da birer `cooperative_effort` dosyası, var olan yedi dosyaya yalnızca sona ekleme. Yeni satırlar rol, uzunluk sınıfı, `afterClosing`, `afterBeat` ve `conflictKinds` kapılarıyla eski masallara karışmıyor.
