@@ -21,8 +21,8 @@ cd "$ROOT"
 
 # --- Depoda olmayan dosyalar ------------------------------------------------
 # Secrets.xcconfig: boş anahtarlar; uygulama boş anahtarı "yok" sayar (APIKeys).
-if [ ! -f Secrets.xcconfig ]; then
-  printf 'FAL_API_KEY =\nREVENUECAT_API_KEY =\nGOOGLE_REVERSED_CLIENT_ID =\n' > Secrets.xcconfig
+if [ ! -f MagicPaper/Secrets.xcconfig ]; then
+  printf 'FAL_API_KEY =\nREVENUECAT_API_KEY =\nGOOGLE_REVERSED_CLIENT_ID =\n' > MagicPaper/Secrets.xcconfig
 fi
 # GoogleService-Info.plist: gerçek dosya gizli ayar olarak verilmişse o, yoksa
 # biçimi doğru sahte bir dosya. Sahte dosyayla Firebase ağ çağrıları başarısız

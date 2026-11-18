@@ -57,5 +57,5 @@ jobs:
           run git add -f design-preview/screens
           if git diff --cached --quiet; then echo "Değişen görüntü yok."; exit 0; fi
           run git commit -m "Ekran görüntüleri: ${GITHUB_SHA::7} [skip ci]"
-          run git pull --rebase origin irem
+          run git pull --rebase --autostash origin irem
           run git push origin HEAD:irem
