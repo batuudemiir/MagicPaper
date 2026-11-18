@@ -1,0 +1,62 @@
+/* Taslak ekranların ortak dili. Değerler tokens.css'ten (uygulamanın kendi
+   renk ve ölçü dosyalarından üretilir). Yazı rolleri MPTypography.swift'in
+   sekiz rolünün kopyasıdır: değişirse burası da güncellenir. */
+@import url("../tokens.css");
+
+@font-face { font-family: "Baloo 2"; src: url("../../MagicPaper/DesignSystem/Fonts/Baloo2-Latin-Variable.ttf"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Nunito"; src: url("../../MagicPaper/DesignSystem/Fonts/Nunito-Variable.ttf"); font-weight: 200 1000; font-display: swap; }
+
+:root {
+  /* Dynamic Type yaklaşığı: önizleyici ?yazi=buyuk ile 1.75 yapar.
+     Gerçek en büyük yazı role göre farklı büyür; kesin sonuç için "Gerçek uygulama" sekmesi. */
+  --type: 1;
+  --edge: 4px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: "Nunito", sans-serif;
+  color: var(--mp-text-primary);
+  background: var(--mp-background-kid);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Sekiz yazı rolü (MPTextStyle) */
+.t-cover      { font: 700 calc(34px * var(--type))/1.2 "Baloo 2", "Nunito", sans-serif; }
+.t-page       { font: 700 calc(28px * var(--type))/1.2 "Baloo 2", "Nunito", sans-serif; }
+.t-section    { font: 600 calc(21px * var(--type))/1.2 "Baloo 2", "Nunito", sans-serif; }
+.t-card-title { font: 700 calc(17px * var(--type))/1.25 "Nunito", sans-serif; }
+.t-body       { font: 400 calc(17px * var(--type))/1.4 "Nunito", sans-serif; }
+.t-supporting { font: 400 calc(15px * var(--type))/1.35 "Nunito", sans-serif; }
+.t-footnote   { font: 600 calc(13px * var(--type))/1.4 "Nunito", sans-serif; }
+.t-eyebrow    { font: 600 calc(13px * var(--type))/1.2 "Nunito", sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.t-button     { font: 700 calc(17px * var(--type))/1 "Nunito", sans-serif; }
+.secondary { color: var(--mp-text-secondary); }
+.center { text-align: center; }
+
+/* İkon: Lucide SVG maske olarak, renk currentColor */
+.ic { display: inline-block; width: 20px; height: 20px; background: currentColor; flex: none;
+      -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+
+/* Düğmeler (MPButton): birincil sert alt kenarlı, ekranda bir tane */
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+       border: 0; border-radius: 999px; cursor: pointer; padding: 0 var(--mp-space-xl);
+       font: 700 calc(17px * var(--type))/1 "Nunito", sans-serif; }
+.btn-primary { min-height: var(--mp-size-button-height); background: var(--mp-action-primary);
+               color: var(--mp-text-on-action); box-shadow: 0 var(--edge) 0 var(--mp-brand-night); }
+.btn-primary:active { transform: translateY(var(--edge)); box-shadow: none; }
+.btn-secondary { min-height: var(--mp-size-button-height-secondary); background: var(--mp-action-soft); color: var(--mp-action-primary); }
+.btn-ghost { min-height: 48px; background: none; color: var(--mp-action-primary); }
+.circle { width: var(--mp-size-circle-button); height: var(--mp-size-circle-button); border-radius: 50%;
+          border: 0; display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); }
+
+/* Kart: derinlik gölgeden değil sert alt kenardan (mpEdge) */
+.card { background: var(--mp-background-surface); border: 1.5px solid var(--mp-border-kid);
+        border-radius: var(--mp-radius-card); box-shadow: 0 var(--edge) 0 var(--mp-border-kid); }
+
+/* Durum çubuğu ve ev çizgisi: gerçek cihaz hissi için */
+.statusbar { height: var(--status, 54px); display: flex; align-items: flex-end; justify-content: space-between;
+             padding: 0 32px 6px; font: 700 15px "Nunito", sans-serif; position: relative; z-index: 5; }
+.homebar { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); width: 134px; height: 5px;
+           border-radius: 3px; background: var(--mp-text-primary); opacity: .85; z-index: 50; }

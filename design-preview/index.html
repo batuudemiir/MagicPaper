@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagicPaper Önizleme</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  @font-face { font-family: "Nunito"; src: url("../MagicPaper/DesignSystem/Fonts/Nunito-Variable.ttf"); font-weight: 200 1000; font-display: swap; }
+  @font-face { font-family: "Baloo 2"; src: url("../MagicPaper/DesignSystem/Fonts/Baloo2-Latin-Variable.ttf"); font-weight: 400 800; font-display: swap; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font-family: "Nunito", sans-serif; background: #F3EFF7; color: var(--mp-text-primary); display: flex; flex-direction: column; }
+  header { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 16px;
+           background: #fff; border-bottom: 1.5px solid var(--mp-border-kid); }
+  h1 { font: 700 20px "Baloo 2"; margin: 0 8px 0 0; }
+  .group { display: flex; gap: 4px; background: var(--mp-action-soft); border-radius: 999px; padding: 3px; }
+  .group button { border: 0; background: none; font: 700 13px "Nunito"; color: var(--mp-action-primary);
+                  padding: 7px 12px; border-radius: 999px; cursor: pointer; white-space: nowrap; }
+  .group button.on { background: var(--mp-action-primary); color: #fff; }
+  select { font: 700 13px "Nunito"; color: var(--mp-text-primary); border: 1.5px solid var(--mp-border-kid);
+           border-radius: 999px; padding: 7px 12px; background: #fff; max-width: 100%; }
+  .note { font: 600 12px "Nunito"; color: var(--mp-text-secondary); margin-left: auto; }
+  main { flex: 1; display: flex; gap: 32px; justify-content: center; align-items: flex-start; padding: 20px 16px; overflow: auto; }
+  figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  figcaption { font: 700 13px "Nunito"; color: var(--mp-text-secondary); }
+  .slot { position: relative; }
+  .phone { position: absolute; top: 0; left: 0; transform-origin: top left; background: #1E1726; padding: 12px;
+           border-radius: 56px; box-shadow: 0 0 0 2px #3A3044 inset; }
+  .phone .screen { position: relative; overflow: hidden; border-radius: 44px; background: #fff; }
+  .phone.se { padding: 64px 14px 74px; border-radius: 48px; }
+  .phone.se .screen { border-radius: 2px; }
+  .phone.se::after { content: ""; position: absolute; bottom: 14px; left: 50%; width: 46px; height: 46px; margin-left: -23px;
+                     border-radius: 50%; box-shadow: 0 0 0 2px #3A3044 inset; }
+  .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px; border-radius: 20px; background: #000; z-index: 9; }
+  iframe, .shot { display: block; border: 0; width: 100%; height: 100%; }
+  .shot { object-fit: cover; object-position: top; }
+  .empty { padding: 28px 22px; font: 400 15px/1.45 "Nunito"; color: var(--mp-text-secondary); }
+  .empty b { color: var(--mp-text-primary); }
+  .empty code { background: var(--mp-action-soft); color: var(--mp-action-primary); padding: 1px 6px; border-radius: 6px; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>MagicPaper önizleme</h1>
+  <div class="group" id="kaynak">
+    <button data-v="taslak">Taslaklar</button>
+    <button data-v="gercek">Gerçek uygulama</button>
+  </div>
+  <select id="ekran" aria-label="Ekran"></select>
+  <div class="group" id="durum"></div>
+  <div class="group" id="cihaz">
+    <button data-v="buyuk">Pro Max</button>
+    <button data-v="kucuk">SE</button>
+    <button data-v="ikisi">İkisi</button>
+  </div>
+  <div class="group" id="yazi">
+    <button data-v="normal">Normal yazı</button>
+    <button data-v="buyuk">En büyük yazı</button>
+  </div>
+  <span class="note" id="note"></span>
+</header>
+<main id="stage"></main>
+
+<script src="screens/shots.js" onerror="window.MP_SHOTS = null"></script>
+<script>
+// Taslak listesi: yeni taslak eklemek için mockups/ içine dosya koy ve buraya bir satır yaz.
+const TASLAKLAR = [
+  { id: "paywall-oneri", baslik: "Abonelik · öneri", dosya: "mockups/paywall-oneri.html" },
+  { id: "paywall-bugun", baslik: "Abonelik · bugünkü kod", dosya: "mockups/paywall-bugun.html",
+    durumlar: [["", "İlk açılış"], ["planlar", "Planlar"]] },
+];
+const CIHAZ = {
+  buyuk: { ad: "iPhone Pro Max", w: 440, h: 956, cls: "" },
+  kucuk: { ad: "iPhone SE", w: 375, h: 667, cls: "se" },
+};
+
+const store = { get(k, d) { try { return localStorage.getItem("mp." + k) ?? d; } catch (e) { return d; } },
+                set(k, v) { try { localStorage.setItem("mp." + k, v); } catch (e) {} } };
+const S = { kaynak: store.get("kaynak", "taslak"), ekran: store.get("ekran", ""), durum: "",
+            cihaz: store.get("cihaz", "ikisi"), yazi: store.get("yazi", "normal") };
+
+function gercekEkranlar() {
+  const l = (window.MP_SHOTS && window.MP_SHOTS.liste) || [];
+  const seen = new Map();
+  l.forEach((s) => seen.has(s.ekran) || seen.set(s.ekran, { id: s.ekran, baslik: s.baslik }));
+  return [...seen.values()];
+}
+function liste() { return S.kaynak === "taslak" ? TASLAKLAR : gercekEkranlar(); }
+
+function bindGroup(id, key) {
+  document.querySelectorAll(`#${id} button`).forEach((b) => b.onclick = () => { S[key] = b.dataset.v; store.set(key, S[key]); render(); });
+}
+bindGroup("kaynak", "kaynak"); bindGroup("cihaz", "cihaz"); bindGroup("yazi", "yazi");
+document.getElementById("ekran").onchange = (e) => { S.ekran = e.target.value; S.durum = ""; store.set("ekran", S.ekran); render(); };
+addEventListener("message", (e) => { if (e.data && "mpDurum" in e.data) { S.durum = e.data.mpDurum; paintGroups(); } });
+addEventListener("resize", () => render());
+
+function paintGroups() {
+  for (const [id, key] of [["kaynak", "kaynak"], ["cihaz", "cihaz"], ["yazi", "yazi"]])
+    document.querySelectorAll(`#${id} button`).forEach((b) => b.classList.toggle("on", b.dataset.v === S[key]));
+  document.querySelectorAll("#durum button").forEach((b) => b.classList.toggle("on", b.dataset.v === S.durum));
+}
+
+function phone(kind, ekran) {
+  const c = CIHAZ[kind];
+  const pad = kind === "kucuk" ? { x: 14, t: 64, b: 74 } : { x: 12, t: 12, b: 12 };
+  const fw = c.w + pad.x * 2, fh = c.h + pad.t + pad.b;
+  const avail = document.getElementById("stage").clientHeight - 70;
+  const scale = Math.min(1, avail / fh);
+  const fig = document.createElement("figure");
+  const slot = document.createElement("div");
+  slot.className = "slot"; slot.style.width = fw * scale + "px"; slot.style.height = fh * scale + "px";
+  const p = document.createElement("div");
+  p.className = "phone " + c.cls; p.style.transform = `scale(${scale})`;
+  const screen = document.createElement("div");
+  screen.className = "screen"; screen.style.width = c.w + "px"; screen.style.height = c.h + "px";
+  if (kind === "buyuk") { const i = document.createElement("div"); i.className = "island"; p.appendChild(i); }
+
+  if (S.kaynak === "taslak") {
+    const q = new URLSearchParams({ yazi: S.yazi, cihaz: kind === "kucuk" ? "se" : "", durum: S.durum });
+    screen.innerHTML = `<iframe title="${ekran.baslik}" src="${ekran.dosya}?${q}"></iframe>`;
+  } else {
+    const shot = (window.MP_SHOTS.liste || []).find((s) => s.ekran === ekran.id && s.cihaz === kind
+      && s.yazi === (S.yazi === "buyuk" ? "en-buyuk-yazi" : "normal"));
+    screen.innerHTML = shot ? `<img class="shot" alt="${ekran.baslik}" src="${shot.dosya}?v=${encodeURIComponent(window.MP_SHOTS.tarih)}">`
+                            : `<div class="empty">Bu cihaz ve yazı boyutu için görüntü yok.</div>`;
+    if (shot) c.ad = shot.cihazAdi;
+  }
+  p.appendChild(screen); slot.appendChild(p);
+  const cap = document.createElement("figcaption");
+  cap.textContent = `${c.ad} · ${c.w}×${c.h} pt${scale < 1 ? ` · %${Math.round(scale * 100)}` : ""}`;
+  fig.append(slot, cap);
+  return fig;
+}
+
+function render() {
+  const items = liste();
+  const sel = document.getElementById("ekran");
+  if (!items.find((x) => x.id === S.ekran)) S.ekran = items[0] ? items[0].id : "";
+  sel.innerHTML = items.map((x) => `<option value="${x.id}" ${x.id === S.ekran ? "selected" : ""}>${x.baslik}</option>`).join("");
+  sel.style.display = items.length ? "" : "none";
+
+  const ekran = items.find((x) => x.id === S.ekran);
+  const dur = document.getElementById("durum");
+  const durumlar = (S.kaynak === "taslak" && ekran && ekran.durumlar) || [];
+  dur.style.display = durumlar.length ? "" : "none";
+  dur.innerHTML = durumlar.map(([v, t]) => `<button data-v="${v}">${t}</button>`).join("");
+  dur.querySelectorAll("button").forEach((b) => b.onclick = () => { S.durum = b.dataset.v; render(); });
+
+  const note = document.getElementById("note");
+  note.textContent = S.kaynak === "taslak"
+    ? "Taslak: HTML kopyası, gerçek uygulama değil. Büyük yazı yaklaşıktır."
+    : (window.MP_SHOTS ? `Gerçek uygulama · ${window.MP_SHOTS.tarih} · commit ${window.MP_SHOTS.commit}` : "");
+  paintGroups();
+
+  const stage = document.getElementById("stage");
+  stage.innerHTML = "";
+  if (!ekran) {
+    stage.innerHTML = `<div class="empty" style="max-width:520px"><b>Henüz gerçek ekran görüntüsü yok.</b><br>
+      GitHub'daki Mac, uygulamayı simülatörde açıp ekranları çeker. Bunun için <code>irem</code> dalına mesajında
+      <code>[ekran]</code> geçen bir commit gönderilir (Claude'a "gerçek ekranları çek" demen yeter).
+      Yaklaşık 20-30 dakika sonra görüntüler bu dala yazılır; çekince burada görünür.</div>`;
+    return;
+  }
+  const kinds = S.cihaz === "ikisi" ? ["buyuk", "kucuk"] : [S.cihaz];
+  kinds.forEach((k) => stage.appendChild(phone(k, ekran)));
+}
+render();
+</script>
+</body>
+</html>

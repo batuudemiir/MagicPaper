@@ -13,6 +13,7 @@ import Foundation
 /// - `mpDesignSystemCatalog`: canlı bileşen kataloğunu açar; `mpDemo` gerekmez.
 /// - `mpDemoLibrary`: kitaplığa örnek masallar ve açılmış klasikler (yalnızca
 ///   kitaplık boşsa; kitaplık ekran görüntüleri için, 20 Ekim).
+/// - `mpOpenPaywall`: açılışta abonelik ekranını açar (CI ekran görüntüleri, 18 Kasım).
 enum MPDebugLaunch {
     private static var defaults: UserDefaults { .standard }
 
@@ -22,6 +23,7 @@ enum MPDebugLaunch {
     static var startTab: MPTab? { defaults.string(forKey: "mpStartTab").flatMap(MPTab.init(rawValue:)) }
     static var parentTab: MPParentTab? { defaults.string(forKey: "mpParentTab").flatMap(MPParentTab.init(rawValue:)) }
     static var demoLibrary: Bool { defaults.bool(forKey: "mpDemoLibrary") }
+    static var opensPaywall: Bool { defaults.bool(forKey: "mpOpenPaywall") }
     /// Ragi'nin hareket ve ses vitrini (`RagiStudioView`); önizleme videosu buradan kaydedilir.
     static var ragiStudio: Bool { defaults.bool(forKey: "mpRagiStudio") }
     static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(debugName:)) }

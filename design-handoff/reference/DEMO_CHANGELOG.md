@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Windows önizleyici ve gerçek ekran görüntüsü hattı
+
+- Ne değişti: `design-preview/` eklendi. iPhone SE ve Pro Max çerçeveli önizleyici (`index.html`), uygulamanın renk dosyalarından ve `MPLayout.swift`'ten üretilen `tokens.css` (`tools/sync-tokens.mjs`, 82 renk ve 37 ölçü), iki Paywall taslağı: `paywall-bugun.html` (bugünkü `PaywallView`'un kopyası) ve `paywall-oneri.html` (öneri: Ragi yok, çocuğun kitaplığı, deneme zaman çizelgesi, 3.1.2 metni, "Aboneliği yönet").
+- Gerçek ekranlar: `.github/workflows/ekran-goruntuleri.yml` + `Scripts/ci_screenshots.sh`. `irem` dalında `[ekran]` geçen commit'te GitHub'ın Mac'i 8 ekranı (dört çocuk sekmesi, Büyükler için, Ayarlar, Abonelik, tasarım kataloğu) iki cihazda ve iki yazı boyutunda çekip dala geri yazar.
+- Uygulama kodu: yalnızca DEBUG açılış kancası `mpOpenPaywall` (`MPDebugLaunch.swift`, `ContentView.swift`, iki satır). Release davranışı değişmedi.
+- Bulunan ve raporlanan sorunlar (düzeltilmedi): abonelik hiçbir yeteneği kilitlemiyor (`Capability` tüketicisi yok); Paywall Release'te kapalı görselli masalı satıyor; "İlk 7 gün ücretsiz" StoreKit'e bakılmadan yazıyor; 3.1.2 metni ve "Aboneliği yönet" yok. `GoogleService-Info.plist` depoda yok, bu yüzden `ios-build.yml` CI'da derlenemez (yeni iş akışı sahte dosya üretiyor). `ios-build.yml` kullanımdan kalkmış `upload-artifact@v3` kullanıyor.
+- Bilerek değişmedi: `PaywallView.swift`, abonelik modeli ve fiyatlar. Premium'un içeriği İrem ve Batuhan'ın kararını bekliyor.
+- Test: Swift derlenmedi (Windows). İş akışı henüz GitHub'da çalıştırılmadı. Taslaklar Edge'in görünmez modunda 440 ve 375 pt genişlikte açılıp görüntüsü kontrol edildi.
+- Dosyalar: `design-preview/**`, `Scripts/ci_screenshots.sh`, `.github/workflows/ekran-goruntuleri.yml`, `MagicPaper/Screens/MPDebugLaunch.swift`, `MagicPaper/ContentView.swift`, bu günlük.
+
 ### 2026-11-18 · main (merge commit) · codex/design-system-catalog main'e birleşti
 
 - `codex/design-system-catalog` dalı (10 commit: Ragi yeni çizimleri ve kukla ölçüsü, tasarım sistemi kataloğu, beyaz/lila yüzey renkleri, okuyucu ve karşılama illüstrasyon önerileri, örnek masal ve yapay ses temizliği) main'in H0-H4 havuz commit'leriyle birleşti.

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abonelik · öneri</title>
+<!-- ÖNERİ (18 Kasım 2026, İrem + Claude). Karar bekliyor: Premium'un içeriği
+     Batuhan'la birlikte netleşecek. Kod değil, tasarım taslağı.
+     İlkeler: satın alma yetişkin ekranı (Ragi yok), önce değer sonra fiyat,
+     çocuğun kendi kitaplığı kanıt olarak, deneme zaman çizelgesi, 3.1.2 metni. -->
+<link rel="stylesheet" href="mp.css">
+<script src="mock.js"></script>
+<style>
+  body { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  .scroll { flex: 1; overflow-y: auto; padding: 0 var(--mp-space-screen-h) var(--mp-space-xxl); }
+  .close { position: absolute; top: calc(var(--status, 54px) + 8px); right: var(--mp-space-screen-h); z-index: 10; }
+
+  /* Kahraman alan: çocuğun gerçekten okuduğu kitaplar (demo: üç kapak) */
+  .shelf { display: flex; justify-content: center; align-items: flex-end; gap: 10px; padding: var(--mp-space-xxl) 0 var(--mp-space-lg); }
+  .cover { width: 92px; aspect-ratio: 3 / 4; border-radius: 10px 14px 14px 10px; background-size: cover; background-position: center;
+           box-shadow: 0 var(--edge) 0 var(--mp-border-kid); border: 1.5px solid var(--mp-border-kid); position: relative; }
+  .cover:nth-child(1) { transform: rotate(-6deg) translateY(6px); }
+  .cover:nth-child(3) { transform: rotate(5deg) translateY(4px); }
+  .cover:nth-child(2) { width: 108px; z-index: 1; }
+  .cover.next { display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); border-style: dashed; box-shadow: none; }
+
+  .value { display: grid; gap: var(--mp-space-sm); text-align: center; }
+  .value .t-eyebrow { color: var(--mp-action-primary); }
+
+  .benefits { display: grid; gap: var(--mp-space-lg); margin-top: var(--mp-space-xxl); }
+  .benefit { display: flex; align-items: flex-start; gap: var(--mp-space-md); }
+  .benefit .dot { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .benefit b { display: block; }
+
+  .trust { display: flex; gap: var(--mp-space-sm); align-items: center; justify-content: center; flex-wrap: wrap;
+           margin-top: var(--mp-space-xxl); color: var(--mp-status-success); }
+
+  .plans { display: grid; gap: var(--mp-space-md); margin-top: var(--mp-space-xxl); }
+  .plan { position: relative; display: flex; align-items: center; gap: var(--mp-space-md); padding: var(--mp-space-lg);
+          background: var(--mp-background-surface); border: 1.5px solid var(--mp-border-kid); border-radius: var(--mp-radius-card); cursor: pointer; }
+  .plan.sel { border: 3px solid var(--mp-action-primary); box-shadow: 0 var(--edge) 0 var(--mp-brand-night); }
+  .radio { width: 26px; height: 26px; border-radius: 50%; border: 2.5px solid var(--mp-border-kid); flex: none; display: grid; place-items: center; }
+  .sel .radio { border-color: var(--mp-action-primary); background: var(--mp-action-primary); color: #fff; }
+  .plan .grow { flex: 1; display: grid; gap: 2px; }
+  .badge { position: absolute; top: -12px; left: var(--mp-space-lg); background: var(--mp-brand-star); padding: 2px 12px; border-radius: 999px; }
+
+  /* Deneme zaman çizelgesi: "unutursam para kesilir" korkusunu alır */
+  .timeline { margin-top: var(--mp-space-xxl); display: grid; gap: 0; }
+  .step { display: grid; grid-template-columns: 32px 1fr; gap: var(--mp-space-md); }
+  .step .rail { display: flex; flex-direction: column; align-items: center; }
+  .step .node { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); flex: none; }
+  .step:first-child .node { background: var(--mp-action-primary); color: #fff; }
+  .step .line { width: 3px; flex: 1; min-height: 14px; background: var(--mp-action-soft); }
+  .step:last-child .line { display: none; }
+  .step .txt { padding-bottom: var(--mp-space-lg); }
+
+  .legal { margin-top: var(--mp-space-xl); font-weight: 400; }
+  .footer { padding: var(--mp-space-md) var(--mp-space-screen-h) var(--mp-space-xl); display: grid; gap: var(--mp-space-xs);
+            background: var(--mp-background-kid); border-top: 1.5px solid var(--mp-border-kid); }
+  .links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px var(--mp-space-lg); min-height: 48px; align-items: center; color: var(--mp-action-primary); }
+</style>
+</head>
+<body>
+<div class="statusbar"><span>9:41</span><span>● ● ●</span></div>
+<button class="circle close" aria-label="Kapat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+
+<div class="scroll">
+  <div class="shelf" aria-hidden="true">
+    <div class="cover" style="background-image:url(../../MagicPaper/Assets.xcassets/Originals/original-saatin-icindeki-ninni.imageset/original-saatin-icindeki-ninni.jpg)"></div>
+    <div class="cover" style="background-image:url(../../MagicPaper/Assets.xcassets/Originals/original-kirmizi-atkidaki-kar-tanesi.imageset/original-kirmizi-atkidaki-kar-tanesi.jpg)"></div>
+    <div class="cover next"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+  </div>
+
+  <div class="value">
+    <div class="t-eyebrow">İrem'in kitaplığı</div>
+    <div class="t-page">Her akşamın masalı bir seriye dönüşsün</div>
+    <div class="t-body secondary">Bu hafta birlikte 4 masal okudunuz. Premium'la İrem'in masalları gün boyu açık, kendi serileri ve ailesiyle büyür.</div>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-lav-soft);color:var(--mp-world-lav-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/book-open.svg)"></i></span>
+      <span><b class="t-card-title">İrem'in kendi serileri</b><span class="t-supporting secondary">Beğendiği masal beş bölümlük bir maceraya döner, her gün bir bölüm.</span></span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-pink-soft);color:var(--mp-world-pink-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/heart.svg)"></i></span>
+      <span><b class="t-card-title">Masal ailem</b><span class="t-supporting secondary">Anneanne, kardeş, kedisi Pamuk; sevdikleri masallarda yer alır.</span></span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-sky-soft);color:var(--mp-world-sky-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/volume-2.svg)"></i></span>
+      <span><b class="t-card-title">Kendi sesinle okuma</b><span class="t-supporting secondary">Uzaktaki dede bile masalı kendi sesiyle anlatabilir.</span></span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-yellow-soft);color:var(--mp-world-yellow-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/moon.svg)"></i></span>
+      <span><b class="t-card-title">Gün boyu yeni masal</b><span class="t-supporting secondary">Ücretsiz planda her akşam bir masal; Premium'da istediğin zaman.</span></span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-green-soft);color:var(--mp-world-green-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/printer.svg)"></i></span>
+      <span><b class="t-card-title">Bütün klasikler ve PDF kitap</b><span class="t-supporting secondary">İrem'in masallarını yazdırılabilir bir kitap olarak sakla.</span></span></div>
+  </div>
+
+  <div class="trust t-footnote"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/shield-check.svg);width:18px;height:18px"></i>Reklam yok · Veriler satılmaz · İnternetsiz çalışır</div>
+
+  <div class="plans" id="plans">
+    <div class="plan sel" data-plan="yillik">
+      <span class="badge t-footnote">4 ay bizden</span>
+      <span class="radio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <div class="grow"><span class="t-card-title">Yıllık</span><span class="t-footnote secondary">Ayda yaklaşık ₺99</span></div>
+      <div class="t-section">₺1.190<span class="t-footnote secondary">/yıl</span></div>
+    </div>
+    <div class="plan" data-plan="aylik">
+      <span class="radio"></span>
+      <div class="grow"><span class="t-card-title">Aylık</span><span class="t-footnote secondary">İstediğin ay bırak</span></div>
+      <div class="t-section">₺149<span class="t-footnote secondary">/ay</span></div>
+    </div>
+  </div>
+
+  <div class="timeline" aria-label="Ücretsiz deneme nasıl işler">
+    <div class="step"><div class="rail"><span class="node"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/sparkles.svg);width:16px;height:16px"></i></span><span class="line"></span></div>
+      <div class="txt"><b class="t-card-title">Bugün</b><div class="t-supporting secondary">Her şey açılır, ücret alınmaz.</div></div></div>
+    <div class="step"><div class="rail"><span class="node"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/bell.svg);width:16px;height:16px"></i></span><span class="line"></span></div>
+      <div class="txt"><b class="t-card-title">5. gün</b><div class="t-supporting secondary">Deneme bitmeden sana hatırlatırız.</div></div></div>
+    <div class="step"><div class="rail"><span class="node"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/star.svg);width:16px;height:16px"></i></span><span class="line"></span></div>
+      <div class="txt"><b class="t-card-title">7. gün</b><div class="t-supporting secondary">Abonelik başlar. Öncesinde tek dokunuşla iptal edebilirsin.</div></div></div>
+  </div>
+
+  <div class="t-footnote secondary legal">Ödeme Apple Kimliği hesabından alınır. Abonelik, dönem bitmeden en az 24 saat önce iptal edilmezse aynı fiyatla otomatik yenilenir. Aboneliği Ayarlar'da Apple Kimliği › Abonelikler bölümünden yönetebilirsin.</div>
+</div>
+
+<div class="footer">
+  <button class="btn btn-primary" id="cta">7 gün ücretsiz başla</button>
+  <button class="btn btn-ghost">Şimdi değil</button>
+  <div class="links t-footnote"><span>Aboneliği yönet</span><span>Geri yükle</span><span>Koşullar</span><span>Gizlilik</span></div>
+</div>
+<div class="homebar"></div>
+<script>
+  document.querySelectorAll(".plan").forEach((el) => el.addEventListener("click", () => {
+    document.querySelectorAll(".plan").forEach((p) => {
+      const on = p === el;
+      p.classList.toggle("sel", on);
+      p.querySelector(".radio").innerHTML = on ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>' : "";
+    });
+  }));
+</script>
+</body>
+</html>
