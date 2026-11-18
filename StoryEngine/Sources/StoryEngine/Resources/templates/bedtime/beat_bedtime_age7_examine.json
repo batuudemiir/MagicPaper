@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5, sesleri dinlemek (H3)"
+  },
+  "variants": [
+    {
+      "id": "bx7_01",
+      "text": "{{child.name}} gözlerini kapadı ve evi dinledi. Saat tik takını sayıyor, kalorifer arada bir tıkırdıyor, perde rüzgârla usulca nefes alıyordu. Gündüz hiç duymadığı bu sesler, gece evin kendi dilinde konuşuyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx7_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx7_02",
+      "text": "{{child.name}} sesleri {{companion.name}}'e tek tek tanıttı: bu, saatin sabırlı tik takı; bu, perdeyle oynayan rüzgâr; bu da mutfakta uyuyan buzdolabının uzun vınlaması. Adı konan her ses biraz daha küçüldü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bx7_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx7_03",
+      "text": "Bir süre ikisi de konuşmadı, sadece dinlediler. {{child.name}} her sese içinden bir ad verdi. Tıkırdayan kalorifer yaşlı bir dede gibiydi, fısıldayan perde ise uykusu gelmiş bir kedi gibi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx7_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

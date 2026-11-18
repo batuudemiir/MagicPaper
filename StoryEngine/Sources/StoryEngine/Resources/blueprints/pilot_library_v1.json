@@ -6479,6 +6479,702 @@
           "emotion": "calm"
         }
       ]
+    },
+    {
+      "id": "bp_bedtime_listening_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "listeningSounds (3-4)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Uyuyamayan küçük biri evin gece seslerinden huzursuzdur; çocuk sesleri tek tek dinler ve adını koyar, adı konan ses tanıdık olur, ikisi de uykuya dalar.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında (`examine`): sesler bir sırayla, tekrar eden bir kalıpla sayılır (\"Tik tak, dedi saat.\"). Tanımsız ses yok; her ses evin bilinen bir şeyi.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Evin Gece Sesleri",
+        "Tik Tak, Fış Fış",
+        "{{companion.name}} Dinliyor",
+        "{{setting.name}}'nda Sesler",
+        "{{child.name}} ile Sesler"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "tenderness",
+          "supportingBeat": "meet_companion"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "examine",
+          "emotion": "curiosity",
+          "supportingBeat": "tend"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "patient_wait",
+          "emotion": "calm",
+          "supportingBeat": "restore"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_countingday_age3_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "countingTheDay (3-4)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "3-4",
+      "pageCount": 6,
+      "premise": "Yatmadan önce günü geri sayarlar: küçük biri kendi gününü anlatır, çocuk da kendininkini; sayıldıkça gün yavaşlar ve uyku gelir.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında: gün sırayla, sakin bir liste gibi sayılır (bir, iki, üç; sondan başa). Liste uzamaz, her madde biraz daha yavaş söylenir.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Bugünü Sayalım",
+        "Bir, İki, Uyku",
+        "{{companion.name}} ile Bugün",
+        "Güzel Bir Gündü",
+        "{{child.name}} Günü Sayıyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "tenderness",
+          "supportingBeat": "meet_companion"
+        },
+        {
+          "pageNumber": 3,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 4,
+          "role": "attempt",
+          "beat": "companion_offers",
+          "emotion": "tenderness",
+          "supportingBeat": "tend"
+        },
+        {
+          "pageNumber": 5,
+          "role": "resolution",
+          "beat": "patient_wait",
+          "emotion": "calm",
+          "supportingBeat": "restore"
+        },
+        {
+          "pageNumber": 6,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_listening_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "listeningSounds",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "5-6",
+      "pageCount": 8,
+      "premise": "Uyuyamayan küçük biri evin gece seslerinden huzursuzdur; çocuk sesleri tek tek dinler ve adını koyar, adı konan ses tanıdık olur, ikisi de uykuya dalar.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında (`examine`): sesler bir sırayla, tekrar eden bir kalıpla sayılır (\"Tik tak, dedi saat.\"). Tanımsız ses yok; her ses evin bilinen bir şeyi.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Evin Gece Sesleri",
+        "Tik Tak, Fış Fış",
+        "{{companion.name}} ile Dinlemek",
+        "{{setting.name}}'nda Sesler",
+        "{{child.name}} Kulak Veriyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "challenge",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "calm",
+          "supportingBeat": "patient_wait"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_listening_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "listeningSounds (7-8)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Uyuyamayan küçük biri evin gece seslerinden huzursuzdur; çocuk sesleri tek tek dinler ve adını koyar, adı konan ses tanıdık olur, ikisi de uykuya dalar.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında (`examine`): sesler bir sırayla, tekrar eden bir kalıpla sayılır (\"Tik tak, dedi saat.\"). Tanımsız ses yok; her ses evin bilinen bir şeyi.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Evin Gece Dili",
+        "Sesleri Tanımak",
+        "{{companion.name}} ile Dinlemek",
+        "{{setting.name}}'nda Gece Sesleri",
+        "{{child.name}} Kulak Veriyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "challenge",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "calm",
+          "supportingBeat": "patient_wait"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_countingday_age7_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "countingTheDay (7-8)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "7-8",
+      "pageCount": 8,
+      "premise": "Yatmadan önce günü geri sayarlar: küçük biri kendi gününü anlatır, çocuk da kendininkini; sayıldıkça gün yavaşlar ve uyku gelir.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında: gün sırayla, sakin bir liste gibi sayılır (bir, iki, üç; sondan başa). Liste uzamaz, her madde biraz daha yavaş söylenir.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Günü Geri Saymak",
+        "Sondan Başa Bir Gün",
+        "{{companion.name}} ile Üç Güzel Şey",
+        "{{setting.name}}'nda Gün Biterken",
+        "{{child.name}} Günü Sayıyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 4,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 5,
+          "role": "challenge",
+          "beat": "companion_offers",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "calm",
+          "supportingBeat": "patient_wait"
+        },
+        {
+          "pageNumber": 7,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 8,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_moontalk_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "moonTalk (9-10)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Küçük biri uykuya dalarken çocuk pencereye gider ve aya, kimseye söylemediği küçük şeyleri içinden anlatır; sonra yatağına döner ve uyur.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma sayfa 8'de (`approach`): pencereye gitmek, aya içinden konuşmak. Ay cevap vermez; yalnızca orada. Çocuk yataktan uzağa gitmez.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Aya İyi Geceler",
+        "Pencerede Bir Söz",
+        "{{companion.name}} Uyurken",
+        "{{setting.name}}'nda Ay Işığı",
+        "{{child.name}} ve Ay"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "approach",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm"
+        }
+      ]
+    },
+    {
+      "id": "bp_bedtime_countingday_age9_001",
+      "schemaVersion": 2,
+      "version": "1.0.0",
+      "family": "charge",
+      "arc": "bedtime",
+      "editorialName": "countingTheDay (9-10)",
+      "genre": "bedtime",
+      "theme": "kindness",
+      "ageRange": "9-10",
+      "pageCount": 10,
+      "premise": "Yatmadan önce günü geri sayarlar: küçük biri kendi gününü anlatır, çocuk da kendininkini; sayıldıkça gün yavaşlar ve uyku gelir.",
+      "editorialGuidance": "H3 (18 Kasım 2026): uyku çeşitliliği. Taslak, Batuhan okuyacak. Mekanizma imza sayfasında: gün sırayla, sakin bir liste gibi sayılır (bir, iki, üç; sondan başa). Liste uzamaz, her madde biraz daha yavaş söylenir. 9-10'da sayım son sayfada (`warm_close` + `self_recognize`): gün sondan başa geçirilir ve çocuk kendisi hakkında küçük bir şeyi fark ederek uykuya dalar.",
+      "requires": {
+        "setting": {
+          "allOf": [
+            "isRestingPlace"
+          ]
+        },
+        "casting": [
+          "needsCare"
+        ],
+        "discovery": {
+          "allOf": [
+            "isAudible",
+            "impliesNeed"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "canCarry"
+        ],
+        "setting": [
+          "isHazardous"
+        ],
+        "nature": [
+          "person"
+        ]
+      },
+      "titlePatterns": [
+        "Günü Geri Saymak",
+        "Sondan Başa Bir Gün",
+        "{{companion.name}} ile Bir Gece",
+        "{{setting.name}}'nda Gün Biterken",
+        "{{child.name}} Günü Sayıyor"
+      ],
+      "pages": [
+        {
+          "pageNumber": 1,
+          "role": "hook",
+          "beat": "establish_ordinary",
+          "emotion": "ease"
+        },
+        {
+          "pageNumber": 2,
+          "role": "discovery",
+          "beat": "notice_anomaly",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 3,
+          "role": "discovery",
+          "beat": "examine",
+          "emotion": "curiosity"
+        },
+        {
+          "pageNumber": 4,
+          "role": "companion",
+          "beat": "meet_companion",
+          "emotion": "tenderness"
+        },
+        {
+          "pageNumber": 5,
+          "role": "problem",
+          "beat": "take_charge",
+          "emotion": "duty"
+        },
+        {
+          "pageNumber": 6,
+          "role": "attempt",
+          "beat": "tend",
+          "emotion": "surprise"
+        },
+        {
+          "pageNumber": 7,
+          "role": "challenge",
+          "beat": "patient_wait",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 8,
+          "role": "challenge",
+          "beat": "companion_offers",
+          "emotion": "calm"
+        },
+        {
+          "pageNumber": 9,
+          "role": "resolution",
+          "beat": "restore",
+          "emotion": "relief"
+        },
+        {
+          "pageNumber": 10,
+          "role": "emotional_ending",
+          "beat": "warm_close",
+          "emotion": "calm",
+          "supportingBeat": "self_recognize"
+        }
+      ]
     }
   ],
   "templates": [

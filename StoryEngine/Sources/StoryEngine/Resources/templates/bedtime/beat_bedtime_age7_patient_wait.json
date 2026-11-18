@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime), 7-8 bandı; Faz 10 (11 Kasım 2026). Yalnızca arkı bedtime olan blueprint'ler bu satırları okur. Masal yatakta başlar, doruk yumuşak ve komik bir şaşkınlıktır, son sayfa aynı odaya döner. 7-8 sesi: çocuk bakım veren, kendi akşam ritüelini hatırlayıp uygular. Karanlık, yalnızlık, korku, gölge, tanımsız ses ve ayrılık acısı yok; son sayfada soru, 'yarın', 'acaba', 'birden' yok (CalmEnding).",
   "lengthClasses": {
-    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "18-38 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "10-16 words — sayfa 6, tend ile paylaşılır (H3)"
   },
   "variants": [
     {
@@ -59,6 +60,31 @@
       "settingTraits": [
         "isRestingPlace"
       ]
+    },
+    {
+      "id": "bp7_01",
+      "text": "Sonra beklediler. Nefesleri yavaşladı, oda da onlarla birlikte yavaşladı sanki.",
+      "requiredSlots": [],
+      "move": "h3_bp7_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bp7_02",
+      "text": "{{child.name}} nefesini saydı: içeri, dışarı. Dört kez, beş kez, sonra saymayı unuttu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bp7_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bp7_03",
+      "text": "Hiç acele etmeden beklediler; {{companion.name}}'in gözleri yavaş yavaş ağırlaştı ve kapanmaya başladı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bp7_03",
+      "lengthClass": "paired"
     }
   ]
 }

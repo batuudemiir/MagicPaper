@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "5-6",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5, sesleri dinlemek (H3)"
+  },
+  "variants": [
+    {
+      "id": "bx5_01",
+      "text": "{{child.name}} kulak verdi. Önce saat konuştu: tik tak, tik tak. Sonra perde: fış fış. Sonra yağmur cama dokundu: pıt pıt. Her biri evin tanıdık bir sesiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx5_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx5_02",
+      "text": "\"Dinleyelim,\" dedi {{child.name}} fısıltıyla. İkisi de sustu. Kalorifer tıkırdadı, uzakta bir köpek bir kez havladı, rüzgâr pencereye usulca dokundu. Hepsi tanıdıktı, hepsi evin sesiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx5_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx5_03",
+      "text": "{{child.name}} sesleri tek tek saydı. Bir: saatin tik takı. İki: perdenin fısıltısı. Üç: mutfakta usulca kapanan bir dolap. Saydıkça sesler küçüldü, oda biraz daha yumuşadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx5_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx5_04",
+      "text": "Gece evin kendi şarkısı vardı. Tık, dedi kalorifer. Fış, dedi perde. Vın, dedi buzdolabı, çok uzaktan. {{child.name}} her sesi {{companion.name}}'e tanıttı, bir arkadaşı tanıtır gibi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bx5_04",
+      "lengthClass": "solo"
+    }
+  ]
+}

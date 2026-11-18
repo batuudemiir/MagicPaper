@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-18 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H3: uyku çeşitliliği
+
+- Ne değişti: `pilot_library_v1.json`'un sonuna yedi uyku blueprint'i (`charge`, `arc: bedtime`): 3-4'e iki (sesleri dinlemek, günü geri saymak), 5-6'ya bir (sesleri dinlemek), 7-8'e iki (sesleri dinlemek, günü geri saymak), 9-10'a iki (aya konuşmak, günü geri saymak). 43 yeni satır (`move: "h3_…"`): yedi yeni uyku beat dosyası (`examine` 3-4/5-6/7-8, `companion_offers` 3-4/7-8, `approach` ve `self_recognize` 9-10), beş dosyaya yeni `paired` sınıfıyla sona ekleme. İmza satırları yeni dosyalarda ya da eski uyku blueprint'lerinin okumadığı uzunluk sınıfında; lullaby, goodnight ve nightwalk masallarının havuzu değişmedi.
+- Beklenen kapsam (Python yaklaşığı, motor değil): uyku her bantta 4 blueprint / 4 mekanizma (önce 2/2, 5-6'da 3/3). Seri devamı 3-4 ve 5-6'da var olanlarla sürüyor; 7-10'da yok (H4), "Devam ettir" gizli.
+- Bilerek değişmedi: yeni mekân yok (iki oda yetti; yeni dinlenme yeri var olan uyku masallarının yer seçimini kaydırırdı). Nakarat (`refrain`) kullanılmadı: `x_refrain_bedtime` deneyi açık ve `RefrainExperimentTests` gönderilen blueprint'te nakaratı yasaklıyor; tekrar satırların içine yazıldı. Uygulama koduna dokunulmadı.
+- Sabit testler güncellendi: `CoverageReportTests` (uyku tabanları ≥4 / ≥3), `CatalogLoadingTests` (60 blueprint, 199 şablon, 1719 varyant). `ModeBandCoverageTests`, `BedtimeArcTests`, `SeriesPlannerTests` sabit sayı taşımıyor, değişmedi.
+- Test: çalıştırılmadı (talimat: `swift build`/`swift test`/`xcodebuild` yok). JSON ayrıştırıldı, değişen iki test dosyası `swiftc -frontend -parse`'tan geçti. Dizi, uyku konturu, satır kapıları, kelime bantları, yasak kelimeler ve başlıklar Python doğrulayıcısıyla denetlendi. İlk koşuda bakılacaklar: `CoverageReportTests` tablosu, `BedtimeArcTests`, `VariationBaselineTests` (uyku 3-4 ve 5-6 tekrar oranı), `TitleVarietyTests`.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json`, `Resources/templates/bedtime/` (7 yeni, 5 değişen), `CoverageReportTests.swift`, `CatalogLoadingTests.swift`, `docs/HAVUZ_PLANI.md`, `docs/UYKU_ARKI.md`, `docs/MagicPaper_Content_Library.md`, bu günlük.
+
 ### 2026-11-18 · main + bu kayıt · H2 main'e birleşti, derlenmedi
 
 - Ne değişti (Batuhan, 18 Kasım: "Yer açtım, başlat"): H2 dalı yerel main'e birleşti (çakışma yok). Yaş kuralı değişikliği okundu: `minimumAge` 4 olan iki aileyi (`unexplained`, `misreading`) yalnızca 3-4 bandına açıyor, başka bant ya da aile etkilenmiyor (öbür aileler 3).
