@@ -99,6 +99,8 @@ if ! xcodebuild build \
   CODE_SIGNING_ALLOWED=NO > "$BUILD_LOG" 2>&1; then
   echo "DERLEME BAŞARISIZ. Hatalar:"
   grep -E "error:|fatal error|\*\* BUILD FAILED" "$BUILD_LOG" | sort -u | head -80
+  # GitHub açıklaması: herkese açık API'den girişsiz okunur (ilk 10 hata).
+  grep -E "error:" "$BUILD_LOG" | sed "s#$ROOT/##" | sort -u | head -10 | sed 's/^/::error::/'
   exit 65
 fi
 tail -n 5 "$BUILD_LOG"
