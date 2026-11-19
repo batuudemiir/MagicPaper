@@ -447,16 +447,16 @@ const VIEWS = {
       </div>` };
   },
   paywall(m) {
-    const benefits = [["sparkles", "lav", "Sınırsız metin masalı"], ["library", "pink", "12 masal dünyasının tamamı"], ["star", "yellow", "Aylık görselli masal hakkı"], ["volume", "sky", "Uzun masallar ve sesli okuma"], ["sticker", "green", "Yazdırılabilir PDF masal kitabı"]];
+    const benefits = [["sparkles", "lav", "Sınırsız metin masalı"], ["library", "pink", "Bütün klasik masallar ve seriler"], ["volume", "sky", "Sesli okuma"], ["sticker", "green", "Yazdırılabilir PDF masal kitabı"]];
     return { html: `<div class="scroller" style="padding:0 0 20px">
         <div style="position:relative;height:270px;margin-top:-54px;background:var(--mp-world-lav-soft);border-radius:0 0 200px 200px;display:flex;justify-content:center;align-items:flex-end">
           <img src="${img.ragi("OnBook")}" alt="" style="width:190px;margin-bottom:22px">
           <span class="t-supporting" style="position:absolute;bottom:-14px;background:#fff;color:var(--mp-world-yellow-deep);border-radius:999px;padding:6px 16px;display:flex;gap:6px;align-items:center">${ic("crown")}Premium</span></div>
         <button class="circle" style="position:absolute;top:calc(var(--status) + 8px);right:20px;z-index:3" data-act="paywallClose" aria-label="Kapat">${ic("x")}</button>
         <div class="center" style="padding:28px 20px 0"><div class="t-page">Her akşam yeni bir masal</div>
-          <p class="t-body secondary" style="margin:8px 0 0">Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.</p></div>
+          <p class="t-body secondary" style="margin:8px 0 0">Sınırsız masal, bütün klasikler ve seriler, sesli okuma.</p></div>
         <div style="padding:22px 24px 0;display:grid;gap:16px">${benefits.map(([i, t, l]) => `<div style="display:flex;gap:16px;align-items:center"><span style="width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--mp-world-${t}-soft);color:var(--mp-world-${t}-deep)">${ic(i)}</span><span class="t-card-title">${l}</span></div>`).join("")}</div>
-        <p class="t-footnote center" style="margin:22px 24px 0;color:var(--mp-status-danger)">Not (prototip): bu bugünkü Paywall. Görselli masal uygulamada kapalı; öneri için önizleyicide "Abonelik · öneri".</p>
+        <p class="t-footnote center" style="margin:22px 24px 0;color:var(--mp-status-danger)">Prototip: bugünkü Paywall (19 Kasım düzeltmesiyle). Yeni tasarım karar bekliyor: docs/PAYWALL_EKONOMI_PLANI.md.</p>
       </div>
       <div class="footer-cta" style="border:0"><button class="btn btn-primary" data-soon="Satın alma">Planları gör</button><button class="btn btn-ghost" data-act="paywallClose">Şimdi değil</button></div>` };
   },

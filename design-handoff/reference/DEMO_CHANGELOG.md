@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Paywall: yanlış vaatler kalktı, deneme mağazadan, 3.1.2
+
+- Modelden bağımsız dürüstlük düzeltmeleri (ekonomi kararı beklenmeden): Paywall'dan "Aylık görselli masal hakkı" (Release'te kapalı), "12 masal dünyasının tamamı" (akışta dünya seçimi yok, hiçbiri kilitli değil) ve "Uzun masallar" (uzunluk yaştan gelir) kaldırıldı; yerine "Bütün klasik masallar ve seriler" ve "Sesli okuma". Plan kartlarındaki "Ayda 5/1 görselli masal" satırı kalktı.
+- Deneme: "İlk 7 gün ücretsiz" ve "7 gün ücretsiz dene" artık sabit değil; `RevenueCatManager.freeTrialDays` mağazadaki `introductoryDiscount`'u okur, deneme yoksa düğme "Abone ol". Kullanıcının denemeye uygunluğu sorulmuyor (not düşüldü).
+- App Store 3.1.2: plan listesinin altında fiyat, dönem, Apple Kimliği ödemesi ve 24 saat kuralıyla otomatik yenileme cümlesi; alt satıra "Aboneliği yönet" (App Store abonelik sayfasına bağlantı, ikinci modal açılmaz). Bağlantılar sığmazsa iki satıra iner.
+- Bilerek değişmedi: iki kademe (tek plan kararı bekliyor; kartlar artık yalnızca fiyatla ayrışıyor), ürün kimliği uyuşmazlığı (App Store Connect Batuhan'da), Premium kilitleri.
+- Prototip Paywall aynı metinlerle güncellendi.
+- Test: design law grep'leri boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile derlenip Abonelik ekranı çekiliyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `design-preview/app/app.js`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Abonelik ekonomisi planı; Ana sayfa taşma düzeltmesi
 
 - Yeni belge `docs/PAYWALL_EKONOMI_PLANI.md` (Paywall sprintinin Perşembe çıktısı, Batuhan'ın onayına): 8 maddelik karar tablosu; ücretsiz/Premium sınırı yalnızca bugün çalışan özelliklerle; fiyat önerisi ₺149/ay, ₺999/yıl, 7 gün deneme yalnızca yıllıkta; kaynaklı pazar tablosu; etik ebeveyn pazarlaması (kullanılacaklar/asla); tetikleyici taslağı; teknik iş listesi.
