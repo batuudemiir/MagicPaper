@@ -140,6 +140,7 @@ function render(anim) {
   app.innerHTML = `<div class="layer ${parent ? "parent" : ""} ${extra} ${cls === "" && anim === "launch" ? "launch-in" : cls}">${statusbar()}${html}</div>${OS.homeIndicator()}`;
   bind();
   (VIEWS.after[S.modal ? S.modal.view : ""] || (() => {}))(S.modal);
+  if (!S.modal) ((S.stack.length ? VIEWS.after.__push : VIEWS.after.__tab) || (() => {}))();
 }
 const statusbar = () => `<div class="statusbar"><span>9:41</span><span>●●● ▮</span></div>`;
 function tabbar() {
@@ -353,7 +354,7 @@ const VIEWS = {
   // --- Okuyucu ---
   reader(m) {
     if (m.page === 0) {
-      const cover = m.classic ? `style="background-image:url(${ORIGINALS.includes(m.classic) ? img.original(m.classic.id) : img.classic(m.classic.id)})"`
+      const cover = m.coverImg ? `style="background-image:url(${m.coverImg})"` : m.classic ? `style="background-image:url(${ORIGINALS.includes(m.classic) ? img.original(m.classic.id) : img.classic(m.classic.id)})"`
         : `style="background:var(${MODES[m.mode].soft})"`;
       return { cls: "reader", html: `<div class="rbody cover-leaf">
         <button class="glass close" data-act="close" aria-label="Kapat">${ic("x")}</button>

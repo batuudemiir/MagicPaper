@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte tam Masallar sekmesi, gerçek katalogdan
+
+- `design-preview/tools/sync-content.mjs`: `classics_catalog.json` ve `Content/Originals/published` → `design-preview/app/content.js` (62 masal, 40'ı seri bölümü; 5 seri; 2 Original; kapak yolları `Assets.xcassets`'ten). Kataloğa masal eklenince yeniden çalıştırılır.
+- `design-preview/app/masallar.js`, `GunlukView` düzeniyle: raf çipleri, kaydırmalı vitrin (noktalar), MagicPaper Original, Bu haftanın seçkisi, Dünya klasikleri, Anadolu'dan, Fabllar, gece bölgesinde Uyku vakti ve "Kendi masalını yaz". Alt sayfalar: masal detayı (boyalı üst görsel, Bu masalla, Masal hakkında, Yumuşak/Klasik anlatım, künye, Benzerleri), seri (bölüm listesi, "N. masaldan devam et", Okundu), raf (yaş süzgeci), arama, Tüm raflar.
+- Okuyucu artık katalogdaki gerçek masal metnini gösterir (yumuşak ya da klasik anlatım); okuma ilerlemesi vitrine ve seri sayfasına yansır. Kapağı olmayan 10 masal için adlı yer tutucu kapak.
+- Derin bağlantı: `?sayfa=tale:rapunzel|series:keloglan|shelf:anadolu|search:kedi`.
+- Bilerek yapılmadı: Dinle, Uyku modu, paylaşım (kapıya gider), kategorilerdeki yaş seçimi.
+- Test: Edge görünmez modunda Masallar (tam boy), masal detayı, seri, raf ve arama çekildi, gerçek ekranla karşılaştırıldı. Tıklama akışı elle denenmedi.
+- Dosyalar: `design-preview/tools/sync-content.mjs`, `design-preview/app/{content.js,masallar.js,app.js,app.css,index.html}`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototip ana ekrandan başlıyor; ilk açılış akışı
 
 - Telefonun ana ekranı (genel simgeler, gerçek uygulama adı ya da Apple simgesi yok) ve MagicPaper'ın kendi AppIcon'u. Simgeye dokununca uygulama simgeden büyüyerek açılır; alttaki ev çizgisine dokununca küçülerek ana ekrana döner, durum korunur. Reduce Motion'da yalnızca geçiş.
