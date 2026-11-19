@@ -49,6 +49,8 @@ struct CompanionStep: View {
     /// seçili çipe tekrar dokunmak seçimi kaldırır.
     var topics: [StoryTopicChoice] = []
     @Binding var selectedTopicID: String?
+    /// Abonelikle açılan konular (E7): kilit simgesiyle görünür, seçilmez.
+    var lockedTopicIDs: Set<String> = []
     /// Özel günler (E6): çocuğun etkin ve bu modda yazılabilen günleri. Boşsa
     /// bölüm hiç görünmez. Seçilen gün yalnızca blueprint'i kilitler; konu ve
     /// yol arkadaşı seçimi yerinde kalır.
@@ -134,14 +136,24 @@ struct CompanionStep: View {
             MPSectionHeader(title: prompt(for: mode), subtitle: "İstersen seç, istersen bize bırak.")
             MPWrapRow(spacing: MPSpacing.sm) {
                 ForEach(topics) { topic in
-                    MPChip(title: topic.name, systemImage: topic.symbol,
+                    let locked = lockedTopicIDs.contains(topic.id)
+                    MPChip(title: topic.name, systemImage: locked ? "lock.fill" : topic.symbol,
                            isSelected: selectedTopicID == topic.id, height: MPSize.chipHeightKid) {
                         MPHaptics.selection()
                         selectedTopicID = (selectedTopicID == topic.id) ? nil : topic.id
                     }
+                    .disabled(locked)
+                    .opacity(locked ? 0.45 : 1)
                     .accessibilityLabel(topic.name)
+                    .accessibilityHint(locked ? "Büyüklerle açılır" : "")
                     .accessibilityAddTraits(selectedTopicID == topic.id ? [.isSelected] : [])
                 }
+            }
+            // Aynı ekrandaki Masal ailem deseni: kapalı çip soluk, altında tek not.
+            if topics.contains(where: { lockedTopicIDs.contains($0.id) }) {
+                Text("Kilitli olanlar büyüklerle açılır.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }

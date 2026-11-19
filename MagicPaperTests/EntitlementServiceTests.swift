@@ -50,6 +50,29 @@ final class EntitlementServiceTests: XCTestCase {
         XCTAssertEqual(service.snapshot.storyCredits, 2)
     }
 
+    func testAFreeTextStoryClosesTheDayAndASubscriberNeverWaits() {
+        let service = StubEntitlementService(context: EntitlementContext(
+            plan: .free, trust: .verified, illustratedQuotaRemaining: 0, trialStarsRemaining: 0,
+            freeIllustratedStoryUsed: true, lastFreeTextStoryAt: nil, now: now))
+        XCTAssertEqual(service.consume(.unlimitedTextStories), .allowed)
+        XCTAssertEqual(service.context.lastFreeTextStoryAt, now)
+        XCTAssertEqual(service.evaluate(.unlimitedTextStories), .denied(.waitingForFreeStory(hours: 12)))
+
+        let subscriber = StubEntitlementService.subscriber(plan: .premium, now: now)
+        XCTAssertEqual(subscriber.consume(.unlimitedTextStories), .allowed)
+        XCTAssertNil(subscriber.context.lastFreeTextStoryAt)
+        XCTAssertEqual(subscriber.evaluate(.unlimitedTextStories), .allowed)
+    }
+
+    func testATrialTextStorySpendsAStarNotTheDay() {
+        let service = StubEntitlementService(context: EntitlementContext(
+            plan: .free, trust: .verified, illustratedQuotaRemaining: 0, trialStarsRemaining: 1,
+            freeIllustratedStoryUsed: true, lastFreeTextStoryAt: nil, now: now))
+        XCTAssertEqual(service.consume(.unlimitedTextStories), .allowedUsingTrial(remaining: 1))
+        XCTAssertEqual(service.context.trialStarsRemaining, 0)
+        XCTAssertNil(service.context.lastFreeTextStoryAt)
+    }
+
     func testUnmeteredCapabilitiesAreEvaluatedButNeverConsumed() {
         let service = StubEntitlementService.subscriber(plan: .ultimate, now: now)
         let before = service.snapshot.storyCredits
@@ -137,8 +160,10 @@ final class EntitlementServiceTests: XCTestCase {
 
     // MARK: - Yetenek meta verisi
 
-    func testOnlyTheIllustratedStoryIsMeteredAndCostsMoney() {
-        XCTAssertEqual(Capability.allCases.filter(\.isMetered), [.illustratedStory])
+    /// E7 (19 Kasım 2026): ücretsiz masal da ölçülür (günde bir), ama para
+    /// harcatan yine yalnızca görselli masal.
+    func testTheStoriesAreMeteredAndOnlyTheIllustratedOneCostsMoney() {
+        XCTAssertEqual(Capability.allCases.filter(\.isMetered), [.illustratedStory, .unlimitedTextStories])
         XCTAssertEqual(Capability.allCases.filter(\.incursRemoteCost), [.illustratedStory])
     }
 

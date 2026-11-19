@@ -178,7 +178,7 @@ struct ParentOverviewView: View {
     private var recentSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             MPSectionHeader(title: "Son masallar", area: .parent,
-                            link: ("Kitap yap", { app.router.parentRoute = .bookExport }))
+                            link: ("Kitap yap", { app.unlock(.pdfBook) { app.router.parentRoute = .bookExport } }))
             MPGroupedList(area: .parent) {
                 ForEach(Array(recentStories.enumerated()), id: \.element.id) { index, story in
                     if index > 0 { MPRowDivider(area: .parent) }
@@ -193,7 +193,7 @@ struct ParentOverviewView: View {
                 MPGroupedList(area: .parent) {
                     ParentRowButton(systemImage: "mic", tone: .peach, title: "Masalı kendi sesinle oku",
                                     subtitle: "Çocuğun masalı senin sesinle dinlesin.") {
-                        app.router.parentRoute = .voiceRecording
+                        app.unlock(.ownVoice) { app.router.parentRoute = .voiceRecording }
                     }
                 }
             }

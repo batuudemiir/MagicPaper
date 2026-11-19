@@ -49,12 +49,16 @@ struct PaywallView: View {
         let tone: MPWorldTone
     }
 
+    /// E7 (karar: Batuhan 19 Kasım 2026): yalnızca gerçekten açılan şeyler.
+    /// Görselli masal Release'te kapalı olduğu için satılmaz.
     private let benefits: [Benefit] = [
-        Benefit(text: "Sınırsız metin masalı", symbol: "sparkles", tone: .lav),
-        Benefit(text: "12 masal dünyasının tamamı", symbol: "building.columns", tone: .pink),
-        Benefit(text: "Aylık görselli masal hakkı", symbol: "star", tone: .yellow),
-        Benefit(text: "Uzun masallar ve sesli okuma", symbol: "speaker.wave.2", tone: .sky),
-        Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green)
+        Benefit(text: "Sınırsız masal", symbol: "sparkles", tone: .lav),
+        Benefit(text: "Bütün klasikler ve MagicPaper Original masalları", symbol: "books.vertical", tone: .pink),
+        Benefit(text: "Sevilen masalın beş bölümlük serisi", symbol: "rectangle.stack", tone: .yellow),
+        Benefit(text: "Masal ailem: ailen de masala katılır", symbol: "person.2", tone: .peach),
+        Benefit(text: "Masalı kendi sesinle okuma", symbol: "mic", tone: .sky),
+        Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green),
+        Benefit(text: "Gökyüzü ve uzay, Sporlar dünyaları", symbol: "globe", tone: .lav)
     ]
 
     var body: some View {
@@ -106,7 +110,7 @@ struct PaywallView: View {
                 .mpText(.page)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.")
+            Text("Ücretsiz planda her gün bir masal yazılır. Abonelikle masallar sınırsız, kitaplık tamamen açık.")
                 .mpText(.body)
                 .foregroundStyle(MPColor.textSecondary)
         }
@@ -139,9 +143,9 @@ struct PaywallView: View {
         VStack(spacing: MPSpacing.md) {
             MPSegmented(options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")], selection: $cycle)
                 .padding(.bottom, MPSpacing.sm)
-            planCard(.premium, name: "Hikaye Kahramanı", allowance: "Ayda 5 görselli masal", recommended: true)
-            planCard(.basic, name: "Yıldız Kaşifi", allowance: "Ayda 1 görselli masal", recommended: false)
-            Text("İstediğin zaman iptal edebilirsin. İlk 7 gün ücretsiz.")
+            // E7: tek plan; kademeler yalnızca görselli kotada ayrışıyordu.
+            planCard(.premium, name: "Hikaye Kahramanı", allowance: "Sınırsız masal ve tam kitaplık", recommended: false)
+            Text("İstediğin zaman iptal edebilirsin.")
                 .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
@@ -164,7 +168,6 @@ struct PaywallView: View {
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                     Text(name).mpText(.section).foregroundStyle(MPColor.textPrimary)
                     Text(allowance).mpText(.supporting).foregroundStyle(MPWorldTone.yellow.deep)
-                    Text("Sınırsız metin masalı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 0) {
@@ -233,7 +236,7 @@ struct PaywallView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            MPButton(title: showPlans ? "7 gün ücretsiz dene" : "Planları gör",
+            MPButton(title: showPlans ? "Aboneliği başlat" : "Planları gör",
                      fullWidth: true, isLoading: isPurchasing) {
                 if showPlans {
                     startPurchase()

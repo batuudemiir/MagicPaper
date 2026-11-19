@@ -82,8 +82,44 @@ public enum EntitlementPolicy {
         case .illustratedStory:      return decideIllustratedStory(context)
         case .unlimitedTextStories:  return decideTextStory(context)
         case .unlimitedDailyStories: return decideDailyStory(context)
-        case .premiumWorlds, .premiumThemes, .longStories:
+        case .premiumWorlds, .premiumThemes, .longStories,
+             .classicLibrary, .seriesStories, .familyCast, .ownVoice, .pdfBook:
             return decidePaidUnlock(capability, context)
+        }
+    }
+
+    // MARK: Tüketim
+
+    /// İzin verilmiş bir kullanımın neyi harcadığı. Gerçek servis ve test
+    /// sahtesi aynı kuralı çalıştırsın diye burada (E7, 19 Kasım 2026).
+    public enum Consumption: Equatable, Sendable {
+        case nothing
+        /// Abonelik kotasından bir görselli masal.
+        case quota
+        /// Bir deneme hakkı (görselli masalda tek seferlik kilit de kapanır).
+        case trialStar
+        /// Ücretsiz günün masalı yazıldı; soğuma bu andan başlar.
+        case freeTextStory(at: Date)
+    }
+
+    public static func consumption(of capability: Capability,
+                                   decision: EntitlementDecision,
+                                   in context: EntitlementContext) -> Consumption {
+        guard capability.isMetered else { return .nothing }
+        switch decision {
+        case .denied:
+            return .nothing
+        case .allowedUsingQuota:
+            return .quota
+        case .allowedUsingTrial:
+            return .trialStar
+        case .allowed:
+            // Abone ya da (görselli masalda) karşılığı olmayan izin: hiçbir şey
+            // düşmez. Ücretsiz planda metin masalı günü kapatır.
+            guard capability == .unlimitedTextStories, !effectivePlan(for: context).isPaid else {
+                return .nothing
+            }
+            return .freeTextStory(at: context.now)
         }
     }
 

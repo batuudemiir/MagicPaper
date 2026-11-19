@@ -77,15 +77,23 @@ public final class LiveEntitlementService: ObservableObject, EntitlementService 
 
         // Sayaçların sahibi hâlâ `SubscriptionManager`. Reddedilen bir kapıda
         // buraya hiç gelinmez, dolayısıyla kota yanlışlıkla düşmez.
-        switch capability {
-        case .illustratedStory:
+        switch EntitlementPolicy.consumption(of: capability, decision: decision, in: context) {
+        case .nothing:
+            break
+        case .quota:
             guard subscriptions.useStory(type: .image) else {
                 // Politika ile sayaç ayrıştıysa yetkiyi değil, reddi döndürürüz.
                 return .denied(.quotaExhausted)
             }
-        case .unlimitedTextStories, .unlimitedDailyStories,
-             .premiumWorlds, .premiumThemes, .longStories:
-            break
+        case .trialStar:
+            if capability == .illustratedStory {
+                guard subscriptions.useStory(type: .image) else { return .denied(.quotaExhausted) }
+            } else {
+                // Metin masalı deneme hakkıyla (E7).
+                subscriptions.spendTrialStar()
+            }
+        case .freeTextStory(let at):
+            subscriptions.recordFreeTextStory(at: at)
         }
         return decision
     }

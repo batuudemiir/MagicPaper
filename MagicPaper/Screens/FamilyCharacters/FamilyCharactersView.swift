@@ -147,7 +147,8 @@ struct FamilyCharactersView: View {
 
     /// "Yeni karakter": karakter kareleriyle aynı ölçüde, kesikli çerçeveli.
     private var addTile: some View {
-        Button { guarded { mode = .adding } } label: {
+        // E7: yeni karakter abonelikle; var olanlar düzenlenebilir ve kalır.
+        Button { app.unlock(.familyCast) { guarded { mode = .adding } } } label: {
             VStack(spacing: MPSpacing.sm) {
                 MPIcon("plus", size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(MPColor.actionPrimary)

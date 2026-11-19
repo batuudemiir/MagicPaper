@@ -199,6 +199,11 @@ final class MPAppState: ObservableObject {
 
     /// Bir Günlük masalını okuyucuda açar: seçili anlatımla, kaldığı yerden.
     func readClassic(_ tale: ClassicTale, listen: Bool = false, progress: ClassicProgressStore = .shared) {
+        // E7: bütün klasikler abonelikle.
+        unlock(.classicLibrary) { [self] in openClassic(tale, listen: listen, progress: progress) }
+    }
+
+    private func openClassic(_ tale: ClassicTale, listen: Bool, progress: ClassicProgressStore) {
         let narration = progress.narration(for: tale.id)
         let pageCount = tale.text(narration).pages.count
         progress.markOpened(tale.id, pageCount: pageCount, narration: narration)
@@ -214,6 +219,11 @@ final class MPAppState: ObservableObject {
 
     /// Günlük akışın kendi masalı (FAZ 15), Günlük'ün okuyucusunda.
     func readOriginal(_ daily: DailyStory, progress: ClassicProgressStore = .shared) {
+        // E7: MagicPaper Original masalları abonelikle.
+        unlock(.classicLibrary) { [self] in openOriginal(daily, progress: progress) }
+    }
+
+    private func openOriginal(_ daily: DailyStory, progress: ClassicProgressStore) {
         let child = ProfileManager.shared.currentProfile
         let draft = ClassicReading.story(for: daily, childID: child?.id, childName: "", savedPage: nil)
         progress.markOpened(daily.id, pageCount: draft.pages.count, narration: .soft)
@@ -255,13 +265,41 @@ final class MPAppState: ObservableObject {
             showToast(FamilyCopy.readOnly, symbol: "book")
             return
         }
-        creationPreset = mode
-        creationFamilyID = family
-        showStoryCreation = true
+        // E7: ücretsizde günde bir masal; Masal ailem'den açılan masal abonelikle.
+        let open = { [self] in
+            creationPreset = mode
+            creationFamilyID = family
+            showStoryCreation = true
+        }
+        unlock(.unlimitedTextStories) { [self] in
+            if family != nil { unlock(.familyCast, then: open) } else { open() }
+        }
     }
 
     func openPaywall() {
         showPaywall = true
+    }
+
+    // MARK: - Yetki kapısı (E7)
+
+    /// Tek kapı: izin varsa iş çalışır. Yoksa çocuk alanında sakin kilit
+    /// penceresi (satış ebeveyn kapısının arkasında), ebeveyn odasında paywall.
+    /// Kararı yalnızca `EntitlementPolicy` verir.
+    func unlock(_ capability: Capability, then action: @escaping () -> Void) {
+        if isUnlocked(capability) { action(); return }
+        if router.isParentMode {
+            openPaywall()
+        } else if router.sheet == nil {
+            router.sheet = .locked(capability)
+        } else {
+            // Açık bir sheet'in üstüne modal açılmaz: önce o kapanır.
+            router.closeSheet { [weak self] in self?.router.sheet = .locked(capability) }
+        }
+    }
+
+    /// Görünümün kilit glifi için: karar değil, gösterim.
+    func isUnlocked(_ capability: Capability) -> Bool {
+        LiveEntitlementService.shared.evaluate(capability).isAllowed
     }
 
 }

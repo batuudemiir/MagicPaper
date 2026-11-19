@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · evren-7-yetkiler, commit bu kayıtla · E7: yetkiler canlı, dürüst paywall
+
+- Karar (Batuhan, 19 Kasım 2026): ücretsizde günde bir masal; abonelik sınırsız masal, bütün klasikler ve Original masallar, seri, Masal ailem, kendi sesinle okuma, PDF kitap ve iki dünya (Gökyüzü ve uzay, Sporlar) açar. Görselli masal satılmaz. `docs/EVREN_PLANI.md` E7 ve CLAUDE.md'ye yazıldı.
+- Politika: beş yeni yetenek (`classicLibrary`, `seriesStories`, `familyCast`, `ownVoice`, `pdfBook`), `premiumWorlds` artık kilitli konu kimlikleri (`Capability.lockedTopicIDs`). Metin masalı ölçülüyor; tüketim kuralı tek saf fonksiyonda (`EntitlementPolicy.consumption`), gerçek servis ve test sahtesi aynısını çalıştırıyor. Deneme hakkı yalnızca masal yazdırır, kilit açmaz.
+- Tek kapı `MPAppState.unlock(_:then:)`: çocuk alanında sakin kilit penceresi (`MPLockedSheet`, tek Ragi, sayı ve geri sayım yok; "Büyüklere göster" → çarpma kapısı → paywall), ebeveyn odasında paywall. Günün masalı yazıldıysa: "Yarın yeni bir masal yazabiliriz." + "Kitaplığa bak".
+- Bağlanan yerler: masal yazma (açılışta izin, masal kitaplığa girince sayaç), klasik ve Original okuma (widget/Siri yolu dahil), seri teklifi (kapalıyken okuyucuda ve masal sayfasında görünmez), Masal ailem (yeni karakter ve masala katma; var olanlar kalır), kendi sesin ve kitap yapma girişleri, masal sheet'indeki PDF (kapalıysa sakin not). Masal yazma akışında kilitli dünya çipleri soluk, kilit simgeli ve altında tek not (aynı ekrandaki Masal ailem deseni).
+- Paywall: tek plan ("Hikaye Kahramanı"), yalnızca açılan şeyler; "ayda N görselli masal", "Yıldız Kaşifi" kartı, "En çok seçilen" etiketi ve doğrulanamayan "İlk 7 gün ücretsiz" kalktı; düğme "Aboneliği başlat".
+- Bilerek değişmedi: ilk açılıştaki ilk masal sayaca girmez (hediye); hesap ayarlarındaki "masallarımı dışa aktar" PDF'i kilitlenmedi (veri taşıma hakkı); kaydedilmiş ses çalmaya, yazılmış seri bölümleri okunmaya devam eder; ücretsiz kullanıcı "Bana sürpriz yap" ile kilitli dünyadan masal alabilir (kilit yalnızca seçimde); klasik kartlarında kilit simgesi yok (dokununca pencere açılıyor).
+- DEBUG "Aboneliği aç" anahtarı artık doğrulama damgası da atıyor; yoksa kapılar onu saymazdı.
+- Test: yazıldı, çalıştırılmadı (disk: uygulama derlenemiyor). Yeni/değişen: `EntitlementPolicyTests` (abonelik kilitleri, deneme hakkı kilit açmaz, tüketim), `EntitlementServiceTests` (günün masalı, deneme), `LockedCopyTests`. 21 Swift dosyası `swiftc -frontend -parse`'tan geçti; tip denetimi yapılmadı. Tasarım grepleri değişen dosyalarda boş. Simülatörde görülmedi.
+- Dosyalar: `Services/Entitlements/*`, `SubscriptionManager.swift`, `MPAppState.swift`, `MPRouter.swift`, `ContentView.swift`, `Screens/Entitlements/MPLockedSheet.swift` (yeni), `StoryCreationFlow.swift`, `CompanionStep.swift`, `SeriesEndingSection.swift`, `StoryActionsSheet.swift`, `FamilyCharactersView.swift`, `ParentOverviewView.swift`, `ProfileHubView.swift`, `SettingsView.swift`, `PaywallView.swift`, üç test dosyası, `docs/EVREN_PLANI.md`, bu günlük.
+
 ### 2026-11-19 · main@8a94103 origin'e gitti · Havuz planı gönderildi
 
 - Batuhan'ın onayıyla ("Testsiz gönder") main origin'e gönderildi (`cb69522..8a94103`, dokuz commit: H2b, Sporlar, H5, test turu, ince sayfalar, seed sabitlemesi, günlük).

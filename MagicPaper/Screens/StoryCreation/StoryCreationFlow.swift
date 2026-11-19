@@ -320,7 +320,7 @@ struct StoryCreationFlow: View {
         case .companion where level == .little:
             LittleCompanionStep(
                 mode: chosenMode, age: age, source: source,
-                familyCharacters: familyCharacters,
+                familyCharacters: openFamilyCharacters,
                 availableRelations: familyRelations
             ) { companionID, familyID in
                 chosenCompanionID = companionID
@@ -333,13 +333,16 @@ struct StoryCreationFlow: View {
                 ideaID: nil, mode: chosenMode, age: age, topicID: chosenTopicID,
                 childName: profile?.name ?? "",
                 childColor: profile?.mpColor, source: source,
-                familyCharacters: familyCharacters,
+                familyCharacters: openFamilyCharacters,
                 availableRelations: familyRelations,
                 selectedFamilyID: $chosenFamilyID,
                 // Free text is a parent's surface: in child mode the child
                 // picks from the characters the parent made, and cannot type.
-                onAddFamily: app.router.isParentMode ? { showsFamilyEditor = true } : nil,
+                // E7: Masal ailem is part of the subscription.
+                onAddFamily: app.router.isParentMode && app.isUnlocked(.familyCast)
+                    ? { showsFamilyEditor = true } : nil,
                 topics: topicChoices,
+                lockedTopicIDs: app.isUnlocked(.premiumWorlds) ? [] : Capability.lockedTopicIDs,
                 selectedTopicID: $chosenTopicID,
                 occasions: occasionChoices,
                 selectedOccasion: $chosenOccasion,
@@ -466,6 +469,12 @@ struct StoryCreationFlow: View {
         active.filter { writable.contains($0.occasionID) }
     }
 
+    /// E7: Masal ailem abonelikle. Kapalıyken karakterler yeni masala
+    /// katılmaz; var olanlar ve onlarla yazılmış masallar yerinde kalır.
+    private var openFamilyCharacters: [FamilyCharacter] {
+        app.isUnlocked(.familyCast) ? familyCharacters : []
+    }
+
     private func begin() {
         guard let profile else { return dismiss() }
         preparedStory = nil
@@ -484,6 +493,9 @@ struct StoryCreationFlow: View {
                     family: chosenFamily,
                     occasion: chosenOccasionRequest
                 )
+                // E7: the story is in the library, so the free day closes (or a
+                // trial star is spent). A subscriber spends nothing.
+                LiveEntitlementService.shared.consume(.unlimitedTextStories)
                 // Composition takes milliseconds; the preparation screen plays
                 // the masal atölyesi and offers "Masalı oku" at the cover.
                 preparationFacts = .gather(story: story, profile: profile, family: chosenFamily,

@@ -71,8 +71,14 @@ final class EntitlementPolicyTests: XCTestCase {
 
     // MARK: - Saf kilit açma: dünyalar, temalar, uzun masal
 
+    /// E7 (19 Kasım 2026, karar: Batuhan): aboneliğin açtığı her şey.
+    private let subscriptionUnlocks: [Capability] = [
+        .premiumWorlds, .premiumThemes, .longStories,
+        .classicLibrary, .seriesStories, .familyCast, .ownVoice, .pdfBook,
+    ]
+
     func testPaidUnlocksAreClosedOnTheFreePlan() {
-        for capability in [Capability.premiumWorlds, .premiumThemes, .longStories] {
+        for capability in subscriptionUnlocks {
             XCTAssertEqual(decide(capability, context(plan: .free)),
                            .denied(.requiresSubscription),
                            "\(capability.rawValue) ücretsiz planda açık kalmamalı.")
@@ -81,11 +87,24 @@ final class EntitlementPolicyTests: XCTestCase {
 
     func testPaidUnlocksOpenOnEveryPaidPlan() {
         for plan in EntitlementPlan.allCases where plan.isPaid {
-            for capability in [Capability.premiumWorlds, .premiumThemes, .longStories] {
+            for capability in subscriptionUnlocks {
                 XCTAssertEqual(decide(capability, context(plan: plan)), .allowed,
                                "\(capability.rawValue) \(plan.rawValue) planında açık olmalı.")
             }
         }
+    }
+
+    /// Deneme hakkı yalnızca masal yazdırır: klasik, seri, Masal ailem, ses ve
+    /// PDF'i açmaz. Yıldız ve deneme bir plana bağlanmaz.
+    func testTrialStarsNeverOpenASubscriptionUnlock() {
+        for capability in subscriptionUnlocks {
+            XCTAssertEqual(decide(capability, context(plan: .free, trial: 3)),
+                           .denied(.requiresSubscription), capability.rawValue)
+        }
+    }
+
+    func testOnlyTheChosenWorldsAreLocked() {
+        XCTAssertEqual(Capability.lockedTopicIDs, ["topic_adventure_sky", "topic_learning_sports"])
     }
 
     func testPaidUnlocksStayOpenOfflineInsideTheWindow() {
@@ -244,5 +263,47 @@ final class EntitlementPolicyTests: XCTestCase {
             XCTAssertEqual(decide(capability, ctx).isAllowed, expected,
                            "\(plan.rawValue)/\(type) için politika ile eski kural ayrıştı.")
         }
+    }
+
+    // MARK: - Tüketim (E7): ne düşer, ne yazılır
+
+    func testAFreeTextStoryRecordsItsTime() {
+        let ctx = context(plan: .free)
+        let decision = decide(.unlimitedTextStories, ctx)
+        XCTAssertEqual(decision, .allowed)
+        XCTAssertEqual(EntitlementPolicy.consumption(of: .unlimitedTextStories, decision: decision, in: ctx),
+                       .freeTextStory(at: now))
+    }
+
+    func testATrialTextStorySpendsATrialStarAndKeepsTheFreeStory() {
+        let ctx = context(plan: .free, trial: 2)
+        let decision = decide(.unlimitedTextStories, ctx)
+        XCTAssertEqual(EntitlementPolicy.consumption(of: .unlimitedTextStories, decision: decision, in: ctx),
+                       .trialStar)
+    }
+
+    func testASubscribersTextStorySpendsNothing() {
+        let ctx = context(plan: .premium)
+        let decision = decide(.unlimitedTextStories, ctx)
+        XCTAssertEqual(EntitlementPolicy.consumption(of: .unlimitedTextStories, decision: decision, in: ctx),
+                       .nothing)
+    }
+
+    func testADeniedOrUnmeteredCapabilitySpendsNothing() {
+        let waiting = context(plan: .free, lastFreeText: now)
+        XCTAssertEqual(EntitlementPolicy.consumption(
+            of: .unlimitedTextStories, decision: decide(.unlimitedTextStories, waiting), in: waiting), .nothing)
+        let paid = context(plan: .premium)
+        XCTAssertEqual(EntitlementPolicy.consumption(
+            of: .classicLibrary, decision: decide(.classicLibrary, paid), in: paid), .nothing)
+    }
+
+    func testAnIllustratedStorySpendsQuotaOrTrial() {
+        let paid = context(plan: .premium, quota: 5)
+        XCTAssertEqual(EntitlementPolicy.consumption(
+            of: .illustratedStory, decision: decide(.illustratedStory, paid), in: paid), .quota)
+        let free = context(plan: .free, trial: 3)
+        XCTAssertEqual(EntitlementPolicy.consumption(
+            of: .illustratedStory, decision: decide(.illustratedStory, free), in: free), .trialStar)
     }
 }

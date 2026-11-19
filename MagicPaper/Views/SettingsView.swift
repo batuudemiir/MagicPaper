@@ -140,7 +140,7 @@ struct SettingsView: View {
             }
             if FamilyFeatureAccess.isEnabled(.voiceRecording) {
                 ParentRowButton(systemImage: "mic", tone: .lav, title: "Kendi sesin",
-                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.router.parentRoute = .voiceRecording }
+                                subtitle: VoiceCopy.settingsLine(VoiceRecordingStore.shared.recordedStoryCount)) { app.unlock(.ownVoice) { app.router.parentRoute = .voiceRecording } }
             }
         }
     }
@@ -342,6 +342,9 @@ struct SettingsView: View {
                     app.showToast("Abonelik kapatıldı", symbol: "crown.fill")
                 } else {
                     subscriptionManager.purchaseSubscription(tier: .premium)
+                    // E7: kapılar doğrulanmamış planı saymaz; geliştirici anahtarı
+                    // RevenueCat yerine damgayı kendisi atar (yalnızca DEBUG).
+                    subscriptionManager.recordEntitlementVerification()
                     app.showToast("Premium açıldı, iyi masallar", symbol: "crown.fill", tone: .reward)
                 }
             }

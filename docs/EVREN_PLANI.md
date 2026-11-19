@@ -108,6 +108,26 @@ Sıradaki dünyalar: Tarih (`topic_learning_history`), Yeni bir ülke, Yeni bir 
 
 Masal yazma `EntitlementPolicy.decide`'dan geçer. Eski masallar, kahraman, hafıza ve harita her zaman açık. Paywall yalnızca gerçekten açık olanı satar. Ödeme turu kararına bağlı; `docs/YAYIN.md`.
 
+**Ödeme turu kararı (19 Kasım 2026, Batuhan).**
+
+- Ücretsiz: günde bir masal (`unlimitedTextStories`, 12 saatlik soğuma, mevcut politika). Bekleme metni geri sayımsız: "Yarın yeni bir masal yazabiliriz."
+- Abonelik ("Hikaye Kahramanı"): sınırsız masal; bütün klasikler ve MagicPaper Original masalları; seri masalları; Masal ailem; kendi sesinle okuma; PDF kitap; bazı dünyalar (bu tur: "Gökyüzü ve uzay" ve "Sporlar" konuları).
+- Görselli masal Release'te kapalı olduğu için satılmaz; paywall'dan kalkar.
+
+**Uygulama planı.**
+
+- Yetenekler (`Capability`): var olan `unlimitedTextStories`, `premiumWorlds` (yeniden tanım: kilitli konu kimlikleri); yeni `classicLibrary`, `seriesStories`, `familyCast`, `ownVoice`, `pdfBook`. Hepsi `decidePaidUnlock` (ücretli plan ya da çevrimdışı tolerans içinde önbellek). Politika saf kalır; testler önce yazılır.
+- Tek kapı: `MPAppState.unlock(_:then:)`. İzin varsa iş yapılır; yoksa çocuk alanında sakin bir sheet ("Büyüklerle açılır", tek `MascotSays` Ragi'si), tek eylem "Büyüklere göster" → `closeSheet(then:)` → `requestGate` → paywall. Ebeveyn alanında (ses kaydı, PDF, Masal ailem ekleme) doğrudan paywall. Kilitte sayı, geri sayım, "N masal kaldı" yok.
+- Masal yazma: `startStoryCreation` kapıdan geçer; ücretsiz kullanıcıda masal kitaplığa girince `lastFreeTextStoryDate` yazılır (sürpriz dahil). Reddedilince çocuk sheet'i: "Bugünün masalı yazıldı. Yarın yeni bir masal yazabiliriz." + "Kitaplığa bak".
+- Klasik ve Original: `readClassic`, `readOriginal` kapıdan geçer; kartlarda küçük kilit glifi (`MPIcon`), metin değil.
+- Seri: `startSeries` (masal sonu ve masal eylemleri) kapıdan geçer. Başlamış serinin yazılmış bölümleri okunur; abonelik bitince yeni bölüm yazılmaz.
+- Masal ailem: ekleme ve masala katma kapıdan geçer; var olan karakterler ve onlarla yazılmış masallar kalır.
+- Kendi sesin: kayıt ekranına giriş kapıdan geçer; kaydedilmiş ses okunmaya devam eder.
+- PDF: tek masal ve kitap dışa aktarma kapıdan geçer.
+- Dünyalar: kilitli konu çipi kilit glifiyle görünür, dokununca kapı.
+- Paywall: tek plan, yalnızca gerçekten açılan şeyler; "görselli masal" ve "ayda N görselli" kalkar; deneme ve fiyat satırı RevenueCat ürününden.
+- Yapılmayacaklar: yıldızla açma (yıldız asla plana bağlanmaz), sayaç, bildirim, masal sonunda satış.
+
 ### E8: Yayınevi
 
 `MPYearbook` + `MPStoryPDF` ile yıllık; tek basım ortağıyla on kitap, sipariş elle.

@@ -32,8 +32,8 @@ public enum Capability: String, CaseIterable, Sendable {
     /// Bugünkü karşılığı: `SubscriptionManager.canCreateStory(type: .daily)`.
     case unlimitedDailyStories
 
-    /// Kilitli dünyalar: peri, korsan, kar, çiftlik, robot, sirk.
-    /// Bugünkü karşılığı: `MP.World.isPremium && !subscriptionManager.isPremium`.
+    /// Kilitli dünyalar: masal yazmada abonelikle açılan konular
+    /// (`lockedTopicIDs`; E7, karar: Batuhan 19 Kasım 2026).
     case premiumWorlds
 
     /// Kilitli temalar: jungle, hero, underwater, custom.
@@ -44,6 +44,25 @@ public enum Capability: String, CaseIterable, Sendable {
     /// Bugün karşılığı yok: uzunluk seçimi kalktı, sayfa sayısı yaş bandından
     /// gelir (FAZ 10, `AgeBand.pageCount`).
     case longStories
+
+    // E7 (19 Kasım 2026, karar: Batuhan): aboneliğin açtığı şeyler.
+    // Hepsi saf kilit; deneme hakkı bunları açmaz.
+
+    /// Bütün klasikler ve MagicPaper Original masalları (Masallar).
+    case classicLibrary
+    /// Sevilen bir masalı seriye çevirmek ve yeni bölüm yazmak. Yazılmış
+    /// bölümler her zaman okunur.
+    case seriesStories
+    /// Masal ailem: karakter eklemek ve masala katmak. Var olan karakterler
+    /// ve onlarla yazılmış masallar kalır.
+    case familyCast
+    /// Kendi sesinle okuma: ses kaydetmek. Kaydedilmiş ses çalmaya devam eder.
+    case ownVoice
+    /// Masalı ya da kitabı PDF olarak dışa aktarmak.
+    case pdfBook
+
+    /// Abonelikle açılan konular (`storyTopics` kimlikleri).
+    public static let lockedTopicIDs: Set<String> = ["topic_adventure_sky", "topic_learning_sports"]
 }
 
 public extension Capability {
@@ -53,10 +72,12 @@ public extension Capability {
     /// saf erişim kapısıdır ve tüketilmez.
     var isMetered: Bool {
         switch self {
-        case .illustratedStory:
+        case .illustratedStory, .unlimitedTextStories:
+            // Metin masalı E7'den beri ölçülür: ücretsizde günde bir.
             return true
-        case .unlimitedTextStories, .unlimitedDailyStories,
-             .premiumWorlds, .premiumThemes, .longStories:
+        case .unlimitedDailyStories,
+             .premiumWorlds, .premiumThemes, .longStories,
+             .classicLibrary, .seriesStories, .familyCast, .ownVoice, .pdfBook:
             return false
         }
     }
