@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · main@8a94103 origin'e gitti · Havuz planı gönderildi
+
+- Batuhan'ın onayıyla ("Testsiz gönder") main origin'e gönderildi (`cb69522..8a94103`, dokuz commit: H2b, Sporlar, H5, test turu, ince sayfalar, seed sabitlemesi, günlük).
+- Uygulama testleri çalıştırılmadan gönderildi (disk: paket önbelleği silinmişti); motor paketi testleri geçiyordu. Uygulamada sayıma ya da sabit seed'e bağlı test kırılabilir; ilk yer açılınca koşulmalı.
+
 ### 2026-11-19 · main@8c7837e + bu kayıt (yerel, push yok) · Sporlar, H5 ve havuz planının test turu
 
 - Sporlar (`50e8a31`): Köy Çayırı, Beden Öğretmeni Defne (`coach`, dördüncü meslek), keçi Zıpzıp, top, atlama ipi, kâğıt uçurtma; her banta üç `sports` öğrenme blueprint'i (hareket oyunu: kazanan, skor, kıyas yok), 83 satır. Defne'ye editoryal bir olgu (`fact_coach_shows_slowly`, 5-10) yazıldı ve "onaylı" işaretlendi: Batuhan okuyunca geri alınabilir. Sporlar dört bantta görünür, `CoverageReportTests` kilitliyor.
