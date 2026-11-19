@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · main (ileri sarma, bu kayıtla) · 20 Kasım kararları main'e alındı ve origin'e gönderildi
+
+- Ne değişti: Batuhan'ın isteğiyle `kararlar-20-kasim` dalı `main`'e ileri sarılarak birleşti (birleştirme commit'i yok, `main` 390bdb1'den bu kayda). `main` ve `kararlar-20-kasim` origin'e gönderildi. Böylece İrem'in `irem` dalındaki işler (ana sayfa başlığı, Paywall düzeltmeleri, Xcode 26.6 düzeltmesi, önizleyici ve ekran hattı) ve 20 Kasım abonelik yetkileri `main`'de.
+- Bilerek değişmedi: `irem` dalı olduğu gibi kaldı; İrem yeni işe güncel `main`'den başlamalı. App Store Connect ürünleri ve fiyatları elle girilecek.
+- Test: derleme ve test çalıştırılmadı; Batuhan derlemeden göndermeyi istedi. İş bölümündeki "Mac'te derlenmeden birleşmez" kuralı bu birleştirmede uygulanmadı, ilk derleme sonraki iş.
+- Etkilenen: bu kayıt.
+
 ### 2026-11-20 · kararlar-20-kasim, commit bu kayıtla · 20 Kasım kararları tek dalda: İrem'in işi + yetkiler
 
 - Ne değişti: `main` (390bdb1) üstüne yeni `kararlar-20-kasim` dalı. İrem'in `irem` dalı (c7d4354) birleşti: onaylanan ana sayfa başlığı (`HomeHeaderScene`), Xcode 26.6 derleme düzeltmesi, Paywall'da yanlış vaatlerin kalkması, mağazadan okunan deneme, App Store 3.1.2 yenileme metni, "Aboneliği yönet", önizleyici ve ekran görüntüsü hattı. Ardından `evren-7-yetkiler` (a04a050) birleşti: ücretsiz pay, tek plan, StoreKit kimlikleri, yıllık ürün ve deneme. Paywall çakışması kararlara göre çözüldü: tek kart "MagicPaper Premium", İrem'in yenileme metni ve deneme düğmesi, 20 Kasım fayda listesi (dünyalar ve kendi sesin yok). README'deki "Batuhan için" notu İrem'in istediği gibi kaldırıldı, kurallar satırı `AGENTS.md`'yi gösteriyor. `RevenueCatManager`'ın modülsüz yedek sınıfına aynı kademe eşlemesi eklendi. Değişiklik günlüğü çakışmalarında iki tarafın kayıtları korundu.
