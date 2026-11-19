@@ -87,6 +87,7 @@ enum OfflineStoryMapper {
             // what a later illustration pass would build a prompt from.
             imagePrompt: page.visualScene
         )
+        appPage.reading = StoryPageReading(role: page.role.rawValue, refrain: page.refrain)
         let words = storyWords(page.words, in: page.text)
         appPage.words = words.isEmpty ? nil : words
         return appPage

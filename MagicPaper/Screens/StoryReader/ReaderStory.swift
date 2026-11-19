@@ -121,6 +121,7 @@ struct ReaderPage: Equatable {
     /// Sayfanın yeni kelimeleri (FAZ 17). Eski masallarda boş.
     var words: [StoryWord] = []
     var art: StoryPageArt? = nil
+    var reading: StoryPageReading? = nil
 
     var composition: ReaderPageComposition {
         if scene != nil { return .scene }
@@ -169,7 +170,8 @@ extension ReaderStory {
                 sceneHint: page.imagePrompt,
                 scene: scene,
                 words: page.words ?? [],
-                art: art
+                art: art,
+                reading: page.reading
             )
         }
 

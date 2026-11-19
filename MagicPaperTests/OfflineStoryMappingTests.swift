@@ -255,3 +255,23 @@ extension OfflineStoryMappingTests {
     }
 }
 
+
+extension OfflineStoryMappingTests {
+    func testRealComposerMetadataMapsWithoutChangingTextOrPageCount() throws {
+        for age in [4, 6, 8, 10] {
+            let result = try service.compose(childName: "İrem", ideaID: nil, companionID: nil, age: age, seed: "reading-rhythm-\(age)")
+            let mapped = OfflineStoryMapper.appStory(from: result.story, childName: "İrem", childProfileID: UUID(), storyIdeaID: nil, catalogVersion: result.catalogVersion)
+            XCTAssertEqual(mapped.pages.count, result.story.pages.count)
+            for (source, page) in zip(result.story.pages, mapped.pages) {
+                XCTAssertEqual(page.text, source.text)
+                XCTAssertEqual(page.reading?.role, source.role.rawValue)
+                XCTAssertEqual(page.reading?.refrain, source.refrain)
+                var authored = source
+                authored.refrain = "An authored suffix."
+                let withRefrain = OfflineStoryMapper.appPage(from: authored)
+                XCTAssertEqual(withRefrain.reading?.refrain, authored.refrain)
+                XCTAssertEqual(withRefrain.text, source.text)
+            }
+        }
+    }
+}

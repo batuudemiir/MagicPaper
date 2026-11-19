@@ -173,6 +173,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONEncoder().encode(page))
         XCTAssertEqual(decoded.text, "Metin.")
         XCTAssertNil(decoded.art)
+        XCTAssertNil(decoded.reading)
     }
 
     func testSpotMetadataSurvivesSavingAndMapping() throws {
@@ -302,4 +303,33 @@ final class ReaderStoryMappingTests: XCTestCase {
                      authoredSourceFingerprint: "test-source", bindingPolicyVersion: 1, catalogVersion: "test")
     }
 
+}
+
+extension ReaderStoryMappingTests {
+    func testReadingMetadataIsTolerantAndRetainedByReaderAndSavedPageArrays() throws {
+        var story = ReaderFixtures.textStory(pages: 1)
+        story.pages[0].reading = StoryPageReading(role: "resolution", refrain: "Sayfa 1.")
+        let saved = try JSONEncoder().encode(story.pages)
+        story.pages = try JSONDecoder().decode([StoryPage].self, from: saved)
+        let reader = try XCTUnwrap(ReaderStory(from: story).leaves.compactMap(\.page).first)
+        XCTAssertEqual(reader.reading, story.pages[0].reading)
+        XCTAssertEqual(reader.spokenText, story.pages[0].text)
+        let original = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(story.pages[0])) as? [String: Any])
+        let malformedCases: [Any] = [42, "broken", ["role": 42, "refrain": true], ["role": "future"], ["role": "hook", "schemaVersion": "bad"], ["role": "hook", "schemaVersion": 8]]
+        for metadata in malformedCases {
+            var json = original
+            json["reading"] = metadata
+            let page = try JSONDecoder().decode(StoryPage.self, from: JSONSerialization.data(withJSONObject: json))
+            XCTAssertEqual(page.text, story.pages[0].text)
+            XCTAssertNil(ReaderReadingRhythm.blocks(paragraphs: [page.text], reading: page.reading, layout: .paragraphs))
+        }
+        let unknown = try JSONDecoder().decode(StoryPageReading.self, from: Data(#"{"role":"future"}"#.utf8))
+        XCTAssertEqual(unknown.role, "future")
+        XCTAssertNil(unknown.refrain)
+        let missingVersion = try JSONDecoder().decode(StoryPageReading.self, from: Data(#"{"role":"hook"}"#.utf8))
+        XCTAssertEqual(missingVersion.schemaVersion, 1)
+        let malformedVersion = try JSONDecoder().decode(StoryPageReading.self, from: Data(#"{"role":"hook","schemaVersion":"bad"}"#.utf8))
+        XCTAssertNotEqual(malformedVersion.schemaVersion, 1)
+        XCTAssertNil(ReaderReadingRhythm.blocks(paragraphs: ["Metin."], reading: malformedVersion, layout: .paragraphs))
+    }
 }

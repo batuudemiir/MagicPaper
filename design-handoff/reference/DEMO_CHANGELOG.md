@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · Offline okuyucu ritmi pilotu ve telefon build’i
+
+- Yeni offline masallarda mevcut sayfa rolü/tekrar sözü optional sürümlü metadata ile kayıt ve seriye taşınır.7–10 metinleri kısa cümle grupları, açılış ilk/sakin sonuç son cümle nefesi kazanır;3–6 tek-cümle düzeni korunur. Ek boşluk yalnız bütün metin sığarsa verilir; AX/kompakt/sahne/eski veya bilinmeyen metadata eski düzen.
+- API, yeni çizim, motor metni, sayfa sayısı, art binder/pin ve karakter kimliği değişmedi. Kaynak byte/UTF16 kapsaması ve özgün ses/kelime koordinatları korunur; eski kitaplara geri doldurma yok.
+- Doğrulama: bağımsız spec/kod incelemeleri; çok cümleli refrain ve gerçek testin yakaladığı emoji sınır hatası düzeltildi. Gerçek Foundation kaynaklarıyla macOS harness’ında12 test/0hata; Swift frontend parse/diff temiz. Kullanıcı isteğiyle iPhone16 Debug BUILD SUCCEEDED, imza/kurulum/açılış exit0. Uygulama XCTest/render ve telefondaki okuyucu etkileşim kabulü yapılmış sayılmıyor; kullanıcı yeni masalla deneyecek.
+- Dosyalar: StoryPageReading, StoryPage/OfflineStoryMapper/ReaderStory, ReaderReadingRhythm/ReaderRhythmLayout/StoryPageView, ilgili model/seri/ritim testleri ve hazır render testi; plan/spec/UIbrief/REPORT/proje hafızası. Önbellekler kaybolduğu için kilitli paketler geçici görev kopyalarıyla yeniden hazırlandı; sürüm veya genel Git ayarı değiştirilmedi.
+
 ### 2026-11-19 · Okuma hevesi araştırması — fiziksel kitap ve dijital anlatı
 
 - Kullanıcı isteğiyle çocukların okumak istemesini destekleyen sayfa teknikleri araştırıldı;3–6 birlikte okuma ve7–10 bağımsız okumaya ayrı öneriler hazırlandı.

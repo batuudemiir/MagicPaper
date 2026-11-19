@@ -340,6 +340,8 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var scene: ScenePlate?
     /// Eski kayıtlarda yoktur; yokken mevcut üst-sahne düzeni korunur.
     var art: StoryPageArt?
+    /// Optional authored semantics; absent on existing saved books.
+    var reading: StoryPageReading?
     /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
     /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
     var words: [StoryWord]?

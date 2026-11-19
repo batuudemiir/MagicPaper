@@ -228,7 +228,7 @@ struct StoryPageView: View {
 
     private func textScroll(available: CGSize) -> some View {
         ScrollView(.vertical) {
-            narrative
+            narrative(available: available)
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(minHeight: max(available.height, 0), alignment: .top)
@@ -237,7 +237,26 @@ struct StoryPageView: View {
         .scrollIndicators(.hidden)
     }
 
-    private var narrative: some View {
+    private func narrative(available: CGSize) -> some View {
+        let blocks = rhythmBlocks(available: available)
+        return Group {
+            if let blocks {
+                rhythmNarrative(blocks, available: available)
+            } else {
+                legacyNarrative
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(page.spokenText)
+        .accessibilityAddTraits(.isStaticText)
+        .accessibilityTextContentType(.narrative)
+        .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
+        .environment(\.openURL, OpenURLAction { url in
+            ReaderWordSelection.shared.handle(url, in: page.words)
+        })
+    }
+
+    private var legacyNarrative: some View {
         VStack(alignment: .leading, spacing: readSize.points * 0.55) {
             if !page.title.isEmpty {
                 Text(page.title)
@@ -251,14 +270,75 @@ struct StoryPageView: View {
             case .paragraphs: paragraphs
             }
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(page.spokenText)
-        .accessibilityAddTraits(.isStaticText)
-        .accessibilityTextContentType(.narrative)
-        .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
-        .environment(\.openURL, OpenURLAction { url in
-            ReaderWordSelection.shared.handle(url, in: page.words)
-        })
+    }
+
+    private func rhythmBlocks(available: CGSize) -> [ReaderRhythmBlock]? {
+        guard ReaderReadingRhythm.isEligible(composition: composition,
+                                             accessibility: typeSize.isAccessibilitySize,
+                                             compactHeight: verticalClass == .compact,
+                                             viewport: available) else { return nil }
+        return ReaderReadingRhythm.blocks(paragraphs: page.paragraphs, reading: page.reading, layout: layout)
+    }
+
+    private func rhythmNarrative(_ blocks: [ReaderRhythmBlock], available: CGSize) -> some View {
+        let hasTitle = !page.title.isEmpty
+        let offset = hasTitle ? 1 : 0
+        let size = layout == .breath ? readSize.larger.points : readSize.points
+        let gaps = blocks.enumerated().map { index, block in
+            if index == 0 { return hasTitle ? readSize.points * 0.55 : 0 }
+            if layout == .paragraphs { return readSize.points * 0.55 }
+            return block.sourceParagraph == blocks[index - 1].sourceParagraph
+                ? size * 0.55 : readSize.points * 0.55 + size * 0.5
+        }
+        let quiet = Set(blocks.indices.filter { $0 > 0 && blocks[$0].quiet }.map { $0 + offset })
+        return ReaderRhythmLayout(gaps: (hasTitle ? [0] : []) + gaps,
+                                  quietIndices: quiet, viewportHeight: available.height,
+                                  trailing: layout == .breath ? size * 0.5 : 0) {
+            if hasTitle {
+                Text(page.title).font(MP.F.displaySM()).mpTightTracking(21)
+                    .foregroundStyle(theme.foreground).padding(.bottom, MP.S.x1)
+            }
+            ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
+                rhythmText(block, size: size)
+            }
+        }
+    }
+
+    private func rhythmText(_ block: ReaderRhythmBlock, size: CGFloat) -> some View {
+        let dialogue = layout == .paragraphs && ReaderText.isDialogue(page.paragraphs[block.sourceParagraph])
+        let factor = layout == .breath ? max(spacing.factor, MP.ReadSpacing.rahat.factor) : spacing.factor
+        return Text(ReaderWords.attributed(block.text, words: page.words, size: size,
+                                          ink: theme.body, highlight: wordHighlight,
+                                          childName: childName, readAlong: rhythmMark(block)))
+            .lineSpacing(size * factor)
+            .tracking(ReaderText.tracking(size, easyReading: easyReading))
+            .tint(wordHighlight)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.leading, dialogue ? MP.S.x3 : 0)
+            .overlay(alignment: .leading) {
+                if dialogue {
+                    Capsule().fill(theme.muted.opacity(0.35)).frame(width: MP.E.width)
+                        .accessibilityHidden(true)
+                }
+            }
+    }
+
+    private func rhythmMark(_ block: ReaderRhythmBlock) -> ReaderWords.ReadAlong? {
+        let source: ReadAlongMark?
+        if layout == .breath {
+            guard let value = spoken.value,
+                  value.text == page.spokenText.trimmingCharacters(in: .whitespacesAndNewlines),
+                  let word = ReaderText.breathWordMark(paragraphs: page.paragraphs,
+                                                      location: value.location, length: value.length) else { return nil }
+            let sentence = ReaderText.sentenceRanges(in: page.paragraphs[word.paragraph])[word.line]
+            source = .init(paragraph: word.paragraph, start: sentence.lowerBound + word.start,
+                           end: sentence.lowerBound + word.end)
+        } else { source = readAlongMark }
+        guard let local = block.localMark(source, in: page.paragraphs) else { return nil }
+        // Younger readers retain word highlighting without dimming earlier text.
+        if layout == .breath, local.isEmpty { return nil }
+        return .init(start: local.lowerBound, end: local.upperBound,
+                     fill: theme.readAlong, readInk: layout == .breath ? theme.body : theme.muted)
     }
 
     /// 7-10 yaş: paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına

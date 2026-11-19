@@ -244,10 +244,19 @@ final class SeriesManagerTests: XCTestCase {
         XCTAssertEqual(libraryStory(prepared.firstStoryID)?.pages[0].art, pin)
         // Deliberately inject a historical saved decision: unlock must copy it,
         // even when today's matching rules would reject its provenance.
-        for index in prepared.episodes.indices { prepared.episodes[index].pages[0].art = pin }
+        let reading = StoryPageReading(role: "resolution", refrain: "Saved authored refrain.")
+        for index in prepared.episodes.indices {
+            prepared.episodes[index].pages[0].art = pin
+            prepared.episodes[index].pages[0].reading = reading
+        }
         try store.save(prepared)
         let restored = try XCTUnwrap(store.openSeries(for: child))
         XCTAssertEqual(restored.episodes.map { $0.pages[0].art }, Array(repeating: pin, count: 4))
+        XCTAssertEqual(restored.episodes.map { $0.pages[0].reading }, Array(repeating: reading, count: 4))
+        var legacy = try XCTUnwrap(restored.episodes.first)
+        for index in legacy.pages.indices { legacy.pages[index].reading = nil }
+        let legacySaved = try JSONEncoder().encode(legacy)
+        XCTAssertTrue(try JSONDecoder().decode(SeriesEpisode.self, from: legacySaved).pages.allSatisfy { $0.reading == nil })
         for day in 7...10 {
             clock.set("2026-10-\(day) 09:00")
             let fresh = manager()
@@ -256,6 +265,7 @@ final class SeriesManagerTests: XCTestCase {
             let opened = try XCTUnwrap(current.episodes.last(where: \.isUnlocked))
             let book = try XCTUnwrap(libraryStory(opened.storyID))
             XCTAssertEqual(book.pages[0].art, pin)
+            XCTAssertEqual(book.pages[0].reading, reading)
             XCTAssertEqual(book.pages[0].art?.assetRevision, 5)
             XCTAssertEqual(book.pages[0].art?.catalogVersion, "saved-version")
             _ = fresh.markRead(book)
