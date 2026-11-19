@@ -202,9 +202,12 @@ final class OccasionTests: XCTestCase {
                       "diş perisi", "doktor", "ilaç"]
         for entry in try catalog().occasions.templates {
             for variant in entry.template.variants {
+                // Kelime başında aranır: "yanında" "anında" değildir.
+                let text = variant.text.lowercased(with: Locale(identifier: "tr_TR"))
                 for word in banned {
-                    XCTAssertFalse(variant.text.lowercased(with: Locale(identifier: "tr_TR")).contains(word),
-                                   "\(variant.id): \(word)")
+                    XCTAssertNil(text.range(of: "(?<![a-zçğıöşü])" + NSRegularExpression.escapedPattern(for: word),
+                                            options: .regularExpression),
+                                 "\(variant.id): \(word)")
                 }
             }
         }

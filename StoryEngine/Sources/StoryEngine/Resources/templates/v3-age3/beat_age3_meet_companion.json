@@ -267,6 +267,33 @@
       "castRoles": [
         "hesitant"
       ]
+    },
+    {
+      "id": "mc3h_h5_01",
+      "text": "Tam o sırada {{companion.name}} çıkageldi. {{child.name}}'in baktığı yere baktı ve \"Ben buraları bilirim,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h5_mc3h_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_h5_02",
+      "text": "Bir taşın arkasından {{companion.name}} baktı. Önce saklandı, sonra yine baktı. {{child.name}} gülümseyince o da yaklaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h5_mc3h_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant"
+      ]
     }
   ]
 }

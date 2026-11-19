@@ -168,7 +168,10 @@ final class CatalogBundleTests: XCTestCase {
         // 1869 → 2091 (H5, 19 Kasım 2026): 3 satırın altındaki havuzlar 4'e
         // çıktı, 222 satır (196'sı Masal ailem satırı). Seri katmanına giden
         // 72 satır bu sayıya girmiyor. Var olan satırlara dokunulmadı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 2091)
+        // 2091 → 2097 (testler, 19 Kasım 2026): 9-10 inanç sayfasına dört
+        // `solo` + `certain` satır (yanılgı masalı kararsız satıra düşüyordu) ve
+        // 3-4 tanışma sayfasına iki `solo` satır (rehber ve çekingen havuzu 3'tü).
+        XCTAssertEqual(catalog.recordCounts["variants"], 2097)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

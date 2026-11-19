@@ -126,6 +126,12 @@ final class BoundPoolTests: XCTestCase {
             }
         }
 
+        // The list below is cut at 25; this names every thin page once, so a
+        // fix does not just reveal the next page (19 Kasım 2026).
+        let pages = Dictionary(grouping: Set(thin)) { $0.components(separatedBy: " [").first ?? $0 }
+        for (page, cells) in pages.sorted(by: { $0.key < $1.key }) {
+            print("thin page: \(page) × \(cells.count)")
+        }
         XCTAssertTrue(thin.isEmpty,
                       "Bound cells under \(floor) lines — every book of these bindings reads "
                       + "the same page:\n" + Set(thin).sorted().prefix(25).joined(separator: "\n"))

@@ -251,9 +251,11 @@ final class StoryTopicTests: XCTestCase {
         // (signal, patientObservation, seekingKnowledge, revelation,
         // perspectiveShift). Öğrenelim böylece mod başına üç konu hedefine
         // ulaştı; tek yeni blueprint yazılmadı, açan şey insan yol arkadaşı.
+        // Sporlar (19 Kasım 2026): dört bantta da "Sporlar" canlandı; her
+        // banta üç hareket oyunu şekli, Beden Öğretmeni Defne ve keçi Zıpzıp.
         XCTAssertEqual(live(.learning, band: b56),
                        ["topic_learning_animals", "topic_learning_jobs",
-                        "topic_learning_science"])
+                        "topic_learning_science", "topic_learning_sports"])
         // 16 Kasım 2026 (E5): "Gökyüzü ve uzay" canlandı. Üç yeni mekân (Ay
         // Kıyısı, Gümüş Kubbe, Bulut Limanı) dört macera mekanizmasını da
         // kuruyor: incrementalCourage, askingToJoin, persistence, retracing.
@@ -266,7 +268,7 @@ final class StoryTopicTests: XCTestCase {
         // H2 (18 Kasım 2026): 3-4 öğrenme beş şekle çıktı (iki charge +
         // unexplained, misreading, appeal); hayvan yol arkadaşı beşinde de
         // bağlanıyor, "Hayvanlar" canlandı. Önceden bu bantta konu yoktu.
-        XCTAssertEqual(live(.learning, band: b34), ["topic_learning_animals"])
+        XCTAssertEqual(live(.learning, band: b34), ["topic_learning_animals", "topic_learning_sports"])
         // H2: 7-8 ve 9-10'da da dört şekil (appeal ve charge eklendi);
         // "Hayvanlar" ikisinde de canlı. Bilim üç mekanizmaya ulaşmıyor
         // (yalnızca iki keşif `science` taşıyor), Meslekler 7-10'da ayrı faz.
@@ -274,9 +276,11 @@ final class StoryTopicTests: XCTestCase {
         // açtı; ikisi (seekingKnowledge, patientObservation) bilim keşfini de
         // bağladığı için "Bilim" de üç mekanizmaya ulaştı.
         XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 7, upperBound: 8)),
-                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science"])
+                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science",
+                        "topic_learning_sports"])
         XCTAssertEqual(live(.learning, band: AgeBand(lowerBound: 9, upperBound: 10)),
-                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science"])
+                       ["topic_learning_animals", "topic_learning_jobs", "topic_learning_science",
+                        "topic_learning_sports"])
         // H1 (17 Kasım 2026): 3-4'ün dört macera şekli dört konuyu açtı.
         XCTAssertEqual(live(.adventure, band: b34),
                        ["topic_adventure_sea", "topic_adventure_sky", "topic_adventure_treasure",

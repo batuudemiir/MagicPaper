@@ -164,6 +164,14 @@ final class LivenessRuleTests: XCTestCase {
     /// five blueprints carry an inert page, and this is the same finding the
     /// corpus session reported against its own pilots — which is the point: the
     /// rule reproduces an independent review's result.
+    private static let pilots: [String: String] = [
+        "blueprint_unexplained_reading_001": "unexplained",
+        "blueprint_threshold_crossing_001": "threshold",
+        "blueprint_appeal_together_001": "appeal",
+        "blueprint_absence_looking_001": "absence",
+        "blueprint_misreading_tracks_001": "misreading",
+    ]
+
     func testTheShippedLibraryIsMeasuredNotAssumed() throws {
         let url = try XCTUnwrap(Bundle.module.url(forResource: "pilot_library_v1", withExtension: "json"))
         let catalog = try JSONDecoder().decode(ContentCatalog.self, from: Data(contentsOf: url))
@@ -174,7 +182,15 @@ final class LivenessRuleTests: XCTestCase {
                 blueprint.beatSlots, conflictMechanism: blueprint.family?.conflict)
             XCTAssertTrue(result.isValid, "\(blueprint.id.rawValue) is structurally broken.")
             let pages = result.issues.filter { $0.code == "inert_page" }.map(\.pageNumber)
-            if !pages.isEmpty { flagged[blueprint.family?.rawValue ?? "?"] = pages.sorted() }
+            // Keyed by the five pilots (19 Kasım 2026): H1-H4 and the topic
+            // shapes put more than one blueprint in each family, and keying
+            // by family measured whichever came last. The others are printed
+            // for a person to read, not asserted.
+            if let family = Self.pilots[blueprint.id.rawValue] {
+                if !pages.isEmpty { flagged[family] = pages.sorted() }
+            } else if !pages.isEmpty {
+                print("inert page: \(blueprint.id.rawValue) \(pages.sorted())")
+            }
         }
 
         // Measured after adopting the blueprint session's tightened
