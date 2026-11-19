@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · main@8c7837e + bu kayıt (yerel, push yok) · Sporlar, H5 ve havuz planının test turu
+
+- Sporlar (`50e8a31`): Köy Çayırı, Beden Öğretmeni Defne (`coach`, dördüncü meslek), keçi Zıpzıp, top, atlama ipi, kâğıt uçurtma; her banta üç `sports` öğrenme blueprint'i (hareket oyunu: kazanan, skor, kıyas yok), 83 satır. Defne'ye editoryal bir olgu (`fact_coach_shows_slowly`, 5-10) yazıldı ve "onaylı" işaretlendi: Batuhan okuyunca geri alınabilir. Sporlar dört bantta görünür, `CoverageReportTests` kilitliyor.
+- H5 (`06cc2af`): 556 havuz Python yaklaşığıyla ölçüldü, 3 satırın altındaki 141 havuz 4'e çıktı (294 satır, çoğu Masal ailem). Rapor `docs/HAVUZ_RAPORU.md`: en ince havuzlar, 17 birebir tekrar cümle (silinmedi), bilinen kusurlar ("hemen" satırları) listelendi, değiştirilmedi.
+- İnce sayfalar (`a96becc`): `BoundPoolTests` 65 blueprint sayfasında bazı bağlamalarda 3 satır buldu; her biri bir satırla 4'e çıktı (49 satır). Test artık bütün ince sayfaları özetliyor (liste 25'te kesiliyordu).
+- Test turu (`f9675eb`, `1018970`, `8c7837e`): H0-H4 testleri hiç koşulmamıştı; main@677885f'te 16 testte 38 hata vardı, H2b/Sporlar/H5 dokuz test daha kırdı. İçerik düzeltmeleri: Sporlar'ın iki "{{ad}}'indi" satırı, H5'in "karanlık/gölge/korku/yalnız" geçen sekiz uyku satırı, H4'ün "{{ad}}'e de" satırı, 9-10 inanç sayfasına dört `solo` + `certain` satır (yanılgı masalı kararsız satıra düşüyordu), 3-4 tanışma sayfasına iki satır, sekiz blueprint'in sayfa rol etiketi (beat sırası aynı), odanın adını anmayan bir uyku kapanışı. Test güncellemeleri: konu ve ilgi listeleri (Spor ve Meslekler her banda girdi), sayımlar (78 blueprint, 2146 varyant), gökyüzü kayıt sırası, keşif çakışması etiket ekseniyle (top ve ip bilinçli istisna), matris 5-6'ya, nakarat öğrenme moduna, canlılık beş pilota bağlandı, özel gün kelime denetimi kelime başında ("yanında" ≠ "anında"). Gevşetilen tek kontrol: `ProseCooldownTests`'te farklı satır sayısına yüzde birlik pay (189 → 188 görüldü).
+- Seed kayması: bant bildirmeyen sabit seed artık 9-10'un Meslekler şekline düşüyor; aile fikstürü yeniden yazıldı. Kayıtlı masallar metni sakladığı için kullanıcıyı etkilemez (K1).
+- Bilerek değişmedi: uygulama kodu, motor kodu, var olan satırların metni (H4 ve H5'in kendi satırları dışında).
+- Test: StoryEngine paketi tam koşuda 950 geçti, 1 kaldı; o hata (uyku kapanışı) düzeltildi ve etkilenen 49 test geçti, son düzeltmeden sonra paketin tamamı yeniden koşulmadı. Uygulama testleri ÇALIŞTIRILMADI: derleme diski doldurdu (DerivedData ve paket önbelleği silinmişti, paketler baştan iniyordu). Simülatörde görülmedi.
+- Batuhan okusun: bütün yeni satırlar taslak; `fact_coach_shows_slowly`; `a7_rs_h2_02`/`a9_rs_h2_02` ("etrafında bir tur attı") insan arkadaşa da gidebiliyor (eski kusur); `s34_pw_tp_01`, `s910_ra_tp_01`, `a9_ob_tp_01`.
+- Dosyalar: `pilot_library_v1.json`, `templates/` (v3, v3-age3, v3-age7, v3-age9, bedtime, series), `Tests/StoryEngineTests/` (yaklaşık 20 dosya ve aile fikstürü), `docs/HAVUZ_PLANI.md`, `docs/HAVUZ_RAPORU.md`, bu günlük.
+
 ### 2026-11-19 · worktree-agent-a4d762b8b86a0f234, commit bu kayıtla · H2b: Meslekler 7-10
 
 - Ne değişti: 7-8 ve 9-10'a üçer `jobs` öğrenme blueprint'i (`seekingKnowledge`, `patientObservation`, `helpingAtWork`), insan yol arkadaşıyla (fırıncı, postacı, öğretmen). 67 yeni satır (`move: "h2b_…"`): iki yeni `ask_for_help` dosyası (her meslekte dört zanaat satırı, `occupationRequire` + `natureRequire: person`), var olan v3-age7/age9 dosyalarına sona ekleme; öbür insan satırları (tanışma, rica, birlikte çalışma, bekleme) `natureRequire: person` ile kapılı.
