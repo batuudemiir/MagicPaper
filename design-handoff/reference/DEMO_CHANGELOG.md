@@ -181,6 +181,117 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: çalıştırılmadı (disk dolu: ~250 MB). JSON ayrıştırıldı, değişen test dosyaları `swiftc -frontend -parse`'tan geçti; dizi, satır kapıları (insan + her meslek), kelime bantları ve dil kuralları Python ile denetlendi.
 - Dosyalar: `pilot_library_v1.json`, `templates/v3-age7/` ve `v3-age9/` (2 yeni, 14 değişen), dört test dosyası, `docs/HAVUZ_PLANI.md`, bu günlük.
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Önizleme: bağlantıyla doğrudan ekrana, taze yükleme
+
+- İrem Paywall seçeneklerini göremedi (derinde: ilk açılış + kapı; önizleme önbelleği olası). `design-preview/index.html` adres çubuğundaki sorguyu telefonun içine geçirir: `index.html?ortu=payA|payB|payC`, `?ekran=masallar`, `?ilk=welcome`, `?sayfa=tale:rapunzel`.
+- `app/index.html` betikleri ve CSS'i her açılışta `?v=<zaman>` ile taze yükler; ilk çizim `mp-ready` olayıyla (betikler sırayla yüklendikten sonra).
+- Test: Edge'de `index.html` ve `index.html?ortu=payA` çekildi, ikisi de doğru.
+- Dosyalar: `design-preview/index.html`, `design-preview/app/{index.html,app.js}`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte üç Paywall seçeneği
+
+- `design-preview/app/paywall.js`: karar için üç tasarım, Büyükler için odasında "Paywall seçenekleri" altında ve `?ortu=payA|payB|payC` ile. A · Kitaplık (çocuğun kapakları, "<ad>'in kitaplığı", sahiplik), B · Akşam ritüeli (gece sahnesi, "Bu hafta 4 akşam birlikte okudunuz", Ücretsiz/Premium karşılaştırma tablosu), C · Sade ve güven (fiyat önde, yan yana plan kartları, deneme takvimi).
+- Ortak: önerilen model (`docs/PAYWALL_EKONOMI_PLANI.md`: ₺149/ay, ₺999/yıl, yıllık varsayılan, 7 gün deneme yalnızca yıllıkta, yalnızca bugün çalışan özellikler); Ragi yok; tek birincil düğme altta sabit; 3.1.2 metni, "Aboneliği yönet", geri yükleme; "Reklam yok · Veriler satılmaz"; sahte aciliyet yok. Yıllık/aylık seçimi deneme metnini ve düğmeyi değiştirir.
+- Ölçüm (Edge, 440×956 ve 375×667): Pro Max'te üçünde de fiyat ve düğme ilk ekranda; SE'de fiyatlar yalnızca C'de ilk ekranda, A ve B'de kaydırma gerekiyor (alt bağlantılar iki satıra iniyor).
+- Uygulama kodu değişmedi. Masal ailem "1 kişi" sınırı ve karşılaştırma tablosu öneridir, kodda kilit yok.
+- Dosyalar: `design-preview/app/{paywall.js,app.js,app.css,index.html}`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Paywall: yanlış vaatler kalktı, deneme mağazadan, 3.1.2
+
+- Modelden bağımsız dürüstlük düzeltmeleri (ekonomi kararı beklenmeden): Paywall'dan "Aylık görselli masal hakkı" (Release'te kapalı), "12 masal dünyasının tamamı" (akışta dünya seçimi yok, hiçbiri kilitli değil) ve "Uzun masallar" (uzunluk yaştan gelir) kaldırıldı; yerine "Bütün klasik masallar ve seriler" ve "Sesli okuma". Plan kartlarındaki "Ayda 5/1 görselli masal" satırı kalktı.
+- Deneme: "İlk 7 gün ücretsiz" ve "7 gün ücretsiz dene" artık sabit değil; `RevenueCatManager.freeTrialDays` mağazadaki `introductoryDiscount`'u okur, deneme yoksa düğme "Abone ol". Kullanıcının denemeye uygunluğu sorulmuyor (not düşüldü).
+- App Store 3.1.2: plan listesinin altında fiyat, dönem, Apple Kimliği ödemesi ve 24 saat kuralıyla otomatik yenileme cümlesi; alt satıra "Aboneliği yönet" (App Store abonelik sayfasına bağlantı, ikinci modal açılmaz). Bağlantılar sığmazsa iki satıra iner.
+- Bilerek değişmedi: iki kademe (tek plan kararı bekliyor; kartlar artık yalnızca fiyatla ayrışıyor), ürün kimliği uyuşmazlığı (App Store Connect Batuhan'da), Premium kilitleri.
+- Prototip Paywall aynı metinlerle güncellendi.
+- Test: design law grep'leri boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile derlenip Abonelik ekranı çekiliyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `design-preview/app/app.js`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Abonelik ekonomisi planı; Ana sayfa taşma düzeltmesi
+
+- Yeni belge `docs/PAYWALL_EKONOMI_PLANI.md` (Paywall sprintinin Perşembe çıktısı, Batuhan'ın onayına): 8 maddelik karar tablosu; ücretsiz/Premium sınırı yalnızca bugün çalışan özelliklerle; fiyat önerisi ₺149/ay, ₺999/yıl, 7 gün deneme yalnızca yıllıkta; kaynaklı pazar tablosu; etik ebeveyn pazarlaması (kullanılacaklar/asla); tetikleyici taslağı; teknik iş listesi.
+- Bulunan hatalar (belgede ve README notunda): StoreKit ürün kimlikleri (`com.magicpaper.premium.monthly`) ile `RevenueCatManager.productIdentifier`'ın aradığı (`magicpaper_premium_monthly`) uyuşmuyor; yıllık ürün ve tanıtım teklifi yok; aile sesi ve aile paylaşımı Release'te kapalı (`FamilyFeatureAccess`), Premium'da satılamaz.
+- Ana sayfa (`4244253` turu): derleme başarılı, ama "Bu akşam" kartı ve modlar ekranın sağından taşıyordu, Ragi görünmüyordu. Sebep: dolduran sahne görseli yerleşime kendi genişliğini dayatıyordu. Düzeltme: görsel `overlay` içinde (`HomeHeaderScene`). Bu commit `[ekran]` ile doğrulanıyor.
+- CI notu: SE'de Kitaplık normal yazıda üç denemede de boş geldi (önceki turda doluydu; Kitaplık bu işte değişmedi). İzleniyor.
+- Dosyalar: `docs/PAYWALL_EKONOMI_PLANI.md`, `README.md`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · ChatGPT için görsel referans paketi (repo dışı)
+
+- İrem'in masaüstünde `MagicPaper_ChatGPT_Referans/` klasörü hazırlandı: tasarım dili belgesi (`00_OKU_BENI_Tasarim_Dili.md`; `docs/MARKA.md`, `docs/RAGI.md`, `Content/Originals/COVER_GUIDE.md` ve `WORLD.md` kapak stili, AGENTS.md Design law ve kahraman kararından derlendi; İngilizce prompt kalıpları), Ragi'nin 10 güncel pozu (`Assets.xcassets/Brand`), uygulama simgesi ve yazı logosu, renk/yazı/imza sayfası (token'lardan üretildi), ana sayfa sahneleri, iki Original kapak (stil referansı `saatin-icindeki-ninni`), gerçek uygulamanın 6 ekranı.
+- Repoda dosya değişmedi; yalnızca bu kayıt. `design-handoff/assets/brand` eski pafta olduğu için kullanılmadı.
+- Not: Ana sayfa ekran görüntüsü yeni başlık sahnesinden önceki tur; yeni tur gelince klasördeki dosya güncellenebilir.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: sahne tepede, selam sahnenin üstünde
+
+- Karar (İrem, tasarım): eski TestFlight sürümündeki gibi tam genişlik sahne sayfanın tepesinde, "İyi akşamlar, <ad>" üstünde. 22 Ekim'deki "sahne bu akşamın kartında" düzeninin yerine; README'de Batuhan'ın onayına yazıldı.
+- Uygulama kodu: `MPHomeChrome.swift` içine `HomeHeaderScene` (durum çubuğunun altına uzanan manzara, uyku saatinde gece, Ragi sağ altta, alt kenar `WaveBottom`, gradient yok); `HomeHeroCard.showsScene` (varsayılan `true`); `HomeStatLine.onArt`. `HomeView` sahneyi başa koyar, kartı sahnesiz çizer; kaydırma üst güvenli alanı yok sayar, başlık güvenli alanın altından başlar (`GeometryReader`). Gece yazı `MP.C.textOnArt`, gündüz koyu (açık mavi gökte açık yazı 4.5:1'i tutmazdı).
+- Bilerek gelmedi: eski kilit ve avatar (13 Kasım: çocuk sekme başlığında kilit ve avatar yok), "Bu hafta" şeridi ve yıldız kartları (karar bekliyor).
+- Prototip: Ana sayfa aynı düzende.
+- Test: Design law grep'leri iki dosyada boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip ekran görüntüsü alınıyor. Simülatörde açık/koyu ve en büyük yazı görüntüsü o turdan gelecek.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/{app.js,app.css}`, `README.md`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte tam Masallar sekmesi, gerçek katalogdan
+
+- `design-preview/tools/sync-content.mjs`: `classics_catalog.json` ve `Content/Originals/published` → `design-preview/app/content.js` (62 masal, 40'ı seri bölümü; 5 seri; 2 Original; kapak yolları `Assets.xcassets`'ten). Kataloğa masal eklenince yeniden çalıştırılır.
+- `design-preview/app/masallar.js`, `GunlukView` düzeniyle: raf çipleri, kaydırmalı vitrin (noktalar), MagicPaper Original, Bu haftanın seçkisi, Dünya klasikleri, Anadolu'dan, Fabllar, gece bölgesinde Uyku vakti ve "Kendi masalını yaz". Alt sayfalar: masal detayı (boyalı üst görsel, Bu masalla, Masal hakkında, Yumuşak/Klasik anlatım, künye, Benzerleri), seri (bölüm listesi, "N. masaldan devam et", Okundu), raf (yaş süzgeci), arama, Tüm raflar.
+- Okuyucu artık katalogdaki gerçek masal metnini gösterir (yumuşak ya da klasik anlatım); okuma ilerlemesi vitrine ve seri sayfasına yansır. Kapağı olmayan 10 masal için adlı yer tutucu kapak.
+- Derin bağlantı: `?sayfa=tale:rapunzel|series:keloglan|shelf:anadolu|search:kedi`.
+- Bilerek yapılmadı: Dinle, Uyku modu, paylaşım (kapıya gider), kategorilerdeki yaş seçimi.
+- Test: Edge görünmez modunda Masallar (tam boy), masal detayı, seri, raf ve arama çekildi, gerçek ekranla karşılaştırıldı. Tıklama akışı elle denenmedi.
+- Dosyalar: `design-preview/tools/sync-content.mjs`, `design-preview/app/{content.js,masallar.js,app.js,app.css,index.html}`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototip ana ekrandan başlıyor; ilk açılış akışı
+
+- Telefonun ana ekranı (genel simgeler, gerçek uygulama adı ya da Apple simgesi yok) ve MagicPaper'ın kendi AppIcon'u. Simgeye dokununca uygulama simgeden büyüyerek açılır; alttaki ev çizgisine dokununca küçülerek ana ekrana döner, durum korunur. Reduce Motion'da yalnızca geçiş.
+- İlk açılış, `AppGate` sırasıyla ve koddaki metinlerle: Karşılama (`OnboardingView`) → Ebeveyn hesabı (`AccountCopy`; prototipte giriş yapılmış sayılır) → Ebeveyn onayı (`ParentConsentView`; "Onaylıyorum" seçilmeden düğme kapalı) → Çocuk profili (`ProfileCreationView`; ad yazılmadan düğme kapalı) → "<ad>'ın ilk masalı yazılıyor" (`FirstRunView`) → okuyucu → masal sonu → "Masal saatini hatırlatalım mı?" → Ana sayfa. Yazılan ad uygulamanın her yerinde kullanılır (Türkçe ilgi eki: İrem'in, Ali'nin).
+- "Neleri sever" adımı uygulamada şu an gizli olduğu için prototipte de yok.
+- Dış sayfa: telefon `zoom` ile küçülüyor, panelin altı kesilmiyor (İrem'in ekran görüntüsündeki hata).
+- Derin bağlantı: `app/index.html?ilk=welcome|signin|consent|profile|reminder`.
+- Test: Edge görünmez modunda dış sayfa 520×860'ta ve altı ekran çekildi, metin ve yerleşim kontrol edildi. Tıklama akışı uçtan uca elle denenmedi.
+- Dosyalar: `design-preview/index.html`, `design-preview/app/{index.html,app.js,app.css,os.js}`, bu günlük.
+
+### 2026-11-19 · irem@fe162f0 · Önizleme yalnızca iPhone
+
+- `design-preview/index.html` artık yalnızca tek bir iPhone çerçevesi ve içinde gezilen prototip (`app/`); pencereye sığacak kadar küçülür, hiç büyümez. Üst düğmeler kaldırıldı (İrem'in isteği).
+- Eski önizleyici (taslaklar, gerçek ekran görüntüleri, SE/Pro Max, yazı boyutu) silinmedi: `design-preview/karsilastir.html`.
+- Test: tarayıcıda açılmadı; yalnızca dosya taşındı ve yeni sayfa yazıldı.
+- Dosyalar: `design-preview/index.html`, `design-preview/karsilastir.html`, `design-preview/README.md`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Gezilebilir HTML prototip
+
+- Ne değişti: `design-preview/app/` (index.html, app.css, app.js). Önizleyicide yeni varsayılan sekme "Uygulama": tıklanarak gezilen prototip. Alt çubuk ve dört sekme (Ana sayfa, Masallar, Kitaplık, Profil), masal yazma (mod → "Masalda kimler olsun?" → hazırlık defteri 6-8 sn, 2 sn sonra atlanır, kendiliğinden açılır → okuyucu → masal sonu), Büyükler için (iki saniye basılı tutma kapısı, özet, Ayarlar, bugünkü Abonelik). Biten masal yıldız ve çıkartma sayısını, yazılan masal kitaplığı günceller. Kitaplık süzgeçleri çalışır. Okuyucuda ← → klavye.
+- Kaynak: gerçek ekran görüntüleri (`screens/real/`) ve SwiftUI'daki metinler (`StoryModeStep`, `CompanionStep`, `StoryPreparationScript`, `ReaderChrome`, `StoryEndingLeaf`, `ParentalGateView`, `SettingsView`). Renk ve ölçüler `tokens.css`'ten. Masal metni prototip için yazılmış örnek, motor çıktısı değil.
+- Bilerek yapılmadı: arama, raflar, kahraman dolabı, rozetler, okuma ayarları, sesli okuma, seri; dokununca "prototipte henüz yok" der. Uygulama kodu değişmedi.
+- Derin bağlantı: `app/index.html?ekran=kitaplik`, `?ortu=createWho|reader|ending|parent|settings|paywall`.
+- Test: Edge görünmez modunda 12 ekranın görüntüsü alındı ve gerçek ekranlarla karşılaştırıldı. Tıklama akışı gözle denenmedi (İrem dener).
+- Dosyalar: `design-preview/app/*`, `design-preview/index.html`, bu günlük.
+
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · İlk gerçek ekran görüntüleri; boş ekran yeniden denemesi
+
+- Sonuç: `2e747fa` ile uygulama GitHub'ın Mac'inde (Xcode 26.6, iPhone SE 3. nesil ve iPhone 17 Pro Max) derlendi ve 32 görüntü çekildi (`design-preview/screens/real/`, bot commit'i `47b6e23`). Uygulama açılışta çökmedi.
+- 6 görüntü bembeyaz: Profil (Pro Max, iki yazı boyutu), Büyükler için ve Abonelik (Pro Max, en büyük yazı), Abonelik (SE, normal), Masallar (SE, en büyük yazı). Zamanlama mı gerçek hata mı belli değil.
+- Değişen: `Scripts/ci_screenshots.sh` boş görüntüde iki kez daha bekleyip yeniden çekiyor; üçünde de boşsa GitHub uyarısı yazıyor.
+- Gözlem: `paywall-bugun.html` taslağı gerçek Paywall görüntüsüyle uyuştu.
+- Test: yeni tur bu commit'le başlıyor; yerelde derleme yok.
+- Dosyalar: `Scripts/ci_screenshots.sh`, bu günlük.
+
+### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Ekran hattı düzeltmeleri ve Xcode 26.6 derleme hatası
+
+- Ekran görüntüsü hattı: SE simülatörü yoksa oluşturuluyor; `Secrets.xcconfig` doğru yerde (`MagicPaper/`); derleme günlüğü ve hatalar dala ve GitHub açıklamalarına yazılıyor (`.log` uzantısı `.gitignore`'da olduğu için `.txt`); sıra iş düzeyinde, [ekran]'sız gönderim çalışan turu iptal etmiyor.
+- Derleme hatası (uygulama kodu): `MagicPaperPageTurnRenderer.swift:48` Xcode 26.6'da `ambiguous use of 'pi'`. `CGFloat.pi` ve `Double(...)` ile tür açık yazıldı; davranış aynı. `main`'de de var, README'deki Batuhan notlarına yazıldı.
+- README: "Batuhan için" bölümü (yalnızca `irem` dalı; açık maddeler, tamamlananlar silinir).
+- Test: derleme GitHub'ın Mac'inde bu commit'le deneniyor (önceki tur bu tek hatayla durdu). Yerelde derleme yok (Windows).
+- Dosyalar: `Scripts/ci_screenshots.sh`, `.github/workflows/ekran-goruntuleri.yml`, `MagicPaper/Screens/StoryReader/PageTurn/MagicPaperPageTurnRenderer.swift`, `README.md`, bu günlük.
+
+### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Windows önizleyici ve gerçek ekran görüntüsü hattı
+
+- Ne değişti: `design-preview/` eklendi. iPhone SE ve Pro Max çerçeveli önizleyici (`index.html`), uygulamanın renk dosyalarından ve `MPLayout.swift`'ten üretilen `tokens.css` (`tools/sync-tokens.mjs`, 82 renk ve 37 ölçü), iki Paywall taslağı: `paywall-bugun.html` (bugünkü `PaywallView`'un kopyası) ve `paywall-oneri.html` (öneri: Ragi yok, çocuğun kitaplığı, deneme zaman çizelgesi, 3.1.2 metni, "Aboneliği yönet").
+- Gerçek ekranlar: `.github/workflows/ekran-goruntuleri.yml` + `Scripts/ci_screenshots.sh`. `irem` dalında `[ekran]` geçen commit'te GitHub'ın Mac'i 8 ekranı (dört çocuk sekmesi, Büyükler için, Ayarlar, Abonelik, tasarım kataloğu) iki cihazda ve iki yazı boyutunda çekip dala geri yazar.
+- Uygulama kodu: yalnızca DEBUG açılış kancası `mpOpenPaywall` (`MPDebugLaunch.swift`, `ContentView.swift`, iki satır). Release davranışı değişmedi.
+- Bulunan ve raporlanan sorunlar (düzeltilmedi): abonelik hiçbir yeteneği kilitlemiyor (`Capability` tüketicisi yok); Paywall Release'te kapalı görselli masalı satıyor; "İlk 7 gün ücretsiz" StoreKit'e bakılmadan yazıyor; 3.1.2 metni ve "Aboneliği yönet" yok. `GoogleService-Info.plist` depoda yok, bu yüzden `ios-build.yml` CI'da derlenemez (yeni iş akışı sahte dosya üretiyor). `ios-build.yml` kullanımdan kalkmış `upload-artifact@v3` kullanıyor.
+- Bilerek değişmedi: `PaywallView.swift`, abonelik modeli ve fiyatlar. Premium'un içeriği İrem ve Batuhan'ın kararını bekliyor.
+- Test: Swift derlenmedi (Windows). İş akışı henüz GitHub'da çalıştırılmadı. Taslaklar Edge'in görünmez modunda 440 ve 375 pt genişlikte açılıp görüntüsü kontrol edildi.
+- Dosyalar: `design-preview/**`, `Scripts/ci_screenshots.sh`, `.github/workflows/ekran-goruntuleri.yml`, `MagicPaper/Screens/MPDebugLaunch.swift`, `MagicPaper/ContentView.swift`, bu günlük.
+
 ### 2026-11-18 · main (merge commit) · codex/design-system-catalog main'e birleşti
 
 - `codex/design-system-catalog` dalı (10 commit: Ragi yeni çizimleri ve kukla ölçüsü, tasarım sistemi kataloğu, beyaz/lila yüzey renkleri, okuyucu ve karşılama illüstrasyon önerileri, örnek masal ve yapay ses temizliği) main'in H0-H4 havuz commit'leriyle birleşti.

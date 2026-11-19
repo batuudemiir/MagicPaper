@@ -302,6 +302,23 @@ class RevenueCatManager: ObservableObject {
         getPackage(for: tier, period: period) != nil
     }
 
+    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa `nil`:
+    /// Paywall "ücretsiz dene" sözünü yalnızca gerçekten varsa verir (19 Kasım 2026).
+    /// Not: kullanıcının denemeye hâlâ uygun olup olmadığı burada sorulmaz.
+    func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
+                       period: BillingPeriod) -> Int? {
+        guard let intro = getPackage(for: tier, period: period)?.storeProduct.introductoryDiscount,
+              intro.paymentMode == .freeTrial else { return nil }
+        let length = intro.subscriptionPeriod.value
+        switch intro.subscriptionPeriod.unit {
+        case .day: return length
+        case .week: return length * 7
+        case .month: return length * 30
+        case .year: return length * 365
+        @unknown default: return nil
+        }
+    }
+
     /// Arayüzün tek çağrı noktası: seçilen plan + dönem için satın alma.
     func purchaseTier(_ tier: SubscriptionManager.SubscriptionTier,
                       period: BillingPeriod,
@@ -352,6 +369,9 @@ class RevenueCatManager: ObservableObject {
 
     func hasPackage(for tier: SubscriptionManager.SubscriptionTier,
                     period: BillingPeriod) -> Bool { false }
+
+    func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
+                       period: BillingPeriod) -> Int? { nil }
 }
 #endif
 

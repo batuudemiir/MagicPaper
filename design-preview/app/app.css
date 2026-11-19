@@ -1,0 +1,344 @@
+/* Gezilebilir prototip. Renk ve ölçüler ../tokens.css'ten (uygulamanın kendi
+   dosyalarından üretilir); yazı rolleri ../mockups/mp.css'te. Bu dosya yalnızca
+   prototipin yerleşimini tutar. Kaynak gerçek ekranlar: ../screens/real/. */
+@import url("../mockups/mp.css");
+
+html, body { height: 100%; overflow: hidden; background: #ECE6F2; }
+body { display: flex; justify-content: center; }
+#app { position: relative; width: 100%; max-width: 440px; height: 100%; overflow: hidden;
+       background: var(--mp-background-kid); }
+
+/* Katmanlar: sekme sayfası, itilen sayfa, tam ekran örtü */
+.layer { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--mp-background-kid); }
+.layer.parent { background: var(--mp-background-parent); }
+.scroller { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 0 var(--mp-space-screen-h) 140px; scrollbar-width: none; }
+.scroller::-webkit-scrollbar { display: none; }
+.push-in { animation: pushIn .32s cubic-bezier(.2,.8,.2,1); }
+.cover-in { animation: coverIn .36s cubic-bezier(.2,.8,.2,1); }
+.fade-in { animation: fadeIn .25s ease-out; }
+@keyframes pushIn { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes coverIn { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .push-in, .cover-in { animation: fadeIn .2s ease-out; } }
+
+.ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
+
+/* Başlıklar */
+.tab-head { display: flex; align-items: center; justify-content: space-between; padding-top: var(--mp-space-lg); min-height: 64px; }
+.tab-head h1 { margin: 0; font: 700 calc(34px * var(--type))/1.2 "Baloo 2", "Nunito", sans-serif; }
+.eyebrow-greet { display: block; font: 600 calc(15px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-secondary); }
+.topbar { display: flex; align-items: center; gap: 12px; padding: var(--mp-space-sm) var(--mp-space-screen-h); min-height: 64px; }
+.topbar .t-section { flex: 1; }
+.section-h { display: flex; align-items: baseline; justify-content: space-between; margin: 32px 0 4px; }
+.section-h h2 { margin: 0; font: 600 calc(21px * var(--type))/1.2 "Baloo 2", "Nunito", sans-serif; }
+.section-h .link { color: var(--mp-action-primary); font: 600 calc(15px * var(--type)) "Nunito", sans-serif; display: flex; align-items: center; gap: 2px; }
+.section-sub { margin: 0 0 12px; }
+
+/* Alt çubuk: dört sekme cam kapsülde + "Masal yaz" marka dairesi */
+.tabbar { position: absolute; left: var(--mp-space-screen-h); right: var(--mp-space-screen-h); bottom: 18px; display: flex; gap: 10px; align-items: center; z-index: 20; }
+.tabs { flex: 1; display: flex; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.78);
+        -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6);
+        box-shadow: 0 0 0 1px rgba(46,30,62,.08), 0 6px 20px rgba(46,30,62,.10); }
+.tabs button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0 6px; border-radius: 999px;
+               font: 600 calc(12.5px * min(var(--type), 1.2)) "Nunito", sans-serif; color: var(--mp-text-secondary); min-height: 56px; }
+.tabs button.on { background: var(--mp-action-soft); color: var(--mp-action-primary); font-weight: 800; }
+.fab { width: 64px; height: 64px; border-radius: 50%; background: var(--mp-action-primary); color: #fff; display: grid; place-items: center;
+       box-shadow: 0 4px 0 var(--mp-brand-night); flex: none; }
+.fab:active { transform: translateY(4px); box-shadow: none; }
+.fab .ico { width: 28px; height: 28px; }
+
+/* Kartlar ve öğeler */
+.tonight { border-radius: var(--mp-radius-card-large); overflow: hidden; background: var(--mp-world-lav-soft); margin-top: var(--mp-space-lg); }
+.tonight .art { position: relative; aspect-ratio: 2.1 / 1; background-size: cover; background-position: center; }
+.tonight .art img { position: absolute; right: 14px; bottom: 6px; width: 34%; }
+.tonight .body { padding: var(--mp-space-lg) var(--mp-space-xl) var(--mp-space-xl); display: grid; gap: 4px; }
+.tonight .btn { margin-top: var(--mp-space-md); }
+.modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.mode { position: relative; border-radius: 18px; padding: 18px 6px 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+        font: 400 calc(15px * var(--type))/1.3 "Nunito", sans-serif; min-height: 120px; }
+.mode .tile { width: 56px; height: 56px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
+.mode .tile .ico { width: 28px; height: 28px; }
+.mode.on { outline: 3px solid var(--mp-action-primary); outline-offset: -3px; }
+.mode .flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--mp-action-primary); color: #fff;
+              border-radius: 999px; padding: 2px 10px; font: 700 13px "Nunito", sans-serif; white-space: nowrap; }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; margin: var(--mp-space-lg) calc(-1 * var(--mp-space-screen-h)) 0; padding: 2px var(--mp-space-screen-h); scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+        background: var(--mp-action-soft); font: 400 calc(16px * var(--type)) "Nunito", sans-serif; white-space: nowrap; }
+.chip.dark { background: var(--mp-text-primary); color: #fff; }
+.chip .ico { width: 18px; height: 18px; }
+
+.feature { display: flex; gap: 16px; padding: 14px; margin-top: var(--mp-space-lg); }
+.feature img { width: 120px; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 0 var(--mp-border-kid); }
+.feature .meta { display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.pill-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 18px; border-radius: 999px;
+            background: var(--mp-action-soft); color: var(--mp-action-primary); font: 700 calc(17px * var(--type)) "Nunito", sans-serif; margin-top: 8px; align-self: flex-start; }
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+.dots i { width: 8px; height: 8px; border-radius: 4px; background: var(--mp-border-kid); }
+.dots i.on { width: 22px; background: var(--mp-action-primary); }
+
+.shelf { display: flex; gap: 12px; overflow-x: auto; margin: 0 calc(-1 * var(--mp-space-screen-h)); padding: 0 var(--mp-space-screen-h) 6px; scrollbar-width: none; }
+.shelf::-webkit-scrollbar { display: none; }
+.book { flex: none; width: 140px; text-align: left; }
+.book .cv { width: 100%; aspect-ratio: 3/4; border-radius: 14px; background-size: cover; background-position: center; box-shadow: 0 4px 0 var(--mp-border-kid); position: relative; }
+.book .t { margin-top: 8px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid3 .book { width: auto; }
+.cv.made { display: grid; place-items: center; padding: 10px; text-align: center; font: 700 calc(20px * var(--type))/1.15 "Baloo 2", "Nunito", sans-serif; border: 1.5px solid rgba(46,30,62,.06); }
+.cv .badge { position: absolute; top: 8px; right: 8px; background: #fff; border-radius: 999px; padding: 2px 8px; font: 600 12px "Nunito", sans-serif; color: var(--mp-text-primary); display: flex; gap: 4px; align-items: center; }
+.cv .mode-ico { position: absolute; top: 8px; left: 8px; width: 26px; height: 26px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--mp-text-secondary); }
+.cv .mode-ico .ico { width: 14px; height: 14px; }
+
+.say { display: flex; align-items: center; gap: 10px; margin-top: var(--mp-space-lg); }
+.say img { width: 84px; }
+.say .bubble { position: relative; background: #fff; border-radius: 20px; padding: 14px 18px; box-shadow: 0 2px 14px rgba(46,30,62,.08); }
+.say .bubble::before { content: ""; position: absolute; left: -7px; top: 50%; width: 14px; height: 14px; background: #fff; transform: translateY(-50%) rotate(45deg); }
+
+.resume { display: flex; align-items: center; gap: 14px; padding: 12px; margin-top: var(--mp-space-lg); }
+.resume img { width: 64px; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; }
+.resume .grow { flex: 1; display: grid; gap: 2px; }
+.round-play { width: 56px; height: 56px; border-radius: 50%; background: var(--mp-action-primary); color: #fff; display: grid; place-items: center; }
+
+/* Profil */
+.who { display: flex; gap: 10px; margin-top: var(--mp-space-md); }
+.who .me { display: flex; align-items: center; gap: 8px; border: 2.5px solid var(--mp-action-primary); background: var(--mp-action-soft); border-radius: 999px; padding: 4px 14px 4px 4px; min-height: 48px; }
+.who .add { display: flex; align-items: center; gap: 6px; border: 2px dashed var(--mp-border-kid); border-radius: 999px; padding: 0 16px; color: var(--mp-text-secondary); min-height: 48px; }
+.av { width: 38px; height: 38px; border-radius: 50%; background: var(--mp-brand-night); color: #fff; display: grid; place-items: center; font: 800 17px "Nunito", sans-serif; }
+.hero-card { display: flex; gap: 16px; align-items: center; padding: 18px; margin-top: var(--mp-space-lg); }
+.hero-card svg.bust { width: 104px; height: 104px; flex: none; }
+.row-card { display: flex; align-items: center; gap: 14px; padding: 16px; margin-top: var(--mp-space-lg); width: 100%; }
+.row-card .tile { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.row-card .grow { flex: 1; display: grid; gap: 2px; }
+
+/* Ebeveyn alanı */
+.parent .card { box-shadow: none; border: 1px solid var(--mp-border-parent); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: var(--mp-space-lg); }
+.stat { padding: 16px; display: grid; gap: 6px; border-radius: 20px; background: #fff; border: 1px solid var(--mp-border-parent); }
+.stat .tile { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; }
+.stat b { font: 800 calc(28px * var(--type))/1 "Nunito", sans-serif; }
+.list { background: #fff; border: 1px solid var(--mp-border-parent); border-radius: 20px; overflow: hidden; }
+.list .row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; min-height: 64px; width: 100%; }
+.list .row + .row { border-top: 1px solid var(--mp-border-parent-divider); }
+.list .row .tile { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; flex: none; }
+.list .row .grow { flex: 1; display: grid; gap: 2px; }
+.chev { color: var(--mp-text-chevron); }
+.kid-mode { display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--mp-border-parent); background: #fff; border-radius: 999px; padding: 0 16px; min-height: 48px; font: 700 15px "Nunito", sans-serif; }
+.switch { width: 52px; height: 32px; border-radius: 999px; background: var(--mp-border-parent-control); position: relative; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+.switch.on { background: var(--mp-action-primary); }
+.switch.on::after { left: 23px; }
+.bars { display: flex; gap: 8px; align-items: flex-end; height: 120px; }
+.bars div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; justify-content: flex-end; height: 100%; }
+.bars span.b { width: 100%; border-radius: 999px; background: var(--mp-world-lav-soft); min-height: 20px; }
+.bars span.b.today { background: var(--mp-action-primary); }
+
+/* Ebeveyn kapısı */
+.gate { align-items: center; justify-content: center; text-align: center; padding: 0 32px; gap: 14px; }
+.hold { width: 132px; height: 132px; border-radius: 50%; background: var(--mp-action-soft); color: var(--mp-action-primary); display: grid; place-items: center; position: relative; margin: 18px 0; touch-action: none; user-select: none; }
+.hold svg.ring { position: absolute; inset: -6px; width: 144px; height: 144px; transform: rotate(-90deg); }
+.hold svg.ring circle { fill: none; stroke: var(--mp-action-primary); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 427; stroke-dashoffset: 427; }
+.hold.go svg.ring circle { transition: stroke-dashoffset 2s linear; stroke-dashoffset: 0; }
+.hold .ico { width: 40px; height: 40px; }
+
+/* Masal yazma */
+.choice { display: flex; align-items: center; gap: 14px; min-height: 72px; padding: 12px 16px; width: 100%; border-radius: var(--mp-radius-card);
+          background: #fff; border: 1.5px solid var(--mp-border-kid); box-shadow: 0 4px 0 var(--mp-border-kid); margin-bottom: 12px; }
+.choice.on { border-color: var(--mp-action-primary); background: var(--mp-action-soft); }
+.choice .tile { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; flex: none; }
+.choice .grow { flex: 1; display: grid; gap: 2px; }
+.pick { display: flex; flex-wrap: wrap; gap: 8px; }
+.pick .chip { background: #fff; border: 1.5px solid var(--mp-border-kid); }
+.pick .chip.on { background: var(--mp-action-soft); border-color: var(--mp-action-primary); color: var(--mp-action-primary); font-weight: 700; }
+.footer-cta { padding: 12px var(--mp-space-screen-h) 28px; background: var(--mp-background-kid); border-top: 1.5px solid var(--mp-border-kid); display: grid; gap: 6px; }
+.notebook { margin: 24px 0; padding: 22px; border-radius: 20px; background: #FFFDF6; border: 1.5px solid var(--mp-border-kid); display: grid; gap: 14px; }
+.notebook .ln { display: flex; gap: 10px; align-items: center; opacity: .25; transition: opacity .4s; }
+.notebook .ln.on { opacity: 1; }
+.notebook .ln .ico { color: var(--mp-status-success); }
+
+/* Okuyucu */
+.reader { background: var(--mp-reader-day-background); color: var(--mp-reader-day-text); }
+.reader .page { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 70px 30px 130px; font: 400 calc(22px * var(--type))/1.72 "Nunito", sans-serif; }
+.reader .page b.hero { color: var(--mp-reader-day-hero-name); }
+.reader .pageno { text-align: center; color: var(--mp-reader-day-secondary); font: 600 13px "Nunito", sans-serif; margin-top: 18px; }
+.reader .glass { position: absolute; z-index: 5; background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+                 box-shadow: 0 0 0 1px rgba(46,30,62,.08); border-radius: 999px; display: flex; align-items: center; }
+.reader .close { top: 4px; left: 16px; width: 48px; height: 48px; justify-content: center; }
+.reader .tools { top: 4px; right: 16px; gap: 4px; padding: 0 6px; height: 48px; }
+.reader .tools button { width: 40px; height: 40px; display: grid; place-items: center; }
+.reader .bottom { left: 16px; right: 16px; bottom: 22px; padding: 6px; gap: 6px; }
+.reader .bottom button { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; }
+.reader .bottom .track { flex: 1; height: 6px; border-radius: 3px; background: var(--mp-reader-day-track); position: relative; }
+.reader .bottom .track i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--mp-action-primary); }
+.reader .tapzone { position: absolute; top: 0; bottom: 0; width: 35%; z-index: 2; }
+.reader .tapzone.next { right: 0; } .reader .tapzone.prev { left: 0; }
+.cover-leaf { align-items: center; justify-content: center; text-align: center; gap: 12px; padding: 0 28px; }
+.cover-leaf .cv { width: 200px; aspect-ratio: 3/4; border-radius: 16px; background-size: cover; box-shadow: 0 6px 0 var(--mp-border-kid); }
+.ending { align-items: center; justify-content: center; text-align: center; gap: 10px; padding: 0 28px; }
+.ending .award { display: flex; gap: 10px; margin: 10px 0 18px; }
+.ending .award div { background: #fff; border-radius: 16px; padding: 12px 14px; display: grid; gap: 4px; justify-items: center; min-width: 96px; box-shadow: 0 4px 0 var(--mp-border-kid); }
+.ending .award .ico { width: 28px; height: 28px; }
+
+/* Bildirim (toast) */
+.toast { position: absolute; left: 50%; bottom: 112px; transform: translateX(-50%); background: var(--mp-text-primary); color: #fff; padding: 12px 18px;
+         border-radius: 999px; font: 600 14px "Nunito", sans-serif; z-index: 99; white-space: nowrap; animation: fadeIn .2s; max-width: 90%; overflow: hidden; text-overflow: ellipsis; }
+
+/* Okuyucu gövdesi: katmanın kalanını doldurur; kâğıt rengi katmandan gelir */
+.layer.reader .statusbar { background: transparent; }
+.rbody { position: relative; flex: 1; display: flex; flex-direction: column; }
+.rbody.cover-leaf, .rbody.ending { align-items: center; justify-content: center; }
+.ragi-jump { animation: ragiJump 1s cubic-bezier(.3,1.6,.5,1) .2s both; }
+@keyframes ragiJump { 0% { transform: translateY(16px) scale(.9); opacity: 0; } 60% { transform: translateY(-10px); opacity: 1; } 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ragi-jump { animation: fadeIn .3s both; } }
+
+/* ---------- Telefonun ana ekranı (sahne; iOS taklidi değil) ---------- */
+.ios-home { position: absolute; inset: 0; display: flex; flex-direction: column; color: #fff;
+            background: radial-gradient(120% 80% at 20% 10%, #8C6FD6 0%, transparent 60%),
+                        radial-gradient(100% 70% at 90% 90%, #E58BB0 0%, transparent 55%), #3A2458; }
+.statusbar.light { color: #fff; }
+.ios-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 0; padding: 26px 18px 0; }
+.ios-app { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ios-ico { width: 64px; height: 64px; border-radius: 15px; display: grid; place-items: center; color: #fff; overflow: hidden; }
+.ios-ico .ico { width: 30px; height: 30px; stroke-width: 1.8; }
+.ios-ico.mp { background: #fff; }
+.ios-ico.mp img { width: 100%; height: 100%; object-fit: cover; }
+.ios-lbl { font: 500 12px -apple-system, "Segoe UI", sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.ios-search { margin: auto auto 16px; display: flex; gap: 6px; align-items: center; padding: 7px 14px; border-radius: 999px;
+              background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font: 600 13px -apple-system, "Segoe UI", sans-serif; }
+.ios-search .ico { width: 14px; height: 14px; }
+.ios-dock { margin: 0 12px 30px; padding: 14px 10px; border-radius: 34px; display: flex; justify-content: space-around;
+            background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+
+/* Uygulama simgeden büyüyerek açılır, ev çizgisiyle küçülerek kapanır */
+.launch-in { transform-origin: var(--ox, 50%) var(--oy, 50%); animation: launchIn .42s cubic-bezier(.2,.9,.25,1); }
+.launch-out { transform-origin: var(--ox, 50%) var(--oy, 50%); animation: launchOut .26s ease-in forwards; }
+@keyframes launchIn { from { transform: scale(.14); opacity: 0; border-radius: 40px; } 40% { opacity: 1; } to { transform: none; } }
+@keyframes launchOut { to { transform: scale(.14); opacity: 0; border-radius: 40px; } }
+@media (prefers-reduced-motion: reduce) { .launch-in { animation: fadeIn .2s; } .launch-out { animation: none; opacity: 0; } }
+.home-ind { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; z-index: 60; display: grid; place-items: center; }
+.home-ind i { width: 134px; height: 5px; border-radius: 3px; background: var(--mp-text-primary); opacity: .85; }
+.layer.reader ~ .home-ind i, .layer.parent ~ .home-ind i { opacity: .7; }
+
+/* ---------- İlk açılış ---------- */
+.ob-center { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ob-row { display: flex; gap: 14px; align-items: center; padding: 14px 0; }
+.card .ob-row + .ob-row { border-top: 1px solid var(--mp-border-kid-divider); }
+.ob-row .tile { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--mp-action-soft); color: var(--mp-action-primary); }
+.ob-input { width: 100%; margin-top: 16px; min-height: 56px; padding: 0 18px; border-radius: var(--mp-radius-input); border: 2px solid var(--mp-border-kid-input);
+            font: 400 calc(18px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-primary); background: #fff; outline: none; }
+.ob-input:focus { border-color: var(--mp-action-primary); }
+.ob-check { display: flex; align-items: center; gap: 12px; margin-top: 18px; min-height: 48px; }
+.ob-check .box { width: 28px; height: 28px; border-radius: 8px; border: 2.5px solid var(--mp-border-kid-input); display: grid; place-items: center; color: #fff; }
+.ob-check .box.on { background: var(--mp-action-primary); border-color: var(--mp-action-primary); }
+.ob-check .box .ico { width: 18px; height: 18px; stroke-width: 3; }
+.ob-color { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--mp-border-kid); }
+.ob-color.on { box-shadow: 0 0 0 3px var(--mp-action-primary); }
+.link-btn { color: var(--mp-action-primary); font: 700 calc(15px * var(--type)) "Nunito", sans-serif; margin-top: 14px; min-height: 44px; }
+.btn:disabled { background: var(--mp-action-disabled); color: var(--mp-text-secondary); box-shadow: none; cursor: default; }
+
+/* ---------- Masallar ---------- */
+.carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: var(--mp-space-lg) calc(-1 * var(--mp-space-screen-h)) 0;
+            padding: 2px var(--mp-space-screen-h) 6px; scrollbar-width: none; }
+.carousel::-webkit-scrollbar { display: none; }
+.carousel .slide { flex: 0 0 100%; scroll-snap-align: center; margin-top: 0; }
+.cv.feat { width: 120px; aspect-ratio: 3/4; border-radius: 12px; font-size: calc(15px * var(--type)); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; margin-top: 16px; }
+.night { margin: 32px calc(-1 * var(--mp-space-screen-h)) 0; padding: 28px var(--mp-space-screen-h) 0; background: var(--mp-brand-night);
+         border-radius: 32px 32px 0 0; color: #fff; }
+.night .book .cv { box-shadow: 0 4px 0 rgba(0,0,0,.25); }
+.promo { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: 100%; margin-top: 28px; padding: 22px; border-radius: 24px;
+         min-height: 190px; justify-content: flex-end; background-size: cover; background-position: center; position: relative; overflow: hidden; }
+.promo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 20%, rgba(30,18,48,.75)); }
+.promo > * { position: relative; }
+.promo .pill-btn { color: var(--mp-action-primary); }
+
+/* Masal detayı: boyalı üst görsel (MPArtHero); karartma yalnızca görsel üstünde */
+.art-hero { position: relative; height: 470px; margin-top: calc(-1 * var(--status, 54px)); border-radius: 0 0 32px 32px; overflow: hidden;
+            box-shadow: 0 4px 0 var(--mp-border-kid); margin-bottom: 24px; }
+.art-hero .cv.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none;
+                         font-size: calc(30px * var(--type)); padding: 40px; }
+.art-hero .scrim { position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(30,18,48,.82)); }
+.art-txt { position: absolute; left: 20px; right: 20px; bottom: 24px; display: grid; gap: 4px; }
+.stage-btn { position: absolute; top: calc(var(--status, 54px) + 8px); width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+             background: rgba(255,255,255,.75); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--mp-text-primary); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--mp-action-soft); border-radius: 999px; padding: 4px; }
+.seg button { min-height: 48px; border-radius: 999px; text-align: center; color: var(--mp-action-primary); font: 700 calc(15px * var(--type)) "Nunito", sans-serif; }
+.seg button.on { background: var(--mp-action-primary); color: #fff; }
+.list.kid { border-color: var(--mp-border-kid); }
+.empty-note { display: grid; gap: 6px; text-align: center; padding: 48px 20px; }
+.search-in { flex: 1; min-height: 48px; padding: 0 18px; border-radius: 999px; border: 2px solid var(--mp-border-kid-input); background: #fff;
+             font: 400 calc(17px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-primary); outline: none; }
+.search-in:focus { border-color: var(--mp-action-primary); }
+
+/* Okuyucu: gerçek masal sayfaları uzun; sayfa kendi içinde kayar */
+.reader .page { overflow-y: auto; justify-content: flex-start; padding-top: 72px; font-size: calc(20px * var(--type)); scrollbar-width: none; }
+.reader .page p { margin: 0 0 1em; }
+
+/* Ana sayfa başlık sahnesi (HomeHeaderScene, 19 Kasım 2026): durum çubuğunun altına uzanır */
+.home-page .statusbar { position: absolute; left: 0; right: 0; top: 0; z-index: 6; color: #fff; }
+.home-page .scroller { padding-top: 0; }
+.home-scene { position: relative; height: calc(300px + var(--status, 54px)); margin: 0 calc(-1 * var(--mp-space-screen-h));
+              padding: var(--status, 54px) var(--mp-space-screen-h) 0; background-color: #0C215D; background-size: cover; background-position: center bottom;
+              clip-path: path("M0 0 H440 V330 Q330 300 220 340 Q110 360 0 335 Z"); }
+@supports not (clip-path: path("M0 0")) { .home-scene { border-radius: 0 0 32px 32px; } }
+.home-scene .tab-head h1, .home-scene .eyebrow-greet { color: #fff; }
+.home-scene .eyebrow-greet { opacity: .85; }
+.home-scene .stat-line { color: rgba(255,255,255,.85); font: 700 calc(13px * var(--type)) "Nunito", sans-serif; }
+.scene-ragi { position: absolute; right: 20px; bottom: 34px; width: 110px; }
+
+/* ---------- Paywall seçenekleri ---------- */
+.pw-x { position: absolute; top: calc(var(--status, 54px) + 6px); right: var(--mp-space-screen-h); z-index: 8; }
+.pw-x.light { background: rgba(255,255,255,.85); }
+.pw-shelf { display: flex; justify-content: center; align-items: flex-end; gap: 10px; padding: 52px 0 18px; }
+.pw-shelf .cv { width: 84px; aspect-ratio: 3/4; border-radius: 10px 14px 14px 10px; background-size: cover; background-position: center;
+                box-shadow: 0 4px 0 var(--mp-border-kid); border: 1.5px solid var(--mp-border-kid); }
+.pw-shelf .cv:nth-child(1) { transform: rotate(-6deg) translateY(6px); }
+.pw-shelf .cv:nth-child(2) { width: 98px; }
+.pw-shelf .cv.made { font-size: 13px; padding: 8px; transform: rotate(4deg); }
+.pw-shelf .cv.next { display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); border-style: dashed; box-shadow: none; }
+.pw-list { display: grid; gap: 12px; margin-top: 22px; }
+.pw-ben { display: flex; gap: 12px; align-items: center; }
+.pw-ben .dot { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.pw-ben .dot .ico { width: 20px; height: 20px; }
+.pw-plans { display: grid; gap: 10px; margin-top: 22px; }
+.pw-plans.row { grid-template-columns: 1fr 1fr; }
+.pw-plan { position: relative; display: flex; align-items: center; gap: 10px; padding: 14px; width: 100%; border-radius: var(--mp-radius-card);
+           background: #fff; border: 1.5px solid var(--mp-border-kid); text-align: left; }
+.pw-plans.row .pw-plan { flex-direction: column; align-items: flex-start; padding: 22px 14px 14px; }
+.pw-plan.on { border: 3px solid var(--mp-action-primary); box-shadow: 0 4px 0 var(--mp-brand-night); }
+.pw-plan .grow { flex: 1; display: grid; gap: 2px; }
+.pw-plan .radio { width: 24px; height: 24px; border-radius: 50%; border: 2.5px solid var(--mp-border-kid); display: grid; place-items: center; flex: none; color: #fff; }
+.pw-plans.row .pw-plan .radio { position: absolute; top: 12px; right: 12px; }
+.pw-plan.on .radio { background: var(--mp-action-primary); border-color: var(--mp-action-primary); }
+.pw-plan .radio .ico { width: 14px; height: 14px; stroke-width: 3.5; }
+.pw-badge { position: absolute; top: -11px; left: 14px; background: var(--mp-brand-star); color: var(--mp-text-primary); padding: 2px 10px; border-radius: 999px; }
+.pw-time { margin-top: 20px; }
+.pw-time .step { display: grid; grid-template-columns: 32px 1fr; gap: 12px; }
+.pw-time .rail { display: flex; flex-direction: column; align-items: center; }
+.pw-time .node { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); }
+.pw-time .node.first { background: var(--mp-action-primary); color: #fff; }
+.pw-time .node .ico { width: 16px; height: 16px; }
+.pw-time .line { width: 3px; flex: 1; min-height: 12px; background: var(--mp-action-soft); }
+.pw-time .txt { padding-bottom: 12px; }
+.pw-trust { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 18px; color: var(--mp-status-success); }
+.pw-trust .ico { width: 16px; height: 16px; }
+.pw-legal { font-weight: 400; margin: 12px 0 0; }
+.pw-foot { gap: 2px; }
+.pw-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 14px; color: var(--mp-action-primary); }
+.pw-links > * { min-height: 40px; display: inline-flex; align-items: center; }
+.pw-links button { color: var(--mp-text-secondary); font-weight: 700; }
+.pw-night { position: relative; height: 300px; margin: calc(-1 * var(--status, 54px)) calc(-1 * var(--mp-space-screen-h)) 0;
+            background-size: cover; background-position: center bottom; border-radius: 0 0 32px 32px; overflow: hidden; }
+.pw-night::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(20,14,40,.75)); }
+.pw-night-txt { position: absolute; left: 20px; right: 20px; bottom: 22px; z-index: 1; display: grid; gap: 6px; }
+.pw-compare { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; border: 1.5px solid var(--mp-border-kid); border-radius: 18px; overflow: hidden;
+              font: 400 calc(14px * var(--type)) "Nunito", sans-serif; }
+.pw-compare th, .pw-compare td { padding: 10px 10px; text-align: center; border-bottom: 1px solid var(--mp-border-kid-divider); }
+.pw-compare th { font-weight: 800; }
+.pw-compare td:first-child, .pw-compare th:first-child { text-align: left; }
+.pw-compare tr:last-child td { border-bottom: 0; }
+.pw-compare .pro { background: var(--mp-world-lav-soft); color: var(--mp-action-primary); font-weight: 800; }
+.pw-checks { display: grid; gap: 10px; margin-top: 22px; }
+.pw-checks > div { display: flex; gap: 10px; align-items: center; }
+.pw-checks .ico { color: var(--mp-status-success); stroke-width: 3; width: 20px; height: 20px; }
