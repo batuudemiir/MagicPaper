@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · ChatGPT için görsel referans paketi (repo dışı)
+
+- İrem'in masaüstünde `MagicPaper_ChatGPT_Referans/` klasörü hazırlandı: tasarım dili belgesi (`00_OKU_BENI_Tasarim_Dili.md`; `docs/MARKA.md`, `docs/RAGI.md`, `Content/Originals/COVER_GUIDE.md` ve `WORLD.md` kapak stili, AGENTS.md Design law ve kahraman kararından derlendi; İngilizce prompt kalıpları), Ragi'nin 10 güncel pozu (`Assets.xcassets/Brand`), uygulama simgesi ve yazı logosu, renk/yazı/imza sayfası (token'lardan üretildi), ana sayfa sahneleri, iki Original kapak (stil referansı `saatin-icindeki-ninni`), gerçek uygulamanın 6 ekranı.
+- Repoda dosya değişmedi; yalnızca bu kayıt. `design-handoff/assets/brand` eski pafta olduğu için kullanılmadı.
+- Not: Ana sayfa ekran görüntüsü yeni başlık sahnesinden önceki tur; yeni tur gelince klasördeki dosya güncellenebilir.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: sahne tepede, selam sahnenin üstünde
 
 - Karar (İrem, tasarım): eski TestFlight sürümündeki gibi tam genişlik sahne sayfanın tepesinde, "İyi akşamlar, <ad>" üstünde. 22 Ekim'deki "sahne bu akşamın kartında" düzeninin yerine; README'de Batuhan'ın onayına yazıldı.
