@@ -430,6 +430,10 @@ const VIEWS = {
         <button class="row" data-act="parentPush" data-arg="settings"><span class="tile" style="background:var(--mp-world-gray-soft)">${ic("type")}</span><span class="grow"><span class="t-card-title">Ayarlar</span><span class="t-footnote secondary" style="font-weight:400">Profiller, bildirim, hesap</span></span><span class="chev">${ic("right")}</span></button>
         <button class="row" data-act="paywall"><span class="tile" style="background:var(--mp-world-yellow-soft);color:var(--mp-world-yellow-deep)">${ic("crown")}</span><span class="grow"><span class="t-card-title">Abonelik</span><span class="t-footnote secondary" style="font-weight:400">Ücretsiz plan</span></span><span class="chev">${ic("right")}</span></button>
       </div>
+      <div class="section-h"><h2>Paywall seçenekleri</h2></div>
+      <p class="t-footnote secondary section-sub" style="font-weight:400">Prototip: karar için üç tasarım (docs/PAYWALL_EKONOMI_PLANI.md).</p>
+      <div class="list">${[["payA", "A · Kitaplık", "Sahiplik: çocuğun kendi kapakları"], ["payB", "B · Akşam ritüeli", "Kimlik: gece sahnesi ve karşılaştırma"], ["payC", "C · Sade ve güven", "Netlik: fiyat önde, deneme takvimi"]]
+        .map(([v, t, d]) => `<button class="row" data-act="payOpen" data-arg="${v}"><span class="tile" style="background:var(--mp-world-lav-soft);color:var(--mp-world-lav-deep)">${ic("crown")}</span><span class="grow"><span class="t-card-title">${t}</span><span class="t-footnote secondary" style="font-weight:400">${d}</span></span><span class="chev">${ic("right")}</span></button>`).join("")}</div>
     </div>` };
   },
   settings() {

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte üç Paywall seçeneği
+
+- `design-preview/app/paywall.js`: karar için üç tasarım, Büyükler için odasında "Paywall seçenekleri" altında ve `?ortu=payA|payB|payC` ile. A · Kitaplık (çocuğun kapakları, "<ad>'in kitaplığı", sahiplik), B · Akşam ritüeli (gece sahnesi, "Bu hafta 4 akşam birlikte okudunuz", Ücretsiz/Premium karşılaştırma tablosu), C · Sade ve güven (fiyat önde, yan yana plan kartları, deneme takvimi).
+- Ortak: önerilen model (`docs/PAYWALL_EKONOMI_PLANI.md`: ₺149/ay, ₺999/yıl, yıllık varsayılan, 7 gün deneme yalnızca yıllıkta, yalnızca bugün çalışan özellikler); Ragi yok; tek birincil düğme altta sabit; 3.1.2 metni, "Aboneliği yönet", geri yükleme; "Reklam yok · Veriler satılmaz"; sahte aciliyet yok. Yıllık/aylık seçimi deneme metnini ve düğmeyi değiştirir.
+- Ölçüm (Edge, 440×956 ve 375×667): Pro Max'te üçünde de fiyat ve düğme ilk ekranda; SE'de fiyatlar yalnızca C'de ilk ekranda, A ve B'de kaydırma gerekiyor (alt bağlantılar iki satıra iniyor).
+- Uygulama kodu değişmedi. Masal ailem "1 kişi" sınırı ve karşılaştırma tablosu öneridir, kodda kilit yok.
+- Dosyalar: `design-preview/app/{paywall.js,app.js,app.css,index.html}`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Paywall: yanlış vaatler kalktı, deneme mağazadan, 3.1.2
 
 - Modelden bağımsız dürüstlük düzeltmeleri (ekonomi kararı beklenmeden): Paywall'dan "Aylık görselli masal hakkı" (Release'te kapalı), "12 masal dünyasının tamamı" (akışta dünya seçimi yok, hiçbiri kilitli değil) ve "Uzun masallar" (uzunluk yaştan gelir) kaldırıldı; yerine "Bütün klasik masallar ve seriler" ve "Sesli okuma". Plan kartlarındaki "Ayda 5/1 görselli masal" satırı kalktı.
