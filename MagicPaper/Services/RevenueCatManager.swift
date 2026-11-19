@@ -366,6 +366,14 @@ class RevenueCatManager: ObservableObject {
 
     func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
                        period: BillingPeriod) -> Int? { nil }
+
+    /// Gerçek sınıftaki eşlemenin aynısı; testler modül olmadan da derlensin.
+    static func tier(forActiveSubscriptions ids: Set<String>) -> SubscriptionManager.SubscriptionTier {
+        if ids.contains(where: { $0.hasPrefix("magicpaper_ultimate_") }) { return .ultimate }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_premium_") }) { return .premium }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_basic_") }) { return .basic }
+        return .premium
+    }
 }
 #endif
 
