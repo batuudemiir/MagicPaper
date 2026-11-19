@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · Okuma hevesi araştırması — fiziksel kitap ve dijital anlatı
+
+- Kullanıcı isteğiyle çocukların okumak istemesini destekleyen sayfa teknikleri araştırıldı;3–6 birlikte okuma ve7–10 bağımsız okumaya ayrı öneriler hazırlandı.
+- Özgün araştırmalar, yayınevi/yazar kaynakları, Khan Academy Kids/Read Along/Vooks belgeleri ve mevcut offline motor karşılaştırıldı. Üç yaklaşım, sayfa dönüşü/keşif zamanlaması, gerçek harita örneği ve nitel pilot önerisi raporlandı.
+- Dosya: `docs/research/2026-11-19-okuma-hevesi-arastirmasi.md`; proje hafızası güncellendi. Rapor araştırmadır, onaylanmış tasarım veya uygulama planı değildir. Tamamı okunmayan kitaplar/erişilemeyen önizlemeler açıkça belirtildi.
+- Doğrulama: kaynak bağlantıları ve yerel aktif akış incelendi, diff kontrolü yapıldı. Kod/asset değişmedi; build/test/simülatör çalıştırılmadı.
+
 ### 2026-11-19 · Okuyucu onaylı referansa hizalandı
 
 - Nötr nesne çizimi üstte büyütüldü; metin altta, dar/AX görünümde metne öncelik. Gövde Nunito600, çocuk adı Nunito800; görselsiz sayfa aynı dizgiyle üstten başlar.
