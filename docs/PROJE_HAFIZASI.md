@@ -4,7 +4,7 @@ Claude Code oturumlarının 17 Kasım 2026'ya kadar biriktirdiği notlar (karar,
 
 ## İçindekiler
 
-- [Semantik görsel havuzu](#semantik-gorsel-havuzu) — 19 Kasım: motor/seri/havuz incelemesi, 33 nesne envanteri, 12 guaj konu çizimi; üretim entegrasyonu tasarım onayı sonrası
+- [Semantik görsel havuzu](#semantik-gorsel-havuzu) — 19 Kasım: motor/seri/havuz incelemesi, 33 nesne envanteri, 12 guaj konu çizimi; ilk 10 konu/5–6 açılış entegrasyonu, 145 uygulama testi hatasız
 - [Okuyucu guaj tasarımı](#okuyucu-guaj-tasarimi) — 18 Kasım: kullanıcı koddan önce GPT‑6.1 ile sahne/spot okuyucu önizlemesi istedi; onaylanan sahne/spot/metin okuyucusu SwiftUI’ye uygulanıyor
 - [Offline guaj pilotu](#offline-guaj-pilotu) — 18 Kasım: 24 gerçek motor çıktısı, iki çizim/48 eşleme; altı ışık dili uyumsuzluğu ve bakım hedefi incelemesi; üretim entegrasyonu yok
 - [Blueprint & v3 corpus realignment](#blueprint-corpus-realignment) — D3/D10 kapandı; K1 de kapandı: saklanan hikâyeler üretilmiş metni tutuyor, seed drift kullanıcıyı etkilemiyor.
@@ -1095,3 +1095,9 @@ _19 Kasım 2026 — kullanıcı using-superpowers + imagegen ile geniş motor/se
 **Seri tuzağı:** dört devam bölümü başta compose edilir; SeriesEpisode pages/origin saklar ama StoryIllustration saklamaz. Page art yaşar; book-level continuity yeni sözleşmede açıkça saklanmalı. Unlock’ta tekrar seçme yok. Aile silinmesi açılmamış bölümleri güncel katalogla yeniden yazar; sanat da yalnız o bölümlerde yeniden bağlanmalı.
 
 12 saydam konu çizimi yerleşik image_gen ile onaylı referans verilerek hazırlandı: yırtık harita, boş yuva, tek eldiven, altın anahtar, açık müzik kutusu, ışıklı kâğıt fener, deniz kabuğu, mavi kristal, eski el feneri, büyüteç, renkli tüy, sağlam ip. Haritada seçilen v5 üçgen yarım pafta; v2–v4 hale nedeniyle elendi. v1 tarihçe için korundu. Katalogda deniz feneri yok. Çocuk/Ragi veya kanonik hayvan kimliği çizilmedi. Bunlar review taslaklarıdır; blueprint/varyant ilişkileri henüz gerçek compose çıktısıyla doğrulanmış runtime eşleşmeleri değildir. App/motor/Assets değişmedi; build/test/simülatör çalıştırılmadı.
+
+**İlk uygulama eşlemesi (19 Kasım):** kullanıcı tasarımı onayladı. `OfflineStoryMapper.appStory` bütün yeni tek masal/seri hazırlanışında `StorySpotBinder` çağırır. 17 blueprint × 10 konu × iki hook/notice_anomaly varyantı (na_neutral_01/02) için 340 katı kural; catalog 2.1.0 + ham source/subject fingerprint eşleşmesi gerekir. Ek beat/recall/refrain/aile/özel gün veya farklı sürüm metin kalır. Boş yuva ve açık müzik kutusu görselleri paketli ama kural yok. On gerçek composer örneği `docs/research/2026-11-19-story-spot-fixtures.json` içinde.
+
+`StoryPageArt` optional sürüm/digest/provenance pinleri taşır; malformed new metadata varlığı decode/reencode sırasında korunur, eski resme downgrade yok. Bundle pin reader’da doğrudan çözülür; eski imageFileName verilmez. **Xcode tuzağı:** CopyPNGFile PNG baytlarını değiştirip hash bozdu. Sabit PNG payload `.mpart` olarak paketlenir; CryptoKit SHA-256 + ImageIO ile doğrulanır. Bugünkü kural değişse de kayıtlı exact filename/digest çözülür; sonraki sürümler eski pin dosyalarını korumalı.
+
+Doğrulama: uygulama 145 test/0 hata/1 skip; render 1/0, sekiz sabit viewport görüntüsü; yeni motor izi 2/0. Tam paket Engine933/2skip/15 assertion (8 mevcut case) başarısız; değişiklik öncesi 068ca47 geçici kopyasında aynı 8 case/15 assertion üretildi (determinism/pinned-book, trait çeşitliliği, özel gün dili, mekân, cooldown ve yıldız-haritası çekimi). Diğer paket hedefleri17+89+51 hatasız. Tam cihaz/VoiceOver/ses/gestür elle matrisi yapılmadı. Plan, araştırma kayıtları ve renderlar `2026-11-19-story-spot-*` dosyalarında.

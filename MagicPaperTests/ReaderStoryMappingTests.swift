@@ -248,4 +248,58 @@ final class ReaderStoryMappingTests: XCTestCase {
         XCTAssertNil(decoded.art?.description)
     }
 
+    func testSavedBundledSpotDoesNotNeedALegacyImageFileName() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.pages[0].imageFileName = nil
+        story.pages[0].imageUrl = nil
+        story.pages[0].art = bundledSpot()
+        let page = try XCTUnwrap(ReaderStory(from: story).leaves.compactMap(\.page).first)
+        XCTAssertNil(page.imageRef)
+        XCTAssertTrue(page.hasIllustration)
+        XCTAssertEqual(page.composition, .spot)
+        XCTAssertEqual(page.imageLabel, "Altın anahtar.")
+        XCTAssertEqual(page.spokenText, "Sayfa 1.")
+        story.status = .generatingImages
+        let opening = try XCTUnwrap(ReaderStory(from: story).leaves.compactMap(\.page).first)
+        XCTAssertEqual(opening.composition, .text)
+        XCTAssertNil(opening.art)
+        XCTAssertNil(opening.imageLabel)
+    }
+
+    func testUnknownBundledSpotSchemaCannotReserveAnArtPanel() throws {
+        var story = ReaderFixtures.illustratedStory(pages: 1)
+        story.pages[0].imageFileName = nil
+        story.pages[0].imageUrl = nil
+        story.pages[0].art = bundledSpot(schema: 9)
+        let page = try XCTUnwrap(ReaderStory(from: story).leaves.compactMap(\.page).first)
+        XCTAssertFalse(page.hasIllustration)
+        XCTAssertEqual(page.composition, .text)
+        XCTAssertNil(page.imageLabel)
+    }
+
+    func testInvalidBundleMetadataCannotFallBackToLegacyImage() throws {
+        let cases: [[String: Any]] = [["schemaVersion": 9], ["schemaVersion": "invalid", "bundledFileName": 42]]
+        for fields in cases {
+            var json = fields
+            json["role"] = "spot"
+            json["altText"] = "Geçersiz yeni çizim."
+            let art = try JSONDecoder().decode(StoryPageArt.self, from: JSONSerialization.data(withJSONObject: json))
+            var story = ReaderFixtures.illustratedStory(pages: 1)
+            story.pages[0].art = art
+            let page = try XCTUnwrap(ReaderStory(from: story).leaves.compactMap(\.page).first)
+            XCTAssertEqual(page.composition, .text)
+            XCTAssertNil(page.imageRef)
+            XCTAssertNil(page.imageLabel)
+        }
+    }
+
+    private func bundledSpot(schema: Int = 1) -> StoryPageArt {
+        StoryPageArt(role: "spot", altText: "Altın anahtar.", sourceID: "spot.golden-key",
+                     schemaVersion: schema, assetRevision: 1,
+                     assetDigest: String(repeating: "a", count: 64), styleRevision: "gouache-social-v1",
+                     bundledFileName: "mp-story-spot-golden-key-r1.png", subjectID: "object_key_001",
+                     subjectState: ["gold", "intact"], variantIDs: ["na_neutral_01"],
+                     authoredSourceFingerprint: "test-source", bindingPolicyVersion: 1, catalogVersion: "test")
+    }
+
 }

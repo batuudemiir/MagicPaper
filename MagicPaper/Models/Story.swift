@@ -237,19 +237,88 @@ struct StoryPageArt: Codable, Equatable {
     let altText: String?
     let sourceID: String?
 
-    init(role: String, altText: String?, sourceID: String?) {
+    let hasBundledMetadata: Bool
+    let schemaVersion: Int?
+    let assetRevision: Int?
+    let assetDigest: String?
+    let styleRevision: String?
+    let bundledFileName: String?
+    let subjectID: String?
+    let subjectState: [String]?
+    let variantIDs: [String]?
+    let authoredSourceFingerprint: String?
+    let bindingPolicyVersion: Int?
+    let catalogVersion: String?
+
+    init(role: String, altText: String?, sourceID: String?,
+         schemaVersion: Int? = nil,
+         assetRevision: Int? = nil,
+         assetDigest: String? = nil,
+         styleRevision: String? = nil,
+         bundledFileName: String? = nil,
+         subjectID: String? = nil,
+         subjectState: [String]? = nil,
+         variantIDs: [String]? = nil,
+         authoredSourceFingerprint: String? = nil,
+         bindingPolicyVersion: Int? = nil,
+         catalogVersion: String? = nil) {
         self.role = role
         self.altText = altText
         self.sourceID = sourceID
+        self.schemaVersion = schemaVersion
+        self.assetRevision = assetRevision
+        self.assetDigest = assetDigest
+        self.styleRevision = styleRevision
+        self.bundledFileName = bundledFileName
+        self.subjectID = subjectID
+        self.subjectState = subjectState
+        self.variantIDs = variantIDs
+        self.authoredSourceFingerprint = authoredSourceFingerprint
+        self.bindingPolicyVersion = bindingPolicyVersion
+        self.catalogVersion = catalogVersion
+        hasBundledMetadata = schemaVersion != nil || assetRevision != nil || assetDigest != nil
+            || styleRevision != nil || bundledFileName != nil || subjectID != nil || subjectState != nil
+            || variantIDs != nil || authoredSourceFingerprint != nil || bindingPolicyVersion != nil || catalogVersion != nil
     }
 
-    private enum CodingKeys: String, CodingKey { case role, altText, sourceID }
+    private enum CodingKeys: String, CodingKey {
+        case hasBundledMetadata
+        case role, altText, sourceID, schemaVersion, assetRevision, assetDigest, styleRevision, bundledFileName, subjectID, subjectState, variantIDs, authoredSourceFingerprint, bindingPolicyVersion, catalogVersion
+    }
 
     init(from decoder: Decoder) throws {
         let values = try? decoder.container(keyedBy: CodingKeys.self)
         role = (try? values?.decode(String.self, forKey: .role)) ?? ""
         altText = try? values?.decode(String.self, forKey: .altText)
         sourceID = try? values?.decode(String.self, forKey: .sourceID)
+        let bundleKeys: [CodingKeys] = [.schemaVersion, .assetRevision, .assetDigest, .styleRevision,
+            .bundledFileName, .subjectID, .subjectState, .variantIDs, .authoredSourceFingerprint,
+            .bindingPolicyVersion, .catalogVersion]
+        hasBundledMetadata = bundleKeys.contains { values?.contains($0) == true }
+            || ((try? values?.decode(Bool.self, forKey: .hasBundledMetadata)) == true)
+        schemaVersion = try? values?.decode(Int.self, forKey: .schemaVersion)
+        assetRevision = try? values?.decode(Int.self, forKey: .assetRevision)
+        assetDigest = try? values?.decode(String.self, forKey: .assetDigest)
+        styleRevision = try? values?.decode(String.self, forKey: .styleRevision)
+        bundledFileName = try? values?.decode(String.self, forKey: .bundledFileName)
+        subjectID = try? values?.decode(String.self, forKey: .subjectID)
+        subjectState = try? values?.decode([String].self, forKey: .subjectState)
+        variantIDs = try? values?.decode([String].self, forKey: .variantIDs)
+        authoredSourceFingerprint = try? values?.decode(String.self, forKey: .authoredSourceFingerprint)
+        bindingPolicyVersion = try? values?.decode(Int.self, forKey: .bindingPolicyVersion)
+        catalogVersion = try? values?.decode(String.self, forKey: .catalogVersion)
+    }
+
+    var isBundledSpot: Bool {
+        guard isSpot, schemaVersion == 1, bindingPolicyVersion == 1,
+              let assetRevision, assetRevision > 0,
+              let subjectState, !subjectState.isEmpty, subjectState.allSatisfy({ !$0.isEmpty }),
+              let variantIDs, !variantIDs.isEmpty, variantIDs.allSatisfy({ !$0.isEmpty }) else { return false }
+        return [sourceID, assetDigest, styleRevision, bundledFileName, subjectID,
+                authoredSourceFingerprint, catalogVersion].allSatisfy {
+            guard let value = $0 else { return false }
+            return !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
     }
 
     var description: String? {

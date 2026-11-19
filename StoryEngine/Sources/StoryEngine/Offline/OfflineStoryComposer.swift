@@ -24,6 +24,7 @@ public struct ComposedPage: Sendable, Hashable {
     /// The declared refrain this page ends with, as it appears at the end of
     /// `text`. Nil on every page of a blueprint without one.
     public var refrain: String? = nil
+    public var authoredSourceFingerprint: String? = nil
 }
 
 /// A finished offline draft — text only. No images, no persistence, no IDs the
@@ -213,6 +214,7 @@ public struct OfflineStoryComposer: Sendable {
         var sentences: [String] = []
         var scenes: [String] = []
         var variantIDs: [ContentID] = []
+        var authoredSources: [AuthoredSourceFingerprint.Source] = []
         var missing: [String] = []
         var unrecognised: [String] = []
         var words: [PageWord] = []
@@ -235,10 +237,11 @@ public struct OfflineStoryComposer: Sendable {
                 missingSlots: missing,
                 unrecognisedSuffixes: unrecognised,
                 words: words,
-                refrain: refrain
+                refrain: refrain,
+                authoredSourceFingerprint: AuthoredSourceFingerprint.make(sources: authoredSources, discovery: content.discovery)
             ))
             sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
-            words = []; pageLength = 0
+            words = []; authoredSources = []; pageLength = 0
         }
 
         for step in try Self.plan(blueprint) {
@@ -319,6 +322,7 @@ public struct OfflineStoryComposer: Sendable {
             sentences.append(rendered.text)
             if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
             variantIDs.append(variant.id)
+            authoredSources.append(.init(templateID: template.id.rawValue, variantID: variant.id.rawValue, text: variant.text))
             missing += rendered.missingSlots
             unrecognised += rendered.unrecognisedSuffixes
         }

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · codex/design-system-catalog, commit yok · Offline masallara sürümlü guaj eşlemesi
+
+- Ne değişti: ilk dar üretim dilimi uygulandı. 17 adet 5–6 blueprint açılışı/na_neutral_01–02 için 340 katı kural; ham template/varyant/subject kaynak izi, katalog sürümü ve tüm sayfa tuple’ı eşleşirse 10 konu çizimi bağlanır. 12 çizim paketli; açık müzik kutusu/boş yuva durum kanıtı yokken seçilmez. On konu için gerçek engine fixture’ı kaydedildi.
+- Mimari: ortak OfflineStoryMapper hem tek masal hem hazırlanan seri/aile-recompose yolunda bir kez bağlar; optional StoryPageArt pinleri saklanır, unlock/reader yeniden seçmez. B2 sahnesi öncelikli, B2 Release kapısı ve çocuk kimliği aynı. Bozuk/unknown metadata, eksik/değişmiş resim veya bilinmeyen kaynakta metin yedeği. Eski kitaplar geriye dönük resimlenmez; ağ çağrısı yok.
+- Paketleme: Xcode PNG baytlarını dönüştürüp hash’i bozduğu için aynı PNG payload `.mpart` olarak taşınır; CryptoKit SHA-256 + ImageIO ve 12 gerçek paket dosyasında saydamlık doğrulaması geçti. Reader async önbellek/downsampling sürer.
+- Doğrulama: 145 uygulama testi/0 hata/1 skip; render1/0 ve sekiz sabit viewport sayfa görüntüsü; yeni motor izi2/0. Tam pakette Engine933/2skip/15 assertion (8 case) mevcut hata; aynı 8 case/15 assertion değişiklik öncesi 068ca47’de tekrarlandı. Foundation17, Character89, Visual51 hatasız. Mevcut eski test beklentileri bu işte değiştirilmedi. Gözle gündüz/gece/AX5 renderı incelendi; ayrı fiziksel cihaz ve tam chrome/VoiceOver/ses/gestür matrisi yapılmadı.
+- Dosyalar: engine AuthoredSourceFingerprint/composer; Story/StorySpotCatalog/StorySpotBinder/StorySpotAssetResolver/mapper; StoryArtResources; reader loader/model/view; yeni binding/resolver/render/provenance ve genişletilen reader/B2/series testleri; plan/spec, proje hafızası ve `docs/research/2026-11-19-story-spot-*` kanıtları.
+
 ### 2026-11-19 · codex/design-system-catalog, commit yok · Story Engine görsel havuzu araştırması ve 12 guaj konu
 
 - Ne değişti: üç uzmanla motor/binder, mevcut içerik ve seri/uzak havuz incelendi. 36 blueprint/33 nesne ham envanteri, mimari seçenekler, varyant/presence/state eşleşme sözleşmesi, seri pinleri ve uzak paket büyüme aşamaları yazıldı. 33 nesnenin her birine üretim/erteleme durumu verildi.

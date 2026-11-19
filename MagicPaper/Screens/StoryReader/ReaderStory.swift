@@ -124,12 +124,12 @@ struct ReaderPage: Equatable {
 
     var composition: ReaderPageComposition {
         if scene != nil { return .scene }
-        guard imageRef != nil else { return .text }
+        guard imageRef != nil || art?.isBundledSpot == true else { return .text }
         return art?.isSpot == true ? .spot : .scene
     }
 
     /// Sayfada çizim var mı — dosyadan ya da hazır sahneden.
-    var hasIllustration: Bool { imageRef != nil || scene != nil }
+    var hasIllustration: Bool { imageRef != nil || scene != nil || art?.isBundledSpot == true }
 
     /// Sayfanın tamamı, tek parça. VoiceOver sayfayı dört parça hâlinde değil,
     /// sürekli bir metin olarak okusun diye.
@@ -155,7 +155,9 @@ extension ReaderStory {
         let textOnly = story.opensAsTextOnly
         let pages = story.pages.enumerated().map { index, page in
             let scene = textOnly ? nil : ResolvedScene.resolve(page.scene, illustration: story.illustration)
-            let imageRef = textOnly ? nil : ReaderStory.imageRef(for: page)
+            let art = textOnly ? nil : page.art
+            let invalidBundlePin = art?.hasBundledMetadata == true && art?.isBundledSpot != true
+            let imageRef = textOnly || invalidBundlePin ? nil : ReaderStory.imageRef(for: page)
             return ReaderPage(
                 index: index,
                 title: page.title,
@@ -163,11 +165,11 @@ extension ReaderStory {
                 imageRef: imageRef,
                 // Hazır sahnenin Türkçe tarifi; `visualScene` İngilizce olduğu
                 // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
-                imageLabel: scene?.altText ?? (imageRef == nil ? nil : (page.art?.description ?? ReaderStory.imageLabel(for: page, in: story, at: index))),
+                imageLabel: scene?.altText ?? (imageRef == nil && art?.isBundledSpot != true ? nil : (art?.description ?? ReaderStory.imageLabel(for: page, in: story, at: index))),
                 sceneHint: page.imagePrompt,
                 scene: scene,
                 words: page.words ?? [],
-                art: textOnly ? nil : page.art
+                art: art
             )
         }
 

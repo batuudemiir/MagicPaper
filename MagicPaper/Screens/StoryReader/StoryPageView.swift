@@ -32,8 +32,12 @@ struct StoryPageView: View {
     @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var unavailableImageRef: String?
 
+    private var illustrationKey: String? {
+        page.imageRef ?? (page.art?.isBundledSpot == true ? page.art?.assetDigest : nil)
+    }
+
     private var composition: ReaderPageComposition {
-        if page.scene == nil, let ref = page.imageRef, unavailableImageRef == ref { return .text }
+        if page.scene == nil, let key = illustrationKey, unavailableImageRef == key { return .text }
         return page.composition
     }
 
@@ -115,8 +119,9 @@ struct StoryPageView: View {
             fileName: page.imageRef ?? "",
             label: page.imageLabel,
             theme: theme,
+            art: page.art,
             bleeds: true,
-            onUnavailable: { unavailableImageRef = page.imageRef }
+            onUnavailable: { unavailableImageRef = illustrationKey }
         )
         .frame(height: height)
         .clipped()
@@ -165,7 +170,7 @@ struct StoryPageView: View {
                 .aspectRatio(StorySceneView.aspectRatio, contentMode: .fill)
         } else if let file = page.imageRef {
             PageIllustration(fileName: file, label: page.imageLabel, theme: theme,
-                             onUnavailable: { unavailableImageRef = page.imageRef })
+                             onUnavailable: { unavailableImageRef = illustrationKey })
 
         }
     }
@@ -201,12 +206,13 @@ struct StoryPageView: View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: MP.S.x6) {
                 narrative
-                if composition == .spot, let file = page.imageRef {
+                if composition == .spot {
                     let size = ReaderPageLayout.spotSize(width: available.width, height: available.height,
                                                          accessibility: typeSize.isAccessibilitySize)
                     if size.height > 0 {
-                        PageIllustration(fileName: file, label: page.imageLabel, theme: theme, bleeds: false,
-                                         onUnavailable: { unavailableImageRef = page.imageRef })
+                        PageIllustration(fileName: page.imageRef ?? "", label: page.imageLabel, theme: theme,
+                                         art: page.art, bleeds: false,
+                                         onUnavailable: { unavailableImageRef = illustrationKey })
                             .frame(width: size.width, height: size.height)
                             .frame(maxWidth: .infinity)
                     }
@@ -363,6 +369,7 @@ private struct PageIllustration: View {
     let fileName: String
     let label: String?
     let theme: MP.ReadTheme
+    var art: StoryPageArt? = nil
     /// Kenardan kenara: kutuyu doldurur, köşesiz. iPad açık kitabın sol
     /// sayfası da böyle; telefonda dikey sayfa da artık böyle (21 Ekim 2026).
     var bleeds: Bool = true
@@ -387,12 +394,15 @@ private struct PageIllustration: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .task(id: "\(fileName)@\(Int(geo.size.width * displayScale))") {
-                guard !fileName.isEmpty else { return }
+            .task(id: "\(fileName):\(art?.assetDigest ?? "")@\(Int(geo.size.width * displayScale))") {
+                guard !fileName.isEmpty || art?.isBundledSpot == true else { return }
                 let width = geo.size.width * displayScale
-                let loaded = await ReaderImageLoader.shared.image(
-                    named: fileName, targetPixelWidth: width
-                )
+                let loaded: UIImage?
+                if let art, art.isBundledSpot {
+                    loaded = await ReaderImageLoader.shared.image(art: art, targetPixelWidth: width)
+                } else {
+                    loaded = await ReaderImageLoader.shared.image(named: fileName, targetPixelWidth: width)
+                }
                 guard !Task.isCancelled else { return }
                 if loaded == nil { onUnavailable() }
                 withAnimation(MP.M.gated(MP.M.easeOut)) { image = loaded }

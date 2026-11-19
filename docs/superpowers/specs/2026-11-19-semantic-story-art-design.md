@@ -1,6 +1,6 @@
 # Story Engine ile büyüyen görsel havuzu
 
-19 Kasım 2026 · Tasarım önerisi ve ilk 12 konu görseli. Bu belge uygulama entegrasyonu onayı değildir. Kullanıcı mevcut motoru inceleme, planlama ve imagegen ile görsel hazırlamayı istedi. Üretim kodu bu turda değiştirilmez.
+19 Kasım 2026 · İlk tasarım/12 görsel tesliminden sonra kullanıcı uygulama eşlemesini onaylayıp plan ve kodlamayı istedi. İlk dar entegrasyon tamamlandı; uygulama planı `docs/superpowers/plans/2026-11-19-story-spot-integration.md`, gerçek kaynak/fixture/test kaydı `docs/research/2026-11-19-story-spot-rules.md`. Aşağıdaki aşamalar ilk araştırma tasarımını ve sonraki genişleme yönünü de korur.
 
 ## Karar özeti
 
@@ -86,3 +86,11 @@ Uygulama fazında testler önce yazılır, AGENTS kuralıyla yalnız plan sonund
 - Beyaz ve tüm isteğe bağlı kâğıtlar, en büyük Dynamic Type, SE/Pro Max/iPad, kısa/uzun metin ve eksik resim doğrulanır.
 
 Önceki okuyucu uygulamasında testler disk dolması ve yerel CodeSign hatasıyla çalışamamıştı; bu tasarım onu doğrulanmış varsaymaz. Bu tur build/simülatör çalıştırılmaz.
+
+## İlk entegrasyon sonucu · 19 Kasım
+
+340 izin kaydı, 17 adet 5–6 blueprint açılışı ve iki ham kaynak varyantı. 12 paketli sanatın 10’una kural; boş yuva/açık müzik kutusu durum kanıtı eksik olduğundan kural yok. On gerçek engine fixture’ı bulundu. Bu sayı tüm masal havuzu veya tüm sayfa/yaş/mod kapsaması değildir. İlk sayfa dışı, hatırlama/özel gün/aile ekleri, farklı source/catalog sürümü metin kalır. Merkezi mapper seam’i tek masal ve seri hazırlığını kapsar; seri açılırken tekrar eşleme yapılmaz.
+
+Hash pinli PNG verisi Xcode’un CopyPNGFile dönüşümünü engellemek için `.mpart` resource olarak taşınır. Dosya içeriği değişmedi; ImageIO saydam PNG’yi doğrulanmış veriden çözer. Eski kitaplar yeniden yazılmaz; B2 Release kapısı ve çocuk kimliği değişmedi.
+
+Uygulama 145/0 (1 skip), render 1/0, yeni motor izi 2/0. Tam paket mevcut 8 başarısız case/15 assertion içeriyor; değişiklik öncesi 068ca47’de aynı başarısızlıklar tekrarlandı. Sabit viewport renderları var; ayrı fiziksel cihazlar ve tam okuyucu etkileşim matrisi henüz yapılmadı.

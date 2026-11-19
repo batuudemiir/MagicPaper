@@ -229,6 +229,40 @@ final class SeriesManagerTests: XCTestCase {
         XCTAssertThrowsError(try manager.startSeries(from: second))
     }
 
+    func testSavedSpotPinsSurviveSeriesReloadAndUnlock() throws {
+        var story = try firstStory(age: 5, mode: .learning)
+        let child = try XCTUnwrap(story.childProfileID)
+        let controller = manager()
+        let pin = StoryPageArt(role: "spot", altText: "Yırtık harita", sourceID: "spot.torn-map",
+            schemaVersion: 1, assetRevision: 5, assetDigest: String(repeating: "a", count: 64),
+            styleRevision: "gouache-v1", bundledFileName: "mp-story-spot-torn-map-r5.png",
+            subjectID: "object_torn_map_001", subjectState: ["torn"], variantIDs: ["na_neutral_01"],
+            authoredSourceFingerprint: "saved-source", bindingPolicyVersion: 1, catalogVersion: "saved-version")
+        story.pages[0].art = pin
+        StoryGenerationManager.shared.addStoryToLibrary(story)
+        var prepared = try controller.startSeries(from: story)
+        XCTAssertEqual(libraryStory(prepared.firstStoryID)?.pages[0].art, pin)
+        // Deliberately inject a historical saved decision: unlock must copy it,
+        // even when today's matching rules would reject its provenance.
+        for index in prepared.episodes.indices { prepared.episodes[index].pages[0].art = pin }
+        try store.save(prepared)
+        let restored = try XCTUnwrap(store.openSeries(for: child))
+        XCTAssertEqual(restored.episodes.map { $0.pages[0].art }, Array(repeating: pin, count: 4))
+        for day in 7...10 {
+            clock.set("2026-10-\(day) 09:00")
+            let fresh = manager()
+            fresh.refreshUnlocks(for: child)
+            let current = try XCTUnwrap(fresh.allSeries(for: child).first)
+            let opened = try XCTUnwrap(current.episodes.last(where: \.isUnlocked))
+            let book = try XCTUnwrap(libraryStory(opened.storyID))
+            XCTAssertEqual(book.pages[0].art, pin)
+            XCTAssertEqual(book.pages[0].art?.assetRevision, 5)
+            XCTAssertEqual(book.pages[0].art?.catalogVersion, "saved-version")
+            _ = fresh.markRead(book)
+        }
+        XCTAssertEqual(libraryStory(story.id)?.pages[0].art, pin)
+    }
+
     // MARK: - One a day
 
     func testEpisodesOpenOneADayAndWaitWhenUnread() throws {
@@ -482,7 +516,10 @@ final class SeriesManagerTests: XCTestCase {
         try family.save(ela)
         let story = try firstStory(child: child, age: 5, mode: .learning, character: ela)
         let manager = manager()
-        let started = try manager.startSeries(from: story)
+        var started = try manager.startSeries(from: story)
+        let historical = StoryPageArt(role: "spot", altText: "Eski karar", sourceID: "historical-pin")
+        for index in started.episodes.indices { started.episodes[index].pages[0].art = historical }
+        try store.save(started)
         XCTAssertNotNil(started.plan.family)
         XCTAssertTrue(started.episodes.allSatisfy { $0.pages.contains { $0.text.contains("Ela") } })
 
@@ -494,9 +531,11 @@ final class SeriesManagerTests: XCTestCase {
         let after = try XCTUnwrap(store.openSeries(for: child))
         XCTAssertNil(after.plan.family)
         XCTAssertEqual(after.episodes[0].pages, started.episodes[0].pages, "an opened episode stays as written")
+        XCTAssertEqual(after.episodes[0].pages.map(\.art), started.episodes[0].pages.map(\.art))
         for episode in after.episodes.dropFirst() {
             XCTAssertFalse(episode.pages.contains { $0.text.contains("Ela") })
             XCTAssertNil(episode.origin.familyCharacterID)
+            XCTAssertFalse(episode.pages.contains { $0.art?.sourceID == "historical-pin" })
         }
         XCTAssertEqual(after.status, .open)
     }
