@@ -9,9 +9,9 @@ Windows'ta (Xcode olmadan) ekranları iPhone çerçevesinde görmek için. İki 
 
 ## Açmak
 
-VS Code'da **Live Preview** eklentisi (Microsoft) kurulu olmalı. `design-preview/index.html` dosyasına sağ tıkla → **Show Preview**. Önizleme yan panelde açılır.
+VS Code'da **Live Preview** eklentisi (Microsoft) kurulu olmalı. `design-preview/index.html` dosyasına sağ tıkla → **Show Preview**: yalnızca iPhone, içinde gezilen prototip (`app/`). Gerçek ekran görüntüleri ve taslak karşılaştırması: `karsilastir.html`.
 
-Üstteki düğmeler: kaynak, ekran, durum, cihaz (Pro Max / SE / ikisi yan yana), yazı boyutu (normal / en büyük).
+`karsilastir.html` üstündeki düğmeler: kaynak, ekran, durum, cihaz (Pro Max / SE / ikisi yan yana), yazı boyutu (normal / en büyük).
 
 ## Renkler ve ölçüler
 
