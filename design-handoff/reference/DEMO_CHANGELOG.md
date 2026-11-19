@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · main, commit bu kayıtla · MagicPaper Originals logosu: kapaklar ve Masallar başlığı
+- Logo: Batuhan'ın ChatGPT'den getirdiği "MagicPaper / Originals" yazı logosu tek renk, şeffaf zeminli hale getirildi (`Content/Originals/brand/originals-logo.png`, uygulamada `Brand/originalsLogo`, şablon görsel). Kaynak ve önizlemeler: `design-handoff/proposals/2026-11-19-originals-logo/` (commit edilmedi, paylaşılan checkout'ta).
+- Kapaklar: yeni `Tools/stamp_originals_logo.py` logoyu kapağın üst ortasına basar (genişlik %40, üstten %5, koyu zeminde krem `#FFF8EE` + hafif mürekkep halesi, açık zeminde mürekkep). Üç Original kapağına basıldı: Saatin İçindeki Ninni, Kırmızı Atkıdaki Kar Tanesi (published + uygulama asset'i) ve Kar Tepesi'ndeki Yeşil Işık (taslak). `place_cover.py` artık her yeni kapağa logoyu kendisi basar.
+- Masallar: Original rafının bölüm başlığında "MagicPaper Original" yazısı yerine logo duruyor (`MPSectionHeader.titleArt`, `ClassicShelf.titleArt`). Logo `textPrimary` ile boyanır, açık ve koyu temada aynı; yükseklik 48 pt, Dynamic Type ile büyür, 72 pt'de durur (`MPSize.titleArt`, `titleArtMax`); VoiceOver "MagicPaper Original" başlığı okur. Raf sayfası ve Kategoriler'deki yazılı ad bilerek değişmedi.
+- Bilerek değişmeyen: `hosting/public/content/originals/saatin-icindeki-ninni.jpg` ve imzalı `feed.json` eski kapakta kaldı (uzaktan akış kapalı; yeniden imza ve deploy Batuhan'da).
+- Doğrulama: değişen Swift dosyalarında `swiftc -parse` temiz, tasarım kuralı grep'leri eklenen satırlarda boş, `originals check kar-tepesindeki-yesil-isik` temiz. Uygulama derlenmedi ve test edilmedi (diskte 902 MB boş yer var); simülatörde görülmedi, Batuhan cihazda deneyecek.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/{MPCards,MPLayout}.swift`, `MagicPaper/Screens/Gunluk/{GunlukComponents,GunlukView}.swift`, `MagicPaper/Screens/Gunluk/Model/ClassicTale.swift`, `MagicPaper/Assets.xcassets/Brand/originalsLogo.imageset`, `MagicPaper/Assets.xcassets/Originals/*`, `Content/Originals/{brand,published,drafts}`, `Tools/{place_cover,stamp_originals_logo}.py`, bu günlük.
+
 ### 2026-11-19 · main, commit bu kayıtla · MagicPaper Original: Kar Tepesi'ndeki Yeşil Işık kapağı yerleşti
 - Batuhan'ın ChatGPT'den getirdiği kapak `Tools/place_cover.py` ile taslağa kondu: 1125 × 1500 JPEG, 536 KB.
 - Görsel kontrol: yazı ve rakam yok, odak dikeyde yaklaşık %60, üst üçte bir sakin, 176 px küçük hâlde okunuyor, karakter görünüşleri WORLD.md ile uyumlu. Fener direk ucunda değil karın içinde çizilmiş; metin bilerek değişmedi.

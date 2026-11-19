@@ -237,6 +237,8 @@ struct GunlukSection<Content: View>: View {
     /// hizalanır. `true`: sayfanın sütununda sıradan bölüm.
     var surface: Bool = true
     var action: (() -> Void)? = nil
+    /// Başlığın yerine logo (yalnız `surface` bölümünde; MagicPaper Originals rafı).
+    var titleArt: Image? = nil
     @ViewBuilder var content: Content
 
     var body: some View {
@@ -245,7 +247,7 @@ struct GunlukSection<Content: View>: View {
             // bütün çocuk bölümleriyle aynı (`MPSectionHeader`).
             VStack(alignment: .leading, spacing: MPSpacing.md) {
                 MPSectionHeader(title: title, subtitle: subtitle, area: .kid,
-                                link: action.map { (title: "Tümü", action: $0) },
+                                link: action.map { (title: "Tümü", action: $0) }, titleArt: titleArt,
                                 leading: { EmptyView() }, trailing: { EmptyView() })
                 content
             }

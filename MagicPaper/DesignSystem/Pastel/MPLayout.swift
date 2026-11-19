@@ -53,6 +53,10 @@ enum MPSize {
     static let iconTile: CGFloat = 52
     static let segmentHeight: CGFloat = 40
     static let inputHeight: CGFloat = 52
+    /// Bölüm başlığında yazının yerine duran logo (MagicPaper Originals; 19 Kasım 2026).
+    /// Dynamic Type ile büyür, `titleArtMax`'ta durur.
+    static let titleArt: CGFloat = 48
+    static let titleArtMax: CGFloat = 72
 }
 
 enum MPShadow {

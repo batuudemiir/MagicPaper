@@ -151,6 +151,9 @@ struct MPSectionHeader<Leading: View, Trailing: View>: View {
     var note: String? = nil
     var noteSpoken: String? = nil
     var link: (title: String, action: () -> Void)? = nil
+    /// Başlık yazısının yerine çizilen tek renkli logo (şablon görsel, `textPrimary` ile
+    /// boyanır; açık ve koyu temada aynı). VoiceOver `title`'ı okur.
+    var titleArt: Image? = nil
     @ViewBuilder var leading: Leading
     @ViewBuilder var trailing: Trailing
 
@@ -158,11 +161,15 @@ struct MPSectionHeader<Leading: View, Trailing: View>: View {
         VStack(alignment: .leading, spacing: MPSpacing.xxs) {
             HStack(alignment: .firstTextBaseline, spacing: MPSpacing.sm) {
                 leading
-                Text(title)
-                    .mpText(area == .kid ? .section : .section)
-                    .foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityAddTraits(.isHeader)
+                if let titleArt {
+                    MPSectionTitleArt(image: titleArt, label: title)
+                } else {
+                    Text(title)
+                        .mpText(area == .kid ? .section : .section)
+                        .foregroundStyle(MPColor.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                }
                 Spacer(minLength: MPSpacing.sm)
                 if let note {
                     Text(note).mpText(.supporting).monospacedDigit().foregroundStyle(MPColor.textSecondary)
@@ -187,6 +194,26 @@ struct MPSectionHeader<Leading: View, Trailing: View>: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
+    }
+}
+
+/// `MPSectionHeader.titleArt`: logo, bölüm başlığıyla birlikte Dynamic Type'la büyür.
+private struct MPSectionTitleArt: View {
+    let image: Image
+    let label: String
+    @ScaledMetric(relativeTo: .title2) private var height = MPSize.titleArt
+
+    var body: some View {
+        image
+            .renderingMode(.template)
+            .resizable()
+            .scaledToFit()
+            .frame(height: min(height, MPSize.titleArtMax))
+            .foregroundStyle(MPColor.textPrimary)
+            // "Tümü ›" logonun üst satırının ("MagicPaper") tabanına hizalanır.
+            .alignmentGuide(.firstTextBaseline) { $0.height * 0.47 }
+            .accessibilityLabel(label)
+            .accessibilityAddTraits(.isHeader)
     }
 }
 
