@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · main, commit bu kayıtla · MagicPaper Original: Kar Tepesi'ndeki Yeşil Işık onaya kondu
+- Yeni taslak: macera (`adventure`), 7-8 yaş, 9 sayfa, 464 kelime, 12 dk; ana karakter Minik, yanında Tozkar, Ayşe Teyze, Profesör Ayı, Yıldız Treni. Yayın tarihi önerisi 2026-11-23.
+- Minik, Kar Tepesi'ndeki yeşil ışığın yalnız tren gelirken yandığını saatin tıkırtısıyla fark eder, Tozkar'ın çantasında tepeye çıkar ve karın altında unutulmuş aynalı bir işaret fenerini kendisi bulur; tek bilgi: ayna ışığı geri yollar, renkli cam ona rengini verir.
+- `originals check`: yalnız beklenen "kapak yok" hatası. Kapak çizilmedi; ChatGPT promptu `review.md`'de, referans `saatin-icindeki-ninni/cover.jpg`.
+- Araştırma: `q_kirmizi_atkidaki_kar_tanesi_nde_kesfi_to` cevaplandı; yeni soru `q_7_8_yas_macera_kitaplarinda_gizemin_ceva` (çözümden sonraki sayfalar).
+- Tur, paylaşılan checkout `codex/design-system-catalog` dalında olduğu için ayrı `main` çalışma klasöründe (`MagicPaperAPP/MagicPaper-original`) koştu; o dala ve onun commit edilmemiş günlüğüne dokunulmadı. Uygulama kodu, `published/` ve `WORLD.md` değişmedi; uygulama testi çalıştırılmadı. Push yok.
+- Dosyalar: `Content/Originals/drafts/kar-tepesindeki-yesil-isik/{tale.json,review.md}`, bu günlük.
+
 ### 2026-11-19 · main@8a94103 origin'e gitti · Havuz planı gönderildi
 
 - Batuhan'ın onayıyla ("Testsiz gönder") main origin'e gönderildi (`cb69522..8a94103`, dokuz commit: H2b, Sporlar, H5, test turu, ince sayfalar, seed sabitlemesi, günlük).
