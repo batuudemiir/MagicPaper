@@ -147,6 +147,8 @@ struct HomeStatLine: View {
     /// Başlığın sağında (13 Kasım 2026): yalnızca sayılar ("12 · 3 gün"),
     /// sığmazsa sağa yaslı alt alta. Sesli okuma tam cümleyi söyler.
     var compact: Bool = false
+    /// Gece sahnesinin üstünde (`HomeHeaderScene`): açık yazı.
+    var onArt: Bool = false
 
     var body: some View {
         // Büyük yazıda sığmazsa kesilmez, alt alta düşer.
@@ -163,7 +165,7 @@ struct HomeStatLine: View {
         }
         .mpText(.footnote)
         .fontWeight(compact ? .bold : nil)
-        .foregroundStyle(MPColor.textSecondary)
+        .foregroundStyle(onArt ? MP.C.textOnArtMuted : MPColor.textSecondary)
         .frame(minHeight: MPSize.minTouchParent)
         .contentShape(Rectangle())
         .animation(MP.M.gated(MP.M.easeOut), value: stars)
@@ -189,6 +191,51 @@ struct HomeStatLine: View {
             Text(compact ? "\(streak) gün" : "\(streak) gün üst üste")
                 .contentTransition(.numericText(value: Double(streak)))
         }
+    }
+}
+
+/// Ana sayfanın tam genişlik başlık sahnesi (19 Kasım 2026, İrem; 22 Ekim'deki
+/// "sahne bu akşamın kartında" kararının yerine). Durum çubuğunun altına kadar
+/// uzanan manzara, uyku saatinde gece; selam ve çocuğun adı sahnenin üstünde,
+/// ekranın tek Ragi'si sağ altta. Gece yazı açık (`onArt`), gündüz koyu: gündüz
+/// göğü açık mavi olduğu için açık yazı 4.5:1'i tutmaz. Karartma (gradient) yok;
+/// alt kenar yumuşak dalga (`WaveBottom`).
+struct HomeHeaderScene<Header: View>: View {
+    var isNight: Bool
+    /// Üst güvenli alan: sahne saat çubuğunun altına uzanır, başlık onun altında başlar.
+    var topInset: CGFloat = 0
+    @ViewBuilder var header: Header
+
+    static var height: CGFloat { 300 }
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            ZStack(alignment: .bottomTrailing) {
+                ZStack {
+                    MPColor.sceneSkyDay
+                    Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
+                    ZStack {
+                        MPColor.sceneSkyNight
+                        Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
+                    }
+                    .opacity(isNight ? 1 : 0)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: Self.height + topInset, alignment: .bottom)
+                .clipped()
+                .animation(MP.M.gated(MP.M.slow), value: isNight)
+                .accessibilityHidden(true)
+                HomeSceneMascot(isNight: isNight)
+                    .padding(.trailing, MPSpacing.xl)
+                    .padding(.bottom, MPSpacing.xxl)
+            }
+            header
+                .padding(.top, topInset + MPSpacing.lg)
+                .padding(.horizontal, MPSpacing.screenH)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: Self.height + topInset)
+        .clipShape(WaveBottom())
     }
 }
 
@@ -239,11 +286,14 @@ struct HomeHeroCard: View {
     var isNight: Bool = false
     /// Bu akşamın masalının kapağı: sahnede, Ragi'nin karşısında. Gece sahnesinde yok.
     var cover: (asset: String, focus: ClassicFocus)? = nil
+    /// Ana sayfada sahne sayfanın tepesinde (`HomeHeaderScene`, 19 Kasım 2026):
+    /// kart sahnesiz, ekranın tek Ragi'si başlıkta kalır.
+    var showsScene: Bool = true
     let onPrimary: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            scene
+            if showsScene { scene }
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
                 Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)

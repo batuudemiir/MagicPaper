@@ -4,10 +4,11 @@
 >
 > Bu bölüm yalnızca `irem` dalında. Açık olan maddeler burada durur, tamamlananlar silinir.
 > `main`'e birleştirmeden önce bu bölüm kaldırılmalı.
-> Son güncelleme: 18 Kasım 2026.
+> Son güncelleme: 19 Kasım 2026.
 >
 > **Karar bekleyenler**
 >
+> 0. **Ana sayfa başlığı değişti (İrem'in tasarım kararı, 19 Kasım).** Tam genişlik gece/gündüz sahnesi sayfanın tepesine döndü, "İyi akşamlar, İrem" sahnenin üstünde; senin 22 Ekim'de onayladığın "sahne bu akşamın kartında" düzeninin yerine. Yeni bileşen `HomeHeaderScene` (`MPHomeChrome.swift`); `HomeHeroCard`'a `showsScene` eklendi (varsayılan `true`, görüntü testleri etkilenmez), `HomeStatLine`'a `onArt`. Ekranın tek Ragi'si sahnede. Eski TestFlight'taki kilit ve avatar bilerek geri gelmedi (13 Kasım kararları). Gece yazı beyaz, gündüz koyu; karartma yok. Onaylıyorsan `main`'e alınabilir.
 > 1. **Abonelik ve Paywall.** Bugün Premium hiçbir şeyi kilitlemiyor: `Capability` / `EntitlementPolicy` kurulu ama hiçbir ekran çağırmıyor, `canCreateStory` kullanılmıyor; ücretsiz kullanıcı her şeye sahip. Paywall ise Release'te kapalı olan görselli masalı satıyor ("Ayda 5 görselli masal"). "İlk 7 gün ücretsiz" StoreKit'e bakılmadan yazıyor. App Store 3.1.2 için otomatik yenileme metni ve "Aboneliği yönet" yok. Ret ve ebeveyn güveni riski.
 >    Öneri: ritüel ücretsiz (her akşam bir masal, zaten 12 saat kuralı var); Premium = gün boyu masal, seriler, Masal ailem, kendi sesinle okuma, bütün klasikler ve PDF; tek plan aylık + yıllık; basılı kitap ve hediye ayrı satış. Taslak: `design-preview/mockups/paywall-oneri.html` (bugünkü hali `paywall-bugun.html`). Onaylarsan İrem kodlar.
 >

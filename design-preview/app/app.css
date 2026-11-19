@@ -274,3 +274,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Okuyucu: gerçek masal sayfaları uzun; sayfa kendi içinde kayar */
 .reader .page { overflow-y: auto; justify-content: flex-start; padding-top: 72px; font-size: calc(20px * var(--type)); scrollbar-width: none; }
 .reader .page p { margin: 0 0 1em; }
+
+/* Ana sayfa başlık sahnesi (HomeHeaderScene, 19 Kasım 2026): durum çubuğunun altına uzanır */
+.home-page .statusbar { position: absolute; left: 0; right: 0; top: 0; z-index: 6; color: #fff; }
+.home-page .scroller { padding-top: 0; }
+.home-scene { position: relative; height: calc(300px + var(--status, 54px)); margin: 0 calc(-1 * var(--mp-space-screen-h));
+              padding: var(--status, 54px) var(--mp-space-screen-h) 0; background-color: #0C215D; background-size: cover; background-position: center bottom;
+              clip-path: path("M0 0 H440 V330 Q330 300 220 340 Q110 360 0 335 Z"); }
+@supports not (clip-path: path("M0 0")) { .home-scene { border-radius: 0 0 32px 32px; } }
+.home-scene .tab-head h1, .home-scene .eyebrow-greet { color: #fff; }
+.home-scene .eyebrow-greet { opacity: .85; }
+.home-scene .stat-line { color: rgba(255,255,255,.85); font: 700 calc(13px * var(--type)) "Nunito", sans-serif; }
+.scene-ragi { position: absolute; right: 20px; bottom: 34px; width: 110px; }

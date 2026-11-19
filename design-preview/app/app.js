@@ -135,7 +135,7 @@ function render(anim) {
     const v = S.stack[S.stack.length - 1];
     html = VIEWS[v.view](v).html + tabbar(); cls = anim === "push" ? "push-in" : "";
   } else {
-    html = VIEWS[S.tab]().html + tabbar(); cls = anim === "fade" ? "fade-in" : "";
+    const tv = VIEWS[S.tab](); html = tv.html + tabbar(); extra = tv.cls || ""; cls = anim === "fade" ? "fade-in" : "";
   }
   app.innerHTML = `<div class="layer ${parent ? "parent" : ""} ${extra} ${cls === "" && anim === "launch" ? "launch-in" : cls}">${statusbar()}${html}</div>${OS.homeIndicator()}`;
   bind();
@@ -206,10 +206,16 @@ const VIEWS = {
   after: {},
   home() {
     const night = true;
-    return { html: `<div class="scroller">
-      <div class="tab-head"><h1>${CHILD}</h1></div>
-      <div class="tonight">
-        <div class="art" style="background-image:url(${img.night})"><img src="${img.ragi("Sleeping")}" alt=""></div>
+    // 19 Kasım 2026 (İrem): sahne sayfanın tepesinde, selam ve ad üstünde (HomeHeaderScene).
+    const h = new Date().getHours();
+    const greet = h >= 5 && h < 11 ? "Günaydın," : h < 17 && h >= 11 ? "İyi günler," : h < 22 && h >= 17 ? "İyi akşamlar," : "İyi geceler,";
+    return { cls: "home-page", html: `<div class="scroller">
+      <div class="home-scene" style="background-image:url(${img.night})">
+        <div class="tab-head"><div><span class="eyebrow-greet">${greet}</span><h1>${CHILD}</h1></div>
+          ${S.stars ? `<span class="stat-line">★ ${S.stars}${S.finished ? " · " + S.finished + " gün" : ""}</span>` : ""}</div>
+        <img class="scene-ragi ragi-jump" src="${img.ragi("Sleeping")}" alt="">
+      </div>
+      <div class="tonight" style="margin-top:20px">
         <div class="body">
           <span class="t-footnote" style="color:var(--mp-action-primary)">Saat 20.30</span>
           <span class="t-section">Uyku masalı zamanı</span>

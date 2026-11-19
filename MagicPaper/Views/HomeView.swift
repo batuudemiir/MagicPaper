@@ -20,6 +20,10 @@ import SwiftUI
 /// ve yıldız satırı yok, mod karoları büyük; sayfa ad, bu akşamın kartı ve üç
 /// karodan ibaret. Masallar önizlemesi iki kademede de kalktı: keşfin yeri
 /// Masallar sekmesi.
+///
+/// 19 Kasım 2026 (İrem, tasarım): tam genişlik sahne sayfanın tepesine döndü
+/// (`HomeHeaderScene`), selam ve ad sahnenin üstünde; 22 Ekim'deki "sahne bu
+/// akşamın kartında" düzeninin yerine. Kart artık sahnesiz, Ragi başlıkta.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -30,8 +34,13 @@ struct HomeView: View {
     @StateObject private var streak = MPStreak.shared
 
     var body: some View {
-        MPTabScroll(tab: .home) {
-            content
+        // Sahne saat çubuğunun altına uzanır (19 Kasım 2026): kaydırma üst güvenli
+        // alanı yok sayar, başlık güvenli alanın altından başlar.
+        GeometryReader { geo in
+            MPTabScroll(tab: .home) {
+                content(topInset: geo.safeAreaInsets.top)
+            }
+            .ignoresSafeArea(edges: .top)
         }
         // Saat çubuğunun altında şerit yok: içerik iOS'un standart davranışıyla
         // altından akar. Beyaz şerit renkli kartların üstünde blok gibi
@@ -54,35 +63,42 @@ struct HomeView: View {
         stars = profileManager.currentProfile.map { MPStars.score(for: $0, stories: storyManager.stories) } ?? 0
     }
 
-    private var content: some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-            // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
-            // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
-            VStack(alignment: .leading, spacing: 0) {
-                // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
-                MPKidTabHeader(title: activeName,
-                               eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
-                                   ?? (level == .little ? nil : greeting)) {
-                    if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
+    private func content(topInset: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xl) {
+            // 19 Kasım 2026 (İrem): selam ve ad tam genişlik sahnenin üstünde
+            // (`HomeHeaderScene`); ekranın tek Ragi'si orada, kart sahnesiz.
+            HomeHeaderScene(isNight: isNight, topInset: topInset) {
+                // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
+                // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
+                VStack(alignment: .leading, spacing: 0) {
+                    // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
+                    MPKidTabHeader(title: activeName,
+                                   eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
+                                       ?? (level == .little ? nil : greeting),
+                                   onArt: isNight) {
+                        if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
+                    }
+                    if showsStats, typeSize.isAccessibilitySize { statLine(compact: false) }
                 }
-                if showsStats, typeSize.isAccessibilitySize { statLine(compact: false) }
             }
-            .padding(.top, MPSpacing.lg)
 
-            HomeHeroCard(state: tonightState, isNight: isNight, cover: tonightCover, onPrimary: tonightAction)
-                .homeEntrance(0)
+            VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
+                HomeHeroCard(state: tonightState, isNight: isNight, cover: tonightCover,
+                             showsScene: false, onPrimary: tonightAction)
+                    .homeEntrance(0)
 
-            // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
-            // onları aşağı itiyordu.
-            if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
+                // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
+                // onları aşağı itiyordu.
+                if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
 
-            if let child = profileManager.currentProfile?.id,
-               SeriesManager.shared.cardState(for: child) != nil {
-                HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                    .homeEntrance(2)
+                if let child = profileManager.currentProfile?.id,
+                   SeriesManager.shared.cardState(for: child) != nil {
+                    HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
+                        .homeEntrance(2)
+                }
             }
+            .padding(.horizontal, MPSpacing.screenH)
         }
-        .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, GunlukLayout.bottomClearance)
     }
 
@@ -100,7 +116,7 @@ struct HomeView: View {
     private func statLine(compact: Bool) -> some View {
         if stars > 0 || streak.currentStreak > 0 {
             Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact)
+                HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact, onArt: isNight)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityHint("Profili açar")

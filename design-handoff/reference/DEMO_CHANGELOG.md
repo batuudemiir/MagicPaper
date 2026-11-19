@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: sahne tepede, selam sahnenin üstünde
+
+- Karar (İrem, tasarım): eski TestFlight sürümündeki gibi tam genişlik sahne sayfanın tepesinde, "İyi akşamlar, <ad>" üstünde. 22 Ekim'deki "sahne bu akşamın kartında" düzeninin yerine; README'de Batuhan'ın onayına yazıldı.
+- Uygulama kodu: `MPHomeChrome.swift` içine `HomeHeaderScene` (durum çubuğunun altına uzanan manzara, uyku saatinde gece, Ragi sağ altta, alt kenar `WaveBottom`, gradient yok); `HomeHeroCard.showsScene` (varsayılan `true`); `HomeStatLine.onArt`. `HomeView` sahneyi başa koyar, kartı sahnesiz çizer; kaydırma üst güvenli alanı yok sayar, başlık güvenli alanın altından başlar (`GeometryReader`). Gece yazı `MP.C.textOnArt`, gündüz koyu (açık mavi gökte açık yazı 4.5:1'i tutmazdı).
+- Bilerek gelmedi: eski kilit ve avatar (13 Kasım: çocuk sekme başlığında kilit ve avatar yok), "Bu hafta" şeridi ve yıldız kartları (karar bekliyor).
+- Prototip: Ana sayfa aynı düzende.
+- Test: Design law grep'leri iki dosyada boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip ekran görüntüsü alınıyor. Simülatörde açık/koyu ve en büyük yazı görüntüsü o turdan gelecek.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/{app.js,app.css}`, `README.md`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte tam Masallar sekmesi, gerçek katalogdan
 
 - `design-preview/tools/sync-content.mjs`: `classics_catalog.json` ve `Content/Originals/published` → `design-preview/app/content.js` (62 masal, 40'ı seri bölümü; 5 seri; 2 Original; kapak yolları `Assets.xcassets`'ten). Kataloğa masal eklenince yeniden çalıştırılır.
