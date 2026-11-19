@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · evren-7-yetkiler, commit bu kayıtla · Masal yazmada konu adımı
+
+- Batuhan'ın isteği: "Yeni şeyler öğrenelim" seçilince Meslekler, Uzay gibi konular görünsün. Konu çipleri yalnızca 7 yaş ve üstünde, "Masalda kimler olsun?" sayfasının ortasında duruyordu; küçük kademede hiç yoktu.
+- Yeni adım `TopicStep`: moddan hemen sonra "Neyi öğrenelim?" / "Nereye gidelim?", iki kademede aynı büyük karolar (`LittleChoiceTile`), sonda "Fark etmez". Dokunuş adımı geçer. Yalnızca modun konusu varken açılır (uyku öncesinde yok; motor konuyu en az üç olay örgüsü kurabildiği yerde teklif eder). Ana sayfadan modla açılınca da ilk adım konu. "Bana sürpriz yap" konu sormaz. Geri: kimler → konu → mod.
+- Kilitli dünyalar (E7) karoda soluk ve kilit simgeli, altında "Kilitli olanlar büyüklerle açılır." Ragi yok (Ragi'li mod adımından hemen sonraki seçim adımı).
+- "Masalda kimler olsun?" sayfasından konu bölümü kalktı. Küçük kademenin "Kim gelsin?" adımı artık seçilen konuya göre yol arkadaşı süzüyor.
+- Öğrenme konusu "Bilim"in adı "Bilim ve uzay" (`topic_learning_science`; içerik değişmedi). İlgi alanı "Bilim" aynı kaldı.
+- Karar soru olarak sorulmuştu, cevap gelmeden oturum kesildi; önerilen seçenekler uygulandı (ayrı adım her yaşta, "Bilim ve uzay"). CLAUDE.md'deki "konu kimler adımında" kararı güncellendi.
+- Test: `StoryCreationStepsTests` güncellendi (adım etiketleri, sorular); çalıştırılmadı. Değişen Swift dosyaları `swiftc -parse`'tan geçti, tip denetimi yok, tasarım grepleri boş. Simülatörde görülmedi.
+- Dosyalar: `Screens/StoryCreation/TopicStep.swift` (yeni), `StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `CompanionStep.swift`, `LittleSteps.swift`, `pilot_library_v1.json`, `StoryCreationStepsTests.swift`, bu günlük.
+
 ### 2026-11-19 · evren-7-yetkiler, commit bu kayıtla · E7: yetkiler canlı, dürüst paywall
 
 - Karar (Batuhan, 19 Kasım 2026): ücretsizde günde bir masal; abonelik sınırsız masal, bütün klasikler ve Original masallar, seri, Masal ailem, kendi sesinle okuma, PDF kitap ve iki dünya (Gökyüzü ve uzay, Sporlar) açar. Görselli masal satılmaz. `docs/EVREN_PLANI.md` E7 ve CLAUDE.md'ye yazıldı.

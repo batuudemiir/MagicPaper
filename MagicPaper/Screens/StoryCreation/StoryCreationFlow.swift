@@ -42,6 +42,9 @@ struct StoryCreationFlow: View {
         /// oraya dönülebiliyor.
         case unsupportedAge
         case mode
+        /// "Neyi öğrenelim?" / "Nereye gidelim?" (19 Kasım 2026): yalnızca
+        /// modun konusu varken.
+        case topic
         case companion
         /// 21 · Masal yazılıyor; masal hazır olunca aynı ekranda "Masalı oku".
         case preparing
@@ -128,7 +131,9 @@ struct StoryCreationFlow: View {
             _phase = State(initialValue: supported ? .mode : .unsupportedAge)
             _chosenMode = State(initialValue: nil)
         case .companion(let mode):
-            _phase = State(initialValue: supported ? .companion : .unsupportedAge)
+            let topics = StoryChoiceSources.current.topicChoices(forAge: age, mode: mode)
+            _topicChoices = State(initialValue: topics)
+            _phase = State(initialValue: supported ? (topics.isEmpty ? .companion : .topic) : .unsupportedAge)
             _chosenMode = State(initialValue: supported ? mode : nil)
         }
         _chosenProfileID = State(initialValue: ProfileManager.shared.currentProfile?.id)
@@ -203,7 +208,7 @@ struct StoryCreationFlow: View {
     /// ekranlarının kendi düzeni var.
     private var showsHeader: Bool {
         switch phase {
-        case .child, .mode, .companion: return true
+        case .child, .mode, .topic, .companion: return true
         // Açıklama ekranının kendi kapatma düğmesi var; adım noktaları ise
         // yanlış olurdu, çünkü bu bir adım değil, akışın durduğu yer.
         default: return false
@@ -242,12 +247,15 @@ struct StoryCreationFlow: View {
 
     private var showsBack: Bool {
         switch phase {
-        case .companion: return true
+        case .topic, .companion: return true
         default: return false
         }
     }
 
-    private var stepLabels: [String] { StoryCreationSteps.stepLabels }
+    /// Konu adımı bu modda var mı: noktalar ve "Geri" buna göre.
+    private var hasTopicStep: Bool { !topicChoices.isEmpty }
+
+    private var stepLabels: [String] { StoryCreationSteps.stepLabels(hasTopicStep: hasTopicStep) }
 
     /// Nokta sırası etiket listesinden türetiliyor, elle sayılmıyor: iki yerde
     /// ayrı ayrı sayılsaydı bir adım eklendiğinde biri güncellenir öbürü
@@ -255,6 +263,7 @@ struct StoryCreationFlow: View {
     private var stepIndex: Int? {
         switch phase {
         case .mode:      return stepLabels.firstIndex(of: "Masal")
+        case .topic:     return stepLabels.firstIndex(of: "Konu")
         case .companion: return stepLabels.count - 1
         default:         return nil
         }
@@ -262,7 +271,11 @@ struct StoryCreationFlow: View {
 
     private func goBack() {
         switch phase {
-        case .companion:
+        case .companion where hasTopicStep && strategy == .direct:
+            chosenCompanionID = nil
+            chosenTopicID = nil
+            phase = .topic
+        case .companion, .topic:
             chosenCompanionID = nil
             resetToModes()
         default:
@@ -317,9 +330,19 @@ struct StoryCreationFlow: View {
                 onChoose: chooseMode,
                 onSurprise: surprise
             )
+        case .topic:
+            if let mode = chosenMode {
+                TopicStep(
+                    mode: mode, topics: topicChoices,
+                    lockedTopicIDs: app.isUnlocked(.premiumWorlds) ? [] : Capability.lockedTopicIDs
+                ) { topicID in
+                    chosenTopicID = topicID
+                    phase = .companion
+                }
+            }
         case .companion where level == .little:
             LittleCompanionStep(
-                mode: chosenMode, age: age, source: source,
+                mode: chosenMode, age: age, topicID: chosenTopicID, source: source,
                 familyCharacters: openFamilyCharacters,
                 availableRelations: familyRelations
             ) { companionID, familyID in
@@ -341,9 +364,6 @@ struct StoryCreationFlow: View {
                 // E7: Masal ailem is part of the subscription.
                 onAddFamily: app.router.isParentMode && app.isUnlocked(.familyCast)
                     ? { showsFamilyEditor = true } : nil,
-                topics: topicChoices,
-                lockedTopicIDs: app.isUnlocked(.premiumWorlds) ? [] : Capability.lockedTopicIDs,
-                selectedTopicID: $chosenTopicID,
                 occasions: occasionChoices,
                 selectedOccasion: $chosenOccasion,
                 onChangeMode: { goBack() }
@@ -412,7 +432,9 @@ struct StoryCreationFlow: View {
         strategy = .direct
         chosenTopicID = nil
         chosenOccasion = nil
-        phase = .companion
+        // `onChange(of: chosenMode)` sonra da tazeler; adım kararı şimdi gerekli.
+        topicChoices = source.topicChoices(forAge: age, mode: mode)
+        phase = topicChoices.isEmpty ? .companion : .topic
     }
 
     /// "Bana sürpriz yap": MagicPaper picks the mode, looking at what this

@@ -45,12 +45,6 @@ struct CompanionStep: View {
     @Binding var selectedFamilyID: UUID?
     /// Opens the new-character editor (parent mode only).
     var onAddFamily: (() -> Void)? = nil
-    /// Modun konuları (karar 7 Kasım 2026: mod adımından buraya). İsteğe bağlı,
-    /// seçili çipe tekrar dokunmak seçimi kaldırır.
-    var topics: [StoryTopicChoice] = []
-    @Binding var selectedTopicID: String?
-    /// Abonelikle açılan konular (E7): kilit simgesiyle görünür, seçilmez.
-    var lockedTopicIDs: Set<String> = []
     /// Özel günler (E6): çocuğun etkin ve bu modda yazılabilen günleri. Boşsa
     /// bölüm hiç görünmez. Seçilen gün yalnızca blueprint'i kilitler; konu ve
     /// yol arkadaşı seçimi yerinde kalır.
@@ -87,8 +81,6 @@ struct CompanionStep: View {
                 }
 
                 if !occasions.isEmpty { occasionSection }
-
-                if let mode, !topics.isEmpty { topicSection(mode) }
 
                 companionSection
 
@@ -131,33 +123,6 @@ struct CompanionStep: View {
         }
     }
 
-    private func topicSection(_ mode: StoryMode) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: prompt(for: mode), subtitle: "İstersen seç, istersen bize bırak.")
-            MPWrapRow(spacing: MPSpacing.sm) {
-                ForEach(topics) { topic in
-                    let locked = lockedTopicIDs.contains(topic.id)
-                    MPChip(title: topic.name, systemImage: locked ? "lock.fill" : topic.symbol,
-                           isSelected: selectedTopicID == topic.id, height: MPSize.chipHeightKid) {
-                        MPHaptics.selection()
-                        selectedTopicID = (selectedTopicID == topic.id) ? nil : topic.id
-                    }
-                    .disabled(locked)
-                    .opacity(locked ? 0.45 : 1)
-                    .accessibilityLabel(topic.name)
-                    .accessibilityHint(locked ? "Büyüklerle açılır" : "")
-                    .accessibilityAddTraits(selectedTopicID == topic.id ? [.isSelected] : [])
-                }
-            }
-            // Aynı ekrandaki Masal ailem deseni: kapalı çip soluk, altında tek not.
-            if topics.contains(where: { lockedTopicIDs.contains($0.id) }) {
-                Text("Kilitli olanlar büyüklerle açılır.")
-                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-    }
-
     /// "Özel bir gün": gün başına bir çip; seçili çipe tekrar dokunmak seçimi kaldırır.
     private var occasionSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
@@ -174,16 +139,6 @@ struct CompanionStep: View {
                     .accessibilityAddTraits(on ? [.isSelected] : [])
                 }
             }
-        }
-    }
-
-    /// Soru modun sorusunu sürdürüyor: "öğrenelim" dedikten sonra sorulacak
-    /// şey "neyi", "maceraya çıkalım" dedikten sonra "nereye".
-    private func prompt(for mode: StoryMode) -> String {
-        switch mode {
-        case .learning:  return "Neyi öğrenelim?"
-        case .adventure: return "Nereye gidelim?"
-        case .bedtime:   return "Masal neyle ilgili olsun?"
         }
     }
 
