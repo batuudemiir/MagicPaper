@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Abonelik ekonomisi planı; Ana sayfa taşma düzeltmesi
+
+- Yeni belge `docs/PAYWALL_EKONOMI_PLANI.md` (Paywall sprintinin Perşembe çıktısı, Batuhan'ın onayına): 8 maddelik karar tablosu; ücretsiz/Premium sınırı yalnızca bugün çalışan özelliklerle; fiyat önerisi ₺149/ay, ₺999/yıl, 7 gün deneme yalnızca yıllıkta; kaynaklı pazar tablosu; etik ebeveyn pazarlaması (kullanılacaklar/asla); tetikleyici taslağı; teknik iş listesi.
+- Bulunan hatalar (belgede ve README notunda): StoreKit ürün kimlikleri (`com.magicpaper.premium.monthly`) ile `RevenueCatManager.productIdentifier`'ın aradığı (`magicpaper_premium_monthly`) uyuşmuyor; yıllık ürün ve tanıtım teklifi yok; aile sesi ve aile paylaşımı Release'te kapalı (`FamilyFeatureAccess`), Premium'da satılamaz.
+- Ana sayfa (`4244253` turu): derleme başarılı, ama "Bu akşam" kartı ve modlar ekranın sağından taşıyordu, Ragi görünmüyordu. Sebep: dolduran sahne görseli yerleşime kendi genişliğini dayatıyordu. Düzeltme: görsel `overlay` içinde (`HomeHeaderScene`). Bu commit `[ekran]` ile doğrulanıyor.
+- CI notu: SE'de Kitaplık normal yazıda üç denemede de boş geldi (önceki turda doluydu; Kitaplık bu işte değişmedi). İzleniyor.
+- Dosyalar: `docs/PAYWALL_EKONOMI_PLANI.md`, `README.md`, `MagicPaper/DesignSystem/Pastel/MPHomeChrome.swift`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · ChatGPT için görsel referans paketi (repo dışı)
 
 - İrem'in masaüstünde `MagicPaper_ChatGPT_Referans/` klasörü hazırlandı: tasarım dili belgesi (`00_OKU_BENI_Tasarim_Dili.md`; `docs/MARKA.md`, `docs/RAGI.md`, `Content/Originals/COVER_GUIDE.md` ve `WORLD.md` kapak stili, AGENTS.md Design law ve kahraman kararından derlendi; İngilizce prompt kalıpları), Ragi'nin 10 güncel pozu (`Assets.xcassets/Brand`), uygulama simgesi ve yazı logosu, renk/yazı/imza sayfası (token'lardan üretildi), ana sayfa sahneleri, iki Original kapak (stil referansı `saatin-icindeki-ninni`), gerçek uygulamanın 6 ekranı.

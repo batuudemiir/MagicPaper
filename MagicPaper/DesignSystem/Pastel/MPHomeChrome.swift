@@ -211,17 +211,20 @@ struct HomeHeaderScene<Header: View>: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .bottomTrailing) {
+                // Görsel `overlay`'de: dolduran (fill) resim yerleşime genişliğini
+                // dayatmasın. İlk turda sayfa ekrandan taştı (19 Kasım, CI görüntüsü).
                 ZStack {
                     MPColor.sceneSkyDay
-                    Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
-                    ZStack {
-                        MPColor.sceneSkyNight
-                        Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
-                    }
-                    .opacity(isNight ? 1 : 0)
+                        .overlay(alignment: .bottom) {
+                            Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
+                        }
+                    MPColor.sceneSkyNight
+                        .overlay(alignment: .bottom) {
+                            Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
+                        }
+                        .opacity(isNight ? 1 : 0)
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: Self.height + topInset, alignment: .bottom)
+                .frame(height: Self.height + topInset)
                 .clipped()
                 .animation(MP.M.gated(MP.M.slow), value: isNight)
                 .accessibilityHidden(true)
