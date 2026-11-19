@@ -76,12 +76,17 @@ struct MPLockedCopy: Equatable {
             mascot = .reading
             ragi = "Masalın devamı büyüklerle açılır."
             title = "Masalın devamı"
-            message = "Bu masalı bir seriye çevirmek için bir büyüğe göster."
+            message = "Serinin sonraki bölümleri için bir büyüğe göster."
         case .familyCast:
             mascot = .waving
-            ragi = "Masal ailen büyüklerle açılır."
+            ragi = "Masal ailene yeni biri büyüklerle katılır."
             title = "Masal ailem"
-            message = "Ailenden birini masala katmak için bir büyüğe göster."
+            message = "Ailenden bir kişi daha masala katmak için bir büyüğe göster."
+        case .multipleChildren:
+            mascot = .waving
+            ragi = "Yeni bir arkadaş büyüklerle eklenir."
+            title = "Yeni bir çocuk"
+            message = "Kardeşini ya da bir arkadaşını eklemek için bir büyüğe göster."
         case .premiumWorlds, .premiumThemes:
             mascot = .curious
             ragi = "Bu dünya büyüklerle açılır."

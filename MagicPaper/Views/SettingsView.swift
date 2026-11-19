@@ -105,7 +105,10 @@ struct SettingsView: View {
             if account.canWriteFamily {
                 MPRowDivider(area: .parent)
                 ParentRowButton(systemImage: "plus", tone: .sky, title: "Profil ekle") {
-                    app.router.showProfileAdd = true
+                    // İkinci çocuk abonelikle (20 Kasım 2026); ebeveyn odasında paywall.
+                    app.unlock(.multipleChildren, usage: .adding(existing: profileManager.profiles.count)) {
+                        app.router.showProfileAdd = true
+                    }
                 }
             }
         }

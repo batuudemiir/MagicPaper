@@ -62,6 +62,10 @@ public protocol EntitlementService: AnyObject {
     /// Bu yetenek şu anda kullanılabilir mi, kullanılamıyorsa neden.
     func evaluate(_ capability: Capability) -> EntitlementDecision
 
+    /// Aynı soru, kullanımla birlikte: ücretsiz pay (bir aile kişisi, bir
+    /// çocuk, serinin ilk yeni bölümü, vitrin) kullanıma bakar (20 Kasım 2026).
+    func evaluate(_ capability: Capability, usage: EntitlementUsage) -> EntitlementDecision
+
     /// Ölçülen bir yeteneği harcar. Kapı yeniden değerlendirilir; kapalıysa
     /// hiçbir sayaç düşmez ve dönen karar reddi taşır.
     ///

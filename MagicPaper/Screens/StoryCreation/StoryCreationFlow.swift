@@ -361,8 +361,9 @@ struct StoryCreationFlow: View {
                 selectedFamilyID: $chosenFamilyID,
                 // Free text is a parent's surface: in child mode the child
                 // picks from the characters the parent made, and cannot type.
-                // E7: Masal ailem is part of the subscription.
-                onAddFamily: app.router.isParentMode && app.isUnlocked(.familyCast)
+                // Masal ailem: ücretsizde bir kişi, fazlası abonelikle (20 Kasım 2026).
+                onAddFamily: app.router.isParentMode
+                    && app.isUnlocked(.familyCast, usage: .adding(existing: familyCharacters.count))
                     ? { showsFamilyEditor = true } : nil,
                 occasions: occasionChoices,
                 selectedOccasion: $chosenOccasion,
@@ -491,10 +492,13 @@ struct StoryCreationFlow: View {
         active.filter { writable.contains($0.occasionID) }
     }
 
-    /// E7: Masal ailem abonelikle. Kapalıyken karakterler yeni masala
-    /// katılmaz; var olanlar ve onlarla yazılmış masallar yerinde kalır.
+    /// Masal ailem'den yeni masala katılabilecekler (20 Kasım 2026):
+    /// ücretsizde ilk kişi, abonelikle hepsi. Diğerleri ve onlarla yazılmış
+    /// masallar yerinde kalır, yalnızca yeni masala katılmaz.
     private var openFamilyCharacters: [FamilyCharacter] {
-        app.isUnlocked(.familyCast) ? familyCharacters : []
+        familyCharacters.enumerated()
+            .filter { app.isUnlocked(.familyCast, usage: .using(position: $0.offset)) }
+            .map(\.element)
     }
 
     private func begin() {

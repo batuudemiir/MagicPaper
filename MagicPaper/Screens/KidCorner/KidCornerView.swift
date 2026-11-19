@@ -160,7 +160,12 @@ struct KidCornerView: View {
                     .accessibilityLabel(child.name)
                     .accessibilityAddTraits(selected ? .isSelected : [])
                 }
-                Button { app.router.requestProfileAdd() } label: {
+                // İkinci çocuk abonelikle (20 Kasım 2026); kilitliyse sakin pencere.
+                Button {
+                    app.unlock(.multipleChildren, usage: .adding(existing: profileManager.profiles.count)) {
+                        app.router.requestProfileAdd()
+                    }
+                } label: {
                     HStack(spacing: MPSpacing.xs) {
                         MPIcon("plus", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
                         Text("Ekle").mpText(.supporting).fontWeight(.bold)

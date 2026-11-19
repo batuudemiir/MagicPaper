@@ -199,8 +199,11 @@ final class MPAppState: ObservableObject {
 
     /// Bir Günlük masalını okuyucuda açar: seçili anlatımla, kaldığı yerden.
     func readClassic(_ tale: ClassicTale, listen: Bool = false, progress: ClassicProgressStore = .shared) {
-        // E7: bütün klasikler abonelikle.
-        unlock(.classicLibrary) { [self] in openClassic(tale, listen: listen, progress: progress) }
+        // Vitrin ücretsiz, bütün klasikler abonelikle (20 Kasım 2026).
+        let showcase = ClassicsLibrary.shared.isInFreeShowcase(tale.id)
+        unlock(.classicLibrary, usage: .classic(inShowcase: showcase)) { [self] in
+            openClassic(tale, listen: listen, progress: progress)
+        }
     }
 
     private func openClassic(_ tale: ClassicTale, listen: Bool, progress: ClassicProgressStore) {
@@ -219,8 +222,11 @@ final class MPAppState: ObservableObject {
 
     /// Günlük akışın kendi masalı (FAZ 15), Günlük'ün okuyucusunda.
     func readOriginal(_ daily: DailyStory, progress: ClassicProgressStore = .shared) {
-        // E7: MagicPaper Original masalları abonelikle.
-        unlock(.classicLibrary) { [self] in openOriginal(daily, progress: progress) }
+        // Uyku vakti rafındaki Original ücretsiz, gerisi abonelikle (20 Kasım 2026).
+        let showcase = ClassicsLibrary.shared.isInFreeShowcase(daily.id)
+        unlock(.classicLibrary, usage: .classic(inShowcase: showcase)) { [self] in
+            openOriginal(daily, progress: progress)
+        }
     }
 
     private func openOriginal(_ daily: DailyStory, progress: ClassicProgressStore) {
@@ -272,7 +278,9 @@ final class MPAppState: ObservableObject {
             showStoryCreation = true
         }
         unlock(.unlimitedTextStories) { [self] in
-            if family != nil { unlock(.familyCast, then: open) } else { open() }
+            guard let family else { open(); return }
+            // Ücretsiz pay: Masal ailem'in ilk kişisi (20 Kasım 2026).
+            unlock(.familyCast, usage: .using(position: familyPosition(of: family)), then: open)
         }
     }
 
@@ -285,8 +293,9 @@ final class MPAppState: ObservableObject {
     /// Tek kapı: izin varsa iş çalışır. Yoksa çocuk alanında sakin kilit
     /// penceresi (satış ebeveyn kapısının arkasında), ebeveyn odasında paywall.
     /// Kararı yalnızca `EntitlementPolicy` verir.
-    func unlock(_ capability: Capability, then action: @escaping () -> Void) {
-        if isUnlocked(capability) { action(); return }
+    func unlock(_ capability: Capability, usage: EntitlementUsage = .plain,
+                then action: @escaping () -> Void) {
+        if isUnlocked(capability, usage: usage) { action(); return }
         if router.isParentMode {
             openPaywall()
         } else if router.sheet == nil {
@@ -297,9 +306,17 @@ final class MPAppState: ObservableObject {
         }
     }
 
+    /// Çocuğun Masal ailem'inde bu kişinin sırası (eklenme sırasıyla, 0'dan).
+    /// Ücretsiz pay ilk kişiyi kapsar; bulunamayan kişi sona düşer.
+    func familyPosition(of characterID: UUID) -> Int {
+        guard let child = ProfileManager.shared.currentProfile else { return .max }
+        let characters = FamilyCharacterStore().characters(for: child.id)
+        return characters.firstIndex { $0.id == characterID } ?? .max
+    }
+
     /// Görünümün kilit glifi için: karar değil, gösterim.
-    func isUnlocked(_ capability: Capability) -> Bool {
-        LiveEntitlementService.shared.evaluate(capability).isAllowed
+    func isUnlocked(_ capability: Capability, usage: EntitlementUsage = .plain) -> Bool {
+        LiveEntitlementService.shared.evaluate(capability, usage: usage).isAllowed
     }
 
 }

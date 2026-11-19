@@ -30,7 +30,7 @@ struct PaywallView: View {
             return live
         }
         switch (tier, cycle) {
-        case (.premium, .yearly): return "₺1.190"
+        case (.premium, .yearly): return "₺999"   // karar: 20 Kasım 2026
         case (.basic, .yearly):   return "₺690"
         default:                  return tier.price
         }
@@ -49,16 +49,16 @@ struct PaywallView: View {
         let tone: MPWorldTone
     }
 
-    /// E7 (karar: Batuhan 19 Kasım 2026): yalnızca gerçekten açılan şeyler.
-    /// Görselli masal Release'te kapalı olduğu için satılmaz.
+    /// Abonelik kararı (Batuhan 20 Kasım 2026): yalnızca bugün gerçekten
+    /// açılan şeyler. Dünyalar ücretsiz; kendi sesinle okuma ve görselli
+    /// masal Release'te kapalı olduğu için satılmaz. Son düzen İrem'de.
     private let benefits: [Benefit] = [
-        Benefit(text: "Sınırsız masal", symbol: "sparkles", tone: .lav),
+        Benefit(text: "Gün boyu yeni masal", symbol: "sparkles", tone: .lav),
         Benefit(text: "Bütün klasikler ve MagicPaper Original masalları", symbol: "books.vertical", tone: .pink),
-        Benefit(text: "Sevilen masalın beş bölümlük serisi", symbol: "rectangle.stack", tone: .yellow),
-        Benefit(text: "Masal ailem: ailen de masala katılır", symbol: "person.2", tone: .peach),
-        Benefit(text: "Masalı kendi sesinle okuma", symbol: "mic", tone: .sky),
-        Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green),
-        Benefit(text: "Gökyüzü ve uzay, Sporlar dünyaları", symbol: "globe", tone: .lav)
+        Benefit(text: "Serinin bütün bölümleri", symbol: "rectangle.stack", tone: .yellow),
+        Benefit(text: "Masal ailem: bütün ailen masala katılır", symbol: "person.2", tone: .peach),
+        Benefit(text: "Ailedeki her çocuk için ayrı profil", symbol: "person.3", tone: .sky),
+        Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green)
     ]
 
     var body: some View {
@@ -110,7 +110,7 @@ struct PaywallView: View {
                 .mpText(.page)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Ücretsiz planda her gün bir masal yazılır. Abonelikle masallar sınırsız, kitaplık tamamen açık.")
+            Text("Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.")
                 .mpText(.body)
                 .foregroundStyle(MPColor.textSecondary)
         }
@@ -143,8 +143,8 @@ struct PaywallView: View {
         VStack(spacing: MPSpacing.md) {
             MPSegmented(options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")], selection: $cycle)
                 .padding(.bottom, MPSpacing.sm)
-            // E7: tek plan; kademeler yalnızca görselli kotada ayrışıyordu.
-            planCard(.premium, name: "Hikaye Kahramanı", allowance: "Sınırsız masal ve tam kitaplık", recommended: false)
+            // Tek plan, adı MagicPaper Premium (karar: Batuhan 20 Kasım 2026).
+            planCard(.premium, name: "MagicPaper Premium", allowance: "Gün boyu masal ve tam kitaplık", recommended: false)
             Text("İstediğin zaman iptal edebilirsin.")
                 .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)

@@ -106,7 +106,7 @@ final class EntitlementServiceTests: XCTestCase {
     func testTheStarCountIsTheQuotaForSubscribersAndTheTrialForEveryoneElse() {
         let subscriber = StubEntitlementService.subscriber(plan: .basic, now: now)
         XCTAssertEqual(subscriber.snapshot.storyCredits, 1)
-        XCTAssertEqual(subscriber.snapshot.planDisplayName, "Yıldız Kaşifi")
+        XCTAssertEqual(subscriber.snapshot.planDisplayName, "MagicPaper Premium")
 
         let free = StubEntitlementService.free(now: now)
         free.context.trialStarsRemaining = 7
@@ -199,5 +199,16 @@ final class EntitlementServiceTests: XCTestCase {
                            plan.tier.monthlyImageStories,
                            "\(plan.rawValue) kotası iki tabloda ayrıştı.")
         }
+    }
+
+    // MARK: - Tek plan: aylık ve yıllık aynı kademe (20 Kasım 2026)
+
+    func testMonthlyAndYearlyPremiumAreTheSameTier() {
+        XCTAssertEqual(RevenueCatManager.tier(forActiveSubscriptions: ["magicpaper_premium_monthly"]), .premium)
+        XCTAssertEqual(RevenueCatManager.tier(forActiveSubscriptions: ["magicpaper_premium_yearly"]), .premium)
+        XCTAssertEqual(RevenueCatManager.tier(forActiveSubscriptions: ["magicpaper_basic_monthly"]), .basic,
+                       "Eski kademedeki abone tanınmaya devam eder.")
+        XCTAssertEqual(RevenueCatManager.tier(forActiveSubscriptions: []), .premium,
+                       "Premium yetkisi tanınmayan bir ürünle gelirse tek plana düşer.")
     }
 }

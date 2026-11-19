@@ -52,6 +52,10 @@ public final class StubEntitlementService: EntitlementService {
         EntitlementPolicy.decide(capability, in: context)
     }
 
+    public func evaluate(_ capability: Capability, usage: EntitlementUsage) -> EntitlementDecision {
+        EntitlementPolicy.decide(capability, in: context, usage: usage)
+    }
+
     @discardableResult
     public func consume(_ capability: Capability) -> EntitlementDecision {
         let decision = evaluate(capability)
