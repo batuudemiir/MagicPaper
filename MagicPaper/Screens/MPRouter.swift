@@ -120,12 +120,15 @@ enum MPSheetRoute: Identifiable, Equatable {
     case signOut
     /// Masal saati hatırlatması ön sorusu (Faz 8): ilk biten masaldan sonra bir kez.
     case reminder
+    /// Çocuk alanında kapalı bir şeye dokunuldu (E7): sakin kilit penceresi.
+    case locked(Capability)
 
     var id: String {
         switch self {
         case .interests(let i): return "interests-\(i)"
         case .signOut: return "signOut"
         case .reminder: return "reminder"
+        case .locked(let capability): return "locked-\(capability.rawValue)"
         }
     }
 }

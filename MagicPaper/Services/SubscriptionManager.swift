@@ -285,6 +285,24 @@ class SubscriptionManager: ObservableObject {
         }
     }
     
+    /// Ücretsiz günün masalı yazıldı (E7). Kararı `EntitlementPolicy` verir,
+    /// burası yalnızca sayacı tutar.
+    func recordFreeTextStory(at date: Date) {
+        lastFreeTextStoryDate = date
+        UserDefaults.standard.set(date, forKey: "lastFreeTextStoryDate")
+    }
+
+    /// Deneme hakkıyla yazılan metin masalı (E7).
+    func spendTrialStar() {
+        guard freeTrialCount > 0 else { return }
+        freeTrialCount -= 1
+        UserDefaults.standard.set(freeTrialCount, forKey: "freeTrialCount")
+        if freeTrialCount == 0 {
+            freeTrialUsed = true
+            UserDefaults.standard.set(true, forKey: "freeTrialUsed")
+        }
+    }
+
     // Hikaye oluştur (kotayı düş)
     func useStory(type: StoryType) -> Bool {
         // Önce ücretsiz deneme kontrolü

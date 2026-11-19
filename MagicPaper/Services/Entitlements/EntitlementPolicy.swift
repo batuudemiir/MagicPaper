@@ -76,14 +76,89 @@ public enum EntitlementPolicy {
 
     // MARK: Karar
 
+    // MARK: Ücretsiz pay (karar: Batuhan 20 Kasım 2026)
+
+    /// Ücretsiz planda Masal ailem'deki kişi sayısı.
+    public static let freeFamilyCastLimit = 1
+    /// Ücretsiz planda çocuk profili sayısı.
+    public static let freeChildProfileLimit = 1
+    /// Ücretsiz planda açılan en son seri bölümü: ilk yeni bölüm.
+    public static let freeLastSeriesEpisode = 2
+
     public static func decide(_ capability: Capability,
-                              in context: EntitlementContext) -> EntitlementDecision {
+                              in context: EntitlementContext,
+                              usage: EntitlementUsage = .plain) -> EntitlementDecision {
         switch capability {
         case .illustratedStory:      return decideIllustratedStory(context)
         case .unlimitedTextStories:  return decideTextStory(context)
         case .unlimitedDailyStories: return decideDailyStory(context)
-        case .premiumWorlds, .premiumThemes, .longStories:
+        case .premiumWorlds:
+            // 20 Kasım 2026: bütün dünyalar ücretsiz.
+            return .allowed
+        case .classicLibrary, .seriesStories, .familyCast, .multipleChildren:
+            if withinFreeAllowance(capability, usage) { return .allowed }
             return decidePaidUnlock(capability, context)
+        case .premiumThemes, .longStories, .ownVoice, .pdfBook:
+            return decidePaidUnlock(capability, context)
+        }
+    }
+
+    /// Kullanım ücretsiz payın içinde mi. Planı hiç sormaz: pay herkesindir.
+    /// `.plain` sorusu payı hiç kullanmaz; pay ancak kullanım söylenince açılır.
+    static func withinFreeAllowance(_ capability: Capability,
+                                    _ usage: EntitlementUsage) -> Bool {
+        switch (capability, usage) {
+        case (.classicLibrary, .classic(let inShowcase)):
+            return inShowcase
+        case (.seriesStories, .plain):
+            // Seriyi başlatmak (teklif ve "Devam ettir") ücretsiz: ilk yeni
+            // bölüm ücretsiz paya girer, sonrakiler açılırken sorulur.
+            return true
+        case (.seriesStories, .seriesEpisode(let number)):
+            return number <= freeLastSeriesEpisode
+        case (.familyCast, .adding(let existing)):
+            return existing < freeFamilyCastLimit
+        case (.familyCast, .using(let position)):
+            return position < freeFamilyCastLimit
+        case (.multipleChildren, .adding(let existing)):
+            return existing < freeChildProfileLimit
+        default:
+            return false
+        }
+    }
+
+    // MARK: Tüketim
+
+    /// İzin verilmiş bir kullanımın neyi harcadığı. Gerçek servis ve test
+    /// sahtesi aynı kuralı çalıştırsın diye burada (E7, 19 Kasım 2026).
+    public enum Consumption: Equatable, Sendable {
+        case nothing
+        /// Abonelik kotasından bir görselli masal.
+        case quota
+        /// Bir deneme hakkı (görselli masalda tek seferlik kilit de kapanır).
+        case trialStar
+        /// Ücretsiz günün masalı yazıldı; soğuma bu andan başlar.
+        case freeTextStory(at: Date)
+    }
+
+    public static func consumption(of capability: Capability,
+                                   decision: EntitlementDecision,
+                                   in context: EntitlementContext) -> Consumption {
+        guard capability.isMetered else { return .nothing }
+        switch decision {
+        case .denied:
+            return .nothing
+        case .allowedUsingQuota:
+            return .quota
+        case .allowedUsingTrial:
+            return .trialStar
+        case .allowed:
+            // Abone ya da (görselli masalda) karşılığı olmayan izin: hiçbir şey
+            // düşmez. Ücretsiz planda metin masalı günü kapatır.
+            guard capability == .unlimitedTextStories, !effectivePlan(for: context).isPaid else {
+                return .nothing
+            }
+            return .freeTextStory(at: context.now)
         }
     }
 

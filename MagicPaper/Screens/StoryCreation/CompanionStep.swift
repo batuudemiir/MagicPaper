@@ -45,10 +45,6 @@ struct CompanionStep: View {
     @Binding var selectedFamilyID: UUID?
     /// Opens the new-character editor (parent mode only).
     var onAddFamily: (() -> Void)? = nil
-    /// Modun konuları (karar 7 Kasım 2026: mod adımından buraya). İsteğe bağlı,
-    /// seçili çipe tekrar dokunmak seçimi kaldırır.
-    var topics: [StoryTopicChoice] = []
-    @Binding var selectedTopicID: String?
     /// Özel günler (E6): çocuğun etkin ve bu modda yazılabilen günleri. Boşsa
     /// bölüm hiç görünmez. Seçilen gün yalnızca blueprint'i kilitler; konu ve
     /// yol arkadaşı seçimi yerinde kalır.
@@ -85,8 +81,6 @@ struct CompanionStep: View {
                 }
 
                 if !occasions.isEmpty { occasionSection }
-
-                if let mode, !topics.isEmpty { topicSection(mode) }
 
                 companionSection
 
@@ -129,23 +123,6 @@ struct CompanionStep: View {
         }
     }
 
-    private func topicSection(_ mode: StoryMode) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: prompt(for: mode), subtitle: "İstersen seç, istersen bize bırak.")
-            MPWrapRow(spacing: MPSpacing.sm) {
-                ForEach(topics) { topic in
-                    MPChip(title: topic.name, systemImage: topic.symbol,
-                           isSelected: selectedTopicID == topic.id, height: MPSize.chipHeightKid) {
-                        MPHaptics.selection()
-                        selectedTopicID = (selectedTopicID == topic.id) ? nil : topic.id
-                    }
-                    .accessibilityLabel(topic.name)
-                    .accessibilityAddTraits(selectedTopicID == topic.id ? [.isSelected] : [])
-                }
-            }
-        }
-    }
-
     /// "Özel bir gün": gün başına bir çip; seçili çipe tekrar dokunmak seçimi kaldırır.
     private var occasionSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
@@ -162,16 +139,6 @@ struct CompanionStep: View {
                     .accessibilityAddTraits(on ? [.isSelected] : [])
                 }
             }
-        }
-    }
-
-    /// Soru modun sorusunu sürdürüyor: "öğrenelim" dedikten sonra sorulacak
-    /// şey "neyi", "maceraya çıkalım" dedikten sonra "nereye".
-    private func prompt(for mode: StoryMode) -> String {
-        switch mode {
-        case .learning:  return "Neyi öğrenelim?"
-        case .adventure: return "Nereye gidelim?"
-        case .bedtime:   return "Masal neyle ilgili olsun?"
         }
     }
 

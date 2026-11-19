@@ -30,7 +30,7 @@ struct PaywallView: View {
             return live
         }
         switch (tier, cycle) {
-        case (.premium, .yearly): return "₺1.190"
+        case (.premium, .yearly): return "₺999"   // karar: 20 Kasım 2026
         case (.basic, .yearly):   return "₺690"
         default:                  return tier.price
         }
@@ -49,14 +49,15 @@ struct PaywallView: View {
         let tone: MPWorldTone
     }
 
-    /// Yalnızca bugün uygulamada çalışan şeyler (19 Kasım 2026). Görselli masal
-    /// Release'te kapalı, "12 dünya" seçimi akışta yok, uzunluk yaştan gelir:
-    /// üçü de kaldırıldı. Premium'un içeriği `docs/PAYWALL_EKONOMI_PLANI.md`
-    /// kararını bekliyor.
+    /// Abonelik kararı (Batuhan 20 Kasım 2026): yalnızca bugün gerçekten
+    /// açılan şeyler. Dünyalar ücretsiz; kendi sesinle okuma ve görselli
+    /// masal Release'te kapalı olduğu için satılmaz. Son düzen İrem'de.
     private let benefits: [Benefit] = [
-        Benefit(text: "Sınırsız metin masalı", symbol: "sparkles", tone: .lav),
-        Benefit(text: "Bütün klasik masallar ve seriler", symbol: "books.vertical", tone: .pink),
-        Benefit(text: "Sesli okuma", symbol: "speaker.wave.2", tone: .sky),
+        Benefit(text: "Gün boyu yeni masal", symbol: "sparkles", tone: .lav),
+        Benefit(text: "Bütün klasikler ve MagicPaper Original masalları", symbol: "books.vertical", tone: .pink),
+        Benefit(text: "Serinin bütün bölümleri", symbol: "rectangle.stack", tone: .yellow),
+        Benefit(text: "Masal ailem: bütün ailen masala katılır", symbol: "person.2", tone: .peach),
+        Benefit(text: "Ailedeki her çocuk için ayrı profil", symbol: "person.3", tone: .sky),
         Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green)
     ]
 
@@ -121,7 +122,7 @@ struct PaywallView: View {
                 .mpText(.page)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Sınırsız masal, bütün klasikler ve seriler, sesli okuma.")
+            Text("Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.")
                 .mpText(.body)
                 .foregroundStyle(MPColor.textSecondary)
         }
@@ -154,10 +155,9 @@ struct PaywallView: View {
         VStack(spacing: MPSpacing.md) {
             MPSegmented(options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")], selection: $cycle)
                 .padding(.bottom, MPSpacing.sm)
-            // İki kademenin tek farkı kapalı görselli masal kotasıydı; tek plana
-            // inmek karar bekliyor (`docs/PAYWALL_EKONOMI_PLANI.md`, karar 1).
-            planCard(.premium, name: "Hikaye Kahramanı", recommended: true)
-            planCard(.basic, name: "Yıldız Kaşifi", recommended: false)
+            // Tek plan, adı MagicPaper Premium (karar: Batuhan 20 Kasım 2026).
+            // Yenileme metni App Store 3.1.2 için (İrem, 19 Kasım).
+            planCard(.premium, name: "MagicPaper Premium", recommended: true)
             Text(renewalNote)
                 .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
@@ -180,7 +180,7 @@ struct PaywallView: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                     Text(name).mpText(.section).foregroundStyle(MPColor.textPrimary)
-                    Text("Sınırsız metin masalı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    Text("Gün boyu masal ve tam kitaplık").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 0) {

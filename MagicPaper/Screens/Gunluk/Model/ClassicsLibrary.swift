@@ -145,6 +145,24 @@ final class ClassicsLibrary: ObservableObject {
 
     var weeklyPicks: [ClassicItem] { catalog.weeklyPicks }
 
+    // MARK: - Ücretsiz vitrin
+
+    /// Abonelik olmadan açılan masallar (karar: Batuhan 20 Kasım 2026):
+    /// haftanın seçkisi ve Uyku vakti rafı. Vitrindeki bir serinin bütün
+    /// bölümleri vitrindedir. Karar burada değil, `EntitlementPolicy`'de;
+    /// bu yalnızca "bu masal vitrinde mi" sorusunun cevabı.
+    func isInFreeShowcase(_ id: UUID) -> Bool {
+        let shelfItems = weeklyPicks + items(in: .uyku)
+        if shelfItems.contains(where: { item in
+            switch item {
+            case .tale(let tale): return tale.id == id
+            case .series(let series, _):
+                return series.id == id || catalog.episodes(of: series.id).contains { $0.id == id }
+            }
+        }) { return true }
+        return originals(in: .uyku).contains { $0.id == id }
+    }
+
     // MARK: - Orijinal masallar (günlük akış)
 
     struct Original: Identifiable, Equatable {
