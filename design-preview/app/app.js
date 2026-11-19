@@ -526,4 +526,4 @@ const DEMO = {
 };
 if (DEMO[ortu]) S.modal = DEMO[ortu];
 if (start || DEMO[ortu]) { S.os = "app"; S.onboarded = true; }
-addEventListener("DOMContentLoaded", () => render());
+addEventListener("mp-ready", () => render());

@@ -4,14 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MagicPaper Prototip</title>
-<link rel="stylesheet" href="app.css">
+<script>document.write('<link rel="stylesheet" href="app.css?v=' + Date.now() + '">')</script>
 </head>
 <body>
 <main id="app" aria-live="polite"></main>
-<script src="app.js"></script>
-<script src="content.js"></script>
-<script src="masallar.js"></script>
-<script src="paywall.js"></script>
-<script src="os.js"></script>
+<script>
+  // Dosyalar her açılışta taze yüklenir (önizleme eski sürümü önbellekten göstermesin).
+  (function load(files) {
+    if (!files.length) return dispatchEvent(new Event("mp-ready"));
+    const s = document.createElement("script"); s.src = files[0] + "?v=" + Date.now();
+    s.onload = () => load(files.slice(1)); document.body.appendChild(s);
+  })(["app.js", "content.js", "masallar.js", "paywall.js", "os.js"]);
+</script>
 </body>
 </html>

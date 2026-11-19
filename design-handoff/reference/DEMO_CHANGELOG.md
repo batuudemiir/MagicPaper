@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Önizleme: bağlantıyla doğrudan ekrana, taze yükleme
+
+- İrem Paywall seçeneklerini göremedi (derinde: ilk açılış + kapı; önizleme önbelleği olası). `design-preview/index.html` adres çubuğundaki sorguyu telefonun içine geçirir: `index.html?ortu=payA|payB|payC`, `?ekran=masallar`, `?ilk=welcome`, `?sayfa=tale:rapunzel`.
+- `app/index.html` betikleri ve CSS'i her açılışta `?v=<zaman>` ile taze yükler; ilk çizim `mp-ready` olayıyla (betikler sırayla yüklendikten sonra).
+- Test: Edge'de `index.html` ve `index.html?ortu=payA` çekildi, ikisi de doğru.
+- Dosyalar: `design-preview/index.html`, `design-preview/app/{index.html,app.js}`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototipte üç Paywall seçeneği
 
 - `design-preview/app/paywall.js`: karar için üç tasarım, Büyükler için odasında "Paywall seçenekleri" altında ve `?ortu=payA|payB|payC` ile. A · Kitaplık (çocuğun kapakları, "<ad>'in kitaplığı", sahiplik), B · Akşam ritüeli (gece sahnesi, "Bu hafta 4 akşam birlikte okudunuz", Ücretsiz/Premium karşılaştırma tablosu), C · Sade ve güven (fiyat önde, yan yana plan kartları, deneme takvimi).
