@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Gezilebilir HTML prototip
+
+- Ne değişti: `design-preview/app/` (index.html, app.css, app.js). Önizleyicide yeni varsayılan sekme "Uygulama": tıklanarak gezilen prototip. Alt çubuk ve dört sekme (Ana sayfa, Masallar, Kitaplık, Profil), masal yazma (mod → "Masalda kimler olsun?" → hazırlık defteri 6-8 sn, 2 sn sonra atlanır, kendiliğinden açılır → okuyucu → masal sonu), Büyükler için (iki saniye basılı tutma kapısı, özet, Ayarlar, bugünkü Abonelik). Biten masal yıldız ve çıkartma sayısını, yazılan masal kitaplığı günceller. Kitaplık süzgeçleri çalışır. Okuyucuda ← → klavye.
+- Kaynak: gerçek ekran görüntüleri (`screens/real/`) ve SwiftUI'daki metinler (`StoryModeStep`, `CompanionStep`, `StoryPreparationScript`, `ReaderChrome`, `StoryEndingLeaf`, `ParentalGateView`, `SettingsView`). Renk ve ölçüler `tokens.css`'ten. Masal metni prototip için yazılmış örnek, motor çıktısı değil.
+- Bilerek yapılmadı: arama, raflar, kahraman dolabı, rozetler, okuma ayarları, sesli okuma, seri; dokununca "prototipte henüz yok" der. Uygulama kodu değişmedi.
+- Derin bağlantı: `app/index.html?ekran=kitaplik`, `?ortu=createWho|reader|ending|parent|settings|paywall`.
+- Test: Edge görünmez modunda 12 ekranın görüntüsü alındı ve gerçek ekranlarla karşılaştırıldı. Tıklama akışı gözle denenmedi (İrem dener).
+- Dosyalar: `design-preview/app/*`, `design-preview/index.html`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · İlk gerçek ekran görüntüleri; boş ekran yeniden denemesi
 
 - Sonuç: `2e747fa` ile uygulama GitHub'ın Mac'inde (Xcode 26.6, iPhone SE 3. nesil ve iPhone 17 Pro Max) derlendi ve 32 görüntü çekildi (`design-preview/screens/real/`, bot commit'i `47b6e23`). Uygulama açılışta çökmedi.

@@ -44,6 +44,7 @@
 <header>
   <h1>MagicPaper önizleme</h1>
   <div class="group" id="kaynak">
+    <button data-v="uygulama">Uygulama</button>
     <button data-v="taslak">Taslaklar</button>
     <button data-v="gercek">Gerçek uygulama</button>
   </div>
@@ -77,7 +78,7 @@ const CIHAZ = {
 
 const store = { get(k, d) { try { return localStorage.getItem("mp." + k) ?? d; } catch (e) { return d; } },
                 set(k, v) { try { localStorage.setItem("mp." + k, v); } catch (e) {} } };
-const S = { kaynak: store.get("kaynak", "taslak"), ekran: store.get("ekran", ""), durum: "",
+const S = { kaynak: store.get("kaynak", "uygulama"), ekran: store.get("ekran", ""), durum: "",
             cihaz: store.get("cihaz", "ikisi"), yazi: store.get("yazi", "normal") };
 
 function gercekEkranlar() {
@@ -86,7 +87,10 @@ function gercekEkranlar() {
   l.forEach((s) => seen.has(s.ekran) || seen.set(s.ekran, { id: s.ekran, baslik: s.baslik }));
   return [...seen.values()];
 }
-function liste() { return S.kaynak === "taslak" ? TASLAKLAR : gercekEkranlar(); }
+function liste() {
+  if (S.kaynak === "uygulama") return [{ id: "app", baslik: "Gezilebilir prototip", dosya: "app/index.html" }];
+  return S.kaynak === "taslak" ? TASLAKLAR : gercekEkranlar();
+}
 
 function bindGroup(id, key) {
   document.querySelectorAll(`#${id} button`).forEach((b) => b.onclick = () => { S[key] = b.dataset.v; store.set(key, S[key]); render(); });
@@ -117,7 +121,7 @@ function phone(kind, ekran) {
   screen.className = "screen"; screen.style.width = c.w + "px"; screen.style.height = c.h + "px";
   if (kind === "buyuk") { const i = document.createElement("div"); i.className = "island"; p.appendChild(i); }
 
-  if (S.kaynak === "taslak") {
+  if (S.kaynak === "taslak" || S.kaynak === "uygulama") {
     const q = new URLSearchParams({ yazi: S.yazi, cihaz: kind === "kucuk" ? "se" : "", durum: S.durum });
     screen.innerHTML = `<iframe title="${ekran.baslik}" src="${ekran.dosya}?${q}"></iframe>`;
   } else {
@@ -149,7 +153,9 @@ function render() {
   dur.querySelectorAll("button").forEach((b) => b.onclick = () => { S.durum = b.dataset.v; render(); });
 
   const note = document.getElementById("note");
-  note.textContent = S.kaynak === "taslak"
+  note.textContent = S.kaynak === "uygulama"
+    ? "Prototip: tıkla, gez. Gerçek ekranlara ve koddaki metinlere dayanır; SwiftUI değil."
+    : S.kaynak === "taslak"
     ? "Taslak: HTML kopyası, gerçek uygulama değil. Büyük yazı yaklaşıktır."
     : (window.MP_SHOTS ? `Gerçek uygulama · ${window.MP_SHOTS.tarih} · commit ${window.MP_SHOTS.commit}` : "");
   paintGroups();
