@@ -43,3 +43,14 @@ Cihaz build log’u: `/private/tmp/MagicPaper-offline-reader-rhythm-device-build
 ### Teslim ve kabul sınırı
 
 Kaynak, metadata, ses koordinatı ve derleme kontrolleri tamam;12 çekirdek testi hatasız, cihaz uygulaması derlenip yüklenip açıldı. Bu, tüm uygulama XCTest hedeflerinin geçtiği veya okuyucunun gerçek cihazda görsel/etkileşim kabulünün tamamlandığı anlamına gelmez. Bu turda yeni sabit viewport görüntüsü üretilmedi; mevcut test kaynağı sonraki test penceresi için hazır. Kullanıcı telefonda **yeni** masal oluşturarak metin grupları, son sayfanın nefesi, kelime yardımı ve sesli okumayı deneyebilir. Eski kitaplarda metadata yoktur, eski düzen korunur. Nitel çocuk gözlemi ve motivasyon etkisi ölçülmedi.
+
+
+## 20 Kasım · Telefon geri bildirimi: ortalama ve görsel kapsamı
+
+Kullanıcı yeni kitapta görsel göremediğini ve metnin yukarıda kaldığını bildirdi. Sığan metnin yukarıda kalmasının somut nedeni `StoryPageView.textScroll` içindeki minimum-height frame’in `.top` hizalamasıydı. `.center` yapıldı: yatay soldan hizalama korunur, metin yalnız kullanılabilir okuma sütununda dikey ortalanır. Minimum yükseklik yaklaşımı nedeniyle uzun metin kendi yüksekliğinde kalır ve baştan kaydırılır; sabit/max yükseklik veya kırpma eklenmedi. Aynı düzeltme eski ve yeni kitapların sunumuna uygulanır, masal verileri değişmez.
+
+Yalnız en son kullanılan telefon kaydının anonim eşleme bilgisi yerel geçici kopyada incelendi; çocuk adı, hikâye metni, profil UUID’si veya özel kitap dosyası repoya alınmadı. Geçici kitap kopyası ve dosya listesi silindi. Kanonik bulgu: yaş5–6, `bp_threshold_joining_002`, `object_bell_001`, recalled=true, ilk varyant `na_any_01` + recall,8 rol metadatalı sayfa,0 art. Manifestte bu blueprint için kurallar var ama **çan asset’i yok**; mevcut binder yalnız incelenmiş `na_neutral_01/02` açılışlarıyla sınırlı. Bu, loader veya offline rol aktarımı hatası değil; mevcut dar havuz/eşleme kapsamı. Rastgele varlık bağlanmadı ve kitabın verisi değiştirilmedi.
+
+UI düzeltmesi bağımsız kod incelemesinden geçti. `/private/tmp/MagicPaper-reader-center-device-build.log`: BUILD SUCCEEDED,exit0. `/private/tmp/MagicPaper-reader-center-install.log` ve `...-launch.log`: kurulum/açılış exit0. Kullanıcı aynı kitabı yeniden açarak görsel kabul yapabilir. Bu küçük stil değişikliği için uygulamayı yansıtan yeni birim testi yazılmadı; tam uygulama XCTest/render yine çalıştırılmış sayılmıyor.
+
+Görsel kapsamının devam işi: çan gibi eksik konular için önceden üretilen statik görseller + authored durum incelemesi; hatırlamalı/diğer açılış ve keşif sayfaları için provenance doğrulamalı ek kurallar; dört yaş bandı/mod/hatırlama durumunda gerçek compose kapsama matrisi. Yalnız bir PNG eklemek mevcut kitabı resimlemez; ayrıca doğru sayfa/durum eşlemesi gerekir. Bu hizalama düzeltmesi o genişlemeyi yapmış gibi sunulmaz.

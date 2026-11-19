@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · Okuyucu dikey ortalandı, görsel eksikliği teşhis edildi
+
+- Telefon geri bildirimi üzerine sığan anlatı, kullanılabilir sütunda dikey ortalandı; yatay soldan hizalama ve uzun metnin baştan kaydırılması korunur. Metin/kayıt/ilerleme değişmez.
+- En son kullanılan kitabın anonim kanonik bilgisiyle görselsizlik doğrulandı: çan konusu için asset yok; hatırlamalı na_any açılışı mevcut dar allowlist dışında. Rasgele görsel veya kayıt geri doldurması eklenmedi. Özel metin/log repo dışında tutuldu, geçici kopyalar silindi.
+- Doğrulama: bağımsız UI kod incelemesi, diff kontrolü; iPhone16 BUILD SUCCEEDED ve yeniden kurulum/açılış exit0. App XCTest/render veya kullanıcının görsel kabulü yapılmış gibi sunulmuyor. Düşük etkili stil değişikliğine ayna birim testi eklenmedi.
+- Dosyalar: StoryPageView.swift, offline-reader-rhythm REPORT ve proje hafızası. Statik havuz ve provenance kurallarının genişlemesi ayrı devam işidir.
+
 ### 2026-11-20 · codex/design-system-catalog · Offline okuyucu ritmi pilotu ve telefon build’i
 
 - Yeni offline masallarda mevcut sayfa rolü/tekrar sözü optional sürümlü metadata ile kayıt ve seriye taşınır.7–10 metinleri kısa cümle grupları, açılış ilk/sakin sonuç son cümle nefesi kazanır;3–6 tek-cümle düzeni korunur. Ek boşluk yalnız bütün metin sığarsa verilir; AX/kompakt/sahne/eski veya bilinmeyen metadata eski düzen.

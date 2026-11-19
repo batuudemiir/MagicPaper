@@ -210,7 +210,8 @@ struct StoryPageView: View {
     /// `.basedOnSize` içerik sığdığında sekmeyi de kapatır, yani sığan sayfa
     /// sabit bir sayfa gibi davranır.
     ///
-    /// Metin üstten başlar; uzun metin aynı sütunda kaydırılabilir.
+    /// Sığan metin kullanılabilir okuma alanında dikey ortalanır;
+    /// uzun metin aynı sütunda baştan kaydırılabilir.
     /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
     /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
     private var wordHighlight: Color { theme.highlight }
@@ -231,7 +232,7 @@ struct StoryPageView: View {
             narrative(available: available)
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(minHeight: max(available.height, 0), alignment: .top)
+            .frame(minHeight: max(available.height, 0), alignment: .center)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.hidden)
