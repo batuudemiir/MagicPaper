@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Prototip ana ekrandan başlıyor; ilk açılış akışı
+
+- Telefonun ana ekranı (genel simgeler, gerçek uygulama adı ya da Apple simgesi yok) ve MagicPaper'ın kendi AppIcon'u. Simgeye dokununca uygulama simgeden büyüyerek açılır; alttaki ev çizgisine dokununca küçülerek ana ekrana döner, durum korunur. Reduce Motion'da yalnızca geçiş.
+- İlk açılış, `AppGate` sırasıyla ve koddaki metinlerle: Karşılama (`OnboardingView`) → Ebeveyn hesabı (`AccountCopy`; prototipte giriş yapılmış sayılır) → Ebeveyn onayı (`ParentConsentView`; "Onaylıyorum" seçilmeden düğme kapalı) → Çocuk profili (`ProfileCreationView`; ad yazılmadan düğme kapalı) → "<ad>'ın ilk masalı yazılıyor" (`FirstRunView`) → okuyucu → masal sonu → "Masal saatini hatırlatalım mı?" → Ana sayfa. Yazılan ad uygulamanın her yerinde kullanılır (Türkçe ilgi eki: İrem'in, Ali'nin).
+- "Neleri sever" adımı uygulamada şu an gizli olduğu için prototipte de yok.
+- Dış sayfa: telefon `zoom` ile küçülüyor, panelin altı kesilmiyor (İrem'in ekran görüntüsündeki hata).
+- Derin bağlantı: `app/index.html?ilk=welcome|signin|consent|profile|reminder`.
+- Test: Edge görünmez modunda dış sayfa 520×860'ta ve altı ekran çekildi, metin ve yerleşim kontrol edildi. Tıklama akışı uçtan uca elle denenmedi.
+- Dosyalar: `design-preview/index.html`, `design-preview/app/{index.html,app.js,app.css,os.js}`, bu günlük.
+
 ### 2026-11-19 · irem@fe162f0 · Önizleme yalnızca iPhone
 
 - `design-preview/index.html` artık yalnızca tek bir iPhone çerçevesi ve içinde gezilen prototip (`app/`); pencereye sığacak kadar küçülür, hiç büyümez. Üst düğmeler kaldırıldı (İrem'in isteği).

@@ -54,7 +54,7 @@ const ic = (n, cls = "") => `<svg class="ico ${cls}" viewBox="0 0 24 24" aria-hi
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 // ---------- Örnek veri (DEBUG -mpDemo -mpDemoLibrary ile aynı çocuk ve kitaplık) ----------
-const CHILD = "İrem";
+let CHILD = "İrem";
 const MODES = {
   bedtime: { title: "Uyku öncesi", promise: "Günü sakin bir hikâyeyle kapatalım.", icon: "moon", soft: "--mp-world-lav-soft", deep: "--mp-world-lav-deep", short: "Uyku" },
   learning: { title: "Yeni şeyler öğrenelim", promise: "Yeni bir şey keşfedelim.", icon: "sparkles", soft: "--mp-world-yellow-soft", deep: "--mp-world-yellow-deep", short: "Öğrenelim" },
@@ -120,6 +120,12 @@ window.MP = { go, push, back, open, close, toast, notYet, S };
 
 function render(anim) {
   clearTimers();
+  if (S.os === "home") { app.innerHTML = OS.springboard(); OS.bindHome(); return; }
+  if (!S.onboarded) {
+    const v = OS.ob[S.ob](); const c = anim === "push" ? "push-in" : anim === "launch" ? "launch-in" : anim === "fade" ? "fade-in" : "";
+    app.innerHTML = `<div class="layer ${v.cls || ""} ${c}">${statusbar()}${v.html}</div>${OS.homeIndicator()}`;
+    bind(); (OS.after[S.ob] || (() => {}))(); return;
+  }
   let html, cls = "", parent = false, extra = "";
   if (S.modal) {
     const m = S.modal;
@@ -131,7 +137,7 @@ function render(anim) {
   } else {
     html = VIEWS[S.tab]().html + tabbar(); cls = anim === "fade" ? "fade-in" : "";
   }
-  app.innerHTML = `<div class="layer ${parent ? "parent" : ""} ${extra} ${cls}">${statusbar()}${html}</div>`;
+  app.innerHTML = `<div class="layer ${parent ? "parent" : ""} ${extra} ${cls === "" && anim === "launch" ? "launch-in" : cls}">${statusbar()}${html}</div>${OS.homeIndicator()}`;
   bind();
   (VIEWS.after[S.modal ? S.modal.view : ""] || (() => {}))(S.modal);
 }
@@ -493,6 +499,7 @@ function bust() {
 }
 
 // Başlangıç: ?ekran=kitaplik gibi bir derin bağlantıyla da açılabilir.
+S.os = "home"; S.onboarded = false; S.ob = "welcome";
 const start = Q.get("ekran");
 if (start && VIEWS[start] && ["home", "masallar", "kitaplik", "profil"].includes(start)) S.tab = start;
 // ?ortu=createMode|createWho|prep|reader|ending|gate|parent|settings|paywall: tam ekran sayfaya doğrudan.
@@ -507,4 +514,5 @@ const DEMO = {
   settings: { view: "settings", from: { view: "parent" } }, paywall: { view: "paywall", from: { view: "parent" } },
 };
 if (DEMO[ortu]) S.modal = DEMO[ortu];
-render();
+if (start || DEMO[ortu]) { S.os = "app"; S.onboarded = true; }
+addEventListener("DOMContentLoaded", () => render());

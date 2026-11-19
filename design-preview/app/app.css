@@ -191,3 +191,48 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .ragi-jump { animation: ragiJump 1s cubic-bezier(.3,1.6,.5,1) .2s both; }
 @keyframes ragiJump { 0% { transform: translateY(16px) scale(.9); opacity: 0; } 60% { transform: translateY(-10px); opacity: 1; } 100% { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .ragi-jump { animation: fadeIn .3s both; } }
+
+/* ---------- Telefonun ana ekranı (sahne; iOS taklidi değil) ---------- */
+.ios-home { position: absolute; inset: 0; display: flex; flex-direction: column; color: #fff;
+            background: radial-gradient(120% 80% at 20% 10%, #8C6FD6 0%, transparent 60%),
+                        radial-gradient(100% 70% at 90% 90%, #E58BB0 0%, transparent 55%), #3A2458; }
+.statusbar.light { color: #fff; }
+.ios-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 0; padding: 26px 18px 0; }
+.ios-app { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ios-ico { width: 64px; height: 64px; border-radius: 15px; display: grid; place-items: center; color: #fff; overflow: hidden; }
+.ios-ico .ico { width: 30px; height: 30px; stroke-width: 1.8; }
+.ios-ico.mp { background: #fff; }
+.ios-ico.mp img { width: 100%; height: 100%; object-fit: cover; }
+.ios-lbl { font: 500 12px -apple-system, "Segoe UI", sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.ios-search { margin: auto auto 16px; display: flex; gap: 6px; align-items: center; padding: 7px 14px; border-radius: 999px;
+              background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font: 600 13px -apple-system, "Segoe UI", sans-serif; }
+.ios-search .ico { width: 14px; height: 14px; }
+.ios-dock { margin: 0 12px 30px; padding: 14px 10px; border-radius: 34px; display: flex; justify-content: space-around;
+            background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+
+/* Uygulama simgeden büyüyerek açılır, ev çizgisiyle küçülerek kapanır */
+.launch-in { transform-origin: var(--ox, 50%) var(--oy, 50%); animation: launchIn .42s cubic-bezier(.2,.9,.25,1); }
+.launch-out { transform-origin: var(--ox, 50%) var(--oy, 50%); animation: launchOut .26s ease-in forwards; }
+@keyframes launchIn { from { transform: scale(.14); opacity: 0; border-radius: 40px; } 40% { opacity: 1; } to { transform: none; } }
+@keyframes launchOut { to { transform: scale(.14); opacity: 0; border-radius: 40px; } }
+@media (prefers-reduced-motion: reduce) { .launch-in { animation: fadeIn .2s; } .launch-out { animation: none; opacity: 0; } }
+.home-ind { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; z-index: 60; display: grid; place-items: center; }
+.home-ind i { width: 134px; height: 5px; border-radius: 3px; background: var(--mp-text-primary); opacity: .85; }
+.layer.reader ~ .home-ind i, .layer.parent ~ .home-ind i { opacity: .7; }
+
+/* ---------- İlk açılış ---------- */
+.ob-center { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ob-row { display: flex; gap: 14px; align-items: center; padding: 14px 0; }
+.card .ob-row + .ob-row { border-top: 1px solid var(--mp-border-kid-divider); }
+.ob-row .tile { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--mp-action-soft); color: var(--mp-action-primary); }
+.ob-input { width: 100%; margin-top: 16px; min-height: 56px; padding: 0 18px; border-radius: var(--mp-radius-input); border: 2px solid var(--mp-border-kid-input);
+            font: 400 calc(18px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-primary); background: #fff; outline: none; }
+.ob-input:focus { border-color: var(--mp-action-primary); }
+.ob-check { display: flex; align-items: center; gap: 12px; margin-top: 18px; min-height: 48px; }
+.ob-check .box { width: 28px; height: 28px; border-radius: 8px; border: 2.5px solid var(--mp-border-kid-input); display: grid; place-items: center; color: #fff; }
+.ob-check .box.on { background: var(--mp-action-primary); border-color: var(--mp-action-primary); }
+.ob-check .box .ico { width: 18px; height: 18px; stroke-width: 3; }
+.ob-color { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--mp-border-kid); }
+.ob-color.on { box-shadow: 0 0 0 3px var(--mp-action-primary); }
+.link-btn { color: var(--mp-action-primary); font: 700 calc(15px * var(--type)) "Nunito", sans-serif; margin-top: 14px; min-height: 44px; }
+.btn:disabled { background: var(--mp-action-disabled); color: var(--mp-text-secondary); box-shadow: none; cursor: default; }
