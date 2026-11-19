@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · İlk gerçek ekran görüntüleri; boş ekran yeniden denemesi
+
+- Sonuç: `2e747fa` ile uygulama GitHub'ın Mac'inde (Xcode 26.6, iPhone SE 3. nesil ve iPhone 17 Pro Max) derlendi ve 32 görüntü çekildi (`design-preview/screens/real/`, bot commit'i `47b6e23`). Uygulama açılışta çökmedi.
+- 6 görüntü bembeyaz: Profil (Pro Max, iki yazı boyutu), Büyükler için ve Abonelik (Pro Max, en büyük yazı), Abonelik (SE, normal), Masallar (SE, en büyük yazı). Zamanlama mı gerçek hata mı belli değil.
+- Değişen: `Scripts/ci_screenshots.sh` boş görüntüde iki kez daha bekleyip yeniden çekiyor; üçünde de boşsa GitHub uyarısı yazıyor.
+- Gözlem: `paywall-bugun.html` taslağı gerçek Paywall görüntüsüyle uyuştu.
+- Test: yeni tur bu commit'le başlıyor; yerelde derleme yok.
+- Dosyalar: `Scripts/ci_screenshots.sh`, bu günlük.
+
 ### 2026-11-18 · irem (dal, bu kayıtla gelen commit) · Ekran hattı düzeltmeleri ve Xcode 26.6 derleme hatası
 
 - Ekran görüntüsü hattı: SE simülatörü yoksa oluşturuluyor; `Secrets.xcconfig` doğru yerde (`MagicPaper/`); derleme günlüğü ve hatalar dala ve GitHub açıklamalarına yazılıyor (`.log` uzantısı `.gitignore`'da olduğu için `.txt`); sıra iş düzeyinde, [ekran]'sız gönderim çalışan turu iptal etmiyor.

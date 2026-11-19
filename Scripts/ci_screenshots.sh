@@ -143,6 +143,16 @@ for DEV in "$SMALL" "$LARGE"; do
         -mpDemo YES -mpDemoLibrary YES -mp_approveBeforeShow NO $ARGS >/dev/null
       sleep "$WAIT"
       xcrun simctl io "$UDID" screenshot --type=png "$OUT/$FILE" >/dev/null 2>&1
+      # Boş (beyaz) görüntü çok iyi sıkışır: tam çözünürlükte 100 KB altı = henüz çizilmemiş.
+      # İki kez daha bekleyip dener; hâlâ boşsa gerçek bir boş ekran olabilir, günlüğe yazar.
+      for TRY in 1 2; do
+        [ "$(stat -f %z "$OUT/$FILE")" -ge 100000 ] && break
+        sleep "$WAIT"
+        xcrun simctl io "$UDID" screenshot --type=png "$OUT/$FILE" >/dev/null 2>&1
+      done
+      if [ "$(stat -f %z "$OUT/$FILE")" -lt 100000 ]; then
+        echo "::warning::BOŞ EKRAN: $NAME · ${SIZE%%|*} · $TITLE (3 denemede de boş)"
+      fi
       echo "  {ekran:\"$ID\", baslik:\"$TITLE\", cihaz:\"$KIND\", cihazAdi:\"$NAME\", yazi:\"${SIZE%%|*}\", dosya:\"screens/real/$FILE\"}," >> "$MANIFEST"
       echo "✓ $NAME · ${SIZE%%|*} · $TITLE"
     done
