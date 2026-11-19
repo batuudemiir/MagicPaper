@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · Okuyucu onaylı referansa hizalandı
+
+- Nötr nesne çizimi üstte büyütüldü; metin altta, dar/AX görünümde metne öncelik. Gövde Nunito600, çocuk adı Nunito800; görselsiz sayfa aynı dizgiyle üstten başlar.
+- Alt çubuk iki sıra, görünür seek tutamağı, tema vurgulu favori ve yazılı Aa. Aa doğal büyür; AX3 sınırı kaldırıldı, kompakt yükseklik alt açıklığı paylaşılıyor.
+- Aa ayarlarında doğrudan kâğıt üstünde örnek, kapatma, sade kolay okuma, lila satır aralığı ve seçili kâğıt işareti. Mevcut boyut sliderı ve gelişmiş tercihler korunur; dönüş footer’ı opak.
+- Doğrulama: önce155 test/1 mevcut atlama/0 hata; son üç stil düzeltmesinden sonra58 test/0 hata. Son sürüm15 sabit viewport renderı; ana gündüz/gece, SE, görselsiz ve ayarlar normal/AX5 gözle incelendi. Etkileşimli uçtan uca jest/ses/VoiceOver veya fiziksel cihaz testi yapılmadı. Yerel CodeSign/launch altyapı sorunu mevcut Xcode app.xcent ile düzeltildi; kaynakta bypass yok.
+- Kayıt: `design-handoff/proposals/2026-11-19-reader-reference-alignment/REPORT.md`, plan/spec ve proje hafızası. Motor, eşleme, kayıt formatı ve karakter kimliği değişmedi.
+
 ### 2026-11-19 · codex/design-system-catalog, commit yok · Offline masallara sürümlü guaj eşlemesi
 
 - Ne değişti: ilk dar üretim dilimi uygulandı. 17 adet 5–6 blueprint açılışı/na_neutral_01–02 için 340 katı kural; ham template/varyant/subject kaynak izi, katalog sürümü ve tüm sayfa tuple’ı eşleşirse 10 konu çizimi bağlanır. 12 çizim paketli; açık müzik kutusu/boş yuva durum kanıtı yokken seçilmez. On konu için gerçek engine fixture’ı kaydedildi.

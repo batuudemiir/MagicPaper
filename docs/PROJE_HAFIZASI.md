@@ -5,7 +5,7 @@ Claude Code oturumlarının 17 Kasım 2026'ya kadar biriktirdiği notlar (karar,
 ## İçindekiler
 
 - [Semantik görsel havuzu](#semantik-gorsel-havuzu) — 19 Kasım: motor/seri/havuz incelemesi, 33 nesne envanteri, 12 guaj konu çizimi; ilk 10 konu/5–6 açılış entegrasyonu, 145 uygulama testi hatasız
-- [Okuyucu guaj tasarımı](#okuyucu-guaj-tasarimi) — 18 Kasım: kullanıcı koddan önce GPT‑6.1 ile sahne/spot okuyucu önizlemesi istedi; onaylanan sahne/spot/metin okuyucusu SwiftUI’ye uygulanıyor
+- [Okuyucu guaj tasarımı](#okuyucu-guaj-tasarimi) — 19 Kasım: üst spot, Nunito600/800, iki sıralı chrome ve Aa ayarları onaylı referansa hizalandı
 - [Offline guaj pilotu](#offline-guaj-pilotu) — 18 Kasım: 24 gerçek motor çıktısı, iki çizim/48 eşleme; altı ışık dili uyumsuzluğu ve bakım hedefi incelemesi; üretim entegrasyonu yok
 - [Blueprint & v3 corpus realignment](#blueprint-corpus-realignment) — D3/D10 kapandı; K1 de kapandı: saklanan hikâyeler üretilmiş metni tutuyor, seed drift kullanıcıyı etkilemiyor.
 - [MagicPaper Grup 1 + 1.5](#magicpaper-group1-integration) — build yeşil, 761/23 test; kalan hatalar tek içerik boşluğundan; Grup 2 önkoşulları ve dosya sahipliği kuralları.
@@ -1074,6 +1074,8 @@ Kaynak: `design-handoff/proposals/2026-11-18-offline-art-pilot/REPORT.md`. Gerç
 ---
 
 ## okuyucu-guaj-tasarimi
+
+**19 Kasım referans hizalama onayı:** Kullanıcı spotun üstte büyük olmasını ve önceki okuma/font/ayar referansının tüm okuyucuya uygulanmasını istedi. Spot artık üst kontrol açıklığından sonra, metinden önce; %28 sayfa hedefi, kalan alanın %45 sınırı ve 320 pt genişlik tavanı var. AX’te ve çok dar yükseklikte isteğe bağlı çizim kalkar. Nunito600 gövde korunur, ad Nunito800 olur. Alt chrome sayfa/ses ve önceki/seek/sonraki olmak üzere iki sıra; seek ilk/son uçları0/1. Aa minimum hedefle büyür, AX3 tavanı kalktı; UIKit yapraklarına Dynamic Type/boyut sınıfı aktarılır. Ayarlarda doğrudan kâğıt üstünde örnek, kapatma, sade kolay okuma, seçili kâğıt işareti ve açık lila satır aralığı vardır; dört duraklı boyut sliderı ve tüm gelişmiş tercihler korunur. Ana ayarlar beyaz, örnek seçili kâğıttır. Motor/kimlik/eşleme değişmez. Kanıt ve doğrulama: `design-handoff/proposals/2026-11-19-reader-reference-alignment/REPORT.md`. Eski spot-after-text önerisini bu onay geçersiz kılar.
 
 _18 Kasım 2026 — kullanıcı, kodlamadan önce GPT‑6.1 ile okuyucunun önceki beğenilen sahne/spot örneğine göre yeniden düşünülmesini istedi._
 

@@ -29,6 +29,7 @@ struct StoryPageView: View {
     /// Masalın dünya işareti; çağıranların ortak sunum sözleşmesinde kalır.
     let symbol: String
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.verticalSizeClass) private var verticalClass
     @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var unavailableImageRef: String?
 
@@ -41,7 +42,9 @@ struct StoryPageView: View {
         return page.composition
     }
 
-    private var bottomClearance: CGFloat { MP.S.navBarHeight + MP.S.x10 }
+    private var bottomClearance: CGFloat {
+        ReaderPageLayout.bottomChromeClearance(accessibility: typeSize.isAccessibilitySize, compactHeight: verticalClass == .compact)
+    }
 
     var body: some View {
         ZStack {
@@ -58,6 +61,9 @@ struct StoryPageView: View {
                         illustration(in: geo)
                             .overlay(alignment: .bottom) { PaperLip(theme: theme) }
                         Spacer(minLength: MP.S.x6)
+                    }
+                    if composition == .spot {
+                        spotHeader(in: geo)
                     }
                     textColumn(in: geo)
                         .padding(.horizontal, StoryPageView.gutter)
@@ -125,6 +131,24 @@ struct StoryPageView: View {
         )
         .frame(height: height)
         .clipped()
+    }
+
+    @ViewBuilder
+    private func spotHeader(in geo: GeometryProxy) -> some View {
+        let top = MP.S.navBarHeight + MP.S.x6
+        let size = ReaderPageLayout.spotHeaderSize(
+            width: max(0, geo.size.width - StoryPageView.gutter * 2),
+            pageHeight: geo.size.height,
+            contentHeight: max(0, geo.size.height - top - bottomClearance),
+            accessibility: typeSize.isAccessibilitySize)
+        if size.height > 0 {
+            PageIllustration(fileName: page.imageRef ?? "", label: page.imageLabel, theme: theme,
+                             art: page.art, bleeds: false,
+                             onUnavailable: { unavailableImageRef = illustrationKey })
+                .frame(width: size.width, height: size.height)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, MP.S.x6)
+        }
     }
 
     // MARK: - 27 · iPad yatay açık kitap
@@ -204,20 +228,7 @@ struct StoryPageView: View {
 
     private func textScroll(available: CGSize) -> some View {
         ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: MP.S.x6) {
-                narrative
-                if composition == .spot {
-                    let size = ReaderPageLayout.spotSize(width: available.width, height: available.height,
-                                                         accessibility: typeSize.isAccessibilitySize)
-                    if size.height > 0 {
-                        PageIllustration(fileName: page.imageRef ?? "", label: page.imageLabel, theme: theme,
-                                         art: page.art, bleeds: false,
-                                         onUnavailable: { unavailableImageRef = illustrationKey })
-                            .frame(width: size.width, height: size.height)
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-            }
+            narrative
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(minHeight: max(available.height, 0), alignment: .top)

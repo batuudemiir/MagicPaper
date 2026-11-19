@@ -15,14 +15,20 @@ struct ReaderSettingsSheet: View {
     @EnvironmentObject private var settings: MPSettingsStore
     /// Ses, hız ve titreşim "Daha fazla"nın altında.
     @State private var showsMore = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private let sizes = MP.ReadSize.allCases
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xl) {
-                Text("Okuma ayarları").mpText(.section).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
+                HStack(spacing: MP.S.x3) {
+                    Text("Okuma ayarları").mpText(.section).foregroundStyle(MPColor.textPrimary)
+                        .accessibilityAddTraits(.isHeader)
+                    Spacer(minLength: MP.S.x2)
+                    MPCircleButton(systemImage: "xmark", accessibilityLabel: "Kapat",
+                                   size: MP.S.tapMin, action: onClose)
+                }
 
                 readingSample
 
@@ -37,12 +43,9 @@ struct ReaderSettingsSheet: View {
                     Text("Satır aralığı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     MPSegmented(options: MP.ReadSpacing.allCases.map { ($0, $0.label) },
                                 selection: Binding(get: { settings.readSpacing },
-                                                   set: { settings.readSpacing = $0 }))
-                    MPGroupedList(area: .kid) {
-                        toggleRow(icon: "textformat.alt", tone: .sky, title: "Kolay okuma",
-                                  subtitle: "Harflerin arası açılır",
-                                  isOn: $settings.easyReading)
-                    }
+                                                   set: { settings.readSpacing = $0 }),
+                                track: MPColor.backgroundSunken)
+                    easyReadingRow
                 }
 
                 group("Kâğıt") {
@@ -64,13 +67,14 @@ struct ReaderSettingsSheet: View {
                 moreSection
             }
             .padding(.horizontal, MPSpacing.screenH)
-            .padding(.top, MPSpacing.xxl)
+            .padding(.top, MPSpacing.md)
             .padding(.bottom, MPSpacing.lg)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             MPButton(title: "Okumaya dön", fullWidth: true, action: onClose)
                 .padding(.horizontal, MPSpacing.xxxl)
                 .padding(.vertical, MPSpacing.md)
+                .background(MPColor.backgroundKid)
         }
         // Yarım sayfa açılır: masal arkada görünür kalır, kâğıt ve yazı
         // değişince arkada hemen döner. Kalan ayarlar için yukarı çekilir.
@@ -91,11 +95,25 @@ struct ReaderSettingsSheet: View {
                 .lineSpacing(points * gap)
                 .tracking(ReaderText.tracking(points, easyReading: settings.easyReading))
                 .foregroundStyle(theme.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(MP.S.x4)
-                .background(theme.paper, in: RoundedRectangle(cornerRadius: MP.R.card))
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, MP.S.x2)
+                .background(theme.paper)
                 .accessibilityLabel("Okuma yazısı örneği. Birlikte okuyalım. Bir sayfa daha.")
         }
+    }
+
+    private var easyReadingRow: some View {
+        Toggle(isOn: $settings.easyReading) {
+            VStack(alignment: .leading, spacing: MP.S.x1) {
+                Text("Kolay okuma").mpText(.supporting).fontWeight(.heavy)
+                    .foregroundStyle(MPColor.textPrimary)
+                Text("Harflerin arası açılır").mpText(.footnote)
+                    .foregroundStyle(MPColor.textSecondary)
+            }
+        }
+        .toggleStyle(MPSwitchStyle())
+        .frame(minHeight: MP.S.tapMin)
     }
 
     // MARK: - Kâğıt
@@ -103,26 +121,37 @@ struct ReaderSettingsSheet: View {
     /// Beş kâğıt, her biri "Aa" yazan küçük bir sayfa. Seçili olan çerçeveli
     /// ve adı kalın: seçim yalnızca renkle verilmez.
     private var paperSwatches: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: MP.S.x10 - MP.S.x2), spacing: MPSpacing.sm)],
+        LazyVGrid(columns: typeSize.isAccessibilitySize
+                  ? [GridItem(.adaptive(minimum: MP.S.x10 * 2), spacing: MP.S.x2)]
+                  : Array(repeating: GridItem(.flexible(), spacing: MP.S.x2), count: 5),
                   spacing: MPSpacing.sm) {
             ForEach(MP.ReadTheme.allCases) { theme in
                 let on = app.readTheme == theme
                 Button { app.readTheme = theme } label: {
                     VStack(spacing: MPSpacing.xxs) {
                         Text("Aa")
-                            .font(MP.F.displaySM())
+                            .font(MP.F.bodyLG(.bold))
                             .foregroundStyle(theme.foreground)
                             .frame(maxWidth: .infinity)
-                            .frame(height: MP.S.x9)
+                            .frame(minHeight: MP.S.tapMin)
+                            .padding(.vertical, MP.S.x1)
                             .background(theme.paper, in: RoundedRectangle(cornerRadius: MPRadius.sm))
                             .overlay(RoundedRectangle(cornerRadius: MPRadius.sm)
                                 .strokeBorder(on ? MPColor.actionPrimary : MPColor.borderKid,
                                               lineWidth: on ? 2 : 1))
+                            .overlay(alignment: .bottomTrailing) {
+                                if on {
+                                    MPIcon("checkmark", size: MP.G.xs, weight: .heavy)
+                                        .foregroundStyle(theme.highlight)
+                                        .padding(MP.S.x1)
+                                        .accessibilityHidden(true)
+                                }
+                            }
                         Text(theme.label)
                             .font(MP.F.caption(on ? .heavy : .semibold))
                             .foregroundStyle(on ? MPColor.textPrimary : MPColor.textSecondary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     .contentShape(Rectangle())
                 }
