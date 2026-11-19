@@ -624,6 +624,19 @@
         "imaginary"
       ],
       "visualScene": "child walking home and smiling, a soft shape beside them"
+    },
+    {
+      "id": "a7_wc_tp_01",
+      "text": "Eve dönerken {{child.name}} bugünü baştan düşündü. Her şey sabahki gibi duruyordu ama o, biraz değişmişti. Bu düşünce bütün yol boyunca içini ısıttı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "tp_a7_wc_tp_01",
+      "afterClosing": [
+        "succeed",
+        "restore"
+      ]
     }
   ]
 }

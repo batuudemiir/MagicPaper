@@ -372,6 +372,31 @@
       "afterBeat": [
         "persist"
       ]
+    },
+    {
+      "id": "s56_sc_ps_tp_01",
+      "text": "Bu kez hareket baştan sona akıp gitti. {{child.name}} durdu, şaşkınlıkla güldü, sonra bir kez daha yaptı. {{companion.name}} sevinçle zıpladı; denemek sonunda işe yaramıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s56_sc_ps_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc_together_tp_01",
+      "text": "Son adımı birlikte attılar ve kendilerini öbür tarafta buldular. {{child.name}} dönüp geçtikleri yere baktı. Birlikte olunca yol hiç de uzun gelmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_sc_together_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

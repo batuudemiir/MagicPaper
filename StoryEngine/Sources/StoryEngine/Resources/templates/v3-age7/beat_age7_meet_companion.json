@@ -350,6 +350,20 @@
         "guide",
         "reassuring"
       ]
+    },
+    {
+      "id": "a7_mc_h2_tp_01",
+      "text": "Bir köşede {{companion.name}} adında küçük bir {{companion.type}} kıvrılmıştı. Biraz yorgundu, biraz da çekingen. {{child.name}} sesini alçalttı ve yavaşça, adım adım yanına yaklaştı.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "move": "tp_a7_mc_h2_tp_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

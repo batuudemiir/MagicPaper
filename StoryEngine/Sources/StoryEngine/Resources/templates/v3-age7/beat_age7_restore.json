@@ -281,6 +281,36 @@
       "natureRequire": [
         "person"
       ]
+    },
+    {
+      "id": "a7_rs_h2_tp_01",
+      "text": "Bir sabah {{companion.name}}, {{child.name}} gelmeden kalkmış ve onu bekliyordu. Adımları sağlamdı, gözleri pırıl pırıldı. {{child.name}} anladı: bekleyiş bitmiş, iyileşme gelmişti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a7_rs_h2_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ],
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "a7_rs_h2_tp_02",
+      "text": "Bir son hamle daha yaptılar, ikisi aynı anda, ve iş bitti. {{companion.name}} rahat bir nefes aldı. {{child.name}} yorgundu ama mutluydu; bu iş, ikisinin birlikte yapacağı bir işti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a7_rs_h2_tp_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

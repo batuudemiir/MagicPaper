@@ -65,6 +65,25 @@
       ],
       "move": "h2b_a9_pw_j_03",
       "lengthClass": "paired"
+    },
+    {
+      "id": "a9_pw_tp_01",
+      "text": "Artık yapılacak çok az şey kalmıştı; gerisi zamanın işiydi. {{child.name}} her gün geldi, bir süre oturdu ve {{companion.name}}'i izledi. Bazı günler hiçbir şey değişmiyordu. {{child.name}} yine de umudunu bir kenara koymadı, çünkü iyileşmenin çoğu zaman sessizce olduğunu öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_pw_tp_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_pw_j_tp_01",
+      "text": "{{child.name}} ellerini dizlerine koyup bekledi. İşin bu kısmı acele kaldırmıyordu ve bunu artık o da biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_a9_pw_j_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

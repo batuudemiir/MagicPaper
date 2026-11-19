@@ -153,6 +153,16 @@
       "requiredSlots": [],
       "move": "spor_s56_ce_03",
       "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_tp_01",
+      "text": "{{companion.name}} saydı, {{child.name}} zıpladı; sonra yer değiştirip aynı ritimle yeniden başladılar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s56_ce_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

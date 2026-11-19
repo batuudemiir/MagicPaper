@@ -325,6 +325,37 @@
         "guide",
         "reassuring"
       ]
+    },
+    {
+      "id": "a9_mc_h2_tp_01",
+      "text": "Yolun kıyısında {{companion.name}} adında küçük bir {{companion.type}} duruyordu. Bir yeri ağrıyor gibiydi; arada bir kıpırdıyor, sonra yine hareketsiz kalıyordu. {{child.name}} acele etmedi. Önce biraz uzağa oturdu, sonra yumuşak bir sesle selam verdi ve {{companion.name}}'in kendisine bakmasını bekledi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "move": "tp_a9_mc_h2_tp_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_j_tp_01",
+      "text": "{{child.name}} bu işi en iyi kimin bileceğini düşündü ve {{companion.name}}'e gitmeye karar verdi. Yanına vardığında {{companion.name}} işinin başındaydı; onu görünce elindekini bıraktı. {{child.name}} gördüğünü anlattı. {{companion.name}} sözünü hiç kesmeden dinledi, sonra başıyla devam etmesini işaret etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_mc_j_tp_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
     }
   ]
 }

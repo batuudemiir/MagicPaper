@@ -159,6 +159,19 @@
       "natureRequire": [
         "person"
       ]
+    },
+    {
+      "id": "a9_co_h2_tp_01",
+      "text": "{{companion.name}} bir süre sessiz kaldı, sonra küçük işaretlerle anlatmaya başladı. Önce sıcak bir köşeyi gösterdi, sonra biraz suyu, en son da {{child.name}}'in yanındaki boşluğu. {{child.name}} hepsini dikkatle izledi. Ne istediğini söylemek zordu belki, ama göstermek mümkündü.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a9_co_h2_tp_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
     }
   ]
 }

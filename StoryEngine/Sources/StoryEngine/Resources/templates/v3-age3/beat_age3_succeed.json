@@ -325,6 +325,44 @@
       "afterBeat": [
         "ask_for_help"
       ]
+    },
+    {
+      "id": "s34_sc_pw_tp_01",
+      "text": "Sonunda rüzgâr geldi! {{child.name}} koşup zıpladı, {{companion.name}} peşinden sekti. Beklemek işe yaramıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s34_sc_pw_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "sc3m_tp_01",
+      "text": "{{child.name}} kıkırdadı. Meğer bambaşka bir şeymiş! Yakından bakmak, uzaktan bakmaktan çok daha güzeldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_sc3m_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "reveal_truth"
+      ]
+    },
+    {
+      "id": "sc3u_tp_01",
+      "text": "Oldu işte! {{child.name}} sırrı bulmuştu. {{companion.name}} sevinçle zıpladı, {{child.name}} kocaman gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_sc3u_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "insight"
+      ]
     }
   ]
 }

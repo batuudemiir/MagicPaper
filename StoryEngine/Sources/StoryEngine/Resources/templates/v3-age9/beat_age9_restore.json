@@ -225,6 +225,36 @@
       "natureRequire": [
         "person"
       ]
+    },
+    {
+      "id": "a9_rs_h2_tp_01",
+      "text": "Bir sabah {{companion.name}}, {{child.name}} daha yaklaşmadan ayağa kalktı ve birkaç adım attı. Adımları sağlam, gözleri berraktı. {{child.name}} bir süre hiçbir şey diyemedi. İyileşme gürültüsüz gelmişti; tıpkı bekleyiş gibi sessiz, tıpkı bakım gibi sabırlı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a9_rs_h2_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ],
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_tp_02",
+      "text": "Son çabayı omuz omuza verdiler ve iş sonunda tamamlandı. {{companion.name}} önce sessizce baktı, sonra büyük bir sevinçle {{child.name}}'e döndü. İkisi de yorgundu. Ama bu yorgunluk paylaşılmış bir işin yorgunluğuydu ve bu yüzden hafifti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a9_rs_h2_tp_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

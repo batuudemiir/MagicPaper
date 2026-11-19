@@ -390,6 +390,19 @@
       "afterBeat": [
         "patient_wait"
       ]
+    },
+    {
+      "id": "s910_sc_ps_tp_01",
+      "text": "Bu kez hareket baştan sona akıp gitti; hiçbir yerde takılmadı. {{child.name}} durdu, inanamayarak güldü, sonra emin olmak için bir kez daha yaptı. Yine oldu. {{companion.name}} sevinçle çevresinde sekti. Demek ki her deneme boşa gitmemiş, bedenin içinde sessizce birikmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s910_sc_ps_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
     }
   ]
 }

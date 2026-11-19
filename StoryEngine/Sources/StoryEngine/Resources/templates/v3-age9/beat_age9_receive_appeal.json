@@ -145,6 +145,16 @@
       ],
       "move": "spor_s910_ra_03",
       "lengthClass": "solo"
+    },
+    {
+      "id": "s910_ra_tp_01",
+      "text": "{{companion.name}} bir süre {{child.name}}'in çevresinde dolandı, sonra dayanamayıp söyledi: \"Bir oyun var, ama tek başıma oynanmıyor. Biri başlatmalı, öbürü karşılamalı. Bütün sabah denedim, olmadı.\" Sesi biraz utangaçtı. {{child.name}} gülümsedi; eksik oyuncu tam karşısında duruyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s910_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

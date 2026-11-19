@@ -171,7 +171,11 @@ final class CatalogBundleTests: XCTestCase {
         // 2091 → 2097 (testler, 19 Kasım 2026): 9-10 inanç sayfasına dört
         // `solo` + `certain` satır (yanılgı masalı kararsız satıra düşüyordu) ve
         // 3-4 tanışma sayfasına iki `solo` satır (rehber ve çekingen havuzu 3'tü).
-        XCTAssertEqual(catalog.recordCounts["variants"], 2097)
+        // 2097 → 2146 (ince sayfalar, 19 Kasım 2026): bağlanabilen bir hücrede
+        // 3 satırda kalan 65 sayfa (49 havuz) en az 4'e çıktı, havuz başına bir
+        // satır; her yeni satır, havuzdaki bir komşusunun kapılarını taşıyor.
+        // Var olan satırlara dokunulmadı.
+        XCTAssertEqual(catalog.recordCounts["variants"], 2146)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

@@ -148,6 +148,16 @@
       ],
       "move": "spor_s56_ra_03",
       "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_tp_01",
+      "text": "{{companion.name}} {{child.name}}'in yanına gelip durdu. \"Bu oyunu tek başıma oynamaya çalışıyorum,\" dedi, \"ama hep yarım kalıyor. Sen başlatsan, ben devam etsem olur mu?\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s56_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

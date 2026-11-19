@@ -137,6 +137,16 @@
       "requiredSlots": [],
       "move": "spor_s910_ce_03",
       "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_tp_01",
+      "text": "{{companion.name}} ritmi saydı, {{child.name}} hareketi yaptı; birkaç denemeden sonra sırayı değiştirdiler ve ikisi de aynı düzeni kolayca buldu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s910_ce_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

@@ -36,6 +36,16 @@
       ],
       "move": "h2_a9_tc_03",
       "lengthClass": "solo"
+    },
+    {
+      "id": "a9_tc_tp_01",
+      "text": "{{child.name}} bir süre sessizce düşündü. Bu iş birkaç dakikada bitmeyecekti; her gün gelmek, bakmak, beklemek gerekecekti. Yine de {{companion.name}}'e baktığında kararını vermişti bile. \"Sana ben bakacağım,\" dedi sakin bir sesle. \"Her gün buradayım, sen iyileşene kadar.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_tc_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

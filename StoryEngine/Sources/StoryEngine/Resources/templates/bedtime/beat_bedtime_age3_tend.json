@@ -134,6 +134,31 @@
       "afterBeat": [
         "companion_offers"
       ]
+    },
+    {
+      "id": "bt3c_tp_01",
+      "text": "{{child.name}} günü tek tek saydı: sabah, öğle, akşam.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bt3c_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3l_tp_01",
+      "text": "{{child.name}} sesleri {{companion.name}}'e usulca saydı. Hepsi tanıdıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_bt3l_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
     }
   ]
 }
