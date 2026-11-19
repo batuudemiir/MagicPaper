@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · main, commit bu kayıtla · MagicPaper Original: Kar Tepesi'ndeki Yeşil Işık kapağı yerleşti
+- Batuhan'ın ChatGPT'den getirdiği kapak `Tools/place_cover.py` ile taslağa kondu: 1125 × 1500 JPEG, 536 KB.
+- Görsel kontrol: yazı ve rakam yok, odak dikeyde yaklaşık %60, üst üçte bir sakin, 176 px küçük hâlde okunuyor, karakter görünüşleri WORLD.md ile uyumlu. Fener direk ucunda değil karın içinde çizilmiş; metin bilerek değişmedi.
+- `originals check kar-tepesindeki-yesil-isik`: "Denetim temiz." Masal onay bekliyor; `approve` ve `publish` çalıştırılmadı, push yok.
+- Dosyalar: `Content/Originals/drafts/kar-tepesindeki-yesil-isik/{cover.jpg,review.md}`, bu günlük.
+
 ### 2026-11-19 · main, commit bu kayıtla · MagicPaper Original: Kar Tepesi'ndeki Yeşil Işık onaya kondu
 - Yeni taslak: macera (`adventure`), 7-8 yaş, 9 sayfa, 464 kelime, 12 dk; ana karakter Minik, yanında Tozkar, Ayşe Teyze, Profesör Ayı, Yıldız Treni. Yayın tarihi önerisi 2026-11-23.
 - Minik, Kar Tepesi'ndeki yeşil ışığın yalnız tren gelirken yandığını saatin tıkırtısıyla fark eder, Tozkar'ın çantasında tepeye çıkar ve karın altında unutulmuş aynalı bir işaret fenerini kendisi bulur; tek bilgi: ayna ışığı geri yollar, renkli cam ona rengini verir.

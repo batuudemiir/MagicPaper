@@ -10,6 +10,7 @@
 - Güvenlik: tehlike yok, merak var. Ayşe Teyze "Çay saatinde burada olun" diyerek izin veriyor; Minik yalnız değil, Tozkar'la; trenden önce istasyondalar (WORLD.md macera tonu).
 - Yüksek sesle okuma: 2. sayfadaki "hemen üstünden" "tam üstünden" oldu (dil kuralına takılmasın diye). Sayfalar 47-59 kelime, her sayfa 3 paragraf. Uzun tire, emoji, yasak sözcük yok.
 - `originals check kar-tepesindeki-yesil-isik`: yalnızca "kapak yok (cover.jpg)", bu turda beklenen tek hata.
+- Kapak (19 Kasım 2026, Batuhan ChatGPT'den getirdi): `place_cover.py` ile 1125 × 1500, 536 KB. Yazı ve rakam yok; odak (fare ve yeşil cam) dikeyde yaklaşık %60; üst üçte bir sakin gece göğü; 176 px küçük hâlde fare, yeşil cam ve tilki seçiliyor. Görünüşler WORLD.md'ye uyuyor (kum rengi fare, kırmızı örgü bere; beyaz tilki, gri kulak ve kuyruk ucu, kırmızı ekose atkı, deri çanta). Küçük fark: fener metindeki gibi direğin ucunda değil, karın içinde duruyor; metin değişmedi. Sonra `originals check`: "Denetim temiz."
 
 ## Araştırmadan
 
