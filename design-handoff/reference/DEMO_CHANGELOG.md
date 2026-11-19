@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-19 · irem@fe162f0 · Önizleme yalnızca iPhone
+
+- `design-preview/index.html` artık yalnızca tek bir iPhone çerçevesi ve içinde gezilen prototip (`app/`); pencereye sığacak kadar küçülür, hiç büyümez. Üst düğmeler kaldırıldı (İrem'in isteği).
+- Eski önizleyici (taslaklar, gerçek ekran görüntüleri, SE/Pro Max, yazı boyutu) silinmedi: `design-preview/karsilastir.html`.
+- Test: tarayıcıda açılmadı; yalnızca dosya taşındı ve yeni sayfa yazıldı.
+- Dosyalar: `design-preview/index.html`, `design-preview/karsilastir.html`, `design-preview/README.md`, bu günlük.
+
 ### 2026-11-19 · irem (dal, bu kayıtla gelen commit) · Gezilebilir HTML prototip
 
 - Ne değişti: `design-preview/app/` (index.html, app.css, app.js). Önizleyicide yeni varsayılan sekme "Uygulama": tıklanarak gezilen prototip. Alt çubuk ve dört sekme (Ana sayfa, Masallar, Kitaplık, Profil), masal yazma (mod → "Masalda kimler olsun?" → hazırlık defteri 6-8 sn, 2 sn sonra atlanır, kendiliğinden açılır → okuyucu → masal sonu), Büyükler için (iki saniye basılı tutma kapısı, özet, Ayarlar, bugünkü Abonelik). Biten masal yıldız ve çıkartma sayısını, yazılan masal kitaplığı günceller. Kitaplık süzgeçleri çalışır. Okuyucuda ← → klavye.
