@@ -1,8 +1,8 @@
 # p_bedtime_quiet_last_page
 
-**Status:** ready_for_decision · **Target:** `reader.page_turn` · claim `c_bedtime_quiet_last_page` (LOW, 5/5 works)
+**Status:** decided · **Target:** `reader.page_turn` · claim `c_bedtime_quiet_last_page` (LOW, 8/8 works)
 
-> In 5 of 5 analysed books framed by bedtime or sleep the last spread is quieter than the book's average (0-2 of 5 against an average of 2.1-3.1); in non-bedtime books this holds for 8 of 17, and many end on a joyful payoff at or above the average. None of the 21 books has a celebration after the story: they close with a picture, a vignette or credits.
+> In 7 of 7 analysed books framed by bedtime or sleep the last spread is quieter than the book's average (0-2 of 5); in non-bedtime books this holds for about half, and many end on a joyful payoff at or above the average. None of the analysed books has a celebration after the story: they close with a picture, a vignette or credits.
 
 - Current: After the last page StoryReaderView stops narration and goes straight to StoryEndingLeaf: Ragi waving, 'Masal bitti!', reading counts and a 400 ms celebration, the same in every mode.
 - Suggested: In bedtime mode only: let the last story page stand alone as a quiet moment (no auto-advance, narration ends softly), and make the ending leaf calm: no celebration animation and no reading counts on that screen; keep today's ending for adventure and learning.
@@ -51,4 +51,4 @@ Evidence: `MagicPaper/Screens/StoryReader/StoryEndingLeaf.swift`
 
 ## Decision (human)
 
-Waiting. `book-agent exchange decide p_bedtime_quiet_last_page --verdict approved|rejected|parked --note "…"`
+**approved** — Uyku bitişi sakin; rozet tek satır (2026-10-20)

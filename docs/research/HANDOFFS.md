@@ -1,10 +1,10 @@
-# İş paketleri — 2026-10-20
+# İş paketleri — 2026-11-13
 
 Onaylanan her öneri, onu uygulayacak ajan için bir iş paketine dönüşür. Ajan kendi dalında çalışır; ana koda ürün sahibinin onayıyla girer.
 
-## waiting (0)
+## waiting (1)
 
-- Yok.
+- [p_bedtime_quiet_last_page](handoffs/p_bedtime_quiet_last_page.md) → **reader**: In bedtime mode only: let the last story page stand alone as a quiet moment (no auto-advance, narration ends softly), and make the ending leaf calm: no celebration animation and no reading counts on that screen; keep today's ending for adventure and learning.
 
 ## in_progress (0)
 

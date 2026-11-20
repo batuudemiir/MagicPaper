@@ -1,8 +1,8 @@
 # p_spread_end_hook
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_spread_end_hook` (MEDIUM, 16/21 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_spread_end_hook` (MEDIUM, 31/39 works)
 
-> In 16 of 21 books with text a spread ends on an unfinished line or a direct question answered on the next spread (e.g. 'And then…', 'Cat?', 'What's wrong?', a count broken off mid-way); Goodnight, Tinku! instead carries the reader on by a repeating pattern, and Kottavi Raja by a list of remedies.
+> In 31 of 39 books with text a spread ends on an unfinished line or a direct question answered on the next spread (e.g. 'And then…', 'Cat?', a sentence broken on 'BUT…' in I Can Do It!, a couplet whose rhyme arrives only after the turn in Sweet Dreams); the other 8 answer each spread within itself.
 
 - Current: page-end lines are not specified
 - Suggested: Hypothesis for page-based stories: end some pages on a question or an open 'says...' and answer it after the turn.

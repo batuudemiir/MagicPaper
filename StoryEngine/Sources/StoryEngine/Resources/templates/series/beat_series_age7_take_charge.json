@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 4 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7tc_01",
+      "text": "{{child.name}} bunun birine ihtiyacı olduğunu gördü. Geçen sefer de böyle başlamıştı. \"Bu kez de ben bakarım,\" dedi; {{companion.name}} hiç düşünmeden yanında durdu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7tc_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7tc_02",
+      "text": "{{child.name}} durumu tarttı. Bu bir günde bitecek bir iş değildi, ama {{keepsake.name}}'i hatırlayınca neyin mümkün olduğunu biliyordu. Kararını verdi ve kollarını sıvadı.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s7tc_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7tc_03",
+      "text": "\"Buna ikimiz bakalım,\" dedi {{companion.name}}. {{child.name}} başını salladı, ama işin başında kendisinin duracağını biliyordu. Bu bir sözdü ve sözünü tutmayı severdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7tc_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

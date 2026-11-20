@@ -204,6 +204,138 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "bt3_wc_h5_sib_01",
+      "text": "{{child.name}} kardeşi {{family.name}}'a doğru döndü. İkisinin de gözleri kapandı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_sib_02",
+      "text": "Kardeşi {{family.name}} usulca esnedi. Sonra {{child.name}} esnedi. Lamba söndü. Her şey yerli yerindeydi.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_fr_01",
+      "text": "{{child.name}} arkadaşı {{family.name}}'a fısıldadı: \"İyi geceler.\" İkisi de uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} yorganına sarındı. {{child.name}} gülümsedi. {{setting.name}}'da lamba usulca söndü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_an_01",
+      "text": "{{family.possessive}} {{family.name}} derin derin uyuyordu. {{child.name}} ona iyi geceler dedi ve gözlerini kapadı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_an_02",
+      "text": "{{child.name}} yorganını çekti. {{family.possessive}} {{family.name}} yanında sessizce uyuyordu. Gece sakindi.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_im_01",
+      "text": "Hayali arkadaşı {{family.name}} yastığın yanına kıvrıldı. {{child.name}} gözlerini kapadı. Lamba söndü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_wc_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile son kez el salladı. Sonra uykuya daldı. Oda sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_wc_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

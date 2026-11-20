@@ -5,7 +5,8 @@
   "ageBand": "5-6",
   "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family IV-1. The child keeps going after the attempt failed, and the persistence is METHODICAL rather than merely stubborn — each failure narrows what is left. Never rewarded by luck: the finding happens because the looking continued, and the text says so. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
-    "solo": "18-38 words — page 6 is never shared"
+    "solo": "18-38 words — page 6 is never shared",
+    "paired": "10-16 words — sayfa 6, obstacle_raises ya da cooperative_effort ile (Sporlar)"
   },
   "variants": [
     {
@@ -117,6 +118,42 @@
       ],
       "lengthClass": "solo",
       "move": "not_luck_kept_looking"
+    },
+    {
+      "id": "s56_ps_01",
+      "text": "Ama {{child.name}} vazgeçmedi; bir kez daha denedi, sonra bir kez daha.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s56_ps_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ps_02",
+      "text": "{{child.name}} derin bir nefes aldı, dizlerini büktü ve yeniden başladı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s56_ps_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ps_03",
+      "text": "Her denemede biraz daha iyi oldu; {{child.name}} bunu bedeninde hissediyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s56_ps_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ps_tp_01",
+      "text": "{{child.name}} durmadı; her denemede hareketin bir parçasını biraz daha düzeltti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_s56_ps_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

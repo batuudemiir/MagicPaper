@@ -33,7 +33,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from bookintel import (aggregate, analyze, confidence, cycle, exchange, experiments, gaps, ingest,  # noqa: E402
+from bookintel import (aggregate, analyze, confidence, craft, cycle, exchange, experiments, gaps, ingest,  # noqa: E402
                       learning, report, runs)
 from bookintel.adapters.base import AccessRefused  # noqa: E402
 from bookintel.adapters.bookdash import BookDashAdapter  # noqa: E402
@@ -358,24 +358,38 @@ def cmd_cycle(store, args):
     print(f"→ {result['path']}")
 
 
+def cmd_craft(store, args):
+    if args.action == "todo":
+        for wid in craft.todo(store):
+            print(wid)
+    elif args.write:
+        print(f"→ {craft.write(store)}")
+    else:
+        print(craft.markdown(craft.brief(store)))
+
+
 def cmd_request(store, args):
     a = args.action
     if a == "ask":
         r = learning.ask(store, args.agent or "", args.question or "", args.why or "",
-                         target=args.target, age_band=args.age)
+                         target=args.target, age_band=args.age, to=args.to or "book-research")
         print(f"→ {r['request_id']}")
     elif a == "take":
-        print(learning.take(store, args.request_id)["status"])
+        print(learning.take(store, args.request_id, by=args.by)["status"])
     elif a == "answer":
-        r = learning.answer(store, args.request_id, args.text or "", claims=args.claim or [], works=args.work or [])
+        r = learning.answer(store, args.request_id, args.text or "", claims=args.claim or [], works=args.work or [],
+                            by=args.by, tales=args.tale or [])
         print(f"{r['request_id']}: answered (evidence {r['answer']['evidence_strength']})")
     elif a == "decline":
-        print(learning.decline(store, args.request_id, args.text or "")["status"])
+        print(learning.decline(store, args.request_id, args.text or "", by=args.by)["status"])
     elif a == "show":
         _print(learning.get_request(store, args.request_id))
     else:  # list
-        for r in learning.all_requests(store):
-            print(f"{r['request_id']:40} {r['from']:18} {r['status']:12} {r['question']}")
+        rows = learning.all_requests(store)
+        if args.to:
+            rows = [r for r in rows if learning.addressee(r) == args.to]
+        for r in rows:
+            print(f"{r['request_id']:40} {r['from']:15} → {learning.addressee(r):15} {r['status']:12} {r['question']}")
 
 
 def cmd_recheck(store, args):
@@ -535,13 +549,19 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("action", choices=["import"]); s.add_argument("path"); s.set_defaults(fn=cmd_usage)
     s = sub.add_parser("evaluate", help="score live experiments against imported usage"); s.set_defaults(fn=cmd_evaluate)
     s = sub.add_parser("calibration", help="how well the research agent's predictions held"); s.set_defaults(fn=cmd_calibration)
-    s = sub.add_parser("request", help="questions other agents send to the research agent")
+    s = sub.add_parser("request", help="questions between agents: to book-research, or book-research ↔ original-writer")
     s.add_argument("action", choices=["ask", "take", "answer", "decline", "show", "list"])
     s.add_argument("request_id", nargs="?")
     s.add_argument("--agent"); s.add_argument("--question"); s.add_argument("--why"); s.add_argument("--text")
     s.add_argument("--target"); s.add_argument("--age")
+    s.add_argument("--to", choices=list(learning.ANSWERERS), help="who should answer (default book-research)")
+    s.add_argument("--by", choices=list(learning.ANSWERERS), help="who is taking/answering (default the addressee)")
     s.add_argument("--claim", action="append"); s.add_argument("--work", action="append")
+    s.add_argument("--tale", action="append", help="original-writer: slug of the Original tale the answer rests on")
     s.set_defaults(fn=cmd_request)
+    s = sub.add_parser("craft", help="cause-effect and ending lessons for MagicPaper Original (ORIGINALS_CRAFT.md)")
+    s.add_argument("action", choices=["brief", "todo"]); s.add_argument("--write", action="store_true")
+    s.set_defaults(fn=cmd_craft)
     s = sub.add_parser("recheck", help="blind re-read of a complete book: the agent's reliability")
     s.add_argument("action", choices=["pick", "start", "score", "reliability"]); s.add_argument("work_id", nargs="?")
     s.set_defaults(fn=cmd_recheck)

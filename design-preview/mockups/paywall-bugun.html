@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abonelik · bugün</title>
+<!-- Kaynak: MagicPaper/Screens/PaywallView.swift (18 Kasım 2026, irem dalının başı).
+     Bu taslak bugünkü kodun kopyasıdır; tasarım önerisi değil. -->
+<link rel="stylesheet" href="mp.css">
+<script src="mock.js"></script>
+<style>
+  body { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  .scroll { flex: 1; overflow-y: auto; padding-bottom: var(--mp-space-xxl); }
+  .hero { position: relative; height: 290px; margin-top: calc(-1 * var(--status, 54px));
+          background: var(--mp-world-lav-soft); border-radius: 0 0 200px 200px;
+          display: flex; align-items: flex-end; justify-content: center; }
+  .hero img { width: 200px; margin-bottom: var(--mp-space-xxl); }
+  .pill { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+          display: flex; gap: 6px; align-items: center; background: var(--mp-background-surface);
+          color: var(--mp-world-yellow-deep); padding: 6px 16px; border-radius: 999px; white-space: nowrap; }
+  .value { padding: var(--mp-space-xxl) var(--mp-space-xl) 0; display: grid; gap: var(--mp-space-sm); }
+  .benefits { padding: var(--mp-space-xxl) var(--mp-space-xxl) 0; display: grid; gap: var(--mp-space-lg); }
+  .benefit { display: flex; align-items: center; gap: var(--mp-space-lg); }
+  .benefit .dot { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .plans { padding: var(--mp-space-xxl) var(--mp-space-xl) 0; display: grid; gap: var(--mp-space-md); }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--mp-action-soft); border-radius: 999px; padding: 4px; margin-bottom: 8px; }
+  .seg span { min-height: 40px; display: grid; place-items: center; border-radius: 999px; color: var(--mp-action-primary); }
+  .seg .on { background: var(--mp-action-primary); color: #fff; }
+  .plan { position: relative; display: flex; align-items: center; gap: var(--mp-space-md); padding: var(--mp-space-lg);
+          background: var(--mp-background-surface); border: 1.5px solid var(--mp-border-kid); border-radius: var(--mp-radius-card); }
+  .plan.sel { border: 3px solid var(--mp-action-primary); padding-top: calc(var(--mp-space-lg) + 6px); }
+  .radio { width: 26px; height: 26px; border-radius: 50%; border: 2.5px solid var(--mp-border-kid); flex: none; }
+  .sel .radio { border-color: var(--mp-action-primary); background: radial-gradient(var(--mp-action-primary) 55%, transparent 58%); }
+  .plan .grow { flex: 1; display: grid; gap: 4px; }
+  .badge { position: absolute; top: -12px; left: var(--mp-space-lg); background: var(--mp-brand-star); padding: 2px 12px; border-radius: 999px; }
+  .footer { padding: 0 var(--mp-space-screen-h) var(--mp-space-xl); display: grid; gap: var(--mp-space-xs); background: var(--mp-background-kid); }
+  .footer .main { padding: 0 var(--mp-space-xxxl); }
+  .links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px var(--mp-space-lg); min-height: 48px; align-items: center; color: var(--mp-action-primary); }
+  .close { position: absolute; top: calc(var(--status, 54px) + 8px); right: var(--mp-space-screen-h); z-index: 10; }
+  [data-durum="planlar"] .benefits, :not([data-durum="planlar"]) .plans { display: none; }
+</style>
+</head>
+<body>
+<div class="statusbar"><span>9:41</span><span>● ● ●</span></div>
+<button class="circle close" aria-label="Kapat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+
+<div class="scroll">
+  <div class="hero">
+    <img src="../../MagicPaper/Assets.xcassets/Brand/mascotOnBook.imageset/mascotOnBook.png" alt="">
+    <div class="pill t-supporting"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/crown.svg);width:16px;height:16px"></i>Premium</div>
+  </div>
+
+  <div class="value center">
+    <div class="t-page">Her akşam yeni bir masal</div>
+    <div class="t-body secondary">Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.</div>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-lav-soft);color:var(--mp-world-lav-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/sparkles.svg)"></i></span><span class="t-card-title">Sınırsız metin masalı</span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-pink-soft);color:var(--mp-world-pink-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/book-open.svg)"></i></span><span class="t-card-title">12 masal dünyasının tamamı</span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-yellow-soft);color:var(--mp-world-yellow-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/star.svg)"></i></span><span class="t-card-title">Aylık görselli masal hakkı</span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-sky-soft);color:var(--mp-world-sky-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/volume-2.svg)"></i></span><span class="t-card-title">Uzun masallar ve sesli okuma</span></div>
+    <div class="benefit"><span class="dot" style="background:var(--mp-world-green-soft);color:var(--mp-world-green-deep)"><i class="ic" style="--i:url(../../design-handoff/assets/icons/lucide/printer.svg)"></i></span><span class="t-card-title">Yazdırılabilir PDF masal kitabı</span></div>
+  </div>
+
+  <div class="plans">
+    <div class="seg t-supporting"><span class="on">Aylık</span><span>Yıllık</span></div>
+    <div class="plan sel">
+      <span class="badge t-footnote">En çok seçilen</span>
+      <span class="radio"></span>
+      <div class="grow"><span class="t-section">Hikaye Kahramanı</span><span class="t-supporting" style="color:var(--mp-world-yellow-deep)">Ayda 5 görselli masal</span><span class="t-footnote secondary">Sınırsız metin masalı</span></div>
+      <div style="text-align:right"><div class="t-page">₺149</div><div class="t-footnote secondary">/ay</div></div>
+    </div>
+    <div class="plan">
+      <span class="radio"></span>
+      <div class="grow"><span class="t-section">Yıldız Kaşifi</span><span class="t-supporting" style="color:var(--mp-world-yellow-deep)">Ayda 1 görselli masal</span><span class="t-footnote secondary">Sınırsız metin masalı</span></div>
+      <div style="text-align:right"><div class="t-page">₺89</div><div class="t-footnote secondary">/ay</div></div>
+    </div>
+    <div class="t-footnote secondary center" style="font-weight:400">İstediğin zaman iptal edebilirsin. İlk 7 gün ücretsiz.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="main"><button class="btn btn-primary" onclick="mpGo(document.documentElement.dataset.durum==='planlar'?'':'planlar')"><script>document.write(document.documentElement.dataset.durum==='planlar'?'7 gün ücretsiz dene':'Planları gör')</script></button></div>
+  <button class="btn btn-ghost">Şimdi değil</button>
+  <div class="links t-footnote"><span>Satın alımları geri yükle</span><span>Koşullar</span><span>Gizlilik</span></div>
+</div>
+<div class="homebar"></div>
+</body>
+</html>

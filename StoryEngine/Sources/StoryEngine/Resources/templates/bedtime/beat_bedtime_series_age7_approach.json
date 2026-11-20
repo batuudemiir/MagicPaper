@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — uyku arkının seri bölümü, sayfa 3 (H4)"
+  },
+  "variants": [
+    {
+      "id": "b7sap_01",
+      "text": "{{child.name}} usulca doğruldu ve pencereye biraz yaklaştı, yorganı omzunda. Yakından bakınca {{discovery.name}} daha da küçük göründü. Birinin ona bakması gerekiyordu, bu belliydi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h4_b7sap_01",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sap_02",
+      "text": "{{child.name}} yataktan inmeden pencereye doğru biraz kaydı. Ay ışığında {{discovery.name}} daha net görünüyordu. {{companion.name}} ona yer açtı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h4_b7sap_02",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sap_03",
+      "text": "{{child.name}} terliklerini giymeden pencerenin önüne kadar parmak ucunda yürüdü. Oradan bakınca her şey daha sakin görünüyordu. {{discovery.name}} oradaydı, ve biraz yardıma ihtiyacı vardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h4_b7sap_03",
+      "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

@@ -50,7 +50,11 @@ final class MatrixCoverageTests: XCTestCase {
             settingID: ContentID(row.setting),
             companionID: ContentID(row.companion),
             discoveryID: ContentID(row.discovery),
-            seed: seed
+            seed: seed,
+            // The matrix is the 5-6 pilot matrix (eight pages). Pinned on
+            // 19 Kasım 2026: with 3-4 and 9-10 shapes on the same records an
+            // unbanded intent could land on six or ten pages.
+            ageBand: AgeBand(lowerBound: 5, upperBound: 6)
         )
     }
 
@@ -160,16 +164,25 @@ final class MatrixCoverageTests: XCTestCase {
     /// footprints and a torn map identical traits and then assigns them
     /// different family sets — an inconsistency in the document. Resolved by
     /// giving the map `isUnexplained`: it has to be read, footprints do not.
+    ///
+    /// Since topics (E5, Sporlar) a discovery is also recruited by its tags: a
+    /// star map and a torn map share traits but belong to different topics.
+    /// So the clash is identical traits *and* identical tags. The one pair
+    /// written to be interchangeable is listed by name (Sporlar, 19 Kasım
+    /// 2026): a ball and a jump rope are two props of the same movement game.
     func testNoTwoDiscoveriesShareATraitSet() throws {
         let objects = try library().objects
-        var seen: [Set<DiscoveryTrait>: String] = [:]
+        let interchangeable: Set<Set<String>> = [["object_ball_001", "object_jump_rope_001"]]
+        struct Key: Hashable { let traits: Set<DiscoveryTrait>; let tags: Set<String> }
+        var seen: [Key: String] = [:]
         for object in objects {
-            if let clash = seen[object.traits] {
+            let key = Key(traits: object.traits, tags: Set(object.tags.map(\.rawValue)))
+            if let clash = seen[key], !interchangeable.contains([clash, object.id.rawValue]) {
                 XCTFail("'\(object.id.rawValue)' and '\(clash)' have identical traits "
-                        + "\(object.traits.map(\.rawValue).sorted()); they can never recruit "
+                        + "\(object.traits.map(\.rawValue).sorted()) and tags; they can never recruit "
                         + "different families.")
             }
-            seen[object.traits] = object.id.rawValue
+            seen[key] = object.id.rawValue
         }
     }
 

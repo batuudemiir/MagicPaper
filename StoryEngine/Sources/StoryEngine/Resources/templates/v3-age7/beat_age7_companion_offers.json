@@ -118,6 +118,42 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_co_12"
+    },
+    {
+      "id": "a7_co_j_01",
+      "text": "{{companion.name}} usulca söyledi: \"Bazı işler acele kaldırmaz; zorlarsan olmaz, bakar ve beklersin.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_co_j_01",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_co_j_02",
+      "text": "{{companion.name}} gülümsedi: \"Benim işimde de böyledir. Her şeyin bir zamanı var.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_co_j_02",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_co_j_03",
+      "text": "\"Ben her gün beklerim,\" dedi {{companion.name}}. \"Beklemek de işin bir parçası.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_co_j_03",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

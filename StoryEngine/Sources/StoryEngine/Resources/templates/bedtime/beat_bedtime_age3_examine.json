@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "examine",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4, tend ile paylaşılır (H3)"
+  },
+  "variants": [
+    {
+      "id": "bx3_01",
+      "text": "Tik tak, dedi saat. {{child.name}} dinledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bx3_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bx3_02",
+      "text": "Fış fış, dedi perde. Sadece rüzgârmış.",
+      "requiredSlots": [],
+      "move": "h3_bx3_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bx3_03",
+      "text": "Pıt pıt, dedi yağmur. Bu da tanıdıktı.",
+      "requiredSlots": [],
+      "move": "h3_bx3_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bx3_04",
+      "text": "Vın vın, dedi buzdolabı. Hepsi evin sesiydi.",
+      "requiredSlots": [],
+      "move": "h3_bx3_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

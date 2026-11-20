@@ -37,7 +37,7 @@ final class CuratedFactTests: XCTestCase {
 
     // MARK: - Yayınlanan sekiz olgu
 
-    /// Hepsi onaylı, 5-6 için yazılmış, ve dayanağına uygun.
+    /// Hepsi onaylı, bandı kayıtlı (iki NASA olgusu 5-10, gerisi 5-6), ve dayanağına uygun.
     ///
     /// "Dayanağına uygun" 30 Ekim'de iki kola ayrıldı (karar: karma kaynak).
     /// Kaynak alanları `sourced` olguda boş geçilemiyor (decoder hata veriyor),
@@ -50,11 +50,21 @@ final class CuratedFactTests: XCTestCase {
         // Batuhan, 30 Ekim). İnceleme dosyasında daha fazla onaylı bilim olgusu
         // var ama katalog yalnızca bir çocuğa ULAŞABİLENİ taşıyor: konusu
         // havuzda olmayan olguyu katalogda tutmak ölü içeriktir.
-        XCTAssertEqual(catalog.facts.count, 5)
+        // Sporlar (19 Kasım 2026): beden öğretmeninin editoryal olgusu altıncı.
+        XCTAssertEqual(catalog.facts.count, 6)
         let band = AgeBand(lowerBound: 5, upperBound: 6)
+        // H2 (18 Kasım 2026, karar: Batuhan): iki NASA olgusu 7-8 ve 9-10'a
+        // da açıldı (mevcut kaydın değişmesi, sıra kuralının istisnası).
+        // Meslek olguları yalnızca 5-6'da kalıyor.
+        // H2b (19 Kasım 2026): meslek olguları da 7-10'a açıldı; artık beşi de 5-10.
+        let widened: Set<String> = ["fact_sun_is_a_star", "fact_shooting_star_is_not_a_star",
+                                    "fact_baker_rests_the_dough", "fact_postman_sorts_by_street",
+                                    "fact_teacher_writes_the_order", "fact_coach_shows_slowly"]
+        let upper = [band, AgeBand(lowerBound: 7, upperBound: 8), AgeBand(lowerBound: 9, upperBound: 10)]
         for fact in catalog.facts {
             XCTAssertTrue(fact.isApproved, fact.id.rawValue)
-            XCTAssertEqual(fact.bands, [band], "\(fact.id.rawValue): olgular yalnızca 5-6'ya yazılabilir")
+            let expected = widened.contains(fact.id.rawValue) ? upper : [band]
+            XCTAssertEqual(fact.bands, expected, "\(fact.id.rawValue): olgunun bantları değişti")
             XCTAssertNotNil(ISO8601DateFormatter.date(fromDay: fact.verifiedOn),
                             "\(fact.id.rawValue): doğrulama tarihi bir tarih değil (\(fact.verifiedOn))")
             XCTAssertFalse(fact.statement.hasSuffix(":"), fact.id.rawValue)
@@ -81,8 +91,8 @@ final class CuratedFactTests: XCTestCase {
             .filter { $0.basis == .sourced }
             .map { $0.sourceURL.flatMap(URL.init(string:))?.host })
         XCTAssertEqual(hosts, ["spaceplace.nasa.gov"])
-        XCTAssertEqual(catalog.facts.filter { $0.basis == .editorial }.count, 3,
-                       "üç meslek olgusu editoryal; dördüncüsü eklenirse kararı yazılmalı")
+        XCTAssertEqual(catalog.facts.filter { $0.basis == .editorial }.count, 4,
+                       "dört meslek olgusu editoryal (dördüncüsü beden öğretmeni, Sporlar, 19 Kasım 2026: \"tümünü yap\"); beşincisi eklenirse kararı yazılmalı")
     }
 
     /// Her olgu bir keşfe bağlı olmalı, yoksa hiçbir masala eşlik etmez.

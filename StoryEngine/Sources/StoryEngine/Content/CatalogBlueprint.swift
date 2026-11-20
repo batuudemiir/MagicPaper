@@ -256,6 +256,12 @@ public struct CatalogBlueprint: Codable, Sendable, Hashable, Identifiable {
         return String(editorialName[dash.upperBound...]).trimmingCharacters(in: .whitespaces)
     }
 
+    /// What counts as one mechanism when a topic or a coverage report counts
+    /// how many different plots a band has: the editorial mechanism, or the
+    /// id when none is written. One definition, used by
+    /// `BlueprintSelector.availableTopics` and `CoverageReport`.
+    public var mechanismKey: String { mechanism ?? id.rawValue }
+
     /// The roles this blueprint asks for, in page order.
     public var roleSequence: [PageRole] {
         pagePlan.sorted { $0.pageNumber < $1.pageNumber }.map(\.role)

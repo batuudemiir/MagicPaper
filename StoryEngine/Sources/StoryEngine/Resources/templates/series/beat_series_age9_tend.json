@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 3,
+  "beat": "tend",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 6 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9td_01",
+      "text": "{{child.name}} işe küçük şeylerden başladı. Önce yerini düzeltti, sonra rüzgârı kesmek için önüne düz bir taş yerleştirdi. {{companion.name}} gerekenleri tek tek getirdi. Acele eden olmadı; ikisi de geçen seferden, bakmanın sık sık ve az az yapıldığını öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9td_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9td_02",
+      "text": "{{child.name}} ona neyin iyi geldiğini anlamak için küçük denemeler yaptı ve her birinin sonucunu aklına not etti. Gölge iyi gelmişti, kalabalık gelmemişti; sessizlik iyiydi, ama biraz konuşmak daha iyiydi. Not aldıkça bakmak tahmin olmaktan çıktı, bir yönteme dönüştü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s9td_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9td_03",
+      "text": "Bakmak, {{child.name}}'in hatırladığından hem daha kolay hem daha zordu. Kolaydı, çünkü yapılacak şeyler küçüktü; zordu, çünkü her biri doğru zamanda yapılmalıydı. {{child.name}} hiçbirini aksatmadı, {{companion.name}} ise sırası geldiğinde onun yerine nöbet tuttu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9td_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

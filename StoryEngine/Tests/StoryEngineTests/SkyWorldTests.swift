@@ -46,14 +46,15 @@ final class SkyWorldTests: XCTestCase {
         XCTAssertTrue(offered(catalog, band: Self.b56, safety: heightsAvoided).contains(Self.topic))
     }
 
-    /// Recorded, not wished away: 3-4 has no adventure blueprint, and 7-8 and
-    /// 9-10 have two adventure mechanisms each (persistence, retracing),
-    /// below `CatalogStoryTopic.minimumMechanisms`. The places do reach those
-    /// bands' stories; the chip waits for a third mechanism.
-    func testWhereTheSkyTopicIsNotYetOffered() throws {
+    /// E5 recorded the chip as missing at 3-4 (no adventure blueprint), 7-8
+    /// and 9-10 (two mechanisms each). H1 (17 Kasım 2026) wrote calm
+    /// adventure shapes for those bands, and every band now has at least
+    /// `CatalogStoryTopic.minimumMechanisms`, at the most protective setting too.
+    func testTheSkyTopicIsOfferedInEveryBandSinceH1() throws {
         let catalog = try catalog()
         for band in [Self.b34, Self.b78, Self.b910] {
-            XCTAssertFalse(offered(catalog, band: band).contains(Self.topic), "\(band)")
+            XCTAssertTrue(offered(catalog, band: band).contains(Self.topic), "\(band)")
+            XCTAssertTrue(offered(catalog, band: band, safety: .mostProtective).contains(Self.topic), "\(band)")
         }
     }
 
@@ -188,12 +189,14 @@ final class SkyWorldTests: XCTestCase {
             "object_shell_pilot_001", "object_torn_map_001", "object_fallen_nest_001",
             "object_wilting_seedling_001", "object_dropped_mitten_001",
         ]
+        // Gökyüzü kayıtları eski kayıtların hemen ardında; sonrasına başka
+        // turların kayıtları eklenebilir (Sporlar, 19 Kasım 2026).
         XCTAssertEqual(Array(catalog.settings.map(\.id.rawValue).prefix(settings.count)), settings)
         XCTAssertEqual(Array(catalog.companions.map(\.id.rawValue).prefix(companions.count)), companions)
         XCTAssertEqual(Array(catalog.objects.map(\.id.rawValue).prefix(objects.count)), objects)
-        XCTAssertEqual(Set(catalog.settings.dropFirst(settings.count).map(\.id.rawValue)), Self.places)
-        XCTAssertEqual(Set(catalog.companions.dropFirst(companions.count).map(\.id.rawValue)), Self.companions)
-        XCTAssertEqual(Set(catalog.objects.dropFirst(objects.count).map(\.id.rawValue)), Self.discoveries)
+        XCTAssertEqual(Set(catalog.settings.dropFirst(settings.count).prefix(Self.places.count).map(\.id.rawValue)), Self.places)
+        XCTAssertEqual(Set(catalog.companions.dropFirst(companions.count).prefix(Self.companions.count).map(\.id.rawValue)), Self.companions)
+        XCTAssertEqual(Set(catalog.objects.dropFirst(objects.count).prefix(Self.discoveries.count).map(\.id.rawValue)), Self.discoveries)
     }
 
     /// Place and companion names take their case endings correctly.
@@ -208,7 +211,8 @@ final class SkyWorldTests: XCTestCase {
         XCTAssertEqual(render("{{x}}'in", .init("Vida", isProperNoun: true)), "Vida'nın")
         XCTAssertEqual(render("{{x}}'i", .init("yarım kalmış bir yıldız haritası", isProperNoun: false,
                                                 hasPossessiveEnding: true)),
-                       "yarım kalmış bir yıldız haritasını")
+                       // Yuva metnin başında: cümle başı olarak büyük harfle açılır.
+                       "Yarım kalmış bir yıldız haritasını")
     }
 
     func testTheNewTextKeepsTheLanguageRules() throws {

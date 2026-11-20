@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 3,
+  "beat": "reveal_truth",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "rt3_01",
+      "text": "{{child.name}} eğildi, yakından baktı. Meğer başkaymış!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_rt3_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rt3_02",
+      "text": "Sonra güneş vurdu ve {{child.name}} gördü. Meğer öyle değilmiş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_rt3_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rt3_03",
+      "text": "{{child.name}} öbür yandan baktı. Ve doğrusunu gördü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_rt3_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rt3_04",
+      "text": "Yakından bakınca her şey belli oldu. Bambaşka bir şeymiş!",
+      "requiredSlots": [],
+      "move": "h2_rt3_04",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rt3_05",
+      "text": "{{child.name}} biraz daha yaklaştı. Sandığı şey değilmiş!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_rt3_05",
+      "lengthClass": "paired"
+    }
+  ]
+}

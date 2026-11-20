@@ -30,7 +30,7 @@ struct PaywallView: View {
             return live
         }
         switch (tier, cycle) {
-        case (.premium, .yearly): return "₺1.190"
+        case (.premium, .yearly): return "₺999"   // karar: 20 Kasım 2026
         case (.basic, .yearly):   return "₺690"
         default:                  return tier.price
         }
@@ -49,13 +49,29 @@ struct PaywallView: View {
         let tone: MPWorldTone
     }
 
+    /// Abonelik kararı (Batuhan 20 Kasım 2026): yalnızca bugün gerçekten
+    /// açılan şeyler. Dünyalar ücretsiz; kendi sesinle okuma ve görselli
+    /// masal Release'te kapalı olduğu için satılmaz. Son düzen İrem'de.
     private let benefits: [Benefit] = [
-        Benefit(text: "Sınırsız metin masalı", symbol: "sparkles", tone: .lav),
-        Benefit(text: "12 masal dünyasının tamamı", symbol: "building.columns", tone: .pink),
-        Benefit(text: "Aylık görselli masal hakkı", symbol: "star", tone: .yellow),
-        Benefit(text: "Uzun masallar ve sesli okuma", symbol: "speaker.wave.2", tone: .sky),
+        Benefit(text: "Gün boyu yeni masal", symbol: "sparkles", tone: .lav),
+        Benefit(text: "Bütün klasikler ve MagicPaper Original masalları", symbol: "books.vertical", tone: .pink),
+        Benefit(text: "Serinin bütün bölümleri", symbol: "rectangle.stack", tone: .yellow),
+        Benefit(text: "Masal ailem: bütün ailen masala katılır", symbol: "person.2", tone: .peach),
+        Benefit(text: "Ailedeki her çocuk için ayrı profil", symbol: "person.3", tone: .sky),
         Benefit(text: "Yazdırılabilir PDF masal kitabı", symbol: "printer", tone: .green)
     ]
+
+    /// Mağazada tanımlı ücretsiz deneme (gün); yoksa deneme sözü verilmez.
+    private var trialDays: Int? {
+        revenueCat.freeTrialDays(for: selectedTier, period: period)
+    }
+
+    /// App Store 3.1.2: dönem, fiyat ve otomatik yenileme satın alma düğmesinin yanında.
+    private var renewalNote: String {
+        let trial = trialDays.map { "İlk \($0) gün ücretsiz, sonra " } ?? ""
+        return "\(trial)\(price(selectedTier))\(periodLabel). Ödeme Apple Kimliği hesabından alınır. "
+            + "Abonelik, dönem bitmeden en az 24 saat önce iptal edilmezse aynı fiyatla kendiliğinden yenilenir."
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -106,7 +122,7 @@ struct PaywallView: View {
                 .mpText(.page)
                 .foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Sınırsız metin masalı, tüm dünyalar açık ve her ay görselli maceralar.")
+            Text("Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.")
                 .mpText(.body)
                 .foregroundStyle(MPColor.textSecondary)
         }
@@ -139,9 +155,10 @@ struct PaywallView: View {
         VStack(spacing: MPSpacing.md) {
             MPSegmented(options: [(Cycle.monthly, "Aylık"), (Cycle.yearly, "Yıllık")], selection: $cycle)
                 .padding(.bottom, MPSpacing.sm)
-            planCard(.premium, name: "Hikaye Kahramanı", allowance: "Ayda 5 görselli masal", recommended: true)
-            planCard(.basic, name: "Yıldız Kaşifi", allowance: "Ayda 1 görselli masal", recommended: false)
-            Text("İstediğin zaman iptal edebilirsin. İlk 7 gün ücretsiz.")
+            // Tek plan, adı MagicPaper Premium (karar: Batuhan 20 Kasım 2026).
+            // Yenileme metni App Store 3.1.2 için (İrem, 19 Kasım).
+            planCard(.premium, name: "MagicPaper Premium", recommended: true)
+            Text(renewalNote)
                 .mpText(.footnote).fontWeight(.regular)
                 .foregroundStyle(MPColor.textSecondary)
                 .multilineTextAlignment(.center)
@@ -152,7 +169,7 @@ struct PaywallView: View {
     }
 
     private func planCard(_ tier: SubscriptionManager.SubscriptionTier, name: String,
-                          allowance: String, recommended: Bool) -> some View {
+                          recommended: Bool) -> some View {
         let selected = selectedTier == tier
         return Button { selectedTier = tier } label: {
             HStack(alignment: .center, spacing: MPSpacing.md) {
@@ -163,8 +180,7 @@ struct PaywallView: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                     Text(name).mpText(.section).foregroundStyle(MPColor.textPrimary)
-                    Text(allowance).mpText(.supporting).foregroundStyle(MPWorldTone.yellow.deep)
-                    Text("Sınırsız metin masalı").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    Text("Gün boyu masal ve tam kitaplık").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                 }
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 0) {
@@ -233,7 +249,7 @@ struct PaywallView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            MPButton(title: showPlans ? "7 gün ücretsiz dene" : "Planları gör",
+            MPButton(title: showPlans ? (trialDays.map { "\($0) gün ücretsiz dene" } ?? "Abone ol") : "Planları gör",
                      fullWidth: true, isLoading: isPurchasing) {
                 if showPlans {
                     startPurchase()
@@ -245,11 +261,20 @@ struct PaywallView: View {
 
             MPButton(title: "Şimdi değil", kind: .ghost) { dismiss() }
 
-            HStack(spacing: MPSpacing.lg) {
-                Button(isRestoring ? "Geri yükleniyor…" : "Satın alımları geri yükle", action: restore)
-                    .disabled(isRestoring)
-                Link("Koşullar", destination: URL(string: "https://magicpaper.app/terms")!)
-                Link("Gizlilik", destination: URL(string: "https://magicpaper.app/privacy")!)
+            // "Aboneliği yönet": App Store abonelik sayfası (3.1.2). Sistem sayfasına
+            // gider; Paywall'un üstüne ikinci bir modal açılmaz.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: MPSpacing.lg) { legalLinks }
+                VStack(spacing: MPSpacing.xs) {
+                    HStack(spacing: MPSpacing.lg) {
+                        restoreButton
+                        Link("Aboneliği yönet", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
+                    }
+                    HStack(spacing: MPSpacing.lg) {
+                        Link("Koşullar", destination: URL(string: "https://magicpaper.app/terms")!)
+                        Link("Gizlilik", destination: URL(string: "https://magicpaper.app/privacy")!)
+                    }
+                }
             }
             .mpText(.footnote)
             .foregroundStyle(MPColor.actionPrimary)
@@ -258,6 +283,18 @@ struct PaywallView: View {
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.bottom, MPSpacing.xs)
         .background(MPColor.backgroundKid)
+    }
+
+    private var restoreButton: some View {
+        Button(isRestoring ? "Geri yükleniyor…" : "Satın alımları geri yükle", action: restore)
+            .disabled(isRestoring)
+    }
+
+    @ViewBuilder private var legalLinks: some View {
+        restoreButton
+        Link("Aboneliği yönet", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
+        Link("Koşullar", destination: URL(string: "https://magicpaper.app/terms")!)
+        Link("Gizlilik", destination: URL(string: "https://magicpaper.app/privacy")!)
     }
 
     private func restore() {

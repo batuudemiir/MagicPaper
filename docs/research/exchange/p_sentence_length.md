@@ -1,8 +1,8 @@
 # p_sentence_length
 
-**Status:** decided · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (LOW, 12/21 works)
+**Status:** decided · **Target:** `validator.MAX_SENTENCE_WORDS` · claim `c_sentence_length` (LOW, 23/39 works)
 
-> Mean sentence length is between 3 and 10 words in all 21 analysed books with text; the longest sentence stays at or under 14 words in 12 of 21 (the others reach 15-21, and 38 in the level-3 Kottavi Raja).
+> Mean sentence length is between 3 and 10 words in 38 of 39 analysed books with text (A Day Out, a 3-4 book of one-line cries, averages 2.4); the longest sentence stays at or under 14 words in 23 of 39 (the others reach 15-27, and 38 in the level-3 Kottavi Raja).
 
 - Current: 14
 - Suggested: No change suggested: the pilot sits around the current cap.

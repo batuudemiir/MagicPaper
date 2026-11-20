@@ -5,7 +5,8 @@
   "ageBand": "5-6",
   "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3, always beside meet_companion. The need is stated PLAINLY and ONCE, by the companion, in its own words. No pleading, no tears, no distress — it is a small problem stated by someone small, and that is what keeps the page safe for a five-year-old (catalog §2.3). Band is 8-14 because meet_companion is a long partner.",
   "lengthClasses": {
-    "paired": "8-14 words — always beside meet_companion (4 of 4)"
+    "paired": "8-14 words — always beside meet_companion (4 of 4)",
+    "solo": "18-38 words — sayfa 3 yalnız (Sporlar)"
   },
   "variants": [
     {
@@ -117,6 +118,46 @@
       ],
       "lengthClass": "paired",
       "move": "something_stuck_said_once"
+    },
+    {
+      "id": "s56_ra_01",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla {{child.name}}'e doğru itti. \"Bu oyun iki kişilik,\" dedi. \"Tek başıma bir türlü olmuyor. Bana katılır mısın?\" Gözlerinde kocaman bir rica vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s56_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_02",
+      "text": "{{companion.name}} yerinde sekip duruyordu. \"Bir oyun biliyorum,\" dedi, \"ama biri tutmalı, biri zıplamalı. Sen tutar mısın, ya da sen mi zıplarsın?\" Seçimi {{child.name}} yapacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_03",
+      "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_tp_01",
+      "text": "{{companion.name}} {{child.name}}'in yanına gelip durdu. \"Bu oyunu tek başıma oynamaya çalışıyorum,\" dedi, \"ama hep yarım kalıyor. Sen başlatsan, ben devam etsem olur mu?\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s56_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

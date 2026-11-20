@@ -196,6 +196,9 @@ struct StoryActionsSheet: View {
     @ViewBuilder
     private var seriesRow: some View {
         switch series.endingState(for: story) {
+        case .offer where !app.isUnlocked(.seriesStories):
+            // E7: seri abonelikle; bu sayfada satış yok, teklif görünmez.
+            EmptyView()
         case .offer:
             MPGroupedList(area: .kid) {
                 row(icon: "sparkles", tone: .peach, title: SeriesCopy.continueButton,
@@ -241,6 +244,12 @@ struct StoryActionsSheet: View {
 
     private func export() {
         guard !isExporting else { return }
+        // E7: PDF kitap abonelikle. Bu sheet'in üstünde paywall açılamaz;
+        // ebeveyn kapıyı geçmiş olduğu için yalnızca sakin bir not.
+        guard app.isUnlocked(.pdfBook) else {
+            app.showToast("PDF kitap abonelikle açılır", symbol: "lock")
+            return
+        }
         isExporting = true
         app.showToast("PDF hazırlanıyor", symbol: "printer")
         let snapshot = story

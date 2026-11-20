@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 2 receive_appeal ile paylaşılır"
+    "paired": "5-12 words — sayfa 2 receive_appeal ile paylaşılır",
+    "solo": "10-24 words: macera masallarında sayfa 2 yalnız (H1)"
   },
   "variants": [
     {
@@ -105,6 +106,206 @@
       "lengthClass": "paired",
       "requiredSlots": [
         "companion.name"
+      ]
+    },
+    {
+      "id": "mc3h_01",
+      "text": "O sırada {{companion.name}} geldi. {{child.name}}'in yanında durdu, gülümsedi ve \"Merhaba,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_02",
+      "text": "Yanına küçük bir {{companion.type}} yaklaştı. Adı {{companion.name}}. O da merakla {{child.name}}'e bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h1_mc3h_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_03",
+      "text": "{{companion.name}} bir kenardan bakıyordu, biraz utangaçtı. {{child.name}} el salladı. {{companion.name}} yavaşça yanına geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_03",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3h_04",
+      "text": "{{companion.name}} oradaydı. \"Ne buldun?\" diye sordu. {{child.name}} gösterdi, {{companion.name}} dikkatle baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_mc3h_04",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_05",
+      "text": "Bir {{companion.type}} yaklaştı. Adı {{companion.name}}. \"Ben de bakabilir miyim?\" diye sordu.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h1_mc3h_05",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_01",
+      "text": "O sırada {{companion.name}} geldi. O da merakla baktı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_01",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_02",
+      "text": "Yanına küçük bir {{companion.type}} geldi. Adı {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_mc3u_02",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_03",
+      "text": "{{companion.name}} utana utana yanına geldi. O da bakmak istiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_03",
+      "lengthClass": "paired",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3u_04",
+      "text": "{{companion.name}} yaklaştı. \"Ne var orada?\" diye sordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_04",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide"
+      ]
+    },
+    {
+      "id": "mc3u_05",
+      "text": "{{companion.name}} sessizce yanına oturdu. Birlikte baktılar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_mc3u_05",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3u_h5_01",
+      "text": "{{companion.name}} çekinerek yaklaştı. Bir şey sormak istiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_mc3u_01",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3u_h5_02",
+      "text": "Ağacın arkasından {{companion.name}} göründü. Biraz utangaçtı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "h5_mc3u_02",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3h_h5_01",
+      "text": "Tam o sırada {{companion.name}} çıkageldi. {{child.name}}'in baktığı yere baktı ve \"Ben buraları bilirim,\" dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h5_mc3h_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "mc3h_h5_02",
+      "text": "Bir taşın arkasından {{companion.name}} baktı. Önce saklandı, sonra yine baktı. {{child.name}} gülümseyince o da yaklaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h5_mc3h_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "hesitant"
+      ]
+    },
+    {
+      "id": "mc3u_tp_01",
+      "text": "Az sonra {{companion.name}} çıkageldi. Merakla yanına durdu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "tp_mc3u_tp_01",
+      "lengthClass": "paired",
+      "castRoles": [
+        "guide",
+        "reassuring"
       ]
     }
   ]

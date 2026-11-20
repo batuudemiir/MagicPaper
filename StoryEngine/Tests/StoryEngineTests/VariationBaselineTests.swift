@@ -317,10 +317,13 @@ final class RefrainAwareMeasurementTests: XCTestCase {
         let blueprint = try XCTUnwrap(withRefrain.blueprints.first { $0.refrain != nil })
         let refrain = try XCTUnwrap(blueprint.refrain)
         let catalogWithRefrain = withRefrain!
-        let story = try XCTUnwrap((1...30).lazy.compactMap { index in
+        // Öğrenme moduna sabitlendi (19 Kasım 2026): H1-H5 ve Sporlar bandı
+        // kalabalıklaştırınca otuz seed'lik moddan bağımsız arama nakaratlı
+        // şekle denk gelmez oldu.
+        let story = try XCTUnwrap((1...100).lazy.compactMap { index in
             try? OfflineStoryComposer().compose(
                 catalog: catalogWithRefrain,
-                intent: OfflineStoryIntent(childName: "Ada", seed: "rf-\(index)",
+                intent: OfflineStoryIntent(childName: "Ada", seed: "rf-\(index)", mode: .learning,
                                            ageBand: blueprint.ageRange))
         }.first { $0.blueprintID == blueprint.id }, "nakaratlı masal kurulamadı")
 

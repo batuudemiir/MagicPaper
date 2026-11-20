@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 3,
+  "beat": "notice_anomaly",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 2 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9n_01",
+      "text": "Bir süre yürüdükten sonra {{child.name}} durdu, çünkü gözü bir şeye takılmıştı. Az ileride {{discovery.name}} vardı. Geçen sefer orada olmadığından emindi; bu yolu artık ezbere biliyordu ve ezberinde böyle bir şey yoktu. {{companion.name}} yanında durup aynı yere baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h4_s9n_01",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "s9n_02",
+      "text": "{{companion.name}} durdu ve başını bir yana eğdi. {{child.name}} nefesini tutup dinledi: çok yakından {{discovery.name}} geliyordu. Bu sesi daha önce burada hiç duymamışlardı. İkisi, sesin geldiği yöne, acele etmeden ve dikkatle döndü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h4_s9n_02",
+      "lengthClass": "solo",
+      "discoveryTraits": [
+        "isAudible"
+      ]
+    },
+    {
+      "id": "s9n_03",
+      "text": "Her şey geçen seferki gibiydi, tek bir ayrıntı dışında. {{child.name}} bunu ilk bakışta sezdi, ama ne olduğunu ancak ikinci bakışta anladı. {{companion.name}} ise üçüncü bakışta. İkisi aynı noktaya döndü ve gülümsedi: demek ki bu yerin hâlâ gösterecek yeni şeyleri vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9n_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

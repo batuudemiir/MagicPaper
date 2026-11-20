@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 3,
+  "beat": "first_attempt",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 çözüm beat'i ile paylaşılır",
+    "solo": "10-24 words — sayfa 3 yalnız (Sporlar)"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "fa3h_01",
+      "text": "{{child.name}} önce şuraya baktı. Olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_fa3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_02",
+      "text": "Önce tek başına denedi. Olmadı.",
+      "requiredSlots": [],
+      "move": "h1_fa3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_03",
+      "text": "{{child.name}} bir yol denedi. İşe yaramadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_fa3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "fa3h_04",
+      "text": "Önce biraz acele etti. Olmadı.",
+      "requiredSlots": [],
+      "move": "h1_fa3h_04",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s34_fa_01",
+      "text": "{{child.name}} {{discovery.name}}'i aldı ve koştu. Ama rüzgâr yoktu. Oyun pek olmadı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_fa_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_02",
+      "text": "Önce {{companion.name}} zıpladı, sonra {{child.name}}. Ama bir şey eksikti. Rüzgâr esmiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_fa_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_03",
+      "text": "{{child.name}} bir kez denedi, iki kez denedi. Hava çok durgundu, hiç kıpırtı yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_fa_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_tp_01",
+      "text": "{{companion.name}} koştu, {{child.name}} arkasından koştu. Ama hava kıpırdamıyordu. Oyun bir türlü başlamadı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s34_fa_tp_01",
+      "lengthClass": "solo"
+    }
+  ]
+}

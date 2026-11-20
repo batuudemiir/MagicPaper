@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "patient_wait",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 7 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9pw_01",
+      "text": "Sonra iş zamanın eline geçti. Yapılacak her şey yapılmıştı; geriye beklemek kalıyordu. {{child.name}} beklemeyi eskisi kadar zor bulmuyordu artık, geçen seferden bunu öğrenmişti. {{companion.name}} ile yan yana oturdular ve küçük değişiklikleri, kimse duymadan, içlerinden saydılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9pw_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9pw_02",
+      "text": "Hiçbir şey bir anda olmadı, olmaması da gerekiyordu. {{child.name}} arada bir bakıp yine yerine oturdu; kurcalamamak da bakmanın bir parçasıydı. Gün yavaşça ilerledi ve sonunda küçük bir kıpırtı, beklemenin boşa olmadığını gösterdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s9pw_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9pw_03",
+      "text": "{{companion.name}} esnedi, {{child.name}} gülümsedi. Beklemek dışarıdan iş gibi görünmüyordu, ama bir işti, belki de en zoru. İkisi o işi birlikte, şikâyet etmeden yaptılar; arada bir {{keepsake.name}}'i konuşup ilk günü andılar, ve zaman sandıklarından daha çabuk geçti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s9pw_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

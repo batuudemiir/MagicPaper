@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 6 hiç paylaşılmaz (H2)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "a9_tc_01",
+      "text": "{{child.name}} durumu tarttı. Bu, bir öğleden sonrada bitecek bir iş değildi; günler sürecekti, belki de bir hafta. Yine de kararını verdi ve yüksek sesle söyledi, sözün daha sağlam durması için: \"{{companion.name}} iyileşene kadar ona ben bakacağım.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_tc_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_tc_02",
+      "text": "Kimse {{child.name}}'ten bunu istememişti. Ama bazı işler, onu fark eden kişiye düşer; {{child.name}} bunu bir yerde okumuştu ve şimdi ne demek olduğunu anlıyordu. Kendine küçük bir plan yaptı: her sabah gelecek, bakacak, gerekeni yapacak ve not alacaktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_a9_tc_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_tc_03",
+      "text": "{{child.name}} bir an geri adım atmayı düşündü; sorumluluk, uzaktan bakınca sandığından daha ağırdı. Sonra {{companion.name}}'e baktı ve düşüncesi kendiliğinden netleşti. \"Tamam,\" dedi. \"Bundan sonra bu iş benim işim. Ama nasıl yapılacağını da birlikte öğreneceğiz.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_tc_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_tc_tp_01",
+      "text": "{{child.name}} bir süre sessizce düşündü. Bu iş birkaç dakikada bitmeyecekti; her gün gelmek, bakmak, beklemek gerekecekti. Yine de {{companion.name}}'e baktığında kararını vermişti bile. \"Sana ben bakacağım,\" dedi sakin bir sesle. \"Her gün buradayım, sen iyileşene kadar.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_tc_tp_01",
+      "lengthClass": "solo"
+    }
+  ]
+}

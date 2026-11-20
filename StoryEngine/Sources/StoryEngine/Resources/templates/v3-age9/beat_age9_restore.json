@@ -114,6 +114,147 @@
       "afterBeat": [
         "persist"
       ]
+    },
+    {
+      "id": "a9_rs_h2_01",
+      "text": "Bir sabah {{child.name}} geldiğinde {{companion.name}} onu ayakta karşıladı. Gözleri berraktı, adımları sağlamdı. Günlerdir bekledikleri an, gürültüsüz ve sade bir biçimde gelmişti. {{child.name}} ilk anda sevincini söyleyemedi; yalnızca yanına oturdu ve uzun uzun gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_rs_h2_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_02",
+      "text": "{{companion.name}} iyileşmişti, hem de tam. Bunu en iyi {{child.name}} biliyordu, çünkü her gün buradaydı ve her küçük değişikliği görmüştü. Küçük {{companion.type}} çevresinde bir tur attı, sonra geldi ve başını {{child.name}}'in eline dayadı: teşekkürün en sessiz hâli.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_rs_h2_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_03",
+      "text": "Bekleyiş bitti, ama bir anda değil. {{child.name}} bunu fark ettiğinde iyileşme çoktan olmuştu: {{companion.name}} artık yardım istemiyor, yalnızca arkadaşlık istiyordu. {{child.name}} sessizce gururlandı. Kimse ona bir şey söylemedi, söylemesine de gerek yoktu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_rs_h2_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_04",
+      "text": "Birlikte başardılar. {{companion.name}} aradığına kavuşunca önce inanamadı, sonra sevincini saklayamadı. {{child.name}} bir adım geride durdu ve izledi. Tek başına ikisi de bu işi bitiremezdi; ama işi ikiye bölünce, her biri kendi payını eksiksiz yapabilmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_rs_h2_04",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_05",
+      "text": "Son hamleyi ikisi aynı anda yaptı ve iş tamamlandı. {{companion.name}}'in yüzündeki endişe yerini rahat bir gülümsemeye bıraktı. {{child.name}} yorgundu, ama bu iyi bir yorgunluktu: başkası için harcanmış, karşılığı gözünün önünde duran bir yorgunluk.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_rs_h2_05",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_06",
+      "text": "{{companion.name}} derdinden kurtulunca {{child.name}}'e döndü ve kısa bir teşekkür etti; uzun teşekkürleri pek beceremezdi. {{child.name}} buna güldü. Bugün öğrendiği şey basitti ama önemliydi: bazı işler iki kişilik yapılır, ve doğru ikinci kişi olmak da bir beceridir.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_rs_h2_06",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a9_rs_j_01",
+      "text": "Sonunda sahibini buldular. Sahibi, unuttuğu şeyi görünce önce gözlerine inanamadı, sonra ikisine de uzun uzun teşekkür etti. {{companion.name}} ile {{child.name}} birbirine baktılar; bir şeyi sahibine ulaştırmak, onu bulmaktan bile güzel geliyordu. Bugün bir işin nasıl yapıldığını, yaparak öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_rs_j_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_rs_j_02",
+      "text": "Kapı açıldı ve aradıkları kişi karşılarındaydı. Teşekkürler, gülümsemeler, bir de sıcak bir el sıkışma. {{child.name}} eve dönerken {{companion.name}}'in her gün yaptığı işin ne kadar çok insana dokunduğunu düşündü; bugün o işin küçük bir parçasını kendisi yapmıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_rs_j_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_tp_01",
+      "text": "Bir sabah {{companion.name}}, {{child.name}} daha yaklaşmadan ayağa kalktı ve birkaç adım attı. Adımları sağlam, gözleri berraktı. {{child.name}} bir süre hiçbir şey diyemedi. İyileşme gürültüsüz gelmişti; tıpkı bekleyiş gibi sessiz, tıpkı bakım gibi sabırlı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a9_rs_h2_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ],
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "id": "a9_rs_h2_tp_02",
+      "text": "Son çabayı omuz omuza verdiler ve iş sonunda tamamlandı. {{companion.name}} önce sessizce baktı, sonra büyük bir sevinçle {{child.name}}'e döndü. İkisi de yorgundu. Ama bu yorgunluk paylaşılmış bir işin yorgunluğuydu ve bu yüzden hafifti.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_a9_rs_h2_tp_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

@@ -66,6 +66,46 @@ final class SpecialDayTests: XCTestCase {
         XCTAssertFalse(active("bozuk"))
     }
 
+    /// A birthday comes back every year: the parent may pick the child's birth
+    /// date, or last year's party. Only month and day count, in the same
+    /// window around this year's, last year's or next year's birthday.
+    func testABirthdayComesBackEveryYear() {
+        func active(_ day: String, on date: Date? = nil) -> Bool {
+            SpecialDayWindow.isActive(SpecialDay(kind: .birthday, day: day), today: date ?? today, timeZone: istanbul)
+        }
+        XCTAssertTrue(active("2020-11-20"), "birth date, +3 this year")
+        XCTAssertTrue(active("2025-11-20"), "last year's date, +3 this year")
+        XCTAssertTrue(active("2020-11-03"), "-14 this year")
+        XCTAssertFalse(active("2020-11-02"), "-15 this year")
+        XCTAssertFalse(active("2020-11-25"), "+8 this year")
+        XCTAssertTrue(active("2019-01-03", on: day(2026, 12, 28)), "+6, across New Year")
+        XCTAssertTrue(active("2018-12-25", on: day(2027, 1, 5)), "-11, across New Year")
+    }
+
+    /// A 29 February birthday is kept on 28 February in other years.
+    func testALeapDayBirthdayFallsOnTheTwentyEighth() {
+        func active(on date: Date) -> Bool {
+            SpecialDayWindow.isActive(SpecialDay(kind: .birthday, day: "2020-02-29"), today: date, timeZone: istanbul)
+        }
+        XCTAssertTrue(active(on: day(2027, 2, 21)), "28 Feb is +7")
+        XCTAssertTrue(active(on: day(2028, 2, 22)), "a leap year keeps 29 Feb, +7")
+        XCTAssertFalse(active(on: day(2027, 2, 20)), "28 Feb is +8")
+    }
+
+    /// The other days happen once: their year counts.
+    func testOtherDaysKeepTheirYear() {
+        XCTAssertFalse(SpecialDayWindow.isActive(
+            SpecialDay(kind: .firstSchoolDay, day: "2025-11-20"), today: today, timeZone: istanbul))
+        XCTAssertFalse(SpecialDayWindow.isActive(
+            SpecialDay(kind: .firstLostTooth, day: "2020-11-17"), today: today, timeZone: istanbul))
+    }
+
+    private func day(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = istanbul
+        return calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 10))!
+    }
+
     /// The day is counted in the device's zone: just before midnight in
     /// Istanbul it is still the 17th there, already the 18th in Tokyo.
     func testTheWindowCountsDaysInTheGivenZone() throws {

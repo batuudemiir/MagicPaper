@@ -303,6 +303,169 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "b9_na_h5_sib_01",
+      "text": "{{child.name}} uykuya dalmak üzereydi ki kardeşi {{family.name}} yatağında doğruldu ve parmağını dudağına götürdü. Pencereden {{discovery.name}} geliyordu. İkisi kıpırdamadan dinlediler. Ses küçüktü, ama bu sessiz odada kolayca duyuluyordu. {{child.name}} kardeşine yavaşça başını salladı: evet, o da duymuştu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}}'ın sorusunu cevaplamaya hazırlanıyordu ki ikisi aynı anda sustu. Pencerenin önünden {{discovery.name}} geliyordu. Soru da cevap da bir süre bekleyebilirdi. İkisi yorganlarına biraz daha gömüldü ve dinlediler, merakla ama acele etmeden.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_na_h5_fr_01",
+      "text": "{{child.name}} el fenerini söndürmüştü. Yorganın altında arkadaşı {{family.name}}'ın fısıltısı duyuldu: \"Dinle.\" Pencereden {{discovery.name}} geliyordu. İkisi yorganın altından başlarını çıkardı. {{family.name}} bir tahminde bulundu, {{child.name}} başka bir tahminde. Ama ikisi de aynı fikirdeydi: ses tatlıydı ve yakındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_na_h5_fr_02",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} gece boyunca uyanık kalma planlarını gözden geçiriyorlardı. Planın ilk maddesi daha tamamlanmadan pencerenin önünden {{discovery.name}} geldi. İkisi de sustu. Plan unutuldu, çünkü dinlemek planlamaktan çok daha ilginçti. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_na_h5_an_01",
+      "text": "{{child.name}} yorganını çekiyordu ki {{family.possessive}} {{family.name}} kıpırdadı ve pencereye döndü. {{child.name}} kulak verdi: pencereden {{discovery.name}} geliyordu. Ses küçük ve sakindi, telaşlı hiçbir yanı yoktu. {{family.name}} bir süre dinledi, sonra {{child.name}}'e baktı; ikisi aynı şeyi merak ediyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_na_h5_an_02",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ın sakin nefesini dinleyerek uykuya dalıyordu. Sonra bu nefese başka bir ses karıştı: pencerenin önünden {{discovery.name}} geliyordu. {{child.name}} gözlerini açtı. {{family.name}} uyanmıştı ve o tarafa bakıyordu. Gece, beklenmedik bir misafir getirmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_na_h5_im_01",
+      "text": "{{child.name}} gözlerini kapamıştı ki hayali arkadaşı {{family.name}} kulağına eğildi: \"Bir misafirimiz var.\" {{child.name}} önce inanmadı; {{family.name}} bazen şaka yapardı. Ama pencereden {{discovery.name}} geliyordu, gerçekten. {{child.name}} yavaşça doğruldu. Bu kez {{family.name}} haklıydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9_na_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yıldızları sayıyordu. On ikiye gelmişlerdi ve {{family.name}} on üçüncüyü gördüğünü iddia ediyordu. Tartışma uzamadan pencerenin önünden {{discovery.name}} geldi. İkisi de sustu. Yıldızlar bekleyebilirdi; bu ses beklemeyecek gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_im_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
     }
   ]
 }

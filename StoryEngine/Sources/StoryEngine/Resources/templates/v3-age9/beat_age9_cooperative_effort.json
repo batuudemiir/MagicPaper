@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 3,
+  "beat": "cooperative_effort",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 8 hiç paylaşılmaz",
+    "paired": "15-30 words — sayfa 8, persist ile paylaşılır (Sporlar)"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "a9_ce_01",
+      "text": "{{child.name}} durumu baştan düşündü ve bir plan çıkardı. Bir kişinin tek başına yapamayacağı bir işti bu, ama iki kişinin, işi doğru bölüşürse yapabileceği bir iş. {{companion.name}}'e kendi payını anlattı, kendi payını da üstlendi. Sonra ikisi aynı anda başladılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_02",
+      "text": "\"Sen önü gözle, ben adımları sayayım,\" dedi {{child.name}}. {{companion.name}} kabul etti. Bir süre hiç konuşmadan çalıştılar; biri durunca öbürü de durdu, biri ilerleyince öbürü de ilerledi. Yavaş ama düzenliydi, ve her adım bir öncekinden biraz daha kolaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_03",
+      "text": "{{child.name}} fark etti ki tek başına uğraşırken hep aynı yerde takılıyordu. Bu kez {{companion.name}} ile işi ikiye ayırdılar. {{companion.name}} kendi bildiği yeri üstlendi, {{child.name}} ise kendi gördüğü yeri. Parçalar birleşince yol kendiliğinden açıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_04",
+      "text": "İkisi birlikte çalıştı. Kimi zaman {{child.name}} öne geçti, kimi zaman {{companion.name}}. Ne biri ötekine yük oldu, ne de iş yarım kaldı. Birlikte bakınca, tek başına görülmeyen şeyler görünüyordu. {{child.name}} bunu hiç unutmayacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a9_ce_04",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_ce_h2_01",
+      "text": "{{child.name}} önce {{companion.name}}'i dinledi, çünkü onun bildiği bir şey vardı: nereye bakılacağını. Kendisinin de bildiği bir şey vardı: nasıl uzanılacağını. İki bilgiyi bir araya getirdiler. {{companion.name}} yönü gösterdi, {{child.name}} adımı attı, ve iş ilk kez ilerlemeye başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_ce_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_ce_h2_02",
+      "text": "\"Bunu ikimiz yapalım,\" dedi {{child.name}}. \"Sen nereye bakacağımızı söyle, ben de oraya uzanayım.\" {{companion.name}} başını salladı; bu iyi bir plandı. İşi paylaştılar ve her biri kendi payını yaptı, öbürünü bekleyerek, acele etmeden.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_a9_ce_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_ce_j_01",
+      "text": "İşi bölüştüler. {{companion.name}} bugün kimlerin buradan geçtiğini, kimin neyle uğraştığını sırayla saydı; {{child.name}} ise o kapıları tek tek çaldı ve her birine aynı soruyu sordu. Birinin hafızası ile öbürünün ayakları birleşince arama, tek başına hiçbirinin yapamayacağı kadar kolaylaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ce_j_02",
+      "text": "{{companion.name}} köyde kimin nerede oturduğunu bir bir anlattı, {{child.name}} ise bulduklarındaki küçük ipuçlarını aradı: bir renk, bir iz, bir harf. Biri adresleri biliyordu, öbürü ayrıntıları görüyordu. Birlikte yürüdükçe ihtimaller azaldı ve sonunda tek bir kapı kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ce_j_03",
+      "text": "{{companion.name}} o sabah buraya kimlerin uğradığını sırayla yazdı; {{child.name}} ise listedeki her isme tek tek gidip sordu. Düzen ile sabır birleşince arama bir oyuna döndü, ve listenin ortasına gelmeden sahibi bulundu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ce_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s910_ce_01",
+      "text": "Biri ritmi tuttu, öbürü zıpladı; sonra hiç konuşmadan yer değiştirdiler, çünkü artık birbirlerinin ne yapacağını biliyorlardı.",
+      "requiredSlots": [],
+      "move": "spor_s910_ce_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_02",
+      "text": "{{child.name}} sayıyı yüksek sesle söyledi, {{companion.name}} adımı tam o anda attı; birlikte küçük ama sağlam bir düzen kurdular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ce_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_03",
+      "text": "Tek başına bir türlü olmayan şey, ikisi aynı anda başlayınca kendiliğinden yürümeye başladı; oyun, iki kişilikti.",
+      "requiredSlots": [],
+      "move": "spor_s910_ce_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_ce_tp_01",
+      "text": "{{companion.name}} ritmi saydı, {{child.name}} hareketi yaptı; birkaç denemeden sonra sırayı değiştirdiler ve ikisi de aynı düzeni kolayca buldu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s910_ce_tp_01",
+      "lengthClass": "paired"
+    }
+  ]
+}

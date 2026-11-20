@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 6 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9cm_01",
+      "text": "{{child.name}} bir an düşündü. Yol uzun olabilirdi ve her adım dikkat isteyecekti; yine de karar vermesi zor olmadı. Bunu evine kendisi götürecekti, yolu ise {{companion.name}} gösterecekti. İşi paylaşınca, zor görünen şeyler hep biraz küçülüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9cm_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9cm_02",
+      "text": "\"Tamam,\" dedi {{child.name}}, \"onu yerine götürelim.\" Söylemesi kolaydı, yapması dikkat isteyecekti. Ama {{keepsake.name}}'i bulduğu gün de her şey böyle küçük bir kararla başlamıştı; büyük işlerin çoğu, {{child.name}}'in fark ettiği gibi, küçük kararlardan doğuyordu.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s9cm_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9cm_03",
+      "text": "{{child.name}} kollarını sıvadı. Bu iş acele kaldırmazdı, bunu biliyordu. Önce nasıl taşıyacağını düşündü, sonra yolun en dar yerini sordu, en sonunda da derin bir nefes alıp {{companion.name}}'e döndü: \"Hazırım. Sen önden git, ben arkandan geliyorum.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9cm_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

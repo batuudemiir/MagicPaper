@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 5 restore ile paylaşılır"
+    "paired": "5-12 words — sayfa 5 restore ile paylaşılır",
+    "solo": "10-24 words — sayfa 4 yalnız (Sporlar)"
   },
   "variants": [
     {
@@ -78,6 +79,42 @@
       "requiredSlots": [
         "child.name"
       ]
+    },
+    {
+      "id": "s34_pw_01",
+      "text": "İkisi çimenlere oturup beklediler. Bulutlar yavaşça geçti. Sonra saçları kıpırdadı: rüzgâr geliyordu!",
+      "requiredSlots": [],
+      "move": "spor_s34_pw_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_pw_02",
+      "text": "{{child.name}} sabırla bekledi. Bir yaprak kıpırdadı, sonra bir yaprak daha. İşte geliyordu!",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_pw_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_pw_03",
+      "text": "Beklemek biraz zordu. {{companion.name}} çimenleri kokladı, {{child.name}} gökyüzüne baktı. Sonra hafif bir esinti geldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_pw_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_pw_tp_01",
+      "text": "{{child.name}} ile {{companion.name}} çimenlere oturdu. Beklediler, beklediler. Sonra otlar usulca eğildi: rüzgâr gelmişti!",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s34_pw_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

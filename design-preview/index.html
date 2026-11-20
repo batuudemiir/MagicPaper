@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagicPaper</title>
+<!-- Yalnızca iPhone: içinde gezilen prototip (app/). Gerçek ekran görüntüleri
+     ve taslak karşılaştırması: karsilastir.html. -->
+<style>
+  html, body { margin: 0; height: 100%; background: #F3EFF7; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  .phone { position: relative; width: 440px; height: 956px; padding: 12px; box-sizing: content-box;
+           background: #1E1726; border-radius: 62px; box-shadow: 0 0 0 2px #3A3044 inset, 0 30px 60px rgba(46,30,62,.18);
+         }
+  .screen { width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
+  .island { position: absolute; top: 23px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px;
+            border-radius: 20px; background: #000; z-index: 2; pointer-events: none; }
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="island"></div>
+  <div class="screen"><iframe id="app" title="MagicPaper"></iframe></div>
+</div>
+<script>
+  // Adres çubuğundaki bağlantı telefonun içine geçer: index.html?ortu=payA gibi
+  // (payA|payB|payC|paywall|parent|reader), ?ekran=masallar, ?ilk=welcome, ?sayfa=tale:rapunzel.
+  document.getElementById("app").src = "app/index.html" + location.search;
+  // Telefon pencereye sığsın: küçültülür ama hiç büyütülmez. zoom, transform'un
+  // aksine yerleşimi de küçültür; telefon her panel boyutunda ortada ve tam görünür.
+  const phone = document.getElementById("phone");
+  const fit = () => {
+    const h = document.documentElement.clientHeight, w = document.documentElement.clientWidth;
+    if (!h || !w) return;
+    phone.style.zoom = Math.min(1, (h - 24) / 980, (w - 24) / 464);
+  };
+  addEventListener("resize", fit); new ResizeObserver(fit).observe(document.documentElement); fit();
+</script>
+</body>
+</html>

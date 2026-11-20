@@ -47,19 +47,28 @@ final class SeriesManager: ObservableObject {
     private let familyStore: FamilyCharacterStore
     private let library: StoryGenerationManager
     private let service: OfflineStoryService
+    /// Bu numaralı bölümün açılmasına yetki var mı (karar: Batuhan 20 Kasım
+    /// 2026: ücretsizde 2. bölüm, sonrası abonelikle). Kural
+    /// `EntitlementPolicy`'de; burada yalnızca sorulur. Açılmış bölüm hiç
+    /// kilitlenmez: soru yalnızca yeni bölüm açılırken sorulur.
+    private let episodeAllowed: (Int) -> Bool
 
     init(
         store: StorySeriesStore = StorySeriesStore(),
         clock: SeriesClock = SeriesClock(),
         familyStore: FamilyCharacterStore = FamilyCharacterStore(),
         library: StoryGenerationManager? = nil,
-        service: OfflineStoryService? = nil
+        service: OfflineStoryService? = nil,
+        episodeAllowed: ((Int) -> Bool)? = nil
     ) {
         self.store = store
         self.clock = clock
         self.familyStore = familyStore
         self.library = library ?? .shared
         self.service = service ?? .shared
+        self.episodeAllowed = episodeAllowed ?? { number in
+            LiveEntitlementService.shared.evaluate(.seriesStories, usage: .seriesEpisode(number)).isAllowed
+        }
     }
 
     // MARK: - Reading state
@@ -280,6 +289,7 @@ final class SeriesManager: ObservableObject {
         }
 
         if let next = series.nextLocked,
+           episodeAllowed(next.number),
            let index = series.episodes.firstIndex(where: { $0.number == next.number }),
            let waitingOn = series.readMark(before: next.number),
            clock.dayHasPassed(since: waitingOn) {

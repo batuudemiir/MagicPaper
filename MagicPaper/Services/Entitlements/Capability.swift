@@ -32,8 +32,10 @@ public enum Capability: String, CaseIterable, Sendable {
     /// Bugünkü karşılığı: `SubscriptionManager.canCreateStory(type: .daily)`.
     case unlimitedDailyStories
 
-    /// Kilitli dünyalar: peri, korsan, kar, çiftlik, robot, sirk.
-    /// Bugünkü karşılığı: `MP.World.isPremium && !subscriptionManager.isPremium`.
+    /// Kilitli dünyalar: masal yazmada abonelikle açılan konular.
+    /// 20 Kasım 2026'dan beri (karar: Batuhan) bütün dünyalar ücretsiz;
+    /// `lockedTopicIDs` boş, politika her planda izin verir. Durum ileride
+    /// yeniden kilit gerekirse diye duruyor.
     case premiumWorlds
 
     /// Kilitli temalar: jungle, hero, underwater, custom.
@@ -44,6 +46,55 @@ public enum Capability: String, CaseIterable, Sendable {
     /// Bugün karşılığı yok: uzunluk seçimi kalktı, sayfa sayısı yaş bandından
     /// gelir (FAZ 10, `AgeBand.pageCount`).
     case longStories
+
+    // E7 (19 Kasım 2026) ve abonelik kararı (20 Kasım 2026, Batuhan;
+    // `docs/PAYWALL_EKONOMI_PLANI.md`): aboneliğin açtığı şeyler. Deneme
+    // hakkı bunları açmaz. Bazılarının ücretsiz payı var; pay kullanımla
+    // birlikte sorulur (`EntitlementUsage`), sınır `EntitlementPolicy`'de.
+
+    /// Bütün klasikler ve MagicPaper Original masalları (Masallar).
+    /// Ücretsiz pay: vitrin (haftanın seçkisi ve Uyku vakti rafı).
+    case classicLibrary
+    /// Sevilen bir masalın beş bölümlük serisi. Ücretsiz pay: seri başlar ve
+    /// ilk yeni bölüm (2. bölüm) açılır; sonrakiler abonelikle açılır.
+    /// Açılmış bölümler her zaman okunur.
+    case seriesStories
+    /// Masal ailem: karakter eklemek ve masala katmak. Ücretsiz pay: bir kişi.
+    /// Var olan karakterler ve onlarla yazılmış masallar kalır.
+    case familyCast
+    /// Ailedeki ikinci ve sonraki çocuk profili. Ücretsiz pay: bir çocuk.
+    /// Var olan profiller hiç kilitlenmez.
+    case multipleChildren
+    /// Kendi sesinle okuma: ses kaydetmek. Kaydedilmiş ses çalmaya devam eder.
+    /// Release'te kapalı olduğu sürece Paywall'da satılmaz.
+    case ownVoice
+    /// Masalı ya da kitabı PDF olarak dışa aktarmak.
+    case pdfBook
+
+    /// Abonelikle açılan konular (`storyTopics` kimlikleri). 20 Kasım 2026'dan
+    /// beri boş: Gökyüzü ve uzay ile Sporlar ücretsiz.
+    public static let lockedTopicIDs: Set<String> = []
+}
+
+// MARK: - Usage
+
+/// Bir yeteneğin **hangi kullanımı** soruluyor (karar: Batuhan 20 Kasım 2026).
+///
+/// Ücretsiz planın bazı yetenekleri kısmen açması (bir aile kişisi, bir çocuk,
+/// serinin ilk yeni bölümü, vitrin) kararın kullanıma bakmasını gerektirir.
+/// Sınırların kendisi `EntitlementPolicy`'de durur; ekran yalnızca ne
+/// yaptığını söyler.
+public enum EntitlementUsage: Equatable, Sendable {
+    /// Ek bilgi yok: tam kilit kuralı.
+    case plain
+    /// Bir tane daha eklenecek; şu an `count` tane var (aile kişisi, çocuk).
+    case adding(existing: Int)
+    /// Var olan ögelerin sıradaki konumu (0'dan): ücretsiz paya düşüyor mu.
+    case using(position: Int)
+    /// Klasik ya da Original masal; ücretsiz vitrinde mi.
+    case classic(inShowcase: Bool)
+    /// Serinin bu numaralı bölümünü açmak (2...5).
+    case seriesEpisode(Int)
 }
 
 public extension Capability {
@@ -53,10 +104,13 @@ public extension Capability {
     /// saf erişim kapısıdır ve tüketilmez.
     var isMetered: Bool {
         switch self {
-        case .illustratedStory:
+        case .illustratedStory, .unlimitedTextStories:
+            // Metin masalı E7'den beri ölçülür: ücretsizde günde bir.
             return true
-        case .unlimitedTextStories, .unlimitedDailyStories,
-             .premiumWorlds, .premiumThemes, .longStories:
+        case .unlimitedDailyStories,
+             .premiumWorlds, .premiumThemes, .longStories,
+             .classicLibrary, .seriesStories, .familyCast, .multipleChildren,
+             .ownVoice, .pdfBook:
             return false
         }
     }
@@ -97,10 +151,10 @@ public enum EntitlementPlan: String, Codable, CaseIterable, Sendable {
     /// Ebeveyne gösterilecek sade ad. Emoji yok — rozet arayüzün işi.
     public var displayName: String {
         switch self {
-        case .free:     return "Ücretsiz plan"
-        case .basic:    return "Yıldız Kaşifi"
-        case .premium:  return "Hikaye Kahramanı"
-        case .ultimate: return "Sihir Ustası"
+        // Tek plan (karar: Batuhan 20 Kasım 2026). Eski kademeler mağazada
+        // kalan aboneler için durur, adları aynı.
+        case .free:                         return "Ücretsiz plan"
+        case .basic, .premium, .ultimate:   return "MagicPaper Premium"
         }
     }
 }

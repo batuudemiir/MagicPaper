@@ -1,6 +1,6 @@
 {
   "claim_id": "c_fear_named_and_supported",
-  "statement": "Fear is a subject in 3 of 16 books with three different handlings: Brave Bora names it and a parent supports him; Bohlale names it herself and defuses it by looking again; Good Night, Monu shows it only in pictures and the child settles it alone.",
+  "statement": "Fear is a subject in 5 of the analysed books with four different handlings: Brave Bora names it and a parent supports him; AAAAAHHH!!!! Mmawe! has an adult name each scare and reframe it as ordinary; Bohlale names it herself and defuses it by looking again; Dance, Khuzwayo, Dance! has the child name it and two friends support him; Good Night, Monu shows it only in pictures and the child settles it alone.",
   "kind": "HYPOTHESIS",
   "layers": [
     "textual_mechanism"
@@ -8,20 +8,22 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
-    "w_brave_bora_gicovi"
+    "w_brave_bora_gicovi",
+    "w_aaaaahhh_mmawe_mcgregor"
   ],
   "counterexample_works": [
     "w_bohlales_adventure_ambrosano",
-    "w_good_night_monu_karthik"
+    "w_good_night_monu_karthik",
+    "w_dance_khuzwayo_dance_nyirongo"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "\n2026-10-15: Bohlale (African Storybook): scary eyes 4/5, about 2 on the engine's 0-3 scale, defused on the next page. Monu (StoryWeaver): 4/5 over three pages, about 2 on 0-3. In neither does an adult support the child at the fear peak.",
+  "analyst_note": "\n2026-10-15: Bohlale (African Storybook): scary eyes 4/5, about 2 on the engine's 0-3 scale, defused on the next page. Monu (StoryWeaver): 4/5 over three pages, about 2 on 0-3. In neither does an adult support the child at the fear peak.\n2026-11-13: +1 support (Mmawe: adult names and reframes, 4/5 at the fourth scream, about 3 on the engine's 0-3 scale, which the engine forbids at 5-6; the book is 3-4), +1 counter (Khuzwayo: peers, not a parent, support him; fear 4/5, about 2 on 0-3, reduced not removed). Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "EmotionalState.intensity",
     "current": "fear, panic, grief, despair (intensity 3) never permitted at age 5-6",
@@ -30,10 +32,10 @@
     "review_status": "declined"
   },
   "computed": {
-    "n_examined": 3,
-    "support": 1,
-    "counter": 2,
-    "support_ratio": 0.333,
+    "n_examined": 5,
+    "support": 2,
+    "counter": 3,
+    "support_ratio": 0.4,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "HYPOTHESIS",

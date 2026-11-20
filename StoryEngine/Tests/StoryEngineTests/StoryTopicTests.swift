@@ -251,19 +251,47 @@ final class StoryTopicTests: XCTestCase {
         // (signal, patientObservation, seekingKnowledge, revelation,
         // perspectiveShift). Öğrenelim böylece mod başına üç konu hedefine
         // ulaştı; tek yeni blueprint yazılmadı, açan şey insan yol arkadaşı.
+        // Sporlar (19 Kasım 2026): dört bantta da "Sporlar" canlandı; her
+        // banta üç hareket oyunu şekli, Beden Öğretmeni Defne ve keçi Zıpzıp.
+        // Yeni dünyalar (19 Kasım 2026): Eski Kale, Taş Müze ve Taş Basamaklı
+        // Tiyatro "Tarih"i dört bantta da açtı; "Yeni bir şehir" ve "Yeni bir
+        // ülke" de dört bantta canlı. Yeni blueprint yazılmadı: açan şey
+        // mekânlar, yol arkadaşları ve nesneler.
         XCTAssertEqual(live(.learning, band: b56),
-                       ["topic_learning_animals", "topic_learning_jobs",
-                        "topic_learning_science"])
+                       ["topic_learning_animals", "topic_learning_history", "topic_learning_jobs",
+                        "topic_learning_science", "topic_learning_sports"])
         // 16 Kasım 2026 (E5): "Gökyüzü ve uzay" canlandı. Üç yeni mekân (Ay
         // Kıyısı, Gümüş Kubbe, Bulut Limanı) dört macera mekanizmasını da
         // kuruyor: incrementalCourage, askingToJoin, persistence, retracing.
+        // H1 (17 Kasım 2026): iki sakin macera şekli (crossingTogether,
+        // askingAround) "Denizin altı"nı da üç mekanizmaya taşıdı.
         XCTAssertEqual(live(.adventure, band: b56),
-                       ["topic_adventure_sky", "topic_adventure_treasure", "topic_adventure_wild"])
+                       ["topic_adventure_city", "topic_adventure_country", "topic_adventure_sea",
+                        "topic_adventure_sky", "topic_adventure_treasure", "topic_adventure_wild"])
 
-        // 3-4 bandında tek bir blueprint var ve o uyku öncesine ait; bu bantta
-        // hiçbir konu kurulamıyor, yani alt kategori adımı hiç görünmüyor.
-        XCTAssertEqual(live(.learning, band: b34), [])
-        XCTAssertEqual(live(.adventure, band: b34), [])
+        // H2 (18 Kasım 2026): 3-4 öğrenme beş şekle çıktı (iki charge +
+        // unexplained, misreading, appeal); hayvan yol arkadaşı beşinde de
+        // bağlanıyor, "Hayvanlar" canlandı. Önceden bu bantta konu yoktu.
+        XCTAssertEqual(live(.learning, band: b34),
+                       ["topic_learning_animals", "topic_learning_history", "topic_learning_sports"])
+        // H2: 7-8 ve 9-10'da da dört şekil (appeal ve charge eklendi);
+        // "Hayvanlar" ikisinde de canlı. Bilim üç mekanizmaya ulaşmıyor
+        // (yalnızca iki keşif `science` taşıyor), Meslekler 7-10'da ayrı faz.
+        // H2b (19 Kasım 2026): üç meslek şekli 7-8 ve 9-10'da "Meslekler"i
+        // açtı; ikisi (seekingKnowledge, patientObservation) bilim keşfini de
+        // bağladığı için "Bilim" de üç mekanizmaya ulaştı.
+        for older in [AgeBand(lowerBound: 7, upperBound: 8), AgeBand(lowerBound: 9, upperBound: 10)] {
+            XCTAssertEqual(live(.learning, band: older),
+                           ["topic_learning_animals", "topic_learning_history", "topic_learning_jobs",
+                            "topic_learning_science", "topic_learning_sports"])
+            XCTAssertEqual(live(.adventure, band: older),
+                           ["topic_adventure_city", "topic_adventure_country", "topic_adventure_sea",
+                            "topic_adventure_sky", "topic_adventure_treasure", "topic_adventure_wild"])
+        }
+        // H1 (17 Kasım 2026): 3-4'ün dört macera şekli dört konuyu açtı.
+        XCTAssertEqual(live(.adventure, band: b34),
+                       ["topic_adventure_city", "topic_adventure_country", "topic_adventure_sea",
+                        "topic_adventure_sky", "topic_adventure_treasure", "topic_adventure_wild"])
 
         // Bu test kırıldıysa muhtemelen bir içerik turu bir konuyu canlandırdı.
         // Doğrusu: listeyi güncelle ve DEMO_CHANGELOG'a "şu konu canlandı" diye

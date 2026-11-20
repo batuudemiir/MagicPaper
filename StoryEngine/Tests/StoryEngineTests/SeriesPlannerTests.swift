@@ -102,7 +102,12 @@ final class SeriesPlannerTests: XCTestCase {
             }
         }
         // 22 Ekim 2026: öğrenelim 3-4 aynı gün açıldı, devam içeriği yok.
-        XCTAssertEqual(without.sorted(), ["learning 3-4"])
+        // H1 (17 Kasım 2026): macera 3-4 açıldı, devam içeriği yok (H1 seri
+        // yazmadı; düğme `isAvailable` ile gizli kalır).
+        // H4 (18 Kasım 2026): 3-4'e macera ve öğrenme devamı yazıldı
+        // (`bp_cont_lookingagain_age3_001`, `bp_cont_askingagain_age3_001`);
+        // 3-4 ve 5-6'da devamı olmayan kesit kalmadı.
+        XCTAssertEqual(without.sorted(), [])
     }
 
     // MARK: - Determinism
@@ -333,9 +338,15 @@ final class SeriesPlannerTests: XCTestCase {
 
     // MARK: - Failure
 
+    /// H4 (18 Kasım 2026): 3-4 öğrenme artık düz arkta devam ediyor, bu
+    /// yüzden sınanan kesit bir yatak odasında açılan masal: uyku arkının
+    /// devamları yalnızca uyku modunu taşıyor, öğrenme modu orada devam edemez.
     func testAModeWithoutContinuationsSaysSo() throws {
         let catalog = try catalog()
-        let first = try firstStory(mode: .bedtime, band: Self.age3, seed: "s1", catalog: catalog)
+        let first = try OfflineStoryComposer().compose(
+            catalog: catalog,
+            intent: OfflineStoryIntent(childName: "Yeliz", seed: "s1", mode: .bedtime, ageBand: Self.age3))
+        XCTAssertEqual(catalog.blueprint(first.blueprintID)?.arc, .bedtime)
         XCTAssertThrowsError(try SeriesPlanner().plan(
             anchor: anchor(first), mode: .learning, band: Self.age3, family: nil,
             familyCharacterID: nil, childName: "Yeliz", seed: "x", catalog: catalog)) { error in

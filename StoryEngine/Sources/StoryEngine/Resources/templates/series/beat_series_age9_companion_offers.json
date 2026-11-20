@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — yol arkadaşı bildiğini paylaşır (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9co_01",
+      "text": "{{companion.name}} bir şey hatırladı ve anlattı: geçen sefer de böyle olmuştu, iş bitmek üzereyken en çok sabır gerekmişti. {{child.name}} bunu dinlerken içi rahatladı. Bir dostun hatırladığı şey, insanın kendi hatırladığına güzel bir ek oluyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9co_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9co_02",
+      "text": "{{companion.name}} küçük bir bilgi ekledi: bu yerin her köşesini tanıyordu ve neyin nereye ait olduğunu, nerenin daha sakin olduğunu biliyordu. {{child.name}} bu bilgiyi dikkatle aklına yazdı. Kendi gözleriyle {{companion.name}}'in bildikleri birleşince iş kolaylaşıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9co_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9co_03",
+      "text": "\"Sana bir şey göstereyim,\" dedi {{companion.name}}, ve {{child.name}}'e yakındaki sakin bir köşeyi işaret etti. Orası rüzgârdan korunuyordu ve kimse oradan geçmiyordu. {{child.name}} başını salladı; {{companion.name}} burayı kendisinden iyi tanıyordu ve bunu söylemek ona hiç zor gelmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9co_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

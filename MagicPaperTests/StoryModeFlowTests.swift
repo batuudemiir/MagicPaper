@@ -169,12 +169,12 @@ final class StoryModeFlowTests: XCTestCase {
     /// (`lookingAfter`) ulaşılabilir oldu. Yazılmıştı, korpusu tamdı, ve
     /// hiçbir çocuk ona ulaşamıyordu.
     ///
-    /// Macera hâlâ yok ve bu bir eksiklik değil bir tüzük: 3-4 korpusunun
-    /// editoryal notu "aşılacak engel yok" diyor, yani eşik ve iz sürme
-    /// şekilleri bu banda yazılmaz.
-    func testTheYoungestBandOffersLearningAndBedtimeToday() {
-        XCTAssertEqual(service.availableModes(forAge: 3), [.learning, .bedtime])
-        XCTAssertEqual(service.availableModes(forAge: 4), [.learning, .bedtime])
+    /// Macera o gün yoktu: 3-4 korpusunun editoryal notu "aşılacak engel yok"
+    /// diyordu. H1 (17 Kasım 2026, `docs/HAVUZ_PLANI.md`) 3-4'e dört sakin
+    /// macera yazdı: gergin sayfa yok, engel küçük ve birlikte aşılıyor.
+    func testTheYoungestBandOffersAllThreeModesSinceH1() {
+        XCTAssertEqual(service.availableModes(forAge: 3), [.learning, .adventure, .bedtime])
+        XCTAssertEqual(service.availableModes(forAge: 4), [.learning, .adventure, .bedtime])
     }
 
     func testElevenAndTwelveAreServedAsNineToTen() {

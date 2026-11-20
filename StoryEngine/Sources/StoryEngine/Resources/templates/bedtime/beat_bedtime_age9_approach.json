@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "approach",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 8, aya konuşmak (H3)"
+  },
+  "variants": [
+    {
+      "id": "ba9_01",
+      "text": "{{child.name}} usulca kalkıp pencereye gitti. Ay oradaydı, her geceki yerinde, sabırla parlıyordu. {{child.name}} ona içinden konuştu: bugün olanları anlattı, kimseye söylemediği küçük bir sevinci de ekledi. Ay hiçbir şey söylemedi, ama dinliyormuş gibi duruyordu, ve bu yetiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_ba9_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "ba9_02",
+      "text": "Pencerenin önünde {{child.name}} yıldızları saydı, ama yüksek sesle değil; bu sayım sadece kendisine aitti. Bir, iki, üç... Her yıldıza bir iyi geceler dedi. Ondan sonra saymayı bıraktı, çünkü gökyüzünde yıldız bitmiyordu, ama onun uykusu geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_ba9_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "ba9_03",
+      "text": "{{child.name}} pencereye yaklaştı ve aya küçük bir söz verdi: bu gece kimseyi uyandırmayacak, kendisi de usulca uyuyacaktı. Bunu söylemek tuhaf gelebilirdi, ama {{child.name}} biliyordu ki bazı sözler sadece ay ışığında söylenir. Sonra perdeyi biraz araladı, ışık içeri dolsun diye.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_ba9_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "ba9_tp_01",
+      "text": "{{child.name}} yataktan usulca kalktı ve pencerenin önüne oturdu. Ay bu gece biraz eğikti, sanki o da uykuya hazırlanıyordu. {{child.name}} ona bugünü anlattı: sabahki yağmuru, öğlenki oyunu, akşamki çorbayı. Anlattıkça içi hafifledi; sonra aya iyi geceler dedi ve yatağına döndü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_ba9_tp_01",
+      "lengthClass": "solo"
+    }
+  ]
+}

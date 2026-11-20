@@ -1,0 +1,61 @@
+name: Ekran görüntüleri
+
+# Gerçek uygulamanın ekranlarını Mac'te simülatörde çeker ve 'irem' dalına
+# geri yazar (design-preview/screens/real). Windows'ta önizleyici bunları
+# iPhone çerçevesinde gösterir (design-preview/index.html).
+#
+# Yalnızca 'irem' dalında ve commit mesajında [ekran] varsa çalışır:
+# macOS dakikaları pahalı (özel depoda 1 dakika = 10 dakika sayılır).
+on:
+  push:
+    branches: [ irem ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  screenshots:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[ekran]')
+    # Sıra iş düzeyinde: [ekran]'sız gönderimler (belge, README) çalışan turu iptal etmez.
+    concurrency:
+      group: ekran-cek
+      cancel-in-progress: false
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Ekranları çek
+        env:
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+        # Günlük dala da yazılır: hata olursa GitHub girişi olmadan okunabilsin.
+        run: |
+          mkdir -p design-preview/screens
+          set -o pipefail
+          bash Scripts/ci_screenshots.sh 2>&1 | tee design-preview/screens/ci-gunlugu.txt
+
+      - name: Görüntüleri sakla (indirilebilir kopya)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ekran-goruntuleri
+          path: design-preview/screens
+          retention-days: 14
+
+      - name: Görüntüleri ve günlüğü irem dalına yaz
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Her git hatası açıklama olarak da yazılır (girişsiz okunabilsin).
+          run() { out=$("$@" 2>&1) || { echo "$out"; echo "$out" | tail -n 3 | sed "s/^/::error::$1 $2: /"; exit 1; }; echo "$out"; }
+          run git add -f design-preview/screens
+          if git diff --cached --quiet; then echo "Değişen görüntü yok."; exit 0; fi
+          run git commit -m "Ekran görüntüleri: ${GITHUB_SHA::7} [skip ci]"
+          run git pull --rebase --autostash origin irem
+          run git push origin HEAD:irem

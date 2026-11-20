@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 3,
+  "beat": "ask_for_help",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "editorialNote": "H2b (19 Kasım 2026): Meslekler 7-10. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 8 hiç paylaşılmaz (H2b)"
+  },
+  "variants": [
+    {
+      "id": "a9_ah_bk_01",
+      "text": "\"Sen olsan ne yapardın?\" diye sordu {{child.name}}. {{companion.name}} unlu ellerini önlüğüne sildi ve bir süre düşündü. \"Hamurdan öğrendiğim bir şey var,\" dedi sonunda. \"Bazı şeyleri zorlayamazsın; beklersin, bakarsın, doğru anı kollarsın. Belki seninki de öyle bir şeydir.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_bk_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_bk_02",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e götürdü. Fırıncı önce sonuna kadar dinledi, sonra fırının kapağını gösterdi: \"Her sabah ilk iş ısıya bakarım; bir şey değiştiyse önce onu fark ederim. Sen de önce neyin değiştiğine bak.\" Bu küçük ipucu, {{child.name}}'in aklındaki karışıklığı yavaşça çözdü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_bk_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_pm_01",
+      "text": "{{child.name}} sorunca {{companion.name}} çantasını omzundan indirip bir taşın üstüne oturdu. \"Ben mektupları sokak sokak ayırırım,\" dedi. \"Karışık görünen bir yığını küçük parçalara bölünce, her parçanın nereye gideceği kendiliğinden belli olur. Senin bulduğun şey de belki bir yığındır.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_pm_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_pm_02",
+      "text": "\"Bunu kime sorabilirim?\" diye düşünürken {{child.name}} yolda {{companion.name}}'i gördü. Postacı köyün her köşesini, her kapıyı bilirdi. Dinledi, gülümsedi ve tek bir öneride bulundu: \"Önce nereden geldiğine bak. Her şeyin bir adresi vardır; adresi bulursan gerisi kolaydır.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_pm_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_tc_01",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e anlattı. Öğretmen cevabı vermedi; onun yerine bir soru sordu: \"Sence önce ne oldu, sonra ne oldu?\" {{child.name}} olayları sırayla düşünmeye başlayınca, cevabın aslında sıranın içinde saklı olduğunu fark etti. {{companion.name}} yalnızca gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_tc_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_tc_02",
+      "text": "\"Bilmediğin bir şeyi önce yazarsın,\" dedi {{companion.name}}, ve {{child.name}}'e bir kâğıt uzattı. {{child.name}} gördüklerini sırayla yazdı, sonra okudu. Yazılınca dağınık parçalar yan yana geldi ve aralarındaki bağ görünür oldu. Öğretmenin planı, şimdi {{child.name}}'in planıydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_tc_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_bk_03",
+      "text": "{{companion.name}} tezgâhı silerken sonuna kadar dinledi. \"Ekmek yaparken bir şey ters giderse en baştan düşünürüm,\" dedi. \"Unu, suyu, sıcaklığı, bekleme süresini tek tek. Çoğu zaman sorun en sıradan görünen yerdedir. Sen de baştan say.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_bk_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_bk_04",
+      "text": "{{companion.name}} soruyu duyunca güldü. \"Ben her sabah aynı şeyi sorarım,\" dedi, \"dün neyi farklı yaptım? Ekmek bana hep cevap verir, yeter ki dikkatle bakayım.\" {{child.name}} aynı soruyu kendine sordu ve cevabın ucunu yakaladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_bk_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "baker"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_pm_03",
+      "text": "{{companion.name}} haritasını açtı ve parmağıyla bir sokağı izledi. \"Bir mektubun nereye gideceğini bilmezsem önce üstündeki işaretlere bakarım,\" dedi. \"Pul, damga, el yazısı; hepsi bir şey anlatır. Senin bulduğunun da işaretleri vardır, onları oku.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_pm_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_pm_04",
+      "text": "\"Sorunu bana anlat, ama sırayla,\" dedi {{companion.name}}. Postacı her şeyi sırayla dinlerdi, sokak sokak, kapı kapı. {{child.name}} anlatmaya başladı ve anlattıkça kendi düşüncesi de sıraya girdi; eksik parça, sıra gelince kendiliğinden ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_pm_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "postman"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_tc_03",
+      "text": "{{companion.name}} tahtaya iki sütun çizdi ve başlıklarını yazdı: \"Bildiklerin\" ve \"Bilmediklerin\". {{child.name}} sütunları kendi eliyle doldurdu. Bilmedikleri sütunu kısaldıkça soru da küçüldü, ve sonunda tek bir satır kaldı; cevap o satırın yanı başındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_tc_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a9_ah_tc_04",
+      "text": "\"Bunu sana söylemeyeceğim,\" dedi {{companion.name}} gülümseyerek, \"ama nasıl bulacağını göstereceğim.\" Sonra {{child.name}}'e küçük bir soru sordu, ardından bir tane daha. Küçük sorular üst üste binince büyük sorunun kapısı kendiliğinden aralandı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_ah_tc_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "teacher"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s910_ah_ch_01",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e götürdü. Beden öğretmeni bir an düşündü, sonra elindeki düdüğü cebine koydu. \"Bir hareketi öğrenirken onu küçük parçalara bölerim,\" dedi. \"Önce ayaklar, sonra kollar, en son nefes. Senin sorunu da parça parça düşün; cevap çoğu zaman parçaların arasında saklıdır.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ah_ch_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s910_ah_ch_02",
+      "text": "\"Sen olsan ne yapardın?\" diye sordu {{child.name}}. {{companion.name}} gülümsedi ve çayırın kenarındaki çocukları gösterdi: \"Önce izlerim. Bir şeyi yapmadan önce nasıl yapıldığına uzun uzun bakarım; göz, bedenden önce öğrenir.\" Bu öneri, {{child.name}}'in kafasındaki düğümü yavaşça çözdü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ah_ch_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s910_ah_ch_03",
+      "text": "{{companion.name}} düdüğünü boynundan çıkarıp yanına oturdu. \"Takıldığın yerde dur ve geri say,\" dedi. \"Neyi doğru yaptın, nerede değişti? Hareket öğrenirken ben hep böyle yaparım; hata, nereye bakacağını gösteren bir işarettir.\" {{child.name}} geri saymaya başladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ah_ch_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s910_ah_ch_04",
+      "text": "\"Bir hareket hiçbir zaman ilk seferde olmaz,\" dedi {{companion.name}}, \"benim için de olmadı. Önce ne yaptığını yavaşça göster bana.\" {{child.name}} hareketi ağır ağır gösterirken eksik adımı kendisi fark etti; öğretmen hiçbir şey söylemeden başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s910_ah_ch_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    }
+  ]
+}

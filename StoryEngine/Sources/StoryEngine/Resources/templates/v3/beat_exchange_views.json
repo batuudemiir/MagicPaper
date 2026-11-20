@@ -309,6 +309,69 @@
       "occupationRequire": [
         "teacher"
       ]
+    },
+    {
+      "id": "s56_ev_ch_01",
+      "text": "{{companion.name}} aynı şeye başka bir yerden baktı: \"Ben her gün çocukların koşuşunu izlerim,\" dedi. \"Senin gördüğün yarısı; öbür yarısını ben görüyorum.\" İkisinin gördüğü birleşince resim tamamlandı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_02",
+      "text": "\"Sen önünden bakıyorsun, ben yanından,\" dedi {{companion.name}}. Beden öğretmeni hareketleri hep yandan izlerdi. {{child.name}} onun gördüğünü dinleyince kendi gördüğünün eksik kalan yerini fark etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_03",
+      "text": "\"Benim gördüğüm başka,\" dedi {{companion.name}}. \"Sen hareketin kendisine bakıyorsun; ben ise ondan önceki adıma.\" {{child.name}} onun baktığı yerden bakınca resmin öbür yarısını gördü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_04",
+      "text": "{{companion.name}} çömelip {{child.name}}'in hizasına indi. \"Buradan bak,\" dedi. Aşağıdan bakınca her şey bambaşka görünüyordu. İki bakış birleşince sorunun cevabı ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

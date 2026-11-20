@@ -13,7 +13,7 @@ final class StoryCreationStepsTests: XCTestCase {
     /// üründen çıkmış sayılan ekran telefonda görünüyordu. Kapalı bir özellik,
     /// silinmiş bir özellik değildir.
     func testThereIsNoIdeaStep() {
-        XCTAssertFalse(StoryCreationSteps.stepLabels.contains("Fikir"))
+        XCTAssertFalse(StoryCreationSteps.stepLabels(hasTopicStep: true).contains("Fikir"))
     }
 
     // MARK: - Çocuk ve konu adımları (16 Ekim 2026)
@@ -27,7 +27,11 @@ final class StoryCreationStepsTests: XCTestCase {
 
     /// Çocuk ve konu ayrı adım değil: iki adım, sonu "Kimler".
     func testThereAreTwoSteps() {
-        XCTAssertEqual(StoryCreationSteps.stepLabels, ["Masal", "Kimler"])
+        XCTAssertEqual(StoryCreationSteps.stepLabels(hasTopicStep: false), ["Masal", "Kimler"])
+        // Konu adımı (19 Kasım 2026): konusu olan modda ikinci adım.
+        XCTAssertEqual(StoryCreationSteps.stepLabels(hasTopicStep: true), ["Masal", "Konu", "Kimler"])
+        XCTAssertEqual(StoryCreationSteps.topicQuestion(for: .learning), "Neyi öğrenelim?")
+        XCTAssertEqual(StoryCreationSteps.topicQuestion(for: .adventure), "Nereye gidelim?")
     }
 
     // MARK: - Sürpriz (K6)

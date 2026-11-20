@@ -5,7 +5,8 @@
   "ageBand": "7-8",
   "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 3. İhtiyaç bir kez, sade ve sakin söylenir; yalvarma, gözyaşı yok.",
   "lengthClasses": {
-    "paired": "8-14 words — always beside meet_companion"
+    "paired": "8-14 words — always beside meet_companion",
+    "solo": "18-38 words — sayfa 3 yalnız (Sporlar)"
   },
   "variants": [
     {
@@ -115,6 +116,82 @@
       ],
       "lengthClass": "paired",
       "move": "age7_a7_ra_12"
+    },
+    {
+      "id": "a7_ra_j_01",
+      "text": "\"Bunu biri buralarda unutmuş,\" dedi {{companion.name}}. \"Sahibini bulmama yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_01",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ra_j_02",
+      "text": "\"Bunu yolda buldum,\" dedi {{companion.name}}. \"Sahibine ulaştırmama yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_02",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ra_j_03",
+      "text": "\"Bunun mutlaka bir sahibi var,\" dedi {{companion.name}}. \"Birlikte arayıp bulalım mı?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_03",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s78_ra_01",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla {{child.name}}'e doğru itti. \"Bu oyun iki kişilik,\" dedi. \"Tek başıma bir türlü olmuyor. Bana katılır mısın?\" Gözlerinde kocaman bir rica vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s78_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_02",
+      "text": "{{companion.name}} yerinde sekip duruyordu. \"Bir oyun biliyorum,\" dedi, \"ama biri tutmalı, biri zıplamalı. Sen tutar mısın, ya da sen mi zıplarsın?\" Seçimi {{child.name}} yapacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s78_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_03",
+      "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s78_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_tp_01",
+      "text": "{{companion.name}} {{child.name}}'in yanına gelip durdu. \"Bu oyunu tek başıma oynamaya çalışıyorum,\" dedi, \"ama hep yarım kalıyor. Sen başlatsan, ben devam etsem olur mu?\" Sesi umutluydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s78_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

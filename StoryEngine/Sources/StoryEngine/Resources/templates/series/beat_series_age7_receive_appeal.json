@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa 3, examine ile paylaşılır (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7ra_01",
+      "text": "\"Bunun yeri burası değil,\" dedi {{companion.name}}. \"Nereye ait olduğunu biliyorum.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_s7ra_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s7ra_02",
+      "text": "{{companion.name}} usulca açıkladı: bu şey evinden uzak düşmüştü, geri dönmesi gerekiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_s7ra_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s7ra_03",
+      "text": "\"Onu evine götürmeme yardım eder misin, {{child.name}}?\" diye sordu {{companion.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7ra_03",
+      "lengthClass": "paired"
+    }
+  ]
+}

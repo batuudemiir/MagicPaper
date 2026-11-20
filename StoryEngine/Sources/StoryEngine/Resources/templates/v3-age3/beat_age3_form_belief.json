@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 3,
+  "beat": "form_belief",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır (H2)",
+    "solo": "10-24 words — sayfa 2 yalnız (Sporlar)"
+  },
+  "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "fb3_t01",
+      "text": "\"Belki bize bir şey söylüyor,\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_t01",
+      "lengthClass": "paired",
+      "register": "tentative"
+    },
+    {
+      "id": "fb3_t02",
+      "text": "\"Belki uyanıyordur,\" dedi {{child.name}}. Emin değildi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_t02",
+      "lengthClass": "paired",
+      "register": "tentative"
+    },
+    {
+      "id": "fb3_t03",
+      "text": "{{child.name}} düşündü. \"Belki biri onu çalıştırıyor?\"",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_t03",
+      "lengthClass": "paired",
+      "register": "tentative"
+    },
+    {
+      "id": "fb3_t04",
+      "text": "\"Belki oyun oynuyordur,\" dedi {{child.name}}. Bilmiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_t04",
+      "lengthClass": "paired",
+      "register": "tentative"
+    },
+    {
+      "id": "fb3_c01",
+      "text": "\"Bunu bir kuş bırakmış!\" dedi {{child.name}}. Çok emindi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_c01",
+      "lengthClass": "paired",
+      "register": "certain"
+    },
+    {
+      "id": "fb3_c02",
+      "text": "\"Bu bir kedinin!\" dedi {{child.name}}. Hiç şüphesi yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_c02",
+      "lengthClass": "paired",
+      "register": "certain"
+    },
+    {
+      "id": "fb3_c03",
+      "text": "\"Biliyorum, bu bir tavşanın!\" dedi {{child.name}}.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_c03",
+      "lengthClass": "paired",
+      "register": "certain"
+    },
+    {
+      "id": "fb3_c04",
+      "text": "\"Bunu bir sincap saklamış!\" dedi {{child.name}}. Çok emindi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2_fb3_c04",
+      "lengthClass": "paired",
+      "register": "certain"
+    },
+    {
+      "id": "s34_fb_01",
+      "text": "{{child.name}} {{discovery.name}}'e baktı. \"Bununla nasıl oynanır acaba?\" diye düşündü. Belki zıplayarak, belki koşarak.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_fb_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fb_02",
+      "text": "\"Belki rüzgâr yardım eder,\" dedi {{child.name}}. Emin değildi. Ama denemek çok eğlenceli görünüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_fb_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fb_03",
+      "text": "{{child.name}} bir fikir buldu: \"Belki yavaş yavaş yaparsam olur.\" {{companion.name}} başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_fb_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fb_tp_01",
+      "text": "{{child.name}} düşündü: \"Belki iki elle tutarsam olur.\" Tam emin değildi. Ama denemek istiyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_s34_fb_tp_01",
+      "lengthClass": "solo"
+    }
+  ]
+}

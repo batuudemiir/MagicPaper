@@ -1,6 +1,6 @@
 {
   "claim_id": "c_length_twelve_spreads",
-  "statement": "Outside Book Dash, whose format fixes 12 spreads, 1 of 5 analysed books runs 12 pages (Chicken and Millipede, African Storybook); the others run 11 (Goodnight, Tinku!), 13 (Good Night, Monu), 15 (Bohlale's adventure) and 17 (Kottavi Raja). The 12-spread pattern is not shown beyond one publisher.",
+  "statement": "Outside Book Dash, whose format fixes 12 spreads, 1 of 8 analysed books runs 12 pages (Chicken and Millipede, African Storybook); the others run 11 (Goodnight, Tinku!; Get Down, Rocky!), 13 (Good Night, Monu), 14 (Sweet Dreams), 15 (Bohlale's adventure), 17 (Kottavi Raja) and 18 (The Lost Ball). The 12-spread pattern is not shown beyond one publisher.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_chicken_and_millipede_asara"
@@ -17,13 +17,16 @@
     "w_bohlales_adventure_ambrosano",
     "w_good_night_monu_karthik",
     "w_goodnight_tinku_nambiar",
-    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
+    "w_get_down_rocky_besant",
+    "w_the_lost_ball_mustafa",
+    "w_sweet_dreams_amaya"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Caution: all 7 are Book Dash, whose format fixes the spread count, so more Book Dash books do not answer the one-publisher objection; a second source is still required.\n2026-10-15: Rewritten to the cross-publisher question the owner asked for. The 13 Book Dash books (all 12 spreads, a format rule) are no longer counted as support because they cannot test it. Word totals also split: the six 3-4 Book Dash books added today run 60-118 words (Zuko is wordless), below the earlier 136-220; non-Book Dash books run 168-569. Sources of the new works: Chicken and Millipede and Bohlale's adventure from African Storybook, Good Night, Monu from StoryWeaver. 2026-10-20: two more StoryWeaver/Pratham books, both off 12.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Caution: all 7 are Book Dash, whose format fixes the spread count, so more Book Dash books do not answer the one-publisher objection; a second source is still required.\n2026-10-15: Rewritten to the cross-publisher question the owner asked for. The 13 Book Dash books (all 12 spreads, a format rule) are no longer counted as support because they cannot test it. Word totals also split: the six 3-4 Book Dash books added today run 60-118 words (Zuko is wordless), below the earlier 136-220; non-Book Dash books run 168-569. Sources of the new works: Chicken and Millipede and Bohlale's adventure from African Storybook, Good Night, Monu from StoryWeaver. 2026-10-20: two more StoryWeaver/Pratham books, both off 12.\n2026-10-28: two StoryWeaver books, both off 12: Get Down, Rocky! (Pratham, 11) and The Lost Ball (Room to Read, 18, the first Room to Read book). The 7 new Book Dash books all run 12 and are not counted (format rule). Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-11-13: +1 counter: Sweet Dreams (StoryWeaver) runs 14 pages. Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "validator.BANDS",
     "current": "8 pages × 18-38 words (144-304 words)",
@@ -32,10 +35,10 @@
     "review_status": "reviewed"
   },
   "computed": {
-    "n_examined": 5,
+    "n_examined": 8,
     "support": 1,
-    "counter": 4,
-    "support_ratio": 0.2,
+    "counter": 7,
+    "support_ratio": 0.125,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",

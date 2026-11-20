@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 5, günü geri saymak (H3)"
+  },
+  "variants": [
+    {
+      "id": "bo7_01",
+      "text": "{{companion.name}} günü geri saymayı önerdi, en sondan başa doğru. Önce bu pencere, sonra akşam yemeği, sonra bahçedeki oyun. Her şey bir öncekinden biraz daha uzakta, biraz daha yumuşak duruyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bo7_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bo7_02",
+      "text": "\"Ben bugün üç güzel şey gördüm,\" dedi {{companion.name}}, \"sen de say.\" {{child.name}} düşündü: sabah kahvaltıdaki reçel, öğleden sonraki yağmur, bir de şu pencere. Üç tane, tam üç.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bo7_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bo7_03",
+      "text": "{{companion.name}} küçük bir oyun bildiğini söyledi: gün, sondan başa doğru, yavaşça anlatılır. {{child.name}} denedi. Şimdi yatak, az önce banyo, daha önce masal. Anlattıkça gün yavaşladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bo7_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bo7_tp_01",
+      "text": "{{companion.name}} usulca bir şey önerdi: günün en güzel üç anını bulmak. {{child.name}} düşündü ve buldu: sabahki sıcak süt, parktaki salıncak, bir de akşamki masal. Üçü de yumuşacık duruyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_bo7_tp_01",
+      "lengthClass": "solo"
+    }
+  ]
+}

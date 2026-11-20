@@ -1,0 +1,295 @@
+{
+  "work_id": "w_day_out_brain",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_a_day_out",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-28T17:35:39Z",
+  "completeness": "full",
+  "summary_paraphrase": "A family takes the train to the seaside for the day. Told almost entirely in short speech bubbles and wordless spreads, the day unfolds as a string of small beach episodes: settling in, a collapsing deckchair, cold waves, a boy teasing with seaweed, a picnic that seagulls carry off, and a spade lost to the sea that the family dog fishes out of the tidal pool. They drive home tired and content.",
+  "beats": [
+    {
+      "beat": "SETUP",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "train ride, first sight of the sea, the bay laid out wordlessly"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 3,
+      "end_page": 5,
+      "intensity": 3,
+      "function": "arrival on the beach, settling-in slapstick, play"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 6,
+      "end_page": 7,
+      "intensity": 3,
+      "function": "comic beach episodes: cold water, seaweed chase"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 8,
+      "end_page": 8,
+      "intensity": 2,
+      "function": "lunch is called; cool box and stray spade on show"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 9,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "wordless: gulls steal the picnic, the spade is lost at sea"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 3,
+      "function": "the dog retrieves the spade"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 1,
+      "function": "drive home; it was a good day"
+    }
+  ],
+  "beat_positions": {
+    "SETUP": 0.0,
+    "DISCOVERY": 0.182,
+    "ESCALATION": 0.455,
+    "TURN": 0.636,
+    "CLIMAX": 0.727,
+    "SOLUTION": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "girl",
+      "name": "unnamed girl (cap with W)",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "to get to the sea and play; to be watched",
+      "fear": null,
+      "goal": "enjoy the day",
+      "problem": "none sustained; small mishaps happen around her",
+      "change": "none inner; from eager arrival to contented tiredness",
+      "relation_to_protagonist": "self",
+      "humor_source": null,
+      "tension_source": "briefly left behind (page 3)"
+    },
+    {
+      "id": "dog",
+      "name": "spotted dog (signs BOB)",
+      "role": "animal_companion",
+      "desire": "mischief and play",
+      "change": "none",
+      "relation_to_protagonist": "family dog and playmate",
+      "humor_source": "picture-only gags: graffiti, skateboard, reading on the sandcastle",
+      "tension_source": null,
+      "strengths": "retrieves the spade (resolution)"
+    },
+    {
+      "id": "mom",
+      "name": "mother",
+      "role": "family_member",
+      "relation_to_protagonist": "mother (inferred)",
+      "personality": "warm, organises the picnic",
+      "humor_source": null
+    },
+    {
+      "id": "dad",
+      "name": "father",
+      "role": "family_member",
+      "relation_to_protagonist": "father (inferred)",
+      "humor_source": "naps and laughs at the chaos"
+    },
+    {
+      "id": "aunt",
+      "name": "woman with gold earring",
+      "role": "family_member",
+      "relation_to_protagonist": "relative (inferred)",
+      "humor_source": "falls with the deckchair, shrieks at the cold water, dives for the spade"
+    },
+    {
+      "id": "boy",
+      "name": "boy in TUPAC hat",
+      "role": "family_member",
+      "relation_to_protagonist": "older brother or cousin (inferred)",
+      "humor_source": "teases with kelp"
+    },
+    {
+      "id": "seagulls",
+      "name": "seagulls",
+      "role": "antagonistic_force",
+      "relation_to_protagonist": "steal the picnic",
+      "tension_source": "the theft; never resolved"
+    }
+  ],
+  "protagonist_agency": 1,
+  "emotional_curve": [
+    3,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    4,
+    4,
+    3,
+    1
+  ],
+  "humor_notes": "Almost all humour is visual and physical: a collapsing deckchair, grown-ups shrieking at cold water, a kelp chase, gulls flying off with the cool box, a dog that sprays graffiti and reads books, a flying saucer in the traffic. The words are reaction cries; the jokes live in the picture. (INFERRED)",
+  "repetition": [
+    {
+      "type": "callback",
+      "description": "the dog sprays the same tag on the train (page 1) and on a beach hut (page 9)",
+      "pages": [
+        1,
+        9
+      ],
+      "functions": [
+        "memory",
+        "humor"
+      ],
+      "effective": true,
+      "why": "a picture-only running gag rewards the child who spots the dog again; the text never mentions it"
+    },
+    {
+      "type": "callback",
+      "description": "the tidal pool shown from the train (page 2) is where the dog finds the spade (page 11); the pink boat recurs on most spreads and is the closing vignette",
+      "pages": [
+        2,
+        5,
+        9,
+        11
+      ],
+      "functions": [
+        "memory",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "the place is learned before it matters, so the rescue feels set up"
+    },
+    {
+      "type": "phrase",
+      "description": "one doubled exclamation within a page; no line returns across spreads",
+      "pages": [
+        5
+      ],
+      "functions": [
+        "participation"
+      ],
+      "effective": null,
+      "why": "too little repeated text to form a refrain"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "4 of 12 story pages are wordless (2, 4, 9, 10), and both climax events (picnic theft, lost spade) happen only in pictures. (OBSERVED)",
+      "The text is one speech bubble per spread, 24 words in all; read without pictures it is a list of cries with no story. (OBSERVED)",
+      "Planted objects pay off later: the cover gull with the cool box, the cool box by the towel (page 5), the flying spade (page 8), the tidal pool (page 2). (OBSERVED)",
+      "Reactions the text does not state are drawn: the girl calm while adults shriek, hungry clutched bellies, parents laughing during the spade chase, which signals low stakes. (OBSERVED)",
+      "Page 4 switches to comic-strip panels for the settling-in sequence. (OBSERVED)",
+      "Light moves from morning to dusk across the book; the last spread is dusk traffic and sleepy faces. (OBSERVED)"
+    ]
+  },
+  "strengths": [
+    "a whole day told in 24 words: each bubble is a reaction a young child can say along",
+    "wordless spreads carry the two biggest events, inviting the child to tell them",
+    "planted objects (cool box, spade, tidal pool) pay off visually",
+    "clear home-away-home day frame ending on a calm sentence"
+  ],
+  "weaknesses": [
+    "the protagonist does almost nothing to resolve anything; the dog resolves the spade, the theft is never resolved",
+    "no named characters; who speaks is only clear from bubble tails",
+    "meaningless as text alone (MagicPaper stories are text-only today)"
+  ],
+  "anti_patterns": [
+    {
+      "id": "unclear_stakes",
+      "pages": [
+        9,
+        10
+      ],
+      "note": "the picnic theft is dropped without consequence; the parents' laughter defuses it rather than resolves it"
+    },
+    {
+      "id": "passive_protagonist",
+      "pages": [
+        1,
+        12
+      ],
+      "note": "the girl watches and plays; events happen around her"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 4,
+      "participation": 4,
+      "emotional_identification": 3,
+      "surprise": 4,
+      "character_warmth": 4,
+      "agency": 1,
+      "visual_novelty": 5,
+      "predictability_balance": 3,
+      "resolution_satisfaction": 2
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [
+    "unsafe_behavior_imitable"
+  ],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "An everyday family beach day; nothing frightening. Mild flags: graffiti tagging by the dog shown approvingly, and an adult diving into the sea after a toy (picture only). The peak (gulls and lost spade) is research intensity 4 of 5, about 2 on the engine's 0-3 scale, and is played as comedy. Text alone does not carry the story, so as a MagicPaper model only the day frame and reaction-cry style transfer."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 24,
+    "words_per_page": {
+      "min": 0,
+      "median": 2.0,
+      "max": 5
+    },
+    "mean_sentence_words": 2.4,
+    "longest_sentence": 5,
+    "type_token_ratio": 0.917,
+    "dialogue_ratio": 0.0,
+    "questions": 0,
+    "questions_per_page": 0.0,
+    "direct_address": 0,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {},
+      "refrains": {},
+      "top_sentence_openers": {
+        "i": 2,
+        "look": 2,
+        "wait": 1,
+        "eeee": 1,
+        "it's": 1
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

@@ -200,6 +200,213 @@
       "afterBeat": [
         "reveal_truth"
       ]
+    },
+    {
+      "id": "a7_sc_ce_01",
+      "text": "Sonunda vardılar. {{child.name}} ilk kez gördüğü yere uzun uzun baktı. Tek başına gelemezdi belki, ama birlikte gelmişlerdi ve bu ona çok doğru geldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_a7_sc_ce_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_sc_ce_02",
+      "text": "Öbür tarafa geçtiklerinde {{child.name}} derin bir nefes aldı. Yol uzundu ama işi bölüşmek onu kısaltmıştı. {{companion.name}} ile göz göze gelip güldüler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_a7_sc_ce_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_sc_j_ah_01",
+      "text": "Soru doğru kişiye sorulunca cevap kolaylaştı. {{child.name}} {{discovery.name}}'in sırrını çözdü ve bunu {{companion.name}}'e anlattı. İkisi de memnundu: biri öğretmiş, öbürü öğrenmişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a7_sc_j_ah_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_ah_02",
+      "text": "{{child.name}} ipucunu kendi gözleriyle denedi ve işe yaradı. Bilmek, bazen bilen birine sormaktan geçiyordu. {{companion.name}} uzaktan izledi ve hiçbir şey söylemeden gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_sc_j_ah_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_01",
+      "text": "Bekleyiş karşılığını verdi. Tam zamanı gelince {{discovery.name}} kendini gösterdi, ne erken ne geç. {{child.name}} anladı ki bazı işler acele ile değil, doğru anı beklemekle yapılırdı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "h2b_a7_sc_j_pw_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_02",
+      "text": "Ve oldu. {{child.name}} beklediği şeyi sonunda gördü ve sevinçle {{companion.name}}'e döndü. \"Sen haklıymışsın,\" dedi. {{companion.name}} omuz silkti: işinde her gün bunu yaşıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_sc_j_pw_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s78_sc_ps_01",
+      "text": "Ve sonunda oldu: {{child.name}} hareketi baştan sona, hiç durmadan yaptı. Bunu ilk kez becermişti. {{companion.name}} sevinçle etrafında döndü, sanki kendisi becermiş gibi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s78_sc_ps_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s78_sc_ps_02",
+      "text": "Bir, iki, üç... ve bu kez takılmadı. {{child.name}} ne yaptığını anlamak için durup nefeslendi, sonra bir kez daha yaptı. Olmuştu; hem de ilk denemeden çok daha rahat.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s78_sc_ps_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s78_sc_ps_03",
+      "text": "{{child.name}} kendi bedenine şaşırdı: biraz önce olmayan şey şimdi oluyordu. Sırrı basitti, tekrar tekrar denemek. {{companion.name}} zıplayarak onu kutladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s78_sc_ps_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "a7_sc_ce_h5_01",
+      "text": "Son adımı birlikte attılar. {{child.name}} arkasına dönüp geldikleri yola baktı. Tek başına ne kadar uzun görünürdü; ikisi birlikte yürüyünce yol kısalmıştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_ce_01",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_sc_ce_h5_02",
+      "text": "Vardılar. {{child.name}} ile {{companion.name}} biraz soluklandı ve birbirine baktı. İkisi de aynı şeyi düşünüyordu: bu iş, ancak iki kişiyle bu kadar güzel olurdu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_ce_02",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "a7_sc_j_ah_h5_01",
+      "text": "{{child.name}} öğrendiğini aceleye getirmeden, dikkatle denedi, ve işe yaradı. Aradığı cevap artık elindeydi. {{companion.name}}'e dönüp teşekkür etti. Sormak, cevabın yarısıymış.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_j_ah_01",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_ah_h5_02",
+      "text": "Doğru soru, doğru kişiye sorulunca her şey yerine oturdu. {{child.name}} {{discovery.name}}'in nasıl çalıştığını kendi gözleriyle gördü. {{companion.name}} gülümsedi; öğretmek de ona iyi gelmişti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_j_ah_02",
+      "afterBeat": [
+        "ask_for_help"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_h5_01",
+      "text": "Beklenen an sonunda geldi. {{child.name}} gözlerini ayırmadan izledi. Her şey, tam olması gereken zamanda oldu. {{companion.name}} ona dönüp yavaşça başını salladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_j_pw_01",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "a7_sc_j_pw_h5_02",
+      "text": "{{child.name}} bekledi, bekledi, ve sonunda gördü. İçi sevinçle doldu. Sabırla gelen bir şey, insanın içinde daha uzun kalıyordu. Bunu {{companion.name}} çoktan biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_sc_j_pw_02",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s78_sc_ps_tp_01",
+      "text": "Bu kez hareket baştan sona akıp gitti. {{child.name}} durdu, şaşkınlıkla güldü, sonra bir kez daha yaptı. {{companion.name}} sevinçle zıpladı; tekrar etmek sonunda meyvesini vermişti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s78_sc_ps_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
     }
   ]
 }

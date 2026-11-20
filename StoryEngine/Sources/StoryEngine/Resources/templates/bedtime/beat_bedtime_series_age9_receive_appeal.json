@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "15-30 words — sayfa 5, commit ile paylaşılır (H4)"
+  },
+  "variants": [
+    {
+      "id": "b9sra_01",
+      "text": "\"Bunun bu gece sıcak bir yere ihtiyacı var,\" dedi {{companion.name}} usulca, \"dışarısı ona göre biraz fazla serin.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b9sra_01",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9sra_02",
+      "text": "{{companion.name}} pencereden içeri baktı ve fısıldadı: bu küçük misafir bir gece için kalacak bir köşe arıyordu, sabaha kadar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b9sra_02",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b9sra_03",
+      "text": "\"Ona bu odada bir köşe açabilir miyiz?\" diye sordu {{companion.name}}, sesi rica eder gibi yumuşaktı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b9sra_03",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

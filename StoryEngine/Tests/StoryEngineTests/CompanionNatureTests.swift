@@ -163,11 +163,20 @@ final class InterestReachabilityTests: XCTestCase {
             $0.isBeatAuthored && $0.family == .charge
                 && $0.ageRange == AgeBand(lowerBound: 3, upperBound: 4)
         })
-        // Aynı katalog, tek fark: hiçbir mod artık charge kabul etmiyor.
+        // Yalnızca bu blueprint'i taşıyan katalog, ve aynısı hiçbir modun
+        // charge kabul etmediği hâliyle. H1-H2'den (17-18 Kasım 2026) beri 3-4
+        // bandında başka şekiller aynı kelimeleri taşıdığı için tam katalogla
+        // ölçmek farkı göstermiyordu; tek blueprint'le ölçmek ilkeyi sınar.
+        let alone = ContentCatalog(
+            version: catalog.version, settings: catalog.settings,
+            companions: catalog.companions, objects: catalog.objects,
+            templates: catalog.templates, blueprints: [reachable],
+            storyModes: catalog.storyModes,
+            interests: catalog.interests)
         let withoutCharge = ContentCatalog(
             version: catalog.version, settings: catalog.settings,
             companions: catalog.companions, objects: catalog.objects,
-            templates: catalog.templates, blueprints: catalog.blueprints,
+            templates: catalog.templates, blueprints: [reachable],
             storyModes: catalog.storyModes.map {
                 StoryModeProfile(mode: $0.mode,
                                  families: $0.families.filter { $0 != .charge },
@@ -180,7 +189,8 @@ final class InterestReachabilityTests: XCTestCase {
                       "canlı katalogda charge bir moda bağlı olmalı")
         XCTAssertFalse(withoutCharge.storyModes.contains { $0.admits(reachable) })
 
-        let before = selector.interestCoverage(catalog: catalog)[band] ?? []
+        let before = selector.interestCoverage(catalog: alone)[band] ?? []
+        XCTAssertFalse(before.isEmpty, "ulaşılabilir blueprint kapsamaya sayılmalı")
         let after = selector.interestCoverage(catalog: withoutCharge)[band] ?? []
         XCTAssertTrue(after.isStrictSubset(of: before),
                       "ulaşılamayan blueprint hâlâ kapsamaya sayılıyor: "
@@ -195,9 +205,15 @@ final class InterestReachabilityTests: XCTestCase {
     /// kelimeye çıktı. FAZ 12 eşiği (dört) **meşru biçimde** aşıldı, yani ilgi
     /// ekranları artık görünüyor — iki tur önce aynı sayı ulaşılamayan bir
     /// blueprint yüzünden görünmüştü, bu kez değil.
+    ///
+    /// H1 (17 Kasım 2026): 3-4'ün sakin macera şekilleri o bandı genişletti;
+    /// liste beşten ona çıktı (sınırlayan bant 3-4'tü).
+    /// Yeni dünyalar (19 Kasım 2026): Tarih, Ülkeler ve Şehirler dört bantta da
+    /// tutulabiliyor; liste on beşe çıktı.
     func testTheOfferedListIsWhatEveryBandCanActuallyKeep() {
         XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue),
-                       ["animals", "sea", "magic", "nature", "treasure"])
+                       ["animals", "space", "sea", "music", "magic", "nature", "robots", "sports", "jobs",
+                        "science", "history", "country", "city", "sky", "treasure"])
     }
 
     /// Mod tanımı olmayan bir katalogda süzgeç uygulanmaz: "hiçbir mod kabul

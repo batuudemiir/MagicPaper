@@ -6,7 +6,8 @@
   "arc": "bedtime",
   "editorialNote": "Uyku arkı (arc: bedtime), 3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime; hiçbir sayfa yoğunluk 1'i geçmez. Masal yatakta başlar ve aynı odada biter.",
   "lengthClasses": {
-    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı"
+    "solo": "10-24 words — uyku arkında bu beat sayfanın tamamı",
+    "paired": "5-12 words — sayfa 4, imza beat'inden sonra (H3)"
   },
   "variants": [
     {
@@ -59,6 +60,104 @@
       "move": "bt3_td_yawn_then_laugh",
       "settingTraits": [
         "isRestingPlace"
+      ]
+    },
+    {
+      "id": "bt3l_01",
+      "text": "Sonra {{companion.name}}'in kulağına fısıldadı: \"Bunlar evin sesleri.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bt3l_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt3l_02",
+      "text": "{{child.name}} her sesi tek tek söyledi. {{companion.name}} dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h3_bt3l_02",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt3l_03",
+      "text": "\"Hepsini tanıyoruz,\" dedi {{child.name}} usulca.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bt3l_03",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt3c_01",
+      "text": "Sonra {{child.name}} kendi gününü saydı, yavaş yavaş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bt3c_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3c_02",
+      "text": "Bir oyun, bir yemek, bir masal. {{child.name}} üstünü örttü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bt3c_02",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3c_03",
+      "text": "{{child.name}} her şeyi tek tek saydı ve yorganı düzeltti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bt3c_03",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3c_tp_01",
+      "text": "{{child.name}} günü tek tek saydı: sabah, öğle, akşam.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bt3c_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3l_tp_01",
+      "text": "{{child.name}} sesleri {{companion.name}}'e usulca saydı. Hepsi tanıdıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_bt3l_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
       ]
     }
   ]

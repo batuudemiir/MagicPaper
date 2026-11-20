@@ -296,6 +296,107 @@
         "exchange_views"
       ],
       "move": "each_brought_a_half"
+    },
+    {
+      "id": "sc_together_01",
+      "text": "Birlikte başardılar. {{child.name}} bir yandan, {{companion.name}} öbür yandan, adım adım ilerlediler ve sonunda öbür tarafa vardılar. {{child.name}} arkasına dönüp baktı ve gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc_together_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc_together_02",
+      "text": "Ve işte oradaydılar. Tek başına uzun görünen yol, ikisi birlikte yürüyünce kısalmıştı. {{child.name}} ilk kez gördüğü bu yere uzun uzun baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_sc_together_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "sc_together_03",
+      "text": "{{child.name}} ile {{companion.name}} son adımı birlikte attı. Karşılarında ilk kez gördükleri bir yer duruyordu. İkisi de bir süre hiç konuşmadan baktılar.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_sc_together_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "s56_sc_ps_01",
+      "text": "Ve sonunda oldu: {{child.name}} hareketi baştan sona, hiç durmadan yaptı. Bunu ilk kez becermişti. {{companion.name}} sevinçle etrafında döndü, sanki kendisi becermiş gibi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_sc_ps_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s56_sc_ps_02",
+      "text": "Bir, iki, üç... ve bu kez takılmadı. {{child.name}} ne yaptığını anlamak için durup nefeslendi, sonra bir kez daha yaptı. Olmuştu; hem de ilk denemeden çok daha rahat.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s56_sc_ps_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s56_sc_ps_03",
+      "text": "{{child.name}} kendi bedenine şaşırdı: biraz önce olmayan şey şimdi oluyordu. Sırrı basitti, tekrar tekrar denemek. {{companion.name}} zıplayarak onu kutladı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_sc_ps_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "s56_sc_ps_tp_01",
+      "text": "Bu kez hareket baştan sona akıp gitti. {{child.name}} durdu, şaşkınlıkla güldü, sonra bir kez daha yaptı. {{companion.name}} sevinçle zıpladı; denemek sonunda işe yaramıştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_s56_sc_ps_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "persist"
+      ]
+    },
+    {
+      "id": "sc_together_tp_01",
+      "text": "Son adımı birlikte attılar ve kendilerini öbür tarafta buldular. {{child.name}} dönüp geçtikleri yere baktı. Birlikte olunca yol hiç de uzun gelmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_sc_together_tp_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
     }
   ]
 }

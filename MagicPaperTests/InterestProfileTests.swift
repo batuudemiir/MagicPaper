@@ -161,10 +161,13 @@ final class InterestProfileTests: XCTestCase {
     /// 23 Ekim 2026'da bire düştü ve beşe çıktı, aynı gün: `charge` ailesi
     /// öğrenelime eklenince (karar: Batuhan) 3-4 bandı bir çocuğun gerçekten
     /// alabildiği ikinci şekle kavuştu ve o şekil beş kelimeye ulaşıyor.
+    ///
+    /// H1 (17 Kasım 2026, `docs/HAVUZ_PLANI.md`): 3-4'e sakin macera yazıldı ve
+    /// liste beşten ona çıktı. Bu bir ürün etkisi: ebeveyn daha çok kelime görür.
     func testTheServiceOffersWhatReachesEveryBand() {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertEqual(offered.map(\.id), ["animals", "sea", "magic", "nature", "treasure"])
-        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Deniz", "Sihir", "Doğa", "Hazine"])
+        XCTAssertEqual(offered.map(\.id), ["animals", "space", "sea", "music", "magic", "nature", "robots", "science", "sky", "treasure"])
+        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Uzay", "Deniz", "Müzik", "Sihir", "Doğa", "Robotlar", "Bilim", "Gökyüzü", "Hazine"])
         XCTAssertTrue(StoryChoiceSources.current.interestChoices() == offered)
     }
 

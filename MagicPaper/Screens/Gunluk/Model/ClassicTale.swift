@@ -36,6 +36,11 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
         }
     }
 
+    /// Masallar'daki bölüm başlığında yazının yerine duran logo; VoiceOver `title`'ı okur.
+    var titleArt: Image? {
+        self == .orijinal ? Image("Brand/originalsLogo") : nil
+    }
+
     /// Günlük'teki kısa çip adı.
     var chipTitle: String {
         switch self {

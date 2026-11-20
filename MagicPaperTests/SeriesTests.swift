@@ -165,7 +165,9 @@ final class SeriesManagerTests: XCTestCase {
         return SeriesManager(
             store: store,
             clock: SeriesClock(wallClock: { test.now }, timeZone: { test.zone }, defaults: defaults),
-            familyStore: family)
+            familyStore: family,
+            // Yetki bu testlerin konusu değil: bütün bölümler açılabilir.
+            episodeAllowed: { _ in true })
     }
 
     /// A finished first story, as `createStory` saves it.
@@ -574,7 +576,9 @@ final class SeriesManagerTests: XCTestCase {
         let series = SeriesManager(
             store: realStore,
             clock: SeriesClock(wallClock: { test.now }, timeZone: { test.zone }, defaults: defaults),
-            familyStore: family)
+            familyStore: family,
+            // Yetki bu testlerin konusu değil: bütün bölümler açılabilir.
+            episodeAllowed: { _ in true })
         try series.startSeries(from: try firstStory(child: leaving.id, seed: "x"))
         try series.startSeries(from: try firstStory(child: staying.id, seed: "y"))
 

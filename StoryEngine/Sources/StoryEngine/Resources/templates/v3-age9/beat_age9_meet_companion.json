@@ -5,7 +5,8 @@
   "ageBand": "9-10",
   "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 3, hep companion_offers ya da receive_appeal ile. Yol arkadaşı KENDİ sebebiyle oradadır. Satırlar rol başınadır (castRoles): rehber kendinden emin ama bilgiç değil, çekingen yavaş açılır, sakinleştiren telaşı alır, bakıma muhtaç olan bir şey arar. 9-10'da ilk karşılaşma küçük bir esprili cümle taşıyabilir.",
   "lengthClasses": {
-    "paired": "15-30 words — page 3 also carries companion_offers or receive_appeal"
+    "paired": "15-30 words — page 3 also carries companion_offers or receive_appeal",
+    "solo": "30-60 words — sayfa 4 yalnız, bakım masalı (H2)"
   },
   "bannedConstructions": [
     "hemen",
@@ -230,6 +231,130 @@
       "move": "age9_a9_mc_16",
       "castRoles": [
         "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_01",
+      "text": "Bir kenarda {{companion.name}} adında küçük bir {{companion.type}} oturuyordu. Yorgundu, bu belliydi; ama {{child.name}}'i görünce kaçmadı, yalnızca başını biraz eğdi. {{child.name}} ona yaklaşmadan önce durdu ve bekledi, çünkü güvenin acele ile kazanılmadığını bir yerden biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_02",
+      "text": "{{child.name}} önce bir kıpırtı gördü, sonra kıpırtının sahibini: {{companion.name}} adında minicik bir {{companion.type}}. Kendi başının çaresine bakmaya çalışıyordu ama pek başaramıyordu. {{child.name}} yanına çömeldi ve sesini alçaltarak merhaba dedi; {{companion.name}} biraz düşündü, sonra o da merhaba dedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_02",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_03",
+      "text": "Orada biri vardı: {{companion.name}}, küçük ve biraz üşümüş bir {{companion.type}}. Etrafına sessizce bakıyor, sanki birinin gelmesini bekliyordu. {{child.name}} onun gözlerinde bir soru gördü. Cevabı henüz bilmiyordu, ama soruyu duymazdan gelmeyeceğini biliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "move": "h2_a9_mc_h2_03",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_j_01",
+      "text": "{{child.name}} bu sorunun cevabını kendi başına bulamayacağını anladı ve kimin bileceğini düşündü. Aklına ilk {{companion.name}} geldi. Onun çalıştığı yere gitti, kapıda durup selam verdi. {{companion.name}} elindeki işi bir kenara bıraktı ve gülümseyerek, acele etmeden onu dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_02",
+      "text": "{{companion.name}}'i köyde herkes tanırdı; işini iyi yapan, soruları geri çevirmeyen biri olarak. {{child.name}} bulduğu şeyi ona götürdü ve ne gördüğünü baştan sona anlattı. {{companion.name}} eğilip dikkatle baktı, sonra kısa bir süre sessizce düşündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_03",
+      "text": "{{child.name}} {{companion.name}}'in çalıştığı yere uğradı. İçerisi tanıdık seslerle doluydu: bir şeylerin yerine konduğu, bir işin sırayla yapıldığı sesler. {{companion.name}} onu görünce başıyla selam verdi; {{child.name}} işin bitmesini sabırla, sessizce bekledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_tp_01",
+      "text": "Yolun kıyısında {{companion.name}} adında küçük bir {{companion.type}} duruyordu. Bir yeri ağrıyor gibiydi; arada bir kıpırdıyor, sonra yine hareketsiz kalıyordu. {{child.name}} acele etmedi. Önce biraz uzağa oturdu, sonra yumuşak bir sesle selam verdi ve {{companion.name}}'in kendisine bakmasını bekledi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "move": "tp_a9_mc_h2_tp_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_j_tp_01",
+      "text": "{{child.name}} bu işi en iyi kimin bileceğini düşündü ve {{companion.name}}'e gitmeye karar verdi. Yanına vardığında {{companion.name}} işinin başındaydı; onu görünce elindekini bıraktı. {{child.name}} gördüğünü anlattı. {{companion.name}} sözünü hiç kesmeden dinledi, sonra başıyla devam etmesini işaret etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_mc_j_tp_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
       ]
     }
   ]

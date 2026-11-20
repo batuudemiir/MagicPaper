@@ -147,7 +147,11 @@ struct FamilyCharactersView: View {
 
     /// "Yeni karakter": karakter kareleriyle aynı ölçüde, kesikli çerçeveli.
     private var addTile: some View {
-        Button { guarded { mode = .adding } } label: {
+        // Ücretsizde bir kişi, fazlası abonelikle (20 Kasım 2026); var olanlar
+        // düzenlenebilir ve kalır.
+        Button {
+            app.unlock(.familyCast, usage: .adding(existing: characters.count)) { guarded { mode = .adding } }
+        } label: {
             VStack(spacing: MPSpacing.sm) {
                 MPIcon("plus", size: MP.G.xl, weight: .semibold)
                     .foregroundStyle(MPColor.actionPrimary)

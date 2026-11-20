@@ -34,4 +34,4 @@ xcodebuild test -project MagicPaper.xcodeproj -scheme MagicPaper -destination 'p
 cd StoryEngine && swift test
 ```
 
-Proje kuralları ve tasarım yasası: üst klasördeki `CLAUDE.md`. Yol haritası: `docs/MagicPaper_Faz_Plani_Ekim.md`.
+Proje kuralları ve tasarım yasası: `AGENTS.md`. Yol haritası: `docs/MagicPaper_Faz_Plani_Ekim.md`.

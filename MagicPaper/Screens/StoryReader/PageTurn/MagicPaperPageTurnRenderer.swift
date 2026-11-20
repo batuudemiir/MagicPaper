@@ -45,7 +45,8 @@ struct MagicPaperPageTurnRenderer<CurrentPage: View, AdjacentPage: View>: View {
                     
                     // 2. SHADOW CAST ON NEXT PAGE
                     // Cast from the fold line onto the revealed adjacent page
-                    let shadowOpacity = sin(progress * .pi) * MagicPaperPageTurnConfiguration.shadowOpacityMaximum
+                    // Tür açık: CGFloat × Double karışımı Xcode 26'da `.pi`'yi belirsiz bırakıyor.
+                    let shadowOpacity = Double(sin(progress * CGFloat.pi)) * MagicPaperPageTurnConfiguration.shadowOpacityMaximum
                     
                     if isForward {
                         LinearGradient(

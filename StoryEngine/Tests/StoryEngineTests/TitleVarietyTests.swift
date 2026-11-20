@@ -224,15 +224,20 @@ final class TitleVarietyTests: XCTestCase {
         for blueprint in allBlueprints(catalog) {
             for pattern in blueprint.titlePatterns {
                 for setting in catalog.settings {
-                    for companion in catalog.companions {
-                        for object in catalog.objects {
-                            let content = BoundContent(setting: setting, companion: companion, discovery: object)
-                            let rendered = TurkishTextRenderer.render(
-                                pattern,
-                                slots: OfflineStoryComposer.slots(childName: "Arda", content: content))
-                            XCTAssertTrue(rendered.isClean, "\(blueprint.id) '\(pattern)' → \(rendered.text)")
-                            XCTAssertFalse(rendered.text.contains(" bir "), rendered.text)
-                            XCTAssertFalse(rendered.text.contains("Arda'in"), rendered.text)
+                    // Yeni dünyalarla (19 Kasım 2026) döngü ~21 milyon başlığa
+                    // çıktı; geçici metinler havuzsuz birikip süreci belleksiz
+                    // bırakıyordu. Kapsam aynı, yalnızca bellek her mekânda boşalıyor.
+                    autoreleasepool {
+                        for companion in catalog.companions {
+                            for object in catalog.objects {
+                                let content = BoundContent(setting: setting, companion: companion, discovery: object)
+                                let rendered = TurkishTextRenderer.render(
+                                    pattern,
+                                    slots: OfflineStoryComposer.slots(childName: "Arda", content: content))
+                                XCTAssertTrue(rendered.isClean, "\(blueprint.id) '\(pattern)' → \(rendered.text)")
+                                XCTAssertFalse(rendered.text.contains(" bir "), rendered.text)
+                                XCTAssertFalse(rendered.text.contains("Arda'in"), rendered.text)
+                            }
                         }
                     }
                 }

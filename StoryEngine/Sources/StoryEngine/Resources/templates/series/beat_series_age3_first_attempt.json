@@ -6,7 +6,8 @@
   "series": true,
   "editorialNote": "FAZ 13 seri bölümleri, 3-4 bandı. Yalnızca devam bölümlerinde kullanılır; tek seferlik masal bu satırları görmez. Altı sayfa, sayfa başına 10-24 kelime, cümle en fazla 10 kelime. Yol arkadaşı tanıdık bir dosttur: tanıştırılmaz, bakıma muhtaç olan o değil, bulunan küçük şeydir. Bulunan şeyin adı çoğu satırda geçmez ('küçük şey'), çünkü yuva, fide ve eldiven aynı cümleye oturmalı.",
   "lengthClasses": {
-    "solo": "10-24 words — sayfa tek beat taşır"
+    "solo": "10-24 words — sayfa tek beat taşır",
+    "paired": "5-12 words — sayfa 3, obstacle_raises ile paylaşılır (H4)"
   },
   "variants": [
     {
@@ -67,6 +68,38 @@
       ],
       "lengthClass": "solo",
       "move": "sfa3_06"
+    },
+    {
+      "id": "sfa3h_01",
+      "text": "{{child.name}} önce kendi başına baktı. Olmadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_sfa3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "sfa3h_02",
+      "text": "İlk denemede bulamadılar. Ama vazgeçmediler.",
+      "requiredSlots": [],
+      "move": "h4_sfa3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "sfa3h_03",
+      "text": "{{child.name}} bir yol denedi. Pek işe yaramadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_sfa3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "sfa3h_04",
+      "text": "Önce şuraya baktılar, sonra buraya. Henüz yoktu.",
+      "requiredSlots": [],
+      "move": "h4_sfa3h_04",
+      "lengthClass": "paired"
     }
   ]
 }

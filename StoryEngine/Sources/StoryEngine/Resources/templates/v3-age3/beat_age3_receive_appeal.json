@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır"
+    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır",
+    "solo": "10-24 words — sayfa 2 yalnız (Sporlar)"
   },
   "variants": [
     {
@@ -82,6 +83,43 @@
       "requiredSlots": [
         "companion.name"
       ]
+    },
+    {
+      "id": "s34_ra_01",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla itti. \"Benimle oynar mısın?\" dedi. Gözleri parlıyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_02",
+      "text": "\"Bu oyun iki kişilik,\" dedi {{companion.name}}. \"Tek başıma olmuyor. Bana katılır mısın?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s34_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_03",
+      "text": "{{companion.name}} yerinde sekti, sekti. \"Haydi, sen de gel!\" dedi. Birlikte oynamak istiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s34_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_tp_01",
+      "text": "\"Gel, birlikte oynayalım,\" dedi {{companion.name}}. \"Tek başıma hiç tadı yok.\" Sonra bekledi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "tp_s34_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

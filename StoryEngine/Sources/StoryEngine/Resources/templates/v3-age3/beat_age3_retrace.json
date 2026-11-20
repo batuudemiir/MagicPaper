@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 3,
+  "beat": "retrace",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "rc3h_01",
+      "text": "Sonra geldiği yola baktı ve geri döndü.",
+      "requiredSlots": [],
+      "move": "h1_rc3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rc3h_02",
+      "text": "\"Geldiğimiz yere bakalım,\" dedi {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h1_rc3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rc3h_03",
+      "text": "{{child.name}} adım adım geri yürüdü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_rc3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "rc3h_04",
+      "text": "Belki geride bir yerdeydi. Birlikte geri döndüler.",
+      "requiredSlots": [],
+      "move": "h1_rc3h_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

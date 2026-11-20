@@ -404,6 +404,266 @@
       "move": "fam_imaginary_talking_walk",
       "lengthClass": "solo",
       "visualScene": "child talking to the air while walking, then falling silent"
+    },
+    {
+      "id": "na_h5_sib_01",
+      "text": "{{child.name}} kardeşi {{family.name}} ile {{setting.name}}'da taş topluyordu. {{family.name}} en parlak taşı arıyordu. {{child.name}} ise bir anda durdu. Burada dün olmayan bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children collecting stones, one stopping"
+    },
+    {
+      "id": "na_h5_sib_02",
+      "text": "{{child.name}}, kardeşi {{family.name}}'ın ayakkabı bağlarını bağlıyordu. Başını kaldırınca {{setting.name}}'a gözü takıldı. Orada bir şey her zamanki gibi değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child tying a sibling's shoes, looking up"
+    },
+    {
+      "id": "na_h5_fr_01",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da bulut seyrediyordu. Bir bulut tavşana benziyordu, öbürü gemiye. Sonra {{child.name}} gözünü buluttan ayırdı. Yakında tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends lying on the grass, one sitting up"
+    },
+    {
+      "id": "na_h5_fr_02",
+      "text": "{{child.name}} arkadaşı {{family.name}}'a yeni bir oyun öğretiyordu. Kuralları tam anlatmıştı ki sustu. {{setting.name}}'da bir şey yerinde değildi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends playing, one falling silent"
+    },
+    {
+      "id": "na_h5_an_01",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da gezintiye çıktı. {{family.name}} bir yerde durdu ve kıpırdamadı. {{child.name}} onun baktığı yere baktı. Orada bir tuhaflık vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet out walking, the pet stopping first"
+    },
+    {
+      "id": "na_h5_an_02",
+      "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a su verdi. Sonra {{setting.name}}'a doğru yürüdü. Yolun ortasında durdu. Bir şey alışılmışın dışındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child giving water to a pet, then walking out"
+    },
+    {
+      "id": "na_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'a yürüyordu. {{family.name}} bugün çok konuşkandı. Sonra ikisi aynı anda sustu. Bir şey tuhaftı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child walking and talking, a faint soft shape beside them"
+    },
+    {
+      "id": "na_h5_im_02",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a {{setting.name}}'ı gösteriyordu. \"Burayı çok iyi bilirim,\" dedi. Ama o gün orada bilmediği bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child pointing out a place, a faint soft shape listening"
+    },
+    {
+      "id": "w_ct_na56_01",
+      "text": "{{child.name}} bu şehre ilk kez geliyordu. Sokaklar kalabalık, dükkânlar rengârenkti. Bir simitçi neşeyle sesleniyor, bir tramvay çan çalarak geçiyordu. {{child.name}} her şeye bakmak istiyordu. Sonra {{discovery.name}} dikkatini çekti ve gözleri orada kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_first_day_in_the_city",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na56_02",
+      "text": "{{setting.name}}'da insanlar birbirine selam vererek geçiyordu. {{child.name}} herkese selam verdi; bu şehirde herkes böyle yapıyordu. Derken bir şey fark etti: {{discovery.name}}. Kalabalıkta onu kimse fark etmemiş gibiydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_greeting_crowd_then_notice",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na56_03",
+      "text": "{{child.name}} elinde bir haritayla şehri geziyordu. Haritada her sokak vardı, her köprü, her meydan. Ama {{setting.name}}'da haritada olmayan bir şey vardı. {{discovery.name}} tam karşısında duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_not_on_the_city_map",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na56_01",
+      "text": "{{child.name}} hiç görmediği bir ülkedeydi. Burada insanlar başka bir dilde konuşuyor, başka şarkılar söylüyordu. Pencerelerden bilmediği yemeklerin kokusu geliyordu. {{child.name}} her şeyi merakla dinliyordu. Derken {{setting.name}}'da {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_a_country_never_seen",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na56_02",
+      "text": "Bu ülkede herkes birbirini başka bir sözcükle selamlıyordu. {{child.name}} o sözcüğü sabahtan beri tekrar ediyordu. Tam doğru söylediğini düşünürken durdu. {{discovery.name}} tam önündeydi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_practising_the_greeting",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na56_03",
+      "text": "{{child.name}} {{setting.name}}'da yürüyordu. Her şey yeniydi: evlerin renkleri, insanların selamı, rüzgârın kokusu. {{child.name}} hepsini aklına yazmaya çalıştı. Sonra yazmayı unuttu, çünkü {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_everything_new",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na56_01",
+      "text": "{{child.name}} o gün {{setting.name}}'a ilk kez geliyordu. Burada her taş yüzlerce yıllıktı ve her taşın bir hikâyesi vardı. {{child.name}} hepsini dinlemek istedi. Ama önce bir şey dikkatini çekti: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_every_stone_a_story",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na56_02",
+      "text": "Rehber, burada çok eskiden insanların yaşadığını anlatıyordu. {{child.name}} dinlerken bir yandan da etrafa bakıyordu. O insanlar nasıl giyinirdi, ne yerdi, ne oynardı? Derken {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_guide_talking_long_ago",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na56_03",
+      "text": "{{setting.name}}'da sessizlik başkaydı; sanki eski zamanlar da susup dinliyordu. {{child.name}} parmak uçlarında yürüdü. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_old_silence",
+      "settingTags": [
+        "history"
+      ]
     }
   ],
   "lengthClasses": {

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 3,
+  "beat": "self_recognize",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "15-30 words — son sayfa, warm_close ile paylaşılır (H3)"
+  },
+  "variants": [
+    {
+      "id": "bs9_01",
+      "text": "Sayarken fark etti: bugün kendini en iyi hissettiği an, birine iyi geceler dediği andı. Bu düşünceyle uykuya daldı.",
+      "requiredSlots": [],
+      "move": "h3_bs9_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bs9_02",
+      "text": "{{child.name}} günün sonunda kendisi hakkında küçük bir şey öğrendiğini düşündü: biri uyuyamayınca, onu nasıl sakinleştireceğini biliyordu. Gözleri kapandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h3_bs9_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bs9_03",
+      "text": "Saymanın en sonuna, yani en başına vardığında, sabah uyandığı ana döndü. Oradan buraya uzun ve güzel bir gün geçmişti. Uyku usulca geldi.",
+      "requiredSlots": [],
+      "move": "h3_bs9_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bs9_tp_01",
+      "text": "{{child.name}} saymayı bitirince küçük bir şey fark etti: bugün en çok, birine yardım ettiği anı sevmişti. Bu düşünceyle gözleri kapandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bs9_tp_01",
+      "lengthClass": "paired"
+    }
+  ]
+}

@@ -5,7 +5,8 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.\n\n23 Ekim 2026: dosya iki mekanizmaya hizmet ediyor ve satırlar `afterBeat` ile ayrılıyor. İlk dörtlü iyileşmeyi anlatıyor ('doğruldu', 'ısındı') ve yalnızca `patient_wait`'ten sonra okunur. İkinci dörtlü bırakmadan sonrası için: gidiyor, ve bu iyi.\n\nAyrım olmadan ne oluyordu, ölçüldü: 'Ada avucunu açtı. Hadi git, dedi. Pırıltı artık üşümüyordu. İyice ısınmıştı.' Çocuk bıraktı ve sonra o ısındı — iki cümle de kusursuz, ikisi birlikte saçma. Tam olarak bu turun aradığı kusur sınıfı.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 6 warm_close ile paylaşılır"
+    "paired": "5-12 words — sayfa 6 warm_close ile paylaşılır",
+    "solo": "10-24 words — sayfa 5 yalnız, birlikte yardımın sonu (H2)"
   },
   "variants": [
     {
@@ -113,6 +114,57 @@
       "lengthClass": "paired",
       "afterBeat": [
         "let_go"
+      ]
+    },
+    {
+      "id": "rs3a_01",
+      "text": "Ve oldu! {{companion.name}} artık iyiydi. Gözleri parlıyordu. {{child.name}} çok sevindi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_rs3a_01",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "rs3a_02",
+      "text": "Birlikte başardılar. {{companion.name}} derin bir nefes aldı ve gülümsedi. Artık her şey yolundaydı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_rs3a_02",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "rs3a_03",
+      "text": "Birlikte olmuştu. {{companion.name}} {{child.name}}'e sarıldı. \"Teşekkür ederim,\" dedi. \"Sen olmasan olmazdı.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_rs3a_03",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ]
+    },
+    {
+      "id": "rs3a_04",
+      "text": "İkisi birlikte yaptı ve oldu. {{companion.name}} sevinçle zıpladı, {{child.name}} kahkaha attı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_rs3a_04",
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
       ]
     }
   ]

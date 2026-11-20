@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "commit",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "18-38 words — sayfa 4 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s7cm_01",
+      "text": "{{child.name}} bir an düşündü. Yol uzun olabilirdi ve dikkat isteyecekti. Yine de karar verdi: bunu evine kendisi götürecekti, yolu ise {{companion.name}} gösterecekti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7cm_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7cm_02",
+      "text": "\"Tamam,\" dedi {{child.name}}. \"Onu yerine götürelim.\" Söylemesi kolaydı; yapması dikkat isteyecekti. Ama {{keepsake.name}}'i bulduğu gün de her şey böyle küçük bir kararla başlamıştı.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s7cm_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s7cm_03",
+      "text": "{{child.name}} kollarını sıvadı. Bu iş acele kaldırmazdı, bunu biliyordu. Önce nasıl taşıyacağını düşündü ve derin bir nefes aldı, sonra {{companion.name}}'e döndü: \"Hazırım.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s7cm_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

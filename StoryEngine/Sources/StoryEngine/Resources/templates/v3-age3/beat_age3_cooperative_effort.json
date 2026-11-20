@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 3,
+  "beat": "cooperative_effort",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4 first_attempt ile paylaşılır"
+  },
+  "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
+  "variants": [
+    {
+      "id": "ce3h_01",
+      "text": "{{companion.name}} bir yandan, {{child.name}} öbür yandan uğraştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_ce3h_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ce3h_02",
+      "text": "İkisi birlikte uğraştı. Birlikte daha kolaydı.",
+      "requiredSlots": [],
+      "move": "h1_ce3h_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ce3h_03",
+      "text": "{{child.name}} yolu gösterdi, {{companion.name}} yardım etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_ce3h_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ce3h_04",
+      "text": "Bu kez el ele, birlikte denediler.",
+      "requiredSlots": [],
+      "move": "h1_ce3h_04",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "ce3a_01",
+      "text": "Sonra {{companion.name}} ile birlikte uğraştılar.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2_ce3a_01",
+      "lengthClass": "paired",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "ce3a_02",
+      "text": "{{companion.name}} gösterdi, {{child.name}} yaptı. Birlikte daha kolaydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_ce3a_02",
+      "lengthClass": "paired",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "ce3a_03",
+      "text": "{{child.name}} bir yandan tuttu, {{companion.name}} öbür yandan.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2_ce3a_03",
+      "lengthClass": "paired",
+      "castRoles": [
+        "needsCare"
+      ]
+    }
+  ]
+}

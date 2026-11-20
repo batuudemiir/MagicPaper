@@ -11,7 +11,9 @@
     {
       "id": "wc3_01",
       "text": "{{child.name}} gülümsedi. Sonra yavaşça eve gitti. Yolda hep {{companion.name}}'i düşündü.",
-      "words": ["w34_yavasca"],
+      "words": [
+        "w34_yavasca"
+      ],
       "requiredSlots": [
         "child.name",
         "companion.name"
@@ -59,7 +61,9 @@
     {
       "id": "wc3_fam_sib_01",
       "text": "Akşam oldu. {{child.name}} kardeşi {{family.name}}'a sıkıca sarıldı. İkisi de çok mutluydu.",
-      "words": ["w34_sarilmak"],
+      "words": [
+        "w34_sarilmak"
+      ],
       "requiredSlots": [
         "child.name",
         "family.name"
@@ -168,6 +172,282 @@
       "move": "fam3_imaginary_good_night",
       "lengthClass": "solo",
       "visualScene": "small child in bed saying good night to the air"
+    },
+    {
+      "id": "wc3h_01",
+      "text": "Akşam olunca {{child.name}} bugünü düşündü. {{companion.name}} ile çok güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_01",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_02",
+      "text": "İkisi yan yana oturdu. Güneş yavaşça batıyordu. {{child.name}} çok mutluydu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h1_wc3h_02",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_03",
+      "text": "{{child.name}} akşam eve döndü. Yolda hep {{companion.name}}'i düşündü ve gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_03",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3h_04",
+      "text": "\"Bugün çok güzeldi,\" dedi {{child.name}}. {{companion.name}} başını salladı. İkisi de gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h1_wc3h_04",
+      "lengthClass": "solo",
+      "afterClosing": [
+        "succeed"
+      ]
+    },
+    {
+      "id": "wc3_h5_sib_01",
+      "text": "{{child.name}} eve geldi. Kardeşi {{family.name}} kapıda bekliyordu. İkisi el ele içeri girdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children at a door, holding hands"
+    },
+    {
+      "id": "wc3_h5_sib_02",
+      "text": "Akşam yemeğinde {{child.name}} kardeşi {{family.name}}'a bugünü anlattı. {{family.name}} çok güldü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children at a dinner table, laughing"
+    },
+    {
+      "id": "wc3_h5_fr_01",
+      "text": "{{child.name}} arkadaşı {{family.name}} ile kurabiye yedi. İkisi de yorgundu. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends sharing a biscuit"
+    },
+    {
+      "id": "wc3_h5_fr_02",
+      "text": "Arkadaşı {{family.name}} eve giderken döndü. {{child.name}} el salladı. İkisi de gülümsüyordu.",
+      "requiredSlots": [
+        "family.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "small friend turning back to wave at dusk"
+    },
+    {
+      "id": "wc3_h5_an_01",
+      "text": "{{child.name}} eve geldi. {{family.possessive}} {{family.name}} onu görünce sevindi. {{child.name}} onu okşadı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child coming home, a happy pet"
+    },
+    {
+      "id": "wc3_h5_an_02",
+      "text": "Akşam oldu. {{child.name}} {{family.possessive}} {{family.name}}'a bugünü fısıldadı. İkisi de rahattı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child whispering to a pet in the evening"
+    },
+    {
+      "id": "wc3_h5_im_01",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile eve yürüdü. Yol kısacık geldi. Güzel bir gündü.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child walking home, a faint soft shape beside them"
+    },
+    {
+      "id": "wc3_h5_im_02",
+      "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}}'a sıkıca sarıldı. İkisi de çok mutluydu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_wc3_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child hugging the air, smiling"
+    },
+    {
+      "id": "w_ct_wc34_01",
+      "text": "Akşam şehrin ışıkları yandı. {{child.name}} pencereden baktı. Şehir artık biraz onundu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_city_lights_at_dusk",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc34_02",
+      "text": "{{child.name}} {{companion.name}}'e el salladı. Tramvay yavaşça geldi. Eve dönüş yolu çok güzeldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_tram_home",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc34_03",
+      "text": "Şehir kocamandı. Ama artık {{child.name}} orada bir sokağı çok iyi biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_one_street_known",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_01",
+      "text": "{{child.name}} yeni bir kelime öğrenmişti: bu ülkenin dilinde merhaba. Eve dönerken onu hep söyledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_new_word_hello",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_02",
+      "text": "Uzak ülkede akşam oldu. {{child.name}} {{companion.name}}'e sarıldı. Burası artık o kadar uzak gelmiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_not_so_far_now",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_03",
+      "text": "Gökyüzünde evdekiyle aynı ay vardı. {{child.name}} buna çok sevindi. Uzak ülke artık yakın geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_same_moon",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_01",
+      "text": "Eski taşlar akşam güneşinde ısınmıştı. {{child.name}} birine dokundu. Çok eski, çok sıcak bir taştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_warm_old_stone",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_02",
+      "text": "{{child.name}} {{companion.name}}'e el salladı. Akşam oldu. Eski hikâyeler hep orada kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_old_stories_stay",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_03",
+      "text": "Eve dönerken {{child.name}} düşündü. Çok eskiden de çocuklar vardı. Belki onlar da buraya gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_children_then_and_now",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

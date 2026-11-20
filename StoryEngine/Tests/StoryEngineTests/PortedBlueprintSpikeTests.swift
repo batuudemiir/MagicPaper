@@ -98,8 +98,10 @@ final class PortedBlueprintSpikeTests: XCTestCase {
         let content = try OfflineContentBinder().bind(
             blueprint: try blueprint(), catalog: catalog,
             intent: OfflineStoryIntent(childName: "Yeliz", seed: "ii2"))
-        XCTAssertEqual(content.setting.id, ContentID("setting_festival_meadow_001"))
-        XCTAssertTrue(content.setting.thresholdKinds.contains(.social))
+        // Şenlik Çayırı artık tek değil (19 Kasım 2026: bu seed Pazar Yeri'ne
+        // bağlanıyor). Ölçülen kural aynı: yalnızca katılınan bir eşiği olan
+        // yer bağlanır.
+        XCTAssertTrue(content.setting.thresholdKinds.contains(.social), "\(content.setting.id)")
         let role = try XCTUnwrap(content.castRole)
         XCTAssertTrue([.hesitant, .reassuring].contains(role))
     }

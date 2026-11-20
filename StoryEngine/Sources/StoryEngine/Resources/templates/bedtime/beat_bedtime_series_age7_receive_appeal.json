@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "beat": "receive_appeal",
+  "locale": "tr",
+  "ageBand": "7-8",
+  "arc": "bedtime",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "10-16 words — sayfa 4, commit ile paylaşılır (H4)"
+  },
+  "variants": [
+    {
+      "id": "b7sra_01",
+      "text": "\"Bunun bu gece sıcak bir yere ihtiyacı var,\" dedi {{companion.name}} usulca.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b7sra_01",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sra_02",
+      "text": "{{companion.name}} pencereden içeri baktı ve fısıldadı: dışarısı bu gece biraz serindi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b7sra_02",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "id": "b7sra_03",
+      "text": "\"Ona bu odada bir köşe açabilir miyiz?\" diye sordu {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h4_b7sra_03",
+      "lengthClass": "paired",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    }
+  ]
+}

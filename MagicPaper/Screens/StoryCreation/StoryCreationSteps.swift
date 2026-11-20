@@ -3,7 +3,8 @@ import StoryEngine
 
 /// Yaratma akışının kararları, görünümün dışında ve test edilebilir.
 ///
-/// Akış (karar: 3 Ekim ve 7 Kasım 2026): mod → "Masalda kimler olsun?" → masal.
+/// Akış (karar: 3 Ekim ve 7 Kasım 2026; konu adımı 19 Kasım 2026, Batuhan):
+/// mod → konu (yalnızca konusu olan modda) → "Masalda kimler olsun?" → masal.
 /// Çubuktan okumaya 3 dokunuş, sürprizle 2. "Bana sürpriz yap" yalnızca seçecek
 /// bir şey varken; ana sayfada seçilen bir mod akışı doğrudan ikinci adımdan açar.
 enum StoryCreationSteps {
@@ -24,9 +25,21 @@ enum StoryCreationSteps {
     }
 
     /// Adım noktalarının erişilebilirlik etiketleri. Tek yerden üretiliyor ki
-    /// nokta sayısı ile ekran sayısı ayrışmasın. Konu ayrı adım değil, "Kimler"in
-    /// içinde isteğe bağlı (7 Kasım 2026).
-    static let stepLabels = ["Masal", "Kimler"]
+    /// nokta sayısı ile ekran sayısı ayrışmasın. Konu adımı yalnızca modun
+    /// konusu varken sayılır (uyku öncesinde yok).
+    static func stepLabels(hasTopicStep: Bool) -> [String] {
+        hasTopicStep ? ["Masal", "Konu", "Kimler"] : ["Masal", "Kimler"]
+    }
+
+    /// Konu adımının sorusu modun sorusunu sürdürür: "öğrenelim" dedikten sonra
+    /// "neyi", "maceraya çıkalım" dedikten sonra "nereye".
+    static func topicQuestion(for mode: StoryMode) -> String {
+        switch mode {
+        case .learning:  return "Neyi öğrenelim?"
+        case .adventure: return "Nereye gidelim?"
+        case .bedtime:   return "Masal neyle ilgili olsun?"
+        }
+    }
 
     /// "Bana sürpriz yap" en az iki kurulabilir mod varken görünür (K6). Tek
     /// mod kaldıysa sürprizin seçeceği bir şey yok.

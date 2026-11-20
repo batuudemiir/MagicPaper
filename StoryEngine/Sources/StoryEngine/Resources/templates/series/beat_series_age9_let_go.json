@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "beat": "let_go",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 8 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9lg_01",
+      "text": "Sonunda vardılar. {{child.name}} onu yerine çok dikkatle bıraktı ve ellerini çekmeden önce bir an bekledi, sanki emin olmak ister gibi. Sonra yavaşça geri çekildi. Bırakmak, taşımaktan daha zordu; ama {{child.name}} bunun da işin bir parçası olduğunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s9lg_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9lg_02",
+      "text": "İşte yeri burasıydı. {{child.name}} onu bırakırken içinde küçük bir burukluk hissetti, ve bunu saklamadı. Ama bir şeyi sevmenin bazen onu ait olduğu yere bırakmak demek olduğunu düşündü. Bu düşünce burukluğu yumuşattı, yerine sakin bir memnuniyet bıraktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h4_s9lg_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9lg_03",
+      "text": "\"Hoşça kal,\" dedi {{child.name}} usulca ve onu evine bıraktı. {{companion.name}} yanında sessizce durdu. İkisi bir süre hiç kıpırdamadan izlediler: her şeyin yerine oturduğunu görmek, bir işin bittiğini anlamanın en güzel yoluydu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9lg_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

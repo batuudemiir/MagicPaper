@@ -211,19 +211,10 @@ class RevenueCatManager: ObservableObject {
         
         if hasPremium {
             // Hangi paketi aldığını belirle
-            if customerInfo.activeSubscriptions.contains("magicpaper_ultimate_monthly") {
-                logger.debug("   → Setting tier: Ultimate")
-                SubscriptionManager.shared.purchaseSubscription(tier: .ultimate)
-            } else if customerInfo.activeSubscriptions.contains("magicpaper_premium_monthly") {
-                logger.debug("   → Setting tier: Premium")
-                SubscriptionManager.shared.purchaseSubscription(tier: .premium)
-            } else if customerInfo.activeSubscriptions.contains("magicpaper_basic_monthly") {
-                logger.debug("   → Setting tier: Basic")
-                SubscriptionManager.shared.purchaseSubscription(tier: .basic)
-            } else {
-                logger.debug("   → Unknown subscription, setting to Basic")
-                SubscriptionManager.shared.purchaseSubscription(tier: .basic)
-            }
+            // Aylık ve yıllık aynı kademe (tek plan, 20 Kasım 2026).
+            let tier = Self.tier(forActiveSubscriptions: customerInfo.activeSubscriptions)
+            logger.debug("   → Setting tier: \(tier.rawValue)")
+            SubscriptionManager.shared.purchaseSubscription(tier: tier)
 
             // Kademe `CustomerInfo`'dan geldi — yalnızca burada damga atılır.
             // `EntitlementPolicy` ücretli yetenekleri bu damgaya bakarak açar;
@@ -247,15 +238,18 @@ class RevenueCatManager: ObservableObject {
             return .none
         }
         
-        if customerInfo.activeSubscriptions.contains("magicpaper_ultimate_monthly") {
-            return .ultimate
-        } else if customerInfo.activeSubscriptions.contains("magicpaper_premium_monthly") {
-            return .premium
-        } else if customerInfo.activeSubscriptions.contains("magicpaper_basic_monthly") {
-            return .basic
-        }
-        
-        return .none
+        return Self.tier(forActiveSubscriptions: customerInfo.activeSubscriptions)
+    }
+
+    /// Etkin ürün kimliklerinden kademe. Aylık ve yıllık aynı kademedir; tek
+    /// plan MagicPaper Premium (karar: Batuhan 20 Kasım 2026). Eski kademeler
+    /// mağazada kalan aboneler için tanınır. Tanınmayan bir ürünle gelen
+    /// "premium" yetkisi tek plana, yani Premium'a düşer.
+    static func tier(forActiveSubscriptions ids: Set<String>) -> SubscriptionManager.SubscriptionTier {
+        if ids.contains(where: { $0.hasPrefix("magicpaper_ultimate_") }) { return .ultimate }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_premium_") }) { return .premium }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_basic_") }) { return .basic }
+        return .premium
     }
     
     /// Abonelik dönemi. Yıllık ürünler App Store Connect'te açıldığında
@@ -300,6 +294,23 @@ class RevenueCatManager: ObservableObject {
     func hasPackage(for tier: SubscriptionManager.SubscriptionTier,
                     period: BillingPeriod) -> Bool {
         getPackage(for: tier, period: period) != nil
+    }
+
+    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa `nil`:
+    /// Paywall "ücretsiz dene" sözünü yalnızca gerçekten varsa verir (19 Kasım 2026).
+    /// Not: kullanıcının denemeye hâlâ uygun olup olmadığı burada sorulmaz.
+    func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
+                       period: BillingPeriod) -> Int? {
+        guard let intro = getPackage(for: tier, period: period)?.storeProduct.introductoryDiscount,
+              intro.paymentMode == .freeTrial else { return nil }
+        let length = intro.subscriptionPeriod.value
+        switch intro.subscriptionPeriod.unit {
+        case .day: return length
+        case .week: return length * 7
+        case .month: return length * 30
+        case .year: return length * 365
+        @unknown default: return nil
+        }
     }
 
     /// Arayüzün tek çağrı noktası: seçilen plan + dönem için satın alma.
@@ -352,6 +363,17 @@ class RevenueCatManager: ObservableObject {
 
     func hasPackage(for tier: SubscriptionManager.SubscriptionTier,
                     period: BillingPeriod) -> Bool { false }
+
+    func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
+                       period: BillingPeriod) -> Int? { nil }
+
+    /// Gerçek sınıftaki eşlemenin aynısı; testler modül olmadan da derlensin.
+    static func tier(forActiveSubscriptions ids: Set<String>) -> SubscriptionManager.SubscriptionTier {
+        if ids.contains(where: { $0.hasPrefix("magicpaper_ultimate_") }) { return .ultimate }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_premium_") }) { return .premium }
+        if ids.contains(where: { $0.hasPrefix("magicpaper_basic_") }) { return .basic }
+        return .premium
+    }
 }
 #endif
 

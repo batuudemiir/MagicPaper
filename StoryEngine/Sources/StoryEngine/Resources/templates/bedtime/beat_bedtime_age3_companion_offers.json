@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 3,
+  "beat": "companion_offers",
+  "locale": "tr",
+  "ageBand": "3-4",
+  "arc": "bedtime",
+  "editorialNote": "Uyku arkı (arc: bedtime). H3 (18 Kasım 2026): bu satırları yalnızca kendi mekanizmasının blueprint'i okur. Karanlık, yalnızlık, korku, gölge ve tanımsız ses yok; son sayfada soru, \"yarın\", \"acaba\", \"birden\" yok (CalmEnding). Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "paired": "5-12 words — sayfa 4, tend ile paylaşılır (H3)"
+  },
+  "variants": [
+    {
+      "id": "bo3_01",
+      "text": "\"Bugün ben çok yürüdüm,\" dedi {{companion.name}}.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bo3_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bo3_02",
+      "text": "{{companion.name}} bugünü saydı: güneş, yemek, oyun.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bo3_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bo3_03",
+      "text": "\"Bugün bir çiçek gördüm,\" dedi {{companion.name}} usulca.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bo3_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "bo3_04",
+      "text": "{{companion.name}} esnedi. \"Bugün çok güzel bir gündü,\" dedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h3_bo3_04",
+      "lengthClass": "paired"
+    }
+  ]
+}

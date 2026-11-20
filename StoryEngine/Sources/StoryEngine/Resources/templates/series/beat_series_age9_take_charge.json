@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "beat": "take_charge",
+  "locale": "tr",
+  "ageBand": "9-10",
+  "series": true,
+  "editorialNote": "FAZ 13 seri bölümleri, H4 (18 Kasım 2026). Yalnızca devam bölümlerinde kullanılır. Yol arkadaşı tanıdık bir dosttur, tanıştırılmaz. İlk masalda bulunan şey ({{keepsake.name}}) hatırlanır, yeniden bulunmaz; keşif her bölümde yeni. Son sayfa kapalı ve sakin: soru, \"yarın\", \"acaba\", \"birden\" yok. Taslak, Batuhan okuyacak.",
+  "lengthClasses": {
+    "solo": "30-60 words — sayfa 5 (H4)"
+  },
+  "variants": [
+    {
+      "id": "s9tc_01",
+      "text": "{{child.name}} durumu baştan sona tarttı. Bunun birine ihtiyacı vardı, ve bu iş bir öğleden sonrada bitmeyecekti. Geçen seferden biliyordu: bakmak, söz vermekle başlardı. \"Bu kez de ben bakacağım,\" dedi, ve {{companion.name}} sessizce onun yanına geçti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9tc_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9tc_02",
+      "text": "{{child.name}} bir an {{keepsake.name}}'i düşündü; o gün de her şey küçük bir kararla başlamıştı. Şimdi de öyle olacaktı. Kendine kısa bir plan yaptı: önce neye ihtiyaç olduğunu anlamak, sonra yapılması gerekeni yapmak, en sonunda da beklemek.",
+      "requiredSlots": [
+        "child.name",
+        "keepsake.name"
+      ],
+      "move": "h4_s9tc_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s9tc_03",
+      "text": "\"Buna ikimiz bakalım,\" dedi {{companion.name}}. {{child.name}} kabul etti, ama işin başında kendisinin duracağını da biliyordu; bu bir sözdü ve sözünü tutmayı severdi. İşi paylaştılar: {{companion.name}} gerekenleri getirecek, {{child.name}} ise hiç ayrılmadan yanında kalacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h4_s9tc_03",
+      "lengthClass": "solo"
+    }
+  ]
+}

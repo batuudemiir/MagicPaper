@@ -306,6 +306,69 @@
       "occupationRequire": [
         "teacher"
       ]
+    },
+    {
+      "id": "s56_ah_ch_01",
+      "text": "{{child.name}} sorusunu {{companion.name}}'e götürdü. Beden öğretmeni bir an düşündü: \"Bir hareketi öğrenirken onu küçük parçalara bölerim,\" dedi. \"Önce ayaklar, sonra kollar. Seninkini de parça parça düşün.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ah_ch_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ah_ch_02",
+      "text": "\"Sen olsan ne yapardın?\" diye sordu {{child.name}}. {{companion.name}} gülümsedi: \"Önce izlerim. Bir şeyi yapmadan önce nasıl olduğuna uzun uzun bakarım.\" Bu öneri {{child.name}}'e yolu gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ah_ch_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ah_ch_03",
+      "text": "{{companion.name}} düdüğünü boynundan çıkarıp yanına oturdu. \"Takıldığın yerde dur ve geri say,\" dedi. \"Neyi doğru yaptın, nerede değişti? Hareket öğrenirken ben hep böyle yaparım.\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ah_ch_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ah_ch_04",
+      "text": "\"Bir hareket hiçbir zaman ilk seferde olmaz,\" dedi {{companion.name}}. \"Önce ne yaptığını yavaşça göster bana.\" {{child.name}} gösterirken eksik adımı kendisi fark etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ah_ch_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
     }
   ]
 }

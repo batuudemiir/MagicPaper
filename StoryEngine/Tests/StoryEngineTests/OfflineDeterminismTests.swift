@@ -54,7 +54,10 @@ final class OfflineDeterminismTests: XCTestCase {
         // Yeniden sabitlendi 13 Kasım 2026: 9-10 bandının altı blueprint'i ve
         // kütüphanenin üç yeni kaydı (Cıvıl, müzik kutusu, kâğıt fener) havuza
         // girdi; seed 5-6'nın `absence` şekline düştü. Çocuğu etkilemez (K1).
-        XCTAssertEqual(story.blueprintID.rawValue, "blueprint_absence_looking_001",
+        // Yeniden sabitlendi 19 Kasım 2026: H1-H5, Meslekler 7-10 ve Sporlar
+        // havuza girdi; bant bildirmeyen bu niyet 9-10'un Meslekler şekline
+        // (`seekingKnowledge`) düştü. Çocuğu etkilemez (K1).
+        XCTAssertEqual(story.blueprintID.rawValue, "bp_jobs_askingwhoknows_age9_001",
                        "The shape this seed resolves to moved.")
         // Re-pinned 2026-09-18 after D3 made Schema 2 canonical. The seed itself
         // did not move; the catalog it resolves against did — the five pilot
@@ -75,9 +78,9 @@ final class OfflineDeterminismTests: XCTestCase {
         // ona bağlanan içerik kaydı. İnsanların kendisi bu masala GİRMİYOR —
         // 3-4 havuzunda sıraları değiştirmeleri yeterli oldu.
         // 13 Kasım 2026: şekille birlikte bağlanan mekân ve arkadaş da değişti.
-        XCTAssertEqual(story.content.setting.id.rawValue, "setting_whispering_forest_001")
-        XCTAssertEqual(story.content.companion.id.rawValue, "companion_frog_001")
-        XCTAssertEqual(story.content.discovery.id.rawValue, "object_torn_map_001")
+        XCTAssertEqual(story.content.setting.id.rawValue, "setting_village_001")
+        XCTAssertEqual(story.content.companion.id.rawValue, "companion_postman_001")
+        XCTAssertEqual(story.content.discovery.id.rawValue, "object_flickering_light_001")
         // Yeniden sabitlendi 21 Ekim 2026 (ikinci kez, havuz diriltmesi): v2
         // kütüphanesindeki 44 kayıt etiketlenip havuza katılınca bu seed
         // orman + tavşan yerine mağara + robot bağladı. Determinizm bozulmadı
@@ -94,7 +97,7 @@ final class OfflineDeterminismTests: XCTestCase {
         // Yeniden sabitlendi 30 Ekim 2026: şekil değiştiği için kalıp kümesi de
         // değişti; başlık artık `appeal` ailesinin kalıplarından.
         // 13 Kasım 2026: başlık artık `absence` ailesinin kalıplarından.
-        XCTAssertEqual(story.title, "Yeliz ve Zıpzıp Arıyor")
+        XCTAssertEqual(story.title, "Titrek Işık Kime Sorulur?")
 
         // The lines themselves, which is what a child would notice changing.
         // On satır: 5-6 masalı sekiz sayfa ve iki sayfası destek beat'i
@@ -105,11 +108,12 @@ final class OfflineDeterminismTests: XCTestCase {
             // 13 Kasım 2026: `absence` şekli on bir satır taşıyor.
             // 14 Kasım 2026: 5-6 havuzu büyüdü; şekil ve içerik aynı, üç satır
             // (`receive_appeal`, `persist`, `carry_forward`) yeni varyantlara geçti.
-            ["na_neutral_05", "ex_s_trace_02", "mc_care_04", "ra_p_09", "cm_p_05", "ob_gen_02",
-             "fa_s_05", "ps_s_12", "rs_any_03", "wc_p_succeed_02", "cf_p_04"],
+            // 19 Kasım 2026: 9-10'un Meslekler şekli, on bir satır.
+            ["a9_na_03", "a9_ap_07", "a9_ex_05", "a9_mc_j_tp_01", "a9_cm_06", "a9_ob_02",
+             "a9_fa_06", "a9_ah_pm_03", "a9_sc_j_ah_01", "a9_wc_08", "a9_sr_02"],
             "A different sentence was selected for at least one beat.")
 
-        XCTAssertEqual(story.fingerprint, "71ed541c151ded40")
+        XCTAssertEqual(story.fingerprint, "3d18e46007132ed4")
     }
 
     /// The fingerprint is what a "has this story changed?" check would compare,
@@ -120,7 +124,7 @@ final class OfflineDeterminismTests: XCTestCase {
         let composer = OfflineStoryComposer()
 
         let again = try composer.compose(catalog: catalog, intent: pinnedIntent)
-        XCTAssertEqual(again.fingerprint, "71ed541c151ded40")
+        XCTAssertEqual(again.fingerprint, "3d18e46007132ed4")
 
         // A different child is a different book even on the same seed, which is
         // what stops two children sharing one cached story.

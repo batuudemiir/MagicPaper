@@ -5,7 +5,8 @@
   "ageBand": "9-10",
   "editorialNote": "9-10 bandı (A turu, 12 Kasım 2026). AgeBand 9-10: masal 10 sayfa, sayfa 30-60 kelime, cümle en çok 20. Okuyabilen, espriyi ve ironiyi seven, çok adımlı akıl yürütmeyi izleyen bir çocuk: dil daha zengin, cümleler daha uzun, mizah daha ince ama ses hâlâ sıcak ve sakin. Çocuk düşüncesini adım adım kurar ('demek ki', 'oysa', 'o hâlde'), yanılgısına ilk o güler; ironi kendine yöneliktir, kimseyi küçümsemez. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. 'Hemen', 'anında' yok; hız bir değer değildir. Sayfa 8 (I-1). Cevap ÇALIŞILARAK bulunur, beklenerek değil. Sayfa iki olguyu birleştirir: baştaki gözlem ve denemeden ya da engelden öğrenilen; yeni bilgi getirmez. 9-10'da birleştirme çok adımlıdır ve çocuk onu kendi cümlesiyle kurar.",
   "lengthClasses": {
-    "solo": "30-60 words — insight is the whole page is the whole page"
+    "solo": "30-60 words — insight is the whole page is the whole page",
+    "paired": "15-30 words — sayfa 8, examine ile paylaşılır (Sporlar)"
   },
   "bannedConstructions": [
     "hemen",
@@ -96,6 +97,40 @@
       ],
       "lengthClass": "solo",
       "move": "age9_a9_in_07"
+    },
+    {
+      "id": "s910_in_01",
+      "text": "Sonra {{child.name}} fark etti: dizlerini bükünce daha yükseğe çıkıyordu, hem de daha az yorularak. Bedenin de bir kuralı vardı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_in_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_in_02",
+      "text": "Rüzgâra doğru koşunca her şey değişti. Demek ki sır ne kadar koştuğunda değil, hangi yöne koştuğundaydı.",
+      "requiredSlots": [],
+      "move": "spor_s910_in_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_in_03",
+      "text": "{{child.name}} anladı: kollarını iki yana açınca dengesi yerine geliyordu, açmayınca hep aynı yerde sendeliyordu. Beden, dengeyi kollarıyla buluyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s910_in_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s910_in_tp_01",
+      "text": "{{child.name}} sonunda gördü: ağırlığını biraz öne verince adımları hafifliyordu. Demek ki güç, bacaklardan çok dengeden geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_s910_in_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

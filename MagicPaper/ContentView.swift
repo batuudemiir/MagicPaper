@@ -56,6 +56,7 @@ struct ContentView: View {
                 case .overview, nil: break
                 }
                 if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
+                if MPDebugLaunch.opensPaywall { app.openPaywall() }
             }
             #endif
             .task {
@@ -280,6 +281,8 @@ struct ContentView: View {
             AccountSignOutSheet(onClose: { app.router.sheet = nil })
         case .reminder:
             ReminderSheet(childName: profileManager.currentProfile?.name ?? "")
+        case .locked(let capability):
+            MPLockedSheet(capability: capability)
         }
     }
 }
