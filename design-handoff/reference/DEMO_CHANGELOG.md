@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Pilot çizim listesi; çocuk figürü yok
+
+- Karar (Batuhan, 20 Kasım 2026): sayfa resminde çocuk figürü yok (avatar sistemiyle olmadı); resim masalın öğelerinden kurulur. Çizimleri Batuhan ChatGPT ile yaptırır, geri kalan her şey kodda.
+- Yeni `docs/art/GORSEL_PILOT_LISTESI.md`: pilot (5-6 macera, Fısıldayan Orman) motorla ölçüldü: 13 yol arkadaşı, 15 nesne bağlanıyor. Sayfa → odak tablosu, stil sayfası önce, sabit üslup cümlesi (İngilizce), teknik şartlar (arka plan 2048×1536, odak 1024×1024 şeffaf PNG), dosya adları; kademe 1: 29 görsel (2 arka plan, 6 arkadaş × 3 poz, 6 nesne), kademe 2: 42.
+- `docs/ANLATI_PLANI.md`: A2g'den çocuk pozu çıktı, odak hâlleri yazıldı (nesne `found`/`close`/`whole`, arkadaş `greet`/`together`/`glad`); A9 birleştiricisi avatar katmanı kullanmıyor; pilot sayıları ölçüme göre.
+- Kod değişmedi. Dosyalar: iki belge, `CLAUDE.md` (repo dışı), bu günlük.
+
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Karar: sayfa resmi katmanlı
 
 - Batuhan seçti: sayfa resmi katmanlı (arka plan + tek odak ve hâli + yol arkadaşı ve çocuk pozu), sayfa başına tek tam sahne değil. `docs/ANLATI_PLANI.md` soru 1 kapandı; CLAUDE.md ürün kararlarına yazıldı.
