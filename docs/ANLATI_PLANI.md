@@ -49,7 +49,8 @@
 ## Kararlar
 
 - **Tüzükler kalır.** 3-4: tek olay, tek sorun, çıkarım yok. 7-10: kimse çocuğu övmez, yol arkadaşı yardım eder ama çözmez. Sakin UX: tehlike, korku, geri sayım yok; büyük yaşta da "düğüm" bir engeldir, tehdit değil.
-- **Görsel betim, anahtar sözlüğü ve çizim üç ayrı şeydir.** Bu plan metni ve anahtarları hazırlar; çizimi (B2 sahne kütüphanesi ya da başka bir yol) seçmez. Anahtar sözlüğü kapalı ve denetlidir: serbest metin değil, kimlikli kelimeler.
+- **Görsel API'siz ve önceden çizilmiş (karar: 20 Kasım 2026, Batuhan).** Sayfa görseli, bir kez çizilip uygulamaya gömülen görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok. Motor *ne* gösterileceğine karar verir (anahtar, hâl, poz); uygulama anahtarı çizime çevirir. Motor paketi görsel dosyalarını bilmez.
+- **Anahtar metinden aranmaz, veriden gelir.** Görseli seçen, sayfanın bağladığı kayıtlar (mekân, yol arkadaşı, keşif) ve satırın bildirdiği anahtarlardır. Metindeki kelime yalnızca yazım denetimidir. Anahtar sözlüğü kapalı ve denetlidir: serbest metin değil, kimlikli kelimeler.
 - **Saklanan metin kayıttır** (K1). Yeni satırlar ve yeni seçim kuralları eski masalları değiştirmez; seed kayması kullanıcıyı etkilemez.
 - **Önce ölçüm.** Her faz simülasyonu yeniden koşar ve DEMO_CHANGELOG'a önce/sonra sayısını yazar.
 - **Yapılmayacaklar:** LLM ile metin, sayfa başına üretilen görsel, dallanan anlatı, çocuğun seçim yaptığı "kendi maceranı seç".
@@ -62,7 +63,9 @@ Her faz ayrı dalda (`anlati-N-ad`), DEMO_CHANGELOG kaydı ve commit ile biter. 
 |---|---|---|---|---|
 | A0 | Okuma simülasyonu kalıcı rapor | hepsi | K | yok |
 | A1 | Satır soğuması ayrı pencere | hepsi | K | A0 |
-| A2 | Görsel anahtar sözlüğü ve `visualKeys` | 3-6 önce | O | yok |
+| A2 | Görsel anahtar sistemi: sözlük, kayıt ve satır anahtarları | hepsi, 3-6 önce | O | yok |
+| A2g | Sayfa görsel planı (motor) | hepsi | O (motor) | A2 |
+| A9 | Görsel katalog ve okuyucuda birleştirme (uygulama), pilot dünya | 3-6 önce | B (çizim) | A2g |
 | A3 | Görsel betim katmanı (`sceneDetails`) | 3-6 | B (içerik) | A2 |
 | A4 | Küçük yaş sayfa havuzları | 3-6 | B (içerik) | A2 |
 | A5 | Olay örgüsü modeli: düğüm ve tohum-hasat | 7-10 | O (motor) | A0 |
@@ -70,7 +73,7 @@ Her faz ayrı dalda (`anlati-N-ad`), DEMO_CHANGELOG kaydı ve commit ile biter. 
 | A7 | Dünya satırlarını ara sayfalara yaymak | hepsi | O (içerik) | yok |
 | A8 | Ölçüm ve kabul | hepsi | K | hepsi |
 
-A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosyalarına dokunduğu için ardışık.
+A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosyalarına dokunduğu için ardışık. A9'un çizim işi A2g biter bitmez İrem'le paralel başlar; kod tarafı çizimler gelmeden yer tutucuyla çalışır.
 
 ### A0: Okuma simülasyonu kalıcı rapor
 
@@ -88,21 +91,51 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 
 **Kabul.** Motor davranışı geçmiş yokken bit bit aynı. A0'da "yarısı tanıdık" eşiği ileri kayar. Beklenti: havuz büyümeden de birkaç masal kazanç; asıl kazanç A4 ile.
 
-### A2: Görsel anahtar sözlüğü ve `visualKeys`
+### A2: Görsel anahtar sistemi
 
-**Amaç.** Her sayfa "burada ne görünüyor" sorusuna kimlikli kelimelerle cevap versin; ileride görsel bu anahtarlardan seçilsin.
+**Amaç.** Her sayfa "burada ne görünüyor" sorusuna kimlikli anahtarlarla cevap versin; görsel bu anahtarlardan seçilsin. Örnek: masalın keşfi yırtık harita ise sayfa `vk_torn_map` anahtarını taşır ve okuyucu yırtık harita çizimini koyar.
+
+**Önerinin değerlendirmesi (20 Kasım 2026).** Batuhan'ın önerisi: sayfadaki "yırtık harita" kelimesi görülünce hazır yırtık harita görseli o sayfaya gelsin, offline, motor yapsın. Özü doğru ve plan onu benimsiyor. İki noktada değişiyor:
+
+1. *Anahtar metinden aranmaz.* Türkçe çekim ("haritayı", "haritanın", "haritada") ve yanlış eşleşme ("haritada olmayan bir şey" satırı bir harita göstermemeli) metin aramasını kırılgan yapar. Motor zaten sayfanın neyi bağladığını biliyor (`object_torn_map_001`); anahtar oradan gelir. Metin taraması yalnızca yazım denetimi: satırda sözlükteki bir kelime geçiyorsa satır o anahtarı bildirmek zorunda (ve tersi).
+2. *Sayfa başına tek nesne görseli tekrara düşer.* Keşif sekiz sayfanın altısında geçer; her sayfada ve o keşfi kullanan her masalda aynı görsel çıkardı, çocuk da görselde olmazdı. Bunun yerine katmanlı sayfa resmi (A2g): arka plan (mekân), tek odak (sayfanın rolüne göre seçilen anahtar ve onun hâli) ve çocuğun figürü (mevcut `AvatarKit`).
 
 **Model.**
 
-- **Sözlük** `visual_vocabulary.json`: kimlik, Türkçe ad, İngilizce çizim adı, tür (yer, canlı, nesne, eylem, ışık/zaman, hava), yaş uygunluğu. Örnek: `vk_pigeon` "güvercin" / "pigeon", canlı. Başlangıç ~250 kelime; mekân etiketleri ve B2 sahne kütüphanesinin `settingTags`, `beats`, `emotions` alanlarıyla eşleşir.
-- **Kayıtlar:** mekân, yol arkadaşı ve nesne `visualKeys` taşır (Saat Kuleli Meydan: `vk_clock_tower`, `vk_pigeon`, `vk_cobblestone`).
-- **Satır:** `visualKeys` taşır (yalnızca satırın kendi adlandırdığı şeyler). Yer tutucu (`{{setting.name}}`) anahtarını kayıttan alır.
-- **Motor:** `ComposedPage.visualKeys` = satırların anahtarları + adlandırılan kayıtların anahtarları, sıralı ve tekilleştirilmiş. Uygulama bunu `StoryPage`'e yazar (henüz kullanmaz).
-- **Doğrulayıcı:** satırda geçen ve sözlükte karşılığı olan kelime anahtarda da olmalı (Türkçe kök eşlemesi `TurkishGrammar` ile); anahtarda olup metinde geçmeyen kelime hata.
+- **Sözlük** `visual_vocabulary.json` (motor kaynağı): kimlik, Türkçe ad ve çekim kökü, İngilizce çizim adı, tür (`place`, `being`, `object`, `action`, `light`, `weather`), izinli hâller (ör. yırtık harita: `found`, `held`, `piece`), yaş uygunluğu. Başlangıç: bütün kayıtların anahtarı (~115) + satırlardan çıkan ~150 ek kelime (güvercin, fener, merdiven…).
+- **Kayıt anahtarı:** mekân, yol arkadaşı ve keşif birer `visualKey` taşır (zorunlu; yoksa bütünlük denetimi hata verir). Mekân ayrıca arka plan anahtarı ve zaman/ışık bilgisi taşır.
+- **Satır anahtarı:** satır, yalnızca kendisinin adlandırdığı ek şeyleri `visualKeys` ile bildirir (`{{discovery.name}}` kayıttan gelir, satıra yazılmaz). İsteğe bağlı `visualState` keşfin bu sayfadaki hâlini söyler ("haritanın öbür yarısını buldu" → `piece`).
+- **Doğrulayıcı (yazım denetimi):** satırın metni sözlüğün Türkçe köklerine göre taranır (`TurkishGrammar` çekim eşlemesi); geçen sözlük kelimesi anahtarda yoksa hata, anahtarda olup metinde geçmeyen hata. Bu, Batuhan'ın "metinde görünce" fikrinin güvenli yeri: çalışırken değil, yazarken.
+- **Mevcut satırlar:** ~2.200 satıra anahtar betikle önerilir, elle onaylanır.
 
-**Kapsam dışı.** Çizim seçimi, görsel üretimi, okuyucuda gösterim.
+**Kabul.** Her kayıtta anahtar; sözlük dışı anahtar yok; doğrulayıcı bütün korpusta temiz; eski masallar değişmez.
 
-**Kabul.** 3-6 yaşın her sayfasında en az bir anahtar; sözlük dışı anahtar yok; eski masallar değişmez.
+### A2g: Sayfa görsel planı (motor)
+
+**Amaç.** Motor her sayfa için ne çizileceğine karar versin; karar masalla birlikte saklansın (K1: saklanan masal kayıttır, görseli de değişmez).
+
+**Model.** `ComposedPage.picture`:
+
+- `background`: mekân anahtarı + zaman (`day`, `evening`, `night`; uyku arkında her zaman akşam/gece)
+- `focus`: tek anahtar + hâl
+- `companionPose`, `childPose`: duygu ve beat'ten (`curious`, `pointing`, `walking`, `sitting`, `sleeping`…)
+- `extras`: en çok iki küçük anahtar (satırın bildirdikleri), yalnızca 3-6 yaşta
+
+**Odak seçimi** (deterministik, sayfa rolüne göre):
+
+| Sayfa rolü / beat | Odak |
+|---|---|
+| `hook` (`notice_anomaly`) | keşif, hâl `found` |
+| `companion` (`meet_companion`) | yol arkadaşı |
+| `discovery`, `attempt`, `challenge` | satırın `visualState`'i varsa keşif, yoksa satır anahtarı, yoksa yol arkadaşı |
+| `resolution` | keşif, hâl `held` ya da `whole` |
+| `emotional_ending`, `bedtime_transition` | mekân (odak yok, geniş sahne) |
+
+Aynı odak art arda iki sayfada aynı hâlde gelmez; gelecekse ikinci sayfa geniş sahneye döner.
+
+**Kayıt.** Uygulama `StoryPage.picture`'ı saklar; mevcut `imagePrompt` (`visualScene`) dokunulmadan kalır.
+
+**Kabul.** Her sayfada bir plan; odak seçimi testle sabit; eski masallarda plan yok ve okuyucu bugünkü gibi davranır.
 
 ### A3: Görsel betim katmanı (`sceneDetails`), 3-6 yaş
 
@@ -172,6 +205,25 @@ Bugün dünya satırları (`settingTags`) yalnızca sayfa 1 ve kapanışta. `mee
 
 **İçerik.** Kabaca 300-400 satır.
 
+### A9: Görsel katalog ve okuyucuda birleştirme (uygulama)
+
+**Amaç.** Anahtarı çizime çevirmek. Mevcut yapıların üstüne: `art_kits.json`'un "spot" yuvaları (şeffaf zeminli küçük sahne), `scene_library.json` ve `AvatarKit`. Paralel sistem kurulmaz.
+
+**Model.**
+
+- `visual_assets.json` (uygulama): anahtar → hâl → görsel adları (her hâlde 1-3 çeşit, deterministik seçim), üslup seti, durum (`ready` / `pending`). Asset catalog ad alanı `Visual/`.
+- **Birleştirici** (`PagePictureView`, okuyucu): arka plan + odak + yol arkadaşı pozu + çocuk figürü + en çok iki ek. Katman yerleri sayfa düzeninden; metin alanına taşmaz.
+- **Yedek:** çizimi olmayan anahtar dünyanın `Storybook` motiflerine düşer (bugünkü sanat seti davranışı); hiçbir sayfa boş çerçeve göstermez.
+- **Erişilebilirlik:** her görselin Türkçe tarifi sözlükten (`altText`); süs katmanları gizli.
+
+**Çizim.** Bir kez, ekipçe, tek üslupta (`docs/art/` kuralları; İrem). Fotoğraf değil, illüstrasyon: masal kitabı dili ve çocuk figürüyle aynı çizgi. Görsel üretimi API ile masal başına yapılmaz; çizimler uygulamayla gelir.
+
+**Pilot.** Önce tek dünya, tek bant: 5-6 macera, Fısıldayan Orman. İhtiyaç: 1 arka plan (gündüz/akşam), 5 yol arkadaşı × 3 poz, o bantta bağlanan ~10 keşif × 2-3 hâl, ~10 ek kelime: kabaca 60 çizim. Pilot okuyucuda görülür, sonra dünya dünya genişler.
+
+**Tam kapsam (kabaca).** 36 mekân × 2 zaman, 34 yol arkadaşı × 3 poz, 43 keşif × 2-3 hâl, ~150 ek kelime: 400-450 çizim. Uygulama boyutu için çizimler vektör ya da sıkıştırılmış PNG; gerekirse dünya paketleri uzaktan içerik (FAZ 15) ile.
+
+**Kabul.** Pilot dünyada her sayfa görselli, yedeğe düşen sayfa yok; VoiceOver tarifi okuyor; görselsiz eski masallar bugünkü gibi.
+
 ### A8: Ölçüm ve kabul
 
 A0 raporu yeniden koşulur; hedef tablosu karşılanmıyorsa eksik kalan hücreler listelenir. Tam motor testi, `BoundPoolTests` ve uygulama testleri bir kez koşulur.
@@ -180,7 +232,8 @@ A0 raporu yeniden koşulur; hedef tablosu karşılanmıyorsa eksik kalan hücrel
 
 | Faz | Satır / kayıt |
 |---|---|
-| A2 | ~250 sözlük kelimesi; mevcut ~2.200 satıra anahtar (betik + elle denetim) |
+| A2 | ~265 sözlük kelimesi (~115 kayıt + ~150 ek); mevcut ~2.200 satıra anahtar (betik + elle denetim) |
+| A9 | Pilot ~60 çizim; tam kapsam 400-450 çizim |
 | A3 | 900-1.100 betim cümlesi |
 | A4 | 500-700 satır |
 | A6 | ~25 blueprint, 600-900 satır |
@@ -190,7 +243,7 @@ Toplam yeni metin 2.300-3.100 satır: bugünkü havuzun (2.227) aşağı yukarı
 
 ## Batuhan'ın kararı gereken sorular
 
-1. **Görsel yolu:** anahtarlar B2 sahne kütüphanesine mi (hazır sahne + avatar + yerleştirilen nesneler), başka bir görsel sisteme mi bağlanacak? A2 ikisine de uyar ama sözlüğün İngilizce adları buna göre yazılır.
+1. **Görsel yolu (kısmen karara bağlandı, 20 Kasım):** önceden çizilmiş, API'siz görseller. Açık kalan: katmanlı sayfa resmi (A2g/A9) mi, yoksa sayfa başına tek tam sahne mi? Plan katmanlıyı öneriyor (daha az çizim, daha çok çeşitlilik, çocuk figürü sayfada); tek tam sahne her kombinasyon için ayrı çizim ister.
 2. **3-4 betim yoğunluğu:** sayfa başına en çok bir betim yeterli mi, yoksa bazı sayfalar yalnızca betimden mi oluşabilir ("resme bak" sayfası)?
 3. **Düğüm türleri:** listedeki beş tür kabul mü? Özellikle "ikinci ipucu ilkini yalanlar" 9-10 için uygun mu?
 4. **Uyku öncesi ağırlığı:** A0'ın ikinci dağılımı (%60 uyku) gerçek kullanıma yakın mı? Analitikte mod dağılımı varsa o kullanılır.
@@ -204,5 +257,8 @@ Toplam yeni metin 2.300-3.100 satır: bugünkü havuzun (2.227) aşağı yukarı
 | Anahtarlar metinle ayrışır | A2 doğrulayıcısı: metinde geçen sözlük kelimesi anahtarda olmalı, tersi de |
 | Düğüm masalı gerginleştirir | Düğüm katalogu sakin tüzükle yazılır; en korumacı güvenlik ayarında gergin düğümler kapanır (`ContentSafety`) |
 | Yeni satırlar eski hücre testlerini kırar | Yalnızca sona ekleme; `BoundPoolTests`, `ProseCooldownTests`, kapsam testleri her fazda |
+| Görsel metinle çelişir ("harita ikiye yırtılmıştı" ama görselde bütün) | Hâl satırdan (`visualState`) gelir; doğrulayıcı keşfi değiştiren satırın hâl bildirmesini ister |
+| Çizim üslubu dağılır | Tek üslup seti ve `docs/art/` kuralları; pilot onaylanmadan genişleme yok |
+| Uygulama boyutu büyür | Sıkıştırma; dünya paketleri uzaktan içerikle |
 | Ölçüm uzun sürer | A0 raporu ince; `BoundPoolTests` yalnızca plan sonunda |
 | İçerik maliyeti | Fazlar bağımsız; A1 ve A5 içerik yazmadan kazanç getirir |
