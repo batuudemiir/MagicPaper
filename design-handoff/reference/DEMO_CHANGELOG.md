@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Karar: sayfa resmi katmanlı
+
+- Batuhan seçti: sayfa resmi katmanlı (arka plan + tek odak ve hâli + yol arkadaşı ve çocuk pozu), sayfa başına tek tam sahne değil. `docs/ANLATI_PLANI.md` soru 1 kapandı; CLAUDE.md ürün kararlarına yazıldı.
+- Kod değişmedi. Dosyalar: `docs/ANLATI_PLANI.md`, `CLAUDE.md` (repo dışı), bu günlük.
+
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Anlatı planına görsel anahtar sistemi
 
 - Karar (Batuhan, 20 Kasım 2026): sayfa görseli API'siz, önceden çizilmiş görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok.

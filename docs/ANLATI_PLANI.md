@@ -49,7 +49,7 @@
 ## Kararlar
 
 - **Tüzükler kalır.** 3-4: tek olay, tek sorun, çıkarım yok. 7-10: kimse çocuğu övmez, yol arkadaşı yardım eder ama çözmez. Sakin UX: tehlike, korku, geri sayım yok; büyük yaşta da "düğüm" bir engeldir, tehdit değil.
-- **Görsel API'siz ve önceden çizilmiş (karar: 20 Kasım 2026, Batuhan).** Sayfa görseli, bir kez çizilip uygulamaya gömülen görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok. Motor *ne* gösterileceğine karar verir (anahtar, hâl, poz); uygulama anahtarı çizime çevirir. Motor paketi görsel dosyalarını bilmez.
+- **Görsel API'siz ve önceden çizilmiş (karar: 20 Kasım 2026, Batuhan).** Sayfa görseli, bir kez çizilip uygulamaya gömülen görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok. Sayfa resmi katmanlıdır: arka plan, tek odak ve hâli, yol arkadaşı ve çocuk pozu (tek tam sahne değil). Motor *ne* gösterileceğine karar verir (anahtar, hâl, poz); uygulama anahtarı çizime çevirir. Motor paketi görsel dosyalarını bilmez.
 - **Anahtar metinden aranmaz, veriden gelir.** Görseli seçen, sayfanın bağladığı kayıtlar (mekân, yol arkadaşı, keşif) ve satırın bildirdiği anahtarlardır. Metindeki kelime yalnızca yazım denetimidir. Anahtar sözlüğü kapalı ve denetlidir: serbest metin değil, kimlikli kelimeler.
 - **Saklanan metin kayıttır** (K1). Yeni satırlar ve yeni seçim kuralları eski masalları değiştirmez; seed kayması kullanıcıyı etkilemez.
 - **Önce ölçüm.** Her faz simülasyonu yeniden koşar ve DEMO_CHANGELOG'a önce/sonra sayısını yazar.
@@ -243,7 +243,7 @@ Toplam yeni metin 2.300-3.100 satır: bugünkü havuzun (2.227) aşağı yukarı
 
 ## Batuhan'ın kararı gereken sorular
 
-1. **Görsel yolu (kısmen karara bağlandı, 20 Kasım):** önceden çizilmiş, API'siz görseller. Açık kalan: katmanlı sayfa resmi (A2g/A9) mi, yoksa sayfa başına tek tam sahne mi? Plan katmanlıyı öneriyor (daha az çizim, daha çok çeşitlilik, çocuk figürü sayfada); tek tam sahne her kombinasyon için ayrı çizim ister.
+1. ~~Görsel yolu~~ **Karara bağlandı (20 Kasım 2026, Batuhan):** önceden çizilmiş, API'siz görseller; sayfa resmi katmanlı (arka plan + tek odak ve hâli + yol arkadaşı ve çocuk pozu), A2g/A9'daki gibi.
 2. **3-4 betim yoğunluğu:** sayfa başına en çok bir betim yeterli mi, yoksa bazı sayfalar yalnızca betimden mi oluşabilir ("resme bak" sayfası)?
 3. **Düğüm türleri:** listedeki beş tür kabul mü? Özellikle "ikinci ipucu ilkini yalanlar" 9-10 için uygun mu?
 4. **Uyku öncesi ağırlığı:** A0'ın ikinci dağılımı (%60 uyku) gerçek kullanıma yakın mı? Analitikte mod dağılımı varsa o kullanılır.
