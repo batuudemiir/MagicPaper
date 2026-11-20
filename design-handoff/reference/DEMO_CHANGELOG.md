@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · Statik havuza üç guaj çizim adayı
+
+- Kullanıcının devam talebiyle gümüş çan ve iki kanonik oda pencere detayı built-in image_gen üzerinden onaylı guaj referansıyla üretildi. Çocuk/Ragi/arkadaş kimliği veya yatak/aile sayısı eklenmedi. İlk ay pencere taslakları manzara/hale nedeniyle elendi; sonv3 temiz aday.
+- Üç final PNG proje içinde saklandı; candidates.json kanonik konu/durum/altTexttaslağı/SHA/ölçü/alfa taşır. VisualKeys motor şemasıyla çakışmamak için boş. Reviewcandidate statüsünde; runtime manifest, binder veya mevcut kitap değiştirilmedi.
+- Doğrulama: resimler gözle incelendi; üçündeRGBA ve alfa0–255, SHA kaydı doğrulandı. Build/test/simülatör çalıştırılmadı. Telefona yeni sürüm yüklenmedi; her kitapta resim garantisi verilmedi.
+- Dosyalar: design-handoff/proposals/2026-11-20-story-art-expansion/{REPORT.md,candidates.json,PNGler}, projehafızası. Engine/provenance/Story.swift/mapper/içerik dosyaları Claude’un sahipliğinde kaldı.
+
 ### 2026-11-20 · codex/design-system-catalog · Görsel kapsamı audit aracı ve Claude iş bölümü
 
 - Metin/seed/seçim değişmeden karma görsel havuzu için spec, aşamalı plan ve salt okunur kaynak denetim aracı eklendi. Kaynak pointer/ID/text hash ve bütün dosya hash değişimlerini yakalar; aday slotları semantik onay saymaz, NOT_CERTIFIED durumunu korur.
