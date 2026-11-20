@@ -452,6 +452,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: çalıştırılmadı (yalnızca belge).
 - Dosyalar: `docs/HAVUZ_PLANI.md`, bu günlük.
 
+### 2026-11-17 · fix/dogum-gunu-yillik · Özel günler: doğum günü her yıl geri geliyor
+
+- Hata (genel taramada bulundu): `SpecialDayWindow.isActive` doğum gününü yılıyla birlikte tek seferlik bir gün sayıyordu. Ebeveyn tarih seçicide çocuğun doğum tarihini (ör. 2020) seçerse "Doğum günü masalı" çipi hiç görünmüyordu. Bu yılın tarihi girilse bile ertesi yıl geri gelmiyordu.
+- Düzeltme: doğum gününde yalnızca ay ve gün sayılıyor. Geçen yılın, bu yılın ve gelecek yılın günü aynı pencereye (14 gün geçmiş, 7 gün ileri) bakıyor, yılbaşını aşan durumlar da dahil. 29 Şubat artık olmayan yıllarda 28 Şubat'a düşüyor. Okulun ilk günü, yeni kardeş ve ilk düşen diş tek seferlik, yıllarını koruyor.
+- Bilerek değişmedi: ekrandaki "tarihli gün 14 gün önce ile 7 gün sonra arasında" metni. Kod çipi günden 7 gün önce gösterip 14 gün sonrasına kadar tutuyor; metin bunun tersini söylüyor. Hangisinin doğru olduğu ürün kararı, açık. Kayıt biçimi aynı, eski kayıtlar olduğu gibi okunuyor.
+- Test: `SpecialDayTests`'e üç test eklendi (her yıl dönen doğum günü, 29 Şubat, tek seferlik günler). Disk dolu olduğu için (1,4 GB boş) `xcodebuild test` çalıştırılmadı. Pencere mantığı aynı durumlarla tek başına bir Swift betiğinde çalıştırıldı: yeni kod 19/19 geçti; eski kod aynı durumların 7'sinde başarısız oldu. Simülatörde görülmedi.
+- Dosyalar: MagicPaper/StoryEngineBridge/SpecialDays.swift, MagicPaperTests/SpecialDayTests.swift.
+
 ### 2026-11-17 · main · Özel günler takvimi (Kasım 2026 – Kasım 2027)
 
 - Tema planlaması için Türkiye'deki milli, dini, okul ve çocuk/okuma günleri araştırıldı; tarih, gün, çocuğa uygunluk, A/B/C/sessiz kademe önerisi ve hazırlık başlangıç tarihleriyle tek belgede toplandı.

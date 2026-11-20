@@ -91,10 +91,41 @@ enum SpecialDayWindow {
     static let pastLimit = 14
     static let aheadLimit = 7
 
+    /// A birthday comes back every year (17 Kasım 2026): only its month and
+    /// day count, so the child's birth date or last year's party both work.
+    /// The other days happen once and keep their year.
     static func isActive(_ day: SpecialDay, today: Date, timeZone: TimeZone = .current) -> Bool {
         guard let stored = day.day else { return true }
-        guard let offset = daysFromToday(to: stored, today: today, timeZone: timeZone) else { return false }
-        return offset >= -pastLimit && offset <= aheadLimit
+        let offsets: [Int]
+        if day.kind == .birthday {
+            offsets = yearlyOffsets(to: stored, today: today, timeZone: timeZone)
+        } else {
+            offsets = daysFromToday(to: stored, today: today, timeZone: timeZone).map { [$0] } ?? []
+        }
+        return offsets.contains { $0 >= -pastLimit && $0 <= aheadLimit }
+    }
+
+    /// Whole days from today to last year's, this year's and next year's
+    /// occurrence of the stored month and day. 29 February falls on the 28th
+    /// in a common year. Empty when the stored day is unreadable.
+    static func yearlyOffsets(to stored: String, today: Date, timeZone: TimeZone) -> [Int] {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        let parts = stored.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3, (1...12).contains(parts[1]), (1...31).contains(parts[2]) else { return [] }
+        let start = calendar.startOfDay(for: today)
+        let year = calendar.component(.year, from: start)
+        return (year - 1...year + 1).compactMap { candidate in
+            var day = parts[2]
+            if parts[1] == 2, day == 29, !isLeap(candidate) { day = 28 }
+            guard let date = calendar.date(from: DateComponents(year: candidate, month: parts[1], day: day))
+            else { return nil }
+            return calendar.dateComponents([.day], from: start, to: date).day
+        }
+    }
+
+    private static func isLeap(_ year: Int) -> Bool {
+        (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
     }
 
     /// Whole days from today to the stored day; negative when it has passed.
