@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Anlatı planı (A0-A8) ve havuz ölçümleri
+
+- Ölçüm (geçici testler, commit'lenmedi): bugünkü havuzla yaş ve moda göre içerik kurgusu ve metin varyasyonu sayıldı (3-4: 6.938 kurgu, ≈5,7 milyar metin; 5-6: 9.973, ≈111 trilyon; 7-8 ve 9-10: 5.647, ≈118 ve ≈25 trilyon). Metin sayısı üst sınır.
+- Okuma simülasyonu (yaş başına 3 çocuk × 100 masal, uygulamanın geçmiş penceresiyle): birebir aynı masal yok, ama olay örgüsü 6-14. masalda tekrar ediyor; satırların yarısı 7-14. masalda tanıdık; 51-100. masalda %81-90'ı daha önce okunmuş.
+- Yeni belge `docs/ANLATI_PLANI.md`: küçük yaşta görsel betim (görsel anahtar sözlüğü, `visualKeys`, `sceneDetails` betim katmanı), büyük yaşta olay örgüsü (düğüm yuvası, tohum ve hasat), satır soğumasının ayrı pencereye çıkması, yeni olay örgüleri (önce uyku öncesi ve 7-10 macera), dünya satırlarının ara sayfalara yayılması; hedefler ve Batuhan'ın kararı gereken beş soru.
+- Bilerek yapılmadı: kod ve içerik değişmedi; ölçüm testleri silindi (A0 onları kalıcı yapacak).
+- Dosyalar: `docs/ANLATI_PLANI.md`, bu günlük.
+
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Yeni dünyalar: Yeni bir şehir, Yeni bir ülke, Tarih
 
 - Ölçüm: Tarih, Yeni bir şehir ve Yeni bir ülke hiçbir yaşta açılmıyordu (bu etiketi taşıyan mekân yoktu). Şimdi üçü de dört bantta canlı; yeni blueprint yazılmadı.
