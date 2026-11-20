@@ -143,6 +143,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: motor `PageProvenanceTests`, `VisualMeaningTests` ile birlikte belirlenimcilik, bütünlük, anahtar kapsamı, hatırlama, nakarat deneyi, `StorySpotProvenanceTests`: geçti. Uygulama `StoryPageProvenanceTests` (4) ve `StorySpotReaderRenderingTests` (3) simülatörde geçti. Tam motor paketi ve tam uygulama paketi koşulmadı.
 - Dosyalar: `PageProvenance.swift`, `VisualMeaning.swift` (yeni), `OfflineStoryComposer.swift`, `RecallLines.swift`, `CatalogTemplate.swift`, `CatalogIntegrity.swift`, 193 şablon dosyası, `StoryPageProvenance.swift` (yeni), `Story.swift`, `OfflineStoryMapper.swift`, dört test dosyası, `docs/GORSEL_ANLAM_SOZLESMESI.md`, bu günlük.
 
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Anlatı planı (A0-A8) ve havuz ölçümleri
+
+- Ölçüm (geçici testler, commit'lenmedi): bugünkü havuzla yaş ve moda göre içerik kurgusu ve metin varyasyonu sayıldı (3-4: 6.938 kurgu, ≈5,7 milyar metin; 5-6: 9.973, ≈111 trilyon; 7-8 ve 9-10: 5.647, ≈118 ve ≈25 trilyon). Metin sayısı üst sınır.
+- Okuma simülasyonu (yaş başına 3 çocuk × 100 masal, uygulamanın geçmiş penceresiyle): birebir aynı masal yok, ama olay örgüsü 6-14. masalda tekrar ediyor; satırların yarısı 7-14. masalda tanıdık; 51-100. masalda %81-90'ı daha önce okunmuş.
+- Yeni belge `docs/ANLATI_PLANI.md`: küçük yaşta görsel betim (görsel anahtar sözlüğü, `visualKeys`, `sceneDetails` betim katmanı), büyük yaşta olay örgüsü (düğüm yuvası, tohum ve hasat), satır soğumasının ayrı pencereye çıkması, yeni olay örgüleri (önce uyku öncesi ve 7-10 macera), dünya satırlarının ara sayfalara yayılması; hedefler ve Batuhan'ın kararı gereken beş soru.
+- Bilerek yapılmadı: kod ve içerik değişmedi; ölçüm testleri silindi (A0 onları kalıcı yapacak).
+- Dosyalar: `docs/ANLATI_PLANI.md`, bu günlük.
+
 ### 2026-11-20 · main (birleştirme, bu kayıtla), origin'de · Yeni dünyalar main'e alındı
 
 - Batuhan'ın onayıyla ("Main'e al, gönder") `evren-7-yetkiler` (son: `1e9ec16`, yeni dünyalar) `main@a39eed3` üzerine birleştirildi ve origin'e gönderildi. Tek çakışma bu günlükte; iki tarafın kayıtları da korundu.
