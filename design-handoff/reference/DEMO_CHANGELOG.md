@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Yeni dünyalar: Yeni bir şehir, Yeni bir ülke, Tarih
+
+- Ölçüm: Tarih, Yeni bir şehir ve Yeni bir ülke hiçbir yaşta açılmıyordu (bu etiketi taşıyan mekân yoktu). Şimdi üçü de dört bantta canlı; yeni blueprint yazılmadı.
+- İçerik (`pilot_library_v1.json`, dizinin sonuna): 7 mekân (Saat Kuleli Meydan, Kemerli Çarşı, Yel Değirmenleri Ülkesi, Kırmızı Kiremitli Kasaba, Eski Kale, Taş Müze, Taş Basamaklı Tiyatro), 6 yol arkadaşı (Simit, Pıtpıt, Lolo, Fındık, Taşbaş, Gugu), 7 nesne (tramvay bileti, pirinç zil, kartpostal, dokuma kurdele, mozaik parçası, bakır para, kale çanı). Hepsi uydurma yerler; gerçek ülke ya da şehir yok.
+- Dünya satırı (motor): satır `settingTags` ile bir dünyaya bağlanabiliyor (mekânın `tags` etiketi). Esnemiyor: şehir satırı ormana gitmez. Kendi dünyasında seçim onu öne alıyor; havuz sayımı değişmiyor, bugünkü satırlar dünya bildirmediği için eski masallar aynı. İlk tasarım ilgi etiketine (`interests`) bakıyordu; `InterestScoringTests` bunun ilgiler yeniden etiketlenince masalı değiştirdiğini gösterdi, `tags`'e taşındı.
+- 81 yeni satır: üç dünyanın dört bantta sayfa 1'i (`notice_anomaly`) ve kapanışı (`warm_close`). Sözcük aralığı, cümle sınırı, yasak sözcük ve kapanış kuralları betikle denetlendi; yer tutucudan sonra "de/da" yazan üç satır düzeltildi. Ara sayfalar genel satırlarla.
+- Testler: canlı konu listesi, ince konu örneği (artık 3-4 Meslekler), katalog sayıları (mekân 36, yol arkadaşı 34, nesne 43, satır 2227), ilgi matrisi ve ulaşılabilir ilgi listesi (Tarih, Ülkeler, Şehirler) güncellendi; yeni `WorldLineTests`. `TitleVarietyTests` döngüsü ~21 milyon başlığa çıkıp süreci bellek yüzünden düşürüyordu; mekân başına `autoreleasepool` eklendi (kapsam aynı, 497 sn'de geçti).
+- Test: ilk tam koşuda (BoundPoolTests hariç) beş test kırıldı, hepsi düzeltildi ama tam paket yeniden koşulmadı (Batuhan: "test etmeden gönder"). `WorldLineTests` ve `BoundPoolTests` hiç koşulmadı. Uygulama derlenmedi, simülatörde görülmedi.
+- Bilerek yapılmadı: olgu (`facts`, kaynak ister), 3-4 Meslekler ve Bilim ve uzay, dünya satırını ara sayfalara yaymak. Kapak: Eski Kale Krallık kapağı alıyor, öbürleri varsayılan.
+- Batuhan okusun: bütün yeni kayıtlar ve satırlar taslak.
+- Dosyalar: `pilot_library_v1.json`, sekiz `templates/v3*/beat_*notice_anomaly|warm_close.json`, `CatalogTemplate.swift`, `OfflineStoryComposer.swift`, yedi test dosyası, `docs/EVREN_PLANI.md`, bu günlük.
+
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Yetkiler 20 Kasım abonelik kararına göre
 
 - Ne değişti: `EntitlementPolicy` ücretsiz payı kullanıma göre veriyor (`EntitlementUsage`): Masal ailem'de 1 kişi (eklemek ve masala katmak), 1 çocuk profili (yeni `Capability.multipleChildren`), seri ücretsiz başlar ve 2. bölüm açılır (3-5 abonelikle; kapı `SeriesManager.refreshUnlocks`'ta, açılmış bölüm hiç kilitlenmez), klasik/Original vitrini (haftanın seçkisi + Uyku vakti rafı, `ClassicsLibrary.isInFreeShowcase`). Bütün dünyalar ücretsiz (`lockedTopicIDs` boş). Plan adı her ücretli kademede "MagicPaper Premium". Paywall faydaları: dünyalar ve kendi sesin çıktı, "Ailedeki her çocuk" girdi; yıllık yedek fiyat ₺999. `Products.storekit` ürün kimlikleri kodla eşlendi (`magicpaper_<kademe>_monthly`), `magicpaper_premium_yearly` ₺999,99 + 1 hafta ücretsiz deneme eklendi. `RevenueCatManager.tier(forActiveSubscriptions:)` yıllığı Premium tanıyor (önceden "bilinmeyen → Basic" düşüyordu). Profil ekleme (Profil sekmesi "Ekle", Ayarlar "Profil ekle") ve kilit penceresi sözleri buna göre.

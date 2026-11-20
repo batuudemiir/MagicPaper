@@ -526,6 +526,144 @@
         "imaginary"
       ],
       "visualScene": "child pointing out a place, a faint soft shape listening"
+    },
+    {
+      "id": "w_ct_na56_01",
+      "text": "{{child.name}} bu şehre ilk kez geliyordu. Sokaklar kalabalık, dükkânlar rengârenkti. Bir simitçi neşeyle sesleniyor, bir tramvay çan çalarak geçiyordu. {{child.name}} her şeye bakmak istiyordu. Sonra {{discovery.name}} dikkatini çekti ve gözleri orada kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_first_day_in_the_city",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na56_02",
+      "text": "{{setting.name}}'da insanlar birbirine selam vererek geçiyordu. {{child.name}} herkese selam verdi; bu şehirde herkes böyle yapıyordu. Derken bir şey fark etti: {{discovery.name}}. Kalabalıkta onu kimse fark etmemiş gibiydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_greeting_crowd_then_notice",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na56_03",
+      "text": "{{child.name}} elinde bir haritayla şehri geziyordu. Haritada her sokak vardı, her köprü, her meydan. Ama {{setting.name}}'da haritada olmayan bir şey vardı. {{discovery.name}} tam karşısında duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_not_on_the_city_map",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na56_01",
+      "text": "{{child.name}} hiç görmediği bir ülkedeydi. Burada insanlar başka bir dilde konuşuyor, başka şarkılar söylüyordu. Pencerelerden bilmediği yemeklerin kokusu geliyordu. {{child.name}} her şeyi merakla dinliyordu. Derken {{setting.name}}'da {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_a_country_never_seen",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na56_02",
+      "text": "Bu ülkede herkes birbirini başka bir sözcükle selamlıyordu. {{child.name}} o sözcüğü sabahtan beri tekrar ediyordu. Tam doğru söylediğini düşünürken durdu. {{discovery.name}} tam önündeydi.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_practising_the_greeting",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na56_03",
+      "text": "{{child.name}} {{setting.name}}'da yürüyordu. Her şey yeniydi: evlerin renkleri, insanların selamı, rüzgârın kokusu. {{child.name}} hepsini aklına yazmaya çalıştı. Sonra yazmayı unuttu, çünkü {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_everything_new",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na56_01",
+      "text": "{{child.name}} o gün {{setting.name}}'a ilk kez geliyordu. Burada her taş yüzlerce yıllıktı ve her taşın bir hikâyesi vardı. {{child.name}} hepsini dinlemek istedi. Ama önce bir şey dikkatini çekti: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_every_stone_a_story",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na56_02",
+      "text": "Rehber, burada çok eskiden insanların yaşadığını anlatıyordu. {{child.name}} dinlerken bir yandan da etrafa bakıyordu. O insanlar nasıl giyinirdi, ne yerdi, ne oynardı? Derken {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_guide_talking_long_ago",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na56_03",
+      "text": "{{setting.name}}'da sessizlik başkaydı; sanki eski zamanlar da susup dinliyordu. {{child.name}} parmak uçlarında yürüdü. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_old_silence",
+      "settingTags": [
+        "history"
+      ]
     }
   ],
   "lengthClasses": {

@@ -637,6 +637,156 @@
         "succeed",
         "restore"
       ]
+    },
+    {
+      "id": "w_ct_wc78_01",
+      "text": "Akşam şehrin ışıkları birer birer yandı. {{child.name}} hepsini saymaya kalktı, sonra vazgeçip gülümsedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_counting_city_lights",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc78_02",
+      "text": "{{child.name}} tramvaya binerken {{setting.name}}'a dönüp baktı. Bu şehirde artık bir köşe onundu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_a_corner_of_the_city",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc78_03",
+      "text": "Eve dönerken {{child.name}} şehri bir kez daha düşündü. Sabah her sokak birbirine benziyordu. Şimdi ise bir tanesi ötekilerden ayrıydı, çünkü orada kendi hikâyesi geçmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_one_street_different",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc78_04",
+      "text": "{{setting.name}}'da akşam serinliği başlamıştı. Simitçi tezgâhını topluyor, güvercinler yuvalarına çekiliyordu. {{child.name}} yavaş adımlarla yola koyuldu. Şehir kalabalıktı ama içi sakindi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_city_winding_down",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_wc78_01",
+      "text": "Akşam olunca {{child.name}} yeni öğrendiği sözcükleri saydı. Sabah üç taneydi, şimdi tam yedi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_counting_new_words",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc78_02",
+      "text": "{{companion.name}} ona kendi dilinde iyi geceler diledi. {{child.name}} anlamadı, ama ne demek istediğini çok iyi biliyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_goodnight_untranslated",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc78_03",
+      "text": "Uzak ülkenin gökyüzünde evdekiyle aynı yıldızlar parlıyordu. {{child.name}} buna önce şaşırdı, sonra güldü. Elbette aynıydılar; ülkeler ayrı ayrıydı ama gökyüzü herkesindi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_the_sky_is_everyones",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc78_04",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} bir şeyi fark etti: bu ülke sabah ona yabancıydı. Şimdi ise birkaç sokağını, birkaç sözcüğünü ve bir arkadaşını tanıyordu. Yabancılık, tanıştıkça küçülüyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_strangeness_shrinks",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_hs_wc78_01",
+      "text": "Akşam güneşi eski taşların üstünde ağır ağır yürüdü. {{child.name}} onunla birlikte yürüdü, yavaşça.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_walking_with_the_sun",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc78_02",
+      "text": "{{child.name}} {{setting.name}}'dan çıkarken yüzlerce yıllık taşlara el salladı. Biraz komik olduğunu biliyordu, ama yine de yaptı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_waving_to_old_stones",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc78_03",
+      "text": "Eve dönerken {{child.name}} bir şey düşündü. Yüzlerce yıl önce de bir çocuk bu taşlara bakmış olmalıydı. O da merak etmiş, o da gülmüştü. Zaman uzundu, ama merak değişmemişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_curiosity_unchanged",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc78_04",
+      "text": "{{setting.name}}'da akşam serinliği başlamıştı. Taşlar gün boyu topladıkları sıcaklığı yavaş yavaş bırakıyordu. {{child.name}} bir an durup dinledi. Tarih sessizdi, ama sıcacıktı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_history_quiet_and_warm",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

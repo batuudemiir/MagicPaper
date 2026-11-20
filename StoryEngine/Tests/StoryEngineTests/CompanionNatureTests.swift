@@ -208,10 +208,12 @@ final class InterestReachabilityTests: XCTestCase {
     ///
     /// H1 (17 Kasım 2026): 3-4'ün sakin macera şekilleri o bandı genişletti;
     /// liste beşten ona çıktı (sınırlayan bant 3-4'tü).
+    /// Yeni dünyalar (19 Kasım 2026): Tarih, Ülkeler ve Şehirler dört bantta da
+    /// tutulabiliyor; liste on beşe çıktı.
     func testTheOfferedListIsWhatEveryBandCanActuallyKeep() {
         XCTAssertEqual(selector.availableInterests(catalog: catalog).map(\.id.rawValue),
                        ["animals", "space", "sea", "music", "magic", "nature", "robots", "sports", "jobs",
-                        "science", "sky", "treasure"])
+                        "science", "history", "country", "city", "sky", "treasure"])
     }
 
     /// Mod tanımı olmayan bir katalogda süzgeç uygulanmaz: "hiçbir mod kabul

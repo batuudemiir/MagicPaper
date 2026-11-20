@@ -337,6 +337,117 @@
         "imaginary"
       ],
       "visualScene": "small child hugging the air, smiling"
+    },
+    {
+      "id": "w_ct_wc34_01",
+      "text": "Akşam şehrin ışıkları yandı. {{child.name}} pencereden baktı. Şehir artık biraz onundu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_city_lights_at_dusk",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc34_02",
+      "text": "{{child.name}} {{companion.name}}'e el salladı. Tramvay yavaşça geldi. Eve dönüş yolu çok güzeldi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_tram_home",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc34_03",
+      "text": "Şehir kocamandı. Ama artık {{child.name}} orada bir sokağı çok iyi biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_one_street_known",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_01",
+      "text": "{{child.name}} yeni bir kelime öğrenmişti: bu ülkenin dilinde merhaba. Eve dönerken onu hep söyledi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_new_word_hello",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_02",
+      "text": "Uzak ülkede akşam oldu. {{child.name}} {{companion.name}}'e sarıldı. Burası artık o kadar uzak gelmiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_not_so_far_now",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc34_03",
+      "text": "Gökyüzünde evdekiyle aynı ay vardı. {{child.name}} buna çok sevindi. Uzak ülke artık yakın geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_same_moon",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_01",
+      "text": "Eski taşlar akşam güneşinde ısınmıştı. {{child.name}} birine dokundu. Çok eski, çok sıcak bir taştı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_warm_old_stone",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_02",
+      "text": "{{child.name}} {{companion.name}}'e el salladı. Akşam oldu. Eski hikâyeler hep orada kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_old_stories_stay",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc34_03",
+      "text": "Eve dönerken {{child.name}} düşündü. Çok eskiden de çocuklar vardı. Belki onlar da buraya gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_children_then_and_now",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

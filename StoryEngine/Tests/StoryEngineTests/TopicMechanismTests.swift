@@ -73,17 +73,18 @@ final class TopicMechanismTests: XCTestCase {
     ///
     /// Örnek 17 Kasım 2026'ya kadar "Denizin altı"ydı (iki mekanizma). H1'in
     /// sakin macera şekilleri onu üçün üstüne taşıdı ve konu canlı listeye
-    /// girdi (`StoryTopicTests.testWhichTopicsAreLiveToday`). Bugünün örneği
-    /// "Yeni bir ülke": hiçbir mekân `country` taşımıyor, mekanizma sıfır.
+    /// girdi (`StoryTopicTests.testWhichTopicsAreLiveToday`). Sonra "Yeni bir
+    /// ülke" oldu; 19 Kasım 2026'da yeni dünyalarla canlandı. Bugünün örneği
+    /// 3-4'te "Meslekler": o bantta meslek olay örgüsü yok, mekanizma sıfır.
     func testAThinTopicIsDefinedButNotOffered() throws {
-        let band = AgeBand(lowerBound: 5, upperBound: 6)
-        let country = try XCTUnwrap(
-            catalog.storyTopics.first { $0.id.rawValue == "topic_adventure_country" },
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        let jobs = try XCTUnwrap(
+            catalog.storyTopics.first { $0.id.rawValue == "topic_learning_jobs" },
             "konu katalogdan silinmiş olabilir")
-        let found = mechanisms(of: country, .adventure, band)
-        XCTAssertEqual(found.count, 0, "Yeni bir ülke artık \(found.sorted()) kuruyor; "
+        let found = mechanisms(of: jobs, .learning, band)
+        XCTAssertEqual(found.count, 0, "Meslekler 3-4'te artık \(found.sorted()) kuruyor; "
                        + "üçe çıktıysa konu canlı listeye alınmalı")
-        XCTAssertFalse(offeredTopics(.adventure, band).contains(country))
+        XCTAssertFalse(offeredTopics(.learning, band).contains(jobs))
     }
 
     // MARK: - Hazine avı
