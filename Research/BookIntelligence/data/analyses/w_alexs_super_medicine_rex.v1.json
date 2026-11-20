@@ -1,0 +1,339 @@
+{
+  "work_id": "w_alexs_super_medicine_rex",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_alexs_super_medicine",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-11-13T15:38:25Z",
+  "completeness": "full",
+  "summary_paraphrase": "Alex feels unwell and his mother takes him to Dr Bongi, who gives him medicine. He finds medicine yucky and tries to avoid it: he offers Jett his toy car to drink it, pours it on a sandwich, buries it in the garden and hides it in a bird's nest. Each plan fails. At last he wonders whether to just try it; the medicine turns into an imagined green sea he rides, and he feels much better while his family says they are proud.",
+  "beats": [
+    {
+      "beat": "PROBLEM",
+      "start_page": 1,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "unwell; medicine prescribed; he finds it yucky"
+    },
+    {
+      "beat": "FIRST_ATTEMPT",
+      "start_page": 3,
+      "end_page": 4,
+      "intensity": 3,
+      "function": "bribe Jett; sandwich plan"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 5,
+      "end_page": 7,
+      "intensity": 4,
+      "function": "sandwich ruined; garden plan; dog digs it up"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 8,
+      "end_page": 9,
+      "intensity": 3,
+      "function": "nest plan; bird kicks it out"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 3,
+      "function": "maybe just try it; dose given on a spoon"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 4,
+      "function": "imagined medicine sea"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 4,
+      "function": "feels better; family proud; cape"
+    }
+  ],
+  "beat_positions": {
+    "PROBLEM": 0.0,
+    "FIRST_ATTEMPT": 0.182,
+    "COMPLICATION": 0.364,
+    "ESCALATION": 0.636,
+    "TURN": 0.818,
+    "CLIMAX": 0.909,
+    "EMOTIONAL_PAYOFF": 1.0
+  },
+  "characters": [
+    {
+      "id": "alex",
+      "name": "Alex",
+      "role": "protagonist",
+      "age": "child",
+      "personality": "inventive, stubborn, playful",
+      "desire": "to avoid the yucky medicine",
+      "fear": "the taste of medicine",
+      "goal": "get rid of the medicine without drinking it",
+      "problem": "he is ill and must take medicine he dislikes",
+      "strengths": "keeps trying new plans",
+      "weakness": "avoidance",
+      "change": "from dodging the medicine to trying it and feeling better",
+      "relation_to_protagonist": "self",
+      "humor_source": "his schemes and their failures",
+      "tension_source": "his dislike against the need to get well"
+    },
+    {
+      "id": "mom",
+      "name": null,
+      "role": "family_member",
+      "personality": "calm, caring",
+      "relation_to_protagonist": "mother who takes him to the doctor, gives the dose (in the picture) and praises him",
+      "tension_source": null
+    },
+    {
+      "id": "dr_bongi",
+      "name": "Dr Bongi",
+      "role": "helper",
+      "relation_to_protagonist": "the doctor who prescribes the medicine"
+    },
+    {
+      "id": "jett",
+      "name": "Jett",
+      "role": "companion",
+      "age": "child",
+      "personality": "firm",
+      "relation_to_protagonist": "a boy who refuses the swap; later at home with the family, probably a brother (INFERRED)",
+      "humor_source": "flat refusal with crossed arms"
+    },
+    {
+      "id": "dog",
+      "name": null,
+      "role": "animal_companion",
+      "relation_to_protagonist": "family dog that digs up the hidden bottle; later rides the medicine sea",
+      "humor_source": "carries the muddy bottle back",
+      "tension_source": "foils a plan"
+    },
+    {
+      "id": "bird",
+      "name": null,
+      "role": "comic",
+      "relation_to_protagonist": "nesting bird that kicks the bottle out",
+      "humor_source": "foils a plan"
+    }
+  ],
+  "protagonist_agency": 4,
+  "emotional_curve": [
+    2,
+    2,
+    3,
+    2,
+    4,
+    2,
+    3,
+    2,
+    3,
+    3,
+    4,
+    4
+  ],
+  "humor_notes": "OBSERVED: the humor is a pattern of three failed schemes, each set up on an idea spread and knocked down on the next by one interjection and a picture (goo-drowned sandwich, dog with the bottle, bird kicking it out). The text alone does not say how any plan failed.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "an idea spread (thinking face with question marks, then a lightbulb page with 'I know, I'll ...') followed by a failure spread (one interjection on a lime page, the result on white)",
+      "pages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "functions": [
+        "anticipation",
+        "humor",
+        "participation"
+      ],
+      "effective": true,
+      "why": "after the first round the listener predicts the failure and can say the cry; the layout itself (yellow bulb, lime cry) signals the pattern"
+    },
+    {
+      "type": "phrase",
+      "description": "'I know, I'll ...' opens each plan",
+      "pages": [
+        4,
+        6,
+        8
+      ],
+      "functions": [
+        "participation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "a joinable cue that marks each new scheme"
+    },
+    {
+      "type": "callback",
+      "description": "every object from the failed plans floats in the medicine sea",
+      "pages": [
+        11
+      ],
+      "functions": [
+        "memory",
+        "humor"
+      ],
+      "effective": true,
+      "why": "gathers the book's failures into the payoff picture"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "OBSERVED: each failure (pages 5, 7, 9) is a single-word cry in the text; what went wrong is shown only in the picture.",
+      "OBSERVED: colour codes the pattern: yellow lightbulb pages for ideas, lime pages for the shocked cry.",
+      "OBSERVED: the text never says who gives the dose; page 10 shows Mom giving it on a spoon.",
+      "OBSERVED: the dog and the bird that foil the plans are not in the text.",
+      "OBSERVED: the 'super' of the title is a red cape drawn on Alex at the end and on the bottle in the cover and closing vignette; the text never mentions a cape.",
+      "OBSERVED: all dialogue is untagged; speakers are shown by speech and thought bubbles."
+    ]
+  },
+  "strengths": [
+    "a clear pattern of three attempts with a predictable, joinable failure beat",
+    "failures are funny and land in the picture, letting the text stay to one word",
+    "the child decides to try; the change is his",
+    "the final imagined sea gathers every earlier plan",
+    "very short sentences suited to a young listener"
+  ],
+  "weaknesses": [
+    "the health message is stated at the end (all I had to do was drink my medicine)",
+    "the bribe asks another child to drink his medicine, presented as a joke without comment",
+    "the speaker of untagged lines depends on the bubbles; read aloud without pictures several lines are ambiguous",
+    "medicine is shown as instantly transformative"
+  ],
+  "anti_patterns": [
+    {
+      "id": "moral_stated_not_shown",
+      "pages": [
+        12
+      ],
+      "note": "the last line states the lesson after the picture has already shown it"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 4,
+      "participation": 4,
+      "emotional_identification": 4,
+      "surprise": 3,
+      "character_warmth": 3,
+      "agency": 4,
+      "visual_novelty": 4,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 4
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [
+    "unsafe_behavior_imitable"
+  ],
+  "age_suitability": {
+    "magicpaper": "adapt_with_care",
+    "notes": "Medicine content. OBSERVED: the child hides prescribed medicine (pours it on food, buries it, puts it in a nest) and offers it to another child in exchange for a toy; a dog carries the bottle in its mouth. These are imitable and two are medication-safety risks (another child drinking it, a pet reaching it); the book frames them as failed jokes, never says they are unsafe. On the positive side the picture shows an adult giving the dose on a spoon. Any MagicPaper use should keep medicine in adult hands, drop the swap with another child and keep animals away from it. Peak research intensity 4 of 5 (the ruined sandwich and the imagined sea), about 2 on the engine's 0-3 scale; illness itself stays at 2 of 5, about 1 on the 0-3 scale; no fear of illness or of the doctor. 139 words, mean sentence 5.4, longest 15: fits 3-4 as read-aloud, also 5-6. Text-only MagicPaper would lose the failures, which live in the pictures."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 139,
+    "words_per_page": {
+      "min": 1,
+      "median": 13.5,
+      "max": 24
+    },
+    "mean_sentence_words": 5.35,
+    "longest_sentence": 15,
+    "type_token_ratio": 0.604,
+    "dialogue_ratio": 0.0,
+    "questions": 3,
+    "questions_per_page": 0.25,
+    "direct_address": 5,
+    "sound_words": 1,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "i know i'll": 3,
+        "drink my medicine": 2,
+        "i know i'll hide it in": 2,
+        "maybe i should": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "i": 5,
+        "i'm": 1,
+        "let's": 1,
+        "she": 1,
+        "drink": 1
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  },
+  "craft": {
+    "causal_chain": [
+      {
+        "cause": "he is ill and medicine is yucky",
+        "effect": "he plans to avoid it",
+        "pages": [
+          1,
+          3
+        ],
+        "driver": "protagonist"
+      },
+      {
+        "cause": "each plan meets a mishap (sandwich, dog, bird)",
+        "effect": "the plan fails",
+        "pages": [
+          4,
+          9
+        ],
+        "driver": "chance"
+      },
+      {
+        "cause": "he decides to try it",
+        "effect": "the medicine becomes an imagined sea",
+        "pages": [
+          10,
+          11
+        ],
+        "driver": "protagonist"
+      },
+      {
+        "cause": "he took it",
+        "effect": "he feels better and his family is proud",
+        "pages": [
+          12
+        ],
+        "driver": "protagonist"
+      }
+    ],
+    "ending": {
+      "type": "change_of_heart",
+      "answers": "will he take the medicine",
+      "last_page_move": "he wears a cape, well again",
+      "returns_to_opening": false,
+      "pages_after_resolution": 0
+    },
+    "writer_note": "Three failed plans with a fixed 'I know, I'll...' opener make the change of heart land; the imagined reward should come from the child's own choice. Keep medicine in adult hands."
+  }
+}

@@ -1,6 +1,6 @@
 {
   "claim_id": "c_repeated_line",
-  "statement": "A line returns on 2 or more spreads in 11 of 21 books with text (e.g. 'Come back, cat!', 'Good night, Monu.', Amo's call to the mielies, Tinku's friendship question and answer on five spreads); the other 10 repeat a structure, a sound pattern or a speaker tag instead of a line.",
+  "statement": "A line returns on 2 or more spreads in 22 of 39 books with text (e.g. 'Come back, cat!', 'Good night, Monu.', the paired scream and 'don't be scared … it's just …' in AAAAAHHH!!!! Mmawe!, 'Sniff, sniff, sniff.' in Can We Eat a Rainbow?, 'I know, I'll …' in Alex's Super Medicine); the other 17 repeat a structure, a place or a callback but no line.",
   "kind": "OBSERVED",
   "layers": [
     "textual_mechanism"
@@ -8,7 +8,7 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_amahle_wants_to_help_nsibande",
@@ -21,7 +21,18 @@
     "w_good_night_monu_karthik",
     "w_goodnight_tinku_nambiar",
     "w_khumos_big_trip_sedibe",
-    "w_mud_waterkeyn"
+    "w_mud_waterkeyn",
+    "w_get_down_rocky_besant",
+    "w_the_lost_ball_mustafa",
+    "w_who_ate_my_hat_shea",
+    "w_dudus_hat_mcgregor",
+    "w_clever_pig_koenig",
+    "w_house_for_mouse_fry",
+    "w_aaaaahhh_mmawe_mcgregor",
+    "w_can_we_eat_a_rainbow_drew",
+    "w_play_with_me_seldon",
+    "w_banzis_busy_bees_zazela",
+    "w_alexs_super_medicine_rex"
   ],
   "counterexample_works": [
     "w_ann_nem_oh_nee_finds_adventure_griffiths",
@@ -33,13 +44,20 @@
     "w_fifi_and_teddy_letsapa",
     "w_foxy_joxy_plays_a_trick_esmail",
     "w_grumpy_cloud_ditlhareng",
-    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar"
+    "w_kottavi_raja_and_his_sleepy_kingdom_sampathkumar",
+    "w_day_out_brain",
+    "w_lets_go_looking_ngaba",
+    "w_trip_to_the_tap_mandoyi",
+    "w_going_places_reeves",
+    "w_i_can_do_it_mathe",
+    "w_dance_khuzwayo_dance_nyirongo",
+    "w_sweet_dreams_amaya"
   ],
   "sources": [],
   "counterexamples_reviewed": true,
   "status": "active",
   "rejected_reason": null,
-  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends repeats a refusal line on 3 spreads, then reverses it by action rather than changing the line. The wordless book is not counted.\n2026-10-15: Book Dash: Khumo, Come Back Cat, Ga Mohana support; Bathtub Safari and Feathered Friends repeat structure only. African Storybook: Bohlale supports (near-quit line x3), Chicken and Millipede repeats a comparison structure. StoryWeaver: Good Night, Monu supports (refrain at pp 2, 5, 13 answers the child's good nights; comfort function, fits m003). 2026-10-20: The Red Umbrella is wordless and not counted.",
+  "analyst_note": "2026-10-14: Best Friends and An Unexpected Adventure (wordless) reviewed for this claim. Best Friends repeats a refusal line on 3 spreads, then reverses it by action rather than changing the line. The wordless book is not counted.\n2026-10-15: Book Dash: Khumo, Come Back Cat, Ga Mohana support; Bathtub Safari and Feathered Friends repeat structure only. African Storybook: Bohlale supports (near-quit line x3), Chicken and Millipede repeats a comparison structure. StoryWeaver: Good Night, Monu supports (refrain at pp 2, 5, 13 answers the child's good nights; comfort function, fits m003). 2026-10-20: The Red Umbrella is wordless and not counted.\n2026-10-28: +6 support, +2 counter. Both new non-Book Dash books support: The Lost Ball (Room to Read) repeats a shoutable answer on three spreads; Get Down, Rocky! (Pratham) gives each helper the same 'idea' line on three spreads. Book Dash: Who Ate My Hat, Dudu's Hat, Clever Pig (2-3 word lines, missed by the CLI's 4-word counter) and A House for Mouse support; A Day Out (no line returns) and Let's Go Looking (a frame on 2 spreads, not a line) count against. All repeated lines this week are positive or neutral (m003). Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-10-28 older-book observation, NOT counted (SOURCES.md keeps populations apart): Millions of Cats (Internet Archive, 1928, Gág, study_only) supports (a five-step cat count returns on five pages, passed between speakers).\n2026-11-13: +5 support, +5 counter. Sweet Dreams repeats each sweet's name twice inside its own verse but no line returns across spreads: counted as structure only. Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "writing_guidance",
     "current": "repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)",
@@ -48,10 +66,10 @@
     "review_status": "accepted"
   },
   "computed": {
-    "n_examined": 21,
-    "support": 11,
-    "counter": 10,
-    "support_ratio": 0.524,
+    "n_examined": 39,
+    "support": 22,
+    "counter": 17,
+    "support_ratio": 0.564,
     "sample_scope": "CORPUS",
     "best_source_tier": "A",
     "confidence": "LOW",

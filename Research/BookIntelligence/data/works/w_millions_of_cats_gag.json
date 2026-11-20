@@ -15,21 +15,47 @@
   "classification": {
     "age_band": "5-6",
     "age_band_basis": "analyst",
-    "story_types": [],
-    "structures": [],
-    "tones": [],
-    "visual_style": []
+    "story_types": [
+      "funny",
+      "animals",
+      "folklore",
+      "family"
+    ],
+    "structures": [
+      "journey",
+      "cumulative",
+      "repeated-pattern",
+      "home-away-home"
+    ],
+    "tones": [
+      "whimsical",
+      "funny",
+      "chaotic",
+      "warm"
+    ],
+    "visual_style": [
+      "illustration+short-text",
+      "cinematic-spreads"
+    ],
+    "age_band_confidence": "LOW",
+    "age_band_note": "Placed by the analyst at 5-6: folktale with a repeated refrain, but long sentences and an implied mass death of the cats; no publisher band recorded in this corpus. Published 1928 (public domain scan, Internet Archive)."
   },
-  "protagonist": null,
+  "protagonist": {
+    "kind": "adult",
+    "gender": "male"
+  },
   "evidence": {
     "popularity": [],
     "quality": [],
     "adult_interpretation": []
   },
-  "content_flags": [],
+  "content_flags": [
+    "violence",
+    "death_reference"
+  ],
   "age_suitability": {
-    "magicpaper": null,
-    "notes": null
+    "magicpaper": "study_only",
+    "notes": "Cats bite, scratch and claw each other until none is left, and the woman says they must have eaten each other up; the deaths are implied, not shown, and the fight picture has no wounds. For MagicPaper, the book is study material for its refrain, cumulative count, scale humor and quiet ending; the plot device of a crowd destroying itself to solve the problem should not be reproduced for 3-4 or 5-6. Appearance as a measure of worth (homely, then pretty once plump) is a dated note. 1928 text; a reading for children is a parent's call, not a product call. INFERRED"
   },
   "editions": [
     "e_ia_millions_of_cats_202401"

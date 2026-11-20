@@ -1,0 +1,482 @@
+{
+  "scope": {
+    "age_band": "3-4",
+    "language": null
+  },
+  "n_works": 16,
+  "works": [
+    "w_amahle_wants_to_help_nsibande",
+    "w_amo_and_the_missing_mielies_phala",
+    "w_bathtub_safari_chemaly",
+    "w_catch_that_cat_pirie",
+    "w_clever_pig_koenig",
+    "w_come_back_cat_rijsdijk",
+    "w_come_stay_with_me_siege",
+    "w_day_out_brain",
+    "w_feathered_friends_ange",
+    "w_fifi_and_teddy_letsapa",
+    "w_ga_mohana_the_hill_of_wonders_itumeleng",
+    "w_house_for_mouse_fry",
+    "w_khumos_big_trip_sedibe",
+    "w_red_umbrella_kritzinger",
+    "w_who_ate_my_hat_shea",
+    "w_zuko_and_the_crying_tap_langeni"
+  ],
+  "language": {
+    "n_full_text_works": 16,
+    "words_per_page": {
+      "n": 193,
+      "min": 0,
+      "p25": 1.0,
+      "median": 6,
+      "p75": 11.0,
+      "max": 27
+    },
+    "total_words": {
+      "n": 16,
+      "min": 0,
+      "p25": 66.0,
+      "median": 91.5,
+      "p75": 103.0,
+      "max": 166
+    },
+    "pages": {
+      "n": 16,
+      "min": 12,
+      "p25": 12.0,
+      "median": 12.0,
+      "p75": 12.0,
+      "max": 13
+    },
+    "mean_sentence_words": {
+      "n": 16,
+      "min": 0,
+      "p25": 3.21,
+      "median": 3.85,
+      "p75": 5.58,
+      "max": 6.56
+    },
+    "longest_sentence": {
+      "n": 16,
+      "min": 0,
+      "p25": 5.75,
+      "median": 9.0,
+      "p75": 11.25,
+      "max": 18
+    },
+    "dialogue_ratio": {
+      "n": 16,
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.09,
+      "p75": 0.32,
+      "max": 0.722
+    },
+    "questions_per_page": {
+      "n": 16,
+      "min": 0.0,
+      "p25": 0.0,
+      "median": 0.12,
+      "p75": 0.25,
+      "max": 0.67
+    },
+    "type_token_ratio": {
+      "n": 16,
+      "min": 0.0,
+      "p25": 0.46,
+      "median": 0.58,
+      "p75": 0.66,
+      "max": 0.917
+    },
+    "works_with_repeated_line": 8,
+    "works_with_end_rhyme": 0
+  },
+  "structure": {
+    "beat_presence": {
+      "TURN": 15,
+      "ENDING": 15,
+      "SETUP": 14,
+      "ESCALATION": 13,
+      "SOLUTION": 12,
+      "DISCOVERY": 11,
+      "EMOTIONAL_PAYOFF": 10,
+      "CLIMAX": 10,
+      "PROBLEM": 9,
+      "DESIRE": 7,
+      "COMPLICATION": 5,
+      "FIRST_ATTEMPT": 4,
+      "HOOK": 3
+    },
+    "beat_first_position": {
+      "SETUP": {
+        "n": 14,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.091
+      },
+      "HOOK": {
+        "n": 3,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.05,
+        "max": 0.091
+      },
+      "PROBLEM": {
+        "n": 9,
+        "min": 0.091,
+        "p25": 0.09,
+        "median": 0.09,
+        "p75": 0.36,
+        "max": 0.636
+      },
+      "DESIRE": {
+        "n": 7,
+        "min": 0.0,
+        "p25": 0.09,
+        "median": 0.09,
+        "p75": 0.23,
+        "max": 0.364
+      },
+      "FIRST_ATTEMPT": {
+        "n": 4,
+        "min": 0.091,
+        "p25": 0.15,
+        "median": 0.17,
+        "p75": 0.25,
+        "max": 0.455
+      },
+      "ESCALATION": {
+        "n": 13,
+        "min": 0.182,
+        "p25": 0.18,
+        "median": 0.27,
+        "p75": 0.46,
+        "max": 0.727
+      },
+      "DISCOVERY": {
+        "n": 11,
+        "min": 0.083,
+        "p25": 0.18,
+        "median": 0.27,
+        "p75": 0.41,
+        "max": 0.727
+      },
+      "COMPLICATION": {
+        "n": 5,
+        "min": 0.182,
+        "p25": 0.27,
+        "median": 0.46,
+        "p75": 0.46,
+        "max": 0.727
+      },
+      "TURN": {
+        "n": 15,
+        "min": 0.364,
+        "p25": 0.59,
+        "median": 0.64,
+        "p75": 0.7,
+        "max": 0.909
+      },
+      "SOLUTION": {
+        "n": 12,
+        "min": 0.182,
+        "p25": 0.73,
+        "median": 0.82,
+        "p75": 0.91,
+        "max": 1.0
+      },
+      "CLIMAX": {
+        "n": 10,
+        "min": 0.545,
+        "p25": 0.75,
+        "median": 0.82,
+        "p75": 0.82,
+        "max": 0.818
+      },
+      "EMOTIONAL_PAYOFF": {
+        "n": 10,
+        "min": 0.636,
+        "p25": 0.84,
+        "median": 0.91,
+        "p75": 0.92,
+        "max": 1.0
+      },
+      "ENDING": {
+        "n": 15,
+        "min": 0.818,
+        "p25": 1.0,
+        "median": 1.0,
+        "p75": 1.0,
+        "max": 1.0
+      }
+    },
+    "sequences": {
+      "SETUP → PROBLEM → ESCALATION → TURN → SOLUTION → EMOTIONAL_PAYOFF → ENDING": 1,
+      "SETUP → DESIRE → DISCOVERY → PROBLEM → ESCALATION → CLIMAX → TURN → ENDING": 1,
+      "SETUP → HOOK → DISCOVERY → ESCALATION → COMPLICATION → CLIMAX → SOLUTION → ENDING": 1,
+      "HOOK → DESIRE → ESCALATION → COMPLICATION → ESCALATION → TURN → SOLUTION → CLIMAX → TURN → ENDING": 1,
+      "HOOK → FIRST_ATTEMPT → SOLUTION → PROBLEM → ESCALATION → TURN → EMOTIONAL_PAYOFF → DISCOVERY → ENDING": 1,
+      "DESIRE → SETUP → ESCALATION → SOLUTION → EMOTIONAL_PAYOFF → TURN → ENDING": 1,
+      "SETUP → PROBLEM → DESIRE → DISCOVERY → TURN → SOLUTION → EMOTIONAL_PAYOFF → ENDING": 1,
+      "SETUP → DISCOVERY → ESCALATION → TURN → CLIMAX → SOLUTION → ENDING": 1,
+      "SETUP → DISCOVERY → PROBLEM → COMPLICATION → TURN → DISCOVERY → CLIMAX → SOLUTION → ENDING": 1,
+      "SETUP → PROBLEM → ESCALATION → TURN → CLIMAX → SOLUTION → EMOTIONAL_PAYOFF → ENDING": 1
+    }
+  },
+  "emotion": {
+    "n_curves": 16,
+    "median_curve": [
+      2.0,
+      2.22,
+      2.5,
+      2.83,
+      3.0,
+      3.0,
+      3.17,
+      3.56,
+      3.22,
+      2.0
+    ],
+    "peak_position": {
+      "n": 16,
+      "min": 0.18181818181818182,
+      "p25": 0.55,
+      "median": 0.73,
+      "p75": 0.82,
+      "max": 1.0
+    },
+    "peak_intensity": {
+      "n": 16,
+      "min": 3,
+      "p25": 4.0,
+      "median": 4.0,
+      "p75": 4.25,
+      "max": 5
+    },
+    "ending_intensity": {
+      "n": 16,
+      "min": 1,
+      "p25": 1.75,
+      "median": 2.0,
+      "p75": 3.0,
+      "max": 5
+    },
+    "page_emotions": {
+      "anticipation": 32,
+      "excitement": 23,
+      "joy": 23,
+      "calm": 17,
+      "curiosity": 16,
+      "sadness": 13,
+      "frustration": 13,
+      "humor": 11,
+      "wonder": 11,
+      "love": 8,
+      "belonging": 7,
+      "relief": 7,
+      "pride": 5,
+      "fear": 3,
+      "loneliness": 3,
+      "embarrassment": 1
+    }
+  },
+  "page_turns": {
+    "n_eligible_works": 16,
+    "mechanisms": {
+      "anticipation": 61,
+      "pattern_continuation": 43,
+      "question": 30,
+      "new_information": 23,
+      "reveal": 17,
+      "visual_surprise": 11,
+      "emotional_curiosity": 10,
+      "none": 5,
+      "countdown": 5,
+      "danger": 5,
+      "humor": 4,
+      "transformation": 2
+    },
+    "strength": {
+      "n": 177,
+      "min": 1,
+      "p25": 2.0,
+      "median": 3,
+      "p75": 4.0,
+      "max": 5
+    }
+  },
+  "characters": {
+    "roles": {
+      "family_member": 20,
+      "protagonist": 18,
+      "animal_companion": 9,
+      "community": 9,
+      "companion": 5,
+      "helper": 5,
+      "antagonistic_force": 4,
+      "mentor": 3,
+      "mysterious": 1
+    },
+    "per_book": {
+      "n": 16,
+      "min": 3,
+      "p25": 3.0,
+      "median": 5.0,
+      "p75": 5.25,
+      "max": 7
+    },
+    "protagonist_agency": {
+      "n": 16,
+      "min": 1,
+      "p25": 2.0,
+      "median": 3.0,
+      "p75": 3.25,
+      "max": 5
+    }
+  },
+  "humor": {
+    "types": {
+      "animal_behavior": 21,
+      "physical": 13,
+      "irony_between_text_and_image": 12,
+      "surprise": 7,
+      "absurdity": 6,
+      "character_behavior": 6,
+      "rule_breaking": 4,
+      "unexpected_transformation": 3,
+      "exaggeration": 2,
+      "misunderstanding": 1,
+      "wordplay": 1,
+      "repetition": 1
+    },
+    "share_of_pages": {
+      "n": 16,
+      "min": 0.0,
+      "p25": 0.08,
+      "median": 0.24,
+      "p75": 0.46,
+      "max": 0.8333333333333334
+    }
+  },
+  "repetition": {
+    "types": {
+      "callback": 14,
+      "structure": 10,
+      "refrain": 7,
+      "phrase": 7,
+      "predictable_pattern": 3,
+      "cumulative": 1,
+      "action": 1
+    },
+    "functions": {
+      "memory": 19,
+      "participation": 18,
+      "rhythm": 17,
+      "comfort": 15,
+      "anticipation": 14,
+      "humor": 7
+    },
+    "judged_effective": {
+      "True": 40,
+      "None": 3
+    }
+  },
+  "anti_patterns": {
+    "adult_rescues_child": 3,
+    "unclear_stakes": 3,
+    "passive_protagonist": 3,
+    "vocabulary_above_age": 1,
+    "resolves_too_quickly": 1
+  },
+  "content_flags": {
+    "unsafe_behavior_imitable": 2
+  },
+  "appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "dimensions": {
+      "agency": {
+        "n": 16,
+        "min": 1,
+        "p25": 2.0,
+        "median": 3.0,
+        "p75": 3.25,
+        "max": 5
+      },
+      "character_warmth": {
+        "n": 16,
+        "min": 2,
+        "p25": 4.0,
+        "median": 4.0,
+        "p75": 5.0,
+        "max": 5
+      },
+      "curiosity": {
+        "n": 16,
+        "min": 3,
+        "p25": 3.0,
+        "median": 4.0,
+        "p75": 4.0,
+        "max": 4
+      },
+      "emotional_identification": {
+        "n": 16,
+        "min": 2,
+        "p25": 3.0,
+        "median": 3.0,
+        "p75": 4.0,
+        "max": 5
+      },
+      "humor": {
+        "n": 16,
+        "min": 1,
+        "p25": 2.0,
+        "median": 2.0,
+        "p75": 4.0,
+        "max": 5
+      },
+      "participation": {
+        "n": 16,
+        "min": 3,
+        "p25": 3.75,
+        "median": 4.0,
+        "p75": 5.0,
+        "max": 5
+      },
+      "predictability_balance": {
+        "n": 16,
+        "min": 3,
+        "p25": 4.0,
+        "median": 4.0,
+        "p75": 4.25,
+        "max": 5
+      },
+      "resolution_satisfaction": {
+        "n": 16,
+        "min": 2,
+        "p25": 4.0,
+        "median": 4.0,
+        "p75": 4.25,
+        "max": 5
+      },
+      "surprise": {
+        "n": 16,
+        "min": 2,
+        "p25": 3.0,
+        "median": 3.0,
+        "p75": 4.0,
+        "max": 5
+      },
+      "visual_novelty": {
+        "n": 16,
+        "min": 3,
+        "p25": 3.0,
+        "median": 4.0,
+        "p75": 4.0,
+        "max": 5
+      }
+    }
+  }
+}

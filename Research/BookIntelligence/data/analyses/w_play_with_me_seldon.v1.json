@@ -1,0 +1,334 @@
+{
+  "work_id": "w_play_with_me_seldon",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_play_with_me",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-11-13T15:34:09Z",
+  "completeness": "full",
+  "summary_paraphrase": "A boy wants someone to play the stone game diketo with him; his mother, father and brother are each busy, so he sits alone and then starts playing by himself, and his fun draws the whole family out to join him. A small blue frog, never mentioned in the words, follows and mirrors him on every spread.",
+  "beats": [
+    {
+      "beat": "HOOK",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 2,
+      "function": "the wish to play, posed as a question"
+    },
+    {
+      "beat": "DESIRE",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 3,
+      "function": "names the game and asks who will play"
+    },
+    {
+      "beat": "PROBLEM",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 2,
+      "function": "first ask, first refusal (Mama cooking)"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 4,
+      "end_page": 5,
+      "intensity": 3,
+      "function": "two more asks and refusals in the same pattern"
+    },
+    {
+      "beat": "COMPLICATION",
+      "start_page": 6,
+      "end_page": 6,
+      "intensity": 4,
+      "function": "low point: alone, no one to play with"
+    },
+    {
+      "beat": "TURN",
+      "start_page": 7,
+      "end_page": 7,
+      "intensity": 2,
+      "function": "he decides to play alone"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 8,
+      "end_page": 8,
+      "intensity": 4,
+      "function": "his fun makes Dad stop digging"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 9,
+      "end_page": 10,
+      "intensity": 3,
+      "function": "each family member in turn leaves their task and joins, reversing the refusal order"
+    },
+    {
+      "beat": "EMOTIONAL_PAYOFF",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 5,
+      "function": "wordless spread of the family laughing together"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 4,
+      "function": "many hands in the game; the wish is answered"
+    }
+  ],
+  "beat_positions": {
+    "HOOK": 0.0,
+    "DESIRE": 0.091,
+    "PROBLEM": 0.182,
+    "ESCALATION": 0.273,
+    "COMPLICATION": 0.455,
+    "TURN": 0.545,
+    "CLIMAX": 0.636,
+    "SOLUTION": 0.727,
+    "EMOTIONAL_PAYOFF": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "jabu",
+      "name": "Jabu",
+      "role": "protagonist",
+      "age": "about 5-6 (picture)",
+      "desire": "someone to play diketo with",
+      "fear": null,
+      "problem": "everyone is busy",
+      "change": "stops waiting for others and plays alone; his joy brings them",
+      "relation_to_protagonist": "self",
+      "humor_source": "physical tumble while playing",
+      "tension_source": "repeated refusals"
+    },
+    {
+      "id": "frog",
+      "name": "(unnamed blue frog)",
+      "role": "animal_companion",
+      "desire": null,
+      "change": null,
+      "relation_to_protagonist": "silent companion present on every spread, mirrors his feeling (hugs a stone, hides, cries, leaps, plays)",
+      "humor_source": "hides under a leaf from flying soil, clings to a door",
+      "tension_source": null
+    },
+    {
+      "id": "mama",
+      "name": "Mama",
+      "role": "family_member",
+      "desire": "to finish cooking",
+      "change": "brings the meal out to the game",
+      "relation_to_protagonist": "mother"
+    },
+    {
+      "id": "baba",
+      "name": "Baba / Dad",
+      "role": "family_member",
+      "desire": "to finish digging a big hole",
+      "change": "stops digging and plays",
+      "relation_to_protagonist": "father"
+    },
+    {
+      "id": "zwe",
+      "name": "Zwe",
+      "role": "family_member",
+      "desire": "to keep reading",
+      "change": "does not want to miss the fun and joins",
+      "relation_to_protagonist": "brother"
+    }
+  ],
+  "protagonist_agency": 4,
+  "emotional_curve": [
+    2,
+    3,
+    2,
+    3,
+    3,
+    4,
+    2,
+    4,
+    3,
+    3,
+    5,
+    4
+  ],
+  "humor_notes": "Light: the frog's reactions (sheltering from soil, clinging to the door) and Jabu tumbling over laughing. The contrast of Dad's big hole and Jabu's small hole is a quiet visual echo.",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "Ask-and-refusal pattern: Jabu asks one family member to come and play, and the next line begins with 'But' and names what keeps them busy",
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "functions": [
+        "participation",
+        "anticipation",
+        "rhythm"
+      ],
+      "effective": true,
+      "why": "three identical asks let a listener say the request with the reader, and the third refusal sets up the low point"
+    },
+    {
+      "type": "callback",
+      "description": "Each refusal is undone in reverse: Dad stops his digging, Mama brings out the food she was cooking, the brother leaves his reading",
+      "pages": [
+        8,
+        9,
+        10
+      ],
+      "functions": [
+        "memory",
+        "comfort"
+      ],
+      "effective": true,
+      "why": "the ending answers each refusal by name, so the resolution feels earned rather than announced"
+    },
+    {
+      "type": "callback",
+      "description": "The big hole Dad digs and the small hole Jabu digs for diketo",
+      "pages": [
+        4,
+        7,
+        8
+      ],
+      "functions": [
+        "memory"
+      ],
+      "effective": true,
+      "why": "a concrete echo that links the father's work to the child's play"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "OBSERVED: a small blue frog appears on every story spread without a word in the text and mirrors Jabu's feeling (hugs a stone, hides, cries when he is alone, leaps when he plays).",
+      "OBSERVED: the turning point that Dad has joined the game is shown only in the picture (he kneels at the hole with stones) on spread 9; the words only say Mama brings food.",
+      "OBSERVED: the payoff spread 11 is wordless: a tight close-up of the whole family laughing.",
+      "OBSERVED: the diketo spread (2) and payoff (11) share the same warm yellow-blue background; refusal spreads use flatter cool colours.",
+      "OBSERVED: the last spread shows only hands around the game, placing the reader inside the circle of players."
+    ]
+  },
+  "strengths": [
+    "a clear wish stated on the first spread",
+    "three-step refusal pattern a listener can join",
+    "the child's own action, not an adult's decision, turns the story",
+    "the resolution undoes each refusal by name",
+    "a silent companion carries emotion for pre-readers",
+    "a wordless payoff spread"
+  ],
+  "weaknesses": [
+    "the solo-play turn passes quickly (one spread) for a book about being alone",
+    "family members join without dialogue, so the reunion is told mostly through pictures"
+  ],
+  "anti_patterns": [],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 3,
+      "humor": 3,
+      "participation": 4,
+      "emotional_identification": 5,
+      "surprise": 3,
+      "character_warmth": 5,
+      "agency": 4,
+      "visual_novelty": 4,
+      "predictability_balance": 5,
+      "resolution_satisfaction": 5
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Everyday family setting; loneliness is brief and resolved warmly. Diketo with small stones is a traditional game; no unsafe behaviour shown."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 150,
+    "words_per_page": {
+      "min": 0,
+      "median": 12.0,
+      "max": 25
+    },
+    "mean_sentence_words": 6.25,
+    "longest_sentence": 10,
+    "type_token_ratio": 0.5,
+    "dialogue_ratio": 0.12,
+    "questions": 2,
+    "questions_per_page": 0.17,
+    "direct_address": 0,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "come and play with me but": 3,
+        "pap and spinach": 2,
+        "to play with": 2
+      },
+      "refrains": {},
+      "top_sentence_openers": {
+        "but": 5,
+        "he": 3,
+        "so": 3,
+        "mama": 2,
+        "zwe": 2
+      },
+      "end_rhyme_pairs": 0,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "craft": {
+    "causal_chain": [
+      {
+        "cause": "he wants someone to play",
+        "effect": "he asks three family members",
+        "pages": [
+          1,
+          5
+        ],
+        "driver": "protagonist"
+      },
+      {
+        "cause": "each is busy",
+        "effect": "he is alone",
+        "pages": [
+          3,
+          6
+        ],
+        "driver": "adult"
+      },
+      {
+        "cause": "he starts playing by himself",
+        "effect": "his fun draws his father out",
+        "pages": [
+          7,
+          8
+        ],
+        "driver": "protagonist"
+      },
+      {
+        "cause": "one by one the family joins",
+        "effect": "everyone plays together",
+        "pages": [
+          9,
+          12
+        ],
+        "driver": "protagonist"
+      }
+    ],
+    "ending": {
+      "type": "wish_fulfilled",
+      "answers": "will anyone play with him",
+      "last_page_move": "many hands around the game, seen from above",
+      "returns_to_opening": true,
+      "pages_after_resolution": 2
+    },
+    "writer_note": "The resolution undoes the refusals in reverse order, and the child causes it by acting, not by asking again. A wordless joy page before the last page lets the payoff breathe."
+  }
+}

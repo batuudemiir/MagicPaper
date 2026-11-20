@@ -1,0 +1,297 @@
+{
+  "work_id": "w_lets_go_looking_ngaba",
+  "analysis_version": "1",
+  "edition_id": "e_bookdash_lets_go_looking",
+  "status": "complete",
+  "analyst": "book-research",
+  "analyzed_at": "2026-10-28T17:38:17Z",
+  "completeness": "full",
+  "summary_paraphrase": "At school playtime a group of children go looking for anything at all: one finds a nest, one a snail, one smells rain, one feels the wind, and one sees a dragon hiding in the clouds. The bell calls them inside, the finds are listed again, and the reader is asked what they found.",
+  "beats": [
+    {
+      "beat": "HOOK",
+      "start_page": 1,
+      "end_page": 1,
+      "intensity": 2,
+      "function": "bell opens playtime, proposal"
+    },
+    {
+      "beat": "DESIRE",
+      "start_page": 2,
+      "end_page": 2,
+      "intensity": 2,
+      "function": "open-ended goal: anything"
+    },
+    {
+      "beat": "SETUP",
+      "start_page": 3,
+      "end_page": 3,
+      "intensity": 3,
+      "function": "six seekers introduced by picture"
+    },
+    {
+      "beat": "DISCOVERY",
+      "start_page": 4,
+      "end_page": 7,
+      "intensity": 3,
+      "function": "one find per child, sight to smell to touch"
+    },
+    {
+      "beat": "ESCALATION",
+      "start_page": 8,
+      "end_page": 9,
+      "intensity": 4,
+      "function": "an imagined find, then a broken-off line"
+    },
+    {
+      "beat": "CLIMAX",
+      "start_page": 10,
+      "end_page": 10,
+      "intensity": 4,
+      "function": "line completed, dragon fills the spread"
+    },
+    {
+      "beat": "SOLUTION",
+      "start_page": 11,
+      "end_page": 11,
+      "intensity": 2,
+      "function": "bell closes playtime"
+    },
+    {
+      "beat": "ENDING",
+      "start_page": 12,
+      "end_page": 12,
+      "intensity": 2,
+      "function": "recap and question to the reader"
+    }
+  ],
+  "beat_positions": {
+    "HOOK": 0.0,
+    "DESIRE": 0.091,
+    "SETUP": 0.182,
+    "DISCOVERY": 0.273,
+    "ESCALATION": 0.636,
+    "CLIMAX": 0.818,
+    "SOLUTION": 0.909,
+    "ENDING": 1.0
+  },
+  "characters": [
+    {
+      "id": "tumi",
+      "name": "Tumi",
+      "role": "protagonist",
+      "desire": "to go looking",
+      "relation_to_protagonist": "proposes the game",
+      "change": null
+    },
+    {
+      "id": "asha",
+      "name": "Asha",
+      "role": "protagonist",
+      "desire": "to know what to look for",
+      "relation_to_protagonist": "asks the question, finds the snail"
+    },
+    {
+      "id": "lwazi",
+      "name": "Lwazi",
+      "role": "protagonist",
+      "relation_to_protagonist": "finds the nest"
+    },
+    {
+      "id": "emma",
+      "name": "Emma",
+      "role": "protagonist",
+      "relation_to_protagonist": "smells rain; her find is missing from the recap"
+    },
+    {
+      "id": "mawande",
+      "name": "Mawande",
+      "role": "protagonist",
+      "relation_to_protagonist": "feels the wind; uses a wheelchair (picture only)"
+    },
+    {
+      "id": "zola",
+      "name": "Zola",
+      "role": "protagonist",
+      "relation_to_protagonist": "imagines the dragon",
+      "tension_source": "the hiding dragon"
+    },
+    {
+      "id": "dragon",
+      "name": "dragon",
+      "role": "mysterious",
+      "relation_to_protagonist": "imagined find in the clouds",
+      "tension_source": "hides, then appears"
+    }
+  ],
+  "protagonist_agency": 4,
+  "emotional_curve": [
+    2,
+    2,
+    3,
+    3,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    2,
+    2
+  ],
+  "humor_notes": "Little humor; the playfulness is in the dragon and in typography (letter-spaced slow word, tiny word in tiny type).",
+  "repetition": [
+    {
+      "type": "structure",
+      "description": "one child, one speech tag, one find per spread",
+      "pages": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "functions": [
+        "rhythm",
+        "anticipation"
+      ],
+      "effective": true,
+      "why": "predictable enough to expect a new child and find on each turn, varied by sense (sight, smell, touch, imagination)"
+    },
+    {
+      "type": "callback",
+      "description": "the bell opens and closes playtime",
+      "pages": [
+        1,
+        11
+      ],
+      "functions": [
+        "comfort",
+        "memory"
+      ],
+      "effective": true,
+      "why": "a school ritual frames the story as a bounded time"
+    },
+    {
+      "type": "cumulative",
+      "description": "the finds are listed again on the last page",
+      "pages": [
+        4,
+        5,
+        7,
+        9,
+        10,
+        12
+      ],
+      "functions": [
+        "memory",
+        "participation"
+      ],
+      "effective": true,
+      "why": "lets the listener recall each find, then hands the question to them; weakened because one find (rain) is dropped"
+    }
+  ],
+  "visual_storytelling": {
+    "available": true,
+    "notes": [
+      "OBSERVED: the six children are introduced only by the picture on page 3; names arrive one at a time through speech tags.",
+      "OBSERVED: a disability (wheelchair) is shown, never mentioned.",
+      "OBSERVED: invisible finds (rain smell, wind) are made visible as faint raindrops and streaming leaves.",
+      "OBSERVED: the dragon's hiding place is shown on the spread whose line breaks off; the completing words come after the turn.",
+      "OBSERVED: typography carries meaning: the slow word is letter-spaced and 'tiny' is set small."
+    ]
+  },
+  "strengths": [
+    "one sentence split across a page turn as the peak",
+    "a bell ritual opens and closes the book",
+    "the last line turns the book over to the listener",
+    "inclusion shown without comment",
+    "finds move from objects to senses to imagination"
+  ],
+  "weaknesses": [
+    "no problem or stakes: discovery only",
+    "six names for a very short text; the picture is needed to tell them apart",
+    "Emma's rain is missing from the final recap"
+  ],
+  "anti_patterns": [
+    {
+      "id": "too_many_characters",
+      "pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "note": "six named children in about 90 words; without the pictures the listener cannot keep them apart"
+    }
+  ],
+  "child_appeal_heuristic": {
+    "label": "Research heuristic — not validated",
+    "scores": {
+      "curiosity": 4,
+      "humor": 2,
+      "participation": 5,
+      "emotional_identification": 3,
+      "surprise": 3,
+      "character_warmth": 3,
+      "agency": 4,
+      "visual_novelty": 4,
+      "predictability_balance": 4,
+      "resolution_satisfaction": 3
+    },
+    "rationale": "Scores are the analyst's reading of the pages, not observations of children."
+  },
+  "content_flags": [],
+  "age_suitability": {
+    "magicpaper": "suitable",
+    "notes": "Calm everyday discovery with no peril; the dragon is friendly and imagined in clouds. Peak research intensity 4 of 5 (wonder, not fear), about 2 on the engine's 0-3 scale. The split sentence works in text alone; the six children and the dragon's hiding place need pictures (MagicPaper stories are text-only today)."
+  },
+  "metrics": {
+    "computed_by": "cli",
+    "pages": 12,
+    "total_words": 93,
+    "words_per_page": {
+      "min": 2,
+      "median": 7.0,
+      "max": 20
+    },
+    "mean_sentence_words": 3.44,
+    "longest_sentence": 6,
+    "type_token_ratio": 0.656,
+    "dialogue_ratio": 0.419,
+    "questions": 3,
+    "questions_per_page": 0.25,
+    "direct_address": 2,
+    "sound_words": 0,
+    "lexicon_note": "direct_address and sound_words are lexicon counts: a floor, not a measure. direct_address counts second-person words anywhere, dialogue included — it is not narrator-to-reader address",
+    "repetition": {
+      "repeated_phrases": {
+        "a bird’s nest": 2,
+        "a tiny snail": 2,
+        "i found a": 2,
+        "in the clouds": 2
+      },
+      "refrains": {
+        "a tiny snail": 2
+      },
+      "top_sentence_openers": {
+        "a": 4,
+        "some": 3,
+        "i": 3,
+        "the": 3,
+        "it’s": 2
+      },
+      "end_rhyme_pairs": 1,
+      "end_rhyme_note": "heuristic: consecutive lines sharing a final two letters"
+    }
+  },
+  "_template_help": {
+    "beats": "[{beat, start_page, end_page, intensity 0-5, function}] — research beats from vocab",
+    "characters": "[{id, name, role, age, personality, desire, fear, goal, problem, strengths, weakness, change, relation_to_protagonist, humor_source, tension_source}]",
+    "repetition": "[{type, description, pages, functions[], effective: true|false|null, why}]",
+    "anti_patterns": "[{id, pages, note}]",
+    "child_appeal_heuristic": "scores 1-5 per appeal dimension; label is set by the CLI"
+  }
+}

@@ -1,8 +1,8 @@
 # p_repeated_line
 
-**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 11/21 works)
+**Status:** decided · **Target:** `writing_guidance` · claim `c_repeated_line` (LOW, 22/39 works)
 
-> A line returns on 2 or more spreads in 11 of 21 books with text (e.g. 'Come back, cat!', 'Good night, Monu.', Amo's call to the mielies, Tinku's friendship question and answer on five spreads); the other 10 repeat a structure, a sound pattern or a speaker tag instead of a line.
+> A line returns on 2 or more spreads in 22 of 39 books with text (e.g. 'Come back, cat!', 'Good night, Monu.', the paired scream and 'don't be scared … it's just …' in AAAAAHHH!!!! Mmawe!, 'Sniff, sniff, sniff.' in Can We Eat a Rainbow?, 'I know, I'll …' in Alex's Super Medicine); the other 17 repeat a structure, a place or a callback but no line.
 
 - Current: repetition is measured as a defect to avoid (PROSE_PRODUCTION_GUIDE.md)
 - Suggested: Distinguish deliberate refrains (a line the listener can join, changed once at the end) from accidental repetition before treating all repetition as a defect.

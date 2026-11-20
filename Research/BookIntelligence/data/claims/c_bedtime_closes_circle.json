@@ -1,6 +1,6 @@
 {
   "claim_id": "c_bedtime_closes_circle",
-  "statement": "In 4 of 6 analysed books framed by bedtime or sleep, the last page returns to the opening place (the bed or bedroom, or the same mother and moon) at low intensity (0-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap; Goodnight, Tinku!); Bohlale's adventure ends on a high payoff (4 of 5) and Kottavi Raja ends calm but in a different place (the whole city asleep), after a late second peak.",
+  "statement": "In 6 of 8 analysed books framed by bedtime or sleep, the last page returns to the opening place or image at low intensity (0-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap; Goodnight, Tinku!; A House for Mouse; Clever Pig); Bohlale's adventure ends on a high payoff (4 of 5) and Kottavi Raja ends calm but in a different place, after a late second peak.",
   "kind": "INFERRED",
   "layers": [
     "textual_mechanism"
@@ -8,13 +8,16 @@
   "scope": {
     "age_band": null,
     "language": "en",
-    "population": "contemporary open-licence picture books: Book Dash (13), African Storybook (2), StoryWeaver/Pratham Books (1); 2014-2025"
+    "population": "contemporary open-licence picture books: Book Dash (35), African Storybook (2), StoryWeaver: Pratham Books (5), Room to Read (1); 2014-2026"
   },
   "supporting_works": [
     "w_bathtub_safari_chemaly",
     "w_good_night_monu_karthik",
     "w_goodnight_tinku_nambiar",
-    "w_zuko_and_the_crying_tap_langeni"
+    "w_zuko_and_the_crying_tap_langeni",
+    "w_house_for_mouse_fry",
+    "w_clever_pig_koenig",
+    "w_sweet_dreams_amaya"
   ],
   "counterexample_works": [
     "w_bohlales_adventure_ambrosano",
@@ -28,7 +31,7 @@
     "emotion_intensity",
     "beat"
   ],
-  "analyst_note": "2026-10-15: from three sources (Book Dash: Bathtub Safari, Zuko; StoryWeaver: Good Night, Monu; African Storybook: Bohlale as counterexample). Final-page intensity 1/5 (Monu, Bathtub Safari), 2/5 (Zuko), 4/5 (Bohlale); on the engine's 0-3 scale about 0-1 for the three, 2-3 for Bohlale. Monu and Bathtub Safari peak at or before the midpoint and then descend, so this is a shape where the peak is not in the last third (see c_peak_in_last_third). Small sample; inferred from intensity judgments. 2026-10-20 (answering q_uyku_oncesi): Goodnight, Tinku! (StoryWeaver, Pratham Books) opens and closes with the pup by his sleeping mother under the same smiling moon, final page 0/5; its excitement is a plateau p4-p8 of 11 (engine about 2), the last peak page at 0.73, so on m006's definition it would not pass a 'peak by two thirds' check. Kottavi Raja (Pratham, 7-8) is a counterexample: last peak p16 of 17.",
+  "analyst_note": "2026-10-15: from three sources (Book Dash: Bathtub Safari, Zuko; StoryWeaver: Good Night, Monu; African Storybook: Bohlale as counterexample). Final-page intensity 1/5 (Monu, Bathtub Safari), 2/5 (Zuko), 4/5 (Bohlale); on the engine's 0-3 scale about 0-1 for the three, 2-3 for Bohlale. Monu and Bathtub Safari peak at or before the midpoint and then descend, so this is a shape where the peak is not in the last third (see c_peak_in_last_third). Small sample; inferred from intensity judgments. 2026-10-20 (answering q_uyku_oncesi): Goodnight, Tinku! (StoryWeaver, Pratham Books) opens and closes with the pup by his sleeping mother under the same smiling moon, final page 0/5; its excitement is a plateau p4-p8 of 11 (engine about 2), the last peak page at 0.73, so on m006's definition it would not pass a 'peak by two thirds' check. Kottavi Raja (Pratham, 7-8) is a counterexample: last peak p16 of 17.\n2026-10-28: +2 Book Dash. Clever Pig returns to the sty, the play invitation and the carrot, now full of piglets, at 1/5. A House for Mouse returns only visually (the closing picture repeats the cover's hill image; the story ends at a new place, the bookshelf) — counted as support, weakly. Both peak before the last third (m006). Sources of the new works: Book Dash — A Day Out, Who Ate My Hat, Let's Go Looking, Dudu's Hat, Clever Pig, A House for Mouse, Goldfish Genius; StoryWeaver — Get Down, Rocky! (Pratham Books), The Lost Ball (Room to Read, translated from Bangla).\n2026-11-13: +1 support: Sweet Dreams returns on its last page to the dream world of its first page at 2/5 after a peak at the warm halwa close-up (3/5, about 2 on the engine's 0-3 scale) and a waking turn. Note for the parked proposal: the return is into sleep, not back to the bedroom. Sources of the new works: Book Dash — A Trip to the Tap (2023), Going Places (2025), AAAAAHHH!!!! Mmawe! (2024), Can We Eat a Rainbow? (2026), I Can Do It! (2026), Play with Me (2026), Banzi's Busy Bees (2025), Dance, Khuzwayo, Dance! (2023), Alex's Super Medicine (2022); StoryWeaver — Sweet Dreams (Pratham Books, year not shown).",
   "magicpaper": {
     "target": "beat_sequences",
     "current": "bedtime mode shares beat sequences with the other modes; m004 already keeps hooks out of its last third",
@@ -43,17 +46,14 @@
     }
   ],
   "computed": {
-    "n_examined": 6,
-    "support": 4,
+    "n_examined": 9,
+    "support": 7,
     "counter": 2,
-    "support_ratio": 0.667,
+    "support_ratio": 0.778,
     "sample_scope": "SMALL_SAMPLE",
     "best_source_tier": "A",
     "confidence": "LOW",
     "wording": "common, not universal",
-    "experiments": 0,
-    "unreliable_fields": [
-      "beat"
-    ]
+    "experiments": 0
   }
 }
