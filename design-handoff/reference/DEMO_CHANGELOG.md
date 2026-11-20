@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog@d14cdbe · Güncel repo ve İrem devir notları
+
+- Origin dalları çekildi; origin/main@33e9759 açık dala birleştirildi (d14cdbe). Günlük çakışmasında iki taraf korundu; autostash ile saklanan yerel değişiklikler geri yüklendi. Uzak repoya gönderim yapılmadı.
+- İrem dalının README notları, 18–19 Kasım commitleri, abonelik planı, önizleyici README’si, tasarım denetimi, iş bölümü, günlük ve 20 Kasım uygulama kararları karşılaştırıldı. İrem’in son commit’i c7d4354 main’in atası; eski öneriler güncel karar olarak alınmadı.
+- Açık işler: Paywall son tasarımı, mağaza/RevenueCat canlı ürün doğrulaması, deneme uygunluğu, eski ios-build.yml ve tarihsel handoff belgeleri. Yeni ürün veya tasarım değişikliği yapılmadı.
+- Doğrulama: birleşme tamamlandı, çözümsüz dosya ve çatışma işareti yok; origin/main ve origin/irem HEAD’in atası. Test/build/simülatör çalıştırılmadı.
+- Etkilenen: birleştirmeyle gelen dosyalar ve bu günlük; diğer yerel işler commit’e alınmadı.
+
 ### 2026-11-20 · codex/design-system-catalog · Metin korumalı görsel kapsamı önerisi
 
 - Kullanıcı her yeni masalda görsel ve küçük yaşta daha yüksek yoğunluk istedi; metin değişikliğini reddetti. Mimari/içerik uzmanlarıyla bütün-kitap anlam eşlemesi ve karma nesne/mekân/arkadaş havuzu değerlendirildi. Garanti henüz kanıtlanmadı; görünmez içerik daraltma veya genel dekorla sayı tamamlama önerilmedi.
