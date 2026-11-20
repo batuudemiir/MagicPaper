@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-19",
+  "app": {
+    "executed": 145,
+    "skipped": 1,
+    "failures": 0,
+    "log": "/tmp/MagicPaper-story-spot-app-final.log"
+  },
+  "readerRender": {
+    "tests": 1,
+    "failures": 0,
+    "attachments": 8,
+    "log": "/tmp/MagicPaper-story-spot-render-final.log"
+  },
+  "newEngineProvenance": {
+    "tests": 2,
+    "failures": 0,
+    "log": "/tmp/MagicPaper-story-spot-focused.log"
+  },
+  "fullPackage": {
+    "engineTests": 933,
+    "engineSkips": 2,
+    "engineFailedAssertions": 15,
+    "engineFailingCases": [
+      "StoryEngineTests.MatrixCoverageTests testNoTwoDiscoveriesShareATraitSet",
+      "StoryEngineTests.OccasionTests testTheLinesKeepTheLanguageRules",
+      "StoryEngineTests.OfflineDeterminismTests testAStoredSeedRebuildsTheSameBookInAFreshProcess",
+      "StoryEngineTests.OfflineDeterminismTests testTheFingerprintIsAFunctionOfTheInputsAlone",
+      "StoryEngineTests.PortedBlueprintSpikeTests testItBindsToTheOnlyPlaceThatAffordsBeingJoined",
+      "StoryEngineTests.ProseCooldownTests testCarryingHistoryLowersRepetition",
+      "StoryEngineTests.SkyWorldTests testTheNamesInflect",
+      "StoryEngineTests.UsageLearningTests testANeutralProfileKeepsThePinnedBook"
+    ],
+    "engineFoundationTests": 17,
+    "characterEngineTests": 89,
+    "visualSystemTests": 51,
+    "otherTargetFailures": 0
+  },
+  "baselineComparison": {
+    "commit": "068ca478e5421e9a8f5665d4836dbf5fef1350f2",
+    "sameFailingCases": true,
+    "baselineFailedAssertions": 15,
+    "baselineFailingCases": [
+      "StoryEngineTests.MatrixCoverageTests testNoTwoDiscoveriesShareATraitSet",
+      "StoryEngineTests.OccasionTests testTheLinesKeepTheLanguageRules",
+      "StoryEngineTests.OfflineDeterminismTests testAStoredSeedRebuildsTheSameBookInAFreshProcess",
+      "StoryEngineTests.OfflineDeterminismTests testTheFingerprintIsAFunctionOfTheInputsAlone",
+      "StoryEngineTests.PortedBlueprintSpikeTests testItBindsToTheOnlyPlaceThatAffordsBeingJoined",
+      "StoryEngineTests.ProseCooldownTests testCarryingHistoryLowersRepetition",
+      "StoryEngineTests.SkyWorldTests testTheNamesInflect",
+      "StoryEngineTests.UsageLearningTests testANeutralProfileKeepsThePinnedBook"
+    ]
+  },
+  "realComposerAudit": {
+    "selectedSubjects": 12,
+    "eligibleSubjects": 10,
+    "unmatchedSubjects": [
+      "spot.music-box",
+      "spot.fallen-nest"
+    ],
+    "seedsPerBlueprintLimit": 48
+  },
+  "visualLimits": "fixed viewport page renders only; no physical device or full reader chrome interaction matrix"
+}

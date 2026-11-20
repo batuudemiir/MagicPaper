@@ -69,6 +69,38 @@ final class IllustratedBookFlowTests: XCTestCase {
         return try encoder.encode(story)
     }
 
+    private func realSpotFixture() throws -> (ComposedStory, MagicPaper.Story) {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let spots = try XCTUnwrap(StorySpotCatalog.bundled)
+        let rule = try XCTUnwrap(spots.rules.first { $0.assetID == "spot.torn-map" })
+        let blueprint = try XCTUnwrap(catalog.blueprints.first { $0.id.rawValue == rule.blueprintID })
+        for index in 0..<160 {
+            let intent = OfflineStoryIntent(childName: profile.name,
+                settingID: ContentID("setting_forest_001"), discoveryID: ContentID("object_torn_map_001"),
+                seed: "spot-b2-\(index)")
+            guard let composed = try? OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: intent) else { continue }
+            let story = OfflineStoryMapper.appStory(from: composed, childName: profile.name,
+                childProfileID: profile.id, storyIdeaID: nil, catalogVersion: catalog.version, mode: .adventure)
+            if story.pages[0].art?.isBundledSpot == true { return (composed, story) }
+        }
+        throw NSError(domain: "StorySpotFixture", code: 1)
+    }
+
+    func testBoundSpotSurvivesDisabledB2AndNoAvatarAndEnabledSceneWins() async throws {
+        let (composed, story) = try realSpotFixture()
+        let disabled = await illustrate(story, composed, enabled: false)
+        XCTAssertEqual(disabled.pages[0].art, story.pages[0].art)
+        XCTAssertNil(disabled.pages[0].scene)
+        let noAvatar = await illustrate(story, composed)
+        XCTAssertEqual(noAvatar.pages[0].art, story.pages[0].art)
+        XCTAssertNil(noAvatar.pages[0].scene)
+        try await store.save(avatarA, for: profile.id)
+        let enabled = await illustrate(story, composed)
+        XCTAssertNotNil(enabled.pages[0].scene)
+        XCTAssertEqual(enabled.pages[0].art, story.pages[0].art)
+        XCTAssertEqual(ReaderStory(from: enabled).leaves.compactMap(\.page).first?.composition, .scene)
+    }
+
     // MARK: - Masal üretimine ek
 
     /// Bayrak kapalıyken masal bayt bayt aynıdır.

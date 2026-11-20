@@ -1,0 +1,467 @@
+{
+  "schema": "research-inventory-1",
+  "runtimeCoverageClaim": false,
+  "objects": [
+    {
+      "subjectID": "object_flickering_light_001",
+      "name": "titrek bir ışık",
+      "description": "Nereden geldiği belli olmayan, yumuşak bir ışık.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "emitsSignal",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "Soyut ışığın kaynağı belirsiz; sahne/semantik inceleme gerekli"
+    },
+    {
+      "subjectID": "object_faint_sound_001",
+      "name": "ince bir ses",
+      "description": "Uzaktan gelen, tekrar eden küçük bir ses.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "isUnexplained",
+        "emitsSignal",
+        "impliesNeed",
+        "isAudible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "Görünür nesne değil; ses kaynağı uydurulamaz"
+    },
+    {
+      "subjectID": "object_footprints_001",
+      "name": "küçük ayak izleri",
+      "description": "Toprakta ilerleyip bir yerde kesilen izler.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İzin türü/kime ait olduğu kanonik tanım gerektirir"
+    },
+    {
+      "subjectID": "object_shell_pilot_001",
+      "name": "parlak bir deniz kabuğu",
+      "description": "Bir başkasına ait olduğu belli, parlak bir kabuk.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "isBeautiful",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "Shared deniz kabuğuyla ayrı kimlik; görsel ortaklığı editoryal onay gerektirir"
+    },
+    {
+      "subjectID": "object_torn_map_001",
+      "name": "yırtık bir harita",
+      "description": "Yarısı eksik; kalanının ne anlama geldiğini çözmek gerekiyor.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "status": "art-review",
+      "draftAssetID": "torn-map",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_fallen_nest_001",
+      "name": "yere düşmüş küçük bir yuva",
+      "description": "Rüzgârda dalından ayrılmış, hâlâ sapasağlam duran küçük bir yuva.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "isFragile",
+        "impliesNeed",
+        "impliesPresence",
+        "isVisible"
+      ],
+      "status": "art-review",
+      "draftAssetID": "fallen-nest",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_wilting_seedling_001",
+      "name": "solmaya başlamış bir fide",
+      "description": "Yaprakları aşağı sarkmış, henüz kurumamış küçük bir fide.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "isFragile",
+        "impliesNeed",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "Önceki pilot çizimi var; metin/hedef çelişkisi çözülmeli"
+    },
+    {
+      "subjectID": "object_dropped_mitten_001",
+      "name": "birinin düşürdüğü küçük bir eldiven",
+      "description": "Yolun kenarında duran, tek başına kalmış küçük bir eldiven.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "impliesNeed",
+        "isVisible"
+      ],
+      "status": "art-review",
+      "draftAssetID": "dropped-mitten",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_stardust_trail_001",
+      "name": "yıldız tozundan bir iz",
+      "description": "Biri geçmiş gibi, yer yer kesilen parlak bir toz izi.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isBeautiful",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İçerik kaydında editoryal taslak notu var; içerik onayı gerekli"
+    },
+    {
+      "subjectID": "object_little_comet_001",
+      "name": "küçük bir kuyruklu yıldız",
+      "description": "Avuç kadar, kuyruğu yumuşak yumuşak parlayan bir kuyruklu yıldız.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "emitsSignal",
+        "isBeautiful",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İçerik kaydında editoryal taslak notu var; içerik onayı gerekli"
+    },
+    {
+      "subjectID": "object_star_map_001",
+      "name": "yarım kalmış bir yıldız haritası",
+      "description": "Birinin çizmeye başlayıp bitiremediği, köşesi eksik bir yıldız haritası.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İçerik kaydında editoryal taslak notu var; içerik onayı gerekli"
+    },
+    {
+      "subjectID": "object_lantern_001",
+      "name": "eski fener",
+      "description": "Etrafı aydınlatan bir fener.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "emitsSignal",
+        "isVisible"
+      ],
+      "status": "art-review",
+      "draftAssetID": "old-lantern",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_map_001",
+      "name": "eski harita",
+      "description": "Yolu gösteren çizimli kağıt.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isFragmentary",
+        "isVisible",
+        "impliesPresence"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_compass_001",
+      "name": "pirinç pusula",
+      "description": "Yönü gösteren alet.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_key_001",
+      "name": "altın anahtar",
+      "description": "Kilitli yerleri açan anahtar.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isUnexplained",
+        "impliesPresence"
+      ],
+      "status": "art-review",
+      "draftAssetID": "golden-key",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_crystal_001",
+      "name": "parlayan kristal",
+      "description": "Mavi renkte parlayan taş.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "emitsSignal",
+        "isVisible",
+        "isBeautiful",
+        "isUnexplained"
+      ],
+      "status": "art-review",
+      "draftAssetID": "blue-crystal",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_bell_001",
+      "name": "gümüş çan",
+      "description": "Güzel ses çıkaran küçük çan.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isAudible",
+        "emitsSignal",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_feather_001",
+      "name": "renkli tüy",
+      "description": "Kuşlardan düşmüş yumuşak tüy.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "isFragile",
+        "impliesPresence"
+      ],
+      "status": "art-review",
+      "draftAssetID": "colorful-feather",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_shell_001",
+      "name": "deniz kabuğu",
+      "description": "İçinden deniz sesi gelen kabuk.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isBeautiful"
+      ],
+      "status": "art-review",
+      "draftAssetID": "sea-shell",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_tiny_book_001",
+      "name": "minik kitap",
+      "description": "İçinde sırlar yazan kitap.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isFragmentary"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_star_stone_001",
+      "name": "yıldız taşı",
+      "description": "Yıldız şeklinde parlak taş.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "isUnexplained"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_ribbon_001",
+      "name": "kırmızı kurdele",
+      "description": "İpekten yapılmış uzun kurdele.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "impliesPresence",
+        "impliesNeed",
+        "isFragile"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_magnifying_glass_001",
+      "name": "büyüteç",
+      "description": "Küçük şeyleri büyüten cam.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isFragile"
+      ],
+      "status": "art-review",
+      "draftAssetID": "magnifying-glass",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_rope_001",
+      "name": "sağlam ip",
+      "description": "Uzun ve kalın bir ip.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible"
+      ],
+      "status": "art-review",
+      "draftAssetID": "sturdy-rope",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_flute_001",
+      "name": "tahta flüt",
+      "description": "Üfleyince güzel ses çıkaran alet.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isAudible",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_seed_001",
+      "name": "sihirli tohum",
+      "description": "Hemen büyüyebilen tohum.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "impliesNeed",
+        "isFragile",
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_coin_001",
+      "name": "eski madeni para",
+      "description": "Üzerinde garip şekiller olan para.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_mirror_001",
+      "name": "el aynası",
+      "description": "Işığı yansıtabilen küçük ayna.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isFragile"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_bag_001",
+      "name": "bez çanta",
+      "description": "İçine eşya konulabilen çanta.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "impliesPresence",
+        "impliesNeed"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_stick_001",
+      "name": "parlak asa",
+      "description": "Ucu parlayan tahta çubuk.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_goggles_001",
+      "name": "kaşif gözlüğü",
+      "description": "Her şeyi daha net gösteren gözlük.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "impliesPresence"
+      ],
+      "status": "deferred",
+      "draftAssetID": null,
+      "reason": "İkinci üretim dalgası; mevcut katalog tanımı ve tam sayfa uyumu incelendikten sonra"
+    },
+    {
+      "subjectID": "object_music_box_001",
+      "name": "eski bir müzik kutusu",
+      "description": "Ezgisinin yalnızca bir parçasını çalan küçük kutu.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isAudible",
+        "emitsSignal",
+        "isFragmentary",
+        "isUnexplained"
+      ],
+      "status": "art-review",
+      "draftAssetID": "music-box",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    },
+    {
+      "subjectID": "object_paper_lantern_001",
+      "name": "renkli bir kâğıt fener",
+      "description": "Birinin kapısının önüne astığı, içi ışıklı kâğıt fener.",
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "traits": [
+        "isVisible",
+        "isBeautiful",
+        "emitsSignal",
+        "impliesPresence"
+      ],
+      "status": "art-review",
+      "draftAssetID": "paper-lantern",
+      "reason": "Nötr konu çizimi hazırlanıyor; runtime eşleşmesi onaylı değil"
+    }
+  ]
+}

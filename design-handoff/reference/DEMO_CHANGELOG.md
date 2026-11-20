@@ -460,6 +460,58 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Uygulama kodu, içerik ve tema değişmedi. Test çalıştırılmadı (belge işi).
 - Dosya: docs/research/OZEL_GUNLER_TAKVIMI_2026-2027.md.
 
+### 2026-11-20 · codex/design-system-catalog · Okuyucu dikey ortalandı, görsel eksikliği teşhis edildi
+
+- Telefon geri bildirimi üzerine sığan anlatı, kullanılabilir sütunda dikey ortalandı; yatay soldan hizalama ve uzun metnin baştan kaydırılması korunur. Metin/kayıt/ilerleme değişmez.
+- En son kullanılan kitabın anonim kanonik bilgisiyle görselsizlik doğrulandı: çan konusu için asset yok; hatırlamalı na_any açılışı mevcut dar allowlist dışında. Rasgele görsel veya kayıt geri doldurması eklenmedi. Özel metin/log repo dışında tutuldu, geçici kopyalar silindi.
+- Doğrulama: bağımsız UI kod incelemesi, diff kontrolü; iPhone16 BUILD SUCCEEDED ve yeniden kurulum/açılış exit0. App XCTest/render veya kullanıcının görsel kabulü yapılmış gibi sunulmuyor. Düşük etkili stil değişikliğine ayna birim testi eklenmedi.
+- Dosyalar: StoryPageView.swift, offline-reader-rhythm REPORT ve proje hafızası. Statik havuz ve provenance kurallarının genişlemesi ayrı devam işidir.
+
+### 2026-11-20 · codex/design-system-catalog · Offline okuyucu ritmi pilotu ve telefon build’i
+
+- Yeni offline masallarda mevcut sayfa rolü/tekrar sözü optional sürümlü metadata ile kayıt ve seriye taşınır.7–10 metinleri kısa cümle grupları, açılış ilk/sakin sonuç son cümle nefesi kazanır;3–6 tek-cümle düzeni korunur. Ek boşluk yalnız bütün metin sığarsa verilir; AX/kompakt/sahne/eski veya bilinmeyen metadata eski düzen.
+- API, yeni çizim, motor metni, sayfa sayısı, art binder/pin ve karakter kimliği değişmedi. Kaynak byte/UTF16 kapsaması ve özgün ses/kelime koordinatları korunur; eski kitaplara geri doldurma yok.
+- Doğrulama: bağımsız spec/kod incelemeleri; çok cümleli refrain ve gerçek testin yakaladığı emoji sınır hatası düzeltildi. Gerçek Foundation kaynaklarıyla macOS harness’ında12 test/0hata; Swift frontend parse/diff temiz. Kullanıcı isteğiyle iPhone16 Debug BUILD SUCCEEDED, imza/kurulum/açılış exit0. Uygulama XCTest/render ve telefondaki okuyucu etkileşim kabulü yapılmış sayılmıyor; kullanıcı yeni masalla deneyecek.
+- Dosyalar: StoryPageReading, StoryPage/OfflineStoryMapper/ReaderStory, ReaderReadingRhythm/ReaderRhythmLayout/StoryPageView, ilgili model/seri/ritim testleri ve hazır render testi; plan/spec/UIbrief/REPORT/proje hafızası. Önbellekler kaybolduğu için kilitli paketler geçici görev kopyalarıyla yeniden hazırlandı; sürüm veya genel Git ayarı değiştirilmedi.
+
+### 2026-11-19 · Okuma hevesi araştırması — fiziksel kitap ve dijital anlatı
+
+- Kullanıcı isteğiyle çocukların okumak istemesini destekleyen sayfa teknikleri araştırıldı;3–6 birlikte okuma ve7–10 bağımsız okumaya ayrı öneriler hazırlandı.
+- Özgün araştırmalar, yayınevi/yazar kaynakları, Khan Academy Kids/Read Along/Vooks belgeleri ve mevcut offline motor karşılaştırıldı. Üç yaklaşım, sayfa dönüşü/keşif zamanlaması, gerçek harita örneği ve nitel pilot önerisi raporlandı.
+- Dosya: `docs/research/2026-11-19-okuma-hevesi-arastirmasi.md`; proje hafızası güncellendi. Rapor araştırmadır, onaylanmış tasarım veya uygulama planı değildir. Tamamı okunmayan kitaplar/erişilemeyen önizlemeler açıkça belirtildi.
+- Doğrulama: kaynak bağlantıları ve yerel aktif akış incelendi, diff kontrolü yapıldı. Kod/asset değişmedi; build/test/simülatör çalıştırılmadı.
+
+### 2026-11-19 · Okuyucu onaylı referansa hizalandı
+
+- Nötr nesne çizimi üstte büyütüldü; metin altta, dar/AX görünümde metne öncelik. Gövde Nunito600, çocuk adı Nunito800; görselsiz sayfa aynı dizgiyle üstten başlar.
+- Alt çubuk iki sıra, görünür seek tutamağı, tema vurgulu favori ve yazılı Aa. Aa doğal büyür; AX3 sınırı kaldırıldı, kompakt yükseklik alt açıklığı paylaşılıyor.
+- Aa ayarlarında doğrudan kâğıt üstünde örnek, kapatma, sade kolay okuma, lila satır aralığı ve seçili kâğıt işareti. Mevcut boyut sliderı ve gelişmiş tercihler korunur; dönüş footer’ı opak.
+- Doğrulama: önce155 test/1 mevcut atlama/0 hata; son üç stil düzeltmesinden sonra58 test/0 hata. Son sürüm15 sabit viewport renderı; ana gündüz/gece, SE, görselsiz ve ayarlar normal/AX5 gözle incelendi. Etkileşimli uçtan uca jest/ses/VoiceOver veya fiziksel cihaz testi yapılmadı. Yerel CodeSign/launch altyapı sorunu mevcut Xcode app.xcent ile düzeltildi; kaynakta bypass yok.
+- Kayıt: `design-handoff/proposals/2026-11-19-reader-reference-alignment/REPORT.md`, plan/spec ve proje hafızası. Motor, eşleme, kayıt formatı ve karakter kimliği değişmedi.
+
+### 2026-11-19 · codex/design-system-catalog, commit yok · Offline masallara sürümlü guaj eşlemesi
+
+- Ne değişti: ilk dar üretim dilimi uygulandı. 17 adet 5–6 blueprint açılışı/na_neutral_01–02 için 340 katı kural; ham template/varyant/subject kaynak izi, katalog sürümü ve tüm sayfa tuple’ı eşleşirse 10 konu çizimi bağlanır. 12 çizim paketli; açık müzik kutusu/boş yuva durum kanıtı yokken seçilmez. On konu için gerçek engine fixture’ı kaydedildi.
+- Mimari: ortak OfflineStoryMapper hem tek masal hem hazırlanan seri/aile-recompose yolunda bir kez bağlar; optional StoryPageArt pinleri saklanır, unlock/reader yeniden seçmez. B2 sahnesi öncelikli, B2 Release kapısı ve çocuk kimliği aynı. Bozuk/unknown metadata, eksik/değişmiş resim veya bilinmeyen kaynakta metin yedeği. Eski kitaplar geriye dönük resimlenmez; ağ çağrısı yok.
+- Paketleme: Xcode PNG baytlarını dönüştürüp hash’i bozduğu için aynı PNG payload `.mpart` olarak taşınır; CryptoKit SHA-256 + ImageIO ve 12 gerçek paket dosyasında saydamlık doğrulaması geçti. Reader async önbellek/downsampling sürer.
+- Doğrulama: 145 uygulama testi/0 hata/1 skip; render1/0 ve sekiz sabit viewport sayfa görüntüsü; yeni motor izi2/0. Tam pakette Engine933/2skip/15 assertion (8 case) mevcut hata; aynı 8 case/15 assertion değişiklik öncesi 068ca47’de tekrarlandı. Foundation17, Character89, Visual51 hatasız. Mevcut eski test beklentileri bu işte değiştirilmedi. Gözle gündüz/gece/AX5 renderı incelendi; ayrı fiziksel cihaz ve tam chrome/VoiceOver/ses/gestür matrisi yapılmadı.
+- Dosyalar: engine AuthoredSourceFingerprint/composer; Story/StorySpotCatalog/StorySpotBinder/StorySpotAssetResolver/mapper; StoryArtResources; reader loader/model/view; yeni binding/resolver/render/provenance ve genişletilen reader/B2/series testleri; plan/spec, proje hafızası ve `docs/research/2026-11-19-story-spot-*` kanıtları.
+
+### 2026-11-19 · codex/design-system-catalog, commit yok · Story Engine görsel havuzu araştırması ve 12 guaj konu
+
+- Ne değişti: üç uzmanla motor/binder, mevcut içerik ve seri/uzak havuz incelendi. 36 blueprint/33 nesne ham envanteri, mimari seçenekler, varyant/presence/state eşleşme sözleşmesi, seri pinleri ve uzak paket büyüme aşamaları yazıldı. 33 nesnenin her birine üretim/erteleme durumu verildi.
+- Görseller: yerleşik image_gen + onaylı referansla 12 saydam konu çizimi; harita v5 seçildi, v1 tarihçe, v2–v4 elendi. Promptlar, kaynaklar, subject/state/revision/altText ve dosya hashleri kaydedildi. Hepsi review taslağıdır, üretim eşlemesi değildir.
+- Bilerek değişmedi: app/motor/Assets, kişiselleştirilmiş metin, kanonik çocuk/Ragi/hayvan kimliği ve B2 Release kapısı. Üretim entegrasyonu bu turda yapılmadı; somut mimari ve görsel seti incelemesi sonraki kod aşamasının girdisidir.
+- Doğrulama: 12 seçili dosyada RGBA/alfa ve SHA-256 kontrolü geçti; gerçek resimler gözle incelendi, ilk altı içerik uzmanıyla ayrıca karşılaştırıldı. Mimari çapraz incelemede olgusal bloklayıcı yok; diff kontrolü temiz. App build/test/simülatör çalıştırılmadı; aday blueprint/variant ilişkileri gerçek composer çıktısı değildir.
+- Dosyalar: `design-handoff/proposals/2026-11-19-story-art-library/`, `docs/superpowers/specs/2026-11-19-semantic-story-art-design.md`, proje hafızası. Büyüme ve uygulama kabul planı spec içinde.
+
+### 2026-11-18 · codex/design-system-catalog, commit yok · Onaylanan okuyucu düzeninin uygulaması
+
+- Ne değişti: sahne/spot/metin kompozisyonları, üstten başlayan kaydırılabilir görselsiz sayfa, eksik resimde metin yedeği, beyaz Gündüz, Yazı→Kâğıt ayar sırası ve canlı örnek. İsteğe bağlı `StoryPage.art` rol/açıklama/kaynak bilgisini saklar; eski kayıtlar korunur.
+- Bilerek değişmedi: motor, çocuk/Ragi kimliği, B2 kapısı ve masal içeriği; demo çizimler gerçek masallara atanmadı. Mevcut kapat/favori/ses/kelime/sayfa/ilerleme sözleşmeleri korundu.
+- Doğrulama: Swift kaynakları derlenip bağlandı; testler disk dolması (dSYM), ardından tekrarlanan yerel CodeSign internal error nedeniyle başlamadı. Test başarısı ve simülatör görsel matrisi doğrulanmadı. Sözdizimi, diff ve yeni okuyucu kodu tasarım yasası kontrolü temiz. İncelemede kritik/yüksek bulgu yok.
+- Dosyalar: Story.swift, MPTheme.swift, MPSheets.swift, ReaderStory/ReaderPageComposition/StoryPageView/StoryReaderView, okuyucu mapping/layout/theme testleri, plan, tasarım REVIEW ve `docs/READER_LAYOUT_2026-11-18.md` ile proje hafızası. Doğrulama açık işleri bu belgede.
+
 ### 2026-11-18 · codex/design-system-catalog · Yeni Ragi çizimleri katalog pozlarına yerleşti
 
 - Ragi kütüphanesinden (`design-handoff/proposals/2026-11-18-ragi-asset-library`) 15 görsel `Assets.xcassets/Brand/mascot*` yerlerine kondu: front 01, threeQuarter 02, happy 06, calm 07, sleepy 08, surprised 10, curious 11, waving 12, onBook 14, reading 15, sleeping 18, thinking 19, walking 20, pencil 43, mascotPeek 25. Görsel boyanmadı; saydam kenar kırpıldı, uzun kenar 1024 px.

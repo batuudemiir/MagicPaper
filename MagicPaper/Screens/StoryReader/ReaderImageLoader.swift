@@ -40,6 +40,18 @@ actor ReaderImageLoader {
         return downsampled
     }
 
+    /// New story spots use the exact bundle revision saved with the page.
+    /// Checksum verification and decoding run on this actor, away from the view.
+    func image(art: StoryPageArt, targetPixelWidth: CGFloat) -> UIImage? {
+        guard art.isBundledSpot else { return nil }
+        let key = "bundle:\(art.bundledFileName ?? ""):\(art.assetDigest ?? "")@\(Int(targetPixelWidth))" as NSString
+        if let hit = cache.object(forKey: key) { return hit }
+        guard let url = StorySpotAssetResolver.url(for: art),
+              let image = ReaderImageLoader.downsample(url, to: targetPixelWidth) else { return nil }
+        cache.setObject(image, forKey: key)
+        return image
+    }
+
     /// Tam çözünürlüklü bir kareyi belleğe açmadan, çizileceği boyutta üretir.
     private static func downsample(_ url: URL, to pixelWidth: CGFloat) -> UIImage? {
         let sourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
