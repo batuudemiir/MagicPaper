@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · main@190096b + bu kayıt, origin'de · Okuyucu düzeni, doğum günü ve kitap araştırması main'de; telefona kuruldu
+
+- Ne değişti: Batuhan'ın seçimiyle üç dal `main`'e birleşti: `codex/design-system-catalog` (okuyucunun sahne/spot düzeni, guaj çizimler, sayfa ritmi; 7 commit), `fix/dogum-gunu-yillik` (doğum günü her yıl geri geliyor), `book-intelligence` (iki araştırma koşusu). Okuyucu birleşmesinde `ReaderStoryMappingTests` okuyucu dalının haliyle alındı: 6aac633'te çıkarılan dört test geri geldi. Günlük çakışmalarında iki tarafın kayıtları korundu. `main` origin'e gönderildi (fd95081..190096b). Debug derleme Batuhan'ın iPhone 16'sına `devicectl` ile kuruldu (`com.batu.magicpaper.v1`).
+- Bilerek değişmedi: `aksam-zarfi` (derlenmiyor) ve `faz-17-kapanis-2` birleştirilmedi; `evren-7-yetkiler` worktree'sindeki başka oturumun commit'lenmemiş dünya işi girmedi.
+- Test: cihaz için Debug `BUILD SUCCEEDED`. Birleşik halde birim testleri çalıştırılmadı (son test turu 6aac633'te: 1004 test, 9 kırık). Uygulama telefonda açılıp ekranlara bakılmadı.
+- Etkilenen: bu kayıt; birleşen dosyalar dalların kendi kayıtlarında.
+
 ### 2026-11-20 · main, commit bu kayıtla · main'in ilk derlemesi ve test turu (20 Kasım kararları)
 
 - Ne değişti: `main` (fd95081) Xcode 27.0'da iPhone 17 Pro simülatörü için derlendi: uygulama ve test hedefi `TEST BUILD SUCCEEDED`. Test hedefi derlenmiyordu: `ReaderStoryMappingTests`'teki sahne/spot düzeninin dört testi (a504047, 18 Kasım) `main`'de olmayan okuyucu düzeni alanlarını kullanıyordu (`illustrationRole`, `composition`). Bu dört test `main`'den çıkarıldı; okuyucu düzeni işi (`codex/design-system-catalog`, `main`'de olmayan 7 commit) birleşirken geri gelmeli.
