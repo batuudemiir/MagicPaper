@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · Metin korumalı görsel kapsamı önerisi
+
+- Kullanıcı her yeni masalda görsel ve küçük yaşta daha yüksek yoğunluk istedi; metin değişikliğini reddetti. Mimari/içerik uzmanlarıyla bütün-kitap anlam eşlemesi ve karma nesne/mekân/arkadaş havuzu değerlendirildi. Garanti henüz kanıtlanmadı; görünmez içerik daraltma veya genel dekorla sayı tamamlama önerilmedi.
+- Gerçek kaynaklardan28mekân+33keşif+26arkadaş için87satırCSV ve kaynak SHA/commit snapshot’ı çıkarıldı.52kurgu kaydı (36normal+8seri+8özel gün) ayrımı düzeltildi. İlk sayfaya otomatik mekân koyma varsayımının istisnaları kaydedildi; bunlardan bütün kitap için imkânsızlık sonucu çıkarılmadı.
+- Dosyalar: `docs/research/2026-11-20-metni-korumali-gorsel-kapsam-onerisi.md`, `2026-11-20-art-coverage-candidates.csv`, `2026-11-20-art-coverage-source-snapshot.json`, proje hafızası. Üretim kodu, metinler, görseller ve telefondaki uygulama değişmedi.
+- Doğrulama: kanonik JSON’lar parse edildi, kayıt kimliklerinin benzersizliği/sayıları ve diff kontrolü yapıldı. Test/build/simülatör çalıştırılmadı; rastgele seed örnekleri veya bu statik sayım tüm masalları kapsama kanıtı sayılmadı.
+
 ### 2026-11-20 · codex/design-system-catalog · Okuyucu dikey ortalandı, görsel eksikliği teşhis edildi
 
 - Telefon geri bildirimi üzerine sığan anlatı, kullanılabilir sütunda dikey ortalandı; yatay soldan hizalama ve uzun metnin baştan kaydırılması korunur. Metin/kayıt/ilerleme değişmez.

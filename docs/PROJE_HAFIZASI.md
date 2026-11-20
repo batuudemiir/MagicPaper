@@ -1094,6 +1094,8 @@ _18 Kasım 2026 — kullanıcı, kodlamadan önce GPT‑6.1 ile okuyucunun önce
 
 ## semantik-gorsel-havuzu
 
+**20 Kasım genel kapsam hedefi:** Kullanıcı her yeni masalda görselli anlatı sayfaları, küçük yaşta daha fazla görsel istedi; **metin varyantlarını değiştirmeyi açıkça reddetti** ve garantinin yeniden değerlendirilmesini istedi. Yeni öneri: metin/seed/seçim dağılımını koruyan, bütün kitabı değerlendiren nesne+mekân+kanonik arkadaş/durum karma havuzu ve authored semantik açıklamalar. Yeni mekân cümlesi, otomatik yeniden seed/variant seçimi, sessiz havuz daraltma yok. Kapsama kanıtı henüz yok;3–6 için3,7–10 için2 yalnız önerilen hedef, onaylı/kanıtlı garanti değil. İlk sayfa istisnaları bütün kitabın görselleştirilemeyeceğini kanıtlamaz. Audit ham28mekân/33keşif/26arkadaş ve52blueprint (36normal+8seri+8özel gün) buldu; eski36sayımı tümkatalogsayısı olarak kullanılmamalı. Çıktılar `docs/research/2026-11-20-metni-korumali-gorsel-kapsam-onerisi.md`,87kayıtCSV ve source-snapshot. Bu tur üretim kodu/asset/build/test değişmedi; tasarım önerisi, uygulama onayı değil.
+
 _19 Kasım 2026 — kullanıcı using-superpowers + imagegen ile geniş motor/seri/havuz incelemesi, planlama ve mevcut modele uygun çizimler istedi._
 
 Üç salt-okunur ajan motor/binder, içerik envanteri ve seri/uzak havuzu ayrı inceledi. Statik ham toplam: 36 blueprint, 33 nesne, 26 companion, 28 setting (eski trait’siz kayıtların hepsi seçilebilir değil). Tasarım: `docs/superpowers/specs/2026-11-19-semantic-story-art-design.md`; set: `design-handoff/proposals/2026-11-19-story-art-library/`.
