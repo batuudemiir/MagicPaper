@@ -49,7 +49,7 @@
 ## Kararlar
 
 - **Tüzükler kalır.** 3-4: tek olay, tek sorun, çıkarım yok. 7-10: kimse çocuğu övmez, yol arkadaşı yardım eder ama çözmez. Sakin UX: tehlike, korku, geri sayım yok; büyük yaşta da "düğüm" bir engeldir, tehdit değil.
-- **Görsel API'siz ve önceden çizilmiş (karar: 20 Kasım 2026, Batuhan).** Sayfa görseli, bir kez çizilip uygulamaya gömülen görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok. Sayfa resmi katmanlıdır: arka plan, tek odak ve hâli, yol arkadaşı ve çocuk pozu (tek tam sahne değil). Motor *ne* gösterileceğine karar verir (anahtar, hâl, poz); uygulama anahtarı çizime çevirir. Motor paketi görsel dosyalarını bilmez.
+- **Görsel API'siz ve önceden çizilmiş (karar: 20 Kasım 2026, Batuhan).** Sayfa görseli, bir kez çizilip uygulamaya gömülen görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok. Sayfa resmi katmanlıdır: arka plan ve tek odak (yol arkadaşı ya da nesne, hâliyle); tek tam sahne değil. **Çocuk figürü yok** (karar: Batuhan, 20 Kasım 2026: avatar sistemiyle olmadı); resim masalın öğelerinden kurulur. **İş bölümü:** çizimleri Batuhan ChatGPT ile yaptırır; geri kalan her şey kodda. Motor *ne* gösterileceğine karar verir (anahtar, hâl, poz); uygulama anahtarı çizime çevirir. Motor paketi görsel dosyalarını bilmez.
 - **Anahtar metinden aranmaz, veriden gelir.** Görseli seçen, sayfanın bağladığı kayıtlar (mekân, yol arkadaşı, keşif) ve satırın bildirdiği anahtarlardır. Metindeki kelime yalnızca yazım denetimidir. Anahtar sözlüğü kapalı ve denetlidir: serbest metin değil, kimlikli kelimeler.
 - **Saklanan metin kayıttır** (K1). Yeni satırlar ve yeni seçim kuralları eski masalları değiştirmez; seed kayması kullanıcıyı etkilemez.
 - **Önce ölçüm.** Her faz simülasyonu yeniden koşar ve DEMO_CHANGELOG'a önce/sonra sayısını yazar.
@@ -98,7 +98,7 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 **Önerinin değerlendirmesi (20 Kasım 2026).** Batuhan'ın önerisi: sayfadaki "yırtık harita" kelimesi görülünce hazır yırtık harita görseli o sayfaya gelsin, offline, motor yapsın. Özü doğru ve plan onu benimsiyor. İki noktada değişiyor:
 
 1. *Anahtar metinden aranmaz.* Türkçe çekim ("haritayı", "haritanın", "haritada") ve yanlış eşleşme ("haritada olmayan bir şey" satırı bir harita göstermemeli) metin aramasını kırılgan yapar. Motor zaten sayfanın neyi bağladığını biliyor (`object_torn_map_001`); anahtar oradan gelir. Metin taraması yalnızca yazım denetimi: satırda sözlükteki bir kelime geçiyorsa satır o anahtarı bildirmek zorunda (ve tersi).
-2. *Sayfa başına tek nesne görseli tekrara düşer.* Keşif sekiz sayfanın altısında geçer; her sayfada ve o keşfi kullanan her masalda aynı görsel çıkardı, çocuk da görselde olmazdı. Bunun yerine katmanlı sayfa resmi (A2g): arka plan (mekân), tek odak (sayfanın rolüne göre seçilen anahtar ve onun hâli) ve çocuğun figürü (mevcut `AvatarKit`).
+2. *Sayfa başına tek nesne görseli tekrara düşer.* Keşif sekiz sayfanın altısında geçer; her sayfada ve o keşfi kullanan her masalda aynı görsel çıkardı. Bunun yerine katmanlı sayfa resmi (A2g): arka plan (mekân) ve sayfanın rolüne göre seçilen tek odak, kendi hâliyle (nesne `found` / `close` / `whole`, yol arkadaşı `greet` / `together` / `glad`). Çocuk figürü yok.
 
 **Model.**
 
@@ -118,18 +118,19 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 
 - `background`: mekân anahtarı + zaman (`day`, `evening`, `night`; uyku arkında her zaman akşam/gece)
 - `focus`: tek anahtar + hâl
-- `companionPose`, `childPose`: duygu ve beat'ten (`curious`, `pointing`, `walking`, `sitting`, `sleeping`…)
+- `focus` yol arkadaşıysa hâli poz: `greet`, `together`, `glad` (sayfa rolünden)
 - `extras`: en çok iki küçük anahtar (satırın bildirdikleri), yalnızca 3-6 yaşta
 
 **Odak seçimi** (deterministik, sayfa rolüne göre):
 
 | Sayfa rolü / beat | Odak |
 |---|---|
-| `hook` (`notice_anomaly`) | keşif, hâl `found` |
-| `companion` (`meet_companion`) | yol arkadaşı |
-| `discovery`, `attempt`, `challenge` | satırın `visualState`'i varsa keşif, yoksa satır anahtarı, yoksa yol arkadaşı |
-| `resolution` | keşif, hâl `held` ya da `whole` |
-| `emotional_ending`, `bedtime_transition` | mekân (odak yok, geniş sahne) |
+| `hook` (`notice_anomaly`) | keşif, `found` |
+| `discovery` (`examine`, `approach`) | keşif, `close` |
+| `companion` (`meet_companion`) | yol arkadaşı, `greet` |
+| `problem`, `attempt`, `challenge` | satırın `visualState`'i varsa keşif, yoksa satır anahtarı, yoksa yol arkadaşı `together` |
+| `resolution` | keşif, `close` ya da `whole` |
+| `emotional_ending`, `bedtime_transition` | arka plan akşam + yol arkadaşı `glad` |
 
 Aynı odak art arda iki sayfada aynı hâlde gelmez; gelecekse ikinci sayfa geniş sahneye döner.
 
@@ -207,20 +208,20 @@ Bugün dünya satırları (`settingTags`) yalnızca sayfa 1 ve kapanışta. `mee
 
 ### A9: Görsel katalog ve okuyucuda birleştirme (uygulama)
 
-**Amaç.** Anahtarı çizime çevirmek. Mevcut yapıların üstüne: `art_kits.json`'un "spot" yuvaları (şeffaf zeminli küçük sahne), `scene_library.json` ve `AvatarKit`. Paralel sistem kurulmaz.
+**Amaç.** Anahtarı çizime çevirmek. Mevcut yapıların üstüne: `art_kits.json`'un "spot" yuvaları (şeffaf zeminli küçük sahne), ve `scene_library.json` (avatar katmanı kullanılmaz). Paralel sistem kurulmaz.
 
 **Model.**
 
 - `visual_assets.json` (uygulama): anahtar → hâl → görsel adları (her hâlde 1-3 çeşit, deterministik seçim), üslup seti, durum (`ready` / `pending`). Asset catalog ad alanı `Visual/`.
-- **Birleştirici** (`PagePictureView`, okuyucu): arka plan + odak + yol arkadaşı pozu + çocuk figürü + en çok iki ek. Katman yerleri sayfa düzeninden; metin alanına taşmaz.
+- **Birleştirici** (`PagePictureView`, okuyucu): arka plan + odak + en çok iki ek; çocuk figürü yok. Odak arka planın alt ortasına oturur; metin alanına taşmaz. Mevcut `StorySceneView`'in katman ve ayak noktası düzeni kullanılır, avatar katmanı kullanılmaz.
 - **Yedek:** çizimi olmayan anahtar dünyanın `Storybook` motiflerine düşer (bugünkü sanat seti davranışı); hiçbir sayfa boş çerçeve göstermez.
 - **Erişilebilirlik:** her görselin Türkçe tarifi sözlükten (`altText`); süs katmanları gizli.
 
-**Çizim.** Bir kez, ekipçe, tek üslupta (`docs/art/` kuralları; İrem). Fotoğraf değil, illüstrasyon: masal kitabı dili ve çocuk figürüyle aynı çizgi. Görsel üretimi API ile masal başına yapılmaz; çizimler uygulamayla gelir.
+**Çizim.** Batuhan ChatGPT ile, bir kez, tek üslupta (stil sayfası referans, aynı üslup cümlesi); liste ve istemler `docs/art/GORSEL_PILOT_LISTESI.md`. Fotoğraf değil, illüstrasyon. Masal başına görsel üretimi yok; çizimler uygulamayla gelir.
 
-**Pilot.** Önce tek dünya, tek bant: 5-6 macera, Fısıldayan Orman. İhtiyaç: 1 arka plan (gündüz/akşam), 5 yol arkadaşı × 3 poz, o bantta bağlanan ~10 keşif × 2-3 hâl, ~10 ek kelime: kabaca 60 çizim. Pilot okuyucuda görülür, sonra dünya dünya genişler.
+**Pilot.** 5-6 macera, Fısıldayan Orman. Motorla ölçüldü: bu dünyada 13 yol arkadaşı ve 15 nesne bağlanıyor. Kademe 1: 2 arka plan + 6 arkadaş × 3 poz + 6 nesne (9 görsel) = 29; kademe 2: 42; toplam 71. Pilot okuyucuda görülür, sonra dünya dünya genişler.
 
-**Tam kapsam (kabaca).** 36 mekân × 2 zaman, 34 yol arkadaşı × 3 poz, 43 keşif × 2-3 hâl, ~150 ek kelime: 400-450 çizim. Uygulama boyutu için çizimler vektör ya da sıkıştırılmış PNG; gerekirse dünya paketleri uzaktan içerik (FAZ 15) ile.
+**Tam kapsam (kabaca).** Birleşik katalogda 36 mekân × 2 zaman, 34 yol arkadaşı × 3 poz, 43 keşif × 2-3 hâl, ~150 ek kelime: 400-450 çizim. Uygulama boyutu için çizimler vektör ya da sıkıştırılmış PNG; gerekirse dünya paketleri uzaktan içerik (FAZ 15) ile.
 
 **Kabul.** Pilot dünyada her sayfa görselli, yedeğe düşen sayfa yok; VoiceOver tarifi okuyor; görselsiz eski masallar bugünkü gibi.
 
@@ -233,7 +234,7 @@ A0 raporu yeniden koşulur; hedef tablosu karşılanmıyorsa eksik kalan hücrel
 | Faz | Satır / kayıt |
 |---|---|
 | A2 | ~265 sözlük kelimesi (~115 kayıt + ~150 ek); mevcut ~2.200 satıra anahtar (betik + elle denetim) |
-| A9 | Pilot ~60 çizim; tam kapsam 400-450 çizim |
+| A9 | Pilot 71 çizim (kademe 1: 29); tam kapsam 400-450 çizim (Batuhan, ChatGPT) |
 | A3 | 900-1.100 betim cümlesi |
 | A4 | 500-700 satır |
 | A6 | ~25 blueprint, 600-900 satır |
@@ -243,7 +244,7 @@ Toplam yeni metin 2.300-3.100 satır: bugünkü havuzun (2.227) aşağı yukarı
 
 ## Batuhan'ın kararı gereken sorular
 
-1. ~~Görsel yolu~~ **Karara bağlandı (20 Kasım 2026, Batuhan):** önceden çizilmiş, API'siz görseller; sayfa resmi katmanlı (arka plan + tek odak ve hâli + yol arkadaşı ve çocuk pozu), A2g/A9'daki gibi.
+1. ~~Görsel yolu~~ **Karara bağlandı (20 Kasım 2026, Batuhan):** önceden çizilmiş, API'siz görseller; sayfa resmi katmanlı (arka plan + tek odak ve hâli), çocuk figürü yok; çizimleri Batuhan ChatGPT ile yaptırır.
 2. **3-4 betim yoğunluğu:** sayfa başına en çok bir betim yeterli mi, yoksa bazı sayfalar yalnızca betimden mi oluşabilir ("resme bak" sayfası)?
 3. **Düğüm türleri:** listedeki beş tür kabul mü? Özellikle "ikinci ipucu ilkini yalanlar" 9-10 için uygun mu?
 4. **Uyku öncesi ağırlığı:** A0'ın ikinci dağılımı (%60 uyku) gerçek kullanıma yakın mı? Analitikte mod dağılımı varsa o kullanılır.
