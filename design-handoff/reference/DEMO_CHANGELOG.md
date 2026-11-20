@@ -142,6 +142,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Uygulama: `StoryPage.provenance` (`StoryPageProvenance`, hoşgörülü çözümleme), mapper sayfanın son hâlinden dolduruyor; senkron Codable olduğu için buluta da gidiyor. Masal düzeyindeki `StoryOrigin.variantIDs` aynı.
 - Test: motor `PageProvenanceTests`, `VisualMeaningTests` ile birlikte belirlenimcilik, bütünlük, anahtar kapsamı, hatırlama, nakarat deneyi, `StorySpotProvenanceTests`: geçti. Uygulama `StoryPageProvenanceTests` (4) ve `StorySpotReaderRenderingTests` (3) simülatörde geçti. Tam motor paketi ve tam uygulama paketi koşulmadı.
 - Dosyalar: `PageProvenance.swift`, `VisualMeaning.swift` (yeni), `OfflineStoryComposer.swift`, `RecallLines.swift`, `CatalogTemplate.swift`, `CatalogIntegrity.swift`, 193 şablon dosyası, `StoryPageProvenance.swift` (yeni), `Story.swift`, `OfflineStoryMapper.swift`, dört test dosyası, `docs/GORSEL_ANLAM_SOZLESMESI.md`, bu günlük.
+### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Anlatı planına görsel anahtar sistemi
+
+- Karar (Batuhan, 20 Kasım 2026): sayfa görseli API'siz, önceden çizilmiş görsellerden motorun kararıyla seçilir; masal başına görsel üretimi yok.
+- `docs/ANLATI_PLANI.md`: A2 görsel anahtar sistemine genişledi (sözlük, zorunlu kayıt anahtarı, satır anahtarı ve hâli, yazım denetimi olarak metin taraması); yeni A2g (motorun sayfa görsel planı: arka plan, tek odak ve hâli, yol arkadaşı ve çocuk pozu, sayfa rolüne göre odak tablosu) ve A9 (uygulamada görsel katalog, katmanlı birleştirici, yedek motifler, pilot: 5-6 macera Fısıldayan Orman, ~60 çizim; tam kapsam 400-450 çizim).
+- Öneriye iki itiraz plana yazıldı: anahtar metinden aranmaz (Türkçe çekim ve yanlış eşleşme), veriden gelir; sayfa başına tek nesne görseli yerine katmanlı resim (tekrar ve çocuk figürü).
+- Mevcut durum: `art_kits.json` spot yuvaları tanımlı ama çizimler yok; yırtık harita gibi nesne görseli henüz yok.
+- Kod ve içerik değişmedi.
+- Dosyalar: `docs/ANLATI_PLANI.md`, bu günlük.
 
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Anlatı planı (A0-A8) ve havuz ölçümleri
 
