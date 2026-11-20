@@ -78,4 +78,20 @@ final class VisualMeaningTests: XCTestCase {
             XCTAssertEqual(part.visual == nil, variant.visual == nil, part.sourceID)
         }
     }
+
+    /// İlk sayfa elle incelendi (20 Kasım 2026): her satır `reviewed`; adı geçen
+    /// keşif sahnede ve `found`, adsız anma keşfe bağlanmaz.
+    func testEveryFirstPageLineIsReviewed() throws {
+        let catalog = try shipped()
+        let templates = catalog.templates + catalog.series.templates + catalog.occasions.templates.map(\.template)
+        let lines = templates.filter { $0.realizesBeat == .noticeAnomaly }.flatMap(\.variants)
+        XCTAssertGreaterThan(lines.count, 200)
+        for line in lines {
+            XCTAssertEqual(line.visualReview, .reviewed, line.id.rawValue)
+            let visual = try XCTUnwrap(line.visual, line.id.rawValue)
+            let discovery = visual.first { $0.subject == .discovery }
+            XCTAssertEqual(discovery != nil, line.text.contains("{{discovery."), line.id.rawValue)
+            if let discovery { XCTAssertEqual(discovery.states, ["found"], line.id.rawValue) }
+        }
+    }
 }

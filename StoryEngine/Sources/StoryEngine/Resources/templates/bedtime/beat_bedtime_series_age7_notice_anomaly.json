@@ -13,7 +13,7 @@
     {
       "id": "b7sn_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Pencerenin önünde bu akşam yeni bir şey vardı: {{discovery.name}}. {{child.name}} gözlerini kısıp baktı. Geçen akşam orada değildi, bundan emindi.",
       "requiredSlots": [
         "child.name",
@@ -30,8 +30,8 @@
     },
     {
       "id": "b7sn_02",
-      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} kulak verdi. Pencerenin dışından {{discovery.name}} geliyordu, çok usul, çok yakından. {{companion.name}} başını o yana çevirdi; ikisi de dinledi.",
       "requiredSlots": [
         "child.name",
@@ -50,7 +50,7 @@
     {
       "id": "b7sn_03",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{companion.name}} bu akşam pencereye bir şey getirmişti, ya da bir şey onunla gelmişti: {{discovery.name}}. {{child.name}} yorganın ucundan dikkatle baktı.",
       "requiredSlots": [
         "child.name",

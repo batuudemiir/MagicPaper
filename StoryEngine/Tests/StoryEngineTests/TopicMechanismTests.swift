@@ -137,13 +137,13 @@ final class TopicMechanismTests: XCTestCase {
                                     "50 seed yalnızca \(mechanisms.sorted()) üretti")
     }
 
-    /// 3-4'te teklif edilmiyor, ve sebebi konu değil: o bantta macera modunun
-    /// hiç içeriği yok. Konu bantta içerik yazıldığı gün kendiliğinden görünür.
-    func testTreasureIsNotOfferedAtThreeFourBecauseAdventureIsEmptyThere() {
+    /// 3-4 macera H1'de (17 Kasım 2026) içeriğe kavuştu; "Hazine avı" o
+    /// bantta da teklif ediliyor. Önceden bu test bandın boş olduğunu iddia
+    /// ediyordu ve H1'den beri bayattı (20 Kasım 2026'da düzeltildi).
+    func testTreasureIsOfferedAtThreeFourNowThatAdventureHasShapesThere() {
         let band = AgeBand(lowerBound: 3, upperBound: 4)
-        XCTAssertTrue(offeredTopics(.adventure, band).isEmpty)
         let (candidates, _) = selector.admissible(catalog: catalog, intent: intent(.adventure, band))
-        XCTAssertTrue(candidates.isEmpty,
-                      "3-4 macera artık blueprint buluyor: konu kapısı yeniden ölçülmeli")
+        XCTAssertFalse(candidates.isEmpty)
+        XCTAssertTrue(offeredTopics(.adventure, band).contains { $0.id.rawValue == "topic_adventure_treasure" })
     }
 }

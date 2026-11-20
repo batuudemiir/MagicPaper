@@ -12,7 +12,7 @@
     {
       "id": "bt3_na_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Pencereden {{discovery.name}} geldi.",
       "requiredSlots": [
         "discovery.name"
@@ -29,7 +29,7 @@
     {
       "id": "bt3_na_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Tam o sırada {{discovery.name}} duyuldu.",
       "requiredSlots": [
         "discovery.name"
@@ -46,7 +46,7 @@
     {
       "id": "bt3_na_03",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} pencereden {{discovery.name}} duydu.",
       "requiredSlots": [
         "child.name",
@@ -64,7 +64,7 @@
     {
       "id": "bt3_na_04",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Pencerenin önünden {{discovery.name}} yükseldi.",
       "requiredSlots": [
         "discovery.name"
@@ -80,6 +80,8 @@
     },
     {
       "id": "bt3_na_fs_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile kardeşi {{family.name}} bir ses duydu.",
       "requiredSlots": [
         "child.name",
@@ -97,7 +99,7 @@
     {
       "id": "bt3_na_fs_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{discovery.name}} duydu. Kardeşi {{family.name}} doğruldu.",
       "requiredSlots": [
         "child.name",
@@ -118,6 +120,8 @@
     },
     {
       "id": "bt3_na_ff_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} bir ses duydu.",
       "requiredSlots": [
         "child.name",
@@ -135,7 +139,7 @@
     {
       "id": "bt3_na_ff_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{discovery.name}} duydu. Arkadaşı {{family.name}} doğruldu.",
       "requiredSlots": [
         "child.name",
@@ -156,6 +160,8 @@
     },
     {
       "id": "bt3_na_fa_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir ses duydu. Ayakucundaki {{family.possessive}} {{family.name}} başını kaldırdı.",
       "requiredSlots": [
         "child.name",
@@ -173,6 +179,8 @@
     },
     {
       "id": "bt3_na_fa_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir ses duydu. Pencereye {{family.possessive}} {{family.name}} baktı.",
       "requiredSlots": [
         "child.name",
@@ -190,6 +198,8 @@
     },
     {
       "id": "bt3_na_fi_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir ses duydu. Hayali arkadaşı {{family.name}} pencereyi gösterdi.",
       "requiredSlots": [
         "child.name",
@@ -206,6 +216,8 @@
     },
     {
       "id": "bt3_na_fi_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}}, hayali arkadaşı {{family.name}} ile bir ses duydu.",
       "requiredSlots": [
         "child.name",
@@ -222,6 +234,8 @@
     },
     {
       "id": "bt3_na_h5_sib_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} pencereye baktı. Kardeşi {{family.name}} fısıldadı: \"Bak!\"",
       "requiredSlots": [
         "child.name",
@@ -238,6 +252,8 @@
     },
     {
       "id": "bt3_na_h5_sib_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}}, kardeşi {{family.name}} ile pencereye döndü.",
       "requiredSlots": [
         "child.name",
@@ -254,6 +270,8 @@
     },
     {
       "id": "bt3_na_h5_fr_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} sustu. Arkadaşı {{family.name}} pencereyi gösterdi.",
       "requiredSlots": [
         "child.name",
@@ -270,6 +288,8 @@
     },
     {
       "id": "bt3_na_h5_fr_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} aynı anda pencereye baktı.",
       "requiredSlots": [
         "child.name",
@@ -286,6 +306,8 @@
     },
     {
       "id": "bt3_na_h5_an_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} kıpırdamadı. {{family.possessive}} {{family.name}} uyanmıştı.",
       "requiredSlots": [
         "child.name",
@@ -303,6 +325,8 @@
     },
     {
       "id": "bt3_na_h5_an_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir şey fark etti. {{family.possessive}} {{family.name}} kıpırdadı.",
       "requiredSlots": [
         "child.name",
@@ -320,6 +344,8 @@
     },
     {
       "id": "bt3_na_h5_im_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} pencereye baktı. Hayali arkadaşı {{family.name}} gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -336,6 +362,8 @@
     },
     {
       "id": "bt3_na_h5_im_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a \"Şşş,\" dedi.",
       "requiredSlots": [
         "child.name",

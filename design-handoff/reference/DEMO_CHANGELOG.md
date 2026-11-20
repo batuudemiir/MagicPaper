@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · anlati-provenance, commit bu kayıtla · A0, A1, ilk sayfa incelemesi, eksik parça işareti
+
+- Plan belgeleri (`ANLATI_PLANI.md`, `art/GORSEL_PILOT_LISTESI.md`) evren-7'den bu dala alındı; plan sözleşmeyle güncellendi (A2 yapıldı, A2g kalktı, A9 ChatGPT'de).
+- Kaynak izi: `StoryPage.provenance.partCount` ve `isComplete`; okumada atlanan parça sayfayı eksik yapar, yeniden kaydedilince eksiklik kalır (ChatGPT'nin uyarısı). Eksik sayfaya otomatik görsel bağlanmamalı.
+- A0: `ReadingSequenceReport` (motor, kalıcı) ve `ReadingSequenceTests` (eşik: tekrar kötüleşirse kırılır).
+- A1: satır soğuma penceresi içerikten ayrıldı, 4 → 20 (ölçümle: 4/8/12/20 denendi). 4-10. masallarda tanıdık satır yaklaşık yarıya indi (9-10: %14 → %7); 51-100. masallarda değişmedi (%84-91). Uygulama motora 20 masallık geçmiş veriyor (`historyWindow`).
+- Elle inceleme: bütün ilk sayfa (`notice_anomaly`) satırları `reviewed`, 272 satır (16 şablon dosyası + özel gün). Kural: yalnızca adı geçen öğe; adı geçen keşif `present` + `found`; adsız anma ("bir ses duydu") keşfe bağlanmaz; ad yoksa `visual: []`. Öneri betiğinin 21 yanlış durumu ("gözlerini açtı" → `opened`) düzeldi. Özel gün dosyasındaki 6 satır da `auto` aldı.
+- Bayat testler düzeltildi: `TopicMechanismTests` (3-4 macera H1'den beri dolu), `UsageLearningTests` (yeni dünyalar sabit kitabı değiştirmişti; ağırlık testinde 200 seed berabere kalıyordu, 600'e çıktı), `ProseCooldownTests` (iki pencere).
+- Test: motor paketi (BoundPoolTests hariç, 951 test) koşuldu, 7 hata 4 testteydi; düzeltildi ve etkilenen 42 test yeniden geçti. Uygulama `StoryPageProvenanceTests` (4) simülatörde geçti. BoundPoolTests koşulmadı.
+- Dosyalar: `SelectionScoring.swift`, `ReadingSequenceReport.swift` (yeni), `StoryPageProvenance.swift`, `OfflineStoryService.swift`, `StoryContextBuilder.swift`, `StoryGenerationManager.swift`, 16 şablon dosyası, `occasion_library_v1.json`, beş test dosyası, iki belge, bu günlük.
+
 ### 2026-11-20 · anlati-provenance, commit bu kayıtla · Sayfa kaynak izi ve satırlarda görsel anlam
 
 - Sözleşme (Batuhan ve ChatGPT, 20 Kasım 2026; `docs/GORSEL_ANLAM_SOZLESMESI.md`): görsel anlam içerik satırlarında, sanat kataloğu uygulamada; kaynak izi motor tarafından yazılır; görsel karar mevcut `StoryPage.art`'ta; eski kitaplar yeniden üretilmez. Dosya sahipliği: motor içeriği, `ComposedPage` parçaları, `Story.swift` ve `OfflineStoryMapper.swift` bu iş için Claude'da; görsel havuzu, bağlayıcı ve okuyucu ChatGPT'de.

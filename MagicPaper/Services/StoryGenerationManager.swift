@@ -355,7 +355,7 @@ extension StoryGenerationManager {
     /// less likely to repeat the last ones — for every child, interests or not.
     /// Stories without an origin (written before the offline engine) say
     /// nothing and are skipped. Delegates to `StoryContextBuilder`.
-    func recentOrigins(for profile: UserProfile, limit: Int = SelectionScoring.cooldownWindow) -> [StoryOrigin] {
+    func recentOrigins(for profile: UserProfile, limit: Int = SelectionScoring.historyWindow) -> [StoryOrigin] {
         StoryContextBuilder.recentOrigins(of: stories, for: profile, limit: limit)
     }
 

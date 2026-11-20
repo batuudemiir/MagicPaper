@@ -55,17 +55,26 @@
 - **Önce ölçüm.** Her faz simülasyonu yeniden koşar ve DEMO_CHANGELOG'a önce/sonra sayısını yazar.
 - **Yapılmayacaklar:** LLM ile metin, sayfa başına üretilen görsel, dallanan anlatı, çocuğun seçim yaptığı "kendi maceranı seç".
 
+## Durum ve sözleşme (20 Kasım 2026, akşam)
+
+Görsel tarafta bu planın ilk tasarımı (A2 sözlük ve `vk_` anahtarları, A2g motorun sayfa görsel planı, A9 `StoryPage.picture`) ChatGPT ile varılan sözleşmeyle değişti: `docs/GORSEL_ANLAM_SOZLESMESI.md`. Özet:
+
+- **Anlam satırda, karar uygulamada.** Satır `visual` (konu, varlık, anlatı durumu) ve `visualReview` taşır; motor bunu sayfanın kaynak izine kanonik kayıt kimliğiyle yazar. Hangi çizimin geleceğine uygulamadaki bağlayıcı karar verir ve kararı mevcut `StoryPage.art`'ta saklar. `StoryPage.picture` ve motorun resim seçmesi yok.
+- **İş bölümü.** Claude: motor içeriğindeki görsel anlam, `ComposedPage.provenance`, `StoryPage.provenance` (`Story.swift`, `OfflineStoryMapper.swift`). ChatGPT: görsel havuzu (`story-art-v1.json`), envanter aracı (`Tools/story_art_coverage_audit.py`), bağlayıcı (`StorySpotBinder`), okuyucu. Çizimler: Batuhan (ChatGPT ile).
+- **Yapıldı** (`anlati-provenance@c742ea7`): sayfa kaynak izi ve 1.622 satıra `auto` görsel anlam. ChatGPT envanteri bu commit'ten çıkardı; sayılar eşleşti, kimlik ve metin değişimi sıfır.
+- **Resimli sayfa sayısı** sabit değil: önce anlamca uygun sayfalar, sonra yaşa göre yoğunluk; aynı resim tekrarlanmaz. 3/2 ya da 4/3 henüz kanıtlanmış bir garanti değil.
+
 ## Fazlar
 
 Her faz ayrı dalda (`anlati-N-ad`), DEMO_CHANGELOG kaydı ve commit ile biter. Testler plan sonunda bir kez tam koşulur; ara fazlarda yalnızca ölçüm testi koşulur.
 
 | Faz | Amaç | Yaş | Büyüklük | Bağımlılık |
 |---|---|---|---|---|
-| A0 | Okuma simülasyonu kalıcı rapor | hepsi | K | yok |
-| A1 | Satır soğuması ayrı pencere | hepsi | K | A0 |
-| A2 | Görsel anahtar sistemi: sözlük, kayıt ve satır anahtarları | hepsi, 3-6 önce | O | yok |
-| A2g | Sayfa görsel planı (motor) | hepsi | O (motor) | A2 |
-| A9 | Görsel katalog ve okuyucuda birleştirme (uygulama), pilot dünya | 3-6 önce | B (çizim) | A2g |
+| A0 | Okuma simülasyonu kalıcı rapor (**yapıldı**: `ReadingSequenceReport`, `ReadingSequenceTests`) | hepsi | K | yok |
+| A1 | Satır soğuması ayrı pencere (**yapıldı**: 4 → 20) | hepsi | K | A0 |
+| A2 | Görsel anlam: satır alanları, kaynak izi (**yapıldı**, auto); elle inceleme (`reviewed`) sürüyor | hepsi | O | yok |
+| ~~A2g~~ | Motorun sayfa görsel planı: **sözleşmeyle kalktı**, karar uygulamada (ChatGPT) | — | — | — |
+| A9 | Görsel havuzu, bağlayıcı, okuyucu: **ChatGPT'de**; çizimler Batuhan'da | 3-6 önce | B (çizim) | A2 |
 | A3 | Görsel betim katmanı (`sceneDetails`) | 3-6 | B (içerik) | A2 |
 | A4 | Küçük yaş sayfa havuzları | 3-6 | B (içerik) | A2 |
 | A5 | Olay örgüsü modeli: düğüm ve tohum-hasat | 7-10 | O (motor) | A0 |
@@ -85,6 +94,8 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 
 ### A1: Satır soğuması ayrı pencere
 
+> **Yapıldı (20 Kasım 2026).** `SelectionScoring.lineCooldownWindow = 20`, içerik penceresi 4'te kaldı; uygulama motora `historyWindow` (20) kadar geçmiş veriyor. Ölçüm (yaş başına 3 çocuk × 100 masal): 4-10. masallarda tanıdık satır yaklaşık yarıya indi (9-10 %14 → %7, 5-6 %23 → %11); "yarısı tanıdık" eşiği birkaç masal ileri kaydı (9-10: 11-14 → 14-16); 51-100. masallarda değişmedi (%84-91), çünkü soğuma satır yaratmaz. Sonuç: kalıcı çare A4 ve A6.
+
 **Bugün.** Köken ve satır aynı pencereyi paylaşıyor: son 4 masal.
 
 **Yapılacak.** İki pencere: köken (olay örgüsü, mekân, arkadaş, keşif) 4 kalır; satır penceresi 12-20 masal (A0 ile seçilir). `StoryOrigin.variantIDs` zaten saklanıyor; köprüde `recent.prefix(4)` yerine satırlar için ayrı `prefix`. Ağırlık yaşla azalır (en yeni satır en soğuk).
@@ -92,6 +103,8 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 **Kabul.** Motor davranışı geçmiş yokken bit bit aynı. A0'da "yarısı tanıdık" eşiği ileri kayar. Beklenti: havuz büyümeden de birkaç masal kazanç; asıl kazanç A4 ile.
 
 ### A2: Görsel anahtar sistemi
+
+> **20 Kasım akşamı güncellendi:** bu bölümün `vk_` sözlüğü ve satır anahtarı tasarımı yerine `docs/GORSEL_ANLAM_SOZLESMESI.md` geçerli (konu + kanonik kayıt kimliği + varlık + anlatı durumu). Aşağıdaki gerekçe (metinden arama değil veriden, tek resim değil hâl) geçerliliğini koruyor. Kalan iş: öncelikli beat'lerde elle inceleme (`reviewed`, eksiksiz liste; zamirli anmalar dahil): sayfa 1, keşif (`examine`, `approach`), çözüm (`succeed`, `restore`), kapanış.
 
 **Amaç.** Her sayfa "burada ne görünüyor" sorusuna kimlikli anahtarlarla cevap versin; görsel bu anahtarlardan seçilsin. Örnek: masalın keşfi yırtık harita ise sayfa `vk_torn_map` anahtarını taşır ve okuyucu yırtık harita çizimini koyar.
 
@@ -111,6 +124,8 @@ A1, A2 ve A5 paralel yürüyebilir (dosyaları ayrı). A3 ve A4 aynı beat dosya
 **Kabul.** Her kayıtta anahtar; sözlük dışı anahtar yok; doğrulayıcı bütün korpusta temiz; eski masallar değişmez.
 
 ### A2g: Sayfa görsel planı (motor)
+
+> **Sözleşmeyle kalktı (20 Kasım 2026).** Resim kararı uygulamadaki bağlayıcıda ve `StoryPage.art`'ta. Bu bölüm yalnızca tarih için duruyor.
 
 **Amaç.** Motor her sayfa için ne çizileceğine karar versin; karar masalla birlikte saklansın (K1: saklanan masal kayıttır, görseli de değişmez).
 
@@ -207,6 +222,8 @@ Bugün dünya satırları (`settingTags`) yalnızca sayfa 1 ve kapanışta. `mee
 **İçerik.** Kabaca 300-400 satır.
 
 ### A9: Görsel katalog ve okuyucuda birleştirme (uygulama)
+
+> **ChatGPT'nin alanı (20 Kasım 2026).** Mevcut `story-art-v1.json` ve `StorySpotBinder` bunun başlangıcı; aşağıdaki pilot ve sayılar öneri olarak kalıyor.
 
 **Amaç.** Anahtarı çizime çevirmek. Mevcut yapıların üstüne: `art_kits.json`'un "spot" yuvaları (şeffaf zeminli küçük sahne), ve `scene_library.json` (avatar katmanı kullanılmaz). Paralel sistem kurulmaz.
 
