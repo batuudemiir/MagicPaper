@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "bts3_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} pencerenin kenarını gösterdi. Orada {{discovery.name}} vardı. {{child.name}} merakla doğruldu.",
       "requiredSlots": [
         "companion.name",
@@ -29,6 +31,8 @@
     },
     {
       "id": "bts3_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} perdeyi araladı. Pencerenin önünde {{discovery.name}} duruyordu. Daha önce yoktu.",
       "requiredSlots": [
         "child.name",
@@ -45,6 +49,8 @@
     },
     {
       "id": "bts3_na_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["emitting"]}],
+      "visualReview": "auto",
       "text": "Bu akşam bir şey farklıydı. Ay ışığında {{discovery.name}} görünüyordu. {{child.name}} merakla baktı.",
       "requiredSlots": [
         "discovery.name",
@@ -61,6 +67,8 @@
     },
     {
       "id": "bts3_na_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} tam esneyecekti ki durdu. Pencerenin kenarında {{discovery.name}} vardı. Ne tatlıydı!",
       "requiredSlots": [
         "child.name",
@@ -77,6 +85,8 @@
     },
     {
       "id": "bts3_na_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} burnuyla pencereyi gösterdi. {{child.name}} baktı. Orada {{discovery.name}} duruyordu.",
       "requiredSlots": [
         "companion.name",
@@ -94,6 +104,8 @@
     },
     {
       "id": "bts3_na_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Oda sessizdi. Sonra pencereden {{discovery.name}} geldi. {{child.name}} başını kaldırdı.",
       "requiredSlots": [
         "discovery.name",

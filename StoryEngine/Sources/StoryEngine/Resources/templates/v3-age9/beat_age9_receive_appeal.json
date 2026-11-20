@@ -18,6 +18,8 @@
   "variants": [
     {
       "id": "a9_ra_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Galiba bir şeyimi kaybettim,\" dedi {{companion.name}}, \"ya da o beni kaybetti, emin değilim. Bütün sabah aradım. Bir de sen bakar mısın?\"",
       "requiredSlots": [
         "companion.name"
@@ -27,6 +29,8 @@
     },
     {
       "id": "a9_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} biraz durakladı, sonra sordu: \"Sana bir şey sorabilir miyim? Önemli bir şeyimi kaybettim ve nereden başlayacağımı bilmiyorum.\"",
       "requiredSlots": [
         "companion.name"
@@ -36,6 +40,8 @@
     },
     {
       "id": "a9_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Burada bir yerde olmalı,\" dedi {{companion.name}}, sesi biraz kısık. \"Yardım edersen çok sevinirim. Tek başıma her yere bakamıyorum.\"",
       "requiredSlots": [
         "companion.name"
@@ -45,6 +51,8 @@
     },
     {
       "id": "a9_ra_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} çekinerek sordu: \"Aramama yardım eder misin? Kaybolan şey küçük, ama benim için hiç de küçük değil.\"",
       "requiredSlots": [
         "companion.name"
@@ -54,6 +62,8 @@
     },
     {
       "id": "a9_ra_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Dün buradaydı, bugün yok,\" dedi {{companion.name}}. \"Nereye gitmiş olabilir, hiç bilmiyorum. Birlikte bakarsak belki buluruz.\"",
       "requiredSlots": [
         "companion.name"
@@ -63,6 +73,8 @@
     },
     {
       "id": "a9_ra_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}}'ın sesi alçaktı. \"Kaybettiğim şeyi her yerde aradım,\" dedi. \"Ama belki her yer dediğim yer, yeterince her yer değildi.\"",
       "requiredSlots": [
         "companion.name"
@@ -72,6 +84,8 @@
     },
     {
       "id": "a9_ra_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu tek başıma bulamayacağım,\" dedi {{companion.name}} dürüstçe. \"Bana yardım eder misin? İki kişi bakınca belki gözümden kaçanı görürüz.\"",
       "requiredSlots": [
         "companion.name"
@@ -81,6 +95,8 @@
     },
     {
       "id": "a9_ra_j_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu biri sabah buralarda unutmuş,\" dedi {{companion.name}}, işini bir an bırakarak. \"Sahibi kim, bilmiyorum. Bulmama yardım eder misin?\"",
       "requiredSlots": [
         "companion.name"
@@ -93,6 +109,8 @@
     },
     {
       "id": "a9_ra_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu yolda buldum,\" dedi {{companion.name}}, çantasını yere bırakarak. \"Adresi yok, ama bir sahibi mutlaka var. Bulalım mı?\"",
       "requiredSlots": [
         "companion.name"
@@ -105,6 +123,8 @@
     },
     {
       "id": "a9_ra_j_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunun mutlaka bir sahibi var,\" dedi {{companion.name}}. \"Birlikte arayıp bulalım mı? Benim işim de biraz böyledir zaten.\"",
       "requiredSlots": [
         "companion.name"
@@ -117,6 +137,8 @@
     },
     {
       "id": "s910_ra_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} {{discovery.name}}'i burnuyla {{child.name}}'e doğru itti ve bekledi. \"Bu oyunu tek başıma denedim,\" dedi sonunda, \"ama olmuyor; biri tutmalı, biri zıplamalı. İkimiz olursak belki olur.\" Sesinde utangaç ama umutlu bir rica vardı.",
       "requiredSlots": [
         "child.name",
@@ -128,6 +150,8 @@
     },
     {
       "id": "s910_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yerinde sekip duruyordu, belli ki içi içine sığmıyordu. \"Bir oyun biliyorum,\" dedi, \"ama iki kişilik. Biri ritmi tutar, öbürü hareketi yapar. Sen hangisini istersin?\" {{child.name}} bir an düşündü; ikisi de eğlenceli görünüyordu.",
       "requiredSlots": [
         "child.name",
@@ -138,6 +162,8 @@
     },
     {
       "id": "s910_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Bütün sabah tek başına koşup zıplamış, ama bir türlü keyif alamamıştı. Bazı oyunlar, anladı ki, ancak birlikte oynanınca oyun oluyordu. {{child.name}} gülümsedi; bunu kendisi de çok iyi biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -148,6 +174,8 @@
     },
     {
       "id": "s910_ra_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir süre {{child.name}}'in çevresinde dolandı, sonra dayanamayıp söyledi: \"Bir oyun var, ama tek başıma oynanmıyor. Biri başlatmalı, öbürü karşılamalı. Bütün sabah denedim, olmadı.\" Sesi biraz utangaçtı. {{child.name}} gülümsedi; eksik oyuncu tam karşısında duruyordu.",
       "requiredSlots": [
         "companion.name",

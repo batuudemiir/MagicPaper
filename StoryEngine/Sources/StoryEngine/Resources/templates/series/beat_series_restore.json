@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "srs_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ve sonunda oldu: {{companion.name}} son kısmı kendi başına başardı. {{child.name}} omuzlarının yavaşça gevşediğini hissetti, {{companion.name}} ise sevinçle yerinde döndü.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "srs_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Biraz sonra her şey yerli yerindeydi. {{child.name}} ile {{companion.name}} birbirine baktı. İkisinin de yüzünde kocaman bir gülümseme vardı.",
       "requiredSlots": [
         "child.name",
@@ -43,6 +47,8 @@
     },
     {
       "id": "srs_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İşte şimdi her şey olması gereken yerdeydi. {{child.name}} geri çekilip bir kez daha baktı. {{companion.name}} usulca \"Oldu,\" dedi, sesi sevinç doluydu.",
       "words": ["w56_usulca"],
       "requiredSlots": [
@@ -54,6 +60,8 @@
     },
     {
       "id": "srs_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Orası onun yeriydi, bu belliydi. Sanki hep orada duruyormuş gibi rahattı. {{child.name}} ile {{companion.name}} birbirine bakıp sevinçle, uzun uzun gülümsedi.",
       "requiredSlots": [
         "child.name",

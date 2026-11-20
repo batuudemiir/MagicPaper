@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt_tc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben seni uyuturum,\" dedi {{child.name}}. Her akşam ona nasıl yapılıyorsa, o da {{companion.name}}'a öyle yapacaktı. Yavaşça, sabırla, hiç acele etmeden.",
       "requiredSlots": [
         "child.name",
@@ -36,6 +38,8 @@
     },
     {
       "id": "bt_tc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Merak etme,\" dedi {{child.name}} usulca. \"Uyumak bazen biraz zaman alır. Ben buradayım.\" {{companion.name}} rahat bir nefes alıp pencereye biraz daha sokuldu.",
       "requiredSlots": [
         "child.name",

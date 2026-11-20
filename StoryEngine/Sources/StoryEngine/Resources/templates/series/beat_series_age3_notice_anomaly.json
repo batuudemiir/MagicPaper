@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "sn3_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Bugün yeni bir şey vardı. {{child.name}} durdu ve baktı. Yerde {{discovery.name}} vardı.",
       "requiredSlots": [
         "child.name",
@@ -37,6 +39,8 @@
     },
     {
       "id": "sn3_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi biraz yürüdü. Sonra {{companion.name}} durdu. \"Bak,\" dedi. Orada {{discovery.name}} vardı.",
       "requiredSlots": [
         "companion.name",
@@ -50,6 +54,8 @@
     },
     {
       "id": "sn3_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} etrafına baktı. Her şey geçen seferki gibiydi. Yalnız {{discovery.name}} yeniydi.",
       "requiredSlots": [
         "child.name",
@@ -63,6 +69,8 @@
     },
     {
       "id": "sn3_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} yere eğildi. Orada {{discovery.name}} duruyordu. Daha önce orada yoktu.",
       "requiredSlots": [
         "child.name",
@@ -76,6 +84,8 @@
     },
     {
       "id": "sn3_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bugün {{setting.name}}'da bir şey farklıydı. Az ileride {{discovery.name}} duruyordu.",
       "requiredSlots": [
         "setting.name",
@@ -89,6 +99,8 @@
     },
     {
       "id": "sn3_07",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} kulak verdi. Yakından {{discovery.name}} geliyordu. Durdu ve dinledi.",
       "requiredSlots": [
         "child.name",
@@ -102,6 +114,8 @@
     },
     {
       "id": "sn3h_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Bugün yeni bir şey vardı: {{discovery.name}}.",
       "requiredSlots": [
         "discovery.name"
@@ -114,6 +128,8 @@
     },
     {
       "id": "sn3h_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Sonra {{child.name}} yerde {{discovery.name}}'i gördü.",
       "requiredSlots": [
         "child.name",

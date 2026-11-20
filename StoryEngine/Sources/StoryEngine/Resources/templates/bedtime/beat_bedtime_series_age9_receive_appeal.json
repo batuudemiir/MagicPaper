@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "b9sra_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunun bu gece sıcak bir yere ihtiyacı var,\" dedi {{companion.name}} usulca, \"dışarısı ona göre biraz fazla serin.\"",
       "requiredSlots": [
         "companion.name"
@@ -24,6 +26,8 @@
     },
     {
       "id": "b9sra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} pencereden içeri baktı ve fısıldadı: bu küçük misafir bir gece için kalacak bir köşe arıyordu, sabaha kadar.",
       "requiredSlots": [
         "companion.name"
@@ -36,6 +40,8 @@
     },
     {
       "id": "b9sra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ona bu odada bir köşe açabilir miyiz?\" diye sordu {{companion.name}}, sesi rica eder gibi yumuşaktı.",
       "requiredSlots": [
         "companion.name"

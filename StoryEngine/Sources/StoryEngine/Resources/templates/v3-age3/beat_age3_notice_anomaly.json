@@ -176,6 +176,8 @@
     },
     {
       "id": "s34_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Yerde {{discovery.name}} duruyordu. Kimindi bu?",
       "requiredSlots": [
         "discovery.name"
@@ -185,6 +187,8 @@
     },
     {
       "id": "s34_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir şey gördü: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -316,6 +320,8 @@
     },
     {
       "id": "s34_na_tp_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Yolun kenarında {{discovery.name}} vardı. {{child.name}} yaklaştı.",
       "requiredSlots": [
         "discovery.name",
@@ -326,6 +332,8 @@
     },
     {
       "id": "w_ct_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} şehirde ilk kez yürüyordu. Her yer kalabalık ve sesliydi. Sonra durdu. Yerde {{discovery.name}} vardı.",
       "requiredSlots": [
         "child.name",
@@ -342,6 +350,8 @@
     },
     {
       "id": "w_ct_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Tramvay çan çalarak geçti. {{child.name}} ona el salladı. Tam o sırada {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "child.name",
@@ -355,6 +365,8 @@
     },
     {
       "id": "w_ct_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'da güvercinleri sayıyordu. Bir, iki, üç. Sonra saymayı bıraktı. {{discovery.name}} oradaydı.",
       "requiredSlots": [
         "child.name",
@@ -372,6 +384,8 @@
     },
     {
       "id": "w_cn_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} uzak bir ülkeye gelmişti. Burada herkes başka dilde konuşuyordu. Sonra {{discovery.name}} gözüne çarptı.",
       "requiredSlots": [
         "child.name",
@@ -388,6 +402,8 @@
     },
     {
       "id": "w_cn_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Biri ona bilmediği bir dilde merhaba dedi. {{child.name}} gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "child.name",
@@ -401,6 +417,8 @@
     },
     {
       "id": "w_cn_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da hava bambaşka kokuyordu. {{child.name}} derin bir nefes aldı. Sonra durdu. {{discovery.name}} oradaydı.",
       "requiredSlots": [
         "setting.name",
@@ -418,6 +436,8 @@
     },
     {
       "id": "w_hs_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} çok eski bir yere gelmişti. Taşlar yüzlerce yıllıktı. Sonra {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "child.name",
@@ -431,6 +451,8 @@
     },
     {
       "id": "w_hs_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da her şey çok eskiydi. {{child.name}} yavaşça yürüdü. Sonra durdu. Önünde {{discovery.name}} vardı.",
       "requiredSlots": [
         "setting.name",
@@ -448,6 +470,8 @@
     },
     {
       "id": "w_hs_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Burada eskiden de çocuklar oynarmış. {{child.name}} bunu düşündü ve gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "child.name",

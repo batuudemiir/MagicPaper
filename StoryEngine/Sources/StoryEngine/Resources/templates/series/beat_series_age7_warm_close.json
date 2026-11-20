@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s7wc_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Akşam olunca {{child.name}} eve döndü. Yolda {{keepsake.name}}'i ve bugünü yan yana düşündü. İkisi de {{setting.name}}'dan getirdiği güzel anılardı.",
       "requiredSlots": [
         "child.name",
@@ -22,6 +24,8 @@
     },
     {
       "id": "s7wc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} bir süre daha yan yana oturdu. Kimse konuşmadı, gerek yoktu. Gün olması gerektiği gibi, sakin ve tamam bitti.",
       "requiredSlots": [
         "child.name",
@@ -32,6 +36,8 @@
     },
     {
       "id": "s7wc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Ayrılırken {{companion.name}} bir kez döndü ve el salladı. {{child.name}} gülümseyerek karşılık verdi. İçi, uzun ve güzel bir günün sıcaklığıyla doluydu.",
       "requiredSlots": [
         "child.name",
@@ -68,6 +74,8 @@
     },
     {
       "id": "s7wc_fr_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile arkadaşı {{family.name}} kapıda vedalaştı. Bugünü ikisi de uzun süre hatırlayacaktı, özellikle {{companion.name}}'in o gülüşünü. Sonra herkes evine döndü.",
       "requiredSlots": [
         "child.name",
@@ -123,6 +131,8 @@
     },
     {
       "id": "s7wc_im_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Akşam {{child.name}}, hayali arkadaşı {{family.name}} ile bugünü bir kez daha konuştu. {{family.name}} en çok {{companion.name}}'i sevmişti; bu belliydi.",
       "requiredSlots": [
         "child.name",
@@ -150,6 +160,8 @@
     },
     {
       "id": "s7wc_h5_sib_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Eve dönünce {{child.name}} ile kardeşi {{family.name}} günü sırayla anlattı. {{family.name}} en çok {{companion.name}}'i anlattı. Akşam sakin ve sıcaktı.",
       "requiredSlots": [
         "child.name",

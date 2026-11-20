@@ -342,6 +342,9 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var art: StoryPageArt?
     /// Optional authored semantics; absent on existing saved books.
     var reading: StoryPageReading?
+    /// Sayfanın kaynak izi (20 Kasım 2026): metni oluşturan parçalar, sırayla.
+    /// Eski kitaplarda yok ve sonradan üretilmez.
+    var provenance: StoryPageProvenance?
     /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
     /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
     var words: [StoryWord]?

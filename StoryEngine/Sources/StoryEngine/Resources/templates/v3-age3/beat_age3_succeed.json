@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "sc3h_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ve işte oradaydı! {{child.name}} sonunda {{discovery.name}}'i buldu. Aramaya değmişti.",
       "requiredSlots": [
         "child.name",
@@ -35,6 +37,8 @@
     },
     {
       "id": "sc3h_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Meğer hep oradaymış! {{child.name}} geri dönünce {{discovery.name}}'i buldu. Çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -60,6 +64,8 @@
     },
     {
       "id": "sc3h_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Birlikte başardılar! {{child.name}} ile {{companion.name}} öbür tarafa vardı. İkisi de gülüyordu.",
       "requiredSlots": [
         "child.name",
@@ -85,6 +91,8 @@
     },
     {
       "id": "sc3h_07",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sormak işe yaradı. {{child.name}} {{discovery.name}}'i buldu. Tam oradaydı.",
       "requiredSlots": [
         "child.name",
@@ -98,6 +106,8 @@
     },
     {
       "id": "sc3h_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yolu gösterdi, {{child.name}} baktı ve buldu. Aradığı şey tam oradaydı.",
       "requiredSlots": [
         "child.name",
@@ -111,6 +121,8 @@
     },
     {
       "id": "sc3u_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} anlamıştı! {{discovery.name}} nasıl çalışıyordu, artık biliyordu. Çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -124,6 +136,8 @@
     },
     {
       "id": "sc3u_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben buldum!\" dedi {{child.name}}. {{companion.name}} bakıp güldü. İkisi de çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -137,6 +151,8 @@
     },
     {
       "id": "sc3u_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Artık {{discovery.name}} hiç tuhaf gelmiyordu. {{child.name}} nasıl olduğunu görmüştü. Yüzü güldü.",
       "requiredSlots": [
         "child.name",
@@ -174,6 +190,8 @@
     },
     {
       "id": "sc3m_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Meğer öyle değilmiş!\" dedi {{child.name}}. {{companion.name}} başını salladı. İkisi de gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -187,6 +205,8 @@
     },
     {
       "id": "s34_sc_pw_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Rüzgâr esti ve oyun başladı! {{child.name}} koştu, {{companion.name}} zıpladı. İkisi de kahkahalarla güldü.",
       "requiredSlots": [
         "child.name",
@@ -212,6 +232,8 @@
     },
     {
       "id": "s34_sc_pw_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İşte şimdi oldu! {{child.name}} ile {{companion.name}} rüzgârla birlikte koştu, durdu, yine koştu. Çok eğlenceliydi.",
       "requiredSlots": [
         "child.name",
@@ -225,6 +247,8 @@
     },
     {
       "id": "sc3h_h5_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir kez daha aradı. Sonra bir kez daha. Ve buldu: {{discovery.name}} tam oradaydı!",
       "requiredSlots": [
         "child.name",
@@ -238,6 +262,8 @@
     },
     {
       "id": "sc3h_h5_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} vazgeçmedi. Aradı, baktı, yine aradı. Sonunda {{discovery.name}}'i gördü. Çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -275,6 +301,8 @@
     },
     {
       "id": "sc3h_h5_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bir adım {{child.name}}, bir adım {{companion.name}}. Sonunda vardılar! İkisi birlikte güldü.",
       "requiredSlots": [
         "child.name",
@@ -288,6 +316,8 @@
     },
     {
       "id": "sc3h_h5_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Birlikte daha kolaydı. {{child.name}} ile {{companion.name}} işi bitirdi. İkisi de çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -301,6 +331,8 @@
     },
     {
       "id": "sc3h_h5_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}}, {{companion.name}}'in dediği yere baktı. Ve buldu! Sormak iyi gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -314,6 +346,8 @@
     },
     {
       "id": "sc3h_h5_08",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} biliyordu. {{child.name}} gösterilen yere gitti ve {{discovery.name}}'i buldu. Çok sevindi.",
       "requiredSlots": [
         "companion.name",
@@ -328,6 +362,8 @@
     },
     {
       "id": "s34_sc_pw_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sonunda rüzgâr geldi! {{child.name}} koşup zıpladı, {{companion.name}} peşinden sekti. Beklemek işe yaramıştı.",
       "requiredSlots": [
         "child.name",
@@ -353,6 +389,8 @@
     },
     {
       "id": "sc3u_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Oldu işte! {{child.name}} sırrı bulmuştu. {{companion.name}} sevinçle zıpladı, {{child.name}} kocaman gülümsedi.",
       "requiredSlots": [
         "child.name",

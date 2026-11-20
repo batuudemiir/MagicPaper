@@ -25,6 +25,9 @@ public struct ComposedPage: Sendable, Hashable {
     /// `text`. Nil on every page of a blueprint without one.
     public var refrain: String? = nil
     public var authoredSourceFingerprint: String? = nil
+    /// Metni oluşturan parçalar, kuruluş sırasıyla (20 Kasım 2026). Boş: bu
+    /// alandan önce kurulan sayfa.
+    public var provenance: [PageSourcePart] = []
 }
 
 /// A finished offline draft — text only. No images, no persistence, no IDs the
@@ -215,6 +218,7 @@ public struct OfflineStoryComposer: Sendable {
         var scenes: [String] = []
         var variantIDs: [ContentID] = []
         var authoredSources: [AuthoredSourceFingerprint.Source] = []
+        var provenance: [PageSourcePart] = []
         var missing: [String] = []
         var unrecognised: [String] = []
         var words: [PageWord] = []
@@ -225,7 +229,13 @@ public struct OfflineStoryComposer: Sendable {
             // A declared refrain closes its page, after the beat's own lines,
             // so the listener hears the story first and then the line to join.
             let refrain = blueprint.refrain?.text(onPage: currentPage)
-            if let refrain { sentences.append(refrain) }
+            if let refrain, let spec = blueprint.refrain {
+                sentences.append(refrain)
+                let field = currentPage == spec.finalPage ? "finalLine" : "line"
+                provenance.append(PageSourcePart(
+                    kind: .refrain, sourceID: "\(blueprint.id.rawValue)#refrain.\(field)",
+                    sourceTextDigest: PageSourcePart.digest(refrain)))
+            }
             pages.append(ComposedPage(
                 pageNumber: currentPage,
                 role: page.role,
@@ -238,10 +248,11 @@ public struct OfflineStoryComposer: Sendable {
                 unrecognisedSuffixes: unrecognised,
                 words: words,
                 refrain: refrain,
-                authoredSourceFingerprint: AuthoredSourceFingerprint.make(sources: authoredSources, discovery: content.discovery)
+                authoredSourceFingerprint: AuthoredSourceFingerprint.make(sources: authoredSources, discovery: content.discovery),
+                provenance: provenance
             ))
             sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
-            words = []; authoredSources = []; pageLength = 0
+            words = []; authoredSources = []; provenance = []; pageLength = 0
         }
 
         for step in try Self.plan(blueprint) {
@@ -323,6 +334,17 @@ public struct OfflineStoryComposer: Sendable {
             if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
             variantIDs.append(variant.id)
             authoredSources.append(.init(templateID: template.id.rawValue, variantID: variant.id.rawValue, text: variant.text))
+            var contexts: [String] = []
+            if variant.isFamilyLine { contexts.append("family") }
+            if !occasionLines.isEmpty { contexts.append("occasion") }
+            if episode != nil { contexts.append("series") }
+            if variant.isWorldLine(for: content.setting) { contexts.append("world") }
+            provenance.append(PageSourcePart(
+                kind: .beatLine, sourceID: variant.id.rawValue,
+                sourceTextDigest: PageSourcePart.digest(variant.text),
+                templateID: template.id.rawValue, beat: step.beat, contexts: contexts,
+                visual: variant.visual.map { ResolvedVisual.resolve($0, content: content) },
+                visualReview: variant.visual == nil ? nil : variant.visualReview))
             missing += rendered.missingSlots
             unrecognised += rendered.unrecognisedSuffixes
         }
@@ -346,7 +368,8 @@ public struct OfflineStoryComposer: Sendable {
            let recall = RecallComposer.line(
                history: history, content: content, catalog: catalog, band: blueprint.ageRange,
                slots: slots, recent: recentVariants, seed: storySeed) {
-            pages[0] = first.appendingRecall(id: recall.id, text: recall.text)
+            let authored = catalog.recallLines.first { $0.id == recall.id }?.text ?? recall.text
+            pages[0] = first.appendingRecall(id: recall.id, text: recall.text, authoredText: authored)
             recallLineID = recall.id
         }
 

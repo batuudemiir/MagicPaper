@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · anlati-provenance, commit bu kayıtla · Sayfa kaynak izi ve satırlarda görsel anlam
+
+- Sözleşme (Batuhan ve ChatGPT, 20 Kasım 2026; `docs/GORSEL_ANLAM_SOZLESMESI.md`): görsel anlam içerik satırlarında, sanat kataloğu uygulamada; kaynak izi motor tarafından yazılır; görsel karar mevcut `StoryPage.art`'ta; eski kitaplar yeniden üretilmez. Dosya sahipliği: motor içeriği, `ComposedPage` parçaları, `Story.swift` ve `OfflineStoryMapper.swift` bu iş için Claude'da; görsel havuzu, bağlayıcı ve okuyucu ChatGPT'de.
+- Motor: `PageSourcePart` (`beat_line`, `refrain`, `recall`; kaynak kimliği, yazar metninin özeti, şablon ve beat, bağlam etiketleri `family`/`occasion`/`series`/`world`) her sayfada, kuruluş sırasıyla. Nakarat için satır kimliği uydurulmuyor (`<blueprint>#refrain.line`). Hatırlama satırı kendi parçasını alıyor; yazar parmak izi bilerek düşmeye devam ediyor.
+- Motor: satır alanları `visual` (konu `discovery`/`companion`/`setting`, varlık `present`/`remembered`/`intended`, kapalı sözlükten anlatı durumu) ve `visualReview` (`auto`/`reviewed`); kaynak izinde kanonik kayıt kimliğine çözülüyor; bütünlük denetimi sözlük dışı durumu, tekrar eden konuyu ve etiketsiz `visualReview`'i yakalıyor.
+- İçerik: 2.721 satırdan 1.622'si betikle `auto` etiketlendi (yer tutucu taşıyanlar; ek hâli ve yakın fiile bakan kural, 30 satırlık örnekte 29 doğru); 1.099 satır bilerek etiketsiz. Metin değişmedi. Henüz `reviewed` satır yok.
+- Uygulama: `StoryPage.provenance` (`StoryPageProvenance`, hoşgörülü çözümleme), mapper sayfanın son hâlinden dolduruyor; senkron Codable olduğu için buluta da gidiyor. Masal düzeyindeki `StoryOrigin.variantIDs` aynı.
+- Test: motor `PageProvenanceTests`, `VisualMeaningTests` ile birlikte belirlenimcilik, bütünlük, anahtar kapsamı, hatırlama, nakarat deneyi, `StorySpotProvenanceTests`: geçti. Uygulama `StoryPageProvenanceTests` (4) ve `StorySpotReaderRenderingTests` (3) simülatörde geçti. Tam motor paketi ve tam uygulama paketi koşulmadı.
+- Dosyalar: `PageProvenance.swift`, `VisualMeaning.swift` (yeni), `OfflineStoryComposer.swift`, `RecallLines.swift`, `CatalogTemplate.swift`, `CatalogIntegrity.swift`, 193 şablon dosyası, `StoryPageProvenance.swift` (yeni), `Story.swift`, `OfflineStoryMapper.swift`, dört test dosyası, `docs/GORSEL_ANLAM_SOZLESMESI.md`, bu günlük.
+
 ### 2026-11-20 · main (birleştirme, bu kayıtla), origin'de · Yeni dünyalar main'e alındı
 
 - Batuhan'ın onayıyla ("Main'e al, gönder") `evren-7-yetkiler` (son: `1e9ec16`, yeni dünyalar) `main@a39eed3` üzerine birleştirildi ve origin'e gönderildi. Tek çakışma bu günlükte; iki tarafın kayıtları da korundu.

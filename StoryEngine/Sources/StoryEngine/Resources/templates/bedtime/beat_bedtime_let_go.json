@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt_lg_own_place",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencerenin köşesine yumuşacık bir yer hazırladı. \"Burası senin yerin,\" dedi {{companion.name}}'a. Sonra ellerini usulca çekti. Herkesin kendi uyku yeri vardı.",
       "requiredSlots": [
         "child.name",
@@ -36,6 +38,8 @@
     },
     {
       "id": "bt_lg_whisper_goodnight",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} eğilip {{companion.name}}'a \"İyi geceler,\" diye fısıldadı. Sonra bir adım geri çekildi. Onu yanında tutmak istemişti, ama uyumak için herkesin kendi yuvası gerekirdi.",
       "requiredSlots": [
         "child.name",
@@ -49,6 +53,8 @@
     },
     {
       "id": "bt_lg_blanket_corner",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ona yorganının küçük bir köşesini verdi, sonra elini usulca çekti. \"Şimdi sıra sende,\" dedi gülümseyerek. {{companion.name}} kendi yerinde rahatça kıvrıldı.",
       "requiredSlots": [
         "child.name",

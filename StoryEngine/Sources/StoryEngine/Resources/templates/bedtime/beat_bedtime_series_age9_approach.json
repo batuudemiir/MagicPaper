@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "b9sap_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} usulca doğruldu ve yorganı omzuna alarak pencereye biraz yaklaştı; yataktan tam inmedi, çünkü bu saatte uzağa gitmenin anlamı yoktu. Yakından bakınca {{discovery.name}} daha da küçük göründü. Birinin ona bakması gerekiyordu, ve {{child.name}} o birinin kim olacağını çoktan biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -25,6 +27,8 @@
     },
     {
       "id": "b9sap_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["emitting"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yataktan inmeden pencereye doğru biraz kaydı. Ay ışığı her şeyi gündüzden daha yumuşak gösteriyordu. Bu ışıkta {{discovery.name}} olduğundan daha kırılgan duruyordu. {{companion.name}} ona yer açtı ve ikisi bir süre konuşmadan, dikkatle baktılar.",
       "requiredSlots": [
         "child.name",
@@ -39,6 +43,8 @@
     },
     {
       "id": "b9sap_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} terliklerini giymeden, parmak uçlarında pencerenin önüne kadar yürüdü; döşeme bir kez gıcırdadı, ikisi de kıkırdadı. Oradan bakınca her şey daha sakin görünüyordu. {{discovery.name}} oradaydı ve biraz yardıma ihtiyacı vardı; bu kadarını görmek için çok bakmak gerekmiyordu.",
       "requiredSlots": [
         "child.name",

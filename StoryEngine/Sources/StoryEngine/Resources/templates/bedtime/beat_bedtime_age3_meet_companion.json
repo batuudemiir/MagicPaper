@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt3_mc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Pencerenin önünde {{companion.name}} vardı. Uyuyamıyordu.",
       "requiredSlots": [
         "companion.name"
@@ -26,6 +28,8 @@
     },
     {
       "id": "bt3_mc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Küçük {{companion.type}} {{companion.name}} esniyordu ama uyuyamıyordu.",
       "requiredSlots": [
         "companion.type",
@@ -42,6 +46,8 @@
     },
     {
       "id": "bt3_mc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} kocaman esnedi. \"Uyuyamıyorum,\" dedi.",
       "requiredSlots": [
         "companion.name"
@@ -57,6 +63,8 @@
     },
     {
       "id": "bt3_mc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} pencerede kımıldıyor, bir türlü uyuyamıyordu.",
       "requiredSlots": [
         "companion.name"

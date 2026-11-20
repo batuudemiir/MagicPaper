@@ -172,6 +172,12 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// seçimde öne alınır (`OfflineStoryComposer.chooseVariant`).
     public let settingTags: Set<ContentTag>
 
+    /// Satırın görsel anlamı (20 Kasım 2026; `VisualMention`). `nil`: henüz
+    /// bakılmadı. Boş liste: bakıldı, görünen bir öğe yok.
+    public let visual: [VisualMention]?
+    /// Etiketin kaynağı; `visual` yokken anlamsız.
+    public let visualReview: VisualReview?
+
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
@@ -181,6 +187,7 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         case familyRelations
         case topics, words
         case settingTags
+        case visual, visualReview
     }
 
     /// Every key this type actually reads.
@@ -227,6 +234,8 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         topics = try container.decodeIfPresent(Set<SafetyTopic>.self, forKey: .topics) ?? []
         words = try container.decodeIfPresent([ContentID].self, forKey: .words) ?? []
         settingTags = try container.decodeIfPresent(Set<ContentTag>.self, forKey: .settingTags) ?? []
+        visual = try container.decodeIfPresent([VisualMention].self, forKey: .visual)
+        visualReview = try container.decodeIfPresent(VisualReview.self, forKey: .visualReview)
     }
 
     /// Whether this line is the right shape for how the story's conflict works.

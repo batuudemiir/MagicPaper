@@ -43,6 +43,8 @@
     },
     {
       "id": "s34_fa_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{discovery.name}}'i aldı ve koştu. Ama rüzgâr yoktu. Oyun pek olmadı.",
       "requiredSlots": [
         "child.name",
@@ -53,6 +55,8 @@
     },
     {
       "id": "s34_fa_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Önce {{companion.name}} zıpladı, sonra {{child.name}}. Ama bir şey eksikti. Rüzgâr esmiyordu.",
       "requiredSlots": [
         "child.name",
@@ -72,6 +76,8 @@
     },
     {
       "id": "s34_fa_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} koştu, {{child.name}} arkasından koştu. Ama hava kıpırdamıyordu. Oyun bir türlü başlamadı.",
       "requiredSlots": [
         "companion.name",
