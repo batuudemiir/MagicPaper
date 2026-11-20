@@ -345,6 +345,139 @@
         "imaginary"
       ],
       "visualScene": "child thinking hard, a faint soft shape beside them"
+    },
+    {
+      "id": "w_ct_na78_01",
+      "text": "{{child.name}} şehirde kaybolmamak için bir yöntem bulmuştu: her köşede bir şeyi aklına yazıyordu. Kırmızı kapı, simitçi, mavi tabela. Yöntem {{setting.name}}'a kadar harika işledi. Orada listeye hiç uymayan bir şey gördü: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_landmark_list_breaks",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na78_02",
+      "text": "Şehirde herkes bir yere yetişiyordu: insanlar, tramvaylar, güvercinler bile. {{child.name}} ise bir bankta oturmuş, hepsini izliyordu. İzlemek de bir iştir, diye düşündü. Tam o sırada {{discovery.name}} dikkatini çekti. Demek ki izlenecek daha çok şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_watching_the_city",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na78_03",
+      "text": "{{child.name}} bu şehre geleli daha bir gün olmuştu. Yine de {{setting.name}}'ı ezberlemeye çoktan başlamıştı. Oysa o sabah ezberde olmayan bir şey vardı. {{discovery.name}}, sanki onu bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_memorising_a_new_place",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_na78_01",
+      "text": "{{child.name}} bu ülkenin dilinden yalnızca üç sözcük biliyordu: merhaba, teşekkürler ve bir de ekmek. Şaşırtıcı biçimde bunlar epey işe yarıyordu. {{setting.name}}'da dolaşırken dördüncü bir sözcüğe ihtiyaç duydu, çünkü {{discovery.name}} dikkatini çekmişti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_three_words_enough",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na78_02",
+      "text": "Bu ülkede akşam yemeği çok geç yeniyordu, neredeyse yatma saatinde. {{child.name}} buna alışmaya çalışırken {{setting.name}}'da bir şey fark etti: {{discovery.name}}. Demek ki burada saatlerden daha ilginç şeyler de vardı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_late_dinner_country",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na78_03",
+      "text": "{{child.name}} uzak ülkeye gelmeden önce her şeyin çok farklı olacağını düşünmüştü. Oysa çocuklar burada da top oynuyor, kediler burada da güneşleniyordu. Farklı olan küçük şeylerdi. Mesela {{setting.name}}'da gözüne çarpan {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_same_but_small_differences",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na78_01",
+      "text": "{{child.name}} tarihi biraz sıkıcı bulurdu: tarihler, adlar, bir sürü kral. Ama {{setting.name}}'da öyle değildi. Burada tarih, dokunulabilen taşlardan ve gerçek insanların izlerinden oluşuyordu. Tam bunu düşünürken {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_history_not_boring_here",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na78_02",
+      "text": "Rehber güzel bir şey söylemişti: buradaki her şeyin bir zamanlar bir sahibi vardı. {{child.name}} bunu çok sevdi. Demek ki her eşya, aslında bir insanın hikâyesiydi. Tam o sırada {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_everything_had_an_owner",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na78_03",
+      "text": "{{child.name}} {{setting.name}}'da bir oyun uydurmuştu: gözlerini kapayıp yüzlerce yıl önceyi hayal ediyordu. Kalabalığı, sesleri, giysileri. Gözlerini açtığında her şey yine bugündü, bir şey dışında: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_imagining_long_ago",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

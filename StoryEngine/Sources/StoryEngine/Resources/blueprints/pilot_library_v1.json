@@ -345,6 +345,206 @@
       "habitat": [
         "village"
       ]
+    },
+    {
+      "id": "setting_clock_square_001",
+      "interests": [
+        "city"
+      ],
+      "name": "Saat Kuleli Meydan",
+      "description": "Ortasında eski bir saat kulesi duran, güvercinlerin gezindiği geniş taş meydan. Kule her saat başı tek bir tatlı ses çalar.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak. Eşik: meydana açılan kemerli geçit (opening). showsTraces değil: taş zemin iz tutmaz, o satırlar 'toprak yumuşacıktı' diyor.",
+      "tags": [
+        "city",
+        "square"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isOpen",
+        "isTended"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "town"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
+    },
+    {
+      "id": "setting_arched_bazaar_001",
+      "interests": [
+        "city"
+      ],
+      "name": "Kemerli Çarşı",
+      "description": "Taş kemerlerin altında küçük dükkânların sıralandığı, her köşesinden başka bir koku gelen eski bir çarşı.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak. Eşik: çarşının kemerli kapısı (opening). canConceal: dükkânların arası, tezgâh altları. Karanlık değil: kemerlerden ışık süzülür.",
+      "tags": [
+        "city",
+        "market"
+      ],
+      "traits": [
+        "hasThreshold",
+        "canConceal"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "town"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
+    },
+    {
+      "id": "setting_windmill_road_001",
+      "interests": [
+        "country"
+      ],
+      "name": "Yel Değirmenleri Ülkesi",
+      "description": "Uzak bir ülkede, kanatları ağır ağır dönen yel değirmenlerinin arasından geçen toprak bir yol. Burada herkes birbirini başka bir dilde selamlar.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak. Uydurma bir ülke, gerçek bir yer değil. Eşik: derenin üstündeki tahta köprü (span). showsTraces: toprak yol, iz tutar.",
+      "tags": [
+        "country",
+        "windmill"
+      ],
+      "traits": [
+        "hasThreshold",
+        "isOpen",
+        "showsTraces"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": true,
+      "habitat": [
+        "faraway"
+      ],
+      "thresholdKinds": [
+        "span"
+      ]
+    },
+    {
+      "id": "setting_red_roof_town_001",
+      "interests": [
+        "country"
+      ],
+      "name": "Kırmızı Kiremitli Kasaba",
+      "description": "Uzak bir ülkenin dağ yamacına kurulmuş, kırmızı kiremitli evleri ve dar merdivenli sokakları olan küçük bir kasaba. Pencerelerden hiç bilinmedik yemeklerin kokusu gelir.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak. Uydurma bir ülke. Eşik: kasabaya çıkan merdivenin başındaki kapı (opening). canConceal: dar sokaklar, merdiven altları.",
+      "tags": [
+        "country",
+        "town"
+      ],
+      "traits": [
+        "hasThreshold",
+        "canConceal"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "faraway"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
+    },
+    {
+      "id": "setting_old_castle_001",
+      "interests": [
+        "history"
+      ],
+      "name": "Eski Kale",
+      "description": "Tepenin üstünde yüzlerce yıldır duran, surlarında küçük çiçeklerin açtığı taş bir kale. Duvarlarındaki her taşın bir hikâyesi vardır.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak. Tarih. Eşik: kalenin büyük ahşap kapısı (opening). isOpen: geniş avlu. Yıkıntı ya da tehlike yok (isHazardous değil); kale bugün herkesin gezdiği bir yer.",
+      "tags": [
+        "history",
+        "castle"
+      ],
+      "traits": [
+        "hasThreshold",
+        "canConceal",
+        "isOpen"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "oldstone"
+      ],
+      "thresholdKinds": [
+        "opening"
+      ]
+    },
+    {
+      "id": "setting_stone_museum_001",
+      "interests": [
+        "history"
+      ],
+      "name": "Taş Müze",
+      "description": "Eski zamanlardan kalan çömleklerin, paraların ve haritaların camlı dolaplarda durduğu sessiz, aydınlık bir müze.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak. Tarih. isTended: her şeye özenle bakılır. canConceal: dolapların arkası, alçak raflar. Eşik yok.",
+      "tags": [
+        "history",
+        "museum"
+      ],
+      "traits": [
+        "canConceal",
+        "isTended"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "oldstone"
+      ]
+    },
+    {
+      "id": "setting_open_theatre_001",
+      "interests": [
+        "history"
+      ],
+      "name": "Taş Basamaklı Tiyatro",
+      "description": "Yarım ay biçiminde dizilmiş taş basamakları olan, binlerce yıllık bir açık hava tiyatrosu. En üst basamaktan fısıldanan söz en alttan duyulur.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak. Tarih. isOpen: üstü açık. hasWeather değil: spor şekilleri ('çimenlere oturdular') buraya taşınmasın.",
+      "tags": [
+        "history",
+        "theatre"
+      ],
+      "traits": [
+        "isOpen",
+        "isTended"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "isProperNoun": true,
+      "hasPossessiveEnding": false,
+      "habitat": [
+        "oldstone"
+      ]
     }
   ],
   "companions": [
@@ -778,6 +978,222 @@
         "guide",
         "reassuring"
       ]
+    },
+    {
+      "id": "companion_city_cat_001",
+      "interests": [
+        "city",
+        "animals"
+      ],
+      "name": "Simit",
+      "type": "kedi",
+      "personality": "Meraklı, hep bir adım önde.",
+      "description": "Saat Kuleli Meydan'ın her köşesini bilen, kuyruğu simit gibi kıvrık bir sokak kedisi.",
+      "visualDescription": "small tabby street cat with a curled tail, bright amber eyes",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "city"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "town"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_city_dog_001",
+      "interests": [
+        "city",
+        "animals"
+      ],
+      "name": "Pıtpıt",
+      "type": "köpek",
+      "personality": "Çekingen ama sadık.",
+      "description": "Kemerli Çarşı'da bir dükkânın kapısında uyuklayan, kulakları yumuşacık küçük bir köpek.",
+      "visualDescription": "small fluffy cream dog with floppy ears",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "city"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city"
+      ],
+      "traits": [
+        "isSmall",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "town"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_llama_001",
+      "interests": [
+        "country",
+        "animals"
+      ],
+      "name": "Lolo",
+      "type": "lama",
+      "personality": "Sakin, sabırlı, hep gülümser gibi.",
+      "description": "Yel Değirmenleri Ülkesi'nde yaşayan, boynunda renkli bir kurdele olan yumuşak tüylü bir lama.",
+      "visualDescription": "soft white llama with a colourful woven ribbon around its neck",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "country"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country"
+      ],
+      "traits": [
+        "isPatient",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "faraway"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_marmot_001",
+      "interests": [
+        "country",
+        "animals"
+      ],
+      "name": "Fındık",
+      "type": "dağ sıçanı",
+      "personality": "Utangaç, ama bir kez güvenince hiç bırakmaz.",
+      "description": "Kırmızı Kiremitli Kasaba'nın merdivenlerinde yaşayan, tombul yanaklı küçük bir dağ sıçanı.",
+      "visualDescription": "small round brown marmot with chubby cheeks",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "country"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country"
+      ],
+      "traits": [
+        "isSmall",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "faraway"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_tortoise_001",
+      "interests": [
+        "history",
+        "animals"
+      ],
+      "name": "Taşbaş",
+      "type": "kaplumbağa",
+      "personality": "Ağır, bilge, hiç acele etmez.",
+      "description": "Eski Kale'nin avlusunda yaşayan, kalenin neredeyse bütün hikâyelerini bilen yaşlı bir kaplumbağa.",
+      "visualDescription": "old tortoise with a moss-green patterned shell and kind eyes",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "history"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history"
+      ],
+      "traits": [
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "oldstone"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_dove_001",
+      "interests": [
+        "history",
+        "animals"
+      ],
+      "name": "Gugu",
+      "type": "kumru",
+      "personality": "Ürkek, yumuşak sesli.",
+      "description": "Eski Kale'nin surlarındaki bir taş oyuğunda yaşayan küçük bir kumru.",
+      "visualDescription": "small soft grey dove with a pale pink chest",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "history"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history"
+      ],
+      "traits": [
+        "canFly",
+        "isSmall"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "oldstone"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ]
     }
   ],
   "objects": [
@@ -1172,6 +1588,215 @@
       ],
       "interests": [
         "sports"
+      ]
+    },
+    {
+      "id": "object_tram_ticket_001",
+      "name": "yarısı yırtılmış bir tramvay bileti",
+      "description": "Birinin düşürdüğü, üstünde yalnızca yarım bir durak adı kalmış eski bir tramvay bileti.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city",
+        "ticket"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Tramvay Bileti",
+      "keepsakeName": "tramvay bileti",
+      "habitat": [
+        "town"
+      ],
+      "interests": [
+        "city"
+      ]
+    },
+    {
+      "id": "object_brass_bell_001",
+      "name": "küçük pirinç bir zil",
+      "description": "Bir dükkânın kapısından düşmüş, rüzgâr değince tatlı tatlı çınlayan küçük bir zil.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city",
+        "bell"
+      ],
+      "traits": [
+        "emitsSignal",
+        "isBeautiful",
+        "isAudible",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Pirinç Zil",
+      "keepsakeName": "pirinç zil",
+      "habitat": [
+        "town"
+      ],
+      "interests": [
+        "city"
+      ]
+    },
+    {
+      "id": "object_postcard_001",
+      "name": "yabancı bir dilde yazılmış bir kartpostal",
+      "description": "Üstünde hiç bilinmedik harflerle yarım bırakılmış bir mektup olan, köşesi kıvrık bir kartpostal.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country",
+        "postcard"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Kartpostal",
+      "keepsakeName": "kartpostal",
+      "habitat": [
+        "faraway"
+      ],
+      "interests": [
+        "country"
+      ]
+    },
+    {
+      "id": "object_woven_ribbon_001",
+      "name": "renkli bir el dokuması kurdele",
+      "description": "O ülkenin desenleriyle dokunmuş, birinin saçından ya da sepetinden düşmüş parlak renkli bir kurdele.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country",
+        "ribbon"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isBeautiful",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Dokuma Kurdele",
+      "keepsakeName": "kurdele",
+      "habitat": [
+        "faraway"
+      ],
+      "interests": [
+        "country"
+      ]
+    },
+    {
+      "id": "object_mosaic_piece_001",
+      "name": "bir mozaik parçası",
+      "description": "Küçük renkli taşlardan yapılmış, bir resmin yalnızca bir köşesini gösteren eski bir mozaik parçası.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history",
+        "mosaic"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isFragmentary",
+        "isUnexplained",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Mozaik Parçası",
+      "keepsakeName": "mozaik parçası",
+      "habitat": [
+        "oldstone"
+      ],
+      "interests": [
+        "history"
+      ]
+    },
+    {
+      "id": "object_old_coin_001",
+      "name": "eski bir bakır para",
+      "description": "Üstünde silik bir yüz ve hiç bilinmedik yazılar olan, yüzlerce yıllık küçük bir bakır para.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history",
+        "coin"
+      ],
+      "traits": [
+        "impliesPresence",
+        "isUnexplained",
+        "isBeautiful",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Bakır Para",
+      "keepsakeName": "bakır para",
+      "habitat": [
+        "oldstone"
+      ],
+      "interests": [
+        "history"
+      ]
+    },
+    {
+      "id": "object_castle_bell_001",
+      "name": "rüzgârda çınlayan eski bir çan",
+      "description": "Kalenin kulesinde asılı duran, rüzgâr sertleşince kendi kendine bir kez çınlayan eski bir çan.",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history",
+        "bell"
+      ],
+      "traits": [
+        "emitsSignal",
+        "isUnexplained",
+        "isAudible",
+        "isVisible"
+      ],
+      "isProperNoun": false,
+      "hasPossessiveEnding": false,
+      "titleName": "Kale Çanı",
+      "keepsakeName": "çan",
+      "habitat": [
+        "oldstone"
+      ],
+      "interests": [
+        "history"
       ]
     }
   ],

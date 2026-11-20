@@ -656,6 +656,156 @@
       "familyRelations": [
         "imaginary"
       ]
+    },
+    {
+      "id": "w_ct_wc910_01",
+      "text": "Akşam şehrin ışıkları yanarken {{child.name}} sabahki hâlini hatırladı: haritaya bakmadan iki adım atamayan bir çocuk. Şimdi o sokakları haritasız yürüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_walking_without_the_map",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc910_02",
+      "text": "Tramvay {{setting.name}}'dan uzaklaşırken {{child.name}} pencereye yaslandı. Şehir hâlâ kocamandı, ama artık içinde ona ait küçük bir köşe vardı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_leaning_on_the_tram_window",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc910_03",
+      "text": "Şehirden ayrılmadan önce {{child.name}} son bir tur attı. Simitçinin sesini, tramvayın çanını, güvercinlerin kanat çırpışını aklına yazdı. Bunları bir deftere de yazabilirdi ama gerek yoktu; bazı şeyler kendiliğinden akılda kalır. Akşam ışıkları altında şehir, sabahkinden çok daha tanıdık görünüyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_last_round_of_the_city",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc910_04",
+      "text": "{{setting.name}}'da gün yavaş yavaş bitiyordu. Dükkânlar kepenklerini indiriyor, sokaklar sessizleşiyordu. {{child.name}} bir bankta oturup şehrin bu hâlini izledi. Sabah ona gürültülü ve karışık gelen her şey, şimdi tek tek tanıdığı seslerden ve yüzlerden ibaretti. İyi bir gündü, diye düşündü; bir şehirle tanışılan türden.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_shutters_coming_down",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_wc910_01",
+      "text": "Akşam olunca {{child.name}} bugün öğrendiklerini aklından geçirdi: dört yeni sözcük, iki yeni tat ve bir yeni arkadaş. Uzak ülke, sabahkinden çok daha yakındı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_tally_of_the_day",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc910_02",
+      "text": "{{companion.name}} ona kendi dilinde bir veda sözü söyledi. {{child.name}} sözcükleri anlamadı ama sesin sıcaklığını anladı; bazı şeyler hiç çeviri istemiyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_farewell_untranslated",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc910_03",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} yabancı olmanın ne demek olduğunu düşündü. Sabah her şey yabancıydı: dil, yemek, sokaklar, insanlar. Akşama doğru yabancılık azalmıştı, çünkü birkaç sözcük, birkaç yüz ve bir arkadaş artık tanıdıktı. Demek ki yabancılık bir yer değil, henüz tanışılmamış bir şeydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_what_strangeness_is",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc910_04",
+      "text": "Uzak ülkede gece olurken gökyüzü, {{child.name}}'in evinden gördüğü gökyüzünün aynısıydı. Aynı ay, aynı yıldızlar, belki biraz farklı bir açıdan. {{child.name}} buna sevindi, ama nedenini tam söyleyemezdi. Belki de dünyanın kocaman olduğunu ve yine de herkesin aynı göğün altında durduğunu bilmek iyi geliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_one_sky_over_everyone",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_hs_wc910_01",
+      "text": "Akşam güneşi eski taşları ısıtırken {{child.name}} bir şey fark etti. Tarih bugün ona kuru bir ders gibi değil, eski bir komşu gibi gelmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_history_as_a_neighbour",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc910_02",
+      "text": "{{child.name}} {{setting.name}}'dan ayrılırken arkasına baktı. Yüzlerce yıldır orada duran taşlar onun gidişini de sakin sakin izledi; onlar için bu, sayısız gidişten biriydi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_stones_watch_leaving",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc910_03",
+      "text": "Eve dönerken {{child.name}} kafasında bir zaman çizgisi çizdi. Bir ucunda yüzlerce yıl önce bu taşları yerine koyan insanlar vardı, öbür ucunda kendisi. Arada sayısız insan, sayısız gün. Çizgi çok uzundu, ama kopuk değildi; her ucunda merak eden biri duruyordu. {{child.name}} bu düşünceyle yolun geri kalanını yürüdü.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_a_line_through_time",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc910_04",
+      "text": "{{setting.name}}'da gün bitiyordu. Işık yumuşamış, sesler azalmıştı. {{child.name}} bir süre hiçbir şey yapmadan oturdu. Sabah buraya bir yabancı gibi gelmişti; şimdi ise bu eski yerin yüzlerce yıllık konuk listesine adını sessizce yazmış gibiydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_name_in_the_guest_list",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

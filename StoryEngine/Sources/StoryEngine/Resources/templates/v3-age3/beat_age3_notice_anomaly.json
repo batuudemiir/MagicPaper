@@ -323,6 +323,141 @@
       ],
       "move": "tp_s34_na_tp_01",
       "lengthClass": "paired"
+    },
+    {
+      "id": "w_ct_na34_01",
+      "text": "{{child.name}} şehirde ilk kez yürüyordu. Her yer kalabalık ve sesliydi. Sonra durdu. Yerde {{discovery.name}} vardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_first_walk_in_the_city",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na34_02",
+      "text": "Tramvay çan çalarak geçti. {{child.name}} ona el salladı. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_tram_passes_then_notice",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na34_03",
+      "text": "{{child.name}} {{setting.name}}'da güvercinleri sayıyordu. Bir, iki, üç. Sonra saymayı bıraktı. {{discovery.name}} oradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_counting_pigeons",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na34_01",
+      "text": "{{child.name}} uzak bir ülkeye gelmişti. Burada herkes başka dilde konuşuyordu. Sonra {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_arrived_far_away",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na34_02",
+      "text": "Biri ona bilmediği bir dilde merhaba dedi. {{child.name}} gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_hello_in_a_new_language",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na34_03",
+      "text": "{{setting.name}}'da hava bambaşka kokuyordu. {{child.name}} derin bir nefes aldı. Sonra durdu. {{discovery.name}} oradaydı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_new_air_new_smell",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na34_01",
+      "text": "{{child.name}} çok eski bir yere gelmişti. Taşlar yüzlerce yıllıktı. Sonra {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_very_old_place",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na34_02",
+      "text": "{{setting.name}}'da her şey çok eskiydi. {{child.name}} yavaşça yürüdü. Sonra durdu. Önünde {{discovery.name}} vardı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_slow_walk_old_place",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na34_03",
+      "text": "Burada eskiden de çocuklar oynarmış. {{child.name}} bunu düşündü ve gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_children_long_ago",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

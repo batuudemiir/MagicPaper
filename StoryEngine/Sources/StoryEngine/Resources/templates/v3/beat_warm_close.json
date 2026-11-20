@@ -673,6 +673,156 @@
         "imaginary"
       ],
       "visualScene": "child walking home whispering to the air"
+    },
+    {
+      "id": "w_ct_wc56_01",
+      "text": "Akşam olunca şehrin bütün ışıkları yandı. {{child.name}} bu şehri artık biraz tanıyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_city_lights_known",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc56_02",
+      "text": "Tramvay çan çalarak geldi. {{child.name}} pencereden {{setting.name}}'a son bir kez el salladı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_waving_from_the_tram",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc56_03",
+      "text": "Şehir kocamandı, sokakları sayısızdı. Ama artık içlerinden birini {{child.name}} çok iyi biliyordu. Akşam ışıkları yanarken o sokaktan bir kez daha yürüdü, yavaş yavaş.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_one_street_of_many",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_wc56_04",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} kulak kabarttı. Şehrin sesleri hâlâ oradaydı: bir çan, bir kahkaha, uzaktan bir tramvay. Ama hepsi artık tanıdık geliyordu.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_city_sounds_familiar",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_wc56_01",
+      "text": "Akşam uzak ülkenin ışıkları birer birer yandı. {{child.name}} bugün öğrendiği yeni sözcüğü kendi kendine fısıldadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_whispering_the_new_word",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc56_02",
+      "text": "{{child.name}} {{companion.name}}'e o ülkenin dilinde teşekkür etti. Doğru söyleyip söylemediğini bilmiyordu ama {{companion.name}} gülümsedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_thanks_in_their_language",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc56_03",
+      "text": "Uzak ülkede de akşam olunca gökyüzü aynı renge boyanıyordu. {{child.name}} buna çok şaşırdı, sonra sevindi. Demek ki dünyanın öbür ucunda da akşamlar böyle güzeldi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_same_sunset",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_wc56_04",
+      "text": "{{setting.name}}'dan ayrılırken {{child.name}} cebinde üç şey taşıyordu. Yeni bir sözcük, yeni bir tat, yeni bir arkadaşın adı. Hiçbiri ağır değildi, ama hepsi değerliydi.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_three_things_in_the_pocket",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_hs_wc56_01",
+      "text": "Akşam güneşi eski taşları altın rengine boyadı. {{child.name}} onlara bir kez daha baktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_golden_old_stones",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc56_02",
+      "text": "{{child.name}} {{setting.name}}'dan ayrılırken bir taşa dokundu. Yüzlerce yıl önce de biri ona dokunmuştu belki.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name"
+      ],
+      "lengthClass": "paired",
+      "move": "world_touching_an_old_stone",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc56_03",
+      "text": "Eve dönerken {{child.name}} hep aynı şeyi düşündü. Çok eskiden de çocuklar vardı, onlar da merak ederdi, onlar da gülerdi. Zaman çok uzundu ama çocuklar hep birbirine benziyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_children_alike_through_time",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_wc56_04",
+      "text": "{{setting.name}} akşamın sessizliğine büründü. {{child.name}} arkasına baktı ve eski taşların yüzlerce yıldır orada beklediğini düşündü. Şimdi onun hikâyesi de o taşlara karışmıştı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_story_joins_the_stones",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

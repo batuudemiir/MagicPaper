@@ -336,6 +336,140 @@
         "imaginary"
       ],
       "visualScene": "child thinking hard, a faint soft shape beside them"
+    },
+    {
+      "id": "w_ct_na910_01",
+      "text": "{{child.name}} yeni bir şehri tanımanın en iyi yolunun yürümek olduğuna karar vermişti. Otobüs her yere götürüyordu ama hiçbir şey göstermiyordu; yürümek yavaştı ama her şeyi gösteriyordu. Bu teoriyi {{setting.name}}'da sınarken bir şey teoriyi fazlasıyla doğruladı. {{discovery.name}}, kalabalığın arasında görünmek için sıra bekliyor gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_walking_theory",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na910_02",
+      "text": "Şehirde herkesin bir yere yetişmesi gerekiyordu; {{child.name}} hariç. O, {{setting.name}}'ın bir köşesinde durmuş, şehrin nasıl işlediğini anlamaya çalışıyordu. Kim nereden geliyor, nereye gidiyor, kim kime selam veriyor. Listesi uzarken bir madde kendiliğinden eklendi: {{discovery.name}}. Bu madde öbürlerine hiç benzemiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_how_the_city_works",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na910_03",
+      "text": "{{child.name}} bu şehre gelmeden önce haritasını üç kez incelemişti. Hangi sokak nereye çıkar, hangi köprü nereden geçer, hepsini biliyordu. Ya da bildiğini sanıyordu. Çünkü {{setting.name}}'da haritanın hiç söz etmediği bir şeyle karşılaştı: {{discovery.name}}. Demek ki haritalar her şeyi anlatmıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_the_map_was_silent",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_na910_01",
+      "text": "{{child.name}} bu ülkenin dilinde kendini tanıtmayı bir hafta boyunca çalışmıştı. Sonuç fena değildi: insanlar gülümsüyor, ardından çok hızlı bir şeyler söylüyordu. Asıl zor kısım, demek ki, karşılığı anlamaktı. {{setting.name}}'da tam bunu düşünürken bir şey dikkatini çekti, bu kez hiçbir dile gerek yoktu: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_introduction_practised",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na910_02",
+      "text": "Uzak bir ülkeye gitmek, {{child.name}}'e göre bir bulmacanın içine girmek gibiydi. Selamlaşma başkaydı, yemekler başkaydı, dükkânların açılış saatleri bile başkaydı. {{child.name}} bu farkları tek tek not ediyordu. {{setting.name}}'da listeye yeni bir madde eklemesi gerekti: {{discovery.name}}. Bu madde ötekilerden epey ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_country_as_a_puzzle",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na910_03",
+      "text": "{{child.name}} bir ülkeyi tanımanın en iyi yolunun onu dinlemek olduğuna inanıyordu. O yüzden {{setting.name}}'da gözlerini kapamış, sesleri ayırmaya çalışıyordu. Uzakta bir şarkı, bir kapı gıcırtısı, bilmediği bir dilde bir kahkaha. Gözlerini açınca {{discovery.name}} tam önündeydi. Bu da plana dahil değildi.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_listening_to_a_country",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na910_01",
+      "text": "{{child.name}} tarihin kitaplarda yaşadığını düşünürdü: kalın, ağır, biraz tozlu kitaplarda. {{setting.name}}'a geldiğinde bu düşüncesini gözden geçirmesi gerekti. Burada tarih kitapta değil, taşın içindeydi; dokunulabiliyor, üstünde yürünebiliyordu. Tam bu yeni fikri tartarken bir şey dikkatini çekti: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_history_in_the_stone",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na910_02",
+      "text": "Rehber, burada yüzlerce yıl önce insanların yaşadığını anlatıyordu. {{child.name}} dinlerken kafasında küçük bir hesap yaptı: yüzlerce yıl, onun yaşının belki elli katıydı. Bu sayı o kadar büyüktü ki hayal etmek bile zordu. Derken {{discovery.name}} gözüne çarptı ve hesap yarım kaldı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_fifty_times_my_age",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na910_03",
+      "text": "{{child.name}} {{setting.name}}'da kendine bir görev vermişti: burada yaşamış birini, yalnızca bıraktığı izlerden tanımak. Görev zor görünüyordu, çünkü yüzlerce yıl epey uzun bir süreydi. Sonra ilk ipucu kendiliğinden ortaya çıktı: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_knowing_someone_by_traces",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

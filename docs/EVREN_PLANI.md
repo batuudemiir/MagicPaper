@@ -91,7 +91,16 @@ Tür, ten, saç ve yüz tek kayıtta; büst (`HeroAvatarView`) ve sahne figürü
 - 7-8 ve 9-10'da yalnızca iki macera mekanizması var (persistence, retracing); mekânlar o bantların masallarına giriyor ama çip üçüncü mekanizmayı bekliyor. 3-4'te macera blueprint'i yok.
 - Uyku arkı yatak odalarında kalıyor (`isRestingPlace`). Yeni yol arkadaşları bakım isteyen (`needsCare`) değil; bahçe ve bakım masalları (`charge`, `appeal`) uzaya taşınmıyor.
 
-Sıradaki dünyalar: Tarih (`topic_learning_history`), Yeni bir ülke, Yeni bir şehir, Denizin altı'nı genişletmek (bugün iki mekanizma kuruyor). `StoryTheme.isPremium` ve `MP.World.isPremium`'un birleşmesi ödeme turuna (E7) kaldı.
+**Uygulanan (19 Kasım 2026): üç dünya daha.** Hepsi uydurma yerler, gerçek ülke ya da şehir yok.
+
+- Yeni bir şehir (`city`, habitat `town`): Saat Kuleli Meydan, Kemerli Çarşı; yol arkadaşları Simit (sokak kedisi), Pıtpıt (köpek); nesneler yarım tramvay bileti, pirinç zil.
+- Yeni bir ülke (`country`, habitat `faraway`): Yel Değirmenleri Ülkesi, Kırmızı Kiremitli Kasaba; Lolo (lama), Fındık (dağ sıçanı); yabancı dilde kartpostal, dokuma kurdele.
+- Tarih (`history`, habitat `oldstone`, öğrenme): Eski Kale, Taş Müze, Taş Basamaklı Tiyatro; Taşbaş (kaplumbağa), Gugu (kumru, bakım isteyen); mozaik parçası, bakır para, kale çanı.
+- Üçü de dört bantta canlı (en az üç mekanizma); yeni blueprint yazılmadı.
+- Dünya satırı: satır `settingTags` ile bir dünyaya (mekânın `tags` etiketi, ilgi etiketi değil) bağlanabiliyor (esnemiyor, `natureRequire` gibi); kendi dünyasında seçimde öne alınıyor, havuz sayımı değişmiyor. Üç dünyanın her bantta ilk sayfası (`notice_anomaly`) ve kapanışı (`warm_close`) kendi satırlarıyla: 81 satır. Ara sayfalar genel satırlarla.
+- Olgu (`facts`) eklenmedi: kaynak ve onay ister.
+
+Sıradaki: Denizin altı'nı genişletmek; 3-4'te Meslekler (meslek olay örgüsü yok) ve Bilim ve uzay (tek mekanizma); dünya satırını ara sayfalara (ör. `meet_companion`) yaymak. `StoryTheme.isPremium` ve `MP.World.isPremium`'un birleşmesi ödeme turuna (E7) kaldı.
 
 ### E6: Özel günler
 

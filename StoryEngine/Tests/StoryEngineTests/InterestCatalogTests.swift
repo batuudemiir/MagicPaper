@@ -97,8 +97,10 @@ final class InterestCatalogTests: XCTestCase {
         // Sporlar (19 Kasım 2026): `sports` her banda girdi; 3-4'te `jobs` da,
         // çünkü spor masallarının insan yol arkadaşı Beden Öğretmeni Defne
         // bir meslek taşıyor.
+        // Yeni dünyalar (19 Kasım 2026): `history`, `country`, `city` her banda girdi.
         XCTAssertEqual(coverage[b34], ["animals", "magic", "music", "nature", "robots", "science",
-                                       "sea", "sky", "space", "treasure", "jobs", "sports"])
+                                       "sea", "sky", "space", "treasure", "jobs", "sports",
+                                       "history", "country", "city"])
         // 23 Ekim 2026: `science` eklendi — titrek ışık ve yıldız taşı küratörlü
         // olgulara bağlandı ve "Bilim ve uzay" konusu açıldı.
         // 29 Ekim 2026: `jobs` eklendi — üç insan yol arkadaşı ve Pazar Yeri
@@ -107,12 +109,13 @@ final class InterestCatalogTests: XCTestCase {
         // Vida, Ayçörek ve üç gökyüzü nesnesi 5-6 masallarına giriyor.
         XCTAssertEqual(coverage[b56],
                        ["animals", "magic", "music", "nature", "robots", "sea",
-                        "science", "treasure", "jobs", "space", "sky", "sports"])
+                        "science", "treasure", "jobs", "space", "sky", "sports",
+                        "history", "country", "city"])
         // H1 (17 Kasım 2026): her bantta ulaşılan kelimeler beşten ona çıktı;
         // sınırlayan 3-4 bandıydı.
         XCTAssertEqual(BlueprintSelector().availableInterests(catalog: catalog).map(\.name),
                        ["Hayvanlar", "Uzay", "Deniz", "Müzik", "Sihir", "Doğa", "Robotlar", "Spor",
-                        "Meslekler", "Bilim", "Gökyüzü", "Hazine"])
+                        "Meslekler", "Bilim", "Tarih", "Ülkeler", "Şehirler", "Gökyüzü", "Hazine"])
     }
 
     /// Deniz iki bantta da ulaşılabilir (22 Ekim 2026, ikinci ölçüm).

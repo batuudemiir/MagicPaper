@@ -88,7 +88,9 @@ final class CatalogBundleTests: XCTestCase {
         // 28 ile Gökyüzü ve uzay (E5, 16 Kasım 2026): Ay Kıyısı, Gümüş Kubbe,
         // Bulut Limanı. Dizinin sonuna eklendi; önceki 25 kaydın yeri aynı.
         // 29 ile Köy Çayırı (Sporlar, 19 Kasım 2026).
-        XCTAssertEqual(catalog.settings.count, 29)
+        // 36 ile yeni dünyalar (19 Kasım 2026): iki şehir, iki uzak ülke, üç tarih
+        // mekânı; yol arkadaşı 34, nesne 43. Hepsi dizinin sonunda.
+        XCTAssertEqual(catalog.settings.count, 36)
         // 23 ile fırıncı, postacı ve öğretmen — kütüphanenin ilk insan yol
         // arkadaşları (29 Ekim 2026). `CompanionNature` ekseni bu yüzden var:
         // insan bir masala hayvanın girdiği her yerden giremez.
@@ -97,7 +99,7 @@ final class CatalogBundleTests: XCTestCase {
         // seçilemiyordu.
         // 26 ile Vida (robot) ve Ayçörek (kedi), yalnızca gökyüzü yerlerinde (E5).
         // 28 ile Beden Öğretmeni Defne ve keçi Zıpzıp (Sporlar).
-        XCTAssertEqual(catalog.companions.count, 28)
+        XCTAssertEqual(catalog.companions.count, 34)
         // 28 with the nest, the seedling and the mitten — the three records
         // that made Family VI selectable at all. Two of them are deliberately
         // not animals: Family VI's companion is already the small creature
@@ -108,7 +110,7 @@ final class CatalogBundleTests: XCTestCase {
         // bir keşif bulamadığı için hiç seçilemiyordu.
         // 33 ile yıldız tozu izi, küçük kuyruklu yıldız ve yıldız haritası (E5).
         // 36 ile top, atlama ipi ve uçurtma (Sporlar).
-        XCTAssertEqual(catalog.objects.count, 36)
+        XCTAssertEqual(catalog.objects.count, 43)
         // 85 with the corpus complete at 33 beat files, each replacing the
         // library's thinner scaffolding for the beat it covers.
         //
@@ -175,7 +177,9 @@ final class CatalogBundleTests: XCTestCase {
         // 3 satırda kalan 65 sayfa (49 havuz) en az 4'e çıktı, havuz başına bir
         // satır; her yeni satır, havuzdaki bir komşusunun kapılarını taşıyor.
         // Var olan satırlara dokunulmadı.
-        XCTAssertEqual(catalog.recordCounts["variants"], 2146)
+        // 2146 → 2227 (yeni dünyalar, 19 Kasım 2026): üç dünyanın dört bantta
+        // ilk sayfa ve kapanış satırları, 81 satır.
+        XCTAssertEqual(catalog.recordCounts["variants"], 2227)
     }
 
     /// Yay sekiz sayfa DEĞİL, bandının sayfa sayısı kadar.

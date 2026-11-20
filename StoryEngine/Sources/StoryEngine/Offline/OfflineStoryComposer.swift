@@ -605,12 +605,18 @@ public struct OfflineStoryComposer: Sendable {
             family: family, familyMoment: familyMoment, calmEnding: calmEnding,
             safety: safety)
 
+        // Dünya satırı (19 Kasım 2026): mekânın dünyası için yazılmış satır
+        // varsa seçim onlardan yapılır. Havuz (`pool`) aynı kalır, ince sayfa
+        // ölçümü değişmez; bugün hiçbir satır dünya bildirmediği için eski
+        // masallar bit bit aynı.
+        let world = pool.filter { $0.isWorldLine(for: content.setting) }
+        var choices = world.isEmpty ? pool : world
+
         // An episode prefers a line the series has not used yet: the child
         // hears these books in a row, and the second "Bak," dedi is noticed.
-        var choices = pool
         if let episode {
-            let fresh = pool.filter { !episode.avoiding.contains($0.id) }
-            choices = fresh.isEmpty ? pool : fresh
+            let fresh = choices.filter { !episode.avoiding.contains($0.id) }
+            choices = fresh.isEmpty ? choices : fresh
         }
 
         // D2: çocuğun son masallarında geçen satır soğur. Geçmiş yoksa seçim
@@ -722,6 +728,14 @@ public struct OfflineStoryComposer: Sendable {
                 beat: beat, page: page)
         }
 
+        // 0i. Hangi **dünyanın** satırı (19 Kasım 2026). **Esnemiyor**, 0g
+        //     ile aynı sebeple: "tramvay sesi" ormanda saçma bir sayfa.
+        let byWorld = byOccupation.filter { $0.suits(world: content.setting) }
+        guard !byWorld.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line for this setting's world", beat: beat, page: page)
+        }
+
         // 0a. The Masal ailem character. **Does not degrade**, in either
         //     direction. On a family moment the character must be there: a
         //     story that opens with the child's sister and never mentions her
@@ -730,13 +744,13 @@ public struct OfflineStoryComposer: Sendable {
         //     which is what keeps every story written before FAZ 11 the same.
         let byFamily: [CatalogVariant]
         if familyMoment, let family {
-            byFamily = byOccupation.filter { $0.isFamilyLine && $0.suits(family: family) }
+            byFamily = byWorld.filter { $0.isFamilyLine && $0.suits(family: family) }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForFamily(
                     relation: family, beat: beat, page: page)
             }
         } else {
-            byFamily = byOccupation.filter { !$0.isFamilyLine }
+            byFamily = byWorld.filter { !$0.isFamilyLine }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForRole(
                     role: content.castRole, beat: beat, page: page)
