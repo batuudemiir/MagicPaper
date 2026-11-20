@@ -150,6 +150,42 @@ final class OriginalsTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: repo.originalDrafts.appendingPathComponent("fener-masali").path))
     }
 
+    // MARK: - Seslendirme
+
+    static let m4a = Data([0, 0, 0, 0x20]) + Data("ftypM4A ".utf8) + Data(repeating: 1, count: 32)
+
+    private func writeNarration(_ pages: [Int], data: Data = OriginalsTests.m4a) throws {
+        let folder = Repo(root: temp).originalDrafts.appendingPathComponent("fener-masali/narration")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        for page in pages {
+            try data.write(to: folder.appendingPathComponent(String(format: "page-%02d.m4a", page)))
+        }
+    }
+
+    func testANarrationWithEveryPagePasses() throws {
+        try writeDraft(try Self.tale())
+        try writeNarration([1, 2, 3])
+        XCTAssertEqual(OriginalLibrary.check(slug: "fener-masali", repo: Repo(root: temp)), [])
+    }
+
+    func testANarrationMissingAPageOrNotM4AFails() throws {
+        try writeDraft(try Self.tale())
+        try writeNarration([1, 3])
+        try writeNarration([4], data: Self.jpeg)
+        let problems = OriginalLibrary.check(slug: "fener-masali", repo: Repo(root: temp))
+        XCTAssertTrue(problems.contains { $0.contains("eksik sayfa: page-02.m4a") })
+        XCTAssertTrue(problems.contains { $0.contains("fazla dosya: page-04.m4a") })
+    }
+
+    func testApproveCarriesTheNarration() throws {
+        let repo = Repo(root: temp)
+        try writeDraft(try Self.tale())
+        try writeNarration([1, 2, 3])
+        try OriginalLibrary.approve(slug: "fener-masali", repo: repo)
+        let page = repo.originalsPublished.appendingPathComponent("fener-masali/narration/page-02.m4a")
+        XCTAssertEqual(try Data(contentsOf: page), Self.m4a)
+    }
+
     func testApproveRefusesABrokenDraftAndLeavesItInPlace() throws {
         let repo = Repo(root: temp)
         try writeDraft(try Self.tale(), cover: nil)

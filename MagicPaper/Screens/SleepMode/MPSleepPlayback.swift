@@ -114,7 +114,7 @@ final class MPSleepPlayback: ObservableObject {
             return
         }
         speech.speak(session.pages[page],
-                     recording: session.storyID.flatMap { MPNarration.recording($0, page: session.pageIndexes[page]) })
+                     recording: session.storyID.flatMap { MPNarration.audio($0, page: session.pageIndexes[page]) })
     }
 
     private func advance() {

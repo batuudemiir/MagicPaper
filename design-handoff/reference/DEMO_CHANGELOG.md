@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · main, commit bu kayıtla · Kar Tepesi'ndeki Yeşil Işık stüdyo sesiyle yayında
+- Seslendirme: Batuhan'ın ElevenLabs kaydı (anlatıcı "Venera", 232 sn, tek MP3) dokuz sayfa dosyasına bölündü: `Content/Originals/published/kar-tepesindeki-yesil-isik/narration/page-01…09.m4a` (AAC 64 kbps mono, toplam ~1,9 MB). Anlatıcı sayfa arasında daha uzun durmadığı için sınırlar cümle cümle hece sayısı ve duraklarla eşleştirildi, sonra elle kontrol edildi. Kesimler (sn): 28,39 · 54,57 · 81,94 · 107,99 · 132,36 · 155,77 · 180,44 · 208,59. Başlık 1. sayfanın sesinin başında okunuyor. Sayfa başına süre/hece oranı ±%12 içinde. Kulakla dinlenmedi.
+- Onay: Batuhan'ın onayıyla `originals approve` çalıştı, taslak `published/`'a geçti (review.md git geçmişinde), `build_classics_catalog.py` masalı katalog ve kapak asset'iyle uygulamaya ekledi.
+- Yayın aracı: `originals check` isteğe bağlı `narration/` klasörünü denetler (her sayfaya bir `page-NN.m4a`, eksik ya da fazla dosya yok, m4a kabı); `approve` klasörü masalla birlikte taşır. 3 yeni test.
+- Katalog derleyicisi: seslendirmeyi `MagicPaper/Screens/Gunluk/Narration/narration-<ID>-NN.m4a` olarak kopyalar, sayfa sayısı tutmazsa durur.
+- Uygulama: yeni `MPStudioNarration` sayfanın stüdyo sesini paketten bulur. Sıra: ailenin sesi → stüdyo seslendirmesi → cihazın anlatıcısı (`MPNarration.audio`). Okuyucu ve Uyku modu bunu kullanır; sesli okumada sayfa bitince sonraki sayfaya geçiş mevcut `onFinished` ile çalışır. "Ailenin sesi" rozeti yalnız aile kaydında işaretlenir. Klasik anlatım seçiliyse stüdyo sesi çalmaz. "Sesli" rafı ve raf sayfasındaki "Sesli" çipi artık seslendirilmiş masalları gösterir.
+- Bilerek değişmeyen: stüdyo sesi çalarken kelime/cümle vurgusu yok (kayıtta kelime zamanı yok, aile sesiyle aynı); uzak akış ve hosting dokunulmadı.
+- Doğrulama: `swift test` (ContentPublisher) 32/0; değişen Swift dosyalarında `swiftc -parse` temiz; tasarım kuralı grep'leri eklenen satırlarda boş. Uygulama derlenmedi ve test edilmedi (disk %99 dolu); simülatörde ya da cihazda dinlenmedi, Batuhan deneyecek.
+- Dosyalar: `Content/Originals/{drafts→published}/kar-tepesindeki-yesil-isik`, `MagicPaper/Screens/Gunluk/Narration/`, `MagicPaper/Assets.xcassets/Originals/original-kar-tepesindeki-yesil-isik.imageset`, `MagicPaper/Screens/Gunluk/Model/{classics_catalog.json,ClassicsCatalog.swift,ClassicTale.swift}`, `MagicPaper/Screens/Gunluk/GunlukShelfView.swift`, `MagicPaper/Screens/{MPNarration.swift,StoryReader/StoryReaderView.swift,SleepMode/MPSleepPlayback.swift}`, `Scripts/ContentPublisher/{Sources/PublisherKit/Originals.swift,Tests/PublisherKitTests/OriginalsTests.swift}`, `Scripts/ClassicsCatalog/build_classics_catalog.py`, bu günlük.
+
 ### 2026-11-20 · main (birleştirme, bu kayıtla), origin'de · Yeni dünyalar main'e alındı
 
 - Batuhan'ın onayıyla ("Main'e al, gönder") `evren-7-yetkiler` (son: `1e9ec16`, yeni dünyalar) `main@a39eed3` üzerine birleştirildi ve origin'e gönderildi. Tek çakışma bu günlükte; iki tarafın kayıtları da korundu.
