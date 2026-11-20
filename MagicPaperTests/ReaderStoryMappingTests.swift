@@ -5,52 +5,9 @@ import XCTest
 @MainActor
 final class ReaderStoryMappingTests: XCTestCase {
 
-    func testLegacyPageJSONDecodesWithoutArtMetadata() throws {
-        let json = """
-        {"id":"00000000-0000-0000-0000-000000000001","title":"","text":"Metin.","imagePrompt":""}
-        """
-        let page = try JSONDecoder().decode(StoryPage.self, from: Data(json.utf8))
-        XCTAssertNil(page.illustrationRole)
-        XCTAssertNil(page.illustrationAltText)
-        XCTAssertNil(page.illustrationSourceID)
-    }
-
-    func testArtMetadataRoundTripsAndUnknownRoleRemainsReadable() throws {
-        var page = StoryPage(title: "", text: "Metin.", imagePrompt: "", imageFileName: "spot.png")
-        page.illustrationRole = "future-role"
-        page.illustrationAltText = "Bir filiz."
-        page.illustrationSourceID = "page-specific-art"
-        let decoded = try JSONDecoder().decode(StoryPage.self, from: JSONEncoder().encode(page))
-        XCTAssertEqual(decoded.illustrationRole, "future-role")
-        XCTAssertEqual(decoded.illustrationAltText, "Bir filiz.")
-        XCTAssertEqual(decoded.illustrationSourceID, "page-specific-art")
-        var story = ReaderFixtures.illustratedStory(pages: 1)
-        story.pages = [decoded]
-        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .scene)
-    }
-
-    func testSpotRequiresArtAndSemanticMetadata() throws {
-        var story = ReaderFixtures.illustratedStory(pages: 1)
-        story.pages[0].illustrationRole = "spot"
-        story.pages[0].illustrationAltText = "Bir filiz."
-        story.pages[0].illustrationSourceID = "page-specific-art"
-        let reader = ReaderStory(from: story)
-        let page = try XCTUnwrap(reader.leaves.compactMap(\.page).first)
-        XCTAssertEqual(page.composition, .spot)
-        XCTAssertEqual(page.imageLabel, "Bir filiz.")
-        XCTAssertEqual(page.spokenText, "Sayfa 1.")
-        XCTAssertEqual(reader.leafIndex(forPage: 0), 0)
-        story.pages[0].imageFileName = ""
-        story.pages[0].imageUrl = ""
-        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .text)
-    }
-
-    func testUnlabelledSpotFallsBackToTextAndLegacyArtToScene() {
-        var story = ReaderFixtures.illustratedStory(pages: 1)
-        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .scene)
-        story.pages[0].illustrationRole = "spot"
-        XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .text)
-    }
+    // Sahne/spot düzeninin dört testi (a504047) okuyucu düzeni işiyle birlikte
+    // `codex/design-system-catalog` dalında; o iş main'e girerken geri gelir
+    // (20 Kasım 2026: main'in test hedefi derlensin diye çıkarıldı).
 
     // 9 — yalnızca metin masalı
     func testTextOnlyStoryHasNoImages() {

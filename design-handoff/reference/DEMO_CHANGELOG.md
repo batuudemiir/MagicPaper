@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · main, commit bu kayıtla · main'in ilk derlemesi ve test turu (20 Kasım kararları)
+
+- Ne değişti: `main` (fd95081) Xcode 27.0'da iPhone 17 Pro simülatörü için derlendi: uygulama ve test hedefi `TEST BUILD SUCCEEDED`. Test hedefi derlenmiyordu: `ReaderStoryMappingTests`'teki sahne/spot düzeninin dört testi (a504047, 18 Kasım) `main`'de olmayan okuyucu düzeni alanlarını kullanıyordu (`illustrationRole`, `composition`). Bu dört test `main`'den çıkarıldı; okuyucu düzeni işi (`codex/design-system-catalog`, `main`'de olmayan 7 commit) birleşirken geri gelmeli.
+- Test: birim testleri 1004 koşu, 1 atlandı, 9 test kırık (15 doğrulama). Yetki testleri (`EntitlementPolicyTests`, `EntitlementServiceTests`, `LockedCopyTests`, `StoryCreationStepsTests`) geçti. Kırıkların hiçbiri bugünkü birleştirmenin kodundan değil: `DesignSystemSnapshotTests` dördü (düğme, seçenek satırı, kahraman kartı, boş durum: referans görüntüler eski), `InterestProfileTests` (Spor ve Meslekler artık her bantta, beklenti eski), `SeriesManagerTests.testAModeNoContinuationServesMayNot` (H4 her moda devam ekledi, beklenti eski), `ClassicsCatalogTests` ("kirmizi-atkidaki-kar-tanesi" hiçbir rafta değil: içerik hatası), `LibraryCutoverTests` ikisi (bilinen JSON bayt karşılaştırması), `ReadingEventTests.testDeleteProfileReachesTheLiveStores` ("deleteProfile refused"). Simülatörde ekran açılmadı, ekran görüntüsü alınmadı.
+- Yer açma: iPhone 17 Pro simülatörü sıfırlandı (~12 GB), `MagicPaper.zip` ve `main`'e birleşmiş 16 eski worktree klasörü kaldırıldı (dallar duruyor). Firebase ikili paketleri Xcode'un indiricisinde zaman aşımına düştüğü için `curl` ile SwiftPM önbelleğine indirildi.
+- Etkilenen: `MagicPaperTests/ReaderStoryMappingTests.swift`, bu kayıt.
+
 ### 2026-11-20 · main (ileri sarma, bu kayıtla) · 20 Kasım kararları main'e alındı ve origin'e gönderildi
 
 - Ne değişti: Batuhan'ın isteğiyle `kararlar-20-kasim` dalı `main`'e ileri sarılarak birleşti (birleştirme commit'i yok, `main` 390bdb1'den bu kayda). `main` ve `kararlar-20-kasim` origin'e gönderildi. Böylece İrem'in `irem` dalındaki işler (ana sayfa başlığı, Paywall düzeltmeleri, Xcode 26.6 düzeltmesi, önizleyici ve ekran hattı) ve 20 Kasım abonelik yetkileri `main`'de.
