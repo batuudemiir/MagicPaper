@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · Görsel kapsamı audit aracı ve Claude iş bölümü
+
+- Metin/seed/seçim değişmeden karma görsel havuzu için spec, aşamalı plan ve salt okunur kaynak denetim aracı eklendi. Kaynak pointer/ID/text hash ve bütün dosya hash değişimlerini yakalar; aday slotları semantik onay saymaz, NOT_CERTIFIED durumunu korur.
+- Claude motorun kaynak parçaları, kalıcı provenance ve içerik visual anlam alanlarını sahipleniyor; bu dosyalara dokunulmadı. Mevcut12 çizim için canonical subject/state/asset revision/digest köprü envanteri hazır; visualKeys yeni şema gelene kadar boş, paralel isimlendirme yok.
+- Güncel a7685ca kaynak refresh’i238dosya/3016metin:973yeni,0silinen;830eski kaydın dosya bağlamı değişmiş,aynıpointertextdeğişmemiş.49incelemegeçersiz,2korundu,3014açık,0onaylıartbinding. Ham generic walker3304nesne farklıscope; kaynakta bulunma runtime seçilebilirlik kanıtı değildir.
+- Doğrulama:6Pythonunit testi geçti,3016kaynakpointer/kimlik/metin/dosyaSHA0hata,12assetdigest doğrulandı,diff temiz. Uygulama test/build veya telefon kurulumu yapılmadı; evrensel resimli sayfa garantisi verilmedi.
+- Dosyalar: Tools/story_art_coverage_audit.py+test, docs/research/2026-11-20-art-anchor-audit.json/md, authored-art-source-inventory.json, art-asset-bridge.json, art-engine-app-handoff.md, ilgili plan/spec/projehafızası. Başka oturumun kaynakları ve günlük kayıtları korunur.
+
 ### 2026-11-20 · codex/design-system-catalog@d14cdbe · Güncel repo ve İrem devir notları
 
 - Origin dalları çekildi; origin/main@33e9759 açık dala birleştirildi (d14cdbe). Günlük çakışmasında iki taraf korundu; autostash ile saklanan yerel değişiklikler geri yüklendi. Uzak repoya gönderim yapılmadı.
