@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-20 · codex/design-system-catalog · c742ea7 provenance sözleşmesine göre envanter
+
+- anlati-provenance dalı mevcutkirli checkout’a birleştirilmeden exactGitcommit üzerinden okundu. Audit aracı Git snapshot modu ve visual yok/boş/auto/reviewed ayrımıyla genişletildi; auto etiket hiçbir zaman runtimeart onayı sayılmadı.
+-193dosyada1622auto,1099etiketsiz,toplam2721beat/0reviewed;genişJSONenvanter3304nesne. ÖncekitabanlaID/metinhash karşılaştırması0değişim/0ekleme/0silme. Sözleşmede subject/presence/states var; paralel visualKey sözlüğü üretilmedi.
+- Doğrulama:7araçtestigeçti,diff temiz;app/enginebuild/test/telefon kurulumu yapılmadı. Çıktılar docs/research/2026-11-20-provenance-c742ea7-art-inventory.json/md,Toolsartcoverageaudit+test,projehafızası. Evrensel kapsama veya yeni runtimeeşleme eklenmedi.
+
 ### 2026-11-20 · codex/design-system-catalog · Statik havuza üç guaj çizim adayı
 
 - Kullanıcının devam talebiyle gümüş çan ve iki kanonik oda pencere detayı built-in image_gen üzerinden onaylı guaj referansıyla üretildi. Çocuk/Ragi/arkadaş kimliği veya yatak/aile sayısı eklenmedi. İlk ay pencere taslakları manzara/hale nedeniyle elendi; sonv3 temiz aday.

@@ -10,6 +10,18 @@ spec.loader.exec_module(audit)
 
 
 class SourceAuditTests(unittest.TestCase):
+    def test_visual_contract_preserves_absent_empty_auto_and_reviewed(self):
+        self.assertEqual(audit.visual_record({})["visualStatus"], "absent")
+        empty = audit.visual_record({"visual": [], "visualReview": "auto"})
+        self.assertEqual(empty["visualStatus"], "empty")
+        self.assertFalse(empty["runtimeBindingApproved"])
+        mention = {"subject": "discovery", "presence": "present", "states": ["held"]}
+        for review in ["auto", "reviewed"]:
+            row = audit.visual_record({"visual": [mention], "visualReview": review})
+            self.assertEqual(row["visual"], [mention])
+            self.assertEqual(row["visualReview"], review)
+            self.assertFalse(row["runtimeBindingApproved"])
+
     def test_inventory_keeps_source_and_duplicate_variant_ids_distinct(self):
         with tempfile.TemporaryDirectory() as root:
             folder = Path(root)

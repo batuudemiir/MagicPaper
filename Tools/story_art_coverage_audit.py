@@ -10,10 +10,47 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import io
+import subprocess
+import tarfile
+from collections import Counter
 
 
 def digest(value):
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def visual_record(item):
+    value = item.get("visual")
+    status = "absent" if "visual" not in item else "empty" if value == [] else "mentions"
+    return {"visualStatus": status, "visual": value,
+            "visualReview": item.get("visualReview"), "runtimeBindingApproved": False}
+
+
+def inventory_git(repo, ref, resource_path):
+    """Read immutable Git blobs without merging or switching a dirty checkout."""
+    commit = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "--verify", ref + "^{commit}"], text=True).strip()
+    raw = subprocess.check_output(["git", "-C", str(repo), "archive", commit, resource_path])
+    records, sources = [], []
+    with tarfile.open(fileobj=io.BytesIO(raw)) as archive:
+        for member in sorted(archive.getmembers(), key=lambda m: m.name):
+            if not member.isfile() or not member.name.endswith(".json"):
+                continue
+            data = archive.extractfile(member).read()
+            document = json.loads(data)
+            sources.append({"path": member.name, "sha256": hashlib.sha256(data).hexdigest()})
+            for pointer, item in authored(document):
+                records.append({"key": member.name + "#" + pointer, "source": member.name,
+                                "pointer": pointer, "id": item["id"], "text_sha256": digest(item["text"]),
+                                **visual_record(item)})
+    corpus = [r for r in records if Path(r["source"]).name.startswith("beat_")]
+    review = Counter(r["visualReview"] or "unlabeled" for r in corpus)
+    return {"schema_version": 2, "sourceCommit": commit, "guarantee": "NOT_CERTIFIED",
+            "scope": "git_snapshot_all_id_text_records_not_runtime_reachability",
+            "sources": sources, "records": records,
+            "beatCorpusSummary": {"records": len(corpus), "reviewCounts": dict(sorted(review.items())),
+                                  "visualStatusCounts": dict(sorted(Counter(r["visualStatus"] for r in corpus).items())),
+                                  "approvedBindings": 0}}
 
 
 def authored(node, pointer=""):
@@ -91,12 +128,26 @@ def verify_editorial(repo, records, sources=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--sources", type=Path, required=True)
+    parser.add_argument("--sources", type=Path)
+    parser.add_argument("--git-ref")
+    parser.add_argument("--resource-path", default="StoryEngine/Sources/StoryEngine/Resources")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--annotations", type=Path)
     parser.add_argument("--editorial-audit", type=Path)
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     args = parser.parse_args()
+    if args.git_ref:
+        if args.sources or args.annotations or args.editorial_audit:
+            parser.error("Git snapshot mode cannot mix working-tree source evidence")
+        if args.output.resolve().is_relative_to((args.repo / args.resource_path).resolve()):
+            parser.error("output must be outside the immutable source tree")
+        result = inventory_git(args.repo, args.git_ref, args.resource_path)
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps({"commit": result["sourceCommit"], **result["beatCorpusSummary"]}))
+        return 0
+    if args.sources is None:
+        parser.error("provide --sources or --git-ref")
     if not args.sources.is_dir():
         parser.error("--sources must be an existing directory")
     if args.output.resolve().is_relative_to(args.sources.resolve()):
